@@ -4,160 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure VPN autokey tunnel.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
- *
- * const trname3 = new fortios.VpnIpsecPhase1Interface("trname3", {
- *     acctVerify: "disable",
- *     addGwRoute: "disable",
- *     addRoute: "enable",
- *     assignIp: "enable",
- *     assignIpFrom: "range",
- *     authmethod: "psk",
- *     autoDiscoveryForwarder: "disable",
- *     autoDiscoveryPsk: "disable",
- *     autoDiscoveryReceiver: "disable",
- *     autoDiscoverySender: "disable",
- *     autoNegotiate: "enable",
- *     certIdValidation: "enable",
- *     childlessIke: "disable",
- *     clientAutoNegotiate: "disable",
- *     clientKeepAlive: "disable",
- *     defaultGw: "0.0.0.0",
- *     defaultGwPriority: 0,
- *     dhgrp: "14 5",
- *     digitalSignatureAuth: "disable",
- *     distance: 15,
- *     dnsMode: "manual",
- *     dpd: "on-demand",
- *     dpdRetrycount: 3,
- *     dpdRetryinterval: "20",
- *     eap: "disable",
- *     eapIdentity: "use-id-payload",
- *     encapLocalGw4: "0.0.0.0",
- *     encapLocalGw6: "::",
- *     encapRemoteGw4: "0.0.0.0",
- *     encapRemoteGw6: "::",
- *     encapsulation: "none",
- *     encapsulationAddress: "ike",
- *     enforceUniqueId: "disable",
- *     exchangeInterfaceIp: "disable",
- *     exchangeIpAddr4: "0.0.0.0",
- *     exchangeIpAddr6: "::",
- *     forticlientEnforcement: "disable",
- *     fragmentation: "enable",
- *     fragmentationMtu: 1200,
- *     groupAuthentication: "disable",
- *     haSyncEspSeqno: "enable",
- *     idleTimeout: "disable",
- *     idleTimeoutinterval: 15,
- *     ikeVersion: "1",
- *     includeLocalLan: "disable",
- *     "interface": "port3",
- *     ipVersion: "4",
- *     ipv4DnsServer1: "0.0.0.0",
- *     ipv4DnsServer2: "0.0.0.0",
- *     ipv4DnsServer3: "0.0.0.0",
- *     ipv4EndIp: "0.0.0.0",
- *     ipv4Netmask: "255.255.255.255",
- *     ipv4StartIp: "0.0.0.0",
- *     ipv4WinsServer1: "0.0.0.0",
- *     ipv4WinsServer2: "0.0.0.0",
- *     ipv6DnsServer1: "::",
- *     ipv6DnsServer2: "::",
- *     ipv6DnsServer3: "::",
- *     ipv6EndIp: "::",
- *     ipv6Prefix: 128,
- *     ipv6StartIp: "::",
- *     keepalive: 10,
- *     keylife: 86400,
- *     localGw: "0.0.0.0",
- *     localGw6: "::",
- *     localidType: "auto",
- *     meshSelectorType: "disable",
- *     mode: "main",
- *     modeCfg: "disable",
- *     monitorHoldDownDelay: 0,
- *     monitorHoldDownTime: "00:00",
- *     monitorHoldDownType: "immediate",
- *     monitorHoldDownWeekday: "sunday",
- *     nattraversal: "enable",
- *     negotiateTimeout: 30,
- *     netDevice: "disable",
- *     passiveMode: "disable",
- *     peertype: "any",
- *     ppk: "disable",
- *     priority: 0,
- *     proposal: "aes128-sha256 aes256-sha256 aes128-sha1 aes256-sha1",
- *     psksecret: "eweeeeeeeecee",
- *     reauth: "disable",
- *     rekey: "enable",
- *     remoteGw: "2.22.2.2",
- *     remoteGw6: "::",
- *     rsaSignatureFormat: "pkcs1",
- *     savePassword: "disable",
- *     sendCertChain: "enable",
- *     signatureHashAlg: "sha2-512 sha2-384 sha2-256 sha1",
- *     suiteB: "disable",
- *     tunnelSearch: "selectors",
- *     type: "static",
- *     unitySupport: "enable",
- *     wizardType: "custom",
- *     xauthtype: "disable",
- * });
- * const trname2 = new fortios.VpnIpsecPhase2Interface("trname2", {
- *     addRoute: "phase1",
- *     autoDiscoveryForwarder: "phase1",
- *     autoDiscoverySender: "phase1",
- *     autoNegotiate: "disable",
- *     dhcpIpsec: "disable",
- *     dhgrp: "14 5",
- *     dstAddrType: "subnet",
- *     dstEndIp6: "::",
- *     dstPort: 0,
- *     dstSubnet: "0.0.0.0 0.0.0.0",
- *     encapsulation: "tunnel-mode",
- *     keepalive: "disable",
- *     keylifeType: "seconds",
- *     keylifekbs: 5120,
- *     keylifeseconds: 43200,
- *     l2tp: "disable",
- *     pfs: "enable",
- *     phase1name: trname3.name,
- *     proposal: "aes128-sha1 aes256-sha1 aes128-sha256 aes256-sha256 aes128gcm aes256gcm chacha20poly1305",
- *     protocol: 0,
- *     replay: "enable",
- *     routeOverlap: "use-new",
- *     singleSource: "disable",
- *     srcAddrType: "subnet",
- *     srcEndIp6: "::",
- *     srcPort: 0,
- *     srcSubnet: "0.0.0.0 0.0.0.0",
- * });
- * ```
- *
- * ## Import
- *
- * VpnIpsec Phase2Interface can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnIpsecPhase2Interface:VpnIpsecPhase2Interface labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnIpsecPhase2Interface:VpnIpsecPhase2Interface labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VpnIpsecPhase2Interface extends pulumi.CustomResource {
     /**
      * Get an existing VpnIpsecPhase2Interface resource's state with the given name, ID, and optional extra
@@ -186,189 +32,52 @@ export class VpnIpsecPhase2Interface extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpnIpsecPhase2Interface.__pulumiType;
     }
 
-    /**
-     * Enable/disable automatic route addition. Valid values: `phase1`, `enable`, `disable`.
-     */
     public readonly addRoute!: pulumi.Output<string>;
-    /**
-     * Enable/disable forwarding short-cut messages. Valid values: `phase1`, `enable`, `disable`.
-     */
     public readonly autoDiscoveryForwarder!: pulumi.Output<string>;
-    /**
-     * Enable/disable sending short-cut messages. Valid values: `phase1`, `enable`, `disable`.
-     */
     public readonly autoDiscoverySender!: pulumi.Output<string>;
-    /**
-     * Enable/disable IPsec SA auto-negotiation. Valid values: `enable`, `disable`.
-     */
     public readonly autoNegotiate!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable DHCP-IPsec. Valid values: `enable`, `disable`.
-     */
     public readonly dhcpIpsec!: pulumi.Output<string>;
-    /**
-     * Phase2 DH group. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`, `32`.
-     */
     public readonly dhgrp!: pulumi.Output<string>;
-    /**
-     * Enable/disable applying DSCP value to the IPsec tunnel outer IP header. Valid values: `enable`, `disable`.
-     */
     public readonly diffserv!: pulumi.Output<string>;
-    /**
-     * DSCP value to be applied to the IPsec tunnel outer IP header.
-     */
     public readonly diffservcode!: pulumi.Output<string>;
-    /**
-     * Remote proxy ID type. Valid values: `subnet`, `range`, `ip`, `name`, `subnet6`, `range6`, `ip6`, `name6`.
-     */
     public readonly dstAddrType!: pulumi.Output<string>;
-    /**
-     * Remote proxy ID IPv4 end.
-     */
     public readonly dstEndIp!: pulumi.Output<string>;
-    /**
-     * Remote proxy ID IPv6 end.
-     */
     public readonly dstEndIp6!: pulumi.Output<string>;
-    /**
-     * Remote proxy ID name.
-     */
     public readonly dstName!: pulumi.Output<string>;
-    /**
-     * Remote proxy ID name.
-     */
     public readonly dstName6!: pulumi.Output<string>;
-    /**
-     * Quick mode destination port (1 - 65535 or 0 for all).
-     */
     public readonly dstPort!: pulumi.Output<number>;
-    /**
-     * Remote proxy ID IPv4 start.
-     */
     public readonly dstStartIp!: pulumi.Output<string>;
-    /**
-     * Remote proxy ID IPv6 start.
-     */
     public readonly dstStartIp6!: pulumi.Output<string>;
-    /**
-     * Remote proxy ID IPv4 subnet.
-     */
     public readonly dstSubnet!: pulumi.Output<string>;
-    /**
-     * Remote proxy ID IPv6 subnet.
-     */
     public readonly dstSubnet6!: pulumi.Output<string>;
-    /**
-     * ESP encapsulation mode. Valid values: `tunnel-mode`, `transport-mode`.
-     */
     public readonly encapsulation!: pulumi.Output<string>;
-    /**
-     * Enable/disable traffic selector narrowing for IKEv2 initiator. Valid values: `enable`, `disable`.
-     */
+    public readonly inboundDscpCopy!: pulumi.Output<string>;
     public readonly initiatorTsNarrow!: pulumi.Output<string>;
-    /**
-     * Enable/disable setting and resetting of IPv4 'Don't Fragment' bit. Valid values: `enable`, `disable`.
-     */
     public readonly ipv4Df!: pulumi.Output<string>;
-    /**
-     * Enable/disable keep alive. Valid values: `enable`, `disable`.
-     */
     public readonly keepalive!: pulumi.Output<string>;
-    /**
-     * Keylife type. Valid values: `seconds`, `kbs`, `both`.
-     */
     public readonly keylifeType!: pulumi.Output<string>;
-    /**
-     * Phase2 key life in number of bytes of traffic (5120 - 4294967295).
-     */
     public readonly keylifekbs!: pulumi.Output<number>;
-    /**
-     * Phase2 key life in time in seconds (120 - 172800).
-     */
     public readonly keylifeseconds!: pulumi.Output<number>;
-    /**
-     * Enable/disable L2TP over IPsec. Valid values: `enable`, `disable`.
-     */
     public readonly l2tp!: pulumi.Output<string>;
-    /**
-     * IPsec tunnel name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable PFS feature. Valid values: `enable`, `disable`.
-     */
     public readonly pfs!: pulumi.Output<string>;
-    /**
-     * Phase 1 determines the options required for phase 2.
-     */
     public readonly phase1name!: pulumi.Output<string>;
-    /**
-     * Phase2 proposal. Valid values: `null-md5`, `null-sha1`, `null-sha256`, `null-sha384`, `null-sha512`, `des-null`, `des-md5`, `des-sha1`, `des-sha256`, `des-sha384`, `des-sha512`, `3des-null`, `3des-md5`, `3des-sha1`, `3des-sha256`, `3des-sha384`, `3des-sha512`, `aes128-null`, `aes128-md5`, `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes128gcm`, `aes192-null`, `aes192-md5`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-null`, `aes256-md5`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes256gcm`, `chacha20poly1305`, `aria128-null`, `aria128-md5`, `aria128-sha1`, `aria128-sha256`, `aria128-sha384`, `aria128-sha512`, `aria192-null`, `aria192-md5`, `aria192-sha1`, `aria192-sha256`, `aria192-sha384`, `aria192-sha512`, `aria256-null`, `aria256-md5`, `aria256-sha1`, `aria256-sha256`, `aria256-sha384`, `aria256-sha512`, `seed-null`, `seed-md5`, `seed-sha1`, `seed-sha256`, `seed-sha384`, `seed-sha512`.
-     */
     public readonly proposal!: pulumi.Output<string>;
-    /**
-     * Quick mode protocol selector (1 - 255 or 0 for all).
-     */
     public readonly protocol!: pulumi.Output<number>;
-    /**
-     * Enable/disable replay detection. Valid values: `enable`, `disable`.
-     */
     public readonly replay!: pulumi.Output<string>;
-    /**
-     * Action for overlapping routes. Valid values: `use-old`, `use-new`, `allow`.
-     */
     public readonly routeOverlap!: pulumi.Output<string>;
-    /**
-     * Enable/disable single source IP restriction. Valid values: `enable`, `disable`.
-     */
     public readonly singleSource!: pulumi.Output<string>;
-    /**
-     * Local proxy ID type. Valid values: `subnet`, `range`, `ip`, `name`, `subnet6`, `range6`, `ip6`, `name6`.
-     */
     public readonly srcAddrType!: pulumi.Output<string>;
-    /**
-     * Local proxy ID end.
-     */
     public readonly srcEndIp!: pulumi.Output<string>;
-    /**
-     * Local proxy ID IPv6 end.
-     */
     public readonly srcEndIp6!: pulumi.Output<string>;
-    /**
-     * Local proxy ID name.
-     */
     public readonly srcName!: pulumi.Output<string>;
-    /**
-     * Local proxy ID name.
-     */
     public readonly srcName6!: pulumi.Output<string>;
-    /**
-     * Quick mode source port (1 - 65535 or 0 for all).
-     */
     public readonly srcPort!: pulumi.Output<number>;
-    /**
-     * Local proxy ID start.
-     */
     public readonly srcStartIp!: pulumi.Output<string>;
-    /**
-     * Local proxy ID IPv6 start.
-     */
     public readonly srcStartIp6!: pulumi.Output<string>;
-    /**
-     * Local proxy ID subnet.
-     */
     public readonly srcSubnet!: pulumi.Output<string>;
-    /**
-     * Local proxy ID IPv6 subnet.
-     */
     public readonly srcSubnet6!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -404,6 +113,7 @@ export class VpnIpsecPhase2Interface extends pulumi.CustomResource {
             resourceInputs["dstSubnet"] = state ? state.dstSubnet : undefined;
             resourceInputs["dstSubnet6"] = state ? state.dstSubnet6 : undefined;
             resourceInputs["encapsulation"] = state ? state.encapsulation : undefined;
+            resourceInputs["inboundDscpCopy"] = state ? state.inboundDscpCopy : undefined;
             resourceInputs["initiatorTsNarrow"] = state ? state.initiatorTsNarrow : undefined;
             resourceInputs["ipv4Df"] = state ? state.ipv4Df : undefined;
             resourceInputs["keepalive"] = state ? state.keepalive : undefined;
@@ -458,6 +168,7 @@ export class VpnIpsecPhase2Interface extends pulumi.CustomResource {
             resourceInputs["dstSubnet"] = args ? args.dstSubnet : undefined;
             resourceInputs["dstSubnet6"] = args ? args.dstSubnet6 : undefined;
             resourceInputs["encapsulation"] = args ? args.encapsulation : undefined;
+            resourceInputs["inboundDscpCopy"] = args ? args.inboundDscpCopy : undefined;
             resourceInputs["initiatorTsNarrow"] = args ? args.initiatorTsNarrow : undefined;
             resourceInputs["ipv4Df"] = args ? args.ipv4Df : undefined;
             resourceInputs["keepalive"] = args ? args.keepalive : undefined;
@@ -494,189 +205,52 @@ export class VpnIpsecPhase2Interface extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnIpsecPhase2Interface resources.
  */
 export interface VpnIpsecPhase2InterfaceState {
-    /**
-     * Enable/disable automatic route addition. Valid values: `phase1`, `enable`, `disable`.
-     */
     addRoute?: pulumi.Input<string>;
-    /**
-     * Enable/disable forwarding short-cut messages. Valid values: `phase1`, `enable`, `disable`.
-     */
     autoDiscoveryForwarder?: pulumi.Input<string>;
-    /**
-     * Enable/disable sending short-cut messages. Valid values: `phase1`, `enable`, `disable`.
-     */
     autoDiscoverySender?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPsec SA auto-negotiation. Valid values: `enable`, `disable`.
-     */
     autoNegotiate?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Enable/disable DHCP-IPsec. Valid values: `enable`, `disable`.
-     */
     dhcpIpsec?: pulumi.Input<string>;
-    /**
-     * Phase2 DH group. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`, `32`.
-     */
     dhgrp?: pulumi.Input<string>;
-    /**
-     * Enable/disable applying DSCP value to the IPsec tunnel outer IP header. Valid values: `enable`, `disable`.
-     */
     diffserv?: pulumi.Input<string>;
-    /**
-     * DSCP value to be applied to the IPsec tunnel outer IP header.
-     */
     diffservcode?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID type. Valid values: `subnet`, `range`, `ip`, `name`, `subnet6`, `range6`, `ip6`, `name6`.
-     */
     dstAddrType?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv4 end.
-     */
     dstEndIp?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv6 end.
-     */
     dstEndIp6?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID name.
-     */
     dstName?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID name.
-     */
     dstName6?: pulumi.Input<string>;
-    /**
-     * Quick mode destination port (1 - 65535 or 0 for all).
-     */
     dstPort?: pulumi.Input<number>;
-    /**
-     * Remote proxy ID IPv4 start.
-     */
     dstStartIp?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv6 start.
-     */
     dstStartIp6?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv4 subnet.
-     */
     dstSubnet?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv6 subnet.
-     */
     dstSubnet6?: pulumi.Input<string>;
-    /**
-     * ESP encapsulation mode. Valid values: `tunnel-mode`, `transport-mode`.
-     */
     encapsulation?: pulumi.Input<string>;
-    /**
-     * Enable/disable traffic selector narrowing for IKEv2 initiator. Valid values: `enable`, `disable`.
-     */
+    inboundDscpCopy?: pulumi.Input<string>;
     initiatorTsNarrow?: pulumi.Input<string>;
-    /**
-     * Enable/disable setting and resetting of IPv4 'Don't Fragment' bit. Valid values: `enable`, `disable`.
-     */
     ipv4Df?: pulumi.Input<string>;
-    /**
-     * Enable/disable keep alive. Valid values: `enable`, `disable`.
-     */
     keepalive?: pulumi.Input<string>;
-    /**
-     * Keylife type. Valid values: `seconds`, `kbs`, `both`.
-     */
     keylifeType?: pulumi.Input<string>;
-    /**
-     * Phase2 key life in number of bytes of traffic (5120 - 4294967295).
-     */
     keylifekbs?: pulumi.Input<number>;
-    /**
-     * Phase2 key life in time in seconds (120 - 172800).
-     */
     keylifeseconds?: pulumi.Input<number>;
-    /**
-     * Enable/disable L2TP over IPsec. Valid values: `enable`, `disable`.
-     */
     l2tp?: pulumi.Input<string>;
-    /**
-     * IPsec tunnel name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable PFS feature. Valid values: `enable`, `disable`.
-     */
     pfs?: pulumi.Input<string>;
-    /**
-     * Phase 1 determines the options required for phase 2.
-     */
     phase1name?: pulumi.Input<string>;
-    /**
-     * Phase2 proposal. Valid values: `null-md5`, `null-sha1`, `null-sha256`, `null-sha384`, `null-sha512`, `des-null`, `des-md5`, `des-sha1`, `des-sha256`, `des-sha384`, `des-sha512`, `3des-null`, `3des-md5`, `3des-sha1`, `3des-sha256`, `3des-sha384`, `3des-sha512`, `aes128-null`, `aes128-md5`, `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes128gcm`, `aes192-null`, `aes192-md5`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-null`, `aes256-md5`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes256gcm`, `chacha20poly1305`, `aria128-null`, `aria128-md5`, `aria128-sha1`, `aria128-sha256`, `aria128-sha384`, `aria128-sha512`, `aria192-null`, `aria192-md5`, `aria192-sha1`, `aria192-sha256`, `aria192-sha384`, `aria192-sha512`, `aria256-null`, `aria256-md5`, `aria256-sha1`, `aria256-sha256`, `aria256-sha384`, `aria256-sha512`, `seed-null`, `seed-md5`, `seed-sha1`, `seed-sha256`, `seed-sha384`, `seed-sha512`.
-     */
     proposal?: pulumi.Input<string>;
-    /**
-     * Quick mode protocol selector (1 - 255 or 0 for all).
-     */
     protocol?: pulumi.Input<number>;
-    /**
-     * Enable/disable replay detection. Valid values: `enable`, `disable`.
-     */
     replay?: pulumi.Input<string>;
-    /**
-     * Action for overlapping routes. Valid values: `use-old`, `use-new`, `allow`.
-     */
     routeOverlap?: pulumi.Input<string>;
-    /**
-     * Enable/disable single source IP restriction. Valid values: `enable`, `disable`.
-     */
     singleSource?: pulumi.Input<string>;
-    /**
-     * Local proxy ID type. Valid values: `subnet`, `range`, `ip`, `name`, `subnet6`, `range6`, `ip6`, `name6`.
-     */
     srcAddrType?: pulumi.Input<string>;
-    /**
-     * Local proxy ID end.
-     */
     srcEndIp?: pulumi.Input<string>;
-    /**
-     * Local proxy ID IPv6 end.
-     */
     srcEndIp6?: pulumi.Input<string>;
-    /**
-     * Local proxy ID name.
-     */
     srcName?: pulumi.Input<string>;
-    /**
-     * Local proxy ID name.
-     */
     srcName6?: pulumi.Input<string>;
-    /**
-     * Quick mode source port (1 - 65535 or 0 for all).
-     */
     srcPort?: pulumi.Input<number>;
-    /**
-     * Local proxy ID start.
-     */
     srcStartIp?: pulumi.Input<string>;
-    /**
-     * Local proxy ID IPv6 start.
-     */
     srcStartIp6?: pulumi.Input<string>;
-    /**
-     * Local proxy ID subnet.
-     */
     srcSubnet?: pulumi.Input<string>;
-    /**
-     * Local proxy ID IPv6 subnet.
-     */
     srcSubnet6?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -684,188 +258,51 @@ export interface VpnIpsecPhase2InterfaceState {
  * The set of arguments for constructing a VpnIpsecPhase2Interface resource.
  */
 export interface VpnIpsecPhase2InterfaceArgs {
-    /**
-     * Enable/disable automatic route addition. Valid values: `phase1`, `enable`, `disable`.
-     */
     addRoute?: pulumi.Input<string>;
-    /**
-     * Enable/disable forwarding short-cut messages. Valid values: `phase1`, `enable`, `disable`.
-     */
     autoDiscoveryForwarder?: pulumi.Input<string>;
-    /**
-     * Enable/disable sending short-cut messages. Valid values: `phase1`, `enable`, `disable`.
-     */
     autoDiscoverySender?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPsec SA auto-negotiation. Valid values: `enable`, `disable`.
-     */
     autoNegotiate?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Enable/disable DHCP-IPsec. Valid values: `enable`, `disable`.
-     */
     dhcpIpsec?: pulumi.Input<string>;
-    /**
-     * Phase2 DH group. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`, `32`.
-     */
     dhgrp?: pulumi.Input<string>;
-    /**
-     * Enable/disable applying DSCP value to the IPsec tunnel outer IP header. Valid values: `enable`, `disable`.
-     */
     diffserv?: pulumi.Input<string>;
-    /**
-     * DSCP value to be applied to the IPsec tunnel outer IP header.
-     */
     diffservcode?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID type. Valid values: `subnet`, `range`, `ip`, `name`, `subnet6`, `range6`, `ip6`, `name6`.
-     */
     dstAddrType?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv4 end.
-     */
     dstEndIp?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv6 end.
-     */
     dstEndIp6?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID name.
-     */
     dstName?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID name.
-     */
     dstName6?: pulumi.Input<string>;
-    /**
-     * Quick mode destination port (1 - 65535 or 0 for all).
-     */
     dstPort?: pulumi.Input<number>;
-    /**
-     * Remote proxy ID IPv4 start.
-     */
     dstStartIp?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv6 start.
-     */
     dstStartIp6?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv4 subnet.
-     */
     dstSubnet?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv6 subnet.
-     */
     dstSubnet6?: pulumi.Input<string>;
-    /**
-     * ESP encapsulation mode. Valid values: `tunnel-mode`, `transport-mode`.
-     */
     encapsulation?: pulumi.Input<string>;
-    /**
-     * Enable/disable traffic selector narrowing for IKEv2 initiator. Valid values: `enable`, `disable`.
-     */
+    inboundDscpCopy?: pulumi.Input<string>;
     initiatorTsNarrow?: pulumi.Input<string>;
-    /**
-     * Enable/disable setting and resetting of IPv4 'Don't Fragment' bit. Valid values: `enable`, `disable`.
-     */
     ipv4Df?: pulumi.Input<string>;
-    /**
-     * Enable/disable keep alive. Valid values: `enable`, `disable`.
-     */
     keepalive?: pulumi.Input<string>;
-    /**
-     * Keylife type. Valid values: `seconds`, `kbs`, `both`.
-     */
     keylifeType?: pulumi.Input<string>;
-    /**
-     * Phase2 key life in number of bytes of traffic (5120 - 4294967295).
-     */
     keylifekbs?: pulumi.Input<number>;
-    /**
-     * Phase2 key life in time in seconds (120 - 172800).
-     */
     keylifeseconds?: pulumi.Input<number>;
-    /**
-     * Enable/disable L2TP over IPsec. Valid values: `enable`, `disable`.
-     */
     l2tp?: pulumi.Input<string>;
-    /**
-     * IPsec tunnel name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable PFS feature. Valid values: `enable`, `disable`.
-     */
     pfs?: pulumi.Input<string>;
-    /**
-     * Phase 1 determines the options required for phase 2.
-     */
     phase1name: pulumi.Input<string>;
-    /**
-     * Phase2 proposal. Valid values: `null-md5`, `null-sha1`, `null-sha256`, `null-sha384`, `null-sha512`, `des-null`, `des-md5`, `des-sha1`, `des-sha256`, `des-sha384`, `des-sha512`, `3des-null`, `3des-md5`, `3des-sha1`, `3des-sha256`, `3des-sha384`, `3des-sha512`, `aes128-null`, `aes128-md5`, `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes128gcm`, `aes192-null`, `aes192-md5`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-null`, `aes256-md5`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes256gcm`, `chacha20poly1305`, `aria128-null`, `aria128-md5`, `aria128-sha1`, `aria128-sha256`, `aria128-sha384`, `aria128-sha512`, `aria192-null`, `aria192-md5`, `aria192-sha1`, `aria192-sha256`, `aria192-sha384`, `aria192-sha512`, `aria256-null`, `aria256-md5`, `aria256-sha1`, `aria256-sha256`, `aria256-sha384`, `aria256-sha512`, `seed-null`, `seed-md5`, `seed-sha1`, `seed-sha256`, `seed-sha384`, `seed-sha512`.
-     */
     proposal: pulumi.Input<string>;
-    /**
-     * Quick mode protocol selector (1 - 255 or 0 for all).
-     */
     protocol?: pulumi.Input<number>;
-    /**
-     * Enable/disable replay detection. Valid values: `enable`, `disable`.
-     */
     replay?: pulumi.Input<string>;
-    /**
-     * Action for overlapping routes. Valid values: `use-old`, `use-new`, `allow`.
-     */
     routeOverlap?: pulumi.Input<string>;
-    /**
-     * Enable/disable single source IP restriction. Valid values: `enable`, `disable`.
-     */
     singleSource?: pulumi.Input<string>;
-    /**
-     * Local proxy ID type. Valid values: `subnet`, `range`, `ip`, `name`, `subnet6`, `range6`, `ip6`, `name6`.
-     */
     srcAddrType?: pulumi.Input<string>;
-    /**
-     * Local proxy ID end.
-     */
     srcEndIp?: pulumi.Input<string>;
-    /**
-     * Local proxy ID IPv6 end.
-     */
     srcEndIp6?: pulumi.Input<string>;
-    /**
-     * Local proxy ID name.
-     */
     srcName?: pulumi.Input<string>;
-    /**
-     * Local proxy ID name.
-     */
     srcName6?: pulumi.Input<string>;
-    /**
-     * Quick mode source port (1 - 65535 or 0 for all).
-     */
     srcPort?: pulumi.Input<number>;
-    /**
-     * Local proxy ID start.
-     */
     srcStartIp?: pulumi.Input<string>;
-    /**
-     * Local proxy ID IPv6 start.
-     */
     srcStartIp6?: pulumi.Input<string>;
-    /**
-     * Local proxy ID subnet.
-     */
     srcSubnet?: pulumi.Input<string>;
-    /**
-     * Local proxy ID IPv6 subnet.
-     */
     srcSubnet6?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

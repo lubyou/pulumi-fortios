@@ -2,43 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure system PTP information.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemPtp("trname", {
- *     delayMechanism: "E2E",
- *     interface: "port3",
- *     mode: "multicast",
- *     requestInterval: 1,
- *     status: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * System Ptp can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemPtp:SystemPtp labelname SystemPtp
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemPtp:SystemPtp labelname SystemPtp
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemPtp extends pulumi.CustomResource {
     /**
      * Get an existing SystemPtp resource's state with the given name, ID, and optional extra
@@ -67,41 +34,14 @@ export class SystemPtp extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemPtp.__pulumiType;
     }
 
-    /**
-     * End to end delay detection or peer to peer delay detection. Valid values: `E2E`, `P2P`.
-     */
     public readonly delayMechanism!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * PTP slave will reply through this interface.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Multicast transmission or hybrid transmission. Valid values: `multicast`, `hybrid`.
-     */
     public readonly mode!: pulumi.Output<string>;
-    /**
-     * The delay request value is the logarithmic mean interval in seconds between the delay request messages sent by the slave to the master.
-     */
     public readonly requestInterval!: pulumi.Output<number>;
-    /**
-     * FortiGate interface(s) with PTP server mode enabled. Devices on your network can contact these interfaces for PTP services. The structure of `serverInterface` block is documented below.
-     */
     public readonly serverInterfaces!: pulumi.Output<outputs.SystemPtpServerInterface[] | undefined>;
-    /**
-     * Enable/disable FortiGate PTP server mode. Your FortiGate becomes an PTP server for other devices on your network. Valid values: `enable`, `disable`.
-     */
     public readonly serverMode!: pulumi.Output<string>;
-    /**
-     * Enable/disable setting the FortiGate system time by synchronizing with an PTP Server. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -150,41 +90,14 @@ export class SystemPtp extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemPtp resources.
  */
 export interface SystemPtpState {
-    /**
-     * End to end delay detection or peer to peer delay detection. Valid values: `E2E`, `P2P`.
-     */
     delayMechanism?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * PTP slave will reply through this interface.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Multicast transmission or hybrid transmission. Valid values: `multicast`, `hybrid`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * The delay request value is the logarithmic mean interval in seconds between the delay request messages sent by the slave to the master.
-     */
     requestInterval?: pulumi.Input<number>;
-    /**
-     * FortiGate interface(s) with PTP server mode enabled. Devices on your network can contact these interfaces for PTP services. The structure of `serverInterface` block is documented below.
-     */
     serverInterfaces?: pulumi.Input<pulumi.Input<inputs.SystemPtpServerInterface>[]>;
-    /**
-     * Enable/disable FortiGate PTP server mode. Your FortiGate becomes an PTP server for other devices on your network. Valid values: `enable`, `disable`.
-     */
     serverMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable setting the FortiGate system time by synchronizing with an PTP Server. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -192,40 +105,13 @@ export interface SystemPtpState {
  * The set of arguments for constructing a SystemPtp resource.
  */
 export interface SystemPtpArgs {
-    /**
-     * End to end delay detection or peer to peer delay detection. Valid values: `E2E`, `P2P`.
-     */
     delayMechanism?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * PTP slave will reply through this interface.
-     */
     interface: pulumi.Input<string>;
-    /**
-     * Multicast transmission or hybrid transmission. Valid values: `multicast`, `hybrid`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * The delay request value is the logarithmic mean interval in seconds between the delay request messages sent by the slave to the master.
-     */
     requestInterval?: pulumi.Input<number>;
-    /**
-     * FortiGate interface(s) with PTP server mode enabled. Devices on your network can contact these interfaces for PTP services. The structure of `serverInterface` block is documented below.
-     */
     serverInterfaces?: pulumi.Input<pulumi.Input<inputs.SystemPtpServerInterface>[]>;
-    /**
-     * Enable/disable FortiGate PTP server mode. Your FortiGate becomes an PTP server for other devices on your network. Valid values: `enable`, `disable`.
-     */
     serverMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable setting the FortiGate system time by synchronizing with an PTP Server. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

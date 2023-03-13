@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system autoscript
 func LookupSystemAutoScript(ctx *pulumi.Context, args *LookupSystemAutoScriptArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutoScriptResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAutoScriptResult
@@ -23,31 +22,22 @@ func LookupSystemAutoScript(ctx *pulumi.Context, args *LookupSystemAutoScriptArg
 
 // A collection of arguments for invoking GetSystemAutoScript.
 type LookupSystemAutoScriptArgs struct {
-	// Specify the name of the desired system autoscript.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemAutoScript.
 type LookupSystemAutoScriptResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Repeat interval in seconds.
-	Interval int `pulumi:"interval"`
-	// Auto script name.
-	Name string `pulumi:"name"`
-	// Number of megabytes to limit script output to (10 - 1024, default = 10).
-	OutputSize int `pulumi:"outputSize"`
-	// Number of times to repeat this script (0 = infinite).
-	Repeat int `pulumi:"repeat"`
-	// List of FortiOS CLI commands to repeat.
-	Script string `pulumi:"script"`
-	// Script starting mode.
-	Start string `pulumi:"start"`
-	// Maximum running time for this script in seconds (0 = no timeout).
-	Timeout   int     `pulumi:"timeout"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id         string  `pulumi:"id"`
+	Interval   int     `pulumi:"interval"`
+	Name       string  `pulumi:"name"`
+	OutputSize int     `pulumi:"outputSize"`
+	Repeat     int     `pulumi:"repeat"`
+	Script     string  `pulumi:"script"`
+	Start      string  `pulumi:"start"`
+	Timeout    int     `pulumi:"timeout"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 func LookupSystemAutoScriptOutput(ctx *pulumi.Context, args LookupSystemAutoScriptOutputArgs, opts ...pulumi.InvokeOption) LookupSystemAutoScriptResultOutput {
@@ -65,9 +55,7 @@ func LookupSystemAutoScriptOutput(ctx *pulumi.Context, args LookupSystemAutoScri
 
 // A collection of arguments for invoking GetSystemAutoScript.
 type LookupSystemAutoScriptOutputArgs struct {
-	// Specify the name of the desired system autoscript.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -95,37 +83,30 @@ func (o LookupSystemAutoScriptResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAutoScriptResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Repeat interval in seconds.
 func (o LookupSystemAutoScriptResultOutput) Interval() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemAutoScriptResult) int { return v.Interval }).(pulumi.IntOutput)
 }
 
-// Auto script name.
 func (o LookupSystemAutoScriptResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAutoScriptResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Number of megabytes to limit script output to (10 - 1024, default = 10).
 func (o LookupSystemAutoScriptResultOutput) OutputSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemAutoScriptResult) int { return v.OutputSize }).(pulumi.IntOutput)
 }
 
-// Number of times to repeat this script (0 = infinite).
 func (o LookupSystemAutoScriptResultOutput) Repeat() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemAutoScriptResult) int { return v.Repeat }).(pulumi.IntOutput)
 }
 
-// List of FortiOS CLI commands to repeat.
 func (o LookupSystemAutoScriptResultOutput) Script() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAutoScriptResult) string { return v.Script }).(pulumi.StringOutput)
 }
 
-// Script starting mode.
 func (o LookupSystemAutoScriptResultOutput) Start() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAutoScriptResult) string { return v.Start }).(pulumi.StringOutput)
 }
 
-// Maximum running time for this script in seconds (0 = no timeout).
 func (o LookupSystemAutoScriptResultOutput) Timeout() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemAutoScriptResult) int { return v.Timeout }).(pulumi.IntOutput)
 }

@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure security exemption list.
- *
- * ## Import
- *
- * User SecurityExemptList can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userSecurityExemptList:UserSecurityExemptList labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userSecurityExemptList:UserSecurityExemptList labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserSecurityExemptList extends pulumi.CustomResource {
     /**
      * Get an existing UserSecurityExemptList resource's state with the given name, ID, and optional extra
@@ -52,25 +34,10 @@ export class UserSecurityExemptList extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserSecurityExemptList.__pulumiType;
     }
 
-    /**
-     * Description.
-     */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Service name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Configure rules for exempting users from captive portal authentication. The structure of `rule` block is documented below.
-     */
     public readonly rules!: pulumi.Output<outputs.UserSecurityExemptListRule[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -108,25 +75,10 @@ export class UserSecurityExemptList extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserSecurityExemptList resources.
  */
 export interface UserSecurityExemptListState {
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Service name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Configure rules for exempting users from captive portal authentication. The structure of `rule` block is documented below.
-     */
     rules?: pulumi.Input<pulumi.Input<inputs.UserSecurityExemptListRule>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -134,24 +86,9 @@ export interface UserSecurityExemptListState {
  * The set of arguments for constructing a UserSecurityExemptList resource.
  */
 export interface UserSecurityExemptListArgs {
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Service name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Configure rules for exempting users from captive portal authentication. The structure of `rule` block is documented below.
-     */
     rules?: pulumi.Input<pulumi.Input<inputs.UserSecurityExemptListRule>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

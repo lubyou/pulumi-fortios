@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system ipv6neighborcache
 func LookupSystemIpv6NeighborCache(ctx *pulumi.Context, args *LookupSystemIpv6NeighborCacheArgs, opts ...pulumi.InvokeOption) (*LookupSystemIpv6NeighborCacheResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemIpv6NeighborCacheResult
@@ -23,23 +22,17 @@ func LookupSystemIpv6NeighborCache(ctx *pulumi.Context, args *LookupSystemIpv6Ne
 
 // A collection of arguments for invoking GetSystemIpv6NeighborCache.
 type LookupSystemIpv6NeighborCacheArgs struct {
-	// Specify the fosid of the desired system ipv6neighborcache.
-	Fosid int `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     int     `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemIpv6NeighborCache.
 type LookupSystemIpv6NeighborCacheResult struct {
-	// Unique integer ID of the entry.
 	Fosid int `pulumi:"fosid"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Select the associated interface name from available options.
-	Interface string `pulumi:"interface"`
-	// IPv6 address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-	Ipv6 string `pulumi:"ipv6"`
-	// MAC address (format: xx:xx:xx:xx:xx:xx).
+	Id        string  `pulumi:"id"`
+	Interface string  `pulumi:"interface"`
+	Ipv6      string  `pulumi:"ipv6"`
 	Mac       string  `pulumi:"mac"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -59,9 +52,7 @@ func LookupSystemIpv6NeighborCacheOutput(ctx *pulumi.Context, args LookupSystemI
 
 // A collection of arguments for invoking GetSystemIpv6NeighborCache.
 type LookupSystemIpv6NeighborCacheOutputArgs struct {
-	// Specify the fosid of the desired system ipv6neighborcache.
-	Fosid pulumi.IntInput `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntInput       `pulumi:"fosid"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -84,7 +75,6 @@ func (o LookupSystemIpv6NeighborCacheResultOutput) ToLookupSystemIpv6NeighborCac
 	return o
 }
 
-// Unique integer ID of the entry.
 func (o LookupSystemIpv6NeighborCacheResultOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemIpv6NeighborCacheResult) int { return v.Fosid }).(pulumi.IntOutput)
 }
@@ -94,17 +84,14 @@ func (o LookupSystemIpv6NeighborCacheResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemIpv6NeighborCacheResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Select the associated interface name from available options.
 func (o LookupSystemIpv6NeighborCacheResultOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemIpv6NeighborCacheResult) string { return v.Interface }).(pulumi.StringOutput)
 }
 
-// IPv6 address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
 func (o LookupSystemIpv6NeighborCacheResultOutput) Ipv6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemIpv6NeighborCacheResult) string { return v.Ipv6 }).(pulumi.StringOutput)
 }
 
-// MAC address (format: xx:xx:xx:xx:xx:xx).
 func (o LookupSystemIpv6NeighborCacheResultOutput) Mac() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemIpv6NeighborCacheResult) string { return v.Mac }).(pulumi.StringOutput)
 }

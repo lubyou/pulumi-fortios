@@ -10,144 +10,43 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure SSL/SSH protocol options.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallSslSshProfile(ctx, "t1", &fortios.FirewallSslSshProfileArgs{
-// 			Ftps: &FirewallSslSshProfileFtpsArgs{
-// 				Ports: pulumi.String("990"),
-// 			},
-// 			Https: &FirewallSslSshProfileHttpsArgs{
-// 				Ports: pulumi.String("443 127 422 392"),
-// 			},
-// 			Imaps: &FirewallSslSshProfileImapsArgs{
-// 				Ports: pulumi.String("993 1123"),
-// 			},
-// 			Pop3s: &FirewallSslSshProfilePop3sArgs{
-// 				Ports: pulumi.String("995"),
-// 			},
-// 			Smtps: &FirewallSslSshProfileSmtpsArgs{
-// 				Ports: pulumi.String("465"),
-// 			},
-// 			Ssl: &FirewallSslSshProfileSslArgs{
-// 				InspectAll: pulumi.String("disable"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewFirewallSslSshProfile(ctx, "t2", &fortios.FirewallSslSshProfileArgs{
-// 			Https: &FirewallSslSshProfileHttpsArgs{
-// 				Ports: pulumi.String("443"),
-// 			},
-// 			Ssl: &FirewallSslSshProfileSslArgs{
-// 				InspectAll: pulumi.String("deep-inspection"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall SslSshProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSslSshProfile:FirewallSslSshProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSslSshProfile:FirewallSslSshProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallSslSshProfile struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable exempting servers by FortiGuard allowlist. Valid values: `enable`, `disable`.
-	Allowlist pulumi.StringOutput `pulumi:"allowlist"`
-	// Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blacklist. Valid values: `disable`, `enable`.
-	BlockBlacklistedCertificates pulumi.StringOutput `pulumi:"blockBlacklistedCertificates"`
-	// Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blocklist. Valid values: `disable`, `enable`.
-	BlockBlocklistedCertificates pulumi.StringOutput `pulumi:"blockBlocklistedCertificates"`
-	// CA certificate used by SSL Inspection.
-	Caname pulumi.StringOutput `pulumi:"caname"`
-	// Optional comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Configure DNS over TLS options. The structure of `dot` block is documented below.
-	Dot FirewallSslSshProfileDotPtrOutput `pulumi:"dot"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Configure FTPS options. The structure of `ftps` block is documented below.
-	Ftps FirewallSslSshProfileFtpsPtrOutput `pulumi:"ftps"`
-	// Configure HTTPS options. The structure of `https` block is documented below.
-	Https FirewallSslSshProfileHttpsPtrOutput `pulumi:"https"`
-	// Configure IMAPS options. The structure of `imaps` block is documented below.
-	Imaps FirewallSslSshProfileImapsPtrOutput `pulumi:"imaps"`
-	// Enable/disable inspection of MAPI over HTTPS. Valid values: `enable`, `disable`.
-	MapiOverHttps pulumi.StringOutput `pulumi:"mapiOverHttps"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Configure POP3S options. The structure of `pop3s` block is documented below.
-	Pop3s FirewallSslSshProfilePop3sPtrOutput `pulumi:"pop3s"`
-	// Enable/disable inspection of RPC over HTTPS. Valid values: `enable`, `disable`.
-	RpcOverHttps pulumi.StringOutput `pulumi:"rpcOverHttps"`
-	// Certificate used by SSL Inspection to replace server certificate.
-	ServerCert pulumi.StringOutput `pulumi:"serverCert"`
-	// Re-sign or replace the server's certificate. Valid values: `re-sign`, `replace`.
-	ServerCertMode pulumi.StringOutput `pulumi:"serverCertMode"`
-	// Configure SMTPS options. The structure of `smtps` block is documented below.
-	Smtps FirewallSslSshProfileSmtpsPtrOutput `pulumi:"smtps"`
-	// Configure SSH options. The structure of `ssh` block is documented below.
-	Ssh FirewallSslSshProfileSshPtrOutput `pulumi:"ssh"`
-	// Configure SSL options. The structure of `ssl` block is documented below.
-	Ssl FirewallSslSshProfileSslPtrOutput `pulumi:"ssl"`
-	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
-	SslAnomaliesLog pulumi.StringOutput `pulumi:"sslAnomaliesLog"`
-	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
-	SslAnomalyLog pulumi.StringOutput `pulumi:"sslAnomalyLog"`
-	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
-	SslExemptionLog pulumi.StringOutput `pulumi:"sslExemptionLog"`
-	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
-	SslExemptionsLog pulumi.StringOutput `pulumi:"sslExemptionsLog"`
-	// Servers to exempt from SSL inspection. The structure of `sslExempt` block is documented below.
-	SslExempts FirewallSslSshProfileSslExemptArrayOutput `pulumi:"sslExempts"`
-	// Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
-	SslHandshakeLog pulumi.StringOutput `pulumi:"sslHandshakeLog"`
-	// Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
-	SslNegotiationLog pulumi.StringOutput `pulumi:"sslNegotiationLog"`
-	// Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
-	SslServerCertLog pulumi.StringOutput `pulumi:"sslServerCertLog"`
-	// SSL servers. The structure of `sslServer` block is documented below.
-	SslServers FirewallSslSshProfileSslServerArrayOutput `pulumi:"sslServers"`
-	// Configure ALPN option. Valid values: `http1-1`, `http2`, `all`, `none`.
-	SupportedAlpn pulumi.StringOutput `pulumi:"supportedAlpn"`
-	// Untrusted CA certificate used by SSL Inspection.
-	UntrustedCaname pulumi.StringOutput `pulumi:"untrustedCaname"`
-	// Enable/disable the use of SSL server table for SSL offloading. Valid values: `disable`, `enable`.
-	UseSslServer pulumi.StringOutput `pulumi:"useSslServer"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable exempting servers by FortiGuard whitelist. Valid values: `enable`, `disable`.
-	Whitelist pulumi.StringOutput `pulumi:"whitelist"`
+	Allowlist                    pulumi.StringOutput                       `pulumi:"allowlist"`
+	BlockBlacklistedCertificates pulumi.StringOutput                       `pulumi:"blockBlacklistedCertificates"`
+	BlockBlocklistedCertificates pulumi.StringOutput                       `pulumi:"blockBlocklistedCertificates"`
+	Caname                       pulumi.StringOutput                       `pulumi:"caname"`
+	Comment                      pulumi.StringPtrOutput                    `pulumi:"comment"`
+	Dot                          FirewallSslSshProfileDotOutput            `pulumi:"dot"`
+	DynamicSortSubtable          pulumi.StringPtrOutput                    `pulumi:"dynamicSortSubtable"`
+	Ftps                         FirewallSslSshProfileFtpsOutput           `pulumi:"ftps"`
+	Https                        FirewallSslSshProfileHttpsOutput          `pulumi:"https"`
+	Imaps                        FirewallSslSshProfileImapsOutput          `pulumi:"imaps"`
+	MapiOverHttps                pulumi.StringOutput                       `pulumi:"mapiOverHttps"`
+	Name                         pulumi.StringOutput                       `pulumi:"name"`
+	Pop3s                        FirewallSslSshProfilePop3sOutput          `pulumi:"pop3s"`
+	RpcOverHttps                 pulumi.StringOutput                       `pulumi:"rpcOverHttps"`
+	ServerCert                   pulumi.StringOutput                       `pulumi:"serverCert"`
+	ServerCertMode               pulumi.StringOutput                       `pulumi:"serverCertMode"`
+	Smtps                        FirewallSslSshProfileSmtpsOutput          `pulumi:"smtps"`
+	Ssh                          FirewallSslSshProfileSshOutput            `pulumi:"ssh"`
+	Ssl                          FirewallSslSshProfileSslOutput            `pulumi:"ssl"`
+	SslAnomaliesLog              pulumi.StringOutput                       `pulumi:"sslAnomaliesLog"`
+	SslAnomalyLog                pulumi.StringOutput                       `pulumi:"sslAnomalyLog"`
+	SslExemptionIpRating         pulumi.StringOutput                       `pulumi:"sslExemptionIpRating"`
+	SslExemptionLog              pulumi.StringOutput                       `pulumi:"sslExemptionLog"`
+	SslExemptionsLog             pulumi.StringOutput                       `pulumi:"sslExemptionsLog"`
+	SslExempts                   FirewallSslSshProfileSslExemptArrayOutput `pulumi:"sslExempts"`
+	SslHandshakeLog              pulumi.StringOutput                       `pulumi:"sslHandshakeLog"`
+	SslNegotiationLog            pulumi.StringOutput                       `pulumi:"sslNegotiationLog"`
+	SslServerCertLog             pulumi.StringOutput                       `pulumi:"sslServerCertLog"`
+	SslServers                   FirewallSslSshProfileSslServerArrayOutput `pulumi:"sslServers"`
+	SupportedAlpn                pulumi.StringOutput                       `pulumi:"supportedAlpn"`
+	UntrustedCaname              pulumi.StringOutput                       `pulumi:"untrustedCaname"`
+	UseSslServer                 pulumi.StringOutput                       `pulumi:"useSslServer"`
+	Vdomparam                    pulumi.StringPtrOutput                    `pulumi:"vdomparam"`
+	Whitelist                    pulumi.StringOutput                       `pulumi:"whitelist"`
 }
 
 // NewFirewallSslSshProfile registers a new resource with the given unique name, arguments, and options.
@@ -180,141 +79,77 @@ func GetFirewallSslSshProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallSslSshProfile resources.
 type firewallSslSshProfileState struct {
-	// Enable/disable exempting servers by FortiGuard allowlist. Valid values: `enable`, `disable`.
-	Allowlist *string `pulumi:"allowlist"`
-	// Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blacklist. Valid values: `disable`, `enable`.
-	BlockBlacklistedCertificates *string `pulumi:"blockBlacklistedCertificates"`
-	// Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blocklist. Valid values: `disable`, `enable`.
-	BlockBlocklistedCertificates *string `pulumi:"blockBlocklistedCertificates"`
-	// CA certificate used by SSL Inspection.
-	Caname *string `pulumi:"caname"`
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// Configure DNS over TLS options. The structure of `dot` block is documented below.
-	Dot *FirewallSslSshProfileDot `pulumi:"dot"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configure FTPS options. The structure of `ftps` block is documented below.
-	Ftps *FirewallSslSshProfileFtps `pulumi:"ftps"`
-	// Configure HTTPS options. The structure of `https` block is documented below.
-	Https *FirewallSslSshProfileHttps `pulumi:"https"`
-	// Configure IMAPS options. The structure of `imaps` block is documented below.
-	Imaps *FirewallSslSshProfileImaps `pulumi:"imaps"`
-	// Enable/disable inspection of MAPI over HTTPS. Valid values: `enable`, `disable`.
-	MapiOverHttps *string `pulumi:"mapiOverHttps"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Configure POP3S options. The structure of `pop3s` block is documented below.
-	Pop3s *FirewallSslSshProfilePop3s `pulumi:"pop3s"`
-	// Enable/disable inspection of RPC over HTTPS. Valid values: `enable`, `disable`.
-	RpcOverHttps *string `pulumi:"rpcOverHttps"`
-	// Certificate used by SSL Inspection to replace server certificate.
-	ServerCert *string `pulumi:"serverCert"`
-	// Re-sign or replace the server's certificate. Valid values: `re-sign`, `replace`.
-	ServerCertMode *string `pulumi:"serverCertMode"`
-	// Configure SMTPS options. The structure of `smtps` block is documented below.
-	Smtps *FirewallSslSshProfileSmtps `pulumi:"smtps"`
-	// Configure SSH options. The structure of `ssh` block is documented below.
-	Ssh *FirewallSslSshProfileSsh `pulumi:"ssh"`
-	// Configure SSL options. The structure of `ssl` block is documented below.
-	Ssl *FirewallSslSshProfileSsl `pulumi:"ssl"`
-	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
-	SslAnomaliesLog *string `pulumi:"sslAnomaliesLog"`
-	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
-	SslAnomalyLog *string `pulumi:"sslAnomalyLog"`
-	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
-	SslExemptionLog *string `pulumi:"sslExemptionLog"`
-	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
-	SslExemptionsLog *string `pulumi:"sslExemptionsLog"`
-	// Servers to exempt from SSL inspection. The structure of `sslExempt` block is documented below.
-	SslExempts []FirewallSslSshProfileSslExempt `pulumi:"sslExempts"`
-	// Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
-	SslHandshakeLog *string `pulumi:"sslHandshakeLog"`
-	// Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
-	SslNegotiationLog *string `pulumi:"sslNegotiationLog"`
-	// Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
-	SslServerCertLog *string `pulumi:"sslServerCertLog"`
-	// SSL servers. The structure of `sslServer` block is documented below.
-	SslServers []FirewallSslSshProfileSslServer `pulumi:"sslServers"`
-	// Configure ALPN option. Valid values: `http1-1`, `http2`, `all`, `none`.
-	SupportedAlpn *string `pulumi:"supportedAlpn"`
-	// Untrusted CA certificate used by SSL Inspection.
-	UntrustedCaname *string `pulumi:"untrustedCaname"`
-	// Enable/disable the use of SSL server table for SSL offloading. Valid values: `disable`, `enable`.
-	UseSslServer *string `pulumi:"useSslServer"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable exempting servers by FortiGuard whitelist. Valid values: `enable`, `disable`.
-	Whitelist *string `pulumi:"whitelist"`
+	Allowlist                    *string                          `pulumi:"allowlist"`
+	BlockBlacklistedCertificates *string                          `pulumi:"blockBlacklistedCertificates"`
+	BlockBlocklistedCertificates *string                          `pulumi:"blockBlocklistedCertificates"`
+	Caname                       *string                          `pulumi:"caname"`
+	Comment                      *string                          `pulumi:"comment"`
+	Dot                          *FirewallSslSshProfileDot        `pulumi:"dot"`
+	DynamicSortSubtable          *string                          `pulumi:"dynamicSortSubtable"`
+	Ftps                         *FirewallSslSshProfileFtps       `pulumi:"ftps"`
+	Https                        *FirewallSslSshProfileHttps      `pulumi:"https"`
+	Imaps                        *FirewallSslSshProfileImaps      `pulumi:"imaps"`
+	MapiOverHttps                *string                          `pulumi:"mapiOverHttps"`
+	Name                         *string                          `pulumi:"name"`
+	Pop3s                        *FirewallSslSshProfilePop3s      `pulumi:"pop3s"`
+	RpcOverHttps                 *string                          `pulumi:"rpcOverHttps"`
+	ServerCert                   *string                          `pulumi:"serverCert"`
+	ServerCertMode               *string                          `pulumi:"serverCertMode"`
+	Smtps                        *FirewallSslSshProfileSmtps      `pulumi:"smtps"`
+	Ssh                          *FirewallSslSshProfileSsh        `pulumi:"ssh"`
+	Ssl                          *FirewallSslSshProfileSsl        `pulumi:"ssl"`
+	SslAnomaliesLog              *string                          `pulumi:"sslAnomaliesLog"`
+	SslAnomalyLog                *string                          `pulumi:"sslAnomalyLog"`
+	SslExemptionIpRating         *string                          `pulumi:"sslExemptionIpRating"`
+	SslExemptionLog              *string                          `pulumi:"sslExemptionLog"`
+	SslExemptionsLog             *string                          `pulumi:"sslExemptionsLog"`
+	SslExempts                   []FirewallSslSshProfileSslExempt `pulumi:"sslExempts"`
+	SslHandshakeLog              *string                          `pulumi:"sslHandshakeLog"`
+	SslNegotiationLog            *string                          `pulumi:"sslNegotiationLog"`
+	SslServerCertLog             *string                          `pulumi:"sslServerCertLog"`
+	SslServers                   []FirewallSslSshProfileSslServer `pulumi:"sslServers"`
+	SupportedAlpn                *string                          `pulumi:"supportedAlpn"`
+	UntrustedCaname              *string                          `pulumi:"untrustedCaname"`
+	UseSslServer                 *string                          `pulumi:"useSslServer"`
+	Vdomparam                    *string                          `pulumi:"vdomparam"`
+	Whitelist                    *string                          `pulumi:"whitelist"`
 }
 
 type FirewallSslSshProfileState struct {
-	// Enable/disable exempting servers by FortiGuard allowlist. Valid values: `enable`, `disable`.
-	Allowlist pulumi.StringPtrInput
-	// Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blacklist. Valid values: `disable`, `enable`.
+	Allowlist                    pulumi.StringPtrInput
 	BlockBlacklistedCertificates pulumi.StringPtrInput
-	// Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blocklist. Valid values: `disable`, `enable`.
 	BlockBlocklistedCertificates pulumi.StringPtrInput
-	// CA certificate used by SSL Inspection.
-	Caname pulumi.StringPtrInput
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// Configure DNS over TLS options. The structure of `dot` block is documented below.
-	Dot FirewallSslSshProfileDotPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Configure FTPS options. The structure of `ftps` block is documented below.
-	Ftps FirewallSslSshProfileFtpsPtrInput
-	// Configure HTTPS options. The structure of `https` block is documented below.
-	Https FirewallSslSshProfileHttpsPtrInput
-	// Configure IMAPS options. The structure of `imaps` block is documented below.
-	Imaps FirewallSslSshProfileImapsPtrInput
-	// Enable/disable inspection of MAPI over HTTPS. Valid values: `enable`, `disable`.
-	MapiOverHttps pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Configure POP3S options. The structure of `pop3s` block is documented below.
-	Pop3s FirewallSslSshProfilePop3sPtrInput
-	// Enable/disable inspection of RPC over HTTPS. Valid values: `enable`, `disable`.
-	RpcOverHttps pulumi.StringPtrInput
-	// Certificate used by SSL Inspection to replace server certificate.
-	ServerCert pulumi.StringPtrInput
-	// Re-sign or replace the server's certificate. Valid values: `re-sign`, `replace`.
-	ServerCertMode pulumi.StringPtrInput
-	// Configure SMTPS options. The structure of `smtps` block is documented below.
-	Smtps FirewallSslSshProfileSmtpsPtrInput
-	// Configure SSH options. The structure of `ssh` block is documented below.
-	Ssh FirewallSslSshProfileSshPtrInput
-	// Configure SSL options. The structure of `ssl` block is documented below.
-	Ssl FirewallSslSshProfileSslPtrInput
-	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
-	SslAnomaliesLog pulumi.StringPtrInput
-	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
-	SslAnomalyLog pulumi.StringPtrInput
-	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
-	SslExemptionLog pulumi.StringPtrInput
-	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
-	SslExemptionsLog pulumi.StringPtrInput
-	// Servers to exempt from SSL inspection. The structure of `sslExempt` block is documented below.
-	SslExempts FirewallSslSshProfileSslExemptArrayInput
-	// Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
-	SslHandshakeLog pulumi.StringPtrInput
-	// Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
-	SslNegotiationLog pulumi.StringPtrInput
-	// Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
-	SslServerCertLog pulumi.StringPtrInput
-	// SSL servers. The structure of `sslServer` block is documented below.
-	SslServers FirewallSslSshProfileSslServerArrayInput
-	// Configure ALPN option. Valid values: `http1-1`, `http2`, `all`, `none`.
-	SupportedAlpn pulumi.StringPtrInput
-	// Untrusted CA certificate used by SSL Inspection.
-	UntrustedCaname pulumi.StringPtrInput
-	// Enable/disable the use of SSL server table for SSL offloading. Valid values: `disable`, `enable`.
-	UseSslServer pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable exempting servers by FortiGuard whitelist. Valid values: `enable`, `disable`.
-	Whitelist pulumi.StringPtrInput
+	Caname                       pulumi.StringPtrInput
+	Comment                      pulumi.StringPtrInput
+	Dot                          FirewallSslSshProfileDotPtrInput
+	DynamicSortSubtable          pulumi.StringPtrInput
+	Ftps                         FirewallSslSshProfileFtpsPtrInput
+	Https                        FirewallSslSshProfileHttpsPtrInput
+	Imaps                        FirewallSslSshProfileImapsPtrInput
+	MapiOverHttps                pulumi.StringPtrInput
+	Name                         pulumi.StringPtrInput
+	Pop3s                        FirewallSslSshProfilePop3sPtrInput
+	RpcOverHttps                 pulumi.StringPtrInput
+	ServerCert                   pulumi.StringPtrInput
+	ServerCertMode               pulumi.StringPtrInput
+	Smtps                        FirewallSslSshProfileSmtpsPtrInput
+	Ssh                          FirewallSslSshProfileSshPtrInput
+	Ssl                          FirewallSslSshProfileSslPtrInput
+	SslAnomaliesLog              pulumi.StringPtrInput
+	SslAnomalyLog                pulumi.StringPtrInput
+	SslExemptionIpRating         pulumi.StringPtrInput
+	SslExemptionLog              pulumi.StringPtrInput
+	SslExemptionsLog             pulumi.StringPtrInput
+	SslExempts                   FirewallSslSshProfileSslExemptArrayInput
+	SslHandshakeLog              pulumi.StringPtrInput
+	SslNegotiationLog            pulumi.StringPtrInput
+	SslServerCertLog             pulumi.StringPtrInput
+	SslServers                   FirewallSslSshProfileSslServerArrayInput
+	SupportedAlpn                pulumi.StringPtrInput
+	UntrustedCaname              pulumi.StringPtrInput
+	UseSslServer                 pulumi.StringPtrInput
+	Vdomparam                    pulumi.StringPtrInput
+	Whitelist                    pulumi.StringPtrInput
 }
 
 func (FirewallSslSshProfileState) ElementType() reflect.Type {
@@ -322,142 +157,78 @@ func (FirewallSslSshProfileState) ElementType() reflect.Type {
 }
 
 type firewallSslSshProfileArgs struct {
-	// Enable/disable exempting servers by FortiGuard allowlist. Valid values: `enable`, `disable`.
-	Allowlist *string `pulumi:"allowlist"`
-	// Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blacklist. Valid values: `disable`, `enable`.
-	BlockBlacklistedCertificates *string `pulumi:"blockBlacklistedCertificates"`
-	// Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blocklist. Valid values: `disable`, `enable`.
-	BlockBlocklistedCertificates *string `pulumi:"blockBlocklistedCertificates"`
-	// CA certificate used by SSL Inspection.
-	Caname *string `pulumi:"caname"`
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// Configure DNS over TLS options. The structure of `dot` block is documented below.
-	Dot *FirewallSslSshProfileDot `pulumi:"dot"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configure FTPS options. The structure of `ftps` block is documented below.
-	Ftps *FirewallSslSshProfileFtps `pulumi:"ftps"`
-	// Configure HTTPS options. The structure of `https` block is documented below.
-	Https *FirewallSslSshProfileHttps `pulumi:"https"`
-	// Configure IMAPS options. The structure of `imaps` block is documented below.
-	Imaps *FirewallSslSshProfileImaps `pulumi:"imaps"`
-	// Enable/disable inspection of MAPI over HTTPS. Valid values: `enable`, `disable`.
-	MapiOverHttps *string `pulumi:"mapiOverHttps"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Configure POP3S options. The structure of `pop3s` block is documented below.
-	Pop3s *FirewallSslSshProfilePop3s `pulumi:"pop3s"`
-	// Enable/disable inspection of RPC over HTTPS. Valid values: `enable`, `disable`.
-	RpcOverHttps *string `pulumi:"rpcOverHttps"`
-	// Certificate used by SSL Inspection to replace server certificate.
-	ServerCert *string `pulumi:"serverCert"`
-	// Re-sign or replace the server's certificate. Valid values: `re-sign`, `replace`.
-	ServerCertMode *string `pulumi:"serverCertMode"`
-	// Configure SMTPS options. The structure of `smtps` block is documented below.
-	Smtps *FirewallSslSshProfileSmtps `pulumi:"smtps"`
-	// Configure SSH options. The structure of `ssh` block is documented below.
-	Ssh *FirewallSslSshProfileSsh `pulumi:"ssh"`
-	// Configure SSL options. The structure of `ssl` block is documented below.
-	Ssl *FirewallSslSshProfileSsl `pulumi:"ssl"`
-	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
-	SslAnomaliesLog *string `pulumi:"sslAnomaliesLog"`
-	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
-	SslAnomalyLog *string `pulumi:"sslAnomalyLog"`
-	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
-	SslExemptionLog *string `pulumi:"sslExemptionLog"`
-	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
-	SslExemptionsLog *string `pulumi:"sslExemptionsLog"`
-	// Servers to exempt from SSL inspection. The structure of `sslExempt` block is documented below.
-	SslExempts []FirewallSslSshProfileSslExempt `pulumi:"sslExempts"`
-	// Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
-	SslHandshakeLog *string `pulumi:"sslHandshakeLog"`
-	// Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
-	SslNegotiationLog *string `pulumi:"sslNegotiationLog"`
-	// Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
-	SslServerCertLog *string `pulumi:"sslServerCertLog"`
-	// SSL servers. The structure of `sslServer` block is documented below.
-	SslServers []FirewallSslSshProfileSslServer `pulumi:"sslServers"`
-	// Configure ALPN option. Valid values: `http1-1`, `http2`, `all`, `none`.
-	SupportedAlpn *string `pulumi:"supportedAlpn"`
-	// Untrusted CA certificate used by SSL Inspection.
-	UntrustedCaname *string `pulumi:"untrustedCaname"`
-	// Enable/disable the use of SSL server table for SSL offloading. Valid values: `disable`, `enable`.
-	UseSslServer *string `pulumi:"useSslServer"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable exempting servers by FortiGuard whitelist. Valid values: `enable`, `disable`.
-	Whitelist *string `pulumi:"whitelist"`
+	Allowlist                    *string                          `pulumi:"allowlist"`
+	BlockBlacklistedCertificates *string                          `pulumi:"blockBlacklistedCertificates"`
+	BlockBlocklistedCertificates *string                          `pulumi:"blockBlocklistedCertificates"`
+	Caname                       *string                          `pulumi:"caname"`
+	Comment                      *string                          `pulumi:"comment"`
+	Dot                          *FirewallSslSshProfileDot        `pulumi:"dot"`
+	DynamicSortSubtable          *string                          `pulumi:"dynamicSortSubtable"`
+	Ftps                         *FirewallSslSshProfileFtps       `pulumi:"ftps"`
+	Https                        *FirewallSslSshProfileHttps      `pulumi:"https"`
+	Imaps                        *FirewallSslSshProfileImaps      `pulumi:"imaps"`
+	MapiOverHttps                *string                          `pulumi:"mapiOverHttps"`
+	Name                         *string                          `pulumi:"name"`
+	Pop3s                        *FirewallSslSshProfilePop3s      `pulumi:"pop3s"`
+	RpcOverHttps                 *string                          `pulumi:"rpcOverHttps"`
+	ServerCert                   *string                          `pulumi:"serverCert"`
+	ServerCertMode               *string                          `pulumi:"serverCertMode"`
+	Smtps                        *FirewallSslSshProfileSmtps      `pulumi:"smtps"`
+	Ssh                          *FirewallSslSshProfileSsh        `pulumi:"ssh"`
+	Ssl                          *FirewallSslSshProfileSsl        `pulumi:"ssl"`
+	SslAnomaliesLog              *string                          `pulumi:"sslAnomaliesLog"`
+	SslAnomalyLog                *string                          `pulumi:"sslAnomalyLog"`
+	SslExemptionIpRating         *string                          `pulumi:"sslExemptionIpRating"`
+	SslExemptionLog              *string                          `pulumi:"sslExemptionLog"`
+	SslExemptionsLog             *string                          `pulumi:"sslExemptionsLog"`
+	SslExempts                   []FirewallSslSshProfileSslExempt `pulumi:"sslExempts"`
+	SslHandshakeLog              *string                          `pulumi:"sslHandshakeLog"`
+	SslNegotiationLog            *string                          `pulumi:"sslNegotiationLog"`
+	SslServerCertLog             *string                          `pulumi:"sslServerCertLog"`
+	SslServers                   []FirewallSslSshProfileSslServer `pulumi:"sslServers"`
+	SupportedAlpn                *string                          `pulumi:"supportedAlpn"`
+	UntrustedCaname              *string                          `pulumi:"untrustedCaname"`
+	UseSslServer                 *string                          `pulumi:"useSslServer"`
+	Vdomparam                    *string                          `pulumi:"vdomparam"`
+	Whitelist                    *string                          `pulumi:"whitelist"`
 }
 
 // The set of arguments for constructing a FirewallSslSshProfile resource.
 type FirewallSslSshProfileArgs struct {
-	// Enable/disable exempting servers by FortiGuard allowlist. Valid values: `enable`, `disable`.
-	Allowlist pulumi.StringPtrInput
-	// Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blacklist. Valid values: `disable`, `enable`.
+	Allowlist                    pulumi.StringPtrInput
 	BlockBlacklistedCertificates pulumi.StringPtrInput
-	// Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blocklist. Valid values: `disable`, `enable`.
 	BlockBlocklistedCertificates pulumi.StringPtrInput
-	// CA certificate used by SSL Inspection.
-	Caname pulumi.StringPtrInput
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// Configure DNS over TLS options. The structure of `dot` block is documented below.
-	Dot FirewallSslSshProfileDotPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Configure FTPS options. The structure of `ftps` block is documented below.
-	Ftps FirewallSslSshProfileFtpsPtrInput
-	// Configure HTTPS options. The structure of `https` block is documented below.
-	Https FirewallSslSshProfileHttpsPtrInput
-	// Configure IMAPS options. The structure of `imaps` block is documented below.
-	Imaps FirewallSslSshProfileImapsPtrInput
-	// Enable/disable inspection of MAPI over HTTPS. Valid values: `enable`, `disable`.
-	MapiOverHttps pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Configure POP3S options. The structure of `pop3s` block is documented below.
-	Pop3s FirewallSslSshProfilePop3sPtrInput
-	// Enable/disable inspection of RPC over HTTPS. Valid values: `enable`, `disable`.
-	RpcOverHttps pulumi.StringPtrInput
-	// Certificate used by SSL Inspection to replace server certificate.
-	ServerCert pulumi.StringPtrInput
-	// Re-sign or replace the server's certificate. Valid values: `re-sign`, `replace`.
-	ServerCertMode pulumi.StringPtrInput
-	// Configure SMTPS options. The structure of `smtps` block is documented below.
-	Smtps FirewallSslSshProfileSmtpsPtrInput
-	// Configure SSH options. The structure of `ssh` block is documented below.
-	Ssh FirewallSslSshProfileSshPtrInput
-	// Configure SSL options. The structure of `ssl` block is documented below.
-	Ssl FirewallSslSshProfileSslPtrInput
-	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
-	SslAnomaliesLog pulumi.StringPtrInput
-	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
-	SslAnomalyLog pulumi.StringPtrInput
-	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
-	SslExemptionLog pulumi.StringPtrInput
-	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
-	SslExemptionsLog pulumi.StringPtrInput
-	// Servers to exempt from SSL inspection. The structure of `sslExempt` block is documented below.
-	SslExempts FirewallSslSshProfileSslExemptArrayInput
-	// Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
-	SslHandshakeLog pulumi.StringPtrInput
-	// Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
-	SslNegotiationLog pulumi.StringPtrInput
-	// Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
-	SslServerCertLog pulumi.StringPtrInput
-	// SSL servers. The structure of `sslServer` block is documented below.
-	SslServers FirewallSslSshProfileSslServerArrayInput
-	// Configure ALPN option. Valid values: `http1-1`, `http2`, `all`, `none`.
-	SupportedAlpn pulumi.StringPtrInput
-	// Untrusted CA certificate used by SSL Inspection.
-	UntrustedCaname pulumi.StringPtrInput
-	// Enable/disable the use of SSL server table for SSL offloading. Valid values: `disable`, `enable`.
-	UseSslServer pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable exempting servers by FortiGuard whitelist. Valid values: `enable`, `disable`.
-	Whitelist pulumi.StringPtrInput
+	Caname                       pulumi.StringPtrInput
+	Comment                      pulumi.StringPtrInput
+	Dot                          FirewallSslSshProfileDotPtrInput
+	DynamicSortSubtable          pulumi.StringPtrInput
+	Ftps                         FirewallSslSshProfileFtpsPtrInput
+	Https                        FirewallSslSshProfileHttpsPtrInput
+	Imaps                        FirewallSslSshProfileImapsPtrInput
+	MapiOverHttps                pulumi.StringPtrInput
+	Name                         pulumi.StringPtrInput
+	Pop3s                        FirewallSslSshProfilePop3sPtrInput
+	RpcOverHttps                 pulumi.StringPtrInput
+	ServerCert                   pulumi.StringPtrInput
+	ServerCertMode               pulumi.StringPtrInput
+	Smtps                        FirewallSslSshProfileSmtpsPtrInput
+	Ssh                          FirewallSslSshProfileSshPtrInput
+	Ssl                          FirewallSslSshProfileSslPtrInput
+	SslAnomaliesLog              pulumi.StringPtrInput
+	SslAnomalyLog                pulumi.StringPtrInput
+	SslExemptionIpRating         pulumi.StringPtrInput
+	SslExemptionLog              pulumi.StringPtrInput
+	SslExemptionsLog             pulumi.StringPtrInput
+	SslExempts                   FirewallSslSshProfileSslExemptArrayInput
+	SslHandshakeLog              pulumi.StringPtrInput
+	SslNegotiationLog            pulumi.StringPtrInput
+	SslServerCertLog             pulumi.StringPtrInput
+	SslServers                   FirewallSslSshProfileSslServerArrayInput
+	SupportedAlpn                pulumi.StringPtrInput
+	UntrustedCaname              pulumi.StringPtrInput
+	UseSslServer                 pulumi.StringPtrInput
+	Vdomparam                    pulumi.StringPtrInput
+	Whitelist                    pulumi.StringPtrInput
 }
 
 func (FirewallSslSshProfileArgs) ElementType() reflect.Type {
@@ -486,7 +257,7 @@ func (i *FirewallSslSshProfile) ToFirewallSslSshProfileOutputWithContext(ctx con
 // FirewallSslSshProfileArrayInput is an input type that accepts FirewallSslSshProfileArray and FirewallSslSshProfileArrayOutput values.
 // You can construct a concrete instance of `FirewallSslSshProfileArrayInput` via:
 //
-//          FirewallSslSshProfileArray{ FirewallSslSshProfileArgs{...} }
+//	FirewallSslSshProfileArray{ FirewallSslSshProfileArgs{...} }
 type FirewallSslSshProfileArrayInput interface {
 	pulumi.Input
 
@@ -511,7 +282,7 @@ func (i FirewallSslSshProfileArray) ToFirewallSslSshProfileArrayOutputWithContex
 // FirewallSslSshProfileMapInput is an input type that accepts FirewallSslSshProfileMap and FirewallSslSshProfileMapOutput values.
 // You can construct a concrete instance of `FirewallSslSshProfileMapInput` via:
 //
-//          FirewallSslSshProfileMap{ "key": FirewallSslSshProfileArgs{...} }
+//	FirewallSslSshProfileMap{ "key": FirewallSslSshProfileArgs{...} }
 type FirewallSslSshProfileMapInput interface {
 	pulumi.Input
 
@@ -545,6 +316,142 @@ func (o FirewallSslSshProfileOutput) ToFirewallSslSshProfileOutput() FirewallSsl
 
 func (o FirewallSslSshProfileOutput) ToFirewallSslSshProfileOutputWithContext(ctx context.Context) FirewallSslSshProfileOutput {
 	return o
+}
+
+func (o FirewallSslSshProfileOutput) Allowlist() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.Allowlist }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) BlockBlacklistedCertificates() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.BlockBlacklistedCertificates }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) BlockBlocklistedCertificates() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.BlockBlocklistedCertificates }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) Caname() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.Caname }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSslSshProfileOutput) Dot() FirewallSslSshProfileDotOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) FirewallSslSshProfileDotOutput { return v.Dot }).(FirewallSslSshProfileDotOutput)
+}
+
+func (o FirewallSslSshProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSslSshProfileOutput) Ftps() FirewallSslSshProfileFtpsOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) FirewallSslSshProfileFtpsOutput { return v.Ftps }).(FirewallSslSshProfileFtpsOutput)
+}
+
+func (o FirewallSslSshProfileOutput) Https() FirewallSslSshProfileHttpsOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) FirewallSslSshProfileHttpsOutput { return v.Https }).(FirewallSslSshProfileHttpsOutput)
+}
+
+func (o FirewallSslSshProfileOutput) Imaps() FirewallSslSshProfileImapsOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) FirewallSslSshProfileImapsOutput { return v.Imaps }).(FirewallSslSshProfileImapsOutput)
+}
+
+func (o FirewallSslSshProfileOutput) MapiOverHttps() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.MapiOverHttps }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) Pop3s() FirewallSslSshProfilePop3sOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) FirewallSslSshProfilePop3sOutput { return v.Pop3s }).(FirewallSslSshProfilePop3sOutput)
+}
+
+func (o FirewallSslSshProfileOutput) RpcOverHttps() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.RpcOverHttps }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) ServerCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.ServerCert }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) ServerCertMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.ServerCertMode }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) Smtps() FirewallSslSshProfileSmtpsOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) FirewallSslSshProfileSmtpsOutput { return v.Smtps }).(FirewallSslSshProfileSmtpsOutput)
+}
+
+func (o FirewallSslSshProfileOutput) Ssh() FirewallSslSshProfileSshOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) FirewallSslSshProfileSshOutput { return v.Ssh }).(FirewallSslSshProfileSshOutput)
+}
+
+func (o FirewallSslSshProfileOutput) Ssl() FirewallSslSshProfileSslOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) FirewallSslSshProfileSslOutput { return v.Ssl }).(FirewallSslSshProfileSslOutput)
+}
+
+func (o FirewallSslSshProfileOutput) SslAnomaliesLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.SslAnomaliesLog }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) SslAnomalyLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.SslAnomalyLog }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) SslExemptionIpRating() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.SslExemptionIpRating }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) SslExemptionLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.SslExemptionLog }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) SslExemptionsLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.SslExemptionsLog }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) SslExempts() FirewallSslSshProfileSslExemptArrayOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) FirewallSslSshProfileSslExemptArrayOutput { return v.SslExempts }).(FirewallSslSshProfileSslExemptArrayOutput)
+}
+
+func (o FirewallSslSshProfileOutput) SslHandshakeLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.SslHandshakeLog }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) SslNegotiationLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.SslNegotiationLog }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) SslServerCertLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.SslServerCertLog }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) SslServers() FirewallSslSshProfileSslServerArrayOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) FirewallSslSshProfileSslServerArrayOutput { return v.SslServers }).(FirewallSslSshProfileSslServerArrayOutput)
+}
+
+func (o FirewallSslSshProfileOutput) SupportedAlpn() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.SupportedAlpn }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) UntrustedCaname() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.UntrustedCaname }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) UseSslServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.UseSslServer }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSshProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSslSshProfileOutput) Whitelist() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringOutput { return v.Whitelist }).(pulumi.StringOutput)
 }
 
 type FirewallSslSshProfileArrayOutput struct{ *pulumi.OutputState }

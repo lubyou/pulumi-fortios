@@ -2,50 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure filters for local disk logging. Use these filters to determine the log messages to record according to severity and type.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.LogDiskFilter("trname", {
- *     anomaly: "enable",
- *     dlpArchive: "enable",
- *     dns: "enable",
- *     filterType: "include",
- *     forwardTraffic: "enable",
- *     gtp: "enable",
- *     localTraffic: "enable",
- *     multicastTraffic: "enable",
- *     severity: "information",
- *     snifferTraffic: "enable",
- *     ssh: "enable",
- *     voip: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * LogDisk Filter can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/logDiskFilter:LogDiskFilter labelname LogDiskFilter
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/logDiskFilter:LogDiskFilter labelname LogDiskFilter
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class LogDiskFilter extends pulumi.CustomResource {
     /**
      * Get an existing LogDiskFilter resource's state with the given name, ID, and optional extra
@@ -74,153 +34,42 @@ export class LogDiskFilter extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogDiskFilter.__pulumiType;
     }
 
-    /**
-     * Enable/disable admin login/logout logging. Valid values: `enable`, `disable`.
-     */
     public readonly admin!: pulumi.Output<string>;
-    /**
-     * Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-     */
     public readonly anomaly!: pulumi.Output<string>;
-    /**
-     * Enable/disable firewall authentication logging. Valid values: `enable`, `disable`.
-     */
     public readonly auth!: pulumi.Output<string>;
-    /**
-     * Enable/disable CPU & memory usage logging every 5 minutes. Valid values: `enable`, `disable`.
-     */
     public readonly cpuMemoryUsage!: pulumi.Output<string>;
-    /**
-     * Enable/disable DHCP service messages logging. Valid values: `enable`, `disable`.
-     */
     public readonly dhcp!: pulumi.Output<string>;
-    /**
-     * Enable/disable DLP archive logging. Valid values: `enable`, `disable`.
-     */
     public readonly dlpArchive!: pulumi.Output<string>;
-    /**
-     * Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-     */
     public readonly dns!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable event logging. Valid values: `enable`, `disable`.
-     */
     public readonly event!: pulumi.Output<string>;
-    /**
-     * Free style filter string.
-     */
     public readonly filter!: pulumi.Output<string>;
-    /**
-     * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-     */
     public readonly filterType!: pulumi.Output<string>;
-    /**
-     * Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-     */
     public readonly forwardTraffic!: pulumi.Output<string>;
-    /**
-     * Free Style Filters The structure of `freeStyle` block is documented below.
-     */
     public readonly freeStyles!: pulumi.Output<outputs.LogDiskFilterFreeStyle[] | undefined>;
-    /**
-     * Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-     */
     public readonly gtp!: pulumi.Output<string>;
-    /**
-     * Enable/disable HA logging. Valid values: `enable`, `disable`.
-     */
     public readonly ha!: pulumi.Output<string>;
-    /**
-     * Enable/disable IPsec negotiation messages logging. Valid values: `enable`, `disable`.
-     */
     public readonly ipsec!: pulumi.Output<string>;
-    /**
-     * Enable/disable VIP real server health monitoring logging. Valid values: `enable`, `disable`.
-     */
     public readonly ldbMonitor!: pulumi.Output<string>;
-    /**
-     * Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-     */
     public readonly localTraffic!: pulumi.Output<string>;
-    /**
-     * Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-     */
     public readonly multicastTraffic!: pulumi.Output<string>;
-    /**
-     * Enable/disable netscan discovery event logging.
-     */
     public readonly netscanDiscovery!: pulumi.Output<string>;
-    /**
-     * Enable/disable netscan vulnerability event logging.
-     */
     public readonly netscanVulnerability!: pulumi.Output<string>;
-    /**
-     * Enable/disable pattern update logging. Valid values: `enable`, `disable`.
-     */
     public readonly pattern!: pulumi.Output<string>;
-    /**
-     * Enable/disable L2TP/PPTP/PPPoE logging. Valid values: `enable`, `disable`.
-     */
     public readonly ppp!: pulumi.Output<string>;
-    /**
-     * Enable/disable RADIUS messages logging. Valid values: `enable`, `disable`.
-     */
     public readonly radius!: pulumi.Output<string>;
-    /**
-     * Log to disk every message above and including this severity level. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly severity!: pulumi.Output<string>;
-    /**
-     * Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-     */
     public readonly snifferTraffic!: pulumi.Output<string>;
-    /**
-     * Enable/disable SSH logging. Valid values: `enable`, `disable`.
-     */
     public readonly ssh!: pulumi.Output<string>;
-    /**
-     * Enable/disable SSL administrator login logging. Valid values: `enable`, `disable`.
-     */
     public readonly sslvpnLogAdm!: pulumi.Output<string>;
-    /**
-     * Enable/disable SSL user authentication logging. Valid values: `enable`, `disable`.
-     */
     public readonly sslvpnLogAuth!: pulumi.Output<string>;
-    /**
-     * Enable/disable SSL session logging. Valid values: `enable`, `disable`.
-     */
     public readonly sslvpnLogSession!: pulumi.Output<string>;
-    /**
-     * Enable/disable system activity logging. Valid values: `enable`, `disable`.
-     */
     public readonly system!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable VIP SSL logging. Valid values: `enable`, `disable`.
-     */
     public readonly vipSsl!: pulumi.Output<string>;
-    /**
-     * Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-     */
     public readonly voip!: pulumi.Output<string>;
-    /**
-     * Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-     */
     public readonly wanOpt!: pulumi.Output<string>;
-    /**
-     * Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
-     */
     public readonly wirelessActivity!: pulumi.Output<string>;
-    /**
-     * Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-     */
     public readonly ztnaTraffic!: pulumi.Output<string>;
 
     /**
@@ -322,153 +171,42 @@ export class LogDiskFilter extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogDiskFilter resources.
  */
 export interface LogDiskFilterState {
-    /**
-     * Enable/disable admin login/logout logging. Valid values: `enable`, `disable`.
-     */
     admin?: pulumi.Input<string>;
-    /**
-     * Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-     */
     anomaly?: pulumi.Input<string>;
-    /**
-     * Enable/disable firewall authentication logging. Valid values: `enable`, `disable`.
-     */
     auth?: pulumi.Input<string>;
-    /**
-     * Enable/disable CPU & memory usage logging every 5 minutes. Valid values: `enable`, `disable`.
-     */
     cpuMemoryUsage?: pulumi.Input<string>;
-    /**
-     * Enable/disable DHCP service messages logging. Valid values: `enable`, `disable`.
-     */
     dhcp?: pulumi.Input<string>;
-    /**
-     * Enable/disable DLP archive logging. Valid values: `enable`, `disable`.
-     */
     dlpArchive?: pulumi.Input<string>;
-    /**
-     * Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-     */
     dns?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable event logging. Valid values: `enable`, `disable`.
-     */
     event?: pulumi.Input<string>;
-    /**
-     * Free style filter string.
-     */
     filter?: pulumi.Input<string>;
-    /**
-     * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-     */
     filterType?: pulumi.Input<string>;
-    /**
-     * Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-     */
     forwardTraffic?: pulumi.Input<string>;
-    /**
-     * Free Style Filters The structure of `freeStyle` block is documented below.
-     */
     freeStyles?: pulumi.Input<pulumi.Input<inputs.LogDiskFilterFreeStyle>[]>;
-    /**
-     * Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-     */
     gtp?: pulumi.Input<string>;
-    /**
-     * Enable/disable HA logging. Valid values: `enable`, `disable`.
-     */
     ha?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPsec negotiation messages logging. Valid values: `enable`, `disable`.
-     */
     ipsec?: pulumi.Input<string>;
-    /**
-     * Enable/disable VIP real server health monitoring logging. Valid values: `enable`, `disable`.
-     */
     ldbMonitor?: pulumi.Input<string>;
-    /**
-     * Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-     */
     localTraffic?: pulumi.Input<string>;
-    /**
-     * Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-     */
     multicastTraffic?: pulumi.Input<string>;
-    /**
-     * Enable/disable netscan discovery event logging.
-     */
     netscanDiscovery?: pulumi.Input<string>;
-    /**
-     * Enable/disable netscan vulnerability event logging.
-     */
     netscanVulnerability?: pulumi.Input<string>;
-    /**
-     * Enable/disable pattern update logging. Valid values: `enable`, `disable`.
-     */
     pattern?: pulumi.Input<string>;
-    /**
-     * Enable/disable L2TP/PPTP/PPPoE logging. Valid values: `enable`, `disable`.
-     */
     ppp?: pulumi.Input<string>;
-    /**
-     * Enable/disable RADIUS messages logging. Valid values: `enable`, `disable`.
-     */
     radius?: pulumi.Input<string>;
-    /**
-     * Log to disk every message above and including this severity level. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     severity?: pulumi.Input<string>;
-    /**
-     * Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-     */
     snifferTraffic?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSH logging. Valid values: `enable`, `disable`.
-     */
     ssh?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL administrator login logging. Valid values: `enable`, `disable`.
-     */
     sslvpnLogAdm?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL user authentication logging. Valid values: `enable`, `disable`.
-     */
     sslvpnLogAuth?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL session logging. Valid values: `enable`, `disable`.
-     */
     sslvpnLogSession?: pulumi.Input<string>;
-    /**
-     * Enable/disable system activity logging. Valid values: `enable`, `disable`.
-     */
     system?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable VIP SSL logging. Valid values: `enable`, `disable`.
-     */
     vipSsl?: pulumi.Input<string>;
-    /**
-     * Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-     */
     voip?: pulumi.Input<string>;
-    /**
-     * Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-     */
     wanOpt?: pulumi.Input<string>;
-    /**
-     * Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
-     */
     wirelessActivity?: pulumi.Input<string>;
-    /**
-     * Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-     */
     ztnaTraffic?: pulumi.Input<string>;
 }
 
@@ -476,152 +214,41 @@ export interface LogDiskFilterState {
  * The set of arguments for constructing a LogDiskFilter resource.
  */
 export interface LogDiskFilterArgs {
-    /**
-     * Enable/disable admin login/logout logging. Valid values: `enable`, `disable`.
-     */
     admin?: pulumi.Input<string>;
-    /**
-     * Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-     */
     anomaly?: pulumi.Input<string>;
-    /**
-     * Enable/disable firewall authentication logging. Valid values: `enable`, `disable`.
-     */
     auth?: pulumi.Input<string>;
-    /**
-     * Enable/disable CPU & memory usage logging every 5 minutes. Valid values: `enable`, `disable`.
-     */
     cpuMemoryUsage?: pulumi.Input<string>;
-    /**
-     * Enable/disable DHCP service messages logging. Valid values: `enable`, `disable`.
-     */
     dhcp?: pulumi.Input<string>;
-    /**
-     * Enable/disable DLP archive logging. Valid values: `enable`, `disable`.
-     */
     dlpArchive?: pulumi.Input<string>;
-    /**
-     * Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-     */
     dns?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable event logging. Valid values: `enable`, `disable`.
-     */
     event?: pulumi.Input<string>;
-    /**
-     * Free style filter string.
-     */
     filter?: pulumi.Input<string>;
-    /**
-     * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-     */
     filterType?: pulumi.Input<string>;
-    /**
-     * Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-     */
     forwardTraffic?: pulumi.Input<string>;
-    /**
-     * Free Style Filters The structure of `freeStyle` block is documented below.
-     */
     freeStyles?: pulumi.Input<pulumi.Input<inputs.LogDiskFilterFreeStyle>[]>;
-    /**
-     * Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-     */
     gtp?: pulumi.Input<string>;
-    /**
-     * Enable/disable HA logging. Valid values: `enable`, `disable`.
-     */
     ha?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPsec negotiation messages logging. Valid values: `enable`, `disable`.
-     */
     ipsec?: pulumi.Input<string>;
-    /**
-     * Enable/disable VIP real server health monitoring logging. Valid values: `enable`, `disable`.
-     */
     ldbMonitor?: pulumi.Input<string>;
-    /**
-     * Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-     */
     localTraffic?: pulumi.Input<string>;
-    /**
-     * Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-     */
     multicastTraffic?: pulumi.Input<string>;
-    /**
-     * Enable/disable netscan discovery event logging.
-     */
     netscanDiscovery?: pulumi.Input<string>;
-    /**
-     * Enable/disable netscan vulnerability event logging.
-     */
     netscanVulnerability?: pulumi.Input<string>;
-    /**
-     * Enable/disable pattern update logging. Valid values: `enable`, `disable`.
-     */
     pattern?: pulumi.Input<string>;
-    /**
-     * Enable/disable L2TP/PPTP/PPPoE logging. Valid values: `enable`, `disable`.
-     */
     ppp?: pulumi.Input<string>;
-    /**
-     * Enable/disable RADIUS messages logging. Valid values: `enable`, `disable`.
-     */
     radius?: pulumi.Input<string>;
-    /**
-     * Log to disk every message above and including this severity level. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     severity?: pulumi.Input<string>;
-    /**
-     * Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-     */
     snifferTraffic?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSH logging. Valid values: `enable`, `disable`.
-     */
     ssh?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL administrator login logging. Valid values: `enable`, `disable`.
-     */
     sslvpnLogAdm?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL user authentication logging. Valid values: `enable`, `disable`.
-     */
     sslvpnLogAuth?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL session logging. Valid values: `enable`, `disable`.
-     */
     sslvpnLogSession?: pulumi.Input<string>;
-    /**
-     * Enable/disable system activity logging. Valid values: `enable`, `disable`.
-     */
     system?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable VIP SSL logging. Valid values: `enable`, `disable`.
-     */
     vipSsl?: pulumi.Input<string>;
-    /**
-     * Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-     */
     voip?: pulumi.Input<string>;
-    /**
-     * Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-     */
     wanOpt?: pulumi.Input<string>;
-    /**
-     * Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
-     */
     wirelessActivity?: pulumi.Input<string>;
-    /**
-     * Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-     */
     ztnaTraffic?: pulumi.Input<string>;
 }

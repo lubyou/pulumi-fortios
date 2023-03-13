@@ -2,40 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Report dataset configuration. Applies to FortiOS Version `<= 7.0.0`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.ReportDataset("trname", {
- *     policy: 0,
- *     query: "select * from testdb",
- * });
- * ```
- *
- * ## Import
- *
- * Report Dataset can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/reportDataset:ReportDataset labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/reportDataset:ReportDataset labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class ReportDataset extends pulumi.CustomResource {
     /**
      * Get an existing ReportDataset resource's state with the given name, ID, and optional extra
@@ -64,33 +34,12 @@ export class ReportDataset extends pulumi.CustomResource {
         return obj['__pulumiType'] === ReportDataset.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * SQL field name.
-     */
     public readonly fields!: pulumi.Output<outputs.ReportDatasetField[] | undefined>;
-    /**
-     * Name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Parameters. The structure of `parameters` block is documented below.
-     */
     public readonly parameters!: pulumi.Output<outputs.ReportDatasetParameter[] | undefined>;
-    /**
-     * Used by monitor policy.
-     */
     public readonly policy!: pulumi.Output<number>;
-    /**
-     * SQL query statement.
-     */
     public readonly query!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -132,33 +81,12 @@ export class ReportDataset extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ReportDataset resources.
  */
 export interface ReportDatasetState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * SQL field name.
-     */
     fields?: pulumi.Input<pulumi.Input<inputs.ReportDatasetField>[]>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Parameters. The structure of `parameters` block is documented below.
-     */
     parameters?: pulumi.Input<pulumi.Input<inputs.ReportDatasetParameter>[]>;
-    /**
-     * Used by monitor policy.
-     */
     policy?: pulumi.Input<number>;
-    /**
-     * SQL query statement.
-     */
     query?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -166,32 +94,11 @@ export interface ReportDatasetState {
  * The set of arguments for constructing a ReportDataset resource.
  */
 export interface ReportDatasetArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * SQL field name.
-     */
     fields?: pulumi.Input<pulumi.Input<inputs.ReportDatasetField>[]>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Parameters. The structure of `parameters` block is documented below.
-     */
     parameters?: pulumi.Input<pulumi.Input<inputs.ReportDatasetParameter>[]>;
-    /**
-     * Used by monitor policy.
-     */
     policy?: pulumi.Input<number>;
-    /**
-     * SQL query statement.
-     */
     query?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

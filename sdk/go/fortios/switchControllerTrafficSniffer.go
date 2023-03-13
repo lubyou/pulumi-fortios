@@ -10,40 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch RSPAN/ERSPAN traffic sniffing parameters. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// SwitchController TrafficSniffer can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerTrafficSniffer:SwitchControllerTrafficSniffer labelname SwitchControllerTrafficSniffer
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerTrafficSniffer:SwitchControllerTrafficSniffer labelname SwitchControllerTrafficSniffer
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerTrafficSniffer struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Configure ERSPAN collector IP address.
-	ErspanIp pulumi.StringOutput `pulumi:"erspanIp"`
-	// Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
-	Mode pulumi.StringOutput `pulumi:"mode"`
-	// Sniffer IPs to filter. The structure of `targetIp` block is documented below.
-	TargetIps SwitchControllerTrafficSnifferTargetIpArrayOutput `pulumi:"targetIps"`
-	// Sniffer MACs to filter. The structure of `targetMac` block is documented below.
-	TargetMacs SwitchControllerTrafficSnifferTargetMacArrayOutput `pulumi:"targetMacs"`
-	// Sniffer ports to filter. The structure of `targetPort` block is documented below.
-	TargetPorts SwitchControllerTrafficSnifferTargetPortArrayOutput `pulumi:"targetPorts"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                              `pulumi:"dynamicSortSubtable"`
+	ErspanIp            pulumi.StringOutput                                 `pulumi:"erspanIp"`
+	Mode                pulumi.StringOutput                                 `pulumi:"mode"`
+	TargetIps           SwitchControllerTrafficSnifferTargetIpArrayOutput   `pulumi:"targetIps"`
+	TargetMacs          SwitchControllerTrafficSnifferTargetMacArrayOutput  `pulumi:"targetMacs"`
+	TargetPorts         SwitchControllerTrafficSnifferTargetPortArrayOutput `pulumi:"targetPorts"`
+	Vdomparam           pulumi.StringPtrOutput                              `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerTrafficSniffer registers a new resource with the given unique name, arguments, and options.
@@ -76,37 +52,23 @@ func GetSwitchControllerTrafficSniffer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerTrafficSniffer resources.
 type switchControllerTrafficSnifferState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configure ERSPAN collector IP address.
-	ErspanIp *string `pulumi:"erspanIp"`
-	// Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
-	Mode *string `pulumi:"mode"`
-	// Sniffer IPs to filter. The structure of `targetIp` block is documented below.
-	TargetIps []SwitchControllerTrafficSnifferTargetIp `pulumi:"targetIps"`
-	// Sniffer MACs to filter. The structure of `targetMac` block is documented below.
-	TargetMacs []SwitchControllerTrafficSnifferTargetMac `pulumi:"targetMacs"`
-	// Sniffer ports to filter. The structure of `targetPort` block is documented below.
-	TargetPorts []SwitchControllerTrafficSnifferTargetPort `pulumi:"targetPorts"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                    `pulumi:"dynamicSortSubtable"`
+	ErspanIp            *string                                    `pulumi:"erspanIp"`
+	Mode                *string                                    `pulumi:"mode"`
+	TargetIps           []SwitchControllerTrafficSnifferTargetIp   `pulumi:"targetIps"`
+	TargetMacs          []SwitchControllerTrafficSnifferTargetMac  `pulumi:"targetMacs"`
+	TargetPorts         []SwitchControllerTrafficSnifferTargetPort `pulumi:"targetPorts"`
+	Vdomparam           *string                                    `pulumi:"vdomparam"`
 }
 
 type SwitchControllerTrafficSnifferState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Configure ERSPAN collector IP address.
-	ErspanIp pulumi.StringPtrInput
-	// Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
-	Mode pulumi.StringPtrInput
-	// Sniffer IPs to filter. The structure of `targetIp` block is documented below.
-	TargetIps SwitchControllerTrafficSnifferTargetIpArrayInput
-	// Sniffer MACs to filter. The structure of `targetMac` block is documented below.
-	TargetMacs SwitchControllerTrafficSnifferTargetMacArrayInput
-	// Sniffer ports to filter. The structure of `targetPort` block is documented below.
-	TargetPorts SwitchControllerTrafficSnifferTargetPortArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ErspanIp            pulumi.StringPtrInput
+	Mode                pulumi.StringPtrInput
+	TargetIps           SwitchControllerTrafficSnifferTargetIpArrayInput
+	TargetMacs          SwitchControllerTrafficSnifferTargetMacArrayInput
+	TargetPorts         SwitchControllerTrafficSnifferTargetPortArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerTrafficSnifferState) ElementType() reflect.Type {
@@ -114,38 +76,24 @@ func (SwitchControllerTrafficSnifferState) ElementType() reflect.Type {
 }
 
 type switchControllerTrafficSnifferArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configure ERSPAN collector IP address.
-	ErspanIp *string `pulumi:"erspanIp"`
-	// Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
-	Mode *string `pulumi:"mode"`
-	// Sniffer IPs to filter. The structure of `targetIp` block is documented below.
-	TargetIps []SwitchControllerTrafficSnifferTargetIp `pulumi:"targetIps"`
-	// Sniffer MACs to filter. The structure of `targetMac` block is documented below.
-	TargetMacs []SwitchControllerTrafficSnifferTargetMac `pulumi:"targetMacs"`
-	// Sniffer ports to filter. The structure of `targetPort` block is documented below.
-	TargetPorts []SwitchControllerTrafficSnifferTargetPort `pulumi:"targetPorts"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                    `pulumi:"dynamicSortSubtable"`
+	ErspanIp            *string                                    `pulumi:"erspanIp"`
+	Mode                *string                                    `pulumi:"mode"`
+	TargetIps           []SwitchControllerTrafficSnifferTargetIp   `pulumi:"targetIps"`
+	TargetMacs          []SwitchControllerTrafficSnifferTargetMac  `pulumi:"targetMacs"`
+	TargetPorts         []SwitchControllerTrafficSnifferTargetPort `pulumi:"targetPorts"`
+	Vdomparam           *string                                    `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerTrafficSniffer resource.
 type SwitchControllerTrafficSnifferArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Configure ERSPAN collector IP address.
-	ErspanIp pulumi.StringPtrInput
-	// Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
-	Mode pulumi.StringPtrInput
-	// Sniffer IPs to filter. The structure of `targetIp` block is documented below.
-	TargetIps SwitchControllerTrafficSnifferTargetIpArrayInput
-	// Sniffer MACs to filter. The structure of `targetMac` block is documented below.
-	TargetMacs SwitchControllerTrafficSnifferTargetMacArrayInput
-	// Sniffer ports to filter. The structure of `targetPort` block is documented below.
-	TargetPorts SwitchControllerTrafficSnifferTargetPortArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ErspanIp            pulumi.StringPtrInput
+	Mode                pulumi.StringPtrInput
+	TargetIps           SwitchControllerTrafficSnifferTargetIpArrayInput
+	TargetMacs          SwitchControllerTrafficSnifferTargetMacArrayInput
+	TargetPorts         SwitchControllerTrafficSnifferTargetPortArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerTrafficSnifferArgs) ElementType() reflect.Type {
@@ -174,7 +122,7 @@ func (i *SwitchControllerTrafficSniffer) ToSwitchControllerTrafficSnifferOutputW
 // SwitchControllerTrafficSnifferArrayInput is an input type that accepts SwitchControllerTrafficSnifferArray and SwitchControllerTrafficSnifferArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerTrafficSnifferArrayInput` via:
 //
-//          SwitchControllerTrafficSnifferArray{ SwitchControllerTrafficSnifferArgs{...} }
+//	SwitchControllerTrafficSnifferArray{ SwitchControllerTrafficSnifferArgs{...} }
 type SwitchControllerTrafficSnifferArrayInput interface {
 	pulumi.Input
 
@@ -199,7 +147,7 @@ func (i SwitchControllerTrafficSnifferArray) ToSwitchControllerTrafficSnifferArr
 // SwitchControllerTrafficSnifferMapInput is an input type that accepts SwitchControllerTrafficSnifferMap and SwitchControllerTrafficSnifferMapOutput values.
 // You can construct a concrete instance of `SwitchControllerTrafficSnifferMapInput` via:
 //
-//          SwitchControllerTrafficSnifferMap{ "key": SwitchControllerTrafficSnifferArgs{...} }
+//	SwitchControllerTrafficSnifferMap{ "key": SwitchControllerTrafficSnifferArgs{...} }
 type SwitchControllerTrafficSnifferMapInput interface {
 	pulumi.Input
 
@@ -233,6 +181,40 @@ func (o SwitchControllerTrafficSnifferOutput) ToSwitchControllerTrafficSnifferOu
 
 func (o SwitchControllerTrafficSnifferOutput) ToSwitchControllerTrafficSnifferOutputWithContext(ctx context.Context) SwitchControllerTrafficSnifferOutput {
 	return o
+}
+
+func (o SwitchControllerTrafficSnifferOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficSniffer) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerTrafficSnifferOutput) ErspanIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficSniffer) pulumi.StringOutput { return v.ErspanIp }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerTrafficSnifferOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficSniffer) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerTrafficSnifferOutput) TargetIps() SwitchControllerTrafficSnifferTargetIpArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficSniffer) SwitchControllerTrafficSnifferTargetIpArrayOutput {
+		return v.TargetIps
+	}).(SwitchControllerTrafficSnifferTargetIpArrayOutput)
+}
+
+func (o SwitchControllerTrafficSnifferOutput) TargetMacs() SwitchControllerTrafficSnifferTargetMacArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficSniffer) SwitchControllerTrafficSnifferTargetMacArrayOutput {
+		return v.TargetMacs
+	}).(SwitchControllerTrafficSnifferTargetMacArrayOutput)
+}
+
+func (o SwitchControllerTrafficSnifferOutput) TargetPorts() SwitchControllerTrafficSnifferTargetPortArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficSniffer) SwitchControllerTrafficSnifferTargetPortArrayOutput {
+		return v.TargetPorts
+	}).(SwitchControllerTrafficSnifferTargetPortArrayOutput)
+}
+
+func (o SwitchControllerTrafficSnifferOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficSniffer) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerTrafficSnifferArrayOutput struct{ *pulumi.OutputState }

@@ -2,53 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv6 multicast NAT policies.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallMulticastPolicy6("trname", {
- *     action: "accept",
- *     dstaddrs: [{
- *         name: "all",
- *     }],
- *     dstintf: "port4",
- *     endPort: 65535,
- *     fosid: 1,
- *     logtraffic: "disable",
- *     protocol: 0,
- *     srcaddrs: [{
- *         name: "all",
- *     }],
- *     srcintf: "port3",
- *     startPort: 1,
- *     status: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall MulticastPolicy6 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallMulticastPolicy6:FirewallMulticastPolicy6 labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallMulticastPolicy6:FirewallMulticastPolicy6 labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallMulticastPolicy6 extends pulumi.CustomResource {
     /**
      * Get an existing FirewallMulticastPolicy6 resource's state with the given name, ID, and optional extra
@@ -77,73 +34,22 @@ export class FirewallMulticastPolicy6 extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallMulticastPolicy6.__pulumiType;
     }
 
-    /**
-     * Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-     */
     public readonly action!: pulumi.Output<string>;
-    /**
-     * Enable/disable offloading policy traffic for hardware acceleration. Valid values: `enable`, `disable`.
-     */
     public readonly autoAsicOffload!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * IPv6 destination address name. The structure of `dstaddr` block is documented below.
-     */
     public readonly dstaddrs!: pulumi.Output<outputs.FirewallMulticastPolicy6Dstaddr[]>;
-    /**
-     * IPv6 destination interface name.
-     */
     public readonly dstintf!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).
-     */
     public readonly endPort!: pulumi.Output<number>;
-    /**
-     * Policy ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
-     */
     public readonly logtraffic!: pulumi.Output<string>;
-    /**
-     * Address name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Integer value for the protocol type as defined by IANA (0 - 255, default = 0).
-     */
     public readonly protocol!: pulumi.Output<number>;
-    /**
-     * IPv6 source address name. The structure of `srcaddr` block is documented below.
-     */
     public readonly srcaddrs!: pulumi.Output<outputs.FirewallMulticastPolicy6Srcaddr[]>;
-    /**
-     * IPv6 source interface name.
-     */
     public readonly srcintf!: pulumi.Output<string>;
-    /**
-     * Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
-     */
     public readonly startPort!: pulumi.Output<number>;
-    /**
-     * Enable/disable this policy. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -217,73 +123,22 @@ export class FirewallMulticastPolicy6 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallMulticastPolicy6 resources.
  */
 export interface FirewallMulticastPolicy6State {
-    /**
-     * Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-     */
     action?: pulumi.Input<string>;
-    /**
-     * Enable/disable offloading policy traffic for hardware acceleration. Valid values: `enable`, `disable`.
-     */
     autoAsicOffload?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * IPv6 destination address name. The structure of `dstaddr` block is documented below.
-     */
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallMulticastPolicy6Dstaddr>[]>;
-    /**
-     * IPv6 destination interface name.
-     */
     dstintf?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).
-     */
     endPort?: pulumi.Input<number>;
-    /**
-     * Policy ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
-     */
     logtraffic?: pulumi.Input<string>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Integer value for the protocol type as defined by IANA (0 - 255, default = 0).
-     */
     protocol?: pulumi.Input<number>;
-    /**
-     * IPv6 source address name. The structure of `srcaddr` block is documented below.
-     */
     srcaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallMulticastPolicy6Srcaddr>[]>;
-    /**
-     * IPv6 source interface name.
-     */
     srcintf?: pulumi.Input<string>;
-    /**
-     * Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
-     */
     startPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable this policy. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -291,72 +146,21 @@ export interface FirewallMulticastPolicy6State {
  * The set of arguments for constructing a FirewallMulticastPolicy6 resource.
  */
 export interface FirewallMulticastPolicy6Args {
-    /**
-     * Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-     */
     action?: pulumi.Input<string>;
-    /**
-     * Enable/disable offloading policy traffic for hardware acceleration. Valid values: `enable`, `disable`.
-     */
     autoAsicOffload?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * IPv6 destination address name. The structure of `dstaddr` block is documented below.
-     */
     dstaddrs: pulumi.Input<pulumi.Input<inputs.FirewallMulticastPolicy6Dstaddr>[]>;
-    /**
-     * IPv6 destination interface name.
-     */
     dstintf: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).
-     */
     endPort?: pulumi.Input<number>;
-    /**
-     * Policy ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
-     */
     logtraffic?: pulumi.Input<string>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Integer value for the protocol type as defined by IANA (0 - 255, default = 0).
-     */
     protocol?: pulumi.Input<number>;
-    /**
-     * IPv6 source address name. The structure of `srcaddr` block is documented below.
-     */
     srcaddrs: pulumi.Input<pulumi.Input<inputs.FirewallMulticastPolicy6Srcaddr>[]>;
-    /**
-     * IPv6 source interface name.
-     */
     srcintf: pulumi.Input<string>;
-    /**
-     * Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
-     */
     startPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable this policy. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

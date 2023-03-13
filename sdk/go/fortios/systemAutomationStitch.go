@@ -7,46 +7,22 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Automation stitches.
-//
-// ## Import
-//
-// System AutomationStitch can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutomationStitch:SystemAutomationStitch labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutomationStitch:SystemAutomationStitch labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemAutomationStitch struct {
 	pulumi.CustomResourceState
 
-	// Configure stitch actions. The structure of `actions` block is documented below.
-	Actions SystemAutomationStitchActionArrayOutput `pulumi:"actions"`
-	// Description.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
-	Destinations SystemAutomationStitchDestinationArrayOutput `pulumi:"destinations"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Destination name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable this stitch. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Trigger name.
-	Trigger pulumi.StringOutput `pulumi:"trigger"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Action              SystemAutomationStitchActionArrayOutput      `pulumi:"action"`
+	Actions             SystemAutomationStitchActionArrayOutput      `pulumi:"actions"`
+	Description         pulumi.StringPtrOutput                       `pulumi:"description"`
+	Destinations        SystemAutomationStitchDestinationArrayOutput `pulumi:"destinations"`
+	DynamicSortSubtable pulumi.StringPtrOutput                       `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                          `pulumi:"name"`
+	Status              pulumi.StringOutput                          `pulumi:"status"`
+	Trigger             pulumi.StringOutput                          `pulumi:"trigger"`
+	Vdomparam           pulumi.StringPtrOutput                       `pulumi:"vdomparam"`
 }
 
 // NewSystemAutomationStitch registers a new resource with the given unique name, arguments, and options.
@@ -85,41 +61,27 @@ func GetSystemAutomationStitch(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAutomationStitch resources.
 type systemAutomationStitchState struct {
-	// Configure stitch actions. The structure of `actions` block is documented below.
-	Actions []SystemAutomationStitchAction `pulumi:"actions"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
-	Destinations []SystemAutomationStitchDestination `pulumi:"destinations"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Destination name.
-	Name *string `pulumi:"name"`
-	// Enable/disable this stitch. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Trigger name.
-	Trigger *string `pulumi:"trigger"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Action              []SystemAutomationStitchAction      `pulumi:"action"`
+	Actions             []SystemAutomationStitchAction      `pulumi:"actions"`
+	Description         *string                             `pulumi:"description"`
+	Destinations        []SystemAutomationStitchDestination `pulumi:"destinations"`
+	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
+	Name                *string                             `pulumi:"name"`
+	Status              *string                             `pulumi:"status"`
+	Trigger             *string                             `pulumi:"trigger"`
+	Vdomparam           *string                             `pulumi:"vdomparam"`
 }
 
 type SystemAutomationStitchState struct {
-	// Configure stitch actions. The structure of `actions` block is documented below.
-	Actions SystemAutomationStitchActionArrayInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
-	Destinations SystemAutomationStitchDestinationArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Action              SystemAutomationStitchActionArrayInput
+	Actions             SystemAutomationStitchActionArrayInput
+	Description         pulumi.StringPtrInput
+	Destinations        SystemAutomationStitchDestinationArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Destination name.
-	Name pulumi.StringPtrInput
-	// Enable/disable this stitch. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Trigger name.
-	Trigger pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	Trigger             pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemAutomationStitchState) ElementType() reflect.Type {
@@ -127,42 +89,28 @@ func (SystemAutomationStitchState) ElementType() reflect.Type {
 }
 
 type systemAutomationStitchArgs struct {
-	// Configure stitch actions. The structure of `actions` block is documented below.
-	Actions []SystemAutomationStitchAction `pulumi:"actions"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
-	Destinations []SystemAutomationStitchDestination `pulumi:"destinations"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Destination name.
-	Name *string `pulumi:"name"`
-	// Enable/disable this stitch. Valid values: `enable`, `disable`.
-	Status string `pulumi:"status"`
-	// Trigger name.
-	Trigger string `pulumi:"trigger"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Action              []SystemAutomationStitchAction      `pulumi:"action"`
+	Actions             []SystemAutomationStitchAction      `pulumi:"actions"`
+	Description         *string                             `pulumi:"description"`
+	Destinations        []SystemAutomationStitchDestination `pulumi:"destinations"`
+	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
+	Name                *string                             `pulumi:"name"`
+	Status              string                              `pulumi:"status"`
+	Trigger             string                              `pulumi:"trigger"`
+	Vdomparam           *string                             `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemAutomationStitch resource.
 type SystemAutomationStitchArgs struct {
-	// Configure stitch actions. The structure of `actions` block is documented below.
-	Actions SystemAutomationStitchActionArrayInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
-	Destinations SystemAutomationStitchDestinationArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Action              SystemAutomationStitchActionArrayInput
+	Actions             SystemAutomationStitchActionArrayInput
+	Description         pulumi.StringPtrInput
+	Destinations        SystemAutomationStitchDestinationArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Destination name.
-	Name pulumi.StringPtrInput
-	// Enable/disable this stitch. Valid values: `enable`, `disable`.
-	Status pulumi.StringInput
-	// Trigger name.
-	Trigger pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Status              pulumi.StringInput
+	Trigger             pulumi.StringInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemAutomationStitchArgs) ElementType() reflect.Type {
@@ -191,7 +139,7 @@ func (i *SystemAutomationStitch) ToSystemAutomationStitchOutputWithContext(ctx c
 // SystemAutomationStitchArrayInput is an input type that accepts SystemAutomationStitchArray and SystemAutomationStitchArrayOutput values.
 // You can construct a concrete instance of `SystemAutomationStitchArrayInput` via:
 //
-//          SystemAutomationStitchArray{ SystemAutomationStitchArgs{...} }
+//	SystemAutomationStitchArray{ SystemAutomationStitchArgs{...} }
 type SystemAutomationStitchArrayInput interface {
 	pulumi.Input
 
@@ -216,7 +164,7 @@ func (i SystemAutomationStitchArray) ToSystemAutomationStitchArrayOutputWithCont
 // SystemAutomationStitchMapInput is an input type that accepts SystemAutomationStitchMap and SystemAutomationStitchMapOutput values.
 // You can construct a concrete instance of `SystemAutomationStitchMapInput` via:
 //
-//          SystemAutomationStitchMap{ "key": SystemAutomationStitchArgs{...} }
+//	SystemAutomationStitchMap{ "key": SystemAutomationStitchArgs{...} }
 type SystemAutomationStitchMapInput interface {
 	pulumi.Input
 
@@ -250,6 +198,42 @@ func (o SystemAutomationStitchOutput) ToSystemAutomationStitchOutput() SystemAut
 
 func (o SystemAutomationStitchOutput) ToSystemAutomationStitchOutputWithContext(ctx context.Context) SystemAutomationStitchOutput {
 	return o
+}
+
+func (o SystemAutomationStitchOutput) Action() SystemAutomationStitchActionArrayOutput {
+	return o.ApplyT(func(v *SystemAutomationStitch) SystemAutomationStitchActionArrayOutput { return v.Action }).(SystemAutomationStitchActionArrayOutput)
+}
+
+func (o SystemAutomationStitchOutput) Actions() SystemAutomationStitchActionArrayOutput {
+	return o.ApplyT(func(v *SystemAutomationStitch) SystemAutomationStitchActionArrayOutput { return v.Actions }).(SystemAutomationStitchActionArrayOutput)
+}
+
+func (o SystemAutomationStitchOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationStitch) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationStitchOutput) Destinations() SystemAutomationStitchDestinationArrayOutput {
+	return o.ApplyT(func(v *SystemAutomationStitch) SystemAutomationStitchDestinationArrayOutput { return v.Destinations }).(SystemAutomationStitchDestinationArrayOutput)
+}
+
+func (o SystemAutomationStitchOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationStitch) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationStitchOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationStitch) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationStitchOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationStitch) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationStitchOutput) Trigger() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationStitch) pulumi.StringOutput { return v.Trigger }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationStitchOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationStitch) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemAutomationStitchArrayOutput struct{ *pulumi.OutputState }

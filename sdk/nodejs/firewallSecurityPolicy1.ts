@@ -4,157 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure firewall policies of FortiOS.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.FirewallPolicy`, we recommend that you use the new resource.
- *
- * ## Example Usage
- * ### 1
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FirewallSecurityPolicy1("test1", {
- *     action: "accept",
- *     applicationList: "block-high-risk",
- *     avProfile: "wifi-default",
- *     capturePacket: "enable",
- *     comments: "security policy",
- *     devices: [
- *         "android-phone",
- *         "android-tablet",
- *     ],
- *     dnsfilterProfile: "default",
- *     dstaddrs: [
- *         "swscan.apple.com",
- *         "update.microsoft.com",
- *     ],
- *     dstintfs: ["port1"],
- *     groups: [
- *         "Guest-group",
- *         "SSO_Guest_Users",
- *     ],
- *     internetService: "disable",
- *     internetServiceIds: [],
- *     ippool: "enable",
- *     ipsSensor: "protect_client",
- *     logtraffic: "all",
- *     logtrafficStart: "enable",
- *     nat: "enable",
- *     poolnames: [
- *         "rewq",
- *         "rbb",
- *     ],
- *     schedule: "always",
- *     services: [
- *         "ALL_ICMP",
- *         "FTP",
- *     ],
- *     srcaddrs: [
- *         "swscan.apple.com",
- *         "google-play",
- *     ],
- *     srcintfs: ["port2"],
- *     sslSshProfile: "certificate-inspection",
- *     utmStatus: "enable",
- *     webfilterProfile: "monitor-all",
- * });
- * ```
- * ### 2
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test2 = new fortios.FirewallSecurityPolicy1("test2", {
- *     action: "accept",
- *     applicationList: "block-high-risk",
- *     avProfile: "wifi-default",
- *     capturePacket: "enable",
- *     comments: "security policy",
- *     devices: [
- *         "android-phone",
- *         "android-tablet",
- *     ],
- *     dnsfilterProfile: "default",
- *     dstaddrs: [
- *         "swscan.apple.com",
- *         "update.microsoft.com",
- *     ],
- *     dstintfs: ["port1"],
- *     groups: [
- *         "Guest-group",
- *         "SSO_Guest_Users",
- *     ],
- *     internetService: "enable",
- *     internetServiceIds: [
- *         917520,
- *         6881402,
- *         393219,
- *     ],
- *     ippool: "enable",
- *     ipsSensor: "protect_client",
- *     logtraffic: "all",
- *     logtrafficStart: "enable",
- *     nat: "enable",
- *     poolnames: [
- *         "rewq",
- *         "rbb",
- *     ],
- *     schedule: "always",
- *     services: [],
- *     srcaddrs: [
- *         "swscan.apple.com",
- *         "google-play",
- *     ],
- *     srcintfs: ["port2"],
- *     sslSshProfile: "certificate-inspection",
- *     utmStatus: "enable",
- *     webfilterProfile: "monitor-all",
- * });
- * ```
- * ### 3
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FirewallSecurityPolicy1("test1", {
- *     action: "accept",
- *     applicationList: "block-high-risk",
- *     avProfile: "wifi-default",
- *     capturePacket: "enable",
- *     comments: "security policy",
- *     devices: [],
- *     dnsfilterProfile: "default",
- *     dstaddrs: [],
- *     dstintfs: ["port4"],
- *     groups: [
- *         "Guest-group",
- *         "SSO_Guest_Users",
- *     ],
- *     internetService: "enable",
- *     internetServiceIds: [5242880],
- *     internetServiceSrc: "enable",
- *     internetServiceSrcIds: [65643],
- *     ippool: "disable",
- *     ipsSensor: "protect_client",
- *     logtraffic: "all",
- *     logtrafficStart: "enable",
- *     nat: "enable",
- *     poolnames: [],
- *     profileProtocolOptions: "default",
- *     schedule: "always",
- *     services: [],
- *     srcaddrs: [],
- *     srcintfs: ["port3"],
- *     sslSshProfile: "certificate-inspection",
- *     status: "enable",
- *     users: ["guest"],
- *     utmStatus: "enable",
- *     webfilterProfile: "monitor-all",
- * });
- * ```
- */
 export class FirewallSecurityPolicy1 extends pulumi.CustomResource {
     /**
      * Get an existing FirewallSecurityPolicy1 resource's state with the given name, ID, and optional extra
@@ -183,129 +32,36 @@ export class FirewallSecurityPolicy1 extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallSecurityPolicy1.__pulumiType;
     }
 
-    /**
-     * Policy action.
-     */
     public readonly action!: pulumi.Output<string>;
-    /**
-     * Name of an existing Application list.
-     */
     public readonly applicationList!: pulumi.Output<string>;
-    /**
-     * Name of an existing Antivirus profile.
-     */
     public readonly avProfile!: pulumi.Output<string>;
-    /**
-     * Enable/disable capture packets.
-     */
     public readonly capturePacket!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Device type category.
-     */
     public readonly devices!: pulumi.Output<string[] | undefined>;
-    /**
-     * Name of an existing DNS filter profile.
-     */
     public readonly dnsfilterProfile!: pulumi.Output<string>;
-    /**
-     * Destination address and address group names.
-     */
     public readonly dstaddrs!: pulumi.Output<string[]>;
-    /**
-     * Outgoing (egress) interface.
-     */
     public readonly dstintfs!: pulumi.Output<string[]>;
-    /**
-     * Names of user groups that can authenticate with this policy.
-     */
     public readonly groups!: pulumi.Output<string[] | undefined>;
-    /**
-     * Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.
-     */
     public readonly internetService!: pulumi.Output<string>;
-    /**
-     * Internet Service ID.
-     */
     public readonly internetServiceIds!: pulumi.Output<number[] | undefined>;
-    /**
-     * Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used.
-     */
     public readonly internetServiceSrc!: pulumi.Output<string>;
-    /**
-     * Internet Service source ID.
-     */
     public readonly internetServiceSrcIds!: pulumi.Output<number[] | undefined>;
-    /**
-     * Enable to use IP Pools for source NAT.
-     */
     public readonly ippool!: pulumi.Output<string>;
-    /**
-     * Name of an existing IPS sensor.
-     */
     public readonly ipsSensor!: pulumi.Output<string>;
-    /**
-     * Enable or disable logging. Log all sessions or security profile sessions.
-     */
     public readonly logtraffic!: pulumi.Output<string>;
-    /**
-     * Record logs when a session starts and ends.
-     */
     public readonly logtrafficStart!: pulumi.Output<string>;
-    /**
-     * Policy name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable source NAT.
-     */
     public readonly nat!: pulumi.Output<string>;
-    /**
-     * IP Pool names.
-     */
     public readonly poolnames!: pulumi.Output<string[] | undefined>;
-    /**
-     * Name of an existing Protocol options profile.
-     */
     public readonly profileProtocolOptions!: pulumi.Output<string>;
-    /**
-     * Schedule name.
-     */
     public readonly schedule!: pulumi.Output<string>;
-    /**
-     * Service and service group names..
-     */
     public readonly services!: pulumi.Output<string[]>;
-    /**
-     * Source address and address group names.
-     */
     public readonly srcaddrs!: pulumi.Output<string[]>;
-    /**
-     * Incoming (ingress) interface.
-     */
     public readonly srcintfs!: pulumi.Output<string[]>;
-    /**
-     * Name of an existing SSL SSH profile.
-     */
     public readonly sslSshProfile!: pulumi.Output<string>;
-    /**
-     * Enable or disable this policy.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Names of individual users that can authenticate with this policy.
-     */
     public readonly users!: pulumi.Output<string[] | undefined>;
-    /**
-     * Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy.
-     */
     public readonly utmStatus!: pulumi.Output<string>;
-    /**
-     * Name of an existing Web filter profile.
-     */
     public readonly webfilterProfile!: pulumi.Output<string>;
 
     /**
@@ -416,129 +172,36 @@ export class FirewallSecurityPolicy1 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallSecurityPolicy1 resources.
  */
 export interface FirewallSecurityPolicy1State {
-    /**
-     * Policy action.
-     */
     action?: pulumi.Input<string>;
-    /**
-     * Name of an existing Application list.
-     */
     applicationList?: pulumi.Input<string>;
-    /**
-     * Name of an existing Antivirus profile.
-     */
     avProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable capture packets.
-     */
     capturePacket?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Device type category.
-     */
     devices?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of an existing DNS filter profile.
-     */
     dnsfilterProfile?: pulumi.Input<string>;
-    /**
-     * Destination address and address group names.
-     */
     dstaddrs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Outgoing (egress) interface.
-     */
     dstintfs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Names of user groups that can authenticate with this policy.
-     */
     groups?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.
-     */
     internetService?: pulumi.Input<string>;
-    /**
-     * Internet Service ID.
-     */
     internetServiceIds?: pulumi.Input<pulumi.Input<number>[]>;
-    /**
-     * Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used.
-     */
     internetServiceSrc?: pulumi.Input<string>;
-    /**
-     * Internet Service source ID.
-     */
     internetServiceSrcIds?: pulumi.Input<pulumi.Input<number>[]>;
-    /**
-     * Enable to use IP Pools for source NAT.
-     */
     ippool?: pulumi.Input<string>;
-    /**
-     * Name of an existing IPS sensor.
-     */
     ipsSensor?: pulumi.Input<string>;
-    /**
-     * Enable or disable logging. Log all sessions or security profile sessions.
-     */
     logtraffic?: pulumi.Input<string>;
-    /**
-     * Record logs when a session starts and ends.
-     */
     logtrafficStart?: pulumi.Input<string>;
-    /**
-     * Policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable source NAT.
-     */
     nat?: pulumi.Input<string>;
-    /**
-     * IP Pool names.
-     */
     poolnames?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of an existing Protocol options profile.
-     */
     profileProtocolOptions?: pulumi.Input<string>;
-    /**
-     * Schedule name.
-     */
     schedule?: pulumi.Input<string>;
-    /**
-     * Service and service group names..
-     */
     services?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Source address and address group names.
-     */
     srcaddrs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Incoming (ingress) interface.
-     */
     srcintfs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of an existing SSL SSH profile.
-     */
     sslSshProfile?: pulumi.Input<string>;
-    /**
-     * Enable or disable this policy.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Names of individual users that can authenticate with this policy.
-     */
     users?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy.
-     */
     utmStatus?: pulumi.Input<string>;
-    /**
-     * Name of an existing Web filter profile.
-     */
     webfilterProfile?: pulumi.Input<string>;
 }
 
@@ -546,128 +209,35 @@ export interface FirewallSecurityPolicy1State {
  * The set of arguments for constructing a FirewallSecurityPolicy1 resource.
  */
 export interface FirewallSecurityPolicy1Args {
-    /**
-     * Policy action.
-     */
     action: pulumi.Input<string>;
-    /**
-     * Name of an existing Application list.
-     */
     applicationList?: pulumi.Input<string>;
-    /**
-     * Name of an existing Antivirus profile.
-     */
     avProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable capture packets.
-     */
     capturePacket?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Device type category.
-     */
     devices?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of an existing DNS filter profile.
-     */
     dnsfilterProfile?: pulumi.Input<string>;
-    /**
-     * Destination address and address group names.
-     */
     dstaddrs: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Outgoing (egress) interface.
-     */
     dstintfs: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Names of user groups that can authenticate with this policy.
-     */
     groups?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.
-     */
     internetService?: pulumi.Input<string>;
-    /**
-     * Internet Service ID.
-     */
     internetServiceIds?: pulumi.Input<pulumi.Input<number>[]>;
-    /**
-     * Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used.
-     */
     internetServiceSrc?: pulumi.Input<string>;
-    /**
-     * Internet Service source ID.
-     */
     internetServiceSrcIds?: pulumi.Input<pulumi.Input<number>[]>;
-    /**
-     * Enable to use IP Pools for source NAT.
-     */
     ippool?: pulumi.Input<string>;
-    /**
-     * Name of an existing IPS sensor.
-     */
     ipsSensor?: pulumi.Input<string>;
-    /**
-     * Enable or disable logging. Log all sessions or security profile sessions.
-     */
     logtraffic?: pulumi.Input<string>;
-    /**
-     * Record logs when a session starts and ends.
-     */
     logtrafficStart?: pulumi.Input<string>;
-    /**
-     * Policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable source NAT.
-     */
     nat?: pulumi.Input<string>;
-    /**
-     * IP Pool names.
-     */
     poolnames?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of an existing Protocol options profile.
-     */
     profileProtocolOptions?: pulumi.Input<string>;
-    /**
-     * Schedule name.
-     */
     schedule: pulumi.Input<string>;
-    /**
-     * Service and service group names..
-     */
     services: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Source address and address group names.
-     */
     srcaddrs: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Incoming (ingress) interface.
-     */
     srcintfs: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of an existing SSL SSH profile.
-     */
     sslSshProfile?: pulumi.Input<string>;
-    /**
-     * Enable or disable this policy.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Names of individual users that can authenticate with this policy.
-     */
     users?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy.
-     */
     utmStatus?: pulumi.Input<string>;
-    /**
-     * Name of an existing Web filter profile.
-     */
     webfilterProfile?: pulumi.Input<string>;
 }

@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure interrupt affinity.
- *
- * ## Import
- *
- * System AffinityInterrupt can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAffinityInterrupt:SystemAffinityInterrupt labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAffinityInterrupt:SystemAffinityInterrupt labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemAffinityInterrupt extends pulumi.CustomResource {
     /**
      * Get an existing SystemAffinityInterrupt resource's state with the given name, ID, and optional extra
@@ -51,21 +32,9 @@ export class SystemAffinityInterrupt extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAffinityInterrupt.__pulumiType;
     }
 
-    /**
-     * Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
-     */
     public readonly affinityCpumask!: pulumi.Output<string>;
-    /**
-     * ID of the interrupt affinity setting.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Interrupt name.
-     */
     public readonly interrupt!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -110,21 +79,9 @@ export class SystemAffinityInterrupt extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAffinityInterrupt resources.
  */
 export interface SystemAffinityInterruptState {
-    /**
-     * Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
-     */
     affinityCpumask?: pulumi.Input<string>;
-    /**
-     * ID of the interrupt affinity setting.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Interrupt name.
-     */
     interrupt?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -132,20 +89,8 @@ export interface SystemAffinityInterruptState {
  * The set of arguments for constructing a SystemAffinityInterrupt resource.
  */
 export interface SystemAffinityInterruptArgs {
-    /**
-     * Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
-     */
     affinityCpumask: pulumi.Input<string>;
-    /**
-     * ID of the interrupt affinity setting.
-     */
     fosid: pulumi.Input<number>;
-    /**
-     * Interrupt name.
-     */
     interrupt: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

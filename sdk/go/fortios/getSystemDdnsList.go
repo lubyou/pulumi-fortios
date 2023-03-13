@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemDdns`.
 func GetSystemDdnsList(ctx *pulumi.Context, args *GetSystemDdnsListArgs, opts ...pulumi.InvokeOption) (*GetSystemDdnsListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemDdnsListResult
@@ -23,14 +22,12 @@ func GetSystemDdnsList(ctx *pulumi.Context, args *GetSystemDdnsListArgs, opts ..
 
 // A collection of arguments for invoking GetSystemDdnsList.
 type GetSystemDdnsListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemDdnsList.
 type GetSystemDdnsListResult struct {
-	// A list of the `SystemDdns`.
 	Ddnsidlists []int   `pulumi:"ddnsidlists"`
 	Filter      *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
@@ -53,8 +50,7 @@ func GetSystemDdnsListOutput(ctx *pulumi.Context, args GetSystemDdnsListOutputAr
 
 // A collection of arguments for invoking GetSystemDdnsList.
 type GetSystemDdnsListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -77,7 +73,6 @@ func (o GetSystemDdnsListResultOutput) ToGetSystemDdnsListResultOutputWithContex
 	return o
 }
 
-// A list of the `SystemDdns`.
 func (o GetSystemDdnsListResultOutput) Ddnsidlists() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v GetSystemDdnsListResult) []int { return v.Ddnsidlists }).(pulumi.IntArrayOutput)
 }

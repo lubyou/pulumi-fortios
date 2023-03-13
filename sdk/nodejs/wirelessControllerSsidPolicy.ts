@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure WiFi SSID policies. Applies to FortiOS Version `>= 7.0.1`.
- *
- * ## Import
- *
- * WirelessController SsidPolicy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerSsidPolicy:WirelessControllerSsidPolicy labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerSsidPolicy:WirelessControllerSsidPolicy labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerSsidPolicy extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerSsidPolicy resource's state with the given name, ID, and optional extra
@@ -51,21 +32,9 @@ export class WirelessControllerSsidPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerSsidPolicy.__pulumiType;
     }
 
-    /**
-     * Description.
-     */
     public readonly description!: pulumi.Output<string | undefined>;
-    /**
-     * Name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * VLAN interface name.
-     */
     public readonly vlan!: pulumi.Output<string>;
 
     /**
@@ -101,21 +70,9 @@ export class WirelessControllerSsidPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerSsidPolicy resources.
  */
 export interface WirelessControllerSsidPolicyState {
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * VLAN interface name.
-     */
     vlan?: pulumi.Input<string>;
 }
 
@@ -123,20 +80,8 @@ export interface WirelessControllerSsidPolicyState {
  * The set of arguments for constructing a WirelessControllerSsidPolicy resource.
  */
 export interface WirelessControllerSsidPolicyArgs {
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * VLAN interface name.
-     */
     vlan?: pulumi.Input<string>;
 }

@@ -4,28 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports Create/Read/Update/Delete devicemanager script for FortiManager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerDVMScript("test1", {
- *     content: `config system interface 
- *  edit port3 
- * 	 set vdom "root"
- * 	 set ip 10.7.0.200 255.255.0.0 
- * 	 set allowaccess ping http https
- * 	 next 
- *  end`,
- *     description: "description",
- *     target: "remote_device",
- * });
- * ```
- */
 export class FortimanagerDVMScript extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerDVMScript resource's state with the given name, ID, and optional extra
@@ -54,25 +32,10 @@ export class FortimanagerDVMScript extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerDVMScript.__pulumiType;
     }
 
-    /**
-     * ADOM name. default is 'root'.
-     */
     public readonly adom!: pulumi.Output<string | undefined>;
-    /**
-     * Script content, only cli script is supported now
-     */
     public readonly content!: pulumi.Output<string>;
-    /**
-     * Description.
-     */
     public readonly description!: pulumi.Output<string | undefined>;
-    /**
-     * Script name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Script target, Enum: ["deviceDatabase", "remoteDevice", "adomDatabase"]
-     */
     public readonly target!: pulumi.Output<string | undefined>;
 
     /**
@@ -113,25 +76,10 @@ export class FortimanagerDVMScript extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerDVMScript resources.
  */
 export interface FortimanagerDVMScriptState {
-    /**
-     * ADOM name. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Script content, only cli script is supported now
-     */
     content?: pulumi.Input<string>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Script name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Script target, Enum: ["deviceDatabase", "remoteDevice", "adomDatabase"]
-     */
     target?: pulumi.Input<string>;
 }
 
@@ -139,24 +87,9 @@ export interface FortimanagerDVMScriptState {
  * The set of arguments for constructing a FortimanagerDVMScript resource.
  */
 export interface FortimanagerDVMScriptArgs {
-    /**
-     * ADOM name. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Script content, only cli script is supported now
-     */
     content: pulumi.Input<string>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Script name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Script target, Enum: ["deviceDatabase", "remoteDevice", "adomDatabase"]
-     */
     target?: pulumi.Input<string>;
 }

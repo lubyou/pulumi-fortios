@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure the MAC address group. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// WirelessController Addrgrp can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerAddrgrp:WirelessControllerAddrgrp labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerAddrgrp:WirelessControllerAddrgrp labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerAddrgrp struct {
 	pulumi.CustomResourceState
 
-	// Manually selected group of addresses. The structure of `addresses` block is documented below.
-	Addresses WirelessControllerAddrgrpAddressArrayOutput `pulumi:"addresses"`
-	// Allow or block the clients with MAC addresses that are not in the group. Valid values: `allow`, `deny`.
-	DefaultPolicy pulumi.StringOutput `pulumi:"defaultPolicy"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// ID.
-	Fosid pulumi.StringOutput `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Addresses           WirelessControllerAddrgrpAddressArrayOutput `pulumi:"addresses"`
+	DefaultPolicy       pulumi.StringOutput                         `pulumi:"defaultPolicy"`
+	DynamicSortSubtable pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
+	Fosid               pulumi.StringOutput                         `pulumi:"fosid"`
+	Vdomparam           pulumi.StringPtrOutput                      `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerAddrgrp registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetWirelessControllerAddrgrp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerAddrgrp resources.
 type wirelessControllerAddrgrpState struct {
-	// Manually selected group of addresses. The structure of `addresses` block is documented below.
-	Addresses []WirelessControllerAddrgrpAddress `pulumi:"addresses"`
-	// Allow or block the clients with MAC addresses that are not in the group. Valid values: `allow`, `deny`.
-	DefaultPolicy *string `pulumi:"defaultPolicy"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// ID.
-	Fosid *string `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Addresses           []WirelessControllerAddrgrpAddress `pulumi:"addresses"`
+	DefaultPolicy       *string                            `pulumi:"defaultPolicy"`
+	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	Fosid               *string                            `pulumi:"fosid"`
+	Vdomparam           *string                            `pulumi:"vdomparam"`
 }
 
 type WirelessControllerAddrgrpState struct {
-	// Manually selected group of addresses. The structure of `addresses` block is documented below.
-	Addresses WirelessControllerAddrgrpAddressArrayInput
-	// Allow or block the clients with MAC addresses that are not in the group. Valid values: `allow`, `deny`.
-	DefaultPolicy pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Addresses           WirelessControllerAddrgrpAddressArrayInput
+	DefaultPolicy       pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// ID.
-	Fosid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid               pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerAddrgrpState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (WirelessControllerAddrgrpState) ElementType() reflect.Type {
 }
 
 type wirelessControllerAddrgrpArgs struct {
-	// Manually selected group of addresses. The structure of `addresses` block is documented below.
-	Addresses []WirelessControllerAddrgrpAddress `pulumi:"addresses"`
-	// Allow or block the clients with MAC addresses that are not in the group. Valid values: `allow`, `deny`.
-	DefaultPolicy *string `pulumi:"defaultPolicy"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// ID.
-	Fosid *string `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Addresses           []WirelessControllerAddrgrpAddress `pulumi:"addresses"`
+	DefaultPolicy       *string                            `pulumi:"defaultPolicy"`
+	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	Fosid               *string                            `pulumi:"fosid"`
+	Vdomparam           *string                            `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerAddrgrp resource.
 type WirelessControllerAddrgrpArgs struct {
-	// Manually selected group of addresses. The structure of `addresses` block is documented below.
-	Addresses WirelessControllerAddrgrpAddressArrayInput
-	// Allow or block the clients with MAC addresses that are not in the group. Valid values: `allow`, `deny`.
-	DefaultPolicy pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Addresses           WirelessControllerAddrgrpAddressArrayInput
+	DefaultPolicy       pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// ID.
-	Fosid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid               pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerAddrgrpArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *WirelessControllerAddrgrp) ToWirelessControllerAddrgrpOutputWithContext
 // WirelessControllerAddrgrpArrayInput is an input type that accepts WirelessControllerAddrgrpArray and WirelessControllerAddrgrpArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerAddrgrpArrayInput` via:
 //
-//          WirelessControllerAddrgrpArray{ WirelessControllerAddrgrpArgs{...} }
+//	WirelessControllerAddrgrpArray{ WirelessControllerAddrgrpArgs{...} }
 type WirelessControllerAddrgrpArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i WirelessControllerAddrgrpArray) ToWirelessControllerAddrgrpArrayOutputWi
 // WirelessControllerAddrgrpMapInput is an input type that accepts WirelessControllerAddrgrpMap and WirelessControllerAddrgrpMapOutput values.
 // You can construct a concrete instance of `WirelessControllerAddrgrpMapInput` via:
 //
-//          WirelessControllerAddrgrpMap{ "key": WirelessControllerAddrgrpArgs{...} }
+//	WirelessControllerAddrgrpMap{ "key": WirelessControllerAddrgrpArgs{...} }
 type WirelessControllerAddrgrpMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o WirelessControllerAddrgrpOutput) ToWirelessControllerAddrgrpOutput() Wir
 
 func (o WirelessControllerAddrgrpOutput) ToWirelessControllerAddrgrpOutputWithContext(ctx context.Context) WirelessControllerAddrgrpOutput {
 	return o
+}
+
+func (o WirelessControllerAddrgrpOutput) Addresses() WirelessControllerAddrgrpAddressArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerAddrgrp) WirelessControllerAddrgrpAddressArrayOutput { return v.Addresses }).(WirelessControllerAddrgrpAddressArrayOutput)
+}
+
+func (o WirelessControllerAddrgrpOutput) DefaultPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerAddrgrp) pulumi.StringOutput { return v.DefaultPolicy }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerAddrgrpOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerAddrgrp) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerAddrgrpOutput) Fosid() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerAddrgrp) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerAddrgrpOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerAddrgrp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerAddrgrpArrayOutput struct{ *pulumi.OutputState }

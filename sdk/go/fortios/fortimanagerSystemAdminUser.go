@@ -7,74 +7,23 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports Create/Read/Update/Delete admin user for FortiManager
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerSystemAdminUser(ctx, "test1", &fortios.FortimanagerSystemAdminUserArgs{
-// 			Description: pulumi.String("local user"),
-// 			Password:    pulumi.String("123"),
-// 			Profileid:   pulumi.String("Standard_User"),
-// 			RpcPermit:   pulumi.String("read"),
-// 			Trusthost1:  pulumi.String("1.1.1.1 255.255.255.255"),
-// 			UserType:    pulumi.String("local"),
-// 			Userid:      pulumi.String("user1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewFortimanagerSystemAdminUser(ctx, "test2", &fortios.FortimanagerSystemAdminUserArgs{
-// 			Description: pulumi.String("api user"),
-// 			Password:    pulumi.String("098"),
-// 			Profileid:   pulumi.String("Standard_User"),
-// 			RpcPermit:   pulumi.String("read-write"),
-// 			Trusthost1:  pulumi.String("2.2.2.2 255.255.255.255"),
-// 			Userid:      pulumi.String("user2"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerSystemAdminUser struct {
 	pulumi.CustomResourceState
 
-	// Description.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Password.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Profile id.
-	Profileid pulumi.StringPtrOutput `pulumi:"profileid"`
-	// RADIUS server name.
+	Description  pulumi.StringPtrOutput `pulumi:"description"`
+	Password     pulumi.StringPtrOutput `pulumi:"password"`
+	Profileid    pulumi.StringPtrOutput `pulumi:"profileid"`
 	RadiusServer pulumi.StringPtrOutput `pulumi:"radiusServer"`
-	// Rpc permit, Enum: ["read-write", "none", "read"]
-	RpcPermit pulumi.StringPtrOutput `pulumi:"rpcPermit"`
-	// Admin user trusted host IP, default 0.0.0.0 0.0.0.0 for all.
-	Trusthost1 pulumi.StringPtrOutput `pulumi:"trusthost1"`
-	// Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-	Trusthost2 pulumi.StringPtrOutput `pulumi:"trusthost2"`
-	// Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-	Trusthost3 pulumi.StringPtrOutput `pulumi:"trusthost3"`
-	// User type, Enum: ["local", "radius", "ldap", "tacacs-plus", "pki-auth", "group"]
-	UserType pulumi.StringPtrOutput `pulumi:"userType"`
-	// User name.
-	Userid pulumi.StringOutput `pulumi:"userid"`
+	RpcPermit    pulumi.StringPtrOutput `pulumi:"rpcPermit"`
+	Trusthost1   pulumi.StringPtrOutput `pulumi:"trusthost1"`
+	Trusthost2   pulumi.StringPtrOutput `pulumi:"trusthost2"`
+	Trusthost3   pulumi.StringPtrOutput `pulumi:"trusthost3"`
+	UserType     pulumi.StringPtrOutput `pulumi:"userType"`
+	Userid       pulumi.StringOutput    `pulumi:"userid"`
 }
 
 // NewFortimanagerSystemAdminUser registers a new resource with the given unique name, arguments, and options.
@@ -110,49 +59,29 @@ func GetFortimanagerSystemAdminUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerSystemAdminUser resources.
 type fortimanagerSystemAdminUserState struct {
-	// Description.
-	Description *string `pulumi:"description"`
-	// Password.
-	Password *string `pulumi:"password"`
-	// Profile id.
-	Profileid *string `pulumi:"profileid"`
-	// RADIUS server name.
+	Description  *string `pulumi:"description"`
+	Password     *string `pulumi:"password"`
+	Profileid    *string `pulumi:"profileid"`
 	RadiusServer *string `pulumi:"radiusServer"`
-	// Rpc permit, Enum: ["read-write", "none", "read"]
-	RpcPermit *string `pulumi:"rpcPermit"`
-	// Admin user trusted host IP, default 0.0.0.0 0.0.0.0 for all.
-	Trusthost1 *string `pulumi:"trusthost1"`
-	// Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-	Trusthost2 *string `pulumi:"trusthost2"`
-	// Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-	Trusthost3 *string `pulumi:"trusthost3"`
-	// User type, Enum: ["local", "radius", "ldap", "tacacs-plus", "pki-auth", "group"]
-	UserType *string `pulumi:"userType"`
-	// User name.
-	Userid *string `pulumi:"userid"`
+	RpcPermit    *string `pulumi:"rpcPermit"`
+	Trusthost1   *string `pulumi:"trusthost1"`
+	Trusthost2   *string `pulumi:"trusthost2"`
+	Trusthost3   *string `pulumi:"trusthost3"`
+	UserType     *string `pulumi:"userType"`
+	Userid       *string `pulumi:"userid"`
 }
 
 type FortimanagerSystemAdminUserState struct {
-	// Description.
-	Description pulumi.StringPtrInput
-	// Password.
-	Password pulumi.StringPtrInput
-	// Profile id.
-	Profileid pulumi.StringPtrInput
-	// RADIUS server name.
+	Description  pulumi.StringPtrInput
+	Password     pulumi.StringPtrInput
+	Profileid    pulumi.StringPtrInput
 	RadiusServer pulumi.StringPtrInput
-	// Rpc permit, Enum: ["read-write", "none", "read"]
-	RpcPermit pulumi.StringPtrInput
-	// Admin user trusted host IP, default 0.0.0.0 0.0.0.0 for all.
-	Trusthost1 pulumi.StringPtrInput
-	// Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-	Trusthost2 pulumi.StringPtrInput
-	// Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-	Trusthost3 pulumi.StringPtrInput
-	// User type, Enum: ["local", "radius", "ldap", "tacacs-plus", "pki-auth", "group"]
-	UserType pulumi.StringPtrInput
-	// User name.
-	Userid pulumi.StringPtrInput
+	RpcPermit    pulumi.StringPtrInput
+	Trusthost1   pulumi.StringPtrInput
+	Trusthost2   pulumi.StringPtrInput
+	Trusthost3   pulumi.StringPtrInput
+	UserType     pulumi.StringPtrInput
+	Userid       pulumi.StringPtrInput
 }
 
 func (FortimanagerSystemAdminUserState) ElementType() reflect.Type {
@@ -160,50 +89,30 @@ func (FortimanagerSystemAdminUserState) ElementType() reflect.Type {
 }
 
 type fortimanagerSystemAdminUserArgs struct {
-	// Description.
-	Description *string `pulumi:"description"`
-	// Password.
-	Password *string `pulumi:"password"`
-	// Profile id.
-	Profileid *string `pulumi:"profileid"`
-	// RADIUS server name.
+	Description  *string `pulumi:"description"`
+	Password     *string `pulumi:"password"`
+	Profileid    *string `pulumi:"profileid"`
 	RadiusServer *string `pulumi:"radiusServer"`
-	// Rpc permit, Enum: ["read-write", "none", "read"]
-	RpcPermit *string `pulumi:"rpcPermit"`
-	// Admin user trusted host IP, default 0.0.0.0 0.0.0.0 for all.
-	Trusthost1 *string `pulumi:"trusthost1"`
-	// Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-	Trusthost2 *string `pulumi:"trusthost2"`
-	// Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-	Trusthost3 *string `pulumi:"trusthost3"`
-	// User type, Enum: ["local", "radius", "ldap", "tacacs-plus", "pki-auth", "group"]
-	UserType *string `pulumi:"userType"`
-	// User name.
-	Userid string `pulumi:"userid"`
+	RpcPermit    *string `pulumi:"rpcPermit"`
+	Trusthost1   *string `pulumi:"trusthost1"`
+	Trusthost2   *string `pulumi:"trusthost2"`
+	Trusthost3   *string `pulumi:"trusthost3"`
+	UserType     *string `pulumi:"userType"`
+	Userid       string  `pulumi:"userid"`
 }
 
 // The set of arguments for constructing a FortimanagerSystemAdminUser resource.
 type FortimanagerSystemAdminUserArgs struct {
-	// Description.
-	Description pulumi.StringPtrInput
-	// Password.
-	Password pulumi.StringPtrInput
-	// Profile id.
-	Profileid pulumi.StringPtrInput
-	// RADIUS server name.
+	Description  pulumi.StringPtrInput
+	Password     pulumi.StringPtrInput
+	Profileid    pulumi.StringPtrInput
 	RadiusServer pulumi.StringPtrInput
-	// Rpc permit, Enum: ["read-write", "none", "read"]
-	RpcPermit pulumi.StringPtrInput
-	// Admin user trusted host IP, default 0.0.0.0 0.0.0.0 for all.
-	Trusthost1 pulumi.StringPtrInput
-	// Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-	Trusthost2 pulumi.StringPtrInput
-	// Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-	Trusthost3 pulumi.StringPtrInput
-	// User type, Enum: ["local", "radius", "ldap", "tacacs-plus", "pki-auth", "group"]
-	UserType pulumi.StringPtrInput
-	// User name.
-	Userid pulumi.StringInput
+	RpcPermit    pulumi.StringPtrInput
+	Trusthost1   pulumi.StringPtrInput
+	Trusthost2   pulumi.StringPtrInput
+	Trusthost3   pulumi.StringPtrInput
+	UserType     pulumi.StringPtrInput
+	Userid       pulumi.StringInput
 }
 
 func (FortimanagerSystemAdminUserArgs) ElementType() reflect.Type {
@@ -232,7 +141,7 @@ func (i *FortimanagerSystemAdminUser) ToFortimanagerSystemAdminUserOutputWithCon
 // FortimanagerSystemAdminUserArrayInput is an input type that accepts FortimanagerSystemAdminUserArray and FortimanagerSystemAdminUserArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemAdminUserArrayInput` via:
 //
-//          FortimanagerSystemAdminUserArray{ FortimanagerSystemAdminUserArgs{...} }
+//	FortimanagerSystemAdminUserArray{ FortimanagerSystemAdminUserArgs{...} }
 type FortimanagerSystemAdminUserArrayInput interface {
 	pulumi.Input
 
@@ -257,7 +166,7 @@ func (i FortimanagerSystemAdminUserArray) ToFortimanagerSystemAdminUserArrayOutp
 // FortimanagerSystemAdminUserMapInput is an input type that accepts FortimanagerSystemAdminUserMap and FortimanagerSystemAdminUserMapOutput values.
 // You can construct a concrete instance of `FortimanagerSystemAdminUserMapInput` via:
 //
-//          FortimanagerSystemAdminUserMap{ "key": FortimanagerSystemAdminUserArgs{...} }
+//	FortimanagerSystemAdminUserMap{ "key": FortimanagerSystemAdminUserArgs{...} }
 type FortimanagerSystemAdminUserMapInput interface {
 	pulumi.Input
 
@@ -291,6 +200,46 @@ func (o FortimanagerSystemAdminUserOutput) ToFortimanagerSystemAdminUserOutput()
 
 func (o FortimanagerSystemAdminUserOutput) ToFortimanagerSystemAdminUserOutputWithContext(ctx context.Context) FortimanagerSystemAdminUserOutput {
 	return o
+}
+
+func (o FortimanagerSystemAdminUserOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminUser) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminUserOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminUser) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminUserOutput) Profileid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminUser) pulumi.StringPtrOutput { return v.Profileid }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminUserOutput) RadiusServer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminUser) pulumi.StringPtrOutput { return v.RadiusServer }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminUserOutput) RpcPermit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminUser) pulumi.StringPtrOutput { return v.RpcPermit }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminUserOutput) Trusthost1() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminUser) pulumi.StringPtrOutput { return v.Trusthost1 }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminUserOutput) Trusthost2() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminUser) pulumi.StringPtrOutput { return v.Trusthost2 }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminUserOutput) Trusthost3() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminUser) pulumi.StringPtrOutput { return v.Trusthost3 }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminUserOutput) UserType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminUser) pulumi.StringPtrOutput { return v.UserType }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminUserOutput) Userid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminUser) pulumi.StringOutput { return v.Userid }).(pulumi.StringOutput)
 }
 
 type FortimanagerSystemAdminUserArrayOutput struct{ *pulumi.OutputState }

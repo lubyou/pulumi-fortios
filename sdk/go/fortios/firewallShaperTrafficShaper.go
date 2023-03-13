@@ -10,85 +10,24 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure shared traffic shaper.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallShaperTrafficShaper(ctx, "trname", &fortios.FirewallShaperTrafficShaperArgs{
-// 			BandwidthUnit:       pulumi.String("kbps"),
-// 			Diffserv:            pulumi.String("disable"),
-// 			Diffservcode:        pulumi.String("000000"),
-// 			GuaranteedBandwidth: pulumi.Int(0),
-// 			MaximumBandwidth:    pulumi.Int(1024),
-// 			PerPolicy:           pulumi.String("disable"),
-// 			Priority:            pulumi.String("low"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// FirewallShaper TrafficShaper can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallShaperTrafficShaper:FirewallShaperTrafficShaper labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallShaperTrafficShaper:FirewallShaperTrafficShaper labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallShaperTrafficShaper struct {
 	pulumi.CustomResourceState
 
-	// Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
-	BandwidthUnit pulumi.StringOutput `pulumi:"bandwidthUnit"`
-	// Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-	Diffserv pulumi.StringOutput `pulumi:"diffserv"`
-	// DiffServ setting to be applied to traffic accepted by this shaper.
-	Diffservcode pulumi.StringOutput `pulumi:"diffservcode"`
-	// Select DSCP marking method. Valid values: `multi-stage`, `static`.
-	DscpMarkingMethod pulumi.StringOutput `pulumi:"dscpMarkingMethod"`
-	// Exceed bandwidth used for DSCP multi-stage marking. Units depend on the bandwidth-unit setting.
-	ExceedBandwidth pulumi.IntOutput `pulumi:"exceedBandwidth"`
-	// Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
-	ExceedClassId pulumi.IntOutput `pulumi:"exceedClassId"`
-	// DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
-	ExceedDscp pulumi.StringOutput `pulumi:"exceedDscp"`
-	// Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
-	GuaranteedBandwidth pulumi.IntOutput `pulumi:"guaranteedBandwidth"`
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-	MaximumBandwidth pulumi.IntOutput `pulumi:"maximumBandwidth"`
-	// DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
-	MaximumDscp pulumi.StringOutput `pulumi:"maximumDscp"`
-	// Traffic shaper name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Per-packet size overhead used in rate computations.
-	Overhead pulumi.IntOutput `pulumi:"overhead"`
-	// Enable/disable applying a separate shaper for each policy. For example, if enabled the guaranteed bandwidth is applied separately for each policy. Valid values: `disable`, `enable`.
-	PerPolicy pulumi.StringOutput `pulumi:"perPolicy"`
-	// Higher priority traffic is more likely to be forwarded without delays and without compromising the guaranteed bandwidth. Valid values: `low`, `medium`, `high`.
-	Priority pulumi.StringOutput `pulumi:"priority"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	BandwidthUnit       pulumi.StringOutput    `pulumi:"bandwidthUnit"`
+	Diffserv            pulumi.StringOutput    `pulumi:"diffserv"`
+	Diffservcode        pulumi.StringOutput    `pulumi:"diffservcode"`
+	DscpMarkingMethod   pulumi.StringOutput    `pulumi:"dscpMarkingMethod"`
+	ExceedBandwidth     pulumi.IntOutput       `pulumi:"exceedBandwidth"`
+	ExceedClassId       pulumi.IntOutput       `pulumi:"exceedClassId"`
+	ExceedDscp          pulumi.StringOutput    `pulumi:"exceedDscp"`
+	GuaranteedBandwidth pulumi.IntOutput       `pulumi:"guaranteedBandwidth"`
+	MaximumBandwidth    pulumi.IntOutput       `pulumi:"maximumBandwidth"`
+	MaximumDscp         pulumi.StringOutput    `pulumi:"maximumDscp"`
+	Name                pulumi.StringOutput    `pulumi:"name"`
+	Overhead            pulumi.IntOutput       `pulumi:"overhead"`
+	PerPolicy           pulumi.StringOutput    `pulumi:"perPolicy"`
+	Priority            pulumi.StringOutput    `pulumi:"priority"`
+	Vdomparam           pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallShaperTrafficShaper registers a new resource with the given unique name, arguments, and options.
@@ -121,69 +60,39 @@ func GetFirewallShaperTrafficShaper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallShaperTrafficShaper resources.
 type firewallShaperTrafficShaperState struct {
-	// Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
-	BandwidthUnit *string `pulumi:"bandwidthUnit"`
-	// Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-	Diffserv *string `pulumi:"diffserv"`
-	// DiffServ setting to be applied to traffic accepted by this shaper.
-	Diffservcode *string `pulumi:"diffservcode"`
-	// Select DSCP marking method. Valid values: `multi-stage`, `static`.
-	DscpMarkingMethod *string `pulumi:"dscpMarkingMethod"`
-	// Exceed bandwidth used for DSCP multi-stage marking. Units depend on the bandwidth-unit setting.
-	ExceedBandwidth *int `pulumi:"exceedBandwidth"`
-	// Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
-	ExceedClassId *int `pulumi:"exceedClassId"`
-	// DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
-	ExceedDscp *string `pulumi:"exceedDscp"`
-	// Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
-	GuaranteedBandwidth *int `pulumi:"guaranteedBandwidth"`
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-	MaximumBandwidth *int `pulumi:"maximumBandwidth"`
-	// DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
-	MaximumDscp *string `pulumi:"maximumDscp"`
-	// Traffic shaper name.
-	Name *string `pulumi:"name"`
-	// Per-packet size overhead used in rate computations.
-	Overhead *int `pulumi:"overhead"`
-	// Enable/disable applying a separate shaper for each policy. For example, if enabled the guaranteed bandwidth is applied separately for each policy. Valid values: `disable`, `enable`.
-	PerPolicy *string `pulumi:"perPolicy"`
-	// Higher priority traffic is more likely to be forwarded without delays and without compromising the guaranteed bandwidth. Valid values: `low`, `medium`, `high`.
-	Priority *string `pulumi:"priority"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	BandwidthUnit       *string `pulumi:"bandwidthUnit"`
+	Diffserv            *string `pulumi:"diffserv"`
+	Diffservcode        *string `pulumi:"diffservcode"`
+	DscpMarkingMethod   *string `pulumi:"dscpMarkingMethod"`
+	ExceedBandwidth     *int    `pulumi:"exceedBandwidth"`
+	ExceedClassId       *int    `pulumi:"exceedClassId"`
+	ExceedDscp          *string `pulumi:"exceedDscp"`
+	GuaranteedBandwidth *int    `pulumi:"guaranteedBandwidth"`
+	MaximumBandwidth    *int    `pulumi:"maximumBandwidth"`
+	MaximumDscp         *string `pulumi:"maximumDscp"`
+	Name                *string `pulumi:"name"`
+	Overhead            *int    `pulumi:"overhead"`
+	PerPolicy           *string `pulumi:"perPolicy"`
+	Priority            *string `pulumi:"priority"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 type FirewallShaperTrafficShaperState struct {
-	// Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
-	BandwidthUnit pulumi.StringPtrInput
-	// Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-	Diffserv pulumi.StringPtrInput
-	// DiffServ setting to be applied to traffic accepted by this shaper.
-	Diffservcode pulumi.StringPtrInput
-	// Select DSCP marking method. Valid values: `multi-stage`, `static`.
-	DscpMarkingMethod pulumi.StringPtrInput
-	// Exceed bandwidth used for DSCP multi-stage marking. Units depend on the bandwidth-unit setting.
-	ExceedBandwidth pulumi.IntPtrInput
-	// Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
-	ExceedClassId pulumi.IntPtrInput
-	// DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
-	ExceedDscp pulumi.StringPtrInput
-	// Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+	BandwidthUnit       pulumi.StringPtrInput
+	Diffserv            pulumi.StringPtrInput
+	Diffservcode        pulumi.StringPtrInput
+	DscpMarkingMethod   pulumi.StringPtrInput
+	ExceedBandwidth     pulumi.IntPtrInput
+	ExceedClassId       pulumi.IntPtrInput
+	ExceedDscp          pulumi.StringPtrInput
 	GuaranteedBandwidth pulumi.IntPtrInput
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-	MaximumBandwidth pulumi.IntPtrInput
-	// DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
-	MaximumDscp pulumi.StringPtrInput
-	// Traffic shaper name.
-	Name pulumi.StringPtrInput
-	// Per-packet size overhead used in rate computations.
-	Overhead pulumi.IntPtrInput
-	// Enable/disable applying a separate shaper for each policy. For example, if enabled the guaranteed bandwidth is applied separately for each policy. Valid values: `disable`, `enable`.
-	PerPolicy pulumi.StringPtrInput
-	// Higher priority traffic is more likely to be forwarded without delays and without compromising the guaranteed bandwidth. Valid values: `low`, `medium`, `high`.
-	Priority pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MaximumBandwidth    pulumi.IntPtrInput
+	MaximumDscp         pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Overhead            pulumi.IntPtrInput
+	PerPolicy           pulumi.StringPtrInput
+	Priority            pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallShaperTrafficShaperState) ElementType() reflect.Type {
@@ -191,70 +100,40 @@ func (FirewallShaperTrafficShaperState) ElementType() reflect.Type {
 }
 
 type firewallShaperTrafficShaperArgs struct {
-	// Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
-	BandwidthUnit *string `pulumi:"bandwidthUnit"`
-	// Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-	Diffserv *string `pulumi:"diffserv"`
-	// DiffServ setting to be applied to traffic accepted by this shaper.
-	Diffservcode *string `pulumi:"diffservcode"`
-	// Select DSCP marking method. Valid values: `multi-stage`, `static`.
-	DscpMarkingMethod *string `pulumi:"dscpMarkingMethod"`
-	// Exceed bandwidth used for DSCP multi-stage marking. Units depend on the bandwidth-unit setting.
-	ExceedBandwidth *int `pulumi:"exceedBandwidth"`
-	// Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
-	ExceedClassId *int `pulumi:"exceedClassId"`
-	// DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
-	ExceedDscp *string `pulumi:"exceedDscp"`
-	// Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
-	GuaranteedBandwidth *int `pulumi:"guaranteedBandwidth"`
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-	MaximumBandwidth *int `pulumi:"maximumBandwidth"`
-	// DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
-	MaximumDscp *string `pulumi:"maximumDscp"`
-	// Traffic shaper name.
-	Name *string `pulumi:"name"`
-	// Per-packet size overhead used in rate computations.
-	Overhead *int `pulumi:"overhead"`
-	// Enable/disable applying a separate shaper for each policy. For example, if enabled the guaranteed bandwidth is applied separately for each policy. Valid values: `disable`, `enable`.
-	PerPolicy *string `pulumi:"perPolicy"`
-	// Higher priority traffic is more likely to be forwarded without delays and without compromising the guaranteed bandwidth. Valid values: `low`, `medium`, `high`.
-	Priority *string `pulumi:"priority"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	BandwidthUnit       *string `pulumi:"bandwidthUnit"`
+	Diffserv            *string `pulumi:"diffserv"`
+	Diffservcode        *string `pulumi:"diffservcode"`
+	DscpMarkingMethod   *string `pulumi:"dscpMarkingMethod"`
+	ExceedBandwidth     *int    `pulumi:"exceedBandwidth"`
+	ExceedClassId       *int    `pulumi:"exceedClassId"`
+	ExceedDscp          *string `pulumi:"exceedDscp"`
+	GuaranteedBandwidth *int    `pulumi:"guaranteedBandwidth"`
+	MaximumBandwidth    *int    `pulumi:"maximumBandwidth"`
+	MaximumDscp         *string `pulumi:"maximumDscp"`
+	Name                *string `pulumi:"name"`
+	Overhead            *int    `pulumi:"overhead"`
+	PerPolicy           *string `pulumi:"perPolicy"`
+	Priority            *string `pulumi:"priority"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallShaperTrafficShaper resource.
 type FirewallShaperTrafficShaperArgs struct {
-	// Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
-	BandwidthUnit pulumi.StringPtrInput
-	// Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-	Diffserv pulumi.StringPtrInput
-	// DiffServ setting to be applied to traffic accepted by this shaper.
-	Diffservcode pulumi.StringPtrInput
-	// Select DSCP marking method. Valid values: `multi-stage`, `static`.
-	DscpMarkingMethod pulumi.StringPtrInput
-	// Exceed bandwidth used for DSCP multi-stage marking. Units depend on the bandwidth-unit setting.
-	ExceedBandwidth pulumi.IntPtrInput
-	// Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
-	ExceedClassId pulumi.IntPtrInput
-	// DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
-	ExceedDscp pulumi.StringPtrInput
-	// Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+	BandwidthUnit       pulumi.StringPtrInput
+	Diffserv            pulumi.StringPtrInput
+	Diffservcode        pulumi.StringPtrInput
+	DscpMarkingMethod   pulumi.StringPtrInput
+	ExceedBandwidth     pulumi.IntPtrInput
+	ExceedClassId       pulumi.IntPtrInput
+	ExceedDscp          pulumi.StringPtrInput
 	GuaranteedBandwidth pulumi.IntPtrInput
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-	MaximumBandwidth pulumi.IntPtrInput
-	// DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
-	MaximumDscp pulumi.StringPtrInput
-	// Traffic shaper name.
-	Name pulumi.StringPtrInput
-	// Per-packet size overhead used in rate computations.
-	Overhead pulumi.IntPtrInput
-	// Enable/disable applying a separate shaper for each policy. For example, if enabled the guaranteed bandwidth is applied separately for each policy. Valid values: `disable`, `enable`.
-	PerPolicy pulumi.StringPtrInput
-	// Higher priority traffic is more likely to be forwarded without delays and without compromising the guaranteed bandwidth. Valid values: `low`, `medium`, `high`.
-	Priority pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MaximumBandwidth    pulumi.IntPtrInput
+	MaximumDscp         pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Overhead            pulumi.IntPtrInput
+	PerPolicy           pulumi.StringPtrInput
+	Priority            pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallShaperTrafficShaperArgs) ElementType() reflect.Type {
@@ -283,7 +162,7 @@ func (i *FirewallShaperTrafficShaper) ToFirewallShaperTrafficShaperOutputWithCon
 // FirewallShaperTrafficShaperArrayInput is an input type that accepts FirewallShaperTrafficShaperArray and FirewallShaperTrafficShaperArrayOutput values.
 // You can construct a concrete instance of `FirewallShaperTrafficShaperArrayInput` via:
 //
-//          FirewallShaperTrafficShaperArray{ FirewallShaperTrafficShaperArgs{...} }
+//	FirewallShaperTrafficShaperArray{ FirewallShaperTrafficShaperArgs{...} }
 type FirewallShaperTrafficShaperArrayInput interface {
 	pulumi.Input
 
@@ -308,7 +187,7 @@ func (i FirewallShaperTrafficShaperArray) ToFirewallShaperTrafficShaperArrayOutp
 // FirewallShaperTrafficShaperMapInput is an input type that accepts FirewallShaperTrafficShaperMap and FirewallShaperTrafficShaperMapOutput values.
 // You can construct a concrete instance of `FirewallShaperTrafficShaperMapInput` via:
 //
-//          FirewallShaperTrafficShaperMap{ "key": FirewallShaperTrafficShaperArgs{...} }
+//	FirewallShaperTrafficShaperMap{ "key": FirewallShaperTrafficShaperArgs{...} }
 type FirewallShaperTrafficShaperMapInput interface {
 	pulumi.Input
 
@@ -342,6 +221,66 @@ func (o FirewallShaperTrafficShaperOutput) ToFirewallShaperTrafficShaperOutput()
 
 func (o FirewallShaperTrafficShaperOutput) ToFirewallShaperTrafficShaperOutputWithContext(ctx context.Context) FirewallShaperTrafficShaperOutput {
 	return o
+}
+
+func (o FirewallShaperTrafficShaperOutput) BandwidthUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.BandwidthUnit }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) Diffserv() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.Diffserv }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) Diffservcode() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.Diffservcode }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) DscpMarkingMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.DscpMarkingMethod }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) ExceedBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.IntOutput { return v.ExceedBandwidth }).(pulumi.IntOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) ExceedClassId() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.IntOutput { return v.ExceedClassId }).(pulumi.IntOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) ExceedDscp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.ExceedDscp }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) GuaranteedBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.IntOutput { return v.GuaranteedBandwidth }).(pulumi.IntOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) MaximumBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.IntOutput { return v.MaximumBandwidth }).(pulumi.IntOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) MaximumDscp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.MaximumDscp }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) Overhead() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.IntOutput { return v.Overhead }).(pulumi.IntOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) PerPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.PerPolicy }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) Priority() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.Priority }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallShaperTrafficShaperArrayOutput struct{ *pulumi.OutputState }

@@ -10,97 +10,29 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure application control lists.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewApplicationList(ctx, "trname", &fortios.ApplicationListArgs{
-// 			AppReplacemsg:            pulumi.String("enable"),
-// 			DeepAppInspection:        pulumi.String("enable"),
-// 			EnforceDefaultAppPort:    pulumi.String("disable"),
-// 			ExtendedLog:              pulumi.String("disable"),
-// 			Options:                  pulumi.String("allow-dns"),
-// 			OtherApplicationAction:   pulumi.String("pass"),
-// 			OtherApplicationLog:      pulumi.String("disable"),
-// 			UnknownApplicationAction: pulumi.String("pass"),
-// 			UnknownApplicationLog:    pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Application List can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/applicationList:ApplicationList labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/applicationList:ApplicationList labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type ApplicationList struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable replacement messages for blocked applications. Valid values: `disable`, `enable`.
-	AppReplacemsg pulumi.StringOutput `pulumi:"appReplacemsg"`
-	// comments
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Enable/disable enforcement of protocols over selected ports. Valid values: `disable`, `enable`.
-	ControlDefaultNetworkServices pulumi.StringOutput `pulumi:"controlDefaultNetworkServices"`
-	// Enable/disable deep application inspection. Valid values: `disable`, `enable`.
-	DeepAppInspection pulumi.StringOutput `pulumi:"deepAppInspection"`
-	// Default network service entries. The structure of `defaultNetworkServices` block is documented below.
-	DefaultNetworkServices ApplicationListDefaultNetworkServiceArrayOutput `pulumi:"defaultNetworkServices"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable default application port enforcement for allowed applications. Valid values: `disable`, `enable`.
-	EnforceDefaultAppPort pulumi.StringOutput `pulumi:"enforceDefaultAppPort"`
-	// Application list entries. The structure of `entries` block is documented below.
-	Entries ApplicationListEntryArrayOutput `pulumi:"entries"`
-	// Enable/disable extended logging. Valid values: `enable`, `disable`.
-	ExtendedLog pulumi.StringOutput `pulumi:"extendedLog"`
-	// Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
-	ForceInclusionSslDiSigs pulumi.StringOutput `pulumi:"forceInclusionSslDiSigs"`
-	// Parameter name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
-	Options pulumi.StringOutput `pulumi:"options"`
-	// Action for other applications. Valid values: `pass`, `block`.
-	OtherApplicationAction pulumi.StringOutput `pulumi:"otherApplicationAction"`
-	// Enable/disable logging for other applications. Valid values: `disable`, `enable`.
-	OtherApplicationLog pulumi.StringOutput `pulumi:"otherApplicationLog"`
-	// P2P applications to be black listed. Valid values: `skype`, `edonkey`, `bittorrent`.
-	P2pBlackList pulumi.StringOutput `pulumi:"p2pBlackList"`
-	// P2P applications to be blocklisted. Valid values: `skype`, `edonkey`, `bittorrent`.
-	P2pBlockList pulumi.StringOutput `pulumi:"p2pBlockList"`
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringOutput `pulumi:"replacemsgGroup"`
-	// Pass or block traffic from unknown applications. Valid values: `pass`, `block`.
-	UnknownApplicationAction pulumi.StringOutput `pulumi:"unknownApplicationAction"`
-	// Enable/disable logging for unknown applications. Valid values: `disable`, `enable`.
-	UnknownApplicationLog pulumi.StringOutput `pulumi:"unknownApplicationLog"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AppReplacemsg                 pulumi.StringOutput                             `pulumi:"appReplacemsg"`
+	Comment                       pulumi.StringPtrOutput                          `pulumi:"comment"`
+	ControlDefaultNetworkServices pulumi.StringOutput                             `pulumi:"controlDefaultNetworkServices"`
+	DeepAppInspection             pulumi.StringOutput                             `pulumi:"deepAppInspection"`
+	DefaultNetworkServices        ApplicationListDefaultNetworkServiceArrayOutput `pulumi:"defaultNetworkServices"`
+	DynamicSortSubtable           pulumi.StringPtrOutput                          `pulumi:"dynamicSortSubtable"`
+	EnforceDefaultAppPort         pulumi.StringOutput                             `pulumi:"enforceDefaultAppPort"`
+	Entries                       ApplicationListEntryArrayOutput                 `pulumi:"entries"`
+	ExtendedLog                   pulumi.StringOutput                             `pulumi:"extendedLog"`
+	ForceInclusionSslDiSigs       pulumi.StringOutput                             `pulumi:"forceInclusionSslDiSigs"`
+	Name                          pulumi.StringOutput                             `pulumi:"name"`
+	Options                       pulumi.StringOutput                             `pulumi:"options"`
+	OtherApplicationAction        pulumi.StringOutput                             `pulumi:"otherApplicationAction"`
+	OtherApplicationLog           pulumi.StringOutput                             `pulumi:"otherApplicationLog"`
+	P2pBlackList                  pulumi.StringOutput                             `pulumi:"p2pBlackList"`
+	P2pBlockList                  pulumi.StringOutput                             `pulumi:"p2pBlockList"`
+	ReplacemsgGroup               pulumi.StringOutput                             `pulumi:"replacemsgGroup"`
+	UnknownApplicationAction      pulumi.StringOutput                             `pulumi:"unknownApplicationAction"`
+	UnknownApplicationLog         pulumi.StringOutput                             `pulumi:"unknownApplicationLog"`
+	Vdomparam                     pulumi.StringPtrOutput                          `pulumi:"vdomparam"`
 }
 
 // NewApplicationList registers a new resource with the given unique name, arguments, and options.
@@ -133,89 +65,49 @@ func GetApplicationList(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ApplicationList resources.
 type applicationListState struct {
-	// Enable/disable replacement messages for blocked applications. Valid values: `disable`, `enable`.
-	AppReplacemsg *string `pulumi:"appReplacemsg"`
-	// comments
-	Comment *string `pulumi:"comment"`
-	// Enable/disable enforcement of protocols over selected ports. Valid values: `disable`, `enable`.
-	ControlDefaultNetworkServices *string `pulumi:"controlDefaultNetworkServices"`
-	// Enable/disable deep application inspection. Valid values: `disable`, `enable`.
-	DeepAppInspection *string `pulumi:"deepAppInspection"`
-	// Default network service entries. The structure of `defaultNetworkServices` block is documented below.
-	DefaultNetworkServices []ApplicationListDefaultNetworkService `pulumi:"defaultNetworkServices"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable default application port enforcement for allowed applications. Valid values: `disable`, `enable`.
-	EnforceDefaultAppPort *string `pulumi:"enforceDefaultAppPort"`
-	// Application list entries. The structure of `entries` block is documented below.
-	Entries []ApplicationListEntry `pulumi:"entries"`
-	// Enable/disable extended logging. Valid values: `enable`, `disable`.
-	ExtendedLog *string `pulumi:"extendedLog"`
-	// Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
-	ForceInclusionSslDiSigs *string `pulumi:"forceInclusionSslDiSigs"`
-	// Parameter name.
-	Name *string `pulumi:"name"`
-	// Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
-	Options *string `pulumi:"options"`
-	// Action for other applications. Valid values: `pass`, `block`.
-	OtherApplicationAction *string `pulumi:"otherApplicationAction"`
-	// Enable/disable logging for other applications. Valid values: `disable`, `enable`.
-	OtherApplicationLog *string `pulumi:"otherApplicationLog"`
-	// P2P applications to be black listed. Valid values: `skype`, `edonkey`, `bittorrent`.
-	P2pBlackList *string `pulumi:"p2pBlackList"`
-	// P2P applications to be blocklisted. Valid values: `skype`, `edonkey`, `bittorrent`.
-	P2pBlockList *string `pulumi:"p2pBlockList"`
-	// Replacement message group.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Pass or block traffic from unknown applications. Valid values: `pass`, `block`.
-	UnknownApplicationAction *string `pulumi:"unknownApplicationAction"`
-	// Enable/disable logging for unknown applications. Valid values: `disable`, `enable`.
-	UnknownApplicationLog *string `pulumi:"unknownApplicationLog"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AppReplacemsg                 *string                                `pulumi:"appReplacemsg"`
+	Comment                       *string                                `pulumi:"comment"`
+	ControlDefaultNetworkServices *string                                `pulumi:"controlDefaultNetworkServices"`
+	DeepAppInspection             *string                                `pulumi:"deepAppInspection"`
+	DefaultNetworkServices        []ApplicationListDefaultNetworkService `pulumi:"defaultNetworkServices"`
+	DynamicSortSubtable           *string                                `pulumi:"dynamicSortSubtable"`
+	EnforceDefaultAppPort         *string                                `pulumi:"enforceDefaultAppPort"`
+	Entries                       []ApplicationListEntry                 `pulumi:"entries"`
+	ExtendedLog                   *string                                `pulumi:"extendedLog"`
+	ForceInclusionSslDiSigs       *string                                `pulumi:"forceInclusionSslDiSigs"`
+	Name                          *string                                `pulumi:"name"`
+	Options                       *string                                `pulumi:"options"`
+	OtherApplicationAction        *string                                `pulumi:"otherApplicationAction"`
+	OtherApplicationLog           *string                                `pulumi:"otherApplicationLog"`
+	P2pBlackList                  *string                                `pulumi:"p2pBlackList"`
+	P2pBlockList                  *string                                `pulumi:"p2pBlockList"`
+	ReplacemsgGroup               *string                                `pulumi:"replacemsgGroup"`
+	UnknownApplicationAction      *string                                `pulumi:"unknownApplicationAction"`
+	UnknownApplicationLog         *string                                `pulumi:"unknownApplicationLog"`
+	Vdomparam                     *string                                `pulumi:"vdomparam"`
 }
 
 type ApplicationListState struct {
-	// Enable/disable replacement messages for blocked applications. Valid values: `disable`, `enable`.
-	AppReplacemsg pulumi.StringPtrInput
-	// comments
-	Comment pulumi.StringPtrInput
-	// Enable/disable enforcement of protocols over selected ports. Valid values: `disable`, `enable`.
+	AppReplacemsg                 pulumi.StringPtrInput
+	Comment                       pulumi.StringPtrInput
 	ControlDefaultNetworkServices pulumi.StringPtrInput
-	// Enable/disable deep application inspection. Valid values: `disable`, `enable`.
-	DeepAppInspection pulumi.StringPtrInput
-	// Default network service entries. The structure of `defaultNetworkServices` block is documented below.
-	DefaultNetworkServices ApplicationListDefaultNetworkServiceArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable default application port enforcement for allowed applications. Valid values: `disable`, `enable`.
-	EnforceDefaultAppPort pulumi.StringPtrInput
-	// Application list entries. The structure of `entries` block is documented below.
-	Entries ApplicationListEntryArrayInput
-	// Enable/disable extended logging. Valid values: `enable`, `disable`.
-	ExtendedLog pulumi.StringPtrInput
-	// Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
-	ForceInclusionSslDiSigs pulumi.StringPtrInput
-	// Parameter name.
-	Name pulumi.StringPtrInput
-	// Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
-	Options pulumi.StringPtrInput
-	// Action for other applications. Valid values: `pass`, `block`.
-	OtherApplicationAction pulumi.StringPtrInput
-	// Enable/disable logging for other applications. Valid values: `disable`, `enable`.
-	OtherApplicationLog pulumi.StringPtrInput
-	// P2P applications to be black listed. Valid values: `skype`, `edonkey`, `bittorrent`.
-	P2pBlackList pulumi.StringPtrInput
-	// P2P applications to be blocklisted. Valid values: `skype`, `edonkey`, `bittorrent`.
-	P2pBlockList pulumi.StringPtrInput
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// Pass or block traffic from unknown applications. Valid values: `pass`, `block`.
-	UnknownApplicationAction pulumi.StringPtrInput
-	// Enable/disable logging for unknown applications. Valid values: `disable`, `enable`.
-	UnknownApplicationLog pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	DeepAppInspection             pulumi.StringPtrInput
+	DefaultNetworkServices        ApplicationListDefaultNetworkServiceArrayInput
+	DynamicSortSubtable           pulumi.StringPtrInput
+	EnforceDefaultAppPort         pulumi.StringPtrInput
+	Entries                       ApplicationListEntryArrayInput
+	ExtendedLog                   pulumi.StringPtrInput
+	ForceInclusionSslDiSigs       pulumi.StringPtrInput
+	Name                          pulumi.StringPtrInput
+	Options                       pulumi.StringPtrInput
+	OtherApplicationAction        pulumi.StringPtrInput
+	OtherApplicationLog           pulumi.StringPtrInput
+	P2pBlackList                  pulumi.StringPtrInput
+	P2pBlockList                  pulumi.StringPtrInput
+	ReplacemsgGroup               pulumi.StringPtrInput
+	UnknownApplicationAction      pulumi.StringPtrInput
+	UnknownApplicationLog         pulumi.StringPtrInput
+	Vdomparam                     pulumi.StringPtrInput
 }
 
 func (ApplicationListState) ElementType() reflect.Type {
@@ -223,90 +115,50 @@ func (ApplicationListState) ElementType() reflect.Type {
 }
 
 type applicationListArgs struct {
-	// Enable/disable replacement messages for blocked applications. Valid values: `disable`, `enable`.
-	AppReplacemsg *string `pulumi:"appReplacemsg"`
-	// comments
-	Comment *string `pulumi:"comment"`
-	// Enable/disable enforcement of protocols over selected ports. Valid values: `disable`, `enable`.
-	ControlDefaultNetworkServices *string `pulumi:"controlDefaultNetworkServices"`
-	// Enable/disable deep application inspection. Valid values: `disable`, `enable`.
-	DeepAppInspection *string `pulumi:"deepAppInspection"`
-	// Default network service entries. The structure of `defaultNetworkServices` block is documented below.
-	DefaultNetworkServices []ApplicationListDefaultNetworkService `pulumi:"defaultNetworkServices"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable default application port enforcement for allowed applications. Valid values: `disable`, `enable`.
-	EnforceDefaultAppPort *string `pulumi:"enforceDefaultAppPort"`
-	// Application list entries. The structure of `entries` block is documented below.
-	Entries []ApplicationListEntry `pulumi:"entries"`
-	// Enable/disable extended logging. Valid values: `enable`, `disable`.
-	ExtendedLog *string `pulumi:"extendedLog"`
-	// Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
-	ForceInclusionSslDiSigs *string `pulumi:"forceInclusionSslDiSigs"`
-	// Parameter name.
-	Name *string `pulumi:"name"`
-	// Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
-	Options *string `pulumi:"options"`
-	// Action for other applications. Valid values: `pass`, `block`.
-	OtherApplicationAction *string `pulumi:"otherApplicationAction"`
-	// Enable/disable logging for other applications. Valid values: `disable`, `enable`.
-	OtherApplicationLog *string `pulumi:"otherApplicationLog"`
-	// P2P applications to be black listed. Valid values: `skype`, `edonkey`, `bittorrent`.
-	P2pBlackList *string `pulumi:"p2pBlackList"`
-	// P2P applications to be blocklisted. Valid values: `skype`, `edonkey`, `bittorrent`.
-	P2pBlockList *string `pulumi:"p2pBlockList"`
-	// Replacement message group.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Pass or block traffic from unknown applications. Valid values: `pass`, `block`.
-	UnknownApplicationAction *string `pulumi:"unknownApplicationAction"`
-	// Enable/disable logging for unknown applications. Valid values: `disable`, `enable`.
-	UnknownApplicationLog *string `pulumi:"unknownApplicationLog"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AppReplacemsg                 *string                                `pulumi:"appReplacemsg"`
+	Comment                       *string                                `pulumi:"comment"`
+	ControlDefaultNetworkServices *string                                `pulumi:"controlDefaultNetworkServices"`
+	DeepAppInspection             *string                                `pulumi:"deepAppInspection"`
+	DefaultNetworkServices        []ApplicationListDefaultNetworkService `pulumi:"defaultNetworkServices"`
+	DynamicSortSubtable           *string                                `pulumi:"dynamicSortSubtable"`
+	EnforceDefaultAppPort         *string                                `pulumi:"enforceDefaultAppPort"`
+	Entries                       []ApplicationListEntry                 `pulumi:"entries"`
+	ExtendedLog                   *string                                `pulumi:"extendedLog"`
+	ForceInclusionSslDiSigs       *string                                `pulumi:"forceInclusionSslDiSigs"`
+	Name                          *string                                `pulumi:"name"`
+	Options                       *string                                `pulumi:"options"`
+	OtherApplicationAction        *string                                `pulumi:"otherApplicationAction"`
+	OtherApplicationLog           *string                                `pulumi:"otherApplicationLog"`
+	P2pBlackList                  *string                                `pulumi:"p2pBlackList"`
+	P2pBlockList                  *string                                `pulumi:"p2pBlockList"`
+	ReplacemsgGroup               *string                                `pulumi:"replacemsgGroup"`
+	UnknownApplicationAction      *string                                `pulumi:"unknownApplicationAction"`
+	UnknownApplicationLog         *string                                `pulumi:"unknownApplicationLog"`
+	Vdomparam                     *string                                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a ApplicationList resource.
 type ApplicationListArgs struct {
-	// Enable/disable replacement messages for blocked applications. Valid values: `disable`, `enable`.
-	AppReplacemsg pulumi.StringPtrInput
-	// comments
-	Comment pulumi.StringPtrInput
-	// Enable/disable enforcement of protocols over selected ports. Valid values: `disable`, `enable`.
+	AppReplacemsg                 pulumi.StringPtrInput
+	Comment                       pulumi.StringPtrInput
 	ControlDefaultNetworkServices pulumi.StringPtrInput
-	// Enable/disable deep application inspection. Valid values: `disable`, `enable`.
-	DeepAppInspection pulumi.StringPtrInput
-	// Default network service entries. The structure of `defaultNetworkServices` block is documented below.
-	DefaultNetworkServices ApplicationListDefaultNetworkServiceArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable default application port enforcement for allowed applications. Valid values: `disable`, `enable`.
-	EnforceDefaultAppPort pulumi.StringPtrInput
-	// Application list entries. The structure of `entries` block is documented below.
-	Entries ApplicationListEntryArrayInput
-	// Enable/disable extended logging. Valid values: `enable`, `disable`.
-	ExtendedLog pulumi.StringPtrInput
-	// Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
-	ForceInclusionSslDiSigs pulumi.StringPtrInput
-	// Parameter name.
-	Name pulumi.StringPtrInput
-	// Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
-	Options pulumi.StringPtrInput
-	// Action for other applications. Valid values: `pass`, `block`.
-	OtherApplicationAction pulumi.StringPtrInput
-	// Enable/disable logging for other applications. Valid values: `disable`, `enable`.
-	OtherApplicationLog pulumi.StringPtrInput
-	// P2P applications to be black listed. Valid values: `skype`, `edonkey`, `bittorrent`.
-	P2pBlackList pulumi.StringPtrInput
-	// P2P applications to be blocklisted. Valid values: `skype`, `edonkey`, `bittorrent`.
-	P2pBlockList pulumi.StringPtrInput
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// Pass or block traffic from unknown applications. Valid values: `pass`, `block`.
-	UnknownApplicationAction pulumi.StringPtrInput
-	// Enable/disable logging for unknown applications. Valid values: `disable`, `enable`.
-	UnknownApplicationLog pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	DeepAppInspection             pulumi.StringPtrInput
+	DefaultNetworkServices        ApplicationListDefaultNetworkServiceArrayInput
+	DynamicSortSubtable           pulumi.StringPtrInput
+	EnforceDefaultAppPort         pulumi.StringPtrInput
+	Entries                       ApplicationListEntryArrayInput
+	ExtendedLog                   pulumi.StringPtrInput
+	ForceInclusionSslDiSigs       pulumi.StringPtrInput
+	Name                          pulumi.StringPtrInput
+	Options                       pulumi.StringPtrInput
+	OtherApplicationAction        pulumi.StringPtrInput
+	OtherApplicationLog           pulumi.StringPtrInput
+	P2pBlackList                  pulumi.StringPtrInput
+	P2pBlockList                  pulumi.StringPtrInput
+	ReplacemsgGroup               pulumi.StringPtrInput
+	UnknownApplicationAction      pulumi.StringPtrInput
+	UnknownApplicationLog         pulumi.StringPtrInput
+	Vdomparam                     pulumi.StringPtrInput
 }
 
 func (ApplicationListArgs) ElementType() reflect.Type {
@@ -335,7 +187,7 @@ func (i *ApplicationList) ToApplicationListOutputWithContext(ctx context.Context
 // ApplicationListArrayInput is an input type that accepts ApplicationListArray and ApplicationListArrayOutput values.
 // You can construct a concrete instance of `ApplicationListArrayInput` via:
 //
-//          ApplicationListArray{ ApplicationListArgs{...} }
+//	ApplicationListArray{ ApplicationListArgs{...} }
 type ApplicationListArrayInput interface {
 	pulumi.Input
 
@@ -360,7 +212,7 @@ func (i ApplicationListArray) ToApplicationListArrayOutputWithContext(ctx contex
 // ApplicationListMapInput is an input type that accepts ApplicationListMap and ApplicationListMapOutput values.
 // You can construct a concrete instance of `ApplicationListMapInput` via:
 //
-//          ApplicationListMap{ "key": ApplicationListArgs{...} }
+//	ApplicationListMap{ "key": ApplicationListArgs{...} }
 type ApplicationListMapInput interface {
 	pulumi.Input
 
@@ -394,6 +246,88 @@ func (o ApplicationListOutput) ToApplicationListOutput() ApplicationListOutput {
 
 func (o ApplicationListOutput) ToApplicationListOutputWithContext(ctx context.Context) ApplicationListOutput {
 	return o
+}
+
+func (o ApplicationListOutput) AppReplacemsg() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.AppReplacemsg }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o ApplicationListOutput) ControlDefaultNetworkServices() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.ControlDefaultNetworkServices }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) DeepAppInspection() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.DeepAppInspection }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) DefaultNetworkServices() ApplicationListDefaultNetworkServiceArrayOutput {
+	return o.ApplyT(func(v *ApplicationList) ApplicationListDefaultNetworkServiceArrayOutput {
+		return v.DefaultNetworkServices
+	}).(ApplicationListDefaultNetworkServiceArrayOutput)
+}
+
+func (o ApplicationListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o ApplicationListOutput) EnforceDefaultAppPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.EnforceDefaultAppPort }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) Entries() ApplicationListEntryArrayOutput {
+	return o.ApplyT(func(v *ApplicationList) ApplicationListEntryArrayOutput { return v.Entries }).(ApplicationListEntryArrayOutput)
+}
+
+func (o ApplicationListOutput) ExtendedLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.ExtendedLog }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) ForceInclusionSslDiSigs() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.ForceInclusionSslDiSigs }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) Options() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.Options }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) OtherApplicationAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.OtherApplicationAction }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) OtherApplicationLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.OtherApplicationLog }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) P2pBlackList() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.P2pBlackList }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) P2pBlockList() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.P2pBlockList }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) ReplacemsgGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.ReplacemsgGroup }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) UnknownApplicationAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.UnknownApplicationAction }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) UnknownApplicationLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.UnknownApplicationLog }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type ApplicationListArrayOutput struct{ *pulumi.OutputState }

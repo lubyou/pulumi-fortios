@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports modifying system dns setting for FortiManager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerSystemDNS("test1", {
- *     primary: "208.91.112.52",
- *     secondary: "208.91.112.54",
- * });
- * ```
- */
 export class FortimanagerSystemDNS extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerSystemDNS resource's state with the given name, ID, and optional extra
@@ -47,13 +32,7 @@ export class FortimanagerSystemDNS extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerSystemDNS.__pulumiType;
     }
 
-    /**
-     * Primary DNS IP.
-     */
     public readonly primary!: pulumi.Output<string | undefined>;
-    /**
-     * Secondary DNS IP.
-     */
     public readonly secondary!: pulumi.Output<string | undefined>;
 
     /**
@@ -85,13 +64,7 @@ export class FortimanagerSystemDNS extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerSystemDNS resources.
  */
 export interface FortimanagerSystemDNSState {
-    /**
-     * Primary DNS IP.
-     */
     primary?: pulumi.Input<string>;
-    /**
-     * Secondary DNS IP.
-     */
     secondary?: pulumi.Input<string>;
 }
 
@@ -99,12 +72,6 @@ export interface FortimanagerSystemDNSState {
  * The set of arguments for constructing a FortimanagerSystemDNS resource.
  */
 export interface FortimanagerSystemDNSArgs {
-    /**
-     * Primary DNS IP.
-     */
     primary?: pulumi.Input<string>;
-    /**
-     * Secondary DNS IP.
-     */
     secondary?: pulumi.Input<string>;
 }

@@ -7,39 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Replacement messages.
-//
-// ## Import
-//
-// SystemReplacemsg Mail can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemReplacemsgMail:SystemReplacemsgMail labelname {{msg_type}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemReplacemsgMail:SystemReplacemsgMail labelname {{msg_type}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemReplacemsgMail struct {
 	pulumi.CustomResourceState
 
-	// Message string.
-	Buffer pulumi.StringPtrOutput `pulumi:"buffer"`
-	// Format flag.
-	Format pulumi.StringOutput `pulumi:"format"`
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header pulumi.StringOutput `pulumi:"header"`
-	// Message type.
-	MsgType pulumi.StringOutput `pulumi:"msgType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    pulumi.StringPtrOutput `pulumi:"buffer"`
+	Format    pulumi.StringOutput    `pulumi:"format"`
+	Header    pulumi.StringOutput    `pulumi:"header"`
+	MsgType   pulumi.StringOutput    `pulumi:"msgType"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -76,28 +54,18 @@ func GetSystemReplacemsgMail(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemReplacemsgMail resources.
 type systemReplacemsgMailState struct {
-	// Message string.
-	Buffer *string `pulumi:"buffer"`
-	// Format flag.
-	Format *string `pulumi:"format"`
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header *string `pulumi:"header"`
-	// Message type.
-	MsgType *string `pulumi:"msgType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    *string `pulumi:"buffer"`
+	Format    *string `pulumi:"format"`
+	Header    *string `pulumi:"header"`
+	MsgType   *string `pulumi:"msgType"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemReplacemsgMailState struct {
-	// Message string.
-	Buffer pulumi.StringPtrInput
-	// Format flag.
-	Format pulumi.StringPtrInput
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header pulumi.StringPtrInput
-	// Message type.
-	MsgType pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    pulumi.StringPtrInput
+	Format    pulumi.StringPtrInput
+	Header    pulumi.StringPtrInput
+	MsgType   pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -106,29 +74,19 @@ func (SystemReplacemsgMailState) ElementType() reflect.Type {
 }
 
 type systemReplacemsgMailArgs struct {
-	// Message string.
-	Buffer *string `pulumi:"buffer"`
-	// Format flag.
-	Format *string `pulumi:"format"`
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header *string `pulumi:"header"`
-	// Message type.
-	MsgType string `pulumi:"msgType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    *string `pulumi:"buffer"`
+	Format    *string `pulumi:"format"`
+	Header    *string `pulumi:"header"`
+	MsgType   string  `pulumi:"msgType"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemReplacemsgMail resource.
 type SystemReplacemsgMailArgs struct {
-	// Message string.
-	Buffer pulumi.StringPtrInput
-	// Format flag.
-	Format pulumi.StringPtrInput
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header pulumi.StringPtrInput
-	// Message type.
-	MsgType pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    pulumi.StringPtrInput
+	Format    pulumi.StringPtrInput
+	Header    pulumi.StringPtrInput
+	MsgType   pulumi.StringInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -158,7 +116,7 @@ func (i *SystemReplacemsgMail) ToSystemReplacemsgMailOutputWithContext(ctx conte
 // SystemReplacemsgMailArrayInput is an input type that accepts SystemReplacemsgMailArray and SystemReplacemsgMailArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgMailArrayInput` via:
 //
-//          SystemReplacemsgMailArray{ SystemReplacemsgMailArgs{...} }
+//	SystemReplacemsgMailArray{ SystemReplacemsgMailArgs{...} }
 type SystemReplacemsgMailArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +141,7 @@ func (i SystemReplacemsgMailArray) ToSystemReplacemsgMailArrayOutputWithContext(
 // SystemReplacemsgMailMapInput is an input type that accepts SystemReplacemsgMailMap and SystemReplacemsgMailMapOutput values.
 // You can construct a concrete instance of `SystemReplacemsgMailMapInput` via:
 //
-//          SystemReplacemsgMailMap{ "key": SystemReplacemsgMailArgs{...} }
+//	SystemReplacemsgMailMap{ "key": SystemReplacemsgMailArgs{...} }
 type SystemReplacemsgMailMapInput interface {
 	pulumi.Input
 
@@ -217,6 +175,26 @@ func (o SystemReplacemsgMailOutput) ToSystemReplacemsgMailOutput() SystemReplace
 
 func (o SystemReplacemsgMailOutput) ToSystemReplacemsgMailOutputWithContext(ctx context.Context) SystemReplacemsgMailOutput {
 	return o
+}
+
+func (o SystemReplacemsgMailOutput) Buffer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgMail) pulumi.StringPtrOutput { return v.Buffer }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemReplacemsgMailOutput) Format() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgMail) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgMailOutput) Header() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgMail) pulumi.StringOutput { return v.Header }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgMailOutput) MsgType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgMail) pulumi.StringOutput { return v.MsgType }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgMailOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgMail) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemReplacemsgMailArrayOutput struct{ *pulumi.OutputState }

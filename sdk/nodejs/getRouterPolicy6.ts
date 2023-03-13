@@ -2,17 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios router policy6
- */
 export function getRouterPolicy6(args: GetRouterPolicy6Args, opts?: pulumi.InvokeOptions): Promise<GetRouterPolicy6Result> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getRouterPolicy6:GetRouterPolicy6", {
         "seqNum": args.seqNum,
         "vdomparam": args.vdomparam,
@@ -23,13 +19,7 @@ export function getRouterPolicy6(args: GetRouterPolicy6Args, opts?: pulumi.Invok
  * A collection of arguments for invoking GetRouterPolicy6.
  */
 export interface GetRouterPolicy6Args {
-    /**
-     * Specify the seqNum of the desired router policy6.
-     */
     seqNum: number;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,79 +27,41 @@ export interface GetRouterPolicy6Args {
  * A collection of values returned by GetRouterPolicy6.
  */
 export interface GetRouterPolicy6Result {
-    /**
-     * Optional comments.
-     */
+    readonly action: string;
     readonly comments: string;
-    /**
-     * Destination IPv6 prefix.
-     */
     readonly dst: string;
-    /**
-     * End destination port number (1 - 65535).
-     */
+    readonly dstNegate: string;
+    readonly dstaddrs: outputs.GetRouterPolicy6Dstaddr[];
     readonly endPort: number;
-    /**
-     * IPv6 address of the gateway.
-     */
     readonly gateway: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Incoming interface name.
-     */
     readonly inputDevice: string;
-    /**
-     * Outgoing interface name.
-     */
+    readonly inputDeviceNegate: string;
+    readonly internetServiceCustoms: outputs.GetRouterPolicy6InternetServiceCustom[];
+    readonly internetServiceIds: outputs.GetRouterPolicy6InternetServiceId[];
     readonly outputDevice: string;
-    /**
-     * Protocol number (0 - 255).
-     */
     readonly protocol: number;
-    /**
-     * Sequence number.
-     */
     readonly seqNum: number;
-    /**
-     * Source IPv6 prefix.
-     */
     readonly src: string;
-    /**
-     * Start destination port number (1 - 65535).
-     */
+    readonly srcNegate: string;
+    readonly srcaddrs: outputs.GetRouterPolicy6Srcaddr[];
     readonly startPort: number;
-    /**
-     * Enable/disable this policy route.
-     */
     readonly status: string;
-    /**
-     * Type of service bit pattern.
-     */
     readonly tos: string;
-    /**
-     * Type of service evaluated bits.
-     */
     readonly tosMask: string;
     readonly vdomparam?: string;
 }
-
 export function getRouterPolicy6Output(args: GetRouterPolicy6OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterPolicy6Result> {
-    return pulumi.output(args).apply(a => getRouterPolicy6(a, opts))
+    return pulumi.output(args).apply((a: any) => getRouterPolicy6(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetRouterPolicy6.
  */
 export interface GetRouterPolicy6OutputArgs {
-    /**
-     * Specify the seqNum of the desired router policy6.
-     */
     seqNum: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

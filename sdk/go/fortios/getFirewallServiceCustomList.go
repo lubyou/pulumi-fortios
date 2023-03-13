@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `FirewallServiceCustom`.
 func GetFirewallServiceCustomList(ctx *pulumi.Context, args *GetFirewallServiceCustomListArgs, opts ...pulumi.InvokeOption) (*GetFirewallServiceCustomListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallServiceCustomListResult
@@ -23,8 +22,7 @@ func GetFirewallServiceCustomList(ctx *pulumi.Context, args *GetFirewallServiceC
 
 // A collection of arguments for invoking GetFirewallServiceCustomList.
 type GetFirewallServiceCustomListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetFirewallServiceCustomListArgs struct {
 type GetFirewallServiceCustomListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `FirewallServiceCustom`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetFirewallServiceCustomListOutput(ctx *pulumi.Context, args GetFirewallSer
 
 // A collection of arguments for invoking GetFirewallServiceCustomList.
 type GetFirewallServiceCustomListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetFirewallServiceCustomListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFirewallServiceCustomListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `FirewallServiceCustom`.
 func (o GetFirewallServiceCustomListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetFirewallServiceCustomListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPS VDOM parameter.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.IpsSettings("trname", {
- *     ipsPacketQuota: 0,
- *     packetLogHistory: 1,
- *     packetLogMemory: 256,
- *     packetLogPostAttack: 0,
- * });
- * ```
- *
- * ## Import
- *
- * Ips Settings can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/ipsSettings:IpsSettings labelname IpsSettings
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/ipsSettings:IpsSettings labelname IpsSettings
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class IpsSettings extends pulumi.CustomResource {
     /**
      * Get an existing IpsSettings resource's state with the given name, ID, and optional extra
@@ -65,25 +32,10 @@ export class IpsSettings extends pulumi.CustomResource {
         return obj['__pulumiType'] === IpsSettings.__pulumiType;
     }
 
-    /**
-     * Maximum amount of disk space in MB for logged packets when logging to disk. Range depends on disk size.
-     */
     public readonly ipsPacketQuota!: pulumi.Output<number>;
-    /**
-     * Number of packets to capture before and including the one in which the IPS signature is detected (1 - 255).
-     */
     public readonly packetLogHistory!: pulumi.Output<number>;
-    /**
-     * Maximum memory can be used by packet log (64 - 8192 kB).
-     */
     public readonly packetLogMemory!: pulumi.Output<number>;
-    /**
-     * Number of packets to log after the IPS signature is detected (0 - 255).
-     */
     public readonly packetLogPostAttack!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -121,25 +73,10 @@ export class IpsSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IpsSettings resources.
  */
 export interface IpsSettingsState {
-    /**
-     * Maximum amount of disk space in MB for logged packets when logging to disk. Range depends on disk size.
-     */
     ipsPacketQuota?: pulumi.Input<number>;
-    /**
-     * Number of packets to capture before and including the one in which the IPS signature is detected (1 - 255).
-     */
     packetLogHistory?: pulumi.Input<number>;
-    /**
-     * Maximum memory can be used by packet log (64 - 8192 kB).
-     */
     packetLogMemory?: pulumi.Input<number>;
-    /**
-     * Number of packets to log after the IPS signature is detected (0 - 255).
-     */
     packetLogPostAttack?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -147,24 +84,9 @@ export interface IpsSettingsState {
  * The set of arguments for constructing a IpsSettings resource.
  */
 export interface IpsSettingsArgs {
-    /**
-     * Maximum amount of disk space in MB for logged packets when logging to disk. Range depends on disk size.
-     */
     ipsPacketQuota?: pulumi.Input<number>;
-    /**
-     * Number of packets to capture before and including the one in which the IPS signature is detected (1 - 255).
-     */
     packetLogHistory?: pulumi.Input<number>;
-    /**
-     * Maximum memory can be used by packet log (64 - 8192 kB).
-     */
     packetLogMemory?: pulumi.Input<number>;
-    /**
-     * Number of packets to log after the IPS signature is detected (0 - 255).
-     */
     packetLogPostAttack?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

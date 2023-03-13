@@ -10,37 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiAP regions (for floor plans and maps).
-//
-// ## Import
-//
-// WirelessController Region can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerRegion:WirelessControllerRegion labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerRegion:WirelessControllerRegion labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerRegion struct {
 	pulumi.CustomResourceState
 
-	// Comments.
-	Comments pulumi.StringOutput `pulumi:"comments"`
-	// Region image grayscale. Valid values: `enable`, `disable`.
-	Grayscale pulumi.StringOutput `pulumi:"grayscale"`
-	// FortiAP region image type (png|jpeg|gif). Valid values: `png`, `jpeg`, `gif`.
-	ImageType pulumi.StringOutput `pulumi:"imageType"`
-	// FortiAP region name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Region image opacity (0 - 100).
-	Opacity pulumi.IntOutput `pulumi:"opacity"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comments  pulumi.StringOutput    `pulumi:"comments"`
+	Grayscale pulumi.StringOutput    `pulumi:"grayscale"`
+	ImageType pulumi.StringOutput    `pulumi:"imageType"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
+	Opacity   pulumi.IntOutput       `pulumi:"opacity"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -74,32 +51,20 @@ func GetWirelessControllerRegion(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerRegion resources.
 type wirelessControllerRegionState struct {
-	// Comments.
-	Comments *string `pulumi:"comments"`
-	// Region image grayscale. Valid values: `enable`, `disable`.
+	Comments  *string `pulumi:"comments"`
 	Grayscale *string `pulumi:"grayscale"`
-	// FortiAP region image type (png|jpeg|gif). Valid values: `png`, `jpeg`, `gif`.
 	ImageType *string `pulumi:"imageType"`
-	// FortiAP region name.
-	Name *string `pulumi:"name"`
-	// Region image opacity (0 - 100).
-	Opacity *int `pulumi:"opacity"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      *string `pulumi:"name"`
+	Opacity   *int    `pulumi:"opacity"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type WirelessControllerRegionState struct {
-	// Comments.
-	Comments pulumi.StringPtrInput
-	// Region image grayscale. Valid values: `enable`, `disable`.
+	Comments  pulumi.StringPtrInput
 	Grayscale pulumi.StringPtrInput
-	// FortiAP region image type (png|jpeg|gif). Valid values: `png`, `jpeg`, `gif`.
 	ImageType pulumi.StringPtrInput
-	// FortiAP region name.
-	Name pulumi.StringPtrInput
-	// Region image opacity (0 - 100).
-	Opacity pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringPtrInput
+	Opacity   pulumi.IntPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -108,33 +73,21 @@ func (WirelessControllerRegionState) ElementType() reflect.Type {
 }
 
 type wirelessControllerRegionArgs struct {
-	// Comments.
-	Comments *string `pulumi:"comments"`
-	// Region image grayscale. Valid values: `enable`, `disable`.
+	Comments  *string `pulumi:"comments"`
 	Grayscale *string `pulumi:"grayscale"`
-	// FortiAP region image type (png|jpeg|gif). Valid values: `png`, `jpeg`, `gif`.
 	ImageType *string `pulumi:"imageType"`
-	// FortiAP region name.
-	Name *string `pulumi:"name"`
-	// Region image opacity (0 - 100).
-	Opacity *int `pulumi:"opacity"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      *string `pulumi:"name"`
+	Opacity   *int    `pulumi:"opacity"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerRegion resource.
 type WirelessControllerRegionArgs struct {
-	// Comments.
-	Comments pulumi.StringPtrInput
-	// Region image grayscale. Valid values: `enable`, `disable`.
+	Comments  pulumi.StringPtrInput
 	Grayscale pulumi.StringPtrInput
-	// FortiAP region image type (png|jpeg|gif). Valid values: `png`, `jpeg`, `gif`.
 	ImageType pulumi.StringPtrInput
-	// FortiAP region name.
-	Name pulumi.StringPtrInput
-	// Region image opacity (0 - 100).
-	Opacity pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringPtrInput
+	Opacity   pulumi.IntPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -164,7 +117,7 @@ func (i *WirelessControllerRegion) ToWirelessControllerRegionOutputWithContext(c
 // WirelessControllerRegionArrayInput is an input type that accepts WirelessControllerRegionArray and WirelessControllerRegionArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerRegionArrayInput` via:
 //
-//          WirelessControllerRegionArray{ WirelessControllerRegionArgs{...} }
+//	WirelessControllerRegionArray{ WirelessControllerRegionArgs{...} }
 type WirelessControllerRegionArrayInput interface {
 	pulumi.Input
 
@@ -189,7 +142,7 @@ func (i WirelessControllerRegionArray) ToWirelessControllerRegionArrayOutputWith
 // WirelessControllerRegionMapInput is an input type that accepts WirelessControllerRegionMap and WirelessControllerRegionMapOutput values.
 // You can construct a concrete instance of `WirelessControllerRegionMapInput` via:
 //
-//          WirelessControllerRegionMap{ "key": WirelessControllerRegionArgs{...} }
+//	WirelessControllerRegionMap{ "key": WirelessControllerRegionArgs{...} }
 type WirelessControllerRegionMapInput interface {
 	pulumi.Input
 
@@ -223,6 +176,30 @@ func (o WirelessControllerRegionOutput) ToWirelessControllerRegionOutput() Wirel
 
 func (o WirelessControllerRegionOutput) ToWirelessControllerRegionOutputWithContext(ctx context.Context) WirelessControllerRegionOutput {
 	return o
+}
+
+func (o WirelessControllerRegionOutput) Comments() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerRegion) pulumi.StringOutput { return v.Comments }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerRegionOutput) Grayscale() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerRegion) pulumi.StringOutput { return v.Grayscale }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerRegionOutput) ImageType() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerRegion) pulumi.StringOutput { return v.ImageType }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerRegionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerRegion) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerRegionOutput) Opacity() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerRegion) pulumi.IntOutput { return v.Opacity }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerRegionOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerRegion) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerRegionArrayOutput struct{ *pulumi.OutputState }

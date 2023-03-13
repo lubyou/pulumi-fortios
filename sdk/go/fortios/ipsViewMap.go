@@ -10,38 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// configure ips view-map Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// Ips ViewMap can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/ipsViewMap:IpsViewMap labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/ipsViewMap:IpsViewMap labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type IpsViewMap struct {
 	pulumi.CustomResourceState
 
-	// View ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// ID-based policy ID.
-	IdPolicyId pulumi.IntOutput `pulumi:"idPolicyId"`
-	// Policy ID.
-	PolicyId pulumi.IntOutput `pulumi:"policyId"`
-	// VDOM ID.
-	VdomId pulumi.IntOutput `pulumi:"vdomId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Policy.
-	Which pulumi.StringOutput `pulumi:"which"`
+	Fosid      pulumi.IntOutput       `pulumi:"fosid"`
+	IdPolicyId pulumi.IntOutput       `pulumi:"idPolicyId"`
+	PolicyId   pulumi.IntOutput       `pulumi:"policyId"`
+	VdomId     pulumi.IntOutput       `pulumi:"vdomId"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Which      pulumi.StringOutput    `pulumi:"which"`
 }
 
 // NewIpsViewMap registers a new resource with the given unique name, arguments, and options.
@@ -74,33 +51,21 @@ func GetIpsViewMap(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IpsViewMap resources.
 type ipsViewMapState struct {
-	// View ID.
-	Fosid *int `pulumi:"fosid"`
-	// ID-based policy ID.
-	IdPolicyId *int `pulumi:"idPolicyId"`
-	// Policy ID.
-	PolicyId *int `pulumi:"policyId"`
-	// VDOM ID.
-	VdomId *int `pulumi:"vdomId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Policy.
-	Which *string `pulumi:"which"`
+	Fosid      *int    `pulumi:"fosid"`
+	IdPolicyId *int    `pulumi:"idPolicyId"`
+	PolicyId   *int    `pulumi:"policyId"`
+	VdomId     *int    `pulumi:"vdomId"`
+	Vdomparam  *string `pulumi:"vdomparam"`
+	Which      *string `pulumi:"which"`
 }
 
 type IpsViewMapState struct {
-	// View ID.
-	Fosid pulumi.IntPtrInput
-	// ID-based policy ID.
+	Fosid      pulumi.IntPtrInput
 	IdPolicyId pulumi.IntPtrInput
-	// Policy ID.
-	PolicyId pulumi.IntPtrInput
-	// VDOM ID.
-	VdomId pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Policy.
-	Which pulumi.StringPtrInput
+	PolicyId   pulumi.IntPtrInput
+	VdomId     pulumi.IntPtrInput
+	Vdomparam  pulumi.StringPtrInput
+	Which      pulumi.StringPtrInput
 }
 
 func (IpsViewMapState) ElementType() reflect.Type {
@@ -108,34 +73,22 @@ func (IpsViewMapState) ElementType() reflect.Type {
 }
 
 type ipsViewMapArgs struct {
-	// View ID.
-	Fosid *int `pulumi:"fosid"`
-	// ID-based policy ID.
-	IdPolicyId *int `pulumi:"idPolicyId"`
-	// Policy ID.
-	PolicyId *int `pulumi:"policyId"`
-	// VDOM ID.
-	VdomId *int `pulumi:"vdomId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Policy.
-	Which *string `pulumi:"which"`
+	Fosid      *int    `pulumi:"fosid"`
+	IdPolicyId *int    `pulumi:"idPolicyId"`
+	PolicyId   *int    `pulumi:"policyId"`
+	VdomId     *int    `pulumi:"vdomId"`
+	Vdomparam  *string `pulumi:"vdomparam"`
+	Which      *string `pulumi:"which"`
 }
 
 // The set of arguments for constructing a IpsViewMap resource.
 type IpsViewMapArgs struct {
-	// View ID.
-	Fosid pulumi.IntPtrInput
-	// ID-based policy ID.
+	Fosid      pulumi.IntPtrInput
 	IdPolicyId pulumi.IntPtrInput
-	// Policy ID.
-	PolicyId pulumi.IntPtrInput
-	// VDOM ID.
-	VdomId pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Policy.
-	Which pulumi.StringPtrInput
+	PolicyId   pulumi.IntPtrInput
+	VdomId     pulumi.IntPtrInput
+	Vdomparam  pulumi.StringPtrInput
+	Which      pulumi.StringPtrInput
 }
 
 func (IpsViewMapArgs) ElementType() reflect.Type {
@@ -164,7 +117,7 @@ func (i *IpsViewMap) ToIpsViewMapOutputWithContext(ctx context.Context) IpsViewM
 // IpsViewMapArrayInput is an input type that accepts IpsViewMapArray and IpsViewMapArrayOutput values.
 // You can construct a concrete instance of `IpsViewMapArrayInput` via:
 //
-//          IpsViewMapArray{ IpsViewMapArgs{...} }
+//	IpsViewMapArray{ IpsViewMapArgs{...} }
 type IpsViewMapArrayInput interface {
 	pulumi.Input
 
@@ -189,7 +142,7 @@ func (i IpsViewMapArray) ToIpsViewMapArrayOutputWithContext(ctx context.Context)
 // IpsViewMapMapInput is an input type that accepts IpsViewMapMap and IpsViewMapMapOutput values.
 // You can construct a concrete instance of `IpsViewMapMapInput` via:
 //
-//          IpsViewMapMap{ "key": IpsViewMapArgs{...} }
+//	IpsViewMapMap{ "key": IpsViewMapArgs{...} }
 type IpsViewMapMapInput interface {
 	pulumi.Input
 
@@ -223,6 +176,30 @@ func (o IpsViewMapOutput) ToIpsViewMapOutput() IpsViewMapOutput {
 
 func (o IpsViewMapOutput) ToIpsViewMapOutputWithContext(ctx context.Context) IpsViewMapOutput {
 	return o
+}
+
+func (o IpsViewMapOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsViewMap) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o IpsViewMapOutput) IdPolicyId() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsViewMap) pulumi.IntOutput { return v.IdPolicyId }).(pulumi.IntOutput)
+}
+
+func (o IpsViewMapOutput) PolicyId() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsViewMap) pulumi.IntOutput { return v.PolicyId }).(pulumi.IntOutput)
+}
+
+func (o IpsViewMapOutput) VdomId() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsViewMap) pulumi.IntOutput { return v.VdomId }).(pulumi.IntOutput)
+}
+
+func (o IpsViewMapOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsViewMap) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o IpsViewMapOutput) Which() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsViewMap) pulumi.StringOutput { return v.Which }).(pulumi.StringOutput)
 }
 
 type IpsViewMapArrayOutput struct{ *pulumi.OutputState }

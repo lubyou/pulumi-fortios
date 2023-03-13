@@ -2,19 +2,14 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios router multicast6
- */
 export function getRouterMulticast6(args?: GetRouterMulticast6Args, opts?: pulumi.InvokeOptions): Promise<GetRouterMulticast6Result> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getRouterMulticast6:GetRouterMulticast6", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -24,9 +19,6 @@ export function getRouterMulticast6(args?: GetRouterMulticast6Args, opts?: pulum
  * A collection of arguments for invoking GetRouterMulticast6.
  */
 export interface GetRouterMulticast6Args {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -38,35 +30,19 @@ export interface GetRouterMulticast6Result {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Protocol Independent Multicast (PIM) interfaces. The structure of `interface` block is documented below.
-     */
     readonly interfaces: outputs.GetRouterMulticast6Interface[];
-    /**
-     * Enable/disable PMTU for IPv6 multicast.
-     */
     readonly multicastPmtu: string;
-    /**
-     * Enable/disable IPv6 multicast routing.
-     */
     readonly multicastRouting: string;
-    /**
-     * PIM sparse-mode global settings. The structure of `pimSmGlobal` block is documented below.
-     */
-    readonly pimSmGlobal: outputs.GetRouterMulticast6PimSmGlobal;
+    readonly pimSmGlobals: outputs.GetRouterMulticast6PimSmGlobal[];
     readonly vdomparam?: string;
 }
-
 export function getRouterMulticast6Output(args?: GetRouterMulticast6OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterMulticast6Result> {
-    return pulumi.output(args).apply(a => getRouterMulticast6(a, opts))
+    return pulumi.output(args).apply((a: any) => getRouterMulticast6(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetRouterMulticast6.
  */
 export interface GetRouterMulticast6OutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

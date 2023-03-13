@@ -10,85 +10,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure the password policy for guest administrators.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemPasswordPolicyGuestAdmin(ctx, "trname", &fortios.SystemPasswordPolicyGuestAdminArgs{
-// 			ApplyTo:            pulumi.String("guest-admin-password"),
-// 			Change4Characters:  pulumi.String("disable"),
-// 			ExpireDay:          pulumi.Int(90),
-// 			ExpireStatus:       pulumi.String("disable"),
-// 			MinLowerCaseLetter: pulumi.Int(0),
-// 			MinNonAlphanumeric: pulumi.Int(0),
-// 			MinNumber:          pulumi.Int(0),
-// 			MinUpperCaseLetter: pulumi.Int(0),
-// 			MinimumLength:      pulumi.Int(8),
-// 			ReusePassword:      pulumi.String("enable"),
-// 			Status:             pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System PasswordPolicyGuestAdmin can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemPasswordPolicyGuestAdmin:SystemPasswordPolicyGuestAdmin labelname SystemPasswordPolicyGuestAdmin
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemPasswordPolicyGuestAdmin:SystemPasswordPolicyGuestAdmin labelname SystemPasswordPolicyGuestAdmin
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemPasswordPolicyGuestAdmin struct {
 	pulumi.CustomResourceState
 
-	// Guest administrator to which this password policy applies. Valid values: `guest-admin-password`.
-	ApplyTo pulumi.StringOutput `pulumi:"applyTo"`
-	// Enable/disable changing at least 4 characters for a new password (This attribute overrides reuse-password if both are enabled). Valid values: `enable`, `disable`.
-	Change4Characters pulumi.StringOutput `pulumi:"change4Characters"`
-	// Number of days after which passwords expire (1 - 999 days, default = 90).
-	ExpireDay pulumi.IntOutput `pulumi:"expireDay"`
-	// Enable/disable password expiration. Valid values: `enable`, `disable`.
-	ExpireStatus pulumi.StringOutput `pulumi:"expireStatus"`
-	// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
-	MinChangeCharacters pulumi.IntOutput `pulumi:"minChangeCharacters"`
-	// Minimum number of lowercase characters in password (0 - 128, default = 0).
-	MinLowerCaseLetter pulumi.IntOutput `pulumi:"minLowerCaseLetter"`
-	// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
-	MinNonAlphanumeric pulumi.IntOutput `pulumi:"minNonAlphanumeric"`
-	// Minimum number of numeric characters in password (0 - 128, default = 0).
-	MinNumber pulumi.IntOutput `pulumi:"minNumber"`
-	// Minimum number of uppercase characters in password (0 - 128, default = 0).
-	MinUpperCaseLetter pulumi.IntOutput `pulumi:"minUpperCaseLetter"`
-	// Minimum password length (8 - 128, default = 8).
-	MinimumLength pulumi.IntOutput `pulumi:"minimumLength"`
-	// Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
-	ReusePassword pulumi.StringOutput `pulumi:"reusePassword"`
-	// Enable/disable setting a password policy for locally defined administrator passwords and IPsec VPN pre-shared keys. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	ApplyTo             pulumi.StringOutput    `pulumi:"applyTo"`
+	Change4Characters   pulumi.StringOutput    `pulumi:"change4Characters"`
+	ExpireDay           pulumi.IntOutput       `pulumi:"expireDay"`
+	ExpireStatus        pulumi.StringOutput    `pulumi:"expireStatus"`
+	MinChangeCharacters pulumi.IntOutput       `pulumi:"minChangeCharacters"`
+	MinLowerCaseLetter  pulumi.IntOutput       `pulumi:"minLowerCaseLetter"`
+	MinNonAlphanumeric  pulumi.IntOutput       `pulumi:"minNonAlphanumeric"`
+	MinNumber           pulumi.IntOutput       `pulumi:"minNumber"`
+	MinUpperCaseLetter  pulumi.IntOutput       `pulumi:"minUpperCaseLetter"`
+	MinimumLength       pulumi.IntOutput       `pulumi:"minimumLength"`
+	ReusePassword       pulumi.StringOutput    `pulumi:"reusePassword"`
+	Status              pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam           pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemPasswordPolicyGuestAdmin registers a new resource with the given unique name, arguments, and options.
@@ -121,61 +58,35 @@ func GetSystemPasswordPolicyGuestAdmin(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemPasswordPolicyGuestAdmin resources.
 type systemPasswordPolicyGuestAdminState struct {
-	// Guest administrator to which this password policy applies. Valid values: `guest-admin-password`.
-	ApplyTo *string `pulumi:"applyTo"`
-	// Enable/disable changing at least 4 characters for a new password (This attribute overrides reuse-password if both are enabled). Valid values: `enable`, `disable`.
-	Change4Characters *string `pulumi:"change4Characters"`
-	// Number of days after which passwords expire (1 - 999 days, default = 90).
-	ExpireDay *int `pulumi:"expireDay"`
-	// Enable/disable password expiration. Valid values: `enable`, `disable`.
-	ExpireStatus *string `pulumi:"expireStatus"`
-	// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
-	MinChangeCharacters *int `pulumi:"minChangeCharacters"`
-	// Minimum number of lowercase characters in password (0 - 128, default = 0).
-	MinLowerCaseLetter *int `pulumi:"minLowerCaseLetter"`
-	// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
-	MinNonAlphanumeric *int `pulumi:"minNonAlphanumeric"`
-	// Minimum number of numeric characters in password (0 - 128, default = 0).
-	MinNumber *int `pulumi:"minNumber"`
-	// Minimum number of uppercase characters in password (0 - 128, default = 0).
-	MinUpperCaseLetter *int `pulumi:"minUpperCaseLetter"`
-	// Minimum password length (8 - 128, default = 8).
-	MinimumLength *int `pulumi:"minimumLength"`
-	// Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
-	ReusePassword *string `pulumi:"reusePassword"`
-	// Enable/disable setting a password policy for locally defined administrator passwords and IPsec VPN pre-shared keys. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ApplyTo             *string `pulumi:"applyTo"`
+	Change4Characters   *string `pulumi:"change4Characters"`
+	ExpireDay           *int    `pulumi:"expireDay"`
+	ExpireStatus        *string `pulumi:"expireStatus"`
+	MinChangeCharacters *int    `pulumi:"minChangeCharacters"`
+	MinLowerCaseLetter  *int    `pulumi:"minLowerCaseLetter"`
+	MinNonAlphanumeric  *int    `pulumi:"minNonAlphanumeric"`
+	MinNumber           *int    `pulumi:"minNumber"`
+	MinUpperCaseLetter  *int    `pulumi:"minUpperCaseLetter"`
+	MinimumLength       *int    `pulumi:"minimumLength"`
+	ReusePassword       *string `pulumi:"reusePassword"`
+	Status              *string `pulumi:"status"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 type SystemPasswordPolicyGuestAdminState struct {
-	// Guest administrator to which this password policy applies. Valid values: `guest-admin-password`.
-	ApplyTo pulumi.StringPtrInput
-	// Enable/disable changing at least 4 characters for a new password (This attribute overrides reuse-password if both are enabled). Valid values: `enable`, `disable`.
-	Change4Characters pulumi.StringPtrInput
-	// Number of days after which passwords expire (1 - 999 days, default = 90).
-	ExpireDay pulumi.IntPtrInput
-	// Enable/disable password expiration. Valid values: `enable`, `disable`.
-	ExpireStatus pulumi.StringPtrInput
-	// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+	ApplyTo             pulumi.StringPtrInput
+	Change4Characters   pulumi.StringPtrInput
+	ExpireDay           pulumi.IntPtrInput
+	ExpireStatus        pulumi.StringPtrInput
 	MinChangeCharacters pulumi.IntPtrInput
-	// Minimum number of lowercase characters in password (0 - 128, default = 0).
-	MinLowerCaseLetter pulumi.IntPtrInput
-	// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
-	MinNonAlphanumeric pulumi.IntPtrInput
-	// Minimum number of numeric characters in password (0 - 128, default = 0).
-	MinNumber pulumi.IntPtrInput
-	// Minimum number of uppercase characters in password (0 - 128, default = 0).
-	MinUpperCaseLetter pulumi.IntPtrInput
-	// Minimum password length (8 - 128, default = 8).
-	MinimumLength pulumi.IntPtrInput
-	// Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
-	ReusePassword pulumi.StringPtrInput
-	// Enable/disable setting a password policy for locally defined administrator passwords and IPsec VPN pre-shared keys. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MinLowerCaseLetter  pulumi.IntPtrInput
+	MinNonAlphanumeric  pulumi.IntPtrInput
+	MinNumber           pulumi.IntPtrInput
+	MinUpperCaseLetter  pulumi.IntPtrInput
+	MinimumLength       pulumi.IntPtrInput
+	ReusePassword       pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemPasswordPolicyGuestAdminState) ElementType() reflect.Type {
@@ -183,62 +94,36 @@ func (SystemPasswordPolicyGuestAdminState) ElementType() reflect.Type {
 }
 
 type systemPasswordPolicyGuestAdminArgs struct {
-	// Guest administrator to which this password policy applies. Valid values: `guest-admin-password`.
-	ApplyTo *string `pulumi:"applyTo"`
-	// Enable/disable changing at least 4 characters for a new password (This attribute overrides reuse-password if both are enabled). Valid values: `enable`, `disable`.
-	Change4Characters *string `pulumi:"change4Characters"`
-	// Number of days after which passwords expire (1 - 999 days, default = 90).
-	ExpireDay *int `pulumi:"expireDay"`
-	// Enable/disable password expiration. Valid values: `enable`, `disable`.
-	ExpireStatus *string `pulumi:"expireStatus"`
-	// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
-	MinChangeCharacters *int `pulumi:"minChangeCharacters"`
-	// Minimum number of lowercase characters in password (0 - 128, default = 0).
-	MinLowerCaseLetter *int `pulumi:"minLowerCaseLetter"`
-	// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
-	MinNonAlphanumeric *int `pulumi:"minNonAlphanumeric"`
-	// Minimum number of numeric characters in password (0 - 128, default = 0).
-	MinNumber *int `pulumi:"minNumber"`
-	// Minimum number of uppercase characters in password (0 - 128, default = 0).
-	MinUpperCaseLetter *int `pulumi:"minUpperCaseLetter"`
-	// Minimum password length (8 - 128, default = 8).
-	MinimumLength *int `pulumi:"minimumLength"`
-	// Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
-	ReusePassword *string `pulumi:"reusePassword"`
-	// Enable/disable setting a password policy for locally defined administrator passwords and IPsec VPN pre-shared keys. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ApplyTo             *string `pulumi:"applyTo"`
+	Change4Characters   *string `pulumi:"change4Characters"`
+	ExpireDay           *int    `pulumi:"expireDay"`
+	ExpireStatus        *string `pulumi:"expireStatus"`
+	MinChangeCharacters *int    `pulumi:"minChangeCharacters"`
+	MinLowerCaseLetter  *int    `pulumi:"minLowerCaseLetter"`
+	MinNonAlphanumeric  *int    `pulumi:"minNonAlphanumeric"`
+	MinNumber           *int    `pulumi:"minNumber"`
+	MinUpperCaseLetter  *int    `pulumi:"minUpperCaseLetter"`
+	MinimumLength       *int    `pulumi:"minimumLength"`
+	ReusePassword       *string `pulumi:"reusePassword"`
+	Status              *string `pulumi:"status"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemPasswordPolicyGuestAdmin resource.
 type SystemPasswordPolicyGuestAdminArgs struct {
-	// Guest administrator to which this password policy applies. Valid values: `guest-admin-password`.
-	ApplyTo pulumi.StringPtrInput
-	// Enable/disable changing at least 4 characters for a new password (This attribute overrides reuse-password if both are enabled). Valid values: `enable`, `disable`.
-	Change4Characters pulumi.StringPtrInput
-	// Number of days after which passwords expire (1 - 999 days, default = 90).
-	ExpireDay pulumi.IntPtrInput
-	// Enable/disable password expiration. Valid values: `enable`, `disable`.
-	ExpireStatus pulumi.StringPtrInput
-	// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+	ApplyTo             pulumi.StringPtrInput
+	Change4Characters   pulumi.StringPtrInput
+	ExpireDay           pulumi.IntPtrInput
+	ExpireStatus        pulumi.StringPtrInput
 	MinChangeCharacters pulumi.IntPtrInput
-	// Minimum number of lowercase characters in password (0 - 128, default = 0).
-	MinLowerCaseLetter pulumi.IntPtrInput
-	// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
-	MinNonAlphanumeric pulumi.IntPtrInput
-	// Minimum number of numeric characters in password (0 - 128, default = 0).
-	MinNumber pulumi.IntPtrInput
-	// Minimum number of uppercase characters in password (0 - 128, default = 0).
-	MinUpperCaseLetter pulumi.IntPtrInput
-	// Minimum password length (8 - 128, default = 8).
-	MinimumLength pulumi.IntPtrInput
-	// Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
-	ReusePassword pulumi.StringPtrInput
-	// Enable/disable setting a password policy for locally defined administrator passwords and IPsec VPN pre-shared keys. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MinLowerCaseLetter  pulumi.IntPtrInput
+	MinNonAlphanumeric  pulumi.IntPtrInput
+	MinNumber           pulumi.IntPtrInput
+	MinUpperCaseLetter  pulumi.IntPtrInput
+	MinimumLength       pulumi.IntPtrInput
+	ReusePassword       pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemPasswordPolicyGuestAdminArgs) ElementType() reflect.Type {
@@ -267,7 +152,7 @@ func (i *SystemPasswordPolicyGuestAdmin) ToSystemPasswordPolicyGuestAdminOutputW
 // SystemPasswordPolicyGuestAdminArrayInput is an input type that accepts SystemPasswordPolicyGuestAdminArray and SystemPasswordPolicyGuestAdminArrayOutput values.
 // You can construct a concrete instance of `SystemPasswordPolicyGuestAdminArrayInput` via:
 //
-//          SystemPasswordPolicyGuestAdminArray{ SystemPasswordPolicyGuestAdminArgs{...} }
+//	SystemPasswordPolicyGuestAdminArray{ SystemPasswordPolicyGuestAdminArgs{...} }
 type SystemPasswordPolicyGuestAdminArrayInput interface {
 	pulumi.Input
 
@@ -292,7 +177,7 @@ func (i SystemPasswordPolicyGuestAdminArray) ToSystemPasswordPolicyGuestAdminArr
 // SystemPasswordPolicyGuestAdminMapInput is an input type that accepts SystemPasswordPolicyGuestAdminMap and SystemPasswordPolicyGuestAdminMapOutput values.
 // You can construct a concrete instance of `SystemPasswordPolicyGuestAdminMapInput` via:
 //
-//          SystemPasswordPolicyGuestAdminMap{ "key": SystemPasswordPolicyGuestAdminArgs{...} }
+//	SystemPasswordPolicyGuestAdminMap{ "key": SystemPasswordPolicyGuestAdminArgs{...} }
 type SystemPasswordPolicyGuestAdminMapInput interface {
 	pulumi.Input
 
@@ -326,6 +211,58 @@ func (o SystemPasswordPolicyGuestAdminOutput) ToSystemPasswordPolicyGuestAdminOu
 
 func (o SystemPasswordPolicyGuestAdminOutput) ToSystemPasswordPolicyGuestAdminOutputWithContext(ctx context.Context) SystemPasswordPolicyGuestAdminOutput {
 	return o
+}
+
+func (o SystemPasswordPolicyGuestAdminOutput) ApplyTo() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPasswordPolicyGuestAdmin) pulumi.StringOutput { return v.ApplyTo }).(pulumi.StringOutput)
+}
+
+func (o SystemPasswordPolicyGuestAdminOutput) Change4Characters() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPasswordPolicyGuestAdmin) pulumi.StringOutput { return v.Change4Characters }).(pulumi.StringOutput)
+}
+
+func (o SystemPasswordPolicyGuestAdminOutput) ExpireDay() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemPasswordPolicyGuestAdmin) pulumi.IntOutput { return v.ExpireDay }).(pulumi.IntOutput)
+}
+
+func (o SystemPasswordPolicyGuestAdminOutput) ExpireStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPasswordPolicyGuestAdmin) pulumi.StringOutput { return v.ExpireStatus }).(pulumi.StringOutput)
+}
+
+func (o SystemPasswordPolicyGuestAdminOutput) MinChangeCharacters() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemPasswordPolicyGuestAdmin) pulumi.IntOutput { return v.MinChangeCharacters }).(pulumi.IntOutput)
+}
+
+func (o SystemPasswordPolicyGuestAdminOutput) MinLowerCaseLetter() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemPasswordPolicyGuestAdmin) pulumi.IntOutput { return v.MinLowerCaseLetter }).(pulumi.IntOutput)
+}
+
+func (o SystemPasswordPolicyGuestAdminOutput) MinNonAlphanumeric() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemPasswordPolicyGuestAdmin) pulumi.IntOutput { return v.MinNonAlphanumeric }).(pulumi.IntOutput)
+}
+
+func (o SystemPasswordPolicyGuestAdminOutput) MinNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemPasswordPolicyGuestAdmin) pulumi.IntOutput { return v.MinNumber }).(pulumi.IntOutput)
+}
+
+func (o SystemPasswordPolicyGuestAdminOutput) MinUpperCaseLetter() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemPasswordPolicyGuestAdmin) pulumi.IntOutput { return v.MinUpperCaseLetter }).(pulumi.IntOutput)
+}
+
+func (o SystemPasswordPolicyGuestAdminOutput) MinimumLength() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemPasswordPolicyGuestAdmin) pulumi.IntOutput { return v.MinimumLength }).(pulumi.IntOutput)
+}
+
+func (o SystemPasswordPolicyGuestAdminOutput) ReusePassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPasswordPolicyGuestAdmin) pulumi.StringOutput { return v.ReusePassword }).(pulumi.StringOutput)
+}
+
+func (o SystemPasswordPolicyGuestAdminOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPasswordPolicyGuestAdmin) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemPasswordPolicyGuestAdminOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemPasswordPolicyGuestAdmin) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemPasswordPolicyGuestAdminArrayOutput struct{ *pulumi.OutputState }

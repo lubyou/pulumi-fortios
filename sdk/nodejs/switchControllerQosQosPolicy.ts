@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch QoS policy.
- *
- * ## Import
- *
- * SwitchControllerQos QosPolicy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerQosQosPolicy:SwitchControllerQosQosPolicy labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerQosQosPolicy:SwitchControllerQosQosPolicy labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerQosQosPolicy extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerQosQosPolicy resource's state with the given name, ID, and optional extra
@@ -51,29 +32,11 @@ export class SwitchControllerQosQosPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerQosQosPolicy.__pulumiType;
     }
 
-    /**
-     * Default cos queue for untagged packets.
-     */
     public readonly defaultCos!: pulumi.Output<number>;
-    /**
-     * QoS policy name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * QoS egress queue policy.
-     */
     public readonly queuePolicy!: pulumi.Output<string>;
-    /**
-     * QoS trust 802.1p map.
-     */
     public readonly trustDot1pMap!: pulumi.Output<string>;
-    /**
-     * QoS trust ip dscp map.
-     */
     public readonly trustIpDscpMap!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -116,29 +79,11 @@ export class SwitchControllerQosQosPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerQosQosPolicy resources.
  */
 export interface SwitchControllerQosQosPolicyState {
-    /**
-     * Default cos queue for untagged packets.
-     */
     defaultCos?: pulumi.Input<number>;
-    /**
-     * QoS policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * QoS egress queue policy.
-     */
     queuePolicy?: pulumi.Input<string>;
-    /**
-     * QoS trust 802.1p map.
-     */
     trustDot1pMap?: pulumi.Input<string>;
-    /**
-     * QoS trust ip dscp map.
-     */
     trustIpDscpMap?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -146,28 +91,10 @@ export interface SwitchControllerQosQosPolicyState {
  * The set of arguments for constructing a SwitchControllerQosQosPolicy resource.
  */
 export interface SwitchControllerQosQosPolicyArgs {
-    /**
-     * Default cos queue for untagged packets.
-     */
     defaultCos: pulumi.Input<number>;
-    /**
-     * QoS policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * QoS egress queue policy.
-     */
     queuePolicy?: pulumi.Input<string>;
-    /**
-     * QoS trust 802.1p map.
-     */
     trustDot1pMap?: pulumi.Input<string>;
-    /**
-     * QoS trust ip dscp map.
-     */
     trustIpDscpMap?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

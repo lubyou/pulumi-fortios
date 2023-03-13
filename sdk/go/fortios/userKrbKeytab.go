@@ -7,90 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Kerberos keytab entries.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"fmt"
-//
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trname2, err := fortios.NewUserLdap(ctx, "trname2", &fortios.UserLdapArgs{
-// 			AccountKeyFilter:      pulumi.String(fmt.Sprintf("%v%v%v", "(&(userPrincipalName=", "%", "s)(!(UserAccountControl:1.2.840.113556.1.4.803:=2)))")),
-// 			AccountKeyProcessing:  pulumi.String("same"),
-// 			Cnid:                  pulumi.String("cn"),
-// 			Dn:                    pulumi.String("EIWNCIEW"),
-// 			GroupMemberCheck:      pulumi.String("user-attr"),
-// 			GroupObjectFilter:     pulumi.String("(&(objectcategory=group)(member=*))"),
-// 			MemberAttr:            pulumi.String("memberOf"),
-// 			PasswordExpiryWarning: pulumi.String("disable"),
-// 			PasswordRenewal:       pulumi.String("disable"),
-// 			Port:                  pulumi.Int(389),
-// 			Secure:                pulumi.String("disable"),
-// 			Server:                pulumi.String("1.1.1.1"),
-// 			ServerIdentityCheck:   pulumi.String("disable"),
-// 			SourceIp:              pulumi.String("0.0.0.0"),
-// 			SslMinProtoVersion:    pulumi.String("default"),
-// 			Type:                  pulumi.String("simple"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewUserKrbKeytab(ctx, "trname", &fortios.UserKrbKeytabArgs{
-// 			Keytab:     pulumi.String("ZXdlY2VxcmVxd3Jld3E="),
-// 			LdapServer: trname2.Name,
-// 			Principal:  pulumi.String("testprin"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// User KrbKeytab can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userKrbKeytab:UserKrbKeytab labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userKrbKeytab:UserKrbKeytab labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserKrbKeytab struct {
 	pulumi.CustomResourceState
 
-	// base64 coded keytab file containing a pre-shared key.
-	Keytab pulumi.StringOutput `pulumi:"keytab"`
-	// LDAP server name.
-	LdapServer pulumi.StringOutput `pulumi:"ldapServer"`
-	// Kerberos keytab entry name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable parsing PAC data in the ticket. Valid values: `enable`, `disable`.
-	PacData pulumi.StringOutput `pulumi:"pacData"`
-	// Kerberos service principal, e.g. HTTP/fgt.example.com@EXAMPLE.COM.
-	Principal pulumi.StringOutput `pulumi:"principal"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Keytab     pulumi.StringOutput    `pulumi:"keytab"`
+	LdapServer pulumi.StringOutput    `pulumi:"ldapServer"`
+	Name       pulumi.StringOutput    `pulumi:"name"`
+	PacData    pulumi.StringOutput    `pulumi:"pacData"`
+	Principal  pulumi.StringOutput    `pulumi:"principal"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewUserKrbKeytab registers a new resource with the given unique name, arguments, and options.
@@ -109,6 +38,13 @@ func NewUserKrbKeytab(ctx *pulumi.Context,
 	if args.Principal == nil {
 		return nil, errors.New("invalid value for required argument 'Principal'")
 	}
+	if args.Keytab != nil {
+		args.Keytab = pulumi.ToSecret(args.Keytab).(pulumi.StringInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"keytab",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource UserKrbKeytab
 	err := ctx.RegisterResource("fortios:index/userKrbKeytab:UserKrbKeytab", name, args, &resource, opts...)
@@ -132,33 +68,21 @@ func GetUserKrbKeytab(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserKrbKeytab resources.
 type userKrbKeytabState struct {
-	// base64 coded keytab file containing a pre-shared key.
-	Keytab *string `pulumi:"keytab"`
-	// LDAP server name.
+	Keytab     *string `pulumi:"keytab"`
 	LdapServer *string `pulumi:"ldapServer"`
-	// Kerberos keytab entry name.
-	Name *string `pulumi:"name"`
-	// Enable/disable parsing PAC data in the ticket. Valid values: `enable`, `disable`.
-	PacData *string `pulumi:"pacData"`
-	// Kerberos service principal, e.g. HTTP/fgt.example.com@EXAMPLE.COM.
-	Principal *string `pulumi:"principal"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name       *string `pulumi:"name"`
+	PacData    *string `pulumi:"pacData"`
+	Principal  *string `pulumi:"principal"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type UserKrbKeytabState struct {
-	// base64 coded keytab file containing a pre-shared key.
-	Keytab pulumi.StringPtrInput
-	// LDAP server name.
+	Keytab     pulumi.StringPtrInput
 	LdapServer pulumi.StringPtrInput
-	// Kerberos keytab entry name.
-	Name pulumi.StringPtrInput
-	// Enable/disable parsing PAC data in the ticket. Valid values: `enable`, `disable`.
-	PacData pulumi.StringPtrInput
-	// Kerberos service principal, e.g. HTTP/fgt.example.com@EXAMPLE.COM.
-	Principal pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name       pulumi.StringPtrInput
+	PacData    pulumi.StringPtrInput
+	Principal  pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (UserKrbKeytabState) ElementType() reflect.Type {
@@ -166,34 +90,22 @@ func (UserKrbKeytabState) ElementType() reflect.Type {
 }
 
 type userKrbKeytabArgs struct {
-	// base64 coded keytab file containing a pre-shared key.
-	Keytab string `pulumi:"keytab"`
-	// LDAP server name.
-	LdapServer string `pulumi:"ldapServer"`
-	// Kerberos keytab entry name.
-	Name *string `pulumi:"name"`
-	// Enable/disable parsing PAC data in the ticket. Valid values: `enable`, `disable`.
-	PacData *string `pulumi:"pacData"`
-	// Kerberos service principal, e.g. HTTP/fgt.example.com@EXAMPLE.COM.
-	Principal string `pulumi:"principal"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Keytab     string  `pulumi:"keytab"`
+	LdapServer string  `pulumi:"ldapServer"`
+	Name       *string `pulumi:"name"`
+	PacData    *string `pulumi:"pacData"`
+	Principal  string  `pulumi:"principal"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserKrbKeytab resource.
 type UserKrbKeytabArgs struct {
-	// base64 coded keytab file containing a pre-shared key.
-	Keytab pulumi.StringInput
-	// LDAP server name.
+	Keytab     pulumi.StringInput
 	LdapServer pulumi.StringInput
-	// Kerberos keytab entry name.
-	Name pulumi.StringPtrInput
-	// Enable/disable parsing PAC data in the ticket. Valid values: `enable`, `disable`.
-	PacData pulumi.StringPtrInput
-	// Kerberos service principal, e.g. HTTP/fgt.example.com@EXAMPLE.COM.
-	Principal pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name       pulumi.StringPtrInput
+	PacData    pulumi.StringPtrInput
+	Principal  pulumi.StringInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (UserKrbKeytabArgs) ElementType() reflect.Type {
@@ -222,7 +134,7 @@ func (i *UserKrbKeytab) ToUserKrbKeytabOutputWithContext(ctx context.Context) Us
 // UserKrbKeytabArrayInput is an input type that accepts UserKrbKeytabArray and UserKrbKeytabArrayOutput values.
 // You can construct a concrete instance of `UserKrbKeytabArrayInput` via:
 //
-//          UserKrbKeytabArray{ UserKrbKeytabArgs{...} }
+//	UserKrbKeytabArray{ UserKrbKeytabArgs{...} }
 type UserKrbKeytabArrayInput interface {
 	pulumi.Input
 
@@ -247,7 +159,7 @@ func (i UserKrbKeytabArray) ToUserKrbKeytabArrayOutputWithContext(ctx context.Co
 // UserKrbKeytabMapInput is an input type that accepts UserKrbKeytabMap and UserKrbKeytabMapOutput values.
 // You can construct a concrete instance of `UserKrbKeytabMapInput` via:
 //
-//          UserKrbKeytabMap{ "key": UserKrbKeytabArgs{...} }
+//	UserKrbKeytabMap{ "key": UserKrbKeytabArgs{...} }
 type UserKrbKeytabMapInput interface {
 	pulumi.Input
 
@@ -281,6 +193,30 @@ func (o UserKrbKeytabOutput) ToUserKrbKeytabOutput() UserKrbKeytabOutput {
 
 func (o UserKrbKeytabOutput) ToUserKrbKeytabOutputWithContext(ctx context.Context) UserKrbKeytabOutput {
 	return o
+}
+
+func (o UserKrbKeytabOutput) Keytab() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserKrbKeytab) pulumi.StringOutput { return v.Keytab }).(pulumi.StringOutput)
+}
+
+func (o UserKrbKeytabOutput) LdapServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserKrbKeytab) pulumi.StringOutput { return v.LdapServer }).(pulumi.StringOutput)
+}
+
+func (o UserKrbKeytabOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserKrbKeytab) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserKrbKeytabOutput) PacData() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserKrbKeytab) pulumi.StringOutput { return v.PacData }).(pulumi.StringOutput)
+}
+
+func (o UserKrbKeytabOutput) Principal() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserKrbKeytab) pulumi.StringOutput { return v.Principal }).(pulumi.StringOutput)
+}
+
+func (o UserKrbKeytabOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserKrbKeytab) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserKrbKeytabArrayOutput struct{ *pulumi.OutputState }

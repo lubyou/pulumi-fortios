@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure advice of charge. Applies to FortiOS Version `>= 7.0.2`.
-//
-// ## Import
-//
-// WirelessControllerHotspot20 H2QpAdviceOfCharge can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpAdviceOfCharge:WirelessControllerHotspot20H2QpAdviceOfCharge labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpAdviceOfCharge:WirelessControllerHotspot20H2QpAdviceOfCharge labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerHotspot20H2QpAdviceOfCharge struct {
 	pulumi.CustomResourceState
 
-	// AOC list. The structure of `aocList` block is documented below.
-	AocLists WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutput `pulumi:"aocLists"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Plan name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AocLists            WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutput `pulumi:"aocLists"`
+	DynamicSortSubtable pulumi.StringPtrOutput                                          `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                                             `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                                          `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerHotspot20H2QpAdviceOfCharge registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetWirelessControllerHotspot20H2QpAdviceOfCharge(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerHotspot20H2QpAdviceOfCharge resources.
 type wirelessControllerHotspot20H2QpAdviceOfChargeState struct {
-	// AOC list. The structure of `aocList` block is documented below.
-	AocLists []WirelessControllerHotspot20H2QpAdviceOfChargeAocList `pulumi:"aocLists"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Plan name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AocLists            []WirelessControllerHotspot20H2QpAdviceOfChargeAocList `pulumi:"aocLists"`
+	DynamicSortSubtable *string                                                `pulumi:"dynamicSortSubtable"`
+	Name                *string                                                `pulumi:"name"`
+	Vdomparam           *string                                                `pulumi:"vdomparam"`
 }
 
 type WirelessControllerHotspot20H2QpAdviceOfChargeState struct {
-	// AOC list. The structure of `aocList` block is documented below.
-	AocLists WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AocLists            WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Plan name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20H2QpAdviceOfChargeState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (WirelessControllerHotspot20H2QpAdviceOfChargeState) ElementType() reflect.
 }
 
 type wirelessControllerHotspot20H2QpAdviceOfChargeArgs struct {
-	// AOC list. The structure of `aocList` block is documented below.
-	AocLists []WirelessControllerHotspot20H2QpAdviceOfChargeAocList `pulumi:"aocLists"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Plan name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AocLists            []WirelessControllerHotspot20H2QpAdviceOfChargeAocList `pulumi:"aocLists"`
+	DynamicSortSubtable *string                                                `pulumi:"dynamicSortSubtable"`
+	Name                *string                                                `pulumi:"name"`
+	Vdomparam           *string                                                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerHotspot20H2QpAdviceOfCharge resource.
 type WirelessControllerHotspot20H2QpAdviceOfChargeArgs struct {
-	// AOC list. The structure of `aocList` block is documented below.
-	AocLists WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AocLists            WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Plan name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20H2QpAdviceOfChargeArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *WirelessControllerHotspot20H2QpAdviceOfCharge) ToWirelessControllerHots
 // WirelessControllerHotspot20H2QpAdviceOfChargeArrayInput is an input type that accepts WirelessControllerHotspot20H2QpAdviceOfChargeArray and WirelessControllerHotspot20H2QpAdviceOfChargeArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpAdviceOfChargeArrayInput` via:
 //
-//          WirelessControllerHotspot20H2QpAdviceOfChargeArray{ WirelessControllerHotspot20H2QpAdviceOfChargeArgs{...} }
+//	WirelessControllerHotspot20H2QpAdviceOfChargeArray{ WirelessControllerHotspot20H2QpAdviceOfChargeArgs{...} }
 type WirelessControllerHotspot20H2QpAdviceOfChargeArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i WirelessControllerHotspot20H2QpAdviceOfChargeArray) ToWirelessController
 // WirelessControllerHotspot20H2QpAdviceOfChargeMapInput is an input type that accepts WirelessControllerHotspot20H2QpAdviceOfChargeMap and WirelessControllerHotspot20H2QpAdviceOfChargeMapOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpAdviceOfChargeMapInput` via:
 //
-//          WirelessControllerHotspot20H2QpAdviceOfChargeMap{ "key": WirelessControllerHotspot20H2QpAdviceOfChargeArgs{...} }
+//	WirelessControllerHotspot20H2QpAdviceOfChargeMap{ "key": WirelessControllerHotspot20H2QpAdviceOfChargeArgs{...} }
 type WirelessControllerHotspot20H2QpAdviceOfChargeMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,26 @@ func (o WirelessControllerHotspot20H2QpAdviceOfChargeOutput) ToWirelessControlle
 
 func (o WirelessControllerHotspot20H2QpAdviceOfChargeOutput) ToWirelessControllerHotspot20H2QpAdviceOfChargeOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpAdviceOfChargeOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpAdviceOfChargeOutput) AocLists() WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpAdviceOfCharge) WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutput {
+		return v.AocLists
+	}).(WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpAdviceOfChargeOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpAdviceOfCharge) pulumi.StringPtrOutput {
+		return v.DynamicSortSubtable
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpAdviceOfChargeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpAdviceOfCharge) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpAdviceOfChargeOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpAdviceOfCharge) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerHotspot20H2QpAdviceOfChargeArrayOutput struct{ *pulumi.OutputState }

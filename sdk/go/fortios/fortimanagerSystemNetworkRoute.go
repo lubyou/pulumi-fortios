@@ -7,48 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports updating system network route for FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerSystemNetworkRoute(ctx, "test1", &fortios.FortimanagerSystemNetworkRouteArgs{
-// 			Destination: pulumi.String("192.168.2.0 255.255.255.0"),
-// 			Device:      pulumi.String("port4"),
-// 			Gateway:     pulumi.String("192.168.2.1"),
-// 			RouteId:     pulumi.Int(5),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerSystemNetworkRoute struct {
 	pulumi.CustomResourceState
 
-	// Destination Ip/Mask.
 	Destination pulumi.StringOutput `pulumi:"destination"`
-	// Gateway out interface.
-	Device pulumi.StringOutput `pulumi:"device"`
-	// Gateway Ip.
-	Gateway pulumi.StringOutput `pulumi:"gateway"`
-	// Route id.
-	RouteId pulumi.IntOutput `pulumi:"routeId"`
+	Device      pulumi.StringOutput `pulumi:"device"`
+	Gateway     pulumi.StringOutput `pulumi:"gateway"`
+	RouteId     pulumi.IntOutput    `pulumi:"routeId"`
 }
 
 // NewFortimanagerSystemNetworkRoute registers a new resource with the given unique name, arguments, and options.
@@ -93,25 +62,17 @@ func GetFortimanagerSystemNetworkRoute(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerSystemNetworkRoute resources.
 type fortimanagerSystemNetworkRouteState struct {
-	// Destination Ip/Mask.
 	Destination *string `pulumi:"destination"`
-	// Gateway out interface.
-	Device *string `pulumi:"device"`
-	// Gateway Ip.
-	Gateway *string `pulumi:"gateway"`
-	// Route id.
-	RouteId *int `pulumi:"routeId"`
+	Device      *string `pulumi:"device"`
+	Gateway     *string `pulumi:"gateway"`
+	RouteId     *int    `pulumi:"routeId"`
 }
 
 type FortimanagerSystemNetworkRouteState struct {
-	// Destination Ip/Mask.
 	Destination pulumi.StringPtrInput
-	// Gateway out interface.
-	Device pulumi.StringPtrInput
-	// Gateway Ip.
-	Gateway pulumi.StringPtrInput
-	// Route id.
-	RouteId pulumi.IntPtrInput
+	Device      pulumi.StringPtrInput
+	Gateway     pulumi.StringPtrInput
+	RouteId     pulumi.IntPtrInput
 }
 
 func (FortimanagerSystemNetworkRouteState) ElementType() reflect.Type {
@@ -119,26 +80,18 @@ func (FortimanagerSystemNetworkRouteState) ElementType() reflect.Type {
 }
 
 type fortimanagerSystemNetworkRouteArgs struct {
-	// Destination Ip/Mask.
 	Destination string `pulumi:"destination"`
-	// Gateway out interface.
-	Device string `pulumi:"device"`
-	// Gateway Ip.
-	Gateway string `pulumi:"gateway"`
-	// Route id.
-	RouteId int `pulumi:"routeId"`
+	Device      string `pulumi:"device"`
+	Gateway     string `pulumi:"gateway"`
+	RouteId     int    `pulumi:"routeId"`
 }
 
 // The set of arguments for constructing a FortimanagerSystemNetworkRoute resource.
 type FortimanagerSystemNetworkRouteArgs struct {
-	// Destination Ip/Mask.
 	Destination pulumi.StringInput
-	// Gateway out interface.
-	Device pulumi.StringInput
-	// Gateway Ip.
-	Gateway pulumi.StringInput
-	// Route id.
-	RouteId pulumi.IntInput
+	Device      pulumi.StringInput
+	Gateway     pulumi.StringInput
+	RouteId     pulumi.IntInput
 }
 
 func (FortimanagerSystemNetworkRouteArgs) ElementType() reflect.Type {
@@ -167,7 +120,7 @@ func (i *FortimanagerSystemNetworkRoute) ToFortimanagerSystemNetworkRouteOutputW
 // FortimanagerSystemNetworkRouteArrayInput is an input type that accepts FortimanagerSystemNetworkRouteArray and FortimanagerSystemNetworkRouteArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemNetworkRouteArrayInput` via:
 //
-//          FortimanagerSystemNetworkRouteArray{ FortimanagerSystemNetworkRouteArgs{...} }
+//	FortimanagerSystemNetworkRouteArray{ FortimanagerSystemNetworkRouteArgs{...} }
 type FortimanagerSystemNetworkRouteArrayInput interface {
 	pulumi.Input
 
@@ -192,7 +145,7 @@ func (i FortimanagerSystemNetworkRouteArray) ToFortimanagerSystemNetworkRouteArr
 // FortimanagerSystemNetworkRouteMapInput is an input type that accepts FortimanagerSystemNetworkRouteMap and FortimanagerSystemNetworkRouteMapOutput values.
 // You can construct a concrete instance of `FortimanagerSystemNetworkRouteMapInput` via:
 //
-//          FortimanagerSystemNetworkRouteMap{ "key": FortimanagerSystemNetworkRouteArgs{...} }
+//	FortimanagerSystemNetworkRouteMap{ "key": FortimanagerSystemNetworkRouteArgs{...} }
 type FortimanagerSystemNetworkRouteMapInput interface {
 	pulumi.Input
 
@@ -226,6 +179,22 @@ func (o FortimanagerSystemNetworkRouteOutput) ToFortimanagerSystemNetworkRouteOu
 
 func (o FortimanagerSystemNetworkRouteOutput) ToFortimanagerSystemNetworkRouteOutputWithContext(ctx context.Context) FortimanagerSystemNetworkRouteOutput {
 	return o
+}
+
+func (o FortimanagerSystemNetworkRouteOutput) Destination() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerSystemNetworkRoute) pulumi.StringOutput { return v.Destination }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerSystemNetworkRouteOutput) Device() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerSystemNetworkRoute) pulumi.StringOutput { return v.Device }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerSystemNetworkRouteOutput) Gateway() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerSystemNetworkRoute) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerSystemNetworkRouteOutput) RouteId() pulumi.IntOutput {
+	return o.ApplyT(func(v *FortimanagerSystemNetworkRoute) pulumi.IntOutput { return v.RouteId }).(pulumi.IntOutput)
 }
 
 type FortimanagerSystemNetworkRouteArrayOutput struct{ *pulumi.OutputState }

@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Web proxy address group configuration.
- *
- * ## Import
- *
- * Firewall ProxyAddrgrp can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallProxyAddrgrp:FirewallProxyAddrgrp labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallProxyAddrgrp:FirewallProxyAddrgrp labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallProxyAddrgrp extends pulumi.CustomResource {
     /**
      * Get an existing FirewallProxyAddrgrp resource's state with the given name, ID, and optional extra
@@ -52,45 +34,15 @@ export class FirewallProxyAddrgrp extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallProxyAddrgrp.__pulumiType;
     }
 
-    /**
-     * Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * Optional comments.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Members of address group. The structure of `member` block is documented below.
-     */
     public readonly members!: pulumi.Output<outputs.FirewallProxyAddrgrpMember[]>;
-    /**
-     * Tag name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     public readonly taggings!: pulumi.Output<outputs.FirewallProxyAddrgrpTagging[] | undefined>;
-    /**
-     * Source or destination address group type. Valid values: `src`, `dst`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable visibility of the object in the GUI. Valid values: `enable`, `disable`.
-     */
     public readonly visibility!: pulumi.Output<string>;
 
     /**
@@ -141,45 +93,15 @@ export class FirewallProxyAddrgrp extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallProxyAddrgrp resources.
  */
 export interface FirewallProxyAddrgrpState {
-    /**
-     * Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Optional comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Members of address group. The structure of `member` block is documented below.
-     */
     members?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddrgrpMember>[]>;
-    /**
-     * Tag name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddrgrpTagging>[]>;
-    /**
-     * Source or destination address group type. Valid values: `src`, `dst`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable visibility of the object in the GUI. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
 }
 
@@ -187,44 +109,14 @@ export interface FirewallProxyAddrgrpState {
  * The set of arguments for constructing a FirewallProxyAddrgrp resource.
  */
 export interface FirewallProxyAddrgrpArgs {
-    /**
-     * Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Optional comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Members of address group. The structure of `member` block is documented below.
-     */
     members: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddrgrpMember>[]>;
-    /**
-     * Tag name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddrgrpTagging>[]>;
-    /**
-     * Source or destination address group type. Valid values: `src`, `dst`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable visibility of the object in the GUI. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
 }

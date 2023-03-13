@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure application signatures.
- *
- * ## Import
- *
- * Application Name can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/applicationName:ApplicationName labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/applicationName:ApplicationName labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class ApplicationName extends pulumi.CustomResource {
     /**
      * Get an existing ApplicationName resource's state with the given name, ID, and optional extra
@@ -52,69 +34,21 @@ export class ApplicationName extends pulumi.CustomResource {
         return obj['__pulumiType'] === ApplicationName.__pulumiType;
     }
 
-    /**
-     * Application behavior.
-     */
     public readonly behavior!: pulumi.Output<string>;
-    /**
-     * Application category ID.
-     */
     public readonly category!: pulumi.Output<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Application ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Meta data. The structure of `metadata` block is documented below.
-     */
     public readonly metadatas!: pulumi.Output<outputs.ApplicationNameMetadata[] | undefined>;
-    /**
-     * Parameter name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Application parameter name.
-     */
     public readonly parameter!: pulumi.Output<string>;
-    /**
-     * Application parameters. The structure of `parameters` block is documented below.
-     */
     public readonly parameters!: pulumi.Output<outputs.ApplicationNameParameter[] | undefined>;
-    /**
-     * Application popularity.
-     */
     public readonly popularity!: pulumi.Output<number>;
-    /**
-     * Application protocol.
-     */
     public readonly protocol!: pulumi.Output<string>;
-    /**
-     * Application risk.
-     */
     public readonly risk!: pulumi.Output<number>;
-    /**
-     * Application sub-category ID.
-     */
     public readonly subCategory!: pulumi.Output<number>;
-    /**
-     * Application technology.
-     */
     public readonly technology!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Application vendor.
-     */
     public readonly vendor!: pulumi.Output<string>;
-    /**
-     * Application weight.
-     */
     public readonly weight!: pulumi.Output<number>;
 
     /**
@@ -177,69 +111,21 @@ export class ApplicationName extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ApplicationName resources.
  */
 export interface ApplicationNameState {
-    /**
-     * Application behavior.
-     */
     behavior?: pulumi.Input<string>;
-    /**
-     * Application category ID.
-     */
     category?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Application ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Meta data. The structure of `metadata` block is documented below.
-     */
     metadatas?: pulumi.Input<pulumi.Input<inputs.ApplicationNameMetadata>[]>;
-    /**
-     * Parameter name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Application parameter name.
-     */
     parameter?: pulumi.Input<string>;
-    /**
-     * Application parameters. The structure of `parameters` block is documented below.
-     */
     parameters?: pulumi.Input<pulumi.Input<inputs.ApplicationNameParameter>[]>;
-    /**
-     * Application popularity.
-     */
     popularity?: pulumi.Input<number>;
-    /**
-     * Application protocol.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * Application risk.
-     */
     risk?: pulumi.Input<number>;
-    /**
-     * Application sub-category ID.
-     */
     subCategory?: pulumi.Input<number>;
-    /**
-     * Application technology.
-     */
     technology?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Application vendor.
-     */
     vendor?: pulumi.Input<string>;
-    /**
-     * Application weight.
-     */
     weight?: pulumi.Input<number>;
 }
 
@@ -247,68 +133,20 @@ export interface ApplicationNameState {
  * The set of arguments for constructing a ApplicationName resource.
  */
 export interface ApplicationNameArgs {
-    /**
-     * Application behavior.
-     */
     behavior?: pulumi.Input<string>;
-    /**
-     * Application category ID.
-     */
     category: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Application ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Meta data. The structure of `metadata` block is documented below.
-     */
     metadatas?: pulumi.Input<pulumi.Input<inputs.ApplicationNameMetadata>[]>;
-    /**
-     * Parameter name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Application parameter name.
-     */
     parameter?: pulumi.Input<string>;
-    /**
-     * Application parameters. The structure of `parameters` block is documented below.
-     */
     parameters?: pulumi.Input<pulumi.Input<inputs.ApplicationNameParameter>[]>;
-    /**
-     * Application popularity.
-     */
     popularity?: pulumi.Input<number>;
-    /**
-     * Application protocol.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * Application risk.
-     */
     risk?: pulumi.Input<number>;
-    /**
-     * Application sub-category ID.
-     */
     subCategory?: pulumi.Input<number>;
-    /**
-     * Application technology.
-     */
     technology?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Application vendor.
-     */
     vendor?: pulumi.Input<string>;
-    /**
-     * Application weight.
-     */
     weight?: pulumi.Input<number>;
 }

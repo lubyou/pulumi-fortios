@@ -10,65 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Report setting configuration.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewReportSetting(ctx, "trname", &fortios.ReportSettingArgs{
-// 			Fortiview:            pulumi.String("enable"),
-// 			PdfReport:            pulumi.String("enable"),
-// 			ReportSource:         pulumi.String("forward-traffic"),
-// 			TopN:                 pulumi.Int(1000),
-// 			WebBrowsingThreshold: pulumi.Int(3),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Report Setting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/reportSetting:ReportSetting labelname ReportSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/reportSetting:ReportSetting labelname ReportSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type ReportSetting struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable historical FortiView. Valid values: `enable`, `disable`.
-	Fortiview pulumi.StringOutput `pulumi:"fortiview"`
-	// Enable/disable PDF report. Valid values: `enable`, `disable`.
-	PdfReport pulumi.StringOutput `pulumi:"pdfReport"`
-	// Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
-	ReportSource pulumi.StringOutput `pulumi:"reportSource"`
-	// Number of items to populate (100 - 4000).
-	TopN pulumi.IntOutput `pulumi:"topN"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Web browsing time calculation threshold (3 - 15 min).
-	WebBrowsingThreshold pulumi.IntOutput `pulumi:"webBrowsingThreshold"`
+	Fortiview            pulumi.StringOutput    `pulumi:"fortiview"`
+	PdfReport            pulumi.StringOutput    `pulumi:"pdfReport"`
+	ReportSource         pulumi.StringOutput    `pulumi:"reportSource"`
+	TopN                 pulumi.IntOutput       `pulumi:"topN"`
+	Vdomparam            pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	WebBrowsingThreshold pulumi.IntOutput       `pulumi:"webBrowsingThreshold"`
 }
 
 // NewReportSetting registers a new resource with the given unique name, arguments, and options.
@@ -101,32 +51,20 @@ func GetReportSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ReportSetting resources.
 type reportSettingState struct {
-	// Enable/disable historical FortiView. Valid values: `enable`, `disable`.
-	Fortiview *string `pulumi:"fortiview"`
-	// Enable/disable PDF report. Valid values: `enable`, `disable`.
-	PdfReport *string `pulumi:"pdfReport"`
-	// Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
-	ReportSource *string `pulumi:"reportSource"`
-	// Number of items to populate (100 - 4000).
-	TopN *int `pulumi:"topN"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Web browsing time calculation threshold (3 - 15 min).
-	WebBrowsingThreshold *int `pulumi:"webBrowsingThreshold"`
+	Fortiview            *string `pulumi:"fortiview"`
+	PdfReport            *string `pulumi:"pdfReport"`
+	ReportSource         *string `pulumi:"reportSource"`
+	TopN                 *int    `pulumi:"topN"`
+	Vdomparam            *string `pulumi:"vdomparam"`
+	WebBrowsingThreshold *int    `pulumi:"webBrowsingThreshold"`
 }
 
 type ReportSettingState struct {
-	// Enable/disable historical FortiView. Valid values: `enable`, `disable`.
-	Fortiview pulumi.StringPtrInput
-	// Enable/disable PDF report. Valid values: `enable`, `disable`.
-	PdfReport pulumi.StringPtrInput
-	// Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
-	ReportSource pulumi.StringPtrInput
-	// Number of items to populate (100 - 4000).
-	TopN pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Web browsing time calculation threshold (3 - 15 min).
+	Fortiview            pulumi.StringPtrInput
+	PdfReport            pulumi.StringPtrInput
+	ReportSource         pulumi.StringPtrInput
+	TopN                 pulumi.IntPtrInput
+	Vdomparam            pulumi.StringPtrInput
 	WebBrowsingThreshold pulumi.IntPtrInput
 }
 
@@ -135,33 +73,21 @@ func (ReportSettingState) ElementType() reflect.Type {
 }
 
 type reportSettingArgs struct {
-	// Enable/disable historical FortiView. Valid values: `enable`, `disable`.
-	Fortiview *string `pulumi:"fortiview"`
-	// Enable/disable PDF report. Valid values: `enable`, `disable`.
-	PdfReport *string `pulumi:"pdfReport"`
-	// Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
-	ReportSource *string `pulumi:"reportSource"`
-	// Number of items to populate (100 - 4000).
-	TopN *int `pulumi:"topN"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Web browsing time calculation threshold (3 - 15 min).
-	WebBrowsingThreshold *int `pulumi:"webBrowsingThreshold"`
+	Fortiview            *string `pulumi:"fortiview"`
+	PdfReport            *string `pulumi:"pdfReport"`
+	ReportSource         *string `pulumi:"reportSource"`
+	TopN                 *int    `pulumi:"topN"`
+	Vdomparam            *string `pulumi:"vdomparam"`
+	WebBrowsingThreshold *int    `pulumi:"webBrowsingThreshold"`
 }
 
 // The set of arguments for constructing a ReportSetting resource.
 type ReportSettingArgs struct {
-	// Enable/disable historical FortiView. Valid values: `enable`, `disable`.
-	Fortiview pulumi.StringPtrInput
-	// Enable/disable PDF report. Valid values: `enable`, `disable`.
-	PdfReport pulumi.StringPtrInput
-	// Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
-	ReportSource pulumi.StringPtrInput
-	// Number of items to populate (100 - 4000).
-	TopN pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Web browsing time calculation threshold (3 - 15 min).
+	Fortiview            pulumi.StringPtrInput
+	PdfReport            pulumi.StringPtrInput
+	ReportSource         pulumi.StringPtrInput
+	TopN                 pulumi.IntPtrInput
+	Vdomparam            pulumi.StringPtrInput
 	WebBrowsingThreshold pulumi.IntPtrInput
 }
 
@@ -191,7 +117,7 @@ func (i *ReportSetting) ToReportSettingOutputWithContext(ctx context.Context) Re
 // ReportSettingArrayInput is an input type that accepts ReportSettingArray and ReportSettingArrayOutput values.
 // You can construct a concrete instance of `ReportSettingArrayInput` via:
 //
-//          ReportSettingArray{ ReportSettingArgs{...} }
+//	ReportSettingArray{ ReportSettingArgs{...} }
 type ReportSettingArrayInput interface {
 	pulumi.Input
 
@@ -216,7 +142,7 @@ func (i ReportSettingArray) ToReportSettingArrayOutputWithContext(ctx context.Co
 // ReportSettingMapInput is an input type that accepts ReportSettingMap and ReportSettingMapOutput values.
 // You can construct a concrete instance of `ReportSettingMapInput` via:
 //
-//          ReportSettingMap{ "key": ReportSettingArgs{...} }
+//	ReportSettingMap{ "key": ReportSettingArgs{...} }
 type ReportSettingMapInput interface {
 	pulumi.Input
 
@@ -250,6 +176,30 @@ func (o ReportSettingOutput) ToReportSettingOutput() ReportSettingOutput {
 
 func (o ReportSettingOutput) ToReportSettingOutputWithContext(ctx context.Context) ReportSettingOutput {
 	return o
+}
+
+func (o ReportSettingOutput) Fortiview() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportSetting) pulumi.StringOutput { return v.Fortiview }).(pulumi.StringOutput)
+}
+
+func (o ReportSettingOutput) PdfReport() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportSetting) pulumi.StringOutput { return v.PdfReport }).(pulumi.StringOutput)
+}
+
+func (o ReportSettingOutput) ReportSource() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportSetting) pulumi.StringOutput { return v.ReportSource }).(pulumi.StringOutput)
+}
+
+func (o ReportSettingOutput) TopN() pulumi.IntOutput {
+	return o.ApplyT(func(v *ReportSetting) pulumi.IntOutput { return v.TopN }).(pulumi.IntOutput)
+}
+
+func (o ReportSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o ReportSettingOutput) WebBrowsingThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *ReportSetting) pulumi.IntOutput { return v.WebBrowsingThreshold }).(pulumi.IntOutput)
 }
 
 type ReportSettingArrayOutput struct{ *pulumi.OutputState }

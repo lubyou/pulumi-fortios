@@ -10,120 +10,56 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure MODEM. Applies to FortiOS Version `>= 7.0.4`.
-//
-// ## Import
-//
-// System Modem can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemModem:SystemModem labelname SystemModem
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemModem:SystemModem labelname SystemModem
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemModem struct {
 	pulumi.CustomResourceState
 
-	// Dial up/stop MODEM. Valid values: `dial`, `stop`, `none`.
-	Action pulumi.StringOutput `pulumi:"action"`
-	// Enable/disable altmode for installations using PPP in China. Valid values: `enable`, `disable`.
-	Altmode pulumi.StringOutput `pulumi:"altmode"`
-	// Allowed authentication types for ISP 1. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-	Authtype1 pulumi.StringOutput `pulumi:"authtype1"`
-	// Allowed authentication types for ISP 2. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-	Authtype2 pulumi.StringOutput `pulumi:"authtype2"`
-	// Allowed authentication types for ISP 3. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-	Authtype3 pulumi.StringOutput `pulumi:"authtype3"`
-	// Enable/disable auto-dial after a reboot or disconnection. Valid values: `enable`, `disable`.
-	AutoDial pulumi.StringOutput `pulumi:"autoDial"`
-	// Connection completion timeout (30 - 255 sec, default = 90).
-	ConnectTimeout pulumi.IntOutput `pulumi:"connectTimeout"`
-	// Dial command (this is often an ATD or ATDT command).
-	DialCmd1 pulumi.StringOutput `pulumi:"dialCmd1"`
-	// Dial command (this is often an ATD or ATDT command).
-	DialCmd2 pulumi.StringOutput `pulumi:"dialCmd2"`
-	// Dial command (this is often an ATD or ATDT command).
-	DialCmd3 pulumi.StringOutput `pulumi:"dialCmd3"`
-	// Enable/disable to dial the modem when packets are routed to the modem interface. Valid values: `enable`, `disable`.
-	DialOnDemand pulumi.StringOutput `pulumi:"dialOnDemand"`
-	// Distance of learned routes (1 - 255, default = 1).
-	Distance pulumi.IntOutput `pulumi:"distance"`
-	// Do not send CR when connected (ISP1). Valid values: `enable`, `disable`.
-	DontSendCr1 pulumi.StringOutput `pulumi:"dontSendCr1"`
-	// Do not send CR when connected (ISP2). Valid values: `enable`, `disable`.
-	DontSendCr2 pulumi.StringOutput `pulumi:"dontSendCr2"`
-	// Do not send CR when connected (ISP3). Valid values: `enable`, `disable`.
-	DontSendCr3 pulumi.StringOutput `pulumi:"dontSendCr3"`
-	// Extra initialization string to ISP 1.
-	ExtraInit1 pulumi.StringOutput `pulumi:"extraInit1"`
-	// Extra initialization string to ISP 2.
-	ExtraInit2 pulumi.StringOutput `pulumi:"extraInit2"`
-	// Extra initialization string to ISP 3.
-	ExtraInit3 pulumi.StringOutput `pulumi:"extraInit3"`
-	// Hold down timer in seconds (1 - 60 sec).
-	HolddownTimer pulumi.IntOutput `pulumi:"holddownTimer"`
-	// MODEM connection idle time (1 - 9999 min, default = 5).
-	IdleTimer pulumi.IntOutput `pulumi:"idleTimer"`
-	// Name of redundant interface.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Allow connection only to the specified Location Area Code (LAC).
-	LockdownLac pulumi.StringOutput `pulumi:"lockdownLac"`
-	// Set MODEM operation mode to redundant or standalone. Valid values: `standalone`, `redundant`.
-	Mode pulumi.StringOutput `pulumi:"mode"`
-	// AT command to set the Network name/type (AT+COPS=<mode>,[<format>,<oper>[,<AcT>]]).
-	NetworkInit pulumi.StringOutput `pulumi:"networkInit"`
-	// Password to access the specified dialup account.
-	Passwd1 pulumi.StringPtrOutput `pulumi:"passwd1"`
-	// Password to access the specified dialup account.
-	Passwd2 pulumi.StringPtrOutput `pulumi:"passwd2"`
-	// Password to access the specified dialup account.
-	Passwd3 pulumi.StringPtrOutput `pulumi:"passwd3"`
-	// Specify peer MODEM type for phone1. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-	PeerModem1 pulumi.StringOutput `pulumi:"peerModem1"`
-	// Specify peer MODEM type for phone2. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-	PeerModem2 pulumi.StringOutput `pulumi:"peerModem2"`
-	// Specify peer MODEM type for phone3. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-	PeerModem3 pulumi.StringOutput `pulumi:"peerModem3"`
-	// Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-	Phone1 pulumi.StringOutput `pulumi:"phone1"`
-	// Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-	Phone2 pulumi.StringOutput `pulumi:"phone2"`
-	// Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-	Phone3 pulumi.StringOutput `pulumi:"phone3"`
-	// AT command to set the PIN (AT+PIN=<pin>).
-	PinInit pulumi.StringOutput `pulumi:"pinInit"`
-	// Enable/disable PPP echo-request to ISP 1. Valid values: `enable`, `disable`.
-	PppEchoRequest1 pulumi.StringOutput `pulumi:"pppEchoRequest1"`
-	// Enable/disable PPP echo-request to ISP 2. Valid values: `enable`, `disable`.
-	PppEchoRequest2 pulumi.StringOutput `pulumi:"pppEchoRequest2"`
-	// Enable/disable PPP echo-request to ISP 3. Valid values: `enable`, `disable`.
-	PppEchoRequest3 pulumi.StringOutput `pulumi:"pppEchoRequest3"`
-	// Priority of learned routes (0 - 4294967295, default = 0).
-	Priority pulumi.IntOutput `pulumi:"priority"`
-	// Redial limit (1 - 10 attempts, none = redial forever). Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-	Redial pulumi.StringOutput `pulumi:"redial"`
-	// Number of dial attempts before resetting modem (0 = never reset).
-	Reset pulumi.IntOutput `pulumi:"reset"`
-	// Enable/disable Modem support (equivalent to bringing an interface up or down). Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Enable/disable traffic-check. Valid values: `enable`, `disable`.
-	TrafficCheck pulumi.StringOutput `pulumi:"trafficCheck"`
-	// User name to access the specified dialup account.
-	Username1 pulumi.StringOutput `pulumi:"username1"`
-	// User name to access the specified dialup account.
-	Username2 pulumi.StringOutput `pulumi:"username2"`
-	// User name to access the specified dialup account.
-	Username3 pulumi.StringOutput `pulumi:"username3"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enter wireless port number, 0 for default, 1 for first port, ... (0 - 4294967295, default = 0)
-	WirelessPort pulumi.IntOutput `pulumi:"wirelessPort"`
+	Action          pulumi.StringOutput    `pulumi:"action"`
+	Altmode         pulumi.StringOutput    `pulumi:"altmode"`
+	Authtype1       pulumi.StringOutput    `pulumi:"authtype1"`
+	Authtype2       pulumi.StringOutput    `pulumi:"authtype2"`
+	Authtype3       pulumi.StringOutput    `pulumi:"authtype3"`
+	AutoDial        pulumi.StringOutput    `pulumi:"autoDial"`
+	ConnectTimeout  pulumi.IntOutput       `pulumi:"connectTimeout"`
+	DialCmd1        pulumi.StringOutput    `pulumi:"dialCmd1"`
+	DialCmd2        pulumi.StringOutput    `pulumi:"dialCmd2"`
+	DialCmd3        pulumi.StringOutput    `pulumi:"dialCmd3"`
+	DialOnDemand    pulumi.StringOutput    `pulumi:"dialOnDemand"`
+	Distance        pulumi.IntOutput       `pulumi:"distance"`
+	DontSendCr1     pulumi.StringOutput    `pulumi:"dontSendCr1"`
+	DontSendCr2     pulumi.StringOutput    `pulumi:"dontSendCr2"`
+	DontSendCr3     pulumi.StringOutput    `pulumi:"dontSendCr3"`
+	ExtraInit1      pulumi.StringOutput    `pulumi:"extraInit1"`
+	ExtraInit2      pulumi.StringOutput    `pulumi:"extraInit2"`
+	ExtraInit3      pulumi.StringOutput    `pulumi:"extraInit3"`
+	HolddownTimer   pulumi.IntOutput       `pulumi:"holddownTimer"`
+	IdleTimer       pulumi.IntOutput       `pulumi:"idleTimer"`
+	Interface       pulumi.StringOutput    `pulumi:"interface"`
+	LockdownLac     pulumi.StringOutput    `pulumi:"lockdownLac"`
+	Mode            pulumi.StringOutput    `pulumi:"mode"`
+	NetworkInit     pulumi.StringOutput    `pulumi:"networkInit"`
+	Passwd1         pulumi.StringPtrOutput `pulumi:"passwd1"`
+	Passwd2         pulumi.StringPtrOutput `pulumi:"passwd2"`
+	Passwd3         pulumi.StringPtrOutput `pulumi:"passwd3"`
+	PeerModem1      pulumi.StringOutput    `pulumi:"peerModem1"`
+	PeerModem2      pulumi.StringOutput    `pulumi:"peerModem2"`
+	PeerModem3      pulumi.StringOutput    `pulumi:"peerModem3"`
+	Phone1          pulumi.StringOutput    `pulumi:"phone1"`
+	Phone2          pulumi.StringOutput    `pulumi:"phone2"`
+	Phone3          pulumi.StringOutput    `pulumi:"phone3"`
+	PinInit         pulumi.StringOutput    `pulumi:"pinInit"`
+	PppEchoRequest1 pulumi.StringOutput    `pulumi:"pppEchoRequest1"`
+	PppEchoRequest2 pulumi.StringOutput    `pulumi:"pppEchoRequest2"`
+	PppEchoRequest3 pulumi.StringOutput    `pulumi:"pppEchoRequest3"`
+	Priority        pulumi.IntOutput       `pulumi:"priority"`
+	Redial          pulumi.StringOutput    `pulumi:"redial"`
+	Reset           pulumi.IntOutput       `pulumi:"reset"`
+	Status          pulumi.StringOutput    `pulumi:"status"`
+	TrafficCheck    pulumi.StringOutput    `pulumi:"trafficCheck"`
+	Username1       pulumi.StringOutput    `pulumi:"username1"`
+	Username2       pulumi.StringOutput    `pulumi:"username2"`
+	Username3       pulumi.StringOutput    `pulumi:"username3"`
+	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	WirelessPort    pulumi.IntOutput       `pulumi:"wirelessPort"`
 }
 
 // NewSystemModem registers a new resource with the given unique name, arguments, and options.
@@ -156,197 +92,103 @@ func GetSystemModem(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemModem resources.
 type systemModemState struct {
-	// Dial up/stop MODEM. Valid values: `dial`, `stop`, `none`.
-	Action *string `pulumi:"action"`
-	// Enable/disable altmode for installations using PPP in China. Valid values: `enable`, `disable`.
-	Altmode *string `pulumi:"altmode"`
-	// Allowed authentication types for ISP 1. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-	Authtype1 *string `pulumi:"authtype1"`
-	// Allowed authentication types for ISP 2. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-	Authtype2 *string `pulumi:"authtype2"`
-	// Allowed authentication types for ISP 3. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-	Authtype3 *string `pulumi:"authtype3"`
-	// Enable/disable auto-dial after a reboot or disconnection. Valid values: `enable`, `disable`.
-	AutoDial *string `pulumi:"autoDial"`
-	// Connection completion timeout (30 - 255 sec, default = 90).
-	ConnectTimeout *int `pulumi:"connectTimeout"`
-	// Dial command (this is often an ATD or ATDT command).
-	DialCmd1 *string `pulumi:"dialCmd1"`
-	// Dial command (this is often an ATD or ATDT command).
-	DialCmd2 *string `pulumi:"dialCmd2"`
-	// Dial command (this is often an ATD or ATDT command).
-	DialCmd3 *string `pulumi:"dialCmd3"`
-	// Enable/disable to dial the modem when packets are routed to the modem interface. Valid values: `enable`, `disable`.
-	DialOnDemand *string `pulumi:"dialOnDemand"`
-	// Distance of learned routes (1 - 255, default = 1).
-	Distance *int `pulumi:"distance"`
-	// Do not send CR when connected (ISP1). Valid values: `enable`, `disable`.
-	DontSendCr1 *string `pulumi:"dontSendCr1"`
-	// Do not send CR when connected (ISP2). Valid values: `enable`, `disable`.
-	DontSendCr2 *string `pulumi:"dontSendCr2"`
-	// Do not send CR when connected (ISP3). Valid values: `enable`, `disable`.
-	DontSendCr3 *string `pulumi:"dontSendCr3"`
-	// Extra initialization string to ISP 1.
-	ExtraInit1 *string `pulumi:"extraInit1"`
-	// Extra initialization string to ISP 2.
-	ExtraInit2 *string `pulumi:"extraInit2"`
-	// Extra initialization string to ISP 3.
-	ExtraInit3 *string `pulumi:"extraInit3"`
-	// Hold down timer in seconds (1 - 60 sec).
-	HolddownTimer *int `pulumi:"holddownTimer"`
-	// MODEM connection idle time (1 - 9999 min, default = 5).
-	IdleTimer *int `pulumi:"idleTimer"`
-	// Name of redundant interface.
-	Interface *string `pulumi:"interface"`
-	// Allow connection only to the specified Location Area Code (LAC).
-	LockdownLac *string `pulumi:"lockdownLac"`
-	// Set MODEM operation mode to redundant or standalone. Valid values: `standalone`, `redundant`.
-	Mode *string `pulumi:"mode"`
-	// AT command to set the Network name/type (AT+COPS=<mode>,[<format>,<oper>[,<AcT>]]).
-	NetworkInit *string `pulumi:"networkInit"`
-	// Password to access the specified dialup account.
-	Passwd1 *string `pulumi:"passwd1"`
-	// Password to access the specified dialup account.
-	Passwd2 *string `pulumi:"passwd2"`
-	// Password to access the specified dialup account.
-	Passwd3 *string `pulumi:"passwd3"`
-	// Specify peer MODEM type for phone1. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-	PeerModem1 *string `pulumi:"peerModem1"`
-	// Specify peer MODEM type for phone2. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-	PeerModem2 *string `pulumi:"peerModem2"`
-	// Specify peer MODEM type for phone3. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-	PeerModem3 *string `pulumi:"peerModem3"`
-	// Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-	Phone1 *string `pulumi:"phone1"`
-	// Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-	Phone2 *string `pulumi:"phone2"`
-	// Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-	Phone3 *string `pulumi:"phone3"`
-	// AT command to set the PIN (AT+PIN=<pin>).
-	PinInit *string `pulumi:"pinInit"`
-	// Enable/disable PPP echo-request to ISP 1. Valid values: `enable`, `disable`.
+	Action          *string `pulumi:"action"`
+	Altmode         *string `pulumi:"altmode"`
+	Authtype1       *string `pulumi:"authtype1"`
+	Authtype2       *string `pulumi:"authtype2"`
+	Authtype3       *string `pulumi:"authtype3"`
+	AutoDial        *string `pulumi:"autoDial"`
+	ConnectTimeout  *int    `pulumi:"connectTimeout"`
+	DialCmd1        *string `pulumi:"dialCmd1"`
+	DialCmd2        *string `pulumi:"dialCmd2"`
+	DialCmd3        *string `pulumi:"dialCmd3"`
+	DialOnDemand    *string `pulumi:"dialOnDemand"`
+	Distance        *int    `pulumi:"distance"`
+	DontSendCr1     *string `pulumi:"dontSendCr1"`
+	DontSendCr2     *string `pulumi:"dontSendCr2"`
+	DontSendCr3     *string `pulumi:"dontSendCr3"`
+	ExtraInit1      *string `pulumi:"extraInit1"`
+	ExtraInit2      *string `pulumi:"extraInit2"`
+	ExtraInit3      *string `pulumi:"extraInit3"`
+	HolddownTimer   *int    `pulumi:"holddownTimer"`
+	IdleTimer       *int    `pulumi:"idleTimer"`
+	Interface       *string `pulumi:"interface"`
+	LockdownLac     *string `pulumi:"lockdownLac"`
+	Mode            *string `pulumi:"mode"`
+	NetworkInit     *string `pulumi:"networkInit"`
+	Passwd1         *string `pulumi:"passwd1"`
+	Passwd2         *string `pulumi:"passwd2"`
+	Passwd3         *string `pulumi:"passwd3"`
+	PeerModem1      *string `pulumi:"peerModem1"`
+	PeerModem2      *string `pulumi:"peerModem2"`
+	PeerModem3      *string `pulumi:"peerModem3"`
+	Phone1          *string `pulumi:"phone1"`
+	Phone2          *string `pulumi:"phone2"`
+	Phone3          *string `pulumi:"phone3"`
+	PinInit         *string `pulumi:"pinInit"`
 	PppEchoRequest1 *string `pulumi:"pppEchoRequest1"`
-	// Enable/disable PPP echo-request to ISP 2. Valid values: `enable`, `disable`.
 	PppEchoRequest2 *string `pulumi:"pppEchoRequest2"`
-	// Enable/disable PPP echo-request to ISP 3. Valid values: `enable`, `disable`.
 	PppEchoRequest3 *string `pulumi:"pppEchoRequest3"`
-	// Priority of learned routes (0 - 4294967295, default = 0).
-	Priority *int `pulumi:"priority"`
-	// Redial limit (1 - 10 attempts, none = redial forever). Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-	Redial *string `pulumi:"redial"`
-	// Number of dial attempts before resetting modem (0 = never reset).
-	Reset *int `pulumi:"reset"`
-	// Enable/disable Modem support (equivalent to bringing an interface up or down). Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Enable/disable traffic-check. Valid values: `enable`, `disable`.
-	TrafficCheck *string `pulumi:"trafficCheck"`
-	// User name to access the specified dialup account.
-	Username1 *string `pulumi:"username1"`
-	// User name to access the specified dialup account.
-	Username2 *string `pulumi:"username2"`
-	// User name to access the specified dialup account.
-	Username3 *string `pulumi:"username3"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enter wireless port number, 0 for default, 1 for first port, ... (0 - 4294967295, default = 0)
-	WirelessPort *int `pulumi:"wirelessPort"`
+	Priority        *int    `pulumi:"priority"`
+	Redial          *string `pulumi:"redial"`
+	Reset           *int    `pulumi:"reset"`
+	Status          *string `pulumi:"status"`
+	TrafficCheck    *string `pulumi:"trafficCheck"`
+	Username1       *string `pulumi:"username1"`
+	Username2       *string `pulumi:"username2"`
+	Username3       *string `pulumi:"username3"`
+	Vdomparam       *string `pulumi:"vdomparam"`
+	WirelessPort    *int    `pulumi:"wirelessPort"`
 }
 
 type SystemModemState struct {
-	// Dial up/stop MODEM. Valid values: `dial`, `stop`, `none`.
-	Action pulumi.StringPtrInput
-	// Enable/disable altmode for installations using PPP in China. Valid values: `enable`, `disable`.
-	Altmode pulumi.StringPtrInput
-	// Allowed authentication types for ISP 1. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-	Authtype1 pulumi.StringPtrInput
-	// Allowed authentication types for ISP 2. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-	Authtype2 pulumi.StringPtrInput
-	// Allowed authentication types for ISP 3. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-	Authtype3 pulumi.StringPtrInput
-	// Enable/disable auto-dial after a reboot or disconnection. Valid values: `enable`, `disable`.
-	AutoDial pulumi.StringPtrInput
-	// Connection completion timeout (30 - 255 sec, default = 90).
-	ConnectTimeout pulumi.IntPtrInput
-	// Dial command (this is often an ATD or ATDT command).
-	DialCmd1 pulumi.StringPtrInput
-	// Dial command (this is often an ATD or ATDT command).
-	DialCmd2 pulumi.StringPtrInput
-	// Dial command (this is often an ATD or ATDT command).
-	DialCmd3 pulumi.StringPtrInput
-	// Enable/disable to dial the modem when packets are routed to the modem interface. Valid values: `enable`, `disable`.
-	DialOnDemand pulumi.StringPtrInput
-	// Distance of learned routes (1 - 255, default = 1).
-	Distance pulumi.IntPtrInput
-	// Do not send CR when connected (ISP1). Valid values: `enable`, `disable`.
-	DontSendCr1 pulumi.StringPtrInput
-	// Do not send CR when connected (ISP2). Valid values: `enable`, `disable`.
-	DontSendCr2 pulumi.StringPtrInput
-	// Do not send CR when connected (ISP3). Valid values: `enable`, `disable`.
-	DontSendCr3 pulumi.StringPtrInput
-	// Extra initialization string to ISP 1.
-	ExtraInit1 pulumi.StringPtrInput
-	// Extra initialization string to ISP 2.
-	ExtraInit2 pulumi.StringPtrInput
-	// Extra initialization string to ISP 3.
-	ExtraInit3 pulumi.StringPtrInput
-	// Hold down timer in seconds (1 - 60 sec).
-	HolddownTimer pulumi.IntPtrInput
-	// MODEM connection idle time (1 - 9999 min, default = 5).
-	IdleTimer pulumi.IntPtrInput
-	// Name of redundant interface.
-	Interface pulumi.StringPtrInput
-	// Allow connection only to the specified Location Area Code (LAC).
-	LockdownLac pulumi.StringPtrInput
-	// Set MODEM operation mode to redundant or standalone. Valid values: `standalone`, `redundant`.
-	Mode pulumi.StringPtrInput
-	// AT command to set the Network name/type (AT+COPS=<mode>,[<format>,<oper>[,<AcT>]]).
-	NetworkInit pulumi.StringPtrInput
-	// Password to access the specified dialup account.
-	Passwd1 pulumi.StringPtrInput
-	// Password to access the specified dialup account.
-	Passwd2 pulumi.StringPtrInput
-	// Password to access the specified dialup account.
-	Passwd3 pulumi.StringPtrInput
-	// Specify peer MODEM type for phone1. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-	PeerModem1 pulumi.StringPtrInput
-	// Specify peer MODEM type for phone2. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-	PeerModem2 pulumi.StringPtrInput
-	// Specify peer MODEM type for phone3. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-	PeerModem3 pulumi.StringPtrInput
-	// Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-	Phone1 pulumi.StringPtrInput
-	// Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-	Phone2 pulumi.StringPtrInput
-	// Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-	Phone3 pulumi.StringPtrInput
-	// AT command to set the PIN (AT+PIN=<pin>).
-	PinInit pulumi.StringPtrInput
-	// Enable/disable PPP echo-request to ISP 1. Valid values: `enable`, `disable`.
+	Action          pulumi.StringPtrInput
+	Altmode         pulumi.StringPtrInput
+	Authtype1       pulumi.StringPtrInput
+	Authtype2       pulumi.StringPtrInput
+	Authtype3       pulumi.StringPtrInput
+	AutoDial        pulumi.StringPtrInput
+	ConnectTimeout  pulumi.IntPtrInput
+	DialCmd1        pulumi.StringPtrInput
+	DialCmd2        pulumi.StringPtrInput
+	DialCmd3        pulumi.StringPtrInput
+	DialOnDemand    pulumi.StringPtrInput
+	Distance        pulumi.IntPtrInput
+	DontSendCr1     pulumi.StringPtrInput
+	DontSendCr2     pulumi.StringPtrInput
+	DontSendCr3     pulumi.StringPtrInput
+	ExtraInit1      pulumi.StringPtrInput
+	ExtraInit2      pulumi.StringPtrInput
+	ExtraInit3      pulumi.StringPtrInput
+	HolddownTimer   pulumi.IntPtrInput
+	IdleTimer       pulumi.IntPtrInput
+	Interface       pulumi.StringPtrInput
+	LockdownLac     pulumi.StringPtrInput
+	Mode            pulumi.StringPtrInput
+	NetworkInit     pulumi.StringPtrInput
+	Passwd1         pulumi.StringPtrInput
+	Passwd2         pulumi.StringPtrInput
+	Passwd3         pulumi.StringPtrInput
+	PeerModem1      pulumi.StringPtrInput
+	PeerModem2      pulumi.StringPtrInput
+	PeerModem3      pulumi.StringPtrInput
+	Phone1          pulumi.StringPtrInput
+	Phone2          pulumi.StringPtrInput
+	Phone3          pulumi.StringPtrInput
+	PinInit         pulumi.StringPtrInput
 	PppEchoRequest1 pulumi.StringPtrInput
-	// Enable/disable PPP echo-request to ISP 2. Valid values: `enable`, `disable`.
 	PppEchoRequest2 pulumi.StringPtrInput
-	// Enable/disable PPP echo-request to ISP 3. Valid values: `enable`, `disable`.
 	PppEchoRequest3 pulumi.StringPtrInput
-	// Priority of learned routes (0 - 4294967295, default = 0).
-	Priority pulumi.IntPtrInput
-	// Redial limit (1 - 10 attempts, none = redial forever). Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-	Redial pulumi.StringPtrInput
-	// Number of dial attempts before resetting modem (0 = never reset).
-	Reset pulumi.IntPtrInput
-	// Enable/disable Modem support (equivalent to bringing an interface up or down). Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Enable/disable traffic-check. Valid values: `enable`, `disable`.
-	TrafficCheck pulumi.StringPtrInput
-	// User name to access the specified dialup account.
-	Username1 pulumi.StringPtrInput
-	// User name to access the specified dialup account.
-	Username2 pulumi.StringPtrInput
-	// User name to access the specified dialup account.
-	Username3 pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enter wireless port number, 0 for default, 1 for first port, ... (0 - 4294967295, default = 0)
-	WirelessPort pulumi.IntPtrInput
+	Priority        pulumi.IntPtrInput
+	Redial          pulumi.StringPtrInput
+	Reset           pulumi.IntPtrInput
+	Status          pulumi.StringPtrInput
+	TrafficCheck    pulumi.StringPtrInput
+	Username1       pulumi.StringPtrInput
+	Username2       pulumi.StringPtrInput
+	Username3       pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
+	WirelessPort    pulumi.IntPtrInput
 }
 
 func (SystemModemState) ElementType() reflect.Type {
@@ -354,198 +196,104 @@ func (SystemModemState) ElementType() reflect.Type {
 }
 
 type systemModemArgs struct {
-	// Dial up/stop MODEM. Valid values: `dial`, `stop`, `none`.
-	Action *string `pulumi:"action"`
-	// Enable/disable altmode for installations using PPP in China. Valid values: `enable`, `disable`.
-	Altmode *string `pulumi:"altmode"`
-	// Allowed authentication types for ISP 1. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-	Authtype1 *string `pulumi:"authtype1"`
-	// Allowed authentication types for ISP 2. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-	Authtype2 *string `pulumi:"authtype2"`
-	// Allowed authentication types for ISP 3. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-	Authtype3 *string `pulumi:"authtype3"`
-	// Enable/disable auto-dial after a reboot or disconnection. Valid values: `enable`, `disable`.
-	AutoDial *string `pulumi:"autoDial"`
-	// Connection completion timeout (30 - 255 sec, default = 90).
-	ConnectTimeout *int `pulumi:"connectTimeout"`
-	// Dial command (this is often an ATD or ATDT command).
-	DialCmd1 *string `pulumi:"dialCmd1"`
-	// Dial command (this is often an ATD or ATDT command).
-	DialCmd2 *string `pulumi:"dialCmd2"`
-	// Dial command (this is often an ATD or ATDT command).
-	DialCmd3 *string `pulumi:"dialCmd3"`
-	// Enable/disable to dial the modem when packets are routed to the modem interface. Valid values: `enable`, `disable`.
-	DialOnDemand *string `pulumi:"dialOnDemand"`
-	// Distance of learned routes (1 - 255, default = 1).
-	Distance *int `pulumi:"distance"`
-	// Do not send CR when connected (ISP1). Valid values: `enable`, `disable`.
-	DontSendCr1 *string `pulumi:"dontSendCr1"`
-	// Do not send CR when connected (ISP2). Valid values: `enable`, `disable`.
-	DontSendCr2 *string `pulumi:"dontSendCr2"`
-	// Do not send CR when connected (ISP3). Valid values: `enable`, `disable`.
-	DontSendCr3 *string `pulumi:"dontSendCr3"`
-	// Extra initialization string to ISP 1.
-	ExtraInit1 *string `pulumi:"extraInit1"`
-	// Extra initialization string to ISP 2.
-	ExtraInit2 *string `pulumi:"extraInit2"`
-	// Extra initialization string to ISP 3.
-	ExtraInit3 *string `pulumi:"extraInit3"`
-	// Hold down timer in seconds (1 - 60 sec).
-	HolddownTimer *int `pulumi:"holddownTimer"`
-	// MODEM connection idle time (1 - 9999 min, default = 5).
-	IdleTimer *int `pulumi:"idleTimer"`
-	// Name of redundant interface.
-	Interface *string `pulumi:"interface"`
-	// Allow connection only to the specified Location Area Code (LAC).
-	LockdownLac *string `pulumi:"lockdownLac"`
-	// Set MODEM operation mode to redundant or standalone. Valid values: `standalone`, `redundant`.
-	Mode *string `pulumi:"mode"`
-	// AT command to set the Network name/type (AT+COPS=<mode>,[<format>,<oper>[,<AcT>]]).
-	NetworkInit *string `pulumi:"networkInit"`
-	// Password to access the specified dialup account.
-	Passwd1 *string `pulumi:"passwd1"`
-	// Password to access the specified dialup account.
-	Passwd2 *string `pulumi:"passwd2"`
-	// Password to access the specified dialup account.
-	Passwd3 *string `pulumi:"passwd3"`
-	// Specify peer MODEM type for phone1. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-	PeerModem1 *string `pulumi:"peerModem1"`
-	// Specify peer MODEM type for phone2. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-	PeerModem2 *string `pulumi:"peerModem2"`
-	// Specify peer MODEM type for phone3. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-	PeerModem3 *string `pulumi:"peerModem3"`
-	// Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-	Phone1 *string `pulumi:"phone1"`
-	// Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-	Phone2 *string `pulumi:"phone2"`
-	// Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-	Phone3 *string `pulumi:"phone3"`
-	// AT command to set the PIN (AT+PIN=<pin>).
-	PinInit *string `pulumi:"pinInit"`
-	// Enable/disable PPP echo-request to ISP 1. Valid values: `enable`, `disable`.
+	Action          *string `pulumi:"action"`
+	Altmode         *string `pulumi:"altmode"`
+	Authtype1       *string `pulumi:"authtype1"`
+	Authtype2       *string `pulumi:"authtype2"`
+	Authtype3       *string `pulumi:"authtype3"`
+	AutoDial        *string `pulumi:"autoDial"`
+	ConnectTimeout  *int    `pulumi:"connectTimeout"`
+	DialCmd1        *string `pulumi:"dialCmd1"`
+	DialCmd2        *string `pulumi:"dialCmd2"`
+	DialCmd3        *string `pulumi:"dialCmd3"`
+	DialOnDemand    *string `pulumi:"dialOnDemand"`
+	Distance        *int    `pulumi:"distance"`
+	DontSendCr1     *string `pulumi:"dontSendCr1"`
+	DontSendCr2     *string `pulumi:"dontSendCr2"`
+	DontSendCr3     *string `pulumi:"dontSendCr3"`
+	ExtraInit1      *string `pulumi:"extraInit1"`
+	ExtraInit2      *string `pulumi:"extraInit2"`
+	ExtraInit3      *string `pulumi:"extraInit3"`
+	HolddownTimer   *int    `pulumi:"holddownTimer"`
+	IdleTimer       *int    `pulumi:"idleTimer"`
+	Interface       *string `pulumi:"interface"`
+	LockdownLac     *string `pulumi:"lockdownLac"`
+	Mode            *string `pulumi:"mode"`
+	NetworkInit     *string `pulumi:"networkInit"`
+	Passwd1         *string `pulumi:"passwd1"`
+	Passwd2         *string `pulumi:"passwd2"`
+	Passwd3         *string `pulumi:"passwd3"`
+	PeerModem1      *string `pulumi:"peerModem1"`
+	PeerModem2      *string `pulumi:"peerModem2"`
+	PeerModem3      *string `pulumi:"peerModem3"`
+	Phone1          *string `pulumi:"phone1"`
+	Phone2          *string `pulumi:"phone2"`
+	Phone3          *string `pulumi:"phone3"`
+	PinInit         *string `pulumi:"pinInit"`
 	PppEchoRequest1 *string `pulumi:"pppEchoRequest1"`
-	// Enable/disable PPP echo-request to ISP 2. Valid values: `enable`, `disable`.
 	PppEchoRequest2 *string `pulumi:"pppEchoRequest2"`
-	// Enable/disable PPP echo-request to ISP 3. Valid values: `enable`, `disable`.
 	PppEchoRequest3 *string `pulumi:"pppEchoRequest3"`
-	// Priority of learned routes (0 - 4294967295, default = 0).
-	Priority *int `pulumi:"priority"`
-	// Redial limit (1 - 10 attempts, none = redial forever). Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-	Redial *string `pulumi:"redial"`
-	// Number of dial attempts before resetting modem (0 = never reset).
-	Reset *int `pulumi:"reset"`
-	// Enable/disable Modem support (equivalent to bringing an interface up or down). Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Enable/disable traffic-check. Valid values: `enable`, `disable`.
-	TrafficCheck *string `pulumi:"trafficCheck"`
-	// User name to access the specified dialup account.
-	Username1 *string `pulumi:"username1"`
-	// User name to access the specified dialup account.
-	Username2 *string `pulumi:"username2"`
-	// User name to access the specified dialup account.
-	Username3 *string `pulumi:"username3"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enter wireless port number, 0 for default, 1 for first port, ... (0 - 4294967295, default = 0)
-	WirelessPort *int `pulumi:"wirelessPort"`
+	Priority        *int    `pulumi:"priority"`
+	Redial          *string `pulumi:"redial"`
+	Reset           *int    `pulumi:"reset"`
+	Status          *string `pulumi:"status"`
+	TrafficCheck    *string `pulumi:"trafficCheck"`
+	Username1       *string `pulumi:"username1"`
+	Username2       *string `pulumi:"username2"`
+	Username3       *string `pulumi:"username3"`
+	Vdomparam       *string `pulumi:"vdomparam"`
+	WirelessPort    *int    `pulumi:"wirelessPort"`
 }
 
 // The set of arguments for constructing a SystemModem resource.
 type SystemModemArgs struct {
-	// Dial up/stop MODEM. Valid values: `dial`, `stop`, `none`.
-	Action pulumi.StringPtrInput
-	// Enable/disable altmode for installations using PPP in China. Valid values: `enable`, `disable`.
-	Altmode pulumi.StringPtrInput
-	// Allowed authentication types for ISP 1. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-	Authtype1 pulumi.StringPtrInput
-	// Allowed authentication types for ISP 2. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-	Authtype2 pulumi.StringPtrInput
-	// Allowed authentication types for ISP 3. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-	Authtype3 pulumi.StringPtrInput
-	// Enable/disable auto-dial after a reboot or disconnection. Valid values: `enable`, `disable`.
-	AutoDial pulumi.StringPtrInput
-	// Connection completion timeout (30 - 255 sec, default = 90).
-	ConnectTimeout pulumi.IntPtrInput
-	// Dial command (this is often an ATD or ATDT command).
-	DialCmd1 pulumi.StringPtrInput
-	// Dial command (this is often an ATD or ATDT command).
-	DialCmd2 pulumi.StringPtrInput
-	// Dial command (this is often an ATD or ATDT command).
-	DialCmd3 pulumi.StringPtrInput
-	// Enable/disable to dial the modem when packets are routed to the modem interface. Valid values: `enable`, `disable`.
-	DialOnDemand pulumi.StringPtrInput
-	// Distance of learned routes (1 - 255, default = 1).
-	Distance pulumi.IntPtrInput
-	// Do not send CR when connected (ISP1). Valid values: `enable`, `disable`.
-	DontSendCr1 pulumi.StringPtrInput
-	// Do not send CR when connected (ISP2). Valid values: `enable`, `disable`.
-	DontSendCr2 pulumi.StringPtrInput
-	// Do not send CR when connected (ISP3). Valid values: `enable`, `disable`.
-	DontSendCr3 pulumi.StringPtrInput
-	// Extra initialization string to ISP 1.
-	ExtraInit1 pulumi.StringPtrInput
-	// Extra initialization string to ISP 2.
-	ExtraInit2 pulumi.StringPtrInput
-	// Extra initialization string to ISP 3.
-	ExtraInit3 pulumi.StringPtrInput
-	// Hold down timer in seconds (1 - 60 sec).
-	HolddownTimer pulumi.IntPtrInput
-	// MODEM connection idle time (1 - 9999 min, default = 5).
-	IdleTimer pulumi.IntPtrInput
-	// Name of redundant interface.
-	Interface pulumi.StringPtrInput
-	// Allow connection only to the specified Location Area Code (LAC).
-	LockdownLac pulumi.StringPtrInput
-	// Set MODEM operation mode to redundant or standalone. Valid values: `standalone`, `redundant`.
-	Mode pulumi.StringPtrInput
-	// AT command to set the Network name/type (AT+COPS=<mode>,[<format>,<oper>[,<AcT>]]).
-	NetworkInit pulumi.StringPtrInput
-	// Password to access the specified dialup account.
-	Passwd1 pulumi.StringPtrInput
-	// Password to access the specified dialup account.
-	Passwd2 pulumi.StringPtrInput
-	// Password to access the specified dialup account.
-	Passwd3 pulumi.StringPtrInput
-	// Specify peer MODEM type for phone1. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-	PeerModem1 pulumi.StringPtrInput
-	// Specify peer MODEM type for phone2. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-	PeerModem2 pulumi.StringPtrInput
-	// Specify peer MODEM type for phone3. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-	PeerModem3 pulumi.StringPtrInput
-	// Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-	Phone1 pulumi.StringPtrInput
-	// Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-	Phone2 pulumi.StringPtrInput
-	// Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-	Phone3 pulumi.StringPtrInput
-	// AT command to set the PIN (AT+PIN=<pin>).
-	PinInit pulumi.StringPtrInput
-	// Enable/disable PPP echo-request to ISP 1. Valid values: `enable`, `disable`.
+	Action          pulumi.StringPtrInput
+	Altmode         pulumi.StringPtrInput
+	Authtype1       pulumi.StringPtrInput
+	Authtype2       pulumi.StringPtrInput
+	Authtype3       pulumi.StringPtrInput
+	AutoDial        pulumi.StringPtrInput
+	ConnectTimeout  pulumi.IntPtrInput
+	DialCmd1        pulumi.StringPtrInput
+	DialCmd2        pulumi.StringPtrInput
+	DialCmd3        pulumi.StringPtrInput
+	DialOnDemand    pulumi.StringPtrInput
+	Distance        pulumi.IntPtrInput
+	DontSendCr1     pulumi.StringPtrInput
+	DontSendCr2     pulumi.StringPtrInput
+	DontSendCr3     pulumi.StringPtrInput
+	ExtraInit1      pulumi.StringPtrInput
+	ExtraInit2      pulumi.StringPtrInput
+	ExtraInit3      pulumi.StringPtrInput
+	HolddownTimer   pulumi.IntPtrInput
+	IdleTimer       pulumi.IntPtrInput
+	Interface       pulumi.StringPtrInput
+	LockdownLac     pulumi.StringPtrInput
+	Mode            pulumi.StringPtrInput
+	NetworkInit     pulumi.StringPtrInput
+	Passwd1         pulumi.StringPtrInput
+	Passwd2         pulumi.StringPtrInput
+	Passwd3         pulumi.StringPtrInput
+	PeerModem1      pulumi.StringPtrInput
+	PeerModem2      pulumi.StringPtrInput
+	PeerModem3      pulumi.StringPtrInput
+	Phone1          pulumi.StringPtrInput
+	Phone2          pulumi.StringPtrInput
+	Phone3          pulumi.StringPtrInput
+	PinInit         pulumi.StringPtrInput
 	PppEchoRequest1 pulumi.StringPtrInput
-	// Enable/disable PPP echo-request to ISP 2. Valid values: `enable`, `disable`.
 	PppEchoRequest2 pulumi.StringPtrInput
-	// Enable/disable PPP echo-request to ISP 3. Valid values: `enable`, `disable`.
 	PppEchoRequest3 pulumi.StringPtrInput
-	// Priority of learned routes (0 - 4294967295, default = 0).
-	Priority pulumi.IntPtrInput
-	// Redial limit (1 - 10 attempts, none = redial forever). Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-	Redial pulumi.StringPtrInput
-	// Number of dial attempts before resetting modem (0 = never reset).
-	Reset pulumi.IntPtrInput
-	// Enable/disable Modem support (equivalent to bringing an interface up or down). Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Enable/disable traffic-check. Valid values: `enable`, `disable`.
-	TrafficCheck pulumi.StringPtrInput
-	// User name to access the specified dialup account.
-	Username1 pulumi.StringPtrInput
-	// User name to access the specified dialup account.
-	Username2 pulumi.StringPtrInput
-	// User name to access the specified dialup account.
-	Username3 pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enter wireless port number, 0 for default, 1 for first port, ... (0 - 4294967295, default = 0)
-	WirelessPort pulumi.IntPtrInput
+	Priority        pulumi.IntPtrInput
+	Redial          pulumi.StringPtrInput
+	Reset           pulumi.IntPtrInput
+	Status          pulumi.StringPtrInput
+	TrafficCheck    pulumi.StringPtrInput
+	Username1       pulumi.StringPtrInput
+	Username2       pulumi.StringPtrInput
+	Username3       pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
+	WirelessPort    pulumi.IntPtrInput
 }
 
 func (SystemModemArgs) ElementType() reflect.Type {
@@ -574,7 +322,7 @@ func (i *SystemModem) ToSystemModemOutputWithContext(ctx context.Context) System
 // SystemModemArrayInput is an input type that accepts SystemModemArray and SystemModemArrayOutput values.
 // You can construct a concrete instance of `SystemModemArrayInput` via:
 //
-//          SystemModemArray{ SystemModemArgs{...} }
+//	SystemModemArray{ SystemModemArgs{...} }
 type SystemModemArrayInput interface {
 	pulumi.Input
 
@@ -599,7 +347,7 @@ func (i SystemModemArray) ToSystemModemArrayOutputWithContext(ctx context.Contex
 // SystemModemMapInput is an input type that accepts SystemModemMap and SystemModemMapOutput values.
 // You can construct a concrete instance of `SystemModemMapInput` via:
 //
-//          SystemModemMap{ "key": SystemModemArgs{...} }
+//	SystemModemMap{ "key": SystemModemArgs{...} }
 type SystemModemMapInput interface {
 	pulumi.Input
 
@@ -633,6 +381,194 @@ func (o SystemModemOutput) ToSystemModemOutput() SystemModemOutput {
 
 func (o SystemModemOutput) ToSystemModemOutputWithContext(ctx context.Context) SystemModemOutput {
 	return o
+}
+
+func (o SystemModemOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Altmode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.Altmode }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Authtype1() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.Authtype1 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Authtype2() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.Authtype2 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Authtype3() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.Authtype3 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) AutoDial() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.AutoDial }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) ConnectTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.IntOutput { return v.ConnectTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemModemOutput) DialCmd1() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.DialCmd1 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) DialCmd2() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.DialCmd2 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) DialCmd3() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.DialCmd3 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) DialOnDemand() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.DialOnDemand }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Distance() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.IntOutput { return v.Distance }).(pulumi.IntOutput)
+}
+
+func (o SystemModemOutput) DontSendCr1() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.DontSendCr1 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) DontSendCr2() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.DontSendCr2 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) DontSendCr3() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.DontSendCr3 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) ExtraInit1() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.ExtraInit1 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) ExtraInit2() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.ExtraInit2 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) ExtraInit3() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.ExtraInit3 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) HolddownTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.IntOutput { return v.HolddownTimer }).(pulumi.IntOutput)
+}
+
+func (o SystemModemOutput) IdleTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.IntOutput { return v.IdleTimer }).(pulumi.IntOutput)
+}
+
+func (o SystemModemOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) LockdownLac() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.LockdownLac }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) NetworkInit() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.NetworkInit }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Passwd1() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringPtrOutput { return v.Passwd1 }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemModemOutput) Passwd2() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringPtrOutput { return v.Passwd2 }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemModemOutput) Passwd3() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringPtrOutput { return v.Passwd3 }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemModemOutput) PeerModem1() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.PeerModem1 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) PeerModem2() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.PeerModem2 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) PeerModem3() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.PeerModem3 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Phone1() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.Phone1 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Phone2() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.Phone2 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Phone3() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.Phone3 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) PinInit() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.PinInit }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) PppEchoRequest1() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.PppEchoRequest1 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) PppEchoRequest2() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.PppEchoRequest2 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) PppEchoRequest3() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.PppEchoRequest3 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
+}
+
+func (o SystemModemOutput) Redial() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.Redial }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Reset() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.IntOutput { return v.Reset }).(pulumi.IntOutput)
+}
+
+func (o SystemModemOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) TrafficCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.TrafficCheck }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Username1() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.Username1 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Username2() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.Username2 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Username3() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringOutput { return v.Username3 }).(pulumi.StringOutput)
+}
+
+func (o SystemModemOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemModemOutput) WirelessPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemModem) pulumi.IntOutput { return v.WirelessPort }).(pulumi.IntOutput)
 }
 
 type SystemModemArrayOutput struct{ *pulumi.OutputState }

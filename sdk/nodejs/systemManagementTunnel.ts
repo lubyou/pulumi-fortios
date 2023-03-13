@@ -4,41 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Management tunnel configuration.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemManagementTunnel("trname", {
- *     allowCollectStatistics: "enable",
- *     allowConfigRestore: "enable",
- *     allowPushConfiguration: "enable",
- *     allowPushFirmware: "enable",
- *     authorizedManagerOnly: "enable",
- *     status: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * System ManagementTunnel can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemManagementTunnel:SystemManagementTunnel labelname SystemManagementTunnel
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemManagementTunnel:SystemManagementTunnel labelname SystemManagementTunnel
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemManagementTunnel extends pulumi.CustomResource {
     /**
      * Get an existing SystemManagementTunnel resource's state with the given name, ID, and optional extra
@@ -67,37 +32,13 @@ export class SystemManagementTunnel extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemManagementTunnel.__pulumiType;
     }
 
-    /**
-     * Enable/disable collection of run time statistics. Valid values: `enable`, `disable`.
-     */
     public readonly allowCollectStatistics!: pulumi.Output<string>;
-    /**
-     * Enable/disable allow config restore. Valid values: `enable`, `disable`.
-     */
     public readonly allowConfigRestore!: pulumi.Output<string>;
-    /**
-     * Enable/disable push configuration. Valid values: `enable`, `disable`.
-     */
     public readonly allowPushConfiguration!: pulumi.Output<string>;
-    /**
-     * Enable/disable push firmware. Valid values: `enable`, `disable`.
-     */
     public readonly allowPushFirmware!: pulumi.Output<string>;
-    /**
-     * Enable/disable restriction of authorized manager only. Valid values: `enable`, `disable`.
-     */
     public readonly authorizedManagerOnly!: pulumi.Output<string>;
-    /**
-     * Serial number.
-     */
     public readonly serialNumber!: pulumi.Output<string>;
-    /**
-     * Enable/disable FGFM tunnel. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -141,37 +82,13 @@ export class SystemManagementTunnel extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemManagementTunnel resources.
  */
 export interface SystemManagementTunnelState {
-    /**
-     * Enable/disable collection of run time statistics. Valid values: `enable`, `disable`.
-     */
     allowCollectStatistics?: pulumi.Input<string>;
-    /**
-     * Enable/disable allow config restore. Valid values: `enable`, `disable`.
-     */
     allowConfigRestore?: pulumi.Input<string>;
-    /**
-     * Enable/disable push configuration. Valid values: `enable`, `disable`.
-     */
     allowPushConfiguration?: pulumi.Input<string>;
-    /**
-     * Enable/disable push firmware. Valid values: `enable`, `disable`.
-     */
     allowPushFirmware?: pulumi.Input<string>;
-    /**
-     * Enable/disable restriction of authorized manager only. Valid values: `enable`, `disable`.
-     */
     authorizedManagerOnly?: pulumi.Input<string>;
-    /**
-     * Serial number.
-     */
     serialNumber?: pulumi.Input<string>;
-    /**
-     * Enable/disable FGFM tunnel. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -179,36 +96,12 @@ export interface SystemManagementTunnelState {
  * The set of arguments for constructing a SystemManagementTunnel resource.
  */
 export interface SystemManagementTunnelArgs {
-    /**
-     * Enable/disable collection of run time statistics. Valid values: `enable`, `disable`.
-     */
     allowCollectStatistics?: pulumi.Input<string>;
-    /**
-     * Enable/disable allow config restore. Valid values: `enable`, `disable`.
-     */
     allowConfigRestore?: pulumi.Input<string>;
-    /**
-     * Enable/disable push configuration. Valid values: `enable`, `disable`.
-     */
     allowPushConfiguration?: pulumi.Input<string>;
-    /**
-     * Enable/disable push firmware. Valid values: `enable`, `disable`.
-     */
     allowPushFirmware?: pulumi.Input<string>;
-    /**
-     * Enable/disable restriction of authorized manager only. Valid values: `enable`, `disable`.
-     */
     authorizedManagerOnly?: pulumi.Input<string>;
-    /**
-     * Serial number.
-     */
     serialNumber?: pulumi.Input<string>;
-    /**
-     * Enable/disable FGFM tunnel. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,46 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure virtual hardware switch interfaces. Applies to FortiOS Version `>= 7.0.4`.
-//
-// ## Import
-//
-// System VirtualSwitch can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVirtualSwitch:SystemVirtualSwitch labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVirtualSwitch:SystemVirtualSwitch labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemVirtualSwitch struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Physical interface name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Physical switch parent.
-	PhysicalSwitch pulumi.StringOutput `pulumi:"physicalSwitch"`
-	// Configure member ports. The structure of `port` block is documented below.
-	Ports SystemVirtualSwitchPortArrayOutput `pulumi:"ports"`
-	// Enable/disable SPAN. Valid values: `disable`, `enable`.
-	Span pulumi.StringOutput `pulumi:"span"`
-	// SPAN destination port.
-	SpanDestPort pulumi.StringOutput `pulumi:"spanDestPort"`
-	// SPAN direction. Valid values: `rx`, `tx`, `both`.
-	SpanDirection pulumi.StringOutput `pulumi:"spanDirection"`
-	// SPAN source port.
-	SpanSourcePort pulumi.StringOutput `pulumi:"spanSourcePort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// VLAN.
-	Vlan pulumi.IntOutput `pulumi:"vlan"`
+	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                `pulumi:"name"`
+	PhysicalSwitch      pulumi.StringOutput                `pulumi:"physicalSwitch"`
+	Ports               SystemVirtualSwitchPortArrayOutput `pulumi:"ports"`
+	Span                pulumi.StringOutput                `pulumi:"span"`
+	SpanDestPort        pulumi.StringOutput                `pulumi:"spanDestPort"`
+	SpanDirection       pulumi.StringOutput                `pulumi:"spanDirection"`
+	SpanSourcePort      pulumi.StringOutput                `pulumi:"spanSourcePort"`
+	Vdomparam           pulumi.StringPtrOutput             `pulumi:"vdomparam"`
+	Vlan                pulumi.IntOutput                   `pulumi:"vlan"`
 }
 
 // NewSystemVirtualSwitch registers a new resource with the given unique name, arguments, and options.
@@ -82,49 +55,29 @@ func GetSystemVirtualSwitch(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemVirtualSwitch resources.
 type systemVirtualSwitchState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Physical interface name.
-	Name *string `pulumi:"name"`
-	// Physical switch parent.
-	PhysicalSwitch *string `pulumi:"physicalSwitch"`
-	// Configure member ports. The structure of `port` block is documented below.
-	Ports []SystemVirtualSwitchPort `pulumi:"ports"`
-	// Enable/disable SPAN. Valid values: `disable`, `enable`.
-	Span *string `pulumi:"span"`
-	// SPAN destination port.
-	SpanDestPort *string `pulumi:"spanDestPort"`
-	// SPAN direction. Valid values: `rx`, `tx`, `both`.
-	SpanDirection *string `pulumi:"spanDirection"`
-	// SPAN source port.
-	SpanSourcePort *string `pulumi:"spanSourcePort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// VLAN.
-	Vlan *int `pulumi:"vlan"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Name                *string                   `pulumi:"name"`
+	PhysicalSwitch      *string                   `pulumi:"physicalSwitch"`
+	Ports               []SystemVirtualSwitchPort `pulumi:"ports"`
+	Span                *string                   `pulumi:"span"`
+	SpanDestPort        *string                   `pulumi:"spanDestPort"`
+	SpanDirection       *string                   `pulumi:"spanDirection"`
+	SpanSourcePort      *string                   `pulumi:"spanSourcePort"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
+	Vlan                *int                      `pulumi:"vlan"`
 }
 
 type SystemVirtualSwitchState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Physical interface name.
-	Name pulumi.StringPtrInput
-	// Physical switch parent.
-	PhysicalSwitch pulumi.StringPtrInput
-	// Configure member ports. The structure of `port` block is documented below.
-	Ports SystemVirtualSwitchPortArrayInput
-	// Enable/disable SPAN. Valid values: `disable`, `enable`.
-	Span pulumi.StringPtrInput
-	// SPAN destination port.
-	SpanDestPort pulumi.StringPtrInput
-	// SPAN direction. Valid values: `rx`, `tx`, `both`.
-	SpanDirection pulumi.StringPtrInput
-	// SPAN source port.
-	SpanSourcePort pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// VLAN.
-	Vlan pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	PhysicalSwitch      pulumi.StringPtrInput
+	Ports               SystemVirtualSwitchPortArrayInput
+	Span                pulumi.StringPtrInput
+	SpanDestPort        pulumi.StringPtrInput
+	SpanDirection       pulumi.StringPtrInput
+	SpanSourcePort      pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Vlan                pulumi.IntPtrInput
 }
 
 func (SystemVirtualSwitchState) ElementType() reflect.Type {
@@ -132,50 +85,30 @@ func (SystemVirtualSwitchState) ElementType() reflect.Type {
 }
 
 type systemVirtualSwitchArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Physical interface name.
-	Name *string `pulumi:"name"`
-	// Physical switch parent.
-	PhysicalSwitch *string `pulumi:"physicalSwitch"`
-	// Configure member ports. The structure of `port` block is documented below.
-	Ports []SystemVirtualSwitchPort `pulumi:"ports"`
-	// Enable/disable SPAN. Valid values: `disable`, `enable`.
-	Span *string `pulumi:"span"`
-	// SPAN destination port.
-	SpanDestPort *string `pulumi:"spanDestPort"`
-	// SPAN direction. Valid values: `rx`, `tx`, `both`.
-	SpanDirection *string `pulumi:"spanDirection"`
-	// SPAN source port.
-	SpanSourcePort *string `pulumi:"spanSourcePort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// VLAN.
-	Vlan *int `pulumi:"vlan"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Name                *string                   `pulumi:"name"`
+	PhysicalSwitch      *string                   `pulumi:"physicalSwitch"`
+	Ports               []SystemVirtualSwitchPort `pulumi:"ports"`
+	Span                *string                   `pulumi:"span"`
+	SpanDestPort        *string                   `pulumi:"spanDestPort"`
+	SpanDirection       *string                   `pulumi:"spanDirection"`
+	SpanSourcePort      *string                   `pulumi:"spanSourcePort"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
+	Vlan                *int                      `pulumi:"vlan"`
 }
 
 // The set of arguments for constructing a SystemVirtualSwitch resource.
 type SystemVirtualSwitchArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Physical interface name.
-	Name pulumi.StringPtrInput
-	// Physical switch parent.
-	PhysicalSwitch pulumi.StringPtrInput
-	// Configure member ports. The structure of `port` block is documented below.
-	Ports SystemVirtualSwitchPortArrayInput
-	// Enable/disable SPAN. Valid values: `disable`, `enable`.
-	Span pulumi.StringPtrInput
-	// SPAN destination port.
-	SpanDestPort pulumi.StringPtrInput
-	// SPAN direction. Valid values: `rx`, `tx`, `both`.
-	SpanDirection pulumi.StringPtrInput
-	// SPAN source port.
-	SpanSourcePort pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// VLAN.
-	Vlan pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	PhysicalSwitch      pulumi.StringPtrInput
+	Ports               SystemVirtualSwitchPortArrayInput
+	Span                pulumi.StringPtrInput
+	SpanDestPort        pulumi.StringPtrInput
+	SpanDirection       pulumi.StringPtrInput
+	SpanSourcePort      pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Vlan                pulumi.IntPtrInput
 }
 
 func (SystemVirtualSwitchArgs) ElementType() reflect.Type {
@@ -204,7 +137,7 @@ func (i *SystemVirtualSwitch) ToSystemVirtualSwitchOutputWithContext(ctx context
 // SystemVirtualSwitchArrayInput is an input type that accepts SystemVirtualSwitchArray and SystemVirtualSwitchArrayOutput values.
 // You can construct a concrete instance of `SystemVirtualSwitchArrayInput` via:
 //
-//          SystemVirtualSwitchArray{ SystemVirtualSwitchArgs{...} }
+//	SystemVirtualSwitchArray{ SystemVirtualSwitchArgs{...} }
 type SystemVirtualSwitchArrayInput interface {
 	pulumi.Input
 
@@ -229,7 +162,7 @@ func (i SystemVirtualSwitchArray) ToSystemVirtualSwitchArrayOutputWithContext(ct
 // SystemVirtualSwitchMapInput is an input type that accepts SystemVirtualSwitchMap and SystemVirtualSwitchMapOutput values.
 // You can construct a concrete instance of `SystemVirtualSwitchMapInput` via:
 //
-//          SystemVirtualSwitchMap{ "key": SystemVirtualSwitchArgs{...} }
+//	SystemVirtualSwitchMap{ "key": SystemVirtualSwitchArgs{...} }
 type SystemVirtualSwitchMapInput interface {
 	pulumi.Input
 
@@ -263,6 +196,46 @@ func (o SystemVirtualSwitchOutput) ToSystemVirtualSwitchOutput() SystemVirtualSw
 
 func (o SystemVirtualSwitchOutput) ToSystemVirtualSwitchOutputWithContext(ctx context.Context) SystemVirtualSwitchOutput {
 	return o
+}
+
+func (o SystemVirtualSwitchOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVirtualSwitch) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemVirtualSwitchOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVirtualSwitch) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemVirtualSwitchOutput) PhysicalSwitch() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVirtualSwitch) pulumi.StringOutput { return v.PhysicalSwitch }).(pulumi.StringOutput)
+}
+
+func (o SystemVirtualSwitchOutput) Ports() SystemVirtualSwitchPortArrayOutput {
+	return o.ApplyT(func(v *SystemVirtualSwitch) SystemVirtualSwitchPortArrayOutput { return v.Ports }).(SystemVirtualSwitchPortArrayOutput)
+}
+
+func (o SystemVirtualSwitchOutput) Span() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVirtualSwitch) pulumi.StringOutput { return v.Span }).(pulumi.StringOutput)
+}
+
+func (o SystemVirtualSwitchOutput) SpanDestPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVirtualSwitch) pulumi.StringOutput { return v.SpanDestPort }).(pulumi.StringOutput)
+}
+
+func (o SystemVirtualSwitchOutput) SpanDirection() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVirtualSwitch) pulumi.StringOutput { return v.SpanDirection }).(pulumi.StringOutput)
+}
+
+func (o SystemVirtualSwitchOutput) SpanSourcePort() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVirtualSwitch) pulumi.StringOutput { return v.SpanSourcePort }).(pulumi.StringOutput)
+}
+
+func (o SystemVirtualSwitchOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVirtualSwitch) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemVirtualSwitchOutput) Vlan() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemVirtualSwitch) pulumi.IntOutput { return v.Vlan }).(pulumi.IntOutput)
 }
 
 type SystemVirtualSwitchArrayOutput struct{ *pulumi.OutputState }

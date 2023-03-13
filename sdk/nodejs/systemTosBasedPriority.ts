@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure Type of Service (ToS) based priority table to set network traffic priorities.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemTosBasedPriority("trname", {
- *     fosid: 1,
- *     priority: "low",
- *     tos: 11,
- * });
- * ```
- *
- * ## Import
- *
- * System TosBasedPriority can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemTosBasedPriority:SystemTosBasedPriority labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemTosBasedPriority:SystemTosBasedPriority labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemTosBasedPriority extends pulumi.CustomResource {
     /**
      * Get an existing SystemTosBasedPriority resource's state with the given name, ID, and optional extra
@@ -64,21 +32,9 @@ export class SystemTosBasedPriority extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemTosBasedPriority.__pulumiType;
     }
 
-    /**
-     * Item ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * ToS based priority level to low, medium or high (these priorities match firewall traffic shaping priorities) (default = medium). Valid values: `low`, `medium`, `high`.
-     */
     public readonly priority!: pulumi.Output<string>;
-    /**
-     * Value of the ToS byte in the IP datagram header (0-15, 8: minimize delay, 4: maximize throughput, 2: maximize reliability, 1: minimize monetary cost, and 0: default service).
-     */
     public readonly tos!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -114,21 +70,9 @@ export class SystemTosBasedPriority extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemTosBasedPriority resources.
  */
 export interface SystemTosBasedPriorityState {
-    /**
-     * Item ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * ToS based priority level to low, medium or high (these priorities match firewall traffic shaping priorities) (default = medium). Valid values: `low`, `medium`, `high`.
-     */
     priority?: pulumi.Input<string>;
-    /**
-     * Value of the ToS byte in the IP datagram header (0-15, 8: minimize delay, 4: maximize throughput, 2: maximize reliability, 1: minimize monetary cost, and 0: default service).
-     */
     tos?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -136,20 +80,8 @@ export interface SystemTosBasedPriorityState {
  * The set of arguments for constructing a SystemTosBasedPriority resource.
  */
 export interface SystemTosBasedPriorityArgs {
-    /**
-     * Item ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * ToS based priority level to low, medium or high (these priorities match firewall traffic shaping priorities) (default = medium). Valid values: `low`, `medium`, `high`.
-     */
     priority?: pulumi.Input<string>;
-    /**
-     * Value of the ToS byte in the IP datagram header (0-15, 8: minimize delay, 4: maximize throughput, 2: maximize reliability, 1: minimize monetary cost, and 0: default service).
-     */
     tos?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

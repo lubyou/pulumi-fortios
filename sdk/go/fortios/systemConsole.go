@@ -10,64 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure console.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemConsole(ctx, "trname", &fortios.SystemConsoleArgs{
-// 			Baudrate: pulumi.String("9600"),
-// 			Login:    pulumi.String("enable"),
-// 			Mode:     pulumi.String("line"),
-// 			Output:   pulumi.String("more"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Console can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemConsole:SystemConsole labelname SystemConsole
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemConsole:SystemConsole labelname SystemConsole
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemConsole struct {
 	pulumi.CustomResourceState
 
-	// Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
-	Baudrate pulumi.StringOutput `pulumi:"baudrate"`
-	// Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
-	Fortiexplorer pulumi.StringOutput `pulumi:"fortiexplorer"`
-	// Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
-	Login pulumi.StringOutput `pulumi:"login"`
-	// Console mode. Valid values: `batch`, `line`.
-	Mode pulumi.StringOutput `pulumi:"mode"`
-	// Console output mode. Valid values: `standard`, `more`.
-	Output pulumi.StringOutput `pulumi:"output"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Baudrate      pulumi.StringOutput    `pulumi:"baudrate"`
+	Fortiexplorer pulumi.StringOutput    `pulumi:"fortiexplorer"`
+	Login         pulumi.StringOutput    `pulumi:"login"`
+	Mode          pulumi.StringOutput    `pulumi:"mode"`
+	Output        pulumi.StringOutput    `pulumi:"output"`
+	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemConsole registers a new resource with the given unique name, arguments, and options.
@@ -100,33 +51,21 @@ func GetSystemConsole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemConsole resources.
 type systemConsoleState struct {
-	// Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
-	Baudrate *string `pulumi:"baudrate"`
-	// Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
+	Baudrate      *string `pulumi:"baudrate"`
 	Fortiexplorer *string `pulumi:"fortiexplorer"`
-	// Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
-	Login *string `pulumi:"login"`
-	// Console mode. Valid values: `batch`, `line`.
-	Mode *string `pulumi:"mode"`
-	// Console output mode. Valid values: `standard`, `more`.
-	Output *string `pulumi:"output"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Login         *string `pulumi:"login"`
+	Mode          *string `pulumi:"mode"`
+	Output        *string `pulumi:"output"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 type SystemConsoleState struct {
-	// Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
-	Baudrate pulumi.StringPtrInput
-	// Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
+	Baudrate      pulumi.StringPtrInput
 	Fortiexplorer pulumi.StringPtrInput
-	// Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
-	Login pulumi.StringPtrInput
-	// Console mode. Valid values: `batch`, `line`.
-	Mode pulumi.StringPtrInput
-	// Console output mode. Valid values: `standard`, `more`.
-	Output pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Login         pulumi.StringPtrInput
+	Mode          pulumi.StringPtrInput
+	Output        pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (SystemConsoleState) ElementType() reflect.Type {
@@ -134,34 +73,22 @@ func (SystemConsoleState) ElementType() reflect.Type {
 }
 
 type systemConsoleArgs struct {
-	// Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
-	Baudrate *string `pulumi:"baudrate"`
-	// Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
+	Baudrate      *string `pulumi:"baudrate"`
 	Fortiexplorer *string `pulumi:"fortiexplorer"`
-	// Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
-	Login *string `pulumi:"login"`
-	// Console mode. Valid values: `batch`, `line`.
-	Mode *string `pulumi:"mode"`
-	// Console output mode. Valid values: `standard`, `more`.
-	Output *string `pulumi:"output"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Login         *string `pulumi:"login"`
+	Mode          *string `pulumi:"mode"`
+	Output        *string `pulumi:"output"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemConsole resource.
 type SystemConsoleArgs struct {
-	// Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
-	Baudrate pulumi.StringPtrInput
-	// Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
+	Baudrate      pulumi.StringPtrInput
 	Fortiexplorer pulumi.StringPtrInput
-	// Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
-	Login pulumi.StringPtrInput
-	// Console mode. Valid values: `batch`, `line`.
-	Mode pulumi.StringPtrInput
-	// Console output mode. Valid values: `standard`, `more`.
-	Output pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Login         pulumi.StringPtrInput
+	Mode          pulumi.StringPtrInput
+	Output        pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (SystemConsoleArgs) ElementType() reflect.Type {
@@ -190,7 +117,7 @@ func (i *SystemConsole) ToSystemConsoleOutputWithContext(ctx context.Context) Sy
 // SystemConsoleArrayInput is an input type that accepts SystemConsoleArray and SystemConsoleArrayOutput values.
 // You can construct a concrete instance of `SystemConsoleArrayInput` via:
 //
-//          SystemConsoleArray{ SystemConsoleArgs{...} }
+//	SystemConsoleArray{ SystemConsoleArgs{...} }
 type SystemConsoleArrayInput interface {
 	pulumi.Input
 
@@ -215,7 +142,7 @@ func (i SystemConsoleArray) ToSystemConsoleArrayOutputWithContext(ctx context.Co
 // SystemConsoleMapInput is an input type that accepts SystemConsoleMap and SystemConsoleMapOutput values.
 // You can construct a concrete instance of `SystemConsoleMapInput` via:
 //
-//          SystemConsoleMap{ "key": SystemConsoleArgs{...} }
+//	SystemConsoleMap{ "key": SystemConsoleArgs{...} }
 type SystemConsoleMapInput interface {
 	pulumi.Input
 
@@ -249,6 +176,30 @@ func (o SystemConsoleOutput) ToSystemConsoleOutput() SystemConsoleOutput {
 
 func (o SystemConsoleOutput) ToSystemConsoleOutputWithContext(ctx context.Context) SystemConsoleOutput {
 	return o
+}
+
+func (o SystemConsoleOutput) Baudrate() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemConsole) pulumi.StringOutput { return v.Baudrate }).(pulumi.StringOutput)
+}
+
+func (o SystemConsoleOutput) Fortiexplorer() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemConsole) pulumi.StringOutput { return v.Fortiexplorer }).(pulumi.StringOutput)
+}
+
+func (o SystemConsoleOutput) Login() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemConsole) pulumi.StringOutput { return v.Login }).(pulumi.StringOutput)
+}
+
+func (o SystemConsoleOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemConsole) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o SystemConsoleOutput) Output() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemConsole) pulumi.StringOutput { return v.Output }).(pulumi.StringOutput)
+}
+
+func (o SystemConsoleOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemConsole) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemConsoleArrayOutput struct{ *pulumi.OutputState }

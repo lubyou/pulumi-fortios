@@ -4,46 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure password policy for locally defined administrator passwords and IPsec VPN pre-shared keys.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemPasswordPolicy("trname", {
- *     applyTo: "admin-password",
- *     change4Characters: "disable",
- *     expireDay: 90,
- *     expireStatus: "disable",
- *     minLowerCaseLetter: 0,
- *     minNonAlphanumeric: 0,
- *     minNumber: 0,
- *     minUpperCaseLetter: 0,
- *     minimumLength: 8,
- *     reusePassword: "enable",
- *     status: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * System PasswordPolicy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemPasswordPolicy:SystemPasswordPolicy labelname SystemPasswordPolicy
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemPasswordPolicy:SystemPasswordPolicy labelname SystemPasswordPolicy
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemPasswordPolicy extends pulumi.CustomResource {
     /**
      * Get an existing SystemPasswordPolicy resource's state with the given name, ID, and optional extra
@@ -72,57 +32,18 @@ export class SystemPasswordPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemPasswordPolicy.__pulumiType;
     }
 
-    /**
-     * Apply password policy to administrator passwords or IPsec pre-shared keys or both. Separate entries with a space. Valid values: `admin-password`, `ipsec-preshared-key`.
-     */
     public readonly applyTo!: pulumi.Output<string>;
-    /**
-     * Enable/disable changing at least 4 characters for a new password (This attribute overrides reuse-password if both are enabled). Valid values: `enable`, `disable`.
-     */
     public readonly change4Characters!: pulumi.Output<string>;
-    /**
-     * Number of days after which passwords expire (1 - 999 days, default = 90).
-     */
     public readonly expireDay!: pulumi.Output<number>;
-    /**
-     * Enable/disable password expiration. Valid values: `enable`, `disable`.
-     */
     public readonly expireStatus!: pulumi.Output<string>;
-    /**
-     * Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
-     */
     public readonly minChangeCharacters!: pulumi.Output<number>;
-    /**
-     * Minimum number of lowercase characters in password (0 - 128, default = 0).
-     */
     public readonly minLowerCaseLetter!: pulumi.Output<number>;
-    /**
-     * Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
-     */
     public readonly minNonAlphanumeric!: pulumi.Output<number>;
-    /**
-     * Minimum number of numeric characters in password (0 - 128, default = 0).
-     */
     public readonly minNumber!: pulumi.Output<number>;
-    /**
-     * Minimum number of uppercase characters in password (0 - 128, default = 0).
-     */
     public readonly minUpperCaseLetter!: pulumi.Output<number>;
-    /**
-     * Minimum password length (8 - 128, default = 8).
-     */
     public readonly minimumLength!: pulumi.Output<number>;
-    /**
-     * Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
-     */
     public readonly reusePassword!: pulumi.Output<string>;
-    /**
-     * Enable/disable setting a password policy for locally defined administrator passwords and IPsec VPN pre-shared keys. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -176,57 +97,18 @@ export class SystemPasswordPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemPasswordPolicy resources.
  */
 export interface SystemPasswordPolicyState {
-    /**
-     * Apply password policy to administrator passwords or IPsec pre-shared keys or both. Separate entries with a space. Valid values: `admin-password`, `ipsec-preshared-key`.
-     */
     applyTo?: pulumi.Input<string>;
-    /**
-     * Enable/disable changing at least 4 characters for a new password (This attribute overrides reuse-password if both are enabled). Valid values: `enable`, `disable`.
-     */
     change4Characters?: pulumi.Input<string>;
-    /**
-     * Number of days after which passwords expire (1 - 999 days, default = 90).
-     */
     expireDay?: pulumi.Input<number>;
-    /**
-     * Enable/disable password expiration. Valid values: `enable`, `disable`.
-     */
     expireStatus?: pulumi.Input<string>;
-    /**
-     * Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
-     */
     minChangeCharacters?: pulumi.Input<number>;
-    /**
-     * Minimum number of lowercase characters in password (0 - 128, default = 0).
-     */
     minLowerCaseLetter?: pulumi.Input<number>;
-    /**
-     * Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
-     */
     minNonAlphanumeric?: pulumi.Input<number>;
-    /**
-     * Minimum number of numeric characters in password (0 - 128, default = 0).
-     */
     minNumber?: pulumi.Input<number>;
-    /**
-     * Minimum number of uppercase characters in password (0 - 128, default = 0).
-     */
     minUpperCaseLetter?: pulumi.Input<number>;
-    /**
-     * Minimum password length (8 - 128, default = 8).
-     */
     minimumLength?: pulumi.Input<number>;
-    /**
-     * Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
-     */
     reusePassword?: pulumi.Input<string>;
-    /**
-     * Enable/disable setting a password policy for locally defined administrator passwords and IPsec VPN pre-shared keys. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -234,56 +116,17 @@ export interface SystemPasswordPolicyState {
  * The set of arguments for constructing a SystemPasswordPolicy resource.
  */
 export interface SystemPasswordPolicyArgs {
-    /**
-     * Apply password policy to administrator passwords or IPsec pre-shared keys or both. Separate entries with a space. Valid values: `admin-password`, `ipsec-preshared-key`.
-     */
     applyTo?: pulumi.Input<string>;
-    /**
-     * Enable/disable changing at least 4 characters for a new password (This attribute overrides reuse-password if both are enabled). Valid values: `enable`, `disable`.
-     */
     change4Characters?: pulumi.Input<string>;
-    /**
-     * Number of days after which passwords expire (1 - 999 days, default = 90).
-     */
     expireDay?: pulumi.Input<number>;
-    /**
-     * Enable/disable password expiration. Valid values: `enable`, `disable`.
-     */
     expireStatus?: pulumi.Input<string>;
-    /**
-     * Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
-     */
     minChangeCharacters?: pulumi.Input<number>;
-    /**
-     * Minimum number of lowercase characters in password (0 - 128, default = 0).
-     */
     minLowerCaseLetter?: pulumi.Input<number>;
-    /**
-     * Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
-     */
     minNonAlphanumeric?: pulumi.Input<number>;
-    /**
-     * Minimum number of numeric characters in password (0 - 128, default = 0).
-     */
     minNumber?: pulumi.Input<number>;
-    /**
-     * Minimum number of uppercase characters in password (0 - 128, default = 0).
-     */
     minUpperCaseLetter?: pulumi.Input<number>;
-    /**
-     * Minimum password length (8 - 128, default = 8).
-     */
     minimumLength?: pulumi.Input<number>;
-    /**
-     * Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
-     */
     reusePassword?: pulumi.Input<string>;
-    /**
-     * Enable/disable setting a password policy for locally defined administrator passwords and IPsec VPN pre-shared keys. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

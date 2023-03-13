@@ -2,47 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure web proxy profiles.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WebProxyProfile("trname", {
- *     headerClientIp: "pass",
- *     headerFrontEndHttps: "pass",
- *     headerViaRequest: "add",
- *     headerViaResponse: "pass",
- *     headerXAuthenticatedGroups: "pass",
- *     headerXAuthenticatedUser: "pass",
- *     headerXForwardedFor: "pass",
- *     logHeaderChange: "disable",
- *     stripEncoding: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * WebProxy Profile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/webProxyProfile:WebProxyProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/webProxyProfile:WebProxyProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WebProxyProfile extends pulumi.CustomResource {
     /**
      * Get an existing WebProxyProfile resource's state with the given name, ID, and optional extra
@@ -71,61 +34,19 @@ export class WebProxyProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebProxyProfile.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Action to take on the HTTP client-IP header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     public readonly headerClientIp!: pulumi.Output<string>;
-    /**
-     * Action to take on the HTTP front-end-HTTPS header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     public readonly headerFrontEndHttps!: pulumi.Output<string>;
-    /**
-     * Action to take on the HTTP via header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     public readonly headerViaRequest!: pulumi.Output<string>;
-    /**
-     * Action to take on the HTTP via header in forwarded responses: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     public readonly headerViaResponse!: pulumi.Output<string>;
-    /**
-     * Action to take on the HTTP x-authenticated-groups header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     public readonly headerXAuthenticatedGroups!: pulumi.Output<string>;
-    /**
-     * Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     public readonly headerXAuthenticatedUser!: pulumi.Output<string>;
-    /**
-     * Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     public readonly headerXForwardedClientCert!: pulumi.Output<string>;
-    /**
-     * Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     public readonly headerXForwardedFor!: pulumi.Output<string>;
-    /**
-     * Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
-     */
     public readonly headers!: pulumi.Output<outputs.WebProxyProfileHeader[] | undefined>;
-    /**
-     * Enable/disable logging HTTP header changes. Valid values: `enable`, `disable`.
-     */
     public readonly logHeaderChange!: pulumi.Output<string>;
-    /**
-     * Address name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable stripping unsupported encoding from the request header. Valid values: `enable`, `disable`.
-     */
     public readonly stripEncoding!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -181,61 +102,19 @@ export class WebProxyProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WebProxyProfile resources.
  */
 export interface WebProxyProfileState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP client-IP header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerClientIp?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP front-end-HTTPS header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerFrontEndHttps?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP via header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerViaRequest?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP via header in forwarded responses: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerViaResponse?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP x-authenticated-groups header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerXAuthenticatedGroups?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerXAuthenticatedUser?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerXForwardedClientCert?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerXForwardedFor?: pulumi.Input<string>;
-    /**
-     * Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
-     */
     headers?: pulumi.Input<pulumi.Input<inputs.WebProxyProfileHeader>[]>;
-    /**
-     * Enable/disable logging HTTP header changes. Valid values: `enable`, `disable`.
-     */
     logHeaderChange?: pulumi.Input<string>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable stripping unsupported encoding from the request header. Valid values: `enable`, `disable`.
-     */
     stripEncoding?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -243,60 +122,18 @@ export interface WebProxyProfileState {
  * The set of arguments for constructing a WebProxyProfile resource.
  */
 export interface WebProxyProfileArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP client-IP header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerClientIp?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP front-end-HTTPS header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerFrontEndHttps?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP via header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerViaRequest?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP via header in forwarded responses: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerViaResponse?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP x-authenticated-groups header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerXAuthenticatedGroups?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerXAuthenticatedUser?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerXForwardedClientCert?: pulumi.Input<string>;
-    /**
-     * Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerXForwardedFor?: pulumi.Input<string>;
-    /**
-     * Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
-     */
     headers?: pulumi.Input<pulumi.Input<inputs.WebProxyProfileHeader>[]>;
-    /**
-     * Enable/disable logging HTTP header changes. Valid values: `enable`, `disable`.
-     */
     logHeaderChange?: pulumi.Input<string>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable stripping unsupported encoding from the request header. Valid values: `enable`, `disable`.
-     */
     stripEncoding?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -7,278 +7,44 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure firewall policies of FortiOS.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `FirewallPolicy`, we recommend that you use the new resource.
-//
-// ## Example Usage
-// ### 1
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallSecurityPolicy1(ctx, "test1", &fortios.FirewallSecurityPolicy1Args{
-// 			Action:          pulumi.String("accept"),
-// 			ApplicationList: pulumi.String("block-high-risk"),
-// 			AvProfile:       pulumi.String("wifi-default"),
-// 			CapturePacket:   pulumi.String("enable"),
-// 			Comments:        pulumi.String("security policy"),
-// 			Devices: pulumi.StringArray{
-// 				pulumi.String("android-phone"),
-// 				pulumi.String("android-tablet"),
-// 			},
-// 			DnsfilterProfile: pulumi.String("default"),
-// 			Dstaddrs: pulumi.StringArray{
-// 				pulumi.String("swscan.apple.com"),
-// 				pulumi.String("update.microsoft.com"),
-// 			},
-// 			Dstintfs: pulumi.StringArray{
-// 				pulumi.String("port1"),
-// 			},
-// 			Groups: pulumi.StringArray{
-// 				pulumi.String("Guest-group"),
-// 				pulumi.String("SSO_Guest_Users"),
-// 			},
-// 			InternetService:    pulumi.String("disable"),
-// 			InternetServiceIds: pulumi.IntArray{},
-// 			Ippool:             pulumi.String("enable"),
-// 			IpsSensor:          pulumi.String("protect_client"),
-// 			Logtraffic:         pulumi.String("all"),
-// 			LogtrafficStart:    pulumi.String("enable"),
-// 			Nat:                pulumi.String("enable"),
-// 			Poolnames: pulumi.StringArray{
-// 				pulumi.String("rewq"),
-// 				pulumi.String("rbb"),
-// 			},
-// 			Schedule: pulumi.String("always"),
-// 			Services: pulumi.StringArray{
-// 				pulumi.String("ALL_ICMP"),
-// 				pulumi.String("FTP"),
-// 			},
-// 			Srcaddrs: pulumi.StringArray{
-// 				pulumi.String("swscan.apple.com"),
-// 				pulumi.String("google-play"),
-// 			},
-// 			Srcintfs: pulumi.StringArray{
-// 				pulumi.String("port2"),
-// 			},
-// 			SslSshProfile:    pulumi.String("certificate-inspection"),
-// 			UtmStatus:        pulumi.String("enable"),
-// 			WebfilterProfile: pulumi.String("monitor-all"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### 2
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallSecurityPolicy1(ctx, "test2", &fortios.FirewallSecurityPolicy1Args{
-// 			Action:          pulumi.String("accept"),
-// 			ApplicationList: pulumi.String("block-high-risk"),
-// 			AvProfile:       pulumi.String("wifi-default"),
-// 			CapturePacket:   pulumi.String("enable"),
-// 			Comments:        pulumi.String("security policy"),
-// 			Devices: pulumi.StringArray{
-// 				pulumi.String("android-phone"),
-// 				pulumi.String("android-tablet"),
-// 			},
-// 			DnsfilterProfile: pulumi.String("default"),
-// 			Dstaddrs: pulumi.StringArray{
-// 				pulumi.String("swscan.apple.com"),
-// 				pulumi.String("update.microsoft.com"),
-// 			},
-// 			Dstintfs: pulumi.StringArray{
-// 				pulumi.String("port1"),
-// 			},
-// 			Groups: pulumi.StringArray{
-// 				pulumi.String("Guest-group"),
-// 				pulumi.String("SSO_Guest_Users"),
-// 			},
-// 			InternetService: pulumi.String("enable"),
-// 			InternetServiceIds: pulumi.IntArray{
-// 				pulumi.Int(917520),
-// 				pulumi.Int(6881402),
-// 				pulumi.Int(393219),
-// 			},
-// 			Ippool:          pulumi.String("enable"),
-// 			IpsSensor:       pulumi.String("protect_client"),
-// 			Logtraffic:      pulumi.String("all"),
-// 			LogtrafficStart: pulumi.String("enable"),
-// 			Nat:             pulumi.String("enable"),
-// 			Poolnames: pulumi.StringArray{
-// 				pulumi.String("rewq"),
-// 				pulumi.String("rbb"),
-// 			},
-// 			Schedule: pulumi.String("always"),
-// 			Services: pulumi.StringArray{},
-// 			Srcaddrs: pulumi.StringArray{
-// 				pulumi.String("swscan.apple.com"),
-// 				pulumi.String("google-play"),
-// 			},
-// 			Srcintfs: pulumi.StringArray{
-// 				pulumi.String("port2"),
-// 			},
-// 			SslSshProfile:    pulumi.String("certificate-inspection"),
-// 			UtmStatus:        pulumi.String("enable"),
-// 			WebfilterProfile: pulumi.String("monitor-all"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### 3
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallSecurityPolicy1(ctx, "test1", &fortios.FirewallSecurityPolicy1Args{
-// 			Action:           pulumi.String("accept"),
-// 			ApplicationList:  pulumi.String("block-high-risk"),
-// 			AvProfile:        pulumi.String("wifi-default"),
-// 			CapturePacket:    pulumi.String("enable"),
-// 			Comments:         pulumi.String("security policy"),
-// 			Devices:          pulumi.StringArray{},
-// 			DnsfilterProfile: pulumi.String("default"),
-// 			Dstaddrs:         pulumi.StringArray{},
-// 			Dstintfs: pulumi.StringArray{
-// 				pulumi.String("port4"),
-// 			},
-// 			Groups: pulumi.StringArray{
-// 				pulumi.String("Guest-group"),
-// 				pulumi.String("SSO_Guest_Users"),
-// 			},
-// 			InternetService: pulumi.String("enable"),
-// 			InternetServiceIds: pulumi.IntArray{
-// 				pulumi.Int(5242880),
-// 			},
-// 			InternetServiceSrc: pulumi.String("enable"),
-// 			InternetServiceSrcIds: pulumi.IntArray{
-// 				pulumi.Int(65643),
-// 			},
-// 			Ippool:                 pulumi.String("disable"),
-// 			IpsSensor:              pulumi.String("protect_client"),
-// 			Logtraffic:             pulumi.String("all"),
-// 			LogtrafficStart:        pulumi.String("enable"),
-// 			Nat:                    pulumi.String("enable"),
-// 			Poolnames:              pulumi.StringArray{},
-// 			ProfileProtocolOptions: pulumi.String("default"),
-// 			Schedule:               pulumi.String("always"),
-// 			Services:               pulumi.StringArray{},
-// 			Srcaddrs:               pulumi.StringArray{},
-// 			Srcintfs: pulumi.StringArray{
-// 				pulumi.String("port3"),
-// 			},
-// 			SslSshProfile: pulumi.String("certificate-inspection"),
-// 			Status:        pulumi.String("enable"),
-// 			Users: pulumi.StringArray{
-// 				pulumi.String("guest"),
-// 			},
-// 			UtmStatus:        pulumi.String("enable"),
-// 			WebfilterProfile: pulumi.String("monitor-all"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FirewallSecurityPolicy1 struct {
 	pulumi.CustomResourceState
 
-	// Policy action.
-	Action pulumi.StringOutput `pulumi:"action"`
-	// Name of an existing Application list.
-	ApplicationList pulumi.StringOutput `pulumi:"applicationList"`
-	// Name of an existing Antivirus profile.
-	AvProfile pulumi.StringOutput `pulumi:"avProfile"`
-	// Enable/disable capture packets.
-	CapturePacket pulumi.StringOutput `pulumi:"capturePacket"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Device type category.
-	Devices pulumi.StringArrayOutput `pulumi:"devices"`
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile pulumi.StringOutput `pulumi:"dnsfilterProfile"`
-	// Destination address and address group names.
-	Dstaddrs pulumi.StringArrayOutput `pulumi:"dstaddrs"`
-	// Outgoing (egress) interface.
-	Dstintfs pulumi.StringArrayOutput `pulumi:"dstintfs"`
-	// Names of user groups that can authenticate with this policy.
-	Groups pulumi.StringArrayOutput `pulumi:"groups"`
-	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.
-	InternetService pulumi.StringOutput `pulumi:"internetService"`
-	// Internet Service ID.
-	InternetServiceIds pulumi.IntArrayOutput `pulumi:"internetServiceIds"`
-	// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used.
-	InternetServiceSrc pulumi.StringOutput `pulumi:"internetServiceSrc"`
-	// Internet Service source ID.
-	InternetServiceSrcIds pulumi.IntArrayOutput `pulumi:"internetServiceSrcIds"`
-	// Enable to use IP Pools for source NAT.
-	Ippool pulumi.StringOutput `pulumi:"ippool"`
-	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringOutput `pulumi:"ipsSensor"`
-	// Enable or disable logging. Log all sessions or security profile sessions.
-	Logtraffic pulumi.StringOutput `pulumi:"logtraffic"`
-	// Record logs when a session starts and ends.
-	LogtrafficStart pulumi.StringOutput `pulumi:"logtrafficStart"`
-	// Policy name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable source NAT.
-	Nat pulumi.StringOutput `pulumi:"nat"`
-	// IP Pool names.
-	Poolnames pulumi.StringArrayOutput `pulumi:"poolnames"`
-	// Name of an existing Protocol options profile.
-	ProfileProtocolOptions pulumi.StringOutput `pulumi:"profileProtocolOptions"`
-	// Schedule name.
-	Schedule pulumi.StringOutput `pulumi:"schedule"`
-	// Service and service group names..
-	Services pulumi.StringArrayOutput `pulumi:"services"`
-	// Source address and address group names.
-	Srcaddrs pulumi.StringArrayOutput `pulumi:"srcaddrs"`
-	// Incoming (ingress) interface.
-	Srcintfs pulumi.StringArrayOutput `pulumi:"srcintfs"`
-	// Name of an existing SSL SSH profile.
-	SslSshProfile pulumi.StringOutput `pulumi:"sslSshProfile"`
-	// Enable or disable this policy.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Names of individual users that can authenticate with this policy.
-	Users pulumi.StringArrayOutput `pulumi:"users"`
-	// Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy.
-	UtmStatus pulumi.StringOutput `pulumi:"utmStatus"`
-	// Name of an existing Web filter profile.
-	WebfilterProfile pulumi.StringOutput `pulumi:"webfilterProfile"`
+	Action                 pulumi.StringOutput      `pulumi:"action"`
+	ApplicationList        pulumi.StringOutput      `pulumi:"applicationList"`
+	AvProfile              pulumi.StringOutput      `pulumi:"avProfile"`
+	CapturePacket          pulumi.StringOutput      `pulumi:"capturePacket"`
+	Comments               pulumi.StringPtrOutput   `pulumi:"comments"`
+	Devices                pulumi.StringArrayOutput `pulumi:"devices"`
+	DnsfilterProfile       pulumi.StringOutput      `pulumi:"dnsfilterProfile"`
+	Dstaddrs               pulumi.StringArrayOutput `pulumi:"dstaddrs"`
+	Dstintfs               pulumi.StringArrayOutput `pulumi:"dstintfs"`
+	Groups                 pulumi.StringArrayOutput `pulumi:"groups"`
+	InternetService        pulumi.StringOutput      `pulumi:"internetService"`
+	InternetServiceIds     pulumi.IntArrayOutput    `pulumi:"internetServiceIds"`
+	InternetServiceSrc     pulumi.StringOutput      `pulumi:"internetServiceSrc"`
+	InternetServiceSrcIds  pulumi.IntArrayOutput    `pulumi:"internetServiceSrcIds"`
+	Ippool                 pulumi.StringOutput      `pulumi:"ippool"`
+	IpsSensor              pulumi.StringOutput      `pulumi:"ipsSensor"`
+	Logtraffic             pulumi.StringOutput      `pulumi:"logtraffic"`
+	LogtrafficStart        pulumi.StringOutput      `pulumi:"logtrafficStart"`
+	Name                   pulumi.StringOutput      `pulumi:"name"`
+	Nat                    pulumi.StringOutput      `pulumi:"nat"`
+	Poolnames              pulumi.StringArrayOutput `pulumi:"poolnames"`
+	ProfileProtocolOptions pulumi.StringOutput      `pulumi:"profileProtocolOptions"`
+	Schedule               pulumi.StringOutput      `pulumi:"schedule"`
+	Services               pulumi.StringArrayOutput `pulumi:"services"`
+	Srcaddrs               pulumi.StringArrayOutput `pulumi:"srcaddrs"`
+	Srcintfs               pulumi.StringArrayOutput `pulumi:"srcintfs"`
+	SslSshProfile          pulumi.StringOutput      `pulumi:"sslSshProfile"`
+	Status                 pulumi.StringOutput      `pulumi:"status"`
+	Users                  pulumi.StringArrayOutput `pulumi:"users"`
+	UtmStatus              pulumi.StringOutput      `pulumi:"utmStatus"`
+	WebfilterProfile       pulumi.StringOutput      `pulumi:"webfilterProfile"`
 }
 
 // NewFirewallSecurityPolicy1 registers a new resource with the given unique name, arguments, and options.
@@ -332,133 +98,71 @@ func GetFirewallSecurityPolicy1(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallSecurityPolicy1 resources.
 type firewallSecurityPolicy1State struct {
-	// Policy action.
-	Action *string `pulumi:"action"`
-	// Name of an existing Application list.
-	ApplicationList *string `pulumi:"applicationList"`
-	// Name of an existing Antivirus profile.
-	AvProfile *string `pulumi:"avProfile"`
-	// Enable/disable capture packets.
-	CapturePacket *string `pulumi:"capturePacket"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Device type category.
-	Devices []string `pulumi:"devices"`
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
-	// Destination address and address group names.
-	Dstaddrs []string `pulumi:"dstaddrs"`
-	// Outgoing (egress) interface.
-	Dstintfs []string `pulumi:"dstintfs"`
-	// Names of user groups that can authenticate with this policy.
-	Groups []string `pulumi:"groups"`
-	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.
-	InternetService *string `pulumi:"internetService"`
-	// Internet Service ID.
-	InternetServiceIds []int `pulumi:"internetServiceIds"`
-	// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used.
-	InternetServiceSrc *string `pulumi:"internetServiceSrc"`
-	// Internet Service source ID.
-	InternetServiceSrcIds []int `pulumi:"internetServiceSrcIds"`
-	// Enable to use IP Pools for source NAT.
-	Ippool *string `pulumi:"ippool"`
-	// Name of an existing IPS sensor.
-	IpsSensor *string `pulumi:"ipsSensor"`
-	// Enable or disable logging. Log all sessions or security profile sessions.
-	Logtraffic *string `pulumi:"logtraffic"`
-	// Record logs when a session starts and ends.
-	LogtrafficStart *string `pulumi:"logtrafficStart"`
-	// Policy name.
-	Name *string `pulumi:"name"`
-	// Enable/disable source NAT.
-	Nat *string `pulumi:"nat"`
-	// IP Pool names.
-	Poolnames []string `pulumi:"poolnames"`
-	// Name of an existing Protocol options profile.
-	ProfileProtocolOptions *string `pulumi:"profileProtocolOptions"`
-	// Schedule name.
-	Schedule *string `pulumi:"schedule"`
-	// Service and service group names..
-	Services []string `pulumi:"services"`
-	// Source address and address group names.
-	Srcaddrs []string `pulumi:"srcaddrs"`
-	// Incoming (ingress) interface.
-	Srcintfs []string `pulumi:"srcintfs"`
-	// Name of an existing SSL SSH profile.
-	SslSshProfile *string `pulumi:"sslSshProfile"`
-	// Enable or disable this policy.
-	Status *string `pulumi:"status"`
-	// Names of individual users that can authenticate with this policy.
-	Users []string `pulumi:"users"`
-	// Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy.
-	UtmStatus *string `pulumi:"utmStatus"`
-	// Name of an existing Web filter profile.
-	WebfilterProfile *string `pulumi:"webfilterProfile"`
+	Action                 *string  `pulumi:"action"`
+	ApplicationList        *string  `pulumi:"applicationList"`
+	AvProfile              *string  `pulumi:"avProfile"`
+	CapturePacket          *string  `pulumi:"capturePacket"`
+	Comments               *string  `pulumi:"comments"`
+	Devices                []string `pulumi:"devices"`
+	DnsfilterProfile       *string  `pulumi:"dnsfilterProfile"`
+	Dstaddrs               []string `pulumi:"dstaddrs"`
+	Dstintfs               []string `pulumi:"dstintfs"`
+	Groups                 []string `pulumi:"groups"`
+	InternetService        *string  `pulumi:"internetService"`
+	InternetServiceIds     []int    `pulumi:"internetServiceIds"`
+	InternetServiceSrc     *string  `pulumi:"internetServiceSrc"`
+	InternetServiceSrcIds  []int    `pulumi:"internetServiceSrcIds"`
+	Ippool                 *string  `pulumi:"ippool"`
+	IpsSensor              *string  `pulumi:"ipsSensor"`
+	Logtraffic             *string  `pulumi:"logtraffic"`
+	LogtrafficStart        *string  `pulumi:"logtrafficStart"`
+	Name                   *string  `pulumi:"name"`
+	Nat                    *string  `pulumi:"nat"`
+	Poolnames              []string `pulumi:"poolnames"`
+	ProfileProtocolOptions *string  `pulumi:"profileProtocolOptions"`
+	Schedule               *string  `pulumi:"schedule"`
+	Services               []string `pulumi:"services"`
+	Srcaddrs               []string `pulumi:"srcaddrs"`
+	Srcintfs               []string `pulumi:"srcintfs"`
+	SslSshProfile          *string  `pulumi:"sslSshProfile"`
+	Status                 *string  `pulumi:"status"`
+	Users                  []string `pulumi:"users"`
+	UtmStatus              *string  `pulumi:"utmStatus"`
+	WebfilterProfile       *string  `pulumi:"webfilterProfile"`
 }
 
 type FirewallSecurityPolicy1State struct {
-	// Policy action.
-	Action pulumi.StringPtrInput
-	// Name of an existing Application list.
-	ApplicationList pulumi.StringPtrInput
-	// Name of an existing Antivirus profile.
-	AvProfile pulumi.StringPtrInput
-	// Enable/disable capture packets.
-	CapturePacket pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Device type category.
-	Devices pulumi.StringArrayInput
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile pulumi.StringPtrInput
-	// Destination address and address group names.
-	Dstaddrs pulumi.StringArrayInput
-	// Outgoing (egress) interface.
-	Dstintfs pulumi.StringArrayInput
-	// Names of user groups that can authenticate with this policy.
-	Groups pulumi.StringArrayInput
-	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.
-	InternetService pulumi.StringPtrInput
-	// Internet Service ID.
-	InternetServiceIds pulumi.IntArrayInput
-	// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used.
-	InternetServiceSrc pulumi.StringPtrInput
-	// Internet Service source ID.
-	InternetServiceSrcIds pulumi.IntArrayInput
-	// Enable to use IP Pools for source NAT.
-	Ippool pulumi.StringPtrInput
-	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringPtrInput
-	// Enable or disable logging. Log all sessions or security profile sessions.
-	Logtraffic pulumi.StringPtrInput
-	// Record logs when a session starts and ends.
-	LogtrafficStart pulumi.StringPtrInput
-	// Policy name.
-	Name pulumi.StringPtrInput
-	// Enable/disable source NAT.
-	Nat pulumi.StringPtrInput
-	// IP Pool names.
-	Poolnames pulumi.StringArrayInput
-	// Name of an existing Protocol options profile.
+	Action                 pulumi.StringPtrInput
+	ApplicationList        pulumi.StringPtrInput
+	AvProfile              pulumi.StringPtrInput
+	CapturePacket          pulumi.StringPtrInput
+	Comments               pulumi.StringPtrInput
+	Devices                pulumi.StringArrayInput
+	DnsfilterProfile       pulumi.StringPtrInput
+	Dstaddrs               pulumi.StringArrayInput
+	Dstintfs               pulumi.StringArrayInput
+	Groups                 pulumi.StringArrayInput
+	InternetService        pulumi.StringPtrInput
+	InternetServiceIds     pulumi.IntArrayInput
+	InternetServiceSrc     pulumi.StringPtrInput
+	InternetServiceSrcIds  pulumi.IntArrayInput
+	Ippool                 pulumi.StringPtrInput
+	IpsSensor              pulumi.StringPtrInput
+	Logtraffic             pulumi.StringPtrInput
+	LogtrafficStart        pulumi.StringPtrInput
+	Name                   pulumi.StringPtrInput
+	Nat                    pulumi.StringPtrInput
+	Poolnames              pulumi.StringArrayInput
 	ProfileProtocolOptions pulumi.StringPtrInput
-	// Schedule name.
-	Schedule pulumi.StringPtrInput
-	// Service and service group names..
-	Services pulumi.StringArrayInput
-	// Source address and address group names.
-	Srcaddrs pulumi.StringArrayInput
-	// Incoming (ingress) interface.
-	Srcintfs pulumi.StringArrayInput
-	// Name of an existing SSL SSH profile.
-	SslSshProfile pulumi.StringPtrInput
-	// Enable or disable this policy.
-	Status pulumi.StringPtrInput
-	// Names of individual users that can authenticate with this policy.
-	Users pulumi.StringArrayInput
-	// Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy.
-	UtmStatus pulumi.StringPtrInput
-	// Name of an existing Web filter profile.
-	WebfilterProfile pulumi.StringPtrInput
+	Schedule               pulumi.StringPtrInput
+	Services               pulumi.StringArrayInput
+	Srcaddrs               pulumi.StringArrayInput
+	Srcintfs               pulumi.StringArrayInput
+	SslSshProfile          pulumi.StringPtrInput
+	Status                 pulumi.StringPtrInput
+	Users                  pulumi.StringArrayInput
+	UtmStatus              pulumi.StringPtrInput
+	WebfilterProfile       pulumi.StringPtrInput
 }
 
 func (FirewallSecurityPolicy1State) ElementType() reflect.Type {
@@ -466,134 +170,72 @@ func (FirewallSecurityPolicy1State) ElementType() reflect.Type {
 }
 
 type firewallSecurityPolicy1Args struct {
-	// Policy action.
-	Action string `pulumi:"action"`
-	// Name of an existing Application list.
-	ApplicationList *string `pulumi:"applicationList"`
-	// Name of an existing Antivirus profile.
-	AvProfile *string `pulumi:"avProfile"`
-	// Enable/disable capture packets.
-	CapturePacket *string `pulumi:"capturePacket"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Device type category.
-	Devices []string `pulumi:"devices"`
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
-	// Destination address and address group names.
-	Dstaddrs []string `pulumi:"dstaddrs"`
-	// Outgoing (egress) interface.
-	Dstintfs []string `pulumi:"dstintfs"`
-	// Names of user groups that can authenticate with this policy.
-	Groups []string `pulumi:"groups"`
-	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.
-	InternetService *string `pulumi:"internetService"`
-	// Internet Service ID.
-	InternetServiceIds []int `pulumi:"internetServiceIds"`
-	// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used.
-	InternetServiceSrc *string `pulumi:"internetServiceSrc"`
-	// Internet Service source ID.
-	InternetServiceSrcIds []int `pulumi:"internetServiceSrcIds"`
-	// Enable to use IP Pools for source NAT.
-	Ippool *string `pulumi:"ippool"`
-	// Name of an existing IPS sensor.
-	IpsSensor *string `pulumi:"ipsSensor"`
-	// Enable or disable logging. Log all sessions or security profile sessions.
-	Logtraffic *string `pulumi:"logtraffic"`
-	// Record logs when a session starts and ends.
-	LogtrafficStart *string `pulumi:"logtrafficStart"`
-	// Policy name.
-	Name *string `pulumi:"name"`
-	// Enable/disable source NAT.
-	Nat *string `pulumi:"nat"`
-	// IP Pool names.
-	Poolnames []string `pulumi:"poolnames"`
-	// Name of an existing Protocol options profile.
-	ProfileProtocolOptions *string `pulumi:"profileProtocolOptions"`
-	// Schedule name.
-	Schedule string `pulumi:"schedule"`
-	// Service and service group names..
-	Services []string `pulumi:"services"`
-	// Source address and address group names.
-	Srcaddrs []string `pulumi:"srcaddrs"`
-	// Incoming (ingress) interface.
-	Srcintfs []string `pulumi:"srcintfs"`
-	// Name of an existing SSL SSH profile.
-	SslSshProfile *string `pulumi:"sslSshProfile"`
-	// Enable or disable this policy.
-	Status *string `pulumi:"status"`
-	// Names of individual users that can authenticate with this policy.
-	Users []string `pulumi:"users"`
-	// Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy.
-	UtmStatus *string `pulumi:"utmStatus"`
-	// Name of an existing Web filter profile.
-	WebfilterProfile *string `pulumi:"webfilterProfile"`
+	Action                 string   `pulumi:"action"`
+	ApplicationList        *string  `pulumi:"applicationList"`
+	AvProfile              *string  `pulumi:"avProfile"`
+	CapturePacket          *string  `pulumi:"capturePacket"`
+	Comments               *string  `pulumi:"comments"`
+	Devices                []string `pulumi:"devices"`
+	DnsfilterProfile       *string  `pulumi:"dnsfilterProfile"`
+	Dstaddrs               []string `pulumi:"dstaddrs"`
+	Dstintfs               []string `pulumi:"dstintfs"`
+	Groups                 []string `pulumi:"groups"`
+	InternetService        *string  `pulumi:"internetService"`
+	InternetServiceIds     []int    `pulumi:"internetServiceIds"`
+	InternetServiceSrc     *string  `pulumi:"internetServiceSrc"`
+	InternetServiceSrcIds  []int    `pulumi:"internetServiceSrcIds"`
+	Ippool                 *string  `pulumi:"ippool"`
+	IpsSensor              *string  `pulumi:"ipsSensor"`
+	Logtraffic             *string  `pulumi:"logtraffic"`
+	LogtrafficStart        *string  `pulumi:"logtrafficStart"`
+	Name                   *string  `pulumi:"name"`
+	Nat                    *string  `pulumi:"nat"`
+	Poolnames              []string `pulumi:"poolnames"`
+	ProfileProtocolOptions *string  `pulumi:"profileProtocolOptions"`
+	Schedule               string   `pulumi:"schedule"`
+	Services               []string `pulumi:"services"`
+	Srcaddrs               []string `pulumi:"srcaddrs"`
+	Srcintfs               []string `pulumi:"srcintfs"`
+	SslSshProfile          *string  `pulumi:"sslSshProfile"`
+	Status                 *string  `pulumi:"status"`
+	Users                  []string `pulumi:"users"`
+	UtmStatus              *string  `pulumi:"utmStatus"`
+	WebfilterProfile       *string  `pulumi:"webfilterProfile"`
 }
 
 // The set of arguments for constructing a FirewallSecurityPolicy1 resource.
 type FirewallSecurityPolicy1Args struct {
-	// Policy action.
-	Action pulumi.StringInput
-	// Name of an existing Application list.
-	ApplicationList pulumi.StringPtrInput
-	// Name of an existing Antivirus profile.
-	AvProfile pulumi.StringPtrInput
-	// Enable/disable capture packets.
-	CapturePacket pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Device type category.
-	Devices pulumi.StringArrayInput
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile pulumi.StringPtrInput
-	// Destination address and address group names.
-	Dstaddrs pulumi.StringArrayInput
-	// Outgoing (egress) interface.
-	Dstintfs pulumi.StringArrayInput
-	// Names of user groups that can authenticate with this policy.
-	Groups pulumi.StringArrayInput
-	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.
-	InternetService pulumi.StringPtrInput
-	// Internet Service ID.
-	InternetServiceIds pulumi.IntArrayInput
-	// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used.
-	InternetServiceSrc pulumi.StringPtrInput
-	// Internet Service source ID.
-	InternetServiceSrcIds pulumi.IntArrayInput
-	// Enable to use IP Pools for source NAT.
-	Ippool pulumi.StringPtrInput
-	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringPtrInput
-	// Enable or disable logging. Log all sessions or security profile sessions.
-	Logtraffic pulumi.StringPtrInput
-	// Record logs when a session starts and ends.
-	LogtrafficStart pulumi.StringPtrInput
-	// Policy name.
-	Name pulumi.StringPtrInput
-	// Enable/disable source NAT.
-	Nat pulumi.StringPtrInput
-	// IP Pool names.
-	Poolnames pulumi.StringArrayInput
-	// Name of an existing Protocol options profile.
+	Action                 pulumi.StringInput
+	ApplicationList        pulumi.StringPtrInput
+	AvProfile              pulumi.StringPtrInput
+	CapturePacket          pulumi.StringPtrInput
+	Comments               pulumi.StringPtrInput
+	Devices                pulumi.StringArrayInput
+	DnsfilterProfile       pulumi.StringPtrInput
+	Dstaddrs               pulumi.StringArrayInput
+	Dstintfs               pulumi.StringArrayInput
+	Groups                 pulumi.StringArrayInput
+	InternetService        pulumi.StringPtrInput
+	InternetServiceIds     pulumi.IntArrayInput
+	InternetServiceSrc     pulumi.StringPtrInput
+	InternetServiceSrcIds  pulumi.IntArrayInput
+	Ippool                 pulumi.StringPtrInput
+	IpsSensor              pulumi.StringPtrInput
+	Logtraffic             pulumi.StringPtrInput
+	LogtrafficStart        pulumi.StringPtrInput
+	Name                   pulumi.StringPtrInput
+	Nat                    pulumi.StringPtrInput
+	Poolnames              pulumi.StringArrayInput
 	ProfileProtocolOptions pulumi.StringPtrInput
-	// Schedule name.
-	Schedule pulumi.StringInput
-	// Service and service group names..
-	Services pulumi.StringArrayInput
-	// Source address and address group names.
-	Srcaddrs pulumi.StringArrayInput
-	// Incoming (ingress) interface.
-	Srcintfs pulumi.StringArrayInput
-	// Name of an existing SSL SSH profile.
-	SslSshProfile pulumi.StringPtrInput
-	// Enable or disable this policy.
-	Status pulumi.StringPtrInput
-	// Names of individual users that can authenticate with this policy.
-	Users pulumi.StringArrayInput
-	// Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy.
-	UtmStatus pulumi.StringPtrInput
-	// Name of an existing Web filter profile.
-	WebfilterProfile pulumi.StringPtrInput
+	Schedule               pulumi.StringInput
+	Services               pulumi.StringArrayInput
+	Srcaddrs               pulumi.StringArrayInput
+	Srcintfs               pulumi.StringArrayInput
+	SslSshProfile          pulumi.StringPtrInput
+	Status                 pulumi.StringPtrInput
+	Users                  pulumi.StringArrayInput
+	UtmStatus              pulumi.StringPtrInput
+	WebfilterProfile       pulumi.StringPtrInput
 }
 
 func (FirewallSecurityPolicy1Args) ElementType() reflect.Type {
@@ -622,7 +264,7 @@ func (i *FirewallSecurityPolicy1) ToFirewallSecurityPolicy1OutputWithContext(ctx
 // FirewallSecurityPolicy1ArrayInput is an input type that accepts FirewallSecurityPolicy1Array and FirewallSecurityPolicy1ArrayOutput values.
 // You can construct a concrete instance of `FirewallSecurityPolicy1ArrayInput` via:
 //
-//          FirewallSecurityPolicy1Array{ FirewallSecurityPolicy1Args{...} }
+//	FirewallSecurityPolicy1Array{ FirewallSecurityPolicy1Args{...} }
 type FirewallSecurityPolicy1ArrayInput interface {
 	pulumi.Input
 
@@ -647,7 +289,7 @@ func (i FirewallSecurityPolicy1Array) ToFirewallSecurityPolicy1ArrayOutputWithCo
 // FirewallSecurityPolicy1MapInput is an input type that accepts FirewallSecurityPolicy1Map and FirewallSecurityPolicy1MapOutput values.
 // You can construct a concrete instance of `FirewallSecurityPolicy1MapInput` via:
 //
-//          FirewallSecurityPolicy1Map{ "key": FirewallSecurityPolicy1Args{...} }
+//	FirewallSecurityPolicy1Map{ "key": FirewallSecurityPolicy1Args{...} }
 type FirewallSecurityPolicy1MapInput interface {
 	pulumi.Input
 
@@ -681,6 +323,130 @@ func (o FirewallSecurityPolicy1Output) ToFirewallSecurityPolicy1Output() Firewal
 
 func (o FirewallSecurityPolicy1Output) ToFirewallSecurityPolicy1OutputWithContext(ctx context.Context) FirewallSecurityPolicy1Output {
 	return o
+}
+
+func (o FirewallSecurityPolicy1Output) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) ApplicationList() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.ApplicationList }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) AvProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.AvProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) CapturePacket() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.CapturePacket }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Devices() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringArrayOutput { return v.Devices }).(pulumi.StringArrayOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) DnsfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.DnsfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Dstaddrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringArrayOutput { return v.Dstaddrs }).(pulumi.StringArrayOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Dstintfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringArrayOutput { return v.Dstintfs }).(pulumi.StringArrayOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Groups() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringArrayOutput { return v.Groups }).(pulumi.StringArrayOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) InternetService() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.InternetService }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) InternetServiceIds() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.IntArrayOutput { return v.InternetServiceIds }).(pulumi.IntArrayOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) InternetServiceSrc() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.InternetServiceSrc }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) InternetServiceSrcIds() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.IntArrayOutput { return v.InternetServiceSrcIds }).(pulumi.IntArrayOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Ippool() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.Ippool }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) IpsSensor() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.IpsSensor }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Logtraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.Logtraffic }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) LogtrafficStart() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.LogtrafficStart }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Nat() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.Nat }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Poolnames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringArrayOutput { return v.Poolnames }).(pulumi.StringArrayOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) ProfileProtocolOptions() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.ProfileProtocolOptions }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.Schedule }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Services() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringArrayOutput { return v.Services }).(pulumi.StringArrayOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Srcaddrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringArrayOutput { return v.Srcaddrs }).(pulumi.StringArrayOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Srcintfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringArrayOutput { return v.Srcintfs }).(pulumi.StringArrayOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) SslSshProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.SslSshProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) Users() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringArrayOutput { return v.Users }).(pulumi.StringArrayOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) UtmStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.UtmStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicy1Output) WebfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy1) pulumi.StringOutput { return v.WebfilterProfile }).(pulumi.StringOutput)
 }
 
 type FirewallSecurityPolicy1ArrayOutput struct{ *pulumi.OutputState }

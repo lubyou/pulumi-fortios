@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios system sessionhelper
- */
 export function getSystemSessionHelper(args: GetSystemSessionHelperArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemSessionHelperResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemSessionHelper:GetSystemSessionHelper", {
         "fosid": args.fosid,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getSystemSessionHelper(args: GetSystemSessionHelperArgs, opts?: 
  * A collection of arguments for invoking GetSystemSessionHelper.
  */
 export interface GetSystemSessionHelperArgs {
-    /**
-     * Specify the fosid of the desired system sessionhelper.
-     */
     fosid: number;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,43 +25,24 @@ export interface GetSystemSessionHelperArgs {
  * A collection of values returned by GetSystemSessionHelper.
  */
 export interface GetSystemSessionHelperResult {
-    /**
-     * Session helper ID.
-     */
     readonly fosid: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Helper name.
-     */
     readonly name: string;
-    /**
-     * Protocol port.
-     */
     readonly port: number;
-    /**
-     * Protocol number.
-     */
     readonly protocol: number;
     readonly vdomparam?: string;
 }
-
 export function getSystemSessionHelperOutput(args: GetSystemSessionHelperOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemSessionHelperResult> {
-    return pulumi.output(args).apply(a => getSystemSessionHelper(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemSessionHelper(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemSessionHelper.
  */
 export interface GetSystemSessionHelperOutputArgs {
-    /**
-     * Specify the fosid of the desired system sessionhelper.
-     */
     fosid: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

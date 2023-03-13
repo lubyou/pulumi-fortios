@@ -7,76 +7,22 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure GENEVE devices. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemGeneve(ctx, "trname", &fortios.SystemGeneveArgs{
-// 			Dstport:   pulumi.Int(22),
-// 			Interface: pulumi.String("port2"),
-// 			IpVersion: pulumi.String("ipv4-unicast"),
-// 			RemoteIp:  pulumi.String("1.1.1.1"),
-// 			RemoteIp6: pulumi.String("::"),
-// 			Vni:       pulumi.Int(0),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Geneve can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemGeneve:SystemGeneve labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemGeneve:SystemGeneve labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemGeneve struct {
 	pulumi.CustomResourceState
 
-	// GENEVE destination port (1 - 65535, default = 6081).
-	Dstport pulumi.IntOutput `pulumi:"dstport"`
-	// Outgoing interface for GENEVE encapsulated traffic.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// IP version to use for the GENEVE interface and so for communication over the GENEVE. IPv4 or IPv6 unicast. Valid values: `ipv4-unicast`, `ipv6-unicast`.
-	IpVersion pulumi.StringOutput `pulumi:"ipVersion"`
-	// GENEVE device or interface name. Must be an unique interface name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// IPv4 address of the GENEVE interface on the device at the remote end of the GENEVE.
-	RemoteIp pulumi.StringOutput `pulumi:"remoteIp"`
-	// IPv6 IP address of the GENEVE interface on the device at the remote end of the GENEVE.
-	RemoteIp6 pulumi.StringOutput `pulumi:"remoteIp6"`
-	// GENEVE type. Valid values: `ethernet`, `ppp`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Dstport   pulumi.IntOutput       `pulumi:"dstport"`
+	Interface pulumi.StringOutput    `pulumi:"interface"`
+	IpVersion pulumi.StringOutput    `pulumi:"ipVersion"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
+	RemoteIp  pulumi.StringOutput    `pulumi:"remoteIp"`
+	RemoteIp6 pulumi.StringOutput    `pulumi:"remoteIp6"`
+	Type      pulumi.StringOutput    `pulumi:"type"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// GENEVE network ID.
-	Vni pulumi.IntOutput `pulumi:"vni"`
+	Vni       pulumi.IntOutput       `pulumi:"vni"`
 }
 
 // NewSystemGeneve registers a new resource with the given unique name, arguments, and options.
@@ -121,45 +67,27 @@ func GetSystemGeneve(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemGeneve resources.
 type systemGeneveState struct {
-	// GENEVE destination port (1 - 65535, default = 6081).
-	Dstport *int `pulumi:"dstport"`
-	// Outgoing interface for GENEVE encapsulated traffic.
+	Dstport   *int    `pulumi:"dstport"`
 	Interface *string `pulumi:"interface"`
-	// IP version to use for the GENEVE interface and so for communication over the GENEVE. IPv4 or IPv6 unicast. Valid values: `ipv4-unicast`, `ipv6-unicast`.
 	IpVersion *string `pulumi:"ipVersion"`
-	// GENEVE device or interface name. Must be an unique interface name.
-	Name *string `pulumi:"name"`
-	// IPv4 address of the GENEVE interface on the device at the remote end of the GENEVE.
-	RemoteIp *string `pulumi:"remoteIp"`
-	// IPv6 IP address of the GENEVE interface on the device at the remote end of the GENEVE.
+	Name      *string `pulumi:"name"`
+	RemoteIp  *string `pulumi:"remoteIp"`
 	RemoteIp6 *string `pulumi:"remoteIp6"`
-	// GENEVE type. Valid values: `ethernet`, `ppp`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Type      *string `pulumi:"type"`
 	Vdomparam *string `pulumi:"vdomparam"`
-	// GENEVE network ID.
-	Vni *int `pulumi:"vni"`
+	Vni       *int    `pulumi:"vni"`
 }
 
 type SystemGeneveState struct {
-	// GENEVE destination port (1 - 65535, default = 6081).
-	Dstport pulumi.IntPtrInput
-	// Outgoing interface for GENEVE encapsulated traffic.
+	Dstport   pulumi.IntPtrInput
 	Interface pulumi.StringPtrInput
-	// IP version to use for the GENEVE interface and so for communication over the GENEVE. IPv4 or IPv6 unicast. Valid values: `ipv4-unicast`, `ipv6-unicast`.
 	IpVersion pulumi.StringPtrInput
-	// GENEVE device or interface name. Must be an unique interface name.
-	Name pulumi.StringPtrInput
-	// IPv4 address of the GENEVE interface on the device at the remote end of the GENEVE.
-	RemoteIp pulumi.StringPtrInput
-	// IPv6 IP address of the GENEVE interface on the device at the remote end of the GENEVE.
+	Name      pulumi.StringPtrInput
+	RemoteIp  pulumi.StringPtrInput
 	RemoteIp6 pulumi.StringPtrInput
-	// GENEVE type. Valid values: `ethernet`, `ppp`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Type      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
-	// GENEVE network ID.
-	Vni pulumi.IntPtrInput
+	Vni       pulumi.IntPtrInput
 }
 
 func (SystemGeneveState) ElementType() reflect.Type {
@@ -167,46 +95,28 @@ func (SystemGeneveState) ElementType() reflect.Type {
 }
 
 type systemGeneveArgs struct {
-	// GENEVE destination port (1 - 65535, default = 6081).
-	Dstport *int `pulumi:"dstport"`
-	// Outgoing interface for GENEVE encapsulated traffic.
-	Interface string `pulumi:"interface"`
-	// IP version to use for the GENEVE interface and so for communication over the GENEVE. IPv4 or IPv6 unicast. Valid values: `ipv4-unicast`, `ipv6-unicast`.
-	IpVersion string `pulumi:"ipVersion"`
-	// GENEVE device or interface name. Must be an unique interface name.
-	Name *string `pulumi:"name"`
-	// IPv4 address of the GENEVE interface on the device at the remote end of the GENEVE.
-	RemoteIp string `pulumi:"remoteIp"`
-	// IPv6 IP address of the GENEVE interface on the device at the remote end of the GENEVE.
+	Dstport   *int    `pulumi:"dstport"`
+	Interface string  `pulumi:"interface"`
+	IpVersion string  `pulumi:"ipVersion"`
+	Name      *string `pulumi:"name"`
+	RemoteIp  string  `pulumi:"remoteIp"`
 	RemoteIp6 *string `pulumi:"remoteIp6"`
-	// GENEVE type. Valid values: `ethernet`, `ppp`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Type      *string `pulumi:"type"`
 	Vdomparam *string `pulumi:"vdomparam"`
-	// GENEVE network ID.
-	Vni int `pulumi:"vni"`
+	Vni       int     `pulumi:"vni"`
 }
 
 // The set of arguments for constructing a SystemGeneve resource.
 type SystemGeneveArgs struct {
-	// GENEVE destination port (1 - 65535, default = 6081).
-	Dstport pulumi.IntPtrInput
-	// Outgoing interface for GENEVE encapsulated traffic.
+	Dstport   pulumi.IntPtrInput
 	Interface pulumi.StringInput
-	// IP version to use for the GENEVE interface and so for communication over the GENEVE. IPv4 or IPv6 unicast. Valid values: `ipv4-unicast`, `ipv6-unicast`.
 	IpVersion pulumi.StringInput
-	// GENEVE device or interface name. Must be an unique interface name.
-	Name pulumi.StringPtrInput
-	// IPv4 address of the GENEVE interface on the device at the remote end of the GENEVE.
-	RemoteIp pulumi.StringInput
-	// IPv6 IP address of the GENEVE interface on the device at the remote end of the GENEVE.
+	Name      pulumi.StringPtrInput
+	RemoteIp  pulumi.StringInput
 	RemoteIp6 pulumi.StringPtrInput
-	// GENEVE type. Valid values: `ethernet`, `ppp`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Type      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
-	// GENEVE network ID.
-	Vni pulumi.IntInput
+	Vni       pulumi.IntInput
 }
 
 func (SystemGeneveArgs) ElementType() reflect.Type {
@@ -235,7 +145,7 @@ func (i *SystemGeneve) ToSystemGeneveOutputWithContext(ctx context.Context) Syst
 // SystemGeneveArrayInput is an input type that accepts SystemGeneveArray and SystemGeneveArrayOutput values.
 // You can construct a concrete instance of `SystemGeneveArrayInput` via:
 //
-//          SystemGeneveArray{ SystemGeneveArgs{...} }
+//	SystemGeneveArray{ SystemGeneveArgs{...} }
 type SystemGeneveArrayInput interface {
 	pulumi.Input
 
@@ -260,7 +170,7 @@ func (i SystemGeneveArray) ToSystemGeneveArrayOutputWithContext(ctx context.Cont
 // SystemGeneveMapInput is an input type that accepts SystemGeneveMap and SystemGeneveMapOutput values.
 // You can construct a concrete instance of `SystemGeneveMapInput` via:
 //
-//          SystemGeneveMap{ "key": SystemGeneveArgs{...} }
+//	SystemGeneveMap{ "key": SystemGeneveArgs{...} }
 type SystemGeneveMapInput interface {
 	pulumi.Input
 
@@ -294,6 +204,42 @@ func (o SystemGeneveOutput) ToSystemGeneveOutput() SystemGeneveOutput {
 
 func (o SystemGeneveOutput) ToSystemGeneveOutputWithContext(ctx context.Context) SystemGeneveOutput {
 	return o
+}
+
+func (o SystemGeneveOutput) Dstport() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGeneve) pulumi.IntOutput { return v.Dstport }).(pulumi.IntOutput)
+}
+
+func (o SystemGeneveOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGeneve) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemGeneveOutput) IpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGeneve) pulumi.StringOutput { return v.IpVersion }).(pulumi.StringOutput)
+}
+
+func (o SystemGeneveOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGeneve) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemGeneveOutput) RemoteIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGeneve) pulumi.StringOutput { return v.RemoteIp }).(pulumi.StringOutput)
+}
+
+func (o SystemGeneveOutput) RemoteIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGeneve) pulumi.StringOutput { return v.RemoteIp6 }).(pulumi.StringOutput)
+}
+
+func (o SystemGeneveOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGeneve) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o SystemGeneveOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemGeneve) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemGeneveOutput) Vni() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGeneve) pulumi.IntOutput { return v.Vni }).(pulumi.IntOutput)
 }
 
 type SystemGeneveArrayOutput struct{ *pulumi.OutputState }

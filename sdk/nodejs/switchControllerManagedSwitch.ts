@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch devices that are managed by this FortiGate.
- *
- * ## Import
- *
- * SwitchController ManagedSwitch can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerManagedSwitch:SwitchControllerManagedSwitch labelname {{switch_id}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerManagedSwitch:SwitchControllerManagedSwitch labelname {{switch_id}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerManagedSwitch resource's state with the given name, ID, and optional extra
@@ -52,233 +34,62 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerManagedSwitch.__pulumiType;
     }
 
-    /**
-     * FortiSwitch access profile.
-     */
     public readonly accessProfile!: pulumi.Output<string>;
-    /**
-     * Configuration method to edit FortiSwitch commands to be pushed to this FortiSwitch device upon rebooting the FortiGate switch controller or the FortiSwitch. The structure of `customCommand` block is documented below.
-     */
     public readonly customCommands!: pulumi.Output<outputs.SwitchControllerManagedSwitchCustomCommand[] | undefined>;
-    /**
-     * Delayed restart triggered for this FortiSwitch.
-     */
     public readonly delayedRestartTrigger!: pulumi.Output<number>;
-    /**
-     * Description.
-     */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
-     */
     public readonly dhcpServerAccessList!: pulumi.Output<string>;
-    /**
-     * Directly connected FortiSwitch.
-     */
     public readonly directlyConnected!: pulumi.Output<number>;
-    /**
-     * List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
-     */
     public readonly dynamicCapability!: pulumi.Output<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Dynamically discovered FortiSwitch.
-     */
     public readonly dynamicallyDiscovered!: pulumi.Output<number>;
-    /**
-     * Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
-     */
     public readonly firmwareProvision!: pulumi.Output<string>;
-    /**
-     * Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
-     */
     public readonly firmwareProvisionLatest!: pulumi.Output<string>;
-    /**
-     * Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
-     */
     public readonly firmwareProvisionVersion!: pulumi.Output<string>;
-    /**
-     * Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
-     */
     public readonly flowIdentity!: pulumi.Output<string>;
-    /**
-     * FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-     */
     public readonly fswWan1Admin!: pulumi.Output<string>;
-    /**
-     * Fortiswitch WAN1 peer port.
-     */
     public readonly fswWan1Peer!: pulumi.Output<string>;
-    /**
-     * FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-     */
     public readonly fswWan2Admin!: pulumi.Output<string>;
-    /**
-     * FortiSwitch WAN2 peer port.
-     */
     public readonly fswWan2Peer!: pulumi.Output<string>;
-    /**
-     * Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
-     */
-    public readonly igmpSnooping!: pulumi.Output<outputs.SwitchControllerManagedSwitchIgmpSnooping | undefined>;
-    /**
-     * Enable/disable IP source guard. Valid values: `disable`, `enable`.
-     */
+    public readonly igmpSnooping!: pulumi.Output<outputs.SwitchControllerManagedSwitchIgmpSnooping>;
     public readonly ipSourceGuards!: pulumi.Output<outputs.SwitchControllerManagedSwitchIpSourceGuard[] | undefined>;
-    /**
-     * Layer 3 management discovered.
-     */
     public readonly l3Discovered!: pulumi.Output<number>;
-    /**
-     * FortiSwitch maximum allowed trunk members.
-     */
     public readonly maxAllowedTrunkMembers!: pulumi.Output<number>;
-    /**
-     * Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
-     */
     public readonly mclagIgmpSnoopingAware!: pulumi.Output<string>;
-    /**
-     * Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
-     */
     public readonly mirrors!: pulumi.Output<outputs.SwitchControllerManagedSwitchMirror[] | undefined>;
-    /**
-     * Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
-     */
-    public readonly n8021xSettings!: pulumi.Output<outputs.SwitchControllerManagedSwitchN8021xSettings | undefined>;
-    /**
-     * Interface name.
-     */
+    public readonly n8021xSettings!: pulumi.Output<outputs.SwitchControllerManagedSwitchN8021xSettings>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable overriding the global SNMP communities. Valid values: `enable`, `disable`.
-     */
     public readonly overrideSnmpCommunity!: pulumi.Output<string>;
-    /**
-     * Enable/disable overriding the global SNMP system information. Valid values: `disable`, `enable`.
-     */
     public readonly overrideSnmpSysinfo!: pulumi.Output<string>;
-    /**
-     * Enable/disable overriding the global SNMP trap threshold values. Valid values: `enable`, `disable`.
-     */
     public readonly overrideSnmpTrapThreshold!: pulumi.Output<string>;
-    /**
-     * Enable/disable overriding the global SNMP users. Valid values: `enable`, `disable`.
-     */
     public readonly overrideSnmpUser!: pulumi.Output<string>;
-    /**
-     * VDOM which owner of port belongs to.
-     */
     public readonly ownerVdom!: pulumi.Output<string>;
-    /**
-     * PoE detection type for FortiSwitch.
-     */
     public readonly poeDetectionType!: pulumi.Output<number>;
-    /**
-     * Enable/disable PoE LLDP detection. Valid values: `enable`, `disable`.
-     */
     public readonly poeLldpDetection!: pulumi.Output<string>;
-    /**
-     * Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
-     */
     public readonly poePreStandardDetection!: pulumi.Output<string>;
-    /**
-     * Managed-switch port list. The structure of `ports` block is documented below.
-     */
-    public readonly ports!: pulumi.Output<outputs.SwitchControllerManagedSwitchPort[] | undefined>;
-    /**
-     * Pre-provisioned managed switch.
-     */
+    public readonly ports!: pulumi.Output<outputs.SwitchControllerManagedSwitchPort[]>;
     public readonly preProvisioned!: pulumi.Output<number>;
-    /**
-     * Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
-     */
     public readonly qosDropPolicy!: pulumi.Output<string>;
-    /**
-     * Set QoS RED/WRED drop probability.
-     */
     public readonly qosRedProbability!: pulumi.Output<number>;
-    /**
-     * Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
-     */
     public readonly remoteLogs!: pulumi.Output<outputs.SwitchControllerManagedSwitchRemoteLog[] | undefined>;
-    /**
-     * Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
-     */
     public readonly snmpCommunities!: pulumi.Output<outputs.SwitchControllerManagedSwitchSnmpCommunity[] | undefined>;
-    /**
-     * Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmpSysinfo` block is documented below.
-     */
-    public readonly snmpSysinfo!: pulumi.Output<outputs.SwitchControllerManagedSwitchSnmpSysinfo | undefined>;
-    /**
-     * Configuration method to edit Simple Network Management Protocol (SNMP) trap threshold values. The structure of `snmpTrapThreshold` block is documented below.
-     */
-    public readonly snmpTrapThreshold!: pulumi.Output<outputs.SwitchControllerManagedSwitchSnmpTrapThreshold | undefined>;
-    /**
-     * Configuration method to edit Simple Network Management Protocol (SNMP) users. The structure of `snmpUser` block is documented below.
-     */
+    public readonly snmpSysinfo!: pulumi.Output<outputs.SwitchControllerManagedSwitchSnmpSysinfo>;
+    public readonly snmpTrapThreshold!: pulumi.Output<outputs.SwitchControllerManagedSwitchSnmpTrapThreshold>;
     public readonly snmpUsers!: pulumi.Output<outputs.SwitchControllerManagedSwitchSnmpUser[] | undefined>;
-    /**
-     * Staged image version for FortiSwitch.
-     */
     public readonly stagedImageVersion!: pulumi.Output<string>;
-    /**
-     * Configuration method to edit FortiSwitch Static and Sticky MAC. The structure of `staticMac` block is documented below.
-     */
     public readonly staticMacs!: pulumi.Output<outputs.SwitchControllerManagedSwitchStaticMac[] | undefined>;
-    /**
-     * Configuration method to edit FortiSwitch storm control for measuring traffic activity using data rates to prevent traffic disruption. The structure of `stormControl` block is documented below.
-     */
-    public readonly stormControl!: pulumi.Output<outputs.SwitchControllerManagedSwitchStormControl | undefined>;
-    /**
-     * Configuration method to edit Spanning Tree Protocol (STP) instances. The structure of `stpInstance` block is documented below.
-     */
+    public readonly stormControl!: pulumi.Output<outputs.SwitchControllerManagedSwitchStormControl>;
     public readonly stpInstances!: pulumi.Output<outputs.SwitchControllerManagedSwitchStpInstance[] | undefined>;
-    /**
-     * Configuration method to edit Spanning Tree Protocol (STP) settings used to prevent bridge loops. The structure of `stpSettings` block is documented below.
-     */
-    public readonly stpSettings!: pulumi.Output<outputs.SwitchControllerManagedSwitchStpSettings | undefined>;
-    /**
-     * User definable label/tag.
-     */
+    public readonly stpSettings!: pulumi.Output<outputs.SwitchControllerManagedSwitchStpSettings>;
     public readonly switchDeviceTag!: pulumi.Output<string>;
-    /**
-     * DHCP option43 key.
-     */
     public readonly switchDhcpOpt43Key!: pulumi.Output<string>;
-    /**
-     * Switch id.
-     */
     public readonly switchId!: pulumi.Output<string>;
-    /**
-     * Configuration method to edit FortiSwitch logging settings (logs are transferred to and inserted into the FortiGate event log). The structure of `switchLog` block is documented below.
-     */
-    public readonly switchLog!: pulumi.Output<outputs.SwitchControllerManagedSwitchSwitchLog | undefined>;
-    /**
-     * FortiSwitch profile.
-     */
+    public readonly switchLog!: pulumi.Output<outputs.SwitchControllerManagedSwitchSwitchLog>;
     public readonly switchProfile!: pulumi.Output<string>;
-    /**
-     * Configure spanning tree protocol (STP). The structure of `switchStpSettings` block is documented below.
-     */
-    public readonly switchStpSettings!: pulumi.Output<outputs.SwitchControllerManagedSwitchSwitchStpSettings | undefined>;
-    /**
-     * TDR supported.
-     */
+    public readonly switchStpSettings!: pulumi.Output<outputs.SwitchControllerManagedSwitchSwitchStpSettings>;
     public readonly tdrSupported!: pulumi.Output<string>;
-    /**
-     * Type. Valid values: `static`, `sticky`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * IGMP snooping querier version.
-     */
     public readonly version!: pulumi.Output<number>;
 
     /**
@@ -426,233 +237,62 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerManagedSwitch resources.
  */
 export interface SwitchControllerManagedSwitchState {
-    /**
-     * FortiSwitch access profile.
-     */
     accessProfile?: pulumi.Input<string>;
-    /**
-     * Configuration method to edit FortiSwitch commands to be pushed to this FortiSwitch device upon rebooting the FortiGate switch controller or the FortiSwitch. The structure of `customCommand` block is documented below.
-     */
     customCommands?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchCustomCommand>[]>;
-    /**
-     * Delayed restart triggered for this FortiSwitch.
-     */
     delayedRestartTrigger?: pulumi.Input<number>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
-     */
     dhcpServerAccessList?: pulumi.Input<string>;
-    /**
-     * Directly connected FortiSwitch.
-     */
     directlyConnected?: pulumi.Input<number>;
-    /**
-     * List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
-     */
     dynamicCapability?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Dynamically discovered FortiSwitch.
-     */
     dynamicallyDiscovered?: pulumi.Input<number>;
-    /**
-     * Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
-     */
     firmwareProvision?: pulumi.Input<string>;
-    /**
-     * Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
-     */
     firmwareProvisionLatest?: pulumi.Input<string>;
-    /**
-     * Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
-     */
     firmwareProvisionVersion?: pulumi.Input<string>;
-    /**
-     * Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
-     */
     flowIdentity?: pulumi.Input<string>;
-    /**
-     * FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-     */
     fswWan1Admin?: pulumi.Input<string>;
-    /**
-     * Fortiswitch WAN1 peer port.
-     */
     fswWan1Peer?: pulumi.Input<string>;
-    /**
-     * FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-     */
     fswWan2Admin?: pulumi.Input<string>;
-    /**
-     * FortiSwitch WAN2 peer port.
-     */
     fswWan2Peer?: pulumi.Input<string>;
-    /**
-     * Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
-     */
     igmpSnooping?: pulumi.Input<inputs.SwitchControllerManagedSwitchIgmpSnooping>;
-    /**
-     * Enable/disable IP source guard. Valid values: `disable`, `enable`.
-     */
     ipSourceGuards?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchIpSourceGuard>[]>;
-    /**
-     * Layer 3 management discovered.
-     */
     l3Discovered?: pulumi.Input<number>;
-    /**
-     * FortiSwitch maximum allowed trunk members.
-     */
     maxAllowedTrunkMembers?: pulumi.Input<number>;
-    /**
-     * Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
-     */
     mclagIgmpSnoopingAware?: pulumi.Input<string>;
-    /**
-     * Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
-     */
     mirrors?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchMirror>[]>;
-    /**
-     * Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
-     */
     n8021xSettings?: pulumi.Input<inputs.SwitchControllerManagedSwitchN8021xSettings>;
-    /**
-     * Interface name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the global SNMP communities. Valid values: `enable`, `disable`.
-     */
     overrideSnmpCommunity?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the global SNMP system information. Valid values: `disable`, `enable`.
-     */
     overrideSnmpSysinfo?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the global SNMP trap threshold values. Valid values: `enable`, `disable`.
-     */
     overrideSnmpTrapThreshold?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the global SNMP users. Valid values: `enable`, `disable`.
-     */
     overrideSnmpUser?: pulumi.Input<string>;
-    /**
-     * VDOM which owner of port belongs to.
-     */
     ownerVdom?: pulumi.Input<string>;
-    /**
-     * PoE detection type for FortiSwitch.
-     */
     poeDetectionType?: pulumi.Input<number>;
-    /**
-     * Enable/disable PoE LLDP detection. Valid values: `enable`, `disable`.
-     */
     poeLldpDetection?: pulumi.Input<string>;
-    /**
-     * Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
-     */
     poePreStandardDetection?: pulumi.Input<string>;
-    /**
-     * Managed-switch port list. The structure of `ports` block is documented below.
-     */
     ports?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchPort>[]>;
-    /**
-     * Pre-provisioned managed switch.
-     */
     preProvisioned?: pulumi.Input<number>;
-    /**
-     * Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
-     */
     qosDropPolicy?: pulumi.Input<string>;
-    /**
-     * Set QoS RED/WRED drop probability.
-     */
     qosRedProbability?: pulumi.Input<number>;
-    /**
-     * Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
-     */
     remoteLogs?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchRemoteLog>[]>;
-    /**
-     * Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
-     */
     snmpCommunities?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchSnmpCommunity>[]>;
-    /**
-     * Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmpSysinfo` block is documented below.
-     */
     snmpSysinfo?: pulumi.Input<inputs.SwitchControllerManagedSwitchSnmpSysinfo>;
-    /**
-     * Configuration method to edit Simple Network Management Protocol (SNMP) trap threshold values. The structure of `snmpTrapThreshold` block is documented below.
-     */
     snmpTrapThreshold?: pulumi.Input<inputs.SwitchControllerManagedSwitchSnmpTrapThreshold>;
-    /**
-     * Configuration method to edit Simple Network Management Protocol (SNMP) users. The structure of `snmpUser` block is documented below.
-     */
     snmpUsers?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchSnmpUser>[]>;
-    /**
-     * Staged image version for FortiSwitch.
-     */
     stagedImageVersion?: pulumi.Input<string>;
-    /**
-     * Configuration method to edit FortiSwitch Static and Sticky MAC. The structure of `staticMac` block is documented below.
-     */
     staticMacs?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchStaticMac>[]>;
-    /**
-     * Configuration method to edit FortiSwitch storm control for measuring traffic activity using data rates to prevent traffic disruption. The structure of `stormControl` block is documented below.
-     */
     stormControl?: pulumi.Input<inputs.SwitchControllerManagedSwitchStormControl>;
-    /**
-     * Configuration method to edit Spanning Tree Protocol (STP) instances. The structure of `stpInstance` block is documented below.
-     */
     stpInstances?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchStpInstance>[]>;
-    /**
-     * Configuration method to edit Spanning Tree Protocol (STP) settings used to prevent bridge loops. The structure of `stpSettings` block is documented below.
-     */
     stpSettings?: pulumi.Input<inputs.SwitchControllerManagedSwitchStpSettings>;
-    /**
-     * User definable label/tag.
-     */
     switchDeviceTag?: pulumi.Input<string>;
-    /**
-     * DHCP option43 key.
-     */
     switchDhcpOpt43Key?: pulumi.Input<string>;
-    /**
-     * Switch id.
-     */
     switchId?: pulumi.Input<string>;
-    /**
-     * Configuration method to edit FortiSwitch logging settings (logs are transferred to and inserted into the FortiGate event log). The structure of `switchLog` block is documented below.
-     */
     switchLog?: pulumi.Input<inputs.SwitchControllerManagedSwitchSwitchLog>;
-    /**
-     * FortiSwitch profile.
-     */
     switchProfile?: pulumi.Input<string>;
-    /**
-     * Configure spanning tree protocol (STP). The structure of `switchStpSettings` block is documented below.
-     */
     switchStpSettings?: pulumi.Input<inputs.SwitchControllerManagedSwitchSwitchStpSettings>;
-    /**
-     * TDR supported.
-     */
     tdrSupported?: pulumi.Input<string>;
-    /**
-     * Type. Valid values: `static`, `sticky`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * IGMP snooping querier version.
-     */
     version?: pulumi.Input<number>;
 }
 
@@ -660,232 +300,61 @@ export interface SwitchControllerManagedSwitchState {
  * The set of arguments for constructing a SwitchControllerManagedSwitch resource.
  */
 export interface SwitchControllerManagedSwitchArgs {
-    /**
-     * FortiSwitch access profile.
-     */
     accessProfile?: pulumi.Input<string>;
-    /**
-     * Configuration method to edit FortiSwitch commands to be pushed to this FortiSwitch device upon rebooting the FortiGate switch controller or the FortiSwitch. The structure of `customCommand` block is documented below.
-     */
     customCommands?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchCustomCommand>[]>;
-    /**
-     * Delayed restart triggered for this FortiSwitch.
-     */
     delayedRestartTrigger?: pulumi.Input<number>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
-     */
     dhcpServerAccessList?: pulumi.Input<string>;
-    /**
-     * Directly connected FortiSwitch.
-     */
     directlyConnected?: pulumi.Input<number>;
-    /**
-     * List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
-     */
     dynamicCapability?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Dynamically discovered FortiSwitch.
-     */
     dynamicallyDiscovered?: pulumi.Input<number>;
-    /**
-     * Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
-     */
     firmwareProvision?: pulumi.Input<string>;
-    /**
-     * Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
-     */
     firmwareProvisionLatest?: pulumi.Input<string>;
-    /**
-     * Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
-     */
     firmwareProvisionVersion?: pulumi.Input<string>;
-    /**
-     * Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
-     */
     flowIdentity?: pulumi.Input<string>;
-    /**
-     * FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-     */
     fswWan1Admin?: pulumi.Input<string>;
-    /**
-     * Fortiswitch WAN1 peer port.
-     */
     fswWan1Peer: pulumi.Input<string>;
-    /**
-     * FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-     */
     fswWan2Admin?: pulumi.Input<string>;
-    /**
-     * FortiSwitch WAN2 peer port.
-     */
     fswWan2Peer?: pulumi.Input<string>;
-    /**
-     * Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
-     */
     igmpSnooping?: pulumi.Input<inputs.SwitchControllerManagedSwitchIgmpSnooping>;
-    /**
-     * Enable/disable IP source guard. Valid values: `disable`, `enable`.
-     */
     ipSourceGuards?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchIpSourceGuard>[]>;
-    /**
-     * Layer 3 management discovered.
-     */
     l3Discovered?: pulumi.Input<number>;
-    /**
-     * FortiSwitch maximum allowed trunk members.
-     */
     maxAllowedTrunkMembers?: pulumi.Input<number>;
-    /**
-     * Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
-     */
     mclagIgmpSnoopingAware?: pulumi.Input<string>;
-    /**
-     * Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
-     */
     mirrors?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchMirror>[]>;
-    /**
-     * Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
-     */
     n8021xSettings?: pulumi.Input<inputs.SwitchControllerManagedSwitchN8021xSettings>;
-    /**
-     * Interface name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the global SNMP communities. Valid values: `enable`, `disable`.
-     */
     overrideSnmpCommunity?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the global SNMP system information. Valid values: `disable`, `enable`.
-     */
     overrideSnmpSysinfo?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the global SNMP trap threshold values. Valid values: `enable`, `disable`.
-     */
     overrideSnmpTrapThreshold?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the global SNMP users. Valid values: `enable`, `disable`.
-     */
     overrideSnmpUser?: pulumi.Input<string>;
-    /**
-     * VDOM which owner of port belongs to.
-     */
     ownerVdom?: pulumi.Input<string>;
-    /**
-     * PoE detection type for FortiSwitch.
-     */
     poeDetectionType?: pulumi.Input<number>;
-    /**
-     * Enable/disable PoE LLDP detection. Valid values: `enable`, `disable`.
-     */
     poeLldpDetection?: pulumi.Input<string>;
-    /**
-     * Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
-     */
     poePreStandardDetection?: pulumi.Input<string>;
-    /**
-     * Managed-switch port list. The structure of `ports` block is documented below.
-     */
     ports?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchPort>[]>;
-    /**
-     * Pre-provisioned managed switch.
-     */
     preProvisioned?: pulumi.Input<number>;
-    /**
-     * Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
-     */
     qosDropPolicy?: pulumi.Input<string>;
-    /**
-     * Set QoS RED/WRED drop probability.
-     */
     qosRedProbability?: pulumi.Input<number>;
-    /**
-     * Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
-     */
     remoteLogs?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchRemoteLog>[]>;
-    /**
-     * Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
-     */
     snmpCommunities?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchSnmpCommunity>[]>;
-    /**
-     * Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmpSysinfo` block is documented below.
-     */
     snmpSysinfo?: pulumi.Input<inputs.SwitchControllerManagedSwitchSnmpSysinfo>;
-    /**
-     * Configuration method to edit Simple Network Management Protocol (SNMP) trap threshold values. The structure of `snmpTrapThreshold` block is documented below.
-     */
     snmpTrapThreshold?: pulumi.Input<inputs.SwitchControllerManagedSwitchSnmpTrapThreshold>;
-    /**
-     * Configuration method to edit Simple Network Management Protocol (SNMP) users. The structure of `snmpUser` block is documented below.
-     */
     snmpUsers?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchSnmpUser>[]>;
-    /**
-     * Staged image version for FortiSwitch.
-     */
     stagedImageVersion?: pulumi.Input<string>;
-    /**
-     * Configuration method to edit FortiSwitch Static and Sticky MAC. The structure of `staticMac` block is documented below.
-     */
     staticMacs?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchStaticMac>[]>;
-    /**
-     * Configuration method to edit FortiSwitch storm control for measuring traffic activity using data rates to prevent traffic disruption. The structure of `stormControl` block is documented below.
-     */
     stormControl?: pulumi.Input<inputs.SwitchControllerManagedSwitchStormControl>;
-    /**
-     * Configuration method to edit Spanning Tree Protocol (STP) instances. The structure of `stpInstance` block is documented below.
-     */
     stpInstances?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchStpInstance>[]>;
-    /**
-     * Configuration method to edit Spanning Tree Protocol (STP) settings used to prevent bridge loops. The structure of `stpSettings` block is documented below.
-     */
     stpSettings?: pulumi.Input<inputs.SwitchControllerManagedSwitchStpSettings>;
-    /**
-     * User definable label/tag.
-     */
     switchDeviceTag?: pulumi.Input<string>;
-    /**
-     * DHCP option43 key.
-     */
     switchDhcpOpt43Key?: pulumi.Input<string>;
-    /**
-     * Switch id.
-     */
     switchId: pulumi.Input<string>;
-    /**
-     * Configuration method to edit FortiSwitch logging settings (logs are transferred to and inserted into the FortiGate event log). The structure of `switchLog` block is documented below.
-     */
     switchLog?: pulumi.Input<inputs.SwitchControllerManagedSwitchSwitchLog>;
-    /**
-     * FortiSwitch profile.
-     */
     switchProfile?: pulumi.Input<string>;
-    /**
-     * Configure spanning tree protocol (STP). The structure of `switchStpSettings` block is documented below.
-     */
     switchStpSettings?: pulumi.Input<inputs.SwitchControllerManagedSwitchSwitchStpSettings>;
-    /**
-     * TDR supported.
-     */
     tdrSupported?: pulumi.Input<string>;
-    /**
-     * Type. Valid values: `static`, `sticky`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * IGMP snooping querier version.
-     */
     version?: pulumi.Input<number>;
 }

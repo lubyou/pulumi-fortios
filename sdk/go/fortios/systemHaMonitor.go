@@ -10,59 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure HA monitor.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemHaMonitor(ctx, "trname", &fortios.SystemHaMonitorArgs{
-// 			MonitorVlan:         pulumi.String("disable"),
-// 			VlanHbInterval:      pulumi.Int(5),
-// 			VlanHbLostThreshold: pulumi.Int(3),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System HaMonitor can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemHaMonitor:SystemHaMonitor labelname SystemHaMonitor
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemHaMonitor:SystemHaMonitor labelname SystemHaMonitor
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemHaMonitor struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable monitor VLAN interfaces. Valid values: `enable`, `disable`.
-	MonitorVlan pulumi.StringOutput `pulumi:"monitorVlan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Configure heartbeat interval (seconds).
-	VlanHbInterval pulumi.IntOutput `pulumi:"vlanHbInterval"`
-	// VLAN lost heartbeat threshold (1 - 60).
-	VlanHbLostThreshold pulumi.IntOutput `pulumi:"vlanHbLostThreshold"`
+	MonitorVlan         pulumi.StringOutput    `pulumi:"monitorVlan"`
+	Vdomparam           pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	VlanHbInterval      pulumi.IntOutput       `pulumi:"vlanHbInterval"`
+	VlanHbLostThreshold pulumi.IntOutput       `pulumi:"vlanHbLostThreshold"`
 }
 
 // NewSystemHaMonitor registers a new resource with the given unique name, arguments, and options.
@@ -95,24 +49,16 @@ func GetSystemHaMonitor(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemHaMonitor resources.
 type systemHaMonitorState struct {
-	// Enable/disable monitor VLAN interfaces. Valid values: `enable`, `disable`.
-	MonitorVlan *string `pulumi:"monitorVlan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Configure heartbeat interval (seconds).
-	VlanHbInterval *int `pulumi:"vlanHbInterval"`
-	// VLAN lost heartbeat threshold (1 - 60).
-	VlanHbLostThreshold *int `pulumi:"vlanHbLostThreshold"`
+	MonitorVlan         *string `pulumi:"monitorVlan"`
+	Vdomparam           *string `pulumi:"vdomparam"`
+	VlanHbInterval      *int    `pulumi:"vlanHbInterval"`
+	VlanHbLostThreshold *int    `pulumi:"vlanHbLostThreshold"`
 }
 
 type SystemHaMonitorState struct {
-	// Enable/disable monitor VLAN interfaces. Valid values: `enable`, `disable`.
-	MonitorVlan pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Configure heartbeat interval (seconds).
-	VlanHbInterval pulumi.IntPtrInput
-	// VLAN lost heartbeat threshold (1 - 60).
+	MonitorVlan         pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	VlanHbInterval      pulumi.IntPtrInput
 	VlanHbLostThreshold pulumi.IntPtrInput
 }
 
@@ -121,25 +67,17 @@ func (SystemHaMonitorState) ElementType() reflect.Type {
 }
 
 type systemHaMonitorArgs struct {
-	// Enable/disable monitor VLAN interfaces. Valid values: `enable`, `disable`.
-	MonitorVlan *string `pulumi:"monitorVlan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Configure heartbeat interval (seconds).
-	VlanHbInterval *int `pulumi:"vlanHbInterval"`
-	// VLAN lost heartbeat threshold (1 - 60).
-	VlanHbLostThreshold *int `pulumi:"vlanHbLostThreshold"`
+	MonitorVlan         *string `pulumi:"monitorVlan"`
+	Vdomparam           *string `pulumi:"vdomparam"`
+	VlanHbInterval      *int    `pulumi:"vlanHbInterval"`
+	VlanHbLostThreshold *int    `pulumi:"vlanHbLostThreshold"`
 }
 
 // The set of arguments for constructing a SystemHaMonitor resource.
 type SystemHaMonitorArgs struct {
-	// Enable/disable monitor VLAN interfaces. Valid values: `enable`, `disable`.
-	MonitorVlan pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Configure heartbeat interval (seconds).
-	VlanHbInterval pulumi.IntPtrInput
-	// VLAN lost heartbeat threshold (1 - 60).
+	MonitorVlan         pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	VlanHbInterval      pulumi.IntPtrInput
 	VlanHbLostThreshold pulumi.IntPtrInput
 }
 
@@ -169,7 +107,7 @@ func (i *SystemHaMonitor) ToSystemHaMonitorOutputWithContext(ctx context.Context
 // SystemHaMonitorArrayInput is an input type that accepts SystemHaMonitorArray and SystemHaMonitorArrayOutput values.
 // You can construct a concrete instance of `SystemHaMonitorArrayInput` via:
 //
-//          SystemHaMonitorArray{ SystemHaMonitorArgs{...} }
+//	SystemHaMonitorArray{ SystemHaMonitorArgs{...} }
 type SystemHaMonitorArrayInput interface {
 	pulumi.Input
 
@@ -194,7 +132,7 @@ func (i SystemHaMonitorArray) ToSystemHaMonitorArrayOutputWithContext(ctx contex
 // SystemHaMonitorMapInput is an input type that accepts SystemHaMonitorMap and SystemHaMonitorMapOutput values.
 // You can construct a concrete instance of `SystemHaMonitorMapInput` via:
 //
-//          SystemHaMonitorMap{ "key": SystemHaMonitorArgs{...} }
+//	SystemHaMonitorMap{ "key": SystemHaMonitorArgs{...} }
 type SystemHaMonitorMapInput interface {
 	pulumi.Input
 
@@ -228,6 +166,22 @@ func (o SystemHaMonitorOutput) ToSystemHaMonitorOutput() SystemHaMonitorOutput {
 
 func (o SystemHaMonitorOutput) ToSystemHaMonitorOutputWithContext(ctx context.Context) SystemHaMonitorOutput {
 	return o
+}
+
+func (o SystemHaMonitorOutput) MonitorVlan() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHaMonitor) pulumi.StringOutput { return v.MonitorVlan }).(pulumi.StringOutput)
+}
+
+func (o SystemHaMonitorOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemHaMonitor) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemHaMonitorOutput) VlanHbInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHaMonitor) pulumi.IntOutput { return v.VlanHbInterval }).(pulumi.IntOutput)
+}
+
+func (o SystemHaMonitorOutput) VlanHbLostThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHaMonitor) pulumi.IntOutput { return v.VlanHbLostThreshold }).(pulumi.IntOutput)
 }
 
 type SystemHaMonitorArrayOutput struct{ *pulumi.OutputState }

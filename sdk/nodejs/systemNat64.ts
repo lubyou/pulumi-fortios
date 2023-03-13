@@ -2,44 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure NAT64. Applies to FortiOS Version `<= 7.0.0`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemNat64("trname", {
- *     alwaysSynthesizeAaaaRecord: "enable",
- *     generateIpv6FragmentHeader: "disable",
- *     nat46ForceIpv4PacketForwarding: "disable",
- *     nat64Prefix: "2001:1:2:3::/96",
- *     secondaryPrefixStatus: "disable",
- *     status: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * System Nat64 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemNat64:SystemNat64 labelname SystemNat64
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemNat64:SystemNat64 labelname SystemNat64
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemNat64 extends pulumi.CustomResource {
     /**
      * Get an existing SystemNat64 resource's state with the given name, ID, and optional extra
@@ -68,41 +34,14 @@ export class SystemNat64 extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemNat64.__pulumiType;
     }
 
-    /**
-     * Enable/disable AAAA record synthesis (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly alwaysSynthesizeAaaaRecord!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
-     */
     public readonly generateIpv6FragmentHeader!: pulumi.Output<string>;
-    /**
-     * Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
-     */
     public readonly nat46ForceIpv4PacketForwarding!: pulumi.Output<string>;
-    /**
-     * NAT64 prefix.
-     */
     public readonly nat64Prefix!: pulumi.Output<string>;
-    /**
-     * Enable/disable secondary NAT64 prefix. Valid values: `enable`, `disable`.
-     */
     public readonly secondaryPrefixStatus!: pulumi.Output<string>;
-    /**
-     * Secondary NAT64 prefix. The structure of `secondaryPrefix` block is documented below.
-     */
     public readonly secondaryPrefixes!: pulumi.Output<outputs.SystemNat64SecondaryPrefix[] | undefined>;
-    /**
-     * Enable/disable NAT64 (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -151,41 +90,14 @@ export class SystemNat64 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemNat64 resources.
  */
 export interface SystemNat64State {
-    /**
-     * Enable/disable AAAA record synthesis (default = enable). Valid values: `enable`, `disable`.
-     */
     alwaysSynthesizeAaaaRecord?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
-     */
     generateIpv6FragmentHeader?: pulumi.Input<string>;
-    /**
-     * Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
-     */
     nat46ForceIpv4PacketForwarding?: pulumi.Input<string>;
-    /**
-     * NAT64 prefix.
-     */
     nat64Prefix?: pulumi.Input<string>;
-    /**
-     * Enable/disable secondary NAT64 prefix. Valid values: `enable`, `disable`.
-     */
     secondaryPrefixStatus?: pulumi.Input<string>;
-    /**
-     * Secondary NAT64 prefix. The structure of `secondaryPrefix` block is documented below.
-     */
     secondaryPrefixes?: pulumi.Input<pulumi.Input<inputs.SystemNat64SecondaryPrefix>[]>;
-    /**
-     * Enable/disable NAT64 (default = disable). Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -193,40 +105,13 @@ export interface SystemNat64State {
  * The set of arguments for constructing a SystemNat64 resource.
  */
 export interface SystemNat64Args {
-    /**
-     * Enable/disable AAAA record synthesis (default = enable). Valid values: `enable`, `disable`.
-     */
     alwaysSynthesizeAaaaRecord?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
-     */
     generateIpv6FragmentHeader?: pulumi.Input<string>;
-    /**
-     * Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
-     */
     nat46ForceIpv4PacketForwarding?: pulumi.Input<string>;
-    /**
-     * NAT64 prefix.
-     */
     nat64Prefix: pulumi.Input<string>;
-    /**
-     * Enable/disable secondary NAT64 prefix. Valid values: `enable`, `disable`.
-     */
     secondaryPrefixStatus?: pulumi.Input<string>;
-    /**
-     * Secondary NAT64 prefix. The structure of `secondaryPrefix` block is documented below.
-     */
     secondaryPrefixes?: pulumi.Input<pulumi.Input<inputs.SystemNat64SecondaryPrefix>[]>;
-    /**
-     * Enable/disable NAT64 (default = disable). Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

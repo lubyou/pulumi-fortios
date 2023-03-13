@@ -10,66 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure AntiVirus settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewAntivirusSettings(ctx, "trname", &fortios.AntivirusSettingsArgs{
-// 			DefaultDb: pulumi.String("extended"),
-// 			Grayware:  pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Antivirus Settings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/antivirusSettings:AntivirusSettings labelname AntivirusSettings
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/antivirusSettings:AntivirusSettings labelname AntivirusSettings
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type AntivirusSettings struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
-	CacheCleanResult pulumi.StringOutput `pulumi:"cacheCleanResult"`
-	// Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
-	CacheInfectedResult pulumi.StringOutput `pulumi:"cacheInfectedResult"`
-	// Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
-	DefaultDb pulumi.StringOutput `pulumi:"defaultDb"`
-	// Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
-	Grayware pulumi.StringOutput `pulumi:"grayware"`
-	// Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
-	MachineLearningDetection pulumi.StringOutput `pulumi:"machineLearningDetection"`
-	// Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
-	OverrideTimeout pulumi.IntOutput `pulumi:"overrideTimeout"`
-	// Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
-	UseExtremeDb pulumi.StringOutput `pulumi:"useExtremeDb"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	CacheCleanResult         pulumi.StringOutput    `pulumi:"cacheCleanResult"`
+	CacheInfectedResult      pulumi.StringOutput    `pulumi:"cacheInfectedResult"`
+	DefaultDb                pulumi.StringOutput    `pulumi:"defaultDb"`
+	Grayware                 pulumi.StringOutput    `pulumi:"grayware"`
+	MachineLearningDetection pulumi.StringOutput    `pulumi:"machineLearningDetection"`
+	OverrideTimeout          pulumi.IntOutput       `pulumi:"overrideTimeout"`
+	UseExtremeDb             pulumi.StringOutput    `pulumi:"useExtremeDb"`
+	Vdomparam                pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewAntivirusSettings registers a new resource with the given unique name, arguments, and options.
@@ -102,41 +53,25 @@ func GetAntivirusSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AntivirusSettings resources.
 type antivirusSettingsState struct {
-	// Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
-	CacheCleanResult *string `pulumi:"cacheCleanResult"`
-	// Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
-	CacheInfectedResult *string `pulumi:"cacheInfectedResult"`
-	// Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
-	DefaultDb *string `pulumi:"defaultDb"`
-	// Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
-	Grayware *string `pulumi:"grayware"`
-	// Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
+	CacheCleanResult         *string `pulumi:"cacheCleanResult"`
+	CacheInfectedResult      *string `pulumi:"cacheInfectedResult"`
+	DefaultDb                *string `pulumi:"defaultDb"`
+	Grayware                 *string `pulumi:"grayware"`
 	MachineLearningDetection *string `pulumi:"machineLearningDetection"`
-	// Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
-	OverrideTimeout *int `pulumi:"overrideTimeout"`
-	// Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
-	UseExtremeDb *string `pulumi:"useExtremeDb"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	OverrideTimeout          *int    `pulumi:"overrideTimeout"`
+	UseExtremeDb             *string `pulumi:"useExtremeDb"`
+	Vdomparam                *string `pulumi:"vdomparam"`
 }
 
 type AntivirusSettingsState struct {
-	// Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
-	CacheCleanResult pulumi.StringPtrInput
-	// Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
-	CacheInfectedResult pulumi.StringPtrInput
-	// Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
-	DefaultDb pulumi.StringPtrInput
-	// Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
-	Grayware pulumi.StringPtrInput
-	// Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
+	CacheCleanResult         pulumi.StringPtrInput
+	CacheInfectedResult      pulumi.StringPtrInput
+	DefaultDb                pulumi.StringPtrInput
+	Grayware                 pulumi.StringPtrInput
 	MachineLearningDetection pulumi.StringPtrInput
-	// Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
-	OverrideTimeout pulumi.IntPtrInput
-	// Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
-	UseExtremeDb pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	OverrideTimeout          pulumi.IntPtrInput
+	UseExtremeDb             pulumi.StringPtrInput
+	Vdomparam                pulumi.StringPtrInput
 }
 
 func (AntivirusSettingsState) ElementType() reflect.Type {
@@ -144,42 +79,26 @@ func (AntivirusSettingsState) ElementType() reflect.Type {
 }
 
 type antivirusSettingsArgs struct {
-	// Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
-	CacheCleanResult *string `pulumi:"cacheCleanResult"`
-	// Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
-	CacheInfectedResult *string `pulumi:"cacheInfectedResult"`
-	// Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
-	DefaultDb *string `pulumi:"defaultDb"`
-	// Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
-	Grayware *string `pulumi:"grayware"`
-	// Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
+	CacheCleanResult         *string `pulumi:"cacheCleanResult"`
+	CacheInfectedResult      *string `pulumi:"cacheInfectedResult"`
+	DefaultDb                *string `pulumi:"defaultDb"`
+	Grayware                 *string `pulumi:"grayware"`
 	MachineLearningDetection *string `pulumi:"machineLearningDetection"`
-	// Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
-	OverrideTimeout *int `pulumi:"overrideTimeout"`
-	// Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
-	UseExtremeDb *string `pulumi:"useExtremeDb"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	OverrideTimeout          *int    `pulumi:"overrideTimeout"`
+	UseExtremeDb             *string `pulumi:"useExtremeDb"`
+	Vdomparam                *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a AntivirusSettings resource.
 type AntivirusSettingsArgs struct {
-	// Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
-	CacheCleanResult pulumi.StringPtrInput
-	// Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
-	CacheInfectedResult pulumi.StringPtrInput
-	// Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
-	DefaultDb pulumi.StringPtrInput
-	// Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
-	Grayware pulumi.StringPtrInput
-	// Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
+	CacheCleanResult         pulumi.StringPtrInput
+	CacheInfectedResult      pulumi.StringPtrInput
+	DefaultDb                pulumi.StringPtrInput
+	Grayware                 pulumi.StringPtrInput
 	MachineLearningDetection pulumi.StringPtrInput
-	// Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
-	OverrideTimeout pulumi.IntPtrInput
-	// Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
-	UseExtremeDb pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	OverrideTimeout          pulumi.IntPtrInput
+	UseExtremeDb             pulumi.StringPtrInput
+	Vdomparam                pulumi.StringPtrInput
 }
 
 func (AntivirusSettingsArgs) ElementType() reflect.Type {
@@ -208,7 +127,7 @@ func (i *AntivirusSettings) ToAntivirusSettingsOutputWithContext(ctx context.Con
 // AntivirusSettingsArrayInput is an input type that accepts AntivirusSettingsArray and AntivirusSettingsArrayOutput values.
 // You can construct a concrete instance of `AntivirusSettingsArrayInput` via:
 //
-//          AntivirusSettingsArray{ AntivirusSettingsArgs{...} }
+//	AntivirusSettingsArray{ AntivirusSettingsArgs{...} }
 type AntivirusSettingsArrayInput interface {
 	pulumi.Input
 
@@ -233,7 +152,7 @@ func (i AntivirusSettingsArray) ToAntivirusSettingsArrayOutputWithContext(ctx co
 // AntivirusSettingsMapInput is an input type that accepts AntivirusSettingsMap and AntivirusSettingsMapOutput values.
 // You can construct a concrete instance of `AntivirusSettingsMapInput` via:
 //
-//          AntivirusSettingsMap{ "key": AntivirusSettingsArgs{...} }
+//	AntivirusSettingsMap{ "key": AntivirusSettingsArgs{...} }
 type AntivirusSettingsMapInput interface {
 	pulumi.Input
 
@@ -267,6 +186,38 @@ func (o AntivirusSettingsOutput) ToAntivirusSettingsOutput() AntivirusSettingsOu
 
 func (o AntivirusSettingsOutput) ToAntivirusSettingsOutputWithContext(ctx context.Context) AntivirusSettingsOutput {
 	return o
+}
+
+func (o AntivirusSettingsOutput) CacheCleanResult() pulumi.StringOutput {
+	return o.ApplyT(func(v *AntivirusSettings) pulumi.StringOutput { return v.CacheCleanResult }).(pulumi.StringOutput)
+}
+
+func (o AntivirusSettingsOutput) CacheInfectedResult() pulumi.StringOutput {
+	return o.ApplyT(func(v *AntivirusSettings) pulumi.StringOutput { return v.CacheInfectedResult }).(pulumi.StringOutput)
+}
+
+func (o AntivirusSettingsOutput) DefaultDb() pulumi.StringOutput {
+	return o.ApplyT(func(v *AntivirusSettings) pulumi.StringOutput { return v.DefaultDb }).(pulumi.StringOutput)
+}
+
+func (o AntivirusSettingsOutput) Grayware() pulumi.StringOutput {
+	return o.ApplyT(func(v *AntivirusSettings) pulumi.StringOutput { return v.Grayware }).(pulumi.StringOutput)
+}
+
+func (o AntivirusSettingsOutput) MachineLearningDetection() pulumi.StringOutput {
+	return o.ApplyT(func(v *AntivirusSettings) pulumi.StringOutput { return v.MachineLearningDetection }).(pulumi.StringOutput)
+}
+
+func (o AntivirusSettingsOutput) OverrideTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *AntivirusSettings) pulumi.IntOutput { return v.OverrideTimeout }).(pulumi.IntOutput)
+}
+
+func (o AntivirusSettingsOutput) UseExtremeDb() pulumi.StringOutput {
+	return o.ApplyT(func(v *AntivirusSettings) pulumi.StringOutput { return v.UseExtremeDb }).(pulumi.StringOutput)
+}
+
+func (o AntivirusSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AntivirusSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type AntivirusSettingsArrayOutput struct{ *pulumi.OutputState }

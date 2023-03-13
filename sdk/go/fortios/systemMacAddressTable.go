@@ -7,38 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure MAC address tables.
-//
-// ## Import
-//
-// System MacAddressTable can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemMacAddressTable:SystemMacAddressTable labelname {{mac}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemMacAddressTable:SystemMacAddressTable labelname {{mac}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemMacAddressTable struct {
 	pulumi.CustomResourceState
 
-	// Interface name.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// MAC address.
-	Mac pulumi.StringOutput `pulumi:"mac"`
-	// New MAC for reply traffic.
-	ReplySubstitute pulumi.StringOutput `pulumi:"replySubstitute"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Interface       pulumi.StringOutput    `pulumi:"interface"`
+	Mac             pulumi.StringOutput    `pulumi:"mac"`
+	ReplySubstitute pulumi.StringOutput    `pulumi:"replySubstitute"`
+	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemMacAddressTable registers a new resource with the given unique name, arguments, and options.
@@ -77,25 +56,17 @@ func GetSystemMacAddressTable(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemMacAddressTable resources.
 type systemMacAddressTableState struct {
-	// Interface name.
-	Interface *string `pulumi:"interface"`
-	// MAC address.
-	Mac *string `pulumi:"mac"`
-	// New MAC for reply traffic.
+	Interface       *string `pulumi:"interface"`
+	Mac             *string `pulumi:"mac"`
 	ReplySubstitute *string `pulumi:"replySubstitute"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 type SystemMacAddressTableState struct {
-	// Interface name.
-	Interface pulumi.StringPtrInput
-	// MAC address.
-	Mac pulumi.StringPtrInput
-	// New MAC for reply traffic.
+	Interface       pulumi.StringPtrInput
+	Mac             pulumi.StringPtrInput
 	ReplySubstitute pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (SystemMacAddressTableState) ElementType() reflect.Type {
@@ -103,26 +74,18 @@ func (SystemMacAddressTableState) ElementType() reflect.Type {
 }
 
 type systemMacAddressTableArgs struct {
-	// Interface name.
-	Interface string `pulumi:"interface"`
-	// MAC address.
-	Mac string `pulumi:"mac"`
-	// New MAC for reply traffic.
+	Interface       string  `pulumi:"interface"`
+	Mac             string  `pulumi:"mac"`
 	ReplySubstitute *string `pulumi:"replySubstitute"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemMacAddressTable resource.
 type SystemMacAddressTableArgs struct {
-	// Interface name.
-	Interface pulumi.StringInput
-	// MAC address.
-	Mac pulumi.StringInput
-	// New MAC for reply traffic.
+	Interface       pulumi.StringInput
+	Mac             pulumi.StringInput
 	ReplySubstitute pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (SystemMacAddressTableArgs) ElementType() reflect.Type {
@@ -151,7 +114,7 @@ func (i *SystemMacAddressTable) ToSystemMacAddressTableOutputWithContext(ctx con
 // SystemMacAddressTableArrayInput is an input type that accepts SystemMacAddressTableArray and SystemMacAddressTableArrayOutput values.
 // You can construct a concrete instance of `SystemMacAddressTableArrayInput` via:
 //
-//          SystemMacAddressTableArray{ SystemMacAddressTableArgs{...} }
+//	SystemMacAddressTableArray{ SystemMacAddressTableArgs{...} }
 type SystemMacAddressTableArrayInput interface {
 	pulumi.Input
 
@@ -176,7 +139,7 @@ func (i SystemMacAddressTableArray) ToSystemMacAddressTableArrayOutputWithContex
 // SystemMacAddressTableMapInput is an input type that accepts SystemMacAddressTableMap and SystemMacAddressTableMapOutput values.
 // You can construct a concrete instance of `SystemMacAddressTableMapInput` via:
 //
-//          SystemMacAddressTableMap{ "key": SystemMacAddressTableArgs{...} }
+//	SystemMacAddressTableMap{ "key": SystemMacAddressTableArgs{...} }
 type SystemMacAddressTableMapInput interface {
 	pulumi.Input
 
@@ -210,6 +173,22 @@ func (o SystemMacAddressTableOutput) ToSystemMacAddressTableOutput() SystemMacAd
 
 func (o SystemMacAddressTableOutput) ToSystemMacAddressTableOutputWithContext(ctx context.Context) SystemMacAddressTableOutput {
 	return o
+}
+
+func (o SystemMacAddressTableOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemMacAddressTable) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemMacAddressTableOutput) Mac() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemMacAddressTable) pulumi.StringOutput { return v.Mac }).(pulumi.StringOutput)
+}
+
+func (o SystemMacAddressTableOutput) ReplySubstitute() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemMacAddressTable) pulumi.StringOutput { return v.ReplySubstitute }).(pulumi.StringOutput)
+}
+
+func (o SystemMacAddressTableOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemMacAddressTable) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemMacAddressTableArrayOutput struct{ *pulumi.OutputState }

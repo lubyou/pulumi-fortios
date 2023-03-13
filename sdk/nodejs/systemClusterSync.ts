@@ -2,44 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiGate Session Life Support Protocol (FGSP) session synchronization.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemClusterSync("trname", {
- *     hbInterval: 3,
- *     hbLostThreshold: 3,
- *     peerip: "1.1.1.1",
- *     peervd: "root",
- *     slaveAddIkeRoutes: "enable",
- *     syncId: 1,
- * });
- * ```
- *
- * ## Import
- *
- * System ClusterSync can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemClusterSync:SystemClusterSync labelname {{sync_id}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemClusterSync:SystemClusterSync labelname {{sync_id}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemClusterSync extends pulumi.CustomResource {
     /**
      * Get an existing SystemClusterSync resource's state with the given name, ID, and optional extra
@@ -68,69 +34,21 @@ export class SystemClusterSync extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemClusterSync.__pulumiType;
     }
 
-    /**
-     * List of interfaces to be turned down before session synchronization is complete. The structure of `downIntfsBeforeSessSync` block is documented below.
-     */
     public readonly downIntfsBeforeSessSyncs!: pulumi.Output<outputs.SystemClusterSyncDownIntfsBeforeSessSync[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Heartbeat interval (1 - 10 sec).
-     */
     public readonly hbInterval!: pulumi.Output<number>;
-    /**
-     * Lost heartbeat threshold (1 - 10).
-     */
     public readonly hbLostThreshold!: pulumi.Output<number>;
-    /**
-     * IKE heartbeat interval (1 - 60 secs).
-     */
     public readonly ikeHeartbeatInterval!: pulumi.Output<number>;
-    /**
-     * Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
-     */
     public readonly ikeMonitor!: pulumi.Output<string>;
-    /**
-     * IKE HA monitor interval (10 - 300 secs).
-     */
     public readonly ikeMonitorInterval!: pulumi.Output<number>;
-    /**
-     * Enable/disable IPsec tunnel synchronization. Valid values: `enable`, `disable`.
-     */
     public readonly ipsecTunnelSync!: pulumi.Output<string>;
-    /**
-     * IP address of the interface on the peer unit that is used for the session synchronization link.
-     */
     public readonly peerip!: pulumi.Output<string>;
-    /**
-     * VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
-     */
     public readonly peervd!: pulumi.Output<string>;
-    /**
-     * Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
-     */
     public readonly secondaryAddIpsecRoutes!: pulumi.Output<string>;
-    /**
-     * Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
-     */
-    public readonly sessionSyncFilter!: pulumi.Output<outputs.SystemClusterSyncSessionSyncFilter | undefined>;
-    /**
-     * Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
-     */
+    public readonly sessionSyncFilter!: pulumi.Output<outputs.SystemClusterSyncSessionSyncFilter>;
     public readonly slaveAddIkeRoutes!: pulumi.Output<string>;
-    /**
-     * Sync ID.
-     */
     public readonly syncId!: pulumi.Output<number>;
-    /**
-     * Sessions from these VDOMs are synchronized using this session synchronization configuration. The structure of `syncvd` block is documented below.
-     */
     public readonly syncvds!: pulumi.Output<outputs.SystemClusterSyncSyncvd[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -190,69 +108,21 @@ export class SystemClusterSync extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemClusterSync resources.
  */
 export interface SystemClusterSyncState {
-    /**
-     * List of interfaces to be turned down before session synchronization is complete. The structure of `downIntfsBeforeSessSync` block is documented below.
-     */
     downIntfsBeforeSessSyncs?: pulumi.Input<pulumi.Input<inputs.SystemClusterSyncDownIntfsBeforeSessSync>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Heartbeat interval (1 - 10 sec).
-     */
     hbInterval?: pulumi.Input<number>;
-    /**
-     * Lost heartbeat threshold (1 - 10).
-     */
     hbLostThreshold?: pulumi.Input<number>;
-    /**
-     * IKE heartbeat interval (1 - 60 secs).
-     */
     ikeHeartbeatInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
-     */
     ikeMonitor?: pulumi.Input<string>;
-    /**
-     * IKE HA monitor interval (10 - 300 secs).
-     */
     ikeMonitorInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable IPsec tunnel synchronization. Valid values: `enable`, `disable`.
-     */
     ipsecTunnelSync?: pulumi.Input<string>;
-    /**
-     * IP address of the interface on the peer unit that is used for the session synchronization link.
-     */
     peerip?: pulumi.Input<string>;
-    /**
-     * VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
-     */
     peervd?: pulumi.Input<string>;
-    /**
-     * Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
-     */
     secondaryAddIpsecRoutes?: pulumi.Input<string>;
-    /**
-     * Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
-     */
     sessionSyncFilter?: pulumi.Input<inputs.SystemClusterSyncSessionSyncFilter>;
-    /**
-     * Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
-     */
     slaveAddIkeRoutes?: pulumi.Input<string>;
-    /**
-     * Sync ID.
-     */
     syncId?: pulumi.Input<number>;
-    /**
-     * Sessions from these VDOMs are synchronized using this session synchronization configuration. The structure of `syncvd` block is documented below.
-     */
     syncvds?: pulumi.Input<pulumi.Input<inputs.SystemClusterSyncSyncvd>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -260,68 +130,20 @@ export interface SystemClusterSyncState {
  * The set of arguments for constructing a SystemClusterSync resource.
  */
 export interface SystemClusterSyncArgs {
-    /**
-     * List of interfaces to be turned down before session synchronization is complete. The structure of `downIntfsBeforeSessSync` block is documented below.
-     */
     downIntfsBeforeSessSyncs?: pulumi.Input<pulumi.Input<inputs.SystemClusterSyncDownIntfsBeforeSessSync>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Heartbeat interval (1 - 10 sec).
-     */
     hbInterval?: pulumi.Input<number>;
-    /**
-     * Lost heartbeat threshold (1 - 10).
-     */
     hbLostThreshold?: pulumi.Input<number>;
-    /**
-     * IKE heartbeat interval (1 - 60 secs).
-     */
     ikeHeartbeatInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
-     */
     ikeMonitor?: pulumi.Input<string>;
-    /**
-     * IKE HA monitor interval (10 - 300 secs).
-     */
     ikeMonitorInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable IPsec tunnel synchronization. Valid values: `enable`, `disable`.
-     */
     ipsecTunnelSync?: pulumi.Input<string>;
-    /**
-     * IP address of the interface on the peer unit that is used for the session synchronization link.
-     */
     peerip?: pulumi.Input<string>;
-    /**
-     * VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
-     */
     peervd?: pulumi.Input<string>;
-    /**
-     * Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
-     */
     secondaryAddIpsecRoutes?: pulumi.Input<string>;
-    /**
-     * Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
-     */
     sessionSyncFilter?: pulumi.Input<inputs.SystemClusterSyncSessionSyncFilter>;
-    /**
-     * Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
-     */
     slaveAddIkeRoutes?: pulumi.Input<string>;
-    /**
-     * Sync ID.
-     */
     syncId?: pulumi.Input<number>;
-    /**
-     * Sessions from these VDOMs are synchronized using this session synchronization configuration. The structure of `syncvd` block is documented below.
-     */
     syncvds?: pulumi.Input<pulumi.Input<inputs.SystemClusterSyncSyncvd>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -7,87 +7,29 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure external resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemExternalResource(ctx, "trname", &fortios.SystemExternalResourceArgs{
-// 			Category:    pulumi.Int(199),
-// 			RefreshRate: pulumi.Int(5),
-// 			Resource:    pulumi.String("https://tmpxxxxx.com"),
-// 			Status:      pulumi.String("enable"),
-// 			Type:        pulumi.String("category"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System ExternalResource can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemExternalResource:SystemExternalResource labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemExternalResource:SystemExternalResource labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemExternalResource struct {
 	pulumi.CustomResourceState
 
-	// User resource category.
-	Category pulumi.IntOutput `pulumi:"category"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
-	// External resource name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// HTTP basic authentication password.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Time interval to refresh external resource (1 - 43200 min, default = 5 min).
-	RefreshRate pulumi.IntOutput `pulumi:"refreshRate"`
-	// URI of external resource.
-	Resource pulumi.StringOutput `pulumi:"resource"`
-	// Source IPv4 address used to communicate with server.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Enable/disable user resource. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// User resource type. Valid values: `category`, `address`, `domain`, `malware`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Override HTTP User-Agent header used when retrieving this external resource.
-	UserAgent pulumi.StringOutput `pulumi:"userAgent"`
-	// HTTP basic authentication user name.
-	Username pulumi.StringOutput `pulumi:"username"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringOutput `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Category              pulumi.IntOutput       `pulumi:"category"`
+	Comments              pulumi.StringPtrOutput `pulumi:"comments"`
+	Interface             pulumi.StringOutput    `pulumi:"interface"`
+	InterfaceSelectMethod pulumi.StringOutput    `pulumi:"interfaceSelectMethod"`
+	Name                  pulumi.StringOutput    `pulumi:"name"`
+	Password              pulumi.StringPtrOutput `pulumi:"password"`
+	RefreshRate           pulumi.IntOutput       `pulumi:"refreshRate"`
+	Resource              pulumi.StringOutput    `pulumi:"resource"`
+	SourceIp              pulumi.StringOutput    `pulumi:"sourceIp"`
+	Status                pulumi.StringOutput    `pulumi:"status"`
+	Type                  pulumi.StringOutput    `pulumi:"type"`
+	UpdateMethod          pulumi.StringOutput    `pulumi:"updateMethod"`
+	UserAgent             pulumi.StringOutput    `pulumi:"userAgent"`
+	Username              pulumi.StringOutput    `pulumi:"username"`
+	Uuid                  pulumi.StringOutput    `pulumi:"uuid"`
+	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemExternalResource registers a new resource with the given unique name, arguments, and options.
@@ -103,6 +45,13 @@ func NewSystemExternalResource(ctx *pulumi.Context,
 	if args.Resource == nil {
 		return nil, errors.New("invalid value for required argument 'Resource'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemExternalResource
 	err := ctx.RegisterResource("fortios:index/systemExternalResource:SystemExternalResource", name, args, &resource, opts...)
@@ -126,69 +75,41 @@ func GetSystemExternalResource(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemExternalResource resources.
 type systemExternalResourceState struct {
-	// User resource category.
-	Category *int `pulumi:"category"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	Category              *int    `pulumi:"category"`
+	Comments              *string `pulumi:"comments"`
+	Interface             *string `pulumi:"interface"`
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// External resource name.
-	Name *string `pulumi:"name"`
-	// HTTP basic authentication password.
-	Password *string `pulumi:"password"`
-	// Time interval to refresh external resource (1 - 43200 min, default = 5 min).
-	RefreshRate *int `pulumi:"refreshRate"`
-	// URI of external resource.
-	Resource *string `pulumi:"resource"`
-	// Source IPv4 address used to communicate with server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable user resource. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// User resource type. Valid values: `category`, `address`, `domain`, `malware`.
-	Type *string `pulumi:"type"`
-	// Override HTTP User-Agent header used when retrieving this external resource.
-	UserAgent *string `pulumi:"userAgent"`
-	// HTTP basic authentication user name.
-	Username *string `pulumi:"username"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name                  *string `pulumi:"name"`
+	Password              *string `pulumi:"password"`
+	RefreshRate           *int    `pulumi:"refreshRate"`
+	Resource              *string `pulumi:"resource"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	Status                *string `pulumi:"status"`
+	Type                  *string `pulumi:"type"`
+	UpdateMethod          *string `pulumi:"updateMethod"`
+	UserAgent             *string `pulumi:"userAgent"`
+	Username              *string `pulumi:"username"`
+	Uuid                  *string `pulumi:"uuid"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 type SystemExternalResourceState struct {
-	// User resource category.
-	Category pulumi.IntPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	Category              pulumi.IntPtrInput
+	Comments              pulumi.StringPtrInput
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// External resource name.
-	Name pulumi.StringPtrInput
-	// HTTP basic authentication password.
-	Password pulumi.StringPtrInput
-	// Time interval to refresh external resource (1 - 43200 min, default = 5 min).
-	RefreshRate pulumi.IntPtrInput
-	// URI of external resource.
-	Resource pulumi.StringPtrInput
-	// Source IPv4 address used to communicate with server.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable user resource. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// User resource type. Valid values: `category`, `address`, `domain`, `malware`.
-	Type pulumi.StringPtrInput
-	// Override HTTP User-Agent header used when retrieving this external resource.
-	UserAgent pulumi.StringPtrInput
-	// HTTP basic authentication user name.
-	Username pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                  pulumi.StringPtrInput
+	Password              pulumi.StringPtrInput
+	RefreshRate           pulumi.IntPtrInput
+	Resource              pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	Status                pulumi.StringPtrInput
+	Type                  pulumi.StringPtrInput
+	UpdateMethod          pulumi.StringPtrInput
+	UserAgent             pulumi.StringPtrInput
+	Username              pulumi.StringPtrInput
+	Uuid                  pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SystemExternalResourceState) ElementType() reflect.Type {
@@ -196,70 +117,42 @@ func (SystemExternalResourceState) ElementType() reflect.Type {
 }
 
 type systemExternalResourceArgs struct {
-	// User resource category.
-	Category *int `pulumi:"category"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	Category              *int    `pulumi:"category"`
+	Comments              *string `pulumi:"comments"`
+	Interface             *string `pulumi:"interface"`
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// External resource name.
-	Name *string `pulumi:"name"`
-	// HTTP basic authentication password.
-	Password *string `pulumi:"password"`
-	// Time interval to refresh external resource (1 - 43200 min, default = 5 min).
-	RefreshRate int `pulumi:"refreshRate"`
-	// URI of external resource.
-	Resource string `pulumi:"resource"`
-	// Source IPv4 address used to communicate with server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable user resource. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// User resource type. Valid values: `category`, `address`, `domain`, `malware`.
-	Type *string `pulumi:"type"`
-	// Override HTTP User-Agent header used when retrieving this external resource.
-	UserAgent *string `pulumi:"userAgent"`
-	// HTTP basic authentication user name.
-	Username *string `pulumi:"username"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name                  *string `pulumi:"name"`
+	Password              *string `pulumi:"password"`
+	RefreshRate           int     `pulumi:"refreshRate"`
+	Resource              string  `pulumi:"resource"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	Status                *string `pulumi:"status"`
+	Type                  *string `pulumi:"type"`
+	UpdateMethod          *string `pulumi:"updateMethod"`
+	UserAgent             *string `pulumi:"userAgent"`
+	Username              *string `pulumi:"username"`
+	Uuid                  *string `pulumi:"uuid"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemExternalResource resource.
 type SystemExternalResourceArgs struct {
-	// User resource category.
-	Category pulumi.IntPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	Category              pulumi.IntPtrInput
+	Comments              pulumi.StringPtrInput
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// External resource name.
-	Name pulumi.StringPtrInput
-	// HTTP basic authentication password.
-	Password pulumi.StringPtrInput
-	// Time interval to refresh external resource (1 - 43200 min, default = 5 min).
-	RefreshRate pulumi.IntInput
-	// URI of external resource.
-	Resource pulumi.StringInput
-	// Source IPv4 address used to communicate with server.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable user resource. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// User resource type. Valid values: `category`, `address`, `domain`, `malware`.
-	Type pulumi.StringPtrInput
-	// Override HTTP User-Agent header used when retrieving this external resource.
-	UserAgent pulumi.StringPtrInput
-	// HTTP basic authentication user name.
-	Username pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                  pulumi.StringPtrInput
+	Password              pulumi.StringPtrInput
+	RefreshRate           pulumi.IntInput
+	Resource              pulumi.StringInput
+	SourceIp              pulumi.StringPtrInput
+	Status                pulumi.StringPtrInput
+	Type                  pulumi.StringPtrInput
+	UpdateMethod          pulumi.StringPtrInput
+	UserAgent             pulumi.StringPtrInput
+	Username              pulumi.StringPtrInput
+	Uuid                  pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SystemExternalResourceArgs) ElementType() reflect.Type {
@@ -288,7 +181,7 @@ func (i *SystemExternalResource) ToSystemExternalResourceOutputWithContext(ctx c
 // SystemExternalResourceArrayInput is an input type that accepts SystemExternalResourceArray and SystemExternalResourceArrayOutput values.
 // You can construct a concrete instance of `SystemExternalResourceArrayInput` via:
 //
-//          SystemExternalResourceArray{ SystemExternalResourceArgs{...} }
+//	SystemExternalResourceArray{ SystemExternalResourceArgs{...} }
 type SystemExternalResourceArrayInput interface {
 	pulumi.Input
 
@@ -313,7 +206,7 @@ func (i SystemExternalResourceArray) ToSystemExternalResourceArrayOutputWithCont
 // SystemExternalResourceMapInput is an input type that accepts SystemExternalResourceMap and SystemExternalResourceMapOutput values.
 // You can construct a concrete instance of `SystemExternalResourceMapInput` via:
 //
-//          SystemExternalResourceMap{ "key": SystemExternalResourceArgs{...} }
+//	SystemExternalResourceMap{ "key": SystemExternalResourceArgs{...} }
 type SystemExternalResourceMapInput interface {
 	pulumi.Input
 
@@ -347,6 +240,70 @@ func (o SystemExternalResourceOutput) ToSystemExternalResourceOutput() SystemExt
 
 func (o SystemExternalResourceOutput) ToSystemExternalResourceOutputWithContext(ctx context.Context) SystemExternalResourceOutput {
 	return o
+}
+
+func (o SystemExternalResourceOutput) Category() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.IntOutput { return v.Category }).(pulumi.IntOutput)
+}
+
+func (o SystemExternalResourceOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemExternalResourceOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemExternalResourceOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o SystemExternalResourceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemExternalResourceOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemExternalResourceOutput) RefreshRate() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.IntOutput { return v.RefreshRate }).(pulumi.IntOutput)
+}
+
+func (o SystemExternalResourceOutput) Resource() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringOutput { return v.Resource }).(pulumi.StringOutput)
+}
+
+func (o SystemExternalResourceOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o SystemExternalResourceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemExternalResourceOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o SystemExternalResourceOutput) UpdateMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringOutput { return v.UpdateMethod }).(pulumi.StringOutput)
+}
+
+func (o SystemExternalResourceOutput) UserAgent() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringOutput { return v.UserAgent }).(pulumi.StringOutput)
+}
+
+func (o SystemExternalResourceOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
+func (o SystemExternalResourceOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o SystemExternalResourceOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemExternalResourceArrayOutput struct{ *pulumi.OutputState }

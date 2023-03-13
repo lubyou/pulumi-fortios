@@ -10,118 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv4 routing policies.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewRouterPolicy(ctx, "trname", &fortios.RouterPolicyArgs{
-// 			Action:        pulumi.String("permit"),
-// 			DstNegate:     pulumi.String("disable"),
-// 			EndPort:       pulumi.Int(25),
-// 			EndSourcePort: pulumi.Int(65535),
-// 			Gateway:       pulumi.String("0.0.0.0"),
-// 			InputDevices: RouterPolicyInputDeviceArray{
-// 				&RouterPolicyInputDeviceArgs{
-// 					Name: pulumi.String("port1"),
-// 				},
-// 			},
-// 			OutputDevice:    pulumi.String("port2"),
-// 			Protocol:        pulumi.Int(6),
-// 			SeqNum:          pulumi.Int(1),
-// 			SrcNegate:       pulumi.String("disable"),
-// 			StartPort:       pulumi.Int(25),
-// 			StartSourcePort: pulumi.Int(0),
-// 			Status:          pulumi.String("enable"),
-// 			Tos:             pulumi.String("0x00"),
-// 			TosMask:         pulumi.String("0x00"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Router Policy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerPolicy:RouterPolicy labelname {{seq_num}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerPolicy:RouterPolicy labelname {{seq_num}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterPolicy struct {
 	pulumi.CustomResourceState
 
-	// Action of the policy route. Valid values: `deny`, `permit`.
-	Action pulumi.StringOutput `pulumi:"action"`
-	// Optional comments.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Enable/disable negating destination address match. Valid values: `enable`, `disable`.
-	DstNegate pulumi.StringOutput `pulumi:"dstNegate"`
-	// Destination address name. The structure of `dstaddr` block is documented below.
-	Dstaddrs RouterPolicyDstaddrArrayOutput `pulumi:"dstaddrs"`
-	// Destination IP and mask (x.x.x.x/x). The structure of `dst` block is documented below.
-	Dsts RouterPolicyDstArrayOutput `pulumi:"dsts"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// End destination port number (0 - 65535).
-	EndPort pulumi.IntOutput `pulumi:"endPort"`
-	// End source port number (0 - 65535).
-	EndSourcePort pulumi.IntOutput `pulumi:"endSourcePort"`
-	// IP address of the gateway.
-	Gateway pulumi.StringOutput `pulumi:"gateway"`
-	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
-	InputDeviceNegate pulumi.StringOutput `pulumi:"inputDeviceNegate"`
-	// Incoming interface name. The structure of `inputDevice` block is documented below.
-	InputDevices RouterPolicyInputDeviceArrayOutput `pulumi:"inputDevices"`
-	// Custom Destination Internet Service name. The structure of `internetServiceCustom` block is documented below.
+	Action                 pulumi.StringOutput                          `pulumi:"action"`
+	Comments               pulumi.StringPtrOutput                       `pulumi:"comments"`
+	DstNegate              pulumi.StringOutput                          `pulumi:"dstNegate"`
+	Dstaddrs               RouterPolicyDstaddrArrayOutput               `pulumi:"dstaddrs"`
+	Dsts                   RouterPolicyDstArrayOutput                   `pulumi:"dsts"`
+	DynamicSortSubtable    pulumi.StringPtrOutput                       `pulumi:"dynamicSortSubtable"`
+	EndPort                pulumi.IntOutput                             `pulumi:"endPort"`
+	EndSourcePort          pulumi.IntOutput                             `pulumi:"endSourcePort"`
+	Gateway                pulumi.StringOutput                          `pulumi:"gateway"`
+	InputDeviceNegate      pulumi.StringOutput                          `pulumi:"inputDeviceNegate"`
+	InputDevices           RouterPolicyInputDeviceArrayOutput           `pulumi:"inputDevices"`
 	InternetServiceCustoms RouterPolicyInternetServiceCustomArrayOutput `pulumi:"internetServiceCustoms"`
-	// Destination Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds RouterPolicyInternetServiceIdArrayOutput `pulumi:"internetServiceIds"`
-	// Outgoing interface name.
-	OutputDevice pulumi.StringOutput `pulumi:"outputDevice"`
-	// Protocol number (0 - 255).
-	Protocol pulumi.IntOutput `pulumi:"protocol"`
-	// Sequence number.
-	SeqNum pulumi.IntOutput `pulumi:"seqNum"`
-	// Enable/disable negating source address match. Valid values: `enable`, `disable`.
-	SrcNegate pulumi.StringOutput `pulumi:"srcNegate"`
-	// Source address name. The structure of `srcaddr` block is documented below.
-	Srcaddrs RouterPolicySrcaddrArrayOutput `pulumi:"srcaddrs"`
-	// Source IP and mask (x.x.x.x/x). The structure of `src` block is documented below.
-	Srcs RouterPolicySrcArrayOutput `pulumi:"srcs"`
-	// Start destination port number (0 - 65535).
-	StartPort pulumi.IntOutput `pulumi:"startPort"`
-	// Start source port number (0 - 65535).
-	StartSourcePort pulumi.IntOutput `pulumi:"startSourcePort"`
-	// Enable/disable this policy route. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Type of service bit pattern.
-	Tos pulumi.StringOutput `pulumi:"tos"`
-	// Type of service evaluated bits.
-	TosMask pulumi.StringOutput `pulumi:"tosMask"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	InternetServiceIds     RouterPolicyInternetServiceIdArrayOutput     `pulumi:"internetServiceIds"`
+	OutputDevice           pulumi.StringOutput                          `pulumi:"outputDevice"`
+	Protocol               pulumi.IntOutput                             `pulumi:"protocol"`
+	SeqNum                 pulumi.IntOutput                             `pulumi:"seqNum"`
+	SrcNegate              pulumi.StringOutput                          `pulumi:"srcNegate"`
+	Srcaddrs               RouterPolicySrcaddrArrayOutput               `pulumi:"srcaddrs"`
+	Srcs                   RouterPolicySrcArrayOutput                   `pulumi:"srcs"`
+	StartPort              pulumi.IntOutput                             `pulumi:"startPort"`
+	StartSourcePort        pulumi.IntOutput                             `pulumi:"startSourcePort"`
+	Status                 pulumi.StringOutput                          `pulumi:"status"`
+	Tos                    pulumi.StringOutput                          `pulumi:"tos"`
+	TosMask                pulumi.StringOutput                          `pulumi:"tosMask"`
+	Vdomparam              pulumi.StringPtrOutput                       `pulumi:"vdomparam"`
 }
 
 // NewRouterPolicy registers a new resource with the given unique name, arguments, and options.
@@ -154,109 +70,59 @@ func GetRouterPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterPolicy resources.
 type routerPolicyState struct {
-	// Action of the policy route. Valid values: `deny`, `permit`.
-	Action *string `pulumi:"action"`
-	// Optional comments.
-	Comments *string `pulumi:"comments"`
-	// Enable/disable negating destination address match. Valid values: `enable`, `disable`.
-	DstNegate *string `pulumi:"dstNegate"`
-	// Destination address name. The structure of `dstaddr` block is documented below.
-	Dstaddrs []RouterPolicyDstaddr `pulumi:"dstaddrs"`
-	// Destination IP and mask (x.x.x.x/x). The structure of `dst` block is documented below.
-	Dsts []RouterPolicyDst `pulumi:"dsts"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// End destination port number (0 - 65535).
-	EndPort *int `pulumi:"endPort"`
-	// End source port number (0 - 65535).
-	EndSourcePort *int `pulumi:"endSourcePort"`
-	// IP address of the gateway.
-	Gateway *string `pulumi:"gateway"`
-	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
-	InputDeviceNegate *string `pulumi:"inputDeviceNegate"`
-	// Incoming interface name. The structure of `inputDevice` block is documented below.
-	InputDevices []RouterPolicyInputDevice `pulumi:"inputDevices"`
-	// Custom Destination Internet Service name. The structure of `internetServiceCustom` block is documented below.
+	Action                 *string                             `pulumi:"action"`
+	Comments               *string                             `pulumi:"comments"`
+	DstNegate              *string                             `pulumi:"dstNegate"`
+	Dstaddrs               []RouterPolicyDstaddr               `pulumi:"dstaddrs"`
+	Dsts                   []RouterPolicyDst                   `pulumi:"dsts"`
+	DynamicSortSubtable    *string                             `pulumi:"dynamicSortSubtable"`
+	EndPort                *int                                `pulumi:"endPort"`
+	EndSourcePort          *int                                `pulumi:"endSourcePort"`
+	Gateway                *string                             `pulumi:"gateway"`
+	InputDeviceNegate      *string                             `pulumi:"inputDeviceNegate"`
+	InputDevices           []RouterPolicyInputDevice           `pulumi:"inputDevices"`
 	InternetServiceCustoms []RouterPolicyInternetServiceCustom `pulumi:"internetServiceCustoms"`
-	// Destination Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds []RouterPolicyInternetServiceId `pulumi:"internetServiceIds"`
-	// Outgoing interface name.
-	OutputDevice *string `pulumi:"outputDevice"`
-	// Protocol number (0 - 255).
-	Protocol *int `pulumi:"protocol"`
-	// Sequence number.
-	SeqNum *int `pulumi:"seqNum"`
-	// Enable/disable negating source address match. Valid values: `enable`, `disable`.
-	SrcNegate *string `pulumi:"srcNegate"`
-	// Source address name. The structure of `srcaddr` block is documented below.
-	Srcaddrs []RouterPolicySrcaddr `pulumi:"srcaddrs"`
-	// Source IP and mask (x.x.x.x/x). The structure of `src` block is documented below.
-	Srcs []RouterPolicySrc `pulumi:"srcs"`
-	// Start destination port number (0 - 65535).
-	StartPort *int `pulumi:"startPort"`
-	// Start source port number (0 - 65535).
-	StartSourcePort *int `pulumi:"startSourcePort"`
-	// Enable/disable this policy route. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Type of service bit pattern.
-	Tos *string `pulumi:"tos"`
-	// Type of service evaluated bits.
-	TosMask *string `pulumi:"tosMask"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	InternetServiceIds     []RouterPolicyInternetServiceId     `pulumi:"internetServiceIds"`
+	OutputDevice           *string                             `pulumi:"outputDevice"`
+	Protocol               *int                                `pulumi:"protocol"`
+	SeqNum                 *int                                `pulumi:"seqNum"`
+	SrcNegate              *string                             `pulumi:"srcNegate"`
+	Srcaddrs               []RouterPolicySrcaddr               `pulumi:"srcaddrs"`
+	Srcs                   []RouterPolicySrc                   `pulumi:"srcs"`
+	StartPort              *int                                `pulumi:"startPort"`
+	StartSourcePort        *int                                `pulumi:"startSourcePort"`
+	Status                 *string                             `pulumi:"status"`
+	Tos                    *string                             `pulumi:"tos"`
+	TosMask                *string                             `pulumi:"tosMask"`
+	Vdomparam              *string                             `pulumi:"vdomparam"`
 }
 
 type RouterPolicyState struct {
-	// Action of the policy route. Valid values: `deny`, `permit`.
-	Action pulumi.StringPtrInput
-	// Optional comments.
-	Comments pulumi.StringPtrInput
-	// Enable/disable negating destination address match. Valid values: `enable`, `disable`.
-	DstNegate pulumi.StringPtrInput
-	// Destination address name. The structure of `dstaddr` block is documented below.
-	Dstaddrs RouterPolicyDstaddrArrayInput
-	// Destination IP and mask (x.x.x.x/x). The structure of `dst` block is documented below.
-	Dsts RouterPolicyDstArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// End destination port number (0 - 65535).
-	EndPort pulumi.IntPtrInput
-	// End source port number (0 - 65535).
-	EndSourcePort pulumi.IntPtrInput
-	// IP address of the gateway.
-	Gateway pulumi.StringPtrInput
-	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
-	InputDeviceNegate pulumi.StringPtrInput
-	// Incoming interface name. The structure of `inputDevice` block is documented below.
-	InputDevices RouterPolicyInputDeviceArrayInput
-	// Custom Destination Internet Service name. The structure of `internetServiceCustom` block is documented below.
+	Action                 pulumi.StringPtrInput
+	Comments               pulumi.StringPtrInput
+	DstNegate              pulumi.StringPtrInput
+	Dstaddrs               RouterPolicyDstaddrArrayInput
+	Dsts                   RouterPolicyDstArrayInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	EndPort                pulumi.IntPtrInput
+	EndSourcePort          pulumi.IntPtrInput
+	Gateway                pulumi.StringPtrInput
+	InputDeviceNegate      pulumi.StringPtrInput
+	InputDevices           RouterPolicyInputDeviceArrayInput
 	InternetServiceCustoms RouterPolicyInternetServiceCustomArrayInput
-	// Destination Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds RouterPolicyInternetServiceIdArrayInput
-	// Outgoing interface name.
-	OutputDevice pulumi.StringPtrInput
-	// Protocol number (0 - 255).
-	Protocol pulumi.IntPtrInput
-	// Sequence number.
-	SeqNum pulumi.IntPtrInput
-	// Enable/disable negating source address match. Valid values: `enable`, `disable`.
-	SrcNegate pulumi.StringPtrInput
-	// Source address name. The structure of `srcaddr` block is documented below.
-	Srcaddrs RouterPolicySrcaddrArrayInput
-	// Source IP and mask (x.x.x.x/x). The structure of `src` block is documented below.
-	Srcs RouterPolicySrcArrayInput
-	// Start destination port number (0 - 65535).
-	StartPort pulumi.IntPtrInput
-	// Start source port number (0 - 65535).
-	StartSourcePort pulumi.IntPtrInput
-	// Enable/disable this policy route. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Type of service bit pattern.
-	Tos pulumi.StringPtrInput
-	// Type of service evaluated bits.
-	TosMask pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	InternetServiceIds     RouterPolicyInternetServiceIdArrayInput
+	OutputDevice           pulumi.StringPtrInput
+	Protocol               pulumi.IntPtrInput
+	SeqNum                 pulumi.IntPtrInput
+	SrcNegate              pulumi.StringPtrInput
+	Srcaddrs               RouterPolicySrcaddrArrayInput
+	Srcs                   RouterPolicySrcArrayInput
+	StartPort              pulumi.IntPtrInput
+	StartSourcePort        pulumi.IntPtrInput
+	Status                 pulumi.StringPtrInput
+	Tos                    pulumi.StringPtrInput
+	TosMask                pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (RouterPolicyState) ElementType() reflect.Type {
@@ -264,110 +130,60 @@ func (RouterPolicyState) ElementType() reflect.Type {
 }
 
 type routerPolicyArgs struct {
-	// Action of the policy route. Valid values: `deny`, `permit`.
-	Action *string `pulumi:"action"`
-	// Optional comments.
-	Comments *string `pulumi:"comments"`
-	// Enable/disable negating destination address match. Valid values: `enable`, `disable`.
-	DstNegate *string `pulumi:"dstNegate"`
-	// Destination address name. The structure of `dstaddr` block is documented below.
-	Dstaddrs []RouterPolicyDstaddr `pulumi:"dstaddrs"`
-	// Destination IP and mask (x.x.x.x/x). The structure of `dst` block is documented below.
-	Dsts []RouterPolicyDst `pulumi:"dsts"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// End destination port number (0 - 65535).
-	EndPort *int `pulumi:"endPort"`
-	// End source port number (0 - 65535).
-	EndSourcePort *int `pulumi:"endSourcePort"`
-	// IP address of the gateway.
-	Gateway *string `pulumi:"gateway"`
-	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
-	InputDeviceNegate *string `pulumi:"inputDeviceNegate"`
-	// Incoming interface name. The structure of `inputDevice` block is documented below.
-	InputDevices []RouterPolicyInputDevice `pulumi:"inputDevices"`
-	// Custom Destination Internet Service name. The structure of `internetServiceCustom` block is documented below.
+	Action                 *string                             `pulumi:"action"`
+	Comments               *string                             `pulumi:"comments"`
+	DstNegate              *string                             `pulumi:"dstNegate"`
+	Dstaddrs               []RouterPolicyDstaddr               `pulumi:"dstaddrs"`
+	Dsts                   []RouterPolicyDst                   `pulumi:"dsts"`
+	DynamicSortSubtable    *string                             `pulumi:"dynamicSortSubtable"`
+	EndPort                *int                                `pulumi:"endPort"`
+	EndSourcePort          *int                                `pulumi:"endSourcePort"`
+	Gateway                *string                             `pulumi:"gateway"`
+	InputDeviceNegate      *string                             `pulumi:"inputDeviceNegate"`
+	InputDevices           []RouterPolicyInputDevice           `pulumi:"inputDevices"`
 	InternetServiceCustoms []RouterPolicyInternetServiceCustom `pulumi:"internetServiceCustoms"`
-	// Destination Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds []RouterPolicyInternetServiceId `pulumi:"internetServiceIds"`
-	// Outgoing interface name.
-	OutputDevice *string `pulumi:"outputDevice"`
-	// Protocol number (0 - 255).
-	Protocol *int `pulumi:"protocol"`
-	// Sequence number.
-	SeqNum *int `pulumi:"seqNum"`
-	// Enable/disable negating source address match. Valid values: `enable`, `disable`.
-	SrcNegate *string `pulumi:"srcNegate"`
-	// Source address name. The structure of `srcaddr` block is documented below.
-	Srcaddrs []RouterPolicySrcaddr `pulumi:"srcaddrs"`
-	// Source IP and mask (x.x.x.x/x). The structure of `src` block is documented below.
-	Srcs []RouterPolicySrc `pulumi:"srcs"`
-	// Start destination port number (0 - 65535).
-	StartPort *int `pulumi:"startPort"`
-	// Start source port number (0 - 65535).
-	StartSourcePort *int `pulumi:"startSourcePort"`
-	// Enable/disable this policy route. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Type of service bit pattern.
-	Tos *string `pulumi:"tos"`
-	// Type of service evaluated bits.
-	TosMask *string `pulumi:"tosMask"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	InternetServiceIds     []RouterPolicyInternetServiceId     `pulumi:"internetServiceIds"`
+	OutputDevice           *string                             `pulumi:"outputDevice"`
+	Protocol               *int                                `pulumi:"protocol"`
+	SeqNum                 *int                                `pulumi:"seqNum"`
+	SrcNegate              *string                             `pulumi:"srcNegate"`
+	Srcaddrs               []RouterPolicySrcaddr               `pulumi:"srcaddrs"`
+	Srcs                   []RouterPolicySrc                   `pulumi:"srcs"`
+	StartPort              *int                                `pulumi:"startPort"`
+	StartSourcePort        *int                                `pulumi:"startSourcePort"`
+	Status                 *string                             `pulumi:"status"`
+	Tos                    *string                             `pulumi:"tos"`
+	TosMask                *string                             `pulumi:"tosMask"`
+	Vdomparam              *string                             `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterPolicy resource.
 type RouterPolicyArgs struct {
-	// Action of the policy route. Valid values: `deny`, `permit`.
-	Action pulumi.StringPtrInput
-	// Optional comments.
-	Comments pulumi.StringPtrInput
-	// Enable/disable negating destination address match. Valid values: `enable`, `disable`.
-	DstNegate pulumi.StringPtrInput
-	// Destination address name. The structure of `dstaddr` block is documented below.
-	Dstaddrs RouterPolicyDstaddrArrayInput
-	// Destination IP and mask (x.x.x.x/x). The structure of `dst` block is documented below.
-	Dsts RouterPolicyDstArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// End destination port number (0 - 65535).
-	EndPort pulumi.IntPtrInput
-	// End source port number (0 - 65535).
-	EndSourcePort pulumi.IntPtrInput
-	// IP address of the gateway.
-	Gateway pulumi.StringPtrInput
-	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
-	InputDeviceNegate pulumi.StringPtrInput
-	// Incoming interface name. The structure of `inputDevice` block is documented below.
-	InputDevices RouterPolicyInputDeviceArrayInput
-	// Custom Destination Internet Service name. The structure of `internetServiceCustom` block is documented below.
+	Action                 pulumi.StringPtrInput
+	Comments               pulumi.StringPtrInput
+	DstNegate              pulumi.StringPtrInput
+	Dstaddrs               RouterPolicyDstaddrArrayInput
+	Dsts                   RouterPolicyDstArrayInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	EndPort                pulumi.IntPtrInput
+	EndSourcePort          pulumi.IntPtrInput
+	Gateway                pulumi.StringPtrInput
+	InputDeviceNegate      pulumi.StringPtrInput
+	InputDevices           RouterPolicyInputDeviceArrayInput
 	InternetServiceCustoms RouterPolicyInternetServiceCustomArrayInput
-	// Destination Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds RouterPolicyInternetServiceIdArrayInput
-	// Outgoing interface name.
-	OutputDevice pulumi.StringPtrInput
-	// Protocol number (0 - 255).
-	Protocol pulumi.IntPtrInput
-	// Sequence number.
-	SeqNum pulumi.IntPtrInput
-	// Enable/disable negating source address match. Valid values: `enable`, `disable`.
-	SrcNegate pulumi.StringPtrInput
-	// Source address name. The structure of `srcaddr` block is documented below.
-	Srcaddrs RouterPolicySrcaddrArrayInput
-	// Source IP and mask (x.x.x.x/x). The structure of `src` block is documented below.
-	Srcs RouterPolicySrcArrayInput
-	// Start destination port number (0 - 65535).
-	StartPort pulumi.IntPtrInput
-	// Start source port number (0 - 65535).
-	StartSourcePort pulumi.IntPtrInput
-	// Enable/disable this policy route. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Type of service bit pattern.
-	Tos pulumi.StringPtrInput
-	// Type of service evaluated bits.
-	TosMask pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	InternetServiceIds     RouterPolicyInternetServiceIdArrayInput
+	OutputDevice           pulumi.StringPtrInput
+	Protocol               pulumi.IntPtrInput
+	SeqNum                 pulumi.IntPtrInput
+	SrcNegate              pulumi.StringPtrInput
+	Srcaddrs               RouterPolicySrcaddrArrayInput
+	Srcs                   RouterPolicySrcArrayInput
+	StartPort              pulumi.IntPtrInput
+	StartSourcePort        pulumi.IntPtrInput
+	Status                 pulumi.StringPtrInput
+	Tos                    pulumi.StringPtrInput
+	TosMask                pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (RouterPolicyArgs) ElementType() reflect.Type {
@@ -396,7 +212,7 @@ func (i *RouterPolicy) ToRouterPolicyOutputWithContext(ctx context.Context) Rout
 // RouterPolicyArrayInput is an input type that accepts RouterPolicyArray and RouterPolicyArrayOutput values.
 // You can construct a concrete instance of `RouterPolicyArrayInput` via:
 //
-//          RouterPolicyArray{ RouterPolicyArgs{...} }
+//	RouterPolicyArray{ RouterPolicyArgs{...} }
 type RouterPolicyArrayInput interface {
 	pulumi.Input
 
@@ -421,7 +237,7 @@ func (i RouterPolicyArray) ToRouterPolicyArrayOutputWithContext(ctx context.Cont
 // RouterPolicyMapInput is an input type that accepts RouterPolicyMap and RouterPolicyMapOutput values.
 // You can construct a concrete instance of `RouterPolicyMapInput` via:
 //
-//          RouterPolicyMap{ "key": RouterPolicyArgs{...} }
+//	RouterPolicyMap{ "key": RouterPolicyArgs{...} }
 type RouterPolicyMapInput interface {
 	pulumi.Input
 
@@ -455,6 +271,106 @@ func (o RouterPolicyOutput) ToRouterPolicyOutput() RouterPolicyOutput {
 
 func (o RouterPolicyOutput) ToRouterPolicyOutputWithContext(ctx context.Context) RouterPolicyOutput {
 	return o
+}
+
+func (o RouterPolicyOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicyOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterPolicyOutput) DstNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.StringOutput { return v.DstNegate }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicyOutput) Dstaddrs() RouterPolicyDstaddrArrayOutput {
+	return o.ApplyT(func(v *RouterPolicy) RouterPolicyDstaddrArrayOutput { return v.Dstaddrs }).(RouterPolicyDstaddrArrayOutput)
+}
+
+func (o RouterPolicyOutput) Dsts() RouterPolicyDstArrayOutput {
+	return o.ApplyT(func(v *RouterPolicy) RouterPolicyDstArrayOutput { return v.Dsts }).(RouterPolicyDstArrayOutput)
+}
+
+func (o RouterPolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterPolicyOutput) EndPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.IntOutput { return v.EndPort }).(pulumi.IntOutput)
+}
+
+func (o RouterPolicyOutput) EndSourcePort() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.IntOutput { return v.EndSourcePort }).(pulumi.IntOutput)
+}
+
+func (o RouterPolicyOutput) Gateway() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicyOutput) InputDeviceNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.StringOutput { return v.InputDeviceNegate }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicyOutput) InputDevices() RouterPolicyInputDeviceArrayOutput {
+	return o.ApplyT(func(v *RouterPolicy) RouterPolicyInputDeviceArrayOutput { return v.InputDevices }).(RouterPolicyInputDeviceArrayOutput)
+}
+
+func (o RouterPolicyOutput) InternetServiceCustoms() RouterPolicyInternetServiceCustomArrayOutput {
+	return o.ApplyT(func(v *RouterPolicy) RouterPolicyInternetServiceCustomArrayOutput { return v.InternetServiceCustoms }).(RouterPolicyInternetServiceCustomArrayOutput)
+}
+
+func (o RouterPolicyOutput) InternetServiceIds() RouterPolicyInternetServiceIdArrayOutput {
+	return o.ApplyT(func(v *RouterPolicy) RouterPolicyInternetServiceIdArrayOutput { return v.InternetServiceIds }).(RouterPolicyInternetServiceIdArrayOutput)
+}
+
+func (o RouterPolicyOutput) OutputDevice() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.StringOutput { return v.OutputDevice }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicyOutput) Protocol() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.IntOutput { return v.Protocol }).(pulumi.IntOutput)
+}
+
+func (o RouterPolicyOutput) SeqNum() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.IntOutput { return v.SeqNum }).(pulumi.IntOutput)
+}
+
+func (o RouterPolicyOutput) SrcNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.StringOutput { return v.SrcNegate }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicyOutput) Srcaddrs() RouterPolicySrcaddrArrayOutput {
+	return o.ApplyT(func(v *RouterPolicy) RouterPolicySrcaddrArrayOutput { return v.Srcaddrs }).(RouterPolicySrcaddrArrayOutput)
+}
+
+func (o RouterPolicyOutput) Srcs() RouterPolicySrcArrayOutput {
+	return o.ApplyT(func(v *RouterPolicy) RouterPolicySrcArrayOutput { return v.Srcs }).(RouterPolicySrcArrayOutput)
+}
+
+func (o RouterPolicyOutput) StartPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.IntOutput { return v.StartPort }).(pulumi.IntOutput)
+}
+
+func (o RouterPolicyOutput) StartSourcePort() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.IntOutput { return v.StartSourcePort }).(pulumi.IntOutput)
+}
+
+func (o RouterPolicyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicyOutput) Tos() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.StringOutput { return v.Tos }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicyOutput) TosMask() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.StringOutput { return v.TosMask }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterPolicyArrayOutput struct{ *pulumi.OutputState }

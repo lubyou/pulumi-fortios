@@ -7,94 +7,23 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 address groups.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trname1, err := fortios.NewFirewallAddress6(ctx, "trname1", &fortios.FirewallAddress6Args{
-// 			CacheTtl:   pulumi.Int(0),
-// 			Color:      pulumi.Int(0),
-// 			EndIp:      pulumi.String("::"),
-// 			Host:       pulumi.String(""),
-// 			HostType:   pulumi.String("any"),
-// 			Ip6:        pulumi.String("fdff:ffff::/120"),
-// 			StartIp:    pulumi.String(""),
-// 			Type:       pulumi.String("ipprefix"),
-// 			Visibility: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewFirewallAddrgrp6(ctx, "trname", &fortios.FirewallAddrgrp6Args{
-// 			Color:      pulumi.Int(0),
-// 			Visibility: pulumi.String("enable"),
-// 			Members: FirewallAddrgrp6MemberArray{
-// 				&FirewallAddrgrp6MemberArgs{
-// 					Name: trname1.Name,
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall Addrgrp6 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAddrgrp6:FirewallAddrgrp6 labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAddrgrp6:FirewallAddrgrp6 labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallAddrgrp6 struct {
 	pulumi.CustomResourceState
 
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
-	Color pulumi.IntOutput `pulumi:"color"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
-	// Address objects contained within the group. The structure of `member` block is documented below.
-	Members FirewallAddrgrp6MemberArrayOutput `pulumi:"members"`
-	// Tag name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings FirewallAddrgrp6TaggingArrayOutput `pulumi:"taggings"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringOutput `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable address group6 visibility in the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringOutput `pulumi:"visibility"`
+	Color               pulumi.IntOutput                   `pulumi:"color"`
+	Comment             pulumi.StringPtrOutput             `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
+	FabricObject        pulumi.StringOutput                `pulumi:"fabricObject"`
+	Members             FirewallAddrgrp6MemberArrayOutput  `pulumi:"members"`
+	Name                pulumi.StringOutput                `pulumi:"name"`
+	Taggings            FirewallAddrgrp6TaggingArrayOutput `pulumi:"taggings"`
+	Uuid                pulumi.StringOutput                `pulumi:"uuid"`
+	Vdomparam           pulumi.StringPtrOutput             `pulumi:"vdomparam"`
+	Visibility          pulumi.StringOutput                `pulumi:"visibility"`
 }
 
 // NewFirewallAddrgrp6 registers a new resource with the given unique name, arguments, and options.
@@ -130,49 +59,29 @@ func GetFirewallAddrgrp6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallAddrgrp6 resources.
 type firewallAddrgrp6State struct {
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// Address objects contained within the group. The structure of `member` block is documented below.
-	Members []FirewallAddrgrp6Member `pulumi:"members"`
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []FirewallAddrgrp6Tagging `pulumi:"taggings"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable address group6 visibility in the GUI. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
+	Color               *int                      `pulumi:"color"`
+	Comment             *string                   `pulumi:"comment"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	FabricObject        *string                   `pulumi:"fabricObject"`
+	Members             []FirewallAddrgrp6Member  `pulumi:"members"`
+	Name                *string                   `pulumi:"name"`
+	Taggings            []FirewallAddrgrp6Tagging `pulumi:"taggings"`
+	Uuid                *string                   `pulumi:"uuid"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
+	Visibility          *string                   `pulumi:"visibility"`
 }
 
 type FirewallAddrgrp6State struct {
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// Address objects contained within the group. The structure of `member` block is documented below.
-	Members FirewallAddrgrp6MemberArrayInput
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings FirewallAddrgrp6TaggingArrayInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable address group6 visibility in the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
+	FabricObject        pulumi.StringPtrInput
+	Members             FirewallAddrgrp6MemberArrayInput
+	Name                pulumi.StringPtrInput
+	Taggings            FirewallAddrgrp6TaggingArrayInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
 }
 
 func (FirewallAddrgrp6State) ElementType() reflect.Type {
@@ -180,50 +89,30 @@ func (FirewallAddrgrp6State) ElementType() reflect.Type {
 }
 
 type firewallAddrgrp6Args struct {
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// Address objects contained within the group. The structure of `member` block is documented below.
-	Members []FirewallAddrgrp6Member `pulumi:"members"`
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []FirewallAddrgrp6Tagging `pulumi:"taggings"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable address group6 visibility in the GUI. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
+	Color               *int                      `pulumi:"color"`
+	Comment             *string                   `pulumi:"comment"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	FabricObject        *string                   `pulumi:"fabricObject"`
+	Members             []FirewallAddrgrp6Member  `pulumi:"members"`
+	Name                *string                   `pulumi:"name"`
+	Taggings            []FirewallAddrgrp6Tagging `pulumi:"taggings"`
+	Uuid                *string                   `pulumi:"uuid"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
+	Visibility          *string                   `pulumi:"visibility"`
 }
 
 // The set of arguments for constructing a FirewallAddrgrp6 resource.
 type FirewallAddrgrp6Args struct {
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// Address objects contained within the group. The structure of `member` block is documented below.
-	Members FirewallAddrgrp6MemberArrayInput
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings FirewallAddrgrp6TaggingArrayInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable address group6 visibility in the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
+	FabricObject        pulumi.StringPtrInput
+	Members             FirewallAddrgrp6MemberArrayInput
+	Name                pulumi.StringPtrInput
+	Taggings            FirewallAddrgrp6TaggingArrayInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
 }
 
 func (FirewallAddrgrp6Args) ElementType() reflect.Type {
@@ -252,7 +141,7 @@ func (i *FirewallAddrgrp6) ToFirewallAddrgrp6OutputWithContext(ctx context.Conte
 // FirewallAddrgrp6ArrayInput is an input type that accepts FirewallAddrgrp6Array and FirewallAddrgrp6ArrayOutput values.
 // You can construct a concrete instance of `FirewallAddrgrp6ArrayInput` via:
 //
-//          FirewallAddrgrp6Array{ FirewallAddrgrp6Args{...} }
+//	FirewallAddrgrp6Array{ FirewallAddrgrp6Args{...} }
 type FirewallAddrgrp6ArrayInput interface {
 	pulumi.Input
 
@@ -277,7 +166,7 @@ func (i FirewallAddrgrp6Array) ToFirewallAddrgrp6ArrayOutputWithContext(ctx cont
 // FirewallAddrgrp6MapInput is an input type that accepts FirewallAddrgrp6Map and FirewallAddrgrp6MapOutput values.
 // You can construct a concrete instance of `FirewallAddrgrp6MapInput` via:
 //
-//          FirewallAddrgrp6Map{ "key": FirewallAddrgrp6Args{...} }
+//	FirewallAddrgrp6Map{ "key": FirewallAddrgrp6Args{...} }
 type FirewallAddrgrp6MapInput interface {
 	pulumi.Input
 
@@ -311,6 +200,46 @@ func (o FirewallAddrgrp6Output) ToFirewallAddrgrp6Output() FirewallAddrgrp6Outpu
 
 func (o FirewallAddrgrp6Output) ToFirewallAddrgrp6OutputWithContext(ctx context.Context) FirewallAddrgrp6Output {
 	return o
+}
+
+func (o FirewallAddrgrp6Output) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallAddrgrp6) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o FirewallAddrgrp6Output) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddrgrp6) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddrgrp6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddrgrp6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddrgrp6Output) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddrgrp6) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddrgrp6Output) Members() FirewallAddrgrp6MemberArrayOutput {
+	return o.ApplyT(func(v *FirewallAddrgrp6) FirewallAddrgrp6MemberArrayOutput { return v.Members }).(FirewallAddrgrp6MemberArrayOutput)
+}
+
+func (o FirewallAddrgrp6Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddrgrp6) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddrgrp6Output) Taggings() FirewallAddrgrp6TaggingArrayOutput {
+	return o.ApplyT(func(v *FirewallAddrgrp6) FirewallAddrgrp6TaggingArrayOutput { return v.Taggings }).(FirewallAddrgrp6TaggingArrayOutput)
+}
+
+func (o FirewallAddrgrp6Output) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddrgrp6) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddrgrp6Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddrgrp6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddrgrp6Output) Visibility() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddrgrp6) pulumi.StringOutput { return v.Visibility }).(pulumi.StringOutput)
 }
 
 type FirewallAddrgrp6ArrayOutput struct{ *pulumi.OutputState }

@@ -2,41 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure redundant internet connections using SD-WAN (formerly virtual WAN link). Applies to FortiOS Version `<= 6.4.0`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemVirtualWanLink("trname", {
- *     failDetect: "disable",
- *     loadBalanceMode: "source-ip-based",
- *     status: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * System VirtualWanLink can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVirtualWanLink:SystemVirtualWanLink labelname SystemVirtualWanLink
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVirtualWanLink:SystemVirtualWanLink labelname SystemVirtualWanLink
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemVirtualWanLink extends pulumi.CustomResource {
     /**
      * Get an existing SystemVirtualWanLink resource's state with the given name, ID, and optional extra
@@ -65,61 +34,19 @@ export class SystemVirtualWanLink extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemVirtualWanLink.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Physical interfaces that will be alerted. The structure of `failAlertInterfaces` block is documented below.
-     */
     public readonly failAlertInterfaces!: pulumi.Output<outputs.SystemVirtualWanLinkFailAlertInterface[] | undefined>;
-    /**
-     * Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
-     */
     public readonly failDetect!: pulumi.Output<string>;
-    /**
-     * Virtual WAN Link health-check.
-     */
     public readonly healthChecks!: pulumi.Output<outputs.SystemVirtualWanLinkHealthCheck[] | undefined>;
-    /**
-     * Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
-     */
     public readonly loadBalanceMode!: pulumi.Output<string>;
-    /**
-     * Member sequence number list. The structure of `members` block is documented below.
-     */
     public readonly members!: pulumi.Output<outputs.SystemVirtualWanLinkMember[] | undefined>;
-    /**
-     * Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).
-     */
     public readonly neighborHoldBootTime!: pulumi.Output<number>;
-    /**
-     * Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: `enable`, `disable`.
-     */
     public readonly neighborHoldDown!: pulumi.Output<string>;
-    /**
-     * Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
-     */
     public readonly neighborHoldDownTime!: pulumi.Output<number>;
-    /**
-     * Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
-     */
     public readonly neighbors!: pulumi.Output<outputs.SystemVirtualWanLinkNeighbor[] | undefined>;
-    /**
-     * Create SD-WAN rules or priority rules (also called services) to control how sessions are distributed to physical interfaces in the SD-WAN. The structure of `service` block is documented below.
-     */
     public readonly services!: pulumi.Output<outputs.SystemVirtualWanLinkService[] | undefined>;
-    /**
-     * Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Configure SD-WAN zones. The structure of `zone` block is documented below.
-     */
     public readonly zones!: pulumi.Output<outputs.SystemVirtualWanLinkZone[] | undefined>;
 
     /**
@@ -175,61 +102,19 @@ export class SystemVirtualWanLink extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemVirtualWanLink resources.
  */
 export interface SystemVirtualWanLinkState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Physical interfaces that will be alerted. The structure of `failAlertInterfaces` block is documented below.
-     */
     failAlertInterfaces?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkFailAlertInterface>[]>;
-    /**
-     * Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
-     */
     failDetect?: pulumi.Input<string>;
-    /**
-     * Virtual WAN Link health-check.
-     */
     healthChecks?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkHealthCheck>[]>;
-    /**
-     * Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
-     */
     loadBalanceMode?: pulumi.Input<string>;
-    /**
-     * Member sequence number list. The structure of `members` block is documented below.
-     */
     members?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkMember>[]>;
-    /**
-     * Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).
-     */
     neighborHoldBootTime?: pulumi.Input<number>;
-    /**
-     * Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: `enable`, `disable`.
-     */
     neighborHoldDown?: pulumi.Input<string>;
-    /**
-     * Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
-     */
     neighborHoldDownTime?: pulumi.Input<number>;
-    /**
-     * Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
-     */
     neighbors?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkNeighbor>[]>;
-    /**
-     * Create SD-WAN rules or priority rules (also called services) to control how sessions are distributed to physical interfaces in the SD-WAN. The structure of `service` block is documented below.
-     */
     services?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkService>[]>;
-    /**
-     * Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Configure SD-WAN zones. The structure of `zone` block is documented below.
-     */
     zones?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkZone>[]>;
 }
 
@@ -237,60 +122,18 @@ export interface SystemVirtualWanLinkState {
  * The set of arguments for constructing a SystemVirtualWanLink resource.
  */
 export interface SystemVirtualWanLinkArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Physical interfaces that will be alerted. The structure of `failAlertInterfaces` block is documented below.
-     */
     failAlertInterfaces?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkFailAlertInterface>[]>;
-    /**
-     * Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
-     */
     failDetect?: pulumi.Input<string>;
-    /**
-     * Virtual WAN Link health-check.
-     */
     healthChecks?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkHealthCheck>[]>;
-    /**
-     * Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
-     */
     loadBalanceMode?: pulumi.Input<string>;
-    /**
-     * Member sequence number list. The structure of `members` block is documented below.
-     */
     members?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkMember>[]>;
-    /**
-     * Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).
-     */
     neighborHoldBootTime?: pulumi.Input<number>;
-    /**
-     * Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: `enable`, `disable`.
-     */
     neighborHoldDown?: pulumi.Input<string>;
-    /**
-     * Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
-     */
     neighborHoldDownTime?: pulumi.Input<number>;
-    /**
-     * Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
-     */
     neighbors?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkNeighbor>[]>;
-    /**
-     * Create SD-WAN rules or priority rules (also called services) to control how sessions are distributed to physical interfaces in the SD-WAN. The structure of `service` block is documented below.
-     */
     services?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkService>[]>;
-    /**
-     * Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Configure SD-WAN zones. The structure of `zone` block is documented below.
-     */
     zones?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkZone>[]>;
 }

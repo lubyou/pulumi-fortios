@@ -2,41 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure URL filter lists.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WebfilterUrlfilter("trname", {
- *     fosid: 1,
- *     ipAddrBlock: "enable",
- *     oneArmIpsUrlfilter: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Webfilter Urlfilter can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/webfilterUrlfilter:WebfilterUrlfilter labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/webfilterUrlfilter:WebfilterUrlfilter labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WebfilterUrlfilter extends pulumi.CustomResource {
     /**
      * Get an existing WebfilterUrlfilter resource's state with the given name, ID, and optional extra
@@ -65,37 +34,13 @@ export class WebfilterUrlfilter extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebfilterUrlfilter.__pulumiType;
     }
 
-    /**
-     * Optional comments.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * URL filter entries. The structure of `entries` block is documented below.
-     */
     public readonly entries!: pulumi.Output<outputs.WebfilterUrlfilterEntry[] | undefined>;
-    /**
-     * ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
-     */
     public readonly ipAddrBlock!: pulumi.Output<string>;
-    /**
-     * Name of URL filter list.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable DNS resolver for one-arm IPS URL filter operation. Valid values: `enable`, `disable`.
-     */
     public readonly oneArmIpsUrlfilter!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -142,37 +87,13 @@ export class WebfilterUrlfilter extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WebfilterUrlfilter resources.
  */
 export interface WebfilterUrlfilterState {
-    /**
-     * Optional comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * URL filter entries. The structure of `entries` block is documented below.
-     */
     entries?: pulumi.Input<pulumi.Input<inputs.WebfilterUrlfilterEntry>[]>;
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
-     */
     ipAddrBlock?: pulumi.Input<string>;
-    /**
-     * Name of URL filter list.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable DNS resolver for one-arm IPS URL filter operation. Valid values: `enable`, `disable`.
-     */
     oneArmIpsUrlfilter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -180,36 +101,12 @@ export interface WebfilterUrlfilterState {
  * The set of arguments for constructing a WebfilterUrlfilter resource.
  */
 export interface WebfilterUrlfilterArgs {
-    /**
-     * Optional comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * URL filter entries. The structure of `entries` block is documented below.
-     */
     entries?: pulumi.Input<pulumi.Input<inputs.WebfilterUrlfilterEntry>[]>;
-    /**
-     * ID.
-     */
     fosid: pulumi.Input<number>;
-    /**
-     * Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
-     */
     ipAddrBlock?: pulumi.Input<string>;
-    /**
-     * Name of URL filter list.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable DNS resolver for one-arm IPS URL filter operation. Valid values: `enable`, `disable`.
-     */
     oneArmIpsUrlfilter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

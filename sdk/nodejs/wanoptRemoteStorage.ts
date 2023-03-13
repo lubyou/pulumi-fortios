@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure a remote cache device as Web cache storage.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WanoptRemoteStorage("trname", {
- *     remoteCacheIp: "0.0.0.0",
- *     status: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * Wanopt RemoteStorage can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wanoptRemoteStorage:WanoptRemoteStorage labelname WanoptRemoteStorage
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wanoptRemoteStorage:WanoptRemoteStorage labelname WanoptRemoteStorage
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WanoptRemoteStorage extends pulumi.CustomResource {
     /**
      * Get an existing WanoptRemoteStorage resource's state with the given name, ID, and optional extra
@@ -63,25 +32,10 @@ export class WanoptRemoteStorage extends pulumi.CustomResource {
         return obj['__pulumiType'] === WanoptRemoteStorage.__pulumiType;
     }
 
-    /**
-     * ID that this device uses to connect to the remote device.
-     */
     public readonly localCacheId!: pulumi.Output<string>;
-    /**
-     * ID of the remote device to which the device connects.
-     */
     public readonly remoteCacheId!: pulumi.Output<string>;
-    /**
-     * IP address of the remote device to which the device connects.
-     */
     public readonly remoteCacheIp!: pulumi.Output<string>;
-    /**
-     * Enable/disable using remote device as Web cache storage. Valid values: `disable`, `enable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -119,25 +73,10 @@ export class WanoptRemoteStorage extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WanoptRemoteStorage resources.
  */
 export interface WanoptRemoteStorageState {
-    /**
-     * ID that this device uses to connect to the remote device.
-     */
     localCacheId?: pulumi.Input<string>;
-    /**
-     * ID of the remote device to which the device connects.
-     */
     remoteCacheId?: pulumi.Input<string>;
-    /**
-     * IP address of the remote device to which the device connects.
-     */
     remoteCacheIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable using remote device as Web cache storage. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -145,24 +84,9 @@ export interface WanoptRemoteStorageState {
  * The set of arguments for constructing a WanoptRemoteStorage resource.
  */
 export interface WanoptRemoteStorageArgs {
-    /**
-     * ID that this device uses to connect to the remote device.
-     */
     localCacheId?: pulumi.Input<string>;
-    /**
-     * ID of the remote device to which the device connects.
-     */
     remoteCacheId?: pulumi.Input<string>;
-    /**
-     * IP address of the remote device to which the device connects.
-     */
     remoteCacheIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable using remote device as Web cache storage. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

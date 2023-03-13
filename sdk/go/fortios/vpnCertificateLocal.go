@@ -10,86 +10,40 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Local keys and certificates.
-//
-// ## Import
-//
-// VpnCertificate Local can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnCertificateLocal:VpnCertificateLocal labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnCertificateLocal:VpnCertificateLocal labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnCertificateLocal struct {
 	pulumi.CustomResourceState
 
-	// The URL for the ACME CA server (Let's Encrypt is the default provider).
-	AcmeCaUrl pulumi.StringOutput `pulumi:"acmeCaUrl"`
-	// A valid domain that resolves to this Fortigate.
-	AcmeDomain pulumi.StringOutput `pulumi:"acmeDomain"`
-	// Contact email address that is required by some CAs like LetsEncrypt.
-	AcmeEmail pulumi.StringOutput `pulumi:"acmeEmail"`
-	// Beginning of the renewal window (in days before certificate expiration, 30 by default).
-	AcmeRenewWindow pulumi.IntOutput `pulumi:"acmeRenewWindow"`
-	// Length of the RSA private key of the generated cert (Minimum 2048 bits).
-	AcmeRsaKeySize pulumi.IntOutput `pulumi:"acmeRsaKeySize"`
-	// Number of days to wait before expiry of an updated local certificate is requested (0 = disabled).
-	AutoRegenerateDays pulumi.IntOutput `pulumi:"autoRegenerateDays"`
-	// Number of days to wait before an expiry warning message is generated (0 = disabled).
-	AutoRegenerateDaysWarning pulumi.IntOutput `pulumi:"autoRegenerateDaysWarning"`
-	// CA identifier of the CA server for signing via SCEP.
-	CaIdentifier pulumi.StringOutput `pulumi:"caIdentifier"`
-	// PEM format certificate.
-	Certificate pulumi.StringOutput `pulumi:"certificate"`
-	// Path location inside CMP server.
-	CmpPath pulumi.StringOutput `pulumi:"cmpPath"`
-	// CMP auto-regeneration method. Valid values: `keyupate`, `renewal`.
-	CmpRegenerationMethod pulumi.StringOutput `pulumi:"cmpRegenerationMethod"`
-	// 'ADDRESS:PORT' for CMP server.
-	CmpServer pulumi.StringOutput `pulumi:"cmpServer"`
-	// CMP server certificate.
-	CmpServerCert pulumi.StringOutput `pulumi:"cmpServerCert"`
-	// Comment.
-	Comments pulumi.StringOutput `pulumi:"comments"`
-	// Certificate Signing Request.
-	Csr pulumi.StringOutput `pulumi:"csr"`
-	// Certificate enrollment protocol.
-	EnrollProtocol pulumi.StringOutput `pulumi:"enrollProtocol"`
-	// Local ID the FortiGate uses for authentication as a VPN client.
-	IkeLocalid pulumi.StringOutput `pulumi:"ikeLocalid"`
-	// IKE local ID type. Valid values: `asn1dn`, `fqdn`.
-	IkeLocalidType pulumi.StringOutput `pulumi:"ikeLocalidType"`
-	// Time at which certificate was last updated.
-	LastUpdated pulumi.IntOutput `pulumi:"lastUpdated"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Name encoding method for auto-regeneration. Valid values: `printable`, `utf8`.
-	NameEncoding pulumi.StringOutput `pulumi:"nameEncoding"`
-	// Password as a PEM file.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// PEM format key, encrypted with a password.
-	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
-	// Either a global or VDOM IP address range for the certificate. Valid values: `global`, `vdom`.
-	Range pulumi.StringOutput `pulumi:"range"`
-	// SCEP server challenge password for auto-regeneration.
-	ScepPassword pulumi.StringPtrOutput `pulumi:"scepPassword"`
-	// SCEP server URL.
-	ScepUrl pulumi.StringOutput `pulumi:"scepUrl"`
-	// Certificate source type.
-	Source pulumi.StringOutput `pulumi:"source"`
-	// Source IP address for communications to the SCEP server.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Certificate Signing Request State.
-	State pulumi.StringOutput `pulumi:"state"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AcmeCaUrl                 pulumi.StringOutput    `pulumi:"acmeCaUrl"`
+	AcmeDomain                pulumi.StringOutput    `pulumi:"acmeDomain"`
+	AcmeEmail                 pulumi.StringOutput    `pulumi:"acmeEmail"`
+	AcmeRenewWindow           pulumi.IntOutput       `pulumi:"acmeRenewWindow"`
+	AcmeRsaKeySize            pulumi.IntOutput       `pulumi:"acmeRsaKeySize"`
+	AutoRegenerateDays        pulumi.IntOutput       `pulumi:"autoRegenerateDays"`
+	AutoRegenerateDaysWarning pulumi.IntOutput       `pulumi:"autoRegenerateDaysWarning"`
+	CaIdentifier              pulumi.StringOutput    `pulumi:"caIdentifier"`
+	Certificate               pulumi.StringOutput    `pulumi:"certificate"`
+	CmpPath                   pulumi.StringOutput    `pulumi:"cmpPath"`
+	CmpRegenerationMethod     pulumi.StringOutput    `pulumi:"cmpRegenerationMethod"`
+	CmpServer                 pulumi.StringOutput    `pulumi:"cmpServer"`
+	CmpServerCert             pulumi.StringOutput    `pulumi:"cmpServerCert"`
+	Comments                  pulumi.StringOutput    `pulumi:"comments"`
+	Csr                       pulumi.StringOutput    `pulumi:"csr"`
+	EnrollProtocol            pulumi.StringOutput    `pulumi:"enrollProtocol"`
+	IkeLocalid                pulumi.StringOutput    `pulumi:"ikeLocalid"`
+	IkeLocalidType            pulumi.StringOutput    `pulumi:"ikeLocalidType"`
+	LastUpdated               pulumi.IntOutput       `pulumi:"lastUpdated"`
+	Name                      pulumi.StringOutput    `pulumi:"name"`
+	NameEncoding              pulumi.StringOutput    `pulumi:"nameEncoding"`
+	Password                  pulumi.StringPtrOutput `pulumi:"password"`
+	PrivateKey                pulumi.StringOutput    `pulumi:"privateKey"`
+	PrivateKeyRetain          pulumi.StringOutput    `pulumi:"privateKeyRetain"`
+	Range                     pulumi.StringOutput    `pulumi:"range"`
+	ScepPassword              pulumi.StringPtrOutput `pulumi:"scepPassword"`
+	ScepUrl                   pulumi.StringOutput    `pulumi:"scepUrl"`
+	Source                    pulumi.StringOutput    `pulumi:"source"`
+	SourceIp                  pulumi.StringOutput    `pulumi:"sourceIp"`
+	State                     pulumi.StringOutput    `pulumi:"state"`
+	Vdomparam                 pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewVpnCertificateLocal registers a new resource with the given unique name, arguments, and options.
@@ -99,6 +53,25 @@ func NewVpnCertificateLocal(ctx *pulumi.Context,
 		args = &VpnCertificateLocalArgs{}
 	}
 
+	if args.Certificate != nil {
+		args.Certificate = pulumi.ToSecret(args.Certificate).(pulumi.StringPtrInput)
+	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	if args.PrivateKey != nil {
+		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringPtrInput)
+	}
+	if args.ScepPassword != nil {
+		args.ScepPassword = pulumi.ToSecret(args.ScepPassword).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"certificate",
+		"password",
+		"privateKey",
+		"scepPassword",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnCertificateLocal
 	err := ctx.RegisterResource("fortios:index/vpnCertificateLocal:VpnCertificateLocal", name, args, &resource, opts...)
@@ -122,129 +95,71 @@ func GetVpnCertificateLocal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnCertificateLocal resources.
 type vpnCertificateLocalState struct {
-	// The URL for the ACME CA server (Let's Encrypt is the default provider).
-	AcmeCaUrl *string `pulumi:"acmeCaUrl"`
-	// A valid domain that resolves to this Fortigate.
-	AcmeDomain *string `pulumi:"acmeDomain"`
-	// Contact email address that is required by some CAs like LetsEncrypt.
-	AcmeEmail *string `pulumi:"acmeEmail"`
-	// Beginning of the renewal window (in days before certificate expiration, 30 by default).
-	AcmeRenewWindow *int `pulumi:"acmeRenewWindow"`
-	// Length of the RSA private key of the generated cert (Minimum 2048 bits).
-	AcmeRsaKeySize *int `pulumi:"acmeRsaKeySize"`
-	// Number of days to wait before expiry of an updated local certificate is requested (0 = disabled).
-	AutoRegenerateDays *int `pulumi:"autoRegenerateDays"`
-	// Number of days to wait before an expiry warning message is generated (0 = disabled).
-	AutoRegenerateDaysWarning *int `pulumi:"autoRegenerateDaysWarning"`
-	// CA identifier of the CA server for signing via SCEP.
-	CaIdentifier *string `pulumi:"caIdentifier"`
-	// PEM format certificate.
-	Certificate *string `pulumi:"certificate"`
-	// Path location inside CMP server.
-	CmpPath *string `pulumi:"cmpPath"`
-	// CMP auto-regeneration method. Valid values: `keyupate`, `renewal`.
-	CmpRegenerationMethod *string `pulumi:"cmpRegenerationMethod"`
-	// 'ADDRESS:PORT' for CMP server.
-	CmpServer *string `pulumi:"cmpServer"`
-	// CMP server certificate.
-	CmpServerCert *string `pulumi:"cmpServerCert"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Certificate Signing Request.
-	Csr *string `pulumi:"csr"`
-	// Certificate enrollment protocol.
-	EnrollProtocol *string `pulumi:"enrollProtocol"`
-	// Local ID the FortiGate uses for authentication as a VPN client.
-	IkeLocalid *string `pulumi:"ikeLocalid"`
-	// IKE local ID type. Valid values: `asn1dn`, `fqdn`.
-	IkeLocalidType *string `pulumi:"ikeLocalidType"`
-	// Time at which certificate was last updated.
-	LastUpdated *int `pulumi:"lastUpdated"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Name encoding method for auto-regeneration. Valid values: `printable`, `utf8`.
-	NameEncoding *string `pulumi:"nameEncoding"`
-	// Password as a PEM file.
-	Password *string `pulumi:"password"`
-	// PEM format key, encrypted with a password.
-	PrivateKey *string `pulumi:"privateKey"`
-	// Either a global or VDOM IP address range for the certificate. Valid values: `global`, `vdom`.
-	Range *string `pulumi:"range"`
-	// SCEP server challenge password for auto-regeneration.
-	ScepPassword *string `pulumi:"scepPassword"`
-	// SCEP server URL.
-	ScepUrl *string `pulumi:"scepUrl"`
-	// Certificate source type.
-	Source *string `pulumi:"source"`
-	// Source IP address for communications to the SCEP server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Certificate Signing Request State.
-	State *string `pulumi:"state"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AcmeCaUrl                 *string `pulumi:"acmeCaUrl"`
+	AcmeDomain                *string `pulumi:"acmeDomain"`
+	AcmeEmail                 *string `pulumi:"acmeEmail"`
+	AcmeRenewWindow           *int    `pulumi:"acmeRenewWindow"`
+	AcmeRsaKeySize            *int    `pulumi:"acmeRsaKeySize"`
+	AutoRegenerateDays        *int    `pulumi:"autoRegenerateDays"`
+	AutoRegenerateDaysWarning *int    `pulumi:"autoRegenerateDaysWarning"`
+	CaIdentifier              *string `pulumi:"caIdentifier"`
+	Certificate               *string `pulumi:"certificate"`
+	CmpPath                   *string `pulumi:"cmpPath"`
+	CmpRegenerationMethod     *string `pulumi:"cmpRegenerationMethod"`
+	CmpServer                 *string `pulumi:"cmpServer"`
+	CmpServerCert             *string `pulumi:"cmpServerCert"`
+	Comments                  *string `pulumi:"comments"`
+	Csr                       *string `pulumi:"csr"`
+	EnrollProtocol            *string `pulumi:"enrollProtocol"`
+	IkeLocalid                *string `pulumi:"ikeLocalid"`
+	IkeLocalidType            *string `pulumi:"ikeLocalidType"`
+	LastUpdated               *int    `pulumi:"lastUpdated"`
+	Name                      *string `pulumi:"name"`
+	NameEncoding              *string `pulumi:"nameEncoding"`
+	Password                  *string `pulumi:"password"`
+	PrivateKey                *string `pulumi:"privateKey"`
+	PrivateKeyRetain          *string `pulumi:"privateKeyRetain"`
+	Range                     *string `pulumi:"range"`
+	ScepPassword              *string `pulumi:"scepPassword"`
+	ScepUrl                   *string `pulumi:"scepUrl"`
+	Source                    *string `pulumi:"source"`
+	SourceIp                  *string `pulumi:"sourceIp"`
+	State                     *string `pulumi:"state"`
+	Vdomparam                 *string `pulumi:"vdomparam"`
 }
 
 type VpnCertificateLocalState struct {
-	// The URL for the ACME CA server (Let's Encrypt is the default provider).
-	AcmeCaUrl pulumi.StringPtrInput
-	// A valid domain that resolves to this Fortigate.
-	AcmeDomain pulumi.StringPtrInput
-	// Contact email address that is required by some CAs like LetsEncrypt.
-	AcmeEmail pulumi.StringPtrInput
-	// Beginning of the renewal window (in days before certificate expiration, 30 by default).
-	AcmeRenewWindow pulumi.IntPtrInput
-	// Length of the RSA private key of the generated cert (Minimum 2048 bits).
-	AcmeRsaKeySize pulumi.IntPtrInput
-	// Number of days to wait before expiry of an updated local certificate is requested (0 = disabled).
-	AutoRegenerateDays pulumi.IntPtrInput
-	// Number of days to wait before an expiry warning message is generated (0 = disabled).
+	AcmeCaUrl                 pulumi.StringPtrInput
+	AcmeDomain                pulumi.StringPtrInput
+	AcmeEmail                 pulumi.StringPtrInput
+	AcmeRenewWindow           pulumi.IntPtrInput
+	AcmeRsaKeySize            pulumi.IntPtrInput
+	AutoRegenerateDays        pulumi.IntPtrInput
 	AutoRegenerateDaysWarning pulumi.IntPtrInput
-	// CA identifier of the CA server for signing via SCEP.
-	CaIdentifier pulumi.StringPtrInput
-	// PEM format certificate.
-	Certificate pulumi.StringPtrInput
-	// Path location inside CMP server.
-	CmpPath pulumi.StringPtrInput
-	// CMP auto-regeneration method. Valid values: `keyupate`, `renewal`.
-	CmpRegenerationMethod pulumi.StringPtrInput
-	// 'ADDRESS:PORT' for CMP server.
-	CmpServer pulumi.StringPtrInput
-	// CMP server certificate.
-	CmpServerCert pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Certificate Signing Request.
-	Csr pulumi.StringPtrInput
-	// Certificate enrollment protocol.
-	EnrollProtocol pulumi.StringPtrInput
-	// Local ID the FortiGate uses for authentication as a VPN client.
-	IkeLocalid pulumi.StringPtrInput
-	// IKE local ID type. Valid values: `asn1dn`, `fqdn`.
-	IkeLocalidType pulumi.StringPtrInput
-	// Time at which certificate was last updated.
-	LastUpdated pulumi.IntPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Name encoding method for auto-regeneration. Valid values: `printable`, `utf8`.
-	NameEncoding pulumi.StringPtrInput
-	// Password as a PEM file.
-	Password pulumi.StringPtrInput
-	// PEM format key, encrypted with a password.
-	PrivateKey pulumi.StringPtrInput
-	// Either a global or VDOM IP address range for the certificate. Valid values: `global`, `vdom`.
-	Range pulumi.StringPtrInput
-	// SCEP server challenge password for auto-regeneration.
-	ScepPassword pulumi.StringPtrInput
-	// SCEP server URL.
-	ScepUrl pulumi.StringPtrInput
-	// Certificate source type.
-	Source pulumi.StringPtrInput
-	// Source IP address for communications to the SCEP server.
-	SourceIp pulumi.StringPtrInput
-	// Certificate Signing Request State.
-	State pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	CaIdentifier              pulumi.StringPtrInput
+	Certificate               pulumi.StringPtrInput
+	CmpPath                   pulumi.StringPtrInput
+	CmpRegenerationMethod     pulumi.StringPtrInput
+	CmpServer                 pulumi.StringPtrInput
+	CmpServerCert             pulumi.StringPtrInput
+	Comments                  pulumi.StringPtrInput
+	Csr                       pulumi.StringPtrInput
+	EnrollProtocol            pulumi.StringPtrInput
+	IkeLocalid                pulumi.StringPtrInput
+	IkeLocalidType            pulumi.StringPtrInput
+	LastUpdated               pulumi.IntPtrInput
+	Name                      pulumi.StringPtrInput
+	NameEncoding              pulumi.StringPtrInput
+	Password                  pulumi.StringPtrInput
+	PrivateKey                pulumi.StringPtrInput
+	PrivateKeyRetain          pulumi.StringPtrInput
+	Range                     pulumi.StringPtrInput
+	ScepPassword              pulumi.StringPtrInput
+	ScepUrl                   pulumi.StringPtrInput
+	Source                    pulumi.StringPtrInput
+	SourceIp                  pulumi.StringPtrInput
+	State                     pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
 }
 
 func (VpnCertificateLocalState) ElementType() reflect.Type {
@@ -252,130 +167,72 @@ func (VpnCertificateLocalState) ElementType() reflect.Type {
 }
 
 type vpnCertificateLocalArgs struct {
-	// The URL for the ACME CA server (Let's Encrypt is the default provider).
-	AcmeCaUrl *string `pulumi:"acmeCaUrl"`
-	// A valid domain that resolves to this Fortigate.
-	AcmeDomain *string `pulumi:"acmeDomain"`
-	// Contact email address that is required by some CAs like LetsEncrypt.
-	AcmeEmail *string `pulumi:"acmeEmail"`
-	// Beginning of the renewal window (in days before certificate expiration, 30 by default).
-	AcmeRenewWindow *int `pulumi:"acmeRenewWindow"`
-	// Length of the RSA private key of the generated cert (Minimum 2048 bits).
-	AcmeRsaKeySize *int `pulumi:"acmeRsaKeySize"`
-	// Number of days to wait before expiry of an updated local certificate is requested (0 = disabled).
-	AutoRegenerateDays *int `pulumi:"autoRegenerateDays"`
-	// Number of days to wait before an expiry warning message is generated (0 = disabled).
-	AutoRegenerateDaysWarning *int `pulumi:"autoRegenerateDaysWarning"`
-	// CA identifier of the CA server for signing via SCEP.
-	CaIdentifier *string `pulumi:"caIdentifier"`
-	// PEM format certificate.
-	Certificate *string `pulumi:"certificate"`
-	// Path location inside CMP server.
-	CmpPath *string `pulumi:"cmpPath"`
-	// CMP auto-regeneration method. Valid values: `keyupate`, `renewal`.
-	CmpRegenerationMethod *string `pulumi:"cmpRegenerationMethod"`
-	// 'ADDRESS:PORT' for CMP server.
-	CmpServer *string `pulumi:"cmpServer"`
-	// CMP server certificate.
-	CmpServerCert *string `pulumi:"cmpServerCert"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Certificate Signing Request.
-	Csr *string `pulumi:"csr"`
-	// Certificate enrollment protocol.
-	EnrollProtocol *string `pulumi:"enrollProtocol"`
-	// Local ID the FortiGate uses for authentication as a VPN client.
-	IkeLocalid *string `pulumi:"ikeLocalid"`
-	// IKE local ID type. Valid values: `asn1dn`, `fqdn`.
-	IkeLocalidType *string `pulumi:"ikeLocalidType"`
-	// Time at which certificate was last updated.
-	LastUpdated *int `pulumi:"lastUpdated"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Name encoding method for auto-regeneration. Valid values: `printable`, `utf8`.
-	NameEncoding *string `pulumi:"nameEncoding"`
-	// Password as a PEM file.
-	Password *string `pulumi:"password"`
-	// PEM format key, encrypted with a password.
-	PrivateKey *string `pulumi:"privateKey"`
-	// Either a global or VDOM IP address range for the certificate. Valid values: `global`, `vdom`.
-	Range *string `pulumi:"range"`
-	// SCEP server challenge password for auto-regeneration.
-	ScepPassword *string `pulumi:"scepPassword"`
-	// SCEP server URL.
-	ScepUrl *string `pulumi:"scepUrl"`
-	// Certificate source type.
-	Source *string `pulumi:"source"`
-	// Source IP address for communications to the SCEP server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Certificate Signing Request State.
-	State *string `pulumi:"state"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AcmeCaUrl                 *string `pulumi:"acmeCaUrl"`
+	AcmeDomain                *string `pulumi:"acmeDomain"`
+	AcmeEmail                 *string `pulumi:"acmeEmail"`
+	AcmeRenewWindow           *int    `pulumi:"acmeRenewWindow"`
+	AcmeRsaKeySize            *int    `pulumi:"acmeRsaKeySize"`
+	AutoRegenerateDays        *int    `pulumi:"autoRegenerateDays"`
+	AutoRegenerateDaysWarning *int    `pulumi:"autoRegenerateDaysWarning"`
+	CaIdentifier              *string `pulumi:"caIdentifier"`
+	Certificate               *string `pulumi:"certificate"`
+	CmpPath                   *string `pulumi:"cmpPath"`
+	CmpRegenerationMethod     *string `pulumi:"cmpRegenerationMethod"`
+	CmpServer                 *string `pulumi:"cmpServer"`
+	CmpServerCert             *string `pulumi:"cmpServerCert"`
+	Comments                  *string `pulumi:"comments"`
+	Csr                       *string `pulumi:"csr"`
+	EnrollProtocol            *string `pulumi:"enrollProtocol"`
+	IkeLocalid                *string `pulumi:"ikeLocalid"`
+	IkeLocalidType            *string `pulumi:"ikeLocalidType"`
+	LastUpdated               *int    `pulumi:"lastUpdated"`
+	Name                      *string `pulumi:"name"`
+	NameEncoding              *string `pulumi:"nameEncoding"`
+	Password                  *string `pulumi:"password"`
+	PrivateKey                *string `pulumi:"privateKey"`
+	PrivateKeyRetain          *string `pulumi:"privateKeyRetain"`
+	Range                     *string `pulumi:"range"`
+	ScepPassword              *string `pulumi:"scepPassword"`
+	ScepUrl                   *string `pulumi:"scepUrl"`
+	Source                    *string `pulumi:"source"`
+	SourceIp                  *string `pulumi:"sourceIp"`
+	State                     *string `pulumi:"state"`
+	Vdomparam                 *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VpnCertificateLocal resource.
 type VpnCertificateLocalArgs struct {
-	// The URL for the ACME CA server (Let's Encrypt is the default provider).
-	AcmeCaUrl pulumi.StringPtrInput
-	// A valid domain that resolves to this Fortigate.
-	AcmeDomain pulumi.StringPtrInput
-	// Contact email address that is required by some CAs like LetsEncrypt.
-	AcmeEmail pulumi.StringPtrInput
-	// Beginning of the renewal window (in days before certificate expiration, 30 by default).
-	AcmeRenewWindow pulumi.IntPtrInput
-	// Length of the RSA private key of the generated cert (Minimum 2048 bits).
-	AcmeRsaKeySize pulumi.IntPtrInput
-	// Number of days to wait before expiry of an updated local certificate is requested (0 = disabled).
-	AutoRegenerateDays pulumi.IntPtrInput
-	// Number of days to wait before an expiry warning message is generated (0 = disabled).
+	AcmeCaUrl                 pulumi.StringPtrInput
+	AcmeDomain                pulumi.StringPtrInput
+	AcmeEmail                 pulumi.StringPtrInput
+	AcmeRenewWindow           pulumi.IntPtrInput
+	AcmeRsaKeySize            pulumi.IntPtrInput
+	AutoRegenerateDays        pulumi.IntPtrInput
 	AutoRegenerateDaysWarning pulumi.IntPtrInput
-	// CA identifier of the CA server for signing via SCEP.
-	CaIdentifier pulumi.StringPtrInput
-	// PEM format certificate.
-	Certificate pulumi.StringPtrInput
-	// Path location inside CMP server.
-	CmpPath pulumi.StringPtrInput
-	// CMP auto-regeneration method. Valid values: `keyupate`, `renewal`.
-	CmpRegenerationMethod pulumi.StringPtrInput
-	// 'ADDRESS:PORT' for CMP server.
-	CmpServer pulumi.StringPtrInput
-	// CMP server certificate.
-	CmpServerCert pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Certificate Signing Request.
-	Csr pulumi.StringPtrInput
-	// Certificate enrollment protocol.
-	EnrollProtocol pulumi.StringPtrInput
-	// Local ID the FortiGate uses for authentication as a VPN client.
-	IkeLocalid pulumi.StringPtrInput
-	// IKE local ID type. Valid values: `asn1dn`, `fqdn`.
-	IkeLocalidType pulumi.StringPtrInput
-	// Time at which certificate was last updated.
-	LastUpdated pulumi.IntPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Name encoding method for auto-regeneration. Valid values: `printable`, `utf8`.
-	NameEncoding pulumi.StringPtrInput
-	// Password as a PEM file.
-	Password pulumi.StringPtrInput
-	// PEM format key, encrypted with a password.
-	PrivateKey pulumi.StringPtrInput
-	// Either a global or VDOM IP address range for the certificate. Valid values: `global`, `vdom`.
-	Range pulumi.StringPtrInput
-	// SCEP server challenge password for auto-regeneration.
-	ScepPassword pulumi.StringPtrInput
-	// SCEP server URL.
-	ScepUrl pulumi.StringPtrInput
-	// Certificate source type.
-	Source pulumi.StringPtrInput
-	// Source IP address for communications to the SCEP server.
-	SourceIp pulumi.StringPtrInput
-	// Certificate Signing Request State.
-	State pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	CaIdentifier              pulumi.StringPtrInput
+	Certificate               pulumi.StringPtrInput
+	CmpPath                   pulumi.StringPtrInput
+	CmpRegenerationMethod     pulumi.StringPtrInput
+	CmpServer                 pulumi.StringPtrInput
+	CmpServerCert             pulumi.StringPtrInput
+	Comments                  pulumi.StringPtrInput
+	Csr                       pulumi.StringPtrInput
+	EnrollProtocol            pulumi.StringPtrInput
+	IkeLocalid                pulumi.StringPtrInput
+	IkeLocalidType            pulumi.StringPtrInput
+	LastUpdated               pulumi.IntPtrInput
+	Name                      pulumi.StringPtrInput
+	NameEncoding              pulumi.StringPtrInput
+	Password                  pulumi.StringPtrInput
+	PrivateKey                pulumi.StringPtrInput
+	PrivateKeyRetain          pulumi.StringPtrInput
+	Range                     pulumi.StringPtrInput
+	ScepPassword              pulumi.StringPtrInput
+	ScepUrl                   pulumi.StringPtrInput
+	Source                    pulumi.StringPtrInput
+	SourceIp                  pulumi.StringPtrInput
+	State                     pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
 }
 
 func (VpnCertificateLocalArgs) ElementType() reflect.Type {
@@ -404,7 +261,7 @@ func (i *VpnCertificateLocal) ToVpnCertificateLocalOutputWithContext(ctx context
 // VpnCertificateLocalArrayInput is an input type that accepts VpnCertificateLocalArray and VpnCertificateLocalArrayOutput values.
 // You can construct a concrete instance of `VpnCertificateLocalArrayInput` via:
 //
-//          VpnCertificateLocalArray{ VpnCertificateLocalArgs{...} }
+//	VpnCertificateLocalArray{ VpnCertificateLocalArgs{...} }
 type VpnCertificateLocalArrayInput interface {
 	pulumi.Input
 
@@ -429,7 +286,7 @@ func (i VpnCertificateLocalArray) ToVpnCertificateLocalArrayOutputWithContext(ct
 // VpnCertificateLocalMapInput is an input type that accepts VpnCertificateLocalMap and VpnCertificateLocalMapOutput values.
 // You can construct a concrete instance of `VpnCertificateLocalMapInput` via:
 //
-//          VpnCertificateLocalMap{ "key": VpnCertificateLocalArgs{...} }
+//	VpnCertificateLocalMap{ "key": VpnCertificateLocalArgs{...} }
 type VpnCertificateLocalMapInput interface {
 	pulumi.Input
 
@@ -463,6 +320,130 @@ func (o VpnCertificateLocalOutput) ToVpnCertificateLocalOutput() VpnCertificateL
 
 func (o VpnCertificateLocalOutput) ToVpnCertificateLocalOutputWithContext(ctx context.Context) VpnCertificateLocalOutput {
 	return o
+}
+
+func (o VpnCertificateLocalOutput) AcmeCaUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.AcmeCaUrl }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) AcmeDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.AcmeDomain }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) AcmeEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.AcmeEmail }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) AcmeRenewWindow() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.IntOutput { return v.AcmeRenewWindow }).(pulumi.IntOutput)
+}
+
+func (o VpnCertificateLocalOutput) AcmeRsaKeySize() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.IntOutput { return v.AcmeRsaKeySize }).(pulumi.IntOutput)
+}
+
+func (o VpnCertificateLocalOutput) AutoRegenerateDays() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.IntOutput { return v.AutoRegenerateDays }).(pulumi.IntOutput)
+}
+
+func (o VpnCertificateLocalOutput) AutoRegenerateDaysWarning() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.IntOutput { return v.AutoRegenerateDaysWarning }).(pulumi.IntOutput)
+}
+
+func (o VpnCertificateLocalOutput) CaIdentifier() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.CaIdentifier }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) Certificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) CmpPath() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.CmpPath }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) CmpRegenerationMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.CmpRegenerationMethod }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) CmpServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.CmpServer }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) CmpServerCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.CmpServerCert }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) Comments() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.Comments }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) Csr() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.Csr }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) EnrollProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.EnrollProtocol }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) IkeLocalid() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.IkeLocalid }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) IkeLocalidType() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.IkeLocalidType }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) LastUpdated() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.IntOutput { return v.LastUpdated }).(pulumi.IntOutput)
+}
+
+func (o VpnCertificateLocalOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) NameEncoding() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.NameEncoding }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnCertificateLocalOutput) PrivateKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) PrivateKeyRetain() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.PrivateKeyRetain }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) Range() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.Range }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) ScepPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringPtrOutput { return v.ScepPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnCertificateLocalOutput) ScepUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.ScepUrl }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.Source }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type VpnCertificateLocalArrayOutput struct{ *pulumi.OutputState }

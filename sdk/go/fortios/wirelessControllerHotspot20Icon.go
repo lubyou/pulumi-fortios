@@ -10,55 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure OSU provider icon.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWirelessControllerHotspot20Icon(ctx, "trname", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// WirelessControllerHotspot20 Icon can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20Icon:WirelessControllerHotspot20Icon labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20Icon:WirelessControllerHotspot20Icon labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerHotspot20Icon struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Icon list. The structure of `iconList` block is documented below.
-	IconLists WirelessControllerHotspot20IconIconListArrayOutput `pulumi:"iconLists"`
-	// Icon name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                             `pulumi:"dynamicSortSubtable"`
+	IconLists           WirelessControllerHotspot20IconIconListArrayOutput `pulumi:"iconLists"`
+	Name                pulumi.StringOutput                                `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                             `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerHotspot20Icon registers a new resource with the given unique name, arguments, and options.
@@ -91,25 +49,17 @@ func GetWirelessControllerHotspot20Icon(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerHotspot20Icon resources.
 type wirelessControllerHotspot20IconState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Icon list. The structure of `iconList` block is documented below.
-	IconLists []WirelessControllerHotspot20IconIconList `pulumi:"iconLists"`
-	// Icon name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                   `pulumi:"dynamicSortSubtable"`
+	IconLists           []WirelessControllerHotspot20IconIconList `pulumi:"iconLists"`
+	Name                *string                                   `pulumi:"name"`
+	Vdomparam           *string                                   `pulumi:"vdomparam"`
 }
 
 type WirelessControllerHotspot20IconState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Icon list. The structure of `iconList` block is documented below.
-	IconLists WirelessControllerHotspot20IconIconListArrayInput
-	// Icon name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	IconLists           WirelessControllerHotspot20IconIconListArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20IconState) ElementType() reflect.Type {
@@ -117,26 +67,18 @@ func (WirelessControllerHotspot20IconState) ElementType() reflect.Type {
 }
 
 type wirelessControllerHotspot20IconArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Icon list. The structure of `iconList` block is documented below.
-	IconLists []WirelessControllerHotspot20IconIconList `pulumi:"iconLists"`
-	// Icon name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                   `pulumi:"dynamicSortSubtable"`
+	IconLists           []WirelessControllerHotspot20IconIconList `pulumi:"iconLists"`
+	Name                *string                                   `pulumi:"name"`
+	Vdomparam           *string                                   `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerHotspot20Icon resource.
 type WirelessControllerHotspot20IconArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Icon list. The structure of `iconList` block is documented below.
-	IconLists WirelessControllerHotspot20IconIconListArrayInput
-	// Icon name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	IconLists           WirelessControllerHotspot20IconIconListArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20IconArgs) ElementType() reflect.Type {
@@ -165,7 +107,7 @@ func (i *WirelessControllerHotspot20Icon) ToWirelessControllerHotspot20IconOutpu
 // WirelessControllerHotspot20IconArrayInput is an input type that accepts WirelessControllerHotspot20IconArray and WirelessControllerHotspot20IconArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20IconArrayInput` via:
 //
-//          WirelessControllerHotspot20IconArray{ WirelessControllerHotspot20IconArgs{...} }
+//	WirelessControllerHotspot20IconArray{ WirelessControllerHotspot20IconArgs{...} }
 type WirelessControllerHotspot20IconArrayInput interface {
 	pulumi.Input
 
@@ -190,7 +132,7 @@ func (i WirelessControllerHotspot20IconArray) ToWirelessControllerHotspot20IconA
 // WirelessControllerHotspot20IconMapInput is an input type that accepts WirelessControllerHotspot20IconMap and WirelessControllerHotspot20IconMapOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20IconMapInput` via:
 //
-//          WirelessControllerHotspot20IconMap{ "key": WirelessControllerHotspot20IconArgs{...} }
+//	WirelessControllerHotspot20IconMap{ "key": WirelessControllerHotspot20IconArgs{...} }
 type WirelessControllerHotspot20IconMapInput interface {
 	pulumi.Input
 
@@ -224,6 +166,24 @@ func (o WirelessControllerHotspot20IconOutput) ToWirelessControllerHotspot20Icon
 
 func (o WirelessControllerHotspot20IconOutput) ToWirelessControllerHotspot20IconOutputWithContext(ctx context.Context) WirelessControllerHotspot20IconOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20IconOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20Icon) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20IconOutput) IconLists() WirelessControllerHotspot20IconIconListArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20Icon) WirelessControllerHotspot20IconIconListArrayOutput {
+		return v.IconLists
+	}).(WirelessControllerHotspot20IconIconListArrayOutput)
+}
+
+func (o WirelessControllerHotspot20IconOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20Icon) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20IconOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20Icon) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerHotspot20IconArrayOutput struct{ *pulumi.OutputState }

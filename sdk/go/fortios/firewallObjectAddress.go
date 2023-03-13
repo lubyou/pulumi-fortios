@@ -7,136 +7,24 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure firewall addresses used in firewall policies of FortiOS.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `FirewallAddress`, we recommend that you use the new resource.
-//
-// ## Example Usage
-// ### Iprange Address
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallObjectAddress(ctx, "s1", &fortios.FirewallObjectAddressArgs{
-// 			Comment: pulumi.String("dd"),
-// 			EndIp:   pulumi.String("2.0.0.0"),
-// 			StartIp: pulumi.String("1.0.0.0"),
-// 			Type:    pulumi.String("iprange"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Geography Address
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallObjectAddress(ctx, "s2", &fortios.FirewallObjectAddressArgs{
-// 			Comment: pulumi.String("dd"),
-// 			Country: pulumi.String("AO"),
-// 			Type:    pulumi.String("geography"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Fqdn Address
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallObjectAddress(ctx, "s3", &fortios.FirewallObjectAddressArgs{
-// 			AssociatedInterface:  pulumi.String("port4"),
-// 			Comment:              pulumi.String("dd"),
-// 			Fqdn:                 pulumi.String("baid.com"),
-// 			ShowInAddressList:    pulumi.String("disable"),
-// 			StaticRouteConfigure: pulumi.String("enable"),
-// 			Type:                 pulumi.String("fqdn"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Ipmask Address
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallObjectAddress(ctx, "s4", &fortios.FirewallObjectAddressArgs{
-// 			Comment: pulumi.String("dd"),
-// 			Subnet:  pulumi.String("0.0.0.0 0.0.0.0"),
-// 			Type:    pulumi.String("ipmask"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FirewallObjectAddress struct {
 	pulumi.CustomResourceState
 
-	// Network interface associated with address.
-	AssociatedInterface pulumi.StringOutput `pulumi:"associatedInterface"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// IP addresses associated to a specific country.
-	Country pulumi.StringOutput `pulumi:"country"`
-	// Final IP address (inclusive) in the range for the address.
-	EndIp pulumi.StringOutput `pulumi:"endIp"`
-	// Fully Qualified Domain Name address.
-	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
-	// Address name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable address visibility in the GUI. default is "enable".
-	ShowInAddressList pulumi.StringOutput `pulumi:"showInAddressList"`
-	// First IP address (inclusive) in the range for the address.
-	StartIp pulumi.StringOutput `pulumi:"startIp"`
-	// Enable/disable use of this address in the static route configuration. default is "disable".
-	StaticRouteConfigure pulumi.StringOutput `pulumi:"staticRouteConfigure"`
-	// IP address and subnet mask of address.
-	Subnet pulumi.StringOutput `pulumi:"subnet"`
-	// Type of address(Support ipmask, iprange, fqdn and geography).
-	Type pulumi.StringOutput `pulumi:"type"`
+	AssociatedInterface  pulumi.StringOutput    `pulumi:"associatedInterface"`
+	Comment              pulumi.StringPtrOutput `pulumi:"comment"`
+	Country              pulumi.StringOutput    `pulumi:"country"`
+	EndIp                pulumi.StringOutput    `pulumi:"endIp"`
+	Fqdn                 pulumi.StringOutput    `pulumi:"fqdn"`
+	Name                 pulumi.StringOutput    `pulumi:"name"`
+	ShowInAddressList    pulumi.StringOutput    `pulumi:"showInAddressList"`
+	StartIp              pulumi.StringOutput    `pulumi:"startIp"`
+	StaticRouteConfigure pulumi.StringOutput    `pulumi:"staticRouteConfigure"`
+	Subnet               pulumi.StringOutput    `pulumi:"subnet"`
+	Type                 pulumi.StringOutput    `pulumi:"type"`
 }
 
 // NewFirewallObjectAddress registers a new resource with the given unique name, arguments, and options.
@@ -172,53 +60,31 @@ func GetFirewallObjectAddress(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallObjectAddress resources.
 type firewallObjectAddressState struct {
-	// Network interface associated with address.
-	AssociatedInterface *string `pulumi:"associatedInterface"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// IP addresses associated to a specific country.
-	Country *string `pulumi:"country"`
-	// Final IP address (inclusive) in the range for the address.
-	EndIp *string `pulumi:"endIp"`
-	// Fully Qualified Domain Name address.
-	Fqdn *string `pulumi:"fqdn"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// Enable/disable address visibility in the GUI. default is "enable".
-	ShowInAddressList *string `pulumi:"showInAddressList"`
-	// First IP address (inclusive) in the range for the address.
-	StartIp *string `pulumi:"startIp"`
-	// Enable/disable use of this address in the static route configuration. default is "disable".
+	AssociatedInterface  *string `pulumi:"associatedInterface"`
+	Comment              *string `pulumi:"comment"`
+	Country              *string `pulumi:"country"`
+	EndIp                *string `pulumi:"endIp"`
+	Fqdn                 *string `pulumi:"fqdn"`
+	Name                 *string `pulumi:"name"`
+	ShowInAddressList    *string `pulumi:"showInAddressList"`
+	StartIp              *string `pulumi:"startIp"`
 	StaticRouteConfigure *string `pulumi:"staticRouteConfigure"`
-	// IP address and subnet mask of address.
-	Subnet *string `pulumi:"subnet"`
-	// Type of address(Support ipmask, iprange, fqdn and geography).
-	Type *string `pulumi:"type"`
+	Subnet               *string `pulumi:"subnet"`
+	Type                 *string `pulumi:"type"`
 }
 
 type FirewallObjectAddressState struct {
-	// Network interface associated with address.
-	AssociatedInterface pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// IP addresses associated to a specific country.
-	Country pulumi.StringPtrInput
-	// Final IP address (inclusive) in the range for the address.
-	EndIp pulumi.StringPtrInput
-	// Fully Qualified Domain Name address.
-	Fqdn pulumi.StringPtrInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// Enable/disable address visibility in the GUI. default is "enable".
-	ShowInAddressList pulumi.StringPtrInput
-	// First IP address (inclusive) in the range for the address.
-	StartIp pulumi.StringPtrInput
-	// Enable/disable use of this address in the static route configuration. default is "disable".
+	AssociatedInterface  pulumi.StringPtrInput
+	Comment              pulumi.StringPtrInput
+	Country              pulumi.StringPtrInput
+	EndIp                pulumi.StringPtrInput
+	Fqdn                 pulumi.StringPtrInput
+	Name                 pulumi.StringPtrInput
+	ShowInAddressList    pulumi.StringPtrInput
+	StartIp              pulumi.StringPtrInput
 	StaticRouteConfigure pulumi.StringPtrInput
-	// IP address and subnet mask of address.
-	Subnet pulumi.StringPtrInput
-	// Type of address(Support ipmask, iprange, fqdn and geography).
-	Type pulumi.StringPtrInput
+	Subnet               pulumi.StringPtrInput
+	Type                 pulumi.StringPtrInput
 }
 
 func (FirewallObjectAddressState) ElementType() reflect.Type {
@@ -226,54 +92,32 @@ func (FirewallObjectAddressState) ElementType() reflect.Type {
 }
 
 type firewallObjectAddressArgs struct {
-	// Network interface associated with address.
-	AssociatedInterface *string `pulumi:"associatedInterface"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// IP addresses associated to a specific country.
-	Country *string `pulumi:"country"`
-	// Final IP address (inclusive) in the range for the address.
-	EndIp *string `pulumi:"endIp"`
-	// Fully Qualified Domain Name address.
-	Fqdn *string `pulumi:"fqdn"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// Enable/disable address visibility in the GUI. default is "enable".
-	ShowInAddressList *string `pulumi:"showInAddressList"`
-	// First IP address (inclusive) in the range for the address.
-	StartIp *string `pulumi:"startIp"`
-	// Enable/disable use of this address in the static route configuration. default is "disable".
+	AssociatedInterface  *string `pulumi:"associatedInterface"`
+	Comment              *string `pulumi:"comment"`
+	Country              *string `pulumi:"country"`
+	EndIp                *string `pulumi:"endIp"`
+	Fqdn                 *string `pulumi:"fqdn"`
+	Name                 *string `pulumi:"name"`
+	ShowInAddressList    *string `pulumi:"showInAddressList"`
+	StartIp              *string `pulumi:"startIp"`
 	StaticRouteConfigure *string `pulumi:"staticRouteConfigure"`
-	// IP address and subnet mask of address.
-	Subnet *string `pulumi:"subnet"`
-	// Type of address(Support ipmask, iprange, fqdn and geography).
-	Type string `pulumi:"type"`
+	Subnet               *string `pulumi:"subnet"`
+	Type                 string  `pulumi:"type"`
 }
 
 // The set of arguments for constructing a FirewallObjectAddress resource.
 type FirewallObjectAddressArgs struct {
-	// Network interface associated with address.
-	AssociatedInterface pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// IP addresses associated to a specific country.
-	Country pulumi.StringPtrInput
-	// Final IP address (inclusive) in the range for the address.
-	EndIp pulumi.StringPtrInput
-	// Fully Qualified Domain Name address.
-	Fqdn pulumi.StringPtrInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// Enable/disable address visibility in the GUI. default is "enable".
-	ShowInAddressList pulumi.StringPtrInput
-	// First IP address (inclusive) in the range for the address.
-	StartIp pulumi.StringPtrInput
-	// Enable/disable use of this address in the static route configuration. default is "disable".
+	AssociatedInterface  pulumi.StringPtrInput
+	Comment              pulumi.StringPtrInput
+	Country              pulumi.StringPtrInput
+	EndIp                pulumi.StringPtrInput
+	Fqdn                 pulumi.StringPtrInput
+	Name                 pulumi.StringPtrInput
+	ShowInAddressList    pulumi.StringPtrInput
+	StartIp              pulumi.StringPtrInput
 	StaticRouteConfigure pulumi.StringPtrInput
-	// IP address and subnet mask of address.
-	Subnet pulumi.StringPtrInput
-	// Type of address(Support ipmask, iprange, fqdn and geography).
-	Type pulumi.StringInput
+	Subnet               pulumi.StringPtrInput
+	Type                 pulumi.StringInput
 }
 
 func (FirewallObjectAddressArgs) ElementType() reflect.Type {
@@ -302,7 +146,7 @@ func (i *FirewallObjectAddress) ToFirewallObjectAddressOutputWithContext(ctx con
 // FirewallObjectAddressArrayInput is an input type that accepts FirewallObjectAddressArray and FirewallObjectAddressArrayOutput values.
 // You can construct a concrete instance of `FirewallObjectAddressArrayInput` via:
 //
-//          FirewallObjectAddressArray{ FirewallObjectAddressArgs{...} }
+//	FirewallObjectAddressArray{ FirewallObjectAddressArgs{...} }
 type FirewallObjectAddressArrayInput interface {
 	pulumi.Input
 
@@ -327,7 +171,7 @@ func (i FirewallObjectAddressArray) ToFirewallObjectAddressArrayOutputWithContex
 // FirewallObjectAddressMapInput is an input type that accepts FirewallObjectAddressMap and FirewallObjectAddressMapOutput values.
 // You can construct a concrete instance of `FirewallObjectAddressMapInput` via:
 //
-//          FirewallObjectAddressMap{ "key": FirewallObjectAddressArgs{...} }
+//	FirewallObjectAddressMap{ "key": FirewallObjectAddressArgs{...} }
 type FirewallObjectAddressMapInput interface {
 	pulumi.Input
 
@@ -361,6 +205,50 @@ func (o FirewallObjectAddressOutput) ToFirewallObjectAddressOutput() FirewallObj
 
 func (o FirewallObjectAddressOutput) ToFirewallObjectAddressOutputWithContext(ctx context.Context) FirewallObjectAddressOutput {
 	return o
+}
+
+func (o FirewallObjectAddressOutput) AssociatedInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectAddress) pulumi.StringOutput { return v.AssociatedInterface }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectAddressOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallObjectAddress) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallObjectAddressOutput) Country() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectAddress) pulumi.StringOutput { return v.Country }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectAddressOutput) EndIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectAddress) pulumi.StringOutput { return v.EndIp }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectAddressOutput) Fqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectAddress) pulumi.StringOutput { return v.Fqdn }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectAddressOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectAddress) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectAddressOutput) ShowInAddressList() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectAddress) pulumi.StringOutput { return v.ShowInAddressList }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectAddressOutput) StartIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectAddress) pulumi.StringOutput { return v.StartIp }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectAddressOutput) StaticRouteConfigure() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectAddress) pulumi.StringOutput { return v.StaticRouteConfigure }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectAddressOutput) Subnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectAddress) pulumi.StringOutput { return v.Subnet }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectAddressOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectAddress) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 type FirewallObjectAddressArrayOutput struct{ *pulumi.OutputState }

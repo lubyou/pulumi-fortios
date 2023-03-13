@@ -10,76 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure WiFi quality of service (QoS) profiles.
-//
-// ## Import
-//
-// WirelessController QosProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerQosProfile:WirelessControllerQosProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerQosProfile:WirelessControllerQosProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerQosProfile struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable WMM bandwidth admission control. Valid values: `enable`, `disable`.
-	BandwidthAdmissionControl pulumi.StringOutput `pulumi:"bandwidthAdmissionControl"`
-	// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-	BandwidthCapacity pulumi.IntOutput `pulumi:"bandwidthCapacity"`
-	// Enable/disable client rate burst. Valid values: `enable`, `disable`.
-	Burst pulumi.StringOutput `pulumi:"burst"`
-	// Enable/disable WMM call admission control. Valid values: `enable`, `disable`.
-	CallAdmissionControl pulumi.StringOutput `pulumi:"callAdmissionControl"`
-	// Maximum number of Voice over WLAN (VoWLAN) phones allowed (0 - 60, default = 10).
-	CallCapacity pulumi.IntOutput `pulumi:"callCapacity"`
-	// Comment.
-	Comment pulumi.StringOutput `pulumi:"comment"`
-	// Maximum downlink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	Downlink pulumi.IntOutput `pulumi:"downlink"`
-	// Maximum downlink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	DownlinkSta pulumi.IntOutput `pulumi:"downlinkSta"`
-	// DSCP mapping for best effort access (default = 0 24). The structure of `dscpWmmBe` block is documented below.
-	DscpWmmBes WirelessControllerQosProfileDscpWmmBeArrayOutput `pulumi:"dscpWmmBes"`
-	// DSCP mapping for background access (default = 8 16). The structure of `dscpWmmBk` block is documented below.
-	DscpWmmBks WirelessControllerQosProfileDscpWmmBkArrayOutput `pulumi:"dscpWmmBks"`
-	// Enable/disable Differentiated Services Code Point (DSCP) mapping. Valid values: `enable`, `disable`.
-	DscpWmmMapping pulumi.StringOutput `pulumi:"dscpWmmMapping"`
-	// DSCP mapping for video access (default = 32 40). The structure of `dscpWmmVi` block is documented below.
-	DscpWmmVis WirelessControllerQosProfileDscpWmmViArrayOutput `pulumi:"dscpWmmVis"`
-	// DSCP mapping for voice access (default = 48 56). The structure of `dscpWmmVo` block is documented below.
-	DscpWmmVos WirelessControllerQosProfileDscpWmmVoArrayOutput `pulumi:"dscpWmmVos"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// WiFi QoS profile name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Maximum uplink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	Uplink pulumi.IntOutput `pulumi:"uplink"`
-	// Maximum uplink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	UplinkSta pulumi.IntOutput `pulumi:"uplinkSta"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable WiFi multi-media (WMM) control. Valid values: `enable`, `disable`.
-	Wmm pulumi.StringOutput `pulumi:"wmm"`
-	// DSCP marking for best effort access (default = 0).
-	WmmBeDscp pulumi.IntOutput `pulumi:"wmmBeDscp"`
-	// DSCP marking for background access (default = 8).
-	WmmBkDscp pulumi.IntOutput `pulumi:"wmmBkDscp"`
-	// Enable/disable WMM Differentiated Services Code Point (DSCP) marking. Valid values: `enable`, `disable`.
-	WmmDscpMarking pulumi.StringOutput `pulumi:"wmmDscpMarking"`
-	// Enable/disable WMM Unscheduled Automatic Power Save Delivery (U-APSD) power save mode. Valid values: `enable`, `disable`.
-	WmmUapsd pulumi.StringOutput `pulumi:"wmmUapsd"`
-	// DSCP marking for video access (default = 32).
-	WmmViDscp pulumi.IntOutput `pulumi:"wmmViDscp"`
-	// DSCP marking for voice access (default = 48).
-	WmmVoDscp pulumi.IntOutput `pulumi:"wmmVoDscp"`
+	BandwidthAdmissionControl pulumi.StringOutput                              `pulumi:"bandwidthAdmissionControl"`
+	BandwidthCapacity         pulumi.IntOutput                                 `pulumi:"bandwidthCapacity"`
+	Burst                     pulumi.StringOutput                              `pulumi:"burst"`
+	CallAdmissionControl      pulumi.StringOutput                              `pulumi:"callAdmissionControl"`
+	CallCapacity              pulumi.IntOutput                                 `pulumi:"callCapacity"`
+	Comment                   pulumi.StringOutput                              `pulumi:"comment"`
+	Downlink                  pulumi.IntOutput                                 `pulumi:"downlink"`
+	DownlinkSta               pulumi.IntOutput                                 `pulumi:"downlinkSta"`
+	DscpWmmBes                WirelessControllerQosProfileDscpWmmBeArrayOutput `pulumi:"dscpWmmBes"`
+	DscpWmmBks                WirelessControllerQosProfileDscpWmmBkArrayOutput `pulumi:"dscpWmmBks"`
+	DscpWmmMapping            pulumi.StringOutput                              `pulumi:"dscpWmmMapping"`
+	DscpWmmVis                WirelessControllerQosProfileDscpWmmViArrayOutput `pulumi:"dscpWmmVis"`
+	DscpWmmVos                WirelessControllerQosProfileDscpWmmVoArrayOutput `pulumi:"dscpWmmVos"`
+	DynamicSortSubtable       pulumi.StringPtrOutput                           `pulumi:"dynamicSortSubtable"`
+	Name                      pulumi.StringOutput                              `pulumi:"name"`
+	Uplink                    pulumi.IntOutput                                 `pulumi:"uplink"`
+	UplinkSta                 pulumi.IntOutput                                 `pulumi:"uplinkSta"`
+	Vdomparam                 pulumi.StringPtrOutput                           `pulumi:"vdomparam"`
+	Wmm                       pulumi.StringOutput                              `pulumi:"wmm"`
+	WmmBeDscp                 pulumi.IntOutput                                 `pulumi:"wmmBeDscp"`
+	WmmBkDscp                 pulumi.IntOutput                                 `pulumi:"wmmBkDscp"`
+	WmmDscpMarking            pulumi.StringOutput                              `pulumi:"wmmDscpMarking"`
+	WmmUapsd                  pulumi.StringOutput                              `pulumi:"wmmUapsd"`
+	WmmViDscp                 pulumi.IntOutput                                 `pulumi:"wmmViDscp"`
+	WmmVoDscp                 pulumi.IntOutput                                 `pulumi:"wmmVoDscp"`
 }
 
 // NewWirelessControllerQosProfile registers a new resource with the given unique name, arguments, and options.
@@ -112,109 +70,59 @@ func GetWirelessControllerQosProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerQosProfile resources.
 type wirelessControllerQosProfileState struct {
-	// Enable/disable WMM bandwidth admission control. Valid values: `enable`, `disable`.
-	BandwidthAdmissionControl *string `pulumi:"bandwidthAdmissionControl"`
-	// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-	BandwidthCapacity *int `pulumi:"bandwidthCapacity"`
-	// Enable/disable client rate burst. Valid values: `enable`, `disable`.
-	Burst *string `pulumi:"burst"`
-	// Enable/disable WMM call admission control. Valid values: `enable`, `disable`.
-	CallAdmissionControl *string `pulumi:"callAdmissionControl"`
-	// Maximum number of Voice over WLAN (VoWLAN) phones allowed (0 - 60, default = 10).
-	CallCapacity *int `pulumi:"callCapacity"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Maximum downlink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	Downlink *int `pulumi:"downlink"`
-	// Maximum downlink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	DownlinkSta *int `pulumi:"downlinkSta"`
-	// DSCP mapping for best effort access (default = 0 24). The structure of `dscpWmmBe` block is documented below.
-	DscpWmmBes []WirelessControllerQosProfileDscpWmmBe `pulumi:"dscpWmmBes"`
-	// DSCP mapping for background access (default = 8 16). The structure of `dscpWmmBk` block is documented below.
-	DscpWmmBks []WirelessControllerQosProfileDscpWmmBk `pulumi:"dscpWmmBks"`
-	// Enable/disable Differentiated Services Code Point (DSCP) mapping. Valid values: `enable`, `disable`.
-	DscpWmmMapping *string `pulumi:"dscpWmmMapping"`
-	// DSCP mapping for video access (default = 32 40). The structure of `dscpWmmVi` block is documented below.
-	DscpWmmVis []WirelessControllerQosProfileDscpWmmVi `pulumi:"dscpWmmVis"`
-	// DSCP mapping for voice access (default = 48 56). The structure of `dscpWmmVo` block is documented below.
-	DscpWmmVos []WirelessControllerQosProfileDscpWmmVo `pulumi:"dscpWmmVos"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// WiFi QoS profile name.
-	Name *string `pulumi:"name"`
-	// Maximum uplink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	Uplink *int `pulumi:"uplink"`
-	// Maximum uplink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	UplinkSta *int `pulumi:"uplinkSta"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable WiFi multi-media (WMM) control. Valid values: `enable`, `disable`.
-	Wmm *string `pulumi:"wmm"`
-	// DSCP marking for best effort access (default = 0).
-	WmmBeDscp *int `pulumi:"wmmBeDscp"`
-	// DSCP marking for background access (default = 8).
-	WmmBkDscp *int `pulumi:"wmmBkDscp"`
-	// Enable/disable WMM Differentiated Services Code Point (DSCP) marking. Valid values: `enable`, `disable`.
-	WmmDscpMarking *string `pulumi:"wmmDscpMarking"`
-	// Enable/disable WMM Unscheduled Automatic Power Save Delivery (U-APSD) power save mode. Valid values: `enable`, `disable`.
-	WmmUapsd *string `pulumi:"wmmUapsd"`
-	// DSCP marking for video access (default = 32).
-	WmmViDscp *int `pulumi:"wmmViDscp"`
-	// DSCP marking for voice access (default = 48).
-	WmmVoDscp *int `pulumi:"wmmVoDscp"`
+	BandwidthAdmissionControl *string                                 `pulumi:"bandwidthAdmissionControl"`
+	BandwidthCapacity         *int                                    `pulumi:"bandwidthCapacity"`
+	Burst                     *string                                 `pulumi:"burst"`
+	CallAdmissionControl      *string                                 `pulumi:"callAdmissionControl"`
+	CallCapacity              *int                                    `pulumi:"callCapacity"`
+	Comment                   *string                                 `pulumi:"comment"`
+	Downlink                  *int                                    `pulumi:"downlink"`
+	DownlinkSta               *int                                    `pulumi:"downlinkSta"`
+	DscpWmmBes                []WirelessControllerQosProfileDscpWmmBe `pulumi:"dscpWmmBes"`
+	DscpWmmBks                []WirelessControllerQosProfileDscpWmmBk `pulumi:"dscpWmmBks"`
+	DscpWmmMapping            *string                                 `pulumi:"dscpWmmMapping"`
+	DscpWmmVis                []WirelessControllerQosProfileDscpWmmVi `pulumi:"dscpWmmVis"`
+	DscpWmmVos                []WirelessControllerQosProfileDscpWmmVo `pulumi:"dscpWmmVos"`
+	DynamicSortSubtable       *string                                 `pulumi:"dynamicSortSubtable"`
+	Name                      *string                                 `pulumi:"name"`
+	Uplink                    *int                                    `pulumi:"uplink"`
+	UplinkSta                 *int                                    `pulumi:"uplinkSta"`
+	Vdomparam                 *string                                 `pulumi:"vdomparam"`
+	Wmm                       *string                                 `pulumi:"wmm"`
+	WmmBeDscp                 *int                                    `pulumi:"wmmBeDscp"`
+	WmmBkDscp                 *int                                    `pulumi:"wmmBkDscp"`
+	WmmDscpMarking            *string                                 `pulumi:"wmmDscpMarking"`
+	WmmUapsd                  *string                                 `pulumi:"wmmUapsd"`
+	WmmViDscp                 *int                                    `pulumi:"wmmViDscp"`
+	WmmVoDscp                 *int                                    `pulumi:"wmmVoDscp"`
 }
 
 type WirelessControllerQosProfileState struct {
-	// Enable/disable WMM bandwidth admission control. Valid values: `enable`, `disable`.
 	BandwidthAdmissionControl pulumi.StringPtrInput
-	// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-	BandwidthCapacity pulumi.IntPtrInput
-	// Enable/disable client rate burst. Valid values: `enable`, `disable`.
-	Burst pulumi.StringPtrInput
-	// Enable/disable WMM call admission control. Valid values: `enable`, `disable`.
-	CallAdmissionControl pulumi.StringPtrInput
-	// Maximum number of Voice over WLAN (VoWLAN) phones allowed (0 - 60, default = 10).
-	CallCapacity pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Maximum downlink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	Downlink pulumi.IntPtrInput
-	// Maximum downlink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	DownlinkSta pulumi.IntPtrInput
-	// DSCP mapping for best effort access (default = 0 24). The structure of `dscpWmmBe` block is documented below.
-	DscpWmmBes WirelessControllerQosProfileDscpWmmBeArrayInput
-	// DSCP mapping for background access (default = 8 16). The structure of `dscpWmmBk` block is documented below.
-	DscpWmmBks WirelessControllerQosProfileDscpWmmBkArrayInput
-	// Enable/disable Differentiated Services Code Point (DSCP) mapping. Valid values: `enable`, `disable`.
-	DscpWmmMapping pulumi.StringPtrInput
-	// DSCP mapping for video access (default = 32 40). The structure of `dscpWmmVi` block is documented below.
-	DscpWmmVis WirelessControllerQosProfileDscpWmmViArrayInput
-	// DSCP mapping for voice access (default = 48 56). The structure of `dscpWmmVo` block is documented below.
-	DscpWmmVos WirelessControllerQosProfileDscpWmmVoArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// WiFi QoS profile name.
-	Name pulumi.StringPtrInput
-	// Maximum uplink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	Uplink pulumi.IntPtrInput
-	// Maximum uplink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	UplinkSta pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable WiFi multi-media (WMM) control. Valid values: `enable`, `disable`.
-	Wmm pulumi.StringPtrInput
-	// DSCP marking for best effort access (default = 0).
-	WmmBeDscp pulumi.IntPtrInput
-	// DSCP marking for background access (default = 8).
-	WmmBkDscp pulumi.IntPtrInput
-	// Enable/disable WMM Differentiated Services Code Point (DSCP) marking. Valid values: `enable`, `disable`.
-	WmmDscpMarking pulumi.StringPtrInput
-	// Enable/disable WMM Unscheduled Automatic Power Save Delivery (U-APSD) power save mode. Valid values: `enable`, `disable`.
-	WmmUapsd pulumi.StringPtrInput
-	// DSCP marking for video access (default = 32).
-	WmmViDscp pulumi.IntPtrInput
-	// DSCP marking for voice access (default = 48).
-	WmmVoDscp pulumi.IntPtrInput
+	BandwidthCapacity         pulumi.IntPtrInput
+	Burst                     pulumi.StringPtrInput
+	CallAdmissionControl      pulumi.StringPtrInput
+	CallCapacity              pulumi.IntPtrInput
+	Comment                   pulumi.StringPtrInput
+	Downlink                  pulumi.IntPtrInput
+	DownlinkSta               pulumi.IntPtrInput
+	DscpWmmBes                WirelessControllerQosProfileDscpWmmBeArrayInput
+	DscpWmmBks                WirelessControllerQosProfileDscpWmmBkArrayInput
+	DscpWmmMapping            pulumi.StringPtrInput
+	DscpWmmVis                WirelessControllerQosProfileDscpWmmViArrayInput
+	DscpWmmVos                WirelessControllerQosProfileDscpWmmVoArrayInput
+	DynamicSortSubtable       pulumi.StringPtrInput
+	Name                      pulumi.StringPtrInput
+	Uplink                    pulumi.IntPtrInput
+	UplinkSta                 pulumi.IntPtrInput
+	Vdomparam                 pulumi.StringPtrInput
+	Wmm                       pulumi.StringPtrInput
+	WmmBeDscp                 pulumi.IntPtrInput
+	WmmBkDscp                 pulumi.IntPtrInput
+	WmmDscpMarking            pulumi.StringPtrInput
+	WmmUapsd                  pulumi.StringPtrInput
+	WmmViDscp                 pulumi.IntPtrInput
+	WmmVoDscp                 pulumi.IntPtrInput
 }
 
 func (WirelessControllerQosProfileState) ElementType() reflect.Type {
@@ -222,110 +130,60 @@ func (WirelessControllerQosProfileState) ElementType() reflect.Type {
 }
 
 type wirelessControllerQosProfileArgs struct {
-	// Enable/disable WMM bandwidth admission control. Valid values: `enable`, `disable`.
-	BandwidthAdmissionControl *string `pulumi:"bandwidthAdmissionControl"`
-	// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-	BandwidthCapacity *int `pulumi:"bandwidthCapacity"`
-	// Enable/disable client rate burst. Valid values: `enable`, `disable`.
-	Burst *string `pulumi:"burst"`
-	// Enable/disable WMM call admission control. Valid values: `enable`, `disable`.
-	CallAdmissionControl *string `pulumi:"callAdmissionControl"`
-	// Maximum number of Voice over WLAN (VoWLAN) phones allowed (0 - 60, default = 10).
-	CallCapacity *int `pulumi:"callCapacity"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Maximum downlink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	Downlink *int `pulumi:"downlink"`
-	// Maximum downlink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	DownlinkSta *int `pulumi:"downlinkSta"`
-	// DSCP mapping for best effort access (default = 0 24). The structure of `dscpWmmBe` block is documented below.
-	DscpWmmBes []WirelessControllerQosProfileDscpWmmBe `pulumi:"dscpWmmBes"`
-	// DSCP mapping for background access (default = 8 16). The structure of `dscpWmmBk` block is documented below.
-	DscpWmmBks []WirelessControllerQosProfileDscpWmmBk `pulumi:"dscpWmmBks"`
-	// Enable/disable Differentiated Services Code Point (DSCP) mapping. Valid values: `enable`, `disable`.
-	DscpWmmMapping *string `pulumi:"dscpWmmMapping"`
-	// DSCP mapping for video access (default = 32 40). The structure of `dscpWmmVi` block is documented below.
-	DscpWmmVis []WirelessControllerQosProfileDscpWmmVi `pulumi:"dscpWmmVis"`
-	// DSCP mapping for voice access (default = 48 56). The structure of `dscpWmmVo` block is documented below.
-	DscpWmmVos []WirelessControllerQosProfileDscpWmmVo `pulumi:"dscpWmmVos"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// WiFi QoS profile name.
-	Name *string `pulumi:"name"`
-	// Maximum uplink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	Uplink *int `pulumi:"uplink"`
-	// Maximum uplink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	UplinkSta *int `pulumi:"uplinkSta"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable WiFi multi-media (WMM) control. Valid values: `enable`, `disable`.
-	Wmm *string `pulumi:"wmm"`
-	// DSCP marking for best effort access (default = 0).
-	WmmBeDscp *int `pulumi:"wmmBeDscp"`
-	// DSCP marking for background access (default = 8).
-	WmmBkDscp *int `pulumi:"wmmBkDscp"`
-	// Enable/disable WMM Differentiated Services Code Point (DSCP) marking. Valid values: `enable`, `disable`.
-	WmmDscpMarking *string `pulumi:"wmmDscpMarking"`
-	// Enable/disable WMM Unscheduled Automatic Power Save Delivery (U-APSD) power save mode. Valid values: `enable`, `disable`.
-	WmmUapsd *string `pulumi:"wmmUapsd"`
-	// DSCP marking for video access (default = 32).
-	WmmViDscp *int `pulumi:"wmmViDscp"`
-	// DSCP marking for voice access (default = 48).
-	WmmVoDscp *int `pulumi:"wmmVoDscp"`
+	BandwidthAdmissionControl *string                                 `pulumi:"bandwidthAdmissionControl"`
+	BandwidthCapacity         *int                                    `pulumi:"bandwidthCapacity"`
+	Burst                     *string                                 `pulumi:"burst"`
+	CallAdmissionControl      *string                                 `pulumi:"callAdmissionControl"`
+	CallCapacity              *int                                    `pulumi:"callCapacity"`
+	Comment                   *string                                 `pulumi:"comment"`
+	Downlink                  *int                                    `pulumi:"downlink"`
+	DownlinkSta               *int                                    `pulumi:"downlinkSta"`
+	DscpWmmBes                []WirelessControllerQosProfileDscpWmmBe `pulumi:"dscpWmmBes"`
+	DscpWmmBks                []WirelessControllerQosProfileDscpWmmBk `pulumi:"dscpWmmBks"`
+	DscpWmmMapping            *string                                 `pulumi:"dscpWmmMapping"`
+	DscpWmmVis                []WirelessControllerQosProfileDscpWmmVi `pulumi:"dscpWmmVis"`
+	DscpWmmVos                []WirelessControllerQosProfileDscpWmmVo `pulumi:"dscpWmmVos"`
+	DynamicSortSubtable       *string                                 `pulumi:"dynamicSortSubtable"`
+	Name                      *string                                 `pulumi:"name"`
+	Uplink                    *int                                    `pulumi:"uplink"`
+	UplinkSta                 *int                                    `pulumi:"uplinkSta"`
+	Vdomparam                 *string                                 `pulumi:"vdomparam"`
+	Wmm                       *string                                 `pulumi:"wmm"`
+	WmmBeDscp                 *int                                    `pulumi:"wmmBeDscp"`
+	WmmBkDscp                 *int                                    `pulumi:"wmmBkDscp"`
+	WmmDscpMarking            *string                                 `pulumi:"wmmDscpMarking"`
+	WmmUapsd                  *string                                 `pulumi:"wmmUapsd"`
+	WmmViDscp                 *int                                    `pulumi:"wmmViDscp"`
+	WmmVoDscp                 *int                                    `pulumi:"wmmVoDscp"`
 }
 
 // The set of arguments for constructing a WirelessControllerQosProfile resource.
 type WirelessControllerQosProfileArgs struct {
-	// Enable/disable WMM bandwidth admission control. Valid values: `enable`, `disable`.
 	BandwidthAdmissionControl pulumi.StringPtrInput
-	// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-	BandwidthCapacity pulumi.IntPtrInput
-	// Enable/disable client rate burst. Valid values: `enable`, `disable`.
-	Burst pulumi.StringPtrInput
-	// Enable/disable WMM call admission control. Valid values: `enable`, `disable`.
-	CallAdmissionControl pulumi.StringPtrInput
-	// Maximum number of Voice over WLAN (VoWLAN) phones allowed (0 - 60, default = 10).
-	CallCapacity pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Maximum downlink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	Downlink pulumi.IntPtrInput
-	// Maximum downlink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	DownlinkSta pulumi.IntPtrInput
-	// DSCP mapping for best effort access (default = 0 24). The structure of `dscpWmmBe` block is documented below.
-	DscpWmmBes WirelessControllerQosProfileDscpWmmBeArrayInput
-	// DSCP mapping for background access (default = 8 16). The structure of `dscpWmmBk` block is documented below.
-	DscpWmmBks WirelessControllerQosProfileDscpWmmBkArrayInput
-	// Enable/disable Differentiated Services Code Point (DSCP) mapping. Valid values: `enable`, `disable`.
-	DscpWmmMapping pulumi.StringPtrInput
-	// DSCP mapping for video access (default = 32 40). The structure of `dscpWmmVi` block is documented below.
-	DscpWmmVis WirelessControllerQosProfileDscpWmmViArrayInput
-	// DSCP mapping for voice access (default = 48 56). The structure of `dscpWmmVo` block is documented below.
-	DscpWmmVos WirelessControllerQosProfileDscpWmmVoArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// WiFi QoS profile name.
-	Name pulumi.StringPtrInput
-	// Maximum uplink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	Uplink pulumi.IntPtrInput
-	// Maximum uplink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-	UplinkSta pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable WiFi multi-media (WMM) control. Valid values: `enable`, `disable`.
-	Wmm pulumi.StringPtrInput
-	// DSCP marking for best effort access (default = 0).
-	WmmBeDscp pulumi.IntPtrInput
-	// DSCP marking for background access (default = 8).
-	WmmBkDscp pulumi.IntPtrInput
-	// Enable/disable WMM Differentiated Services Code Point (DSCP) marking. Valid values: `enable`, `disable`.
-	WmmDscpMarking pulumi.StringPtrInput
-	// Enable/disable WMM Unscheduled Automatic Power Save Delivery (U-APSD) power save mode. Valid values: `enable`, `disable`.
-	WmmUapsd pulumi.StringPtrInput
-	// DSCP marking for video access (default = 32).
-	WmmViDscp pulumi.IntPtrInput
-	// DSCP marking for voice access (default = 48).
-	WmmVoDscp pulumi.IntPtrInput
+	BandwidthCapacity         pulumi.IntPtrInput
+	Burst                     pulumi.StringPtrInput
+	CallAdmissionControl      pulumi.StringPtrInput
+	CallCapacity              pulumi.IntPtrInput
+	Comment                   pulumi.StringPtrInput
+	Downlink                  pulumi.IntPtrInput
+	DownlinkSta               pulumi.IntPtrInput
+	DscpWmmBes                WirelessControllerQosProfileDscpWmmBeArrayInput
+	DscpWmmBks                WirelessControllerQosProfileDscpWmmBkArrayInput
+	DscpWmmMapping            pulumi.StringPtrInput
+	DscpWmmVis                WirelessControllerQosProfileDscpWmmViArrayInput
+	DscpWmmVos                WirelessControllerQosProfileDscpWmmVoArrayInput
+	DynamicSortSubtable       pulumi.StringPtrInput
+	Name                      pulumi.StringPtrInput
+	Uplink                    pulumi.IntPtrInput
+	UplinkSta                 pulumi.IntPtrInput
+	Vdomparam                 pulumi.StringPtrInput
+	Wmm                       pulumi.StringPtrInput
+	WmmBeDscp                 pulumi.IntPtrInput
+	WmmBkDscp                 pulumi.IntPtrInput
+	WmmDscpMarking            pulumi.StringPtrInput
+	WmmUapsd                  pulumi.StringPtrInput
+	WmmViDscp                 pulumi.IntPtrInput
+	WmmVoDscp                 pulumi.IntPtrInput
 }
 
 func (WirelessControllerQosProfileArgs) ElementType() reflect.Type {
@@ -354,7 +212,7 @@ func (i *WirelessControllerQosProfile) ToWirelessControllerQosProfileOutputWithC
 // WirelessControllerQosProfileArrayInput is an input type that accepts WirelessControllerQosProfileArray and WirelessControllerQosProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerQosProfileArrayInput` via:
 //
-//          WirelessControllerQosProfileArray{ WirelessControllerQosProfileArgs{...} }
+//	WirelessControllerQosProfileArray{ WirelessControllerQosProfileArgs{...} }
 type WirelessControllerQosProfileArrayInput interface {
 	pulumi.Input
 
@@ -379,7 +237,7 @@ func (i WirelessControllerQosProfileArray) ToWirelessControllerQosProfileArrayOu
 // WirelessControllerQosProfileMapInput is an input type that accepts WirelessControllerQosProfileMap and WirelessControllerQosProfileMapOutput values.
 // You can construct a concrete instance of `WirelessControllerQosProfileMapInput` via:
 //
-//          WirelessControllerQosProfileMap{ "key": WirelessControllerQosProfileArgs{...} }
+//	WirelessControllerQosProfileMap{ "key": WirelessControllerQosProfileArgs{...} }
 type WirelessControllerQosProfileMapInput interface {
 	pulumi.Input
 
@@ -413,6 +271,114 @@ func (o WirelessControllerQosProfileOutput) ToWirelessControllerQosProfileOutput
 
 func (o WirelessControllerQosProfileOutput) ToWirelessControllerQosProfileOutputWithContext(ctx context.Context) WirelessControllerQosProfileOutput {
 	return o
+}
+
+func (o WirelessControllerQosProfileOutput) BandwidthAdmissionControl() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.StringOutput { return v.BandwidthAdmissionControl }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) BandwidthCapacity() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.IntOutput { return v.BandwidthCapacity }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) Burst() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.StringOutput { return v.Burst }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) CallAdmissionControl() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.StringOutput { return v.CallAdmissionControl }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) CallCapacity() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.IntOutput { return v.CallCapacity }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.StringOutput { return v.Comment }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) Downlink() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.IntOutput { return v.Downlink }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) DownlinkSta() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.IntOutput { return v.DownlinkSta }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) DscpWmmBes() WirelessControllerQosProfileDscpWmmBeArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) WirelessControllerQosProfileDscpWmmBeArrayOutput {
+		return v.DscpWmmBes
+	}).(WirelessControllerQosProfileDscpWmmBeArrayOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) DscpWmmBks() WirelessControllerQosProfileDscpWmmBkArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) WirelessControllerQosProfileDscpWmmBkArrayOutput {
+		return v.DscpWmmBks
+	}).(WirelessControllerQosProfileDscpWmmBkArrayOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) DscpWmmMapping() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.StringOutput { return v.DscpWmmMapping }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) DscpWmmVis() WirelessControllerQosProfileDscpWmmViArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) WirelessControllerQosProfileDscpWmmViArrayOutput {
+		return v.DscpWmmVis
+	}).(WirelessControllerQosProfileDscpWmmViArrayOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) DscpWmmVos() WirelessControllerQosProfileDscpWmmVoArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) WirelessControllerQosProfileDscpWmmVoArrayOutput {
+		return v.DscpWmmVos
+	}).(WirelessControllerQosProfileDscpWmmVoArrayOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) Uplink() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.IntOutput { return v.Uplink }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) UplinkSta() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.IntOutput { return v.UplinkSta }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) Wmm() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.StringOutput { return v.Wmm }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) WmmBeDscp() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.IntOutput { return v.WmmBeDscp }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) WmmBkDscp() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.IntOutput { return v.WmmBkDscp }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) WmmDscpMarking() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.StringOutput { return v.WmmDscpMarking }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) WmmUapsd() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.StringOutput { return v.WmmUapsd }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) WmmViDscp() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.IntOutput { return v.WmmViDscp }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) WmmVoDscp() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.IntOutput { return v.WmmVoDscp }).(pulumi.IntOutput)
 }
 
 type WirelessControllerQosProfileArrayOutput struct{ *pulumi.OutputState }

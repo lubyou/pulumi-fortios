@@ -2,19 +2,14 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios router rip
- */
 export function getRouterRip(args?: GetRouterRipArgs, opts?: pulumi.InvokeOptions): Promise<GetRouterRipResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getRouterRip:GetRouterRip", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -24,9 +19,6 @@ export function getRouterRip(args?: GetRouterRipArgs, opts?: pulumi.InvokeOption
  * A collection of arguments for invoking GetRouterRip.
  */
 export interface GetRouterRipArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -34,87 +26,35 @@ export interface GetRouterRipArgs {
  * A collection of values returned by GetRouterRip.
  */
 export interface GetRouterRipResult {
-    /**
-     * Enable/disable generation of default route.
-     */
     readonly defaultInformationOriginate: string;
-    /**
-     * Default metric.
-     */
     readonly defaultMetric: number;
-    /**
-     * Distance (1 - 255).
-     */
     readonly distances: outputs.GetRouterRipDistance[];
-    /**
-     * Distribute list. The structure of `distributeList` block is documented below.
-     */
     readonly distributeLists: outputs.GetRouterRipDistributeList[];
-    /**
-     * Garbage timer in seconds.
-     */
     readonly garbageTimer: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Interface name.
-     */
     readonly interfaces: outputs.GetRouterRipInterface[];
-    /**
-     * Maximum metric allowed to output(0 means 'not set').
-     */
     readonly maxOutMetric: number;
-    /**
-     * neighbor The structure of `neighbor` block is documented below.
-     */
     readonly neighbors: outputs.GetRouterRipNeighbor[];
-    /**
-     * network The structure of `network` block is documented below.
-     */
     readonly networks: outputs.GetRouterRipNetwork[];
-    /**
-     * Offset list. The structure of `offsetList` block is documented below.
-     */
     readonly offsetLists: outputs.GetRouterRipOffsetList[];
-    /**
-     * Passive interface configuration. The structure of `passiveInterface` block is documented below.
-     */
     readonly passiveInterfaces: outputs.GetRouterRipPassiveInterface[];
-    /**
-     * Receiving buffer size.
-     */
     readonly recvBufferSize: number;
-    /**
-     * Redistribute configuration. The structure of `redistribute` block is documented below.
-     */
     readonly redistributes: outputs.GetRouterRipRedistribute[];
-    /**
-     * Timeout timer in seconds.
-     */
     readonly timeoutTimer: number;
-    /**
-     * Update timer in seconds.
-     */
     readonly updateTimer: number;
     readonly vdomparam?: string;
-    /**
-     * RIP version.
-     */
     readonly version: string;
 }
-
 export function getRouterRipOutput(args?: GetRouterRipOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterRipResult> {
-    return pulumi.output(args).apply(a => getRouterRip(a, opts))
+    return pulumi.output(args).apply((a: any) => getRouterRip(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetRouterRip.
  */
 export interface GetRouterRipOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

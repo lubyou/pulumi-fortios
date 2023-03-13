@@ -2,41 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * SSH filter profile.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SshFilterProfile("trname", {
- *     block: "x11",
- *     defaultCommandLog: "enable",
- *     log: "x11",
- * });
- * ```
- *
- * ## Import
- *
- * SshFilter Profile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/sshFilterProfile:SshFilterProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/sshFilterProfile:SshFilterProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SshFilterProfile extends pulumi.CustomResource {
     /**
      * Get an existing SshFilterProfile resource's state with the given name, ID, and optional extra
@@ -65,37 +34,13 @@ export class SshFilterProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === SshFilterProfile.__pulumiType;
     }
 
-    /**
-     * SSH blocking options.
-     */
     public readonly block!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging unmatched shell commands. Valid values: `enable`, `disable`.
-     */
     public readonly defaultCommandLog!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * File filter. The structure of `fileFilter` block is documented below.
-     */
-    public readonly fileFilter!: pulumi.Output<outputs.SshFilterProfileFileFilter | undefined>;
-    /**
-     * Enable/disable file filter logging. Valid values: `enable`, `disable`.
-     */
+    public readonly fileFilter!: pulumi.Output<outputs.SshFilterProfileFileFilter>;
     public readonly log!: pulumi.Output<string>;
-    /**
-     * File type name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * SSH command filter. The structure of `shellCommands` block is documented below.
-     */
     public readonly shellCommands!: pulumi.Output<outputs.SshFilterProfileShellCommand[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -139,37 +84,13 @@ export class SshFilterProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SshFilterProfile resources.
  */
 export interface SshFilterProfileState {
-    /**
-     * SSH blocking options.
-     */
     block?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging unmatched shell commands. Valid values: `enable`, `disable`.
-     */
     defaultCommandLog?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * File filter. The structure of `fileFilter` block is documented below.
-     */
     fileFilter?: pulumi.Input<inputs.SshFilterProfileFileFilter>;
-    /**
-     * Enable/disable file filter logging. Valid values: `enable`, `disable`.
-     */
     log?: pulumi.Input<string>;
-    /**
-     * File type name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * SSH command filter. The structure of `shellCommands` block is documented below.
-     */
     shellCommands?: pulumi.Input<pulumi.Input<inputs.SshFilterProfileShellCommand>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -177,36 +98,12 @@ export interface SshFilterProfileState {
  * The set of arguments for constructing a SshFilterProfile resource.
  */
 export interface SshFilterProfileArgs {
-    /**
-     * SSH blocking options.
-     */
     block?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging unmatched shell commands. Valid values: `enable`, `disable`.
-     */
     defaultCommandLog?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * File filter. The structure of `fileFilter` block is documented below.
-     */
     fileFilter?: pulumi.Input<inputs.SshFilterProfileFileFilter>;
-    /**
-     * Enable/disable file filter logging. Valid values: `enable`, `disable`.
-     */
     log?: pulumi.Input<string>;
-    /**
-     * File type name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * SSH command filter. The structure of `shellCommands` block is documented below.
-     */
     shellCommands?: pulumi.Input<pulumi.Input<inputs.SshFilterProfileShellCommand>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

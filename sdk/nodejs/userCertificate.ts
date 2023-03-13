@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure certificate users. Applies to FortiOS Version `>= 7.0.1`.
- *
- * ## Import
- *
- * User Certificate can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userCertificate:UserCertificate labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userCertificate:UserCertificate labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserCertificate extends pulumi.CustomResource {
     /**
      * Get an existing UserCertificate resource's state with the given name, ID, and optional extra
@@ -51,33 +32,12 @@ export class UserCertificate extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserCertificate.__pulumiType;
     }
 
-    /**
-     * Certificate common name.
-     */
     public readonly commonName!: pulumi.Output<string>;
-    /**
-     * User ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * CA certificate used for client certificate verification.
-     */
     public readonly issuer!: pulumi.Output<string>;
-    /**
-     * User name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable allowing the certificate user to authenticate with the FortiGate unit. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Type of certificate authentication method. Valid values: `single-certificate`, `trusted-issuer`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -119,33 +79,12 @@ export class UserCertificate extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserCertificate resources.
  */
 export interface UserCertificateState {
-    /**
-     * Certificate common name.
-     */
     commonName?: pulumi.Input<string>;
-    /**
-     * User ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * CA certificate used for client certificate verification.
-     */
     issuer?: pulumi.Input<string>;
-    /**
-     * User name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable allowing the certificate user to authenticate with the FortiGate unit. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Type of certificate authentication method. Valid values: `single-certificate`, `trusted-issuer`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -153,32 +92,11 @@ export interface UserCertificateState {
  * The set of arguments for constructing a UserCertificate resource.
  */
 export interface UserCertificateArgs {
-    /**
-     * Certificate common name.
-     */
     commonName?: pulumi.Input<string>;
-    /**
-     * User ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * CA certificate used for client certificate verification.
-     */
     issuer?: pulumi.Input<string>;
-    /**
-     * User name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable allowing the certificate user to authenticate with the FortiGate unit. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Type of certificate authentication method. Valid values: `single-certificate`, `trusted-issuer`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,40 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure certificate users. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// User Certificate can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userCertificate:UserCertificate labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userCertificate:UserCertificate labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserCertificate struct {
 	pulumi.CustomResourceState
 
-	// Certificate common name.
-	CommonName pulumi.StringOutput `pulumi:"commonName"`
-	// User ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// CA certificate used for client certificate verification.
-	Issuer pulumi.StringOutput `pulumi:"issuer"`
-	// User name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable allowing the certificate user to authenticate with the FortiGate unit. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Type of certificate authentication method. Valid values: `single-certificate`, `trusted-issuer`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	CommonName pulumi.StringOutput    `pulumi:"commonName"`
+	Fosid      pulumi.IntOutput       `pulumi:"fosid"`
+	Issuer     pulumi.StringOutput    `pulumi:"issuer"`
+	Name       pulumi.StringOutput    `pulumi:"name"`
+	Status     pulumi.StringOutput    `pulumi:"status"`
+	Type       pulumi.StringOutput    `pulumi:"type"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewUserCertificate registers a new resource with the given unique name, arguments, and options.
@@ -76,37 +52,23 @@ func GetUserCertificate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserCertificate resources.
 type userCertificateState struct {
-	// Certificate common name.
 	CommonName *string `pulumi:"commonName"`
-	// User ID.
-	Fosid *int `pulumi:"fosid"`
-	// CA certificate used for client certificate verification.
-	Issuer *string `pulumi:"issuer"`
-	// User name.
-	Name *string `pulumi:"name"`
-	// Enable/disable allowing the certificate user to authenticate with the FortiGate unit. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Type of certificate authentication method. Valid values: `single-certificate`, `trusted-issuer`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Fosid      *int    `pulumi:"fosid"`
+	Issuer     *string `pulumi:"issuer"`
+	Name       *string `pulumi:"name"`
+	Status     *string `pulumi:"status"`
+	Type       *string `pulumi:"type"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type UserCertificateState struct {
-	// Certificate common name.
 	CommonName pulumi.StringPtrInput
-	// User ID.
-	Fosid pulumi.IntPtrInput
-	// CA certificate used for client certificate verification.
-	Issuer pulumi.StringPtrInput
-	// User name.
-	Name pulumi.StringPtrInput
-	// Enable/disable allowing the certificate user to authenticate with the FortiGate unit. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Type of certificate authentication method. Valid values: `single-certificate`, `trusted-issuer`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid      pulumi.IntPtrInput
+	Issuer     pulumi.StringPtrInput
+	Name       pulumi.StringPtrInput
+	Status     pulumi.StringPtrInput
+	Type       pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (UserCertificateState) ElementType() reflect.Type {
@@ -114,38 +76,24 @@ func (UserCertificateState) ElementType() reflect.Type {
 }
 
 type userCertificateArgs struct {
-	// Certificate common name.
 	CommonName *string `pulumi:"commonName"`
-	// User ID.
-	Fosid *int `pulumi:"fosid"`
-	// CA certificate used for client certificate verification.
-	Issuer *string `pulumi:"issuer"`
-	// User name.
-	Name *string `pulumi:"name"`
-	// Enable/disable allowing the certificate user to authenticate with the FortiGate unit. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Type of certificate authentication method. Valid values: `single-certificate`, `trusted-issuer`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Fosid      *int    `pulumi:"fosid"`
+	Issuer     *string `pulumi:"issuer"`
+	Name       *string `pulumi:"name"`
+	Status     *string `pulumi:"status"`
+	Type       *string `pulumi:"type"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserCertificate resource.
 type UserCertificateArgs struct {
-	// Certificate common name.
 	CommonName pulumi.StringPtrInput
-	// User ID.
-	Fosid pulumi.IntPtrInput
-	// CA certificate used for client certificate verification.
-	Issuer pulumi.StringPtrInput
-	// User name.
-	Name pulumi.StringPtrInput
-	// Enable/disable allowing the certificate user to authenticate with the FortiGate unit. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Type of certificate authentication method. Valid values: `single-certificate`, `trusted-issuer`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid      pulumi.IntPtrInput
+	Issuer     pulumi.StringPtrInput
+	Name       pulumi.StringPtrInput
+	Status     pulumi.StringPtrInput
+	Type       pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (UserCertificateArgs) ElementType() reflect.Type {
@@ -174,7 +122,7 @@ func (i *UserCertificate) ToUserCertificateOutputWithContext(ctx context.Context
 // UserCertificateArrayInput is an input type that accepts UserCertificateArray and UserCertificateArrayOutput values.
 // You can construct a concrete instance of `UserCertificateArrayInput` via:
 //
-//          UserCertificateArray{ UserCertificateArgs{...} }
+//	UserCertificateArray{ UserCertificateArgs{...} }
 type UserCertificateArrayInput interface {
 	pulumi.Input
 
@@ -199,7 +147,7 @@ func (i UserCertificateArray) ToUserCertificateArrayOutputWithContext(ctx contex
 // UserCertificateMapInput is an input type that accepts UserCertificateMap and UserCertificateMapOutput values.
 // You can construct a concrete instance of `UserCertificateMapInput` via:
 //
-//          UserCertificateMap{ "key": UserCertificateArgs{...} }
+//	UserCertificateMap{ "key": UserCertificateArgs{...} }
 type UserCertificateMapInput interface {
 	pulumi.Input
 
@@ -233,6 +181,34 @@ func (o UserCertificateOutput) ToUserCertificateOutput() UserCertificateOutput {
 
 func (o UserCertificateOutput) ToUserCertificateOutputWithContext(ctx context.Context) UserCertificateOutput {
 	return o
+}
+
+func (o UserCertificateOutput) CommonName() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserCertificate) pulumi.StringOutput { return v.CommonName }).(pulumi.StringOutput)
+}
+
+func (o UserCertificateOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserCertificate) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o UserCertificateOutput) Issuer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserCertificate) pulumi.StringOutput { return v.Issuer }).(pulumi.StringOutput)
+}
+
+func (o UserCertificateOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserCertificate) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserCertificateOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserCertificate) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o UserCertificateOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserCertificate) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o UserCertificateOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserCertificate) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserCertificateArrayOutput struct{ *pulumi.OutputState }

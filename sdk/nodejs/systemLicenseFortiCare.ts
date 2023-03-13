@@ -4,20 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to add a FortiCare license for FortiOS.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test2 = new fortios.SystemLicenseFortiCare("test2", {
- *     registrationCode: "license",
- * });
- * ```
- */
 export class SystemLicenseFortiCare extends pulumi.CustomResource {
     /**
      * Get an existing SystemLicenseFortiCare resource's state with the given name, ID, and optional extra
@@ -46,9 +32,6 @@ export class SystemLicenseFortiCare extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemLicenseFortiCare.__pulumiType;
     }
 
-    /**
-     * Registration code.
-     */
     public readonly registrationCode!: pulumi.Output<string>;
 
     /**
@@ -81,9 +64,6 @@ export class SystemLicenseFortiCare extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemLicenseFortiCare resources.
  */
 export interface SystemLicenseFortiCareState {
-    /**
-     * Registration code.
-     */
     registrationCode?: pulumi.Input<string>;
 }
 
@@ -91,8 +71,5 @@ export interface SystemLicenseFortiCareState {
  * The set of arguments for constructing a SystemLicenseFortiCare resource.
  */
 export interface SystemLicenseFortiCareArgs {
-    /**
-     * Registration code.
-     */
     registrationCode: pulumi.Input<string>;
 }

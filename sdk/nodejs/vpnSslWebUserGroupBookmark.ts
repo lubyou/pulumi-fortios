@@ -2,52 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure SSL VPN user group bookmark.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.VpnSslWebUserGroupBookmark("trname", {
- *     bookmarks: [{
- *         apptype: "citrix",
- *         listeningPort: 0,
- *         name: "b1",
- *         port: 0,
- *         remotePort: 0,
- *         security: "rdp",
- *         serverLayout: "en-us-qwerty",
- *         showStatusWindow: "disable",
- *         sso: "disable",
- *         ssoCredential: "sslvpn-login",
- *         ssoCredentialSentOnce: "disable",
- *         url: "www.aaa.com",
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * VpnSslWeb UserGroupBookmark can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnSslWebUserGroupBookmark:VpnSslWebUserGroupBookmark labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnSslWebUserGroupBookmark:VpnSslWebUserGroupBookmark labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VpnSslWebUserGroupBookmark extends pulumi.CustomResource {
     /**
      * Get an existing VpnSslWebUserGroupBookmark resource's state with the given name, ID, and optional extra
@@ -76,21 +34,9 @@ export class VpnSslWebUserGroupBookmark extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpnSslWebUserGroupBookmark.__pulumiType;
     }
 
-    /**
-     * Bookmark table. The structure of `bookmarks` block is documented below.
-     */
     public readonly bookmarks!: pulumi.Output<outputs.VpnSslWebUserGroupBookmarkBookmark[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -126,21 +72,9 @@ export class VpnSslWebUserGroupBookmark extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnSslWebUserGroupBookmark resources.
  */
 export interface VpnSslWebUserGroupBookmarkState {
-    /**
-     * Bookmark table. The structure of `bookmarks` block is documented below.
-     */
     bookmarks?: pulumi.Input<pulumi.Input<inputs.VpnSslWebUserGroupBookmarkBookmark>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -148,20 +82,8 @@ export interface VpnSslWebUserGroupBookmarkState {
  * The set of arguments for constructing a VpnSslWebUserGroupBookmark resource.
  */
 export interface VpnSslWebUserGroupBookmarkArgs {
-    /**
-     * Bookmark table. The structure of `bookmarks` block is documented below.
-     */
     bookmarks?: pulumi.Input<pulumi.Input<inputs.VpnSslWebUserGroupBookmarkBookmark>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

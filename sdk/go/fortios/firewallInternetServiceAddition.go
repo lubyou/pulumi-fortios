@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Internet Services Addition. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// Firewall InternetServiceAddition can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceAddition:FirewallInternetServiceAddition labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceAddition:FirewallInternetServiceAddition labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallInternetServiceAddition struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Entries added to the Internet Service addition database. The structure of `entry` block is documented below.
-	Entries FirewallInternetServiceAdditionEntryArrayOutput `pulumi:"entries"`
-	// Internet Service ID in the Internet Service database.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput                          `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                          `pulumi:"dynamicSortSubtable"`
+	Entries             FirewallInternetServiceAdditionEntryArrayOutput `pulumi:"entries"`
+	Fosid               pulumi.IntOutput                                `pulumi:"fosid"`
+	Vdomparam           pulumi.StringPtrOutput                          `pulumi:"vdomparam"`
 }
 
 // NewFirewallInternetServiceAddition registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetFirewallInternetServiceAddition(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallInternetServiceAddition resources.
 type firewallInternetServiceAdditionState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Entries added to the Internet Service addition database. The structure of `entry` block is documented below.
-	Entries []FirewallInternetServiceAdditionEntry `pulumi:"entries"`
-	// Internet Service ID in the Internet Service database.
-	Fosid *int `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                                `pulumi:"comment"`
+	DynamicSortSubtable *string                                `pulumi:"dynamicSortSubtable"`
+	Entries             []FirewallInternetServiceAdditionEntry `pulumi:"entries"`
+	Fosid               *int                                   `pulumi:"fosid"`
+	Vdomparam           *string                                `pulumi:"vdomparam"`
 }
 
 type FirewallInternetServiceAdditionState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Entries added to the Internet Service addition database. The structure of `entry` block is documented below.
-	Entries FirewallInternetServiceAdditionEntryArrayInput
-	// Internet Service ID in the Internet Service database.
-	Fosid pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             FirewallInternetServiceAdditionEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceAdditionState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (FirewallInternetServiceAdditionState) ElementType() reflect.Type {
 }
 
 type firewallInternetServiceAdditionArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Entries added to the Internet Service addition database. The structure of `entry` block is documented below.
-	Entries []FirewallInternetServiceAdditionEntry `pulumi:"entries"`
-	// Internet Service ID in the Internet Service database.
-	Fosid *int `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                                `pulumi:"comment"`
+	DynamicSortSubtable *string                                `pulumi:"dynamicSortSubtable"`
+	Entries             []FirewallInternetServiceAdditionEntry `pulumi:"entries"`
+	Fosid               *int                                   `pulumi:"fosid"`
+	Vdomparam           *string                                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallInternetServiceAddition resource.
 type FirewallInternetServiceAdditionArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Entries added to the Internet Service addition database. The structure of `entry` block is documented below.
-	Entries FirewallInternetServiceAdditionEntryArrayInput
-	// Internet Service ID in the Internet Service database.
-	Fosid pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             FirewallInternetServiceAdditionEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceAdditionArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *FirewallInternetServiceAddition) ToFirewallInternetServiceAdditionOutpu
 // FirewallInternetServiceAdditionArrayInput is an input type that accepts FirewallInternetServiceAdditionArray and FirewallInternetServiceAdditionArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceAdditionArrayInput` via:
 //
-//          FirewallInternetServiceAdditionArray{ FirewallInternetServiceAdditionArgs{...} }
+//	FirewallInternetServiceAdditionArray{ FirewallInternetServiceAdditionArgs{...} }
 type FirewallInternetServiceAdditionArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i FirewallInternetServiceAdditionArray) ToFirewallInternetServiceAdditionA
 // FirewallInternetServiceAdditionMapInput is an input type that accepts FirewallInternetServiceAdditionMap and FirewallInternetServiceAdditionMapOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceAdditionMapInput` via:
 //
-//          FirewallInternetServiceAdditionMap{ "key": FirewallInternetServiceAdditionArgs{...} }
+//	FirewallInternetServiceAdditionMap{ "key": FirewallInternetServiceAdditionArgs{...} }
 type FirewallInternetServiceAdditionMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,28 @@ func (o FirewallInternetServiceAdditionOutput) ToFirewallInternetServiceAddition
 
 func (o FirewallInternetServiceAdditionOutput) ToFirewallInternetServiceAdditionOutputWithContext(ctx context.Context) FirewallInternetServiceAdditionOutput {
 	return o
+}
+
+func (o FirewallInternetServiceAdditionOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceAddition) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallInternetServiceAdditionOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceAddition) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallInternetServiceAdditionOutput) Entries() FirewallInternetServiceAdditionEntryArrayOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceAddition) FirewallInternetServiceAdditionEntryArrayOutput {
+		return v.Entries
+	}).(FirewallInternetServiceAdditionEntryArrayOutput)
+}
+
+func (o FirewallInternetServiceAdditionOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceAddition) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceAdditionOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceAddition) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallInternetServiceAdditionArrayOutput struct{ *pulumi.OutputState }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `FirewallCentralSnatMap`.
 func GetFirewallCentralSnatMapList(ctx *pulumi.Context, args *GetFirewallCentralSnatMapListArgs, opts ...pulumi.InvokeOption) (*GetFirewallCentralSnatMapListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallCentralSnatMapListResult
@@ -23,8 +22,7 @@ func GetFirewallCentralSnatMapList(ctx *pulumi.Context, args *GetFirewallCentral
 
 // A collection of arguments for invoking GetFirewallCentralSnatMapList.
 type GetFirewallCentralSnatMapListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetFirewallCentralSnatMapListArgs struct {
 type GetFirewallCentralSnatMapListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `FirewallCentralSnatMap`.
+	Id            string  `pulumi:"id"`
 	Policyidlists []int   `pulumi:"policyidlists"`
 	Vdomparam     *string `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetFirewallCentralSnatMapListOutput(ctx *pulumi.Context, args GetFirewallCe
 
 // A collection of arguments for invoking GetFirewallCentralSnatMapList.
 type GetFirewallCentralSnatMapListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetFirewallCentralSnatMapListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFirewallCentralSnatMapListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `FirewallCentralSnatMap`.
 func (o GetFirewallCentralSnatMapListResultOutput) Policyidlists() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v GetFirewallCentralSnatMapListResult) []int { return v.Policyidlists }).(pulumi.IntArrayOutput)
 }

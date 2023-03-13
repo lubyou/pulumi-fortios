@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure NSX-T service chain. Applies to FortiOS Version `>= 7.0.0`.
-//
-// ## Import
-//
-// Nsxt ServiceChain can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/nsxtServiceChain:NsxtServiceChain labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/nsxtServiceChain:NsxtServiceChain labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type NsxtServiceChain struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Chain ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Index name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Configure service index. The structure of `serviceIndex` block is documented below.
-	ServiceIndices NsxtServiceChainServiceIndexArrayOutput `pulumi:"serviceIndices"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                  `pulumi:"dynamicSortSubtable"`
+	Fosid               pulumi.IntOutput                        `pulumi:"fosid"`
+	Name                pulumi.StringOutput                     `pulumi:"name"`
+	ServiceIndices      NsxtServiceChainServiceIndexArrayOutput `pulumi:"serviceIndices"`
+	Vdomparam           pulumi.StringPtrOutput                  `pulumi:"vdomparam"`
 }
 
 // NewNsxtServiceChain registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetNsxtServiceChain(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NsxtServiceChain resources.
 type nsxtServiceChainState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Chain ID.
-	Fosid *int `pulumi:"fosid"`
-	// Index name.
-	Name *string `pulumi:"name"`
-	// Configure service index. The structure of `serviceIndex` block is documented below.
-	ServiceIndices []NsxtServiceChainServiceIndex `pulumi:"serviceIndices"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
+	Fosid               *int                           `pulumi:"fosid"`
+	Name                *string                        `pulumi:"name"`
+	ServiceIndices      []NsxtServiceChainServiceIndex `pulumi:"serviceIndices"`
+	Vdomparam           *string                        `pulumi:"vdomparam"`
 }
 
 type NsxtServiceChainState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Chain ID.
-	Fosid pulumi.IntPtrInput
-	// Index name.
-	Name pulumi.StringPtrInput
-	// Configure service index. The structure of `serviceIndex` block is documented below.
-	ServiceIndices NsxtServiceChainServiceIndexArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	ServiceIndices      NsxtServiceChainServiceIndexArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (NsxtServiceChainState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (NsxtServiceChainState) ElementType() reflect.Type {
 }
 
 type nsxtServiceChainArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Chain ID.
-	Fosid *int `pulumi:"fosid"`
-	// Index name.
-	Name *string `pulumi:"name"`
-	// Configure service index. The structure of `serviceIndex` block is documented below.
-	ServiceIndices []NsxtServiceChainServiceIndex `pulumi:"serviceIndices"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
+	Fosid               *int                           `pulumi:"fosid"`
+	Name                *string                        `pulumi:"name"`
+	ServiceIndices      []NsxtServiceChainServiceIndex `pulumi:"serviceIndices"`
+	Vdomparam           *string                        `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a NsxtServiceChain resource.
 type NsxtServiceChainArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Chain ID.
-	Fosid pulumi.IntPtrInput
-	// Index name.
-	Name pulumi.StringPtrInput
-	// Configure service index. The structure of `serviceIndex` block is documented below.
-	ServiceIndices NsxtServiceChainServiceIndexArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	ServiceIndices      NsxtServiceChainServiceIndexArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (NsxtServiceChainArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *NsxtServiceChain) ToNsxtServiceChainOutputWithContext(ctx context.Conte
 // NsxtServiceChainArrayInput is an input type that accepts NsxtServiceChainArray and NsxtServiceChainArrayOutput values.
 // You can construct a concrete instance of `NsxtServiceChainArrayInput` via:
 //
-//          NsxtServiceChainArray{ NsxtServiceChainArgs{...} }
+//	NsxtServiceChainArray{ NsxtServiceChainArgs{...} }
 type NsxtServiceChainArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i NsxtServiceChainArray) ToNsxtServiceChainArrayOutputWithContext(ctx cont
 // NsxtServiceChainMapInput is an input type that accepts NsxtServiceChainMap and NsxtServiceChainMapOutput values.
 // You can construct a concrete instance of `NsxtServiceChainMapInput` via:
 //
-//          NsxtServiceChainMap{ "key": NsxtServiceChainArgs{...} }
+//	NsxtServiceChainMap{ "key": NsxtServiceChainArgs{...} }
 type NsxtServiceChainMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o NsxtServiceChainOutput) ToNsxtServiceChainOutput() NsxtServiceChainOutpu
 
 func (o NsxtServiceChainOutput) ToNsxtServiceChainOutputWithContext(ctx context.Context) NsxtServiceChainOutput {
 	return o
+}
+
+func (o NsxtServiceChainOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NsxtServiceChain) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o NsxtServiceChainOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *NsxtServiceChain) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o NsxtServiceChainOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *NsxtServiceChain) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o NsxtServiceChainOutput) ServiceIndices() NsxtServiceChainServiceIndexArrayOutput {
+	return o.ApplyT(func(v *NsxtServiceChain) NsxtServiceChainServiceIndexArrayOutput { return v.ServiceIndices }).(NsxtServiceChainServiceIndexArrayOutput)
+}
+
+func (o NsxtServiceChainOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NsxtServiceChain) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type NsxtServiceChainArrayOutput struct{ *pulumi.OutputState }

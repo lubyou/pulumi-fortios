@@ -10,117 +10,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure general log settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogSetting(ctx, "trname", &fortios.LogSettingArgs{
-// 			BriefTrafficFormat:   pulumi.String("disable"),
-// 			DaemonLog:            pulumi.String("disable"),
-// 			ExpolicyImplicitLog:  pulumi.String("disable"),
-// 			FazOverride:          pulumi.String("disable"),
-// 			Fwpolicy6ImplicitLog: pulumi.String("disable"),
-// 			FwpolicyImplicitLog:  pulumi.String("disable"),
-// 			LocalInAllow:         pulumi.String("disable"),
-// 			LocalInDenyBroadcast: pulumi.String("disable"),
-// 			LocalInDenyUnicast:   pulumi.String("disable"),
-// 			LocalOut:             pulumi.String("disable"),
-// 			LogInvalidPacket:     pulumi.String("disable"),
-// 			LogPolicyComment:     pulumi.String("disable"),
-// 			LogPolicyName:        pulumi.String("disable"),
-// 			LogUserInUpper:       pulumi.String("disable"),
-// 			NeighborEvent:        pulumi.String("disable"),
-// 			ResolveIp:            pulumi.String("disable"),
-// 			ResolvePort:          pulumi.String("enable"),
-// 			SyslogOverride:       pulumi.String("disable"),
-// 			UserAnonymize:        pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Log Setting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logSetting:LogSetting labelname LogSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logSetting:LogSetting labelname LogSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogSetting struct {
 	pulumi.CustomResourceState
 
-	// User name anonymization hash salt.
-	AnonymizationHash pulumi.StringOutput `pulumi:"anonymizationHash"`
-	// Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
-	BriefTrafficFormat pulumi.StringOutput `pulumi:"briefTrafficFormat"`
-	// Custom fields to append to all log messages. The structure of `customLogFields` block is documented below.
-	CustomLogFields LogSettingCustomLogFieldArrayOutput `pulumi:"customLogFields"`
-	// Enable/disable daemon logging. Valid values: `enable`, `disable`.
-	DaemonLog pulumi.StringOutput `pulumi:"daemonLog"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable explicit proxy firewall implicit policy logging. Valid values: `enable`, `disable`.
-	ExpolicyImplicitLog pulumi.StringOutput `pulumi:"expolicyImplicitLog"`
-	// Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
-	FazOverride pulumi.StringOutput `pulumi:"fazOverride"`
-	// Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
-	Fwpolicy6ImplicitLog pulumi.StringOutput `pulumi:"fwpolicy6ImplicitLog"`
-	// Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
-	FwpolicyImplicitLog pulumi.StringOutput `pulumi:"fwpolicyImplicitLog"`
-	// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
-	LocalInAllow pulumi.StringOutput `pulumi:"localInAllow"`
-	// Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
-	LocalInDenyBroadcast pulumi.StringOutput `pulumi:"localInDenyBroadcast"`
-	// Enable/disable local-in-deny-unicast logging. Valid values: `enable`, `disable`.
-	LocalInDenyUnicast pulumi.StringOutput `pulumi:"localInDenyUnicast"`
-	// Enable/disable local-out logging. Valid values: `enable`, `disable`.
-	LocalOut pulumi.StringOutput `pulumi:"localOut"`
-	// Enable/disable invalid packet traffic logging. Valid values: `enable`, `disable`.
-	LogInvalidPacket pulumi.StringOutput `pulumi:"logInvalidPacket"`
-	// Enable/disable inserting policy comments into traffic logs. Valid values: `enable`, `disable`.
-	LogPolicyComment pulumi.StringOutput `pulumi:"logPolicyComment"`
-	// Enable/disable inserting policy name into traffic logs. Valid values: `enable`, `disable`.
-	LogPolicyName pulumi.StringOutput `pulumi:"logPolicyName"`
-	// Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
-	LogUserInUpper pulumi.StringOutput `pulumi:"logUserInUpper"`
-	// Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
-	NeighborEvent pulumi.StringOutput `pulumi:"neighborEvent"`
-	// Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
-	ResolveIp pulumi.StringOutput `pulumi:"resolveIp"`
-	// Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
-	ResolvePort pulumi.StringOutput `pulumi:"resolvePort"`
-	// Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
-	RestApiGet pulumi.StringOutput `pulumi:"restApiGet"`
-	// Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
-	RestApiSet pulumi.StringOutput `pulumi:"restApiSet"`
-	// Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
-	SyslogOverride pulumi.StringOutput `pulumi:"syslogOverride"`
-	// Enable/disable anonymizing user names in log messages. Valid values: `enable`, `disable`.
-	UserAnonymize pulumi.StringOutput `pulumi:"userAnonymize"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AnonymizationHash    pulumi.StringOutput                 `pulumi:"anonymizationHash"`
+	BriefTrafficFormat   pulumi.StringOutput                 `pulumi:"briefTrafficFormat"`
+	CustomLogFields      LogSettingCustomLogFieldArrayOutput `pulumi:"customLogFields"`
+	DaemonLog            pulumi.StringOutput                 `pulumi:"daemonLog"`
+	DynamicSortSubtable  pulumi.StringPtrOutput              `pulumi:"dynamicSortSubtable"`
+	ExpolicyImplicitLog  pulumi.StringOutput                 `pulumi:"expolicyImplicitLog"`
+	FazOverride          pulumi.StringOutput                 `pulumi:"fazOverride"`
+	Fwpolicy6ImplicitLog pulumi.StringOutput                 `pulumi:"fwpolicy6ImplicitLog"`
+	FwpolicyImplicitLog  pulumi.StringOutput                 `pulumi:"fwpolicyImplicitLog"`
+	LocalInAllow         pulumi.StringOutput                 `pulumi:"localInAllow"`
+	LocalInDenyBroadcast pulumi.StringOutput                 `pulumi:"localInDenyBroadcast"`
+	LocalInDenyUnicast   pulumi.StringOutput                 `pulumi:"localInDenyUnicast"`
+	LocalOut             pulumi.StringOutput                 `pulumi:"localOut"`
+	LocalOutIocDetection pulumi.StringOutput                 `pulumi:"localOutIocDetection"`
+	LogInvalidPacket     pulumi.StringOutput                 `pulumi:"logInvalidPacket"`
+	LogPolicyComment     pulumi.StringOutput                 `pulumi:"logPolicyComment"`
+	LogPolicyName        pulumi.StringOutput                 `pulumi:"logPolicyName"`
+	LogUserInUpper       pulumi.StringOutput                 `pulumi:"logUserInUpper"`
+	NeighborEvent        pulumi.StringOutput                 `pulumi:"neighborEvent"`
+	ResolveIp            pulumi.StringOutput                 `pulumi:"resolveIp"`
+	ResolvePort          pulumi.StringOutput                 `pulumi:"resolvePort"`
+	RestApiGet           pulumi.StringOutput                 `pulumi:"restApiGet"`
+	RestApiSet           pulumi.StringOutput                 `pulumi:"restApiSet"`
+	SyslogOverride       pulumi.StringOutput                 `pulumi:"syslogOverride"`
+	UserAnonymize        pulumi.StringOutput                 `pulumi:"userAnonymize"`
+	Vdomparam            pulumi.StringPtrOutput              `pulumi:"vdomparam"`
 }
 
 // NewLogSetting registers a new resource with the given unique name, arguments, and options.
@@ -153,109 +71,61 @@ func GetLogSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogSetting resources.
 type logSettingState struct {
-	// User name anonymization hash salt.
-	AnonymizationHash *string `pulumi:"anonymizationHash"`
-	// Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
-	BriefTrafficFormat *string `pulumi:"briefTrafficFormat"`
-	// Custom fields to append to all log messages. The structure of `customLogFields` block is documented below.
-	CustomLogFields []LogSettingCustomLogField `pulumi:"customLogFields"`
-	// Enable/disable daemon logging. Valid values: `enable`, `disable`.
-	DaemonLog *string `pulumi:"daemonLog"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable explicit proxy firewall implicit policy logging. Valid values: `enable`, `disable`.
-	ExpolicyImplicitLog *string `pulumi:"expolicyImplicitLog"`
-	// Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
-	FazOverride *string `pulumi:"fazOverride"`
-	// Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
-	Fwpolicy6ImplicitLog *string `pulumi:"fwpolicy6ImplicitLog"`
-	// Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
-	FwpolicyImplicitLog *string `pulumi:"fwpolicyImplicitLog"`
-	// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
-	LocalInAllow *string `pulumi:"localInAllow"`
-	// Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
-	LocalInDenyBroadcast *string `pulumi:"localInDenyBroadcast"`
-	// Enable/disable local-in-deny-unicast logging. Valid values: `enable`, `disable`.
-	LocalInDenyUnicast *string `pulumi:"localInDenyUnicast"`
-	// Enable/disable local-out logging. Valid values: `enable`, `disable`.
-	LocalOut *string `pulumi:"localOut"`
-	// Enable/disable invalid packet traffic logging. Valid values: `enable`, `disable`.
-	LogInvalidPacket *string `pulumi:"logInvalidPacket"`
-	// Enable/disable inserting policy comments into traffic logs. Valid values: `enable`, `disable`.
-	LogPolicyComment *string `pulumi:"logPolicyComment"`
-	// Enable/disable inserting policy name into traffic logs. Valid values: `enable`, `disable`.
-	LogPolicyName *string `pulumi:"logPolicyName"`
-	// Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
-	LogUserInUpper *string `pulumi:"logUserInUpper"`
-	// Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
-	NeighborEvent *string `pulumi:"neighborEvent"`
-	// Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
-	ResolveIp *string `pulumi:"resolveIp"`
-	// Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
-	ResolvePort *string `pulumi:"resolvePort"`
-	// Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
-	RestApiGet *string `pulumi:"restApiGet"`
-	// Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
-	RestApiSet *string `pulumi:"restApiSet"`
-	// Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
-	SyslogOverride *string `pulumi:"syslogOverride"`
-	// Enable/disable anonymizing user names in log messages. Valid values: `enable`, `disable`.
-	UserAnonymize *string `pulumi:"userAnonymize"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AnonymizationHash    *string                    `pulumi:"anonymizationHash"`
+	BriefTrafficFormat   *string                    `pulumi:"briefTrafficFormat"`
+	CustomLogFields      []LogSettingCustomLogField `pulumi:"customLogFields"`
+	DaemonLog            *string                    `pulumi:"daemonLog"`
+	DynamicSortSubtable  *string                    `pulumi:"dynamicSortSubtable"`
+	ExpolicyImplicitLog  *string                    `pulumi:"expolicyImplicitLog"`
+	FazOverride          *string                    `pulumi:"fazOverride"`
+	Fwpolicy6ImplicitLog *string                    `pulumi:"fwpolicy6ImplicitLog"`
+	FwpolicyImplicitLog  *string                    `pulumi:"fwpolicyImplicitLog"`
+	LocalInAllow         *string                    `pulumi:"localInAllow"`
+	LocalInDenyBroadcast *string                    `pulumi:"localInDenyBroadcast"`
+	LocalInDenyUnicast   *string                    `pulumi:"localInDenyUnicast"`
+	LocalOut             *string                    `pulumi:"localOut"`
+	LocalOutIocDetection *string                    `pulumi:"localOutIocDetection"`
+	LogInvalidPacket     *string                    `pulumi:"logInvalidPacket"`
+	LogPolicyComment     *string                    `pulumi:"logPolicyComment"`
+	LogPolicyName        *string                    `pulumi:"logPolicyName"`
+	LogUserInUpper       *string                    `pulumi:"logUserInUpper"`
+	NeighborEvent        *string                    `pulumi:"neighborEvent"`
+	ResolveIp            *string                    `pulumi:"resolveIp"`
+	ResolvePort          *string                    `pulumi:"resolvePort"`
+	RestApiGet           *string                    `pulumi:"restApiGet"`
+	RestApiSet           *string                    `pulumi:"restApiSet"`
+	SyslogOverride       *string                    `pulumi:"syslogOverride"`
+	UserAnonymize        *string                    `pulumi:"userAnonymize"`
+	Vdomparam            *string                    `pulumi:"vdomparam"`
 }
 
 type LogSettingState struct {
-	// User name anonymization hash salt.
-	AnonymizationHash pulumi.StringPtrInput
-	// Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
-	BriefTrafficFormat pulumi.StringPtrInput
-	// Custom fields to append to all log messages. The structure of `customLogFields` block is documented below.
-	CustomLogFields LogSettingCustomLogFieldArrayInput
-	// Enable/disable daemon logging. Valid values: `enable`, `disable`.
-	DaemonLog pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable explicit proxy firewall implicit policy logging. Valid values: `enable`, `disable`.
-	ExpolicyImplicitLog pulumi.StringPtrInput
-	// Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
-	FazOverride pulumi.StringPtrInput
-	// Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
+	AnonymizationHash    pulumi.StringPtrInput
+	BriefTrafficFormat   pulumi.StringPtrInput
+	CustomLogFields      LogSettingCustomLogFieldArrayInput
+	DaemonLog            pulumi.StringPtrInput
+	DynamicSortSubtable  pulumi.StringPtrInput
+	ExpolicyImplicitLog  pulumi.StringPtrInput
+	FazOverride          pulumi.StringPtrInput
 	Fwpolicy6ImplicitLog pulumi.StringPtrInput
-	// Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
-	FwpolicyImplicitLog pulumi.StringPtrInput
-	// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
-	LocalInAllow pulumi.StringPtrInput
-	// Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
+	FwpolicyImplicitLog  pulumi.StringPtrInput
+	LocalInAllow         pulumi.StringPtrInput
 	LocalInDenyBroadcast pulumi.StringPtrInput
-	// Enable/disable local-in-deny-unicast logging. Valid values: `enable`, `disable`.
-	LocalInDenyUnicast pulumi.StringPtrInput
-	// Enable/disable local-out logging. Valid values: `enable`, `disable`.
-	LocalOut pulumi.StringPtrInput
-	// Enable/disable invalid packet traffic logging. Valid values: `enable`, `disable`.
-	LogInvalidPacket pulumi.StringPtrInput
-	// Enable/disable inserting policy comments into traffic logs. Valid values: `enable`, `disable`.
-	LogPolicyComment pulumi.StringPtrInput
-	// Enable/disable inserting policy name into traffic logs. Valid values: `enable`, `disable`.
-	LogPolicyName pulumi.StringPtrInput
-	// Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
-	LogUserInUpper pulumi.StringPtrInput
-	// Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
-	NeighborEvent pulumi.StringPtrInput
-	// Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
-	ResolveIp pulumi.StringPtrInput
-	// Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
-	ResolvePort pulumi.StringPtrInput
-	// Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
-	RestApiGet pulumi.StringPtrInput
-	// Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
-	RestApiSet pulumi.StringPtrInput
-	// Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
-	SyslogOverride pulumi.StringPtrInput
-	// Enable/disable anonymizing user names in log messages. Valid values: `enable`, `disable`.
-	UserAnonymize pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	LocalInDenyUnicast   pulumi.StringPtrInput
+	LocalOut             pulumi.StringPtrInput
+	LocalOutIocDetection pulumi.StringPtrInput
+	LogInvalidPacket     pulumi.StringPtrInput
+	LogPolicyComment     pulumi.StringPtrInput
+	LogPolicyName        pulumi.StringPtrInput
+	LogUserInUpper       pulumi.StringPtrInput
+	NeighborEvent        pulumi.StringPtrInput
+	ResolveIp            pulumi.StringPtrInput
+	ResolvePort          pulumi.StringPtrInput
+	RestApiGet           pulumi.StringPtrInput
+	RestApiSet           pulumi.StringPtrInput
+	SyslogOverride       pulumi.StringPtrInput
+	UserAnonymize        pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
 }
 
 func (LogSettingState) ElementType() reflect.Type {
@@ -263,110 +133,62 @@ func (LogSettingState) ElementType() reflect.Type {
 }
 
 type logSettingArgs struct {
-	// User name anonymization hash salt.
-	AnonymizationHash *string `pulumi:"anonymizationHash"`
-	// Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
-	BriefTrafficFormat *string `pulumi:"briefTrafficFormat"`
-	// Custom fields to append to all log messages. The structure of `customLogFields` block is documented below.
-	CustomLogFields []LogSettingCustomLogField `pulumi:"customLogFields"`
-	// Enable/disable daemon logging. Valid values: `enable`, `disable`.
-	DaemonLog *string `pulumi:"daemonLog"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable explicit proxy firewall implicit policy logging. Valid values: `enable`, `disable`.
-	ExpolicyImplicitLog *string `pulumi:"expolicyImplicitLog"`
-	// Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
-	FazOverride *string `pulumi:"fazOverride"`
-	// Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
-	Fwpolicy6ImplicitLog *string `pulumi:"fwpolicy6ImplicitLog"`
-	// Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
-	FwpolicyImplicitLog *string `pulumi:"fwpolicyImplicitLog"`
-	// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
-	LocalInAllow *string `pulumi:"localInAllow"`
-	// Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
-	LocalInDenyBroadcast *string `pulumi:"localInDenyBroadcast"`
-	// Enable/disable local-in-deny-unicast logging. Valid values: `enable`, `disable`.
-	LocalInDenyUnicast *string `pulumi:"localInDenyUnicast"`
-	// Enable/disable local-out logging. Valid values: `enable`, `disable`.
-	LocalOut *string `pulumi:"localOut"`
-	// Enable/disable invalid packet traffic logging. Valid values: `enable`, `disable`.
-	LogInvalidPacket *string `pulumi:"logInvalidPacket"`
-	// Enable/disable inserting policy comments into traffic logs. Valid values: `enable`, `disable`.
-	LogPolicyComment *string `pulumi:"logPolicyComment"`
-	// Enable/disable inserting policy name into traffic logs. Valid values: `enable`, `disable`.
-	LogPolicyName *string `pulumi:"logPolicyName"`
-	// Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
-	LogUserInUpper *string `pulumi:"logUserInUpper"`
-	// Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
-	NeighborEvent *string `pulumi:"neighborEvent"`
-	// Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
-	ResolveIp *string `pulumi:"resolveIp"`
-	// Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
-	ResolvePort *string `pulumi:"resolvePort"`
-	// Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
-	RestApiGet *string `pulumi:"restApiGet"`
-	// Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
-	RestApiSet *string `pulumi:"restApiSet"`
-	// Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
-	SyslogOverride *string `pulumi:"syslogOverride"`
-	// Enable/disable anonymizing user names in log messages. Valid values: `enable`, `disable`.
-	UserAnonymize *string `pulumi:"userAnonymize"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AnonymizationHash    *string                    `pulumi:"anonymizationHash"`
+	BriefTrafficFormat   *string                    `pulumi:"briefTrafficFormat"`
+	CustomLogFields      []LogSettingCustomLogField `pulumi:"customLogFields"`
+	DaemonLog            *string                    `pulumi:"daemonLog"`
+	DynamicSortSubtable  *string                    `pulumi:"dynamicSortSubtable"`
+	ExpolicyImplicitLog  *string                    `pulumi:"expolicyImplicitLog"`
+	FazOverride          *string                    `pulumi:"fazOverride"`
+	Fwpolicy6ImplicitLog *string                    `pulumi:"fwpolicy6ImplicitLog"`
+	FwpolicyImplicitLog  *string                    `pulumi:"fwpolicyImplicitLog"`
+	LocalInAllow         *string                    `pulumi:"localInAllow"`
+	LocalInDenyBroadcast *string                    `pulumi:"localInDenyBroadcast"`
+	LocalInDenyUnicast   *string                    `pulumi:"localInDenyUnicast"`
+	LocalOut             *string                    `pulumi:"localOut"`
+	LocalOutIocDetection *string                    `pulumi:"localOutIocDetection"`
+	LogInvalidPacket     *string                    `pulumi:"logInvalidPacket"`
+	LogPolicyComment     *string                    `pulumi:"logPolicyComment"`
+	LogPolicyName        *string                    `pulumi:"logPolicyName"`
+	LogUserInUpper       *string                    `pulumi:"logUserInUpper"`
+	NeighborEvent        *string                    `pulumi:"neighborEvent"`
+	ResolveIp            *string                    `pulumi:"resolveIp"`
+	ResolvePort          *string                    `pulumi:"resolvePort"`
+	RestApiGet           *string                    `pulumi:"restApiGet"`
+	RestApiSet           *string                    `pulumi:"restApiSet"`
+	SyslogOverride       *string                    `pulumi:"syslogOverride"`
+	UserAnonymize        *string                    `pulumi:"userAnonymize"`
+	Vdomparam            *string                    `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogSetting resource.
 type LogSettingArgs struct {
-	// User name anonymization hash salt.
-	AnonymizationHash pulumi.StringPtrInput
-	// Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
-	BriefTrafficFormat pulumi.StringPtrInput
-	// Custom fields to append to all log messages. The structure of `customLogFields` block is documented below.
-	CustomLogFields LogSettingCustomLogFieldArrayInput
-	// Enable/disable daemon logging. Valid values: `enable`, `disable`.
-	DaemonLog pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable explicit proxy firewall implicit policy logging. Valid values: `enable`, `disable`.
-	ExpolicyImplicitLog pulumi.StringPtrInput
-	// Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
-	FazOverride pulumi.StringPtrInput
-	// Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
+	AnonymizationHash    pulumi.StringPtrInput
+	BriefTrafficFormat   pulumi.StringPtrInput
+	CustomLogFields      LogSettingCustomLogFieldArrayInput
+	DaemonLog            pulumi.StringPtrInput
+	DynamicSortSubtable  pulumi.StringPtrInput
+	ExpolicyImplicitLog  pulumi.StringPtrInput
+	FazOverride          pulumi.StringPtrInput
 	Fwpolicy6ImplicitLog pulumi.StringPtrInput
-	// Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
-	FwpolicyImplicitLog pulumi.StringPtrInput
-	// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
-	LocalInAllow pulumi.StringPtrInput
-	// Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
+	FwpolicyImplicitLog  pulumi.StringPtrInput
+	LocalInAllow         pulumi.StringPtrInput
 	LocalInDenyBroadcast pulumi.StringPtrInput
-	// Enable/disable local-in-deny-unicast logging. Valid values: `enable`, `disable`.
-	LocalInDenyUnicast pulumi.StringPtrInput
-	// Enable/disable local-out logging. Valid values: `enable`, `disable`.
-	LocalOut pulumi.StringPtrInput
-	// Enable/disable invalid packet traffic logging. Valid values: `enable`, `disable`.
-	LogInvalidPacket pulumi.StringPtrInput
-	// Enable/disable inserting policy comments into traffic logs. Valid values: `enable`, `disable`.
-	LogPolicyComment pulumi.StringPtrInput
-	// Enable/disable inserting policy name into traffic logs. Valid values: `enable`, `disable`.
-	LogPolicyName pulumi.StringPtrInput
-	// Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
-	LogUserInUpper pulumi.StringPtrInput
-	// Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
-	NeighborEvent pulumi.StringPtrInput
-	// Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
-	ResolveIp pulumi.StringPtrInput
-	// Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
-	ResolvePort pulumi.StringPtrInput
-	// Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
-	RestApiGet pulumi.StringPtrInput
-	// Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
-	RestApiSet pulumi.StringPtrInput
-	// Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
-	SyslogOverride pulumi.StringPtrInput
-	// Enable/disable anonymizing user names in log messages. Valid values: `enable`, `disable`.
-	UserAnonymize pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	LocalInDenyUnicast   pulumi.StringPtrInput
+	LocalOut             pulumi.StringPtrInput
+	LocalOutIocDetection pulumi.StringPtrInput
+	LogInvalidPacket     pulumi.StringPtrInput
+	LogPolicyComment     pulumi.StringPtrInput
+	LogPolicyName        pulumi.StringPtrInput
+	LogUserInUpper       pulumi.StringPtrInput
+	NeighborEvent        pulumi.StringPtrInput
+	ResolveIp            pulumi.StringPtrInput
+	ResolvePort          pulumi.StringPtrInput
+	RestApiGet           pulumi.StringPtrInput
+	RestApiSet           pulumi.StringPtrInput
+	SyslogOverride       pulumi.StringPtrInput
+	UserAnonymize        pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
 }
 
 func (LogSettingArgs) ElementType() reflect.Type {
@@ -395,7 +217,7 @@ func (i *LogSetting) ToLogSettingOutputWithContext(ctx context.Context) LogSetti
 // LogSettingArrayInput is an input type that accepts LogSettingArray and LogSettingArrayOutput values.
 // You can construct a concrete instance of `LogSettingArrayInput` via:
 //
-//          LogSettingArray{ LogSettingArgs{...} }
+//	LogSettingArray{ LogSettingArgs{...} }
 type LogSettingArrayInput interface {
 	pulumi.Input
 
@@ -420,7 +242,7 @@ func (i LogSettingArray) ToLogSettingArrayOutputWithContext(ctx context.Context)
 // LogSettingMapInput is an input type that accepts LogSettingMap and LogSettingMapOutput values.
 // You can construct a concrete instance of `LogSettingMapInput` via:
 //
-//          LogSettingMap{ "key": LogSettingArgs{...} }
+//	LogSettingMap{ "key": LogSettingArgs{...} }
 type LogSettingMapInput interface {
 	pulumi.Input
 
@@ -454,6 +276,110 @@ func (o LogSettingOutput) ToLogSettingOutput() LogSettingOutput {
 
 func (o LogSettingOutput) ToLogSettingOutputWithContext(ctx context.Context) LogSettingOutput {
 	return o
+}
+
+func (o LogSettingOutput) AnonymizationHash() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.AnonymizationHash }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) BriefTrafficFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.BriefTrafficFormat }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) CustomLogFields() LogSettingCustomLogFieldArrayOutput {
+	return o.ApplyT(func(v *LogSetting) LogSettingCustomLogFieldArrayOutput { return v.CustomLogFields }).(LogSettingCustomLogFieldArrayOutput)
+}
+
+func (o LogSettingOutput) DaemonLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.DaemonLog }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o LogSettingOutput) ExpolicyImplicitLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.ExpolicyImplicitLog }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) FazOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.FazOverride }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) Fwpolicy6ImplicitLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.Fwpolicy6ImplicitLog }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) FwpolicyImplicitLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.FwpolicyImplicitLog }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) LocalInAllow() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.LocalInAllow }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) LocalInDenyBroadcast() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.LocalInDenyBroadcast }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) LocalInDenyUnicast() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.LocalInDenyUnicast }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) LocalOut() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.LocalOut }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) LocalOutIocDetection() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.LocalOutIocDetection }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) LogInvalidPacket() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.LogInvalidPacket }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) LogPolicyComment() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.LogPolicyComment }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) LogPolicyName() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.LogPolicyName }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) LogUserInUpper() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.LogUserInUpper }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) NeighborEvent() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.NeighborEvent }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) ResolveIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.ResolveIp }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) ResolvePort() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.ResolvePort }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) RestApiGet() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.RestApiGet }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) RestApiSet() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.RestApiSet }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) SyslogOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.SyslogOverride }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) UserAnonymize() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.UserAnonymize }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type LogSettingArrayOutput struct{ *pulumi.OutputState }

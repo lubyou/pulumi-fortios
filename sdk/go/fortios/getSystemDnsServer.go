@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system dnsserver
 func LookupSystemDnsServer(ctx *pulumi.Context, args *LookupSystemDnsServerArgs, opts ...pulumi.InvokeOption) (*LookupSystemDnsServerResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemDnsServerResult
@@ -23,23 +22,17 @@ func LookupSystemDnsServer(ctx *pulumi.Context, args *LookupSystemDnsServerArgs,
 
 // A collection of arguments for invoking GetSystemDnsServer.
 type LookupSystemDnsServerArgs struct {
-	// Specify the name of the desired system dnsserver.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemDnsServer.
 type LookupSystemDnsServerResult struct {
-	// DNS filter profile.
 	DnsfilterProfile string `pulumi:"dnsfilterProfile"`
-	// DNS over HTTPS.
-	Doh string `pulumi:"doh"`
+	Doh              string `pulumi:"doh"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// DNS server mode.
-	Mode string `pulumi:"mode"`
-	// DNS server name.
+	Id        string  `pulumi:"id"`
+	Mode      string  `pulumi:"mode"`
 	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -59,9 +52,7 @@ func LookupSystemDnsServerOutput(ctx *pulumi.Context, args LookupSystemDnsServer
 
 // A collection of arguments for invoking GetSystemDnsServer.
 type LookupSystemDnsServerOutputArgs struct {
-	// Specify the name of the desired system dnsserver.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -84,12 +75,10 @@ func (o LookupSystemDnsServerResultOutput) ToLookupSystemDnsServerResultOutputWi
 	return o
 }
 
-// DNS filter profile.
 func (o LookupSystemDnsServerResultOutput) DnsfilterProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsServerResult) string { return v.DnsfilterProfile }).(pulumi.StringOutput)
 }
 
-// DNS over HTTPS.
 func (o LookupSystemDnsServerResultOutput) Doh() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsServerResult) string { return v.Doh }).(pulumi.StringOutput)
 }
@@ -99,12 +88,10 @@ func (o LookupSystemDnsServerResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsServerResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// DNS server mode.
 func (o LookupSystemDnsServerResultOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsServerResult) string { return v.Mode }).(pulumi.StringOutput)
 }
 
-// DNS server name.
 func (o LookupSystemDnsServerResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsServerResult) string { return v.Name }).(pulumi.StringOutput)
 }

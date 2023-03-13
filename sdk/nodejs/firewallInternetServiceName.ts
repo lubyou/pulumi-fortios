@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Define internet service names. Applies to FortiOS Version `>= 6.4.0`.
- *
- * ## Import
- *
- * Firewall InternetServiceName can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInternetServiceName:FirewallInternetServiceName labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInternetServiceName:FirewallInternetServiceName labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallInternetServiceName extends pulumi.CustomResource {
     /**
      * Get an existing FirewallInternetServiceName resource's state with the given name, ID, and optional extra
@@ -51,33 +32,12 @@ export class FirewallInternetServiceName extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallInternetServiceName.__pulumiType;
     }
 
-    /**
-     * City ID.
-     */
     public readonly cityId!: pulumi.Output<number>;
-    /**
-     * Country or Area ID.
-     */
     public readonly countryId!: pulumi.Output<number>;
-    /**
-     * Internet Service ID.
-     */
     public readonly internetServiceId!: pulumi.Output<number>;
-    /**
-     * Internet Service name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Region ID.
-     */
     public readonly regionId!: pulumi.Output<number>;
-    /**
-     * Internet Service name type. Valid values: `default`, `location`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -119,33 +79,12 @@ export class FirewallInternetServiceName extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallInternetServiceName resources.
  */
 export interface FirewallInternetServiceNameState {
-    /**
-     * City ID.
-     */
     cityId?: pulumi.Input<number>;
-    /**
-     * Country or Area ID.
-     */
     countryId?: pulumi.Input<number>;
-    /**
-     * Internet Service ID.
-     */
     internetServiceId?: pulumi.Input<number>;
-    /**
-     * Internet Service name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Region ID.
-     */
     regionId?: pulumi.Input<number>;
-    /**
-     * Internet Service name type. Valid values: `default`, `location`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -153,32 +92,11 @@ export interface FirewallInternetServiceNameState {
  * The set of arguments for constructing a FirewallInternetServiceName resource.
  */
 export interface FirewallInternetServiceNameArgs {
-    /**
-     * City ID.
-     */
     cityId?: pulumi.Input<number>;
-    /**
-     * Country or Area ID.
-     */
     countryId?: pulumi.Input<number>;
-    /**
-     * Internet Service ID.
-     */
     internetServiceId?: pulumi.Input<number>;
-    /**
-     * Internet Service name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Region ID.
-     */
     regionId?: pulumi.Input<number>;
-    /**
-     * Internet Service name type. Valid values: `default`, `location`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

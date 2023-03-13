@@ -4,47 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure alert email settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.AlertemailSetting("trname", {
- *     adminLoginLogs: "disable",
- *     alertInterval: 2,
- *     amcInterfaceBypassMode: "disable",
- *     antivirusLogs: "disable",
- *     configurationChangesLogs: "disable",
- *     criticalInterval: 3,
- *     debugInterval: 60,
- *     emailInterval: 5,
- *     emergencyInterval: 1,
- *     errorInterval: 5,
- *     fdsLicenseExpiringDays: 15,
- *     informationInterval: 30,
- * });
- * ```
- *
- * ## Import
- *
- * Alertemail Setting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/alertemailSetting:AlertemailSetting labelname AlertemailSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/alertemailSetting:AlertemailSetting labelname AlertemailSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class AlertemailSetting extends pulumi.CustomResource {
     /**
      * Get an existing AlertemailSetting resource's state with the given name, ID, and optional extra
@@ -73,153 +32,42 @@ export class AlertemailSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === AlertemailSetting.__pulumiType;
     }
 
-    /**
-     * Enable/disable administrator login/logout logs in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly adminLoginLogs!: pulumi.Output<string>;
-    /**
-     * Alert alert interval in minutes.
-     */
     public readonly alertInterval!: pulumi.Output<number>;
-    /**
-     * Enable/disable Fortinet Advanced Mezzanine Card (AMC) interface bypass mode logs in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly amcInterfaceBypassMode!: pulumi.Output<string>;
-    /**
-     * Enable/disable antivirus logs in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly antivirusLogs!: pulumi.Output<string>;
-    /**
-     * Enable/disable configuration change logs in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly configurationChangesLogs!: pulumi.Output<string>;
-    /**
-     * Critical alert interval in minutes.
-     */
     public readonly criticalInterval!: pulumi.Output<number>;
-    /**
-     * Debug alert interval in minutes.
-     */
     public readonly debugInterval!: pulumi.Output<number>;
-    /**
-     * Interval between sending alert emails (1 - 99999 min, default = 5).
-     */
     public readonly emailInterval!: pulumi.Output<number>;
-    /**
-     * Emergency alert interval in minutes.
-     */
     public readonly emergencyInterval!: pulumi.Output<number>;
-    /**
-     * Error alert interval in minutes.
-     */
     public readonly errorInterval!: pulumi.Output<number>;
-    /**
-     * Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
-     */
     public readonly fdsLicenseExpiringDays!: pulumi.Output<number>;
-    /**
-     * Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly fdsLicenseExpiringWarning!: pulumi.Output<string>;
-    /**
-     * Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly fdsUpdateLogs!: pulumi.Output<string>;
-    /**
-     * How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
-     */
     public readonly filterMode!: pulumi.Output<string>;
-    /**
-     * Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly fipsCcErrors!: pulumi.Output<string>;
-    /**
-     * Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly firewallAuthenticationFailureLogs!: pulumi.Output<string>;
-    /**
-     * Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly fortiguardLogQuotaWarning!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
-     */
     public readonly fssoDisconnectLogs!: pulumi.Output<string>;
-    /**
-     * Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly haLogs!: pulumi.Output<string>;
-    /**
-     * Information alert interval in minutes.
-     */
     public readonly informationInterval!: pulumi.Output<number>;
-    /**
-     * Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly ipsLogs!: pulumi.Output<string>;
-    /**
-     * Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly ipsecErrorsLogs!: pulumi.Output<string>;
-    /**
-     * Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
-     */
     public readonly localDiskUsage!: pulumi.Output<number>;
-    /**
-     * Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly logDiskUsageWarning!: pulumi.Output<string>;
-    /**
-     * Email address to send alert email to (usually a system administrator) (max. 64 characters).
-     */
     public readonly mailto1!: pulumi.Output<string>;
-    /**
-     * Optional second email address to send alert email to (max. 64 characters).
-     */
     public readonly mailto2!: pulumi.Output<string>;
-    /**
-     * Optional third email address to send alert email to (max. 64 characters).
-     */
     public readonly mailto3!: pulumi.Output<string>;
-    /**
-     * Notification alert interval in minutes.
-     */
     public readonly notificationInterval!: pulumi.Output<number>;
-    /**
-     * Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly pppErrorsLogs!: pulumi.Output<string>;
-    /**
-     * Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly severity!: pulumi.Output<string>;
-    /**
-     * Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly sshLogs!: pulumi.Output<string>;
-    /**
-     * Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly sslvpnAuthenticationErrorsLogs!: pulumi.Output<string>;
-    /**
-     * Name that appears in the From: field of alert emails (max. 36 characters).
-     */
     public readonly username!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly violationTrafficLogs!: pulumi.Output<string>;
-    /**
-     * Warning alert interval in minutes.
-     */
     public readonly warningInterval!: pulumi.Output<number>;
-    /**
-     * Enable/disable web filter logs in alert email. Valid values: `enable`, `disable`.
-     */
     public readonly webfilterLogs!: pulumi.Output<string>;
 
     /**
@@ -321,153 +169,42 @@ export class AlertemailSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AlertemailSetting resources.
  */
 export interface AlertemailSettingState {
-    /**
-     * Enable/disable administrator login/logout logs in alert email. Valid values: `enable`, `disable`.
-     */
     adminLoginLogs?: pulumi.Input<string>;
-    /**
-     * Alert alert interval in minutes.
-     */
     alertInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable Fortinet Advanced Mezzanine Card (AMC) interface bypass mode logs in alert email. Valid values: `enable`, `disable`.
-     */
     amcInterfaceBypassMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable antivirus logs in alert email. Valid values: `enable`, `disable`.
-     */
     antivirusLogs?: pulumi.Input<string>;
-    /**
-     * Enable/disable configuration change logs in alert email. Valid values: `enable`, `disable`.
-     */
     configurationChangesLogs?: pulumi.Input<string>;
-    /**
-     * Critical alert interval in minutes.
-     */
     criticalInterval?: pulumi.Input<number>;
-    /**
-     * Debug alert interval in minutes.
-     */
     debugInterval?: pulumi.Input<number>;
-    /**
-     * Interval between sending alert emails (1 - 99999 min, default = 5).
-     */
     emailInterval?: pulumi.Input<number>;
-    /**
-     * Emergency alert interval in minutes.
-     */
     emergencyInterval?: pulumi.Input<number>;
-    /**
-     * Error alert interval in minutes.
-     */
     errorInterval?: pulumi.Input<number>;
-    /**
-     * Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
-     */
     fdsLicenseExpiringDays?: pulumi.Input<number>;
-    /**
-     * Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
-     */
     fdsLicenseExpiringWarning?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
-     */
     fdsUpdateLogs?: pulumi.Input<string>;
-    /**
-     * How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
-     */
     filterMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
-     */
     fipsCcErrors?: pulumi.Input<string>;
-    /**
-     * Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
-     */
     firewallAuthenticationFailureLogs?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
-     */
     fortiguardLogQuotaWarning?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
-     */
     fssoDisconnectLogs?: pulumi.Input<string>;
-    /**
-     * Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
-     */
     haLogs?: pulumi.Input<string>;
-    /**
-     * Information alert interval in minutes.
-     */
     informationInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
-     */
     ipsLogs?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
-     */
     ipsecErrorsLogs?: pulumi.Input<string>;
-    /**
-     * Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
-     */
     localDiskUsage?: pulumi.Input<number>;
-    /**
-     * Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
-     */
     logDiskUsageWarning?: pulumi.Input<string>;
-    /**
-     * Email address to send alert email to (usually a system administrator) (max. 64 characters).
-     */
     mailto1?: pulumi.Input<string>;
-    /**
-     * Optional second email address to send alert email to (max. 64 characters).
-     */
     mailto2?: pulumi.Input<string>;
-    /**
-     * Optional third email address to send alert email to (max. 64 characters).
-     */
     mailto3?: pulumi.Input<string>;
-    /**
-     * Notification alert interval in minutes.
-     */
     notificationInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
-     */
     pppErrorsLogs?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     severity?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
-     */
     sshLogs?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
-     */
     sslvpnAuthenticationErrorsLogs?: pulumi.Input<string>;
-    /**
-     * Name that appears in the From: field of alert emails (max. 36 characters).
-     */
     username?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.
-     */
     violationTrafficLogs?: pulumi.Input<string>;
-    /**
-     * Warning alert interval in minutes.
-     */
     warningInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable web filter logs in alert email. Valid values: `enable`, `disable`.
-     */
     webfilterLogs?: pulumi.Input<string>;
 }
 
@@ -475,152 +212,41 @@ export interface AlertemailSettingState {
  * The set of arguments for constructing a AlertemailSetting resource.
  */
 export interface AlertemailSettingArgs {
-    /**
-     * Enable/disable administrator login/logout logs in alert email. Valid values: `enable`, `disable`.
-     */
     adminLoginLogs?: pulumi.Input<string>;
-    /**
-     * Alert alert interval in minutes.
-     */
     alertInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable Fortinet Advanced Mezzanine Card (AMC) interface bypass mode logs in alert email. Valid values: `enable`, `disable`.
-     */
     amcInterfaceBypassMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable antivirus logs in alert email. Valid values: `enable`, `disable`.
-     */
     antivirusLogs?: pulumi.Input<string>;
-    /**
-     * Enable/disable configuration change logs in alert email. Valid values: `enable`, `disable`.
-     */
     configurationChangesLogs?: pulumi.Input<string>;
-    /**
-     * Critical alert interval in minutes.
-     */
     criticalInterval?: pulumi.Input<number>;
-    /**
-     * Debug alert interval in minutes.
-     */
     debugInterval?: pulumi.Input<number>;
-    /**
-     * Interval between sending alert emails (1 - 99999 min, default = 5).
-     */
     emailInterval?: pulumi.Input<number>;
-    /**
-     * Emergency alert interval in minutes.
-     */
     emergencyInterval?: pulumi.Input<number>;
-    /**
-     * Error alert interval in minutes.
-     */
     errorInterval?: pulumi.Input<number>;
-    /**
-     * Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
-     */
     fdsLicenseExpiringDays?: pulumi.Input<number>;
-    /**
-     * Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
-     */
     fdsLicenseExpiringWarning?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
-     */
     fdsUpdateLogs?: pulumi.Input<string>;
-    /**
-     * How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
-     */
     filterMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
-     */
     fipsCcErrors?: pulumi.Input<string>;
-    /**
-     * Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
-     */
     firewallAuthenticationFailureLogs?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
-     */
     fortiguardLogQuotaWarning?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
-     */
     fssoDisconnectLogs?: pulumi.Input<string>;
-    /**
-     * Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
-     */
     haLogs?: pulumi.Input<string>;
-    /**
-     * Information alert interval in minutes.
-     */
     informationInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
-     */
     ipsLogs?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
-     */
     ipsecErrorsLogs?: pulumi.Input<string>;
-    /**
-     * Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
-     */
     localDiskUsage?: pulumi.Input<number>;
-    /**
-     * Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
-     */
     logDiskUsageWarning?: pulumi.Input<string>;
-    /**
-     * Email address to send alert email to (usually a system administrator) (max. 64 characters).
-     */
     mailto1?: pulumi.Input<string>;
-    /**
-     * Optional second email address to send alert email to (max. 64 characters).
-     */
     mailto2?: pulumi.Input<string>;
-    /**
-     * Optional third email address to send alert email to (max. 64 characters).
-     */
     mailto3?: pulumi.Input<string>;
-    /**
-     * Notification alert interval in minutes.
-     */
     notificationInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
-     */
     pppErrorsLogs?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     severity?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
-     */
     sshLogs?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
-     */
     sslvpnAuthenticationErrorsLogs?: pulumi.Input<string>;
-    /**
-     * Name that appears in the From: field of alert emails (max. 36 characters).
-     */
     username?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.
-     */
     violationTrafficLogs?: pulumi.Input<string>;
-    /**
-     * Warning alert interval in minutes.
-     */
     warningInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable web filter logs in alert email. Valid values: `enable`, `disable`.
-     */
     webfilterLogs?: pulumi.Input<string>;
 }

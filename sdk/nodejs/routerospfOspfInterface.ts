@@ -2,30 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * OSPF interface configuration.
- *
- * > The provider supports the definition of Ospf-Interface in Router Ospf `fortios.RouterOspf`, and also allows the definition of separate Ospf-Interface resources `fortios.RouterospfOspfInterface`, but do not use a `fortios.RouterOspf` with in-line Ospf-Interface in conjunction with any `fortios.RouterospfOspfInterface` resources, otherwise conflicts and overwrite will occur.
- *
- * ## Import
- *
- * Routerospf OspfInterface can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerospfOspfInterface:RouterospfOspfInterface labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerospfOspfInterface:RouterospfOspfInterface labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterospfOspfInterface extends pulumi.CustomResource {
     /**
      * Get an existing RouterospfOspfInterface resource's state with the given name, ID, and optional extra
@@ -54,113 +34,32 @@ export class RouterospfOspfInterface extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterospfOspfInterface.__pulumiType;
     }
 
-    /**
-     * Authentication type.
-     */
     public readonly authentication!: pulumi.Output<string>;
-    /**
-     * Authentication key.
-     */
     public readonly authenticationKey!: pulumi.Output<string | undefined>;
-    /**
-     * Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-     */
     public readonly bfd!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-     */
     public readonly cost!: pulumi.Output<number>;
-    /**
-     * Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
-     */
     public readonly databaseFilterOut!: pulumi.Output<string>;
-    /**
-     * Dead interval.
-     */
     public readonly deadInterval!: pulumi.Output<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Hello interval.
-     */
     public readonly helloInterval!: pulumi.Output<number>;
-    /**
-     * Number of hello packets within dead interval.
-     */
     public readonly helloMultiplier!: pulumi.Output<number>;
-    /**
-     * Configuration interface name.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * IP address.
-     */
     public readonly ip!: pulumi.Output<string>;
-    /**
-     * Message-digest key-chain name.
-     */
     public readonly keychain!: pulumi.Output<string>;
-    /**
-     * MD5 key.
-     */
     public readonly md5Key!: pulumi.Output<string>;
-    /**
-     * Authentication MD5 key-chain name.
-     */
     public readonly md5Keychain!: pulumi.Output<string>;
-    /**
-     * MD5 key. The structure of `md5Keys` block is documented below.
-     */
     public readonly md5Keys!: pulumi.Output<outputs.RouterospfOspfInterfaceMd5Key[] | undefined>;
-    /**
-     * MTU for database description packets.
-     */
     public readonly mtu!: pulumi.Output<number>;
-    /**
-     * Enable/disable ignore MTU. Valid values: `enable`, `disable`.
-     */
     public readonly mtuIgnore!: pulumi.Output<string>;
-    /**
-     * Interface entry name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Network type. Valid values: `broadcast`, `non-broadcast`, `point-to-point`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-     */
     public readonly networkType!: pulumi.Output<string>;
-    /**
-     * Prefix length.
-     */
     public readonly prefixLength!: pulumi.Output<number>;
-    /**
-     * Priority.
-     */
     public readonly priority!: pulumi.Output<number>;
-    /**
-     * Graceful restart neighbor resynchronization timeout.
-     */
     public readonly resyncTimeout!: pulumi.Output<number>;
-    /**
-     * Retransmit interval.
-     */
     public readonly retransmitInterval!: pulumi.Output<number>;
-    /**
-     * Enable/disable status. Valid values: `disable`, `enable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Transmit delay.
-     */
     public readonly transmitDelay!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -242,113 +141,32 @@ export class RouterospfOspfInterface extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterospfOspfInterface resources.
  */
 export interface RouterospfOspfInterfaceState {
-    /**
-     * Authentication type.
-     */
     authentication?: pulumi.Input<string>;
-    /**
-     * Authentication key.
-     */
     authenticationKey?: pulumi.Input<string>;
-    /**
-     * Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-     */
     bfd?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-     */
     cost?: pulumi.Input<number>;
-    /**
-     * Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
-     */
     databaseFilterOut?: pulumi.Input<string>;
-    /**
-     * Dead interval.
-     */
     deadInterval?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Hello interval.
-     */
     helloInterval?: pulumi.Input<number>;
-    /**
-     * Number of hello packets within dead interval.
-     */
     helloMultiplier?: pulumi.Input<number>;
-    /**
-     * Configuration interface name.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * IP address.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Message-digest key-chain name.
-     */
     keychain?: pulumi.Input<string>;
-    /**
-     * MD5 key.
-     */
     md5Key?: pulumi.Input<string>;
-    /**
-     * Authentication MD5 key-chain name.
-     */
     md5Keychain?: pulumi.Input<string>;
-    /**
-     * MD5 key. The structure of `md5Keys` block is documented below.
-     */
     md5Keys?: pulumi.Input<pulumi.Input<inputs.RouterospfOspfInterfaceMd5Key>[]>;
-    /**
-     * MTU for database description packets.
-     */
     mtu?: pulumi.Input<number>;
-    /**
-     * Enable/disable ignore MTU. Valid values: `enable`, `disable`.
-     */
     mtuIgnore?: pulumi.Input<string>;
-    /**
-     * Interface entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Network type. Valid values: `broadcast`, `non-broadcast`, `point-to-point`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-     */
     networkType?: pulumi.Input<string>;
-    /**
-     * Prefix length.
-     */
     prefixLength?: pulumi.Input<number>;
-    /**
-     * Priority.
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * Graceful restart neighbor resynchronization timeout.
-     */
     resyncTimeout?: pulumi.Input<number>;
-    /**
-     * Retransmit interval.
-     */
     retransmitInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable status. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Transmit delay.
-     */
     transmitDelay?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -356,112 +174,31 @@ export interface RouterospfOspfInterfaceState {
  * The set of arguments for constructing a RouterospfOspfInterface resource.
  */
 export interface RouterospfOspfInterfaceArgs {
-    /**
-     * Authentication type.
-     */
     authentication?: pulumi.Input<string>;
-    /**
-     * Authentication key.
-     */
     authenticationKey?: pulumi.Input<string>;
-    /**
-     * Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-     */
     bfd?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-     */
     cost?: pulumi.Input<number>;
-    /**
-     * Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
-     */
     databaseFilterOut?: pulumi.Input<string>;
-    /**
-     * Dead interval.
-     */
     deadInterval?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Hello interval.
-     */
     helloInterval?: pulumi.Input<number>;
-    /**
-     * Number of hello packets within dead interval.
-     */
     helloMultiplier?: pulumi.Input<number>;
-    /**
-     * Configuration interface name.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * IP address.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Message-digest key-chain name.
-     */
     keychain?: pulumi.Input<string>;
-    /**
-     * MD5 key.
-     */
     md5Key?: pulumi.Input<string>;
-    /**
-     * Authentication MD5 key-chain name.
-     */
     md5Keychain?: pulumi.Input<string>;
-    /**
-     * MD5 key. The structure of `md5Keys` block is documented below.
-     */
     md5Keys?: pulumi.Input<pulumi.Input<inputs.RouterospfOspfInterfaceMd5Key>[]>;
-    /**
-     * MTU for database description packets.
-     */
     mtu?: pulumi.Input<number>;
-    /**
-     * Enable/disable ignore MTU. Valid values: `enable`, `disable`.
-     */
     mtuIgnore?: pulumi.Input<string>;
-    /**
-     * Interface entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Network type. Valid values: `broadcast`, `non-broadcast`, `point-to-point`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-     */
     networkType?: pulumi.Input<string>;
-    /**
-     * Prefix length.
-     */
     prefixLength?: pulumi.Input<number>;
-    /**
-     * Priority.
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * Graceful restart neighbor resynchronization timeout.
-     */
     resyncTimeout?: pulumi.Input<number>;
-    /**
-     * Retransmit interval.
-     */
     retransmitInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable status. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Transmit delay.
-     */
     transmitDelay?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

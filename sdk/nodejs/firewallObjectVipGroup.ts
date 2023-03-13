@@ -4,27 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure virtual IP groups of FortiOS.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.FirewallVipgrp`, we recommend that you use the new resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const v11 = new fortios.FirewallObjectVipGroup("v11", {
- *     comments: "comments",
- *     interface: "port3",
- *     members: [
- *         "vip1",
- *         "vip3",
- *     ],
- * });
- * ```
- */
 export class FirewallObjectVipGroup extends pulumi.CustomResource {
     /**
      * Get an existing FirewallObjectVipGroup resource's state with the given name, ID, and optional extra
@@ -53,21 +32,9 @@ export class FirewallObjectVipGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallObjectVipGroup.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Interface name.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Member VIP objects of the group.
-     */
     public readonly members!: pulumi.Output<string[]>;
-    /**
-     * VIP group name.
-     */
     public readonly name!: pulumi.Output<string>;
 
     /**
@@ -106,21 +73,9 @@ export class FirewallObjectVipGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallObjectVipGroup resources.
  */
 export interface FirewallObjectVipGroupState {
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Interface name.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Member VIP objects of the group.
-     */
     members?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * VIP group name.
-     */
     name?: pulumi.Input<string>;
 }
 
@@ -128,20 +83,8 @@ export interface FirewallObjectVipGroupState {
  * The set of arguments for constructing a FirewallObjectVipGroup resource.
  */
 export interface FirewallObjectVipGroupArgs {
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Interface name.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Member VIP objects of the group.
-     */
     members: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * VIP group name.
-     */
     name?: pulumi.Input<string>;
 }

@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios system fssopolling
- */
 export function getSystemFssoPolling(args?: GetSystemFssoPollingArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemFssoPollingResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemFssoPolling:GetSystemFssoPolling", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getSystemFssoPolling(args?: GetSystemFssoPollingArgs, opts?: pul
  * A collection of arguments for invoking GetSystemFssoPolling.
  */
 export interface GetSystemFssoPollingArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -33,39 +24,23 @@ export interface GetSystemFssoPollingArgs {
  * A collection of values returned by GetSystemFssoPolling.
  */
 export interface GetSystemFssoPollingResult {
-    /**
-     * Password to connect to FSSO Agent.
-     */
     readonly authPassword: string;
-    /**
-     * Enable/disable FSSO Agent Authentication.
-     */
     readonly authentication: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Listening port to accept clients (1 - 65535).
-     */
     readonly listeningPort: number;
-    /**
-     * Enable/disable FSSO Polling Mode.
-     */
     readonly status: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemFssoPollingOutput(args?: GetSystemFssoPollingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemFssoPollingResult> {
-    return pulumi.output(args).apply(a => getSystemFssoPolling(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemFssoPolling(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemFssoPolling.
  */
 export interface GetSystemFssoPollingOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

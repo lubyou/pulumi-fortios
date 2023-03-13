@@ -10,37 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// OSPF network configuration.
-//
-// > The provider supports the definition of Network in Router Ospf `RouterOspf`, and also allows the definition of separate Network resources `RouterospfNetwork`, but do not use a `RouterOspf` with in-line Network in conjunction with any `RouterospfNetwork` resources, otherwise conflicts and overwrite will occur.
-//
-// ## Import
-//
-// Routerospf Network can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerospfNetwork:RouterospfNetwork labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerospfNetwork:RouterospfNetwork labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterospfNetwork struct {
 	pulumi.CustomResourceState
 
-	// Attach the network to area.
-	Area pulumi.StringOutput `pulumi:"area"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Network entry ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Prefix.
-	Prefix pulumi.StringOutput `pulumi:"prefix"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Area      pulumi.StringOutput    `pulumi:"area"`
+	Comments  pulumi.StringPtrOutput `pulumi:"comments"`
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Prefix    pulumi.StringOutput    `pulumi:"prefix"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -74,28 +50,18 @@ func GetRouterospfNetwork(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterospfNetwork resources.
 type routerospfNetworkState struct {
-	// Attach the network to area.
-	Area *string `pulumi:"area"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Network entry ID.
-	Fosid *int `pulumi:"fosid"`
-	// Prefix.
-	Prefix *string `pulumi:"prefix"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Area      *string `pulumi:"area"`
+	Comments  *string `pulumi:"comments"`
+	Fosid     *int    `pulumi:"fosid"`
+	Prefix    *string `pulumi:"prefix"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type RouterospfNetworkState struct {
-	// Attach the network to area.
-	Area pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Network entry ID.
-	Fosid pulumi.IntPtrInput
-	// Prefix.
-	Prefix pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Area      pulumi.StringPtrInput
+	Comments  pulumi.StringPtrInput
+	Fosid     pulumi.IntPtrInput
+	Prefix    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -104,29 +70,19 @@ func (RouterospfNetworkState) ElementType() reflect.Type {
 }
 
 type routerospfNetworkArgs struct {
-	// Attach the network to area.
-	Area *string `pulumi:"area"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Network entry ID.
-	Fosid *int `pulumi:"fosid"`
-	// Prefix.
-	Prefix *string `pulumi:"prefix"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Area      *string `pulumi:"area"`
+	Comments  *string `pulumi:"comments"`
+	Fosid     *int    `pulumi:"fosid"`
+	Prefix    *string `pulumi:"prefix"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterospfNetwork resource.
 type RouterospfNetworkArgs struct {
-	// Attach the network to area.
-	Area pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Network entry ID.
-	Fosid pulumi.IntPtrInput
-	// Prefix.
-	Prefix pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Area      pulumi.StringPtrInput
+	Comments  pulumi.StringPtrInput
+	Fosid     pulumi.IntPtrInput
+	Prefix    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -156,7 +112,7 @@ func (i *RouterospfNetwork) ToRouterospfNetworkOutputWithContext(ctx context.Con
 // RouterospfNetworkArrayInput is an input type that accepts RouterospfNetworkArray and RouterospfNetworkArrayOutput values.
 // You can construct a concrete instance of `RouterospfNetworkArrayInput` via:
 //
-//          RouterospfNetworkArray{ RouterospfNetworkArgs{...} }
+//	RouterospfNetworkArray{ RouterospfNetworkArgs{...} }
 type RouterospfNetworkArrayInput interface {
 	pulumi.Input
 
@@ -181,7 +137,7 @@ func (i RouterospfNetworkArray) ToRouterospfNetworkArrayOutputWithContext(ctx co
 // RouterospfNetworkMapInput is an input type that accepts RouterospfNetworkMap and RouterospfNetworkMapOutput values.
 // You can construct a concrete instance of `RouterospfNetworkMapInput` via:
 //
-//          RouterospfNetworkMap{ "key": RouterospfNetworkArgs{...} }
+//	RouterospfNetworkMap{ "key": RouterospfNetworkArgs{...} }
 type RouterospfNetworkMapInput interface {
 	pulumi.Input
 
@@ -215,6 +171,26 @@ func (o RouterospfNetworkOutput) ToRouterospfNetworkOutput() RouterospfNetworkOu
 
 func (o RouterospfNetworkOutput) ToRouterospfNetworkOutputWithContext(ctx context.Context) RouterospfNetworkOutput {
 	return o
+}
+
+func (o RouterospfNetworkOutput) Area() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterospfNetwork) pulumi.StringOutput { return v.Area }).(pulumi.StringOutput)
+}
+
+func (o RouterospfNetworkOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterospfNetwork) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterospfNetworkOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterospfNetwork) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o RouterospfNetworkOutput) Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterospfNetwork) pulumi.StringOutput { return v.Prefix }).(pulumi.StringOutput)
+}
+
+func (o RouterospfNetworkOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterospfNetwork) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterospfNetworkArrayOutput struct{ *pulumi.OutputState }

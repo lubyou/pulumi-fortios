@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure UTM (Unified Threat Management) profile.
- *
- * ## Import
- *
- * WirelessController UtmProfile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerUtmProfile:WirelessControllerUtmProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerUtmProfile:WirelessControllerUtmProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerUtmProfile extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerUtmProfile resource's state with the given name, ID, and optional extra
@@ -51,41 +32,14 @@ export class WirelessControllerUtmProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerUtmProfile.__pulumiType;
     }
 
-    /**
-     * AntiVirus profile name.
-     */
     public readonly antivirusProfile!: pulumi.Output<string>;
-    /**
-     * Application control list name.
-     */
     public readonly applicationList!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string>;
-    /**
-     * IPS sensor name.
-     */
     public readonly ipsSensor!: pulumi.Output<string>;
-    /**
-     * UTM profile name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
-     */
     public readonly scanBotnetConnections!: pulumi.Output<string>;
-    /**
-     * Enable/disable UTM logging. Valid values: `enable`, `disable`.
-     */
     public readonly utmLog!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * WebFilter profile name.
-     */
     public readonly webfilterProfile!: pulumi.Output<string>;
 
     /**
@@ -131,41 +85,14 @@ export class WirelessControllerUtmProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerUtmProfile resources.
  */
 export interface WirelessControllerUtmProfileState {
-    /**
-     * AntiVirus profile name.
-     */
     antivirusProfile?: pulumi.Input<string>;
-    /**
-     * Application control list name.
-     */
     applicationList?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * IPS sensor name.
-     */
     ipsSensor?: pulumi.Input<string>;
-    /**
-     * UTM profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
-     */
     scanBotnetConnections?: pulumi.Input<string>;
-    /**
-     * Enable/disable UTM logging. Valid values: `enable`, `disable`.
-     */
     utmLog?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * WebFilter profile name.
-     */
     webfilterProfile?: pulumi.Input<string>;
 }
 
@@ -173,40 +100,13 @@ export interface WirelessControllerUtmProfileState {
  * The set of arguments for constructing a WirelessControllerUtmProfile resource.
  */
 export interface WirelessControllerUtmProfileArgs {
-    /**
-     * AntiVirus profile name.
-     */
     antivirusProfile?: pulumi.Input<string>;
-    /**
-     * Application control list name.
-     */
     applicationList?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * IPS sensor name.
-     */
     ipsSensor?: pulumi.Input<string>;
-    /**
-     * UTM profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
-     */
     scanBotnetConnections?: pulumi.Input<string>;
-    /**
-     * Enable/disable UTM logging. Valid values: `enable`, `disable`.
-     */
     utmLog?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * WebFilter profile name.
-     */
     webfilterProfile?: pulumi.Input<string>;
 }

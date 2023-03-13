@@ -4,27 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure administrator accounts of FortiOS.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.SystemAdmin`, we recommend that you use the new resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const admintest = new fortios.SystemAdminAdministrator("admintest", {
- *     accprofile: "3d3",
- *     comments: "comments",
- *     password: "cc37331AC1",
- *     trusthost1: "1.1.1.0 255.255.255.0",
- *     trusthost2: "2.2.2.0 255.255.255.0",
- *     vdoms: ["root"],
- * });
- * ```
- */
 export class SystemAdminAdministrator extends pulumi.CustomResource {
     /**
      * Get an existing SystemAdminAdministrator resource's state with the given name, ID, and optional extra
@@ -53,21 +32,9 @@ export class SystemAdminAdministrator extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAdminAdministrator.__pulumiType;
     }
 
-    /**
-     * Access profile for this administrator. Access profiles control administrator access to FortiGate features.
-     */
     public readonly accprofile!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * User name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Admin user password.
-     */
     public readonly password!: pulumi.Output<string>;
     public readonly trusthost1!: pulumi.Output<string>;
     public readonly trusthost10!: pulumi.Output<string>;
@@ -79,9 +46,6 @@ export class SystemAdminAdministrator extends pulumi.CustomResource {
     public readonly trusthost7!: pulumi.Output<string>;
     public readonly trusthost8!: pulumi.Output<string>;
     public readonly trusthost9!: pulumi.Output<string>;
-    /**
-     * Virtual domain(s) that the administrator can access.
-     */
     public readonly vdoms!: pulumi.Output<string[]>;
 
     /**
@@ -145,21 +109,9 @@ export class SystemAdminAdministrator extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAdminAdministrator resources.
  */
 export interface SystemAdminAdministratorState {
-    /**
-     * Access profile for this administrator. Access profiles control administrator access to FortiGate features.
-     */
     accprofile?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * User name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Admin user password.
-     */
     password?: pulumi.Input<string>;
     trusthost1?: pulumi.Input<string>;
     trusthost10?: pulumi.Input<string>;
@@ -171,9 +123,6 @@ export interface SystemAdminAdministratorState {
     trusthost7?: pulumi.Input<string>;
     trusthost8?: pulumi.Input<string>;
     trusthost9?: pulumi.Input<string>;
-    /**
-     * Virtual domain(s) that the administrator can access.
-     */
     vdoms?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -181,21 +130,9 @@ export interface SystemAdminAdministratorState {
  * The set of arguments for constructing a SystemAdminAdministrator resource.
  */
 export interface SystemAdminAdministratorArgs {
-    /**
-     * Access profile for this administrator. Access profiles control administrator access to FortiGate features.
-     */
     accprofile: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * User name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Admin user password.
-     */
     password: pulumi.Input<string>;
     trusthost1?: pulumi.Input<string>;
     trusthost10?: pulumi.Input<string>;
@@ -207,8 +144,5 @@ export interface SystemAdminAdministratorArgs {
     trusthost7?: pulumi.Input<string>;
     trusthost8?: pulumi.Input<string>;
     trusthost9?: pulumi.Input<string>;
-    /**
-     * Virtual domain(s) that the administrator can access.
-     */
     vdoms?: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -7,50 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports adding/deleting online FortiGate to/from FortiManager
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerDVMDevice(ctx, "test1", &fortios.FortimanagerDVMDeviceArgs{
-// 			DeviceName: pulumi.String("FGVM64-test"),
-// 			Ipaddr:     pulumi.String("192.168.88.101"),
-// 			Password:   pulumi.String(""),
-// 			Userid:     pulumi.String("admin"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerDVMDevice struct {
 	pulumi.CustomResourceState
 
-	// Name or ID of the ADOM where the command is to be executed on.
-	Adom pulumi.StringPtrOutput `pulumi:"adom"`
-	// Fortigate's device name.
-	DeviceName pulumi.StringOutput `pulumi:"deviceName"`
-	// Fortigate's ipaddress.
-	Ipaddr pulumi.StringOutput `pulumi:"ipaddr"`
-	// Password.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// User name.
-	Userid pulumi.StringOutput `pulumi:"userid"`
+	Adom       pulumi.StringPtrOutput `pulumi:"adom"`
+	DeviceName pulumi.StringOutput    `pulumi:"deviceName"`
+	Ipaddr     pulumi.StringOutput    `pulumi:"ipaddr"`
+	Password   pulumi.StringPtrOutput `pulumi:"password"`
+	Userid     pulumi.StringOutput    `pulumi:"userid"`
 }
 
 // NewFortimanagerDVMDevice registers a new resource with the given unique name, arguments, and options.
@@ -92,29 +60,19 @@ func GetFortimanagerDVMDevice(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerDVMDevice resources.
 type fortimanagerDVMDeviceState struct {
-	// Name or ID of the ADOM where the command is to be executed on.
-	Adom *string `pulumi:"adom"`
-	// Fortigate's device name.
+	Adom       *string `pulumi:"adom"`
 	DeviceName *string `pulumi:"deviceName"`
-	// Fortigate's ipaddress.
-	Ipaddr *string `pulumi:"ipaddr"`
-	// Password.
-	Password *string `pulumi:"password"`
-	// User name.
-	Userid *string `pulumi:"userid"`
+	Ipaddr     *string `pulumi:"ipaddr"`
+	Password   *string `pulumi:"password"`
+	Userid     *string `pulumi:"userid"`
 }
 
 type FortimanagerDVMDeviceState struct {
-	// Name or ID of the ADOM where the command is to be executed on.
-	Adom pulumi.StringPtrInput
-	// Fortigate's device name.
+	Adom       pulumi.StringPtrInput
 	DeviceName pulumi.StringPtrInput
-	// Fortigate's ipaddress.
-	Ipaddr pulumi.StringPtrInput
-	// Password.
-	Password pulumi.StringPtrInput
-	// User name.
-	Userid pulumi.StringPtrInput
+	Ipaddr     pulumi.StringPtrInput
+	Password   pulumi.StringPtrInput
+	Userid     pulumi.StringPtrInput
 }
 
 func (FortimanagerDVMDeviceState) ElementType() reflect.Type {
@@ -122,30 +80,20 @@ func (FortimanagerDVMDeviceState) ElementType() reflect.Type {
 }
 
 type fortimanagerDVMDeviceArgs struct {
-	// Name or ID of the ADOM where the command is to be executed on.
-	Adom *string `pulumi:"adom"`
-	// Fortigate's device name.
-	DeviceName string `pulumi:"deviceName"`
-	// Fortigate's ipaddress.
-	Ipaddr string `pulumi:"ipaddr"`
-	// Password.
-	Password *string `pulumi:"password"`
-	// User name.
-	Userid string `pulumi:"userid"`
+	Adom       *string `pulumi:"adom"`
+	DeviceName string  `pulumi:"deviceName"`
+	Ipaddr     string  `pulumi:"ipaddr"`
+	Password   *string `pulumi:"password"`
+	Userid     string  `pulumi:"userid"`
 }
 
 // The set of arguments for constructing a FortimanagerDVMDevice resource.
 type FortimanagerDVMDeviceArgs struct {
-	// Name or ID of the ADOM where the command is to be executed on.
-	Adom pulumi.StringPtrInput
-	// Fortigate's device name.
+	Adom       pulumi.StringPtrInput
 	DeviceName pulumi.StringInput
-	// Fortigate's ipaddress.
-	Ipaddr pulumi.StringInput
-	// Password.
-	Password pulumi.StringPtrInput
-	// User name.
-	Userid pulumi.StringInput
+	Ipaddr     pulumi.StringInput
+	Password   pulumi.StringPtrInput
+	Userid     pulumi.StringInput
 }
 
 func (FortimanagerDVMDeviceArgs) ElementType() reflect.Type {
@@ -174,7 +122,7 @@ func (i *FortimanagerDVMDevice) ToFortimanagerDVMDeviceOutputWithContext(ctx con
 // FortimanagerDVMDeviceArrayInput is an input type that accepts FortimanagerDVMDeviceArray and FortimanagerDVMDeviceArrayOutput values.
 // You can construct a concrete instance of `FortimanagerDVMDeviceArrayInput` via:
 //
-//          FortimanagerDVMDeviceArray{ FortimanagerDVMDeviceArgs{...} }
+//	FortimanagerDVMDeviceArray{ FortimanagerDVMDeviceArgs{...} }
 type FortimanagerDVMDeviceArrayInput interface {
 	pulumi.Input
 
@@ -199,7 +147,7 @@ func (i FortimanagerDVMDeviceArray) ToFortimanagerDVMDeviceArrayOutputWithContex
 // FortimanagerDVMDeviceMapInput is an input type that accepts FortimanagerDVMDeviceMap and FortimanagerDVMDeviceMapOutput values.
 // You can construct a concrete instance of `FortimanagerDVMDeviceMapInput` via:
 //
-//          FortimanagerDVMDeviceMap{ "key": FortimanagerDVMDeviceArgs{...} }
+//	FortimanagerDVMDeviceMap{ "key": FortimanagerDVMDeviceArgs{...} }
 type FortimanagerDVMDeviceMapInput interface {
 	pulumi.Input
 
@@ -233,6 +181,26 @@ func (o FortimanagerDVMDeviceOutput) ToFortimanagerDVMDeviceOutput() Fortimanage
 
 func (o FortimanagerDVMDeviceOutput) ToFortimanagerDVMDeviceOutputWithContext(ctx context.Context) FortimanagerDVMDeviceOutput {
 	return o
+}
+
+func (o FortimanagerDVMDeviceOutput) Adom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerDVMDevice) pulumi.StringPtrOutput { return v.Adom }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerDVMDeviceOutput) DeviceName() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerDVMDevice) pulumi.StringOutput { return v.DeviceName }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerDVMDeviceOutput) Ipaddr() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerDVMDevice) pulumi.StringOutput { return v.Ipaddr }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerDVMDeviceOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerDVMDevice) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerDVMDeviceOutput) Userid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerDVMDevice) pulumi.StringOutput { return v.Userid }).(pulumi.StringOutput)
 }
 
 type FortimanagerDVMDeviceArrayOutput struct{ *pulumi.OutputState }

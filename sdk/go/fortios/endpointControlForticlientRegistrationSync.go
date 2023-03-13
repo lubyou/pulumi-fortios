@@ -7,59 +7,15 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiClient registration synchronization settings. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewEndpointControlForticlientRegistrationSync(ctx, "trname", &fortios.EndpointControlForticlientRegistrationSyncArgs{
-// 			PeerIp:   pulumi.String("1.1.1.1"),
-// 			PeerName: pulumi.String("1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// EndpointControl ForticlientRegistrationSync can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/endpointControlForticlientRegistrationSync:EndpointControlForticlientRegistrationSync labelname {{peer_name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/endpointControlForticlientRegistrationSync:EndpointControlForticlientRegistrationSync labelname {{peer_name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type EndpointControlForticlientRegistrationSync struct {
 	pulumi.CustomResourceState
 
-	// IP address of the peer FortiGate for endpoint license synchronization.
-	PeerIp pulumi.StringOutput `pulumi:"peerIp"`
-	// Peer name.
-	PeerName pulumi.StringOutput `pulumi:"peerName"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	PeerIp    pulumi.StringOutput    `pulumi:"peerIp"`
+	PeerName  pulumi.StringOutput    `pulumi:"peerName"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -96,20 +52,14 @@ func GetEndpointControlForticlientRegistrationSync(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EndpointControlForticlientRegistrationSync resources.
 type endpointControlForticlientRegistrationSyncState struct {
-	// IP address of the peer FortiGate for endpoint license synchronization.
-	PeerIp *string `pulumi:"peerIp"`
-	// Peer name.
-	PeerName *string `pulumi:"peerName"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	PeerIp    *string `pulumi:"peerIp"`
+	PeerName  *string `pulumi:"peerName"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type EndpointControlForticlientRegistrationSyncState struct {
-	// IP address of the peer FortiGate for endpoint license synchronization.
-	PeerIp pulumi.StringPtrInput
-	// Peer name.
-	PeerName pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	PeerIp    pulumi.StringPtrInput
+	PeerName  pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -118,21 +68,15 @@ func (EndpointControlForticlientRegistrationSyncState) ElementType() reflect.Typ
 }
 
 type endpointControlForticlientRegistrationSyncArgs struct {
-	// IP address of the peer FortiGate for endpoint license synchronization.
-	PeerIp string `pulumi:"peerIp"`
-	// Peer name.
-	PeerName *string `pulumi:"peerName"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	PeerIp    string  `pulumi:"peerIp"`
+	PeerName  *string `pulumi:"peerName"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a EndpointControlForticlientRegistrationSync resource.
 type EndpointControlForticlientRegistrationSyncArgs struct {
-	// IP address of the peer FortiGate for endpoint license synchronization.
-	PeerIp pulumi.StringInput
-	// Peer name.
-	PeerName pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	PeerIp    pulumi.StringInput
+	PeerName  pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -162,7 +106,7 @@ func (i *EndpointControlForticlientRegistrationSync) ToEndpointControlForticlien
 // EndpointControlForticlientRegistrationSyncArrayInput is an input type that accepts EndpointControlForticlientRegistrationSyncArray and EndpointControlForticlientRegistrationSyncArrayOutput values.
 // You can construct a concrete instance of `EndpointControlForticlientRegistrationSyncArrayInput` via:
 //
-//          EndpointControlForticlientRegistrationSyncArray{ EndpointControlForticlientRegistrationSyncArgs{...} }
+//	EndpointControlForticlientRegistrationSyncArray{ EndpointControlForticlientRegistrationSyncArgs{...} }
 type EndpointControlForticlientRegistrationSyncArrayInput interface {
 	pulumi.Input
 
@@ -187,7 +131,7 @@ func (i EndpointControlForticlientRegistrationSyncArray) ToEndpointControlFortic
 // EndpointControlForticlientRegistrationSyncMapInput is an input type that accepts EndpointControlForticlientRegistrationSyncMap and EndpointControlForticlientRegistrationSyncMapOutput values.
 // You can construct a concrete instance of `EndpointControlForticlientRegistrationSyncMapInput` via:
 //
-//          EndpointControlForticlientRegistrationSyncMap{ "key": EndpointControlForticlientRegistrationSyncArgs{...} }
+//	EndpointControlForticlientRegistrationSyncMap{ "key": EndpointControlForticlientRegistrationSyncArgs{...} }
 type EndpointControlForticlientRegistrationSyncMapInput interface {
 	pulumi.Input
 
@@ -221,6 +165,18 @@ func (o EndpointControlForticlientRegistrationSyncOutput) ToEndpointControlForti
 
 func (o EndpointControlForticlientRegistrationSyncOutput) ToEndpointControlForticlientRegistrationSyncOutputWithContext(ctx context.Context) EndpointControlForticlientRegistrationSyncOutput {
 	return o
+}
+
+func (o EndpointControlForticlientRegistrationSyncOutput) PeerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlForticlientRegistrationSync) pulumi.StringOutput { return v.PeerIp }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlForticlientRegistrationSyncOutput) PeerName() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlForticlientRegistrationSync) pulumi.StringOutput { return v.PeerName }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlForticlientRegistrationSyncOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EndpointControlForticlientRegistrationSync) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type EndpointControlForticlientRegistrationSyncArrayOutput struct{ *pulumi.OutputState }

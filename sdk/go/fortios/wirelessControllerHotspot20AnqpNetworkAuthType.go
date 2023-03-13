@@ -10,57 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure network authentication type.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWirelessControllerHotspot20AnqpNetworkAuthType(ctx, "trname", &fortios.WirelessControllerHotspot20AnqpNetworkAuthTypeArgs{
-// 			AuthType: pulumi.String("acceptance-of-terms"),
-// 			Url:      pulumi.String("www.example.com"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// WirelessControllerHotspot20 AnqpNetworkAuthType can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20AnqpNetworkAuthType:WirelessControllerHotspot20AnqpNetworkAuthType labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20AnqpNetworkAuthType:WirelessControllerHotspot20AnqpNetworkAuthType labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerHotspot20AnqpNetworkAuthType struct {
 	pulumi.CustomResourceState
 
-	// Network authentication type. Valid values: `acceptance-of-terms`, `online-enrollment`, `http-redirection`, `dns-redirection`.
-	AuthType pulumi.StringOutput `pulumi:"authType"`
-	// Authentication type name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Redirect URL.
-	Url pulumi.StringOutput `pulumi:"url"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	AuthType  pulumi.StringOutput    `pulumi:"authType"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
+	Url       pulumi.StringOutput    `pulumi:"url"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -94,24 +49,16 @@ func GetWirelessControllerHotspot20AnqpNetworkAuthType(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerHotspot20AnqpNetworkAuthType resources.
 type wirelessControllerHotspot20AnqpNetworkAuthTypeState struct {
-	// Network authentication type. Valid values: `acceptance-of-terms`, `online-enrollment`, `http-redirection`, `dns-redirection`.
-	AuthType *string `pulumi:"authType"`
-	// Authentication type name.
-	Name *string `pulumi:"name"`
-	// Redirect URL.
-	Url *string `pulumi:"url"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	AuthType  *string `pulumi:"authType"`
+	Name      *string `pulumi:"name"`
+	Url       *string `pulumi:"url"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type WirelessControllerHotspot20AnqpNetworkAuthTypeState struct {
-	// Network authentication type. Valid values: `acceptance-of-terms`, `online-enrollment`, `http-redirection`, `dns-redirection`.
-	AuthType pulumi.StringPtrInput
-	// Authentication type name.
-	Name pulumi.StringPtrInput
-	// Redirect URL.
-	Url pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	AuthType  pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
+	Url       pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -120,25 +67,17 @@ func (WirelessControllerHotspot20AnqpNetworkAuthTypeState) ElementType() reflect
 }
 
 type wirelessControllerHotspot20AnqpNetworkAuthTypeArgs struct {
-	// Network authentication type. Valid values: `acceptance-of-terms`, `online-enrollment`, `http-redirection`, `dns-redirection`.
-	AuthType *string `pulumi:"authType"`
-	// Authentication type name.
-	Name *string `pulumi:"name"`
-	// Redirect URL.
-	Url *string `pulumi:"url"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	AuthType  *string `pulumi:"authType"`
+	Name      *string `pulumi:"name"`
+	Url       *string `pulumi:"url"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerHotspot20AnqpNetworkAuthType resource.
 type WirelessControllerHotspot20AnqpNetworkAuthTypeArgs struct {
-	// Network authentication type. Valid values: `acceptance-of-terms`, `online-enrollment`, `http-redirection`, `dns-redirection`.
-	AuthType pulumi.StringPtrInput
-	// Authentication type name.
-	Name pulumi.StringPtrInput
-	// Redirect URL.
-	Url pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	AuthType  pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
+	Url       pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -168,7 +107,7 @@ func (i *WirelessControllerHotspot20AnqpNetworkAuthType) ToWirelessControllerHot
 // WirelessControllerHotspot20AnqpNetworkAuthTypeArrayInput is an input type that accepts WirelessControllerHotspot20AnqpNetworkAuthTypeArray and WirelessControllerHotspot20AnqpNetworkAuthTypeArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpNetworkAuthTypeArrayInput` via:
 //
-//          WirelessControllerHotspot20AnqpNetworkAuthTypeArray{ WirelessControllerHotspot20AnqpNetworkAuthTypeArgs{...} }
+//	WirelessControllerHotspot20AnqpNetworkAuthTypeArray{ WirelessControllerHotspot20AnqpNetworkAuthTypeArgs{...} }
 type WirelessControllerHotspot20AnqpNetworkAuthTypeArrayInput interface {
 	pulumi.Input
 
@@ -193,7 +132,7 @@ func (i WirelessControllerHotspot20AnqpNetworkAuthTypeArray) ToWirelessControlle
 // WirelessControllerHotspot20AnqpNetworkAuthTypeMapInput is an input type that accepts WirelessControllerHotspot20AnqpNetworkAuthTypeMap and WirelessControllerHotspot20AnqpNetworkAuthTypeMapOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpNetworkAuthTypeMapInput` via:
 //
-//          WirelessControllerHotspot20AnqpNetworkAuthTypeMap{ "key": WirelessControllerHotspot20AnqpNetworkAuthTypeArgs{...} }
+//	WirelessControllerHotspot20AnqpNetworkAuthTypeMap{ "key": WirelessControllerHotspot20AnqpNetworkAuthTypeArgs{...} }
 type WirelessControllerHotspot20AnqpNetworkAuthTypeMapInput interface {
 	pulumi.Input
 
@@ -227,6 +166,22 @@ func (o WirelessControllerHotspot20AnqpNetworkAuthTypeOutput) ToWirelessControll
 
 func (o WirelessControllerHotspot20AnqpNetworkAuthTypeOutput) ToWirelessControllerHotspot20AnqpNetworkAuthTypeOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpNetworkAuthTypeOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpNetworkAuthTypeOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpNetworkAuthType) pulumi.StringOutput { return v.AuthType }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20AnqpNetworkAuthTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpNetworkAuthType) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20AnqpNetworkAuthTypeOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpNetworkAuthType) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20AnqpNetworkAuthTypeOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpNetworkAuthType) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerHotspot20AnqpNetworkAuthTypeArrayOutput struct{ *pulumi.OutputState }

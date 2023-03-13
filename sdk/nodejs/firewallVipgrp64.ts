@@ -2,55 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv6 to IPv4 virtual IP groups. Applies to FortiOS Version `<= 7.0.0`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
- *
- * const trname1 = new fortios.FirewallVip64("trname1", {
- *     arpReply: "enable",
- *     color: 0,
- *     extip: "2001:db8:99:503::22",
- *     extport: "0-65535",
- *     fosid: 0,
- *     ldbMethod: "static",
- *     mappedip: "1.1.3.1",
- *     mappedport: "0-65535",
- *     portforward: "disable",
- *     protocol: "tcp",
- *     type: "static-nat",
- * });
- * const trname = new fortios.FirewallVipgrp64("trname", {
- *     color: 0,
- *     members: [{
- *         name: trname1.name,
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * Firewall Vipgrp64 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallVipgrp64:FirewallVipgrp64 labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallVipgrp64:FirewallVipgrp64 labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallVipgrp64 extends pulumi.CustomResource {
     /**
      * Get an existing FirewallVipgrp64 resource's state with the given name, ID, and optional extra
@@ -79,33 +34,12 @@ export class FirewallVipgrp64 extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallVipgrp64.__pulumiType;
     }
 
-    /**
-     * Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Member VIP objects of the group (Separate multiple objects with a space). The structure of `member` block is documented below.
-     */
     public readonly members!: pulumi.Output<outputs.FirewallVipgrp64Member[]>;
-    /**
-     * VIP64 name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -150,33 +84,12 @@ export class FirewallVipgrp64 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallVipgrp64 resources.
  */
 export interface FirewallVipgrp64State {
-    /**
-     * Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Member VIP objects of the group (Separate multiple objects with a space). The structure of `member` block is documented below.
-     */
     members?: pulumi.Input<pulumi.Input<inputs.FirewallVipgrp64Member>[]>;
-    /**
-     * VIP64 name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -184,32 +97,11 @@ export interface FirewallVipgrp64State {
  * The set of arguments for constructing a FirewallVipgrp64 resource.
  */
 export interface FirewallVipgrp64Args {
-    /**
-     * Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Member VIP objects of the group (Separate multiple objects with a space). The structure of `member` block is documented below.
-     */
     members: pulumi.Input<pulumi.Input<inputs.FirewallVipgrp64Member>[]>;
-    /**
-     * VIP64 name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

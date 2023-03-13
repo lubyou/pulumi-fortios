@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system admin
 func LookupSystemAdmin(ctx *pulumi.Context, args *LookupSystemAdminArgs, opts ...pulumi.InvokeOption) (*LookupSystemAdminResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAdminResult
@@ -23,135 +22,75 @@ func LookupSystemAdmin(ctx *pulumi.Context, args *LookupSystemAdminArgs, opts ..
 
 // A collection of arguments for invoking GetSystemAdmin.
 type LookupSystemAdminArgs struct {
-	// Specify the name of the desired system admin.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemAdmin.
 type LookupSystemAdminResult struct {
-	// Access profile for this administrator. Access profiles control administrator access to FortiGate features.
-	Accprofile string `pulumi:"accprofile"`
-	// Enable to use the name of an access profile provided by the remote authentication server to control the FortiGate features that this administrator can access.
-	AccprofileOverride string `pulumi:"accprofileOverride"`
-	// Enable/disable allow admin session to be removed by privileged admin users.
-	AllowRemoveAdminSession string `pulumi:"allowRemoveAdminSession"`
-	// Comment.
-	Comments string `pulumi:"comments"`
-	// This administrator's email address.
-	EmailTo string `pulumi:"emailTo"`
-	// Enable/disable force password change on next login.
-	ForcePasswordChange string `pulumi:"forcePasswordChange"`
-	// This administrator's FortiToken serial number.
-	Fortitoken string `pulumi:"fortitoken"`
-	// Enable/disable guest authentication.
-	GuestAuth string `pulumi:"guestAuth"`
-	// Guest management portal language.
-	GuestLang string `pulumi:"guestLang"`
-	// Select guest user groups. The structure of `guestUsergroups` block is documented below.
-	GuestUsergroups []GetSystemAdminGuestUsergroup `pulumi:"guestUsergroups"`
-	// GUI dashboards. The structure of `guiDashboard` block is documented below.
-	GuiDashboards []GetSystemAdminGuiDashboard `pulumi:"guiDashboards"`
-	// Favorite GUI menu IDs for the global VDOM. The structure of `guiGlobalMenuFavorites` block is documented below.
-	GuiGlobalMenuFavorites []GetSystemAdminGuiGlobalMenuFavorite `pulumi:"guiGlobalMenuFavorites"`
-	// Acknowledgement of new features. The structure of `guiNewFeatureAcknowledge` block is documented below.
+	Accprofile                string                                   `pulumi:"accprofile"`
+	AccprofileOverride        string                                   `pulumi:"accprofileOverride"`
+	AllowRemoveAdminSession   string                                   `pulumi:"allowRemoveAdminSession"`
+	Comments                  string                                   `pulumi:"comments"`
+	EmailTo                   string                                   `pulumi:"emailTo"`
+	ForcePasswordChange       string                                   `pulumi:"forcePasswordChange"`
+	Fortitoken                string                                   `pulumi:"fortitoken"`
+	GuestAuth                 string                                   `pulumi:"guestAuth"`
+	GuestLang                 string                                   `pulumi:"guestLang"`
+	GuestUsergroups           []GetSystemAdminGuestUsergroup           `pulumi:"guestUsergroups"`
+	GuiDashboards             []GetSystemAdminGuiDashboard             `pulumi:"guiDashboards"`
+	GuiGlobalMenuFavorites    []GetSystemAdminGuiGlobalMenuFavorite    `pulumi:"guiGlobalMenuFavorites"`
 	GuiNewFeatureAcknowledges []GetSystemAdminGuiNewFeatureAcknowledge `pulumi:"guiNewFeatureAcknowledges"`
-	// Favorite GUI menu IDs for VDOMs. The structure of `guiVdomMenuFavorites` block is documented below.
-	GuiVdomMenuFavorites []GetSystemAdminGuiVdomMenuFavorite `pulumi:"guiVdomMenuFavorites"`
-	// Admin user hidden attribute.
-	Hidden int `pulumi:"hidden"`
-	// history0
-	History0 string `pulumi:"history0"`
-	// history1
-	History1 string `pulumi:"history1"`
+	GuiVdomMenuFavorites      []GetSystemAdminGuiVdomMenuFavorite      `pulumi:"guiVdomMenuFavorites"`
+	Hidden                    int                                      `pulumi:"hidden"`
+	History0                  string                                   `pulumi:"history0"`
+	History1                  string                                   `pulumi:"history1"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-	Ip6Trusthost1 string `pulumi:"ip6Trusthost1"`
-	// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-	Ip6Trusthost10 string `pulumi:"ip6Trusthost10"`
-	// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-	Ip6Trusthost2 string `pulumi:"ip6Trusthost2"`
-	// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-	Ip6Trusthost3 string `pulumi:"ip6Trusthost3"`
-	// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-	Ip6Trusthost4 string `pulumi:"ip6Trusthost4"`
-	// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-	Ip6Trusthost5 string `pulumi:"ip6Trusthost5"`
-	// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-	Ip6Trusthost6 string `pulumi:"ip6Trusthost6"`
-	// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-	Ip6Trusthost7 string `pulumi:"ip6Trusthost7"`
-	// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-	Ip6Trusthost8 string `pulumi:"ip6Trusthost8"`
-	// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-	Ip6Trusthost9 string `pulumi:"ip6Trusthost9"`
-	// Record user login time. The structure of `loginTime` block is documented below.
-	LoginTimes []GetSystemAdminLoginTime `pulumi:"loginTimes"`
-	// Select guest user groups.
-	Name string `pulumi:"name"`
-	// Admin user password.
-	Password string `pulumi:"password"`
-	// Password expire time.
-	PasswordExpire string `pulumi:"passwordExpire"`
-	// Set to enable peer certificate authentication (for HTTPS admin access).
-	PeerAuth string `pulumi:"peerAuth"`
-	// Name of peer group defined under config user group which has PKI members. Used for peer certificate authentication (for HTTPS admin access).
-	PeerGroup string `pulumi:"peerGroup"`
-	// Enable to use the names of VDOMs provided by the remote authentication server to control the VDOMs that this administrator can access.
-	RadiusVdomOverride string `pulumi:"radiusVdomOverride"`
-	// Enable/disable authentication using a remote RADIUS, LDAP, or TACACS+ server.
-	RemoteAuth string `pulumi:"remoteAuth"`
-	// User group name used for remote auth.
-	RemoteGroup string `pulumi:"remoteGroup"`
-	// Firewall schedule used to restrict when the administrator can log in. No schedule means no restrictions.
-	Schedule string `pulumi:"schedule"`
-	// Custom SMS server to send SMS messages to.
-	SmsCustomServer string `pulumi:"smsCustomServer"`
-	// Phone number on which the administrator receives SMS messages.
-	SmsPhone string `pulumi:"smsPhone"`
-	// Send SMS messages using the FortiGuard SMS server or a custom server.
-	SmsServer string `pulumi:"smsServer"`
-	// Select the certificate to be used by the FortiGate for authentication with an SSH client.
-	SshCertificate string `pulumi:"sshCertificate"`
-	// Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application.
-	SshPublicKey1 string `pulumi:"sshPublicKey1"`
-	// Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application.
-	SshPublicKey2 string `pulumi:"sshPublicKey2"`
-	// Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application.
-	SshPublicKey3 string `pulumi:"sshPublicKey3"`
-	// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-	Trusthost1 string `pulumi:"trusthost1"`
-	// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-	Trusthost10 string `pulumi:"trusthost10"`
-	// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-	Trusthost2 string `pulumi:"trusthost2"`
-	// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-	Trusthost3 string `pulumi:"trusthost3"`
-	// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-	Trusthost4 string `pulumi:"trusthost4"`
-	// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-	Trusthost5 string `pulumi:"trusthost5"`
-	// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-	Trusthost6 string `pulumi:"trusthost6"`
-	// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-	Trusthost7 string `pulumi:"trusthost7"`
-	// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-	Trusthost8 string `pulumi:"trusthost8"`
-	// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-	Trusthost9 string `pulumi:"trusthost9"`
-	// Enable/disable two-factor authentication.
-	TwoFactor string `pulumi:"twoFactor"`
-	// Authentication method by FortiToken Cloud.
-	TwoFactorAuthentication string `pulumi:"twoFactorAuthentication"`
-	// Notification method for user activation by FortiToken Cloud.
-	TwoFactorNotification string  `pulumi:"twoFactorNotification"`
-	Vdomparam             *string `pulumi:"vdomparam"`
-	// Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
-	Vdoms []GetSystemAdminVdom `pulumi:"vdoms"`
-	// Enable/disable wildcard RADIUS authentication.
-	Wildcard string `pulumi:"wildcard"`
+	Id                      string                    `pulumi:"id"`
+	Ip6Trusthost1           string                    `pulumi:"ip6Trusthost1"`
+	Ip6Trusthost10          string                    `pulumi:"ip6Trusthost10"`
+	Ip6Trusthost2           string                    `pulumi:"ip6Trusthost2"`
+	Ip6Trusthost3           string                    `pulumi:"ip6Trusthost3"`
+	Ip6Trusthost4           string                    `pulumi:"ip6Trusthost4"`
+	Ip6Trusthost5           string                    `pulumi:"ip6Trusthost5"`
+	Ip6Trusthost6           string                    `pulumi:"ip6Trusthost6"`
+	Ip6Trusthost7           string                    `pulumi:"ip6Trusthost7"`
+	Ip6Trusthost8           string                    `pulumi:"ip6Trusthost8"`
+	Ip6Trusthost9           string                    `pulumi:"ip6Trusthost9"`
+	LoginTimes              []GetSystemAdminLoginTime `pulumi:"loginTimes"`
+	Name                    string                    `pulumi:"name"`
+	Password                string                    `pulumi:"password"`
+	PasswordExpire          string                    `pulumi:"passwordExpire"`
+	PeerAuth                string                    `pulumi:"peerAuth"`
+	PeerGroup               string                    `pulumi:"peerGroup"`
+	RadiusVdomOverride      string                    `pulumi:"radiusVdomOverride"`
+	RemoteAuth              string                    `pulumi:"remoteAuth"`
+	RemoteGroup             string                    `pulumi:"remoteGroup"`
+	Schedule                string                    `pulumi:"schedule"`
+	SmsCustomServer         string                    `pulumi:"smsCustomServer"`
+	SmsPhone                string                    `pulumi:"smsPhone"`
+	SmsServer               string                    `pulumi:"smsServer"`
+	SshCertificate          string                    `pulumi:"sshCertificate"`
+	SshPublicKey1           string                    `pulumi:"sshPublicKey1"`
+	SshPublicKey2           string                    `pulumi:"sshPublicKey2"`
+	SshPublicKey3           string                    `pulumi:"sshPublicKey3"`
+	Trusthost1              string                    `pulumi:"trusthost1"`
+	Trusthost10             string                    `pulumi:"trusthost10"`
+	Trusthost2              string                    `pulumi:"trusthost2"`
+	Trusthost3              string                    `pulumi:"trusthost3"`
+	Trusthost4              string                    `pulumi:"trusthost4"`
+	Trusthost5              string                    `pulumi:"trusthost5"`
+	Trusthost6              string                    `pulumi:"trusthost6"`
+	Trusthost7              string                    `pulumi:"trusthost7"`
+	Trusthost8              string                    `pulumi:"trusthost8"`
+	Trusthost9              string                    `pulumi:"trusthost9"`
+	TwoFactor               string                    `pulumi:"twoFactor"`
+	TwoFactorAuthentication string                    `pulumi:"twoFactorAuthentication"`
+	TwoFactorNotification   string                    `pulumi:"twoFactorNotification"`
+	VdomOverride            string                    `pulumi:"vdomOverride"`
+	Vdomparam               *string                   `pulumi:"vdomparam"`
+	Vdoms                   []GetSystemAdminVdom      `pulumi:"vdoms"`
+	Wildcard                string                    `pulumi:"wildcard"`
 }
 
 func LookupSystemAdminOutput(ctx *pulumi.Context, args LookupSystemAdminOutputArgs, opts ...pulumi.InvokeOption) LookupSystemAdminResultOutput {
@@ -169,9 +108,7 @@ func LookupSystemAdminOutput(ctx *pulumi.Context, args LookupSystemAdminOutputAr
 
 // A collection of arguments for invoking GetSystemAdmin.
 type LookupSystemAdminOutputArgs struct {
-	// Specify the name of the desired system admin.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -194,89 +131,72 @@ func (o LookupSystemAdminResultOutput) ToLookupSystemAdminResultOutputWithContex
 	return o
 }
 
-// Access profile for this administrator. Access profiles control administrator access to FortiGate features.
 func (o LookupSystemAdminResultOutput) Accprofile() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Accprofile }).(pulumi.StringOutput)
 }
 
-// Enable to use the name of an access profile provided by the remote authentication server to control the FortiGate features that this administrator can access.
 func (o LookupSystemAdminResultOutput) AccprofileOverride() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.AccprofileOverride }).(pulumi.StringOutput)
 }
 
-// Enable/disable allow admin session to be removed by privileged admin users.
 func (o LookupSystemAdminResultOutput) AllowRemoveAdminSession() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.AllowRemoveAdminSession }).(pulumi.StringOutput)
 }
 
-// Comment.
 func (o LookupSystemAdminResultOutput) Comments() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Comments }).(pulumi.StringOutput)
 }
 
-// This administrator's email address.
 func (o LookupSystemAdminResultOutput) EmailTo() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.EmailTo }).(pulumi.StringOutput)
 }
 
-// Enable/disable force password change on next login.
 func (o LookupSystemAdminResultOutput) ForcePasswordChange() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.ForcePasswordChange }).(pulumi.StringOutput)
 }
 
-// This administrator's FortiToken serial number.
 func (o LookupSystemAdminResultOutput) Fortitoken() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Fortitoken }).(pulumi.StringOutput)
 }
 
-// Enable/disable guest authentication.
 func (o LookupSystemAdminResultOutput) GuestAuth() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.GuestAuth }).(pulumi.StringOutput)
 }
 
-// Guest management portal language.
 func (o LookupSystemAdminResultOutput) GuestLang() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.GuestLang }).(pulumi.StringOutput)
 }
 
-// Select guest user groups. The structure of `guestUsergroups` block is documented below.
 func (o LookupSystemAdminResultOutput) GuestUsergroups() GetSystemAdminGuestUsergroupArrayOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) []GetSystemAdminGuestUsergroup { return v.GuestUsergroups }).(GetSystemAdminGuestUsergroupArrayOutput)
 }
 
-// GUI dashboards. The structure of `guiDashboard` block is documented below.
 func (o LookupSystemAdminResultOutput) GuiDashboards() GetSystemAdminGuiDashboardArrayOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) []GetSystemAdminGuiDashboard { return v.GuiDashboards }).(GetSystemAdminGuiDashboardArrayOutput)
 }
 
-// Favorite GUI menu IDs for the global VDOM. The structure of `guiGlobalMenuFavorites` block is documented below.
 func (o LookupSystemAdminResultOutput) GuiGlobalMenuFavorites() GetSystemAdminGuiGlobalMenuFavoriteArrayOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) []GetSystemAdminGuiGlobalMenuFavorite { return v.GuiGlobalMenuFavorites }).(GetSystemAdminGuiGlobalMenuFavoriteArrayOutput)
 }
 
-// Acknowledgement of new features. The structure of `guiNewFeatureAcknowledge` block is documented below.
 func (o LookupSystemAdminResultOutput) GuiNewFeatureAcknowledges() GetSystemAdminGuiNewFeatureAcknowledgeArrayOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) []GetSystemAdminGuiNewFeatureAcknowledge {
 		return v.GuiNewFeatureAcknowledges
 	}).(GetSystemAdminGuiNewFeatureAcknowledgeArrayOutput)
 }
 
-// Favorite GUI menu IDs for VDOMs. The structure of `guiVdomMenuFavorites` block is documented below.
 func (o LookupSystemAdminResultOutput) GuiVdomMenuFavorites() GetSystemAdminGuiVdomMenuFavoriteArrayOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) []GetSystemAdminGuiVdomMenuFavorite { return v.GuiVdomMenuFavorites }).(GetSystemAdminGuiVdomMenuFavoriteArrayOutput)
 }
 
-// Admin user hidden attribute.
 func (o LookupSystemAdminResultOutput) Hidden() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) int { return v.Hidden }).(pulumi.IntOutput)
 }
 
-// history0
 func (o LookupSystemAdminResultOutput) History0() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.History0 }).(pulumi.StringOutput)
 }
 
-// history1
 func (o LookupSystemAdminResultOutput) History1() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.History1 }).(pulumi.StringOutput)
 }
@@ -286,216 +206,178 @@ func (o LookupSystemAdminResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
 func (o LookupSystemAdminResultOutput) Ip6Trusthost1() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Ip6Trusthost1 }).(pulumi.StringOutput)
 }
 
-// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
 func (o LookupSystemAdminResultOutput) Ip6Trusthost10() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Ip6Trusthost10 }).(pulumi.StringOutput)
 }
 
-// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
 func (o LookupSystemAdminResultOutput) Ip6Trusthost2() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Ip6Trusthost2 }).(pulumi.StringOutput)
 }
 
-// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
 func (o LookupSystemAdminResultOutput) Ip6Trusthost3() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Ip6Trusthost3 }).(pulumi.StringOutput)
 }
 
-// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
 func (o LookupSystemAdminResultOutput) Ip6Trusthost4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Ip6Trusthost4 }).(pulumi.StringOutput)
 }
 
-// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
 func (o LookupSystemAdminResultOutput) Ip6Trusthost5() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Ip6Trusthost5 }).(pulumi.StringOutput)
 }
 
-// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
 func (o LookupSystemAdminResultOutput) Ip6Trusthost6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Ip6Trusthost6 }).(pulumi.StringOutput)
 }
 
-// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
 func (o LookupSystemAdminResultOutput) Ip6Trusthost7() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Ip6Trusthost7 }).(pulumi.StringOutput)
 }
 
-// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
 func (o LookupSystemAdminResultOutput) Ip6Trusthost8() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Ip6Trusthost8 }).(pulumi.StringOutput)
 }
 
-// Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
 func (o LookupSystemAdminResultOutput) Ip6Trusthost9() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Ip6Trusthost9 }).(pulumi.StringOutput)
 }
 
-// Record user login time. The structure of `loginTime` block is documented below.
 func (o LookupSystemAdminResultOutput) LoginTimes() GetSystemAdminLoginTimeArrayOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) []GetSystemAdminLoginTime { return v.LoginTimes }).(GetSystemAdminLoginTimeArrayOutput)
 }
 
-// Select guest user groups.
 func (o LookupSystemAdminResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Admin user password.
 func (o LookupSystemAdminResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// Password expire time.
 func (o LookupSystemAdminResultOutput) PasswordExpire() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.PasswordExpire }).(pulumi.StringOutput)
 }
 
-// Set to enable peer certificate authentication (for HTTPS admin access).
 func (o LookupSystemAdminResultOutput) PeerAuth() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.PeerAuth }).(pulumi.StringOutput)
 }
 
-// Name of peer group defined under config user group which has PKI members. Used for peer certificate authentication (for HTTPS admin access).
 func (o LookupSystemAdminResultOutput) PeerGroup() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.PeerGroup }).(pulumi.StringOutput)
 }
 
-// Enable to use the names of VDOMs provided by the remote authentication server to control the VDOMs that this administrator can access.
 func (o LookupSystemAdminResultOutput) RadiusVdomOverride() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.RadiusVdomOverride }).(pulumi.StringOutput)
 }
 
-// Enable/disable authentication using a remote RADIUS, LDAP, or TACACS+ server.
 func (o LookupSystemAdminResultOutput) RemoteAuth() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.RemoteAuth }).(pulumi.StringOutput)
 }
 
-// User group name used for remote auth.
 func (o LookupSystemAdminResultOutput) RemoteGroup() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.RemoteGroup }).(pulumi.StringOutput)
 }
 
-// Firewall schedule used to restrict when the administrator can log in. No schedule means no restrictions.
 func (o LookupSystemAdminResultOutput) Schedule() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Schedule }).(pulumi.StringOutput)
 }
 
-// Custom SMS server to send SMS messages to.
 func (o LookupSystemAdminResultOutput) SmsCustomServer() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.SmsCustomServer }).(pulumi.StringOutput)
 }
 
-// Phone number on which the administrator receives SMS messages.
 func (o LookupSystemAdminResultOutput) SmsPhone() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.SmsPhone }).(pulumi.StringOutput)
 }
 
-// Send SMS messages using the FortiGuard SMS server or a custom server.
 func (o LookupSystemAdminResultOutput) SmsServer() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.SmsServer }).(pulumi.StringOutput)
 }
 
-// Select the certificate to be used by the FortiGate for authentication with an SSH client.
 func (o LookupSystemAdminResultOutput) SshCertificate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.SshCertificate }).(pulumi.StringOutput)
 }
 
-// Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application.
 func (o LookupSystemAdminResultOutput) SshPublicKey1() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.SshPublicKey1 }).(pulumi.StringOutput)
 }
 
-// Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application.
 func (o LookupSystemAdminResultOutput) SshPublicKey2() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.SshPublicKey2 }).(pulumi.StringOutput)
 }
 
-// Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application.
 func (o LookupSystemAdminResultOutput) SshPublicKey3() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.SshPublicKey3 }).(pulumi.StringOutput)
 }
 
-// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
 func (o LookupSystemAdminResultOutput) Trusthost1() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Trusthost1 }).(pulumi.StringOutput)
 }
 
-// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
 func (o LookupSystemAdminResultOutput) Trusthost10() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Trusthost10 }).(pulumi.StringOutput)
 }
 
-// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
 func (o LookupSystemAdminResultOutput) Trusthost2() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Trusthost2 }).(pulumi.StringOutput)
 }
 
-// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
 func (o LookupSystemAdminResultOutput) Trusthost3() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Trusthost3 }).(pulumi.StringOutput)
 }
 
-// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
 func (o LookupSystemAdminResultOutput) Trusthost4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Trusthost4 }).(pulumi.StringOutput)
 }
 
-// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
 func (o LookupSystemAdminResultOutput) Trusthost5() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Trusthost5 }).(pulumi.StringOutput)
 }
 
-// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
 func (o LookupSystemAdminResultOutput) Trusthost6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Trusthost6 }).(pulumi.StringOutput)
 }
 
-// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
 func (o LookupSystemAdminResultOutput) Trusthost7() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Trusthost7 }).(pulumi.StringOutput)
 }
 
-// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
 func (o LookupSystemAdminResultOutput) Trusthost8() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Trusthost8 }).(pulumi.StringOutput)
 }
 
-// Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
 func (o LookupSystemAdminResultOutput) Trusthost9() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Trusthost9 }).(pulumi.StringOutput)
 }
 
-// Enable/disable two-factor authentication.
 func (o LookupSystemAdminResultOutput) TwoFactor() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.TwoFactor }).(pulumi.StringOutput)
 }
 
-// Authentication method by FortiToken Cloud.
 func (o LookupSystemAdminResultOutput) TwoFactorAuthentication() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.TwoFactorAuthentication }).(pulumi.StringOutput)
 }
 
-// Notification method for user activation by FortiToken Cloud.
 func (o LookupSystemAdminResultOutput) TwoFactorNotification() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.TwoFactorNotification }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemAdminResultOutput) VdomOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.VdomOverride }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemAdminResultOutput) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-// Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
 func (o LookupSystemAdminResultOutput) Vdoms() GetSystemAdminVdomArrayOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) []GetSystemAdminVdom { return v.Vdoms }).(GetSystemAdminVdomArrayOutput)
 }
 
-// Enable/disable wildcard RADIUS authentication.
 func (o LookupSystemAdminResultOutput) Wildcard() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAdminResult) string { return v.Wildcard }).(pulumi.StringOutput)
 }

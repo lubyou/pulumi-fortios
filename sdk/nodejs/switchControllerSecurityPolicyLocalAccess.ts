@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure allowaccess list for mgmt and internal interfaces on managed FortiSwitch. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * SwitchControllerSecurityPolicy LocalAccess can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSecurityPolicyLocalAccess:SwitchControllerSecurityPolicyLocalAccess labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSecurityPolicyLocalAccess:SwitchControllerSecurityPolicyLocalAccess labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerSecurityPolicyLocalAccess extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerSecurityPolicyLocalAccess resource's state with the given name, ID, and optional extra
@@ -51,21 +32,9 @@ export class SwitchControllerSecurityPolicyLocalAccess extends pulumi.CustomReso
         return obj['__pulumiType'] === SwitchControllerSecurityPolicyLocalAccess.__pulumiType;
     }
 
-    /**
-     * Allowed access on the switch internal interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
-     */
     public readonly internalAllowaccess!: pulumi.Output<string>;
-    /**
-     * Allowed access on the switch management interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
-     */
     public readonly mgmtAllowaccess!: pulumi.Output<string>;
-    /**
-     * Policy name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -101,21 +70,9 @@ export class SwitchControllerSecurityPolicyLocalAccess extends pulumi.CustomReso
  * Input properties used for looking up and filtering SwitchControllerSecurityPolicyLocalAccess resources.
  */
 export interface SwitchControllerSecurityPolicyLocalAccessState {
-    /**
-     * Allowed access on the switch internal interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
-     */
     internalAllowaccess?: pulumi.Input<string>;
-    /**
-     * Allowed access on the switch management interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
-     */
     mgmtAllowaccess?: pulumi.Input<string>;
-    /**
-     * Policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -123,20 +80,8 @@ export interface SwitchControllerSecurityPolicyLocalAccessState {
  * The set of arguments for constructing a SwitchControllerSecurityPolicyLocalAccess resource.
  */
 export interface SwitchControllerSecurityPolicyLocalAccessArgs {
-    /**
-     * Allowed access on the switch internal interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
-     */
     internalAllowaccess?: pulumi.Input<string>;
-    /**
-     * Allowed access on the switch management interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
-     */
     mgmtAllowaccess?: pulumi.Input<string>;
-    /**
-     * Policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

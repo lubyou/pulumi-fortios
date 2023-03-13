@@ -7,84 +7,21 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Config global Wildcard FQDN address groups.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trname1, err := fortios.NewFirewallWildcardFqdnCustom(ctx, "trname1", &fortios.FirewallWildcardFqdnCustomArgs{
-// 			Color:        pulumi.Int(0),
-// 			Visibility:   pulumi.String("enable"),
-// 			WildcardFqdn: pulumi.String("*.ms.com"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewFirewallWildcardFqdnGroup(ctx, "trname", &fortios.FirewallWildcardFqdnGroupArgs{
-// 			Color:      pulumi.Int(0),
-// 			Visibility: pulumi.String("enable"),
-// 			Members: FirewallWildcardFqdnGroupMemberArray{
-// 				&FirewallWildcardFqdnGroupMemberArgs{
-// 					Name: trname1.Name,
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// FirewallWildcardFqdn Group can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallWildcardFqdnGroup:FirewallWildcardFqdnGroup labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallWildcardFqdnGroup:FirewallWildcardFqdnGroup labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallWildcardFqdnGroup struct {
 	pulumi.CustomResourceState
 
-	// GUI icon color.
-	Color pulumi.IntOutput `pulumi:"color"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Address group members. The structure of `member` block is documented below.
-	Members FirewallWildcardFqdnGroupMemberArrayOutput `pulumi:"members"`
-	// Address name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringOutput `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable address visibility. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringOutput `pulumi:"visibility"`
+	Color               pulumi.IntOutput                           `pulumi:"color"`
+	Comment             pulumi.StringPtrOutput                     `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
+	Members             FirewallWildcardFqdnGroupMemberArrayOutput `pulumi:"members"`
+	Name                pulumi.StringOutput                        `pulumi:"name"`
+	Uuid                pulumi.StringOutput                        `pulumi:"uuid"`
+	Vdomparam           pulumi.StringPtrOutput                     `pulumi:"vdomparam"`
+	Visibility          pulumi.StringOutput                        `pulumi:"visibility"`
 }
 
 // NewFirewallWildcardFqdnGroup registers a new resource with the given unique name, arguments, and options.
@@ -120,41 +57,25 @@ func GetFirewallWildcardFqdnGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallWildcardFqdnGroup resources.
 type firewallWildcardFqdnGroupState struct {
-	// GUI icon color.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Address group members. The structure of `member` block is documented below.
-	Members []FirewallWildcardFqdnGroupMember `pulumi:"members"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable address visibility. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
+	Color               *int                              `pulumi:"color"`
+	Comment             *string                           `pulumi:"comment"`
+	DynamicSortSubtable *string                           `pulumi:"dynamicSortSubtable"`
+	Members             []FirewallWildcardFqdnGroupMember `pulumi:"members"`
+	Name                *string                           `pulumi:"name"`
+	Uuid                *string                           `pulumi:"uuid"`
+	Vdomparam           *string                           `pulumi:"vdomparam"`
+	Visibility          *string                           `pulumi:"visibility"`
 }
 
 type FirewallWildcardFqdnGroupState struct {
-	// GUI icon color.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Address group members. The structure of `member` block is documented below.
-	Members FirewallWildcardFqdnGroupMemberArrayInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable address visibility. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
+	Members             FirewallWildcardFqdnGroupMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
 }
 
 func (FirewallWildcardFqdnGroupState) ElementType() reflect.Type {
@@ -162,42 +83,26 @@ func (FirewallWildcardFqdnGroupState) ElementType() reflect.Type {
 }
 
 type firewallWildcardFqdnGroupArgs struct {
-	// GUI icon color.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Address group members. The structure of `member` block is documented below.
-	Members []FirewallWildcardFqdnGroupMember `pulumi:"members"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable address visibility. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
+	Color               *int                              `pulumi:"color"`
+	Comment             *string                           `pulumi:"comment"`
+	DynamicSortSubtable *string                           `pulumi:"dynamicSortSubtable"`
+	Members             []FirewallWildcardFqdnGroupMember `pulumi:"members"`
+	Name                *string                           `pulumi:"name"`
+	Uuid                *string                           `pulumi:"uuid"`
+	Vdomparam           *string                           `pulumi:"vdomparam"`
+	Visibility          *string                           `pulumi:"visibility"`
 }
 
 // The set of arguments for constructing a FirewallWildcardFqdnGroup resource.
 type FirewallWildcardFqdnGroupArgs struct {
-	// GUI icon color.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Address group members. The structure of `member` block is documented below.
-	Members FirewallWildcardFqdnGroupMemberArrayInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable address visibility. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
+	Members             FirewallWildcardFqdnGroupMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
 }
 
 func (FirewallWildcardFqdnGroupArgs) ElementType() reflect.Type {
@@ -226,7 +131,7 @@ func (i *FirewallWildcardFqdnGroup) ToFirewallWildcardFqdnGroupOutputWithContext
 // FirewallWildcardFqdnGroupArrayInput is an input type that accepts FirewallWildcardFqdnGroupArray and FirewallWildcardFqdnGroupArrayOutput values.
 // You can construct a concrete instance of `FirewallWildcardFqdnGroupArrayInput` via:
 //
-//          FirewallWildcardFqdnGroupArray{ FirewallWildcardFqdnGroupArgs{...} }
+//	FirewallWildcardFqdnGroupArray{ FirewallWildcardFqdnGroupArgs{...} }
 type FirewallWildcardFqdnGroupArrayInput interface {
 	pulumi.Input
 
@@ -251,7 +156,7 @@ func (i FirewallWildcardFqdnGroupArray) ToFirewallWildcardFqdnGroupArrayOutputWi
 // FirewallWildcardFqdnGroupMapInput is an input type that accepts FirewallWildcardFqdnGroupMap and FirewallWildcardFqdnGroupMapOutput values.
 // You can construct a concrete instance of `FirewallWildcardFqdnGroupMapInput` via:
 //
-//          FirewallWildcardFqdnGroupMap{ "key": FirewallWildcardFqdnGroupArgs{...} }
+//	FirewallWildcardFqdnGroupMap{ "key": FirewallWildcardFqdnGroupArgs{...} }
 type FirewallWildcardFqdnGroupMapInput interface {
 	pulumi.Input
 
@@ -285,6 +190,38 @@ func (o FirewallWildcardFqdnGroupOutput) ToFirewallWildcardFqdnGroupOutput() Fir
 
 func (o FirewallWildcardFqdnGroupOutput) ToFirewallWildcardFqdnGroupOutputWithContext(ctx context.Context) FirewallWildcardFqdnGroupOutput {
 	return o
+}
+
+func (o FirewallWildcardFqdnGroupOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallWildcardFqdnGroup) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o FirewallWildcardFqdnGroupOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallWildcardFqdnGroup) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallWildcardFqdnGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallWildcardFqdnGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallWildcardFqdnGroupOutput) Members() FirewallWildcardFqdnGroupMemberArrayOutput {
+	return o.ApplyT(func(v *FirewallWildcardFqdnGroup) FirewallWildcardFqdnGroupMemberArrayOutput { return v.Members }).(FirewallWildcardFqdnGroupMemberArrayOutput)
+}
+
+func (o FirewallWildcardFqdnGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallWildcardFqdnGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallWildcardFqdnGroupOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallWildcardFqdnGroup) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o FirewallWildcardFqdnGroupOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallWildcardFqdnGroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallWildcardFqdnGroupOutput) Visibility() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallWildcardFqdnGroup) pulumi.StringOutput { return v.Visibility }).(pulumi.StringOutput)
 }
 
 type FirewallWildcardFqdnGroupArrayOutput struct{ *pulumi.OutputState }

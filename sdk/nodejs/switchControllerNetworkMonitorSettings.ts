@@ -4,36 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure network monitor settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchControllerNetworkMonitorSettings("trname", {
- *     networkMonitoring: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * SwitchController NetworkMonitorSettings can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerNetworkMonitorSettings:SwitchControllerNetworkMonitorSettings labelname SwitchControllerNetworkMonitorSettings
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerNetworkMonitorSettings:SwitchControllerNetworkMonitorSettings labelname SwitchControllerNetworkMonitorSettings
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerNetworkMonitorSettings extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerNetworkMonitorSettings resource's state with the given name, ID, and optional extra
@@ -62,13 +32,7 @@ export class SwitchControllerNetworkMonitorSettings extends pulumi.CustomResourc
         return obj['__pulumiType'] === SwitchControllerNetworkMonitorSettings.__pulumiType;
     }
 
-    /**
-     * Enable/disable passive gathering of information by FortiSwitch units concerning other network devices. Valid values: `enable`, `disable`.
-     */
     public readonly networkMonitoring!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -100,13 +64,7 @@ export class SwitchControllerNetworkMonitorSettings extends pulumi.CustomResourc
  * Input properties used for looking up and filtering SwitchControllerNetworkMonitorSettings resources.
  */
 export interface SwitchControllerNetworkMonitorSettingsState {
-    /**
-     * Enable/disable passive gathering of information by FortiSwitch units concerning other network devices. Valid values: `enable`, `disable`.
-     */
     networkMonitoring?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -114,12 +72,6 @@ export interface SwitchControllerNetworkMonitorSettingsState {
  * The set of arguments for constructing a SwitchControllerNetworkMonitorSettings resource.
  */
 export interface SwitchControllerNetworkMonitorSettingsArgs {
-    /**
-     * Enable/disable passive gathering of information by FortiSwitch units concerning other network devices. Valid values: `enable`, `disable`.
-     */
     networkMonitoring?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

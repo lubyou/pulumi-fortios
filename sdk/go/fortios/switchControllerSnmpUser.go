@@ -10,44 +10,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch SNMP v3 users globally. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// SwitchController SnmpUser can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSnmpUser:SwitchControllerSnmpUser labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSnmpUser:SwitchControllerSnmpUser labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerSnmpUser struct {
 	pulumi.CustomResourceState
 
-	// Authentication protocol.
-	AuthProto pulumi.StringOutput `pulumi:"authProto"`
-	// Password for authentication protocol.
-	AuthPwd pulumi.StringPtrOutput `pulumi:"authPwd"`
-	// SNMP user name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Privacy (encryption) protocol.
-	PrivProto pulumi.StringOutput `pulumi:"privProto"`
-	// Password for privacy (encryption) protocol.
-	PrivPwd pulumi.StringPtrOutput `pulumi:"privPwd"`
-	// Enable/disable SNMP queries for this user. Valid values: `disable`, `enable`.
-	Queries pulumi.StringOutput `pulumi:"queries"`
-	// SNMPv3 query port (default = 161).
-	QueryPort pulumi.IntOutput `pulumi:"queryPort"`
-	// Security level for message authentication and encryption. Valid values: `no-auth-no-priv`, `auth-no-priv`, `auth-priv`.
-	SecurityLevel pulumi.StringOutput `pulumi:"securityLevel"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AuthProto     pulumi.StringOutput    `pulumi:"authProto"`
+	AuthPwd       pulumi.StringPtrOutput `pulumi:"authPwd"`
+	Name          pulumi.StringOutput    `pulumi:"name"`
+	PrivProto     pulumi.StringOutput    `pulumi:"privProto"`
+	PrivPwd       pulumi.StringPtrOutput `pulumi:"privPwd"`
+	Queries       pulumi.StringOutput    `pulumi:"queries"`
+	QueryPort     pulumi.IntOutput       `pulumi:"queryPort"`
+	SecurityLevel pulumi.StringOutput    `pulumi:"securityLevel"`
+	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerSnmpUser registers a new resource with the given unique name, arguments, and options.
@@ -57,6 +31,17 @@ func NewSwitchControllerSnmpUser(ctx *pulumi.Context,
 		args = &SwitchControllerSnmpUserArgs{}
 	}
 
+	if args.AuthPwd != nil {
+		args.AuthPwd = pulumi.ToSecret(args.AuthPwd).(pulumi.StringPtrInput)
+	}
+	if args.PrivPwd != nil {
+		args.PrivPwd = pulumi.ToSecret(args.PrivPwd).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"authPwd",
+		"privPwd",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSnmpUser
 	err := ctx.RegisterResource("fortios:index/switchControllerSnmpUser:SwitchControllerSnmpUser", name, args, &resource, opts...)
@@ -80,45 +65,27 @@ func GetSwitchControllerSnmpUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerSnmpUser resources.
 type switchControllerSnmpUserState struct {
-	// Authentication protocol.
-	AuthProto *string `pulumi:"authProto"`
-	// Password for authentication protocol.
-	AuthPwd *string `pulumi:"authPwd"`
-	// SNMP user name.
-	Name *string `pulumi:"name"`
-	// Privacy (encryption) protocol.
-	PrivProto *string `pulumi:"privProto"`
-	// Password for privacy (encryption) protocol.
-	PrivPwd *string `pulumi:"privPwd"`
-	// Enable/disable SNMP queries for this user. Valid values: `disable`, `enable`.
-	Queries *string `pulumi:"queries"`
-	// SNMPv3 query port (default = 161).
-	QueryPort *int `pulumi:"queryPort"`
-	// Security level for message authentication and encryption. Valid values: `no-auth-no-priv`, `auth-no-priv`, `auth-priv`.
+	AuthProto     *string `pulumi:"authProto"`
+	AuthPwd       *string `pulumi:"authPwd"`
+	Name          *string `pulumi:"name"`
+	PrivProto     *string `pulumi:"privProto"`
+	PrivPwd       *string `pulumi:"privPwd"`
+	Queries       *string `pulumi:"queries"`
+	QueryPort     *int    `pulumi:"queryPort"`
 	SecurityLevel *string `pulumi:"securityLevel"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerSnmpUserState struct {
-	// Authentication protocol.
-	AuthProto pulumi.StringPtrInput
-	// Password for authentication protocol.
-	AuthPwd pulumi.StringPtrInput
-	// SNMP user name.
-	Name pulumi.StringPtrInput
-	// Privacy (encryption) protocol.
-	PrivProto pulumi.StringPtrInput
-	// Password for privacy (encryption) protocol.
-	PrivPwd pulumi.StringPtrInput
-	// Enable/disable SNMP queries for this user. Valid values: `disable`, `enable`.
-	Queries pulumi.StringPtrInput
-	// SNMPv3 query port (default = 161).
-	QueryPort pulumi.IntPtrInput
-	// Security level for message authentication and encryption. Valid values: `no-auth-no-priv`, `auth-no-priv`, `auth-priv`.
+	AuthProto     pulumi.StringPtrInput
+	AuthPwd       pulumi.StringPtrInput
+	Name          pulumi.StringPtrInput
+	PrivProto     pulumi.StringPtrInput
+	PrivPwd       pulumi.StringPtrInput
+	Queries       pulumi.StringPtrInput
+	QueryPort     pulumi.IntPtrInput
 	SecurityLevel pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (SwitchControllerSnmpUserState) ElementType() reflect.Type {
@@ -126,46 +93,28 @@ func (SwitchControllerSnmpUserState) ElementType() reflect.Type {
 }
 
 type switchControllerSnmpUserArgs struct {
-	// Authentication protocol.
-	AuthProto *string `pulumi:"authProto"`
-	// Password for authentication protocol.
-	AuthPwd *string `pulumi:"authPwd"`
-	// SNMP user name.
-	Name *string `pulumi:"name"`
-	// Privacy (encryption) protocol.
-	PrivProto *string `pulumi:"privProto"`
-	// Password for privacy (encryption) protocol.
-	PrivPwd *string `pulumi:"privPwd"`
-	// Enable/disable SNMP queries for this user. Valid values: `disable`, `enable`.
-	Queries *string `pulumi:"queries"`
-	// SNMPv3 query port (default = 161).
-	QueryPort *int `pulumi:"queryPort"`
-	// Security level for message authentication and encryption. Valid values: `no-auth-no-priv`, `auth-no-priv`, `auth-priv`.
+	AuthProto     *string `pulumi:"authProto"`
+	AuthPwd       *string `pulumi:"authPwd"`
+	Name          *string `pulumi:"name"`
+	PrivProto     *string `pulumi:"privProto"`
+	PrivPwd       *string `pulumi:"privPwd"`
+	Queries       *string `pulumi:"queries"`
+	QueryPort     *int    `pulumi:"queryPort"`
 	SecurityLevel *string `pulumi:"securityLevel"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerSnmpUser resource.
 type SwitchControllerSnmpUserArgs struct {
-	// Authentication protocol.
-	AuthProto pulumi.StringPtrInput
-	// Password for authentication protocol.
-	AuthPwd pulumi.StringPtrInput
-	// SNMP user name.
-	Name pulumi.StringPtrInput
-	// Privacy (encryption) protocol.
-	PrivProto pulumi.StringPtrInput
-	// Password for privacy (encryption) protocol.
-	PrivPwd pulumi.StringPtrInput
-	// Enable/disable SNMP queries for this user. Valid values: `disable`, `enable`.
-	Queries pulumi.StringPtrInput
-	// SNMPv3 query port (default = 161).
-	QueryPort pulumi.IntPtrInput
-	// Security level for message authentication and encryption. Valid values: `no-auth-no-priv`, `auth-no-priv`, `auth-priv`.
+	AuthProto     pulumi.StringPtrInput
+	AuthPwd       pulumi.StringPtrInput
+	Name          pulumi.StringPtrInput
+	PrivProto     pulumi.StringPtrInput
+	PrivPwd       pulumi.StringPtrInput
+	Queries       pulumi.StringPtrInput
+	QueryPort     pulumi.IntPtrInput
 	SecurityLevel pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (SwitchControllerSnmpUserArgs) ElementType() reflect.Type {
@@ -194,7 +143,7 @@ func (i *SwitchControllerSnmpUser) ToSwitchControllerSnmpUserOutputWithContext(c
 // SwitchControllerSnmpUserArrayInput is an input type that accepts SwitchControllerSnmpUserArray and SwitchControllerSnmpUserArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSnmpUserArrayInput` via:
 //
-//          SwitchControllerSnmpUserArray{ SwitchControllerSnmpUserArgs{...} }
+//	SwitchControllerSnmpUserArray{ SwitchControllerSnmpUserArgs{...} }
 type SwitchControllerSnmpUserArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +168,7 @@ func (i SwitchControllerSnmpUserArray) ToSwitchControllerSnmpUserArrayOutputWith
 // SwitchControllerSnmpUserMapInput is an input type that accepts SwitchControllerSnmpUserMap and SwitchControllerSnmpUserMapOutput values.
 // You can construct a concrete instance of `SwitchControllerSnmpUserMapInput` via:
 //
-//          SwitchControllerSnmpUserMap{ "key": SwitchControllerSnmpUserArgs{...} }
+//	SwitchControllerSnmpUserMap{ "key": SwitchControllerSnmpUserArgs{...} }
 type SwitchControllerSnmpUserMapInput interface {
 	pulumi.Input
 
@@ -253,6 +202,42 @@ func (o SwitchControllerSnmpUserOutput) ToSwitchControllerSnmpUserOutput() Switc
 
 func (o SwitchControllerSnmpUserOutput) ToSwitchControllerSnmpUserOutputWithContext(ctx context.Context) SwitchControllerSnmpUserOutput {
 	return o
+}
+
+func (o SwitchControllerSnmpUserOutput) AuthProto() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpUser) pulumi.StringOutput { return v.AuthProto }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpUserOutput) AuthPwd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpUser) pulumi.StringPtrOutput { return v.AuthPwd }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerSnmpUserOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpUser) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpUserOutput) PrivProto() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpUser) pulumi.StringOutput { return v.PrivProto }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpUserOutput) PrivPwd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpUser) pulumi.StringPtrOutput { return v.PrivPwd }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerSnmpUserOutput) Queries() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpUser) pulumi.StringOutput { return v.Queries }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpUserOutput) QueryPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpUser) pulumi.IntOutput { return v.QueryPort }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSnmpUserOutput) SecurityLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpUser) pulumi.StringOutput { return v.SecurityLevel }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpUserOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpUser) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerSnmpUserArrayOutput struct{ *pulumi.OutputState }

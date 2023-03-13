@@ -4,27 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure firewall service group of FortiOS.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.FirewallServiceGroup`, we recommend that you use the new resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const v11 = new fortios.FirewallObjectServiceGroup("v11", {
- *     comment: "fdsafdsa",
- *     members: [
- *         "DCE-RPC",
- *         "DNS",
- *         "HTTPS",
- *     ],
- * });
- * ```
- */
 export class FirewallObjectServiceGroup extends pulumi.CustomResource {
     /**
      * Get an existing FirewallObjectServiceGroup resource's state with the given name, ID, and optional extra
@@ -53,17 +32,8 @@ export class FirewallObjectServiceGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallObjectServiceGroup.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Service objects contained within the group.
-     */
     public readonly members!: pulumi.Output<string[]>;
-    /**
-     * Service group name.
-     */
     public readonly name!: pulumi.Output<string>;
 
     /**
@@ -100,17 +70,8 @@ export class FirewallObjectServiceGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallObjectServiceGroup resources.
  */
 export interface FirewallObjectServiceGroupState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Service objects contained within the group.
-     */
     members?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Service group name.
-     */
     name?: pulumi.Input<string>;
 }
 
@@ -118,16 +79,7 @@ export interface FirewallObjectServiceGroupState {
  * The set of arguments for constructing a FirewallObjectServiceGroup resource.
  */
 export interface FirewallObjectServiceGroupArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Service objects contained within the group.
-     */
     members: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Service group name.
-     */
     name?: pulumi.Input<string>;
 }

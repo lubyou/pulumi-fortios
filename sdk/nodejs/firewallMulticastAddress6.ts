@@ -2,41 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv6 multicast address.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallMulticastAddress6("trname", {
- *     color: 0,
- *     ip6: "ff02::1:ff0e:8c6c/128",
- *     visibility: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall MulticastAddress6 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallMulticastAddress6:FirewallMulticastAddress6 labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallMulticastAddress6:FirewallMulticastAddress6 labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallMulticastAddress6 extends pulumi.CustomResource {
     /**
      * Get an existing FirewallMulticastAddress6 resource's state with the given name, ID, and optional extra
@@ -65,37 +34,13 @@ export class FirewallMulticastAddress6 extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallMulticastAddress6.__pulumiType;
     }
 
-    /**
-     * Color of icon on the GUI.
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-     */
     public readonly ip6!: pulumi.Output<string>;
-    /**
-     * Tag name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     public readonly taggings!: pulumi.Output<outputs.FirewallMulticastAddress6Tagging[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable visibility of the IPv6 multicast address on the GUI. Valid values: `enable`, `disable`.
-     */
     public readonly visibility!: pulumi.Output<string>;
 
     /**
@@ -142,37 +87,13 @@ export class FirewallMulticastAddress6 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallMulticastAddress6 resources.
  */
 export interface FirewallMulticastAddress6State {
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-     */
     ip6?: pulumi.Input<string>;
-    /**
-     * Tag name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallMulticastAddress6Tagging>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable visibility of the IPv6 multicast address on the GUI. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
 }
 
@@ -180,36 +101,12 @@ export interface FirewallMulticastAddress6State {
  * The set of arguments for constructing a FirewallMulticastAddress6 resource.
  */
 export interface FirewallMulticastAddress6Args {
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-     */
     ip6: pulumi.Input<string>;
-    /**
-     * Tag name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallMulticastAddress6Tagging>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable visibility of the IPv6 multicast address on the GUI. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
 }

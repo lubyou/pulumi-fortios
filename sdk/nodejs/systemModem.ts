@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure MODEM. Applies to FortiOS Version `>= 7.0.4`.
- *
- * ## Import
- *
- * System Modem can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemModem:SystemModem labelname SystemModem
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemModem:SystemModem labelname SystemModem
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemModem extends pulumi.CustomResource {
     /**
      * Get an existing SystemModem resource's state with the given name, ID, and optional extra
@@ -51,193 +32,52 @@ export class SystemModem extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemModem.__pulumiType;
     }
 
-    /**
-     * Dial up/stop MODEM. Valid values: `dial`, `stop`, `none`.
-     */
     public readonly action!: pulumi.Output<string>;
-    /**
-     * Enable/disable altmode for installations using PPP in China. Valid values: `enable`, `disable`.
-     */
     public readonly altmode!: pulumi.Output<string>;
-    /**
-     * Allowed authentication types for ISP 1. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-     */
     public readonly authtype1!: pulumi.Output<string>;
-    /**
-     * Allowed authentication types for ISP 2. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-     */
     public readonly authtype2!: pulumi.Output<string>;
-    /**
-     * Allowed authentication types for ISP 3. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-     */
     public readonly authtype3!: pulumi.Output<string>;
-    /**
-     * Enable/disable auto-dial after a reboot or disconnection. Valid values: `enable`, `disable`.
-     */
     public readonly autoDial!: pulumi.Output<string>;
-    /**
-     * Connection completion timeout (30 - 255 sec, default = 90).
-     */
     public readonly connectTimeout!: pulumi.Output<number>;
-    /**
-     * Dial command (this is often an ATD or ATDT command).
-     */
     public readonly dialCmd1!: pulumi.Output<string>;
-    /**
-     * Dial command (this is often an ATD or ATDT command).
-     */
     public readonly dialCmd2!: pulumi.Output<string>;
-    /**
-     * Dial command (this is often an ATD or ATDT command).
-     */
     public readonly dialCmd3!: pulumi.Output<string>;
-    /**
-     * Enable/disable to dial the modem when packets are routed to the modem interface. Valid values: `enable`, `disable`.
-     */
     public readonly dialOnDemand!: pulumi.Output<string>;
-    /**
-     * Distance of learned routes (1 - 255, default = 1).
-     */
     public readonly distance!: pulumi.Output<number>;
-    /**
-     * Do not send CR when connected (ISP1). Valid values: `enable`, `disable`.
-     */
     public readonly dontSendCr1!: pulumi.Output<string>;
-    /**
-     * Do not send CR when connected (ISP2). Valid values: `enable`, `disable`.
-     */
     public readonly dontSendCr2!: pulumi.Output<string>;
-    /**
-     * Do not send CR when connected (ISP3). Valid values: `enable`, `disable`.
-     */
     public readonly dontSendCr3!: pulumi.Output<string>;
-    /**
-     * Extra initialization string to ISP 1.
-     */
     public readonly extraInit1!: pulumi.Output<string>;
-    /**
-     * Extra initialization string to ISP 2.
-     */
     public readonly extraInit2!: pulumi.Output<string>;
-    /**
-     * Extra initialization string to ISP 3.
-     */
     public readonly extraInit3!: pulumi.Output<string>;
-    /**
-     * Hold down timer in seconds (1 - 60 sec).
-     */
     public readonly holddownTimer!: pulumi.Output<number>;
-    /**
-     * MODEM connection idle time (1 - 9999 min, default = 5).
-     */
     public readonly idleTimer!: pulumi.Output<number>;
-    /**
-     * Name of redundant interface.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Allow connection only to the specified Location Area Code (LAC).
-     */
     public readonly lockdownLac!: pulumi.Output<string>;
-    /**
-     * Set MODEM operation mode to redundant or standalone. Valid values: `standalone`, `redundant`.
-     */
     public readonly mode!: pulumi.Output<string>;
-    /**
-     * AT command to set the Network name/type (AT+COPS=<mode>,[<format>,<oper>[,<AcT>]]).
-     */
     public readonly networkInit!: pulumi.Output<string>;
-    /**
-     * Password to access the specified dialup account.
-     */
     public readonly passwd1!: pulumi.Output<string | undefined>;
-    /**
-     * Password to access the specified dialup account.
-     */
     public readonly passwd2!: pulumi.Output<string | undefined>;
-    /**
-     * Password to access the specified dialup account.
-     */
     public readonly passwd3!: pulumi.Output<string | undefined>;
-    /**
-     * Specify peer MODEM type for phone1. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-     */
     public readonly peerModem1!: pulumi.Output<string>;
-    /**
-     * Specify peer MODEM type for phone2. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-     */
     public readonly peerModem2!: pulumi.Output<string>;
-    /**
-     * Specify peer MODEM type for phone3. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-     */
     public readonly peerModem3!: pulumi.Output<string>;
-    /**
-     * Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-     */
     public readonly phone1!: pulumi.Output<string>;
-    /**
-     * Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-     */
     public readonly phone2!: pulumi.Output<string>;
-    /**
-     * Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-     */
     public readonly phone3!: pulumi.Output<string>;
-    /**
-     * AT command to set the PIN (AT+PIN=<pin>).
-     */
     public readonly pinInit!: pulumi.Output<string>;
-    /**
-     * Enable/disable PPP echo-request to ISP 1. Valid values: `enable`, `disable`.
-     */
     public readonly pppEchoRequest1!: pulumi.Output<string>;
-    /**
-     * Enable/disable PPP echo-request to ISP 2. Valid values: `enable`, `disable`.
-     */
     public readonly pppEchoRequest2!: pulumi.Output<string>;
-    /**
-     * Enable/disable PPP echo-request to ISP 3. Valid values: `enable`, `disable`.
-     */
     public readonly pppEchoRequest3!: pulumi.Output<string>;
-    /**
-     * Priority of learned routes (0 - 4294967295, default = 0).
-     */
     public readonly priority!: pulumi.Output<number>;
-    /**
-     * Redial limit (1 - 10 attempts, none = redial forever). Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-     */
     public readonly redial!: pulumi.Output<string>;
-    /**
-     * Number of dial attempts before resetting modem (0 = never reset).
-     */
     public readonly reset!: pulumi.Output<number>;
-    /**
-     * Enable/disable Modem support (equivalent to bringing an interface up or down). Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Enable/disable traffic-check. Valid values: `enable`, `disable`.
-     */
     public readonly trafficCheck!: pulumi.Output<string>;
-    /**
-     * User name to access the specified dialup account.
-     */
     public readonly username1!: pulumi.Output<string>;
-    /**
-     * User name to access the specified dialup account.
-     */
     public readonly username2!: pulumi.Output<string>;
-    /**
-     * User name to access the specified dialup account.
-     */
     public readonly username3!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enter wireless port number, 0 for default, 1 for first port, ... (0 - 4294967295, default = 0)
-     */
     public readonly wirelessPort!: pulumi.Output<number>;
 
     /**
@@ -359,193 +199,52 @@ export class SystemModem extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemModem resources.
  */
 export interface SystemModemState {
-    /**
-     * Dial up/stop MODEM. Valid values: `dial`, `stop`, `none`.
-     */
     action?: pulumi.Input<string>;
-    /**
-     * Enable/disable altmode for installations using PPP in China. Valid values: `enable`, `disable`.
-     */
     altmode?: pulumi.Input<string>;
-    /**
-     * Allowed authentication types for ISP 1. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-     */
     authtype1?: pulumi.Input<string>;
-    /**
-     * Allowed authentication types for ISP 2. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-     */
     authtype2?: pulumi.Input<string>;
-    /**
-     * Allowed authentication types for ISP 3. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-     */
     authtype3?: pulumi.Input<string>;
-    /**
-     * Enable/disable auto-dial after a reboot or disconnection. Valid values: `enable`, `disable`.
-     */
     autoDial?: pulumi.Input<string>;
-    /**
-     * Connection completion timeout (30 - 255 sec, default = 90).
-     */
     connectTimeout?: pulumi.Input<number>;
-    /**
-     * Dial command (this is often an ATD or ATDT command).
-     */
     dialCmd1?: pulumi.Input<string>;
-    /**
-     * Dial command (this is often an ATD or ATDT command).
-     */
     dialCmd2?: pulumi.Input<string>;
-    /**
-     * Dial command (this is often an ATD or ATDT command).
-     */
     dialCmd3?: pulumi.Input<string>;
-    /**
-     * Enable/disable to dial the modem when packets are routed to the modem interface. Valid values: `enable`, `disable`.
-     */
     dialOnDemand?: pulumi.Input<string>;
-    /**
-     * Distance of learned routes (1 - 255, default = 1).
-     */
     distance?: pulumi.Input<number>;
-    /**
-     * Do not send CR when connected (ISP1). Valid values: `enable`, `disable`.
-     */
     dontSendCr1?: pulumi.Input<string>;
-    /**
-     * Do not send CR when connected (ISP2). Valid values: `enable`, `disable`.
-     */
     dontSendCr2?: pulumi.Input<string>;
-    /**
-     * Do not send CR when connected (ISP3). Valid values: `enable`, `disable`.
-     */
     dontSendCr3?: pulumi.Input<string>;
-    /**
-     * Extra initialization string to ISP 1.
-     */
     extraInit1?: pulumi.Input<string>;
-    /**
-     * Extra initialization string to ISP 2.
-     */
     extraInit2?: pulumi.Input<string>;
-    /**
-     * Extra initialization string to ISP 3.
-     */
     extraInit3?: pulumi.Input<string>;
-    /**
-     * Hold down timer in seconds (1 - 60 sec).
-     */
     holddownTimer?: pulumi.Input<number>;
-    /**
-     * MODEM connection idle time (1 - 9999 min, default = 5).
-     */
     idleTimer?: pulumi.Input<number>;
-    /**
-     * Name of redundant interface.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Allow connection only to the specified Location Area Code (LAC).
-     */
     lockdownLac?: pulumi.Input<string>;
-    /**
-     * Set MODEM operation mode to redundant or standalone. Valid values: `standalone`, `redundant`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * AT command to set the Network name/type (AT+COPS=<mode>,[<format>,<oper>[,<AcT>]]).
-     */
     networkInit?: pulumi.Input<string>;
-    /**
-     * Password to access the specified dialup account.
-     */
     passwd1?: pulumi.Input<string>;
-    /**
-     * Password to access the specified dialup account.
-     */
     passwd2?: pulumi.Input<string>;
-    /**
-     * Password to access the specified dialup account.
-     */
     passwd3?: pulumi.Input<string>;
-    /**
-     * Specify peer MODEM type for phone1. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-     */
     peerModem1?: pulumi.Input<string>;
-    /**
-     * Specify peer MODEM type for phone2. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-     */
     peerModem2?: pulumi.Input<string>;
-    /**
-     * Specify peer MODEM type for phone3. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-     */
     peerModem3?: pulumi.Input<string>;
-    /**
-     * Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-     */
     phone1?: pulumi.Input<string>;
-    /**
-     * Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-     */
     phone2?: pulumi.Input<string>;
-    /**
-     * Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-     */
     phone3?: pulumi.Input<string>;
-    /**
-     * AT command to set the PIN (AT+PIN=<pin>).
-     */
     pinInit?: pulumi.Input<string>;
-    /**
-     * Enable/disable PPP echo-request to ISP 1. Valid values: `enable`, `disable`.
-     */
     pppEchoRequest1?: pulumi.Input<string>;
-    /**
-     * Enable/disable PPP echo-request to ISP 2. Valid values: `enable`, `disable`.
-     */
     pppEchoRequest2?: pulumi.Input<string>;
-    /**
-     * Enable/disable PPP echo-request to ISP 3. Valid values: `enable`, `disable`.
-     */
     pppEchoRequest3?: pulumi.Input<string>;
-    /**
-     * Priority of learned routes (0 - 4294967295, default = 0).
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * Redial limit (1 - 10 attempts, none = redial forever). Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-     */
     redial?: pulumi.Input<string>;
-    /**
-     * Number of dial attempts before resetting modem (0 = never reset).
-     */
     reset?: pulumi.Input<number>;
-    /**
-     * Enable/disable Modem support (equivalent to bringing an interface up or down). Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Enable/disable traffic-check. Valid values: `enable`, `disable`.
-     */
     trafficCheck?: pulumi.Input<string>;
-    /**
-     * User name to access the specified dialup account.
-     */
     username1?: pulumi.Input<string>;
-    /**
-     * User name to access the specified dialup account.
-     */
     username2?: pulumi.Input<string>;
-    /**
-     * User name to access the specified dialup account.
-     */
     username3?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enter wireless port number, 0 for default, 1 for first port, ... (0 - 4294967295, default = 0)
-     */
     wirelessPort?: pulumi.Input<number>;
 }
 
@@ -553,192 +252,51 @@ export interface SystemModemState {
  * The set of arguments for constructing a SystemModem resource.
  */
 export interface SystemModemArgs {
-    /**
-     * Dial up/stop MODEM. Valid values: `dial`, `stop`, `none`.
-     */
     action?: pulumi.Input<string>;
-    /**
-     * Enable/disable altmode for installations using PPP in China. Valid values: `enable`, `disable`.
-     */
     altmode?: pulumi.Input<string>;
-    /**
-     * Allowed authentication types for ISP 1. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-     */
     authtype1?: pulumi.Input<string>;
-    /**
-     * Allowed authentication types for ISP 2. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-     */
     authtype2?: pulumi.Input<string>;
-    /**
-     * Allowed authentication types for ISP 3. Valid values: `pap`, `chap`, `mschap`, `mschapv2`.
-     */
     authtype3?: pulumi.Input<string>;
-    /**
-     * Enable/disable auto-dial after a reboot or disconnection. Valid values: `enable`, `disable`.
-     */
     autoDial?: pulumi.Input<string>;
-    /**
-     * Connection completion timeout (30 - 255 sec, default = 90).
-     */
     connectTimeout?: pulumi.Input<number>;
-    /**
-     * Dial command (this is often an ATD or ATDT command).
-     */
     dialCmd1?: pulumi.Input<string>;
-    /**
-     * Dial command (this is often an ATD or ATDT command).
-     */
     dialCmd2?: pulumi.Input<string>;
-    /**
-     * Dial command (this is often an ATD or ATDT command).
-     */
     dialCmd3?: pulumi.Input<string>;
-    /**
-     * Enable/disable to dial the modem when packets are routed to the modem interface. Valid values: `enable`, `disable`.
-     */
     dialOnDemand?: pulumi.Input<string>;
-    /**
-     * Distance of learned routes (1 - 255, default = 1).
-     */
     distance?: pulumi.Input<number>;
-    /**
-     * Do not send CR when connected (ISP1). Valid values: `enable`, `disable`.
-     */
     dontSendCr1?: pulumi.Input<string>;
-    /**
-     * Do not send CR when connected (ISP2). Valid values: `enable`, `disable`.
-     */
     dontSendCr2?: pulumi.Input<string>;
-    /**
-     * Do not send CR when connected (ISP3). Valid values: `enable`, `disable`.
-     */
     dontSendCr3?: pulumi.Input<string>;
-    /**
-     * Extra initialization string to ISP 1.
-     */
     extraInit1?: pulumi.Input<string>;
-    /**
-     * Extra initialization string to ISP 2.
-     */
     extraInit2?: pulumi.Input<string>;
-    /**
-     * Extra initialization string to ISP 3.
-     */
     extraInit3?: pulumi.Input<string>;
-    /**
-     * Hold down timer in seconds (1 - 60 sec).
-     */
     holddownTimer?: pulumi.Input<number>;
-    /**
-     * MODEM connection idle time (1 - 9999 min, default = 5).
-     */
     idleTimer?: pulumi.Input<number>;
-    /**
-     * Name of redundant interface.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Allow connection only to the specified Location Area Code (LAC).
-     */
     lockdownLac?: pulumi.Input<string>;
-    /**
-     * Set MODEM operation mode to redundant or standalone. Valid values: `standalone`, `redundant`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * AT command to set the Network name/type (AT+COPS=<mode>,[<format>,<oper>[,<AcT>]]).
-     */
     networkInit?: pulumi.Input<string>;
-    /**
-     * Password to access the specified dialup account.
-     */
     passwd1?: pulumi.Input<string>;
-    /**
-     * Password to access the specified dialup account.
-     */
     passwd2?: pulumi.Input<string>;
-    /**
-     * Password to access the specified dialup account.
-     */
     passwd3?: pulumi.Input<string>;
-    /**
-     * Specify peer MODEM type for phone1. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-     */
     peerModem1?: pulumi.Input<string>;
-    /**
-     * Specify peer MODEM type for phone2. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-     */
     peerModem2?: pulumi.Input<string>;
-    /**
-     * Specify peer MODEM type for phone3. Valid values: `generic`, `actiontec`, `ascend_TNT`.
-     */
     peerModem3?: pulumi.Input<string>;
-    /**
-     * Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-     */
     phone1?: pulumi.Input<string>;
-    /**
-     * Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-     */
     phone2?: pulumi.Input<string>;
-    /**
-     * Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters).
-     */
     phone3?: pulumi.Input<string>;
-    /**
-     * AT command to set the PIN (AT+PIN=<pin>).
-     */
     pinInit?: pulumi.Input<string>;
-    /**
-     * Enable/disable PPP echo-request to ISP 1. Valid values: `enable`, `disable`.
-     */
     pppEchoRequest1?: pulumi.Input<string>;
-    /**
-     * Enable/disable PPP echo-request to ISP 2. Valid values: `enable`, `disable`.
-     */
     pppEchoRequest2?: pulumi.Input<string>;
-    /**
-     * Enable/disable PPP echo-request to ISP 3. Valid values: `enable`, `disable`.
-     */
     pppEchoRequest3?: pulumi.Input<string>;
-    /**
-     * Priority of learned routes (0 - 4294967295, default = 0).
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * Redial limit (1 - 10 attempts, none = redial forever). Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-     */
     redial?: pulumi.Input<string>;
-    /**
-     * Number of dial attempts before resetting modem (0 = never reset).
-     */
     reset?: pulumi.Input<number>;
-    /**
-     * Enable/disable Modem support (equivalent to bringing an interface up or down). Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Enable/disable traffic-check. Valid values: `enable`, `disable`.
-     */
     trafficCheck?: pulumi.Input<string>;
-    /**
-     * User name to access the specified dialup account.
-     */
     username1?: pulumi.Input<string>;
-    /**
-     * User name to access the specified dialup account.
-     */
     username2?: pulumi.Input<string>;
-    /**
-     * User name to access the specified dialup account.
-     */
     username3?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enter wireless port number, 0 for default, 1 for first port, ... (0 - 4294967295, default = 0)
-     */
     wirelessPort?: pulumi.Input<number>;
 }

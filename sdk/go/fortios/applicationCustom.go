@@ -7,52 +7,24 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure custom application signatures.
-//
-// ## Import
-//
-// Application Custom can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/applicationCustom:ApplicationCustom labelname {{tag}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/applicationCustom:ApplicationCustom labelname {{tag}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type ApplicationCustom struct {
 	pulumi.CustomResourceState
 
-	// Custom application signature behavior.
-	Behavior pulumi.StringOutput `pulumi:"behavior"`
-	// Custom application category ID (use ? to view available options).
-	Category pulumi.IntOutput `pulumi:"category"`
-	// Comment.
-	Comment pulumi.StringOutput `pulumi:"comment"`
-	// Custom application category ID (use ? to view available options).
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Name of this custom application signature.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Custom application signature protocol.
-	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// The text that makes up the actual custom application signature.
-	Signature pulumi.StringOutput `pulumi:"signature"`
-	// Signature tag.
-	Tag pulumi.StringOutput `pulumi:"tag"`
-	// Custom application signature technology.
-	Technology pulumi.StringOutput `pulumi:"technology"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Custom application signature vendor.
-	Vendor pulumi.StringOutput `pulumi:"vendor"`
+	Behavior   pulumi.StringOutput    `pulumi:"behavior"`
+	Category   pulumi.IntOutput       `pulumi:"category"`
+	Comment    pulumi.StringOutput    `pulumi:"comment"`
+	Fosid      pulumi.IntOutput       `pulumi:"fosid"`
+	Name       pulumi.StringOutput    `pulumi:"name"`
+	Protocol   pulumi.StringOutput    `pulumi:"protocol"`
+	Signature  pulumi.StringOutput    `pulumi:"signature"`
+	Tag        pulumi.StringOutput    `pulumi:"tag"`
+	Technology pulumi.StringOutput    `pulumi:"technology"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vendor     pulumi.StringOutput    `pulumi:"vendor"`
 }
 
 // NewApplicationCustom registers a new resource with the given unique name, arguments, and options.
@@ -88,53 +60,31 @@ func GetApplicationCustom(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ApplicationCustom resources.
 type applicationCustomState struct {
-	// Custom application signature behavior.
-	Behavior *string `pulumi:"behavior"`
-	// Custom application category ID (use ? to view available options).
-	Category *int `pulumi:"category"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Custom application category ID (use ? to view available options).
-	Fosid *int `pulumi:"fosid"`
-	// Name of this custom application signature.
-	Name *string `pulumi:"name"`
-	// Custom application signature protocol.
-	Protocol *string `pulumi:"protocol"`
-	// The text that makes up the actual custom application signature.
-	Signature *string `pulumi:"signature"`
-	// Signature tag.
-	Tag *string `pulumi:"tag"`
-	// Custom application signature technology.
+	Behavior   *string `pulumi:"behavior"`
+	Category   *int    `pulumi:"category"`
+	Comment    *string `pulumi:"comment"`
+	Fosid      *int    `pulumi:"fosid"`
+	Name       *string `pulumi:"name"`
+	Protocol   *string `pulumi:"protocol"`
+	Signature  *string `pulumi:"signature"`
+	Tag        *string `pulumi:"tag"`
 	Technology *string `pulumi:"technology"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Custom application signature vendor.
-	Vendor *string `pulumi:"vendor"`
+	Vdomparam  *string `pulumi:"vdomparam"`
+	Vendor     *string `pulumi:"vendor"`
 }
 
 type ApplicationCustomState struct {
-	// Custom application signature behavior.
-	Behavior pulumi.StringPtrInput
-	// Custom application category ID (use ? to view available options).
-	Category pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Custom application category ID (use ? to view available options).
-	Fosid pulumi.IntPtrInput
-	// Name of this custom application signature.
-	Name pulumi.StringPtrInput
-	// Custom application signature protocol.
-	Protocol pulumi.StringPtrInput
-	// The text that makes up the actual custom application signature.
-	Signature pulumi.StringPtrInput
-	// Signature tag.
-	Tag pulumi.StringPtrInput
-	// Custom application signature technology.
+	Behavior   pulumi.StringPtrInput
+	Category   pulumi.IntPtrInput
+	Comment    pulumi.StringPtrInput
+	Fosid      pulumi.IntPtrInput
+	Name       pulumi.StringPtrInput
+	Protocol   pulumi.StringPtrInput
+	Signature  pulumi.StringPtrInput
+	Tag        pulumi.StringPtrInput
 	Technology pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Custom application signature vendor.
-	Vendor pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
+	Vendor     pulumi.StringPtrInput
 }
 
 func (ApplicationCustomState) ElementType() reflect.Type {
@@ -142,54 +92,32 @@ func (ApplicationCustomState) ElementType() reflect.Type {
 }
 
 type applicationCustomArgs struct {
-	// Custom application signature behavior.
-	Behavior *string `pulumi:"behavior"`
-	// Custom application category ID (use ? to view available options).
-	Category int `pulumi:"category"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Custom application category ID (use ? to view available options).
-	Fosid *int `pulumi:"fosid"`
-	// Name of this custom application signature.
-	Name *string `pulumi:"name"`
-	// Custom application signature protocol.
-	Protocol *string `pulumi:"protocol"`
-	// The text that makes up the actual custom application signature.
-	Signature *string `pulumi:"signature"`
-	// Signature tag.
-	Tag *string `pulumi:"tag"`
-	// Custom application signature technology.
+	Behavior   *string `pulumi:"behavior"`
+	Category   int     `pulumi:"category"`
+	Comment    *string `pulumi:"comment"`
+	Fosid      *int    `pulumi:"fosid"`
+	Name       *string `pulumi:"name"`
+	Protocol   *string `pulumi:"protocol"`
+	Signature  *string `pulumi:"signature"`
+	Tag        *string `pulumi:"tag"`
 	Technology *string `pulumi:"technology"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Custom application signature vendor.
-	Vendor *string `pulumi:"vendor"`
+	Vdomparam  *string `pulumi:"vdomparam"`
+	Vendor     *string `pulumi:"vendor"`
 }
 
 // The set of arguments for constructing a ApplicationCustom resource.
 type ApplicationCustomArgs struct {
-	// Custom application signature behavior.
-	Behavior pulumi.StringPtrInput
-	// Custom application category ID (use ? to view available options).
-	Category pulumi.IntInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Custom application category ID (use ? to view available options).
-	Fosid pulumi.IntPtrInput
-	// Name of this custom application signature.
-	Name pulumi.StringPtrInput
-	// Custom application signature protocol.
-	Protocol pulumi.StringPtrInput
-	// The text that makes up the actual custom application signature.
-	Signature pulumi.StringPtrInput
-	// Signature tag.
-	Tag pulumi.StringPtrInput
-	// Custom application signature technology.
+	Behavior   pulumi.StringPtrInput
+	Category   pulumi.IntInput
+	Comment    pulumi.StringPtrInput
+	Fosid      pulumi.IntPtrInput
+	Name       pulumi.StringPtrInput
+	Protocol   pulumi.StringPtrInput
+	Signature  pulumi.StringPtrInput
+	Tag        pulumi.StringPtrInput
 	Technology pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Custom application signature vendor.
-	Vendor pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
+	Vendor     pulumi.StringPtrInput
 }
 
 func (ApplicationCustomArgs) ElementType() reflect.Type {
@@ -218,7 +146,7 @@ func (i *ApplicationCustom) ToApplicationCustomOutputWithContext(ctx context.Con
 // ApplicationCustomArrayInput is an input type that accepts ApplicationCustomArray and ApplicationCustomArrayOutput values.
 // You can construct a concrete instance of `ApplicationCustomArrayInput` via:
 //
-//          ApplicationCustomArray{ ApplicationCustomArgs{...} }
+//	ApplicationCustomArray{ ApplicationCustomArgs{...} }
 type ApplicationCustomArrayInput interface {
 	pulumi.Input
 
@@ -243,7 +171,7 @@ func (i ApplicationCustomArray) ToApplicationCustomArrayOutputWithContext(ctx co
 // ApplicationCustomMapInput is an input type that accepts ApplicationCustomMap and ApplicationCustomMapOutput values.
 // You can construct a concrete instance of `ApplicationCustomMapInput` via:
 //
-//          ApplicationCustomMap{ "key": ApplicationCustomArgs{...} }
+//	ApplicationCustomMap{ "key": ApplicationCustomArgs{...} }
 type ApplicationCustomMapInput interface {
 	pulumi.Input
 
@@ -277,6 +205,50 @@ func (o ApplicationCustomOutput) ToApplicationCustomOutput() ApplicationCustomOu
 
 func (o ApplicationCustomOutput) ToApplicationCustomOutputWithContext(ctx context.Context) ApplicationCustomOutput {
 	return o
+}
+
+func (o ApplicationCustomOutput) Behavior() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationCustom) pulumi.StringOutput { return v.Behavior }).(pulumi.StringOutput)
+}
+
+func (o ApplicationCustomOutput) Category() pulumi.IntOutput {
+	return o.ApplyT(func(v *ApplicationCustom) pulumi.IntOutput { return v.Category }).(pulumi.IntOutput)
+}
+
+func (o ApplicationCustomOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationCustom) pulumi.StringOutput { return v.Comment }).(pulumi.StringOutput)
+}
+
+func (o ApplicationCustomOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *ApplicationCustom) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o ApplicationCustomOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationCustom) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ApplicationCustomOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationCustom) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o ApplicationCustomOutput) Signature() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationCustom) pulumi.StringOutput { return v.Signature }).(pulumi.StringOutput)
+}
+
+func (o ApplicationCustomOutput) Tag() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationCustom) pulumi.StringOutput { return v.Tag }).(pulumi.StringOutput)
+}
+
+func (o ApplicationCustomOutput) Technology() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationCustom) pulumi.StringOutput { return v.Technology }).(pulumi.StringOutput)
+}
+
+func (o ApplicationCustomOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationCustom) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o ApplicationCustomOutput) Vendor() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationCustom) pulumi.StringOutput { return v.Vendor }).(pulumi.StringOutput)
 }
 
 type ApplicationCustomArrayOutput struct{ *pulumi.OutputState }

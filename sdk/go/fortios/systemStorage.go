@@ -10,46 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure logical storage.
-//
-// ## Import
-//
-// System Storage can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemStorage:SystemStorage labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemStorage:SystemStorage labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemStorage struct {
 	pulumi.CustomResourceState
 
-	// Partition device.
-	Device pulumi.StringOutput `pulumi:"device"`
-	// The physical status of current media. Valid values: `enable`, `disable`, `fail`.
-	MediaStatus pulumi.StringOutput `pulumi:"mediaStatus"`
-	// Storage name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Set storage order.
-	Order pulumi.IntOutput `pulumi:"order"`
-	// Label of underlying partition.
-	Partition pulumi.StringOutput `pulumi:"partition"`
-	// Partition size.
-	Size pulumi.IntOutput `pulumi:"size"`
-	// Enable/disable storage. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Use hard disk for logging or WAN Optimization (default = log).
-	Usage pulumi.StringOutput `pulumi:"usage"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// WAN Optimization mode (default = mix). Valid values: `mix`, `wanopt`, `webcache`.
-	WanoptMode pulumi.StringOutput `pulumi:"wanoptMode"`
+	Device      pulumi.StringOutput    `pulumi:"device"`
+	MediaStatus pulumi.StringOutput    `pulumi:"mediaStatus"`
+	Name        pulumi.StringOutput    `pulumi:"name"`
+	Order       pulumi.IntOutput       `pulumi:"order"`
+	Partition   pulumi.StringOutput    `pulumi:"partition"`
+	Size        pulumi.IntOutput       `pulumi:"size"`
+	Status      pulumi.StringOutput    `pulumi:"status"`
+	Usage       pulumi.StringOutput    `pulumi:"usage"`
+	Vdomparam   pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	WanoptMode  pulumi.StringOutput    `pulumi:"wanoptMode"`
 }
 
 // NewSystemStorage registers a new resource with the given unique name, arguments, and options.
@@ -82,49 +55,29 @@ func GetSystemStorage(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemStorage resources.
 type systemStorageState struct {
-	// Partition device.
-	Device *string `pulumi:"device"`
-	// The physical status of current media. Valid values: `enable`, `disable`, `fail`.
+	Device      *string `pulumi:"device"`
 	MediaStatus *string `pulumi:"mediaStatus"`
-	// Storage name.
-	Name *string `pulumi:"name"`
-	// Set storage order.
-	Order *int `pulumi:"order"`
-	// Label of underlying partition.
-	Partition *string `pulumi:"partition"`
-	// Partition size.
-	Size *int `pulumi:"size"`
-	// Enable/disable storage. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Use hard disk for logging or WAN Optimization (default = log).
-	Usage *string `pulumi:"usage"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// WAN Optimization mode (default = mix). Valid values: `mix`, `wanopt`, `webcache`.
-	WanoptMode *string `pulumi:"wanoptMode"`
+	Name        *string `pulumi:"name"`
+	Order       *int    `pulumi:"order"`
+	Partition   *string `pulumi:"partition"`
+	Size        *int    `pulumi:"size"`
+	Status      *string `pulumi:"status"`
+	Usage       *string `pulumi:"usage"`
+	Vdomparam   *string `pulumi:"vdomparam"`
+	WanoptMode  *string `pulumi:"wanoptMode"`
 }
 
 type SystemStorageState struct {
-	// Partition device.
-	Device pulumi.StringPtrInput
-	// The physical status of current media. Valid values: `enable`, `disable`, `fail`.
+	Device      pulumi.StringPtrInput
 	MediaStatus pulumi.StringPtrInput
-	// Storage name.
-	Name pulumi.StringPtrInput
-	// Set storage order.
-	Order pulumi.IntPtrInput
-	// Label of underlying partition.
-	Partition pulumi.StringPtrInput
-	// Partition size.
-	Size pulumi.IntPtrInput
-	// Enable/disable storage. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Use hard disk for logging or WAN Optimization (default = log).
-	Usage pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// WAN Optimization mode (default = mix). Valid values: `mix`, `wanopt`, `webcache`.
-	WanoptMode pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Order       pulumi.IntPtrInput
+	Partition   pulumi.StringPtrInput
+	Size        pulumi.IntPtrInput
+	Status      pulumi.StringPtrInput
+	Usage       pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
+	WanoptMode  pulumi.StringPtrInput
 }
 
 func (SystemStorageState) ElementType() reflect.Type {
@@ -132,50 +85,30 @@ func (SystemStorageState) ElementType() reflect.Type {
 }
 
 type systemStorageArgs struct {
-	// Partition device.
-	Device *string `pulumi:"device"`
-	// The physical status of current media. Valid values: `enable`, `disable`, `fail`.
+	Device      *string `pulumi:"device"`
 	MediaStatus *string `pulumi:"mediaStatus"`
-	// Storage name.
-	Name *string `pulumi:"name"`
-	// Set storage order.
-	Order *int `pulumi:"order"`
-	// Label of underlying partition.
-	Partition *string `pulumi:"partition"`
-	// Partition size.
-	Size *int `pulumi:"size"`
-	// Enable/disable storage. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Use hard disk for logging or WAN Optimization (default = log).
-	Usage *string `pulumi:"usage"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// WAN Optimization mode (default = mix). Valid values: `mix`, `wanopt`, `webcache`.
-	WanoptMode *string `pulumi:"wanoptMode"`
+	Name        *string `pulumi:"name"`
+	Order       *int    `pulumi:"order"`
+	Partition   *string `pulumi:"partition"`
+	Size        *int    `pulumi:"size"`
+	Status      *string `pulumi:"status"`
+	Usage       *string `pulumi:"usage"`
+	Vdomparam   *string `pulumi:"vdomparam"`
+	WanoptMode  *string `pulumi:"wanoptMode"`
 }
 
 // The set of arguments for constructing a SystemStorage resource.
 type SystemStorageArgs struct {
-	// Partition device.
-	Device pulumi.StringPtrInput
-	// The physical status of current media. Valid values: `enable`, `disable`, `fail`.
+	Device      pulumi.StringPtrInput
 	MediaStatus pulumi.StringPtrInput
-	// Storage name.
-	Name pulumi.StringPtrInput
-	// Set storage order.
-	Order pulumi.IntPtrInput
-	// Label of underlying partition.
-	Partition pulumi.StringPtrInput
-	// Partition size.
-	Size pulumi.IntPtrInput
-	// Enable/disable storage. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Use hard disk for logging or WAN Optimization (default = log).
-	Usage pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// WAN Optimization mode (default = mix). Valid values: `mix`, `wanopt`, `webcache`.
-	WanoptMode pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Order       pulumi.IntPtrInput
+	Partition   pulumi.StringPtrInput
+	Size        pulumi.IntPtrInput
+	Status      pulumi.StringPtrInput
+	Usage       pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
+	WanoptMode  pulumi.StringPtrInput
 }
 
 func (SystemStorageArgs) ElementType() reflect.Type {
@@ -204,7 +137,7 @@ func (i *SystemStorage) ToSystemStorageOutputWithContext(ctx context.Context) Sy
 // SystemStorageArrayInput is an input type that accepts SystemStorageArray and SystemStorageArrayOutput values.
 // You can construct a concrete instance of `SystemStorageArrayInput` via:
 //
-//          SystemStorageArray{ SystemStorageArgs{...} }
+//	SystemStorageArray{ SystemStorageArgs{...} }
 type SystemStorageArrayInput interface {
 	pulumi.Input
 
@@ -229,7 +162,7 @@ func (i SystemStorageArray) ToSystemStorageArrayOutputWithContext(ctx context.Co
 // SystemStorageMapInput is an input type that accepts SystemStorageMap and SystemStorageMapOutput values.
 // You can construct a concrete instance of `SystemStorageMapInput` via:
 //
-//          SystemStorageMap{ "key": SystemStorageArgs{...} }
+//	SystemStorageMap{ "key": SystemStorageArgs{...} }
 type SystemStorageMapInput interface {
 	pulumi.Input
 
@@ -263,6 +196,46 @@ func (o SystemStorageOutput) ToSystemStorageOutput() SystemStorageOutput {
 
 func (o SystemStorageOutput) ToSystemStorageOutputWithContext(ctx context.Context) SystemStorageOutput {
 	return o
+}
+
+func (o SystemStorageOutput) Device() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemStorage) pulumi.StringOutput { return v.Device }).(pulumi.StringOutput)
+}
+
+func (o SystemStorageOutput) MediaStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemStorage) pulumi.StringOutput { return v.MediaStatus }).(pulumi.StringOutput)
+}
+
+func (o SystemStorageOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemStorage) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemStorageOutput) Order() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemStorage) pulumi.IntOutput { return v.Order }).(pulumi.IntOutput)
+}
+
+func (o SystemStorageOutput) Partition() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemStorage) pulumi.StringOutput { return v.Partition }).(pulumi.StringOutput)
+}
+
+func (o SystemStorageOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemStorage) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
+}
+
+func (o SystemStorageOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemStorage) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemStorageOutput) Usage() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemStorage) pulumi.StringOutput { return v.Usage }).(pulumi.StringOutput)
+}
+
+func (o SystemStorageOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemStorage) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemStorageOutput) WanoptMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemStorage) pulumi.StringOutput { return v.WanoptMode }).(pulumi.StringOutput)
 }
 
 type SystemStorageArrayOutput struct{ *pulumi.OutputState }

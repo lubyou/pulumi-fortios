@@ -7,188 +7,72 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiGuard services.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemFortiguard(ctx, "trname", &fortios.SystemFortiguardArgs{
-// 			AntispamCache:                   pulumi.String("enable"),
-// 			AntispamCacheMpercent:           pulumi.Int(2),
-// 			AntispamCacheTtl:                pulumi.Int(1800),
-// 			AntispamExpiration:              pulumi.Int(1618617600),
-// 			AntispamForceOff:                pulumi.String("disable"),
-// 			AntispamLicense:                 pulumi.Int(1),
-// 			AntispamTimeout:                 pulumi.Int(7),
-// 			AutoJoinForticloud:              pulumi.String("enable"),
-// 			DdnsServerIp:                    pulumi.String("0.0.0.0"),
-// 			DdnsServerPort:                  pulumi.Int(443),
-// 			LoadBalanceServers:              pulumi.Int(1),
-// 			OutbreakPreventionCache:         pulumi.String("enable"),
-// 			OutbreakPreventionCacheMpercent: pulumi.Int(2),
-// 			OutbreakPreventionCacheTtl:      pulumi.Int(300),
-// 			OutbreakPreventionExpiration:    pulumi.Int(1618617600),
-// 			OutbreakPreventionForceOff:      pulumi.String("disable"),
-// 			OutbreakPreventionLicense:       pulumi.Int(1),
-// 			OutbreakPreventionTimeout:       pulumi.Int(7),
-// 			Port:                            pulumi.String("8888"),
-// 			SdnsServerIp:                    pulumi.String("\"208.91.112.220\" "),
-// 			SdnsServerPort:                  pulumi.Int(53),
-// 			SourceIp:                        pulumi.String("0.0.0.0"),
-// 			SourceIp6:                       pulumi.String("::"),
-// 			UpdateServerLocation:            pulumi.String("usa"),
-// 			WebfilterCache:                  pulumi.String("enable"),
-// 			WebfilterCacheTtl:               pulumi.Int(3600),
-// 			WebfilterExpiration:             pulumi.Int(1618617600),
-// 			WebfilterForceOff:               pulumi.String("disable"),
-// 			WebfilterLicense:                pulumi.Int(1),
-// 			WebfilterTimeout:                pulumi.Int(15),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Fortiguard can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemFortiguard:SystemFortiguard labelname SystemFortiguard
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemFortiguard:SystemFortiguard labelname SystemFortiguard
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemFortiguard struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
-	AntispamCache pulumi.StringOutput `pulumi:"antispamCache"`
-	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
-	AntispamCacheMpercent pulumi.IntOutput `pulumi:"antispamCacheMpercent"`
-	// Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
-	AntispamCacheTtl pulumi.IntOutput `pulumi:"antispamCacheTtl"`
-	// Expiration date of the FortiGuard antispam contract.
-	AntispamExpiration pulumi.IntOutput `pulumi:"antispamExpiration"`
-	// Enable/disable turning off the FortiGuard antispam service. Valid values: `enable`, `disable`.
-	AntispamForceOff pulumi.StringOutput `pulumi:"antispamForceOff"`
-	// Interval of time between license checks for the FortiGuard antispam contract.
-	AntispamLicense pulumi.IntOutput `pulumi:"antispamLicense"`
-	// Antispam query time out (1 - 30 sec, default = 7).
-	AntispamTimeout pulumi.IntOutput `pulumi:"antispamTimeout"`
-	// IP address of the FortiGuard anycast DNS rating server.
-	AnycastSdnsServerIp pulumi.StringOutput `pulumi:"anycastSdnsServerIp"`
-	// Port to connect to on the FortiGuard anycast DNS rating server.
-	AnycastSdnsServerPort pulumi.IntOutput `pulumi:"anycastSdnsServerPort"`
-	// Automatically connect to and login to FortiCloud. Valid values: `enable`, `disable`.
-	AutoJoinForticloud pulumi.StringOutput `pulumi:"autoJoinForticloud"`
-	// IP address of the FortiDDNS server.
-	DdnsServerIp pulumi.StringOutput `pulumi:"ddnsServerIp"`
-	// IPv6 address of the FortiDDNS server.
-	DdnsServerIp6 pulumi.StringOutput `pulumi:"ddnsServerIp6"`
-	// Port used to communicate with FortiDDNS servers.
-	DdnsServerPort pulumi.IntOutput `pulumi:"ddnsServerPort"`
-	// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
-	FortiguardAnycast pulumi.StringOutput `pulumi:"fortiguardAnycast"`
-	// Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
-	FortiguardAnycastSource pulumi.StringOutput `pulumi:"fortiguardAnycastSource"`
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
-	// Number of servers to alternate between as first FortiGuard option.
-	LoadBalanceServers pulumi.IntOutput `pulumi:"loadBalanceServers"`
-	// Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
-	OutbreakPreventionCache pulumi.StringOutput `pulumi:"outbreakPreventionCache"`
-	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
-	OutbreakPreventionCacheMpercent pulumi.IntOutput `pulumi:"outbreakPreventionCacheMpercent"`
-	// Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
-	OutbreakPreventionCacheTtl pulumi.IntOutput `pulumi:"outbreakPreventionCacheTtl"`
-	// Expiration date of FortiGuard Virus Outbreak Prevention contract.
-	OutbreakPreventionExpiration pulumi.IntOutput `pulumi:"outbreakPreventionExpiration"`
-	// Turn off FortiGuard Virus Outbreak Prevention service. Valid values: `enable`, `disable`.
-	OutbreakPreventionForceOff pulumi.StringOutput `pulumi:"outbreakPreventionForceOff"`
-	// Interval of time between license checks for FortiGuard Virus Outbreak Prevention contract.
-	OutbreakPreventionLicense pulumi.IntOutput `pulumi:"outbreakPreventionLicense"`
-	// FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
-	OutbreakPreventionTimeout pulumi.IntOutput `pulumi:"outbreakPreventionTimeout"`
-	// Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
-	PersistentConnection pulumi.StringOutput `pulumi:"persistentConnection"`
-	// Port used to communicate with the FortiGuard servers.
-	Port pulumi.StringOutput `pulumi:"port"`
-	// Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
-	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// Proxy user password.
-	ProxyPassword pulumi.StringPtrOutput `pulumi:"proxyPassword"`
-	// IP address of the proxy server.
-	ProxyServerIp pulumi.StringOutput `pulumi:"proxyServerIp"`
-	// Port used to communicate with the proxy server.
-	ProxyServerPort pulumi.IntOutput `pulumi:"proxyServerPort"`
-	// Proxy user name.
-	ProxyUsername pulumi.StringOutput `pulumi:"proxyUsername"`
-	// Cloud sandbox region.
-	SandboxRegion pulumi.StringOutput `pulumi:"sandboxRegion"`
-	// Customization options for the FortiGuard DNS service. Valid values: `include-question-section`.
-	SdnsOptions pulumi.StringOutput `pulumi:"sdnsOptions"`
-	// IP address of the FortiDNS server.
-	SdnsServerIp pulumi.StringOutput `pulumi:"sdnsServerIp"`
-	// Port used to communicate with FortiDNS servers.
-	SdnsServerPort pulumi.IntOutput `pulumi:"sdnsServerPort"`
-	// Service account ID.
-	ServiceAccountId pulumi.StringOutput `pulumi:"serviceAccountId"`
-	// Source IPv4 address used to communicate with FortiGuard.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Source IPv6 address used to communicate with FortiGuard.
-	SourceIp6 pulumi.StringOutput `pulumi:"sourceIp6"`
-	// Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
-	UpdateBuildProxy pulumi.StringOutput `pulumi:"updateBuildProxy"`
-	// Enable/disable external resource update. Valid values: `enable`, `disable`.
-	UpdateExtdb pulumi.StringOutput `pulumi:"updateExtdb"`
-	// Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
-	UpdateFfdb pulumi.StringOutput `pulumi:"updateFfdb"`
-	// Signature update server location.
-	UpdateServerLocation pulumi.StringOutput `pulumi:"updateServerLocation"`
-	// Enable/disable allowlist update. Valid values: `enable`, `disable`.
-	UpdateUwdb pulumi.StringOutput `pulumi:"updateUwdb"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Expiration date of the FortiGuard video filter contract.
-	VideofilterExpiration pulumi.IntOutput `pulumi:"videofilterExpiration"`
-	// Interval of time between license checks for the FortiGuard video filter contract.
-	VideofilterLicense pulumi.IntOutput `pulumi:"videofilterLicense"`
-	// Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
-	WebfilterCache pulumi.StringOutput `pulumi:"webfilterCache"`
-	// Time-to-live for web filter cache entries in seconds (300 - 86400).
-	WebfilterCacheTtl pulumi.IntOutput `pulumi:"webfilterCacheTtl"`
-	// Expiration date of the FortiGuard web filter contract.
-	WebfilterExpiration pulumi.IntOutput `pulumi:"webfilterExpiration"`
-	// Enable/disable turning off the FortiGuard web filtering service. Valid values: `enable`, `disable`.
-	WebfilterForceOff pulumi.StringOutput `pulumi:"webfilterForceOff"`
-	// Interval of time between license checks for the FortiGuard web filter contract.
-	WebfilterLicense pulumi.IntOutput `pulumi:"webfilterLicense"`
-	// Web filter query time out (1 - 30 sec, default = 7).
-	WebfilterTimeout pulumi.IntOutput `pulumi:"webfilterTimeout"`
+	AntispamCache                   pulumi.StringOutput    `pulumi:"antispamCache"`
+	AntispamCacheMpercent           pulumi.IntOutput       `pulumi:"antispamCacheMpercent"`
+	AntispamCacheTtl                pulumi.IntOutput       `pulumi:"antispamCacheTtl"`
+	AntispamExpiration              pulumi.IntOutput       `pulumi:"antispamExpiration"`
+	AntispamForceOff                pulumi.StringOutput    `pulumi:"antispamForceOff"`
+	AntispamLicense                 pulumi.IntOutput       `pulumi:"antispamLicense"`
+	AntispamTimeout                 pulumi.IntOutput       `pulumi:"antispamTimeout"`
+	AnycastSdnsServerIp             pulumi.StringOutput    `pulumi:"anycastSdnsServerIp"`
+	AnycastSdnsServerPort           pulumi.IntOutput       `pulumi:"anycastSdnsServerPort"`
+	AutoFirmwareUpgrade             pulumi.StringOutput    `pulumi:"autoFirmwareUpgrade"`
+	AutoFirmwareUpgradeDay          pulumi.StringOutput    `pulumi:"autoFirmwareUpgradeDay"`
+	AutoFirmwareUpgradeEndHour      pulumi.IntOutput       `pulumi:"autoFirmwareUpgradeEndHour"`
+	AutoFirmwareUpgradeStartHour    pulumi.IntOutput       `pulumi:"autoFirmwareUpgradeStartHour"`
+	AutoJoinForticloud              pulumi.StringOutput    `pulumi:"autoJoinForticloud"`
+	DdnsServerIp                    pulumi.StringOutput    `pulumi:"ddnsServerIp"`
+	DdnsServerIp6                   pulumi.StringOutput    `pulumi:"ddnsServerIp6"`
+	DdnsServerPort                  pulumi.IntOutput       `pulumi:"ddnsServerPort"`
+	FortiguardAnycast               pulumi.StringOutput    `pulumi:"fortiguardAnycast"`
+	FortiguardAnycastSource         pulumi.StringOutput    `pulumi:"fortiguardAnycastSource"`
+	Interface                       pulumi.StringOutput    `pulumi:"interface"`
+	InterfaceSelectMethod           pulumi.StringOutput    `pulumi:"interfaceSelectMethod"`
+	LoadBalanceServers              pulumi.IntOutput       `pulumi:"loadBalanceServers"`
+	OutbreakPreventionCache         pulumi.StringOutput    `pulumi:"outbreakPreventionCache"`
+	OutbreakPreventionCacheMpercent pulumi.IntOutput       `pulumi:"outbreakPreventionCacheMpercent"`
+	OutbreakPreventionCacheTtl      pulumi.IntOutput       `pulumi:"outbreakPreventionCacheTtl"`
+	OutbreakPreventionExpiration    pulumi.IntOutput       `pulumi:"outbreakPreventionExpiration"`
+	OutbreakPreventionForceOff      pulumi.StringOutput    `pulumi:"outbreakPreventionForceOff"`
+	OutbreakPreventionLicense       pulumi.IntOutput       `pulumi:"outbreakPreventionLicense"`
+	OutbreakPreventionTimeout       pulumi.IntOutput       `pulumi:"outbreakPreventionTimeout"`
+	PersistentConnection            pulumi.StringOutput    `pulumi:"persistentConnection"`
+	Port                            pulumi.StringOutput    `pulumi:"port"`
+	Protocol                        pulumi.StringOutput    `pulumi:"protocol"`
+	ProxyPassword                   pulumi.StringPtrOutput `pulumi:"proxyPassword"`
+	ProxyServerIp                   pulumi.StringOutput    `pulumi:"proxyServerIp"`
+	ProxyServerPort                 pulumi.IntOutput       `pulumi:"proxyServerPort"`
+	ProxyUsername                   pulumi.StringOutput    `pulumi:"proxyUsername"`
+	SandboxInlineScan               pulumi.StringOutput    `pulumi:"sandboxInlineScan"`
+	SandboxRegion                   pulumi.StringOutput    `pulumi:"sandboxRegion"`
+	SdnsOptions                     pulumi.StringOutput    `pulumi:"sdnsOptions"`
+	SdnsServerIp                    pulumi.StringOutput    `pulumi:"sdnsServerIp"`
+	SdnsServerPort                  pulumi.IntOutput       `pulumi:"sdnsServerPort"`
+	ServiceAccountId                pulumi.StringOutput    `pulumi:"serviceAccountId"`
+	SourceIp                        pulumi.StringOutput    `pulumi:"sourceIp"`
+	SourceIp6                       pulumi.StringOutput    `pulumi:"sourceIp6"`
+	UpdateBuildProxy                pulumi.StringOutput    `pulumi:"updateBuildProxy"`
+	UpdateExtdb                     pulumi.StringOutput    `pulumi:"updateExtdb"`
+	UpdateFfdb                      pulumi.StringOutput    `pulumi:"updateFfdb"`
+	UpdateServerLocation            pulumi.StringOutput    `pulumi:"updateServerLocation"`
+	UpdateUwdb                      pulumi.StringOutput    `pulumi:"updateUwdb"`
+	Vdom                            pulumi.StringOutput    `pulumi:"vdom"`
+	Vdomparam                       pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	VideofilterExpiration           pulumi.IntOutput       `pulumi:"videofilterExpiration"`
+	VideofilterLicense              pulumi.IntOutput       `pulumi:"videofilterLicense"`
+	WebfilterCache                  pulumi.StringOutput    `pulumi:"webfilterCache"`
+	WebfilterCacheTtl               pulumi.IntOutput       `pulumi:"webfilterCacheTtl"`
+	WebfilterExpiration             pulumi.IntOutput       `pulumi:"webfilterExpiration"`
+	WebfilterForceOff               pulumi.StringOutput    `pulumi:"webfilterForceOff"`
+	WebfilterLicense                pulumi.IntOutput       `pulumi:"webfilterLicense"`
+	WebfilterTimeout                pulumi.IntOutput       `pulumi:"webfilterTimeout"`
 }
 
 // NewSystemFortiguard registers a new resource with the given unique name, arguments, and options.
@@ -207,6 +91,13 @@ func NewSystemFortiguard(ctx *pulumi.Context,
 	if args.WebfilterTimeout == nil {
 		return nil, errors.New("invalid value for required argument 'WebfilterTimeout'")
 	}
+	if args.ProxyPassword != nil {
+		args.ProxyPassword = pulumi.ToSecret(args.ProxyPassword).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"proxyPassword",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemFortiguard
 	err := ctx.RegisterResource("fortios:index/systemFortiguard:SystemFortiguard", name, args, &resource, opts...)
@@ -230,221 +121,127 @@ func GetSystemFortiguard(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemFortiguard resources.
 type systemFortiguardState struct {
-	// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
-	AntispamCache *string `pulumi:"antispamCache"`
-	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
-	AntispamCacheMpercent *int `pulumi:"antispamCacheMpercent"`
-	// Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
-	AntispamCacheTtl *int `pulumi:"antispamCacheTtl"`
-	// Expiration date of the FortiGuard antispam contract.
-	AntispamExpiration *int `pulumi:"antispamExpiration"`
-	// Enable/disable turning off the FortiGuard antispam service. Valid values: `enable`, `disable`.
-	AntispamForceOff *string `pulumi:"antispamForceOff"`
-	// Interval of time between license checks for the FortiGuard antispam contract.
-	AntispamLicense *int `pulumi:"antispamLicense"`
-	// Antispam query time out (1 - 30 sec, default = 7).
-	AntispamTimeout *int `pulumi:"antispamTimeout"`
-	// IP address of the FortiGuard anycast DNS rating server.
-	AnycastSdnsServerIp *string `pulumi:"anycastSdnsServerIp"`
-	// Port to connect to on the FortiGuard anycast DNS rating server.
-	AnycastSdnsServerPort *int `pulumi:"anycastSdnsServerPort"`
-	// Automatically connect to and login to FortiCloud. Valid values: `enable`, `disable`.
-	AutoJoinForticloud *string `pulumi:"autoJoinForticloud"`
-	// IP address of the FortiDDNS server.
-	DdnsServerIp *string `pulumi:"ddnsServerIp"`
-	// IPv6 address of the FortiDDNS server.
-	DdnsServerIp6 *string `pulumi:"ddnsServerIp6"`
-	// Port used to communicate with FortiDDNS servers.
-	DdnsServerPort *int `pulumi:"ddnsServerPort"`
-	// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
-	FortiguardAnycast *string `pulumi:"fortiguardAnycast"`
-	// Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
-	FortiguardAnycastSource *string `pulumi:"fortiguardAnycastSource"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Number of servers to alternate between as first FortiGuard option.
-	LoadBalanceServers *int `pulumi:"loadBalanceServers"`
-	// Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
-	OutbreakPreventionCache *string `pulumi:"outbreakPreventionCache"`
-	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
-	OutbreakPreventionCacheMpercent *int `pulumi:"outbreakPreventionCacheMpercent"`
-	// Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
-	OutbreakPreventionCacheTtl *int `pulumi:"outbreakPreventionCacheTtl"`
-	// Expiration date of FortiGuard Virus Outbreak Prevention contract.
-	OutbreakPreventionExpiration *int `pulumi:"outbreakPreventionExpiration"`
-	// Turn off FortiGuard Virus Outbreak Prevention service. Valid values: `enable`, `disable`.
-	OutbreakPreventionForceOff *string `pulumi:"outbreakPreventionForceOff"`
-	// Interval of time between license checks for FortiGuard Virus Outbreak Prevention contract.
-	OutbreakPreventionLicense *int `pulumi:"outbreakPreventionLicense"`
-	// FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
-	OutbreakPreventionTimeout *int `pulumi:"outbreakPreventionTimeout"`
-	// Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
-	PersistentConnection *string `pulumi:"persistentConnection"`
-	// Port used to communicate with the FortiGuard servers.
-	Port *string `pulumi:"port"`
-	// Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
-	Protocol *string `pulumi:"protocol"`
-	// Proxy user password.
-	ProxyPassword *string `pulumi:"proxyPassword"`
-	// IP address of the proxy server.
-	ProxyServerIp *string `pulumi:"proxyServerIp"`
-	// Port used to communicate with the proxy server.
-	ProxyServerPort *int `pulumi:"proxyServerPort"`
-	// Proxy user name.
-	ProxyUsername *string `pulumi:"proxyUsername"`
-	// Cloud sandbox region.
-	SandboxRegion *string `pulumi:"sandboxRegion"`
-	// Customization options for the FortiGuard DNS service. Valid values: `include-question-section`.
-	SdnsOptions *string `pulumi:"sdnsOptions"`
-	// IP address of the FortiDNS server.
-	SdnsServerIp *string `pulumi:"sdnsServerIp"`
-	// Port used to communicate with FortiDNS servers.
-	SdnsServerPort *int `pulumi:"sdnsServerPort"`
-	// Service account ID.
-	ServiceAccountId *string `pulumi:"serviceAccountId"`
-	// Source IPv4 address used to communicate with FortiGuard.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Source IPv6 address used to communicate with FortiGuard.
-	SourceIp6 *string `pulumi:"sourceIp6"`
-	// Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
-	UpdateBuildProxy *string `pulumi:"updateBuildProxy"`
-	// Enable/disable external resource update. Valid values: `enable`, `disable`.
-	UpdateExtdb *string `pulumi:"updateExtdb"`
-	// Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
-	UpdateFfdb *string `pulumi:"updateFfdb"`
-	// Signature update server location.
-	UpdateServerLocation *string `pulumi:"updateServerLocation"`
-	// Enable/disable allowlist update. Valid values: `enable`, `disable`.
-	UpdateUwdb *string `pulumi:"updateUwdb"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Expiration date of the FortiGuard video filter contract.
-	VideofilterExpiration *int `pulumi:"videofilterExpiration"`
-	// Interval of time between license checks for the FortiGuard video filter contract.
-	VideofilterLicense *int `pulumi:"videofilterLicense"`
-	// Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
-	WebfilterCache *string `pulumi:"webfilterCache"`
-	// Time-to-live for web filter cache entries in seconds (300 - 86400).
-	WebfilterCacheTtl *int `pulumi:"webfilterCacheTtl"`
-	// Expiration date of the FortiGuard web filter contract.
-	WebfilterExpiration *int `pulumi:"webfilterExpiration"`
-	// Enable/disable turning off the FortiGuard web filtering service. Valid values: `enable`, `disable`.
-	WebfilterForceOff *string `pulumi:"webfilterForceOff"`
-	// Interval of time between license checks for the FortiGuard web filter contract.
-	WebfilterLicense *int `pulumi:"webfilterLicense"`
-	// Web filter query time out (1 - 30 sec, default = 7).
-	WebfilterTimeout *int `pulumi:"webfilterTimeout"`
+	AntispamCache                   *string `pulumi:"antispamCache"`
+	AntispamCacheMpercent           *int    `pulumi:"antispamCacheMpercent"`
+	AntispamCacheTtl                *int    `pulumi:"antispamCacheTtl"`
+	AntispamExpiration              *int    `pulumi:"antispamExpiration"`
+	AntispamForceOff                *string `pulumi:"antispamForceOff"`
+	AntispamLicense                 *int    `pulumi:"antispamLicense"`
+	AntispamTimeout                 *int    `pulumi:"antispamTimeout"`
+	AnycastSdnsServerIp             *string `pulumi:"anycastSdnsServerIp"`
+	AnycastSdnsServerPort           *int    `pulumi:"anycastSdnsServerPort"`
+	AutoFirmwareUpgrade             *string `pulumi:"autoFirmwareUpgrade"`
+	AutoFirmwareUpgradeDay          *string `pulumi:"autoFirmwareUpgradeDay"`
+	AutoFirmwareUpgradeEndHour      *int    `pulumi:"autoFirmwareUpgradeEndHour"`
+	AutoFirmwareUpgradeStartHour    *int    `pulumi:"autoFirmwareUpgradeStartHour"`
+	AutoJoinForticloud              *string `pulumi:"autoJoinForticloud"`
+	DdnsServerIp                    *string `pulumi:"ddnsServerIp"`
+	DdnsServerIp6                   *string `pulumi:"ddnsServerIp6"`
+	DdnsServerPort                  *int    `pulumi:"ddnsServerPort"`
+	FortiguardAnycast               *string `pulumi:"fortiguardAnycast"`
+	FortiguardAnycastSource         *string `pulumi:"fortiguardAnycastSource"`
+	Interface                       *string `pulumi:"interface"`
+	InterfaceSelectMethod           *string `pulumi:"interfaceSelectMethod"`
+	LoadBalanceServers              *int    `pulumi:"loadBalanceServers"`
+	OutbreakPreventionCache         *string `pulumi:"outbreakPreventionCache"`
+	OutbreakPreventionCacheMpercent *int    `pulumi:"outbreakPreventionCacheMpercent"`
+	OutbreakPreventionCacheTtl      *int    `pulumi:"outbreakPreventionCacheTtl"`
+	OutbreakPreventionExpiration    *int    `pulumi:"outbreakPreventionExpiration"`
+	OutbreakPreventionForceOff      *string `pulumi:"outbreakPreventionForceOff"`
+	OutbreakPreventionLicense       *int    `pulumi:"outbreakPreventionLicense"`
+	OutbreakPreventionTimeout       *int    `pulumi:"outbreakPreventionTimeout"`
+	PersistentConnection            *string `pulumi:"persistentConnection"`
+	Port                            *string `pulumi:"port"`
+	Protocol                        *string `pulumi:"protocol"`
+	ProxyPassword                   *string `pulumi:"proxyPassword"`
+	ProxyServerIp                   *string `pulumi:"proxyServerIp"`
+	ProxyServerPort                 *int    `pulumi:"proxyServerPort"`
+	ProxyUsername                   *string `pulumi:"proxyUsername"`
+	SandboxInlineScan               *string `pulumi:"sandboxInlineScan"`
+	SandboxRegion                   *string `pulumi:"sandboxRegion"`
+	SdnsOptions                     *string `pulumi:"sdnsOptions"`
+	SdnsServerIp                    *string `pulumi:"sdnsServerIp"`
+	SdnsServerPort                  *int    `pulumi:"sdnsServerPort"`
+	ServiceAccountId                *string `pulumi:"serviceAccountId"`
+	SourceIp                        *string `pulumi:"sourceIp"`
+	SourceIp6                       *string `pulumi:"sourceIp6"`
+	UpdateBuildProxy                *string `pulumi:"updateBuildProxy"`
+	UpdateExtdb                     *string `pulumi:"updateExtdb"`
+	UpdateFfdb                      *string `pulumi:"updateFfdb"`
+	UpdateServerLocation            *string `pulumi:"updateServerLocation"`
+	UpdateUwdb                      *string `pulumi:"updateUwdb"`
+	Vdom                            *string `pulumi:"vdom"`
+	Vdomparam                       *string `pulumi:"vdomparam"`
+	VideofilterExpiration           *int    `pulumi:"videofilterExpiration"`
+	VideofilterLicense              *int    `pulumi:"videofilterLicense"`
+	WebfilterCache                  *string `pulumi:"webfilterCache"`
+	WebfilterCacheTtl               *int    `pulumi:"webfilterCacheTtl"`
+	WebfilterExpiration             *int    `pulumi:"webfilterExpiration"`
+	WebfilterForceOff               *string `pulumi:"webfilterForceOff"`
+	WebfilterLicense                *int    `pulumi:"webfilterLicense"`
+	WebfilterTimeout                *int    `pulumi:"webfilterTimeout"`
 }
 
 type SystemFortiguardState struct {
-	// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
-	AntispamCache pulumi.StringPtrInput
-	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
-	AntispamCacheMpercent pulumi.IntPtrInput
-	// Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
-	AntispamCacheTtl pulumi.IntPtrInput
-	// Expiration date of the FortiGuard antispam contract.
-	AntispamExpiration pulumi.IntPtrInput
-	// Enable/disable turning off the FortiGuard antispam service. Valid values: `enable`, `disable`.
-	AntispamForceOff pulumi.StringPtrInput
-	// Interval of time between license checks for the FortiGuard antispam contract.
-	AntispamLicense pulumi.IntPtrInput
-	// Antispam query time out (1 - 30 sec, default = 7).
-	AntispamTimeout pulumi.IntPtrInput
-	// IP address of the FortiGuard anycast DNS rating server.
-	AnycastSdnsServerIp pulumi.StringPtrInput
-	// Port to connect to on the FortiGuard anycast DNS rating server.
-	AnycastSdnsServerPort pulumi.IntPtrInput
-	// Automatically connect to and login to FortiCloud. Valid values: `enable`, `disable`.
-	AutoJoinForticloud pulumi.StringPtrInput
-	// IP address of the FortiDDNS server.
-	DdnsServerIp pulumi.StringPtrInput
-	// IPv6 address of the FortiDDNS server.
-	DdnsServerIp6 pulumi.StringPtrInput
-	// Port used to communicate with FortiDDNS servers.
-	DdnsServerPort pulumi.IntPtrInput
-	// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
-	FortiguardAnycast pulumi.StringPtrInput
-	// Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
-	FortiguardAnycastSource pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringPtrInput
-	// Number of servers to alternate between as first FortiGuard option.
-	LoadBalanceServers pulumi.IntPtrInput
-	// Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
-	OutbreakPreventionCache pulumi.StringPtrInput
-	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
+	AntispamCache                   pulumi.StringPtrInput
+	AntispamCacheMpercent           pulumi.IntPtrInput
+	AntispamCacheTtl                pulumi.IntPtrInput
+	AntispamExpiration              pulumi.IntPtrInput
+	AntispamForceOff                pulumi.StringPtrInput
+	AntispamLicense                 pulumi.IntPtrInput
+	AntispamTimeout                 pulumi.IntPtrInput
+	AnycastSdnsServerIp             pulumi.StringPtrInput
+	AnycastSdnsServerPort           pulumi.IntPtrInput
+	AutoFirmwareUpgrade             pulumi.StringPtrInput
+	AutoFirmwareUpgradeDay          pulumi.StringPtrInput
+	AutoFirmwareUpgradeEndHour      pulumi.IntPtrInput
+	AutoFirmwareUpgradeStartHour    pulumi.IntPtrInput
+	AutoJoinForticloud              pulumi.StringPtrInput
+	DdnsServerIp                    pulumi.StringPtrInput
+	DdnsServerIp6                   pulumi.StringPtrInput
+	DdnsServerPort                  pulumi.IntPtrInput
+	FortiguardAnycast               pulumi.StringPtrInput
+	FortiguardAnycastSource         pulumi.StringPtrInput
+	Interface                       pulumi.StringPtrInput
+	InterfaceSelectMethod           pulumi.StringPtrInput
+	LoadBalanceServers              pulumi.IntPtrInput
+	OutbreakPreventionCache         pulumi.StringPtrInput
 	OutbreakPreventionCacheMpercent pulumi.IntPtrInput
-	// Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
-	OutbreakPreventionCacheTtl pulumi.IntPtrInput
-	// Expiration date of FortiGuard Virus Outbreak Prevention contract.
-	OutbreakPreventionExpiration pulumi.IntPtrInput
-	// Turn off FortiGuard Virus Outbreak Prevention service. Valid values: `enable`, `disable`.
-	OutbreakPreventionForceOff pulumi.StringPtrInput
-	// Interval of time between license checks for FortiGuard Virus Outbreak Prevention contract.
-	OutbreakPreventionLicense pulumi.IntPtrInput
-	// FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
-	OutbreakPreventionTimeout pulumi.IntPtrInput
-	// Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
-	PersistentConnection pulumi.StringPtrInput
-	// Port used to communicate with the FortiGuard servers.
-	Port pulumi.StringPtrInput
-	// Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
-	Protocol pulumi.StringPtrInput
-	// Proxy user password.
-	ProxyPassword pulumi.StringPtrInput
-	// IP address of the proxy server.
-	ProxyServerIp pulumi.StringPtrInput
-	// Port used to communicate with the proxy server.
-	ProxyServerPort pulumi.IntPtrInput
-	// Proxy user name.
-	ProxyUsername pulumi.StringPtrInput
-	// Cloud sandbox region.
-	SandboxRegion pulumi.StringPtrInput
-	// Customization options for the FortiGuard DNS service. Valid values: `include-question-section`.
-	SdnsOptions pulumi.StringPtrInput
-	// IP address of the FortiDNS server.
-	SdnsServerIp pulumi.StringPtrInput
-	// Port used to communicate with FortiDNS servers.
-	SdnsServerPort pulumi.IntPtrInput
-	// Service account ID.
-	ServiceAccountId pulumi.StringPtrInput
-	// Source IPv4 address used to communicate with FortiGuard.
-	SourceIp pulumi.StringPtrInput
-	// Source IPv6 address used to communicate with FortiGuard.
-	SourceIp6 pulumi.StringPtrInput
-	// Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
-	UpdateBuildProxy pulumi.StringPtrInput
-	// Enable/disable external resource update. Valid values: `enable`, `disable`.
-	UpdateExtdb pulumi.StringPtrInput
-	// Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
-	UpdateFfdb pulumi.StringPtrInput
-	// Signature update server location.
-	UpdateServerLocation pulumi.StringPtrInput
-	// Enable/disable allowlist update. Valid values: `enable`, `disable`.
-	UpdateUwdb pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Expiration date of the FortiGuard video filter contract.
-	VideofilterExpiration pulumi.IntPtrInput
-	// Interval of time between license checks for the FortiGuard video filter contract.
-	VideofilterLicense pulumi.IntPtrInput
-	// Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
-	WebfilterCache pulumi.StringPtrInput
-	// Time-to-live for web filter cache entries in seconds (300 - 86400).
-	WebfilterCacheTtl pulumi.IntPtrInput
-	// Expiration date of the FortiGuard web filter contract.
-	WebfilterExpiration pulumi.IntPtrInput
-	// Enable/disable turning off the FortiGuard web filtering service. Valid values: `enable`, `disable`.
-	WebfilterForceOff pulumi.StringPtrInput
-	// Interval of time between license checks for the FortiGuard web filter contract.
-	WebfilterLicense pulumi.IntPtrInput
-	// Web filter query time out (1 - 30 sec, default = 7).
-	WebfilterTimeout pulumi.IntPtrInput
+	OutbreakPreventionCacheTtl      pulumi.IntPtrInput
+	OutbreakPreventionExpiration    pulumi.IntPtrInput
+	OutbreakPreventionForceOff      pulumi.StringPtrInput
+	OutbreakPreventionLicense       pulumi.IntPtrInput
+	OutbreakPreventionTimeout       pulumi.IntPtrInput
+	PersistentConnection            pulumi.StringPtrInput
+	Port                            pulumi.StringPtrInput
+	Protocol                        pulumi.StringPtrInput
+	ProxyPassword                   pulumi.StringPtrInput
+	ProxyServerIp                   pulumi.StringPtrInput
+	ProxyServerPort                 pulumi.IntPtrInput
+	ProxyUsername                   pulumi.StringPtrInput
+	SandboxInlineScan               pulumi.StringPtrInput
+	SandboxRegion                   pulumi.StringPtrInput
+	SdnsOptions                     pulumi.StringPtrInput
+	SdnsServerIp                    pulumi.StringPtrInput
+	SdnsServerPort                  pulumi.IntPtrInput
+	ServiceAccountId                pulumi.StringPtrInput
+	SourceIp                        pulumi.StringPtrInput
+	SourceIp6                       pulumi.StringPtrInput
+	UpdateBuildProxy                pulumi.StringPtrInput
+	UpdateExtdb                     pulumi.StringPtrInput
+	UpdateFfdb                      pulumi.StringPtrInput
+	UpdateServerLocation            pulumi.StringPtrInput
+	UpdateUwdb                      pulumi.StringPtrInput
+	Vdom                            pulumi.StringPtrInput
+	Vdomparam                       pulumi.StringPtrInput
+	VideofilterExpiration           pulumi.IntPtrInput
+	VideofilterLicense              pulumi.IntPtrInput
+	WebfilterCache                  pulumi.StringPtrInput
+	WebfilterCacheTtl               pulumi.IntPtrInput
+	WebfilterExpiration             pulumi.IntPtrInput
+	WebfilterForceOff               pulumi.StringPtrInput
+	WebfilterLicense                pulumi.IntPtrInput
+	WebfilterTimeout                pulumi.IntPtrInput
 }
 
 func (SystemFortiguardState) ElementType() reflect.Type {
@@ -452,222 +249,128 @@ func (SystemFortiguardState) ElementType() reflect.Type {
 }
 
 type systemFortiguardArgs struct {
-	// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
-	AntispamCache *string `pulumi:"antispamCache"`
-	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
-	AntispamCacheMpercent *int `pulumi:"antispamCacheMpercent"`
-	// Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
-	AntispamCacheTtl *int `pulumi:"antispamCacheTtl"`
-	// Expiration date of the FortiGuard antispam contract.
-	AntispamExpiration *int `pulumi:"antispamExpiration"`
-	// Enable/disable turning off the FortiGuard antispam service. Valid values: `enable`, `disable`.
-	AntispamForceOff *string `pulumi:"antispamForceOff"`
-	// Interval of time between license checks for the FortiGuard antispam contract.
-	AntispamLicense *int `pulumi:"antispamLicense"`
-	// Antispam query time out (1 - 30 sec, default = 7).
-	AntispamTimeout int `pulumi:"antispamTimeout"`
-	// IP address of the FortiGuard anycast DNS rating server.
-	AnycastSdnsServerIp *string `pulumi:"anycastSdnsServerIp"`
-	// Port to connect to on the FortiGuard anycast DNS rating server.
-	AnycastSdnsServerPort *int `pulumi:"anycastSdnsServerPort"`
-	// Automatically connect to and login to FortiCloud. Valid values: `enable`, `disable`.
-	AutoJoinForticloud *string `pulumi:"autoJoinForticloud"`
-	// IP address of the FortiDDNS server.
-	DdnsServerIp *string `pulumi:"ddnsServerIp"`
-	// IPv6 address of the FortiDDNS server.
-	DdnsServerIp6 *string `pulumi:"ddnsServerIp6"`
-	// Port used to communicate with FortiDDNS servers.
-	DdnsServerPort *int `pulumi:"ddnsServerPort"`
-	// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
-	FortiguardAnycast *string `pulumi:"fortiguardAnycast"`
-	// Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
-	FortiguardAnycastSource *string `pulumi:"fortiguardAnycastSource"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Number of servers to alternate between as first FortiGuard option.
-	LoadBalanceServers *int `pulumi:"loadBalanceServers"`
-	// Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
-	OutbreakPreventionCache *string `pulumi:"outbreakPreventionCache"`
-	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
-	OutbreakPreventionCacheMpercent *int `pulumi:"outbreakPreventionCacheMpercent"`
-	// Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
-	OutbreakPreventionCacheTtl *int `pulumi:"outbreakPreventionCacheTtl"`
-	// Expiration date of FortiGuard Virus Outbreak Prevention contract.
-	OutbreakPreventionExpiration *int `pulumi:"outbreakPreventionExpiration"`
-	// Turn off FortiGuard Virus Outbreak Prevention service. Valid values: `enable`, `disable`.
-	OutbreakPreventionForceOff *string `pulumi:"outbreakPreventionForceOff"`
-	// Interval of time between license checks for FortiGuard Virus Outbreak Prevention contract.
-	OutbreakPreventionLicense *int `pulumi:"outbreakPreventionLicense"`
-	// FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
-	OutbreakPreventionTimeout int `pulumi:"outbreakPreventionTimeout"`
-	// Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
-	PersistentConnection *string `pulumi:"persistentConnection"`
-	// Port used to communicate with the FortiGuard servers.
-	Port *string `pulumi:"port"`
-	// Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
-	Protocol *string `pulumi:"protocol"`
-	// Proxy user password.
-	ProxyPassword *string `pulumi:"proxyPassword"`
-	// IP address of the proxy server.
-	ProxyServerIp *string `pulumi:"proxyServerIp"`
-	// Port used to communicate with the proxy server.
-	ProxyServerPort *int `pulumi:"proxyServerPort"`
-	// Proxy user name.
-	ProxyUsername *string `pulumi:"proxyUsername"`
-	// Cloud sandbox region.
-	SandboxRegion *string `pulumi:"sandboxRegion"`
-	// Customization options for the FortiGuard DNS service. Valid values: `include-question-section`.
-	SdnsOptions *string `pulumi:"sdnsOptions"`
-	// IP address of the FortiDNS server.
-	SdnsServerIp *string `pulumi:"sdnsServerIp"`
-	// Port used to communicate with FortiDNS servers.
-	SdnsServerPort *int `pulumi:"sdnsServerPort"`
-	// Service account ID.
-	ServiceAccountId *string `pulumi:"serviceAccountId"`
-	// Source IPv4 address used to communicate with FortiGuard.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Source IPv6 address used to communicate with FortiGuard.
-	SourceIp6 *string `pulumi:"sourceIp6"`
-	// Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
-	UpdateBuildProxy *string `pulumi:"updateBuildProxy"`
-	// Enable/disable external resource update. Valid values: `enable`, `disable`.
-	UpdateExtdb *string `pulumi:"updateExtdb"`
-	// Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
-	UpdateFfdb *string `pulumi:"updateFfdb"`
-	// Signature update server location.
-	UpdateServerLocation *string `pulumi:"updateServerLocation"`
-	// Enable/disable allowlist update. Valid values: `enable`, `disable`.
-	UpdateUwdb *string `pulumi:"updateUwdb"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Expiration date of the FortiGuard video filter contract.
-	VideofilterExpiration *int `pulumi:"videofilterExpiration"`
-	// Interval of time between license checks for the FortiGuard video filter contract.
-	VideofilterLicense *int `pulumi:"videofilterLicense"`
-	// Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
-	WebfilterCache *string `pulumi:"webfilterCache"`
-	// Time-to-live for web filter cache entries in seconds (300 - 86400).
-	WebfilterCacheTtl *int `pulumi:"webfilterCacheTtl"`
-	// Expiration date of the FortiGuard web filter contract.
-	WebfilterExpiration *int `pulumi:"webfilterExpiration"`
-	// Enable/disable turning off the FortiGuard web filtering service. Valid values: `enable`, `disable`.
-	WebfilterForceOff *string `pulumi:"webfilterForceOff"`
-	// Interval of time between license checks for the FortiGuard web filter contract.
-	WebfilterLicense *int `pulumi:"webfilterLicense"`
-	// Web filter query time out (1 - 30 sec, default = 7).
-	WebfilterTimeout int `pulumi:"webfilterTimeout"`
+	AntispamCache                   *string `pulumi:"antispamCache"`
+	AntispamCacheMpercent           *int    `pulumi:"antispamCacheMpercent"`
+	AntispamCacheTtl                *int    `pulumi:"antispamCacheTtl"`
+	AntispamExpiration              *int    `pulumi:"antispamExpiration"`
+	AntispamForceOff                *string `pulumi:"antispamForceOff"`
+	AntispamLicense                 *int    `pulumi:"antispamLicense"`
+	AntispamTimeout                 int     `pulumi:"antispamTimeout"`
+	AnycastSdnsServerIp             *string `pulumi:"anycastSdnsServerIp"`
+	AnycastSdnsServerPort           *int    `pulumi:"anycastSdnsServerPort"`
+	AutoFirmwareUpgrade             *string `pulumi:"autoFirmwareUpgrade"`
+	AutoFirmwareUpgradeDay          *string `pulumi:"autoFirmwareUpgradeDay"`
+	AutoFirmwareUpgradeEndHour      *int    `pulumi:"autoFirmwareUpgradeEndHour"`
+	AutoFirmwareUpgradeStartHour    *int    `pulumi:"autoFirmwareUpgradeStartHour"`
+	AutoJoinForticloud              *string `pulumi:"autoJoinForticloud"`
+	DdnsServerIp                    *string `pulumi:"ddnsServerIp"`
+	DdnsServerIp6                   *string `pulumi:"ddnsServerIp6"`
+	DdnsServerPort                  *int    `pulumi:"ddnsServerPort"`
+	FortiguardAnycast               *string `pulumi:"fortiguardAnycast"`
+	FortiguardAnycastSource         *string `pulumi:"fortiguardAnycastSource"`
+	Interface                       *string `pulumi:"interface"`
+	InterfaceSelectMethod           *string `pulumi:"interfaceSelectMethod"`
+	LoadBalanceServers              *int    `pulumi:"loadBalanceServers"`
+	OutbreakPreventionCache         *string `pulumi:"outbreakPreventionCache"`
+	OutbreakPreventionCacheMpercent *int    `pulumi:"outbreakPreventionCacheMpercent"`
+	OutbreakPreventionCacheTtl      *int    `pulumi:"outbreakPreventionCacheTtl"`
+	OutbreakPreventionExpiration    *int    `pulumi:"outbreakPreventionExpiration"`
+	OutbreakPreventionForceOff      *string `pulumi:"outbreakPreventionForceOff"`
+	OutbreakPreventionLicense       *int    `pulumi:"outbreakPreventionLicense"`
+	OutbreakPreventionTimeout       int     `pulumi:"outbreakPreventionTimeout"`
+	PersistentConnection            *string `pulumi:"persistentConnection"`
+	Port                            *string `pulumi:"port"`
+	Protocol                        *string `pulumi:"protocol"`
+	ProxyPassword                   *string `pulumi:"proxyPassword"`
+	ProxyServerIp                   *string `pulumi:"proxyServerIp"`
+	ProxyServerPort                 *int    `pulumi:"proxyServerPort"`
+	ProxyUsername                   *string `pulumi:"proxyUsername"`
+	SandboxInlineScan               *string `pulumi:"sandboxInlineScan"`
+	SandboxRegion                   *string `pulumi:"sandboxRegion"`
+	SdnsOptions                     *string `pulumi:"sdnsOptions"`
+	SdnsServerIp                    *string `pulumi:"sdnsServerIp"`
+	SdnsServerPort                  *int    `pulumi:"sdnsServerPort"`
+	ServiceAccountId                *string `pulumi:"serviceAccountId"`
+	SourceIp                        *string `pulumi:"sourceIp"`
+	SourceIp6                       *string `pulumi:"sourceIp6"`
+	UpdateBuildProxy                *string `pulumi:"updateBuildProxy"`
+	UpdateExtdb                     *string `pulumi:"updateExtdb"`
+	UpdateFfdb                      *string `pulumi:"updateFfdb"`
+	UpdateServerLocation            *string `pulumi:"updateServerLocation"`
+	UpdateUwdb                      *string `pulumi:"updateUwdb"`
+	Vdom                            *string `pulumi:"vdom"`
+	Vdomparam                       *string `pulumi:"vdomparam"`
+	VideofilterExpiration           *int    `pulumi:"videofilterExpiration"`
+	VideofilterLicense              *int    `pulumi:"videofilterLicense"`
+	WebfilterCache                  *string `pulumi:"webfilterCache"`
+	WebfilterCacheTtl               *int    `pulumi:"webfilterCacheTtl"`
+	WebfilterExpiration             *int    `pulumi:"webfilterExpiration"`
+	WebfilterForceOff               *string `pulumi:"webfilterForceOff"`
+	WebfilterLicense                *int    `pulumi:"webfilterLicense"`
+	WebfilterTimeout                int     `pulumi:"webfilterTimeout"`
 }
 
 // The set of arguments for constructing a SystemFortiguard resource.
 type SystemFortiguardArgs struct {
-	// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
-	AntispamCache pulumi.StringPtrInput
-	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
-	AntispamCacheMpercent pulumi.IntPtrInput
-	// Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
-	AntispamCacheTtl pulumi.IntPtrInput
-	// Expiration date of the FortiGuard antispam contract.
-	AntispamExpiration pulumi.IntPtrInput
-	// Enable/disable turning off the FortiGuard antispam service. Valid values: `enable`, `disable`.
-	AntispamForceOff pulumi.StringPtrInput
-	// Interval of time between license checks for the FortiGuard antispam contract.
-	AntispamLicense pulumi.IntPtrInput
-	// Antispam query time out (1 - 30 sec, default = 7).
-	AntispamTimeout pulumi.IntInput
-	// IP address of the FortiGuard anycast DNS rating server.
-	AnycastSdnsServerIp pulumi.StringPtrInput
-	// Port to connect to on the FortiGuard anycast DNS rating server.
-	AnycastSdnsServerPort pulumi.IntPtrInput
-	// Automatically connect to and login to FortiCloud. Valid values: `enable`, `disable`.
-	AutoJoinForticloud pulumi.StringPtrInput
-	// IP address of the FortiDDNS server.
-	DdnsServerIp pulumi.StringPtrInput
-	// IPv6 address of the FortiDDNS server.
-	DdnsServerIp6 pulumi.StringPtrInput
-	// Port used to communicate with FortiDDNS servers.
-	DdnsServerPort pulumi.IntPtrInput
-	// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
-	FortiguardAnycast pulumi.StringPtrInput
-	// Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
-	FortiguardAnycastSource pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringPtrInput
-	// Number of servers to alternate between as first FortiGuard option.
-	LoadBalanceServers pulumi.IntPtrInput
-	// Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
-	OutbreakPreventionCache pulumi.StringPtrInput
-	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
+	AntispamCache                   pulumi.StringPtrInput
+	AntispamCacheMpercent           pulumi.IntPtrInput
+	AntispamCacheTtl                pulumi.IntPtrInput
+	AntispamExpiration              pulumi.IntPtrInput
+	AntispamForceOff                pulumi.StringPtrInput
+	AntispamLicense                 pulumi.IntPtrInput
+	AntispamTimeout                 pulumi.IntInput
+	AnycastSdnsServerIp             pulumi.StringPtrInput
+	AnycastSdnsServerPort           pulumi.IntPtrInput
+	AutoFirmwareUpgrade             pulumi.StringPtrInput
+	AutoFirmwareUpgradeDay          pulumi.StringPtrInput
+	AutoFirmwareUpgradeEndHour      pulumi.IntPtrInput
+	AutoFirmwareUpgradeStartHour    pulumi.IntPtrInput
+	AutoJoinForticloud              pulumi.StringPtrInput
+	DdnsServerIp                    pulumi.StringPtrInput
+	DdnsServerIp6                   pulumi.StringPtrInput
+	DdnsServerPort                  pulumi.IntPtrInput
+	FortiguardAnycast               pulumi.StringPtrInput
+	FortiguardAnycastSource         pulumi.StringPtrInput
+	Interface                       pulumi.StringPtrInput
+	InterfaceSelectMethod           pulumi.StringPtrInput
+	LoadBalanceServers              pulumi.IntPtrInput
+	OutbreakPreventionCache         pulumi.StringPtrInput
 	OutbreakPreventionCacheMpercent pulumi.IntPtrInput
-	// Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
-	OutbreakPreventionCacheTtl pulumi.IntPtrInput
-	// Expiration date of FortiGuard Virus Outbreak Prevention contract.
-	OutbreakPreventionExpiration pulumi.IntPtrInput
-	// Turn off FortiGuard Virus Outbreak Prevention service. Valid values: `enable`, `disable`.
-	OutbreakPreventionForceOff pulumi.StringPtrInput
-	// Interval of time between license checks for FortiGuard Virus Outbreak Prevention contract.
-	OutbreakPreventionLicense pulumi.IntPtrInput
-	// FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
-	OutbreakPreventionTimeout pulumi.IntInput
-	// Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
-	PersistentConnection pulumi.StringPtrInput
-	// Port used to communicate with the FortiGuard servers.
-	Port pulumi.StringPtrInput
-	// Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
-	Protocol pulumi.StringPtrInput
-	// Proxy user password.
-	ProxyPassword pulumi.StringPtrInput
-	// IP address of the proxy server.
-	ProxyServerIp pulumi.StringPtrInput
-	// Port used to communicate with the proxy server.
-	ProxyServerPort pulumi.IntPtrInput
-	// Proxy user name.
-	ProxyUsername pulumi.StringPtrInput
-	// Cloud sandbox region.
-	SandboxRegion pulumi.StringPtrInput
-	// Customization options for the FortiGuard DNS service. Valid values: `include-question-section`.
-	SdnsOptions pulumi.StringPtrInput
-	// IP address of the FortiDNS server.
-	SdnsServerIp pulumi.StringPtrInput
-	// Port used to communicate with FortiDNS servers.
-	SdnsServerPort pulumi.IntPtrInput
-	// Service account ID.
-	ServiceAccountId pulumi.StringPtrInput
-	// Source IPv4 address used to communicate with FortiGuard.
-	SourceIp pulumi.StringPtrInput
-	// Source IPv6 address used to communicate with FortiGuard.
-	SourceIp6 pulumi.StringPtrInput
-	// Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
-	UpdateBuildProxy pulumi.StringPtrInput
-	// Enable/disable external resource update. Valid values: `enable`, `disable`.
-	UpdateExtdb pulumi.StringPtrInput
-	// Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
-	UpdateFfdb pulumi.StringPtrInput
-	// Signature update server location.
-	UpdateServerLocation pulumi.StringPtrInput
-	// Enable/disable allowlist update. Valid values: `enable`, `disable`.
-	UpdateUwdb pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Expiration date of the FortiGuard video filter contract.
-	VideofilterExpiration pulumi.IntPtrInput
-	// Interval of time between license checks for the FortiGuard video filter contract.
-	VideofilterLicense pulumi.IntPtrInput
-	// Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
-	WebfilterCache pulumi.StringPtrInput
-	// Time-to-live for web filter cache entries in seconds (300 - 86400).
-	WebfilterCacheTtl pulumi.IntPtrInput
-	// Expiration date of the FortiGuard web filter contract.
-	WebfilterExpiration pulumi.IntPtrInput
-	// Enable/disable turning off the FortiGuard web filtering service. Valid values: `enable`, `disable`.
-	WebfilterForceOff pulumi.StringPtrInput
-	// Interval of time between license checks for the FortiGuard web filter contract.
-	WebfilterLicense pulumi.IntPtrInput
-	// Web filter query time out (1 - 30 sec, default = 7).
-	WebfilterTimeout pulumi.IntInput
+	OutbreakPreventionCacheTtl      pulumi.IntPtrInput
+	OutbreakPreventionExpiration    pulumi.IntPtrInput
+	OutbreakPreventionForceOff      pulumi.StringPtrInput
+	OutbreakPreventionLicense       pulumi.IntPtrInput
+	OutbreakPreventionTimeout       pulumi.IntInput
+	PersistentConnection            pulumi.StringPtrInput
+	Port                            pulumi.StringPtrInput
+	Protocol                        pulumi.StringPtrInput
+	ProxyPassword                   pulumi.StringPtrInput
+	ProxyServerIp                   pulumi.StringPtrInput
+	ProxyServerPort                 pulumi.IntPtrInput
+	ProxyUsername                   pulumi.StringPtrInput
+	SandboxInlineScan               pulumi.StringPtrInput
+	SandboxRegion                   pulumi.StringPtrInput
+	SdnsOptions                     pulumi.StringPtrInput
+	SdnsServerIp                    pulumi.StringPtrInput
+	SdnsServerPort                  pulumi.IntPtrInput
+	ServiceAccountId                pulumi.StringPtrInput
+	SourceIp                        pulumi.StringPtrInput
+	SourceIp6                       pulumi.StringPtrInput
+	UpdateBuildProxy                pulumi.StringPtrInput
+	UpdateExtdb                     pulumi.StringPtrInput
+	UpdateFfdb                      pulumi.StringPtrInput
+	UpdateServerLocation            pulumi.StringPtrInput
+	UpdateUwdb                      pulumi.StringPtrInput
+	Vdom                            pulumi.StringPtrInput
+	Vdomparam                       pulumi.StringPtrInput
+	VideofilterExpiration           pulumi.IntPtrInput
+	VideofilterLicense              pulumi.IntPtrInput
+	WebfilterCache                  pulumi.StringPtrInput
+	WebfilterCacheTtl               pulumi.IntPtrInput
+	WebfilterExpiration             pulumi.IntPtrInput
+	WebfilterForceOff               pulumi.StringPtrInput
+	WebfilterLicense                pulumi.IntPtrInput
+	WebfilterTimeout                pulumi.IntInput
 }
 
 func (SystemFortiguardArgs) ElementType() reflect.Type {
@@ -696,7 +399,7 @@ func (i *SystemFortiguard) ToSystemFortiguardOutputWithContext(ctx context.Conte
 // SystemFortiguardArrayInput is an input type that accepts SystemFortiguardArray and SystemFortiguardArrayOutput values.
 // You can construct a concrete instance of `SystemFortiguardArrayInput` via:
 //
-//          SystemFortiguardArray{ SystemFortiguardArgs{...} }
+//	SystemFortiguardArray{ SystemFortiguardArgs{...} }
 type SystemFortiguardArrayInput interface {
 	pulumi.Input
 
@@ -721,7 +424,7 @@ func (i SystemFortiguardArray) ToSystemFortiguardArrayOutputWithContext(ctx cont
 // SystemFortiguardMapInput is an input type that accepts SystemFortiguardMap and SystemFortiguardMapOutput values.
 // You can construct a concrete instance of `SystemFortiguardMapInput` via:
 //
-//          SystemFortiguardMap{ "key": SystemFortiguardArgs{...} }
+//	SystemFortiguardMap{ "key": SystemFortiguardArgs{...} }
 type SystemFortiguardMapInput interface {
 	pulumi.Input
 
@@ -755,6 +458,242 @@ func (o SystemFortiguardOutput) ToSystemFortiguardOutput() SystemFortiguardOutpu
 
 func (o SystemFortiguardOutput) ToSystemFortiguardOutputWithContext(ctx context.Context) SystemFortiguardOutput {
 	return o
+}
+
+func (o SystemFortiguardOutput) AntispamCache() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.AntispamCache }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) AntispamCacheMpercent() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.AntispamCacheMpercent }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) AntispamCacheTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.AntispamCacheTtl }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) AntispamExpiration() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.AntispamExpiration }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) AntispamForceOff() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.AntispamForceOff }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) AntispamLicense() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.AntispamLicense }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) AntispamTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.AntispamTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) AnycastSdnsServerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.AnycastSdnsServerIp }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) AnycastSdnsServerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.AnycastSdnsServerPort }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) AutoFirmwareUpgrade() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.AutoFirmwareUpgrade }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) AutoFirmwareUpgradeDay() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.AutoFirmwareUpgradeDay }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) AutoFirmwareUpgradeEndHour() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.AutoFirmwareUpgradeEndHour }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) AutoFirmwareUpgradeStartHour() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.AutoFirmwareUpgradeStartHour }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) AutoJoinForticloud() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.AutoJoinForticloud }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) DdnsServerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.DdnsServerIp }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) DdnsServerIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.DdnsServerIp6 }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) DdnsServerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.DdnsServerPort }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) FortiguardAnycast() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.FortiguardAnycast }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) FortiguardAnycastSource() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.FortiguardAnycastSource }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) LoadBalanceServers() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.LoadBalanceServers }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) OutbreakPreventionCache() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.OutbreakPreventionCache }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) OutbreakPreventionCacheMpercent() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.OutbreakPreventionCacheMpercent }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) OutbreakPreventionCacheTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.OutbreakPreventionCacheTtl }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) OutbreakPreventionExpiration() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.OutbreakPreventionExpiration }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) OutbreakPreventionForceOff() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.OutbreakPreventionForceOff }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) OutbreakPreventionLicense() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.OutbreakPreventionLicense }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) OutbreakPreventionTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.OutbreakPreventionTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) PersistentConnection() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.PersistentConnection }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) Port() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.Port }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) ProxyPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringPtrOutput { return v.ProxyPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemFortiguardOutput) ProxyServerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.ProxyServerIp }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) ProxyServerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.ProxyServerPort }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) ProxyUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.ProxyUsername }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) SandboxInlineScan() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.SandboxInlineScan }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) SandboxRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.SandboxRegion }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) SdnsOptions() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.SdnsOptions }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) SdnsServerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.SdnsServerIp }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) SdnsServerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.SdnsServerPort }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) ServiceAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.ServiceAccountId }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) SourceIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.SourceIp6 }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) UpdateBuildProxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.UpdateBuildProxy }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) UpdateExtdb() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.UpdateExtdb }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) UpdateFfdb() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.UpdateFfdb }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) UpdateServerLocation() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.UpdateServerLocation }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) UpdateUwdb() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.UpdateUwdb }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) Vdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.Vdom }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemFortiguardOutput) VideofilterExpiration() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.VideofilterExpiration }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) VideofilterLicense() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.VideofilterLicense }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) WebfilterCache() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.WebfilterCache }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) WebfilterCacheTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.WebfilterCacheTtl }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) WebfilterExpiration() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.WebfilterExpiration }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) WebfilterForceOff() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.WebfilterForceOff }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) WebfilterLicense() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.WebfilterLicense }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) WebfilterTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.WebfilterTimeout }).(pulumi.IntOutput)
 }
 
 type SystemFortiguardArrayOutput struct{ *pulumi.OutputState }

@@ -2,152 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure threat weight settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.LogThreatWeight("trname", {
- *     applications: [
- *         {
- *             category: 2,
- *             id: 1,
- *             level: "low",
- *         },
- *         {
- *             category: 6,
- *             id: 2,
- *             level: "medium",
- *         },
- *     ],
- *     blockedConnection: "high",
- *     failedConnection: "low",
- *     ips: {
- *         criticalSeverity: "critical",
- *         highSeverity: "high",
- *         infoSeverity: "disable",
- *         lowSeverity: "low",
- *         mediumSeverity: "medium",
- *     },
- *     level: {
- *         critical: 50,
- *         high: 30,
- *         low: 5,
- *         medium: 10,
- *     },
- *     malware: {
- *         botnetConnection: "critical",
- *         commandBlocked: "disable",
- *         contentDisarm: "medium",
- *         fileBlocked: "low",
- *         mimefragmented: "disable",
- *         oversized: "disable",
- *         switchProto: "disable",
- *         virusFileTypeExecutable: "medium",
- *         virusInfected: "critical",
- *         virusOutbreakPrevention: "critical",
- *         virusScanError: "high",
- *     },
- *     status: "enable",
- *     urlBlockDetected: "high",
- *     webs: [
- *         {
- *             category: 26,
- *             id: 1,
- *             level: "high",
- *         },
- *         {
- *             category: 61,
- *             id: 2,
- *             level: "high",
- *         },
- *         {
- *             category: 86,
- *             id: 3,
- *             level: "high",
- *         },
- *         {
- *             category: 1,
- *             id: 4,
- *             level: "medium",
- *         },
- *         {
- *             category: 3,
- *             id: 5,
- *             level: "medium",
- *         },
- *         {
- *             category: 4,
- *             id: 6,
- *             level: "medium",
- *         },
- *         {
- *             category: 5,
- *             id: 7,
- *             level: "medium",
- *         },
- *         {
- *             category: 6,
- *             id: 8,
- *             level: "medium",
- *         },
- *         {
- *             category: 12,
- *             id: 9,
- *             level: "medium",
- *         },
- *         {
- *             category: 59,
- *             id: 10,
- *             level: "medium",
- *         },
- *         {
- *             category: 62,
- *             id: 11,
- *             level: "medium",
- *         },
- *         {
- *             category: 83,
- *             id: 12,
- *             level: "medium",
- *         },
- *         {
- *             category: 72,
- *             id: 13,
- *             level: "low",
- *         },
- *         {
- *             category: 14,
- *             id: 14,
- *             level: "low",
- *         },
- *     ],
- * });
- * ```
- *
- * ## Import
- *
- * Log ThreatWeight can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/logThreatWeight:LogThreatWeight labelname LogThreatWeight
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/logThreatWeight:LogThreatWeight labelname LogThreatWeight
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class LogThreatWeight extends pulumi.CustomResource {
     /**
      * Get an existing LogThreatWeight resource's state with the given name, ID, and optional extra
@@ -176,57 +34,18 @@ export class LogThreatWeight extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogThreatWeight.__pulumiType;
     }
 
-    /**
-     * Application-control threat weight settings. The structure of `application` block is documented below.
-     */
     public readonly applications!: pulumi.Output<outputs.LogThreatWeightApplication[] | undefined>;
-    /**
-     * Threat weight score for blocked connections. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
-     */
     public readonly blockedConnection!: pulumi.Output<string>;
-    /**
-     * Threat weight score for detected botnet connections. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
-     */
     public readonly botnetConnectionDetected!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Threat weight score for failed connections. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
-     */
     public readonly failedConnection!: pulumi.Output<string>;
-    /**
-     * Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
-     */
     public readonly geolocations!: pulumi.Output<outputs.LogThreatWeightGeolocation[] | undefined>;
-    /**
-     * IPS threat weight settings. The structure of `ips` block is documented below.
-     */
-    public readonly ips!: pulumi.Output<outputs.LogThreatWeightIps | undefined>;
-    /**
-     * Threat weight score for Application events. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
-     */
-    public readonly level!: pulumi.Output<outputs.LogThreatWeightLevel | undefined>;
-    /**
-     * Anti-virus malware threat weight settings. The structure of `malware` block is documented below.
-     */
-    public readonly malware!: pulumi.Output<outputs.LogThreatWeightMalware | undefined>;
-    /**
-     * Enable/disable the threat weight feature. Valid values: `enable`, `disable`.
-     */
+    public readonly ips!: pulumi.Output<outputs.LogThreatWeightIps>;
+    public readonly level!: pulumi.Output<outputs.LogThreatWeightLevel>;
+    public readonly malware!: pulumi.Output<outputs.LogThreatWeightMalware>;
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Threat weight score for URL blocking. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
-     */
     public readonly urlBlockDetected!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Web filtering threat weight settings. The structure of `web` block is documented below.
-     */
     public readonly webs!: pulumi.Output<outputs.LogThreatWeightWeb[] | undefined>;
 
     /**
@@ -280,57 +99,18 @@ export class LogThreatWeight extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogThreatWeight resources.
  */
 export interface LogThreatWeightState {
-    /**
-     * Application-control threat weight settings. The structure of `application` block is documented below.
-     */
     applications?: pulumi.Input<pulumi.Input<inputs.LogThreatWeightApplication>[]>;
-    /**
-     * Threat weight score for blocked connections. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
-     */
     blockedConnection?: pulumi.Input<string>;
-    /**
-     * Threat weight score for detected botnet connections. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
-     */
     botnetConnectionDetected?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Threat weight score for failed connections. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
-     */
     failedConnection?: pulumi.Input<string>;
-    /**
-     * Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
-     */
     geolocations?: pulumi.Input<pulumi.Input<inputs.LogThreatWeightGeolocation>[]>;
-    /**
-     * IPS threat weight settings. The structure of `ips` block is documented below.
-     */
     ips?: pulumi.Input<inputs.LogThreatWeightIps>;
-    /**
-     * Threat weight score for Application events. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
-     */
     level?: pulumi.Input<inputs.LogThreatWeightLevel>;
-    /**
-     * Anti-virus malware threat weight settings. The structure of `malware` block is documented below.
-     */
     malware?: pulumi.Input<inputs.LogThreatWeightMalware>;
-    /**
-     * Enable/disable the threat weight feature. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Threat weight score for URL blocking. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
-     */
     urlBlockDetected?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Web filtering threat weight settings. The structure of `web` block is documented below.
-     */
     webs?: pulumi.Input<pulumi.Input<inputs.LogThreatWeightWeb>[]>;
 }
 
@@ -338,56 +118,17 @@ export interface LogThreatWeightState {
  * The set of arguments for constructing a LogThreatWeight resource.
  */
 export interface LogThreatWeightArgs {
-    /**
-     * Application-control threat weight settings. The structure of `application` block is documented below.
-     */
     applications?: pulumi.Input<pulumi.Input<inputs.LogThreatWeightApplication>[]>;
-    /**
-     * Threat weight score for blocked connections. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
-     */
     blockedConnection?: pulumi.Input<string>;
-    /**
-     * Threat weight score for detected botnet connections. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
-     */
     botnetConnectionDetected?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Threat weight score for failed connections. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
-     */
     failedConnection?: pulumi.Input<string>;
-    /**
-     * Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
-     */
     geolocations?: pulumi.Input<pulumi.Input<inputs.LogThreatWeightGeolocation>[]>;
-    /**
-     * IPS threat weight settings. The structure of `ips` block is documented below.
-     */
     ips?: pulumi.Input<inputs.LogThreatWeightIps>;
-    /**
-     * Threat weight score for Application events. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
-     */
     level?: pulumi.Input<inputs.LogThreatWeightLevel>;
-    /**
-     * Anti-virus malware threat weight settings. The structure of `malware` block is documented below.
-     */
     malware?: pulumi.Input<inputs.LogThreatWeightMalware>;
-    /**
-     * Enable/disable the threat weight feature. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Threat weight score for URL blocking. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
-     */
     urlBlockDetected?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Web filtering threat weight settings. The structure of `web` block is documented below.
-     */
     webs?: pulumi.Input<pulumi.Input<inputs.LogThreatWeightWeb>[]>;
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios router bfd
 func LookupRouterBfd(ctx *pulumi.Context, args *LookupRouterBfdArgs, opts ...pulumi.InvokeOption) (*LookupRouterBfdResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterBfdResult
@@ -23,17 +22,16 @@ func LookupRouterBfd(ctx *pulumi.Context, args *LookupRouterBfdArgs, opts ...pul
 
 // A collection of arguments for invoking GetRouterBfd.
 type LookupRouterBfdArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetRouterBfd.
 type LookupRouterBfdResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// neighbor The structure of `neighbor` block is documented below.
-	Neighbors []GetRouterBfdNeighbor `pulumi:"neighbors"`
-	Vdomparam *string                `pulumi:"vdomparam"`
+	Id                string                         `pulumi:"id"`
+	MultihopTemplates []GetRouterBfdMultihopTemplate `pulumi:"multihopTemplates"`
+	Neighbors         []GetRouterBfdNeighbor         `pulumi:"neighbors"`
+	Vdomparam         *string                        `pulumi:"vdomparam"`
 }
 
 func LookupRouterBfdOutput(ctx *pulumi.Context, args LookupRouterBfdOutputArgs, opts ...pulumi.InvokeOption) LookupRouterBfdResultOutput {
@@ -51,7 +49,6 @@ func LookupRouterBfdOutput(ctx *pulumi.Context, args LookupRouterBfdOutputArgs, 
 
 // A collection of arguments for invoking GetRouterBfd.
 type LookupRouterBfdOutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -79,7 +76,10 @@ func (o LookupRouterBfdResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterBfdResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// neighbor The structure of `neighbor` block is documented below.
+func (o LookupRouterBfdResultOutput) MultihopTemplates() GetRouterBfdMultihopTemplateArrayOutput {
+	return o.ApplyT(func(v LookupRouterBfdResult) []GetRouterBfdMultihopTemplate { return v.MultihopTemplates }).(GetRouterBfdMultihopTemplateArrayOutput)
+}
+
 func (o LookupRouterBfdResultOutput) Neighbors() GetRouterBfdNeighborArrayOutput {
 	return o.ApplyT(func(v LookupRouterBfdResult) []GetRouterBfdNeighbor { return v.Neighbors }).(GetRouterBfdNeighborArrayOutput)
 }

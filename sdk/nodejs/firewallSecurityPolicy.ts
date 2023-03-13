@@ -2,57 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure NGFW IPv4/IPv6 application policies. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallSecurityPolicy("trname", {
- *     action: "accept",
- *     dstaddrs: [{
- *         name: "all",
- *     }],
- *     dstintfs: [{
- *         name: "port4",
- *     }],
- *     logtraffic: "utm",
- *     policyid: 1,
- *     profileProtocolOptions: "default",
- *     profileType: "single",
- *     schedule: "always",
- *     srcaddrs: [{
- *         name: "all",
- *     }],
- *     srcintfs: [{
- *         name: "port2",
- *     }],
- *     status: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall SecurityPolicy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallSecurityPolicy:FirewallSecurityPolicy labelname {{policyid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallSecurityPolicy:FirewallSecurityPolicy labelname {{policyid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallSecurityPolicy extends pulumi.CustomResource {
     /**
      * Get an existing FirewallSecurityPolicy resource's state with the given name, ID, and optional extra
@@ -81,273 +34,85 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallSecurityPolicy.__pulumiType;
     }
 
-    /**
-     * Policy action (accept/deny). Valid values: `accept`, `deny`.
-     */
     public readonly action!: pulumi.Output<string>;
-    /**
-     * Application category ID list. The structure of `appCategory` block is documented below.
-     */
     public readonly appCategories!: pulumi.Output<outputs.FirewallSecurityPolicyAppCategory[] | undefined>;
-    /**
-     * Application group names. The structure of `appGroup` block is documented below.
-     */
     public readonly appGroups!: pulumi.Output<outputs.FirewallSecurityPolicyAppGroup[] | undefined>;
-    /**
-     * Name of an existing Application list.
-     */
     public readonly applicationList!: pulumi.Output<string>;
-    /**
-     * Application ID list. The structure of `application` block is documented below.
-     */
     public readonly applications!: pulumi.Output<outputs.FirewallSecurityPolicyApplication[] | undefined>;
-    /**
-     * Name of an existing Antivirus profile.
-     */
     public readonly avProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing CIFS profile.
-     */
     public readonly cifsProfile!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Name of an existing DLP sensor.
-     */
+    public readonly dlpProfile!: pulumi.Output<string>;
     public readonly dlpSensor!: pulumi.Output<string>;
-    /**
-     * Name of an existing DNS filter profile.
-     */
     public readonly dnsfilterProfile!: pulumi.Output<string>;
-    /**
-     * Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
-     */
     public readonly dstaddr4s!: pulumi.Output<outputs.FirewallSecurityPolicyDstaddr4[] | undefined>;
-    /**
-     * Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
-     */
     public readonly dstaddr6s!: pulumi.Output<outputs.FirewallSecurityPolicyDstaddr6[] | undefined>;
-    /**
-     * When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-     */
     public readonly dstaddrNegate!: pulumi.Output<string>;
-    /**
-     * Destination IPv4 address name and address group names. The structure of `dstaddr` block is documented below.
-     */
     public readonly dstaddrs!: pulumi.Output<outputs.FirewallSecurityPolicyDstaddr[] | undefined>;
-    /**
-     * Outgoing (egress) interface. The structure of `dstintf` block is documented below.
-     */
     public readonly dstintfs!: pulumi.Output<outputs.FirewallSecurityPolicyDstintf[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Name of an existing email filter profile.
-     */
     public readonly emailfilterProfile!: pulumi.Output<string>;
-    /**
-     * Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
-     */
     public readonly enforceDefaultAppPort!: pulumi.Output<string>;
-    /**
-     * Name of an existing file-filter profile.
-     */
     public readonly fileFilterProfile!: pulumi.Output<string>;
-    /**
-     * Names of FSSO groups. The structure of `fssoGroups` block is documented below.
-     */
     public readonly fssoGroups!: pulumi.Output<outputs.FirewallSecurityPolicyFssoGroup[] | undefined>;
-    /**
-     * Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
-     */
     public readonly groups!: pulumi.Output<outputs.FirewallSecurityPolicyGroup[] | undefined>;
-    /**
-     * Name of an existing ICAP profile.
-     */
     public readonly icapProfile!: pulumi.Output<string>;
-    /**
-     * Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
-     */
     public readonly internetService!: pulumi.Output<string>;
-    /**
-     * Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
-     */
+    public readonly internetService6!: pulumi.Output<string>;
+    public readonly internetService6CustomGroups!: pulumi.Output<outputs.FirewallSecurityPolicyInternetService6CustomGroup[] | undefined>;
+    public readonly internetService6Customs!: pulumi.Output<outputs.FirewallSecurityPolicyInternetService6Custom[] | undefined>;
+    public readonly internetService6Groups!: pulumi.Output<outputs.FirewallSecurityPolicyInternetService6Group[] | undefined>;
+    public readonly internetService6Names!: pulumi.Output<outputs.FirewallSecurityPolicyInternetService6Name[] | undefined>;
+    public readonly internetService6Negate!: pulumi.Output<string>;
+    public readonly internetService6Src!: pulumi.Output<string>;
+    public readonly internetService6SrcCustomGroups!: pulumi.Output<outputs.FirewallSecurityPolicyInternetService6SrcCustomGroup[] | undefined>;
+    public readonly internetService6SrcCustoms!: pulumi.Output<outputs.FirewallSecurityPolicyInternetService6SrcCustom[] | undefined>;
+    public readonly internetService6SrcGroups!: pulumi.Output<outputs.FirewallSecurityPolicyInternetService6SrcGroup[] | undefined>;
+    public readonly internetService6SrcNames!: pulumi.Output<outputs.FirewallSecurityPolicyInternetService6SrcName[] | undefined>;
+    public readonly internetService6SrcNegate!: pulumi.Output<string>;
     public readonly internetServiceCustomGroups!: pulumi.Output<outputs.FirewallSecurityPolicyInternetServiceCustomGroup[] | undefined>;
-    /**
-     * Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
-     */
     public readonly internetServiceCustoms!: pulumi.Output<outputs.FirewallSecurityPolicyInternetServiceCustom[] | undefined>;
-    /**
-     * Internet Service group name. The structure of `internetServiceGroup` block is documented below.
-     */
     public readonly internetServiceGroups!: pulumi.Output<outputs.FirewallSecurityPolicyInternetServiceGroup[] | undefined>;
-    /**
-     * Internet Service ID. The structure of `internetServiceId` block is documented below.
-     */
     public readonly internetServiceIds!: pulumi.Output<outputs.FirewallSecurityPolicyInternetServiceId[] | undefined>;
-    /**
-     * Internet Service name. The structure of `internetServiceName` block is documented below.
-     */
     public readonly internetServiceNames!: pulumi.Output<outputs.FirewallSecurityPolicyInternetServiceName[] | undefined>;
-    /**
-     * When enabled internet-service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-     */
     public readonly internetServiceNegate!: pulumi.Output<string>;
-    /**
-     * Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
-     */
     public readonly internetServiceSrc!: pulumi.Output<string>;
-    /**
-     * Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
-     */
     public readonly internetServiceSrcCustomGroups!: pulumi.Output<outputs.FirewallSecurityPolicyInternetServiceSrcCustomGroup[] | undefined>;
-    /**
-     * Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
-     */
     public readonly internetServiceSrcCustoms!: pulumi.Output<outputs.FirewallSecurityPolicyInternetServiceSrcCustom[] | undefined>;
-    /**
-     * Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
-     */
     public readonly internetServiceSrcGroups!: pulumi.Output<outputs.FirewallSecurityPolicyInternetServiceSrcGroup[] | undefined>;
-    /**
-     * Internet Service source ID. The structure of `internetServiceSrcId` block is documented below.
-     */
     public readonly internetServiceSrcIds!: pulumi.Output<outputs.FirewallSecurityPolicyInternetServiceSrcId[] | undefined>;
-    /**
-     * Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
-     */
     public readonly internetServiceSrcNames!: pulumi.Output<outputs.FirewallSecurityPolicyInternetServiceSrcName[] | undefined>;
-    /**
-     * When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
-     */
     public readonly internetServiceSrcNegate!: pulumi.Output<string>;
-    /**
-     * Name of an existing IPS sensor.
-     */
     public readonly ipsSensor!: pulumi.Output<string>;
-    /**
-     * Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
-     */
     public readonly learningMode!: pulumi.Output<string>;
-    /**
-     * Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
-     */
     public readonly logtraffic!: pulumi.Output<string>;
-    /**
-     * Record logs when a session starts. Valid values: `enable`, `disable`.
-     */
     public readonly logtrafficStart!: pulumi.Output<string>;
-    /**
-     * Names of FSSO groups.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable NAT46. Valid values: `enable`, `disable`.
-     */
     public readonly nat46!: pulumi.Output<string>;
-    /**
-     * Enable/disable NAT64. Valid values: `enable`, `disable`.
-     */
     public readonly nat64!: pulumi.Output<string>;
-    /**
-     * Policy ID.
-     */
     public readonly policyid!: pulumi.Output<number>;
-    /**
-     * Name of profile group.
-     */
     public readonly profileGroup!: pulumi.Output<string>;
-    /**
-     * Name of an existing Protocol options profile.
-     */
     public readonly profileProtocolOptions!: pulumi.Output<string>;
-    /**
-     * Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-     */
     public readonly profileType!: pulumi.Output<string>;
-    /**
-     * Schedule name.
-     */
     public readonly schedule!: pulumi.Output<string>;
-    /**
-     * Name of an existing SCTP filter profile.
-     */
     public readonly sctpFilterProfile!: pulumi.Output<string>;
-    /**
-     * Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
-     */
     public readonly sendDenyPacket!: pulumi.Output<string>;
-    /**
-     * When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-     */
     public readonly serviceNegate!: pulumi.Output<string>;
-    /**
-     * Service and service group names. The structure of `service` block is documented below.
-     */
     public readonly services!: pulumi.Output<outputs.FirewallSecurityPolicyService[] | undefined>;
-    /**
-     * Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
-     */
     public readonly srcaddr4s!: pulumi.Output<outputs.FirewallSecurityPolicySrcaddr4[] | undefined>;
-    /**
-     * Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
-     */
     public readonly srcaddr6s!: pulumi.Output<outputs.FirewallSecurityPolicySrcaddr6[] | undefined>;
-    /**
-     * When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-     */
     public readonly srcaddrNegate!: pulumi.Output<string>;
-    /**
-     * Source IPv4 address name and address group names. The structure of `srcaddr` block is documented below.
-     */
     public readonly srcaddrs!: pulumi.Output<outputs.FirewallSecurityPolicySrcaddr[] | undefined>;
-    /**
-     * Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-     */
     public readonly srcintfs!: pulumi.Output<outputs.FirewallSecurityPolicySrcintf[] | undefined>;
-    /**
-     * Name of an existing SSH filter profile.
-     */
     public readonly sshFilterProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing SSL SSH profile.
-     */
     public readonly sslSshProfile!: pulumi.Output<string>;
-    /**
-     * Enable or disable this policy. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * URL category ID list. The structure of `urlCategory` block is documented below.
-     */
     public readonly urlCategories!: pulumi.Output<outputs.FirewallSecurityPolicyUrlCategory[] | undefined>;
-    /**
-     * Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
-     */
     public readonly users!: pulumi.Output<outputs.FirewallSecurityPolicyUser[] | undefined>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Name of an existing VideoFilter profile.
-     */
     public readonly videofilterProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing VoIP profile.
-     */
     public readonly voipProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing Web filter profile.
-     */
     public readonly webfilterProfile!: pulumi.Output<string>;
 
     /**
@@ -371,6 +136,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["avProfile"] = state ? state.avProfile : undefined;
             resourceInputs["cifsProfile"] = state ? state.cifsProfile : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dlpProfile"] = state ? state.dlpProfile : undefined;
             resourceInputs["dlpSensor"] = state ? state.dlpSensor : undefined;
             resourceInputs["dnsfilterProfile"] = state ? state.dnsfilterProfile : undefined;
             resourceInputs["dstaddr4s"] = state ? state.dstaddr4s : undefined;
@@ -386,6 +152,18 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["icapProfile"] = state ? state.icapProfile : undefined;
             resourceInputs["internetService"] = state ? state.internetService : undefined;
+            resourceInputs["internetService6"] = state ? state.internetService6 : undefined;
+            resourceInputs["internetService6CustomGroups"] = state ? state.internetService6CustomGroups : undefined;
+            resourceInputs["internetService6Customs"] = state ? state.internetService6Customs : undefined;
+            resourceInputs["internetService6Groups"] = state ? state.internetService6Groups : undefined;
+            resourceInputs["internetService6Names"] = state ? state.internetService6Names : undefined;
+            resourceInputs["internetService6Negate"] = state ? state.internetService6Negate : undefined;
+            resourceInputs["internetService6Src"] = state ? state.internetService6Src : undefined;
+            resourceInputs["internetService6SrcCustomGroups"] = state ? state.internetService6SrcCustomGroups : undefined;
+            resourceInputs["internetService6SrcCustoms"] = state ? state.internetService6SrcCustoms : undefined;
+            resourceInputs["internetService6SrcGroups"] = state ? state.internetService6SrcGroups : undefined;
+            resourceInputs["internetService6SrcNames"] = state ? state.internetService6SrcNames : undefined;
+            resourceInputs["internetService6SrcNegate"] = state ? state.internetService6SrcNegate : undefined;
             resourceInputs["internetServiceCustomGroups"] = state ? state.internetServiceCustomGroups : undefined;
             resourceInputs["internetServiceCustoms"] = state ? state.internetServiceCustoms : undefined;
             resourceInputs["internetServiceGroups"] = state ? state.internetServiceGroups : undefined;
@@ -440,6 +218,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["avProfile"] = args ? args.avProfile : undefined;
             resourceInputs["cifsProfile"] = args ? args.cifsProfile : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dlpProfile"] = args ? args.dlpProfile : undefined;
             resourceInputs["dlpSensor"] = args ? args.dlpSensor : undefined;
             resourceInputs["dnsfilterProfile"] = args ? args.dnsfilterProfile : undefined;
             resourceInputs["dstaddr4s"] = args ? args.dstaddr4s : undefined;
@@ -455,6 +234,18 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["icapProfile"] = args ? args.icapProfile : undefined;
             resourceInputs["internetService"] = args ? args.internetService : undefined;
+            resourceInputs["internetService6"] = args ? args.internetService6 : undefined;
+            resourceInputs["internetService6CustomGroups"] = args ? args.internetService6CustomGroups : undefined;
+            resourceInputs["internetService6Customs"] = args ? args.internetService6Customs : undefined;
+            resourceInputs["internetService6Groups"] = args ? args.internetService6Groups : undefined;
+            resourceInputs["internetService6Names"] = args ? args.internetService6Names : undefined;
+            resourceInputs["internetService6Negate"] = args ? args.internetService6Negate : undefined;
+            resourceInputs["internetService6Src"] = args ? args.internetService6Src : undefined;
+            resourceInputs["internetService6SrcCustomGroups"] = args ? args.internetService6SrcCustomGroups : undefined;
+            resourceInputs["internetService6SrcCustoms"] = args ? args.internetService6SrcCustoms : undefined;
+            resourceInputs["internetService6SrcGroups"] = args ? args.internetService6SrcGroups : undefined;
+            resourceInputs["internetService6SrcNames"] = args ? args.internetService6SrcNames : undefined;
+            resourceInputs["internetService6SrcNegate"] = args ? args.internetService6SrcNegate : undefined;
             resourceInputs["internetServiceCustomGroups"] = args ? args.internetServiceCustomGroups : undefined;
             resourceInputs["internetServiceCustoms"] = args ? args.internetServiceCustoms : undefined;
             resourceInputs["internetServiceGroups"] = args ? args.internetServiceGroups : undefined;
@@ -509,273 +300,85 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallSecurityPolicy resources.
  */
 export interface FirewallSecurityPolicyState {
-    /**
-     * Policy action (accept/deny). Valid values: `accept`, `deny`.
-     */
     action?: pulumi.Input<string>;
-    /**
-     * Application category ID list. The structure of `appCategory` block is documented below.
-     */
     appCategories?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyAppCategory>[]>;
-    /**
-     * Application group names. The structure of `appGroup` block is documented below.
-     */
     appGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyAppGroup>[]>;
-    /**
-     * Name of an existing Application list.
-     */
     applicationList?: pulumi.Input<string>;
-    /**
-     * Application ID list. The structure of `application` block is documented below.
-     */
     applications?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyApplication>[]>;
-    /**
-     * Name of an existing Antivirus profile.
-     */
     avProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing CIFS profile.
-     */
     cifsProfile?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Name of an existing DLP sensor.
-     */
+    dlpProfile?: pulumi.Input<string>;
     dlpSensor?: pulumi.Input<string>;
-    /**
-     * Name of an existing DNS filter profile.
-     */
     dnsfilterProfile?: pulumi.Input<string>;
-    /**
-     * Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
-     */
     dstaddr4s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyDstaddr4>[]>;
-    /**
-     * Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
-     */
     dstaddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyDstaddr6>[]>;
-    /**
-     * When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-     */
     dstaddrNegate?: pulumi.Input<string>;
-    /**
-     * Destination IPv4 address name and address group names. The structure of `dstaddr` block is documented below.
-     */
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyDstaddr>[]>;
-    /**
-     * Outgoing (egress) interface. The structure of `dstintf` block is documented below.
-     */
     dstintfs?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyDstintf>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Name of an existing email filter profile.
-     */
     emailfilterProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
-     */
     enforceDefaultAppPort?: pulumi.Input<string>;
-    /**
-     * Name of an existing file-filter profile.
-     */
     fileFilterProfile?: pulumi.Input<string>;
-    /**
-     * Names of FSSO groups. The structure of `fssoGroups` block is documented below.
-     */
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyFssoGroup>[]>;
-    /**
-     * Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
-     */
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyGroup>[]>;
-    /**
-     * Name of an existing ICAP profile.
-     */
     icapProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
-     */
     internetService?: pulumi.Input<string>;
-    /**
-     * Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
-     */
+    internetService6?: pulumi.Input<string>;
+    internetService6CustomGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6CustomGroup>[]>;
+    internetService6Customs?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6Custom>[]>;
+    internetService6Groups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6Group>[]>;
+    internetService6Names?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6Name>[]>;
+    internetService6Negate?: pulumi.Input<string>;
+    internetService6Src?: pulumi.Input<string>;
+    internetService6SrcCustomGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6SrcCustomGroup>[]>;
+    internetService6SrcCustoms?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6SrcCustom>[]>;
+    internetService6SrcGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6SrcGroup>[]>;
+    internetService6SrcNames?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6SrcName>[]>;
+    internetService6SrcNegate?: pulumi.Input<string>;
     internetServiceCustomGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceCustomGroup>[]>;
-    /**
-     * Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
-     */
     internetServiceCustoms?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceCustom>[]>;
-    /**
-     * Internet Service group name. The structure of `internetServiceGroup` block is documented below.
-     */
     internetServiceGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceGroup>[]>;
-    /**
-     * Internet Service ID. The structure of `internetServiceId` block is documented below.
-     */
     internetServiceIds?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceId>[]>;
-    /**
-     * Internet Service name. The structure of `internetServiceName` block is documented below.
-     */
     internetServiceNames?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceName>[]>;
-    /**
-     * When enabled internet-service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-     */
     internetServiceNegate?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
-     */
     internetServiceSrc?: pulumi.Input<string>;
-    /**
-     * Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
-     */
     internetServiceSrcCustomGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceSrcCustomGroup>[]>;
-    /**
-     * Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
-     */
     internetServiceSrcCustoms?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceSrcCustom>[]>;
-    /**
-     * Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
-     */
     internetServiceSrcGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceSrcGroup>[]>;
-    /**
-     * Internet Service source ID. The structure of `internetServiceSrcId` block is documented below.
-     */
     internetServiceSrcIds?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceSrcId>[]>;
-    /**
-     * Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
-     */
     internetServiceSrcNames?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceSrcName>[]>;
-    /**
-     * When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
-     */
     internetServiceSrcNegate?: pulumi.Input<string>;
-    /**
-     * Name of an existing IPS sensor.
-     */
     ipsSensor?: pulumi.Input<string>;
-    /**
-     * Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
-     */
     learningMode?: pulumi.Input<string>;
-    /**
-     * Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
-     */
     logtraffic?: pulumi.Input<string>;
-    /**
-     * Record logs when a session starts. Valid values: `enable`, `disable`.
-     */
     logtrafficStart?: pulumi.Input<string>;
-    /**
-     * Names of FSSO groups.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAT46. Valid values: `enable`, `disable`.
-     */
     nat46?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAT64. Valid values: `enable`, `disable`.
-     */
     nat64?: pulumi.Input<string>;
-    /**
-     * Policy ID.
-     */
     policyid?: pulumi.Input<number>;
-    /**
-     * Name of profile group.
-     */
     profileGroup?: pulumi.Input<string>;
-    /**
-     * Name of an existing Protocol options profile.
-     */
     profileProtocolOptions?: pulumi.Input<string>;
-    /**
-     * Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-     */
     profileType?: pulumi.Input<string>;
-    /**
-     * Schedule name.
-     */
     schedule?: pulumi.Input<string>;
-    /**
-     * Name of an existing SCTP filter profile.
-     */
     sctpFilterProfile?: pulumi.Input<string>;
-    /**
-     * Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
-     */
     sendDenyPacket?: pulumi.Input<string>;
-    /**
-     * When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-     */
     serviceNegate?: pulumi.Input<string>;
-    /**
-     * Service and service group names. The structure of `service` block is documented below.
-     */
     services?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyService>[]>;
-    /**
-     * Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
-     */
     srcaddr4s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySrcaddr4>[]>;
-    /**
-     * Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
-     */
     srcaddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySrcaddr6>[]>;
-    /**
-     * When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-     */
     srcaddrNegate?: pulumi.Input<string>;
-    /**
-     * Source IPv4 address name and address group names. The structure of `srcaddr` block is documented below.
-     */
     srcaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySrcaddr>[]>;
-    /**
-     * Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-     */
     srcintfs?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySrcintf>[]>;
-    /**
-     * Name of an existing SSH filter profile.
-     */
     sshFilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing SSL SSH profile.
-     */
     sslSshProfile?: pulumi.Input<string>;
-    /**
-     * Enable or disable this policy. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * URL category ID list. The structure of `urlCategory` block is documented below.
-     */
     urlCategories?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyUrlCategory>[]>;
-    /**
-     * Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
-     */
     users?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyUser>[]>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Name of an existing VideoFilter profile.
-     */
     videofilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing VoIP profile.
-     */
     voipProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing Web filter profile.
-     */
     webfilterProfile?: pulumi.Input<string>;
 }
 
@@ -783,272 +386,84 @@ export interface FirewallSecurityPolicyState {
  * The set of arguments for constructing a FirewallSecurityPolicy resource.
  */
 export interface FirewallSecurityPolicyArgs {
-    /**
-     * Policy action (accept/deny). Valid values: `accept`, `deny`.
-     */
     action?: pulumi.Input<string>;
-    /**
-     * Application category ID list. The structure of `appCategory` block is documented below.
-     */
     appCategories?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyAppCategory>[]>;
-    /**
-     * Application group names. The structure of `appGroup` block is documented below.
-     */
     appGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyAppGroup>[]>;
-    /**
-     * Name of an existing Application list.
-     */
     applicationList?: pulumi.Input<string>;
-    /**
-     * Application ID list. The structure of `application` block is documented below.
-     */
     applications?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyApplication>[]>;
-    /**
-     * Name of an existing Antivirus profile.
-     */
     avProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing CIFS profile.
-     */
     cifsProfile?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Name of an existing DLP sensor.
-     */
+    dlpProfile?: pulumi.Input<string>;
     dlpSensor?: pulumi.Input<string>;
-    /**
-     * Name of an existing DNS filter profile.
-     */
     dnsfilterProfile?: pulumi.Input<string>;
-    /**
-     * Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
-     */
     dstaddr4s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyDstaddr4>[]>;
-    /**
-     * Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
-     */
     dstaddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyDstaddr6>[]>;
-    /**
-     * When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-     */
     dstaddrNegate?: pulumi.Input<string>;
-    /**
-     * Destination IPv4 address name and address group names. The structure of `dstaddr` block is documented below.
-     */
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyDstaddr>[]>;
-    /**
-     * Outgoing (egress) interface. The structure of `dstintf` block is documented below.
-     */
     dstintfs?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyDstintf>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Name of an existing email filter profile.
-     */
     emailfilterProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
-     */
     enforceDefaultAppPort?: pulumi.Input<string>;
-    /**
-     * Name of an existing file-filter profile.
-     */
     fileFilterProfile?: pulumi.Input<string>;
-    /**
-     * Names of FSSO groups. The structure of `fssoGroups` block is documented below.
-     */
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyFssoGroup>[]>;
-    /**
-     * Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
-     */
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyGroup>[]>;
-    /**
-     * Name of an existing ICAP profile.
-     */
     icapProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
-     */
     internetService?: pulumi.Input<string>;
-    /**
-     * Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
-     */
+    internetService6?: pulumi.Input<string>;
+    internetService6CustomGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6CustomGroup>[]>;
+    internetService6Customs?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6Custom>[]>;
+    internetService6Groups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6Group>[]>;
+    internetService6Names?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6Name>[]>;
+    internetService6Negate?: pulumi.Input<string>;
+    internetService6Src?: pulumi.Input<string>;
+    internetService6SrcCustomGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6SrcCustomGroup>[]>;
+    internetService6SrcCustoms?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6SrcCustom>[]>;
+    internetService6SrcGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6SrcGroup>[]>;
+    internetService6SrcNames?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetService6SrcName>[]>;
+    internetService6SrcNegate?: pulumi.Input<string>;
     internetServiceCustomGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceCustomGroup>[]>;
-    /**
-     * Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
-     */
     internetServiceCustoms?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceCustom>[]>;
-    /**
-     * Internet Service group name. The structure of `internetServiceGroup` block is documented below.
-     */
     internetServiceGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceGroup>[]>;
-    /**
-     * Internet Service ID. The structure of `internetServiceId` block is documented below.
-     */
     internetServiceIds?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceId>[]>;
-    /**
-     * Internet Service name. The structure of `internetServiceName` block is documented below.
-     */
     internetServiceNames?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceName>[]>;
-    /**
-     * When enabled internet-service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-     */
     internetServiceNegate?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
-     */
     internetServiceSrc?: pulumi.Input<string>;
-    /**
-     * Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
-     */
     internetServiceSrcCustomGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceSrcCustomGroup>[]>;
-    /**
-     * Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
-     */
     internetServiceSrcCustoms?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceSrcCustom>[]>;
-    /**
-     * Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
-     */
     internetServiceSrcGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceSrcGroup>[]>;
-    /**
-     * Internet Service source ID. The structure of `internetServiceSrcId` block is documented below.
-     */
     internetServiceSrcIds?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceSrcId>[]>;
-    /**
-     * Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
-     */
     internetServiceSrcNames?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceSrcName>[]>;
-    /**
-     * When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
-     */
     internetServiceSrcNegate?: pulumi.Input<string>;
-    /**
-     * Name of an existing IPS sensor.
-     */
     ipsSensor?: pulumi.Input<string>;
-    /**
-     * Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
-     */
     learningMode?: pulumi.Input<string>;
-    /**
-     * Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
-     */
     logtraffic?: pulumi.Input<string>;
-    /**
-     * Record logs when a session starts. Valid values: `enable`, `disable`.
-     */
     logtrafficStart?: pulumi.Input<string>;
-    /**
-     * Names of FSSO groups.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAT46. Valid values: `enable`, `disable`.
-     */
     nat46?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAT64. Valid values: `enable`, `disable`.
-     */
     nat64?: pulumi.Input<string>;
-    /**
-     * Policy ID.
-     */
     policyid?: pulumi.Input<number>;
-    /**
-     * Name of profile group.
-     */
     profileGroup?: pulumi.Input<string>;
-    /**
-     * Name of an existing Protocol options profile.
-     */
     profileProtocolOptions?: pulumi.Input<string>;
-    /**
-     * Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-     */
     profileType?: pulumi.Input<string>;
-    /**
-     * Schedule name.
-     */
     schedule?: pulumi.Input<string>;
-    /**
-     * Name of an existing SCTP filter profile.
-     */
     sctpFilterProfile?: pulumi.Input<string>;
-    /**
-     * Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
-     */
     sendDenyPacket?: pulumi.Input<string>;
-    /**
-     * When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-     */
     serviceNegate?: pulumi.Input<string>;
-    /**
-     * Service and service group names. The structure of `service` block is documented below.
-     */
     services?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyService>[]>;
-    /**
-     * Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
-     */
     srcaddr4s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySrcaddr4>[]>;
-    /**
-     * Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
-     */
     srcaddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySrcaddr6>[]>;
-    /**
-     * When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-     */
     srcaddrNegate?: pulumi.Input<string>;
-    /**
-     * Source IPv4 address name and address group names. The structure of `srcaddr` block is documented below.
-     */
     srcaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySrcaddr>[]>;
-    /**
-     * Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-     */
     srcintfs?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySrcintf>[]>;
-    /**
-     * Name of an existing SSH filter profile.
-     */
     sshFilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing SSL SSH profile.
-     */
     sslSshProfile?: pulumi.Input<string>;
-    /**
-     * Enable or disable this policy. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * URL category ID list. The structure of `urlCategory` block is documented below.
-     */
     urlCategories?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyUrlCategory>[]>;
-    /**
-     * Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
-     */
     users?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyUser>[]>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Name of an existing VideoFilter profile.
-     */
     videofilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing VoIP profile.
-     */
     voipProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing Web filter profile.
-     */
     webfilterProfile?: pulumi.Input<string>;
 }

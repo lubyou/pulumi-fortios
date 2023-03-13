@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch storm control policy to be applied on managed-switch ports. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * SwitchController StormControlPolicy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerStormControlPolicy:SwitchControllerStormControlPolicy labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerStormControlPolicy:SwitchControllerStormControlPolicy labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerStormControlPolicy extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerStormControlPolicy resource's state with the given name, ID, and optional extra
@@ -51,37 +32,13 @@ export class SwitchControllerStormControlPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerStormControlPolicy.__pulumiType;
     }
 
-    /**
-     * Enable/disable storm control to drop/allow broadcast traffic in override mode. Valid values: `enable`, `disable`.
-     */
     public readonly broadcast!: pulumi.Output<string>;
-    /**
-     * Description of the storm control policy.
-     */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * Storm control policy name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Threshold rate in packets per second at which storm traffic is controlled in override mode (default=500, 0 to drop all).
-     */
     public readonly rate!: pulumi.Output<number>;
-    /**
-     * Set Storm control mode. Valid values: `global`, `override`, `disabled`.
-     */
     public readonly stormControlMode!: pulumi.Output<string>;
-    /**
-     * Enable/disable storm control to drop/allow unknown multicast traffic in override mode. Valid values: `enable`, `disable`.
-     */
     public readonly unknownMulticast!: pulumi.Output<string>;
-    /**
-     * Enable/disable storm control to drop/allow unknown unicast traffic in override mode. Valid values: `enable`, `disable`.
-     */
     public readonly unknownUnicast!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -125,37 +82,13 @@ export class SwitchControllerStormControlPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerStormControlPolicy resources.
  */
 export interface SwitchControllerStormControlPolicyState {
-    /**
-     * Enable/disable storm control to drop/allow broadcast traffic in override mode. Valid values: `enable`, `disable`.
-     */
     broadcast?: pulumi.Input<string>;
-    /**
-     * Description of the storm control policy.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Storm control policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Threshold rate in packets per second at which storm traffic is controlled in override mode (default=500, 0 to drop all).
-     */
     rate?: pulumi.Input<number>;
-    /**
-     * Set Storm control mode. Valid values: `global`, `override`, `disabled`.
-     */
     stormControlMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable storm control to drop/allow unknown multicast traffic in override mode. Valid values: `enable`, `disable`.
-     */
     unknownMulticast?: pulumi.Input<string>;
-    /**
-     * Enable/disable storm control to drop/allow unknown unicast traffic in override mode. Valid values: `enable`, `disable`.
-     */
     unknownUnicast?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -163,36 +96,12 @@ export interface SwitchControllerStormControlPolicyState {
  * The set of arguments for constructing a SwitchControllerStormControlPolicy resource.
  */
 export interface SwitchControllerStormControlPolicyArgs {
-    /**
-     * Enable/disable storm control to drop/allow broadcast traffic in override mode. Valid values: `enable`, `disable`.
-     */
     broadcast?: pulumi.Input<string>;
-    /**
-     * Description of the storm control policy.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Storm control policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Threshold rate in packets per second at which storm traffic is controlled in override mode (default=500, 0 to drop all).
-     */
     rate?: pulumi.Input<number>;
-    /**
-     * Set Storm control mode. Valid values: `global`, `override`, `disabled`.
-     */
     stormControlMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable storm control to drop/allow unknown multicast traffic in override mode. Valid values: `enable`, `disable`.
-     */
     unknownMulticast?: pulumi.Input<string>;
-    /**
-     * Enable/disable storm control to drop/allow unknown unicast traffic in override mode. Valid values: `enable`, `disable`.
-     */
     unknownUnicast?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,38 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure HA.
-//
-// By design considerations, the feature is using the SystemAutoScript resource as documented below.
-//
-// ## Example1
-//
-// ```go
-// package main
-//
-// import (
-// 	"fmt"
-//
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAutoScript(ctx, "trname", &fortios.SystemAutoScriptArgs{
-// 			Interval:   pulumi.Int(1),
-// 			OutputSize: pulumi.Int(10),
-// 			Repeat:     pulumi.Int(1),
-// 			Script:     pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v", "config system ha\n", "    set session-pickup enable\n", "    set session-pickup-connectionless enable\n", "    set session-pickup-expectation enable\n", "    set session-pickup-nat enable\n", "    set override disable\n", "end\n", "\n", "\n")),
-// 			Start:      pulumi.String("auto"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type SystemHa struct {
 	pulumi.CustomResourceState
 
@@ -100,7 +68,7 @@ type SystemHa struct {
 	RouteTtl                      pulumi.IntOutput                   `pulumi:"routeTtl"`
 	RouteWait                     pulumi.IntOutput                   `pulumi:"routeWait"`
 	Schedule                      pulumi.StringOutput                `pulumi:"schedule"`
-	SecondaryVcluster             SystemHaSecondaryVclusterPtrOutput `pulumi:"secondaryVcluster"`
+	SecondaryVcluster             SystemHaSecondaryVclusterOutput    `pulumi:"secondaryVcluster"`
 	SessionPickup                 pulumi.StringOutput                `pulumi:"sessionPickup"`
 	SessionPickupConnectionless   pulumi.StringOutput                `pulumi:"sessionPickupConnectionless"`
 	SessionPickupDelay            pulumi.StringOutput                `pulumi:"sessionPickupDelay"`
@@ -123,6 +91,8 @@ type SystemHa struct {
 	UninterruptibleUpgrade        pulumi.StringOutput                `pulumi:"uninterruptibleUpgrade"`
 	Vcluster2                     pulumi.StringOutput                `pulumi:"vcluster2"`
 	VclusterId                    pulumi.IntOutput                   `pulumi:"vclusterId"`
+	VclusterStatus                pulumi.StringOutput                `pulumi:"vclusterStatus"`
+	Vclusters                     SystemHaVclusterArrayOutput        `pulumi:"vclusters"`
 	Vdom                          pulumi.StringOutput                `pulumi:"vdom"`
 	Vdomparam                     pulumi.StringPtrOutput             `pulumi:"vdomparam"`
 	Weight                        pulumi.StringOutput                `pulumi:"weight"`
@@ -135,6 +105,17 @@ func NewSystemHa(ctx *pulumi.Context,
 		args = &SystemHaArgs{}
 	}
 
+	if args.Key != nil {
+		args.Key = pulumi.ToSecret(args.Key).(pulumi.StringPtrInput)
+	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"key",
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemHa
 	err := ctx.RegisterResource("fortios:index/systemHa:SystemHa", name, args, &resource, opts...)
@@ -236,6 +217,8 @@ type systemHaState struct {
 	UninterruptibleUpgrade        *string                    `pulumi:"uninterruptibleUpgrade"`
 	Vcluster2                     *string                    `pulumi:"vcluster2"`
 	VclusterId                    *int                       `pulumi:"vclusterId"`
+	VclusterStatus                *string                    `pulumi:"vclusterStatus"`
+	Vclusters                     []SystemHaVcluster         `pulumi:"vclusters"`
 	Vdom                          *string                    `pulumi:"vdom"`
 	Vdomparam                     *string                    `pulumi:"vdomparam"`
 	Weight                        *string                    `pulumi:"weight"`
@@ -320,6 +303,8 @@ type SystemHaState struct {
 	UninterruptibleUpgrade        pulumi.StringPtrInput
 	Vcluster2                     pulumi.StringPtrInput
 	VclusterId                    pulumi.IntPtrInput
+	VclusterStatus                pulumi.StringPtrInput
+	Vclusters                     SystemHaVclusterArrayInput
 	Vdom                          pulumi.StringPtrInput
 	Vdomparam                     pulumi.StringPtrInput
 	Weight                        pulumi.StringPtrInput
@@ -408,6 +393,8 @@ type systemHaArgs struct {
 	UninterruptibleUpgrade        *string                    `pulumi:"uninterruptibleUpgrade"`
 	Vcluster2                     *string                    `pulumi:"vcluster2"`
 	VclusterId                    *int                       `pulumi:"vclusterId"`
+	VclusterStatus                *string                    `pulumi:"vclusterStatus"`
+	Vclusters                     []SystemHaVcluster         `pulumi:"vclusters"`
 	Vdom                          *string                    `pulumi:"vdom"`
 	Vdomparam                     *string                    `pulumi:"vdomparam"`
 	Weight                        *string                    `pulumi:"weight"`
@@ -493,6 +480,8 @@ type SystemHaArgs struct {
 	UninterruptibleUpgrade        pulumi.StringPtrInput
 	Vcluster2                     pulumi.StringPtrInput
 	VclusterId                    pulumi.IntPtrInput
+	VclusterStatus                pulumi.StringPtrInput
+	Vclusters                     SystemHaVclusterArrayInput
 	Vdom                          pulumi.StringPtrInput
 	Vdomparam                     pulumi.StringPtrInput
 	Weight                        pulumi.StringPtrInput
@@ -524,7 +513,7 @@ func (i *SystemHa) ToSystemHaOutputWithContext(ctx context.Context) SystemHaOutp
 // SystemHaArrayInput is an input type that accepts SystemHaArray and SystemHaArrayOutput values.
 // You can construct a concrete instance of `SystemHaArrayInput` via:
 //
-//          SystemHaArray{ SystemHaArgs{...} }
+//	SystemHaArray{ SystemHaArgs{...} }
 type SystemHaArrayInput interface {
 	pulumi.Input
 
@@ -549,7 +538,7 @@ func (i SystemHaArray) ToSystemHaArrayOutputWithContext(ctx context.Context) Sys
 // SystemHaMapInput is an input type that accepts SystemHaMap and SystemHaMapOutput values.
 // You can construct a concrete instance of `SystemHaMapInput` via:
 //
-//          SystemHaMap{ "key": SystemHaArgs{...} }
+//	SystemHaMap{ "key": SystemHaArgs{...} }
 type SystemHaMapInput interface {
 	pulumi.Input
 
@@ -583,6 +572,338 @@ func (o SystemHaOutput) ToSystemHaOutput() SystemHaOutput {
 
 func (o SystemHaOutput) ToSystemHaOutputWithContext(ctx context.Context) SystemHaOutput {
 	return o
+}
+
+func (o SystemHaOutput) Arps() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.Arps }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) ArpsInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.ArpsInterval }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) Authentication() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.Authentication }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) CpuThreshold() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.CpuThreshold }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemHaOutput) Encryption() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.Encryption }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) FailoverHoldTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.FailoverHoldTime }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) FtpProxyThreshold() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.FtpProxyThreshold }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) GratuitousArps() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.GratuitousArps }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) GroupId() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.GroupId }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) GroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.GroupName }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) HaDirect() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.HaDirect }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) HaEthType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.HaEthType }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) HaMgmtInterfaces() SystemHaHaMgmtInterfaceArrayOutput {
+	return o.ApplyT(func(v *SystemHa) SystemHaHaMgmtInterfaceArrayOutput { return v.HaMgmtInterfaces }).(SystemHaHaMgmtInterfaceArrayOutput)
+}
+
+func (o SystemHaOutput) HaMgmtStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.HaMgmtStatus }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) HaUptimeDiffMargin() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.HaUptimeDiffMargin }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) HbInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.HbInterval }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) HbIntervalInMilliseconds() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.HbIntervalInMilliseconds }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) HbLostThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.HbLostThreshold }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) Hbdev() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.Hbdev }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) HcEthType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.HcEthType }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) HelloHolddown() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.HelloHolddown }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) HttpProxyThreshold() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.HttpProxyThreshold }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) ImapProxyThreshold() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.ImapProxyThreshold }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) InterClusterSessionSync() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.InterClusterSessionSync }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringPtrOutput { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemHaOutput) L2epEthType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.L2epEthType }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) LinkFailedSignal() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.LinkFailedSignal }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) LoadBalanceAll() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.LoadBalanceAll }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) LogicalSn() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.LogicalSn }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) MemoryBasedFailover() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.MemoryBasedFailover }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) MemoryCompatibleMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.MemoryCompatibleMode }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) MemoryFailoverFlipTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.MemoryFailoverFlipTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) MemoryFailoverMonitorPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.MemoryFailoverMonitorPeriod }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) MemoryFailoverSampleRate() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.MemoryFailoverSampleRate }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) MemoryFailoverThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.MemoryFailoverThreshold }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) MemoryThreshold() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.MemoryThreshold }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) Monitor() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.Monitor }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) MulticastTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.MulticastTtl }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) NntpProxyThreshold() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.NntpProxyThreshold }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) Override() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.Override }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) OverrideWaitTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.OverrideWaitTime }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemHaOutput) PingserverFailoverThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.PingserverFailoverThreshold }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) PingserverFlipTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.PingserverFlipTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) PingserverMonitorInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.PingserverMonitorInterface }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) PingserverSecondaryForceReset() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.PingserverSecondaryForceReset }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) PingserverSlaveForceReset() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.PingserverSlaveForceReset }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) Pop3ProxyThreshold() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.Pop3ProxyThreshold }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) RouteHold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.RouteHold }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) RouteTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.RouteTtl }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) RouteWait() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.RouteWait }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.Schedule }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) SecondaryVcluster() SystemHaSecondaryVclusterOutput {
+	return o.ApplyT(func(v *SystemHa) SystemHaSecondaryVclusterOutput { return v.SecondaryVcluster }).(SystemHaSecondaryVclusterOutput)
+}
+
+func (o SystemHaOutput) SessionPickup() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.SessionPickup }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) SessionPickupConnectionless() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.SessionPickupConnectionless }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) SessionPickupDelay() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.SessionPickupDelay }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) SessionPickupExpectation() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.SessionPickupExpectation }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) SessionPickupNat() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.SessionPickupNat }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) SessionSyncDev() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.SessionSyncDev }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) SmtpProxyThreshold() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.SmtpProxyThreshold }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) SsdFailover() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.SsdFailover }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) StandaloneConfigSync() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.StandaloneConfigSync }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) StandaloneMgmtVdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.StandaloneMgmtVdom }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) SyncConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.SyncConfig }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) SyncPacketBalance() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.SyncPacketBalance }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) UnicastGateway() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.UnicastGateway }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) UnicastHb() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.UnicastHb }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) UnicastHbNetmask() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.UnicastHbNetmask }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) UnicastHbPeerip() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.UnicastHbPeerip }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) UnicastPeers() SystemHaUnicastPeerArrayOutput {
+	return o.ApplyT(func(v *SystemHa) SystemHaUnicastPeerArrayOutput { return v.UnicastPeers }).(SystemHaUnicastPeerArrayOutput)
+}
+
+func (o SystemHaOutput) UnicastStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.UnicastStatus }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) UninterruptiblePrimaryWait() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.UninterruptiblePrimaryWait }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) UninterruptibleUpgrade() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.UninterruptibleUpgrade }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) Vcluster2() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.Vcluster2 }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) VclusterId() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.VclusterId }).(pulumi.IntOutput)
+}
+
+func (o SystemHaOutput) VclusterStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.VclusterStatus }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) Vclusters() SystemHaVclusterArrayOutput {
+	return o.ApplyT(func(v *SystemHa) SystemHaVclusterArrayOutput { return v.Vclusters }).(SystemHaVclusterArrayOutput)
+}
+
+func (o SystemHaOutput) Vdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.Vdom }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemHaOutput) Weight() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.Weight }).(pulumi.StringOutput)
 }
 
 type SystemHaArrayOutput struct{ *pulumi.OutputState }

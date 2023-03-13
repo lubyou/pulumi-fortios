@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure wireless access gateway (WAG) profiles used for tunnels on AP. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * WirelessController WagProfile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerWagProfile:WirelessControllerWagProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerWagProfile:WirelessControllerWagProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerWagProfile extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerWagProfile resource's state with the given name, ID, and optional extra
@@ -51,45 +32,15 @@ export class WirelessControllerWagProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerWagProfile.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * IP address of the monitoring DHCP request packet sent through the tunnel.
-     */
     public readonly dhcpIpAddr!: pulumi.Output<string>;
-    /**
-     * Tunnel profile name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
-     */
     public readonly pingInterval!: pulumi.Output<number>;
-    /**
-     * Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
-     */
     public readonly pingNumber!: pulumi.Output<number>;
-    /**
-     * Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
-     */
     public readonly returnPacketTimeout!: pulumi.Output<number>;
-    /**
-     * Tunnel type. Valid values: `l2tpv3`, `gre`.
-     */
     public readonly tunnelType!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * IP Address of the wireless access gateway.
-     */
     public readonly wagIp!: pulumi.Output<string>;
-    /**
-     * UDP port of the wireless access gateway.
-     */
     public readonly wagPort!: pulumi.Output<number>;
 
     /**
@@ -137,45 +88,15 @@ export class WirelessControllerWagProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerWagProfile resources.
  */
 export interface WirelessControllerWagProfileState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * IP address of the monitoring DHCP request packet sent through the tunnel.
-     */
     dhcpIpAddr?: pulumi.Input<string>;
-    /**
-     * Tunnel profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
-     */
     pingInterval?: pulumi.Input<number>;
-    /**
-     * Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
-     */
     pingNumber?: pulumi.Input<number>;
-    /**
-     * Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
-     */
     returnPacketTimeout?: pulumi.Input<number>;
-    /**
-     * Tunnel type. Valid values: `l2tpv3`, `gre`.
-     */
     tunnelType?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * IP Address of the wireless access gateway.
-     */
     wagIp?: pulumi.Input<string>;
-    /**
-     * UDP port of the wireless access gateway.
-     */
     wagPort?: pulumi.Input<number>;
 }
 
@@ -183,44 +104,14 @@ export interface WirelessControllerWagProfileState {
  * The set of arguments for constructing a WirelessControllerWagProfile resource.
  */
 export interface WirelessControllerWagProfileArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * IP address of the monitoring DHCP request packet sent through the tunnel.
-     */
     dhcpIpAddr?: pulumi.Input<string>;
-    /**
-     * Tunnel profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
-     */
     pingInterval?: pulumi.Input<number>;
-    /**
-     * Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
-     */
     pingNumber?: pulumi.Input<number>;
-    /**
-     * Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
-     */
     returnPacketTimeout?: pulumi.Input<number>;
-    /**
-     * Tunnel type. Valid values: `l2tpv3`, `gre`.
-     */
     tunnelType?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * IP Address of the wireless access gateway.
-     */
     wagIp?: pulumi.Input<string>;
-    /**
-     * UDP port of the wireless access gateway.
-     */
     wagPort?: pulumi.Input<number>;
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system dnsdatabase
 func LookupSystemDnsDatabase(ctx *pulumi.Context, args *LookupSystemDnsDatabaseArgs, opts ...pulumi.InvokeOption) (*LookupSystemDnsDatabaseResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemDnsDatabaseResult
@@ -23,51 +22,31 @@ func LookupSystemDnsDatabase(ctx *pulumi.Context, args *LookupSystemDnsDatabaseA
 
 // A collection of arguments for invoking GetSystemDnsDatabase.
 type LookupSystemDnsDatabaseArgs struct {
-	// Specify the name of the desired system dnsdatabase.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemDnsDatabase.
 type LookupSystemDnsDatabaseResult struct {
-	// DNS zone transfer IP address list.
-	AllowTransfer string `pulumi:"allowTransfer"`
-	// Enable/disable authoritative zone.
-	Authoritative string `pulumi:"authoritative"`
-	// Email address of the administrator for this zone.
-	// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-	// When using a simple username, the domain of the email will be this zone.
-	Contact string `pulumi:"contact"`
-	// DNS entry. The structure of `dnsEntry` block is documented below.
-	DnsEntries []GetSystemDnsDatabaseDnsEntry `pulumi:"dnsEntries"`
-	// Domain name.
-	Domain string `pulumi:"domain"`
-	// DNS zone forwarder IP address list.
-	Forwarder string `pulumi:"forwarder"`
+	AllowTransfer string                         `pulumi:"allowTransfer"`
+	Authoritative string                         `pulumi:"authoritative"`
+	Contact       string                         `pulumi:"contact"`
+	DnsEntries    []GetSystemDnsDatabaseDnsEntry `pulumi:"dnsEntries"`
+	Domain        string                         `pulumi:"domain"`
+	Forwarder     string                         `pulumi:"forwarder"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
-	IpMaster string `pulumi:"ipMaster"`
-	// IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
-	IpPrimary string `pulumi:"ipPrimary"`
-	// Zone name.
-	Name string `pulumi:"name"`
-	// Domain name of the default DNS server for this zone.
-	PrimaryName string `pulumi:"primaryName"`
-	// Maximum number of resource records (10 - 65536, 0 means infinite).
-	RrMax int `pulumi:"rrMax"`
-	// Source IP for forwarding to DNS server.
-	SourceIp string `pulumi:"sourceIp"`
-	// Enable/disable resource record status.
-	Status string `pulumi:"status"`
-	// Time-to-live for this entry (0 to 2147483647 sec, default = 0).
-	Ttl int `pulumi:"ttl"`
-	// Resource record type.
-	Type      string  `pulumi:"type"`
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Zone view (public to serve public clients, shadow to serve internal clients).
-	View string `pulumi:"view"`
+	Id          string  `pulumi:"id"`
+	IpMaster    string  `pulumi:"ipMaster"`
+	IpPrimary   string  `pulumi:"ipPrimary"`
+	Name        string  `pulumi:"name"`
+	PrimaryName string  `pulumi:"primaryName"`
+	RrMax       int     `pulumi:"rrMax"`
+	SourceIp    string  `pulumi:"sourceIp"`
+	Status      string  `pulumi:"status"`
+	Ttl         int     `pulumi:"ttl"`
+	Type        string  `pulumi:"type"`
+	Vdomparam   *string `pulumi:"vdomparam"`
+	View        string  `pulumi:"view"`
 }
 
 func LookupSystemDnsDatabaseOutput(ctx *pulumi.Context, args LookupSystemDnsDatabaseOutputArgs, opts ...pulumi.InvokeOption) LookupSystemDnsDatabaseResultOutput {
@@ -85,9 +64,7 @@ func LookupSystemDnsDatabaseOutput(ctx *pulumi.Context, args LookupSystemDnsData
 
 // A collection of arguments for invoking GetSystemDnsDatabase.
 type LookupSystemDnsDatabaseOutputArgs struct {
-	// Specify the name of the desired system dnsdatabase.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -110,34 +87,26 @@ func (o LookupSystemDnsDatabaseResultOutput) ToLookupSystemDnsDatabaseResultOutp
 	return o
 }
 
-// DNS zone transfer IP address list.
 func (o LookupSystemDnsDatabaseResultOutput) AllowTransfer() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.AllowTransfer }).(pulumi.StringOutput)
 }
 
-// Enable/disable authoritative zone.
 func (o LookupSystemDnsDatabaseResultOutput) Authoritative() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.Authoritative }).(pulumi.StringOutput)
 }
 
-// Email address of the administrator for this zone.
-// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-// When using a simple username, the domain of the email will be this zone.
 func (o LookupSystemDnsDatabaseResultOutput) Contact() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.Contact }).(pulumi.StringOutput)
 }
 
-// DNS entry. The structure of `dnsEntry` block is documented below.
 func (o LookupSystemDnsDatabaseResultOutput) DnsEntries() GetSystemDnsDatabaseDnsEntryArrayOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) []GetSystemDnsDatabaseDnsEntry { return v.DnsEntries }).(GetSystemDnsDatabaseDnsEntryArrayOutput)
 }
 
-// Domain name.
 func (o LookupSystemDnsDatabaseResultOutput) Domain() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.Domain }).(pulumi.StringOutput)
 }
 
-// DNS zone forwarder IP address list.
 func (o LookupSystemDnsDatabaseResultOutput) Forwarder() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.Forwarder }).(pulumi.StringOutput)
 }
@@ -147,47 +116,38 @@ func (o LookupSystemDnsDatabaseResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
 func (o LookupSystemDnsDatabaseResultOutput) IpMaster() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.IpMaster }).(pulumi.StringOutput)
 }
 
-// IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
 func (o LookupSystemDnsDatabaseResultOutput) IpPrimary() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.IpPrimary }).(pulumi.StringOutput)
 }
 
-// Zone name.
 func (o LookupSystemDnsDatabaseResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Domain name of the default DNS server for this zone.
 func (o LookupSystemDnsDatabaseResultOutput) PrimaryName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.PrimaryName }).(pulumi.StringOutput)
 }
 
-// Maximum number of resource records (10 - 65536, 0 means infinite).
 func (o LookupSystemDnsDatabaseResultOutput) RrMax() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) int { return v.RrMax }).(pulumi.IntOutput)
 }
 
-// Source IP for forwarding to DNS server.
 func (o LookupSystemDnsDatabaseResultOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.SourceIp }).(pulumi.StringOutput)
 }
 
-// Enable/disable resource record status.
 func (o LookupSystemDnsDatabaseResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// Time-to-live for this entry (0 to 2147483647 sec, default = 0).
 func (o LookupSystemDnsDatabaseResultOutput) Ttl() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) int { return v.Ttl }).(pulumi.IntOutput)
 }
 
-// Resource record type.
 func (o LookupSystemDnsDatabaseResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -196,7 +156,6 @@ func (o LookupSystemDnsDatabaseResultOutput) Vdomparam() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-// Zone view (public to serve public clients, shadow to serve internal clients).
 func (o LookupSystemDnsDatabaseResultOutput) View() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.View }).(pulumi.StringOutput)
 }

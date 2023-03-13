@@ -10,62 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Global settings for memory logging.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogMemoryGlobalSetting(ctx, "trname", &fortios.LogMemoryGlobalSettingArgs{
-// 			FullFinalWarningThreshold:  pulumi.Int(95),
-// 			FullFirstWarningThreshold:  pulumi.Int(75),
-// 			FullSecondWarningThreshold: pulumi.Int(90),
-// 			MaxSize:                    pulumi.Int(163840),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// LogMemory GlobalSetting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logMemoryGlobalSetting:LogMemoryGlobalSetting labelname LogMemoryGlobalSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logMemoryGlobalSetting:LogMemoryGlobalSetting labelname LogMemoryGlobalSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogMemoryGlobalSetting struct {
 	pulumi.CustomResourceState
 
-	// Log full final warning threshold as a percent (3 - 100, default = 95).
-	FullFinalWarningThreshold pulumi.IntOutput `pulumi:"fullFinalWarningThreshold"`
-	// Log full first warning threshold as a percent (1 - 98, default = 75).
-	FullFirstWarningThreshold pulumi.IntOutput `pulumi:"fullFirstWarningThreshold"`
-	// Log full second warning threshold as a percent (2 - 99, default = 90).
-	FullSecondWarningThreshold pulumi.IntOutput `pulumi:"fullSecondWarningThreshold"`
-	// Maximum amount of memory that can be used for memory logging in bytes.
-	MaxSize pulumi.IntOutput `pulumi:"maxSize"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	FullFinalWarningThreshold  pulumi.IntOutput       `pulumi:"fullFinalWarningThreshold"`
+	FullFirstWarningThreshold  pulumi.IntOutput       `pulumi:"fullFirstWarningThreshold"`
+	FullSecondWarningThreshold pulumi.IntOutput       `pulumi:"fullSecondWarningThreshold"`
+	MaxSize                    pulumi.IntOutput       `pulumi:"maxSize"`
+	Vdomparam                  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewLogMemoryGlobalSetting registers a new resource with the given unique name, arguments, and options.
@@ -98,29 +50,19 @@ func GetLogMemoryGlobalSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogMemoryGlobalSetting resources.
 type logMemoryGlobalSettingState struct {
-	// Log full final warning threshold as a percent (3 - 100, default = 95).
-	FullFinalWarningThreshold *int `pulumi:"fullFinalWarningThreshold"`
-	// Log full first warning threshold as a percent (1 - 98, default = 75).
-	FullFirstWarningThreshold *int `pulumi:"fullFirstWarningThreshold"`
-	// Log full second warning threshold as a percent (2 - 99, default = 90).
-	FullSecondWarningThreshold *int `pulumi:"fullSecondWarningThreshold"`
-	// Maximum amount of memory that can be used for memory logging in bytes.
-	MaxSize *int `pulumi:"maxSize"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	FullFinalWarningThreshold  *int    `pulumi:"fullFinalWarningThreshold"`
+	FullFirstWarningThreshold  *int    `pulumi:"fullFirstWarningThreshold"`
+	FullSecondWarningThreshold *int    `pulumi:"fullSecondWarningThreshold"`
+	MaxSize                    *int    `pulumi:"maxSize"`
+	Vdomparam                  *string `pulumi:"vdomparam"`
 }
 
 type LogMemoryGlobalSettingState struct {
-	// Log full final warning threshold as a percent (3 - 100, default = 95).
-	FullFinalWarningThreshold pulumi.IntPtrInput
-	// Log full first warning threshold as a percent (1 - 98, default = 75).
-	FullFirstWarningThreshold pulumi.IntPtrInput
-	// Log full second warning threshold as a percent (2 - 99, default = 90).
+	FullFinalWarningThreshold  pulumi.IntPtrInput
+	FullFirstWarningThreshold  pulumi.IntPtrInput
 	FullSecondWarningThreshold pulumi.IntPtrInput
-	// Maximum amount of memory that can be used for memory logging in bytes.
-	MaxSize pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MaxSize                    pulumi.IntPtrInput
+	Vdomparam                  pulumi.StringPtrInput
 }
 
 func (LogMemoryGlobalSettingState) ElementType() reflect.Type {
@@ -128,30 +70,20 @@ func (LogMemoryGlobalSettingState) ElementType() reflect.Type {
 }
 
 type logMemoryGlobalSettingArgs struct {
-	// Log full final warning threshold as a percent (3 - 100, default = 95).
-	FullFinalWarningThreshold *int `pulumi:"fullFinalWarningThreshold"`
-	// Log full first warning threshold as a percent (1 - 98, default = 75).
-	FullFirstWarningThreshold *int `pulumi:"fullFirstWarningThreshold"`
-	// Log full second warning threshold as a percent (2 - 99, default = 90).
-	FullSecondWarningThreshold *int `pulumi:"fullSecondWarningThreshold"`
-	// Maximum amount of memory that can be used for memory logging in bytes.
-	MaxSize *int `pulumi:"maxSize"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	FullFinalWarningThreshold  *int    `pulumi:"fullFinalWarningThreshold"`
+	FullFirstWarningThreshold  *int    `pulumi:"fullFirstWarningThreshold"`
+	FullSecondWarningThreshold *int    `pulumi:"fullSecondWarningThreshold"`
+	MaxSize                    *int    `pulumi:"maxSize"`
+	Vdomparam                  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogMemoryGlobalSetting resource.
 type LogMemoryGlobalSettingArgs struct {
-	// Log full final warning threshold as a percent (3 - 100, default = 95).
-	FullFinalWarningThreshold pulumi.IntPtrInput
-	// Log full first warning threshold as a percent (1 - 98, default = 75).
-	FullFirstWarningThreshold pulumi.IntPtrInput
-	// Log full second warning threshold as a percent (2 - 99, default = 90).
+	FullFinalWarningThreshold  pulumi.IntPtrInput
+	FullFirstWarningThreshold  pulumi.IntPtrInput
 	FullSecondWarningThreshold pulumi.IntPtrInput
-	// Maximum amount of memory that can be used for memory logging in bytes.
-	MaxSize pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MaxSize                    pulumi.IntPtrInput
+	Vdomparam                  pulumi.StringPtrInput
 }
 
 func (LogMemoryGlobalSettingArgs) ElementType() reflect.Type {
@@ -180,7 +112,7 @@ func (i *LogMemoryGlobalSetting) ToLogMemoryGlobalSettingOutputWithContext(ctx c
 // LogMemoryGlobalSettingArrayInput is an input type that accepts LogMemoryGlobalSettingArray and LogMemoryGlobalSettingArrayOutput values.
 // You can construct a concrete instance of `LogMemoryGlobalSettingArrayInput` via:
 //
-//          LogMemoryGlobalSettingArray{ LogMemoryGlobalSettingArgs{...} }
+//	LogMemoryGlobalSettingArray{ LogMemoryGlobalSettingArgs{...} }
 type LogMemoryGlobalSettingArrayInput interface {
 	pulumi.Input
 
@@ -205,7 +137,7 @@ func (i LogMemoryGlobalSettingArray) ToLogMemoryGlobalSettingArrayOutputWithCont
 // LogMemoryGlobalSettingMapInput is an input type that accepts LogMemoryGlobalSettingMap and LogMemoryGlobalSettingMapOutput values.
 // You can construct a concrete instance of `LogMemoryGlobalSettingMapInput` via:
 //
-//          LogMemoryGlobalSettingMap{ "key": LogMemoryGlobalSettingArgs{...} }
+//	LogMemoryGlobalSettingMap{ "key": LogMemoryGlobalSettingArgs{...} }
 type LogMemoryGlobalSettingMapInput interface {
 	pulumi.Input
 
@@ -239,6 +171,26 @@ func (o LogMemoryGlobalSettingOutput) ToLogMemoryGlobalSettingOutput() LogMemory
 
 func (o LogMemoryGlobalSettingOutput) ToLogMemoryGlobalSettingOutputWithContext(ctx context.Context) LogMemoryGlobalSettingOutput {
 	return o
+}
+
+func (o LogMemoryGlobalSettingOutput) FullFinalWarningThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogMemoryGlobalSetting) pulumi.IntOutput { return v.FullFinalWarningThreshold }).(pulumi.IntOutput)
+}
+
+func (o LogMemoryGlobalSettingOutput) FullFirstWarningThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogMemoryGlobalSetting) pulumi.IntOutput { return v.FullFirstWarningThreshold }).(pulumi.IntOutput)
+}
+
+func (o LogMemoryGlobalSettingOutput) FullSecondWarningThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogMemoryGlobalSetting) pulumi.IntOutput { return v.FullSecondWarningThreshold }).(pulumi.IntOutput)
+}
+
+func (o LogMemoryGlobalSettingOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogMemoryGlobalSetting) pulumi.IntOutput { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+func (o LogMemoryGlobalSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogMemoryGlobalSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type LogMemoryGlobalSettingArrayOutput struct{ *pulumi.OutputState }

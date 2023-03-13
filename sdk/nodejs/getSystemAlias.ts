@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios system alias
- */
 export function getSystemAlias(args: GetSystemAliasArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemAliasResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemAlias:GetSystemAlias", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getSystemAlias(args: GetSystemAliasArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking GetSystemAlias.
  */
 export interface GetSystemAliasArgs {
-    /**
-     * Specify the name of the desired system alias.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,35 +25,22 @@ export interface GetSystemAliasArgs {
  * A collection of values returned by GetSystemAlias.
  */
 export interface GetSystemAliasResult {
-    /**
-     * Command list to execute.
-     */
     readonly command: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Alias command name.
-     */
     readonly name: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemAliasOutput(args: GetSystemAliasOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemAliasResult> {
-    return pulumi.output(args).apply(a => getSystemAlias(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemAlias(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemAlias.
  */
 export interface GetSystemAliasOutputArgs {
-    /**
-     * Specify the name of the desired system alias.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

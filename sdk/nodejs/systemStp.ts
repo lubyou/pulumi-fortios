@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure Spanning Tree Protocol (STP). Applies to FortiOS Version `>= 7.0.4`.
- *
- * ## Import
- *
- * System Stp can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemStp:SystemStp labelname SystemStp
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemStp:SystemStp labelname SystemStp
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemStp extends pulumi.CustomResource {
     /**
      * Get an existing SystemStp resource's state with the given name, ID, and optional extra
@@ -51,29 +32,11 @@ export class SystemStp extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemStp.__pulumiType;
     }
 
-    /**
-     * Forward delay (4 - 30 sec, default = 15).
-     */
     public readonly forwardDelay!: pulumi.Output<number>;
-    /**
-     * Hello time (1 - 10 sec, default = 2).
-     */
     public readonly helloTime!: pulumi.Output<number>;
-    /**
-     * Maximum packet age (6 - 40 sec, default = 20).
-     */
     public readonly maxAge!: pulumi.Output<number>;
-    /**
-     * Maximum number of hops (1 - 40, default = 20).
-     */
     public readonly maxHops!: pulumi.Output<number>;
-    /**
-     * STP switch priority; the lower the number the higher the priority (select from 0, 4096, 8192, 12288, 16384, 20480, 24576, 28672, 32768, 36864, 40960, 45056, 49152, 53248, and 57344). Valid values: `0`, `4096`, `8192`, `12288`, `16384`, `20480`, `24576`, `28672`, `32768`, `36864`, `40960`, `45056`, `49152`, `53248`, `57344`.
-     */
     public readonly switchPriority!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -113,29 +76,11 @@ export class SystemStp extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemStp resources.
  */
 export interface SystemStpState {
-    /**
-     * Forward delay (4 - 30 sec, default = 15).
-     */
     forwardDelay?: pulumi.Input<number>;
-    /**
-     * Hello time (1 - 10 sec, default = 2).
-     */
     helloTime?: pulumi.Input<number>;
-    /**
-     * Maximum packet age (6 - 40 sec, default = 20).
-     */
     maxAge?: pulumi.Input<number>;
-    /**
-     * Maximum number of hops (1 - 40, default = 20).
-     */
     maxHops?: pulumi.Input<number>;
-    /**
-     * STP switch priority; the lower the number the higher the priority (select from 0, 4096, 8192, 12288, 16384, 20480, 24576, 28672, 32768, 36864, 40960, 45056, 49152, 53248, and 57344). Valid values: `0`, `4096`, `8192`, `12288`, `16384`, `20480`, `24576`, `28672`, `32768`, `36864`, `40960`, `45056`, `49152`, `53248`, `57344`.
-     */
     switchPriority?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -143,28 +88,10 @@ export interface SystemStpState {
  * The set of arguments for constructing a SystemStp resource.
  */
 export interface SystemStpArgs {
-    /**
-     * Forward delay (4 - 30 sec, default = 15).
-     */
     forwardDelay?: pulumi.Input<number>;
-    /**
-     * Hello time (1 - 10 sec, default = 2).
-     */
     helloTime?: pulumi.Input<number>;
-    /**
-     * Maximum packet age (6 - 40 sec, default = 20).
-     */
     maxAge?: pulumi.Input<number>;
-    /**
-     * Maximum number of hops (1 - 40, default = 20).
-     */
     maxHops?: pulumi.Input<number>;
-    /**
-     * STP switch priority; the lower the number the higher the priority (select from 0, 4096, 8192, 12288, 16384, 20480, 24576, 28672, 32768, 36864, 40960, 45056, 49152, 53248, and 57344). Valid values: `0`, `4096`, `8192`, `12288`, `16384`, `20480`, `24576`, `28672`, `32768`, `36864`, `40960`, `45056`, `49152`, `53248`, `57344`.
-     */
     switchPriority?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

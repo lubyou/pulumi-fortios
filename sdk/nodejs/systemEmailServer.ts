@@ -4,44 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure the email server used by the FortiGate various things. For example, for sending email messages to users to support user authentication features.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemEmailServer("trname", {
- *     authenticate: "disable",
- *     port: 465,
- *     security: "smtps",
- *     server: "notification.fortinet.net",
- *     sourceIp: "0.0.0.0",
- *     sourceIp6: "::",
- *     sslMinProtoVersion: "default",
- *     type: "custom",
- *     validateServer: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * System EmailServer can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemEmailServer:SystemEmailServer labelname SystemEmailServer
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemEmailServer:SystemEmailServer labelname SystemEmailServer
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemEmailServer extends pulumi.CustomResource {
     /**
      * Get an existing SystemEmailServer resource's state with the given name, ID, and optional extra
@@ -70,65 +32,20 @@ export class SystemEmailServer extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemEmailServer.__pulumiType;
     }
 
-    /**
-     * Enable/disable authentication. Valid values: `enable`, `disable`.
-     */
     public readonly authenticate!: pulumi.Output<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
-    /**
-     * SMTP server user password for authentication.
-     */
     public readonly password!: pulumi.Output<string | undefined>;
-    /**
-     * SMTP server port.
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Reply-To email address.
-     */
     public readonly replyTo!: pulumi.Output<string>;
-    /**
-     * Connection security used by the email server. Valid values: `none`, `starttls`, `smtps`.
-     */
     public readonly security!: pulumi.Output<string>;
-    /**
-     * SMTP server IP address or hostname.
-     */
     public readonly server!: pulumi.Output<string>;
-    /**
-     * SMTP server IPv4 source IP.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * SMTP server IPv6 source IP.
-     */
     public readonly sourceIp6!: pulumi.Output<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     public readonly sslMinProtoVersion!: pulumi.Output<string>;
-    /**
-     * Use FortiGuard Message service or custom email server. Valid values: `custom`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * SMTP server user name for authentication.
-     */
     public readonly username!: pulumi.Output<string>;
-    /**
-     * Enable/disable validation of server certificate. Valid values: `enable`, `disable`.
-     */
     public readonly validateServer!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -164,7 +81,7 @@ export class SystemEmailServer extends pulumi.CustomResource {
             resourceInputs["authenticate"] = args ? args.authenticate : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
             resourceInputs["replyTo"] = args ? args.replyTo : undefined;
             resourceInputs["security"] = args ? args.security : undefined;
@@ -178,6 +95,8 @@ export class SystemEmailServer extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemEmailServer.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -186,65 +105,20 @@ export class SystemEmailServer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemEmailServer resources.
  */
 export interface SystemEmailServerState {
-    /**
-     * Enable/disable authentication. Valid values: `enable`, `disable`.
-     */
     authenticate?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * SMTP server user password for authentication.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * SMTP server port.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Reply-To email address.
-     */
     replyTo?: pulumi.Input<string>;
-    /**
-     * Connection security used by the email server. Valid values: `none`, `starttls`, `smtps`.
-     */
     security?: pulumi.Input<string>;
-    /**
-     * SMTP server IP address or hostname.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * SMTP server IPv4 source IP.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * SMTP server IPv6 source IP.
-     */
     sourceIp6?: pulumi.Input<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     sslMinProtoVersion?: pulumi.Input<string>;
-    /**
-     * Use FortiGuard Message service or custom email server. Valid values: `custom`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * SMTP server user name for authentication.
-     */
     username?: pulumi.Input<string>;
-    /**
-     * Enable/disable validation of server certificate. Valid values: `enable`, `disable`.
-     */
     validateServer?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -252,64 +126,19 @@ export interface SystemEmailServerState {
  * The set of arguments for constructing a SystemEmailServer resource.
  */
 export interface SystemEmailServerArgs {
-    /**
-     * Enable/disable authentication. Valid values: `enable`, `disable`.
-     */
     authenticate?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * SMTP server user password for authentication.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * SMTP server port.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Reply-To email address.
-     */
     replyTo?: pulumi.Input<string>;
-    /**
-     * Connection security used by the email server. Valid values: `none`, `starttls`, `smtps`.
-     */
     security?: pulumi.Input<string>;
-    /**
-     * SMTP server IP address or hostname.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * SMTP server IPv4 source IP.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * SMTP server IPv6 source IP.
-     */
     sourceIp6?: pulumi.Input<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     sslMinProtoVersion?: pulumi.Input<string>;
-    /**
-     * Use FortiGuard Message service or custom email server. Valid values: `custom`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * SMTP server user name for authentication.
-     */
     username?: pulumi.Input<string>;
-    /**
-     * Enable/disable validation of server certificate. Valid values: `enable`, `disable`.
-     */
     validateServer?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,63 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiToken Mobile push services.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemFtmPush(ctx, "trname", &fortios.SystemFtmPushArgs{
-// 			ServerIp:   pulumi.String("0.0.0.0"),
-// 			ServerPort: pulumi.Int(4433),
-// 			Status:     pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System FtmPush can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemFtmPush:SystemFtmPush labelname SystemFtmPush
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemFtmPush:SystemFtmPush labelname SystemFtmPush
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemFtmPush struct {
 	pulumi.CustomResourceState
 
-	// IPv4 address or domain name of FortiToken Mobile push services server.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
-	ServerCert pulumi.StringOutput `pulumi:"serverCert"`
-	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
-	ServerIp pulumi.StringOutput `pulumi:"serverIp"`
-	// Port to communicate with FortiToken Mobile push services server (1 - 65535, default = 4433).
-	ServerPort pulumi.IntOutput `pulumi:"serverPort"`
-	// Enable/disable the use of FortiToken Mobile push services. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Server     pulumi.StringOutput    `pulumi:"server"`
+	ServerCert pulumi.StringOutput    `pulumi:"serverCert"`
+	ServerIp   pulumi.StringOutput    `pulumi:"serverIp"`
+	ServerPort pulumi.IntOutput       `pulumi:"serverPort"`
+	Status     pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemFtmPush registers a new resource with the given unique name, arguments, and options.
@@ -99,33 +51,21 @@ func GetSystemFtmPush(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemFtmPush resources.
 type systemFtmPushState struct {
-	// IPv4 address or domain name of FortiToken Mobile push services server.
-	Server *string `pulumi:"server"`
-	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+	Server     *string `pulumi:"server"`
 	ServerCert *string `pulumi:"serverCert"`
-	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
-	ServerIp *string `pulumi:"serverIp"`
-	// Port to communicate with FortiToken Mobile push services server (1 - 65535, default = 4433).
-	ServerPort *int `pulumi:"serverPort"`
-	// Enable/disable the use of FortiToken Mobile push services. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ServerIp   *string `pulumi:"serverIp"`
+	ServerPort *int    `pulumi:"serverPort"`
+	Status     *string `pulumi:"status"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type SystemFtmPushState struct {
-	// IPv4 address or domain name of FortiToken Mobile push services server.
-	Server pulumi.StringPtrInput
-	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+	Server     pulumi.StringPtrInput
 	ServerCert pulumi.StringPtrInput
-	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
-	ServerIp pulumi.StringPtrInput
-	// Port to communicate with FortiToken Mobile push services server (1 - 65535, default = 4433).
+	ServerIp   pulumi.StringPtrInput
 	ServerPort pulumi.IntPtrInput
-	// Enable/disable the use of FortiToken Mobile push services. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Status     pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (SystemFtmPushState) ElementType() reflect.Type {
@@ -133,34 +73,22 @@ func (SystemFtmPushState) ElementType() reflect.Type {
 }
 
 type systemFtmPushArgs struct {
-	// IPv4 address or domain name of FortiToken Mobile push services server.
-	Server *string `pulumi:"server"`
-	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+	Server     *string `pulumi:"server"`
 	ServerCert *string `pulumi:"serverCert"`
-	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
-	ServerIp *string `pulumi:"serverIp"`
-	// Port to communicate with FortiToken Mobile push services server (1 - 65535, default = 4433).
-	ServerPort *int `pulumi:"serverPort"`
-	// Enable/disable the use of FortiToken Mobile push services. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ServerIp   *string `pulumi:"serverIp"`
+	ServerPort *int    `pulumi:"serverPort"`
+	Status     *string `pulumi:"status"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemFtmPush resource.
 type SystemFtmPushArgs struct {
-	// IPv4 address or domain name of FortiToken Mobile push services server.
-	Server pulumi.StringPtrInput
-	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+	Server     pulumi.StringPtrInput
 	ServerCert pulumi.StringPtrInput
-	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
-	ServerIp pulumi.StringPtrInput
-	// Port to communicate with FortiToken Mobile push services server (1 - 65535, default = 4433).
+	ServerIp   pulumi.StringPtrInput
 	ServerPort pulumi.IntPtrInput
-	// Enable/disable the use of FortiToken Mobile push services. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Status     pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (SystemFtmPushArgs) ElementType() reflect.Type {
@@ -189,7 +117,7 @@ func (i *SystemFtmPush) ToSystemFtmPushOutputWithContext(ctx context.Context) Sy
 // SystemFtmPushArrayInput is an input type that accepts SystemFtmPushArray and SystemFtmPushArrayOutput values.
 // You can construct a concrete instance of `SystemFtmPushArrayInput` via:
 //
-//          SystemFtmPushArray{ SystemFtmPushArgs{...} }
+//	SystemFtmPushArray{ SystemFtmPushArgs{...} }
 type SystemFtmPushArrayInput interface {
 	pulumi.Input
 
@@ -214,7 +142,7 @@ func (i SystemFtmPushArray) ToSystemFtmPushArrayOutputWithContext(ctx context.Co
 // SystemFtmPushMapInput is an input type that accepts SystemFtmPushMap and SystemFtmPushMapOutput values.
 // You can construct a concrete instance of `SystemFtmPushMapInput` via:
 //
-//          SystemFtmPushMap{ "key": SystemFtmPushArgs{...} }
+//	SystemFtmPushMap{ "key": SystemFtmPushArgs{...} }
 type SystemFtmPushMapInput interface {
 	pulumi.Input
 
@@ -248,6 +176,30 @@ func (o SystemFtmPushOutput) ToSystemFtmPushOutput() SystemFtmPushOutput {
 
 func (o SystemFtmPushOutput) ToSystemFtmPushOutputWithContext(ctx context.Context) SystemFtmPushOutput {
 	return o
+}
+
+func (o SystemFtmPushOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFtmPush) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o SystemFtmPushOutput) ServerCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFtmPush) pulumi.StringOutput { return v.ServerCert }).(pulumi.StringOutput)
+}
+
+func (o SystemFtmPushOutput) ServerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFtmPush) pulumi.StringOutput { return v.ServerIp }).(pulumi.StringOutput)
+}
+
+func (o SystemFtmPushOutput) ServerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFtmPush) pulumi.IntOutput { return v.ServerPort }).(pulumi.IntOutput)
+}
+
+func (o SystemFtmPushOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFtmPush) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemFtmPushOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemFtmPush) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemFtmPushArrayOutput struct{ *pulumi.OutputState }

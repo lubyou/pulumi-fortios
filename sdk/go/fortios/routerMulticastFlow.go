@@ -10,65 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure multicast-flow.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewRouterMulticastFlow(ctx, "trname", &fortios.RouterMulticastFlowArgs{
-// 			Flows: RouterMulticastFlowFlowArray{
-// 				&RouterMulticastFlowFlowArgs{
-// 					GroupAddr:  pulumi.String("224.252.0.0"),
-// 					SourceAddr: pulumi.String("224.112.0.0"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Router MulticastFlow can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerMulticastFlow:RouterMulticastFlow labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerMulticastFlow:RouterMulticastFlow labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterMulticastFlow struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comments pulumi.StringOutput `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Multicast-flow entries. The structure of `flows` block is documented below.
-	Flows RouterMulticastFlowFlowArrayOutput `pulumi:"flows"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comments            pulumi.StringOutput                `pulumi:"comments"`
+	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
+	Flows               RouterMulticastFlowFlowArrayOutput `pulumi:"flows"`
+	Name                pulumi.StringOutput                `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput             `pulumi:"vdomparam"`
 }
 
 // NewRouterMulticastFlow registers a new resource with the given unique name, arguments, and options.
@@ -101,29 +50,19 @@ func GetRouterMulticastFlow(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterMulticastFlow resources.
 type routerMulticastFlowState struct {
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Multicast-flow entries. The structure of `flows` block is documented below.
-	Flows []RouterMulticastFlowFlow `pulumi:"flows"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comments            *string                   `pulumi:"comments"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Flows               []RouterMulticastFlowFlow `pulumi:"flows"`
+	Name                *string                   `pulumi:"name"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
 
 type RouterMulticastFlowState struct {
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Multicast-flow entries. The structure of `flows` block is documented below.
-	Flows RouterMulticastFlowFlowArrayInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Flows               RouterMulticastFlowFlowArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterMulticastFlowState) ElementType() reflect.Type {
@@ -131,30 +70,20 @@ func (RouterMulticastFlowState) ElementType() reflect.Type {
 }
 
 type routerMulticastFlowArgs struct {
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Multicast-flow entries. The structure of `flows` block is documented below.
-	Flows []RouterMulticastFlowFlow `pulumi:"flows"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comments            *string                   `pulumi:"comments"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Flows               []RouterMulticastFlowFlow `pulumi:"flows"`
+	Name                *string                   `pulumi:"name"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterMulticastFlow resource.
 type RouterMulticastFlowArgs struct {
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Multicast-flow entries. The structure of `flows` block is documented below.
-	Flows RouterMulticastFlowFlowArrayInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Flows               RouterMulticastFlowFlowArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterMulticastFlowArgs) ElementType() reflect.Type {
@@ -183,7 +112,7 @@ func (i *RouterMulticastFlow) ToRouterMulticastFlowOutputWithContext(ctx context
 // RouterMulticastFlowArrayInput is an input type that accepts RouterMulticastFlowArray and RouterMulticastFlowArrayOutput values.
 // You can construct a concrete instance of `RouterMulticastFlowArrayInput` via:
 //
-//          RouterMulticastFlowArray{ RouterMulticastFlowArgs{...} }
+//	RouterMulticastFlowArray{ RouterMulticastFlowArgs{...} }
 type RouterMulticastFlowArrayInput interface {
 	pulumi.Input
 
@@ -208,7 +137,7 @@ func (i RouterMulticastFlowArray) ToRouterMulticastFlowArrayOutputWithContext(ct
 // RouterMulticastFlowMapInput is an input type that accepts RouterMulticastFlowMap and RouterMulticastFlowMapOutput values.
 // You can construct a concrete instance of `RouterMulticastFlowMapInput` via:
 //
-//          RouterMulticastFlowMap{ "key": RouterMulticastFlowArgs{...} }
+//	RouterMulticastFlowMap{ "key": RouterMulticastFlowArgs{...} }
 type RouterMulticastFlowMapInput interface {
 	pulumi.Input
 
@@ -242,6 +171,26 @@ func (o RouterMulticastFlowOutput) ToRouterMulticastFlowOutput() RouterMulticast
 
 func (o RouterMulticastFlowOutput) ToRouterMulticastFlowOutputWithContext(ctx context.Context) RouterMulticastFlowOutput {
 	return o
+}
+
+func (o RouterMulticastFlowOutput) Comments() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterMulticastFlow) pulumi.StringOutput { return v.Comments }).(pulumi.StringOutput)
+}
+
+func (o RouterMulticastFlowOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterMulticastFlow) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterMulticastFlowOutput) Flows() RouterMulticastFlowFlowArrayOutput {
+	return o.ApplyT(func(v *RouterMulticastFlow) RouterMulticastFlowFlowArrayOutput { return v.Flows }).(RouterMulticastFlowFlowArrayOutput)
+}
+
+func (o RouterMulticastFlowOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterMulticastFlow) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o RouterMulticastFlowOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterMulticastFlow) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterMulticastFlowArrayOutput struct{ *pulumi.OutputState }

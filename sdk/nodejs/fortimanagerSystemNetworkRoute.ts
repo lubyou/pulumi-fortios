@@ -4,23 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports updating system network route for FortiManager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerSystemNetworkRoute("test1", {
- *     destination: "192.168.2.0 255.255.255.0",
- *     device: "port4",
- *     gateway: "192.168.2.1",
- *     routeId: 5,
- * });
- * ```
- */
 export class FortimanagerSystemNetworkRoute extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerSystemNetworkRoute resource's state with the given name, ID, and optional extra
@@ -49,21 +32,9 @@ export class FortimanagerSystemNetworkRoute extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerSystemNetworkRoute.__pulumiType;
     }
 
-    /**
-     * Destination Ip/Mask.
-     */
     public readonly destination!: pulumi.Output<string>;
-    /**
-     * Gateway out interface.
-     */
     public readonly device!: pulumi.Output<string>;
-    /**
-     * Gateway Ip.
-     */
     public readonly gateway!: pulumi.Output<string>;
-    /**
-     * Route id.
-     */
     public readonly routeId!: pulumi.Output<number>;
 
     /**
@@ -111,21 +82,9 @@ export class FortimanagerSystemNetworkRoute extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerSystemNetworkRoute resources.
  */
 export interface FortimanagerSystemNetworkRouteState {
-    /**
-     * Destination Ip/Mask.
-     */
     destination?: pulumi.Input<string>;
-    /**
-     * Gateway out interface.
-     */
     device?: pulumi.Input<string>;
-    /**
-     * Gateway Ip.
-     */
     gateway?: pulumi.Input<string>;
-    /**
-     * Route id.
-     */
     routeId?: pulumi.Input<number>;
 }
 
@@ -133,20 +92,8 @@ export interface FortimanagerSystemNetworkRouteState {
  * The set of arguments for constructing a FortimanagerSystemNetworkRoute resource.
  */
 export interface FortimanagerSystemNetworkRouteArgs {
-    /**
-     * Destination Ip/Mask.
-     */
     destination: pulumi.Input<string>;
-    /**
-     * Gateway out interface.
-     */
     device: pulumi.Input<string>;
-    /**
-     * Gateway Ip.
-     */
     gateway: pulumi.Input<string>;
-    /**
-     * Route id.
-     */
     routeId: pulumi.Input<number>;
 }

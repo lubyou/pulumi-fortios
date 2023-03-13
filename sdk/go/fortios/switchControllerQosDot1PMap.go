@@ -10,80 +10,21 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch QoS 802.1p.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchControllerQosDot1PMap(ctx, "trname", &fortios.SwitchControllerQosDot1PMapArgs{
-// 			Priority0: pulumi.String("queue-0"),
-// 			Priority1: pulumi.String("queue-0"),
-// 			Priority2: pulumi.String("queue-0"),
-// 			Priority3: pulumi.String("queue-0"),
-// 			Priority4: pulumi.String("queue-0"),
-// 			Priority5: pulumi.String("queue-0"),
-// 			Priority6: pulumi.String("queue-0"),
-// 			Priority7: pulumi.String("queue-0"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchControllerQos Dot1PMap can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerQosDot1PMap:SwitchControllerQosDot1PMap labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerQosDot1PMap:SwitchControllerQosDot1PMap labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerQosDot1PMap struct {
 	pulumi.CustomResourceState
 
-	// Description of the 802.1p name.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// Enable/disable egress priority-tag frame. Valid values: `disable`, `enable`.
-	EgressPriTagging pulumi.StringOutput `pulumi:"egressPriTagging"`
-	// Dot1p map name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority0 pulumi.StringOutput `pulumi:"priority0"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority1 pulumi.StringOutput `pulumi:"priority1"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority2 pulumi.StringOutput `pulumi:"priority2"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority3 pulumi.StringOutput `pulumi:"priority3"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority4 pulumi.StringOutput `pulumi:"priority4"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority5 pulumi.StringOutput `pulumi:"priority5"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority6 pulumi.StringOutput `pulumi:"priority6"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority7 pulumi.StringOutput `pulumi:"priority7"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Description      pulumi.StringOutput    `pulumi:"description"`
+	EgressPriTagging pulumi.StringOutput    `pulumi:"egressPriTagging"`
+	Name             pulumi.StringOutput    `pulumi:"name"`
+	Priority0        pulumi.StringOutput    `pulumi:"priority0"`
+	Priority1        pulumi.StringOutput    `pulumi:"priority1"`
+	Priority2        pulumi.StringOutput    `pulumi:"priority2"`
+	Priority3        pulumi.StringOutput    `pulumi:"priority3"`
+	Priority4        pulumi.StringOutput    `pulumi:"priority4"`
+	Priority5        pulumi.StringOutput    `pulumi:"priority5"`
+	Priority6        pulumi.StringOutput    `pulumi:"priority6"`
+	Priority7        pulumi.StringOutput    `pulumi:"priority7"`
+	Vdomparam        pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerQosDot1PMap registers a new resource with the given unique name, arguments, and options.
@@ -116,57 +57,33 @@ func GetSwitchControllerQosDot1PMap(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerQosDot1PMap resources.
 type switchControllerQosDot1PMapState struct {
-	// Description of the 802.1p name.
-	Description *string `pulumi:"description"`
-	// Enable/disable egress priority-tag frame. Valid values: `disable`, `enable`.
+	Description      *string `pulumi:"description"`
 	EgressPriTagging *string `pulumi:"egressPriTagging"`
-	// Dot1p map name.
-	Name *string `pulumi:"name"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority0 *string `pulumi:"priority0"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority1 *string `pulumi:"priority1"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority2 *string `pulumi:"priority2"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority3 *string `pulumi:"priority3"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority4 *string `pulumi:"priority4"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority5 *string `pulumi:"priority5"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority6 *string `pulumi:"priority6"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority7 *string `pulumi:"priority7"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name             *string `pulumi:"name"`
+	Priority0        *string `pulumi:"priority0"`
+	Priority1        *string `pulumi:"priority1"`
+	Priority2        *string `pulumi:"priority2"`
+	Priority3        *string `pulumi:"priority3"`
+	Priority4        *string `pulumi:"priority4"`
+	Priority5        *string `pulumi:"priority5"`
+	Priority6        *string `pulumi:"priority6"`
+	Priority7        *string `pulumi:"priority7"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerQosDot1PMapState struct {
-	// Description of the 802.1p name.
-	Description pulumi.StringPtrInput
-	// Enable/disable egress priority-tag frame. Valid values: `disable`, `enable`.
+	Description      pulumi.StringPtrInput
 	EgressPriTagging pulumi.StringPtrInput
-	// Dot1p map name.
-	Name pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority0 pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority1 pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority2 pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority3 pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority4 pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority5 pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority6 pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority7 pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	Priority0        pulumi.StringPtrInput
+	Priority1        pulumi.StringPtrInput
+	Priority2        pulumi.StringPtrInput
+	Priority3        pulumi.StringPtrInput
+	Priority4        pulumi.StringPtrInput
+	Priority5        pulumi.StringPtrInput
+	Priority6        pulumi.StringPtrInput
+	Priority7        pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (SwitchControllerQosDot1PMapState) ElementType() reflect.Type {
@@ -174,58 +91,34 @@ func (SwitchControllerQosDot1PMapState) ElementType() reflect.Type {
 }
 
 type switchControllerQosDot1PMapArgs struct {
-	// Description of the 802.1p name.
-	Description *string `pulumi:"description"`
-	// Enable/disable egress priority-tag frame. Valid values: `disable`, `enable`.
+	Description      *string `pulumi:"description"`
 	EgressPriTagging *string `pulumi:"egressPriTagging"`
-	// Dot1p map name.
-	Name *string `pulumi:"name"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority0 *string `pulumi:"priority0"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority1 *string `pulumi:"priority1"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority2 *string `pulumi:"priority2"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority3 *string `pulumi:"priority3"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority4 *string `pulumi:"priority4"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority5 *string `pulumi:"priority5"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority6 *string `pulumi:"priority6"`
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority7 *string `pulumi:"priority7"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name             *string `pulumi:"name"`
+	Priority0        *string `pulumi:"priority0"`
+	Priority1        *string `pulumi:"priority1"`
+	Priority2        *string `pulumi:"priority2"`
+	Priority3        *string `pulumi:"priority3"`
+	Priority4        *string `pulumi:"priority4"`
+	Priority5        *string `pulumi:"priority5"`
+	Priority6        *string `pulumi:"priority6"`
+	Priority7        *string `pulumi:"priority7"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerQosDot1PMap resource.
 type SwitchControllerQosDot1PMapArgs struct {
-	// Description of the 802.1p name.
-	Description pulumi.StringPtrInput
-	// Enable/disable egress priority-tag frame. Valid values: `disable`, `enable`.
+	Description      pulumi.StringPtrInput
 	EgressPriTagging pulumi.StringPtrInput
-	// Dot1p map name.
-	Name pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority0 pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority1 pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority2 pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority3 pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority4 pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority5 pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority6 pulumi.StringPtrInput
-	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-	Priority7 pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	Priority0        pulumi.StringPtrInput
+	Priority1        pulumi.StringPtrInput
+	Priority2        pulumi.StringPtrInput
+	Priority3        pulumi.StringPtrInput
+	Priority4        pulumi.StringPtrInput
+	Priority5        pulumi.StringPtrInput
+	Priority6        pulumi.StringPtrInput
+	Priority7        pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (SwitchControllerQosDot1PMapArgs) ElementType() reflect.Type {
@@ -254,7 +147,7 @@ func (i *SwitchControllerQosDot1PMap) ToSwitchControllerQosDot1PMapOutputWithCon
 // SwitchControllerQosDot1PMapArrayInput is an input type that accepts SwitchControllerQosDot1PMapArray and SwitchControllerQosDot1PMapArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerQosDot1PMapArrayInput` via:
 //
-//          SwitchControllerQosDot1PMapArray{ SwitchControllerQosDot1PMapArgs{...} }
+//	SwitchControllerQosDot1PMapArray{ SwitchControllerQosDot1PMapArgs{...} }
 type SwitchControllerQosDot1PMapArrayInput interface {
 	pulumi.Input
 
@@ -279,7 +172,7 @@ func (i SwitchControllerQosDot1PMapArray) ToSwitchControllerQosDot1PMapArrayOutp
 // SwitchControllerQosDot1PMapMapInput is an input type that accepts SwitchControllerQosDot1PMapMap and SwitchControllerQosDot1PMapMapOutput values.
 // You can construct a concrete instance of `SwitchControllerQosDot1PMapMapInput` via:
 //
-//          SwitchControllerQosDot1PMapMap{ "key": SwitchControllerQosDot1PMapArgs{...} }
+//	SwitchControllerQosDot1PMapMap{ "key": SwitchControllerQosDot1PMapArgs{...} }
 type SwitchControllerQosDot1PMapMapInput interface {
 	pulumi.Input
 
@@ -313,6 +206,54 @@ func (o SwitchControllerQosDot1PMapOutput) ToSwitchControllerQosDot1PMapOutput()
 
 func (o SwitchControllerQosDot1PMapOutput) ToSwitchControllerQosDot1PMapOutputWithContext(ctx context.Context) SwitchControllerQosDot1PMapOutput {
 	return o
+}
+
+func (o SwitchControllerQosDot1PMapOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosDot1PMap) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosDot1PMapOutput) EgressPriTagging() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosDot1PMap) pulumi.StringOutput { return v.EgressPriTagging }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosDot1PMapOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosDot1PMap) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosDot1PMapOutput) Priority0() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosDot1PMap) pulumi.StringOutput { return v.Priority0 }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosDot1PMapOutput) Priority1() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosDot1PMap) pulumi.StringOutput { return v.Priority1 }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosDot1PMapOutput) Priority2() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosDot1PMap) pulumi.StringOutput { return v.Priority2 }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosDot1PMapOutput) Priority3() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosDot1PMap) pulumi.StringOutput { return v.Priority3 }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosDot1PMapOutput) Priority4() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosDot1PMap) pulumi.StringOutput { return v.Priority4 }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosDot1PMapOutput) Priority5() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosDot1PMap) pulumi.StringOutput { return v.Priority5 }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosDot1PMapOutput) Priority6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosDot1PMap) pulumi.StringOutput { return v.Priority6 }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosDot1PMapOutput) Priority7() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosDot1PMap) pulumi.StringOutput { return v.Priority7 }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosDot1PMapOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerQosDot1PMap) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerQosDot1PMapArrayOutput struct{ *pulumi.OutputState }

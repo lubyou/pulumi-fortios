@@ -10,82 +10,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure firewall application groups.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewApplicationGroup(ctx, "trname", &fortios.ApplicationGroupArgs{
-// 			Categories: ApplicationGroupCategoryArray{
-// 				&ApplicationGroupCategoryArgs{
-// 					Id: pulumi.Int(2),
-// 				},
-// 			},
-// 			Comment: pulumi.String("group1 test"),
-// 			Type:    pulumi.String("category"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Application Group can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/applicationGroup:ApplicationGroup labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/applicationGroup:ApplicationGroup labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type ApplicationGroup struct {
 	pulumi.CustomResourceState
 
-	// Application ID list. The structure of `application` block is documented below.
-	Applications ApplicationGroupApplicationArrayOutput `pulumi:"applications"`
-	// Application behavior filter.
-	Behavior pulumi.StringOutput `pulumi:"behavior"`
-	// Application category ID list. The structure of `category` block is documented below.
-	Categories ApplicationGroupCategoryArrayOutput `pulumi:"categories"`
-	// Comment
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Application group name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Application popularity filter (1 - 5, from least to most popular). Valid values: `1`, `2`, `3`, `4`, `5`.
-	Popularity pulumi.StringOutput `pulumi:"popularity"`
-	// Application protocol filter.
-	Protocols pulumi.StringOutput `pulumi:"protocols"`
-	// Risk, or impact, of allowing traffic from this application to occur (1 - 5; Low, Elevated, Medium, High, and Critical). The structure of `risk` block is documented below.
-	Risks ApplicationGroupRiskArrayOutput `pulumi:"risks"`
-	// Application technology filter.
-	Technology pulumi.StringOutput `pulumi:"technology"`
-	// Application group type.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Application vendor filter.
-	Vendor pulumi.StringOutput `pulumi:"vendor"`
+	Applications        ApplicationGroupApplicationArrayOutput `pulumi:"applications"`
+	Behavior            pulumi.StringOutput                    `pulumi:"behavior"`
+	Categories          ApplicationGroupCategoryArrayOutput    `pulumi:"categories"`
+	Comment             pulumi.StringPtrOutput                 `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                    `pulumi:"name"`
+	Popularity          pulumi.StringOutput                    `pulumi:"popularity"`
+	Protocols           pulumi.StringOutput                    `pulumi:"protocols"`
+	Risks               ApplicationGroupRiskArrayOutput        `pulumi:"risks"`
+	Technology          pulumi.StringOutput                    `pulumi:"technology"`
+	Type                pulumi.StringOutput                    `pulumi:"type"`
+	Vdomparam           pulumi.StringPtrOutput                 `pulumi:"vdomparam"`
+	Vendor              pulumi.StringOutput                    `pulumi:"vendor"`
 }
 
 // NewApplicationGroup registers a new resource with the given unique name, arguments, and options.
@@ -118,61 +58,35 @@ func GetApplicationGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ApplicationGroup resources.
 type applicationGroupState struct {
-	// Application ID list. The structure of `application` block is documented below.
-	Applications []ApplicationGroupApplication `pulumi:"applications"`
-	// Application behavior filter.
-	Behavior *string `pulumi:"behavior"`
-	// Application category ID list. The structure of `category` block is documented below.
-	Categories []ApplicationGroupCategory `pulumi:"categories"`
-	// Comment
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Application group name.
-	Name *string `pulumi:"name"`
-	// Application popularity filter (1 - 5, from least to most popular). Valid values: `1`, `2`, `3`, `4`, `5`.
-	Popularity *string `pulumi:"popularity"`
-	// Application protocol filter.
-	Protocols *string `pulumi:"protocols"`
-	// Risk, or impact, of allowing traffic from this application to occur (1 - 5; Low, Elevated, Medium, High, and Critical). The structure of `risk` block is documented below.
-	Risks []ApplicationGroupRisk `pulumi:"risks"`
-	// Application technology filter.
-	Technology *string `pulumi:"technology"`
-	// Application group type.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Application vendor filter.
-	Vendor *string `pulumi:"vendor"`
+	Applications        []ApplicationGroupApplication `pulumi:"applications"`
+	Behavior            *string                       `pulumi:"behavior"`
+	Categories          []ApplicationGroupCategory    `pulumi:"categories"`
+	Comment             *string                       `pulumi:"comment"`
+	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	Name                *string                       `pulumi:"name"`
+	Popularity          *string                       `pulumi:"popularity"`
+	Protocols           *string                       `pulumi:"protocols"`
+	Risks               []ApplicationGroupRisk        `pulumi:"risks"`
+	Technology          *string                       `pulumi:"technology"`
+	Type                *string                       `pulumi:"type"`
+	Vdomparam           *string                       `pulumi:"vdomparam"`
+	Vendor              *string                       `pulumi:"vendor"`
 }
 
 type ApplicationGroupState struct {
-	// Application ID list. The structure of `application` block is documented below.
-	Applications ApplicationGroupApplicationArrayInput
-	// Application behavior filter.
-	Behavior pulumi.StringPtrInput
-	// Application category ID list. The structure of `category` block is documented below.
-	Categories ApplicationGroupCategoryArrayInput
-	// Comment
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Applications        ApplicationGroupApplicationArrayInput
+	Behavior            pulumi.StringPtrInput
+	Categories          ApplicationGroupCategoryArrayInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Application group name.
-	Name pulumi.StringPtrInput
-	// Application popularity filter (1 - 5, from least to most popular). Valid values: `1`, `2`, `3`, `4`, `5`.
-	Popularity pulumi.StringPtrInput
-	// Application protocol filter.
-	Protocols pulumi.StringPtrInput
-	// Risk, or impact, of allowing traffic from this application to occur (1 - 5; Low, Elevated, Medium, High, and Critical). The structure of `risk` block is documented below.
-	Risks ApplicationGroupRiskArrayInput
-	// Application technology filter.
-	Technology pulumi.StringPtrInput
-	// Application group type.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Application vendor filter.
-	Vendor pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Popularity          pulumi.StringPtrInput
+	Protocols           pulumi.StringPtrInput
+	Risks               ApplicationGroupRiskArrayInput
+	Technology          pulumi.StringPtrInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Vendor              pulumi.StringPtrInput
 }
 
 func (ApplicationGroupState) ElementType() reflect.Type {
@@ -180,62 +94,36 @@ func (ApplicationGroupState) ElementType() reflect.Type {
 }
 
 type applicationGroupArgs struct {
-	// Application ID list. The structure of `application` block is documented below.
-	Applications []ApplicationGroupApplication `pulumi:"applications"`
-	// Application behavior filter.
-	Behavior *string `pulumi:"behavior"`
-	// Application category ID list. The structure of `category` block is documented below.
-	Categories []ApplicationGroupCategory `pulumi:"categories"`
-	// Comment
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Application group name.
-	Name *string `pulumi:"name"`
-	// Application popularity filter (1 - 5, from least to most popular). Valid values: `1`, `2`, `3`, `4`, `5`.
-	Popularity *string `pulumi:"popularity"`
-	// Application protocol filter.
-	Protocols *string `pulumi:"protocols"`
-	// Risk, or impact, of allowing traffic from this application to occur (1 - 5; Low, Elevated, Medium, High, and Critical). The structure of `risk` block is documented below.
-	Risks []ApplicationGroupRisk `pulumi:"risks"`
-	// Application technology filter.
-	Technology *string `pulumi:"technology"`
-	// Application group type.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Application vendor filter.
-	Vendor *string `pulumi:"vendor"`
+	Applications        []ApplicationGroupApplication `pulumi:"applications"`
+	Behavior            *string                       `pulumi:"behavior"`
+	Categories          []ApplicationGroupCategory    `pulumi:"categories"`
+	Comment             *string                       `pulumi:"comment"`
+	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	Name                *string                       `pulumi:"name"`
+	Popularity          *string                       `pulumi:"popularity"`
+	Protocols           *string                       `pulumi:"protocols"`
+	Risks               []ApplicationGroupRisk        `pulumi:"risks"`
+	Technology          *string                       `pulumi:"technology"`
+	Type                *string                       `pulumi:"type"`
+	Vdomparam           *string                       `pulumi:"vdomparam"`
+	Vendor              *string                       `pulumi:"vendor"`
 }
 
 // The set of arguments for constructing a ApplicationGroup resource.
 type ApplicationGroupArgs struct {
-	// Application ID list. The structure of `application` block is documented below.
-	Applications ApplicationGroupApplicationArrayInput
-	// Application behavior filter.
-	Behavior pulumi.StringPtrInput
-	// Application category ID list. The structure of `category` block is documented below.
-	Categories ApplicationGroupCategoryArrayInput
-	// Comment
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Applications        ApplicationGroupApplicationArrayInput
+	Behavior            pulumi.StringPtrInput
+	Categories          ApplicationGroupCategoryArrayInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Application group name.
-	Name pulumi.StringPtrInput
-	// Application popularity filter (1 - 5, from least to most popular). Valid values: `1`, `2`, `3`, `4`, `5`.
-	Popularity pulumi.StringPtrInput
-	// Application protocol filter.
-	Protocols pulumi.StringPtrInput
-	// Risk, or impact, of allowing traffic from this application to occur (1 - 5; Low, Elevated, Medium, High, and Critical). The structure of `risk` block is documented below.
-	Risks ApplicationGroupRiskArrayInput
-	// Application technology filter.
-	Technology pulumi.StringPtrInput
-	// Application group type.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Application vendor filter.
-	Vendor pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Popularity          pulumi.StringPtrInput
+	Protocols           pulumi.StringPtrInput
+	Risks               ApplicationGroupRiskArrayInput
+	Technology          pulumi.StringPtrInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Vendor              pulumi.StringPtrInput
 }
 
 func (ApplicationGroupArgs) ElementType() reflect.Type {
@@ -264,7 +152,7 @@ func (i *ApplicationGroup) ToApplicationGroupOutputWithContext(ctx context.Conte
 // ApplicationGroupArrayInput is an input type that accepts ApplicationGroupArray and ApplicationGroupArrayOutput values.
 // You can construct a concrete instance of `ApplicationGroupArrayInput` via:
 //
-//          ApplicationGroupArray{ ApplicationGroupArgs{...} }
+//	ApplicationGroupArray{ ApplicationGroupArgs{...} }
 type ApplicationGroupArrayInput interface {
 	pulumi.Input
 
@@ -289,7 +177,7 @@ func (i ApplicationGroupArray) ToApplicationGroupArrayOutputWithContext(ctx cont
 // ApplicationGroupMapInput is an input type that accepts ApplicationGroupMap and ApplicationGroupMapOutput values.
 // You can construct a concrete instance of `ApplicationGroupMapInput` via:
 //
-//          ApplicationGroupMap{ "key": ApplicationGroupArgs{...} }
+//	ApplicationGroupMap{ "key": ApplicationGroupArgs{...} }
 type ApplicationGroupMapInput interface {
 	pulumi.Input
 
@@ -323,6 +211,58 @@ func (o ApplicationGroupOutput) ToApplicationGroupOutput() ApplicationGroupOutpu
 
 func (o ApplicationGroupOutput) ToApplicationGroupOutputWithContext(ctx context.Context) ApplicationGroupOutput {
 	return o
+}
+
+func (o ApplicationGroupOutput) Applications() ApplicationGroupApplicationArrayOutput {
+	return o.ApplyT(func(v *ApplicationGroup) ApplicationGroupApplicationArrayOutput { return v.Applications }).(ApplicationGroupApplicationArrayOutput)
+}
+
+func (o ApplicationGroupOutput) Behavior() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationGroup) pulumi.StringOutput { return v.Behavior }).(pulumi.StringOutput)
+}
+
+func (o ApplicationGroupOutput) Categories() ApplicationGroupCategoryArrayOutput {
+	return o.ApplyT(func(v *ApplicationGroup) ApplicationGroupCategoryArrayOutput { return v.Categories }).(ApplicationGroupCategoryArrayOutput)
+}
+
+func (o ApplicationGroupOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationGroup) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o ApplicationGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o ApplicationGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ApplicationGroupOutput) Popularity() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationGroup) pulumi.StringOutput { return v.Popularity }).(pulumi.StringOutput)
+}
+
+func (o ApplicationGroupOutput) Protocols() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationGroup) pulumi.StringOutput { return v.Protocols }).(pulumi.StringOutput)
+}
+
+func (o ApplicationGroupOutput) Risks() ApplicationGroupRiskArrayOutput {
+	return o.ApplyT(func(v *ApplicationGroup) ApplicationGroupRiskArrayOutput { return v.Risks }).(ApplicationGroupRiskArrayOutput)
+}
+
+func (o ApplicationGroupOutput) Technology() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationGroup) pulumi.StringOutput { return v.Technology }).(pulumi.StringOutput)
+}
+
+func (o ApplicationGroupOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationGroup) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o ApplicationGroupOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationGroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o ApplicationGroupOutput) Vendor() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationGroup) pulumi.StringOutput { return v.Vendor }).(pulumi.StringOutput)
 }
 
 type ApplicationGroupArrayOutput struct{ *pulumi.OutputState }

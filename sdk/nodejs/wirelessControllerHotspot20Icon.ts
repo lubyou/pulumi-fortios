@@ -2,37 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure OSU provider icon.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WirelessControllerHotspot20Icon("trname", {});
- * ```
- *
- * ## Import
- *
- * WirelessControllerHotspot20 Icon can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20Icon:WirelessControllerHotspot20Icon labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20Icon:WirelessControllerHotspot20Icon labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerHotspot20Icon extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerHotspot20Icon resource's state with the given name, ID, and optional extra
@@ -61,21 +34,9 @@ export class WirelessControllerHotspot20Icon extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerHotspot20Icon.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Icon list. The structure of `iconList` block is documented below.
-     */
     public readonly iconLists!: pulumi.Output<outputs.WirelessControllerHotspot20IconIconList[] | undefined>;
-    /**
-     * Icon name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -111,21 +72,9 @@ export class WirelessControllerHotspot20Icon extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerHotspot20Icon resources.
  */
 export interface WirelessControllerHotspot20IconState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Icon list. The structure of `iconList` block is documented below.
-     */
     iconLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20IconIconList>[]>;
-    /**
-     * Icon name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -133,20 +82,8 @@ export interface WirelessControllerHotspot20IconState {
  * The set of arguments for constructing a WirelessControllerHotspot20Icon resource.
  */
 export interface WirelessControllerHotspot20IconArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Icon list. The structure of `iconList` block is documented below.
-     */
     iconLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20IconIconList>[]>;
-    /**
-     * Icon name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,41 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure logging by FortiSwitch device to a remote syslog server. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// SwitchController RemoteLog can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerRemoteLog:SwitchControllerRemoteLog labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerRemoteLog:SwitchControllerRemoteLog labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerRemoteLog struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable comma-separated value (CSV) strings. Valid values: `enable`, `disable`.
-	Csv pulumi.StringOutput `pulumi:"csv"`
-	// Facility to log to remote syslog server. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-	Facility pulumi.StringOutput `pulumi:"facility"`
-	// Remote log name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Remote syslog server listening port.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// IPv4 address of the remote syslog server.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// Severity of logs to be transferred to remote log server. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity pulumi.StringOutput `pulumi:"severity"`
-	// Enable/disable logging by FortiSwitch device to a remote syslog server. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Csv       pulumi.StringOutput    `pulumi:"csv"`
+	Facility  pulumi.StringOutput    `pulumi:"facility"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
+	Port      pulumi.IntOutput       `pulumi:"port"`
+	Server    pulumi.StringOutput    `pulumi:"server"`
+	Severity  pulumi.StringOutput    `pulumi:"severity"`
+	Status    pulumi.StringOutput    `pulumi:"status"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -78,40 +53,24 @@ func GetSwitchControllerRemoteLog(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerRemoteLog resources.
 type switchControllerRemoteLogState struct {
-	// Enable/disable comma-separated value (CSV) strings. Valid values: `enable`, `disable`.
-	Csv *string `pulumi:"csv"`
-	// Facility to log to remote syslog server. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-	Facility *string `pulumi:"facility"`
-	// Remote log name.
-	Name *string `pulumi:"name"`
-	// Remote syslog server listening port.
-	Port *int `pulumi:"port"`
-	// IPv4 address of the remote syslog server.
-	Server *string `pulumi:"server"`
-	// Severity of logs to be transferred to remote log server. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity *string `pulumi:"severity"`
-	// Enable/disable logging by FortiSwitch device to a remote syslog server. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Csv       *string `pulumi:"csv"`
+	Facility  *string `pulumi:"facility"`
+	Name      *string `pulumi:"name"`
+	Port      *int    `pulumi:"port"`
+	Server    *string `pulumi:"server"`
+	Severity  *string `pulumi:"severity"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerRemoteLogState struct {
-	// Enable/disable comma-separated value (CSV) strings. Valid values: `enable`, `disable`.
-	Csv pulumi.StringPtrInput
-	// Facility to log to remote syslog server. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-	Facility pulumi.StringPtrInput
-	// Remote log name.
-	Name pulumi.StringPtrInput
-	// Remote syslog server listening port.
-	Port pulumi.IntPtrInput
-	// IPv4 address of the remote syslog server.
-	Server pulumi.StringPtrInput
-	// Severity of logs to be transferred to remote log server. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity pulumi.StringPtrInput
-	// Enable/disable logging by FortiSwitch device to a remote syslog server. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Csv       pulumi.StringPtrInput
+	Facility  pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
+	Port      pulumi.IntPtrInput
+	Server    pulumi.StringPtrInput
+	Severity  pulumi.StringPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -120,41 +79,25 @@ func (SwitchControllerRemoteLogState) ElementType() reflect.Type {
 }
 
 type switchControllerRemoteLogArgs struct {
-	// Enable/disable comma-separated value (CSV) strings. Valid values: `enable`, `disable`.
-	Csv *string `pulumi:"csv"`
-	// Facility to log to remote syslog server. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-	Facility *string `pulumi:"facility"`
-	// Remote log name.
-	Name *string `pulumi:"name"`
-	// Remote syslog server listening port.
-	Port *int `pulumi:"port"`
-	// IPv4 address of the remote syslog server.
-	Server *string `pulumi:"server"`
-	// Severity of logs to be transferred to remote log server. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity *string `pulumi:"severity"`
-	// Enable/disable logging by FortiSwitch device to a remote syslog server. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Csv       *string `pulumi:"csv"`
+	Facility  *string `pulumi:"facility"`
+	Name      *string `pulumi:"name"`
+	Port      *int    `pulumi:"port"`
+	Server    *string `pulumi:"server"`
+	Severity  *string `pulumi:"severity"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerRemoteLog resource.
 type SwitchControllerRemoteLogArgs struct {
-	// Enable/disable comma-separated value (CSV) strings. Valid values: `enable`, `disable`.
-	Csv pulumi.StringPtrInput
-	// Facility to log to remote syslog server. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-	Facility pulumi.StringPtrInput
-	// Remote log name.
-	Name pulumi.StringPtrInput
-	// Remote syslog server listening port.
-	Port pulumi.IntPtrInput
-	// IPv4 address of the remote syslog server.
-	Server pulumi.StringPtrInput
-	// Severity of logs to be transferred to remote log server. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity pulumi.StringPtrInput
-	// Enable/disable logging by FortiSwitch device to a remote syslog server. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Csv       pulumi.StringPtrInput
+	Facility  pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
+	Port      pulumi.IntPtrInput
+	Server    pulumi.StringPtrInput
+	Severity  pulumi.StringPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -184,7 +127,7 @@ func (i *SwitchControllerRemoteLog) ToSwitchControllerRemoteLogOutputWithContext
 // SwitchControllerRemoteLogArrayInput is an input type that accepts SwitchControllerRemoteLogArray and SwitchControllerRemoteLogArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerRemoteLogArrayInput` via:
 //
-//          SwitchControllerRemoteLogArray{ SwitchControllerRemoteLogArgs{...} }
+//	SwitchControllerRemoteLogArray{ SwitchControllerRemoteLogArgs{...} }
 type SwitchControllerRemoteLogArrayInput interface {
 	pulumi.Input
 
@@ -209,7 +152,7 @@ func (i SwitchControllerRemoteLogArray) ToSwitchControllerRemoteLogArrayOutputWi
 // SwitchControllerRemoteLogMapInput is an input type that accepts SwitchControllerRemoteLogMap and SwitchControllerRemoteLogMapOutput values.
 // You can construct a concrete instance of `SwitchControllerRemoteLogMapInput` via:
 //
-//          SwitchControllerRemoteLogMap{ "key": SwitchControllerRemoteLogArgs{...} }
+//	SwitchControllerRemoteLogMap{ "key": SwitchControllerRemoteLogArgs{...} }
 type SwitchControllerRemoteLogMapInput interface {
 	pulumi.Input
 
@@ -243,6 +186,38 @@ func (o SwitchControllerRemoteLogOutput) ToSwitchControllerRemoteLogOutput() Swi
 
 func (o SwitchControllerRemoteLogOutput) ToSwitchControllerRemoteLogOutputWithContext(ctx context.Context) SwitchControllerRemoteLogOutput {
 	return o
+}
+
+func (o SwitchControllerRemoteLogOutput) Csv() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerRemoteLog) pulumi.StringOutput { return v.Csv }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerRemoteLogOutput) Facility() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerRemoteLog) pulumi.StringOutput { return v.Facility }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerRemoteLogOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerRemoteLog) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerRemoteLogOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerRemoteLog) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerRemoteLogOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerRemoteLog) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerRemoteLogOutput) Severity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerRemoteLog) pulumi.StringOutput { return v.Severity }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerRemoteLogOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerRemoteLog) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerRemoteLogOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerRemoteLog) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerRemoteLogArrayOutput struct{ *pulumi.OutputState }

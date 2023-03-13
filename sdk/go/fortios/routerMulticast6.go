@@ -10,66 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 multicast.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewRouterMulticast6(ctx, "trname", &fortios.RouterMulticast6Args{
-// 			MulticastPmtu:    pulumi.String("disable"),
-// 			MulticastRouting: pulumi.String("disable"),
-// 			PimSmGlobal: &RouterMulticast6PimSmGlobalArgs{
-// 				RegisterRateLimit: pulumi.Int(0),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Router Multicast6 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerMulticast6:RouterMulticast6 labelname RouterMulticast6
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerMulticast6:RouterMulticast6 labelname RouterMulticast6
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterMulticast6 struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Protocol Independent Multicast (PIM) interfaces. The structure of `interface` block is documented below.
-	Interfaces RouterMulticast6InterfaceArrayOutput `pulumi:"interfaces"`
-	// Enable/disable PMTU for IPv6 multicast. Valid values: `enable`, `disable`.
-	MulticastPmtu pulumi.StringOutput `pulumi:"multicastPmtu"`
-	// Enable/disable IPv6 multicast routing. Valid values: `enable`, `disable`.
-	MulticastRouting pulumi.StringOutput `pulumi:"multicastRouting"`
-	// PIM sparse-mode global settings. The structure of `pimSmGlobal` block is documented below.
-	PimSmGlobal RouterMulticast6PimSmGlobalPtrOutput `pulumi:"pimSmGlobal"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	Interfaces          RouterMulticast6InterfaceArrayOutput `pulumi:"interfaces"`
+	MulticastPmtu       pulumi.StringOutput                  `pulumi:"multicastPmtu"`
+	MulticastRouting    pulumi.StringOutput                  `pulumi:"multicastRouting"`
+	PimSmGlobal         RouterMulticast6PimSmGlobalOutput    `pulumi:"pimSmGlobal"`
+	Vdomparam           pulumi.StringPtrOutput               `pulumi:"vdomparam"`
 }
 
 // NewRouterMulticast6 registers a new resource with the given unique name, arguments, and options.
@@ -102,33 +51,21 @@ func GetRouterMulticast6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterMulticast6 resources.
 type routerMulticast6State struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Protocol Independent Multicast (PIM) interfaces. The structure of `interface` block is documented below.
-	Interfaces []RouterMulticast6Interface `pulumi:"interfaces"`
-	// Enable/disable PMTU for IPv6 multicast. Valid values: `enable`, `disable`.
-	MulticastPmtu *string `pulumi:"multicastPmtu"`
-	// Enable/disable IPv6 multicast routing. Valid values: `enable`, `disable`.
-	MulticastRouting *string `pulumi:"multicastRouting"`
-	// PIM sparse-mode global settings. The structure of `pimSmGlobal` block is documented below.
-	PimSmGlobal *RouterMulticast6PimSmGlobal `pulumi:"pimSmGlobal"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	Interfaces          []RouterMulticast6Interface  `pulumi:"interfaces"`
+	MulticastPmtu       *string                      `pulumi:"multicastPmtu"`
+	MulticastRouting    *string                      `pulumi:"multicastRouting"`
+	PimSmGlobal         *RouterMulticast6PimSmGlobal `pulumi:"pimSmGlobal"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 type RouterMulticast6State struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Protocol Independent Multicast (PIM) interfaces. The structure of `interface` block is documented below.
-	Interfaces RouterMulticast6InterfaceArrayInput
-	// Enable/disable PMTU for IPv6 multicast. Valid values: `enable`, `disable`.
-	MulticastPmtu pulumi.StringPtrInput
-	// Enable/disable IPv6 multicast routing. Valid values: `enable`, `disable`.
-	MulticastRouting pulumi.StringPtrInput
-	// PIM sparse-mode global settings. The structure of `pimSmGlobal` block is documented below.
-	PimSmGlobal RouterMulticast6PimSmGlobalPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interfaces          RouterMulticast6InterfaceArrayInput
+	MulticastPmtu       pulumi.StringPtrInput
+	MulticastRouting    pulumi.StringPtrInput
+	PimSmGlobal         RouterMulticast6PimSmGlobalPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterMulticast6State) ElementType() reflect.Type {
@@ -136,34 +73,22 @@ func (RouterMulticast6State) ElementType() reflect.Type {
 }
 
 type routerMulticast6Args struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Protocol Independent Multicast (PIM) interfaces. The structure of `interface` block is documented below.
-	Interfaces []RouterMulticast6Interface `pulumi:"interfaces"`
-	// Enable/disable PMTU for IPv6 multicast. Valid values: `enable`, `disable`.
-	MulticastPmtu *string `pulumi:"multicastPmtu"`
-	// Enable/disable IPv6 multicast routing. Valid values: `enable`, `disable`.
-	MulticastRouting *string `pulumi:"multicastRouting"`
-	// PIM sparse-mode global settings. The structure of `pimSmGlobal` block is documented below.
-	PimSmGlobal *RouterMulticast6PimSmGlobal `pulumi:"pimSmGlobal"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	Interfaces          []RouterMulticast6Interface  `pulumi:"interfaces"`
+	MulticastPmtu       *string                      `pulumi:"multicastPmtu"`
+	MulticastRouting    *string                      `pulumi:"multicastRouting"`
+	PimSmGlobal         *RouterMulticast6PimSmGlobal `pulumi:"pimSmGlobal"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterMulticast6 resource.
 type RouterMulticast6Args struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Protocol Independent Multicast (PIM) interfaces. The structure of `interface` block is documented below.
-	Interfaces RouterMulticast6InterfaceArrayInput
-	// Enable/disable PMTU for IPv6 multicast. Valid values: `enable`, `disable`.
-	MulticastPmtu pulumi.StringPtrInput
-	// Enable/disable IPv6 multicast routing. Valid values: `enable`, `disable`.
-	MulticastRouting pulumi.StringPtrInput
-	// PIM sparse-mode global settings. The structure of `pimSmGlobal` block is documented below.
-	PimSmGlobal RouterMulticast6PimSmGlobalPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interfaces          RouterMulticast6InterfaceArrayInput
+	MulticastPmtu       pulumi.StringPtrInput
+	MulticastRouting    pulumi.StringPtrInput
+	PimSmGlobal         RouterMulticast6PimSmGlobalPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterMulticast6Args) ElementType() reflect.Type {
@@ -192,7 +117,7 @@ func (i *RouterMulticast6) ToRouterMulticast6OutputWithContext(ctx context.Conte
 // RouterMulticast6ArrayInput is an input type that accepts RouterMulticast6Array and RouterMulticast6ArrayOutput values.
 // You can construct a concrete instance of `RouterMulticast6ArrayInput` via:
 //
-//          RouterMulticast6Array{ RouterMulticast6Args{...} }
+//	RouterMulticast6Array{ RouterMulticast6Args{...} }
 type RouterMulticast6ArrayInput interface {
 	pulumi.Input
 
@@ -217,7 +142,7 @@ func (i RouterMulticast6Array) ToRouterMulticast6ArrayOutputWithContext(ctx cont
 // RouterMulticast6MapInput is an input type that accepts RouterMulticast6Map and RouterMulticast6MapOutput values.
 // You can construct a concrete instance of `RouterMulticast6MapInput` via:
 //
-//          RouterMulticast6Map{ "key": RouterMulticast6Args{...} }
+//	RouterMulticast6Map{ "key": RouterMulticast6Args{...} }
 type RouterMulticast6MapInput interface {
 	pulumi.Input
 
@@ -251,6 +176,30 @@ func (o RouterMulticast6Output) ToRouterMulticast6Output() RouterMulticast6Outpu
 
 func (o RouterMulticast6Output) ToRouterMulticast6OutputWithContext(ctx context.Context) RouterMulticast6Output {
 	return o
+}
+
+func (o RouterMulticast6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterMulticast6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterMulticast6Output) Interfaces() RouterMulticast6InterfaceArrayOutput {
+	return o.ApplyT(func(v *RouterMulticast6) RouterMulticast6InterfaceArrayOutput { return v.Interfaces }).(RouterMulticast6InterfaceArrayOutput)
+}
+
+func (o RouterMulticast6Output) MulticastPmtu() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterMulticast6) pulumi.StringOutput { return v.MulticastPmtu }).(pulumi.StringOutput)
+}
+
+func (o RouterMulticast6Output) MulticastRouting() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterMulticast6) pulumi.StringOutput { return v.MulticastRouting }).(pulumi.StringOutput)
+}
+
+func (o RouterMulticast6Output) PimSmGlobal() RouterMulticast6PimSmGlobalOutput {
+	return o.ApplyT(func(v *RouterMulticast6) RouterMulticast6PimSmGlobalOutput { return v.PimSmGlobal }).(RouterMulticast6PimSmGlobalOutput)
+}
+
+func (o RouterMulticast6Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterMulticast6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterMulticast6ArrayOutput struct{ *pulumi.OutputState }

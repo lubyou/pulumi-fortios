@@ -2,42 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure devices. Applies to FortiOS Version `<= 6.2.0`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.UserDevice("trname", {
- *     alias: "1",
- *     category: "amazon-device",
- *     mac: "08:00:20:0a:8c:6d",
- *     type: "unknown",
- * });
- * ```
- *
- * ## Import
- *
- * User Device can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userDevice:UserDevice labelname {{alias}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userDevice:UserDevice labelname {{alias}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserDevice extends pulumi.CustomResource {
     /**
      * Get an existing UserDevice resource's state with the given name, ID, and optional extra
@@ -66,49 +34,16 @@ export class UserDevice extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserDevice.__pulumiType;
     }
 
-    /**
-     * Device alias.
-     */
     public readonly alias!: pulumi.Output<string>;
-    /**
-     * Image file for avatar (maximum 4K base64 encoded).
-     */
     public readonly avatar!: pulumi.Output<string | undefined>;
-    /**
-     * Tag category.
-     */
     public readonly category!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Device MAC address.
-     */
     public readonly mac!: pulumi.Output<string>;
-    /**
-     * Master device (optional).
-     */
     public readonly masterDevice!: pulumi.Output<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     public readonly taggings!: pulumi.Output<outputs.UserDeviceTagging[] | undefined>;
-    /**
-     * Device type. Valid values: `unknown`, `android-phone`, `android-tablet`, `blackberry-phone`, `blackberry-playbook`, `forticam`, `fortifone`, `fortinet-device`, `gaming-console`, `ip-phone`, `ipad`, `iphone`, `linux-pc`, `mac`, `media-streaming`, `printer`, `router-nat-device`, `windows-pc`, `windows-phone`, `windows-tablet`, `other-network-device`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * User name.
-     */
     public readonly user!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -158,49 +93,16 @@ export class UserDevice extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserDevice resources.
  */
 export interface UserDeviceState {
-    /**
-     * Device alias.
-     */
     alias?: pulumi.Input<string>;
-    /**
-     * Image file for avatar (maximum 4K base64 encoded).
-     */
     avatar?: pulumi.Input<string>;
-    /**
-     * Tag category.
-     */
     category?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Device MAC address.
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * Master device (optional).
-     */
     masterDevice?: pulumi.Input<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.UserDeviceTagging>[]>;
-    /**
-     * Device type. Valid values: `unknown`, `android-phone`, `android-tablet`, `blackberry-phone`, `blackberry-playbook`, `forticam`, `fortifone`, `fortinet-device`, `gaming-console`, `ip-phone`, `ipad`, `iphone`, `linux-pc`, `mac`, `media-streaming`, `printer`, `router-nat-device`, `windows-pc`, `windows-phone`, `windows-tablet`, `other-network-device`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * User name.
-     */
     user?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -208,48 +110,15 @@ export interface UserDeviceState {
  * The set of arguments for constructing a UserDevice resource.
  */
 export interface UserDeviceArgs {
-    /**
-     * Device alias.
-     */
     alias?: pulumi.Input<string>;
-    /**
-     * Image file for avatar (maximum 4K base64 encoded).
-     */
     avatar?: pulumi.Input<string>;
-    /**
-     * Tag category.
-     */
     category?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Device MAC address.
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * Master device (optional).
-     */
     masterDevice?: pulumi.Input<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.UserDeviceTagging>[]>;
-    /**
-     * Device type. Valid values: `unknown`, `android-phone`, `android-tablet`, `blackberry-phone`, `blackberry-playbook`, `forticam`, `fortifone`, `fortinet-device`, `gaming-console`, `ip-phone`, `ipad`, `iphone`, `linux-pc`, `mac`, `media-streaming`, `printer`, `router-nat-device`, `windows-pc`, `windows-phone`, `windows-tablet`, `other-network-device`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * User name.
-     */
     user?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

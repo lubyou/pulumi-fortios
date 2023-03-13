@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios systemautoupdate tunneling
- */
 export function getSystemAutoupdateTunneling(args?: GetSystemAutoupdateTunnelingArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemAutoupdateTunnelingResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemAutoupdateTunneling:GetSystemAutoupdateTunneling", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getSystemAutoupdateTunneling(args?: GetSystemAutoupdateTunneling
  * A collection of arguments for invoking GetSystemAutoupdateTunneling.
  */
 export interface GetSystemAutoupdateTunnelingArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -33,43 +24,24 @@ export interface GetSystemAutoupdateTunnelingArgs {
  * A collection of values returned by GetSystemAutoupdateTunneling.
  */
 export interface GetSystemAutoupdateTunnelingResult {
-    /**
-     * Web proxy IP address or FQDN.
-     */
     readonly address: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Web proxy password.
-     */
     readonly password: string;
-    /**
-     * Web proxy port.
-     */
     readonly port: number;
-    /**
-     * Enable/disable web proxy tunnelling.
-     */
     readonly status: string;
-    /**
-     * Web proxy username.
-     */
     readonly username: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemAutoupdateTunnelingOutput(args?: GetSystemAutoupdateTunnelingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemAutoupdateTunnelingResult> {
-    return pulumi.output(args).apply(a => getSystemAutoupdateTunneling(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemAutoupdateTunneling(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemAutoupdateTunneling.
  */
 export interface GetSystemAutoupdateTunnelingOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,39 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure firewall service category of FortiOS.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `FirewallServiceCategory`, we recommend that you use the new resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallObjectServiceCategory(ctx, "testCategoryName", &fortios.FirewallObjectServiceCategoryArgs{
-// 			Comment: pulumi.String("comment"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FirewallObjectServiceCategory struct {
 	pulumi.CustomResourceState
 
-	// Comment.
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Category name.
-	Name pulumi.StringOutput `pulumi:"name"`
+	Name    pulumi.StringOutput    `pulumi:"name"`
 }
 
 // NewFirewallObjectServiceCategory registers a new resource with the given unique name, arguments, and options.
@@ -75,17 +47,13 @@ func GetFirewallObjectServiceCategory(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallObjectServiceCategory resources.
 type firewallObjectServiceCategoryState struct {
-	// Comment.
 	Comment *string `pulumi:"comment"`
-	// Category name.
-	Name *string `pulumi:"name"`
+	Name    *string `pulumi:"name"`
 }
 
 type FirewallObjectServiceCategoryState struct {
-	// Comment.
 	Comment pulumi.StringPtrInput
-	// Category name.
-	Name pulumi.StringPtrInput
+	Name    pulumi.StringPtrInput
 }
 
 func (FirewallObjectServiceCategoryState) ElementType() reflect.Type {
@@ -93,18 +61,14 @@ func (FirewallObjectServiceCategoryState) ElementType() reflect.Type {
 }
 
 type firewallObjectServiceCategoryArgs struct {
-	// Comment.
 	Comment *string `pulumi:"comment"`
-	// Category name.
-	Name *string `pulumi:"name"`
+	Name    *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a FirewallObjectServiceCategory resource.
 type FirewallObjectServiceCategoryArgs struct {
-	// Comment.
 	Comment pulumi.StringPtrInput
-	// Category name.
-	Name pulumi.StringPtrInput
+	Name    pulumi.StringPtrInput
 }
 
 func (FirewallObjectServiceCategoryArgs) ElementType() reflect.Type {
@@ -133,7 +97,7 @@ func (i *FirewallObjectServiceCategory) ToFirewallObjectServiceCategoryOutputWit
 // FirewallObjectServiceCategoryArrayInput is an input type that accepts FirewallObjectServiceCategoryArray and FirewallObjectServiceCategoryArrayOutput values.
 // You can construct a concrete instance of `FirewallObjectServiceCategoryArrayInput` via:
 //
-//          FirewallObjectServiceCategoryArray{ FirewallObjectServiceCategoryArgs{...} }
+//	FirewallObjectServiceCategoryArray{ FirewallObjectServiceCategoryArgs{...} }
 type FirewallObjectServiceCategoryArrayInput interface {
 	pulumi.Input
 
@@ -158,7 +122,7 @@ func (i FirewallObjectServiceCategoryArray) ToFirewallObjectServiceCategoryArray
 // FirewallObjectServiceCategoryMapInput is an input type that accepts FirewallObjectServiceCategoryMap and FirewallObjectServiceCategoryMapOutput values.
 // You can construct a concrete instance of `FirewallObjectServiceCategoryMapInput` via:
 //
-//          FirewallObjectServiceCategoryMap{ "key": FirewallObjectServiceCategoryArgs{...} }
+//	FirewallObjectServiceCategoryMap{ "key": FirewallObjectServiceCategoryArgs{...} }
 type FirewallObjectServiceCategoryMapInput interface {
 	pulumi.Input
 
@@ -192,6 +156,14 @@ func (o FirewallObjectServiceCategoryOutput) ToFirewallObjectServiceCategoryOutp
 
 func (o FirewallObjectServiceCategoryOutput) ToFirewallObjectServiceCategoryOutputWithContext(ctx context.Context) FirewallObjectServiceCategoryOutput {
 	return o
+}
+
+func (o FirewallObjectServiceCategoryOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallObjectServiceCategory) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallObjectServiceCategoryOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectServiceCategory) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 type FirewallObjectServiceCategoryArrayOutput struct{ *pulumi.OutputState }

@@ -2,90 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure WAN optimization profiles.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WanoptProfile("trname", {
- *     cifs: {
- *         byteCaching: "enable",
- *         logTraffic: "enable",
- *         port: 445,
- *         preferChunking: "fix",
- *         secureTunnel: "disable",
- *         status: "disable",
- *         tunnelSharing: "private",
- *     },
- *     comments: "test",
- *     ftp: {
- *         byteCaching: "enable",
- *         logTraffic: "enable",
- *         port: 21,
- *         preferChunking: "fix",
- *         secureTunnel: "disable",
- *         status: "disable",
- *         tunnelSharing: "private",
- *     },
- *     http: {
- *         byteCaching: "enable",
- *         logTraffic: "enable",
- *         port: 80,
- *         preferChunking: "fix",
- *         secureTunnel: "disable",
- *         ssl: "disable",
- *         sslPort: 443,
- *         status: "disable",
- *         tunnelNonHttp: "disable",
- *         tunnelSharing: "private",
- *         unknownHttpVersion: "tunnel",
- *     },
- *     mapi: {
- *         byteCaching: "enable",
- *         logTraffic: "enable",
- *         port: 135,
- *         secureTunnel: "disable",
- *         status: "disable",
- *         tunnelSharing: "private",
- *     },
- *     tcp: {
- *         byteCaching: "disable",
- *         byteCachingOpt: "mem-only",
- *         logTraffic: "enable",
- *         port: "1-65535",
- *         secureTunnel: "disable",
- *         ssl: "disable",
- *         sslPort: 443,
- *         status: "disable",
- *         tunnelSharing: "private",
- *     },
- *     transparent: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Wanopt Profile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wanoptProfile:WanoptProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wanoptProfile:WanoptProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WanoptProfile extends pulumi.CustomResource {
     /**
      * Get an existing WanoptProfile resource's state with the given name, ID, and optional extra
@@ -114,45 +34,15 @@ export class WanoptProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === WanoptProfile.__pulumiType;
     }
 
-    /**
-     * Optionally add an authentication group to restrict access to the WAN Optimization tunnel to peers in the authentication group.
-     */
     public readonly authGroup!: pulumi.Output<string>;
-    /**
-     * Enable/disable CIFS (Windows sharing) WAN Optimization and configure CIFS WAN Optimization features. The structure of `cifs` block is documented below.
-     */
-    public readonly cifs!: pulumi.Output<outputs.WanoptProfileCifs | undefined>;
-    /**
-     * Comment.
-     */
+    public readonly cifs!: pulumi.Output<outputs.WanoptProfileCifs>;
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features. The structure of `ftp` block is documented below.
-     */
-    public readonly ftp!: pulumi.Output<outputs.WanoptProfileFtp | undefined>;
-    /**
-     * Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features. The structure of `http` block is documented below.
-     */
-    public readonly http!: pulumi.Output<outputs.WanoptProfileHttp | undefined>;
-    /**
-     * Enable/disable MAPI email WAN Optimization and configure MAPI WAN Optimization features. The structure of `mapi` block is documented below.
-     */
-    public readonly mapi!: pulumi.Output<outputs.WanoptProfileMapi | undefined>;
-    /**
-     * Profile name.
-     */
+    public readonly ftp!: pulumi.Output<outputs.WanoptProfileFtp>;
+    public readonly http!: pulumi.Output<outputs.WanoptProfileHttp>;
+    public readonly mapi!: pulumi.Output<outputs.WanoptProfileMapi>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable TCP WAN Optimization and configure TCP WAN Optimization features. The structure of `tcp` block is documented below.
-     */
-    public readonly tcp!: pulumi.Output<outputs.WanoptProfileTcp | undefined>;
-    /**
-     * Enable/disable transparent mode. Valid values: `enable`, `disable`.
-     */
+    public readonly tcp!: pulumi.Output<outputs.WanoptProfileTcp>;
     public readonly transparent!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -200,45 +90,15 @@ export class WanoptProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WanoptProfile resources.
  */
 export interface WanoptProfileState {
-    /**
-     * Optionally add an authentication group to restrict access to the WAN Optimization tunnel to peers in the authentication group.
-     */
     authGroup?: pulumi.Input<string>;
-    /**
-     * Enable/disable CIFS (Windows sharing) WAN Optimization and configure CIFS WAN Optimization features. The structure of `cifs` block is documented below.
-     */
     cifs?: pulumi.Input<inputs.WanoptProfileCifs>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features. The structure of `ftp` block is documented below.
-     */
     ftp?: pulumi.Input<inputs.WanoptProfileFtp>;
-    /**
-     * Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features. The structure of `http` block is documented below.
-     */
     http?: pulumi.Input<inputs.WanoptProfileHttp>;
-    /**
-     * Enable/disable MAPI email WAN Optimization and configure MAPI WAN Optimization features. The structure of `mapi` block is documented below.
-     */
     mapi?: pulumi.Input<inputs.WanoptProfileMapi>;
-    /**
-     * Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable TCP WAN Optimization and configure TCP WAN Optimization features. The structure of `tcp` block is documented below.
-     */
     tcp?: pulumi.Input<inputs.WanoptProfileTcp>;
-    /**
-     * Enable/disable transparent mode. Valid values: `enable`, `disable`.
-     */
     transparent?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -246,44 +106,14 @@ export interface WanoptProfileState {
  * The set of arguments for constructing a WanoptProfile resource.
  */
 export interface WanoptProfileArgs {
-    /**
-     * Optionally add an authentication group to restrict access to the WAN Optimization tunnel to peers in the authentication group.
-     */
     authGroup?: pulumi.Input<string>;
-    /**
-     * Enable/disable CIFS (Windows sharing) WAN Optimization and configure CIFS WAN Optimization features. The structure of `cifs` block is documented below.
-     */
     cifs?: pulumi.Input<inputs.WanoptProfileCifs>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features. The structure of `ftp` block is documented below.
-     */
     ftp?: pulumi.Input<inputs.WanoptProfileFtp>;
-    /**
-     * Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features. The structure of `http` block is documented below.
-     */
     http?: pulumi.Input<inputs.WanoptProfileHttp>;
-    /**
-     * Enable/disable MAPI email WAN Optimization and configure MAPI WAN Optimization features. The structure of `mapi` block is documented below.
-     */
     mapi?: pulumi.Input<inputs.WanoptProfileMapi>;
-    /**
-     * Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable TCP WAN Optimization and configure TCP WAN Optimization features. The structure of `tcp` block is documented below.
-     */
     tcp?: pulumi.Input<inputs.WanoptProfileTcp>;
-    /**
-     * Enable/disable transparent mode. Valid values: `enable`, `disable`.
-     */
     transparent?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

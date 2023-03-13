@@ -10,52 +10,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure wireless controller event log filters. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// WirelessController Log can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerLog:WirelessControllerLog labelname WirelessControllerLog
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerLog:WirelessControllerLog labelname WirelessControllerLog
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerLog struct {
 	pulumi.CustomResourceState
 
-	// Lowest severity level to log address group message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	AddrgrpLog pulumi.StringOutput `pulumi:"addrgrpLog"`
-	// Lowest severity level to log BLE detection message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	BleLog pulumi.StringOutput `pulumi:"bleLog"`
-	// Lowest severity level to log client load balancing message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	ClbLog pulumi.StringOutput `pulumi:"clbLog"`
-	// Lowest severity level to log DHCP starvation event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	DhcpStarvLog pulumi.StringOutput `pulumi:"dhcpStarvLog"`
-	// Lowest severity level to log LED schedule event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	LedSchedLog pulumi.StringOutput `pulumi:"ledSchedLog"`
-	// Lowest severity level to log radio event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	RadioEventLog pulumi.StringOutput `pulumi:"radioEventLog"`
-	// Lowest severity level to log rogue AP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	RogueEventLog pulumi.StringOutput `pulumi:"rogueEventLog"`
-	// Lowest severity level to log station event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	StaEventLog pulumi.StringOutput `pulumi:"staEventLog"`
-	// Lowest severity level to log station locate message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	StaLocateLog pulumi.StringOutput `pulumi:"staLocateLog"`
-	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	WidsLog pulumi.StringOutput `pulumi:"widsLog"`
-	// Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	WtpEventLog pulumi.StringOutput `pulumi:"wtpEventLog"`
+	AddrgrpLog    pulumi.StringOutput    `pulumi:"addrgrpLog"`
+	BleLog        pulumi.StringOutput    `pulumi:"bleLog"`
+	ClbLog        pulumi.StringOutput    `pulumi:"clbLog"`
+	DhcpStarvLog  pulumi.StringOutput    `pulumi:"dhcpStarvLog"`
+	LedSchedLog   pulumi.StringOutput    `pulumi:"ledSchedLog"`
+	RadioEventLog pulumi.StringOutput    `pulumi:"radioEventLog"`
+	RogueEventLog pulumi.StringOutput    `pulumi:"rogueEventLog"`
+	StaEventLog   pulumi.StringOutput    `pulumi:"staEventLog"`
+	StaLocateLog  pulumi.StringOutput    `pulumi:"staLocateLog"`
+	Status        pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	WidsLog       pulumi.StringOutput    `pulumi:"widsLog"`
+	WtpEventLog   pulumi.StringOutput    `pulumi:"wtpEventLog"`
 }
 
 // NewWirelessControllerLog registers a new resource with the given unique name, arguments, and options.
@@ -88,61 +58,35 @@ func GetWirelessControllerLog(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerLog resources.
 type wirelessControllerLogState struct {
-	// Lowest severity level to log address group message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	AddrgrpLog *string `pulumi:"addrgrpLog"`
-	// Lowest severity level to log BLE detection message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	BleLog *string `pulumi:"bleLog"`
-	// Lowest severity level to log client load balancing message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	ClbLog *string `pulumi:"clbLog"`
-	// Lowest severity level to log DHCP starvation event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	DhcpStarvLog *string `pulumi:"dhcpStarvLog"`
-	// Lowest severity level to log LED schedule event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	LedSchedLog *string `pulumi:"ledSchedLog"`
-	// Lowest severity level to log radio event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+	AddrgrpLog    *string `pulumi:"addrgrpLog"`
+	BleLog        *string `pulumi:"bleLog"`
+	ClbLog        *string `pulumi:"clbLog"`
+	DhcpStarvLog  *string `pulumi:"dhcpStarvLog"`
+	LedSchedLog   *string `pulumi:"ledSchedLog"`
 	RadioEventLog *string `pulumi:"radioEventLog"`
-	// Lowest severity level to log rogue AP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 	RogueEventLog *string `pulumi:"rogueEventLog"`
-	// Lowest severity level to log station event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	StaEventLog *string `pulumi:"staEventLog"`
-	// Lowest severity level to log station locate message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	StaLocateLog *string `pulumi:"staLocateLog"`
-	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	WidsLog *string `pulumi:"widsLog"`
-	// Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	WtpEventLog *string `pulumi:"wtpEventLog"`
+	StaEventLog   *string `pulumi:"staEventLog"`
+	StaLocateLog  *string `pulumi:"staLocateLog"`
+	Status        *string `pulumi:"status"`
+	Vdomparam     *string `pulumi:"vdomparam"`
+	WidsLog       *string `pulumi:"widsLog"`
+	WtpEventLog   *string `pulumi:"wtpEventLog"`
 }
 
 type WirelessControllerLogState struct {
-	// Lowest severity level to log address group message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	AddrgrpLog pulumi.StringPtrInput
-	// Lowest severity level to log BLE detection message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	BleLog pulumi.StringPtrInput
-	// Lowest severity level to log client load balancing message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	ClbLog pulumi.StringPtrInput
-	// Lowest severity level to log DHCP starvation event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	DhcpStarvLog pulumi.StringPtrInput
-	// Lowest severity level to log LED schedule event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	LedSchedLog pulumi.StringPtrInput
-	// Lowest severity level to log radio event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+	AddrgrpLog    pulumi.StringPtrInput
+	BleLog        pulumi.StringPtrInput
+	ClbLog        pulumi.StringPtrInput
+	DhcpStarvLog  pulumi.StringPtrInput
+	LedSchedLog   pulumi.StringPtrInput
 	RadioEventLog pulumi.StringPtrInput
-	// Lowest severity level to log rogue AP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 	RogueEventLog pulumi.StringPtrInput
-	// Lowest severity level to log station event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	StaEventLog pulumi.StringPtrInput
-	// Lowest severity level to log station locate message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	StaLocateLog pulumi.StringPtrInput
-	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	WidsLog pulumi.StringPtrInput
-	// Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	WtpEventLog pulumi.StringPtrInput
+	StaEventLog   pulumi.StringPtrInput
+	StaLocateLog  pulumi.StringPtrInput
+	Status        pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
+	WidsLog       pulumi.StringPtrInput
+	WtpEventLog   pulumi.StringPtrInput
 }
 
 func (WirelessControllerLogState) ElementType() reflect.Type {
@@ -150,62 +94,36 @@ func (WirelessControllerLogState) ElementType() reflect.Type {
 }
 
 type wirelessControllerLogArgs struct {
-	// Lowest severity level to log address group message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	AddrgrpLog *string `pulumi:"addrgrpLog"`
-	// Lowest severity level to log BLE detection message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	BleLog *string `pulumi:"bleLog"`
-	// Lowest severity level to log client load balancing message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	ClbLog *string `pulumi:"clbLog"`
-	// Lowest severity level to log DHCP starvation event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	DhcpStarvLog *string `pulumi:"dhcpStarvLog"`
-	// Lowest severity level to log LED schedule event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	LedSchedLog *string `pulumi:"ledSchedLog"`
-	// Lowest severity level to log radio event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+	AddrgrpLog    *string `pulumi:"addrgrpLog"`
+	BleLog        *string `pulumi:"bleLog"`
+	ClbLog        *string `pulumi:"clbLog"`
+	DhcpStarvLog  *string `pulumi:"dhcpStarvLog"`
+	LedSchedLog   *string `pulumi:"ledSchedLog"`
 	RadioEventLog *string `pulumi:"radioEventLog"`
-	// Lowest severity level to log rogue AP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 	RogueEventLog *string `pulumi:"rogueEventLog"`
-	// Lowest severity level to log station event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	StaEventLog *string `pulumi:"staEventLog"`
-	// Lowest severity level to log station locate message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	StaLocateLog *string `pulumi:"staLocateLog"`
-	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	WidsLog *string `pulumi:"widsLog"`
-	// Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	WtpEventLog *string `pulumi:"wtpEventLog"`
+	StaEventLog   *string `pulumi:"staEventLog"`
+	StaLocateLog  *string `pulumi:"staLocateLog"`
+	Status        *string `pulumi:"status"`
+	Vdomparam     *string `pulumi:"vdomparam"`
+	WidsLog       *string `pulumi:"widsLog"`
+	WtpEventLog   *string `pulumi:"wtpEventLog"`
 }
 
 // The set of arguments for constructing a WirelessControllerLog resource.
 type WirelessControllerLogArgs struct {
-	// Lowest severity level to log address group message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	AddrgrpLog pulumi.StringPtrInput
-	// Lowest severity level to log BLE detection message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	BleLog pulumi.StringPtrInput
-	// Lowest severity level to log client load balancing message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	ClbLog pulumi.StringPtrInput
-	// Lowest severity level to log DHCP starvation event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	DhcpStarvLog pulumi.StringPtrInput
-	// Lowest severity level to log LED schedule event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	LedSchedLog pulumi.StringPtrInput
-	// Lowest severity level to log radio event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+	AddrgrpLog    pulumi.StringPtrInput
+	BleLog        pulumi.StringPtrInput
+	ClbLog        pulumi.StringPtrInput
+	DhcpStarvLog  pulumi.StringPtrInput
+	LedSchedLog   pulumi.StringPtrInput
 	RadioEventLog pulumi.StringPtrInput
-	// Lowest severity level to log rogue AP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 	RogueEventLog pulumi.StringPtrInput
-	// Lowest severity level to log station event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	StaEventLog pulumi.StringPtrInput
-	// Lowest severity level to log station locate message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	StaLocateLog pulumi.StringPtrInput
-	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	WidsLog pulumi.StringPtrInput
-	// Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	WtpEventLog pulumi.StringPtrInput
+	StaEventLog   pulumi.StringPtrInput
+	StaLocateLog  pulumi.StringPtrInput
+	Status        pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
+	WidsLog       pulumi.StringPtrInput
+	WtpEventLog   pulumi.StringPtrInput
 }
 
 func (WirelessControllerLogArgs) ElementType() reflect.Type {
@@ -234,7 +152,7 @@ func (i *WirelessControllerLog) ToWirelessControllerLogOutputWithContext(ctx con
 // WirelessControllerLogArrayInput is an input type that accepts WirelessControllerLogArray and WirelessControllerLogArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerLogArrayInput` via:
 //
-//          WirelessControllerLogArray{ WirelessControllerLogArgs{...} }
+//	WirelessControllerLogArray{ WirelessControllerLogArgs{...} }
 type WirelessControllerLogArrayInput interface {
 	pulumi.Input
 
@@ -259,7 +177,7 @@ func (i WirelessControllerLogArray) ToWirelessControllerLogArrayOutputWithContex
 // WirelessControllerLogMapInput is an input type that accepts WirelessControllerLogMap and WirelessControllerLogMapOutput values.
 // You can construct a concrete instance of `WirelessControllerLogMapInput` via:
 //
-//          WirelessControllerLogMap{ "key": WirelessControllerLogArgs{...} }
+//	WirelessControllerLogMap{ "key": WirelessControllerLogArgs{...} }
 type WirelessControllerLogMapInput interface {
 	pulumi.Input
 
@@ -293,6 +211,58 @@ func (o WirelessControllerLogOutput) ToWirelessControllerLogOutput() WirelessCon
 
 func (o WirelessControllerLogOutput) ToWirelessControllerLogOutputWithContext(ctx context.Context) WirelessControllerLogOutput {
 	return o
+}
+
+func (o WirelessControllerLogOutput) AddrgrpLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerLog) pulumi.StringOutput { return v.AddrgrpLog }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerLogOutput) BleLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerLog) pulumi.StringOutput { return v.BleLog }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerLogOutput) ClbLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerLog) pulumi.StringOutput { return v.ClbLog }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerLogOutput) DhcpStarvLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerLog) pulumi.StringOutput { return v.DhcpStarvLog }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerLogOutput) LedSchedLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerLog) pulumi.StringOutput { return v.LedSchedLog }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerLogOutput) RadioEventLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerLog) pulumi.StringOutput { return v.RadioEventLog }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerLogOutput) RogueEventLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerLog) pulumi.StringOutput { return v.RogueEventLog }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerLogOutput) StaEventLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerLog) pulumi.StringOutput { return v.StaEventLog }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerLogOutput) StaLocateLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerLog) pulumi.StringOutput { return v.StaLocateLog }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerLogOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerLog) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerLogOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerLog) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerLogOutput) WidsLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerLog) pulumi.StringOutput { return v.WidsLog }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerLogOutput) WtpEventLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerLog) pulumi.StringOutput { return v.WtpEventLog }).(pulumi.StringOutput)
 }
 
 type WirelessControllerLogArrayOutput struct{ *pulumi.OutputState }

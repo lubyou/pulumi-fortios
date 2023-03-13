@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios system sessionttl
 func LookupSystemSessionTtl(ctx *pulumi.Context, args *LookupSystemSessionTtlArgs, opts ...pulumi.InvokeOption) (*LookupSystemSessionTtlResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemSessionTtlResult
@@ -23,17 +22,14 @@ func LookupSystemSessionTtl(ctx *pulumi.Context, args *LookupSystemSessionTtlArg
 
 // A collection of arguments for invoking GetSystemSessionTtl.
 type LookupSystemSessionTtlArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemSessionTtl.
 type LookupSystemSessionTtlResult struct {
-	// Default timeout.
 	Default string `pulumi:"default"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Session TTL port. The structure of `port` block is documented below.
+	Id        string                    `pulumi:"id"`
 	Ports     []GetSystemSessionTtlPort `pulumi:"ports"`
 	Vdomparam *string                   `pulumi:"vdomparam"`
 }
@@ -53,7 +49,6 @@ func LookupSystemSessionTtlOutput(ctx *pulumi.Context, args LookupSystemSessionT
 
 // A collection of arguments for invoking GetSystemSessionTtl.
 type LookupSystemSessionTtlOutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -76,7 +71,6 @@ func (o LookupSystemSessionTtlResultOutput) ToLookupSystemSessionTtlResultOutput
 	return o
 }
 
-// Default timeout.
 func (o LookupSystemSessionTtlResultOutput) Default() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSessionTtlResult) string { return v.Default }).(pulumi.StringOutput)
 }
@@ -86,7 +80,6 @@ func (o LookupSystemSessionTtlResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSessionTtlResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Session TTL port. The structure of `port` block is documented below.
 func (o LookupSystemSessionTtlResultOutput) Ports() GetSystemSessionTtlPortArrayOutput {
 	return o.ApplyT(func(v LookupSystemSessionTtlResult) []GetSystemSessionTtlPort { return v.Ports }).(GetSystemSessionTtlPortArrayOutput)
 }

@@ -2,50 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * SNMP user configuration.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemSnmpUser("trname", {
- *     authProto: "sha",
- *     events: "cpu-high mem-low log-full intf-ip vpn-tun-up vpn-tun-down ha-switch ha-hb-failure ips-signature ips-anomaly av-virus av-oversize av-pattern av-fragmented fm-if-change bgp-established bgp-backward-transition ha-member-up ha-member-down ent-conf-change av-conserve av-bypass av-oversize-passed av-oversize-blocked ips-pkg-update ips-fail-open faz-disconnect wc-ap-up wc-ap-down fswctl-session-up fswctl-session-down load-balance-real-server-down per-cpu-high",
- *     haDirect: "disable",
- *     privProto: "aes",
- *     queries: "disable",
- *     queryPort: 161,
- *     securityLevel: "no-auth-no-priv",
- *     sourceIp: "0.0.0.0",
- *     sourceIpv6: "::",
- *     status: "disable",
- *     trapLport: 162,
- *     trapRport: 162,
- *     trapStatus: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * SystemSnmp User can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSnmpUser:SystemSnmpUser labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSnmpUser:SystemSnmpUser labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemSnmpUser extends pulumi.CustomResource {
     /**
      * Get an existing SystemSnmpUser resource's state with the given name, ID, and optional extra
@@ -74,82 +34,28 @@ export class SystemSnmpUser extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemSnmpUser.__pulumiType;
     }
 
-    /**
-     * Authentication protocol.
-     */
     public readonly authProto!: pulumi.Output<string>;
-    /**
-     * Password for authentication protocol.
-     */
     public readonly authPwd!: pulumi.Output<string | undefined>;
-    /**
-     * SNMP notifications (traps) to send.
-     */
+    public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly events!: pulumi.Output<string>;
-    /**
-     * Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
-     */
     public readonly haDirect!: pulumi.Output<string>;
-    /**
-     * SNMP user name.
-     */
+    public readonly mibView!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * SNMP managers to send notifications (traps) to.
-     */
     public readonly notifyHosts!: pulumi.Output<string>;
-    /**
-     * IPv6 SNMP managers to send notifications (traps) to.
-     */
     public readonly notifyHosts6!: pulumi.Output<string>;
-    /**
-     * Privacy (encryption) protocol. Valid values: `aes`, `des`, `aes256`, `aes256cisco`.
-     */
     public readonly privProto!: pulumi.Output<string>;
-    /**
-     * Password for privacy (encryption) protocol.
-     */
     public readonly privPwd!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable SNMP queries for this user. Valid values: `enable`, `disable`.
-     */
     public readonly queries!: pulumi.Output<string>;
-    /**
-     * SNMPv3 query port (default = 161).
-     */
     public readonly queryPort!: pulumi.Output<number>;
-    /**
-     * Security level for message authentication and encryption. Valid values: `no-auth-no-priv`, `auth-no-priv`, `auth-priv`.
-     */
     public readonly securityLevel!: pulumi.Output<string>;
-    /**
-     * Source IP for SNMP trap.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Source IPv6 for SNMP trap.
-     */
     public readonly sourceIpv6!: pulumi.Output<string>;
-    /**
-     * Enable/disable this SNMP user. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * SNMPv3 local trap port (default = 162).
-     */
     public readonly trapLport!: pulumi.Output<number>;
-    /**
-     * SNMPv3 trap remote port (default = 162).
-     */
     public readonly trapRport!: pulumi.Output<number>;
-    /**
-     * Enable/disable traps for this SNMP user. Valid values: `enable`, `disable`.
-     */
     public readonly trapStatus!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdoms!: pulumi.Output<outputs.SystemSnmpUserVdom[] | undefined>;
 
     /**
      * Create a SystemSnmpUser resource with the given unique name, arguments, and options.
@@ -166,8 +72,10 @@ export class SystemSnmpUser extends pulumi.CustomResource {
             const state = argsOrState as SystemSnmpUserState | undefined;
             resourceInputs["authProto"] = state ? state.authProto : undefined;
             resourceInputs["authPwd"] = state ? state.authPwd : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["events"] = state ? state.events : undefined;
             resourceInputs["haDirect"] = state ? state.haDirect : undefined;
+            resourceInputs["mibView"] = state ? state.mibView : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["notifyHosts"] = state ? state.notifyHosts : undefined;
             resourceInputs["notifyHosts6"] = state ? state.notifyHosts6 : undefined;
@@ -183,17 +91,20 @@ export class SystemSnmpUser extends pulumi.CustomResource {
             resourceInputs["trapRport"] = state ? state.trapRport : undefined;
             resourceInputs["trapStatus"] = state ? state.trapStatus : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vdoms"] = state ? state.vdoms : undefined;
         } else {
             const args = argsOrState as SystemSnmpUserArgs | undefined;
             resourceInputs["authProto"] = args ? args.authProto : undefined;
-            resourceInputs["authPwd"] = args ? args.authPwd : undefined;
+            resourceInputs["authPwd"] = args?.authPwd ? pulumi.secret(args.authPwd) : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["events"] = args ? args.events : undefined;
             resourceInputs["haDirect"] = args ? args.haDirect : undefined;
+            resourceInputs["mibView"] = args ? args.mibView : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["notifyHosts"] = args ? args.notifyHosts : undefined;
             resourceInputs["notifyHosts6"] = args ? args.notifyHosts6 : undefined;
             resourceInputs["privProto"] = args ? args.privProto : undefined;
-            resourceInputs["privPwd"] = args ? args.privPwd : undefined;
+            resourceInputs["privPwd"] = args?.privPwd ? pulumi.secret(args.privPwd) : undefined;
             resourceInputs["queries"] = args ? args.queries : undefined;
             resourceInputs["queryPort"] = args ? args.queryPort : undefined;
             resourceInputs["securityLevel"] = args ? args.securityLevel : undefined;
@@ -204,8 +115,11 @@ export class SystemSnmpUser extends pulumi.CustomResource {
             resourceInputs["trapRport"] = args ? args.trapRport : undefined;
             resourceInputs["trapStatus"] = args ? args.trapStatus : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vdoms"] = args ? args.vdoms : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["authPwd", "privPwd"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemSnmpUser.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -214,162 +128,54 @@ export class SystemSnmpUser extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSnmpUser resources.
  */
 export interface SystemSnmpUserState {
-    /**
-     * Authentication protocol.
-     */
     authProto?: pulumi.Input<string>;
-    /**
-     * Password for authentication protocol.
-     */
     authPwd?: pulumi.Input<string>;
-    /**
-     * SNMP notifications (traps) to send.
-     */
+    dynamicSortSubtable?: pulumi.Input<string>;
     events?: pulumi.Input<string>;
-    /**
-     * Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
-     */
     haDirect?: pulumi.Input<string>;
-    /**
-     * SNMP user name.
-     */
+    mibView?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
-    /**
-     * SNMP managers to send notifications (traps) to.
-     */
     notifyHosts?: pulumi.Input<string>;
-    /**
-     * IPv6 SNMP managers to send notifications (traps) to.
-     */
     notifyHosts6?: pulumi.Input<string>;
-    /**
-     * Privacy (encryption) protocol. Valid values: `aes`, `des`, `aes256`, `aes256cisco`.
-     */
     privProto?: pulumi.Input<string>;
-    /**
-     * Password for privacy (encryption) protocol.
-     */
     privPwd?: pulumi.Input<string>;
-    /**
-     * Enable/disable SNMP queries for this user. Valid values: `enable`, `disable`.
-     */
     queries?: pulumi.Input<string>;
-    /**
-     * SNMPv3 query port (default = 161).
-     */
     queryPort?: pulumi.Input<number>;
-    /**
-     * Security level for message authentication and encryption. Valid values: `no-auth-no-priv`, `auth-no-priv`, `auth-priv`.
-     */
     securityLevel?: pulumi.Input<string>;
-    /**
-     * Source IP for SNMP trap.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Source IPv6 for SNMP trap.
-     */
     sourceIpv6?: pulumi.Input<string>;
-    /**
-     * Enable/disable this SNMP user. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * SNMPv3 local trap port (default = 162).
-     */
     trapLport?: pulumi.Input<number>;
-    /**
-     * SNMPv3 trap remote port (default = 162).
-     */
     trapRport?: pulumi.Input<number>;
-    /**
-     * Enable/disable traps for this SNMP user. Valid values: `enable`, `disable`.
-     */
     trapStatus?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
+    vdoms?: pulumi.Input<pulumi.Input<inputs.SystemSnmpUserVdom>[]>;
 }
 
 /**
  * The set of arguments for constructing a SystemSnmpUser resource.
  */
 export interface SystemSnmpUserArgs {
-    /**
-     * Authentication protocol.
-     */
     authProto?: pulumi.Input<string>;
-    /**
-     * Password for authentication protocol.
-     */
     authPwd?: pulumi.Input<string>;
-    /**
-     * SNMP notifications (traps) to send.
-     */
+    dynamicSortSubtable?: pulumi.Input<string>;
     events?: pulumi.Input<string>;
-    /**
-     * Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
-     */
     haDirect?: pulumi.Input<string>;
-    /**
-     * SNMP user name.
-     */
+    mibView?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
-    /**
-     * SNMP managers to send notifications (traps) to.
-     */
     notifyHosts?: pulumi.Input<string>;
-    /**
-     * IPv6 SNMP managers to send notifications (traps) to.
-     */
     notifyHosts6?: pulumi.Input<string>;
-    /**
-     * Privacy (encryption) protocol. Valid values: `aes`, `des`, `aes256`, `aes256cisco`.
-     */
     privProto?: pulumi.Input<string>;
-    /**
-     * Password for privacy (encryption) protocol.
-     */
     privPwd?: pulumi.Input<string>;
-    /**
-     * Enable/disable SNMP queries for this user. Valid values: `enable`, `disable`.
-     */
     queries?: pulumi.Input<string>;
-    /**
-     * SNMPv3 query port (default = 161).
-     */
     queryPort?: pulumi.Input<number>;
-    /**
-     * Security level for message authentication and encryption. Valid values: `no-auth-no-priv`, `auth-no-priv`, `auth-priv`.
-     */
     securityLevel?: pulumi.Input<string>;
-    /**
-     * Source IP for SNMP trap.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Source IPv6 for SNMP trap.
-     */
     sourceIpv6?: pulumi.Input<string>;
-    /**
-     * Enable/disable this SNMP user. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * SNMPv3 local trap port (default = 162).
-     */
     trapLport?: pulumi.Input<number>;
-    /**
-     * SNMPv3 trap remote port (default = 162).
-     */
     trapRport?: pulumi.Input<number>;
-    /**
-     * Enable/disable traps for this SNMP user. Valid values: `enable`, `disable`.
-     */
     trapStatus?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
+    vdoms?: pulumi.Input<pulumi.Input<inputs.SystemSnmpUserVdom>[]>;
 }

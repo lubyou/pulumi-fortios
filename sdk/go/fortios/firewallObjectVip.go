@@ -7,67 +7,22 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure firewall virtual IPs (VIPs) of FortiOS.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `FirewallVip`, we recommend that you use the new resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallObjectVip(ctx, "v11", &fortios.FirewallObjectVipArgs{
-// 			Comment: pulumi.String("fdsafdsafds"),
-// 			Extintf: pulumi.String("port3"),
-// 			Extip:   pulumi.String("11.1.1.1-21.1.1.1"),
-// 			Extport: pulumi.String("2-3"),
-// 			Mappedips: pulumi.StringArray{
-// 				pulumi.String("22.2.2.2-32.2.2.2"),
-// 			},
-// 			Mappedport:  pulumi.String("4-5"),
-// 			Portforward: pulumi.String("enable"),
-// 			Protocol:    pulumi.String("tcp"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FirewallObjectVip struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-	Extintf pulumi.StringOutput `pulumi:"extintf"`
-	// IP address or address range on the external interface that you want to map to an address or address range on the
-	// destination network.
-	Extip pulumi.StringOutput `pulumi:"extip"`
-	// Incoming port number range that you want to map to a port number range on the destination network.
-	Extport pulumi.StringOutput `pulumi:"extport"`
-	// IP address or address range on the destination network to which the external IP address is mapped.
-	Mappedips pulumi.StringArrayOutput `pulumi:"mappedips"`
-	// Port number range on the destination network to which the external port number range is mapped.
-	Mappedport pulumi.StringOutput `pulumi:"mappedport"`
-	// Virtual IP name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable port forwarding.
-	Portforward pulumi.StringOutput `pulumi:"portforward"`
-	// Protocol to use when forwarding packets.
-	Protocol pulumi.StringOutput `pulumi:"protocol"`
+	Comment     pulumi.StringPtrOutput   `pulumi:"comment"`
+	Extintf     pulumi.StringOutput      `pulumi:"extintf"`
+	Extip       pulumi.StringOutput      `pulumi:"extip"`
+	Extport     pulumi.StringOutput      `pulumi:"extport"`
+	Mappedips   pulumi.StringArrayOutput `pulumi:"mappedips"`
+	Mappedport  pulumi.StringOutput      `pulumi:"mappedport"`
+	Name        pulumi.StringOutput      `pulumi:"name"`
+	Portforward pulumi.StringOutput      `pulumi:"portforward"`
+	Protocol    pulumi.StringOutput      `pulumi:"protocol"`
 }
 
 // NewFirewallObjectVip registers a new resource with the given unique name, arguments, and options.
@@ -106,47 +61,27 @@ func GetFirewallObjectVip(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallObjectVip resources.
 type firewallObjectVipState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-	Extintf *string `pulumi:"extintf"`
-	// IP address or address range on the external interface that you want to map to an address or address range on the
-	// destination network.
-	Extip *string `pulumi:"extip"`
-	// Incoming port number range that you want to map to a port number range on the destination network.
-	Extport *string `pulumi:"extport"`
-	// IP address or address range on the destination network to which the external IP address is mapped.
-	Mappedips []string `pulumi:"mappedips"`
-	// Port number range on the destination network to which the external port number range is mapped.
-	Mappedport *string `pulumi:"mappedport"`
-	// Virtual IP name.
-	Name *string `pulumi:"name"`
-	// Enable/disable port forwarding.
-	Portforward *string `pulumi:"portforward"`
-	// Protocol to use when forwarding packets.
-	Protocol *string `pulumi:"protocol"`
+	Comment     *string  `pulumi:"comment"`
+	Extintf     *string  `pulumi:"extintf"`
+	Extip       *string  `pulumi:"extip"`
+	Extport     *string  `pulumi:"extport"`
+	Mappedips   []string `pulumi:"mappedips"`
+	Mappedport  *string  `pulumi:"mappedport"`
+	Name        *string  `pulumi:"name"`
+	Portforward *string  `pulumi:"portforward"`
+	Protocol    *string  `pulumi:"protocol"`
 }
 
 type FirewallObjectVipState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-	Extintf pulumi.StringPtrInput
-	// IP address or address range on the external interface that you want to map to an address or address range on the
-	// destination network.
-	Extip pulumi.StringPtrInput
-	// Incoming port number range that you want to map to a port number range on the destination network.
-	Extport pulumi.StringPtrInput
-	// IP address or address range on the destination network to which the external IP address is mapped.
-	Mappedips pulumi.StringArrayInput
-	// Port number range on the destination network to which the external port number range is mapped.
-	Mappedport pulumi.StringPtrInput
-	// Virtual IP name.
-	Name pulumi.StringPtrInput
-	// Enable/disable port forwarding.
+	Comment     pulumi.StringPtrInput
+	Extintf     pulumi.StringPtrInput
+	Extip       pulumi.StringPtrInput
+	Extport     pulumi.StringPtrInput
+	Mappedips   pulumi.StringArrayInput
+	Mappedport  pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
 	Portforward pulumi.StringPtrInput
-	// Protocol to use when forwarding packets.
-	Protocol pulumi.StringPtrInput
+	Protocol    pulumi.StringPtrInput
 }
 
 func (FirewallObjectVipState) ElementType() reflect.Type {
@@ -154,48 +89,28 @@ func (FirewallObjectVipState) ElementType() reflect.Type {
 }
 
 type firewallObjectVipArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-	Extintf *string `pulumi:"extintf"`
-	// IP address or address range on the external interface that you want to map to an address or address range on the
-	// destination network.
-	Extip string `pulumi:"extip"`
-	// Incoming port number range that you want to map to a port number range on the destination network.
-	Extport *string `pulumi:"extport"`
-	// IP address or address range on the destination network to which the external IP address is mapped.
-	Mappedips []string `pulumi:"mappedips"`
-	// Port number range on the destination network to which the external port number range is mapped.
-	Mappedport *string `pulumi:"mappedport"`
-	// Virtual IP name.
-	Name *string `pulumi:"name"`
-	// Enable/disable port forwarding.
-	Portforward *string `pulumi:"portforward"`
-	// Protocol to use when forwarding packets.
-	Protocol *string `pulumi:"protocol"`
+	Comment     *string  `pulumi:"comment"`
+	Extintf     *string  `pulumi:"extintf"`
+	Extip       string   `pulumi:"extip"`
+	Extport     *string  `pulumi:"extport"`
+	Mappedips   []string `pulumi:"mappedips"`
+	Mappedport  *string  `pulumi:"mappedport"`
+	Name        *string  `pulumi:"name"`
+	Portforward *string  `pulumi:"portforward"`
+	Protocol    *string  `pulumi:"protocol"`
 }
 
 // The set of arguments for constructing a FirewallObjectVip resource.
 type FirewallObjectVipArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-	Extintf pulumi.StringPtrInput
-	// IP address or address range on the external interface that you want to map to an address or address range on the
-	// destination network.
-	Extip pulumi.StringInput
-	// Incoming port number range that you want to map to a port number range on the destination network.
-	Extport pulumi.StringPtrInput
-	// IP address or address range on the destination network to which the external IP address is mapped.
-	Mappedips pulumi.StringArrayInput
-	// Port number range on the destination network to which the external port number range is mapped.
-	Mappedport pulumi.StringPtrInput
-	// Virtual IP name.
-	Name pulumi.StringPtrInput
-	// Enable/disable port forwarding.
+	Comment     pulumi.StringPtrInput
+	Extintf     pulumi.StringPtrInput
+	Extip       pulumi.StringInput
+	Extport     pulumi.StringPtrInput
+	Mappedips   pulumi.StringArrayInput
+	Mappedport  pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
 	Portforward pulumi.StringPtrInput
-	// Protocol to use when forwarding packets.
-	Protocol pulumi.StringPtrInput
+	Protocol    pulumi.StringPtrInput
 }
 
 func (FirewallObjectVipArgs) ElementType() reflect.Type {
@@ -224,7 +139,7 @@ func (i *FirewallObjectVip) ToFirewallObjectVipOutputWithContext(ctx context.Con
 // FirewallObjectVipArrayInput is an input type that accepts FirewallObjectVipArray and FirewallObjectVipArrayOutput values.
 // You can construct a concrete instance of `FirewallObjectVipArrayInput` via:
 //
-//          FirewallObjectVipArray{ FirewallObjectVipArgs{...} }
+//	FirewallObjectVipArray{ FirewallObjectVipArgs{...} }
 type FirewallObjectVipArrayInput interface {
 	pulumi.Input
 
@@ -249,7 +164,7 @@ func (i FirewallObjectVipArray) ToFirewallObjectVipArrayOutputWithContext(ctx co
 // FirewallObjectVipMapInput is an input type that accepts FirewallObjectVipMap and FirewallObjectVipMapOutput values.
 // You can construct a concrete instance of `FirewallObjectVipMapInput` via:
 //
-//          FirewallObjectVipMap{ "key": FirewallObjectVipArgs{...} }
+//	FirewallObjectVipMap{ "key": FirewallObjectVipArgs{...} }
 type FirewallObjectVipMapInput interface {
 	pulumi.Input
 
@@ -283,6 +198,42 @@ func (o FirewallObjectVipOutput) ToFirewallObjectVipOutput() FirewallObjectVipOu
 
 func (o FirewallObjectVipOutput) ToFirewallObjectVipOutputWithContext(ctx context.Context) FirewallObjectVipOutput {
 	return o
+}
+
+func (o FirewallObjectVipOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallObjectVip) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallObjectVipOutput) Extintf() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectVip) pulumi.StringOutput { return v.Extintf }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectVipOutput) Extip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectVip) pulumi.StringOutput { return v.Extip }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectVipOutput) Extport() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectVip) pulumi.StringOutput { return v.Extport }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectVipOutput) Mappedips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallObjectVip) pulumi.StringArrayOutput { return v.Mappedips }).(pulumi.StringArrayOutput)
+}
+
+func (o FirewallObjectVipOutput) Mappedport() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectVip) pulumi.StringOutput { return v.Mappedport }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectVipOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectVip) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectVipOutput) Portforward() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectVip) pulumi.StringOutput { return v.Portforward }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectVipOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectVip) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
 }
 
 type FirewallObjectVipArrayOutput struct{ *pulumi.OutputState }

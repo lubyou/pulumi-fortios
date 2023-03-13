@@ -4,44 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FSSO groups.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
- *
- * const trname1 = new fortios.UserFsso("trname1", {
- *     port: 32381,
- *     port2: 8000,
- *     port3: 8000,
- *     port4: 8000,
- *     port5: 8000,
- *     server: "1.1.1.1",
- *     sourceIp: "0.0.0.0",
- *     sourceIp6: "::",
- * });
- * const trname = new fortios.UserAdgrp("trname", {serverName: trname1.name});
- * ```
- *
- * ## Import
- *
- * User Adgrp can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userAdgrp:UserAdgrp labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userAdgrp:UserAdgrp labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserAdgrp extends pulumi.CustomResource {
     /**
      * Get an existing UserAdgrp resource's state with the given name, ID, and optional extra
@@ -70,25 +32,10 @@ export class UserAdgrp extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserAdgrp.__pulumiType;
     }
 
-    /**
-     * FSSO connector source.
-     */
     public readonly connectorSource!: pulumi.Output<string>;
-    /**
-     * Group ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * FSSO agent name.
-     */
     public readonly serverName!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -126,25 +73,10 @@ export class UserAdgrp extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserAdgrp resources.
  */
 export interface UserAdgrpState {
-    /**
-     * FSSO connector source.
-     */
     connectorSource?: pulumi.Input<string>;
-    /**
-     * Group ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * FSSO agent name.
-     */
     serverName?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -152,24 +84,9 @@ export interface UserAdgrpState {
  * The set of arguments for constructing a UserAdgrp resource.
  */
 export interface UserAdgrpArgs {
-    /**
-     * FSSO connector source.
-     */
     connectorSource?: pulumi.Input<string>;
-    /**
-     * Group ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * FSSO agent name.
-     */
     serverName?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

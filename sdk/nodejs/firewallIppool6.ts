@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv6 IP pools.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallIppool6("trname", {
- *     endip: "2001:3ca1:10f:1a:121b::19",
- *     startip: "2001:3ca1:10f:1a:121b::10",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall Ippool6 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallIppool6:FirewallIppool6 labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallIppool6:FirewallIppool6 labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallIppool6 extends pulumi.CustomResource {
     /**
      * Get an existing FirewallIppool6 resource's state with the given name, ID, and optional extra
@@ -63,33 +32,12 @@ export class FirewallIppool6 extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallIppool6.__pulumiType;
     }
 
-    /**
-     * Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
-     */
     public readonly addNat46Route!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Final IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
-     */
     public readonly endip!: pulumi.Output<string>;
-    /**
-     * IPv6 IP pool name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable NAT46. Valid values: `disable`, `enable`.
-     */
     public readonly nat46!: pulumi.Output<string>;
-    /**
-     * First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
-     */
     public readonly startip!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -137,33 +85,12 @@ export class FirewallIppool6 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallIppool6 resources.
  */
 export interface FirewallIppool6State {
-    /**
-     * Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
-     */
     addNat46Route?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Final IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
-     */
     endip?: pulumi.Input<string>;
-    /**
-     * IPv6 IP pool name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAT46. Valid values: `disable`, `enable`.
-     */
     nat46?: pulumi.Input<string>;
-    /**
-     * First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
-     */
     startip?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -171,32 +98,11 @@ export interface FirewallIppool6State {
  * The set of arguments for constructing a FirewallIppool6 resource.
  */
 export interface FirewallIppool6Args {
-    /**
-     * Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
-     */
     addNat46Route?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Final IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
-     */
     endip: pulumi.Input<string>;
-    /**
-     * IPv6 IP pool name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAT46. Valid values: `disable`, `enable`.
-     */
     nat46?: pulumi.Input<string>;
-    /**
-     * First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
-     */
     startip: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

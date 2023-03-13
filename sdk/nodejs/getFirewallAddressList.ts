@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.FirewallAddress`.
- */
 export function getFirewallAddressList(args?: GetFirewallAddressListArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallAddressListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallAddressList:GetFirewallAddressList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getFirewallAddressList(args?: GetFirewallAddressListArgs, opts?:
  */
 export interface GetFirewallAddressListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -40,15 +31,11 @@ export interface GetFirewallAddressListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.FirewallAddress`.
-     */
     readonly namelists: string[];
     readonly vdomparam?: string;
 }
-
 export function getFirewallAddressListOutput(args?: GetFirewallAddressListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallAddressListResult> {
-    return pulumi.output(args).apply(a => getFirewallAddressList(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallAddressList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getFirewallAddressListOutput(args?: GetFirewallAddressListOutput
  */
 export interface GetFirewallAddressListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiToken Mobile push services.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemFtmPush("trname", {
- *     serverIp: "0.0.0.0",
- *     serverPort: 4433,
- *     status: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * System FtmPush can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemFtmPush:SystemFtmPush labelname SystemFtmPush
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemFtmPush:SystemFtmPush labelname SystemFtmPush
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemFtmPush extends pulumi.CustomResource {
     /**
      * Get an existing SystemFtmPush resource's state with the given name, ID, and optional extra
@@ -64,29 +32,11 @@ export class SystemFtmPush extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemFtmPush.__pulumiType;
     }
 
-    /**
-     * IPv4 address or domain name of FortiToken Mobile push services server.
-     */
     public readonly server!: pulumi.Output<string>;
-    /**
-     * Name of the server certificate to be used for SSL (default = Fortinet_Factory).
-     */
     public readonly serverCert!: pulumi.Output<string>;
-    /**
-     * IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
-     */
     public readonly serverIp!: pulumi.Output<string>;
-    /**
-     * Port to communicate with FortiToken Mobile push services server (1 - 65535, default = 4433).
-     */
     public readonly serverPort!: pulumi.Output<number>;
-    /**
-     * Enable/disable the use of FortiToken Mobile push services. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -126,29 +76,11 @@ export class SystemFtmPush extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemFtmPush resources.
  */
 export interface SystemFtmPushState {
-    /**
-     * IPv4 address or domain name of FortiToken Mobile push services server.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Name of the server certificate to be used for SSL (default = Fortinet_Factory).
-     */
     serverCert?: pulumi.Input<string>;
-    /**
-     * IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
-     */
     serverIp?: pulumi.Input<string>;
-    /**
-     * Port to communicate with FortiToken Mobile push services server (1 - 65535, default = 4433).
-     */
     serverPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable the use of FortiToken Mobile push services. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -156,28 +88,10 @@ export interface SystemFtmPushState {
  * The set of arguments for constructing a SystemFtmPush resource.
  */
 export interface SystemFtmPushArgs {
-    /**
-     * IPv4 address or domain name of FortiToken Mobile push services server.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Name of the server certificate to be used for SSL (default = Fortinet_Factory).
-     */
     serverCert?: pulumi.Input<string>;
-    /**
-     * IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
-     */
     serverIp?: pulumi.Input<string>;
-    /**
-     * Port to communicate with FortiToken Mobile push services server (1 - 65535, default = 4433).
-     */
     serverPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable the use of FortiToken Mobile push services. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

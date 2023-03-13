@@ -10,50 +10,21 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// FortiExtender extender profile configuration. Applies to FortiOS Version `>= 7.0.2`.
-//
-// ## Import
-//
-// ExtenderController ExtenderProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/extenderControllerExtenderProfile:ExtenderControllerExtenderProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/extenderControllerExtenderProfile:ExtenderControllerExtenderProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type ExtenderControllerExtenderProfile struct {
 	pulumi.CustomResourceState
 
-	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-	Allowaccess pulumi.StringOutput `pulumi:"allowaccess"`
-	// FortiExtender LAN extension bandwidth limit (Mbps).
-	BandwidthLimit pulumi.IntOutput `pulumi:"bandwidthLimit"`
-	// FortiExtender cellular configuration. The structure of `cellular` block is documented below.
-	Cellular ExtenderControllerExtenderProfileCellularPtrOutput `pulumi:"cellular"`
-	// Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-	EnforceBandwidth pulumi.StringOutput `pulumi:"enforceBandwidth"`
-	// Extension option. Valid values: `wan-extension`, `lan-extension`.
-	Extension pulumi.StringOutput `pulumi:"extension"`
-	// id
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
-	LanExtension ExtenderControllerExtenderProfileLanExtensionPtrOutput `pulumi:"lanExtension"`
-	// Set the managed extender's administrator password.
-	LoginPassword pulumi.StringPtrOutput `pulumi:"loginPassword"`
-	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-	LoginPasswordChange pulumi.StringOutput `pulumi:"loginPasswordChange"`
-	// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
-	Model pulumi.StringOutput `pulumi:"model"`
-	// FortiExtender LAN extension backhaul name
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Allowaccess         pulumi.StringOutput                                 `pulumi:"allowaccess"`
+	BandwidthLimit      pulumi.IntOutput                                    `pulumi:"bandwidthLimit"`
+	Cellular            ExtenderControllerExtenderProfileCellularOutput     `pulumi:"cellular"`
+	EnforceBandwidth    pulumi.StringOutput                                 `pulumi:"enforceBandwidth"`
+	Extension           pulumi.StringOutput                                 `pulumi:"extension"`
+	Fosid               pulumi.IntOutput                                    `pulumi:"fosid"`
+	LanExtension        ExtenderControllerExtenderProfileLanExtensionOutput `pulumi:"lanExtension"`
+	LoginPassword       pulumi.StringPtrOutput                              `pulumi:"loginPassword"`
+	LoginPasswordChange pulumi.StringOutput                                 `pulumi:"loginPasswordChange"`
+	Model               pulumi.StringOutput                                 `pulumi:"model"`
+	Name                pulumi.StringOutput                                 `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                              `pulumi:"vdomparam"`
 }
 
 // NewExtenderControllerExtenderProfile registers a new resource with the given unique name, arguments, and options.
@@ -86,57 +57,33 @@ func GetExtenderControllerExtenderProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ExtenderControllerExtenderProfile resources.
 type extenderControllerExtenderProfileState struct {
-	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-	Allowaccess *string `pulumi:"allowaccess"`
-	// FortiExtender LAN extension bandwidth limit (Mbps).
-	BandwidthLimit *int `pulumi:"bandwidthLimit"`
-	// FortiExtender cellular configuration. The structure of `cellular` block is documented below.
-	Cellular *ExtenderControllerExtenderProfileCellular `pulumi:"cellular"`
-	// Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-	EnforceBandwidth *string `pulumi:"enforceBandwidth"`
-	// Extension option. Valid values: `wan-extension`, `lan-extension`.
-	Extension *string `pulumi:"extension"`
-	// id
-	Fosid *int `pulumi:"fosid"`
-	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
-	LanExtension *ExtenderControllerExtenderProfileLanExtension `pulumi:"lanExtension"`
-	// Set the managed extender's administrator password.
-	LoginPassword *string `pulumi:"loginPassword"`
-	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-	LoginPasswordChange *string `pulumi:"loginPasswordChange"`
-	// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
-	Model *string `pulumi:"model"`
-	// FortiExtender LAN extension backhaul name
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Allowaccess         *string                                        `pulumi:"allowaccess"`
+	BandwidthLimit      *int                                           `pulumi:"bandwidthLimit"`
+	Cellular            *ExtenderControllerExtenderProfileCellular     `pulumi:"cellular"`
+	EnforceBandwidth    *string                                        `pulumi:"enforceBandwidth"`
+	Extension           *string                                        `pulumi:"extension"`
+	Fosid               *int                                           `pulumi:"fosid"`
+	LanExtension        *ExtenderControllerExtenderProfileLanExtension `pulumi:"lanExtension"`
+	LoginPassword       *string                                        `pulumi:"loginPassword"`
+	LoginPasswordChange *string                                        `pulumi:"loginPasswordChange"`
+	Model               *string                                        `pulumi:"model"`
+	Name                *string                                        `pulumi:"name"`
+	Vdomparam           *string                                        `pulumi:"vdomparam"`
 }
 
 type ExtenderControllerExtenderProfileState struct {
-	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-	Allowaccess pulumi.StringPtrInput
-	// FortiExtender LAN extension bandwidth limit (Mbps).
-	BandwidthLimit pulumi.IntPtrInput
-	// FortiExtender cellular configuration. The structure of `cellular` block is documented below.
-	Cellular ExtenderControllerExtenderProfileCellularPtrInput
-	// Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-	EnforceBandwidth pulumi.StringPtrInput
-	// Extension option. Valid values: `wan-extension`, `lan-extension`.
-	Extension pulumi.StringPtrInput
-	// id
-	Fosid pulumi.IntPtrInput
-	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
-	LanExtension ExtenderControllerExtenderProfileLanExtensionPtrInput
-	// Set the managed extender's administrator password.
-	LoginPassword pulumi.StringPtrInput
-	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
+	Allowaccess         pulumi.StringPtrInput
+	BandwidthLimit      pulumi.IntPtrInput
+	Cellular            ExtenderControllerExtenderProfileCellularPtrInput
+	EnforceBandwidth    pulumi.StringPtrInput
+	Extension           pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	LanExtension        ExtenderControllerExtenderProfileLanExtensionPtrInput
+	LoginPassword       pulumi.StringPtrInput
 	LoginPasswordChange pulumi.StringPtrInput
-	// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
-	Model pulumi.StringPtrInput
-	// FortiExtender LAN extension backhaul name
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Model               pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (ExtenderControllerExtenderProfileState) ElementType() reflect.Type {
@@ -144,58 +91,34 @@ func (ExtenderControllerExtenderProfileState) ElementType() reflect.Type {
 }
 
 type extenderControllerExtenderProfileArgs struct {
-	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-	Allowaccess *string `pulumi:"allowaccess"`
-	// FortiExtender LAN extension bandwidth limit (Mbps).
-	BandwidthLimit *int `pulumi:"bandwidthLimit"`
-	// FortiExtender cellular configuration. The structure of `cellular` block is documented below.
-	Cellular *ExtenderControllerExtenderProfileCellular `pulumi:"cellular"`
-	// Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-	EnforceBandwidth *string `pulumi:"enforceBandwidth"`
-	// Extension option. Valid values: `wan-extension`, `lan-extension`.
-	Extension *string `pulumi:"extension"`
-	// id
-	Fosid *int `pulumi:"fosid"`
-	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
-	LanExtension *ExtenderControllerExtenderProfileLanExtension `pulumi:"lanExtension"`
-	// Set the managed extender's administrator password.
-	LoginPassword *string `pulumi:"loginPassword"`
-	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-	LoginPasswordChange *string `pulumi:"loginPasswordChange"`
-	// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
-	Model *string `pulumi:"model"`
-	// FortiExtender LAN extension backhaul name
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Allowaccess         *string                                        `pulumi:"allowaccess"`
+	BandwidthLimit      *int                                           `pulumi:"bandwidthLimit"`
+	Cellular            *ExtenderControllerExtenderProfileCellular     `pulumi:"cellular"`
+	EnforceBandwidth    *string                                        `pulumi:"enforceBandwidth"`
+	Extension           *string                                        `pulumi:"extension"`
+	Fosid               *int                                           `pulumi:"fosid"`
+	LanExtension        *ExtenderControllerExtenderProfileLanExtension `pulumi:"lanExtension"`
+	LoginPassword       *string                                        `pulumi:"loginPassword"`
+	LoginPasswordChange *string                                        `pulumi:"loginPasswordChange"`
+	Model               *string                                        `pulumi:"model"`
+	Name                *string                                        `pulumi:"name"`
+	Vdomparam           *string                                        `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a ExtenderControllerExtenderProfile resource.
 type ExtenderControllerExtenderProfileArgs struct {
-	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-	Allowaccess pulumi.StringPtrInput
-	// FortiExtender LAN extension bandwidth limit (Mbps).
-	BandwidthLimit pulumi.IntPtrInput
-	// FortiExtender cellular configuration. The structure of `cellular` block is documented below.
-	Cellular ExtenderControllerExtenderProfileCellularPtrInput
-	// Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-	EnforceBandwidth pulumi.StringPtrInput
-	// Extension option. Valid values: `wan-extension`, `lan-extension`.
-	Extension pulumi.StringPtrInput
-	// id
-	Fosid pulumi.IntPtrInput
-	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
-	LanExtension ExtenderControllerExtenderProfileLanExtensionPtrInput
-	// Set the managed extender's administrator password.
-	LoginPassword pulumi.StringPtrInput
-	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
+	Allowaccess         pulumi.StringPtrInput
+	BandwidthLimit      pulumi.IntPtrInput
+	Cellular            ExtenderControllerExtenderProfileCellularPtrInput
+	EnforceBandwidth    pulumi.StringPtrInput
+	Extension           pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	LanExtension        ExtenderControllerExtenderProfileLanExtensionPtrInput
+	LoginPassword       pulumi.StringPtrInput
 	LoginPasswordChange pulumi.StringPtrInput
-	// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
-	Model pulumi.StringPtrInput
-	// FortiExtender LAN extension backhaul name
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Model               pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (ExtenderControllerExtenderProfileArgs) ElementType() reflect.Type {
@@ -224,7 +147,7 @@ func (i *ExtenderControllerExtenderProfile) ToExtenderControllerExtenderProfileO
 // ExtenderControllerExtenderProfileArrayInput is an input type that accepts ExtenderControllerExtenderProfileArray and ExtenderControllerExtenderProfileArrayOutput values.
 // You can construct a concrete instance of `ExtenderControllerExtenderProfileArrayInput` via:
 //
-//          ExtenderControllerExtenderProfileArray{ ExtenderControllerExtenderProfileArgs{...} }
+//	ExtenderControllerExtenderProfileArray{ ExtenderControllerExtenderProfileArgs{...} }
 type ExtenderControllerExtenderProfileArrayInput interface {
 	pulumi.Input
 
@@ -249,7 +172,7 @@ func (i ExtenderControllerExtenderProfileArray) ToExtenderControllerExtenderProf
 // ExtenderControllerExtenderProfileMapInput is an input type that accepts ExtenderControllerExtenderProfileMap and ExtenderControllerExtenderProfileMapOutput values.
 // You can construct a concrete instance of `ExtenderControllerExtenderProfileMapInput` via:
 //
-//          ExtenderControllerExtenderProfileMap{ "key": ExtenderControllerExtenderProfileArgs{...} }
+//	ExtenderControllerExtenderProfileMap{ "key": ExtenderControllerExtenderProfileArgs{...} }
 type ExtenderControllerExtenderProfileMapInput interface {
 	pulumi.Input
 
@@ -283,6 +206,58 @@ func (o ExtenderControllerExtenderProfileOutput) ToExtenderControllerExtenderPro
 
 func (o ExtenderControllerExtenderProfileOutput) ToExtenderControllerExtenderProfileOutputWithContext(ctx context.Context) ExtenderControllerExtenderProfileOutput {
 	return o
+}
+
+func (o ExtenderControllerExtenderProfileOutput) Allowaccess() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtenderProfile) pulumi.StringOutput { return v.Allowaccess }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderProfileOutput) BandwidthLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtenderProfile) pulumi.IntOutput { return v.BandwidthLimit }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerExtenderProfileOutput) Cellular() ExtenderControllerExtenderProfileCellularOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtenderProfile) ExtenderControllerExtenderProfileCellularOutput {
+		return v.Cellular
+	}).(ExtenderControllerExtenderProfileCellularOutput)
+}
+
+func (o ExtenderControllerExtenderProfileOutput) EnforceBandwidth() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtenderProfile) pulumi.StringOutput { return v.EnforceBandwidth }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderProfileOutput) Extension() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtenderProfile) pulumi.StringOutput { return v.Extension }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderProfileOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtenderProfile) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerExtenderProfileOutput) LanExtension() ExtenderControllerExtenderProfileLanExtensionOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtenderProfile) ExtenderControllerExtenderProfileLanExtensionOutput {
+		return v.LanExtension
+	}).(ExtenderControllerExtenderProfileLanExtensionOutput)
+}
+
+func (o ExtenderControllerExtenderProfileOutput) LoginPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtenderProfile) pulumi.StringPtrOutput { return v.LoginPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderControllerExtenderProfileOutput) LoginPasswordChange() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtenderProfile) pulumi.StringOutput { return v.LoginPasswordChange }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderProfileOutput) Model() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtenderProfile) pulumi.StringOutput { return v.Model }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtenderProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtenderProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type ExtenderControllerExtenderProfileArrayOutput struct{ *pulumi.OutputState }

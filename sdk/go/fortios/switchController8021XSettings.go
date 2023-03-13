@@ -10,61 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure global 802.1X settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchController8021XSettings(ctx, "trname", &fortios.SwitchController8021XSettingsArgs{
-// 			LinkDownAuth:     pulumi.String("set-unauth"),
-// 			MaxReauthAttempt: pulumi.Int(3),
-// 			ReauthPeriod:     pulumi.Int(12),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchController 8021XSettings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchController8021XSettings:SwitchController8021XSettings labelname SwitchController8021XSettings
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchController8021XSettings:SwitchController8021XSettings labelname SwitchController8021XSettings
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchController8021XSettings struct {
 	pulumi.CustomResourceState
 
-	// Interface-reauthentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-	LinkDownAuth pulumi.StringOutput `pulumi:"linkDownAuth"`
-	// Maximum number of authentication attempts (0 - 15, default = 3).
-	MaxReauthAttempt pulumi.IntOutput `pulumi:"maxReauthAttempt"`
-	// Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
-	ReauthPeriod pulumi.IntOutput `pulumi:"reauthPeriod"`
-	// 802.1X Tx period (seconds, default=30).
-	TxPeriod pulumi.IntOutput `pulumi:"txPeriod"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	LinkDownAuth     pulumi.StringOutput    `pulumi:"linkDownAuth"`
+	MabReauth        pulumi.StringOutput    `pulumi:"mabReauth"`
+	MaxReauthAttempt pulumi.IntOutput       `pulumi:"maxReauthAttempt"`
+	ReauthPeriod     pulumi.IntOutput       `pulumi:"reauthPeriod"`
+	TxPeriod         pulumi.IntOutput       `pulumi:"txPeriod"`
+	Vdomparam        pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchController8021XSettings registers a new resource with the given unique name, arguments, and options.
@@ -97,29 +51,21 @@ func GetSwitchController8021XSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchController8021XSettings resources.
 type switchController8021XSettingsState struct {
-	// Interface-reauthentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-	LinkDownAuth *string `pulumi:"linkDownAuth"`
-	// Maximum number of authentication attempts (0 - 15, default = 3).
-	MaxReauthAttempt *int `pulumi:"maxReauthAttempt"`
-	// Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
-	ReauthPeriod *int `pulumi:"reauthPeriod"`
-	// 802.1X Tx period (seconds, default=30).
-	TxPeriod *int `pulumi:"txPeriod"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	LinkDownAuth     *string `pulumi:"linkDownAuth"`
+	MabReauth        *string `pulumi:"mabReauth"`
+	MaxReauthAttempt *int    `pulumi:"maxReauthAttempt"`
+	ReauthPeriod     *int    `pulumi:"reauthPeriod"`
+	TxPeriod         *int    `pulumi:"txPeriod"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 type SwitchController8021XSettingsState struct {
-	// Interface-reauthentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-	LinkDownAuth pulumi.StringPtrInput
-	// Maximum number of authentication attempts (0 - 15, default = 3).
+	LinkDownAuth     pulumi.StringPtrInput
+	MabReauth        pulumi.StringPtrInput
 	MaxReauthAttempt pulumi.IntPtrInput
-	// Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
-	ReauthPeriod pulumi.IntPtrInput
-	// 802.1X Tx period (seconds, default=30).
-	TxPeriod pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ReauthPeriod     pulumi.IntPtrInput
+	TxPeriod         pulumi.IntPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (SwitchController8021XSettingsState) ElementType() reflect.Type {
@@ -127,30 +73,22 @@ func (SwitchController8021XSettingsState) ElementType() reflect.Type {
 }
 
 type switchController8021XSettingsArgs struct {
-	// Interface-reauthentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-	LinkDownAuth *string `pulumi:"linkDownAuth"`
-	// Maximum number of authentication attempts (0 - 15, default = 3).
-	MaxReauthAttempt *int `pulumi:"maxReauthAttempt"`
-	// Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
-	ReauthPeriod *int `pulumi:"reauthPeriod"`
-	// 802.1X Tx period (seconds, default=30).
-	TxPeriod *int `pulumi:"txPeriod"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	LinkDownAuth     *string `pulumi:"linkDownAuth"`
+	MabReauth        *string `pulumi:"mabReauth"`
+	MaxReauthAttempt *int    `pulumi:"maxReauthAttempt"`
+	ReauthPeriod     *int    `pulumi:"reauthPeriod"`
+	TxPeriod         *int    `pulumi:"txPeriod"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchController8021XSettings resource.
 type SwitchController8021XSettingsArgs struct {
-	// Interface-reauthentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-	LinkDownAuth pulumi.StringPtrInput
-	// Maximum number of authentication attempts (0 - 15, default = 3).
+	LinkDownAuth     pulumi.StringPtrInput
+	MabReauth        pulumi.StringPtrInput
 	MaxReauthAttempt pulumi.IntPtrInput
-	// Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
-	ReauthPeriod pulumi.IntPtrInput
-	// 802.1X Tx period (seconds, default=30).
-	TxPeriod pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ReauthPeriod     pulumi.IntPtrInput
+	TxPeriod         pulumi.IntPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (SwitchController8021XSettingsArgs) ElementType() reflect.Type {
@@ -179,7 +117,7 @@ func (i *SwitchController8021XSettings) ToSwitchController8021XSettingsOutputWit
 // SwitchController8021XSettingsArrayInput is an input type that accepts SwitchController8021XSettingsArray and SwitchController8021XSettingsArrayOutput values.
 // You can construct a concrete instance of `SwitchController8021XSettingsArrayInput` via:
 //
-//          SwitchController8021XSettingsArray{ SwitchController8021XSettingsArgs{...} }
+//	SwitchController8021XSettingsArray{ SwitchController8021XSettingsArgs{...} }
 type SwitchController8021XSettingsArrayInput interface {
 	pulumi.Input
 
@@ -204,7 +142,7 @@ func (i SwitchController8021XSettingsArray) ToSwitchController8021XSettingsArray
 // SwitchController8021XSettingsMapInput is an input type that accepts SwitchController8021XSettingsMap and SwitchController8021XSettingsMapOutput values.
 // You can construct a concrete instance of `SwitchController8021XSettingsMapInput` via:
 //
-//          SwitchController8021XSettingsMap{ "key": SwitchController8021XSettingsArgs{...} }
+//	SwitchController8021XSettingsMap{ "key": SwitchController8021XSettingsArgs{...} }
 type SwitchController8021XSettingsMapInput interface {
 	pulumi.Input
 
@@ -238,6 +176,30 @@ func (o SwitchController8021XSettingsOutput) ToSwitchController8021XSettingsOutp
 
 func (o SwitchController8021XSettingsOutput) ToSwitchController8021XSettingsOutputWithContext(ctx context.Context) SwitchController8021XSettingsOutput {
 	return o
+}
+
+func (o SwitchController8021XSettingsOutput) LinkDownAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchController8021XSettings) pulumi.StringOutput { return v.LinkDownAuth }).(pulumi.StringOutput)
+}
+
+func (o SwitchController8021XSettingsOutput) MabReauth() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchController8021XSettings) pulumi.StringOutput { return v.MabReauth }).(pulumi.StringOutput)
+}
+
+func (o SwitchController8021XSettingsOutput) MaxReauthAttempt() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchController8021XSettings) pulumi.IntOutput { return v.MaxReauthAttempt }).(pulumi.IntOutput)
+}
+
+func (o SwitchController8021XSettingsOutput) ReauthPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchController8021XSettings) pulumi.IntOutput { return v.ReauthPeriod }).(pulumi.IntOutput)
+}
+
+func (o SwitchController8021XSettingsOutput) TxPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchController8021XSettings) pulumi.IntOutput { return v.TxPeriod }).(pulumi.IntOutput)
+}
+
+func (o SwitchController8021XSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchController8021XSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchController8021XSettingsArrayOutput struct{ *pulumi.OutputState }

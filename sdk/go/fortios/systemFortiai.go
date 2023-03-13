@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiAI. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// System Fortiai can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemFortiai:SystemFortiai labelname SystemFortiai
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemFortiai:SystemFortiai labelname SystemFortiai
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemFortiai struct {
 	pulumi.CustomResourceState
 
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
-	// Source IP address for communications to FortiAI.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Enable/disable FortiAI. Valid values: `disable`, `enable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Interface             pulumi.StringOutput    `pulumi:"interface"`
+	InterfaceSelectMethod pulumi.StringOutput    `pulumi:"interfaceSelectMethod"`
+	SourceIp              pulumi.StringOutput    `pulumi:"sourceIp"`
+	Status                pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemFortiai registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetSystemFortiai(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemFortiai resources.
 type systemFortiaiState struct {
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	Interface             *string `pulumi:"interface"`
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Source IP address for communications to FortiAI.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable FortiAI. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	Status                *string `pulumi:"status"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 type SystemFortiaiState struct {
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// Source IP address for communications to FortiAI.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable FortiAI. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	Status                pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SystemFortiaiState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (SystemFortiaiState) ElementType() reflect.Type {
 }
 
 type systemFortiaiArgs struct {
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	Interface             *string `pulumi:"interface"`
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Source IP address for communications to FortiAI.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable FortiAI. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	Status                *string `pulumi:"status"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemFortiai resource.
 type SystemFortiaiArgs struct {
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// Source IP address for communications to FortiAI.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable FortiAI. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	Status                pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SystemFortiaiArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *SystemFortiai) ToSystemFortiaiOutputWithContext(ctx context.Context) Sy
 // SystemFortiaiArrayInput is an input type that accepts SystemFortiaiArray and SystemFortiaiArrayOutput values.
 // You can construct a concrete instance of `SystemFortiaiArrayInput` via:
 //
-//          SystemFortiaiArray{ SystemFortiaiArgs{...} }
+//	SystemFortiaiArray{ SystemFortiaiArgs{...} }
 type SystemFortiaiArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i SystemFortiaiArray) ToSystemFortiaiArrayOutputWithContext(ctx context.Co
 // SystemFortiaiMapInput is an input type that accepts SystemFortiaiMap and SystemFortiaiMapOutput values.
 // You can construct a concrete instance of `SystemFortiaiMapInput` via:
 //
-//          SystemFortiaiMap{ "key": SystemFortiaiArgs{...} }
+//	SystemFortiaiMap{ "key": SystemFortiaiArgs{...} }
 type SystemFortiaiMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o SystemFortiaiOutput) ToSystemFortiaiOutput() SystemFortiaiOutput {
 
 func (o SystemFortiaiOutput) ToSystemFortiaiOutputWithContext(ctx context.Context) SystemFortiaiOutput {
 	return o
+}
+
+func (o SystemFortiaiOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiai) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiaiOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiai) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiaiOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiai) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiaiOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiai) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiaiOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemFortiai) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemFortiaiArrayOutput struct{ *pulumi.OutputState }

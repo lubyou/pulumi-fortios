@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure global MAC synchronization settings. Applies to FortiOS Version `<= 6.2.0`.
- *
- * ## Import
- *
- * SwitchController MacSyncSettings can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerMacSyncSettings:SwitchControllerMacSyncSettings labelname SwitchControllerMacSyncSettings
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerMacSyncSettings:SwitchControllerMacSyncSettings labelname SwitchControllerMacSyncSettings
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerMacSyncSettings extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerMacSyncSettings resource's state with the given name, ID, and optional extra
@@ -51,13 +32,7 @@ export class SwitchControllerMacSyncSettings extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerMacSyncSettings.__pulumiType;
     }
 
-    /**
-     * Time interval between MAC synchronizations (30 - 1800 sec, default = 60, 0 = disable MAC synchronization).
-     */
     public readonly macSyncInterval!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -89,13 +64,7 @@ export class SwitchControllerMacSyncSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerMacSyncSettings resources.
  */
 export interface SwitchControllerMacSyncSettingsState {
-    /**
-     * Time interval between MAC synchronizations (30 - 1800 sec, default = 60, 0 = disable MAC synchronization).
-     */
     macSyncInterval?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -103,12 +72,6 @@ export interface SwitchControllerMacSyncSettingsState {
  * The set of arguments for constructing a SwitchControllerMacSyncSettings resource.
  */
 export interface SwitchControllerMacSyncSettingsArgs {
-    /**
-     * Time interval between MAC synchronizations (30 - 1800 sec, default = 60, 0 = disable MAC synchronization).
-     */
     macSyncInterval?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

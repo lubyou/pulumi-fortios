@@ -7,92 +7,36 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 routing policies.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewRouterPolicy6(ctx, "trname", &fortios.RouterPolicy6Args{
-// 			Dst:          pulumi.String("::/0"),
-// 			EndPort:      pulumi.Int(65535),
-// 			Gateway:      pulumi.String("::"),
-// 			InputDevice:  pulumi.String("port1"),
-// 			OutputDevice: pulumi.String("port3"),
-// 			Protocol:     pulumi.Int(33),
-// 			SeqNum:       pulumi.Int(1),
-// 			Src:          pulumi.String("2001:db8:85a3::8a2e:370:7334/128"),
-// 			StartPort:    pulumi.Int(1),
-// 			Status:       pulumi.String("enable"),
-// 			Tos:          pulumi.String("0x00"),
-// 			TosMask:      pulumi.String("0x00"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Router Policy6 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerPolicy6:RouterPolicy6 labelname {{seq_num}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerPolicy6:RouterPolicy6 labelname {{seq_num}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterPolicy6 struct {
 	pulumi.CustomResourceState
 
-	// Optional comments.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Destination IPv6 prefix.
-	Dst pulumi.StringOutput `pulumi:"dst"`
-	// End destination port number (1 - 65535).
-	EndPort pulumi.IntOutput `pulumi:"endPort"`
-	// IPv6 address of the gateway.
-	Gateway pulumi.StringOutput `pulumi:"gateway"`
-	// Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
-	InputDevice pulumi.StringOutput `pulumi:"inputDevice"`
-	// Outgoing interface name.
-	OutputDevice pulumi.StringOutput `pulumi:"outputDevice"`
-	// Protocol number (0 - 255).
-	Protocol pulumi.IntOutput `pulumi:"protocol"`
-	// Sequence number.
-	SeqNum pulumi.IntOutput `pulumi:"seqNum"`
-	// Source IPv6 prefix.
-	Src pulumi.StringOutput `pulumi:"src"`
-	// Start destination port number (1 - 65535).
-	StartPort pulumi.IntOutput `pulumi:"startPort"`
-	// Enable/disable this policy route. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Type of service bit pattern.
-	Tos pulumi.StringOutput `pulumi:"tos"`
-	// Type of service evaluated bits.
-	TosMask pulumi.StringOutput `pulumi:"tosMask"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Action                 pulumi.StringOutput                           `pulumi:"action"`
+	Comments               pulumi.StringPtrOutput                        `pulumi:"comments"`
+	Dst                    pulumi.StringOutput                           `pulumi:"dst"`
+	DstNegate              pulumi.StringOutput                           `pulumi:"dstNegate"`
+	Dstaddrs               RouterPolicy6DstaddrArrayOutput               `pulumi:"dstaddrs"`
+	DynamicSortSubtable    pulumi.StringPtrOutput                        `pulumi:"dynamicSortSubtable"`
+	EndPort                pulumi.IntOutput                              `pulumi:"endPort"`
+	Gateway                pulumi.StringOutput                           `pulumi:"gateway"`
+	InputDevice            pulumi.StringOutput                           `pulumi:"inputDevice"`
+	InputDeviceNegate      pulumi.StringOutput                           `pulumi:"inputDeviceNegate"`
+	InternetServiceCustoms RouterPolicy6InternetServiceCustomArrayOutput `pulumi:"internetServiceCustoms"`
+	InternetServiceIds     RouterPolicy6InternetServiceIdArrayOutput     `pulumi:"internetServiceIds"`
+	OutputDevice           pulumi.StringOutput                           `pulumi:"outputDevice"`
+	Protocol               pulumi.IntOutput                              `pulumi:"protocol"`
+	SeqNum                 pulumi.IntOutput                              `pulumi:"seqNum"`
+	Src                    pulumi.StringOutput                           `pulumi:"src"`
+	SrcNegate              pulumi.StringOutput                           `pulumi:"srcNegate"`
+	Srcaddrs               RouterPolicy6SrcaddrArrayOutput               `pulumi:"srcaddrs"`
+	StartPort              pulumi.IntOutput                              `pulumi:"startPort"`
+	Status                 pulumi.StringOutput                           `pulumi:"status"`
+	Tos                    pulumi.StringOutput                           `pulumi:"tos"`
+	TosMask                pulumi.StringOutput                           `pulumi:"tosMask"`
+	Vdomparam              pulumi.StringPtrOutput                        `pulumi:"vdomparam"`
 }
 
 // NewRouterPolicy6 registers a new resource with the given unique name, arguments, and options.
@@ -128,65 +72,55 @@ func GetRouterPolicy6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterPolicy6 resources.
 type routerPolicy6State struct {
-	// Optional comments.
-	Comments *string `pulumi:"comments"`
-	// Destination IPv6 prefix.
-	Dst *string `pulumi:"dst"`
-	// End destination port number (1 - 65535).
-	EndPort *int `pulumi:"endPort"`
-	// IPv6 address of the gateway.
-	Gateway *string `pulumi:"gateway"`
-	// Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
-	InputDevice *string `pulumi:"inputDevice"`
-	// Outgoing interface name.
-	OutputDevice *string `pulumi:"outputDevice"`
-	// Protocol number (0 - 255).
-	Protocol *int `pulumi:"protocol"`
-	// Sequence number.
-	SeqNum *int `pulumi:"seqNum"`
-	// Source IPv6 prefix.
-	Src *string `pulumi:"src"`
-	// Start destination port number (1 - 65535).
-	StartPort *int `pulumi:"startPort"`
-	// Enable/disable this policy route. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Type of service bit pattern.
-	Tos *string `pulumi:"tos"`
-	// Type of service evaluated bits.
-	TosMask *string `pulumi:"tosMask"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Action                 *string                              `pulumi:"action"`
+	Comments               *string                              `pulumi:"comments"`
+	Dst                    *string                              `pulumi:"dst"`
+	DstNegate              *string                              `pulumi:"dstNegate"`
+	Dstaddrs               []RouterPolicy6Dstaddr               `pulumi:"dstaddrs"`
+	DynamicSortSubtable    *string                              `pulumi:"dynamicSortSubtable"`
+	EndPort                *int                                 `pulumi:"endPort"`
+	Gateway                *string                              `pulumi:"gateway"`
+	InputDevice            *string                              `pulumi:"inputDevice"`
+	InputDeviceNegate      *string                              `pulumi:"inputDeviceNegate"`
+	InternetServiceCustoms []RouterPolicy6InternetServiceCustom `pulumi:"internetServiceCustoms"`
+	InternetServiceIds     []RouterPolicy6InternetServiceId     `pulumi:"internetServiceIds"`
+	OutputDevice           *string                              `pulumi:"outputDevice"`
+	Protocol               *int                                 `pulumi:"protocol"`
+	SeqNum                 *int                                 `pulumi:"seqNum"`
+	Src                    *string                              `pulumi:"src"`
+	SrcNegate              *string                              `pulumi:"srcNegate"`
+	Srcaddrs               []RouterPolicy6Srcaddr               `pulumi:"srcaddrs"`
+	StartPort              *int                                 `pulumi:"startPort"`
+	Status                 *string                              `pulumi:"status"`
+	Tos                    *string                              `pulumi:"tos"`
+	TosMask                *string                              `pulumi:"tosMask"`
+	Vdomparam              *string                              `pulumi:"vdomparam"`
 }
 
 type RouterPolicy6State struct {
-	// Optional comments.
-	Comments pulumi.StringPtrInput
-	// Destination IPv6 prefix.
-	Dst pulumi.StringPtrInput
-	// End destination port number (1 - 65535).
-	EndPort pulumi.IntPtrInput
-	// IPv6 address of the gateway.
-	Gateway pulumi.StringPtrInput
-	// Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
-	InputDevice pulumi.StringPtrInput
-	// Outgoing interface name.
-	OutputDevice pulumi.StringPtrInput
-	// Protocol number (0 - 255).
-	Protocol pulumi.IntPtrInput
-	// Sequence number.
-	SeqNum pulumi.IntPtrInput
-	// Source IPv6 prefix.
-	Src pulumi.StringPtrInput
-	// Start destination port number (1 - 65535).
-	StartPort pulumi.IntPtrInput
-	// Enable/disable this policy route. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Type of service bit pattern.
-	Tos pulumi.StringPtrInput
-	// Type of service evaluated bits.
-	TosMask pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Action                 pulumi.StringPtrInput
+	Comments               pulumi.StringPtrInput
+	Dst                    pulumi.StringPtrInput
+	DstNegate              pulumi.StringPtrInput
+	Dstaddrs               RouterPolicy6DstaddrArrayInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	EndPort                pulumi.IntPtrInput
+	Gateway                pulumi.StringPtrInput
+	InputDevice            pulumi.StringPtrInput
+	InputDeviceNegate      pulumi.StringPtrInput
+	InternetServiceCustoms RouterPolicy6InternetServiceCustomArrayInput
+	InternetServiceIds     RouterPolicy6InternetServiceIdArrayInput
+	OutputDevice           pulumi.StringPtrInput
+	Protocol               pulumi.IntPtrInput
+	SeqNum                 pulumi.IntPtrInput
+	Src                    pulumi.StringPtrInput
+	SrcNegate              pulumi.StringPtrInput
+	Srcaddrs               RouterPolicy6SrcaddrArrayInput
+	StartPort              pulumi.IntPtrInput
+	Status                 pulumi.StringPtrInput
+	Tos                    pulumi.StringPtrInput
+	TosMask                pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (RouterPolicy6State) ElementType() reflect.Type {
@@ -194,66 +128,56 @@ func (RouterPolicy6State) ElementType() reflect.Type {
 }
 
 type routerPolicy6Args struct {
-	// Optional comments.
-	Comments *string `pulumi:"comments"`
-	// Destination IPv6 prefix.
-	Dst *string `pulumi:"dst"`
-	// End destination port number (1 - 65535).
-	EndPort *int `pulumi:"endPort"`
-	// IPv6 address of the gateway.
-	Gateway *string `pulumi:"gateway"`
-	// Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
-	InputDevice string `pulumi:"inputDevice"`
-	// Outgoing interface name.
-	OutputDevice *string `pulumi:"outputDevice"`
-	// Protocol number (0 - 255).
-	Protocol *int `pulumi:"protocol"`
-	// Sequence number.
-	SeqNum *int `pulumi:"seqNum"`
-	// Source IPv6 prefix.
-	Src *string `pulumi:"src"`
-	// Start destination port number (1 - 65535).
-	StartPort *int `pulumi:"startPort"`
-	// Enable/disable this policy route. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Type of service bit pattern.
-	Tos *string `pulumi:"tos"`
-	// Type of service evaluated bits.
-	TosMask *string `pulumi:"tosMask"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Action                 *string                              `pulumi:"action"`
+	Comments               *string                              `pulumi:"comments"`
+	Dst                    *string                              `pulumi:"dst"`
+	DstNegate              *string                              `pulumi:"dstNegate"`
+	Dstaddrs               []RouterPolicy6Dstaddr               `pulumi:"dstaddrs"`
+	DynamicSortSubtable    *string                              `pulumi:"dynamicSortSubtable"`
+	EndPort                *int                                 `pulumi:"endPort"`
+	Gateway                *string                              `pulumi:"gateway"`
+	InputDevice            string                               `pulumi:"inputDevice"`
+	InputDeviceNegate      *string                              `pulumi:"inputDeviceNegate"`
+	InternetServiceCustoms []RouterPolicy6InternetServiceCustom `pulumi:"internetServiceCustoms"`
+	InternetServiceIds     []RouterPolicy6InternetServiceId     `pulumi:"internetServiceIds"`
+	OutputDevice           *string                              `pulumi:"outputDevice"`
+	Protocol               *int                                 `pulumi:"protocol"`
+	SeqNum                 *int                                 `pulumi:"seqNum"`
+	Src                    *string                              `pulumi:"src"`
+	SrcNegate              *string                              `pulumi:"srcNegate"`
+	Srcaddrs               []RouterPolicy6Srcaddr               `pulumi:"srcaddrs"`
+	StartPort              *int                                 `pulumi:"startPort"`
+	Status                 *string                              `pulumi:"status"`
+	Tos                    *string                              `pulumi:"tos"`
+	TosMask                *string                              `pulumi:"tosMask"`
+	Vdomparam              *string                              `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterPolicy6 resource.
 type RouterPolicy6Args struct {
-	// Optional comments.
-	Comments pulumi.StringPtrInput
-	// Destination IPv6 prefix.
-	Dst pulumi.StringPtrInput
-	// End destination port number (1 - 65535).
-	EndPort pulumi.IntPtrInput
-	// IPv6 address of the gateway.
-	Gateway pulumi.StringPtrInput
-	// Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
-	InputDevice pulumi.StringInput
-	// Outgoing interface name.
-	OutputDevice pulumi.StringPtrInput
-	// Protocol number (0 - 255).
-	Protocol pulumi.IntPtrInput
-	// Sequence number.
-	SeqNum pulumi.IntPtrInput
-	// Source IPv6 prefix.
-	Src pulumi.StringPtrInput
-	// Start destination port number (1 - 65535).
-	StartPort pulumi.IntPtrInput
-	// Enable/disable this policy route. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Type of service bit pattern.
-	Tos pulumi.StringPtrInput
-	// Type of service evaluated bits.
-	TosMask pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Action                 pulumi.StringPtrInput
+	Comments               pulumi.StringPtrInput
+	Dst                    pulumi.StringPtrInput
+	DstNegate              pulumi.StringPtrInput
+	Dstaddrs               RouterPolicy6DstaddrArrayInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	EndPort                pulumi.IntPtrInput
+	Gateway                pulumi.StringPtrInput
+	InputDevice            pulumi.StringInput
+	InputDeviceNegate      pulumi.StringPtrInput
+	InternetServiceCustoms RouterPolicy6InternetServiceCustomArrayInput
+	InternetServiceIds     RouterPolicy6InternetServiceIdArrayInput
+	OutputDevice           pulumi.StringPtrInput
+	Protocol               pulumi.IntPtrInput
+	SeqNum                 pulumi.IntPtrInput
+	Src                    pulumi.StringPtrInput
+	SrcNegate              pulumi.StringPtrInput
+	Srcaddrs               RouterPolicy6SrcaddrArrayInput
+	StartPort              pulumi.IntPtrInput
+	Status                 pulumi.StringPtrInput
+	Tos                    pulumi.StringPtrInput
+	TosMask                pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (RouterPolicy6Args) ElementType() reflect.Type {
@@ -282,7 +206,7 @@ func (i *RouterPolicy6) ToRouterPolicy6OutputWithContext(ctx context.Context) Ro
 // RouterPolicy6ArrayInput is an input type that accepts RouterPolicy6Array and RouterPolicy6ArrayOutput values.
 // You can construct a concrete instance of `RouterPolicy6ArrayInput` via:
 //
-//          RouterPolicy6Array{ RouterPolicy6Args{...} }
+//	RouterPolicy6Array{ RouterPolicy6Args{...} }
 type RouterPolicy6ArrayInput interface {
 	pulumi.Input
 
@@ -307,7 +231,7 @@ func (i RouterPolicy6Array) ToRouterPolicy6ArrayOutputWithContext(ctx context.Co
 // RouterPolicy6MapInput is an input type that accepts RouterPolicy6Map and RouterPolicy6MapOutput values.
 // You can construct a concrete instance of `RouterPolicy6MapInput` via:
 //
-//          RouterPolicy6Map{ "key": RouterPolicy6Args{...} }
+//	RouterPolicy6Map{ "key": RouterPolicy6Args{...} }
 type RouterPolicy6MapInput interface {
 	pulumi.Input
 
@@ -341,6 +265,98 @@ func (o RouterPolicy6Output) ToRouterPolicy6Output() RouterPolicy6Output {
 
 func (o RouterPolicy6Output) ToRouterPolicy6OutputWithContext(ctx context.Context) RouterPolicy6Output {
 	return o
+}
+
+func (o RouterPolicy6Output) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicy6Output) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterPolicy6Output) Dst() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringOutput { return v.Dst }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicy6Output) DstNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringOutput { return v.DstNegate }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicy6Output) Dstaddrs() RouterPolicy6DstaddrArrayOutput {
+	return o.ApplyT(func(v *RouterPolicy6) RouterPolicy6DstaddrArrayOutput { return v.Dstaddrs }).(RouterPolicy6DstaddrArrayOutput)
+}
+
+func (o RouterPolicy6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterPolicy6Output) EndPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.IntOutput { return v.EndPort }).(pulumi.IntOutput)
+}
+
+func (o RouterPolicy6Output) Gateway() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicy6Output) InputDevice() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringOutput { return v.InputDevice }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicy6Output) InputDeviceNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringOutput { return v.InputDeviceNegate }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicy6Output) InternetServiceCustoms() RouterPolicy6InternetServiceCustomArrayOutput {
+	return o.ApplyT(func(v *RouterPolicy6) RouterPolicy6InternetServiceCustomArrayOutput { return v.InternetServiceCustoms }).(RouterPolicy6InternetServiceCustomArrayOutput)
+}
+
+func (o RouterPolicy6Output) InternetServiceIds() RouterPolicy6InternetServiceIdArrayOutput {
+	return o.ApplyT(func(v *RouterPolicy6) RouterPolicy6InternetServiceIdArrayOutput { return v.InternetServiceIds }).(RouterPolicy6InternetServiceIdArrayOutput)
+}
+
+func (o RouterPolicy6Output) OutputDevice() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringOutput { return v.OutputDevice }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicy6Output) Protocol() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.IntOutput { return v.Protocol }).(pulumi.IntOutput)
+}
+
+func (o RouterPolicy6Output) SeqNum() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.IntOutput { return v.SeqNum }).(pulumi.IntOutput)
+}
+
+func (o RouterPolicy6Output) Src() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringOutput { return v.Src }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicy6Output) SrcNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringOutput { return v.SrcNegate }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicy6Output) Srcaddrs() RouterPolicy6SrcaddrArrayOutput {
+	return o.ApplyT(func(v *RouterPolicy6) RouterPolicy6SrcaddrArrayOutput { return v.Srcaddrs }).(RouterPolicy6SrcaddrArrayOutput)
+}
+
+func (o RouterPolicy6Output) StartPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.IntOutput { return v.StartPort }).(pulumi.IntOutput)
+}
+
+func (o RouterPolicy6Output) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicy6Output) Tos() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringOutput { return v.Tos }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicy6Output) TosMask() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringOutput { return v.TosMask }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicy6Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterPolicy6ArrayOutput struct{ *pulumi.OutputState }

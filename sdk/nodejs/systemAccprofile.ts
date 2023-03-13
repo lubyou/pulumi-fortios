@@ -2,87 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure access profiles for system administrators.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test12 = new fortios.SystemAccprofile("test12", {
- *     admintimeout: 10,
- *     admintimeoutOverride: "disable",
- *     authgrp: "read-write",
- *     ftviewgrp: "read-write",
- *     fwgrp: "custom",
- *     fwgrpPermission: {
- *         address: "read-write",
- *         policy: "read-write",
- *         schedule: "none",
- *         service: "none",
- *     },
- *     loggrp: "read-write",
- *     loggrpPermission: {
- *         config: "none",
- *         dataAccess: "none",
- *         reportAccess: "none",
- *         threatWeight: "none",
- *     },
- *     netgrp: "read-write",
- *     netgrpPermission: {
- *         cfg: "none",
- *         packetCapture: "none",
- *         routeCfg: "none",
- *     },
- *     scope: "vdom",
- *     secfabgrp: "read-write",
- *     sysgrp: "read-write",
- *     sysgrpPermission: {
- *         admin: "none",
- *         cfg: "none",
- *         mnt: "none",
- *         upd: "none",
- *     },
- *     utmgrp: "custom",
- *     utmgrpPermission: {
- *         antivirus: "read-write",
- *         applicationControl: "none",
- *         dataLossPrevention: "none",
- *         dnsfilter: "none",
- *         endpointControl: "none",
- *         icap: "none",
- *         ips: "read-write",
- *         voip: "none",
- *         waf: "none",
- *         webfilter: "none",
- *     },
- *     vpngrp: "read-write",
- *     wanoptgrp: "read-write",
- *     wifi: "read-write",
- * });
- * ```
- *
- * ## Import
- *
- * System Accprofile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAccprofile:SystemAccprofile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAccprofile:SystemAccprofile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemAccprofile extends pulumi.CustomResource {
     /**
      * Get an existing SystemAccprofile resource's state with the given name, ID, and optional extra
@@ -111,97 +34,30 @@ export class SystemAccprofile extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAccprofile.__pulumiType;
     }
 
-    /**
-     * Administrator timeout for this access profile (0 - 480 min, default = 10, 0 means never timeout).
-     */
     public readonly admintimeout!: pulumi.Output<number>;
-    /**
-     * Enable/disable overriding the global administrator idle timeout. Valid values: `enable`, `disable`.
-     */
     public readonly admintimeoutOverride!: pulumi.Output<string>;
-    /**
-     * Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
-     */
     public readonly authgrp!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * FortiView. Valid values: `none`, `read`, `read-write`.
-     */
     public readonly ftviewgrp!: pulumi.Output<string>;
-    /**
-     * Administrator access to the Firewall configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-     */
     public readonly fwgrp!: pulumi.Output<string>;
-    /**
-     * Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
-     */
-    public readonly fwgrpPermission!: pulumi.Output<outputs.SystemAccprofileFwgrpPermission | undefined>;
-    /**
-     * Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
-     */
+    public readonly fwgrpPermission!: pulumi.Output<outputs.SystemAccprofileFwgrpPermission>;
     public readonly loggrp!: pulumi.Output<string>;
-    /**
-     * Custom Log & Report permission. The structure of `loggrpPermission` block is documented below.
-     */
-    public readonly loggrpPermission!: pulumi.Output<outputs.SystemAccprofileLoggrpPermission | undefined>;
-    /**
-     * Profile name.
-     */
+    public readonly loggrpPermission!: pulumi.Output<outputs.SystemAccprofileLoggrpPermission>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Network Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-     */
     public readonly netgrp!: pulumi.Output<string>;
-    /**
-     * Custom network permission. The structure of `netgrpPermission` block is documented below.
-     */
-    public readonly netgrpPermission!: pulumi.Output<outputs.SystemAccprofileNetgrpPermission | undefined>;
-    /**
-     * Scope of admin access: global or specific VDOM(s). Valid values: `vdom`, `global`.
-     */
+    public readonly netgrpPermission!: pulumi.Output<outputs.SystemAccprofileNetgrpPermission>;
     public readonly scope!: pulumi.Output<string>;
-    /**
-     * Security Fabric. Valid values: `none`, `read`, `read-write`.
-     */
     public readonly secfabgrp!: pulumi.Output<string>;
-    /**
-     * System Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-     */
     public readonly sysgrp!: pulumi.Output<string>;
-    /**
-     * Custom system permission. The structure of `sysgrpPermission` block is documented below.
-     */
-    public readonly sysgrpPermission!: pulumi.Output<outputs.SystemAccprofileSysgrpPermission | undefined>;
-    /**
-     * Enable/disable permission to run system diagnostic commands. Valid values: `enable`, `disable`.
-     */
+    public readonly sysgrpPermission!: pulumi.Output<outputs.SystemAccprofileSysgrpPermission>;
     public readonly systemDiagnostics!: pulumi.Output<string>;
-    /**
-     * Administrator access to Security Profiles. Valid values: `none`, `read`, `read-write`, `custom`.
-     */
+    public readonly systemExecuteSsh!: pulumi.Output<string>;
+    public readonly systemExecuteTelnet!: pulumi.Output<string>;
     public readonly utmgrp!: pulumi.Output<string>;
-    /**
-     * Custom Security Profile permissions. The structure of `utmgrpPermission` block is documented below.
-     */
-    public readonly utmgrpPermission!: pulumi.Output<outputs.SystemAccprofileUtmgrpPermission | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    public readonly utmgrpPermission!: pulumi.Output<outputs.SystemAccprofileUtmgrpPermission>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Administrator access to IPsec, SSL, PPTP, and L2TP VPN. Valid values: `none`, `read`, `read-write`.
-     */
     public readonly vpngrp!: pulumi.Output<string>;
-    /**
-     * Administrator access to WAN Opt & Cache. Valid values: `none`, `read`, `read-write`.
-     */
     public readonly wanoptgrp!: pulumi.Output<string>;
-    /**
-     * Administrator access to the WiFi controller and Switch controller. Valid values: `none`, `read`, `read-write`.
-     */
     public readonly wifi!: pulumi.Output<string>;
 
     /**
@@ -234,6 +90,8 @@ export class SystemAccprofile extends pulumi.CustomResource {
             resourceInputs["sysgrp"] = state ? state.sysgrp : undefined;
             resourceInputs["sysgrpPermission"] = state ? state.sysgrpPermission : undefined;
             resourceInputs["systemDiagnostics"] = state ? state.systemDiagnostics : undefined;
+            resourceInputs["systemExecuteSsh"] = state ? state.systemExecuteSsh : undefined;
+            resourceInputs["systemExecuteTelnet"] = state ? state.systemExecuteTelnet : undefined;
             resourceInputs["utmgrp"] = state ? state.utmgrp : undefined;
             resourceInputs["utmgrpPermission"] = state ? state.utmgrpPermission : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -259,6 +117,8 @@ export class SystemAccprofile extends pulumi.CustomResource {
             resourceInputs["sysgrp"] = args ? args.sysgrp : undefined;
             resourceInputs["sysgrpPermission"] = args ? args.sysgrpPermission : undefined;
             resourceInputs["systemDiagnostics"] = args ? args.systemDiagnostics : undefined;
+            resourceInputs["systemExecuteSsh"] = args ? args.systemExecuteSsh : undefined;
+            resourceInputs["systemExecuteTelnet"] = args ? args.systemExecuteTelnet : undefined;
             resourceInputs["utmgrp"] = args ? args.utmgrp : undefined;
             resourceInputs["utmgrpPermission"] = args ? args.utmgrpPermission : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -275,97 +135,30 @@ export class SystemAccprofile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAccprofile resources.
  */
 export interface SystemAccprofileState {
-    /**
-     * Administrator timeout for this access profile (0 - 480 min, default = 10, 0 means never timeout).
-     */
     admintimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable overriding the global administrator idle timeout. Valid values: `enable`, `disable`.
-     */
     admintimeoutOverride?: pulumi.Input<string>;
-    /**
-     * Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
-     */
     authgrp?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * FortiView. Valid values: `none`, `read`, `read-write`.
-     */
     ftviewgrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to the Firewall configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-     */
     fwgrp?: pulumi.Input<string>;
-    /**
-     * Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
-     */
     fwgrpPermission?: pulumi.Input<inputs.SystemAccprofileFwgrpPermission>;
-    /**
-     * Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
-     */
     loggrp?: pulumi.Input<string>;
-    /**
-     * Custom Log & Report permission. The structure of `loggrpPermission` block is documented below.
-     */
     loggrpPermission?: pulumi.Input<inputs.SystemAccprofileLoggrpPermission>;
-    /**
-     * Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Network Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-     */
     netgrp?: pulumi.Input<string>;
-    /**
-     * Custom network permission. The structure of `netgrpPermission` block is documented below.
-     */
     netgrpPermission?: pulumi.Input<inputs.SystemAccprofileNetgrpPermission>;
-    /**
-     * Scope of admin access: global or specific VDOM(s). Valid values: `vdom`, `global`.
-     */
     scope?: pulumi.Input<string>;
-    /**
-     * Security Fabric. Valid values: `none`, `read`, `read-write`.
-     */
     secfabgrp?: pulumi.Input<string>;
-    /**
-     * System Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-     */
     sysgrp?: pulumi.Input<string>;
-    /**
-     * Custom system permission. The structure of `sysgrpPermission` block is documented below.
-     */
     sysgrpPermission?: pulumi.Input<inputs.SystemAccprofileSysgrpPermission>;
-    /**
-     * Enable/disable permission to run system diagnostic commands. Valid values: `enable`, `disable`.
-     */
     systemDiagnostics?: pulumi.Input<string>;
-    /**
-     * Administrator access to Security Profiles. Valid values: `none`, `read`, `read-write`, `custom`.
-     */
+    systemExecuteSsh?: pulumi.Input<string>;
+    systemExecuteTelnet?: pulumi.Input<string>;
     utmgrp?: pulumi.Input<string>;
-    /**
-     * Custom Security Profile permissions. The structure of `utmgrpPermission` block is documented below.
-     */
     utmgrpPermission?: pulumi.Input<inputs.SystemAccprofileUtmgrpPermission>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Administrator access to IPsec, SSL, PPTP, and L2TP VPN. Valid values: `none`, `read`, `read-write`.
-     */
     vpngrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to WAN Opt & Cache. Valid values: `none`, `read`, `read-write`.
-     */
     wanoptgrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to the WiFi controller and Switch controller. Valid values: `none`, `read`, `read-write`.
-     */
     wifi?: pulumi.Input<string>;
 }
 
@@ -373,96 +166,29 @@ export interface SystemAccprofileState {
  * The set of arguments for constructing a SystemAccprofile resource.
  */
 export interface SystemAccprofileArgs {
-    /**
-     * Administrator timeout for this access profile (0 - 480 min, default = 10, 0 means never timeout).
-     */
     admintimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable overriding the global administrator idle timeout. Valid values: `enable`, `disable`.
-     */
     admintimeoutOverride?: pulumi.Input<string>;
-    /**
-     * Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
-     */
     authgrp?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * FortiView. Valid values: `none`, `read`, `read-write`.
-     */
     ftviewgrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to the Firewall configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-     */
     fwgrp?: pulumi.Input<string>;
-    /**
-     * Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
-     */
     fwgrpPermission?: pulumi.Input<inputs.SystemAccprofileFwgrpPermission>;
-    /**
-     * Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
-     */
     loggrp?: pulumi.Input<string>;
-    /**
-     * Custom Log & Report permission. The structure of `loggrpPermission` block is documented below.
-     */
     loggrpPermission?: pulumi.Input<inputs.SystemAccprofileLoggrpPermission>;
-    /**
-     * Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Network Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-     */
     netgrp?: pulumi.Input<string>;
-    /**
-     * Custom network permission. The structure of `netgrpPermission` block is documented below.
-     */
     netgrpPermission?: pulumi.Input<inputs.SystemAccprofileNetgrpPermission>;
-    /**
-     * Scope of admin access: global or specific VDOM(s). Valid values: `vdom`, `global`.
-     */
     scope?: pulumi.Input<string>;
-    /**
-     * Security Fabric. Valid values: `none`, `read`, `read-write`.
-     */
     secfabgrp?: pulumi.Input<string>;
-    /**
-     * System Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-     */
     sysgrp?: pulumi.Input<string>;
-    /**
-     * Custom system permission. The structure of `sysgrpPermission` block is documented below.
-     */
     sysgrpPermission?: pulumi.Input<inputs.SystemAccprofileSysgrpPermission>;
-    /**
-     * Enable/disable permission to run system diagnostic commands. Valid values: `enable`, `disable`.
-     */
     systemDiagnostics?: pulumi.Input<string>;
-    /**
-     * Administrator access to Security Profiles. Valid values: `none`, `read`, `read-write`, `custom`.
-     */
+    systemExecuteSsh?: pulumi.Input<string>;
+    systemExecuteTelnet?: pulumi.Input<string>;
     utmgrp?: pulumi.Input<string>;
-    /**
-     * Custom Security Profile permissions. The structure of `utmgrpPermission` block is documented below.
-     */
     utmgrpPermission?: pulumi.Input<inputs.SystemAccprofileUtmgrpPermission>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Administrator access to IPsec, SSL, PPTP, and L2TP VPN. Valid values: `none`, `read`, `read-write`.
-     */
     vpngrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to WAN Opt & Cache. Valid values: `none`, `read`, `read-write`.
-     */
     wanoptgrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to the WiFi controller and Switch controller. Valid values: `none`, `read`, `read-write`.
-     */
     wifi?: pulumi.Input<string>;
 }

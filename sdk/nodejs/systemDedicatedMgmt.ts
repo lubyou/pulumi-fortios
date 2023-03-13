@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure dedicated management.
- *
- * ## Import
- *
- * System DedicatedMgmt can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemDedicatedMgmt:SystemDedicatedMgmt labelname SystemDedicatedMgmt
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemDedicatedMgmt:SystemDedicatedMgmt labelname SystemDedicatedMgmt
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemDedicatedMgmt extends pulumi.CustomResource {
     /**
      * Get an existing SystemDedicatedMgmt resource's state with the given name, ID, and optional extra
@@ -51,37 +32,13 @@ export class SystemDedicatedMgmt extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemDedicatedMgmt.__pulumiType;
     }
 
-    /**
-     * Default gateway for dedicated management interface.
-     */
     public readonly defaultGateway!: pulumi.Output<string>;
-    /**
-     * DHCP end IP for dedicated management.
-     */
     public readonly dhcpEndIp!: pulumi.Output<string>;
-    /**
-     * DHCP netmask.
-     */
     public readonly dhcpNetmask!: pulumi.Output<string>;
-    /**
-     * Enable/disable DHCP server on management interface. Valid values: `enable`, `disable`.
-     */
     public readonly dhcpServer!: pulumi.Output<string>;
-    /**
-     * DHCP start IP for dedicated management.
-     */
     public readonly dhcpStartIp!: pulumi.Output<string>;
-    /**
-     * Dedicated management interface.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Enable/disable dedicated management. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -125,37 +82,13 @@ export class SystemDedicatedMgmt extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemDedicatedMgmt resources.
  */
 export interface SystemDedicatedMgmtState {
-    /**
-     * Default gateway for dedicated management interface.
-     */
     defaultGateway?: pulumi.Input<string>;
-    /**
-     * DHCP end IP for dedicated management.
-     */
     dhcpEndIp?: pulumi.Input<string>;
-    /**
-     * DHCP netmask.
-     */
     dhcpNetmask?: pulumi.Input<string>;
-    /**
-     * Enable/disable DHCP server on management interface. Valid values: `enable`, `disable`.
-     */
     dhcpServer?: pulumi.Input<string>;
-    /**
-     * DHCP start IP for dedicated management.
-     */
     dhcpStartIp?: pulumi.Input<string>;
-    /**
-     * Dedicated management interface.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Enable/disable dedicated management. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -163,36 +96,12 @@ export interface SystemDedicatedMgmtState {
  * The set of arguments for constructing a SystemDedicatedMgmt resource.
  */
 export interface SystemDedicatedMgmtArgs {
-    /**
-     * Default gateway for dedicated management interface.
-     */
     defaultGateway?: pulumi.Input<string>;
-    /**
-     * DHCP end IP for dedicated management.
-     */
     dhcpEndIp?: pulumi.Input<string>;
-    /**
-     * DHCP netmask.
-     */
     dhcpNetmask?: pulumi.Input<string>;
-    /**
-     * Enable/disable DHCP server on management interface. Valid values: `enable`, `disable`.
-     */
     dhcpServer?: pulumi.Input<string>;
-    /**
-     * DHCP start IP for dedicated management.
-     */
     dhcpStartIp?: pulumi.Input<string>;
-    /**
-     * Dedicated management interface.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Enable/disable dedicated management. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

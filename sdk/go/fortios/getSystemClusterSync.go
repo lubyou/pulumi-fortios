@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system clustersync
 func LookupSystemClusterSync(ctx *pulumi.Context, args *LookupSystemClusterSyncArgs, opts ...pulumi.InvokeOption) (*LookupSystemClusterSyncResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemClusterSyncResult
@@ -23,45 +22,29 @@ func LookupSystemClusterSync(ctx *pulumi.Context, args *LookupSystemClusterSyncA
 
 // A collection of arguments for invoking GetSystemClusterSync.
 type LookupSystemClusterSyncArgs struct {
-	// Specify the syncId of the desired system clustersync.
-	SyncId int `pulumi:"syncId"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	SyncId    int     `pulumi:"syncId"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemClusterSync.
 type LookupSystemClusterSyncResult struct {
-	// List of interfaces to be turned down before session synchronization is complete. The structure of `downIntfsBeforeSessSync` block is documented below.
 	DownIntfsBeforeSessSyncs []GetSystemClusterSyncDownIntfsBeforeSessSync `pulumi:"downIntfsBeforeSessSyncs"`
-	// Heartbeat interval (1 - 10 sec).
-	HbInterval int `pulumi:"hbInterval"`
-	// Lost heartbeat threshold (1 - 10).
-	HbLostThreshold int `pulumi:"hbLostThreshold"`
+	HbInterval               int                                           `pulumi:"hbInterval"`
+	HbLostThreshold          int                                           `pulumi:"hbLostThreshold"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// IKE heartbeat interval (1 - 60 secs).
-	IkeHeartbeatInterval int `pulumi:"ikeHeartbeatInterval"`
-	// Enable/disable IKE HA monitor.
-	IkeMonitor string `pulumi:"ikeMonitor"`
-	// IKE HA monitor interval (10 - 300 secs).
-	IkeMonitorInterval int `pulumi:"ikeMonitorInterval"`
-	// Enable/disable IPsec tunnel synchronization.
-	IpsecTunnelSync string `pulumi:"ipsecTunnelSync"`
-	// IP address of the interface on the peer unit that is used for the session synchronization link.
-	Peerip string `pulumi:"peerip"`
-	// VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
-	Peervd string `pulumi:"peervd"`
-	// Enable/disable IKE route announcement on the backup unit.
-	SecondaryAddIpsecRoutes string `pulumi:"secondaryAddIpsecRoutes"`
-	// Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
-	SessionSyncFilter GetSystemClusterSyncSessionSyncFilter `pulumi:"sessionSyncFilter"`
-	// Enable/disable IKE route announcement on the backup unit.
-	SlaveAddIkeRoutes string `pulumi:"slaveAddIkeRoutes"`
-	// Sync ID.
-	SyncId int `pulumi:"syncId"`
-	// Sessions from these VDOMs are synchronized using this session synchronization configuration. The structure of `syncvd` block is documented below.
-	Syncvds   []GetSystemClusterSyncSyncvd `pulumi:"syncvds"`
-	Vdomparam *string                      `pulumi:"vdomparam"`
+	Id                      string                                  `pulumi:"id"`
+	IkeHeartbeatInterval    int                                     `pulumi:"ikeHeartbeatInterval"`
+	IkeMonitor              string                                  `pulumi:"ikeMonitor"`
+	IkeMonitorInterval      int                                     `pulumi:"ikeMonitorInterval"`
+	IpsecTunnelSync         string                                  `pulumi:"ipsecTunnelSync"`
+	Peerip                  string                                  `pulumi:"peerip"`
+	Peervd                  string                                  `pulumi:"peervd"`
+	SecondaryAddIpsecRoutes string                                  `pulumi:"secondaryAddIpsecRoutes"`
+	SessionSyncFilters      []GetSystemClusterSyncSessionSyncFilter `pulumi:"sessionSyncFilters"`
+	SlaveAddIkeRoutes       string                                  `pulumi:"slaveAddIkeRoutes"`
+	SyncId                  int                                     `pulumi:"syncId"`
+	Syncvds                 []GetSystemClusterSyncSyncvd            `pulumi:"syncvds"`
+	Vdomparam               *string                                 `pulumi:"vdomparam"`
 }
 
 func LookupSystemClusterSyncOutput(ctx *pulumi.Context, args LookupSystemClusterSyncOutputArgs, opts ...pulumi.InvokeOption) LookupSystemClusterSyncResultOutput {
@@ -79,9 +62,7 @@ func LookupSystemClusterSyncOutput(ctx *pulumi.Context, args LookupSystemCluster
 
 // A collection of arguments for invoking GetSystemClusterSync.
 type LookupSystemClusterSyncOutputArgs struct {
-	// Specify the syncId of the desired system clustersync.
-	SyncId pulumi.IntInput `pulumi:"syncId"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	SyncId    pulumi.IntInput       `pulumi:"syncId"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -104,19 +85,16 @@ func (o LookupSystemClusterSyncResultOutput) ToLookupSystemClusterSyncResultOutp
 	return o
 }
 
-// List of interfaces to be turned down before session synchronization is complete. The structure of `downIntfsBeforeSessSync` block is documented below.
 func (o LookupSystemClusterSyncResultOutput) DownIntfsBeforeSessSyncs() GetSystemClusterSyncDownIntfsBeforeSessSyncArrayOutput {
 	return o.ApplyT(func(v LookupSystemClusterSyncResult) []GetSystemClusterSyncDownIntfsBeforeSessSync {
 		return v.DownIntfsBeforeSessSyncs
 	}).(GetSystemClusterSyncDownIntfsBeforeSessSyncArrayOutput)
 }
 
-// Heartbeat interval (1 - 10 sec).
 func (o LookupSystemClusterSyncResultOutput) HbInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemClusterSyncResult) int { return v.HbInterval }).(pulumi.IntOutput)
 }
 
-// Lost heartbeat threshold (1 - 10).
 func (o LookupSystemClusterSyncResultOutput) HbLostThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemClusterSyncResult) int { return v.HbLostThreshold }).(pulumi.IntOutput)
 }
@@ -126,59 +104,48 @@ func (o LookupSystemClusterSyncResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemClusterSyncResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// IKE heartbeat interval (1 - 60 secs).
 func (o LookupSystemClusterSyncResultOutput) IkeHeartbeatInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemClusterSyncResult) int { return v.IkeHeartbeatInterval }).(pulumi.IntOutput)
 }
 
-// Enable/disable IKE HA monitor.
 func (o LookupSystemClusterSyncResultOutput) IkeMonitor() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemClusterSyncResult) string { return v.IkeMonitor }).(pulumi.StringOutput)
 }
 
-// IKE HA monitor interval (10 - 300 secs).
 func (o LookupSystemClusterSyncResultOutput) IkeMonitorInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemClusterSyncResult) int { return v.IkeMonitorInterval }).(pulumi.IntOutput)
 }
 
-// Enable/disable IPsec tunnel synchronization.
 func (o LookupSystemClusterSyncResultOutput) IpsecTunnelSync() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemClusterSyncResult) string { return v.IpsecTunnelSync }).(pulumi.StringOutput)
 }
 
-// IP address of the interface on the peer unit that is used for the session synchronization link.
 func (o LookupSystemClusterSyncResultOutput) Peerip() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemClusterSyncResult) string { return v.Peerip }).(pulumi.StringOutput)
 }
 
-// VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
 func (o LookupSystemClusterSyncResultOutput) Peervd() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemClusterSyncResult) string { return v.Peervd }).(pulumi.StringOutput)
 }
 
-// Enable/disable IKE route announcement on the backup unit.
 func (o LookupSystemClusterSyncResultOutput) SecondaryAddIpsecRoutes() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemClusterSyncResult) string { return v.SecondaryAddIpsecRoutes }).(pulumi.StringOutput)
 }
 
-// Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
-func (o LookupSystemClusterSyncResultOutput) SessionSyncFilter() GetSystemClusterSyncSessionSyncFilterOutput {
-	return o.ApplyT(func(v LookupSystemClusterSyncResult) GetSystemClusterSyncSessionSyncFilter {
-		return v.SessionSyncFilter
-	}).(GetSystemClusterSyncSessionSyncFilterOutput)
+func (o LookupSystemClusterSyncResultOutput) SessionSyncFilters() GetSystemClusterSyncSessionSyncFilterArrayOutput {
+	return o.ApplyT(func(v LookupSystemClusterSyncResult) []GetSystemClusterSyncSessionSyncFilter {
+		return v.SessionSyncFilters
+	}).(GetSystemClusterSyncSessionSyncFilterArrayOutput)
 }
 
-// Enable/disable IKE route announcement on the backup unit.
 func (o LookupSystemClusterSyncResultOutput) SlaveAddIkeRoutes() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemClusterSyncResult) string { return v.SlaveAddIkeRoutes }).(pulumi.StringOutput)
 }
 
-// Sync ID.
 func (o LookupSystemClusterSyncResultOutput) SyncId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemClusterSyncResult) int { return v.SyncId }).(pulumi.IntOutput)
 }
 
-// Sessions from these VDOMs are synchronized using this session synchronization configuration. The structure of `syncvd` block is documented below.
 func (o LookupSystemClusterSyncResultOutput) Syncvds() GetSystemClusterSyncSyncvdArrayOutput {
 	return o.ApplyT(func(v LookupSystemClusterSyncResult) []GetSystemClusterSyncSyncvd { return v.Syncvds }).(GetSystemClusterSyncSyncvdArrayOutput)
 }

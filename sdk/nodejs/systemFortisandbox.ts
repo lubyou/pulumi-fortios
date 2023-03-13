@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSandbox.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemFortisandbox("trname", {
- *     encAlgorithm: "default",
- *     sslMinProtoVersion: "default",
- *     status: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * System Fortisandbox can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemFortisandbox:SystemFortisandbox labelname SystemFortisandbox
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemFortisandbox:SystemFortisandbox labelname SystemFortisandbox
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemFortisandbox extends pulumi.CustomResource {
     /**
      * Get an existing SystemFortisandbox resource's state with the given name, ID, and optional extra
@@ -64,45 +32,16 @@ export class SystemFortisandbox extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemFortisandbox.__pulumiType;
     }
 
-    /**
-     * Notifier email address.
-     */
     public readonly email!: pulumi.Output<string>;
-    /**
-     * Configure the level of SSL protection for secure communication with FortiSandbox. Valid values: `default`, `high`, `low`.
-     */
     public readonly encAlgorithm!: pulumi.Output<string>;
-    /**
-     * Enable/disable FortiSandbox Cloud. Valid values: `enable`, `disable`.
-     */
     public readonly forticloud!: pulumi.Output<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
+    public readonly inlineScan!: pulumi.Output<string>;
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
-    /**
-     * IPv4 or IPv6 address of the remote FortiSandbox.
-     */
     public readonly server!: pulumi.Output<string>;
-    /**
-     * Source IP address for communications to FortiSandbox.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     public readonly sslMinProtoVersion!: pulumi.Output<string>;
-    /**
-     * Enable/disable FortiSandbox. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -121,6 +60,7 @@ export class SystemFortisandbox extends pulumi.CustomResource {
             resourceInputs["email"] = state ? state.email : undefined;
             resourceInputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
             resourceInputs["forticloud"] = state ? state.forticloud : undefined;
+            resourceInputs["inlineScan"] = state ? state.inlineScan : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
             resourceInputs["server"] = state ? state.server : undefined;
@@ -133,6 +73,7 @@ export class SystemFortisandbox extends pulumi.CustomResource {
             resourceInputs["email"] = args ? args.email : undefined;
             resourceInputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
             resourceInputs["forticloud"] = args ? args.forticloud : undefined;
+            resourceInputs["inlineScan"] = args ? args.inlineScan : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
             resourceInputs["server"] = args ? args.server : undefined;
@@ -150,45 +91,16 @@ export class SystemFortisandbox extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemFortisandbox resources.
  */
 export interface SystemFortisandboxState {
-    /**
-     * Notifier email address.
-     */
     email?: pulumi.Input<string>;
-    /**
-     * Configure the level of SSL protection for secure communication with FortiSandbox. Valid values: `default`, `high`, `low`.
-     */
     encAlgorithm?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiSandbox Cloud. Valid values: `enable`, `disable`.
-     */
     forticloud?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
+    inlineScan?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * IPv4 or IPv6 address of the remote FortiSandbox.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Source IP address for communications to FortiSandbox.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     sslMinProtoVersion?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiSandbox. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -196,44 +108,15 @@ export interface SystemFortisandboxState {
  * The set of arguments for constructing a SystemFortisandbox resource.
  */
 export interface SystemFortisandboxArgs {
-    /**
-     * Notifier email address.
-     */
     email?: pulumi.Input<string>;
-    /**
-     * Configure the level of SSL protection for secure communication with FortiSandbox. Valid values: `default`, `high`, `low`.
-     */
     encAlgorithm?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiSandbox Cloud. Valid values: `enable`, `disable`.
-     */
     forticloud?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
+    inlineScan?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * IPv4 or IPv6 address of the remote FortiSandbox.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Source IP address for communications to FortiSandbox.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     sslMinProtoVersion?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiSandbox. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

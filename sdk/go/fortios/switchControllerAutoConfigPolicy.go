@@ -10,40 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch Auto-Config QoS policy.
-//
-// ## Import
-//
-// SwitchControllerAutoConfig Policy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerAutoConfigPolicy:SwitchControllerAutoConfigPolicy labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerAutoConfigPolicy:SwitchControllerAutoConfigPolicy labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerAutoConfigPolicy struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable IGMP flood report. Valid values: `enable`, `disable`.
-	IgmpFloodReport pulumi.StringOutput `pulumi:"igmpFloodReport"`
-	// Enable/disable IGMP flood traffic. Valid values: `enable`, `disable`.
-	IgmpFloodTraffic pulumi.StringOutput `pulumi:"igmpFloodTraffic"`
-	// Auto-Config QoS policy name
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable PoE status. Valid values: `enable`, `disable`.
-	PoeStatus pulumi.StringOutput `pulumi:"poeStatus"`
-	// Auto-Config QoS policy.
-	QosPolicy pulumi.StringOutput `pulumi:"qosPolicy"`
-	// Auto-Config storm control policy.
-	StormControlPolicy pulumi.StringOutput `pulumi:"stormControlPolicy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	IgmpFloodReport    pulumi.StringOutput    `pulumi:"igmpFloodReport"`
+	IgmpFloodTraffic   pulumi.StringOutput    `pulumi:"igmpFloodTraffic"`
+	Name               pulumi.StringOutput    `pulumi:"name"`
+	PoeStatus          pulumi.StringOutput    `pulumi:"poeStatus"`
+	QosPolicy          pulumi.StringOutput    `pulumi:"qosPolicy"`
+	StormControlPolicy pulumi.StringOutput    `pulumi:"stormControlPolicy"`
+	Vdomparam          pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerAutoConfigPolicy registers a new resource with the given unique name, arguments, and options.
@@ -76,37 +52,23 @@ func GetSwitchControllerAutoConfigPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerAutoConfigPolicy resources.
 type switchControllerAutoConfigPolicyState struct {
-	// Enable/disable IGMP flood report. Valid values: `enable`, `disable`.
-	IgmpFloodReport *string `pulumi:"igmpFloodReport"`
-	// Enable/disable IGMP flood traffic. Valid values: `enable`, `disable`.
-	IgmpFloodTraffic *string `pulumi:"igmpFloodTraffic"`
-	// Auto-Config QoS policy name
-	Name *string `pulumi:"name"`
-	// Enable/disable PoE status. Valid values: `enable`, `disable`.
-	PoeStatus *string `pulumi:"poeStatus"`
-	// Auto-Config QoS policy.
-	QosPolicy *string `pulumi:"qosPolicy"`
-	// Auto-Config storm control policy.
+	IgmpFloodReport    *string `pulumi:"igmpFloodReport"`
+	IgmpFloodTraffic   *string `pulumi:"igmpFloodTraffic"`
+	Name               *string `pulumi:"name"`
+	PoeStatus          *string `pulumi:"poeStatus"`
+	QosPolicy          *string `pulumi:"qosPolicy"`
 	StormControlPolicy *string `pulumi:"stormControlPolicy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam          *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerAutoConfigPolicyState struct {
-	// Enable/disable IGMP flood report. Valid values: `enable`, `disable`.
-	IgmpFloodReport pulumi.StringPtrInput
-	// Enable/disable IGMP flood traffic. Valid values: `enable`, `disable`.
-	IgmpFloodTraffic pulumi.StringPtrInput
-	// Auto-Config QoS policy name
-	Name pulumi.StringPtrInput
-	// Enable/disable PoE status. Valid values: `enable`, `disable`.
-	PoeStatus pulumi.StringPtrInput
-	// Auto-Config QoS policy.
-	QosPolicy pulumi.StringPtrInput
-	// Auto-Config storm control policy.
+	IgmpFloodReport    pulumi.StringPtrInput
+	IgmpFloodTraffic   pulumi.StringPtrInput
+	Name               pulumi.StringPtrInput
+	PoeStatus          pulumi.StringPtrInput
+	QosPolicy          pulumi.StringPtrInput
 	StormControlPolicy pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam          pulumi.StringPtrInput
 }
 
 func (SwitchControllerAutoConfigPolicyState) ElementType() reflect.Type {
@@ -114,38 +76,24 @@ func (SwitchControllerAutoConfigPolicyState) ElementType() reflect.Type {
 }
 
 type switchControllerAutoConfigPolicyArgs struct {
-	// Enable/disable IGMP flood report. Valid values: `enable`, `disable`.
-	IgmpFloodReport *string `pulumi:"igmpFloodReport"`
-	// Enable/disable IGMP flood traffic. Valid values: `enable`, `disable`.
-	IgmpFloodTraffic *string `pulumi:"igmpFloodTraffic"`
-	// Auto-Config QoS policy name
-	Name *string `pulumi:"name"`
-	// Enable/disable PoE status. Valid values: `enable`, `disable`.
-	PoeStatus *string `pulumi:"poeStatus"`
-	// Auto-Config QoS policy.
-	QosPolicy *string `pulumi:"qosPolicy"`
-	// Auto-Config storm control policy.
+	IgmpFloodReport    *string `pulumi:"igmpFloodReport"`
+	IgmpFloodTraffic   *string `pulumi:"igmpFloodTraffic"`
+	Name               *string `pulumi:"name"`
+	PoeStatus          *string `pulumi:"poeStatus"`
+	QosPolicy          *string `pulumi:"qosPolicy"`
 	StormControlPolicy *string `pulumi:"stormControlPolicy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam          *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerAutoConfigPolicy resource.
 type SwitchControllerAutoConfigPolicyArgs struct {
-	// Enable/disable IGMP flood report. Valid values: `enable`, `disable`.
-	IgmpFloodReport pulumi.StringPtrInput
-	// Enable/disable IGMP flood traffic. Valid values: `enable`, `disable`.
-	IgmpFloodTraffic pulumi.StringPtrInput
-	// Auto-Config QoS policy name
-	Name pulumi.StringPtrInput
-	// Enable/disable PoE status. Valid values: `enable`, `disable`.
-	PoeStatus pulumi.StringPtrInput
-	// Auto-Config QoS policy.
-	QosPolicy pulumi.StringPtrInput
-	// Auto-Config storm control policy.
+	IgmpFloodReport    pulumi.StringPtrInput
+	IgmpFloodTraffic   pulumi.StringPtrInput
+	Name               pulumi.StringPtrInput
+	PoeStatus          pulumi.StringPtrInput
+	QosPolicy          pulumi.StringPtrInput
 	StormControlPolicy pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam          pulumi.StringPtrInput
 }
 
 func (SwitchControllerAutoConfigPolicyArgs) ElementType() reflect.Type {
@@ -174,7 +122,7 @@ func (i *SwitchControllerAutoConfigPolicy) ToSwitchControllerAutoConfigPolicyOut
 // SwitchControllerAutoConfigPolicyArrayInput is an input type that accepts SwitchControllerAutoConfigPolicyArray and SwitchControllerAutoConfigPolicyArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerAutoConfigPolicyArrayInput` via:
 //
-//          SwitchControllerAutoConfigPolicyArray{ SwitchControllerAutoConfigPolicyArgs{...} }
+//	SwitchControllerAutoConfigPolicyArray{ SwitchControllerAutoConfigPolicyArgs{...} }
 type SwitchControllerAutoConfigPolicyArrayInput interface {
 	pulumi.Input
 
@@ -199,7 +147,7 @@ func (i SwitchControllerAutoConfigPolicyArray) ToSwitchControllerAutoConfigPolic
 // SwitchControllerAutoConfigPolicyMapInput is an input type that accepts SwitchControllerAutoConfigPolicyMap and SwitchControllerAutoConfigPolicyMapOutput values.
 // You can construct a concrete instance of `SwitchControllerAutoConfigPolicyMapInput` via:
 //
-//          SwitchControllerAutoConfigPolicyMap{ "key": SwitchControllerAutoConfigPolicyArgs{...} }
+//	SwitchControllerAutoConfigPolicyMap{ "key": SwitchControllerAutoConfigPolicyArgs{...} }
 type SwitchControllerAutoConfigPolicyMapInput interface {
 	pulumi.Input
 
@@ -233,6 +181,34 @@ func (o SwitchControllerAutoConfigPolicyOutput) ToSwitchControllerAutoConfigPoli
 
 func (o SwitchControllerAutoConfigPolicyOutput) ToSwitchControllerAutoConfigPolicyOutputWithContext(ctx context.Context) SwitchControllerAutoConfigPolicyOutput {
 	return o
+}
+
+func (o SwitchControllerAutoConfigPolicyOutput) IgmpFloodReport() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigPolicy) pulumi.StringOutput { return v.IgmpFloodReport }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerAutoConfigPolicyOutput) IgmpFloodTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigPolicy) pulumi.StringOutput { return v.IgmpFloodTraffic }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerAutoConfigPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerAutoConfigPolicyOutput) PoeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigPolicy) pulumi.StringOutput { return v.PoeStatus }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerAutoConfigPolicyOutput) QosPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigPolicy) pulumi.StringOutput { return v.QosPolicy }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerAutoConfigPolicyOutput) StormControlPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigPolicy) pulumi.StringOutput { return v.StormControlPolicy }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerAutoConfigPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerAutoConfigPolicyArrayOutput struct{ *pulumi.OutputState }

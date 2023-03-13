@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure VDOM property.
- *
- * ## Import
- *
- * System VdomProperty can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVdomProperty:SystemVdomProperty labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVdomProperty:SystemVdomProperty labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemVdomProperty extends pulumi.CustomResource {
     /**
      * Get an existing SystemVdomProperty resource's state with the given name, ID, and optional extra
@@ -51,93 +32,27 @@ export class SystemVdomProperty extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemVdomProperty.__pulumiType;
     }
 
-    /**
-     * Maximum guaranteed number of firewall custom services.
-     */
     public readonly customService!: pulumi.Output<string>;
-    /**
-     * Description.
-     */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * Maximum guaranteed number of dial-up tunnels.
-     */
     public readonly dialupTunnel!: pulumi.Output<string>;
-    /**
-     * Maximum guaranteed number of firewall addresses (IPv4, IPv6, multicast).
-     */
     public readonly firewallAddress!: pulumi.Output<string>;
-    /**
-     * Maximum guaranteed number of firewall address groups (IPv4, IPv6).
-     */
     public readonly firewallAddrgrp!: pulumi.Output<string>;
-    /**
-     * Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-     */
     public readonly firewallPolicy!: pulumi.Output<string>;
-    /**
-     * Maximum guaranteed number of VPN IPsec phase 1 tunnels.
-     */
     public readonly ipsecPhase1!: pulumi.Output<string>;
-    /**
-     * Maximum guaranteed number of VPN IPsec phase1 interface tunnels.
-     */
     public readonly ipsecPhase1Interface!: pulumi.Output<string>;
-    /**
-     * Maximum guaranteed number of VPN IPsec phase 2 tunnels.
-     */
     public readonly ipsecPhase2!: pulumi.Output<string>;
-    /**
-     * Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
-     */
     public readonly ipsecPhase2Interface!: pulumi.Output<string>;
-    /**
-     * Log disk quota in MB (range depends on how much disk space is available).
-     */
     public readonly logDiskQuota!: pulumi.Output<string>;
-    /**
-     * VDOM name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Maximum guaranteed number of firewall one-time schedules.
-     */
     public readonly onetimeSchedule!: pulumi.Output<string>;
-    /**
-     * Maximum guaranteed number of concurrent proxy users.
-     */
     public readonly proxy!: pulumi.Output<string>;
-    /**
-     * Maximum guaranteed number of firewall recurring schedules.
-     */
     public readonly recurringSchedule!: pulumi.Output<string>;
-    /**
-     * Maximum guaranteed number of firewall service groups.
-     */
     public readonly serviceGroup!: pulumi.Output<string>;
-    /**
-     * Maximum guaranteed number of sessions.
-     */
     public readonly session!: pulumi.Output<string>;
-    /**
-     * Permanent SNMP Index of the virtual domain (0 - 4294967295).
-     */
     public readonly snmpIndex!: pulumi.Output<number>;
-    /**
-     * Maximum guaranteed number of SSL-VPNs.
-     */
     public readonly sslvpn!: pulumi.Output<string>;
-    /**
-     * Maximum guaranteed number of local users.
-     */
     public readonly user!: pulumi.Output<string>;
-    /**
-     * Maximum guaranteed number of user groups.
-     */
     public readonly userGroup!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -209,93 +124,27 @@ export class SystemVdomProperty extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemVdomProperty resources.
  */
 export interface SystemVdomPropertyState {
-    /**
-     * Maximum guaranteed number of firewall custom services.
-     */
     customService?: pulumi.Input<string>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of dial-up tunnels.
-     */
     dialupTunnel?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of firewall addresses (IPv4, IPv6, multicast).
-     */
     firewallAddress?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of firewall address groups (IPv4, IPv6).
-     */
     firewallAddrgrp?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-     */
     firewallPolicy?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of VPN IPsec phase 1 tunnels.
-     */
     ipsecPhase1?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of VPN IPsec phase1 interface tunnels.
-     */
     ipsecPhase1Interface?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of VPN IPsec phase 2 tunnels.
-     */
     ipsecPhase2?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
-     */
     ipsecPhase2Interface?: pulumi.Input<string>;
-    /**
-     * Log disk quota in MB (range depends on how much disk space is available).
-     */
     logDiskQuota?: pulumi.Input<string>;
-    /**
-     * VDOM name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of firewall one-time schedules.
-     */
     onetimeSchedule?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of concurrent proxy users.
-     */
     proxy?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of firewall recurring schedules.
-     */
     recurringSchedule?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of firewall service groups.
-     */
     serviceGroup?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of sessions.
-     */
     session?: pulumi.Input<string>;
-    /**
-     * Permanent SNMP Index of the virtual domain (0 - 4294967295).
-     */
     snmpIndex?: pulumi.Input<number>;
-    /**
-     * Maximum guaranteed number of SSL-VPNs.
-     */
     sslvpn?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of local users.
-     */
     user?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of user groups.
-     */
     userGroup?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -303,92 +152,26 @@ export interface SystemVdomPropertyState {
  * The set of arguments for constructing a SystemVdomProperty resource.
  */
 export interface SystemVdomPropertyArgs {
-    /**
-     * Maximum guaranteed number of firewall custom services.
-     */
     customService?: pulumi.Input<string>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of dial-up tunnels.
-     */
     dialupTunnel?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of firewall addresses (IPv4, IPv6, multicast).
-     */
     firewallAddress?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of firewall address groups (IPv4, IPv6).
-     */
     firewallAddrgrp?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-     */
     firewallPolicy?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of VPN IPsec phase 1 tunnels.
-     */
     ipsecPhase1?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of VPN IPsec phase1 interface tunnels.
-     */
     ipsecPhase1Interface?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of VPN IPsec phase 2 tunnels.
-     */
     ipsecPhase2?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
-     */
     ipsecPhase2Interface?: pulumi.Input<string>;
-    /**
-     * Log disk quota in MB (range depends on how much disk space is available).
-     */
     logDiskQuota?: pulumi.Input<string>;
-    /**
-     * VDOM name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of firewall one-time schedules.
-     */
     onetimeSchedule?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of concurrent proxy users.
-     */
     proxy?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of firewall recurring schedules.
-     */
     recurringSchedule?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of firewall service groups.
-     */
     serviceGroup?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of sessions.
-     */
     session?: pulumi.Input<string>;
-    /**
-     * Permanent SNMP Index of the virtual domain (0 - 4294967295).
-     */
     snmpIndex?: pulumi.Input<number>;
-    /**
-     * Maximum guaranteed number of SSL-VPNs.
-     */
     sslvpn?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of local users.
-     */
     user?: pulumi.Input<string>;
-    /**
-     * Maximum guaranteed number of user groups.
-     */
     userGroup?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

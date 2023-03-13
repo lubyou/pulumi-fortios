@@ -10,33 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure the client with its MAC address. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// WirelessController Address can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerAddress:WirelessControllerAddress labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerAddress:WirelessControllerAddress labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerAddress struct {
 	pulumi.CustomResourceState
 
-	// ID.
-	Fosid pulumi.StringOutput `pulumi:"fosid"`
-	// MAC address.
-	Mac pulumi.StringOutput `pulumi:"mac"`
-	// Allow or block the client with this MAC address. Valid values: `allow`, `deny`.
-	Policy pulumi.StringOutput `pulumi:"policy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.StringOutput    `pulumi:"fosid"`
+	Mac       pulumi.StringOutput    `pulumi:"mac"`
+	Policy    pulumi.StringOutput    `pulumi:"policy"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -70,24 +49,16 @@ func GetWirelessControllerAddress(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerAddress resources.
 type wirelessControllerAddressState struct {
-	// ID.
-	Fosid *string `pulumi:"fosid"`
-	// MAC address.
-	Mac *string `pulumi:"mac"`
-	// Allow or block the client with this MAC address. Valid values: `allow`, `deny`.
-	Policy *string `pulumi:"policy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *string `pulumi:"fosid"`
+	Mac       *string `pulumi:"mac"`
+	Policy    *string `pulumi:"policy"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type WirelessControllerAddressState struct {
-	// ID.
-	Fosid pulumi.StringPtrInput
-	// MAC address.
-	Mac pulumi.StringPtrInput
-	// Allow or block the client with this MAC address. Valid values: `allow`, `deny`.
-	Policy pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.StringPtrInput
+	Mac       pulumi.StringPtrInput
+	Policy    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -96,25 +67,17 @@ func (WirelessControllerAddressState) ElementType() reflect.Type {
 }
 
 type wirelessControllerAddressArgs struct {
-	// ID.
-	Fosid *string `pulumi:"fosid"`
-	// MAC address.
-	Mac *string `pulumi:"mac"`
-	// Allow or block the client with this MAC address. Valid values: `allow`, `deny`.
-	Policy *string `pulumi:"policy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *string `pulumi:"fosid"`
+	Mac       *string `pulumi:"mac"`
+	Policy    *string `pulumi:"policy"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerAddress resource.
 type WirelessControllerAddressArgs struct {
-	// ID.
-	Fosid pulumi.StringPtrInput
-	// MAC address.
-	Mac pulumi.StringPtrInput
-	// Allow or block the client with this MAC address. Valid values: `allow`, `deny`.
-	Policy pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.StringPtrInput
+	Mac       pulumi.StringPtrInput
+	Policy    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -144,7 +107,7 @@ func (i *WirelessControllerAddress) ToWirelessControllerAddressOutputWithContext
 // WirelessControllerAddressArrayInput is an input type that accepts WirelessControllerAddressArray and WirelessControllerAddressArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerAddressArrayInput` via:
 //
-//          WirelessControllerAddressArray{ WirelessControllerAddressArgs{...} }
+//	WirelessControllerAddressArray{ WirelessControllerAddressArgs{...} }
 type WirelessControllerAddressArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i WirelessControllerAddressArray) ToWirelessControllerAddressArrayOutputWi
 // WirelessControllerAddressMapInput is an input type that accepts WirelessControllerAddressMap and WirelessControllerAddressMapOutput values.
 // You can construct a concrete instance of `WirelessControllerAddressMapInput` via:
 //
-//          WirelessControllerAddressMap{ "key": WirelessControllerAddressArgs{...} }
+//	WirelessControllerAddressMap{ "key": WirelessControllerAddressArgs{...} }
 type WirelessControllerAddressMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o WirelessControllerAddressOutput) ToWirelessControllerAddressOutput() Wir
 
 func (o WirelessControllerAddressOutput) ToWirelessControllerAddressOutputWithContext(ctx context.Context) WirelessControllerAddressOutput {
 	return o
+}
+
+func (o WirelessControllerAddressOutput) Fosid() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerAddress) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerAddressOutput) Mac() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerAddress) pulumi.StringOutput { return v.Mac }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerAddressOutput) Policy() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerAddress) pulumi.StringOutput { return v.Policy }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerAddressOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerAddress) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerAddressArrayOutput struct{ *pulumi.OutputState }

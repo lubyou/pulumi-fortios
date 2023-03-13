@@ -7,50 +7,23 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure L2TP.
-//
-// ## Import
-//
-// Vpn L2Tp can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnL2Tp:VpnL2Tp labelname VpnL2Tp
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnL2Tp:VpnL2Tp labelname VpnL2Tp
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnL2Tp struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable data compression. Valid values: `enable`, `disable`.
-	Compress pulumi.StringOutput `pulumi:"compress"`
-	// End IP.
-	Eip pulumi.StringOutput `pulumi:"eip"`
-	// Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
-	EnforceIpsec pulumi.StringOutput `pulumi:"enforceIpsec"`
-	// L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
-	HelloInterval pulumi.IntOutput `pulumi:"helloInterval"`
-	// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
-	LcpEchoInterval pulumi.IntOutput `pulumi:"lcpEchoInterval"`
-	// Maximum number of missed LCP echo messages before disconnect.
-	LcpMaxEchoFails pulumi.IntOutput `pulumi:"lcpMaxEchoFails"`
-	// Start IP.
-	Sip pulumi.StringOutput `pulumi:"sip"`
-	// Enable/disable FortiGate as a L2TP gateway. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// User group.
-	Usrgrp pulumi.StringOutput `pulumi:"usrgrp"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Compress        pulumi.StringOutput    `pulumi:"compress"`
+	Eip             pulumi.StringOutput    `pulumi:"eip"`
+	EnforceIpsec    pulumi.StringOutput    `pulumi:"enforceIpsec"`
+	HelloInterval   pulumi.IntOutput       `pulumi:"helloInterval"`
+	LcpEchoInterval pulumi.IntOutput       `pulumi:"lcpEchoInterval"`
+	LcpMaxEchoFails pulumi.IntOutput       `pulumi:"lcpMaxEchoFails"`
+	Sip             pulumi.StringOutput    `pulumi:"sip"`
+	Status          pulumi.StringOutput    `pulumi:"status"`
+	Usrgrp          pulumi.StringOutput    `pulumi:"usrgrp"`
+	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewVpnL2Tp registers a new resource with the given unique name, arguments, and options.
@@ -86,49 +59,29 @@ func GetVpnL2Tp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnL2Tp resources.
 type vpnL2TpState struct {
-	// Enable/disable data compression. Valid values: `enable`, `disable`.
-	Compress *string `pulumi:"compress"`
-	// End IP.
-	Eip *string `pulumi:"eip"`
-	// Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
-	EnforceIpsec *string `pulumi:"enforceIpsec"`
-	// L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
-	HelloInterval *int `pulumi:"helloInterval"`
-	// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
-	LcpEchoInterval *int `pulumi:"lcpEchoInterval"`
-	// Maximum number of missed LCP echo messages before disconnect.
-	LcpMaxEchoFails *int `pulumi:"lcpMaxEchoFails"`
-	// Start IP.
-	Sip *string `pulumi:"sip"`
-	// Enable/disable FortiGate as a L2TP gateway. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// User group.
-	Usrgrp *string `pulumi:"usrgrp"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Compress        *string `pulumi:"compress"`
+	Eip             *string `pulumi:"eip"`
+	EnforceIpsec    *string `pulumi:"enforceIpsec"`
+	HelloInterval   *int    `pulumi:"helloInterval"`
+	LcpEchoInterval *int    `pulumi:"lcpEchoInterval"`
+	LcpMaxEchoFails *int    `pulumi:"lcpMaxEchoFails"`
+	Sip             *string `pulumi:"sip"`
+	Status          *string `pulumi:"status"`
+	Usrgrp          *string `pulumi:"usrgrp"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 type VpnL2TpState struct {
-	// Enable/disable data compression. Valid values: `enable`, `disable`.
-	Compress pulumi.StringPtrInput
-	// End IP.
-	Eip pulumi.StringPtrInput
-	// Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
-	EnforceIpsec pulumi.StringPtrInput
-	// L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
-	HelloInterval pulumi.IntPtrInput
-	// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
+	Compress        pulumi.StringPtrInput
+	Eip             pulumi.StringPtrInput
+	EnforceIpsec    pulumi.StringPtrInput
+	HelloInterval   pulumi.IntPtrInput
 	LcpEchoInterval pulumi.IntPtrInput
-	// Maximum number of missed LCP echo messages before disconnect.
 	LcpMaxEchoFails pulumi.IntPtrInput
-	// Start IP.
-	Sip pulumi.StringPtrInput
-	// Enable/disable FortiGate as a L2TP gateway. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// User group.
-	Usrgrp pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Sip             pulumi.StringPtrInput
+	Status          pulumi.StringPtrInput
+	Usrgrp          pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (VpnL2TpState) ElementType() reflect.Type {
@@ -136,50 +89,30 @@ func (VpnL2TpState) ElementType() reflect.Type {
 }
 
 type vpnL2TpArgs struct {
-	// Enable/disable data compression. Valid values: `enable`, `disable`.
-	Compress *string `pulumi:"compress"`
-	// End IP.
-	Eip *string `pulumi:"eip"`
-	// Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
-	EnforceIpsec *string `pulumi:"enforceIpsec"`
-	// L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
-	HelloInterval *int `pulumi:"helloInterval"`
-	// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
-	LcpEchoInterval *int `pulumi:"lcpEchoInterval"`
-	// Maximum number of missed LCP echo messages before disconnect.
-	LcpMaxEchoFails *int `pulumi:"lcpMaxEchoFails"`
-	// Start IP.
-	Sip *string `pulumi:"sip"`
-	// Enable/disable FortiGate as a L2TP gateway. Valid values: `enable`, `disable`.
-	Status string `pulumi:"status"`
-	// User group.
-	Usrgrp *string `pulumi:"usrgrp"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Compress        *string `pulumi:"compress"`
+	Eip             *string `pulumi:"eip"`
+	EnforceIpsec    *string `pulumi:"enforceIpsec"`
+	HelloInterval   *int    `pulumi:"helloInterval"`
+	LcpEchoInterval *int    `pulumi:"lcpEchoInterval"`
+	LcpMaxEchoFails *int    `pulumi:"lcpMaxEchoFails"`
+	Sip             *string `pulumi:"sip"`
+	Status          string  `pulumi:"status"`
+	Usrgrp          *string `pulumi:"usrgrp"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VpnL2Tp resource.
 type VpnL2TpArgs struct {
-	// Enable/disable data compression. Valid values: `enable`, `disable`.
-	Compress pulumi.StringPtrInput
-	// End IP.
-	Eip pulumi.StringPtrInput
-	// Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
-	EnforceIpsec pulumi.StringPtrInput
-	// L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
-	HelloInterval pulumi.IntPtrInput
-	// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
+	Compress        pulumi.StringPtrInput
+	Eip             pulumi.StringPtrInput
+	EnforceIpsec    pulumi.StringPtrInput
+	HelloInterval   pulumi.IntPtrInput
 	LcpEchoInterval pulumi.IntPtrInput
-	// Maximum number of missed LCP echo messages before disconnect.
 	LcpMaxEchoFails pulumi.IntPtrInput
-	// Start IP.
-	Sip pulumi.StringPtrInput
-	// Enable/disable FortiGate as a L2TP gateway. Valid values: `enable`, `disable`.
-	Status pulumi.StringInput
-	// User group.
-	Usrgrp pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Sip             pulumi.StringPtrInput
+	Status          pulumi.StringInput
+	Usrgrp          pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (VpnL2TpArgs) ElementType() reflect.Type {
@@ -208,7 +141,7 @@ func (i *VpnL2Tp) ToVpnL2TpOutputWithContext(ctx context.Context) VpnL2TpOutput 
 // VpnL2TpArrayInput is an input type that accepts VpnL2TpArray and VpnL2TpArrayOutput values.
 // You can construct a concrete instance of `VpnL2TpArrayInput` via:
 //
-//          VpnL2TpArray{ VpnL2TpArgs{...} }
+//	VpnL2TpArray{ VpnL2TpArgs{...} }
 type VpnL2TpArrayInput interface {
 	pulumi.Input
 
@@ -233,7 +166,7 @@ func (i VpnL2TpArray) ToVpnL2TpArrayOutputWithContext(ctx context.Context) VpnL2
 // VpnL2TpMapInput is an input type that accepts VpnL2TpMap and VpnL2TpMapOutput values.
 // You can construct a concrete instance of `VpnL2TpMapInput` via:
 //
-//          VpnL2TpMap{ "key": VpnL2TpArgs{...} }
+//	VpnL2TpMap{ "key": VpnL2TpArgs{...} }
 type VpnL2TpMapInput interface {
 	pulumi.Input
 
@@ -267,6 +200,46 @@ func (o VpnL2TpOutput) ToVpnL2TpOutput() VpnL2TpOutput {
 
 func (o VpnL2TpOutput) ToVpnL2TpOutputWithContext(ctx context.Context) VpnL2TpOutput {
 	return o
+}
+
+func (o VpnL2TpOutput) Compress() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnL2Tp) pulumi.StringOutput { return v.Compress }).(pulumi.StringOutput)
+}
+
+func (o VpnL2TpOutput) Eip() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnL2Tp) pulumi.StringOutput { return v.Eip }).(pulumi.StringOutput)
+}
+
+func (o VpnL2TpOutput) EnforceIpsec() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnL2Tp) pulumi.StringOutput { return v.EnforceIpsec }).(pulumi.StringOutput)
+}
+
+func (o VpnL2TpOutput) HelloInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnL2Tp) pulumi.IntOutput { return v.HelloInterval }).(pulumi.IntOutput)
+}
+
+func (o VpnL2TpOutput) LcpEchoInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnL2Tp) pulumi.IntOutput { return v.LcpEchoInterval }).(pulumi.IntOutput)
+}
+
+func (o VpnL2TpOutput) LcpMaxEchoFails() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnL2Tp) pulumi.IntOutput { return v.LcpMaxEchoFails }).(pulumi.IntOutput)
+}
+
+func (o VpnL2TpOutput) Sip() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnL2Tp) pulumi.StringOutput { return v.Sip }).(pulumi.StringOutput)
+}
+
+func (o VpnL2TpOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnL2Tp) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o VpnL2TpOutput) Usrgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnL2Tp) pulumi.StringOutput { return v.Usrgrp }).(pulumi.StringOutput)
+}
+
+func (o VpnL2TpOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnL2Tp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type VpnL2TpArrayOutput struct{ *pulumi.OutputState }

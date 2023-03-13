@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure speed test server list. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// System SpeedTestServer can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSpeedTestServer:SystemSpeedTestServer labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSpeedTestServer:SystemSpeedTestServer labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemSpeedTestServer struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Hosts of the server. The structure of `host` block is documented below.
-	Hosts SystemSpeedTestServerHostArrayOutput `pulumi:"hosts"`
-	// Speed test server name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Speed test server timestamp.
-	Timestamp pulumi.IntOutput `pulumi:"timestamp"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	Hosts               SystemSpeedTestServerHostArrayOutput `pulumi:"hosts"`
+	Name                pulumi.StringOutput                  `pulumi:"name"`
+	Timestamp           pulumi.IntOutput                     `pulumi:"timestamp"`
+	Vdomparam           pulumi.StringPtrOutput               `pulumi:"vdomparam"`
 }
 
 // NewSystemSpeedTestServer registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetSystemSpeedTestServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSpeedTestServer resources.
 type systemSpeedTestServerState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Hosts of the server. The structure of `host` block is documented below.
-	Hosts []SystemSpeedTestServerHost `pulumi:"hosts"`
-	// Speed test server name.
-	Name *string `pulumi:"name"`
-	// Speed test server timestamp.
-	Timestamp *int `pulumi:"timestamp"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	Hosts               []SystemSpeedTestServerHost `pulumi:"hosts"`
+	Name                *string                     `pulumi:"name"`
+	Timestamp           *int                        `pulumi:"timestamp"`
+	Vdomparam           *string                     `pulumi:"vdomparam"`
 }
 
 type SystemSpeedTestServerState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Hosts of the server. The structure of `host` block is documented below.
-	Hosts SystemSpeedTestServerHostArrayInput
-	// Speed test server name.
-	Name pulumi.StringPtrInput
-	// Speed test server timestamp.
-	Timestamp pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Hosts               SystemSpeedTestServerHostArrayInput
+	Name                pulumi.StringPtrInput
+	Timestamp           pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemSpeedTestServerState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (SystemSpeedTestServerState) ElementType() reflect.Type {
 }
 
 type systemSpeedTestServerArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Hosts of the server. The structure of `host` block is documented below.
-	Hosts []SystemSpeedTestServerHost `pulumi:"hosts"`
-	// Speed test server name.
-	Name *string `pulumi:"name"`
-	// Speed test server timestamp.
-	Timestamp *int `pulumi:"timestamp"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	Hosts               []SystemSpeedTestServerHost `pulumi:"hosts"`
+	Name                *string                     `pulumi:"name"`
+	Timestamp           *int                        `pulumi:"timestamp"`
+	Vdomparam           *string                     `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemSpeedTestServer resource.
 type SystemSpeedTestServerArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Hosts of the server. The structure of `host` block is documented below.
-	Hosts SystemSpeedTestServerHostArrayInput
-	// Speed test server name.
-	Name pulumi.StringPtrInput
-	// Speed test server timestamp.
-	Timestamp pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Hosts               SystemSpeedTestServerHostArrayInput
+	Name                pulumi.StringPtrInput
+	Timestamp           pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemSpeedTestServerArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *SystemSpeedTestServer) ToSystemSpeedTestServerOutputWithContext(ctx con
 // SystemSpeedTestServerArrayInput is an input type that accepts SystemSpeedTestServerArray and SystemSpeedTestServerArrayOutput values.
 // You can construct a concrete instance of `SystemSpeedTestServerArrayInput` via:
 //
-//          SystemSpeedTestServerArray{ SystemSpeedTestServerArgs{...} }
+//	SystemSpeedTestServerArray{ SystemSpeedTestServerArgs{...} }
 type SystemSpeedTestServerArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i SystemSpeedTestServerArray) ToSystemSpeedTestServerArrayOutputWithContex
 // SystemSpeedTestServerMapInput is an input type that accepts SystemSpeedTestServerMap and SystemSpeedTestServerMapOutput values.
 // You can construct a concrete instance of `SystemSpeedTestServerMapInput` via:
 //
-//          SystemSpeedTestServerMap{ "key": SystemSpeedTestServerArgs{...} }
+//	SystemSpeedTestServerMap{ "key": SystemSpeedTestServerArgs{...} }
 type SystemSpeedTestServerMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o SystemSpeedTestServerOutput) ToSystemSpeedTestServerOutput() SystemSpeed
 
 func (o SystemSpeedTestServerOutput) ToSystemSpeedTestServerOutputWithContext(ctx context.Context) SystemSpeedTestServerOutput {
 	return o
+}
+
+func (o SystemSpeedTestServerOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSpeedTestServer) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSpeedTestServerOutput) Hosts() SystemSpeedTestServerHostArrayOutput {
+	return o.ApplyT(func(v *SystemSpeedTestServer) SystemSpeedTestServerHostArrayOutput { return v.Hosts }).(SystemSpeedTestServerHostArrayOutput)
+}
+
+func (o SystemSpeedTestServerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSpeedTestServer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemSpeedTestServerOutput) Timestamp() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSpeedTestServer) pulumi.IntOutput { return v.Timestamp }).(pulumi.IntOutput)
+}
+
+func (o SystemSpeedTestServerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSpeedTestServer) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemSpeedTestServerArrayOutput struct{ *pulumi.OutputState }

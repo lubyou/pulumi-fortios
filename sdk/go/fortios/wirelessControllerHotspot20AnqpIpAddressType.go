@@ -10,58 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IP address type availability.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWirelessControllerHotspot20AnqpIpAddressType(ctx, "trname", &fortios.WirelessControllerHotspot20AnqpIpAddressTypeArgs{
-// 			Ipv4AddressType: pulumi.String("public"),
-// 			Ipv6AddressType: pulumi.String("not-available"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// WirelessControllerHotspot20 AnqpIpAddressType can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20AnqpIpAddressType:WirelessControllerHotspot20AnqpIpAddressType labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20AnqpIpAddressType:WirelessControllerHotspot20AnqpIpAddressType labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerHotspot20AnqpIpAddressType struct {
 	pulumi.CustomResourceState
 
-	// IPv4 address type. Valid values: `not-available`, `public`, `port-restricted`, `single-NATed-private`, `double-NATed-private`, `port-restricted-and-single-NATed`, `port-restricted-and-double-NATed`, `not-known`.
-	Ipv4AddressType pulumi.StringOutput `pulumi:"ipv4AddressType"`
-	// IPv6 address type. Valid values: `not-available`, `available`, `not-known`.
-	Ipv6AddressType pulumi.StringOutput `pulumi:"ipv6AddressType"`
-	// IP type name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Ipv4AddressType pulumi.StringOutput    `pulumi:"ipv4AddressType"`
+	Ipv6AddressType pulumi.StringOutput    `pulumi:"ipv6AddressType"`
+	Name            pulumi.StringOutput    `pulumi:"name"`
+	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerHotspot20AnqpIpAddressType registers a new resource with the given unique name, arguments, and options.
@@ -94,25 +49,17 @@ func GetWirelessControllerHotspot20AnqpIpAddressType(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerHotspot20AnqpIpAddressType resources.
 type wirelessControllerHotspot20AnqpIpAddressTypeState struct {
-	// IPv4 address type. Valid values: `not-available`, `public`, `port-restricted`, `single-NATed-private`, `double-NATed-private`, `port-restricted-and-single-NATed`, `port-restricted-and-double-NATed`, `not-known`.
 	Ipv4AddressType *string `pulumi:"ipv4AddressType"`
-	// IPv6 address type. Valid values: `not-available`, `available`, `not-known`.
 	Ipv6AddressType *string `pulumi:"ipv6AddressType"`
-	// IP type name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name            *string `pulumi:"name"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 type WirelessControllerHotspot20AnqpIpAddressTypeState struct {
-	// IPv4 address type. Valid values: `not-available`, `public`, `port-restricted`, `single-NATed-private`, `double-NATed-private`, `port-restricted-and-single-NATed`, `port-restricted-and-double-NATed`, `not-known`.
 	Ipv4AddressType pulumi.StringPtrInput
-	// IPv6 address type. Valid values: `not-available`, `available`, `not-known`.
 	Ipv6AddressType pulumi.StringPtrInput
-	// IP type name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name            pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20AnqpIpAddressTypeState) ElementType() reflect.Type {
@@ -120,26 +67,18 @@ func (WirelessControllerHotspot20AnqpIpAddressTypeState) ElementType() reflect.T
 }
 
 type wirelessControllerHotspot20AnqpIpAddressTypeArgs struct {
-	// IPv4 address type. Valid values: `not-available`, `public`, `port-restricted`, `single-NATed-private`, `double-NATed-private`, `port-restricted-and-single-NATed`, `port-restricted-and-double-NATed`, `not-known`.
 	Ipv4AddressType *string `pulumi:"ipv4AddressType"`
-	// IPv6 address type. Valid values: `not-available`, `available`, `not-known`.
 	Ipv6AddressType *string `pulumi:"ipv6AddressType"`
-	// IP type name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name            *string `pulumi:"name"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerHotspot20AnqpIpAddressType resource.
 type WirelessControllerHotspot20AnqpIpAddressTypeArgs struct {
-	// IPv4 address type. Valid values: `not-available`, `public`, `port-restricted`, `single-NATed-private`, `double-NATed-private`, `port-restricted-and-single-NATed`, `port-restricted-and-double-NATed`, `not-known`.
 	Ipv4AddressType pulumi.StringPtrInput
-	// IPv6 address type. Valid values: `not-available`, `available`, `not-known`.
 	Ipv6AddressType pulumi.StringPtrInput
-	// IP type name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name            pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20AnqpIpAddressTypeArgs) ElementType() reflect.Type {
@@ -168,7 +107,7 @@ func (i *WirelessControllerHotspot20AnqpIpAddressType) ToWirelessControllerHotsp
 // WirelessControllerHotspot20AnqpIpAddressTypeArrayInput is an input type that accepts WirelessControllerHotspot20AnqpIpAddressTypeArray and WirelessControllerHotspot20AnqpIpAddressTypeArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpIpAddressTypeArrayInput` via:
 //
-//          WirelessControllerHotspot20AnqpIpAddressTypeArray{ WirelessControllerHotspot20AnqpIpAddressTypeArgs{...} }
+//	WirelessControllerHotspot20AnqpIpAddressTypeArray{ WirelessControllerHotspot20AnqpIpAddressTypeArgs{...} }
 type WirelessControllerHotspot20AnqpIpAddressTypeArrayInput interface {
 	pulumi.Input
 
@@ -193,7 +132,7 @@ func (i WirelessControllerHotspot20AnqpIpAddressTypeArray) ToWirelessControllerH
 // WirelessControllerHotspot20AnqpIpAddressTypeMapInput is an input type that accepts WirelessControllerHotspot20AnqpIpAddressTypeMap and WirelessControllerHotspot20AnqpIpAddressTypeMapOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpIpAddressTypeMapInput` via:
 //
-//          WirelessControllerHotspot20AnqpIpAddressTypeMap{ "key": WirelessControllerHotspot20AnqpIpAddressTypeArgs{...} }
+//	WirelessControllerHotspot20AnqpIpAddressTypeMap{ "key": WirelessControllerHotspot20AnqpIpAddressTypeArgs{...} }
 type WirelessControllerHotspot20AnqpIpAddressTypeMapInput interface {
 	pulumi.Input
 
@@ -227,6 +166,22 @@ func (o WirelessControllerHotspot20AnqpIpAddressTypeOutput) ToWirelessController
 
 func (o WirelessControllerHotspot20AnqpIpAddressTypeOutput) ToWirelessControllerHotspot20AnqpIpAddressTypeOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpIpAddressTypeOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpIpAddressTypeOutput) Ipv4AddressType() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpIpAddressType) pulumi.StringOutput { return v.Ipv4AddressType }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20AnqpIpAddressTypeOutput) Ipv6AddressType() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpIpAddressType) pulumi.StringOutput { return v.Ipv6AddressType }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20AnqpIpAddressTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpIpAddressType) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20AnqpIpAddressTypeOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpIpAddressType) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerHotspot20AnqpIpAddressTypeArrayOutput struct{ *pulumi.OutputState }

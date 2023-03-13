@@ -7,97 +7,29 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPsec manual keys.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewVpnIpsecManualkeyInterface(ctx, "trname", &fortios.VpnIpsecManualkeyInterfaceArgs{
-// 			AddrType:  pulumi.String("4"),
-// 			AuthAlg:   pulumi.String("null"),
-// 			AuthKey:   pulumi.String("-"),
-// 			EncAlg:    pulumi.String("des"),
-// 			EncKey:    pulumi.String("CECA2184ACADAEEF"),
-// 			Interface: pulumi.String("port3"),
-// 			IpVersion: pulumi.String("4"),
-// 			LocalGw:   pulumi.String("0.0.0.0"),
-// 			LocalGw6:  pulumi.String("::"),
-// 			LocalSpi:  pulumi.String("0x100"),
-// 			RemoteGw:  pulumi.String("2.2.2.2"),
-// 			RemoteGw6: pulumi.String("::"),
-// 			RemoteSpi: pulumi.String("0x100"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// VpnIpsec ManualkeyInterface can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnIpsecManualkeyInterface:VpnIpsecManualkeyInterface labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnIpsecManualkeyInterface:VpnIpsecManualkeyInterface labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnIpsecManualkeyInterface struct {
 	pulumi.CustomResourceState
 
-	// IP version to use for IP packets. Valid values: `4`, `6`.
-	AddrType pulumi.StringOutput `pulumi:"addrType"`
-	// Authentication algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-	AuthAlg pulumi.StringOutput `pulumi:"authAlg"`
-	// Hexadecimal authentication key in 16-digit (8-byte) segments separated by hyphens.
-	AuthKey pulumi.StringOutput `pulumi:"authKey"`
-	// Encryption algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`, `aria128`, `aria192`, `aria256`, `seed`.
-	EncAlg pulumi.StringOutput `pulumi:"encAlg"`
-	// Hexadecimal encryption key in 16-digit (8-byte) segments separated by hyphens.
-	EncKey pulumi.StringOutput `pulumi:"encKey"`
-	// Name of the physical, aggregate, or VLAN interface.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// IP version to use for VPN interface. Valid values: `4`, `6`.
-	IpVersion pulumi.StringOutput `pulumi:"ipVersion"`
-	// IPv4 address of the local gateway's external interface.
-	LocalGw pulumi.StringOutput `pulumi:"localGw"`
-	// Local IPv6 address of VPN gateway.
-	LocalGw6 pulumi.StringOutput `pulumi:"localGw6"`
-	// Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-	LocalSpi pulumi.StringOutput `pulumi:"localSpi"`
-	// IPsec tunnel name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
-	NpuOffload pulumi.StringOutput `pulumi:"npuOffload"`
-	// IPv4 address of the remote gateway's external interface.
-	RemoteGw pulumi.StringOutput `pulumi:"remoteGw"`
-	// Remote IPv6 address of VPN gateway.
-	RemoteGw6 pulumi.StringOutput `pulumi:"remoteGw6"`
-	// Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-	RemoteSpi pulumi.StringOutput `pulumi:"remoteSpi"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AddrType   pulumi.StringOutput    `pulumi:"addrType"`
+	AuthAlg    pulumi.StringOutput    `pulumi:"authAlg"`
+	AuthKey    pulumi.StringOutput    `pulumi:"authKey"`
+	EncAlg     pulumi.StringOutput    `pulumi:"encAlg"`
+	EncKey     pulumi.StringOutput    `pulumi:"encKey"`
+	Interface  pulumi.StringOutput    `pulumi:"interface"`
+	IpVersion  pulumi.StringOutput    `pulumi:"ipVersion"`
+	LocalGw    pulumi.StringOutput    `pulumi:"localGw"`
+	LocalGw6   pulumi.StringOutput    `pulumi:"localGw6"`
+	LocalSpi   pulumi.StringOutput    `pulumi:"localSpi"`
+	Name       pulumi.StringOutput    `pulumi:"name"`
+	NpuOffload pulumi.StringOutput    `pulumi:"npuOffload"`
+	RemoteGw   pulumi.StringOutput    `pulumi:"remoteGw"`
+	RemoteGw6  pulumi.StringOutput    `pulumi:"remoteGw6"`
+	RemoteSpi  pulumi.StringOutput    `pulumi:"remoteSpi"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewVpnIpsecManualkeyInterface registers a new resource with the given unique name, arguments, and options.
@@ -122,6 +54,17 @@ func NewVpnIpsecManualkeyInterface(ctx *pulumi.Context,
 	if args.RemoteGw6 == nil {
 		return nil, errors.New("invalid value for required argument 'RemoteGw6'")
 	}
+	if args.AuthKey != nil {
+		args.AuthKey = pulumi.ToSecret(args.AuthKey).(pulumi.StringPtrInput)
+	}
+	if args.EncKey != nil {
+		args.EncKey = pulumi.ToSecret(args.EncKey).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"authKey",
+		"encKey",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnIpsecManualkeyInterface
 	err := ctx.RegisterResource("fortios:index/vpnIpsecManualkeyInterface:VpnIpsecManualkeyInterface", name, args, &resource, opts...)
@@ -145,73 +88,41 @@ func GetVpnIpsecManualkeyInterface(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnIpsecManualkeyInterface resources.
 type vpnIpsecManualkeyInterfaceState struct {
-	// IP version to use for IP packets. Valid values: `4`, `6`.
-	AddrType *string `pulumi:"addrType"`
-	// Authentication algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-	AuthAlg *string `pulumi:"authAlg"`
-	// Hexadecimal authentication key in 16-digit (8-byte) segments separated by hyphens.
-	AuthKey *string `pulumi:"authKey"`
-	// Encryption algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`, `aria128`, `aria192`, `aria256`, `seed`.
-	EncAlg *string `pulumi:"encAlg"`
-	// Hexadecimal encryption key in 16-digit (8-byte) segments separated by hyphens.
-	EncKey *string `pulumi:"encKey"`
-	// Name of the physical, aggregate, or VLAN interface.
-	Interface *string `pulumi:"interface"`
-	// IP version to use for VPN interface. Valid values: `4`, `6`.
-	IpVersion *string `pulumi:"ipVersion"`
-	// IPv4 address of the local gateway's external interface.
-	LocalGw *string `pulumi:"localGw"`
-	// Local IPv6 address of VPN gateway.
-	LocalGw6 *string `pulumi:"localGw6"`
-	// Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-	LocalSpi *string `pulumi:"localSpi"`
-	// IPsec tunnel name.
-	Name *string `pulumi:"name"`
-	// Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
+	AddrType   *string `pulumi:"addrType"`
+	AuthAlg    *string `pulumi:"authAlg"`
+	AuthKey    *string `pulumi:"authKey"`
+	EncAlg     *string `pulumi:"encAlg"`
+	EncKey     *string `pulumi:"encKey"`
+	Interface  *string `pulumi:"interface"`
+	IpVersion  *string `pulumi:"ipVersion"`
+	LocalGw    *string `pulumi:"localGw"`
+	LocalGw6   *string `pulumi:"localGw6"`
+	LocalSpi   *string `pulumi:"localSpi"`
+	Name       *string `pulumi:"name"`
 	NpuOffload *string `pulumi:"npuOffload"`
-	// IPv4 address of the remote gateway's external interface.
-	RemoteGw *string `pulumi:"remoteGw"`
-	// Remote IPv6 address of VPN gateway.
-	RemoteGw6 *string `pulumi:"remoteGw6"`
-	// Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-	RemoteSpi *string `pulumi:"remoteSpi"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	RemoteGw   *string `pulumi:"remoteGw"`
+	RemoteGw6  *string `pulumi:"remoteGw6"`
+	RemoteSpi  *string `pulumi:"remoteSpi"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type VpnIpsecManualkeyInterfaceState struct {
-	// IP version to use for IP packets. Valid values: `4`, `6`.
-	AddrType pulumi.StringPtrInput
-	// Authentication algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-	AuthAlg pulumi.StringPtrInput
-	// Hexadecimal authentication key in 16-digit (8-byte) segments separated by hyphens.
-	AuthKey pulumi.StringPtrInput
-	// Encryption algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`, `aria128`, `aria192`, `aria256`, `seed`.
-	EncAlg pulumi.StringPtrInput
-	// Hexadecimal encryption key in 16-digit (8-byte) segments separated by hyphens.
-	EncKey pulumi.StringPtrInput
-	// Name of the physical, aggregate, or VLAN interface.
-	Interface pulumi.StringPtrInput
-	// IP version to use for VPN interface. Valid values: `4`, `6`.
-	IpVersion pulumi.StringPtrInput
-	// IPv4 address of the local gateway's external interface.
-	LocalGw pulumi.StringPtrInput
-	// Local IPv6 address of VPN gateway.
-	LocalGw6 pulumi.StringPtrInput
-	// Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-	LocalSpi pulumi.StringPtrInput
-	// IPsec tunnel name.
-	Name pulumi.StringPtrInput
-	// Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
+	AddrType   pulumi.StringPtrInput
+	AuthAlg    pulumi.StringPtrInput
+	AuthKey    pulumi.StringPtrInput
+	EncAlg     pulumi.StringPtrInput
+	EncKey     pulumi.StringPtrInput
+	Interface  pulumi.StringPtrInput
+	IpVersion  pulumi.StringPtrInput
+	LocalGw    pulumi.StringPtrInput
+	LocalGw6   pulumi.StringPtrInput
+	LocalSpi   pulumi.StringPtrInput
+	Name       pulumi.StringPtrInput
 	NpuOffload pulumi.StringPtrInput
-	// IPv4 address of the remote gateway's external interface.
-	RemoteGw pulumi.StringPtrInput
-	// Remote IPv6 address of VPN gateway.
-	RemoteGw6 pulumi.StringPtrInput
-	// Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-	RemoteSpi pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	RemoteGw   pulumi.StringPtrInput
+	RemoteGw6  pulumi.StringPtrInput
+	RemoteSpi  pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (VpnIpsecManualkeyInterfaceState) ElementType() reflect.Type {
@@ -219,74 +130,42 @@ func (VpnIpsecManualkeyInterfaceState) ElementType() reflect.Type {
 }
 
 type vpnIpsecManualkeyInterfaceArgs struct {
-	// IP version to use for IP packets. Valid values: `4`, `6`.
-	AddrType *string `pulumi:"addrType"`
-	// Authentication algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-	AuthAlg string `pulumi:"authAlg"`
-	// Hexadecimal authentication key in 16-digit (8-byte) segments separated by hyphens.
-	AuthKey *string `pulumi:"authKey"`
-	// Encryption algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`, `aria128`, `aria192`, `aria256`, `seed`.
-	EncAlg string `pulumi:"encAlg"`
-	// Hexadecimal encryption key in 16-digit (8-byte) segments separated by hyphens.
-	EncKey *string `pulumi:"encKey"`
-	// Name of the physical, aggregate, or VLAN interface.
-	Interface string `pulumi:"interface"`
-	// IP version to use for VPN interface. Valid values: `4`, `6`.
-	IpVersion *string `pulumi:"ipVersion"`
-	// IPv4 address of the local gateway's external interface.
-	LocalGw *string `pulumi:"localGw"`
-	// Local IPv6 address of VPN gateway.
-	LocalGw6 *string `pulumi:"localGw6"`
-	// Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-	LocalSpi *string `pulumi:"localSpi"`
-	// IPsec tunnel name.
-	Name *string `pulumi:"name"`
-	// Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
+	AddrType   *string `pulumi:"addrType"`
+	AuthAlg    string  `pulumi:"authAlg"`
+	AuthKey    *string `pulumi:"authKey"`
+	EncAlg     string  `pulumi:"encAlg"`
+	EncKey     *string `pulumi:"encKey"`
+	Interface  string  `pulumi:"interface"`
+	IpVersion  *string `pulumi:"ipVersion"`
+	LocalGw    *string `pulumi:"localGw"`
+	LocalGw6   *string `pulumi:"localGw6"`
+	LocalSpi   *string `pulumi:"localSpi"`
+	Name       *string `pulumi:"name"`
 	NpuOffload *string `pulumi:"npuOffload"`
-	// IPv4 address of the remote gateway's external interface.
-	RemoteGw string `pulumi:"remoteGw"`
-	// Remote IPv6 address of VPN gateway.
-	RemoteGw6 string `pulumi:"remoteGw6"`
-	// Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-	RemoteSpi *string `pulumi:"remoteSpi"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	RemoteGw   string  `pulumi:"remoteGw"`
+	RemoteGw6  string  `pulumi:"remoteGw6"`
+	RemoteSpi  *string `pulumi:"remoteSpi"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VpnIpsecManualkeyInterface resource.
 type VpnIpsecManualkeyInterfaceArgs struct {
-	// IP version to use for IP packets. Valid values: `4`, `6`.
-	AddrType pulumi.StringPtrInput
-	// Authentication algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-	AuthAlg pulumi.StringInput
-	// Hexadecimal authentication key in 16-digit (8-byte) segments separated by hyphens.
-	AuthKey pulumi.StringPtrInput
-	// Encryption algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`, `aria128`, `aria192`, `aria256`, `seed`.
-	EncAlg pulumi.StringInput
-	// Hexadecimal encryption key in 16-digit (8-byte) segments separated by hyphens.
-	EncKey pulumi.StringPtrInput
-	// Name of the physical, aggregate, or VLAN interface.
-	Interface pulumi.StringInput
-	// IP version to use for VPN interface. Valid values: `4`, `6`.
-	IpVersion pulumi.StringPtrInput
-	// IPv4 address of the local gateway's external interface.
-	LocalGw pulumi.StringPtrInput
-	// Local IPv6 address of VPN gateway.
-	LocalGw6 pulumi.StringPtrInput
-	// Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-	LocalSpi pulumi.StringPtrInput
-	// IPsec tunnel name.
-	Name pulumi.StringPtrInput
-	// Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
+	AddrType   pulumi.StringPtrInput
+	AuthAlg    pulumi.StringInput
+	AuthKey    pulumi.StringPtrInput
+	EncAlg     pulumi.StringInput
+	EncKey     pulumi.StringPtrInput
+	Interface  pulumi.StringInput
+	IpVersion  pulumi.StringPtrInput
+	LocalGw    pulumi.StringPtrInput
+	LocalGw6   pulumi.StringPtrInput
+	LocalSpi   pulumi.StringPtrInput
+	Name       pulumi.StringPtrInput
 	NpuOffload pulumi.StringPtrInput
-	// IPv4 address of the remote gateway's external interface.
-	RemoteGw pulumi.StringInput
-	// Remote IPv6 address of VPN gateway.
-	RemoteGw6 pulumi.StringInput
-	// Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-	RemoteSpi pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	RemoteGw   pulumi.StringInput
+	RemoteGw6  pulumi.StringInput
+	RemoteSpi  pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (VpnIpsecManualkeyInterfaceArgs) ElementType() reflect.Type {
@@ -315,7 +194,7 @@ func (i *VpnIpsecManualkeyInterface) ToVpnIpsecManualkeyInterfaceOutputWithConte
 // VpnIpsecManualkeyInterfaceArrayInput is an input type that accepts VpnIpsecManualkeyInterfaceArray and VpnIpsecManualkeyInterfaceArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecManualkeyInterfaceArrayInput` via:
 //
-//          VpnIpsecManualkeyInterfaceArray{ VpnIpsecManualkeyInterfaceArgs{...} }
+//	VpnIpsecManualkeyInterfaceArray{ VpnIpsecManualkeyInterfaceArgs{...} }
 type VpnIpsecManualkeyInterfaceArrayInput interface {
 	pulumi.Input
 
@@ -340,7 +219,7 @@ func (i VpnIpsecManualkeyInterfaceArray) ToVpnIpsecManualkeyInterfaceArrayOutput
 // VpnIpsecManualkeyInterfaceMapInput is an input type that accepts VpnIpsecManualkeyInterfaceMap and VpnIpsecManualkeyInterfaceMapOutput values.
 // You can construct a concrete instance of `VpnIpsecManualkeyInterfaceMapInput` via:
 //
-//          VpnIpsecManualkeyInterfaceMap{ "key": VpnIpsecManualkeyInterfaceArgs{...} }
+//	VpnIpsecManualkeyInterfaceMap{ "key": VpnIpsecManualkeyInterfaceArgs{...} }
 type VpnIpsecManualkeyInterfaceMapInput interface {
 	pulumi.Input
 
@@ -374,6 +253,70 @@ func (o VpnIpsecManualkeyInterfaceOutput) ToVpnIpsecManualkeyInterfaceOutput() V
 
 func (o VpnIpsecManualkeyInterfaceOutput) ToVpnIpsecManualkeyInterfaceOutputWithContext(ctx context.Context) VpnIpsecManualkeyInterfaceOutput {
 	return o
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) AddrType() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringOutput { return v.AddrType }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) AuthAlg() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringOutput { return v.AuthAlg }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) AuthKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringOutput { return v.AuthKey }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) EncAlg() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringOutput { return v.EncAlg }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) EncKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringOutput { return v.EncKey }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) IpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringOutput { return v.IpVersion }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) LocalGw() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringOutput { return v.LocalGw }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) LocalGw6() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringOutput { return v.LocalGw6 }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) LocalSpi() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringOutput { return v.LocalSpi }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) NpuOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringOutput { return v.NpuOffload }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) RemoteGw() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringOutput { return v.RemoteGw }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) RemoteGw6() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringOutput { return v.RemoteGw6 }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) RemoteSpi() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringOutput { return v.RemoteSpi }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecManualkeyInterfaceOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnIpsecManualkeyInterface) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type VpnIpsecManualkeyInterfaceArrayOutput struct{ *pulumi.OutputState }

@@ -7,64 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure local FortiGuard Web Filter local ratings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWebfilterFtgdLocalRating(ctx, "trname", &fortios.WebfilterFtgdLocalRatingArgs{
-// 			Rating: pulumi.String("1"),
-// 			Status: pulumi.String("enable"),
-// 			Url:    pulumi.String("sgala.com"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Webfilter FtgdLocalRating can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterFtgdLocalRating:WebfilterFtgdLocalRating labelname {{url}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterFtgdLocalRating:WebfilterFtgdLocalRating labelname {{url}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebfilterFtgdLocalRating struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Local rating.
-	Rating pulumi.StringOutput `pulumi:"rating"`
-	// Enable/disable local rating. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// URL to rate locally.
-	Url pulumi.StringOutput `pulumi:"url"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comment   pulumi.StringPtrOutput `pulumi:"comment"`
+	Rating    pulumi.StringOutput    `pulumi:"rating"`
+	Status    pulumi.StringOutput    `pulumi:"status"`
+	Url       pulumi.StringOutput    `pulumi:"url"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -101,28 +54,18 @@ func GetWebfilterFtgdLocalRating(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebfilterFtgdLocalRating resources.
 type webfilterFtgdLocalRatingState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Local rating.
-	Rating *string `pulumi:"rating"`
-	// Enable/disable local rating. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// URL to rate locally.
-	Url *string `pulumi:"url"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comment   *string `pulumi:"comment"`
+	Rating    *string `pulumi:"rating"`
+	Status    *string `pulumi:"status"`
+	Url       *string `pulumi:"url"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type WebfilterFtgdLocalRatingState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Local rating.
-	Rating pulumi.StringPtrInput
-	// Enable/disable local rating. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// URL to rate locally.
-	Url pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comment   pulumi.StringPtrInput
+	Rating    pulumi.StringPtrInput
+	Status    pulumi.StringPtrInput
+	Url       pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -131,29 +74,19 @@ func (WebfilterFtgdLocalRatingState) ElementType() reflect.Type {
 }
 
 type webfilterFtgdLocalRatingArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Local rating.
-	Rating string `pulumi:"rating"`
-	// Enable/disable local rating. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// URL to rate locally.
-	Url *string `pulumi:"url"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comment   *string `pulumi:"comment"`
+	Rating    string  `pulumi:"rating"`
+	Status    *string `pulumi:"status"`
+	Url       *string `pulumi:"url"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebfilterFtgdLocalRating resource.
 type WebfilterFtgdLocalRatingArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Local rating.
-	Rating pulumi.StringInput
-	// Enable/disable local rating. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// URL to rate locally.
-	Url pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comment   pulumi.StringPtrInput
+	Rating    pulumi.StringInput
+	Status    pulumi.StringPtrInput
+	Url       pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -183,7 +116,7 @@ func (i *WebfilterFtgdLocalRating) ToWebfilterFtgdLocalRatingOutputWithContext(c
 // WebfilterFtgdLocalRatingArrayInput is an input type that accepts WebfilterFtgdLocalRatingArray and WebfilterFtgdLocalRatingArrayOutput values.
 // You can construct a concrete instance of `WebfilterFtgdLocalRatingArrayInput` via:
 //
-//          WebfilterFtgdLocalRatingArray{ WebfilterFtgdLocalRatingArgs{...} }
+//	WebfilterFtgdLocalRatingArray{ WebfilterFtgdLocalRatingArgs{...} }
 type WebfilterFtgdLocalRatingArrayInput interface {
 	pulumi.Input
 
@@ -208,7 +141,7 @@ func (i WebfilterFtgdLocalRatingArray) ToWebfilterFtgdLocalRatingArrayOutputWith
 // WebfilterFtgdLocalRatingMapInput is an input type that accepts WebfilterFtgdLocalRatingMap and WebfilterFtgdLocalRatingMapOutput values.
 // You can construct a concrete instance of `WebfilterFtgdLocalRatingMapInput` via:
 //
-//          WebfilterFtgdLocalRatingMap{ "key": WebfilterFtgdLocalRatingArgs{...} }
+//	WebfilterFtgdLocalRatingMap{ "key": WebfilterFtgdLocalRatingArgs{...} }
 type WebfilterFtgdLocalRatingMapInput interface {
 	pulumi.Input
 
@@ -242,6 +175,26 @@ func (o WebfilterFtgdLocalRatingOutput) ToWebfilterFtgdLocalRatingOutput() Webfi
 
 func (o WebfilterFtgdLocalRatingOutput) ToWebfilterFtgdLocalRatingOutputWithContext(ctx context.Context) WebfilterFtgdLocalRatingOutput {
 	return o
+}
+
+func (o WebfilterFtgdLocalRatingOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterFtgdLocalRating) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o WebfilterFtgdLocalRatingOutput) Rating() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterFtgdLocalRating) pulumi.StringOutput { return v.Rating }).(pulumi.StringOutput)
+}
+
+func (o WebfilterFtgdLocalRatingOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterFtgdLocalRating) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o WebfilterFtgdLocalRatingOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterFtgdLocalRating) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
+}
+
+func (o WebfilterFtgdLocalRatingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterFtgdLocalRating) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebfilterFtgdLocalRatingArrayOutput struct{ *pulumi.OutputState }

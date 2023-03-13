@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure NSX-T service chain. Applies to FortiOS Version `>= 7.0.0`.
- *
- * ## Import
- *
- * Nsxt ServiceChain can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/nsxtServiceChain:NsxtServiceChain labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/nsxtServiceChain:NsxtServiceChain labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class NsxtServiceChain extends pulumi.CustomResource {
     /**
      * Get an existing NsxtServiceChain resource's state with the given name, ID, and optional extra
@@ -52,25 +34,10 @@ export class NsxtServiceChain extends pulumi.CustomResource {
         return obj['__pulumiType'] === NsxtServiceChain.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Chain ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Index name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Configure service index. The structure of `serviceIndex` block is documented below.
-     */
     public readonly serviceIndices!: pulumi.Output<outputs.NsxtServiceChainServiceIndex[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -108,25 +75,10 @@ export class NsxtServiceChain extends pulumi.CustomResource {
  * Input properties used for looking up and filtering NsxtServiceChain resources.
  */
 export interface NsxtServiceChainState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Chain ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Index name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Configure service index. The structure of `serviceIndex` block is documented below.
-     */
     serviceIndices?: pulumi.Input<pulumi.Input<inputs.NsxtServiceChainServiceIndex>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -134,24 +86,9 @@ export interface NsxtServiceChainState {
  * The set of arguments for constructing a NsxtServiceChain resource.
  */
 export interface NsxtServiceChainArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Chain ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Index name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Configure service index. The structure of `serviceIndex` block is documented below.
-     */
     serviceIndices?: pulumi.Input<pulumi.Input<inputs.NsxtServiceChainServiceIndex>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

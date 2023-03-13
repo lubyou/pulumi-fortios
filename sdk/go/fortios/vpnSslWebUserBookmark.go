@@ -10,59 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure SSL VPN user bookmark.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewVpnSslWebUserBookmark(ctx, "trname", &fortios.VpnSslWebUserBookmarkArgs{
-// 			CustomLang: pulumi.String("big5"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// VpnSslWeb UserBookmark can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnSslWebUserBookmark:VpnSslWebUserBookmark labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnSslWebUserBookmark:VpnSslWebUserBookmark labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnSslWebUserBookmark struct {
 	pulumi.CustomResourceState
 
-	// Bookmark table. The structure of `bookmarks` block is documented below.
-	Bookmarks VpnSslWebUserBookmarkBookmarkArrayOutput `pulumi:"bookmarks"`
-	// Personal language.
-	CustomLang pulumi.StringOutput `pulumi:"customLang"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Bookmarks           VpnSslWebUserBookmarkBookmarkArrayOutput `pulumi:"bookmarks"`
+	CustomLang          pulumi.StringOutput                      `pulumi:"customLang"`
+	DynamicSortSubtable pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                      `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                   `pulumi:"vdomparam"`
 }
 
 // NewVpnSslWebUserBookmark registers a new resource with the given unique name, arguments, and options.
@@ -95,29 +50,19 @@ func GetVpnSslWebUserBookmark(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnSslWebUserBookmark resources.
 type vpnSslWebUserBookmarkState struct {
-	// Bookmark table. The structure of `bookmarks` block is documented below.
-	Bookmarks []VpnSslWebUserBookmarkBookmark `pulumi:"bookmarks"`
-	// Personal language.
-	CustomLang *string `pulumi:"customLang"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Bookmarks           []VpnSslWebUserBookmarkBookmark `pulumi:"bookmarks"`
+	CustomLang          *string                         `pulumi:"customLang"`
+	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	Name                *string                         `pulumi:"name"`
+	Vdomparam           *string                         `pulumi:"vdomparam"`
 }
 
 type VpnSslWebUserBookmarkState struct {
-	// Bookmark table. The structure of `bookmarks` block is documented below.
-	Bookmarks VpnSslWebUserBookmarkBookmarkArrayInput
-	// Personal language.
-	CustomLang pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Bookmarks           VpnSslWebUserBookmarkBookmarkArrayInput
+	CustomLang          pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (VpnSslWebUserBookmarkState) ElementType() reflect.Type {
@@ -125,30 +70,20 @@ func (VpnSslWebUserBookmarkState) ElementType() reflect.Type {
 }
 
 type vpnSslWebUserBookmarkArgs struct {
-	// Bookmark table. The structure of `bookmarks` block is documented below.
-	Bookmarks []VpnSslWebUserBookmarkBookmark `pulumi:"bookmarks"`
-	// Personal language.
-	CustomLang *string `pulumi:"customLang"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Bookmarks           []VpnSslWebUserBookmarkBookmark `pulumi:"bookmarks"`
+	CustomLang          *string                         `pulumi:"customLang"`
+	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	Name                *string                         `pulumi:"name"`
+	Vdomparam           *string                         `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VpnSslWebUserBookmark resource.
 type VpnSslWebUserBookmarkArgs struct {
-	// Bookmark table. The structure of `bookmarks` block is documented below.
-	Bookmarks VpnSslWebUserBookmarkBookmarkArrayInput
-	// Personal language.
-	CustomLang pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Bookmarks           VpnSslWebUserBookmarkBookmarkArrayInput
+	CustomLang          pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (VpnSslWebUserBookmarkArgs) ElementType() reflect.Type {
@@ -177,7 +112,7 @@ func (i *VpnSslWebUserBookmark) ToVpnSslWebUserBookmarkOutputWithContext(ctx con
 // VpnSslWebUserBookmarkArrayInput is an input type that accepts VpnSslWebUserBookmarkArray and VpnSslWebUserBookmarkArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebUserBookmarkArrayInput` via:
 //
-//          VpnSslWebUserBookmarkArray{ VpnSslWebUserBookmarkArgs{...} }
+//	VpnSslWebUserBookmarkArray{ VpnSslWebUserBookmarkArgs{...} }
 type VpnSslWebUserBookmarkArrayInput interface {
 	pulumi.Input
 
@@ -202,7 +137,7 @@ func (i VpnSslWebUserBookmarkArray) ToVpnSslWebUserBookmarkArrayOutputWithContex
 // VpnSslWebUserBookmarkMapInput is an input type that accepts VpnSslWebUserBookmarkMap and VpnSslWebUserBookmarkMapOutput values.
 // You can construct a concrete instance of `VpnSslWebUserBookmarkMapInput` via:
 //
-//          VpnSslWebUserBookmarkMap{ "key": VpnSslWebUserBookmarkArgs{...} }
+//	VpnSslWebUserBookmarkMap{ "key": VpnSslWebUserBookmarkArgs{...} }
 type VpnSslWebUserBookmarkMapInput interface {
 	pulumi.Input
 
@@ -236,6 +171,26 @@ func (o VpnSslWebUserBookmarkOutput) ToVpnSslWebUserBookmarkOutput() VpnSslWebUs
 
 func (o VpnSslWebUserBookmarkOutput) ToVpnSslWebUserBookmarkOutputWithContext(ctx context.Context) VpnSslWebUserBookmarkOutput {
 	return o
+}
+
+func (o VpnSslWebUserBookmarkOutput) Bookmarks() VpnSslWebUserBookmarkBookmarkArrayOutput {
+	return o.ApplyT(func(v *VpnSslWebUserBookmark) VpnSslWebUserBookmarkBookmarkArrayOutput { return v.Bookmarks }).(VpnSslWebUserBookmarkBookmarkArrayOutput)
+}
+
+func (o VpnSslWebUserBookmarkOutput) CustomLang() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebUserBookmark) pulumi.StringOutput { return v.CustomLang }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebUserBookmarkOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebUserBookmark) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebUserBookmarkOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebUserBookmark) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebUserBookmarkOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebUserBookmark) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type VpnSslWebUserBookmarkArrayOutput struct{ *pulumi.OutputState }

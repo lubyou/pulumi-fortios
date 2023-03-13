@@ -4,20 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to add a VDOM license for FortiOS.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test2 = new fortios.SystemLicenseVDOM("test2", {
- *     license: "license",
- * });
- * ```
- */
 export class SystemLicenseVDOM extends pulumi.CustomResource {
     /**
      * Get an existing SystemLicenseVDOM resource's state with the given name, ID, and optional extra
@@ -46,9 +32,6 @@ export class SystemLicenseVDOM extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemLicenseVDOM.__pulumiType;
     }
 
-    /**
-     * Registration code.
-     */
     public readonly license!: pulumi.Output<string>;
 
     /**
@@ -81,9 +64,6 @@ export class SystemLicenseVDOM extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemLicenseVDOM resources.
  */
 export interface SystemLicenseVDOMState {
-    /**
-     * Registration code.
-     */
     license?: pulumi.Input<string>;
 }
 
@@ -91,8 +71,5 @@ export interface SystemLicenseVDOMState {
  * The set of arguments for constructing a SystemLicenseVDOM resource.
  */
 export interface SystemLicenseVDOMArgs {
-    /**
-     * Registration code.
-     */
     license: pulumi.Input<string>;
 }

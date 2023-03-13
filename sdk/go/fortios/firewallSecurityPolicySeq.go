@@ -7,22 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type FirewallSecurityPolicySeq struct {
 	pulumi.CustomResourceState
 
-	// The alter position: should only be "before" or "after"
-	AlterPosition pulumi.StringOutput `pulumi:"alterPosition"`
-	// Comment
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Enable status detection for policySrcId and policy_dst_id
-	EnableStateChecking pulumi.BoolPtrOutput `pulumi:"enableStateChecking"`
-	// The dest policy id which you want to alter
-	PolicyDstId pulumi.IntOutput `pulumi:"policyDstId"`
-	// The policy id which you want to alter
+	AlterPosition        pulumi.StringOutput                                 `pulumi:"alterPosition"`
+	Comment              pulumi.StringPtrOutput                              `pulumi:"comment"`
+	EnableStateChecking  pulumi.BoolPtrOutput                                `pulumi:"enableStateChecking"`
+	PolicyDstId          pulumi.IntOutput                                    `pulumi:"policyDstId"`
 	PolicySrcId          pulumi.IntOutput                                    `pulumi:"policySrcId"`
 	StatePolicyLists     FirewallSecurityPolicySeqStatePolicyListArrayOutput `pulumi:"statePolicyLists"`
 	StatePolicySrcdstPos pulumi.StringPtrOutput                              `pulumi:"statePolicySrcdstPos"`
@@ -68,15 +63,10 @@ func GetFirewallSecurityPolicySeq(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallSecurityPolicySeq resources.
 type firewallSecurityPolicySeqState struct {
-	// The alter position: should only be "before" or "after"
-	AlterPosition *string `pulumi:"alterPosition"`
-	// Comment
-	Comment *string `pulumi:"comment"`
-	// Enable status detection for policySrcId and policy_dst_id
-	EnableStateChecking *bool `pulumi:"enableStateChecking"`
-	// The dest policy id which you want to alter
-	PolicyDstId *int `pulumi:"policyDstId"`
-	// The policy id which you want to alter
+	AlterPosition        *string                                    `pulumi:"alterPosition"`
+	Comment              *string                                    `pulumi:"comment"`
+	EnableStateChecking  *bool                                      `pulumi:"enableStateChecking"`
+	PolicyDstId          *int                                       `pulumi:"policyDstId"`
 	PolicySrcId          *int                                       `pulumi:"policySrcId"`
 	StatePolicyLists     []FirewallSecurityPolicySeqStatePolicyList `pulumi:"statePolicyLists"`
 	StatePolicySrcdstPos *string                                    `pulumi:"statePolicySrcdstPos"`
@@ -84,15 +74,10 @@ type firewallSecurityPolicySeqState struct {
 }
 
 type FirewallSecurityPolicySeqState struct {
-	// The alter position: should only be "before" or "after"
-	AlterPosition pulumi.StringPtrInput
-	// Comment
-	Comment pulumi.StringPtrInput
-	// Enable status detection for policySrcId and policy_dst_id
-	EnableStateChecking pulumi.BoolPtrInput
-	// The dest policy id which you want to alter
-	PolicyDstId pulumi.IntPtrInput
-	// The policy id which you want to alter
+	AlterPosition        pulumi.StringPtrInput
+	Comment              pulumi.StringPtrInput
+	EnableStateChecking  pulumi.BoolPtrInput
+	PolicyDstId          pulumi.IntPtrInput
 	PolicySrcId          pulumi.IntPtrInput
 	StatePolicyLists     FirewallSecurityPolicySeqStatePolicyListArrayInput
 	StatePolicySrcdstPos pulumi.StringPtrInput
@@ -104,15 +89,10 @@ func (FirewallSecurityPolicySeqState) ElementType() reflect.Type {
 }
 
 type firewallSecurityPolicySeqArgs struct {
-	// The alter position: should only be "before" or "after"
-	AlterPosition string `pulumi:"alterPosition"`
-	// Comment
-	Comment *string `pulumi:"comment"`
-	// Enable status detection for policySrcId and policy_dst_id
-	EnableStateChecking *bool `pulumi:"enableStateChecking"`
-	// The dest policy id which you want to alter
-	PolicyDstId int `pulumi:"policyDstId"`
-	// The policy id which you want to alter
+	AlterPosition        string  `pulumi:"alterPosition"`
+	Comment              *string `pulumi:"comment"`
+	EnableStateChecking  *bool   `pulumi:"enableStateChecking"`
+	PolicyDstId          int     `pulumi:"policyDstId"`
 	PolicySrcId          int     `pulumi:"policySrcId"`
 	StatePolicySrcdstPos *string `pulumi:"statePolicySrcdstPos"`
 	Vdomparam            *string `pulumi:"vdomparam"`
@@ -120,15 +100,10 @@ type firewallSecurityPolicySeqArgs struct {
 
 // The set of arguments for constructing a FirewallSecurityPolicySeq resource.
 type FirewallSecurityPolicySeqArgs struct {
-	// The alter position: should only be "before" or "after"
-	AlterPosition pulumi.StringInput
-	// Comment
-	Comment pulumi.StringPtrInput
-	// Enable status detection for policySrcId and policy_dst_id
-	EnableStateChecking pulumi.BoolPtrInput
-	// The dest policy id which you want to alter
-	PolicyDstId pulumi.IntInput
-	// The policy id which you want to alter
+	AlterPosition        pulumi.StringInput
+	Comment              pulumi.StringPtrInput
+	EnableStateChecking  pulumi.BoolPtrInput
+	PolicyDstId          pulumi.IntInput
 	PolicySrcId          pulumi.IntInput
 	StatePolicySrcdstPos pulumi.StringPtrInput
 	Vdomparam            pulumi.StringPtrInput
@@ -160,7 +135,7 @@ func (i *FirewallSecurityPolicySeq) ToFirewallSecurityPolicySeqOutputWithContext
 // FirewallSecurityPolicySeqArrayInput is an input type that accepts FirewallSecurityPolicySeqArray and FirewallSecurityPolicySeqArrayOutput values.
 // You can construct a concrete instance of `FirewallSecurityPolicySeqArrayInput` via:
 //
-//          FirewallSecurityPolicySeqArray{ FirewallSecurityPolicySeqArgs{...} }
+//	FirewallSecurityPolicySeqArray{ FirewallSecurityPolicySeqArgs{...} }
 type FirewallSecurityPolicySeqArrayInput interface {
 	pulumi.Input
 
@@ -185,7 +160,7 @@ func (i FirewallSecurityPolicySeqArray) ToFirewallSecurityPolicySeqArrayOutputWi
 // FirewallSecurityPolicySeqMapInput is an input type that accepts FirewallSecurityPolicySeqMap and FirewallSecurityPolicySeqMapOutput values.
 // You can construct a concrete instance of `FirewallSecurityPolicySeqMapInput` via:
 //
-//          FirewallSecurityPolicySeqMap{ "key": FirewallSecurityPolicySeqArgs{...} }
+//	FirewallSecurityPolicySeqMap{ "key": FirewallSecurityPolicySeqArgs{...} }
 type FirewallSecurityPolicySeqMapInput interface {
 	pulumi.Input
 
@@ -219,6 +194,40 @@ func (o FirewallSecurityPolicySeqOutput) ToFirewallSecurityPolicySeqOutput() Fir
 
 func (o FirewallSecurityPolicySeqOutput) ToFirewallSecurityPolicySeqOutputWithContext(ctx context.Context) FirewallSecurityPolicySeqOutput {
 	return o
+}
+
+func (o FirewallSecurityPolicySeqOutput) AlterPosition() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicySeq) pulumi.StringOutput { return v.AlterPosition }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicySeqOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicySeq) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSecurityPolicySeqOutput) EnableStateChecking() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicySeq) pulumi.BoolPtrOutput { return v.EnableStateChecking }).(pulumi.BoolPtrOutput)
+}
+
+func (o FirewallSecurityPolicySeqOutput) PolicyDstId() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicySeq) pulumi.IntOutput { return v.PolicyDstId }).(pulumi.IntOutput)
+}
+
+func (o FirewallSecurityPolicySeqOutput) PolicySrcId() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicySeq) pulumi.IntOutput { return v.PolicySrcId }).(pulumi.IntOutput)
+}
+
+func (o FirewallSecurityPolicySeqOutput) StatePolicyLists() FirewallSecurityPolicySeqStatePolicyListArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicySeq) FirewallSecurityPolicySeqStatePolicyListArrayOutput {
+		return v.StatePolicyLists
+	}).(FirewallSecurityPolicySeqStatePolicyListArrayOutput)
+}
+
+func (o FirewallSecurityPolicySeqOutput) StatePolicySrcdstPos() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicySeq) pulumi.StringPtrOutput { return v.StatePolicySrcdstPos }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSecurityPolicySeqOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicySeq) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallSecurityPolicySeqArrayOutput struct{ *pulumi.OutputState }

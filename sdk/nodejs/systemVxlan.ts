@@ -2,45 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure VXLAN devices.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemVxlan("trname", {
- *     dstport: 4789,
- *     interface: "port3",
- *     ipVersion: "ipv4-unicast",
- *     remoteIps: [{
- *         ip: "1.1.1.1",
- *     }],
- *     vni: 3,
- * });
- * ```
- *
- * ## Import
- *
- * System Vxlan can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVxlan:SystemVxlan labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVxlan:SystemVxlan labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemVxlan extends pulumi.CustomResource {
     /**
      * Get an existing SystemVxlan resource's state with the given name, ID, and optional extra
@@ -69,45 +34,15 @@ export class SystemVxlan extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemVxlan.__pulumiType;
     }
 
-    /**
-     * VXLAN destination port (1 - 65535, default = 4789).
-     */
     public readonly dstport!: pulumi.Output<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Outgoing interface for VXLAN encapsulated traffic.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
-     */
     public readonly ipVersion!: pulumi.Output<string>;
-    /**
-     * VXLAN multicast TTL (1-255, default = 0).
-     */
     public readonly multicastTtl!: pulumi.Output<number>;
-    /**
-     * VXLAN device or interface name. Must be a unique interface name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * IPv6 IP address of the VXLAN interface on the device at the remote end of the VXLAN. The structure of `remoteIp6` block is documented below.
-     */
     public readonly remoteIp6s!: pulumi.Output<outputs.SystemVxlanRemoteIp6[] | undefined>;
-    /**
-     * IPv4 address of the VXLAN interface on the device at the remote end of the VXLAN. The structure of `remoteIp` block is documented below.
-     */
     public readonly remoteIps!: pulumi.Output<outputs.SystemVxlanRemoteIp[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * VXLAN network ID.
-     */
     public readonly vni!: pulumi.Output<number>;
 
     /**
@@ -164,45 +99,15 @@ export class SystemVxlan extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemVxlan resources.
  */
 export interface SystemVxlanState {
-    /**
-     * VXLAN destination port (1 - 65535, default = 4789).
-     */
     dstport?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Outgoing interface for VXLAN encapsulated traffic.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
-     */
     ipVersion?: pulumi.Input<string>;
-    /**
-     * VXLAN multicast TTL (1-255, default = 0).
-     */
     multicastTtl?: pulumi.Input<number>;
-    /**
-     * VXLAN device or interface name. Must be a unique interface name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * IPv6 IP address of the VXLAN interface on the device at the remote end of the VXLAN. The structure of `remoteIp6` block is documented below.
-     */
     remoteIp6s?: pulumi.Input<pulumi.Input<inputs.SystemVxlanRemoteIp6>[]>;
-    /**
-     * IPv4 address of the VXLAN interface on the device at the remote end of the VXLAN. The structure of `remoteIp` block is documented below.
-     */
     remoteIps?: pulumi.Input<pulumi.Input<inputs.SystemVxlanRemoteIp>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * VXLAN network ID.
-     */
     vni?: pulumi.Input<number>;
 }
 
@@ -210,44 +115,14 @@ export interface SystemVxlanState {
  * The set of arguments for constructing a SystemVxlan resource.
  */
 export interface SystemVxlanArgs {
-    /**
-     * VXLAN destination port (1 - 65535, default = 4789).
-     */
     dstport?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Outgoing interface for VXLAN encapsulated traffic.
-     */
     interface: pulumi.Input<string>;
-    /**
-     * IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
-     */
     ipVersion: pulumi.Input<string>;
-    /**
-     * VXLAN multicast TTL (1-255, default = 0).
-     */
     multicastTtl?: pulumi.Input<number>;
-    /**
-     * VXLAN device or interface name. Must be a unique interface name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * IPv6 IP address of the VXLAN interface on the device at the remote end of the VXLAN. The structure of `remoteIp6` block is documented below.
-     */
     remoteIp6s?: pulumi.Input<pulumi.Input<inputs.SystemVxlanRemoteIp6>[]>;
-    /**
-     * IPv4 address of the VXLAN interface on the device at the remote end of the VXLAN. The structure of `remoteIp` block is documented below.
-     */
     remoteIps?: pulumi.Input<pulumi.Input<inputs.SystemVxlanRemoteIp>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * VXLAN network ID.
-     */
     vni: pulumi.Input<number>;
 }

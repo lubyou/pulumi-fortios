@@ -7,103 +7,33 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 to IPv4 virtual IPs. Applies to FortiOS Version `<= 7.0.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallVip64(ctx, "trname", &fortios.FirewallVip64Args{
-// 			ArpReply:    pulumi.String("enable"),
-// 			Color:       pulumi.Int(0),
-// 			Extip:       pulumi.String("2001:db8:99:203::22"),
-// 			Extport:     pulumi.String("0-65535"),
-// 			Fosid:       pulumi.Int(0),
-// 			LdbMethod:   pulumi.String("static"),
-// 			Mappedip:    pulumi.String("1.1.1.1"),
-// 			Mappedport:  pulumi.String("0-65535"),
-// 			Portforward: pulumi.String("disable"),
-// 			Protocol:    pulumi.String("tcp"),
-// 			Type:        pulumi.String("static-nat"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall Vip64 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallVip64:FirewallVip64 labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallVip64:FirewallVip64 labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallVip64 struct {
 	pulumi.CustomResourceState
 
-	// Enable ARP reply. Valid values: `disable`, `enable`.
-	ArpReply pulumi.StringOutput `pulumi:"arpReply"`
-	// Color of icon on the GUI.
-	Color pulumi.IntOutput `pulumi:"color"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Start-external-IP [-end-external-IP].
-	Extip pulumi.StringOutput `pulumi:"extip"`
-	// External service port.
-	Extport pulumi.StringOutput `pulumi:"extport"`
-	// Custom defined id.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
-	LdbMethod pulumi.StringOutput `pulumi:"ldbMethod"`
-	// Start-mapped-IP [-end-mapped-IP].
-	Mappedip pulumi.StringOutput `pulumi:"mappedip"`
-	// Mapped service port.
-	Mappedport pulumi.StringOutput `pulumi:"mappedport"`
-	// Health monitors.
-	Monitors FirewallVip64MonitorArrayOutput `pulumi:"monitors"`
-	// Health monitor name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable port forwarding. Valid values: `disable`, `enable`.
-	Portforward pulumi.StringOutput `pulumi:"portforward"`
-	// Mapped port protocol. Valid values: `tcp`, `udp`.
-	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// Real servers. The structure of `realservers` block is documented below.
-	Realservers FirewallVip64RealserverArrayOutput `pulumi:"realservers"`
-	// Server type. Valid values: `http`, `tcp`, `udp`, `ip`.
-	ServerType pulumi.StringOutput `pulumi:"serverType"`
-	// Source IP6 filter (x:x:x:x:x:x:x:x/x). The structure of `srcFilter` block is documented below.
-	SrcFilters FirewallVip64SrcFilterArrayOutput `pulumi:"srcFilters"`
-	// VIP type: static NAT or server load balance. Valid values: `static-nat`, `server-load-balance`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringOutput `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	ArpReply            pulumi.StringOutput                `pulumi:"arpReply"`
+	Color               pulumi.IntOutput                   `pulumi:"color"`
+	Comment             pulumi.StringPtrOutput             `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
+	Extip               pulumi.StringOutput                `pulumi:"extip"`
+	Extport             pulumi.StringOutput                `pulumi:"extport"`
+	Fosid               pulumi.IntOutput                   `pulumi:"fosid"`
+	LdbMethod           pulumi.StringOutput                `pulumi:"ldbMethod"`
+	Mappedip            pulumi.StringOutput                `pulumi:"mappedip"`
+	Mappedport          pulumi.StringOutput                `pulumi:"mappedport"`
+	Monitors            FirewallVip64MonitorArrayOutput    `pulumi:"monitors"`
+	Name                pulumi.StringOutput                `pulumi:"name"`
+	Portforward         pulumi.StringOutput                `pulumi:"portforward"`
+	Protocol            pulumi.StringOutput                `pulumi:"protocol"`
+	Realservers         FirewallVip64RealserverArrayOutput `pulumi:"realservers"`
+	ServerType          pulumi.StringOutput                `pulumi:"serverType"`
+	SrcFilters          FirewallVip64SrcFilterArrayOutput  `pulumi:"srcFilters"`
+	Type                pulumi.StringOutput                `pulumi:"type"`
+	Uuid                pulumi.StringOutput                `pulumi:"uuid"`
+	Vdomparam           pulumi.StringPtrOutput             `pulumi:"vdomparam"`
 }
 
 // NewFirewallVip64 registers a new resource with the given unique name, arguments, and options.
@@ -142,89 +72,49 @@ func GetFirewallVip64(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallVip64 resources.
 type firewallVip64State struct {
-	// Enable ARP reply. Valid values: `disable`, `enable`.
-	ArpReply *string `pulumi:"arpReply"`
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Start-external-IP [-end-external-IP].
-	Extip *string `pulumi:"extip"`
-	// External service port.
-	Extport *string `pulumi:"extport"`
-	// Custom defined id.
-	Fosid *int `pulumi:"fosid"`
-	// Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
-	LdbMethod *string `pulumi:"ldbMethod"`
-	// Start-mapped-IP [-end-mapped-IP].
-	Mappedip *string `pulumi:"mappedip"`
-	// Mapped service port.
-	Mappedport *string `pulumi:"mappedport"`
-	// Health monitors.
-	Monitors []FirewallVip64Monitor `pulumi:"monitors"`
-	// Health monitor name.
-	Name *string `pulumi:"name"`
-	// Enable port forwarding. Valid values: `disable`, `enable`.
-	Portforward *string `pulumi:"portforward"`
-	// Mapped port protocol. Valid values: `tcp`, `udp`.
-	Protocol *string `pulumi:"protocol"`
-	// Real servers. The structure of `realservers` block is documented below.
-	Realservers []FirewallVip64Realserver `pulumi:"realservers"`
-	// Server type. Valid values: `http`, `tcp`, `udp`, `ip`.
-	ServerType *string `pulumi:"serverType"`
-	// Source IP6 filter (x:x:x:x:x:x:x:x/x). The structure of `srcFilter` block is documented below.
-	SrcFilters []FirewallVip64SrcFilter `pulumi:"srcFilters"`
-	// VIP type: static NAT or server load balance. Valid values: `static-nat`, `server-load-balance`.
-	Type *string `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ArpReply            *string                   `pulumi:"arpReply"`
+	Color               *int                      `pulumi:"color"`
+	Comment             *string                   `pulumi:"comment"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Extip               *string                   `pulumi:"extip"`
+	Extport             *string                   `pulumi:"extport"`
+	Fosid               *int                      `pulumi:"fosid"`
+	LdbMethod           *string                   `pulumi:"ldbMethod"`
+	Mappedip            *string                   `pulumi:"mappedip"`
+	Mappedport          *string                   `pulumi:"mappedport"`
+	Monitors            []FirewallVip64Monitor    `pulumi:"monitors"`
+	Name                *string                   `pulumi:"name"`
+	Portforward         *string                   `pulumi:"portforward"`
+	Protocol            *string                   `pulumi:"protocol"`
+	Realservers         []FirewallVip64Realserver `pulumi:"realservers"`
+	ServerType          *string                   `pulumi:"serverType"`
+	SrcFilters          []FirewallVip64SrcFilter  `pulumi:"srcFilters"`
+	Type                *string                   `pulumi:"type"`
+	Uuid                *string                   `pulumi:"uuid"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
 
 type FirewallVip64State struct {
-	// Enable ARP reply. Valid values: `disable`, `enable`.
-	ArpReply pulumi.StringPtrInput
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	ArpReply            pulumi.StringPtrInput
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Start-external-IP [-end-external-IP].
-	Extip pulumi.StringPtrInput
-	// External service port.
-	Extport pulumi.StringPtrInput
-	// Custom defined id.
-	Fosid pulumi.IntPtrInput
-	// Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
-	LdbMethod pulumi.StringPtrInput
-	// Start-mapped-IP [-end-mapped-IP].
-	Mappedip pulumi.StringPtrInput
-	// Mapped service port.
-	Mappedport pulumi.StringPtrInput
-	// Health monitors.
-	Monitors FirewallVip64MonitorArrayInput
-	// Health monitor name.
-	Name pulumi.StringPtrInput
-	// Enable port forwarding. Valid values: `disable`, `enable`.
-	Portforward pulumi.StringPtrInput
-	// Mapped port protocol. Valid values: `tcp`, `udp`.
-	Protocol pulumi.StringPtrInput
-	// Real servers. The structure of `realservers` block is documented below.
-	Realservers FirewallVip64RealserverArrayInput
-	// Server type. Valid values: `http`, `tcp`, `udp`, `ip`.
-	ServerType pulumi.StringPtrInput
-	// Source IP6 filter (x:x:x:x:x:x:x:x/x). The structure of `srcFilter` block is documented below.
-	SrcFilters FirewallVip64SrcFilterArrayInput
-	// VIP type: static NAT or server load balance. Valid values: `static-nat`, `server-load-balance`.
-	Type pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Extip               pulumi.StringPtrInput
+	Extport             pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	LdbMethod           pulumi.StringPtrInput
+	Mappedip            pulumi.StringPtrInput
+	Mappedport          pulumi.StringPtrInput
+	Monitors            FirewallVip64MonitorArrayInput
+	Name                pulumi.StringPtrInput
+	Portforward         pulumi.StringPtrInput
+	Protocol            pulumi.StringPtrInput
+	Realservers         FirewallVip64RealserverArrayInput
+	ServerType          pulumi.StringPtrInput
+	SrcFilters          FirewallVip64SrcFilterArrayInput
+	Type                pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallVip64State) ElementType() reflect.Type {
@@ -232,90 +122,50 @@ func (FirewallVip64State) ElementType() reflect.Type {
 }
 
 type firewallVip64Args struct {
-	// Enable ARP reply. Valid values: `disable`, `enable`.
-	ArpReply *string `pulumi:"arpReply"`
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Start-external-IP [-end-external-IP].
-	Extip string `pulumi:"extip"`
-	// External service port.
-	Extport *string `pulumi:"extport"`
-	// Custom defined id.
-	Fosid *int `pulumi:"fosid"`
-	// Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
-	LdbMethod *string `pulumi:"ldbMethod"`
-	// Start-mapped-IP [-end-mapped-IP].
-	Mappedip string `pulumi:"mappedip"`
-	// Mapped service port.
-	Mappedport *string `pulumi:"mappedport"`
-	// Health monitors.
-	Monitors []FirewallVip64Monitor `pulumi:"monitors"`
-	// Health monitor name.
-	Name *string `pulumi:"name"`
-	// Enable port forwarding. Valid values: `disable`, `enable`.
-	Portforward *string `pulumi:"portforward"`
-	// Mapped port protocol. Valid values: `tcp`, `udp`.
-	Protocol *string `pulumi:"protocol"`
-	// Real servers. The structure of `realservers` block is documented below.
-	Realservers []FirewallVip64Realserver `pulumi:"realservers"`
-	// Server type. Valid values: `http`, `tcp`, `udp`, `ip`.
-	ServerType *string `pulumi:"serverType"`
-	// Source IP6 filter (x:x:x:x:x:x:x:x/x). The structure of `srcFilter` block is documented below.
-	SrcFilters []FirewallVip64SrcFilter `pulumi:"srcFilters"`
-	// VIP type: static NAT or server load balance. Valid values: `static-nat`, `server-load-balance`.
-	Type *string `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ArpReply            *string                   `pulumi:"arpReply"`
+	Color               *int                      `pulumi:"color"`
+	Comment             *string                   `pulumi:"comment"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Extip               string                    `pulumi:"extip"`
+	Extport             *string                   `pulumi:"extport"`
+	Fosid               *int                      `pulumi:"fosid"`
+	LdbMethod           *string                   `pulumi:"ldbMethod"`
+	Mappedip            string                    `pulumi:"mappedip"`
+	Mappedport          *string                   `pulumi:"mappedport"`
+	Monitors            []FirewallVip64Monitor    `pulumi:"monitors"`
+	Name                *string                   `pulumi:"name"`
+	Portforward         *string                   `pulumi:"portforward"`
+	Protocol            *string                   `pulumi:"protocol"`
+	Realservers         []FirewallVip64Realserver `pulumi:"realservers"`
+	ServerType          *string                   `pulumi:"serverType"`
+	SrcFilters          []FirewallVip64SrcFilter  `pulumi:"srcFilters"`
+	Type                *string                   `pulumi:"type"`
+	Uuid                *string                   `pulumi:"uuid"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallVip64 resource.
 type FirewallVip64Args struct {
-	// Enable ARP reply. Valid values: `disable`, `enable`.
-	ArpReply pulumi.StringPtrInput
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	ArpReply            pulumi.StringPtrInput
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Start-external-IP [-end-external-IP].
-	Extip pulumi.StringInput
-	// External service port.
-	Extport pulumi.StringPtrInput
-	// Custom defined id.
-	Fosid pulumi.IntPtrInput
-	// Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
-	LdbMethod pulumi.StringPtrInput
-	// Start-mapped-IP [-end-mapped-IP].
-	Mappedip pulumi.StringInput
-	// Mapped service port.
-	Mappedport pulumi.StringPtrInput
-	// Health monitors.
-	Monitors FirewallVip64MonitorArrayInput
-	// Health monitor name.
-	Name pulumi.StringPtrInput
-	// Enable port forwarding. Valid values: `disable`, `enable`.
-	Portforward pulumi.StringPtrInput
-	// Mapped port protocol. Valid values: `tcp`, `udp`.
-	Protocol pulumi.StringPtrInput
-	// Real servers. The structure of `realservers` block is documented below.
-	Realservers FirewallVip64RealserverArrayInput
-	// Server type. Valid values: `http`, `tcp`, `udp`, `ip`.
-	ServerType pulumi.StringPtrInput
-	// Source IP6 filter (x:x:x:x:x:x:x:x/x). The structure of `srcFilter` block is documented below.
-	SrcFilters FirewallVip64SrcFilterArrayInput
-	// VIP type: static NAT or server load balance. Valid values: `static-nat`, `server-load-balance`.
-	Type pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Extip               pulumi.StringInput
+	Extport             pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	LdbMethod           pulumi.StringPtrInput
+	Mappedip            pulumi.StringInput
+	Mappedport          pulumi.StringPtrInput
+	Monitors            FirewallVip64MonitorArrayInput
+	Name                pulumi.StringPtrInput
+	Portforward         pulumi.StringPtrInput
+	Protocol            pulumi.StringPtrInput
+	Realservers         FirewallVip64RealserverArrayInput
+	ServerType          pulumi.StringPtrInput
+	SrcFilters          FirewallVip64SrcFilterArrayInput
+	Type                pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallVip64Args) ElementType() reflect.Type {
@@ -344,7 +194,7 @@ func (i *FirewallVip64) ToFirewallVip64OutputWithContext(ctx context.Context) Fi
 // FirewallVip64ArrayInput is an input type that accepts FirewallVip64Array and FirewallVip64ArrayOutput values.
 // You can construct a concrete instance of `FirewallVip64ArrayInput` via:
 //
-//          FirewallVip64Array{ FirewallVip64Args{...} }
+//	FirewallVip64Array{ FirewallVip64Args{...} }
 type FirewallVip64ArrayInput interface {
 	pulumi.Input
 
@@ -369,7 +219,7 @@ func (i FirewallVip64Array) ToFirewallVip64ArrayOutputWithContext(ctx context.Co
 // FirewallVip64MapInput is an input type that accepts FirewallVip64Map and FirewallVip64MapOutput values.
 // You can construct a concrete instance of `FirewallVip64MapInput` via:
 //
-//          FirewallVip64Map{ "key": FirewallVip64Args{...} }
+//	FirewallVip64Map{ "key": FirewallVip64Args{...} }
 type FirewallVip64MapInput interface {
 	pulumi.Input
 
@@ -403,6 +253,86 @@ func (o FirewallVip64Output) ToFirewallVip64Output() FirewallVip64Output {
 
 func (o FirewallVip64Output) ToFirewallVip64OutputWithContext(ctx context.Context) FirewallVip64Output {
 	return o
+}
+
+func (o FirewallVip64Output) ArpReply() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringOutput { return v.ArpReply }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip64Output) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o FirewallVip64Output) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallVip64Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallVip64Output) Extip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringOutput { return v.Extip }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip64Output) Extport() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringOutput { return v.Extport }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip64Output) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallVip64Output) LdbMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringOutput { return v.LdbMethod }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip64Output) Mappedip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringOutput { return v.Mappedip }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip64Output) Mappedport() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringOutput { return v.Mappedport }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip64Output) Monitors() FirewallVip64MonitorArrayOutput {
+	return o.ApplyT(func(v *FirewallVip64) FirewallVip64MonitorArrayOutput { return v.Monitors }).(FirewallVip64MonitorArrayOutput)
+}
+
+func (o FirewallVip64Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip64Output) Portforward() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringOutput { return v.Portforward }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip64Output) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip64Output) Realservers() FirewallVip64RealserverArrayOutput {
+	return o.ApplyT(func(v *FirewallVip64) FirewallVip64RealserverArrayOutput { return v.Realservers }).(FirewallVip64RealserverArrayOutput)
+}
+
+func (o FirewallVip64Output) ServerType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringOutput { return v.ServerType }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip64Output) SrcFilters() FirewallVip64SrcFilterArrayOutput {
+	return o.ApplyT(func(v *FirewallVip64) FirewallVip64SrcFilterArrayOutput { return v.SrcFilters }).(FirewallVip64SrcFilterArrayOutput)
+}
+
+func (o FirewallVip64Output) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip64Output) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip64Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallVip64ArrayOutput struct{ *pulumi.OutputState }

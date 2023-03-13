@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch SNMP system information globally. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * SwitchController SnmpSysinfo can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSnmpSysinfo:SwitchControllerSnmpSysinfo labelname SwitchControllerSnmpSysinfo
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSnmpSysinfo:SwitchControllerSnmpSysinfo labelname SwitchControllerSnmpSysinfo
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerSnmpSysinfo extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerSnmpSysinfo resource's state with the given name, ID, and optional extra
@@ -51,29 +32,11 @@ export class SwitchControllerSnmpSysinfo extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerSnmpSysinfo.__pulumiType;
     }
 
-    /**
-     * Contact information.
-     */
     public readonly contactInfo!: pulumi.Output<string>;
-    /**
-     * System description.
-     */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * Local SNMP engine ID string (max 24 char).
-     */
     public readonly engineId!: pulumi.Output<string>;
-    /**
-     * System location.
-     */
     public readonly location!: pulumi.Output<string>;
-    /**
-     * Enable/disable SNMP. Valid values: `disable`, `enable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -113,29 +76,11 @@ export class SwitchControllerSnmpSysinfo extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerSnmpSysinfo resources.
  */
 export interface SwitchControllerSnmpSysinfoState {
-    /**
-     * Contact information.
-     */
     contactInfo?: pulumi.Input<string>;
-    /**
-     * System description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Local SNMP engine ID string (max 24 char).
-     */
     engineId?: pulumi.Input<string>;
-    /**
-     * System location.
-     */
     location?: pulumi.Input<string>;
-    /**
-     * Enable/disable SNMP. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -143,28 +88,10 @@ export interface SwitchControllerSnmpSysinfoState {
  * The set of arguments for constructing a SwitchControllerSnmpSysinfo resource.
  */
 export interface SwitchControllerSnmpSysinfoArgs {
-    /**
-     * Contact information.
-     */
     contactInfo?: pulumi.Input<string>;
-    /**
-     * System description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Local SNMP engine ID string (max 24 char).
-     */
     engineId?: pulumi.Input<string>;
-    /**
-     * System location.
-     */
     location?: pulumi.Input<string>;
-    /**
-     * Enable/disable SNMP. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class FirewallSecurityPolicySeq extends pulumi.CustomResource {
@@ -33,25 +34,10 @@ export class FirewallSecurityPolicySeq extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallSecurityPolicySeq.__pulumiType;
     }
 
-    /**
-     * The alter position: should only be "before" or "after"
-     */
     public readonly alterPosition!: pulumi.Output<string>;
-    /**
-     * Comment
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Enable status detection for policySrcId and policy_dst_id
-     */
     public readonly enableStateChecking!: pulumi.Output<boolean | undefined>;
-    /**
-     * The dest policy id which you want to alter
-     */
     public readonly policyDstId!: pulumi.Output<number>;
-    /**
-     * The policy id which you want to alter
-     */
     public readonly policySrcId!: pulumi.Output<number>;
     public /*out*/ readonly statePolicyLists!: pulumi.Output<outputs.FirewallSecurityPolicySeqStatePolicyList[]>;
     public readonly statePolicySrcdstPos!: pulumi.Output<string | undefined>;
@@ -107,25 +93,10 @@ export class FirewallSecurityPolicySeq extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallSecurityPolicySeq resources.
  */
 export interface FirewallSecurityPolicySeqState {
-    /**
-     * The alter position: should only be "before" or "after"
-     */
     alterPosition?: pulumi.Input<string>;
-    /**
-     * Comment
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable status detection for policySrcId and policy_dst_id
-     */
     enableStateChecking?: pulumi.Input<boolean>;
-    /**
-     * The dest policy id which you want to alter
-     */
     policyDstId?: pulumi.Input<number>;
-    /**
-     * The policy id which you want to alter
-     */
     policySrcId?: pulumi.Input<number>;
     statePolicyLists?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySeqStatePolicyList>[]>;
     statePolicySrcdstPos?: pulumi.Input<string>;
@@ -136,25 +107,10 @@ export interface FirewallSecurityPolicySeqState {
  * The set of arguments for constructing a FirewallSecurityPolicySeq resource.
  */
 export interface FirewallSecurityPolicySeqArgs {
-    /**
-     * The alter position: should only be "before" or "after"
-     */
     alterPosition: pulumi.Input<string>;
-    /**
-     * Comment
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable status detection for policySrcId and policy_dst_id
-     */
     enableStateChecking?: pulumi.Input<boolean>;
-    /**
-     * The dest policy id which you want to alter
-     */
     policyDstId: pulumi.Input<number>;
-    /**
-     * The policy id which you want to alter
-     */
     policySrcId: pulumi.Input<number>;
     statePolicySrcdstPos?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

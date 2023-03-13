@@ -2,49 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv6 routing policies.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.RouterPolicy6("trname", {
- *     dst: "::/0",
- *     endPort: 65535,
- *     gateway: "::",
- *     inputDevice: "port1",
- *     outputDevice: "port3",
- *     protocol: 33,
- *     seqNum: 1,
- *     src: "2001:db8:85a3::8a2e:370:7334/128",
- *     startPort: 1,
- *     status: "enable",
- *     tos: "0x00",
- *     tosMask: "0x00",
- * });
- * ```
- *
- * ## Import
- *
- * Router Policy6 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerPolicy6:RouterPolicy6 labelname {{seq_num}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerPolicy6:RouterPolicy6 labelname {{seq_num}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterPolicy6 extends pulumi.CustomResource {
     /**
      * Get an existing RouterPolicy6 resource's state with the given name, ID, and optional extra
@@ -73,61 +34,28 @@ export class RouterPolicy6 extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterPolicy6.__pulumiType;
     }
 
-    /**
-     * Optional comments.
-     */
+    public readonly action!: pulumi.Output<string>;
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Destination IPv6 prefix.
-     */
     public readonly dst!: pulumi.Output<string>;
-    /**
-     * End destination port number (1 - 65535).
-     */
+    public readonly dstNegate!: pulumi.Output<string>;
+    public readonly dstaddrs!: pulumi.Output<outputs.RouterPolicy6Dstaddr[] | undefined>;
+    public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly endPort!: pulumi.Output<number>;
-    /**
-     * IPv6 address of the gateway.
-     */
     public readonly gateway!: pulumi.Output<string>;
-    /**
-     * Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
-     */
     public readonly inputDevice!: pulumi.Output<string>;
-    /**
-     * Outgoing interface name.
-     */
+    public readonly inputDeviceNegate!: pulumi.Output<string>;
+    public readonly internetServiceCustoms!: pulumi.Output<outputs.RouterPolicy6InternetServiceCustom[] | undefined>;
+    public readonly internetServiceIds!: pulumi.Output<outputs.RouterPolicy6InternetServiceId[] | undefined>;
     public readonly outputDevice!: pulumi.Output<string>;
-    /**
-     * Protocol number (0 - 255).
-     */
     public readonly protocol!: pulumi.Output<number>;
-    /**
-     * Sequence number.
-     */
     public readonly seqNum!: pulumi.Output<number>;
-    /**
-     * Source IPv6 prefix.
-     */
     public readonly src!: pulumi.Output<string>;
-    /**
-     * Start destination port number (1 - 65535).
-     */
+    public readonly srcNegate!: pulumi.Output<string>;
+    public readonly srcaddrs!: pulumi.Output<outputs.RouterPolicy6Srcaddr[] | undefined>;
     public readonly startPort!: pulumi.Output<number>;
-    /**
-     * Enable/disable this policy route. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Type of service bit pattern.
-     */
     public readonly tos!: pulumi.Output<string>;
-    /**
-     * Type of service evaluated bits.
-     */
     public readonly tosMask!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -143,15 +71,24 @@ export class RouterPolicy6 extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouterPolicy6State | undefined;
+            resourceInputs["action"] = state ? state.action : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["dst"] = state ? state.dst : undefined;
+            resourceInputs["dstNegate"] = state ? state.dstNegate : undefined;
+            resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["endPort"] = state ? state.endPort : undefined;
             resourceInputs["gateway"] = state ? state.gateway : undefined;
             resourceInputs["inputDevice"] = state ? state.inputDevice : undefined;
+            resourceInputs["inputDeviceNegate"] = state ? state.inputDeviceNegate : undefined;
+            resourceInputs["internetServiceCustoms"] = state ? state.internetServiceCustoms : undefined;
+            resourceInputs["internetServiceIds"] = state ? state.internetServiceIds : undefined;
             resourceInputs["outputDevice"] = state ? state.outputDevice : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
             resourceInputs["seqNum"] = state ? state.seqNum : undefined;
             resourceInputs["src"] = state ? state.src : undefined;
+            resourceInputs["srcNegate"] = state ? state.srcNegate : undefined;
+            resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
             resourceInputs["startPort"] = state ? state.startPort : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tos"] = state ? state.tos : undefined;
@@ -162,15 +99,24 @@ export class RouterPolicy6 extends pulumi.CustomResource {
             if ((!args || args.inputDevice === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'inputDevice'");
             }
+            resourceInputs["action"] = args ? args.action : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["dst"] = args ? args.dst : undefined;
+            resourceInputs["dstNegate"] = args ? args.dstNegate : undefined;
+            resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["endPort"] = args ? args.endPort : undefined;
             resourceInputs["gateway"] = args ? args.gateway : undefined;
             resourceInputs["inputDevice"] = args ? args.inputDevice : undefined;
+            resourceInputs["inputDeviceNegate"] = args ? args.inputDeviceNegate : undefined;
+            resourceInputs["internetServiceCustoms"] = args ? args.internetServiceCustoms : undefined;
+            resourceInputs["internetServiceIds"] = args ? args.internetServiceIds : undefined;
             resourceInputs["outputDevice"] = args ? args.outputDevice : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
             resourceInputs["seqNum"] = args ? args.seqNum : undefined;
             resourceInputs["src"] = args ? args.src : undefined;
+            resourceInputs["srcNegate"] = args ? args.srcNegate : undefined;
+            resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
             resourceInputs["startPort"] = args ? args.startPort : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["tos"] = args ? args.tos : undefined;
@@ -186,61 +132,28 @@ export class RouterPolicy6 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterPolicy6 resources.
  */
 export interface RouterPolicy6State {
-    /**
-     * Optional comments.
-     */
+    action?: pulumi.Input<string>;
     comments?: pulumi.Input<string>;
-    /**
-     * Destination IPv6 prefix.
-     */
     dst?: pulumi.Input<string>;
-    /**
-     * End destination port number (1 - 65535).
-     */
+    dstNegate?: pulumi.Input<string>;
+    dstaddrs?: pulumi.Input<pulumi.Input<inputs.RouterPolicy6Dstaddr>[]>;
+    dynamicSortSubtable?: pulumi.Input<string>;
     endPort?: pulumi.Input<number>;
-    /**
-     * IPv6 address of the gateway.
-     */
     gateway?: pulumi.Input<string>;
-    /**
-     * Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
-     */
     inputDevice?: pulumi.Input<string>;
-    /**
-     * Outgoing interface name.
-     */
+    inputDeviceNegate?: pulumi.Input<string>;
+    internetServiceCustoms?: pulumi.Input<pulumi.Input<inputs.RouterPolicy6InternetServiceCustom>[]>;
+    internetServiceIds?: pulumi.Input<pulumi.Input<inputs.RouterPolicy6InternetServiceId>[]>;
     outputDevice?: pulumi.Input<string>;
-    /**
-     * Protocol number (0 - 255).
-     */
     protocol?: pulumi.Input<number>;
-    /**
-     * Sequence number.
-     */
     seqNum?: pulumi.Input<number>;
-    /**
-     * Source IPv6 prefix.
-     */
     src?: pulumi.Input<string>;
-    /**
-     * Start destination port number (1 - 65535).
-     */
+    srcNegate?: pulumi.Input<string>;
+    srcaddrs?: pulumi.Input<pulumi.Input<inputs.RouterPolicy6Srcaddr>[]>;
     startPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable this policy route. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Type of service bit pattern.
-     */
     tos?: pulumi.Input<string>;
-    /**
-     * Type of service evaluated bits.
-     */
     tosMask?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -248,60 +161,27 @@ export interface RouterPolicy6State {
  * The set of arguments for constructing a RouterPolicy6 resource.
  */
 export interface RouterPolicy6Args {
-    /**
-     * Optional comments.
-     */
+    action?: pulumi.Input<string>;
     comments?: pulumi.Input<string>;
-    /**
-     * Destination IPv6 prefix.
-     */
     dst?: pulumi.Input<string>;
-    /**
-     * End destination port number (1 - 65535).
-     */
+    dstNegate?: pulumi.Input<string>;
+    dstaddrs?: pulumi.Input<pulumi.Input<inputs.RouterPolicy6Dstaddr>[]>;
+    dynamicSortSubtable?: pulumi.Input<string>;
     endPort?: pulumi.Input<number>;
-    /**
-     * IPv6 address of the gateway.
-     */
     gateway?: pulumi.Input<string>;
-    /**
-     * Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
-     */
     inputDevice: pulumi.Input<string>;
-    /**
-     * Outgoing interface name.
-     */
+    inputDeviceNegate?: pulumi.Input<string>;
+    internetServiceCustoms?: pulumi.Input<pulumi.Input<inputs.RouterPolicy6InternetServiceCustom>[]>;
+    internetServiceIds?: pulumi.Input<pulumi.Input<inputs.RouterPolicy6InternetServiceId>[]>;
     outputDevice?: pulumi.Input<string>;
-    /**
-     * Protocol number (0 - 255).
-     */
     protocol?: pulumi.Input<number>;
-    /**
-     * Sequence number.
-     */
     seqNum?: pulumi.Input<number>;
-    /**
-     * Source IPv6 prefix.
-     */
     src?: pulumi.Input<string>;
-    /**
-     * Start destination port number (1 - 65535).
-     */
+    srcNegate?: pulumi.Input<string>;
+    srcaddrs?: pulumi.Input<pulumi.Input<inputs.RouterPolicy6Srcaddr>[]>;
     startPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable this policy route. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Type of service bit pattern.
-     */
     tos?: pulumi.Input<string>;
-    /**
-     * Type of service evaluated bits.
-     */
     tosMask?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

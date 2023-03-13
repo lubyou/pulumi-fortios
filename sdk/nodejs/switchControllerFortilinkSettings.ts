@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure integrated FortiLink settings for FortiSwitch. Applies to FortiOS Version `>= 7.0.1`.
- *
- * ## Import
- *
- * SwitchController FortilinkSettings can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerFortilinkSettings:SwitchControllerFortilinkSettings labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerFortilinkSettings:SwitchControllerFortilinkSettings labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerFortilinkSettings extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerFortilinkSettings resource's state with the given name, ID, and optional extra
@@ -52,29 +34,11 @@ export class SwitchControllerFortilinkSettings extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerFortilinkSettings.__pulumiType;
     }
 
-    /**
-     * FortiLink interface to which this fortilink-setting belongs.
-     */
     public readonly fortilink!: pulumi.Output<string>;
-    /**
-     * Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
-     */
     public readonly inactiveTimer!: pulumi.Output<number>;
-    /**
-     * Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
-     */
     public readonly linkDownFlush!: pulumi.Output<string>;
-    /**
-     * NAC specific configuration. The structure of `nacPorts` block is documented below.
-     */
-    public readonly nacPorts!: pulumi.Output<outputs.SwitchControllerFortilinkSettingsNacPorts | undefined>;
-    /**
-     * FortiLink settings name.
-     */
+    public readonly nacPorts!: pulumi.Output<outputs.SwitchControllerFortilinkSettingsNacPorts>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -114,29 +78,11 @@ export class SwitchControllerFortilinkSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerFortilinkSettings resources.
  */
 export interface SwitchControllerFortilinkSettingsState {
-    /**
-     * FortiLink interface to which this fortilink-setting belongs.
-     */
     fortilink?: pulumi.Input<string>;
-    /**
-     * Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
-     */
     inactiveTimer?: pulumi.Input<number>;
-    /**
-     * Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
-     */
     linkDownFlush?: pulumi.Input<string>;
-    /**
-     * NAC specific configuration. The structure of `nacPorts` block is documented below.
-     */
     nacPorts?: pulumi.Input<inputs.SwitchControllerFortilinkSettingsNacPorts>;
-    /**
-     * FortiLink settings name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -144,28 +90,10 @@ export interface SwitchControllerFortilinkSettingsState {
  * The set of arguments for constructing a SwitchControllerFortilinkSettings resource.
  */
 export interface SwitchControllerFortilinkSettingsArgs {
-    /**
-     * FortiLink interface to which this fortilink-setting belongs.
-     */
     fortilink?: pulumi.Input<string>;
-    /**
-     * Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
-     */
     inactiveTimer?: pulumi.Input<number>;
-    /**
-     * Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
-     */
     linkDownFlush?: pulumi.Input<string>;
-    /**
-     * NAC specific configuration. The structure of `nacPorts` block is documented below.
-     */
     nacPorts?: pulumi.Input<inputs.SwitchControllerFortilinkSettingsNacPorts>;
-    /**
-     * FortiLink settings name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

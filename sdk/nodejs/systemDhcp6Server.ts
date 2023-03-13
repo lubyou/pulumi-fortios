@@ -2,44 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure DHCPv6 servers.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemDhcp6Server("trname", {
- *     fosid: 1,
- *     interface: "port3",
- *     leaseTime: 604800,
- *     rapidCommit: "disable",
- *     status: "enable",
- *     subnet: "2001:db8:1234:113::/64",
- * });
- * ```
- *
- * ## Import
- *
- * SystemDhcp6 Server can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemDhcp6Server:SystemDhcp6Server labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemDhcp6Server:SystemDhcp6Server labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemDhcp6Server extends pulumi.CustomResource {
     /**
      * Get an existing SystemDhcp6Server resource's state with the given name, ID, and optional extra
@@ -68,101 +34,29 @@ export class SystemDhcp6Server extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemDhcp6Server.__pulumiType;
     }
 
-    /**
-     * IAID of obtained delegated-prefix from the upstream interface.
-     */
     public readonly delegatedPrefixIaid!: pulumi.Output<number>;
-    /**
-     * DNS search list options. Valid values: `delegated`, `specify`.
-     */
     public readonly dnsSearchList!: pulumi.Output<string>;
-    /**
-     * DNS server 1.
-     */
     public readonly dnsServer1!: pulumi.Output<string>;
-    /**
-     * DNS server 2.
-     */
     public readonly dnsServer2!: pulumi.Output<string>;
-    /**
-     * DNS server 3.
-     */
     public readonly dnsServer3!: pulumi.Output<string>;
-    /**
-     * DNS server 4.
-     */
     public readonly dnsServer4!: pulumi.Output<string>;
-    /**
-     * Options for assigning DNS servers to DHCPv6 clients. Valid values: `delegated`, `default`, `specify`.
-     */
     public readonly dnsService!: pulumi.Output<string>;
-    /**
-     * Domain name suffix for the IP addresses that the DHCP server assigns to clients.
-     */
     public readonly domain!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * DHCP server can assign IP configurations to clients connected to this interface.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Method used to assign client IP. Valid values: `range`, `delegated`.
-     */
     public readonly ipMode!: pulumi.Output<string>;
-    /**
-     * DHCP IP range configuration. The structure of `ipRange` block is documented below.
-     */
     public readonly ipRanges!: pulumi.Output<outputs.SystemDhcp6ServerIpRange[] | undefined>;
-    /**
-     * Lease time in seconds, 0 means unlimited.
-     */
     public readonly leaseTime!: pulumi.Output<number>;
-    /**
-     * Option 1.
-     */
     public readonly option1!: pulumi.Output<string>;
-    /**
-     * Option 2.
-     */
     public readonly option2!: pulumi.Output<string>;
-    /**
-     * Option 3.
-     */
     public readonly option3!: pulumi.Output<string>;
-    /**
-     * Assigning a prefix from a DHCPv6 client or RA. Valid values: `dhcp6`, `ra`.
-     */
     public readonly prefixMode!: pulumi.Output<string>;
-    /**
-     * DHCP prefix configuration. The structure of `prefixRange` block is documented below.
-     */
     public readonly prefixRanges!: pulumi.Output<outputs.SystemDhcp6ServerPrefixRange[] | undefined>;
-    /**
-     * Enable/disable allow/disallow rapid commit. Valid values: `disable`, `enable`.
-     */
     public readonly rapidCommit!: pulumi.Output<string>;
-    /**
-     * Enable/disable this DHCPv6 configuration. Valid values: `disable`, `enable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Subnet or subnet-id if the IP mode is delegated.
-     */
     public readonly subnet!: pulumi.Output<string>;
-    /**
-     * Interface name from where delegated information is provided.
-     */
     public readonly upstreamInterface!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -247,101 +141,29 @@ export class SystemDhcp6Server extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemDhcp6Server resources.
  */
 export interface SystemDhcp6ServerState {
-    /**
-     * IAID of obtained delegated-prefix from the upstream interface.
-     */
     delegatedPrefixIaid?: pulumi.Input<number>;
-    /**
-     * DNS search list options. Valid values: `delegated`, `specify`.
-     */
     dnsSearchList?: pulumi.Input<string>;
-    /**
-     * DNS server 1.
-     */
     dnsServer1?: pulumi.Input<string>;
-    /**
-     * DNS server 2.
-     */
     dnsServer2?: pulumi.Input<string>;
-    /**
-     * DNS server 3.
-     */
     dnsServer3?: pulumi.Input<string>;
-    /**
-     * DNS server 4.
-     */
     dnsServer4?: pulumi.Input<string>;
-    /**
-     * Options for assigning DNS servers to DHCPv6 clients. Valid values: `delegated`, `default`, `specify`.
-     */
     dnsService?: pulumi.Input<string>;
-    /**
-     * Domain name suffix for the IP addresses that the DHCP server assigns to clients.
-     */
     domain?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * DHCP server can assign IP configurations to clients connected to this interface.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Method used to assign client IP. Valid values: `range`, `delegated`.
-     */
     ipMode?: pulumi.Input<string>;
-    /**
-     * DHCP IP range configuration. The structure of `ipRange` block is documented below.
-     */
     ipRanges?: pulumi.Input<pulumi.Input<inputs.SystemDhcp6ServerIpRange>[]>;
-    /**
-     * Lease time in seconds, 0 means unlimited.
-     */
     leaseTime?: pulumi.Input<number>;
-    /**
-     * Option 1.
-     */
     option1?: pulumi.Input<string>;
-    /**
-     * Option 2.
-     */
     option2?: pulumi.Input<string>;
-    /**
-     * Option 3.
-     */
     option3?: pulumi.Input<string>;
-    /**
-     * Assigning a prefix from a DHCPv6 client or RA. Valid values: `dhcp6`, `ra`.
-     */
     prefixMode?: pulumi.Input<string>;
-    /**
-     * DHCP prefix configuration. The structure of `prefixRange` block is documented below.
-     */
     prefixRanges?: pulumi.Input<pulumi.Input<inputs.SystemDhcp6ServerPrefixRange>[]>;
-    /**
-     * Enable/disable allow/disallow rapid commit. Valid values: `disable`, `enable`.
-     */
     rapidCommit?: pulumi.Input<string>;
-    /**
-     * Enable/disable this DHCPv6 configuration. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Subnet or subnet-id if the IP mode is delegated.
-     */
     subnet?: pulumi.Input<string>;
-    /**
-     * Interface name from where delegated information is provided.
-     */
     upstreamInterface?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -349,100 +171,28 @@ export interface SystemDhcp6ServerState {
  * The set of arguments for constructing a SystemDhcp6Server resource.
  */
 export interface SystemDhcp6ServerArgs {
-    /**
-     * IAID of obtained delegated-prefix from the upstream interface.
-     */
     delegatedPrefixIaid?: pulumi.Input<number>;
-    /**
-     * DNS search list options. Valid values: `delegated`, `specify`.
-     */
     dnsSearchList?: pulumi.Input<string>;
-    /**
-     * DNS server 1.
-     */
     dnsServer1?: pulumi.Input<string>;
-    /**
-     * DNS server 2.
-     */
     dnsServer2?: pulumi.Input<string>;
-    /**
-     * DNS server 3.
-     */
     dnsServer3?: pulumi.Input<string>;
-    /**
-     * DNS server 4.
-     */
     dnsServer4?: pulumi.Input<string>;
-    /**
-     * Options for assigning DNS servers to DHCPv6 clients. Valid values: `delegated`, `default`, `specify`.
-     */
     dnsService?: pulumi.Input<string>;
-    /**
-     * Domain name suffix for the IP addresses that the DHCP server assigns to clients.
-     */
     domain?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * ID.
-     */
     fosid: pulumi.Input<number>;
-    /**
-     * DHCP server can assign IP configurations to clients connected to this interface.
-     */
     interface: pulumi.Input<string>;
-    /**
-     * Method used to assign client IP. Valid values: `range`, `delegated`.
-     */
     ipMode?: pulumi.Input<string>;
-    /**
-     * DHCP IP range configuration. The structure of `ipRange` block is documented below.
-     */
     ipRanges?: pulumi.Input<pulumi.Input<inputs.SystemDhcp6ServerIpRange>[]>;
-    /**
-     * Lease time in seconds, 0 means unlimited.
-     */
     leaseTime?: pulumi.Input<number>;
-    /**
-     * Option 1.
-     */
     option1?: pulumi.Input<string>;
-    /**
-     * Option 2.
-     */
     option2?: pulumi.Input<string>;
-    /**
-     * Option 3.
-     */
     option3?: pulumi.Input<string>;
-    /**
-     * Assigning a prefix from a DHCPv6 client or RA. Valid values: `dhcp6`, `ra`.
-     */
     prefixMode?: pulumi.Input<string>;
-    /**
-     * DHCP prefix configuration. The structure of `prefixRange` block is documented below.
-     */
     prefixRanges?: pulumi.Input<pulumi.Input<inputs.SystemDhcp6ServerPrefixRange>[]>;
-    /**
-     * Enable/disable allow/disallow rapid commit. Valid values: `disable`, `enable`.
-     */
     rapidCommit?: pulumi.Input<string>;
-    /**
-     * Enable/disable this DHCPv6 configuration. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Subnet or subnet-id if the IP mode is delegated.
-     */
     subnet: pulumi.Input<string>;
-    /**
-     * Interface name from where delegated information is provided.
-     */
     upstreamInterface?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

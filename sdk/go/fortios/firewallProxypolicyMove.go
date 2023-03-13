@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -127,7 +127,7 @@ func (i *FirewallProxypolicyMove) ToFirewallProxypolicyMoveOutputWithContext(ctx
 // FirewallProxypolicyMoveArrayInput is an input type that accepts FirewallProxypolicyMoveArray and FirewallProxypolicyMoveArrayOutput values.
 // You can construct a concrete instance of `FirewallProxypolicyMoveArrayInput` via:
 //
-//          FirewallProxypolicyMoveArray{ FirewallProxypolicyMoveArgs{...} }
+//	FirewallProxypolicyMoveArray{ FirewallProxypolicyMoveArgs{...} }
 type FirewallProxypolicyMoveArrayInput interface {
 	pulumi.Input
 
@@ -152,7 +152,7 @@ func (i FirewallProxypolicyMoveArray) ToFirewallProxypolicyMoveArrayOutputWithCo
 // FirewallProxypolicyMoveMapInput is an input type that accepts FirewallProxypolicyMoveMap and FirewallProxypolicyMoveMapOutput values.
 // You can construct a concrete instance of `FirewallProxypolicyMoveMapInput` via:
 //
-//          FirewallProxypolicyMoveMap{ "key": FirewallProxypolicyMoveArgs{...} }
+//	FirewallProxypolicyMoveMap{ "key": FirewallProxypolicyMoveArgs{...} }
 type FirewallProxypolicyMoveMapInput interface {
 	pulumi.Input
 
@@ -186,6 +186,30 @@ func (o FirewallProxypolicyMoveOutput) ToFirewallProxypolicyMoveOutput() Firewal
 
 func (o FirewallProxypolicyMoveOutput) ToFirewallProxypolicyMoveOutputWithContext(ctx context.Context) FirewallProxypolicyMoveOutput {
 	return o
+}
+
+func (o FirewallProxypolicyMoveOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProxypolicyMove) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallProxypolicyMoveOutput) Move() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxypolicyMove) pulumi.StringOutput { return v.Move }).(pulumi.StringOutput)
+}
+
+func (o FirewallProxypolicyMoveOutput) PolicyidDst() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallProxypolicyMove) pulumi.IntOutput { return v.PolicyidDst }).(pulumi.IntOutput)
+}
+
+func (o FirewallProxypolicyMoveOutput) PolicyidSrc() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallProxypolicyMove) pulumi.IntOutput { return v.PolicyidSrc }).(pulumi.IntOutput)
+}
+
+func (o FirewallProxypolicyMoveOutput) StatePolicySrcdstPos() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProxypolicyMove) pulumi.StringPtrOutput { return v.StatePolicySrcdstPos }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallProxypolicyMoveOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProxypolicyMove) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallProxypolicyMoveArrayOutput struct{ *pulumi.OutputState }

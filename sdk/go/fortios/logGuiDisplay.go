@@ -10,59 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure how log messages are displayed on the GUI.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogGuiDisplay(ctx, "trname", &fortios.LogGuiDisplayArgs{
-// 			FortiviewUnscannedApps: pulumi.String("disable"),
-// 			ResolveApps:            pulumi.String("enable"),
-// 			ResolveHosts:           pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Log GuiDisplay can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logGuiDisplay:LogGuiDisplay labelname LogGuiDisplay
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logGuiDisplay:LogGuiDisplay labelname LogGuiDisplay
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogGuiDisplay struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable showing unscanned traffic in FortiView application charts. Valid values: `enable`, `disable`.
-	FortiviewUnscannedApps pulumi.StringOutput `pulumi:"fortiviewUnscannedApps"`
-	// Resolve unknown applications on the GUI using Fortinet's remote application database. Valid values: `enable`, `disable`.
-	ResolveApps pulumi.StringOutput `pulumi:"resolveApps"`
-	// Enable/disable resolving IP addresses to hostname in log messages on the GUI using reverse DNS lookup Valid values: `enable`, `disable`.
-	ResolveHosts pulumi.StringOutput `pulumi:"resolveHosts"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	FortiviewUnscannedApps pulumi.StringOutput    `pulumi:"fortiviewUnscannedApps"`
+	ResolveApps            pulumi.StringOutput    `pulumi:"resolveApps"`
+	ResolveHosts           pulumi.StringOutput    `pulumi:"resolveHosts"`
+	Vdomparam              pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewLogGuiDisplay registers a new resource with the given unique name, arguments, and options.
@@ -95,25 +49,17 @@ func GetLogGuiDisplay(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogGuiDisplay resources.
 type logGuiDisplayState struct {
-	// Enable/disable showing unscanned traffic in FortiView application charts. Valid values: `enable`, `disable`.
 	FortiviewUnscannedApps *string `pulumi:"fortiviewUnscannedApps"`
-	// Resolve unknown applications on the GUI using Fortinet's remote application database. Valid values: `enable`, `disable`.
-	ResolveApps *string `pulumi:"resolveApps"`
-	// Enable/disable resolving IP addresses to hostname in log messages on the GUI using reverse DNS lookup Valid values: `enable`, `disable`.
-	ResolveHosts *string `pulumi:"resolveHosts"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ResolveApps            *string `pulumi:"resolveApps"`
+	ResolveHosts           *string `pulumi:"resolveHosts"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 type LogGuiDisplayState struct {
-	// Enable/disable showing unscanned traffic in FortiView application charts. Valid values: `enable`, `disable`.
 	FortiviewUnscannedApps pulumi.StringPtrInput
-	// Resolve unknown applications on the GUI using Fortinet's remote application database. Valid values: `enable`, `disable`.
-	ResolveApps pulumi.StringPtrInput
-	// Enable/disable resolving IP addresses to hostname in log messages on the GUI using reverse DNS lookup Valid values: `enable`, `disable`.
-	ResolveHosts pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ResolveApps            pulumi.StringPtrInput
+	ResolveHosts           pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (LogGuiDisplayState) ElementType() reflect.Type {
@@ -121,26 +67,18 @@ func (LogGuiDisplayState) ElementType() reflect.Type {
 }
 
 type logGuiDisplayArgs struct {
-	// Enable/disable showing unscanned traffic in FortiView application charts. Valid values: `enable`, `disable`.
 	FortiviewUnscannedApps *string `pulumi:"fortiviewUnscannedApps"`
-	// Resolve unknown applications on the GUI using Fortinet's remote application database. Valid values: `enable`, `disable`.
-	ResolveApps *string `pulumi:"resolveApps"`
-	// Enable/disable resolving IP addresses to hostname in log messages on the GUI using reverse DNS lookup Valid values: `enable`, `disable`.
-	ResolveHosts *string `pulumi:"resolveHosts"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ResolveApps            *string `pulumi:"resolveApps"`
+	ResolveHosts           *string `pulumi:"resolveHosts"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogGuiDisplay resource.
 type LogGuiDisplayArgs struct {
-	// Enable/disable showing unscanned traffic in FortiView application charts. Valid values: `enable`, `disable`.
 	FortiviewUnscannedApps pulumi.StringPtrInput
-	// Resolve unknown applications on the GUI using Fortinet's remote application database. Valid values: `enable`, `disable`.
-	ResolveApps pulumi.StringPtrInput
-	// Enable/disable resolving IP addresses to hostname in log messages on the GUI using reverse DNS lookup Valid values: `enable`, `disable`.
-	ResolveHosts pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ResolveApps            pulumi.StringPtrInput
+	ResolveHosts           pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (LogGuiDisplayArgs) ElementType() reflect.Type {
@@ -169,7 +107,7 @@ func (i *LogGuiDisplay) ToLogGuiDisplayOutputWithContext(ctx context.Context) Lo
 // LogGuiDisplayArrayInput is an input type that accepts LogGuiDisplayArray and LogGuiDisplayArrayOutput values.
 // You can construct a concrete instance of `LogGuiDisplayArrayInput` via:
 //
-//          LogGuiDisplayArray{ LogGuiDisplayArgs{...} }
+//	LogGuiDisplayArray{ LogGuiDisplayArgs{...} }
 type LogGuiDisplayArrayInput interface {
 	pulumi.Input
 
@@ -194,7 +132,7 @@ func (i LogGuiDisplayArray) ToLogGuiDisplayArrayOutputWithContext(ctx context.Co
 // LogGuiDisplayMapInput is an input type that accepts LogGuiDisplayMap and LogGuiDisplayMapOutput values.
 // You can construct a concrete instance of `LogGuiDisplayMapInput` via:
 //
-//          LogGuiDisplayMap{ "key": LogGuiDisplayArgs{...} }
+//	LogGuiDisplayMap{ "key": LogGuiDisplayArgs{...} }
 type LogGuiDisplayMapInput interface {
 	pulumi.Input
 
@@ -228,6 +166,22 @@ func (o LogGuiDisplayOutput) ToLogGuiDisplayOutput() LogGuiDisplayOutput {
 
 func (o LogGuiDisplayOutput) ToLogGuiDisplayOutputWithContext(ctx context.Context) LogGuiDisplayOutput {
 	return o
+}
+
+func (o LogGuiDisplayOutput) FortiviewUnscannedApps() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogGuiDisplay) pulumi.StringOutput { return v.FortiviewUnscannedApps }).(pulumi.StringOutput)
+}
+
+func (o LogGuiDisplayOutput) ResolveApps() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogGuiDisplay) pulumi.StringOutput { return v.ResolveApps }).(pulumi.StringOutput)
+}
+
+func (o LogGuiDisplayOutput) ResolveHosts() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogGuiDisplay) pulumi.StringOutput { return v.ResolveHosts }).(pulumi.StringOutput)
+}
+
+func (o LogGuiDisplayOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogGuiDisplay) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type LogGuiDisplayArrayOutput struct{ *pulumi.OutputState }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a FortiAPI Generic Interface data source.
 func LookupJSONGenericAPI(ctx *pulumi.Context, args *LookupJSONGenericAPIArgs, opts ...pulumi.InvokeOption) (*LookupJSONGenericAPIResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupJSONGenericAPIResult
@@ -23,9 +22,7 @@ func LookupJSONGenericAPI(ctx *pulumi.Context, args *LookupJSONGenericAPIArgs, o
 
 // A collection of arguments for invoking GetJSONGenericAPI.
 type LookupJSONGenericAPIArgs struct {
-	// FortiAPI URL path.
-	Path string `pulumi:"path"`
-	// URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path..
+	Path          string  `pulumi:"path"`
 	Specialparams *string `pulumi:"specialparams"`
 	Vdomparam     *string `pulumi:"vdomparam"`
 }
@@ -33,12 +30,9 @@ type LookupJSONGenericAPIArgs struct {
 // A collection of values returned by GetJSONGenericAPI.
 type LookupJSONGenericAPIResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// FortiAPI URL path.
-	Path string `pulumi:"path"`
-	// FortiAPI returns results.
-	Response string `pulumi:"response"`
-	// URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path..
+	Id            string  `pulumi:"id"`
+	Path          string  `pulumi:"path"`
+	Response      string  `pulumi:"response"`
 	Specialparams *string `pulumi:"specialparams"`
 	Vdomparam     *string `pulumi:"vdomparam"`
 }
@@ -58,9 +52,7 @@ func LookupJSONGenericAPIOutput(ctx *pulumi.Context, args LookupJSONGenericAPIOu
 
 // A collection of arguments for invoking GetJSONGenericAPI.
 type LookupJSONGenericAPIOutputArgs struct {
-	// FortiAPI URL path.
-	Path pulumi.StringInput `pulumi:"path"`
-	// URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path..
+	Path          pulumi.StringInput    `pulumi:"path"`
 	Specialparams pulumi.StringPtrInput `pulumi:"specialparams"`
 	Vdomparam     pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
@@ -89,17 +81,14 @@ func (o LookupJSONGenericAPIResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupJSONGenericAPIResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// FortiAPI URL path.
 func (o LookupJSONGenericAPIResultOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupJSONGenericAPIResult) string { return v.Path }).(pulumi.StringOutput)
 }
 
-// FortiAPI returns results.
 func (o LookupJSONGenericAPIResultOutput) Response() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupJSONGenericAPIResult) string { return v.Response }).(pulumi.StringOutput)
 }
 
-// URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path..
 func (o LookupJSONGenericAPIResultOutput) Specialparams() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupJSONGenericAPIResult) *string { return v.Specialparams }).(pulumi.StringPtrOutput)
 }

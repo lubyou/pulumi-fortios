@@ -10,60 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure a remote cache device as Web cache storage.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWanoptRemoteStorage(ctx, "trname", &fortios.WanoptRemoteStorageArgs{
-// 			RemoteCacheIp: pulumi.String("0.0.0.0"),
-// 			Status:        pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Wanopt RemoteStorage can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wanoptRemoteStorage:WanoptRemoteStorage labelname WanoptRemoteStorage
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wanoptRemoteStorage:WanoptRemoteStorage labelname WanoptRemoteStorage
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WanoptRemoteStorage struct {
 	pulumi.CustomResourceState
 
-	// ID that this device uses to connect to the remote device.
-	LocalCacheId pulumi.StringOutput `pulumi:"localCacheId"`
-	// ID of the remote device to which the device connects.
-	RemoteCacheId pulumi.StringOutput `pulumi:"remoteCacheId"`
-	// IP address of the remote device to which the device connects.
-	RemoteCacheIp pulumi.StringOutput `pulumi:"remoteCacheIp"`
-	// Enable/disable using remote device as Web cache storage. Valid values: `disable`, `enable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	LocalCacheId  pulumi.StringOutput    `pulumi:"localCacheId"`
+	RemoteCacheId pulumi.StringOutput    `pulumi:"remoteCacheId"`
+	RemoteCacheIp pulumi.StringOutput    `pulumi:"remoteCacheIp"`
+	Status        pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWanoptRemoteStorage registers a new resource with the given unique name, arguments, and options.
@@ -96,29 +50,19 @@ func GetWanoptRemoteStorage(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WanoptRemoteStorage resources.
 type wanoptRemoteStorageState struct {
-	// ID that this device uses to connect to the remote device.
-	LocalCacheId *string `pulumi:"localCacheId"`
-	// ID of the remote device to which the device connects.
+	LocalCacheId  *string `pulumi:"localCacheId"`
 	RemoteCacheId *string `pulumi:"remoteCacheId"`
-	// IP address of the remote device to which the device connects.
 	RemoteCacheIp *string `pulumi:"remoteCacheIp"`
-	// Enable/disable using remote device as Web cache storage. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Status        *string `pulumi:"status"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 type WanoptRemoteStorageState struct {
-	// ID that this device uses to connect to the remote device.
-	LocalCacheId pulumi.StringPtrInput
-	// ID of the remote device to which the device connects.
+	LocalCacheId  pulumi.StringPtrInput
 	RemoteCacheId pulumi.StringPtrInput
-	// IP address of the remote device to which the device connects.
 	RemoteCacheIp pulumi.StringPtrInput
-	// Enable/disable using remote device as Web cache storage. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Status        pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (WanoptRemoteStorageState) ElementType() reflect.Type {
@@ -126,30 +70,20 @@ func (WanoptRemoteStorageState) ElementType() reflect.Type {
 }
 
 type wanoptRemoteStorageArgs struct {
-	// ID that this device uses to connect to the remote device.
-	LocalCacheId *string `pulumi:"localCacheId"`
-	// ID of the remote device to which the device connects.
+	LocalCacheId  *string `pulumi:"localCacheId"`
 	RemoteCacheId *string `pulumi:"remoteCacheId"`
-	// IP address of the remote device to which the device connects.
 	RemoteCacheIp *string `pulumi:"remoteCacheIp"`
-	// Enable/disable using remote device as Web cache storage. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Status        *string `pulumi:"status"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WanoptRemoteStorage resource.
 type WanoptRemoteStorageArgs struct {
-	// ID that this device uses to connect to the remote device.
-	LocalCacheId pulumi.StringPtrInput
-	// ID of the remote device to which the device connects.
+	LocalCacheId  pulumi.StringPtrInput
 	RemoteCacheId pulumi.StringPtrInput
-	// IP address of the remote device to which the device connects.
 	RemoteCacheIp pulumi.StringPtrInput
-	// Enable/disable using remote device as Web cache storage. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Status        pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (WanoptRemoteStorageArgs) ElementType() reflect.Type {
@@ -178,7 +112,7 @@ func (i *WanoptRemoteStorage) ToWanoptRemoteStorageOutputWithContext(ctx context
 // WanoptRemoteStorageArrayInput is an input type that accepts WanoptRemoteStorageArray and WanoptRemoteStorageArrayOutput values.
 // You can construct a concrete instance of `WanoptRemoteStorageArrayInput` via:
 //
-//          WanoptRemoteStorageArray{ WanoptRemoteStorageArgs{...} }
+//	WanoptRemoteStorageArray{ WanoptRemoteStorageArgs{...} }
 type WanoptRemoteStorageArrayInput interface {
 	pulumi.Input
 
@@ -203,7 +137,7 @@ func (i WanoptRemoteStorageArray) ToWanoptRemoteStorageArrayOutputWithContext(ct
 // WanoptRemoteStorageMapInput is an input type that accepts WanoptRemoteStorageMap and WanoptRemoteStorageMapOutput values.
 // You can construct a concrete instance of `WanoptRemoteStorageMapInput` via:
 //
-//          WanoptRemoteStorageMap{ "key": WanoptRemoteStorageArgs{...} }
+//	WanoptRemoteStorageMap{ "key": WanoptRemoteStorageArgs{...} }
 type WanoptRemoteStorageMapInput interface {
 	pulumi.Input
 
@@ -237,6 +171,26 @@ func (o WanoptRemoteStorageOutput) ToWanoptRemoteStorageOutput() WanoptRemoteSto
 
 func (o WanoptRemoteStorageOutput) ToWanoptRemoteStorageOutputWithContext(ctx context.Context) WanoptRemoteStorageOutput {
 	return o
+}
+
+func (o WanoptRemoteStorageOutput) LocalCacheId() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptRemoteStorage) pulumi.StringOutput { return v.LocalCacheId }).(pulumi.StringOutput)
+}
+
+func (o WanoptRemoteStorageOutput) RemoteCacheId() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptRemoteStorage) pulumi.StringOutput { return v.RemoteCacheId }).(pulumi.StringOutput)
+}
+
+func (o WanoptRemoteStorageOutput) RemoteCacheIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptRemoteStorage) pulumi.StringOutput { return v.RemoteCacheIp }).(pulumi.StringOutput)
+}
+
+func (o WanoptRemoteStorageOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptRemoteStorage) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o WanoptRemoteStorageOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WanoptRemoteStorage) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WanoptRemoteStorageArrayOutput struct{ *pulumi.OutputState }

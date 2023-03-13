@@ -7,121 +7,34 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure central SNAT policies.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallCentralSnatMap(ctx, "trname", &fortios.FirewallCentralSnatMapArgs{
-// 			DstAddrs: FirewallCentralSnatMapDstAddrArray{
-// 				&FirewallCentralSnatMapDstAddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			Dstintfs: FirewallCentralSnatMapDstintfArray{
-// 				&FirewallCentralSnatMapDstintfArgs{
-// 					Name: pulumi.String("port3"),
-// 				},
-// 			},
-// 			Nat:     pulumi.String("enable"),
-// 			NatPort: pulumi.String("0"),
-// 			OrigAddrs: FirewallCentralSnatMapOrigAddrArray{
-// 				&FirewallCentralSnatMapOrigAddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			OrigPort: pulumi.String("0"),
-// 			Policyid: pulumi.Int(1),
-// 			Protocol: pulumi.Int(33),
-// 			Srcintfs: FirewallCentralSnatMapSrcintfArray{
-// 				&FirewallCentralSnatMapSrcintfArgs{
-// 					Name: pulumi.String("port1"),
-// 				},
-// 			},
-// 			Status: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall CentralSnatMap can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallCentralSnatMap:FirewallCentralSnatMap labelname {{policyid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallCentralSnatMap:FirewallCentralSnatMap labelname {{policyid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallCentralSnatMap struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// IPv6 Destination address. The structure of `dstAddr6` block is documented below.
-	DstAddr6s FirewallCentralSnatMapDstAddr6ArrayOutput `pulumi:"dstAddr6s"`
-	// Destination address name from available addresses. The structure of `dstAddr` block is documented below.
-	DstAddrs FirewallCentralSnatMapDstAddrArrayOutput `pulumi:"dstAddrs"`
-	// Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
-	Dstintfs FirewallCentralSnatMapDstintfArrayOutput `pulumi:"dstintfs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable source NAT. Valid values: `disable`, `enable`.
-	Nat pulumi.StringOutput `pulumi:"nat"`
-	// Enable/disable NAT46. Valid values: `enable`, `disable`.
-	Nat46 pulumi.StringOutput `pulumi:"nat46"`
-	// Enable/disable NAT64. Valid values: `enable`, `disable`.
-	Nat64 pulumi.StringOutput `pulumi:"nat64"`
-	// IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
-	NatIppool6s FirewallCentralSnatMapNatIppool6ArrayOutput `pulumi:"natIppool6s"`
-	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
-	NatIppools FirewallCentralSnatMapNatIppoolArrayOutput `pulumi:"natIppools"`
-	// Translated port or port range (0 to 65535).
-	NatPort pulumi.StringOutput `pulumi:"natPort"`
-	// IPv6 Original address. The structure of `origAddr6` block is documented below.
-	OrigAddr6s FirewallCentralSnatMapOrigAddr6ArrayOutput `pulumi:"origAddr6s"`
-	// Original address. The structure of `origAddr` block is documented below.
-	OrigAddrs FirewallCentralSnatMapOrigAddrArrayOutput `pulumi:"origAddrs"`
-	// Original TCP port (0 to 65535).
-	OrigPort pulumi.StringOutput `pulumi:"origPort"`
-	// Policy ID.
-	Policyid pulumi.IntOutput `pulumi:"policyid"`
-	// Integer value for the protocol type (0 - 255).
-	Protocol pulumi.IntOutput `pulumi:"protocol"`
-	// Source interface name from available interfaces. The structure of `srcintf` block is documented below.
-	Srcintfs FirewallCentralSnatMapSrcintfArrayOutput `pulumi:"srcintfs"`
-	// Enable/disable the active status of this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// IPv4/IPv6 source NAT. Valid values: `ipv4`, `ipv6`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringOutput `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comments            pulumi.StringPtrOutput                      `pulumi:"comments"`
+	DstAddr6s           FirewallCentralSnatMapDstAddr6ArrayOutput   `pulumi:"dstAddr6s"`
+	DstAddrs            FirewallCentralSnatMapDstAddrArrayOutput    `pulumi:"dstAddrs"`
+	Dstintfs            FirewallCentralSnatMapDstintfArrayOutput    `pulumi:"dstintfs"`
+	DynamicSortSubtable pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
+	Nat                 pulumi.StringOutput                         `pulumi:"nat"`
+	Nat46               pulumi.StringOutput                         `pulumi:"nat46"`
+	Nat64               pulumi.StringOutput                         `pulumi:"nat64"`
+	NatIppool6s         FirewallCentralSnatMapNatIppool6ArrayOutput `pulumi:"natIppool6s"`
+	NatIppools          FirewallCentralSnatMapNatIppoolArrayOutput  `pulumi:"natIppools"`
+	NatPort             pulumi.StringOutput                         `pulumi:"natPort"`
+	OrigAddr6s          FirewallCentralSnatMapOrigAddr6ArrayOutput  `pulumi:"origAddr6s"`
+	OrigAddrs           FirewallCentralSnatMapOrigAddrArrayOutput   `pulumi:"origAddrs"`
+	OrigPort            pulumi.StringOutput                         `pulumi:"origPort"`
+	Policyid            pulumi.IntOutput                            `pulumi:"policyid"`
+	Protocol            pulumi.IntOutput                            `pulumi:"protocol"`
+	Srcintfs            FirewallCentralSnatMapSrcintfArrayOutput    `pulumi:"srcintfs"`
+	Status              pulumi.StringOutput                         `pulumi:"status"`
+	Type                pulumi.StringOutput                         `pulumi:"type"`
+	Uuid                pulumi.StringOutput                         `pulumi:"uuid"`
+	Vdomparam           pulumi.StringPtrOutput                      `pulumi:"vdomparam"`
 }
 
 // NewFirewallCentralSnatMap registers a new resource with the given unique name, arguments, and options.
@@ -175,93 +88,51 @@ func GetFirewallCentralSnatMap(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallCentralSnatMap resources.
 type firewallCentralSnatMapState struct {
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// IPv6 Destination address. The structure of `dstAddr6` block is documented below.
-	DstAddr6s []FirewallCentralSnatMapDstAddr6 `pulumi:"dstAddr6s"`
-	// Destination address name from available addresses. The structure of `dstAddr` block is documented below.
-	DstAddrs []FirewallCentralSnatMapDstAddr `pulumi:"dstAddrs"`
-	// Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
-	Dstintfs []FirewallCentralSnatMapDstintf `pulumi:"dstintfs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable source NAT. Valid values: `disable`, `enable`.
-	Nat *string `pulumi:"nat"`
-	// Enable/disable NAT46. Valid values: `enable`, `disable`.
-	Nat46 *string `pulumi:"nat46"`
-	// Enable/disable NAT64. Valid values: `enable`, `disable`.
-	Nat64 *string `pulumi:"nat64"`
-	// IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
-	NatIppool6s []FirewallCentralSnatMapNatIppool6 `pulumi:"natIppool6s"`
-	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
-	NatIppools []FirewallCentralSnatMapNatIppool `pulumi:"natIppools"`
-	// Translated port or port range (0 to 65535).
-	NatPort *string `pulumi:"natPort"`
-	// IPv6 Original address. The structure of `origAddr6` block is documented below.
-	OrigAddr6s []FirewallCentralSnatMapOrigAddr6 `pulumi:"origAddr6s"`
-	// Original address. The structure of `origAddr` block is documented below.
-	OrigAddrs []FirewallCentralSnatMapOrigAddr `pulumi:"origAddrs"`
-	// Original TCP port (0 to 65535).
-	OrigPort *string `pulumi:"origPort"`
-	// Policy ID.
-	Policyid *int `pulumi:"policyid"`
-	// Integer value for the protocol type (0 - 255).
-	Protocol *int `pulumi:"protocol"`
-	// Source interface name from available interfaces. The structure of `srcintf` block is documented below.
-	Srcintfs []FirewallCentralSnatMapSrcintf `pulumi:"srcintfs"`
-	// Enable/disable the active status of this policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// IPv4/IPv6 source NAT. Valid values: `ipv4`, `ipv6`.
-	Type *string `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comments            *string                            `pulumi:"comments"`
+	DstAddr6s           []FirewallCentralSnatMapDstAddr6   `pulumi:"dstAddr6s"`
+	DstAddrs            []FirewallCentralSnatMapDstAddr    `pulumi:"dstAddrs"`
+	Dstintfs            []FirewallCentralSnatMapDstintf    `pulumi:"dstintfs"`
+	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	Nat                 *string                            `pulumi:"nat"`
+	Nat46               *string                            `pulumi:"nat46"`
+	Nat64               *string                            `pulumi:"nat64"`
+	NatIppool6s         []FirewallCentralSnatMapNatIppool6 `pulumi:"natIppool6s"`
+	NatIppools          []FirewallCentralSnatMapNatIppool  `pulumi:"natIppools"`
+	NatPort             *string                            `pulumi:"natPort"`
+	OrigAddr6s          []FirewallCentralSnatMapOrigAddr6  `pulumi:"origAddr6s"`
+	OrigAddrs           []FirewallCentralSnatMapOrigAddr   `pulumi:"origAddrs"`
+	OrigPort            *string                            `pulumi:"origPort"`
+	Policyid            *int                               `pulumi:"policyid"`
+	Protocol            *int                               `pulumi:"protocol"`
+	Srcintfs            []FirewallCentralSnatMapSrcintf    `pulumi:"srcintfs"`
+	Status              *string                            `pulumi:"status"`
+	Type                *string                            `pulumi:"type"`
+	Uuid                *string                            `pulumi:"uuid"`
+	Vdomparam           *string                            `pulumi:"vdomparam"`
 }
 
 type FirewallCentralSnatMapState struct {
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// IPv6 Destination address. The structure of `dstAddr6` block is documented below.
-	DstAddr6s FirewallCentralSnatMapDstAddr6ArrayInput
-	// Destination address name from available addresses. The structure of `dstAddr` block is documented below.
-	DstAddrs FirewallCentralSnatMapDstAddrArrayInput
-	// Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
-	Dstintfs FirewallCentralSnatMapDstintfArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comments            pulumi.StringPtrInput
+	DstAddr6s           FirewallCentralSnatMapDstAddr6ArrayInput
+	DstAddrs            FirewallCentralSnatMapDstAddrArrayInput
+	Dstintfs            FirewallCentralSnatMapDstintfArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable source NAT. Valid values: `disable`, `enable`.
-	Nat pulumi.StringPtrInput
-	// Enable/disable NAT46. Valid values: `enable`, `disable`.
-	Nat46 pulumi.StringPtrInput
-	// Enable/disable NAT64. Valid values: `enable`, `disable`.
-	Nat64 pulumi.StringPtrInput
-	// IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
-	NatIppool6s FirewallCentralSnatMapNatIppool6ArrayInput
-	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
-	NatIppools FirewallCentralSnatMapNatIppoolArrayInput
-	// Translated port or port range (0 to 65535).
-	NatPort pulumi.StringPtrInput
-	// IPv6 Original address. The structure of `origAddr6` block is documented below.
-	OrigAddr6s FirewallCentralSnatMapOrigAddr6ArrayInput
-	// Original address. The structure of `origAddr` block is documented below.
-	OrigAddrs FirewallCentralSnatMapOrigAddrArrayInput
-	// Original TCP port (0 to 65535).
-	OrigPort pulumi.StringPtrInput
-	// Policy ID.
-	Policyid pulumi.IntPtrInput
-	// Integer value for the protocol type (0 - 255).
-	Protocol pulumi.IntPtrInput
-	// Source interface name from available interfaces. The structure of `srcintf` block is documented below.
-	Srcintfs FirewallCentralSnatMapSrcintfArrayInput
-	// Enable/disable the active status of this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// IPv4/IPv6 source NAT. Valid values: `ipv4`, `ipv6`.
-	Type pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Nat                 pulumi.StringPtrInput
+	Nat46               pulumi.StringPtrInput
+	Nat64               pulumi.StringPtrInput
+	NatIppool6s         FirewallCentralSnatMapNatIppool6ArrayInput
+	NatIppools          FirewallCentralSnatMapNatIppoolArrayInput
+	NatPort             pulumi.StringPtrInput
+	OrigAddr6s          FirewallCentralSnatMapOrigAddr6ArrayInput
+	OrigAddrs           FirewallCentralSnatMapOrigAddrArrayInput
+	OrigPort            pulumi.StringPtrInput
+	Policyid            pulumi.IntPtrInput
+	Protocol            pulumi.IntPtrInput
+	Srcintfs            FirewallCentralSnatMapSrcintfArrayInput
+	Status              pulumi.StringPtrInput
+	Type                pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallCentralSnatMapState) ElementType() reflect.Type {
@@ -269,94 +140,52 @@ func (FirewallCentralSnatMapState) ElementType() reflect.Type {
 }
 
 type firewallCentralSnatMapArgs struct {
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// IPv6 Destination address. The structure of `dstAddr6` block is documented below.
-	DstAddr6s []FirewallCentralSnatMapDstAddr6 `pulumi:"dstAddr6s"`
-	// Destination address name from available addresses. The structure of `dstAddr` block is documented below.
-	DstAddrs []FirewallCentralSnatMapDstAddr `pulumi:"dstAddrs"`
-	// Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
-	Dstintfs []FirewallCentralSnatMapDstintf `pulumi:"dstintfs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable source NAT. Valid values: `disable`, `enable`.
-	Nat string `pulumi:"nat"`
-	// Enable/disable NAT46. Valid values: `enable`, `disable`.
-	Nat46 *string `pulumi:"nat46"`
-	// Enable/disable NAT64. Valid values: `enable`, `disable`.
-	Nat64 *string `pulumi:"nat64"`
-	// IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
-	NatIppool6s []FirewallCentralSnatMapNatIppool6 `pulumi:"natIppool6s"`
-	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
-	NatIppools []FirewallCentralSnatMapNatIppool `pulumi:"natIppools"`
-	// Translated port or port range (0 to 65535).
-	NatPort *string `pulumi:"natPort"`
-	// IPv6 Original address. The structure of `origAddr6` block is documented below.
-	OrigAddr6s []FirewallCentralSnatMapOrigAddr6 `pulumi:"origAddr6s"`
-	// Original address. The structure of `origAddr` block is documented below.
-	OrigAddrs []FirewallCentralSnatMapOrigAddr `pulumi:"origAddrs"`
-	// Original TCP port (0 to 65535).
-	OrigPort string `pulumi:"origPort"`
-	// Policy ID.
-	Policyid *int `pulumi:"policyid"`
-	// Integer value for the protocol type (0 - 255).
-	Protocol int `pulumi:"protocol"`
-	// Source interface name from available interfaces. The structure of `srcintf` block is documented below.
-	Srcintfs []FirewallCentralSnatMapSrcintf `pulumi:"srcintfs"`
-	// Enable/disable the active status of this policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// IPv4/IPv6 source NAT. Valid values: `ipv4`, `ipv6`.
-	Type *string `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comments            *string                            `pulumi:"comments"`
+	DstAddr6s           []FirewallCentralSnatMapDstAddr6   `pulumi:"dstAddr6s"`
+	DstAddrs            []FirewallCentralSnatMapDstAddr    `pulumi:"dstAddrs"`
+	Dstintfs            []FirewallCentralSnatMapDstintf    `pulumi:"dstintfs"`
+	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	Nat                 string                             `pulumi:"nat"`
+	Nat46               *string                            `pulumi:"nat46"`
+	Nat64               *string                            `pulumi:"nat64"`
+	NatIppool6s         []FirewallCentralSnatMapNatIppool6 `pulumi:"natIppool6s"`
+	NatIppools          []FirewallCentralSnatMapNatIppool  `pulumi:"natIppools"`
+	NatPort             *string                            `pulumi:"natPort"`
+	OrigAddr6s          []FirewallCentralSnatMapOrigAddr6  `pulumi:"origAddr6s"`
+	OrigAddrs           []FirewallCentralSnatMapOrigAddr   `pulumi:"origAddrs"`
+	OrigPort            string                             `pulumi:"origPort"`
+	Policyid            *int                               `pulumi:"policyid"`
+	Protocol            int                                `pulumi:"protocol"`
+	Srcintfs            []FirewallCentralSnatMapSrcintf    `pulumi:"srcintfs"`
+	Status              *string                            `pulumi:"status"`
+	Type                *string                            `pulumi:"type"`
+	Uuid                *string                            `pulumi:"uuid"`
+	Vdomparam           *string                            `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallCentralSnatMap resource.
 type FirewallCentralSnatMapArgs struct {
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// IPv6 Destination address. The structure of `dstAddr6` block is documented below.
-	DstAddr6s FirewallCentralSnatMapDstAddr6ArrayInput
-	// Destination address name from available addresses. The structure of `dstAddr` block is documented below.
-	DstAddrs FirewallCentralSnatMapDstAddrArrayInput
-	// Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
-	Dstintfs FirewallCentralSnatMapDstintfArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comments            pulumi.StringPtrInput
+	DstAddr6s           FirewallCentralSnatMapDstAddr6ArrayInput
+	DstAddrs            FirewallCentralSnatMapDstAddrArrayInput
+	Dstintfs            FirewallCentralSnatMapDstintfArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable source NAT. Valid values: `disable`, `enable`.
-	Nat pulumi.StringInput
-	// Enable/disable NAT46. Valid values: `enable`, `disable`.
-	Nat46 pulumi.StringPtrInput
-	// Enable/disable NAT64. Valid values: `enable`, `disable`.
-	Nat64 pulumi.StringPtrInput
-	// IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
-	NatIppool6s FirewallCentralSnatMapNatIppool6ArrayInput
-	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
-	NatIppools FirewallCentralSnatMapNatIppoolArrayInput
-	// Translated port or port range (0 to 65535).
-	NatPort pulumi.StringPtrInput
-	// IPv6 Original address. The structure of `origAddr6` block is documented below.
-	OrigAddr6s FirewallCentralSnatMapOrigAddr6ArrayInput
-	// Original address. The structure of `origAddr` block is documented below.
-	OrigAddrs FirewallCentralSnatMapOrigAddrArrayInput
-	// Original TCP port (0 to 65535).
-	OrigPort pulumi.StringInput
-	// Policy ID.
-	Policyid pulumi.IntPtrInput
-	// Integer value for the protocol type (0 - 255).
-	Protocol pulumi.IntInput
-	// Source interface name from available interfaces. The structure of `srcintf` block is documented below.
-	Srcintfs FirewallCentralSnatMapSrcintfArrayInput
-	// Enable/disable the active status of this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// IPv4/IPv6 source NAT. Valid values: `ipv4`, `ipv6`.
-	Type pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Nat                 pulumi.StringInput
+	Nat46               pulumi.StringPtrInput
+	Nat64               pulumi.StringPtrInput
+	NatIppool6s         FirewallCentralSnatMapNatIppool6ArrayInput
+	NatIppools          FirewallCentralSnatMapNatIppoolArrayInput
+	NatPort             pulumi.StringPtrInput
+	OrigAddr6s          FirewallCentralSnatMapOrigAddr6ArrayInput
+	OrigAddrs           FirewallCentralSnatMapOrigAddrArrayInput
+	OrigPort            pulumi.StringInput
+	Policyid            pulumi.IntPtrInput
+	Protocol            pulumi.IntInput
+	Srcintfs            FirewallCentralSnatMapSrcintfArrayInput
+	Status              pulumi.StringPtrInput
+	Type                pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallCentralSnatMapArgs) ElementType() reflect.Type {
@@ -385,7 +214,7 @@ func (i *FirewallCentralSnatMap) ToFirewallCentralSnatMapOutputWithContext(ctx c
 // FirewallCentralSnatMapArrayInput is an input type that accepts FirewallCentralSnatMapArray and FirewallCentralSnatMapArrayOutput values.
 // You can construct a concrete instance of `FirewallCentralSnatMapArrayInput` via:
 //
-//          FirewallCentralSnatMapArray{ FirewallCentralSnatMapArgs{...} }
+//	FirewallCentralSnatMapArray{ FirewallCentralSnatMapArgs{...} }
 type FirewallCentralSnatMapArrayInput interface {
 	pulumi.Input
 
@@ -410,7 +239,7 @@ func (i FirewallCentralSnatMapArray) ToFirewallCentralSnatMapArrayOutputWithCont
 // FirewallCentralSnatMapMapInput is an input type that accepts FirewallCentralSnatMapMap and FirewallCentralSnatMapMapOutput values.
 // You can construct a concrete instance of `FirewallCentralSnatMapMapInput` via:
 //
-//          FirewallCentralSnatMapMap{ "key": FirewallCentralSnatMapArgs{...} }
+//	FirewallCentralSnatMapMap{ "key": FirewallCentralSnatMapArgs{...} }
 type FirewallCentralSnatMapMapInput interface {
 	pulumi.Input
 
@@ -444,6 +273,90 @@ func (o FirewallCentralSnatMapOutput) ToFirewallCentralSnatMapOutput() FirewallC
 
 func (o FirewallCentralSnatMapOutput) ToFirewallCentralSnatMapOutputWithContext(ctx context.Context) FirewallCentralSnatMapOutput {
 	return o
+}
+
+func (o FirewallCentralSnatMapOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) DstAddr6s() FirewallCentralSnatMapDstAddr6ArrayOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) FirewallCentralSnatMapDstAddr6ArrayOutput { return v.DstAddr6s }).(FirewallCentralSnatMapDstAddr6ArrayOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) DstAddrs() FirewallCentralSnatMapDstAddrArrayOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) FirewallCentralSnatMapDstAddrArrayOutput { return v.DstAddrs }).(FirewallCentralSnatMapDstAddrArrayOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) Dstintfs() FirewallCentralSnatMapDstintfArrayOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) FirewallCentralSnatMapDstintfArrayOutput { return v.Dstintfs }).(FirewallCentralSnatMapDstintfArrayOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) Nat() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.StringOutput { return v.Nat }).(pulumi.StringOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) Nat46() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.StringOutput { return v.Nat46 }).(pulumi.StringOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) Nat64() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.StringOutput { return v.Nat64 }).(pulumi.StringOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) NatIppool6s() FirewallCentralSnatMapNatIppool6ArrayOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) FirewallCentralSnatMapNatIppool6ArrayOutput { return v.NatIppool6s }).(FirewallCentralSnatMapNatIppool6ArrayOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) NatIppools() FirewallCentralSnatMapNatIppoolArrayOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) FirewallCentralSnatMapNatIppoolArrayOutput { return v.NatIppools }).(FirewallCentralSnatMapNatIppoolArrayOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) NatPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.StringOutput { return v.NatPort }).(pulumi.StringOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) OrigAddr6s() FirewallCentralSnatMapOrigAddr6ArrayOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) FirewallCentralSnatMapOrigAddr6ArrayOutput { return v.OrigAddr6s }).(FirewallCentralSnatMapOrigAddr6ArrayOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) OrigAddrs() FirewallCentralSnatMapOrigAddrArrayOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) FirewallCentralSnatMapOrigAddrArrayOutput { return v.OrigAddrs }).(FirewallCentralSnatMapOrigAddrArrayOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) OrigPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.StringOutput { return v.OrigPort }).(pulumi.StringOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) Policyid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.IntOutput { return v.Policyid }).(pulumi.IntOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) Protocol() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.IntOutput { return v.Protocol }).(pulumi.IntOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) Srcintfs() FirewallCentralSnatMapSrcintfArrayOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) FirewallCentralSnatMapSrcintfArrayOutput { return v.Srcintfs }).(FirewallCentralSnatMapSrcintfArrayOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallCentralSnatMapArrayOutput struct{ *pulumi.OutputState }

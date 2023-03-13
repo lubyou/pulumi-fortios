@@ -7,133 +7,34 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 OSPF.
-//
-// > The provider supports the definition of Ospf6-Interface in Router Ospf6 `RouterOspf6`, and also allows the definition of separate Ospf6-Interface resources `Routerospf6Ospf6Interface`, but do not use a `RouterOspf6` with in-line Ospf6-Interface in conjunction with any `Routerospf6Ospf6Interface` resources, otherwise conflicts and overwrite will occur.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewRouterOspf6(ctx, "trname", &fortios.RouterOspf6Args{
-// 			AbrType:                      pulumi.String("standard"),
-// 			AutoCostRefBandwidth:         pulumi.Int(1000),
-// 			Bfd:                          pulumi.String("disable"),
-// 			DefaultInformationMetric:     pulumi.Int(10),
-// 			DefaultInformationMetricType: pulumi.String("2"),
-// 			DefaultInformationOriginate:  pulumi.String("disable"),
-// 			DefaultMetric:                pulumi.Int(10),
-// 			LogNeighbourChanges:          pulumi.String("enable"),
-// 			Redistributes: RouterOspf6RedistributeArray{
-// 				&RouterOspf6RedistributeArgs{
-// 					Metric:     pulumi.Int(0),
-// 					MetricType: pulumi.String("2"),
-// 					Name:       pulumi.String("connected"),
-// 					Status:     pulumi.String("disable"),
-// 				},
-// 				&RouterOspf6RedistributeArgs{
-// 					Metric:     pulumi.Int(0),
-// 					MetricType: pulumi.String("2"),
-// 					Name:       pulumi.String("static"),
-// 					Status:     pulumi.String("disable"),
-// 				},
-// 				&RouterOspf6RedistributeArgs{
-// 					Metric:     pulumi.Int(0),
-// 					MetricType: pulumi.String("2"),
-// 					Name:       pulumi.String("rip"),
-// 					Status:     pulumi.String("disable"),
-// 				},
-// 				&RouterOspf6RedistributeArgs{
-// 					Metric:     pulumi.Int(0),
-// 					MetricType: pulumi.String("2"),
-// 					Name:       pulumi.String("bgp"),
-// 					Status:     pulumi.String("disable"),
-// 				},
-// 				&RouterOspf6RedistributeArgs{
-// 					Metric:     pulumi.Int(0),
-// 					MetricType: pulumi.String("2"),
-// 					Name:       pulumi.String("isis"),
-// 					Status:     pulumi.String("disable"),
-// 				},
-// 			},
-// 			RouterId:  pulumi.String("0.0.0.0"),
-// 			SpfTimers: pulumi.String("5 10"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Router Ospf6 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerOspf6:RouterOspf6 labelname RouterOspf6
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerOspf6:RouterOspf6 labelname RouterOspf6
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterOspf6 struct {
 	pulumi.CustomResourceState
 
-	// Area border router type. Valid values: `cisco`, `ibm`, `standard`.
-	AbrType pulumi.StringOutput `pulumi:"abrType"`
-	// OSPF6 area configuration. The structure of `area` block is documented below.
-	Areas RouterOspf6AreaArrayOutput `pulumi:"areas"`
-	// Reference bandwidth in terms of megabits per second.
-	AutoCostRefBandwidth pulumi.IntOutput `pulumi:"autoCostRefBandwidth"`
-	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-	Bfd pulumi.StringOutput `pulumi:"bfd"`
-	// Default information metric.
-	DefaultInformationMetric pulumi.IntOutput `pulumi:"defaultInformationMetric"`
-	// Default information metric type. Valid values: `1`, `2`.
-	DefaultInformationMetricType pulumi.StringOutput `pulumi:"defaultInformationMetricType"`
-	// Enable/disable generation of default route. Valid values: `enable`, `always`, `disable`.
-	DefaultInformationOriginate pulumi.StringOutput `pulumi:"defaultInformationOriginate"`
-	// Default information route map.
-	DefaultInformationRouteMap pulumi.StringOutput `pulumi:"defaultInformationRouteMap"`
-	// Default metric of redistribute routes.
-	DefaultMetric pulumi.IntOutput `pulumi:"defaultMetric"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable logging of OSPFv3 neighbour's changes Valid values: `enable`, `disable`.
-	LogNeighbourChanges pulumi.StringOutput `pulumi:"logNeighbourChanges"`
-	// OSPF6 interface configuration. The structure of `ospf6Interface` block is documented below.
-	Ospf6Interfaces RouterOspf6Ospf6InterfaceTypeArrayOutput `pulumi:"ospf6Interfaces"`
-	// Passive interface configuration. The structure of `passiveInterface` block is documented below.
-	PassiveInterfaces RouterOspf6PassiveInterfaceArrayOutput `pulumi:"passiveInterfaces"`
-	// Redistribute configuration. The structure of `redistribute` block is documented below.
-	Redistributes RouterOspf6RedistributeArrayOutput `pulumi:"redistributes"`
-	// A.B.C.D, in IPv4 address format.
-	RouterId pulumi.StringOutput `pulumi:"routerId"`
-	// SPF calculation frequency.
-	SpfTimers pulumi.StringOutput `pulumi:"spfTimers"`
-	// IPv6 address summary configuration. The structure of `summaryAddress` block is documented below.
-	SummaryAddresses RouterOspf6SummaryAddressArrayOutput `pulumi:"summaryAddresses"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AbrType                      pulumi.StringOutput                      `pulumi:"abrType"`
+	Areas                        RouterOspf6AreaArrayOutput               `pulumi:"areas"`
+	AutoCostRefBandwidth         pulumi.IntOutput                         `pulumi:"autoCostRefBandwidth"`
+	Bfd                          pulumi.StringOutput                      `pulumi:"bfd"`
+	DefaultInformationMetric     pulumi.IntOutput                         `pulumi:"defaultInformationMetric"`
+	DefaultInformationMetricType pulumi.StringOutput                      `pulumi:"defaultInformationMetricType"`
+	DefaultInformationOriginate  pulumi.StringOutput                      `pulumi:"defaultInformationOriginate"`
+	DefaultInformationRouteMap   pulumi.StringOutput                      `pulumi:"defaultInformationRouteMap"`
+	DefaultMetric                pulumi.IntOutput                         `pulumi:"defaultMetric"`
+	DynamicSortSubtable          pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
+	LogNeighbourChanges          pulumi.StringOutput                      `pulumi:"logNeighbourChanges"`
+	Ospf6Interfaces              RouterOspf6Ospf6InterfaceTypeArrayOutput `pulumi:"ospf6Interfaces"`
+	PassiveInterfaces            RouterOspf6PassiveInterfaceArrayOutput   `pulumi:"passiveInterfaces"`
+	Redistributes                RouterOspf6RedistributeArrayOutput       `pulumi:"redistributes"`
+	RestartMode                  pulumi.StringOutput                      `pulumi:"restartMode"`
+	RestartOnTopologyChange      pulumi.StringOutput                      `pulumi:"restartOnTopologyChange"`
+	RestartPeriod                pulumi.IntOutput                         `pulumi:"restartPeriod"`
+	RouterId                     pulumi.StringOutput                      `pulumi:"routerId"`
+	SpfTimers                    pulumi.StringOutput                      `pulumi:"spfTimers"`
+	SummaryAddresses             RouterOspf6SummaryAddressArrayOutput     `pulumi:"summaryAddresses"`
+	Vdomparam                    pulumi.StringPtrOutput                   `pulumi:"vdomparam"`
 }
 
 // NewRouterOspf6 registers a new resource with the given unique name, arguments, and options.
@@ -169,81 +70,51 @@ func GetRouterOspf6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterOspf6 resources.
 type routerOspf6State struct {
-	// Area border router type. Valid values: `cisco`, `ibm`, `standard`.
-	AbrType *string `pulumi:"abrType"`
-	// OSPF6 area configuration. The structure of `area` block is documented below.
-	Areas []RouterOspf6Area `pulumi:"areas"`
-	// Reference bandwidth in terms of megabits per second.
-	AutoCostRefBandwidth *int `pulumi:"autoCostRefBandwidth"`
-	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-	Bfd *string `pulumi:"bfd"`
-	// Default information metric.
-	DefaultInformationMetric *int `pulumi:"defaultInformationMetric"`
-	// Default information metric type. Valid values: `1`, `2`.
-	DefaultInformationMetricType *string `pulumi:"defaultInformationMetricType"`
-	// Enable/disable generation of default route. Valid values: `enable`, `always`, `disable`.
-	DefaultInformationOriginate *string `pulumi:"defaultInformationOriginate"`
-	// Default information route map.
-	DefaultInformationRouteMap *string `pulumi:"defaultInformationRouteMap"`
-	// Default metric of redistribute routes.
-	DefaultMetric *int `pulumi:"defaultMetric"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable logging of OSPFv3 neighbour's changes Valid values: `enable`, `disable`.
-	LogNeighbourChanges *string `pulumi:"logNeighbourChanges"`
-	// OSPF6 interface configuration. The structure of `ospf6Interface` block is documented below.
-	Ospf6Interfaces []RouterOspf6Ospf6InterfaceType `pulumi:"ospf6Interfaces"`
-	// Passive interface configuration. The structure of `passiveInterface` block is documented below.
-	PassiveInterfaces []RouterOspf6PassiveInterface `pulumi:"passiveInterfaces"`
-	// Redistribute configuration. The structure of `redistribute` block is documented below.
-	Redistributes []RouterOspf6Redistribute `pulumi:"redistributes"`
-	// A.B.C.D, in IPv4 address format.
-	RouterId *string `pulumi:"routerId"`
-	// SPF calculation frequency.
-	SpfTimers *string `pulumi:"spfTimers"`
-	// IPv6 address summary configuration. The structure of `summaryAddress` block is documented below.
-	SummaryAddresses []RouterOspf6SummaryAddress `pulumi:"summaryAddresses"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AbrType                      *string                         `pulumi:"abrType"`
+	Areas                        []RouterOspf6Area               `pulumi:"areas"`
+	AutoCostRefBandwidth         *int                            `pulumi:"autoCostRefBandwidth"`
+	Bfd                          *string                         `pulumi:"bfd"`
+	DefaultInformationMetric     *int                            `pulumi:"defaultInformationMetric"`
+	DefaultInformationMetricType *string                         `pulumi:"defaultInformationMetricType"`
+	DefaultInformationOriginate  *string                         `pulumi:"defaultInformationOriginate"`
+	DefaultInformationRouteMap   *string                         `pulumi:"defaultInformationRouteMap"`
+	DefaultMetric                *int                            `pulumi:"defaultMetric"`
+	DynamicSortSubtable          *string                         `pulumi:"dynamicSortSubtable"`
+	LogNeighbourChanges          *string                         `pulumi:"logNeighbourChanges"`
+	Ospf6Interfaces              []RouterOspf6Ospf6InterfaceType `pulumi:"ospf6Interfaces"`
+	PassiveInterfaces            []RouterOspf6PassiveInterface   `pulumi:"passiveInterfaces"`
+	Redistributes                []RouterOspf6Redistribute       `pulumi:"redistributes"`
+	RestartMode                  *string                         `pulumi:"restartMode"`
+	RestartOnTopologyChange      *string                         `pulumi:"restartOnTopologyChange"`
+	RestartPeriod                *int                            `pulumi:"restartPeriod"`
+	RouterId                     *string                         `pulumi:"routerId"`
+	SpfTimers                    *string                         `pulumi:"spfTimers"`
+	SummaryAddresses             []RouterOspf6SummaryAddress     `pulumi:"summaryAddresses"`
+	Vdomparam                    *string                         `pulumi:"vdomparam"`
 }
 
 type RouterOspf6State struct {
-	// Area border router type. Valid values: `cisco`, `ibm`, `standard`.
-	AbrType pulumi.StringPtrInput
-	// OSPF6 area configuration. The structure of `area` block is documented below.
-	Areas RouterOspf6AreaArrayInput
-	// Reference bandwidth in terms of megabits per second.
-	AutoCostRefBandwidth pulumi.IntPtrInput
-	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-	Bfd pulumi.StringPtrInput
-	// Default information metric.
-	DefaultInformationMetric pulumi.IntPtrInput
-	// Default information metric type. Valid values: `1`, `2`.
+	AbrType                      pulumi.StringPtrInput
+	Areas                        RouterOspf6AreaArrayInput
+	AutoCostRefBandwidth         pulumi.IntPtrInput
+	Bfd                          pulumi.StringPtrInput
+	DefaultInformationMetric     pulumi.IntPtrInput
 	DefaultInformationMetricType pulumi.StringPtrInput
-	// Enable/disable generation of default route. Valid values: `enable`, `always`, `disable`.
-	DefaultInformationOriginate pulumi.StringPtrInput
-	// Default information route map.
-	DefaultInformationRouteMap pulumi.StringPtrInput
-	// Default metric of redistribute routes.
-	DefaultMetric pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable logging of OSPFv3 neighbour's changes Valid values: `enable`, `disable`.
-	LogNeighbourChanges pulumi.StringPtrInput
-	// OSPF6 interface configuration. The structure of `ospf6Interface` block is documented below.
-	Ospf6Interfaces RouterOspf6Ospf6InterfaceTypeArrayInput
-	// Passive interface configuration. The structure of `passiveInterface` block is documented below.
-	PassiveInterfaces RouterOspf6PassiveInterfaceArrayInput
-	// Redistribute configuration. The structure of `redistribute` block is documented below.
-	Redistributes RouterOspf6RedistributeArrayInput
-	// A.B.C.D, in IPv4 address format.
-	RouterId pulumi.StringPtrInput
-	// SPF calculation frequency.
-	SpfTimers pulumi.StringPtrInput
-	// IPv6 address summary configuration. The structure of `summaryAddress` block is documented below.
-	SummaryAddresses RouterOspf6SummaryAddressArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	DefaultInformationOriginate  pulumi.StringPtrInput
+	DefaultInformationRouteMap   pulumi.StringPtrInput
+	DefaultMetric                pulumi.IntPtrInput
+	DynamicSortSubtable          pulumi.StringPtrInput
+	LogNeighbourChanges          pulumi.StringPtrInput
+	Ospf6Interfaces              RouterOspf6Ospf6InterfaceTypeArrayInput
+	PassiveInterfaces            RouterOspf6PassiveInterfaceArrayInput
+	Redistributes                RouterOspf6RedistributeArrayInput
+	RestartMode                  pulumi.StringPtrInput
+	RestartOnTopologyChange      pulumi.StringPtrInput
+	RestartPeriod                pulumi.IntPtrInput
+	RouterId                     pulumi.StringPtrInput
+	SpfTimers                    pulumi.StringPtrInput
+	SummaryAddresses             RouterOspf6SummaryAddressArrayInput
+	Vdomparam                    pulumi.StringPtrInput
 }
 
 func (RouterOspf6State) ElementType() reflect.Type {
@@ -251,82 +122,52 @@ func (RouterOspf6State) ElementType() reflect.Type {
 }
 
 type routerOspf6Args struct {
-	// Area border router type. Valid values: `cisco`, `ibm`, `standard`.
-	AbrType *string `pulumi:"abrType"`
-	// OSPF6 area configuration. The structure of `area` block is documented below.
-	Areas []RouterOspf6Area `pulumi:"areas"`
-	// Reference bandwidth in terms of megabits per second.
-	AutoCostRefBandwidth *int `pulumi:"autoCostRefBandwidth"`
-	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-	Bfd *string `pulumi:"bfd"`
-	// Default information metric.
-	DefaultInformationMetric *int `pulumi:"defaultInformationMetric"`
-	// Default information metric type. Valid values: `1`, `2`.
-	DefaultInformationMetricType *string `pulumi:"defaultInformationMetricType"`
-	// Enable/disable generation of default route. Valid values: `enable`, `always`, `disable`.
-	DefaultInformationOriginate *string `pulumi:"defaultInformationOriginate"`
-	// Default information route map.
-	DefaultInformationRouteMap *string `pulumi:"defaultInformationRouteMap"`
-	// Default metric of redistribute routes.
-	DefaultMetric *int `pulumi:"defaultMetric"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable logging of OSPFv3 neighbour's changes Valid values: `enable`, `disable`.
-	LogNeighbourChanges *string `pulumi:"logNeighbourChanges"`
-	// OSPF6 interface configuration. The structure of `ospf6Interface` block is documented below.
-	Ospf6Interfaces []RouterOspf6Ospf6InterfaceType `pulumi:"ospf6Interfaces"`
-	// Passive interface configuration. The structure of `passiveInterface` block is documented below.
-	PassiveInterfaces []RouterOspf6PassiveInterface `pulumi:"passiveInterfaces"`
-	// Redistribute configuration. The structure of `redistribute` block is documented below.
-	Redistributes []RouterOspf6Redistribute `pulumi:"redistributes"`
-	// A.B.C.D, in IPv4 address format.
-	RouterId string `pulumi:"routerId"`
-	// SPF calculation frequency.
-	SpfTimers *string `pulumi:"spfTimers"`
-	// IPv6 address summary configuration. The structure of `summaryAddress` block is documented below.
-	SummaryAddresses []RouterOspf6SummaryAddress `pulumi:"summaryAddresses"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AbrType                      *string                         `pulumi:"abrType"`
+	Areas                        []RouterOspf6Area               `pulumi:"areas"`
+	AutoCostRefBandwidth         *int                            `pulumi:"autoCostRefBandwidth"`
+	Bfd                          *string                         `pulumi:"bfd"`
+	DefaultInformationMetric     *int                            `pulumi:"defaultInformationMetric"`
+	DefaultInformationMetricType *string                         `pulumi:"defaultInformationMetricType"`
+	DefaultInformationOriginate  *string                         `pulumi:"defaultInformationOriginate"`
+	DefaultInformationRouteMap   *string                         `pulumi:"defaultInformationRouteMap"`
+	DefaultMetric                *int                            `pulumi:"defaultMetric"`
+	DynamicSortSubtable          *string                         `pulumi:"dynamicSortSubtable"`
+	LogNeighbourChanges          *string                         `pulumi:"logNeighbourChanges"`
+	Ospf6Interfaces              []RouterOspf6Ospf6InterfaceType `pulumi:"ospf6Interfaces"`
+	PassiveInterfaces            []RouterOspf6PassiveInterface   `pulumi:"passiveInterfaces"`
+	Redistributes                []RouterOspf6Redistribute       `pulumi:"redistributes"`
+	RestartMode                  *string                         `pulumi:"restartMode"`
+	RestartOnTopologyChange      *string                         `pulumi:"restartOnTopologyChange"`
+	RestartPeriod                *int                            `pulumi:"restartPeriod"`
+	RouterId                     string                          `pulumi:"routerId"`
+	SpfTimers                    *string                         `pulumi:"spfTimers"`
+	SummaryAddresses             []RouterOspf6SummaryAddress     `pulumi:"summaryAddresses"`
+	Vdomparam                    *string                         `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterOspf6 resource.
 type RouterOspf6Args struct {
-	// Area border router type. Valid values: `cisco`, `ibm`, `standard`.
-	AbrType pulumi.StringPtrInput
-	// OSPF6 area configuration. The structure of `area` block is documented below.
-	Areas RouterOspf6AreaArrayInput
-	// Reference bandwidth in terms of megabits per second.
-	AutoCostRefBandwidth pulumi.IntPtrInput
-	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-	Bfd pulumi.StringPtrInput
-	// Default information metric.
-	DefaultInformationMetric pulumi.IntPtrInput
-	// Default information metric type. Valid values: `1`, `2`.
+	AbrType                      pulumi.StringPtrInput
+	Areas                        RouterOspf6AreaArrayInput
+	AutoCostRefBandwidth         pulumi.IntPtrInput
+	Bfd                          pulumi.StringPtrInput
+	DefaultInformationMetric     pulumi.IntPtrInput
 	DefaultInformationMetricType pulumi.StringPtrInput
-	// Enable/disable generation of default route. Valid values: `enable`, `always`, `disable`.
-	DefaultInformationOriginate pulumi.StringPtrInput
-	// Default information route map.
-	DefaultInformationRouteMap pulumi.StringPtrInput
-	// Default metric of redistribute routes.
-	DefaultMetric pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable logging of OSPFv3 neighbour's changes Valid values: `enable`, `disable`.
-	LogNeighbourChanges pulumi.StringPtrInput
-	// OSPF6 interface configuration. The structure of `ospf6Interface` block is documented below.
-	Ospf6Interfaces RouterOspf6Ospf6InterfaceTypeArrayInput
-	// Passive interface configuration. The structure of `passiveInterface` block is documented below.
-	PassiveInterfaces RouterOspf6PassiveInterfaceArrayInput
-	// Redistribute configuration. The structure of `redistribute` block is documented below.
-	Redistributes RouterOspf6RedistributeArrayInput
-	// A.B.C.D, in IPv4 address format.
-	RouterId pulumi.StringInput
-	// SPF calculation frequency.
-	SpfTimers pulumi.StringPtrInput
-	// IPv6 address summary configuration. The structure of `summaryAddress` block is documented below.
-	SummaryAddresses RouterOspf6SummaryAddressArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	DefaultInformationOriginate  pulumi.StringPtrInput
+	DefaultInformationRouteMap   pulumi.StringPtrInput
+	DefaultMetric                pulumi.IntPtrInput
+	DynamicSortSubtable          pulumi.StringPtrInput
+	LogNeighbourChanges          pulumi.StringPtrInput
+	Ospf6Interfaces              RouterOspf6Ospf6InterfaceTypeArrayInput
+	PassiveInterfaces            RouterOspf6PassiveInterfaceArrayInput
+	Redistributes                RouterOspf6RedistributeArrayInput
+	RestartMode                  pulumi.StringPtrInput
+	RestartOnTopologyChange      pulumi.StringPtrInput
+	RestartPeriod                pulumi.IntPtrInput
+	RouterId                     pulumi.StringInput
+	SpfTimers                    pulumi.StringPtrInput
+	SummaryAddresses             RouterOspf6SummaryAddressArrayInput
+	Vdomparam                    pulumi.StringPtrInput
 }
 
 func (RouterOspf6Args) ElementType() reflect.Type {
@@ -355,7 +196,7 @@ func (i *RouterOspf6) ToRouterOspf6OutputWithContext(ctx context.Context) Router
 // RouterOspf6ArrayInput is an input type that accepts RouterOspf6Array and RouterOspf6ArrayOutput values.
 // You can construct a concrete instance of `RouterOspf6ArrayInput` via:
 //
-//          RouterOspf6Array{ RouterOspf6Args{...} }
+//	RouterOspf6Array{ RouterOspf6Args{...} }
 type RouterOspf6ArrayInput interface {
 	pulumi.Input
 
@@ -380,7 +221,7 @@ func (i RouterOspf6Array) ToRouterOspf6ArrayOutputWithContext(ctx context.Contex
 // RouterOspf6MapInput is an input type that accepts RouterOspf6Map and RouterOspf6MapOutput values.
 // You can construct a concrete instance of `RouterOspf6MapInput` via:
 //
-//          RouterOspf6Map{ "key": RouterOspf6Args{...} }
+//	RouterOspf6Map{ "key": RouterOspf6Args{...} }
 type RouterOspf6MapInput interface {
 	pulumi.Input
 
@@ -414,6 +255,90 @@ func (o RouterOspf6Output) ToRouterOspf6Output() RouterOspf6Output {
 
 func (o RouterOspf6Output) ToRouterOspf6OutputWithContext(ctx context.Context) RouterOspf6Output {
 	return o
+}
+
+func (o RouterOspf6Output) AbrType() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.StringOutput { return v.AbrType }).(pulumi.StringOutput)
+}
+
+func (o RouterOspf6Output) Areas() RouterOspf6AreaArrayOutput {
+	return o.ApplyT(func(v *RouterOspf6) RouterOspf6AreaArrayOutput { return v.Areas }).(RouterOspf6AreaArrayOutput)
+}
+
+func (o RouterOspf6Output) AutoCostRefBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.IntOutput { return v.AutoCostRefBandwidth }).(pulumi.IntOutput)
+}
+
+func (o RouterOspf6Output) Bfd() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.StringOutput { return v.Bfd }).(pulumi.StringOutput)
+}
+
+func (o RouterOspf6Output) DefaultInformationMetric() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.IntOutput { return v.DefaultInformationMetric }).(pulumi.IntOutput)
+}
+
+func (o RouterOspf6Output) DefaultInformationMetricType() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.StringOutput { return v.DefaultInformationMetricType }).(pulumi.StringOutput)
+}
+
+func (o RouterOspf6Output) DefaultInformationOriginate() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.StringOutput { return v.DefaultInformationOriginate }).(pulumi.StringOutput)
+}
+
+func (o RouterOspf6Output) DefaultInformationRouteMap() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.StringOutput { return v.DefaultInformationRouteMap }).(pulumi.StringOutput)
+}
+
+func (o RouterOspf6Output) DefaultMetric() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.IntOutput { return v.DefaultMetric }).(pulumi.IntOutput)
+}
+
+func (o RouterOspf6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterOspf6Output) LogNeighbourChanges() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.StringOutput { return v.LogNeighbourChanges }).(pulumi.StringOutput)
+}
+
+func (o RouterOspf6Output) Ospf6Interfaces() RouterOspf6Ospf6InterfaceTypeArrayOutput {
+	return o.ApplyT(func(v *RouterOspf6) RouterOspf6Ospf6InterfaceTypeArrayOutput { return v.Ospf6Interfaces }).(RouterOspf6Ospf6InterfaceTypeArrayOutput)
+}
+
+func (o RouterOspf6Output) PassiveInterfaces() RouterOspf6PassiveInterfaceArrayOutput {
+	return o.ApplyT(func(v *RouterOspf6) RouterOspf6PassiveInterfaceArrayOutput { return v.PassiveInterfaces }).(RouterOspf6PassiveInterfaceArrayOutput)
+}
+
+func (o RouterOspf6Output) Redistributes() RouterOspf6RedistributeArrayOutput {
+	return o.ApplyT(func(v *RouterOspf6) RouterOspf6RedistributeArrayOutput { return v.Redistributes }).(RouterOspf6RedistributeArrayOutput)
+}
+
+func (o RouterOspf6Output) RestartMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.StringOutput { return v.RestartMode }).(pulumi.StringOutput)
+}
+
+func (o RouterOspf6Output) RestartOnTopologyChange() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.StringOutput { return v.RestartOnTopologyChange }).(pulumi.StringOutput)
+}
+
+func (o RouterOspf6Output) RestartPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.IntOutput { return v.RestartPeriod }).(pulumi.IntOutput)
+}
+
+func (o RouterOspf6Output) RouterId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.StringOutput { return v.RouterId }).(pulumi.StringOutput)
+}
+
+func (o RouterOspf6Output) SpfTimers() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.StringOutput { return v.SpfTimers }).(pulumi.StringOutput)
+}
+
+func (o RouterOspf6Output) SummaryAddresses() RouterOspf6SummaryAddressArrayOutput {
+	return o.ApplyT(func(v *RouterOspf6) RouterOspf6SummaryAddressArrayOutput { return v.SummaryAddresses }).(RouterOspf6SummaryAddressArrayOutput)
+}
+
+func (o RouterOspf6Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterOspf6ArrayOutput struct{ *pulumi.OutputState }

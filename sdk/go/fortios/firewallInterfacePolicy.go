@@ -7,137 +7,43 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv4 interface policies.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallInterfacePolicy(ctx, "trname", &fortios.FirewallInterfacePolicyArgs{
-// 			AddressType:           pulumi.String("ipv4"),
-// 			ApplicationListStatus: pulumi.String("disable"),
-// 			AvProfileStatus:       pulumi.String("disable"),
-// 			DlpSensorStatus:       pulumi.String("disable"),
-// 			Dsri:                  pulumi.String("disable"),
-// 			Dstaddrs: FirewallInterfacePolicyDstaddrArray{
-// 				&FirewallInterfacePolicyDstaddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			Interface:             pulumi.String("port4"),
-// 			IpsSensorStatus:       pulumi.String("disable"),
-// 			Logtraffic:            pulumi.String("all"),
-// 			Policyid:              pulumi.Int(1),
-// 			ScanBotnetConnections: pulumi.String("block"),
-// 			Services: FirewallInterfacePolicyServiceArray{
-// 				&FirewallInterfacePolicyServiceArgs{
-// 					Name: pulumi.String("ALL"),
-// 				},
-// 			},
-// 			SpamfilterProfileStatus: pulumi.String("disable"),
-// 			Srcaddrs: FirewallInterfacePolicySrcaddrArray{
-// 				&FirewallInterfacePolicySrcaddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			Status:                 pulumi.String("enable"),
-// 			WebfilterProfileStatus: pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall InterfacePolicy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInterfacePolicy:FirewallInterfacePolicy labelname {{policyid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInterfacePolicy:FirewallInterfacePolicy labelname {{policyid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallInterfacePolicy struct {
 	pulumi.CustomResourceState
 
-	// Policy address type (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-	AddressType pulumi.StringOutput `pulumi:"addressType"`
-	// Application list name.
-	ApplicationList pulumi.StringOutput `pulumi:"applicationList"`
-	// Enable/disable application control. Valid values: `enable`, `disable`.
-	ApplicationListStatus pulumi.StringOutput `pulumi:"applicationListStatus"`
-	// Antivirus profile.
-	AvProfile pulumi.StringOutput `pulumi:"avProfile"`
-	// Enable/disable antivirus. Valid values: `enable`, `disable`.
-	AvProfileStatus pulumi.StringOutput `pulumi:"avProfileStatus"`
-	// Comments.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// DLP sensor name.
-	DlpSensor pulumi.StringOutput `pulumi:"dlpSensor"`
-	// Enable/disable DLP. Valid values: `enable`, `disable`.
-	DlpSensorStatus pulumi.StringOutput `pulumi:"dlpSensorStatus"`
-	// Enable/disable DSRI. Valid values: `enable`, `disable`.
-	Dsri pulumi.StringOutput `pulumi:"dsri"`
-	// Address object to limit traffic monitoring to network traffic sent to the specified address or range. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallInterfacePolicyDstaddrArrayOutput `pulumi:"dstaddrs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Email filter profile.
-	EmailfilterProfile pulumi.StringOutput `pulumi:"emailfilterProfile"`
-	// Enable/disable email filter. Valid values: `enable`, `disable`.
-	EmailfilterProfileStatus pulumi.StringOutput `pulumi:"emailfilterProfileStatus"`
-	// Monitored interface name from available interfaces.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// IPS sensor name.
-	IpsSensor pulumi.StringOutput `pulumi:"ipsSensor"`
-	// Enable/disable IPS. Valid values: `enable`, `disable`.
-	IpsSensorStatus pulumi.StringOutput `pulumi:"ipsSensorStatus"`
-	// Label.
-	Label pulumi.StringOutput `pulumi:"label"`
-	// Logging type to be used in this policy (Options: all | utm | disable, Default: utm). Valid values: `all`, `utm`, `disable`.
-	Logtraffic pulumi.StringOutput `pulumi:"logtraffic"`
-	// Policy ID.
-	Policyid pulumi.IntOutput `pulumi:"policyid"`
-	// Enable/disable scanning for connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
-	ScanBotnetConnections pulumi.StringOutput `pulumi:"scanBotnetConnections"`
-	// Service object from available options. The structure of `service` block is documented below.
-	Services FirewallInterfacePolicyServiceArrayOutput `pulumi:"services"`
-	// Antispam profile.
-	SpamfilterProfile pulumi.StringOutput `pulumi:"spamfilterProfile"`
-	// Enable/disable antispam. Valid values: `enable`, `disable`.
-	SpamfilterProfileStatus pulumi.StringOutput `pulumi:"spamfilterProfileStatus"`
-	// Address object to limit traffic monitoring to network traffic sent from the specified address or range. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallInterfacePolicySrcaddrArrayOutput `pulumi:"srcaddrs"`
-	// Enable/disable this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Web filter profile.
-	WebfilterProfile pulumi.StringOutput `pulumi:"webfilterProfile"`
-	// Enable/disable web filtering. Valid values: `enable`, `disable`.
-	WebfilterProfileStatus pulumi.StringOutput `pulumi:"webfilterProfileStatus"`
+	AddressType              pulumi.StringOutput                       `pulumi:"addressType"`
+	ApplicationList          pulumi.StringOutput                       `pulumi:"applicationList"`
+	ApplicationListStatus    pulumi.StringOutput                       `pulumi:"applicationListStatus"`
+	AvProfile                pulumi.StringOutput                       `pulumi:"avProfile"`
+	AvProfileStatus          pulumi.StringOutput                       `pulumi:"avProfileStatus"`
+	Comments                 pulumi.StringPtrOutput                    `pulumi:"comments"`
+	DlpProfile               pulumi.StringOutput                       `pulumi:"dlpProfile"`
+	DlpProfileStatus         pulumi.StringOutput                       `pulumi:"dlpProfileStatus"`
+	DlpSensor                pulumi.StringOutput                       `pulumi:"dlpSensor"`
+	DlpSensorStatus          pulumi.StringOutput                       `pulumi:"dlpSensorStatus"`
+	Dsri                     pulumi.StringOutput                       `pulumi:"dsri"`
+	Dstaddrs                 FirewallInterfacePolicyDstaddrArrayOutput `pulumi:"dstaddrs"`
+	DynamicSortSubtable      pulumi.StringPtrOutput                    `pulumi:"dynamicSortSubtable"`
+	EmailfilterProfile       pulumi.StringOutput                       `pulumi:"emailfilterProfile"`
+	EmailfilterProfileStatus pulumi.StringOutput                       `pulumi:"emailfilterProfileStatus"`
+	Interface                pulumi.StringOutput                       `pulumi:"interface"`
+	IpsSensor                pulumi.StringOutput                       `pulumi:"ipsSensor"`
+	IpsSensorStatus          pulumi.StringOutput                       `pulumi:"ipsSensorStatus"`
+	Label                    pulumi.StringOutput                       `pulumi:"label"`
+	Logtraffic               pulumi.StringOutput                       `pulumi:"logtraffic"`
+	Policyid                 pulumi.IntOutput                          `pulumi:"policyid"`
+	ScanBotnetConnections    pulumi.StringOutput                       `pulumi:"scanBotnetConnections"`
+	Services                 FirewallInterfacePolicyServiceArrayOutput `pulumi:"services"`
+	SpamfilterProfile        pulumi.StringOutput                       `pulumi:"spamfilterProfile"`
+	SpamfilterProfileStatus  pulumi.StringOutput                       `pulumi:"spamfilterProfileStatus"`
+	Srcaddrs                 FirewallInterfacePolicySrcaddrArrayOutput `pulumi:"srcaddrs"`
+	Status                   pulumi.StringOutput                       `pulumi:"status"`
+	Vdomparam                pulumi.StringPtrOutput                    `pulumi:"vdomparam"`
+	WebfilterProfile         pulumi.StringOutput                       `pulumi:"webfilterProfile"`
+	WebfilterProfileStatus   pulumi.StringOutput                       `pulumi:"webfilterProfileStatus"`
 }
 
 // NewFirewallInterfacePolicy registers a new resource with the given unique name, arguments, and options.
@@ -182,121 +88,69 @@ func GetFirewallInterfacePolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallInterfacePolicy resources.
 type firewallInterfacePolicyState struct {
-	// Policy address type (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-	AddressType *string `pulumi:"addressType"`
-	// Application list name.
-	ApplicationList *string `pulumi:"applicationList"`
-	// Enable/disable application control. Valid values: `enable`, `disable`.
-	ApplicationListStatus *string `pulumi:"applicationListStatus"`
-	// Antivirus profile.
-	AvProfile *string `pulumi:"avProfile"`
-	// Enable/disable antivirus. Valid values: `enable`, `disable`.
-	AvProfileStatus *string `pulumi:"avProfileStatus"`
-	// Comments.
-	Comments *string `pulumi:"comments"`
-	// DLP sensor name.
-	DlpSensor *string `pulumi:"dlpSensor"`
-	// Enable/disable DLP. Valid values: `enable`, `disable`.
-	DlpSensorStatus *string `pulumi:"dlpSensorStatus"`
-	// Enable/disable DSRI. Valid values: `enable`, `disable`.
-	Dsri *string `pulumi:"dsri"`
-	// Address object to limit traffic monitoring to network traffic sent to the specified address or range. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallInterfacePolicyDstaddr `pulumi:"dstaddrs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Email filter profile.
-	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
-	// Enable/disable email filter. Valid values: `enable`, `disable`.
-	EmailfilterProfileStatus *string `pulumi:"emailfilterProfileStatus"`
-	// Monitored interface name from available interfaces.
-	Interface *string `pulumi:"interface"`
-	// IPS sensor name.
-	IpsSensor *string `pulumi:"ipsSensor"`
-	// Enable/disable IPS. Valid values: `enable`, `disable`.
-	IpsSensorStatus *string `pulumi:"ipsSensorStatus"`
-	// Label.
-	Label *string `pulumi:"label"`
-	// Logging type to be used in this policy (Options: all | utm | disable, Default: utm). Valid values: `all`, `utm`, `disable`.
-	Logtraffic *string `pulumi:"logtraffic"`
-	// Policy ID.
-	Policyid *int `pulumi:"policyid"`
-	// Enable/disable scanning for connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
-	ScanBotnetConnections *string `pulumi:"scanBotnetConnections"`
-	// Service object from available options. The structure of `service` block is documented below.
-	Services []FirewallInterfacePolicyService `pulumi:"services"`
-	// Antispam profile.
-	SpamfilterProfile *string `pulumi:"spamfilterProfile"`
-	// Enable/disable antispam. Valid values: `enable`, `disable`.
-	SpamfilterProfileStatus *string `pulumi:"spamfilterProfileStatus"`
-	// Address object to limit traffic monitoring to network traffic sent from the specified address or range. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallInterfacePolicySrcaddr `pulumi:"srcaddrs"`
-	// Enable/disable this policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Web filter profile.
-	WebfilterProfile *string `pulumi:"webfilterProfile"`
-	// Enable/disable web filtering. Valid values: `enable`, `disable`.
-	WebfilterProfileStatus *string `pulumi:"webfilterProfileStatus"`
+	AddressType              *string                          `pulumi:"addressType"`
+	ApplicationList          *string                          `pulumi:"applicationList"`
+	ApplicationListStatus    *string                          `pulumi:"applicationListStatus"`
+	AvProfile                *string                          `pulumi:"avProfile"`
+	AvProfileStatus          *string                          `pulumi:"avProfileStatus"`
+	Comments                 *string                          `pulumi:"comments"`
+	DlpProfile               *string                          `pulumi:"dlpProfile"`
+	DlpProfileStatus         *string                          `pulumi:"dlpProfileStatus"`
+	DlpSensor                *string                          `pulumi:"dlpSensor"`
+	DlpSensorStatus          *string                          `pulumi:"dlpSensorStatus"`
+	Dsri                     *string                          `pulumi:"dsri"`
+	Dstaddrs                 []FirewallInterfacePolicyDstaddr `pulumi:"dstaddrs"`
+	DynamicSortSubtable      *string                          `pulumi:"dynamicSortSubtable"`
+	EmailfilterProfile       *string                          `pulumi:"emailfilterProfile"`
+	EmailfilterProfileStatus *string                          `pulumi:"emailfilterProfileStatus"`
+	Interface                *string                          `pulumi:"interface"`
+	IpsSensor                *string                          `pulumi:"ipsSensor"`
+	IpsSensorStatus          *string                          `pulumi:"ipsSensorStatus"`
+	Label                    *string                          `pulumi:"label"`
+	Logtraffic               *string                          `pulumi:"logtraffic"`
+	Policyid                 *int                             `pulumi:"policyid"`
+	ScanBotnetConnections    *string                          `pulumi:"scanBotnetConnections"`
+	Services                 []FirewallInterfacePolicyService `pulumi:"services"`
+	SpamfilterProfile        *string                          `pulumi:"spamfilterProfile"`
+	SpamfilterProfileStatus  *string                          `pulumi:"spamfilterProfileStatus"`
+	Srcaddrs                 []FirewallInterfacePolicySrcaddr `pulumi:"srcaddrs"`
+	Status                   *string                          `pulumi:"status"`
+	Vdomparam                *string                          `pulumi:"vdomparam"`
+	WebfilterProfile         *string                          `pulumi:"webfilterProfile"`
+	WebfilterProfileStatus   *string                          `pulumi:"webfilterProfileStatus"`
 }
 
 type FirewallInterfacePolicyState struct {
-	// Policy address type (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-	AddressType pulumi.StringPtrInput
-	// Application list name.
-	ApplicationList pulumi.StringPtrInput
-	// Enable/disable application control. Valid values: `enable`, `disable`.
-	ApplicationListStatus pulumi.StringPtrInput
-	// Antivirus profile.
-	AvProfile pulumi.StringPtrInput
-	// Enable/disable antivirus. Valid values: `enable`, `disable`.
-	AvProfileStatus pulumi.StringPtrInput
-	// Comments.
-	Comments pulumi.StringPtrInput
-	// DLP sensor name.
-	DlpSensor pulumi.StringPtrInput
-	// Enable/disable DLP. Valid values: `enable`, `disable`.
-	DlpSensorStatus pulumi.StringPtrInput
-	// Enable/disable DSRI. Valid values: `enable`, `disable`.
-	Dsri pulumi.StringPtrInput
-	// Address object to limit traffic monitoring to network traffic sent to the specified address or range. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallInterfacePolicyDstaddrArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Email filter profile.
-	EmailfilterProfile pulumi.StringPtrInput
-	// Enable/disable email filter. Valid values: `enable`, `disable`.
+	AddressType              pulumi.StringPtrInput
+	ApplicationList          pulumi.StringPtrInput
+	ApplicationListStatus    pulumi.StringPtrInput
+	AvProfile                pulumi.StringPtrInput
+	AvProfileStatus          pulumi.StringPtrInput
+	Comments                 pulumi.StringPtrInput
+	DlpProfile               pulumi.StringPtrInput
+	DlpProfileStatus         pulumi.StringPtrInput
+	DlpSensor                pulumi.StringPtrInput
+	DlpSensorStatus          pulumi.StringPtrInput
+	Dsri                     pulumi.StringPtrInput
+	Dstaddrs                 FirewallInterfacePolicyDstaddrArrayInput
+	DynamicSortSubtable      pulumi.StringPtrInput
+	EmailfilterProfile       pulumi.StringPtrInput
 	EmailfilterProfileStatus pulumi.StringPtrInput
-	// Monitored interface name from available interfaces.
-	Interface pulumi.StringPtrInput
-	// IPS sensor name.
-	IpsSensor pulumi.StringPtrInput
-	// Enable/disable IPS. Valid values: `enable`, `disable`.
-	IpsSensorStatus pulumi.StringPtrInput
-	// Label.
-	Label pulumi.StringPtrInput
-	// Logging type to be used in this policy (Options: all | utm | disable, Default: utm). Valid values: `all`, `utm`, `disable`.
-	Logtraffic pulumi.StringPtrInput
-	// Policy ID.
-	Policyid pulumi.IntPtrInput
-	// Enable/disable scanning for connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
-	ScanBotnetConnections pulumi.StringPtrInput
-	// Service object from available options. The structure of `service` block is documented below.
-	Services FirewallInterfacePolicyServiceArrayInput
-	// Antispam profile.
-	SpamfilterProfile pulumi.StringPtrInput
-	// Enable/disable antispam. Valid values: `enable`, `disable`.
-	SpamfilterProfileStatus pulumi.StringPtrInput
-	// Address object to limit traffic monitoring to network traffic sent from the specified address or range. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallInterfacePolicySrcaddrArrayInput
-	// Enable/disable this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Web filter profile.
-	WebfilterProfile pulumi.StringPtrInput
-	// Enable/disable web filtering. Valid values: `enable`, `disable`.
-	WebfilterProfileStatus pulumi.StringPtrInput
+	Interface                pulumi.StringPtrInput
+	IpsSensor                pulumi.StringPtrInput
+	IpsSensorStatus          pulumi.StringPtrInput
+	Label                    pulumi.StringPtrInput
+	Logtraffic               pulumi.StringPtrInput
+	Policyid                 pulumi.IntPtrInput
+	ScanBotnetConnections    pulumi.StringPtrInput
+	Services                 FirewallInterfacePolicyServiceArrayInput
+	SpamfilterProfile        pulumi.StringPtrInput
+	SpamfilterProfileStatus  pulumi.StringPtrInput
+	Srcaddrs                 FirewallInterfacePolicySrcaddrArrayInput
+	Status                   pulumi.StringPtrInput
+	Vdomparam                pulumi.StringPtrInput
+	WebfilterProfile         pulumi.StringPtrInput
+	WebfilterProfileStatus   pulumi.StringPtrInput
 }
 
 func (FirewallInterfacePolicyState) ElementType() reflect.Type {
@@ -304,122 +158,70 @@ func (FirewallInterfacePolicyState) ElementType() reflect.Type {
 }
 
 type firewallInterfacePolicyArgs struct {
-	// Policy address type (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-	AddressType *string `pulumi:"addressType"`
-	// Application list name.
-	ApplicationList *string `pulumi:"applicationList"`
-	// Enable/disable application control. Valid values: `enable`, `disable`.
-	ApplicationListStatus *string `pulumi:"applicationListStatus"`
-	// Antivirus profile.
-	AvProfile *string `pulumi:"avProfile"`
-	// Enable/disable antivirus. Valid values: `enable`, `disable`.
-	AvProfileStatus *string `pulumi:"avProfileStatus"`
-	// Comments.
-	Comments *string `pulumi:"comments"`
-	// DLP sensor name.
-	DlpSensor *string `pulumi:"dlpSensor"`
-	// Enable/disable DLP. Valid values: `enable`, `disable`.
-	DlpSensorStatus *string `pulumi:"dlpSensorStatus"`
-	// Enable/disable DSRI. Valid values: `enable`, `disable`.
-	Dsri *string `pulumi:"dsri"`
-	// Address object to limit traffic monitoring to network traffic sent to the specified address or range. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallInterfacePolicyDstaddr `pulumi:"dstaddrs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Email filter profile.
-	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
-	// Enable/disable email filter. Valid values: `enable`, `disable`.
-	EmailfilterProfileStatus *string `pulumi:"emailfilterProfileStatus"`
-	// Monitored interface name from available interfaces.
-	Interface string `pulumi:"interface"`
-	// IPS sensor name.
-	IpsSensor *string `pulumi:"ipsSensor"`
-	// Enable/disable IPS. Valid values: `enable`, `disable`.
-	IpsSensorStatus *string `pulumi:"ipsSensorStatus"`
-	// Label.
-	Label *string `pulumi:"label"`
-	// Logging type to be used in this policy (Options: all | utm | disable, Default: utm). Valid values: `all`, `utm`, `disable`.
-	Logtraffic *string `pulumi:"logtraffic"`
-	// Policy ID.
-	Policyid *int `pulumi:"policyid"`
-	// Enable/disable scanning for connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
-	ScanBotnetConnections *string `pulumi:"scanBotnetConnections"`
-	// Service object from available options. The structure of `service` block is documented below.
-	Services []FirewallInterfacePolicyService `pulumi:"services"`
-	// Antispam profile.
-	SpamfilterProfile *string `pulumi:"spamfilterProfile"`
-	// Enable/disable antispam. Valid values: `enable`, `disable`.
-	SpamfilterProfileStatus *string `pulumi:"spamfilterProfileStatus"`
-	// Address object to limit traffic monitoring to network traffic sent from the specified address or range. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallInterfacePolicySrcaddr `pulumi:"srcaddrs"`
-	// Enable/disable this policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Web filter profile.
-	WebfilterProfile *string `pulumi:"webfilterProfile"`
-	// Enable/disable web filtering. Valid values: `enable`, `disable`.
-	WebfilterProfileStatus *string `pulumi:"webfilterProfileStatus"`
+	AddressType              *string                          `pulumi:"addressType"`
+	ApplicationList          *string                          `pulumi:"applicationList"`
+	ApplicationListStatus    *string                          `pulumi:"applicationListStatus"`
+	AvProfile                *string                          `pulumi:"avProfile"`
+	AvProfileStatus          *string                          `pulumi:"avProfileStatus"`
+	Comments                 *string                          `pulumi:"comments"`
+	DlpProfile               *string                          `pulumi:"dlpProfile"`
+	DlpProfileStatus         *string                          `pulumi:"dlpProfileStatus"`
+	DlpSensor                *string                          `pulumi:"dlpSensor"`
+	DlpSensorStatus          *string                          `pulumi:"dlpSensorStatus"`
+	Dsri                     *string                          `pulumi:"dsri"`
+	Dstaddrs                 []FirewallInterfacePolicyDstaddr `pulumi:"dstaddrs"`
+	DynamicSortSubtable      *string                          `pulumi:"dynamicSortSubtable"`
+	EmailfilterProfile       *string                          `pulumi:"emailfilterProfile"`
+	EmailfilterProfileStatus *string                          `pulumi:"emailfilterProfileStatus"`
+	Interface                string                           `pulumi:"interface"`
+	IpsSensor                *string                          `pulumi:"ipsSensor"`
+	IpsSensorStatus          *string                          `pulumi:"ipsSensorStatus"`
+	Label                    *string                          `pulumi:"label"`
+	Logtraffic               *string                          `pulumi:"logtraffic"`
+	Policyid                 *int                             `pulumi:"policyid"`
+	ScanBotnetConnections    *string                          `pulumi:"scanBotnetConnections"`
+	Services                 []FirewallInterfacePolicyService `pulumi:"services"`
+	SpamfilterProfile        *string                          `pulumi:"spamfilterProfile"`
+	SpamfilterProfileStatus  *string                          `pulumi:"spamfilterProfileStatus"`
+	Srcaddrs                 []FirewallInterfacePolicySrcaddr `pulumi:"srcaddrs"`
+	Status                   *string                          `pulumi:"status"`
+	Vdomparam                *string                          `pulumi:"vdomparam"`
+	WebfilterProfile         *string                          `pulumi:"webfilterProfile"`
+	WebfilterProfileStatus   *string                          `pulumi:"webfilterProfileStatus"`
 }
 
 // The set of arguments for constructing a FirewallInterfacePolicy resource.
 type FirewallInterfacePolicyArgs struct {
-	// Policy address type (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-	AddressType pulumi.StringPtrInput
-	// Application list name.
-	ApplicationList pulumi.StringPtrInput
-	// Enable/disable application control. Valid values: `enable`, `disable`.
-	ApplicationListStatus pulumi.StringPtrInput
-	// Antivirus profile.
-	AvProfile pulumi.StringPtrInput
-	// Enable/disable antivirus. Valid values: `enable`, `disable`.
-	AvProfileStatus pulumi.StringPtrInput
-	// Comments.
-	Comments pulumi.StringPtrInput
-	// DLP sensor name.
-	DlpSensor pulumi.StringPtrInput
-	// Enable/disable DLP. Valid values: `enable`, `disable`.
-	DlpSensorStatus pulumi.StringPtrInput
-	// Enable/disable DSRI. Valid values: `enable`, `disable`.
-	Dsri pulumi.StringPtrInput
-	// Address object to limit traffic monitoring to network traffic sent to the specified address or range. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallInterfacePolicyDstaddrArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Email filter profile.
-	EmailfilterProfile pulumi.StringPtrInput
-	// Enable/disable email filter. Valid values: `enable`, `disable`.
+	AddressType              pulumi.StringPtrInput
+	ApplicationList          pulumi.StringPtrInput
+	ApplicationListStatus    pulumi.StringPtrInput
+	AvProfile                pulumi.StringPtrInput
+	AvProfileStatus          pulumi.StringPtrInput
+	Comments                 pulumi.StringPtrInput
+	DlpProfile               pulumi.StringPtrInput
+	DlpProfileStatus         pulumi.StringPtrInput
+	DlpSensor                pulumi.StringPtrInput
+	DlpSensorStatus          pulumi.StringPtrInput
+	Dsri                     pulumi.StringPtrInput
+	Dstaddrs                 FirewallInterfacePolicyDstaddrArrayInput
+	DynamicSortSubtable      pulumi.StringPtrInput
+	EmailfilterProfile       pulumi.StringPtrInput
 	EmailfilterProfileStatus pulumi.StringPtrInput
-	// Monitored interface name from available interfaces.
-	Interface pulumi.StringInput
-	// IPS sensor name.
-	IpsSensor pulumi.StringPtrInput
-	// Enable/disable IPS. Valid values: `enable`, `disable`.
-	IpsSensorStatus pulumi.StringPtrInput
-	// Label.
-	Label pulumi.StringPtrInput
-	// Logging type to be used in this policy (Options: all | utm | disable, Default: utm). Valid values: `all`, `utm`, `disable`.
-	Logtraffic pulumi.StringPtrInput
-	// Policy ID.
-	Policyid pulumi.IntPtrInput
-	// Enable/disable scanning for connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
-	ScanBotnetConnections pulumi.StringPtrInput
-	// Service object from available options. The structure of `service` block is documented below.
-	Services FirewallInterfacePolicyServiceArrayInput
-	// Antispam profile.
-	SpamfilterProfile pulumi.StringPtrInput
-	// Enable/disable antispam. Valid values: `enable`, `disable`.
-	SpamfilterProfileStatus pulumi.StringPtrInput
-	// Address object to limit traffic monitoring to network traffic sent from the specified address or range. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallInterfacePolicySrcaddrArrayInput
-	// Enable/disable this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Web filter profile.
-	WebfilterProfile pulumi.StringPtrInput
-	// Enable/disable web filtering. Valid values: `enable`, `disable`.
-	WebfilterProfileStatus pulumi.StringPtrInput
+	Interface                pulumi.StringInput
+	IpsSensor                pulumi.StringPtrInput
+	IpsSensorStatus          pulumi.StringPtrInput
+	Label                    pulumi.StringPtrInput
+	Logtraffic               pulumi.StringPtrInput
+	Policyid                 pulumi.IntPtrInput
+	ScanBotnetConnections    pulumi.StringPtrInput
+	Services                 FirewallInterfacePolicyServiceArrayInput
+	SpamfilterProfile        pulumi.StringPtrInput
+	SpamfilterProfileStatus  pulumi.StringPtrInput
+	Srcaddrs                 FirewallInterfacePolicySrcaddrArrayInput
+	Status                   pulumi.StringPtrInput
+	Vdomparam                pulumi.StringPtrInput
+	WebfilterProfile         pulumi.StringPtrInput
+	WebfilterProfileStatus   pulumi.StringPtrInput
 }
 
 func (FirewallInterfacePolicyArgs) ElementType() reflect.Type {
@@ -448,7 +250,7 @@ func (i *FirewallInterfacePolicy) ToFirewallInterfacePolicyOutputWithContext(ctx
 // FirewallInterfacePolicyArrayInput is an input type that accepts FirewallInterfacePolicyArray and FirewallInterfacePolicyArrayOutput values.
 // You can construct a concrete instance of `FirewallInterfacePolicyArrayInput` via:
 //
-//          FirewallInterfacePolicyArray{ FirewallInterfacePolicyArgs{...} }
+//	FirewallInterfacePolicyArray{ FirewallInterfacePolicyArgs{...} }
 type FirewallInterfacePolicyArrayInput interface {
 	pulumi.Input
 
@@ -473,7 +275,7 @@ func (i FirewallInterfacePolicyArray) ToFirewallInterfacePolicyArrayOutputWithCo
 // FirewallInterfacePolicyMapInput is an input type that accepts FirewallInterfacePolicyMap and FirewallInterfacePolicyMapOutput values.
 // You can construct a concrete instance of `FirewallInterfacePolicyMapInput` via:
 //
-//          FirewallInterfacePolicyMap{ "key": FirewallInterfacePolicyArgs{...} }
+//	FirewallInterfacePolicyMap{ "key": FirewallInterfacePolicyArgs{...} }
 type FirewallInterfacePolicyMapInput interface {
 	pulumi.Input
 
@@ -507,6 +309,126 @@ func (o FirewallInterfacePolicyOutput) ToFirewallInterfacePolicyOutput() Firewal
 
 func (o FirewallInterfacePolicyOutput) ToFirewallInterfacePolicyOutputWithContext(ctx context.Context) FirewallInterfacePolicyOutput {
 	return o
+}
+
+func (o FirewallInterfacePolicyOutput) AddressType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.AddressType }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) ApplicationList() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.ApplicationList }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) ApplicationListStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.ApplicationListStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) AvProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.AvProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) AvProfileStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.AvProfileStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) DlpProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.DlpProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) DlpProfileStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.DlpProfileStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) DlpSensor() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.DlpSensor }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) DlpSensorStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.DlpSensorStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) Dsri() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.Dsri }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) Dstaddrs() FirewallInterfacePolicyDstaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) FirewallInterfacePolicyDstaddrArrayOutput { return v.Dstaddrs }).(FirewallInterfacePolicyDstaddrArrayOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) EmailfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.EmailfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) EmailfilterProfileStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.EmailfilterProfileStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) IpsSensor() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.IpsSensor }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) IpsSensorStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.IpsSensorStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.Label }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) Logtraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.Logtraffic }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) Policyid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.IntOutput { return v.Policyid }).(pulumi.IntOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) ScanBotnetConnections() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.ScanBotnetConnections }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) Services() FirewallInterfacePolicyServiceArrayOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) FirewallInterfacePolicyServiceArrayOutput { return v.Services }).(FirewallInterfacePolicyServiceArrayOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) SpamfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.SpamfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) SpamfilterProfileStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.SpamfilterProfileStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) Srcaddrs() FirewallInterfacePolicySrcaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) FirewallInterfacePolicySrcaddrArrayOutput { return v.Srcaddrs }).(FirewallInterfacePolicySrcaddrArrayOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) WebfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.WebfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicyOutput) WebfilterProfileStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy) pulumi.StringOutput { return v.WebfilterProfileStatus }).(pulumi.StringOutput)
 }
 
 type FirewallInterfacePolicyArrayOutput struct{ *pulumi.OutputState }

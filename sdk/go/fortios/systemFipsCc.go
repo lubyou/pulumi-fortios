@@ -10,62 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FIPS-CC mode.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemFipsCc(ctx, "trname", &fortios.SystemFipsCcArgs{
-// 			EntropyToken:          pulumi.String("enable"),
-// 			KeyGenerationSelfTest: pulumi.String("disable"),
-// 			SelfTestPeriod:        pulumi.Int(1440),
-// 			Status:                pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System FipsCc can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemFipsCc:SystemFipsCc labelname SystemFipsCc
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemFipsCc:SystemFipsCc labelname SystemFipsCc
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemFipsCc struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable/dynamic entropy token. Valid values: `enable`, `disable`, `dynamic`.
-	EntropyToken pulumi.StringOutput `pulumi:"entropyToken"`
-	// Enable/disable self tests after key generation. Valid values: `enable`, `disable`.
-	KeyGenerationSelfTest pulumi.StringOutput `pulumi:"keyGenerationSelfTest"`
-	// Self test period.
-	SelfTestPeriod pulumi.IntOutput `pulumi:"selfTestPeriod"`
-	// Enable/disable FIPS-CC mode. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	EntropyToken          pulumi.StringOutput    `pulumi:"entropyToken"`
+	KeyGenerationSelfTest pulumi.StringOutput    `pulumi:"keyGenerationSelfTest"`
+	SelfTestPeriod        pulumi.IntOutput       `pulumi:"selfTestPeriod"`
+	Status                pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemFipsCc registers a new resource with the given unique name, arguments, and options.
@@ -98,29 +50,19 @@ func GetSystemFipsCc(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemFipsCc resources.
 type systemFipsCcState struct {
-	// Enable/disable/dynamic entropy token. Valid values: `enable`, `disable`, `dynamic`.
-	EntropyToken *string `pulumi:"entropyToken"`
-	// Enable/disable self tests after key generation. Valid values: `enable`, `disable`.
+	EntropyToken          *string `pulumi:"entropyToken"`
 	KeyGenerationSelfTest *string `pulumi:"keyGenerationSelfTest"`
-	// Self test period.
-	SelfTestPeriod *int `pulumi:"selfTestPeriod"`
-	// Enable/disable FIPS-CC mode. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	SelfTestPeriod        *int    `pulumi:"selfTestPeriod"`
+	Status                *string `pulumi:"status"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 type SystemFipsCcState struct {
-	// Enable/disable/dynamic entropy token. Valid values: `enable`, `disable`, `dynamic`.
-	EntropyToken pulumi.StringPtrInput
-	// Enable/disable self tests after key generation. Valid values: `enable`, `disable`.
+	EntropyToken          pulumi.StringPtrInput
 	KeyGenerationSelfTest pulumi.StringPtrInput
-	// Self test period.
-	SelfTestPeriod pulumi.IntPtrInput
-	// Enable/disable FIPS-CC mode. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SelfTestPeriod        pulumi.IntPtrInput
+	Status                pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SystemFipsCcState) ElementType() reflect.Type {
@@ -128,30 +70,20 @@ func (SystemFipsCcState) ElementType() reflect.Type {
 }
 
 type systemFipsCcArgs struct {
-	// Enable/disable/dynamic entropy token. Valid values: `enable`, `disable`, `dynamic`.
-	EntropyToken *string `pulumi:"entropyToken"`
-	// Enable/disable self tests after key generation. Valid values: `enable`, `disable`.
+	EntropyToken          *string `pulumi:"entropyToken"`
 	KeyGenerationSelfTest *string `pulumi:"keyGenerationSelfTest"`
-	// Self test period.
-	SelfTestPeriod *int `pulumi:"selfTestPeriod"`
-	// Enable/disable FIPS-CC mode. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	SelfTestPeriod        *int    `pulumi:"selfTestPeriod"`
+	Status                *string `pulumi:"status"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemFipsCc resource.
 type SystemFipsCcArgs struct {
-	// Enable/disable/dynamic entropy token. Valid values: `enable`, `disable`, `dynamic`.
-	EntropyToken pulumi.StringPtrInput
-	// Enable/disable self tests after key generation. Valid values: `enable`, `disable`.
+	EntropyToken          pulumi.StringPtrInput
 	KeyGenerationSelfTest pulumi.StringPtrInput
-	// Self test period.
-	SelfTestPeriod pulumi.IntPtrInput
-	// Enable/disable FIPS-CC mode. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SelfTestPeriod        pulumi.IntPtrInput
+	Status                pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SystemFipsCcArgs) ElementType() reflect.Type {
@@ -180,7 +112,7 @@ func (i *SystemFipsCc) ToSystemFipsCcOutputWithContext(ctx context.Context) Syst
 // SystemFipsCcArrayInput is an input type that accepts SystemFipsCcArray and SystemFipsCcArrayOutput values.
 // You can construct a concrete instance of `SystemFipsCcArrayInput` via:
 //
-//          SystemFipsCcArray{ SystemFipsCcArgs{...} }
+//	SystemFipsCcArray{ SystemFipsCcArgs{...} }
 type SystemFipsCcArrayInput interface {
 	pulumi.Input
 
@@ -205,7 +137,7 @@ func (i SystemFipsCcArray) ToSystemFipsCcArrayOutputWithContext(ctx context.Cont
 // SystemFipsCcMapInput is an input type that accepts SystemFipsCcMap and SystemFipsCcMapOutput values.
 // You can construct a concrete instance of `SystemFipsCcMapInput` via:
 //
-//          SystemFipsCcMap{ "key": SystemFipsCcArgs{...} }
+//	SystemFipsCcMap{ "key": SystemFipsCcArgs{...} }
 type SystemFipsCcMapInput interface {
 	pulumi.Input
 
@@ -239,6 +171,26 @@ func (o SystemFipsCcOutput) ToSystemFipsCcOutput() SystemFipsCcOutput {
 
 func (o SystemFipsCcOutput) ToSystemFipsCcOutputWithContext(ctx context.Context) SystemFipsCcOutput {
 	return o
+}
+
+func (o SystemFipsCcOutput) EntropyToken() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFipsCc) pulumi.StringOutput { return v.EntropyToken }).(pulumi.StringOutput)
+}
+
+func (o SystemFipsCcOutput) KeyGenerationSelfTest() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFipsCc) pulumi.StringOutput { return v.KeyGenerationSelfTest }).(pulumi.StringOutput)
+}
+
+func (o SystemFipsCcOutput) SelfTestPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFipsCc) pulumi.IntOutput { return v.SelfTestPeriod }).(pulumi.IntOutput)
+}
+
+func (o SystemFipsCcOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFipsCc) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemFipsCcOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemFipsCc) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemFipsCcArrayOutput struct{ *pulumi.OutputState }

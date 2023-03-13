@@ -2,43 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Web proxy address configuration.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallProxyAddress("trname", {
- *     caseSensitivity: "disable",
- *     color: 2,
- *     referrer: "enable",
- *     type: "host-regex",
- *     visibility: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall ProxyAddress can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallProxyAddress:FirewallProxyAddress labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallProxyAddress:FirewallProxyAddress labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallProxyAddress extends pulumi.CustomResource {
     /**
      * Get an existing FirewallProxyAddress resource's state with the given name, ID, and optional extra
@@ -67,89 +34,27 @@ export class FirewallProxyAddress extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallProxyAddress.__pulumiType;
     }
 
-    /**
-     * Case sensitivity in pattern. Valid values: `disable`, `enable`.
-     */
+    public readonly applications!: pulumi.Output<outputs.FirewallProxyAddressApplication[] | undefined>;
     public readonly caseSensitivity!: pulumi.Output<string>;
-    /**
-     * Tag category.
-     */
     public readonly categories!: pulumi.Output<outputs.FirewallProxyAddressCategory[] | undefined>;
-    /**
-     * Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * Optional comments.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * HTTP header regular expression.
-     */
     public readonly header!: pulumi.Output<string>;
-    /**
-     * HTTP header group. The structure of `headerGroup` block is documented below.
-     */
     public readonly headerGroups!: pulumi.Output<outputs.FirewallProxyAddressHeaderGroup[] | undefined>;
-    /**
-     * HTTP header.
-     */
     public readonly headerName!: pulumi.Output<string>;
-    /**
-     * Address object for the host.
-     */
     public readonly host!: pulumi.Output<string>;
-    /**
-     * Host name as a regular expression.
-     */
     public readonly hostRegex!: pulumi.Output<string>;
-    /**
-     * HTTP request methods to be used. Valid values: `get`, `post`, `put`, `head`, `connect`, `trace`, `options`, `delete`.
-     */
     public readonly method!: pulumi.Output<string>;
-    /**
-     * Tag name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * URL path as a regular expression.
-     */
     public readonly path!: pulumi.Output<string>;
-    /**
-     * Match the query part of the URL as a regular expression.
-     */
     public readonly query!: pulumi.Output<string>;
-    /**
-     * Enable/disable use of referrer field in the HTTP header to match the address. Valid values: `enable`, `disable`.
-     */
     public readonly referrer!: pulumi.Output<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     public readonly taggings!: pulumi.Output<outputs.FirewallProxyAddressTagging[] | undefined>;
-    /**
-     * Proxy address type. Valid values: `host-regex`, `url`, `category`, `method`, `ua`, `header`, `src-advanced`, `dst-advanced`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
-     */
     public readonly ua!: pulumi.Output<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable visibility of the object in the GUI. Valid values: `enable`, `disable`.
-     */
     public readonly visibility!: pulumi.Output<string>;
 
     /**
@@ -165,6 +70,7 @@ export class FirewallProxyAddress extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallProxyAddressState | undefined;
+            resourceInputs["applications"] = state ? state.applications : undefined;
             resourceInputs["caseSensitivity"] = state ? state.caseSensitivity : undefined;
             resourceInputs["categories"] = state ? state.categories : undefined;
             resourceInputs["color"] = state ? state.color : undefined;
@@ -188,6 +94,7 @@ export class FirewallProxyAddress extends pulumi.CustomResource {
             resourceInputs["visibility"] = state ? state.visibility : undefined;
         } else {
             const args = argsOrState as FirewallProxyAddressArgs | undefined;
+            resourceInputs["applications"] = args ? args.applications : undefined;
             resourceInputs["caseSensitivity"] = args ? args.caseSensitivity : undefined;
             resourceInputs["categories"] = args ? args.categories : undefined;
             resourceInputs["color"] = args ? args.color : undefined;
@@ -219,89 +126,27 @@ export class FirewallProxyAddress extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallProxyAddress resources.
  */
 export interface FirewallProxyAddressState {
-    /**
-     * Case sensitivity in pattern. Valid values: `disable`, `enable`.
-     */
+    applications?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddressApplication>[]>;
     caseSensitivity?: pulumi.Input<string>;
-    /**
-     * Tag category.
-     */
     categories?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddressCategory>[]>;
-    /**
-     * Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Optional comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * HTTP header regular expression.
-     */
     header?: pulumi.Input<string>;
-    /**
-     * HTTP header group. The structure of `headerGroup` block is documented below.
-     */
     headerGroups?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddressHeaderGroup>[]>;
-    /**
-     * HTTP header.
-     */
     headerName?: pulumi.Input<string>;
-    /**
-     * Address object for the host.
-     */
     host?: pulumi.Input<string>;
-    /**
-     * Host name as a regular expression.
-     */
     hostRegex?: pulumi.Input<string>;
-    /**
-     * HTTP request methods to be used. Valid values: `get`, `post`, `put`, `head`, `connect`, `trace`, `options`, `delete`.
-     */
     method?: pulumi.Input<string>;
-    /**
-     * Tag name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * URL path as a regular expression.
-     */
     path?: pulumi.Input<string>;
-    /**
-     * Match the query part of the URL as a regular expression.
-     */
     query?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of referrer field in the HTTP header to match the address. Valid values: `enable`, `disable`.
-     */
     referrer?: pulumi.Input<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddressTagging>[]>;
-    /**
-     * Proxy address type. Valid values: `host-regex`, `url`, `category`, `method`, `ua`, `header`, `src-advanced`, `dst-advanced`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
-     */
     ua?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable visibility of the object in the GUI. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
 }
 
@@ -309,88 +154,26 @@ export interface FirewallProxyAddressState {
  * The set of arguments for constructing a FirewallProxyAddress resource.
  */
 export interface FirewallProxyAddressArgs {
-    /**
-     * Case sensitivity in pattern. Valid values: `disable`, `enable`.
-     */
+    applications?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddressApplication>[]>;
     caseSensitivity?: pulumi.Input<string>;
-    /**
-     * Tag category.
-     */
     categories?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddressCategory>[]>;
-    /**
-     * Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Optional comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * HTTP header regular expression.
-     */
     header?: pulumi.Input<string>;
-    /**
-     * HTTP header group. The structure of `headerGroup` block is documented below.
-     */
     headerGroups?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddressHeaderGroup>[]>;
-    /**
-     * HTTP header.
-     */
     headerName?: pulumi.Input<string>;
-    /**
-     * Address object for the host.
-     */
     host?: pulumi.Input<string>;
-    /**
-     * Host name as a regular expression.
-     */
     hostRegex?: pulumi.Input<string>;
-    /**
-     * HTTP request methods to be used. Valid values: `get`, `post`, `put`, `head`, `connect`, `trace`, `options`, `delete`.
-     */
     method?: pulumi.Input<string>;
-    /**
-     * Tag name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * URL path as a regular expression.
-     */
     path?: pulumi.Input<string>;
-    /**
-     * Match the query part of the URL as a regular expression.
-     */
     query?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of referrer field in the HTTP header to match the address. Valid values: `enable`, `disable`.
-     */
     referrer?: pulumi.Input<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddressTagging>[]>;
-    /**
-     * Proxy address type. Valid values: `host-regex`, `url`, `category`, `method`, `ua`, `header`, `src-advanced`, `dst-advanced`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
-     */
     ua?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable visibility of the object in the GUI. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
 }

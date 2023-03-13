@@ -7,50 +7,16 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure Network Time Protocol (NTP) servers of FortiOS.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `SystemNtp`, we recommend that you use the new resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemSettingNTP(ctx, "test2", &fortios.SystemSettingNTPArgs{
-// 			Ntpservers: pulumi.StringArray{
-// 				pulumi.String("1.1.1.1"),
-// 				pulumi.String("3.3.3.3"),
-// 			},
-// 			Ntpsync: pulumi.String("disable"),
-// 			Type:    pulumi.String("custom"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type SystemSettingNTP struct {
 	pulumi.CustomResourceState
 
-	// Configure the FortiGate to connect to any available third-party NTP server.
 	Ntpservers pulumi.StringArrayOutput `pulumi:"ntpservers"`
-	// Enable/disable setting the FortiGate system time by synchronizing with an NTP Server.
-	Ntpsync pulumi.StringOutput `pulumi:"ntpsync"`
-	// Use the FortiGuard NTP server or any other available NTP Server.
-	Type pulumi.StringOutput `pulumi:"type"`
+	Ntpsync    pulumi.StringOutput      `pulumi:"ntpsync"`
+	Type       pulumi.StringOutput      `pulumi:"type"`
 }
 
 // NewSystemSettingNTP registers a new resource with the given unique name, arguments, and options.
@@ -86,21 +52,15 @@ func GetSystemSettingNTP(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSettingNTP resources.
 type systemSettingNTPState struct {
-	// Configure the FortiGate to connect to any available third-party NTP server.
 	Ntpservers []string `pulumi:"ntpservers"`
-	// Enable/disable setting the FortiGate system time by synchronizing with an NTP Server.
-	Ntpsync *string `pulumi:"ntpsync"`
-	// Use the FortiGuard NTP server or any other available NTP Server.
-	Type *string `pulumi:"type"`
+	Ntpsync    *string  `pulumi:"ntpsync"`
+	Type       *string  `pulumi:"type"`
 }
 
 type SystemSettingNTPState struct {
-	// Configure the FortiGate to connect to any available third-party NTP server.
 	Ntpservers pulumi.StringArrayInput
-	// Enable/disable setting the FortiGate system time by synchronizing with an NTP Server.
-	Ntpsync pulumi.StringPtrInput
-	// Use the FortiGuard NTP server or any other available NTP Server.
-	Type pulumi.StringPtrInput
+	Ntpsync    pulumi.StringPtrInput
+	Type       pulumi.StringPtrInput
 }
 
 func (SystemSettingNTPState) ElementType() reflect.Type {
@@ -108,22 +68,16 @@ func (SystemSettingNTPState) ElementType() reflect.Type {
 }
 
 type systemSettingNTPArgs struct {
-	// Configure the FortiGate to connect to any available third-party NTP server.
 	Ntpservers []string `pulumi:"ntpservers"`
-	// Enable/disable setting the FortiGate system time by synchronizing with an NTP Server.
-	Ntpsync *string `pulumi:"ntpsync"`
-	// Use the FortiGuard NTP server or any other available NTP Server.
-	Type string `pulumi:"type"`
+	Ntpsync    *string  `pulumi:"ntpsync"`
+	Type       string   `pulumi:"type"`
 }
 
 // The set of arguments for constructing a SystemSettingNTP resource.
 type SystemSettingNTPArgs struct {
-	// Configure the FortiGate to connect to any available third-party NTP server.
 	Ntpservers pulumi.StringArrayInput
-	// Enable/disable setting the FortiGate system time by synchronizing with an NTP Server.
-	Ntpsync pulumi.StringPtrInput
-	// Use the FortiGuard NTP server or any other available NTP Server.
-	Type pulumi.StringInput
+	Ntpsync    pulumi.StringPtrInput
+	Type       pulumi.StringInput
 }
 
 func (SystemSettingNTPArgs) ElementType() reflect.Type {
@@ -152,7 +106,7 @@ func (i *SystemSettingNTP) ToSystemSettingNTPOutputWithContext(ctx context.Conte
 // SystemSettingNTPArrayInput is an input type that accepts SystemSettingNTPArray and SystemSettingNTPArrayOutput values.
 // You can construct a concrete instance of `SystemSettingNTPArrayInput` via:
 //
-//          SystemSettingNTPArray{ SystemSettingNTPArgs{...} }
+//	SystemSettingNTPArray{ SystemSettingNTPArgs{...} }
 type SystemSettingNTPArrayInput interface {
 	pulumi.Input
 
@@ -177,7 +131,7 @@ func (i SystemSettingNTPArray) ToSystemSettingNTPArrayOutputWithContext(ctx cont
 // SystemSettingNTPMapInput is an input type that accepts SystemSettingNTPMap and SystemSettingNTPMapOutput values.
 // You can construct a concrete instance of `SystemSettingNTPMapInput` via:
 //
-//          SystemSettingNTPMap{ "key": SystemSettingNTPArgs{...} }
+//	SystemSettingNTPMap{ "key": SystemSettingNTPArgs{...} }
 type SystemSettingNTPMapInput interface {
 	pulumi.Input
 
@@ -211,6 +165,18 @@ func (o SystemSettingNTPOutput) ToSystemSettingNTPOutput() SystemSettingNTPOutpu
 
 func (o SystemSettingNTPOutput) ToSystemSettingNTPOutputWithContext(ctx context.Context) SystemSettingNTPOutput {
 	return o
+}
+
+func (o SystemSettingNTPOutput) Ntpservers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SystemSettingNTP) pulumi.StringArrayOutput { return v.Ntpservers }).(pulumi.StringArrayOutput)
+}
+
+func (o SystemSettingNTPOutput) Ntpsync() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettingNTP) pulumi.StringOutput { return v.Ntpsync }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingNTPOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettingNTP) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 type SystemSettingNTPArrayOutput struct{ *pulumi.OutputState }

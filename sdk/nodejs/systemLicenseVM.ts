@@ -4,20 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to update VM license using uploaded file for FortiOS. Reboots immediately if successful.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test2 = new fortios.SystemLicenseVM("test2", {
- *     fileContent: "LS0tLS1CRUdJTiBGR1QgVk0gTElDRU5TRS0tLS0tDQpRQUFBQUxXaTdCVnVkV2x3QXJZcC92S2J2Yk5zME5YNWluUW9sVldmcFoxWldJQi9pL2g4c01oR0psWWc5Vkl1DQorSlBJRis1aFphMWwyNm9yNHdiEQE3RnJDeVZnQUFBQWhxWjliWHFLK1hGN2o3dnB3WTB6QXRTaTdOMVM1ZWNxDQpWYmRRREZyYklUdnRvUWNyRU1jV0ltQzFqWWs5dmVoeGlYTG1OV0MwN25BSitYTTJFNmh2b29DMjE1YUwxK2wrDQovUHl5M0VLVnNTNjJDT2hMZHc3UndXajB3V3RqMmZiWg0KLS0tLS1FTkQgRkdUIFZNIExJQ0VOU0UtLS0tLQ0K",
- * });
- * ```
- */
 export class SystemLicenseVM extends pulumi.CustomResource {
     /**
      * Get an existing SystemLicenseVM resource's state with the given name, ID, and optional extra
@@ -46,9 +32,6 @@ export class SystemLicenseVM extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemLicenseVM.__pulumiType;
     }
 
-    /**
-     * The license file, it needs to be base64 encoded, must not contain whitespace or other invalid base64 characters, and must be included in HTTP body.
-     */
     public readonly fileContent!: pulumi.Output<string>;
 
     /**
@@ -81,9 +64,6 @@ export class SystemLicenseVM extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemLicenseVM resources.
  */
 export interface SystemLicenseVMState {
-    /**
-     * The license file, it needs to be base64 encoded, must not contain whitespace or other invalid base64 characters, and must be included in HTTP body.
-     */
     fileContent?: pulumi.Input<string>;
 }
 
@@ -91,8 +71,5 @@ export interface SystemLicenseVMState {
  * The set of arguments for constructing a SystemLicenseVM resource.
  */
 export interface SystemLicenseVMArgs {
-    /**
-     * The license file, it needs to be base64 encoded, must not contain whitespace or other invalid base64 characters, and must be included in HTTP body.
-     */
     fileContent: pulumi.Input<string>;
 }

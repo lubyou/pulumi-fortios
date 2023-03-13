@@ -10,101 +10,27 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure global Web cache settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWanoptWebcache(ctx, "trname", &fortios.WanoptWebcacheArgs{
-// 			AlwaysRevalidate:  pulumi.String("disable"),
-// 			CacheByDefault:    pulumi.String("disable"),
-// 			CacheCookie:       pulumi.String("disable"),
-// 			CacheExpired:      pulumi.String("disable"),
-// 			DefaultTtl:        pulumi.Int(1440),
-// 			External:          pulumi.String("disable"),
-// 			FreshFactor:       pulumi.Int(100),
-// 			HostValidate:      pulumi.String("disable"),
-// 			IgnoreConditional: pulumi.String("disable"),
-// 			IgnoreIeReload:    pulumi.String("enable"),
-// 			IgnoreIms:         pulumi.String("disable"),
-// 			IgnorePnc:         pulumi.String("disable"),
-// 			MaxObjectSize:     pulumi.Int(512000),
-// 			MaxTtl:            pulumi.Int(7200),
-// 			MinTtl:            pulumi.Int(5),
-// 			NegRespTime:       pulumi.Int(0),
-// 			RevalPnc:          pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Wanopt Webcache can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wanoptWebcache:WanoptWebcache labelname WanoptWebcache
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wanoptWebcache:WanoptWebcache labelname WanoptWebcache
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WanoptWebcache struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable revalidation of requested cached objects, which have content on the server, before serving it to the client. Valid values: `enable`, `disable`.
-	AlwaysRevalidate pulumi.StringOutput `pulumi:"alwaysRevalidate"`
-	// Enable/disable caching content that lacks explicit caching policies from the server. Valid values: `enable`, `disable`.
-	CacheByDefault pulumi.StringOutput `pulumi:"cacheByDefault"`
-	// Enable/disable caching cookies. Since cookies contain information for or about individual users, they not usually cached. Valid values: `enable`, `disable`.
-	CacheCookie pulumi.StringOutput `pulumi:"cacheCookie"`
-	// Enable/disable caching type-1 objects that are already expired on arrival. Valid values: `enable`, `disable`.
-	CacheExpired pulumi.StringOutput `pulumi:"cacheExpired"`
-	// Default object expiry time (default = 1440 min (1 day); maximum = 5256000 min (10 years)). This only applies to those objects that do not have an expiry time set by the web server.
-	DefaultTtl pulumi.IntOutput `pulumi:"defaultTtl"`
-	// Enable/disable external Web caching. Valid values: `enable`, `disable`.
-	External pulumi.StringOutput `pulumi:"external"`
-	// Frequency that the server is checked to see if any objects have expired (1 - 100, default = 100). The higher the fresh factor, the less often the checks occur.
-	FreshFactor pulumi.IntOutput `pulumi:"freshFactor"`
-	// Enable/disable validating "Host:" with original server IP. Valid values: `enable`, `disable`.
-	HostValidate pulumi.StringOutput `pulumi:"hostValidate"`
-	// Enable/disable controlling the behavior of cache-control HTTP 1.1 header values. Valid values: `enable`, `disable`.
-	IgnoreConditional pulumi.StringOutput `pulumi:"ignoreConditional"`
-	// Enable/disable ignoring the PNC-interpretation of Internet Explorer's Accept: / header. Valid values: `enable`, `disable`.
-	IgnoreIeReload pulumi.StringOutput `pulumi:"ignoreIeReload"`
-	// Enable/disable ignoring the if-modified-since (IMS) header. Valid values: `enable`, `disable`.
-	IgnoreIms pulumi.StringOutput `pulumi:"ignoreIms"`
-	// Enable/disable ignoring the pragma no-cache (PNC) header. Valid values: `enable`, `disable`.
-	IgnorePnc pulumi.StringOutput `pulumi:"ignorePnc"`
-	// Maximum cacheable object size in kB (1 - 2147483 kb (2GB). All objects that exceed this are delivered to the client but not stored in the web cache.
-	MaxObjectSize pulumi.IntOutput `pulumi:"maxObjectSize"`
-	// Maximum time an object can stay in the web cache without checking to see if it has expired on the server (default = 7200 min (5 days); maximum = 5256000 min (10 years)).
-	MaxTtl pulumi.IntOutput `pulumi:"maxTtl"`
-	// Minimum time an object can stay in the web cache without checking to see if it has expired on the server (default = 5 min; maximum = 5256000 (10 years)).
-	MinTtl pulumi.IntOutput `pulumi:"minTtl"`
-	// Time in minutes to cache negative responses or errors (0 - 4294967295, default = 0  which means negative responses are not cached).
-	NegRespTime pulumi.IntOutput `pulumi:"negRespTime"`
-	// Enable/disable revalidation of pragma-no-cache (PNC) to address bandwidth concerns. Valid values: `enable`, `disable`.
-	RevalPnc pulumi.StringOutput `pulumi:"revalPnc"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AlwaysRevalidate  pulumi.StringOutput    `pulumi:"alwaysRevalidate"`
+	CacheByDefault    pulumi.StringOutput    `pulumi:"cacheByDefault"`
+	CacheCookie       pulumi.StringOutput    `pulumi:"cacheCookie"`
+	CacheExpired      pulumi.StringOutput    `pulumi:"cacheExpired"`
+	DefaultTtl        pulumi.IntOutput       `pulumi:"defaultTtl"`
+	External          pulumi.StringOutput    `pulumi:"external"`
+	FreshFactor       pulumi.IntOutput       `pulumi:"freshFactor"`
+	HostValidate      pulumi.StringOutput    `pulumi:"hostValidate"`
+	IgnoreConditional pulumi.StringOutput    `pulumi:"ignoreConditional"`
+	IgnoreIeReload    pulumi.StringOutput    `pulumi:"ignoreIeReload"`
+	IgnoreIms         pulumi.StringOutput    `pulumi:"ignoreIms"`
+	IgnorePnc         pulumi.StringOutput    `pulumi:"ignorePnc"`
+	MaxObjectSize     pulumi.IntOutput       `pulumi:"maxObjectSize"`
+	MaxTtl            pulumi.IntOutput       `pulumi:"maxTtl"`
+	MinTtl            pulumi.IntOutput       `pulumi:"minTtl"`
+	NegRespTime       pulumi.IntOutput       `pulumi:"negRespTime"`
+	RevalPnc          pulumi.StringOutput    `pulumi:"revalPnc"`
+	Vdomparam         pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWanoptWebcache registers a new resource with the given unique name, arguments, and options.
@@ -137,81 +63,45 @@ func GetWanoptWebcache(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WanoptWebcache resources.
 type wanoptWebcacheState struct {
-	// Enable/disable revalidation of requested cached objects, which have content on the server, before serving it to the client. Valid values: `enable`, `disable`.
-	AlwaysRevalidate *string `pulumi:"alwaysRevalidate"`
-	// Enable/disable caching content that lacks explicit caching policies from the server. Valid values: `enable`, `disable`.
-	CacheByDefault *string `pulumi:"cacheByDefault"`
-	// Enable/disable caching cookies. Since cookies contain information for or about individual users, they not usually cached. Valid values: `enable`, `disable`.
-	CacheCookie *string `pulumi:"cacheCookie"`
-	// Enable/disable caching type-1 objects that are already expired on arrival. Valid values: `enable`, `disable`.
-	CacheExpired *string `pulumi:"cacheExpired"`
-	// Default object expiry time (default = 1440 min (1 day); maximum = 5256000 min (10 years)). This only applies to those objects that do not have an expiry time set by the web server.
-	DefaultTtl *int `pulumi:"defaultTtl"`
-	// Enable/disable external Web caching. Valid values: `enable`, `disable`.
-	External *string `pulumi:"external"`
-	// Frequency that the server is checked to see if any objects have expired (1 - 100, default = 100). The higher the fresh factor, the less often the checks occur.
-	FreshFactor *int `pulumi:"freshFactor"`
-	// Enable/disable validating "Host:" with original server IP. Valid values: `enable`, `disable`.
-	HostValidate *string `pulumi:"hostValidate"`
-	// Enable/disable controlling the behavior of cache-control HTTP 1.1 header values. Valid values: `enable`, `disable`.
+	AlwaysRevalidate  *string `pulumi:"alwaysRevalidate"`
+	CacheByDefault    *string `pulumi:"cacheByDefault"`
+	CacheCookie       *string `pulumi:"cacheCookie"`
+	CacheExpired      *string `pulumi:"cacheExpired"`
+	DefaultTtl        *int    `pulumi:"defaultTtl"`
+	External          *string `pulumi:"external"`
+	FreshFactor       *int    `pulumi:"freshFactor"`
+	HostValidate      *string `pulumi:"hostValidate"`
 	IgnoreConditional *string `pulumi:"ignoreConditional"`
-	// Enable/disable ignoring the PNC-interpretation of Internet Explorer's Accept: / header. Valid values: `enable`, `disable`.
-	IgnoreIeReload *string `pulumi:"ignoreIeReload"`
-	// Enable/disable ignoring the if-modified-since (IMS) header. Valid values: `enable`, `disable`.
-	IgnoreIms *string `pulumi:"ignoreIms"`
-	// Enable/disable ignoring the pragma no-cache (PNC) header. Valid values: `enable`, `disable`.
-	IgnorePnc *string `pulumi:"ignorePnc"`
-	// Maximum cacheable object size in kB (1 - 2147483 kb (2GB). All objects that exceed this are delivered to the client but not stored in the web cache.
-	MaxObjectSize *int `pulumi:"maxObjectSize"`
-	// Maximum time an object can stay in the web cache without checking to see if it has expired on the server (default = 7200 min (5 days); maximum = 5256000 min (10 years)).
-	MaxTtl *int `pulumi:"maxTtl"`
-	// Minimum time an object can stay in the web cache without checking to see if it has expired on the server (default = 5 min; maximum = 5256000 (10 years)).
-	MinTtl *int `pulumi:"minTtl"`
-	// Time in minutes to cache negative responses or errors (0 - 4294967295, default = 0  which means negative responses are not cached).
-	NegRespTime *int `pulumi:"negRespTime"`
-	// Enable/disable revalidation of pragma-no-cache (PNC) to address bandwidth concerns. Valid values: `enable`, `disable`.
-	RevalPnc *string `pulumi:"revalPnc"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	IgnoreIeReload    *string `pulumi:"ignoreIeReload"`
+	IgnoreIms         *string `pulumi:"ignoreIms"`
+	IgnorePnc         *string `pulumi:"ignorePnc"`
+	MaxObjectSize     *int    `pulumi:"maxObjectSize"`
+	MaxTtl            *int    `pulumi:"maxTtl"`
+	MinTtl            *int    `pulumi:"minTtl"`
+	NegRespTime       *int    `pulumi:"negRespTime"`
+	RevalPnc          *string `pulumi:"revalPnc"`
+	Vdomparam         *string `pulumi:"vdomparam"`
 }
 
 type WanoptWebcacheState struct {
-	// Enable/disable revalidation of requested cached objects, which have content on the server, before serving it to the client. Valid values: `enable`, `disable`.
-	AlwaysRevalidate pulumi.StringPtrInput
-	// Enable/disable caching content that lacks explicit caching policies from the server. Valid values: `enable`, `disable`.
-	CacheByDefault pulumi.StringPtrInput
-	// Enable/disable caching cookies. Since cookies contain information for or about individual users, they not usually cached. Valid values: `enable`, `disable`.
-	CacheCookie pulumi.StringPtrInput
-	// Enable/disable caching type-1 objects that are already expired on arrival. Valid values: `enable`, `disable`.
-	CacheExpired pulumi.StringPtrInput
-	// Default object expiry time (default = 1440 min (1 day); maximum = 5256000 min (10 years)). This only applies to those objects that do not have an expiry time set by the web server.
-	DefaultTtl pulumi.IntPtrInput
-	// Enable/disable external Web caching. Valid values: `enable`, `disable`.
-	External pulumi.StringPtrInput
-	// Frequency that the server is checked to see if any objects have expired (1 - 100, default = 100). The higher the fresh factor, the less often the checks occur.
-	FreshFactor pulumi.IntPtrInput
-	// Enable/disable validating "Host:" with original server IP. Valid values: `enable`, `disable`.
-	HostValidate pulumi.StringPtrInput
-	// Enable/disable controlling the behavior of cache-control HTTP 1.1 header values. Valid values: `enable`, `disable`.
+	AlwaysRevalidate  pulumi.StringPtrInput
+	CacheByDefault    pulumi.StringPtrInput
+	CacheCookie       pulumi.StringPtrInput
+	CacheExpired      pulumi.StringPtrInput
+	DefaultTtl        pulumi.IntPtrInput
+	External          pulumi.StringPtrInput
+	FreshFactor       pulumi.IntPtrInput
+	HostValidate      pulumi.StringPtrInput
 	IgnoreConditional pulumi.StringPtrInput
-	// Enable/disable ignoring the PNC-interpretation of Internet Explorer's Accept: / header. Valid values: `enable`, `disable`.
-	IgnoreIeReload pulumi.StringPtrInput
-	// Enable/disable ignoring the if-modified-since (IMS) header. Valid values: `enable`, `disable`.
-	IgnoreIms pulumi.StringPtrInput
-	// Enable/disable ignoring the pragma no-cache (PNC) header. Valid values: `enable`, `disable`.
-	IgnorePnc pulumi.StringPtrInput
-	// Maximum cacheable object size in kB (1 - 2147483 kb (2GB). All objects that exceed this are delivered to the client but not stored in the web cache.
-	MaxObjectSize pulumi.IntPtrInput
-	// Maximum time an object can stay in the web cache without checking to see if it has expired on the server (default = 7200 min (5 days); maximum = 5256000 min (10 years)).
-	MaxTtl pulumi.IntPtrInput
-	// Minimum time an object can stay in the web cache without checking to see if it has expired on the server (default = 5 min; maximum = 5256000 (10 years)).
-	MinTtl pulumi.IntPtrInput
-	// Time in minutes to cache negative responses or errors (0 - 4294967295, default = 0  which means negative responses are not cached).
-	NegRespTime pulumi.IntPtrInput
-	// Enable/disable revalidation of pragma-no-cache (PNC) to address bandwidth concerns. Valid values: `enable`, `disable`.
-	RevalPnc pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	IgnoreIeReload    pulumi.StringPtrInput
+	IgnoreIms         pulumi.StringPtrInput
+	IgnorePnc         pulumi.StringPtrInput
+	MaxObjectSize     pulumi.IntPtrInput
+	MaxTtl            pulumi.IntPtrInput
+	MinTtl            pulumi.IntPtrInput
+	NegRespTime       pulumi.IntPtrInput
+	RevalPnc          pulumi.StringPtrInput
+	Vdomparam         pulumi.StringPtrInput
 }
 
 func (WanoptWebcacheState) ElementType() reflect.Type {
@@ -219,82 +109,46 @@ func (WanoptWebcacheState) ElementType() reflect.Type {
 }
 
 type wanoptWebcacheArgs struct {
-	// Enable/disable revalidation of requested cached objects, which have content on the server, before serving it to the client. Valid values: `enable`, `disable`.
-	AlwaysRevalidate *string `pulumi:"alwaysRevalidate"`
-	// Enable/disable caching content that lacks explicit caching policies from the server. Valid values: `enable`, `disable`.
-	CacheByDefault *string `pulumi:"cacheByDefault"`
-	// Enable/disable caching cookies. Since cookies contain information for or about individual users, they not usually cached. Valid values: `enable`, `disable`.
-	CacheCookie *string `pulumi:"cacheCookie"`
-	// Enable/disable caching type-1 objects that are already expired on arrival. Valid values: `enable`, `disable`.
-	CacheExpired *string `pulumi:"cacheExpired"`
-	// Default object expiry time (default = 1440 min (1 day); maximum = 5256000 min (10 years)). This only applies to those objects that do not have an expiry time set by the web server.
-	DefaultTtl *int `pulumi:"defaultTtl"`
-	// Enable/disable external Web caching. Valid values: `enable`, `disable`.
-	External *string `pulumi:"external"`
-	// Frequency that the server is checked to see if any objects have expired (1 - 100, default = 100). The higher the fresh factor, the less often the checks occur.
-	FreshFactor *int `pulumi:"freshFactor"`
-	// Enable/disable validating "Host:" with original server IP. Valid values: `enable`, `disable`.
-	HostValidate *string `pulumi:"hostValidate"`
-	// Enable/disable controlling the behavior of cache-control HTTP 1.1 header values. Valid values: `enable`, `disable`.
+	AlwaysRevalidate  *string `pulumi:"alwaysRevalidate"`
+	CacheByDefault    *string `pulumi:"cacheByDefault"`
+	CacheCookie       *string `pulumi:"cacheCookie"`
+	CacheExpired      *string `pulumi:"cacheExpired"`
+	DefaultTtl        *int    `pulumi:"defaultTtl"`
+	External          *string `pulumi:"external"`
+	FreshFactor       *int    `pulumi:"freshFactor"`
+	HostValidate      *string `pulumi:"hostValidate"`
 	IgnoreConditional *string `pulumi:"ignoreConditional"`
-	// Enable/disable ignoring the PNC-interpretation of Internet Explorer's Accept: / header. Valid values: `enable`, `disable`.
-	IgnoreIeReload *string `pulumi:"ignoreIeReload"`
-	// Enable/disable ignoring the if-modified-since (IMS) header. Valid values: `enable`, `disable`.
-	IgnoreIms *string `pulumi:"ignoreIms"`
-	// Enable/disable ignoring the pragma no-cache (PNC) header. Valid values: `enable`, `disable`.
-	IgnorePnc *string `pulumi:"ignorePnc"`
-	// Maximum cacheable object size in kB (1 - 2147483 kb (2GB). All objects that exceed this are delivered to the client but not stored in the web cache.
-	MaxObjectSize *int `pulumi:"maxObjectSize"`
-	// Maximum time an object can stay in the web cache without checking to see if it has expired on the server (default = 7200 min (5 days); maximum = 5256000 min (10 years)).
-	MaxTtl *int `pulumi:"maxTtl"`
-	// Minimum time an object can stay in the web cache without checking to see if it has expired on the server (default = 5 min; maximum = 5256000 (10 years)).
-	MinTtl *int `pulumi:"minTtl"`
-	// Time in minutes to cache negative responses or errors (0 - 4294967295, default = 0  which means negative responses are not cached).
-	NegRespTime *int `pulumi:"negRespTime"`
-	// Enable/disable revalidation of pragma-no-cache (PNC) to address bandwidth concerns. Valid values: `enable`, `disable`.
-	RevalPnc *string `pulumi:"revalPnc"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	IgnoreIeReload    *string `pulumi:"ignoreIeReload"`
+	IgnoreIms         *string `pulumi:"ignoreIms"`
+	IgnorePnc         *string `pulumi:"ignorePnc"`
+	MaxObjectSize     *int    `pulumi:"maxObjectSize"`
+	MaxTtl            *int    `pulumi:"maxTtl"`
+	MinTtl            *int    `pulumi:"minTtl"`
+	NegRespTime       *int    `pulumi:"negRespTime"`
+	RevalPnc          *string `pulumi:"revalPnc"`
+	Vdomparam         *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WanoptWebcache resource.
 type WanoptWebcacheArgs struct {
-	// Enable/disable revalidation of requested cached objects, which have content on the server, before serving it to the client. Valid values: `enable`, `disable`.
-	AlwaysRevalidate pulumi.StringPtrInput
-	// Enable/disable caching content that lacks explicit caching policies from the server. Valid values: `enable`, `disable`.
-	CacheByDefault pulumi.StringPtrInput
-	// Enable/disable caching cookies. Since cookies contain information for or about individual users, they not usually cached. Valid values: `enable`, `disable`.
-	CacheCookie pulumi.StringPtrInput
-	// Enable/disable caching type-1 objects that are already expired on arrival. Valid values: `enable`, `disable`.
-	CacheExpired pulumi.StringPtrInput
-	// Default object expiry time (default = 1440 min (1 day); maximum = 5256000 min (10 years)). This only applies to those objects that do not have an expiry time set by the web server.
-	DefaultTtl pulumi.IntPtrInput
-	// Enable/disable external Web caching. Valid values: `enable`, `disable`.
-	External pulumi.StringPtrInput
-	// Frequency that the server is checked to see if any objects have expired (1 - 100, default = 100). The higher the fresh factor, the less often the checks occur.
-	FreshFactor pulumi.IntPtrInput
-	// Enable/disable validating "Host:" with original server IP. Valid values: `enable`, `disable`.
-	HostValidate pulumi.StringPtrInput
-	// Enable/disable controlling the behavior of cache-control HTTP 1.1 header values. Valid values: `enable`, `disable`.
+	AlwaysRevalidate  pulumi.StringPtrInput
+	CacheByDefault    pulumi.StringPtrInput
+	CacheCookie       pulumi.StringPtrInput
+	CacheExpired      pulumi.StringPtrInput
+	DefaultTtl        pulumi.IntPtrInput
+	External          pulumi.StringPtrInput
+	FreshFactor       pulumi.IntPtrInput
+	HostValidate      pulumi.StringPtrInput
 	IgnoreConditional pulumi.StringPtrInput
-	// Enable/disable ignoring the PNC-interpretation of Internet Explorer's Accept: / header. Valid values: `enable`, `disable`.
-	IgnoreIeReload pulumi.StringPtrInput
-	// Enable/disable ignoring the if-modified-since (IMS) header. Valid values: `enable`, `disable`.
-	IgnoreIms pulumi.StringPtrInput
-	// Enable/disable ignoring the pragma no-cache (PNC) header. Valid values: `enable`, `disable`.
-	IgnorePnc pulumi.StringPtrInput
-	// Maximum cacheable object size in kB (1 - 2147483 kb (2GB). All objects that exceed this are delivered to the client but not stored in the web cache.
-	MaxObjectSize pulumi.IntPtrInput
-	// Maximum time an object can stay in the web cache without checking to see if it has expired on the server (default = 7200 min (5 days); maximum = 5256000 min (10 years)).
-	MaxTtl pulumi.IntPtrInput
-	// Minimum time an object can stay in the web cache without checking to see if it has expired on the server (default = 5 min; maximum = 5256000 (10 years)).
-	MinTtl pulumi.IntPtrInput
-	// Time in minutes to cache negative responses or errors (0 - 4294967295, default = 0  which means negative responses are not cached).
-	NegRespTime pulumi.IntPtrInput
-	// Enable/disable revalidation of pragma-no-cache (PNC) to address bandwidth concerns. Valid values: `enable`, `disable`.
-	RevalPnc pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	IgnoreIeReload    pulumi.StringPtrInput
+	IgnoreIms         pulumi.StringPtrInput
+	IgnorePnc         pulumi.StringPtrInput
+	MaxObjectSize     pulumi.IntPtrInput
+	MaxTtl            pulumi.IntPtrInput
+	MinTtl            pulumi.IntPtrInput
+	NegRespTime       pulumi.IntPtrInput
+	RevalPnc          pulumi.StringPtrInput
+	Vdomparam         pulumi.StringPtrInput
 }
 
 func (WanoptWebcacheArgs) ElementType() reflect.Type {
@@ -323,7 +177,7 @@ func (i *WanoptWebcache) ToWanoptWebcacheOutputWithContext(ctx context.Context) 
 // WanoptWebcacheArrayInput is an input type that accepts WanoptWebcacheArray and WanoptWebcacheArrayOutput values.
 // You can construct a concrete instance of `WanoptWebcacheArrayInput` via:
 //
-//          WanoptWebcacheArray{ WanoptWebcacheArgs{...} }
+//	WanoptWebcacheArray{ WanoptWebcacheArgs{...} }
 type WanoptWebcacheArrayInput interface {
 	pulumi.Input
 
@@ -348,7 +202,7 @@ func (i WanoptWebcacheArray) ToWanoptWebcacheArrayOutputWithContext(ctx context.
 // WanoptWebcacheMapInput is an input type that accepts WanoptWebcacheMap and WanoptWebcacheMapOutput values.
 // You can construct a concrete instance of `WanoptWebcacheMapInput` via:
 //
-//          WanoptWebcacheMap{ "key": WanoptWebcacheArgs{...} }
+//	WanoptWebcacheMap{ "key": WanoptWebcacheArgs{...} }
 type WanoptWebcacheMapInput interface {
 	pulumi.Input
 
@@ -382,6 +236,78 @@ func (o WanoptWebcacheOutput) ToWanoptWebcacheOutput() WanoptWebcacheOutput {
 
 func (o WanoptWebcacheOutput) ToWanoptWebcacheOutputWithContext(ctx context.Context) WanoptWebcacheOutput {
 	return o
+}
+
+func (o WanoptWebcacheOutput) AlwaysRevalidate() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.StringOutput { return v.AlwaysRevalidate }).(pulumi.StringOutput)
+}
+
+func (o WanoptWebcacheOutput) CacheByDefault() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.StringOutput { return v.CacheByDefault }).(pulumi.StringOutput)
+}
+
+func (o WanoptWebcacheOutput) CacheCookie() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.StringOutput { return v.CacheCookie }).(pulumi.StringOutput)
+}
+
+func (o WanoptWebcacheOutput) CacheExpired() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.StringOutput { return v.CacheExpired }).(pulumi.StringOutput)
+}
+
+func (o WanoptWebcacheOutput) DefaultTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.IntOutput { return v.DefaultTtl }).(pulumi.IntOutput)
+}
+
+func (o WanoptWebcacheOutput) External() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.StringOutput { return v.External }).(pulumi.StringOutput)
+}
+
+func (o WanoptWebcacheOutput) FreshFactor() pulumi.IntOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.IntOutput { return v.FreshFactor }).(pulumi.IntOutput)
+}
+
+func (o WanoptWebcacheOutput) HostValidate() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.StringOutput { return v.HostValidate }).(pulumi.StringOutput)
+}
+
+func (o WanoptWebcacheOutput) IgnoreConditional() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.StringOutput { return v.IgnoreConditional }).(pulumi.StringOutput)
+}
+
+func (o WanoptWebcacheOutput) IgnoreIeReload() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.StringOutput { return v.IgnoreIeReload }).(pulumi.StringOutput)
+}
+
+func (o WanoptWebcacheOutput) IgnoreIms() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.StringOutput { return v.IgnoreIms }).(pulumi.StringOutput)
+}
+
+func (o WanoptWebcacheOutput) IgnorePnc() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.StringOutput { return v.IgnorePnc }).(pulumi.StringOutput)
+}
+
+func (o WanoptWebcacheOutput) MaxObjectSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.IntOutput { return v.MaxObjectSize }).(pulumi.IntOutput)
+}
+
+func (o WanoptWebcacheOutput) MaxTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.IntOutput { return v.MaxTtl }).(pulumi.IntOutput)
+}
+
+func (o WanoptWebcacheOutput) MinTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.IntOutput { return v.MinTtl }).(pulumi.IntOutput)
+}
+
+func (o WanoptWebcacheOutput) NegRespTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.IntOutput { return v.NegRespTime }).(pulumi.IntOutput)
+}
+
+func (o WanoptWebcacheOutput) RevalPnc() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.StringOutput { return v.RevalPnc }).(pulumi.StringOutput)
+}
+
+func (o WanoptWebcacheOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WanoptWebcache) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WanoptWebcacheArrayOutput struct{ *pulumi.OutputState }

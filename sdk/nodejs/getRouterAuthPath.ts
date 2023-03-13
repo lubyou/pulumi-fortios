@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios router authpath
- */
 export function getRouterAuthPath(args: GetRouterAuthPathArgs, opts?: pulumi.InvokeOptions): Promise<GetRouterAuthPathResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getRouterAuthPath:GetRouterAuthPath", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getRouterAuthPath(args: GetRouterAuthPathArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking GetRouterAuthPath.
  */
 export interface GetRouterAuthPathArgs {
-    /**
-     * Specify the name of the desired router authpath.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,39 +25,23 @@ export interface GetRouterAuthPathArgs {
  * A collection of values returned by GetRouterAuthPath.
  */
 export interface GetRouterAuthPathResult {
-    /**
-     * Outgoing interface.
-     */
     readonly device: string;
-    /**
-     * Gateway IP address.
-     */
     readonly gateway: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Name of the entry.
-     */
     readonly name: string;
     readonly vdomparam?: string;
 }
-
 export function getRouterAuthPathOutput(args: GetRouterAuthPathOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterAuthPathResult> {
-    return pulumi.output(args).apply(a => getRouterAuthPath(a, opts))
+    return pulumi.output(args).apply((a: any) => getRouterAuthPath(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetRouterAuthPath.
  */
 export interface GetRouterAuthPathOutputArgs {
-    /**
-     * Specify the name of the desired router authpath.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

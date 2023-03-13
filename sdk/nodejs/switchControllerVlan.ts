@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure VLANs for switch controller. Applies to FortiOS Version `<= 6.2.0`.
- *
- * ## Import
- *
- * SwitchController Vlan can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerVlan:SwitchControllerVlan labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerVlan:SwitchControllerVlan labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerVlan extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerVlan resource's state with the given name, ID, and optional extra
@@ -52,61 +34,19 @@ export class SwitchControllerVlan extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerVlan.__pulumiType;
     }
 
-    /**
-     * Authentication. Valid values: `radius`, `usergroup`.
-     */
     public readonly auth!: pulumi.Output<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * User group name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specify captive portal replacement message override group.
-     */
     public readonly portalMessageOverrideGroup!: pulumi.Output<string>;
-    /**
-     * Individual message overrides. The structure of `portalMessageOverrides` block is documented below.
-     */
-    public readonly portalMessageOverrides!: pulumi.Output<outputs.SwitchControllerVlanPortalMessageOverrides | undefined>;
-    /**
-     * Authentication radius server.
-     */
+    public readonly portalMessageOverrides!: pulumi.Output<outputs.SwitchControllerVlanPortalMessageOverrides>;
     public readonly radiusServer!: pulumi.Output<string>;
-    /**
-     * Security. Valid values: `open`, `captive-portal`, `8021x`.
-     */
     public readonly security!: pulumi.Output<string>;
-    /**
-     * Selected user group. The structure of `selectedUsergroups` block is documented below.
-     */
     public readonly selectedUsergroups!: pulumi.Output<outputs.SwitchControllerVlanSelectedUsergroup[] | undefined>;
-    /**
-     * Authentication usergroup.
-     */
     public readonly usergroup!: pulumi.Output<string>;
-    /**
-     * Virtual domain,
-     */
     public readonly vdom!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * VLAN ID.
-     */
     public readonly vlanid!: pulumi.Output<number>;
 
     /**
@@ -162,61 +102,19 @@ export class SwitchControllerVlan extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerVlan resources.
  */
 export interface SwitchControllerVlanState {
-    /**
-     * Authentication. Valid values: `radius`, `usergroup`.
-     */
     auth?: pulumi.Input<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * User group name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specify captive portal replacement message override group.
-     */
     portalMessageOverrideGroup?: pulumi.Input<string>;
-    /**
-     * Individual message overrides. The structure of `portalMessageOverrides` block is documented below.
-     */
     portalMessageOverrides?: pulumi.Input<inputs.SwitchControllerVlanPortalMessageOverrides>;
-    /**
-     * Authentication radius server.
-     */
     radiusServer?: pulumi.Input<string>;
-    /**
-     * Security. Valid values: `open`, `captive-portal`, `8021x`.
-     */
     security?: pulumi.Input<string>;
-    /**
-     * Selected user group. The structure of `selectedUsergroups` block is documented below.
-     */
     selectedUsergroups?: pulumi.Input<pulumi.Input<inputs.SwitchControllerVlanSelectedUsergroup>[]>;
-    /**
-     * Authentication usergroup.
-     */
     usergroup?: pulumi.Input<string>;
-    /**
-     * Virtual domain,
-     */
     vdom?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * VLAN ID.
-     */
     vlanid?: pulumi.Input<number>;
 }
 
@@ -224,60 +122,18 @@ export interface SwitchControllerVlanState {
  * The set of arguments for constructing a SwitchControllerVlan resource.
  */
 export interface SwitchControllerVlanArgs {
-    /**
-     * Authentication. Valid values: `radius`, `usergroup`.
-     */
     auth?: pulumi.Input<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * User group name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specify captive portal replacement message override group.
-     */
     portalMessageOverrideGroup?: pulumi.Input<string>;
-    /**
-     * Individual message overrides. The structure of `portalMessageOverrides` block is documented below.
-     */
     portalMessageOverrides?: pulumi.Input<inputs.SwitchControllerVlanPortalMessageOverrides>;
-    /**
-     * Authentication radius server.
-     */
     radiusServer?: pulumi.Input<string>;
-    /**
-     * Security. Valid values: `open`, `captive-portal`, `8021x`.
-     */
     security?: pulumi.Input<string>;
-    /**
-     * Selected user group. The structure of `selectedUsergroups` block is documented below.
-     */
     selectedUsergroups?: pulumi.Input<pulumi.Input<inputs.SwitchControllerVlanSelectedUsergroup>[]>;
-    /**
-     * Authentication usergroup.
-     */
     usergroup?: pulumi.Input<string>;
-    /**
-     * Virtual domain,
-     */
     vdom?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * VLAN ID.
-     */
     vlanid?: pulumi.Input<number>;
 }

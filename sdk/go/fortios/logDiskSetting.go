@@ -7,139 +7,44 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Settings for local disk logging.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogDiskSetting(ctx, "trname", &fortios.LogDiskSettingArgs{
-// 			Diskfull:                   pulumi.String("overwrite"),
-// 			DlpArchiveQuota:            pulumi.Int(0),
-// 			FullFinalWarningThreshold:  pulumi.Int(95),
-// 			FullFirstWarningThreshold:  pulumi.Int(75),
-// 			FullSecondWarningThreshold: pulumi.Int(90),
-// 			IpsArchive:                 pulumi.String("enable"),
-// 			LogQuota:                   pulumi.Int(0),
-// 			MaxLogFileSize:             pulumi.Int(20),
-// 			MaxPolicyPacketCaptureSize: pulumi.Int(100),
-// 			MaximumLogAge:              pulumi.Int(7),
-// 			ReportQuota:                pulumi.Int(0),
-// 			RollDay:                    pulumi.String("sunday"),
-// 			RollSchedule:               pulumi.String("daily"),
-// 			RollTime:                   pulumi.String("00:00"),
-// 			SourceIp:                   pulumi.String("0.0.0.0"),
-// 			Status:                     pulumi.String("enable"),
-// 			Upload:                     pulumi.String("disable"),
-// 			UploadDeleteFiles:          pulumi.String("enable"),
-// 			UploadDestination:          pulumi.String("ftp-server"),
-// 			UploadSslConn:              pulumi.String("default"),
-// 			Uploadip:                   pulumi.String("0.0.0.0"),
-// 			Uploadport:                 pulumi.Int(21),
-// 			Uploadsched:                pulumi.String("disable"),
-// 			Uploadtime:                 pulumi.String("00:00"),
-// 			Uploadtype:                 pulumi.String("traffic event virus webfilter IPS spamfilter dlp-archive anomaly voip dlp app-ctrl waf netscan gtp dns"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// LogDisk Setting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logDiskSetting:LogDiskSetting labelname LogDiskSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logDiskSetting:LogDiskSetting labelname LogDiskSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogDiskSetting struct {
 	pulumi.CustomResourceState
 
-	// Action to take when disk is full. The system can overwrite the oldest log messages or stop logging when the disk is full (default = overwrite). Valid values: `overwrite`, `nolog`.
-	Diskfull pulumi.StringOutput `pulumi:"diskfull"`
-	// DLP archive quota (MB).
-	DlpArchiveQuota pulumi.IntOutput `pulumi:"dlpArchiveQuota"`
-	// Log full final warning threshold as a percent (3 - 100, default = 95).
-	FullFinalWarningThreshold pulumi.IntOutput `pulumi:"fullFinalWarningThreshold"`
-	// Log full first warning threshold as a percent (1 - 98, default = 75).
-	FullFirstWarningThreshold pulumi.IntOutput `pulumi:"fullFirstWarningThreshold"`
-	// Log full second warning threshold as a percent (2 - 99, default = 90).
-	FullSecondWarningThreshold pulumi.IntOutput `pulumi:"fullSecondWarningThreshold"`
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
-	// Enable/disable IPS packet archiving to the local disk. Valid values: `enable`, `disable`.
-	IpsArchive pulumi.StringOutput `pulumi:"ipsArchive"`
-	// Disk log quota (MB).
-	LogQuota pulumi.IntOutput `pulumi:"logQuota"`
-	// Maximum log file size before rolling (1 - 100 Mbytes).
-	MaxLogFileSize pulumi.IntOutput `pulumi:"maxLogFileSize"`
-	// Maximum size of policy sniffer in MB (0 means unlimited).
-	MaxPolicyPacketCaptureSize pulumi.IntOutput `pulumi:"maxPolicyPacketCaptureSize"`
-	// Delete log files older than (days).
-	MaximumLogAge pulumi.IntOutput `pulumi:"maximumLogAge"`
-	// Report quota (MB).
-	ReportQuota pulumi.IntOutput `pulumi:"reportQuota"`
-	// Day of week on which to roll log file. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	RollDay pulumi.StringOutput `pulumi:"rollDay"`
-	// Frequency to check log file for rolling. Valid values: `daily`, `weekly`.
-	RollSchedule pulumi.StringOutput `pulumi:"rollSchedule"`
-	// Time of day to roll the log file (hh:mm).
-	RollTime pulumi.StringOutput `pulumi:"rollTime"`
-	// Source IP address to use for uploading disk log files.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Enable/disable local disk logging. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Enable/disable uploading log files when they are rolled. Valid values: `enable`, `disable`.
-	Upload pulumi.StringOutput `pulumi:"upload"`
-	// Delete log files after uploading (default = enable). Valid values: `enable`, `disable`.
-	UploadDeleteFiles pulumi.StringOutput `pulumi:"uploadDeleteFiles"`
-	// The type of server to upload log files to. Only FTP is currently supported. Valid values: `ftp-server`.
-	UploadDestination pulumi.StringOutput `pulumi:"uploadDestination"`
-	// Enable/disable encrypted FTPS communication to upload log files. Valid values: `default`, `high`, `low`, `disable`.
-	UploadSslConn pulumi.StringOutput `pulumi:"uploadSslConn"`
-	// The remote directory on the FTP server to upload log files to.
-	Uploaddir pulumi.StringOutput `pulumi:"uploaddir"`
-	// IP address of the FTP server to upload log files to.
-	Uploadip pulumi.StringOutput `pulumi:"uploadip"`
-	// Password required to log into the FTP server to upload disk log files.
-	Uploadpass pulumi.StringPtrOutput `pulumi:"uploadpass"`
-	// TCP port to use for communicating with the FTP server (default = 21).
-	Uploadport pulumi.IntOutput `pulumi:"uploadport"`
-	// Set the schedule for uploading log files to the FTP server (default = disable = upload when rolling). Valid values: `disable`, `enable`.
-	Uploadsched pulumi.StringOutput `pulumi:"uploadsched"`
-	// Time of day at which log files are uploaded if uploadsched is enabled (hh:mm or hh).
-	Uploadtime pulumi.StringOutput `pulumi:"uploadtime"`
-	// Types of log files to upload. Separate multiple entries with a space.
-	Uploadtype pulumi.StringOutput `pulumi:"uploadtype"`
-	// Username required to log into the FTP server to upload disk log files.
-	Uploaduser pulumi.StringOutput `pulumi:"uploaduser"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Diskfull                   pulumi.StringOutput    `pulumi:"diskfull"`
+	DlpArchiveQuota            pulumi.IntOutput       `pulumi:"dlpArchiveQuota"`
+	FullFinalWarningThreshold  pulumi.IntOutput       `pulumi:"fullFinalWarningThreshold"`
+	FullFirstWarningThreshold  pulumi.IntOutput       `pulumi:"fullFirstWarningThreshold"`
+	FullSecondWarningThreshold pulumi.IntOutput       `pulumi:"fullSecondWarningThreshold"`
+	Interface                  pulumi.StringOutput    `pulumi:"interface"`
+	InterfaceSelectMethod      pulumi.StringOutput    `pulumi:"interfaceSelectMethod"`
+	IpsArchive                 pulumi.StringOutput    `pulumi:"ipsArchive"`
+	LogQuota                   pulumi.IntOutput       `pulumi:"logQuota"`
+	MaxLogFileSize             pulumi.IntOutput       `pulumi:"maxLogFileSize"`
+	MaxPolicyPacketCaptureSize pulumi.IntOutput       `pulumi:"maxPolicyPacketCaptureSize"`
+	MaximumLogAge              pulumi.IntOutput       `pulumi:"maximumLogAge"`
+	ReportQuota                pulumi.IntOutput       `pulumi:"reportQuota"`
+	RollDay                    pulumi.StringOutput    `pulumi:"rollDay"`
+	RollSchedule               pulumi.StringOutput    `pulumi:"rollSchedule"`
+	RollTime                   pulumi.StringOutput    `pulumi:"rollTime"`
+	SourceIp                   pulumi.StringOutput    `pulumi:"sourceIp"`
+	Status                     pulumi.StringOutput    `pulumi:"status"`
+	Upload                     pulumi.StringOutput    `pulumi:"upload"`
+	UploadDeleteFiles          pulumi.StringOutput    `pulumi:"uploadDeleteFiles"`
+	UploadDestination          pulumi.StringOutput    `pulumi:"uploadDestination"`
+	UploadSslConn              pulumi.StringOutput    `pulumi:"uploadSslConn"`
+	Uploaddir                  pulumi.StringOutput    `pulumi:"uploaddir"`
+	Uploadip                   pulumi.StringOutput    `pulumi:"uploadip"`
+	Uploadpass                 pulumi.StringPtrOutput `pulumi:"uploadpass"`
+	Uploadport                 pulumi.IntOutput       `pulumi:"uploadport"`
+	Uploadsched                pulumi.StringOutput    `pulumi:"uploadsched"`
+	Uploadtime                 pulumi.StringOutput    `pulumi:"uploadtime"`
+	Uploadtype                 pulumi.StringOutput    `pulumi:"uploadtype"`
+	Uploaduser                 pulumi.StringOutput    `pulumi:"uploaduser"`
+	Vdomparam                  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewLogDiskSetting registers a new resource with the given unique name, arguments, and options.
@@ -152,6 +57,13 @@ func NewLogDiskSetting(ctx *pulumi.Context,
 	if args.Status == nil {
 		return nil, errors.New("invalid value for required argument 'Status'")
 	}
+	if args.Uploadpass != nil {
+		args.Uploadpass = pulumi.ToSecret(args.Uploadpass).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"uploadpass",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource LogDiskSetting
 	err := ctx.RegisterResource("fortios:index/logDiskSetting:LogDiskSetting", name, args, &resource, opts...)
@@ -175,133 +87,71 @@ func GetLogDiskSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogDiskSetting resources.
 type logDiskSettingState struct {
-	// Action to take when disk is full. The system can overwrite the oldest log messages or stop logging when the disk is full (default = overwrite). Valid values: `overwrite`, `nolog`.
-	Diskfull *string `pulumi:"diskfull"`
-	// DLP archive quota (MB).
-	DlpArchiveQuota *int `pulumi:"dlpArchiveQuota"`
-	// Log full final warning threshold as a percent (3 - 100, default = 95).
-	FullFinalWarningThreshold *int `pulumi:"fullFinalWarningThreshold"`
-	// Log full first warning threshold as a percent (1 - 98, default = 75).
-	FullFirstWarningThreshold *int `pulumi:"fullFirstWarningThreshold"`
-	// Log full second warning threshold as a percent (2 - 99, default = 90).
-	FullSecondWarningThreshold *int `pulumi:"fullSecondWarningThreshold"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Enable/disable IPS packet archiving to the local disk. Valid values: `enable`, `disable`.
-	IpsArchive *string `pulumi:"ipsArchive"`
-	// Disk log quota (MB).
-	LogQuota *int `pulumi:"logQuota"`
-	// Maximum log file size before rolling (1 - 100 Mbytes).
-	MaxLogFileSize *int `pulumi:"maxLogFileSize"`
-	// Maximum size of policy sniffer in MB (0 means unlimited).
-	MaxPolicyPacketCaptureSize *int `pulumi:"maxPolicyPacketCaptureSize"`
-	// Delete log files older than (days).
-	MaximumLogAge *int `pulumi:"maximumLogAge"`
-	// Report quota (MB).
-	ReportQuota *int `pulumi:"reportQuota"`
-	// Day of week on which to roll log file. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	RollDay *string `pulumi:"rollDay"`
-	// Frequency to check log file for rolling. Valid values: `daily`, `weekly`.
-	RollSchedule *string `pulumi:"rollSchedule"`
-	// Time of day to roll the log file (hh:mm).
-	RollTime *string `pulumi:"rollTime"`
-	// Source IP address to use for uploading disk log files.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable local disk logging. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Enable/disable uploading log files when they are rolled. Valid values: `enable`, `disable`.
-	Upload *string `pulumi:"upload"`
-	// Delete log files after uploading (default = enable). Valid values: `enable`, `disable`.
-	UploadDeleteFiles *string `pulumi:"uploadDeleteFiles"`
-	// The type of server to upload log files to. Only FTP is currently supported. Valid values: `ftp-server`.
-	UploadDestination *string `pulumi:"uploadDestination"`
-	// Enable/disable encrypted FTPS communication to upload log files. Valid values: `default`, `high`, `low`, `disable`.
-	UploadSslConn *string `pulumi:"uploadSslConn"`
-	// The remote directory on the FTP server to upload log files to.
-	Uploaddir *string `pulumi:"uploaddir"`
-	// IP address of the FTP server to upload log files to.
-	Uploadip *string `pulumi:"uploadip"`
-	// Password required to log into the FTP server to upload disk log files.
-	Uploadpass *string `pulumi:"uploadpass"`
-	// TCP port to use for communicating with the FTP server (default = 21).
-	Uploadport *int `pulumi:"uploadport"`
-	// Set the schedule for uploading log files to the FTP server (default = disable = upload when rolling). Valid values: `disable`, `enable`.
-	Uploadsched *string `pulumi:"uploadsched"`
-	// Time of day at which log files are uploaded if uploadsched is enabled (hh:mm or hh).
-	Uploadtime *string `pulumi:"uploadtime"`
-	// Types of log files to upload. Separate multiple entries with a space.
-	Uploadtype *string `pulumi:"uploadtype"`
-	// Username required to log into the FTP server to upload disk log files.
-	Uploaduser *string `pulumi:"uploaduser"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Diskfull                   *string `pulumi:"diskfull"`
+	DlpArchiveQuota            *int    `pulumi:"dlpArchiveQuota"`
+	FullFinalWarningThreshold  *int    `pulumi:"fullFinalWarningThreshold"`
+	FullFirstWarningThreshold  *int    `pulumi:"fullFirstWarningThreshold"`
+	FullSecondWarningThreshold *int    `pulumi:"fullSecondWarningThreshold"`
+	Interface                  *string `pulumi:"interface"`
+	InterfaceSelectMethod      *string `pulumi:"interfaceSelectMethod"`
+	IpsArchive                 *string `pulumi:"ipsArchive"`
+	LogQuota                   *int    `pulumi:"logQuota"`
+	MaxLogFileSize             *int    `pulumi:"maxLogFileSize"`
+	MaxPolicyPacketCaptureSize *int    `pulumi:"maxPolicyPacketCaptureSize"`
+	MaximumLogAge              *int    `pulumi:"maximumLogAge"`
+	ReportQuota                *int    `pulumi:"reportQuota"`
+	RollDay                    *string `pulumi:"rollDay"`
+	RollSchedule               *string `pulumi:"rollSchedule"`
+	RollTime                   *string `pulumi:"rollTime"`
+	SourceIp                   *string `pulumi:"sourceIp"`
+	Status                     *string `pulumi:"status"`
+	Upload                     *string `pulumi:"upload"`
+	UploadDeleteFiles          *string `pulumi:"uploadDeleteFiles"`
+	UploadDestination          *string `pulumi:"uploadDestination"`
+	UploadSslConn              *string `pulumi:"uploadSslConn"`
+	Uploaddir                  *string `pulumi:"uploaddir"`
+	Uploadip                   *string `pulumi:"uploadip"`
+	Uploadpass                 *string `pulumi:"uploadpass"`
+	Uploadport                 *int    `pulumi:"uploadport"`
+	Uploadsched                *string `pulumi:"uploadsched"`
+	Uploadtime                 *string `pulumi:"uploadtime"`
+	Uploadtype                 *string `pulumi:"uploadtype"`
+	Uploaduser                 *string `pulumi:"uploaduser"`
+	Vdomparam                  *string `pulumi:"vdomparam"`
 }
 
 type LogDiskSettingState struct {
-	// Action to take when disk is full. The system can overwrite the oldest log messages or stop logging when the disk is full (default = overwrite). Valid values: `overwrite`, `nolog`.
-	Diskfull pulumi.StringPtrInput
-	// DLP archive quota (MB).
-	DlpArchiveQuota pulumi.IntPtrInput
-	// Log full final warning threshold as a percent (3 - 100, default = 95).
-	FullFinalWarningThreshold pulumi.IntPtrInput
-	// Log full first warning threshold as a percent (1 - 98, default = 75).
-	FullFirstWarningThreshold pulumi.IntPtrInput
-	// Log full second warning threshold as a percent (2 - 99, default = 90).
+	Diskfull                   pulumi.StringPtrInput
+	DlpArchiveQuota            pulumi.IntPtrInput
+	FullFinalWarningThreshold  pulumi.IntPtrInput
+	FullFirstWarningThreshold  pulumi.IntPtrInput
 	FullSecondWarningThreshold pulumi.IntPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringPtrInput
-	// Enable/disable IPS packet archiving to the local disk. Valid values: `enable`, `disable`.
-	IpsArchive pulumi.StringPtrInput
-	// Disk log quota (MB).
-	LogQuota pulumi.IntPtrInput
-	// Maximum log file size before rolling (1 - 100 Mbytes).
-	MaxLogFileSize pulumi.IntPtrInput
-	// Maximum size of policy sniffer in MB (0 means unlimited).
+	Interface                  pulumi.StringPtrInput
+	InterfaceSelectMethod      pulumi.StringPtrInput
+	IpsArchive                 pulumi.StringPtrInput
+	LogQuota                   pulumi.IntPtrInput
+	MaxLogFileSize             pulumi.IntPtrInput
 	MaxPolicyPacketCaptureSize pulumi.IntPtrInput
-	// Delete log files older than (days).
-	MaximumLogAge pulumi.IntPtrInput
-	// Report quota (MB).
-	ReportQuota pulumi.IntPtrInput
-	// Day of week on which to roll log file. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	RollDay pulumi.StringPtrInput
-	// Frequency to check log file for rolling. Valid values: `daily`, `weekly`.
-	RollSchedule pulumi.StringPtrInput
-	// Time of day to roll the log file (hh:mm).
-	RollTime pulumi.StringPtrInput
-	// Source IP address to use for uploading disk log files.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable local disk logging. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Enable/disable uploading log files when they are rolled. Valid values: `enable`, `disable`.
-	Upload pulumi.StringPtrInput
-	// Delete log files after uploading (default = enable). Valid values: `enable`, `disable`.
-	UploadDeleteFiles pulumi.StringPtrInput
-	// The type of server to upload log files to. Only FTP is currently supported. Valid values: `ftp-server`.
-	UploadDestination pulumi.StringPtrInput
-	// Enable/disable encrypted FTPS communication to upload log files. Valid values: `default`, `high`, `low`, `disable`.
-	UploadSslConn pulumi.StringPtrInput
-	// The remote directory on the FTP server to upload log files to.
-	Uploaddir pulumi.StringPtrInput
-	// IP address of the FTP server to upload log files to.
-	Uploadip pulumi.StringPtrInput
-	// Password required to log into the FTP server to upload disk log files.
-	Uploadpass pulumi.StringPtrInput
-	// TCP port to use for communicating with the FTP server (default = 21).
-	Uploadport pulumi.IntPtrInput
-	// Set the schedule for uploading log files to the FTP server (default = disable = upload when rolling). Valid values: `disable`, `enable`.
-	Uploadsched pulumi.StringPtrInput
-	// Time of day at which log files are uploaded if uploadsched is enabled (hh:mm or hh).
-	Uploadtime pulumi.StringPtrInput
-	// Types of log files to upload. Separate multiple entries with a space.
-	Uploadtype pulumi.StringPtrInput
-	// Username required to log into the FTP server to upload disk log files.
-	Uploaduser pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MaximumLogAge              pulumi.IntPtrInput
+	ReportQuota                pulumi.IntPtrInput
+	RollDay                    pulumi.StringPtrInput
+	RollSchedule               pulumi.StringPtrInput
+	RollTime                   pulumi.StringPtrInput
+	SourceIp                   pulumi.StringPtrInput
+	Status                     pulumi.StringPtrInput
+	Upload                     pulumi.StringPtrInput
+	UploadDeleteFiles          pulumi.StringPtrInput
+	UploadDestination          pulumi.StringPtrInput
+	UploadSslConn              pulumi.StringPtrInput
+	Uploaddir                  pulumi.StringPtrInput
+	Uploadip                   pulumi.StringPtrInput
+	Uploadpass                 pulumi.StringPtrInput
+	Uploadport                 pulumi.IntPtrInput
+	Uploadsched                pulumi.StringPtrInput
+	Uploadtime                 pulumi.StringPtrInput
+	Uploadtype                 pulumi.StringPtrInput
+	Uploaduser                 pulumi.StringPtrInput
+	Vdomparam                  pulumi.StringPtrInput
 }
 
 func (LogDiskSettingState) ElementType() reflect.Type {
@@ -309,134 +159,72 @@ func (LogDiskSettingState) ElementType() reflect.Type {
 }
 
 type logDiskSettingArgs struct {
-	// Action to take when disk is full. The system can overwrite the oldest log messages or stop logging when the disk is full (default = overwrite). Valid values: `overwrite`, `nolog`.
-	Diskfull *string `pulumi:"diskfull"`
-	// DLP archive quota (MB).
-	DlpArchiveQuota *int `pulumi:"dlpArchiveQuota"`
-	// Log full final warning threshold as a percent (3 - 100, default = 95).
-	FullFinalWarningThreshold *int `pulumi:"fullFinalWarningThreshold"`
-	// Log full first warning threshold as a percent (1 - 98, default = 75).
-	FullFirstWarningThreshold *int `pulumi:"fullFirstWarningThreshold"`
-	// Log full second warning threshold as a percent (2 - 99, default = 90).
-	FullSecondWarningThreshold *int `pulumi:"fullSecondWarningThreshold"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Enable/disable IPS packet archiving to the local disk. Valid values: `enable`, `disable`.
-	IpsArchive *string `pulumi:"ipsArchive"`
-	// Disk log quota (MB).
-	LogQuota *int `pulumi:"logQuota"`
-	// Maximum log file size before rolling (1 - 100 Mbytes).
-	MaxLogFileSize *int `pulumi:"maxLogFileSize"`
-	// Maximum size of policy sniffer in MB (0 means unlimited).
-	MaxPolicyPacketCaptureSize *int `pulumi:"maxPolicyPacketCaptureSize"`
-	// Delete log files older than (days).
-	MaximumLogAge *int `pulumi:"maximumLogAge"`
-	// Report quota (MB).
-	ReportQuota *int `pulumi:"reportQuota"`
-	// Day of week on which to roll log file. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	RollDay *string `pulumi:"rollDay"`
-	// Frequency to check log file for rolling. Valid values: `daily`, `weekly`.
-	RollSchedule *string `pulumi:"rollSchedule"`
-	// Time of day to roll the log file (hh:mm).
-	RollTime *string `pulumi:"rollTime"`
-	// Source IP address to use for uploading disk log files.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable local disk logging. Valid values: `enable`, `disable`.
-	Status string `pulumi:"status"`
-	// Enable/disable uploading log files when they are rolled. Valid values: `enable`, `disable`.
-	Upload *string `pulumi:"upload"`
-	// Delete log files after uploading (default = enable). Valid values: `enable`, `disable`.
-	UploadDeleteFiles *string `pulumi:"uploadDeleteFiles"`
-	// The type of server to upload log files to. Only FTP is currently supported. Valid values: `ftp-server`.
-	UploadDestination *string `pulumi:"uploadDestination"`
-	// Enable/disable encrypted FTPS communication to upload log files. Valid values: `default`, `high`, `low`, `disable`.
-	UploadSslConn *string `pulumi:"uploadSslConn"`
-	// The remote directory on the FTP server to upload log files to.
-	Uploaddir *string `pulumi:"uploaddir"`
-	// IP address of the FTP server to upload log files to.
-	Uploadip *string `pulumi:"uploadip"`
-	// Password required to log into the FTP server to upload disk log files.
-	Uploadpass *string `pulumi:"uploadpass"`
-	// TCP port to use for communicating with the FTP server (default = 21).
-	Uploadport *int `pulumi:"uploadport"`
-	// Set the schedule for uploading log files to the FTP server (default = disable = upload when rolling). Valid values: `disable`, `enable`.
-	Uploadsched *string `pulumi:"uploadsched"`
-	// Time of day at which log files are uploaded if uploadsched is enabled (hh:mm or hh).
-	Uploadtime *string `pulumi:"uploadtime"`
-	// Types of log files to upload. Separate multiple entries with a space.
-	Uploadtype *string `pulumi:"uploadtype"`
-	// Username required to log into the FTP server to upload disk log files.
-	Uploaduser *string `pulumi:"uploaduser"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Diskfull                   *string `pulumi:"diskfull"`
+	DlpArchiveQuota            *int    `pulumi:"dlpArchiveQuota"`
+	FullFinalWarningThreshold  *int    `pulumi:"fullFinalWarningThreshold"`
+	FullFirstWarningThreshold  *int    `pulumi:"fullFirstWarningThreshold"`
+	FullSecondWarningThreshold *int    `pulumi:"fullSecondWarningThreshold"`
+	Interface                  *string `pulumi:"interface"`
+	InterfaceSelectMethod      *string `pulumi:"interfaceSelectMethod"`
+	IpsArchive                 *string `pulumi:"ipsArchive"`
+	LogQuota                   *int    `pulumi:"logQuota"`
+	MaxLogFileSize             *int    `pulumi:"maxLogFileSize"`
+	MaxPolicyPacketCaptureSize *int    `pulumi:"maxPolicyPacketCaptureSize"`
+	MaximumLogAge              *int    `pulumi:"maximumLogAge"`
+	ReportQuota                *int    `pulumi:"reportQuota"`
+	RollDay                    *string `pulumi:"rollDay"`
+	RollSchedule               *string `pulumi:"rollSchedule"`
+	RollTime                   *string `pulumi:"rollTime"`
+	SourceIp                   *string `pulumi:"sourceIp"`
+	Status                     string  `pulumi:"status"`
+	Upload                     *string `pulumi:"upload"`
+	UploadDeleteFiles          *string `pulumi:"uploadDeleteFiles"`
+	UploadDestination          *string `pulumi:"uploadDestination"`
+	UploadSslConn              *string `pulumi:"uploadSslConn"`
+	Uploaddir                  *string `pulumi:"uploaddir"`
+	Uploadip                   *string `pulumi:"uploadip"`
+	Uploadpass                 *string `pulumi:"uploadpass"`
+	Uploadport                 *int    `pulumi:"uploadport"`
+	Uploadsched                *string `pulumi:"uploadsched"`
+	Uploadtime                 *string `pulumi:"uploadtime"`
+	Uploadtype                 *string `pulumi:"uploadtype"`
+	Uploaduser                 *string `pulumi:"uploaduser"`
+	Vdomparam                  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogDiskSetting resource.
 type LogDiskSettingArgs struct {
-	// Action to take when disk is full. The system can overwrite the oldest log messages or stop logging when the disk is full (default = overwrite). Valid values: `overwrite`, `nolog`.
-	Diskfull pulumi.StringPtrInput
-	// DLP archive quota (MB).
-	DlpArchiveQuota pulumi.IntPtrInput
-	// Log full final warning threshold as a percent (3 - 100, default = 95).
-	FullFinalWarningThreshold pulumi.IntPtrInput
-	// Log full first warning threshold as a percent (1 - 98, default = 75).
-	FullFirstWarningThreshold pulumi.IntPtrInput
-	// Log full second warning threshold as a percent (2 - 99, default = 90).
+	Diskfull                   pulumi.StringPtrInput
+	DlpArchiveQuota            pulumi.IntPtrInput
+	FullFinalWarningThreshold  pulumi.IntPtrInput
+	FullFirstWarningThreshold  pulumi.IntPtrInput
 	FullSecondWarningThreshold pulumi.IntPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringPtrInput
-	// Enable/disable IPS packet archiving to the local disk. Valid values: `enable`, `disable`.
-	IpsArchive pulumi.StringPtrInput
-	// Disk log quota (MB).
-	LogQuota pulumi.IntPtrInput
-	// Maximum log file size before rolling (1 - 100 Mbytes).
-	MaxLogFileSize pulumi.IntPtrInput
-	// Maximum size of policy sniffer in MB (0 means unlimited).
+	Interface                  pulumi.StringPtrInput
+	InterfaceSelectMethod      pulumi.StringPtrInput
+	IpsArchive                 pulumi.StringPtrInput
+	LogQuota                   pulumi.IntPtrInput
+	MaxLogFileSize             pulumi.IntPtrInput
 	MaxPolicyPacketCaptureSize pulumi.IntPtrInput
-	// Delete log files older than (days).
-	MaximumLogAge pulumi.IntPtrInput
-	// Report quota (MB).
-	ReportQuota pulumi.IntPtrInput
-	// Day of week on which to roll log file. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	RollDay pulumi.StringPtrInput
-	// Frequency to check log file for rolling. Valid values: `daily`, `weekly`.
-	RollSchedule pulumi.StringPtrInput
-	// Time of day to roll the log file (hh:mm).
-	RollTime pulumi.StringPtrInput
-	// Source IP address to use for uploading disk log files.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable local disk logging. Valid values: `enable`, `disable`.
-	Status pulumi.StringInput
-	// Enable/disable uploading log files when they are rolled. Valid values: `enable`, `disable`.
-	Upload pulumi.StringPtrInput
-	// Delete log files after uploading (default = enable). Valid values: `enable`, `disable`.
-	UploadDeleteFiles pulumi.StringPtrInput
-	// The type of server to upload log files to. Only FTP is currently supported. Valid values: `ftp-server`.
-	UploadDestination pulumi.StringPtrInput
-	// Enable/disable encrypted FTPS communication to upload log files. Valid values: `default`, `high`, `low`, `disable`.
-	UploadSslConn pulumi.StringPtrInput
-	// The remote directory on the FTP server to upload log files to.
-	Uploaddir pulumi.StringPtrInput
-	// IP address of the FTP server to upload log files to.
-	Uploadip pulumi.StringPtrInput
-	// Password required to log into the FTP server to upload disk log files.
-	Uploadpass pulumi.StringPtrInput
-	// TCP port to use for communicating with the FTP server (default = 21).
-	Uploadport pulumi.IntPtrInput
-	// Set the schedule for uploading log files to the FTP server (default = disable = upload when rolling). Valid values: `disable`, `enable`.
-	Uploadsched pulumi.StringPtrInput
-	// Time of day at which log files are uploaded if uploadsched is enabled (hh:mm or hh).
-	Uploadtime pulumi.StringPtrInput
-	// Types of log files to upload. Separate multiple entries with a space.
-	Uploadtype pulumi.StringPtrInput
-	// Username required to log into the FTP server to upload disk log files.
-	Uploaduser pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MaximumLogAge              pulumi.IntPtrInput
+	ReportQuota                pulumi.IntPtrInput
+	RollDay                    pulumi.StringPtrInput
+	RollSchedule               pulumi.StringPtrInput
+	RollTime                   pulumi.StringPtrInput
+	SourceIp                   pulumi.StringPtrInput
+	Status                     pulumi.StringInput
+	Upload                     pulumi.StringPtrInput
+	UploadDeleteFiles          pulumi.StringPtrInput
+	UploadDestination          pulumi.StringPtrInput
+	UploadSslConn              pulumi.StringPtrInput
+	Uploaddir                  pulumi.StringPtrInput
+	Uploadip                   pulumi.StringPtrInput
+	Uploadpass                 pulumi.StringPtrInput
+	Uploadport                 pulumi.IntPtrInput
+	Uploadsched                pulumi.StringPtrInput
+	Uploadtime                 pulumi.StringPtrInput
+	Uploadtype                 pulumi.StringPtrInput
+	Uploaduser                 pulumi.StringPtrInput
+	Vdomparam                  pulumi.StringPtrInput
 }
 
 func (LogDiskSettingArgs) ElementType() reflect.Type {
@@ -465,7 +253,7 @@ func (i *LogDiskSetting) ToLogDiskSettingOutputWithContext(ctx context.Context) 
 // LogDiskSettingArrayInput is an input type that accepts LogDiskSettingArray and LogDiskSettingArrayOutput values.
 // You can construct a concrete instance of `LogDiskSettingArrayInput` via:
 //
-//          LogDiskSettingArray{ LogDiskSettingArgs{...} }
+//	LogDiskSettingArray{ LogDiskSettingArgs{...} }
 type LogDiskSettingArrayInput interface {
 	pulumi.Input
 
@@ -490,7 +278,7 @@ func (i LogDiskSettingArray) ToLogDiskSettingArrayOutputWithContext(ctx context.
 // LogDiskSettingMapInput is an input type that accepts LogDiskSettingMap and LogDiskSettingMapOutput values.
 // You can construct a concrete instance of `LogDiskSettingMapInput` via:
 //
-//          LogDiskSettingMap{ "key": LogDiskSettingArgs{...} }
+//	LogDiskSettingMap{ "key": LogDiskSettingArgs{...} }
 type LogDiskSettingMapInput interface {
 	pulumi.Input
 
@@ -524,6 +312,130 @@ func (o LogDiskSettingOutput) ToLogDiskSettingOutput() LogDiskSettingOutput {
 
 func (o LogDiskSettingOutput) ToLogDiskSettingOutputWithContext(ctx context.Context) LogDiskSettingOutput {
 	return o
+}
+
+func (o LogDiskSettingOutput) Diskfull() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.Diskfull }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) DlpArchiveQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.IntOutput { return v.DlpArchiveQuota }).(pulumi.IntOutput)
+}
+
+func (o LogDiskSettingOutput) FullFinalWarningThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.IntOutput { return v.FullFinalWarningThreshold }).(pulumi.IntOutput)
+}
+
+func (o LogDiskSettingOutput) FullFirstWarningThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.IntOutput { return v.FullFirstWarningThreshold }).(pulumi.IntOutput)
+}
+
+func (o LogDiskSettingOutput) FullSecondWarningThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.IntOutput { return v.FullSecondWarningThreshold }).(pulumi.IntOutput)
+}
+
+func (o LogDiskSettingOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) IpsArchive() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.IpsArchive }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) LogQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.IntOutput { return v.LogQuota }).(pulumi.IntOutput)
+}
+
+func (o LogDiskSettingOutput) MaxLogFileSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.IntOutput { return v.MaxLogFileSize }).(pulumi.IntOutput)
+}
+
+func (o LogDiskSettingOutput) MaxPolicyPacketCaptureSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.IntOutput { return v.MaxPolicyPacketCaptureSize }).(pulumi.IntOutput)
+}
+
+func (o LogDiskSettingOutput) MaximumLogAge() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.IntOutput { return v.MaximumLogAge }).(pulumi.IntOutput)
+}
+
+func (o LogDiskSettingOutput) ReportQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.IntOutput { return v.ReportQuota }).(pulumi.IntOutput)
+}
+
+func (o LogDiskSettingOutput) RollDay() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.RollDay }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) RollSchedule() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.RollSchedule }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) RollTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.RollTime }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) Upload() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.Upload }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) UploadDeleteFiles() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.UploadDeleteFiles }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) UploadDestination() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.UploadDestination }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) UploadSslConn() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.UploadSslConn }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) Uploaddir() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.Uploaddir }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) Uploadip() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.Uploadip }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) Uploadpass() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringPtrOutput { return v.Uploadpass }).(pulumi.StringPtrOutput)
+}
+
+func (o LogDiskSettingOutput) Uploadport() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.IntOutput { return v.Uploadport }).(pulumi.IntOutput)
+}
+
+func (o LogDiskSettingOutput) Uploadsched() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.Uploadsched }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) Uploadtime() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.Uploadtime }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) Uploadtype() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.Uploadtype }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) Uploaduser() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringOutput { return v.Uploaduser }).(pulumi.StringOutput)
+}
+
+func (o LogDiskSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogDiskSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type LogDiskSettingArrayOutput struct{ *pulumi.OutputState }

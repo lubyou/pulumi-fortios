@@ -10,57 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 neighbor discovery proxy (RFC4389).
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemNdProxy(ctx, "trname", &fortios.SystemNdProxyArgs{
-// 			Status: pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System NdProxy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemNdProxy:SystemNdProxy labelname SystemNdProxy
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemNdProxy:SystemNdProxy labelname SystemNdProxy
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemNdProxy struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Interfaces using the neighbor discovery proxy. The structure of `member` block is documented below.
-	Members SystemNdProxyMemberArrayOutput `pulumi:"members"`
-	// Enable/disable neighbor discovery proxy. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
+	Members             SystemNdProxyMemberArrayOutput `pulumi:"members"`
+	Status              pulumi.StringOutput            `pulumi:"status"`
+	Vdomparam           pulumi.StringPtrOutput         `pulumi:"vdomparam"`
 }
 
 // NewSystemNdProxy registers a new resource with the given unique name, arguments, and options.
@@ -93,25 +49,17 @@ func GetSystemNdProxy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemNdProxy resources.
 type systemNdProxyState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Interfaces using the neighbor discovery proxy. The structure of `member` block is documented below.
-	Members []SystemNdProxyMember `pulumi:"members"`
-	// Enable/disable neighbor discovery proxy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	Members             []SystemNdProxyMember `pulumi:"members"`
+	Status              *string               `pulumi:"status"`
+	Vdomparam           *string               `pulumi:"vdomparam"`
 }
 
 type SystemNdProxyState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Interfaces using the neighbor discovery proxy. The structure of `member` block is documented below.
-	Members SystemNdProxyMemberArrayInput
-	// Enable/disable neighbor discovery proxy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Members             SystemNdProxyMemberArrayInput
+	Status              pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemNdProxyState) ElementType() reflect.Type {
@@ -119,26 +67,18 @@ func (SystemNdProxyState) ElementType() reflect.Type {
 }
 
 type systemNdProxyArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Interfaces using the neighbor discovery proxy. The structure of `member` block is documented below.
-	Members []SystemNdProxyMember `pulumi:"members"`
-	// Enable/disable neighbor discovery proxy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	Members             []SystemNdProxyMember `pulumi:"members"`
+	Status              *string               `pulumi:"status"`
+	Vdomparam           *string               `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemNdProxy resource.
 type SystemNdProxyArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Interfaces using the neighbor discovery proxy. The structure of `member` block is documented below.
-	Members SystemNdProxyMemberArrayInput
-	// Enable/disable neighbor discovery proxy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Members             SystemNdProxyMemberArrayInput
+	Status              pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemNdProxyArgs) ElementType() reflect.Type {
@@ -167,7 +107,7 @@ func (i *SystemNdProxy) ToSystemNdProxyOutputWithContext(ctx context.Context) Sy
 // SystemNdProxyArrayInput is an input type that accepts SystemNdProxyArray and SystemNdProxyArrayOutput values.
 // You can construct a concrete instance of `SystemNdProxyArrayInput` via:
 //
-//          SystemNdProxyArray{ SystemNdProxyArgs{...} }
+//	SystemNdProxyArray{ SystemNdProxyArgs{...} }
 type SystemNdProxyArrayInput interface {
 	pulumi.Input
 
@@ -192,7 +132,7 @@ func (i SystemNdProxyArray) ToSystemNdProxyArrayOutputWithContext(ctx context.Co
 // SystemNdProxyMapInput is an input type that accepts SystemNdProxyMap and SystemNdProxyMapOutput values.
 // You can construct a concrete instance of `SystemNdProxyMapInput` via:
 //
-//          SystemNdProxyMap{ "key": SystemNdProxyArgs{...} }
+//	SystemNdProxyMap{ "key": SystemNdProxyArgs{...} }
 type SystemNdProxyMapInput interface {
 	pulumi.Input
 
@@ -226,6 +166,22 @@ func (o SystemNdProxyOutput) ToSystemNdProxyOutput() SystemNdProxyOutput {
 
 func (o SystemNdProxyOutput) ToSystemNdProxyOutputWithContext(ctx context.Context) SystemNdProxyOutput {
 	return o
+}
+
+func (o SystemNdProxyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemNdProxy) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemNdProxyOutput) Members() SystemNdProxyMemberArrayOutput {
+	return o.ApplyT(func(v *SystemNdProxy) SystemNdProxyMemberArrayOutput { return v.Members }).(SystemNdProxyMemberArrayOutput)
+}
+
+func (o SystemNdProxyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemNdProxy) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemNdProxyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemNdProxy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemNdProxyArrayOutput struct{ *pulumi.OutputState }

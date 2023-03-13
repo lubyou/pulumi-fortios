@@ -10,60 +10,26 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Overlay Controller VPN settings. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// Vpn Ocvpn can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnOcvpn:VpnOcvpn labelname VpnOcvpn
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnOcvpn:VpnOcvpn labelname VpnOcvpn
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnOcvpn struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
-	AutoDiscovery pulumi.StringOutput `pulumi:"autoDiscovery"`
-	// Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
-	AutoDiscoveryShortcutMode pulumi.StringOutput `pulumi:"autoDiscoveryShortcutMode"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
-	Eap pulumi.StringOutput `pulumi:"eap"`
-	// EAP authentication user group.
-	EapUsers pulumi.StringOutput `pulumi:"eapUsers"`
-	// Configure FortiClient settings. The structure of `forticlientAccess` block is documented below.
-	ForticlientAccess VpnOcvpnForticlientAccessPtrOutput `pulumi:"forticlientAccess"`
-	// Class B subnet reserved for private IP address assignment.
-	IpAllocationBlock pulumi.StringOutput `pulumi:"ipAllocationBlock"`
-	// Enable/disable multipath redundancy. Valid values: `enable`, `disable`.
-	Multipath pulumi.StringOutput `pulumi:"multipath"`
-	// Enable/disable inter-overlay source NAT. Valid values: `enable`, `disable`.
-	Nat pulumi.StringOutput `pulumi:"nat"`
-	// OCVPN overlays to allow access to. The structure of `overlays` block is documented below.
-	Overlays VpnOcvpnOverlayArrayOutput `pulumi:"overlays"`
-	// Overlay Controller VPN polling interval.
-	PollInterval pulumi.IntOutput `pulumi:"pollInterval"`
-	// Set device role. Valid values: `spoke`, `primary-hub`, `secondary-hub`.
-	Role pulumi.StringOutput `pulumi:"role"`
-	// Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
-	Sdwan pulumi.StringOutput `pulumi:"sdwan"`
-	// Set SD-WAN zone.
-	SdwanZone pulumi.StringOutput `pulumi:"sdwanZone"`
-	// Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// FortiGate WAN interfaces to use with OCVPN. The structure of `wanInterface` block is documented below.
-	WanInterfaces VpnOcvpnWanInterfaceArrayOutput `pulumi:"wanInterfaces"`
+	AutoDiscovery             pulumi.StringOutput             `pulumi:"autoDiscovery"`
+	AutoDiscoveryShortcutMode pulumi.StringOutput             `pulumi:"autoDiscoveryShortcutMode"`
+	DynamicSortSubtable       pulumi.StringPtrOutput          `pulumi:"dynamicSortSubtable"`
+	Eap                       pulumi.StringOutput             `pulumi:"eap"`
+	EapUsers                  pulumi.StringOutput             `pulumi:"eapUsers"`
+	ForticlientAccess         VpnOcvpnForticlientAccessOutput `pulumi:"forticlientAccess"`
+	IpAllocationBlock         pulumi.StringOutput             `pulumi:"ipAllocationBlock"`
+	Multipath                 pulumi.StringOutput             `pulumi:"multipath"`
+	Nat                       pulumi.StringOutput             `pulumi:"nat"`
+	Overlays                  VpnOcvpnOverlayArrayOutput      `pulumi:"overlays"`
+	PollInterval              pulumi.IntOutput                `pulumi:"pollInterval"`
+	Role                      pulumi.StringOutput             `pulumi:"role"`
+	Sdwan                     pulumi.StringOutput             `pulumi:"sdwan"`
+	SdwanZone                 pulumi.StringOutput             `pulumi:"sdwanZone"`
+	Status                    pulumi.StringOutput             `pulumi:"status"`
+	Vdomparam                 pulumi.StringPtrOutput          `pulumi:"vdomparam"`
+	WanInterfaces             VpnOcvpnWanInterfaceArrayOutput `pulumi:"wanInterfaces"`
 }
 
 // NewVpnOcvpn registers a new resource with the given unique name, arguments, and options.
@@ -96,77 +62,43 @@ func GetVpnOcvpn(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnOcvpn resources.
 type vpnOcvpnState struct {
-	// Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
-	AutoDiscovery *string `pulumi:"autoDiscovery"`
-	// Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
-	AutoDiscoveryShortcutMode *string `pulumi:"autoDiscoveryShortcutMode"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
-	Eap *string `pulumi:"eap"`
-	// EAP authentication user group.
-	EapUsers *string `pulumi:"eapUsers"`
-	// Configure FortiClient settings. The structure of `forticlientAccess` block is documented below.
-	ForticlientAccess *VpnOcvpnForticlientAccess `pulumi:"forticlientAccess"`
-	// Class B subnet reserved for private IP address assignment.
-	IpAllocationBlock *string `pulumi:"ipAllocationBlock"`
-	// Enable/disable multipath redundancy. Valid values: `enable`, `disable`.
-	Multipath *string `pulumi:"multipath"`
-	// Enable/disable inter-overlay source NAT. Valid values: `enable`, `disable`.
-	Nat *string `pulumi:"nat"`
-	// OCVPN overlays to allow access to. The structure of `overlays` block is documented below.
-	Overlays []VpnOcvpnOverlay `pulumi:"overlays"`
-	// Overlay Controller VPN polling interval.
-	PollInterval *int `pulumi:"pollInterval"`
-	// Set device role. Valid values: `spoke`, `primary-hub`, `secondary-hub`.
-	Role *string `pulumi:"role"`
-	// Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
-	Sdwan *string `pulumi:"sdwan"`
-	// Set SD-WAN zone.
-	SdwanZone *string `pulumi:"sdwanZone"`
-	// Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// FortiGate WAN interfaces to use with OCVPN. The structure of `wanInterface` block is documented below.
-	WanInterfaces []VpnOcvpnWanInterface `pulumi:"wanInterfaces"`
+	AutoDiscovery             *string                    `pulumi:"autoDiscovery"`
+	AutoDiscoveryShortcutMode *string                    `pulumi:"autoDiscoveryShortcutMode"`
+	DynamicSortSubtable       *string                    `pulumi:"dynamicSortSubtable"`
+	Eap                       *string                    `pulumi:"eap"`
+	EapUsers                  *string                    `pulumi:"eapUsers"`
+	ForticlientAccess         *VpnOcvpnForticlientAccess `pulumi:"forticlientAccess"`
+	IpAllocationBlock         *string                    `pulumi:"ipAllocationBlock"`
+	Multipath                 *string                    `pulumi:"multipath"`
+	Nat                       *string                    `pulumi:"nat"`
+	Overlays                  []VpnOcvpnOverlay          `pulumi:"overlays"`
+	PollInterval              *int                       `pulumi:"pollInterval"`
+	Role                      *string                    `pulumi:"role"`
+	Sdwan                     *string                    `pulumi:"sdwan"`
+	SdwanZone                 *string                    `pulumi:"sdwanZone"`
+	Status                    *string                    `pulumi:"status"`
+	Vdomparam                 *string                    `pulumi:"vdomparam"`
+	WanInterfaces             []VpnOcvpnWanInterface     `pulumi:"wanInterfaces"`
 }
 
 type VpnOcvpnState struct {
-	// Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
-	AutoDiscovery pulumi.StringPtrInput
-	// Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
+	AutoDiscovery             pulumi.StringPtrInput
 	AutoDiscoveryShortcutMode pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
-	Eap pulumi.StringPtrInput
-	// EAP authentication user group.
-	EapUsers pulumi.StringPtrInput
-	// Configure FortiClient settings. The structure of `forticlientAccess` block is documented below.
-	ForticlientAccess VpnOcvpnForticlientAccessPtrInput
-	// Class B subnet reserved for private IP address assignment.
-	IpAllocationBlock pulumi.StringPtrInput
-	// Enable/disable multipath redundancy. Valid values: `enable`, `disable`.
-	Multipath pulumi.StringPtrInput
-	// Enable/disable inter-overlay source NAT. Valid values: `enable`, `disable`.
-	Nat pulumi.StringPtrInput
-	// OCVPN overlays to allow access to. The structure of `overlays` block is documented below.
-	Overlays VpnOcvpnOverlayArrayInput
-	// Overlay Controller VPN polling interval.
-	PollInterval pulumi.IntPtrInput
-	// Set device role. Valid values: `spoke`, `primary-hub`, `secondary-hub`.
-	Role pulumi.StringPtrInput
-	// Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
-	Sdwan pulumi.StringPtrInput
-	// Set SD-WAN zone.
-	SdwanZone pulumi.StringPtrInput
-	// Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// FortiGate WAN interfaces to use with OCVPN. The structure of `wanInterface` block is documented below.
-	WanInterfaces VpnOcvpnWanInterfaceArrayInput
+	DynamicSortSubtable       pulumi.StringPtrInput
+	Eap                       pulumi.StringPtrInput
+	EapUsers                  pulumi.StringPtrInput
+	ForticlientAccess         VpnOcvpnForticlientAccessPtrInput
+	IpAllocationBlock         pulumi.StringPtrInput
+	Multipath                 pulumi.StringPtrInput
+	Nat                       pulumi.StringPtrInput
+	Overlays                  VpnOcvpnOverlayArrayInput
+	PollInterval              pulumi.IntPtrInput
+	Role                      pulumi.StringPtrInput
+	Sdwan                     pulumi.StringPtrInput
+	SdwanZone                 pulumi.StringPtrInput
+	Status                    pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
+	WanInterfaces             VpnOcvpnWanInterfaceArrayInput
 }
 
 func (VpnOcvpnState) ElementType() reflect.Type {
@@ -174,78 +106,44 @@ func (VpnOcvpnState) ElementType() reflect.Type {
 }
 
 type vpnOcvpnArgs struct {
-	// Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
-	AutoDiscovery *string `pulumi:"autoDiscovery"`
-	// Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
-	AutoDiscoveryShortcutMode *string `pulumi:"autoDiscoveryShortcutMode"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
-	Eap *string `pulumi:"eap"`
-	// EAP authentication user group.
-	EapUsers *string `pulumi:"eapUsers"`
-	// Configure FortiClient settings. The structure of `forticlientAccess` block is documented below.
-	ForticlientAccess *VpnOcvpnForticlientAccess `pulumi:"forticlientAccess"`
-	// Class B subnet reserved for private IP address assignment.
-	IpAllocationBlock *string `pulumi:"ipAllocationBlock"`
-	// Enable/disable multipath redundancy. Valid values: `enable`, `disable`.
-	Multipath *string `pulumi:"multipath"`
-	// Enable/disable inter-overlay source NAT. Valid values: `enable`, `disable`.
-	Nat *string `pulumi:"nat"`
-	// OCVPN overlays to allow access to. The structure of `overlays` block is documented below.
-	Overlays []VpnOcvpnOverlay `pulumi:"overlays"`
-	// Overlay Controller VPN polling interval.
-	PollInterval *int `pulumi:"pollInterval"`
-	// Set device role. Valid values: `spoke`, `primary-hub`, `secondary-hub`.
-	Role *string `pulumi:"role"`
-	// Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
-	Sdwan *string `pulumi:"sdwan"`
-	// Set SD-WAN zone.
-	SdwanZone *string `pulumi:"sdwanZone"`
-	// Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// FortiGate WAN interfaces to use with OCVPN. The structure of `wanInterface` block is documented below.
-	WanInterfaces []VpnOcvpnWanInterface `pulumi:"wanInterfaces"`
+	AutoDiscovery             *string                    `pulumi:"autoDiscovery"`
+	AutoDiscoveryShortcutMode *string                    `pulumi:"autoDiscoveryShortcutMode"`
+	DynamicSortSubtable       *string                    `pulumi:"dynamicSortSubtable"`
+	Eap                       *string                    `pulumi:"eap"`
+	EapUsers                  *string                    `pulumi:"eapUsers"`
+	ForticlientAccess         *VpnOcvpnForticlientAccess `pulumi:"forticlientAccess"`
+	IpAllocationBlock         *string                    `pulumi:"ipAllocationBlock"`
+	Multipath                 *string                    `pulumi:"multipath"`
+	Nat                       *string                    `pulumi:"nat"`
+	Overlays                  []VpnOcvpnOverlay          `pulumi:"overlays"`
+	PollInterval              *int                       `pulumi:"pollInterval"`
+	Role                      *string                    `pulumi:"role"`
+	Sdwan                     *string                    `pulumi:"sdwan"`
+	SdwanZone                 *string                    `pulumi:"sdwanZone"`
+	Status                    *string                    `pulumi:"status"`
+	Vdomparam                 *string                    `pulumi:"vdomparam"`
+	WanInterfaces             []VpnOcvpnWanInterface     `pulumi:"wanInterfaces"`
 }
 
 // The set of arguments for constructing a VpnOcvpn resource.
 type VpnOcvpnArgs struct {
-	// Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
-	AutoDiscovery pulumi.StringPtrInput
-	// Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
+	AutoDiscovery             pulumi.StringPtrInput
 	AutoDiscoveryShortcutMode pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
-	Eap pulumi.StringPtrInput
-	// EAP authentication user group.
-	EapUsers pulumi.StringPtrInput
-	// Configure FortiClient settings. The structure of `forticlientAccess` block is documented below.
-	ForticlientAccess VpnOcvpnForticlientAccessPtrInput
-	// Class B subnet reserved for private IP address assignment.
-	IpAllocationBlock pulumi.StringPtrInput
-	// Enable/disable multipath redundancy. Valid values: `enable`, `disable`.
-	Multipath pulumi.StringPtrInput
-	// Enable/disable inter-overlay source NAT. Valid values: `enable`, `disable`.
-	Nat pulumi.StringPtrInput
-	// OCVPN overlays to allow access to. The structure of `overlays` block is documented below.
-	Overlays VpnOcvpnOverlayArrayInput
-	// Overlay Controller VPN polling interval.
-	PollInterval pulumi.IntPtrInput
-	// Set device role. Valid values: `spoke`, `primary-hub`, `secondary-hub`.
-	Role pulumi.StringPtrInput
-	// Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
-	Sdwan pulumi.StringPtrInput
-	// Set SD-WAN zone.
-	SdwanZone pulumi.StringPtrInput
-	// Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// FortiGate WAN interfaces to use with OCVPN. The structure of `wanInterface` block is documented below.
-	WanInterfaces VpnOcvpnWanInterfaceArrayInput
+	DynamicSortSubtable       pulumi.StringPtrInput
+	Eap                       pulumi.StringPtrInput
+	EapUsers                  pulumi.StringPtrInput
+	ForticlientAccess         VpnOcvpnForticlientAccessPtrInput
+	IpAllocationBlock         pulumi.StringPtrInput
+	Multipath                 pulumi.StringPtrInput
+	Nat                       pulumi.StringPtrInput
+	Overlays                  VpnOcvpnOverlayArrayInput
+	PollInterval              pulumi.IntPtrInput
+	Role                      pulumi.StringPtrInput
+	Sdwan                     pulumi.StringPtrInput
+	SdwanZone                 pulumi.StringPtrInput
+	Status                    pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
+	WanInterfaces             VpnOcvpnWanInterfaceArrayInput
 }
 
 func (VpnOcvpnArgs) ElementType() reflect.Type {
@@ -274,7 +172,7 @@ func (i *VpnOcvpn) ToVpnOcvpnOutputWithContext(ctx context.Context) VpnOcvpnOutp
 // VpnOcvpnArrayInput is an input type that accepts VpnOcvpnArray and VpnOcvpnArrayOutput values.
 // You can construct a concrete instance of `VpnOcvpnArrayInput` via:
 //
-//          VpnOcvpnArray{ VpnOcvpnArgs{...} }
+//	VpnOcvpnArray{ VpnOcvpnArgs{...} }
 type VpnOcvpnArrayInput interface {
 	pulumi.Input
 
@@ -299,7 +197,7 @@ func (i VpnOcvpnArray) ToVpnOcvpnArrayOutputWithContext(ctx context.Context) Vpn
 // VpnOcvpnMapInput is an input type that accepts VpnOcvpnMap and VpnOcvpnMapOutput values.
 // You can construct a concrete instance of `VpnOcvpnMapInput` via:
 //
-//          VpnOcvpnMap{ "key": VpnOcvpnArgs{...} }
+//	VpnOcvpnMap{ "key": VpnOcvpnArgs{...} }
 type VpnOcvpnMapInput interface {
 	pulumi.Input
 
@@ -333,6 +231,74 @@ func (o VpnOcvpnOutput) ToVpnOcvpnOutput() VpnOcvpnOutput {
 
 func (o VpnOcvpnOutput) ToVpnOcvpnOutputWithContext(ctx context.Context) VpnOcvpnOutput {
 	return o
+}
+
+func (o VpnOcvpnOutput) AutoDiscovery() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnOcvpn) pulumi.StringOutput { return v.AutoDiscovery }).(pulumi.StringOutput)
+}
+
+func (o VpnOcvpnOutput) AutoDiscoveryShortcutMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnOcvpn) pulumi.StringOutput { return v.AutoDiscoveryShortcutMode }).(pulumi.StringOutput)
+}
+
+func (o VpnOcvpnOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnOcvpn) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnOcvpnOutput) Eap() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnOcvpn) pulumi.StringOutput { return v.Eap }).(pulumi.StringOutput)
+}
+
+func (o VpnOcvpnOutput) EapUsers() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnOcvpn) pulumi.StringOutput { return v.EapUsers }).(pulumi.StringOutput)
+}
+
+func (o VpnOcvpnOutput) ForticlientAccess() VpnOcvpnForticlientAccessOutput {
+	return o.ApplyT(func(v *VpnOcvpn) VpnOcvpnForticlientAccessOutput { return v.ForticlientAccess }).(VpnOcvpnForticlientAccessOutput)
+}
+
+func (o VpnOcvpnOutput) IpAllocationBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnOcvpn) pulumi.StringOutput { return v.IpAllocationBlock }).(pulumi.StringOutput)
+}
+
+func (o VpnOcvpnOutput) Multipath() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnOcvpn) pulumi.StringOutput { return v.Multipath }).(pulumi.StringOutput)
+}
+
+func (o VpnOcvpnOutput) Nat() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnOcvpn) pulumi.StringOutput { return v.Nat }).(pulumi.StringOutput)
+}
+
+func (o VpnOcvpnOutput) Overlays() VpnOcvpnOverlayArrayOutput {
+	return o.ApplyT(func(v *VpnOcvpn) VpnOcvpnOverlayArrayOutput { return v.Overlays }).(VpnOcvpnOverlayArrayOutput)
+}
+
+func (o VpnOcvpnOutput) PollInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnOcvpn) pulumi.IntOutput { return v.PollInterval }).(pulumi.IntOutput)
+}
+
+func (o VpnOcvpnOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnOcvpn) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
+func (o VpnOcvpnOutput) Sdwan() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnOcvpn) pulumi.StringOutput { return v.Sdwan }).(pulumi.StringOutput)
+}
+
+func (o VpnOcvpnOutput) SdwanZone() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnOcvpn) pulumi.StringOutput { return v.SdwanZone }).(pulumi.StringOutput)
+}
+
+func (o VpnOcvpnOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnOcvpn) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o VpnOcvpnOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnOcvpn) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnOcvpnOutput) WanInterfaces() VpnOcvpnWanInterfaceArrayOutput {
+	return o.ApplyT(func(v *VpnOcvpn) VpnOcvpnWanInterfaceArrayOutput { return v.WanInterfaces }).(VpnOcvpnWanInterfaceArrayOutput)
 }
 
 type VpnOcvpnArrayOutput struct{ *pulumi.OutputState }

@@ -7,95 +7,28 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure SSL servers.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallSslServer(ctx, "trname", &fortios.FirewallSslServerArgs{
-// 			AddHeaderXForwardedProto: pulumi.String("enable"),
-// 			Ip:                       pulumi.String("1.1.1.1"),
-// 			MappedPort:               pulumi.Int(2234),
-// 			Port:                     pulumi.Int(32321),
-// 			SslAlgorithm:             pulumi.String("high"),
-// 			SslCert:                  pulumi.String("Fortinet_CA_SSL"),
-// 			SslClientRenegotiation:   pulumi.String("allow"),
-// 			SslDhBits:                pulumi.String("2048"),
-// 			SslMaxVersion:            pulumi.String("tls-1.2"),
-// 			SslMinVersion:            pulumi.String("tls-1.1"),
-// 			SslMode:                  pulumi.String("half"),
-// 			SslSendEmptyFrags:        pulumi.String("enable"),
-// 			UrlRewrite:               pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall SslServer can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSslServer:FirewallSslServer labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSslServer:FirewallSslServer labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallSslServer struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable adding an X-Forwarded-Proto header to forwarded requests. Valid values: `enable`, `disable`.
-	AddHeaderXForwardedProto pulumi.StringOutput `pulumi:"addHeaderXForwardedProto"`
-	// IPv4 address of the SSL server.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// Mapped server service port (1 - 65535, default = 80).
-	MappedPort pulumi.IntOutput `pulumi:"mappedPort"`
-	// Server name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Server service port (1 - 65535, default = 443).
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm pulumi.StringOutput `pulumi:"sslAlgorithm"`
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
-	SslCert pulumi.StringOutput `pulumi:"sslCert"`
-	// Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
-	SslClientRenegotiation pulumi.StringOutput `pulumi:"sslClientRenegotiation"`
-	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-	SslDhBits pulumi.StringOutput `pulumi:"sslDhBits"`
-	// Highest SSL/TLS version to negotiate.
-	SslMaxVersion pulumi.StringOutput `pulumi:"sslMaxVersion"`
-	// Lowest SSL/TLS version to negotiate.
-	SslMinVersion pulumi.StringOutput `pulumi:"sslMinVersion"`
-	// SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
-	SslMode pulumi.StringOutput `pulumi:"sslMode"`
-	// Enable/disable sending empty fragments to avoid attack on CBC IV. Valid values: `enable`, `disable`.
-	SslSendEmptyFrags pulumi.StringOutput `pulumi:"sslSendEmptyFrags"`
-	// Enable/disable rewriting the URL. Valid values: `enable`, `disable`.
-	UrlRewrite pulumi.StringOutput `pulumi:"urlRewrite"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AddHeaderXForwardedProto pulumi.StringOutput    `pulumi:"addHeaderXForwardedProto"`
+	Ip                       pulumi.StringOutput    `pulumi:"ip"`
+	MappedPort               pulumi.IntOutput       `pulumi:"mappedPort"`
+	Name                     pulumi.StringOutput    `pulumi:"name"`
+	Port                     pulumi.IntOutput       `pulumi:"port"`
+	SslAlgorithm             pulumi.StringOutput    `pulumi:"sslAlgorithm"`
+	SslCert                  pulumi.StringOutput    `pulumi:"sslCert"`
+	SslClientRenegotiation   pulumi.StringOutput    `pulumi:"sslClientRenegotiation"`
+	SslDhBits                pulumi.StringOutput    `pulumi:"sslDhBits"`
+	SslMaxVersion            pulumi.StringOutput    `pulumi:"sslMaxVersion"`
+	SslMinVersion            pulumi.StringOutput    `pulumi:"sslMinVersion"`
+	SslMode                  pulumi.StringOutput    `pulumi:"sslMode"`
+	SslSendEmptyFrags        pulumi.StringOutput    `pulumi:"sslSendEmptyFrags"`
+	UrlRewrite               pulumi.StringOutput    `pulumi:"urlRewrite"`
+	Vdomparam                pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallSslServer registers a new resource with the given unique name, arguments, and options.
@@ -137,69 +70,39 @@ func GetFirewallSslServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallSslServer resources.
 type firewallSslServerState struct {
-	// Enable/disable adding an X-Forwarded-Proto header to forwarded requests. Valid values: `enable`, `disable`.
 	AddHeaderXForwardedProto *string `pulumi:"addHeaderXForwardedProto"`
-	// IPv4 address of the SSL server.
-	Ip *string `pulumi:"ip"`
-	// Mapped server service port (1 - 65535, default = 80).
-	MappedPort *int `pulumi:"mappedPort"`
-	// Server name.
-	Name *string `pulumi:"name"`
-	// Server service port (1 - 65535, default = 443).
-	Port *int `pulumi:"port"`
-	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
-	SslCert *string `pulumi:"sslCert"`
-	// Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
-	SslClientRenegotiation *string `pulumi:"sslClientRenegotiation"`
-	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-	SslDhBits *string `pulumi:"sslDhBits"`
-	// Highest SSL/TLS version to negotiate.
-	SslMaxVersion *string `pulumi:"sslMaxVersion"`
-	// Lowest SSL/TLS version to negotiate.
-	SslMinVersion *string `pulumi:"sslMinVersion"`
-	// SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
-	SslMode *string `pulumi:"sslMode"`
-	// Enable/disable sending empty fragments to avoid attack on CBC IV. Valid values: `enable`, `disable`.
-	SslSendEmptyFrags *string `pulumi:"sslSendEmptyFrags"`
-	// Enable/disable rewriting the URL. Valid values: `enable`, `disable`.
-	UrlRewrite *string `pulumi:"urlRewrite"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Ip                       *string `pulumi:"ip"`
+	MappedPort               *int    `pulumi:"mappedPort"`
+	Name                     *string `pulumi:"name"`
+	Port                     *int    `pulumi:"port"`
+	SslAlgorithm             *string `pulumi:"sslAlgorithm"`
+	SslCert                  *string `pulumi:"sslCert"`
+	SslClientRenegotiation   *string `pulumi:"sslClientRenegotiation"`
+	SslDhBits                *string `pulumi:"sslDhBits"`
+	SslMaxVersion            *string `pulumi:"sslMaxVersion"`
+	SslMinVersion            *string `pulumi:"sslMinVersion"`
+	SslMode                  *string `pulumi:"sslMode"`
+	SslSendEmptyFrags        *string `pulumi:"sslSendEmptyFrags"`
+	UrlRewrite               *string `pulumi:"urlRewrite"`
+	Vdomparam                *string `pulumi:"vdomparam"`
 }
 
 type FirewallSslServerState struct {
-	// Enable/disable adding an X-Forwarded-Proto header to forwarded requests. Valid values: `enable`, `disable`.
 	AddHeaderXForwardedProto pulumi.StringPtrInput
-	// IPv4 address of the SSL server.
-	Ip pulumi.StringPtrInput
-	// Mapped server service port (1 - 65535, default = 80).
-	MappedPort pulumi.IntPtrInput
-	// Server name.
-	Name pulumi.StringPtrInput
-	// Server service port (1 - 65535, default = 443).
-	Port pulumi.IntPtrInput
-	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm pulumi.StringPtrInput
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
-	SslCert pulumi.StringPtrInput
-	// Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
-	SslClientRenegotiation pulumi.StringPtrInput
-	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-	SslDhBits pulumi.StringPtrInput
-	// Highest SSL/TLS version to negotiate.
-	SslMaxVersion pulumi.StringPtrInput
-	// Lowest SSL/TLS version to negotiate.
-	SslMinVersion pulumi.StringPtrInput
-	// SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
-	SslMode pulumi.StringPtrInput
-	// Enable/disable sending empty fragments to avoid attack on CBC IV. Valid values: `enable`, `disable`.
-	SslSendEmptyFrags pulumi.StringPtrInput
-	// Enable/disable rewriting the URL. Valid values: `enable`, `disable`.
-	UrlRewrite pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Ip                       pulumi.StringPtrInput
+	MappedPort               pulumi.IntPtrInput
+	Name                     pulumi.StringPtrInput
+	Port                     pulumi.IntPtrInput
+	SslAlgorithm             pulumi.StringPtrInput
+	SslCert                  pulumi.StringPtrInput
+	SslClientRenegotiation   pulumi.StringPtrInput
+	SslDhBits                pulumi.StringPtrInput
+	SslMaxVersion            pulumi.StringPtrInput
+	SslMinVersion            pulumi.StringPtrInput
+	SslMode                  pulumi.StringPtrInput
+	SslSendEmptyFrags        pulumi.StringPtrInput
+	UrlRewrite               pulumi.StringPtrInput
+	Vdomparam                pulumi.StringPtrInput
 }
 
 func (FirewallSslServerState) ElementType() reflect.Type {
@@ -207,70 +110,40 @@ func (FirewallSslServerState) ElementType() reflect.Type {
 }
 
 type firewallSslServerArgs struct {
-	// Enable/disable adding an X-Forwarded-Proto header to forwarded requests. Valid values: `enable`, `disable`.
 	AddHeaderXForwardedProto *string `pulumi:"addHeaderXForwardedProto"`
-	// IPv4 address of the SSL server.
-	Ip string `pulumi:"ip"`
-	// Mapped server service port (1 - 65535, default = 80).
-	MappedPort *int `pulumi:"mappedPort"`
-	// Server name.
-	Name *string `pulumi:"name"`
-	// Server service port (1 - 65535, default = 443).
-	Port int `pulumi:"port"`
-	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
-	SslCert string `pulumi:"sslCert"`
-	// Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
-	SslClientRenegotiation *string `pulumi:"sslClientRenegotiation"`
-	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-	SslDhBits *string `pulumi:"sslDhBits"`
-	// Highest SSL/TLS version to negotiate.
-	SslMaxVersion *string `pulumi:"sslMaxVersion"`
-	// Lowest SSL/TLS version to negotiate.
-	SslMinVersion *string `pulumi:"sslMinVersion"`
-	// SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
-	SslMode *string `pulumi:"sslMode"`
-	// Enable/disable sending empty fragments to avoid attack on CBC IV. Valid values: `enable`, `disable`.
-	SslSendEmptyFrags *string `pulumi:"sslSendEmptyFrags"`
-	// Enable/disable rewriting the URL. Valid values: `enable`, `disable`.
-	UrlRewrite *string `pulumi:"urlRewrite"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Ip                       string  `pulumi:"ip"`
+	MappedPort               *int    `pulumi:"mappedPort"`
+	Name                     *string `pulumi:"name"`
+	Port                     int     `pulumi:"port"`
+	SslAlgorithm             *string `pulumi:"sslAlgorithm"`
+	SslCert                  string  `pulumi:"sslCert"`
+	SslClientRenegotiation   *string `pulumi:"sslClientRenegotiation"`
+	SslDhBits                *string `pulumi:"sslDhBits"`
+	SslMaxVersion            *string `pulumi:"sslMaxVersion"`
+	SslMinVersion            *string `pulumi:"sslMinVersion"`
+	SslMode                  *string `pulumi:"sslMode"`
+	SslSendEmptyFrags        *string `pulumi:"sslSendEmptyFrags"`
+	UrlRewrite               *string `pulumi:"urlRewrite"`
+	Vdomparam                *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallSslServer resource.
 type FirewallSslServerArgs struct {
-	// Enable/disable adding an X-Forwarded-Proto header to forwarded requests. Valid values: `enable`, `disable`.
 	AddHeaderXForwardedProto pulumi.StringPtrInput
-	// IPv4 address of the SSL server.
-	Ip pulumi.StringInput
-	// Mapped server service port (1 - 65535, default = 80).
-	MappedPort pulumi.IntPtrInput
-	// Server name.
-	Name pulumi.StringPtrInput
-	// Server service port (1 - 65535, default = 443).
-	Port pulumi.IntInput
-	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm pulumi.StringPtrInput
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
-	SslCert pulumi.StringInput
-	// Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
-	SslClientRenegotiation pulumi.StringPtrInput
-	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-	SslDhBits pulumi.StringPtrInput
-	// Highest SSL/TLS version to negotiate.
-	SslMaxVersion pulumi.StringPtrInput
-	// Lowest SSL/TLS version to negotiate.
-	SslMinVersion pulumi.StringPtrInput
-	// SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
-	SslMode pulumi.StringPtrInput
-	// Enable/disable sending empty fragments to avoid attack on CBC IV. Valid values: `enable`, `disable`.
-	SslSendEmptyFrags pulumi.StringPtrInput
-	// Enable/disable rewriting the URL. Valid values: `enable`, `disable`.
-	UrlRewrite pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Ip                       pulumi.StringInput
+	MappedPort               pulumi.IntPtrInput
+	Name                     pulumi.StringPtrInput
+	Port                     pulumi.IntInput
+	SslAlgorithm             pulumi.StringPtrInput
+	SslCert                  pulumi.StringInput
+	SslClientRenegotiation   pulumi.StringPtrInput
+	SslDhBits                pulumi.StringPtrInput
+	SslMaxVersion            pulumi.StringPtrInput
+	SslMinVersion            pulumi.StringPtrInput
+	SslMode                  pulumi.StringPtrInput
+	SslSendEmptyFrags        pulumi.StringPtrInput
+	UrlRewrite               pulumi.StringPtrInput
+	Vdomparam                pulumi.StringPtrInput
 }
 
 func (FirewallSslServerArgs) ElementType() reflect.Type {
@@ -299,7 +172,7 @@ func (i *FirewallSslServer) ToFirewallSslServerOutputWithContext(ctx context.Con
 // FirewallSslServerArrayInput is an input type that accepts FirewallSslServerArray and FirewallSslServerArrayOutput values.
 // You can construct a concrete instance of `FirewallSslServerArrayInput` via:
 //
-//          FirewallSslServerArray{ FirewallSslServerArgs{...} }
+//	FirewallSslServerArray{ FirewallSslServerArgs{...} }
 type FirewallSslServerArrayInput interface {
 	pulumi.Input
 
@@ -324,7 +197,7 @@ func (i FirewallSslServerArray) ToFirewallSslServerArrayOutputWithContext(ctx co
 // FirewallSslServerMapInput is an input type that accepts FirewallSslServerMap and FirewallSslServerMapOutput values.
 // You can construct a concrete instance of `FirewallSslServerMapInput` via:
 //
-//          FirewallSslServerMap{ "key": FirewallSslServerArgs{...} }
+//	FirewallSslServerMap{ "key": FirewallSslServerArgs{...} }
 type FirewallSslServerMapInput interface {
 	pulumi.Input
 
@@ -358,6 +231,66 @@ func (o FirewallSslServerOutput) ToFirewallSslServerOutput() FirewallSslServerOu
 
 func (o FirewallSslServerOutput) ToFirewallSslServerOutputWithContext(ctx context.Context) FirewallSslServerOutput {
 	return o
+}
+
+func (o FirewallSslServerOutput) AddHeaderXForwardedProto() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslServer) pulumi.StringOutput { return v.AddHeaderXForwardedProto }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslServerOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslServer) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslServerOutput) MappedPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallSslServer) pulumi.IntOutput { return v.MappedPort }).(pulumi.IntOutput)
+}
+
+func (o FirewallSslServerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslServer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslServerOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallSslServer) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o FirewallSslServerOutput) SslAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslServer) pulumi.StringOutput { return v.SslAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslServerOutput) SslCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslServer) pulumi.StringOutput { return v.SslCert }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslServerOutput) SslClientRenegotiation() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslServer) pulumi.StringOutput { return v.SslClientRenegotiation }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslServerOutput) SslDhBits() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslServer) pulumi.StringOutput { return v.SslDhBits }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslServerOutput) SslMaxVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslServer) pulumi.StringOutput { return v.SslMaxVersion }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslServerOutput) SslMinVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslServer) pulumi.StringOutput { return v.SslMinVersion }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslServerOutput) SslMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslServer) pulumi.StringOutput { return v.SslMode }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslServerOutput) SslSendEmptyFrags() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslServer) pulumi.StringOutput { return v.SslSendEmptyFrags }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslServerOutput) UrlRewrite() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslServer) pulumi.StringOutput { return v.UrlRewrite }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslServerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSslServer) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallSslServerArrayOutput struct{ *pulumi.OutputState }

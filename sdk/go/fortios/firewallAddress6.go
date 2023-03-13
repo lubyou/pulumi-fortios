@@ -10,109 +10,38 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 firewall addresses.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallAddress6(ctx, "trname", &fortios.FirewallAddress6Args{
-// 			CacheTtl:   pulumi.Int(0),
-// 			Color:      pulumi.Int(0),
-// 			EndIp:      pulumi.String("::"),
-// 			Host:       pulumi.String("fdff:ffff::"),
-// 			HostType:   pulumi.String("any"),
-// 			Ip6:        pulumi.String("fdff:ffff::/120"),
-// 			StartIp:    pulumi.String("fdff:ffff::"),
-// 			Type:       pulumi.String("ipprefix"),
-// 			Visibility: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall Address6 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAddress6:FirewallAddress6 labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAddress6:FirewallAddress6 labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallAddress6 struct {
 	pulumi.CustomResourceState
 
-	// Minimal TTL of individual IPv6 addresses in FQDN cache.
-	CacheTtl pulumi.IntOutput `pulumi:"cacheTtl"`
-	// Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-	Color pulumi.IntOutput `pulumi:"color"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// IPv6 addresses associated to a specific country.
-	Country pulumi.StringOutput `pulumi:"country"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-	EndIp pulumi.StringOutput `pulumi:"endIp"`
-	// Last MAC address in the range.
-	EndMac pulumi.StringOutput `pulumi:"endMac"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
-	// Fully qualified domain name.
-	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
-	// Host Address.
-	Host pulumi.StringOutput `pulumi:"host"`
-	// Host type. Valid values: `any`, `specific`.
-	HostType pulumi.StringOutput `pulumi:"hostType"`
-	// IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-	Ip6 pulumi.StringOutput `pulumi:"ip6"`
-	// IP address list. The structure of `list` block is documented below.
-	Lists FirewallAddress6ListArrayOutput `pulumi:"lists"`
-	// MAC address ranges <start>[-<end>] separated by space.
-	Macaddrs FirewallAddress6MacaddrArrayOutput `pulumi:"macaddrs"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Object ID for NSX.
-	ObjId pulumi.StringPtrOutput `pulumi:"objId"`
-	// SDN.
-	Sdn pulumi.StringOutput `pulumi:"sdn"`
-	// First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-	StartIp pulumi.StringOutput `pulumi:"startIp"`
-	// First MAC address in the range.
-	StartMac pulumi.StringOutput `pulumi:"startMac"`
-	// IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-	SubnetSegments FirewallAddress6SubnetSegmentArrayOutput `pulumi:"subnetSegments"`
-	// Config object tagging The structure of `tagging` block is documented below.
-	Taggings FirewallAddress6TaggingArrayOutput `pulumi:"taggings"`
-	// IPv6 address template.
-	Template pulumi.StringOutput `pulumi:"template"`
-	// Subnet segment type. Valid values: `any`, `specific`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringOutput `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable the visibility of the object in the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringOutput `pulumi:"visibility"`
+	CacheTtl            pulumi.IntOutput                         `pulumi:"cacheTtl"`
+	Color               pulumi.IntOutput                         `pulumi:"color"`
+	Comment             pulumi.StringPtrOutput                   `pulumi:"comment"`
+	Country             pulumi.StringOutput                      `pulumi:"country"`
+	DynamicSortSubtable pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
+	EndIp               pulumi.StringOutput                      `pulumi:"endIp"`
+	EndMac              pulumi.StringOutput                      `pulumi:"endMac"`
+	EpgName             pulumi.StringOutput                      `pulumi:"epgName"`
+	FabricObject        pulumi.StringOutput                      `pulumi:"fabricObject"`
+	Fqdn                pulumi.StringOutput                      `pulumi:"fqdn"`
+	Host                pulumi.StringOutput                      `pulumi:"host"`
+	HostType            pulumi.StringOutput                      `pulumi:"hostType"`
+	Ip6                 pulumi.StringOutput                      `pulumi:"ip6"`
+	Lists               FirewallAddress6ListArrayOutput          `pulumi:"lists"`
+	Macaddrs            FirewallAddress6MacaddrArrayOutput       `pulumi:"macaddrs"`
+	Name                pulumi.StringOutput                      `pulumi:"name"`
+	ObjId               pulumi.StringPtrOutput                   `pulumi:"objId"`
+	Sdn                 pulumi.StringOutput                      `pulumi:"sdn"`
+	SdnTag              pulumi.StringOutput                      `pulumi:"sdnTag"`
+	StartIp             pulumi.StringOutput                      `pulumi:"startIp"`
+	StartMac            pulumi.StringOutput                      `pulumi:"startMac"`
+	SubnetSegments      FirewallAddress6SubnetSegmentArrayOutput `pulumi:"subnetSegments"`
+	Taggings            FirewallAddress6TaggingArrayOutput       `pulumi:"taggings"`
+	Template            pulumi.StringOutput                      `pulumi:"template"`
+	Tenant              pulumi.StringOutput                      `pulumi:"tenant"`
+	Type                pulumi.StringOutput                      `pulumi:"type"`
+	Uuid                pulumi.StringOutput                      `pulumi:"uuid"`
+	Vdomparam           pulumi.StringPtrOutput                   `pulumi:"vdomparam"`
+	Visibility          pulumi.StringOutput                      `pulumi:"visibility"`
 }
 
 // NewFirewallAddress6 registers a new resource with the given unique name, arguments, and options.
@@ -145,113 +74,67 @@ func GetFirewallAddress6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallAddress6 resources.
 type firewallAddress6State struct {
-	// Minimal TTL of individual IPv6 addresses in FQDN cache.
-	CacheTtl *int `pulumi:"cacheTtl"`
-	// Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// IPv6 addresses associated to a specific country.
-	Country *string `pulumi:"country"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-	EndIp *string `pulumi:"endIp"`
-	// Last MAC address in the range.
-	EndMac *string `pulumi:"endMac"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// Fully qualified domain name.
-	Fqdn *string `pulumi:"fqdn"`
-	// Host Address.
-	Host *string `pulumi:"host"`
-	// Host type. Valid values: `any`, `specific`.
-	HostType *string `pulumi:"hostType"`
-	// IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-	Ip6 *string `pulumi:"ip6"`
-	// IP address list. The structure of `list` block is documented below.
-	Lists []FirewallAddress6List `pulumi:"lists"`
-	// MAC address ranges <start>[-<end>] separated by space.
-	Macaddrs []FirewallAddress6Macaddr `pulumi:"macaddrs"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Object ID for NSX.
-	ObjId *string `pulumi:"objId"`
-	// SDN.
-	Sdn *string `pulumi:"sdn"`
-	// First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-	StartIp *string `pulumi:"startIp"`
-	// First MAC address in the range.
-	StartMac *string `pulumi:"startMac"`
-	// IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-	SubnetSegments []FirewallAddress6SubnetSegment `pulumi:"subnetSegments"`
-	// Config object tagging The structure of `tagging` block is documented below.
-	Taggings []FirewallAddress6Tagging `pulumi:"taggings"`
-	// IPv6 address template.
-	Template *string `pulumi:"template"`
-	// Subnet segment type. Valid values: `any`, `specific`.
-	Type *string `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable the visibility of the object in the GUI. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
+	CacheTtl            *int                            `pulumi:"cacheTtl"`
+	Color               *int                            `pulumi:"color"`
+	Comment             *string                         `pulumi:"comment"`
+	Country             *string                         `pulumi:"country"`
+	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	EndIp               *string                         `pulumi:"endIp"`
+	EndMac              *string                         `pulumi:"endMac"`
+	EpgName             *string                         `pulumi:"epgName"`
+	FabricObject        *string                         `pulumi:"fabricObject"`
+	Fqdn                *string                         `pulumi:"fqdn"`
+	Host                *string                         `pulumi:"host"`
+	HostType            *string                         `pulumi:"hostType"`
+	Ip6                 *string                         `pulumi:"ip6"`
+	Lists               []FirewallAddress6List          `pulumi:"lists"`
+	Macaddrs            []FirewallAddress6Macaddr       `pulumi:"macaddrs"`
+	Name                *string                         `pulumi:"name"`
+	ObjId               *string                         `pulumi:"objId"`
+	Sdn                 *string                         `pulumi:"sdn"`
+	SdnTag              *string                         `pulumi:"sdnTag"`
+	StartIp             *string                         `pulumi:"startIp"`
+	StartMac            *string                         `pulumi:"startMac"`
+	SubnetSegments      []FirewallAddress6SubnetSegment `pulumi:"subnetSegments"`
+	Taggings            []FirewallAddress6Tagging       `pulumi:"taggings"`
+	Template            *string                         `pulumi:"template"`
+	Tenant              *string                         `pulumi:"tenant"`
+	Type                *string                         `pulumi:"type"`
+	Uuid                *string                         `pulumi:"uuid"`
+	Vdomparam           *string                         `pulumi:"vdomparam"`
+	Visibility          *string                         `pulumi:"visibility"`
 }
 
 type FirewallAddress6State struct {
-	// Minimal TTL of individual IPv6 addresses in FQDN cache.
-	CacheTtl pulumi.IntPtrInput
-	// Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// IPv6 addresses associated to a specific country.
-	Country pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	CacheTtl            pulumi.IntPtrInput
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
+	Country             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-	EndIp pulumi.StringPtrInput
-	// Last MAC address in the range.
-	EndMac pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// Fully qualified domain name.
-	Fqdn pulumi.StringPtrInput
-	// Host Address.
-	Host pulumi.StringPtrInput
-	// Host type. Valid values: `any`, `specific`.
-	HostType pulumi.StringPtrInput
-	// IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-	Ip6 pulumi.StringPtrInput
-	// IP address list. The structure of `list` block is documented below.
-	Lists FirewallAddress6ListArrayInput
-	// MAC address ranges <start>[-<end>] separated by space.
-	Macaddrs FirewallAddress6MacaddrArrayInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Object ID for NSX.
-	ObjId pulumi.StringPtrInput
-	// SDN.
-	Sdn pulumi.StringPtrInput
-	// First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-	StartIp pulumi.StringPtrInput
-	// First MAC address in the range.
-	StartMac pulumi.StringPtrInput
-	// IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-	SubnetSegments FirewallAddress6SubnetSegmentArrayInput
-	// Config object tagging The structure of `tagging` block is documented below.
-	Taggings FirewallAddress6TaggingArrayInput
-	// IPv6 address template.
-	Template pulumi.StringPtrInput
-	// Subnet segment type. Valid values: `any`, `specific`.
-	Type pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable the visibility of the object in the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
+	EndIp               pulumi.StringPtrInput
+	EndMac              pulumi.StringPtrInput
+	EpgName             pulumi.StringPtrInput
+	FabricObject        pulumi.StringPtrInput
+	Fqdn                pulumi.StringPtrInput
+	Host                pulumi.StringPtrInput
+	HostType            pulumi.StringPtrInput
+	Ip6                 pulumi.StringPtrInput
+	Lists               FirewallAddress6ListArrayInput
+	Macaddrs            FirewallAddress6MacaddrArrayInput
+	Name                pulumi.StringPtrInput
+	ObjId               pulumi.StringPtrInput
+	Sdn                 pulumi.StringPtrInput
+	SdnTag              pulumi.StringPtrInput
+	StartIp             pulumi.StringPtrInput
+	StartMac            pulumi.StringPtrInput
+	SubnetSegments      FirewallAddress6SubnetSegmentArrayInput
+	Taggings            FirewallAddress6TaggingArrayInput
+	Template            pulumi.StringPtrInput
+	Tenant              pulumi.StringPtrInput
+	Type                pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
 }
 
 func (FirewallAddress6State) ElementType() reflect.Type {
@@ -259,114 +142,68 @@ func (FirewallAddress6State) ElementType() reflect.Type {
 }
 
 type firewallAddress6Args struct {
-	// Minimal TTL of individual IPv6 addresses in FQDN cache.
-	CacheTtl *int `pulumi:"cacheTtl"`
-	// Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// IPv6 addresses associated to a specific country.
-	Country *string `pulumi:"country"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-	EndIp *string `pulumi:"endIp"`
-	// Last MAC address in the range.
-	EndMac *string `pulumi:"endMac"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// Fully qualified domain name.
-	Fqdn *string `pulumi:"fqdn"`
-	// Host Address.
-	Host *string `pulumi:"host"`
-	// Host type. Valid values: `any`, `specific`.
-	HostType *string `pulumi:"hostType"`
-	// IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-	Ip6 *string `pulumi:"ip6"`
-	// IP address list. The structure of `list` block is documented below.
-	Lists []FirewallAddress6List `pulumi:"lists"`
-	// MAC address ranges <start>[-<end>] separated by space.
-	Macaddrs []FirewallAddress6Macaddr `pulumi:"macaddrs"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Object ID for NSX.
-	ObjId *string `pulumi:"objId"`
-	// SDN.
-	Sdn *string `pulumi:"sdn"`
-	// First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-	StartIp *string `pulumi:"startIp"`
-	// First MAC address in the range.
-	StartMac *string `pulumi:"startMac"`
-	// IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-	SubnetSegments []FirewallAddress6SubnetSegment `pulumi:"subnetSegments"`
-	// Config object tagging The structure of `tagging` block is documented below.
-	Taggings []FirewallAddress6Tagging `pulumi:"taggings"`
-	// IPv6 address template.
-	Template *string `pulumi:"template"`
-	// Subnet segment type. Valid values: `any`, `specific`.
-	Type *string `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable the visibility of the object in the GUI. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
+	CacheTtl            *int                            `pulumi:"cacheTtl"`
+	Color               *int                            `pulumi:"color"`
+	Comment             *string                         `pulumi:"comment"`
+	Country             *string                         `pulumi:"country"`
+	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	EndIp               *string                         `pulumi:"endIp"`
+	EndMac              *string                         `pulumi:"endMac"`
+	EpgName             *string                         `pulumi:"epgName"`
+	FabricObject        *string                         `pulumi:"fabricObject"`
+	Fqdn                *string                         `pulumi:"fqdn"`
+	Host                *string                         `pulumi:"host"`
+	HostType            *string                         `pulumi:"hostType"`
+	Ip6                 *string                         `pulumi:"ip6"`
+	Lists               []FirewallAddress6List          `pulumi:"lists"`
+	Macaddrs            []FirewallAddress6Macaddr       `pulumi:"macaddrs"`
+	Name                *string                         `pulumi:"name"`
+	ObjId               *string                         `pulumi:"objId"`
+	Sdn                 *string                         `pulumi:"sdn"`
+	SdnTag              *string                         `pulumi:"sdnTag"`
+	StartIp             *string                         `pulumi:"startIp"`
+	StartMac            *string                         `pulumi:"startMac"`
+	SubnetSegments      []FirewallAddress6SubnetSegment `pulumi:"subnetSegments"`
+	Taggings            []FirewallAddress6Tagging       `pulumi:"taggings"`
+	Template            *string                         `pulumi:"template"`
+	Tenant              *string                         `pulumi:"tenant"`
+	Type                *string                         `pulumi:"type"`
+	Uuid                *string                         `pulumi:"uuid"`
+	Vdomparam           *string                         `pulumi:"vdomparam"`
+	Visibility          *string                         `pulumi:"visibility"`
 }
 
 // The set of arguments for constructing a FirewallAddress6 resource.
 type FirewallAddress6Args struct {
-	// Minimal TTL of individual IPv6 addresses in FQDN cache.
-	CacheTtl pulumi.IntPtrInput
-	// Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// IPv6 addresses associated to a specific country.
-	Country pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	CacheTtl            pulumi.IntPtrInput
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
+	Country             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-	EndIp pulumi.StringPtrInput
-	// Last MAC address in the range.
-	EndMac pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// Fully qualified domain name.
-	Fqdn pulumi.StringPtrInput
-	// Host Address.
-	Host pulumi.StringPtrInput
-	// Host type. Valid values: `any`, `specific`.
-	HostType pulumi.StringPtrInput
-	// IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-	Ip6 pulumi.StringPtrInput
-	// IP address list. The structure of `list` block is documented below.
-	Lists FirewallAddress6ListArrayInput
-	// MAC address ranges <start>[-<end>] separated by space.
-	Macaddrs FirewallAddress6MacaddrArrayInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Object ID for NSX.
-	ObjId pulumi.StringPtrInput
-	// SDN.
-	Sdn pulumi.StringPtrInput
-	// First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-	StartIp pulumi.StringPtrInput
-	// First MAC address in the range.
-	StartMac pulumi.StringPtrInput
-	// IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-	SubnetSegments FirewallAddress6SubnetSegmentArrayInput
-	// Config object tagging The structure of `tagging` block is documented below.
-	Taggings FirewallAddress6TaggingArrayInput
-	// IPv6 address template.
-	Template pulumi.StringPtrInput
-	// Subnet segment type. Valid values: `any`, `specific`.
-	Type pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable the visibility of the object in the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
+	EndIp               pulumi.StringPtrInput
+	EndMac              pulumi.StringPtrInput
+	EpgName             pulumi.StringPtrInput
+	FabricObject        pulumi.StringPtrInput
+	Fqdn                pulumi.StringPtrInput
+	Host                pulumi.StringPtrInput
+	HostType            pulumi.StringPtrInput
+	Ip6                 pulumi.StringPtrInput
+	Lists               FirewallAddress6ListArrayInput
+	Macaddrs            FirewallAddress6MacaddrArrayInput
+	Name                pulumi.StringPtrInput
+	ObjId               pulumi.StringPtrInput
+	Sdn                 pulumi.StringPtrInput
+	SdnTag              pulumi.StringPtrInput
+	StartIp             pulumi.StringPtrInput
+	StartMac            pulumi.StringPtrInput
+	SubnetSegments      FirewallAddress6SubnetSegmentArrayInput
+	Taggings            FirewallAddress6TaggingArrayInput
+	Template            pulumi.StringPtrInput
+	Tenant              pulumi.StringPtrInput
+	Type                pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
 }
 
 func (FirewallAddress6Args) ElementType() reflect.Type {
@@ -395,7 +232,7 @@ func (i *FirewallAddress6) ToFirewallAddress6OutputWithContext(ctx context.Conte
 // FirewallAddress6ArrayInput is an input type that accepts FirewallAddress6Array and FirewallAddress6ArrayOutput values.
 // You can construct a concrete instance of `FirewallAddress6ArrayInput` via:
 //
-//          FirewallAddress6Array{ FirewallAddress6Args{...} }
+//	FirewallAddress6Array{ FirewallAddress6Args{...} }
 type FirewallAddress6ArrayInput interface {
 	pulumi.Input
 
@@ -420,7 +257,7 @@ func (i FirewallAddress6Array) ToFirewallAddress6ArrayOutputWithContext(ctx cont
 // FirewallAddress6MapInput is an input type that accepts FirewallAddress6Map and FirewallAddress6MapOutput values.
 // You can construct a concrete instance of `FirewallAddress6MapInput` via:
 //
-//          FirewallAddress6Map{ "key": FirewallAddress6Args{...} }
+//	FirewallAddress6Map{ "key": FirewallAddress6Args{...} }
 type FirewallAddress6MapInput interface {
 	pulumi.Input
 
@@ -454,6 +291,122 @@ func (o FirewallAddress6Output) ToFirewallAddress6Output() FirewallAddress6Outpu
 
 func (o FirewallAddress6Output) ToFirewallAddress6OutputWithContext(ctx context.Context) FirewallAddress6Output {
 	return o
+}
+
+func (o FirewallAddress6Output) CacheTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.IntOutput { return v.CacheTtl }).(pulumi.IntOutput)
+}
+
+func (o FirewallAddress6Output) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o FirewallAddress6Output) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddress6Output) Country() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.Country }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddress6Output) EndIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.EndIp }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) EndMac() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.EndMac }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) EpgName() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.EpgName }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) Fqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.Fqdn }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.Host }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) HostType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.HostType }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) Ip6() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.Ip6 }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) Lists() FirewallAddress6ListArrayOutput {
+	return o.ApplyT(func(v *FirewallAddress6) FirewallAddress6ListArrayOutput { return v.Lists }).(FirewallAddress6ListArrayOutput)
+}
+
+func (o FirewallAddress6Output) Macaddrs() FirewallAddress6MacaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallAddress6) FirewallAddress6MacaddrArrayOutput { return v.Macaddrs }).(FirewallAddress6MacaddrArrayOutput)
+}
+
+func (o FirewallAddress6Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) ObjId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringPtrOutput { return v.ObjId }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddress6Output) Sdn() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.Sdn }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) SdnTag() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.SdnTag }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) StartIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.StartIp }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) StartMac() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.StartMac }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) SubnetSegments() FirewallAddress6SubnetSegmentArrayOutput {
+	return o.ApplyT(func(v *FirewallAddress6) FirewallAddress6SubnetSegmentArrayOutput { return v.SubnetSegments }).(FirewallAddress6SubnetSegmentArrayOutput)
+}
+
+func (o FirewallAddress6Output) Taggings() FirewallAddress6TaggingArrayOutput {
+	return o.ApplyT(func(v *FirewallAddress6) FirewallAddress6TaggingArrayOutput { return v.Taggings }).(FirewallAddress6TaggingArrayOutput)
+}
+
+func (o FirewallAddress6Output) Template() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.Template }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) Tenant() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.Tenant }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddress6Output) Visibility() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.Visibility }).(pulumi.StringOutput)
 }
 
 type FirewallAddress6ArrayOutput struct{ *pulumi.OutputState }

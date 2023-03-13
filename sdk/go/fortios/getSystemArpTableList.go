@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemArpTable`.
 func GetSystemArpTableList(ctx *pulumi.Context, args *GetSystemArpTableListArgs, opts ...pulumi.InvokeOption) (*GetSystemArpTableListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemArpTableListResult
@@ -23,16 +22,14 @@ func GetSystemArpTableList(ctx *pulumi.Context, args *GetSystemArpTableListArgs,
 
 // A collection of arguments for invoking GetSystemArpTableList.
 type GetSystemArpTableListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemArpTableList.
 type GetSystemArpTableListResult struct {
-	Filter *string `pulumi:"filter"`
-	// A list of the `SystemArpTable`.
-	Fosidlists []int `pulumi:"fosidlists"`
+	Filter     *string `pulumi:"filter"`
+	Fosidlists []int   `pulumi:"fosidlists"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -53,8 +50,7 @@ func GetSystemArpTableListOutput(ctx *pulumi.Context, args GetSystemArpTableList
 
 // A collection of arguments for invoking GetSystemArpTableList.
 type GetSystemArpTableListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -81,7 +77,6 @@ func (o GetSystemArpTableListResultOutput) Filter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetSystemArpTableListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
 }
 
-// A list of the `SystemArpTable`.
 func (o GetSystemArpTableListResultOutput) Fosidlists() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v GetSystemArpTableListResult) []int { return v.Fosidlists }).(pulumi.IntArrayOutput)
 }

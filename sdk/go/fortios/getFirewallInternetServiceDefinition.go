@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewall internetservicedefinition
 func LookupFirewallInternetServiceDefinition(ctx *pulumi.Context, args *LookupFirewallInternetServiceDefinitionArgs, opts ...pulumi.InvokeOption) (*LookupFirewallInternetServiceDefinitionResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallInternetServiceDefinitionResult
@@ -23,18 +22,14 @@ func LookupFirewallInternetServiceDefinition(ctx *pulumi.Context, args *LookupFi
 
 // A collection of arguments for invoking GetFirewallInternetServiceDefinition.
 type LookupFirewallInternetServiceDefinitionArgs struct {
-	// Specify the fosid of the desired firewall internetservicedefinition.
-	Fosid int `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     int     `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallInternetServiceDefinition.
 type LookupFirewallInternetServiceDefinitionResult struct {
-	// Protocol and port information in an Internet Service entry. The structure of `entry` block is documented below.
 	Entries []GetFirewallInternetServiceDefinitionEntry `pulumi:"entries"`
-	// Internet Service application list ID.
-	Fosid int `pulumi:"fosid"`
+	Fosid   int                                         `pulumi:"fosid"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -55,9 +50,7 @@ func LookupFirewallInternetServiceDefinitionOutput(ctx *pulumi.Context, args Loo
 
 // A collection of arguments for invoking GetFirewallInternetServiceDefinition.
 type LookupFirewallInternetServiceDefinitionOutputArgs struct {
-	// Specify the fosid of the desired firewall internetservicedefinition.
-	Fosid pulumi.IntInput `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntInput       `pulumi:"fosid"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -80,14 +73,12 @@ func (o LookupFirewallInternetServiceDefinitionResultOutput) ToLookupFirewallInt
 	return o
 }
 
-// Protocol and port information in an Internet Service entry. The structure of `entry` block is documented below.
 func (o LookupFirewallInternetServiceDefinitionResultOutput) Entries() GetFirewallInternetServiceDefinitionEntryArrayOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceDefinitionResult) []GetFirewallInternetServiceDefinitionEntry {
 		return v.Entries
 	}).(GetFirewallInternetServiceDefinitionEntryArrayOutput)
 }
 
-// Internet Service application list ID.
 func (o LookupFirewallInternetServiceDefinitionResultOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceDefinitionResult) int { return v.Fosid }).(pulumi.IntOutput)
 }

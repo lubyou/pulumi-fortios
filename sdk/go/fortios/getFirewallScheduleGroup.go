@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewallschedule group
 func LookupFirewallScheduleGroup(ctx *pulumi.Context, args *LookupFirewallScheduleGroupArgs, opts ...pulumi.InvokeOption) (*LookupFirewallScheduleGroupResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallScheduleGroupResult
@@ -23,25 +22,19 @@ func LookupFirewallScheduleGroup(ctx *pulumi.Context, args *LookupFirewallSchedu
 
 // A collection of arguments for invoking GetFirewallScheduleGroup.
 type LookupFirewallScheduleGroupArgs struct {
-	// Specify the name of the desired firewallschedule group.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallScheduleGroup.
 type LookupFirewallScheduleGroupResult struct {
-	// Color of icon on the GUI.
-	Color int `pulumi:"color"`
-	// Security Fabric global object setting.
+	Color        int    `pulumi:"color"`
 	FabricObject string `pulumi:"fabricObject"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Schedules added to the schedule group. The structure of `member` block is documented below.
-	Members []GetFirewallScheduleGroupMember `pulumi:"members"`
-	// Schedule name.
-	Name      string  `pulumi:"name"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id        string                           `pulumi:"id"`
+	Members   []GetFirewallScheduleGroupMember `pulumi:"members"`
+	Name      string                           `pulumi:"name"`
+	Vdomparam *string                          `pulumi:"vdomparam"`
 }
 
 func LookupFirewallScheduleGroupOutput(ctx *pulumi.Context, args LookupFirewallScheduleGroupOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallScheduleGroupResultOutput {
@@ -59,9 +52,7 @@ func LookupFirewallScheduleGroupOutput(ctx *pulumi.Context, args LookupFirewallS
 
 // A collection of arguments for invoking GetFirewallScheduleGroup.
 type LookupFirewallScheduleGroupOutputArgs struct {
-	// Specify the name of the desired firewallschedule group.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -84,12 +75,10 @@ func (o LookupFirewallScheduleGroupResultOutput) ToLookupFirewallScheduleGroupRe
 	return o
 }
 
-// Color of icon on the GUI.
 func (o LookupFirewallScheduleGroupResultOutput) Color() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallScheduleGroupResult) int { return v.Color }).(pulumi.IntOutput)
 }
 
-// Security Fabric global object setting.
 func (o LookupFirewallScheduleGroupResultOutput) FabricObject() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallScheduleGroupResult) string { return v.FabricObject }).(pulumi.StringOutput)
 }
@@ -99,12 +88,10 @@ func (o LookupFirewallScheduleGroupResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallScheduleGroupResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Schedules added to the schedule group. The structure of `member` block is documented below.
 func (o LookupFirewallScheduleGroupResultOutput) Members() GetFirewallScheduleGroupMemberArrayOutput {
 	return o.ApplyT(func(v LookupFirewallScheduleGroupResult) []GetFirewallScheduleGroupMember { return v.Members }).(GetFirewallScheduleGroupMemberArrayOutput)
 }
 
-// Schedule name.
 func (o LookupFirewallScheduleGroupResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallScheduleGroupResult) string { return v.Name }).(pulumi.StringOutput)
 }

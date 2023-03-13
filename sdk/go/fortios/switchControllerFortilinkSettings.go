@@ -10,38 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure integrated FortiLink settings for FortiSwitch. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// SwitchController FortilinkSettings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerFortilinkSettings:SwitchControllerFortilinkSettings labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerFortilinkSettings:SwitchControllerFortilinkSettings labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerFortilinkSettings struct {
 	pulumi.CustomResourceState
 
-	// FortiLink interface to which this fortilink-setting belongs.
-	Fortilink pulumi.StringOutput `pulumi:"fortilink"`
-	// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
-	InactiveTimer pulumi.IntOutput `pulumi:"inactiveTimer"`
-	// Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
-	LinkDownFlush pulumi.StringOutput `pulumi:"linkDownFlush"`
-	// NAC specific configuration. The structure of `nacPorts` block is documented below.
-	NacPorts SwitchControllerFortilinkSettingsNacPortsPtrOutput `pulumi:"nacPorts"`
-	// FortiLink settings name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Fortilink     pulumi.StringOutput                             `pulumi:"fortilink"`
+	InactiveTimer pulumi.IntOutput                                `pulumi:"inactiveTimer"`
+	LinkDownFlush pulumi.StringOutput                             `pulumi:"linkDownFlush"`
+	NacPorts      SwitchControllerFortilinkSettingsNacPortsOutput `pulumi:"nacPorts"`
+	Name          pulumi.StringOutput                             `pulumi:"name"`
+	Vdomparam     pulumi.StringPtrOutput                          `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerFortilinkSettings registers a new resource with the given unique name, arguments, and options.
@@ -74,33 +51,21 @@ func GetSwitchControllerFortilinkSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerFortilinkSettings resources.
 type switchControllerFortilinkSettingsState struct {
-	// FortiLink interface to which this fortilink-setting belongs.
-	Fortilink *string `pulumi:"fortilink"`
-	// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
-	InactiveTimer *int `pulumi:"inactiveTimer"`
-	// Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
-	LinkDownFlush *string `pulumi:"linkDownFlush"`
-	// NAC specific configuration. The structure of `nacPorts` block is documented below.
-	NacPorts *SwitchControllerFortilinkSettingsNacPorts `pulumi:"nacPorts"`
-	// FortiLink settings name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Fortilink     *string                                    `pulumi:"fortilink"`
+	InactiveTimer *int                                       `pulumi:"inactiveTimer"`
+	LinkDownFlush *string                                    `pulumi:"linkDownFlush"`
+	NacPorts      *SwitchControllerFortilinkSettingsNacPorts `pulumi:"nacPorts"`
+	Name          *string                                    `pulumi:"name"`
+	Vdomparam     *string                                    `pulumi:"vdomparam"`
 }
 
 type SwitchControllerFortilinkSettingsState struct {
-	// FortiLink interface to which this fortilink-setting belongs.
-	Fortilink pulumi.StringPtrInput
-	// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
+	Fortilink     pulumi.StringPtrInput
 	InactiveTimer pulumi.IntPtrInput
-	// Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
 	LinkDownFlush pulumi.StringPtrInput
-	// NAC specific configuration. The structure of `nacPorts` block is documented below.
-	NacPorts SwitchControllerFortilinkSettingsNacPortsPtrInput
-	// FortiLink settings name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	NacPorts      SwitchControllerFortilinkSettingsNacPortsPtrInput
+	Name          pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (SwitchControllerFortilinkSettingsState) ElementType() reflect.Type {
@@ -108,34 +73,22 @@ func (SwitchControllerFortilinkSettingsState) ElementType() reflect.Type {
 }
 
 type switchControllerFortilinkSettingsArgs struct {
-	// FortiLink interface to which this fortilink-setting belongs.
-	Fortilink *string `pulumi:"fortilink"`
-	// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
-	InactiveTimer *int `pulumi:"inactiveTimer"`
-	// Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
-	LinkDownFlush *string `pulumi:"linkDownFlush"`
-	// NAC specific configuration. The structure of `nacPorts` block is documented below.
-	NacPorts *SwitchControllerFortilinkSettingsNacPorts `pulumi:"nacPorts"`
-	// FortiLink settings name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Fortilink     *string                                    `pulumi:"fortilink"`
+	InactiveTimer *int                                       `pulumi:"inactiveTimer"`
+	LinkDownFlush *string                                    `pulumi:"linkDownFlush"`
+	NacPorts      *SwitchControllerFortilinkSettingsNacPorts `pulumi:"nacPorts"`
+	Name          *string                                    `pulumi:"name"`
+	Vdomparam     *string                                    `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerFortilinkSettings resource.
 type SwitchControllerFortilinkSettingsArgs struct {
-	// FortiLink interface to which this fortilink-setting belongs.
-	Fortilink pulumi.StringPtrInput
-	// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
+	Fortilink     pulumi.StringPtrInput
 	InactiveTimer pulumi.IntPtrInput
-	// Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
 	LinkDownFlush pulumi.StringPtrInput
-	// NAC specific configuration. The structure of `nacPorts` block is documented below.
-	NacPorts SwitchControllerFortilinkSettingsNacPortsPtrInput
-	// FortiLink settings name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	NacPorts      SwitchControllerFortilinkSettingsNacPortsPtrInput
+	Name          pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (SwitchControllerFortilinkSettingsArgs) ElementType() reflect.Type {
@@ -164,7 +117,7 @@ func (i *SwitchControllerFortilinkSettings) ToSwitchControllerFortilinkSettingsO
 // SwitchControllerFortilinkSettingsArrayInput is an input type that accepts SwitchControllerFortilinkSettingsArray and SwitchControllerFortilinkSettingsArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerFortilinkSettingsArrayInput` via:
 //
-//          SwitchControllerFortilinkSettingsArray{ SwitchControllerFortilinkSettingsArgs{...} }
+//	SwitchControllerFortilinkSettingsArray{ SwitchControllerFortilinkSettingsArgs{...} }
 type SwitchControllerFortilinkSettingsArrayInput interface {
 	pulumi.Input
 
@@ -189,7 +142,7 @@ func (i SwitchControllerFortilinkSettingsArray) ToSwitchControllerFortilinkSetti
 // SwitchControllerFortilinkSettingsMapInput is an input type that accepts SwitchControllerFortilinkSettingsMap and SwitchControllerFortilinkSettingsMapOutput values.
 // You can construct a concrete instance of `SwitchControllerFortilinkSettingsMapInput` via:
 //
-//          SwitchControllerFortilinkSettingsMap{ "key": SwitchControllerFortilinkSettingsArgs{...} }
+//	SwitchControllerFortilinkSettingsMap{ "key": SwitchControllerFortilinkSettingsArgs{...} }
 type SwitchControllerFortilinkSettingsMapInput interface {
 	pulumi.Input
 
@@ -223,6 +176,32 @@ func (o SwitchControllerFortilinkSettingsOutput) ToSwitchControllerFortilinkSett
 
 func (o SwitchControllerFortilinkSettingsOutput) ToSwitchControllerFortilinkSettingsOutputWithContext(ctx context.Context) SwitchControllerFortilinkSettingsOutput {
 	return o
+}
+
+func (o SwitchControllerFortilinkSettingsOutput) Fortilink() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerFortilinkSettings) pulumi.StringOutput { return v.Fortilink }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerFortilinkSettingsOutput) InactiveTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerFortilinkSettings) pulumi.IntOutput { return v.InactiveTimer }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerFortilinkSettingsOutput) LinkDownFlush() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerFortilinkSettings) pulumi.StringOutput { return v.LinkDownFlush }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerFortilinkSettingsOutput) NacPorts() SwitchControllerFortilinkSettingsNacPortsOutput {
+	return o.ApplyT(func(v *SwitchControllerFortilinkSettings) SwitchControllerFortilinkSettingsNacPortsOutput {
+		return v.NacPorts
+	}).(SwitchControllerFortilinkSettingsNacPortsOutput)
+}
+
+func (o SwitchControllerFortilinkSettingsOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerFortilinkSettings) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerFortilinkSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerFortilinkSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerFortilinkSettingsArrayOutput struct{ *pulumi.OutputState }

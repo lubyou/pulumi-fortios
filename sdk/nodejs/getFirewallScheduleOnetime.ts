@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios firewallschedule onetime
- */
 export function getFirewallScheduleOnetime(args: GetFirewallScheduleOnetimeArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallScheduleOnetimeResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallScheduleOnetime:GetFirewallScheduleOnetime", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getFirewallScheduleOnetime(args: GetFirewallScheduleOnetimeArgs,
  * A collection of arguments for invoking GetFirewallScheduleOnetime.
  */
 export interface GetFirewallScheduleOnetimeArgs {
-    /**
-     * Specify the name of the desired firewallschedule onetime.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,51 +25,26 @@ export interface GetFirewallScheduleOnetimeArgs {
  * A collection of values returned by GetFirewallScheduleOnetime.
  */
 export interface GetFirewallScheduleOnetimeResult {
-    /**
-     * Color of icon on the GUI.
-     */
     readonly color: number;
-    /**
-     * Schedule end date and time, format hh:mm yyyy/mm/dd.
-     */
     readonly end: string;
-    /**
-     * Write an event log message this many days before the schedule expires.
-     */
     readonly expirationDays: number;
-    /**
-     * Security Fabric global object setting.
-     */
     readonly fabricObject: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Onetime schedule name.
-     */
     readonly name: string;
-    /**
-     * Schedule start date and time, format hh:mm yyyy/mm/dd.
-     */
     readonly start: string;
     readonly vdomparam?: string;
 }
-
 export function getFirewallScheduleOnetimeOutput(args: GetFirewallScheduleOnetimeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallScheduleOnetimeResult> {
-    return pulumi.output(args).apply(a => getFirewallScheduleOnetime(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallScheduleOnetime(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetFirewallScheduleOnetime.
  */
 export interface GetFirewallScheduleOnetimeOutputArgs {
-    /**
-     * Specify the name of the desired firewallschedule onetime.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

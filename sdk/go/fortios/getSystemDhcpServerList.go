@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemDhcpServer`.
 func GetSystemDhcpServerList(ctx *pulumi.Context, args *GetSystemDhcpServerListArgs, opts ...pulumi.InvokeOption) (*GetSystemDhcpServerListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemDhcpServerListResult
@@ -23,16 +22,14 @@ func GetSystemDhcpServerList(ctx *pulumi.Context, args *GetSystemDhcpServerListA
 
 // A collection of arguments for invoking GetSystemDhcpServerList.
 type GetSystemDhcpServerListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemDhcpServerList.
 type GetSystemDhcpServerListResult struct {
-	Filter *string `pulumi:"filter"`
-	// A list of the `SystemDhcpServer`.
-	Fosidlists []int `pulumi:"fosidlists"`
+	Filter     *string `pulumi:"filter"`
+	Fosidlists []int   `pulumi:"fosidlists"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -53,8 +50,7 @@ func GetSystemDhcpServerListOutput(ctx *pulumi.Context, args GetSystemDhcpServer
 
 // A collection of arguments for invoking GetSystemDhcpServerList.
 type GetSystemDhcpServerListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -81,7 +77,6 @@ func (o GetSystemDhcpServerListResultOutput) Filter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetSystemDhcpServerListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
 }
 
-// A list of the `SystemDhcpServer`.
 func (o GetSystemDhcpServerListResultOutput) Fosidlists() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v GetSystemDhcpServerListResult) []int { return v.Fosidlists }).(pulumi.IntArrayOutput)
 }

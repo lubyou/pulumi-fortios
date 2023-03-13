@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios router setting
- */
 export function getRouterSetting(args?: GetRouterSettingArgs, opts?: pulumi.InvokeOptions): Promise<GetRouterSettingResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getRouterSetting:GetRouterSetting", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getRouterSetting(args?: GetRouterSettingArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking GetRouterSetting.
  */
 export interface GetRouterSettingArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -33,127 +24,45 @@ export interface GetRouterSettingArgs {
  * A collection of values returned by GetRouterSetting.
  */
 export interface GetRouterSettingResult {
-    /**
-     * bgp_debug_flags
-     */
     readonly bgpDebugFlags: string;
-    /**
-     * Hostname for this virtual domain router.
-     */
     readonly hostname: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * igmp_debug_flags
-     */
     readonly igmpDebugFlags: string;
-    /**
-     * imi_debug_flags
-     */
     readonly imiDebugFlags: string;
-    /**
-     * isis_debug_flags
-     */
     readonly isisDebugFlags: string;
-    /**
-     * ospf6_debug_events_flags
-     */
     readonly ospf6DebugEventsFlags: string;
-    /**
-     * ospf6_debug_ifsm_flags
-     */
     readonly ospf6DebugIfsmFlags: string;
-    /**
-     * ospf6_debug_lsa_flags
-     */
     readonly ospf6DebugLsaFlags: string;
-    /**
-     * ospf6_debug_nfsm_flags
-     */
     readonly ospf6DebugNfsmFlags: string;
-    /**
-     * ospf6_debug_nsm_flags
-     */
     readonly ospf6DebugNsmFlags: string;
-    /**
-     * ospf6_debug_packet_flags
-     */
     readonly ospf6DebugPacketFlags: string;
-    /**
-     * ospf6_debug_route_flags
-     */
     readonly ospf6DebugRouteFlags: string;
-    /**
-     * ospf_debug_events_flags
-     */
     readonly ospfDebugEventsFlags: string;
-    /**
-     * ospf_debug_ifsm_flags
-     */
     readonly ospfDebugIfsmFlags: string;
-    /**
-     * ospf_debug_lsa_flags
-     */
     readonly ospfDebugLsaFlags: string;
-    /**
-     * ospf_debug_nfsm_flags
-     */
     readonly ospfDebugNfsmFlags: string;
-    /**
-     * ospf_debug_nsm_flags
-     */
     readonly ospfDebugNsmFlags: string;
-    /**
-     * ospf_debug_packet_flags
-     */
     readonly ospfDebugPacketFlags: string;
-    /**
-     * ospf_debug_route_flags
-     */
     readonly ospfDebugRouteFlags: string;
-    /**
-     * pimdm_debug_flags
-     */
     readonly pimdmDebugFlags: string;
-    /**
-     * pimsm_debug_joinprune_flags
-     */
     readonly pimsmDebugJoinpruneFlags: string;
-    /**
-     * pimsm_debug_simple_flags
-     */
     readonly pimsmDebugSimpleFlags: string;
-    /**
-     * pimsm_debug_timer_flags
-     */
     readonly pimsmDebugTimerFlags: string;
-    /**
-     * rip_debug_flags
-     */
     readonly ripDebugFlags: string;
-    /**
-     * ripng_debug_flags
-     */
     readonly ripngDebugFlags: string;
-    /**
-     * Prefix-list as filter for showing routes.
-     */
     readonly showFilter: string;
     readonly vdomparam?: string;
 }
-
 export function getRouterSettingOutput(args?: GetRouterSettingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterSettingResult> {
-    return pulumi.output(args).apply(a => getRouterSetting(a, opts))
+    return pulumi.output(args).apply((a: any) => getRouterSetting(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetRouterSetting.
  */
 export interface GetRouterSettingOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

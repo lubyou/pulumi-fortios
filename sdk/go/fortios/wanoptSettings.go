@@ -7,63 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure WAN optimization settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWanoptSettings(ctx, "trname", &fortios.WanoptSettingsArgs{
-// 			AutoDetectAlgorithm: pulumi.String("simple"),
-// 			HostId:              pulumi.String("default-id"),
-// 			TunnelSslAlgorithm:  pulumi.String("high"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Wanopt Settings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wanoptSettings:WanoptSettings labelname WanoptSettings
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wanoptSettings:WanoptSettings labelname WanoptSettings
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WanoptSettings struct {
 	pulumi.CustomResourceState
 
-	// Auto detection algorithms used in tunnel negotiations. Valid values: `simple`, `diff-req-resp`.
-	AutoDetectAlgorithm pulumi.StringOutput `pulumi:"autoDetectAlgorithm"`
-	// Local host ID (must also be entered in the remote FortiGate's peer list).
-	HostId pulumi.StringOutput `pulumi:"hostId"`
-	// Relative strength of encryption algorithms accepted during tunnel negotiation. Valid values: `high`, `medium`, `low`.
-	TunnelSslAlgorithm pulumi.StringOutput `pulumi:"tunnelSslAlgorithm"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AutoDetectAlgorithm pulumi.StringOutput    `pulumi:"autoDetectAlgorithm"`
+	HostId              pulumi.StringOutput    `pulumi:"hostId"`
+	TunnelOptimization  pulumi.StringOutput    `pulumi:"tunnelOptimization"`
+	TunnelSslAlgorithm  pulumi.StringOutput    `pulumi:"tunnelSslAlgorithm"`
+	Vdomparam           pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWanoptSettings registers a new resource with the given unique name, arguments, and options.
@@ -99,25 +54,19 @@ func GetWanoptSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WanoptSettings resources.
 type wanoptSettingsState struct {
-	// Auto detection algorithms used in tunnel negotiations. Valid values: `simple`, `diff-req-resp`.
 	AutoDetectAlgorithm *string `pulumi:"autoDetectAlgorithm"`
-	// Local host ID (must also be entered in the remote FortiGate's peer list).
-	HostId *string `pulumi:"hostId"`
-	// Relative strength of encryption algorithms accepted during tunnel negotiation. Valid values: `high`, `medium`, `low`.
-	TunnelSslAlgorithm *string `pulumi:"tunnelSslAlgorithm"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	HostId              *string `pulumi:"hostId"`
+	TunnelOptimization  *string `pulumi:"tunnelOptimization"`
+	TunnelSslAlgorithm  *string `pulumi:"tunnelSslAlgorithm"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 type WanoptSettingsState struct {
-	// Auto detection algorithms used in tunnel negotiations. Valid values: `simple`, `diff-req-resp`.
 	AutoDetectAlgorithm pulumi.StringPtrInput
-	// Local host ID (must also be entered in the remote FortiGate's peer list).
-	HostId pulumi.StringPtrInput
-	// Relative strength of encryption algorithms accepted during tunnel negotiation. Valid values: `high`, `medium`, `low`.
-	TunnelSslAlgorithm pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HostId              pulumi.StringPtrInput
+	TunnelOptimization  pulumi.StringPtrInput
+	TunnelSslAlgorithm  pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WanoptSettingsState) ElementType() reflect.Type {
@@ -125,26 +74,20 @@ func (WanoptSettingsState) ElementType() reflect.Type {
 }
 
 type wanoptSettingsArgs struct {
-	// Auto detection algorithms used in tunnel negotiations. Valid values: `simple`, `diff-req-resp`.
 	AutoDetectAlgorithm *string `pulumi:"autoDetectAlgorithm"`
-	// Local host ID (must also be entered in the remote FortiGate's peer list).
-	HostId string `pulumi:"hostId"`
-	// Relative strength of encryption algorithms accepted during tunnel negotiation. Valid values: `high`, `medium`, `low`.
-	TunnelSslAlgorithm *string `pulumi:"tunnelSslAlgorithm"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	HostId              string  `pulumi:"hostId"`
+	TunnelOptimization  *string `pulumi:"tunnelOptimization"`
+	TunnelSslAlgorithm  *string `pulumi:"tunnelSslAlgorithm"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WanoptSettings resource.
 type WanoptSettingsArgs struct {
-	// Auto detection algorithms used in tunnel negotiations. Valid values: `simple`, `diff-req-resp`.
 	AutoDetectAlgorithm pulumi.StringPtrInput
-	// Local host ID (must also be entered in the remote FortiGate's peer list).
-	HostId pulumi.StringInput
-	// Relative strength of encryption algorithms accepted during tunnel negotiation. Valid values: `high`, `medium`, `low`.
-	TunnelSslAlgorithm pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HostId              pulumi.StringInput
+	TunnelOptimization  pulumi.StringPtrInput
+	TunnelSslAlgorithm  pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WanoptSettingsArgs) ElementType() reflect.Type {
@@ -173,7 +116,7 @@ func (i *WanoptSettings) ToWanoptSettingsOutputWithContext(ctx context.Context) 
 // WanoptSettingsArrayInput is an input type that accepts WanoptSettingsArray and WanoptSettingsArrayOutput values.
 // You can construct a concrete instance of `WanoptSettingsArrayInput` via:
 //
-//          WanoptSettingsArray{ WanoptSettingsArgs{...} }
+//	WanoptSettingsArray{ WanoptSettingsArgs{...} }
 type WanoptSettingsArrayInput interface {
 	pulumi.Input
 
@@ -198,7 +141,7 @@ func (i WanoptSettingsArray) ToWanoptSettingsArrayOutputWithContext(ctx context.
 // WanoptSettingsMapInput is an input type that accepts WanoptSettingsMap and WanoptSettingsMapOutput values.
 // You can construct a concrete instance of `WanoptSettingsMapInput` via:
 //
-//          WanoptSettingsMap{ "key": WanoptSettingsArgs{...} }
+//	WanoptSettingsMap{ "key": WanoptSettingsArgs{...} }
 type WanoptSettingsMapInput interface {
 	pulumi.Input
 
@@ -232,6 +175,26 @@ func (o WanoptSettingsOutput) ToWanoptSettingsOutput() WanoptSettingsOutput {
 
 func (o WanoptSettingsOutput) ToWanoptSettingsOutputWithContext(ctx context.Context) WanoptSettingsOutput {
 	return o
+}
+
+func (o WanoptSettingsOutput) AutoDetectAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptSettings) pulumi.StringOutput { return v.AutoDetectAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o WanoptSettingsOutput) HostId() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptSettings) pulumi.StringOutput { return v.HostId }).(pulumi.StringOutput)
+}
+
+func (o WanoptSettingsOutput) TunnelOptimization() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptSettings) pulumi.StringOutput { return v.TunnelOptimization }).(pulumi.StringOutput)
+}
+
+func (o WanoptSettingsOutput) TunnelSslAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptSettings) pulumi.StringOutput { return v.TunnelSslAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o WanoptSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WanoptSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WanoptSettingsArrayOutput struct{ *pulumi.OutputState }

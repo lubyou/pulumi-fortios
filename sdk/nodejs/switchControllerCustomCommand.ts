@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure the FortiGate switch controller to send custom commands to managed FortiSwitch devices.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchControllerCustomCommand("trname", {
- *     command: "ls",
- *     commandName: "1",
- * });
- * ```
- *
- * ## Import
- *
- * SwitchController CustomCommand can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerCustomCommand:SwitchControllerCustomCommand labelname {{command_name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerCustomCommand:SwitchControllerCustomCommand labelname {{command_name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerCustomCommand extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerCustomCommand resource's state with the given name, ID, and optional extra
@@ -63,21 +32,9 @@ export class SwitchControllerCustomCommand extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerCustomCommand.__pulumiType;
     }
 
-    /**
-     * String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
-     */
     public readonly command!: pulumi.Output<string>;
-    /**
-     * Command name called by the FortiGate switch controller in the execute command.
-     */
     public readonly commandName!: pulumi.Output<string>;
-    /**
-     * Description.
-     */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -116,21 +73,9 @@ export class SwitchControllerCustomCommand extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerCustomCommand resources.
  */
 export interface SwitchControllerCustomCommandState {
-    /**
-     * String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
-     */
     command?: pulumi.Input<string>;
-    /**
-     * Command name called by the FortiGate switch controller in the execute command.
-     */
     commandName?: pulumi.Input<string>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -138,20 +83,8 @@ export interface SwitchControllerCustomCommandState {
  * The set of arguments for constructing a SwitchControllerCustomCommand resource.
  */
 export interface SwitchControllerCustomCommandArgs {
-    /**
-     * String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
-     */
     command: pulumi.Input<string>;
-    /**
-     * Command name called by the FortiGate switch controller in the execute command.
-     */
     commandName?: pulumi.Input<string>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

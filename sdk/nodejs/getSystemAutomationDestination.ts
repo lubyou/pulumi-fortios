@@ -2,18 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios system automationdestination
- */
 export function getSystemAutomationDestination(args: GetSystemAutomationDestinationArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemAutomationDestinationResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemAutomationDestination:GetSystemAutomationDestination", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -24,13 +19,7 @@ export function getSystemAutomationDestination(args: GetSystemAutomationDestinat
  * A collection of arguments for invoking GetSystemAutomationDestination.
  */
 export interface GetSystemAutomationDestinationArgs {
-    /**
-     * Specify the name of the desired system automationdestination.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -38,43 +27,24 @@ export interface GetSystemAutomationDestinationArgs {
  * A collection of values returned by GetSystemAutomationDestination.
  */
 export interface GetSystemAutomationDestinationResult {
-    /**
-     * Destinations. The structure of `destination` block is documented below.
-     */
     readonly destinations: outputs.GetSystemAutomationDestinationDestination[];
-    /**
-     * Cluster group ID set for this destination (default = 0).
-     */
     readonly haGroupId: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Destination.
-     */
     readonly name: string;
-    /**
-     * Destination type.
-     */
     readonly type: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemAutomationDestinationOutput(args: GetSystemAutomationDestinationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemAutomationDestinationResult> {
-    return pulumi.output(args).apply(a => getSystemAutomationDestination(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemAutomationDestination(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemAutomationDestination.
  */
 export interface GetSystemAutomationDestinationOutputArgs {
-    /**
-     * Specify the name of the desired system automationdestination.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

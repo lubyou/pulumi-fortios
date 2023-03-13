@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios system ftmpush
- */
 export function getSystemFtmPush(args?: GetSystemFtmPushArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemFtmPushResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemFtmPush:GetSystemFtmPush", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getSystemFtmPush(args?: GetSystemFtmPushArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking GetSystemFtmPush.
  */
 export interface GetSystemFtmPushArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,39 +28,20 @@ export interface GetSystemFtmPushResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * IPv4 address or domain name of FortiToken Mobile push services server.
-     */
     readonly server: string;
-    /**
-     * Name of the server certificate to be used for SSL (default = Fortinet_Factory).
-     */
     readonly serverCert: string;
-    /**
-     * IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
-     */
     readonly serverIp: string;
-    /**
-     * Port to communicate with FortiToken Mobile push services server (1 - 65535, default = 4433).
-     */
     readonly serverPort: number;
-    /**
-     * Enable/disable the use of FortiToken Mobile push services.
-     */
     readonly status: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemFtmPushOutput(args?: GetSystemFtmPushOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemFtmPushResult> {
-    return pulumi.output(args).apply(a => getSystemFtmPush(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemFtmPush(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemFtmPush.
  */
 export interface GetSystemFtmPushOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

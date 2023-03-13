@@ -10,104 +10,28 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure resource limits.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemResourceLimits(ctx, "trname", &fortios.SystemResourceLimitsArgs{
-// 			CustomService:        pulumi.Int(0),
-// 			DialupTunnel:         pulumi.Int(0),
-// 			FirewallAddress:      pulumi.Int(41024),
-// 			FirewallAddrgrp:      pulumi.Int(10692),
-// 			FirewallPolicy:       pulumi.Int(41024),
-// 			IpsecPhase1:          pulumi.Int(2000),
-// 			IpsecPhase1Interface: pulumi.Int(0),
-// 			IpsecPhase2:          pulumi.Int(2000),
-// 			IpsecPhase2Interface: pulumi.Int(0),
-// 			LogDiskQuota:         pulumi.Int(30235),
-// 			OnetimeSchedule:      pulumi.Int(0),
-// 			Proxy:                pulumi.Int(64000),
-// 			RecurringSchedule:    pulumi.Int(0),
-// 			ServiceGroup:         pulumi.Int(0),
-// 			Session:              pulumi.Int(0),
-// 			Sslvpn:               pulumi.Int(0),
-// 			User:                 pulumi.Int(0),
-// 			UserGroup:            pulumi.Int(0),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System ResourceLimits can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemResourceLimits:SystemResourceLimits labelname SystemResourceLimits
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemResourceLimits:SystemResourceLimits labelname SystemResourceLimits
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemResourceLimits struct {
 	pulumi.CustomResourceState
 
-	// Maximum number of firewall custom services.
-	CustomService pulumi.IntOutput `pulumi:"customService"`
-	// Maximum number of dial-up tunnels.
-	DialupTunnel pulumi.IntOutput `pulumi:"dialupTunnel"`
-	// Maximum number of firewall addresses (IPv4, IPv6, multicast).
-	FirewallAddress pulumi.IntOutput `pulumi:"firewallAddress"`
-	// Maximum number of firewall address groups (IPv4, IPv6).
-	FirewallAddrgrp pulumi.IntOutput `pulumi:"firewallAddrgrp"`
-	// Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-	FirewallPolicy pulumi.IntOutput `pulumi:"firewallPolicy"`
-	// Maximum number of VPN IPsec phase1 tunnels.
-	IpsecPhase1 pulumi.IntOutput `pulumi:"ipsecPhase1"`
-	// Maximum number of VPN IPsec phase1 interface tunnels.
-	IpsecPhase1Interface pulumi.IntOutput `pulumi:"ipsecPhase1Interface"`
-	// Maximum number of VPN IPsec phase2 tunnels.
-	IpsecPhase2 pulumi.IntOutput `pulumi:"ipsecPhase2"`
-	// Maximum number of VPN IPsec phase2 interface tunnels.
-	IpsecPhase2Interface pulumi.IntOutput `pulumi:"ipsecPhase2Interface"`
-	// Log disk quota in MB.
-	LogDiskQuota pulumi.IntOutput `pulumi:"logDiskQuota"`
-	// Maximum number of firewall one-time schedules.
-	OnetimeSchedule pulumi.IntOutput `pulumi:"onetimeSchedule"`
-	// Maximum number of concurrent proxy users.
-	Proxy pulumi.IntOutput `pulumi:"proxy"`
-	// Maximum number of firewall recurring schedules.
-	RecurringSchedule pulumi.IntOutput `pulumi:"recurringSchedule"`
-	// Maximum number of firewall service groups.
-	ServiceGroup pulumi.IntOutput `pulumi:"serviceGroup"`
-	// Maximum number of sessions.
-	Session pulumi.IntOutput `pulumi:"session"`
-	// Maximum number of SSL-VPN.
-	Sslvpn pulumi.IntOutput `pulumi:"sslvpn"`
-	// Maximum number of local users.
-	User pulumi.IntOutput `pulumi:"user"`
-	// Maximum number of user groups.
-	UserGroup pulumi.IntOutput `pulumi:"userGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	CustomService        pulumi.IntOutput       `pulumi:"customService"`
+	DialupTunnel         pulumi.IntOutput       `pulumi:"dialupTunnel"`
+	FirewallAddress      pulumi.IntOutput       `pulumi:"firewallAddress"`
+	FirewallAddrgrp      pulumi.IntOutput       `pulumi:"firewallAddrgrp"`
+	FirewallPolicy       pulumi.IntOutput       `pulumi:"firewallPolicy"`
+	IpsecPhase1          pulumi.IntOutput       `pulumi:"ipsecPhase1"`
+	IpsecPhase1Interface pulumi.IntOutput       `pulumi:"ipsecPhase1Interface"`
+	IpsecPhase2          pulumi.IntOutput       `pulumi:"ipsecPhase2"`
+	IpsecPhase2Interface pulumi.IntOutput       `pulumi:"ipsecPhase2Interface"`
+	LogDiskQuota         pulumi.IntOutput       `pulumi:"logDiskQuota"`
+	OnetimeSchedule      pulumi.IntOutput       `pulumi:"onetimeSchedule"`
+	Proxy                pulumi.IntOutput       `pulumi:"proxy"`
+	RecurringSchedule    pulumi.IntOutput       `pulumi:"recurringSchedule"`
+	ServiceGroup         pulumi.IntOutput       `pulumi:"serviceGroup"`
+	Session              pulumi.IntOutput       `pulumi:"session"`
+	Sslvpn               pulumi.IntOutput       `pulumi:"sslvpn"`
+	User                 pulumi.IntOutput       `pulumi:"user"`
+	UserGroup            pulumi.IntOutput       `pulumi:"userGroup"`
+	Vdomparam            pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemResourceLimits registers a new resource with the given unique name, arguments, and options.
@@ -140,85 +64,47 @@ func GetSystemResourceLimits(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemResourceLimits resources.
 type systemResourceLimitsState struct {
-	// Maximum number of firewall custom services.
-	CustomService *int `pulumi:"customService"`
-	// Maximum number of dial-up tunnels.
-	DialupTunnel *int `pulumi:"dialupTunnel"`
-	// Maximum number of firewall addresses (IPv4, IPv6, multicast).
-	FirewallAddress *int `pulumi:"firewallAddress"`
-	// Maximum number of firewall address groups (IPv4, IPv6).
-	FirewallAddrgrp *int `pulumi:"firewallAddrgrp"`
-	// Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-	FirewallPolicy *int `pulumi:"firewallPolicy"`
-	// Maximum number of VPN IPsec phase1 tunnels.
-	IpsecPhase1 *int `pulumi:"ipsecPhase1"`
-	// Maximum number of VPN IPsec phase1 interface tunnels.
-	IpsecPhase1Interface *int `pulumi:"ipsecPhase1Interface"`
-	// Maximum number of VPN IPsec phase2 tunnels.
-	IpsecPhase2 *int `pulumi:"ipsecPhase2"`
-	// Maximum number of VPN IPsec phase2 interface tunnels.
-	IpsecPhase2Interface *int `pulumi:"ipsecPhase2Interface"`
-	// Log disk quota in MB.
-	LogDiskQuota *int `pulumi:"logDiskQuota"`
-	// Maximum number of firewall one-time schedules.
-	OnetimeSchedule *int `pulumi:"onetimeSchedule"`
-	// Maximum number of concurrent proxy users.
-	Proxy *int `pulumi:"proxy"`
-	// Maximum number of firewall recurring schedules.
-	RecurringSchedule *int `pulumi:"recurringSchedule"`
-	// Maximum number of firewall service groups.
-	ServiceGroup *int `pulumi:"serviceGroup"`
-	// Maximum number of sessions.
-	Session *int `pulumi:"session"`
-	// Maximum number of SSL-VPN.
-	Sslvpn *int `pulumi:"sslvpn"`
-	// Maximum number of local users.
-	User *int `pulumi:"user"`
-	// Maximum number of user groups.
-	UserGroup *int `pulumi:"userGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	CustomService        *int    `pulumi:"customService"`
+	DialupTunnel         *int    `pulumi:"dialupTunnel"`
+	FirewallAddress      *int    `pulumi:"firewallAddress"`
+	FirewallAddrgrp      *int    `pulumi:"firewallAddrgrp"`
+	FirewallPolicy       *int    `pulumi:"firewallPolicy"`
+	IpsecPhase1          *int    `pulumi:"ipsecPhase1"`
+	IpsecPhase1Interface *int    `pulumi:"ipsecPhase1Interface"`
+	IpsecPhase2          *int    `pulumi:"ipsecPhase2"`
+	IpsecPhase2Interface *int    `pulumi:"ipsecPhase2Interface"`
+	LogDiskQuota         *int    `pulumi:"logDiskQuota"`
+	OnetimeSchedule      *int    `pulumi:"onetimeSchedule"`
+	Proxy                *int    `pulumi:"proxy"`
+	RecurringSchedule    *int    `pulumi:"recurringSchedule"`
+	ServiceGroup         *int    `pulumi:"serviceGroup"`
+	Session              *int    `pulumi:"session"`
+	Sslvpn               *int    `pulumi:"sslvpn"`
+	User                 *int    `pulumi:"user"`
+	UserGroup            *int    `pulumi:"userGroup"`
+	Vdomparam            *string `pulumi:"vdomparam"`
 }
 
 type SystemResourceLimitsState struct {
-	// Maximum number of firewall custom services.
-	CustomService pulumi.IntPtrInput
-	// Maximum number of dial-up tunnels.
-	DialupTunnel pulumi.IntPtrInput
-	// Maximum number of firewall addresses (IPv4, IPv6, multicast).
-	FirewallAddress pulumi.IntPtrInput
-	// Maximum number of firewall address groups (IPv4, IPv6).
-	FirewallAddrgrp pulumi.IntPtrInput
-	// Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-	FirewallPolicy pulumi.IntPtrInput
-	// Maximum number of VPN IPsec phase1 tunnels.
-	IpsecPhase1 pulumi.IntPtrInput
-	// Maximum number of VPN IPsec phase1 interface tunnels.
+	CustomService        pulumi.IntPtrInput
+	DialupTunnel         pulumi.IntPtrInput
+	FirewallAddress      pulumi.IntPtrInput
+	FirewallAddrgrp      pulumi.IntPtrInput
+	FirewallPolicy       pulumi.IntPtrInput
+	IpsecPhase1          pulumi.IntPtrInput
 	IpsecPhase1Interface pulumi.IntPtrInput
-	// Maximum number of VPN IPsec phase2 tunnels.
-	IpsecPhase2 pulumi.IntPtrInput
-	// Maximum number of VPN IPsec phase2 interface tunnels.
+	IpsecPhase2          pulumi.IntPtrInput
 	IpsecPhase2Interface pulumi.IntPtrInput
-	// Log disk quota in MB.
-	LogDiskQuota pulumi.IntPtrInput
-	// Maximum number of firewall one-time schedules.
-	OnetimeSchedule pulumi.IntPtrInput
-	// Maximum number of concurrent proxy users.
-	Proxy pulumi.IntPtrInput
-	// Maximum number of firewall recurring schedules.
-	RecurringSchedule pulumi.IntPtrInput
-	// Maximum number of firewall service groups.
-	ServiceGroup pulumi.IntPtrInput
-	// Maximum number of sessions.
-	Session pulumi.IntPtrInput
-	// Maximum number of SSL-VPN.
-	Sslvpn pulumi.IntPtrInput
-	// Maximum number of local users.
-	User pulumi.IntPtrInput
-	// Maximum number of user groups.
-	UserGroup pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	LogDiskQuota         pulumi.IntPtrInput
+	OnetimeSchedule      pulumi.IntPtrInput
+	Proxy                pulumi.IntPtrInput
+	RecurringSchedule    pulumi.IntPtrInput
+	ServiceGroup         pulumi.IntPtrInput
+	Session              pulumi.IntPtrInput
+	Sslvpn               pulumi.IntPtrInput
+	User                 pulumi.IntPtrInput
+	UserGroup            pulumi.IntPtrInput
+	Vdomparam            pulumi.StringPtrInput
 }
 
 func (SystemResourceLimitsState) ElementType() reflect.Type {
@@ -226,86 +112,48 @@ func (SystemResourceLimitsState) ElementType() reflect.Type {
 }
 
 type systemResourceLimitsArgs struct {
-	// Maximum number of firewall custom services.
-	CustomService *int `pulumi:"customService"`
-	// Maximum number of dial-up tunnels.
-	DialupTunnel *int `pulumi:"dialupTunnel"`
-	// Maximum number of firewall addresses (IPv4, IPv6, multicast).
-	FirewallAddress *int `pulumi:"firewallAddress"`
-	// Maximum number of firewall address groups (IPv4, IPv6).
-	FirewallAddrgrp *int `pulumi:"firewallAddrgrp"`
-	// Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-	FirewallPolicy *int `pulumi:"firewallPolicy"`
-	// Maximum number of VPN IPsec phase1 tunnels.
-	IpsecPhase1 *int `pulumi:"ipsecPhase1"`
-	// Maximum number of VPN IPsec phase1 interface tunnels.
-	IpsecPhase1Interface *int `pulumi:"ipsecPhase1Interface"`
-	// Maximum number of VPN IPsec phase2 tunnels.
-	IpsecPhase2 *int `pulumi:"ipsecPhase2"`
-	// Maximum number of VPN IPsec phase2 interface tunnels.
-	IpsecPhase2Interface *int `pulumi:"ipsecPhase2Interface"`
-	// Log disk quota in MB.
-	LogDiskQuota *int `pulumi:"logDiskQuota"`
-	// Maximum number of firewall one-time schedules.
-	OnetimeSchedule *int `pulumi:"onetimeSchedule"`
-	// Maximum number of concurrent proxy users.
-	Proxy *int `pulumi:"proxy"`
-	// Maximum number of firewall recurring schedules.
-	RecurringSchedule *int `pulumi:"recurringSchedule"`
-	// Maximum number of firewall service groups.
-	ServiceGroup *int `pulumi:"serviceGroup"`
-	// Maximum number of sessions.
-	Session *int `pulumi:"session"`
-	// Maximum number of SSL-VPN.
-	Sslvpn *int `pulumi:"sslvpn"`
-	// Maximum number of local users.
-	User *int `pulumi:"user"`
-	// Maximum number of user groups.
-	UserGroup *int `pulumi:"userGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	CustomService        *int    `pulumi:"customService"`
+	DialupTunnel         *int    `pulumi:"dialupTunnel"`
+	FirewallAddress      *int    `pulumi:"firewallAddress"`
+	FirewallAddrgrp      *int    `pulumi:"firewallAddrgrp"`
+	FirewallPolicy       *int    `pulumi:"firewallPolicy"`
+	IpsecPhase1          *int    `pulumi:"ipsecPhase1"`
+	IpsecPhase1Interface *int    `pulumi:"ipsecPhase1Interface"`
+	IpsecPhase2          *int    `pulumi:"ipsecPhase2"`
+	IpsecPhase2Interface *int    `pulumi:"ipsecPhase2Interface"`
+	LogDiskQuota         *int    `pulumi:"logDiskQuota"`
+	OnetimeSchedule      *int    `pulumi:"onetimeSchedule"`
+	Proxy                *int    `pulumi:"proxy"`
+	RecurringSchedule    *int    `pulumi:"recurringSchedule"`
+	ServiceGroup         *int    `pulumi:"serviceGroup"`
+	Session              *int    `pulumi:"session"`
+	Sslvpn               *int    `pulumi:"sslvpn"`
+	User                 *int    `pulumi:"user"`
+	UserGroup            *int    `pulumi:"userGroup"`
+	Vdomparam            *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemResourceLimits resource.
 type SystemResourceLimitsArgs struct {
-	// Maximum number of firewall custom services.
-	CustomService pulumi.IntPtrInput
-	// Maximum number of dial-up tunnels.
-	DialupTunnel pulumi.IntPtrInput
-	// Maximum number of firewall addresses (IPv4, IPv6, multicast).
-	FirewallAddress pulumi.IntPtrInput
-	// Maximum number of firewall address groups (IPv4, IPv6).
-	FirewallAddrgrp pulumi.IntPtrInput
-	// Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-	FirewallPolicy pulumi.IntPtrInput
-	// Maximum number of VPN IPsec phase1 tunnels.
-	IpsecPhase1 pulumi.IntPtrInput
-	// Maximum number of VPN IPsec phase1 interface tunnels.
+	CustomService        pulumi.IntPtrInput
+	DialupTunnel         pulumi.IntPtrInput
+	FirewallAddress      pulumi.IntPtrInput
+	FirewallAddrgrp      pulumi.IntPtrInput
+	FirewallPolicy       pulumi.IntPtrInput
+	IpsecPhase1          pulumi.IntPtrInput
 	IpsecPhase1Interface pulumi.IntPtrInput
-	// Maximum number of VPN IPsec phase2 tunnels.
-	IpsecPhase2 pulumi.IntPtrInput
-	// Maximum number of VPN IPsec phase2 interface tunnels.
+	IpsecPhase2          pulumi.IntPtrInput
 	IpsecPhase2Interface pulumi.IntPtrInput
-	// Log disk quota in MB.
-	LogDiskQuota pulumi.IntPtrInput
-	// Maximum number of firewall one-time schedules.
-	OnetimeSchedule pulumi.IntPtrInput
-	// Maximum number of concurrent proxy users.
-	Proxy pulumi.IntPtrInput
-	// Maximum number of firewall recurring schedules.
-	RecurringSchedule pulumi.IntPtrInput
-	// Maximum number of firewall service groups.
-	ServiceGroup pulumi.IntPtrInput
-	// Maximum number of sessions.
-	Session pulumi.IntPtrInput
-	// Maximum number of SSL-VPN.
-	Sslvpn pulumi.IntPtrInput
-	// Maximum number of local users.
-	User pulumi.IntPtrInput
-	// Maximum number of user groups.
-	UserGroup pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	LogDiskQuota         pulumi.IntPtrInput
+	OnetimeSchedule      pulumi.IntPtrInput
+	Proxy                pulumi.IntPtrInput
+	RecurringSchedule    pulumi.IntPtrInput
+	ServiceGroup         pulumi.IntPtrInput
+	Session              pulumi.IntPtrInput
+	Sslvpn               pulumi.IntPtrInput
+	User                 pulumi.IntPtrInput
+	UserGroup            pulumi.IntPtrInput
+	Vdomparam            pulumi.StringPtrInput
 }
 
 func (SystemResourceLimitsArgs) ElementType() reflect.Type {
@@ -334,7 +182,7 @@ func (i *SystemResourceLimits) ToSystemResourceLimitsOutputWithContext(ctx conte
 // SystemResourceLimitsArrayInput is an input type that accepts SystemResourceLimitsArray and SystemResourceLimitsArrayOutput values.
 // You can construct a concrete instance of `SystemResourceLimitsArrayInput` via:
 //
-//          SystemResourceLimitsArray{ SystemResourceLimitsArgs{...} }
+//	SystemResourceLimitsArray{ SystemResourceLimitsArgs{...} }
 type SystemResourceLimitsArrayInput interface {
 	pulumi.Input
 
@@ -359,7 +207,7 @@ func (i SystemResourceLimitsArray) ToSystemResourceLimitsArrayOutputWithContext(
 // SystemResourceLimitsMapInput is an input type that accepts SystemResourceLimitsMap and SystemResourceLimitsMapOutput values.
 // You can construct a concrete instance of `SystemResourceLimitsMapInput` via:
 //
-//          SystemResourceLimitsMap{ "key": SystemResourceLimitsArgs{...} }
+//	SystemResourceLimitsMap{ "key": SystemResourceLimitsArgs{...} }
 type SystemResourceLimitsMapInput interface {
 	pulumi.Input
 
@@ -393,6 +241,82 @@ func (o SystemResourceLimitsOutput) ToSystemResourceLimitsOutput() SystemResourc
 
 func (o SystemResourceLimitsOutput) ToSystemResourceLimitsOutputWithContext(ctx context.Context) SystemResourceLimitsOutput {
 	return o
+}
+
+func (o SystemResourceLimitsOutput) CustomService() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.CustomService }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) DialupTunnel() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.DialupTunnel }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) FirewallAddress() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.FirewallAddress }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) FirewallAddrgrp() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.FirewallAddrgrp }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) FirewallPolicy() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.FirewallPolicy }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) IpsecPhase1() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.IpsecPhase1 }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) IpsecPhase1Interface() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.IpsecPhase1Interface }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) IpsecPhase2() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.IpsecPhase2 }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) IpsecPhase2Interface() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.IpsecPhase2Interface }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) LogDiskQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.LogDiskQuota }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) OnetimeSchedule() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.OnetimeSchedule }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) Proxy() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.Proxy }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) RecurringSchedule() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.RecurringSchedule }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) ServiceGroup() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.ServiceGroup }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) Session() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.Session }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) Sslvpn() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.Sslvpn }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) User() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.User }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) UserGroup() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.IntOutput { return v.UserGroup }).(pulumi.IntOutput)
+}
+
+func (o SystemResourceLimitsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemResourceLimits) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemResourceLimitsArrayOutput struct{ *pulumi.OutputState }

@@ -2,19 +2,14 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios router bfd
- */
 export function getRouterBfd(args?: GetRouterBfdArgs, opts?: pulumi.InvokeOptions): Promise<GetRouterBfdResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getRouterBfd:GetRouterBfd", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -24,9 +19,6 @@ export function getRouterBfd(args?: GetRouterBfdArgs, opts?: pulumi.InvokeOption
  * A collection of arguments for invoking GetRouterBfd.
  */
 export interface GetRouterBfdArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -38,23 +30,17 @@ export interface GetRouterBfdResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * neighbor The structure of `neighbor` block is documented below.
-     */
+    readonly multihopTemplates: outputs.GetRouterBfdMultihopTemplate[];
     readonly neighbors: outputs.GetRouterBfdNeighbor[];
     readonly vdomparam?: string;
 }
-
 export function getRouterBfdOutput(args?: GetRouterBfdOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterBfdResult> {
-    return pulumi.output(args).apply(a => getRouterBfd(a, opts))
+    return pulumi.output(args).apply((a: any) => getRouterBfd(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetRouterBfd.
  */
 export interface GetRouterBfdOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

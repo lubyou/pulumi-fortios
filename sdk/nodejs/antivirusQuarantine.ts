@@ -4,43 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure quarantine options.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.AntivirusQuarantine("trname", {
- *     agelimit: 0,
- *     destination: "disk",
- *     lowspace: "ovrw-old",
- *     maxfilesize: 0,
- *     quarantineQuota: 0,
- *     storeBlocked: "imap smtp pop3 http ftp nntp imaps smtps pop3s ftps mapi cifs",
- *     storeHeuristic: "imap smtp pop3 http ftp nntp imaps smtps pop3s https ftps mapi cifs",
- *     storeInfected: "imap smtp pop3 http ftp nntp imaps smtps pop3s https ftps mapi cifs",
- * });
- * ```
- *
- * ## Import
- *
- * Antivirus Quarantine can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/antivirusQuarantine:AntivirusQuarantine labelname AntivirusQuarantine
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/antivirusQuarantine:AntivirusQuarantine labelname AntivirusQuarantine
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class AntivirusQuarantine extends pulumi.CustomResource {
     /**
      * Get an existing AntivirusQuarantine resource's state with the given name, ID, and optional extra
@@ -69,61 +32,19 @@ export class AntivirusQuarantine extends pulumi.CustomResource {
         return obj['__pulumiType'] === AntivirusQuarantine.__pulumiType;
     }
 
-    /**
-     * Age limit for quarantined files (0 - 479 hours, 0 means forever).
-     */
     public readonly agelimit!: pulumi.Output<number>;
-    /**
-     * Choose whether to quarantine files to the FortiGate disk or to FortiAnalyzer or to delete them instead of quarantining them. Valid values: `NULL`, `disk`, `FortiAnalyzer`.
-     */
     public readonly destination!: pulumi.Output<string>;
-    /**
-     * Do not quarantine dropped files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
-     */
     public readonly dropBlocked!: pulumi.Output<string>;
-    /**
-     * Do not quarantine files detected by heuristics found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
-     */
     public readonly dropHeuristic!: pulumi.Output<string>;
-    /**
-     * Do not quarantine infected files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
-     */
     public readonly dropInfected!: pulumi.Output<string>;
-    /**
-     * Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
-     */
     public readonly dropMachineLearning!: pulumi.Output<string>;
-    /**
-     * Select the method for handling additional files when running low on disk space. Valid values: `drop-new`, `ovrw-old`.
-     */
     public readonly lowspace!: pulumi.Output<string>;
-    /**
-     * Maximum file size to quarantine (0 - 500 Mbytes, 0 means unlimited).
-     */
     public readonly maxfilesize!: pulumi.Output<number>;
-    /**
-     * The amount of disk space to reserve for quarantining files (0 - 4294967295 Mbytes, depends on disk space).
-     */
     public readonly quarantineQuota!: pulumi.Output<number>;
-    /**
-     * Quarantine blocked files found in sessions using the selected protocols.
-     */
     public readonly storeBlocked!: pulumi.Output<string>;
-    /**
-     * Quarantine files detected by heuristics found in sessions using the selected protocols.
-     */
     public readonly storeHeuristic!: pulumi.Output<string>;
-    /**
-     * Quarantine infected files found in sessions using the selected protocols.
-     */
     public readonly storeInfected!: pulumi.Output<string>;
-    /**
-     * Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
-     */
     public readonly storeMachineLearning!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -179,61 +100,19 @@ export class AntivirusQuarantine extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AntivirusQuarantine resources.
  */
 export interface AntivirusQuarantineState {
-    /**
-     * Age limit for quarantined files (0 - 479 hours, 0 means forever).
-     */
     agelimit?: pulumi.Input<number>;
-    /**
-     * Choose whether to quarantine files to the FortiGate disk or to FortiAnalyzer or to delete them instead of quarantining them. Valid values: `NULL`, `disk`, `FortiAnalyzer`.
-     */
     destination?: pulumi.Input<string>;
-    /**
-     * Do not quarantine dropped files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
-     */
     dropBlocked?: pulumi.Input<string>;
-    /**
-     * Do not quarantine files detected by heuristics found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
-     */
     dropHeuristic?: pulumi.Input<string>;
-    /**
-     * Do not quarantine infected files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
-     */
     dropInfected?: pulumi.Input<string>;
-    /**
-     * Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
-     */
     dropMachineLearning?: pulumi.Input<string>;
-    /**
-     * Select the method for handling additional files when running low on disk space. Valid values: `drop-new`, `ovrw-old`.
-     */
     lowspace?: pulumi.Input<string>;
-    /**
-     * Maximum file size to quarantine (0 - 500 Mbytes, 0 means unlimited).
-     */
     maxfilesize?: pulumi.Input<number>;
-    /**
-     * The amount of disk space to reserve for quarantining files (0 - 4294967295 Mbytes, depends on disk space).
-     */
     quarantineQuota?: pulumi.Input<number>;
-    /**
-     * Quarantine blocked files found in sessions using the selected protocols.
-     */
     storeBlocked?: pulumi.Input<string>;
-    /**
-     * Quarantine files detected by heuristics found in sessions using the selected protocols.
-     */
     storeHeuristic?: pulumi.Input<string>;
-    /**
-     * Quarantine infected files found in sessions using the selected protocols.
-     */
     storeInfected?: pulumi.Input<string>;
-    /**
-     * Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
-     */
     storeMachineLearning?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -241,60 +120,18 @@ export interface AntivirusQuarantineState {
  * The set of arguments for constructing a AntivirusQuarantine resource.
  */
 export interface AntivirusQuarantineArgs {
-    /**
-     * Age limit for quarantined files (0 - 479 hours, 0 means forever).
-     */
     agelimit?: pulumi.Input<number>;
-    /**
-     * Choose whether to quarantine files to the FortiGate disk or to FortiAnalyzer or to delete them instead of quarantining them. Valid values: `NULL`, `disk`, `FortiAnalyzer`.
-     */
     destination?: pulumi.Input<string>;
-    /**
-     * Do not quarantine dropped files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
-     */
     dropBlocked?: pulumi.Input<string>;
-    /**
-     * Do not quarantine files detected by heuristics found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
-     */
     dropHeuristic?: pulumi.Input<string>;
-    /**
-     * Do not quarantine infected files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
-     */
     dropInfected?: pulumi.Input<string>;
-    /**
-     * Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
-     */
     dropMachineLearning?: pulumi.Input<string>;
-    /**
-     * Select the method for handling additional files when running low on disk space. Valid values: `drop-new`, `ovrw-old`.
-     */
     lowspace?: pulumi.Input<string>;
-    /**
-     * Maximum file size to quarantine (0 - 500 Mbytes, 0 means unlimited).
-     */
     maxfilesize?: pulumi.Input<number>;
-    /**
-     * The amount of disk space to reserve for quarantining files (0 - 4294967295 Mbytes, depends on disk space).
-     */
     quarantineQuota?: pulumi.Input<number>;
-    /**
-     * Quarantine blocked files found in sessions using the selected protocols.
-     */
     storeBlocked?: pulumi.Input<string>;
-    /**
-     * Quarantine files detected by heuristics found in sessions using the selected protocols.
-     */
     storeHeuristic?: pulumi.Input<string>;
-    /**
-     * Quarantine infected files found in sessions using the selected protocols.
-     */
     storeInfected?: pulumi.Input<string>;
-    /**
-     * Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
-     */
     storeMachineLearning?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

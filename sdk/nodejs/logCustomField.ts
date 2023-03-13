@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure custom log fields.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.LogCustomField("trname", {
- *     fosid: "1",
- *     value: "logteststr",
- * });
- * ```
- *
- * ## Import
- *
- * Log CustomField can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/logCustomField:LogCustomField labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/logCustomField:LogCustomField labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class LogCustomField extends pulumi.CustomResource {
     /**
      * Get an existing LogCustomField resource's state with the given name, ID, and optional extra
@@ -63,21 +32,9 @@ export class LogCustomField extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogCustomField.__pulumiType;
     }
 
-    /**
-     * field ID <string>.
-     */
     public readonly fosid!: pulumi.Output<string>;
-    /**
-     * Field name (max: 15 characters).
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Field value (max: 15 characters).
-     */
     public readonly value!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -116,21 +73,9 @@ export class LogCustomField extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogCustomField resources.
  */
 export interface LogCustomFieldState {
-    /**
-     * field ID <string>.
-     */
     fosid?: pulumi.Input<string>;
-    /**
-     * Field name (max: 15 characters).
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Field value (max: 15 characters).
-     */
     value?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -138,20 +83,8 @@ export interface LogCustomFieldState {
  * The set of arguments for constructing a LogCustomField resource.
  */
 export interface LogCustomFieldArgs {
-    /**
-     * field ID <string>.
-     */
     fosid?: pulumi.Input<string>;
-    /**
-     * Field name (max: 15 characters).
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Field value (max: 15 characters).
-     */
     value: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,110 +10,36 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Report style configuration. Applies to FortiOS Version `<= 7.0.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewReportStyle(ctx, "trname", &fortios.ReportStyleArgs{
-// 			BorderBottom: pulumi.String("\" none \""),
-// 			BorderLeft:   pulumi.String("\" none \""),
-// 			BorderRight:  pulumi.String("\" none \""),
-// 			BorderTop:    pulumi.String("\" none \""),
-// 			ColumnSpan:   pulumi.String("none"),
-// 			FontStyle:    pulumi.String("normal"),
-// 			FontWeight:   pulumi.String("normal"),
-// 			Options:      pulumi.String("font text color"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Report Style can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/reportStyle:ReportStyle labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/reportStyle:ReportStyle labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type ReportStyle struct {
 	pulumi.CustomResourceState
 
-	// Alignment. Valid values: `left`, `center`, `right`, `justify`.
-	Align pulumi.StringOutput `pulumi:"align"`
-	// Background color.
-	BgColor pulumi.StringOutput `pulumi:"bgColor"`
-	// Border bottom.
-	BorderBottom pulumi.StringOutput `pulumi:"borderBottom"`
-	// Border left.
-	BorderLeft pulumi.StringOutput `pulumi:"borderLeft"`
-	// Border right.
-	BorderRight pulumi.StringOutput `pulumi:"borderRight"`
-	// Border top.
-	BorderTop pulumi.StringOutput `pulumi:"borderTop"`
-	// Column gap.
-	ColumnGap pulumi.StringOutput `pulumi:"columnGap"`
-	// Column span. Valid values: `none`, `all`.
-	ColumnSpan pulumi.StringOutput `pulumi:"columnSpan"`
-	// Foreground color.
-	FgColor pulumi.StringOutput `pulumi:"fgColor"`
-	// Font family. Valid values: `Verdana`, `Arial`, `Helvetica`, `Courier`, `Times`.
-	FontFamily pulumi.StringOutput `pulumi:"fontFamily"`
-	// Font size.
-	FontSize pulumi.StringOutput `pulumi:"fontSize"`
-	// Font style. Valid values: `normal`, `italic`.
-	FontStyle pulumi.StringOutput `pulumi:"fontStyle"`
-	// Font weight. Valid values: `normal`, `bold`.
-	FontWeight pulumi.StringOutput `pulumi:"fontWeight"`
-	// Height.
-	Height pulumi.StringOutput `pulumi:"height"`
-	// Text line height.
-	LineHeight pulumi.StringOutput `pulumi:"lineHeight"`
-	// Margin bottom.
-	MarginBottom pulumi.StringOutput `pulumi:"marginBottom"`
-	// Margin left.
-	MarginLeft pulumi.StringOutput `pulumi:"marginLeft"`
-	// Margin right.
-	MarginRight pulumi.StringOutput `pulumi:"marginRight"`
-	// Margin top.
-	MarginTop pulumi.StringOutput `pulumi:"marginTop"`
-	// Report style name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Report style options. Valid values: `font`, `text`, `color`, `align`, `size`, `margin`, `border`, `padding`, `column`.
-	Options pulumi.StringOutput `pulumi:"options"`
-	// Padding bottom.
-	PaddingBottom pulumi.StringOutput `pulumi:"paddingBottom"`
-	// Padding left.
-	PaddingLeft pulumi.StringOutput `pulumi:"paddingLeft"`
-	// Padding right.
-	PaddingRight pulumi.StringOutput `pulumi:"paddingRight"`
-	// Padding top.
-	PaddingTop pulumi.StringOutput `pulumi:"paddingTop"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Width.
-	Width pulumi.StringOutput `pulumi:"width"`
+	Align         pulumi.StringOutput    `pulumi:"align"`
+	BgColor       pulumi.StringOutput    `pulumi:"bgColor"`
+	BorderBottom  pulumi.StringOutput    `pulumi:"borderBottom"`
+	BorderLeft    pulumi.StringOutput    `pulumi:"borderLeft"`
+	BorderRight   pulumi.StringOutput    `pulumi:"borderRight"`
+	BorderTop     pulumi.StringOutput    `pulumi:"borderTop"`
+	ColumnGap     pulumi.StringOutput    `pulumi:"columnGap"`
+	ColumnSpan    pulumi.StringOutput    `pulumi:"columnSpan"`
+	FgColor       pulumi.StringOutput    `pulumi:"fgColor"`
+	FontFamily    pulumi.StringOutput    `pulumi:"fontFamily"`
+	FontSize      pulumi.StringOutput    `pulumi:"fontSize"`
+	FontStyle     pulumi.StringOutput    `pulumi:"fontStyle"`
+	FontWeight    pulumi.StringOutput    `pulumi:"fontWeight"`
+	Height        pulumi.StringOutput    `pulumi:"height"`
+	LineHeight    pulumi.StringOutput    `pulumi:"lineHeight"`
+	MarginBottom  pulumi.StringOutput    `pulumi:"marginBottom"`
+	MarginLeft    pulumi.StringOutput    `pulumi:"marginLeft"`
+	MarginRight   pulumi.StringOutput    `pulumi:"marginRight"`
+	MarginTop     pulumi.StringOutput    `pulumi:"marginTop"`
+	Name          pulumi.StringOutput    `pulumi:"name"`
+	Options       pulumi.StringOutput    `pulumi:"options"`
+	PaddingBottom pulumi.StringOutput    `pulumi:"paddingBottom"`
+	PaddingLeft   pulumi.StringOutput    `pulumi:"paddingLeft"`
+	PaddingRight  pulumi.StringOutput    `pulumi:"paddingRight"`
+	PaddingTop    pulumi.StringOutput    `pulumi:"paddingTop"`
+	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Width         pulumi.StringOutput    `pulumi:"width"`
 }
 
 // NewReportStyle registers a new resource with the given unique name, arguments, and options.
@@ -146,117 +72,63 @@ func GetReportStyle(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ReportStyle resources.
 type reportStyleState struct {
-	// Alignment. Valid values: `left`, `center`, `right`, `justify`.
-	Align *string `pulumi:"align"`
-	// Background color.
-	BgColor *string `pulumi:"bgColor"`
-	// Border bottom.
-	BorderBottom *string `pulumi:"borderBottom"`
-	// Border left.
-	BorderLeft *string `pulumi:"borderLeft"`
-	// Border right.
-	BorderRight *string `pulumi:"borderRight"`
-	// Border top.
-	BorderTop *string `pulumi:"borderTop"`
-	// Column gap.
-	ColumnGap *string `pulumi:"columnGap"`
-	// Column span. Valid values: `none`, `all`.
-	ColumnSpan *string `pulumi:"columnSpan"`
-	// Foreground color.
-	FgColor *string `pulumi:"fgColor"`
-	// Font family. Valid values: `Verdana`, `Arial`, `Helvetica`, `Courier`, `Times`.
-	FontFamily *string `pulumi:"fontFamily"`
-	// Font size.
-	FontSize *string `pulumi:"fontSize"`
-	// Font style. Valid values: `normal`, `italic`.
-	FontStyle *string `pulumi:"fontStyle"`
-	// Font weight. Valid values: `normal`, `bold`.
-	FontWeight *string `pulumi:"fontWeight"`
-	// Height.
-	Height *string `pulumi:"height"`
-	// Text line height.
-	LineHeight *string `pulumi:"lineHeight"`
-	// Margin bottom.
-	MarginBottom *string `pulumi:"marginBottom"`
-	// Margin left.
-	MarginLeft *string `pulumi:"marginLeft"`
-	// Margin right.
-	MarginRight *string `pulumi:"marginRight"`
-	// Margin top.
-	MarginTop *string `pulumi:"marginTop"`
-	// Report style name.
-	Name *string `pulumi:"name"`
-	// Report style options. Valid values: `font`, `text`, `color`, `align`, `size`, `margin`, `border`, `padding`, `column`.
-	Options *string `pulumi:"options"`
-	// Padding bottom.
+	Align         *string `pulumi:"align"`
+	BgColor       *string `pulumi:"bgColor"`
+	BorderBottom  *string `pulumi:"borderBottom"`
+	BorderLeft    *string `pulumi:"borderLeft"`
+	BorderRight   *string `pulumi:"borderRight"`
+	BorderTop     *string `pulumi:"borderTop"`
+	ColumnGap     *string `pulumi:"columnGap"`
+	ColumnSpan    *string `pulumi:"columnSpan"`
+	FgColor       *string `pulumi:"fgColor"`
+	FontFamily    *string `pulumi:"fontFamily"`
+	FontSize      *string `pulumi:"fontSize"`
+	FontStyle     *string `pulumi:"fontStyle"`
+	FontWeight    *string `pulumi:"fontWeight"`
+	Height        *string `pulumi:"height"`
+	LineHeight    *string `pulumi:"lineHeight"`
+	MarginBottom  *string `pulumi:"marginBottom"`
+	MarginLeft    *string `pulumi:"marginLeft"`
+	MarginRight   *string `pulumi:"marginRight"`
+	MarginTop     *string `pulumi:"marginTop"`
+	Name          *string `pulumi:"name"`
+	Options       *string `pulumi:"options"`
 	PaddingBottom *string `pulumi:"paddingBottom"`
-	// Padding left.
-	PaddingLeft *string `pulumi:"paddingLeft"`
-	// Padding right.
-	PaddingRight *string `pulumi:"paddingRight"`
-	// Padding top.
-	PaddingTop *string `pulumi:"paddingTop"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Width.
-	Width *string `pulumi:"width"`
+	PaddingLeft   *string `pulumi:"paddingLeft"`
+	PaddingRight  *string `pulumi:"paddingRight"`
+	PaddingTop    *string `pulumi:"paddingTop"`
+	Vdomparam     *string `pulumi:"vdomparam"`
+	Width         *string `pulumi:"width"`
 }
 
 type ReportStyleState struct {
-	// Alignment. Valid values: `left`, `center`, `right`, `justify`.
-	Align pulumi.StringPtrInput
-	// Background color.
-	BgColor pulumi.StringPtrInput
-	// Border bottom.
-	BorderBottom pulumi.StringPtrInput
-	// Border left.
-	BorderLeft pulumi.StringPtrInput
-	// Border right.
-	BorderRight pulumi.StringPtrInput
-	// Border top.
-	BorderTop pulumi.StringPtrInput
-	// Column gap.
-	ColumnGap pulumi.StringPtrInput
-	// Column span. Valid values: `none`, `all`.
-	ColumnSpan pulumi.StringPtrInput
-	// Foreground color.
-	FgColor pulumi.StringPtrInput
-	// Font family. Valid values: `Verdana`, `Arial`, `Helvetica`, `Courier`, `Times`.
-	FontFamily pulumi.StringPtrInput
-	// Font size.
-	FontSize pulumi.StringPtrInput
-	// Font style. Valid values: `normal`, `italic`.
-	FontStyle pulumi.StringPtrInput
-	// Font weight. Valid values: `normal`, `bold`.
-	FontWeight pulumi.StringPtrInput
-	// Height.
-	Height pulumi.StringPtrInput
-	// Text line height.
-	LineHeight pulumi.StringPtrInput
-	// Margin bottom.
-	MarginBottom pulumi.StringPtrInput
-	// Margin left.
-	MarginLeft pulumi.StringPtrInput
-	// Margin right.
-	MarginRight pulumi.StringPtrInput
-	// Margin top.
-	MarginTop pulumi.StringPtrInput
-	// Report style name.
-	Name pulumi.StringPtrInput
-	// Report style options. Valid values: `font`, `text`, `color`, `align`, `size`, `margin`, `border`, `padding`, `column`.
-	Options pulumi.StringPtrInput
-	// Padding bottom.
+	Align         pulumi.StringPtrInput
+	BgColor       pulumi.StringPtrInput
+	BorderBottom  pulumi.StringPtrInput
+	BorderLeft    pulumi.StringPtrInput
+	BorderRight   pulumi.StringPtrInput
+	BorderTop     pulumi.StringPtrInput
+	ColumnGap     pulumi.StringPtrInput
+	ColumnSpan    pulumi.StringPtrInput
+	FgColor       pulumi.StringPtrInput
+	FontFamily    pulumi.StringPtrInput
+	FontSize      pulumi.StringPtrInput
+	FontStyle     pulumi.StringPtrInput
+	FontWeight    pulumi.StringPtrInput
+	Height        pulumi.StringPtrInput
+	LineHeight    pulumi.StringPtrInput
+	MarginBottom  pulumi.StringPtrInput
+	MarginLeft    pulumi.StringPtrInput
+	MarginRight   pulumi.StringPtrInput
+	MarginTop     pulumi.StringPtrInput
+	Name          pulumi.StringPtrInput
+	Options       pulumi.StringPtrInput
 	PaddingBottom pulumi.StringPtrInput
-	// Padding left.
-	PaddingLeft pulumi.StringPtrInput
-	// Padding right.
-	PaddingRight pulumi.StringPtrInput
-	// Padding top.
-	PaddingTop pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Width.
-	Width pulumi.StringPtrInput
+	PaddingLeft   pulumi.StringPtrInput
+	PaddingRight  pulumi.StringPtrInput
+	PaddingTop    pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
+	Width         pulumi.StringPtrInput
 }
 
 func (ReportStyleState) ElementType() reflect.Type {
@@ -264,118 +136,64 @@ func (ReportStyleState) ElementType() reflect.Type {
 }
 
 type reportStyleArgs struct {
-	// Alignment. Valid values: `left`, `center`, `right`, `justify`.
-	Align *string `pulumi:"align"`
-	// Background color.
-	BgColor *string `pulumi:"bgColor"`
-	// Border bottom.
-	BorderBottom *string `pulumi:"borderBottom"`
-	// Border left.
-	BorderLeft *string `pulumi:"borderLeft"`
-	// Border right.
-	BorderRight *string `pulumi:"borderRight"`
-	// Border top.
-	BorderTop *string `pulumi:"borderTop"`
-	// Column gap.
-	ColumnGap *string `pulumi:"columnGap"`
-	// Column span. Valid values: `none`, `all`.
-	ColumnSpan *string `pulumi:"columnSpan"`
-	// Foreground color.
-	FgColor *string `pulumi:"fgColor"`
-	// Font family. Valid values: `Verdana`, `Arial`, `Helvetica`, `Courier`, `Times`.
-	FontFamily *string `pulumi:"fontFamily"`
-	// Font size.
-	FontSize *string `pulumi:"fontSize"`
-	// Font style. Valid values: `normal`, `italic`.
-	FontStyle *string `pulumi:"fontStyle"`
-	// Font weight. Valid values: `normal`, `bold`.
-	FontWeight *string `pulumi:"fontWeight"`
-	// Height.
-	Height *string `pulumi:"height"`
-	// Text line height.
-	LineHeight *string `pulumi:"lineHeight"`
-	// Margin bottom.
-	MarginBottom *string `pulumi:"marginBottom"`
-	// Margin left.
-	MarginLeft *string `pulumi:"marginLeft"`
-	// Margin right.
-	MarginRight *string `pulumi:"marginRight"`
-	// Margin top.
-	MarginTop *string `pulumi:"marginTop"`
-	// Report style name.
-	Name *string `pulumi:"name"`
-	// Report style options. Valid values: `font`, `text`, `color`, `align`, `size`, `margin`, `border`, `padding`, `column`.
-	Options *string `pulumi:"options"`
-	// Padding bottom.
+	Align         *string `pulumi:"align"`
+	BgColor       *string `pulumi:"bgColor"`
+	BorderBottom  *string `pulumi:"borderBottom"`
+	BorderLeft    *string `pulumi:"borderLeft"`
+	BorderRight   *string `pulumi:"borderRight"`
+	BorderTop     *string `pulumi:"borderTop"`
+	ColumnGap     *string `pulumi:"columnGap"`
+	ColumnSpan    *string `pulumi:"columnSpan"`
+	FgColor       *string `pulumi:"fgColor"`
+	FontFamily    *string `pulumi:"fontFamily"`
+	FontSize      *string `pulumi:"fontSize"`
+	FontStyle     *string `pulumi:"fontStyle"`
+	FontWeight    *string `pulumi:"fontWeight"`
+	Height        *string `pulumi:"height"`
+	LineHeight    *string `pulumi:"lineHeight"`
+	MarginBottom  *string `pulumi:"marginBottom"`
+	MarginLeft    *string `pulumi:"marginLeft"`
+	MarginRight   *string `pulumi:"marginRight"`
+	MarginTop     *string `pulumi:"marginTop"`
+	Name          *string `pulumi:"name"`
+	Options       *string `pulumi:"options"`
 	PaddingBottom *string `pulumi:"paddingBottom"`
-	// Padding left.
-	PaddingLeft *string `pulumi:"paddingLeft"`
-	// Padding right.
-	PaddingRight *string `pulumi:"paddingRight"`
-	// Padding top.
-	PaddingTop *string `pulumi:"paddingTop"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Width.
-	Width *string `pulumi:"width"`
+	PaddingLeft   *string `pulumi:"paddingLeft"`
+	PaddingRight  *string `pulumi:"paddingRight"`
+	PaddingTop    *string `pulumi:"paddingTop"`
+	Vdomparam     *string `pulumi:"vdomparam"`
+	Width         *string `pulumi:"width"`
 }
 
 // The set of arguments for constructing a ReportStyle resource.
 type ReportStyleArgs struct {
-	// Alignment. Valid values: `left`, `center`, `right`, `justify`.
-	Align pulumi.StringPtrInput
-	// Background color.
-	BgColor pulumi.StringPtrInput
-	// Border bottom.
-	BorderBottom pulumi.StringPtrInput
-	// Border left.
-	BorderLeft pulumi.StringPtrInput
-	// Border right.
-	BorderRight pulumi.StringPtrInput
-	// Border top.
-	BorderTop pulumi.StringPtrInput
-	// Column gap.
-	ColumnGap pulumi.StringPtrInput
-	// Column span. Valid values: `none`, `all`.
-	ColumnSpan pulumi.StringPtrInput
-	// Foreground color.
-	FgColor pulumi.StringPtrInput
-	// Font family. Valid values: `Verdana`, `Arial`, `Helvetica`, `Courier`, `Times`.
-	FontFamily pulumi.StringPtrInput
-	// Font size.
-	FontSize pulumi.StringPtrInput
-	// Font style. Valid values: `normal`, `italic`.
-	FontStyle pulumi.StringPtrInput
-	// Font weight. Valid values: `normal`, `bold`.
-	FontWeight pulumi.StringPtrInput
-	// Height.
-	Height pulumi.StringPtrInput
-	// Text line height.
-	LineHeight pulumi.StringPtrInput
-	// Margin bottom.
-	MarginBottom pulumi.StringPtrInput
-	// Margin left.
-	MarginLeft pulumi.StringPtrInput
-	// Margin right.
-	MarginRight pulumi.StringPtrInput
-	// Margin top.
-	MarginTop pulumi.StringPtrInput
-	// Report style name.
-	Name pulumi.StringPtrInput
-	// Report style options. Valid values: `font`, `text`, `color`, `align`, `size`, `margin`, `border`, `padding`, `column`.
-	Options pulumi.StringPtrInput
-	// Padding bottom.
+	Align         pulumi.StringPtrInput
+	BgColor       pulumi.StringPtrInput
+	BorderBottom  pulumi.StringPtrInput
+	BorderLeft    pulumi.StringPtrInput
+	BorderRight   pulumi.StringPtrInput
+	BorderTop     pulumi.StringPtrInput
+	ColumnGap     pulumi.StringPtrInput
+	ColumnSpan    pulumi.StringPtrInput
+	FgColor       pulumi.StringPtrInput
+	FontFamily    pulumi.StringPtrInput
+	FontSize      pulumi.StringPtrInput
+	FontStyle     pulumi.StringPtrInput
+	FontWeight    pulumi.StringPtrInput
+	Height        pulumi.StringPtrInput
+	LineHeight    pulumi.StringPtrInput
+	MarginBottom  pulumi.StringPtrInput
+	MarginLeft    pulumi.StringPtrInput
+	MarginRight   pulumi.StringPtrInput
+	MarginTop     pulumi.StringPtrInput
+	Name          pulumi.StringPtrInput
+	Options       pulumi.StringPtrInput
 	PaddingBottom pulumi.StringPtrInput
-	// Padding left.
-	PaddingLeft pulumi.StringPtrInput
-	// Padding right.
-	PaddingRight pulumi.StringPtrInput
-	// Padding top.
-	PaddingTop pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Width.
-	Width pulumi.StringPtrInput
+	PaddingLeft   pulumi.StringPtrInput
+	PaddingRight  pulumi.StringPtrInput
+	PaddingTop    pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
+	Width         pulumi.StringPtrInput
 }
 
 func (ReportStyleArgs) ElementType() reflect.Type {
@@ -404,7 +222,7 @@ func (i *ReportStyle) ToReportStyleOutputWithContext(ctx context.Context) Report
 // ReportStyleArrayInput is an input type that accepts ReportStyleArray and ReportStyleArrayOutput values.
 // You can construct a concrete instance of `ReportStyleArrayInput` via:
 //
-//          ReportStyleArray{ ReportStyleArgs{...} }
+//	ReportStyleArray{ ReportStyleArgs{...} }
 type ReportStyleArrayInput interface {
 	pulumi.Input
 
@@ -429,7 +247,7 @@ func (i ReportStyleArray) ToReportStyleArrayOutputWithContext(ctx context.Contex
 // ReportStyleMapInput is an input type that accepts ReportStyleMap and ReportStyleMapOutput values.
 // You can construct a concrete instance of `ReportStyleMapInput` via:
 //
-//          ReportStyleMap{ "key": ReportStyleArgs{...} }
+//	ReportStyleMap{ "key": ReportStyleArgs{...} }
 type ReportStyleMapInput interface {
 	pulumi.Input
 
@@ -463,6 +281,114 @@ func (o ReportStyleOutput) ToReportStyleOutput() ReportStyleOutput {
 
 func (o ReportStyleOutput) ToReportStyleOutputWithContext(ctx context.Context) ReportStyleOutput {
 	return o
+}
+
+func (o ReportStyleOutput) Align() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.Align }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) BgColor() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.BgColor }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) BorderBottom() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.BorderBottom }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) BorderLeft() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.BorderLeft }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) BorderRight() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.BorderRight }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) BorderTop() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.BorderTop }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) ColumnGap() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.ColumnGap }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) ColumnSpan() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.ColumnSpan }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) FgColor() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.FgColor }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) FontFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.FontFamily }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) FontSize() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.FontSize }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) FontStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.FontStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) FontWeight() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.FontWeight }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) Height() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.Height }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) LineHeight() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.LineHeight }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) MarginBottom() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.MarginBottom }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) MarginLeft() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.MarginLeft }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) MarginRight() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.MarginRight }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) MarginTop() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.MarginTop }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) Options() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.Options }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) PaddingBottom() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.PaddingBottom }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) PaddingLeft() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.PaddingLeft }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) PaddingRight() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.PaddingRight }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) PaddingTop() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.PaddingTop }).(pulumi.StringOutput)
+}
+
+func (o ReportStyleOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o ReportStyleOutput) Width() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportStyle) pulumi.StringOutput { return v.Width }).(pulumi.StringOutput)
 }
 
 type ReportStyleArrayOutput struct{ *pulumi.OutputState }

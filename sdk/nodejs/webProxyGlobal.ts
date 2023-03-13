@@ -2,51 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure Web proxy global settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WebProxyGlobal("trname", {
- *     fastPolicyMatch: "enable",
- *     forwardProxyAuth: "disable",
- *     forwardServerAffinityTimeout: 30,
- *     learnClientIp: "disable",
- *     maxMessageLength: 32,
- *     maxRequestLength: 4,
- *     maxWafBodyCacheLength: 32,
- *     proxyFqdn: "default.fqdn",
- *     sslCaCert: "Fortinet_CA_SSL",
- *     sslCert: "Fortinet_Factory",
- *     strictWebCheck: "disable",
- *     tunnelNonHttp: "enable",
- *     unknownHttpVersion: "best-effort",
- * });
- * ```
- *
- * ## Import
- *
- * WebProxy Global can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/webProxyGlobal:WebProxyGlobal labelname WebProxyGlobal
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/webProxyGlobal:WebProxyGlobal labelname WebProxyGlobal
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WebProxyGlobal extends pulumi.CustomResource {
     /**
      * Get an existing WebProxyGlobal resource's state with the given name, ID, and optional extra
@@ -75,93 +34,27 @@ export class WebProxyGlobal extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebProxyGlobal.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
-     */
     public readonly fastPolicyMatch!: pulumi.Output<string>;
-    /**
-     * Enable/disable forwarding proxy authentication headers. Valid values: `enable`, `disable`.
-     */
     public readonly forwardProxyAuth!: pulumi.Output<string>;
-    /**
-     * Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
-     */
     public readonly forwardServerAffinityTimeout!: pulumi.Output<number>;
-    /**
-     * Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
-     */
     public readonly ldapUserCache!: pulumi.Output<string>;
-    /**
-     * Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
-     */
     public readonly learnClientIp!: pulumi.Output<string>;
-    /**
-     * Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
-     */
     public readonly learnClientIpFromHeader!: pulumi.Output<string>;
-    /**
-     * IPv6 Source address name (srcaddr or srcaddr6 must be set). The structure of `learnClientIpSrcaddr6` block is documented below.
-     */
     public readonly learnClientIpSrcaddr6s!: pulumi.Output<outputs.WebProxyGlobalLearnClientIpSrcaddr6[] | undefined>;
-    /**
-     * Source address name (srcaddr or srcaddr6 must be set). The structure of `learnClientIpSrcaddr` block is documented below.
-     */
     public readonly learnClientIpSrcaddrs!: pulumi.Output<outputs.WebProxyGlobalLearnClientIpSrcaddr[] | undefined>;
-    /**
-     * Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
-     */
     public readonly maxMessageLength!: pulumi.Output<number>;
-    /**
-     * Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
-     */
     public readonly maxRequestLength!: pulumi.Output<number>;
-    /**
-     * Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
-     */
     public readonly maxWafBodyCacheLength!: pulumi.Output<number>;
-    /**
-     * Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
-     */
     public readonly proxyFqdn!: pulumi.Output<string>;
-    /**
-     * IPv4 source addresses to exempt proxy affinity.
-     */
     public readonly srcAffinityExemptAddr!: pulumi.Output<string>;
-    /**
-     * IPv6 source addresses to exempt proxy affinity.
-     */
     public readonly srcAffinityExemptAddr6!: pulumi.Output<string>;
-    /**
-     * SSL CA certificate for SSL interception.
-     */
     public readonly sslCaCert!: pulumi.Output<string>;
-    /**
-     * SSL certificate for SSL interception.
-     */
     public readonly sslCert!: pulumi.Output<string>;
-    /**
-     * Enable/disable strict web checking to block web sites that send incorrect headers that don't conform to HTTP 1.1. Valid values: `enable`, `disable`.
-     */
     public readonly strictWebCheck!: pulumi.Output<string>;
-    /**
-     * Enable/disable allowing non-HTTP traffic. Allowed non-HTTP traffic is tunneled. Valid values: `enable`, `disable`.
-     */
     public readonly tunnelNonHttp!: pulumi.Output<string>;
-    /**
-     * Action to take when an unknown version of HTTP is encountered: reject, allow (tunnel), or proceed with best-effort. Valid values: `reject`, `tunnel`, `best-effort`.
-     */
     public readonly unknownHttpVersion!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Name of the web proxy profile to apply when explicit proxy traffic is allowed by default and traffic is accepted that does not match an explicit proxy policy.
-     */
     public readonly webproxyProfile!: pulumi.Output<string>;
 
     /**
@@ -236,93 +129,27 @@ export class WebProxyGlobal extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WebProxyGlobal resources.
  */
 export interface WebProxyGlobalState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
-     */
     fastPolicyMatch?: pulumi.Input<string>;
-    /**
-     * Enable/disable forwarding proxy authentication headers. Valid values: `enable`, `disable`.
-     */
     forwardProxyAuth?: pulumi.Input<string>;
-    /**
-     * Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
-     */
     forwardServerAffinityTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
-     */
     ldapUserCache?: pulumi.Input<string>;
-    /**
-     * Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
-     */
     learnClientIp?: pulumi.Input<string>;
-    /**
-     * Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
-     */
     learnClientIpFromHeader?: pulumi.Input<string>;
-    /**
-     * IPv6 Source address name (srcaddr or srcaddr6 must be set). The structure of `learnClientIpSrcaddr6` block is documented below.
-     */
     learnClientIpSrcaddr6s?: pulumi.Input<pulumi.Input<inputs.WebProxyGlobalLearnClientIpSrcaddr6>[]>;
-    /**
-     * Source address name (srcaddr or srcaddr6 must be set). The structure of `learnClientIpSrcaddr` block is documented below.
-     */
     learnClientIpSrcaddrs?: pulumi.Input<pulumi.Input<inputs.WebProxyGlobalLearnClientIpSrcaddr>[]>;
-    /**
-     * Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
-     */
     maxMessageLength?: pulumi.Input<number>;
-    /**
-     * Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
-     */
     maxRequestLength?: pulumi.Input<number>;
-    /**
-     * Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
-     */
     maxWafBodyCacheLength?: pulumi.Input<number>;
-    /**
-     * Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
-     */
     proxyFqdn?: pulumi.Input<string>;
-    /**
-     * IPv4 source addresses to exempt proxy affinity.
-     */
     srcAffinityExemptAddr?: pulumi.Input<string>;
-    /**
-     * IPv6 source addresses to exempt proxy affinity.
-     */
     srcAffinityExemptAddr6?: pulumi.Input<string>;
-    /**
-     * SSL CA certificate for SSL interception.
-     */
     sslCaCert?: pulumi.Input<string>;
-    /**
-     * SSL certificate for SSL interception.
-     */
     sslCert?: pulumi.Input<string>;
-    /**
-     * Enable/disable strict web checking to block web sites that send incorrect headers that don't conform to HTTP 1.1. Valid values: `enable`, `disable`.
-     */
     strictWebCheck?: pulumi.Input<string>;
-    /**
-     * Enable/disable allowing non-HTTP traffic. Allowed non-HTTP traffic is tunneled. Valid values: `enable`, `disable`.
-     */
     tunnelNonHttp?: pulumi.Input<string>;
-    /**
-     * Action to take when an unknown version of HTTP is encountered: reject, allow (tunnel), or proceed with best-effort. Valid values: `reject`, `tunnel`, `best-effort`.
-     */
     unknownHttpVersion?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Name of the web proxy profile to apply when explicit proxy traffic is allowed by default and traffic is accepted that does not match an explicit proxy policy.
-     */
     webproxyProfile?: pulumi.Input<string>;
 }
 
@@ -330,92 +157,26 @@ export interface WebProxyGlobalState {
  * The set of arguments for constructing a WebProxyGlobal resource.
  */
 export interface WebProxyGlobalArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
-     */
     fastPolicyMatch?: pulumi.Input<string>;
-    /**
-     * Enable/disable forwarding proxy authentication headers. Valid values: `enable`, `disable`.
-     */
     forwardProxyAuth?: pulumi.Input<string>;
-    /**
-     * Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
-     */
     forwardServerAffinityTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
-     */
     ldapUserCache?: pulumi.Input<string>;
-    /**
-     * Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
-     */
     learnClientIp?: pulumi.Input<string>;
-    /**
-     * Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
-     */
     learnClientIpFromHeader?: pulumi.Input<string>;
-    /**
-     * IPv6 Source address name (srcaddr or srcaddr6 must be set). The structure of `learnClientIpSrcaddr6` block is documented below.
-     */
     learnClientIpSrcaddr6s?: pulumi.Input<pulumi.Input<inputs.WebProxyGlobalLearnClientIpSrcaddr6>[]>;
-    /**
-     * Source address name (srcaddr or srcaddr6 must be set). The structure of `learnClientIpSrcaddr` block is documented below.
-     */
     learnClientIpSrcaddrs?: pulumi.Input<pulumi.Input<inputs.WebProxyGlobalLearnClientIpSrcaddr>[]>;
-    /**
-     * Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
-     */
     maxMessageLength?: pulumi.Input<number>;
-    /**
-     * Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
-     */
     maxRequestLength?: pulumi.Input<number>;
-    /**
-     * Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
-     */
     maxWafBodyCacheLength?: pulumi.Input<number>;
-    /**
-     * Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
-     */
     proxyFqdn: pulumi.Input<string>;
-    /**
-     * IPv4 source addresses to exempt proxy affinity.
-     */
     srcAffinityExemptAddr?: pulumi.Input<string>;
-    /**
-     * IPv6 source addresses to exempt proxy affinity.
-     */
     srcAffinityExemptAddr6?: pulumi.Input<string>;
-    /**
-     * SSL CA certificate for SSL interception.
-     */
     sslCaCert?: pulumi.Input<string>;
-    /**
-     * SSL certificate for SSL interception.
-     */
     sslCert?: pulumi.Input<string>;
-    /**
-     * Enable/disable strict web checking to block web sites that send incorrect headers that don't conform to HTTP 1.1. Valid values: `enable`, `disable`.
-     */
     strictWebCheck?: pulumi.Input<string>;
-    /**
-     * Enable/disable allowing non-HTTP traffic. Allowed non-HTTP traffic is tunneled. Valid values: `enable`, `disable`.
-     */
     tunnelNonHttp?: pulumi.Input<string>;
-    /**
-     * Action to take when an unknown version of HTTP is encountered: reject, allow (tunnel), or proceed with best-effort. Valid values: `reject`, `tunnel`, `best-effort`.
-     */
     unknownHttpVersion?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Name of the web proxy profile to apply when explicit proxy traffic is allowed by default and traffic is accepted that does not match an explicit proxy policy.
-     */
     webproxyProfile?: pulumi.Input<string>;
 }

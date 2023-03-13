@@ -2,27 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiGate Session Life Support Protocol (FGSP) cluster attributes. Applies to FortiOS Version `>= 6.4.0`.
- *
- * ## Import
- *
- * System StandaloneCluster can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemStandaloneCluster:SystemStandaloneCluster labelname SystemStandaloneCluster
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemStandaloneCluster:SystemStandaloneCluster labelname SystemStandaloneCluster
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemStandaloneCluster extends pulumi.CustomResource {
     /**
      * Get an existing SystemStandaloneCluster resource's state with the given name, ID, and optional extra
@@ -51,33 +34,14 @@ export class SystemStandaloneCluster extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemStandaloneCluster.__pulumiType;
     }
 
-    /**
-     * Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
-     */
+    public readonly clusterPeers!: pulumi.Output<outputs.SystemStandaloneClusterClusterPeer[] | undefined>;
+    public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly encryption!: pulumi.Output<string>;
-    /**
-     * Cluster member ID (0 - 3).
-     */
     public readonly groupMemberId!: pulumi.Output<number>;
-    /**
-     * Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
-     */
     public readonly layer2Connection!: pulumi.Output<string>;
-    /**
-     * Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
-     */
     public readonly psksecret!: pulumi.Output<string | undefined>;
-    /**
-     * Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
-     */
     public readonly sessionSyncDev!: pulumi.Output<string>;
-    /**
-     * Cluster group ID (0 - 255). Must be the same for all members.
-     */
     public readonly standaloneGroupId!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -93,6 +57,8 @@ export class SystemStandaloneCluster extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemStandaloneClusterState | undefined;
+            resourceInputs["clusterPeers"] = state ? state.clusterPeers : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["encryption"] = state ? state.encryption : undefined;
             resourceInputs["groupMemberId"] = state ? state.groupMemberId : undefined;
             resourceInputs["layer2Connection"] = state ? state.layer2Connection : undefined;
@@ -102,15 +68,19 @@ export class SystemStandaloneCluster extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemStandaloneClusterArgs | undefined;
+            resourceInputs["clusterPeers"] = args ? args.clusterPeers : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["encryption"] = args ? args.encryption : undefined;
             resourceInputs["groupMemberId"] = args ? args.groupMemberId : undefined;
             resourceInputs["layer2Connection"] = args ? args.layer2Connection : undefined;
-            resourceInputs["psksecret"] = args ? args.psksecret : undefined;
+            resourceInputs["psksecret"] = args?.psksecret ? pulumi.secret(args.psksecret) : undefined;
             resourceInputs["sessionSyncDev"] = args ? args.sessionSyncDev : undefined;
             resourceInputs["standaloneGroupId"] = args ? args.standaloneGroupId : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["psksecret"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemStandaloneCluster.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -119,33 +89,14 @@ export class SystemStandaloneCluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemStandaloneCluster resources.
  */
 export interface SystemStandaloneClusterState {
-    /**
-     * Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
-     */
+    clusterPeers?: pulumi.Input<pulumi.Input<inputs.SystemStandaloneClusterClusterPeer>[]>;
+    dynamicSortSubtable?: pulumi.Input<string>;
     encryption?: pulumi.Input<string>;
-    /**
-     * Cluster member ID (0 - 3).
-     */
     groupMemberId?: pulumi.Input<number>;
-    /**
-     * Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
-     */
     layer2Connection?: pulumi.Input<string>;
-    /**
-     * Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
-     */
     psksecret?: pulumi.Input<string>;
-    /**
-     * Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
-     */
     sessionSyncDev?: pulumi.Input<string>;
-    /**
-     * Cluster group ID (0 - 255). Must be the same for all members.
-     */
     standaloneGroupId?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -153,32 +104,13 @@ export interface SystemStandaloneClusterState {
  * The set of arguments for constructing a SystemStandaloneCluster resource.
  */
 export interface SystemStandaloneClusterArgs {
-    /**
-     * Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
-     */
+    clusterPeers?: pulumi.Input<pulumi.Input<inputs.SystemStandaloneClusterClusterPeer>[]>;
+    dynamicSortSubtable?: pulumi.Input<string>;
     encryption?: pulumi.Input<string>;
-    /**
-     * Cluster member ID (0 - 3).
-     */
     groupMemberId?: pulumi.Input<number>;
-    /**
-     * Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
-     */
     layer2Connection?: pulumi.Input<string>;
-    /**
-     * Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
-     */
     psksecret?: pulumi.Input<string>;
-    /**
-     * Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
-     */
     sessionSyncDev?: pulumi.Input<string>;
-    /**
-     * Cluster group ID (0 - 255). Must be the same for all members.
-     */
     standaloneGroupId?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

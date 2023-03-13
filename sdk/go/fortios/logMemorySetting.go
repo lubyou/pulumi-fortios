@@ -10,55 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Settings for memory buffer.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogMemorySetting(ctx, "trname", &fortios.LogMemorySettingArgs{
-// 			Diskfull: pulumi.String("overwrite"),
-// 			Status:   pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// LogMemory Setting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logMemorySetting:LogMemorySetting labelname LogMemorySetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logMemorySetting:LogMemorySetting labelname LogMemorySetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogMemorySetting struct {
 	pulumi.CustomResourceState
 
-	// Action to take when memory is full. Valid values: `overwrite`.
-	Diskfull pulumi.StringOutput `pulumi:"diskfull"`
-	// Enable/disable logging to the FortiGate's memory. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Diskfull  pulumi.StringOutput    `pulumi:"diskfull"`
+	Status    pulumi.StringOutput    `pulumi:"status"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -92,20 +48,14 @@ func GetLogMemorySetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogMemorySetting resources.
 type logMemorySettingState struct {
-	// Action to take when memory is full. Valid values: `overwrite`.
-	Diskfull *string `pulumi:"diskfull"`
-	// Enable/disable logging to the FortiGate's memory. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Diskfull  *string `pulumi:"diskfull"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type LogMemorySettingState struct {
-	// Action to take when memory is full. Valid values: `overwrite`.
-	Diskfull pulumi.StringPtrInput
-	// Enable/disable logging to the FortiGate's memory. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Diskfull  pulumi.StringPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -114,21 +64,15 @@ func (LogMemorySettingState) ElementType() reflect.Type {
 }
 
 type logMemorySettingArgs struct {
-	// Action to take when memory is full. Valid values: `overwrite`.
-	Diskfull *string `pulumi:"diskfull"`
-	// Enable/disable logging to the FortiGate's memory. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Diskfull  *string `pulumi:"diskfull"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogMemorySetting resource.
 type LogMemorySettingArgs struct {
-	// Action to take when memory is full. Valid values: `overwrite`.
-	Diskfull pulumi.StringPtrInput
-	// Enable/disable logging to the FortiGate's memory. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Diskfull  pulumi.StringPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -158,7 +102,7 @@ func (i *LogMemorySetting) ToLogMemorySettingOutputWithContext(ctx context.Conte
 // LogMemorySettingArrayInput is an input type that accepts LogMemorySettingArray and LogMemorySettingArrayOutput values.
 // You can construct a concrete instance of `LogMemorySettingArrayInput` via:
 //
-//          LogMemorySettingArray{ LogMemorySettingArgs{...} }
+//	LogMemorySettingArray{ LogMemorySettingArgs{...} }
 type LogMemorySettingArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +127,7 @@ func (i LogMemorySettingArray) ToLogMemorySettingArrayOutputWithContext(ctx cont
 // LogMemorySettingMapInput is an input type that accepts LogMemorySettingMap and LogMemorySettingMapOutput values.
 // You can construct a concrete instance of `LogMemorySettingMapInput` via:
 //
-//          LogMemorySettingMap{ "key": LogMemorySettingArgs{...} }
+//	LogMemorySettingMap{ "key": LogMemorySettingArgs{...} }
 type LogMemorySettingMapInput interface {
 	pulumi.Input
 
@@ -217,6 +161,18 @@ func (o LogMemorySettingOutput) ToLogMemorySettingOutput() LogMemorySettingOutpu
 
 func (o LogMemorySettingOutput) ToLogMemorySettingOutputWithContext(ctx context.Context) LogMemorySettingOutput {
 	return o
+}
+
+func (o LogMemorySettingOutput) Diskfull() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogMemorySetting) pulumi.StringOutput { return v.Diskfull }).(pulumi.StringOutput)
+}
+
+func (o LogMemorySettingOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogMemorySetting) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LogMemorySettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogMemorySetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type LogMemorySettingArrayOutput struct{ *pulumi.OutputState }

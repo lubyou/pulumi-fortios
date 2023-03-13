@@ -7,146 +7,38 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv4 to IPv6 policies. Applies to FortiOS Version `<= 7.0.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trnameFirewallVip46, err := fortios.NewFirewallVip46(ctx, "trnameFirewallVip46", &fortios.FirewallVip46Args{
-// 			ArpReply:    pulumi.String("enable"),
-// 			Color:       pulumi.Int(0),
-// 			Extip:       pulumi.String("10.1.100.55"),
-// 			Extport:     pulumi.String("0-65535"),
-// 			Fosid:       pulumi.Int(0),
-// 			LdbMethod:   pulumi.String("static"),
-// 			Mappedip:    pulumi.String("2000:172:16:200::55"),
-// 			Mappedport:  pulumi.String("0-65535"),
-// 			Portforward: pulumi.String("disable"),
-// 			Protocol:    pulumi.String("tcp"),
-// 			Type:        pulumi.String("static-nat"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewFirewallPolicy46(ctx, "trnameFirewallPolicy46", &fortios.FirewallPolicy46Args{
-// 			Action:         pulumi.String("deny"),
-// 			Dstintf:        pulumi.String("port3"),
-// 			Fixedport:      pulumi.String("disable"),
-// 			Ippool:         pulumi.String("disable"),
-// 			Logtraffic:     pulumi.String("disable"),
-// 			PermitAnyHost:  pulumi.String("disable"),
-// 			Policyid:       pulumi.Int(2),
-// 			Schedule:       pulumi.String("always"),
-// 			Srcintf:        pulumi.String("port2"),
-// 			Status:         pulumi.String("enable"),
-// 			TcpMssReceiver: pulumi.Int(0),
-// 			TcpMssSender:   pulumi.Int(0),
-// 			Dstaddrs: FirewallPolicy46DstaddrArray{
-// 				&FirewallPolicy46DstaddrArgs{
-// 					Name: trnameFirewallVip46.Name,
-// 				},
-// 			},
-// 			Services: FirewallPolicy46ServiceArray{
-// 				&FirewallPolicy46ServiceArgs{
-// 					Name: pulumi.String("ALL"),
-// 				},
-// 			},
-// 			Srcaddrs: FirewallPolicy46SrcaddrArray{
-// 				&FirewallPolicy46SrcaddrArgs{
-// 					Name: pulumi.String("FIREWALL_AUTH_PORTAL_ADDRESS"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall Policy46 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallPolicy46:FirewallPolicy46 labelname {{policyid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallPolicy46:FirewallPolicy46 labelname {{policyid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallPolicy46 struct {
 	pulumi.CustomResourceState
 
-	// Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-	Action pulumi.StringOutput `pulumi:"action"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Destination address objects. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallPolicy46DstaddrArrayOutput `pulumi:"dstaddrs"`
-	// Destination interface name.
-	Dstintf pulumi.StringOutput `pulumi:"dstintf"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
-	Fixedport pulumi.StringOutput `pulumi:"fixedport"`
-	// Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
-	Ippool pulumi.StringOutput `pulumi:"ippool"`
-	// Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
-	Logtraffic pulumi.StringOutput `pulumi:"logtraffic"`
-	// Record logs when a session starts and ends. Valid values: `enable`, `disable`.
-	LogtrafficStart pulumi.StringOutput `pulumi:"logtrafficStart"`
-	// IP pool name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Per IP traffic shaper.
-	PerIpShaper pulumi.StringOutput `pulumi:"perIpShaper"`
-	// Enable/disable allowing any host. Valid values: `enable`, `disable`.
-	PermitAnyHost pulumi.StringOutput `pulumi:"permitAnyHost"`
-	// Policy ID.
-	Policyid pulumi.IntOutput `pulumi:"policyid"`
-	// IP Pool names. The structure of `poolname` block is documented below.
-	Poolnames FirewallPolicy46PoolnameArrayOutput `pulumi:"poolnames"`
-	// Schedule name.
-	Schedule pulumi.StringOutput `pulumi:"schedule"`
-	// Service name. The structure of `service` block is documented below.
-	Services FirewallPolicy46ServiceArrayOutput `pulumi:"services"`
-	// Source address objects. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallPolicy46SrcaddrArrayOutput `pulumi:"srcaddrs"`
-	// Source interface name.
-	Srcintf pulumi.StringOutput `pulumi:"srcintf"`
-	// Enable/disable this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// TCP Maximum Segment Size value of receiver (0 - 65535, default = 0)
-	TcpMssReceiver pulumi.IntOutput `pulumi:"tcpMssReceiver"`
-	// TCP Maximum Segment Size value of sender (0 - 65535, default = 0).
-	TcpMssSender pulumi.IntOutput `pulumi:"tcpMssSender"`
-	// Traffic shaper.
-	TrafficShaper pulumi.StringOutput `pulumi:"trafficShaper"`
-	// Reverse traffic shaper.
-	TrafficShaperReverse pulumi.StringOutput `pulumi:"trafficShaperReverse"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringOutput `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Action               pulumi.StringOutput                 `pulumi:"action"`
+	Comments             pulumi.StringPtrOutput              `pulumi:"comments"`
+	Dstaddrs             FirewallPolicy46DstaddrArrayOutput  `pulumi:"dstaddrs"`
+	Dstintf              pulumi.StringOutput                 `pulumi:"dstintf"`
+	DynamicSortSubtable  pulumi.StringPtrOutput              `pulumi:"dynamicSortSubtable"`
+	Fixedport            pulumi.StringOutput                 `pulumi:"fixedport"`
+	Ippool               pulumi.StringOutput                 `pulumi:"ippool"`
+	Logtraffic           pulumi.StringOutput                 `pulumi:"logtraffic"`
+	LogtrafficStart      pulumi.StringOutput                 `pulumi:"logtrafficStart"`
+	Name                 pulumi.StringOutput                 `pulumi:"name"`
+	PerIpShaper          pulumi.StringOutput                 `pulumi:"perIpShaper"`
+	PermitAnyHost        pulumi.StringOutput                 `pulumi:"permitAnyHost"`
+	Policyid             pulumi.IntOutput                    `pulumi:"policyid"`
+	Poolnames            FirewallPolicy46PoolnameArrayOutput `pulumi:"poolnames"`
+	Schedule             pulumi.StringOutput                 `pulumi:"schedule"`
+	Services             FirewallPolicy46ServiceArrayOutput  `pulumi:"services"`
+	Srcaddrs             FirewallPolicy46SrcaddrArrayOutput  `pulumi:"srcaddrs"`
+	Srcintf              pulumi.StringOutput                 `pulumi:"srcintf"`
+	Status               pulumi.StringOutput                 `pulumi:"status"`
+	TcpMssReceiver       pulumi.IntOutput                    `pulumi:"tcpMssReceiver"`
+	TcpMssSender         pulumi.IntOutput                    `pulumi:"tcpMssSender"`
+	TrafficShaper        pulumi.StringOutput                 `pulumi:"trafficShaper"`
+	TrafficShaperReverse pulumi.StringOutput                 `pulumi:"trafficShaperReverse"`
+	Uuid                 pulumi.StringOutput                 `pulumi:"uuid"`
+	Vdomparam            pulumi.StringPtrOutput              `pulumi:"vdomparam"`
 }
 
 // NewFirewallPolicy46 registers a new resource with the given unique name, arguments, and options.
@@ -194,109 +86,59 @@ func GetFirewallPolicy46(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallPolicy46 resources.
 type firewallPolicy46State struct {
-	// Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-	Action *string `pulumi:"action"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Destination address objects. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallPolicy46Dstaddr `pulumi:"dstaddrs"`
-	// Destination interface name.
-	Dstintf *string `pulumi:"dstintf"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
-	Fixedport *string `pulumi:"fixedport"`
-	// Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
-	Ippool *string `pulumi:"ippool"`
-	// Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
-	Logtraffic *string `pulumi:"logtraffic"`
-	// Record logs when a session starts and ends. Valid values: `enable`, `disable`.
-	LogtrafficStart *string `pulumi:"logtrafficStart"`
-	// IP pool name.
-	Name *string `pulumi:"name"`
-	// Per IP traffic shaper.
-	PerIpShaper *string `pulumi:"perIpShaper"`
-	// Enable/disable allowing any host. Valid values: `enable`, `disable`.
-	PermitAnyHost *string `pulumi:"permitAnyHost"`
-	// Policy ID.
-	Policyid *int `pulumi:"policyid"`
-	// IP Pool names. The structure of `poolname` block is documented below.
-	Poolnames []FirewallPolicy46Poolname `pulumi:"poolnames"`
-	// Schedule name.
-	Schedule *string `pulumi:"schedule"`
-	// Service name. The structure of `service` block is documented below.
-	Services []FirewallPolicy46Service `pulumi:"services"`
-	// Source address objects. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallPolicy46Srcaddr `pulumi:"srcaddrs"`
-	// Source interface name.
-	Srcintf *string `pulumi:"srcintf"`
-	// Enable/disable this policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// TCP Maximum Segment Size value of receiver (0 - 65535, default = 0)
-	TcpMssReceiver *int `pulumi:"tcpMssReceiver"`
-	// TCP Maximum Segment Size value of sender (0 - 65535, default = 0).
-	TcpMssSender *int `pulumi:"tcpMssSender"`
-	// Traffic shaper.
-	TrafficShaper *string `pulumi:"trafficShaper"`
-	// Reverse traffic shaper.
-	TrafficShaperReverse *string `pulumi:"trafficShaperReverse"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Action               *string                    `pulumi:"action"`
+	Comments             *string                    `pulumi:"comments"`
+	Dstaddrs             []FirewallPolicy46Dstaddr  `pulumi:"dstaddrs"`
+	Dstintf              *string                    `pulumi:"dstintf"`
+	DynamicSortSubtable  *string                    `pulumi:"dynamicSortSubtable"`
+	Fixedport            *string                    `pulumi:"fixedport"`
+	Ippool               *string                    `pulumi:"ippool"`
+	Logtraffic           *string                    `pulumi:"logtraffic"`
+	LogtrafficStart      *string                    `pulumi:"logtrafficStart"`
+	Name                 *string                    `pulumi:"name"`
+	PerIpShaper          *string                    `pulumi:"perIpShaper"`
+	PermitAnyHost        *string                    `pulumi:"permitAnyHost"`
+	Policyid             *int                       `pulumi:"policyid"`
+	Poolnames            []FirewallPolicy46Poolname `pulumi:"poolnames"`
+	Schedule             *string                    `pulumi:"schedule"`
+	Services             []FirewallPolicy46Service  `pulumi:"services"`
+	Srcaddrs             []FirewallPolicy46Srcaddr  `pulumi:"srcaddrs"`
+	Srcintf              *string                    `pulumi:"srcintf"`
+	Status               *string                    `pulumi:"status"`
+	TcpMssReceiver       *int                       `pulumi:"tcpMssReceiver"`
+	TcpMssSender         *int                       `pulumi:"tcpMssSender"`
+	TrafficShaper        *string                    `pulumi:"trafficShaper"`
+	TrafficShaperReverse *string                    `pulumi:"trafficShaperReverse"`
+	Uuid                 *string                    `pulumi:"uuid"`
+	Vdomparam            *string                    `pulumi:"vdomparam"`
 }
 
 type FirewallPolicy46State struct {
-	// Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-	Action pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Destination address objects. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallPolicy46DstaddrArrayInput
-	// Destination interface name.
-	Dstintf pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
-	Fixedport pulumi.StringPtrInput
-	// Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
-	Ippool pulumi.StringPtrInput
-	// Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
-	Logtraffic pulumi.StringPtrInput
-	// Record logs when a session starts and ends. Valid values: `enable`, `disable`.
-	LogtrafficStart pulumi.StringPtrInput
-	// IP pool name.
-	Name pulumi.StringPtrInput
-	// Per IP traffic shaper.
-	PerIpShaper pulumi.StringPtrInput
-	// Enable/disable allowing any host. Valid values: `enable`, `disable`.
-	PermitAnyHost pulumi.StringPtrInput
-	// Policy ID.
-	Policyid pulumi.IntPtrInput
-	// IP Pool names. The structure of `poolname` block is documented below.
-	Poolnames FirewallPolicy46PoolnameArrayInput
-	// Schedule name.
-	Schedule pulumi.StringPtrInput
-	// Service name. The structure of `service` block is documented below.
-	Services FirewallPolicy46ServiceArrayInput
-	// Source address objects. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallPolicy46SrcaddrArrayInput
-	// Source interface name.
-	Srcintf pulumi.StringPtrInput
-	// Enable/disable this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// TCP Maximum Segment Size value of receiver (0 - 65535, default = 0)
-	TcpMssReceiver pulumi.IntPtrInput
-	// TCP Maximum Segment Size value of sender (0 - 65535, default = 0).
-	TcpMssSender pulumi.IntPtrInput
-	// Traffic shaper.
-	TrafficShaper pulumi.StringPtrInput
-	// Reverse traffic shaper.
+	Action               pulumi.StringPtrInput
+	Comments             pulumi.StringPtrInput
+	Dstaddrs             FirewallPolicy46DstaddrArrayInput
+	Dstintf              pulumi.StringPtrInput
+	DynamicSortSubtable  pulumi.StringPtrInput
+	Fixedport            pulumi.StringPtrInput
+	Ippool               pulumi.StringPtrInput
+	Logtraffic           pulumi.StringPtrInput
+	LogtrafficStart      pulumi.StringPtrInput
+	Name                 pulumi.StringPtrInput
+	PerIpShaper          pulumi.StringPtrInput
+	PermitAnyHost        pulumi.StringPtrInput
+	Policyid             pulumi.IntPtrInput
+	Poolnames            FirewallPolicy46PoolnameArrayInput
+	Schedule             pulumi.StringPtrInput
+	Services             FirewallPolicy46ServiceArrayInput
+	Srcaddrs             FirewallPolicy46SrcaddrArrayInput
+	Srcintf              pulumi.StringPtrInput
+	Status               pulumi.StringPtrInput
+	TcpMssReceiver       pulumi.IntPtrInput
+	TcpMssSender         pulumi.IntPtrInput
+	TrafficShaper        pulumi.StringPtrInput
 	TrafficShaperReverse pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Uuid                 pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
 }
 
 func (FirewallPolicy46State) ElementType() reflect.Type {
@@ -304,110 +146,60 @@ func (FirewallPolicy46State) ElementType() reflect.Type {
 }
 
 type firewallPolicy46Args struct {
-	// Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-	Action *string `pulumi:"action"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Destination address objects. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallPolicy46Dstaddr `pulumi:"dstaddrs"`
-	// Destination interface name.
-	Dstintf string `pulumi:"dstintf"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
-	Fixedport *string `pulumi:"fixedport"`
-	// Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
-	Ippool *string `pulumi:"ippool"`
-	// Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
-	Logtraffic *string `pulumi:"logtraffic"`
-	// Record logs when a session starts and ends. Valid values: `enable`, `disable`.
-	LogtrafficStart *string `pulumi:"logtrafficStart"`
-	// IP pool name.
-	Name *string `pulumi:"name"`
-	// Per IP traffic shaper.
-	PerIpShaper *string `pulumi:"perIpShaper"`
-	// Enable/disable allowing any host. Valid values: `enable`, `disable`.
-	PermitAnyHost *string `pulumi:"permitAnyHost"`
-	// Policy ID.
-	Policyid *int `pulumi:"policyid"`
-	// IP Pool names. The structure of `poolname` block is documented below.
-	Poolnames []FirewallPolicy46Poolname `pulumi:"poolnames"`
-	// Schedule name.
-	Schedule string `pulumi:"schedule"`
-	// Service name. The structure of `service` block is documented below.
-	Services []FirewallPolicy46Service `pulumi:"services"`
-	// Source address objects. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallPolicy46Srcaddr `pulumi:"srcaddrs"`
-	// Source interface name.
-	Srcintf string `pulumi:"srcintf"`
-	// Enable/disable this policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// TCP Maximum Segment Size value of receiver (0 - 65535, default = 0)
-	TcpMssReceiver *int `pulumi:"tcpMssReceiver"`
-	// TCP Maximum Segment Size value of sender (0 - 65535, default = 0).
-	TcpMssSender *int `pulumi:"tcpMssSender"`
-	// Traffic shaper.
-	TrafficShaper *string `pulumi:"trafficShaper"`
-	// Reverse traffic shaper.
-	TrafficShaperReverse *string `pulumi:"trafficShaperReverse"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Action               *string                    `pulumi:"action"`
+	Comments             *string                    `pulumi:"comments"`
+	Dstaddrs             []FirewallPolicy46Dstaddr  `pulumi:"dstaddrs"`
+	Dstintf              string                     `pulumi:"dstintf"`
+	DynamicSortSubtable  *string                    `pulumi:"dynamicSortSubtable"`
+	Fixedport            *string                    `pulumi:"fixedport"`
+	Ippool               *string                    `pulumi:"ippool"`
+	Logtraffic           *string                    `pulumi:"logtraffic"`
+	LogtrafficStart      *string                    `pulumi:"logtrafficStart"`
+	Name                 *string                    `pulumi:"name"`
+	PerIpShaper          *string                    `pulumi:"perIpShaper"`
+	PermitAnyHost        *string                    `pulumi:"permitAnyHost"`
+	Policyid             *int                       `pulumi:"policyid"`
+	Poolnames            []FirewallPolicy46Poolname `pulumi:"poolnames"`
+	Schedule             string                     `pulumi:"schedule"`
+	Services             []FirewallPolicy46Service  `pulumi:"services"`
+	Srcaddrs             []FirewallPolicy46Srcaddr  `pulumi:"srcaddrs"`
+	Srcintf              string                     `pulumi:"srcintf"`
+	Status               *string                    `pulumi:"status"`
+	TcpMssReceiver       *int                       `pulumi:"tcpMssReceiver"`
+	TcpMssSender         *int                       `pulumi:"tcpMssSender"`
+	TrafficShaper        *string                    `pulumi:"trafficShaper"`
+	TrafficShaperReverse *string                    `pulumi:"trafficShaperReverse"`
+	Uuid                 *string                    `pulumi:"uuid"`
+	Vdomparam            *string                    `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallPolicy46 resource.
 type FirewallPolicy46Args struct {
-	// Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-	Action pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Destination address objects. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallPolicy46DstaddrArrayInput
-	// Destination interface name.
-	Dstintf pulumi.StringInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
-	Fixedport pulumi.StringPtrInput
-	// Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
-	Ippool pulumi.StringPtrInput
-	// Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
-	Logtraffic pulumi.StringPtrInput
-	// Record logs when a session starts and ends. Valid values: `enable`, `disable`.
-	LogtrafficStart pulumi.StringPtrInput
-	// IP pool name.
-	Name pulumi.StringPtrInput
-	// Per IP traffic shaper.
-	PerIpShaper pulumi.StringPtrInput
-	// Enable/disable allowing any host. Valid values: `enable`, `disable`.
-	PermitAnyHost pulumi.StringPtrInput
-	// Policy ID.
-	Policyid pulumi.IntPtrInput
-	// IP Pool names. The structure of `poolname` block is documented below.
-	Poolnames FirewallPolicy46PoolnameArrayInput
-	// Schedule name.
-	Schedule pulumi.StringInput
-	// Service name. The structure of `service` block is documented below.
-	Services FirewallPolicy46ServiceArrayInput
-	// Source address objects. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallPolicy46SrcaddrArrayInput
-	// Source interface name.
-	Srcintf pulumi.StringInput
-	// Enable/disable this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// TCP Maximum Segment Size value of receiver (0 - 65535, default = 0)
-	TcpMssReceiver pulumi.IntPtrInput
-	// TCP Maximum Segment Size value of sender (0 - 65535, default = 0).
-	TcpMssSender pulumi.IntPtrInput
-	// Traffic shaper.
-	TrafficShaper pulumi.StringPtrInput
-	// Reverse traffic shaper.
+	Action               pulumi.StringPtrInput
+	Comments             pulumi.StringPtrInput
+	Dstaddrs             FirewallPolicy46DstaddrArrayInput
+	Dstintf              pulumi.StringInput
+	DynamicSortSubtable  pulumi.StringPtrInput
+	Fixedport            pulumi.StringPtrInput
+	Ippool               pulumi.StringPtrInput
+	Logtraffic           pulumi.StringPtrInput
+	LogtrafficStart      pulumi.StringPtrInput
+	Name                 pulumi.StringPtrInput
+	PerIpShaper          pulumi.StringPtrInput
+	PermitAnyHost        pulumi.StringPtrInput
+	Policyid             pulumi.IntPtrInput
+	Poolnames            FirewallPolicy46PoolnameArrayInput
+	Schedule             pulumi.StringInput
+	Services             FirewallPolicy46ServiceArrayInput
+	Srcaddrs             FirewallPolicy46SrcaddrArrayInput
+	Srcintf              pulumi.StringInput
+	Status               pulumi.StringPtrInput
+	TcpMssReceiver       pulumi.IntPtrInput
+	TcpMssSender         pulumi.IntPtrInput
+	TrafficShaper        pulumi.StringPtrInput
 	TrafficShaperReverse pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Uuid                 pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
 }
 
 func (FirewallPolicy46Args) ElementType() reflect.Type {
@@ -436,7 +228,7 @@ func (i *FirewallPolicy46) ToFirewallPolicy46OutputWithContext(ctx context.Conte
 // FirewallPolicy46ArrayInput is an input type that accepts FirewallPolicy46Array and FirewallPolicy46ArrayOutput values.
 // You can construct a concrete instance of `FirewallPolicy46ArrayInput` via:
 //
-//          FirewallPolicy46Array{ FirewallPolicy46Args{...} }
+//	FirewallPolicy46Array{ FirewallPolicy46Args{...} }
 type FirewallPolicy46ArrayInput interface {
 	pulumi.Input
 
@@ -461,7 +253,7 @@ func (i FirewallPolicy46Array) ToFirewallPolicy46ArrayOutputWithContext(ctx cont
 // FirewallPolicy46MapInput is an input type that accepts FirewallPolicy46Map and FirewallPolicy46MapOutput values.
 // You can construct a concrete instance of `FirewallPolicy46MapInput` via:
 //
-//          FirewallPolicy46Map{ "key": FirewallPolicy46Args{...} }
+//	FirewallPolicy46Map{ "key": FirewallPolicy46Args{...} }
 type FirewallPolicy46MapInput interface {
 	pulumi.Input
 
@@ -495,6 +287,106 @@ func (o FirewallPolicy46Output) ToFirewallPolicy46Output() FirewallPolicy46Outpu
 
 func (o FirewallPolicy46Output) ToFirewallPolicy46OutputWithContext(ctx context.Context) FirewallPolicy46Output {
 	return o
+}
+
+func (o FirewallPolicy46Output) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy46Output) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallPolicy46Output) Dstaddrs() FirewallPolicy46DstaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) FirewallPolicy46DstaddrArrayOutput { return v.Dstaddrs }).(FirewallPolicy46DstaddrArrayOutput)
+}
+
+func (o FirewallPolicy46Output) Dstintf() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringOutput { return v.Dstintf }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy46Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallPolicy46Output) Fixedport() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringOutput { return v.Fixedport }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy46Output) Ippool() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringOutput { return v.Ippool }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy46Output) Logtraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringOutput { return v.Logtraffic }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy46Output) LogtrafficStart() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringOutput { return v.LogtrafficStart }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy46Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy46Output) PerIpShaper() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringOutput { return v.PerIpShaper }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy46Output) PermitAnyHost() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringOutput { return v.PermitAnyHost }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy46Output) Policyid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.IntOutput { return v.Policyid }).(pulumi.IntOutput)
+}
+
+func (o FirewallPolicy46Output) Poolnames() FirewallPolicy46PoolnameArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) FirewallPolicy46PoolnameArrayOutput { return v.Poolnames }).(FirewallPolicy46PoolnameArrayOutput)
+}
+
+func (o FirewallPolicy46Output) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringOutput { return v.Schedule }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy46Output) Services() FirewallPolicy46ServiceArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) FirewallPolicy46ServiceArrayOutput { return v.Services }).(FirewallPolicy46ServiceArrayOutput)
+}
+
+func (o FirewallPolicy46Output) Srcaddrs() FirewallPolicy46SrcaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) FirewallPolicy46SrcaddrArrayOutput { return v.Srcaddrs }).(FirewallPolicy46SrcaddrArrayOutput)
+}
+
+func (o FirewallPolicy46Output) Srcintf() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringOutput { return v.Srcintf }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy46Output) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy46Output) TcpMssReceiver() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.IntOutput { return v.TcpMssReceiver }).(pulumi.IntOutput)
+}
+
+func (o FirewallPolicy46Output) TcpMssSender() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.IntOutput { return v.TcpMssSender }).(pulumi.IntOutput)
+}
+
+func (o FirewallPolicy46Output) TrafficShaper() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringOutput { return v.TrafficShaper }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy46Output) TrafficShaperReverse() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringOutput { return v.TrafficShaperReverse }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy46Output) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy46Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallPolicy46) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallPolicy46ArrayOutput struct{ *pulumi.OutputState }

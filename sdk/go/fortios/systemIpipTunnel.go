@@ -7,69 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IP in IP Tunneling.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemIpipTunnel(ctx, "trname", &fortios.SystemIpipTunnelArgs{
-// 			Interface: pulumi.String("port3"),
-// 			LocalGw:   pulumi.String("1.1.1.1"),
-// 			RemoteGw:  pulumi.String("2.2.2.2"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System IpipTunnel can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemIpipTunnel:SystemIpipTunnel labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemIpipTunnel:SystemIpipTunnel labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemIpipTunnel struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
-	AutoAsicOffload pulumi.StringOutput `pulumi:"autoAsicOffload"`
-	// Interface name that is associated with the incoming traffic from available options.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// IPv4 address for the local gateway.
-	LocalGw pulumi.StringOutput `pulumi:"localGw"`
-	// IPIP Tunnel name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// IPv4 address for the remote gateway.
-	RemoteGw pulumi.StringOutput `pulumi:"remoteGw"`
-	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-	UseSdwan pulumi.StringOutput `pulumi:"useSdwan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AutoAsicOffload pulumi.StringOutput    `pulumi:"autoAsicOffload"`
+	Interface       pulumi.StringOutput    `pulumi:"interface"`
+	LocalGw         pulumi.StringOutput    `pulumi:"localGw"`
+	Name            pulumi.StringOutput    `pulumi:"name"`
+	RemoteGw        pulumi.StringOutput    `pulumi:"remoteGw"`
+	UseSdwan        pulumi.StringOutput    `pulumi:"useSdwan"`
+	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemIpipTunnel registers a new resource with the given unique name, arguments, and options.
@@ -111,37 +62,23 @@ func GetSystemIpipTunnel(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemIpipTunnel resources.
 type systemIpipTunnelState struct {
-	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
 	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
-	// Interface name that is associated with the incoming traffic from available options.
-	Interface *string `pulumi:"interface"`
-	// IPv4 address for the local gateway.
-	LocalGw *string `pulumi:"localGw"`
-	// IPIP Tunnel name.
-	Name *string `pulumi:"name"`
-	// IPv4 address for the remote gateway.
-	RemoteGw *string `pulumi:"remoteGw"`
-	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-	UseSdwan *string `pulumi:"useSdwan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Interface       *string `pulumi:"interface"`
+	LocalGw         *string `pulumi:"localGw"`
+	Name            *string `pulumi:"name"`
+	RemoteGw        *string `pulumi:"remoteGw"`
+	UseSdwan        *string `pulumi:"useSdwan"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 type SystemIpipTunnelState struct {
-	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
 	AutoAsicOffload pulumi.StringPtrInput
-	// Interface name that is associated with the incoming traffic from available options.
-	Interface pulumi.StringPtrInput
-	// IPv4 address for the local gateway.
-	LocalGw pulumi.StringPtrInput
-	// IPIP Tunnel name.
-	Name pulumi.StringPtrInput
-	// IPv4 address for the remote gateway.
-	RemoteGw pulumi.StringPtrInput
-	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-	UseSdwan pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interface       pulumi.StringPtrInput
+	LocalGw         pulumi.StringPtrInput
+	Name            pulumi.StringPtrInput
+	RemoteGw        pulumi.StringPtrInput
+	UseSdwan        pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (SystemIpipTunnelState) ElementType() reflect.Type {
@@ -149,38 +86,24 @@ func (SystemIpipTunnelState) ElementType() reflect.Type {
 }
 
 type systemIpipTunnelArgs struct {
-	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
 	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
-	// Interface name that is associated with the incoming traffic from available options.
-	Interface string `pulumi:"interface"`
-	// IPv4 address for the local gateway.
-	LocalGw string `pulumi:"localGw"`
-	// IPIP Tunnel name.
-	Name *string `pulumi:"name"`
-	// IPv4 address for the remote gateway.
-	RemoteGw string `pulumi:"remoteGw"`
-	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-	UseSdwan *string `pulumi:"useSdwan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Interface       string  `pulumi:"interface"`
+	LocalGw         string  `pulumi:"localGw"`
+	Name            *string `pulumi:"name"`
+	RemoteGw        string  `pulumi:"remoteGw"`
+	UseSdwan        *string `pulumi:"useSdwan"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemIpipTunnel resource.
 type SystemIpipTunnelArgs struct {
-	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
 	AutoAsicOffload pulumi.StringPtrInput
-	// Interface name that is associated with the incoming traffic from available options.
-	Interface pulumi.StringInput
-	// IPv4 address for the local gateway.
-	LocalGw pulumi.StringInput
-	// IPIP Tunnel name.
-	Name pulumi.StringPtrInput
-	// IPv4 address for the remote gateway.
-	RemoteGw pulumi.StringInput
-	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-	UseSdwan pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interface       pulumi.StringInput
+	LocalGw         pulumi.StringInput
+	Name            pulumi.StringPtrInput
+	RemoteGw        pulumi.StringInput
+	UseSdwan        pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (SystemIpipTunnelArgs) ElementType() reflect.Type {
@@ -209,7 +132,7 @@ func (i *SystemIpipTunnel) ToSystemIpipTunnelOutputWithContext(ctx context.Conte
 // SystemIpipTunnelArrayInput is an input type that accepts SystemIpipTunnelArray and SystemIpipTunnelArrayOutput values.
 // You can construct a concrete instance of `SystemIpipTunnelArrayInput` via:
 //
-//          SystemIpipTunnelArray{ SystemIpipTunnelArgs{...} }
+//	SystemIpipTunnelArray{ SystemIpipTunnelArgs{...} }
 type SystemIpipTunnelArrayInput interface {
 	pulumi.Input
 
@@ -234,7 +157,7 @@ func (i SystemIpipTunnelArray) ToSystemIpipTunnelArrayOutputWithContext(ctx cont
 // SystemIpipTunnelMapInput is an input type that accepts SystemIpipTunnelMap and SystemIpipTunnelMapOutput values.
 // You can construct a concrete instance of `SystemIpipTunnelMapInput` via:
 //
-//          SystemIpipTunnelMap{ "key": SystemIpipTunnelArgs{...} }
+//	SystemIpipTunnelMap{ "key": SystemIpipTunnelArgs{...} }
 type SystemIpipTunnelMapInput interface {
 	pulumi.Input
 
@@ -268,6 +191,34 @@ func (o SystemIpipTunnelOutput) ToSystemIpipTunnelOutput() SystemIpipTunnelOutpu
 
 func (o SystemIpipTunnelOutput) ToSystemIpipTunnelOutputWithContext(ctx context.Context) SystemIpipTunnelOutput {
 	return o
+}
+
+func (o SystemIpipTunnelOutput) AutoAsicOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpipTunnel) pulumi.StringOutput { return v.AutoAsicOffload }).(pulumi.StringOutput)
+}
+
+func (o SystemIpipTunnelOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpipTunnel) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemIpipTunnelOutput) LocalGw() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpipTunnel) pulumi.StringOutput { return v.LocalGw }).(pulumi.StringOutput)
+}
+
+func (o SystemIpipTunnelOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpipTunnel) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemIpipTunnelOutput) RemoteGw() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpipTunnel) pulumi.StringOutput { return v.RemoteGw }).(pulumi.StringOutput)
+}
+
+func (o SystemIpipTunnelOutput) UseSdwan() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpipTunnel) pulumi.StringOutput { return v.UseSdwan }).(pulumi.StringOutput)
+}
+
+func (o SystemIpipTunnelOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemIpipTunnel) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemIpipTunnelArrayOutput struct{ *pulumi.OutputState }

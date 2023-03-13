@@ -7,51 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports executing devicemanager script on Fortimanager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerDVMScriptExecute(ctx, "test3", &fortios.FortimanagerDVMScriptExecuteArgs{
-// 			ScriptName:    pulumi.String("config-intf3"),
-// 			TargetDevname: pulumi.String("devname"),
-// 			Timeout:       pulumi.Int(5),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerDVMScriptExecute struct {
 	pulumi.CustomResourceState
 
-	// Source ADOM name. default is 'root'
-	Adom pulumi.StringPtrOutput `pulumi:"adom"`
-	// Policy package.
-	Package pulumi.StringPtrOutput `pulumi:"package"`
-	// Script name.
-	ScriptName pulumi.StringOutput `pulumi:"scriptName"`
-	// Target device name, which the script will be installed.
+	Adom          pulumi.StringPtrOutput `pulumi:"adom"`
+	Package       pulumi.StringPtrOutput `pulumi:"package"`
+	ScriptName    pulumi.StringOutput    `pulumi:"scriptName"`
 	TargetDevname pulumi.StringPtrOutput `pulumi:"targetDevname"`
-	// Timeout(minute) for executing the script, default is 3 minutes.
-	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
-	// Vdom of managed device. default is 'root'
-	Vdom pulumi.StringPtrOutput `pulumi:"vdom"`
+	Timeout       pulumi.IntPtrOutput    `pulumi:"timeout"`
+	Vdom          pulumi.StringPtrOutput `pulumi:"vdom"`
 }
 
 // NewFortimanagerDVMScriptExecute registers a new resource with the given unique name, arguments, and options.
@@ -87,33 +55,21 @@ func GetFortimanagerDVMScriptExecute(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerDVMScriptExecute resources.
 type fortimanagerDVMScriptExecuteState struct {
-	// Source ADOM name. default is 'root'
-	Adom *string `pulumi:"adom"`
-	// Policy package.
-	Package *string `pulumi:"package"`
-	// Script name.
-	ScriptName *string `pulumi:"scriptName"`
-	// Target device name, which the script will be installed.
+	Adom          *string `pulumi:"adom"`
+	Package       *string `pulumi:"package"`
+	ScriptName    *string `pulumi:"scriptName"`
 	TargetDevname *string `pulumi:"targetDevname"`
-	// Timeout(minute) for executing the script, default is 3 minutes.
-	Timeout *int `pulumi:"timeout"`
-	// Vdom of managed device. default is 'root'
-	Vdom *string `pulumi:"vdom"`
+	Timeout       *int    `pulumi:"timeout"`
+	Vdom          *string `pulumi:"vdom"`
 }
 
 type FortimanagerDVMScriptExecuteState struct {
-	// Source ADOM name. default is 'root'
-	Adom pulumi.StringPtrInput
-	// Policy package.
-	Package pulumi.StringPtrInput
-	// Script name.
-	ScriptName pulumi.StringPtrInput
-	// Target device name, which the script will be installed.
+	Adom          pulumi.StringPtrInput
+	Package       pulumi.StringPtrInput
+	ScriptName    pulumi.StringPtrInput
 	TargetDevname pulumi.StringPtrInput
-	// Timeout(minute) for executing the script, default is 3 minutes.
-	Timeout pulumi.IntPtrInput
-	// Vdom of managed device. default is 'root'
-	Vdom pulumi.StringPtrInput
+	Timeout       pulumi.IntPtrInput
+	Vdom          pulumi.StringPtrInput
 }
 
 func (FortimanagerDVMScriptExecuteState) ElementType() reflect.Type {
@@ -121,34 +77,22 @@ func (FortimanagerDVMScriptExecuteState) ElementType() reflect.Type {
 }
 
 type fortimanagerDVMScriptExecuteArgs struct {
-	// Source ADOM name. default is 'root'
-	Adom *string `pulumi:"adom"`
-	// Policy package.
-	Package *string `pulumi:"package"`
-	// Script name.
-	ScriptName string `pulumi:"scriptName"`
-	// Target device name, which the script will be installed.
+	Adom          *string `pulumi:"adom"`
+	Package       *string `pulumi:"package"`
+	ScriptName    string  `pulumi:"scriptName"`
 	TargetDevname *string `pulumi:"targetDevname"`
-	// Timeout(minute) for executing the script, default is 3 minutes.
-	Timeout *int `pulumi:"timeout"`
-	// Vdom of managed device. default is 'root'
-	Vdom *string `pulumi:"vdom"`
+	Timeout       *int    `pulumi:"timeout"`
+	Vdom          *string `pulumi:"vdom"`
 }
 
 // The set of arguments for constructing a FortimanagerDVMScriptExecute resource.
 type FortimanagerDVMScriptExecuteArgs struct {
-	// Source ADOM name. default is 'root'
-	Adom pulumi.StringPtrInput
-	// Policy package.
-	Package pulumi.StringPtrInput
-	// Script name.
-	ScriptName pulumi.StringInput
-	// Target device name, which the script will be installed.
+	Adom          pulumi.StringPtrInput
+	Package       pulumi.StringPtrInput
+	ScriptName    pulumi.StringInput
 	TargetDevname pulumi.StringPtrInput
-	// Timeout(minute) for executing the script, default is 3 minutes.
-	Timeout pulumi.IntPtrInput
-	// Vdom of managed device. default is 'root'
-	Vdom pulumi.StringPtrInput
+	Timeout       pulumi.IntPtrInput
+	Vdom          pulumi.StringPtrInput
 }
 
 func (FortimanagerDVMScriptExecuteArgs) ElementType() reflect.Type {
@@ -177,7 +121,7 @@ func (i *FortimanagerDVMScriptExecute) ToFortimanagerDVMScriptExecuteOutputWithC
 // FortimanagerDVMScriptExecuteArrayInput is an input type that accepts FortimanagerDVMScriptExecuteArray and FortimanagerDVMScriptExecuteArrayOutput values.
 // You can construct a concrete instance of `FortimanagerDVMScriptExecuteArrayInput` via:
 //
-//          FortimanagerDVMScriptExecuteArray{ FortimanagerDVMScriptExecuteArgs{...} }
+//	FortimanagerDVMScriptExecuteArray{ FortimanagerDVMScriptExecuteArgs{...} }
 type FortimanagerDVMScriptExecuteArrayInput interface {
 	pulumi.Input
 
@@ -202,7 +146,7 @@ func (i FortimanagerDVMScriptExecuteArray) ToFortimanagerDVMScriptExecuteArrayOu
 // FortimanagerDVMScriptExecuteMapInput is an input type that accepts FortimanagerDVMScriptExecuteMap and FortimanagerDVMScriptExecuteMapOutput values.
 // You can construct a concrete instance of `FortimanagerDVMScriptExecuteMapInput` via:
 //
-//          FortimanagerDVMScriptExecuteMap{ "key": FortimanagerDVMScriptExecuteArgs{...} }
+//	FortimanagerDVMScriptExecuteMap{ "key": FortimanagerDVMScriptExecuteArgs{...} }
 type FortimanagerDVMScriptExecuteMapInput interface {
 	pulumi.Input
 
@@ -236,6 +180,30 @@ func (o FortimanagerDVMScriptExecuteOutput) ToFortimanagerDVMScriptExecuteOutput
 
 func (o FortimanagerDVMScriptExecuteOutput) ToFortimanagerDVMScriptExecuteOutputWithContext(ctx context.Context) FortimanagerDVMScriptExecuteOutput {
 	return o
+}
+
+func (o FortimanagerDVMScriptExecuteOutput) Adom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerDVMScriptExecute) pulumi.StringPtrOutput { return v.Adom }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerDVMScriptExecuteOutput) Package() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerDVMScriptExecute) pulumi.StringPtrOutput { return v.Package }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerDVMScriptExecuteOutput) ScriptName() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerDVMScriptExecute) pulumi.StringOutput { return v.ScriptName }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerDVMScriptExecuteOutput) TargetDevname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerDVMScriptExecute) pulumi.StringPtrOutput { return v.TargetDevname }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerDVMScriptExecuteOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FortimanagerDVMScriptExecute) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
+}
+
+func (o FortimanagerDVMScriptExecuteOutput) Vdom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerDVMScriptExecute) pulumi.StringPtrOutput { return v.Vdom }).(pulumi.StringPtrOutput)
 }
 
 type FortimanagerDVMScriptExecuteArrayOutput struct{ *pulumi.OutputState }

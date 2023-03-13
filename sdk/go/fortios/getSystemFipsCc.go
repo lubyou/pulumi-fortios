@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios system fipscc
 func LookupSystemFipsCc(ctx *pulumi.Context, args *LookupSystemFipsCcArgs, opts ...pulumi.InvokeOption) (*LookupSystemFipsCcResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemFipsCcResult
@@ -23,23 +22,18 @@ func LookupSystemFipsCc(ctx *pulumi.Context, args *LookupSystemFipsCcArgs, opts 
 
 // A collection of arguments for invoking GetSystemFipsCc.
 type LookupSystemFipsCcArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemFipsCc.
 type LookupSystemFipsCcResult struct {
-	// Enable/disable/dynamic entropy token.
 	EntropyToken string `pulumi:"entropyToken"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Enable/disable self tests after key generation.
-	KeyGenerationSelfTest string `pulumi:"keyGenerationSelfTest"`
-	// Self test period.
-	SelfTestPeriod int `pulumi:"selfTestPeriod"`
-	// Enable/disable FIPS-CC mode.
-	Status    string  `pulumi:"status"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id                    string  `pulumi:"id"`
+	KeyGenerationSelfTest string  `pulumi:"keyGenerationSelfTest"`
+	SelfTestPeriod        int     `pulumi:"selfTestPeriod"`
+	Status                string  `pulumi:"status"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 func LookupSystemFipsCcOutput(ctx *pulumi.Context, args LookupSystemFipsCcOutputArgs, opts ...pulumi.InvokeOption) LookupSystemFipsCcResultOutput {
@@ -57,7 +51,6 @@ func LookupSystemFipsCcOutput(ctx *pulumi.Context, args LookupSystemFipsCcOutput
 
 // A collection of arguments for invoking GetSystemFipsCc.
 type LookupSystemFipsCcOutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -80,7 +73,6 @@ func (o LookupSystemFipsCcResultOutput) ToLookupSystemFipsCcResultOutputWithCont
 	return o
 }
 
-// Enable/disable/dynamic entropy token.
 func (o LookupSystemFipsCcResultOutput) EntropyToken() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFipsCcResult) string { return v.EntropyToken }).(pulumi.StringOutput)
 }
@@ -90,17 +82,14 @@ func (o LookupSystemFipsCcResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFipsCcResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Enable/disable self tests after key generation.
 func (o LookupSystemFipsCcResultOutput) KeyGenerationSelfTest() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFipsCcResult) string { return v.KeyGenerationSelfTest }).(pulumi.StringOutput)
 }
 
-// Self test period.
 func (o LookupSystemFipsCcResultOutput) SelfTestPeriod() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemFipsCcResult) int { return v.SelfTestPeriod }).(pulumi.IntOutput)
 }
 
-// Enable/disable FIPS-CC mode.
 func (o LookupSystemFipsCcResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFipsCcResult) string { return v.Status }).(pulumi.StringOutput)
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system mobiletunnel
 func LookupSystemMobileTunnel(ctx *pulumi.Context, args *LookupSystemMobileTunnelArgs, opts ...pulumi.InvokeOption) (*LookupSystemMobileTunnelResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemMobileTunnelResult
@@ -23,47 +22,30 @@ func LookupSystemMobileTunnel(ctx *pulumi.Context, args *LookupSystemMobileTunne
 
 // A collection of arguments for invoking GetSystemMobileTunnel.
 type LookupSystemMobileTunnelArgs struct {
-	// Specify the name of the desired system mobiletunnel.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemMobileTunnel.
 type LookupSystemMobileTunnelResult struct {
-	// Hash Algorithm (Keyed MD5).
 	HashAlgorithm string `pulumi:"hashAlgorithm"`
-	// Home IP address (Format: xxx.xxx.xxx.xxx).
-	HomeAddress string `pulumi:"homeAddress"`
-	// IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
-	HomeAgent string `pulumi:"homeAgent"`
+	HomeAddress   string `pulumi:"homeAddress"`
+	HomeAgent     string `pulumi:"homeAgent"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// NMMO HA registration request lifetime (180 - 65535 sec, default = 65535).
-	Lifetime int `pulumi:"lifetime"`
-	// NEMO authentication key.
-	NMhaeKey string `pulumi:"nMhaeKey"`
-	// NEMO authentication key type (ascii or base64).
-	NMhaeKeyType string `pulumi:"nMhaeKeyType"`
-	// NEMO authentication SPI (default: 256).
-	NMhaeSpi int `pulumi:"nMhaeSpi"`
-	// Tunnel name.
-	Name string `pulumi:"name"`
-	// NEMO network configuration. The structure of `network` block is documented below.
-	Networks []GetSystemMobileTunnelNetwork `pulumi:"networks"`
-	// NMMO HA registration interval (5 - 300, default = 5).
-	RegInterval int `pulumi:"regInterval"`
-	// Maximum number of NMMO HA registration retries (1 to 30, default = 3).
-	RegRetry int `pulumi:"regRetry"`
-	// Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
-	RenewInterval int `pulumi:"renewInterval"`
-	// Select the associated interface name from available options.
-	RoamingInterface string `pulumi:"roamingInterface"`
-	// Enable/disable this mobile tunnel.
-	Status string `pulumi:"status"`
-	// NEMO tunnnel mode (GRE tunnel).
-	TunnelMode string  `pulumi:"tunnelMode"`
-	Vdomparam  *string `pulumi:"vdomparam"`
+	Id               string                         `pulumi:"id"`
+	Lifetime         int                            `pulumi:"lifetime"`
+	NMhaeKey         string                         `pulumi:"nMhaeKey"`
+	NMhaeKeyType     string                         `pulumi:"nMhaeKeyType"`
+	NMhaeSpi         int                            `pulumi:"nMhaeSpi"`
+	Name             string                         `pulumi:"name"`
+	Networks         []GetSystemMobileTunnelNetwork `pulumi:"networks"`
+	RegInterval      int                            `pulumi:"regInterval"`
+	RegRetry         int                            `pulumi:"regRetry"`
+	RenewInterval    int                            `pulumi:"renewInterval"`
+	RoamingInterface string                         `pulumi:"roamingInterface"`
+	Status           string                         `pulumi:"status"`
+	TunnelMode       string                         `pulumi:"tunnelMode"`
+	Vdomparam        *string                        `pulumi:"vdomparam"`
 }
 
 func LookupSystemMobileTunnelOutput(ctx *pulumi.Context, args LookupSystemMobileTunnelOutputArgs, opts ...pulumi.InvokeOption) LookupSystemMobileTunnelResultOutput {
@@ -81,9 +63,7 @@ func LookupSystemMobileTunnelOutput(ctx *pulumi.Context, args LookupSystemMobile
 
 // A collection of arguments for invoking GetSystemMobileTunnel.
 type LookupSystemMobileTunnelOutputArgs struct {
-	// Specify the name of the desired system mobiletunnel.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -106,17 +86,14 @@ func (o LookupSystemMobileTunnelResultOutput) ToLookupSystemMobileTunnelResultOu
 	return o
 }
 
-// Hash Algorithm (Keyed MD5).
 func (o LookupSystemMobileTunnelResultOutput) HashAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.HashAlgorithm }).(pulumi.StringOutput)
 }
 
-// Home IP address (Format: xxx.xxx.xxx.xxx).
 func (o LookupSystemMobileTunnelResultOutput) HomeAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.HomeAddress }).(pulumi.StringOutput)
 }
 
-// IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
 func (o LookupSystemMobileTunnelResultOutput) HomeAgent() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.HomeAgent }).(pulumi.StringOutput)
 }
@@ -126,62 +103,50 @@ func (o LookupSystemMobileTunnelResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// NMMO HA registration request lifetime (180 - 65535 sec, default = 65535).
 func (o LookupSystemMobileTunnelResultOutput) Lifetime() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) int { return v.Lifetime }).(pulumi.IntOutput)
 }
 
-// NEMO authentication key.
 func (o LookupSystemMobileTunnelResultOutput) NMhaeKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.NMhaeKey }).(pulumi.StringOutput)
 }
 
-// NEMO authentication key type (ascii or base64).
 func (o LookupSystemMobileTunnelResultOutput) NMhaeKeyType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.NMhaeKeyType }).(pulumi.StringOutput)
 }
 
-// NEMO authentication SPI (default: 256).
 func (o LookupSystemMobileTunnelResultOutput) NMhaeSpi() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) int { return v.NMhaeSpi }).(pulumi.IntOutput)
 }
 
-// Tunnel name.
 func (o LookupSystemMobileTunnelResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// NEMO network configuration. The structure of `network` block is documented below.
 func (o LookupSystemMobileTunnelResultOutput) Networks() GetSystemMobileTunnelNetworkArrayOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) []GetSystemMobileTunnelNetwork { return v.Networks }).(GetSystemMobileTunnelNetworkArrayOutput)
 }
 
-// NMMO HA registration interval (5 - 300, default = 5).
 func (o LookupSystemMobileTunnelResultOutput) RegInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) int { return v.RegInterval }).(pulumi.IntOutput)
 }
 
-// Maximum number of NMMO HA registration retries (1 to 30, default = 3).
 func (o LookupSystemMobileTunnelResultOutput) RegRetry() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) int { return v.RegRetry }).(pulumi.IntOutput)
 }
 
-// Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
 func (o LookupSystemMobileTunnelResultOutput) RenewInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) int { return v.RenewInterval }).(pulumi.IntOutput)
 }
 
-// Select the associated interface name from available options.
 func (o LookupSystemMobileTunnelResultOutput) RoamingInterface() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.RoamingInterface }).(pulumi.StringOutput)
 }
 
-// Enable/disable this mobile tunnel.
 func (o LookupSystemMobileTunnelResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// NEMO tunnnel mode (GRE tunnel).
 func (o LookupSystemMobileTunnelResultOutput) TunnelMode() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.TunnelMode }).(pulumi.StringOutput)
 }

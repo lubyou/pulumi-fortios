@@ -10,55 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure roaming consortium.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWirelessControllerHotspot20AnqpRoamingConsortium(ctx, "trname", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// WirelessControllerHotspot20 AnqpRoamingConsortium can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20AnqpRoamingConsortium:WirelessControllerHotspot20AnqpRoamingConsortium labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20AnqpRoamingConsortium:WirelessControllerHotspot20AnqpRoamingConsortium labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerHotspot20AnqpRoamingConsortium struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Roaming consortium name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Organization identifier list. The structure of `oiList` block is documented below.
-	OiLists WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayOutput `pulumi:"oiLists"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                                            `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                                               `pulumi:"name"`
+	OiLists             WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayOutput `pulumi:"oiLists"`
+	Vdomparam           pulumi.StringPtrOutput                                            `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerHotspot20AnqpRoamingConsortium registers a new resource with the given unique name, arguments, and options.
@@ -91,25 +49,17 @@ func GetWirelessControllerHotspot20AnqpRoamingConsortium(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerHotspot20AnqpRoamingConsortium resources.
 type wirelessControllerHotspot20AnqpRoamingConsortiumState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Roaming consortium name.
-	Name *string `pulumi:"name"`
-	// Organization identifier list. The structure of `oiList` block is documented below.
-	OiLists []WirelessControllerHotspot20AnqpRoamingConsortiumOiList `pulumi:"oiLists"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                                  `pulumi:"dynamicSortSubtable"`
+	Name                *string                                                  `pulumi:"name"`
+	OiLists             []WirelessControllerHotspot20AnqpRoamingConsortiumOiList `pulumi:"oiLists"`
+	Vdomparam           *string                                                  `pulumi:"vdomparam"`
 }
 
 type WirelessControllerHotspot20AnqpRoamingConsortiumState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Roaming consortium name.
-	Name pulumi.StringPtrInput
-	// Organization identifier list. The structure of `oiList` block is documented below.
-	OiLists WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	OiLists             WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20AnqpRoamingConsortiumState) ElementType() reflect.Type {
@@ -117,26 +67,18 @@ func (WirelessControllerHotspot20AnqpRoamingConsortiumState) ElementType() refle
 }
 
 type wirelessControllerHotspot20AnqpRoamingConsortiumArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Roaming consortium name.
-	Name *string `pulumi:"name"`
-	// Organization identifier list. The structure of `oiList` block is documented below.
-	OiLists []WirelessControllerHotspot20AnqpRoamingConsortiumOiList `pulumi:"oiLists"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                                  `pulumi:"dynamicSortSubtable"`
+	Name                *string                                                  `pulumi:"name"`
+	OiLists             []WirelessControllerHotspot20AnqpRoamingConsortiumOiList `pulumi:"oiLists"`
+	Vdomparam           *string                                                  `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerHotspot20AnqpRoamingConsortium resource.
 type WirelessControllerHotspot20AnqpRoamingConsortiumArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Roaming consortium name.
-	Name pulumi.StringPtrInput
-	// Organization identifier list. The structure of `oiList` block is documented below.
-	OiLists WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	OiLists             WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20AnqpRoamingConsortiumArgs) ElementType() reflect.Type {
@@ -165,7 +107,7 @@ func (i *WirelessControllerHotspot20AnqpRoamingConsortium) ToWirelessControllerH
 // WirelessControllerHotspot20AnqpRoamingConsortiumArrayInput is an input type that accepts WirelessControllerHotspot20AnqpRoamingConsortiumArray and WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpRoamingConsortiumArrayInput` via:
 //
-//          WirelessControllerHotspot20AnqpRoamingConsortiumArray{ WirelessControllerHotspot20AnqpRoamingConsortiumArgs{...} }
+//	WirelessControllerHotspot20AnqpRoamingConsortiumArray{ WirelessControllerHotspot20AnqpRoamingConsortiumArgs{...} }
 type WirelessControllerHotspot20AnqpRoamingConsortiumArrayInput interface {
 	pulumi.Input
 
@@ -190,7 +132,7 @@ func (i WirelessControllerHotspot20AnqpRoamingConsortiumArray) ToWirelessControl
 // WirelessControllerHotspot20AnqpRoamingConsortiumMapInput is an input type that accepts WirelessControllerHotspot20AnqpRoamingConsortiumMap and WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpRoamingConsortiumMapInput` via:
 //
-//          WirelessControllerHotspot20AnqpRoamingConsortiumMap{ "key": WirelessControllerHotspot20AnqpRoamingConsortiumArgs{...} }
+//	WirelessControllerHotspot20AnqpRoamingConsortiumMap{ "key": WirelessControllerHotspot20AnqpRoamingConsortiumArgs{...} }
 type WirelessControllerHotspot20AnqpRoamingConsortiumMapInput interface {
 	pulumi.Input
 
@@ -224,6 +166,26 @@ func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) ToWirelessContro
 
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) ToWirelessControllerHotspot20AnqpRoamingConsortiumOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpRoamingConsortiumOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpRoamingConsortium) pulumi.StringPtrOutput {
+		return v.DynamicSortSubtable
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpRoamingConsortium) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) OiLists() WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpRoamingConsortium) WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayOutput {
+		return v.OiLists
+	}).(WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayOutput)
+}
+
+func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpRoamingConsortium) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput struct{ *pulumi.OutputState }

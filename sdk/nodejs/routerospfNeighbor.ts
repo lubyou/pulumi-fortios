@@ -4,27 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * OSPF neighbor configuration are used when OSPF runs on non-broadcast media
- *
- * > The provider supports the definition of Neighbor in Router Ospf `fortios.RouterOspf`, and also allows the definition of separate Neighbor resources `fortios.RouterospfNeighbor`, but do not use a `fortios.RouterOspf` with in-line Neighbor in conjunction with any `fortios.RouterospfNeighbor` resources, otherwise conflicts and overwrite will occur.
- *
- * ## Import
- *
- * Routerospf Neighbor can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerospfNeighbor:RouterospfNeighbor labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerospfNeighbor:RouterospfNeighbor labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterospfNeighbor extends pulumi.CustomResource {
     /**
      * Get an existing RouterospfNeighbor resource's state with the given name, ID, and optional extra
@@ -53,29 +32,11 @@ export class RouterospfNeighbor extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterospfNeighbor.__pulumiType;
     }
 
-    /**
-     * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-     */
     public readonly cost!: pulumi.Output<number>;
-    /**
-     * Neighbor entry ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Interface IP address of the neighbor.
-     */
     public readonly ip!: pulumi.Output<string>;
-    /**
-     * Poll interval time in seconds.
-     */
     public readonly pollInterval!: pulumi.Output<number>;
-    /**
-     * Priority.
-     */
     public readonly priority!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -115,29 +76,11 @@ export class RouterospfNeighbor extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterospfNeighbor resources.
  */
 export interface RouterospfNeighborState {
-    /**
-     * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-     */
     cost?: pulumi.Input<number>;
-    /**
-     * Neighbor entry ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Interface IP address of the neighbor.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Poll interval time in seconds.
-     */
     pollInterval?: pulumi.Input<number>;
-    /**
-     * Priority.
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -145,28 +88,10 @@ export interface RouterospfNeighborState {
  * The set of arguments for constructing a RouterospfNeighbor resource.
  */
 export interface RouterospfNeighborArgs {
-    /**
-     * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-     */
     cost?: pulumi.Input<number>;
-    /**
-     * Neighbor entry ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Interface IP address of the neighbor.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Poll interval time in seconds.
-     */
     pollInterval?: pulumi.Input<number>;
-    /**
-     * Priority.
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

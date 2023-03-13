@@ -7,61 +7,22 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports Create/Read/Update/Delete firewall object ippool for FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerFirewallObjectIppool(ctx, "test1", &fortios.FortimanagerFirewallObjectIppoolArgs{
-// 			ArpIntf:        pulumi.String("any"),
-// 			ArpReply:       pulumi.String("enable"),
-// 			AssociatedIntf: pulumi.String("any"),
-// 			Comment:        pulumi.String("test obj ippool"),
-// 			Endip:          pulumi.String("1.1.10.100"),
-// 			Startip:        pulumi.String("1.1.10.1"),
-// 			Type:           pulumi.String("one-to-one"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerFirewallObjectIppool struct {
 	pulumi.CustomResourceState
 
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrOutput `pulumi:"adom"`
-	// Select an interface that will reply to ARP requests.
-	ArpIntf pulumi.StringPtrOutput `pulumi:"arpIntf"`
-	// Enable/disable replying to ARP request, default is "enable".
-	ArpReply pulumi.StringPtrOutput `pulumi:"arpReply"`
-	// Associated interface name.
+	Adom           pulumi.StringPtrOutput `pulumi:"adom"`
+	ArpIntf        pulumi.StringPtrOutput `pulumi:"arpIntf"`
+	ArpReply       pulumi.StringPtrOutput `pulumi:"arpReply"`
 	AssociatedIntf pulumi.StringPtrOutput `pulumi:"associatedIntf"`
-	// Comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Final IPv4 address (inclusive) in the range for the address pool.
-	Endip pulumi.StringOutput `pulumi:"endip"`
-	// Ippool name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// First IPv4 address (inclusive) in the range for the address pool.
-	Startip pulumi.StringOutput `pulumi:"startip"`
-	// Ip pool type, Enum: ["overload", "one-to-one"].
-	Type pulumi.StringPtrOutput `pulumi:"type"`
+	Comment        pulumi.StringPtrOutput `pulumi:"comment"`
+	Endip          pulumi.StringOutput    `pulumi:"endip"`
+	Name           pulumi.StringOutput    `pulumi:"name"`
+	Startip        pulumi.StringOutput    `pulumi:"startip"`
+	Type           pulumi.StringPtrOutput `pulumi:"type"`
 }
 
 // NewFortimanagerFirewallObjectIppool registers a new resource with the given unique name, arguments, and options.
@@ -100,45 +61,27 @@ func GetFortimanagerFirewallObjectIppool(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerFirewallObjectIppool resources.
 type fortimanagerFirewallObjectIppoolState struct {
-	// ADOM name. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// Select an interface that will reply to ARP requests.
-	ArpIntf *string `pulumi:"arpIntf"`
-	// Enable/disable replying to ARP request, default is "enable".
-	ArpReply *string `pulumi:"arpReply"`
-	// Associated interface name.
+	Adom           *string `pulumi:"adom"`
+	ArpIntf        *string `pulumi:"arpIntf"`
+	ArpReply       *string `pulumi:"arpReply"`
 	AssociatedIntf *string `pulumi:"associatedIntf"`
-	// Comments.
-	Comment *string `pulumi:"comment"`
-	// Final IPv4 address (inclusive) in the range for the address pool.
-	Endip *string `pulumi:"endip"`
-	// Ippool name.
-	Name *string `pulumi:"name"`
-	// First IPv4 address (inclusive) in the range for the address pool.
-	Startip *string `pulumi:"startip"`
-	// Ip pool type, Enum: ["overload", "one-to-one"].
-	Type *string `pulumi:"type"`
+	Comment        *string `pulumi:"comment"`
+	Endip          *string `pulumi:"endip"`
+	Name           *string `pulumi:"name"`
+	Startip        *string `pulumi:"startip"`
+	Type           *string `pulumi:"type"`
 }
 
 type FortimanagerFirewallObjectIppoolState struct {
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// Select an interface that will reply to ARP requests.
-	ArpIntf pulumi.StringPtrInput
-	// Enable/disable replying to ARP request, default is "enable".
-	ArpReply pulumi.StringPtrInput
-	// Associated interface name.
+	Adom           pulumi.StringPtrInput
+	ArpIntf        pulumi.StringPtrInput
+	ArpReply       pulumi.StringPtrInput
 	AssociatedIntf pulumi.StringPtrInput
-	// Comments.
-	Comment pulumi.StringPtrInput
-	// Final IPv4 address (inclusive) in the range for the address pool.
-	Endip pulumi.StringPtrInput
-	// Ippool name.
-	Name pulumi.StringPtrInput
-	// First IPv4 address (inclusive) in the range for the address pool.
-	Startip pulumi.StringPtrInput
-	// Ip pool type, Enum: ["overload", "one-to-one"].
-	Type pulumi.StringPtrInput
+	Comment        pulumi.StringPtrInput
+	Endip          pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	Startip        pulumi.StringPtrInput
+	Type           pulumi.StringPtrInput
 }
 
 func (FortimanagerFirewallObjectIppoolState) ElementType() reflect.Type {
@@ -146,46 +89,28 @@ func (FortimanagerFirewallObjectIppoolState) ElementType() reflect.Type {
 }
 
 type fortimanagerFirewallObjectIppoolArgs struct {
-	// ADOM name. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// Select an interface that will reply to ARP requests.
-	ArpIntf *string `pulumi:"arpIntf"`
-	// Enable/disable replying to ARP request, default is "enable".
-	ArpReply *string `pulumi:"arpReply"`
-	// Associated interface name.
+	Adom           *string `pulumi:"adom"`
+	ArpIntf        *string `pulumi:"arpIntf"`
+	ArpReply       *string `pulumi:"arpReply"`
 	AssociatedIntf *string `pulumi:"associatedIntf"`
-	// Comments.
-	Comment *string `pulumi:"comment"`
-	// Final IPv4 address (inclusive) in the range for the address pool.
-	Endip string `pulumi:"endip"`
-	// Ippool name.
-	Name *string `pulumi:"name"`
-	// First IPv4 address (inclusive) in the range for the address pool.
-	Startip string `pulumi:"startip"`
-	// Ip pool type, Enum: ["overload", "one-to-one"].
-	Type *string `pulumi:"type"`
+	Comment        *string `pulumi:"comment"`
+	Endip          string  `pulumi:"endip"`
+	Name           *string `pulumi:"name"`
+	Startip        string  `pulumi:"startip"`
+	Type           *string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a FortimanagerFirewallObjectIppool resource.
 type FortimanagerFirewallObjectIppoolArgs struct {
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// Select an interface that will reply to ARP requests.
-	ArpIntf pulumi.StringPtrInput
-	// Enable/disable replying to ARP request, default is "enable".
-	ArpReply pulumi.StringPtrInput
-	// Associated interface name.
+	Adom           pulumi.StringPtrInput
+	ArpIntf        pulumi.StringPtrInput
+	ArpReply       pulumi.StringPtrInput
 	AssociatedIntf pulumi.StringPtrInput
-	// Comments.
-	Comment pulumi.StringPtrInput
-	// Final IPv4 address (inclusive) in the range for the address pool.
-	Endip pulumi.StringInput
-	// Ippool name.
-	Name pulumi.StringPtrInput
-	// First IPv4 address (inclusive) in the range for the address pool.
-	Startip pulumi.StringInput
-	// Ip pool type, Enum: ["overload", "one-to-one"].
-	Type pulumi.StringPtrInput
+	Comment        pulumi.StringPtrInput
+	Endip          pulumi.StringInput
+	Name           pulumi.StringPtrInput
+	Startip        pulumi.StringInput
+	Type           pulumi.StringPtrInput
 }
 
 func (FortimanagerFirewallObjectIppoolArgs) ElementType() reflect.Type {
@@ -214,7 +139,7 @@ func (i *FortimanagerFirewallObjectIppool) ToFortimanagerFirewallObjectIppoolOut
 // FortimanagerFirewallObjectIppoolArrayInput is an input type that accepts FortimanagerFirewallObjectIppoolArray and FortimanagerFirewallObjectIppoolArrayOutput values.
 // You can construct a concrete instance of `FortimanagerFirewallObjectIppoolArrayInput` via:
 //
-//          FortimanagerFirewallObjectIppoolArray{ FortimanagerFirewallObjectIppoolArgs{...} }
+//	FortimanagerFirewallObjectIppoolArray{ FortimanagerFirewallObjectIppoolArgs{...} }
 type FortimanagerFirewallObjectIppoolArrayInput interface {
 	pulumi.Input
 
@@ -239,7 +164,7 @@ func (i FortimanagerFirewallObjectIppoolArray) ToFortimanagerFirewallObjectIppoo
 // FortimanagerFirewallObjectIppoolMapInput is an input type that accepts FortimanagerFirewallObjectIppoolMap and FortimanagerFirewallObjectIppoolMapOutput values.
 // You can construct a concrete instance of `FortimanagerFirewallObjectIppoolMapInput` via:
 //
-//          FortimanagerFirewallObjectIppoolMap{ "key": FortimanagerFirewallObjectIppoolArgs{...} }
+//	FortimanagerFirewallObjectIppoolMap{ "key": FortimanagerFirewallObjectIppoolArgs{...} }
 type FortimanagerFirewallObjectIppoolMapInput interface {
 	pulumi.Input
 
@@ -273,6 +198,42 @@ func (o FortimanagerFirewallObjectIppoolOutput) ToFortimanagerFirewallObjectIppo
 
 func (o FortimanagerFirewallObjectIppoolOutput) ToFortimanagerFirewallObjectIppoolOutputWithContext(ctx context.Context) FortimanagerFirewallObjectIppoolOutput {
 	return o
+}
+
+func (o FortimanagerFirewallObjectIppoolOutput) Adom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectIppool) pulumi.StringPtrOutput { return v.Adom }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectIppoolOutput) ArpIntf() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectIppool) pulumi.StringPtrOutput { return v.ArpIntf }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectIppoolOutput) ArpReply() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectIppool) pulumi.StringPtrOutput { return v.ArpReply }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectIppoolOutput) AssociatedIntf() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectIppool) pulumi.StringPtrOutput { return v.AssociatedIntf }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectIppoolOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectIppool) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectIppoolOutput) Endip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectIppool) pulumi.StringOutput { return v.Endip }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerFirewallObjectIppoolOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectIppool) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerFirewallObjectIppoolOutput) Startip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectIppool) pulumi.StringOutput { return v.Startip }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerFirewallObjectIppoolOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectIppool) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 type FortimanagerFirewallObjectIppoolArrayOutput struct{ *pulumi.OutputState }

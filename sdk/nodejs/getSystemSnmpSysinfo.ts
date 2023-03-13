@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios systemsnmp sysinfo
- */
 export function getSystemSnmpSysinfo(args?: GetSystemSnmpSysinfoArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemSnmpSysinfoResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemSnmpSysinfo:GetSystemSnmpSysinfo", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getSystemSnmpSysinfo(args?: GetSystemSnmpSysinfoArgs, opts?: pul
  * A collection of arguments for invoking GetSystemSnmpSysinfo.
  */
 export interface GetSystemSnmpSysinfoArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -33,59 +24,28 @@ export interface GetSystemSnmpSysinfoArgs {
  * A collection of values returned by GetSystemSnmpSysinfo.
  */
 export interface GetSystemSnmpSysinfoResult {
-    /**
-     * Contact information.
-     */
     readonly contactInfo: string;
-    /**
-     * System description.
-     */
     readonly description: string;
-    /**
-     * Local SNMP engineID string (maximum 24 characters).
-     */
     readonly engineId: string;
-    /**
-     * Local SNMP engineID type (text/hex/mac).
-     */
     readonly engineIdType: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * System location.
-     */
     readonly location: string;
-    /**
-     * Enable/disable SNMP.
-     */
     readonly status: string;
-    /**
-     * CPU usage when trap is sent.
-     */
     readonly trapHighCpuThreshold: number;
-    /**
-     * Log disk usage when trap is sent.
-     */
     readonly trapLogFullThreshold: number;
-    /**
-     * Memory usage when trap is sent.
-     */
     readonly trapLowMemoryThreshold: number;
     readonly vdomparam?: string;
 }
-
 export function getSystemSnmpSysinfoOutput(args?: GetSystemSnmpSysinfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemSnmpSysinfoResult> {
-    return pulumi.output(args).apply(a => getSystemSnmpSysinfo(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemSnmpSysinfo(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemSnmpSysinfo.
  */
 export interface GetSystemSnmpSysinfoOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

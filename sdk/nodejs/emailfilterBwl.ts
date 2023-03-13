@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure anti-spam black/white list. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1,6.4.2`.
- *
- * ## Import
- *
- * Emailfilter Bwl can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/emailfilterBwl:EmailfilterBwl labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/emailfilterBwl:EmailfilterBwl labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class EmailfilterBwl extends pulumi.CustomResource {
     /**
      * Get an existing EmailfilterBwl resource's state with the given name, ID, and optional extra
@@ -52,29 +34,11 @@ export class EmailfilterBwl extends pulumi.CustomResource {
         return obj['__pulumiType'] === EmailfilterBwl.__pulumiType;
     }
 
-    /**
-     * Optional comments.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Anti-spam black/white list entries. The structure of `entries` block is documented below.
-     */
     public readonly entries!: pulumi.Output<outputs.EmailfilterBwlEntry[] | undefined>;
-    /**
-     * ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Name of table.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -114,29 +78,11 @@ export class EmailfilterBwl extends pulumi.CustomResource {
  * Input properties used for looking up and filtering EmailfilterBwl resources.
  */
 export interface EmailfilterBwlState {
-    /**
-     * Optional comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Anti-spam black/white list entries. The structure of `entries` block is documented below.
-     */
     entries?: pulumi.Input<pulumi.Input<inputs.EmailfilterBwlEntry>[]>;
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Name of table.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -144,28 +90,10 @@ export interface EmailfilterBwlState {
  * The set of arguments for constructing a EmailfilterBwl resource.
  */
 export interface EmailfilterBwlArgs {
-    /**
-     * Optional comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Anti-spam black/white list entries. The structure of `entries` block is documented below.
-     */
     entries?: pulumi.Input<pulumi.Input<inputs.EmailfilterBwlEntry>[]>;
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Name of table.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure TACACS+ server entries.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.UserTacacs("trname", {
- *     authenType: "auto",
- *     authorization: "disable",
- *     port: 2342,
- *     server: "1.1.1.1",
- * });
- * ```
- *
- * ## Import
- *
- * User Tacacs can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userTacacs:UserTacacs labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userTacacs:UserTacacs labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserTacacs extends pulumi.CustomResource {
     /**
      * Get an existing UserTacacs resource's state with the given name, ID, and optional extra
@@ -65,61 +32,19 @@ export class UserTacacs extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserTacacs.__pulumiType;
     }
 
-    /**
-     * Allowed authentication protocols/methods. Valid values: `mschap`, `chap`, `pap`, `ascii`, `auto`.
-     */
     public readonly authenType!: pulumi.Output<string>;
-    /**
-     * Enable/disable TACACS+ authorization. Valid values: `enable`, `disable`.
-     */
     public readonly authorization!: pulumi.Output<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
-    /**
-     * Key to access the primary server.
-     */
     public readonly key!: pulumi.Output<string | undefined>;
-    /**
-     * TACACS+ server entry name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Port number of the TACACS+ server.
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Key to access the secondary server.
-     */
     public readonly secondaryKey!: pulumi.Output<string | undefined>;
-    /**
-     * Secondary TACACS+ server CN domain name or IP address.
-     */
     public readonly secondaryServer!: pulumi.Output<string>;
-    /**
-     * Primary TACACS+ server CN domain name or IP address.
-     */
     public readonly server!: pulumi.Output<string>;
-    /**
-     * source IP for communications to TACACS+ server.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Key to access the tertiary server.
-     */
     public readonly tertiaryKey!: pulumi.Output<string | undefined>;
-    /**
-     * Tertiary TACACS+ server CN domain name or IP address.
-     */
     public readonly tertiaryServer!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -155,18 +80,20 @@ export class UserTacacs extends pulumi.CustomResource {
             resourceInputs["authorization"] = args ? args.authorization : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["key"] = args?.key ? pulumi.secret(args.key) : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
-            resourceInputs["secondaryKey"] = args ? args.secondaryKey : undefined;
+            resourceInputs["secondaryKey"] = args?.secondaryKey ? pulumi.secret(args.secondaryKey) : undefined;
             resourceInputs["secondaryServer"] = args ? args.secondaryServer : undefined;
             resourceInputs["server"] = args ? args.server : undefined;
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
-            resourceInputs["tertiaryKey"] = args ? args.tertiaryKey : undefined;
+            resourceInputs["tertiaryKey"] = args?.tertiaryKey ? pulumi.secret(args.tertiaryKey) : undefined;
             resourceInputs["tertiaryServer"] = args ? args.tertiaryServer : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["key", "secondaryKey", "tertiaryKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(UserTacacs.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -175,61 +102,19 @@ export class UserTacacs extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserTacacs resources.
  */
 export interface UserTacacsState {
-    /**
-     * Allowed authentication protocols/methods. Valid values: `mschap`, `chap`, `pap`, `ascii`, `auto`.
-     */
     authenType?: pulumi.Input<string>;
-    /**
-     * Enable/disable TACACS+ authorization. Valid values: `enable`, `disable`.
-     */
     authorization?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Key to access the primary server.
-     */
     key?: pulumi.Input<string>;
-    /**
-     * TACACS+ server entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Port number of the TACACS+ server.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Key to access the secondary server.
-     */
     secondaryKey?: pulumi.Input<string>;
-    /**
-     * Secondary TACACS+ server CN domain name or IP address.
-     */
     secondaryServer?: pulumi.Input<string>;
-    /**
-     * Primary TACACS+ server CN domain name or IP address.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * source IP for communications to TACACS+ server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Key to access the tertiary server.
-     */
     tertiaryKey?: pulumi.Input<string>;
-    /**
-     * Tertiary TACACS+ server CN domain name or IP address.
-     */
     tertiaryServer?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -237,60 +122,18 @@ export interface UserTacacsState {
  * The set of arguments for constructing a UserTacacs resource.
  */
 export interface UserTacacsArgs {
-    /**
-     * Allowed authentication protocols/methods. Valid values: `mschap`, `chap`, `pap`, `ascii`, `auto`.
-     */
     authenType?: pulumi.Input<string>;
-    /**
-     * Enable/disable TACACS+ authorization. Valid values: `enable`, `disable`.
-     */
     authorization?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Key to access the primary server.
-     */
     key?: pulumi.Input<string>;
-    /**
-     * TACACS+ server entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Port number of the TACACS+ server.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Key to access the secondary server.
-     */
     secondaryKey?: pulumi.Input<string>;
-    /**
-     * Secondary TACACS+ server CN domain name or IP address.
-     */
     secondaryServer?: pulumi.Input<string>;
-    /**
-     * Primary TACACS+ server CN domain name or IP address.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * source IP for communications to TACACS+ server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Key to access the tertiary server.
-     */
     tertiaryKey?: pulumi.Input<string>;
-    /**
-     * Tertiary TACACS+ server CN domain name or IP address.
-     */
     tertiaryServer?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

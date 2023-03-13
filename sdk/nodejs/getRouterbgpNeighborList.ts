@@ -4,26 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.RouterbgpNeighbor`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const sample1 = fortios.GetRouterbgpNeighborList({});
- * export const output1 = sample1.then(sample1 => sample1.iplists);
- * ```
- */
 export function getRouterbgpNeighborList(args?: GetRouterbgpNeighborListArgs, opts?: pulumi.InvokeOptions): Promise<GetRouterbgpNeighborListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getRouterbgpNeighborList:GetRouterbgpNeighborList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -35,9 +19,6 @@ export function getRouterbgpNeighborList(args?: GetRouterbgpNeighborListArgs, op
  */
 export interface GetRouterbgpNeighborListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -50,15 +31,11 @@ export interface GetRouterbgpNeighborListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.RouterbgpNeighbor`.
-     */
     readonly iplists: string[];
     readonly vdomparam?: string;
 }
-
 export function getRouterbgpNeighborListOutput(args?: GetRouterbgpNeighborListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterbgpNeighborListResult> {
-    return pulumi.output(args).apply(a => getRouterbgpNeighborList(a, opts))
+    return pulumi.output(args).apply((a: any) => getRouterbgpNeighborList(a, opts))
 }
 
 /**
@@ -66,8 +43,5 @@ export function getRouterbgpNeighborListOutput(args?: GetRouterbgpNeighborListOu
  */
 export interface GetRouterbgpNeighborListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

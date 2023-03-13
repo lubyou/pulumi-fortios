@@ -4,22 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports Create/Read/Update/Delete object adom revision for FortiManager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerObjectAdomRevision("test1", {
- *     createdBy: "fortinet",
- *     description: "adom revision",
- *     locked: 0,
- * });
- * ```
- */
 export class FortimanagerObjectAdomRevision extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerObjectAdomRevision resource's state with the given name, ID, and optional extra
@@ -48,25 +32,10 @@ export class FortimanagerObjectAdomRevision extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerObjectAdomRevision.__pulumiType;
     }
 
-    /**
-     * ADOM name. default is 'root'.
-     */
     public readonly adom!: pulumi.Output<string | undefined>;
-    /**
-     * Who created this adom revision.
-     */
     public readonly createdBy!: pulumi.Output<string | undefined>;
-    /**
-     * Description.
-     */
     public readonly description!: pulumi.Output<string | undefined>;
-    /**
-     * lock. 0 means unlock and 1 means locked.
-     */
     public readonly locked!: pulumi.Output<number | undefined>;
-    /**
-     * Adom revision name.
-     */
     public readonly name!: pulumi.Output<string>;
 
     /**
@@ -104,25 +73,10 @@ export class FortimanagerObjectAdomRevision extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerObjectAdomRevision resources.
  */
 export interface FortimanagerObjectAdomRevisionState {
-    /**
-     * ADOM name. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Who created this adom revision.
-     */
     createdBy?: pulumi.Input<string>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * lock. 0 means unlock and 1 means locked.
-     */
     locked?: pulumi.Input<number>;
-    /**
-     * Adom revision name.
-     */
     name?: pulumi.Input<string>;
 }
 
@@ -130,24 +84,9 @@ export interface FortimanagerObjectAdomRevisionState {
  * The set of arguments for constructing a FortimanagerObjectAdomRevision resource.
  */
 export interface FortimanagerObjectAdomRevisionArgs {
-    /**
-     * ADOM name. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Who created this adom revision.
-     */
     createdBy?: pulumi.Input<string>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * lock. 0 means unlock and 1 means locked.
-     */
     locked?: pulumi.Input<number>;
-    /**
-     * Adom revision name.
-     */
     name?: pulumi.Input<string>;
 }

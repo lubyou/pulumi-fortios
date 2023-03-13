@@ -2,49 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure user groups.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.UserGroup("trname", {
- *     company: "optional",
- *     email: "enable",
- *     expire: 14400,
- *     expireType: "immediately",
- *     groupType: "firewall",
- *     maxAccounts: 0,
- *     members: [{
- *         name: "guest",
- *     }],
- *     mobilePhone: "disable",
- *     multipleGuestAdd: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * User Group can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userGroup:UserGroup labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userGroup:UserGroup labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserGroup extends pulumi.CustomResource {
     /**
      * Get an existing UserGroup resource's state with the given name, ID, and optional extra
@@ -73,109 +34,31 @@ export class UserGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserGroup.__pulumiType;
     }
 
-    /**
-     * Enable/disable overriding the global number of concurrent authentication sessions for this user group. Valid values: `enable`, `disable`.
-     */
     public readonly authConcurrentOverride!: pulumi.Output<string>;
-    /**
-     * Maximum number of concurrent authenticated connections per user (0 - 100).
-     */
     public readonly authConcurrentValue!: pulumi.Output<number>;
-    /**
-     * Authentication timeout in minutes for this user group. 0 to use the global user setting auth-timeout.
-     */
     public readonly authtimeout!: pulumi.Output<number>;
-    /**
-     * Set the action for the company guest user field.
-     */
     public readonly company!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Email.
-     */
     public readonly email!: pulumi.Output<string>;
-    /**
-     * Time in seconds before guest user accounts expire. (1 - 31536000 sec)
-     */
     public readonly expire!: pulumi.Output<number>;
-    /**
-     * Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
-     */
     public readonly expireType!: pulumi.Output<string>;
-    /**
-     * Group ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
-     */
     public readonly groupType!: pulumi.Output<string>;
-    /**
-     * Guest User. The structure of `guest` block is documented below.
-     */
     public readonly guests!: pulumi.Output<outputs.UserGroupGuest[] | undefined>;
-    /**
-     * Realm attribute for MD5-digest authentication.
-     */
     public readonly httpDigestRealm!: pulumi.Output<string>;
-    /**
-     * Group matches. The structure of `match` block is documented below.
-     */
     public readonly matches!: pulumi.Output<outputs.UserGroupMatch[] | undefined>;
-    /**
-     * Maximum number of guest accounts that can be created for this group (0 means unlimited).
-     */
     public readonly maxAccounts!: pulumi.Output<number>;
-    /**
-     * Names of users, peers, LDAP severs, or RADIUS servers to add to the user group. The structure of `member` block is documented below.
-     */
     public readonly members!: pulumi.Output<outputs.UserGroupMember[] | undefined>;
-    /**
-     * Mobile phone.
-     */
     public readonly mobilePhone!: pulumi.Output<string>;
-    /**
-     * Enable/disable addition of multiple guests. Valid values: `disable`, `enable`.
-     */
     public readonly multipleGuestAdd!: pulumi.Output<string>;
-    /**
-     * Guest name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Guest password.
-     */
     public readonly password!: pulumi.Output<string>;
-    /**
-     * SMS server.
-     */
     public readonly smsCustomServer!: pulumi.Output<string>;
-    /**
-     * Send SMS through FortiGuard or other external server. Valid values: `fortiguard`, `custom`.
-     */
     public readonly smsServer!: pulumi.Output<string>;
-    /**
-     * Set the action for the sponsor guest user field.
-     */
     public readonly sponsor!: pulumi.Output<string>;
-    /**
-     * Name of the RADIUS user group that this local user group represents.
-     */
     public readonly ssoAttributeValue!: pulumi.Output<string>;
-    /**
-     * Guest ID.
-     */
     public readonly userId!: pulumi.Output<string>;
-    /**
-     * Enable/disable the guest user name entry. Valid values: `disable`, `enable`.
-     */
     public readonly userName!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -255,109 +138,31 @@ export class UserGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserGroup resources.
  */
 export interface UserGroupState {
-    /**
-     * Enable/disable overriding the global number of concurrent authentication sessions for this user group. Valid values: `enable`, `disable`.
-     */
     authConcurrentOverride?: pulumi.Input<string>;
-    /**
-     * Maximum number of concurrent authenticated connections per user (0 - 100).
-     */
     authConcurrentValue?: pulumi.Input<number>;
-    /**
-     * Authentication timeout in minutes for this user group. 0 to use the global user setting auth-timeout.
-     */
     authtimeout?: pulumi.Input<number>;
-    /**
-     * Set the action for the company guest user field.
-     */
     company?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Email.
-     */
     email?: pulumi.Input<string>;
-    /**
-     * Time in seconds before guest user accounts expire. (1 - 31536000 sec)
-     */
     expire?: pulumi.Input<number>;
-    /**
-     * Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
-     */
     expireType?: pulumi.Input<string>;
-    /**
-     * Group ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
-     */
     groupType?: pulumi.Input<string>;
-    /**
-     * Guest User. The structure of `guest` block is documented below.
-     */
     guests?: pulumi.Input<pulumi.Input<inputs.UserGroupGuest>[]>;
-    /**
-     * Realm attribute for MD5-digest authentication.
-     */
     httpDigestRealm?: pulumi.Input<string>;
-    /**
-     * Group matches. The structure of `match` block is documented below.
-     */
     matches?: pulumi.Input<pulumi.Input<inputs.UserGroupMatch>[]>;
-    /**
-     * Maximum number of guest accounts that can be created for this group (0 means unlimited).
-     */
     maxAccounts?: pulumi.Input<number>;
-    /**
-     * Names of users, peers, LDAP severs, or RADIUS servers to add to the user group. The structure of `member` block is documented below.
-     */
     members?: pulumi.Input<pulumi.Input<inputs.UserGroupMember>[]>;
-    /**
-     * Mobile phone.
-     */
     mobilePhone?: pulumi.Input<string>;
-    /**
-     * Enable/disable addition of multiple guests. Valid values: `disable`, `enable`.
-     */
     multipleGuestAdd?: pulumi.Input<string>;
-    /**
-     * Guest name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Guest password.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * SMS server.
-     */
     smsCustomServer?: pulumi.Input<string>;
-    /**
-     * Send SMS through FortiGuard or other external server. Valid values: `fortiguard`, `custom`.
-     */
     smsServer?: pulumi.Input<string>;
-    /**
-     * Set the action for the sponsor guest user field.
-     */
     sponsor?: pulumi.Input<string>;
-    /**
-     * Name of the RADIUS user group that this local user group represents.
-     */
     ssoAttributeValue?: pulumi.Input<string>;
-    /**
-     * Guest ID.
-     */
     userId?: pulumi.Input<string>;
-    /**
-     * Enable/disable the guest user name entry. Valid values: `disable`, `enable`.
-     */
     userName?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -365,108 +170,30 @@ export interface UserGroupState {
  * The set of arguments for constructing a UserGroup resource.
  */
 export interface UserGroupArgs {
-    /**
-     * Enable/disable overriding the global number of concurrent authentication sessions for this user group. Valid values: `enable`, `disable`.
-     */
     authConcurrentOverride?: pulumi.Input<string>;
-    /**
-     * Maximum number of concurrent authenticated connections per user (0 - 100).
-     */
     authConcurrentValue?: pulumi.Input<number>;
-    /**
-     * Authentication timeout in minutes for this user group. 0 to use the global user setting auth-timeout.
-     */
     authtimeout?: pulumi.Input<number>;
-    /**
-     * Set the action for the company guest user field.
-     */
     company?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Email.
-     */
     email?: pulumi.Input<string>;
-    /**
-     * Time in seconds before guest user accounts expire. (1 - 31536000 sec)
-     */
     expire?: pulumi.Input<number>;
-    /**
-     * Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
-     */
     expireType?: pulumi.Input<string>;
-    /**
-     * Group ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
-     */
     groupType?: pulumi.Input<string>;
-    /**
-     * Guest User. The structure of `guest` block is documented below.
-     */
     guests?: pulumi.Input<pulumi.Input<inputs.UserGroupGuest>[]>;
-    /**
-     * Realm attribute for MD5-digest authentication.
-     */
     httpDigestRealm?: pulumi.Input<string>;
-    /**
-     * Group matches. The structure of `match` block is documented below.
-     */
     matches?: pulumi.Input<pulumi.Input<inputs.UserGroupMatch>[]>;
-    /**
-     * Maximum number of guest accounts that can be created for this group (0 means unlimited).
-     */
     maxAccounts?: pulumi.Input<number>;
-    /**
-     * Names of users, peers, LDAP severs, or RADIUS servers to add to the user group. The structure of `member` block is documented below.
-     */
     members?: pulumi.Input<pulumi.Input<inputs.UserGroupMember>[]>;
-    /**
-     * Mobile phone.
-     */
     mobilePhone?: pulumi.Input<string>;
-    /**
-     * Enable/disable addition of multiple guests. Valid values: `disable`, `enable`.
-     */
     multipleGuestAdd?: pulumi.Input<string>;
-    /**
-     * Guest name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Guest password.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * SMS server.
-     */
     smsCustomServer?: pulumi.Input<string>;
-    /**
-     * Send SMS through FortiGuard or other external server. Valid values: `fortiguard`, `custom`.
-     */
     smsServer?: pulumi.Input<string>;
-    /**
-     * Set the action for the sponsor guest user field.
-     */
     sponsor?: pulumi.Input<string>;
-    /**
-     * Name of the RADIUS user group that this local user group represents.
-     */
     ssoAttributeValue?: pulumi.Input<string>;
-    /**
-     * Guest ID.
-     */
     userId?: pulumi.Input<string>;
-    /**
-     * Enable/disable the guest user name entry. Valid values: `disable`, `enable`.
-     */
     userName?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

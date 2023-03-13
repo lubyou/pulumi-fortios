@@ -10,53 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure network monitor settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchControllerNetworkMonitorSettings(ctx, "trname", &fortios.SwitchControllerNetworkMonitorSettingsArgs{
-// 			NetworkMonitoring: pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchController NetworkMonitorSettings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerNetworkMonitorSettings:SwitchControllerNetworkMonitorSettings labelname SwitchControllerNetworkMonitorSettings
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerNetworkMonitorSettings:SwitchControllerNetworkMonitorSettings labelname SwitchControllerNetworkMonitorSettings
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerNetworkMonitorSettings struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable passive gathering of information by FortiSwitch units concerning other network devices. Valid values: `enable`, `disable`.
-	NetworkMonitoring pulumi.StringOutput `pulumi:"networkMonitoring"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	NetworkMonitoring pulumi.StringOutput    `pulumi:"networkMonitoring"`
+	Vdomparam         pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerNetworkMonitorSettings registers a new resource with the given unique name, arguments, and options.
@@ -89,17 +47,13 @@ func GetSwitchControllerNetworkMonitorSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerNetworkMonitorSettings resources.
 type switchControllerNetworkMonitorSettingsState struct {
-	// Enable/disable passive gathering of information by FortiSwitch units concerning other network devices. Valid values: `enable`, `disable`.
 	NetworkMonitoring *string `pulumi:"networkMonitoring"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam         *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerNetworkMonitorSettingsState struct {
-	// Enable/disable passive gathering of information by FortiSwitch units concerning other network devices. Valid values: `enable`, `disable`.
 	NetworkMonitoring pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam         pulumi.StringPtrInput
 }
 
 func (SwitchControllerNetworkMonitorSettingsState) ElementType() reflect.Type {
@@ -107,18 +61,14 @@ func (SwitchControllerNetworkMonitorSettingsState) ElementType() reflect.Type {
 }
 
 type switchControllerNetworkMonitorSettingsArgs struct {
-	// Enable/disable passive gathering of information by FortiSwitch units concerning other network devices. Valid values: `enable`, `disable`.
 	NetworkMonitoring *string `pulumi:"networkMonitoring"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam         *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerNetworkMonitorSettings resource.
 type SwitchControllerNetworkMonitorSettingsArgs struct {
-	// Enable/disable passive gathering of information by FortiSwitch units concerning other network devices. Valid values: `enable`, `disable`.
 	NetworkMonitoring pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam         pulumi.StringPtrInput
 }
 
 func (SwitchControllerNetworkMonitorSettingsArgs) ElementType() reflect.Type {
@@ -147,7 +97,7 @@ func (i *SwitchControllerNetworkMonitorSettings) ToSwitchControllerNetworkMonito
 // SwitchControllerNetworkMonitorSettingsArrayInput is an input type that accepts SwitchControllerNetworkMonitorSettingsArray and SwitchControllerNetworkMonitorSettingsArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerNetworkMonitorSettingsArrayInput` via:
 //
-//          SwitchControllerNetworkMonitorSettingsArray{ SwitchControllerNetworkMonitorSettingsArgs{...} }
+//	SwitchControllerNetworkMonitorSettingsArray{ SwitchControllerNetworkMonitorSettingsArgs{...} }
 type SwitchControllerNetworkMonitorSettingsArrayInput interface {
 	pulumi.Input
 
@@ -172,7 +122,7 @@ func (i SwitchControllerNetworkMonitorSettingsArray) ToSwitchControllerNetworkMo
 // SwitchControllerNetworkMonitorSettingsMapInput is an input type that accepts SwitchControllerNetworkMonitorSettingsMap and SwitchControllerNetworkMonitorSettingsMapOutput values.
 // You can construct a concrete instance of `SwitchControllerNetworkMonitorSettingsMapInput` via:
 //
-//          SwitchControllerNetworkMonitorSettingsMap{ "key": SwitchControllerNetworkMonitorSettingsArgs{...} }
+//	SwitchControllerNetworkMonitorSettingsMap{ "key": SwitchControllerNetworkMonitorSettingsArgs{...} }
 type SwitchControllerNetworkMonitorSettingsMapInput interface {
 	pulumi.Input
 
@@ -206,6 +156,14 @@ func (o SwitchControllerNetworkMonitorSettingsOutput) ToSwitchControllerNetworkM
 
 func (o SwitchControllerNetworkMonitorSettingsOutput) ToSwitchControllerNetworkMonitorSettingsOutputWithContext(ctx context.Context) SwitchControllerNetworkMonitorSettingsOutput {
 	return o
+}
+
+func (o SwitchControllerNetworkMonitorSettingsOutput) NetworkMonitoring() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerNetworkMonitorSettings) pulumi.StringOutput { return v.NetworkMonitoring }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerNetworkMonitorSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerNetworkMonitorSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerNetworkMonitorSettingsArrayOutput struct{ *pulumi.OutputState }

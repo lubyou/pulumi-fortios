@@ -10,75 +10,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch traffic policy.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchControllerTrafficPolicy(ctx, "trname", &fortios.SwitchControllerTrafficPolicyArgs{
-// 			GuaranteedBandwidth: pulumi.Int(0),
-// 			GuaranteedBurst:     pulumi.Int(0),
-// 			MaximumBurst:        pulumi.Int(0),
-// 			PolicerStatus:       pulumi.String("enable"),
-// 			Type:                pulumi.String("ingress"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchController TrafficPolicy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerTrafficPolicy:SwitchControllerTrafficPolicy labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerTrafficPolicy:SwitchControllerTrafficPolicy labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerTrafficPolicy struct {
 	pulumi.CustomResourceState
 
-	// COS queue(0 - 7), or unset to disable.
-	Cos pulumi.IntOutput `pulumi:"cos"`
-	// COS queue(0 - 7), or unset to disable.
-	CosQueue pulumi.IntOutput `pulumi:"cosQueue"`
-	// Description of the traffic policy.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// FSW Policer id
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Guaranteed bandwidth in kbps (max value = 524287000).
-	GuaranteedBandwidth pulumi.IntOutput `pulumi:"guaranteedBandwidth"`
-	// Guaranteed burst size in bytes (max value = 4294967295).
-	GuaranteedBurst pulumi.IntOutput `pulumi:"guaranteedBurst"`
-	// Maximum burst size in bytes (max value = 4294967295).
-	MaximumBurst pulumi.IntOutput `pulumi:"maximumBurst"`
-	// Traffic policy name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable policer config on the traffic policy. Valid values: `enable`, `disable`.
-	PolicerStatus pulumi.StringOutput `pulumi:"policerStatus"`
-	// Configure type of policy(ingress/egress). Valid values: `ingress`, `egress`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Cos                 pulumi.IntOutput       `pulumi:"cos"`
+	CosQueue            pulumi.IntOutput       `pulumi:"cosQueue"`
+	Description         pulumi.StringOutput    `pulumi:"description"`
+	Fosid               pulumi.IntOutput       `pulumi:"fosid"`
+	GuaranteedBandwidth pulumi.IntOutput       `pulumi:"guaranteedBandwidth"`
+	GuaranteedBurst     pulumi.IntOutput       `pulumi:"guaranteedBurst"`
+	MaximumBurst        pulumi.IntOutput       `pulumi:"maximumBurst"`
+	Name                pulumi.StringOutput    `pulumi:"name"`
+	PolicerStatus       pulumi.StringOutput    `pulumi:"policerStatus"`
+	Type                pulumi.StringOutput    `pulumi:"type"`
+	Vdomparam           pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerTrafficPolicy registers a new resource with the given unique name, arguments, and options.
@@ -111,53 +56,31 @@ func GetSwitchControllerTrafficPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerTrafficPolicy resources.
 type switchControllerTrafficPolicyState struct {
-	// COS queue(0 - 7), or unset to disable.
-	Cos *int `pulumi:"cos"`
-	// COS queue(0 - 7), or unset to disable.
-	CosQueue *int `pulumi:"cosQueue"`
-	// Description of the traffic policy.
-	Description *string `pulumi:"description"`
-	// FSW Policer id
-	Fosid *int `pulumi:"fosid"`
-	// Guaranteed bandwidth in kbps (max value = 524287000).
-	GuaranteedBandwidth *int `pulumi:"guaranteedBandwidth"`
-	// Guaranteed burst size in bytes (max value = 4294967295).
-	GuaranteedBurst *int `pulumi:"guaranteedBurst"`
-	// Maximum burst size in bytes (max value = 4294967295).
-	MaximumBurst *int `pulumi:"maximumBurst"`
-	// Traffic policy name.
-	Name *string `pulumi:"name"`
-	// Enable/disable policer config on the traffic policy. Valid values: `enable`, `disable`.
-	PolicerStatus *string `pulumi:"policerStatus"`
-	// Configure type of policy(ingress/egress). Valid values: `ingress`, `egress`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Cos                 *int    `pulumi:"cos"`
+	CosQueue            *int    `pulumi:"cosQueue"`
+	Description         *string `pulumi:"description"`
+	Fosid               *int    `pulumi:"fosid"`
+	GuaranteedBandwidth *int    `pulumi:"guaranteedBandwidth"`
+	GuaranteedBurst     *int    `pulumi:"guaranteedBurst"`
+	MaximumBurst        *int    `pulumi:"maximumBurst"`
+	Name                *string `pulumi:"name"`
+	PolicerStatus       *string `pulumi:"policerStatus"`
+	Type                *string `pulumi:"type"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerTrafficPolicyState struct {
-	// COS queue(0 - 7), or unset to disable.
-	Cos pulumi.IntPtrInput
-	// COS queue(0 - 7), or unset to disable.
-	CosQueue pulumi.IntPtrInput
-	// Description of the traffic policy.
-	Description pulumi.StringPtrInput
-	// FSW Policer id
-	Fosid pulumi.IntPtrInput
-	// Guaranteed bandwidth in kbps (max value = 524287000).
+	Cos                 pulumi.IntPtrInput
+	CosQueue            pulumi.IntPtrInput
+	Description         pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
 	GuaranteedBandwidth pulumi.IntPtrInput
-	// Guaranteed burst size in bytes (max value = 4294967295).
-	GuaranteedBurst pulumi.IntPtrInput
-	// Maximum burst size in bytes (max value = 4294967295).
-	MaximumBurst pulumi.IntPtrInput
-	// Traffic policy name.
-	Name pulumi.StringPtrInput
-	// Enable/disable policer config on the traffic policy. Valid values: `enable`, `disable`.
-	PolicerStatus pulumi.StringPtrInput
-	// Configure type of policy(ingress/egress). Valid values: `ingress`, `egress`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	GuaranteedBurst     pulumi.IntPtrInput
+	MaximumBurst        pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	PolicerStatus       pulumi.StringPtrInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerTrafficPolicyState) ElementType() reflect.Type {
@@ -165,54 +88,32 @@ func (SwitchControllerTrafficPolicyState) ElementType() reflect.Type {
 }
 
 type switchControllerTrafficPolicyArgs struct {
-	// COS queue(0 - 7), or unset to disable.
-	Cos *int `pulumi:"cos"`
-	// COS queue(0 - 7), or unset to disable.
-	CosQueue *int `pulumi:"cosQueue"`
-	// Description of the traffic policy.
-	Description *string `pulumi:"description"`
-	// FSW Policer id
-	Fosid *int `pulumi:"fosid"`
-	// Guaranteed bandwidth in kbps (max value = 524287000).
-	GuaranteedBandwidth *int `pulumi:"guaranteedBandwidth"`
-	// Guaranteed burst size in bytes (max value = 4294967295).
-	GuaranteedBurst *int `pulumi:"guaranteedBurst"`
-	// Maximum burst size in bytes (max value = 4294967295).
-	MaximumBurst *int `pulumi:"maximumBurst"`
-	// Traffic policy name.
-	Name *string `pulumi:"name"`
-	// Enable/disable policer config on the traffic policy. Valid values: `enable`, `disable`.
-	PolicerStatus *string `pulumi:"policerStatus"`
-	// Configure type of policy(ingress/egress). Valid values: `ingress`, `egress`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Cos                 *int    `pulumi:"cos"`
+	CosQueue            *int    `pulumi:"cosQueue"`
+	Description         *string `pulumi:"description"`
+	Fosid               *int    `pulumi:"fosid"`
+	GuaranteedBandwidth *int    `pulumi:"guaranteedBandwidth"`
+	GuaranteedBurst     *int    `pulumi:"guaranteedBurst"`
+	MaximumBurst        *int    `pulumi:"maximumBurst"`
+	Name                *string `pulumi:"name"`
+	PolicerStatus       *string `pulumi:"policerStatus"`
+	Type                *string `pulumi:"type"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerTrafficPolicy resource.
 type SwitchControllerTrafficPolicyArgs struct {
-	// COS queue(0 - 7), or unset to disable.
-	Cos pulumi.IntPtrInput
-	// COS queue(0 - 7), or unset to disable.
-	CosQueue pulumi.IntPtrInput
-	// Description of the traffic policy.
-	Description pulumi.StringPtrInput
-	// FSW Policer id
-	Fosid pulumi.IntPtrInput
-	// Guaranteed bandwidth in kbps (max value = 524287000).
+	Cos                 pulumi.IntPtrInput
+	CosQueue            pulumi.IntPtrInput
+	Description         pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
 	GuaranteedBandwidth pulumi.IntPtrInput
-	// Guaranteed burst size in bytes (max value = 4294967295).
-	GuaranteedBurst pulumi.IntPtrInput
-	// Maximum burst size in bytes (max value = 4294967295).
-	MaximumBurst pulumi.IntPtrInput
-	// Traffic policy name.
-	Name pulumi.StringPtrInput
-	// Enable/disable policer config on the traffic policy. Valid values: `enable`, `disable`.
-	PolicerStatus pulumi.StringPtrInput
-	// Configure type of policy(ingress/egress). Valid values: `ingress`, `egress`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	GuaranteedBurst     pulumi.IntPtrInput
+	MaximumBurst        pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	PolicerStatus       pulumi.StringPtrInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerTrafficPolicyArgs) ElementType() reflect.Type {
@@ -241,7 +142,7 @@ func (i *SwitchControllerTrafficPolicy) ToSwitchControllerTrafficPolicyOutputWit
 // SwitchControllerTrafficPolicyArrayInput is an input type that accepts SwitchControllerTrafficPolicyArray and SwitchControllerTrafficPolicyArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerTrafficPolicyArrayInput` via:
 //
-//          SwitchControllerTrafficPolicyArray{ SwitchControllerTrafficPolicyArgs{...} }
+//	SwitchControllerTrafficPolicyArray{ SwitchControllerTrafficPolicyArgs{...} }
 type SwitchControllerTrafficPolicyArrayInput interface {
 	pulumi.Input
 
@@ -266,7 +167,7 @@ func (i SwitchControllerTrafficPolicyArray) ToSwitchControllerTrafficPolicyArray
 // SwitchControllerTrafficPolicyMapInput is an input type that accepts SwitchControllerTrafficPolicyMap and SwitchControllerTrafficPolicyMapOutput values.
 // You can construct a concrete instance of `SwitchControllerTrafficPolicyMapInput` via:
 //
-//          SwitchControllerTrafficPolicyMap{ "key": SwitchControllerTrafficPolicyArgs{...} }
+//	SwitchControllerTrafficPolicyMap{ "key": SwitchControllerTrafficPolicyArgs{...} }
 type SwitchControllerTrafficPolicyMapInput interface {
 	pulumi.Input
 
@@ -300,6 +201,50 @@ func (o SwitchControllerTrafficPolicyOutput) ToSwitchControllerTrafficPolicyOutp
 
 func (o SwitchControllerTrafficPolicyOutput) ToSwitchControllerTrafficPolicyOutputWithContext(ctx context.Context) SwitchControllerTrafficPolicyOutput {
 	return o
+}
+
+func (o SwitchControllerTrafficPolicyOutput) Cos() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficPolicy) pulumi.IntOutput { return v.Cos }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerTrafficPolicyOutput) CosQueue() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficPolicy) pulumi.IntOutput { return v.CosQueue }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerTrafficPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficPolicy) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerTrafficPolicyOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficPolicy) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerTrafficPolicyOutput) GuaranteedBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficPolicy) pulumi.IntOutput { return v.GuaranteedBandwidth }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerTrafficPolicyOutput) GuaranteedBurst() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficPolicy) pulumi.IntOutput { return v.GuaranteedBurst }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerTrafficPolicyOutput) MaximumBurst() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficPolicy) pulumi.IntOutput { return v.MaximumBurst }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerTrafficPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerTrafficPolicyOutput) PolicerStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficPolicy) pulumi.StringOutput { return v.PolicerStatus }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerTrafficPolicyOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficPolicy) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerTrafficPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerTrafficPolicyArrayOutput struct{ *pulumi.OutputState }

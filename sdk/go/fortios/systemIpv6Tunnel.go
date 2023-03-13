@@ -7,69 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6/IPv4 in IPv6 tunnel.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemIpv6Tunnel(ctx, "trname", &fortios.SystemIpv6TunnelArgs{
-// 			Destination: pulumi.String("2001:db8:85a3::8a2e:370:7324"),
-// 			Interface:   pulumi.String("port3"),
-// 			Source:      pulumi.String("2001:db8:85a3::8a2e:370:7334"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Ipv6Tunnel can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemIpv6Tunnel:SystemIpv6Tunnel labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemIpv6Tunnel:SystemIpv6Tunnel labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemIpv6Tunnel struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
-	AutoAsicOffload pulumi.StringOutput `pulumi:"autoAsicOffload"`
-	// Remote IPv6 address of the tunnel.
-	Destination pulumi.StringOutput `pulumi:"destination"`
-	// Interface name.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// IPv6 tunnel name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Local IPv6 address of the tunnel.
-	Source pulumi.StringOutput `pulumi:"source"`
-	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-	UseSdwan pulumi.StringOutput `pulumi:"useSdwan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AutoAsicOffload pulumi.StringOutput    `pulumi:"autoAsicOffload"`
+	Destination     pulumi.StringOutput    `pulumi:"destination"`
+	Interface       pulumi.StringOutput    `pulumi:"interface"`
+	Name            pulumi.StringOutput    `pulumi:"name"`
+	Source          pulumi.StringOutput    `pulumi:"source"`
+	UseSdwan        pulumi.StringOutput    `pulumi:"useSdwan"`
+	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemIpv6Tunnel registers a new resource with the given unique name, arguments, and options.
@@ -105,37 +56,23 @@ func GetSystemIpv6Tunnel(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemIpv6Tunnel resources.
 type systemIpv6TunnelState struct {
-	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
 	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
-	// Remote IPv6 address of the tunnel.
-	Destination *string `pulumi:"destination"`
-	// Interface name.
-	Interface *string `pulumi:"interface"`
-	// IPv6 tunnel name.
-	Name *string `pulumi:"name"`
-	// Local IPv6 address of the tunnel.
-	Source *string `pulumi:"source"`
-	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-	UseSdwan *string `pulumi:"useSdwan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Destination     *string `pulumi:"destination"`
+	Interface       *string `pulumi:"interface"`
+	Name            *string `pulumi:"name"`
+	Source          *string `pulumi:"source"`
+	UseSdwan        *string `pulumi:"useSdwan"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 type SystemIpv6TunnelState struct {
-	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
 	AutoAsicOffload pulumi.StringPtrInput
-	// Remote IPv6 address of the tunnel.
-	Destination pulumi.StringPtrInput
-	// Interface name.
-	Interface pulumi.StringPtrInput
-	// IPv6 tunnel name.
-	Name pulumi.StringPtrInput
-	// Local IPv6 address of the tunnel.
-	Source pulumi.StringPtrInput
-	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-	UseSdwan pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Destination     pulumi.StringPtrInput
+	Interface       pulumi.StringPtrInput
+	Name            pulumi.StringPtrInput
+	Source          pulumi.StringPtrInput
+	UseSdwan        pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (SystemIpv6TunnelState) ElementType() reflect.Type {
@@ -143,38 +80,24 @@ func (SystemIpv6TunnelState) ElementType() reflect.Type {
 }
 
 type systemIpv6TunnelArgs struct {
-	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
 	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
-	// Remote IPv6 address of the tunnel.
-	Destination string `pulumi:"destination"`
-	// Interface name.
-	Interface *string `pulumi:"interface"`
-	// IPv6 tunnel name.
-	Name *string `pulumi:"name"`
-	// Local IPv6 address of the tunnel.
-	Source *string `pulumi:"source"`
-	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-	UseSdwan *string `pulumi:"useSdwan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Destination     string  `pulumi:"destination"`
+	Interface       *string `pulumi:"interface"`
+	Name            *string `pulumi:"name"`
+	Source          *string `pulumi:"source"`
+	UseSdwan        *string `pulumi:"useSdwan"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemIpv6Tunnel resource.
 type SystemIpv6TunnelArgs struct {
-	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
 	AutoAsicOffload pulumi.StringPtrInput
-	// Remote IPv6 address of the tunnel.
-	Destination pulumi.StringInput
-	// Interface name.
-	Interface pulumi.StringPtrInput
-	// IPv6 tunnel name.
-	Name pulumi.StringPtrInput
-	// Local IPv6 address of the tunnel.
-	Source pulumi.StringPtrInput
-	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-	UseSdwan pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Destination     pulumi.StringInput
+	Interface       pulumi.StringPtrInput
+	Name            pulumi.StringPtrInput
+	Source          pulumi.StringPtrInput
+	UseSdwan        pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (SystemIpv6TunnelArgs) ElementType() reflect.Type {
@@ -203,7 +126,7 @@ func (i *SystemIpv6Tunnel) ToSystemIpv6TunnelOutputWithContext(ctx context.Conte
 // SystemIpv6TunnelArrayInput is an input type that accepts SystemIpv6TunnelArray and SystemIpv6TunnelArrayOutput values.
 // You can construct a concrete instance of `SystemIpv6TunnelArrayInput` via:
 //
-//          SystemIpv6TunnelArray{ SystemIpv6TunnelArgs{...} }
+//	SystemIpv6TunnelArray{ SystemIpv6TunnelArgs{...} }
 type SystemIpv6TunnelArrayInput interface {
 	pulumi.Input
 
@@ -228,7 +151,7 @@ func (i SystemIpv6TunnelArray) ToSystemIpv6TunnelArrayOutputWithContext(ctx cont
 // SystemIpv6TunnelMapInput is an input type that accepts SystemIpv6TunnelMap and SystemIpv6TunnelMapOutput values.
 // You can construct a concrete instance of `SystemIpv6TunnelMapInput` via:
 //
-//          SystemIpv6TunnelMap{ "key": SystemIpv6TunnelArgs{...} }
+//	SystemIpv6TunnelMap{ "key": SystemIpv6TunnelArgs{...} }
 type SystemIpv6TunnelMapInput interface {
 	pulumi.Input
 
@@ -262,6 +185,34 @@ func (o SystemIpv6TunnelOutput) ToSystemIpv6TunnelOutput() SystemIpv6TunnelOutpu
 
 func (o SystemIpv6TunnelOutput) ToSystemIpv6TunnelOutputWithContext(ctx context.Context) SystemIpv6TunnelOutput {
 	return o
+}
+
+func (o SystemIpv6TunnelOutput) AutoAsicOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpv6Tunnel) pulumi.StringOutput { return v.AutoAsicOffload }).(pulumi.StringOutput)
+}
+
+func (o SystemIpv6TunnelOutput) Destination() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpv6Tunnel) pulumi.StringOutput { return v.Destination }).(pulumi.StringOutput)
+}
+
+func (o SystemIpv6TunnelOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpv6Tunnel) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemIpv6TunnelOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpv6Tunnel) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemIpv6TunnelOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpv6Tunnel) pulumi.StringOutput { return v.Source }).(pulumi.StringOutput)
+}
+
+func (o SystemIpv6TunnelOutput) UseSdwan() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpv6Tunnel) pulumi.StringOutput { return v.UseSdwan }).(pulumi.StringOutput)
+}
+
+func (o SystemIpv6TunnelOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemIpv6Tunnel) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemIpv6TunnelArrayOutput struct{ *pulumi.OutputState }

@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure custom Internet Service group.
-//
-// ## Import
-//
-// Firewall InternetServiceCustomGroup can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceCustomGroup:FirewallInternetServiceCustomGroup labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceCustomGroup:FirewallInternetServiceCustomGroup labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallInternetServiceCustomGroup struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Custom Internet Service group members. The structure of `member` block is documented below.
-	Members FirewallInternetServiceCustomGroupMemberArrayOutput `pulumi:"members"`
-	// Group member name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput                              `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                              `pulumi:"dynamicSortSubtable"`
+	Members             FirewallInternetServiceCustomGroupMemberArrayOutput `pulumi:"members"`
+	Name                pulumi.StringOutput                                 `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                              `pulumi:"vdomparam"`
 }
 
 // NewFirewallInternetServiceCustomGroup registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetFirewallInternetServiceCustomGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallInternetServiceCustomGroup resources.
 type firewallInternetServiceCustomGroupState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Custom Internet Service group members. The structure of `member` block is documented below.
-	Members []FirewallInternetServiceCustomGroupMember `pulumi:"members"`
-	// Group member name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                                    `pulumi:"comment"`
+	DynamicSortSubtable *string                                    `pulumi:"dynamicSortSubtable"`
+	Members             []FirewallInternetServiceCustomGroupMember `pulumi:"members"`
+	Name                *string                                    `pulumi:"name"`
+	Vdomparam           *string                                    `pulumi:"vdomparam"`
 }
 
 type FirewallInternetServiceCustomGroupState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Custom Internet Service group members. The structure of `member` block is documented below.
-	Members FirewallInternetServiceCustomGroupMemberArrayInput
-	// Group member name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Members             FirewallInternetServiceCustomGroupMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceCustomGroupState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (FirewallInternetServiceCustomGroupState) ElementType() reflect.Type {
 }
 
 type firewallInternetServiceCustomGroupArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Custom Internet Service group members. The structure of `member` block is documented below.
-	Members []FirewallInternetServiceCustomGroupMember `pulumi:"members"`
-	// Group member name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                                    `pulumi:"comment"`
+	DynamicSortSubtable *string                                    `pulumi:"dynamicSortSubtable"`
+	Members             []FirewallInternetServiceCustomGroupMember `pulumi:"members"`
+	Name                *string                                    `pulumi:"name"`
+	Vdomparam           *string                                    `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallInternetServiceCustomGroup resource.
 type FirewallInternetServiceCustomGroupArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Custom Internet Service group members. The structure of `member` block is documented below.
-	Members FirewallInternetServiceCustomGroupMemberArrayInput
-	// Group member name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Members             FirewallInternetServiceCustomGroupMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceCustomGroupArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *FirewallInternetServiceCustomGroup) ToFirewallInternetServiceCustomGrou
 // FirewallInternetServiceCustomGroupArrayInput is an input type that accepts FirewallInternetServiceCustomGroupArray and FirewallInternetServiceCustomGroupArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceCustomGroupArrayInput` via:
 //
-//          FirewallInternetServiceCustomGroupArray{ FirewallInternetServiceCustomGroupArgs{...} }
+//	FirewallInternetServiceCustomGroupArray{ FirewallInternetServiceCustomGroupArgs{...} }
 type FirewallInternetServiceCustomGroupArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i FirewallInternetServiceCustomGroupArray) ToFirewallInternetServiceCustom
 // FirewallInternetServiceCustomGroupMapInput is an input type that accepts FirewallInternetServiceCustomGroupMap and FirewallInternetServiceCustomGroupMapOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceCustomGroupMapInput` via:
 //
-//          FirewallInternetServiceCustomGroupMap{ "key": FirewallInternetServiceCustomGroupArgs{...} }
+//	FirewallInternetServiceCustomGroupMap{ "key": FirewallInternetServiceCustomGroupArgs{...} }
 type FirewallInternetServiceCustomGroupMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,28 @@ func (o FirewallInternetServiceCustomGroupOutput) ToFirewallInternetServiceCusto
 
 func (o FirewallInternetServiceCustomGroupOutput) ToFirewallInternetServiceCustomGroupOutputWithContext(ctx context.Context) FirewallInternetServiceCustomGroupOutput {
 	return o
+}
+
+func (o FirewallInternetServiceCustomGroupOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceCustomGroup) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallInternetServiceCustomGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceCustomGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallInternetServiceCustomGroupOutput) Members() FirewallInternetServiceCustomGroupMemberArrayOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceCustomGroup) FirewallInternetServiceCustomGroupMemberArrayOutput {
+		return v.Members
+	}).(FirewallInternetServiceCustomGroupMemberArrayOutput)
+}
+
+func (o FirewallInternetServiceCustomGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceCustomGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallInternetServiceCustomGroupOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceCustomGroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallInternetServiceCustomGroupArrayOutput struct{ *pulumi.OutputState }

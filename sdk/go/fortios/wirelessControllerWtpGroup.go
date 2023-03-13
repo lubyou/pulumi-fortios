@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure WTP groups.
-//
-// ## Import
-//
-// WirelessController WtpGroup can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerWtpGroup:WirelessControllerWtpGroup labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerWtpGroup:WirelessControllerWtpGroup labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerWtpGroup struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// WTP group name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// FortiAP models to define the WTP group platform type.
-	PlatformType pulumi.StringOutput `pulumi:"platformType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// WTP list. The structure of `wtps` block is documented below.
-	Wtps WirelessControllerWtpGroupWtpArrayOutput `pulumi:"wtps"`
+	DynamicSortSubtable pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                      `pulumi:"name"`
+	PlatformType        pulumi.StringOutput                      `pulumi:"platformType"`
+	Vdomparam           pulumi.StringPtrOutput                   `pulumi:"vdomparam"`
+	Wtps                WirelessControllerWtpGroupWtpArrayOutput `pulumi:"wtps"`
 }
 
 // NewWirelessControllerWtpGroup registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetWirelessControllerWtpGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerWtpGroup resources.
 type wirelessControllerWtpGroupState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// WTP group name.
-	Name *string `pulumi:"name"`
-	// FortiAP models to define the WTP group platform type.
-	PlatformType *string `pulumi:"platformType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// WTP list. The structure of `wtps` block is documented below.
-	Wtps []WirelessControllerWtpGroupWtp `pulumi:"wtps"`
+	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	Name                *string                         `pulumi:"name"`
+	PlatformType        *string                         `pulumi:"platformType"`
+	Vdomparam           *string                         `pulumi:"vdomparam"`
+	Wtps                []WirelessControllerWtpGroupWtp `pulumi:"wtps"`
 }
 
 type WirelessControllerWtpGroupState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// WTP group name.
-	Name pulumi.StringPtrInput
-	// FortiAP models to define the WTP group platform type.
-	PlatformType pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// WTP list. The structure of `wtps` block is documented below.
-	Wtps WirelessControllerWtpGroupWtpArrayInput
+	Name                pulumi.StringPtrInput
+	PlatformType        pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Wtps                WirelessControllerWtpGroupWtpArrayInput
 }
 
 func (WirelessControllerWtpGroupState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (WirelessControllerWtpGroupState) ElementType() reflect.Type {
 }
 
 type wirelessControllerWtpGroupArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// WTP group name.
-	Name *string `pulumi:"name"`
-	// FortiAP models to define the WTP group platform type.
-	PlatformType *string `pulumi:"platformType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// WTP list. The structure of `wtps` block is documented below.
-	Wtps []WirelessControllerWtpGroupWtp `pulumi:"wtps"`
+	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	Name                *string                         `pulumi:"name"`
+	PlatformType        *string                         `pulumi:"platformType"`
+	Vdomparam           *string                         `pulumi:"vdomparam"`
+	Wtps                []WirelessControllerWtpGroupWtp `pulumi:"wtps"`
 }
 
 // The set of arguments for constructing a WirelessControllerWtpGroup resource.
 type WirelessControllerWtpGroupArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// WTP group name.
-	Name pulumi.StringPtrInput
-	// FortiAP models to define the WTP group platform type.
-	PlatformType pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// WTP list. The structure of `wtps` block is documented below.
-	Wtps WirelessControllerWtpGroupWtpArrayInput
+	Name                pulumi.StringPtrInput
+	PlatformType        pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Wtps                WirelessControllerWtpGroupWtpArrayInput
 }
 
 func (WirelessControllerWtpGroupArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *WirelessControllerWtpGroup) ToWirelessControllerWtpGroupOutputWithConte
 // WirelessControllerWtpGroupArrayInput is an input type that accepts WirelessControllerWtpGroupArray and WirelessControllerWtpGroupArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpGroupArrayInput` via:
 //
-//          WirelessControllerWtpGroupArray{ WirelessControllerWtpGroupArgs{...} }
+//	WirelessControllerWtpGroupArray{ WirelessControllerWtpGroupArgs{...} }
 type WirelessControllerWtpGroupArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i WirelessControllerWtpGroupArray) ToWirelessControllerWtpGroupArrayOutput
 // WirelessControllerWtpGroupMapInput is an input type that accepts WirelessControllerWtpGroupMap and WirelessControllerWtpGroupMapOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpGroupMapInput` via:
 //
-//          WirelessControllerWtpGroupMap{ "key": WirelessControllerWtpGroupArgs{...} }
+//	WirelessControllerWtpGroupMap{ "key": WirelessControllerWtpGroupArgs{...} }
 type WirelessControllerWtpGroupMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o WirelessControllerWtpGroupOutput) ToWirelessControllerWtpGroupOutput() W
 
 func (o WirelessControllerWtpGroupOutput) ToWirelessControllerWtpGroupOutputWithContext(ctx context.Context) WirelessControllerWtpGroupOutput {
 	return o
+}
+
+func (o WirelessControllerWtpGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpGroupOutput) PlatformType() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpGroup) pulumi.StringOutput { return v.PlatformType }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpGroupOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpGroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpGroupOutput) Wtps() WirelessControllerWtpGroupWtpArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpGroup) WirelessControllerWtpGroupWtpArrayOutput { return v.Wtps }).(WirelessControllerWtpGroupWtpArrayOutput)
 }
 
 type WirelessControllerWtpGroupArrayOutput struct{ *pulumi.OutputState }

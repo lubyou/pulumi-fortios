@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure wireless controller event log filters. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * WirelessController Log can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerLog:WirelessControllerLog labelname WirelessControllerLog
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerLog:WirelessControllerLog labelname WirelessControllerLog
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerLog extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerLog resource's state with the given name, ID, and optional extra
@@ -51,57 +32,18 @@ export class WirelessControllerLog extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerLog.__pulumiType;
     }
 
-    /**
-     * Lowest severity level to log address group message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly addrgrpLog!: pulumi.Output<string>;
-    /**
-     * Lowest severity level to log BLE detection message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly bleLog!: pulumi.Output<string>;
-    /**
-     * Lowest severity level to log client load balancing message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly clbLog!: pulumi.Output<string>;
-    /**
-     * Lowest severity level to log DHCP starvation event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly dhcpStarvLog!: pulumi.Output<string>;
-    /**
-     * Lowest severity level to log LED schedule event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly ledSchedLog!: pulumi.Output<string>;
-    /**
-     * Lowest severity level to log radio event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly radioEventLog!: pulumi.Output<string>;
-    /**
-     * Lowest severity level to log rogue AP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly rogueEventLog!: pulumi.Output<string>;
-    /**
-     * Lowest severity level to log station event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly staEventLog!: pulumi.Output<string>;
-    /**
-     * Lowest severity level to log station locate message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly staLocateLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable wireless event logging. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly widsLog!: pulumi.Output<string>;
-    /**
-     * Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly wtpEventLog!: pulumi.Output<string>;
 
     /**
@@ -155,57 +97,18 @@ export class WirelessControllerLog extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerLog resources.
  */
 export interface WirelessControllerLogState {
-    /**
-     * Lowest severity level to log address group message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     addrgrpLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log BLE detection message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     bleLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log client load balancing message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     clbLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log DHCP starvation event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     dhcpStarvLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log LED schedule event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     ledSchedLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log radio event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     radioEventLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log rogue AP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     rogueEventLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log station event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     staEventLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log station locate message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     staLocateLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable wireless event logging. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     widsLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     wtpEventLog?: pulumi.Input<string>;
 }
 
@@ -213,56 +116,17 @@ export interface WirelessControllerLogState {
  * The set of arguments for constructing a WirelessControllerLog resource.
  */
 export interface WirelessControllerLogArgs {
-    /**
-     * Lowest severity level to log address group message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     addrgrpLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log BLE detection message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     bleLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log client load balancing message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     clbLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log DHCP starvation event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     dhcpStarvLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log LED schedule event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     ledSchedLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log radio event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     radioEventLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log rogue AP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     rogueEventLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log station event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     staEventLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log station locate message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     staLocateLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable wireless event logging. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     widsLog?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     wtpEventLog?: pulumi.Input<string>;
 }

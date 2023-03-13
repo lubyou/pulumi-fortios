@@ -7,56 +7,27 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// CA certificate.
-//
-// ## Import
-//
-// VpnCertificate Ca can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnCertificateCa:VpnCertificateCa labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnCertificateCa:VpnCertificateCa labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnCertificateCa struct {
 	pulumi.CustomResourceState
 
-	// Number of days to wait before requesting an updated CA certificate (0 - 4294967295, 0 = disabled).
-	AutoUpdateDays pulumi.IntOutput `pulumi:"autoUpdateDays"`
-	// Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
-	AutoUpdateDaysWarning pulumi.IntOutput `pulumi:"autoUpdateDaysWarning"`
-	// CA certificate as a PEM file.
-	Ca pulumi.StringOutput `pulumi:"ca"`
-	// CA identifier of the SCEP server.
-	CaIdentifier pulumi.StringOutput `pulumi:"caIdentifier"`
-	// Time at which CA was last updated.
-	LastUpdated pulumi.IntOutput `pulumi:"lastUpdated"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Either global or VDOM IP address range for the CA certificate. Valid values: `global`, `vdom`.
-	Range pulumi.StringOutput `pulumi:"range"`
-	// URL of the SCEP server.
-	ScepUrl pulumi.StringOutput `pulumi:"scepUrl"`
-	// CA certificate source type.
-	Source pulumi.StringOutput `pulumi:"source"`
-	// Source IP address for communications to the SCEP server.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Enable/disable this CA as a trusted CA for SSL inspection. Valid values: `enable`, `disable`.
-	SslInspectionTrusted pulumi.StringOutput `pulumi:"sslInspectionTrusted"`
-	// Enable/disable as a trusted CA. Valid values: `enable`, `disable`.
-	Trusted pulumi.StringOutput `pulumi:"trusted"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AutoUpdateDays        pulumi.IntOutput       `pulumi:"autoUpdateDays"`
+	AutoUpdateDaysWarning pulumi.IntOutput       `pulumi:"autoUpdateDaysWarning"`
+	Ca                    pulumi.StringOutput    `pulumi:"ca"`
+	CaIdentifier          pulumi.StringOutput    `pulumi:"caIdentifier"`
+	LastUpdated           pulumi.IntOutput       `pulumi:"lastUpdated"`
+	Name                  pulumi.StringOutput    `pulumi:"name"`
+	Obsolete              pulumi.StringOutput    `pulumi:"obsolete"`
+	Range                 pulumi.StringOutput    `pulumi:"range"`
+	ScepUrl               pulumi.StringOutput    `pulumi:"scepUrl"`
+	Source                pulumi.StringOutput    `pulumi:"source"`
+	SourceIp              pulumi.StringOutput    `pulumi:"sourceIp"`
+	SslInspectionTrusted  pulumi.StringOutput    `pulumi:"sslInspectionTrusted"`
+	Trusted               pulumi.StringOutput    `pulumi:"trusted"`
+	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewVpnCertificateCa registers a new resource with the given unique name, arguments, and options.
@@ -92,61 +63,37 @@ func GetVpnCertificateCa(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnCertificateCa resources.
 type vpnCertificateCaState struct {
-	// Number of days to wait before requesting an updated CA certificate (0 - 4294967295, 0 = disabled).
-	AutoUpdateDays *int `pulumi:"autoUpdateDays"`
-	// Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
-	AutoUpdateDaysWarning *int `pulumi:"autoUpdateDaysWarning"`
-	// CA certificate as a PEM file.
-	Ca *string `pulumi:"ca"`
-	// CA identifier of the SCEP server.
-	CaIdentifier *string `pulumi:"caIdentifier"`
-	// Time at which CA was last updated.
-	LastUpdated *int `pulumi:"lastUpdated"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Either global or VDOM IP address range for the CA certificate. Valid values: `global`, `vdom`.
-	Range *string `pulumi:"range"`
-	// URL of the SCEP server.
-	ScepUrl *string `pulumi:"scepUrl"`
-	// CA certificate source type.
-	Source *string `pulumi:"source"`
-	// Source IP address for communications to the SCEP server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable this CA as a trusted CA for SSL inspection. Valid values: `enable`, `disable`.
-	SslInspectionTrusted *string `pulumi:"sslInspectionTrusted"`
-	// Enable/disable as a trusted CA. Valid values: `enable`, `disable`.
-	Trusted *string `pulumi:"trusted"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AutoUpdateDays        *int    `pulumi:"autoUpdateDays"`
+	AutoUpdateDaysWarning *int    `pulumi:"autoUpdateDaysWarning"`
+	Ca                    *string `pulumi:"ca"`
+	CaIdentifier          *string `pulumi:"caIdentifier"`
+	LastUpdated           *int    `pulumi:"lastUpdated"`
+	Name                  *string `pulumi:"name"`
+	Obsolete              *string `pulumi:"obsolete"`
+	Range                 *string `pulumi:"range"`
+	ScepUrl               *string `pulumi:"scepUrl"`
+	Source                *string `pulumi:"source"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	SslInspectionTrusted  *string `pulumi:"sslInspectionTrusted"`
+	Trusted               *string `pulumi:"trusted"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 type VpnCertificateCaState struct {
-	// Number of days to wait before requesting an updated CA certificate (0 - 4294967295, 0 = disabled).
-	AutoUpdateDays pulumi.IntPtrInput
-	// Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
+	AutoUpdateDays        pulumi.IntPtrInput
 	AutoUpdateDaysWarning pulumi.IntPtrInput
-	// CA certificate as a PEM file.
-	Ca pulumi.StringPtrInput
-	// CA identifier of the SCEP server.
-	CaIdentifier pulumi.StringPtrInput
-	// Time at which CA was last updated.
-	LastUpdated pulumi.IntPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Either global or VDOM IP address range for the CA certificate. Valid values: `global`, `vdom`.
-	Range pulumi.StringPtrInput
-	// URL of the SCEP server.
-	ScepUrl pulumi.StringPtrInput
-	// CA certificate source type.
-	Source pulumi.StringPtrInput
-	// Source IP address for communications to the SCEP server.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable this CA as a trusted CA for SSL inspection. Valid values: `enable`, `disable`.
-	SslInspectionTrusted pulumi.StringPtrInput
-	// Enable/disable as a trusted CA. Valid values: `enable`, `disable`.
-	Trusted pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Ca                    pulumi.StringPtrInput
+	CaIdentifier          pulumi.StringPtrInput
+	LastUpdated           pulumi.IntPtrInput
+	Name                  pulumi.StringPtrInput
+	Obsolete              pulumi.StringPtrInput
+	Range                 pulumi.StringPtrInput
+	ScepUrl               pulumi.StringPtrInput
+	Source                pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	SslInspectionTrusted  pulumi.StringPtrInput
+	Trusted               pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (VpnCertificateCaState) ElementType() reflect.Type {
@@ -154,62 +101,38 @@ func (VpnCertificateCaState) ElementType() reflect.Type {
 }
 
 type vpnCertificateCaArgs struct {
-	// Number of days to wait before requesting an updated CA certificate (0 - 4294967295, 0 = disabled).
-	AutoUpdateDays *int `pulumi:"autoUpdateDays"`
-	// Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
-	AutoUpdateDaysWarning *int `pulumi:"autoUpdateDaysWarning"`
-	// CA certificate as a PEM file.
-	Ca string `pulumi:"ca"`
-	// CA identifier of the SCEP server.
-	CaIdentifier *string `pulumi:"caIdentifier"`
-	// Time at which CA was last updated.
-	LastUpdated *int `pulumi:"lastUpdated"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Either global or VDOM IP address range for the CA certificate. Valid values: `global`, `vdom`.
-	Range *string `pulumi:"range"`
-	// URL of the SCEP server.
-	ScepUrl *string `pulumi:"scepUrl"`
-	// CA certificate source type.
-	Source *string `pulumi:"source"`
-	// Source IP address for communications to the SCEP server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable this CA as a trusted CA for SSL inspection. Valid values: `enable`, `disable`.
-	SslInspectionTrusted *string `pulumi:"sslInspectionTrusted"`
-	// Enable/disable as a trusted CA. Valid values: `enable`, `disable`.
-	Trusted *string `pulumi:"trusted"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AutoUpdateDays        *int    `pulumi:"autoUpdateDays"`
+	AutoUpdateDaysWarning *int    `pulumi:"autoUpdateDaysWarning"`
+	Ca                    string  `pulumi:"ca"`
+	CaIdentifier          *string `pulumi:"caIdentifier"`
+	LastUpdated           *int    `pulumi:"lastUpdated"`
+	Name                  *string `pulumi:"name"`
+	Obsolete              *string `pulumi:"obsolete"`
+	Range                 *string `pulumi:"range"`
+	ScepUrl               *string `pulumi:"scepUrl"`
+	Source                *string `pulumi:"source"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	SslInspectionTrusted  *string `pulumi:"sslInspectionTrusted"`
+	Trusted               *string `pulumi:"trusted"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VpnCertificateCa resource.
 type VpnCertificateCaArgs struct {
-	// Number of days to wait before requesting an updated CA certificate (0 - 4294967295, 0 = disabled).
-	AutoUpdateDays pulumi.IntPtrInput
-	// Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
+	AutoUpdateDays        pulumi.IntPtrInput
 	AutoUpdateDaysWarning pulumi.IntPtrInput
-	// CA certificate as a PEM file.
-	Ca pulumi.StringInput
-	// CA identifier of the SCEP server.
-	CaIdentifier pulumi.StringPtrInput
-	// Time at which CA was last updated.
-	LastUpdated pulumi.IntPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Either global or VDOM IP address range for the CA certificate. Valid values: `global`, `vdom`.
-	Range pulumi.StringPtrInput
-	// URL of the SCEP server.
-	ScepUrl pulumi.StringPtrInput
-	// CA certificate source type.
-	Source pulumi.StringPtrInput
-	// Source IP address for communications to the SCEP server.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable this CA as a trusted CA for SSL inspection. Valid values: `enable`, `disable`.
-	SslInspectionTrusted pulumi.StringPtrInput
-	// Enable/disable as a trusted CA. Valid values: `enable`, `disable`.
-	Trusted pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Ca                    pulumi.StringInput
+	CaIdentifier          pulumi.StringPtrInput
+	LastUpdated           pulumi.IntPtrInput
+	Name                  pulumi.StringPtrInput
+	Obsolete              pulumi.StringPtrInput
+	Range                 pulumi.StringPtrInput
+	ScepUrl               pulumi.StringPtrInput
+	Source                pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	SslInspectionTrusted  pulumi.StringPtrInput
+	Trusted               pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (VpnCertificateCaArgs) ElementType() reflect.Type {
@@ -238,7 +161,7 @@ func (i *VpnCertificateCa) ToVpnCertificateCaOutputWithContext(ctx context.Conte
 // VpnCertificateCaArrayInput is an input type that accepts VpnCertificateCaArray and VpnCertificateCaArrayOutput values.
 // You can construct a concrete instance of `VpnCertificateCaArrayInput` via:
 //
-//          VpnCertificateCaArray{ VpnCertificateCaArgs{...} }
+//	VpnCertificateCaArray{ VpnCertificateCaArgs{...} }
 type VpnCertificateCaArrayInput interface {
 	pulumi.Input
 
@@ -263,7 +186,7 @@ func (i VpnCertificateCaArray) ToVpnCertificateCaArrayOutputWithContext(ctx cont
 // VpnCertificateCaMapInput is an input type that accepts VpnCertificateCaMap and VpnCertificateCaMapOutput values.
 // You can construct a concrete instance of `VpnCertificateCaMapInput` via:
 //
-//          VpnCertificateCaMap{ "key": VpnCertificateCaArgs{...} }
+//	VpnCertificateCaMap{ "key": VpnCertificateCaArgs{...} }
 type VpnCertificateCaMapInput interface {
 	pulumi.Input
 
@@ -297,6 +220,62 @@ func (o VpnCertificateCaOutput) ToVpnCertificateCaOutput() VpnCertificateCaOutpu
 
 func (o VpnCertificateCaOutput) ToVpnCertificateCaOutputWithContext(ctx context.Context) VpnCertificateCaOutput {
 	return o
+}
+
+func (o VpnCertificateCaOutput) AutoUpdateDays() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnCertificateCa) pulumi.IntOutput { return v.AutoUpdateDays }).(pulumi.IntOutput)
+}
+
+func (o VpnCertificateCaOutput) AutoUpdateDaysWarning() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnCertificateCa) pulumi.IntOutput { return v.AutoUpdateDaysWarning }).(pulumi.IntOutput)
+}
+
+func (o VpnCertificateCaOutput) Ca() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateCa) pulumi.StringOutput { return v.Ca }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateCaOutput) CaIdentifier() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateCa) pulumi.StringOutput { return v.CaIdentifier }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateCaOutput) LastUpdated() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnCertificateCa) pulumi.IntOutput { return v.LastUpdated }).(pulumi.IntOutput)
+}
+
+func (o VpnCertificateCaOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateCa) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateCaOutput) Obsolete() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateCa) pulumi.StringOutput { return v.Obsolete }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateCaOutput) Range() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateCa) pulumi.StringOutput { return v.Range }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateCaOutput) ScepUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateCa) pulumi.StringOutput { return v.ScepUrl }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateCaOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateCa) pulumi.StringOutput { return v.Source }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateCaOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateCa) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateCaOutput) SslInspectionTrusted() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateCa) pulumi.StringOutput { return v.SslInspectionTrusted }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateCaOutput) Trusted() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateCa) pulumi.StringOutput { return v.Trusted }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateCaOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnCertificateCa) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type VpnCertificateCaArrayOutput struct{ *pulumi.OutputState }

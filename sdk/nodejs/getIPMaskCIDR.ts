@@ -4,53 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Convert IP/Mask to CIDR
- *
- * ## Example Usage
- * ### Example1
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trnameGetSystemInterface = fortios.GetSystemInterface({
- *     name: "port3",
- * });
- * const trnameGetIPMaskCIDR = trnameGetSystemInterface.then(trnameGetSystemInterface => fortios.GetIPMaskCIDR({
- *     ipmask: trnameGetSystemInterface.ip,
- * }));
- * export const output1 = trnameGetIPMaskCIDR.then(trnameGetIPMaskCIDR => trnameGetIPMaskCIDR.cidr);
- * ```
- * ### Example2
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trnameGetSystemInterface = fortios.GetSystemInterface({
- *     name: "port3",
- * });
- * const trnameGetIPMaskCIDR = trnameGetSystemInterface.then(trnameGetSystemInterface => fortios.GetIPMaskCIDR({
- *     ipmask: trnameGetSystemInterface.ip,
- *     ipmasklists: [
- *         "21.1.1.1 255.255.255.0",
- *         "22.1.1.1 255.255.255.240",
- *         "23.1.1.1 255.255.255.224",
- *     ],
- * }));
- * export const outputConv1 = trnameGetIPMaskCIDR.then(trnameGetIPMaskCIDR => trnameGetIPMaskCIDR.cidr);
- * export const outputConv2 = trnameGetIPMaskCIDR.then(trnameGetIPMaskCIDR => trnameGetIPMaskCIDR.cidrlists);
- * export const outputOrignal = trnameGetSystemInterface.then(trnameGetSystemInterface => trnameGetSystemInterface.ip);
- * ```
- */
 export function getIPMaskCIDR(args?: GetIPMaskCIDRArgs, opts?: pulumi.InvokeOptions): Promise<GetIPMaskCIDRResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getIPMaskCIDR:GetIPMaskCIDR", {
         "ipmask": args.ipmask,
         "ipmasklists": args.ipmasklists,
@@ -61,13 +18,7 @@ export function getIPMaskCIDR(args?: GetIPMaskCIDRArgs, opts?: pulumi.InvokeOpti
  * A collection of arguments for invoking GetIPMaskCIDR.
  */
 export interface GetIPMaskCIDRArgs {
-    /**
-     * Specify IP/MASK.
-     */
     ipmask?: string;
-    /**
-     * Specify IP/MASK list.
-     */
     ipmasklists?: string[];
 }
 
@@ -75,42 +26,23 @@ export interface GetIPMaskCIDRArgs {
  * A collection of values returned by GetIPMaskCIDR.
  */
 export interface GetIPMaskCIDRResult {
-    /**
-     * Classless Inter-Domain Routing of the IP/MASK.
-     */
     readonly cidr: string;
-    /**
-     * Classless Inter-Domain Routing list converted from the IP/MASK list.
-     */
     readonly cidrlists: string[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * IP/MASK.
-     */
     readonly ipmask?: string;
-    /**
-     * IP/MASK list.
-     */
     readonly ipmasklists?: string[];
 }
-
 export function getIPMaskCIDROutput(args?: GetIPMaskCIDROutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIPMaskCIDRResult> {
-    return pulumi.output(args).apply(a => getIPMaskCIDR(a, opts))
+    return pulumi.output(args).apply((a: any) => getIPMaskCIDR(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetIPMaskCIDR.
  */
 export interface GetIPMaskCIDROutputArgs {
-    /**
-     * Specify IP/MASK.
-     */
     ipmask?: pulumi.Input<string>;
-    /**
-     * Specify IP/MASK list.
-     */
     ipmasklists?: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -10,92 +10,27 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Global settings for remote syslog server.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogSyslogdSetting(ctx, "trname", &fortios.LogSyslogdSettingArgs{
-// 			EncAlgorithm:       pulumi.String("disable"),
-// 			Facility:           pulumi.String("local7"),
-// 			Format:             pulumi.String("default"),
-// 			Mode:               pulumi.String("udp"),
-// 			Port:               pulumi.Int(514),
-// 			SslMinProtoVersion: pulumi.String("default"),
-// 			Status:             pulumi.String("disable"),
-// 			SyslogType:         pulumi.Int(1),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// LogSyslogd Setting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logSyslogdSetting:LogSyslogdSetting labelname LogSyslogdSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logSyslogdSetting:LogSyslogdSetting labelname LogSyslogdSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogSyslogdSetting struct {
 	pulumi.CustomResourceState
 
-	// Certificate used to communicate with Syslog server.
-	Certificate pulumi.StringOutput `pulumi:"certificate"`
-	// Custom field name for CEF format logging. The structure of `customFieldName` block is documented below.
-	CustomFieldNames LogSyslogdSettingCustomFieldNameArrayOutput `pulumi:"customFieldNames"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable reliable syslogging with TLS encryption. Valid values: `high-medium`, `high`, `low`, `disable`.
-	EncAlgorithm pulumi.StringOutput `pulumi:"encAlgorithm"`
-	// Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-	Facility pulumi.StringOutput `pulumi:"facility"`
-	// Log format.
-	Format pulumi.StringOutput `pulumi:"format"`
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
-	// Syslog maximum log rate in MBps (0 = unlimited).
-	MaxLogRate pulumi.IntOutput `pulumi:"maxLogRate"`
-	// Remote syslog logging over UDP/Reliable TCP. Valid values: `udp`, `legacy-reliable`, `reliable`.
-	Mode pulumi.StringOutput `pulumi:"mode"`
-	// Server listen port.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority pulumi.StringOutput `pulumi:"priority"`
-	// Address of remote syslog server.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// Source IP address of syslog.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
-	// Enable/disable remote syslog logging. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Hidden setting index of Syslog.
-	SyslogType pulumi.IntOutput `pulumi:"syslogType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Certificate           pulumi.StringOutput                         `pulumi:"certificate"`
+	CustomFieldNames      LogSyslogdSettingCustomFieldNameArrayOutput `pulumi:"customFieldNames"`
+	DynamicSortSubtable   pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
+	EncAlgorithm          pulumi.StringOutput                         `pulumi:"encAlgorithm"`
+	Facility              pulumi.StringOutput                         `pulumi:"facility"`
+	Format                pulumi.StringOutput                         `pulumi:"format"`
+	Interface             pulumi.StringOutput                         `pulumi:"interface"`
+	InterfaceSelectMethod pulumi.StringOutput                         `pulumi:"interfaceSelectMethod"`
+	MaxLogRate            pulumi.IntOutput                            `pulumi:"maxLogRate"`
+	Mode                  pulumi.StringOutput                         `pulumi:"mode"`
+	Port                  pulumi.IntOutput                            `pulumi:"port"`
+	Priority              pulumi.StringOutput                         `pulumi:"priority"`
+	Server                pulumi.StringOutput                         `pulumi:"server"`
+	SourceIp              pulumi.StringOutput                         `pulumi:"sourceIp"`
+	SslMinProtoVersion    pulumi.StringOutput                         `pulumi:"sslMinProtoVersion"`
+	Status                pulumi.StringOutput                         `pulumi:"status"`
+	SyslogType            pulumi.IntOutput                            `pulumi:"syslogType"`
+	Vdomparam             pulumi.StringPtrOutput                      `pulumi:"vdomparam"`
 }
 
 // NewLogSyslogdSetting registers a new resource with the given unique name, arguments, and options.
@@ -128,81 +63,45 @@ func GetLogSyslogdSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogSyslogdSetting resources.
 type logSyslogdSettingState struct {
-	// Certificate used to communicate with Syslog server.
-	Certificate *string `pulumi:"certificate"`
-	// Custom field name for CEF format logging. The structure of `customFieldName` block is documented below.
-	CustomFieldNames []LogSyslogdSettingCustomFieldName `pulumi:"customFieldNames"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable reliable syslogging with TLS encryption. Valid values: `high-medium`, `high`, `low`, `disable`.
-	EncAlgorithm *string `pulumi:"encAlgorithm"`
-	// Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-	Facility *string `pulumi:"facility"`
-	// Log format.
-	Format *string `pulumi:"format"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Syslog maximum log rate in MBps (0 = unlimited).
-	MaxLogRate *int `pulumi:"maxLogRate"`
-	// Remote syslog logging over UDP/Reliable TCP. Valid values: `udp`, `legacy-reliable`, `reliable`.
-	Mode *string `pulumi:"mode"`
-	// Server listen port.
-	Port *int `pulumi:"port"`
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority *string `pulumi:"priority"`
-	// Address of remote syslog server.
-	Server *string `pulumi:"server"`
-	// Source IP address of syslog.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
-	// Enable/disable remote syslog logging. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Hidden setting index of Syslog.
-	SyslogType *int `pulumi:"syslogType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Certificate           *string                            `pulumi:"certificate"`
+	CustomFieldNames      []LogSyslogdSettingCustomFieldName `pulumi:"customFieldNames"`
+	DynamicSortSubtable   *string                            `pulumi:"dynamicSortSubtable"`
+	EncAlgorithm          *string                            `pulumi:"encAlgorithm"`
+	Facility              *string                            `pulumi:"facility"`
+	Format                *string                            `pulumi:"format"`
+	Interface             *string                            `pulumi:"interface"`
+	InterfaceSelectMethod *string                            `pulumi:"interfaceSelectMethod"`
+	MaxLogRate            *int                               `pulumi:"maxLogRate"`
+	Mode                  *string                            `pulumi:"mode"`
+	Port                  *int                               `pulumi:"port"`
+	Priority              *string                            `pulumi:"priority"`
+	Server                *string                            `pulumi:"server"`
+	SourceIp              *string                            `pulumi:"sourceIp"`
+	SslMinProtoVersion    *string                            `pulumi:"sslMinProtoVersion"`
+	Status                *string                            `pulumi:"status"`
+	SyslogType            *int                               `pulumi:"syslogType"`
+	Vdomparam             *string                            `pulumi:"vdomparam"`
 }
 
 type LogSyslogdSettingState struct {
-	// Certificate used to communicate with Syslog server.
-	Certificate pulumi.StringPtrInput
-	// Custom field name for CEF format logging. The structure of `customFieldName` block is documented below.
-	CustomFieldNames LogSyslogdSettingCustomFieldNameArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable reliable syslogging with TLS encryption. Valid values: `high-medium`, `high`, `low`, `disable`.
-	EncAlgorithm pulumi.StringPtrInput
-	// Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-	Facility pulumi.StringPtrInput
-	// Log format.
-	Format pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	Certificate           pulumi.StringPtrInput
+	CustomFieldNames      LogSyslogdSettingCustomFieldNameArrayInput
+	DynamicSortSubtable   pulumi.StringPtrInput
+	EncAlgorithm          pulumi.StringPtrInput
+	Facility              pulumi.StringPtrInput
+	Format                pulumi.StringPtrInput
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// Syslog maximum log rate in MBps (0 = unlimited).
-	MaxLogRate pulumi.IntPtrInput
-	// Remote syslog logging over UDP/Reliable TCP. Valid values: `udp`, `legacy-reliable`, `reliable`.
-	Mode pulumi.StringPtrInput
-	// Server listen port.
-	Port pulumi.IntPtrInput
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority pulumi.StringPtrInput
-	// Address of remote syslog server.
-	Server pulumi.StringPtrInput
-	// Source IP address of syslog.
-	SourceIp pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringPtrInput
-	// Enable/disable remote syslog logging. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Hidden setting index of Syslog.
-	SyslogType pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MaxLogRate            pulumi.IntPtrInput
+	Mode                  pulumi.StringPtrInput
+	Port                  pulumi.IntPtrInput
+	Priority              pulumi.StringPtrInput
+	Server                pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	SslMinProtoVersion    pulumi.StringPtrInput
+	Status                pulumi.StringPtrInput
+	SyslogType            pulumi.IntPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (LogSyslogdSettingState) ElementType() reflect.Type {
@@ -210,82 +109,46 @@ func (LogSyslogdSettingState) ElementType() reflect.Type {
 }
 
 type logSyslogdSettingArgs struct {
-	// Certificate used to communicate with Syslog server.
-	Certificate *string `pulumi:"certificate"`
-	// Custom field name for CEF format logging. The structure of `customFieldName` block is documented below.
-	CustomFieldNames []LogSyslogdSettingCustomFieldName `pulumi:"customFieldNames"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable reliable syslogging with TLS encryption. Valid values: `high-medium`, `high`, `low`, `disable`.
-	EncAlgorithm *string `pulumi:"encAlgorithm"`
-	// Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-	Facility *string `pulumi:"facility"`
-	// Log format.
-	Format *string `pulumi:"format"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Syslog maximum log rate in MBps (0 = unlimited).
-	MaxLogRate *int `pulumi:"maxLogRate"`
-	// Remote syslog logging over UDP/Reliable TCP. Valid values: `udp`, `legacy-reliable`, `reliable`.
-	Mode *string `pulumi:"mode"`
-	// Server listen port.
-	Port *int `pulumi:"port"`
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority *string `pulumi:"priority"`
-	// Address of remote syslog server.
-	Server *string `pulumi:"server"`
-	// Source IP address of syslog.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
-	// Enable/disable remote syslog logging. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Hidden setting index of Syslog.
-	SyslogType *int `pulumi:"syslogType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Certificate           *string                            `pulumi:"certificate"`
+	CustomFieldNames      []LogSyslogdSettingCustomFieldName `pulumi:"customFieldNames"`
+	DynamicSortSubtable   *string                            `pulumi:"dynamicSortSubtable"`
+	EncAlgorithm          *string                            `pulumi:"encAlgorithm"`
+	Facility              *string                            `pulumi:"facility"`
+	Format                *string                            `pulumi:"format"`
+	Interface             *string                            `pulumi:"interface"`
+	InterfaceSelectMethod *string                            `pulumi:"interfaceSelectMethod"`
+	MaxLogRate            *int                               `pulumi:"maxLogRate"`
+	Mode                  *string                            `pulumi:"mode"`
+	Port                  *int                               `pulumi:"port"`
+	Priority              *string                            `pulumi:"priority"`
+	Server                *string                            `pulumi:"server"`
+	SourceIp              *string                            `pulumi:"sourceIp"`
+	SslMinProtoVersion    *string                            `pulumi:"sslMinProtoVersion"`
+	Status                *string                            `pulumi:"status"`
+	SyslogType            *int                               `pulumi:"syslogType"`
+	Vdomparam             *string                            `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogSyslogdSetting resource.
 type LogSyslogdSettingArgs struct {
-	// Certificate used to communicate with Syslog server.
-	Certificate pulumi.StringPtrInput
-	// Custom field name for CEF format logging. The structure of `customFieldName` block is documented below.
-	CustomFieldNames LogSyslogdSettingCustomFieldNameArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable reliable syslogging with TLS encryption. Valid values: `high-medium`, `high`, `low`, `disable`.
-	EncAlgorithm pulumi.StringPtrInput
-	// Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-	Facility pulumi.StringPtrInput
-	// Log format.
-	Format pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	Certificate           pulumi.StringPtrInput
+	CustomFieldNames      LogSyslogdSettingCustomFieldNameArrayInput
+	DynamicSortSubtable   pulumi.StringPtrInput
+	EncAlgorithm          pulumi.StringPtrInput
+	Facility              pulumi.StringPtrInput
+	Format                pulumi.StringPtrInput
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// Syslog maximum log rate in MBps (0 = unlimited).
-	MaxLogRate pulumi.IntPtrInput
-	// Remote syslog logging over UDP/Reliable TCP. Valid values: `udp`, `legacy-reliable`, `reliable`.
-	Mode pulumi.StringPtrInput
-	// Server listen port.
-	Port pulumi.IntPtrInput
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority pulumi.StringPtrInput
-	// Address of remote syslog server.
-	Server pulumi.StringPtrInput
-	// Source IP address of syslog.
-	SourceIp pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringPtrInput
-	// Enable/disable remote syslog logging. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Hidden setting index of Syslog.
-	SyslogType pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MaxLogRate            pulumi.IntPtrInput
+	Mode                  pulumi.StringPtrInput
+	Port                  pulumi.IntPtrInput
+	Priority              pulumi.StringPtrInput
+	Server                pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	SslMinProtoVersion    pulumi.StringPtrInput
+	Status                pulumi.StringPtrInput
+	SyslogType            pulumi.IntPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (LogSyslogdSettingArgs) ElementType() reflect.Type {
@@ -314,7 +177,7 @@ func (i *LogSyslogdSetting) ToLogSyslogdSettingOutputWithContext(ctx context.Con
 // LogSyslogdSettingArrayInput is an input type that accepts LogSyslogdSettingArray and LogSyslogdSettingArrayOutput values.
 // You can construct a concrete instance of `LogSyslogdSettingArrayInput` via:
 //
-//          LogSyslogdSettingArray{ LogSyslogdSettingArgs{...} }
+//	LogSyslogdSettingArray{ LogSyslogdSettingArgs{...} }
 type LogSyslogdSettingArrayInput interface {
 	pulumi.Input
 
@@ -339,7 +202,7 @@ func (i LogSyslogdSettingArray) ToLogSyslogdSettingArrayOutputWithContext(ctx co
 // LogSyslogdSettingMapInput is an input type that accepts LogSyslogdSettingMap and LogSyslogdSettingMapOutput values.
 // You can construct a concrete instance of `LogSyslogdSettingMapInput` via:
 //
-//          LogSyslogdSettingMap{ "key": LogSyslogdSettingArgs{...} }
+//	LogSyslogdSettingMap{ "key": LogSyslogdSettingArgs{...} }
 type LogSyslogdSettingMapInput interface {
 	pulumi.Input
 
@@ -373,6 +236,78 @@ func (o LogSyslogdSettingOutput) ToLogSyslogdSettingOutput() LogSyslogdSettingOu
 
 func (o LogSyslogdSettingOutput) ToLogSyslogdSettingOutputWithContext(ctx context.Context) LogSyslogdSettingOutput {
 	return o
+}
+
+func (o LogSyslogdSettingOutput) Certificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogdSettingOutput) CustomFieldNames() LogSyslogdSettingCustomFieldNameArrayOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) LogSyslogdSettingCustomFieldNameArrayOutput { return v.CustomFieldNames }).(LogSyslogdSettingCustomFieldNameArrayOutput)
+}
+
+func (o LogSyslogdSettingOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o LogSyslogdSettingOutput) EncAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.StringOutput { return v.EncAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogdSettingOutput) Facility() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.StringOutput { return v.Facility }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogdSettingOutput) Format() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogdSettingOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogdSettingOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogdSettingOutput) MaxLogRate() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.IntOutput { return v.MaxLogRate }).(pulumi.IntOutput)
+}
+
+func (o LogSyslogdSettingOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogdSettingOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o LogSyslogdSettingOutput) Priority() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.StringOutput { return v.Priority }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogdSettingOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogdSettingOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogdSettingOutput) SslMinProtoVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.StringOutput { return v.SslMinProtoVersion }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogdSettingOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogdSettingOutput) SyslogType() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.IntOutput { return v.SyslogType }).(pulumi.IntOutput)
+}
+
+func (o LogSyslogdSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogSyslogdSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type LogSyslogdSettingArrayOutput struct{ *pulumi.OutputState }

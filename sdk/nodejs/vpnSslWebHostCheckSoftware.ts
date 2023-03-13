@@ -2,40 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * SSL-VPN host check software.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.VpnSslWebHostCheckSoftware("trname", {
- *     osType: "windows",
- *     type: "fw",
- * });
- * ```
- *
- * ## Import
- *
- * VpnSslWeb HostCheckSoftware can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnSslWebHostCheckSoftware:VpnSslWebHostCheckSoftware labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnSslWebHostCheckSoftware:VpnSslWebHostCheckSoftware labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VpnSslWebHostCheckSoftware extends pulumi.CustomResource {
     /**
      * Get an existing VpnSslWebHostCheckSoftware resource's state with the given name, ID, and optional extra
@@ -64,37 +34,13 @@ export class VpnSslWebHostCheckSoftware extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpnSslWebHostCheckSoftware.__pulumiType;
     }
 
-    /**
-     * Check item list. The structure of `checkItemList` block is documented below.
-     */
     public readonly checkItemLists!: pulumi.Output<outputs.VpnSslWebHostCheckSoftwareCheckItemList[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Globally unique ID.
-     */
     public readonly guid!: pulumi.Output<string>;
-    /**
-     * Name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * OS type. Valid values: `windows`, `macos`.
-     */
     public readonly osType!: pulumi.Output<string>;
-    /**
-     * Type. Valid values: `file`, `registry`, `process`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Version.
-     */
     public readonly version!: pulumi.Output<string>;
 
     /**
@@ -138,37 +84,13 @@ export class VpnSslWebHostCheckSoftware extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnSslWebHostCheckSoftware resources.
  */
 export interface VpnSslWebHostCheckSoftwareState {
-    /**
-     * Check item list. The structure of `checkItemList` block is documented below.
-     */
     checkItemLists?: pulumi.Input<pulumi.Input<inputs.VpnSslWebHostCheckSoftwareCheckItemList>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Globally unique ID.
-     */
     guid?: pulumi.Input<string>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * OS type. Valid values: `windows`, `macos`.
-     */
     osType?: pulumi.Input<string>;
-    /**
-     * Type. Valid values: `file`, `registry`, `process`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Version.
-     */
     version?: pulumi.Input<string>;
 }
 
@@ -176,36 +98,12 @@ export interface VpnSslWebHostCheckSoftwareState {
  * The set of arguments for constructing a VpnSslWebHostCheckSoftware resource.
  */
 export interface VpnSslWebHostCheckSoftwareArgs {
-    /**
-     * Check item list. The structure of `checkItemList` block is documented below.
-     */
     checkItemLists?: pulumi.Input<pulumi.Input<inputs.VpnSslWebHostCheckSoftwareCheckItemList>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Globally unique ID.
-     */
     guid?: pulumi.Input<string>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * OS type. Valid values: `windows`, `macos`.
-     */
     osType?: pulumi.Input<string>;
-    /**
-     * Type. Valid values: `file`, `registry`, `process`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Version.
-     */
     version?: pulumi.Input<string>;
 }

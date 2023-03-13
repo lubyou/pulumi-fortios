@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios firewallshaper trafficshaper
- */
 export function getFirewallShaperTrafficShaper(args: GetFirewallShaperTrafficShaperArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallShaperTrafficShaperResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallShaperTrafficShaper:GetFirewallShaperTrafficShaper", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getFirewallShaperTrafficShaper(args: GetFirewallShaperTrafficSha
  * A collection of arguments for invoking GetFirewallShaperTrafficShaper.
  */
 export interface GetFirewallShaperTrafficShaperArgs {
-    /**
-     * Specify the name of the desired firewallshaper trafficshaper.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,83 +25,34 @@ export interface GetFirewallShaperTrafficShaperArgs {
  * A collection of values returned by GetFirewallShaperTrafficShaper.
  */
 export interface GetFirewallShaperTrafficShaperResult {
-    /**
-     * Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps).
-     */
     readonly bandwidthUnit: string;
-    /**
-     * Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper.
-     */
     readonly diffserv: string;
-    /**
-     * DiffServ setting to be applied to traffic accepted by this shaper.
-     */
     readonly diffservcode: string;
-    /**
-     * Select DSCP marking method.
-     */
     readonly dscpMarkingMethod: string;
-    /**
-     * Exceed bandwidth used for DSCP multi-stage marking. Units depend on the bandwidth-unit setting.
-     */
     readonly exceedBandwidth: number;
-    /**
-     * Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
-     */
     readonly exceedClassId: number;
-    /**
-     * DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
-     */
     readonly exceedDscp: string;
-    /**
-     * Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
-     */
     readonly guaranteedBandwidth: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-     */
     readonly maximumBandwidth: number;
-    /**
-     * DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
-     */
     readonly maximumDscp: string;
-    /**
-     * Traffic shaper name.
-     */
     readonly name: string;
-    /**
-     * Per-packet size overhead used in rate computations.
-     */
     readonly overhead: number;
-    /**
-     * Enable/disable applying a separate shaper for each policy. For example, if enabled the guaranteed bandwidth is applied separately for each policy.
-     */
     readonly perPolicy: string;
-    /**
-     * Higher priority traffic is more likely to be forwarded without delays and without compromising the guaranteed bandwidth.
-     */
     readonly priority: string;
     readonly vdomparam?: string;
 }
-
 export function getFirewallShaperTrafficShaperOutput(args: GetFirewallShaperTrafficShaperOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallShaperTrafficShaperResult> {
-    return pulumi.output(args).apply(a => getFirewallShaperTrafficShaper(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallShaperTrafficShaper(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetFirewallShaperTrafficShaper.
  */
 export interface GetFirewallShaperTrafficShaperOutputArgs {
-    /**
-     * Specify the name of the desired firewallshaper trafficshaper.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

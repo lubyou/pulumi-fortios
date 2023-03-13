@@ -4,20 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports Create/Read/Update/Delete firewall security policypackage on FortiManager which could be installed to the FortiGate later
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerFirewallSecurityPolicyPackage("test1", {
- *     target: "FGVM64-test",
- * });
- * ```
- */
 export class FortimanagerFirewallSecurityPolicyPackage extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerFirewallSecurityPolicyPackage resource's state with the given name, ID, and optional extra
@@ -46,25 +32,10 @@ export class FortimanagerFirewallSecurityPolicyPackage extends pulumi.CustomReso
         return obj['__pulumiType'] === FortimanagerFirewallSecurityPolicyPackage.__pulumiType;
     }
 
-    /**
-     * Source ADOM name. default is 'root'
-     */
     public readonly adom!: pulumi.Output<string | undefined>;
-    /**
-     * Inspection Mode. Enum:[flow, proxy]. default is 'flow'
-     */
     public readonly inspectionMode!: pulumi.Output<string | undefined>;
-    /**
-     * Security policy package name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * The installation target.
-     */
     public readonly target!: pulumi.Output<string | undefined>;
-    /**
-     * Vdom of managed device. default is 'root'
-     */
     public readonly vdom!: pulumi.Output<string | undefined>;
 
     /**
@@ -102,25 +73,10 @@ export class FortimanagerFirewallSecurityPolicyPackage extends pulumi.CustomReso
  * Input properties used for looking up and filtering FortimanagerFirewallSecurityPolicyPackage resources.
  */
 export interface FortimanagerFirewallSecurityPolicyPackageState {
-    /**
-     * Source ADOM name. default is 'root'
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Inspection Mode. Enum:[flow, proxy]. default is 'flow'
-     */
     inspectionMode?: pulumi.Input<string>;
-    /**
-     * Security policy package name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The installation target.
-     */
     target?: pulumi.Input<string>;
-    /**
-     * Vdom of managed device. default is 'root'
-     */
     vdom?: pulumi.Input<string>;
 }
 
@@ -128,24 +84,9 @@ export interface FortimanagerFirewallSecurityPolicyPackageState {
  * The set of arguments for constructing a FortimanagerFirewallSecurityPolicyPackage resource.
  */
 export interface FortimanagerFirewallSecurityPolicyPackageArgs {
-    /**
-     * Source ADOM name. default is 'root'
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Inspection Mode. Enum:[flow, proxy]. default is 'flow'
-     */
     inspectionMode?: pulumi.Input<string>;
-    /**
-     * Security policy package name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The installation target.
-     */
     target?: pulumi.Input<string>;
-    /**
-     * Vdom of managed device. default is 'root'
-     */
     vdom?: pulumi.Input<string>;
 }

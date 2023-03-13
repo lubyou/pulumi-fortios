@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure WiFi network access control (NAC) profiles. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// WirelessController NacProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerNacProfile:WirelessControllerNacProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerNacProfile:WirelessControllerNacProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerNacProfile struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// VLAN interface name.
-	OnboardingVlan pulumi.StringOutput `pulumi:"onboardingVlan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment        pulumi.StringPtrOutput `pulumi:"comment"`
+	Name           pulumi.StringOutput    `pulumi:"name"`
+	OnboardingVlan pulumi.StringOutput    `pulumi:"onboardingVlan"`
+	Vdomparam      pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerNacProfile registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetWirelessControllerNacProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerNacProfile resources.
 type wirelessControllerNacProfileState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// VLAN interface name.
+	Comment        *string `pulumi:"comment"`
+	Name           *string `pulumi:"name"`
 	OnboardingVlan *string `pulumi:"onboardingVlan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 type WirelessControllerNacProfileState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// VLAN interface name.
+	Comment        pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
 	OnboardingVlan pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (WirelessControllerNacProfileState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (WirelessControllerNacProfileState) ElementType() reflect.Type {
 }
 
 type wirelessControllerNacProfileArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// VLAN interface name.
+	Comment        *string `pulumi:"comment"`
+	Name           *string `pulumi:"name"`
 	OnboardingVlan *string `pulumi:"onboardingVlan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerNacProfile resource.
 type WirelessControllerNacProfileArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// VLAN interface name.
+	Comment        pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
 	OnboardingVlan pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (WirelessControllerNacProfileArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *WirelessControllerNacProfile) ToWirelessControllerNacProfileOutputWithC
 // WirelessControllerNacProfileArrayInput is an input type that accepts WirelessControllerNacProfileArray and WirelessControllerNacProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerNacProfileArrayInput` via:
 //
-//          WirelessControllerNacProfileArray{ WirelessControllerNacProfileArgs{...} }
+//	WirelessControllerNacProfileArray{ WirelessControllerNacProfileArgs{...} }
 type WirelessControllerNacProfileArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i WirelessControllerNacProfileArray) ToWirelessControllerNacProfileArrayOu
 // WirelessControllerNacProfileMapInput is an input type that accepts WirelessControllerNacProfileMap and WirelessControllerNacProfileMapOutput values.
 // You can construct a concrete instance of `WirelessControllerNacProfileMapInput` via:
 //
-//          WirelessControllerNacProfileMap{ "key": WirelessControllerNacProfileArgs{...} }
+//	WirelessControllerNacProfileMap{ "key": WirelessControllerNacProfileArgs{...} }
 type WirelessControllerNacProfileMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o WirelessControllerNacProfileOutput) ToWirelessControllerNacProfileOutput
 
 func (o WirelessControllerNacProfileOutput) ToWirelessControllerNacProfileOutputWithContext(ctx context.Context) WirelessControllerNacProfileOutput {
 	return o
+}
+
+func (o WirelessControllerNacProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerNacProfile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerNacProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerNacProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerNacProfileOutput) OnboardingVlan() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerNacProfile) pulumi.StringOutput { return v.OnboardingVlan }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerNacProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerNacProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerNacProfileArrayOutput struct{ *pulumi.OutputState }

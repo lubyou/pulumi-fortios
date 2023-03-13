@@ -4,36 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure SMS server for sending SMS messages to support user authentication.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemSmsServer("trname", {
- *     mailServer: "1.1.1.2",
- * });
- * ```
- *
- * ## Import
- *
- * System SmsServer can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSmsServer:SystemSmsServer labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSmsServer:SystemSmsServer labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemSmsServer extends pulumi.CustomResource {
     /**
      * Get an existing SystemSmsServer resource's state with the given name, ID, and optional extra
@@ -62,17 +32,8 @@ export class SystemSmsServer extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemSmsServer.__pulumiType;
     }
 
-    /**
-     * Email-to-SMS server domain name.
-     */
     public readonly mailServer!: pulumi.Output<string>;
-    /**
-     * Name of SMS server.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -109,17 +70,8 @@ export class SystemSmsServer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSmsServer resources.
  */
 export interface SystemSmsServerState {
-    /**
-     * Email-to-SMS server domain name.
-     */
     mailServer?: pulumi.Input<string>;
-    /**
-     * Name of SMS server.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -127,16 +79,7 @@ export interface SystemSmsServerState {
  * The set of arguments for constructing a SystemSmsServer resource.
  */
 export interface SystemSmsServerArgs {
-    /**
-     * Email-to-SMS server domain name.
-     */
     mailServer: pulumi.Input<string>;
-    /**
-     * Name of SMS server.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

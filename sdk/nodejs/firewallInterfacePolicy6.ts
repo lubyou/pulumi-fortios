@@ -2,60 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv6 interface policies.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallInterfacePolicy6("trname", {
- *     addressType: "ipv6",
- *     applicationListStatus: "disable",
- *     avProfileStatus: "disable",
- *     dlpSensorStatus: "disable",
- *     dsri: "disable",
- *     dstaddr6s: [{
- *         name: "all",
- *     }],
- *     interface: "port4",
- *     ipsSensorStatus: "disable",
- *     logtraffic: "all",
- *     policyid: 1,
- *     scanBotnetConnections: "block",
- *     service6s: [{
- *         name: "ALL",
- *     }],
- *     spamfilterProfileStatus: "disable",
- *     srcaddr6s: [{
- *         name: "all",
- *     }],
- *     status: "enable",
- *     webfilterProfileStatus: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall InterfacePolicy6 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInterfacePolicy6:FirewallInterfacePolicy6 labelname {{policyid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInterfacePolicy6:FirewallInterfacePolicy6 labelname {{policyid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallInterfacePolicy6 extends pulumi.CustomResource {
     /**
      * Get an existing FirewallInterfacePolicy6 resource's state with the given name, ID, and optional extra
@@ -84,117 +34,35 @@ export class FirewallInterfacePolicy6 extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallInterfacePolicy6.__pulumiType;
     }
 
-    /**
-     * Policy address type (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-     */
     public readonly addressType!: pulumi.Output<string>;
-    /**
-     * Application list name.
-     */
     public readonly applicationList!: pulumi.Output<string>;
-    /**
-     * Enable/disable application control. Valid values: `enable`, `disable`.
-     */
     public readonly applicationListStatus!: pulumi.Output<string>;
-    /**
-     * Antivirus profile.
-     */
     public readonly avProfile!: pulumi.Output<string>;
-    /**
-     * Enable/disable antivirus. Valid values: `enable`, `disable`.
-     */
     public readonly avProfileStatus!: pulumi.Output<string>;
-    /**
-     * Comments.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * DLP sensor name.
-     */
+    public readonly dlpProfile!: pulumi.Output<string>;
+    public readonly dlpProfileStatus!: pulumi.Output<string>;
     public readonly dlpSensor!: pulumi.Output<string>;
-    /**
-     * Enable/disable DLP. Valid values: `enable`, `disable`.
-     */
     public readonly dlpSensorStatus!: pulumi.Output<string>;
-    /**
-     * Enable/disable DSRI. Valid values: `enable`, `disable`.
-     */
     public readonly dsri!: pulumi.Output<string>;
-    /**
-     * IPv6 address object to limit traffic monitoring to network traffic sent to the specified address or range. The structure of `dstaddr6` block is documented below.
-     */
     public readonly dstaddr6s!: pulumi.Output<outputs.FirewallInterfacePolicy6Dstaddr6[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Email filter profile.
-     */
     public readonly emailfilterProfile!: pulumi.Output<string>;
-    /**
-     * Enable/disable email filter. Valid values: `enable`, `disable`.
-     */
     public readonly emailfilterProfileStatus!: pulumi.Output<string>;
-    /**
-     * Monitored interface name from available interfaces.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * IPS sensor name.
-     */
     public readonly ipsSensor!: pulumi.Output<string>;
-    /**
-     * Enable/disable IPS. Valid values: `enable`, `disable`.
-     */
     public readonly ipsSensorStatus!: pulumi.Output<string>;
-    /**
-     * Label.
-     */
     public readonly label!: pulumi.Output<string>;
-    /**
-     * Logging type to be used in this policy (Options: all | utm | disable, Default: utm). Valid values: `all`, `utm`, `disable`.
-     */
     public readonly logtraffic!: pulumi.Output<string>;
-    /**
-     * Policy ID.
-     */
     public readonly policyid!: pulumi.Output<number>;
-    /**
-     * Enable/disable scanning for connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
-     */
     public readonly scanBotnetConnections!: pulumi.Output<string>;
-    /**
-     * Service name. The structure of `service6` block is documented below.
-     */
     public readonly service6s!: pulumi.Output<outputs.FirewallInterfacePolicy6Service6[] | undefined>;
-    /**
-     * Antispam profile.
-     */
     public readonly spamfilterProfile!: pulumi.Output<string>;
-    /**
-     * Enable/disable antispam. Valid values: `enable`, `disable`.
-     */
     public readonly spamfilterProfileStatus!: pulumi.Output<string>;
-    /**
-     * IPv6 address object to limit traffic monitoring to network traffic sent from the specified address or range. The structure of `srcaddr6` block is documented below.
-     */
     public readonly srcaddr6s!: pulumi.Output<outputs.FirewallInterfacePolicy6Srcaddr6[]>;
-    /**
-     * Enable/disable this policy. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Web filter profile.
-     */
     public readonly webfilterProfile!: pulumi.Output<string>;
-    /**
-     * Enable/disable web filtering. Valid values: `enable`, `disable`.
-     */
     public readonly webfilterProfileStatus!: pulumi.Output<string>;
 
     /**
@@ -216,6 +84,8 @@ export class FirewallInterfacePolicy6 extends pulumi.CustomResource {
             resourceInputs["avProfile"] = state ? state.avProfile : undefined;
             resourceInputs["avProfileStatus"] = state ? state.avProfileStatus : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dlpProfile"] = state ? state.dlpProfile : undefined;
+            resourceInputs["dlpProfileStatus"] = state ? state.dlpProfileStatus : undefined;
             resourceInputs["dlpSensor"] = state ? state.dlpSensor : undefined;
             resourceInputs["dlpSensorStatus"] = state ? state.dlpSensorStatus : undefined;
             resourceInputs["dsri"] = state ? state.dsri : undefined;
@@ -255,6 +125,8 @@ export class FirewallInterfacePolicy6 extends pulumi.CustomResource {
             resourceInputs["avProfile"] = args ? args.avProfile : undefined;
             resourceInputs["avProfileStatus"] = args ? args.avProfileStatus : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dlpProfile"] = args ? args.dlpProfile : undefined;
+            resourceInputs["dlpProfileStatus"] = args ? args.dlpProfileStatus : undefined;
             resourceInputs["dlpSensor"] = args ? args.dlpSensor : undefined;
             resourceInputs["dlpSensorStatus"] = args ? args.dlpSensorStatus : undefined;
             resourceInputs["dsri"] = args ? args.dsri : undefined;
@@ -287,117 +159,35 @@ export class FirewallInterfacePolicy6 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallInterfacePolicy6 resources.
  */
 export interface FirewallInterfacePolicy6State {
-    /**
-     * Policy address type (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-     */
     addressType?: pulumi.Input<string>;
-    /**
-     * Application list name.
-     */
     applicationList?: pulumi.Input<string>;
-    /**
-     * Enable/disable application control. Valid values: `enable`, `disable`.
-     */
     applicationListStatus?: pulumi.Input<string>;
-    /**
-     * Antivirus profile.
-     */
     avProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable antivirus. Valid values: `enable`, `disable`.
-     */
     avProfileStatus?: pulumi.Input<string>;
-    /**
-     * Comments.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * DLP sensor name.
-     */
+    dlpProfile?: pulumi.Input<string>;
+    dlpProfileStatus?: pulumi.Input<string>;
     dlpSensor?: pulumi.Input<string>;
-    /**
-     * Enable/disable DLP. Valid values: `enable`, `disable`.
-     */
     dlpSensorStatus?: pulumi.Input<string>;
-    /**
-     * Enable/disable DSRI. Valid values: `enable`, `disable`.
-     */
     dsri?: pulumi.Input<string>;
-    /**
-     * IPv6 address object to limit traffic monitoring to network traffic sent to the specified address or range. The structure of `dstaddr6` block is documented below.
-     */
     dstaddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallInterfacePolicy6Dstaddr6>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Email filter profile.
-     */
     emailfilterProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable email filter. Valid values: `enable`, `disable`.
-     */
     emailfilterProfileStatus?: pulumi.Input<string>;
-    /**
-     * Monitored interface name from available interfaces.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * IPS sensor name.
-     */
     ipsSensor?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPS. Valid values: `enable`, `disable`.
-     */
     ipsSensorStatus?: pulumi.Input<string>;
-    /**
-     * Label.
-     */
     label?: pulumi.Input<string>;
-    /**
-     * Logging type to be used in this policy (Options: all | utm | disable, Default: utm). Valid values: `all`, `utm`, `disable`.
-     */
     logtraffic?: pulumi.Input<string>;
-    /**
-     * Policy ID.
-     */
     policyid?: pulumi.Input<number>;
-    /**
-     * Enable/disable scanning for connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
-     */
     scanBotnetConnections?: pulumi.Input<string>;
-    /**
-     * Service name. The structure of `service6` block is documented below.
-     */
     service6s?: pulumi.Input<pulumi.Input<inputs.FirewallInterfacePolicy6Service6>[]>;
-    /**
-     * Antispam profile.
-     */
     spamfilterProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable antispam. Valid values: `enable`, `disable`.
-     */
     spamfilterProfileStatus?: pulumi.Input<string>;
-    /**
-     * IPv6 address object to limit traffic monitoring to network traffic sent from the specified address or range. The structure of `srcaddr6` block is documented below.
-     */
     srcaddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallInterfacePolicy6Srcaddr6>[]>;
-    /**
-     * Enable/disable this policy. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Web filter profile.
-     */
     webfilterProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable web filtering. Valid values: `enable`, `disable`.
-     */
     webfilterProfileStatus?: pulumi.Input<string>;
 }
 
@@ -405,116 +195,34 @@ export interface FirewallInterfacePolicy6State {
  * The set of arguments for constructing a FirewallInterfacePolicy6 resource.
  */
 export interface FirewallInterfacePolicy6Args {
-    /**
-     * Policy address type (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-     */
     addressType?: pulumi.Input<string>;
-    /**
-     * Application list name.
-     */
     applicationList?: pulumi.Input<string>;
-    /**
-     * Enable/disable application control. Valid values: `enable`, `disable`.
-     */
     applicationListStatus?: pulumi.Input<string>;
-    /**
-     * Antivirus profile.
-     */
     avProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable antivirus. Valid values: `enable`, `disable`.
-     */
     avProfileStatus?: pulumi.Input<string>;
-    /**
-     * Comments.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * DLP sensor name.
-     */
+    dlpProfile?: pulumi.Input<string>;
+    dlpProfileStatus?: pulumi.Input<string>;
     dlpSensor?: pulumi.Input<string>;
-    /**
-     * Enable/disable DLP. Valid values: `enable`, `disable`.
-     */
     dlpSensorStatus?: pulumi.Input<string>;
-    /**
-     * Enable/disable DSRI. Valid values: `enable`, `disable`.
-     */
     dsri?: pulumi.Input<string>;
-    /**
-     * IPv6 address object to limit traffic monitoring to network traffic sent to the specified address or range. The structure of `dstaddr6` block is documented below.
-     */
     dstaddr6s: pulumi.Input<pulumi.Input<inputs.FirewallInterfacePolicy6Dstaddr6>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Email filter profile.
-     */
     emailfilterProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable email filter. Valid values: `enable`, `disable`.
-     */
     emailfilterProfileStatus?: pulumi.Input<string>;
-    /**
-     * Monitored interface name from available interfaces.
-     */
     interface: pulumi.Input<string>;
-    /**
-     * IPS sensor name.
-     */
     ipsSensor?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPS. Valid values: `enable`, `disable`.
-     */
     ipsSensorStatus?: pulumi.Input<string>;
-    /**
-     * Label.
-     */
     label?: pulumi.Input<string>;
-    /**
-     * Logging type to be used in this policy (Options: all | utm | disable, Default: utm). Valid values: `all`, `utm`, `disable`.
-     */
     logtraffic?: pulumi.Input<string>;
-    /**
-     * Policy ID.
-     */
     policyid?: pulumi.Input<number>;
-    /**
-     * Enable/disable scanning for connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
-     */
     scanBotnetConnections?: pulumi.Input<string>;
-    /**
-     * Service name. The structure of `service6` block is documented below.
-     */
     service6s?: pulumi.Input<pulumi.Input<inputs.FirewallInterfacePolicy6Service6>[]>;
-    /**
-     * Antispam profile.
-     */
     spamfilterProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable antispam. Valid values: `enable`, `disable`.
-     */
     spamfilterProfileStatus?: pulumi.Input<string>;
-    /**
-     * IPv6 address object to limit traffic monitoring to network traffic sent from the specified address or range. The structure of `srcaddr6` block is documented below.
-     */
     srcaddr6s: pulumi.Input<pulumi.Input<inputs.FirewallInterfacePolicy6Srcaddr6>[]>;
-    /**
-     * Enable/disable this policy. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Web filter profile.
-     */
     webfilterProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable web filtering. Valid values: `enable`, `disable`.
-     */
     webfilterProfileStatus?: pulumi.Input<string>;
 }

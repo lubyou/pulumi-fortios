@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Internet Service definition.
-//
-// ## Import
-//
-// Firewall InternetServiceDefinition can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceDefinition:FirewallInternetServiceDefinition labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceDefinition:FirewallInternetServiceDefinition labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallInternetServiceDefinition struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Protocol and port information in an Internet Service entry. The structure of `entry` block is documented below.
-	Entries FirewallInternetServiceDefinitionEntryArrayOutput `pulumi:"entries"`
-	// Internet Service application list ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
+	Entries             FirewallInternetServiceDefinitionEntryArrayOutput `pulumi:"entries"`
+	Fosid               pulumi.IntOutput                                  `pulumi:"fosid"`
+	Vdomparam           pulumi.StringPtrOutput                            `pulumi:"vdomparam"`
 }
 
 // NewFirewallInternetServiceDefinition registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetFirewallInternetServiceDefinition(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallInternetServiceDefinition resources.
 type firewallInternetServiceDefinitionState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Protocol and port information in an Internet Service entry. The structure of `entry` block is documented below.
-	Entries []FirewallInternetServiceDefinitionEntry `pulumi:"entries"`
-	// Internet Service application list ID.
-	Fosid *int `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                  `pulumi:"dynamicSortSubtable"`
+	Entries             []FirewallInternetServiceDefinitionEntry `pulumi:"entries"`
+	Fosid               *int                                     `pulumi:"fosid"`
+	Vdomparam           *string                                  `pulumi:"vdomparam"`
 }
 
 type FirewallInternetServiceDefinitionState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Protocol and port information in an Internet Service entry. The structure of `entry` block is documented below.
-	Entries FirewallInternetServiceDefinitionEntryArrayInput
-	// Internet Service application list ID.
-	Fosid pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             FirewallInternetServiceDefinitionEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceDefinitionState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (FirewallInternetServiceDefinitionState) ElementType() reflect.Type {
 }
 
 type firewallInternetServiceDefinitionArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Protocol and port information in an Internet Service entry. The structure of `entry` block is documented below.
-	Entries []FirewallInternetServiceDefinitionEntry `pulumi:"entries"`
-	// Internet Service application list ID.
-	Fosid *int `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                  `pulumi:"dynamicSortSubtable"`
+	Entries             []FirewallInternetServiceDefinitionEntry `pulumi:"entries"`
+	Fosid               *int                                     `pulumi:"fosid"`
+	Vdomparam           *string                                  `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallInternetServiceDefinition resource.
 type FirewallInternetServiceDefinitionArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Protocol and port information in an Internet Service entry. The structure of `entry` block is documented below.
-	Entries FirewallInternetServiceDefinitionEntryArrayInput
-	// Internet Service application list ID.
-	Fosid pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             FirewallInternetServiceDefinitionEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceDefinitionArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *FirewallInternetServiceDefinition) ToFirewallInternetServiceDefinitionO
 // FirewallInternetServiceDefinitionArrayInput is an input type that accepts FirewallInternetServiceDefinitionArray and FirewallInternetServiceDefinitionArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceDefinitionArrayInput` via:
 //
-//          FirewallInternetServiceDefinitionArray{ FirewallInternetServiceDefinitionArgs{...} }
+//	FirewallInternetServiceDefinitionArray{ FirewallInternetServiceDefinitionArgs{...} }
 type FirewallInternetServiceDefinitionArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i FirewallInternetServiceDefinitionArray) ToFirewallInternetServiceDefinit
 // FirewallInternetServiceDefinitionMapInput is an input type that accepts FirewallInternetServiceDefinitionMap and FirewallInternetServiceDefinitionMapOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceDefinitionMapInput` via:
 //
-//          FirewallInternetServiceDefinitionMap{ "key": FirewallInternetServiceDefinitionArgs{...} }
+//	FirewallInternetServiceDefinitionMap{ "key": FirewallInternetServiceDefinitionArgs{...} }
 type FirewallInternetServiceDefinitionMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,24 @@ func (o FirewallInternetServiceDefinitionOutput) ToFirewallInternetServiceDefini
 
 func (o FirewallInternetServiceDefinitionOutput) ToFirewallInternetServiceDefinitionOutputWithContext(ctx context.Context) FirewallInternetServiceDefinitionOutput {
 	return o
+}
+
+func (o FirewallInternetServiceDefinitionOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceDefinition) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallInternetServiceDefinitionOutput) Entries() FirewallInternetServiceDefinitionEntryArrayOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceDefinition) FirewallInternetServiceDefinitionEntryArrayOutput {
+		return v.Entries
+	}).(FirewallInternetServiceDefinitionEntryArrayOutput)
+}
+
+func (o FirewallInternetServiceDefinitionOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceDefinition) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceDefinitionOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceDefinition) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallInternetServiceDefinitionArrayOutput struct{ *pulumi.OutputState }

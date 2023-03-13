@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Speed test schedule for each interface. Applies to FortiOS Version `>= 7.0.0`.
- *
- * ## Import
- *
- * System SpeedTestSchedule can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSpeedTestSchedule:SystemSpeedTestSchedule labelname {{interface}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSpeedTestSchedule:SystemSpeedTestSchedule labelname {{interface}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemSpeedTestSchedule extends pulumi.CustomResource {
     /**
      * Get an existing SystemSpeedTestSchedule resource's state with the given name, ID, and optional extra
@@ -52,61 +34,19 @@ export class SystemSpeedTestSchedule extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemSpeedTestSchedule.__pulumiType;
     }
 
-    /**
-     * DSCP used for speed test.
-     */
     public readonly diffserv!: pulumi.Output<string>;
-    /**
-     * Enable/disable dynamic server option. Valid values: `disable`, `enable`.
-     */
     public readonly dynamicServer!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Interface name.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Schedules for the interface. The structure of `schedules` block is documented below.
-     */
     public readonly schedules!: pulumi.Output<outputs.SystemSpeedTestScheduleSchedule[] | undefined>;
-    /**
-     * Speed test server name.
-     */
     public readonly serverName!: pulumi.Output<string>;
-    /**
-     * Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
-     */
     public readonly updateInbandwidth!: pulumi.Output<string>;
-    /**
-     * Maximum downloading bandwidth (kbps) to be used in a speed test.
-     */
     public readonly updateInbandwidthMaximum!: pulumi.Output<number>;
-    /**
-     * Minimum downloading bandwidth (kbps) to be considered effective.
-     */
     public readonly updateInbandwidthMinimum!: pulumi.Output<number>;
-    /**
-     * Enable/disable bypassing interface's outbound bandwidth setting. Valid values: `disable`, `enable`.
-     */
     public readonly updateOutbandwidth!: pulumi.Output<string>;
-    /**
-     * Maximum uploading bandwidth (kbps) to be used in a speed test.
-     */
     public readonly updateOutbandwidthMaximum!: pulumi.Output<number>;
-    /**
-     * Minimum uploading bandwidth (kbps) to be considered effective.
-     */
     public readonly updateOutbandwidthMinimum!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -162,61 +102,19 @@ export class SystemSpeedTestSchedule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSpeedTestSchedule resources.
  */
 export interface SystemSpeedTestScheduleState {
-    /**
-     * DSCP used for speed test.
-     */
     diffserv?: pulumi.Input<string>;
-    /**
-     * Enable/disable dynamic server option. Valid values: `disable`, `enable`.
-     */
     dynamicServer?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Interface name.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Schedules for the interface. The structure of `schedules` block is documented below.
-     */
     schedules?: pulumi.Input<pulumi.Input<inputs.SystemSpeedTestScheduleSchedule>[]>;
-    /**
-     * Speed test server name.
-     */
     serverName?: pulumi.Input<string>;
-    /**
-     * Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
-     */
     updateInbandwidth?: pulumi.Input<string>;
-    /**
-     * Maximum downloading bandwidth (kbps) to be used in a speed test.
-     */
     updateInbandwidthMaximum?: pulumi.Input<number>;
-    /**
-     * Minimum downloading bandwidth (kbps) to be considered effective.
-     */
     updateInbandwidthMinimum?: pulumi.Input<number>;
-    /**
-     * Enable/disable bypassing interface's outbound bandwidth setting. Valid values: `disable`, `enable`.
-     */
     updateOutbandwidth?: pulumi.Input<string>;
-    /**
-     * Maximum uploading bandwidth (kbps) to be used in a speed test.
-     */
     updateOutbandwidthMaximum?: pulumi.Input<number>;
-    /**
-     * Minimum uploading bandwidth (kbps) to be considered effective.
-     */
     updateOutbandwidthMinimum?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -224,60 +122,18 @@ export interface SystemSpeedTestScheduleState {
  * The set of arguments for constructing a SystemSpeedTestSchedule resource.
  */
 export interface SystemSpeedTestScheduleArgs {
-    /**
-     * DSCP used for speed test.
-     */
     diffserv?: pulumi.Input<string>;
-    /**
-     * Enable/disable dynamic server option. Valid values: `disable`, `enable`.
-     */
     dynamicServer?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Interface name.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Schedules for the interface. The structure of `schedules` block is documented below.
-     */
     schedules?: pulumi.Input<pulumi.Input<inputs.SystemSpeedTestScheduleSchedule>[]>;
-    /**
-     * Speed test server name.
-     */
     serverName?: pulumi.Input<string>;
-    /**
-     * Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
-     */
     updateInbandwidth?: pulumi.Input<string>;
-    /**
-     * Maximum downloading bandwidth (kbps) to be used in a speed test.
-     */
     updateInbandwidthMaximum?: pulumi.Input<number>;
-    /**
-     * Minimum downloading bandwidth (kbps) to be considered effective.
-     */
     updateInbandwidthMinimum?: pulumi.Input<number>;
-    /**
-     * Enable/disable bypassing interface's outbound bandwidth setting. Valid values: `disable`, `enable`.
-     */
     updateOutbandwidth?: pulumi.Input<string>;
-    /**
-     * Maximum uploading bandwidth (kbps) to be used in a speed test.
-     */
     updateOutbandwidthMaximum?: pulumi.Input<number>;
-    /**
-     * Minimum uploading bandwidth (kbps) to be considered effective.
-     */
     updateOutbandwidthMinimum?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

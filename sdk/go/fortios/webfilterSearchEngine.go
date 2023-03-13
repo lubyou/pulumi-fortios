@@ -10,69 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure web filter search engines.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWebfilterSearchEngine(ctx, "trname", &fortios.WebfilterSearchEngineArgs{
-// 			Charset:    pulumi.String("utf-8"),
-// 			Hostname:   pulumi.String("sg.eiwuc.com"),
-// 			Query:      pulumi.String("sc="),
-// 			Safesearch: pulumi.String("disable"),
-// 			Url:        pulumi.String("^\\/f"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Webfilter SearchEngine can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterSearchEngine:WebfilterSearchEngine labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterSearchEngine:WebfilterSearchEngine labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebfilterSearchEngine struct {
 	pulumi.CustomResourceState
 
-	// Search engine charset. Valid values: `utf-8`, `gb2312`.
-	Charset pulumi.StringOutput `pulumi:"charset"`
-	// Hostname (regular expression).
-	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// Search engine name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Code used to prefix a query (must end with an equals character).
-	Query pulumi.StringOutput `pulumi:"query"`
-	// Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
-	Safesearch pulumi.StringOutput `pulumi:"safesearch"`
-	// Safe search parameter used in the URL.
-	SafesearchStr pulumi.StringOutput `pulumi:"safesearchStr"`
-	// URL (regular expression).
-	Url pulumi.StringOutput `pulumi:"url"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Charset       pulumi.StringOutput    `pulumi:"charset"`
+	Hostname      pulumi.StringOutput    `pulumi:"hostname"`
+	Name          pulumi.StringOutput    `pulumi:"name"`
+	Query         pulumi.StringOutput    `pulumi:"query"`
+	Safesearch    pulumi.StringOutput    `pulumi:"safesearch"`
+	SafesearchStr pulumi.StringOutput    `pulumi:"safesearchStr"`
+	Url           pulumi.StringOutput    `pulumi:"url"`
+	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWebfilterSearchEngine registers a new resource with the given unique name, arguments, and options.
@@ -105,41 +53,25 @@ func GetWebfilterSearchEngine(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebfilterSearchEngine resources.
 type webfilterSearchEngineState struct {
-	// Search engine charset. Valid values: `utf-8`, `gb2312`.
-	Charset *string `pulumi:"charset"`
-	// Hostname (regular expression).
-	Hostname *string `pulumi:"hostname"`
-	// Search engine name.
-	Name *string `pulumi:"name"`
-	// Code used to prefix a query (must end with an equals character).
-	Query *string `pulumi:"query"`
-	// Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
-	Safesearch *string `pulumi:"safesearch"`
-	// Safe search parameter used in the URL.
+	Charset       *string `pulumi:"charset"`
+	Hostname      *string `pulumi:"hostname"`
+	Name          *string `pulumi:"name"`
+	Query         *string `pulumi:"query"`
+	Safesearch    *string `pulumi:"safesearch"`
 	SafesearchStr *string `pulumi:"safesearchStr"`
-	// URL (regular expression).
-	Url *string `pulumi:"url"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Url           *string `pulumi:"url"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 type WebfilterSearchEngineState struct {
-	// Search engine charset. Valid values: `utf-8`, `gb2312`.
-	Charset pulumi.StringPtrInput
-	// Hostname (regular expression).
-	Hostname pulumi.StringPtrInput
-	// Search engine name.
-	Name pulumi.StringPtrInput
-	// Code used to prefix a query (must end with an equals character).
-	Query pulumi.StringPtrInput
-	// Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
-	Safesearch pulumi.StringPtrInput
-	// Safe search parameter used in the URL.
+	Charset       pulumi.StringPtrInput
+	Hostname      pulumi.StringPtrInput
+	Name          pulumi.StringPtrInput
+	Query         pulumi.StringPtrInput
+	Safesearch    pulumi.StringPtrInput
 	SafesearchStr pulumi.StringPtrInput
-	// URL (regular expression).
-	Url pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Url           pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (WebfilterSearchEngineState) ElementType() reflect.Type {
@@ -147,42 +79,26 @@ func (WebfilterSearchEngineState) ElementType() reflect.Type {
 }
 
 type webfilterSearchEngineArgs struct {
-	// Search engine charset. Valid values: `utf-8`, `gb2312`.
-	Charset *string `pulumi:"charset"`
-	// Hostname (regular expression).
-	Hostname *string `pulumi:"hostname"`
-	// Search engine name.
-	Name *string `pulumi:"name"`
-	// Code used to prefix a query (must end with an equals character).
-	Query *string `pulumi:"query"`
-	// Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
-	Safesearch *string `pulumi:"safesearch"`
-	// Safe search parameter used in the URL.
+	Charset       *string `pulumi:"charset"`
+	Hostname      *string `pulumi:"hostname"`
+	Name          *string `pulumi:"name"`
+	Query         *string `pulumi:"query"`
+	Safesearch    *string `pulumi:"safesearch"`
 	SafesearchStr *string `pulumi:"safesearchStr"`
-	// URL (regular expression).
-	Url *string `pulumi:"url"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Url           *string `pulumi:"url"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebfilterSearchEngine resource.
 type WebfilterSearchEngineArgs struct {
-	// Search engine charset. Valid values: `utf-8`, `gb2312`.
-	Charset pulumi.StringPtrInput
-	// Hostname (regular expression).
-	Hostname pulumi.StringPtrInput
-	// Search engine name.
-	Name pulumi.StringPtrInput
-	// Code used to prefix a query (must end with an equals character).
-	Query pulumi.StringPtrInput
-	// Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
-	Safesearch pulumi.StringPtrInput
-	// Safe search parameter used in the URL.
+	Charset       pulumi.StringPtrInput
+	Hostname      pulumi.StringPtrInput
+	Name          pulumi.StringPtrInput
+	Query         pulumi.StringPtrInput
+	Safesearch    pulumi.StringPtrInput
 	SafesearchStr pulumi.StringPtrInput
-	// URL (regular expression).
-	Url pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Url           pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (WebfilterSearchEngineArgs) ElementType() reflect.Type {
@@ -211,7 +127,7 @@ func (i *WebfilterSearchEngine) ToWebfilterSearchEngineOutputWithContext(ctx con
 // WebfilterSearchEngineArrayInput is an input type that accepts WebfilterSearchEngineArray and WebfilterSearchEngineArrayOutput values.
 // You can construct a concrete instance of `WebfilterSearchEngineArrayInput` via:
 //
-//          WebfilterSearchEngineArray{ WebfilterSearchEngineArgs{...} }
+//	WebfilterSearchEngineArray{ WebfilterSearchEngineArgs{...} }
 type WebfilterSearchEngineArrayInput interface {
 	pulumi.Input
 
@@ -236,7 +152,7 @@ func (i WebfilterSearchEngineArray) ToWebfilterSearchEngineArrayOutputWithContex
 // WebfilterSearchEngineMapInput is an input type that accepts WebfilterSearchEngineMap and WebfilterSearchEngineMapOutput values.
 // You can construct a concrete instance of `WebfilterSearchEngineMapInput` via:
 //
-//          WebfilterSearchEngineMap{ "key": WebfilterSearchEngineArgs{...} }
+//	WebfilterSearchEngineMap{ "key": WebfilterSearchEngineArgs{...} }
 type WebfilterSearchEngineMapInput interface {
 	pulumi.Input
 
@@ -270,6 +186,38 @@ func (o WebfilterSearchEngineOutput) ToWebfilterSearchEngineOutput() WebfilterSe
 
 func (o WebfilterSearchEngineOutput) ToWebfilterSearchEngineOutputWithContext(ctx context.Context) WebfilterSearchEngineOutput {
 	return o
+}
+
+func (o WebfilterSearchEngineOutput) Charset() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterSearchEngine) pulumi.StringOutput { return v.Charset }).(pulumi.StringOutput)
+}
+
+func (o WebfilterSearchEngineOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterSearchEngine) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
+}
+
+func (o WebfilterSearchEngineOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterSearchEngine) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WebfilterSearchEngineOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterSearchEngine) pulumi.StringOutput { return v.Query }).(pulumi.StringOutput)
+}
+
+func (o WebfilterSearchEngineOutput) Safesearch() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterSearchEngine) pulumi.StringOutput { return v.Safesearch }).(pulumi.StringOutput)
+}
+
+func (o WebfilterSearchEngineOutput) SafesearchStr() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterSearchEngine) pulumi.StringOutput { return v.SafesearchStr }).(pulumi.StringOutput)
+}
+
+func (o WebfilterSearchEngineOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterSearchEngine) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
+}
+
+func (o WebfilterSearchEngineOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterSearchEngine) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebfilterSearchEngineArrayOutput struct{ *pulumi.OutputState }

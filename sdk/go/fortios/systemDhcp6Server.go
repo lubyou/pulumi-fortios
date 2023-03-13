@@ -7,106 +7,37 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure DHCPv6 servers.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemDhcp6Server(ctx, "trname", &fortios.SystemDhcp6ServerArgs{
-// 			Fosid:       pulumi.Int(1),
-// 			Interface:   pulumi.String("port3"),
-// 			LeaseTime:   pulumi.Int(604800),
-// 			RapidCommit: pulumi.String("disable"),
-// 			Status:      pulumi.String("enable"),
-// 			Subnet:      pulumi.String("2001:db8:1234:113::/64"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SystemDhcp6 Server can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDhcp6Server:SystemDhcp6Server labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDhcp6Server:SystemDhcp6Server labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemDhcp6Server struct {
 	pulumi.CustomResourceState
 
-	// IAID of obtained delegated-prefix from the upstream interface.
-	DelegatedPrefixIaid pulumi.IntOutput `pulumi:"delegatedPrefixIaid"`
-	// DNS search list options. Valid values: `delegated`, `specify`.
-	DnsSearchList pulumi.StringOutput `pulumi:"dnsSearchList"`
-	// DNS server 1.
-	DnsServer1 pulumi.StringOutput `pulumi:"dnsServer1"`
-	// DNS server 2.
-	DnsServer2 pulumi.StringOutput `pulumi:"dnsServer2"`
-	// DNS server 3.
-	DnsServer3 pulumi.StringOutput `pulumi:"dnsServer3"`
-	// DNS server 4.
-	DnsServer4 pulumi.StringOutput `pulumi:"dnsServer4"`
-	// Options for assigning DNS servers to DHCPv6 clients. Valid values: `delegated`, `default`, `specify`.
-	DnsService pulumi.StringOutput `pulumi:"dnsService"`
-	// Domain name suffix for the IP addresses that the DHCP server assigns to clients.
-	Domain pulumi.StringOutput `pulumi:"domain"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// DHCP server can assign IP configurations to clients connected to this interface.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Method used to assign client IP. Valid values: `range`, `delegated`.
-	IpMode pulumi.StringOutput `pulumi:"ipMode"`
-	// DHCP IP range configuration. The structure of `ipRange` block is documented below.
-	IpRanges SystemDhcp6ServerIpRangeArrayOutput `pulumi:"ipRanges"`
-	// Lease time in seconds, 0 means unlimited.
-	LeaseTime pulumi.IntOutput `pulumi:"leaseTime"`
-	// Option 1.
-	Option1 pulumi.StringOutput `pulumi:"option1"`
-	// Option 2.
-	Option2 pulumi.StringOutput `pulumi:"option2"`
-	// Option 3.
-	Option3 pulumi.StringOutput `pulumi:"option3"`
-	// Assigning a prefix from a DHCPv6 client or RA. Valid values: `dhcp6`, `ra`.
-	PrefixMode pulumi.StringOutput `pulumi:"prefixMode"`
-	// DHCP prefix configuration. The structure of `prefixRange` block is documented below.
-	PrefixRanges SystemDhcp6ServerPrefixRangeArrayOutput `pulumi:"prefixRanges"`
-	// Enable/disable allow/disallow rapid commit. Valid values: `disable`, `enable`.
-	RapidCommit pulumi.StringOutput `pulumi:"rapidCommit"`
-	// Enable/disable this DHCPv6 configuration. Valid values: `disable`, `enable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Subnet or subnet-id if the IP mode is delegated.
-	Subnet pulumi.StringOutput `pulumi:"subnet"`
-	// Interface name from where delegated information is provided.
-	UpstreamInterface pulumi.StringOutput `pulumi:"upstreamInterface"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DelegatedPrefixIaid pulumi.IntOutput                        `pulumi:"delegatedPrefixIaid"`
+	DnsSearchList       pulumi.StringOutput                     `pulumi:"dnsSearchList"`
+	DnsServer1          pulumi.StringOutput                     `pulumi:"dnsServer1"`
+	DnsServer2          pulumi.StringOutput                     `pulumi:"dnsServer2"`
+	DnsServer3          pulumi.StringOutput                     `pulumi:"dnsServer3"`
+	DnsServer4          pulumi.StringOutput                     `pulumi:"dnsServer4"`
+	DnsService          pulumi.StringOutput                     `pulumi:"dnsService"`
+	Domain              pulumi.StringOutput                     `pulumi:"domain"`
+	DynamicSortSubtable pulumi.StringPtrOutput                  `pulumi:"dynamicSortSubtable"`
+	Fosid               pulumi.IntOutput                        `pulumi:"fosid"`
+	Interface           pulumi.StringOutput                     `pulumi:"interface"`
+	IpMode              pulumi.StringOutput                     `pulumi:"ipMode"`
+	IpRanges            SystemDhcp6ServerIpRangeArrayOutput     `pulumi:"ipRanges"`
+	LeaseTime           pulumi.IntOutput                        `pulumi:"leaseTime"`
+	Option1             pulumi.StringOutput                     `pulumi:"option1"`
+	Option2             pulumi.StringOutput                     `pulumi:"option2"`
+	Option3             pulumi.StringOutput                     `pulumi:"option3"`
+	PrefixMode          pulumi.StringOutput                     `pulumi:"prefixMode"`
+	PrefixRanges        SystemDhcp6ServerPrefixRangeArrayOutput `pulumi:"prefixRanges"`
+	RapidCommit         pulumi.StringOutput                     `pulumi:"rapidCommit"`
+	Status              pulumi.StringOutput                     `pulumi:"status"`
+	Subnet              pulumi.StringOutput                     `pulumi:"subnet"`
+	UpstreamInterface   pulumi.StringOutput                     `pulumi:"upstreamInterface"`
+	Vdomparam           pulumi.StringPtrOutput                  `pulumi:"vdomparam"`
 }
 
 // NewSystemDhcp6Server registers a new resource with the given unique name, arguments, and options.
@@ -148,105 +79,57 @@ func GetSystemDhcp6Server(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemDhcp6Server resources.
 type systemDhcp6ServerState struct {
-	// IAID of obtained delegated-prefix from the upstream interface.
-	DelegatedPrefixIaid *int `pulumi:"delegatedPrefixIaid"`
-	// DNS search list options. Valid values: `delegated`, `specify`.
-	DnsSearchList *string `pulumi:"dnsSearchList"`
-	// DNS server 1.
-	DnsServer1 *string `pulumi:"dnsServer1"`
-	// DNS server 2.
-	DnsServer2 *string `pulumi:"dnsServer2"`
-	// DNS server 3.
-	DnsServer3 *string `pulumi:"dnsServer3"`
-	// DNS server 4.
-	DnsServer4 *string `pulumi:"dnsServer4"`
-	// Options for assigning DNS servers to DHCPv6 clients. Valid values: `delegated`, `default`, `specify`.
-	DnsService *string `pulumi:"dnsService"`
-	// Domain name suffix for the IP addresses that the DHCP server assigns to clients.
-	Domain *string `pulumi:"domain"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// DHCP server can assign IP configurations to clients connected to this interface.
-	Interface *string `pulumi:"interface"`
-	// Method used to assign client IP. Valid values: `range`, `delegated`.
-	IpMode *string `pulumi:"ipMode"`
-	// DHCP IP range configuration. The structure of `ipRange` block is documented below.
-	IpRanges []SystemDhcp6ServerIpRange `pulumi:"ipRanges"`
-	// Lease time in seconds, 0 means unlimited.
-	LeaseTime *int `pulumi:"leaseTime"`
-	// Option 1.
-	Option1 *string `pulumi:"option1"`
-	// Option 2.
-	Option2 *string `pulumi:"option2"`
-	// Option 3.
-	Option3 *string `pulumi:"option3"`
-	// Assigning a prefix from a DHCPv6 client or RA. Valid values: `dhcp6`, `ra`.
-	PrefixMode *string `pulumi:"prefixMode"`
-	// DHCP prefix configuration. The structure of `prefixRange` block is documented below.
-	PrefixRanges []SystemDhcp6ServerPrefixRange `pulumi:"prefixRanges"`
-	// Enable/disable allow/disallow rapid commit. Valid values: `disable`, `enable`.
-	RapidCommit *string `pulumi:"rapidCommit"`
-	// Enable/disable this DHCPv6 configuration. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Subnet or subnet-id if the IP mode is delegated.
-	Subnet *string `pulumi:"subnet"`
-	// Interface name from where delegated information is provided.
-	UpstreamInterface *string `pulumi:"upstreamInterface"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DelegatedPrefixIaid *int                           `pulumi:"delegatedPrefixIaid"`
+	DnsSearchList       *string                        `pulumi:"dnsSearchList"`
+	DnsServer1          *string                        `pulumi:"dnsServer1"`
+	DnsServer2          *string                        `pulumi:"dnsServer2"`
+	DnsServer3          *string                        `pulumi:"dnsServer3"`
+	DnsServer4          *string                        `pulumi:"dnsServer4"`
+	DnsService          *string                        `pulumi:"dnsService"`
+	Domain              *string                        `pulumi:"domain"`
+	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
+	Fosid               *int                           `pulumi:"fosid"`
+	Interface           *string                        `pulumi:"interface"`
+	IpMode              *string                        `pulumi:"ipMode"`
+	IpRanges            []SystemDhcp6ServerIpRange     `pulumi:"ipRanges"`
+	LeaseTime           *int                           `pulumi:"leaseTime"`
+	Option1             *string                        `pulumi:"option1"`
+	Option2             *string                        `pulumi:"option2"`
+	Option3             *string                        `pulumi:"option3"`
+	PrefixMode          *string                        `pulumi:"prefixMode"`
+	PrefixRanges        []SystemDhcp6ServerPrefixRange `pulumi:"prefixRanges"`
+	RapidCommit         *string                        `pulumi:"rapidCommit"`
+	Status              *string                        `pulumi:"status"`
+	Subnet              *string                        `pulumi:"subnet"`
+	UpstreamInterface   *string                        `pulumi:"upstreamInterface"`
+	Vdomparam           *string                        `pulumi:"vdomparam"`
 }
 
 type SystemDhcp6ServerState struct {
-	// IAID of obtained delegated-prefix from the upstream interface.
 	DelegatedPrefixIaid pulumi.IntPtrInput
-	// DNS search list options. Valid values: `delegated`, `specify`.
-	DnsSearchList pulumi.StringPtrInput
-	// DNS server 1.
-	DnsServer1 pulumi.StringPtrInput
-	// DNS server 2.
-	DnsServer2 pulumi.StringPtrInput
-	// DNS server 3.
-	DnsServer3 pulumi.StringPtrInput
-	// DNS server 4.
-	DnsServer4 pulumi.StringPtrInput
-	// Options for assigning DNS servers to DHCPv6 clients. Valid values: `delegated`, `default`, `specify`.
-	DnsService pulumi.StringPtrInput
-	// Domain name suffix for the IP addresses that the DHCP server assigns to clients.
-	Domain pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DnsSearchList       pulumi.StringPtrInput
+	DnsServer1          pulumi.StringPtrInput
+	DnsServer2          pulumi.StringPtrInput
+	DnsServer3          pulumi.StringPtrInput
+	DnsServer4          pulumi.StringPtrInput
+	DnsService          pulumi.StringPtrInput
+	Domain              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// DHCP server can assign IP configurations to clients connected to this interface.
-	Interface pulumi.StringPtrInput
-	// Method used to assign client IP. Valid values: `range`, `delegated`.
-	IpMode pulumi.StringPtrInput
-	// DHCP IP range configuration. The structure of `ipRange` block is documented below.
-	IpRanges SystemDhcp6ServerIpRangeArrayInput
-	// Lease time in seconds, 0 means unlimited.
-	LeaseTime pulumi.IntPtrInput
-	// Option 1.
-	Option1 pulumi.StringPtrInput
-	// Option 2.
-	Option2 pulumi.StringPtrInput
-	// Option 3.
-	Option3 pulumi.StringPtrInput
-	// Assigning a prefix from a DHCPv6 client or RA. Valid values: `dhcp6`, `ra`.
-	PrefixMode pulumi.StringPtrInput
-	// DHCP prefix configuration. The structure of `prefixRange` block is documented below.
-	PrefixRanges SystemDhcp6ServerPrefixRangeArrayInput
-	// Enable/disable allow/disallow rapid commit. Valid values: `disable`, `enable`.
-	RapidCommit pulumi.StringPtrInput
-	// Enable/disable this DHCPv6 configuration. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Subnet or subnet-id if the IP mode is delegated.
-	Subnet pulumi.StringPtrInput
-	// Interface name from where delegated information is provided.
-	UpstreamInterface pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	Interface           pulumi.StringPtrInput
+	IpMode              pulumi.StringPtrInput
+	IpRanges            SystemDhcp6ServerIpRangeArrayInput
+	LeaseTime           pulumi.IntPtrInput
+	Option1             pulumi.StringPtrInput
+	Option2             pulumi.StringPtrInput
+	Option3             pulumi.StringPtrInput
+	PrefixMode          pulumi.StringPtrInput
+	PrefixRanges        SystemDhcp6ServerPrefixRangeArrayInput
+	RapidCommit         pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	Subnet              pulumi.StringPtrInput
+	UpstreamInterface   pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemDhcp6ServerState) ElementType() reflect.Type {
@@ -254,106 +137,58 @@ func (SystemDhcp6ServerState) ElementType() reflect.Type {
 }
 
 type systemDhcp6ServerArgs struct {
-	// IAID of obtained delegated-prefix from the upstream interface.
-	DelegatedPrefixIaid *int `pulumi:"delegatedPrefixIaid"`
-	// DNS search list options. Valid values: `delegated`, `specify`.
-	DnsSearchList *string `pulumi:"dnsSearchList"`
-	// DNS server 1.
-	DnsServer1 *string `pulumi:"dnsServer1"`
-	// DNS server 2.
-	DnsServer2 *string `pulumi:"dnsServer2"`
-	// DNS server 3.
-	DnsServer3 *string `pulumi:"dnsServer3"`
-	// DNS server 4.
-	DnsServer4 *string `pulumi:"dnsServer4"`
-	// Options for assigning DNS servers to DHCPv6 clients. Valid values: `delegated`, `default`, `specify`.
-	DnsService *string `pulumi:"dnsService"`
-	// Domain name suffix for the IP addresses that the DHCP server assigns to clients.
-	Domain *string `pulumi:"domain"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// ID.
-	Fosid int `pulumi:"fosid"`
-	// DHCP server can assign IP configurations to clients connected to this interface.
-	Interface string `pulumi:"interface"`
-	// Method used to assign client IP. Valid values: `range`, `delegated`.
-	IpMode *string `pulumi:"ipMode"`
-	// DHCP IP range configuration. The structure of `ipRange` block is documented below.
-	IpRanges []SystemDhcp6ServerIpRange `pulumi:"ipRanges"`
-	// Lease time in seconds, 0 means unlimited.
-	LeaseTime *int `pulumi:"leaseTime"`
-	// Option 1.
-	Option1 *string `pulumi:"option1"`
-	// Option 2.
-	Option2 *string `pulumi:"option2"`
-	// Option 3.
-	Option3 *string `pulumi:"option3"`
-	// Assigning a prefix from a DHCPv6 client or RA. Valid values: `dhcp6`, `ra`.
-	PrefixMode *string `pulumi:"prefixMode"`
-	// DHCP prefix configuration. The structure of `prefixRange` block is documented below.
-	PrefixRanges []SystemDhcp6ServerPrefixRange `pulumi:"prefixRanges"`
-	// Enable/disable allow/disallow rapid commit. Valid values: `disable`, `enable`.
-	RapidCommit *string `pulumi:"rapidCommit"`
-	// Enable/disable this DHCPv6 configuration. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Subnet or subnet-id if the IP mode is delegated.
-	Subnet string `pulumi:"subnet"`
-	// Interface name from where delegated information is provided.
-	UpstreamInterface *string `pulumi:"upstreamInterface"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DelegatedPrefixIaid *int                           `pulumi:"delegatedPrefixIaid"`
+	DnsSearchList       *string                        `pulumi:"dnsSearchList"`
+	DnsServer1          *string                        `pulumi:"dnsServer1"`
+	DnsServer2          *string                        `pulumi:"dnsServer2"`
+	DnsServer3          *string                        `pulumi:"dnsServer3"`
+	DnsServer4          *string                        `pulumi:"dnsServer4"`
+	DnsService          *string                        `pulumi:"dnsService"`
+	Domain              *string                        `pulumi:"domain"`
+	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
+	Fosid               int                            `pulumi:"fosid"`
+	Interface           string                         `pulumi:"interface"`
+	IpMode              *string                        `pulumi:"ipMode"`
+	IpRanges            []SystemDhcp6ServerIpRange     `pulumi:"ipRanges"`
+	LeaseTime           *int                           `pulumi:"leaseTime"`
+	Option1             *string                        `pulumi:"option1"`
+	Option2             *string                        `pulumi:"option2"`
+	Option3             *string                        `pulumi:"option3"`
+	PrefixMode          *string                        `pulumi:"prefixMode"`
+	PrefixRanges        []SystemDhcp6ServerPrefixRange `pulumi:"prefixRanges"`
+	RapidCommit         *string                        `pulumi:"rapidCommit"`
+	Status              *string                        `pulumi:"status"`
+	Subnet              string                         `pulumi:"subnet"`
+	UpstreamInterface   *string                        `pulumi:"upstreamInterface"`
+	Vdomparam           *string                        `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemDhcp6Server resource.
 type SystemDhcp6ServerArgs struct {
-	// IAID of obtained delegated-prefix from the upstream interface.
 	DelegatedPrefixIaid pulumi.IntPtrInput
-	// DNS search list options. Valid values: `delegated`, `specify`.
-	DnsSearchList pulumi.StringPtrInput
-	// DNS server 1.
-	DnsServer1 pulumi.StringPtrInput
-	// DNS server 2.
-	DnsServer2 pulumi.StringPtrInput
-	// DNS server 3.
-	DnsServer3 pulumi.StringPtrInput
-	// DNS server 4.
-	DnsServer4 pulumi.StringPtrInput
-	// Options for assigning DNS servers to DHCPv6 clients. Valid values: `delegated`, `default`, `specify`.
-	DnsService pulumi.StringPtrInput
-	// Domain name suffix for the IP addresses that the DHCP server assigns to clients.
-	Domain pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DnsSearchList       pulumi.StringPtrInput
+	DnsServer1          pulumi.StringPtrInput
+	DnsServer2          pulumi.StringPtrInput
+	DnsServer3          pulumi.StringPtrInput
+	DnsServer4          pulumi.StringPtrInput
+	DnsService          pulumi.StringPtrInput
+	Domain              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// ID.
-	Fosid pulumi.IntInput
-	// DHCP server can assign IP configurations to clients connected to this interface.
-	Interface pulumi.StringInput
-	// Method used to assign client IP. Valid values: `range`, `delegated`.
-	IpMode pulumi.StringPtrInput
-	// DHCP IP range configuration. The structure of `ipRange` block is documented below.
-	IpRanges SystemDhcp6ServerIpRangeArrayInput
-	// Lease time in seconds, 0 means unlimited.
-	LeaseTime pulumi.IntPtrInput
-	// Option 1.
-	Option1 pulumi.StringPtrInput
-	// Option 2.
-	Option2 pulumi.StringPtrInput
-	// Option 3.
-	Option3 pulumi.StringPtrInput
-	// Assigning a prefix from a DHCPv6 client or RA. Valid values: `dhcp6`, `ra`.
-	PrefixMode pulumi.StringPtrInput
-	// DHCP prefix configuration. The structure of `prefixRange` block is documented below.
-	PrefixRanges SystemDhcp6ServerPrefixRangeArrayInput
-	// Enable/disable allow/disallow rapid commit. Valid values: `disable`, `enable`.
-	RapidCommit pulumi.StringPtrInput
-	// Enable/disable this DHCPv6 configuration. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Subnet or subnet-id if the IP mode is delegated.
-	Subnet pulumi.StringInput
-	// Interface name from where delegated information is provided.
-	UpstreamInterface pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid               pulumi.IntInput
+	Interface           pulumi.StringInput
+	IpMode              pulumi.StringPtrInput
+	IpRanges            SystemDhcp6ServerIpRangeArrayInput
+	LeaseTime           pulumi.IntPtrInput
+	Option1             pulumi.StringPtrInput
+	Option2             pulumi.StringPtrInput
+	Option3             pulumi.StringPtrInput
+	PrefixMode          pulumi.StringPtrInput
+	PrefixRanges        SystemDhcp6ServerPrefixRangeArrayInput
+	RapidCommit         pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	Subnet              pulumi.StringInput
+	UpstreamInterface   pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemDhcp6ServerArgs) ElementType() reflect.Type {
@@ -382,7 +217,7 @@ func (i *SystemDhcp6Server) ToSystemDhcp6ServerOutputWithContext(ctx context.Con
 // SystemDhcp6ServerArrayInput is an input type that accepts SystemDhcp6ServerArray and SystemDhcp6ServerArrayOutput values.
 // You can construct a concrete instance of `SystemDhcp6ServerArrayInput` via:
 //
-//          SystemDhcp6ServerArray{ SystemDhcp6ServerArgs{...} }
+//	SystemDhcp6ServerArray{ SystemDhcp6ServerArgs{...} }
 type SystemDhcp6ServerArrayInput interface {
 	pulumi.Input
 
@@ -407,7 +242,7 @@ func (i SystemDhcp6ServerArray) ToSystemDhcp6ServerArrayOutputWithContext(ctx co
 // SystemDhcp6ServerMapInput is an input type that accepts SystemDhcp6ServerMap and SystemDhcp6ServerMapOutput values.
 // You can construct a concrete instance of `SystemDhcp6ServerMapInput` via:
 //
-//          SystemDhcp6ServerMap{ "key": SystemDhcp6ServerArgs{...} }
+//	SystemDhcp6ServerMap{ "key": SystemDhcp6ServerArgs{...} }
 type SystemDhcp6ServerMapInput interface {
 	pulumi.Input
 
@@ -441,6 +276,102 @@ func (o SystemDhcp6ServerOutput) ToSystemDhcp6ServerOutput() SystemDhcp6ServerOu
 
 func (o SystemDhcp6ServerOutput) ToSystemDhcp6ServerOutputWithContext(ctx context.Context) SystemDhcp6ServerOutput {
 	return o
+}
+
+func (o SystemDhcp6ServerOutput) DelegatedPrefixIaid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.IntOutput { return v.DelegatedPrefixIaid }).(pulumi.IntOutput)
+}
+
+func (o SystemDhcp6ServerOutput) DnsSearchList() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.DnsSearchList }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) DnsServer1() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.DnsServer1 }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) DnsServer2() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.DnsServer2 }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) DnsServer3() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.DnsServer3 }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) DnsServer4() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.DnsServer4 }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) DnsService() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.DnsService }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.Domain }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemDhcp6ServerOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SystemDhcp6ServerOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) IpMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.IpMode }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) IpRanges() SystemDhcp6ServerIpRangeArrayOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) SystemDhcp6ServerIpRangeArrayOutput { return v.IpRanges }).(SystemDhcp6ServerIpRangeArrayOutput)
+}
+
+func (o SystemDhcp6ServerOutput) LeaseTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.IntOutput { return v.LeaseTime }).(pulumi.IntOutput)
+}
+
+func (o SystemDhcp6ServerOutput) Option1() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.Option1 }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) Option2() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.Option2 }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) Option3() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.Option3 }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) PrefixMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.PrefixMode }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) PrefixRanges() SystemDhcp6ServerPrefixRangeArrayOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) SystemDhcp6ServerPrefixRangeArrayOutput { return v.PrefixRanges }).(SystemDhcp6ServerPrefixRangeArrayOutput)
+}
+
+func (o SystemDhcp6ServerOutput) RapidCommit() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.RapidCommit }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) Subnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.Subnet }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) UpstreamInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringOutput { return v.UpstreamInterface }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcp6ServerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemDhcp6ServerArrayOutput struct{ *pulumi.OutputState }

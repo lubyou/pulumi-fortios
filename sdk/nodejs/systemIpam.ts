@@ -2,27 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IP address management services. Applies to FortiOS Version `>= 7.0.2`.
- *
- * ## Import
- *
- * System Ipam can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemIpam:SystemIpam labelname SystemIpam
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemIpam:SystemIpam labelname SystemIpam
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemIpam extends pulumi.CustomResource {
     /**
      * Get an existing SystemIpam resource's state with the given name, ID, and optional extra
@@ -51,21 +34,12 @@ export class SystemIpam extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemIpam.__pulumiType;
     }
 
-    /**
-     * Configure IPAM pool subnet, Class A - Class B subnet.
-     */
+    public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly poolSubnet!: pulumi.Output<string>;
-    /**
-     * Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
-     */
+    public readonly pools!: pulumi.Output<outputs.SystemIpamPool[] | undefined>;
+    public readonly rules!: pulumi.Output<outputs.SystemIpamRule[] | undefined>;
     public readonly serverType!: pulumi.Output<string>;
-    /**
-     * Enable/disable IP address management services. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -81,13 +55,19 @@ export class SystemIpam extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemIpamState | undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["poolSubnet"] = state ? state.poolSubnet : undefined;
+            resourceInputs["pools"] = state ? state.pools : undefined;
+            resourceInputs["rules"] = state ? state.rules : undefined;
             resourceInputs["serverType"] = state ? state.serverType : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemIpamArgs | undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["poolSubnet"] = args ? args.poolSubnet : undefined;
+            resourceInputs["pools"] = args ? args.pools : undefined;
+            resourceInputs["rules"] = args ? args.rules : undefined;
             resourceInputs["serverType"] = args ? args.serverType : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -101,21 +81,12 @@ export class SystemIpam extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemIpam resources.
  */
 export interface SystemIpamState {
-    /**
-     * Configure IPAM pool subnet, Class A - Class B subnet.
-     */
+    dynamicSortSubtable?: pulumi.Input<string>;
     poolSubnet?: pulumi.Input<string>;
-    /**
-     * Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
-     */
+    pools?: pulumi.Input<pulumi.Input<inputs.SystemIpamPool>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.SystemIpamRule>[]>;
     serverType?: pulumi.Input<string>;
-    /**
-     * Enable/disable IP address management services. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -123,20 +94,11 @@ export interface SystemIpamState {
  * The set of arguments for constructing a SystemIpam resource.
  */
 export interface SystemIpamArgs {
-    /**
-     * Configure IPAM pool subnet, Class A - Class B subnet.
-     */
+    dynamicSortSubtable?: pulumi.Input<string>;
     poolSubnet?: pulumi.Input<string>;
-    /**
-     * Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
-     */
+    pools?: pulumi.Input<pulumi.Input<inputs.SystemIpamPool>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.SystemIpamRule>[]>;
     serverType?: pulumi.Input<string>;
-    /**
-     * Enable/disable IP address management services. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

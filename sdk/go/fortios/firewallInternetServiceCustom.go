@@ -10,38 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure custom Internet Services.
-//
-// ## Import
-//
-// Firewall InternetServiceCustom can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceCustom:FirewallInternetServiceCustom labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceCustom:FirewallInternetServiceCustom labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallInternetServiceCustom struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Entries added to the Internet Service database and custom database. The structure of `entry` block is documented below.
-	Entries FirewallInternetServiceCustomEntryArrayOutput `pulumi:"entries"`
-	// Select the destination address or address group object from available options.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Reputation level of the custom Internet Service.
-	Reputation pulumi.IntOutput `pulumi:"reputation"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput                        `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                        `pulumi:"dynamicSortSubtable"`
+	Entries             FirewallInternetServiceCustomEntryArrayOutput `pulumi:"entries"`
+	Name                pulumi.StringOutput                           `pulumi:"name"`
+	Reputation          pulumi.IntOutput                              `pulumi:"reputation"`
+	Vdomparam           pulumi.StringPtrOutput                        `pulumi:"vdomparam"`
 }
 
 // NewFirewallInternetServiceCustom registers a new resource with the given unique name, arguments, and options.
@@ -74,33 +51,21 @@ func GetFirewallInternetServiceCustom(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallInternetServiceCustom resources.
 type firewallInternetServiceCustomState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Entries added to the Internet Service database and custom database. The structure of `entry` block is documented below.
-	Entries []FirewallInternetServiceCustomEntry `pulumi:"entries"`
-	// Select the destination address or address group object from available options.
-	Name *string `pulumi:"name"`
-	// Reputation level of the custom Internet Service.
-	Reputation *int `pulumi:"reputation"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                              `pulumi:"comment"`
+	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
+	Entries             []FirewallInternetServiceCustomEntry `pulumi:"entries"`
+	Name                *string                              `pulumi:"name"`
+	Reputation          *int                                 `pulumi:"reputation"`
+	Vdomparam           *string                              `pulumi:"vdomparam"`
 }
 
 type FirewallInternetServiceCustomState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Entries added to the Internet Service database and custom database. The structure of `entry` block is documented below.
-	Entries FirewallInternetServiceCustomEntryArrayInput
-	// Select the destination address or address group object from available options.
-	Name pulumi.StringPtrInput
-	// Reputation level of the custom Internet Service.
-	Reputation pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             FirewallInternetServiceCustomEntryArrayInput
+	Name                pulumi.StringPtrInput
+	Reputation          pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceCustomState) ElementType() reflect.Type {
@@ -108,34 +73,22 @@ func (FirewallInternetServiceCustomState) ElementType() reflect.Type {
 }
 
 type firewallInternetServiceCustomArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Entries added to the Internet Service database and custom database. The structure of `entry` block is documented below.
-	Entries []FirewallInternetServiceCustomEntry `pulumi:"entries"`
-	// Select the destination address or address group object from available options.
-	Name *string `pulumi:"name"`
-	// Reputation level of the custom Internet Service.
-	Reputation *int `pulumi:"reputation"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                              `pulumi:"comment"`
+	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
+	Entries             []FirewallInternetServiceCustomEntry `pulumi:"entries"`
+	Name                *string                              `pulumi:"name"`
+	Reputation          *int                                 `pulumi:"reputation"`
+	Vdomparam           *string                              `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallInternetServiceCustom resource.
 type FirewallInternetServiceCustomArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Entries added to the Internet Service database and custom database. The structure of `entry` block is documented below.
-	Entries FirewallInternetServiceCustomEntryArrayInput
-	// Select the destination address or address group object from available options.
-	Name pulumi.StringPtrInput
-	// Reputation level of the custom Internet Service.
-	Reputation pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             FirewallInternetServiceCustomEntryArrayInput
+	Name                pulumi.StringPtrInput
+	Reputation          pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceCustomArgs) ElementType() reflect.Type {
@@ -164,7 +117,7 @@ func (i *FirewallInternetServiceCustom) ToFirewallInternetServiceCustomOutputWit
 // FirewallInternetServiceCustomArrayInput is an input type that accepts FirewallInternetServiceCustomArray and FirewallInternetServiceCustomArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceCustomArrayInput` via:
 //
-//          FirewallInternetServiceCustomArray{ FirewallInternetServiceCustomArgs{...} }
+//	FirewallInternetServiceCustomArray{ FirewallInternetServiceCustomArgs{...} }
 type FirewallInternetServiceCustomArrayInput interface {
 	pulumi.Input
 
@@ -189,7 +142,7 @@ func (i FirewallInternetServiceCustomArray) ToFirewallInternetServiceCustomArray
 // FirewallInternetServiceCustomMapInput is an input type that accepts FirewallInternetServiceCustomMap and FirewallInternetServiceCustomMapOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceCustomMapInput` via:
 //
-//          FirewallInternetServiceCustomMap{ "key": FirewallInternetServiceCustomArgs{...} }
+//	FirewallInternetServiceCustomMap{ "key": FirewallInternetServiceCustomArgs{...} }
 type FirewallInternetServiceCustomMapInput interface {
 	pulumi.Input
 
@@ -223,6 +176,30 @@ func (o FirewallInternetServiceCustomOutput) ToFirewallInternetServiceCustomOutp
 
 func (o FirewallInternetServiceCustomOutput) ToFirewallInternetServiceCustomOutputWithContext(ctx context.Context) FirewallInternetServiceCustomOutput {
 	return o
+}
+
+func (o FirewallInternetServiceCustomOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceCustom) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallInternetServiceCustomOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceCustom) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallInternetServiceCustomOutput) Entries() FirewallInternetServiceCustomEntryArrayOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceCustom) FirewallInternetServiceCustomEntryArrayOutput { return v.Entries }).(FirewallInternetServiceCustomEntryArrayOutput)
+}
+
+func (o FirewallInternetServiceCustomOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceCustom) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallInternetServiceCustomOutput) Reputation() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceCustom) pulumi.IntOutput { return v.Reputation }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceCustomOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceCustom) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallInternetServiceCustomArrayOutput struct{ *pulumi.OutputState }

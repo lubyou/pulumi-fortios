@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure WiFi bridge access control list. Applies to FortiOS Version `>= 6.4.0`.
- *
- * ## Import
- *
- * WirelessController AccessControlList can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerAccessControlList:WirelessControllerAccessControlList labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerAccessControlList:WirelessControllerAccessControlList labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerAccessControlList extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerAccessControlList resource's state with the given name, ID, and optional extra
@@ -52,29 +34,11 @@ export class WirelessControllerAccessControlList extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerAccessControlList.__pulumiType;
     }
 
-    /**
-     * Description.
-     */
     public readonly comment!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * AP ACL layer3 ipv4 rule list. The structure of `layer3Ipv4Rules` block is documented below.
-     */
     public readonly layer3Ipv4Rules!: pulumi.Output<outputs.WirelessControllerAccessControlListLayer3Ipv4Rule[] | undefined>;
-    /**
-     * AP ACL layer3 ipv6 rule list. The structure of `layer3Ipv6Rules` block is documented below.
-     */
     public readonly layer3Ipv6Rules!: pulumi.Output<outputs.WirelessControllerAccessControlListLayer3Ipv6Rule[] | undefined>;
-    /**
-     * AP access control list name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -114,29 +78,11 @@ export class WirelessControllerAccessControlList extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerAccessControlList resources.
  */
 export interface WirelessControllerAccessControlListState {
-    /**
-     * Description.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * AP ACL layer3 ipv4 rule list. The structure of `layer3Ipv4Rules` block is documented below.
-     */
     layer3Ipv4Rules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerAccessControlListLayer3Ipv4Rule>[]>;
-    /**
-     * AP ACL layer3 ipv6 rule list. The structure of `layer3Ipv6Rules` block is documented below.
-     */
     layer3Ipv6Rules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerAccessControlListLayer3Ipv6Rule>[]>;
-    /**
-     * AP access control list name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -144,28 +90,10 @@ export interface WirelessControllerAccessControlListState {
  * The set of arguments for constructing a WirelessControllerAccessControlList resource.
  */
 export interface WirelessControllerAccessControlListArgs {
-    /**
-     * Description.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * AP ACL layer3 ipv4 rule list. The structure of `layer3Ipv4Rules` block is documented below.
-     */
     layer3Ipv4Rules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerAccessControlListLayer3Ipv4Rule>[]>;
-    /**
-     * AP ACL layer3 ipv6 rule list. The structure of `layer3Ipv6Rules` block is documented below.
-     */
     layer3Ipv6Rules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerAccessControlListLayer3Ipv6Rule>[]>;
-    /**
-     * AP access control list name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

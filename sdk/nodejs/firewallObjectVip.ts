@@ -4,29 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure firewall virtual IPs (VIPs) of FortiOS.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.FirewallVip`, we recommend that you use the new resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const v11 = new fortios.FirewallObjectVip("v11", {
- *     comment: "fdsafdsafds",
- *     extintf: "port3",
- *     extip: "11.1.1.1-21.1.1.1",
- *     extport: "2-3",
- *     mappedips: ["22.2.2.2-32.2.2.2"],
- *     mappedport: "4-5",
- *     portforward: "enable",
- *     protocol: "tcp",
- * });
- * ```
- */
 export class FirewallObjectVip extends pulumi.CustomResource {
     /**
      * Get an existing FirewallObjectVip resource's state with the given name, ID, and optional extra
@@ -55,42 +32,14 @@ export class FirewallObjectVip extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallObjectVip.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-     */
     public readonly extintf!: pulumi.Output<string>;
-    /**
-     * IP address or address range on the external interface that you want to map to an address or address range on the
-     * destination network.
-     */
     public readonly extip!: pulumi.Output<string>;
-    /**
-     * Incoming port number range that you want to map to a port number range on the destination network.
-     */
     public readonly extport!: pulumi.Output<string>;
-    /**
-     * IP address or address range on the destination network to which the external IP address is mapped.
-     */
     public readonly mappedips!: pulumi.Output<string[]>;
-    /**
-     * Port number range on the destination network to which the external port number range is mapped.
-     */
     public readonly mappedport!: pulumi.Output<string>;
-    /**
-     * Virtual IP name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable port forwarding.
-     */
     public readonly portforward!: pulumi.Output<string>;
-    /**
-     * Protocol to use when forwarding packets.
-     */
     public readonly protocol!: pulumi.Output<string>;
 
     /**
@@ -142,42 +91,14 @@ export class FirewallObjectVip extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallObjectVip resources.
  */
 export interface FirewallObjectVipState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-     */
     extintf?: pulumi.Input<string>;
-    /**
-     * IP address or address range on the external interface that you want to map to an address or address range on the
-     * destination network.
-     */
     extip?: pulumi.Input<string>;
-    /**
-     * Incoming port number range that you want to map to a port number range on the destination network.
-     */
     extport?: pulumi.Input<string>;
-    /**
-     * IP address or address range on the destination network to which the external IP address is mapped.
-     */
     mappedips?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Port number range on the destination network to which the external port number range is mapped.
-     */
     mappedport?: pulumi.Input<string>;
-    /**
-     * Virtual IP name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable port forwarding.
-     */
     portforward?: pulumi.Input<string>;
-    /**
-     * Protocol to use when forwarding packets.
-     */
     protocol?: pulumi.Input<string>;
 }
 
@@ -185,41 +106,13 @@ export interface FirewallObjectVipState {
  * The set of arguments for constructing a FirewallObjectVip resource.
  */
 export interface FirewallObjectVipArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-     */
     extintf?: pulumi.Input<string>;
-    /**
-     * IP address or address range on the external interface that you want to map to an address or address range on the
-     * destination network.
-     */
     extip: pulumi.Input<string>;
-    /**
-     * Incoming port number range that you want to map to a port number range on the destination network.
-     */
     extport?: pulumi.Input<string>;
-    /**
-     * IP address or address range on the destination network to which the external IP address is mapped.
-     */
     mappedips: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Port number range on the destination network to which the external port number range is mapped.
-     */
     mappedport?: pulumi.Input<string>;
-    /**
-     * Virtual IP name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable port forwarding.
-     */
     portforward?: pulumi.Input<string>;
-    /**
-     * Protocol to use when forwarding packets.
-     */
     protocol?: pulumi.Input<string>;
 }

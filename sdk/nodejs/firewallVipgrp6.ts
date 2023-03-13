@@ -2,93 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv6 virtual IP groups.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
- *
- * const trname1 = new fortios.FirewallVip6("trname1", {
- *     arpReply: "enable",
- *     color: 0,
- *     extip: "2001:1:1:2::100",
- *     extport: "0-65535",
- *     fosid: 0,
- *     httpCookieAge: 60,
- *     httpCookieDomainFromHost: "disable",
- *     httpCookieGeneration: 0,
- *     httpCookieShare: "same-ip",
- *     httpIpHeader: "disable",
- *     httpMultiplex: "disable",
- *     httpsCookieSecure: "disable",
- *     ldbMethod: "static",
- *     mappedip: "2001:1:1:2::200",
- *     mappedport: "0-65535",
- *     maxEmbryonicConnections: 1000,
- *     outlookWebAccess: "disable",
- *     persistence: "none",
- *     portforward: "disable",
- *     protocol: "tcp",
- *     sslAlgorithm: "high",
- *     sslClientFallback: "enable",
- *     sslClientRenegotiation: "secure",
- *     sslClientSessionStateMax: 1000,
- *     sslClientSessionStateTimeout: 30,
- *     sslClientSessionStateType: "both",
- *     sslDhBits: "2048",
- *     sslHpkp: "disable",
- *     sslHpkpAge: 5184000,
- *     sslHpkpIncludeSubdomains: "disable",
- *     sslHsts: "disable",
- *     sslHstsAge: 5184000,
- *     sslHstsIncludeSubdomains: "disable",
- *     sslHttpLocationConversion: "disable",
- *     sslHttpMatchHost: "enable",
- *     sslMaxVersion: "tls-1.2",
- *     sslMinVersion: "tls-1.1",
- *     sslMode: "half",
- *     sslPfs: "require",
- *     sslSendEmptyFrags: "enable",
- *     sslServerAlgorithm: "client",
- *     sslServerMaxVersion: "client",
- *     sslServerMinVersion: "client",
- *     sslServerSessionStateMax: 100,
- *     sslServerSessionStateTimeout: 60,
- *     sslServerSessionStateType: "both",
- *     type: "static-nat",
- *     weblogicServer: "disable",
- *     websphereServer: "disable",
- * });
- * const trname = new fortios.FirewallVipgrp6("trname", {
- *     color: 0,
- *     members: [{
- *         name: trname1.name,
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * Firewall Vipgrp6 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallVipgrp6:FirewallVipgrp6 labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallVipgrp6:FirewallVipgrp6 labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallVipgrp6 extends pulumi.CustomResource {
     /**
      * Get an existing FirewallVipgrp6 resource's state with the given name, ID, and optional extra
@@ -117,33 +34,12 @@ export class FirewallVipgrp6 extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallVipgrp6.__pulumiType;
     }
 
-    /**
-     * Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Member VIP objects of the group (Separate multiple objects with a space). The structure of `member` block is documented below.
-     */
     public readonly members!: pulumi.Output<outputs.FirewallVipgrp6Member[]>;
-    /**
-     * IPv6 VIP name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -188,33 +84,12 @@ export class FirewallVipgrp6 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallVipgrp6 resources.
  */
 export interface FirewallVipgrp6State {
-    /**
-     * Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Member VIP objects of the group (Separate multiple objects with a space). The structure of `member` block is documented below.
-     */
     members?: pulumi.Input<pulumi.Input<inputs.FirewallVipgrp6Member>[]>;
-    /**
-     * IPv6 VIP name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -222,32 +97,11 @@ export interface FirewallVipgrp6State {
  * The set of arguments for constructing a FirewallVipgrp6 resource.
  */
 export interface FirewallVipgrp6Args {
-    /**
-     * Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Member VIP objects of the group (Separate multiple objects with a space). The structure of `member` block is documented below.
-     */
     members: pulumi.Input<pulumi.Input<inputs.FirewallVipgrp6Member>[]>;
-    /**
-     * IPv6 VIP name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

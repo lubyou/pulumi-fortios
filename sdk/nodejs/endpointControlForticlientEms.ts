@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiClient Enterprise Management Server (EMS) entries. Applies to FortiOS Version `<= 6.2.0`.
- *
- * ## Import
- *
- * EndpointControl ForticlientEms can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/endpointControlForticlientEms:EndpointControlForticlientEms labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/endpointControlForticlientEms:EndpointControlForticlientEms labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class EndpointControlForticlientEms extends pulumi.CustomResource {
     /**
      * Get an existing EndpointControlForticlientEms resource's state with the given name, ID, and optional extra
@@ -51,49 +32,16 @@ export class EndpointControlForticlientEms extends pulumi.CustomResource {
         return obj['__pulumiType'] === EndpointControlForticlientEms.__pulumiType;
     }
 
-    /**
-     * Firewall address name.
-     */
     public readonly address!: pulumi.Output<string>;
-    /**
-     * FortiClient EMS admin password.
-     */
     public readonly adminPassword!: pulumi.Output<string | undefined>;
-    /**
-     * FortiClient EMS admin type. Valid values: `Windows`, `LDAP`.
-     */
     public readonly adminType!: pulumi.Output<string>;
-    /**
-     * FortiClient EMS admin username.
-     */
     public readonly adminUsername!: pulumi.Output<string>;
-    /**
-     * FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
-     */
     public readonly httpsPort!: pulumi.Output<number>;
-    /**
-     * FortiClient EMS telemetry listen port number. (1 - 65535, default: 8013).
-     */
     public readonly listenPort!: pulumi.Output<number>;
-    /**
-     * FortiClient Enterprise Management Server (EMS) name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * FortiClient EMS REST API authentication. Valid values: `disable`, `userpass`.
-     */
     public readonly restApiAuth!: pulumi.Output<string>;
-    /**
-     * FortiClient EMS Serial Number.
-     */
     public readonly serialNumber!: pulumi.Output<string>;
-    /**
-     * FortiClient EMS telemetry upload port number. (1 - 65535, default: 8014).
-     */
     public readonly uploadPort!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -132,7 +80,7 @@ export class EndpointControlForticlientEms extends pulumi.CustomResource {
                 throw new Error("Missing required property 'serialNumber'");
             }
             resourceInputs["address"] = args ? args.address : undefined;
-            resourceInputs["adminPassword"] = args ? args.adminPassword : undefined;
+            resourceInputs["adminPassword"] = args?.adminPassword ? pulumi.secret(args.adminPassword) : undefined;
             resourceInputs["adminType"] = args ? args.adminType : undefined;
             resourceInputs["adminUsername"] = args ? args.adminUsername : undefined;
             resourceInputs["httpsPort"] = args ? args.httpsPort : undefined;
@@ -144,6 +92,8 @@ export class EndpointControlForticlientEms extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["adminPassword"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(EndpointControlForticlientEms.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -152,49 +102,16 @@ export class EndpointControlForticlientEms extends pulumi.CustomResource {
  * Input properties used for looking up and filtering EndpointControlForticlientEms resources.
  */
 export interface EndpointControlForticlientEmsState {
-    /**
-     * Firewall address name.
-     */
     address?: pulumi.Input<string>;
-    /**
-     * FortiClient EMS admin password.
-     */
     adminPassword?: pulumi.Input<string>;
-    /**
-     * FortiClient EMS admin type. Valid values: `Windows`, `LDAP`.
-     */
     adminType?: pulumi.Input<string>;
-    /**
-     * FortiClient EMS admin username.
-     */
     adminUsername?: pulumi.Input<string>;
-    /**
-     * FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
-     */
     httpsPort?: pulumi.Input<number>;
-    /**
-     * FortiClient EMS telemetry listen port number. (1 - 65535, default: 8013).
-     */
     listenPort?: pulumi.Input<number>;
-    /**
-     * FortiClient Enterprise Management Server (EMS) name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * FortiClient EMS REST API authentication. Valid values: `disable`, `userpass`.
-     */
     restApiAuth?: pulumi.Input<string>;
-    /**
-     * FortiClient EMS Serial Number.
-     */
     serialNumber?: pulumi.Input<string>;
-    /**
-     * FortiClient EMS telemetry upload port number. (1 - 65535, default: 8014).
-     */
     uploadPort?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -202,48 +119,15 @@ export interface EndpointControlForticlientEmsState {
  * The set of arguments for constructing a EndpointControlForticlientEms resource.
  */
 export interface EndpointControlForticlientEmsArgs {
-    /**
-     * Firewall address name.
-     */
     address: pulumi.Input<string>;
-    /**
-     * FortiClient EMS admin password.
-     */
     adminPassword?: pulumi.Input<string>;
-    /**
-     * FortiClient EMS admin type. Valid values: `Windows`, `LDAP`.
-     */
     adminType?: pulumi.Input<string>;
-    /**
-     * FortiClient EMS admin username.
-     */
     adminUsername: pulumi.Input<string>;
-    /**
-     * FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
-     */
     httpsPort?: pulumi.Input<number>;
-    /**
-     * FortiClient EMS telemetry listen port number. (1 - 65535, default: 8013).
-     */
     listenPort?: pulumi.Input<number>;
-    /**
-     * FortiClient Enterprise Management Server (EMS) name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * FortiClient EMS REST API authentication. Valid values: `disable`, `userpass`.
-     */
     restApiAuth?: pulumi.Input<string>;
-    /**
-     * FortiClient EMS Serial Number.
-     */
     serialNumber: pulumi.Input<string>;
-    /**
-     * FortiClient EMS telemetry upload port number. (1 - 65535, default: 8014).
-     */
     uploadPort?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

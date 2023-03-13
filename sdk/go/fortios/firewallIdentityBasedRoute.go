@@ -10,59 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure identity based routing.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallIdentityBasedRoute(ctx, "trname", &fortios.FirewallIdentityBasedRouteArgs{
-// 			Comments: pulumi.String("test"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall IdentityBasedRoute can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallIdentityBasedRoute:FirewallIdentityBasedRoute labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallIdentityBasedRoute:FirewallIdentityBasedRoute labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallIdentityBasedRoute struct {
 	pulumi.CustomResourceState
 
-	// Comments.
-	Comments pulumi.StringOutput `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Group name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Rule. The structure of `rule` block is documented below.
-	Rules FirewallIdentityBasedRouteRuleArrayOutput `pulumi:"rules"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comments            pulumi.StringOutput                       `pulumi:"comments"`
+	DynamicSortSubtable pulumi.StringPtrOutput                    `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                       `pulumi:"name"`
+	Rules               FirewallIdentityBasedRouteRuleArrayOutput `pulumi:"rules"`
+	Vdomparam           pulumi.StringPtrOutput                    `pulumi:"vdomparam"`
 }
 
 // NewFirewallIdentityBasedRoute registers a new resource with the given unique name, arguments, and options.
@@ -95,29 +50,19 @@ func GetFirewallIdentityBasedRoute(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallIdentityBasedRoute resources.
 type firewallIdentityBasedRouteState struct {
-	// Comments.
-	Comments *string `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Group name.
-	Name *string `pulumi:"name"`
-	// Rule. The structure of `rule` block is documented below.
-	Rules []FirewallIdentityBasedRouteRule `pulumi:"rules"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comments            *string                          `pulumi:"comments"`
+	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
+	Name                *string                          `pulumi:"name"`
+	Rules               []FirewallIdentityBasedRouteRule `pulumi:"rules"`
+	Vdomparam           *string                          `pulumi:"vdomparam"`
 }
 
 type FirewallIdentityBasedRouteState struct {
-	// Comments.
-	Comments pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Group name.
-	Name pulumi.StringPtrInput
-	// Rule. The structure of `rule` block is documented below.
-	Rules FirewallIdentityBasedRouteRuleArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Rules               FirewallIdentityBasedRouteRuleArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallIdentityBasedRouteState) ElementType() reflect.Type {
@@ -125,30 +70,20 @@ func (FirewallIdentityBasedRouteState) ElementType() reflect.Type {
 }
 
 type firewallIdentityBasedRouteArgs struct {
-	// Comments.
-	Comments *string `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Group name.
-	Name *string `pulumi:"name"`
-	// Rule. The structure of `rule` block is documented below.
-	Rules []FirewallIdentityBasedRouteRule `pulumi:"rules"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comments            *string                          `pulumi:"comments"`
+	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
+	Name                *string                          `pulumi:"name"`
+	Rules               []FirewallIdentityBasedRouteRule `pulumi:"rules"`
+	Vdomparam           *string                          `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallIdentityBasedRoute resource.
 type FirewallIdentityBasedRouteArgs struct {
-	// Comments.
-	Comments pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Group name.
-	Name pulumi.StringPtrInput
-	// Rule. The structure of `rule` block is documented below.
-	Rules FirewallIdentityBasedRouteRuleArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Rules               FirewallIdentityBasedRouteRuleArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallIdentityBasedRouteArgs) ElementType() reflect.Type {
@@ -177,7 +112,7 @@ func (i *FirewallIdentityBasedRoute) ToFirewallIdentityBasedRouteOutputWithConte
 // FirewallIdentityBasedRouteArrayInput is an input type that accepts FirewallIdentityBasedRouteArray and FirewallIdentityBasedRouteArrayOutput values.
 // You can construct a concrete instance of `FirewallIdentityBasedRouteArrayInput` via:
 //
-//          FirewallIdentityBasedRouteArray{ FirewallIdentityBasedRouteArgs{...} }
+//	FirewallIdentityBasedRouteArray{ FirewallIdentityBasedRouteArgs{...} }
 type FirewallIdentityBasedRouteArrayInput interface {
 	pulumi.Input
 
@@ -202,7 +137,7 @@ func (i FirewallIdentityBasedRouteArray) ToFirewallIdentityBasedRouteArrayOutput
 // FirewallIdentityBasedRouteMapInput is an input type that accepts FirewallIdentityBasedRouteMap and FirewallIdentityBasedRouteMapOutput values.
 // You can construct a concrete instance of `FirewallIdentityBasedRouteMapInput` via:
 //
-//          FirewallIdentityBasedRouteMap{ "key": FirewallIdentityBasedRouteArgs{...} }
+//	FirewallIdentityBasedRouteMap{ "key": FirewallIdentityBasedRouteArgs{...} }
 type FirewallIdentityBasedRouteMapInput interface {
 	pulumi.Input
 
@@ -236,6 +171,26 @@ func (o FirewallIdentityBasedRouteOutput) ToFirewallIdentityBasedRouteOutput() F
 
 func (o FirewallIdentityBasedRouteOutput) ToFirewallIdentityBasedRouteOutputWithContext(ctx context.Context) FirewallIdentityBasedRouteOutput {
 	return o
+}
+
+func (o FirewallIdentityBasedRouteOutput) Comments() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIdentityBasedRoute) pulumi.StringOutput { return v.Comments }).(pulumi.StringOutput)
+}
+
+func (o FirewallIdentityBasedRouteOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallIdentityBasedRoute) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallIdentityBasedRouteOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIdentityBasedRoute) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallIdentityBasedRouteOutput) Rules() FirewallIdentityBasedRouteRuleArrayOutput {
+	return o.ApplyT(func(v *FirewallIdentityBasedRoute) FirewallIdentityBasedRouteRuleArrayOutput { return v.Rules }).(FirewallIdentityBasedRouteRuleArrayOutput)
+}
+
+func (o FirewallIdentityBasedRouteOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallIdentityBasedRoute) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallIdentityBasedRouteArrayOutput struct{ *pulumi.OutputState }

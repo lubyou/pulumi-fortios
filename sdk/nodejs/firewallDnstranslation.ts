@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure DNS translation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallDnstranslation("trname", {
- *     dst: "2.2.2.2",
- *     fosid: 1,
- *     netmask: "255.0.0.0",
- *     src: "1.1.1.1",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall Dnstranslation can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallDnstranslation:FirewallDnstranslation labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallDnstranslation:FirewallDnstranslation labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallDnstranslation extends pulumi.CustomResource {
     /**
      * Get an existing FirewallDnstranslation resource's state with the given name, ID, and optional extra
@@ -65,25 +32,10 @@ export class FirewallDnstranslation extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallDnstranslation.__pulumiType;
     }
 
-    /**
-     * IPv4 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src.
-     */
     public readonly dst!: pulumi.Output<string>;
-    /**
-     * ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * If src and dst are subnets rather than single IP addresses, enter the netmask for both src and dst.
-     */
     public readonly netmask!: pulumi.Output<string>;
-    /**
-     * IPv4 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst.
-     */
     public readonly src!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -121,25 +73,10 @@ export class FirewallDnstranslation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallDnstranslation resources.
  */
 export interface FirewallDnstranslationState {
-    /**
-     * IPv4 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src.
-     */
     dst?: pulumi.Input<string>;
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * If src and dst are subnets rather than single IP addresses, enter the netmask for both src and dst.
-     */
     netmask?: pulumi.Input<string>;
-    /**
-     * IPv4 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst.
-     */
     src?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -147,24 +84,9 @@ export interface FirewallDnstranslationState {
  * The set of arguments for constructing a FirewallDnstranslation resource.
  */
 export interface FirewallDnstranslationArgs {
-    /**
-     * IPv4 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src.
-     */
     dst?: pulumi.Input<string>;
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * If src and dst are subnets rather than single IP addresses, enter the netmask for both src and dst.
-     */
     netmask?: pulumi.Input<string>;
-    /**
-     * IPv4 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst.
-     */
     src?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,29 +10,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Global PTP settings. Applies to FortiOS Version `>= 6.4.2`.
-//
-// ## Import
-//
-// SwitchControllerPtp Settings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerPtpSettings:SwitchControllerPtpSettings labelname SwitchControllerPtpSettings
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerPtpSettings:SwitchControllerPtpSettings labelname SwitchControllerPtpSettings
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerPtpSettings struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable PTP mode. Valid values: `disable`, `transparent-e2e`, `transparent-p2p`.
-	Mode pulumi.StringOutput `pulumi:"mode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Mode      pulumi.StringOutput    `pulumi:"mode"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -66,16 +47,12 @@ func GetSwitchControllerPtpSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerPtpSettings resources.
 type switchControllerPtpSettingsState struct {
-	// Enable/disable PTP mode. Valid values: `disable`, `transparent-e2e`, `transparent-p2p`.
-	Mode *string `pulumi:"mode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Mode      *string `pulumi:"mode"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerPtpSettingsState struct {
-	// Enable/disable PTP mode. Valid values: `disable`, `transparent-e2e`, `transparent-p2p`.
-	Mode pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Mode      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -84,17 +61,13 @@ func (SwitchControllerPtpSettingsState) ElementType() reflect.Type {
 }
 
 type switchControllerPtpSettingsArgs struct {
-	// Enable/disable PTP mode. Valid values: `disable`, `transparent-e2e`, `transparent-p2p`.
-	Mode *string `pulumi:"mode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Mode      *string `pulumi:"mode"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerPtpSettings resource.
 type SwitchControllerPtpSettingsArgs struct {
-	// Enable/disable PTP mode. Valid values: `disable`, `transparent-e2e`, `transparent-p2p`.
-	Mode pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Mode      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -124,7 +97,7 @@ func (i *SwitchControllerPtpSettings) ToSwitchControllerPtpSettingsOutputWithCon
 // SwitchControllerPtpSettingsArrayInput is an input type that accepts SwitchControllerPtpSettingsArray and SwitchControllerPtpSettingsArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerPtpSettingsArrayInput` via:
 //
-//          SwitchControllerPtpSettingsArray{ SwitchControllerPtpSettingsArgs{...} }
+//	SwitchControllerPtpSettingsArray{ SwitchControllerPtpSettingsArgs{...} }
 type SwitchControllerPtpSettingsArrayInput interface {
 	pulumi.Input
 
@@ -149,7 +122,7 @@ func (i SwitchControllerPtpSettingsArray) ToSwitchControllerPtpSettingsArrayOutp
 // SwitchControllerPtpSettingsMapInput is an input type that accepts SwitchControllerPtpSettingsMap and SwitchControllerPtpSettingsMapOutput values.
 // You can construct a concrete instance of `SwitchControllerPtpSettingsMapInput` via:
 //
-//          SwitchControllerPtpSettingsMap{ "key": SwitchControllerPtpSettingsArgs{...} }
+//	SwitchControllerPtpSettingsMap{ "key": SwitchControllerPtpSettingsArgs{...} }
 type SwitchControllerPtpSettingsMapInput interface {
 	pulumi.Input
 
@@ -183,6 +156,14 @@ func (o SwitchControllerPtpSettingsOutput) ToSwitchControllerPtpSettingsOutput()
 
 func (o SwitchControllerPtpSettingsOutput) ToSwitchControllerPtpSettingsOutputWithContext(ctx context.Context) SwitchControllerPtpSettingsOutput {
 	return o
+}
+
+func (o SwitchControllerPtpSettingsOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerPtpSettings) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerPtpSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerPtpSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerPtpSettingsArrayOutput struct{ *pulumi.OutputState }

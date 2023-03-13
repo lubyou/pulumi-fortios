@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios router policy
 func LookupRouterPolicy(ctx *pulumi.Context, args *LookupRouterPolicyArgs, opts ...pulumi.InvokeOption) (*LookupRouterPolicyResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterPolicyResult
@@ -23,63 +22,38 @@ func LookupRouterPolicy(ctx *pulumi.Context, args *LookupRouterPolicyArgs, opts 
 
 // A collection of arguments for invoking GetRouterPolicy.
 type LookupRouterPolicyArgs struct {
-	// Specify the seqNum of the desired router policy.
-	SeqNum int `pulumi:"seqNum"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	SeqNum    int     `pulumi:"seqNum"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetRouterPolicy.
 type LookupRouterPolicyResult struct {
-	// Action of the policy route.
-	Action string `pulumi:"action"`
-	// Optional comments.
-	Comments string `pulumi:"comments"`
-	// Enable/disable negating destination address match.
-	DstNegate string `pulumi:"dstNegate"`
-	// Destination address name. The structure of `dstaddr` block is documented below.
-	Dstaddrs []GetRouterPolicyDstaddr `pulumi:"dstaddrs"`
-	// Destination IP and mask (x.x.x.x/x). The structure of `dst` block is documented below.
-	Dsts []GetRouterPolicyDst `pulumi:"dsts"`
-	// End destination port number (0 - 65535).
-	EndPort int `pulumi:"endPort"`
-	// End source port number (0 - 65535).
-	EndSourcePort int `pulumi:"endSourcePort"`
-	// IP address of the gateway.
-	Gateway string `pulumi:"gateway"`
+	Action        string                   `pulumi:"action"`
+	Comments      string                   `pulumi:"comments"`
+	DstNegate     string                   `pulumi:"dstNegate"`
+	Dstaddrs      []GetRouterPolicyDstaddr `pulumi:"dstaddrs"`
+	Dsts          []GetRouterPolicyDst     `pulumi:"dsts"`
+	EndPort       int                      `pulumi:"endPort"`
+	EndSourcePort int                      `pulumi:"endSourcePort"`
+	Gateway       string                   `pulumi:"gateway"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Enable/disable negation of input device match.
-	InputDeviceNegate string `pulumi:"inputDeviceNegate"`
-	// Incoming interface name. The structure of `inputDevice` block is documented below.
-	InputDevices []GetRouterPolicyInputDevice `pulumi:"inputDevices"`
-	// Custom Destination Internet Service name. The structure of `internetServiceCustom` block is documented below.
+	Id                     string                                 `pulumi:"id"`
+	InputDeviceNegate      string                                 `pulumi:"inputDeviceNegate"`
+	InputDevices           []GetRouterPolicyInputDevice           `pulumi:"inputDevices"`
 	InternetServiceCustoms []GetRouterPolicyInternetServiceCustom `pulumi:"internetServiceCustoms"`
-	// Destination Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds []GetRouterPolicyInternetServiceId `pulumi:"internetServiceIds"`
-	// Outgoing interface name.
-	OutputDevice string `pulumi:"outputDevice"`
-	// Protocol number (0 - 255).
-	Protocol int `pulumi:"protocol"`
-	// Sequence number.
-	SeqNum int `pulumi:"seqNum"`
-	// Enable/disable negating source address match.
-	SrcNegate string `pulumi:"srcNegate"`
-	// Source address name. The structure of `srcaddr` block is documented below.
-	Srcaddrs []GetRouterPolicySrcaddr `pulumi:"srcaddrs"`
-	// Source IP and mask (x.x.x.x/x). The structure of `src` block is documented below.
-	Srcs []GetRouterPolicySrc `pulumi:"srcs"`
-	// Start destination port number (0 - 65535).
-	StartPort int `pulumi:"startPort"`
-	// Start source port number (0 - 65535).
-	StartSourcePort int `pulumi:"startSourcePort"`
-	// Enable/disable this policy route.
-	Status string `pulumi:"status"`
-	// Type of service bit pattern.
-	Tos string `pulumi:"tos"`
-	// Type of service evaluated bits.
-	TosMask   string  `pulumi:"tosMask"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	InternetServiceIds     []GetRouterPolicyInternetServiceId     `pulumi:"internetServiceIds"`
+	OutputDevice           string                                 `pulumi:"outputDevice"`
+	Protocol               int                                    `pulumi:"protocol"`
+	SeqNum                 int                                    `pulumi:"seqNum"`
+	SrcNegate              string                                 `pulumi:"srcNegate"`
+	Srcaddrs               []GetRouterPolicySrcaddr               `pulumi:"srcaddrs"`
+	Srcs                   []GetRouterPolicySrc                   `pulumi:"srcs"`
+	StartPort              int                                    `pulumi:"startPort"`
+	StartSourcePort        int                                    `pulumi:"startSourcePort"`
+	Status                 string                                 `pulumi:"status"`
+	Tos                    string                                 `pulumi:"tos"`
+	TosMask                string                                 `pulumi:"tosMask"`
+	Vdomparam              *string                                `pulumi:"vdomparam"`
 }
 
 func LookupRouterPolicyOutput(ctx *pulumi.Context, args LookupRouterPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupRouterPolicyResultOutput {
@@ -97,9 +71,7 @@ func LookupRouterPolicyOutput(ctx *pulumi.Context, args LookupRouterPolicyOutput
 
 // A collection of arguments for invoking GetRouterPolicy.
 type LookupRouterPolicyOutputArgs struct {
-	// Specify the seqNum of the desired router policy.
-	SeqNum pulumi.IntInput `pulumi:"seqNum"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	SeqNum    pulumi.IntInput       `pulumi:"seqNum"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -122,42 +94,34 @@ func (o LookupRouterPolicyResultOutput) ToLookupRouterPolicyResultOutputWithCont
 	return o
 }
 
-// Action of the policy route.
 func (o LookupRouterPolicyResultOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// Optional comments.
 func (o LookupRouterPolicyResultOutput) Comments() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) string { return v.Comments }).(pulumi.StringOutput)
 }
 
-// Enable/disable negating destination address match.
 func (o LookupRouterPolicyResultOutput) DstNegate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) string { return v.DstNegate }).(pulumi.StringOutput)
 }
 
-// Destination address name. The structure of `dstaddr` block is documented below.
 func (o LookupRouterPolicyResultOutput) Dstaddrs() GetRouterPolicyDstaddrArrayOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) []GetRouterPolicyDstaddr { return v.Dstaddrs }).(GetRouterPolicyDstaddrArrayOutput)
 }
 
-// Destination IP and mask (x.x.x.x/x). The structure of `dst` block is documented below.
 func (o LookupRouterPolicyResultOutput) Dsts() GetRouterPolicyDstArrayOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) []GetRouterPolicyDst { return v.Dsts }).(GetRouterPolicyDstArrayOutput)
 }
 
-// End destination port number (0 - 65535).
 func (o LookupRouterPolicyResultOutput) EndPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) int { return v.EndPort }).(pulumi.IntOutput)
 }
 
-// End source port number (0 - 65535).
 func (o LookupRouterPolicyResultOutput) EndSourcePort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) int { return v.EndSourcePort }).(pulumi.IntOutput)
 }
 
-// IP address of the gateway.
 func (o LookupRouterPolicyResultOutput) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) string { return v.Gateway }).(pulumi.StringOutput)
 }
@@ -167,79 +131,64 @@ func (o LookupRouterPolicyResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Enable/disable negation of input device match.
 func (o LookupRouterPolicyResultOutput) InputDeviceNegate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) string { return v.InputDeviceNegate }).(pulumi.StringOutput)
 }
 
-// Incoming interface name. The structure of `inputDevice` block is documented below.
 func (o LookupRouterPolicyResultOutput) InputDevices() GetRouterPolicyInputDeviceArrayOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) []GetRouterPolicyInputDevice { return v.InputDevices }).(GetRouterPolicyInputDeviceArrayOutput)
 }
 
-// Custom Destination Internet Service name. The structure of `internetServiceCustom` block is documented below.
 func (o LookupRouterPolicyResultOutput) InternetServiceCustoms() GetRouterPolicyInternetServiceCustomArrayOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) []GetRouterPolicyInternetServiceCustom {
 		return v.InternetServiceCustoms
 	}).(GetRouterPolicyInternetServiceCustomArrayOutput)
 }
 
-// Destination Internet Service ID. The structure of `internetServiceId` block is documented below.
 func (o LookupRouterPolicyResultOutput) InternetServiceIds() GetRouterPolicyInternetServiceIdArrayOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) []GetRouterPolicyInternetServiceId { return v.InternetServiceIds }).(GetRouterPolicyInternetServiceIdArrayOutput)
 }
 
-// Outgoing interface name.
 func (o LookupRouterPolicyResultOutput) OutputDevice() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) string { return v.OutputDevice }).(pulumi.StringOutput)
 }
 
-// Protocol number (0 - 255).
 func (o LookupRouterPolicyResultOutput) Protocol() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) int { return v.Protocol }).(pulumi.IntOutput)
 }
 
-// Sequence number.
 func (o LookupRouterPolicyResultOutput) SeqNum() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) int { return v.SeqNum }).(pulumi.IntOutput)
 }
 
-// Enable/disable negating source address match.
 func (o LookupRouterPolicyResultOutput) SrcNegate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) string { return v.SrcNegate }).(pulumi.StringOutput)
 }
 
-// Source address name. The structure of `srcaddr` block is documented below.
 func (o LookupRouterPolicyResultOutput) Srcaddrs() GetRouterPolicySrcaddrArrayOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) []GetRouterPolicySrcaddr { return v.Srcaddrs }).(GetRouterPolicySrcaddrArrayOutput)
 }
 
-// Source IP and mask (x.x.x.x/x). The structure of `src` block is documented below.
 func (o LookupRouterPolicyResultOutput) Srcs() GetRouterPolicySrcArrayOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) []GetRouterPolicySrc { return v.Srcs }).(GetRouterPolicySrcArrayOutput)
 }
 
-// Start destination port number (0 - 65535).
 func (o LookupRouterPolicyResultOutput) StartPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) int { return v.StartPort }).(pulumi.IntOutput)
 }
 
-// Start source port number (0 - 65535).
 func (o LookupRouterPolicyResultOutput) StartSourcePort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) int { return v.StartSourcePort }).(pulumi.IntOutput)
 }
 
-// Enable/disable this policy route.
 func (o LookupRouterPolicyResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// Type of service bit pattern.
 func (o LookupRouterPolicyResultOutput) Tos() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) string { return v.Tos }).(pulumi.StringOutput)
 }
 
-// Type of service evaluated bits.
 func (o LookupRouterPolicyResultOutput) TosMask() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterPolicyResult) string { return v.TosMask }).(pulumi.StringOutput)
 }

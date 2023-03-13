@@ -7,65 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure ARP table.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemArpTable(ctx, "trname", &fortios.SystemArpTableArgs{
-// 			Fosid:     pulumi.Int(11),
-// 			Interface: pulumi.String("port2"),
-// 			Ip:        pulumi.String("1.1.1.1"),
-// 			Mac:       pulumi.String("08:00:27:1c:a3:8b"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System ArpTable can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemArpTable:SystemArpTable labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemArpTable:SystemArpTable labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemArpTable struct {
 	pulumi.CustomResourceState
 
-	// Unique integer ID of the entry.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Interface name.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// IP address.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// MAC address.
-	Mac pulumi.StringOutput `pulumi:"mac"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Interface pulumi.StringOutput    `pulumi:"interface"`
+	Ip        pulumi.StringOutput    `pulumi:"ip"`
+	Mac       pulumi.StringOutput    `pulumi:"mac"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -111,28 +63,18 @@ func GetSystemArpTable(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemArpTable resources.
 type systemArpTableState struct {
-	// Unique integer ID of the entry.
-	Fosid *int `pulumi:"fosid"`
-	// Interface name.
+	Fosid     *int    `pulumi:"fosid"`
 	Interface *string `pulumi:"interface"`
-	// IP address.
-	Ip *string `pulumi:"ip"`
-	// MAC address.
-	Mac *string `pulumi:"mac"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ip        *string `pulumi:"ip"`
+	Mac       *string `pulumi:"mac"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemArpTableState struct {
-	// Unique integer ID of the entry.
-	Fosid pulumi.IntPtrInput
-	// Interface name.
+	Fosid     pulumi.IntPtrInput
 	Interface pulumi.StringPtrInput
-	// IP address.
-	Ip pulumi.StringPtrInput
-	// MAC address.
-	Mac pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ip        pulumi.StringPtrInput
+	Mac       pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -141,29 +83,19 @@ func (SystemArpTableState) ElementType() reflect.Type {
 }
 
 type systemArpTableArgs struct {
-	// Unique integer ID of the entry.
-	Fosid int `pulumi:"fosid"`
-	// Interface name.
-	Interface string `pulumi:"interface"`
-	// IP address.
-	Ip string `pulumi:"ip"`
-	// MAC address.
-	Mac string `pulumi:"mac"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     int     `pulumi:"fosid"`
+	Interface string  `pulumi:"interface"`
+	Ip        string  `pulumi:"ip"`
+	Mac       string  `pulumi:"mac"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemArpTable resource.
 type SystemArpTableArgs struct {
-	// Unique integer ID of the entry.
-	Fosid pulumi.IntInput
-	// Interface name.
+	Fosid     pulumi.IntInput
 	Interface pulumi.StringInput
-	// IP address.
-	Ip pulumi.StringInput
-	// MAC address.
-	Mac pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ip        pulumi.StringInput
+	Mac       pulumi.StringInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -193,7 +125,7 @@ func (i *SystemArpTable) ToSystemArpTableOutputWithContext(ctx context.Context) 
 // SystemArpTableArrayInput is an input type that accepts SystemArpTableArray and SystemArpTableArrayOutput values.
 // You can construct a concrete instance of `SystemArpTableArrayInput` via:
 //
-//          SystemArpTableArray{ SystemArpTableArgs{...} }
+//	SystemArpTableArray{ SystemArpTableArgs{...} }
 type SystemArpTableArrayInput interface {
 	pulumi.Input
 
@@ -218,7 +150,7 @@ func (i SystemArpTableArray) ToSystemArpTableArrayOutputWithContext(ctx context.
 // SystemArpTableMapInput is an input type that accepts SystemArpTableMap and SystemArpTableMapOutput values.
 // You can construct a concrete instance of `SystemArpTableMapInput` via:
 //
-//          SystemArpTableMap{ "key": SystemArpTableArgs{...} }
+//	SystemArpTableMap{ "key": SystemArpTableArgs{...} }
 type SystemArpTableMapInput interface {
 	pulumi.Input
 
@@ -252,6 +184,26 @@ func (o SystemArpTableOutput) ToSystemArpTableOutput() SystemArpTableOutput {
 
 func (o SystemArpTableOutput) ToSystemArpTableOutputWithContext(ctx context.Context) SystemArpTableOutput {
 	return o
+}
+
+func (o SystemArpTableOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemArpTable) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SystemArpTableOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemArpTable) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemArpTableOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemArpTable) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o SystemArpTableOutput) Mac() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemArpTable) pulumi.StringOutput { return v.Mac }).(pulumi.StringOutput)
+}
+
+func (o SystemArpTableOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemArpTable) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemArpTableArrayOutput struct{ *pulumi.OutputState }

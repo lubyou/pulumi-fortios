@@ -7,39 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Replacement messages. Applies to FortiOS Version `<= 6.4.1`.
-//
-// ## Import
-//
-// SystemReplacemsg Nntp can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemReplacemsgNntp:SystemReplacemsgNntp labelname {{msg_type}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemReplacemsgNntp:SystemReplacemsgNntp labelname {{msg_type}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemReplacemsgNntp struct {
 	pulumi.CustomResourceState
 
-	// Message string.
-	Buffer pulumi.StringPtrOutput `pulumi:"buffer"`
-	// Format flag.
-	Format pulumi.StringOutput `pulumi:"format"`
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header pulumi.StringOutput `pulumi:"header"`
-	// Message type.
-	MsgType pulumi.StringOutput `pulumi:"msgType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    pulumi.StringPtrOutput `pulumi:"buffer"`
+	Format    pulumi.StringOutput    `pulumi:"format"`
+	Header    pulumi.StringOutput    `pulumi:"header"`
+	MsgType   pulumi.StringOutput    `pulumi:"msgType"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -76,28 +54,18 @@ func GetSystemReplacemsgNntp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemReplacemsgNntp resources.
 type systemReplacemsgNntpState struct {
-	// Message string.
-	Buffer *string `pulumi:"buffer"`
-	// Format flag.
-	Format *string `pulumi:"format"`
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header *string `pulumi:"header"`
-	// Message type.
-	MsgType *string `pulumi:"msgType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    *string `pulumi:"buffer"`
+	Format    *string `pulumi:"format"`
+	Header    *string `pulumi:"header"`
+	MsgType   *string `pulumi:"msgType"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemReplacemsgNntpState struct {
-	// Message string.
-	Buffer pulumi.StringPtrInput
-	// Format flag.
-	Format pulumi.StringPtrInput
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header pulumi.StringPtrInput
-	// Message type.
-	MsgType pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    pulumi.StringPtrInput
+	Format    pulumi.StringPtrInput
+	Header    pulumi.StringPtrInput
+	MsgType   pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -106,29 +74,19 @@ func (SystemReplacemsgNntpState) ElementType() reflect.Type {
 }
 
 type systemReplacemsgNntpArgs struct {
-	// Message string.
-	Buffer *string `pulumi:"buffer"`
-	// Format flag.
-	Format *string `pulumi:"format"`
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header *string `pulumi:"header"`
-	// Message type.
-	MsgType string `pulumi:"msgType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    *string `pulumi:"buffer"`
+	Format    *string `pulumi:"format"`
+	Header    *string `pulumi:"header"`
+	MsgType   string  `pulumi:"msgType"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemReplacemsgNntp resource.
 type SystemReplacemsgNntpArgs struct {
-	// Message string.
-	Buffer pulumi.StringPtrInput
-	// Format flag.
-	Format pulumi.StringPtrInput
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header pulumi.StringPtrInput
-	// Message type.
-	MsgType pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    pulumi.StringPtrInput
+	Format    pulumi.StringPtrInput
+	Header    pulumi.StringPtrInput
+	MsgType   pulumi.StringInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -158,7 +116,7 @@ func (i *SystemReplacemsgNntp) ToSystemReplacemsgNntpOutputWithContext(ctx conte
 // SystemReplacemsgNntpArrayInput is an input type that accepts SystemReplacemsgNntpArray and SystemReplacemsgNntpArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgNntpArrayInput` via:
 //
-//          SystemReplacemsgNntpArray{ SystemReplacemsgNntpArgs{...} }
+//	SystemReplacemsgNntpArray{ SystemReplacemsgNntpArgs{...} }
 type SystemReplacemsgNntpArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +141,7 @@ func (i SystemReplacemsgNntpArray) ToSystemReplacemsgNntpArrayOutputWithContext(
 // SystemReplacemsgNntpMapInput is an input type that accepts SystemReplacemsgNntpMap and SystemReplacemsgNntpMapOutput values.
 // You can construct a concrete instance of `SystemReplacemsgNntpMapInput` via:
 //
-//          SystemReplacemsgNntpMap{ "key": SystemReplacemsgNntpArgs{...} }
+//	SystemReplacemsgNntpMap{ "key": SystemReplacemsgNntpArgs{...} }
 type SystemReplacemsgNntpMapInput interface {
 	pulumi.Input
 
@@ -217,6 +175,26 @@ func (o SystemReplacemsgNntpOutput) ToSystemReplacemsgNntpOutput() SystemReplace
 
 func (o SystemReplacemsgNntpOutput) ToSystemReplacemsgNntpOutputWithContext(ctx context.Context) SystemReplacemsgNntpOutput {
 	return o
+}
+
+func (o SystemReplacemsgNntpOutput) Buffer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgNntp) pulumi.StringPtrOutput { return v.Buffer }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemReplacemsgNntpOutput) Format() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgNntp) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgNntpOutput) Header() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgNntp) pulumi.StringOutput { return v.Header }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgNntpOutput) MsgType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgNntp) pulumi.StringOutput { return v.MsgType }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgNntpOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgNntp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemReplacemsgNntpArrayOutput struct{ *pulumi.OutputState }

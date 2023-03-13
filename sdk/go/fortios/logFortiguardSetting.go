@@ -10,85 +10,24 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure logging to FortiCloud.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogFortiguardSetting(ctx, "trname", &fortios.LogFortiguardSettingArgs{
-// 			EncAlgorithm:       pulumi.String("high"),
-// 			SourceIp:           pulumi.String("0.0.0.0"),
-// 			SslMinProtoVersion: pulumi.String("default"),
-// 			Status:             pulumi.String("disable"),
-// 			UploadInterval:     pulumi.String("daily"),
-// 			UploadOption:       pulumi.String("5-minute"),
-// 			UploadTime:         pulumi.String("00:00"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// LogFortiguard Setting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logFortiguardSetting:LogFortiguardSetting labelname LogFortiguardSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logFortiguardSetting:LogFortiguardSetting labelname LogFortiguardSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogFortiguardSetting struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-	AccessConfig pulumi.StringOutput `pulumi:"accessConfig"`
-	// FortiGate Cloud connection timeout in seconds.
-	ConnTimeout pulumi.IntOutput `pulumi:"connTimeout"`
-	// Enable and set the SSL security level for for sending encrypted logs to FortiCloud. Valid values: `high-medium`, `high`, `low`.
-	EncAlgorithm pulumi.StringOutput `pulumi:"encAlgorithm"`
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
-	// FortiCloud maximum log rate in MBps (0 = unlimited).
-	MaxLogRate pulumi.IntOutput `pulumi:"maxLogRate"`
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority pulumi.StringOutput `pulumi:"priority"`
-	// Source IP address used to connect FortiCloud.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
-	// Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Day of week to roll logs.
-	UploadDay pulumi.StringOutput `pulumi:"uploadDay"`
-	// Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
-	UploadInterval pulumi.StringOutput `pulumi:"uploadInterval"`
-	// Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-	UploadOption pulumi.StringOutput `pulumi:"uploadOption"`
-	// Time of day to roll logs (hh:mm).
-	UploadTime pulumi.StringOutput `pulumi:"uploadTime"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AccessConfig          pulumi.StringOutput    `pulumi:"accessConfig"`
+	ConnTimeout           pulumi.IntOutput       `pulumi:"connTimeout"`
+	EncAlgorithm          pulumi.StringOutput    `pulumi:"encAlgorithm"`
+	Interface             pulumi.StringOutput    `pulumi:"interface"`
+	InterfaceSelectMethod pulumi.StringOutput    `pulumi:"interfaceSelectMethod"`
+	MaxLogRate            pulumi.IntOutput       `pulumi:"maxLogRate"`
+	Priority              pulumi.StringOutput    `pulumi:"priority"`
+	SourceIp              pulumi.StringOutput    `pulumi:"sourceIp"`
+	SslMinProtoVersion    pulumi.StringOutput    `pulumi:"sslMinProtoVersion"`
+	Status                pulumi.StringOutput    `pulumi:"status"`
+	UploadDay             pulumi.StringOutput    `pulumi:"uploadDay"`
+	UploadInterval        pulumi.StringOutput    `pulumi:"uploadInterval"`
+	UploadOption          pulumi.StringOutput    `pulumi:"uploadOption"`
+	UploadTime            pulumi.StringOutput    `pulumi:"uploadTime"`
+	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewLogFortiguardSetting registers a new resource with the given unique name, arguments, and options.
@@ -121,69 +60,39 @@ func GetLogFortiguardSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogFortiguardSetting resources.
 type logFortiguardSettingState struct {
-	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-	AccessConfig *string `pulumi:"accessConfig"`
-	// FortiGate Cloud connection timeout in seconds.
-	ConnTimeout *int `pulumi:"connTimeout"`
-	// Enable and set the SSL security level for for sending encrypted logs to FortiCloud. Valid values: `high-medium`, `high`, `low`.
-	EncAlgorithm *string `pulumi:"encAlgorithm"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	AccessConfig          *string `pulumi:"accessConfig"`
+	ConnTimeout           *int    `pulumi:"connTimeout"`
+	EncAlgorithm          *string `pulumi:"encAlgorithm"`
+	Interface             *string `pulumi:"interface"`
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// FortiCloud maximum log rate in MBps (0 = unlimited).
-	MaxLogRate *int `pulumi:"maxLogRate"`
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority *string `pulumi:"priority"`
-	// Source IP address used to connect FortiCloud.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
-	// Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Day of week to roll logs.
-	UploadDay *string `pulumi:"uploadDay"`
-	// Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
-	UploadInterval *string `pulumi:"uploadInterval"`
-	// Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-	UploadOption *string `pulumi:"uploadOption"`
-	// Time of day to roll logs (hh:mm).
-	UploadTime *string `pulumi:"uploadTime"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	MaxLogRate            *int    `pulumi:"maxLogRate"`
+	Priority              *string `pulumi:"priority"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	SslMinProtoVersion    *string `pulumi:"sslMinProtoVersion"`
+	Status                *string `pulumi:"status"`
+	UploadDay             *string `pulumi:"uploadDay"`
+	UploadInterval        *string `pulumi:"uploadInterval"`
+	UploadOption          *string `pulumi:"uploadOption"`
+	UploadTime            *string `pulumi:"uploadTime"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 type LogFortiguardSettingState struct {
-	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-	AccessConfig pulumi.StringPtrInput
-	// FortiGate Cloud connection timeout in seconds.
-	ConnTimeout pulumi.IntPtrInput
-	// Enable and set the SSL security level for for sending encrypted logs to FortiCloud. Valid values: `high-medium`, `high`, `low`.
-	EncAlgorithm pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	AccessConfig          pulumi.StringPtrInput
+	ConnTimeout           pulumi.IntPtrInput
+	EncAlgorithm          pulumi.StringPtrInput
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// FortiCloud maximum log rate in MBps (0 = unlimited).
-	MaxLogRate pulumi.IntPtrInput
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority pulumi.StringPtrInput
-	// Source IP address used to connect FortiCloud.
-	SourceIp pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringPtrInput
-	// Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Day of week to roll logs.
-	UploadDay pulumi.StringPtrInput
-	// Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
-	UploadInterval pulumi.StringPtrInput
-	// Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-	UploadOption pulumi.StringPtrInput
-	// Time of day to roll logs (hh:mm).
-	UploadTime pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MaxLogRate            pulumi.IntPtrInput
+	Priority              pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	SslMinProtoVersion    pulumi.StringPtrInput
+	Status                pulumi.StringPtrInput
+	UploadDay             pulumi.StringPtrInput
+	UploadInterval        pulumi.StringPtrInput
+	UploadOption          pulumi.StringPtrInput
+	UploadTime            pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (LogFortiguardSettingState) ElementType() reflect.Type {
@@ -191,70 +100,40 @@ func (LogFortiguardSettingState) ElementType() reflect.Type {
 }
 
 type logFortiguardSettingArgs struct {
-	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-	AccessConfig *string `pulumi:"accessConfig"`
-	// FortiGate Cloud connection timeout in seconds.
-	ConnTimeout *int `pulumi:"connTimeout"`
-	// Enable and set the SSL security level for for sending encrypted logs to FortiCloud. Valid values: `high-medium`, `high`, `low`.
-	EncAlgorithm *string `pulumi:"encAlgorithm"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	AccessConfig          *string `pulumi:"accessConfig"`
+	ConnTimeout           *int    `pulumi:"connTimeout"`
+	EncAlgorithm          *string `pulumi:"encAlgorithm"`
+	Interface             *string `pulumi:"interface"`
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// FortiCloud maximum log rate in MBps (0 = unlimited).
-	MaxLogRate *int `pulumi:"maxLogRate"`
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority *string `pulumi:"priority"`
-	// Source IP address used to connect FortiCloud.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
-	// Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Day of week to roll logs.
-	UploadDay *string `pulumi:"uploadDay"`
-	// Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
-	UploadInterval *string `pulumi:"uploadInterval"`
-	// Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-	UploadOption *string `pulumi:"uploadOption"`
-	// Time of day to roll logs (hh:mm).
-	UploadTime *string `pulumi:"uploadTime"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	MaxLogRate            *int    `pulumi:"maxLogRate"`
+	Priority              *string `pulumi:"priority"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	SslMinProtoVersion    *string `pulumi:"sslMinProtoVersion"`
+	Status                *string `pulumi:"status"`
+	UploadDay             *string `pulumi:"uploadDay"`
+	UploadInterval        *string `pulumi:"uploadInterval"`
+	UploadOption          *string `pulumi:"uploadOption"`
+	UploadTime            *string `pulumi:"uploadTime"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogFortiguardSetting resource.
 type LogFortiguardSettingArgs struct {
-	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-	AccessConfig pulumi.StringPtrInput
-	// FortiGate Cloud connection timeout in seconds.
-	ConnTimeout pulumi.IntPtrInput
-	// Enable and set the SSL security level for for sending encrypted logs to FortiCloud. Valid values: `high-medium`, `high`, `low`.
-	EncAlgorithm pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	AccessConfig          pulumi.StringPtrInput
+	ConnTimeout           pulumi.IntPtrInput
+	EncAlgorithm          pulumi.StringPtrInput
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// FortiCloud maximum log rate in MBps (0 = unlimited).
-	MaxLogRate pulumi.IntPtrInput
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority pulumi.StringPtrInput
-	// Source IP address used to connect FortiCloud.
-	SourceIp pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringPtrInput
-	// Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Day of week to roll logs.
-	UploadDay pulumi.StringPtrInput
-	// Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
-	UploadInterval pulumi.StringPtrInput
-	// Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-	UploadOption pulumi.StringPtrInput
-	// Time of day to roll logs (hh:mm).
-	UploadTime pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MaxLogRate            pulumi.IntPtrInput
+	Priority              pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	SslMinProtoVersion    pulumi.StringPtrInput
+	Status                pulumi.StringPtrInput
+	UploadDay             pulumi.StringPtrInput
+	UploadInterval        pulumi.StringPtrInput
+	UploadOption          pulumi.StringPtrInput
+	UploadTime            pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (LogFortiguardSettingArgs) ElementType() reflect.Type {
@@ -283,7 +162,7 @@ func (i *LogFortiguardSetting) ToLogFortiguardSettingOutputWithContext(ctx conte
 // LogFortiguardSettingArrayInput is an input type that accepts LogFortiguardSettingArray and LogFortiguardSettingArrayOutput values.
 // You can construct a concrete instance of `LogFortiguardSettingArrayInput` via:
 //
-//          LogFortiguardSettingArray{ LogFortiguardSettingArgs{...} }
+//	LogFortiguardSettingArray{ LogFortiguardSettingArgs{...} }
 type LogFortiguardSettingArrayInput interface {
 	pulumi.Input
 
@@ -308,7 +187,7 @@ func (i LogFortiguardSettingArray) ToLogFortiguardSettingArrayOutputWithContext(
 // LogFortiguardSettingMapInput is an input type that accepts LogFortiguardSettingMap and LogFortiguardSettingMapOutput values.
 // You can construct a concrete instance of `LogFortiguardSettingMapInput` via:
 //
-//          LogFortiguardSettingMap{ "key": LogFortiguardSettingArgs{...} }
+//	LogFortiguardSettingMap{ "key": LogFortiguardSettingArgs{...} }
 type LogFortiguardSettingMapInput interface {
 	pulumi.Input
 
@@ -342,6 +221,66 @@ func (o LogFortiguardSettingOutput) ToLogFortiguardSettingOutput() LogFortiguard
 
 func (o LogFortiguardSettingOutput) ToLogFortiguardSettingOutputWithContext(ctx context.Context) LogFortiguardSettingOutput {
 	return o
+}
+
+func (o LogFortiguardSettingOutput) AccessConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardSetting) pulumi.StringOutput { return v.AccessConfig }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardSettingOutput) ConnTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogFortiguardSetting) pulumi.IntOutput { return v.ConnTimeout }).(pulumi.IntOutput)
+}
+
+func (o LogFortiguardSettingOutput) EncAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardSetting) pulumi.StringOutput { return v.EncAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardSettingOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardSetting) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardSettingOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardSetting) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardSettingOutput) MaxLogRate() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogFortiguardSetting) pulumi.IntOutput { return v.MaxLogRate }).(pulumi.IntOutput)
+}
+
+func (o LogFortiguardSettingOutput) Priority() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardSetting) pulumi.StringOutput { return v.Priority }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardSettingOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardSetting) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardSettingOutput) SslMinProtoVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardSetting) pulumi.StringOutput { return v.SslMinProtoVersion }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardSettingOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardSetting) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardSettingOutput) UploadDay() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardSetting) pulumi.StringOutput { return v.UploadDay }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardSettingOutput) UploadInterval() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardSetting) pulumi.StringOutput { return v.UploadInterval }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardSettingOutput) UploadOption() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardSetting) pulumi.StringOutput { return v.UploadOption }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardSettingOutput) UploadTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardSetting) pulumi.StringOutput { return v.UploadTime }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogFortiguardSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type LogFortiguardSettingArrayOutput struct{ *pulumi.OutputState }

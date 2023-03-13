@@ -7,121 +7,26 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure firewall service of FortiOS.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `FirewallServiceCustom`, we recommend that you use the new resource.
-//
-// ## Example Usage
-// ### Fqdn Service
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallObjectService(ctx, "v11", &fortios.FirewallObjectServiceArgs{
-// 			Category: pulumi.String("General"),
-// 			Comment:  pulumi.String("comment"),
-// 			Fqdn:     pulumi.String("abc.com"),
-// 			Protocol: pulumi.String("TCP/UDP/SCTP"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Iprange Service
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallObjectService(ctx, "v13", &fortios.FirewallObjectServiceArgs{
-// 			Category:      pulumi.String("General"),
-// 			Comment:       pulumi.String("comment"),
-// 			Iprange:       pulumi.String("1.1.1.1-2.2.2.2"),
-// 			Protocol:      pulumi.String("TCP/UDP/SCTP"),
-// 			SctpPortrange: pulumi.String("66-88"),
-// 			TcpPortrange:  pulumi.String("22-33"),
-// 			UdpPortrange:  pulumi.String("44-55"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### ICMP Service
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallObjectService(ctx, "iCMP", &fortios.FirewallObjectServiceArgs{
-// 			Category:       pulumi.String("General"),
-// 			Comment:        pulumi.String("comment"),
-// 			Icmpcode:       pulumi.String("3"),
-// 			Icmptype:       pulumi.String("2"),
-// 			Protocol:       pulumi.String("ICMP"),
-// 			ProtocolNumber: pulumi.String("1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FirewallObjectService struct {
 	pulumi.CustomResourceState
 
-	// Service category.
-	Category pulumi.StringOutput `pulumi:"category"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Fully qualified domain name.
-	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
-	// ICMP code.
-	Icmpcode pulumi.StringOutput `pulumi:"icmpcode"`
-	// ICMP type.
-	Icmptype pulumi.StringOutput `pulumi:"icmptype"`
-	// Start and end of the IP range associated with service.
-	Iprange pulumi.StringOutput `pulumi:"iprange"`
-	// Number of minutes before an idle administrator session time out.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Protocol type based on IANA numbers.
-	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// IP protocol number.
-	ProtocolNumber pulumi.StringOutput `pulumi:"protocolNumber"`
-	// Multiple SCTP port ranges.
-	SctpPortrange pulumi.StringOutput `pulumi:"sctpPortrange"`
-	// Custom tcp session TTL.
-	SessionTtl pulumi.StringOutput `pulumi:"sessionTtl"`
-	// Multiple TCP port ranges.
-	TcpPortrange pulumi.StringOutput `pulumi:"tcpPortrange"`
-	// Multiple UDP port ranges.
-	UdpPortrange pulumi.StringOutput `pulumi:"udpPortrange"`
+	Category       pulumi.StringOutput    `pulumi:"category"`
+	Comment        pulumi.StringPtrOutput `pulumi:"comment"`
+	Fqdn           pulumi.StringOutput    `pulumi:"fqdn"`
+	Icmpcode       pulumi.StringOutput    `pulumi:"icmpcode"`
+	Icmptype       pulumi.StringOutput    `pulumi:"icmptype"`
+	Iprange        pulumi.StringOutput    `pulumi:"iprange"`
+	Name           pulumi.StringOutput    `pulumi:"name"`
+	Protocol       pulumi.StringOutput    `pulumi:"protocol"`
+	ProtocolNumber pulumi.StringOutput    `pulumi:"protocolNumber"`
+	SctpPortrange  pulumi.StringOutput    `pulumi:"sctpPortrange"`
+	SessionTtl     pulumi.StringOutput    `pulumi:"sessionTtl"`
+	TcpPortrange   pulumi.StringOutput    `pulumi:"tcpPortrange"`
+	UdpPortrange   pulumi.StringOutput    `pulumi:"udpPortrange"`
 }
 
 // NewFirewallObjectService registers a new resource with the given unique name, arguments, and options.
@@ -160,61 +65,35 @@ func GetFirewallObjectService(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallObjectService resources.
 type firewallObjectServiceState struct {
-	// Service category.
-	Category *string `pulumi:"category"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Fully qualified domain name.
-	Fqdn *string `pulumi:"fqdn"`
-	// ICMP code.
-	Icmpcode *string `pulumi:"icmpcode"`
-	// ICMP type.
-	Icmptype *string `pulumi:"icmptype"`
-	// Start and end of the IP range associated with service.
-	Iprange *string `pulumi:"iprange"`
-	// Number of minutes before an idle administrator session time out.
-	Name *string `pulumi:"name"`
-	// Protocol type based on IANA numbers.
-	Protocol *string `pulumi:"protocol"`
-	// IP protocol number.
+	Category       *string `pulumi:"category"`
+	Comment        *string `pulumi:"comment"`
+	Fqdn           *string `pulumi:"fqdn"`
+	Icmpcode       *string `pulumi:"icmpcode"`
+	Icmptype       *string `pulumi:"icmptype"`
+	Iprange        *string `pulumi:"iprange"`
+	Name           *string `pulumi:"name"`
+	Protocol       *string `pulumi:"protocol"`
 	ProtocolNumber *string `pulumi:"protocolNumber"`
-	// Multiple SCTP port ranges.
-	SctpPortrange *string `pulumi:"sctpPortrange"`
-	// Custom tcp session TTL.
-	SessionTtl *string `pulumi:"sessionTtl"`
-	// Multiple TCP port ranges.
-	TcpPortrange *string `pulumi:"tcpPortrange"`
-	// Multiple UDP port ranges.
-	UdpPortrange *string `pulumi:"udpPortrange"`
+	SctpPortrange  *string `pulumi:"sctpPortrange"`
+	SessionTtl     *string `pulumi:"sessionTtl"`
+	TcpPortrange   *string `pulumi:"tcpPortrange"`
+	UdpPortrange   *string `pulumi:"udpPortrange"`
 }
 
 type FirewallObjectServiceState struct {
-	// Service category.
-	Category pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Fully qualified domain name.
-	Fqdn pulumi.StringPtrInput
-	// ICMP code.
-	Icmpcode pulumi.StringPtrInput
-	// ICMP type.
-	Icmptype pulumi.StringPtrInput
-	// Start and end of the IP range associated with service.
-	Iprange pulumi.StringPtrInput
-	// Number of minutes before an idle administrator session time out.
-	Name pulumi.StringPtrInput
-	// Protocol type based on IANA numbers.
-	Protocol pulumi.StringPtrInput
-	// IP protocol number.
+	Category       pulumi.StringPtrInput
+	Comment        pulumi.StringPtrInput
+	Fqdn           pulumi.StringPtrInput
+	Icmpcode       pulumi.StringPtrInput
+	Icmptype       pulumi.StringPtrInput
+	Iprange        pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	Protocol       pulumi.StringPtrInput
 	ProtocolNumber pulumi.StringPtrInput
-	// Multiple SCTP port ranges.
-	SctpPortrange pulumi.StringPtrInput
-	// Custom tcp session TTL.
-	SessionTtl pulumi.StringPtrInput
-	// Multiple TCP port ranges.
-	TcpPortrange pulumi.StringPtrInput
-	// Multiple UDP port ranges.
-	UdpPortrange pulumi.StringPtrInput
+	SctpPortrange  pulumi.StringPtrInput
+	SessionTtl     pulumi.StringPtrInput
+	TcpPortrange   pulumi.StringPtrInput
+	UdpPortrange   pulumi.StringPtrInput
 }
 
 func (FirewallObjectServiceState) ElementType() reflect.Type {
@@ -222,62 +101,36 @@ func (FirewallObjectServiceState) ElementType() reflect.Type {
 }
 
 type firewallObjectServiceArgs struct {
-	// Service category.
-	Category string `pulumi:"category"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Fully qualified domain name.
-	Fqdn *string `pulumi:"fqdn"`
-	// ICMP code.
-	Icmpcode *string `pulumi:"icmpcode"`
-	// ICMP type.
-	Icmptype *string `pulumi:"icmptype"`
-	// Start and end of the IP range associated with service.
-	Iprange *string `pulumi:"iprange"`
-	// Number of minutes before an idle administrator session time out.
-	Name *string `pulumi:"name"`
-	// Protocol type based on IANA numbers.
-	Protocol string `pulumi:"protocol"`
-	// IP protocol number.
+	Category       string  `pulumi:"category"`
+	Comment        *string `pulumi:"comment"`
+	Fqdn           *string `pulumi:"fqdn"`
+	Icmpcode       *string `pulumi:"icmpcode"`
+	Icmptype       *string `pulumi:"icmptype"`
+	Iprange        *string `pulumi:"iprange"`
+	Name           *string `pulumi:"name"`
+	Protocol       string  `pulumi:"protocol"`
 	ProtocolNumber *string `pulumi:"protocolNumber"`
-	// Multiple SCTP port ranges.
-	SctpPortrange *string `pulumi:"sctpPortrange"`
-	// Custom tcp session TTL.
-	SessionTtl *string `pulumi:"sessionTtl"`
-	// Multiple TCP port ranges.
-	TcpPortrange *string `pulumi:"tcpPortrange"`
-	// Multiple UDP port ranges.
-	UdpPortrange *string `pulumi:"udpPortrange"`
+	SctpPortrange  *string `pulumi:"sctpPortrange"`
+	SessionTtl     *string `pulumi:"sessionTtl"`
+	TcpPortrange   *string `pulumi:"tcpPortrange"`
+	UdpPortrange   *string `pulumi:"udpPortrange"`
 }
 
 // The set of arguments for constructing a FirewallObjectService resource.
 type FirewallObjectServiceArgs struct {
-	// Service category.
-	Category pulumi.StringInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Fully qualified domain name.
-	Fqdn pulumi.StringPtrInput
-	// ICMP code.
-	Icmpcode pulumi.StringPtrInput
-	// ICMP type.
-	Icmptype pulumi.StringPtrInput
-	// Start and end of the IP range associated with service.
-	Iprange pulumi.StringPtrInput
-	// Number of minutes before an idle administrator session time out.
-	Name pulumi.StringPtrInput
-	// Protocol type based on IANA numbers.
-	Protocol pulumi.StringInput
-	// IP protocol number.
+	Category       pulumi.StringInput
+	Comment        pulumi.StringPtrInput
+	Fqdn           pulumi.StringPtrInput
+	Icmpcode       pulumi.StringPtrInput
+	Icmptype       pulumi.StringPtrInput
+	Iprange        pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	Protocol       pulumi.StringInput
 	ProtocolNumber pulumi.StringPtrInput
-	// Multiple SCTP port ranges.
-	SctpPortrange pulumi.StringPtrInput
-	// Custom tcp session TTL.
-	SessionTtl pulumi.StringPtrInput
-	// Multiple TCP port ranges.
-	TcpPortrange pulumi.StringPtrInput
-	// Multiple UDP port ranges.
-	UdpPortrange pulumi.StringPtrInput
+	SctpPortrange  pulumi.StringPtrInput
+	SessionTtl     pulumi.StringPtrInput
+	TcpPortrange   pulumi.StringPtrInput
+	UdpPortrange   pulumi.StringPtrInput
 }
 
 func (FirewallObjectServiceArgs) ElementType() reflect.Type {
@@ -306,7 +159,7 @@ func (i *FirewallObjectService) ToFirewallObjectServiceOutputWithContext(ctx con
 // FirewallObjectServiceArrayInput is an input type that accepts FirewallObjectServiceArray and FirewallObjectServiceArrayOutput values.
 // You can construct a concrete instance of `FirewallObjectServiceArrayInput` via:
 //
-//          FirewallObjectServiceArray{ FirewallObjectServiceArgs{...} }
+//	FirewallObjectServiceArray{ FirewallObjectServiceArgs{...} }
 type FirewallObjectServiceArrayInput interface {
 	pulumi.Input
 
@@ -331,7 +184,7 @@ func (i FirewallObjectServiceArray) ToFirewallObjectServiceArrayOutputWithContex
 // FirewallObjectServiceMapInput is an input type that accepts FirewallObjectServiceMap and FirewallObjectServiceMapOutput values.
 // You can construct a concrete instance of `FirewallObjectServiceMapInput` via:
 //
-//          FirewallObjectServiceMap{ "key": FirewallObjectServiceArgs{...} }
+//	FirewallObjectServiceMap{ "key": FirewallObjectServiceArgs{...} }
 type FirewallObjectServiceMapInput interface {
 	pulumi.Input
 
@@ -365,6 +218,58 @@ func (o FirewallObjectServiceOutput) ToFirewallObjectServiceOutput() FirewallObj
 
 func (o FirewallObjectServiceOutput) ToFirewallObjectServiceOutputWithContext(ctx context.Context) FirewallObjectServiceOutput {
 	return o
+}
+
+func (o FirewallObjectServiceOutput) Category() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectService) pulumi.StringOutput { return v.Category }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectServiceOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallObjectService) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallObjectServiceOutput) Fqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectService) pulumi.StringOutput { return v.Fqdn }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectServiceOutput) Icmpcode() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectService) pulumi.StringOutput { return v.Icmpcode }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectServiceOutput) Icmptype() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectService) pulumi.StringOutput { return v.Icmptype }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectServiceOutput) Iprange() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectService) pulumi.StringOutput { return v.Iprange }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectServiceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectService) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectServiceOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectService) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectServiceOutput) ProtocolNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectService) pulumi.StringOutput { return v.ProtocolNumber }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectServiceOutput) SctpPortrange() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectService) pulumi.StringOutput { return v.SctpPortrange }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectServiceOutput) SessionTtl() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectService) pulumi.StringOutput { return v.SessionTtl }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectServiceOutput) TcpPortrange() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectService) pulumi.StringOutput { return v.TcpPortrange }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectServiceOutput) UdpPortrange() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectService) pulumi.StringOutput { return v.UdpPortrange }).(pulumi.StringOutput)
 }
 
 type FirewallObjectServiceArrayOutput struct{ *pulumi.OutputState }

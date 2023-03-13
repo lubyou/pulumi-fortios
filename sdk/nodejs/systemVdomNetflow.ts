@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure NetFlow per VDOM.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemVdomNetflow("trname", {
- *     collectorIp: "0.0.0.0",
- *     collectorPort: 2055,
- *     sourceIp: "0.0.0.0",
- *     vdomNetflow: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * System VdomNetflow can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVdomNetflow:SystemVdomNetflow labelname SystemVdomNetflow
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVdomNetflow:SystemVdomNetflow labelname SystemVdomNetflow
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemVdomNetflow extends pulumi.CustomResource {
     /**
      * Get an existing SystemVdomNetflow resource's state with the given name, ID, and optional extra
@@ -65,33 +32,12 @@ export class SystemVdomNetflow extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemVdomNetflow.__pulumiType;
     }
 
-    /**
-     * NetFlow collector IP address.
-     */
     public readonly collectorIp!: pulumi.Output<string>;
-    /**
-     * NetFlow collector port number.
-     */
     public readonly collectorPort!: pulumi.Output<number>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
-    /**
-     * Source IP address for communication with the NetFlow agent.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Enable/disable NetFlow per VDOM. Valid values: `enable`, `disable`.
-     */
     public readonly vdomNetflow!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -133,33 +79,12 @@ export class SystemVdomNetflow extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemVdomNetflow resources.
  */
 export interface SystemVdomNetflowState {
-    /**
-     * NetFlow collector IP address.
-     */
     collectorIp?: pulumi.Input<string>;
-    /**
-     * NetFlow collector port number.
-     */
     collectorPort?: pulumi.Input<number>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Source IP address for communication with the NetFlow agent.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable NetFlow per VDOM. Valid values: `enable`, `disable`.
-     */
     vdomNetflow?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -167,32 +92,11 @@ export interface SystemVdomNetflowState {
  * The set of arguments for constructing a SystemVdomNetflow resource.
  */
 export interface SystemVdomNetflowArgs {
-    /**
-     * NetFlow collector IP address.
-     */
     collectorIp?: pulumi.Input<string>;
-    /**
-     * NetFlow collector port number.
-     */
     collectorPort?: pulumi.Input<number>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Source IP address for communication with the NetFlow agent.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable NetFlow per VDOM. Valid values: `enable`, `disable`.
-     */
     vdomNetflow?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

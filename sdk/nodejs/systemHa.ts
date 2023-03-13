@@ -2,37 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure HA.
- *
- * By design considerations, the feature is using the fortios.SystemAutoScript resource as documented below.
- *
- * ## Example1
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemAutoScript("trname", {
- *     interval: 1,
- *     outputSize: 10,
- *     repeat: 1,
- *     script: `config system ha
- *     set session-pickup enable
- *     set session-pickup-connectionless enable
- *     set session-pickup-expectation enable
- *     set session-pickup-nat enable
- *     set override disable
- * end
- *
- * `,
- *     start: "auto",
- * });
- * ```
- */
 export class SystemHa extends pulumi.CustomResource {
     /**
      * Get an existing SystemHa resource's state with the given name, ID, and optional extra
@@ -116,7 +89,7 @@ export class SystemHa extends pulumi.CustomResource {
     public readonly routeTtl!: pulumi.Output<number>;
     public readonly routeWait!: pulumi.Output<number>;
     public readonly schedule!: pulumi.Output<string>;
-    public readonly secondaryVcluster!: pulumi.Output<outputs.SystemHaSecondaryVcluster | undefined>;
+    public readonly secondaryVcluster!: pulumi.Output<outputs.SystemHaSecondaryVcluster>;
     public readonly sessionPickup!: pulumi.Output<string>;
     public readonly sessionPickupConnectionless!: pulumi.Output<string>;
     public readonly sessionPickupDelay!: pulumi.Output<string>;
@@ -139,6 +112,8 @@ export class SystemHa extends pulumi.CustomResource {
     public readonly uninterruptibleUpgrade!: pulumi.Output<string>;
     public readonly vcluster2!: pulumi.Output<string>;
     public readonly vclusterId!: pulumi.Output<number>;
+    public readonly vclusterStatus!: pulumi.Output<string>;
+    public readonly vclusters!: pulumi.Output<outputs.SystemHaVcluster[] | undefined>;
     public readonly vdom!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     public readonly weight!: pulumi.Output<string>;
@@ -234,6 +209,8 @@ export class SystemHa extends pulumi.CustomResource {
             resourceInputs["uninterruptibleUpgrade"] = state ? state.uninterruptibleUpgrade : undefined;
             resourceInputs["vcluster2"] = state ? state.vcluster2 : undefined;
             resourceInputs["vclusterId"] = state ? state.vclusterId : undefined;
+            resourceInputs["vclusterStatus"] = state ? state.vclusterStatus : undefined;
+            resourceInputs["vclusters"] = state ? state.vclusters : undefined;
             resourceInputs["vdom"] = state ? state.vdom : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["weight"] = state ? state.weight : undefined;
@@ -264,7 +241,7 @@ export class SystemHa extends pulumi.CustomResource {
             resourceInputs["httpProxyThreshold"] = args ? args.httpProxyThreshold : undefined;
             resourceInputs["imapProxyThreshold"] = args ? args.imapProxyThreshold : undefined;
             resourceInputs["interClusterSessionSync"] = args ? args.interClusterSessionSync : undefined;
-            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["key"] = args?.key ? pulumi.secret(args.key) : undefined;
             resourceInputs["l2epEthType"] = args ? args.l2epEthType : undefined;
             resourceInputs["linkFailedSignal"] = args ? args.linkFailedSignal : undefined;
             resourceInputs["loadBalanceAll"] = args ? args.loadBalanceAll : undefined;
@@ -282,7 +259,7 @@ export class SystemHa extends pulumi.CustomResource {
             resourceInputs["nntpProxyThreshold"] = args ? args.nntpProxyThreshold : undefined;
             resourceInputs["override"] = args ? args.override : undefined;
             resourceInputs["overrideWaitTime"] = args ? args.overrideWaitTime : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["pingserverFailoverThreshold"] = args ? args.pingserverFailoverThreshold : undefined;
             resourceInputs["pingserverFlipTimeout"] = args ? args.pingserverFlipTimeout : undefined;
             resourceInputs["pingserverMonitorInterface"] = args ? args.pingserverMonitorInterface : undefined;
@@ -317,11 +294,15 @@ export class SystemHa extends pulumi.CustomResource {
             resourceInputs["uninterruptibleUpgrade"] = args ? args.uninterruptibleUpgrade : undefined;
             resourceInputs["vcluster2"] = args ? args.vcluster2 : undefined;
             resourceInputs["vclusterId"] = args ? args.vclusterId : undefined;
+            resourceInputs["vclusterStatus"] = args ? args.vclusterStatus : undefined;
+            resourceInputs["vclusters"] = args ? args.vclusters : undefined;
             resourceInputs["vdom"] = args ? args.vdom : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["weight"] = args ? args.weight : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["key", "password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemHa.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -408,6 +389,8 @@ export interface SystemHaState {
     uninterruptibleUpgrade?: pulumi.Input<string>;
     vcluster2?: pulumi.Input<string>;
     vclusterId?: pulumi.Input<number>;
+    vclusterStatus?: pulumi.Input<string>;
+    vclusters?: pulumi.Input<pulumi.Input<inputs.SystemHaVcluster>[]>;
     vdom?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     weight?: pulumi.Input<string>;
@@ -495,6 +478,8 @@ export interface SystemHaArgs {
     uninterruptibleUpgrade?: pulumi.Input<string>;
     vcluster2?: pulumi.Input<string>;
     vclusterId?: pulumi.Input<number>;
+    vclusterStatus?: pulumi.Input<string>;
+    vclusters?: pulumi.Input<pulumi.Input<inputs.SystemHaVcluster>[]>;
     vdom?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     weight?: pulumi.Input<string>;

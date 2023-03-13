@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.FirewallWildcardFqdnCustom`.
- */
 export function getFirewallWildcardFqdnCustomList(args?: GetFirewallWildcardFqdnCustomListArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallWildcardFqdnCustomListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallWildcardFqdnCustomList:GetFirewallWildcardFqdnCustomList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getFirewallWildcardFqdnCustomList(args?: GetFirewallWildcardFqdn
  */
 export interface GetFirewallWildcardFqdnCustomListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -40,15 +31,11 @@ export interface GetFirewallWildcardFqdnCustomListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.FirewallWildcardFqdnCustom`.
-     */
     readonly namelists: string[];
     readonly vdomparam?: string;
 }
-
 export function getFirewallWildcardFqdnCustomListOutput(args?: GetFirewallWildcardFqdnCustomListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallWildcardFqdnCustomListResult> {
-    return pulumi.output(args).apply(a => getFirewallWildcardFqdnCustomList(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallWildcardFqdnCustomList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getFirewallWildcardFqdnCustomListOutput(args?: GetFirewallWildca
  */
 export interface GetFirewallWildcardFqdnCustomListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

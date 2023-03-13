@@ -10,42 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure dedicated management.
-//
-// ## Import
-//
-// System DedicatedMgmt can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDedicatedMgmt:SystemDedicatedMgmt labelname SystemDedicatedMgmt
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDedicatedMgmt:SystemDedicatedMgmt labelname SystemDedicatedMgmt
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemDedicatedMgmt struct {
 	pulumi.CustomResourceState
 
-	// Default gateway for dedicated management interface.
-	DefaultGateway pulumi.StringOutput `pulumi:"defaultGateway"`
-	// DHCP end IP for dedicated management.
-	DhcpEndIp pulumi.StringOutput `pulumi:"dhcpEndIp"`
-	// DHCP netmask.
-	DhcpNetmask pulumi.StringOutput `pulumi:"dhcpNetmask"`
-	// Enable/disable DHCP server on management interface. Valid values: `enable`, `disable`.
-	DhcpServer pulumi.StringOutput `pulumi:"dhcpServer"`
-	// DHCP start IP for dedicated management.
-	DhcpStartIp pulumi.StringOutput `pulumi:"dhcpStartIp"`
-	// Dedicated management interface.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Enable/disable dedicated management. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DefaultGateway pulumi.StringOutput    `pulumi:"defaultGateway"`
+	DhcpEndIp      pulumi.StringOutput    `pulumi:"dhcpEndIp"`
+	DhcpNetmask    pulumi.StringOutput    `pulumi:"dhcpNetmask"`
+	DhcpServer     pulumi.StringOutput    `pulumi:"dhcpServer"`
+	DhcpStartIp    pulumi.StringOutput    `pulumi:"dhcpStartIp"`
+	Interface      pulumi.StringOutput    `pulumi:"interface"`
+	Status         pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam      pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemDedicatedMgmt registers a new resource with the given unique name, arguments, and options.
@@ -78,41 +53,25 @@ func GetSystemDedicatedMgmt(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemDedicatedMgmt resources.
 type systemDedicatedMgmtState struct {
-	// Default gateway for dedicated management interface.
 	DefaultGateway *string `pulumi:"defaultGateway"`
-	// DHCP end IP for dedicated management.
-	DhcpEndIp *string `pulumi:"dhcpEndIp"`
-	// DHCP netmask.
-	DhcpNetmask *string `pulumi:"dhcpNetmask"`
-	// Enable/disable DHCP server on management interface. Valid values: `enable`, `disable`.
-	DhcpServer *string `pulumi:"dhcpServer"`
-	// DHCP start IP for dedicated management.
-	DhcpStartIp *string `pulumi:"dhcpStartIp"`
-	// Dedicated management interface.
-	Interface *string `pulumi:"interface"`
-	// Enable/disable dedicated management. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DhcpEndIp      *string `pulumi:"dhcpEndIp"`
+	DhcpNetmask    *string `pulumi:"dhcpNetmask"`
+	DhcpServer     *string `pulumi:"dhcpServer"`
+	DhcpStartIp    *string `pulumi:"dhcpStartIp"`
+	Interface      *string `pulumi:"interface"`
+	Status         *string `pulumi:"status"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 type SystemDedicatedMgmtState struct {
-	// Default gateway for dedicated management interface.
 	DefaultGateway pulumi.StringPtrInput
-	// DHCP end IP for dedicated management.
-	DhcpEndIp pulumi.StringPtrInput
-	// DHCP netmask.
-	DhcpNetmask pulumi.StringPtrInput
-	// Enable/disable DHCP server on management interface. Valid values: `enable`, `disable`.
-	DhcpServer pulumi.StringPtrInput
-	// DHCP start IP for dedicated management.
-	DhcpStartIp pulumi.StringPtrInput
-	// Dedicated management interface.
-	Interface pulumi.StringPtrInput
-	// Enable/disable dedicated management. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	DhcpEndIp      pulumi.StringPtrInput
+	DhcpNetmask    pulumi.StringPtrInput
+	DhcpServer     pulumi.StringPtrInput
+	DhcpStartIp    pulumi.StringPtrInput
+	Interface      pulumi.StringPtrInput
+	Status         pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (SystemDedicatedMgmtState) ElementType() reflect.Type {
@@ -120,42 +79,26 @@ func (SystemDedicatedMgmtState) ElementType() reflect.Type {
 }
 
 type systemDedicatedMgmtArgs struct {
-	// Default gateway for dedicated management interface.
 	DefaultGateway *string `pulumi:"defaultGateway"`
-	// DHCP end IP for dedicated management.
-	DhcpEndIp *string `pulumi:"dhcpEndIp"`
-	// DHCP netmask.
-	DhcpNetmask *string `pulumi:"dhcpNetmask"`
-	// Enable/disable DHCP server on management interface. Valid values: `enable`, `disable`.
-	DhcpServer *string `pulumi:"dhcpServer"`
-	// DHCP start IP for dedicated management.
-	DhcpStartIp *string `pulumi:"dhcpStartIp"`
-	// Dedicated management interface.
-	Interface *string `pulumi:"interface"`
-	// Enable/disable dedicated management. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DhcpEndIp      *string `pulumi:"dhcpEndIp"`
+	DhcpNetmask    *string `pulumi:"dhcpNetmask"`
+	DhcpServer     *string `pulumi:"dhcpServer"`
+	DhcpStartIp    *string `pulumi:"dhcpStartIp"`
+	Interface      *string `pulumi:"interface"`
+	Status         *string `pulumi:"status"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemDedicatedMgmt resource.
 type SystemDedicatedMgmtArgs struct {
-	// Default gateway for dedicated management interface.
 	DefaultGateway pulumi.StringPtrInput
-	// DHCP end IP for dedicated management.
-	DhcpEndIp pulumi.StringPtrInput
-	// DHCP netmask.
-	DhcpNetmask pulumi.StringPtrInput
-	// Enable/disable DHCP server on management interface. Valid values: `enable`, `disable`.
-	DhcpServer pulumi.StringPtrInput
-	// DHCP start IP for dedicated management.
-	DhcpStartIp pulumi.StringPtrInput
-	// Dedicated management interface.
-	Interface pulumi.StringPtrInput
-	// Enable/disable dedicated management. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	DhcpEndIp      pulumi.StringPtrInput
+	DhcpNetmask    pulumi.StringPtrInput
+	DhcpServer     pulumi.StringPtrInput
+	DhcpStartIp    pulumi.StringPtrInput
+	Interface      pulumi.StringPtrInput
+	Status         pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (SystemDedicatedMgmtArgs) ElementType() reflect.Type {
@@ -184,7 +127,7 @@ func (i *SystemDedicatedMgmt) ToSystemDedicatedMgmtOutputWithContext(ctx context
 // SystemDedicatedMgmtArrayInput is an input type that accepts SystemDedicatedMgmtArray and SystemDedicatedMgmtArrayOutput values.
 // You can construct a concrete instance of `SystemDedicatedMgmtArrayInput` via:
 //
-//          SystemDedicatedMgmtArray{ SystemDedicatedMgmtArgs{...} }
+//	SystemDedicatedMgmtArray{ SystemDedicatedMgmtArgs{...} }
 type SystemDedicatedMgmtArrayInput interface {
 	pulumi.Input
 
@@ -209,7 +152,7 @@ func (i SystemDedicatedMgmtArray) ToSystemDedicatedMgmtArrayOutputWithContext(ct
 // SystemDedicatedMgmtMapInput is an input type that accepts SystemDedicatedMgmtMap and SystemDedicatedMgmtMapOutput values.
 // You can construct a concrete instance of `SystemDedicatedMgmtMapInput` via:
 //
-//          SystemDedicatedMgmtMap{ "key": SystemDedicatedMgmtArgs{...} }
+//	SystemDedicatedMgmtMap{ "key": SystemDedicatedMgmtArgs{...} }
 type SystemDedicatedMgmtMapInput interface {
 	pulumi.Input
 
@@ -243,6 +186,38 @@ func (o SystemDedicatedMgmtOutput) ToSystemDedicatedMgmtOutput() SystemDedicated
 
 func (o SystemDedicatedMgmtOutput) ToSystemDedicatedMgmtOutputWithContext(ctx context.Context) SystemDedicatedMgmtOutput {
 	return o
+}
+
+func (o SystemDedicatedMgmtOutput) DefaultGateway() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDedicatedMgmt) pulumi.StringOutput { return v.DefaultGateway }).(pulumi.StringOutput)
+}
+
+func (o SystemDedicatedMgmtOutput) DhcpEndIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDedicatedMgmt) pulumi.StringOutput { return v.DhcpEndIp }).(pulumi.StringOutput)
+}
+
+func (o SystemDedicatedMgmtOutput) DhcpNetmask() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDedicatedMgmt) pulumi.StringOutput { return v.DhcpNetmask }).(pulumi.StringOutput)
+}
+
+func (o SystemDedicatedMgmtOutput) DhcpServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDedicatedMgmt) pulumi.StringOutput { return v.DhcpServer }).(pulumi.StringOutput)
+}
+
+func (o SystemDedicatedMgmtOutput) DhcpStartIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDedicatedMgmt) pulumi.StringOutput { return v.DhcpStartIp }).(pulumi.StringOutput)
+}
+
+func (o SystemDedicatedMgmtOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDedicatedMgmt) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemDedicatedMgmtOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDedicatedMgmt) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemDedicatedMgmtOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDedicatedMgmt) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemDedicatedMgmtArrayOutput struct{ *pulumi.OutputState }

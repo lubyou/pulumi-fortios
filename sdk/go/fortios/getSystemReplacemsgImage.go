@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system replacemsgimage
 func LookupSystemReplacemsgImage(ctx *pulumi.Context, args *LookupSystemReplacemsgImageArgs, opts ...pulumi.InvokeOption) (*LookupSystemReplacemsgImageResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemReplacemsgImageResult
@@ -23,23 +22,18 @@ func LookupSystemReplacemsgImage(ctx *pulumi.Context, args *LookupSystemReplacem
 
 // A collection of arguments for invoking GetSystemReplacemsgImage.
 type LookupSystemReplacemsgImageArgs struct {
-	// Specify the name of the desired system replacemsgimage.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemReplacemsgImage.
 type LookupSystemReplacemsgImageResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Image data.
-	ImageBase64 string `pulumi:"imageBase64"`
-	// Image type.
-	ImageType string `pulumi:"imageType"`
-	// Image name.
-	Name      string  `pulumi:"name"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id          string  `pulumi:"id"`
+	ImageBase64 string  `pulumi:"imageBase64"`
+	ImageType   string  `pulumi:"imageType"`
+	Name        string  `pulumi:"name"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 }
 
 func LookupSystemReplacemsgImageOutput(ctx *pulumi.Context, args LookupSystemReplacemsgImageOutputArgs, opts ...pulumi.InvokeOption) LookupSystemReplacemsgImageResultOutput {
@@ -57,9 +51,7 @@ func LookupSystemReplacemsgImageOutput(ctx *pulumi.Context, args LookupSystemRep
 
 // A collection of arguments for invoking GetSystemReplacemsgImage.
 type LookupSystemReplacemsgImageOutputArgs struct {
-	// Specify the name of the desired system replacemsgimage.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -87,17 +79,14 @@ func (o LookupSystemReplacemsgImageResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemReplacemsgImageResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Image data.
 func (o LookupSystemReplacemsgImageResultOutput) ImageBase64() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemReplacemsgImageResult) string { return v.ImageBase64 }).(pulumi.StringOutput)
 }
 
-// Image type.
 func (o LookupSystemReplacemsgImageResultOutput) ImageType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemReplacemsgImageResult) string { return v.ImageType }).(pulumi.StringOutput)
 }
 
-// Image name.
 func (o LookupSystemReplacemsgImageResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemReplacemsgImageResult) string { return v.Name }).(pulumi.StringOutput)
 }

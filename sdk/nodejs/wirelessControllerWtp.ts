@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure Wireless Termination Points (WTPs), that is, FortiAPs or APs to be managed by FortiGate.
- *
- * ## Import
- *
- * WirelessController Wtp can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerWtp:WirelessControllerWtp labelname {{wtp_id}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerWtp:WirelessControllerWtp labelname {{wtp_id}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerWtp extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerWtp resource's state with the given name, ID, and optional extra
@@ -52,181 +34,49 @@ export class WirelessControllerWtp extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerWtp.__pulumiType;
     }
 
-    /**
-     * Configure how the FortiGate operating as a wireless controller discovers and manages this WTP, AP or FortiAP. Valid values: `discovered`, `disable`, `enable`.
-     */
     public readonly admin!: pulumi.Output<string>;
-    /**
-     * Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space.
-     */
     public readonly allowaccess!: pulumi.Output<string>;
-    /**
-     * AP local configuration profile name.
-     */
     public readonly apcfgProfile!: pulumi.Output<string>;
-    /**
-     * Bonjour profile name.
-     */
     public readonly bonjourProfile!: pulumi.Output<string>;
-    /**
-     * WTP latitude coordinate.
-     */
     public readonly coordinateLatitude!: pulumi.Output<string>;
-    /**
-     * WTP longitude coordinate.
-     */
     public readonly coordinateLongitude!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
-     */
     public readonly firmwareProvision!: pulumi.Output<string>;
-    /**
-     * Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
-     */
     public readonly firmwareProvisionLatest!: pulumi.Output<string>;
-    /**
-     * Enable/disable WTP image download. Valid values: `enable`, `disable`.
-     */
     public readonly imageDownload!: pulumi.Output<string>;
-    /**
-     * Index (0 - 4294967295).
-     */
     public readonly index!: pulumi.Output<number>;
-    /**
-     * Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
-     */
     public readonly ipFragmentPreventing!: pulumi.Output<string>;
-    /**
-     * WTP LAN port mapping. The structure of `lan` block is documented below.
-     */
-    public readonly lan!: pulumi.Output<outputs.WirelessControllerWtpLan | undefined>;
-    /**
-     * Enable to allow the FortiAPs LEDs to light. Disable to keep the LEDs off. You may want to keep the LEDs off so they are not distracting in low light areas etc. Valid values: `enable`, `disable`.
-     */
+    public readonly lan!: pulumi.Output<outputs.WirelessControllerWtpLan>;
     public readonly ledState!: pulumi.Output<string>;
-    /**
-     * Field for describing the physical location of the WTP, AP or FortiAP.
-     */
     public readonly location!: pulumi.Output<string>;
-    /**
-     * Set the managed WTP, FortiAP, or AP's administrator password.
-     */
     public readonly loginPasswd!: pulumi.Output<string | undefined>;
-    /**
-     * Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-     */
     public readonly loginPasswdChange!: pulumi.Output<string>;
-    /**
-     * Enable/disable mesh Ethernet bridge when WTP is configured as a mesh branch/leaf AP. Valid values: `default`, `enable`, `disable`.
-     */
     public readonly meshBridgeEnable!: pulumi.Output<string>;
-    /**
-     * Virtual Access Point (VAP) name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable to override the WTP profile management access configuration. Valid values: `enable`, `disable`.
-     */
     public readonly overrideAllowaccess!: pulumi.Output<string>;
-    /**
-     * Enable/disable overriding the WTP profile IP fragment prevention setting. Valid values: `enable`, `disable`.
-     */
     public readonly overrideIpFragment!: pulumi.Output<string>;
-    /**
-     * Enable to override the WTP profile LAN port setting. Valid values: `enable`, `disable`.
-     */
     public readonly overrideLan!: pulumi.Output<string>;
-    /**
-     * Enable to override the profile LED state setting for this FortiAP. You must enable this option to use the led-state command to turn off the FortiAP's LEDs. Valid values: `enable`, `disable`.
-     */
     public readonly overrideLedState!: pulumi.Output<string>;
-    /**
-     * Enable to override the WTP profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
-     */
     public readonly overrideLoginPasswdChange!: pulumi.Output<string>;
-    /**
-     * Enable/disable overriding the WTP profile split tunneling setting. Valid values: `enable`, `disable`.
-     */
     public readonly overrideSplitTunnel!: pulumi.Output<string>;
-    /**
-     * Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
-     */
     public readonly overrideWanPortMode!: pulumi.Output<string>;
-    /**
-     * Configuration options for radio 1. The structure of `radio1` block is documented below.
-     */
-    public readonly radio1!: pulumi.Output<outputs.WirelessControllerWtpRadio1 | undefined>;
-    /**
-     * Configuration options for radio 2. The structure of `radio2` block is documented below.
-     */
-    public readonly radio2!: pulumi.Output<outputs.WirelessControllerWtpRadio2 | undefined>;
-    /**
-     * Configuration options for radio 3. The structure of `radio3` block is documented below.
-     */
-    public readonly radio3!: pulumi.Output<outputs.WirelessControllerWtpRadio3 | undefined>;
-    /**
-     * Configuration options for radio 4. The structure of `radio4` block is documented below.
-     */
-    public readonly radio4!: pulumi.Output<outputs.WirelessControllerWtpRadio4 | undefined>;
-    /**
-     * Region name WTP is associated with.
-     */
+    public readonly radio1!: pulumi.Output<outputs.WirelessControllerWtpRadio1>;
+    public readonly radio2!: pulumi.Output<outputs.WirelessControllerWtpRadio2>;
+    public readonly radio3!: pulumi.Output<outputs.WirelessControllerWtpRadio3>;
+    public readonly radio4!: pulumi.Output<outputs.WirelessControllerWtpRadio4>;
     public readonly region!: pulumi.Output<string>;
-    /**
-     * Relative horizontal region coordinate (between 0 and 1).
-     */
     public readonly regionX!: pulumi.Output<string>;
-    /**
-     * Relative vertical region coordinate (between 0 and 1).
-     */
     public readonly regionY!: pulumi.Output<string>;
-    /**
-     * Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly splitTunnelingAclLocalApSubnet!: pulumi.Output<string>;
-    /**
-     * Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
-     */
     public readonly splitTunnelingAclPath!: pulumi.Output<string>;
-    /**
-     * Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
-     */
     public readonly splitTunnelingAcls!: pulumi.Output<outputs.WirelessControllerWtpSplitTunnelingAcl[] | undefined>;
-    /**
-     * Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
-     */
     public readonly tunMtuDownlink!: pulumi.Output<number>;
-    /**
-     * Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
-     */
     public readonly tunMtuUplink!: pulumi.Output<number>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable using the FortiAP WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
-     */
     public readonly wanPortMode!: pulumi.Output<string>;
-    /**
-     * WTP ID.
-     */
     public readonly wtpId!: pulumi.Output<string>;
-    /**
-     * WTP, AP, or FortiAP operating mode; normal (by default) or remote. A tunnel mode SSID can be assigned to an AP in normal mode but not remote mode, while a local-bridge mode SSID can be assigned to an AP in either normal mode or remote mode. Valid values: `normal`, `remote`.
-     */
     public readonly wtpMode!: pulumi.Output<string>;
-    /**
-     * WTP profile name to apply to this WTP, AP or FortiAP.
-     */
     public readonly wtpProfile!: pulumi.Output<string>;
 
     /**
@@ -306,7 +156,7 @@ export class WirelessControllerWtp extends pulumi.CustomResource {
             resourceInputs["lan"] = args ? args.lan : undefined;
             resourceInputs["ledState"] = args ? args.ledState : undefined;
             resourceInputs["location"] = args ? args.location : undefined;
-            resourceInputs["loginPasswd"] = args ? args.loginPasswd : undefined;
+            resourceInputs["loginPasswd"] = args?.loginPasswd ? pulumi.secret(args.loginPasswd) : undefined;
             resourceInputs["loginPasswdChange"] = args ? args.loginPasswdChange : undefined;
             resourceInputs["meshBridgeEnable"] = args ? args.meshBridgeEnable : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -337,6 +187,8 @@ export class WirelessControllerWtp extends pulumi.CustomResource {
             resourceInputs["wtpProfile"] = args ? args.wtpProfile : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["loginPasswd"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(WirelessControllerWtp.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -345,181 +197,49 @@ export class WirelessControllerWtp extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerWtp resources.
  */
 export interface WirelessControllerWtpState {
-    /**
-     * Configure how the FortiGate operating as a wireless controller discovers and manages this WTP, AP or FortiAP. Valid values: `discovered`, `disable`, `enable`.
-     */
     admin?: pulumi.Input<string>;
-    /**
-     * Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space.
-     */
     allowaccess?: pulumi.Input<string>;
-    /**
-     * AP local configuration profile name.
-     */
     apcfgProfile?: pulumi.Input<string>;
-    /**
-     * Bonjour profile name.
-     */
     bonjourProfile?: pulumi.Input<string>;
-    /**
-     * WTP latitude coordinate.
-     */
     coordinateLatitude?: pulumi.Input<string>;
-    /**
-     * WTP longitude coordinate.
-     */
     coordinateLongitude?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
-     */
     firmwareProvision?: pulumi.Input<string>;
-    /**
-     * Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
-     */
     firmwareProvisionLatest?: pulumi.Input<string>;
-    /**
-     * Enable/disable WTP image download. Valid values: `enable`, `disable`.
-     */
     imageDownload?: pulumi.Input<string>;
-    /**
-     * Index (0 - 4294967295).
-     */
     index?: pulumi.Input<number>;
-    /**
-     * Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
-     */
     ipFragmentPreventing?: pulumi.Input<string>;
-    /**
-     * WTP LAN port mapping. The structure of `lan` block is documented below.
-     */
     lan?: pulumi.Input<inputs.WirelessControllerWtpLan>;
-    /**
-     * Enable to allow the FortiAPs LEDs to light. Disable to keep the LEDs off. You may want to keep the LEDs off so they are not distracting in low light areas etc. Valid values: `enable`, `disable`.
-     */
     ledState?: pulumi.Input<string>;
-    /**
-     * Field for describing the physical location of the WTP, AP or FortiAP.
-     */
     location?: pulumi.Input<string>;
-    /**
-     * Set the managed WTP, FortiAP, or AP's administrator password.
-     */
     loginPasswd?: pulumi.Input<string>;
-    /**
-     * Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-     */
     loginPasswdChange?: pulumi.Input<string>;
-    /**
-     * Enable/disable mesh Ethernet bridge when WTP is configured as a mesh branch/leaf AP. Valid values: `default`, `enable`, `disable`.
-     */
     meshBridgeEnable?: pulumi.Input<string>;
-    /**
-     * Virtual Access Point (VAP) name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable to override the WTP profile management access configuration. Valid values: `enable`, `disable`.
-     */
     overrideAllowaccess?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the WTP profile IP fragment prevention setting. Valid values: `enable`, `disable`.
-     */
     overrideIpFragment?: pulumi.Input<string>;
-    /**
-     * Enable to override the WTP profile LAN port setting. Valid values: `enable`, `disable`.
-     */
     overrideLan?: pulumi.Input<string>;
-    /**
-     * Enable to override the profile LED state setting for this FortiAP. You must enable this option to use the led-state command to turn off the FortiAP's LEDs. Valid values: `enable`, `disable`.
-     */
     overrideLedState?: pulumi.Input<string>;
-    /**
-     * Enable to override the WTP profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
-     */
     overrideLoginPasswdChange?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the WTP profile split tunneling setting. Valid values: `enable`, `disable`.
-     */
     overrideSplitTunnel?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
-     */
     overrideWanPortMode?: pulumi.Input<string>;
-    /**
-     * Configuration options for radio 1. The structure of `radio1` block is documented below.
-     */
     radio1?: pulumi.Input<inputs.WirelessControllerWtpRadio1>;
-    /**
-     * Configuration options for radio 2. The structure of `radio2` block is documented below.
-     */
     radio2?: pulumi.Input<inputs.WirelessControllerWtpRadio2>;
-    /**
-     * Configuration options for radio 3. The structure of `radio3` block is documented below.
-     */
     radio3?: pulumi.Input<inputs.WirelessControllerWtpRadio3>;
-    /**
-     * Configuration options for radio 4. The structure of `radio4` block is documented below.
-     */
     radio4?: pulumi.Input<inputs.WirelessControllerWtpRadio4>;
-    /**
-     * Region name WTP is associated with.
-     */
     region?: pulumi.Input<string>;
-    /**
-     * Relative horizontal region coordinate (between 0 and 1).
-     */
     regionX?: pulumi.Input<string>;
-    /**
-     * Relative vertical region coordinate (between 0 and 1).
-     */
     regionY?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
-     */
     splitTunnelingAclLocalApSubnet?: pulumi.Input<string>;
-    /**
-     * Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
-     */
     splitTunnelingAclPath?: pulumi.Input<string>;
-    /**
-     * Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
-     */
     splitTunnelingAcls?: pulumi.Input<pulumi.Input<inputs.WirelessControllerWtpSplitTunnelingAcl>[]>;
-    /**
-     * Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
-     */
     tunMtuDownlink?: pulumi.Input<number>;
-    /**
-     * Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
-     */
     tunMtuUplink?: pulumi.Input<number>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable using the FortiAP WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
-     */
     wanPortMode?: pulumi.Input<string>;
-    /**
-     * WTP ID.
-     */
     wtpId?: pulumi.Input<string>;
-    /**
-     * WTP, AP, or FortiAP operating mode; normal (by default) or remote. A tunnel mode SSID can be assigned to an AP in normal mode but not remote mode, while a local-bridge mode SSID can be assigned to an AP in either normal mode or remote mode. Valid values: `normal`, `remote`.
-     */
     wtpMode?: pulumi.Input<string>;
-    /**
-     * WTP profile name to apply to this WTP, AP or FortiAP.
-     */
     wtpProfile?: pulumi.Input<string>;
 }
 
@@ -527,180 +247,48 @@ export interface WirelessControllerWtpState {
  * The set of arguments for constructing a WirelessControllerWtp resource.
  */
 export interface WirelessControllerWtpArgs {
-    /**
-     * Configure how the FortiGate operating as a wireless controller discovers and manages this WTP, AP or FortiAP. Valid values: `discovered`, `disable`, `enable`.
-     */
     admin?: pulumi.Input<string>;
-    /**
-     * Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space.
-     */
     allowaccess?: pulumi.Input<string>;
-    /**
-     * AP local configuration profile name.
-     */
     apcfgProfile?: pulumi.Input<string>;
-    /**
-     * Bonjour profile name.
-     */
     bonjourProfile?: pulumi.Input<string>;
-    /**
-     * WTP latitude coordinate.
-     */
     coordinateLatitude?: pulumi.Input<string>;
-    /**
-     * WTP longitude coordinate.
-     */
     coordinateLongitude?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
-     */
     firmwareProvision?: pulumi.Input<string>;
-    /**
-     * Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
-     */
     firmwareProvisionLatest?: pulumi.Input<string>;
-    /**
-     * Enable/disable WTP image download. Valid values: `enable`, `disable`.
-     */
     imageDownload?: pulumi.Input<string>;
-    /**
-     * Index (0 - 4294967295).
-     */
     index?: pulumi.Input<number>;
-    /**
-     * Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
-     */
     ipFragmentPreventing?: pulumi.Input<string>;
-    /**
-     * WTP LAN port mapping. The structure of `lan` block is documented below.
-     */
     lan?: pulumi.Input<inputs.WirelessControllerWtpLan>;
-    /**
-     * Enable to allow the FortiAPs LEDs to light. Disable to keep the LEDs off. You may want to keep the LEDs off so they are not distracting in low light areas etc. Valid values: `enable`, `disable`.
-     */
     ledState?: pulumi.Input<string>;
-    /**
-     * Field for describing the physical location of the WTP, AP or FortiAP.
-     */
     location?: pulumi.Input<string>;
-    /**
-     * Set the managed WTP, FortiAP, or AP's administrator password.
-     */
     loginPasswd?: pulumi.Input<string>;
-    /**
-     * Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-     */
     loginPasswdChange?: pulumi.Input<string>;
-    /**
-     * Enable/disable mesh Ethernet bridge when WTP is configured as a mesh branch/leaf AP. Valid values: `default`, `enable`, `disable`.
-     */
     meshBridgeEnable?: pulumi.Input<string>;
-    /**
-     * Virtual Access Point (VAP) name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable to override the WTP profile management access configuration. Valid values: `enable`, `disable`.
-     */
     overrideAllowaccess?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the WTP profile IP fragment prevention setting. Valid values: `enable`, `disable`.
-     */
     overrideIpFragment?: pulumi.Input<string>;
-    /**
-     * Enable to override the WTP profile LAN port setting. Valid values: `enable`, `disable`.
-     */
     overrideLan?: pulumi.Input<string>;
-    /**
-     * Enable to override the profile LED state setting for this FortiAP. You must enable this option to use the led-state command to turn off the FortiAP's LEDs. Valid values: `enable`, `disable`.
-     */
     overrideLedState?: pulumi.Input<string>;
-    /**
-     * Enable to override the WTP profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
-     */
     overrideLoginPasswdChange?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the WTP profile split tunneling setting. Valid values: `enable`, `disable`.
-     */
     overrideSplitTunnel?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
-     */
     overrideWanPortMode?: pulumi.Input<string>;
-    /**
-     * Configuration options for radio 1. The structure of `radio1` block is documented below.
-     */
     radio1?: pulumi.Input<inputs.WirelessControllerWtpRadio1>;
-    /**
-     * Configuration options for radio 2. The structure of `radio2` block is documented below.
-     */
     radio2?: pulumi.Input<inputs.WirelessControllerWtpRadio2>;
-    /**
-     * Configuration options for radio 3. The structure of `radio3` block is documented below.
-     */
     radio3?: pulumi.Input<inputs.WirelessControllerWtpRadio3>;
-    /**
-     * Configuration options for radio 4. The structure of `radio4` block is documented below.
-     */
     radio4?: pulumi.Input<inputs.WirelessControllerWtpRadio4>;
-    /**
-     * Region name WTP is associated with.
-     */
     region?: pulumi.Input<string>;
-    /**
-     * Relative horizontal region coordinate (between 0 and 1).
-     */
     regionX?: pulumi.Input<string>;
-    /**
-     * Relative vertical region coordinate (between 0 and 1).
-     */
     regionY?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
-     */
     splitTunnelingAclLocalApSubnet?: pulumi.Input<string>;
-    /**
-     * Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
-     */
     splitTunnelingAclPath?: pulumi.Input<string>;
-    /**
-     * Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
-     */
     splitTunnelingAcls?: pulumi.Input<pulumi.Input<inputs.WirelessControllerWtpSplitTunnelingAcl>[]>;
-    /**
-     * Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
-     */
     tunMtuDownlink?: pulumi.Input<number>;
-    /**
-     * Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
-     */
     tunMtuUplink?: pulumi.Input<number>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable using the FortiAP WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
-     */
     wanPortMode?: pulumi.Input<string>;
-    /**
-     * WTP ID.
-     */
     wtpId?: pulumi.Input<string>;
-    /**
-     * WTP, AP, or FortiAP operating mode; normal (by default) or remote. A tunnel mode SSID can be assigned to an AP in normal mode but not remote mode, while a local-bridge mode SSID can be assigned to an AP in either normal mode or remote mode. Valid values: `normal`, `remote`.
-     */
     wtpMode?: pulumi.Input<string>;
-    /**
-     * WTP profile name to apply to this WTP, AP or FortiAP.
-     */
     wtpProfile: pulumi.Input<string>;
 }

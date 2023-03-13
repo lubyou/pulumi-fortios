@@ -7,59 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure logging to remote Syslog logging servers.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `LogSyslogdSetting`, we recommend that you use the new resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogSyslogSetting(ctx, "test2", &fortios.LogSyslogSettingArgs{
-// 			Facility: pulumi.String("local7"),
-// 			Format:   pulumi.String("csv"),
-// 			Mode:     pulumi.String("udp"),
-// 			Port:     pulumi.String("514"),
-// 			Server:   pulumi.String("2.2.2.2"),
-// 			SourceIp: pulumi.String("10.2.2.199"),
-// 			Status:   pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type LogSyslogSetting struct {
 	pulumi.CustomResourceState
 
-	// Remote syslog facility.
 	Facility pulumi.StringOutput `pulumi:"facility"`
-	// Log format.
-	Format pulumi.StringOutput `pulumi:"format"`
-	// Remote syslog logging over UDP/Reliable TCP.
-	Mode pulumi.StringOutput `pulumi:"mode"`
-	// Server listen port.
-	Port pulumi.StringOutput `pulumi:"port"`
-	// Address of remote syslog server.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// Source IP address of syslog.
+	Format   pulumi.StringOutput `pulumi:"format"`
+	Mode     pulumi.StringOutput `pulumi:"mode"`
+	Port     pulumi.StringOutput `pulumi:"port"`
+	Server   pulumi.StringOutput `pulumi:"server"`
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Enable/disable remote syslog logging.
-	Status pulumi.StringOutput `pulumi:"status"`
+	Status   pulumi.StringOutput `pulumi:"status"`
 }
 
 // NewLogSyslogSetting registers a new resource with the given unique name, arguments, and options.
@@ -95,37 +56,23 @@ func GetLogSyslogSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogSyslogSetting resources.
 type logSyslogSettingState struct {
-	// Remote syslog facility.
 	Facility *string `pulumi:"facility"`
-	// Log format.
-	Format *string `pulumi:"format"`
-	// Remote syslog logging over UDP/Reliable TCP.
-	Mode *string `pulumi:"mode"`
-	// Server listen port.
-	Port *string `pulumi:"port"`
-	// Address of remote syslog server.
-	Server *string `pulumi:"server"`
-	// Source IP address of syslog.
+	Format   *string `pulumi:"format"`
+	Mode     *string `pulumi:"mode"`
+	Port     *string `pulumi:"port"`
+	Server   *string `pulumi:"server"`
 	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable remote syslog logging.
-	Status *string `pulumi:"status"`
+	Status   *string `pulumi:"status"`
 }
 
 type LogSyslogSettingState struct {
-	// Remote syslog facility.
 	Facility pulumi.StringPtrInput
-	// Log format.
-	Format pulumi.StringPtrInput
-	// Remote syslog logging over UDP/Reliable TCP.
-	Mode pulumi.StringPtrInput
-	// Server listen port.
-	Port pulumi.StringPtrInput
-	// Address of remote syslog server.
-	Server pulumi.StringPtrInput
-	// Source IP address of syslog.
+	Format   pulumi.StringPtrInput
+	Mode     pulumi.StringPtrInput
+	Port     pulumi.StringPtrInput
+	Server   pulumi.StringPtrInput
 	SourceIp pulumi.StringPtrInput
-	// Enable/disable remote syslog logging.
-	Status pulumi.StringPtrInput
+	Status   pulumi.StringPtrInput
 }
 
 func (LogSyslogSettingState) ElementType() reflect.Type {
@@ -133,38 +80,24 @@ func (LogSyslogSettingState) ElementType() reflect.Type {
 }
 
 type logSyslogSettingArgs struct {
-	// Remote syslog facility.
 	Facility *string `pulumi:"facility"`
-	// Log format.
-	Format *string `pulumi:"format"`
-	// Remote syslog logging over UDP/Reliable TCP.
-	Mode *string `pulumi:"mode"`
-	// Server listen port.
-	Port *string `pulumi:"port"`
-	// Address of remote syslog server.
-	Server *string `pulumi:"server"`
-	// Source IP address of syslog.
+	Format   *string `pulumi:"format"`
+	Mode     *string `pulumi:"mode"`
+	Port     *string `pulumi:"port"`
+	Server   *string `pulumi:"server"`
 	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable remote syslog logging.
-	Status string `pulumi:"status"`
+	Status   string  `pulumi:"status"`
 }
 
 // The set of arguments for constructing a LogSyslogSetting resource.
 type LogSyslogSettingArgs struct {
-	// Remote syslog facility.
 	Facility pulumi.StringPtrInput
-	// Log format.
-	Format pulumi.StringPtrInput
-	// Remote syslog logging over UDP/Reliable TCP.
-	Mode pulumi.StringPtrInput
-	// Server listen port.
-	Port pulumi.StringPtrInput
-	// Address of remote syslog server.
-	Server pulumi.StringPtrInput
-	// Source IP address of syslog.
+	Format   pulumi.StringPtrInput
+	Mode     pulumi.StringPtrInput
+	Port     pulumi.StringPtrInput
+	Server   pulumi.StringPtrInput
 	SourceIp pulumi.StringPtrInput
-	// Enable/disable remote syslog logging.
-	Status pulumi.StringInput
+	Status   pulumi.StringInput
 }
 
 func (LogSyslogSettingArgs) ElementType() reflect.Type {
@@ -193,7 +126,7 @@ func (i *LogSyslogSetting) ToLogSyslogSettingOutputWithContext(ctx context.Conte
 // LogSyslogSettingArrayInput is an input type that accepts LogSyslogSettingArray and LogSyslogSettingArrayOutput values.
 // You can construct a concrete instance of `LogSyslogSettingArrayInput` via:
 //
-//          LogSyslogSettingArray{ LogSyslogSettingArgs{...} }
+//	LogSyslogSettingArray{ LogSyslogSettingArgs{...} }
 type LogSyslogSettingArrayInput interface {
 	pulumi.Input
 
@@ -218,7 +151,7 @@ func (i LogSyslogSettingArray) ToLogSyslogSettingArrayOutputWithContext(ctx cont
 // LogSyslogSettingMapInput is an input type that accepts LogSyslogSettingMap and LogSyslogSettingMapOutput values.
 // You can construct a concrete instance of `LogSyslogSettingMapInput` via:
 //
-//          LogSyslogSettingMap{ "key": LogSyslogSettingArgs{...} }
+//	LogSyslogSettingMap{ "key": LogSyslogSettingArgs{...} }
 type LogSyslogSettingMapInput interface {
 	pulumi.Input
 
@@ -252,6 +185,34 @@ func (o LogSyslogSettingOutput) ToLogSyslogSettingOutput() LogSyslogSettingOutpu
 
 func (o LogSyslogSettingOutput) ToLogSyslogSettingOutputWithContext(ctx context.Context) LogSyslogSettingOutput {
 	return o
+}
+
+func (o LogSyslogSettingOutput) Facility() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogSetting) pulumi.StringOutput { return v.Facility }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogSettingOutput) Format() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogSetting) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogSettingOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogSetting) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogSettingOutput) Port() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogSetting) pulumi.StringOutput { return v.Port }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogSettingOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogSetting) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogSettingOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogSetting) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogSettingOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSyslogSetting) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
 type LogSyslogSettingArrayOutput struct{ *pulumi.OutputState }

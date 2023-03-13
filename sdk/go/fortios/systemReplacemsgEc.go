@@ -7,39 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Replacement messages. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Import
-//
-// SystemReplacemsg Ec can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemReplacemsgEc:SystemReplacemsgEc labelname {{msg_type}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemReplacemsgEc:SystemReplacemsgEc labelname {{msg_type}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemReplacemsgEc struct {
 	pulumi.CustomResourceState
 
-	// Message string.
-	Buffer pulumi.StringPtrOutput `pulumi:"buffer"`
-	// Format flag. Valid values: `none`, `text`, `html`, `wml`.
-	Format pulumi.StringOutput `pulumi:"format"`
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header pulumi.StringOutput `pulumi:"header"`
-	// Message type.
-	MsgType pulumi.StringOutput `pulumi:"msgType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    pulumi.StringPtrOutput `pulumi:"buffer"`
+	Format    pulumi.StringOutput    `pulumi:"format"`
+	Header    pulumi.StringOutput    `pulumi:"header"`
+	MsgType   pulumi.StringOutput    `pulumi:"msgType"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -76,28 +54,18 @@ func GetSystemReplacemsgEc(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemReplacemsgEc resources.
 type systemReplacemsgEcState struct {
-	// Message string.
-	Buffer *string `pulumi:"buffer"`
-	// Format flag. Valid values: `none`, `text`, `html`, `wml`.
-	Format *string `pulumi:"format"`
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header *string `pulumi:"header"`
-	// Message type.
-	MsgType *string `pulumi:"msgType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    *string `pulumi:"buffer"`
+	Format    *string `pulumi:"format"`
+	Header    *string `pulumi:"header"`
+	MsgType   *string `pulumi:"msgType"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemReplacemsgEcState struct {
-	// Message string.
-	Buffer pulumi.StringPtrInput
-	// Format flag. Valid values: `none`, `text`, `html`, `wml`.
-	Format pulumi.StringPtrInput
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header pulumi.StringPtrInput
-	// Message type.
-	MsgType pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    pulumi.StringPtrInput
+	Format    pulumi.StringPtrInput
+	Header    pulumi.StringPtrInput
+	MsgType   pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -106,29 +74,19 @@ func (SystemReplacemsgEcState) ElementType() reflect.Type {
 }
 
 type systemReplacemsgEcArgs struct {
-	// Message string.
-	Buffer *string `pulumi:"buffer"`
-	// Format flag. Valid values: `none`, `text`, `html`, `wml`.
-	Format *string `pulumi:"format"`
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header *string `pulumi:"header"`
-	// Message type.
-	MsgType string `pulumi:"msgType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    *string `pulumi:"buffer"`
+	Format    *string `pulumi:"format"`
+	Header    *string `pulumi:"header"`
+	MsgType   string  `pulumi:"msgType"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemReplacemsgEc resource.
 type SystemReplacemsgEcArgs struct {
-	// Message string.
-	Buffer pulumi.StringPtrInput
-	// Format flag. Valid values: `none`, `text`, `html`, `wml`.
-	Format pulumi.StringPtrInput
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header pulumi.StringPtrInput
-	// Message type.
-	MsgType pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    pulumi.StringPtrInput
+	Format    pulumi.StringPtrInput
+	Header    pulumi.StringPtrInput
+	MsgType   pulumi.StringInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -158,7 +116,7 @@ func (i *SystemReplacemsgEc) ToSystemReplacemsgEcOutputWithContext(ctx context.C
 // SystemReplacemsgEcArrayInput is an input type that accepts SystemReplacemsgEcArray and SystemReplacemsgEcArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgEcArrayInput` via:
 //
-//          SystemReplacemsgEcArray{ SystemReplacemsgEcArgs{...} }
+//	SystemReplacemsgEcArray{ SystemReplacemsgEcArgs{...} }
 type SystemReplacemsgEcArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +141,7 @@ func (i SystemReplacemsgEcArray) ToSystemReplacemsgEcArrayOutputWithContext(ctx 
 // SystemReplacemsgEcMapInput is an input type that accepts SystemReplacemsgEcMap and SystemReplacemsgEcMapOutput values.
 // You can construct a concrete instance of `SystemReplacemsgEcMapInput` via:
 //
-//          SystemReplacemsgEcMap{ "key": SystemReplacemsgEcArgs{...} }
+//	SystemReplacemsgEcMap{ "key": SystemReplacemsgEcArgs{...} }
 type SystemReplacemsgEcMapInput interface {
 	pulumi.Input
 
@@ -217,6 +175,26 @@ func (o SystemReplacemsgEcOutput) ToSystemReplacemsgEcOutput() SystemReplacemsgE
 
 func (o SystemReplacemsgEcOutput) ToSystemReplacemsgEcOutputWithContext(ctx context.Context) SystemReplacemsgEcOutput {
 	return o
+}
+
+func (o SystemReplacemsgEcOutput) Buffer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgEc) pulumi.StringPtrOutput { return v.Buffer }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemReplacemsgEcOutput) Format() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgEc) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgEcOutput) Header() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgEc) pulumi.StringOutput { return v.Header }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgEcOutput) MsgType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgEc) pulumi.StringOutput { return v.MsgType }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgEcOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgEc) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemReplacemsgEcArrayOutput struct{ *pulumi.OutputState }

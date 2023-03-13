@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Replacement messages. Applies to FortiOS Version `<= 6.4.1`.
- *
- * ## Import
- *
- * SystemReplacemsg DeviceDetectionPortal can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemReplacemsgDeviceDetectionPortal:SystemReplacemsgDeviceDetectionPortal labelname {{msg_type}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemReplacemsgDeviceDetectionPortal:SystemReplacemsgDeviceDetectionPortal labelname {{msg_type}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemReplacemsgDeviceDetectionPortal extends pulumi.CustomResource {
     /**
      * Get an existing SystemReplacemsgDeviceDetectionPortal resource's state with the given name, ID, and optional extra
@@ -51,25 +32,10 @@ export class SystemReplacemsgDeviceDetectionPortal extends pulumi.CustomResource
         return obj['__pulumiType'] === SystemReplacemsgDeviceDetectionPortal.__pulumiType;
     }
 
-    /**
-     * Message string.
-     */
     public readonly buffer!: pulumi.Output<string | undefined>;
-    /**
-     * Format flag.
-     */
     public readonly format!: pulumi.Output<string>;
-    /**
-     * Header flag. Valid values: `none`, `http`, `8bit`.
-     */
     public readonly header!: pulumi.Output<string>;
-    /**
-     * Message type.
-     */
     public readonly msgType!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -110,25 +76,10 @@ export class SystemReplacemsgDeviceDetectionPortal extends pulumi.CustomResource
  * Input properties used for looking up and filtering SystemReplacemsgDeviceDetectionPortal resources.
  */
 export interface SystemReplacemsgDeviceDetectionPortalState {
-    /**
-     * Message string.
-     */
     buffer?: pulumi.Input<string>;
-    /**
-     * Format flag.
-     */
     format?: pulumi.Input<string>;
-    /**
-     * Header flag. Valid values: `none`, `http`, `8bit`.
-     */
     header?: pulumi.Input<string>;
-    /**
-     * Message type.
-     */
     msgType?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -136,24 +87,9 @@ export interface SystemReplacemsgDeviceDetectionPortalState {
  * The set of arguments for constructing a SystemReplacemsgDeviceDetectionPortal resource.
  */
 export interface SystemReplacemsgDeviceDetectionPortalArgs {
-    /**
-     * Message string.
-     */
     buffer?: pulumi.Input<string>;
-    /**
-     * Format flag.
-     */
     format?: pulumi.Input<string>;
-    /**
-     * Header flag. Valid values: `none`, `http`, `8bit`.
-     */
     header?: pulumi.Input<string>;
-    /**
-     * Message type.
-     */
     msgType: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

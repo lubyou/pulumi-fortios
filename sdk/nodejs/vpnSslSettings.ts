@@ -2,43 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure SSL VPN.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.VpnSslSettings("trname", {
- *     loginAttemptLimit: 2,
- *     loginBlockTime: 60,
- *     loginTimeout: 30,
- *     port: 443,
- *     servercert: "self-sign",
- * });
- * ```
- *
- * ## Import
- *
- * VpnSsl Settings can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnSslSettings:VpnSslSettings labelname VpnSslSettings
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnSslSettings:VpnSslSettings labelname VpnSslSettings
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VpnSslSettings extends pulumi.CustomResource {
     /**
      * Get an existing VpnSslSettings resource's state with the given name, ID, and optional extra
@@ -67,294 +34,81 @@ export class VpnSslSettings extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpnSslSettings.__pulumiType;
     }
 
-    /**
-     * Force the SSL-VPN security level. High allows only high. Medium allows medium and high. Low allows any. Valid values: `high`, `medium`, `default`, `low`.
-     */
     public readonly algorithm!: pulumi.Output<string>;
-    /**
-     * Enable/disable checking of source IP for authentication session. Valid values: `enable`, `disable`.
-     */
     public readonly authSessionCheckSourceIp!: pulumi.Output<string>;
-    /**
-     * SSL-VPN authentication timeout (1 - 259200 sec (3 days), 0 for no timeout).
-     */
     public readonly authTimeout!: pulumi.Output<number>;
-    /**
-     * Authentication rule for SSL VPN. The structure of `authenticationRule` block is documented below.
-     */
     public readonly authenticationRules!: pulumi.Output<outputs.VpnSslSettingsAuthenticationRule[] | undefined>;
-    /**
-     * Enable to auto-create static routes for the SSL-VPN tunnel IP addresses. Valid values: `enable`, `disable`.
-     */
     public readonly autoTunnelStaticRoute!: pulumi.Output<string>;
-    /**
-     * Select one or more cipher technologies that cannot be used in SSL-VPN negotiations.
-     */
     public readonly bannedCipher!: pulumi.Output<string>;
-    /**
-     * Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
-     */
+    public readonly browserLanguageDetection!: pulumi.Output<string>;
     public readonly checkReferer!: pulumi.Output<string>;
-    /**
-     * Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-     */
     public readonly ciphersuite!: pulumi.Output<string>;
-    /**
-     * Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
-     */
     public readonly clientSigalgs!: pulumi.Output<string>;
-    /**
-     * Default SSL VPN portal.
-     */
     public readonly defaultPortal!: pulumi.Output<string>;
-    /**
-     * Compression level (0~9).
-     */
     public readonly deflateCompressionLevel!: pulumi.Output<number>;
-    /**
-     * Minimum amount of data that triggers compression (200 - 65535 bytes).
-     */
     public readonly deflateMinDataSize!: pulumi.Output<number>;
-    /**
-     * DNS server 1.
-     */
     public readonly dnsServer1!: pulumi.Output<string>;
-    /**
-     * DNS server 2.
-     */
     public readonly dnsServer2!: pulumi.Output<string>;
-    /**
-     * DNS suffix used for SSL-VPN clients.
-     */
     public readonly dnsSuffix!: pulumi.Output<string | undefined>;
-    /**
-     * SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
-     */
     public readonly dtlsHelloTimeout!: pulumi.Output<number>;
-    /**
-     * DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-     */
     public readonly dtlsMaxProtoVer!: pulumi.Output<string>;
-    /**
-     * DTLS minimum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-     */
     public readonly dtlsMinProtoVer!: pulumi.Output<string>;
-    /**
-     * Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
-     */
     public readonly dtlsTunnel!: pulumi.Output<string>;
-    /**
-     * Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
-     */
     public readonly dualStackMode!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
-     */
     public readonly encode2fSequence!: pulumi.Output<string>;
-    /**
-     * Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
-     */
     public readonly encryptAndStorePassword!: pulumi.Output<string>;
-    /**
-     * Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
-     */
     public readonly forceTwoFactorAuth!: pulumi.Output<string>;
-    /**
-     * Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     public readonly headerXForwardedFor!: pulumi.Output<string>;
-    /**
-     * Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
-     */
     public readonly hstsIncludeSubdomains!: pulumi.Output<string>;
-    /**
-     * Enable to allow HTTP compression over SSL-VPN tunnels. Valid values: `enable`, `disable`.
-     */
     public readonly httpCompression!: pulumi.Output<string>;
-    /**
-     * Enable/disable SSL-VPN support for HttpOnly cookies. Valid values: `enable`, `disable`.
-     */
     public readonly httpOnlyCookie!: pulumi.Output<string>;
-    /**
-     * SSL-VPN session is disconnected if an HTTP request body is not received within this time (1 - 60 sec, default = 20).
-     */
     public readonly httpRequestBodyTimeout!: pulumi.Output<number>;
-    /**
-     * SSL-VPN session is disconnected if an HTTP request header is not received within this time (1 - 60 sec, default = 20).
-     */
     public readonly httpRequestHeaderTimeout!: pulumi.Output<number>;
-    /**
-     * Enable/disable redirect of port 80 to SSL-VPN port. Valid values: `enable`, `disable`.
-     */
     public readonly httpsRedirect!: pulumi.Output<string>;
-    /**
-     * SSL VPN disconnects if idle for specified time in seconds.
-     */
     public readonly idleTimeout!: pulumi.Output<number>;
-    /**
-     * IPv6 DNS server 1.
-     */
     public readonly ipv6DnsServer1!: pulumi.Output<string>;
-    /**
-     * IPv6 DNS server 2.
-     */
     public readonly ipv6DnsServer2!: pulumi.Output<string>;
-    /**
-     * IPv6 WINS server 1.
-     */
     public readonly ipv6WinsServer1!: pulumi.Output<string>;
-    /**
-     * IPv6 WINS server 2.
-     */
     public readonly ipv6WinsServer2!: pulumi.Output<string>;
-    /**
-     * SSL VPN maximum login attempt times before block (0 - 10, default = 2, 0 = no limit).
-     */
     public readonly loginAttemptLimit!: pulumi.Output<number>;
-    /**
-     * Time for which a user is blocked from logging in after too many failed login attempts (0 - 86400 sec, default = 60).
-     */
     public readonly loginBlockTime!: pulumi.Output<number>;
-    /**
-     * SSLVPN maximum login timeout (10 - 180 sec, default = 30).
-     */
     public readonly loginTimeout!: pulumi.Output<number>;
-    /**
-     * SSL-VPN access port (1 - 65535).
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Enable means that if SSL-VPN connections are allowed on an interface admin GUI connections are blocked on that interface. Valid values: `enable`, `disable`.
-     */
     public readonly portPrecedence!: pulumi.Output<string>;
-    /**
-     * Enable to require client certificates for all SSL-VPN users. Valid values: `enable`, `disable`.
-     */
     public readonly reqclientcert!: pulumi.Output<string>;
-    /**
-     * Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
-     */
     public readonly routeSourceInterface!: pulumi.Output<string>;
-    /**
-     * SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
-     */
     public readonly samlRedirectPort!: pulumi.Output<number>;
-    /**
-     * Name of the server certificate to be used for SSL-VPNs.
-     */
     public readonly servercert!: pulumi.Output<string>;
-    /**
-     * Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
-     */
     public readonly sourceAddress6Negate!: pulumi.Output<string>;
-    /**
-     * IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
-     */
     public readonly sourceAddress6s!: pulumi.Output<outputs.VpnSslSettingsSourceAddress6[] | undefined>;
-    /**
-     * Enable/disable negated source address match. Valid values: `enable`, `disable`.
-     */
     public readonly sourceAddressNegate!: pulumi.Output<string>;
-    /**
-     * Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
-     */
     public readonly sourceAddresses!: pulumi.Output<outputs.VpnSslSettingsSourceAddress[] | undefined>;
-    /**
-     * SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
-     */
     public readonly sourceInterfaces!: pulumi.Output<outputs.VpnSslSettingsSourceInterface[] | undefined>;
-    /**
-     * Enable to allow client renegotiation by the server if the tunnel goes down. Valid values: `disable`, `enable`.
-     */
     public readonly sslClientRenegotiation!: pulumi.Output<string>;
-    /**
-     * Enable/disable insertion of empty fragment. Valid values: `enable`, `disable`.
-     */
     public readonly sslInsertEmptyFragment!: pulumi.Output<string>;
-    /**
-     * SSL maximum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-     */
     public readonly sslMaxProtoVer!: pulumi.Output<string>;
-    /**
-     * SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-     */
     public readonly sslMinProtoVer!: pulumi.Output<string>;
-    /**
-     * Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
-     */
     public readonly tlsv10!: pulumi.Output<string>;
-    /**
-     * Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
-     */
     public readonly tlsv11!: pulumi.Output<string>;
-    /**
-     * Enable/disable TLSv1.2. Valid values: `enable`, `disable`.
-     */
     public readonly tlsv12!: pulumi.Output<string>;
-    /**
-     * Enable/disable TLSv1.3. Valid values: `enable`, `disable`.
-     */
     public readonly tlsv13!: pulumi.Output<string>;
-    /**
-     * Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
-     */
     public readonly transformBackwardSlashes!: pulumi.Output<string>;
-    /**
-     * Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
-     */
     public readonly tunnelAddrAssignedMethod!: pulumi.Output<string>;
-    /**
-     * Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
-     */
     public readonly tunnelConnectWithoutReauth!: pulumi.Output<string>;
-    /**
-     * Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpPools` block is documented below.
-     */
     public readonly tunnelIpPools!: pulumi.Output<outputs.VpnSslSettingsTunnelIpPool[] | undefined>;
-    /**
-     * Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpv6Pools` block is documented below.
-     */
     public readonly tunnelIpv6Pools!: pulumi.Output<outputs.VpnSslSettingsTunnelIpv6Pool[] | undefined>;
-    /**
-     * Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
-     */
     public readonly tunnelUserSessionTimeout!: pulumi.Output<number>;
-    /**
-     * Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
-     */
     public readonly unsafeLegacyRenegotiation!: pulumi.Output<string>;
-    /**
-     * Enable to obscure the host name of the URL of the web browser display. Valid values: `enable`, `disable`.
-     */
     public readonly urlObscuration!: pulumi.Output<string>;
-    /**
-     * Name of user peer.
-     */
     public readonly userPeer!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * WINS server 1.
-     */
+    public readonly webModeSnat!: pulumi.Output<string>;
     public readonly winsServer1!: pulumi.Output<string>;
-    /**
-     * WINS server 2.
-     */
     public readonly winsServer2!: pulumi.Output<string>;
-    /**
-     * Add HTTP X-Content-Type-Options header. Valid values: `enable`, `disable`.
-     */
     public readonly xContentTypeOptions!: pulumi.Output<string>;
+    public readonly ztnaTrustedClient!: pulumi.Output<string>;
 
     /**
      * Create a VpnSslSettings resource with the given unique name, arguments, and options.
@@ -375,6 +129,7 @@ export class VpnSslSettings extends pulumi.CustomResource {
             resourceInputs["authenticationRules"] = state ? state.authenticationRules : undefined;
             resourceInputs["autoTunnelStaticRoute"] = state ? state.autoTunnelStaticRoute : undefined;
             resourceInputs["bannedCipher"] = state ? state.bannedCipher : undefined;
+            resourceInputs["browserLanguageDetection"] = state ? state.browserLanguageDetection : undefined;
             resourceInputs["checkReferer"] = state ? state.checkReferer : undefined;
             resourceInputs["ciphersuite"] = state ? state.ciphersuite : undefined;
             resourceInputs["clientSigalgs"] = state ? state.clientSigalgs : undefined;
@@ -438,9 +193,11 @@ export class VpnSslSettings extends pulumi.CustomResource {
             resourceInputs["urlObscuration"] = state ? state.urlObscuration : undefined;
             resourceInputs["userPeer"] = state ? state.userPeer : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["webModeSnat"] = state ? state.webModeSnat : undefined;
             resourceInputs["winsServer1"] = state ? state.winsServer1 : undefined;
             resourceInputs["winsServer2"] = state ? state.winsServer2 : undefined;
             resourceInputs["xContentTypeOptions"] = state ? state.xContentTypeOptions : undefined;
+            resourceInputs["ztnaTrustedClient"] = state ? state.ztnaTrustedClient : undefined;
         } else {
             const args = argsOrState as VpnSslSettingsArgs | undefined;
             resourceInputs["algorithm"] = args ? args.algorithm : undefined;
@@ -449,6 +206,7 @@ export class VpnSslSettings extends pulumi.CustomResource {
             resourceInputs["authenticationRules"] = args ? args.authenticationRules : undefined;
             resourceInputs["autoTunnelStaticRoute"] = args ? args.autoTunnelStaticRoute : undefined;
             resourceInputs["bannedCipher"] = args ? args.bannedCipher : undefined;
+            resourceInputs["browserLanguageDetection"] = args ? args.browserLanguageDetection : undefined;
             resourceInputs["checkReferer"] = args ? args.checkReferer : undefined;
             resourceInputs["ciphersuite"] = args ? args.ciphersuite : undefined;
             resourceInputs["clientSigalgs"] = args ? args.clientSigalgs : undefined;
@@ -512,9 +270,11 @@ export class VpnSslSettings extends pulumi.CustomResource {
             resourceInputs["urlObscuration"] = args ? args.urlObscuration : undefined;
             resourceInputs["userPeer"] = args ? args.userPeer : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["webModeSnat"] = args ? args.webModeSnat : undefined;
             resourceInputs["winsServer1"] = args ? args.winsServer1 : undefined;
             resourceInputs["winsServer2"] = args ? args.winsServer2 : undefined;
             resourceInputs["xContentTypeOptions"] = args ? args.xContentTypeOptions : undefined;
+            resourceInputs["ztnaTrustedClient"] = args ? args.ztnaTrustedClient : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(VpnSslSettings.__pulumiType, name, resourceInputs, opts);
@@ -525,586 +285,160 @@ export class VpnSslSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnSslSettings resources.
  */
 export interface VpnSslSettingsState {
-    /**
-     * Force the SSL-VPN security level. High allows only high. Medium allows medium and high. Low allows any. Valid values: `high`, `medium`, `default`, `low`.
-     */
     algorithm?: pulumi.Input<string>;
-    /**
-     * Enable/disable checking of source IP for authentication session. Valid values: `enable`, `disable`.
-     */
     authSessionCheckSourceIp?: pulumi.Input<string>;
-    /**
-     * SSL-VPN authentication timeout (1 - 259200 sec (3 days), 0 for no timeout).
-     */
     authTimeout?: pulumi.Input<number>;
-    /**
-     * Authentication rule for SSL VPN. The structure of `authenticationRule` block is documented below.
-     */
     authenticationRules?: pulumi.Input<pulumi.Input<inputs.VpnSslSettingsAuthenticationRule>[]>;
-    /**
-     * Enable to auto-create static routes for the SSL-VPN tunnel IP addresses. Valid values: `enable`, `disable`.
-     */
     autoTunnelStaticRoute?: pulumi.Input<string>;
-    /**
-     * Select one or more cipher technologies that cannot be used in SSL-VPN negotiations.
-     */
     bannedCipher?: pulumi.Input<string>;
-    /**
-     * Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
-     */
+    browserLanguageDetection?: pulumi.Input<string>;
     checkReferer?: pulumi.Input<string>;
-    /**
-     * Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-     */
     ciphersuite?: pulumi.Input<string>;
-    /**
-     * Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
-     */
     clientSigalgs?: pulumi.Input<string>;
-    /**
-     * Default SSL VPN portal.
-     */
     defaultPortal?: pulumi.Input<string>;
-    /**
-     * Compression level (0~9).
-     */
     deflateCompressionLevel?: pulumi.Input<number>;
-    /**
-     * Minimum amount of data that triggers compression (200 - 65535 bytes).
-     */
     deflateMinDataSize?: pulumi.Input<number>;
-    /**
-     * DNS server 1.
-     */
     dnsServer1?: pulumi.Input<string>;
-    /**
-     * DNS server 2.
-     */
     dnsServer2?: pulumi.Input<string>;
-    /**
-     * DNS suffix used for SSL-VPN clients.
-     */
     dnsSuffix?: pulumi.Input<string>;
-    /**
-     * SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
-     */
     dtlsHelloTimeout?: pulumi.Input<number>;
-    /**
-     * DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-     */
     dtlsMaxProtoVer?: pulumi.Input<string>;
-    /**
-     * DTLS minimum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-     */
     dtlsMinProtoVer?: pulumi.Input<string>;
-    /**
-     * Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
-     */
     dtlsTunnel?: pulumi.Input<string>;
-    /**
-     * Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
-     */
     dualStackMode?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
-     */
     encode2fSequence?: pulumi.Input<string>;
-    /**
-     * Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
-     */
     encryptAndStorePassword?: pulumi.Input<string>;
-    /**
-     * Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
-     */
     forceTwoFactorAuth?: pulumi.Input<string>;
-    /**
-     * Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerXForwardedFor?: pulumi.Input<string>;
-    /**
-     * Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
-     */
     hstsIncludeSubdomains?: pulumi.Input<string>;
-    /**
-     * Enable to allow HTTP compression over SSL-VPN tunnels. Valid values: `enable`, `disable`.
-     */
     httpCompression?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL-VPN support for HttpOnly cookies. Valid values: `enable`, `disable`.
-     */
     httpOnlyCookie?: pulumi.Input<string>;
-    /**
-     * SSL-VPN session is disconnected if an HTTP request body is not received within this time (1 - 60 sec, default = 20).
-     */
     httpRequestBodyTimeout?: pulumi.Input<number>;
-    /**
-     * SSL-VPN session is disconnected if an HTTP request header is not received within this time (1 - 60 sec, default = 20).
-     */
     httpRequestHeaderTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable redirect of port 80 to SSL-VPN port. Valid values: `enable`, `disable`.
-     */
     httpsRedirect?: pulumi.Input<string>;
-    /**
-     * SSL VPN disconnects if idle for specified time in seconds.
-     */
     idleTimeout?: pulumi.Input<number>;
-    /**
-     * IPv6 DNS server 1.
-     */
     ipv6DnsServer1?: pulumi.Input<string>;
-    /**
-     * IPv6 DNS server 2.
-     */
     ipv6DnsServer2?: pulumi.Input<string>;
-    /**
-     * IPv6 WINS server 1.
-     */
     ipv6WinsServer1?: pulumi.Input<string>;
-    /**
-     * IPv6 WINS server 2.
-     */
     ipv6WinsServer2?: pulumi.Input<string>;
-    /**
-     * SSL VPN maximum login attempt times before block (0 - 10, default = 2, 0 = no limit).
-     */
     loginAttemptLimit?: pulumi.Input<number>;
-    /**
-     * Time for which a user is blocked from logging in after too many failed login attempts (0 - 86400 sec, default = 60).
-     */
     loginBlockTime?: pulumi.Input<number>;
-    /**
-     * SSLVPN maximum login timeout (10 - 180 sec, default = 30).
-     */
     loginTimeout?: pulumi.Input<number>;
-    /**
-     * SSL-VPN access port (1 - 65535).
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Enable means that if SSL-VPN connections are allowed on an interface admin GUI connections are blocked on that interface. Valid values: `enable`, `disable`.
-     */
     portPrecedence?: pulumi.Input<string>;
-    /**
-     * Enable to require client certificates for all SSL-VPN users. Valid values: `enable`, `disable`.
-     */
     reqclientcert?: pulumi.Input<string>;
-    /**
-     * Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
-     */
     routeSourceInterface?: pulumi.Input<string>;
-    /**
-     * SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
-     */
     samlRedirectPort?: pulumi.Input<number>;
-    /**
-     * Name of the server certificate to be used for SSL-VPNs.
-     */
     servercert?: pulumi.Input<string>;
-    /**
-     * Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
-     */
     sourceAddress6Negate?: pulumi.Input<string>;
-    /**
-     * IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
-     */
     sourceAddress6s?: pulumi.Input<pulumi.Input<inputs.VpnSslSettingsSourceAddress6>[]>;
-    /**
-     * Enable/disable negated source address match. Valid values: `enable`, `disable`.
-     */
     sourceAddressNegate?: pulumi.Input<string>;
-    /**
-     * Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
-     */
     sourceAddresses?: pulumi.Input<pulumi.Input<inputs.VpnSslSettingsSourceAddress>[]>;
-    /**
-     * SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
-     */
     sourceInterfaces?: pulumi.Input<pulumi.Input<inputs.VpnSslSettingsSourceInterface>[]>;
-    /**
-     * Enable to allow client renegotiation by the server if the tunnel goes down. Valid values: `disable`, `enable`.
-     */
     sslClientRenegotiation?: pulumi.Input<string>;
-    /**
-     * Enable/disable insertion of empty fragment. Valid values: `enable`, `disable`.
-     */
     sslInsertEmptyFragment?: pulumi.Input<string>;
-    /**
-     * SSL maximum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-     */
     sslMaxProtoVer?: pulumi.Input<string>;
-    /**
-     * SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-     */
     sslMinProtoVer?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
-     */
     tlsv10?: pulumi.Input<string>;
-    /**
-     * Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
-     */
     tlsv11?: pulumi.Input<string>;
-    /**
-     * Enable/disable TLSv1.2. Valid values: `enable`, `disable`.
-     */
     tlsv12?: pulumi.Input<string>;
-    /**
-     * Enable/disable TLSv1.3. Valid values: `enable`, `disable`.
-     */
     tlsv13?: pulumi.Input<string>;
-    /**
-     * Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
-     */
     transformBackwardSlashes?: pulumi.Input<string>;
-    /**
-     * Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
-     */
     tunnelAddrAssignedMethod?: pulumi.Input<string>;
-    /**
-     * Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
-     */
     tunnelConnectWithoutReauth?: pulumi.Input<string>;
-    /**
-     * Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpPools` block is documented below.
-     */
     tunnelIpPools?: pulumi.Input<pulumi.Input<inputs.VpnSslSettingsTunnelIpPool>[]>;
-    /**
-     * Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpv6Pools` block is documented below.
-     */
     tunnelIpv6Pools?: pulumi.Input<pulumi.Input<inputs.VpnSslSettingsTunnelIpv6Pool>[]>;
-    /**
-     * Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
-     */
     tunnelUserSessionTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
-     */
     unsafeLegacyRenegotiation?: pulumi.Input<string>;
-    /**
-     * Enable to obscure the host name of the URL of the web browser display. Valid values: `enable`, `disable`.
-     */
     urlObscuration?: pulumi.Input<string>;
-    /**
-     * Name of user peer.
-     */
     userPeer?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * WINS server 1.
-     */
+    webModeSnat?: pulumi.Input<string>;
     winsServer1?: pulumi.Input<string>;
-    /**
-     * WINS server 2.
-     */
     winsServer2?: pulumi.Input<string>;
-    /**
-     * Add HTTP X-Content-Type-Options header. Valid values: `enable`, `disable`.
-     */
     xContentTypeOptions?: pulumi.Input<string>;
+    ztnaTrustedClient?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a VpnSslSettings resource.
  */
 export interface VpnSslSettingsArgs {
-    /**
-     * Force the SSL-VPN security level. High allows only high. Medium allows medium and high. Low allows any. Valid values: `high`, `medium`, `default`, `low`.
-     */
     algorithm?: pulumi.Input<string>;
-    /**
-     * Enable/disable checking of source IP for authentication session. Valid values: `enable`, `disable`.
-     */
     authSessionCheckSourceIp?: pulumi.Input<string>;
-    /**
-     * SSL-VPN authentication timeout (1 - 259200 sec (3 days), 0 for no timeout).
-     */
     authTimeout?: pulumi.Input<number>;
-    /**
-     * Authentication rule for SSL VPN. The structure of `authenticationRule` block is documented below.
-     */
     authenticationRules?: pulumi.Input<pulumi.Input<inputs.VpnSslSettingsAuthenticationRule>[]>;
-    /**
-     * Enable to auto-create static routes for the SSL-VPN tunnel IP addresses. Valid values: `enable`, `disable`.
-     */
     autoTunnelStaticRoute?: pulumi.Input<string>;
-    /**
-     * Select one or more cipher technologies that cannot be used in SSL-VPN negotiations.
-     */
     bannedCipher?: pulumi.Input<string>;
-    /**
-     * Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
-     */
+    browserLanguageDetection?: pulumi.Input<string>;
     checkReferer?: pulumi.Input<string>;
-    /**
-     * Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-     */
     ciphersuite?: pulumi.Input<string>;
-    /**
-     * Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
-     */
     clientSigalgs?: pulumi.Input<string>;
-    /**
-     * Default SSL VPN portal.
-     */
     defaultPortal?: pulumi.Input<string>;
-    /**
-     * Compression level (0~9).
-     */
     deflateCompressionLevel?: pulumi.Input<number>;
-    /**
-     * Minimum amount of data that triggers compression (200 - 65535 bytes).
-     */
     deflateMinDataSize?: pulumi.Input<number>;
-    /**
-     * DNS server 1.
-     */
     dnsServer1?: pulumi.Input<string>;
-    /**
-     * DNS server 2.
-     */
     dnsServer2?: pulumi.Input<string>;
-    /**
-     * DNS suffix used for SSL-VPN clients.
-     */
     dnsSuffix?: pulumi.Input<string>;
-    /**
-     * SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
-     */
     dtlsHelloTimeout?: pulumi.Input<number>;
-    /**
-     * DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-     */
     dtlsMaxProtoVer?: pulumi.Input<string>;
-    /**
-     * DTLS minimum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-     */
     dtlsMinProtoVer?: pulumi.Input<string>;
-    /**
-     * Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
-     */
     dtlsTunnel?: pulumi.Input<string>;
-    /**
-     * Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
-     */
     dualStackMode?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
-     */
     encode2fSequence?: pulumi.Input<string>;
-    /**
-     * Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
-     */
     encryptAndStorePassword?: pulumi.Input<string>;
-    /**
-     * Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
-     */
     forceTwoFactorAuth?: pulumi.Input<string>;
-    /**
-     * Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
-     */
     headerXForwardedFor?: pulumi.Input<string>;
-    /**
-     * Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
-     */
     hstsIncludeSubdomains?: pulumi.Input<string>;
-    /**
-     * Enable to allow HTTP compression over SSL-VPN tunnels. Valid values: `enable`, `disable`.
-     */
     httpCompression?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL-VPN support for HttpOnly cookies. Valid values: `enable`, `disable`.
-     */
     httpOnlyCookie?: pulumi.Input<string>;
-    /**
-     * SSL-VPN session is disconnected if an HTTP request body is not received within this time (1 - 60 sec, default = 20).
-     */
     httpRequestBodyTimeout?: pulumi.Input<number>;
-    /**
-     * SSL-VPN session is disconnected if an HTTP request header is not received within this time (1 - 60 sec, default = 20).
-     */
     httpRequestHeaderTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable redirect of port 80 to SSL-VPN port. Valid values: `enable`, `disable`.
-     */
     httpsRedirect?: pulumi.Input<string>;
-    /**
-     * SSL VPN disconnects if idle for specified time in seconds.
-     */
     idleTimeout?: pulumi.Input<number>;
-    /**
-     * IPv6 DNS server 1.
-     */
     ipv6DnsServer1?: pulumi.Input<string>;
-    /**
-     * IPv6 DNS server 2.
-     */
     ipv6DnsServer2?: pulumi.Input<string>;
-    /**
-     * IPv6 WINS server 1.
-     */
     ipv6WinsServer1?: pulumi.Input<string>;
-    /**
-     * IPv6 WINS server 2.
-     */
     ipv6WinsServer2?: pulumi.Input<string>;
-    /**
-     * SSL VPN maximum login attempt times before block (0 - 10, default = 2, 0 = no limit).
-     */
     loginAttemptLimit?: pulumi.Input<number>;
-    /**
-     * Time for which a user is blocked from logging in after too many failed login attempts (0 - 86400 sec, default = 60).
-     */
     loginBlockTime?: pulumi.Input<number>;
-    /**
-     * SSLVPN maximum login timeout (10 - 180 sec, default = 30).
-     */
     loginTimeout?: pulumi.Input<number>;
-    /**
-     * SSL-VPN access port (1 - 65535).
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Enable means that if SSL-VPN connections are allowed on an interface admin GUI connections are blocked on that interface. Valid values: `enable`, `disable`.
-     */
     portPrecedence?: pulumi.Input<string>;
-    /**
-     * Enable to require client certificates for all SSL-VPN users. Valid values: `enable`, `disable`.
-     */
     reqclientcert?: pulumi.Input<string>;
-    /**
-     * Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
-     */
     routeSourceInterface?: pulumi.Input<string>;
-    /**
-     * SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
-     */
     samlRedirectPort?: pulumi.Input<number>;
-    /**
-     * Name of the server certificate to be used for SSL-VPNs.
-     */
     servercert?: pulumi.Input<string>;
-    /**
-     * Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
-     */
     sourceAddress6Negate?: pulumi.Input<string>;
-    /**
-     * IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
-     */
     sourceAddress6s?: pulumi.Input<pulumi.Input<inputs.VpnSslSettingsSourceAddress6>[]>;
-    /**
-     * Enable/disable negated source address match. Valid values: `enable`, `disable`.
-     */
     sourceAddressNegate?: pulumi.Input<string>;
-    /**
-     * Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
-     */
     sourceAddresses?: pulumi.Input<pulumi.Input<inputs.VpnSslSettingsSourceAddress>[]>;
-    /**
-     * SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
-     */
     sourceInterfaces?: pulumi.Input<pulumi.Input<inputs.VpnSslSettingsSourceInterface>[]>;
-    /**
-     * Enable to allow client renegotiation by the server if the tunnel goes down. Valid values: `disable`, `enable`.
-     */
     sslClientRenegotiation?: pulumi.Input<string>;
-    /**
-     * Enable/disable insertion of empty fragment. Valid values: `enable`, `disable`.
-     */
     sslInsertEmptyFragment?: pulumi.Input<string>;
-    /**
-     * SSL maximum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-     */
     sslMaxProtoVer?: pulumi.Input<string>;
-    /**
-     * SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-     */
     sslMinProtoVer?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
-     */
     tlsv10?: pulumi.Input<string>;
-    /**
-     * Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
-     */
     tlsv11?: pulumi.Input<string>;
-    /**
-     * Enable/disable TLSv1.2. Valid values: `enable`, `disable`.
-     */
     tlsv12?: pulumi.Input<string>;
-    /**
-     * Enable/disable TLSv1.3. Valid values: `enable`, `disable`.
-     */
     tlsv13?: pulumi.Input<string>;
-    /**
-     * Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
-     */
     transformBackwardSlashes?: pulumi.Input<string>;
-    /**
-     * Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
-     */
     tunnelAddrAssignedMethod?: pulumi.Input<string>;
-    /**
-     * Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
-     */
     tunnelConnectWithoutReauth?: pulumi.Input<string>;
-    /**
-     * Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpPools` block is documented below.
-     */
     tunnelIpPools?: pulumi.Input<pulumi.Input<inputs.VpnSslSettingsTunnelIpPool>[]>;
-    /**
-     * Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpv6Pools` block is documented below.
-     */
     tunnelIpv6Pools?: pulumi.Input<pulumi.Input<inputs.VpnSslSettingsTunnelIpv6Pool>[]>;
-    /**
-     * Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
-     */
     tunnelUserSessionTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
-     */
     unsafeLegacyRenegotiation?: pulumi.Input<string>;
-    /**
-     * Enable to obscure the host name of the URL of the web browser display. Valid values: `enable`, `disable`.
-     */
     urlObscuration?: pulumi.Input<string>;
-    /**
-     * Name of user peer.
-     */
     userPeer?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * WINS server 1.
-     */
+    webModeSnat?: pulumi.Input<string>;
     winsServer1?: pulumi.Input<string>;
-    /**
-     * WINS server 2.
-     */
     winsServer2?: pulumi.Input<string>;
-    /**
-     * Add HTTP X-Content-Type-Options header. Valid values: `enable`, `disable`.
-     */
     xContentTypeOptions?: pulumi.Input<string>;
+    ztnaTrustedClient?: pulumi.Input<string>;
 }

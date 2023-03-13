@@ -10,198 +10,49 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Web filter profiles.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWebfilterProfile(ctx, "trname", &fortios.WebfilterProfileArgs{
-// 			ExtendedLog: pulumi.String("disable"),
-// 			FtgdWf: &WebfilterProfileFtgdWfArgs{
-// 				ExemptQuota: pulumi.String("17"),
-// 				Filters: WebfilterProfileFtgdWfFilterArray{
-// 					&WebfilterProfileFtgdWfFilterArgs{
-// 						Action:              pulumi.String("warning"),
-// 						Category:            pulumi.Int(2),
-// 						Id:                  pulumi.Int(1),
-// 						Log:                 pulumi.String("enable"),
-// 						WarnDuration:        pulumi.String("5m"),
-// 						WarningDurationType: pulumi.String("timeout"),
-// 						WarningPrompt:       pulumi.String("per-category"),
-// 					},
-// 					&WebfilterProfileFtgdWfFilterArgs{
-// 						Action:              pulumi.String("warning"),
-// 						Category:            pulumi.Int(7),
-// 						Id:                  pulumi.Int(2),
-// 						Log:                 pulumi.String("enable"),
-// 						WarnDuration:        pulumi.String("5m"),
-// 						WarningDurationType: pulumi.String("timeout"),
-// 						WarningPrompt:       pulumi.String("per-category"),
-// 					},
-// 				},
-// 				MaxQuotaTimeout:    pulumi.Int(300),
-// 				RateCrlUrls:        pulumi.String("enable"),
-// 				RateCssUrls:        pulumi.String("enable"),
-// 				RateImageUrls:      pulumi.String("enable"),
-// 				RateJavascriptUrls: pulumi.String("enable"),
-// 			},
-// 			HttpsReplacemsg: pulumi.String("enable"),
-// 			InspectionMode:  pulumi.String("flow-based"),
-// 			LogAllUrl:       pulumi.String("disable"),
-// 			Override: &WebfilterProfileOverrideArgs{
-// 				OvrdCookie:       pulumi.String("deny"),
-// 				OvrdDur:          pulumi.String("15m"),
-// 				OvrdDurMode:      pulumi.String("constant"),
-// 				OvrdScope:        pulumi.String("user"),
-// 				ProfileAttribute: pulumi.String("Login-LAT-Service"),
-// 				ProfileType:      pulumi.String("list"),
-// 			},
-// 			PostAction: pulumi.String("normal"),
-// 			Web: &WebfilterProfileWebArgs{
-// 				Blacklist:         pulumi.String("disable"),
-// 				BwordTable:        pulumi.Int(0),
-// 				BwordThreshold:    pulumi.Int(10),
-// 				ContentHeaderList: pulumi.Int(0),
-// 				LogSearch:         pulumi.String("disable"),
-// 				UrlfilterTable:    pulumi.Int(0),
-// 				YoutubeRestrict:   pulumi.String("none"),
-// 			},
-// 			WebContentLog:             pulumi.String("enable"),
-// 			WebExtendedAllActionLog:   pulumi.String("disable"),
-// 			WebFilterActivexLog:       pulumi.String("enable"),
-// 			WebFilterAppletLog:        pulumi.String("enable"),
-// 			WebFilterCommandBlockLog:  pulumi.String("enable"),
-// 			WebFilterCookieLog:        pulumi.String("enable"),
-// 			WebFilterCookieRemovalLog: pulumi.String("enable"),
-// 			WebFilterJsLog:            pulumi.String("enable"),
-// 			WebFilterJscriptLog:       pulumi.String("enable"),
-// 			WebFilterRefererLog:       pulumi.String("enable"),
-// 			WebFilterUnknownLog:       pulumi.String("enable"),
-// 			WebFilterVbsLog:           pulumi.String("enable"),
-// 			WebFtgdErrLog:             pulumi.String("enable"),
-// 			WebFtgdQuotaUsage:         pulumi.String("enable"),
-// 			WebInvalidDomainLog:       pulumi.String("enable"),
-// 			WebUrlLog:                 pulumi.String("enable"),
-// 			Wisp:                      pulumi.String("disable"),
-// 			WispAlgorithm:             pulumi.String("auto-learning"),
-// 			YoutubeChannelStatus:      pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Webfilter Profile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterProfile:WebfilterProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterProfile:WebfilterProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebfilterProfile struct {
 	pulumi.CustomResourceState
 
-	// AntiPhishing profile. The structure of `antiphish` block is documented below.
-	Antiphish WebfilterProfileAntiphishPtrOutput `pulumi:"antiphish"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable extended logging for web filtering. Valid values: `enable`, `disable`.
-	ExtendedLog pulumi.StringOutput `pulumi:"extendedLog"`
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet pulumi.StringOutput `pulumi:"featureSet"`
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter WebfilterProfileFileFilterPtrOutput `pulumi:"fileFilter"`
-	// FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
-	FtgdWf WebfilterProfileFtgdWfPtrOutput `pulumi:"ftgdWf"`
-	// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
-	HttpsReplacemsg pulumi.StringOutput `pulumi:"httpsReplacemsg"`
-	// Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
-	InspectionMode pulumi.StringOutput `pulumi:"inspectionMode"`
-	// Enable/disable logging all URLs visited. Valid values: `enable`, `disable`.
-	LogAllUrl pulumi.StringOutput `pulumi:"logAllUrl"`
-	// Server name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Options for FortiGuard Web Filter. Valid values: `error-allow`, `rate-server-ip`, `connect-request-bypass`, `ftgd-disable`.
-	Options pulumi.StringOutput `pulumi:"options"`
-	// Web Filter override settings. The structure of `override` block is documented below.
-	Override WebfilterProfileOverridePtrOutput `pulumi:"override"`
-	// Permitted override types. Valid values: `bannedword-override`, `urlfilter-override`, `fortiguard-wf-override`, `contenttype-check-override`.
-	OvrdPerm pulumi.StringOutput `pulumi:"ovrdPerm"`
-	// Action taken for HTTP POST traffic. Valid values: `normal`, `block`.
-	PostAction pulumi.StringOutput `pulumi:"postAction"`
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringOutput `pulumi:"replacemsgGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Web content filtering settings. The structure of `web` block is documented below.
-	Web WebfilterProfileWebPtrOutput `pulumi:"web"`
-	// Enable/disable logging of AntiPhishing checks. Valid values: `enable`, `disable`.
-	WebAntiphishingLog pulumi.StringOutput `pulumi:"webAntiphishingLog"`
-	// Enable/disable logging logging blocked web content. Valid values: `enable`, `disable`.
-	WebContentLog pulumi.StringOutput `pulumi:"webContentLog"`
-	// Enable/disable extended any filter action logging for web filtering. Valid values: `enable`, `disable`.
-	WebExtendedAllActionLog pulumi.StringOutput `pulumi:"webExtendedAllActionLog"`
-	// Enable/disable logging ActiveX. Valid values: `enable`, `disable`.
-	WebFilterActivexLog pulumi.StringOutput `pulumi:"webFilterActivexLog"`
-	// Enable/disable logging Java applets. Valid values: `enable`, `disable`.
-	WebFilterAppletLog pulumi.StringOutput `pulumi:"webFilterAppletLog"`
-	// Enable/disable logging blocked commands. Valid values: `enable`, `disable`.
-	WebFilterCommandBlockLog pulumi.StringOutput `pulumi:"webFilterCommandBlockLog"`
-	// Enable/disable logging cookie filtering. Valid values: `enable`, `disable`.
-	WebFilterCookieLog pulumi.StringOutput `pulumi:"webFilterCookieLog"`
-	// Enable/disable logging blocked cookies. Valid values: `enable`, `disable`.
-	WebFilterCookieRemovalLog pulumi.StringOutput `pulumi:"webFilterCookieRemovalLog"`
-	// Enable/disable logging Java scripts. Valid values: `enable`, `disable`.
-	WebFilterJsLog pulumi.StringOutput `pulumi:"webFilterJsLog"`
-	// Enable/disable logging JScripts. Valid values: `enable`, `disable`.
-	WebFilterJscriptLog pulumi.StringOutput `pulumi:"webFilterJscriptLog"`
-	// Enable/disable logging referrers. Valid values: `enable`, `disable`.
-	WebFilterRefererLog pulumi.StringOutput `pulumi:"webFilterRefererLog"`
-	// Enable/disable logging unknown scripts. Valid values: `enable`, `disable`.
-	WebFilterUnknownLog pulumi.StringOutput `pulumi:"webFilterUnknownLog"`
-	// Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
-	WebFilterVbsLog pulumi.StringOutput `pulumi:"webFilterVbsLog"`
-	// Enable/disable logging rating errors. Valid values: `enable`, `disable`.
-	WebFtgdErrLog pulumi.StringOutput `pulumi:"webFtgdErrLog"`
-	// Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
-	WebFtgdQuotaUsage pulumi.StringOutput `pulumi:"webFtgdQuotaUsage"`
-	// Enable/disable logging invalid domain names. Valid values: `enable`, `disable`.
-	WebInvalidDomainLog pulumi.StringOutput `pulumi:"webInvalidDomainLog"`
-	// Enable/disable logging URL filtering. Valid values: `enable`, `disable`.
-	WebUrlLog pulumi.StringOutput `pulumi:"webUrlLog"`
-	// Enable/disable web proxy WISP. Valid values: `enable`, `disable`.
-	Wisp pulumi.StringOutput `pulumi:"wisp"`
-	// WISP server selection algorithm. Valid values: `primary-secondary`, `round-robin`, `auto-learning`.
-	WispAlgorithm pulumi.StringOutput `pulumi:"wispAlgorithm"`
-	// WISP servers. The structure of `wispServers` block is documented below.
-	WispServers WebfilterProfileWispServerArrayOutput `pulumi:"wispServers"`
-	// YouTube channel filter. The structure of `youtubeChannelFilter` block is documented below.
-	YoutubeChannelFilters WebfilterProfileYoutubeChannelFilterArrayOutput `pulumi:"youtubeChannelFilters"`
-	// YouTube channel filter status.
-	YoutubeChannelStatus pulumi.StringOutput `pulumi:"youtubeChannelStatus"`
+	Antiphish                 WebfilterProfileAntiphishOutput                 `pulumi:"antiphish"`
+	Comment                   pulumi.StringPtrOutput                          `pulumi:"comment"`
+	DynamicSortSubtable       pulumi.StringPtrOutput                          `pulumi:"dynamicSortSubtable"`
+	ExtendedLog               pulumi.StringOutput                             `pulumi:"extendedLog"`
+	FeatureSet                pulumi.StringOutput                             `pulumi:"featureSet"`
+	FileFilter                WebfilterProfileFileFilterOutput                `pulumi:"fileFilter"`
+	FtgdWf                    WebfilterProfileFtgdWfOutput                    `pulumi:"ftgdWf"`
+	HttpsReplacemsg           pulumi.StringOutput                             `pulumi:"httpsReplacemsg"`
+	InspectionMode            pulumi.StringOutput                             `pulumi:"inspectionMode"`
+	LogAllUrl                 pulumi.StringOutput                             `pulumi:"logAllUrl"`
+	Name                      pulumi.StringOutput                             `pulumi:"name"`
+	Options                   pulumi.StringOutput                             `pulumi:"options"`
+	Override                  WebfilterProfileOverrideOutput                  `pulumi:"override"`
+	OvrdPerm                  pulumi.StringOutput                             `pulumi:"ovrdPerm"`
+	PostAction                pulumi.StringOutput                             `pulumi:"postAction"`
+	ReplacemsgGroup           pulumi.StringOutput                             `pulumi:"replacemsgGroup"`
+	Vdomparam                 pulumi.StringPtrOutput                          `pulumi:"vdomparam"`
+	Web                       WebfilterProfileWebOutput                       `pulumi:"web"`
+	WebAntiphishingLog        pulumi.StringOutput                             `pulumi:"webAntiphishingLog"`
+	WebContentLog             pulumi.StringOutput                             `pulumi:"webContentLog"`
+	WebExtendedAllActionLog   pulumi.StringOutput                             `pulumi:"webExtendedAllActionLog"`
+	WebFilterActivexLog       pulumi.StringOutput                             `pulumi:"webFilterActivexLog"`
+	WebFilterAppletLog        pulumi.StringOutput                             `pulumi:"webFilterAppletLog"`
+	WebFilterCommandBlockLog  pulumi.StringOutput                             `pulumi:"webFilterCommandBlockLog"`
+	WebFilterCookieLog        pulumi.StringOutput                             `pulumi:"webFilterCookieLog"`
+	WebFilterCookieRemovalLog pulumi.StringOutput                             `pulumi:"webFilterCookieRemovalLog"`
+	WebFilterJsLog            pulumi.StringOutput                             `pulumi:"webFilterJsLog"`
+	WebFilterJscriptLog       pulumi.StringOutput                             `pulumi:"webFilterJscriptLog"`
+	WebFilterRefererLog       pulumi.StringOutput                             `pulumi:"webFilterRefererLog"`
+	WebFilterUnknownLog       pulumi.StringOutput                             `pulumi:"webFilterUnknownLog"`
+	WebFilterVbsLog           pulumi.StringOutput                             `pulumi:"webFilterVbsLog"`
+	WebFtgdErrLog             pulumi.StringOutput                             `pulumi:"webFtgdErrLog"`
+	WebFtgdQuotaUsage         pulumi.StringOutput                             `pulumi:"webFtgdQuotaUsage"`
+	WebInvalidDomainLog       pulumi.StringOutput                             `pulumi:"webInvalidDomainLog"`
+	WebUrlLog                 pulumi.StringOutput                             `pulumi:"webUrlLog"`
+	Wisp                      pulumi.StringOutput                             `pulumi:"wisp"`
+	WispAlgorithm             pulumi.StringOutput                             `pulumi:"wispAlgorithm"`
+	WispServers               WebfilterProfileWispServerArrayOutput           `pulumi:"wispServers"`
+	YoutubeChannelFilters     WebfilterProfileYoutubeChannelFilterArrayOutput `pulumi:"youtubeChannelFilters"`
+	YoutubeChannelStatus      pulumi.StringOutput                             `pulumi:"youtubeChannelStatus"`
 }
 
 // NewWebfilterProfile registers a new resource with the given unique name, arguments, and options.
@@ -234,169 +85,89 @@ func GetWebfilterProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebfilterProfile resources.
 type webfilterProfileState struct {
-	// AntiPhishing profile. The structure of `antiphish` block is documented below.
-	Antiphish *WebfilterProfileAntiphish `pulumi:"antiphish"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable extended logging for web filtering. Valid values: `enable`, `disable`.
-	ExtendedLog *string `pulumi:"extendedLog"`
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet *string `pulumi:"featureSet"`
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter *WebfilterProfileFileFilter `pulumi:"fileFilter"`
-	// FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
-	FtgdWf *WebfilterProfileFtgdWf `pulumi:"ftgdWf"`
-	// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
-	HttpsReplacemsg *string `pulumi:"httpsReplacemsg"`
-	// Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
-	InspectionMode *string `pulumi:"inspectionMode"`
-	// Enable/disable logging all URLs visited. Valid values: `enable`, `disable`.
-	LogAllUrl *string `pulumi:"logAllUrl"`
-	// Server name.
-	Name *string `pulumi:"name"`
-	// Options for FortiGuard Web Filter. Valid values: `error-allow`, `rate-server-ip`, `connect-request-bypass`, `ftgd-disable`.
-	Options *string `pulumi:"options"`
-	// Web Filter override settings. The structure of `override` block is documented below.
-	Override *WebfilterProfileOverride `pulumi:"override"`
-	// Permitted override types. Valid values: `bannedword-override`, `urlfilter-override`, `fortiguard-wf-override`, `contenttype-check-override`.
-	OvrdPerm *string `pulumi:"ovrdPerm"`
-	// Action taken for HTTP POST traffic. Valid values: `normal`, `block`.
-	PostAction *string `pulumi:"postAction"`
-	// Replacement message group.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Web content filtering settings. The structure of `web` block is documented below.
-	Web *WebfilterProfileWeb `pulumi:"web"`
-	// Enable/disable logging of AntiPhishing checks. Valid values: `enable`, `disable`.
-	WebAntiphishingLog *string `pulumi:"webAntiphishingLog"`
-	// Enable/disable logging logging blocked web content. Valid values: `enable`, `disable`.
-	WebContentLog *string `pulumi:"webContentLog"`
-	// Enable/disable extended any filter action logging for web filtering. Valid values: `enable`, `disable`.
-	WebExtendedAllActionLog *string `pulumi:"webExtendedAllActionLog"`
-	// Enable/disable logging ActiveX. Valid values: `enable`, `disable`.
-	WebFilterActivexLog *string `pulumi:"webFilterActivexLog"`
-	// Enable/disable logging Java applets. Valid values: `enable`, `disable`.
-	WebFilterAppletLog *string `pulumi:"webFilterAppletLog"`
-	// Enable/disable logging blocked commands. Valid values: `enable`, `disable`.
-	WebFilterCommandBlockLog *string `pulumi:"webFilterCommandBlockLog"`
-	// Enable/disable logging cookie filtering. Valid values: `enable`, `disable`.
-	WebFilterCookieLog *string `pulumi:"webFilterCookieLog"`
-	// Enable/disable logging blocked cookies. Valid values: `enable`, `disable`.
-	WebFilterCookieRemovalLog *string `pulumi:"webFilterCookieRemovalLog"`
-	// Enable/disable logging Java scripts. Valid values: `enable`, `disable`.
-	WebFilterJsLog *string `pulumi:"webFilterJsLog"`
-	// Enable/disable logging JScripts. Valid values: `enable`, `disable`.
-	WebFilterJscriptLog *string `pulumi:"webFilterJscriptLog"`
-	// Enable/disable logging referrers. Valid values: `enable`, `disable`.
-	WebFilterRefererLog *string `pulumi:"webFilterRefererLog"`
-	// Enable/disable logging unknown scripts. Valid values: `enable`, `disable`.
-	WebFilterUnknownLog *string `pulumi:"webFilterUnknownLog"`
-	// Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
-	WebFilterVbsLog *string `pulumi:"webFilterVbsLog"`
-	// Enable/disable logging rating errors. Valid values: `enable`, `disable`.
-	WebFtgdErrLog *string `pulumi:"webFtgdErrLog"`
-	// Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
-	WebFtgdQuotaUsage *string `pulumi:"webFtgdQuotaUsage"`
-	// Enable/disable logging invalid domain names. Valid values: `enable`, `disable`.
-	WebInvalidDomainLog *string `pulumi:"webInvalidDomainLog"`
-	// Enable/disable logging URL filtering. Valid values: `enable`, `disable`.
-	WebUrlLog *string `pulumi:"webUrlLog"`
-	// Enable/disable web proxy WISP. Valid values: `enable`, `disable`.
-	Wisp *string `pulumi:"wisp"`
-	// WISP server selection algorithm. Valid values: `primary-secondary`, `round-robin`, `auto-learning`.
-	WispAlgorithm *string `pulumi:"wispAlgorithm"`
-	// WISP servers. The structure of `wispServers` block is documented below.
-	WispServers []WebfilterProfileWispServer `pulumi:"wispServers"`
-	// YouTube channel filter. The structure of `youtubeChannelFilter` block is documented below.
-	YoutubeChannelFilters []WebfilterProfileYoutubeChannelFilter `pulumi:"youtubeChannelFilters"`
-	// YouTube channel filter status.
-	YoutubeChannelStatus *string `pulumi:"youtubeChannelStatus"`
+	Antiphish                 *WebfilterProfileAntiphish             `pulumi:"antiphish"`
+	Comment                   *string                                `pulumi:"comment"`
+	DynamicSortSubtable       *string                                `pulumi:"dynamicSortSubtable"`
+	ExtendedLog               *string                                `pulumi:"extendedLog"`
+	FeatureSet                *string                                `pulumi:"featureSet"`
+	FileFilter                *WebfilterProfileFileFilter            `pulumi:"fileFilter"`
+	FtgdWf                    *WebfilterProfileFtgdWf                `pulumi:"ftgdWf"`
+	HttpsReplacemsg           *string                                `pulumi:"httpsReplacemsg"`
+	InspectionMode            *string                                `pulumi:"inspectionMode"`
+	LogAllUrl                 *string                                `pulumi:"logAllUrl"`
+	Name                      *string                                `pulumi:"name"`
+	Options                   *string                                `pulumi:"options"`
+	Override                  *WebfilterProfileOverride              `pulumi:"override"`
+	OvrdPerm                  *string                                `pulumi:"ovrdPerm"`
+	PostAction                *string                                `pulumi:"postAction"`
+	ReplacemsgGroup           *string                                `pulumi:"replacemsgGroup"`
+	Vdomparam                 *string                                `pulumi:"vdomparam"`
+	Web                       *WebfilterProfileWeb                   `pulumi:"web"`
+	WebAntiphishingLog        *string                                `pulumi:"webAntiphishingLog"`
+	WebContentLog             *string                                `pulumi:"webContentLog"`
+	WebExtendedAllActionLog   *string                                `pulumi:"webExtendedAllActionLog"`
+	WebFilterActivexLog       *string                                `pulumi:"webFilterActivexLog"`
+	WebFilterAppletLog        *string                                `pulumi:"webFilterAppletLog"`
+	WebFilterCommandBlockLog  *string                                `pulumi:"webFilterCommandBlockLog"`
+	WebFilterCookieLog        *string                                `pulumi:"webFilterCookieLog"`
+	WebFilterCookieRemovalLog *string                                `pulumi:"webFilterCookieRemovalLog"`
+	WebFilterJsLog            *string                                `pulumi:"webFilterJsLog"`
+	WebFilterJscriptLog       *string                                `pulumi:"webFilterJscriptLog"`
+	WebFilterRefererLog       *string                                `pulumi:"webFilterRefererLog"`
+	WebFilterUnknownLog       *string                                `pulumi:"webFilterUnknownLog"`
+	WebFilterVbsLog           *string                                `pulumi:"webFilterVbsLog"`
+	WebFtgdErrLog             *string                                `pulumi:"webFtgdErrLog"`
+	WebFtgdQuotaUsage         *string                                `pulumi:"webFtgdQuotaUsage"`
+	WebInvalidDomainLog       *string                                `pulumi:"webInvalidDomainLog"`
+	WebUrlLog                 *string                                `pulumi:"webUrlLog"`
+	Wisp                      *string                                `pulumi:"wisp"`
+	WispAlgorithm             *string                                `pulumi:"wispAlgorithm"`
+	WispServers               []WebfilterProfileWispServer           `pulumi:"wispServers"`
+	YoutubeChannelFilters     []WebfilterProfileYoutubeChannelFilter `pulumi:"youtubeChannelFilters"`
+	YoutubeChannelStatus      *string                                `pulumi:"youtubeChannelStatus"`
 }
 
 type WebfilterProfileState struct {
-	// AntiPhishing profile. The structure of `antiphish` block is documented below.
-	Antiphish WebfilterProfileAntiphishPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable extended logging for web filtering. Valid values: `enable`, `disable`.
-	ExtendedLog pulumi.StringPtrInput
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet pulumi.StringPtrInput
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter WebfilterProfileFileFilterPtrInput
-	// FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
-	FtgdWf WebfilterProfileFtgdWfPtrInput
-	// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
-	HttpsReplacemsg pulumi.StringPtrInput
-	// Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
-	InspectionMode pulumi.StringPtrInput
-	// Enable/disable logging all URLs visited. Valid values: `enable`, `disable`.
-	LogAllUrl pulumi.StringPtrInput
-	// Server name.
-	Name pulumi.StringPtrInput
-	// Options for FortiGuard Web Filter. Valid values: `error-allow`, `rate-server-ip`, `connect-request-bypass`, `ftgd-disable`.
-	Options pulumi.StringPtrInput
-	// Web Filter override settings. The structure of `override` block is documented below.
-	Override WebfilterProfileOverridePtrInput
-	// Permitted override types. Valid values: `bannedword-override`, `urlfilter-override`, `fortiguard-wf-override`, `contenttype-check-override`.
-	OvrdPerm pulumi.StringPtrInput
-	// Action taken for HTTP POST traffic. Valid values: `normal`, `block`.
-	PostAction pulumi.StringPtrInput
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Web content filtering settings. The structure of `web` block is documented below.
-	Web WebfilterProfileWebPtrInput
-	// Enable/disable logging of AntiPhishing checks. Valid values: `enable`, `disable`.
-	WebAntiphishingLog pulumi.StringPtrInput
-	// Enable/disable logging logging blocked web content. Valid values: `enable`, `disable`.
-	WebContentLog pulumi.StringPtrInput
-	// Enable/disable extended any filter action logging for web filtering. Valid values: `enable`, `disable`.
-	WebExtendedAllActionLog pulumi.StringPtrInput
-	// Enable/disable logging ActiveX. Valid values: `enable`, `disable`.
-	WebFilterActivexLog pulumi.StringPtrInput
-	// Enable/disable logging Java applets. Valid values: `enable`, `disable`.
-	WebFilterAppletLog pulumi.StringPtrInput
-	// Enable/disable logging blocked commands. Valid values: `enable`, `disable`.
-	WebFilterCommandBlockLog pulumi.StringPtrInput
-	// Enable/disable logging cookie filtering. Valid values: `enable`, `disable`.
-	WebFilterCookieLog pulumi.StringPtrInput
-	// Enable/disable logging blocked cookies. Valid values: `enable`, `disable`.
+	Antiphish                 WebfilterProfileAntiphishPtrInput
+	Comment                   pulumi.StringPtrInput
+	DynamicSortSubtable       pulumi.StringPtrInput
+	ExtendedLog               pulumi.StringPtrInput
+	FeatureSet                pulumi.StringPtrInput
+	FileFilter                WebfilterProfileFileFilterPtrInput
+	FtgdWf                    WebfilterProfileFtgdWfPtrInput
+	HttpsReplacemsg           pulumi.StringPtrInput
+	InspectionMode            pulumi.StringPtrInput
+	LogAllUrl                 pulumi.StringPtrInput
+	Name                      pulumi.StringPtrInput
+	Options                   pulumi.StringPtrInput
+	Override                  WebfilterProfileOverridePtrInput
+	OvrdPerm                  pulumi.StringPtrInput
+	PostAction                pulumi.StringPtrInput
+	ReplacemsgGroup           pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
+	Web                       WebfilterProfileWebPtrInput
+	WebAntiphishingLog        pulumi.StringPtrInput
+	WebContentLog             pulumi.StringPtrInput
+	WebExtendedAllActionLog   pulumi.StringPtrInput
+	WebFilterActivexLog       pulumi.StringPtrInput
+	WebFilterAppletLog        pulumi.StringPtrInput
+	WebFilterCommandBlockLog  pulumi.StringPtrInput
+	WebFilterCookieLog        pulumi.StringPtrInput
 	WebFilterCookieRemovalLog pulumi.StringPtrInput
-	// Enable/disable logging Java scripts. Valid values: `enable`, `disable`.
-	WebFilterJsLog pulumi.StringPtrInput
-	// Enable/disable logging JScripts. Valid values: `enable`, `disable`.
-	WebFilterJscriptLog pulumi.StringPtrInput
-	// Enable/disable logging referrers. Valid values: `enable`, `disable`.
-	WebFilterRefererLog pulumi.StringPtrInput
-	// Enable/disable logging unknown scripts. Valid values: `enable`, `disable`.
-	WebFilterUnknownLog pulumi.StringPtrInput
-	// Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
-	WebFilterVbsLog pulumi.StringPtrInput
-	// Enable/disable logging rating errors. Valid values: `enable`, `disable`.
-	WebFtgdErrLog pulumi.StringPtrInput
-	// Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
-	WebFtgdQuotaUsage pulumi.StringPtrInput
-	// Enable/disable logging invalid domain names. Valid values: `enable`, `disable`.
-	WebInvalidDomainLog pulumi.StringPtrInput
-	// Enable/disable logging URL filtering. Valid values: `enable`, `disable`.
-	WebUrlLog pulumi.StringPtrInput
-	// Enable/disable web proxy WISP. Valid values: `enable`, `disable`.
-	Wisp pulumi.StringPtrInput
-	// WISP server selection algorithm. Valid values: `primary-secondary`, `round-robin`, `auto-learning`.
-	WispAlgorithm pulumi.StringPtrInput
-	// WISP servers. The structure of `wispServers` block is documented below.
-	WispServers WebfilterProfileWispServerArrayInput
-	// YouTube channel filter. The structure of `youtubeChannelFilter` block is documented below.
-	YoutubeChannelFilters WebfilterProfileYoutubeChannelFilterArrayInput
-	// YouTube channel filter status.
-	YoutubeChannelStatus pulumi.StringPtrInput
+	WebFilterJsLog            pulumi.StringPtrInput
+	WebFilterJscriptLog       pulumi.StringPtrInput
+	WebFilterRefererLog       pulumi.StringPtrInput
+	WebFilterUnknownLog       pulumi.StringPtrInput
+	WebFilterVbsLog           pulumi.StringPtrInput
+	WebFtgdErrLog             pulumi.StringPtrInput
+	WebFtgdQuotaUsage         pulumi.StringPtrInput
+	WebInvalidDomainLog       pulumi.StringPtrInput
+	WebUrlLog                 pulumi.StringPtrInput
+	Wisp                      pulumi.StringPtrInput
+	WispAlgorithm             pulumi.StringPtrInput
+	WispServers               WebfilterProfileWispServerArrayInput
+	YoutubeChannelFilters     WebfilterProfileYoutubeChannelFilterArrayInput
+	YoutubeChannelStatus      pulumi.StringPtrInput
 }
 
 func (WebfilterProfileState) ElementType() reflect.Type {
@@ -404,170 +175,90 @@ func (WebfilterProfileState) ElementType() reflect.Type {
 }
 
 type webfilterProfileArgs struct {
-	// AntiPhishing profile. The structure of `antiphish` block is documented below.
-	Antiphish *WebfilterProfileAntiphish `pulumi:"antiphish"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable extended logging for web filtering. Valid values: `enable`, `disable`.
-	ExtendedLog *string `pulumi:"extendedLog"`
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet *string `pulumi:"featureSet"`
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter *WebfilterProfileFileFilter `pulumi:"fileFilter"`
-	// FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
-	FtgdWf *WebfilterProfileFtgdWf `pulumi:"ftgdWf"`
-	// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
-	HttpsReplacemsg *string `pulumi:"httpsReplacemsg"`
-	// Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
-	InspectionMode *string `pulumi:"inspectionMode"`
-	// Enable/disable logging all URLs visited. Valid values: `enable`, `disable`.
-	LogAllUrl *string `pulumi:"logAllUrl"`
-	// Server name.
-	Name *string `pulumi:"name"`
-	// Options for FortiGuard Web Filter. Valid values: `error-allow`, `rate-server-ip`, `connect-request-bypass`, `ftgd-disable`.
-	Options *string `pulumi:"options"`
-	// Web Filter override settings. The structure of `override` block is documented below.
-	Override *WebfilterProfileOverride `pulumi:"override"`
-	// Permitted override types. Valid values: `bannedword-override`, `urlfilter-override`, `fortiguard-wf-override`, `contenttype-check-override`.
-	OvrdPerm *string `pulumi:"ovrdPerm"`
-	// Action taken for HTTP POST traffic. Valid values: `normal`, `block`.
-	PostAction *string `pulumi:"postAction"`
-	// Replacement message group.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Web content filtering settings. The structure of `web` block is documented below.
-	Web *WebfilterProfileWeb `pulumi:"web"`
-	// Enable/disable logging of AntiPhishing checks. Valid values: `enable`, `disable`.
-	WebAntiphishingLog *string `pulumi:"webAntiphishingLog"`
-	// Enable/disable logging logging blocked web content. Valid values: `enable`, `disable`.
-	WebContentLog *string `pulumi:"webContentLog"`
-	// Enable/disable extended any filter action logging for web filtering. Valid values: `enable`, `disable`.
-	WebExtendedAllActionLog *string `pulumi:"webExtendedAllActionLog"`
-	// Enable/disable logging ActiveX. Valid values: `enable`, `disable`.
-	WebFilterActivexLog *string `pulumi:"webFilterActivexLog"`
-	// Enable/disable logging Java applets. Valid values: `enable`, `disable`.
-	WebFilterAppletLog *string `pulumi:"webFilterAppletLog"`
-	// Enable/disable logging blocked commands. Valid values: `enable`, `disable`.
-	WebFilterCommandBlockLog *string `pulumi:"webFilterCommandBlockLog"`
-	// Enable/disable logging cookie filtering. Valid values: `enable`, `disable`.
-	WebFilterCookieLog *string `pulumi:"webFilterCookieLog"`
-	// Enable/disable logging blocked cookies. Valid values: `enable`, `disable`.
-	WebFilterCookieRemovalLog *string `pulumi:"webFilterCookieRemovalLog"`
-	// Enable/disable logging Java scripts. Valid values: `enable`, `disable`.
-	WebFilterJsLog *string `pulumi:"webFilterJsLog"`
-	// Enable/disable logging JScripts. Valid values: `enable`, `disable`.
-	WebFilterJscriptLog *string `pulumi:"webFilterJscriptLog"`
-	// Enable/disable logging referrers. Valid values: `enable`, `disable`.
-	WebFilterRefererLog *string `pulumi:"webFilterRefererLog"`
-	// Enable/disable logging unknown scripts. Valid values: `enable`, `disable`.
-	WebFilterUnknownLog *string `pulumi:"webFilterUnknownLog"`
-	// Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
-	WebFilterVbsLog *string `pulumi:"webFilterVbsLog"`
-	// Enable/disable logging rating errors. Valid values: `enable`, `disable`.
-	WebFtgdErrLog *string `pulumi:"webFtgdErrLog"`
-	// Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
-	WebFtgdQuotaUsage *string `pulumi:"webFtgdQuotaUsage"`
-	// Enable/disable logging invalid domain names. Valid values: `enable`, `disable`.
-	WebInvalidDomainLog *string `pulumi:"webInvalidDomainLog"`
-	// Enable/disable logging URL filtering. Valid values: `enable`, `disable`.
-	WebUrlLog *string `pulumi:"webUrlLog"`
-	// Enable/disable web proxy WISP. Valid values: `enable`, `disable`.
-	Wisp *string `pulumi:"wisp"`
-	// WISP server selection algorithm. Valid values: `primary-secondary`, `round-robin`, `auto-learning`.
-	WispAlgorithm *string `pulumi:"wispAlgorithm"`
-	// WISP servers. The structure of `wispServers` block is documented below.
-	WispServers []WebfilterProfileWispServer `pulumi:"wispServers"`
-	// YouTube channel filter. The structure of `youtubeChannelFilter` block is documented below.
-	YoutubeChannelFilters []WebfilterProfileYoutubeChannelFilter `pulumi:"youtubeChannelFilters"`
-	// YouTube channel filter status.
-	YoutubeChannelStatus *string `pulumi:"youtubeChannelStatus"`
+	Antiphish                 *WebfilterProfileAntiphish             `pulumi:"antiphish"`
+	Comment                   *string                                `pulumi:"comment"`
+	DynamicSortSubtable       *string                                `pulumi:"dynamicSortSubtable"`
+	ExtendedLog               *string                                `pulumi:"extendedLog"`
+	FeatureSet                *string                                `pulumi:"featureSet"`
+	FileFilter                *WebfilterProfileFileFilter            `pulumi:"fileFilter"`
+	FtgdWf                    *WebfilterProfileFtgdWf                `pulumi:"ftgdWf"`
+	HttpsReplacemsg           *string                                `pulumi:"httpsReplacemsg"`
+	InspectionMode            *string                                `pulumi:"inspectionMode"`
+	LogAllUrl                 *string                                `pulumi:"logAllUrl"`
+	Name                      *string                                `pulumi:"name"`
+	Options                   *string                                `pulumi:"options"`
+	Override                  *WebfilterProfileOverride              `pulumi:"override"`
+	OvrdPerm                  *string                                `pulumi:"ovrdPerm"`
+	PostAction                *string                                `pulumi:"postAction"`
+	ReplacemsgGroup           *string                                `pulumi:"replacemsgGroup"`
+	Vdomparam                 *string                                `pulumi:"vdomparam"`
+	Web                       *WebfilterProfileWeb                   `pulumi:"web"`
+	WebAntiphishingLog        *string                                `pulumi:"webAntiphishingLog"`
+	WebContentLog             *string                                `pulumi:"webContentLog"`
+	WebExtendedAllActionLog   *string                                `pulumi:"webExtendedAllActionLog"`
+	WebFilterActivexLog       *string                                `pulumi:"webFilterActivexLog"`
+	WebFilterAppletLog        *string                                `pulumi:"webFilterAppletLog"`
+	WebFilterCommandBlockLog  *string                                `pulumi:"webFilterCommandBlockLog"`
+	WebFilterCookieLog        *string                                `pulumi:"webFilterCookieLog"`
+	WebFilterCookieRemovalLog *string                                `pulumi:"webFilterCookieRemovalLog"`
+	WebFilterJsLog            *string                                `pulumi:"webFilterJsLog"`
+	WebFilterJscriptLog       *string                                `pulumi:"webFilterJscriptLog"`
+	WebFilterRefererLog       *string                                `pulumi:"webFilterRefererLog"`
+	WebFilterUnknownLog       *string                                `pulumi:"webFilterUnknownLog"`
+	WebFilterVbsLog           *string                                `pulumi:"webFilterVbsLog"`
+	WebFtgdErrLog             *string                                `pulumi:"webFtgdErrLog"`
+	WebFtgdQuotaUsage         *string                                `pulumi:"webFtgdQuotaUsage"`
+	WebInvalidDomainLog       *string                                `pulumi:"webInvalidDomainLog"`
+	WebUrlLog                 *string                                `pulumi:"webUrlLog"`
+	Wisp                      *string                                `pulumi:"wisp"`
+	WispAlgorithm             *string                                `pulumi:"wispAlgorithm"`
+	WispServers               []WebfilterProfileWispServer           `pulumi:"wispServers"`
+	YoutubeChannelFilters     []WebfilterProfileYoutubeChannelFilter `pulumi:"youtubeChannelFilters"`
+	YoutubeChannelStatus      *string                                `pulumi:"youtubeChannelStatus"`
 }
 
 // The set of arguments for constructing a WebfilterProfile resource.
 type WebfilterProfileArgs struct {
-	// AntiPhishing profile. The structure of `antiphish` block is documented below.
-	Antiphish WebfilterProfileAntiphishPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable extended logging for web filtering. Valid values: `enable`, `disable`.
-	ExtendedLog pulumi.StringPtrInput
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet pulumi.StringPtrInput
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter WebfilterProfileFileFilterPtrInput
-	// FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
-	FtgdWf WebfilterProfileFtgdWfPtrInput
-	// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
-	HttpsReplacemsg pulumi.StringPtrInput
-	// Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
-	InspectionMode pulumi.StringPtrInput
-	// Enable/disable logging all URLs visited. Valid values: `enable`, `disable`.
-	LogAllUrl pulumi.StringPtrInput
-	// Server name.
-	Name pulumi.StringPtrInput
-	// Options for FortiGuard Web Filter. Valid values: `error-allow`, `rate-server-ip`, `connect-request-bypass`, `ftgd-disable`.
-	Options pulumi.StringPtrInput
-	// Web Filter override settings. The structure of `override` block is documented below.
-	Override WebfilterProfileOverridePtrInput
-	// Permitted override types. Valid values: `bannedword-override`, `urlfilter-override`, `fortiguard-wf-override`, `contenttype-check-override`.
-	OvrdPerm pulumi.StringPtrInput
-	// Action taken for HTTP POST traffic. Valid values: `normal`, `block`.
-	PostAction pulumi.StringPtrInput
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Web content filtering settings. The structure of `web` block is documented below.
-	Web WebfilterProfileWebPtrInput
-	// Enable/disable logging of AntiPhishing checks. Valid values: `enable`, `disable`.
-	WebAntiphishingLog pulumi.StringPtrInput
-	// Enable/disable logging logging blocked web content. Valid values: `enable`, `disable`.
-	WebContentLog pulumi.StringPtrInput
-	// Enable/disable extended any filter action logging for web filtering. Valid values: `enable`, `disable`.
-	WebExtendedAllActionLog pulumi.StringPtrInput
-	// Enable/disable logging ActiveX. Valid values: `enable`, `disable`.
-	WebFilterActivexLog pulumi.StringPtrInput
-	// Enable/disable logging Java applets. Valid values: `enable`, `disable`.
-	WebFilterAppletLog pulumi.StringPtrInput
-	// Enable/disable logging blocked commands. Valid values: `enable`, `disable`.
-	WebFilterCommandBlockLog pulumi.StringPtrInput
-	// Enable/disable logging cookie filtering. Valid values: `enable`, `disable`.
-	WebFilterCookieLog pulumi.StringPtrInput
-	// Enable/disable logging blocked cookies. Valid values: `enable`, `disable`.
+	Antiphish                 WebfilterProfileAntiphishPtrInput
+	Comment                   pulumi.StringPtrInput
+	DynamicSortSubtable       pulumi.StringPtrInput
+	ExtendedLog               pulumi.StringPtrInput
+	FeatureSet                pulumi.StringPtrInput
+	FileFilter                WebfilterProfileFileFilterPtrInput
+	FtgdWf                    WebfilterProfileFtgdWfPtrInput
+	HttpsReplacemsg           pulumi.StringPtrInput
+	InspectionMode            pulumi.StringPtrInput
+	LogAllUrl                 pulumi.StringPtrInput
+	Name                      pulumi.StringPtrInput
+	Options                   pulumi.StringPtrInput
+	Override                  WebfilterProfileOverridePtrInput
+	OvrdPerm                  pulumi.StringPtrInput
+	PostAction                pulumi.StringPtrInput
+	ReplacemsgGroup           pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
+	Web                       WebfilterProfileWebPtrInput
+	WebAntiphishingLog        pulumi.StringPtrInput
+	WebContentLog             pulumi.StringPtrInput
+	WebExtendedAllActionLog   pulumi.StringPtrInput
+	WebFilterActivexLog       pulumi.StringPtrInput
+	WebFilterAppletLog        pulumi.StringPtrInput
+	WebFilterCommandBlockLog  pulumi.StringPtrInput
+	WebFilterCookieLog        pulumi.StringPtrInput
 	WebFilterCookieRemovalLog pulumi.StringPtrInput
-	// Enable/disable logging Java scripts. Valid values: `enable`, `disable`.
-	WebFilterJsLog pulumi.StringPtrInput
-	// Enable/disable logging JScripts. Valid values: `enable`, `disable`.
-	WebFilterJscriptLog pulumi.StringPtrInput
-	// Enable/disable logging referrers. Valid values: `enable`, `disable`.
-	WebFilterRefererLog pulumi.StringPtrInput
-	// Enable/disable logging unknown scripts. Valid values: `enable`, `disable`.
-	WebFilterUnknownLog pulumi.StringPtrInput
-	// Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
-	WebFilterVbsLog pulumi.StringPtrInput
-	// Enable/disable logging rating errors. Valid values: `enable`, `disable`.
-	WebFtgdErrLog pulumi.StringPtrInput
-	// Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
-	WebFtgdQuotaUsage pulumi.StringPtrInput
-	// Enable/disable logging invalid domain names. Valid values: `enable`, `disable`.
-	WebInvalidDomainLog pulumi.StringPtrInput
-	// Enable/disable logging URL filtering. Valid values: `enable`, `disable`.
-	WebUrlLog pulumi.StringPtrInput
-	// Enable/disable web proxy WISP. Valid values: `enable`, `disable`.
-	Wisp pulumi.StringPtrInput
-	// WISP server selection algorithm. Valid values: `primary-secondary`, `round-robin`, `auto-learning`.
-	WispAlgorithm pulumi.StringPtrInput
-	// WISP servers. The structure of `wispServers` block is documented below.
-	WispServers WebfilterProfileWispServerArrayInput
-	// YouTube channel filter. The structure of `youtubeChannelFilter` block is documented below.
-	YoutubeChannelFilters WebfilterProfileYoutubeChannelFilterArrayInput
-	// YouTube channel filter status.
-	YoutubeChannelStatus pulumi.StringPtrInput
+	WebFilterJsLog            pulumi.StringPtrInput
+	WebFilterJscriptLog       pulumi.StringPtrInput
+	WebFilterRefererLog       pulumi.StringPtrInput
+	WebFilterUnknownLog       pulumi.StringPtrInput
+	WebFilterVbsLog           pulumi.StringPtrInput
+	WebFtgdErrLog             pulumi.StringPtrInput
+	WebFtgdQuotaUsage         pulumi.StringPtrInput
+	WebInvalidDomainLog       pulumi.StringPtrInput
+	WebUrlLog                 pulumi.StringPtrInput
+	Wisp                      pulumi.StringPtrInput
+	WispAlgorithm             pulumi.StringPtrInput
+	WispServers               WebfilterProfileWispServerArrayInput
+	YoutubeChannelFilters     WebfilterProfileYoutubeChannelFilterArrayInput
+	YoutubeChannelStatus      pulumi.StringPtrInput
 }
 
 func (WebfilterProfileArgs) ElementType() reflect.Type {
@@ -596,7 +287,7 @@ func (i *WebfilterProfile) ToWebfilterProfileOutputWithContext(ctx context.Conte
 // WebfilterProfileArrayInput is an input type that accepts WebfilterProfileArray and WebfilterProfileArrayOutput values.
 // You can construct a concrete instance of `WebfilterProfileArrayInput` via:
 //
-//          WebfilterProfileArray{ WebfilterProfileArgs{...} }
+//	WebfilterProfileArray{ WebfilterProfileArgs{...} }
 type WebfilterProfileArrayInput interface {
 	pulumi.Input
 
@@ -621,7 +312,7 @@ func (i WebfilterProfileArray) ToWebfilterProfileArrayOutputWithContext(ctx cont
 // WebfilterProfileMapInput is an input type that accepts WebfilterProfileMap and WebfilterProfileMapOutput values.
 // You can construct a concrete instance of `WebfilterProfileMapInput` via:
 //
-//          WebfilterProfileMap{ "key": WebfilterProfileArgs{...} }
+//	WebfilterProfileMap{ "key": WebfilterProfileArgs{...} }
 type WebfilterProfileMapInput interface {
 	pulumi.Input
 
@@ -655,6 +346,168 @@ func (o WebfilterProfileOutput) ToWebfilterProfileOutput() WebfilterProfileOutpu
 
 func (o WebfilterProfileOutput) ToWebfilterProfileOutputWithContext(ctx context.Context) WebfilterProfileOutput {
 	return o
+}
+
+func (o WebfilterProfileOutput) Antiphish() WebfilterProfileAntiphishOutput {
+	return o.ApplyT(func(v *WebfilterProfile) WebfilterProfileAntiphishOutput { return v.Antiphish }).(WebfilterProfileAntiphishOutput)
+}
+
+func (o WebfilterProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o WebfilterProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WebfilterProfileOutput) ExtendedLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.ExtendedLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) FeatureSet() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.FeatureSet }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) FileFilter() WebfilterProfileFileFilterOutput {
+	return o.ApplyT(func(v *WebfilterProfile) WebfilterProfileFileFilterOutput { return v.FileFilter }).(WebfilterProfileFileFilterOutput)
+}
+
+func (o WebfilterProfileOutput) FtgdWf() WebfilterProfileFtgdWfOutput {
+	return o.ApplyT(func(v *WebfilterProfile) WebfilterProfileFtgdWfOutput { return v.FtgdWf }).(WebfilterProfileFtgdWfOutput)
+}
+
+func (o WebfilterProfileOutput) HttpsReplacemsg() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.HttpsReplacemsg }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) InspectionMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.InspectionMode }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) LogAllUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.LogAllUrl }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) Options() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.Options }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) Override() WebfilterProfileOverrideOutput {
+	return o.ApplyT(func(v *WebfilterProfile) WebfilterProfileOverrideOutput { return v.Override }).(WebfilterProfileOverrideOutput)
+}
+
+func (o WebfilterProfileOutput) OvrdPerm() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.OvrdPerm }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) PostAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.PostAction }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) ReplacemsgGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.ReplacemsgGroup }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o WebfilterProfileOutput) Web() WebfilterProfileWebOutput {
+	return o.ApplyT(func(v *WebfilterProfile) WebfilterProfileWebOutput { return v.Web }).(WebfilterProfileWebOutput)
+}
+
+func (o WebfilterProfileOutput) WebAntiphishingLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebAntiphishingLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebContentLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebContentLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebExtendedAllActionLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebExtendedAllActionLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebFilterActivexLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebFilterActivexLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebFilterAppletLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebFilterAppletLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebFilterCommandBlockLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebFilterCommandBlockLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebFilterCookieLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebFilterCookieLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebFilterCookieRemovalLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebFilterCookieRemovalLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebFilterJsLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebFilterJsLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebFilterJscriptLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebFilterJscriptLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebFilterRefererLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebFilterRefererLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebFilterUnknownLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebFilterUnknownLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebFilterVbsLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebFilterVbsLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebFtgdErrLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebFtgdErrLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebFtgdQuotaUsage() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebFtgdQuotaUsage }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebInvalidDomainLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebInvalidDomainLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WebUrlLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WebUrlLog }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) Wisp() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.Wisp }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WispAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.WispAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o WebfilterProfileOutput) WispServers() WebfilterProfileWispServerArrayOutput {
+	return o.ApplyT(func(v *WebfilterProfile) WebfilterProfileWispServerArrayOutput { return v.WispServers }).(WebfilterProfileWispServerArrayOutput)
+}
+
+func (o WebfilterProfileOutput) YoutubeChannelFilters() WebfilterProfileYoutubeChannelFilterArrayOutput {
+	return o.ApplyT(func(v *WebfilterProfile) WebfilterProfileYoutubeChannelFilterArrayOutput {
+		return v.YoutubeChannelFilters
+	}).(WebfilterProfileYoutubeChannelFilterArrayOutput)
+}
+
+func (o WebfilterProfileOutput) YoutubeChannelStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringOutput { return v.YoutubeChannelStatus }).(pulumi.StringOutput)
 }
 
 type WebfilterProfileArrayOutput struct{ *pulumi.OutputState }

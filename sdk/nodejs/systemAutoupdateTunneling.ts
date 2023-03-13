@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure web proxy tunnelling for the FDN.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemAutoupdateTunneling("trname", {
- *     port: 0,
- *     status: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * SystemAutoupdate Tunneling can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutoupdateTunneling:SystemAutoupdateTunneling labelname SystemAutoupdateTunneling
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutoupdateTunneling:SystemAutoupdateTunneling labelname SystemAutoupdateTunneling
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemAutoupdateTunneling extends pulumi.CustomResource {
     /**
      * Get an existing SystemAutoupdateTunneling resource's state with the given name, ID, and optional extra
@@ -63,29 +32,11 @@ export class SystemAutoupdateTunneling extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAutoupdateTunneling.__pulumiType;
     }
 
-    /**
-     * Web proxy IP address or FQDN.
-     */
     public readonly address!: pulumi.Output<string>;
-    /**
-     * Web proxy password.
-     */
     public readonly password!: pulumi.Output<string | undefined>;
-    /**
-     * Web proxy port.
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Enable/disable web proxy tunnelling. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Web proxy username.
-     */
     public readonly username!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -110,13 +61,15 @@ export class SystemAutoupdateTunneling extends pulumi.CustomResource {
         } else {
             const args = argsOrState as SystemAutoupdateTunnelingArgs | undefined;
             resourceInputs["address"] = args ? args.address : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemAutoupdateTunneling.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -125,29 +78,11 @@ export class SystemAutoupdateTunneling extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAutoupdateTunneling resources.
  */
 export interface SystemAutoupdateTunnelingState {
-    /**
-     * Web proxy IP address or FQDN.
-     */
     address?: pulumi.Input<string>;
-    /**
-     * Web proxy password.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Web proxy port.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Enable/disable web proxy tunnelling. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Web proxy username.
-     */
     username?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -155,28 +90,10 @@ export interface SystemAutoupdateTunnelingState {
  * The set of arguments for constructing a SystemAutoupdateTunneling resource.
  */
 export interface SystemAutoupdateTunnelingArgs {
-    /**
-     * Web proxy IP address or FQDN.
-     */
     address?: pulumi.Input<string>;
-    /**
-     * Web proxy password.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Web proxy port.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Enable/disable web proxy tunnelling. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Web proxy username.
-     */
     username?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

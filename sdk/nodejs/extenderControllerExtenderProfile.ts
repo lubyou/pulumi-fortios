@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * FortiExtender extender profile configuration. Applies to FortiOS Version `>= 7.0.2`.
- *
- * ## Import
- *
- * ExtenderController ExtenderProfile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/extenderControllerExtenderProfile:ExtenderControllerExtenderProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/extenderControllerExtenderProfile:ExtenderControllerExtenderProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class ExtenderControllerExtenderProfile extends pulumi.CustomResource {
     /**
      * Get an existing ExtenderControllerExtenderProfile resource's state with the given name, ID, and optional extra
@@ -52,53 +34,17 @@ export class ExtenderControllerExtenderProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === ExtenderControllerExtenderProfile.__pulumiType;
     }
 
-    /**
-     * Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-     */
     public readonly allowaccess!: pulumi.Output<string>;
-    /**
-     * FortiExtender LAN extension bandwidth limit (Mbps).
-     */
     public readonly bandwidthLimit!: pulumi.Output<number>;
-    /**
-     * FortiExtender cellular configuration. The structure of `cellular` block is documented below.
-     */
-    public readonly cellular!: pulumi.Output<outputs.ExtenderControllerExtenderProfileCellular | undefined>;
-    /**
-     * Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-     */
+    public readonly cellular!: pulumi.Output<outputs.ExtenderControllerExtenderProfileCellular>;
     public readonly enforceBandwidth!: pulumi.Output<string>;
-    /**
-     * Extension option. Valid values: `wan-extension`, `lan-extension`.
-     */
     public readonly extension!: pulumi.Output<string>;
-    /**
-     * id
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
-     */
-    public readonly lanExtension!: pulumi.Output<outputs.ExtenderControllerExtenderProfileLanExtension | undefined>;
-    /**
-     * Set the managed extender's administrator password.
-     */
+    public readonly lanExtension!: pulumi.Output<outputs.ExtenderControllerExtenderProfileLanExtension>;
     public readonly loginPassword!: pulumi.Output<string | undefined>;
-    /**
-     * Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-     */
     public readonly loginPasswordChange!: pulumi.Output<string>;
-    /**
-     * Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
-     */
     public readonly model!: pulumi.Output<string>;
-    /**
-     * FortiExtender LAN extension backhaul name
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -150,53 +96,17 @@ export class ExtenderControllerExtenderProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ExtenderControllerExtenderProfile resources.
  */
 export interface ExtenderControllerExtenderProfileState {
-    /**
-     * Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-     */
     allowaccess?: pulumi.Input<string>;
-    /**
-     * FortiExtender LAN extension bandwidth limit (Mbps).
-     */
     bandwidthLimit?: pulumi.Input<number>;
-    /**
-     * FortiExtender cellular configuration. The structure of `cellular` block is documented below.
-     */
     cellular?: pulumi.Input<inputs.ExtenderControllerExtenderProfileCellular>;
-    /**
-     * Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-     */
     enforceBandwidth?: pulumi.Input<string>;
-    /**
-     * Extension option. Valid values: `wan-extension`, `lan-extension`.
-     */
     extension?: pulumi.Input<string>;
-    /**
-     * id
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
-     */
     lanExtension?: pulumi.Input<inputs.ExtenderControllerExtenderProfileLanExtension>;
-    /**
-     * Set the managed extender's administrator password.
-     */
     loginPassword?: pulumi.Input<string>;
-    /**
-     * Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-     */
     loginPasswordChange?: pulumi.Input<string>;
-    /**
-     * Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
-     */
     model?: pulumi.Input<string>;
-    /**
-     * FortiExtender LAN extension backhaul name
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -204,52 +114,16 @@ export interface ExtenderControllerExtenderProfileState {
  * The set of arguments for constructing a ExtenderControllerExtenderProfile resource.
  */
 export interface ExtenderControllerExtenderProfileArgs {
-    /**
-     * Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-     */
     allowaccess?: pulumi.Input<string>;
-    /**
-     * FortiExtender LAN extension bandwidth limit (Mbps).
-     */
     bandwidthLimit?: pulumi.Input<number>;
-    /**
-     * FortiExtender cellular configuration. The structure of `cellular` block is documented below.
-     */
     cellular?: pulumi.Input<inputs.ExtenderControllerExtenderProfileCellular>;
-    /**
-     * Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-     */
     enforceBandwidth?: pulumi.Input<string>;
-    /**
-     * Extension option. Valid values: `wan-extension`, `lan-extension`.
-     */
     extension?: pulumi.Input<string>;
-    /**
-     * id
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
-     */
     lanExtension?: pulumi.Input<inputs.ExtenderControllerExtenderProfileLanExtension>;
-    /**
-     * Set the managed extender's administrator password.
-     */
     loginPassword?: pulumi.Input<string>;
-    /**
-     * Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-     */
     loginPasswordChange?: pulumi.Input<string>;
-    /**
-     * Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
-     */
     model?: pulumi.Input<string>;
-    /**
-     * FortiExtender LAN extension backhaul name
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

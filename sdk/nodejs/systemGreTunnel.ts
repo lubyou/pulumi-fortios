@@ -4,50 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure GRE tunnel.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemGreTunnel("trname", {
- *     checksumReception: "disable",
- *     checksumTransmission: "disable",
- *     dscpCopying: "disable",
- *     interface: "port3",
- *     ipVersion: "4",
- *     keepaliveFailtimes: 10,
- *     keepaliveInterval: 0,
- *     keyInbound: 0,
- *     keyOutbound: 0,
- *     localGw: "3.3.3.3",
- *     localGw6: "::",
- *     remoteGw: "1.1.1.1",
- *     remoteGw6: "::",
- *     sequenceNumberReception: "disable",
- *     sequenceNumberTransmission: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * System GreTunnel can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemGreTunnel:SystemGreTunnel labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemGreTunnel:SystemGreTunnel labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemGreTunnel extends pulumi.CustomResource {
     /**
      * Get an existing SystemGreTunnel resource's state with the given name, ID, and optional extra
@@ -76,81 +32,24 @@ export class SystemGreTunnel extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemGreTunnel.__pulumiType;
     }
 
-    /**
-     * Enable/disable validating checksums in received GRE packets. Valid values: `disable`, `enable`.
-     */
     public readonly checksumReception!: pulumi.Output<string>;
-    /**
-     * Enable/disable including checksums in transmitted GRE packets. Valid values: `disable`, `enable`.
-     */
     public readonly checksumTransmission!: pulumi.Output<string>;
-    /**
-     * DiffServ setting to be applied to GRE tunnel outer IP header.
-     */
     public readonly diffservcode!: pulumi.Output<string>;
-    /**
-     * Enable/disable DSCP copying. Valid values: `disable`, `enable`.
-     */
     public readonly dscpCopying!: pulumi.Output<string>;
-    /**
-     * Interface name.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * IP version to use for VPN interface. Valid values: `4`, `6`.
-     */
     public readonly ipVersion!: pulumi.Output<string>;
-    /**
-     * Number of consecutive unreturned keepalive messages before a GRE connection is considered down (1 - 255).
-     */
     public readonly keepaliveFailtimes!: pulumi.Output<number>;
-    /**
-     * Keepalive message interval (0 - 32767, 0 = disabled).
-     */
     public readonly keepaliveInterval!: pulumi.Output<number>;
-    /**
-     * Require received GRE packets contain this key (0 - 4294967295).
-     */
     public readonly keyInbound!: pulumi.Output<number>;
-    /**
-     * Include this key in transmitted GRE packets (0 - 4294967295).
-     */
     public readonly keyOutbound!: pulumi.Output<number>;
-    /**
-     * IP address of the local gateway.
-     */
     public readonly localGw!: pulumi.Output<string>;
-    /**
-     * IPv6 address of the local gateway.
-     */
     public readonly localGw6!: pulumi.Output<string>;
-    /**
-     * Tunnel name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * IP address of the remote gateway.
-     */
     public readonly remoteGw!: pulumi.Output<string>;
-    /**
-     * IPv6 address of the remote gateway.
-     */
     public readonly remoteGw6!: pulumi.Output<string>;
-    /**
-     * Enable/disable validating sequence numbers in received GRE packets. Valid values: `disable`, `enable`.
-     */
     public readonly sequenceNumberReception!: pulumi.Output<string>;
-    /**
-     * Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
-     */
     public readonly sequenceNumberTransmission!: pulumi.Output<string>;
-    /**
-     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-     */
     public readonly useSdwan!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -222,81 +121,24 @@ export class SystemGreTunnel extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemGreTunnel resources.
  */
 export interface SystemGreTunnelState {
-    /**
-     * Enable/disable validating checksums in received GRE packets. Valid values: `disable`, `enable`.
-     */
     checksumReception?: pulumi.Input<string>;
-    /**
-     * Enable/disable including checksums in transmitted GRE packets. Valid values: `disable`, `enable`.
-     */
     checksumTransmission?: pulumi.Input<string>;
-    /**
-     * DiffServ setting to be applied to GRE tunnel outer IP header.
-     */
     diffservcode?: pulumi.Input<string>;
-    /**
-     * Enable/disable DSCP copying. Valid values: `disable`, `enable`.
-     */
     dscpCopying?: pulumi.Input<string>;
-    /**
-     * Interface name.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * IP version to use for VPN interface. Valid values: `4`, `6`.
-     */
     ipVersion?: pulumi.Input<string>;
-    /**
-     * Number of consecutive unreturned keepalive messages before a GRE connection is considered down (1 - 255).
-     */
     keepaliveFailtimes?: pulumi.Input<number>;
-    /**
-     * Keepalive message interval (0 - 32767, 0 = disabled).
-     */
     keepaliveInterval?: pulumi.Input<number>;
-    /**
-     * Require received GRE packets contain this key (0 - 4294967295).
-     */
     keyInbound?: pulumi.Input<number>;
-    /**
-     * Include this key in transmitted GRE packets (0 - 4294967295).
-     */
     keyOutbound?: pulumi.Input<number>;
-    /**
-     * IP address of the local gateway.
-     */
     localGw?: pulumi.Input<string>;
-    /**
-     * IPv6 address of the local gateway.
-     */
     localGw6?: pulumi.Input<string>;
-    /**
-     * Tunnel name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * IP address of the remote gateway.
-     */
     remoteGw?: pulumi.Input<string>;
-    /**
-     * IPv6 address of the remote gateway.
-     */
     remoteGw6?: pulumi.Input<string>;
-    /**
-     * Enable/disable validating sequence numbers in received GRE packets. Valid values: `disable`, `enable`.
-     */
     sequenceNumberReception?: pulumi.Input<string>;
-    /**
-     * Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
-     */
     sequenceNumberTransmission?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-     */
     useSdwan?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -304,80 +146,23 @@ export interface SystemGreTunnelState {
  * The set of arguments for constructing a SystemGreTunnel resource.
  */
 export interface SystemGreTunnelArgs {
-    /**
-     * Enable/disable validating checksums in received GRE packets. Valid values: `disable`, `enable`.
-     */
     checksumReception?: pulumi.Input<string>;
-    /**
-     * Enable/disable including checksums in transmitted GRE packets. Valid values: `disable`, `enable`.
-     */
     checksumTransmission?: pulumi.Input<string>;
-    /**
-     * DiffServ setting to be applied to GRE tunnel outer IP header.
-     */
     diffservcode?: pulumi.Input<string>;
-    /**
-     * Enable/disable DSCP copying. Valid values: `disable`, `enable`.
-     */
     dscpCopying?: pulumi.Input<string>;
-    /**
-     * Interface name.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * IP version to use for VPN interface. Valid values: `4`, `6`.
-     */
     ipVersion?: pulumi.Input<string>;
-    /**
-     * Number of consecutive unreturned keepalive messages before a GRE connection is considered down (1 - 255).
-     */
     keepaliveFailtimes?: pulumi.Input<number>;
-    /**
-     * Keepalive message interval (0 - 32767, 0 = disabled).
-     */
     keepaliveInterval?: pulumi.Input<number>;
-    /**
-     * Require received GRE packets contain this key (0 - 4294967295).
-     */
     keyInbound?: pulumi.Input<number>;
-    /**
-     * Include this key in transmitted GRE packets (0 - 4294967295).
-     */
     keyOutbound?: pulumi.Input<number>;
-    /**
-     * IP address of the local gateway.
-     */
     localGw: pulumi.Input<string>;
-    /**
-     * IPv6 address of the local gateway.
-     */
     localGw6?: pulumi.Input<string>;
-    /**
-     * Tunnel name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * IP address of the remote gateway.
-     */
     remoteGw: pulumi.Input<string>;
-    /**
-     * IPv6 address of the remote gateway.
-     */
     remoteGw6?: pulumi.Input<string>;
-    /**
-     * Enable/disable validating sequence numbers in received GRE packets. Valid values: `disable`, `enable`.
-     */
     sequenceNumberReception?: pulumi.Input<string>;
-    /**
-     * Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
-     */
     sequenceNumberTransmission?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-     */
     useSdwan?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

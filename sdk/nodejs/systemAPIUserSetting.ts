@@ -2,36 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure API users of FortiOS. The API user of the token for this feature should have a super admin profile, It can be set in CLI while GUI does not allow.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.SystemApiUser`, we recommend that you use the new resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test2 = new fortios.SystemAPIUserSetting("test2", {
- *     accprofile: "restAPIprofile",
- *     trusthosts: [
- *         {
- *             ipv4Trusthost: "61.149.0.0 255.255.0.0",
- *             type: "ipv4-trusthost",
- *         },
- *         {
- *             ipv4Trusthost: "22.22.0.0 255.255.0.0",
- *             type: "ipv4-trusthost",
- *         },
- *     ],
- *     vdoms: ["root"],
- * });
- * ```
- */
 export class SystemAPIUserSetting extends pulumi.CustomResource {
     /**
      * Get an existing SystemAPIUserSetting resource's state with the given name, ID, and optional extra
@@ -60,24 +34,10 @@ export class SystemAPIUserSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAPIUserSetting.__pulumiType;
     }
 
-    /**
-     * Admin user access profile.
-     */
     public readonly accprofile!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * User name.
-     */
     public readonly name!: pulumi.Output<string>;
     public readonly trusthosts!: pulumi.Output<outputs.SystemAPIUserSettingTrusthost[]>;
-    /**
-     * Virtual domains.
-     * * `trusthost-Type` - (Required) Trusthost type.
-     * * `trusthost-ipv4_trusthost` - (Required) IPv4 trusted host address.
-     */
     public readonly vdoms!: pulumi.Output<string[]>;
 
     /**
@@ -124,24 +84,10 @@ export class SystemAPIUserSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAPIUserSetting resources.
  */
 export interface SystemAPIUserSettingState {
-    /**
-     * Admin user access profile.
-     */
     accprofile?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * User name.
-     */
     name?: pulumi.Input<string>;
     trusthosts?: pulumi.Input<pulumi.Input<inputs.SystemAPIUserSettingTrusthost>[]>;
-    /**
-     * Virtual domains.
-     * * `trusthost-Type` - (Required) Trusthost type.
-     * * `trusthost-ipv4_trusthost` - (Required) IPv4 trusted host address.
-     */
     vdoms?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -149,23 +95,9 @@ export interface SystemAPIUserSettingState {
  * The set of arguments for constructing a SystemAPIUserSetting resource.
  */
 export interface SystemAPIUserSettingArgs {
-    /**
-     * Admin user access profile.
-     */
     accprofile: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * User name.
-     */
     name?: pulumi.Input<string>;
     trusthosts: pulumi.Input<pulumi.Input<inputs.SystemAPIUserSettingTrusthost>[]>;
-    /**
-     * Virtual domains.
-     * * `trusthost-Type` - (Required) Trusthost type.
-     * * `trusthost-ipv4_trusthost` - (Required) IPv4 trusted host address.
-     */
     vdoms: pulumi.Input<pulumi.Input<string>[]>;
 }

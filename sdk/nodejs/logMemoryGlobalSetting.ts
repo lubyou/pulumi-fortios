@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Global settings for memory logging.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.LogMemoryGlobalSetting("trname", {
- *     fullFinalWarningThreshold: 95,
- *     fullFirstWarningThreshold: 75,
- *     fullSecondWarningThreshold: 90,
- *     maxSize: 163840,
- * });
- * ```
- *
- * ## Import
- *
- * LogMemory GlobalSetting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/logMemoryGlobalSetting:LogMemoryGlobalSetting labelname LogMemoryGlobalSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/logMemoryGlobalSetting:LogMemoryGlobalSetting labelname LogMemoryGlobalSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class LogMemoryGlobalSetting extends pulumi.CustomResource {
     /**
      * Get an existing LogMemoryGlobalSetting resource's state with the given name, ID, and optional extra
@@ -65,25 +32,10 @@ export class LogMemoryGlobalSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogMemoryGlobalSetting.__pulumiType;
     }
 
-    /**
-     * Log full final warning threshold as a percent (3 - 100, default = 95).
-     */
     public readonly fullFinalWarningThreshold!: pulumi.Output<number>;
-    /**
-     * Log full first warning threshold as a percent (1 - 98, default = 75).
-     */
     public readonly fullFirstWarningThreshold!: pulumi.Output<number>;
-    /**
-     * Log full second warning threshold as a percent (2 - 99, default = 90).
-     */
     public readonly fullSecondWarningThreshold!: pulumi.Output<number>;
-    /**
-     * Maximum amount of memory that can be used for memory logging in bytes.
-     */
     public readonly maxSize!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -121,25 +73,10 @@ export class LogMemoryGlobalSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogMemoryGlobalSetting resources.
  */
 export interface LogMemoryGlobalSettingState {
-    /**
-     * Log full final warning threshold as a percent (3 - 100, default = 95).
-     */
     fullFinalWarningThreshold?: pulumi.Input<number>;
-    /**
-     * Log full first warning threshold as a percent (1 - 98, default = 75).
-     */
     fullFirstWarningThreshold?: pulumi.Input<number>;
-    /**
-     * Log full second warning threshold as a percent (2 - 99, default = 90).
-     */
     fullSecondWarningThreshold?: pulumi.Input<number>;
-    /**
-     * Maximum amount of memory that can be used for memory logging in bytes.
-     */
     maxSize?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -147,24 +84,9 @@ export interface LogMemoryGlobalSettingState {
  * The set of arguments for constructing a LogMemoryGlobalSetting resource.
  */
 export interface LogMemoryGlobalSettingArgs {
-    /**
-     * Log full final warning threshold as a percent (3 - 100, default = 95).
-     */
     fullFinalWarningThreshold?: pulumi.Input<number>;
-    /**
-     * Log full first warning threshold as a percent (1 - 98, default = 75).
-     */
     fullFirstWarningThreshold?: pulumi.Input<number>;
-    /**
-     * Log full second warning threshold as a percent (2 - 99, default = 90).
-     */
     fullSecondWarningThreshold?: pulumi.Input<number>;
-    /**
-     * Maximum amount of memory that can be used for memory logging in bytes.
-     */
     maxSize?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

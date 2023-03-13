@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Define region table. Applies to FortiOS Version `>= 6.4.0`.
-//
-// ## Import
-//
-// Firewall Region can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallRegion:FirewallRegion labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallRegion:FirewallRegion labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallRegion struct {
 	pulumi.CustomResourceState
 
-	// City ID list. The structure of `city` block is documented below.
-	Cities FirewallRegionCityArrayOutput `pulumi:"cities"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Region ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Region name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Cities              FirewallRegionCityArrayOutput `pulumi:"cities"`
+	DynamicSortSubtable pulumi.StringPtrOutput        `pulumi:"dynamicSortSubtable"`
+	Fosid               pulumi.IntOutput              `pulumi:"fosid"`
+	Name                pulumi.StringOutput           `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput        `pulumi:"vdomparam"`
 }
 
 // NewFirewallRegion registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetFirewallRegion(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallRegion resources.
 type firewallRegionState struct {
-	// City ID list. The structure of `city` block is documented below.
-	Cities []FirewallRegionCity `pulumi:"cities"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Region ID.
-	Fosid *int `pulumi:"fosid"`
-	// Region name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Cities              []FirewallRegionCity `pulumi:"cities"`
+	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
+	Fosid               *int                 `pulumi:"fosid"`
+	Name                *string              `pulumi:"name"`
+	Vdomparam           *string              `pulumi:"vdomparam"`
 }
 
 type FirewallRegionState struct {
-	// City ID list. The structure of `city` block is documented below.
-	Cities FirewallRegionCityArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Cities              FirewallRegionCityArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Region ID.
-	Fosid pulumi.IntPtrInput
-	// Region name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallRegionState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (FirewallRegionState) ElementType() reflect.Type {
 }
 
 type firewallRegionArgs struct {
-	// City ID list. The structure of `city` block is documented below.
-	Cities []FirewallRegionCity `pulumi:"cities"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Region ID.
-	Fosid *int `pulumi:"fosid"`
-	// Region name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Cities              []FirewallRegionCity `pulumi:"cities"`
+	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
+	Fosid               *int                 `pulumi:"fosid"`
+	Name                *string              `pulumi:"name"`
+	Vdomparam           *string              `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallRegion resource.
 type FirewallRegionArgs struct {
-	// City ID list. The structure of `city` block is documented below.
-	Cities FirewallRegionCityArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Cities              FirewallRegionCityArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Region ID.
-	Fosid pulumi.IntPtrInput
-	// Region name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallRegionArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *FirewallRegion) ToFirewallRegionOutputWithContext(ctx context.Context) 
 // FirewallRegionArrayInput is an input type that accepts FirewallRegionArray and FirewallRegionArrayOutput values.
 // You can construct a concrete instance of `FirewallRegionArrayInput` via:
 //
-//          FirewallRegionArray{ FirewallRegionArgs{...} }
+//	FirewallRegionArray{ FirewallRegionArgs{...} }
 type FirewallRegionArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i FirewallRegionArray) ToFirewallRegionArrayOutputWithContext(ctx context.
 // FirewallRegionMapInput is an input type that accepts FirewallRegionMap and FirewallRegionMapOutput values.
 // You can construct a concrete instance of `FirewallRegionMapInput` via:
 //
-//          FirewallRegionMap{ "key": FirewallRegionArgs{...} }
+//	FirewallRegionMap{ "key": FirewallRegionArgs{...} }
 type FirewallRegionMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o FirewallRegionOutput) ToFirewallRegionOutput() FirewallRegionOutput {
 
 func (o FirewallRegionOutput) ToFirewallRegionOutputWithContext(ctx context.Context) FirewallRegionOutput {
 	return o
+}
+
+func (o FirewallRegionOutput) Cities() FirewallRegionCityArrayOutput {
+	return o.ApplyT(func(v *FirewallRegion) FirewallRegionCityArrayOutput { return v.Cities }).(FirewallRegionCityArrayOutput)
+}
+
+func (o FirewallRegionOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallRegion) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallRegionOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallRegion) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallRegionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallRegion) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallRegionOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallRegion) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallRegionArrayOutput struct{ *pulumi.OutputState }

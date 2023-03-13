@@ -7,89 +7,23 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure TTL policies.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallTtlPolicy(ctx, "trname", &fortios.FirewallTtlPolicyArgs{
-// 			Action:   pulumi.String("accept"),
-// 			Fosid:    pulumi.Int(1),
-// 			Schedule: pulumi.String("always"),
-// 			Services: FirewallTtlPolicyServiceArray{
-// 				&FirewallTtlPolicyServiceArgs{
-// 					Name: pulumi.String("ALL"),
-// 				},
-// 			},
-// 			Srcaddrs: FirewallTtlPolicySrcaddrArray{
-// 				&FirewallTtlPolicySrcaddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			Srcintf: pulumi.String("port3"),
-// 			Status:  pulumi.String("enable"),
-// 			Ttl:     pulumi.String("23"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall TtlPolicy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallTtlPolicy:FirewallTtlPolicy labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallTtlPolicy:FirewallTtlPolicy labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallTtlPolicy struct {
 	pulumi.CustomResourceState
 
-	// Action to be performed on traffic matching this policy (default = deny). Valid values: `accept`, `deny`.
-	Action pulumi.StringOutput `pulumi:"action"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Schedule object from available options.
-	Schedule pulumi.StringOutput `pulumi:"schedule"`
-	// Service object(s) from available options. Separate multiple names with a space. The structure of `service` block is documented below.
-	Services FirewallTtlPolicyServiceArrayOutput `pulumi:"services"`
-	// Source address object(s) from available options. Separate multiple names with a space. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallTtlPolicySrcaddrArrayOutput `pulumi:"srcaddrs"`
-	// Source interface name from available interfaces.
-	Srcintf pulumi.StringOutput `pulumi:"srcintf"`
-	// Enable/disable this TTL policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Value/range to match against the packet's Time to Live value (format: ttl[ - ttlHigh], 1 - 255).
-	Ttl pulumi.StringOutput `pulumi:"ttl"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Action              pulumi.StringOutput                 `pulumi:"action"`
+	DynamicSortSubtable pulumi.StringPtrOutput              `pulumi:"dynamicSortSubtable"`
+	Fosid               pulumi.IntOutput                    `pulumi:"fosid"`
+	Schedule            pulumi.StringOutput                 `pulumi:"schedule"`
+	Services            FirewallTtlPolicyServiceArrayOutput `pulumi:"services"`
+	Srcaddrs            FirewallTtlPolicySrcaddrArrayOutput `pulumi:"srcaddrs"`
+	Srcintf             pulumi.StringOutput                 `pulumi:"srcintf"`
+	Status              pulumi.StringOutput                 `pulumi:"status"`
+	Ttl                 pulumi.StringOutput                 `pulumi:"ttl"`
+	Vdomparam           pulumi.StringPtrOutput              `pulumi:"vdomparam"`
 }
 
 // NewFirewallTtlPolicy registers a new resource with the given unique name, arguments, and options.
@@ -140,49 +74,29 @@ func GetFirewallTtlPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallTtlPolicy resources.
 type firewallTtlPolicyState struct {
-	// Action to be performed on traffic matching this policy (default = deny). Valid values: `accept`, `deny`.
-	Action *string `pulumi:"action"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Schedule object from available options.
-	Schedule *string `pulumi:"schedule"`
-	// Service object(s) from available options. Separate multiple names with a space. The structure of `service` block is documented below.
-	Services []FirewallTtlPolicyService `pulumi:"services"`
-	// Source address object(s) from available options. Separate multiple names with a space. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallTtlPolicySrcaddr `pulumi:"srcaddrs"`
-	// Source interface name from available interfaces.
-	Srcintf *string `pulumi:"srcintf"`
-	// Enable/disable this TTL policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Value/range to match against the packet's Time to Live value (format: ttl[ - ttlHigh], 1 - 255).
-	Ttl *string `pulumi:"ttl"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Action              *string                    `pulumi:"action"`
+	DynamicSortSubtable *string                    `pulumi:"dynamicSortSubtable"`
+	Fosid               *int                       `pulumi:"fosid"`
+	Schedule            *string                    `pulumi:"schedule"`
+	Services            []FirewallTtlPolicyService `pulumi:"services"`
+	Srcaddrs            []FirewallTtlPolicySrcaddr `pulumi:"srcaddrs"`
+	Srcintf             *string                    `pulumi:"srcintf"`
+	Status              *string                    `pulumi:"status"`
+	Ttl                 *string                    `pulumi:"ttl"`
+	Vdomparam           *string                    `pulumi:"vdomparam"`
 }
 
 type FirewallTtlPolicyState struct {
-	// Action to be performed on traffic matching this policy (default = deny). Valid values: `accept`, `deny`.
-	Action pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Action              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Schedule object from available options.
-	Schedule pulumi.StringPtrInput
-	// Service object(s) from available options. Separate multiple names with a space. The structure of `service` block is documented below.
-	Services FirewallTtlPolicyServiceArrayInput
-	// Source address object(s) from available options. Separate multiple names with a space. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallTtlPolicySrcaddrArrayInput
-	// Source interface name from available interfaces.
-	Srcintf pulumi.StringPtrInput
-	// Enable/disable this TTL policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Value/range to match against the packet's Time to Live value (format: ttl[ - ttlHigh], 1 - 255).
-	Ttl pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	Schedule            pulumi.StringPtrInput
+	Services            FirewallTtlPolicyServiceArrayInput
+	Srcaddrs            FirewallTtlPolicySrcaddrArrayInput
+	Srcintf             pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	Ttl                 pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallTtlPolicyState) ElementType() reflect.Type {
@@ -190,50 +104,30 @@ func (FirewallTtlPolicyState) ElementType() reflect.Type {
 }
 
 type firewallTtlPolicyArgs struct {
-	// Action to be performed on traffic matching this policy (default = deny). Valid values: `accept`, `deny`.
-	Action *string `pulumi:"action"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// ID.
-	Fosid int `pulumi:"fosid"`
-	// Schedule object from available options.
-	Schedule string `pulumi:"schedule"`
-	// Service object(s) from available options. Separate multiple names with a space. The structure of `service` block is documented below.
-	Services []FirewallTtlPolicyService `pulumi:"services"`
-	// Source address object(s) from available options. Separate multiple names with a space. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallTtlPolicySrcaddr `pulumi:"srcaddrs"`
-	// Source interface name from available interfaces.
-	Srcintf string `pulumi:"srcintf"`
-	// Enable/disable this TTL policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Value/range to match against the packet's Time to Live value (format: ttl[ - ttlHigh], 1 - 255).
-	Ttl string `pulumi:"ttl"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Action              *string                    `pulumi:"action"`
+	DynamicSortSubtable *string                    `pulumi:"dynamicSortSubtable"`
+	Fosid               int                        `pulumi:"fosid"`
+	Schedule            string                     `pulumi:"schedule"`
+	Services            []FirewallTtlPolicyService `pulumi:"services"`
+	Srcaddrs            []FirewallTtlPolicySrcaddr `pulumi:"srcaddrs"`
+	Srcintf             string                     `pulumi:"srcintf"`
+	Status              *string                    `pulumi:"status"`
+	Ttl                 string                     `pulumi:"ttl"`
+	Vdomparam           *string                    `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallTtlPolicy resource.
 type FirewallTtlPolicyArgs struct {
-	// Action to be performed on traffic matching this policy (default = deny). Valid values: `accept`, `deny`.
-	Action pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Action              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// ID.
-	Fosid pulumi.IntInput
-	// Schedule object from available options.
-	Schedule pulumi.StringInput
-	// Service object(s) from available options. Separate multiple names with a space. The structure of `service` block is documented below.
-	Services FirewallTtlPolicyServiceArrayInput
-	// Source address object(s) from available options. Separate multiple names with a space. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallTtlPolicySrcaddrArrayInput
-	// Source interface name from available interfaces.
-	Srcintf pulumi.StringInput
-	// Enable/disable this TTL policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Value/range to match against the packet's Time to Live value (format: ttl[ - ttlHigh], 1 - 255).
-	Ttl pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid               pulumi.IntInput
+	Schedule            pulumi.StringInput
+	Services            FirewallTtlPolicyServiceArrayInput
+	Srcaddrs            FirewallTtlPolicySrcaddrArrayInput
+	Srcintf             pulumi.StringInput
+	Status              pulumi.StringPtrInput
+	Ttl                 pulumi.StringInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallTtlPolicyArgs) ElementType() reflect.Type {
@@ -262,7 +156,7 @@ func (i *FirewallTtlPolicy) ToFirewallTtlPolicyOutputWithContext(ctx context.Con
 // FirewallTtlPolicyArrayInput is an input type that accepts FirewallTtlPolicyArray and FirewallTtlPolicyArrayOutput values.
 // You can construct a concrete instance of `FirewallTtlPolicyArrayInput` via:
 //
-//          FirewallTtlPolicyArray{ FirewallTtlPolicyArgs{...} }
+//	FirewallTtlPolicyArray{ FirewallTtlPolicyArgs{...} }
 type FirewallTtlPolicyArrayInput interface {
 	pulumi.Input
 
@@ -287,7 +181,7 @@ func (i FirewallTtlPolicyArray) ToFirewallTtlPolicyArrayOutputWithContext(ctx co
 // FirewallTtlPolicyMapInput is an input type that accepts FirewallTtlPolicyMap and FirewallTtlPolicyMapOutput values.
 // You can construct a concrete instance of `FirewallTtlPolicyMapInput` via:
 //
-//          FirewallTtlPolicyMap{ "key": FirewallTtlPolicyArgs{...} }
+//	FirewallTtlPolicyMap{ "key": FirewallTtlPolicyArgs{...} }
 type FirewallTtlPolicyMapInput interface {
 	pulumi.Input
 
@@ -321,6 +215,46 @@ func (o FirewallTtlPolicyOutput) ToFirewallTtlPolicyOutput() FirewallTtlPolicyOu
 
 func (o FirewallTtlPolicyOutput) ToFirewallTtlPolicyOutputWithContext(ctx context.Context) FirewallTtlPolicyOutput {
 	return o
+}
+
+func (o FirewallTtlPolicyOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallTtlPolicy) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
+}
+
+func (o FirewallTtlPolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallTtlPolicy) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallTtlPolicyOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallTtlPolicy) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallTtlPolicyOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallTtlPolicy) pulumi.StringOutput { return v.Schedule }).(pulumi.StringOutput)
+}
+
+func (o FirewallTtlPolicyOutput) Services() FirewallTtlPolicyServiceArrayOutput {
+	return o.ApplyT(func(v *FirewallTtlPolicy) FirewallTtlPolicyServiceArrayOutput { return v.Services }).(FirewallTtlPolicyServiceArrayOutput)
+}
+
+func (o FirewallTtlPolicyOutput) Srcaddrs() FirewallTtlPolicySrcaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallTtlPolicy) FirewallTtlPolicySrcaddrArrayOutput { return v.Srcaddrs }).(FirewallTtlPolicySrcaddrArrayOutput)
+}
+
+func (o FirewallTtlPolicyOutput) Srcintf() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallTtlPolicy) pulumi.StringOutput { return v.Srcintf }).(pulumi.StringOutput)
+}
+
+func (o FirewallTtlPolicyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallTtlPolicy) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o FirewallTtlPolicyOutput) Ttl() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallTtlPolicy) pulumi.StringOutput { return v.Ttl }).(pulumi.StringOutput)
+}
+
+func (o FirewallTtlPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallTtlPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallTtlPolicyArrayOutput struct{ *pulumi.OutputState }

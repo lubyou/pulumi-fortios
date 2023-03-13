@@ -7,60 +7,28 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FSSO active directory servers for polling mode.
-//
-// ## Import
-//
-// User FssoPolling can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userFssoPolling:UserFssoPolling labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userFssoPolling:UserFssoPolling labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserFssoPolling struct {
 	pulumi.CustomResourceState
 
-	// LDAP Group Info. The structure of `adgrp` block is documented below.
-	Adgrps UserFssoPollingAdgrpArrayOutput `pulumi:"adgrps"`
-	// Default domain managed by this Active Directory server.
-	DefaultDomain pulumi.StringOutput `pulumi:"defaultDomain"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Active Directory server ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// LDAP server name used in LDAP connection strings.
-	LdapServer pulumi.StringOutput `pulumi:"ldapServer"`
-	// Number of hours of logon history to keep, 0 means keep all history.
-	LogonHistory pulumi.IntOutput `pulumi:"logonHistory"`
-	// Password required to log into this Active Directory server
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Polling frequency (every 1 to 30 seconds).
-	PollingFrequency pulumi.IntOutput `pulumi:"pollingFrequency"`
-	// Port to communicate with this Active Directory server.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Host name or IP address of the Active Directory server.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// Enable/disable support of NTLMv1 for Samba authentication. Valid values: `enable`, `disable`.
-	SmbNtlmv1Auth pulumi.StringOutput `pulumi:"smbNtlmv1Auth"`
-	// Enable/disable support of SMBv1 for Samba. Valid values: `enable`, `disable`.
-	Smbv1 pulumi.StringOutput `pulumi:"smbv1"`
-	// Enable/disable polling for the status of this Active Directory server. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// User name required to log into this Active Directory server.
-	User pulumi.StringOutput `pulumi:"user"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Adgrps              UserFssoPollingAdgrpArrayOutput `pulumi:"adgrps"`
+	DefaultDomain       pulumi.StringOutput             `pulumi:"defaultDomain"`
+	DynamicSortSubtable pulumi.StringPtrOutput          `pulumi:"dynamicSortSubtable"`
+	Fosid               pulumi.IntOutput                `pulumi:"fosid"`
+	LdapServer          pulumi.StringOutput             `pulumi:"ldapServer"`
+	LogonHistory        pulumi.IntOutput                `pulumi:"logonHistory"`
+	Password            pulumi.StringPtrOutput          `pulumi:"password"`
+	PollingFrequency    pulumi.IntOutput                `pulumi:"pollingFrequency"`
+	Port                pulumi.IntOutput                `pulumi:"port"`
+	Server              pulumi.StringOutput             `pulumi:"server"`
+	SmbNtlmv1Auth       pulumi.StringOutput             `pulumi:"smbNtlmv1Auth"`
+	Smbv1               pulumi.StringOutput             `pulumi:"smbv1"`
+	Status              pulumi.StringOutput             `pulumi:"status"`
+	User                pulumi.StringOutput             `pulumi:"user"`
+	Vdomparam           pulumi.StringPtrOutput          `pulumi:"vdomparam"`
 }
 
 // NewUserFssoPolling registers a new resource with the given unique name, arguments, and options.
@@ -79,6 +47,13 @@ func NewUserFssoPolling(ctx *pulumi.Context,
 	if args.User == nil {
 		return nil, errors.New("invalid value for required argument 'User'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource UserFssoPolling
 	err := ctx.RegisterResource("fortios:index/userFssoPolling:UserFssoPolling", name, args, &resource, opts...)
@@ -102,69 +77,39 @@ func GetUserFssoPolling(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserFssoPolling resources.
 type userFssoPollingState struct {
-	// LDAP Group Info. The structure of `adgrp` block is documented below.
-	Adgrps []UserFssoPollingAdgrp `pulumi:"adgrps"`
-	// Default domain managed by this Active Directory server.
-	DefaultDomain *string `pulumi:"defaultDomain"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Active Directory server ID.
-	Fosid *int `pulumi:"fosid"`
-	// LDAP server name used in LDAP connection strings.
-	LdapServer *string `pulumi:"ldapServer"`
-	// Number of hours of logon history to keep, 0 means keep all history.
-	LogonHistory *int `pulumi:"logonHistory"`
-	// Password required to log into this Active Directory server
-	Password *string `pulumi:"password"`
-	// Polling frequency (every 1 to 30 seconds).
-	PollingFrequency *int `pulumi:"pollingFrequency"`
-	// Port to communicate with this Active Directory server.
-	Port *int `pulumi:"port"`
-	// Host name or IP address of the Active Directory server.
-	Server *string `pulumi:"server"`
-	// Enable/disable support of NTLMv1 for Samba authentication. Valid values: `enable`, `disable`.
-	SmbNtlmv1Auth *string `pulumi:"smbNtlmv1Auth"`
-	// Enable/disable support of SMBv1 for Samba. Valid values: `enable`, `disable`.
-	Smbv1 *string `pulumi:"smbv1"`
-	// Enable/disable polling for the status of this Active Directory server. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// User name required to log into this Active Directory server.
-	User *string `pulumi:"user"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Adgrps              []UserFssoPollingAdgrp `pulumi:"adgrps"`
+	DefaultDomain       *string                `pulumi:"defaultDomain"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	Fosid               *int                   `pulumi:"fosid"`
+	LdapServer          *string                `pulumi:"ldapServer"`
+	LogonHistory        *int                   `pulumi:"logonHistory"`
+	Password            *string                `pulumi:"password"`
+	PollingFrequency    *int                   `pulumi:"pollingFrequency"`
+	Port                *int                   `pulumi:"port"`
+	Server              *string                `pulumi:"server"`
+	SmbNtlmv1Auth       *string                `pulumi:"smbNtlmv1Auth"`
+	Smbv1               *string                `pulumi:"smbv1"`
+	Status              *string                `pulumi:"status"`
+	User                *string                `pulumi:"user"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 type UserFssoPollingState struct {
-	// LDAP Group Info. The structure of `adgrp` block is documented below.
-	Adgrps UserFssoPollingAdgrpArrayInput
-	// Default domain managed by this Active Directory server.
-	DefaultDomain pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Adgrps              UserFssoPollingAdgrpArrayInput
+	DefaultDomain       pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Active Directory server ID.
-	Fosid pulumi.IntPtrInput
-	// LDAP server name used in LDAP connection strings.
-	LdapServer pulumi.StringPtrInput
-	// Number of hours of logon history to keep, 0 means keep all history.
-	LogonHistory pulumi.IntPtrInput
-	// Password required to log into this Active Directory server
-	Password pulumi.StringPtrInput
-	// Polling frequency (every 1 to 30 seconds).
-	PollingFrequency pulumi.IntPtrInput
-	// Port to communicate with this Active Directory server.
-	Port pulumi.IntPtrInput
-	// Host name or IP address of the Active Directory server.
-	Server pulumi.StringPtrInput
-	// Enable/disable support of NTLMv1 for Samba authentication. Valid values: `enable`, `disable`.
-	SmbNtlmv1Auth pulumi.StringPtrInput
-	// Enable/disable support of SMBv1 for Samba. Valid values: `enable`, `disable`.
-	Smbv1 pulumi.StringPtrInput
-	// Enable/disable polling for the status of this Active Directory server. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// User name required to log into this Active Directory server.
-	User pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	LdapServer          pulumi.StringPtrInput
+	LogonHistory        pulumi.IntPtrInput
+	Password            pulumi.StringPtrInput
+	PollingFrequency    pulumi.IntPtrInput
+	Port                pulumi.IntPtrInput
+	Server              pulumi.StringPtrInput
+	SmbNtlmv1Auth       pulumi.StringPtrInput
+	Smbv1               pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	User                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserFssoPollingState) ElementType() reflect.Type {
@@ -172,70 +117,40 @@ func (UserFssoPollingState) ElementType() reflect.Type {
 }
 
 type userFssoPollingArgs struct {
-	// LDAP Group Info. The structure of `adgrp` block is documented below.
-	Adgrps []UserFssoPollingAdgrp `pulumi:"adgrps"`
-	// Default domain managed by this Active Directory server.
-	DefaultDomain *string `pulumi:"defaultDomain"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Active Directory server ID.
-	Fosid *int `pulumi:"fosid"`
-	// LDAP server name used in LDAP connection strings.
-	LdapServer string `pulumi:"ldapServer"`
-	// Number of hours of logon history to keep, 0 means keep all history.
-	LogonHistory *int `pulumi:"logonHistory"`
-	// Password required to log into this Active Directory server
-	Password *string `pulumi:"password"`
-	// Polling frequency (every 1 to 30 seconds).
-	PollingFrequency *int `pulumi:"pollingFrequency"`
-	// Port to communicate with this Active Directory server.
-	Port *int `pulumi:"port"`
-	// Host name or IP address of the Active Directory server.
-	Server string `pulumi:"server"`
-	// Enable/disable support of NTLMv1 for Samba authentication. Valid values: `enable`, `disable`.
-	SmbNtlmv1Auth *string `pulumi:"smbNtlmv1Auth"`
-	// Enable/disable support of SMBv1 for Samba. Valid values: `enable`, `disable`.
-	Smbv1 *string `pulumi:"smbv1"`
-	// Enable/disable polling for the status of this Active Directory server. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// User name required to log into this Active Directory server.
-	User string `pulumi:"user"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Adgrps              []UserFssoPollingAdgrp `pulumi:"adgrps"`
+	DefaultDomain       *string                `pulumi:"defaultDomain"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	Fosid               *int                   `pulumi:"fosid"`
+	LdapServer          string                 `pulumi:"ldapServer"`
+	LogonHistory        *int                   `pulumi:"logonHistory"`
+	Password            *string                `pulumi:"password"`
+	PollingFrequency    *int                   `pulumi:"pollingFrequency"`
+	Port                *int                   `pulumi:"port"`
+	Server              string                 `pulumi:"server"`
+	SmbNtlmv1Auth       *string                `pulumi:"smbNtlmv1Auth"`
+	Smbv1               *string                `pulumi:"smbv1"`
+	Status              *string                `pulumi:"status"`
+	User                string                 `pulumi:"user"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserFssoPolling resource.
 type UserFssoPollingArgs struct {
-	// LDAP Group Info. The structure of `adgrp` block is documented below.
-	Adgrps UserFssoPollingAdgrpArrayInput
-	// Default domain managed by this Active Directory server.
-	DefaultDomain pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Adgrps              UserFssoPollingAdgrpArrayInput
+	DefaultDomain       pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Active Directory server ID.
-	Fosid pulumi.IntPtrInput
-	// LDAP server name used in LDAP connection strings.
-	LdapServer pulumi.StringInput
-	// Number of hours of logon history to keep, 0 means keep all history.
-	LogonHistory pulumi.IntPtrInput
-	// Password required to log into this Active Directory server
-	Password pulumi.StringPtrInput
-	// Polling frequency (every 1 to 30 seconds).
-	PollingFrequency pulumi.IntPtrInput
-	// Port to communicate with this Active Directory server.
-	Port pulumi.IntPtrInput
-	// Host name or IP address of the Active Directory server.
-	Server pulumi.StringInput
-	// Enable/disable support of NTLMv1 for Samba authentication. Valid values: `enable`, `disable`.
-	SmbNtlmv1Auth pulumi.StringPtrInput
-	// Enable/disable support of SMBv1 for Samba. Valid values: `enable`, `disable`.
-	Smbv1 pulumi.StringPtrInput
-	// Enable/disable polling for the status of this Active Directory server. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// User name required to log into this Active Directory server.
-	User pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	LdapServer          pulumi.StringInput
+	LogonHistory        pulumi.IntPtrInput
+	Password            pulumi.StringPtrInput
+	PollingFrequency    pulumi.IntPtrInput
+	Port                pulumi.IntPtrInput
+	Server              pulumi.StringInput
+	SmbNtlmv1Auth       pulumi.StringPtrInput
+	Smbv1               pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	User                pulumi.StringInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserFssoPollingArgs) ElementType() reflect.Type {
@@ -264,7 +179,7 @@ func (i *UserFssoPolling) ToUserFssoPollingOutputWithContext(ctx context.Context
 // UserFssoPollingArrayInput is an input type that accepts UserFssoPollingArray and UserFssoPollingArrayOutput values.
 // You can construct a concrete instance of `UserFssoPollingArrayInput` via:
 //
-//          UserFssoPollingArray{ UserFssoPollingArgs{...} }
+//	UserFssoPollingArray{ UserFssoPollingArgs{...} }
 type UserFssoPollingArrayInput interface {
 	pulumi.Input
 
@@ -289,7 +204,7 @@ func (i UserFssoPollingArray) ToUserFssoPollingArrayOutputWithContext(ctx contex
 // UserFssoPollingMapInput is an input type that accepts UserFssoPollingMap and UserFssoPollingMapOutput values.
 // You can construct a concrete instance of `UserFssoPollingMapInput` via:
 //
-//          UserFssoPollingMap{ "key": UserFssoPollingArgs{...} }
+//	UserFssoPollingMap{ "key": UserFssoPollingArgs{...} }
 type UserFssoPollingMapInput interface {
 	pulumi.Input
 
@@ -323,6 +238,66 @@ func (o UserFssoPollingOutput) ToUserFssoPollingOutput() UserFssoPollingOutput {
 
 func (o UserFssoPollingOutput) ToUserFssoPollingOutputWithContext(ctx context.Context) UserFssoPollingOutput {
 	return o
+}
+
+func (o UserFssoPollingOutput) Adgrps() UserFssoPollingAdgrpArrayOutput {
+	return o.ApplyT(func(v *UserFssoPolling) UserFssoPollingAdgrpArrayOutput { return v.Adgrps }).(UserFssoPollingAdgrpArrayOutput)
+}
+
+func (o UserFssoPollingOutput) DefaultDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFssoPolling) pulumi.StringOutput { return v.DefaultDomain }).(pulumi.StringOutput)
+}
+
+func (o UserFssoPollingOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserFssoPolling) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserFssoPollingOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserFssoPolling) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o UserFssoPollingOutput) LdapServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFssoPolling) pulumi.StringOutput { return v.LdapServer }).(pulumi.StringOutput)
+}
+
+func (o UserFssoPollingOutput) LogonHistory() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserFssoPolling) pulumi.IntOutput { return v.LogonHistory }).(pulumi.IntOutput)
+}
+
+func (o UserFssoPollingOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserFssoPolling) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o UserFssoPollingOutput) PollingFrequency() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserFssoPolling) pulumi.IntOutput { return v.PollingFrequency }).(pulumi.IntOutput)
+}
+
+func (o UserFssoPollingOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserFssoPolling) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o UserFssoPollingOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFssoPolling) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o UserFssoPollingOutput) SmbNtlmv1Auth() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFssoPolling) pulumi.StringOutput { return v.SmbNtlmv1Auth }).(pulumi.StringOutput)
+}
+
+func (o UserFssoPollingOutput) Smbv1() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFssoPolling) pulumi.StringOutput { return v.Smbv1 }).(pulumi.StringOutput)
+}
+
+func (o UserFssoPollingOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFssoPolling) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o UserFssoPollingOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFssoPolling) pulumi.StringOutput { return v.User }).(pulumi.StringOutput)
+}
+
+func (o UserFssoPollingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserFssoPolling) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserFssoPollingArrayOutput struct{ *pulumi.OutputState }

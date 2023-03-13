@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure IP address type availability.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WirelessControllerHotspot20AnqpIpAddressType("trname", {
- *     ipv4AddressType: "public",
- *     ipv6AddressType: "not-available",
- * });
- * ```
- *
- * ## Import
- *
- * WirelessControllerHotspot20 AnqpIpAddressType can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20AnqpIpAddressType:WirelessControllerHotspot20AnqpIpAddressType labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20AnqpIpAddressType:WirelessControllerHotspot20AnqpIpAddressType labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerHotspot20AnqpIpAddressType extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerHotspot20AnqpIpAddressType resource's state with the given name, ID, and optional extra
@@ -63,21 +32,9 @@ export class WirelessControllerHotspot20AnqpIpAddressType extends pulumi.CustomR
         return obj['__pulumiType'] === WirelessControllerHotspot20AnqpIpAddressType.__pulumiType;
     }
 
-    /**
-     * IPv4 address type. Valid values: `not-available`, `public`, `port-restricted`, `single-NATed-private`, `double-NATed-private`, `port-restricted-and-single-NATed`, `port-restricted-and-double-NATed`, `not-known`.
-     */
     public readonly ipv4AddressType!: pulumi.Output<string>;
-    /**
-     * IPv6 address type. Valid values: `not-available`, `available`, `not-known`.
-     */
     public readonly ipv6AddressType!: pulumi.Output<string>;
-    /**
-     * IP type name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -113,21 +70,9 @@ export class WirelessControllerHotspot20AnqpIpAddressType extends pulumi.CustomR
  * Input properties used for looking up and filtering WirelessControllerHotspot20AnqpIpAddressType resources.
  */
 export interface WirelessControllerHotspot20AnqpIpAddressTypeState {
-    /**
-     * IPv4 address type. Valid values: `not-available`, `public`, `port-restricted`, `single-NATed-private`, `double-NATed-private`, `port-restricted-and-single-NATed`, `port-restricted-and-double-NATed`, `not-known`.
-     */
     ipv4AddressType?: pulumi.Input<string>;
-    /**
-     * IPv6 address type. Valid values: `not-available`, `available`, `not-known`.
-     */
     ipv6AddressType?: pulumi.Input<string>;
-    /**
-     * IP type name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -135,20 +80,8 @@ export interface WirelessControllerHotspot20AnqpIpAddressTypeState {
  * The set of arguments for constructing a WirelessControllerHotspot20AnqpIpAddressType resource.
  */
 export interface WirelessControllerHotspot20AnqpIpAddressTypeArgs {
-    /**
-     * IPv4 address type. Valid values: `not-available`, `public`, `port-restricted`, `single-NATed-private`, `double-NATed-private`, `port-restricted-and-single-NATed`, `port-restricted-and-double-NATed`, `not-known`.
-     */
     ipv4AddressType?: pulumi.Input<string>;
-    /**
-     * IPv6 address type. Valid values: `not-available`, `available`, `not-known`.
-     */
     ipv6AddressType?: pulumi.Input<string>;
-    /**
-     * IP type name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

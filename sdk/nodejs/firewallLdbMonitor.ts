@@ -4,41 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure server load balancing health monitors.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallLdbMonitor("trname", {
- *     httpMaxRedirects: 0,
- *     interval: 10,
- *     port: 0,
- *     retry: 3,
- *     timeout: 2,
- *     type: "ping",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall LdbMonitor can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallLdbMonitor:FirewallLdbMonitor labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallLdbMonitor:FirewallLdbMonitor labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallLdbMonitor extends pulumi.CustomResource {
     /**
      * Get an existing FirewallLdbMonitor resource's state with the given name, ID, and optional extra
@@ -67,61 +32,19 @@ export class FirewallLdbMonitor extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallLdbMonitor.__pulumiType;
     }
 
-    /**
-     * Response IP expected from DNS server.
-     */
     public readonly dnsMatchIp!: pulumi.Output<string>;
-    /**
-     * Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
-     */
     public readonly dnsProtocol!: pulumi.Output<string>;
-    /**
-     * Fully qualified domain name to resolve for the DNS probe.
-     */
     public readonly dnsRequestDomain!: pulumi.Output<string>;
-    /**
-     * URL used to send a GET request to check the health of an HTTP server.
-     */
     public readonly httpGet!: pulumi.Output<string>;
-    /**
-     * String to match the value expected in response to an HTTP-GET request.
-     */
     public readonly httpMatch!: pulumi.Output<string>;
-    /**
-     * The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
-     */
     public readonly httpMaxRedirects!: pulumi.Output<number>;
-    /**
-     * Time between health checks (5 - 65635 sec, default = 10).
-     */
     public readonly interval!: pulumi.Output<number>;
-    /**
-     * Monitor name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Number health check attempts before the server is considered down (1 - 255, default = 3).
-     */
     public readonly retry!: pulumi.Output<number>;
-    /**
-     * Source IP for ldb-monitor.
-     */
     public readonly srcIp!: pulumi.Output<string>;
-    /**
-     * Time to wait to receive response to a health check from a server. Reaching the timeout means the health check failed (1 - 255 sec, default = 2).
-     */
     public readonly timeout!: pulumi.Output<number>;
-    /**
-     * Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -180,61 +103,19 @@ export class FirewallLdbMonitor extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallLdbMonitor resources.
  */
 export interface FirewallLdbMonitorState {
-    /**
-     * Response IP expected from DNS server.
-     */
     dnsMatchIp?: pulumi.Input<string>;
-    /**
-     * Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
-     */
     dnsProtocol?: pulumi.Input<string>;
-    /**
-     * Fully qualified domain name to resolve for the DNS probe.
-     */
     dnsRequestDomain?: pulumi.Input<string>;
-    /**
-     * URL used to send a GET request to check the health of an HTTP server.
-     */
     httpGet?: pulumi.Input<string>;
-    /**
-     * String to match the value expected in response to an HTTP-GET request.
-     */
     httpMatch?: pulumi.Input<string>;
-    /**
-     * The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
-     */
     httpMaxRedirects?: pulumi.Input<number>;
-    /**
-     * Time between health checks (5 - 65635 sec, default = 10).
-     */
     interval?: pulumi.Input<number>;
-    /**
-     * Monitor name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Number health check attempts before the server is considered down (1 - 255, default = 3).
-     */
     retry?: pulumi.Input<number>;
-    /**
-     * Source IP for ldb-monitor.
-     */
     srcIp?: pulumi.Input<string>;
-    /**
-     * Time to wait to receive response to a health check from a server. Reaching the timeout means the health check failed (1 - 255 sec, default = 2).
-     */
     timeout?: pulumi.Input<number>;
-    /**
-     * Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -242,60 +123,18 @@ export interface FirewallLdbMonitorState {
  * The set of arguments for constructing a FirewallLdbMonitor resource.
  */
 export interface FirewallLdbMonitorArgs {
-    /**
-     * Response IP expected from DNS server.
-     */
     dnsMatchIp?: pulumi.Input<string>;
-    /**
-     * Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
-     */
     dnsProtocol?: pulumi.Input<string>;
-    /**
-     * Fully qualified domain name to resolve for the DNS probe.
-     */
     dnsRequestDomain?: pulumi.Input<string>;
-    /**
-     * URL used to send a GET request to check the health of an HTTP server.
-     */
     httpGet?: pulumi.Input<string>;
-    /**
-     * String to match the value expected in response to an HTTP-GET request.
-     */
     httpMatch?: pulumi.Input<string>;
-    /**
-     * The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
-     */
     httpMaxRedirects?: pulumi.Input<number>;
-    /**
-     * Time between health checks (5 - 65635 sec, default = 10).
-     */
     interval?: pulumi.Input<number>;
-    /**
-     * Monitor name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Number health check attempts before the server is considered down (1 - 255, default = 3).
-     */
     retry?: pulumi.Input<number>;
-    /**
-     * Source IP for ldb-monitor.
-     */
     srcIp?: pulumi.Input<string>;
-    /**
-     * Time to wait to receive response to a health check from a server. Reaching the timeout means the health check failed (1 - 255 sec, default = 2).
-     */
     timeout?: pulumi.Input<number>;
-    /**
-     * Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
-     */
     type: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

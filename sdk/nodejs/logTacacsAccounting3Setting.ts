@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Settings for TACACS+ accounting. Applies to FortiOS Version `>= 7.0.2`.
- *
- * ## Import
- *
- * LogTacacsAccounting3 Setting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/logTacacsAccounting3Setting:LogTacacsAccounting3Setting labelname LogTacacsAccounting3Setting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/logTacacsAccounting3Setting:LogTacacsAccounting3Setting labelname LogTacacsAccounting3Setting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class LogTacacsAccounting3Setting extends pulumi.CustomResource {
     /**
      * Get an existing LogTacacsAccounting3Setting resource's state with the given name, ID, and optional extra
@@ -51,21 +32,9 @@ export class LogTacacsAccounting3Setting extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogTacacsAccounting3Setting.__pulumiType;
     }
 
-    /**
-     * Address of TACACS+ server.
-     */
     public readonly server!: pulumi.Output<string>;
-    /**
-     * Key to access the TACACS+ server.
-     */
     public readonly serverKey!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -101,21 +70,9 @@ export class LogTacacsAccounting3Setting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogTacacsAccounting3Setting resources.
  */
 export interface LogTacacsAccounting3SettingState {
-    /**
-     * Address of TACACS+ server.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Key to access the TACACS+ server.
-     */
     serverKey?: pulumi.Input<string>;
-    /**
-     * Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -123,20 +80,8 @@ export interface LogTacacsAccounting3SettingState {
  * The set of arguments for constructing a LogTacacsAccounting3Setting resource.
  */
 export interface LogTacacsAccounting3SettingArgs {
-    /**
-     * Address of TACACS+ server.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Key to access the TACACS+ server.
-     */
     serverKey?: pulumi.Input<string>;
-    /**
-     * Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

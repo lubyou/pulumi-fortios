@@ -10,121 +10,38 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure custom services.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallServiceCustom(ctx, "trname", &fortios.FirewallServiceCustomArgs{
-// 			AppServiceType:    pulumi.String("disable"),
-// 			Category:          pulumi.String("General"),
-// 			CheckResetRange:   pulumi.String("default"),
-// 			Color:             pulumi.Int(0),
-// 			Helper:            pulumi.String("auto"),
-// 			Iprange:           pulumi.String("0.0.0.0"),
-// 			Protocol:          pulumi.String("TCP/UDP/SCTP"),
-// 			ProtocolNumber:    pulumi.Int(6),
-// 			Proxy:             pulumi.String("disable"),
-// 			TcpHalfcloseTimer: pulumi.Int(0),
-// 			TcpHalfopenTimer:  pulumi.Int(0),
-// 			TcpPortrange:      pulumi.String("223-332"),
-// 			TcpTimewaitTimer:  pulumi.Int(0),
-// 			UdpIdleTimer:      pulumi.Int(0),
-// 			Visibility:        pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// FirewallService Custom can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallServiceCustom:FirewallServiceCustom labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallServiceCustom:FirewallServiceCustom labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallServiceCustom struct {
 	pulumi.CustomResourceState
 
-	// Application category ID. The structure of `appCategory` block is documented below.
-	AppCategories FirewallServiceCustomAppCategoryArrayOutput `pulumi:"appCategories"`
-	// Application service type. Valid values: `disable`, `app-id`, `app-category`.
-	AppServiceType pulumi.StringOutput `pulumi:"appServiceType"`
-	// Application ID. The structure of `application` block is documented below.
-	Applications FirewallServiceCustomApplicationArrayOutput `pulumi:"applications"`
-	// Service category.
-	Category pulumi.StringOutput `pulumi:"category"`
-	// Configure the type of ICMP error message verification. Valid values: `disable`, `strict`, `default`.
-	CheckResetRange pulumi.StringOutput `pulumi:"checkResetRange"`
-	// Color of icon on the GUI.
-	Color pulumi.IntOutput `pulumi:"color"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
-	// Fully qualified domain name.
-	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
-	// Helper name.
-	Helper pulumi.StringOutput `pulumi:"helper"`
-	// ICMP code.
-	Icmpcode pulumi.IntOutput `pulumi:"icmpcode"`
-	// ICMP type.
-	Icmptype pulumi.IntOutput `pulumi:"icmptype"`
-	// Start and end of the IP range associated with service.
-	Iprange pulumi.StringOutput `pulumi:"iprange"`
-	// Custom service name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Protocol type based on IANA numbers. Valid values: `TCP/UDP/SCTP`, `ICMP`, `ICMP6`, `IP`, `HTTP`, `FTP`, `CONNECT`, `SOCKS-TCP`, `SOCKS-UDP`, `ALL`.
-	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// IP protocol number.
-	ProtocolNumber pulumi.IntOutput `pulumi:"protocolNumber"`
-	// Enable/disable web proxy service. Valid values: `enable`, `disable`.
-	Proxy pulumi.StringOutput `pulumi:"proxy"`
-	// Multiple SCTP port ranges.
-	SctpPortrange pulumi.StringOutput `pulumi:"sctpPortrange"`
-	// Session TTL (300 - 604800, 0 = default).
-	SessionTtl pulumi.IntOutput `pulumi:"sessionTtl"`
-	// Wait time to close a TCP session waiting for an unanswered FIN packet (1 - 86400 sec, 0 = default).
-	TcpHalfcloseTimer pulumi.IntOutput `pulumi:"tcpHalfcloseTimer"`
-	// Wait time to close a TCP session waiting for an unanswered open session packet (1 - 86400 sec, 0 = default).
-	TcpHalfopenTimer pulumi.IntOutput `pulumi:"tcpHalfopenTimer"`
-	// Multiple TCP port ranges.
-	TcpPortrange pulumi.StringOutput `pulumi:"tcpPortrange"`
-	// Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
-	TcpRstTimer pulumi.IntOutput `pulumi:"tcpRstTimer"`
-	// Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
-	TcpTimewaitTimer pulumi.IntOutput `pulumi:"tcpTimewaitTimer"`
-	// UDP half close timeout (0 - 86400 sec, 0 = default).
-	UdpIdleTimer pulumi.IntOutput `pulumi:"udpIdleTimer"`
-	// Multiple UDP port ranges.
-	UdpPortrange pulumi.StringOutput `pulumi:"udpPortrange"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringOutput `pulumi:"visibility"`
+	AppCategories       FirewallServiceCustomAppCategoryArrayOutput `pulumi:"appCategories"`
+	AppServiceType      pulumi.StringOutput                         `pulumi:"appServiceType"`
+	Applications        FirewallServiceCustomApplicationArrayOutput `pulumi:"applications"`
+	Category            pulumi.StringOutput                         `pulumi:"category"`
+	CheckResetRange     pulumi.StringOutput                         `pulumi:"checkResetRange"`
+	Color               pulumi.IntOutput                            `pulumi:"color"`
+	Comment             pulumi.StringPtrOutput                      `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
+	FabricObject        pulumi.StringOutput                         `pulumi:"fabricObject"`
+	Fqdn                pulumi.StringOutput                         `pulumi:"fqdn"`
+	Helper              pulumi.StringOutput                         `pulumi:"helper"`
+	Icmpcode            pulumi.IntOutput                            `pulumi:"icmpcode"`
+	Icmptype            pulumi.IntOutput                            `pulumi:"icmptype"`
+	Iprange             pulumi.StringOutput                         `pulumi:"iprange"`
+	Name                pulumi.StringOutput                         `pulumi:"name"`
+	Protocol            pulumi.StringOutput                         `pulumi:"protocol"`
+	ProtocolNumber      pulumi.IntOutput                            `pulumi:"protocolNumber"`
+	Proxy               pulumi.StringOutput                         `pulumi:"proxy"`
+	SctpPortrange       pulumi.StringOutput                         `pulumi:"sctpPortrange"`
+	SessionTtl          pulumi.IntOutput                            `pulumi:"sessionTtl"`
+	TcpHalfcloseTimer   pulumi.IntOutput                            `pulumi:"tcpHalfcloseTimer"`
+	TcpHalfopenTimer    pulumi.IntOutput                            `pulumi:"tcpHalfopenTimer"`
+	TcpPortrange        pulumi.StringOutput                         `pulumi:"tcpPortrange"`
+	TcpRstTimer         pulumi.IntOutput                            `pulumi:"tcpRstTimer"`
+	TcpTimewaitTimer    pulumi.IntOutput                            `pulumi:"tcpTimewaitTimer"`
+	UdpIdleTimer        pulumi.IntOutput                            `pulumi:"udpIdleTimer"`
+	UdpPortrange        pulumi.StringOutput                         `pulumi:"udpPortrange"`
+	Vdomparam           pulumi.StringPtrOutput                      `pulumi:"vdomparam"`
+	Visibility          pulumi.StringOutput                         `pulumi:"visibility"`
 }
 
 // NewFirewallServiceCustom registers a new resource with the given unique name, arguments, and options.
@@ -157,125 +74,67 @@ func GetFirewallServiceCustom(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallServiceCustom resources.
 type firewallServiceCustomState struct {
-	// Application category ID. The structure of `appCategory` block is documented below.
-	AppCategories []FirewallServiceCustomAppCategory `pulumi:"appCategories"`
-	// Application service type. Valid values: `disable`, `app-id`, `app-category`.
-	AppServiceType *string `pulumi:"appServiceType"`
-	// Application ID. The structure of `application` block is documented below.
-	Applications []FirewallServiceCustomApplication `pulumi:"applications"`
-	// Service category.
-	Category *string `pulumi:"category"`
-	// Configure the type of ICMP error message verification. Valid values: `disable`, `strict`, `default`.
-	CheckResetRange *string `pulumi:"checkResetRange"`
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// Fully qualified domain name.
-	Fqdn *string `pulumi:"fqdn"`
-	// Helper name.
-	Helper *string `pulumi:"helper"`
-	// ICMP code.
-	Icmpcode *int `pulumi:"icmpcode"`
-	// ICMP type.
-	Icmptype *int `pulumi:"icmptype"`
-	// Start and end of the IP range associated with service.
-	Iprange *string `pulumi:"iprange"`
-	// Custom service name.
-	Name *string `pulumi:"name"`
-	// Protocol type based on IANA numbers. Valid values: `TCP/UDP/SCTP`, `ICMP`, `ICMP6`, `IP`, `HTTP`, `FTP`, `CONNECT`, `SOCKS-TCP`, `SOCKS-UDP`, `ALL`.
-	Protocol *string `pulumi:"protocol"`
-	// IP protocol number.
-	ProtocolNumber *int `pulumi:"protocolNumber"`
-	// Enable/disable web proxy service. Valid values: `enable`, `disable`.
-	Proxy *string `pulumi:"proxy"`
-	// Multiple SCTP port ranges.
-	SctpPortrange *string `pulumi:"sctpPortrange"`
-	// Session TTL (300 - 604800, 0 = default).
-	SessionTtl *int `pulumi:"sessionTtl"`
-	// Wait time to close a TCP session waiting for an unanswered FIN packet (1 - 86400 sec, 0 = default).
-	TcpHalfcloseTimer *int `pulumi:"tcpHalfcloseTimer"`
-	// Wait time to close a TCP session waiting for an unanswered open session packet (1 - 86400 sec, 0 = default).
-	TcpHalfopenTimer *int `pulumi:"tcpHalfopenTimer"`
-	// Multiple TCP port ranges.
-	TcpPortrange *string `pulumi:"tcpPortrange"`
-	// Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
-	TcpRstTimer *int `pulumi:"tcpRstTimer"`
-	// Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
-	TcpTimewaitTimer *int `pulumi:"tcpTimewaitTimer"`
-	// UDP half close timeout (0 - 86400 sec, 0 = default).
-	UdpIdleTimer *int `pulumi:"udpIdleTimer"`
-	// Multiple UDP port ranges.
-	UdpPortrange *string `pulumi:"udpPortrange"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
+	AppCategories       []FirewallServiceCustomAppCategory `pulumi:"appCategories"`
+	AppServiceType      *string                            `pulumi:"appServiceType"`
+	Applications        []FirewallServiceCustomApplication `pulumi:"applications"`
+	Category            *string                            `pulumi:"category"`
+	CheckResetRange     *string                            `pulumi:"checkResetRange"`
+	Color               *int                               `pulumi:"color"`
+	Comment             *string                            `pulumi:"comment"`
+	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	FabricObject        *string                            `pulumi:"fabricObject"`
+	Fqdn                *string                            `pulumi:"fqdn"`
+	Helper              *string                            `pulumi:"helper"`
+	Icmpcode            *int                               `pulumi:"icmpcode"`
+	Icmptype            *int                               `pulumi:"icmptype"`
+	Iprange             *string                            `pulumi:"iprange"`
+	Name                *string                            `pulumi:"name"`
+	Protocol            *string                            `pulumi:"protocol"`
+	ProtocolNumber      *int                               `pulumi:"protocolNumber"`
+	Proxy               *string                            `pulumi:"proxy"`
+	SctpPortrange       *string                            `pulumi:"sctpPortrange"`
+	SessionTtl          *int                               `pulumi:"sessionTtl"`
+	TcpHalfcloseTimer   *int                               `pulumi:"tcpHalfcloseTimer"`
+	TcpHalfopenTimer    *int                               `pulumi:"tcpHalfopenTimer"`
+	TcpPortrange        *string                            `pulumi:"tcpPortrange"`
+	TcpRstTimer         *int                               `pulumi:"tcpRstTimer"`
+	TcpTimewaitTimer    *int                               `pulumi:"tcpTimewaitTimer"`
+	UdpIdleTimer        *int                               `pulumi:"udpIdleTimer"`
+	UdpPortrange        *string                            `pulumi:"udpPortrange"`
+	Vdomparam           *string                            `pulumi:"vdomparam"`
+	Visibility          *string                            `pulumi:"visibility"`
 }
 
 type FirewallServiceCustomState struct {
-	// Application category ID. The structure of `appCategory` block is documented below.
-	AppCategories FirewallServiceCustomAppCategoryArrayInput
-	// Application service type. Valid values: `disable`, `app-id`, `app-category`.
-	AppServiceType pulumi.StringPtrInput
-	// Application ID. The structure of `application` block is documented below.
-	Applications FirewallServiceCustomApplicationArrayInput
-	// Service category.
-	Category pulumi.StringPtrInput
-	// Configure the type of ICMP error message verification. Valid values: `disable`, `strict`, `default`.
-	CheckResetRange pulumi.StringPtrInput
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AppCategories       FirewallServiceCustomAppCategoryArrayInput
+	AppServiceType      pulumi.StringPtrInput
+	Applications        FirewallServiceCustomApplicationArrayInput
+	Category            pulumi.StringPtrInput
+	CheckResetRange     pulumi.StringPtrInput
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// Fully qualified domain name.
-	Fqdn pulumi.StringPtrInput
-	// Helper name.
-	Helper pulumi.StringPtrInput
-	// ICMP code.
-	Icmpcode pulumi.IntPtrInput
-	// ICMP type.
-	Icmptype pulumi.IntPtrInput
-	// Start and end of the IP range associated with service.
-	Iprange pulumi.StringPtrInput
-	// Custom service name.
-	Name pulumi.StringPtrInput
-	// Protocol type based on IANA numbers. Valid values: `TCP/UDP/SCTP`, `ICMP`, `ICMP6`, `IP`, `HTTP`, `FTP`, `CONNECT`, `SOCKS-TCP`, `SOCKS-UDP`, `ALL`.
-	Protocol pulumi.StringPtrInput
-	// IP protocol number.
-	ProtocolNumber pulumi.IntPtrInput
-	// Enable/disable web proxy service. Valid values: `enable`, `disable`.
-	Proxy pulumi.StringPtrInput
-	// Multiple SCTP port ranges.
-	SctpPortrange pulumi.StringPtrInput
-	// Session TTL (300 - 604800, 0 = default).
-	SessionTtl pulumi.IntPtrInput
-	// Wait time to close a TCP session waiting for an unanswered FIN packet (1 - 86400 sec, 0 = default).
-	TcpHalfcloseTimer pulumi.IntPtrInput
-	// Wait time to close a TCP session waiting for an unanswered open session packet (1 - 86400 sec, 0 = default).
-	TcpHalfopenTimer pulumi.IntPtrInput
-	// Multiple TCP port ranges.
-	TcpPortrange pulumi.StringPtrInput
-	// Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
-	TcpRstTimer pulumi.IntPtrInput
-	// Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
-	TcpTimewaitTimer pulumi.IntPtrInput
-	// UDP half close timeout (0 - 86400 sec, 0 = default).
-	UdpIdleTimer pulumi.IntPtrInput
-	// Multiple UDP port ranges.
-	UdpPortrange pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
+	FabricObject        pulumi.StringPtrInput
+	Fqdn                pulumi.StringPtrInput
+	Helper              pulumi.StringPtrInput
+	Icmpcode            pulumi.IntPtrInput
+	Icmptype            pulumi.IntPtrInput
+	Iprange             pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Protocol            pulumi.StringPtrInput
+	ProtocolNumber      pulumi.IntPtrInput
+	Proxy               pulumi.StringPtrInput
+	SctpPortrange       pulumi.StringPtrInput
+	SessionTtl          pulumi.IntPtrInput
+	TcpHalfcloseTimer   pulumi.IntPtrInput
+	TcpHalfopenTimer    pulumi.IntPtrInput
+	TcpPortrange        pulumi.StringPtrInput
+	TcpRstTimer         pulumi.IntPtrInput
+	TcpTimewaitTimer    pulumi.IntPtrInput
+	UdpIdleTimer        pulumi.IntPtrInput
+	UdpPortrange        pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
 }
 
 func (FirewallServiceCustomState) ElementType() reflect.Type {
@@ -283,126 +142,68 @@ func (FirewallServiceCustomState) ElementType() reflect.Type {
 }
 
 type firewallServiceCustomArgs struct {
-	// Application category ID. The structure of `appCategory` block is documented below.
-	AppCategories []FirewallServiceCustomAppCategory `pulumi:"appCategories"`
-	// Application service type. Valid values: `disable`, `app-id`, `app-category`.
-	AppServiceType *string `pulumi:"appServiceType"`
-	// Application ID. The structure of `application` block is documented below.
-	Applications []FirewallServiceCustomApplication `pulumi:"applications"`
-	// Service category.
-	Category *string `pulumi:"category"`
-	// Configure the type of ICMP error message verification. Valid values: `disable`, `strict`, `default`.
-	CheckResetRange *string `pulumi:"checkResetRange"`
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// Fully qualified domain name.
-	Fqdn *string `pulumi:"fqdn"`
-	// Helper name.
-	Helper *string `pulumi:"helper"`
-	// ICMP code.
-	Icmpcode *int `pulumi:"icmpcode"`
-	// ICMP type.
-	Icmptype *int `pulumi:"icmptype"`
-	// Start and end of the IP range associated with service.
-	Iprange *string `pulumi:"iprange"`
-	// Custom service name.
-	Name *string `pulumi:"name"`
-	// Protocol type based on IANA numbers. Valid values: `TCP/UDP/SCTP`, `ICMP`, `ICMP6`, `IP`, `HTTP`, `FTP`, `CONNECT`, `SOCKS-TCP`, `SOCKS-UDP`, `ALL`.
-	Protocol *string `pulumi:"protocol"`
-	// IP protocol number.
-	ProtocolNumber *int `pulumi:"protocolNumber"`
-	// Enable/disable web proxy service. Valid values: `enable`, `disable`.
-	Proxy *string `pulumi:"proxy"`
-	// Multiple SCTP port ranges.
-	SctpPortrange *string `pulumi:"sctpPortrange"`
-	// Session TTL (300 - 604800, 0 = default).
-	SessionTtl *int `pulumi:"sessionTtl"`
-	// Wait time to close a TCP session waiting for an unanswered FIN packet (1 - 86400 sec, 0 = default).
-	TcpHalfcloseTimer *int `pulumi:"tcpHalfcloseTimer"`
-	// Wait time to close a TCP session waiting for an unanswered open session packet (1 - 86400 sec, 0 = default).
-	TcpHalfopenTimer *int `pulumi:"tcpHalfopenTimer"`
-	// Multiple TCP port ranges.
-	TcpPortrange *string `pulumi:"tcpPortrange"`
-	// Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
-	TcpRstTimer *int `pulumi:"tcpRstTimer"`
-	// Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
-	TcpTimewaitTimer *int `pulumi:"tcpTimewaitTimer"`
-	// UDP half close timeout (0 - 86400 sec, 0 = default).
-	UdpIdleTimer *int `pulumi:"udpIdleTimer"`
-	// Multiple UDP port ranges.
-	UdpPortrange *string `pulumi:"udpPortrange"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
+	AppCategories       []FirewallServiceCustomAppCategory `pulumi:"appCategories"`
+	AppServiceType      *string                            `pulumi:"appServiceType"`
+	Applications        []FirewallServiceCustomApplication `pulumi:"applications"`
+	Category            *string                            `pulumi:"category"`
+	CheckResetRange     *string                            `pulumi:"checkResetRange"`
+	Color               *int                               `pulumi:"color"`
+	Comment             *string                            `pulumi:"comment"`
+	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	FabricObject        *string                            `pulumi:"fabricObject"`
+	Fqdn                *string                            `pulumi:"fqdn"`
+	Helper              *string                            `pulumi:"helper"`
+	Icmpcode            *int                               `pulumi:"icmpcode"`
+	Icmptype            *int                               `pulumi:"icmptype"`
+	Iprange             *string                            `pulumi:"iprange"`
+	Name                *string                            `pulumi:"name"`
+	Protocol            *string                            `pulumi:"protocol"`
+	ProtocolNumber      *int                               `pulumi:"protocolNumber"`
+	Proxy               *string                            `pulumi:"proxy"`
+	SctpPortrange       *string                            `pulumi:"sctpPortrange"`
+	SessionTtl          *int                               `pulumi:"sessionTtl"`
+	TcpHalfcloseTimer   *int                               `pulumi:"tcpHalfcloseTimer"`
+	TcpHalfopenTimer    *int                               `pulumi:"tcpHalfopenTimer"`
+	TcpPortrange        *string                            `pulumi:"tcpPortrange"`
+	TcpRstTimer         *int                               `pulumi:"tcpRstTimer"`
+	TcpTimewaitTimer    *int                               `pulumi:"tcpTimewaitTimer"`
+	UdpIdleTimer        *int                               `pulumi:"udpIdleTimer"`
+	UdpPortrange        *string                            `pulumi:"udpPortrange"`
+	Vdomparam           *string                            `pulumi:"vdomparam"`
+	Visibility          *string                            `pulumi:"visibility"`
 }
 
 // The set of arguments for constructing a FirewallServiceCustom resource.
 type FirewallServiceCustomArgs struct {
-	// Application category ID. The structure of `appCategory` block is documented below.
-	AppCategories FirewallServiceCustomAppCategoryArrayInput
-	// Application service type. Valid values: `disable`, `app-id`, `app-category`.
-	AppServiceType pulumi.StringPtrInput
-	// Application ID. The structure of `application` block is documented below.
-	Applications FirewallServiceCustomApplicationArrayInput
-	// Service category.
-	Category pulumi.StringPtrInput
-	// Configure the type of ICMP error message verification. Valid values: `disable`, `strict`, `default`.
-	CheckResetRange pulumi.StringPtrInput
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AppCategories       FirewallServiceCustomAppCategoryArrayInput
+	AppServiceType      pulumi.StringPtrInput
+	Applications        FirewallServiceCustomApplicationArrayInput
+	Category            pulumi.StringPtrInput
+	CheckResetRange     pulumi.StringPtrInput
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// Fully qualified domain name.
-	Fqdn pulumi.StringPtrInput
-	// Helper name.
-	Helper pulumi.StringPtrInput
-	// ICMP code.
-	Icmpcode pulumi.IntPtrInput
-	// ICMP type.
-	Icmptype pulumi.IntPtrInput
-	// Start and end of the IP range associated with service.
-	Iprange pulumi.StringPtrInput
-	// Custom service name.
-	Name pulumi.StringPtrInput
-	// Protocol type based on IANA numbers. Valid values: `TCP/UDP/SCTP`, `ICMP`, `ICMP6`, `IP`, `HTTP`, `FTP`, `CONNECT`, `SOCKS-TCP`, `SOCKS-UDP`, `ALL`.
-	Protocol pulumi.StringPtrInput
-	// IP protocol number.
-	ProtocolNumber pulumi.IntPtrInput
-	// Enable/disable web proxy service. Valid values: `enable`, `disable`.
-	Proxy pulumi.StringPtrInput
-	// Multiple SCTP port ranges.
-	SctpPortrange pulumi.StringPtrInput
-	// Session TTL (300 - 604800, 0 = default).
-	SessionTtl pulumi.IntPtrInput
-	// Wait time to close a TCP session waiting for an unanswered FIN packet (1 - 86400 sec, 0 = default).
-	TcpHalfcloseTimer pulumi.IntPtrInput
-	// Wait time to close a TCP session waiting for an unanswered open session packet (1 - 86400 sec, 0 = default).
-	TcpHalfopenTimer pulumi.IntPtrInput
-	// Multiple TCP port ranges.
-	TcpPortrange pulumi.StringPtrInput
-	// Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
-	TcpRstTimer pulumi.IntPtrInput
-	// Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
-	TcpTimewaitTimer pulumi.IntPtrInput
-	// UDP half close timeout (0 - 86400 sec, 0 = default).
-	UdpIdleTimer pulumi.IntPtrInput
-	// Multiple UDP port ranges.
-	UdpPortrange pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
+	FabricObject        pulumi.StringPtrInput
+	Fqdn                pulumi.StringPtrInput
+	Helper              pulumi.StringPtrInput
+	Icmpcode            pulumi.IntPtrInput
+	Icmptype            pulumi.IntPtrInput
+	Iprange             pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Protocol            pulumi.StringPtrInput
+	ProtocolNumber      pulumi.IntPtrInput
+	Proxy               pulumi.StringPtrInput
+	SctpPortrange       pulumi.StringPtrInput
+	SessionTtl          pulumi.IntPtrInput
+	TcpHalfcloseTimer   pulumi.IntPtrInput
+	TcpHalfopenTimer    pulumi.IntPtrInput
+	TcpPortrange        pulumi.StringPtrInput
+	TcpRstTimer         pulumi.IntPtrInput
+	TcpTimewaitTimer    pulumi.IntPtrInput
+	UdpIdleTimer        pulumi.IntPtrInput
+	UdpPortrange        pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
 }
 
 func (FirewallServiceCustomArgs) ElementType() reflect.Type {
@@ -431,7 +232,7 @@ func (i *FirewallServiceCustom) ToFirewallServiceCustomOutputWithContext(ctx con
 // FirewallServiceCustomArrayInput is an input type that accepts FirewallServiceCustomArray and FirewallServiceCustomArrayOutput values.
 // You can construct a concrete instance of `FirewallServiceCustomArrayInput` via:
 //
-//          FirewallServiceCustomArray{ FirewallServiceCustomArgs{...} }
+//	FirewallServiceCustomArray{ FirewallServiceCustomArgs{...} }
 type FirewallServiceCustomArrayInput interface {
 	pulumi.Input
 
@@ -456,7 +257,7 @@ func (i FirewallServiceCustomArray) ToFirewallServiceCustomArrayOutputWithContex
 // FirewallServiceCustomMapInput is an input type that accepts FirewallServiceCustomMap and FirewallServiceCustomMapOutput values.
 // You can construct a concrete instance of `FirewallServiceCustomMapInput` via:
 //
-//          FirewallServiceCustomMap{ "key": FirewallServiceCustomArgs{...} }
+//	FirewallServiceCustomMap{ "key": FirewallServiceCustomArgs{...} }
 type FirewallServiceCustomMapInput interface {
 	pulumi.Input
 
@@ -490,6 +291,122 @@ func (o FirewallServiceCustomOutput) ToFirewallServiceCustomOutput() FirewallSer
 
 func (o FirewallServiceCustomOutput) ToFirewallServiceCustomOutputWithContext(ctx context.Context) FirewallServiceCustomOutput {
 	return o
+}
+
+func (o FirewallServiceCustomOutput) AppCategories() FirewallServiceCustomAppCategoryArrayOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) FirewallServiceCustomAppCategoryArrayOutput { return v.AppCategories }).(FirewallServiceCustomAppCategoryArrayOutput)
+}
+
+func (o FirewallServiceCustomOutput) AppServiceType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringOutput { return v.AppServiceType }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCustomOutput) Applications() FirewallServiceCustomApplicationArrayOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) FirewallServiceCustomApplicationArrayOutput { return v.Applications }).(FirewallServiceCustomApplicationArrayOutput)
+}
+
+func (o FirewallServiceCustomOutput) Category() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringOutput { return v.Category }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCustomOutput) CheckResetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringOutput { return v.CheckResetRange }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCustomOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o FirewallServiceCustomOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallServiceCustomOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallServiceCustomOutput) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCustomOutput) Fqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringOutput { return v.Fqdn }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCustomOutput) Helper() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringOutput { return v.Helper }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCustomOutput) Icmpcode() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.IntOutput { return v.Icmpcode }).(pulumi.IntOutput)
+}
+
+func (o FirewallServiceCustomOutput) Icmptype() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.IntOutput { return v.Icmptype }).(pulumi.IntOutput)
+}
+
+func (o FirewallServiceCustomOutput) Iprange() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringOutput { return v.Iprange }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCustomOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCustomOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCustomOutput) ProtocolNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.IntOutput { return v.ProtocolNumber }).(pulumi.IntOutput)
+}
+
+func (o FirewallServiceCustomOutput) Proxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringOutput { return v.Proxy }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCustomOutput) SctpPortrange() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringOutput { return v.SctpPortrange }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCustomOutput) SessionTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.IntOutput { return v.SessionTtl }).(pulumi.IntOutput)
+}
+
+func (o FirewallServiceCustomOutput) TcpHalfcloseTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.IntOutput { return v.TcpHalfcloseTimer }).(pulumi.IntOutput)
+}
+
+func (o FirewallServiceCustomOutput) TcpHalfopenTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.IntOutput { return v.TcpHalfopenTimer }).(pulumi.IntOutput)
+}
+
+func (o FirewallServiceCustomOutput) TcpPortrange() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringOutput { return v.TcpPortrange }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCustomOutput) TcpRstTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.IntOutput { return v.TcpRstTimer }).(pulumi.IntOutput)
+}
+
+func (o FirewallServiceCustomOutput) TcpTimewaitTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.IntOutput { return v.TcpTimewaitTimer }).(pulumi.IntOutput)
+}
+
+func (o FirewallServiceCustomOutput) UdpIdleTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.IntOutput { return v.UdpIdleTimer }).(pulumi.IntOutput)
+}
+
+func (o FirewallServiceCustomOutput) UdpPortrange() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringOutput { return v.UdpPortrange }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCustomOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallServiceCustomOutput) Visibility() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringOutput { return v.Visibility }).(pulumi.StringOutput)
 }
 
 type FirewallServiceCustomArrayOutput struct{ *pulumi.OutputState }

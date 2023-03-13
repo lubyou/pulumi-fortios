@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure NAC policy matching pattern to identify matching NAC devices. Applies to FortiOS Version `>= 6.4.0`.
- *
- * ## Import
- *
- * User NacPolicy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userNacPolicy:UserNacPolicy labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userNacPolicy:UserNacPolicy labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserNacPolicy extends pulumi.CustomResource {
     /**
      * Get an existing UserNacPolicy resource's state with the given name, ID, and optional extra
@@ -52,109 +34,31 @@ export class UserNacPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserNacPolicy.__pulumiType;
     }
 
-    /**
-     * Category of NAC policy.
-     */
     public readonly category!: pulumi.Output<string>;
-    /**
-     * Description for the NAC policy matching pattern.
-     */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * NAC policy matching EMS tag.
-     */
     public readonly emsTag!: pulumi.Output<string>;
-    /**
-     * NAC policy matching family.
-     */
     public readonly family!: pulumi.Output<string>;
-    /**
-     * Dynamic firewall address to associate MAC which match this policy.
-     */
     public readonly firewallAddress!: pulumi.Output<string>;
-    /**
-     * NAC policy matching host.
-     */
     public readonly host!: pulumi.Output<string>;
-    /**
-     * NAC policy matching hardware vendor.
-     */
     public readonly hwVendor!: pulumi.Output<string>;
-    /**
-     * NAC policy matching hardware version.
-     */
     public readonly hwVersion!: pulumi.Output<string>;
-    /**
-     * NAC policy matching MAC address.
-     */
     public readonly mac!: pulumi.Output<string>;
-    /**
-     * Managed FortiSwitch group name from available options.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * NAC policy matching operating system.
-     */
     public readonly os!: pulumi.Output<string>;
-    /**
-     * NAC policy matching source.
-     */
     public readonly src!: pulumi.Output<string>;
-    /**
-     * SSID policy to be applied on the matched NAC policy.
-     */
     public readonly ssidPolicy!: pulumi.Output<string>;
-    /**
-     * Enable/disable NAC policy. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * NAC policy matching software version.
-     */
     public readonly swVersion!: pulumi.Output<string>;
-    /**
-     * NAC device auto authorization when discovered and nac-policy matched. Valid values: `global`, `disable`, `enable`.
-     */
     public readonly switchAutoAuth!: pulumi.Output<string>;
-    /**
-     * FortiLink interface for which this NAC policy belongs to.
-     */
     public readonly switchFortilink!: pulumi.Output<string>;
-    /**
-     * List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
-     */
     public readonly switchGroups!: pulumi.Output<outputs.UserNacPolicySwitchGroup[] | undefined>;
-    /**
-     * switch-mac-policy to be applied on the matched NAC policy.
-     */
     public readonly switchMacPolicy!: pulumi.Output<string>;
-    /**
-     * switch-port-policy to be applied on the matched NAC policy.
-     */
     public readonly switchPortPolicy!: pulumi.Output<string>;
-    /**
-     * List of managed FortiSwitches on which NAC policy can be applied. The structure of `switchScope` block is documented below.
-     */
     public readonly switchScopes!: pulumi.Output<outputs.UserNacPolicySwitchScope[] | undefined>;
-    /**
-     * NAC policy matching type.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * NAC policy matching user.
-     */
     public readonly user!: pulumi.Output<string>;
-    /**
-     * NAC policy matching user group.
-     */
     public readonly userGroup!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -234,109 +138,31 @@ export class UserNacPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserNacPolicy resources.
  */
 export interface UserNacPolicyState {
-    /**
-     * Category of NAC policy.
-     */
     category?: pulumi.Input<string>;
-    /**
-     * Description for the NAC policy matching pattern.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * NAC policy matching EMS tag.
-     */
     emsTag?: pulumi.Input<string>;
-    /**
-     * NAC policy matching family.
-     */
     family?: pulumi.Input<string>;
-    /**
-     * Dynamic firewall address to associate MAC which match this policy.
-     */
     firewallAddress?: pulumi.Input<string>;
-    /**
-     * NAC policy matching host.
-     */
     host?: pulumi.Input<string>;
-    /**
-     * NAC policy matching hardware vendor.
-     */
     hwVendor?: pulumi.Input<string>;
-    /**
-     * NAC policy matching hardware version.
-     */
     hwVersion?: pulumi.Input<string>;
-    /**
-     * NAC policy matching MAC address.
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * Managed FortiSwitch group name from available options.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * NAC policy matching operating system.
-     */
     os?: pulumi.Input<string>;
-    /**
-     * NAC policy matching source.
-     */
     src?: pulumi.Input<string>;
-    /**
-     * SSID policy to be applied on the matched NAC policy.
-     */
     ssidPolicy?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAC policy. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * NAC policy matching software version.
-     */
     swVersion?: pulumi.Input<string>;
-    /**
-     * NAC device auto authorization when discovered and nac-policy matched. Valid values: `global`, `disable`, `enable`.
-     */
     switchAutoAuth?: pulumi.Input<string>;
-    /**
-     * FortiLink interface for which this NAC policy belongs to.
-     */
     switchFortilink?: pulumi.Input<string>;
-    /**
-     * List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
-     */
     switchGroups?: pulumi.Input<pulumi.Input<inputs.UserNacPolicySwitchGroup>[]>;
-    /**
-     * switch-mac-policy to be applied on the matched NAC policy.
-     */
     switchMacPolicy?: pulumi.Input<string>;
-    /**
-     * switch-port-policy to be applied on the matched NAC policy.
-     */
     switchPortPolicy?: pulumi.Input<string>;
-    /**
-     * List of managed FortiSwitches on which NAC policy can be applied. The structure of `switchScope` block is documented below.
-     */
     switchScopes?: pulumi.Input<pulumi.Input<inputs.UserNacPolicySwitchScope>[]>;
-    /**
-     * NAC policy matching type.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * NAC policy matching user.
-     */
     user?: pulumi.Input<string>;
-    /**
-     * NAC policy matching user group.
-     */
     userGroup?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -344,108 +170,30 @@ export interface UserNacPolicyState {
  * The set of arguments for constructing a UserNacPolicy resource.
  */
 export interface UserNacPolicyArgs {
-    /**
-     * Category of NAC policy.
-     */
     category?: pulumi.Input<string>;
-    /**
-     * Description for the NAC policy matching pattern.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * NAC policy matching EMS tag.
-     */
     emsTag?: pulumi.Input<string>;
-    /**
-     * NAC policy matching family.
-     */
     family?: pulumi.Input<string>;
-    /**
-     * Dynamic firewall address to associate MAC which match this policy.
-     */
     firewallAddress?: pulumi.Input<string>;
-    /**
-     * NAC policy matching host.
-     */
     host?: pulumi.Input<string>;
-    /**
-     * NAC policy matching hardware vendor.
-     */
     hwVendor?: pulumi.Input<string>;
-    /**
-     * NAC policy matching hardware version.
-     */
     hwVersion?: pulumi.Input<string>;
-    /**
-     * NAC policy matching MAC address.
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * Managed FortiSwitch group name from available options.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * NAC policy matching operating system.
-     */
     os?: pulumi.Input<string>;
-    /**
-     * NAC policy matching source.
-     */
     src?: pulumi.Input<string>;
-    /**
-     * SSID policy to be applied on the matched NAC policy.
-     */
     ssidPolicy?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAC policy. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * NAC policy matching software version.
-     */
     swVersion?: pulumi.Input<string>;
-    /**
-     * NAC device auto authorization when discovered and nac-policy matched. Valid values: `global`, `disable`, `enable`.
-     */
     switchAutoAuth?: pulumi.Input<string>;
-    /**
-     * FortiLink interface for which this NAC policy belongs to.
-     */
     switchFortilink?: pulumi.Input<string>;
-    /**
-     * List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
-     */
     switchGroups?: pulumi.Input<pulumi.Input<inputs.UserNacPolicySwitchGroup>[]>;
-    /**
-     * switch-mac-policy to be applied on the matched NAC policy.
-     */
     switchMacPolicy?: pulumi.Input<string>;
-    /**
-     * switch-port-policy to be applied on the matched NAC policy.
-     */
     switchPortPolicy?: pulumi.Input<string>;
-    /**
-     * List of managed FortiSwitches on which NAC policy can be applied. The structure of `switchScope` block is documented below.
-     */
     switchScopes?: pulumi.Input<pulumi.Input<inputs.UserNacPolicySwitchScope>[]>;
-    /**
-     * NAC policy matching type.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * NAC policy matching user.
-     */
     user?: pulumi.Input<string>;
-    /**
-     * NAC policy matching user group.
-     */
     userGroup?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

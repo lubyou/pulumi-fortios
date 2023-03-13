@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure debug URL addresses.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WebProxyDebugUrl("trname", {
- *     exact: "enable",
- *     status: "enable",
- *     urlPattern: "/examples/servlet/*Servlet",
- * });
- * ```
- *
- * ## Import
- *
- * WebProxy DebugUrl can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/webProxyDebugUrl:WebProxyDebugUrl labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/webProxyDebugUrl:WebProxyDebugUrl labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WebProxyDebugUrl extends pulumi.CustomResource {
     /**
      * Get an existing WebProxyDebugUrl resource's state with the given name, ID, and optional extra
@@ -64,25 +32,10 @@ export class WebProxyDebugUrl extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebProxyDebugUrl.__pulumiType;
     }
 
-    /**
-     * Enable/disable matching the exact path. Valid values: `enable`, `disable`.
-     */
     public readonly exact!: pulumi.Output<string>;
-    /**
-     * Debug URL name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable this URL exemption. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * URL exemption pattern.
-     */
     public readonly urlPattern!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -123,25 +76,10 @@ export class WebProxyDebugUrl extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WebProxyDebugUrl resources.
  */
 export interface WebProxyDebugUrlState {
-    /**
-     * Enable/disable matching the exact path. Valid values: `enable`, `disable`.
-     */
     exact?: pulumi.Input<string>;
-    /**
-     * Debug URL name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable this URL exemption. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * URL exemption pattern.
-     */
     urlPattern?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -149,24 +87,9 @@ export interface WebProxyDebugUrlState {
  * The set of arguments for constructing a WebProxyDebugUrl resource.
  */
 export interface WebProxyDebugUrlArgs {
-    /**
-     * Enable/disable matching the exact path. Valid values: `enable`, `disable`.
-     */
     exact?: pulumi.Input<string>;
-    /**
-     * Debug URL name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable this URL exemption. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * URL exemption pattern.
-     */
     urlPattern: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

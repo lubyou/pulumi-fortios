@@ -7,38 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to add a FortiCare license for FortiOS.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemLicenseFortiCare(ctx, "test2", &fortios.SystemLicenseFortiCareArgs{
-// 			RegistrationCode: pulumi.String("license"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type SystemLicenseFortiCare struct {
 	pulumi.CustomResourceState
 
-	// Registration code.
 	RegistrationCode pulumi.StringOutput `pulumi:"registrationCode"`
 }
 
@@ -75,12 +50,10 @@ func GetSystemLicenseFortiCare(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemLicenseFortiCare resources.
 type systemLicenseFortiCareState struct {
-	// Registration code.
 	RegistrationCode *string `pulumi:"registrationCode"`
 }
 
 type SystemLicenseFortiCareState struct {
-	// Registration code.
 	RegistrationCode pulumi.StringPtrInput
 }
 
@@ -89,13 +62,11 @@ func (SystemLicenseFortiCareState) ElementType() reflect.Type {
 }
 
 type systemLicenseFortiCareArgs struct {
-	// Registration code.
 	RegistrationCode string `pulumi:"registrationCode"`
 }
 
 // The set of arguments for constructing a SystemLicenseFortiCare resource.
 type SystemLicenseFortiCareArgs struct {
-	// Registration code.
 	RegistrationCode pulumi.StringInput
 }
 
@@ -125,7 +96,7 @@ func (i *SystemLicenseFortiCare) ToSystemLicenseFortiCareOutputWithContext(ctx c
 // SystemLicenseFortiCareArrayInput is an input type that accepts SystemLicenseFortiCareArray and SystemLicenseFortiCareArrayOutput values.
 // You can construct a concrete instance of `SystemLicenseFortiCareArrayInput` via:
 //
-//          SystemLicenseFortiCareArray{ SystemLicenseFortiCareArgs{...} }
+//	SystemLicenseFortiCareArray{ SystemLicenseFortiCareArgs{...} }
 type SystemLicenseFortiCareArrayInput interface {
 	pulumi.Input
 
@@ -150,7 +121,7 @@ func (i SystemLicenseFortiCareArray) ToSystemLicenseFortiCareArrayOutputWithCont
 // SystemLicenseFortiCareMapInput is an input type that accepts SystemLicenseFortiCareMap and SystemLicenseFortiCareMapOutput values.
 // You can construct a concrete instance of `SystemLicenseFortiCareMapInput` via:
 //
-//          SystemLicenseFortiCareMap{ "key": SystemLicenseFortiCareArgs{...} }
+//	SystemLicenseFortiCareMap{ "key": SystemLicenseFortiCareArgs{...} }
 type SystemLicenseFortiCareMapInput interface {
 	pulumi.Input
 
@@ -184,6 +155,10 @@ func (o SystemLicenseFortiCareOutput) ToSystemLicenseFortiCareOutput() SystemLic
 
 func (o SystemLicenseFortiCareOutput) ToSystemLicenseFortiCareOutputWithContext(ctx context.Context) SystemLicenseFortiCareOutput {
 	return o
+}
+
+func (o SystemLicenseFortiCareOutput) RegistrationCode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLicenseFortiCare) pulumi.StringOutput { return v.RegistrationCode }).(pulumi.StringOutput)
 }
 
 type SystemLicenseFortiCareArrayOutput struct{ *pulumi.OutputState }

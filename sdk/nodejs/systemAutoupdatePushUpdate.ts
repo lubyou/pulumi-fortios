@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure push updates. Applies to FortiOS Version `<= 7.0.0`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemAutoupdatePushUpdate("trname", {
- *     address: "0.0.0.0",
- *     override: "disable",
- *     port: 9443,
- *     status: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * SystemAutoupdate PushUpdate can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutoupdatePushUpdate:SystemAutoupdatePushUpdate labelname SystemAutoupdatePushUpdate
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutoupdatePushUpdate:SystemAutoupdatePushUpdate labelname SystemAutoupdatePushUpdate
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemAutoupdatePushUpdate extends pulumi.CustomResource {
     /**
      * Get an existing SystemAutoupdatePushUpdate resource's state with the given name, ID, and optional extra
@@ -65,25 +32,10 @@ export class SystemAutoupdatePushUpdate extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAutoupdatePushUpdate.__pulumiType;
     }
 
-    /**
-     * Push update override server.
-     */
     public readonly address!: pulumi.Output<string>;
-    /**
-     * Enable/disable push update override server. Valid values: `enable`, `disable`.
-     */
     public readonly override!: pulumi.Output<string>;
-    /**
-     * Push update override port. (Do not overlap with other service ports)
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Enable/disable push updates. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -133,25 +85,10 @@ export class SystemAutoupdatePushUpdate extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAutoupdatePushUpdate resources.
  */
 export interface SystemAutoupdatePushUpdateState {
-    /**
-     * Push update override server.
-     */
     address?: pulumi.Input<string>;
-    /**
-     * Enable/disable push update override server. Valid values: `enable`, `disable`.
-     */
     override?: pulumi.Input<string>;
-    /**
-     * Push update override port. (Do not overlap with other service ports)
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Enable/disable push updates. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -159,24 +96,9 @@ export interface SystemAutoupdatePushUpdateState {
  * The set of arguments for constructing a SystemAutoupdatePushUpdate resource.
  */
 export interface SystemAutoupdatePushUpdateArgs {
-    /**
-     * Push update override server.
-     */
     address: pulumi.Input<string>;
-    /**
-     * Enable/disable push update override server. Valid values: `enable`, `disable`.
-     */
     override: pulumi.Input<string>;
-    /**
-     * Push update override port. (Do not overlap with other service ports)
-     */
     port: pulumi.Input<number>;
-    /**
-     * Enable/disable push updates. Valid values: `enable`, `disable`.
-     */
     status: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

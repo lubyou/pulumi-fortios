@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure L2TP.
- *
- * ## Import
- *
- * Vpn L2Tp can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnL2Tp:VpnL2Tp labelname VpnL2Tp
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnL2Tp:VpnL2Tp labelname VpnL2Tp
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VpnL2Tp extends pulumi.CustomResource {
     /**
      * Get an existing VpnL2Tp resource's state with the given name, ID, and optional extra
@@ -51,45 +32,15 @@ export class VpnL2Tp extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpnL2Tp.__pulumiType;
     }
 
-    /**
-     * Enable/disable data compression. Valid values: `enable`, `disable`.
-     */
     public readonly compress!: pulumi.Output<string>;
-    /**
-     * End IP.
-     */
     public readonly eip!: pulumi.Output<string>;
-    /**
-     * Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
-     */
     public readonly enforceIpsec!: pulumi.Output<string>;
-    /**
-     * L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
-     */
     public readonly helloInterval!: pulumi.Output<number>;
-    /**
-     * Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
-     */
     public readonly lcpEchoInterval!: pulumi.Output<number>;
-    /**
-     * Maximum number of missed LCP echo messages before disconnect.
-     */
     public readonly lcpMaxEchoFails!: pulumi.Output<number>;
-    /**
-     * Start IP.
-     */
     public readonly sip!: pulumi.Output<string>;
-    /**
-     * Enable/disable FortiGate as a L2TP gateway. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * User group.
-     */
     public readonly usrgrp!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -140,45 +91,15 @@ export class VpnL2Tp extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnL2Tp resources.
  */
 export interface VpnL2TpState {
-    /**
-     * Enable/disable data compression. Valid values: `enable`, `disable`.
-     */
     compress?: pulumi.Input<string>;
-    /**
-     * End IP.
-     */
     eip?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
-     */
     enforceIpsec?: pulumi.Input<string>;
-    /**
-     * L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
-     */
     helloInterval?: pulumi.Input<number>;
-    /**
-     * Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
-     */
     lcpEchoInterval?: pulumi.Input<number>;
-    /**
-     * Maximum number of missed LCP echo messages before disconnect.
-     */
     lcpMaxEchoFails?: pulumi.Input<number>;
-    /**
-     * Start IP.
-     */
     sip?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiGate as a L2TP gateway. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * User group.
-     */
     usrgrp?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -186,44 +107,14 @@ export interface VpnL2TpState {
  * The set of arguments for constructing a VpnL2Tp resource.
  */
 export interface VpnL2TpArgs {
-    /**
-     * Enable/disable data compression. Valid values: `enable`, `disable`.
-     */
     compress?: pulumi.Input<string>;
-    /**
-     * End IP.
-     */
     eip?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
-     */
     enforceIpsec?: pulumi.Input<string>;
-    /**
-     * L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
-     */
     helloInterval?: pulumi.Input<number>;
-    /**
-     * Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
-     */
     lcpEchoInterval?: pulumi.Input<number>;
-    /**
-     * Maximum number of missed LCP echo messages before disconnect.
-     */
     lcpMaxEchoFails?: pulumi.Input<number>;
-    /**
-     * Start IP.
-     */
     sip?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiGate as a L2TP gateway. Valid values: `enable`, `disable`.
-     */
     status: pulumi.Input<string>;
-    /**
-     * User group.
-     */
     usrgrp?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,134 +10,46 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure filters for local disk logging. Use these filters to determine the log messages to record according to severity and type.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogDiskFilter(ctx, "trname", &fortios.LogDiskFilterArgs{
-// 			Anomaly:          pulumi.String("enable"),
-// 			DlpArchive:       pulumi.String("enable"),
-// 			Dns:              pulumi.String("enable"),
-// 			FilterType:       pulumi.String("include"),
-// 			ForwardTraffic:   pulumi.String("enable"),
-// 			Gtp:              pulumi.String("enable"),
-// 			LocalTraffic:     pulumi.String("enable"),
-// 			MulticastTraffic: pulumi.String("enable"),
-// 			Severity:         pulumi.String("information"),
-// 			SnifferTraffic:   pulumi.String("enable"),
-// 			Ssh:              pulumi.String("enable"),
-// 			Voip:             pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// LogDisk Filter can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logDiskFilter:LogDiskFilter labelname LogDiskFilter
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logDiskFilter:LogDiskFilter labelname LogDiskFilter
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogDiskFilter struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable admin login/logout logging. Valid values: `enable`, `disable`.
-	Admin pulumi.StringOutput `pulumi:"admin"`
-	// Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-	Anomaly pulumi.StringOutput `pulumi:"anomaly"`
-	// Enable/disable firewall authentication logging. Valid values: `enable`, `disable`.
-	Auth pulumi.StringOutput `pulumi:"auth"`
-	// Enable/disable CPU & memory usage logging every 5 minutes. Valid values: `enable`, `disable`.
-	CpuMemoryUsage pulumi.StringOutput `pulumi:"cpuMemoryUsage"`
-	// Enable/disable DHCP service messages logging. Valid values: `enable`, `disable`.
-	Dhcp pulumi.StringOutput `pulumi:"dhcp"`
-	// Enable/disable DLP archive logging. Valid values: `enable`, `disable`.
-	DlpArchive pulumi.StringOutput `pulumi:"dlpArchive"`
-	// Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-	Dns pulumi.StringOutput `pulumi:"dns"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable event logging. Valid values: `enable`, `disable`.
-	Event pulumi.StringOutput `pulumi:"event"`
-	// Free style filter string.
-	Filter pulumi.StringOutput `pulumi:"filter"`
-	// Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-	FilterType pulumi.StringOutput `pulumi:"filterType"`
-	// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-	ForwardTraffic pulumi.StringOutput `pulumi:"forwardTraffic"`
-	// Free Style Filters The structure of `freeStyle` block is documented below.
-	FreeStyles LogDiskFilterFreeStyleArrayOutput `pulumi:"freeStyles"`
-	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-	Gtp pulumi.StringOutput `pulumi:"gtp"`
-	// Enable/disable HA logging. Valid values: `enable`, `disable`.
-	Ha pulumi.StringOutput `pulumi:"ha"`
-	// Enable/disable IPsec negotiation messages logging. Valid values: `enable`, `disable`.
-	Ipsec pulumi.StringOutput `pulumi:"ipsec"`
-	// Enable/disable VIP real server health monitoring logging. Valid values: `enable`, `disable`.
-	LdbMonitor pulumi.StringOutput `pulumi:"ldbMonitor"`
-	// Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-	LocalTraffic pulumi.StringOutput `pulumi:"localTraffic"`
-	// Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-	MulticastTraffic pulumi.StringOutput `pulumi:"multicastTraffic"`
-	// Enable/disable netscan discovery event logging.
-	NetscanDiscovery pulumi.StringOutput `pulumi:"netscanDiscovery"`
-	// Enable/disable netscan vulnerability event logging.
-	NetscanVulnerability pulumi.StringOutput `pulumi:"netscanVulnerability"`
-	// Enable/disable pattern update logging. Valid values: `enable`, `disable`.
-	Pattern pulumi.StringOutput `pulumi:"pattern"`
-	// Enable/disable L2TP/PPTP/PPPoE logging. Valid values: `enable`, `disable`.
-	Ppp pulumi.StringOutput `pulumi:"ppp"`
-	// Enable/disable RADIUS messages logging. Valid values: `enable`, `disable`.
-	Radius pulumi.StringOutput `pulumi:"radius"`
-	// Log to disk every message above and including this severity level. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity pulumi.StringOutput `pulumi:"severity"`
-	// Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-	SnifferTraffic pulumi.StringOutput `pulumi:"snifferTraffic"`
-	// Enable/disable SSH logging. Valid values: `enable`, `disable`.
-	Ssh pulumi.StringOutput `pulumi:"ssh"`
-	// Enable/disable SSL administrator login logging. Valid values: `enable`, `disable`.
-	SslvpnLogAdm pulumi.StringOutput `pulumi:"sslvpnLogAdm"`
-	// Enable/disable SSL user authentication logging. Valid values: `enable`, `disable`.
-	SslvpnLogAuth pulumi.StringOutput `pulumi:"sslvpnLogAuth"`
-	// Enable/disable SSL session logging. Valid values: `enable`, `disable`.
-	SslvpnLogSession pulumi.StringOutput `pulumi:"sslvpnLogSession"`
-	// Enable/disable system activity logging. Valid values: `enable`, `disable`.
-	System pulumi.StringOutput `pulumi:"system"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable VIP SSL logging. Valid values: `enable`, `disable`.
-	VipSsl pulumi.StringOutput `pulumi:"vipSsl"`
-	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-	Voip pulumi.StringOutput `pulumi:"voip"`
-	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-	WanOpt pulumi.StringOutput `pulumi:"wanOpt"`
-	// Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
-	WirelessActivity pulumi.StringOutput `pulumi:"wirelessActivity"`
-	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-	ZtnaTraffic pulumi.StringOutput `pulumi:"ztnaTraffic"`
+	Admin                pulumi.StringOutput               `pulumi:"admin"`
+	Anomaly              pulumi.StringOutput               `pulumi:"anomaly"`
+	Auth                 pulumi.StringOutput               `pulumi:"auth"`
+	CpuMemoryUsage       pulumi.StringOutput               `pulumi:"cpuMemoryUsage"`
+	Dhcp                 pulumi.StringOutput               `pulumi:"dhcp"`
+	DlpArchive           pulumi.StringOutput               `pulumi:"dlpArchive"`
+	Dns                  pulumi.StringOutput               `pulumi:"dns"`
+	DynamicSortSubtable  pulumi.StringPtrOutput            `pulumi:"dynamicSortSubtable"`
+	Event                pulumi.StringOutput               `pulumi:"event"`
+	Filter               pulumi.StringOutput               `pulumi:"filter"`
+	FilterType           pulumi.StringOutput               `pulumi:"filterType"`
+	ForwardTraffic       pulumi.StringOutput               `pulumi:"forwardTraffic"`
+	FreeStyles           LogDiskFilterFreeStyleArrayOutput `pulumi:"freeStyles"`
+	Gtp                  pulumi.StringOutput               `pulumi:"gtp"`
+	Ha                   pulumi.StringOutput               `pulumi:"ha"`
+	Ipsec                pulumi.StringOutput               `pulumi:"ipsec"`
+	LdbMonitor           pulumi.StringOutput               `pulumi:"ldbMonitor"`
+	LocalTraffic         pulumi.StringOutput               `pulumi:"localTraffic"`
+	MulticastTraffic     pulumi.StringOutput               `pulumi:"multicastTraffic"`
+	NetscanDiscovery     pulumi.StringOutput               `pulumi:"netscanDiscovery"`
+	NetscanVulnerability pulumi.StringOutput               `pulumi:"netscanVulnerability"`
+	Pattern              pulumi.StringOutput               `pulumi:"pattern"`
+	Ppp                  pulumi.StringOutput               `pulumi:"ppp"`
+	Radius               pulumi.StringOutput               `pulumi:"radius"`
+	Severity             pulumi.StringOutput               `pulumi:"severity"`
+	SnifferTraffic       pulumi.StringOutput               `pulumi:"snifferTraffic"`
+	Ssh                  pulumi.StringOutput               `pulumi:"ssh"`
+	SslvpnLogAdm         pulumi.StringOutput               `pulumi:"sslvpnLogAdm"`
+	SslvpnLogAuth        pulumi.StringOutput               `pulumi:"sslvpnLogAuth"`
+	SslvpnLogSession     pulumi.StringOutput               `pulumi:"sslvpnLogSession"`
+	System               pulumi.StringOutput               `pulumi:"system"`
+	Vdomparam            pulumi.StringPtrOutput            `pulumi:"vdomparam"`
+	VipSsl               pulumi.StringOutput               `pulumi:"vipSsl"`
+	Voip                 pulumi.StringOutput               `pulumi:"voip"`
+	WanOpt               pulumi.StringOutput               `pulumi:"wanOpt"`
+	WirelessActivity     pulumi.StringOutput               `pulumi:"wirelessActivity"`
+	ZtnaTraffic          pulumi.StringOutput               `pulumi:"ztnaTraffic"`
 }
 
 // NewLogDiskFilter registers a new resource with the given unique name, arguments, and options.
@@ -170,157 +82,83 @@ func GetLogDiskFilter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogDiskFilter resources.
 type logDiskFilterState struct {
-	// Enable/disable admin login/logout logging. Valid values: `enable`, `disable`.
-	Admin *string `pulumi:"admin"`
-	// Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-	Anomaly *string `pulumi:"anomaly"`
-	// Enable/disable firewall authentication logging. Valid values: `enable`, `disable`.
-	Auth *string `pulumi:"auth"`
-	// Enable/disable CPU & memory usage logging every 5 minutes. Valid values: `enable`, `disable`.
-	CpuMemoryUsage *string `pulumi:"cpuMemoryUsage"`
-	// Enable/disable DHCP service messages logging. Valid values: `enable`, `disable`.
-	Dhcp *string `pulumi:"dhcp"`
-	// Enable/disable DLP archive logging. Valid values: `enable`, `disable`.
-	DlpArchive *string `pulumi:"dlpArchive"`
-	// Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-	Dns *string `pulumi:"dns"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable event logging. Valid values: `enable`, `disable`.
-	Event *string `pulumi:"event"`
-	// Free style filter string.
-	Filter *string `pulumi:"filter"`
-	// Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-	FilterType *string `pulumi:"filterType"`
-	// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-	ForwardTraffic *string `pulumi:"forwardTraffic"`
-	// Free Style Filters The structure of `freeStyle` block is documented below.
-	FreeStyles []LogDiskFilterFreeStyle `pulumi:"freeStyles"`
-	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-	Gtp *string `pulumi:"gtp"`
-	// Enable/disable HA logging. Valid values: `enable`, `disable`.
-	Ha *string `pulumi:"ha"`
-	// Enable/disable IPsec negotiation messages logging. Valid values: `enable`, `disable`.
-	Ipsec *string `pulumi:"ipsec"`
-	// Enable/disable VIP real server health monitoring logging. Valid values: `enable`, `disable`.
-	LdbMonitor *string `pulumi:"ldbMonitor"`
-	// Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-	LocalTraffic *string `pulumi:"localTraffic"`
-	// Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-	MulticastTraffic *string `pulumi:"multicastTraffic"`
-	// Enable/disable netscan discovery event logging.
-	NetscanDiscovery *string `pulumi:"netscanDiscovery"`
-	// Enable/disable netscan vulnerability event logging.
-	NetscanVulnerability *string `pulumi:"netscanVulnerability"`
-	// Enable/disable pattern update logging. Valid values: `enable`, `disable`.
-	Pattern *string `pulumi:"pattern"`
-	// Enable/disable L2TP/PPTP/PPPoE logging. Valid values: `enable`, `disable`.
-	Ppp *string `pulumi:"ppp"`
-	// Enable/disable RADIUS messages logging. Valid values: `enable`, `disable`.
-	Radius *string `pulumi:"radius"`
-	// Log to disk every message above and including this severity level. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity *string `pulumi:"severity"`
-	// Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-	SnifferTraffic *string `pulumi:"snifferTraffic"`
-	// Enable/disable SSH logging. Valid values: `enable`, `disable`.
-	Ssh *string `pulumi:"ssh"`
-	// Enable/disable SSL administrator login logging. Valid values: `enable`, `disable`.
-	SslvpnLogAdm *string `pulumi:"sslvpnLogAdm"`
-	// Enable/disable SSL user authentication logging. Valid values: `enable`, `disable`.
-	SslvpnLogAuth *string `pulumi:"sslvpnLogAuth"`
-	// Enable/disable SSL session logging. Valid values: `enable`, `disable`.
-	SslvpnLogSession *string `pulumi:"sslvpnLogSession"`
-	// Enable/disable system activity logging. Valid values: `enable`, `disable`.
-	System *string `pulumi:"system"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable VIP SSL logging. Valid values: `enable`, `disable`.
-	VipSsl *string `pulumi:"vipSsl"`
-	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-	Voip *string `pulumi:"voip"`
-	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-	WanOpt *string `pulumi:"wanOpt"`
-	// Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
-	WirelessActivity *string `pulumi:"wirelessActivity"`
-	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
+	Admin                *string                  `pulumi:"admin"`
+	Anomaly              *string                  `pulumi:"anomaly"`
+	Auth                 *string                  `pulumi:"auth"`
+	CpuMemoryUsage       *string                  `pulumi:"cpuMemoryUsage"`
+	Dhcp                 *string                  `pulumi:"dhcp"`
+	DlpArchive           *string                  `pulumi:"dlpArchive"`
+	Dns                  *string                  `pulumi:"dns"`
+	DynamicSortSubtable  *string                  `pulumi:"dynamicSortSubtable"`
+	Event                *string                  `pulumi:"event"`
+	Filter               *string                  `pulumi:"filter"`
+	FilterType           *string                  `pulumi:"filterType"`
+	ForwardTraffic       *string                  `pulumi:"forwardTraffic"`
+	FreeStyles           []LogDiskFilterFreeStyle `pulumi:"freeStyles"`
+	Gtp                  *string                  `pulumi:"gtp"`
+	Ha                   *string                  `pulumi:"ha"`
+	Ipsec                *string                  `pulumi:"ipsec"`
+	LdbMonitor           *string                  `pulumi:"ldbMonitor"`
+	LocalTraffic         *string                  `pulumi:"localTraffic"`
+	MulticastTraffic     *string                  `pulumi:"multicastTraffic"`
+	NetscanDiscovery     *string                  `pulumi:"netscanDiscovery"`
+	NetscanVulnerability *string                  `pulumi:"netscanVulnerability"`
+	Pattern              *string                  `pulumi:"pattern"`
+	Ppp                  *string                  `pulumi:"ppp"`
+	Radius               *string                  `pulumi:"radius"`
+	Severity             *string                  `pulumi:"severity"`
+	SnifferTraffic       *string                  `pulumi:"snifferTraffic"`
+	Ssh                  *string                  `pulumi:"ssh"`
+	SslvpnLogAdm         *string                  `pulumi:"sslvpnLogAdm"`
+	SslvpnLogAuth        *string                  `pulumi:"sslvpnLogAuth"`
+	SslvpnLogSession     *string                  `pulumi:"sslvpnLogSession"`
+	System               *string                  `pulumi:"system"`
+	Vdomparam            *string                  `pulumi:"vdomparam"`
+	VipSsl               *string                  `pulumi:"vipSsl"`
+	Voip                 *string                  `pulumi:"voip"`
+	WanOpt               *string                  `pulumi:"wanOpt"`
+	WirelessActivity     *string                  `pulumi:"wirelessActivity"`
+	ZtnaTraffic          *string                  `pulumi:"ztnaTraffic"`
 }
 
 type LogDiskFilterState struct {
-	// Enable/disable admin login/logout logging. Valid values: `enable`, `disable`.
-	Admin pulumi.StringPtrInput
-	// Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-	Anomaly pulumi.StringPtrInput
-	// Enable/disable firewall authentication logging. Valid values: `enable`, `disable`.
-	Auth pulumi.StringPtrInput
-	// Enable/disable CPU & memory usage logging every 5 minutes. Valid values: `enable`, `disable`.
-	CpuMemoryUsage pulumi.StringPtrInput
-	// Enable/disable DHCP service messages logging. Valid values: `enable`, `disable`.
-	Dhcp pulumi.StringPtrInput
-	// Enable/disable DLP archive logging. Valid values: `enable`, `disable`.
-	DlpArchive pulumi.StringPtrInput
-	// Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-	Dns pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable event logging. Valid values: `enable`, `disable`.
-	Event pulumi.StringPtrInput
-	// Free style filter string.
-	Filter pulumi.StringPtrInput
-	// Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-	FilterType pulumi.StringPtrInput
-	// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-	ForwardTraffic pulumi.StringPtrInput
-	// Free Style Filters The structure of `freeStyle` block is documented below.
-	FreeStyles LogDiskFilterFreeStyleArrayInput
-	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-	Gtp pulumi.StringPtrInput
-	// Enable/disable HA logging. Valid values: `enable`, `disable`.
-	Ha pulumi.StringPtrInput
-	// Enable/disable IPsec negotiation messages logging. Valid values: `enable`, `disable`.
-	Ipsec pulumi.StringPtrInput
-	// Enable/disable VIP real server health monitoring logging. Valid values: `enable`, `disable`.
-	LdbMonitor pulumi.StringPtrInput
-	// Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-	LocalTraffic pulumi.StringPtrInput
-	// Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-	MulticastTraffic pulumi.StringPtrInput
-	// Enable/disable netscan discovery event logging.
-	NetscanDiscovery pulumi.StringPtrInput
-	// Enable/disable netscan vulnerability event logging.
+	Admin                pulumi.StringPtrInput
+	Anomaly              pulumi.StringPtrInput
+	Auth                 pulumi.StringPtrInput
+	CpuMemoryUsage       pulumi.StringPtrInput
+	Dhcp                 pulumi.StringPtrInput
+	DlpArchive           pulumi.StringPtrInput
+	Dns                  pulumi.StringPtrInput
+	DynamicSortSubtable  pulumi.StringPtrInput
+	Event                pulumi.StringPtrInput
+	Filter               pulumi.StringPtrInput
+	FilterType           pulumi.StringPtrInput
+	ForwardTraffic       pulumi.StringPtrInput
+	FreeStyles           LogDiskFilterFreeStyleArrayInput
+	Gtp                  pulumi.StringPtrInput
+	Ha                   pulumi.StringPtrInput
+	Ipsec                pulumi.StringPtrInput
+	LdbMonitor           pulumi.StringPtrInput
+	LocalTraffic         pulumi.StringPtrInput
+	MulticastTraffic     pulumi.StringPtrInput
+	NetscanDiscovery     pulumi.StringPtrInput
 	NetscanVulnerability pulumi.StringPtrInput
-	// Enable/disable pattern update logging. Valid values: `enable`, `disable`.
-	Pattern pulumi.StringPtrInput
-	// Enable/disable L2TP/PPTP/PPPoE logging. Valid values: `enable`, `disable`.
-	Ppp pulumi.StringPtrInput
-	// Enable/disable RADIUS messages logging. Valid values: `enable`, `disable`.
-	Radius pulumi.StringPtrInput
-	// Log to disk every message above and including this severity level. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity pulumi.StringPtrInput
-	// Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-	SnifferTraffic pulumi.StringPtrInput
-	// Enable/disable SSH logging. Valid values: `enable`, `disable`.
-	Ssh pulumi.StringPtrInput
-	// Enable/disable SSL administrator login logging. Valid values: `enable`, `disable`.
-	SslvpnLogAdm pulumi.StringPtrInput
-	// Enable/disable SSL user authentication logging. Valid values: `enable`, `disable`.
-	SslvpnLogAuth pulumi.StringPtrInput
-	// Enable/disable SSL session logging. Valid values: `enable`, `disable`.
-	SslvpnLogSession pulumi.StringPtrInput
-	// Enable/disable system activity logging. Valid values: `enable`, `disable`.
-	System pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable VIP SSL logging. Valid values: `enable`, `disable`.
-	VipSsl pulumi.StringPtrInput
-	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-	Voip pulumi.StringPtrInput
-	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-	WanOpt pulumi.StringPtrInput
-	// Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
-	WirelessActivity pulumi.StringPtrInput
-	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-	ZtnaTraffic pulumi.StringPtrInput
+	Pattern              pulumi.StringPtrInput
+	Ppp                  pulumi.StringPtrInput
+	Radius               pulumi.StringPtrInput
+	Severity             pulumi.StringPtrInput
+	SnifferTraffic       pulumi.StringPtrInput
+	Ssh                  pulumi.StringPtrInput
+	SslvpnLogAdm         pulumi.StringPtrInput
+	SslvpnLogAuth        pulumi.StringPtrInput
+	SslvpnLogSession     pulumi.StringPtrInput
+	System               pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
+	VipSsl               pulumi.StringPtrInput
+	Voip                 pulumi.StringPtrInput
+	WanOpt               pulumi.StringPtrInput
+	WirelessActivity     pulumi.StringPtrInput
+	ZtnaTraffic          pulumi.StringPtrInput
 }
 
 func (LogDiskFilterState) ElementType() reflect.Type {
@@ -328,158 +166,84 @@ func (LogDiskFilterState) ElementType() reflect.Type {
 }
 
 type logDiskFilterArgs struct {
-	// Enable/disable admin login/logout logging. Valid values: `enable`, `disable`.
-	Admin *string `pulumi:"admin"`
-	// Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-	Anomaly *string `pulumi:"anomaly"`
-	// Enable/disable firewall authentication logging. Valid values: `enable`, `disable`.
-	Auth *string `pulumi:"auth"`
-	// Enable/disable CPU & memory usage logging every 5 minutes. Valid values: `enable`, `disable`.
-	CpuMemoryUsage *string `pulumi:"cpuMemoryUsage"`
-	// Enable/disable DHCP service messages logging. Valid values: `enable`, `disable`.
-	Dhcp *string `pulumi:"dhcp"`
-	// Enable/disable DLP archive logging. Valid values: `enable`, `disable`.
-	DlpArchive *string `pulumi:"dlpArchive"`
-	// Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-	Dns *string `pulumi:"dns"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable event logging. Valid values: `enable`, `disable`.
-	Event *string `pulumi:"event"`
-	// Free style filter string.
-	Filter *string `pulumi:"filter"`
-	// Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-	FilterType *string `pulumi:"filterType"`
-	// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-	ForwardTraffic *string `pulumi:"forwardTraffic"`
-	// Free Style Filters The structure of `freeStyle` block is documented below.
-	FreeStyles []LogDiskFilterFreeStyle `pulumi:"freeStyles"`
-	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-	Gtp *string `pulumi:"gtp"`
-	// Enable/disable HA logging. Valid values: `enable`, `disable`.
-	Ha *string `pulumi:"ha"`
-	// Enable/disable IPsec negotiation messages logging. Valid values: `enable`, `disable`.
-	Ipsec *string `pulumi:"ipsec"`
-	// Enable/disable VIP real server health monitoring logging. Valid values: `enable`, `disable`.
-	LdbMonitor *string `pulumi:"ldbMonitor"`
-	// Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-	LocalTraffic *string `pulumi:"localTraffic"`
-	// Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-	MulticastTraffic *string `pulumi:"multicastTraffic"`
-	// Enable/disable netscan discovery event logging.
-	NetscanDiscovery *string `pulumi:"netscanDiscovery"`
-	// Enable/disable netscan vulnerability event logging.
-	NetscanVulnerability *string `pulumi:"netscanVulnerability"`
-	// Enable/disable pattern update logging. Valid values: `enable`, `disable`.
-	Pattern *string `pulumi:"pattern"`
-	// Enable/disable L2TP/PPTP/PPPoE logging. Valid values: `enable`, `disable`.
-	Ppp *string `pulumi:"ppp"`
-	// Enable/disable RADIUS messages logging. Valid values: `enable`, `disable`.
-	Radius *string `pulumi:"radius"`
-	// Log to disk every message above and including this severity level. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity *string `pulumi:"severity"`
-	// Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-	SnifferTraffic *string `pulumi:"snifferTraffic"`
-	// Enable/disable SSH logging. Valid values: `enable`, `disable`.
-	Ssh *string `pulumi:"ssh"`
-	// Enable/disable SSL administrator login logging. Valid values: `enable`, `disable`.
-	SslvpnLogAdm *string `pulumi:"sslvpnLogAdm"`
-	// Enable/disable SSL user authentication logging. Valid values: `enable`, `disable`.
-	SslvpnLogAuth *string `pulumi:"sslvpnLogAuth"`
-	// Enable/disable SSL session logging. Valid values: `enable`, `disable`.
-	SslvpnLogSession *string `pulumi:"sslvpnLogSession"`
-	// Enable/disable system activity logging. Valid values: `enable`, `disable`.
-	System *string `pulumi:"system"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable VIP SSL logging. Valid values: `enable`, `disable`.
-	VipSsl *string `pulumi:"vipSsl"`
-	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-	Voip *string `pulumi:"voip"`
-	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-	WanOpt *string `pulumi:"wanOpt"`
-	// Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
-	WirelessActivity *string `pulumi:"wirelessActivity"`
-	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
+	Admin                *string                  `pulumi:"admin"`
+	Anomaly              *string                  `pulumi:"anomaly"`
+	Auth                 *string                  `pulumi:"auth"`
+	CpuMemoryUsage       *string                  `pulumi:"cpuMemoryUsage"`
+	Dhcp                 *string                  `pulumi:"dhcp"`
+	DlpArchive           *string                  `pulumi:"dlpArchive"`
+	Dns                  *string                  `pulumi:"dns"`
+	DynamicSortSubtable  *string                  `pulumi:"dynamicSortSubtable"`
+	Event                *string                  `pulumi:"event"`
+	Filter               *string                  `pulumi:"filter"`
+	FilterType           *string                  `pulumi:"filterType"`
+	ForwardTraffic       *string                  `pulumi:"forwardTraffic"`
+	FreeStyles           []LogDiskFilterFreeStyle `pulumi:"freeStyles"`
+	Gtp                  *string                  `pulumi:"gtp"`
+	Ha                   *string                  `pulumi:"ha"`
+	Ipsec                *string                  `pulumi:"ipsec"`
+	LdbMonitor           *string                  `pulumi:"ldbMonitor"`
+	LocalTraffic         *string                  `pulumi:"localTraffic"`
+	MulticastTraffic     *string                  `pulumi:"multicastTraffic"`
+	NetscanDiscovery     *string                  `pulumi:"netscanDiscovery"`
+	NetscanVulnerability *string                  `pulumi:"netscanVulnerability"`
+	Pattern              *string                  `pulumi:"pattern"`
+	Ppp                  *string                  `pulumi:"ppp"`
+	Radius               *string                  `pulumi:"radius"`
+	Severity             *string                  `pulumi:"severity"`
+	SnifferTraffic       *string                  `pulumi:"snifferTraffic"`
+	Ssh                  *string                  `pulumi:"ssh"`
+	SslvpnLogAdm         *string                  `pulumi:"sslvpnLogAdm"`
+	SslvpnLogAuth        *string                  `pulumi:"sslvpnLogAuth"`
+	SslvpnLogSession     *string                  `pulumi:"sslvpnLogSession"`
+	System               *string                  `pulumi:"system"`
+	Vdomparam            *string                  `pulumi:"vdomparam"`
+	VipSsl               *string                  `pulumi:"vipSsl"`
+	Voip                 *string                  `pulumi:"voip"`
+	WanOpt               *string                  `pulumi:"wanOpt"`
+	WirelessActivity     *string                  `pulumi:"wirelessActivity"`
+	ZtnaTraffic          *string                  `pulumi:"ztnaTraffic"`
 }
 
 // The set of arguments for constructing a LogDiskFilter resource.
 type LogDiskFilterArgs struct {
-	// Enable/disable admin login/logout logging. Valid values: `enable`, `disable`.
-	Admin pulumi.StringPtrInput
-	// Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-	Anomaly pulumi.StringPtrInput
-	// Enable/disable firewall authentication logging. Valid values: `enable`, `disable`.
-	Auth pulumi.StringPtrInput
-	// Enable/disable CPU & memory usage logging every 5 minutes. Valid values: `enable`, `disable`.
-	CpuMemoryUsage pulumi.StringPtrInput
-	// Enable/disable DHCP service messages logging. Valid values: `enable`, `disable`.
-	Dhcp pulumi.StringPtrInput
-	// Enable/disable DLP archive logging. Valid values: `enable`, `disable`.
-	DlpArchive pulumi.StringPtrInput
-	// Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-	Dns pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable event logging. Valid values: `enable`, `disable`.
-	Event pulumi.StringPtrInput
-	// Free style filter string.
-	Filter pulumi.StringPtrInput
-	// Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-	FilterType pulumi.StringPtrInput
-	// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-	ForwardTraffic pulumi.StringPtrInput
-	// Free Style Filters The structure of `freeStyle` block is documented below.
-	FreeStyles LogDiskFilterFreeStyleArrayInput
-	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-	Gtp pulumi.StringPtrInput
-	// Enable/disable HA logging. Valid values: `enable`, `disable`.
-	Ha pulumi.StringPtrInput
-	// Enable/disable IPsec negotiation messages logging. Valid values: `enable`, `disable`.
-	Ipsec pulumi.StringPtrInput
-	// Enable/disable VIP real server health monitoring logging. Valid values: `enable`, `disable`.
-	LdbMonitor pulumi.StringPtrInput
-	// Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-	LocalTraffic pulumi.StringPtrInput
-	// Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-	MulticastTraffic pulumi.StringPtrInput
-	// Enable/disable netscan discovery event logging.
-	NetscanDiscovery pulumi.StringPtrInput
-	// Enable/disable netscan vulnerability event logging.
+	Admin                pulumi.StringPtrInput
+	Anomaly              pulumi.StringPtrInput
+	Auth                 pulumi.StringPtrInput
+	CpuMemoryUsage       pulumi.StringPtrInput
+	Dhcp                 pulumi.StringPtrInput
+	DlpArchive           pulumi.StringPtrInput
+	Dns                  pulumi.StringPtrInput
+	DynamicSortSubtable  pulumi.StringPtrInput
+	Event                pulumi.StringPtrInput
+	Filter               pulumi.StringPtrInput
+	FilterType           pulumi.StringPtrInput
+	ForwardTraffic       pulumi.StringPtrInput
+	FreeStyles           LogDiskFilterFreeStyleArrayInput
+	Gtp                  pulumi.StringPtrInput
+	Ha                   pulumi.StringPtrInput
+	Ipsec                pulumi.StringPtrInput
+	LdbMonitor           pulumi.StringPtrInput
+	LocalTraffic         pulumi.StringPtrInput
+	MulticastTraffic     pulumi.StringPtrInput
+	NetscanDiscovery     pulumi.StringPtrInput
 	NetscanVulnerability pulumi.StringPtrInput
-	// Enable/disable pattern update logging. Valid values: `enable`, `disable`.
-	Pattern pulumi.StringPtrInput
-	// Enable/disable L2TP/PPTP/PPPoE logging. Valid values: `enable`, `disable`.
-	Ppp pulumi.StringPtrInput
-	// Enable/disable RADIUS messages logging. Valid values: `enable`, `disable`.
-	Radius pulumi.StringPtrInput
-	// Log to disk every message above and including this severity level. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity pulumi.StringPtrInput
-	// Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-	SnifferTraffic pulumi.StringPtrInput
-	// Enable/disable SSH logging. Valid values: `enable`, `disable`.
-	Ssh pulumi.StringPtrInput
-	// Enable/disable SSL administrator login logging. Valid values: `enable`, `disable`.
-	SslvpnLogAdm pulumi.StringPtrInput
-	// Enable/disable SSL user authentication logging. Valid values: `enable`, `disable`.
-	SslvpnLogAuth pulumi.StringPtrInput
-	// Enable/disable SSL session logging. Valid values: `enable`, `disable`.
-	SslvpnLogSession pulumi.StringPtrInput
-	// Enable/disable system activity logging. Valid values: `enable`, `disable`.
-	System pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable VIP SSL logging. Valid values: `enable`, `disable`.
-	VipSsl pulumi.StringPtrInput
-	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-	Voip pulumi.StringPtrInput
-	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-	WanOpt pulumi.StringPtrInput
-	// Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
-	WirelessActivity pulumi.StringPtrInput
-	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-	ZtnaTraffic pulumi.StringPtrInput
+	Pattern              pulumi.StringPtrInput
+	Ppp                  pulumi.StringPtrInput
+	Radius               pulumi.StringPtrInput
+	Severity             pulumi.StringPtrInput
+	SnifferTraffic       pulumi.StringPtrInput
+	Ssh                  pulumi.StringPtrInput
+	SslvpnLogAdm         pulumi.StringPtrInput
+	SslvpnLogAuth        pulumi.StringPtrInput
+	SslvpnLogSession     pulumi.StringPtrInput
+	System               pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
+	VipSsl               pulumi.StringPtrInput
+	Voip                 pulumi.StringPtrInput
+	WanOpt               pulumi.StringPtrInput
+	WirelessActivity     pulumi.StringPtrInput
+	ZtnaTraffic          pulumi.StringPtrInput
 }
 
 func (LogDiskFilterArgs) ElementType() reflect.Type {
@@ -508,7 +272,7 @@ func (i *LogDiskFilter) ToLogDiskFilterOutputWithContext(ctx context.Context) Lo
 // LogDiskFilterArrayInput is an input type that accepts LogDiskFilterArray and LogDiskFilterArrayOutput values.
 // You can construct a concrete instance of `LogDiskFilterArrayInput` via:
 //
-//          LogDiskFilterArray{ LogDiskFilterArgs{...} }
+//	LogDiskFilterArray{ LogDiskFilterArgs{...} }
 type LogDiskFilterArrayInput interface {
 	pulumi.Input
 
@@ -533,7 +297,7 @@ func (i LogDiskFilterArray) ToLogDiskFilterArrayOutputWithContext(ctx context.Co
 // LogDiskFilterMapInput is an input type that accepts LogDiskFilterMap and LogDiskFilterMapOutput values.
 // You can construct a concrete instance of `LogDiskFilterMapInput` via:
 //
-//          LogDiskFilterMap{ "key": LogDiskFilterArgs{...} }
+//	LogDiskFilterMap{ "key": LogDiskFilterArgs{...} }
 type LogDiskFilterMapInput interface {
 	pulumi.Input
 
@@ -567,6 +331,154 @@ func (o LogDiskFilterOutput) ToLogDiskFilterOutput() LogDiskFilterOutput {
 
 func (o LogDiskFilterOutput) ToLogDiskFilterOutputWithContext(ctx context.Context) LogDiskFilterOutput {
 	return o
+}
+
+func (o LogDiskFilterOutput) Admin() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Admin }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) Anomaly() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Anomaly }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) Auth() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Auth }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) CpuMemoryUsage() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.CpuMemoryUsage }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) Dhcp() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Dhcp }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) DlpArchive() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.DlpArchive }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) Dns() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Dns }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o LogDiskFilterOutput) Event() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Event }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) Filter() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Filter }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) FilterType() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.FilterType }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) ForwardTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.ForwardTraffic }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) FreeStyles() LogDiskFilterFreeStyleArrayOutput {
+	return o.ApplyT(func(v *LogDiskFilter) LogDiskFilterFreeStyleArrayOutput { return v.FreeStyles }).(LogDiskFilterFreeStyleArrayOutput)
+}
+
+func (o LogDiskFilterOutput) Gtp() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Gtp }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) Ha() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Ha }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) Ipsec() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Ipsec }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) LdbMonitor() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.LdbMonitor }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) LocalTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.LocalTraffic }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) MulticastTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.MulticastTraffic }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) NetscanDiscovery() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.NetscanDiscovery }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) NetscanVulnerability() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.NetscanVulnerability }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) Pattern() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Pattern }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) Ppp() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Ppp }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) Radius() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Radius }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) Severity() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Severity }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) SnifferTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.SnifferTraffic }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) Ssh() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Ssh }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) SslvpnLogAdm() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.SslvpnLogAdm }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) SslvpnLogAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.SslvpnLogAuth }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) SslvpnLogSession() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.SslvpnLogSession }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) System() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.System }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o LogDiskFilterOutput) VipSsl() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.VipSsl }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) Voip() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.Voip }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) WanOpt() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.WanOpt }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) WirelessActivity() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.WirelessActivity }).(pulumi.StringOutput)
+}
+
+func (o LogDiskFilterOutput) ZtnaTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringOutput { return v.ZtnaTraffic }).(pulumi.StringOutput)
 }
 
 type LogDiskFilterArrayOutput struct{ *pulumi.OutputState }

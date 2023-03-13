@@ -4,40 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * SSH proxy host public keys.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallSshHostKey("trname", {
- *     hostname: "testmachine",
- *     ip: "1.1.1.1",
- *     port: 22,
- *     status: "trusted",
- *     type: "RSA",
- * });
- * ```
- *
- * ## Import
- *
- * FirewallSsh HostKey can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallSshHostKey:FirewallSshHostKey labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallSshHostKey:FirewallSshHostKey labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallSshHostKey extends pulumi.CustomResource {
     /**
      * Get an existing FirewallSshHostKey resource's state with the given name, ID, and optional extra
@@ -66,45 +32,15 @@ export class FirewallSshHostKey extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallSshHostKey.__pulumiType;
     }
 
-    /**
-     * Hostname of the SSH server.
-     */
     public readonly hostname!: pulumi.Output<string>;
-    /**
-     * IP address of the SSH server.
-     */
     public readonly ip!: pulumi.Output<string>;
-    /**
-     * SSH public key name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Set the nid of the ECDSA key. Valid values: `256`, `384`, `521`.
-     */
     public readonly nid!: pulumi.Output<string>;
-    /**
-     * Port of the SSH server.
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * SSH public key.
-     */
     public readonly publicKey!: pulumi.Output<string | undefined>;
-    /**
-     * Set the trust status of the public key. Valid values: `trusted`, `revoked`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
-     */
     public readonly usage!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -137,13 +73,15 @@ export class FirewallSshHostKey extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nid"] = args ? args.nid : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
-            resourceInputs["publicKey"] = args ? args.publicKey : undefined;
+            resourceInputs["publicKey"] = args?.publicKey ? pulumi.secret(args.publicKey) : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["usage"] = args ? args.usage : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["publicKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(FirewallSshHostKey.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -152,45 +90,15 @@ export class FirewallSshHostKey extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallSshHostKey resources.
  */
 export interface FirewallSshHostKeyState {
-    /**
-     * Hostname of the SSH server.
-     */
     hostname?: pulumi.Input<string>;
-    /**
-     * IP address of the SSH server.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * SSH public key name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Set the nid of the ECDSA key. Valid values: `256`, `384`, `521`.
-     */
     nid?: pulumi.Input<string>;
-    /**
-     * Port of the SSH server.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * SSH public key.
-     */
     publicKey?: pulumi.Input<string>;
-    /**
-     * Set the trust status of the public key. Valid values: `trusted`, `revoked`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
-     */
     usage?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -198,44 +106,14 @@ export interface FirewallSshHostKeyState {
  * The set of arguments for constructing a FirewallSshHostKey resource.
  */
 export interface FirewallSshHostKeyArgs {
-    /**
-     * Hostname of the SSH server.
-     */
     hostname?: pulumi.Input<string>;
-    /**
-     * IP address of the SSH server.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * SSH public key name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Set the nid of the ECDSA key. Valid values: `256`, `384`, `521`.
-     */
     nid?: pulumi.Input<string>;
-    /**
-     * Port of the SSH server.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * SSH public key.
-     */
     publicKey?: pulumi.Input<string>;
-    /**
-     * Set the trust status of the public key. Valid values: `trusted`, `revoked`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
-     */
     usage?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * IP blacklist reason. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * Firewall InternetServiceIpblReason can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInternetServiceIpblReason:FirewallInternetServiceIpblReason labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInternetServiceIpblReason:FirewallInternetServiceIpblReason labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallInternetServiceIpblReason extends pulumi.CustomResource {
     /**
      * Get an existing FirewallInternetServiceIpblReason resource's state with the given name, ID, and optional extra
@@ -51,17 +32,8 @@ export class FirewallInternetServiceIpblReason extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallInternetServiceIpblReason.__pulumiType;
     }
 
-    /**
-     * IP blacklist reason ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * IP blacklist reason name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -95,17 +67,8 @@ export class FirewallInternetServiceIpblReason extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallInternetServiceIpblReason resources.
  */
 export interface FirewallInternetServiceIpblReasonState {
-    /**
-     * IP blacklist reason ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * IP blacklist reason name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -113,16 +76,7 @@ export interface FirewallInternetServiceIpblReasonState {
  * The set of arguments for constructing a FirewallInternetServiceIpblReason resource.
  */
 export interface FirewallInternetServiceIpblReasonArgs {
-    /**
-     * IP blacklist reason ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * IP blacklist reason name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

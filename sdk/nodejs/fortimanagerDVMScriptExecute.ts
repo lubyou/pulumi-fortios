@@ -4,22 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports executing devicemanager script on Fortimanager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test3 = new fortios.FortimanagerDVMScriptExecute("test3", {
- *     scriptName: "config-intf3",
- *     targetDevname: "devname",
- *     timeout: 5,
- * });
- * ```
- */
 export class FortimanagerDVMScriptExecute extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerDVMScriptExecute resource's state with the given name, ID, and optional extra
@@ -48,29 +32,11 @@ export class FortimanagerDVMScriptExecute extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerDVMScriptExecute.__pulumiType;
     }
 
-    /**
-     * Source ADOM name. default is 'root'
-     */
     public readonly adom!: pulumi.Output<string | undefined>;
-    /**
-     * Policy package.
-     */
     public readonly package!: pulumi.Output<string | undefined>;
-    /**
-     * Script name.
-     */
     public readonly scriptName!: pulumi.Output<string>;
-    /**
-     * Target device name, which the script will be installed.
-     */
     public readonly targetDevname!: pulumi.Output<string | undefined>;
-    /**
-     * Timeout(minute) for executing the script, default is 3 minutes.
-     */
     public readonly timeout!: pulumi.Output<number | undefined>;
-    /**
-     * Vdom of managed device. default is 'root'
-     */
     public readonly vdom!: pulumi.Output<string | undefined>;
 
     /**
@@ -113,29 +79,11 @@ export class FortimanagerDVMScriptExecute extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerDVMScriptExecute resources.
  */
 export interface FortimanagerDVMScriptExecuteState {
-    /**
-     * Source ADOM name. default is 'root'
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Policy package.
-     */
     package?: pulumi.Input<string>;
-    /**
-     * Script name.
-     */
     scriptName?: pulumi.Input<string>;
-    /**
-     * Target device name, which the script will be installed.
-     */
     targetDevname?: pulumi.Input<string>;
-    /**
-     * Timeout(minute) for executing the script, default is 3 minutes.
-     */
     timeout?: pulumi.Input<number>;
-    /**
-     * Vdom of managed device. default is 'root'
-     */
     vdom?: pulumi.Input<string>;
 }
 
@@ -143,28 +91,10 @@ export interface FortimanagerDVMScriptExecuteState {
  * The set of arguments for constructing a FortimanagerDVMScriptExecute resource.
  */
 export interface FortimanagerDVMScriptExecuteArgs {
-    /**
-     * Source ADOM name. default is 'root'
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Policy package.
-     */
     package?: pulumi.Input<string>;
-    /**
-     * Script name.
-     */
     scriptName: pulumi.Input<string>;
-    /**
-     * Target device name, which the script will be installed.
-     */
     targetDevname?: pulumi.Input<string>;
-    /**
-     * Timeout(minute) for executing the script, default is 3 minutes.
-     */
     timeout?: pulumi.Input<number>;
-    /**
-     * Vdom of managed device. default is 'root'
-     */
     vdom?: pulumi.Input<string>;
 }

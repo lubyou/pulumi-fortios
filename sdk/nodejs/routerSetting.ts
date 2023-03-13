@@ -4,36 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure router settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.RouterSetting("trname", {
- *     hostname: "s1",
- * });
- * ```
- *
- * ## Import
- *
- * Router Setting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerSetting:RouterSetting labelname RouterSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerSetting:RouterSetting labelname RouterSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterSetting extends pulumi.CustomResource {
     /**
      * Get an existing RouterSetting resource's state with the given name, ID, and optional extra
@@ -62,113 +32,32 @@ export class RouterSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterSetting.__pulumiType;
     }
 
-    /**
-     * bgp_debug_flags
-     */
     public readonly bgpDebugFlags!: pulumi.Output<string>;
-    /**
-     * Hostname for this virtual domain router.
-     */
     public readonly hostname!: pulumi.Output<string>;
-    /**
-     * igmp_debug_flags
-     */
     public readonly igmpDebugFlags!: pulumi.Output<string>;
-    /**
-     * imi_debug_flags
-     */
     public readonly imiDebugFlags!: pulumi.Output<string>;
-    /**
-     * isis_debug_flags
-     */
     public readonly isisDebugFlags!: pulumi.Output<string>;
-    /**
-     * ospf6_debug_events_flags
-     */
     public readonly ospf6DebugEventsFlags!: pulumi.Output<string>;
-    /**
-     * ospf6_debug_ifsm_flags
-     */
     public readonly ospf6DebugIfsmFlags!: pulumi.Output<string>;
-    /**
-     * ospf6_debug_lsa_flags
-     */
     public readonly ospf6DebugLsaFlags!: pulumi.Output<string>;
-    /**
-     * ospf6_debug_nfsm_flags
-     */
     public readonly ospf6DebugNfsmFlags!: pulumi.Output<string>;
-    /**
-     * ospf6_debug_nsm_flags
-     */
     public readonly ospf6DebugNsmFlags!: pulumi.Output<string>;
-    /**
-     * ospf6_debug_packet_flags
-     */
     public readonly ospf6DebugPacketFlags!: pulumi.Output<string>;
-    /**
-     * ospf6_debug_route_flags
-     */
     public readonly ospf6DebugRouteFlags!: pulumi.Output<string>;
-    /**
-     * ospf_debug_events_flags
-     */
     public readonly ospfDebugEventsFlags!: pulumi.Output<string>;
-    /**
-     * ospf_debug_ifsm_flags
-     */
     public readonly ospfDebugIfsmFlags!: pulumi.Output<string>;
-    /**
-     * ospf_debug_lsa_flags
-     */
     public readonly ospfDebugLsaFlags!: pulumi.Output<string>;
-    /**
-     * ospf_debug_nfsm_flags
-     */
     public readonly ospfDebugNfsmFlags!: pulumi.Output<string>;
-    /**
-     * ospf_debug_nsm_flags
-     */
     public readonly ospfDebugNsmFlags!: pulumi.Output<string>;
-    /**
-     * ospf_debug_packet_flags
-     */
     public readonly ospfDebugPacketFlags!: pulumi.Output<string>;
-    /**
-     * ospf_debug_route_flags
-     */
     public readonly ospfDebugRouteFlags!: pulumi.Output<string>;
-    /**
-     * pimdm_debug_flags
-     */
     public readonly pimdmDebugFlags!: pulumi.Output<string>;
-    /**
-     * pimsm_debug_joinprune_flags
-     */
     public readonly pimsmDebugJoinpruneFlags!: pulumi.Output<string>;
-    /**
-     * pimsm_debug_simple_flags
-     */
     public readonly pimsmDebugSimpleFlags!: pulumi.Output<string>;
-    /**
-     * pimsm_debug_timer_flags
-     */
     public readonly pimsmDebugTimerFlags!: pulumi.Output<string>;
-    /**
-     * rip_debug_flags
-     */
     public readonly ripDebugFlags!: pulumi.Output<string>;
-    /**
-     * ripng_debug_flags
-     */
     public readonly ripngDebugFlags!: pulumi.Output<string>;
-    /**
-     * Prefix-list as filter for showing routes.
-     */
     public readonly showFilter!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -250,113 +139,32 @@ export class RouterSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterSetting resources.
  */
 export interface RouterSettingState {
-    /**
-     * bgp_debug_flags
-     */
     bgpDebugFlags?: pulumi.Input<string>;
-    /**
-     * Hostname for this virtual domain router.
-     */
     hostname?: pulumi.Input<string>;
-    /**
-     * igmp_debug_flags
-     */
     igmpDebugFlags?: pulumi.Input<string>;
-    /**
-     * imi_debug_flags
-     */
     imiDebugFlags?: pulumi.Input<string>;
-    /**
-     * isis_debug_flags
-     */
     isisDebugFlags?: pulumi.Input<string>;
-    /**
-     * ospf6_debug_events_flags
-     */
     ospf6DebugEventsFlags?: pulumi.Input<string>;
-    /**
-     * ospf6_debug_ifsm_flags
-     */
     ospf6DebugIfsmFlags?: pulumi.Input<string>;
-    /**
-     * ospf6_debug_lsa_flags
-     */
     ospf6DebugLsaFlags?: pulumi.Input<string>;
-    /**
-     * ospf6_debug_nfsm_flags
-     */
     ospf6DebugNfsmFlags?: pulumi.Input<string>;
-    /**
-     * ospf6_debug_nsm_flags
-     */
     ospf6DebugNsmFlags?: pulumi.Input<string>;
-    /**
-     * ospf6_debug_packet_flags
-     */
     ospf6DebugPacketFlags?: pulumi.Input<string>;
-    /**
-     * ospf6_debug_route_flags
-     */
     ospf6DebugRouteFlags?: pulumi.Input<string>;
-    /**
-     * ospf_debug_events_flags
-     */
     ospfDebugEventsFlags?: pulumi.Input<string>;
-    /**
-     * ospf_debug_ifsm_flags
-     */
     ospfDebugIfsmFlags?: pulumi.Input<string>;
-    /**
-     * ospf_debug_lsa_flags
-     */
     ospfDebugLsaFlags?: pulumi.Input<string>;
-    /**
-     * ospf_debug_nfsm_flags
-     */
     ospfDebugNfsmFlags?: pulumi.Input<string>;
-    /**
-     * ospf_debug_nsm_flags
-     */
     ospfDebugNsmFlags?: pulumi.Input<string>;
-    /**
-     * ospf_debug_packet_flags
-     */
     ospfDebugPacketFlags?: pulumi.Input<string>;
-    /**
-     * ospf_debug_route_flags
-     */
     ospfDebugRouteFlags?: pulumi.Input<string>;
-    /**
-     * pimdm_debug_flags
-     */
     pimdmDebugFlags?: pulumi.Input<string>;
-    /**
-     * pimsm_debug_joinprune_flags
-     */
     pimsmDebugJoinpruneFlags?: pulumi.Input<string>;
-    /**
-     * pimsm_debug_simple_flags
-     */
     pimsmDebugSimpleFlags?: pulumi.Input<string>;
-    /**
-     * pimsm_debug_timer_flags
-     */
     pimsmDebugTimerFlags?: pulumi.Input<string>;
-    /**
-     * rip_debug_flags
-     */
     ripDebugFlags?: pulumi.Input<string>;
-    /**
-     * ripng_debug_flags
-     */
     ripngDebugFlags?: pulumi.Input<string>;
-    /**
-     * Prefix-list as filter for showing routes.
-     */
     showFilter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -364,112 +172,31 @@ export interface RouterSettingState {
  * The set of arguments for constructing a RouterSetting resource.
  */
 export interface RouterSettingArgs {
-    /**
-     * bgp_debug_flags
-     */
     bgpDebugFlags?: pulumi.Input<string>;
-    /**
-     * Hostname for this virtual domain router.
-     */
     hostname?: pulumi.Input<string>;
-    /**
-     * igmp_debug_flags
-     */
     igmpDebugFlags?: pulumi.Input<string>;
-    /**
-     * imi_debug_flags
-     */
     imiDebugFlags?: pulumi.Input<string>;
-    /**
-     * isis_debug_flags
-     */
     isisDebugFlags?: pulumi.Input<string>;
-    /**
-     * ospf6_debug_events_flags
-     */
     ospf6DebugEventsFlags?: pulumi.Input<string>;
-    /**
-     * ospf6_debug_ifsm_flags
-     */
     ospf6DebugIfsmFlags?: pulumi.Input<string>;
-    /**
-     * ospf6_debug_lsa_flags
-     */
     ospf6DebugLsaFlags?: pulumi.Input<string>;
-    /**
-     * ospf6_debug_nfsm_flags
-     */
     ospf6DebugNfsmFlags?: pulumi.Input<string>;
-    /**
-     * ospf6_debug_nsm_flags
-     */
     ospf6DebugNsmFlags?: pulumi.Input<string>;
-    /**
-     * ospf6_debug_packet_flags
-     */
     ospf6DebugPacketFlags?: pulumi.Input<string>;
-    /**
-     * ospf6_debug_route_flags
-     */
     ospf6DebugRouteFlags?: pulumi.Input<string>;
-    /**
-     * ospf_debug_events_flags
-     */
     ospfDebugEventsFlags?: pulumi.Input<string>;
-    /**
-     * ospf_debug_ifsm_flags
-     */
     ospfDebugIfsmFlags?: pulumi.Input<string>;
-    /**
-     * ospf_debug_lsa_flags
-     */
     ospfDebugLsaFlags?: pulumi.Input<string>;
-    /**
-     * ospf_debug_nfsm_flags
-     */
     ospfDebugNfsmFlags?: pulumi.Input<string>;
-    /**
-     * ospf_debug_nsm_flags
-     */
     ospfDebugNsmFlags?: pulumi.Input<string>;
-    /**
-     * ospf_debug_packet_flags
-     */
     ospfDebugPacketFlags?: pulumi.Input<string>;
-    /**
-     * ospf_debug_route_flags
-     */
     ospfDebugRouteFlags?: pulumi.Input<string>;
-    /**
-     * pimdm_debug_flags
-     */
     pimdmDebugFlags?: pulumi.Input<string>;
-    /**
-     * pimsm_debug_joinprune_flags
-     */
     pimsmDebugJoinpruneFlags?: pulumi.Input<string>;
-    /**
-     * pimsm_debug_simple_flags
-     */
     pimsmDebugSimpleFlags?: pulumi.Input<string>;
-    /**
-     * pimsm_debug_timer_flags
-     */
     pimsmDebugTimerFlags?: pulumi.Input<string>;
-    /**
-     * rip_debug_flags
-     */
     ripDebugFlags?: pulumi.Input<string>;
-    /**
-     * ripng_debug_flags
-     */
     ripngDebugFlags?: pulumi.Input<string>;
-    /**
-     * Prefix-list as filter for showing routes.
-     */
     showFilter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

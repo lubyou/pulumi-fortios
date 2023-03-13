@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.SystemArpTable`.
- */
 export function getSystemArpTableList(args?: GetSystemArpTableListArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemArpTableListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemArpTableList:GetSystemArpTableList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getSystemArpTableList(args?: GetSystemArpTableListArgs, opts?: p
  */
 export interface GetSystemArpTableListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -36,9 +27,6 @@ export interface GetSystemArpTableListArgs {
  */
 export interface GetSystemArpTableListResult {
     readonly filter?: string;
-    /**
-     * A list of the `fortios.SystemArpTable`.
-     */
     readonly fosidlists: number[];
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -46,9 +34,8 @@ export interface GetSystemArpTableListResult {
     readonly id: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemArpTableListOutput(args?: GetSystemArpTableListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemArpTableListResult> {
-    return pulumi.output(args).apply(a => getSystemArpTableList(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemArpTableList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getSystemArpTableListOutput(args?: GetSystemArpTableListOutputAr
  */
 export interface GetSystemArpTableListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

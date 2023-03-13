@@ -10,54 +10,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Bluetooth Low Energy profile.
-//
-// ## Import
-//
-// WirelessController BleProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerBleProfile:WirelessControllerBleProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerBleProfile:WirelessControllerBleProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerBleProfile struct {
 	pulumi.CustomResourceState
 
-	// Advertising type. Valid values: `ibeacon`, `eddystone-uid`, `eddystone-url`.
-	Advertising pulumi.StringOutput `pulumi:"advertising"`
-	// Beacon interval (default = 100 msec).
-	BeaconInterval pulumi.IntOutput `pulumi:"beaconInterval"`
-	// Enable/disable Bluetooth Low Energy (BLE) scanning. Valid values: `enable`, `disable`.
-	BleScanning pulumi.StringOutput `pulumi:"bleScanning"`
-	// Comment.
-	Comment pulumi.StringOutput `pulumi:"comment"`
-	// Eddystone instance ID.
-	EddystoneInstance pulumi.StringOutput `pulumi:"eddystoneInstance"`
-	// Eddystone namespace ID.
-	EddystoneNamespace pulumi.StringOutput `pulumi:"eddystoneNamespace"`
-	// Eddystone URL.
-	EddystoneUrl pulumi.StringOutput `pulumi:"eddystoneUrl"`
-	// Eddystone encoded URL hexadecimal string
-	EddystoneUrlEncodeHex pulumi.StringOutput `pulumi:"eddystoneUrlEncodeHex"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	IbeaconUuid pulumi.StringOutput `pulumi:"ibeaconUuid"`
-	// Major ID.
-	MajorId pulumi.IntOutput `pulumi:"majorId"`
-	// Minor ID.
-	MinorId pulumi.IntOutput `pulumi:"minorId"`
-	// Bluetooth Low Energy profile name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
-	Txpower pulumi.StringOutput `pulumi:"txpower"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Advertising           pulumi.StringOutput    `pulumi:"advertising"`
+	BeaconInterval        pulumi.IntOutput       `pulumi:"beaconInterval"`
+	BleScanning           pulumi.StringOutput    `pulumi:"bleScanning"`
+	Comment               pulumi.StringOutput    `pulumi:"comment"`
+	EddystoneInstance     pulumi.StringOutput    `pulumi:"eddystoneInstance"`
+	EddystoneNamespace    pulumi.StringOutput    `pulumi:"eddystoneNamespace"`
+	EddystoneUrl          pulumi.StringOutput    `pulumi:"eddystoneUrl"`
+	EddystoneUrlEncodeHex pulumi.StringOutput    `pulumi:"eddystoneUrlEncodeHex"`
+	IbeaconUuid           pulumi.StringOutput    `pulumi:"ibeaconUuid"`
+	MajorId               pulumi.IntOutput       `pulumi:"majorId"`
+	MinorId               pulumi.IntOutput       `pulumi:"minorId"`
+	Name                  pulumi.StringOutput    `pulumi:"name"`
+	Txpower               pulumi.StringOutput    `pulumi:"txpower"`
+	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerBleProfile registers a new resource with the given unique name, arguments, and options.
@@ -90,65 +59,37 @@ func GetWirelessControllerBleProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerBleProfile resources.
 type wirelessControllerBleProfileState struct {
-	// Advertising type. Valid values: `ibeacon`, `eddystone-uid`, `eddystone-url`.
-	Advertising *string `pulumi:"advertising"`
-	// Beacon interval (default = 100 msec).
-	BeaconInterval *int `pulumi:"beaconInterval"`
-	// Enable/disable Bluetooth Low Energy (BLE) scanning. Valid values: `enable`, `disable`.
-	BleScanning *string `pulumi:"bleScanning"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Eddystone instance ID.
-	EddystoneInstance *string `pulumi:"eddystoneInstance"`
-	// Eddystone namespace ID.
-	EddystoneNamespace *string `pulumi:"eddystoneNamespace"`
-	// Eddystone URL.
-	EddystoneUrl *string `pulumi:"eddystoneUrl"`
-	// Eddystone encoded URL hexadecimal string
+	Advertising           *string `pulumi:"advertising"`
+	BeaconInterval        *int    `pulumi:"beaconInterval"`
+	BleScanning           *string `pulumi:"bleScanning"`
+	Comment               *string `pulumi:"comment"`
+	EddystoneInstance     *string `pulumi:"eddystoneInstance"`
+	EddystoneNamespace    *string `pulumi:"eddystoneNamespace"`
+	EddystoneUrl          *string `pulumi:"eddystoneUrl"`
 	EddystoneUrlEncodeHex *string `pulumi:"eddystoneUrlEncodeHex"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	IbeaconUuid *string `pulumi:"ibeaconUuid"`
-	// Major ID.
-	MajorId *int `pulumi:"majorId"`
-	// Minor ID.
-	MinorId *int `pulumi:"minorId"`
-	// Bluetooth Low Energy profile name.
-	Name *string `pulumi:"name"`
-	// Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
-	Txpower *string `pulumi:"txpower"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	IbeaconUuid           *string `pulumi:"ibeaconUuid"`
+	MajorId               *int    `pulumi:"majorId"`
+	MinorId               *int    `pulumi:"minorId"`
+	Name                  *string `pulumi:"name"`
+	Txpower               *string `pulumi:"txpower"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 type WirelessControllerBleProfileState struct {
-	// Advertising type. Valid values: `ibeacon`, `eddystone-uid`, `eddystone-url`.
-	Advertising pulumi.StringPtrInput
-	// Beacon interval (default = 100 msec).
-	BeaconInterval pulumi.IntPtrInput
-	// Enable/disable Bluetooth Low Energy (BLE) scanning. Valid values: `enable`, `disable`.
-	BleScanning pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Eddystone instance ID.
-	EddystoneInstance pulumi.StringPtrInput
-	// Eddystone namespace ID.
-	EddystoneNamespace pulumi.StringPtrInput
-	// Eddystone URL.
-	EddystoneUrl pulumi.StringPtrInput
-	// Eddystone encoded URL hexadecimal string
+	Advertising           pulumi.StringPtrInput
+	BeaconInterval        pulumi.IntPtrInput
+	BleScanning           pulumi.StringPtrInput
+	Comment               pulumi.StringPtrInput
+	EddystoneInstance     pulumi.StringPtrInput
+	EddystoneNamespace    pulumi.StringPtrInput
+	EddystoneUrl          pulumi.StringPtrInput
 	EddystoneUrlEncodeHex pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	IbeaconUuid pulumi.StringPtrInput
-	// Major ID.
-	MajorId pulumi.IntPtrInput
-	// Minor ID.
-	MinorId pulumi.IntPtrInput
-	// Bluetooth Low Energy profile name.
-	Name pulumi.StringPtrInput
-	// Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
-	Txpower pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	IbeaconUuid           pulumi.StringPtrInput
+	MajorId               pulumi.IntPtrInput
+	MinorId               pulumi.IntPtrInput
+	Name                  pulumi.StringPtrInput
+	Txpower               pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (WirelessControllerBleProfileState) ElementType() reflect.Type {
@@ -156,66 +97,38 @@ func (WirelessControllerBleProfileState) ElementType() reflect.Type {
 }
 
 type wirelessControllerBleProfileArgs struct {
-	// Advertising type. Valid values: `ibeacon`, `eddystone-uid`, `eddystone-url`.
-	Advertising *string `pulumi:"advertising"`
-	// Beacon interval (default = 100 msec).
-	BeaconInterval *int `pulumi:"beaconInterval"`
-	// Enable/disable Bluetooth Low Energy (BLE) scanning. Valid values: `enable`, `disable`.
-	BleScanning *string `pulumi:"bleScanning"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Eddystone instance ID.
-	EddystoneInstance *string `pulumi:"eddystoneInstance"`
-	// Eddystone namespace ID.
-	EddystoneNamespace *string `pulumi:"eddystoneNamespace"`
-	// Eddystone URL.
-	EddystoneUrl *string `pulumi:"eddystoneUrl"`
-	// Eddystone encoded URL hexadecimal string
+	Advertising           *string `pulumi:"advertising"`
+	BeaconInterval        *int    `pulumi:"beaconInterval"`
+	BleScanning           *string `pulumi:"bleScanning"`
+	Comment               *string `pulumi:"comment"`
+	EddystoneInstance     *string `pulumi:"eddystoneInstance"`
+	EddystoneNamespace    *string `pulumi:"eddystoneNamespace"`
+	EddystoneUrl          *string `pulumi:"eddystoneUrl"`
 	EddystoneUrlEncodeHex *string `pulumi:"eddystoneUrlEncodeHex"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	IbeaconUuid *string `pulumi:"ibeaconUuid"`
-	// Major ID.
-	MajorId *int `pulumi:"majorId"`
-	// Minor ID.
-	MinorId *int `pulumi:"minorId"`
-	// Bluetooth Low Energy profile name.
-	Name *string `pulumi:"name"`
-	// Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
-	Txpower *string `pulumi:"txpower"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	IbeaconUuid           *string `pulumi:"ibeaconUuid"`
+	MajorId               *int    `pulumi:"majorId"`
+	MinorId               *int    `pulumi:"minorId"`
+	Name                  *string `pulumi:"name"`
+	Txpower               *string `pulumi:"txpower"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerBleProfile resource.
 type WirelessControllerBleProfileArgs struct {
-	// Advertising type. Valid values: `ibeacon`, `eddystone-uid`, `eddystone-url`.
-	Advertising pulumi.StringPtrInput
-	// Beacon interval (default = 100 msec).
-	BeaconInterval pulumi.IntPtrInput
-	// Enable/disable Bluetooth Low Energy (BLE) scanning. Valid values: `enable`, `disable`.
-	BleScanning pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Eddystone instance ID.
-	EddystoneInstance pulumi.StringPtrInput
-	// Eddystone namespace ID.
-	EddystoneNamespace pulumi.StringPtrInput
-	// Eddystone URL.
-	EddystoneUrl pulumi.StringPtrInput
-	// Eddystone encoded URL hexadecimal string
+	Advertising           pulumi.StringPtrInput
+	BeaconInterval        pulumi.IntPtrInput
+	BleScanning           pulumi.StringPtrInput
+	Comment               pulumi.StringPtrInput
+	EddystoneInstance     pulumi.StringPtrInput
+	EddystoneNamespace    pulumi.StringPtrInput
+	EddystoneUrl          pulumi.StringPtrInput
 	EddystoneUrlEncodeHex pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	IbeaconUuid pulumi.StringPtrInput
-	// Major ID.
-	MajorId pulumi.IntPtrInput
-	// Minor ID.
-	MinorId pulumi.IntPtrInput
-	// Bluetooth Low Energy profile name.
-	Name pulumi.StringPtrInput
-	// Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
-	Txpower pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	IbeaconUuid           pulumi.StringPtrInput
+	MajorId               pulumi.IntPtrInput
+	MinorId               pulumi.IntPtrInput
+	Name                  pulumi.StringPtrInput
+	Txpower               pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (WirelessControllerBleProfileArgs) ElementType() reflect.Type {
@@ -244,7 +157,7 @@ func (i *WirelessControllerBleProfile) ToWirelessControllerBleProfileOutputWithC
 // WirelessControllerBleProfileArrayInput is an input type that accepts WirelessControllerBleProfileArray and WirelessControllerBleProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerBleProfileArrayInput` via:
 //
-//          WirelessControllerBleProfileArray{ WirelessControllerBleProfileArgs{...} }
+//	WirelessControllerBleProfileArray{ WirelessControllerBleProfileArgs{...} }
 type WirelessControllerBleProfileArrayInput interface {
 	pulumi.Input
 
@@ -269,7 +182,7 @@ func (i WirelessControllerBleProfileArray) ToWirelessControllerBleProfileArrayOu
 // WirelessControllerBleProfileMapInput is an input type that accepts WirelessControllerBleProfileMap and WirelessControllerBleProfileMapOutput values.
 // You can construct a concrete instance of `WirelessControllerBleProfileMapInput` via:
 //
-//          WirelessControllerBleProfileMap{ "key": WirelessControllerBleProfileArgs{...} }
+//	WirelessControllerBleProfileMap{ "key": WirelessControllerBleProfileArgs{...} }
 type WirelessControllerBleProfileMapInput interface {
 	pulumi.Input
 
@@ -303,6 +216,62 @@ func (o WirelessControllerBleProfileOutput) ToWirelessControllerBleProfileOutput
 
 func (o WirelessControllerBleProfileOutput) ToWirelessControllerBleProfileOutputWithContext(ctx context.Context) WirelessControllerBleProfileOutput {
 	return o
+}
+
+func (o WirelessControllerBleProfileOutput) Advertising() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.StringOutput { return v.Advertising }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) BeaconInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.IntOutput { return v.BeaconInterval }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) BleScanning() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.StringOutput { return v.BleScanning }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.StringOutput { return v.Comment }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) EddystoneInstance() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.StringOutput { return v.EddystoneInstance }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) EddystoneNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.StringOutput { return v.EddystoneNamespace }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) EddystoneUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.StringOutput { return v.EddystoneUrl }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) EddystoneUrlEncodeHex() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.StringOutput { return v.EddystoneUrlEncodeHex }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) IbeaconUuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.StringOutput { return v.IbeaconUuid }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) MajorId() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.IntOutput { return v.MajorId }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) MinorId() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.IntOutput { return v.MinorId }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) Txpower() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.StringOutput { return v.Txpower }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerBleProfileArrayOutput struct{ *pulumi.OutputState }

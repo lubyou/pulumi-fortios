@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure VLAN policy to be applied on the managed FortiSwitch ports through port-policy. Applies to FortiOS Version `>= 6.4.0`.
- *
- * ## Import
- *
- * SwitchController VlanPolicy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerVlanPolicy:SwitchControllerVlanPolicy labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerVlanPolicy:SwitchControllerVlanPolicy labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerVlanPolicy extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerVlanPolicy resource's state with the given name, ID, and optional extra
@@ -52,45 +34,15 @@ export class SwitchControllerVlanPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerVlanPolicy.__pulumiType;
     }
 
-    /**
-     * Allowed VLANs to be applied when using this VLAN policy. The structure of `allowedVlans` block is documented below.
-     */
     public readonly allowedVlans!: pulumi.Output<outputs.SwitchControllerVlanPolicyAllowedVlan[] | undefined>;
-    /**
-     * Enable/disable all defined VLANs when using this VLAN policy. Valid values: `enable`, `disable`.
-     */
     public readonly allowedVlansAll!: pulumi.Output<string>;
-    /**
-     * Description for the VLAN policy.
-     */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * Discard mode to be applied when using this VLAN policy. Valid values: `none`, `all-untagged`, `all-tagged`.
-     */
     public readonly discardMode!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * FortiLink interface for which this VLAN policy belongs to.
-     */
     public readonly fortilink!: pulumi.Output<string>;
-    /**
-     * VLAN policy name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Untagged VLANs to be applied when using this VLAN policy. The structure of `untaggedVlans` block is documented below.
-     */
     public readonly untaggedVlans!: pulumi.Output<outputs.SwitchControllerVlanPolicyUntaggedVlan[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Native VLAN to be applied when using this VLAN policy.
-     */
     public readonly vlan!: pulumi.Output<string>;
 
     /**
@@ -138,45 +90,15 @@ export class SwitchControllerVlanPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerVlanPolicy resources.
  */
 export interface SwitchControllerVlanPolicyState {
-    /**
-     * Allowed VLANs to be applied when using this VLAN policy. The structure of `allowedVlans` block is documented below.
-     */
     allowedVlans?: pulumi.Input<pulumi.Input<inputs.SwitchControllerVlanPolicyAllowedVlan>[]>;
-    /**
-     * Enable/disable all defined VLANs when using this VLAN policy. Valid values: `enable`, `disable`.
-     */
     allowedVlansAll?: pulumi.Input<string>;
-    /**
-     * Description for the VLAN policy.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Discard mode to be applied when using this VLAN policy. Valid values: `none`, `all-untagged`, `all-tagged`.
-     */
     discardMode?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * FortiLink interface for which this VLAN policy belongs to.
-     */
     fortilink?: pulumi.Input<string>;
-    /**
-     * VLAN policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Untagged VLANs to be applied when using this VLAN policy. The structure of `untaggedVlans` block is documented below.
-     */
     untaggedVlans?: pulumi.Input<pulumi.Input<inputs.SwitchControllerVlanPolicyUntaggedVlan>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Native VLAN to be applied when using this VLAN policy.
-     */
     vlan?: pulumi.Input<string>;
 }
 
@@ -184,44 +106,14 @@ export interface SwitchControllerVlanPolicyState {
  * The set of arguments for constructing a SwitchControllerVlanPolicy resource.
  */
 export interface SwitchControllerVlanPolicyArgs {
-    /**
-     * Allowed VLANs to be applied when using this VLAN policy. The structure of `allowedVlans` block is documented below.
-     */
     allowedVlans?: pulumi.Input<pulumi.Input<inputs.SwitchControllerVlanPolicyAllowedVlan>[]>;
-    /**
-     * Enable/disable all defined VLANs when using this VLAN policy. Valid values: `enable`, `disable`.
-     */
     allowedVlansAll?: pulumi.Input<string>;
-    /**
-     * Description for the VLAN policy.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Discard mode to be applied when using this VLAN policy. Valid values: `none`, `all-untagged`, `all-tagged`.
-     */
     discardMode?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * FortiLink interface for which this VLAN policy belongs to.
-     */
     fortilink?: pulumi.Input<string>;
-    /**
-     * VLAN policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Untagged VLANs to be applied when using this VLAN policy. The structure of `untaggedVlans` block is documented below.
-     */
     untaggedVlans?: pulumi.Input<pulumi.Input<inputs.SwitchControllerVlanPolicyUntaggedVlan>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Native VLAN to be applied when using this VLAN policy.
-     */
     vlan?: pulumi.Input<string>;
 }

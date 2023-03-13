@@ -2,42 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Designate cache-service for wan-optimization and webcache.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WanoptCacheService("trname", {
- *     acceptableConnections: "any",
- *     collaboration: "disable",
- *     deviceId: "default_dev_id",
- *     preferScenario: "balance",
- * });
- * ```
- *
- * ## Import
- *
- * Wanopt CacheService can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wanoptCacheService:WanoptCacheService labelname WanoptCacheService
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wanoptCacheService:WanoptCacheService labelname WanoptCacheService
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WanoptCacheService extends pulumi.CustomResource {
     /**
      * Get an existing WanoptCacheService resource's state with the given name, ID, and optional extra
@@ -66,37 +34,13 @@ export class WanoptCacheService extends pulumi.CustomResource {
         return obj['__pulumiType'] === WanoptCacheService.__pulumiType;
     }
 
-    /**
-     * Set strategy when accepting cache collaboration connection. Valid values: `any`, `peers`.
-     */
     public readonly acceptableConnections!: pulumi.Output<string>;
-    /**
-     * Enable/disable cache-collaboration between cache-service clusters. Valid values: `enable`, `disable`.
-     */
     public readonly collaboration!: pulumi.Output<string>;
-    /**
-     * Device ID of this peer.
-     */
     public readonly deviceId!: pulumi.Output<string>;
-    /**
-     * Modify cache-service destination peer list. The structure of `dstPeer` block is documented below.
-     */
     public readonly dstPeers!: pulumi.Output<outputs.WanoptCacheServiceDstPeer[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Set the preferred cache behavior towards the balance between latency and hit-ratio. Valid values: `balance`, `prefer-speed`, `prefer-cache`.
-     */
     public readonly preferScenario!: pulumi.Output<string>;
-    /**
-     * Modify cache-service source peer list. The structure of `srcPeer` block is documented below.
-     */
     public readonly srcPeers!: pulumi.Output<outputs.WanoptCacheServiceSrcPeer[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -140,37 +84,13 @@ export class WanoptCacheService extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WanoptCacheService resources.
  */
 export interface WanoptCacheServiceState {
-    /**
-     * Set strategy when accepting cache collaboration connection. Valid values: `any`, `peers`.
-     */
     acceptableConnections?: pulumi.Input<string>;
-    /**
-     * Enable/disable cache-collaboration between cache-service clusters. Valid values: `enable`, `disable`.
-     */
     collaboration?: pulumi.Input<string>;
-    /**
-     * Device ID of this peer.
-     */
     deviceId?: pulumi.Input<string>;
-    /**
-     * Modify cache-service destination peer list. The structure of `dstPeer` block is documented below.
-     */
     dstPeers?: pulumi.Input<pulumi.Input<inputs.WanoptCacheServiceDstPeer>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Set the preferred cache behavior towards the balance between latency and hit-ratio. Valid values: `balance`, `prefer-speed`, `prefer-cache`.
-     */
     preferScenario?: pulumi.Input<string>;
-    /**
-     * Modify cache-service source peer list. The structure of `srcPeer` block is documented below.
-     */
     srcPeers?: pulumi.Input<pulumi.Input<inputs.WanoptCacheServiceSrcPeer>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -178,36 +98,12 @@ export interface WanoptCacheServiceState {
  * The set of arguments for constructing a WanoptCacheService resource.
  */
 export interface WanoptCacheServiceArgs {
-    /**
-     * Set strategy when accepting cache collaboration connection. Valid values: `any`, `peers`.
-     */
     acceptableConnections?: pulumi.Input<string>;
-    /**
-     * Enable/disable cache-collaboration between cache-service clusters. Valid values: `enable`, `disable`.
-     */
     collaboration?: pulumi.Input<string>;
-    /**
-     * Device ID of this peer.
-     */
     deviceId?: pulumi.Input<string>;
-    /**
-     * Modify cache-service destination peer list. The structure of `dstPeer` block is documented below.
-     */
     dstPeers?: pulumi.Input<pulumi.Input<inputs.WanoptCacheServiceDstPeer>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Set the preferred cache behavior towards the balance between latency and hit-ratio. Valid values: `balance`, `prefer-speed`, `prefer-cache`.
-     */
     preferScenario?: pulumi.Input<string>;
-    /**
-     * Modify cache-service source peer list. The structure of `srcPeer` block is documented below.
-     */
     srcPeers?: pulumi.Input<pulumi.Input<inputs.WanoptCacheServiceSrcPeer>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

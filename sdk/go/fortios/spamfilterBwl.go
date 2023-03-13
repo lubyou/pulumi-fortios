@@ -7,78 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure anti-spam black/white list. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSpamfilterBwl(ctx, "trname", &fortios.SpamfilterBwlArgs{
-// 			Comment: pulumi.String("test"),
-// 			Entries: SpamfilterBwlEntryArray{
-// 				&SpamfilterBwlEntryArgs{
-// 					Action:      pulumi.String("reject"),
-// 					AddrType:    pulumi.String("ipv4"),
-// 					Ip4Subnet:   pulumi.String("1.1.1.0 255.255.255.0"),
-// 					Ip6Subnet:   pulumi.String("::/128"),
-// 					PatternType: pulumi.String("wildcard"),
-// 					Status:      pulumi.String("enable"),
-// 					Type:        pulumi.String("ip"),
-// 				},
-// 			},
-// 			Fosid: pulumi.Int(1),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Spamfilter Bwl can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/spamfilterBwl:SpamfilterBwl labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/spamfilterBwl:SpamfilterBwl labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SpamfilterBwl struct {
 	pulumi.CustomResourceState
 
-	// Optional comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Anti-spam black/white list entries. The structure of `entries` block is documented below.
-	Entries SpamfilterBwlEntryArrayOutput `pulumi:"entries"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Name of table.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput        `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput        `pulumi:"dynamicSortSubtable"`
+	Entries             SpamfilterBwlEntryArrayOutput `pulumi:"entries"`
+	Fosid               pulumi.IntOutput              `pulumi:"fosid"`
+	Name                pulumi.StringOutput           `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput        `pulumi:"vdomparam"`
 }
 
 // NewSpamfilterBwl registers a new resource with the given unique name, arguments, and options.
@@ -114,33 +55,21 @@ func GetSpamfilterBwl(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SpamfilterBwl resources.
 type spamfilterBwlState struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Anti-spam black/white list entries. The structure of `entries` block is documented below.
-	Entries []SpamfilterBwlEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string              `pulumi:"comment"`
+	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
+	Entries             []SpamfilterBwlEntry `pulumi:"entries"`
+	Fosid               *int                 `pulumi:"fosid"`
+	Name                *string              `pulumi:"name"`
+	Vdomparam           *string              `pulumi:"vdomparam"`
 }
 
 type SpamfilterBwlState struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Anti-spam black/white list entries. The structure of `entries` block is documented below.
-	Entries SpamfilterBwlEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             SpamfilterBwlEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SpamfilterBwlState) ElementType() reflect.Type {
@@ -148,34 +77,22 @@ func (SpamfilterBwlState) ElementType() reflect.Type {
 }
 
 type spamfilterBwlArgs struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Anti-spam black/white list entries. The structure of `entries` block is documented below.
-	Entries []SpamfilterBwlEntry `pulumi:"entries"`
-	// ID.
-	Fosid int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string              `pulumi:"comment"`
+	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
+	Entries             []SpamfilterBwlEntry `pulumi:"entries"`
+	Fosid               int                  `pulumi:"fosid"`
+	Name                *string              `pulumi:"name"`
+	Vdomparam           *string              `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SpamfilterBwl resource.
 type SpamfilterBwlArgs struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Anti-spam black/white list entries. The structure of `entries` block is documented below.
-	Entries SpamfilterBwlEntryArrayInput
-	// ID.
-	Fosid pulumi.IntInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             SpamfilterBwlEntryArrayInput
+	Fosid               pulumi.IntInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SpamfilterBwlArgs) ElementType() reflect.Type {
@@ -204,7 +121,7 @@ func (i *SpamfilterBwl) ToSpamfilterBwlOutputWithContext(ctx context.Context) Sp
 // SpamfilterBwlArrayInput is an input type that accepts SpamfilterBwlArray and SpamfilterBwlArrayOutput values.
 // You can construct a concrete instance of `SpamfilterBwlArrayInput` via:
 //
-//          SpamfilterBwlArray{ SpamfilterBwlArgs{...} }
+//	SpamfilterBwlArray{ SpamfilterBwlArgs{...} }
 type SpamfilterBwlArrayInput interface {
 	pulumi.Input
 
@@ -229,7 +146,7 @@ func (i SpamfilterBwlArray) ToSpamfilterBwlArrayOutputWithContext(ctx context.Co
 // SpamfilterBwlMapInput is an input type that accepts SpamfilterBwlMap and SpamfilterBwlMapOutput values.
 // You can construct a concrete instance of `SpamfilterBwlMapInput` via:
 //
-//          SpamfilterBwlMap{ "key": SpamfilterBwlArgs{...} }
+//	SpamfilterBwlMap{ "key": SpamfilterBwlArgs{...} }
 type SpamfilterBwlMapInput interface {
 	pulumi.Input
 
@@ -263,6 +180,30 @@ func (o SpamfilterBwlOutput) ToSpamfilterBwlOutput() SpamfilterBwlOutput {
 
 func (o SpamfilterBwlOutput) ToSpamfilterBwlOutputWithContext(ctx context.Context) SpamfilterBwlOutput {
 	return o
+}
+
+func (o SpamfilterBwlOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpamfilterBwl) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o SpamfilterBwlOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpamfilterBwl) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SpamfilterBwlOutput) Entries() SpamfilterBwlEntryArrayOutput {
+	return o.ApplyT(func(v *SpamfilterBwl) SpamfilterBwlEntryArrayOutput { return v.Entries }).(SpamfilterBwlEntryArrayOutput)
+}
+
+func (o SpamfilterBwlOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SpamfilterBwl) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SpamfilterBwlOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SpamfilterBwl) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SpamfilterBwlOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpamfilterBwl) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SpamfilterBwlArrayOutput struct{ *pulumi.OutputState }

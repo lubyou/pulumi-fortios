@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios system proxyarp
- */
 export function getSystemProxyArp(args: GetSystemProxyArpArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemProxyArpResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemProxyArp:GetSystemProxyArp", {
         "fosid": args.fosid,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getSystemProxyArp(args: GetSystemProxyArpArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking GetSystemProxyArp.
  */
 export interface GetSystemProxyArpArgs {
-    /**
-     * Specify the fosid of the desired system proxyarp.
-     */
     fosid: number;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,43 +25,24 @@ export interface GetSystemProxyArpArgs {
  * A collection of values returned by GetSystemProxyArp.
  */
 export interface GetSystemProxyArpResult {
-    /**
-     * End IP of IP range to be proxied.
-     */
     readonly endIp: string;
-    /**
-     * Unique integer ID of the entry.
-     */
     readonly fosid: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Interface acting proxy-ARP.
-     */
     readonly interface: string;
-    /**
-     * IP address or start IP to be proxied.
-     */
     readonly ip: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemProxyArpOutput(args: GetSystemProxyArpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemProxyArpResult> {
-    return pulumi.output(args).apply(a => getSystemProxyArp(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemProxyArp(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemProxyArp.
  */
 export interface GetSystemProxyArpOutputArgs {
-    /**
-     * Specify the fosid of the desired system proxyarp.
-     */
     fosid: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

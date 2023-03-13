@@ -10,46 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure file-filter profiles. Applies to FortiOS Version `>= 6.4.1`.
-//
-// ## Import
-//
-// FileFilter Profile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/fileFilterProfile:FileFilterProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/fileFilterProfile:FileFilterProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FileFilterProfile struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable file-filter extended logging. Valid values: `disable`, `enable`.
-	ExtendedLog pulumi.StringOutput `pulumi:"extendedLog"`
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet pulumi.StringOutput `pulumi:"featureSet"`
-	// Enable/disable file-filter logging. Valid values: `disable`, `enable`.
-	Log pulumi.StringOutput `pulumi:"log"`
-	// File type name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Replacement message group
-	ReplacemsgGroup pulumi.StringOutput `pulumi:"replacemsgGroup"`
-	// File filter rules. The structure of `rules` block is documented below.
-	Rules FileFilterProfileRuleArrayOutput `pulumi:"rules"`
-	// Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
-	ScanArchiveContents pulumi.StringOutput `pulumi:"scanArchiveContents"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput           `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput           `pulumi:"dynamicSortSubtable"`
+	ExtendedLog         pulumi.StringOutput              `pulumi:"extendedLog"`
+	FeatureSet          pulumi.StringOutput              `pulumi:"featureSet"`
+	Log                 pulumi.StringOutput              `pulumi:"log"`
+	Name                pulumi.StringOutput              `pulumi:"name"`
+	ReplacemsgGroup     pulumi.StringOutput              `pulumi:"replacemsgGroup"`
+	Rules               FileFilterProfileRuleArrayOutput `pulumi:"rules"`
+	ScanArchiveContents pulumi.StringOutput              `pulumi:"scanArchiveContents"`
+	Vdomparam           pulumi.StringPtrOutput           `pulumi:"vdomparam"`
 }
 
 // NewFileFilterProfile registers a new resource with the given unique name, arguments, and options.
@@ -82,49 +55,29 @@ func GetFileFilterProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FileFilterProfile resources.
 type fileFilterProfileState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable file-filter extended logging. Valid values: `disable`, `enable`.
-	ExtendedLog *string `pulumi:"extendedLog"`
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet *string `pulumi:"featureSet"`
-	// Enable/disable file-filter logging. Valid values: `disable`, `enable`.
-	Log *string `pulumi:"log"`
-	// File type name.
-	Name *string `pulumi:"name"`
-	// Replacement message group
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// File filter rules. The structure of `rules` block is documented below.
-	Rules []FileFilterProfileRule `pulumi:"rules"`
-	// Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
-	ScanArchiveContents *string `pulumi:"scanArchiveContents"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                 `pulumi:"comment"`
+	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
+	ExtendedLog         *string                 `pulumi:"extendedLog"`
+	FeatureSet          *string                 `pulumi:"featureSet"`
+	Log                 *string                 `pulumi:"log"`
+	Name                *string                 `pulumi:"name"`
+	ReplacemsgGroup     *string                 `pulumi:"replacemsgGroup"`
+	Rules               []FileFilterProfileRule `pulumi:"rules"`
+	ScanArchiveContents *string                 `pulumi:"scanArchiveContents"`
+	Vdomparam           *string                 `pulumi:"vdomparam"`
 }
 
 type FileFilterProfileState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable file-filter extended logging. Valid values: `disable`, `enable`.
-	ExtendedLog pulumi.StringPtrInput
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet pulumi.StringPtrInput
-	// Enable/disable file-filter logging. Valid values: `disable`, `enable`.
-	Log pulumi.StringPtrInput
-	// File type name.
-	Name pulumi.StringPtrInput
-	// Replacement message group
-	ReplacemsgGroup pulumi.StringPtrInput
-	// File filter rules. The structure of `rules` block is documented below.
-	Rules FileFilterProfileRuleArrayInput
-	// Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+	ExtendedLog         pulumi.StringPtrInput
+	FeatureSet          pulumi.StringPtrInput
+	Log                 pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	ReplacemsgGroup     pulumi.StringPtrInput
+	Rules               FileFilterProfileRuleArrayInput
 	ScanArchiveContents pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FileFilterProfileState) ElementType() reflect.Type {
@@ -132,50 +85,30 @@ func (FileFilterProfileState) ElementType() reflect.Type {
 }
 
 type fileFilterProfileArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable file-filter extended logging. Valid values: `disable`, `enable`.
-	ExtendedLog *string `pulumi:"extendedLog"`
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet *string `pulumi:"featureSet"`
-	// Enable/disable file-filter logging. Valid values: `disable`, `enable`.
-	Log *string `pulumi:"log"`
-	// File type name.
-	Name *string `pulumi:"name"`
-	// Replacement message group
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// File filter rules. The structure of `rules` block is documented below.
-	Rules []FileFilterProfileRule `pulumi:"rules"`
-	// Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
-	ScanArchiveContents *string `pulumi:"scanArchiveContents"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                 `pulumi:"comment"`
+	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
+	ExtendedLog         *string                 `pulumi:"extendedLog"`
+	FeatureSet          *string                 `pulumi:"featureSet"`
+	Log                 *string                 `pulumi:"log"`
+	Name                *string                 `pulumi:"name"`
+	ReplacemsgGroup     *string                 `pulumi:"replacemsgGroup"`
+	Rules               []FileFilterProfileRule `pulumi:"rules"`
+	ScanArchiveContents *string                 `pulumi:"scanArchiveContents"`
+	Vdomparam           *string                 `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FileFilterProfile resource.
 type FileFilterProfileArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable file-filter extended logging. Valid values: `disable`, `enable`.
-	ExtendedLog pulumi.StringPtrInput
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet pulumi.StringPtrInput
-	// Enable/disable file-filter logging. Valid values: `disable`, `enable`.
-	Log pulumi.StringPtrInput
-	// File type name.
-	Name pulumi.StringPtrInput
-	// Replacement message group
-	ReplacemsgGroup pulumi.StringPtrInput
-	// File filter rules. The structure of `rules` block is documented below.
-	Rules FileFilterProfileRuleArrayInput
-	// Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+	ExtendedLog         pulumi.StringPtrInput
+	FeatureSet          pulumi.StringPtrInput
+	Log                 pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	ReplacemsgGroup     pulumi.StringPtrInput
+	Rules               FileFilterProfileRuleArrayInput
 	ScanArchiveContents pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FileFilterProfileArgs) ElementType() reflect.Type {
@@ -204,7 +137,7 @@ func (i *FileFilterProfile) ToFileFilterProfileOutputWithContext(ctx context.Con
 // FileFilterProfileArrayInput is an input type that accepts FileFilterProfileArray and FileFilterProfileArrayOutput values.
 // You can construct a concrete instance of `FileFilterProfileArrayInput` via:
 //
-//          FileFilterProfileArray{ FileFilterProfileArgs{...} }
+//	FileFilterProfileArray{ FileFilterProfileArgs{...} }
 type FileFilterProfileArrayInput interface {
 	pulumi.Input
 
@@ -229,7 +162,7 @@ func (i FileFilterProfileArray) ToFileFilterProfileArrayOutputWithContext(ctx co
 // FileFilterProfileMapInput is an input type that accepts FileFilterProfileMap and FileFilterProfileMapOutput values.
 // You can construct a concrete instance of `FileFilterProfileMapInput` via:
 //
-//          FileFilterProfileMap{ "key": FileFilterProfileArgs{...} }
+//	FileFilterProfileMap{ "key": FileFilterProfileArgs{...} }
 type FileFilterProfileMapInput interface {
 	pulumi.Input
 
@@ -263,6 +196,46 @@ func (o FileFilterProfileOutput) ToFileFilterProfileOutput() FileFilterProfileOu
 
 func (o FileFilterProfileOutput) ToFileFilterProfileOutputWithContext(ctx context.Context) FileFilterProfileOutput {
 	return o
+}
+
+func (o FileFilterProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FileFilterProfile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FileFilterProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FileFilterProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FileFilterProfileOutput) ExtendedLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *FileFilterProfile) pulumi.StringOutput { return v.ExtendedLog }).(pulumi.StringOutput)
+}
+
+func (o FileFilterProfileOutput) FeatureSet() pulumi.StringOutput {
+	return o.ApplyT(func(v *FileFilterProfile) pulumi.StringOutput { return v.FeatureSet }).(pulumi.StringOutput)
+}
+
+func (o FileFilterProfileOutput) Log() pulumi.StringOutput {
+	return o.ApplyT(func(v *FileFilterProfile) pulumi.StringOutput { return v.Log }).(pulumi.StringOutput)
+}
+
+func (o FileFilterProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FileFilterProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FileFilterProfileOutput) ReplacemsgGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *FileFilterProfile) pulumi.StringOutput { return v.ReplacemsgGroup }).(pulumi.StringOutput)
+}
+
+func (o FileFilterProfileOutput) Rules() FileFilterProfileRuleArrayOutput {
+	return o.ApplyT(func(v *FileFilterProfile) FileFilterProfileRuleArrayOutput { return v.Rules }).(FileFilterProfileRuleArrayOutput)
+}
+
+func (o FileFilterProfileOutput) ScanArchiveContents() pulumi.StringOutput {
+	return o.ApplyT(func(v *FileFilterProfile) pulumi.StringOutput { return v.ScanArchiveContents }).(pulumi.StringOutput)
+}
+
+func (o FileFilterProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FileFilterProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FileFilterProfileArrayOutput struct{ *pulumi.OutputState }

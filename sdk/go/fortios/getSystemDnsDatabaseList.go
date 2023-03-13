@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemDnsDatabase`.
 func GetSystemDnsDatabaseList(ctx *pulumi.Context, args *GetSystemDnsDatabaseListArgs, opts ...pulumi.InvokeOption) (*GetSystemDnsDatabaseListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemDnsDatabaseListResult
@@ -23,8 +22,7 @@ func GetSystemDnsDatabaseList(ctx *pulumi.Context, args *GetSystemDnsDatabaseLis
 
 // A collection of arguments for invoking GetSystemDnsDatabaseList.
 type GetSystemDnsDatabaseListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetSystemDnsDatabaseListArgs struct {
 type GetSystemDnsDatabaseListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `SystemDnsDatabase`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetSystemDnsDatabaseListOutput(ctx *pulumi.Context, args GetSystemDnsDataba
 
 // A collection of arguments for invoking GetSystemDnsDatabaseList.
 type GetSystemDnsDatabaseListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetSystemDnsDatabaseListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSystemDnsDatabaseListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `SystemDnsDatabase`.
 func (o GetSystemDnsDatabaseListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSystemDnsDatabaseListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

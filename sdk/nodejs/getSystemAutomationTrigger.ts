@@ -2,18 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios system automationtrigger
- */
 export function getSystemAutomationTrigger(args: GetSystemAutomationTriggerArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemAutomationTriggerResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemAutomationTrigger:GetSystemAutomationTrigger", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -24,13 +19,7 @@ export function getSystemAutomationTrigger(args: GetSystemAutomationTriggerArgs,
  * A collection of arguments for invoking GetSystemAutomationTrigger.
  */
 export interface GetSystemAutomationTriggerArgs {
-    /**
-     * Specify the name of the desired system automationtrigger.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -38,111 +27,43 @@ export interface GetSystemAutomationTriggerArgs {
  * A collection of values returned by GetSystemAutomationTrigger.
  */
 export interface GetSystemAutomationTriggerResult {
-    /**
-     * Description.
-     */
     readonly description: string;
-    /**
-     * Event type.
-     */
     readonly eventType: string;
-    /**
-     * Fabric connector event handler name.
-     */
     readonly fabricEventName: string;
-    /**
-     * Fabric connector event severity.
-     */
     readonly fabricEventSeverity: string;
-    /**
-     * FortiAnalyzer event handler name.
-     */
     readonly fazEventName: string;
-    /**
-     * FortiAnalyzer event severity.
-     */
     readonly fazEventSeverity: string;
-    /**
-     * FortiAnalyzer event tags.
-     */
     readonly fazEventTags: string;
-    /**
-     * Customized trigger field settings. The structure of `fields` block is documented below.
-     */
     readonly fields: outputs.GetSystemAutomationTriggerField[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * IOC threat level.
-     */
     readonly iocLevel: string;
-    /**
-     * License type.
-     */
     readonly licenseType: string;
-    /**
-     * Log ID to trigger event.
-     */
     readonly logid: number;
-    /**
-     * Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
-     */
     readonly logidBlocks: outputs.GetSystemAutomationTriggerLogidBlock[];
-    /**
-     * Name.
-     */
     readonly name: string;
-    /**
-     * Security Rating report.
-     */
     readonly reportType: string;
-    /**
-     * Fabric connector serial number.
-     */
     readonly serial: string;
-    /**
-     * Day within a month to trigger.
-     */
+    readonly triggerDatetime: string;
     readonly triggerDay: number;
-    /**
-     * Scheduled trigger frequency (default = daily).
-     */
     readonly triggerFrequency: string;
-    /**
-     * Hour of the day on which to trigger (0 - 23, default = 1).
-     */
     readonly triggerHour: number;
-    /**
-     * Minute of the hour on which to trigger (0 - 59, 60 to randomize).
-     */
     readonly triggerMinute: number;
-    /**
-     * Trigger type.
-     */
     readonly triggerType: string;
-    /**
-     * Day of week for trigger.
-     */
     readonly triggerWeekday: string;
     readonly vdomparam?: string;
+    readonly vdoms: outputs.GetSystemAutomationTriggerVdom[];
 }
-
 export function getSystemAutomationTriggerOutput(args: GetSystemAutomationTriggerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemAutomationTriggerResult> {
-    return pulumi.output(args).apply(a => getSystemAutomationTrigger(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemAutomationTrigger(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemAutomationTrigger.
  */
 export interface GetSystemAutomationTriggerOutputArgs {
-    /**
-     * Specify the name of the desired system automationtrigger.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

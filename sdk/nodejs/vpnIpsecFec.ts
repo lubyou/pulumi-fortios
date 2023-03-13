@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure Forward Error Correction (FEC) mapping profiles. Applies to FortiOS Version `>= 7.0.2`.
- *
- * ## Import
- *
- * VpnIpsec Fec can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnIpsecFec:VpnIpsecFec labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnIpsecFec:VpnIpsecFec labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VpnIpsecFec extends pulumi.CustomResource {
     /**
      * Get an existing VpnIpsecFec resource's state with the given name, ID, and optional extra
@@ -52,21 +34,9 @@ export class VpnIpsecFec extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpnIpsecFec.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * FEC redundancy mapping table. The structure of `mappings` block is documented below.
-     */
     public readonly mappings!: pulumi.Output<outputs.VpnIpsecFecMapping[] | undefined>;
-    /**
-     * Profile name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -102,21 +72,9 @@ export class VpnIpsecFec extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnIpsecFec resources.
  */
 export interface VpnIpsecFecState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * FEC redundancy mapping table. The structure of `mappings` block is documented below.
-     */
     mappings?: pulumi.Input<pulumi.Input<inputs.VpnIpsecFecMapping>[]>;
-    /**
-     * Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -124,20 +82,8 @@ export interface VpnIpsecFecState {
  * The set of arguments for constructing a VpnIpsecFec resource.
  */
 export interface VpnIpsecFecArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * FEC redundancy mapping table. The structure of `mappings` block is documented below.
-     */
     mappings?: pulumi.Input<pulumi.Input<inputs.VpnIpsecFecMapping>[]>;
-    /**
-     * Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Remote certificate as a PEM file.
- *
- * ## Import
- *
- * VpnCertificate Remote can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnCertificateRemote:VpnCertificateRemote labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnCertificateRemote:VpnCertificateRemote labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VpnCertificateRemote extends pulumi.CustomResource {
     /**
      * Get an existing VpnCertificateRemote resource's state with the given name, ID, and optional extra
@@ -51,25 +32,10 @@ export class VpnCertificateRemote extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpnCertificateRemote.__pulumiType;
     }
 
-    /**
-     * Name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Either the global or VDOM IP address range for the remote certificate. Valid values: `global`, `vdom`.
-     */
     public readonly range!: pulumi.Output<string>;
-    /**
-     * Remote certificate.
-     */
     public readonly remote!: pulumi.Output<string>;
-    /**
-     * Remote certificate source type.
-     */
     public readonly source!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -107,25 +73,10 @@ export class VpnCertificateRemote extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnCertificateRemote resources.
  */
 export interface VpnCertificateRemoteState {
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Either the global or VDOM IP address range for the remote certificate. Valid values: `global`, `vdom`.
-     */
     range?: pulumi.Input<string>;
-    /**
-     * Remote certificate.
-     */
     remote?: pulumi.Input<string>;
-    /**
-     * Remote certificate source type.
-     */
     source?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -133,24 +84,9 @@ export interface VpnCertificateRemoteState {
  * The set of arguments for constructing a VpnCertificateRemote resource.
  */
 export interface VpnCertificateRemoteArgs {
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Either the global or VDOM IP address range for the remote certificate. Valid values: `global`, `vdom`.
-     */
     range?: pulumi.Input<string>;
-    /**
-     * Remote certificate.
-     */
     remote?: pulumi.Input<string>;
-    /**
-     * Remote certificate source type.
-     */
     source?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

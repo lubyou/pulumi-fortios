@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios router authpath
 func LookupRouterAuthPath(ctx *pulumi.Context, args *LookupRouterAuthPathArgs, opts ...pulumi.InvokeOption) (*LookupRouterAuthPathResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterAuthPathResult
@@ -23,21 +22,16 @@ func LookupRouterAuthPath(ctx *pulumi.Context, args *LookupRouterAuthPathArgs, o
 
 // A collection of arguments for invoking GetRouterAuthPath.
 type LookupRouterAuthPathArgs struct {
-	// Specify the name of the desired router authpath.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetRouterAuthPath.
 type LookupRouterAuthPathResult struct {
-	// Outgoing interface.
-	Device string `pulumi:"device"`
-	// Gateway IP address.
+	Device  string `pulumi:"device"`
 	Gateway string `pulumi:"gateway"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Name of the entry.
+	Id        string  `pulumi:"id"`
 	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -57,9 +51,7 @@ func LookupRouterAuthPathOutput(ctx *pulumi.Context, args LookupRouterAuthPathOu
 
 // A collection of arguments for invoking GetRouterAuthPath.
 type LookupRouterAuthPathOutputArgs struct {
-	// Specify the name of the desired router authpath.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -82,12 +74,10 @@ func (o LookupRouterAuthPathResultOutput) ToLookupRouterAuthPathResultOutputWith
 	return o
 }
 
-// Outgoing interface.
 func (o LookupRouterAuthPathResultOutput) Device() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterAuthPathResult) string { return v.Device }).(pulumi.StringOutput)
 }
 
-// Gateway IP address.
 func (o LookupRouterAuthPathResultOutput) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterAuthPathResult) string { return v.Gateway }).(pulumi.StringOutput)
 }
@@ -97,7 +87,6 @@ func (o LookupRouterAuthPathResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterAuthPathResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Name of the entry.
 func (o LookupRouterAuthPathResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterAuthPathResult) string { return v.Name }).(pulumi.StringOutput)
 }

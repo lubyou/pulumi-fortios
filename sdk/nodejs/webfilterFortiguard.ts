@@ -4,46 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiGuard Web Filter service.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WebfilterFortiguard("trname", {
- *     cacheMemPercent: 2,
- *     cacheMode: "ttl",
- *     cachePrefixMatch: "enable",
- *     closePorts: "disable",
- *     ovrdAuthHttps: "enable",
- *     ovrdAuthPort: 8008,
- *     ovrdAuthPortHttp: 8008,
- *     ovrdAuthPortHttps: 8010,
- *     ovrdAuthPortHttpsFlow: 8015,
- *     ovrdAuthPortWarning: 8020,
- *     warnAuthHttps: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Webfilter Fortiguard can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/webfilterFortiguard:WebfilterFortiguard labelname WebfilterFortiguard
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/webfilterFortiguard:WebfilterFortiguard labelname WebfilterFortiguard
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WebfilterFortiguard extends pulumi.CustomResource {
     /**
      * Get an existing WebfilterFortiguard resource's state with the given name, ID, and optional extra
@@ -72,57 +32,18 @@ export class WebfilterFortiguard extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebfilterFortiguard.__pulumiType;
     }
 
-    /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%).
-     */
     public readonly cacheMemPercent!: pulumi.Output<number>;
-    /**
-     * Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
-     */
     public readonly cacheMode!: pulumi.Output<string>;
-    /**
-     * Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
-     */
     public readonly cachePrefixMatch!: pulumi.Output<string>;
-    /**
-     * Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
-     */
     public readonly closePorts!: pulumi.Output<string>;
-    /**
-     * Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
-     */
     public readonly ovrdAuthHttps!: pulumi.Output<string>;
-    /**
-     * Port to use for FortiGuard Web Filter override authentication.
-     */
     public readonly ovrdAuthPort!: pulumi.Output<number>;
-    /**
-     * Port to use for FortiGuard Web Filter HTTP override authentication
-     */
     public readonly ovrdAuthPortHttp!: pulumi.Output<number>;
-    /**
-     * Port to use for FortiGuard Web Filter HTTPS override authentication in proxy mode.
-     */
     public readonly ovrdAuthPortHttps!: pulumi.Output<number>;
-    /**
-     * Port to use for FortiGuard Web Filter HTTPS override authentication in flow mode.
-     */
     public readonly ovrdAuthPortHttpsFlow!: pulumi.Output<number>;
-    /**
-     * Port to use for FortiGuard Web Filter Warning override authentication.
-     */
     public readonly ovrdAuthPortWarning!: pulumi.Output<number>;
-    /**
-     * Limit size of URL request packets sent to FortiGuard server (0 for default).
-     */
     public readonly requestPacketSizeLimit!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable use of HTTPS for warning and authentication. Valid values: `enable`, `disable`.
-     */
     public readonly warnAuthHttps!: pulumi.Output<string>;
 
     /**
@@ -176,57 +97,18 @@ export class WebfilterFortiguard extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WebfilterFortiguard resources.
  */
 export interface WebfilterFortiguardState {
-    /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%).
-     */
     cacheMemPercent?: pulumi.Input<number>;
-    /**
-     * Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
-     */
     cacheMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
-     */
     cachePrefixMatch?: pulumi.Input<string>;
-    /**
-     * Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
-     */
     closePorts?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
-     */
     ovrdAuthHttps?: pulumi.Input<string>;
-    /**
-     * Port to use for FortiGuard Web Filter override authentication.
-     */
     ovrdAuthPort?: pulumi.Input<number>;
-    /**
-     * Port to use for FortiGuard Web Filter HTTP override authentication
-     */
     ovrdAuthPortHttp?: pulumi.Input<number>;
-    /**
-     * Port to use for FortiGuard Web Filter HTTPS override authentication in proxy mode.
-     */
     ovrdAuthPortHttps?: pulumi.Input<number>;
-    /**
-     * Port to use for FortiGuard Web Filter HTTPS override authentication in flow mode.
-     */
     ovrdAuthPortHttpsFlow?: pulumi.Input<number>;
-    /**
-     * Port to use for FortiGuard Web Filter Warning override authentication.
-     */
     ovrdAuthPortWarning?: pulumi.Input<number>;
-    /**
-     * Limit size of URL request packets sent to FortiGuard server (0 for default).
-     */
     requestPacketSizeLimit?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of HTTPS for warning and authentication. Valid values: `enable`, `disable`.
-     */
     warnAuthHttps?: pulumi.Input<string>;
 }
 
@@ -234,56 +116,17 @@ export interface WebfilterFortiguardState {
  * The set of arguments for constructing a WebfilterFortiguard resource.
  */
 export interface WebfilterFortiguardArgs {
-    /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%).
-     */
     cacheMemPercent?: pulumi.Input<number>;
-    /**
-     * Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
-     */
     cacheMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
-     */
     cachePrefixMatch?: pulumi.Input<string>;
-    /**
-     * Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
-     */
     closePorts?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
-     */
     ovrdAuthHttps?: pulumi.Input<string>;
-    /**
-     * Port to use for FortiGuard Web Filter override authentication.
-     */
     ovrdAuthPort?: pulumi.Input<number>;
-    /**
-     * Port to use for FortiGuard Web Filter HTTP override authentication
-     */
     ovrdAuthPortHttp?: pulumi.Input<number>;
-    /**
-     * Port to use for FortiGuard Web Filter HTTPS override authentication in proxy mode.
-     */
     ovrdAuthPortHttps?: pulumi.Input<number>;
-    /**
-     * Port to use for FortiGuard Web Filter HTTPS override authentication in flow mode.
-     */
     ovrdAuthPortHttpsFlow?: pulumi.Input<number>;
-    /**
-     * Port to use for FortiGuard Web Filter Warning override authentication.
-     */
     ovrdAuthPortWarning?: pulumi.Input<number>;
-    /**
-     * Limit size of URL request packets sent to FortiGuard server (0 for default).
-     */
     requestPacketSizeLimit?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of HTTPS for warning and authentication. Valid values: `enable`, `disable`.
-     */
     warnAuthHttps?: pulumi.Input<string>;
 }

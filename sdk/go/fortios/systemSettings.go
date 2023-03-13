@@ -10,319 +10,155 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure VDOM settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemSettings(ctx, "trname", &fortios.SystemSettingsArgs{
-// 			AllowLinkdownPath: pulumi.String("disable"),
-// 			GuiWebfilter:      pulumi.String("enable"),
-// 			Opmode:            pulumi.String("nat"),
-// 			SipSslPort:        pulumi.Int(5061),
-// 			Status:            pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Settings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSettings:SystemSettings labelname SystemSettings
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSettings:SystemSettings labelname SystemSettings
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemSettings struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable link down path. Valid values: `enable`, `disable`.
-	AllowLinkdownPath pulumi.StringOutput `pulumi:"allowLinkdownPath"`
-	// Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
-	AllowSubnetOverlap pulumi.StringOutput `pulumi:"allowSubnetOverlap"`
-	// Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
-	ApplicationBandwidthTracking pulumi.StringOutput `pulumi:"applicationBandwidthTracking"`
-	// Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
-	Asymroute pulumi.StringOutput `pulumi:"asymroute"`
-	// Enable/disable asymmetric IPv6 routing. Valid values: `enable`, `disable`.
-	Asymroute6 pulumi.StringOutput `pulumi:"asymroute6"`
-	// Enable/disable asymmetric ICMPv6 routing. Valid values: `enable`, `disable`.
-	Asymroute6Icmp pulumi.StringOutput `pulumi:"asymroute6Icmp"`
-	// Enable/disable ICMP asymmetric routing. Valid values: `enable`, `disable`.
-	AsymrouteIcmp pulumi.StringOutput `pulumi:"asymrouteIcmp"`
-	// Enable/disable auxiliary session. Valid values: `enable`, `disable`.
-	AuxiliarySession pulumi.StringOutput `pulumi:"auxiliarySession"`
-	// Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces. Valid values: `enable`, `disable`.
-	Bfd pulumi.StringOutput `pulumi:"bfd"`
-	// BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
-	BfdDesiredMinTx pulumi.IntOutput `pulumi:"bfdDesiredMinTx"`
-	// BFD detection multiplier (1 - 50, default = 3).
-	BfdDetectMult pulumi.IntOutput `pulumi:"bfdDetectMult"`
-	// Enable to not enforce verifying the source port of BFD Packets. Valid values: `enable`, `disable`.
-	BfdDontEnforceSrcPort pulumi.StringOutput `pulumi:"bfdDontEnforceSrcPort"`
-	// BFD required minimal receive interval (1 - 100000 ms, default = 50).
-	BfdRequiredMinRx pulumi.IntOutput `pulumi:"bfdRequiredMinRx"`
-	// Enable/disable blocking of land attacks. Valid values: `disable`, `enable`.
-	BlockLandAttack pulumi.StringOutput `pulumi:"blockLandAttack"`
-	// Enable/disable central NAT. Valid values: `enable`, `disable`.
-	CentralNat pulumi.StringOutput `pulumi:"centralNat"`
-	// VDOM comments.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Enable/disable PCI DSS compliance checking. Valid values: `enable`, `disable`.
-	ComplianceCheck pulumi.StringOutput `pulumi:"complianceCheck"`
-	// Consolidated firewall mode.
-	ConsolidatedFirewallMode pulumi.StringOutput `pulumi:"consolidatedFirewallMode"`
-	// Configure how the FortiGate handles VoIP traffic when a policy that accepts the traffic doesn't include a VoIP profile. Valid values: `proxy-based`, `kernel-helper-based`.
-	DefaultVoipAlgMode pulumi.StringOutput `pulumi:"defaultVoipAlgMode"`
-	// Enable/disable denying TCP by sending an ICMP communication prohibited packet. Valid values: `enable`, `disable`.
-	DenyTcpWithIcmp pulumi.StringOutput `pulumi:"denyTcpWithIcmp"`
-	// Interface to use for management access for NAT mode.
-	Device pulumi.StringOutput `pulumi:"device"`
-	// DHCPv6 server IPv6 address.
-	Dhcp6ServerIp pulumi.StringOutput `pulumi:"dhcp6ServerIp"`
-	// Enable/disable the DHCP Proxy. Valid values: `enable`, `disable`.
-	DhcpProxy pulumi.StringOutput `pulumi:"dhcpProxy"`
-	// Specify outgoing interface to reach server.
-	DhcpProxyInterface pulumi.StringOutput `pulumi:"dhcpProxyInterface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	DhcpProxyInterfaceSelectMethod pulumi.StringOutput `pulumi:"dhcpProxyInterfaceSelectMethod"`
-	// DHCP Server IPv4 address.
-	DhcpServerIp pulumi.StringOutput `pulumi:"dhcpServerIp"`
-	// Timeout for discovered devices (1 - 365 days, default = 28).
-	DiscoveredDeviceTimeout pulumi.IntOutput `pulumi:"discoveredDeviceTimeout"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
-	EcmpMaxPaths pulumi.IntOutput `pulumi:"ecmpMaxPaths"`
-	// Enable/disable using DNS to validate email addresses collected by a captive portal. Valid values: `disable`, `enable`.
-	EmailPortalCheckDns pulumi.StringOutput `pulumi:"emailPortalCheckDns"`
-	// Select how to manage sessions affected by firewall policy configuration changes. Valid values: `check-all`, `check-new`, `check-policy-option`.
-	FirewallSessionDirty pulumi.StringOutput `pulumi:"firewallSessionDirty"`
-	// Enable/disable checking for a matching policy each time hairpin traffic goes through the FortiGate. Valid values: `enable`, `disable`.
-	FwSessionHairpin pulumi.StringOutput `pulumi:"fwSessionHairpin"`
-	// Transparent mode IPv4 default gateway IP address.
-	Gateway pulumi.StringOutput `pulumi:"gateway"`
-	// Transparent mode IPv4 default gateway IP address.
-	Gateway6 pulumi.StringOutput `pulumi:"gateway6"`
-	// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
-	GuiAdvancedPolicy pulumi.StringOutput `pulumi:"guiAdvancedPolicy"`
-	// Enable/disable the requirement for policy naming on the GUI. Valid values: `enable`, `disable`.
-	GuiAllowUnnamedPolicy pulumi.StringOutput `pulumi:"guiAllowUnnamedPolicy"`
-	// Enable/disable AntiVirus on the GUI. Valid values: `enable`, `disable`.
-	GuiAntivirus pulumi.StringOutput `pulumi:"guiAntivirus"`
-	// Enable/disable FortiAP profiles on the GUI. Valid values: `enable`, `disable`.
-	GuiApProfile pulumi.StringOutput `pulumi:"guiApProfile"`
-	// Enable/disable application control on the GUI. Valid values: `enable`, `disable`.
-	GuiApplicationControl pulumi.StringOutput `pulumi:"guiApplicationControl"`
-	// Default columns to display for policy lists on GUI. The structure of `guiDefaultPolicyColumns` block is documented below.
-	GuiDefaultPolicyColumns SystemSettingsGuiDefaultPolicyColumnArrayOutput `pulumi:"guiDefaultPolicyColumns"`
-	// Enable/disable advanced DHCP options on the GUI. Valid values: `enable`, `disable`.
-	GuiDhcpAdvanced pulumi.StringOutput `pulumi:"guiDhcpAdvanced"`
-	// Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
-	GuiDlp pulumi.StringOutput `pulumi:"guiDlp"`
-	// Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
-	GuiDnsDatabase pulumi.StringOutput `pulumi:"guiDnsDatabase"`
-	// Enable/disable DNS Filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiDnsfilter pulumi.StringOutput `pulumi:"guiDnsfilter"`
-	// Enable/disable Domain and IP Reputation on the GUI. Valid values: `enable`, `disable`.
-	GuiDomainIpReputation pulumi.StringOutput `pulumi:"guiDomainIpReputation"`
-	// Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
-	GuiDosPolicy pulumi.StringOutput `pulumi:"guiDosPolicy"`
-	// Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
-	GuiDynamicProfileDisplay pulumi.StringOutput `pulumi:"guiDynamicProfileDisplay"`
-	// Enable/disable dynamic routing on the GUI. Valid values: `enable`, `disable`.
-	GuiDynamicRouting pulumi.StringOutput `pulumi:"guiDynamicRouting"`
-	// Enable/disable email collection on the GUI. Valid values: `enable`, `disable`.
-	GuiEmailCollection pulumi.StringOutput `pulumi:"guiEmailCollection"`
-	// Enable/disable endpoint control on the GUI. Valid values: `enable`, `disable`.
-	GuiEndpointControl pulumi.StringOutput `pulumi:"guiEndpointControl"`
-	// Enable/disable advanced endpoint control options on the GUI. Valid values: `enable`, `disable`.
-	GuiEndpointControlAdvanced pulumi.StringOutput `pulumi:"guiEndpointControlAdvanced"`
-	// Enable/disable the explicit proxy on the GUI. Valid values: `enable`, `disable`.
-	GuiExplicitProxy pulumi.StringOutput `pulumi:"guiExplicitProxy"`
-	// Enable/disable File-filter on the GUI. Valid values: `enable`, `disable`.
-	GuiFileFilter pulumi.StringOutput `pulumi:"guiFileFilter"`
-	// Enable/disable FortiAP split tunneling on the GUI. Valid values: `enable`, `disable`.
-	GuiFortiapSplitTunneling pulumi.StringOutput `pulumi:"guiFortiapSplitTunneling"`
-	// Enable/disable FortiExtender on the GUI. Valid values: `enable`, `disable`.
-	GuiFortiextenderController pulumi.StringOutput `pulumi:"guiFortiextenderController"`
-	// Enable/disable ICAP on the GUI. Valid values: `enable`, `disable`.
-	GuiIcap pulumi.StringOutput `pulumi:"guiIcap"`
-	// Enable/disable implicit firewall policies on the GUI. Valid values: `enable`, `disable`.
-	GuiImplicitPolicy pulumi.StringOutput `pulumi:"guiImplicitPolicy"`
-	// Enable/disable IPS on the GUI. Valid values: `enable`, `disable`.
-	GuiIps pulumi.StringOutput `pulumi:"guiIps"`
-	// Enable/disable server load balancing on the GUI. Valid values: `enable`, `disable`.
-	GuiLoadBalance pulumi.StringOutput `pulumi:"guiLoadBalance"`
-	// Enable/disable Local-In policies on the GUI. Valid values: `enable`, `disable`.
-	GuiLocalInPolicy pulumi.StringOutput `pulumi:"guiLocalInPolicy"`
-	// Enable/disable local reports on the GUI. Valid values: `enable`, `disable`.
-	GuiLocalReports pulumi.StringOutput `pulumi:"guiLocalReports"`
-	// Enable/disable multicast firewall policies on the GUI. Valid values: `enable`, `disable`.
-	GuiMulticastPolicy pulumi.StringOutput `pulumi:"guiMulticastPolicy"`
-	// Enable/disable adding multiple interfaces to a policy on the GUI. Valid values: `enable`, `disable`.
-	GuiMultipleInterfacePolicy pulumi.StringOutput `pulumi:"guiMultipleInterfacePolicy"`
-	// Enable/disable multiple UTM profiles on the GUI. Valid values: `enable`, `disable`.
-	GuiMultipleUtmProfiles pulumi.StringOutput `pulumi:"guiMultipleUtmProfiles"`
-	// Enable/disable NAT46 and NAT64 settings on the GUI. Valid values: `enable`, `disable`.
-	GuiNat4664 pulumi.StringOutput `pulumi:"guiNat4664"`
-	// Enable/disable object colors on the GUI. Valid values: `enable`, `disable`.
-	GuiObjectColors pulumi.StringOutput `pulumi:"guiObjectColors"`
-	// Enable/disable policy disclaimer on the GUI. Valid values: `enable`, `disable`.
-	GuiPerPolicyDisclaimer pulumi.StringOutput `pulumi:"guiPerPolicyDisclaimer"`
-	// Enable/disable policy-based IPsec VPN on the GUI. Valid values: `enable`, `disable`.
-	GuiPolicyBasedIpsec pulumi.StringOutput `pulumi:"guiPolicyBasedIpsec"`
-	// Enable/disable policy disclaimer on the GUI. Valid values: `enable`, `disable`.
-	GuiPolicyDisclaimer pulumi.StringOutput `pulumi:"guiPolicyDisclaimer"`
-	// Enable/disable firewall policy learning mode on the GUI. Valid values: `enable`, `disable`.
-	GuiPolicyLearning pulumi.StringOutput `pulumi:"guiPolicyLearning"`
-	// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
-	GuiReplacementMessageGroups pulumi.StringOutput `pulumi:"guiReplacementMessageGroups"`
-	// Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
-	GuiSecurityProfileGroup pulumi.StringOutput `pulumi:"guiSecurityProfileGroup"`
-	// Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
-	GuiSpamfilter pulumi.StringOutput `pulumi:"guiSpamfilter"`
-	// Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
-	GuiSslvpnPersonalBookmarks pulumi.StringOutput `pulumi:"guiSslvpnPersonalBookmarks"`
-	// Enable/disable SSL-VPN realms on the GUI. Valid values: `enable`, `disable`.
-	GuiSslvpnRealms pulumi.StringOutput `pulumi:"guiSslvpnRealms"`
-	// Enable/disable the switch controller on the GUI. Valid values: `enable`, `disable`.
-	GuiSwitchController pulumi.StringOutput `pulumi:"guiSwitchController"`
-	// Enable/disable threat weight on the GUI. Valid values: `enable`, `disable`.
-	GuiThreatWeight pulumi.StringOutput `pulumi:"guiThreatWeight"`
-	// Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
-	GuiTrafficShaping pulumi.StringOutput `pulumi:"guiTrafficShaping"`
-	// Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiVideofilter pulumi.StringOutput `pulumi:"guiVideofilter"`
-	// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
-	GuiVoipProfile pulumi.StringOutput `pulumi:"guiVoipProfile"`
-	// Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
-	GuiVpn pulumi.StringOutput `pulumi:"guiVpn"`
-	// Enable/disable Web Application Firewall on the GUI. Valid values: `enable`, `disable`.
-	GuiWafProfile pulumi.StringOutput `pulumi:"guiWafProfile"`
-	// Enable/disable SD-WAN on the GUI. Valid values: `enable`, `disable`.
-	GuiWanLoadBalancing pulumi.StringOutput `pulumi:"guiWanLoadBalancing"`
-	// Enable/disable WAN Optimization and Web Caching on the GUI. Valid values: `enable`, `disable`.
-	GuiWanoptCache pulumi.StringOutput `pulumi:"guiWanoptCache"`
-	// Enable/disable Web filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiWebfilter pulumi.StringOutput `pulumi:"guiWebfilter"`
-	// Enable/disable advanced web filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiWebfilterAdvanced pulumi.StringOutput `pulumi:"guiWebfilterAdvanced"`
-	// Enable/disable the wireless controller on the GUI. Valid values: `enable`, `disable`.
-	GuiWirelessController pulumi.StringOutput `pulumi:"guiWirelessController"`
-	// Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
-	GuiZtna pulumi.StringOutput `pulumi:"guiZtna"`
-	// Enable/disable H323 direct model. Valid values: `disable`, `enable`.
-	H323DirectModel pulumi.StringOutput `pulumi:"h323DirectModel"`
-	// Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
-	HttpExternalDest pulumi.StringOutput `pulumi:"httpExternalDest"`
-	// Configure IKE ASN.1 Distinguished Name format conventions. Valid values: `with-space`, `no-space`.
-	IkeDnFormat pulumi.StringOutput `pulumi:"ikeDnFormat"`
-	// UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
-	IkeNattPort pulumi.IntOutput `pulumi:"ikeNattPort"`
-	// Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
-	IkePolicyRoute pulumi.StringOutput `pulumi:"ikePolicyRoute"`
-	// UDP port for IKE/IPsec traffic (default 500).
-	IkePort pulumi.IntOutput `pulumi:"ikePort"`
-	// Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
-	IkeQuickCrashDetect pulumi.StringOutput `pulumi:"ikeQuickCrashDetect"`
-	// Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
-	IkeSessionResume pulumi.StringOutput `pulumi:"ikeSessionResume"`
-	// Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
-	ImplicitAllowDns pulumi.StringOutput `pulumi:"implicitAllowDns"`
-	// Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
-	InspectionMode pulumi.StringOutput `pulumi:"inspectionMode"`
-	// IP address and netmask.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// IPv6 address prefix for NAT mode.
-	Ip6 pulumi.StringOutput `pulumi:"ip6"`
-	// Enable/disable link down access traffic. Valid values: `enable`, `disable`.
-	LinkDownAccess pulumi.StringOutput `pulumi:"linkDownAccess"`
-	// Enable/disable Link Layer Discovery Protocol (LLDP) reception for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
-	LldpReception pulumi.StringOutput `pulumi:"lldpReception"`
-	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
-	LldpTransmission pulumi.StringOutput `pulumi:"lldpTransmission"`
-	// Local location ID in the form of an IPv4 address.
-	LocationId pulumi.StringOutput `pulumi:"locationId"`
-	// Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
-	MacTtl pulumi.IntOutput `pulumi:"macTtl"`
-	// Transparent mode IPv4 management IP address and netmask.
-	Manageip pulumi.StringOutput `pulumi:"manageip"`
-	// Transparent mode IPv6 management IP address and netmask.
-	Manageip6 pulumi.StringOutput `pulumi:"manageip6"`
-	// Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
-	MulticastForward pulumi.StringOutput `pulumi:"multicastForward"`
-	// Enable/disable allowing multicast traffic through the FortiGate without a policy check. Valid values: `enable`, `disable`.
-	MulticastSkipPolicy pulumi.StringOutput `pulumi:"multicastSkipPolicy"`
-	// Enable/disable preventing the FortiGate from changing the TTL for forwarded multicast packets. Valid values: `enable`, `disable`.
-	MulticastTtlNotchange pulumi.StringOutput `pulumi:"multicastTtlNotchange"`
-	// Next Generation Firewall (NGFW) mode. Valid values: `profile-based`, `policy-based`.
-	NgfwMode pulumi.StringOutput `pulumi:"ngfwMode"`
-	// Firewall operation mode (NAT or Transparent). Valid values: `nat`, `transparent`.
-	Opmode pulumi.StringOutput `pulumi:"opmode"`
-	// Enable/disable action to take on PRP trailer. Valid values: `enable`, `disable`.
-	PrpTrailerAction pulumi.StringOutput `pulumi:"prpTrailerAction"`
-	// TCP port the SCCP proxy monitors for SCCP traffic (0 - 65535, default = 2000).
-	SccpPort pulumi.IntOutput `pulumi:"sccpPort"`
-	// Enable/disable SCTP session creation without SCTP INIT. Valid values: `enable`, `disable`.
-	SctpSessionWithoutInit pulumi.StringOutput `pulumi:"sctpSessionWithoutInit"`
-	// Enable/disable including denied session in the session table. Valid values: `enable`, `disable`.
-	SesDeniedTraffic pulumi.StringOutput `pulumi:"sesDeniedTraffic"`
-	// Enable/disable the SIP kernel session helper to create an expectation for port 5060. Valid values: `enable`, `disable`.
-	SipExpectation pulumi.StringOutput `pulumi:"sipExpectation"`
-	// Enable/disable the SIP session helper to process SIP sessions unless SIP sessions are accepted by the SIP application layer gateway (ALG). Valid values: `enable`, `disable`.
-	SipHelper pulumi.StringOutput `pulumi:"sipHelper"`
-	// Enable/disable recording the original SIP source IP address when NAT is used. Valid values: `enable`, `disable`.
-	SipNatTrace pulumi.StringOutput `pulumi:"sipNatTrace"`
-	// TCP port the SIP proxy monitors for SIP SSL/TLS traffic (0 - 65535, default = 5061).
-	SipSslPort pulumi.IntOutput `pulumi:"sipSslPort"`
-	// TCP port the SIP proxy monitors for SIP traffic (0 - 65535, default = 5060).
-	SipTcpPort pulumi.IntOutput `pulumi:"sipTcpPort"`
-	// UDP port the SIP proxy monitors for SIP traffic (0 - 65535, default = 5060).
-	SipUdpPort pulumi.IntOutput `pulumi:"sipUdpPort"`
-	// Enable/disable source NAT (SNAT) for hairpin traffic. Valid values: `enable`, `disable`.
-	SnatHairpinTraffic pulumi.StringOutput `pulumi:"snatHairpinTraffic"`
-	// Profile for SSL/SSH inspection.
-	SslSshProfile pulumi.StringOutput `pulumi:"sslSshProfile"`
-	// Enable/disable this VDOM. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Enable/disable strict source verification. Valid values: `enable`, `disable`.
-	StrictSrcCheck pulumi.StringOutput `pulumi:"strictSrcCheck"`
-	// Enable/disable allowing TCP session without SYN flags. Valid values: `enable`, `disable`.
-	TcpSessionWithoutSyn pulumi.StringOutput `pulumi:"tcpSessionWithoutSyn"`
-	// Enable/disable converting antispam tags to UTF-8 for better non-ASCII character support. Valid values: `enable`, `disable`.
-	Utf8SpamTagging pulumi.StringOutput `pulumi:"utf8SpamTagging"`
-	// IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`.
-	V4EcmpMode pulumi.StringOutput `pulumi:"v4EcmpMode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable periodic VPN log statistics for one or more types of VPN. Separate names with a space. Valid values: `ipsec`, `pptp`, `l2tp`, `ssl`.
-	VpnStatsLog pulumi.StringOutput `pulumi:"vpnStatsLog"`
-	// Period to send VPN log statistics (0 or 60 - 86400 sec).
-	VpnStatsPeriod pulumi.IntOutput `pulumi:"vpnStatsPeriod"`
-	// Enable/disable WCCP cache engine. Valid values: `enable`, `disable`.
-	WccpCacheEngine pulumi.StringOutput `pulumi:"wccpCacheEngine"`
+	AllowLinkdownPath               pulumi.StringOutput                             `pulumi:"allowLinkdownPath"`
+	AllowSubnetOverlap              pulumi.StringOutput                             `pulumi:"allowSubnetOverlap"`
+	ApplicationBandwidthTracking    pulumi.StringOutput                             `pulumi:"applicationBandwidthTracking"`
+	Asymroute                       pulumi.StringOutput                             `pulumi:"asymroute"`
+	Asymroute6                      pulumi.StringOutput                             `pulumi:"asymroute6"`
+	Asymroute6Icmp                  pulumi.StringOutput                             `pulumi:"asymroute6Icmp"`
+	AsymrouteIcmp                   pulumi.StringOutput                             `pulumi:"asymrouteIcmp"`
+	AuxiliarySession                pulumi.StringOutput                             `pulumi:"auxiliarySession"`
+	Bfd                             pulumi.StringOutput                             `pulumi:"bfd"`
+	BfdDesiredMinTx                 pulumi.IntOutput                                `pulumi:"bfdDesiredMinTx"`
+	BfdDetectMult                   pulumi.IntOutput                                `pulumi:"bfdDetectMult"`
+	BfdDontEnforceSrcPort           pulumi.StringOutput                             `pulumi:"bfdDontEnforceSrcPort"`
+	BfdRequiredMinRx                pulumi.IntOutput                                `pulumi:"bfdRequiredMinRx"`
+	BlockLandAttack                 pulumi.StringOutput                             `pulumi:"blockLandAttack"`
+	CentralNat                      pulumi.StringOutput                             `pulumi:"centralNat"`
+	Comments                        pulumi.StringPtrOutput                          `pulumi:"comments"`
+	ComplianceCheck                 pulumi.StringOutput                             `pulumi:"complianceCheck"`
+	ConsolidatedFirewallMode        pulumi.StringOutput                             `pulumi:"consolidatedFirewallMode"`
+	DefaultAppPortAsService         pulumi.StringOutput                             `pulumi:"defaultAppPortAsService"`
+	DefaultPolicyExpiryDays         pulumi.IntOutput                                `pulumi:"defaultPolicyExpiryDays"`
+	DefaultVoipAlgMode              pulumi.StringOutput                             `pulumi:"defaultVoipAlgMode"`
+	DenyTcpWithIcmp                 pulumi.StringOutput                             `pulumi:"denyTcpWithIcmp"`
+	Device                          pulumi.StringOutput                             `pulumi:"device"`
+	Dhcp6ServerIp                   pulumi.StringOutput                             `pulumi:"dhcp6ServerIp"`
+	DhcpProxy                       pulumi.StringOutput                             `pulumi:"dhcpProxy"`
+	DhcpProxyInterface              pulumi.StringOutput                             `pulumi:"dhcpProxyInterface"`
+	DhcpProxyInterfaceSelectMethod  pulumi.StringOutput                             `pulumi:"dhcpProxyInterfaceSelectMethod"`
+	DhcpServerIp                    pulumi.StringOutput                             `pulumi:"dhcpServerIp"`
+	DiscoveredDeviceTimeout         pulumi.IntOutput                                `pulumi:"discoveredDeviceTimeout"`
+	DynAddrSessionCheck             pulumi.StringOutput                             `pulumi:"dynAddrSessionCheck"`
+	DynamicSortSubtable             pulumi.StringPtrOutput                          `pulumi:"dynamicSortSubtable"`
+	EcmpMaxPaths                    pulumi.IntOutput                                `pulumi:"ecmpMaxPaths"`
+	EmailPortalCheckDns             pulumi.StringOutput                             `pulumi:"emailPortalCheckDns"`
+	ExtResourceSessionCheck         pulumi.StringOutput                             `pulumi:"extResourceSessionCheck"`
+	FirewallSessionDirty            pulumi.StringOutput                             `pulumi:"firewallSessionDirty"`
+	FqdnSessionCheck                pulumi.StringOutput                             `pulumi:"fqdnSessionCheck"`
+	FwSessionHairpin                pulumi.StringOutput                             `pulumi:"fwSessionHairpin"`
+	Gateway                         pulumi.StringOutput                             `pulumi:"gateway"`
+	Gateway6                        pulumi.StringOutput                             `pulumi:"gateway6"`
+	GuiAdvancedPolicy               pulumi.StringOutput                             `pulumi:"guiAdvancedPolicy"`
+	GuiAdvancedWirelessFeatures     pulumi.StringOutput                             `pulumi:"guiAdvancedWirelessFeatures"`
+	GuiAllowUnnamedPolicy           pulumi.StringOutput                             `pulumi:"guiAllowUnnamedPolicy"`
+	GuiAntivirus                    pulumi.StringOutput                             `pulumi:"guiAntivirus"`
+	GuiApProfile                    pulumi.StringOutput                             `pulumi:"guiApProfile"`
+	GuiApplicationControl           pulumi.StringOutput                             `pulumi:"guiApplicationControl"`
+	GuiDefaultPolicyColumns         SystemSettingsGuiDefaultPolicyColumnArrayOutput `pulumi:"guiDefaultPolicyColumns"`
+	GuiDhcpAdvanced                 pulumi.StringOutput                             `pulumi:"guiDhcpAdvanced"`
+	GuiDlp                          pulumi.StringOutput                             `pulumi:"guiDlp"`
+	GuiDnsDatabase                  pulumi.StringOutput                             `pulumi:"guiDnsDatabase"`
+	GuiDnsfilter                    pulumi.StringOutput                             `pulumi:"guiDnsfilter"`
+	GuiDomainIpReputation           pulumi.StringOutput                             `pulumi:"guiDomainIpReputation"`
+	GuiDosPolicy                    pulumi.StringOutput                             `pulumi:"guiDosPolicy"`
+	GuiDynamicProfileDisplay        pulumi.StringOutput                             `pulumi:"guiDynamicProfileDisplay"`
+	GuiDynamicRouting               pulumi.StringOutput                             `pulumi:"guiDynamicRouting"`
+	GuiEmailCollection              pulumi.StringOutput                             `pulumi:"guiEmailCollection"`
+	GuiEndpointControl              pulumi.StringOutput                             `pulumi:"guiEndpointControl"`
+	GuiEndpointControlAdvanced      pulumi.StringOutput                             `pulumi:"guiEndpointControlAdvanced"`
+	GuiEnforceChangeSummary         pulumi.StringOutput                             `pulumi:"guiEnforceChangeSummary"`
+	GuiExplicitProxy                pulumi.StringOutput                             `pulumi:"guiExplicitProxy"`
+	GuiFileFilter                   pulumi.StringOutput                             `pulumi:"guiFileFilter"`
+	GuiFortiapSplitTunneling        pulumi.StringOutput                             `pulumi:"guiFortiapSplitTunneling"`
+	GuiFortiextenderController      pulumi.StringOutput                             `pulumi:"guiFortiextenderController"`
+	GuiIcap                         pulumi.StringOutput                             `pulumi:"guiIcap"`
+	GuiImplicitPolicy               pulumi.StringOutput                             `pulumi:"guiImplicitPolicy"`
+	GuiIps                          pulumi.StringOutput                             `pulumi:"guiIps"`
+	GuiLoadBalance                  pulumi.StringOutput                             `pulumi:"guiLoadBalance"`
+	GuiLocalInPolicy                pulumi.StringOutput                             `pulumi:"guiLocalInPolicy"`
+	GuiLocalReports                 pulumi.StringOutput                             `pulumi:"guiLocalReports"`
+	GuiMulticastPolicy              pulumi.StringOutput                             `pulumi:"guiMulticastPolicy"`
+	GuiMultipleInterfacePolicy      pulumi.StringOutput                             `pulumi:"guiMultipleInterfacePolicy"`
+	GuiMultipleUtmProfiles          pulumi.StringOutput                             `pulumi:"guiMultipleUtmProfiles"`
+	GuiNat4664                      pulumi.StringOutput                             `pulumi:"guiNat4664"`
+	GuiObjectColors                 pulumi.StringOutput                             `pulumi:"guiObjectColors"`
+	GuiOt                           pulumi.StringOutput                             `pulumi:"guiOt"`
+	GuiPerPolicyDisclaimer          pulumi.StringOutput                             `pulumi:"guiPerPolicyDisclaimer"`
+	GuiPolicyBasedIpsec             pulumi.StringOutput                             `pulumi:"guiPolicyBasedIpsec"`
+	GuiPolicyDisclaimer             pulumi.StringOutput                             `pulumi:"guiPolicyDisclaimer"`
+	GuiPolicyLearning               pulumi.StringOutput                             `pulumi:"guiPolicyLearning"`
+	GuiReplacementMessageGroups     pulumi.StringOutput                             `pulumi:"guiReplacementMessageGroups"`
+	GuiSecurityProfileGroup         pulumi.StringOutput                             `pulumi:"guiSecurityProfileGroup"`
+	GuiSpamfilter                   pulumi.StringOutput                             `pulumi:"guiSpamfilter"`
+	GuiSslvpnPersonalBookmarks      pulumi.StringOutput                             `pulumi:"guiSslvpnPersonalBookmarks"`
+	GuiSslvpnRealms                 pulumi.StringOutput                             `pulumi:"guiSslvpnRealms"`
+	GuiSwitchController             pulumi.StringOutput                             `pulumi:"guiSwitchController"`
+	GuiThreatWeight                 pulumi.StringOutput                             `pulumi:"guiThreatWeight"`
+	GuiTrafficShaping               pulumi.StringOutput                             `pulumi:"guiTrafficShaping"`
+	GuiVideofilter                  pulumi.StringOutput                             `pulumi:"guiVideofilter"`
+	GuiVoipProfile                  pulumi.StringOutput                             `pulumi:"guiVoipProfile"`
+	GuiVpn                          pulumi.StringOutput                             `pulumi:"guiVpn"`
+	GuiWafProfile                   pulumi.StringOutput                             `pulumi:"guiWafProfile"`
+	GuiWanLoadBalancing             pulumi.StringOutput                             `pulumi:"guiWanLoadBalancing"`
+	GuiWanoptCache                  pulumi.StringOutput                             `pulumi:"guiWanoptCache"`
+	GuiWebfilter                    pulumi.StringOutput                             `pulumi:"guiWebfilter"`
+	GuiWebfilterAdvanced            pulumi.StringOutput                             `pulumi:"guiWebfilterAdvanced"`
+	GuiWirelessController           pulumi.StringOutput                             `pulumi:"guiWirelessController"`
+	GuiZtna                         pulumi.StringOutput                             `pulumi:"guiZtna"`
+	H323DirectModel                 pulumi.StringOutput                             `pulumi:"h323DirectModel"`
+	HttpExternalDest                pulumi.StringOutput                             `pulumi:"httpExternalDest"`
+	IkeDnFormat                     pulumi.StringOutput                             `pulumi:"ikeDnFormat"`
+	IkeNattPort                     pulumi.IntOutput                                `pulumi:"ikeNattPort"`
+	IkePolicyRoute                  pulumi.StringOutput                             `pulumi:"ikePolicyRoute"`
+	IkePort                         pulumi.IntOutput                                `pulumi:"ikePort"`
+	IkeQuickCrashDetect             pulumi.StringOutput                             `pulumi:"ikeQuickCrashDetect"`
+	IkeSessionResume                pulumi.StringOutput                             `pulumi:"ikeSessionResume"`
+	ImplicitAllowDns                pulumi.StringOutput                             `pulumi:"implicitAllowDns"`
+	InspectionMode                  pulumi.StringOutput                             `pulumi:"inspectionMode"`
+	Ip                              pulumi.StringOutput                             `pulumi:"ip"`
+	Ip6                             pulumi.StringOutput                             `pulumi:"ip6"`
+	LanExtensionControllerAddr      pulumi.StringOutput                             `pulumi:"lanExtensionControllerAddr"`
+	LinkDownAccess                  pulumi.StringOutput                             `pulumi:"linkDownAccess"`
+	LldpReception                   pulumi.StringOutput                             `pulumi:"lldpReception"`
+	LldpTransmission                pulumi.StringOutput                             `pulumi:"lldpTransmission"`
+	LocationId                      pulumi.StringOutput                             `pulumi:"locationId"`
+	MacTtl                          pulumi.IntOutput                                `pulumi:"macTtl"`
+	Manageip                        pulumi.StringOutput                             `pulumi:"manageip"`
+	Manageip6                       pulumi.StringOutput                             `pulumi:"manageip6"`
+	MulticastForward                pulumi.StringOutput                             `pulumi:"multicastForward"`
+	MulticastSkipPolicy             pulumi.StringOutput                             `pulumi:"multicastSkipPolicy"`
+	MulticastTtlNotchange           pulumi.StringOutput                             `pulumi:"multicastTtlNotchange"`
+	Nat46ForceIpv4PacketForwarding  pulumi.StringOutput                             `pulumi:"nat46ForceIpv4PacketForwarding"`
+	Nat46GenerateIpv6FragmentHeader pulumi.StringOutput                             `pulumi:"nat46GenerateIpv6FragmentHeader"`
+	Nat64ForceIpv6PacketForwarding  pulumi.StringOutput                             `pulumi:"nat64ForceIpv6PacketForwarding"`
+	NgfwMode                        pulumi.StringOutput                             `pulumi:"ngfwMode"`
+	Opmode                          pulumi.StringOutput                             `pulumi:"opmode"`
+	PrpTrailerAction                pulumi.StringOutput                             `pulumi:"prpTrailerAction"`
+	SccpPort                        pulumi.IntOutput                                `pulumi:"sccpPort"`
+	SctpSessionWithoutInit          pulumi.StringOutput                             `pulumi:"sctpSessionWithoutInit"`
+	SesDeniedTraffic                pulumi.StringOutput                             `pulumi:"sesDeniedTraffic"`
+	SipExpectation                  pulumi.StringOutput                             `pulumi:"sipExpectation"`
+	SipHelper                       pulumi.StringOutput                             `pulumi:"sipHelper"`
+	SipNatTrace                     pulumi.StringOutput                             `pulumi:"sipNatTrace"`
+	SipSslPort                      pulumi.IntOutput                                `pulumi:"sipSslPort"`
+	SipTcpPort                      pulumi.IntOutput                                `pulumi:"sipTcpPort"`
+	SipUdpPort                      pulumi.IntOutput                                `pulumi:"sipUdpPort"`
+	SnatHairpinTraffic              pulumi.StringOutput                             `pulumi:"snatHairpinTraffic"`
+	SslSshProfile                   pulumi.StringOutput                             `pulumi:"sslSshProfile"`
+	Status                          pulumi.StringOutput                             `pulumi:"status"`
+	StrictSrcCheck                  pulumi.StringOutput                             `pulumi:"strictSrcCheck"`
+	TcpSessionWithoutSyn            pulumi.StringOutput                             `pulumi:"tcpSessionWithoutSyn"`
+	Utf8SpamTagging                 pulumi.StringOutput                             `pulumi:"utf8SpamTagging"`
+	V4EcmpMode                      pulumi.StringOutput                             `pulumi:"v4EcmpMode"`
+	VdomType                        pulumi.StringOutput                             `pulumi:"vdomType"`
+	Vdomparam                       pulumi.StringPtrOutput                          `pulumi:"vdomparam"`
+	VpnStatsLog                     pulumi.StringOutput                             `pulumi:"vpnStatsLog"`
+	VpnStatsPeriod                  pulumi.IntOutput                                `pulumi:"vpnStatsPeriod"`
+	WccpCacheEngine                 pulumi.StringOutput                             `pulumi:"wccpCacheEngine"`
 }
 
 // NewSystemSettings registers a new resource with the given unique name, arguments, and options.
@@ -355,541 +191,301 @@ func GetSystemSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSettings resources.
 type systemSettingsState struct {
-	// Enable/disable link down path. Valid values: `enable`, `disable`.
-	AllowLinkdownPath *string `pulumi:"allowLinkdownPath"`
-	// Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
-	AllowSubnetOverlap *string `pulumi:"allowSubnetOverlap"`
-	// Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
-	ApplicationBandwidthTracking *string `pulumi:"applicationBandwidthTracking"`
-	// Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
-	Asymroute *string `pulumi:"asymroute"`
-	// Enable/disable asymmetric IPv6 routing. Valid values: `enable`, `disable`.
-	Asymroute6 *string `pulumi:"asymroute6"`
-	// Enable/disable asymmetric ICMPv6 routing. Valid values: `enable`, `disable`.
-	Asymroute6Icmp *string `pulumi:"asymroute6Icmp"`
-	// Enable/disable ICMP asymmetric routing. Valid values: `enable`, `disable`.
-	AsymrouteIcmp *string `pulumi:"asymrouteIcmp"`
-	// Enable/disable auxiliary session. Valid values: `enable`, `disable`.
-	AuxiliarySession *string `pulumi:"auxiliarySession"`
-	// Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces. Valid values: `enable`, `disable`.
-	Bfd *string `pulumi:"bfd"`
-	// BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
-	BfdDesiredMinTx *int `pulumi:"bfdDesiredMinTx"`
-	// BFD detection multiplier (1 - 50, default = 3).
-	BfdDetectMult *int `pulumi:"bfdDetectMult"`
-	// Enable to not enforce verifying the source port of BFD Packets. Valid values: `enable`, `disable`.
-	BfdDontEnforceSrcPort *string `pulumi:"bfdDontEnforceSrcPort"`
-	// BFD required minimal receive interval (1 - 100000 ms, default = 50).
-	BfdRequiredMinRx *int `pulumi:"bfdRequiredMinRx"`
-	// Enable/disable blocking of land attacks. Valid values: `disable`, `enable`.
-	BlockLandAttack *string `pulumi:"blockLandAttack"`
-	// Enable/disable central NAT. Valid values: `enable`, `disable`.
-	CentralNat *string `pulumi:"centralNat"`
-	// VDOM comments.
-	Comments *string `pulumi:"comments"`
-	// Enable/disable PCI DSS compliance checking. Valid values: `enable`, `disable`.
-	ComplianceCheck *string `pulumi:"complianceCheck"`
-	// Consolidated firewall mode.
-	ConsolidatedFirewallMode *string `pulumi:"consolidatedFirewallMode"`
-	// Configure how the FortiGate handles VoIP traffic when a policy that accepts the traffic doesn't include a VoIP profile. Valid values: `proxy-based`, `kernel-helper-based`.
-	DefaultVoipAlgMode *string `pulumi:"defaultVoipAlgMode"`
-	// Enable/disable denying TCP by sending an ICMP communication prohibited packet. Valid values: `enable`, `disable`.
-	DenyTcpWithIcmp *string `pulumi:"denyTcpWithIcmp"`
-	// Interface to use for management access for NAT mode.
-	Device *string `pulumi:"device"`
-	// DHCPv6 server IPv6 address.
-	Dhcp6ServerIp *string `pulumi:"dhcp6ServerIp"`
-	// Enable/disable the DHCP Proxy. Valid values: `enable`, `disable`.
-	DhcpProxy *string `pulumi:"dhcpProxy"`
-	// Specify outgoing interface to reach server.
-	DhcpProxyInterface *string `pulumi:"dhcpProxyInterface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	DhcpProxyInterfaceSelectMethod *string `pulumi:"dhcpProxyInterfaceSelectMethod"`
-	// DHCP Server IPv4 address.
-	DhcpServerIp *string `pulumi:"dhcpServerIp"`
-	// Timeout for discovered devices (1 - 365 days, default = 28).
-	DiscoveredDeviceTimeout *int `pulumi:"discoveredDeviceTimeout"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
-	EcmpMaxPaths *int `pulumi:"ecmpMaxPaths"`
-	// Enable/disable using DNS to validate email addresses collected by a captive portal. Valid values: `disable`, `enable`.
-	EmailPortalCheckDns *string `pulumi:"emailPortalCheckDns"`
-	// Select how to manage sessions affected by firewall policy configuration changes. Valid values: `check-all`, `check-new`, `check-policy-option`.
-	FirewallSessionDirty *string `pulumi:"firewallSessionDirty"`
-	// Enable/disable checking for a matching policy each time hairpin traffic goes through the FortiGate. Valid values: `enable`, `disable`.
-	FwSessionHairpin *string `pulumi:"fwSessionHairpin"`
-	// Transparent mode IPv4 default gateway IP address.
-	Gateway *string `pulumi:"gateway"`
-	// Transparent mode IPv4 default gateway IP address.
-	Gateway6 *string `pulumi:"gateway6"`
-	// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
-	GuiAdvancedPolicy *string `pulumi:"guiAdvancedPolicy"`
-	// Enable/disable the requirement for policy naming on the GUI. Valid values: `enable`, `disable`.
-	GuiAllowUnnamedPolicy *string `pulumi:"guiAllowUnnamedPolicy"`
-	// Enable/disable AntiVirus on the GUI. Valid values: `enable`, `disable`.
-	GuiAntivirus *string `pulumi:"guiAntivirus"`
-	// Enable/disable FortiAP profiles on the GUI. Valid values: `enable`, `disable`.
-	GuiApProfile *string `pulumi:"guiApProfile"`
-	// Enable/disable application control on the GUI. Valid values: `enable`, `disable`.
-	GuiApplicationControl *string `pulumi:"guiApplicationControl"`
-	// Default columns to display for policy lists on GUI. The structure of `guiDefaultPolicyColumns` block is documented below.
-	GuiDefaultPolicyColumns []SystemSettingsGuiDefaultPolicyColumn `pulumi:"guiDefaultPolicyColumns"`
-	// Enable/disable advanced DHCP options on the GUI. Valid values: `enable`, `disable`.
-	GuiDhcpAdvanced *string `pulumi:"guiDhcpAdvanced"`
-	// Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
-	GuiDlp *string `pulumi:"guiDlp"`
-	// Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
-	GuiDnsDatabase *string `pulumi:"guiDnsDatabase"`
-	// Enable/disable DNS Filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiDnsfilter *string `pulumi:"guiDnsfilter"`
-	// Enable/disable Domain and IP Reputation on the GUI. Valid values: `enable`, `disable`.
-	GuiDomainIpReputation *string `pulumi:"guiDomainIpReputation"`
-	// Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
-	GuiDosPolicy *string `pulumi:"guiDosPolicy"`
-	// Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
-	GuiDynamicProfileDisplay *string `pulumi:"guiDynamicProfileDisplay"`
-	// Enable/disable dynamic routing on the GUI. Valid values: `enable`, `disable`.
-	GuiDynamicRouting *string `pulumi:"guiDynamicRouting"`
-	// Enable/disable email collection on the GUI. Valid values: `enable`, `disable`.
-	GuiEmailCollection *string `pulumi:"guiEmailCollection"`
-	// Enable/disable endpoint control on the GUI. Valid values: `enable`, `disable`.
-	GuiEndpointControl *string `pulumi:"guiEndpointControl"`
-	// Enable/disable advanced endpoint control options on the GUI. Valid values: `enable`, `disable`.
-	GuiEndpointControlAdvanced *string `pulumi:"guiEndpointControlAdvanced"`
-	// Enable/disable the explicit proxy on the GUI. Valid values: `enable`, `disable`.
-	GuiExplicitProxy *string `pulumi:"guiExplicitProxy"`
-	// Enable/disable File-filter on the GUI. Valid values: `enable`, `disable`.
-	GuiFileFilter *string `pulumi:"guiFileFilter"`
-	// Enable/disable FortiAP split tunneling on the GUI. Valid values: `enable`, `disable`.
-	GuiFortiapSplitTunneling *string `pulumi:"guiFortiapSplitTunneling"`
-	// Enable/disable FortiExtender on the GUI. Valid values: `enable`, `disable`.
-	GuiFortiextenderController *string `pulumi:"guiFortiextenderController"`
-	// Enable/disable ICAP on the GUI. Valid values: `enable`, `disable`.
-	GuiIcap *string `pulumi:"guiIcap"`
-	// Enable/disable implicit firewall policies on the GUI. Valid values: `enable`, `disable`.
-	GuiImplicitPolicy *string `pulumi:"guiImplicitPolicy"`
-	// Enable/disable IPS on the GUI. Valid values: `enable`, `disable`.
-	GuiIps *string `pulumi:"guiIps"`
-	// Enable/disable server load balancing on the GUI. Valid values: `enable`, `disable`.
-	GuiLoadBalance *string `pulumi:"guiLoadBalance"`
-	// Enable/disable Local-In policies on the GUI. Valid values: `enable`, `disable`.
-	GuiLocalInPolicy *string `pulumi:"guiLocalInPolicy"`
-	// Enable/disable local reports on the GUI. Valid values: `enable`, `disable`.
-	GuiLocalReports *string `pulumi:"guiLocalReports"`
-	// Enable/disable multicast firewall policies on the GUI. Valid values: `enable`, `disable`.
-	GuiMulticastPolicy *string `pulumi:"guiMulticastPolicy"`
-	// Enable/disable adding multiple interfaces to a policy on the GUI. Valid values: `enable`, `disable`.
-	GuiMultipleInterfacePolicy *string `pulumi:"guiMultipleInterfacePolicy"`
-	// Enable/disable multiple UTM profiles on the GUI. Valid values: `enable`, `disable`.
-	GuiMultipleUtmProfiles *string `pulumi:"guiMultipleUtmProfiles"`
-	// Enable/disable NAT46 and NAT64 settings on the GUI. Valid values: `enable`, `disable`.
-	GuiNat4664 *string `pulumi:"guiNat4664"`
-	// Enable/disable object colors on the GUI. Valid values: `enable`, `disable`.
-	GuiObjectColors *string `pulumi:"guiObjectColors"`
-	// Enable/disable policy disclaimer on the GUI. Valid values: `enable`, `disable`.
-	GuiPerPolicyDisclaimer *string `pulumi:"guiPerPolicyDisclaimer"`
-	// Enable/disable policy-based IPsec VPN on the GUI. Valid values: `enable`, `disable`.
-	GuiPolicyBasedIpsec *string `pulumi:"guiPolicyBasedIpsec"`
-	// Enable/disable policy disclaimer on the GUI. Valid values: `enable`, `disable`.
-	GuiPolicyDisclaimer *string `pulumi:"guiPolicyDisclaimer"`
-	// Enable/disable firewall policy learning mode on the GUI. Valid values: `enable`, `disable`.
-	GuiPolicyLearning *string `pulumi:"guiPolicyLearning"`
-	// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
-	GuiReplacementMessageGroups *string `pulumi:"guiReplacementMessageGroups"`
-	// Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
-	GuiSecurityProfileGroup *string `pulumi:"guiSecurityProfileGroup"`
-	// Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
-	GuiSpamfilter *string `pulumi:"guiSpamfilter"`
-	// Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
-	GuiSslvpnPersonalBookmarks *string `pulumi:"guiSslvpnPersonalBookmarks"`
-	// Enable/disable SSL-VPN realms on the GUI. Valid values: `enable`, `disable`.
-	GuiSslvpnRealms *string `pulumi:"guiSslvpnRealms"`
-	// Enable/disable the switch controller on the GUI. Valid values: `enable`, `disable`.
-	GuiSwitchController *string `pulumi:"guiSwitchController"`
-	// Enable/disable threat weight on the GUI. Valid values: `enable`, `disable`.
-	GuiThreatWeight *string `pulumi:"guiThreatWeight"`
-	// Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
-	GuiTrafficShaping *string `pulumi:"guiTrafficShaping"`
-	// Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiVideofilter *string `pulumi:"guiVideofilter"`
-	// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
-	GuiVoipProfile *string `pulumi:"guiVoipProfile"`
-	// Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
-	GuiVpn *string `pulumi:"guiVpn"`
-	// Enable/disable Web Application Firewall on the GUI. Valid values: `enable`, `disable`.
-	GuiWafProfile *string `pulumi:"guiWafProfile"`
-	// Enable/disable SD-WAN on the GUI. Valid values: `enable`, `disable`.
-	GuiWanLoadBalancing *string `pulumi:"guiWanLoadBalancing"`
-	// Enable/disable WAN Optimization and Web Caching on the GUI. Valid values: `enable`, `disable`.
-	GuiWanoptCache *string `pulumi:"guiWanoptCache"`
-	// Enable/disable Web filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiWebfilter *string `pulumi:"guiWebfilter"`
-	// Enable/disable advanced web filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiWebfilterAdvanced *string `pulumi:"guiWebfilterAdvanced"`
-	// Enable/disable the wireless controller on the GUI. Valid values: `enable`, `disable`.
-	GuiWirelessController *string `pulumi:"guiWirelessController"`
-	// Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
-	GuiZtna *string `pulumi:"guiZtna"`
-	// Enable/disable H323 direct model. Valid values: `disable`, `enable`.
-	H323DirectModel *string `pulumi:"h323DirectModel"`
-	// Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
-	HttpExternalDest *string `pulumi:"httpExternalDest"`
-	// Configure IKE ASN.1 Distinguished Name format conventions. Valid values: `with-space`, `no-space`.
-	IkeDnFormat *string `pulumi:"ikeDnFormat"`
-	// UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
-	IkeNattPort *int `pulumi:"ikeNattPort"`
-	// Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
-	IkePolicyRoute *string `pulumi:"ikePolicyRoute"`
-	// UDP port for IKE/IPsec traffic (default 500).
-	IkePort *int `pulumi:"ikePort"`
-	// Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
-	IkeQuickCrashDetect *string `pulumi:"ikeQuickCrashDetect"`
-	// Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
-	IkeSessionResume *string `pulumi:"ikeSessionResume"`
-	// Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
-	ImplicitAllowDns *string `pulumi:"implicitAllowDns"`
-	// Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
-	InspectionMode *string `pulumi:"inspectionMode"`
-	// IP address and netmask.
-	Ip *string `pulumi:"ip"`
-	// IPv6 address prefix for NAT mode.
-	Ip6 *string `pulumi:"ip6"`
-	// Enable/disable link down access traffic. Valid values: `enable`, `disable`.
-	LinkDownAccess *string `pulumi:"linkDownAccess"`
-	// Enable/disable Link Layer Discovery Protocol (LLDP) reception for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
-	LldpReception *string `pulumi:"lldpReception"`
-	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
-	LldpTransmission *string `pulumi:"lldpTransmission"`
-	// Local location ID in the form of an IPv4 address.
-	LocationId *string `pulumi:"locationId"`
-	// Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
-	MacTtl *int `pulumi:"macTtl"`
-	// Transparent mode IPv4 management IP address and netmask.
-	Manageip *string `pulumi:"manageip"`
-	// Transparent mode IPv6 management IP address and netmask.
-	Manageip6 *string `pulumi:"manageip6"`
-	// Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
-	MulticastForward *string `pulumi:"multicastForward"`
-	// Enable/disable allowing multicast traffic through the FortiGate without a policy check. Valid values: `enable`, `disable`.
-	MulticastSkipPolicy *string `pulumi:"multicastSkipPolicy"`
-	// Enable/disable preventing the FortiGate from changing the TTL for forwarded multicast packets. Valid values: `enable`, `disable`.
-	MulticastTtlNotchange *string `pulumi:"multicastTtlNotchange"`
-	// Next Generation Firewall (NGFW) mode. Valid values: `profile-based`, `policy-based`.
-	NgfwMode *string `pulumi:"ngfwMode"`
-	// Firewall operation mode (NAT or Transparent). Valid values: `nat`, `transparent`.
-	Opmode *string `pulumi:"opmode"`
-	// Enable/disable action to take on PRP trailer. Valid values: `enable`, `disable`.
-	PrpTrailerAction *string `pulumi:"prpTrailerAction"`
-	// TCP port the SCCP proxy monitors for SCCP traffic (0 - 65535, default = 2000).
-	SccpPort *int `pulumi:"sccpPort"`
-	// Enable/disable SCTP session creation without SCTP INIT. Valid values: `enable`, `disable`.
-	SctpSessionWithoutInit *string `pulumi:"sctpSessionWithoutInit"`
-	// Enable/disable including denied session in the session table. Valid values: `enable`, `disable`.
-	SesDeniedTraffic *string `pulumi:"sesDeniedTraffic"`
-	// Enable/disable the SIP kernel session helper to create an expectation for port 5060. Valid values: `enable`, `disable`.
-	SipExpectation *string `pulumi:"sipExpectation"`
-	// Enable/disable the SIP session helper to process SIP sessions unless SIP sessions are accepted by the SIP application layer gateway (ALG). Valid values: `enable`, `disable`.
-	SipHelper *string `pulumi:"sipHelper"`
-	// Enable/disable recording the original SIP source IP address when NAT is used. Valid values: `enable`, `disable`.
-	SipNatTrace *string `pulumi:"sipNatTrace"`
-	// TCP port the SIP proxy monitors for SIP SSL/TLS traffic (0 - 65535, default = 5061).
-	SipSslPort *int `pulumi:"sipSslPort"`
-	// TCP port the SIP proxy monitors for SIP traffic (0 - 65535, default = 5060).
-	SipTcpPort *int `pulumi:"sipTcpPort"`
-	// UDP port the SIP proxy monitors for SIP traffic (0 - 65535, default = 5060).
-	SipUdpPort *int `pulumi:"sipUdpPort"`
-	// Enable/disable source NAT (SNAT) for hairpin traffic. Valid values: `enable`, `disable`.
-	SnatHairpinTraffic *string `pulumi:"snatHairpinTraffic"`
-	// Profile for SSL/SSH inspection.
-	SslSshProfile *string `pulumi:"sslSshProfile"`
-	// Enable/disable this VDOM. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Enable/disable strict source verification. Valid values: `enable`, `disable`.
-	StrictSrcCheck *string `pulumi:"strictSrcCheck"`
-	// Enable/disable allowing TCP session without SYN flags. Valid values: `enable`, `disable`.
-	TcpSessionWithoutSyn *string `pulumi:"tcpSessionWithoutSyn"`
-	// Enable/disable converting antispam tags to UTF-8 for better non-ASCII character support. Valid values: `enable`, `disable`.
-	Utf8SpamTagging *string `pulumi:"utf8SpamTagging"`
-	// IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`.
-	V4EcmpMode *string `pulumi:"v4EcmpMode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable periodic VPN log statistics for one or more types of VPN. Separate names with a space. Valid values: `ipsec`, `pptp`, `l2tp`, `ssl`.
-	VpnStatsLog *string `pulumi:"vpnStatsLog"`
-	// Period to send VPN log statistics (0 or 60 - 86400 sec).
-	VpnStatsPeriod *int `pulumi:"vpnStatsPeriod"`
-	// Enable/disable WCCP cache engine. Valid values: `enable`, `disable`.
-	WccpCacheEngine *string `pulumi:"wccpCacheEngine"`
+	AllowLinkdownPath               *string                                `pulumi:"allowLinkdownPath"`
+	AllowSubnetOverlap              *string                                `pulumi:"allowSubnetOverlap"`
+	ApplicationBandwidthTracking    *string                                `pulumi:"applicationBandwidthTracking"`
+	Asymroute                       *string                                `pulumi:"asymroute"`
+	Asymroute6                      *string                                `pulumi:"asymroute6"`
+	Asymroute6Icmp                  *string                                `pulumi:"asymroute6Icmp"`
+	AsymrouteIcmp                   *string                                `pulumi:"asymrouteIcmp"`
+	AuxiliarySession                *string                                `pulumi:"auxiliarySession"`
+	Bfd                             *string                                `pulumi:"bfd"`
+	BfdDesiredMinTx                 *int                                   `pulumi:"bfdDesiredMinTx"`
+	BfdDetectMult                   *int                                   `pulumi:"bfdDetectMult"`
+	BfdDontEnforceSrcPort           *string                                `pulumi:"bfdDontEnforceSrcPort"`
+	BfdRequiredMinRx                *int                                   `pulumi:"bfdRequiredMinRx"`
+	BlockLandAttack                 *string                                `pulumi:"blockLandAttack"`
+	CentralNat                      *string                                `pulumi:"centralNat"`
+	Comments                        *string                                `pulumi:"comments"`
+	ComplianceCheck                 *string                                `pulumi:"complianceCheck"`
+	ConsolidatedFirewallMode        *string                                `pulumi:"consolidatedFirewallMode"`
+	DefaultAppPortAsService         *string                                `pulumi:"defaultAppPortAsService"`
+	DefaultPolicyExpiryDays         *int                                   `pulumi:"defaultPolicyExpiryDays"`
+	DefaultVoipAlgMode              *string                                `pulumi:"defaultVoipAlgMode"`
+	DenyTcpWithIcmp                 *string                                `pulumi:"denyTcpWithIcmp"`
+	Device                          *string                                `pulumi:"device"`
+	Dhcp6ServerIp                   *string                                `pulumi:"dhcp6ServerIp"`
+	DhcpProxy                       *string                                `pulumi:"dhcpProxy"`
+	DhcpProxyInterface              *string                                `pulumi:"dhcpProxyInterface"`
+	DhcpProxyInterfaceSelectMethod  *string                                `pulumi:"dhcpProxyInterfaceSelectMethod"`
+	DhcpServerIp                    *string                                `pulumi:"dhcpServerIp"`
+	DiscoveredDeviceTimeout         *int                                   `pulumi:"discoveredDeviceTimeout"`
+	DynAddrSessionCheck             *string                                `pulumi:"dynAddrSessionCheck"`
+	DynamicSortSubtable             *string                                `pulumi:"dynamicSortSubtable"`
+	EcmpMaxPaths                    *int                                   `pulumi:"ecmpMaxPaths"`
+	EmailPortalCheckDns             *string                                `pulumi:"emailPortalCheckDns"`
+	ExtResourceSessionCheck         *string                                `pulumi:"extResourceSessionCheck"`
+	FirewallSessionDirty            *string                                `pulumi:"firewallSessionDirty"`
+	FqdnSessionCheck                *string                                `pulumi:"fqdnSessionCheck"`
+	FwSessionHairpin                *string                                `pulumi:"fwSessionHairpin"`
+	Gateway                         *string                                `pulumi:"gateway"`
+	Gateway6                        *string                                `pulumi:"gateway6"`
+	GuiAdvancedPolicy               *string                                `pulumi:"guiAdvancedPolicy"`
+	GuiAdvancedWirelessFeatures     *string                                `pulumi:"guiAdvancedWirelessFeatures"`
+	GuiAllowUnnamedPolicy           *string                                `pulumi:"guiAllowUnnamedPolicy"`
+	GuiAntivirus                    *string                                `pulumi:"guiAntivirus"`
+	GuiApProfile                    *string                                `pulumi:"guiApProfile"`
+	GuiApplicationControl           *string                                `pulumi:"guiApplicationControl"`
+	GuiDefaultPolicyColumns         []SystemSettingsGuiDefaultPolicyColumn `pulumi:"guiDefaultPolicyColumns"`
+	GuiDhcpAdvanced                 *string                                `pulumi:"guiDhcpAdvanced"`
+	GuiDlp                          *string                                `pulumi:"guiDlp"`
+	GuiDnsDatabase                  *string                                `pulumi:"guiDnsDatabase"`
+	GuiDnsfilter                    *string                                `pulumi:"guiDnsfilter"`
+	GuiDomainIpReputation           *string                                `pulumi:"guiDomainIpReputation"`
+	GuiDosPolicy                    *string                                `pulumi:"guiDosPolicy"`
+	GuiDynamicProfileDisplay        *string                                `pulumi:"guiDynamicProfileDisplay"`
+	GuiDynamicRouting               *string                                `pulumi:"guiDynamicRouting"`
+	GuiEmailCollection              *string                                `pulumi:"guiEmailCollection"`
+	GuiEndpointControl              *string                                `pulumi:"guiEndpointControl"`
+	GuiEndpointControlAdvanced      *string                                `pulumi:"guiEndpointControlAdvanced"`
+	GuiEnforceChangeSummary         *string                                `pulumi:"guiEnforceChangeSummary"`
+	GuiExplicitProxy                *string                                `pulumi:"guiExplicitProxy"`
+	GuiFileFilter                   *string                                `pulumi:"guiFileFilter"`
+	GuiFortiapSplitTunneling        *string                                `pulumi:"guiFortiapSplitTunneling"`
+	GuiFortiextenderController      *string                                `pulumi:"guiFortiextenderController"`
+	GuiIcap                         *string                                `pulumi:"guiIcap"`
+	GuiImplicitPolicy               *string                                `pulumi:"guiImplicitPolicy"`
+	GuiIps                          *string                                `pulumi:"guiIps"`
+	GuiLoadBalance                  *string                                `pulumi:"guiLoadBalance"`
+	GuiLocalInPolicy                *string                                `pulumi:"guiLocalInPolicy"`
+	GuiLocalReports                 *string                                `pulumi:"guiLocalReports"`
+	GuiMulticastPolicy              *string                                `pulumi:"guiMulticastPolicy"`
+	GuiMultipleInterfacePolicy      *string                                `pulumi:"guiMultipleInterfacePolicy"`
+	GuiMultipleUtmProfiles          *string                                `pulumi:"guiMultipleUtmProfiles"`
+	GuiNat4664                      *string                                `pulumi:"guiNat4664"`
+	GuiObjectColors                 *string                                `pulumi:"guiObjectColors"`
+	GuiOt                           *string                                `pulumi:"guiOt"`
+	GuiPerPolicyDisclaimer          *string                                `pulumi:"guiPerPolicyDisclaimer"`
+	GuiPolicyBasedIpsec             *string                                `pulumi:"guiPolicyBasedIpsec"`
+	GuiPolicyDisclaimer             *string                                `pulumi:"guiPolicyDisclaimer"`
+	GuiPolicyLearning               *string                                `pulumi:"guiPolicyLearning"`
+	GuiReplacementMessageGroups     *string                                `pulumi:"guiReplacementMessageGroups"`
+	GuiSecurityProfileGroup         *string                                `pulumi:"guiSecurityProfileGroup"`
+	GuiSpamfilter                   *string                                `pulumi:"guiSpamfilter"`
+	GuiSslvpnPersonalBookmarks      *string                                `pulumi:"guiSslvpnPersonalBookmarks"`
+	GuiSslvpnRealms                 *string                                `pulumi:"guiSslvpnRealms"`
+	GuiSwitchController             *string                                `pulumi:"guiSwitchController"`
+	GuiThreatWeight                 *string                                `pulumi:"guiThreatWeight"`
+	GuiTrafficShaping               *string                                `pulumi:"guiTrafficShaping"`
+	GuiVideofilter                  *string                                `pulumi:"guiVideofilter"`
+	GuiVoipProfile                  *string                                `pulumi:"guiVoipProfile"`
+	GuiVpn                          *string                                `pulumi:"guiVpn"`
+	GuiWafProfile                   *string                                `pulumi:"guiWafProfile"`
+	GuiWanLoadBalancing             *string                                `pulumi:"guiWanLoadBalancing"`
+	GuiWanoptCache                  *string                                `pulumi:"guiWanoptCache"`
+	GuiWebfilter                    *string                                `pulumi:"guiWebfilter"`
+	GuiWebfilterAdvanced            *string                                `pulumi:"guiWebfilterAdvanced"`
+	GuiWirelessController           *string                                `pulumi:"guiWirelessController"`
+	GuiZtna                         *string                                `pulumi:"guiZtna"`
+	H323DirectModel                 *string                                `pulumi:"h323DirectModel"`
+	HttpExternalDest                *string                                `pulumi:"httpExternalDest"`
+	IkeDnFormat                     *string                                `pulumi:"ikeDnFormat"`
+	IkeNattPort                     *int                                   `pulumi:"ikeNattPort"`
+	IkePolicyRoute                  *string                                `pulumi:"ikePolicyRoute"`
+	IkePort                         *int                                   `pulumi:"ikePort"`
+	IkeQuickCrashDetect             *string                                `pulumi:"ikeQuickCrashDetect"`
+	IkeSessionResume                *string                                `pulumi:"ikeSessionResume"`
+	ImplicitAllowDns                *string                                `pulumi:"implicitAllowDns"`
+	InspectionMode                  *string                                `pulumi:"inspectionMode"`
+	Ip                              *string                                `pulumi:"ip"`
+	Ip6                             *string                                `pulumi:"ip6"`
+	LanExtensionControllerAddr      *string                                `pulumi:"lanExtensionControllerAddr"`
+	LinkDownAccess                  *string                                `pulumi:"linkDownAccess"`
+	LldpReception                   *string                                `pulumi:"lldpReception"`
+	LldpTransmission                *string                                `pulumi:"lldpTransmission"`
+	LocationId                      *string                                `pulumi:"locationId"`
+	MacTtl                          *int                                   `pulumi:"macTtl"`
+	Manageip                        *string                                `pulumi:"manageip"`
+	Manageip6                       *string                                `pulumi:"manageip6"`
+	MulticastForward                *string                                `pulumi:"multicastForward"`
+	MulticastSkipPolicy             *string                                `pulumi:"multicastSkipPolicy"`
+	MulticastTtlNotchange           *string                                `pulumi:"multicastTtlNotchange"`
+	Nat46ForceIpv4PacketForwarding  *string                                `pulumi:"nat46ForceIpv4PacketForwarding"`
+	Nat46GenerateIpv6FragmentHeader *string                                `pulumi:"nat46GenerateIpv6FragmentHeader"`
+	Nat64ForceIpv6PacketForwarding  *string                                `pulumi:"nat64ForceIpv6PacketForwarding"`
+	NgfwMode                        *string                                `pulumi:"ngfwMode"`
+	Opmode                          *string                                `pulumi:"opmode"`
+	PrpTrailerAction                *string                                `pulumi:"prpTrailerAction"`
+	SccpPort                        *int                                   `pulumi:"sccpPort"`
+	SctpSessionWithoutInit          *string                                `pulumi:"sctpSessionWithoutInit"`
+	SesDeniedTraffic                *string                                `pulumi:"sesDeniedTraffic"`
+	SipExpectation                  *string                                `pulumi:"sipExpectation"`
+	SipHelper                       *string                                `pulumi:"sipHelper"`
+	SipNatTrace                     *string                                `pulumi:"sipNatTrace"`
+	SipSslPort                      *int                                   `pulumi:"sipSslPort"`
+	SipTcpPort                      *int                                   `pulumi:"sipTcpPort"`
+	SipUdpPort                      *int                                   `pulumi:"sipUdpPort"`
+	SnatHairpinTraffic              *string                                `pulumi:"snatHairpinTraffic"`
+	SslSshProfile                   *string                                `pulumi:"sslSshProfile"`
+	Status                          *string                                `pulumi:"status"`
+	StrictSrcCheck                  *string                                `pulumi:"strictSrcCheck"`
+	TcpSessionWithoutSyn            *string                                `pulumi:"tcpSessionWithoutSyn"`
+	Utf8SpamTagging                 *string                                `pulumi:"utf8SpamTagging"`
+	V4EcmpMode                      *string                                `pulumi:"v4EcmpMode"`
+	VdomType                        *string                                `pulumi:"vdomType"`
+	Vdomparam                       *string                                `pulumi:"vdomparam"`
+	VpnStatsLog                     *string                                `pulumi:"vpnStatsLog"`
+	VpnStatsPeriod                  *int                                   `pulumi:"vpnStatsPeriod"`
+	WccpCacheEngine                 *string                                `pulumi:"wccpCacheEngine"`
 }
 
 type SystemSettingsState struct {
-	// Enable/disable link down path. Valid values: `enable`, `disable`.
-	AllowLinkdownPath pulumi.StringPtrInput
-	// Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
-	AllowSubnetOverlap pulumi.StringPtrInput
-	// Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
-	ApplicationBandwidthTracking pulumi.StringPtrInput
-	// Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
-	Asymroute pulumi.StringPtrInput
-	// Enable/disable asymmetric IPv6 routing. Valid values: `enable`, `disable`.
-	Asymroute6 pulumi.StringPtrInput
-	// Enable/disable asymmetric ICMPv6 routing. Valid values: `enable`, `disable`.
-	Asymroute6Icmp pulumi.StringPtrInput
-	// Enable/disable ICMP asymmetric routing. Valid values: `enable`, `disable`.
-	AsymrouteIcmp pulumi.StringPtrInput
-	// Enable/disable auxiliary session. Valid values: `enable`, `disable`.
-	AuxiliarySession pulumi.StringPtrInput
-	// Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces. Valid values: `enable`, `disable`.
-	Bfd pulumi.StringPtrInput
-	// BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
-	BfdDesiredMinTx pulumi.IntPtrInput
-	// BFD detection multiplier (1 - 50, default = 3).
-	BfdDetectMult pulumi.IntPtrInput
-	// Enable to not enforce verifying the source port of BFD Packets. Valid values: `enable`, `disable`.
-	BfdDontEnforceSrcPort pulumi.StringPtrInput
-	// BFD required minimal receive interval (1 - 100000 ms, default = 50).
-	BfdRequiredMinRx pulumi.IntPtrInput
-	// Enable/disable blocking of land attacks. Valid values: `disable`, `enable`.
-	BlockLandAttack pulumi.StringPtrInput
-	// Enable/disable central NAT. Valid values: `enable`, `disable`.
-	CentralNat pulumi.StringPtrInput
-	// VDOM comments.
-	Comments pulumi.StringPtrInput
-	// Enable/disable PCI DSS compliance checking. Valid values: `enable`, `disable`.
-	ComplianceCheck pulumi.StringPtrInput
-	// Consolidated firewall mode.
-	ConsolidatedFirewallMode pulumi.StringPtrInput
-	// Configure how the FortiGate handles VoIP traffic when a policy that accepts the traffic doesn't include a VoIP profile. Valid values: `proxy-based`, `kernel-helper-based`.
-	DefaultVoipAlgMode pulumi.StringPtrInput
-	// Enable/disable denying TCP by sending an ICMP communication prohibited packet. Valid values: `enable`, `disable`.
-	DenyTcpWithIcmp pulumi.StringPtrInput
-	// Interface to use for management access for NAT mode.
-	Device pulumi.StringPtrInput
-	// DHCPv6 server IPv6 address.
-	Dhcp6ServerIp pulumi.StringPtrInput
-	// Enable/disable the DHCP Proxy. Valid values: `enable`, `disable`.
-	DhcpProxy pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	DhcpProxyInterface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	DhcpProxyInterfaceSelectMethod pulumi.StringPtrInput
-	// DHCP Server IPv4 address.
-	DhcpServerIp pulumi.StringPtrInput
-	// Timeout for discovered devices (1 - 365 days, default = 28).
-	DiscoveredDeviceTimeout pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
-	EcmpMaxPaths pulumi.IntPtrInput
-	// Enable/disable using DNS to validate email addresses collected by a captive portal. Valid values: `disable`, `enable`.
-	EmailPortalCheckDns pulumi.StringPtrInput
-	// Select how to manage sessions affected by firewall policy configuration changes. Valid values: `check-all`, `check-new`, `check-policy-option`.
-	FirewallSessionDirty pulumi.StringPtrInput
-	// Enable/disable checking for a matching policy each time hairpin traffic goes through the FortiGate. Valid values: `enable`, `disable`.
-	FwSessionHairpin pulumi.StringPtrInput
-	// Transparent mode IPv4 default gateway IP address.
-	Gateway pulumi.StringPtrInput
-	// Transparent mode IPv4 default gateway IP address.
-	Gateway6 pulumi.StringPtrInput
-	// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
-	GuiAdvancedPolicy pulumi.StringPtrInput
-	// Enable/disable the requirement for policy naming on the GUI. Valid values: `enable`, `disable`.
-	GuiAllowUnnamedPolicy pulumi.StringPtrInput
-	// Enable/disable AntiVirus on the GUI. Valid values: `enable`, `disable`.
-	GuiAntivirus pulumi.StringPtrInput
-	// Enable/disable FortiAP profiles on the GUI. Valid values: `enable`, `disable`.
-	GuiApProfile pulumi.StringPtrInput
-	// Enable/disable application control on the GUI. Valid values: `enable`, `disable`.
-	GuiApplicationControl pulumi.StringPtrInput
-	// Default columns to display for policy lists on GUI. The structure of `guiDefaultPolicyColumns` block is documented below.
-	GuiDefaultPolicyColumns SystemSettingsGuiDefaultPolicyColumnArrayInput
-	// Enable/disable advanced DHCP options on the GUI. Valid values: `enable`, `disable`.
-	GuiDhcpAdvanced pulumi.StringPtrInput
-	// Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
-	GuiDlp pulumi.StringPtrInput
-	// Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
-	GuiDnsDatabase pulumi.StringPtrInput
-	// Enable/disable DNS Filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiDnsfilter pulumi.StringPtrInput
-	// Enable/disable Domain and IP Reputation on the GUI. Valid values: `enable`, `disable`.
-	GuiDomainIpReputation pulumi.StringPtrInput
-	// Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
-	GuiDosPolicy pulumi.StringPtrInput
-	// Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
-	GuiDynamicProfileDisplay pulumi.StringPtrInput
-	// Enable/disable dynamic routing on the GUI. Valid values: `enable`, `disable`.
-	GuiDynamicRouting pulumi.StringPtrInput
-	// Enable/disable email collection on the GUI. Valid values: `enable`, `disable`.
-	GuiEmailCollection pulumi.StringPtrInput
-	// Enable/disable endpoint control on the GUI. Valid values: `enable`, `disable`.
-	GuiEndpointControl pulumi.StringPtrInput
-	// Enable/disable advanced endpoint control options on the GUI. Valid values: `enable`, `disable`.
-	GuiEndpointControlAdvanced pulumi.StringPtrInput
-	// Enable/disable the explicit proxy on the GUI. Valid values: `enable`, `disable`.
-	GuiExplicitProxy pulumi.StringPtrInput
-	// Enable/disable File-filter on the GUI. Valid values: `enable`, `disable`.
-	GuiFileFilter pulumi.StringPtrInput
-	// Enable/disable FortiAP split tunneling on the GUI. Valid values: `enable`, `disable`.
-	GuiFortiapSplitTunneling pulumi.StringPtrInput
-	// Enable/disable FortiExtender on the GUI. Valid values: `enable`, `disable`.
-	GuiFortiextenderController pulumi.StringPtrInput
-	// Enable/disable ICAP on the GUI. Valid values: `enable`, `disable`.
-	GuiIcap pulumi.StringPtrInput
-	// Enable/disable implicit firewall policies on the GUI. Valid values: `enable`, `disable`.
-	GuiImplicitPolicy pulumi.StringPtrInput
-	// Enable/disable IPS on the GUI. Valid values: `enable`, `disable`.
-	GuiIps pulumi.StringPtrInput
-	// Enable/disable server load balancing on the GUI. Valid values: `enable`, `disable`.
-	GuiLoadBalance pulumi.StringPtrInput
-	// Enable/disable Local-In policies on the GUI. Valid values: `enable`, `disable`.
-	GuiLocalInPolicy pulumi.StringPtrInput
-	// Enable/disable local reports on the GUI. Valid values: `enable`, `disable`.
-	GuiLocalReports pulumi.StringPtrInput
-	// Enable/disable multicast firewall policies on the GUI. Valid values: `enable`, `disable`.
-	GuiMulticastPolicy pulumi.StringPtrInput
-	// Enable/disable adding multiple interfaces to a policy on the GUI. Valid values: `enable`, `disable`.
-	GuiMultipleInterfacePolicy pulumi.StringPtrInput
-	// Enable/disable multiple UTM profiles on the GUI. Valid values: `enable`, `disable`.
-	GuiMultipleUtmProfiles pulumi.StringPtrInput
-	// Enable/disable NAT46 and NAT64 settings on the GUI. Valid values: `enable`, `disable`.
-	GuiNat4664 pulumi.StringPtrInput
-	// Enable/disable object colors on the GUI. Valid values: `enable`, `disable`.
-	GuiObjectColors pulumi.StringPtrInput
-	// Enable/disable policy disclaimer on the GUI. Valid values: `enable`, `disable`.
-	GuiPerPolicyDisclaimer pulumi.StringPtrInput
-	// Enable/disable policy-based IPsec VPN on the GUI. Valid values: `enable`, `disable`.
-	GuiPolicyBasedIpsec pulumi.StringPtrInput
-	// Enable/disable policy disclaimer on the GUI. Valid values: `enable`, `disable`.
-	GuiPolicyDisclaimer pulumi.StringPtrInput
-	// Enable/disable firewall policy learning mode on the GUI. Valid values: `enable`, `disable`.
-	GuiPolicyLearning pulumi.StringPtrInput
-	// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
-	GuiReplacementMessageGroups pulumi.StringPtrInput
-	// Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
-	GuiSecurityProfileGroup pulumi.StringPtrInput
-	// Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
-	GuiSpamfilter pulumi.StringPtrInput
-	// Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
-	GuiSslvpnPersonalBookmarks pulumi.StringPtrInput
-	// Enable/disable SSL-VPN realms on the GUI. Valid values: `enable`, `disable`.
-	GuiSslvpnRealms pulumi.StringPtrInput
-	// Enable/disable the switch controller on the GUI. Valid values: `enable`, `disable`.
-	GuiSwitchController pulumi.StringPtrInput
-	// Enable/disable threat weight on the GUI. Valid values: `enable`, `disable`.
-	GuiThreatWeight pulumi.StringPtrInput
-	// Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
-	GuiTrafficShaping pulumi.StringPtrInput
-	// Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiVideofilter pulumi.StringPtrInput
-	// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
-	GuiVoipProfile pulumi.StringPtrInput
-	// Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
-	GuiVpn pulumi.StringPtrInput
-	// Enable/disable Web Application Firewall on the GUI. Valid values: `enable`, `disable`.
-	GuiWafProfile pulumi.StringPtrInput
-	// Enable/disable SD-WAN on the GUI. Valid values: `enable`, `disable`.
-	GuiWanLoadBalancing pulumi.StringPtrInput
-	// Enable/disable WAN Optimization and Web Caching on the GUI. Valid values: `enable`, `disable`.
-	GuiWanoptCache pulumi.StringPtrInput
-	// Enable/disable Web filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiWebfilter pulumi.StringPtrInput
-	// Enable/disable advanced web filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiWebfilterAdvanced pulumi.StringPtrInput
-	// Enable/disable the wireless controller on the GUI. Valid values: `enable`, `disable`.
-	GuiWirelessController pulumi.StringPtrInput
-	// Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
-	GuiZtna pulumi.StringPtrInput
-	// Enable/disable H323 direct model. Valid values: `disable`, `enable`.
-	H323DirectModel pulumi.StringPtrInput
-	// Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
-	HttpExternalDest pulumi.StringPtrInput
-	// Configure IKE ASN.1 Distinguished Name format conventions. Valid values: `with-space`, `no-space`.
-	IkeDnFormat pulumi.StringPtrInput
-	// UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
-	IkeNattPort pulumi.IntPtrInput
-	// Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
-	IkePolicyRoute pulumi.StringPtrInput
-	// UDP port for IKE/IPsec traffic (default 500).
-	IkePort pulumi.IntPtrInput
-	// Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
-	IkeQuickCrashDetect pulumi.StringPtrInput
-	// Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
-	IkeSessionResume pulumi.StringPtrInput
-	// Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
-	ImplicitAllowDns pulumi.StringPtrInput
-	// Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
-	InspectionMode pulumi.StringPtrInput
-	// IP address and netmask.
-	Ip pulumi.StringPtrInput
-	// IPv6 address prefix for NAT mode.
-	Ip6 pulumi.StringPtrInput
-	// Enable/disable link down access traffic. Valid values: `enable`, `disable`.
-	LinkDownAccess pulumi.StringPtrInput
-	// Enable/disable Link Layer Discovery Protocol (LLDP) reception for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
-	LldpReception pulumi.StringPtrInput
-	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
-	LldpTransmission pulumi.StringPtrInput
-	// Local location ID in the form of an IPv4 address.
-	LocationId pulumi.StringPtrInput
-	// Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
-	MacTtl pulumi.IntPtrInput
-	// Transparent mode IPv4 management IP address and netmask.
-	Manageip pulumi.StringPtrInput
-	// Transparent mode IPv6 management IP address and netmask.
-	Manageip6 pulumi.StringPtrInput
-	// Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
-	MulticastForward pulumi.StringPtrInput
-	// Enable/disable allowing multicast traffic through the FortiGate without a policy check. Valid values: `enable`, `disable`.
-	MulticastSkipPolicy pulumi.StringPtrInput
-	// Enable/disable preventing the FortiGate from changing the TTL for forwarded multicast packets. Valid values: `enable`, `disable`.
-	MulticastTtlNotchange pulumi.StringPtrInput
-	// Next Generation Firewall (NGFW) mode. Valid values: `profile-based`, `policy-based`.
-	NgfwMode pulumi.StringPtrInput
-	// Firewall operation mode (NAT or Transparent). Valid values: `nat`, `transparent`.
-	Opmode pulumi.StringPtrInput
-	// Enable/disable action to take on PRP trailer. Valid values: `enable`, `disable`.
-	PrpTrailerAction pulumi.StringPtrInput
-	// TCP port the SCCP proxy monitors for SCCP traffic (0 - 65535, default = 2000).
-	SccpPort pulumi.IntPtrInput
-	// Enable/disable SCTP session creation without SCTP INIT. Valid values: `enable`, `disable`.
-	SctpSessionWithoutInit pulumi.StringPtrInput
-	// Enable/disable including denied session in the session table. Valid values: `enable`, `disable`.
-	SesDeniedTraffic pulumi.StringPtrInput
-	// Enable/disable the SIP kernel session helper to create an expectation for port 5060. Valid values: `enable`, `disable`.
-	SipExpectation pulumi.StringPtrInput
-	// Enable/disable the SIP session helper to process SIP sessions unless SIP sessions are accepted by the SIP application layer gateway (ALG). Valid values: `enable`, `disable`.
-	SipHelper pulumi.StringPtrInput
-	// Enable/disable recording the original SIP source IP address when NAT is used. Valid values: `enable`, `disable`.
-	SipNatTrace pulumi.StringPtrInput
-	// TCP port the SIP proxy monitors for SIP SSL/TLS traffic (0 - 65535, default = 5061).
-	SipSslPort pulumi.IntPtrInput
-	// TCP port the SIP proxy monitors for SIP traffic (0 - 65535, default = 5060).
-	SipTcpPort pulumi.IntPtrInput
-	// UDP port the SIP proxy monitors for SIP traffic (0 - 65535, default = 5060).
-	SipUdpPort pulumi.IntPtrInput
-	// Enable/disable source NAT (SNAT) for hairpin traffic. Valid values: `enable`, `disable`.
-	SnatHairpinTraffic pulumi.StringPtrInput
-	// Profile for SSL/SSH inspection.
-	SslSshProfile pulumi.StringPtrInput
-	// Enable/disable this VDOM. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Enable/disable strict source verification. Valid values: `enable`, `disable`.
-	StrictSrcCheck pulumi.StringPtrInput
-	// Enable/disable allowing TCP session without SYN flags. Valid values: `enable`, `disable`.
-	TcpSessionWithoutSyn pulumi.StringPtrInput
-	// Enable/disable converting antispam tags to UTF-8 for better non-ASCII character support. Valid values: `enable`, `disable`.
-	Utf8SpamTagging pulumi.StringPtrInput
-	// IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`.
-	V4EcmpMode pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable periodic VPN log statistics for one or more types of VPN. Separate names with a space. Valid values: `ipsec`, `pptp`, `l2tp`, `ssl`.
-	VpnStatsLog pulumi.StringPtrInput
-	// Period to send VPN log statistics (0 or 60 - 86400 sec).
-	VpnStatsPeriod pulumi.IntPtrInput
-	// Enable/disable WCCP cache engine. Valid values: `enable`, `disable`.
-	WccpCacheEngine pulumi.StringPtrInput
+	AllowLinkdownPath               pulumi.StringPtrInput
+	AllowSubnetOverlap              pulumi.StringPtrInput
+	ApplicationBandwidthTracking    pulumi.StringPtrInput
+	Asymroute                       pulumi.StringPtrInput
+	Asymroute6                      pulumi.StringPtrInput
+	Asymroute6Icmp                  pulumi.StringPtrInput
+	AsymrouteIcmp                   pulumi.StringPtrInput
+	AuxiliarySession                pulumi.StringPtrInput
+	Bfd                             pulumi.StringPtrInput
+	BfdDesiredMinTx                 pulumi.IntPtrInput
+	BfdDetectMult                   pulumi.IntPtrInput
+	BfdDontEnforceSrcPort           pulumi.StringPtrInput
+	BfdRequiredMinRx                pulumi.IntPtrInput
+	BlockLandAttack                 pulumi.StringPtrInput
+	CentralNat                      pulumi.StringPtrInput
+	Comments                        pulumi.StringPtrInput
+	ComplianceCheck                 pulumi.StringPtrInput
+	ConsolidatedFirewallMode        pulumi.StringPtrInput
+	DefaultAppPortAsService         pulumi.StringPtrInput
+	DefaultPolicyExpiryDays         pulumi.IntPtrInput
+	DefaultVoipAlgMode              pulumi.StringPtrInput
+	DenyTcpWithIcmp                 pulumi.StringPtrInput
+	Device                          pulumi.StringPtrInput
+	Dhcp6ServerIp                   pulumi.StringPtrInput
+	DhcpProxy                       pulumi.StringPtrInput
+	DhcpProxyInterface              pulumi.StringPtrInput
+	DhcpProxyInterfaceSelectMethod  pulumi.StringPtrInput
+	DhcpServerIp                    pulumi.StringPtrInput
+	DiscoveredDeviceTimeout         pulumi.IntPtrInput
+	DynAddrSessionCheck             pulumi.StringPtrInput
+	DynamicSortSubtable             pulumi.StringPtrInput
+	EcmpMaxPaths                    pulumi.IntPtrInput
+	EmailPortalCheckDns             pulumi.StringPtrInput
+	ExtResourceSessionCheck         pulumi.StringPtrInput
+	FirewallSessionDirty            pulumi.StringPtrInput
+	FqdnSessionCheck                pulumi.StringPtrInput
+	FwSessionHairpin                pulumi.StringPtrInput
+	Gateway                         pulumi.StringPtrInput
+	Gateway6                        pulumi.StringPtrInput
+	GuiAdvancedPolicy               pulumi.StringPtrInput
+	GuiAdvancedWirelessFeatures     pulumi.StringPtrInput
+	GuiAllowUnnamedPolicy           pulumi.StringPtrInput
+	GuiAntivirus                    pulumi.StringPtrInput
+	GuiApProfile                    pulumi.StringPtrInput
+	GuiApplicationControl           pulumi.StringPtrInput
+	GuiDefaultPolicyColumns         SystemSettingsGuiDefaultPolicyColumnArrayInput
+	GuiDhcpAdvanced                 pulumi.StringPtrInput
+	GuiDlp                          pulumi.StringPtrInput
+	GuiDnsDatabase                  pulumi.StringPtrInput
+	GuiDnsfilter                    pulumi.StringPtrInput
+	GuiDomainIpReputation           pulumi.StringPtrInput
+	GuiDosPolicy                    pulumi.StringPtrInput
+	GuiDynamicProfileDisplay        pulumi.StringPtrInput
+	GuiDynamicRouting               pulumi.StringPtrInput
+	GuiEmailCollection              pulumi.StringPtrInput
+	GuiEndpointControl              pulumi.StringPtrInput
+	GuiEndpointControlAdvanced      pulumi.StringPtrInput
+	GuiEnforceChangeSummary         pulumi.StringPtrInput
+	GuiExplicitProxy                pulumi.StringPtrInput
+	GuiFileFilter                   pulumi.StringPtrInput
+	GuiFortiapSplitTunneling        pulumi.StringPtrInput
+	GuiFortiextenderController      pulumi.StringPtrInput
+	GuiIcap                         pulumi.StringPtrInput
+	GuiImplicitPolicy               pulumi.StringPtrInput
+	GuiIps                          pulumi.StringPtrInput
+	GuiLoadBalance                  pulumi.StringPtrInput
+	GuiLocalInPolicy                pulumi.StringPtrInput
+	GuiLocalReports                 pulumi.StringPtrInput
+	GuiMulticastPolicy              pulumi.StringPtrInput
+	GuiMultipleInterfacePolicy      pulumi.StringPtrInput
+	GuiMultipleUtmProfiles          pulumi.StringPtrInput
+	GuiNat4664                      pulumi.StringPtrInput
+	GuiObjectColors                 pulumi.StringPtrInput
+	GuiOt                           pulumi.StringPtrInput
+	GuiPerPolicyDisclaimer          pulumi.StringPtrInput
+	GuiPolicyBasedIpsec             pulumi.StringPtrInput
+	GuiPolicyDisclaimer             pulumi.StringPtrInput
+	GuiPolicyLearning               pulumi.StringPtrInput
+	GuiReplacementMessageGroups     pulumi.StringPtrInput
+	GuiSecurityProfileGroup         pulumi.StringPtrInput
+	GuiSpamfilter                   pulumi.StringPtrInput
+	GuiSslvpnPersonalBookmarks      pulumi.StringPtrInput
+	GuiSslvpnRealms                 pulumi.StringPtrInput
+	GuiSwitchController             pulumi.StringPtrInput
+	GuiThreatWeight                 pulumi.StringPtrInput
+	GuiTrafficShaping               pulumi.StringPtrInput
+	GuiVideofilter                  pulumi.StringPtrInput
+	GuiVoipProfile                  pulumi.StringPtrInput
+	GuiVpn                          pulumi.StringPtrInput
+	GuiWafProfile                   pulumi.StringPtrInput
+	GuiWanLoadBalancing             pulumi.StringPtrInput
+	GuiWanoptCache                  pulumi.StringPtrInput
+	GuiWebfilter                    pulumi.StringPtrInput
+	GuiWebfilterAdvanced            pulumi.StringPtrInput
+	GuiWirelessController           pulumi.StringPtrInput
+	GuiZtna                         pulumi.StringPtrInput
+	H323DirectModel                 pulumi.StringPtrInput
+	HttpExternalDest                pulumi.StringPtrInput
+	IkeDnFormat                     pulumi.StringPtrInput
+	IkeNattPort                     pulumi.IntPtrInput
+	IkePolicyRoute                  pulumi.StringPtrInput
+	IkePort                         pulumi.IntPtrInput
+	IkeQuickCrashDetect             pulumi.StringPtrInput
+	IkeSessionResume                pulumi.StringPtrInput
+	ImplicitAllowDns                pulumi.StringPtrInput
+	InspectionMode                  pulumi.StringPtrInput
+	Ip                              pulumi.StringPtrInput
+	Ip6                             pulumi.StringPtrInput
+	LanExtensionControllerAddr      pulumi.StringPtrInput
+	LinkDownAccess                  pulumi.StringPtrInput
+	LldpReception                   pulumi.StringPtrInput
+	LldpTransmission                pulumi.StringPtrInput
+	LocationId                      pulumi.StringPtrInput
+	MacTtl                          pulumi.IntPtrInput
+	Manageip                        pulumi.StringPtrInput
+	Manageip6                       pulumi.StringPtrInput
+	MulticastForward                pulumi.StringPtrInput
+	MulticastSkipPolicy             pulumi.StringPtrInput
+	MulticastTtlNotchange           pulumi.StringPtrInput
+	Nat46ForceIpv4PacketForwarding  pulumi.StringPtrInput
+	Nat46GenerateIpv6FragmentHeader pulumi.StringPtrInput
+	Nat64ForceIpv6PacketForwarding  pulumi.StringPtrInput
+	NgfwMode                        pulumi.StringPtrInput
+	Opmode                          pulumi.StringPtrInput
+	PrpTrailerAction                pulumi.StringPtrInput
+	SccpPort                        pulumi.IntPtrInput
+	SctpSessionWithoutInit          pulumi.StringPtrInput
+	SesDeniedTraffic                pulumi.StringPtrInput
+	SipExpectation                  pulumi.StringPtrInput
+	SipHelper                       pulumi.StringPtrInput
+	SipNatTrace                     pulumi.StringPtrInput
+	SipSslPort                      pulumi.IntPtrInput
+	SipTcpPort                      pulumi.IntPtrInput
+	SipUdpPort                      pulumi.IntPtrInput
+	SnatHairpinTraffic              pulumi.StringPtrInput
+	SslSshProfile                   pulumi.StringPtrInput
+	Status                          pulumi.StringPtrInput
+	StrictSrcCheck                  pulumi.StringPtrInput
+	TcpSessionWithoutSyn            pulumi.StringPtrInput
+	Utf8SpamTagging                 pulumi.StringPtrInput
+	V4EcmpMode                      pulumi.StringPtrInput
+	VdomType                        pulumi.StringPtrInput
+	Vdomparam                       pulumi.StringPtrInput
+	VpnStatsLog                     pulumi.StringPtrInput
+	VpnStatsPeriod                  pulumi.IntPtrInput
+	WccpCacheEngine                 pulumi.StringPtrInput
 }
 
 func (SystemSettingsState) ElementType() reflect.Type {
@@ -897,542 +493,302 @@ func (SystemSettingsState) ElementType() reflect.Type {
 }
 
 type systemSettingsArgs struct {
-	// Enable/disable link down path. Valid values: `enable`, `disable`.
-	AllowLinkdownPath *string `pulumi:"allowLinkdownPath"`
-	// Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
-	AllowSubnetOverlap *string `pulumi:"allowSubnetOverlap"`
-	// Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
-	ApplicationBandwidthTracking *string `pulumi:"applicationBandwidthTracking"`
-	// Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
-	Asymroute *string `pulumi:"asymroute"`
-	// Enable/disable asymmetric IPv6 routing. Valid values: `enable`, `disable`.
-	Asymroute6 *string `pulumi:"asymroute6"`
-	// Enable/disable asymmetric ICMPv6 routing. Valid values: `enable`, `disable`.
-	Asymroute6Icmp *string `pulumi:"asymroute6Icmp"`
-	// Enable/disable ICMP asymmetric routing. Valid values: `enable`, `disable`.
-	AsymrouteIcmp *string `pulumi:"asymrouteIcmp"`
-	// Enable/disable auxiliary session. Valid values: `enable`, `disable`.
-	AuxiliarySession *string `pulumi:"auxiliarySession"`
-	// Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces. Valid values: `enable`, `disable`.
-	Bfd *string `pulumi:"bfd"`
-	// BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
-	BfdDesiredMinTx *int `pulumi:"bfdDesiredMinTx"`
-	// BFD detection multiplier (1 - 50, default = 3).
-	BfdDetectMult *int `pulumi:"bfdDetectMult"`
-	// Enable to not enforce verifying the source port of BFD Packets. Valid values: `enable`, `disable`.
-	BfdDontEnforceSrcPort *string `pulumi:"bfdDontEnforceSrcPort"`
-	// BFD required minimal receive interval (1 - 100000 ms, default = 50).
-	BfdRequiredMinRx *int `pulumi:"bfdRequiredMinRx"`
-	// Enable/disable blocking of land attacks. Valid values: `disable`, `enable`.
-	BlockLandAttack *string `pulumi:"blockLandAttack"`
-	// Enable/disable central NAT. Valid values: `enable`, `disable`.
-	CentralNat *string `pulumi:"centralNat"`
-	// VDOM comments.
-	Comments *string `pulumi:"comments"`
-	// Enable/disable PCI DSS compliance checking. Valid values: `enable`, `disable`.
-	ComplianceCheck *string `pulumi:"complianceCheck"`
-	// Consolidated firewall mode.
-	ConsolidatedFirewallMode *string `pulumi:"consolidatedFirewallMode"`
-	// Configure how the FortiGate handles VoIP traffic when a policy that accepts the traffic doesn't include a VoIP profile. Valid values: `proxy-based`, `kernel-helper-based`.
-	DefaultVoipAlgMode *string `pulumi:"defaultVoipAlgMode"`
-	// Enable/disable denying TCP by sending an ICMP communication prohibited packet. Valid values: `enable`, `disable`.
-	DenyTcpWithIcmp *string `pulumi:"denyTcpWithIcmp"`
-	// Interface to use for management access for NAT mode.
-	Device *string `pulumi:"device"`
-	// DHCPv6 server IPv6 address.
-	Dhcp6ServerIp *string `pulumi:"dhcp6ServerIp"`
-	// Enable/disable the DHCP Proxy. Valid values: `enable`, `disable`.
-	DhcpProxy *string `pulumi:"dhcpProxy"`
-	// Specify outgoing interface to reach server.
-	DhcpProxyInterface *string `pulumi:"dhcpProxyInterface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	DhcpProxyInterfaceSelectMethod *string `pulumi:"dhcpProxyInterfaceSelectMethod"`
-	// DHCP Server IPv4 address.
-	DhcpServerIp *string `pulumi:"dhcpServerIp"`
-	// Timeout for discovered devices (1 - 365 days, default = 28).
-	DiscoveredDeviceTimeout *int `pulumi:"discoveredDeviceTimeout"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
-	EcmpMaxPaths *int `pulumi:"ecmpMaxPaths"`
-	// Enable/disable using DNS to validate email addresses collected by a captive portal. Valid values: `disable`, `enable`.
-	EmailPortalCheckDns *string `pulumi:"emailPortalCheckDns"`
-	// Select how to manage sessions affected by firewall policy configuration changes. Valid values: `check-all`, `check-new`, `check-policy-option`.
-	FirewallSessionDirty *string `pulumi:"firewallSessionDirty"`
-	// Enable/disable checking for a matching policy each time hairpin traffic goes through the FortiGate. Valid values: `enable`, `disable`.
-	FwSessionHairpin *string `pulumi:"fwSessionHairpin"`
-	// Transparent mode IPv4 default gateway IP address.
-	Gateway *string `pulumi:"gateway"`
-	// Transparent mode IPv4 default gateway IP address.
-	Gateway6 *string `pulumi:"gateway6"`
-	// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
-	GuiAdvancedPolicy *string `pulumi:"guiAdvancedPolicy"`
-	// Enable/disable the requirement for policy naming on the GUI. Valid values: `enable`, `disable`.
-	GuiAllowUnnamedPolicy *string `pulumi:"guiAllowUnnamedPolicy"`
-	// Enable/disable AntiVirus on the GUI. Valid values: `enable`, `disable`.
-	GuiAntivirus *string `pulumi:"guiAntivirus"`
-	// Enable/disable FortiAP profiles on the GUI. Valid values: `enable`, `disable`.
-	GuiApProfile *string `pulumi:"guiApProfile"`
-	// Enable/disable application control on the GUI. Valid values: `enable`, `disable`.
-	GuiApplicationControl *string `pulumi:"guiApplicationControl"`
-	// Default columns to display for policy lists on GUI. The structure of `guiDefaultPolicyColumns` block is documented below.
-	GuiDefaultPolicyColumns []SystemSettingsGuiDefaultPolicyColumn `pulumi:"guiDefaultPolicyColumns"`
-	// Enable/disable advanced DHCP options on the GUI. Valid values: `enable`, `disable`.
-	GuiDhcpAdvanced *string `pulumi:"guiDhcpAdvanced"`
-	// Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
-	GuiDlp *string `pulumi:"guiDlp"`
-	// Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
-	GuiDnsDatabase *string `pulumi:"guiDnsDatabase"`
-	// Enable/disable DNS Filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiDnsfilter *string `pulumi:"guiDnsfilter"`
-	// Enable/disable Domain and IP Reputation on the GUI. Valid values: `enable`, `disable`.
-	GuiDomainIpReputation *string `pulumi:"guiDomainIpReputation"`
-	// Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
-	GuiDosPolicy *string `pulumi:"guiDosPolicy"`
-	// Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
-	GuiDynamicProfileDisplay *string `pulumi:"guiDynamicProfileDisplay"`
-	// Enable/disable dynamic routing on the GUI. Valid values: `enable`, `disable`.
-	GuiDynamicRouting *string `pulumi:"guiDynamicRouting"`
-	// Enable/disable email collection on the GUI. Valid values: `enable`, `disable`.
-	GuiEmailCollection *string `pulumi:"guiEmailCollection"`
-	// Enable/disable endpoint control on the GUI. Valid values: `enable`, `disable`.
-	GuiEndpointControl *string `pulumi:"guiEndpointControl"`
-	// Enable/disable advanced endpoint control options on the GUI. Valid values: `enable`, `disable`.
-	GuiEndpointControlAdvanced *string `pulumi:"guiEndpointControlAdvanced"`
-	// Enable/disable the explicit proxy on the GUI. Valid values: `enable`, `disable`.
-	GuiExplicitProxy *string `pulumi:"guiExplicitProxy"`
-	// Enable/disable File-filter on the GUI. Valid values: `enable`, `disable`.
-	GuiFileFilter *string `pulumi:"guiFileFilter"`
-	// Enable/disable FortiAP split tunneling on the GUI. Valid values: `enable`, `disable`.
-	GuiFortiapSplitTunneling *string `pulumi:"guiFortiapSplitTunneling"`
-	// Enable/disable FortiExtender on the GUI. Valid values: `enable`, `disable`.
-	GuiFortiextenderController *string `pulumi:"guiFortiextenderController"`
-	// Enable/disable ICAP on the GUI. Valid values: `enable`, `disable`.
-	GuiIcap *string `pulumi:"guiIcap"`
-	// Enable/disable implicit firewall policies on the GUI. Valid values: `enable`, `disable`.
-	GuiImplicitPolicy *string `pulumi:"guiImplicitPolicy"`
-	// Enable/disable IPS on the GUI. Valid values: `enable`, `disable`.
-	GuiIps *string `pulumi:"guiIps"`
-	// Enable/disable server load balancing on the GUI. Valid values: `enable`, `disable`.
-	GuiLoadBalance *string `pulumi:"guiLoadBalance"`
-	// Enable/disable Local-In policies on the GUI. Valid values: `enable`, `disable`.
-	GuiLocalInPolicy *string `pulumi:"guiLocalInPolicy"`
-	// Enable/disable local reports on the GUI. Valid values: `enable`, `disable`.
-	GuiLocalReports *string `pulumi:"guiLocalReports"`
-	// Enable/disable multicast firewall policies on the GUI. Valid values: `enable`, `disable`.
-	GuiMulticastPolicy *string `pulumi:"guiMulticastPolicy"`
-	// Enable/disable adding multiple interfaces to a policy on the GUI. Valid values: `enable`, `disable`.
-	GuiMultipleInterfacePolicy *string `pulumi:"guiMultipleInterfacePolicy"`
-	// Enable/disable multiple UTM profiles on the GUI. Valid values: `enable`, `disable`.
-	GuiMultipleUtmProfiles *string `pulumi:"guiMultipleUtmProfiles"`
-	// Enable/disable NAT46 and NAT64 settings on the GUI. Valid values: `enable`, `disable`.
-	GuiNat4664 *string `pulumi:"guiNat4664"`
-	// Enable/disable object colors on the GUI. Valid values: `enable`, `disable`.
-	GuiObjectColors *string `pulumi:"guiObjectColors"`
-	// Enable/disable policy disclaimer on the GUI. Valid values: `enable`, `disable`.
-	GuiPerPolicyDisclaimer *string `pulumi:"guiPerPolicyDisclaimer"`
-	// Enable/disable policy-based IPsec VPN on the GUI. Valid values: `enable`, `disable`.
-	GuiPolicyBasedIpsec *string `pulumi:"guiPolicyBasedIpsec"`
-	// Enable/disable policy disclaimer on the GUI. Valid values: `enable`, `disable`.
-	GuiPolicyDisclaimer *string `pulumi:"guiPolicyDisclaimer"`
-	// Enable/disable firewall policy learning mode on the GUI. Valid values: `enable`, `disable`.
-	GuiPolicyLearning *string `pulumi:"guiPolicyLearning"`
-	// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
-	GuiReplacementMessageGroups *string `pulumi:"guiReplacementMessageGroups"`
-	// Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
-	GuiSecurityProfileGroup *string `pulumi:"guiSecurityProfileGroup"`
-	// Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
-	GuiSpamfilter *string `pulumi:"guiSpamfilter"`
-	// Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
-	GuiSslvpnPersonalBookmarks *string `pulumi:"guiSslvpnPersonalBookmarks"`
-	// Enable/disable SSL-VPN realms on the GUI. Valid values: `enable`, `disable`.
-	GuiSslvpnRealms *string `pulumi:"guiSslvpnRealms"`
-	// Enable/disable the switch controller on the GUI. Valid values: `enable`, `disable`.
-	GuiSwitchController *string `pulumi:"guiSwitchController"`
-	// Enable/disable threat weight on the GUI. Valid values: `enable`, `disable`.
-	GuiThreatWeight *string `pulumi:"guiThreatWeight"`
-	// Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
-	GuiTrafficShaping *string `pulumi:"guiTrafficShaping"`
-	// Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiVideofilter *string `pulumi:"guiVideofilter"`
-	// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
-	GuiVoipProfile *string `pulumi:"guiVoipProfile"`
-	// Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
-	GuiVpn *string `pulumi:"guiVpn"`
-	// Enable/disable Web Application Firewall on the GUI. Valid values: `enable`, `disable`.
-	GuiWafProfile *string `pulumi:"guiWafProfile"`
-	// Enable/disable SD-WAN on the GUI. Valid values: `enable`, `disable`.
-	GuiWanLoadBalancing *string `pulumi:"guiWanLoadBalancing"`
-	// Enable/disable WAN Optimization and Web Caching on the GUI. Valid values: `enable`, `disable`.
-	GuiWanoptCache *string `pulumi:"guiWanoptCache"`
-	// Enable/disable Web filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiWebfilter *string `pulumi:"guiWebfilter"`
-	// Enable/disable advanced web filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiWebfilterAdvanced *string `pulumi:"guiWebfilterAdvanced"`
-	// Enable/disable the wireless controller on the GUI. Valid values: `enable`, `disable`.
-	GuiWirelessController *string `pulumi:"guiWirelessController"`
-	// Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
-	GuiZtna *string `pulumi:"guiZtna"`
-	// Enable/disable H323 direct model. Valid values: `disable`, `enable`.
-	H323DirectModel *string `pulumi:"h323DirectModel"`
-	// Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
-	HttpExternalDest *string `pulumi:"httpExternalDest"`
-	// Configure IKE ASN.1 Distinguished Name format conventions. Valid values: `with-space`, `no-space`.
-	IkeDnFormat *string `pulumi:"ikeDnFormat"`
-	// UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
-	IkeNattPort *int `pulumi:"ikeNattPort"`
-	// Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
-	IkePolicyRoute *string `pulumi:"ikePolicyRoute"`
-	// UDP port for IKE/IPsec traffic (default 500).
-	IkePort *int `pulumi:"ikePort"`
-	// Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
-	IkeQuickCrashDetect *string `pulumi:"ikeQuickCrashDetect"`
-	// Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
-	IkeSessionResume *string `pulumi:"ikeSessionResume"`
-	// Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
-	ImplicitAllowDns *string `pulumi:"implicitAllowDns"`
-	// Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
-	InspectionMode *string `pulumi:"inspectionMode"`
-	// IP address and netmask.
-	Ip *string `pulumi:"ip"`
-	// IPv6 address prefix for NAT mode.
-	Ip6 *string `pulumi:"ip6"`
-	// Enable/disable link down access traffic. Valid values: `enable`, `disable`.
-	LinkDownAccess *string `pulumi:"linkDownAccess"`
-	// Enable/disable Link Layer Discovery Protocol (LLDP) reception for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
-	LldpReception *string `pulumi:"lldpReception"`
-	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
-	LldpTransmission *string `pulumi:"lldpTransmission"`
-	// Local location ID in the form of an IPv4 address.
-	LocationId *string `pulumi:"locationId"`
-	// Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
-	MacTtl *int `pulumi:"macTtl"`
-	// Transparent mode IPv4 management IP address and netmask.
-	Manageip *string `pulumi:"manageip"`
-	// Transparent mode IPv6 management IP address and netmask.
-	Manageip6 *string `pulumi:"manageip6"`
-	// Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
-	MulticastForward *string `pulumi:"multicastForward"`
-	// Enable/disable allowing multicast traffic through the FortiGate without a policy check. Valid values: `enable`, `disable`.
-	MulticastSkipPolicy *string `pulumi:"multicastSkipPolicy"`
-	// Enable/disable preventing the FortiGate from changing the TTL for forwarded multicast packets. Valid values: `enable`, `disable`.
-	MulticastTtlNotchange *string `pulumi:"multicastTtlNotchange"`
-	// Next Generation Firewall (NGFW) mode. Valid values: `profile-based`, `policy-based`.
-	NgfwMode *string `pulumi:"ngfwMode"`
-	// Firewall operation mode (NAT or Transparent). Valid values: `nat`, `transparent`.
-	Opmode *string `pulumi:"opmode"`
-	// Enable/disable action to take on PRP trailer. Valid values: `enable`, `disable`.
-	PrpTrailerAction *string `pulumi:"prpTrailerAction"`
-	// TCP port the SCCP proxy monitors for SCCP traffic (0 - 65535, default = 2000).
-	SccpPort *int `pulumi:"sccpPort"`
-	// Enable/disable SCTP session creation without SCTP INIT. Valid values: `enable`, `disable`.
-	SctpSessionWithoutInit *string `pulumi:"sctpSessionWithoutInit"`
-	// Enable/disable including denied session in the session table. Valid values: `enable`, `disable`.
-	SesDeniedTraffic *string `pulumi:"sesDeniedTraffic"`
-	// Enable/disable the SIP kernel session helper to create an expectation for port 5060. Valid values: `enable`, `disable`.
-	SipExpectation *string `pulumi:"sipExpectation"`
-	// Enable/disable the SIP session helper to process SIP sessions unless SIP sessions are accepted by the SIP application layer gateway (ALG). Valid values: `enable`, `disable`.
-	SipHelper *string `pulumi:"sipHelper"`
-	// Enable/disable recording the original SIP source IP address when NAT is used. Valid values: `enable`, `disable`.
-	SipNatTrace *string `pulumi:"sipNatTrace"`
-	// TCP port the SIP proxy monitors for SIP SSL/TLS traffic (0 - 65535, default = 5061).
-	SipSslPort *int `pulumi:"sipSslPort"`
-	// TCP port the SIP proxy monitors for SIP traffic (0 - 65535, default = 5060).
-	SipTcpPort *int `pulumi:"sipTcpPort"`
-	// UDP port the SIP proxy monitors for SIP traffic (0 - 65535, default = 5060).
-	SipUdpPort *int `pulumi:"sipUdpPort"`
-	// Enable/disable source NAT (SNAT) for hairpin traffic. Valid values: `enable`, `disable`.
-	SnatHairpinTraffic *string `pulumi:"snatHairpinTraffic"`
-	// Profile for SSL/SSH inspection.
-	SslSshProfile *string `pulumi:"sslSshProfile"`
-	// Enable/disable this VDOM. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Enable/disable strict source verification. Valid values: `enable`, `disable`.
-	StrictSrcCheck *string `pulumi:"strictSrcCheck"`
-	// Enable/disable allowing TCP session without SYN flags. Valid values: `enable`, `disable`.
-	TcpSessionWithoutSyn *string `pulumi:"tcpSessionWithoutSyn"`
-	// Enable/disable converting antispam tags to UTF-8 for better non-ASCII character support. Valid values: `enable`, `disable`.
-	Utf8SpamTagging *string `pulumi:"utf8SpamTagging"`
-	// IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`.
-	V4EcmpMode *string `pulumi:"v4EcmpMode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable periodic VPN log statistics for one or more types of VPN. Separate names with a space. Valid values: `ipsec`, `pptp`, `l2tp`, `ssl`.
-	VpnStatsLog *string `pulumi:"vpnStatsLog"`
-	// Period to send VPN log statistics (0 or 60 - 86400 sec).
-	VpnStatsPeriod *int `pulumi:"vpnStatsPeriod"`
-	// Enable/disable WCCP cache engine. Valid values: `enable`, `disable`.
-	WccpCacheEngine *string `pulumi:"wccpCacheEngine"`
+	AllowLinkdownPath               *string                                `pulumi:"allowLinkdownPath"`
+	AllowSubnetOverlap              *string                                `pulumi:"allowSubnetOverlap"`
+	ApplicationBandwidthTracking    *string                                `pulumi:"applicationBandwidthTracking"`
+	Asymroute                       *string                                `pulumi:"asymroute"`
+	Asymroute6                      *string                                `pulumi:"asymroute6"`
+	Asymroute6Icmp                  *string                                `pulumi:"asymroute6Icmp"`
+	AsymrouteIcmp                   *string                                `pulumi:"asymrouteIcmp"`
+	AuxiliarySession                *string                                `pulumi:"auxiliarySession"`
+	Bfd                             *string                                `pulumi:"bfd"`
+	BfdDesiredMinTx                 *int                                   `pulumi:"bfdDesiredMinTx"`
+	BfdDetectMult                   *int                                   `pulumi:"bfdDetectMult"`
+	BfdDontEnforceSrcPort           *string                                `pulumi:"bfdDontEnforceSrcPort"`
+	BfdRequiredMinRx                *int                                   `pulumi:"bfdRequiredMinRx"`
+	BlockLandAttack                 *string                                `pulumi:"blockLandAttack"`
+	CentralNat                      *string                                `pulumi:"centralNat"`
+	Comments                        *string                                `pulumi:"comments"`
+	ComplianceCheck                 *string                                `pulumi:"complianceCheck"`
+	ConsolidatedFirewallMode        *string                                `pulumi:"consolidatedFirewallMode"`
+	DefaultAppPortAsService         *string                                `pulumi:"defaultAppPortAsService"`
+	DefaultPolicyExpiryDays         *int                                   `pulumi:"defaultPolicyExpiryDays"`
+	DefaultVoipAlgMode              *string                                `pulumi:"defaultVoipAlgMode"`
+	DenyTcpWithIcmp                 *string                                `pulumi:"denyTcpWithIcmp"`
+	Device                          *string                                `pulumi:"device"`
+	Dhcp6ServerIp                   *string                                `pulumi:"dhcp6ServerIp"`
+	DhcpProxy                       *string                                `pulumi:"dhcpProxy"`
+	DhcpProxyInterface              *string                                `pulumi:"dhcpProxyInterface"`
+	DhcpProxyInterfaceSelectMethod  *string                                `pulumi:"dhcpProxyInterfaceSelectMethod"`
+	DhcpServerIp                    *string                                `pulumi:"dhcpServerIp"`
+	DiscoveredDeviceTimeout         *int                                   `pulumi:"discoveredDeviceTimeout"`
+	DynAddrSessionCheck             *string                                `pulumi:"dynAddrSessionCheck"`
+	DynamicSortSubtable             *string                                `pulumi:"dynamicSortSubtable"`
+	EcmpMaxPaths                    *int                                   `pulumi:"ecmpMaxPaths"`
+	EmailPortalCheckDns             *string                                `pulumi:"emailPortalCheckDns"`
+	ExtResourceSessionCheck         *string                                `pulumi:"extResourceSessionCheck"`
+	FirewallSessionDirty            *string                                `pulumi:"firewallSessionDirty"`
+	FqdnSessionCheck                *string                                `pulumi:"fqdnSessionCheck"`
+	FwSessionHairpin                *string                                `pulumi:"fwSessionHairpin"`
+	Gateway                         *string                                `pulumi:"gateway"`
+	Gateway6                        *string                                `pulumi:"gateway6"`
+	GuiAdvancedPolicy               *string                                `pulumi:"guiAdvancedPolicy"`
+	GuiAdvancedWirelessFeatures     *string                                `pulumi:"guiAdvancedWirelessFeatures"`
+	GuiAllowUnnamedPolicy           *string                                `pulumi:"guiAllowUnnamedPolicy"`
+	GuiAntivirus                    *string                                `pulumi:"guiAntivirus"`
+	GuiApProfile                    *string                                `pulumi:"guiApProfile"`
+	GuiApplicationControl           *string                                `pulumi:"guiApplicationControl"`
+	GuiDefaultPolicyColumns         []SystemSettingsGuiDefaultPolicyColumn `pulumi:"guiDefaultPolicyColumns"`
+	GuiDhcpAdvanced                 *string                                `pulumi:"guiDhcpAdvanced"`
+	GuiDlp                          *string                                `pulumi:"guiDlp"`
+	GuiDnsDatabase                  *string                                `pulumi:"guiDnsDatabase"`
+	GuiDnsfilter                    *string                                `pulumi:"guiDnsfilter"`
+	GuiDomainIpReputation           *string                                `pulumi:"guiDomainIpReputation"`
+	GuiDosPolicy                    *string                                `pulumi:"guiDosPolicy"`
+	GuiDynamicProfileDisplay        *string                                `pulumi:"guiDynamicProfileDisplay"`
+	GuiDynamicRouting               *string                                `pulumi:"guiDynamicRouting"`
+	GuiEmailCollection              *string                                `pulumi:"guiEmailCollection"`
+	GuiEndpointControl              *string                                `pulumi:"guiEndpointControl"`
+	GuiEndpointControlAdvanced      *string                                `pulumi:"guiEndpointControlAdvanced"`
+	GuiEnforceChangeSummary         *string                                `pulumi:"guiEnforceChangeSummary"`
+	GuiExplicitProxy                *string                                `pulumi:"guiExplicitProxy"`
+	GuiFileFilter                   *string                                `pulumi:"guiFileFilter"`
+	GuiFortiapSplitTunneling        *string                                `pulumi:"guiFortiapSplitTunneling"`
+	GuiFortiextenderController      *string                                `pulumi:"guiFortiextenderController"`
+	GuiIcap                         *string                                `pulumi:"guiIcap"`
+	GuiImplicitPolicy               *string                                `pulumi:"guiImplicitPolicy"`
+	GuiIps                          *string                                `pulumi:"guiIps"`
+	GuiLoadBalance                  *string                                `pulumi:"guiLoadBalance"`
+	GuiLocalInPolicy                *string                                `pulumi:"guiLocalInPolicy"`
+	GuiLocalReports                 *string                                `pulumi:"guiLocalReports"`
+	GuiMulticastPolicy              *string                                `pulumi:"guiMulticastPolicy"`
+	GuiMultipleInterfacePolicy      *string                                `pulumi:"guiMultipleInterfacePolicy"`
+	GuiMultipleUtmProfiles          *string                                `pulumi:"guiMultipleUtmProfiles"`
+	GuiNat4664                      *string                                `pulumi:"guiNat4664"`
+	GuiObjectColors                 *string                                `pulumi:"guiObjectColors"`
+	GuiOt                           *string                                `pulumi:"guiOt"`
+	GuiPerPolicyDisclaimer          *string                                `pulumi:"guiPerPolicyDisclaimer"`
+	GuiPolicyBasedIpsec             *string                                `pulumi:"guiPolicyBasedIpsec"`
+	GuiPolicyDisclaimer             *string                                `pulumi:"guiPolicyDisclaimer"`
+	GuiPolicyLearning               *string                                `pulumi:"guiPolicyLearning"`
+	GuiReplacementMessageGroups     *string                                `pulumi:"guiReplacementMessageGroups"`
+	GuiSecurityProfileGroup         *string                                `pulumi:"guiSecurityProfileGroup"`
+	GuiSpamfilter                   *string                                `pulumi:"guiSpamfilter"`
+	GuiSslvpnPersonalBookmarks      *string                                `pulumi:"guiSslvpnPersonalBookmarks"`
+	GuiSslvpnRealms                 *string                                `pulumi:"guiSslvpnRealms"`
+	GuiSwitchController             *string                                `pulumi:"guiSwitchController"`
+	GuiThreatWeight                 *string                                `pulumi:"guiThreatWeight"`
+	GuiTrafficShaping               *string                                `pulumi:"guiTrafficShaping"`
+	GuiVideofilter                  *string                                `pulumi:"guiVideofilter"`
+	GuiVoipProfile                  *string                                `pulumi:"guiVoipProfile"`
+	GuiVpn                          *string                                `pulumi:"guiVpn"`
+	GuiWafProfile                   *string                                `pulumi:"guiWafProfile"`
+	GuiWanLoadBalancing             *string                                `pulumi:"guiWanLoadBalancing"`
+	GuiWanoptCache                  *string                                `pulumi:"guiWanoptCache"`
+	GuiWebfilter                    *string                                `pulumi:"guiWebfilter"`
+	GuiWebfilterAdvanced            *string                                `pulumi:"guiWebfilterAdvanced"`
+	GuiWirelessController           *string                                `pulumi:"guiWirelessController"`
+	GuiZtna                         *string                                `pulumi:"guiZtna"`
+	H323DirectModel                 *string                                `pulumi:"h323DirectModel"`
+	HttpExternalDest                *string                                `pulumi:"httpExternalDest"`
+	IkeDnFormat                     *string                                `pulumi:"ikeDnFormat"`
+	IkeNattPort                     *int                                   `pulumi:"ikeNattPort"`
+	IkePolicyRoute                  *string                                `pulumi:"ikePolicyRoute"`
+	IkePort                         *int                                   `pulumi:"ikePort"`
+	IkeQuickCrashDetect             *string                                `pulumi:"ikeQuickCrashDetect"`
+	IkeSessionResume                *string                                `pulumi:"ikeSessionResume"`
+	ImplicitAllowDns                *string                                `pulumi:"implicitAllowDns"`
+	InspectionMode                  *string                                `pulumi:"inspectionMode"`
+	Ip                              *string                                `pulumi:"ip"`
+	Ip6                             *string                                `pulumi:"ip6"`
+	LanExtensionControllerAddr      *string                                `pulumi:"lanExtensionControllerAddr"`
+	LinkDownAccess                  *string                                `pulumi:"linkDownAccess"`
+	LldpReception                   *string                                `pulumi:"lldpReception"`
+	LldpTransmission                *string                                `pulumi:"lldpTransmission"`
+	LocationId                      *string                                `pulumi:"locationId"`
+	MacTtl                          *int                                   `pulumi:"macTtl"`
+	Manageip                        *string                                `pulumi:"manageip"`
+	Manageip6                       *string                                `pulumi:"manageip6"`
+	MulticastForward                *string                                `pulumi:"multicastForward"`
+	MulticastSkipPolicy             *string                                `pulumi:"multicastSkipPolicy"`
+	MulticastTtlNotchange           *string                                `pulumi:"multicastTtlNotchange"`
+	Nat46ForceIpv4PacketForwarding  *string                                `pulumi:"nat46ForceIpv4PacketForwarding"`
+	Nat46GenerateIpv6FragmentHeader *string                                `pulumi:"nat46GenerateIpv6FragmentHeader"`
+	Nat64ForceIpv6PacketForwarding  *string                                `pulumi:"nat64ForceIpv6PacketForwarding"`
+	NgfwMode                        *string                                `pulumi:"ngfwMode"`
+	Opmode                          *string                                `pulumi:"opmode"`
+	PrpTrailerAction                *string                                `pulumi:"prpTrailerAction"`
+	SccpPort                        *int                                   `pulumi:"sccpPort"`
+	SctpSessionWithoutInit          *string                                `pulumi:"sctpSessionWithoutInit"`
+	SesDeniedTraffic                *string                                `pulumi:"sesDeniedTraffic"`
+	SipExpectation                  *string                                `pulumi:"sipExpectation"`
+	SipHelper                       *string                                `pulumi:"sipHelper"`
+	SipNatTrace                     *string                                `pulumi:"sipNatTrace"`
+	SipSslPort                      *int                                   `pulumi:"sipSslPort"`
+	SipTcpPort                      *int                                   `pulumi:"sipTcpPort"`
+	SipUdpPort                      *int                                   `pulumi:"sipUdpPort"`
+	SnatHairpinTraffic              *string                                `pulumi:"snatHairpinTraffic"`
+	SslSshProfile                   *string                                `pulumi:"sslSshProfile"`
+	Status                          *string                                `pulumi:"status"`
+	StrictSrcCheck                  *string                                `pulumi:"strictSrcCheck"`
+	TcpSessionWithoutSyn            *string                                `pulumi:"tcpSessionWithoutSyn"`
+	Utf8SpamTagging                 *string                                `pulumi:"utf8SpamTagging"`
+	V4EcmpMode                      *string                                `pulumi:"v4EcmpMode"`
+	VdomType                        *string                                `pulumi:"vdomType"`
+	Vdomparam                       *string                                `pulumi:"vdomparam"`
+	VpnStatsLog                     *string                                `pulumi:"vpnStatsLog"`
+	VpnStatsPeriod                  *int                                   `pulumi:"vpnStatsPeriod"`
+	WccpCacheEngine                 *string                                `pulumi:"wccpCacheEngine"`
 }
 
 // The set of arguments for constructing a SystemSettings resource.
 type SystemSettingsArgs struct {
-	// Enable/disable link down path. Valid values: `enable`, `disable`.
-	AllowLinkdownPath pulumi.StringPtrInput
-	// Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
-	AllowSubnetOverlap pulumi.StringPtrInput
-	// Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
-	ApplicationBandwidthTracking pulumi.StringPtrInput
-	// Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
-	Asymroute pulumi.StringPtrInput
-	// Enable/disable asymmetric IPv6 routing. Valid values: `enable`, `disable`.
-	Asymroute6 pulumi.StringPtrInput
-	// Enable/disable asymmetric ICMPv6 routing. Valid values: `enable`, `disable`.
-	Asymroute6Icmp pulumi.StringPtrInput
-	// Enable/disable ICMP asymmetric routing. Valid values: `enable`, `disable`.
-	AsymrouteIcmp pulumi.StringPtrInput
-	// Enable/disable auxiliary session. Valid values: `enable`, `disable`.
-	AuxiliarySession pulumi.StringPtrInput
-	// Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces. Valid values: `enable`, `disable`.
-	Bfd pulumi.StringPtrInput
-	// BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
-	BfdDesiredMinTx pulumi.IntPtrInput
-	// BFD detection multiplier (1 - 50, default = 3).
-	BfdDetectMult pulumi.IntPtrInput
-	// Enable to not enforce verifying the source port of BFD Packets. Valid values: `enable`, `disable`.
-	BfdDontEnforceSrcPort pulumi.StringPtrInput
-	// BFD required minimal receive interval (1 - 100000 ms, default = 50).
-	BfdRequiredMinRx pulumi.IntPtrInput
-	// Enable/disable blocking of land attacks. Valid values: `disable`, `enable`.
-	BlockLandAttack pulumi.StringPtrInput
-	// Enable/disable central NAT. Valid values: `enable`, `disable`.
-	CentralNat pulumi.StringPtrInput
-	// VDOM comments.
-	Comments pulumi.StringPtrInput
-	// Enable/disable PCI DSS compliance checking. Valid values: `enable`, `disable`.
-	ComplianceCheck pulumi.StringPtrInput
-	// Consolidated firewall mode.
-	ConsolidatedFirewallMode pulumi.StringPtrInput
-	// Configure how the FortiGate handles VoIP traffic when a policy that accepts the traffic doesn't include a VoIP profile. Valid values: `proxy-based`, `kernel-helper-based`.
-	DefaultVoipAlgMode pulumi.StringPtrInput
-	// Enable/disable denying TCP by sending an ICMP communication prohibited packet. Valid values: `enable`, `disable`.
-	DenyTcpWithIcmp pulumi.StringPtrInput
-	// Interface to use for management access for NAT mode.
-	Device pulumi.StringPtrInput
-	// DHCPv6 server IPv6 address.
-	Dhcp6ServerIp pulumi.StringPtrInput
-	// Enable/disable the DHCP Proxy. Valid values: `enable`, `disable`.
-	DhcpProxy pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	DhcpProxyInterface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	DhcpProxyInterfaceSelectMethod pulumi.StringPtrInput
-	// DHCP Server IPv4 address.
-	DhcpServerIp pulumi.StringPtrInput
-	// Timeout for discovered devices (1 - 365 days, default = 28).
-	DiscoveredDeviceTimeout pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
-	EcmpMaxPaths pulumi.IntPtrInput
-	// Enable/disable using DNS to validate email addresses collected by a captive portal. Valid values: `disable`, `enable`.
-	EmailPortalCheckDns pulumi.StringPtrInput
-	// Select how to manage sessions affected by firewall policy configuration changes. Valid values: `check-all`, `check-new`, `check-policy-option`.
-	FirewallSessionDirty pulumi.StringPtrInput
-	// Enable/disable checking for a matching policy each time hairpin traffic goes through the FortiGate. Valid values: `enable`, `disable`.
-	FwSessionHairpin pulumi.StringPtrInput
-	// Transparent mode IPv4 default gateway IP address.
-	Gateway pulumi.StringPtrInput
-	// Transparent mode IPv4 default gateway IP address.
-	Gateway6 pulumi.StringPtrInput
-	// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
-	GuiAdvancedPolicy pulumi.StringPtrInput
-	// Enable/disable the requirement for policy naming on the GUI. Valid values: `enable`, `disable`.
-	GuiAllowUnnamedPolicy pulumi.StringPtrInput
-	// Enable/disable AntiVirus on the GUI. Valid values: `enable`, `disable`.
-	GuiAntivirus pulumi.StringPtrInput
-	// Enable/disable FortiAP profiles on the GUI. Valid values: `enable`, `disable`.
-	GuiApProfile pulumi.StringPtrInput
-	// Enable/disable application control on the GUI. Valid values: `enable`, `disable`.
-	GuiApplicationControl pulumi.StringPtrInput
-	// Default columns to display for policy lists on GUI. The structure of `guiDefaultPolicyColumns` block is documented below.
-	GuiDefaultPolicyColumns SystemSettingsGuiDefaultPolicyColumnArrayInput
-	// Enable/disable advanced DHCP options on the GUI. Valid values: `enable`, `disable`.
-	GuiDhcpAdvanced pulumi.StringPtrInput
-	// Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
-	GuiDlp pulumi.StringPtrInput
-	// Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
-	GuiDnsDatabase pulumi.StringPtrInput
-	// Enable/disable DNS Filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiDnsfilter pulumi.StringPtrInput
-	// Enable/disable Domain and IP Reputation on the GUI. Valid values: `enable`, `disable`.
-	GuiDomainIpReputation pulumi.StringPtrInput
-	// Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
-	GuiDosPolicy pulumi.StringPtrInput
-	// Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
-	GuiDynamicProfileDisplay pulumi.StringPtrInput
-	// Enable/disable dynamic routing on the GUI. Valid values: `enable`, `disable`.
-	GuiDynamicRouting pulumi.StringPtrInput
-	// Enable/disable email collection on the GUI. Valid values: `enable`, `disable`.
-	GuiEmailCollection pulumi.StringPtrInput
-	// Enable/disable endpoint control on the GUI. Valid values: `enable`, `disable`.
-	GuiEndpointControl pulumi.StringPtrInput
-	// Enable/disable advanced endpoint control options on the GUI. Valid values: `enable`, `disable`.
-	GuiEndpointControlAdvanced pulumi.StringPtrInput
-	// Enable/disable the explicit proxy on the GUI. Valid values: `enable`, `disable`.
-	GuiExplicitProxy pulumi.StringPtrInput
-	// Enable/disable File-filter on the GUI. Valid values: `enable`, `disable`.
-	GuiFileFilter pulumi.StringPtrInput
-	// Enable/disable FortiAP split tunneling on the GUI. Valid values: `enable`, `disable`.
-	GuiFortiapSplitTunneling pulumi.StringPtrInput
-	// Enable/disable FortiExtender on the GUI. Valid values: `enable`, `disable`.
-	GuiFortiextenderController pulumi.StringPtrInput
-	// Enable/disable ICAP on the GUI. Valid values: `enable`, `disable`.
-	GuiIcap pulumi.StringPtrInput
-	// Enable/disable implicit firewall policies on the GUI. Valid values: `enable`, `disable`.
-	GuiImplicitPolicy pulumi.StringPtrInput
-	// Enable/disable IPS on the GUI. Valid values: `enable`, `disable`.
-	GuiIps pulumi.StringPtrInput
-	// Enable/disable server load balancing on the GUI. Valid values: `enable`, `disable`.
-	GuiLoadBalance pulumi.StringPtrInput
-	// Enable/disable Local-In policies on the GUI. Valid values: `enable`, `disable`.
-	GuiLocalInPolicy pulumi.StringPtrInput
-	// Enable/disable local reports on the GUI. Valid values: `enable`, `disable`.
-	GuiLocalReports pulumi.StringPtrInput
-	// Enable/disable multicast firewall policies on the GUI. Valid values: `enable`, `disable`.
-	GuiMulticastPolicy pulumi.StringPtrInput
-	// Enable/disable adding multiple interfaces to a policy on the GUI. Valid values: `enable`, `disable`.
-	GuiMultipleInterfacePolicy pulumi.StringPtrInput
-	// Enable/disable multiple UTM profiles on the GUI. Valid values: `enable`, `disable`.
-	GuiMultipleUtmProfiles pulumi.StringPtrInput
-	// Enable/disable NAT46 and NAT64 settings on the GUI. Valid values: `enable`, `disable`.
-	GuiNat4664 pulumi.StringPtrInput
-	// Enable/disable object colors on the GUI. Valid values: `enable`, `disable`.
-	GuiObjectColors pulumi.StringPtrInput
-	// Enable/disable policy disclaimer on the GUI. Valid values: `enable`, `disable`.
-	GuiPerPolicyDisclaimer pulumi.StringPtrInput
-	// Enable/disable policy-based IPsec VPN on the GUI. Valid values: `enable`, `disable`.
-	GuiPolicyBasedIpsec pulumi.StringPtrInput
-	// Enable/disable policy disclaimer on the GUI. Valid values: `enable`, `disable`.
-	GuiPolicyDisclaimer pulumi.StringPtrInput
-	// Enable/disable firewall policy learning mode on the GUI. Valid values: `enable`, `disable`.
-	GuiPolicyLearning pulumi.StringPtrInput
-	// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
-	GuiReplacementMessageGroups pulumi.StringPtrInput
-	// Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
-	GuiSecurityProfileGroup pulumi.StringPtrInput
-	// Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
-	GuiSpamfilter pulumi.StringPtrInput
-	// Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
-	GuiSslvpnPersonalBookmarks pulumi.StringPtrInput
-	// Enable/disable SSL-VPN realms on the GUI. Valid values: `enable`, `disable`.
-	GuiSslvpnRealms pulumi.StringPtrInput
-	// Enable/disable the switch controller on the GUI. Valid values: `enable`, `disable`.
-	GuiSwitchController pulumi.StringPtrInput
-	// Enable/disable threat weight on the GUI. Valid values: `enable`, `disable`.
-	GuiThreatWeight pulumi.StringPtrInput
-	// Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
-	GuiTrafficShaping pulumi.StringPtrInput
-	// Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiVideofilter pulumi.StringPtrInput
-	// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
-	GuiVoipProfile pulumi.StringPtrInput
-	// Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
-	GuiVpn pulumi.StringPtrInput
-	// Enable/disable Web Application Firewall on the GUI. Valid values: `enable`, `disable`.
-	GuiWafProfile pulumi.StringPtrInput
-	// Enable/disable SD-WAN on the GUI. Valid values: `enable`, `disable`.
-	GuiWanLoadBalancing pulumi.StringPtrInput
-	// Enable/disable WAN Optimization and Web Caching on the GUI. Valid values: `enable`, `disable`.
-	GuiWanoptCache pulumi.StringPtrInput
-	// Enable/disable Web filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiWebfilter pulumi.StringPtrInput
-	// Enable/disable advanced web filtering on the GUI. Valid values: `enable`, `disable`.
-	GuiWebfilterAdvanced pulumi.StringPtrInput
-	// Enable/disable the wireless controller on the GUI. Valid values: `enable`, `disable`.
-	GuiWirelessController pulumi.StringPtrInput
-	// Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
-	GuiZtna pulumi.StringPtrInput
-	// Enable/disable H323 direct model. Valid values: `disable`, `enable`.
-	H323DirectModel pulumi.StringPtrInput
-	// Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
-	HttpExternalDest pulumi.StringPtrInput
-	// Configure IKE ASN.1 Distinguished Name format conventions. Valid values: `with-space`, `no-space`.
-	IkeDnFormat pulumi.StringPtrInput
-	// UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
-	IkeNattPort pulumi.IntPtrInput
-	// Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
-	IkePolicyRoute pulumi.StringPtrInput
-	// UDP port for IKE/IPsec traffic (default 500).
-	IkePort pulumi.IntPtrInput
-	// Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
-	IkeQuickCrashDetect pulumi.StringPtrInput
-	// Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
-	IkeSessionResume pulumi.StringPtrInput
-	// Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
-	ImplicitAllowDns pulumi.StringPtrInput
-	// Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
-	InspectionMode pulumi.StringPtrInput
-	// IP address and netmask.
-	Ip pulumi.StringPtrInput
-	// IPv6 address prefix for NAT mode.
-	Ip6 pulumi.StringPtrInput
-	// Enable/disable link down access traffic. Valid values: `enable`, `disable`.
-	LinkDownAccess pulumi.StringPtrInput
-	// Enable/disable Link Layer Discovery Protocol (LLDP) reception for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
-	LldpReception pulumi.StringPtrInput
-	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
-	LldpTransmission pulumi.StringPtrInput
-	// Local location ID in the form of an IPv4 address.
-	LocationId pulumi.StringPtrInput
-	// Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
-	MacTtl pulumi.IntPtrInput
-	// Transparent mode IPv4 management IP address and netmask.
-	Manageip pulumi.StringPtrInput
-	// Transparent mode IPv6 management IP address and netmask.
-	Manageip6 pulumi.StringPtrInput
-	// Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
-	MulticastForward pulumi.StringPtrInput
-	// Enable/disable allowing multicast traffic through the FortiGate without a policy check. Valid values: `enable`, `disable`.
-	MulticastSkipPolicy pulumi.StringPtrInput
-	// Enable/disable preventing the FortiGate from changing the TTL for forwarded multicast packets. Valid values: `enable`, `disable`.
-	MulticastTtlNotchange pulumi.StringPtrInput
-	// Next Generation Firewall (NGFW) mode. Valid values: `profile-based`, `policy-based`.
-	NgfwMode pulumi.StringPtrInput
-	// Firewall operation mode (NAT or Transparent). Valid values: `nat`, `transparent`.
-	Opmode pulumi.StringPtrInput
-	// Enable/disable action to take on PRP trailer. Valid values: `enable`, `disable`.
-	PrpTrailerAction pulumi.StringPtrInput
-	// TCP port the SCCP proxy monitors for SCCP traffic (0 - 65535, default = 2000).
-	SccpPort pulumi.IntPtrInput
-	// Enable/disable SCTP session creation without SCTP INIT. Valid values: `enable`, `disable`.
-	SctpSessionWithoutInit pulumi.StringPtrInput
-	// Enable/disable including denied session in the session table. Valid values: `enable`, `disable`.
-	SesDeniedTraffic pulumi.StringPtrInput
-	// Enable/disable the SIP kernel session helper to create an expectation for port 5060. Valid values: `enable`, `disable`.
-	SipExpectation pulumi.StringPtrInput
-	// Enable/disable the SIP session helper to process SIP sessions unless SIP sessions are accepted by the SIP application layer gateway (ALG). Valid values: `enable`, `disable`.
-	SipHelper pulumi.StringPtrInput
-	// Enable/disable recording the original SIP source IP address when NAT is used. Valid values: `enable`, `disable`.
-	SipNatTrace pulumi.StringPtrInput
-	// TCP port the SIP proxy monitors for SIP SSL/TLS traffic (0 - 65535, default = 5061).
-	SipSslPort pulumi.IntPtrInput
-	// TCP port the SIP proxy monitors for SIP traffic (0 - 65535, default = 5060).
-	SipTcpPort pulumi.IntPtrInput
-	// UDP port the SIP proxy monitors for SIP traffic (0 - 65535, default = 5060).
-	SipUdpPort pulumi.IntPtrInput
-	// Enable/disable source NAT (SNAT) for hairpin traffic. Valid values: `enable`, `disable`.
-	SnatHairpinTraffic pulumi.StringPtrInput
-	// Profile for SSL/SSH inspection.
-	SslSshProfile pulumi.StringPtrInput
-	// Enable/disable this VDOM. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Enable/disable strict source verification. Valid values: `enable`, `disable`.
-	StrictSrcCheck pulumi.StringPtrInput
-	// Enable/disable allowing TCP session without SYN flags. Valid values: `enable`, `disable`.
-	TcpSessionWithoutSyn pulumi.StringPtrInput
-	// Enable/disable converting antispam tags to UTF-8 for better non-ASCII character support. Valid values: `enable`, `disable`.
-	Utf8SpamTagging pulumi.StringPtrInput
-	// IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`.
-	V4EcmpMode pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable periodic VPN log statistics for one or more types of VPN. Separate names with a space. Valid values: `ipsec`, `pptp`, `l2tp`, `ssl`.
-	VpnStatsLog pulumi.StringPtrInput
-	// Period to send VPN log statistics (0 or 60 - 86400 sec).
-	VpnStatsPeriod pulumi.IntPtrInput
-	// Enable/disable WCCP cache engine. Valid values: `enable`, `disable`.
-	WccpCacheEngine pulumi.StringPtrInput
+	AllowLinkdownPath               pulumi.StringPtrInput
+	AllowSubnetOverlap              pulumi.StringPtrInput
+	ApplicationBandwidthTracking    pulumi.StringPtrInput
+	Asymroute                       pulumi.StringPtrInput
+	Asymroute6                      pulumi.StringPtrInput
+	Asymroute6Icmp                  pulumi.StringPtrInput
+	AsymrouteIcmp                   pulumi.StringPtrInput
+	AuxiliarySession                pulumi.StringPtrInput
+	Bfd                             pulumi.StringPtrInput
+	BfdDesiredMinTx                 pulumi.IntPtrInput
+	BfdDetectMult                   pulumi.IntPtrInput
+	BfdDontEnforceSrcPort           pulumi.StringPtrInput
+	BfdRequiredMinRx                pulumi.IntPtrInput
+	BlockLandAttack                 pulumi.StringPtrInput
+	CentralNat                      pulumi.StringPtrInput
+	Comments                        pulumi.StringPtrInput
+	ComplianceCheck                 pulumi.StringPtrInput
+	ConsolidatedFirewallMode        pulumi.StringPtrInput
+	DefaultAppPortAsService         pulumi.StringPtrInput
+	DefaultPolicyExpiryDays         pulumi.IntPtrInput
+	DefaultVoipAlgMode              pulumi.StringPtrInput
+	DenyTcpWithIcmp                 pulumi.StringPtrInput
+	Device                          pulumi.StringPtrInput
+	Dhcp6ServerIp                   pulumi.StringPtrInput
+	DhcpProxy                       pulumi.StringPtrInput
+	DhcpProxyInterface              pulumi.StringPtrInput
+	DhcpProxyInterfaceSelectMethod  pulumi.StringPtrInput
+	DhcpServerIp                    pulumi.StringPtrInput
+	DiscoveredDeviceTimeout         pulumi.IntPtrInput
+	DynAddrSessionCheck             pulumi.StringPtrInput
+	DynamicSortSubtable             pulumi.StringPtrInput
+	EcmpMaxPaths                    pulumi.IntPtrInput
+	EmailPortalCheckDns             pulumi.StringPtrInput
+	ExtResourceSessionCheck         pulumi.StringPtrInput
+	FirewallSessionDirty            pulumi.StringPtrInput
+	FqdnSessionCheck                pulumi.StringPtrInput
+	FwSessionHairpin                pulumi.StringPtrInput
+	Gateway                         pulumi.StringPtrInput
+	Gateway6                        pulumi.StringPtrInput
+	GuiAdvancedPolicy               pulumi.StringPtrInput
+	GuiAdvancedWirelessFeatures     pulumi.StringPtrInput
+	GuiAllowUnnamedPolicy           pulumi.StringPtrInput
+	GuiAntivirus                    pulumi.StringPtrInput
+	GuiApProfile                    pulumi.StringPtrInput
+	GuiApplicationControl           pulumi.StringPtrInput
+	GuiDefaultPolicyColumns         SystemSettingsGuiDefaultPolicyColumnArrayInput
+	GuiDhcpAdvanced                 pulumi.StringPtrInput
+	GuiDlp                          pulumi.StringPtrInput
+	GuiDnsDatabase                  pulumi.StringPtrInput
+	GuiDnsfilter                    pulumi.StringPtrInput
+	GuiDomainIpReputation           pulumi.StringPtrInput
+	GuiDosPolicy                    pulumi.StringPtrInput
+	GuiDynamicProfileDisplay        pulumi.StringPtrInput
+	GuiDynamicRouting               pulumi.StringPtrInput
+	GuiEmailCollection              pulumi.StringPtrInput
+	GuiEndpointControl              pulumi.StringPtrInput
+	GuiEndpointControlAdvanced      pulumi.StringPtrInput
+	GuiEnforceChangeSummary         pulumi.StringPtrInput
+	GuiExplicitProxy                pulumi.StringPtrInput
+	GuiFileFilter                   pulumi.StringPtrInput
+	GuiFortiapSplitTunneling        pulumi.StringPtrInput
+	GuiFortiextenderController      pulumi.StringPtrInput
+	GuiIcap                         pulumi.StringPtrInput
+	GuiImplicitPolicy               pulumi.StringPtrInput
+	GuiIps                          pulumi.StringPtrInput
+	GuiLoadBalance                  pulumi.StringPtrInput
+	GuiLocalInPolicy                pulumi.StringPtrInput
+	GuiLocalReports                 pulumi.StringPtrInput
+	GuiMulticastPolicy              pulumi.StringPtrInput
+	GuiMultipleInterfacePolicy      pulumi.StringPtrInput
+	GuiMultipleUtmProfiles          pulumi.StringPtrInput
+	GuiNat4664                      pulumi.StringPtrInput
+	GuiObjectColors                 pulumi.StringPtrInput
+	GuiOt                           pulumi.StringPtrInput
+	GuiPerPolicyDisclaimer          pulumi.StringPtrInput
+	GuiPolicyBasedIpsec             pulumi.StringPtrInput
+	GuiPolicyDisclaimer             pulumi.StringPtrInput
+	GuiPolicyLearning               pulumi.StringPtrInput
+	GuiReplacementMessageGroups     pulumi.StringPtrInput
+	GuiSecurityProfileGroup         pulumi.StringPtrInput
+	GuiSpamfilter                   pulumi.StringPtrInput
+	GuiSslvpnPersonalBookmarks      pulumi.StringPtrInput
+	GuiSslvpnRealms                 pulumi.StringPtrInput
+	GuiSwitchController             pulumi.StringPtrInput
+	GuiThreatWeight                 pulumi.StringPtrInput
+	GuiTrafficShaping               pulumi.StringPtrInput
+	GuiVideofilter                  pulumi.StringPtrInput
+	GuiVoipProfile                  pulumi.StringPtrInput
+	GuiVpn                          pulumi.StringPtrInput
+	GuiWafProfile                   pulumi.StringPtrInput
+	GuiWanLoadBalancing             pulumi.StringPtrInput
+	GuiWanoptCache                  pulumi.StringPtrInput
+	GuiWebfilter                    pulumi.StringPtrInput
+	GuiWebfilterAdvanced            pulumi.StringPtrInput
+	GuiWirelessController           pulumi.StringPtrInput
+	GuiZtna                         pulumi.StringPtrInput
+	H323DirectModel                 pulumi.StringPtrInput
+	HttpExternalDest                pulumi.StringPtrInput
+	IkeDnFormat                     pulumi.StringPtrInput
+	IkeNattPort                     pulumi.IntPtrInput
+	IkePolicyRoute                  pulumi.StringPtrInput
+	IkePort                         pulumi.IntPtrInput
+	IkeQuickCrashDetect             pulumi.StringPtrInput
+	IkeSessionResume                pulumi.StringPtrInput
+	ImplicitAllowDns                pulumi.StringPtrInput
+	InspectionMode                  pulumi.StringPtrInput
+	Ip                              pulumi.StringPtrInput
+	Ip6                             pulumi.StringPtrInput
+	LanExtensionControllerAddr      pulumi.StringPtrInput
+	LinkDownAccess                  pulumi.StringPtrInput
+	LldpReception                   pulumi.StringPtrInput
+	LldpTransmission                pulumi.StringPtrInput
+	LocationId                      pulumi.StringPtrInput
+	MacTtl                          pulumi.IntPtrInput
+	Manageip                        pulumi.StringPtrInput
+	Manageip6                       pulumi.StringPtrInput
+	MulticastForward                pulumi.StringPtrInput
+	MulticastSkipPolicy             pulumi.StringPtrInput
+	MulticastTtlNotchange           pulumi.StringPtrInput
+	Nat46ForceIpv4PacketForwarding  pulumi.StringPtrInput
+	Nat46GenerateIpv6FragmentHeader pulumi.StringPtrInput
+	Nat64ForceIpv6PacketForwarding  pulumi.StringPtrInput
+	NgfwMode                        pulumi.StringPtrInput
+	Opmode                          pulumi.StringPtrInput
+	PrpTrailerAction                pulumi.StringPtrInput
+	SccpPort                        pulumi.IntPtrInput
+	SctpSessionWithoutInit          pulumi.StringPtrInput
+	SesDeniedTraffic                pulumi.StringPtrInput
+	SipExpectation                  pulumi.StringPtrInput
+	SipHelper                       pulumi.StringPtrInput
+	SipNatTrace                     pulumi.StringPtrInput
+	SipSslPort                      pulumi.IntPtrInput
+	SipTcpPort                      pulumi.IntPtrInput
+	SipUdpPort                      pulumi.IntPtrInput
+	SnatHairpinTraffic              pulumi.StringPtrInput
+	SslSshProfile                   pulumi.StringPtrInput
+	Status                          pulumi.StringPtrInput
+	StrictSrcCheck                  pulumi.StringPtrInput
+	TcpSessionWithoutSyn            pulumi.StringPtrInput
+	Utf8SpamTagging                 pulumi.StringPtrInput
+	V4EcmpMode                      pulumi.StringPtrInput
+	VdomType                        pulumi.StringPtrInput
+	Vdomparam                       pulumi.StringPtrInput
+	VpnStatsLog                     pulumi.StringPtrInput
+	VpnStatsPeriod                  pulumi.IntPtrInput
+	WccpCacheEngine                 pulumi.StringPtrInput
 }
 
 func (SystemSettingsArgs) ElementType() reflect.Type {
@@ -1461,7 +817,7 @@ func (i *SystemSettings) ToSystemSettingsOutputWithContext(ctx context.Context) 
 // SystemSettingsArrayInput is an input type that accepts SystemSettingsArray and SystemSettingsArrayOutput values.
 // You can construct a concrete instance of `SystemSettingsArrayInput` via:
 //
-//          SystemSettingsArray{ SystemSettingsArgs{...} }
+//	SystemSettingsArray{ SystemSettingsArgs{...} }
 type SystemSettingsArrayInput interface {
 	pulumi.Input
 
@@ -1486,7 +842,7 @@ func (i SystemSettingsArray) ToSystemSettingsArrayOutputWithContext(ctx context.
 // SystemSettingsMapInput is an input type that accepts SystemSettingsMap and SystemSettingsMapOutput values.
 // You can construct a concrete instance of `SystemSettingsMapInput` via:
 //
-//          SystemSettingsMap{ "key": SystemSettingsArgs{...} }
+//	SystemSettingsMap{ "key": SystemSettingsArgs{...} }
 type SystemSettingsMapInput interface {
 	pulumi.Input
 
@@ -1520,6 +876,592 @@ func (o SystemSettingsOutput) ToSystemSettingsOutput() SystemSettingsOutput {
 
 func (o SystemSettingsOutput) ToSystemSettingsOutputWithContext(ctx context.Context) SystemSettingsOutput {
 	return o
+}
+
+func (o SystemSettingsOutput) AllowLinkdownPath() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.AllowLinkdownPath }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) AllowSubnetOverlap() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.AllowSubnetOverlap }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) ApplicationBandwidthTracking() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.ApplicationBandwidthTracking }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Asymroute() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Asymroute }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Asymroute6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Asymroute6 }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Asymroute6Icmp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Asymroute6Icmp }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) AsymrouteIcmp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.AsymrouteIcmp }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) AuxiliarySession() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.AuxiliarySession }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Bfd() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Bfd }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) BfdDesiredMinTx() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.IntOutput { return v.BfdDesiredMinTx }).(pulumi.IntOutput)
+}
+
+func (o SystemSettingsOutput) BfdDetectMult() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.IntOutput { return v.BfdDetectMult }).(pulumi.IntOutput)
+}
+
+func (o SystemSettingsOutput) BfdDontEnforceSrcPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.BfdDontEnforceSrcPort }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) BfdRequiredMinRx() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.IntOutput { return v.BfdRequiredMinRx }).(pulumi.IntOutput)
+}
+
+func (o SystemSettingsOutput) BlockLandAttack() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.BlockLandAttack }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) CentralNat() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.CentralNat }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSettingsOutput) ComplianceCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.ComplianceCheck }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) ConsolidatedFirewallMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.ConsolidatedFirewallMode }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) DefaultAppPortAsService() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.DefaultAppPortAsService }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) DefaultPolicyExpiryDays() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.IntOutput { return v.DefaultPolicyExpiryDays }).(pulumi.IntOutput)
+}
+
+func (o SystemSettingsOutput) DefaultVoipAlgMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.DefaultVoipAlgMode }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) DenyTcpWithIcmp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.DenyTcpWithIcmp }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Device() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Device }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Dhcp6ServerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Dhcp6ServerIp }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) DhcpProxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.DhcpProxy }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) DhcpProxyInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.DhcpProxyInterface }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) DhcpProxyInterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.DhcpProxyInterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) DhcpServerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.DhcpServerIp }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) DiscoveredDeviceTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.IntOutput { return v.DiscoveredDeviceTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemSettingsOutput) DynAddrSessionCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.DynAddrSessionCheck }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSettingsOutput) EcmpMaxPaths() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.IntOutput { return v.EcmpMaxPaths }).(pulumi.IntOutput)
+}
+
+func (o SystemSettingsOutput) EmailPortalCheckDns() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.EmailPortalCheckDns }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) ExtResourceSessionCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.ExtResourceSessionCheck }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) FirewallSessionDirty() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.FirewallSessionDirty }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) FqdnSessionCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.FqdnSessionCheck }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) FwSessionHairpin() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.FwSessionHairpin }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Gateway() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Gateway6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Gateway6 }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiAdvancedPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiAdvancedPolicy }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiAdvancedWirelessFeatures() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiAdvancedWirelessFeatures }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiAllowUnnamedPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiAllowUnnamedPolicy }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiAntivirus() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiAntivirus }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiApProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiApProfile }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiApplicationControl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiApplicationControl }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiDefaultPolicyColumns() SystemSettingsGuiDefaultPolicyColumnArrayOutput {
+	return o.ApplyT(func(v *SystemSettings) SystemSettingsGuiDefaultPolicyColumnArrayOutput {
+		return v.GuiDefaultPolicyColumns
+	}).(SystemSettingsGuiDefaultPolicyColumnArrayOutput)
+}
+
+func (o SystemSettingsOutput) GuiDhcpAdvanced() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiDhcpAdvanced }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiDlp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiDlp }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiDnsDatabase() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiDnsDatabase }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiDnsfilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiDnsfilter }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiDomainIpReputation() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiDomainIpReputation }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiDosPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiDosPolicy }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiDynamicProfileDisplay() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiDynamicProfileDisplay }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiDynamicRouting() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiDynamicRouting }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiEmailCollection() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiEmailCollection }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiEndpointControl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiEndpointControl }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiEndpointControlAdvanced() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiEndpointControlAdvanced }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiEnforceChangeSummary() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiEnforceChangeSummary }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiExplicitProxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiExplicitProxy }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiFileFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiFileFilter }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiFortiapSplitTunneling() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiFortiapSplitTunneling }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiFortiextenderController() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiFortiextenderController }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiIcap() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiIcap }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiImplicitPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiImplicitPolicy }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiIps() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiIps }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiLoadBalance() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiLoadBalance }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiLocalInPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiLocalInPolicy }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiLocalReports() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiLocalReports }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiMulticastPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiMulticastPolicy }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiMultipleInterfacePolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiMultipleInterfacePolicy }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiMultipleUtmProfiles() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiMultipleUtmProfiles }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiNat4664() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiNat4664 }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiObjectColors() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiObjectColors }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiOt() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiOt }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiPerPolicyDisclaimer() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiPerPolicyDisclaimer }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiPolicyBasedIpsec() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiPolicyBasedIpsec }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiPolicyDisclaimer() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiPolicyDisclaimer }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiPolicyLearning() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiPolicyLearning }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiReplacementMessageGroups() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiReplacementMessageGroups }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiSecurityProfileGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiSecurityProfileGroup }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiSpamfilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiSpamfilter }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiSslvpnPersonalBookmarks() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiSslvpnPersonalBookmarks }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiSslvpnRealms() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiSslvpnRealms }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiSwitchController() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiSwitchController }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiThreatWeight() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiThreatWeight }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiTrafficShaping() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiTrafficShaping }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiVideofilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiVideofilter }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiVoipProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiVoipProfile }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiVpn() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiVpn }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiWafProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiWafProfile }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiWanLoadBalancing() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiWanLoadBalancing }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiWanoptCache() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiWanoptCache }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiWebfilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiWebfilter }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiWebfilterAdvanced() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiWebfilterAdvanced }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiWirelessController() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiWirelessController }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiZtna() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiZtna }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) H323DirectModel() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.H323DirectModel }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) HttpExternalDest() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.HttpExternalDest }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) IkeDnFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.IkeDnFormat }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) IkeNattPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.IntOutput { return v.IkeNattPort }).(pulumi.IntOutput)
+}
+
+func (o SystemSettingsOutput) IkePolicyRoute() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.IkePolicyRoute }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) IkePort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.IntOutput { return v.IkePort }).(pulumi.IntOutput)
+}
+
+func (o SystemSettingsOutput) IkeQuickCrashDetect() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.IkeQuickCrashDetect }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) IkeSessionResume() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.IkeSessionResume }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) ImplicitAllowDns() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.ImplicitAllowDns }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) InspectionMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.InspectionMode }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Ip6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Ip6 }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) LanExtensionControllerAddr() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.LanExtensionControllerAddr }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) LinkDownAccess() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.LinkDownAccess }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) LldpReception() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.LldpReception }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) LldpTransmission() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.LldpTransmission }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) LocationId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.LocationId }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) MacTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.IntOutput { return v.MacTtl }).(pulumi.IntOutput)
+}
+
+func (o SystemSettingsOutput) Manageip() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Manageip }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Manageip6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Manageip6 }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) MulticastForward() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.MulticastForward }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) MulticastSkipPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.MulticastSkipPolicy }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) MulticastTtlNotchange() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.MulticastTtlNotchange }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Nat46ForceIpv4PacketForwarding() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Nat46ForceIpv4PacketForwarding }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Nat46GenerateIpv6FragmentHeader() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Nat46GenerateIpv6FragmentHeader }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Nat64ForceIpv6PacketForwarding() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Nat64ForceIpv6PacketForwarding }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) NgfwMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.NgfwMode }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Opmode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Opmode }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) PrpTrailerAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.PrpTrailerAction }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) SccpPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.IntOutput { return v.SccpPort }).(pulumi.IntOutput)
+}
+
+func (o SystemSettingsOutput) SctpSessionWithoutInit() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.SctpSessionWithoutInit }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) SesDeniedTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.SesDeniedTraffic }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) SipExpectation() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.SipExpectation }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) SipHelper() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.SipHelper }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) SipNatTrace() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.SipNatTrace }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) SipSslPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.IntOutput { return v.SipSslPort }).(pulumi.IntOutput)
+}
+
+func (o SystemSettingsOutput) SipTcpPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.IntOutput { return v.SipTcpPort }).(pulumi.IntOutput)
+}
+
+func (o SystemSettingsOutput) SipUdpPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.IntOutput { return v.SipUdpPort }).(pulumi.IntOutput)
+}
+
+func (o SystemSettingsOutput) SnatHairpinTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.SnatHairpinTraffic }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) SslSshProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.SslSshProfile }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) StrictSrcCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.StrictSrcCheck }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) TcpSessionWithoutSyn() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.TcpSessionWithoutSyn }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Utf8SpamTagging() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Utf8SpamTagging }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) V4EcmpMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.V4EcmpMode }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) VdomType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.VdomType }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSettingsOutput) VpnStatsLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.VpnStatsLog }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) VpnStatsPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.IntOutput { return v.VpnStatsPeriod }).(pulumi.IntOutput)
+}
+
+func (o SystemSettingsOutput) WccpCacheEngine() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.WccpCacheEngine }).(pulumi.StringOutput)
 }
 
 type SystemSettingsArrayOutput struct{ *pulumi.OutputState }

@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure MAC address tables.
- *
- * ## Import
- *
- * System MacAddressTable can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemMacAddressTable:SystemMacAddressTable labelname {{mac}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemMacAddressTable:SystemMacAddressTable labelname {{mac}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemMacAddressTable extends pulumi.CustomResource {
     /**
      * Get an existing SystemMacAddressTable resource's state with the given name, ID, and optional extra
@@ -51,21 +32,9 @@ export class SystemMacAddressTable extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemMacAddressTable.__pulumiType;
     }
 
-    /**
-     * Interface name.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * MAC address.
-     */
     public readonly mac!: pulumi.Output<string>;
-    /**
-     * New MAC for reply traffic.
-     */
     public readonly replySubstitute!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -107,21 +76,9 @@ export class SystemMacAddressTable extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemMacAddressTable resources.
  */
 export interface SystemMacAddressTableState {
-    /**
-     * Interface name.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * MAC address.
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * New MAC for reply traffic.
-     */
     replySubstitute?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -129,20 +86,8 @@ export interface SystemMacAddressTableState {
  * The set of arguments for constructing a SystemMacAddressTable resource.
  */
 export interface SystemMacAddressTableArgs {
-    /**
-     * Interface name.
-     */
     interface: pulumi.Input<string>;
-    /**
-     * MAC address.
-     */
     mac: pulumi.Input<string>;
-    /**
-     * New MAC for reply traffic.
-     */
     replySubstitute?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

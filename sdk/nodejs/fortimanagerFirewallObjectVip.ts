@@ -4,34 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports Create/Read/Update/Delete firewall object virtual ip for FortiManager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerFirewallObjectVip("test1", {
- *     arpReply: "enable",
- *     comment: "test obj vip",
- *     configDefault: "enable",
- *     extIntf: "any",
- *     extIp: "2.2.2.2",
- *     mappedIp: "1.1.1.1",
- *     type: "static-nat",
- * });
- * const test2 = new fortios.FortimanagerFirewallObjectVip("test2", {
- *     arpReply: "disable",
- *     comment: "test obj vip",
- *     configDefault: "enable",
- *     extIp: "2.2.2.2-2.2.2.100",
- *     mappedAddr: "update.microsoft.com",
- *     type: "fqdn",
- * });
- * ```
- */
 export class FortimanagerFirewallObjectVip extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerFirewallObjectVip resource's state with the given name, ID, and optional extra
@@ -60,45 +32,15 @@ export class FortimanagerFirewallObjectVip extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerFirewallObjectVip.__pulumiType;
     }
 
-    /**
-     * ADOM name. default is 'root'.
-     */
     public readonly adom!: pulumi.Output<string | undefined>;
-    /**
-     * Enable to respond to ARP requests for this virtual IP address. Enabled by default.
-     */
     public readonly arpReply!: pulumi.Output<string | undefined>;
-    /**
-     * Comments.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/Disable config default value. enabled by default.
-     */
     public readonly configDefault!: pulumi.Output<string | undefined>;
-    /**
-     * Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-     */
     public readonly extIntf!: pulumi.Output<string | undefined>;
-    /**
-     * IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-     */
     public readonly extIp!: pulumi.Output<string | undefined>;
-    /**
-     * Mapped FQDN address name.
-     */
     public readonly mappedAddr!: pulumi.Output<string | undefined>;
-    /**
-     * Mapped Ip address.
-     */
     public readonly mappedIp!: pulumi.Output<string | undefined>;
-    /**
-     * Virtual IP name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Virtual IP type, Enum: ["static-nat", "dns-translation", "fqdn"]
-     */
     public readonly type!: pulumi.Output<string | undefined>;
 
     /**
@@ -146,45 +88,15 @@ export class FortimanagerFirewallObjectVip extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerFirewallObjectVip resources.
  */
 export interface FortimanagerFirewallObjectVipState {
-    /**
-     * ADOM name. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Enable to respond to ARP requests for this virtual IP address. Enabled by default.
-     */
     arpReply?: pulumi.Input<string>;
-    /**
-     * Comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable/Disable config default value. enabled by default.
-     */
     configDefault?: pulumi.Input<string>;
-    /**
-     * Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-     */
     extIntf?: pulumi.Input<string>;
-    /**
-     * IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-     */
     extIp?: pulumi.Input<string>;
-    /**
-     * Mapped FQDN address name.
-     */
     mappedAddr?: pulumi.Input<string>;
-    /**
-     * Mapped Ip address.
-     */
     mappedIp?: pulumi.Input<string>;
-    /**
-     * Virtual IP name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Virtual IP type, Enum: ["static-nat", "dns-translation", "fqdn"]
-     */
     type?: pulumi.Input<string>;
 }
 
@@ -192,44 +104,14 @@ export interface FortimanagerFirewallObjectVipState {
  * The set of arguments for constructing a FortimanagerFirewallObjectVip resource.
  */
 export interface FortimanagerFirewallObjectVipArgs {
-    /**
-     * ADOM name. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Enable to respond to ARP requests for this virtual IP address. Enabled by default.
-     */
     arpReply?: pulumi.Input<string>;
-    /**
-     * Comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable/Disable config default value. enabled by default.
-     */
     configDefault?: pulumi.Input<string>;
-    /**
-     * Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-     */
     extIntf?: pulumi.Input<string>;
-    /**
-     * IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-     */
     extIp?: pulumi.Input<string>;
-    /**
-     * Mapped FQDN address name.
-     */
     mappedAddr?: pulumi.Input<string>;
-    /**
-     * Mapped Ip address.
-     */
     mappedIp?: pulumi.Input<string>;
-    /**
-     * Virtual IP name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Virtual IP type, Enum: ["static-nat", "dns-translation", "fqdn"]
-     */
     type?: pulumi.Input<string>;
 }

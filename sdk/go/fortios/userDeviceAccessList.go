@@ -10,59 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure device access control lists. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewUserDeviceAccessList(ctx, "trname", &fortios.UserDeviceAccessListArgs{
-// 			DefaultAction: pulumi.String("accept"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// User DeviceAccessList can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userDeviceAccessList:UserDeviceAccessList labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userDeviceAccessList:UserDeviceAccessList labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserDeviceAccessList struct {
 	pulumi.CustomResourceState
 
-	// Accept or deny unknown/unspecified devices. Valid values: `accept`, `deny`.
-	DefaultAction pulumi.StringOutput `pulumi:"defaultAction"`
-	// Device list. The structure of `deviceList` block is documented below.
-	DeviceLists UserDeviceAccessListDeviceListArrayOutput `pulumi:"deviceLists"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Device access list name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DefaultAction       pulumi.StringOutput                       `pulumi:"defaultAction"`
+	DeviceLists         UserDeviceAccessListDeviceListArrayOutput `pulumi:"deviceLists"`
+	DynamicSortSubtable pulumi.StringPtrOutput                    `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                       `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                    `pulumi:"vdomparam"`
 }
 
 // NewUserDeviceAccessList registers a new resource with the given unique name, arguments, and options.
@@ -95,29 +50,19 @@ func GetUserDeviceAccessList(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserDeviceAccessList resources.
 type userDeviceAccessListState struct {
-	// Accept or deny unknown/unspecified devices. Valid values: `accept`, `deny`.
-	DefaultAction *string `pulumi:"defaultAction"`
-	// Device list. The structure of `deviceList` block is documented below.
-	DeviceLists []UserDeviceAccessListDeviceList `pulumi:"deviceLists"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Device access list name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DefaultAction       *string                          `pulumi:"defaultAction"`
+	DeviceLists         []UserDeviceAccessListDeviceList `pulumi:"deviceLists"`
+	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
+	Name                *string                          `pulumi:"name"`
+	Vdomparam           *string                          `pulumi:"vdomparam"`
 }
 
 type UserDeviceAccessListState struct {
-	// Accept or deny unknown/unspecified devices. Valid values: `accept`, `deny`.
-	DefaultAction pulumi.StringPtrInput
-	// Device list. The structure of `deviceList` block is documented below.
-	DeviceLists UserDeviceAccessListDeviceListArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DefaultAction       pulumi.StringPtrInput
+	DeviceLists         UserDeviceAccessListDeviceListArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Device access list name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserDeviceAccessListState) ElementType() reflect.Type {
@@ -125,30 +70,20 @@ func (UserDeviceAccessListState) ElementType() reflect.Type {
 }
 
 type userDeviceAccessListArgs struct {
-	// Accept or deny unknown/unspecified devices. Valid values: `accept`, `deny`.
-	DefaultAction *string `pulumi:"defaultAction"`
-	// Device list. The structure of `deviceList` block is documented below.
-	DeviceLists []UserDeviceAccessListDeviceList `pulumi:"deviceLists"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Device access list name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DefaultAction       *string                          `pulumi:"defaultAction"`
+	DeviceLists         []UserDeviceAccessListDeviceList `pulumi:"deviceLists"`
+	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
+	Name                *string                          `pulumi:"name"`
+	Vdomparam           *string                          `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserDeviceAccessList resource.
 type UserDeviceAccessListArgs struct {
-	// Accept or deny unknown/unspecified devices. Valid values: `accept`, `deny`.
-	DefaultAction pulumi.StringPtrInput
-	// Device list. The structure of `deviceList` block is documented below.
-	DeviceLists UserDeviceAccessListDeviceListArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DefaultAction       pulumi.StringPtrInput
+	DeviceLists         UserDeviceAccessListDeviceListArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Device access list name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserDeviceAccessListArgs) ElementType() reflect.Type {
@@ -177,7 +112,7 @@ func (i *UserDeviceAccessList) ToUserDeviceAccessListOutputWithContext(ctx conte
 // UserDeviceAccessListArrayInput is an input type that accepts UserDeviceAccessListArray and UserDeviceAccessListArrayOutput values.
 // You can construct a concrete instance of `UserDeviceAccessListArrayInput` via:
 //
-//          UserDeviceAccessListArray{ UserDeviceAccessListArgs{...} }
+//	UserDeviceAccessListArray{ UserDeviceAccessListArgs{...} }
 type UserDeviceAccessListArrayInput interface {
 	pulumi.Input
 
@@ -202,7 +137,7 @@ func (i UserDeviceAccessListArray) ToUserDeviceAccessListArrayOutputWithContext(
 // UserDeviceAccessListMapInput is an input type that accepts UserDeviceAccessListMap and UserDeviceAccessListMapOutput values.
 // You can construct a concrete instance of `UserDeviceAccessListMapInput` via:
 //
-//          UserDeviceAccessListMap{ "key": UserDeviceAccessListArgs{...} }
+//	UserDeviceAccessListMap{ "key": UserDeviceAccessListArgs{...} }
 type UserDeviceAccessListMapInput interface {
 	pulumi.Input
 
@@ -236,6 +171,26 @@ func (o UserDeviceAccessListOutput) ToUserDeviceAccessListOutput() UserDeviceAcc
 
 func (o UserDeviceAccessListOutput) ToUserDeviceAccessListOutputWithContext(ctx context.Context) UserDeviceAccessListOutput {
 	return o
+}
+
+func (o UserDeviceAccessListOutput) DefaultAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserDeviceAccessList) pulumi.StringOutput { return v.DefaultAction }).(pulumi.StringOutput)
+}
+
+func (o UserDeviceAccessListOutput) DeviceLists() UserDeviceAccessListDeviceListArrayOutput {
+	return o.ApplyT(func(v *UserDeviceAccessList) UserDeviceAccessListDeviceListArrayOutput { return v.DeviceLists }).(UserDeviceAccessListDeviceListArrayOutput)
+}
+
+func (o UserDeviceAccessListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserDeviceAccessList) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceAccessListOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserDeviceAccessList) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserDeviceAccessListOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserDeviceAccessList) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserDeviceAccessListArrayOutput struct{ *pulumi.OutputState }

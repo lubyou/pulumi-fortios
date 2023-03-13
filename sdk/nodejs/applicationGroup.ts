@@ -2,43 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure firewall application groups.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.ApplicationGroup("trname", {
- *     categories: [{
- *         id: 2,
- *     }],
- *     comment: "group1 test",
- *     type: "category",
- * });
- * ```
- *
- * ## Import
- *
- * Application Group can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/applicationGroup:ApplicationGroup labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/applicationGroup:ApplicationGroup labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class ApplicationGroup extends pulumi.CustomResource {
     /**
      * Get an existing ApplicationGroup resource's state with the given name, ID, and optional extra
@@ -67,57 +34,18 @@ export class ApplicationGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === ApplicationGroup.__pulumiType;
     }
 
-    /**
-     * Application ID list. The structure of `application` block is documented below.
-     */
     public readonly applications!: pulumi.Output<outputs.ApplicationGroupApplication[] | undefined>;
-    /**
-     * Application behavior filter.
-     */
     public readonly behavior!: pulumi.Output<string>;
-    /**
-     * Application category ID list. The structure of `category` block is documented below.
-     */
     public readonly categories!: pulumi.Output<outputs.ApplicationGroupCategory[] | undefined>;
-    /**
-     * Comment
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Application group name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Application popularity filter (1 - 5, from least to most popular). Valid values: `1`, `2`, `3`, `4`, `5`.
-     */
     public readonly popularity!: pulumi.Output<string>;
-    /**
-     * Application protocol filter.
-     */
     public readonly protocols!: pulumi.Output<string>;
-    /**
-     * Risk, or impact, of allowing traffic from this application to occur (1 - 5; Low, Elevated, Medium, High, and Critical). The structure of `risk` block is documented below.
-     */
     public readonly risks!: pulumi.Output<outputs.ApplicationGroupRisk[] | undefined>;
-    /**
-     * Application technology filter.
-     */
     public readonly technology!: pulumi.Output<string>;
-    /**
-     * Application group type.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Application vendor filter.
-     */
     public readonly vendor!: pulumi.Output<string>;
 
     /**
@@ -171,57 +99,18 @@ export class ApplicationGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ApplicationGroup resources.
  */
 export interface ApplicationGroupState {
-    /**
-     * Application ID list. The structure of `application` block is documented below.
-     */
     applications?: pulumi.Input<pulumi.Input<inputs.ApplicationGroupApplication>[]>;
-    /**
-     * Application behavior filter.
-     */
     behavior?: pulumi.Input<string>;
-    /**
-     * Application category ID list. The structure of `category` block is documented below.
-     */
     categories?: pulumi.Input<pulumi.Input<inputs.ApplicationGroupCategory>[]>;
-    /**
-     * Comment
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Application group name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Application popularity filter (1 - 5, from least to most popular). Valid values: `1`, `2`, `3`, `4`, `5`.
-     */
     popularity?: pulumi.Input<string>;
-    /**
-     * Application protocol filter.
-     */
     protocols?: pulumi.Input<string>;
-    /**
-     * Risk, or impact, of allowing traffic from this application to occur (1 - 5; Low, Elevated, Medium, High, and Critical). The structure of `risk` block is documented below.
-     */
     risks?: pulumi.Input<pulumi.Input<inputs.ApplicationGroupRisk>[]>;
-    /**
-     * Application technology filter.
-     */
     technology?: pulumi.Input<string>;
-    /**
-     * Application group type.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Application vendor filter.
-     */
     vendor?: pulumi.Input<string>;
 }
 
@@ -229,56 +118,17 @@ export interface ApplicationGroupState {
  * The set of arguments for constructing a ApplicationGroup resource.
  */
 export interface ApplicationGroupArgs {
-    /**
-     * Application ID list. The structure of `application` block is documented below.
-     */
     applications?: pulumi.Input<pulumi.Input<inputs.ApplicationGroupApplication>[]>;
-    /**
-     * Application behavior filter.
-     */
     behavior?: pulumi.Input<string>;
-    /**
-     * Application category ID list. The structure of `category` block is documented below.
-     */
     categories?: pulumi.Input<pulumi.Input<inputs.ApplicationGroupCategory>[]>;
-    /**
-     * Comment
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Application group name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Application popularity filter (1 - 5, from least to most popular). Valid values: `1`, `2`, `3`, `4`, `5`.
-     */
     popularity?: pulumi.Input<string>;
-    /**
-     * Application protocol filter.
-     */
     protocols?: pulumi.Input<string>;
-    /**
-     * Risk, or impact, of allowing traffic from this application to occur (1 - 5; Low, Elevated, Medium, High, and Critical). The structure of `risk` block is documented below.
-     */
     risks?: pulumi.Input<pulumi.Input<inputs.ApplicationGroupRisk>[]>;
-    /**
-     * Application technology filter.
-     */
     technology?: pulumi.Input<string>;
-    /**
-     * Application group type.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Application vendor filter.
-     */
     vendor?: pulumi.Input<string>;
 }

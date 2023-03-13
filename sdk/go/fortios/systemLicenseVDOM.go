@@ -7,38 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to add a VDOM license for FortiOS.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemLicenseVDOM(ctx, "test2", &fortios.SystemLicenseVDOMArgs{
-// 			License: pulumi.String("license"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type SystemLicenseVDOM struct {
 	pulumi.CustomResourceState
 
-	// Registration code.
 	License pulumi.StringOutput `pulumi:"license"`
 }
 
@@ -75,12 +50,10 @@ func GetSystemLicenseVDOM(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemLicenseVDOM resources.
 type systemLicenseVDOMState struct {
-	// Registration code.
 	License *string `pulumi:"license"`
 }
 
 type SystemLicenseVDOMState struct {
-	// Registration code.
 	License pulumi.StringPtrInput
 }
 
@@ -89,13 +62,11 @@ func (SystemLicenseVDOMState) ElementType() reflect.Type {
 }
 
 type systemLicenseVDOMArgs struct {
-	// Registration code.
 	License string `pulumi:"license"`
 }
 
 // The set of arguments for constructing a SystemLicenseVDOM resource.
 type SystemLicenseVDOMArgs struct {
-	// Registration code.
 	License pulumi.StringInput
 }
 
@@ -125,7 +96,7 @@ func (i *SystemLicenseVDOM) ToSystemLicenseVDOMOutputWithContext(ctx context.Con
 // SystemLicenseVDOMArrayInput is an input type that accepts SystemLicenseVDOMArray and SystemLicenseVDOMArrayOutput values.
 // You can construct a concrete instance of `SystemLicenseVDOMArrayInput` via:
 //
-//          SystemLicenseVDOMArray{ SystemLicenseVDOMArgs{...} }
+//	SystemLicenseVDOMArray{ SystemLicenseVDOMArgs{...} }
 type SystemLicenseVDOMArrayInput interface {
 	pulumi.Input
 
@@ -150,7 +121,7 @@ func (i SystemLicenseVDOMArray) ToSystemLicenseVDOMArrayOutputWithContext(ctx co
 // SystemLicenseVDOMMapInput is an input type that accepts SystemLicenseVDOMMap and SystemLicenseVDOMMapOutput values.
 // You can construct a concrete instance of `SystemLicenseVDOMMapInput` via:
 //
-//          SystemLicenseVDOMMap{ "key": SystemLicenseVDOMArgs{...} }
+//	SystemLicenseVDOMMap{ "key": SystemLicenseVDOMArgs{...} }
 type SystemLicenseVDOMMapInput interface {
 	pulumi.Input
 
@@ -184,6 +155,10 @@ func (o SystemLicenseVDOMOutput) ToSystemLicenseVDOMOutput() SystemLicenseVDOMOu
 
 func (o SystemLicenseVDOMOutput) ToSystemLicenseVDOMOutputWithContext(ctx context.Context) SystemLicenseVDOMOutput {
 	return o
+}
+
+func (o SystemLicenseVDOMOutput) License() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLicenseVDOM) pulumi.StringOutput { return v.License }).(pulumi.StringOutput)
 }
 
 type SystemLicenseVDOMArrayOutput struct{ *pulumi.OutputState }

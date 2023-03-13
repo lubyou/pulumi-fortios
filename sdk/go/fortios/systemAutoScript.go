@@ -10,71 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure auto script.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"fmt"
-//
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAutoScript(ctx, "auto2", &fortios.SystemAutoScriptArgs{
-// 			Interval:   pulumi.Int(1),
-// 			OutputSize: pulumi.Int(10),
-// 			Repeat:     pulumi.Int(1),
-// 			Script:     pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v", "config firewall address\n", "    edit \"111\"\n", "        set color 3\n", "        set subnet 1.1.1.1 255.255.255.255\n", "    next\n", "end\n", "\n")),
-// 			Start:      pulumi.String("auto"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System AutoScript can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutoScript:SystemAutoScript labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutoScript:SystemAutoScript labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemAutoScript struct {
 	pulumi.CustomResourceState
 
-	// Repeat interval in seconds.
-	Interval pulumi.IntOutput `pulumi:"interval"`
-	// Auto script name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Number of megabytes to limit script output to (10 - 1024, default = 10).
-	OutputSize pulumi.IntOutput `pulumi:"outputSize"`
-	// Number of times to repeat this script (0 = infinite).
-	Repeat pulumi.IntOutput `pulumi:"repeat"`
-	// List of FortiOS CLI commands to repeat.
-	Script pulumi.StringPtrOutput `pulumi:"script"`
-	// Script starting mode. Valid values: `manual`, `auto`.
-	Start pulumi.StringOutput `pulumi:"start"`
-	// Maximum running time for this script in seconds (0 = no timeout).
-	Timeout pulumi.IntOutput `pulumi:"timeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Interval   pulumi.IntOutput       `pulumi:"interval"`
+	Name       pulumi.StringOutput    `pulumi:"name"`
+	OutputSize pulumi.IntOutput       `pulumi:"outputSize"`
+	Repeat     pulumi.IntOutput       `pulumi:"repeat"`
+	Script     pulumi.StringPtrOutput `pulumi:"script"`
+	Start      pulumi.StringOutput    `pulumi:"start"`
+	Timeout    pulumi.IntOutput       `pulumi:"timeout"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemAutoScript registers a new resource with the given unique name, arguments, and options.
@@ -107,41 +53,25 @@ func GetSystemAutoScript(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAutoScript resources.
 type systemAutoScriptState struct {
-	// Repeat interval in seconds.
-	Interval *int `pulumi:"interval"`
-	// Auto script name.
-	Name *string `pulumi:"name"`
-	// Number of megabytes to limit script output to (10 - 1024, default = 10).
-	OutputSize *int `pulumi:"outputSize"`
-	// Number of times to repeat this script (0 = infinite).
-	Repeat *int `pulumi:"repeat"`
-	// List of FortiOS CLI commands to repeat.
-	Script *string `pulumi:"script"`
-	// Script starting mode. Valid values: `manual`, `auto`.
-	Start *string `pulumi:"start"`
-	// Maximum running time for this script in seconds (0 = no timeout).
-	Timeout *int `pulumi:"timeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Interval   *int    `pulumi:"interval"`
+	Name       *string `pulumi:"name"`
+	OutputSize *int    `pulumi:"outputSize"`
+	Repeat     *int    `pulumi:"repeat"`
+	Script     *string `pulumi:"script"`
+	Start      *string `pulumi:"start"`
+	Timeout    *int    `pulumi:"timeout"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type SystemAutoScriptState struct {
-	// Repeat interval in seconds.
-	Interval pulumi.IntPtrInput
-	// Auto script name.
-	Name pulumi.StringPtrInput
-	// Number of megabytes to limit script output to (10 - 1024, default = 10).
+	Interval   pulumi.IntPtrInput
+	Name       pulumi.StringPtrInput
 	OutputSize pulumi.IntPtrInput
-	// Number of times to repeat this script (0 = infinite).
-	Repeat pulumi.IntPtrInput
-	// List of FortiOS CLI commands to repeat.
-	Script pulumi.StringPtrInput
-	// Script starting mode. Valid values: `manual`, `auto`.
-	Start pulumi.StringPtrInput
-	// Maximum running time for this script in seconds (0 = no timeout).
-	Timeout pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Repeat     pulumi.IntPtrInput
+	Script     pulumi.StringPtrInput
+	Start      pulumi.StringPtrInput
+	Timeout    pulumi.IntPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (SystemAutoScriptState) ElementType() reflect.Type {
@@ -149,42 +79,26 @@ func (SystemAutoScriptState) ElementType() reflect.Type {
 }
 
 type systemAutoScriptArgs struct {
-	// Repeat interval in seconds.
-	Interval *int `pulumi:"interval"`
-	// Auto script name.
-	Name *string `pulumi:"name"`
-	// Number of megabytes to limit script output to (10 - 1024, default = 10).
-	OutputSize *int `pulumi:"outputSize"`
-	// Number of times to repeat this script (0 = infinite).
-	Repeat *int `pulumi:"repeat"`
-	// List of FortiOS CLI commands to repeat.
-	Script *string `pulumi:"script"`
-	// Script starting mode. Valid values: `manual`, `auto`.
-	Start *string `pulumi:"start"`
-	// Maximum running time for this script in seconds (0 = no timeout).
-	Timeout *int `pulumi:"timeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Interval   *int    `pulumi:"interval"`
+	Name       *string `pulumi:"name"`
+	OutputSize *int    `pulumi:"outputSize"`
+	Repeat     *int    `pulumi:"repeat"`
+	Script     *string `pulumi:"script"`
+	Start      *string `pulumi:"start"`
+	Timeout    *int    `pulumi:"timeout"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemAutoScript resource.
 type SystemAutoScriptArgs struct {
-	// Repeat interval in seconds.
-	Interval pulumi.IntPtrInput
-	// Auto script name.
-	Name pulumi.StringPtrInput
-	// Number of megabytes to limit script output to (10 - 1024, default = 10).
+	Interval   pulumi.IntPtrInput
+	Name       pulumi.StringPtrInput
 	OutputSize pulumi.IntPtrInput
-	// Number of times to repeat this script (0 = infinite).
-	Repeat pulumi.IntPtrInput
-	// List of FortiOS CLI commands to repeat.
-	Script pulumi.StringPtrInput
-	// Script starting mode. Valid values: `manual`, `auto`.
-	Start pulumi.StringPtrInput
-	// Maximum running time for this script in seconds (0 = no timeout).
-	Timeout pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Repeat     pulumi.IntPtrInput
+	Script     pulumi.StringPtrInput
+	Start      pulumi.StringPtrInput
+	Timeout    pulumi.IntPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (SystemAutoScriptArgs) ElementType() reflect.Type {
@@ -213,7 +127,7 @@ func (i *SystemAutoScript) ToSystemAutoScriptOutputWithContext(ctx context.Conte
 // SystemAutoScriptArrayInput is an input type that accepts SystemAutoScriptArray and SystemAutoScriptArrayOutput values.
 // You can construct a concrete instance of `SystemAutoScriptArrayInput` via:
 //
-//          SystemAutoScriptArray{ SystemAutoScriptArgs{...} }
+//	SystemAutoScriptArray{ SystemAutoScriptArgs{...} }
 type SystemAutoScriptArrayInput interface {
 	pulumi.Input
 
@@ -238,7 +152,7 @@ func (i SystemAutoScriptArray) ToSystemAutoScriptArrayOutputWithContext(ctx cont
 // SystemAutoScriptMapInput is an input type that accepts SystemAutoScriptMap and SystemAutoScriptMapOutput values.
 // You can construct a concrete instance of `SystemAutoScriptMapInput` via:
 //
-//          SystemAutoScriptMap{ "key": SystemAutoScriptArgs{...} }
+//	SystemAutoScriptMap{ "key": SystemAutoScriptArgs{...} }
 type SystemAutoScriptMapInput interface {
 	pulumi.Input
 
@@ -272,6 +186,38 @@ func (o SystemAutoScriptOutput) ToSystemAutoScriptOutput() SystemAutoScriptOutpu
 
 func (o SystemAutoScriptOutput) ToSystemAutoScriptOutputWithContext(ctx context.Context) SystemAutoScriptOutput {
 	return o
+}
+
+func (o SystemAutoScriptOutput) Interval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutoScript) pulumi.IntOutput { return v.Interval }).(pulumi.IntOutput)
+}
+
+func (o SystemAutoScriptOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoScript) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoScriptOutput) OutputSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutoScript) pulumi.IntOutput { return v.OutputSize }).(pulumi.IntOutput)
+}
+
+func (o SystemAutoScriptOutput) Repeat() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutoScript) pulumi.IntOutput { return v.Repeat }).(pulumi.IntOutput)
+}
+
+func (o SystemAutoScriptOutput) Script() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutoScript) pulumi.StringPtrOutput { return v.Script }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutoScriptOutput) Start() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoScript) pulumi.StringOutput { return v.Start }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoScriptOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutoScript) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
+}
+
+func (o SystemAutoScriptOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutoScript) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemAutoScriptArrayOutput struct{ *pulumi.OutputState }

@@ -18,11 +18,10 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/pulumi/pulumi-fortios/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
-	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
+	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/terraform-providers/terraform-provider-fortios/fortios"
 )
@@ -47,12 +46,14 @@ func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) erro
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv1.NewProvider(fortios.Provider().(*schema.Provider))
+	p := shimv2.NewProvider(fortios.Provider())
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:           p,
-		Name:        "fortios",
+		P:    p,
+		Name: "fortios",
+		// DisplayName is a way to be able to change the casing of the provider
+		// name when being displayed on the Pulumi registry
 		DisplayName: "",
 		// The default publisher for all packages is Pulumi.
 		// Change this to your personal name (or a company name) that you
@@ -64,8 +65,12 @@ func Provider() tfbridge.ProviderInfo {
 		//
 		// You may host a logo on a domain you control or add an SVG logo for your package
 		// in your repository and use the raw content URL for that file as your logo URL.
-		LogoURL:     "",
-		Description: "A Pulumi package for creating and managing fortios cloud resources.",
+		LogoURL: "",
+		// PluginDownloadURL is an optional URL used to download the Provider
+		// for use in Pulumi programs
+		// e.g https://github.com/org/pulumi-provider-name/releases/
+		PluginDownloadURL: "https://s3.vnci.io/pulumi/releases/plugins",
+		Description:       "A Pulumi package for creating and managing fortios cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
 		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
@@ -73,6 +78,9 @@ func Provider() tfbridge.ProviderInfo {
 		License:    "Apache-2.0",
 		Homepage:   "https://www.pulumi.com",
 		Repository: "https://github.com/pulumi/pulumi-fortios",
+		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
+		// should match the TF provider module's require directive, not any replace directives.
+		GitHubOrg: "",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"hostname": {
 				Default: &tfbridge.DefaultInfo{
@@ -94,11 +102,13 @@ func Provider() tfbridge.ProviderInfo {
 					EnvVars: []string{"FORTIOS_CA_CABUNDLE"},
 				},
 			},
-			"peerauth":   {},
-			"cacert":     {},
-			"clientcert": {},
-			"clientkey":  {},
-			"vdom":       {},
+			"cabundlecontent": {},
+			"http_proxy":      {},
+			"peerauth":        {},
+			"cacert":          {},
+			"clientcert":      {},
+			"clientkey":       {},
+			"vdom":            {},
 			"fmg_hostname": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"FORTIOS_FMG_HOSTNAME"},
@@ -140,6 +150,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_authentication_rule":                                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AuthenticationRule")},
 			"fortios_authentication_scheme":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AuthenticationScheme")},
 			"fortios_authentication_setting":                             {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AuthenticationSetting")},
+			"fortios_automation_setting":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AutomationSetting")},
 			"fortios_certificate_ca":                                     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CertificateCa")},
 			"fortios_certificate_crl":                                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CertificateCrl")},
 			"fortios_certificate_local":                                  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CertificateLocal")},
@@ -147,9 +158,12 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_cifs_domaincontroller":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CifsDomainController")},
 			"fortios_cifs_profile":                                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CifsProfile")},
 			"fortios_credentialstore_domaincontroller":                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CredentialStoreDomainController")},
+			"fortios_dlp_datatype":                                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "DlpDataType")},
+			"fortios_dlp_dictionary":                                     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "DlpDictionary")},
 			"fortios_dlp_filepattern":                                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "DlpFilepattern")},
 			"fortios_dlp_fpdocsource":                                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "DlpFpDocSource")},
 			"fortios_dlp_fpsensitivity":                                  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "DlpFpSensitivity")},
+			"fortios_dlp_profile":                                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "DlpProfile")},
 			"fortios_dlp_sensitivity":                                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "DlpSensitivity")},
 			"fortios_dlp_sensor":                                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "DlpSensor")},
 			"fortios_dlp_settings":                                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "DlpSettings")},
@@ -177,6 +191,11 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_extendercontroller_extender":                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ExtenderControllerExtender")},
 			"fortios_extendercontroller_extender1":                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ExtenderControllerExtender1")},
 			"fortios_extendercontroller_extenderprofile":                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ExtenderControllerExtenderProfile")},
+			"fortios_extensioncontroller_dataplan":                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ExtensionControllerDataplan")},
+			"fortios_extensioncontroller_extender":                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ExtensionControllerExtender")},
+			"fortios_extensioncontroller_extenderprofile":                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ExtensionControllerExtenderProfile")},
+			"fortios_extensioncontroller_fortigate":                      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ExtensionControllerFortigate")},
+			"fortios_extensioncontroller_fortigateprofile":               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ExtensionControllerFortigateProfile")},
 			"fortios_filefilter_profile":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FileFilterProfile")},
 			"fortios_firewall_DoSpolicy":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallDosPolicy")},
 			"fortios_firewall_DoSpolicy6":                                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallDosPolicy6")},
@@ -197,6 +216,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_firewall_country":                                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallCountry")},
 			"fortios_firewall_decryptedtrafficmirror":                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallDecryptedTrafficMirror")},
 			"fortios_firewall_dnstranslation":                            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallDnstranslation")},
+			"fortios_firewall_global":                                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallGlobal")},
 			"fortios_firewall_identitybasedroute":                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallIdentityBasedRoute")},
 			"fortios_firewall_interfacepolicy":                           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallInterfacePolicy")},
 			"fortios_firewall_interfacepolicy6":                          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallInterfacePolicy6")},
@@ -226,6 +246,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_firewall_multicastaddress6":                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallMulticastAddress6")},
 			"fortios_firewall_multicastpolicy":                           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallMulticastPolicy")},
 			"fortios_firewall_multicastpolicy6":                          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallMulticastPolicy6")},
+			"fortios_firewall_networkservicedynamic":                     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallNetworkServiceDynamic")},
 			"fortios_firewall_object_address":                            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallObjectAddress")},
 			"fortios_firewall_object_addressgroup":                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallObjectAddressGroup")},
 			"fortios_firewall_object_ippool":                             {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallObjectIPPool")},
@@ -312,6 +333,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_ftpproxy_explicit":                                  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FtpProxyExplicit")},
 			"fortios_icap_profile":                                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IcapProfile")},
 			"fortios_icap_server":                                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IcapServer")},
+			"fortios_icap_servergroup":                                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IcapServerGroup")},
 			"fortios_ips_custom":                                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IpsCustom")},
 			"fortios_ips_decoder":                                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IpsDecoder")},
 			"fortios_ips_global":                                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IpsGlobal")},
@@ -521,6 +543,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_system_fortiai":                                     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemFortiai")},
 			"fortios_system_fortiguard":                                  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemFortiguard")},
 			"fortios_system_fortimanager":                                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemFortimanager")},
+			"fortios_system_fortindr":                                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemFortindr")},
 			"fortios_system_fortisandbox":                                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemFortisandbox")},
 			"fortios_system_fssopolling":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemFssoPolling")},
 			"fortios_system_ftmpush":                                     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemFtmPush")},
@@ -629,6 +652,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_systemreplacemsg_utm":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemReplacemsgUtm")},
 			"fortios_systemreplacemsg_webproxy":                          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemReplacemsgWebproxy")},
 			"fortios_systemsnmp_community":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemSnmpCommunity")},
+			"fortios_systemsnmp_mibview":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemSnmpMibView")},
 			"fortios_systemsnmp_sysinfo":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemSnmpSysinfo")},
 			"fortios_systemsnmp_user":                                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemSnmpUser")},
 			"fortios_user_adgrp":                                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "UserAdgrp")},
@@ -999,7 +1023,6 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_user_saml":                               {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetUserSaml")},
 			"fortios_user_samllist":                           {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetUserSamlList")},
 		},
-		PluginDownloadURL: "https://s3.vnci.io/pulumi/releases/plugins",
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{

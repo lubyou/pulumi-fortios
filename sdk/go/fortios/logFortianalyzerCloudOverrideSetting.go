@@ -10,29 +10,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Override FortiAnalyzer Cloud settings. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// LogFortianalyzerCloud OverrideSetting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logFortianalyzerCloudOverrideSetting:LogFortianalyzerCloudOverrideSetting labelname LogFortianalyzerCloudOverrideSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logFortianalyzerCloudOverrideSetting:LogFortianalyzerCloudOverrideSetting labelname LogFortianalyzerCloudOverrideSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogFortianalyzerCloudOverrideSetting struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    pulumi.StringOutput    `pulumi:"status"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -66,16 +47,12 @@ func GetLogFortianalyzerCloudOverrideSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogFortianalyzerCloudOverrideSetting resources.
 type logFortianalyzerCloudOverrideSettingState struct {
-	// Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type LogFortianalyzerCloudOverrideSettingState struct {
-	// Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -84,17 +61,13 @@ func (LogFortianalyzerCloudOverrideSettingState) ElementType() reflect.Type {
 }
 
 type logFortianalyzerCloudOverrideSettingArgs struct {
-	// Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogFortianalyzerCloudOverrideSetting resource.
 type LogFortianalyzerCloudOverrideSettingArgs struct {
-	// Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -124,7 +97,7 @@ func (i *LogFortianalyzerCloudOverrideSetting) ToLogFortianalyzerCloudOverrideSe
 // LogFortianalyzerCloudOverrideSettingArrayInput is an input type that accepts LogFortianalyzerCloudOverrideSettingArray and LogFortianalyzerCloudOverrideSettingArrayOutput values.
 // You can construct a concrete instance of `LogFortianalyzerCloudOverrideSettingArrayInput` via:
 //
-//          LogFortianalyzerCloudOverrideSettingArray{ LogFortianalyzerCloudOverrideSettingArgs{...} }
+//	LogFortianalyzerCloudOverrideSettingArray{ LogFortianalyzerCloudOverrideSettingArgs{...} }
 type LogFortianalyzerCloudOverrideSettingArrayInput interface {
 	pulumi.Input
 
@@ -149,7 +122,7 @@ func (i LogFortianalyzerCloudOverrideSettingArray) ToLogFortianalyzerCloudOverri
 // LogFortianalyzerCloudOverrideSettingMapInput is an input type that accepts LogFortianalyzerCloudOverrideSettingMap and LogFortianalyzerCloudOverrideSettingMapOutput values.
 // You can construct a concrete instance of `LogFortianalyzerCloudOverrideSettingMapInput` via:
 //
-//          LogFortianalyzerCloudOverrideSettingMap{ "key": LogFortianalyzerCloudOverrideSettingArgs{...} }
+//	LogFortianalyzerCloudOverrideSettingMap{ "key": LogFortianalyzerCloudOverrideSettingArgs{...} }
 type LogFortianalyzerCloudOverrideSettingMapInput interface {
 	pulumi.Input
 
@@ -183,6 +156,14 @@ func (o LogFortianalyzerCloudOverrideSettingOutput) ToLogFortianalyzerCloudOverr
 
 func (o LogFortianalyzerCloudOverrideSettingOutput) ToLogFortianalyzerCloudOverrideSettingOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideSettingOutput {
 	return o
+}
+
+func (o LogFortianalyzerCloudOverrideSettingOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudOverrideSetting) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudOverrideSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudOverrideSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type LogFortianalyzerCloudOverrideSettingArrayOutput struct{ *pulumi.OutputState }

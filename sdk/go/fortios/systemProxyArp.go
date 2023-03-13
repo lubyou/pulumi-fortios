@@ -7,65 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure proxy-ARP.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemProxyArp(ctx, "trname", &fortios.SystemProxyArpArgs{
-// 			EndIp:     pulumi.String("1.1.1.3"),
-// 			Fosid:     pulumi.Int(1),
-// 			Interface: pulumi.String("port4"),
-// 			Ip:        pulumi.String("1.1.1.1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System ProxyArp can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemProxyArp:SystemProxyArp labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemProxyArp:SystemProxyArp labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemProxyArp struct {
 	pulumi.CustomResourceState
 
-	// End IP of IP range to be proxied.
-	EndIp pulumi.StringOutput `pulumi:"endIp"`
-	// Unique integer ID of the entry.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Interface acting proxy-ARP.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// IP address or start IP to be proxied.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	EndIp     pulumi.StringOutput    `pulumi:"endIp"`
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Interface pulumi.StringOutput    `pulumi:"interface"`
+	Ip        pulumi.StringOutput    `pulumi:"ip"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -108,28 +60,18 @@ func GetSystemProxyArp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemProxyArp resources.
 type systemProxyArpState struct {
-	// End IP of IP range to be proxied.
-	EndIp *string `pulumi:"endIp"`
-	// Unique integer ID of the entry.
-	Fosid *int `pulumi:"fosid"`
-	// Interface acting proxy-ARP.
+	EndIp     *string `pulumi:"endIp"`
+	Fosid     *int    `pulumi:"fosid"`
 	Interface *string `pulumi:"interface"`
-	// IP address or start IP to be proxied.
-	Ip *string `pulumi:"ip"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ip        *string `pulumi:"ip"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemProxyArpState struct {
-	// End IP of IP range to be proxied.
-	EndIp pulumi.StringPtrInput
-	// Unique integer ID of the entry.
-	Fosid pulumi.IntPtrInput
-	// Interface acting proxy-ARP.
+	EndIp     pulumi.StringPtrInput
+	Fosid     pulumi.IntPtrInput
 	Interface pulumi.StringPtrInput
-	// IP address or start IP to be proxied.
-	Ip pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ip        pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -138,29 +80,19 @@ func (SystemProxyArpState) ElementType() reflect.Type {
 }
 
 type systemProxyArpArgs struct {
-	// End IP of IP range to be proxied.
-	EndIp *string `pulumi:"endIp"`
-	// Unique integer ID of the entry.
-	Fosid int `pulumi:"fosid"`
-	// Interface acting proxy-ARP.
-	Interface string `pulumi:"interface"`
-	// IP address or start IP to be proxied.
-	Ip string `pulumi:"ip"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	EndIp     *string `pulumi:"endIp"`
+	Fosid     int     `pulumi:"fosid"`
+	Interface string  `pulumi:"interface"`
+	Ip        string  `pulumi:"ip"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemProxyArp resource.
 type SystemProxyArpArgs struct {
-	// End IP of IP range to be proxied.
-	EndIp pulumi.StringPtrInput
-	// Unique integer ID of the entry.
-	Fosid pulumi.IntInput
-	// Interface acting proxy-ARP.
+	EndIp     pulumi.StringPtrInput
+	Fosid     pulumi.IntInput
 	Interface pulumi.StringInput
-	// IP address or start IP to be proxied.
-	Ip pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ip        pulumi.StringInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -190,7 +122,7 @@ func (i *SystemProxyArp) ToSystemProxyArpOutputWithContext(ctx context.Context) 
 // SystemProxyArpArrayInput is an input type that accepts SystemProxyArpArray and SystemProxyArpArrayOutput values.
 // You can construct a concrete instance of `SystemProxyArpArrayInput` via:
 //
-//          SystemProxyArpArray{ SystemProxyArpArgs{...} }
+//	SystemProxyArpArray{ SystemProxyArpArgs{...} }
 type SystemProxyArpArrayInput interface {
 	pulumi.Input
 
@@ -215,7 +147,7 @@ func (i SystemProxyArpArray) ToSystemProxyArpArrayOutputWithContext(ctx context.
 // SystemProxyArpMapInput is an input type that accepts SystemProxyArpMap and SystemProxyArpMapOutput values.
 // You can construct a concrete instance of `SystemProxyArpMapInput` via:
 //
-//          SystemProxyArpMap{ "key": SystemProxyArpArgs{...} }
+//	SystemProxyArpMap{ "key": SystemProxyArpArgs{...} }
 type SystemProxyArpMapInput interface {
 	pulumi.Input
 
@@ -249,6 +181,26 @@ func (o SystemProxyArpOutput) ToSystemProxyArpOutput() SystemProxyArpOutput {
 
 func (o SystemProxyArpOutput) ToSystemProxyArpOutputWithContext(ctx context.Context) SystemProxyArpOutput {
 	return o
+}
+
+func (o SystemProxyArpOutput) EndIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemProxyArp) pulumi.StringOutput { return v.EndIp }).(pulumi.StringOutput)
+}
+
+func (o SystemProxyArpOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemProxyArp) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SystemProxyArpOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemProxyArp) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemProxyArpOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemProxyArp) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o SystemProxyArpOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemProxyArp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemProxyArpArrayOutput struct{ *pulumi.OutputState }

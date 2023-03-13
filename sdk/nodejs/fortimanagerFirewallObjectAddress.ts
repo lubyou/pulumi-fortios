@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports Create/Read/Update/Delete firewall object address for FortiManager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerFirewallObjectAddress("test1", {
- *     associatedIntf: "any",
- *     comment: "test obj address",
- *     fqdn: "fqdn.google.com",
- *     type: "fqdn",
- * });
- * const test2 = new fortios.FortimanagerFirewallObjectAddress("test2", {
- *     allowRouting: "disable",
- *     associatedIntf: "any",
- *     comment: "test obj address",
- *     subnet: "2.2.2.0 255.255.255.0",
- *     type: "ipmask",
- * });
- * const test3 = new fortios.FortimanagerFirewallObjectAddress("test3", {
- *     associatedIntf: "any",
- *     comment: "test obj address",
- *     endIp: "2.2.2.100",
- *     startIp: "2.2.2.1",
- *     type: "iprange",
- * });
- * ```
- */
 export class FortimanagerFirewallObjectAddress extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerFirewallObjectAddress resource's state with the given name, ID, and optional extra
@@ -63,45 +32,15 @@ export class FortimanagerFirewallObjectAddress extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerFirewallObjectAddress.__pulumiType;
     }
 
-    /**
-     * ADOM name. default is 'root'.
-     */
     public readonly adom!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable use of this address in the static route configuration. default is "disable".
-     */
     public readonly allowRouting!: pulumi.Output<string | undefined>;
-    /**
-     * Network interface associated with address.
-     */
     public readonly associatedIntf!: pulumi.Output<string | undefined>;
-    /**
-     * Comments.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Final IP address (inclusive) in the range for the address.
-     */
     public readonly endIp!: pulumi.Output<string | undefined>;
-    /**
-     * Fully Qualified Domain Name address.
-     */
     public readonly fqdn!: pulumi.Output<string | undefined>;
-    /**
-     * Address name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * First IP address (inclusive) in the range for the address.
-     */
     public readonly startIp!: pulumi.Output<string | undefined>;
-    /**
-     * IPv4 address/mask
-     */
     public readonly subnet!: pulumi.Output<string | undefined>;
-    /**
-     * Type of address, Enum: ["ipmask", "iprange", "fqdn"].
-     */
     public readonly type!: pulumi.Output<string | undefined>;
 
     /**
@@ -149,45 +88,15 @@ export class FortimanagerFirewallObjectAddress extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerFirewallObjectAddress resources.
  */
 export interface FortimanagerFirewallObjectAddressState {
-    /**
-     * ADOM name. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of this address in the static route configuration. default is "disable".
-     */
     allowRouting?: pulumi.Input<string>;
-    /**
-     * Network interface associated with address.
-     */
     associatedIntf?: pulumi.Input<string>;
-    /**
-     * Comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Final IP address (inclusive) in the range for the address.
-     */
     endIp?: pulumi.Input<string>;
-    /**
-     * Fully Qualified Domain Name address.
-     */
     fqdn?: pulumi.Input<string>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * First IP address (inclusive) in the range for the address.
-     */
     startIp?: pulumi.Input<string>;
-    /**
-     * IPv4 address/mask
-     */
     subnet?: pulumi.Input<string>;
-    /**
-     * Type of address, Enum: ["ipmask", "iprange", "fqdn"].
-     */
     type?: pulumi.Input<string>;
 }
 
@@ -195,44 +104,14 @@ export interface FortimanagerFirewallObjectAddressState {
  * The set of arguments for constructing a FortimanagerFirewallObjectAddress resource.
  */
 export interface FortimanagerFirewallObjectAddressArgs {
-    /**
-     * ADOM name. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of this address in the static route configuration. default is "disable".
-     */
     allowRouting?: pulumi.Input<string>;
-    /**
-     * Network interface associated with address.
-     */
     associatedIntf?: pulumi.Input<string>;
-    /**
-     * Comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Final IP address (inclusive) in the range for the address.
-     */
     endIp?: pulumi.Input<string>;
-    /**
-     * Fully Qualified Domain Name address.
-     */
     fqdn?: pulumi.Input<string>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * First IP address (inclusive) in the range for the address.
-     */
     startIp?: pulumi.Input<string>;
-    /**
-     * IPv4 address/mask
-     */
     subnet?: pulumi.Input<string>;
-    /**
-     * Type of address, Enum: ["ipmask", "iprange", "fqdn"].
-     */
     type?: pulumi.Input<string>;
 }

@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.SystemDscpBasedPriority`.
- */
 export function getSystemDscpBasedPriorityList(args?: GetSystemDscpBasedPriorityListArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemDscpBasedPriorityListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemDscpBasedPriorityList:GetSystemDscpBasedPriorityList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getSystemDscpBasedPriorityList(args?: GetSystemDscpBasedPriority
  */
 export interface GetSystemDscpBasedPriorityListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -36,9 +27,6 @@ export interface GetSystemDscpBasedPriorityListArgs {
  */
 export interface GetSystemDscpBasedPriorityListResult {
     readonly filter?: string;
-    /**
-     * A list of the `fortios.SystemDscpBasedPriority`.
-     */
     readonly fosidlists: number[];
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -46,9 +34,8 @@ export interface GetSystemDscpBasedPriorityListResult {
     readonly id: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemDscpBasedPriorityListOutput(args?: GetSystemDscpBasedPriorityListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemDscpBasedPriorityListResult> {
-    return pulumi.output(args).apply(a => getSystemDscpBasedPriorityList(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemDscpBasedPriorityList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getSystemDscpBasedPriorityListOutput(args?: GetSystemDscpBasedPr
  */
 export interface GetSystemDscpBasedPriorityListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,42 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure initial template for auto-generated VLAN interfaces. Applies to FortiOS Version `>= 6.4.0`.
-//
-// ## Import
-//
-// SwitchControllerInitialConfig Vlans can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerInitialConfigVlans:SwitchControllerInitialConfigVlans labelname SwitchControllerInitialConfigVlans
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerInitialConfigVlans:SwitchControllerInitialConfigVlans labelname SwitchControllerInitialConfigVlans
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerInitialConfigVlans struct {
 	pulumi.CustomResourceState
 
-	// Default VLAN (native) assigned to all switch ports upon discovery.
-	DefaultVlan pulumi.StringOutput `pulumi:"defaultVlan"`
-	// VLAN for NAC onboarding devices.
-	Nac pulumi.StringOutput `pulumi:"nac"`
-	// VLAN for NAC segemnt primary interface.
-	NacSegment pulumi.StringOutput `pulumi:"nacSegment"`
-	// VLAN for quarantined traffic.
-	Quarantine pulumi.StringOutput `pulumi:"quarantine"`
-	// VLAN for RSPAN/ERSPAN mirrored traffic.
-	Rspan pulumi.StringOutput `pulumi:"rspan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// VLAN dedicated for video devices.
-	Video pulumi.StringOutput `pulumi:"video"`
-	// VLAN dedicated for voice devices.
-	Voice pulumi.StringOutput `pulumi:"voice"`
+	DefaultVlan pulumi.StringOutput    `pulumi:"defaultVlan"`
+	Nac         pulumi.StringOutput    `pulumi:"nac"`
+	NacSegment  pulumi.StringOutput    `pulumi:"nacSegment"`
+	Quarantine  pulumi.StringOutput    `pulumi:"quarantine"`
+	Rspan       pulumi.StringOutput    `pulumi:"rspan"`
+	Vdomparam   pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Video       pulumi.StringOutput    `pulumi:"video"`
+	Voice       pulumi.StringOutput    `pulumi:"voice"`
 }
 
 // NewSwitchControllerInitialConfigVlans registers a new resource with the given unique name, arguments, and options.
@@ -78,41 +53,25 @@ func GetSwitchControllerInitialConfigVlans(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerInitialConfigVlans resources.
 type switchControllerInitialConfigVlansState struct {
-	// Default VLAN (native) assigned to all switch ports upon discovery.
 	DefaultVlan *string `pulumi:"defaultVlan"`
-	// VLAN for NAC onboarding devices.
-	Nac *string `pulumi:"nac"`
-	// VLAN for NAC segemnt primary interface.
-	NacSegment *string `pulumi:"nacSegment"`
-	// VLAN for quarantined traffic.
-	Quarantine *string `pulumi:"quarantine"`
-	// VLAN for RSPAN/ERSPAN mirrored traffic.
-	Rspan *string `pulumi:"rspan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// VLAN dedicated for video devices.
-	Video *string `pulumi:"video"`
-	// VLAN dedicated for voice devices.
-	Voice *string `pulumi:"voice"`
+	Nac         *string `pulumi:"nac"`
+	NacSegment  *string `pulumi:"nacSegment"`
+	Quarantine  *string `pulumi:"quarantine"`
+	Rspan       *string `pulumi:"rspan"`
+	Vdomparam   *string `pulumi:"vdomparam"`
+	Video       *string `pulumi:"video"`
+	Voice       *string `pulumi:"voice"`
 }
 
 type SwitchControllerInitialConfigVlansState struct {
-	// Default VLAN (native) assigned to all switch ports upon discovery.
 	DefaultVlan pulumi.StringPtrInput
-	// VLAN for NAC onboarding devices.
-	Nac pulumi.StringPtrInput
-	// VLAN for NAC segemnt primary interface.
-	NacSegment pulumi.StringPtrInput
-	// VLAN for quarantined traffic.
-	Quarantine pulumi.StringPtrInput
-	// VLAN for RSPAN/ERSPAN mirrored traffic.
-	Rspan pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// VLAN dedicated for video devices.
-	Video pulumi.StringPtrInput
-	// VLAN dedicated for voice devices.
-	Voice pulumi.StringPtrInput
+	Nac         pulumi.StringPtrInput
+	NacSegment  pulumi.StringPtrInput
+	Quarantine  pulumi.StringPtrInput
+	Rspan       pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
+	Video       pulumi.StringPtrInput
+	Voice       pulumi.StringPtrInput
 }
 
 func (SwitchControllerInitialConfigVlansState) ElementType() reflect.Type {
@@ -120,42 +79,26 @@ func (SwitchControllerInitialConfigVlansState) ElementType() reflect.Type {
 }
 
 type switchControllerInitialConfigVlansArgs struct {
-	// Default VLAN (native) assigned to all switch ports upon discovery.
 	DefaultVlan *string `pulumi:"defaultVlan"`
-	// VLAN for NAC onboarding devices.
-	Nac *string `pulumi:"nac"`
-	// VLAN for NAC segemnt primary interface.
-	NacSegment *string `pulumi:"nacSegment"`
-	// VLAN for quarantined traffic.
-	Quarantine *string `pulumi:"quarantine"`
-	// VLAN for RSPAN/ERSPAN mirrored traffic.
-	Rspan *string `pulumi:"rspan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// VLAN dedicated for video devices.
-	Video *string `pulumi:"video"`
-	// VLAN dedicated for voice devices.
-	Voice *string `pulumi:"voice"`
+	Nac         *string `pulumi:"nac"`
+	NacSegment  *string `pulumi:"nacSegment"`
+	Quarantine  *string `pulumi:"quarantine"`
+	Rspan       *string `pulumi:"rspan"`
+	Vdomparam   *string `pulumi:"vdomparam"`
+	Video       *string `pulumi:"video"`
+	Voice       *string `pulumi:"voice"`
 }
 
 // The set of arguments for constructing a SwitchControllerInitialConfigVlans resource.
 type SwitchControllerInitialConfigVlansArgs struct {
-	// Default VLAN (native) assigned to all switch ports upon discovery.
 	DefaultVlan pulumi.StringPtrInput
-	// VLAN for NAC onboarding devices.
-	Nac pulumi.StringPtrInput
-	// VLAN for NAC segemnt primary interface.
-	NacSegment pulumi.StringPtrInput
-	// VLAN for quarantined traffic.
-	Quarantine pulumi.StringPtrInput
-	// VLAN for RSPAN/ERSPAN mirrored traffic.
-	Rspan pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// VLAN dedicated for video devices.
-	Video pulumi.StringPtrInput
-	// VLAN dedicated for voice devices.
-	Voice pulumi.StringPtrInput
+	Nac         pulumi.StringPtrInput
+	NacSegment  pulumi.StringPtrInput
+	Quarantine  pulumi.StringPtrInput
+	Rspan       pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
+	Video       pulumi.StringPtrInput
+	Voice       pulumi.StringPtrInput
 }
 
 func (SwitchControllerInitialConfigVlansArgs) ElementType() reflect.Type {
@@ -184,7 +127,7 @@ func (i *SwitchControllerInitialConfigVlans) ToSwitchControllerInitialConfigVlan
 // SwitchControllerInitialConfigVlansArrayInput is an input type that accepts SwitchControllerInitialConfigVlansArray and SwitchControllerInitialConfigVlansArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerInitialConfigVlansArrayInput` via:
 //
-//          SwitchControllerInitialConfigVlansArray{ SwitchControllerInitialConfigVlansArgs{...} }
+//	SwitchControllerInitialConfigVlansArray{ SwitchControllerInitialConfigVlansArgs{...} }
 type SwitchControllerInitialConfigVlansArrayInput interface {
 	pulumi.Input
 
@@ -209,7 +152,7 @@ func (i SwitchControllerInitialConfigVlansArray) ToSwitchControllerInitialConfig
 // SwitchControllerInitialConfigVlansMapInput is an input type that accepts SwitchControllerInitialConfigVlansMap and SwitchControllerInitialConfigVlansMapOutput values.
 // You can construct a concrete instance of `SwitchControllerInitialConfigVlansMapInput` via:
 //
-//          SwitchControllerInitialConfigVlansMap{ "key": SwitchControllerInitialConfigVlansArgs{...} }
+//	SwitchControllerInitialConfigVlansMap{ "key": SwitchControllerInitialConfigVlansArgs{...} }
 type SwitchControllerInitialConfigVlansMapInput interface {
 	pulumi.Input
 
@@ -243,6 +186,38 @@ func (o SwitchControllerInitialConfigVlansOutput) ToSwitchControllerInitialConfi
 
 func (o SwitchControllerInitialConfigVlansOutput) ToSwitchControllerInitialConfigVlansOutputWithContext(ctx context.Context) SwitchControllerInitialConfigVlansOutput {
 	return o
+}
+
+func (o SwitchControllerInitialConfigVlansOutput) DefaultVlan() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerInitialConfigVlans) pulumi.StringOutput { return v.DefaultVlan }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerInitialConfigVlansOutput) Nac() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerInitialConfigVlans) pulumi.StringOutput { return v.Nac }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerInitialConfigVlansOutput) NacSegment() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerInitialConfigVlans) pulumi.StringOutput { return v.NacSegment }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerInitialConfigVlansOutput) Quarantine() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerInitialConfigVlans) pulumi.StringOutput { return v.Quarantine }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerInitialConfigVlansOutput) Rspan() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerInitialConfigVlans) pulumi.StringOutput { return v.Rspan }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerInitialConfigVlansOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerInitialConfigVlans) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerInitialConfigVlansOutput) Video() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerInitialConfigVlans) pulumi.StringOutput { return v.Video }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerInitialConfigVlansOutput) Voice() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerInitialConfigVlans) pulumi.StringOutput { return v.Voice }).(pulumi.StringOutput)
 }
 
 type SwitchControllerInitialConfigVlansArrayOutput struct{ *pulumi.OutputState }

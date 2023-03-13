@@ -10,81 +10,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure peer users.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewUserPeer(ctx, "trname1", &fortios.UserPeerArgs{
-// 			Ca:                pulumi.String("EC-ACC"),
-// 			CnType:            pulumi.String("string"),
-// 			LdapMode:          pulumi.String("password"),
-// 			MandatoryCaVerify: pulumi.String("enable"),
-// 			TwoFactor:         pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// User Peer can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userPeer:UserPeer labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userPeer:UserPeer labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserPeer struct {
 	pulumi.CustomResourceState
 
-	// Name of the CA certificate as returned by the execute vpn certificate ca list command.
-	Ca pulumi.StringOutput `pulumi:"ca"`
-	// Peer certificate common name.
-	Cn pulumi.StringOutput `pulumi:"cn"`
-	// Peer certificate common name type. Valid values: `string`, `email`, `FQDN`, `ipv4`, `ipv6`.
-	CnType pulumi.StringOutput `pulumi:"cnType"`
-	// Mode for LDAP peer authentication. Valid values: `password`, `principal-name`.
-	LdapMode pulumi.StringOutput `pulumi:"ldapMode"`
-	// Password for LDAP server bind.
-	LdapPassword pulumi.StringPtrOutput `pulumi:"ldapPassword"`
-	// Name of an LDAP server defined under the user ldap command. Performs client access rights check.
-	LdapServer pulumi.StringOutput `pulumi:"ldapServer"`
-	// Username for LDAP server bind.
-	LdapUsername pulumi.StringOutput `pulumi:"ldapUsername"`
-	// Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
-	MandatoryCaVerify pulumi.StringOutput `pulumi:"mandatoryCaVerify"`
-	// Peer name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Online Certificate Status Protocol (OCSP) server for certificate retrieval.
-	OcspOverrideServer pulumi.StringOutput `pulumi:"ocspOverrideServer"`
-	// Peer's password used for two-factor authentication.
-	Passwd pulumi.StringPtrOutput `pulumi:"passwd"`
-	// Peer certificate name constraints.
-	Subject pulumi.StringOutput `pulumi:"subject"`
-	// Enable/disable two-factor authentication, applying certificate and password-based authentication. Valid values: `enable`, `disable`.
-	TwoFactor pulumi.StringOutput `pulumi:"twoFactor"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Ca                 pulumi.StringOutput    `pulumi:"ca"`
+	Cn                 pulumi.StringOutput    `pulumi:"cn"`
+	CnType             pulumi.StringOutput    `pulumi:"cnType"`
+	LdapMode           pulumi.StringOutput    `pulumi:"ldapMode"`
+	LdapPassword       pulumi.StringPtrOutput `pulumi:"ldapPassword"`
+	LdapServer         pulumi.StringOutput    `pulumi:"ldapServer"`
+	LdapUsername       pulumi.StringOutput    `pulumi:"ldapUsername"`
+	MandatoryCaVerify  pulumi.StringOutput    `pulumi:"mandatoryCaVerify"`
+	Name               pulumi.StringOutput    `pulumi:"name"`
+	OcspOverrideServer pulumi.StringOutput    `pulumi:"ocspOverrideServer"`
+	Passwd             pulumi.StringPtrOutput `pulumi:"passwd"`
+	Subject            pulumi.StringOutput    `pulumi:"subject"`
+	TwoFactor          pulumi.StringOutput    `pulumi:"twoFactor"`
+	Vdomparam          pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewUserPeer registers a new resource with the given unique name, arguments, and options.
@@ -94,6 +36,17 @@ func NewUserPeer(ctx *pulumi.Context,
 		args = &UserPeerArgs{}
 	}
 
+	if args.LdapPassword != nil {
+		args.LdapPassword = pulumi.ToSecret(args.LdapPassword).(pulumi.StringPtrInput)
+	}
+	if args.Passwd != nil {
+		args.Passwd = pulumi.ToSecret(args.Passwd).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"ldapPassword",
+		"passwd",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource UserPeer
 	err := ctx.RegisterResource("fortios:index/userPeer:UserPeer", name, args, &resource, opts...)
@@ -117,65 +70,37 @@ func GetUserPeer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserPeer resources.
 type userPeerState struct {
-	// Name of the CA certificate as returned by the execute vpn certificate ca list command.
-	Ca *string `pulumi:"ca"`
-	// Peer certificate common name.
-	Cn *string `pulumi:"cn"`
-	// Peer certificate common name type. Valid values: `string`, `email`, `FQDN`, `ipv4`, `ipv6`.
-	CnType *string `pulumi:"cnType"`
-	// Mode for LDAP peer authentication. Valid values: `password`, `principal-name`.
-	LdapMode *string `pulumi:"ldapMode"`
-	// Password for LDAP server bind.
-	LdapPassword *string `pulumi:"ldapPassword"`
-	// Name of an LDAP server defined under the user ldap command. Performs client access rights check.
-	LdapServer *string `pulumi:"ldapServer"`
-	// Username for LDAP server bind.
-	LdapUsername *string `pulumi:"ldapUsername"`
-	// Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
-	MandatoryCaVerify *string `pulumi:"mandatoryCaVerify"`
-	// Peer name.
-	Name *string `pulumi:"name"`
-	// Online Certificate Status Protocol (OCSP) server for certificate retrieval.
+	Ca                 *string `pulumi:"ca"`
+	Cn                 *string `pulumi:"cn"`
+	CnType             *string `pulumi:"cnType"`
+	LdapMode           *string `pulumi:"ldapMode"`
+	LdapPassword       *string `pulumi:"ldapPassword"`
+	LdapServer         *string `pulumi:"ldapServer"`
+	LdapUsername       *string `pulumi:"ldapUsername"`
+	MandatoryCaVerify  *string `pulumi:"mandatoryCaVerify"`
+	Name               *string `pulumi:"name"`
 	OcspOverrideServer *string `pulumi:"ocspOverrideServer"`
-	// Peer's password used for two-factor authentication.
-	Passwd *string `pulumi:"passwd"`
-	// Peer certificate name constraints.
-	Subject *string `pulumi:"subject"`
-	// Enable/disable two-factor authentication, applying certificate and password-based authentication. Valid values: `enable`, `disable`.
-	TwoFactor *string `pulumi:"twoFactor"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Passwd             *string `pulumi:"passwd"`
+	Subject            *string `pulumi:"subject"`
+	TwoFactor          *string `pulumi:"twoFactor"`
+	Vdomparam          *string `pulumi:"vdomparam"`
 }
 
 type UserPeerState struct {
-	// Name of the CA certificate as returned by the execute vpn certificate ca list command.
-	Ca pulumi.StringPtrInput
-	// Peer certificate common name.
-	Cn pulumi.StringPtrInput
-	// Peer certificate common name type. Valid values: `string`, `email`, `FQDN`, `ipv4`, `ipv6`.
-	CnType pulumi.StringPtrInput
-	// Mode for LDAP peer authentication. Valid values: `password`, `principal-name`.
-	LdapMode pulumi.StringPtrInput
-	// Password for LDAP server bind.
-	LdapPassword pulumi.StringPtrInput
-	// Name of an LDAP server defined under the user ldap command. Performs client access rights check.
-	LdapServer pulumi.StringPtrInput
-	// Username for LDAP server bind.
-	LdapUsername pulumi.StringPtrInput
-	// Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
-	MandatoryCaVerify pulumi.StringPtrInput
-	// Peer name.
-	Name pulumi.StringPtrInput
-	// Online Certificate Status Protocol (OCSP) server for certificate retrieval.
+	Ca                 pulumi.StringPtrInput
+	Cn                 pulumi.StringPtrInput
+	CnType             pulumi.StringPtrInput
+	LdapMode           pulumi.StringPtrInput
+	LdapPassword       pulumi.StringPtrInput
+	LdapServer         pulumi.StringPtrInput
+	LdapUsername       pulumi.StringPtrInput
+	MandatoryCaVerify  pulumi.StringPtrInput
+	Name               pulumi.StringPtrInput
 	OcspOverrideServer pulumi.StringPtrInput
-	// Peer's password used for two-factor authentication.
-	Passwd pulumi.StringPtrInput
-	// Peer certificate name constraints.
-	Subject pulumi.StringPtrInput
-	// Enable/disable two-factor authentication, applying certificate and password-based authentication. Valid values: `enable`, `disable`.
-	TwoFactor pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Passwd             pulumi.StringPtrInput
+	Subject            pulumi.StringPtrInput
+	TwoFactor          pulumi.StringPtrInput
+	Vdomparam          pulumi.StringPtrInput
 }
 
 func (UserPeerState) ElementType() reflect.Type {
@@ -183,66 +108,38 @@ func (UserPeerState) ElementType() reflect.Type {
 }
 
 type userPeerArgs struct {
-	// Name of the CA certificate as returned by the execute vpn certificate ca list command.
-	Ca *string `pulumi:"ca"`
-	// Peer certificate common name.
-	Cn *string `pulumi:"cn"`
-	// Peer certificate common name type. Valid values: `string`, `email`, `FQDN`, `ipv4`, `ipv6`.
-	CnType *string `pulumi:"cnType"`
-	// Mode for LDAP peer authentication. Valid values: `password`, `principal-name`.
-	LdapMode *string `pulumi:"ldapMode"`
-	// Password for LDAP server bind.
-	LdapPassword *string `pulumi:"ldapPassword"`
-	// Name of an LDAP server defined under the user ldap command. Performs client access rights check.
-	LdapServer *string `pulumi:"ldapServer"`
-	// Username for LDAP server bind.
-	LdapUsername *string `pulumi:"ldapUsername"`
-	// Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
-	MandatoryCaVerify *string `pulumi:"mandatoryCaVerify"`
-	// Peer name.
-	Name *string `pulumi:"name"`
-	// Online Certificate Status Protocol (OCSP) server for certificate retrieval.
+	Ca                 *string `pulumi:"ca"`
+	Cn                 *string `pulumi:"cn"`
+	CnType             *string `pulumi:"cnType"`
+	LdapMode           *string `pulumi:"ldapMode"`
+	LdapPassword       *string `pulumi:"ldapPassword"`
+	LdapServer         *string `pulumi:"ldapServer"`
+	LdapUsername       *string `pulumi:"ldapUsername"`
+	MandatoryCaVerify  *string `pulumi:"mandatoryCaVerify"`
+	Name               *string `pulumi:"name"`
 	OcspOverrideServer *string `pulumi:"ocspOverrideServer"`
-	// Peer's password used for two-factor authentication.
-	Passwd *string `pulumi:"passwd"`
-	// Peer certificate name constraints.
-	Subject *string `pulumi:"subject"`
-	// Enable/disable two-factor authentication, applying certificate and password-based authentication. Valid values: `enable`, `disable`.
-	TwoFactor *string `pulumi:"twoFactor"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Passwd             *string `pulumi:"passwd"`
+	Subject            *string `pulumi:"subject"`
+	TwoFactor          *string `pulumi:"twoFactor"`
+	Vdomparam          *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserPeer resource.
 type UserPeerArgs struct {
-	// Name of the CA certificate as returned by the execute vpn certificate ca list command.
-	Ca pulumi.StringPtrInput
-	// Peer certificate common name.
-	Cn pulumi.StringPtrInput
-	// Peer certificate common name type. Valid values: `string`, `email`, `FQDN`, `ipv4`, `ipv6`.
-	CnType pulumi.StringPtrInput
-	// Mode for LDAP peer authentication. Valid values: `password`, `principal-name`.
-	LdapMode pulumi.StringPtrInput
-	// Password for LDAP server bind.
-	LdapPassword pulumi.StringPtrInput
-	// Name of an LDAP server defined under the user ldap command. Performs client access rights check.
-	LdapServer pulumi.StringPtrInput
-	// Username for LDAP server bind.
-	LdapUsername pulumi.StringPtrInput
-	// Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
-	MandatoryCaVerify pulumi.StringPtrInput
-	// Peer name.
-	Name pulumi.StringPtrInput
-	// Online Certificate Status Protocol (OCSP) server for certificate retrieval.
+	Ca                 pulumi.StringPtrInput
+	Cn                 pulumi.StringPtrInput
+	CnType             pulumi.StringPtrInput
+	LdapMode           pulumi.StringPtrInput
+	LdapPassword       pulumi.StringPtrInput
+	LdapServer         pulumi.StringPtrInput
+	LdapUsername       pulumi.StringPtrInput
+	MandatoryCaVerify  pulumi.StringPtrInput
+	Name               pulumi.StringPtrInput
 	OcspOverrideServer pulumi.StringPtrInput
-	// Peer's password used for two-factor authentication.
-	Passwd pulumi.StringPtrInput
-	// Peer certificate name constraints.
-	Subject pulumi.StringPtrInput
-	// Enable/disable two-factor authentication, applying certificate and password-based authentication. Valid values: `enable`, `disable`.
-	TwoFactor pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Passwd             pulumi.StringPtrInput
+	Subject            pulumi.StringPtrInput
+	TwoFactor          pulumi.StringPtrInput
+	Vdomparam          pulumi.StringPtrInput
 }
 
 func (UserPeerArgs) ElementType() reflect.Type {
@@ -271,7 +168,7 @@ func (i *UserPeer) ToUserPeerOutputWithContext(ctx context.Context) UserPeerOutp
 // UserPeerArrayInput is an input type that accepts UserPeerArray and UserPeerArrayOutput values.
 // You can construct a concrete instance of `UserPeerArrayInput` via:
 //
-//          UserPeerArray{ UserPeerArgs{...} }
+//	UserPeerArray{ UserPeerArgs{...} }
 type UserPeerArrayInput interface {
 	pulumi.Input
 
@@ -296,7 +193,7 @@ func (i UserPeerArray) ToUserPeerArrayOutputWithContext(ctx context.Context) Use
 // UserPeerMapInput is an input type that accepts UserPeerMap and UserPeerMapOutput values.
 // You can construct a concrete instance of `UserPeerMapInput` via:
 //
-//          UserPeerMap{ "key": UserPeerArgs{...} }
+//	UserPeerMap{ "key": UserPeerArgs{...} }
 type UserPeerMapInput interface {
 	pulumi.Input
 
@@ -330,6 +227,62 @@ func (o UserPeerOutput) ToUserPeerOutput() UserPeerOutput {
 
 func (o UserPeerOutput) ToUserPeerOutputWithContext(ctx context.Context) UserPeerOutput {
 	return o
+}
+
+func (o UserPeerOutput) Ca() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringOutput { return v.Ca }).(pulumi.StringOutput)
+}
+
+func (o UserPeerOutput) Cn() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringOutput { return v.Cn }).(pulumi.StringOutput)
+}
+
+func (o UserPeerOutput) CnType() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringOutput { return v.CnType }).(pulumi.StringOutput)
+}
+
+func (o UserPeerOutput) LdapMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringOutput { return v.LdapMode }).(pulumi.StringOutput)
+}
+
+func (o UserPeerOutput) LdapPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringPtrOutput { return v.LdapPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o UserPeerOutput) LdapServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringOutput { return v.LdapServer }).(pulumi.StringOutput)
+}
+
+func (o UserPeerOutput) LdapUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringOutput { return v.LdapUsername }).(pulumi.StringOutput)
+}
+
+func (o UserPeerOutput) MandatoryCaVerify() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringOutput { return v.MandatoryCaVerify }).(pulumi.StringOutput)
+}
+
+func (o UserPeerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserPeerOutput) OcspOverrideServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringOutput { return v.OcspOverrideServer }).(pulumi.StringOutput)
+}
+
+func (o UserPeerOutput) Passwd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringPtrOutput { return v.Passwd }).(pulumi.StringPtrOutput)
+}
+
+func (o UserPeerOutput) Subject() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringOutput { return v.Subject }).(pulumi.StringOutput)
+}
+
+func (o UserPeerOutput) TwoFactor() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringOutput { return v.TwoFactor }).(pulumi.StringOutput)
+}
+
+func (o UserPeerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserPeerArrayOutput struct{ *pulumi.OutputState }

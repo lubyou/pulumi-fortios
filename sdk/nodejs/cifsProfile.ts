@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure CIFS profile. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1`.
- *
- * ## Import
- *
- * Cifs Profile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/cifsProfile:CifsProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/cifsProfile:CifsProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class CifsProfile extends pulumi.CustomResource {
     /**
      * Get an existing CifsProfile resource's state with the given name, ID, and optional extra
@@ -52,33 +34,12 @@ export class CifsProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === CifsProfile.__pulumiType;
     }
 
-    /**
-     * Domain for which to decrypt CIFS traffic.
-     */
     public readonly domainController!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * File filter. The structure of `fileFilter` block is documented below.
-     */
-    public readonly fileFilter!: pulumi.Output<outputs.CifsProfileFileFilter | undefined>;
-    /**
-     * File type name.
-     */
+    public readonly fileFilter!: pulumi.Output<outputs.CifsProfileFileFilter>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * CIFS server credential type. Valid values: `none`, `credential-replication`, `credential-keytab`.
-     */
     public readonly serverCredentialType!: pulumi.Output<string>;
-    /**
-     * Server keytab. The structure of `serverKeytab` block is documented below.
-     */
     public readonly serverKeytabs!: pulumi.Output<outputs.CifsProfileServerKeytab[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -120,33 +81,12 @@ export class CifsProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CifsProfile resources.
  */
 export interface CifsProfileState {
-    /**
-     * Domain for which to decrypt CIFS traffic.
-     */
     domainController?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * File filter. The structure of `fileFilter` block is documented below.
-     */
     fileFilter?: pulumi.Input<inputs.CifsProfileFileFilter>;
-    /**
-     * File type name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * CIFS server credential type. Valid values: `none`, `credential-replication`, `credential-keytab`.
-     */
     serverCredentialType?: pulumi.Input<string>;
-    /**
-     * Server keytab. The structure of `serverKeytab` block is documented below.
-     */
     serverKeytabs?: pulumi.Input<pulumi.Input<inputs.CifsProfileServerKeytab>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -154,32 +94,11 @@ export interface CifsProfileState {
  * The set of arguments for constructing a CifsProfile resource.
  */
 export interface CifsProfileArgs {
-    /**
-     * Domain for which to decrypt CIFS traffic.
-     */
     domainController?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * File filter. The structure of `fileFilter` block is documented below.
-     */
     fileFilter?: pulumi.Input<inputs.CifsProfileFileFilter>;
-    /**
-     * File type name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * CIFS server credential type. Valid values: `none`, `credential-replication`, `credential-keytab`.
-     */
     serverCredentialType?: pulumi.Input<string>;
-    /**
-     * Server keytab. The structure of `serverKeytab` block is documented below.
-     */
     serverKeytabs?: pulumi.Input<pulumi.Input<inputs.CifsProfileServerKeytab>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -2,39 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure LLDP network policy.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemLldpNetworkPolicy("trname", {
- *     comment: "test",
- * });
- * ```
- *
- * ## Import
- *
- * SystemLldp NetworkPolicy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemLldpNetworkPolicy:SystemLldpNetworkPolicy labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemLldpNetworkPolicy:SystemLldpNetworkPolicy labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemLldpNetworkPolicy extends pulumi.CustomResource {
     /**
      * Get an existing SystemLldpNetworkPolicy resource's state with the given name, ID, and optional extra
@@ -63,50 +34,17 @@ export class SystemLldpNetworkPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemLldpNetworkPolicy.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Guest. The structure of `guest` block is documented below.
-     */
-    public readonly guest!: pulumi.Output<outputs.SystemLldpNetworkPolicyGuest | undefined>;
-    /**
-     * Guest Voice Signaling. The structure of `guestVoiceSignaling` block is documented below.
-     */
-    public readonly guestVoiceSignaling!: pulumi.Output<outputs.SystemLldpNetworkPolicyGuestVoiceSignaling | undefined>;
-    /**
-     * LLDP network policy name.
-     */
+    public readonly guest!: pulumi.Output<outputs.SystemLldpNetworkPolicyGuest>;
+    public readonly guestVoiceSignaling!: pulumi.Output<outputs.SystemLldpNetworkPolicyGuestVoiceSignaling>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Softphone. The structure of `softphone` block is documented below.
-     */
-    public readonly softphone!: pulumi.Output<outputs.SystemLldpNetworkPolicySoftphone | undefined>;
-    /**
-     * Streaming Video. The structure of `streamingVideo` block is documented below.
-     */
-    public readonly streamingVideo!: pulumi.Output<outputs.SystemLldpNetworkPolicyStreamingVideo | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    public readonly softphone!: pulumi.Output<outputs.SystemLldpNetworkPolicySoftphone>;
+    public readonly streamingVideo!: pulumi.Output<outputs.SystemLldpNetworkPolicyStreamingVideo>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Video Conferencing. The structure of `videoConferencing` block is documented below.
-     */
-    public readonly videoConferencing!: pulumi.Output<outputs.SystemLldpNetworkPolicyVideoConferencing | undefined>;
-    /**
-     * Video Signaling. The structure of `videoSignaling` block is documented below.
-     */
-    public readonly videoSignaling!: pulumi.Output<outputs.SystemLldpNetworkPolicyVideoSignaling | undefined>;
-    /**
-     * Voice. The structure of `voice` block is documented below.
-     */
-    public readonly voice!: pulumi.Output<outputs.SystemLldpNetworkPolicyVoice | undefined>;
-    /**
-     * Voice signaling. The structure of `voiceSignaling` block is documented below.
-     */
-    public readonly voiceSignaling!: pulumi.Output<outputs.SystemLldpNetworkPolicyVoiceSignaling | undefined>;
+    public readonly videoConferencing!: pulumi.Output<outputs.SystemLldpNetworkPolicyVideoConferencing>;
+    public readonly videoSignaling!: pulumi.Output<outputs.SystemLldpNetworkPolicyVideoSignaling>;
+    public readonly voice!: pulumi.Output<outputs.SystemLldpNetworkPolicyVoice>;
+    public readonly voiceSignaling!: pulumi.Output<outputs.SystemLldpNetworkPolicyVoiceSignaling>;
 
     /**
      * Create a SystemLldpNetworkPolicy resource with the given unique name, arguments, and options.
@@ -155,49 +93,16 @@ export class SystemLldpNetworkPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemLldpNetworkPolicy resources.
  */
 export interface SystemLldpNetworkPolicyState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Guest. The structure of `guest` block is documented below.
-     */
     guest?: pulumi.Input<inputs.SystemLldpNetworkPolicyGuest>;
-    /**
-     * Guest Voice Signaling. The structure of `guestVoiceSignaling` block is documented below.
-     */
     guestVoiceSignaling?: pulumi.Input<inputs.SystemLldpNetworkPolicyGuestVoiceSignaling>;
-    /**
-     * LLDP network policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Softphone. The structure of `softphone` block is documented below.
-     */
     softphone?: pulumi.Input<inputs.SystemLldpNetworkPolicySoftphone>;
-    /**
-     * Streaming Video. The structure of `streamingVideo` block is documented below.
-     */
     streamingVideo?: pulumi.Input<inputs.SystemLldpNetworkPolicyStreamingVideo>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Video Conferencing. The structure of `videoConferencing` block is documented below.
-     */
     videoConferencing?: pulumi.Input<inputs.SystemLldpNetworkPolicyVideoConferencing>;
-    /**
-     * Video Signaling. The structure of `videoSignaling` block is documented below.
-     */
     videoSignaling?: pulumi.Input<inputs.SystemLldpNetworkPolicyVideoSignaling>;
-    /**
-     * Voice. The structure of `voice` block is documented below.
-     */
     voice?: pulumi.Input<inputs.SystemLldpNetworkPolicyVoice>;
-    /**
-     * Voice signaling. The structure of `voiceSignaling` block is documented below.
-     */
     voiceSignaling?: pulumi.Input<inputs.SystemLldpNetworkPolicyVoiceSignaling>;
 }
 
@@ -205,48 +110,15 @@ export interface SystemLldpNetworkPolicyState {
  * The set of arguments for constructing a SystemLldpNetworkPolicy resource.
  */
 export interface SystemLldpNetworkPolicyArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Guest. The structure of `guest` block is documented below.
-     */
     guest?: pulumi.Input<inputs.SystemLldpNetworkPolicyGuest>;
-    /**
-     * Guest Voice Signaling. The structure of `guestVoiceSignaling` block is documented below.
-     */
     guestVoiceSignaling?: pulumi.Input<inputs.SystemLldpNetworkPolicyGuestVoiceSignaling>;
-    /**
-     * LLDP network policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Softphone. The structure of `softphone` block is documented below.
-     */
     softphone?: pulumi.Input<inputs.SystemLldpNetworkPolicySoftphone>;
-    /**
-     * Streaming Video. The structure of `streamingVideo` block is documented below.
-     */
     streamingVideo?: pulumi.Input<inputs.SystemLldpNetworkPolicyStreamingVideo>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Video Conferencing. The structure of `videoConferencing` block is documented below.
-     */
     videoConferencing?: pulumi.Input<inputs.SystemLldpNetworkPolicyVideoConferencing>;
-    /**
-     * Video Signaling. The structure of `videoSignaling` block is documented below.
-     */
     videoSignaling?: pulumi.Input<inputs.SystemLldpNetworkPolicyVideoSignaling>;
-    /**
-     * Voice. The structure of `voice` block is documented below.
-     */
     voice?: pulumi.Input<inputs.SystemLldpNetworkPolicyVoice>;
-    /**
-     * Voice signaling. The structure of `voiceSignaling` block is documented below.
-     */
     voiceSignaling?: pulumi.Input<inputs.SystemLldpNetworkPolicyVoiceSignaling>;
 }

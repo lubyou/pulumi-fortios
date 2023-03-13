@@ -2,55 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv4 routing policies.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.RouterPolicy("trname", {
- *     action: "permit",
- *     dstNegate: "disable",
- *     endPort: 25,
- *     endSourcePort: 65535,
- *     gateway: "0.0.0.0",
- *     inputDevices: [{
- *         name: "port1",
- *     }],
- *     outputDevice: "port2",
- *     protocol: 6,
- *     seqNum: 1,
- *     srcNegate: "disable",
- *     startPort: 25,
- *     startSourcePort: 0,
- *     status: "enable",
- *     tos: "0x00",
- *     tosMask: "0x00",
- * });
- * ```
- *
- * ## Import
- *
- * Router Policy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerPolicy:RouterPolicy labelname {{seq_num}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerPolicy:RouterPolicy labelname {{seq_num}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterPolicy extends pulumi.CustomResource {
     /**
      * Get an existing RouterPolicy resource's state with the given name, ID, and optional extra
@@ -79,105 +34,30 @@ export class RouterPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterPolicy.__pulumiType;
     }
 
-    /**
-     * Action of the policy route. Valid values: `deny`, `permit`.
-     */
     public readonly action!: pulumi.Output<string>;
-    /**
-     * Optional comments.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable negating destination address match. Valid values: `enable`, `disable`.
-     */
     public readonly dstNegate!: pulumi.Output<string>;
-    /**
-     * Destination address name. The structure of `dstaddr` block is documented below.
-     */
     public readonly dstaddrs!: pulumi.Output<outputs.RouterPolicyDstaddr[] | undefined>;
-    /**
-     * Destination IP and mask (x.x.x.x/x). The structure of `dst` block is documented below.
-     */
     public readonly dsts!: pulumi.Output<outputs.RouterPolicyDst[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * End destination port number (0 - 65535).
-     */
     public readonly endPort!: pulumi.Output<number>;
-    /**
-     * End source port number (0 - 65535).
-     */
     public readonly endSourcePort!: pulumi.Output<number>;
-    /**
-     * IP address of the gateway.
-     */
     public readonly gateway!: pulumi.Output<string>;
-    /**
-     * Enable/disable negation of input device match. Valid values: `enable`, `disable`.
-     */
     public readonly inputDeviceNegate!: pulumi.Output<string>;
-    /**
-     * Incoming interface name. The structure of `inputDevice` block is documented below.
-     */
     public readonly inputDevices!: pulumi.Output<outputs.RouterPolicyInputDevice[] | undefined>;
-    /**
-     * Custom Destination Internet Service name. The structure of `internetServiceCustom` block is documented below.
-     */
     public readonly internetServiceCustoms!: pulumi.Output<outputs.RouterPolicyInternetServiceCustom[] | undefined>;
-    /**
-     * Destination Internet Service ID. The structure of `internetServiceId` block is documented below.
-     */
     public readonly internetServiceIds!: pulumi.Output<outputs.RouterPolicyInternetServiceId[] | undefined>;
-    /**
-     * Outgoing interface name.
-     */
     public readonly outputDevice!: pulumi.Output<string>;
-    /**
-     * Protocol number (0 - 255).
-     */
     public readonly protocol!: pulumi.Output<number>;
-    /**
-     * Sequence number.
-     */
     public readonly seqNum!: pulumi.Output<number>;
-    /**
-     * Enable/disable negating source address match. Valid values: `enable`, `disable`.
-     */
     public readonly srcNegate!: pulumi.Output<string>;
-    /**
-     * Source address name. The structure of `srcaddr` block is documented below.
-     */
     public readonly srcaddrs!: pulumi.Output<outputs.RouterPolicySrcaddr[] | undefined>;
-    /**
-     * Source IP and mask (x.x.x.x/x). The structure of `src` block is documented below.
-     */
     public readonly srcs!: pulumi.Output<outputs.RouterPolicySrc[] | undefined>;
-    /**
-     * Start destination port number (0 - 65535).
-     */
     public readonly startPort!: pulumi.Output<number>;
-    /**
-     * Start source port number (0 - 65535).
-     */
     public readonly startSourcePort!: pulumi.Output<number>;
-    /**
-     * Enable/disable this policy route. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Type of service bit pattern.
-     */
     public readonly tos!: pulumi.Output<string>;
-    /**
-     * Type of service evaluated bits.
-     */
     public readonly tosMask!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -255,105 +135,30 @@ export class RouterPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterPolicy resources.
  */
 export interface RouterPolicyState {
-    /**
-     * Action of the policy route. Valid values: `deny`, `permit`.
-     */
     action?: pulumi.Input<string>;
-    /**
-     * Optional comments.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Enable/disable negating destination address match. Valid values: `enable`, `disable`.
-     */
     dstNegate?: pulumi.Input<string>;
-    /**
-     * Destination address name. The structure of `dstaddr` block is documented below.
-     */
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.RouterPolicyDstaddr>[]>;
-    /**
-     * Destination IP and mask (x.x.x.x/x). The structure of `dst` block is documented below.
-     */
     dsts?: pulumi.Input<pulumi.Input<inputs.RouterPolicyDst>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * End destination port number (0 - 65535).
-     */
     endPort?: pulumi.Input<number>;
-    /**
-     * End source port number (0 - 65535).
-     */
     endSourcePort?: pulumi.Input<number>;
-    /**
-     * IP address of the gateway.
-     */
     gateway?: pulumi.Input<string>;
-    /**
-     * Enable/disable negation of input device match. Valid values: `enable`, `disable`.
-     */
     inputDeviceNegate?: pulumi.Input<string>;
-    /**
-     * Incoming interface name. The structure of `inputDevice` block is documented below.
-     */
     inputDevices?: pulumi.Input<pulumi.Input<inputs.RouterPolicyInputDevice>[]>;
-    /**
-     * Custom Destination Internet Service name. The structure of `internetServiceCustom` block is documented below.
-     */
     internetServiceCustoms?: pulumi.Input<pulumi.Input<inputs.RouterPolicyInternetServiceCustom>[]>;
-    /**
-     * Destination Internet Service ID. The structure of `internetServiceId` block is documented below.
-     */
     internetServiceIds?: pulumi.Input<pulumi.Input<inputs.RouterPolicyInternetServiceId>[]>;
-    /**
-     * Outgoing interface name.
-     */
     outputDevice?: pulumi.Input<string>;
-    /**
-     * Protocol number (0 - 255).
-     */
     protocol?: pulumi.Input<number>;
-    /**
-     * Sequence number.
-     */
     seqNum?: pulumi.Input<number>;
-    /**
-     * Enable/disable negating source address match. Valid values: `enable`, `disable`.
-     */
     srcNegate?: pulumi.Input<string>;
-    /**
-     * Source address name. The structure of `srcaddr` block is documented below.
-     */
     srcaddrs?: pulumi.Input<pulumi.Input<inputs.RouterPolicySrcaddr>[]>;
-    /**
-     * Source IP and mask (x.x.x.x/x). The structure of `src` block is documented below.
-     */
     srcs?: pulumi.Input<pulumi.Input<inputs.RouterPolicySrc>[]>;
-    /**
-     * Start destination port number (0 - 65535).
-     */
     startPort?: pulumi.Input<number>;
-    /**
-     * Start source port number (0 - 65535).
-     */
     startSourcePort?: pulumi.Input<number>;
-    /**
-     * Enable/disable this policy route. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Type of service bit pattern.
-     */
     tos?: pulumi.Input<string>;
-    /**
-     * Type of service evaluated bits.
-     */
     tosMask?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -361,104 +166,29 @@ export interface RouterPolicyState {
  * The set of arguments for constructing a RouterPolicy resource.
  */
 export interface RouterPolicyArgs {
-    /**
-     * Action of the policy route. Valid values: `deny`, `permit`.
-     */
     action?: pulumi.Input<string>;
-    /**
-     * Optional comments.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Enable/disable negating destination address match. Valid values: `enable`, `disable`.
-     */
     dstNegate?: pulumi.Input<string>;
-    /**
-     * Destination address name. The structure of `dstaddr` block is documented below.
-     */
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.RouterPolicyDstaddr>[]>;
-    /**
-     * Destination IP and mask (x.x.x.x/x). The structure of `dst` block is documented below.
-     */
     dsts?: pulumi.Input<pulumi.Input<inputs.RouterPolicyDst>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * End destination port number (0 - 65535).
-     */
     endPort?: pulumi.Input<number>;
-    /**
-     * End source port number (0 - 65535).
-     */
     endSourcePort?: pulumi.Input<number>;
-    /**
-     * IP address of the gateway.
-     */
     gateway?: pulumi.Input<string>;
-    /**
-     * Enable/disable negation of input device match. Valid values: `enable`, `disable`.
-     */
     inputDeviceNegate?: pulumi.Input<string>;
-    /**
-     * Incoming interface name. The structure of `inputDevice` block is documented below.
-     */
     inputDevices?: pulumi.Input<pulumi.Input<inputs.RouterPolicyInputDevice>[]>;
-    /**
-     * Custom Destination Internet Service name. The structure of `internetServiceCustom` block is documented below.
-     */
     internetServiceCustoms?: pulumi.Input<pulumi.Input<inputs.RouterPolicyInternetServiceCustom>[]>;
-    /**
-     * Destination Internet Service ID. The structure of `internetServiceId` block is documented below.
-     */
     internetServiceIds?: pulumi.Input<pulumi.Input<inputs.RouterPolicyInternetServiceId>[]>;
-    /**
-     * Outgoing interface name.
-     */
     outputDevice?: pulumi.Input<string>;
-    /**
-     * Protocol number (0 - 255).
-     */
     protocol?: pulumi.Input<number>;
-    /**
-     * Sequence number.
-     */
     seqNum?: pulumi.Input<number>;
-    /**
-     * Enable/disable negating source address match. Valid values: `enable`, `disable`.
-     */
     srcNegate?: pulumi.Input<string>;
-    /**
-     * Source address name. The structure of `srcaddr` block is documented below.
-     */
     srcaddrs?: pulumi.Input<pulumi.Input<inputs.RouterPolicySrcaddr>[]>;
-    /**
-     * Source IP and mask (x.x.x.x/x). The structure of `src` block is documented below.
-     */
     srcs?: pulumi.Input<pulumi.Input<inputs.RouterPolicySrc>[]>;
-    /**
-     * Start destination port number (0 - 65535).
-     */
     startPort?: pulumi.Input<number>;
-    /**
-     * Start source port number (0 - 65535).
-     */
     startSourcePort?: pulumi.Input<number>;
-    /**
-     * Enable/disable this policy route. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Type of service bit pattern.
-     */
     tos?: pulumi.Input<string>;
-    /**
-     * Type of service evaluated bits.
-     */
     tosMask?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

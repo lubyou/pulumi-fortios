@@ -10,67 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure firewall authentication portals.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallAuthPortal(ctx, "trname", &fortios.FirewallAuthPortalArgs{
-// 			Groups: FirewallAuthPortalGroupArray{
-// 				&FirewallAuthPortalGroupArgs{
-// 					Name: pulumi.String("Guest-group"),
-// 				},
-// 			},
-// 			PortalAddr: pulumi.String("1.1.1.1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall AuthPortal can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAuthPortal:FirewallAuthPortal labelname FirewallAuthPortal
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAuthPortal:FirewallAuthPortal labelname FirewallAuthPortal
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallAuthPortal struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
-	Groups FirewallAuthPortalGroupArrayOutput `pulumi:"groups"`
-	// Name of the identity-based route that applies to this portal.
-	IdentityBasedRoute pulumi.StringOutput `pulumi:"identityBasedRoute"`
-	// Address (or FQDN) of the authentication portal.
-	PortalAddr pulumi.StringOutput `pulumi:"portalAddr"`
-	// IPv6 address (or FQDN) of authentication portal.
-	PortalAddr6 pulumi.StringOutput `pulumi:"portalAddr6"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
+	Groups              FirewallAuthPortalGroupArrayOutput `pulumi:"groups"`
+	IdentityBasedRoute  pulumi.StringOutput                `pulumi:"identityBasedRoute"`
+	PortalAddr          pulumi.StringOutput                `pulumi:"portalAddr"`
+	PortalAddr6         pulumi.StringOutput                `pulumi:"portalAddr6"`
+	Vdomparam           pulumi.StringPtrOutput             `pulumi:"vdomparam"`
 }
 
 // NewFirewallAuthPortal registers a new resource with the given unique name, arguments, and options.
@@ -103,33 +51,21 @@ func GetFirewallAuthPortal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallAuthPortal resources.
 type firewallAuthPortalState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
-	Groups []FirewallAuthPortalGroup `pulumi:"groups"`
-	// Name of the identity-based route that applies to this portal.
-	IdentityBasedRoute *string `pulumi:"identityBasedRoute"`
-	// Address (or FQDN) of the authentication portal.
-	PortalAddr *string `pulumi:"portalAddr"`
-	// IPv6 address (or FQDN) of authentication portal.
-	PortalAddr6 *string `pulumi:"portalAddr6"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Groups              []FirewallAuthPortalGroup `pulumi:"groups"`
+	IdentityBasedRoute  *string                   `pulumi:"identityBasedRoute"`
+	PortalAddr          *string                   `pulumi:"portalAddr"`
+	PortalAddr6         *string                   `pulumi:"portalAddr6"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
 
 type FirewallAuthPortalState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
-	Groups FirewallAuthPortalGroupArrayInput
-	// Name of the identity-based route that applies to this portal.
-	IdentityBasedRoute pulumi.StringPtrInput
-	// Address (or FQDN) of the authentication portal.
-	PortalAddr pulumi.StringPtrInput
-	// IPv6 address (or FQDN) of authentication portal.
-	PortalAddr6 pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Groups              FirewallAuthPortalGroupArrayInput
+	IdentityBasedRoute  pulumi.StringPtrInput
+	PortalAddr          pulumi.StringPtrInput
+	PortalAddr6         pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallAuthPortalState) ElementType() reflect.Type {
@@ -137,34 +73,22 @@ func (FirewallAuthPortalState) ElementType() reflect.Type {
 }
 
 type firewallAuthPortalArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
-	Groups []FirewallAuthPortalGroup `pulumi:"groups"`
-	// Name of the identity-based route that applies to this portal.
-	IdentityBasedRoute *string `pulumi:"identityBasedRoute"`
-	// Address (or FQDN) of the authentication portal.
-	PortalAddr *string `pulumi:"portalAddr"`
-	// IPv6 address (or FQDN) of authentication portal.
-	PortalAddr6 *string `pulumi:"portalAddr6"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Groups              []FirewallAuthPortalGroup `pulumi:"groups"`
+	IdentityBasedRoute  *string                   `pulumi:"identityBasedRoute"`
+	PortalAddr          *string                   `pulumi:"portalAddr"`
+	PortalAddr6         *string                   `pulumi:"portalAddr6"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallAuthPortal resource.
 type FirewallAuthPortalArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
-	Groups FirewallAuthPortalGroupArrayInput
-	// Name of the identity-based route that applies to this portal.
-	IdentityBasedRoute pulumi.StringPtrInput
-	// Address (or FQDN) of the authentication portal.
-	PortalAddr pulumi.StringPtrInput
-	// IPv6 address (or FQDN) of authentication portal.
-	PortalAddr6 pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Groups              FirewallAuthPortalGroupArrayInput
+	IdentityBasedRoute  pulumi.StringPtrInput
+	PortalAddr          pulumi.StringPtrInput
+	PortalAddr6         pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallAuthPortalArgs) ElementType() reflect.Type {
@@ -193,7 +117,7 @@ func (i *FirewallAuthPortal) ToFirewallAuthPortalOutputWithContext(ctx context.C
 // FirewallAuthPortalArrayInput is an input type that accepts FirewallAuthPortalArray and FirewallAuthPortalArrayOutput values.
 // You can construct a concrete instance of `FirewallAuthPortalArrayInput` via:
 //
-//          FirewallAuthPortalArray{ FirewallAuthPortalArgs{...} }
+//	FirewallAuthPortalArray{ FirewallAuthPortalArgs{...} }
 type FirewallAuthPortalArrayInput interface {
 	pulumi.Input
 
@@ -218,7 +142,7 @@ func (i FirewallAuthPortalArray) ToFirewallAuthPortalArrayOutputWithContext(ctx 
 // FirewallAuthPortalMapInput is an input type that accepts FirewallAuthPortalMap and FirewallAuthPortalMapOutput values.
 // You can construct a concrete instance of `FirewallAuthPortalMapInput` via:
 //
-//          FirewallAuthPortalMap{ "key": FirewallAuthPortalArgs{...} }
+//	FirewallAuthPortalMap{ "key": FirewallAuthPortalArgs{...} }
 type FirewallAuthPortalMapInput interface {
 	pulumi.Input
 
@@ -252,6 +176,30 @@ func (o FirewallAuthPortalOutput) ToFirewallAuthPortalOutput() FirewallAuthPorta
 
 func (o FirewallAuthPortalOutput) ToFirewallAuthPortalOutputWithContext(ctx context.Context) FirewallAuthPortalOutput {
 	return o
+}
+
+func (o FirewallAuthPortalOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAuthPortal) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAuthPortalOutput) Groups() FirewallAuthPortalGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallAuthPortal) FirewallAuthPortalGroupArrayOutput { return v.Groups }).(FirewallAuthPortalGroupArrayOutput)
+}
+
+func (o FirewallAuthPortalOutput) IdentityBasedRoute() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAuthPortal) pulumi.StringOutput { return v.IdentityBasedRoute }).(pulumi.StringOutput)
+}
+
+func (o FirewallAuthPortalOutput) PortalAddr() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAuthPortal) pulumi.StringOutput { return v.PortalAddr }).(pulumi.StringOutput)
+}
+
+func (o FirewallAuthPortalOutput) PortalAddr6() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAuthPortal) pulumi.StringOutput { return v.PortalAddr6 }).(pulumi.StringOutput)
+}
+
+func (o FirewallAuthPortalOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAuthPortal) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallAuthPortalArrayOutput struct{ *pulumi.OutputState }

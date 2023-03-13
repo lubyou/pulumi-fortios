@@ -10,33 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Settings for TACACS+ accounting. Applies to FortiOS Version `>= 7.0.2`.
-//
-// ## Import
-//
-// LogTacacsAccounting3 Setting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logTacacsAccounting3Setting:LogTacacsAccounting3Setting labelname LogTacacsAccounting3Setting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logTacacsAccounting3Setting:LogTacacsAccounting3Setting labelname LogTacacsAccounting3Setting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogTacacsAccounting3Setting struct {
 	pulumi.CustomResourceState
 
-	// Address of TACACS+ server.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// Key to access the TACACS+ server.
+	Server    pulumi.StringOutput    `pulumi:"server"`
 	ServerKey pulumi.StringPtrOutput `pulumi:"serverKey"`
-	// Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    pulumi.StringOutput    `pulumi:"status"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -70,24 +49,16 @@ func GetLogTacacsAccounting3Setting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogTacacsAccounting3Setting resources.
 type logTacacsAccounting3SettingState struct {
-	// Address of TACACS+ server.
-	Server *string `pulumi:"server"`
-	// Key to access the TACACS+ server.
+	Server    *string `pulumi:"server"`
 	ServerKey *string `pulumi:"serverKey"`
-	// Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type LogTacacsAccounting3SettingState struct {
-	// Address of TACACS+ server.
-	Server pulumi.StringPtrInput
-	// Key to access the TACACS+ server.
+	Server    pulumi.StringPtrInput
 	ServerKey pulumi.StringPtrInput
-	// Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -96,25 +67,17 @@ func (LogTacacsAccounting3SettingState) ElementType() reflect.Type {
 }
 
 type logTacacsAccounting3SettingArgs struct {
-	// Address of TACACS+ server.
-	Server *string `pulumi:"server"`
-	// Key to access the TACACS+ server.
+	Server    *string `pulumi:"server"`
 	ServerKey *string `pulumi:"serverKey"`
-	// Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogTacacsAccounting3Setting resource.
 type LogTacacsAccounting3SettingArgs struct {
-	// Address of TACACS+ server.
-	Server pulumi.StringPtrInput
-	// Key to access the TACACS+ server.
+	Server    pulumi.StringPtrInput
 	ServerKey pulumi.StringPtrInput
-	// Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -144,7 +107,7 @@ func (i *LogTacacsAccounting3Setting) ToLogTacacsAccounting3SettingOutputWithCon
 // LogTacacsAccounting3SettingArrayInput is an input type that accepts LogTacacsAccounting3SettingArray and LogTacacsAccounting3SettingArrayOutput values.
 // You can construct a concrete instance of `LogTacacsAccounting3SettingArrayInput` via:
 //
-//          LogTacacsAccounting3SettingArray{ LogTacacsAccounting3SettingArgs{...} }
+//	LogTacacsAccounting3SettingArray{ LogTacacsAccounting3SettingArgs{...} }
 type LogTacacsAccounting3SettingArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i LogTacacsAccounting3SettingArray) ToLogTacacsAccounting3SettingArrayOutp
 // LogTacacsAccounting3SettingMapInput is an input type that accepts LogTacacsAccounting3SettingMap and LogTacacsAccounting3SettingMapOutput values.
 // You can construct a concrete instance of `LogTacacsAccounting3SettingMapInput` via:
 //
-//          LogTacacsAccounting3SettingMap{ "key": LogTacacsAccounting3SettingArgs{...} }
+//	LogTacacsAccounting3SettingMap{ "key": LogTacacsAccounting3SettingArgs{...} }
 type LogTacacsAccounting3SettingMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o LogTacacsAccounting3SettingOutput) ToLogTacacsAccounting3SettingOutput()
 
 func (o LogTacacsAccounting3SettingOutput) ToLogTacacsAccounting3SettingOutputWithContext(ctx context.Context) LogTacacsAccounting3SettingOutput {
 	return o
+}
+
+func (o LogTacacsAccounting3SettingOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogTacacsAccounting3Setting) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o LogTacacsAccounting3SettingOutput) ServerKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogTacacsAccounting3Setting) pulumi.StringPtrOutput { return v.ServerKey }).(pulumi.StringPtrOutput)
+}
+
+func (o LogTacacsAccounting3SettingOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogTacacsAccounting3Setting) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LogTacacsAccounting3SettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogTacacsAccounting3Setting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type LogTacacsAccounting3SettingArrayOutput struct{ *pulumi.OutputState }

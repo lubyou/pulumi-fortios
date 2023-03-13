@@ -10,81 +10,26 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure DLP sensors.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewDlpSensor(ctx, "trname", &fortios.DlpSensorArgs{
-// 			DlpLog:       pulumi.String("enable"),
-// 			ExtendedLog:  pulumi.String("disable"),
-// 			FlowBased:    pulumi.String("enable"),
-// 			NacQuarLog:   pulumi.String("disable"),
-// 			SummaryProto: pulumi.String("smtp pop3"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Dlp Sensor can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/dlpSensor:DlpSensor labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/dlpSensor:DlpSensor labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type DlpSensor struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Enable/disable DLP logging. Valid values: `enable`, `disable`.
-	DlpLog pulumi.StringOutput `pulumi:"dlpLog"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable extended logging for data leak prevention. Valid values: `enable`, `disable`.
-	ExtendedLog pulumi.StringOutput `pulumi:"extendedLog"`
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet pulumi.StringOutput `pulumi:"featureSet"`
-	// Set up DLP filters for this sensor. The structure of `filter` block is documented below.
-	Filters DlpSensorFilterArrayOutput `pulumi:"filters"`
-	// Enable/disable flow-based DLP. Valid values: `enable`, `disable`.
-	FlowBased pulumi.StringOutput `pulumi:"flowBased"`
-	// Protocols to always content archive.
-	FullArchiveProto pulumi.StringOutput `pulumi:"fullArchiveProto"`
-	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
-	NacQuarLog pulumi.StringOutput `pulumi:"nacQuarLog"`
-	// Select a DLP sensitivity.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Configure DLP options.
-	Options pulumi.StringOutput `pulumi:"options"`
-	// Replacement message group used by this DLP sensor.
-	ReplacemsgGroup pulumi.StringOutput `pulumi:"replacemsgGroup"`
-	// Protocols to always log summary.
-	SummaryProto pulumi.StringOutput `pulumi:"summaryProto"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput     `pulumi:"comment"`
+	DlpLog              pulumi.StringOutput        `pulumi:"dlpLog"`
+	DynamicSortSubtable pulumi.StringPtrOutput     `pulumi:"dynamicSortSubtable"`
+	Entries             DlpSensorEntryArrayOutput  `pulumi:"entries"`
+	Eval                pulumi.StringOutput        `pulumi:"eval"`
+	ExtendedLog         pulumi.StringOutput        `pulumi:"extendedLog"`
+	FeatureSet          pulumi.StringOutput        `pulumi:"featureSet"`
+	Filters             DlpSensorFilterArrayOutput `pulumi:"filters"`
+	FlowBased           pulumi.StringOutput        `pulumi:"flowBased"`
+	FullArchiveProto    pulumi.StringOutput        `pulumi:"fullArchiveProto"`
+	MatchType           pulumi.StringOutput        `pulumi:"matchType"`
+	NacQuarLog          pulumi.StringOutput        `pulumi:"nacQuarLog"`
+	Name                pulumi.StringOutput        `pulumi:"name"`
+	Options             pulumi.StringOutput        `pulumi:"options"`
+	ReplacemsgGroup     pulumi.StringOutput        `pulumi:"replacemsgGroup"`
+	SummaryProto        pulumi.StringOutput        `pulumi:"summaryProto"`
+	Vdomparam           pulumi.StringPtrOutput     `pulumi:"vdomparam"`
 }
 
 // NewDlpSensor registers a new resource with the given unique name, arguments, and options.
@@ -117,65 +62,43 @@ func GetDlpSensor(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DlpSensor resources.
 type dlpSensorState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Enable/disable DLP logging. Valid values: `enable`, `disable`.
-	DlpLog *string `pulumi:"dlpLog"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable extended logging for data leak prevention. Valid values: `enable`, `disable`.
-	ExtendedLog *string `pulumi:"extendedLog"`
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet *string `pulumi:"featureSet"`
-	// Set up DLP filters for this sensor. The structure of `filter` block is documented below.
-	Filters []DlpSensorFilter `pulumi:"filters"`
-	// Enable/disable flow-based DLP. Valid values: `enable`, `disable`.
-	FlowBased *string `pulumi:"flowBased"`
-	// Protocols to always content archive.
-	FullArchiveProto *string `pulumi:"fullArchiveProto"`
-	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
-	NacQuarLog *string `pulumi:"nacQuarLog"`
-	// Select a DLP sensitivity.
-	Name *string `pulumi:"name"`
-	// Configure DLP options.
-	Options *string `pulumi:"options"`
-	// Replacement message group used by this DLP sensor.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Protocols to always log summary.
-	SummaryProto *string `pulumi:"summaryProto"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string           `pulumi:"comment"`
+	DlpLog              *string           `pulumi:"dlpLog"`
+	DynamicSortSubtable *string           `pulumi:"dynamicSortSubtable"`
+	Entries             []DlpSensorEntry  `pulumi:"entries"`
+	Eval                *string           `pulumi:"eval"`
+	ExtendedLog         *string           `pulumi:"extendedLog"`
+	FeatureSet          *string           `pulumi:"featureSet"`
+	Filters             []DlpSensorFilter `pulumi:"filters"`
+	FlowBased           *string           `pulumi:"flowBased"`
+	FullArchiveProto    *string           `pulumi:"fullArchiveProto"`
+	MatchType           *string           `pulumi:"matchType"`
+	NacQuarLog          *string           `pulumi:"nacQuarLog"`
+	Name                *string           `pulumi:"name"`
+	Options             *string           `pulumi:"options"`
+	ReplacemsgGroup     *string           `pulumi:"replacemsgGroup"`
+	SummaryProto        *string           `pulumi:"summaryProto"`
+	Vdomparam           *string           `pulumi:"vdomparam"`
 }
 
 type DlpSensorState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Enable/disable DLP logging. Valid values: `enable`, `disable`.
-	DlpLog pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
+	DlpLog              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable extended logging for data leak prevention. Valid values: `enable`, `disable`.
-	ExtendedLog pulumi.StringPtrInput
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet pulumi.StringPtrInput
-	// Set up DLP filters for this sensor. The structure of `filter` block is documented below.
-	Filters DlpSensorFilterArrayInput
-	// Enable/disable flow-based DLP. Valid values: `enable`, `disable`.
-	FlowBased pulumi.StringPtrInput
-	// Protocols to always content archive.
-	FullArchiveProto pulumi.StringPtrInput
-	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
-	NacQuarLog pulumi.StringPtrInput
-	// Select a DLP sensitivity.
-	Name pulumi.StringPtrInput
-	// Configure DLP options.
-	Options pulumi.StringPtrInput
-	// Replacement message group used by this DLP sensor.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// Protocols to always log summary.
-	SummaryProto pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             DlpSensorEntryArrayInput
+	Eval                pulumi.StringPtrInput
+	ExtendedLog         pulumi.StringPtrInput
+	FeatureSet          pulumi.StringPtrInput
+	Filters             DlpSensorFilterArrayInput
+	FlowBased           pulumi.StringPtrInput
+	FullArchiveProto    pulumi.StringPtrInput
+	MatchType           pulumi.StringPtrInput
+	NacQuarLog          pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Options             pulumi.StringPtrInput
+	ReplacemsgGroup     pulumi.StringPtrInput
+	SummaryProto        pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (DlpSensorState) ElementType() reflect.Type {
@@ -183,66 +106,44 @@ func (DlpSensorState) ElementType() reflect.Type {
 }
 
 type dlpSensorArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Enable/disable DLP logging. Valid values: `enable`, `disable`.
-	DlpLog *string `pulumi:"dlpLog"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable extended logging for data leak prevention. Valid values: `enable`, `disable`.
-	ExtendedLog *string `pulumi:"extendedLog"`
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet *string `pulumi:"featureSet"`
-	// Set up DLP filters for this sensor. The structure of `filter` block is documented below.
-	Filters []DlpSensorFilter `pulumi:"filters"`
-	// Enable/disable flow-based DLP. Valid values: `enable`, `disable`.
-	FlowBased *string `pulumi:"flowBased"`
-	// Protocols to always content archive.
-	FullArchiveProto *string `pulumi:"fullArchiveProto"`
-	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
-	NacQuarLog *string `pulumi:"nacQuarLog"`
-	// Select a DLP sensitivity.
-	Name *string `pulumi:"name"`
-	// Configure DLP options.
-	Options *string `pulumi:"options"`
-	// Replacement message group used by this DLP sensor.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Protocols to always log summary.
-	SummaryProto *string `pulumi:"summaryProto"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string           `pulumi:"comment"`
+	DlpLog              *string           `pulumi:"dlpLog"`
+	DynamicSortSubtable *string           `pulumi:"dynamicSortSubtable"`
+	Entries             []DlpSensorEntry  `pulumi:"entries"`
+	Eval                *string           `pulumi:"eval"`
+	ExtendedLog         *string           `pulumi:"extendedLog"`
+	FeatureSet          *string           `pulumi:"featureSet"`
+	Filters             []DlpSensorFilter `pulumi:"filters"`
+	FlowBased           *string           `pulumi:"flowBased"`
+	FullArchiveProto    *string           `pulumi:"fullArchiveProto"`
+	MatchType           *string           `pulumi:"matchType"`
+	NacQuarLog          *string           `pulumi:"nacQuarLog"`
+	Name                *string           `pulumi:"name"`
+	Options             *string           `pulumi:"options"`
+	ReplacemsgGroup     *string           `pulumi:"replacemsgGroup"`
+	SummaryProto        *string           `pulumi:"summaryProto"`
+	Vdomparam           *string           `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a DlpSensor resource.
 type DlpSensorArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Enable/disable DLP logging. Valid values: `enable`, `disable`.
-	DlpLog pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
+	DlpLog              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable extended logging for data leak prevention. Valid values: `enable`, `disable`.
-	ExtendedLog pulumi.StringPtrInput
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet pulumi.StringPtrInput
-	// Set up DLP filters for this sensor. The structure of `filter` block is documented below.
-	Filters DlpSensorFilterArrayInput
-	// Enable/disable flow-based DLP. Valid values: `enable`, `disable`.
-	FlowBased pulumi.StringPtrInput
-	// Protocols to always content archive.
-	FullArchiveProto pulumi.StringPtrInput
-	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
-	NacQuarLog pulumi.StringPtrInput
-	// Select a DLP sensitivity.
-	Name pulumi.StringPtrInput
-	// Configure DLP options.
-	Options pulumi.StringPtrInput
-	// Replacement message group used by this DLP sensor.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// Protocols to always log summary.
-	SummaryProto pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             DlpSensorEntryArrayInput
+	Eval                pulumi.StringPtrInput
+	ExtendedLog         pulumi.StringPtrInput
+	FeatureSet          pulumi.StringPtrInput
+	Filters             DlpSensorFilterArrayInput
+	FlowBased           pulumi.StringPtrInput
+	FullArchiveProto    pulumi.StringPtrInput
+	MatchType           pulumi.StringPtrInput
+	NacQuarLog          pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Options             pulumi.StringPtrInput
+	ReplacemsgGroup     pulumi.StringPtrInput
+	SummaryProto        pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (DlpSensorArgs) ElementType() reflect.Type {
@@ -271,7 +172,7 @@ func (i *DlpSensor) ToDlpSensorOutputWithContext(ctx context.Context) DlpSensorO
 // DlpSensorArrayInput is an input type that accepts DlpSensorArray and DlpSensorArrayOutput values.
 // You can construct a concrete instance of `DlpSensorArrayInput` via:
 //
-//          DlpSensorArray{ DlpSensorArgs{...} }
+//	DlpSensorArray{ DlpSensorArgs{...} }
 type DlpSensorArrayInput interface {
 	pulumi.Input
 
@@ -296,7 +197,7 @@ func (i DlpSensorArray) ToDlpSensorArrayOutputWithContext(ctx context.Context) D
 // DlpSensorMapInput is an input type that accepts DlpSensorMap and DlpSensorMapOutput values.
 // You can construct a concrete instance of `DlpSensorMapInput` via:
 //
-//          DlpSensorMap{ "key": DlpSensorArgs{...} }
+//	DlpSensorMap{ "key": DlpSensorArgs{...} }
 type DlpSensorMapInput interface {
 	pulumi.Input
 
@@ -330,6 +231,74 @@ func (o DlpSensorOutput) ToDlpSensorOutput() DlpSensorOutput {
 
 func (o DlpSensorOutput) ToDlpSensorOutputWithContext(ctx context.Context) DlpSensorOutput {
 	return o
+}
+
+func (o DlpSensorOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o DlpSensorOutput) DlpLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringOutput { return v.DlpLog }).(pulumi.StringOutput)
+}
+
+func (o DlpSensorOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o DlpSensorOutput) Entries() DlpSensorEntryArrayOutput {
+	return o.ApplyT(func(v *DlpSensor) DlpSensorEntryArrayOutput { return v.Entries }).(DlpSensorEntryArrayOutput)
+}
+
+func (o DlpSensorOutput) Eval() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringOutput { return v.Eval }).(pulumi.StringOutput)
+}
+
+func (o DlpSensorOutput) ExtendedLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringOutput { return v.ExtendedLog }).(pulumi.StringOutput)
+}
+
+func (o DlpSensorOutput) FeatureSet() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringOutput { return v.FeatureSet }).(pulumi.StringOutput)
+}
+
+func (o DlpSensorOutput) Filters() DlpSensorFilterArrayOutput {
+	return o.ApplyT(func(v *DlpSensor) DlpSensorFilterArrayOutput { return v.Filters }).(DlpSensorFilterArrayOutput)
+}
+
+func (o DlpSensorOutput) FlowBased() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringOutput { return v.FlowBased }).(pulumi.StringOutput)
+}
+
+func (o DlpSensorOutput) FullArchiveProto() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringOutput { return v.FullArchiveProto }).(pulumi.StringOutput)
+}
+
+func (o DlpSensorOutput) MatchType() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringOutput { return v.MatchType }).(pulumi.StringOutput)
+}
+
+func (o DlpSensorOutput) NacQuarLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringOutput { return v.NacQuarLog }).(pulumi.StringOutput)
+}
+
+func (o DlpSensorOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o DlpSensorOutput) Options() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringOutput { return v.Options }).(pulumi.StringOutput)
+}
+
+func (o DlpSensorOutput) ReplacemsgGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringOutput { return v.ReplacemsgGroup }).(pulumi.StringOutput)
+}
+
+func (o DlpSensorOutput) SummaryProto() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringOutput { return v.SummaryProto }).(pulumi.StringOutput)
+}
+
+func (o DlpSensorOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type DlpSensorArrayOutput struct{ *pulumi.OutputState }

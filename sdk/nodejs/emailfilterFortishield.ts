@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiGuard - AntiSpam. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * Emailfilter Fortishield can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/emailfilterFortishield:EmailfilterFortishield labelname EmailfilterFortishield
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/emailfilterFortishield:EmailfilterFortishield labelname EmailfilterFortishield
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class EmailfilterFortishield extends pulumi.CustomResource {
     /**
      * Get an existing EmailfilterFortishield resource's state with the given name, ID, and optional extra
@@ -51,21 +32,9 @@ export class EmailfilterFortishield extends pulumi.CustomResource {
         return obj['__pulumiType'] === EmailfilterFortishield.__pulumiType;
     }
 
-    /**
-     * Enable/disable force insertion of a new mime entity for the submission text. Valid values: `enable`, `disable`.
-     */
     public readonly spamSubmitForce!: pulumi.Output<string>;
-    /**
-     * Hostname of the spam submission server.
-     */
     public readonly spamSubmitSrv!: pulumi.Output<string>;
-    /**
-     * Enable/disable conversion of text email to HTML email. Valid values: `enable`, `disable`.
-     */
     public readonly spamSubmitTxt2htm!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -101,21 +70,9 @@ export class EmailfilterFortishield extends pulumi.CustomResource {
  * Input properties used for looking up and filtering EmailfilterFortishield resources.
  */
 export interface EmailfilterFortishieldState {
-    /**
-     * Enable/disable force insertion of a new mime entity for the submission text. Valid values: `enable`, `disable`.
-     */
     spamSubmitForce?: pulumi.Input<string>;
-    /**
-     * Hostname of the spam submission server.
-     */
     spamSubmitSrv?: pulumi.Input<string>;
-    /**
-     * Enable/disable conversion of text email to HTML email. Valid values: `enable`, `disable`.
-     */
     spamSubmitTxt2htm?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -123,20 +80,8 @@ export interface EmailfilterFortishieldState {
  * The set of arguments for constructing a EmailfilterFortishield resource.
  */
 export interface EmailfilterFortishieldArgs {
-    /**
-     * Enable/disable force insertion of a new mime entity for the submission text. Valid values: `enable`, `disable`.
-     */
     spamSubmitForce?: pulumi.Input<string>;
-    /**
-     * Hostname of the spam submission server.
-     */
     spamSubmitSrv?: pulumi.Input<string>;
-    /**
-     * Enable/disable conversion of text email to HTML email. Valid values: `enable`, `disable`.
-     */
     spamSubmitTxt2htm?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

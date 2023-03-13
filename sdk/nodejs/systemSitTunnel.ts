@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv6 tunnel over IPv4.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemSitTunnel("trname", {
- *     destination: "1.1.1.1",
- *     interface: "port2",
- *     ip6: "::/0",
- *     source: "2.2.2.2",
- * });
- * ```
- *
- * ## Import
- *
- * System SitTunnel can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSitTunnel:SystemSitTunnel labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSitTunnel:SystemSitTunnel labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemSitTunnel extends pulumi.CustomResource {
     /**
      * Get an existing SystemSitTunnel resource's state with the given name, ID, and optional extra
@@ -65,37 +32,13 @@ export class SystemSitTunnel extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemSitTunnel.__pulumiType;
     }
 
-    /**
-     * Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
-     */
     public readonly autoAsicOffload!: pulumi.Output<string>;
-    /**
-     * Destination IP address of the tunnel.
-     */
     public readonly destination!: pulumi.Output<string>;
-    /**
-     * Interface name.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * IPv6 address of the tunnel.
-     */
     public readonly ip6!: pulumi.Output<string>;
-    /**
-     * Tunnel name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Source IP address of the tunnel.
-     */
     public readonly source!: pulumi.Output<string>;
-    /**
-     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-     */
     public readonly useSdwan!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -142,37 +85,13 @@ export class SystemSitTunnel extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSitTunnel resources.
  */
 export interface SystemSitTunnelState {
-    /**
-     * Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
-     */
     autoAsicOffload?: pulumi.Input<string>;
-    /**
-     * Destination IP address of the tunnel.
-     */
     destination?: pulumi.Input<string>;
-    /**
-     * Interface name.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * IPv6 address of the tunnel.
-     */
     ip6?: pulumi.Input<string>;
-    /**
-     * Tunnel name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Source IP address of the tunnel.
-     */
     source?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-     */
     useSdwan?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -180,36 +99,12 @@ export interface SystemSitTunnelState {
  * The set of arguments for constructing a SystemSitTunnel resource.
  */
 export interface SystemSitTunnelArgs {
-    /**
-     * Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
-     */
     autoAsicOffload?: pulumi.Input<string>;
-    /**
-     * Destination IP address of the tunnel.
-     */
     destination: pulumi.Input<string>;
-    /**
-     * Interface name.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * IPv6 address of the tunnel.
-     */
     ip6?: pulumi.Input<string>;
-    /**
-     * Tunnel name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Source IP address of the tunnel.
-     */
     source?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-     */
     useSdwan?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

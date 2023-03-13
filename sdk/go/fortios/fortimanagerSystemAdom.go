@@ -10,61 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports Create/Read/Update/Delete system adom for FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerSystemAdom(ctx, "test1", &fortios.FortimanagerSystemAdomArgs{
-// 			ActionWhenConflictsOccurDuringPolicyCheck:  pulumi.String("Continue"),
-// 			AutoPushPolicyPackagesWhenDeviceBackOnline: pulumi.String("Enable"),
-// 			CentralManagementFortiap:                   pulumi.Bool(true),
-// 			CentralManagementSdwan:                     pulumi.Bool(false),
-// 			CentralManagementVpn:                       pulumi.Bool(false),
-// 			Mode:                                       pulumi.String("Normal"),
-// 			PerformPolicyCheckBeforeEveryInstall:       pulumi.Bool(true),
-// 			Status:                                     pulumi.Int(1),
-// 			Type:                                       pulumi.String("FortiCarrier"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerSystemAdom struct {
 	pulumi.CustomResourceState
 
-	// True or False.
-	ActionWhenConflictsOccurDuringPolicyCheck pulumi.StringPtrOutput `pulumi:"actionWhenConflictsOccurDuringPolicyCheck"`
-	// True or False.
+	ActionWhenConflictsOccurDuringPolicyCheck  pulumi.StringPtrOutput `pulumi:"actionWhenConflictsOccurDuringPolicyCheck"`
 	AutoPushPolicyPackagesWhenDeviceBackOnline pulumi.StringPtrOutput `pulumi:"autoPushPolicyPackagesWhenDeviceBackOnline"`
-	// True or False.
-	CentralManagementFortiap pulumi.BoolPtrOutput `pulumi:"centralManagementFortiap"`
-	// True or False.
-	CentralManagementSdwan pulumi.BoolPtrOutput `pulumi:"centralManagementSdwan"`
-	// True or False.
-	CentralManagementVpn pulumi.BoolPtrOutput `pulumi:"centralManagementVpn"`
-	// Adom mode: Normal or Backup.
-	Mode pulumi.StringPtrOutput `pulumi:"mode"`
-	// Administrative Domain name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// True or False.
-	PerformPolicyCheckBeforeEveryInstall pulumi.BoolPtrOutput `pulumi:"performPolicyCheckBeforeEveryInstall"`
-	// Adom status. 0 means off and 1 means on.
-	Status pulumi.IntPtrOutput `pulumi:"status"`
-	// Domain type, Enum: ["FortiGate", "FortiCarrier], default is "FortiCarrier".
-	Type pulumi.StringPtrOutput `pulumi:"type"`
+	CentralManagementFortiap                   pulumi.BoolPtrOutput   `pulumi:"centralManagementFortiap"`
+	CentralManagementSdwan                     pulumi.BoolPtrOutput   `pulumi:"centralManagementSdwan"`
+	CentralManagementVpn                       pulumi.BoolPtrOutput   `pulumi:"centralManagementVpn"`
+	Mode                                       pulumi.StringPtrOutput `pulumi:"mode"`
+	Name                                       pulumi.StringOutput    `pulumi:"name"`
+	PerformPolicyCheckBeforeEveryInstall       pulumi.BoolPtrOutput   `pulumi:"performPolicyCheckBeforeEveryInstall"`
+	Status                                     pulumi.IntPtrOutput    `pulumi:"status"`
+	Type                                       pulumi.StringPtrOutput `pulumi:"type"`
 }
 
 // NewFortimanagerSystemAdom registers a new resource with the given unique name, arguments, and options.
@@ -97,49 +55,29 @@ func GetFortimanagerSystemAdom(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerSystemAdom resources.
 type fortimanagerSystemAdomState struct {
-	// True or False.
-	ActionWhenConflictsOccurDuringPolicyCheck *string `pulumi:"actionWhenConflictsOccurDuringPolicyCheck"`
-	// True or False.
+	ActionWhenConflictsOccurDuringPolicyCheck  *string `pulumi:"actionWhenConflictsOccurDuringPolicyCheck"`
 	AutoPushPolicyPackagesWhenDeviceBackOnline *string `pulumi:"autoPushPolicyPackagesWhenDeviceBackOnline"`
-	// True or False.
-	CentralManagementFortiap *bool `pulumi:"centralManagementFortiap"`
-	// True or False.
-	CentralManagementSdwan *bool `pulumi:"centralManagementSdwan"`
-	// True or False.
-	CentralManagementVpn *bool `pulumi:"centralManagementVpn"`
-	// Adom mode: Normal or Backup.
-	Mode *string `pulumi:"mode"`
-	// Administrative Domain name.
-	Name *string `pulumi:"name"`
-	// True or False.
-	PerformPolicyCheckBeforeEveryInstall *bool `pulumi:"performPolicyCheckBeforeEveryInstall"`
-	// Adom status. 0 means off and 1 means on.
-	Status *int `pulumi:"status"`
-	// Domain type, Enum: ["FortiGate", "FortiCarrier], default is "FortiCarrier".
-	Type *string `pulumi:"type"`
+	CentralManagementFortiap                   *bool   `pulumi:"centralManagementFortiap"`
+	CentralManagementSdwan                     *bool   `pulumi:"centralManagementSdwan"`
+	CentralManagementVpn                       *bool   `pulumi:"centralManagementVpn"`
+	Mode                                       *string `pulumi:"mode"`
+	Name                                       *string `pulumi:"name"`
+	PerformPolicyCheckBeforeEveryInstall       *bool   `pulumi:"performPolicyCheckBeforeEveryInstall"`
+	Status                                     *int    `pulumi:"status"`
+	Type                                       *string `pulumi:"type"`
 }
 
 type FortimanagerSystemAdomState struct {
-	// True or False.
-	ActionWhenConflictsOccurDuringPolicyCheck pulumi.StringPtrInput
-	// True or False.
+	ActionWhenConflictsOccurDuringPolicyCheck  pulumi.StringPtrInput
 	AutoPushPolicyPackagesWhenDeviceBackOnline pulumi.StringPtrInput
-	// True or False.
-	CentralManagementFortiap pulumi.BoolPtrInput
-	// True or False.
-	CentralManagementSdwan pulumi.BoolPtrInput
-	// True or False.
-	CentralManagementVpn pulumi.BoolPtrInput
-	// Adom mode: Normal or Backup.
-	Mode pulumi.StringPtrInput
-	// Administrative Domain name.
-	Name pulumi.StringPtrInput
-	// True or False.
-	PerformPolicyCheckBeforeEveryInstall pulumi.BoolPtrInput
-	// Adom status. 0 means off and 1 means on.
-	Status pulumi.IntPtrInput
-	// Domain type, Enum: ["FortiGate", "FortiCarrier], default is "FortiCarrier".
-	Type pulumi.StringPtrInput
+	CentralManagementFortiap                   pulumi.BoolPtrInput
+	CentralManagementSdwan                     pulumi.BoolPtrInput
+	CentralManagementVpn                       pulumi.BoolPtrInput
+	Mode                                       pulumi.StringPtrInput
+	Name                                       pulumi.StringPtrInput
+	PerformPolicyCheckBeforeEveryInstall       pulumi.BoolPtrInput
+	Status                                     pulumi.IntPtrInput
+	Type                                       pulumi.StringPtrInput
 }
 
 func (FortimanagerSystemAdomState) ElementType() reflect.Type {
@@ -147,50 +85,30 @@ func (FortimanagerSystemAdomState) ElementType() reflect.Type {
 }
 
 type fortimanagerSystemAdomArgs struct {
-	// True or False.
-	ActionWhenConflictsOccurDuringPolicyCheck *string `pulumi:"actionWhenConflictsOccurDuringPolicyCheck"`
-	// True or False.
+	ActionWhenConflictsOccurDuringPolicyCheck  *string `pulumi:"actionWhenConflictsOccurDuringPolicyCheck"`
 	AutoPushPolicyPackagesWhenDeviceBackOnline *string `pulumi:"autoPushPolicyPackagesWhenDeviceBackOnline"`
-	// True or False.
-	CentralManagementFortiap *bool `pulumi:"centralManagementFortiap"`
-	// True or False.
-	CentralManagementSdwan *bool `pulumi:"centralManagementSdwan"`
-	// True or False.
-	CentralManagementVpn *bool `pulumi:"centralManagementVpn"`
-	// Adom mode: Normal or Backup.
-	Mode *string `pulumi:"mode"`
-	// Administrative Domain name.
-	Name *string `pulumi:"name"`
-	// True or False.
-	PerformPolicyCheckBeforeEveryInstall *bool `pulumi:"performPolicyCheckBeforeEveryInstall"`
-	// Adom status. 0 means off and 1 means on.
-	Status *int `pulumi:"status"`
-	// Domain type, Enum: ["FortiGate", "FortiCarrier], default is "FortiCarrier".
-	Type *string `pulumi:"type"`
+	CentralManagementFortiap                   *bool   `pulumi:"centralManagementFortiap"`
+	CentralManagementSdwan                     *bool   `pulumi:"centralManagementSdwan"`
+	CentralManagementVpn                       *bool   `pulumi:"centralManagementVpn"`
+	Mode                                       *string `pulumi:"mode"`
+	Name                                       *string `pulumi:"name"`
+	PerformPolicyCheckBeforeEveryInstall       *bool   `pulumi:"performPolicyCheckBeforeEveryInstall"`
+	Status                                     *int    `pulumi:"status"`
+	Type                                       *string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a FortimanagerSystemAdom resource.
 type FortimanagerSystemAdomArgs struct {
-	// True or False.
-	ActionWhenConflictsOccurDuringPolicyCheck pulumi.StringPtrInput
-	// True or False.
+	ActionWhenConflictsOccurDuringPolicyCheck  pulumi.StringPtrInput
 	AutoPushPolicyPackagesWhenDeviceBackOnline pulumi.StringPtrInput
-	// True or False.
-	CentralManagementFortiap pulumi.BoolPtrInput
-	// True or False.
-	CentralManagementSdwan pulumi.BoolPtrInput
-	// True or False.
-	CentralManagementVpn pulumi.BoolPtrInput
-	// Adom mode: Normal or Backup.
-	Mode pulumi.StringPtrInput
-	// Administrative Domain name.
-	Name pulumi.StringPtrInput
-	// True or False.
-	PerformPolicyCheckBeforeEveryInstall pulumi.BoolPtrInput
-	// Adom status. 0 means off and 1 means on.
-	Status pulumi.IntPtrInput
-	// Domain type, Enum: ["FortiGate", "FortiCarrier], default is "FortiCarrier".
-	Type pulumi.StringPtrInput
+	CentralManagementFortiap                   pulumi.BoolPtrInput
+	CentralManagementSdwan                     pulumi.BoolPtrInput
+	CentralManagementVpn                       pulumi.BoolPtrInput
+	Mode                                       pulumi.StringPtrInput
+	Name                                       pulumi.StringPtrInput
+	PerformPolicyCheckBeforeEveryInstall       pulumi.BoolPtrInput
+	Status                                     pulumi.IntPtrInput
+	Type                                       pulumi.StringPtrInput
 }
 
 func (FortimanagerSystemAdomArgs) ElementType() reflect.Type {
@@ -219,7 +137,7 @@ func (i *FortimanagerSystemAdom) ToFortimanagerSystemAdomOutputWithContext(ctx c
 // FortimanagerSystemAdomArrayInput is an input type that accepts FortimanagerSystemAdomArray and FortimanagerSystemAdomArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemAdomArrayInput` via:
 //
-//          FortimanagerSystemAdomArray{ FortimanagerSystemAdomArgs{...} }
+//	FortimanagerSystemAdomArray{ FortimanagerSystemAdomArgs{...} }
 type FortimanagerSystemAdomArrayInput interface {
 	pulumi.Input
 
@@ -244,7 +162,7 @@ func (i FortimanagerSystemAdomArray) ToFortimanagerSystemAdomArrayOutputWithCont
 // FortimanagerSystemAdomMapInput is an input type that accepts FortimanagerSystemAdomMap and FortimanagerSystemAdomMapOutput values.
 // You can construct a concrete instance of `FortimanagerSystemAdomMapInput` via:
 //
-//          FortimanagerSystemAdomMap{ "key": FortimanagerSystemAdomArgs{...} }
+//	FortimanagerSystemAdomMap{ "key": FortimanagerSystemAdomArgs{...} }
 type FortimanagerSystemAdomMapInput interface {
 	pulumi.Input
 
@@ -278,6 +196,50 @@ func (o FortimanagerSystemAdomOutput) ToFortimanagerSystemAdomOutput() Fortimana
 
 func (o FortimanagerSystemAdomOutput) ToFortimanagerSystemAdomOutputWithContext(ctx context.Context) FortimanagerSystemAdomOutput {
 	return o
+}
+
+func (o FortimanagerSystemAdomOutput) ActionWhenConflictsOccurDuringPolicyCheck() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdom) pulumi.StringPtrOutput {
+		return v.ActionWhenConflictsOccurDuringPolicyCheck
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdomOutput) AutoPushPolicyPackagesWhenDeviceBackOnline() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdom) pulumi.StringPtrOutput {
+		return v.AutoPushPolicyPackagesWhenDeviceBackOnline
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdomOutput) CentralManagementFortiap() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdom) pulumi.BoolPtrOutput { return v.CentralManagementFortiap }).(pulumi.BoolPtrOutput)
+}
+
+func (o FortimanagerSystemAdomOutput) CentralManagementSdwan() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdom) pulumi.BoolPtrOutput { return v.CentralManagementSdwan }).(pulumi.BoolPtrOutput)
+}
+
+func (o FortimanagerSystemAdomOutput) CentralManagementVpn() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdom) pulumi.BoolPtrOutput { return v.CentralManagementVpn }).(pulumi.BoolPtrOutput)
+}
+
+func (o FortimanagerSystemAdomOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdom) pulumi.StringPtrOutput { return v.Mode }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdomOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdom) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerSystemAdomOutput) PerformPolicyCheckBeforeEveryInstall() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdom) pulumi.BoolPtrOutput { return v.PerformPolicyCheckBeforeEveryInstall }).(pulumi.BoolPtrOutput)
+}
+
+func (o FortimanagerSystemAdomOutput) Status() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdom) pulumi.IntPtrOutput { return v.Status }).(pulumi.IntPtrOutput)
+}
+
+func (o FortimanagerSystemAdomOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdom) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 type FortimanagerSystemAdomArrayOutput struct{ *pulumi.OutputState }

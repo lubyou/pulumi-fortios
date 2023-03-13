@@ -7,42 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// SSH proxy local CA.
-//
-// ## Import
-//
-// FirewallSsh LocalCa can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSshLocalCa:FirewallSshLocalCa labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSshLocalCa:FirewallSshLocalCa labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallSshLocalCa struct {
 	pulumi.CustomResourceState
 
-	// SSH proxy local CA name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Password for SSH private key.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// SSH proxy private key, encrypted with a password.
-	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
-	// SSH proxy public key.
-	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
-	// SSH proxy local CA source type. Valid values: `built-in`, `user`.
-	Source pulumi.StringOutput `pulumi:"source"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Name       pulumi.StringOutput    `pulumi:"name"`
+	Password   pulumi.StringPtrOutput `pulumi:"password"`
+	PrivateKey pulumi.StringOutput    `pulumi:"privateKey"`
+	PublicKey  pulumi.StringOutput    `pulumi:"publicKey"`
+	Source     pulumi.StringOutput    `pulumi:"source"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallSshLocalCa registers a new resource with the given unique name, arguments, and options.
@@ -58,6 +35,21 @@ func NewFirewallSshLocalCa(ctx *pulumi.Context,
 	if args.PublicKey == nil {
 		return nil, errors.New("invalid value for required argument 'PublicKey'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	if args.PrivateKey != nil {
+		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringInput)
+	}
+	if args.PublicKey != nil {
+		args.PublicKey = pulumi.ToSecret(args.PublicKey).(pulumi.StringInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+		"privateKey",
+		"publicKey",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallSshLocalCa
 	err := ctx.RegisterResource("fortios:index/firewallSshLocalCa:FirewallSshLocalCa", name, args, &resource, opts...)
@@ -81,33 +73,21 @@ func GetFirewallSshLocalCa(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallSshLocalCa resources.
 type firewallSshLocalCaState struct {
-	// SSH proxy local CA name.
-	Name *string `pulumi:"name"`
-	// Password for SSH private key.
-	Password *string `pulumi:"password"`
-	// SSH proxy private key, encrypted with a password.
+	Name       *string `pulumi:"name"`
+	Password   *string `pulumi:"password"`
 	PrivateKey *string `pulumi:"privateKey"`
-	// SSH proxy public key.
-	PublicKey *string `pulumi:"publicKey"`
-	// SSH proxy local CA source type. Valid values: `built-in`, `user`.
-	Source *string `pulumi:"source"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	PublicKey  *string `pulumi:"publicKey"`
+	Source     *string `pulumi:"source"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type FirewallSshLocalCaState struct {
-	// SSH proxy local CA name.
-	Name pulumi.StringPtrInput
-	// Password for SSH private key.
-	Password pulumi.StringPtrInput
-	// SSH proxy private key, encrypted with a password.
+	Name       pulumi.StringPtrInput
+	Password   pulumi.StringPtrInput
 	PrivateKey pulumi.StringPtrInput
-	// SSH proxy public key.
-	PublicKey pulumi.StringPtrInput
-	// SSH proxy local CA source type. Valid values: `built-in`, `user`.
-	Source pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	PublicKey  pulumi.StringPtrInput
+	Source     pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (FirewallSshLocalCaState) ElementType() reflect.Type {
@@ -115,34 +95,22 @@ func (FirewallSshLocalCaState) ElementType() reflect.Type {
 }
 
 type firewallSshLocalCaArgs struct {
-	// SSH proxy local CA name.
-	Name *string `pulumi:"name"`
-	// Password for SSH private key.
-	Password *string `pulumi:"password"`
-	// SSH proxy private key, encrypted with a password.
-	PrivateKey string `pulumi:"privateKey"`
-	// SSH proxy public key.
-	PublicKey string `pulumi:"publicKey"`
-	// SSH proxy local CA source type. Valid values: `built-in`, `user`.
-	Source *string `pulumi:"source"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name       *string `pulumi:"name"`
+	Password   *string `pulumi:"password"`
+	PrivateKey string  `pulumi:"privateKey"`
+	PublicKey  string  `pulumi:"publicKey"`
+	Source     *string `pulumi:"source"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallSshLocalCa resource.
 type FirewallSshLocalCaArgs struct {
-	// SSH proxy local CA name.
-	Name pulumi.StringPtrInput
-	// Password for SSH private key.
-	Password pulumi.StringPtrInput
-	// SSH proxy private key, encrypted with a password.
+	Name       pulumi.StringPtrInput
+	Password   pulumi.StringPtrInput
 	PrivateKey pulumi.StringInput
-	// SSH proxy public key.
-	PublicKey pulumi.StringInput
-	// SSH proxy local CA source type. Valid values: `built-in`, `user`.
-	Source pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	PublicKey  pulumi.StringInput
+	Source     pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (FirewallSshLocalCaArgs) ElementType() reflect.Type {
@@ -171,7 +139,7 @@ func (i *FirewallSshLocalCa) ToFirewallSshLocalCaOutputWithContext(ctx context.C
 // FirewallSshLocalCaArrayInput is an input type that accepts FirewallSshLocalCaArray and FirewallSshLocalCaArrayOutput values.
 // You can construct a concrete instance of `FirewallSshLocalCaArrayInput` via:
 //
-//          FirewallSshLocalCaArray{ FirewallSshLocalCaArgs{...} }
+//	FirewallSshLocalCaArray{ FirewallSshLocalCaArgs{...} }
 type FirewallSshLocalCaArrayInput interface {
 	pulumi.Input
 
@@ -196,7 +164,7 @@ func (i FirewallSshLocalCaArray) ToFirewallSshLocalCaArrayOutputWithContext(ctx 
 // FirewallSshLocalCaMapInput is an input type that accepts FirewallSshLocalCaMap and FirewallSshLocalCaMapOutput values.
 // You can construct a concrete instance of `FirewallSshLocalCaMapInput` via:
 //
-//          FirewallSshLocalCaMap{ "key": FirewallSshLocalCaArgs{...} }
+//	FirewallSshLocalCaMap{ "key": FirewallSshLocalCaArgs{...} }
 type FirewallSshLocalCaMapInput interface {
 	pulumi.Input
 
@@ -230,6 +198,30 @@ func (o FirewallSshLocalCaOutput) ToFirewallSshLocalCaOutput() FirewallSshLocalC
 
 func (o FirewallSshLocalCaOutput) ToFirewallSshLocalCaOutputWithContext(ctx context.Context) FirewallSshLocalCaOutput {
 	return o
+}
+
+func (o FirewallSshLocalCaOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshLocalCa) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshLocalCaOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSshLocalCa) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSshLocalCaOutput) PrivateKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshLocalCa) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshLocalCaOutput) PublicKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshLocalCa) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshLocalCaOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshLocalCa) pulumi.StringOutput { return v.Source }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshLocalCaOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSshLocalCa) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallSshLocalCaArrayOutput struct{ *pulumi.OutputState }

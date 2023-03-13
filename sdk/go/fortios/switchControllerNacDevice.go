@@ -10,48 +10,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure/list NAC devices learned on the managed FortiSwitch ports which matches NAC policy. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,7.0.0`.
-//
-// ## Import
-//
-// SwitchController NacDevice can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerNacDevice:SwitchControllerNacDevice labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerNacDevice:SwitchControllerNacDevice labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerNacDevice struct {
 	pulumi.CustomResourceState
 
-	// Description for the learned NAC device.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// Device ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Managed FortiSwitch port where NAC device is last learned.
-	LastKnownPort pulumi.StringOutput `pulumi:"lastKnownPort"`
-	// Managed FortiSwitch where NAC device is last learned.
-	LastKnownSwitch pulumi.StringOutput `pulumi:"lastKnownSwitch"`
-	// Device last seen.
-	LastSeen pulumi.IntOutput `pulumi:"lastSeen"`
-	// MAC address of the learned NAC device.
-	Mac pulumi.StringOutput `pulumi:"mac"`
-	// MAC policy to be applied on this learned NAC device.
-	MacPolicy pulumi.StringOutput `pulumi:"macPolicy"`
-	// Matched NAC policy for the learned NAC device.
-	MatchedNacPolicy pulumi.StringOutput `pulumi:"matchedNacPolicy"`
-	// Port policy to be applied on this learned NAC device.
-	PortPolicy pulumi.StringOutput `pulumi:"portPolicy"`
-	// Status of the learned NAC device. Set enable to authorize the NAC device. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Description      pulumi.StringOutput    `pulumi:"description"`
+	Fosid            pulumi.IntOutput       `pulumi:"fosid"`
+	LastKnownPort    pulumi.StringOutput    `pulumi:"lastKnownPort"`
+	LastKnownSwitch  pulumi.StringOutput    `pulumi:"lastKnownSwitch"`
+	LastSeen         pulumi.IntOutput       `pulumi:"lastSeen"`
+	Mac              pulumi.StringOutput    `pulumi:"mac"`
+	MacPolicy        pulumi.StringOutput    `pulumi:"macPolicy"`
+	MatchedNacPolicy pulumi.StringOutput    `pulumi:"matchedNacPolicy"`
+	PortPolicy       pulumi.StringOutput    `pulumi:"portPolicy"`
+	Status           pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam        pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerNacDevice registers a new resource with the given unique name, arguments, and options.
@@ -84,53 +56,31 @@ func GetSwitchControllerNacDevice(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerNacDevice resources.
 type switchControllerNacDeviceState struct {
-	// Description for the learned NAC device.
-	Description *string `pulumi:"description"`
-	// Device ID.
-	Fosid *int `pulumi:"fosid"`
-	// Managed FortiSwitch port where NAC device is last learned.
-	LastKnownPort *string `pulumi:"lastKnownPort"`
-	// Managed FortiSwitch where NAC device is last learned.
-	LastKnownSwitch *string `pulumi:"lastKnownSwitch"`
-	// Device last seen.
-	LastSeen *int `pulumi:"lastSeen"`
-	// MAC address of the learned NAC device.
-	Mac *string `pulumi:"mac"`
-	// MAC policy to be applied on this learned NAC device.
-	MacPolicy *string `pulumi:"macPolicy"`
-	// Matched NAC policy for the learned NAC device.
+	Description      *string `pulumi:"description"`
+	Fosid            *int    `pulumi:"fosid"`
+	LastKnownPort    *string `pulumi:"lastKnownPort"`
+	LastKnownSwitch  *string `pulumi:"lastKnownSwitch"`
+	LastSeen         *int    `pulumi:"lastSeen"`
+	Mac              *string `pulumi:"mac"`
+	MacPolicy        *string `pulumi:"macPolicy"`
 	MatchedNacPolicy *string `pulumi:"matchedNacPolicy"`
-	// Port policy to be applied on this learned NAC device.
-	PortPolicy *string `pulumi:"portPolicy"`
-	// Status of the learned NAC device. Set enable to authorize the NAC device. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	PortPolicy       *string `pulumi:"portPolicy"`
+	Status           *string `pulumi:"status"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerNacDeviceState struct {
-	// Description for the learned NAC device.
-	Description pulumi.StringPtrInput
-	// Device ID.
-	Fosid pulumi.IntPtrInput
-	// Managed FortiSwitch port where NAC device is last learned.
-	LastKnownPort pulumi.StringPtrInput
-	// Managed FortiSwitch where NAC device is last learned.
-	LastKnownSwitch pulumi.StringPtrInput
-	// Device last seen.
-	LastSeen pulumi.IntPtrInput
-	// MAC address of the learned NAC device.
-	Mac pulumi.StringPtrInput
-	// MAC policy to be applied on this learned NAC device.
-	MacPolicy pulumi.StringPtrInput
-	// Matched NAC policy for the learned NAC device.
+	Description      pulumi.StringPtrInput
+	Fosid            pulumi.IntPtrInput
+	LastKnownPort    pulumi.StringPtrInput
+	LastKnownSwitch  pulumi.StringPtrInput
+	LastSeen         pulumi.IntPtrInput
+	Mac              pulumi.StringPtrInput
+	MacPolicy        pulumi.StringPtrInput
 	MatchedNacPolicy pulumi.StringPtrInput
-	// Port policy to be applied on this learned NAC device.
-	PortPolicy pulumi.StringPtrInput
-	// Status of the learned NAC device. Set enable to authorize the NAC device. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	PortPolicy       pulumi.StringPtrInput
+	Status           pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (SwitchControllerNacDeviceState) ElementType() reflect.Type {
@@ -138,54 +88,32 @@ func (SwitchControllerNacDeviceState) ElementType() reflect.Type {
 }
 
 type switchControllerNacDeviceArgs struct {
-	// Description for the learned NAC device.
-	Description *string `pulumi:"description"`
-	// Device ID.
-	Fosid *int `pulumi:"fosid"`
-	// Managed FortiSwitch port where NAC device is last learned.
-	LastKnownPort *string `pulumi:"lastKnownPort"`
-	// Managed FortiSwitch where NAC device is last learned.
-	LastKnownSwitch *string `pulumi:"lastKnownSwitch"`
-	// Device last seen.
-	LastSeen *int `pulumi:"lastSeen"`
-	// MAC address of the learned NAC device.
-	Mac *string `pulumi:"mac"`
-	// MAC policy to be applied on this learned NAC device.
-	MacPolicy *string `pulumi:"macPolicy"`
-	// Matched NAC policy for the learned NAC device.
+	Description      *string `pulumi:"description"`
+	Fosid            *int    `pulumi:"fosid"`
+	LastKnownPort    *string `pulumi:"lastKnownPort"`
+	LastKnownSwitch  *string `pulumi:"lastKnownSwitch"`
+	LastSeen         *int    `pulumi:"lastSeen"`
+	Mac              *string `pulumi:"mac"`
+	MacPolicy        *string `pulumi:"macPolicy"`
 	MatchedNacPolicy *string `pulumi:"matchedNacPolicy"`
-	// Port policy to be applied on this learned NAC device.
-	PortPolicy *string `pulumi:"portPolicy"`
-	// Status of the learned NAC device. Set enable to authorize the NAC device. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	PortPolicy       *string `pulumi:"portPolicy"`
+	Status           *string `pulumi:"status"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerNacDevice resource.
 type SwitchControllerNacDeviceArgs struct {
-	// Description for the learned NAC device.
-	Description pulumi.StringPtrInput
-	// Device ID.
-	Fosid pulumi.IntPtrInput
-	// Managed FortiSwitch port where NAC device is last learned.
-	LastKnownPort pulumi.StringPtrInput
-	// Managed FortiSwitch where NAC device is last learned.
-	LastKnownSwitch pulumi.StringPtrInput
-	// Device last seen.
-	LastSeen pulumi.IntPtrInput
-	// MAC address of the learned NAC device.
-	Mac pulumi.StringPtrInput
-	// MAC policy to be applied on this learned NAC device.
-	MacPolicy pulumi.StringPtrInput
-	// Matched NAC policy for the learned NAC device.
+	Description      pulumi.StringPtrInput
+	Fosid            pulumi.IntPtrInput
+	LastKnownPort    pulumi.StringPtrInput
+	LastKnownSwitch  pulumi.StringPtrInput
+	LastSeen         pulumi.IntPtrInput
+	Mac              pulumi.StringPtrInput
+	MacPolicy        pulumi.StringPtrInput
 	MatchedNacPolicy pulumi.StringPtrInput
-	// Port policy to be applied on this learned NAC device.
-	PortPolicy pulumi.StringPtrInput
-	// Status of the learned NAC device. Set enable to authorize the NAC device. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	PortPolicy       pulumi.StringPtrInput
+	Status           pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (SwitchControllerNacDeviceArgs) ElementType() reflect.Type {
@@ -214,7 +142,7 @@ func (i *SwitchControllerNacDevice) ToSwitchControllerNacDeviceOutputWithContext
 // SwitchControllerNacDeviceArrayInput is an input type that accepts SwitchControllerNacDeviceArray and SwitchControllerNacDeviceArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerNacDeviceArrayInput` via:
 //
-//          SwitchControllerNacDeviceArray{ SwitchControllerNacDeviceArgs{...} }
+//	SwitchControllerNacDeviceArray{ SwitchControllerNacDeviceArgs{...} }
 type SwitchControllerNacDeviceArrayInput interface {
 	pulumi.Input
 
@@ -239,7 +167,7 @@ func (i SwitchControllerNacDeviceArray) ToSwitchControllerNacDeviceArrayOutputWi
 // SwitchControllerNacDeviceMapInput is an input type that accepts SwitchControllerNacDeviceMap and SwitchControllerNacDeviceMapOutput values.
 // You can construct a concrete instance of `SwitchControllerNacDeviceMapInput` via:
 //
-//          SwitchControllerNacDeviceMap{ "key": SwitchControllerNacDeviceArgs{...} }
+//	SwitchControllerNacDeviceMap{ "key": SwitchControllerNacDeviceArgs{...} }
 type SwitchControllerNacDeviceMapInput interface {
 	pulumi.Input
 
@@ -273,6 +201,50 @@ func (o SwitchControllerNacDeviceOutput) ToSwitchControllerNacDeviceOutput() Swi
 
 func (o SwitchControllerNacDeviceOutput) ToSwitchControllerNacDeviceOutputWithContext(ctx context.Context) SwitchControllerNacDeviceOutput {
 	return o
+}
+
+func (o SwitchControllerNacDeviceOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerNacDevice) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerNacDeviceOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerNacDevice) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerNacDeviceOutput) LastKnownPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerNacDevice) pulumi.StringOutput { return v.LastKnownPort }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerNacDeviceOutput) LastKnownSwitch() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerNacDevice) pulumi.StringOutput { return v.LastKnownSwitch }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerNacDeviceOutput) LastSeen() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerNacDevice) pulumi.IntOutput { return v.LastSeen }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerNacDeviceOutput) Mac() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerNacDevice) pulumi.StringOutput { return v.Mac }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerNacDeviceOutput) MacPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerNacDevice) pulumi.StringOutput { return v.MacPolicy }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerNacDeviceOutput) MatchedNacPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerNacDevice) pulumi.StringOutput { return v.MatchedNacPolicy }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerNacDeviceOutput) PortPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerNacDevice) pulumi.StringOutput { return v.PortPolicy }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerNacDeviceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerNacDevice) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerNacDeviceOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerNacDevice) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerNacDeviceArrayOutput struct{ *pulumi.OutputState }

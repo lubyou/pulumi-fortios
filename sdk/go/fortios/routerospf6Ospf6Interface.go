@@ -10,72 +10,31 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// OSPF6 interface configuration.
-//
-// > The provider supports the definition of Ospf6-Interface in Router Ospf6 `RouterOspf6`, and also allows the definition of separate Ospf6-Interface resources `Routerospf6Ospf6Interface`, but do not use a `RouterOspf6` with in-line Ospf6-Interface in conjunction with any `Routerospf6Ospf6Interface` resources, otherwise conflicts and overwrite will occur.
-//
-// ## Import
-//
-// Routerospf6 Ospf6Interface can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerospf6Ospf6Interface:Routerospf6Ospf6Interface labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerospf6Ospf6Interface:Routerospf6Ospf6Interface labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type Routerospf6Ospf6Interface struct {
 	pulumi.CustomResourceState
 
-	// A.B.C.D, in IPv4 address format.
-	AreaId pulumi.StringOutput `pulumi:"areaId"`
-	// Authentication mode. Valid values: `none`, `ah`, `esp`, `area`.
-	Authentication pulumi.StringOutput `pulumi:"authentication"`
-	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-	Bfd pulumi.StringOutput `pulumi:"bfd"`
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost pulumi.IntOutput `pulumi:"cost"`
-	// Dead interval.
-	DeadInterval pulumi.IntOutput `pulumi:"deadInterval"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Hello interval.
-	HelloInterval pulumi.IntOutput `pulumi:"helloInterval"`
-	// Configuration interface name.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Authentication algorithm. Valid values: `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-	IpsecAuthAlg pulumi.StringOutput `pulumi:"ipsecAuthAlg"`
-	// Encryption algorithm. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`.
-	IpsecEncAlg pulumi.StringOutput `pulumi:"ipsecEncAlg"`
-	// IPsec authentication and encryption keys. The structure of `ipsecKeys` block is documented below.
-	IpsecKeys Routerospf6Ospf6InterfaceIpsecKeyArrayOutput `pulumi:"ipsecKeys"`
-	// Key roll-over interval.
-	KeyRolloverInterval pulumi.IntOutput `pulumi:"keyRolloverInterval"`
-	// MTU for OSPFv3 packets.
-	Mtu pulumi.IntOutput `pulumi:"mtu"`
-	// Enable/disable ignoring MTU field in DBD packets. Valid values: `enable`, `disable`.
-	MtuIgnore pulumi.StringOutput `pulumi:"mtuIgnore"`
-	// Interface entry name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// OSPFv3 neighbors are used when OSPFv3 runs on non-broadcast media The structure of `neighbor` block is documented below.
-	Neighbors Routerospf6Ospf6InterfaceNeighborArrayOutput `pulumi:"neighbors"`
-	// Network type. Valid values: `broadcast`, `point-to-point`, `non-broadcast`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-	NetworkType pulumi.StringOutput `pulumi:"networkType"`
-	// priority
-	Priority pulumi.IntOutput `pulumi:"priority"`
-	// Retransmit interval.
-	RetransmitInterval pulumi.IntOutput `pulumi:"retransmitInterval"`
-	// Enable/disable OSPF6 routing on this interface. Valid values: `disable`, `enable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Transmit delay.
-	TransmitDelay pulumi.IntOutput `pulumi:"transmitDelay"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AreaId              pulumi.StringOutput                          `pulumi:"areaId"`
+	Authentication      pulumi.StringOutput                          `pulumi:"authentication"`
+	Bfd                 pulumi.StringOutput                          `pulumi:"bfd"`
+	Cost                pulumi.IntOutput                             `pulumi:"cost"`
+	DeadInterval        pulumi.IntOutput                             `pulumi:"deadInterval"`
+	DynamicSortSubtable pulumi.StringPtrOutput                       `pulumi:"dynamicSortSubtable"`
+	HelloInterval       pulumi.IntOutput                             `pulumi:"helloInterval"`
+	Interface           pulumi.StringOutput                          `pulumi:"interface"`
+	IpsecAuthAlg        pulumi.StringOutput                          `pulumi:"ipsecAuthAlg"`
+	IpsecEncAlg         pulumi.StringOutput                          `pulumi:"ipsecEncAlg"`
+	IpsecKeys           Routerospf6Ospf6InterfaceIpsecKeyArrayOutput `pulumi:"ipsecKeys"`
+	KeyRolloverInterval pulumi.IntOutput                             `pulumi:"keyRolloverInterval"`
+	Mtu                 pulumi.IntOutput                             `pulumi:"mtu"`
+	MtuIgnore           pulumi.StringOutput                          `pulumi:"mtuIgnore"`
+	Name                pulumi.StringOutput                          `pulumi:"name"`
+	Neighbors           Routerospf6Ospf6InterfaceNeighborArrayOutput `pulumi:"neighbors"`
+	NetworkType         pulumi.StringOutput                          `pulumi:"networkType"`
+	Priority            pulumi.IntOutput                             `pulumi:"priority"`
+	RetransmitInterval  pulumi.IntOutput                             `pulumi:"retransmitInterval"`
+	Status              pulumi.StringOutput                          `pulumi:"status"`
+	TransmitDelay       pulumi.IntOutput                             `pulumi:"transmitDelay"`
+	Vdomparam           pulumi.StringPtrOutput                       `pulumi:"vdomparam"`
 }
 
 // NewRouterospf6Ospf6Interface registers a new resource with the given unique name, arguments, and options.
@@ -108,97 +67,53 @@ func GetRouterospf6Ospf6Interface(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Routerospf6Ospf6Interface resources.
 type routerospf6Ospf6InterfaceState struct {
-	// A.B.C.D, in IPv4 address format.
-	AreaId *string `pulumi:"areaId"`
-	// Authentication mode. Valid values: `none`, `ah`, `esp`, `area`.
-	Authentication *string `pulumi:"authentication"`
-	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-	Bfd *string `pulumi:"bfd"`
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost *int `pulumi:"cost"`
-	// Dead interval.
-	DeadInterval *int `pulumi:"deadInterval"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Hello interval.
-	HelloInterval *int `pulumi:"helloInterval"`
-	// Configuration interface name.
-	Interface *string `pulumi:"interface"`
-	// Authentication algorithm. Valid values: `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-	IpsecAuthAlg *string `pulumi:"ipsecAuthAlg"`
-	// Encryption algorithm. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`.
-	IpsecEncAlg *string `pulumi:"ipsecEncAlg"`
-	// IPsec authentication and encryption keys. The structure of `ipsecKeys` block is documented below.
-	IpsecKeys []Routerospf6Ospf6InterfaceIpsecKey `pulumi:"ipsecKeys"`
-	// Key roll-over interval.
-	KeyRolloverInterval *int `pulumi:"keyRolloverInterval"`
-	// MTU for OSPFv3 packets.
-	Mtu *int `pulumi:"mtu"`
-	// Enable/disable ignoring MTU field in DBD packets. Valid values: `enable`, `disable`.
-	MtuIgnore *string `pulumi:"mtuIgnore"`
-	// Interface entry name.
-	Name *string `pulumi:"name"`
-	// OSPFv3 neighbors are used when OSPFv3 runs on non-broadcast media The structure of `neighbor` block is documented below.
-	Neighbors []Routerospf6Ospf6InterfaceNeighbor `pulumi:"neighbors"`
-	// Network type. Valid values: `broadcast`, `point-to-point`, `non-broadcast`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-	NetworkType *string `pulumi:"networkType"`
-	// priority
-	Priority *int `pulumi:"priority"`
-	// Retransmit interval.
-	RetransmitInterval *int `pulumi:"retransmitInterval"`
-	// Enable/disable OSPF6 routing on this interface. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Transmit delay.
-	TransmitDelay *int `pulumi:"transmitDelay"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AreaId              *string                             `pulumi:"areaId"`
+	Authentication      *string                             `pulumi:"authentication"`
+	Bfd                 *string                             `pulumi:"bfd"`
+	Cost                *int                                `pulumi:"cost"`
+	DeadInterval        *int                                `pulumi:"deadInterval"`
+	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
+	HelloInterval       *int                                `pulumi:"helloInterval"`
+	Interface           *string                             `pulumi:"interface"`
+	IpsecAuthAlg        *string                             `pulumi:"ipsecAuthAlg"`
+	IpsecEncAlg         *string                             `pulumi:"ipsecEncAlg"`
+	IpsecKeys           []Routerospf6Ospf6InterfaceIpsecKey `pulumi:"ipsecKeys"`
+	KeyRolloverInterval *int                                `pulumi:"keyRolloverInterval"`
+	Mtu                 *int                                `pulumi:"mtu"`
+	MtuIgnore           *string                             `pulumi:"mtuIgnore"`
+	Name                *string                             `pulumi:"name"`
+	Neighbors           []Routerospf6Ospf6InterfaceNeighbor `pulumi:"neighbors"`
+	NetworkType         *string                             `pulumi:"networkType"`
+	Priority            *int                                `pulumi:"priority"`
+	RetransmitInterval  *int                                `pulumi:"retransmitInterval"`
+	Status              *string                             `pulumi:"status"`
+	TransmitDelay       *int                                `pulumi:"transmitDelay"`
+	Vdomparam           *string                             `pulumi:"vdomparam"`
 }
 
 type Routerospf6Ospf6InterfaceState struct {
-	// A.B.C.D, in IPv4 address format.
-	AreaId pulumi.StringPtrInput
-	// Authentication mode. Valid values: `none`, `ah`, `esp`, `area`.
-	Authentication pulumi.StringPtrInput
-	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-	Bfd pulumi.StringPtrInput
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost pulumi.IntPtrInput
-	// Dead interval.
-	DeadInterval pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AreaId              pulumi.StringPtrInput
+	Authentication      pulumi.StringPtrInput
+	Bfd                 pulumi.StringPtrInput
+	Cost                pulumi.IntPtrInput
+	DeadInterval        pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Hello interval.
-	HelloInterval pulumi.IntPtrInput
-	// Configuration interface name.
-	Interface pulumi.StringPtrInput
-	// Authentication algorithm. Valid values: `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-	IpsecAuthAlg pulumi.StringPtrInput
-	// Encryption algorithm. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`.
-	IpsecEncAlg pulumi.StringPtrInput
-	// IPsec authentication and encryption keys. The structure of `ipsecKeys` block is documented below.
-	IpsecKeys Routerospf6Ospf6InterfaceIpsecKeyArrayInput
-	// Key roll-over interval.
+	HelloInterval       pulumi.IntPtrInput
+	Interface           pulumi.StringPtrInput
+	IpsecAuthAlg        pulumi.StringPtrInput
+	IpsecEncAlg         pulumi.StringPtrInput
+	IpsecKeys           Routerospf6Ospf6InterfaceIpsecKeyArrayInput
 	KeyRolloverInterval pulumi.IntPtrInput
-	// MTU for OSPFv3 packets.
-	Mtu pulumi.IntPtrInput
-	// Enable/disable ignoring MTU field in DBD packets. Valid values: `enable`, `disable`.
-	MtuIgnore pulumi.StringPtrInput
-	// Interface entry name.
-	Name pulumi.StringPtrInput
-	// OSPFv3 neighbors are used when OSPFv3 runs on non-broadcast media The structure of `neighbor` block is documented below.
-	Neighbors Routerospf6Ospf6InterfaceNeighborArrayInput
-	// Network type. Valid values: `broadcast`, `point-to-point`, `non-broadcast`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-	NetworkType pulumi.StringPtrInput
-	// priority
-	Priority pulumi.IntPtrInput
-	// Retransmit interval.
-	RetransmitInterval pulumi.IntPtrInput
-	// Enable/disable OSPF6 routing on this interface. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Transmit delay.
-	TransmitDelay pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Mtu                 pulumi.IntPtrInput
+	MtuIgnore           pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Neighbors           Routerospf6Ospf6InterfaceNeighborArrayInput
+	NetworkType         pulumi.StringPtrInput
+	Priority            pulumi.IntPtrInput
+	RetransmitInterval  pulumi.IntPtrInput
+	Status              pulumi.StringPtrInput
+	TransmitDelay       pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (Routerospf6Ospf6InterfaceState) ElementType() reflect.Type {
@@ -206,98 +121,54 @@ func (Routerospf6Ospf6InterfaceState) ElementType() reflect.Type {
 }
 
 type routerospf6Ospf6InterfaceArgs struct {
-	// A.B.C.D, in IPv4 address format.
-	AreaId *string `pulumi:"areaId"`
-	// Authentication mode. Valid values: `none`, `ah`, `esp`, `area`.
-	Authentication *string `pulumi:"authentication"`
-	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-	Bfd *string `pulumi:"bfd"`
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost *int `pulumi:"cost"`
-	// Dead interval.
-	DeadInterval *int `pulumi:"deadInterval"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Hello interval.
-	HelloInterval *int `pulumi:"helloInterval"`
-	// Configuration interface name.
-	Interface *string `pulumi:"interface"`
-	// Authentication algorithm. Valid values: `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-	IpsecAuthAlg *string `pulumi:"ipsecAuthAlg"`
-	// Encryption algorithm. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`.
-	IpsecEncAlg *string `pulumi:"ipsecEncAlg"`
-	// IPsec authentication and encryption keys. The structure of `ipsecKeys` block is documented below.
-	IpsecKeys []Routerospf6Ospf6InterfaceIpsecKey `pulumi:"ipsecKeys"`
-	// Key roll-over interval.
-	KeyRolloverInterval *int `pulumi:"keyRolloverInterval"`
-	// MTU for OSPFv3 packets.
-	Mtu *int `pulumi:"mtu"`
-	// Enable/disable ignoring MTU field in DBD packets. Valid values: `enable`, `disable`.
-	MtuIgnore *string `pulumi:"mtuIgnore"`
-	// Interface entry name.
-	Name *string `pulumi:"name"`
-	// OSPFv3 neighbors are used when OSPFv3 runs on non-broadcast media The structure of `neighbor` block is documented below.
-	Neighbors []Routerospf6Ospf6InterfaceNeighbor `pulumi:"neighbors"`
-	// Network type. Valid values: `broadcast`, `point-to-point`, `non-broadcast`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-	NetworkType *string `pulumi:"networkType"`
-	// priority
-	Priority *int `pulumi:"priority"`
-	// Retransmit interval.
-	RetransmitInterval *int `pulumi:"retransmitInterval"`
-	// Enable/disable OSPF6 routing on this interface. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Transmit delay.
-	TransmitDelay *int `pulumi:"transmitDelay"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AreaId              *string                             `pulumi:"areaId"`
+	Authentication      *string                             `pulumi:"authentication"`
+	Bfd                 *string                             `pulumi:"bfd"`
+	Cost                *int                                `pulumi:"cost"`
+	DeadInterval        *int                                `pulumi:"deadInterval"`
+	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
+	HelloInterval       *int                                `pulumi:"helloInterval"`
+	Interface           *string                             `pulumi:"interface"`
+	IpsecAuthAlg        *string                             `pulumi:"ipsecAuthAlg"`
+	IpsecEncAlg         *string                             `pulumi:"ipsecEncAlg"`
+	IpsecKeys           []Routerospf6Ospf6InterfaceIpsecKey `pulumi:"ipsecKeys"`
+	KeyRolloverInterval *int                                `pulumi:"keyRolloverInterval"`
+	Mtu                 *int                                `pulumi:"mtu"`
+	MtuIgnore           *string                             `pulumi:"mtuIgnore"`
+	Name                *string                             `pulumi:"name"`
+	Neighbors           []Routerospf6Ospf6InterfaceNeighbor `pulumi:"neighbors"`
+	NetworkType         *string                             `pulumi:"networkType"`
+	Priority            *int                                `pulumi:"priority"`
+	RetransmitInterval  *int                                `pulumi:"retransmitInterval"`
+	Status              *string                             `pulumi:"status"`
+	TransmitDelay       *int                                `pulumi:"transmitDelay"`
+	Vdomparam           *string                             `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a Routerospf6Ospf6Interface resource.
 type Routerospf6Ospf6InterfaceArgs struct {
-	// A.B.C.D, in IPv4 address format.
-	AreaId pulumi.StringPtrInput
-	// Authentication mode. Valid values: `none`, `ah`, `esp`, `area`.
-	Authentication pulumi.StringPtrInput
-	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-	Bfd pulumi.StringPtrInput
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost pulumi.IntPtrInput
-	// Dead interval.
-	DeadInterval pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AreaId              pulumi.StringPtrInput
+	Authentication      pulumi.StringPtrInput
+	Bfd                 pulumi.StringPtrInput
+	Cost                pulumi.IntPtrInput
+	DeadInterval        pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Hello interval.
-	HelloInterval pulumi.IntPtrInput
-	// Configuration interface name.
-	Interface pulumi.StringPtrInput
-	// Authentication algorithm. Valid values: `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-	IpsecAuthAlg pulumi.StringPtrInput
-	// Encryption algorithm. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`.
-	IpsecEncAlg pulumi.StringPtrInput
-	// IPsec authentication and encryption keys. The structure of `ipsecKeys` block is documented below.
-	IpsecKeys Routerospf6Ospf6InterfaceIpsecKeyArrayInput
-	// Key roll-over interval.
+	HelloInterval       pulumi.IntPtrInput
+	Interface           pulumi.StringPtrInput
+	IpsecAuthAlg        pulumi.StringPtrInput
+	IpsecEncAlg         pulumi.StringPtrInput
+	IpsecKeys           Routerospf6Ospf6InterfaceIpsecKeyArrayInput
 	KeyRolloverInterval pulumi.IntPtrInput
-	// MTU for OSPFv3 packets.
-	Mtu pulumi.IntPtrInput
-	// Enable/disable ignoring MTU field in DBD packets. Valid values: `enable`, `disable`.
-	MtuIgnore pulumi.StringPtrInput
-	// Interface entry name.
-	Name pulumi.StringPtrInput
-	// OSPFv3 neighbors are used when OSPFv3 runs on non-broadcast media The structure of `neighbor` block is documented below.
-	Neighbors Routerospf6Ospf6InterfaceNeighborArrayInput
-	// Network type. Valid values: `broadcast`, `point-to-point`, `non-broadcast`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-	NetworkType pulumi.StringPtrInput
-	// priority
-	Priority pulumi.IntPtrInput
-	// Retransmit interval.
-	RetransmitInterval pulumi.IntPtrInput
-	// Enable/disable OSPF6 routing on this interface. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Transmit delay.
-	TransmitDelay pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Mtu                 pulumi.IntPtrInput
+	MtuIgnore           pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Neighbors           Routerospf6Ospf6InterfaceNeighborArrayInput
+	NetworkType         pulumi.StringPtrInput
+	Priority            pulumi.IntPtrInput
+	RetransmitInterval  pulumi.IntPtrInput
+	Status              pulumi.StringPtrInput
+	TransmitDelay       pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (Routerospf6Ospf6InterfaceArgs) ElementType() reflect.Type {
@@ -326,7 +197,7 @@ func (i *Routerospf6Ospf6Interface) ToRouterospf6Ospf6InterfaceOutputWithContext
 // Routerospf6Ospf6InterfaceArrayInput is an input type that accepts Routerospf6Ospf6InterfaceArray and Routerospf6Ospf6InterfaceArrayOutput values.
 // You can construct a concrete instance of `Routerospf6Ospf6InterfaceArrayInput` via:
 //
-//          Routerospf6Ospf6InterfaceArray{ Routerospf6Ospf6InterfaceArgs{...} }
+//	Routerospf6Ospf6InterfaceArray{ Routerospf6Ospf6InterfaceArgs{...} }
 type Routerospf6Ospf6InterfaceArrayInput interface {
 	pulumi.Input
 
@@ -351,7 +222,7 @@ func (i Routerospf6Ospf6InterfaceArray) ToRouterospf6Ospf6InterfaceArrayOutputWi
 // Routerospf6Ospf6InterfaceMapInput is an input type that accepts Routerospf6Ospf6InterfaceMap and Routerospf6Ospf6InterfaceMapOutput values.
 // You can construct a concrete instance of `Routerospf6Ospf6InterfaceMapInput` via:
 //
-//          Routerospf6Ospf6InterfaceMap{ "key": Routerospf6Ospf6InterfaceArgs{...} }
+//	Routerospf6Ospf6InterfaceMap{ "key": Routerospf6Ospf6InterfaceArgs{...} }
 type Routerospf6Ospf6InterfaceMapInput interface {
 	pulumi.Input
 
@@ -385,6 +256,94 @@ func (o Routerospf6Ospf6InterfaceOutput) ToRouterospf6Ospf6InterfaceOutput() Rou
 
 func (o Routerospf6Ospf6InterfaceOutput) ToRouterospf6Ospf6InterfaceOutputWithContext(ctx context.Context) Routerospf6Ospf6InterfaceOutput {
 	return o
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) AreaId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.StringOutput { return v.AreaId }).(pulumi.StringOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) Authentication() pulumi.StringOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.StringOutput { return v.Authentication }).(pulumi.StringOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) Bfd() pulumi.StringOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.StringOutput { return v.Bfd }).(pulumi.StringOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) Cost() pulumi.IntOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.IntOutput { return v.Cost }).(pulumi.IntOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) DeadInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.IntOutput { return v.DeadInterval }).(pulumi.IntOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) HelloInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.IntOutput { return v.HelloInterval }).(pulumi.IntOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) IpsecAuthAlg() pulumi.StringOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.StringOutput { return v.IpsecAuthAlg }).(pulumi.StringOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) IpsecEncAlg() pulumi.StringOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.StringOutput { return v.IpsecEncAlg }).(pulumi.StringOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) IpsecKeys() Routerospf6Ospf6InterfaceIpsecKeyArrayOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) Routerospf6Ospf6InterfaceIpsecKeyArrayOutput { return v.IpsecKeys }).(Routerospf6Ospf6InterfaceIpsecKeyArrayOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) KeyRolloverInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.IntOutput { return v.KeyRolloverInterval }).(pulumi.IntOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) Mtu() pulumi.IntOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.IntOutput { return v.Mtu }).(pulumi.IntOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) MtuIgnore() pulumi.StringOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.StringOutput { return v.MtuIgnore }).(pulumi.StringOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) Neighbors() Routerospf6Ospf6InterfaceNeighborArrayOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) Routerospf6Ospf6InterfaceNeighborArrayOutput { return v.Neighbors }).(Routerospf6Ospf6InterfaceNeighborArrayOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) NetworkType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.StringOutput { return v.NetworkType }).(pulumi.StringOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) RetransmitInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.IntOutput { return v.RetransmitInterval }).(pulumi.IntOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) TransmitDelay() pulumi.IntOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.IntOutput { return v.TransmitDelay }).(pulumi.IntOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type Routerospf6Ospf6InterfaceArrayOutput struct{ *pulumi.OutputState }

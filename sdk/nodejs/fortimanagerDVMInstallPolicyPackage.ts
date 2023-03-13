@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports installing devicemanager policy package from FortiManager to the related FortiGate
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerDVMInstallPolicyPackage("test1", {
- *     packageName: "test-pkg1",
- *     timeout: 5,
- * });
- * ```
- */
 export class FortimanagerDVMInstallPolicyPackage extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerDVMInstallPolicyPackage resource's state with the given name, ID, and optional extra
@@ -47,16 +32,10 @@ export class FortimanagerDVMInstallPolicyPackage extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerDVMInstallPolicyPackage.__pulumiType;
     }
 
-    /**
-     * Source ADOM name. default is 'root'
-     */
     public readonly adom!: pulumi.Output<string | undefined>;
-    /**
-     * The installation package name.
-     */
     public readonly packageName!: pulumi.Output<string>;
     /**
-     * Timeout for installing the package to the target, default: 3 minutes.
+     * Timeout for installing the package to the target, default: 3 minutes
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
 
@@ -94,16 +73,10 @@ export class FortimanagerDVMInstallPolicyPackage extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerDVMInstallPolicyPackage resources.
  */
 export interface FortimanagerDVMInstallPolicyPackageState {
-    /**
-     * Source ADOM name. default is 'root'
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * The installation package name.
-     */
     packageName?: pulumi.Input<string>;
     /**
-     * Timeout for installing the package to the target, default: 3 minutes.
+     * Timeout for installing the package to the target, default: 3 minutes
      */
     timeout?: pulumi.Input<number>;
 }
@@ -112,16 +85,10 @@ export interface FortimanagerDVMInstallPolicyPackageState {
  * The set of arguments for constructing a FortimanagerDVMInstallPolicyPackage resource.
  */
 export interface FortimanagerDVMInstallPolicyPackageArgs {
-    /**
-     * Source ADOM name. default is 'root'
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * The installation package name.
-     */
     packageName: pulumi.Input<string>;
     /**
-     * Timeout for installing the package to the target, default: 3 minutes.
+     * Timeout for installing the package to the target, default: 3 minutes
      */
     timeout?: pulumi.Input<number>;
 }

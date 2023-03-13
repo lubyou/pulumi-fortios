@@ -2,71 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure RIPng.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.RouterRipng("trname", {
- *     defaultInformationOriginate: "disable",
- *     defaultMetric: 1,
- *     garbageTimer: 120,
- *     maxOutMetric: 0,
- *     redistributes: [
- *         {
- *             metric: 10,
- *             name: "connected",
- *             status: "disable",
- *         },
- *         {
- *             metric: 10,
- *             name: "static",
- *             status: "disable",
- *         },
- *         {
- *             metric: 10,
- *             name: "ospf",
- *             status: "disable",
- *         },
- *         {
- *             metric: 10,
- *             name: "bgp",
- *             status: "disable",
- *         },
- *         {
- *             metric: 10,
- *             name: "isis",
- *             status: "disable",
- *         },
- *     ],
- *     timeoutTimer: 180,
- *     updateTimer: 30,
- * });
- * ```
- *
- * ## Import
- *
- * Router Ripng can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerRipng:RouterRipng labelname RouterRipng
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerRipng:RouterRipng labelname RouterRipng
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterRipng extends pulumi.CustomResource {
     /**
      * Get an existing RouterRipng resource's state with the given name, ID, and optional extra
@@ -95,73 +34,22 @@ export class RouterRipng extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterRipng.__pulumiType;
     }
 
-    /**
-     * Aggregate address. The structure of `aggregateAddress` block is documented below.
-     */
     public readonly aggregateAddresses!: pulumi.Output<outputs.RouterRipngAggregateAddress[] | undefined>;
-    /**
-     * Enable/disable generation of default route. Valid values: `enable`, `disable`.
-     */
     public readonly defaultInformationOriginate!: pulumi.Output<string>;
-    /**
-     * Default metric.
-     */
     public readonly defaultMetric!: pulumi.Output<number>;
-    /**
-     * Distance (1 - 255).
-     */
     public readonly distances!: pulumi.Output<outputs.RouterRipngDistance[] | undefined>;
-    /**
-     * Distribute list. The structure of `distributeList` block is documented below.
-     */
     public readonly distributeLists!: pulumi.Output<outputs.RouterRipngDistributeList[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Garbage timer.
-     */
     public readonly garbageTimer!: pulumi.Output<number>;
-    /**
-     * Interface name.
-     */
     public readonly interfaces!: pulumi.Output<outputs.RouterRipngInterface[] | undefined>;
-    /**
-     * Maximum metric allowed to output(0 means 'not set').
-     */
     public readonly maxOutMetric!: pulumi.Output<number>;
-    /**
-     * neighbor The structure of `neighbor` block is documented below.
-     */
     public readonly neighbors!: pulumi.Output<outputs.RouterRipngNeighbor[] | undefined>;
-    /**
-     * Network. The structure of `network` block is documented below.
-     */
     public readonly networks!: pulumi.Output<outputs.RouterRipngNetwork[] | undefined>;
-    /**
-     * Offset list. The structure of `offsetList` block is documented below.
-     */
     public readonly offsetLists!: pulumi.Output<outputs.RouterRipngOffsetList[] | undefined>;
-    /**
-     * Passive interface configuration. The structure of `passiveInterface` block is documented below.
-     */
     public readonly passiveInterfaces!: pulumi.Output<outputs.RouterRipngPassiveInterface[] | undefined>;
-    /**
-     * Redistribute configuration. The structure of `redistribute` block is documented below.
-     */
     public readonly redistributes!: pulumi.Output<outputs.RouterRipngRedistribute[] | undefined>;
-    /**
-     * Timeout timer.
-     */
     public readonly timeoutTimer!: pulumi.Output<number>;
-    /**
-     * Update timer.
-     */
     public readonly updateTimer!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -223,73 +111,22 @@ export class RouterRipng extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterRipng resources.
  */
 export interface RouterRipngState {
-    /**
-     * Aggregate address. The structure of `aggregateAddress` block is documented below.
-     */
     aggregateAddresses?: pulumi.Input<pulumi.Input<inputs.RouterRipngAggregateAddress>[]>;
-    /**
-     * Enable/disable generation of default route. Valid values: `enable`, `disable`.
-     */
     defaultInformationOriginate?: pulumi.Input<string>;
-    /**
-     * Default metric.
-     */
     defaultMetric?: pulumi.Input<number>;
-    /**
-     * Distance (1 - 255).
-     */
     distances?: pulumi.Input<pulumi.Input<inputs.RouterRipngDistance>[]>;
-    /**
-     * Distribute list. The structure of `distributeList` block is documented below.
-     */
     distributeLists?: pulumi.Input<pulumi.Input<inputs.RouterRipngDistributeList>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Garbage timer.
-     */
     garbageTimer?: pulumi.Input<number>;
-    /**
-     * Interface name.
-     */
     interfaces?: pulumi.Input<pulumi.Input<inputs.RouterRipngInterface>[]>;
-    /**
-     * Maximum metric allowed to output(0 means 'not set').
-     */
     maxOutMetric?: pulumi.Input<number>;
-    /**
-     * neighbor The structure of `neighbor` block is documented below.
-     */
     neighbors?: pulumi.Input<pulumi.Input<inputs.RouterRipngNeighbor>[]>;
-    /**
-     * Network. The structure of `network` block is documented below.
-     */
     networks?: pulumi.Input<pulumi.Input<inputs.RouterRipngNetwork>[]>;
-    /**
-     * Offset list. The structure of `offsetList` block is documented below.
-     */
     offsetLists?: pulumi.Input<pulumi.Input<inputs.RouterRipngOffsetList>[]>;
-    /**
-     * Passive interface configuration. The structure of `passiveInterface` block is documented below.
-     */
     passiveInterfaces?: pulumi.Input<pulumi.Input<inputs.RouterRipngPassiveInterface>[]>;
-    /**
-     * Redistribute configuration. The structure of `redistribute` block is documented below.
-     */
     redistributes?: pulumi.Input<pulumi.Input<inputs.RouterRipngRedistribute>[]>;
-    /**
-     * Timeout timer.
-     */
     timeoutTimer?: pulumi.Input<number>;
-    /**
-     * Update timer.
-     */
     updateTimer?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -297,72 +134,21 @@ export interface RouterRipngState {
  * The set of arguments for constructing a RouterRipng resource.
  */
 export interface RouterRipngArgs {
-    /**
-     * Aggregate address. The structure of `aggregateAddress` block is documented below.
-     */
     aggregateAddresses?: pulumi.Input<pulumi.Input<inputs.RouterRipngAggregateAddress>[]>;
-    /**
-     * Enable/disable generation of default route. Valid values: `enable`, `disable`.
-     */
     defaultInformationOriginate?: pulumi.Input<string>;
-    /**
-     * Default metric.
-     */
     defaultMetric?: pulumi.Input<number>;
-    /**
-     * Distance (1 - 255).
-     */
     distances?: pulumi.Input<pulumi.Input<inputs.RouterRipngDistance>[]>;
-    /**
-     * Distribute list. The structure of `distributeList` block is documented below.
-     */
     distributeLists?: pulumi.Input<pulumi.Input<inputs.RouterRipngDistributeList>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Garbage timer.
-     */
     garbageTimer?: pulumi.Input<number>;
-    /**
-     * Interface name.
-     */
     interfaces?: pulumi.Input<pulumi.Input<inputs.RouterRipngInterface>[]>;
-    /**
-     * Maximum metric allowed to output(0 means 'not set').
-     */
     maxOutMetric?: pulumi.Input<number>;
-    /**
-     * neighbor The structure of `neighbor` block is documented below.
-     */
     neighbors?: pulumi.Input<pulumi.Input<inputs.RouterRipngNeighbor>[]>;
-    /**
-     * Network. The structure of `network` block is documented below.
-     */
     networks?: pulumi.Input<pulumi.Input<inputs.RouterRipngNetwork>[]>;
-    /**
-     * Offset list. The structure of `offsetList` block is documented below.
-     */
     offsetLists?: pulumi.Input<pulumi.Input<inputs.RouterRipngOffsetList>[]>;
-    /**
-     * Passive interface configuration. The structure of `passiveInterface` block is documented below.
-     */
     passiveInterfaces?: pulumi.Input<pulumi.Input<inputs.RouterRipngPassiveInterface>[]>;
-    /**
-     * Redistribute configuration. The structure of `redistribute` block is documented below.
-     */
     redistributes?: pulumi.Input<pulumi.Input<inputs.RouterRipngRedistribute>[]>;
-    /**
-     * Timeout timer.
-     */
     timeoutTimer?: pulumi.Input<number>;
-    /**
-     * Update timer.
-     */
     updateTimer?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

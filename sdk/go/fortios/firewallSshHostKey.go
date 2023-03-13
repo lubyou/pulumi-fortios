@@ -10,72 +10,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// SSH proxy host public keys.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallSshHostKey(ctx, "trname", &fortios.FirewallSshHostKeyArgs{
-// 			Hostname: pulumi.String("testmachine"),
-// 			Ip:       pulumi.String("1.1.1.1"),
-// 			Port:     pulumi.Int(22),
-// 			Status:   pulumi.String("trusted"),
-// 			Type:     pulumi.String("RSA"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// FirewallSsh HostKey can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSshHostKey:FirewallSshHostKey labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSshHostKey:FirewallSshHostKey labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallSshHostKey struct {
 	pulumi.CustomResourceState
 
-	// Hostname of the SSH server.
-	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// IP address of the SSH server.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// SSH public key name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Set the nid of the ECDSA key. Valid values: `256`, `384`, `521`.
-	Nid pulumi.StringOutput `pulumi:"nid"`
-	// Port of the SSH server.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// SSH public key.
+	Hostname  pulumi.StringOutput    `pulumi:"hostname"`
+	Ip        pulumi.StringOutput    `pulumi:"ip"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
+	Nid       pulumi.StringOutput    `pulumi:"nid"`
+	Port      pulumi.IntOutput       `pulumi:"port"`
 	PublicKey pulumi.StringPtrOutput `pulumi:"publicKey"`
-	// Set the trust status of the public key. Valid values: `trusted`, `revoked`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
-	Usage pulumi.StringOutput `pulumi:"usage"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    pulumi.StringOutput    `pulumi:"status"`
+	Type      pulumi.StringOutput    `pulumi:"type"`
+	Usage     pulumi.StringOutput    `pulumi:"usage"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -86,6 +32,13 @@ func NewFirewallSshHostKey(ctx *pulumi.Context,
 		args = &FirewallSshHostKeyArgs{}
 	}
 
+	if args.PublicKey != nil {
+		args.PublicKey = pulumi.ToSecret(args.PublicKey).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"publicKey",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallSshHostKey
 	err := ctx.RegisterResource("fortios:index/firewallSshHostKey:FirewallSshHostKey", name, args, &resource, opts...)
@@ -109,48 +62,28 @@ func GetFirewallSshHostKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallSshHostKey resources.
 type firewallSshHostKeyState struct {
-	// Hostname of the SSH server.
-	Hostname *string `pulumi:"hostname"`
-	// IP address of the SSH server.
-	Ip *string `pulumi:"ip"`
-	// SSH public key name.
-	Name *string `pulumi:"name"`
-	// Set the nid of the ECDSA key. Valid values: `256`, `384`, `521`.
-	Nid *string `pulumi:"nid"`
-	// Port of the SSH server.
-	Port *int `pulumi:"port"`
-	// SSH public key.
+	Hostname  *string `pulumi:"hostname"`
+	Ip        *string `pulumi:"ip"`
+	Name      *string `pulumi:"name"`
+	Nid       *string `pulumi:"nid"`
+	Port      *int    `pulumi:"port"`
 	PublicKey *string `pulumi:"publicKey"`
-	// Set the trust status of the public key. Valid values: `trusted`, `revoked`.
-	Status *string `pulumi:"status"`
-	// Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
-	Type *string `pulumi:"type"`
-	// Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
-	Usage *string `pulumi:"usage"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    *string `pulumi:"status"`
+	Type      *string `pulumi:"type"`
+	Usage     *string `pulumi:"usage"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type FirewallSshHostKeyState struct {
-	// Hostname of the SSH server.
-	Hostname pulumi.StringPtrInput
-	// IP address of the SSH server.
-	Ip pulumi.StringPtrInput
-	// SSH public key name.
-	Name pulumi.StringPtrInput
-	// Set the nid of the ECDSA key. Valid values: `256`, `384`, `521`.
-	Nid pulumi.StringPtrInput
-	// Port of the SSH server.
-	Port pulumi.IntPtrInput
-	// SSH public key.
+	Hostname  pulumi.StringPtrInput
+	Ip        pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
+	Nid       pulumi.StringPtrInput
+	Port      pulumi.IntPtrInput
 	PublicKey pulumi.StringPtrInput
-	// Set the trust status of the public key. Valid values: `trusted`, `revoked`.
-	Status pulumi.StringPtrInput
-	// Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
-	Type pulumi.StringPtrInput
-	// Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
-	Usage pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    pulumi.StringPtrInput
+	Type      pulumi.StringPtrInput
+	Usage     pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -159,49 +92,29 @@ func (FirewallSshHostKeyState) ElementType() reflect.Type {
 }
 
 type firewallSshHostKeyArgs struct {
-	// Hostname of the SSH server.
-	Hostname *string `pulumi:"hostname"`
-	// IP address of the SSH server.
-	Ip *string `pulumi:"ip"`
-	// SSH public key name.
-	Name *string `pulumi:"name"`
-	// Set the nid of the ECDSA key. Valid values: `256`, `384`, `521`.
-	Nid *string `pulumi:"nid"`
-	// Port of the SSH server.
-	Port *int `pulumi:"port"`
-	// SSH public key.
+	Hostname  *string `pulumi:"hostname"`
+	Ip        *string `pulumi:"ip"`
+	Name      *string `pulumi:"name"`
+	Nid       *string `pulumi:"nid"`
+	Port      *int    `pulumi:"port"`
 	PublicKey *string `pulumi:"publicKey"`
-	// Set the trust status of the public key. Valid values: `trusted`, `revoked`.
-	Status *string `pulumi:"status"`
-	// Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
-	Type *string `pulumi:"type"`
-	// Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
-	Usage *string `pulumi:"usage"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    *string `pulumi:"status"`
+	Type      *string `pulumi:"type"`
+	Usage     *string `pulumi:"usage"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallSshHostKey resource.
 type FirewallSshHostKeyArgs struct {
-	// Hostname of the SSH server.
-	Hostname pulumi.StringPtrInput
-	// IP address of the SSH server.
-	Ip pulumi.StringPtrInput
-	// SSH public key name.
-	Name pulumi.StringPtrInput
-	// Set the nid of the ECDSA key. Valid values: `256`, `384`, `521`.
-	Nid pulumi.StringPtrInput
-	// Port of the SSH server.
-	Port pulumi.IntPtrInput
-	// SSH public key.
+	Hostname  pulumi.StringPtrInput
+	Ip        pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
+	Nid       pulumi.StringPtrInput
+	Port      pulumi.IntPtrInput
 	PublicKey pulumi.StringPtrInput
-	// Set the trust status of the public key. Valid values: `trusted`, `revoked`.
-	Status pulumi.StringPtrInput
-	// Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
-	Type pulumi.StringPtrInput
-	// Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
-	Usage pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    pulumi.StringPtrInput
+	Type      pulumi.StringPtrInput
+	Usage     pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -231,7 +144,7 @@ func (i *FirewallSshHostKey) ToFirewallSshHostKeyOutputWithContext(ctx context.C
 // FirewallSshHostKeyArrayInput is an input type that accepts FirewallSshHostKeyArray and FirewallSshHostKeyArrayOutput values.
 // You can construct a concrete instance of `FirewallSshHostKeyArrayInput` via:
 //
-//          FirewallSshHostKeyArray{ FirewallSshHostKeyArgs{...} }
+//	FirewallSshHostKeyArray{ FirewallSshHostKeyArgs{...} }
 type FirewallSshHostKeyArrayInput interface {
 	pulumi.Input
 
@@ -256,7 +169,7 @@ func (i FirewallSshHostKeyArray) ToFirewallSshHostKeyArrayOutputWithContext(ctx 
 // FirewallSshHostKeyMapInput is an input type that accepts FirewallSshHostKeyMap and FirewallSshHostKeyMapOutput values.
 // You can construct a concrete instance of `FirewallSshHostKeyMapInput` via:
 //
-//          FirewallSshHostKeyMap{ "key": FirewallSshHostKeyArgs{...} }
+//	FirewallSshHostKeyMap{ "key": FirewallSshHostKeyArgs{...} }
 type FirewallSshHostKeyMapInput interface {
 	pulumi.Input
 
@@ -290,6 +203,46 @@ func (o FirewallSshHostKeyOutput) ToFirewallSshHostKeyOutput() FirewallSshHostKe
 
 func (o FirewallSshHostKeyOutput) ToFirewallSshHostKeyOutputWithContext(ctx context.Context) FirewallSshHostKeyOutput {
 	return o
+}
+
+func (o FirewallSshHostKeyOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshHostKey) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshHostKeyOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshHostKey) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshHostKeyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshHostKey) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshHostKeyOutput) Nid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshHostKey) pulumi.StringOutput { return v.Nid }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshHostKeyOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallSshHostKey) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o FirewallSshHostKeyOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSshHostKey) pulumi.StringPtrOutput { return v.PublicKey }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSshHostKeyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshHostKey) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshHostKeyOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshHostKey) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshHostKeyOutput) Usage() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshHostKey) pulumi.StringOutput { return v.Usage }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshHostKeyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSshHostKey) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallSshHostKeyArrayOutput struct{ *pulumi.OutputState }

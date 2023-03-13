@@ -10,242 +10,82 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Portal.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewVpnSslWebPortal(ctx, "trname", &fortios.VpnSslWebPortalArgs{
-// 			AllowUserAccess:                 pulumi.String("web ftp smb sftp telnet ssh vnc rdp ping citrix portforward"),
-// 			AutoConnect:                     pulumi.String("disable"),
-// 			CustomizeForticlientDownloadUrl: pulumi.String("disable"),
-// 			DisplayBookmark:                 pulumi.String("enable"),
-// 			DisplayConnectionTools:          pulumi.String("enable"),
-// 			DisplayHistory:                  pulumi.String("enable"),
-// 			DisplayStatus:                   pulumi.String("enable"),
-// 			DnsServer1:                      pulumi.String("0.0.0.0"),
-// 			DnsServer2:                      pulumi.String("0.0.0.0"),
-// 			ExclusiveRouting:                pulumi.String("disable"),
-// 			ForticlientDownload:             pulumi.String("enable"),
-// 			ForticlientDownloadMethod:       pulumi.String("direct"),
-// 			Heading:                         pulumi.String("SSL-VPN Portal"),
-// 			HideSsoCredential:               pulumi.String("enable"),
-// 			HostCheck:                       pulumi.String("none"),
-// 			IpMode:                          pulumi.String("range"),
-// 			IpPools: VpnSslWebPortalIpPoolArray{
-// 				&VpnSslWebPortalIpPoolArgs{
-// 					Name: pulumi.String("SSLVPN_TUNNEL_ADDR1"),
-// 				},
-// 			},
-// 			Ipv6DnsServer1:       pulumi.String("::"),
-// 			Ipv6DnsServer2:       pulumi.String("::"),
-// 			Ipv6ExclusiveRouting: pulumi.String("disable"),
-// 			Ipv6Pools: VpnSslWebPortalIpv6PoolArray{
-// 				&VpnSslWebPortalIpv6PoolArgs{
-// 					Name: pulumi.String("SSLVPN_TUNNEL_IPv6_ADDR1"),
-// 				},
-// 			},
-// 			Ipv6ServiceRestriction:    pulumi.String("disable"),
-// 			Ipv6SplitTunneling:        pulumi.String("enable"),
-// 			Ipv6TunnelMode:            pulumi.String("enable"),
-// 			Ipv6WinsServer1:           pulumi.String("::"),
-// 			Ipv6WinsServer2:           pulumi.String("::"),
-// 			KeepAlive:                 pulumi.String("disable"),
-// 			LimitUserLogins:           pulumi.String("disable"),
-// 			MacAddrAction:             pulumi.String("allow"),
-// 			MacAddrCheck:              pulumi.String("disable"),
-// 			OsCheck:                   pulumi.String("disable"),
-// 			SavePassword:              pulumi.String("disable"),
-// 			ServiceRestriction:        pulumi.String("disable"),
-// 			SkipCheckForBrowser:       pulumi.String("enable"),
-// 			SkipCheckForUnsupportedOs: pulumi.String("enable"),
-// 			SmbNtlmv1Auth:             pulumi.String("disable"),
-// 			Smbv1:                     pulumi.String("disable"),
-// 			SplitTunneling:            pulumi.String("enable"),
-// 			Theme:                     pulumi.String("blue"),
-// 			TunnelMode:                pulumi.String("enable"),
-// 			UserBookmark:              pulumi.String("enable"),
-// 			UserGroupBookmark:         pulumi.String("enable"),
-// 			WebMode:                   pulumi.String("disable"),
-// 			WinsServer1:               pulumi.String("0.0.0.0"),
-// 			WinsServer2:               pulumi.String("0.0.0.0"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// VpnSslWeb Portal can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnSslWebPortal:VpnSslWebPortal labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnSslWebPortal:VpnSslWebPortal labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnSslWebPortal struct {
 	pulumi.CustomResourceState
 
-	// Allow user access to SSL-VPN applications.
-	AllowUserAccess pulumi.StringOutput `pulumi:"allowUserAccess"`
-	// Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
-	AutoConnect pulumi.StringOutput `pulumi:"autoConnect"`
-	// Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
-	BookmarkGroups VpnSslWebPortalBookmarkGroupArrayOutput `pulumi:"bookmarkGroups"`
-	// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
-	Clipboard pulumi.StringOutput `pulumi:"clipboard"`
-	// Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
-	CustomLang pulumi.StringOutput `pulumi:"customLang"`
-	// Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
-	CustomizeForticlientDownloadUrl pulumi.StringOutput `pulumi:"customizeForticlientDownloadUrl"`
-	// Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
-	DisplayBookmark pulumi.StringOutput `pulumi:"displayBookmark"`
-	// Enable to display the web portal connection tools widget. Valid values: `enable`, `disable`.
-	DisplayConnectionTools pulumi.StringOutput `pulumi:"displayConnectionTools"`
-	// Enable to display the web portal user login history widget. Valid values: `enable`, `disable`.
-	DisplayHistory pulumi.StringOutput `pulumi:"displayHistory"`
-	// Enable to display the web portal status widget. Valid values: `enable`, `disable`.
-	DisplayStatus pulumi.StringOutput `pulumi:"displayStatus"`
-	// DNS server 1.
-	DnsServer1 pulumi.StringOutput `pulumi:"dnsServer1"`
-	// DNS server 2.
-	DnsServer2 pulumi.StringOutput `pulumi:"dnsServer2"`
-	// DNS suffix.
-	DnsSuffix pulumi.StringPtrOutput `pulumi:"dnsSuffix"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable all traffic go through tunnel only. Valid values: `enable`, `disable`.
-	ExclusiveRouting pulumi.StringOutput `pulumi:"exclusiveRouting"`
-	// Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
-	ForticlientDownload pulumi.StringOutput `pulumi:"forticlientDownload"`
-	// FortiClient download method. Valid values: `direct`, `ssl-vpn`.
-	ForticlientDownloadMethod pulumi.StringOutput `pulumi:"forticlientDownloadMethod"`
-	// Web portal heading message.
-	Heading pulumi.StringOutput `pulumi:"heading"`
-	// Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
-	HideSsoCredential pulumi.StringOutput `pulumi:"hideSsoCredential"`
-	// Type of host checking performed on endpoints. Valid values: `none`, `av`, `fw`, `av-fw`, `custom`.
-	HostCheck pulumi.StringOutput `pulumi:"hostCheck"`
-	// Periodic host check interval. Value of 0 means disabled and host checking only happens when the endpoint connects.
-	HostCheckInterval pulumi.IntOutput `pulumi:"hostCheckInterval"`
-	// One or more policies to require the endpoint to have specific security software. The structure of `hostCheckPolicy` block is documented below.
-	HostCheckPolicies VpnSslWebPortalHostCheckPolicyArrayOutput `pulumi:"hostCheckPolicies"`
-	// Method by which users of this SSL-VPN tunnel obtain IP addresses. Valid values: `range`, `user-group`.
-	IpMode pulumi.StringOutput `pulumi:"ipMode"`
-	// IPv4 firewall source address objects reserved for SSL-VPN tunnel mode clients. The structure of `ipPools` block is documented below.
-	IpPools VpnSslWebPortalIpPoolArrayOutput `pulumi:"ipPools"`
-	// IPv6 DNS server 1.
-	Ipv6DnsServer1 pulumi.StringOutput `pulumi:"ipv6DnsServer1"`
-	// IPv6 DNS server 2.
-	Ipv6DnsServer2 pulumi.StringOutput `pulumi:"ipv6DnsServer2"`
-	// Enable/disable all IPv6 traffic go through tunnel only. Valid values: `enable`, `disable`.
-	Ipv6ExclusiveRouting pulumi.StringOutput `pulumi:"ipv6ExclusiveRouting"`
-	// IPv4 firewall source address objects reserved for SSL-VPN tunnel mode clients. The structure of `ipv6Pools` block is documented below.
-	Ipv6Pools VpnSslWebPortalIpv6PoolArrayOutput `pulumi:"ipv6Pools"`
-	// Enable/disable IPv6 tunnel service restriction. Valid values: `enable`, `disable`.
-	Ipv6ServiceRestriction pulumi.StringOutput `pulumi:"ipv6ServiceRestriction"`
-	// Enable/disable IPv6 split tunneling. Valid values: `enable`, `disable`.
-	Ipv6SplitTunneling pulumi.StringOutput `pulumi:"ipv6SplitTunneling"`
-	// IPv6 SSL-VPN tunnel mode firewall address objects that override firewall policy destination addresses to control split-tunneling access. The structure of `ipv6SplitTunnelingRoutingAddress` block is documented below.
+	AllowUserAccess                    pulumi.StringOutput                                        `pulumi:"allowUserAccess"`
+	AutoConnect                        pulumi.StringOutput                                        `pulumi:"autoConnect"`
+	BookmarkGroups                     VpnSslWebPortalBookmarkGroupArrayOutput                    `pulumi:"bookmarkGroups"`
+	Clipboard                          pulumi.StringOutput                                        `pulumi:"clipboard"`
+	CustomLang                         pulumi.StringOutput                                        `pulumi:"customLang"`
+	CustomizeForticlientDownloadUrl    pulumi.StringOutput                                        `pulumi:"customizeForticlientDownloadUrl"`
+	DefaultWindowHeight                pulumi.IntOutput                                           `pulumi:"defaultWindowHeight"`
+	DefaultWindowWidth                 pulumi.IntOutput                                           `pulumi:"defaultWindowWidth"`
+	DhcpIpOverlap                      pulumi.StringOutput                                        `pulumi:"dhcpIpOverlap"`
+	DisplayBookmark                    pulumi.StringOutput                                        `pulumi:"displayBookmark"`
+	DisplayConnectionTools             pulumi.StringOutput                                        `pulumi:"displayConnectionTools"`
+	DisplayHistory                     pulumi.StringOutput                                        `pulumi:"displayHistory"`
+	DisplayStatus                      pulumi.StringOutput                                        `pulumi:"displayStatus"`
+	DnsServer1                         pulumi.StringOutput                                        `pulumi:"dnsServer1"`
+	DnsServer2                         pulumi.StringOutput                                        `pulumi:"dnsServer2"`
+	DnsSuffix                          pulumi.StringPtrOutput                                     `pulumi:"dnsSuffix"`
+	DynamicSortSubtable                pulumi.StringPtrOutput                                     `pulumi:"dynamicSortSubtable"`
+	ExclusiveRouting                   pulumi.StringOutput                                        `pulumi:"exclusiveRouting"`
+	ForticlientDownload                pulumi.StringOutput                                        `pulumi:"forticlientDownload"`
+	ForticlientDownloadMethod          pulumi.StringOutput                                        `pulumi:"forticlientDownloadMethod"`
+	Heading                            pulumi.StringOutput                                        `pulumi:"heading"`
+	HideSsoCredential                  pulumi.StringOutput                                        `pulumi:"hideSsoCredential"`
+	HostCheck                          pulumi.StringOutput                                        `pulumi:"hostCheck"`
+	HostCheckInterval                  pulumi.IntOutput                                           `pulumi:"hostCheckInterval"`
+	HostCheckPolicies                  VpnSslWebPortalHostCheckPolicyArrayOutput                  `pulumi:"hostCheckPolicies"`
+	IpMode                             pulumi.StringOutput                                        `pulumi:"ipMode"`
+	IpPools                            VpnSslWebPortalIpPoolArrayOutput                           `pulumi:"ipPools"`
+	Ipv6DnsServer1                     pulumi.StringOutput                                        `pulumi:"ipv6DnsServer1"`
+	Ipv6DnsServer2                     pulumi.StringOutput                                        `pulumi:"ipv6DnsServer2"`
+	Ipv6ExclusiveRouting               pulumi.StringOutput                                        `pulumi:"ipv6ExclusiveRouting"`
+	Ipv6Pools                          VpnSslWebPortalIpv6PoolArrayOutput                         `pulumi:"ipv6Pools"`
+	Ipv6ServiceRestriction             pulumi.StringOutput                                        `pulumi:"ipv6ServiceRestriction"`
+	Ipv6SplitTunneling                 pulumi.StringOutput                                        `pulumi:"ipv6SplitTunneling"`
 	Ipv6SplitTunnelingRoutingAddresses VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput `pulumi:"ipv6SplitTunnelingRoutingAddresses"`
-	// Enable to negate IPv6 split tunneling routing address. Valid values: `enable`, `disable`.
-	Ipv6SplitTunnelingRoutingNegate pulumi.StringOutput `pulumi:"ipv6SplitTunnelingRoutingNegate"`
-	// Enable/disable IPv6 SSL-VPN tunnel mode. Valid values: `enable`, `disable`.
-	Ipv6TunnelMode pulumi.StringOutput `pulumi:"ipv6TunnelMode"`
-	// IPv6 WINS server 1.
-	Ipv6WinsServer1 pulumi.StringOutput `pulumi:"ipv6WinsServer1"`
-	// IPv6 WINS server 2.
-	Ipv6WinsServer2 pulumi.StringOutput `pulumi:"ipv6WinsServer2"`
-	// Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
-	KeepAlive pulumi.StringOutput `pulumi:"keepAlive"`
-	// Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
-	LimitUserLogins pulumi.StringOutput `pulumi:"limitUserLogins"`
-	// Client MAC address action. Valid values: `allow`, `deny`.
-	MacAddrAction pulumi.StringOutput `pulumi:"macAddrAction"`
-	// Enable/disable MAC address host checking. Valid values: `enable`, `disable`.
-	MacAddrCheck pulumi.StringOutput `pulumi:"macAddrCheck"`
-	// Client MAC address check rule. The structure of `macAddrCheckRule` block is documented below.
-	MacAddrCheckRules VpnSslWebPortalMacAddrCheckRuleArrayOutput `pulumi:"macAddrCheckRules"`
-	// Download URL for Mac FortiClient.
-	MacosForticlientDownloadUrl pulumi.StringPtrOutput `pulumi:"macosForticlientDownloadUrl"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable to let the FortiGate decide action based on client OS. Valid values: `enable`, `disable`.
-	OsCheck pulumi.StringOutput `pulumi:"osCheck"`
-	// SSL VPN OS checks. The structure of `osCheckList` block is documented below.
-	OsCheckLists VpnSslWebPortalOsCheckListArrayOutput `pulumi:"osCheckLists"`
-	// prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
-	PreferIpv6Dns pulumi.StringOutput `pulumi:"preferIpv6Dns"`
-	// Client login redirect URL.
-	RedirUrl pulumi.StringPtrOutput `pulumi:"redirUrl"`
-	// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
-	RewriteIpUriUi pulumi.StringOutput `pulumi:"rewriteIpUriUi"`
-	// Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
-	SavePassword pulumi.StringOutput `pulumi:"savePassword"`
-	// Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
-	ServiceRestriction pulumi.StringOutput `pulumi:"serviceRestriction"`
-	// Enable to skip host check for browser support. Valid values: `enable`, `disable`.
-	SkipCheckForBrowser pulumi.StringOutput `pulumi:"skipCheckForBrowser"`
-	// Enable to skip host check if client OS does not support it. Valid values: `enable`, `disable`.
-	SkipCheckForUnsupportedOs pulumi.StringOutput `pulumi:"skipCheckForUnsupportedOs"`
-	// SMB maximum client protocol version. Valid values: `smbv1`, `smbv2`, `smbv3`.
-	SmbMaxVersion pulumi.StringOutput `pulumi:"smbMaxVersion"`
-	// SMB minimum client protocol version. Valid values: `smbv1`, `smbv2`, `smbv3`.
-	SmbMinVersion pulumi.StringOutput `pulumi:"smbMinVersion"`
-	// Enable support of NTLMv1 for Samba authentication. Valid values: `enable`, `disable`.
-	SmbNtlmv1Auth pulumi.StringOutput `pulumi:"smbNtlmv1Auth"`
-	// Enable/disable support of SMBv1 for Samba. Valid values: `enable`, `disable`.
-	Smbv1 pulumi.StringOutput `pulumi:"smbv1"`
-	// Split DNS for SSL VPN. The structure of `splitDns` block is documented below.
-	SplitDns VpnSslWebPortalSplitDnArrayOutput `pulumi:"splitDns"`
-	// Enable/disable IPv4 split tunneling. Valid values: `enable`, `disable`.
-	SplitTunneling pulumi.StringOutput `pulumi:"splitTunneling"`
-	// IPv4 SSL-VPN tunnel mode firewall address objects that override firewall policy destination addresses to control split-tunneling access. The structure of `splitTunnelingRoutingAddress` block is documented below.
-	SplitTunnelingRoutingAddresses VpnSslWebPortalSplitTunnelingRoutingAddressArrayOutput `pulumi:"splitTunnelingRoutingAddresses"`
-	// Enable to negate split tunneling routing address. Valid values: `enable`, `disable`.
-	SplitTunnelingRoutingNegate pulumi.StringOutput `pulumi:"splitTunnelingRoutingNegate"`
-	// Web portal color scheme.
-	Theme pulumi.StringOutput `pulumi:"theme"`
-	// Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
-	TransformBackwardSlashes pulumi.StringOutput `pulumi:"transformBackwardSlashes"`
-	// Enable/disable IPv4 SSL-VPN tunnel mode. Valid values: `enable`, `disable`.
-	TunnelMode pulumi.StringOutput `pulumi:"tunnelMode"`
-	// Use SD-WAN rules to get output interface. Valid values: `enable`, `disable`.
-	UseSdwan pulumi.StringOutput `pulumi:"useSdwan"`
-	// Enable to allow web portal users to create their own bookmarks. Valid values: `enable`, `disable`.
-	UserBookmark pulumi.StringOutput `pulumi:"userBookmark"`
-	// Enable to allow web portal users to create bookmarks for all users in the same user group. Valid values: `enable`, `disable`.
-	UserGroupBookmark pulumi.StringOutput `pulumi:"userGroupBookmark"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable SSL VPN web mode. Valid values: `enable`, `disable`.
-	WebMode pulumi.StringOutput `pulumi:"webMode"`
-	// Download URL for Windows FortiClient.
-	WindowsForticlientDownloadUrl pulumi.StringPtrOutput `pulumi:"windowsForticlientDownloadUrl"`
-	// IPv4 WINS server 1.
-	WinsServer1 pulumi.StringOutput `pulumi:"winsServer1"`
-	// IPv4 WINS server 1.
-	WinsServer2 pulumi.StringOutput `pulumi:"winsServer2"`
+	Ipv6SplitTunnelingRoutingNegate    pulumi.StringOutput                                        `pulumi:"ipv6SplitTunnelingRoutingNegate"`
+	Ipv6TunnelMode                     pulumi.StringOutput                                        `pulumi:"ipv6TunnelMode"`
+	Ipv6WinsServer1                    pulumi.StringOutput                                        `pulumi:"ipv6WinsServer1"`
+	Ipv6WinsServer2                    pulumi.StringOutput                                        `pulumi:"ipv6WinsServer2"`
+	KeepAlive                          pulumi.StringOutput                                        `pulumi:"keepAlive"`
+	LimitUserLogins                    pulumi.StringOutput                                        `pulumi:"limitUserLogins"`
+	MacAddrAction                      pulumi.StringOutput                                        `pulumi:"macAddrAction"`
+	MacAddrCheck                       pulumi.StringOutput                                        `pulumi:"macAddrCheck"`
+	MacAddrCheckRules                  VpnSslWebPortalMacAddrCheckRuleArrayOutput                 `pulumi:"macAddrCheckRules"`
+	MacosForticlientDownloadUrl        pulumi.StringPtrOutput                                     `pulumi:"macosForticlientDownloadUrl"`
+	Name                               pulumi.StringOutput                                        `pulumi:"name"`
+	OsCheck                            pulumi.StringOutput                                        `pulumi:"osCheck"`
+	OsCheckLists                       VpnSslWebPortalOsCheckListArrayOutput                      `pulumi:"osCheckLists"`
+	PreferIpv6Dns                      pulumi.StringOutput                                        `pulumi:"preferIpv6Dns"`
+	RedirUrl                           pulumi.StringPtrOutput                                     `pulumi:"redirUrl"`
+	RewriteIpUriUi                     pulumi.StringOutput                                        `pulumi:"rewriteIpUriUi"`
+	SavePassword                       pulumi.StringOutput                                        `pulumi:"savePassword"`
+	ServiceRestriction                 pulumi.StringOutput                                        `pulumi:"serviceRestriction"`
+	SkipCheckForBrowser                pulumi.StringOutput                                        `pulumi:"skipCheckForBrowser"`
+	SkipCheckForUnsupportedOs          pulumi.StringOutput                                        `pulumi:"skipCheckForUnsupportedOs"`
+	SmbMaxVersion                      pulumi.StringOutput                                        `pulumi:"smbMaxVersion"`
+	SmbMinVersion                      pulumi.StringOutput                                        `pulumi:"smbMinVersion"`
+	SmbNtlmv1Auth                      pulumi.StringOutput                                        `pulumi:"smbNtlmv1Auth"`
+	Smbv1                              pulumi.StringOutput                                        `pulumi:"smbv1"`
+	SplitDns                           VpnSslWebPortalSplitDnArrayOutput                          `pulumi:"splitDns"`
+	SplitTunneling                     pulumi.StringOutput                                        `pulumi:"splitTunneling"`
+	SplitTunnelingRoutingAddresses     VpnSslWebPortalSplitTunnelingRoutingAddressArrayOutput     `pulumi:"splitTunnelingRoutingAddresses"`
+	SplitTunnelingRoutingNegate        pulumi.StringOutput                                        `pulumi:"splitTunnelingRoutingNegate"`
+	Theme                              pulumi.StringOutput                                        `pulumi:"theme"`
+	TransformBackwardSlashes           pulumi.StringOutput                                        `pulumi:"transformBackwardSlashes"`
+	TunnelMode                         pulumi.StringOutput                                        `pulumi:"tunnelMode"`
+	UseSdwan                           pulumi.StringOutput                                        `pulumi:"useSdwan"`
+	UserBookmark                       pulumi.StringOutput                                        `pulumi:"userBookmark"`
+	UserGroupBookmark                  pulumi.StringOutput                                        `pulumi:"userGroupBookmark"`
+	Vdomparam                          pulumi.StringPtrOutput                                     `pulumi:"vdomparam"`
+	WebMode                            pulumi.StringOutput                                        `pulumi:"webMode"`
+	WindowsForticlientDownloadUrl      pulumi.StringPtrOutput                                     `pulumi:"windowsForticlientDownloadUrl"`
+	WinsServer1                        pulumi.StringOutput                                        `pulumi:"winsServer1"`
+	WinsServer2                        pulumi.StringOutput                                        `pulumi:"winsServer2"`
 }
 
 // NewVpnSslWebPortal registers a new resource with the given unique name, arguments, and options.
@@ -278,289 +118,155 @@ func GetVpnSslWebPortal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnSslWebPortal resources.
 type vpnSslWebPortalState struct {
-	// Allow user access to SSL-VPN applications.
-	AllowUserAccess *string `pulumi:"allowUserAccess"`
-	// Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
-	AutoConnect *string `pulumi:"autoConnect"`
-	// Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
-	BookmarkGroups []VpnSslWebPortalBookmarkGroup `pulumi:"bookmarkGroups"`
-	// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
-	Clipboard *string `pulumi:"clipboard"`
-	// Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
-	CustomLang *string `pulumi:"customLang"`
-	// Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
-	CustomizeForticlientDownloadUrl *string `pulumi:"customizeForticlientDownloadUrl"`
-	// Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
-	DisplayBookmark *string `pulumi:"displayBookmark"`
-	// Enable to display the web portal connection tools widget. Valid values: `enable`, `disable`.
-	DisplayConnectionTools *string `pulumi:"displayConnectionTools"`
-	// Enable to display the web portal user login history widget. Valid values: `enable`, `disable`.
-	DisplayHistory *string `pulumi:"displayHistory"`
-	// Enable to display the web portal status widget. Valid values: `enable`, `disable`.
-	DisplayStatus *string `pulumi:"displayStatus"`
-	// DNS server 1.
-	DnsServer1 *string `pulumi:"dnsServer1"`
-	// DNS server 2.
-	DnsServer2 *string `pulumi:"dnsServer2"`
-	// DNS suffix.
-	DnsSuffix *string `pulumi:"dnsSuffix"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable all traffic go through tunnel only. Valid values: `enable`, `disable`.
-	ExclusiveRouting *string `pulumi:"exclusiveRouting"`
-	// Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
-	ForticlientDownload *string `pulumi:"forticlientDownload"`
-	// FortiClient download method. Valid values: `direct`, `ssl-vpn`.
-	ForticlientDownloadMethod *string `pulumi:"forticlientDownloadMethod"`
-	// Web portal heading message.
-	Heading *string `pulumi:"heading"`
-	// Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
-	HideSsoCredential *string `pulumi:"hideSsoCredential"`
-	// Type of host checking performed on endpoints. Valid values: `none`, `av`, `fw`, `av-fw`, `custom`.
-	HostCheck *string `pulumi:"hostCheck"`
-	// Periodic host check interval. Value of 0 means disabled and host checking only happens when the endpoint connects.
-	HostCheckInterval *int `pulumi:"hostCheckInterval"`
-	// One or more policies to require the endpoint to have specific security software. The structure of `hostCheckPolicy` block is documented below.
-	HostCheckPolicies []VpnSslWebPortalHostCheckPolicy `pulumi:"hostCheckPolicies"`
-	// Method by which users of this SSL-VPN tunnel obtain IP addresses. Valid values: `range`, `user-group`.
-	IpMode *string `pulumi:"ipMode"`
-	// IPv4 firewall source address objects reserved for SSL-VPN tunnel mode clients. The structure of `ipPools` block is documented below.
-	IpPools []VpnSslWebPortalIpPool `pulumi:"ipPools"`
-	// IPv6 DNS server 1.
-	Ipv6DnsServer1 *string `pulumi:"ipv6DnsServer1"`
-	// IPv6 DNS server 2.
-	Ipv6DnsServer2 *string `pulumi:"ipv6DnsServer2"`
-	// Enable/disable all IPv6 traffic go through tunnel only. Valid values: `enable`, `disable`.
-	Ipv6ExclusiveRouting *string `pulumi:"ipv6ExclusiveRouting"`
-	// IPv4 firewall source address objects reserved for SSL-VPN tunnel mode clients. The structure of `ipv6Pools` block is documented below.
-	Ipv6Pools []VpnSslWebPortalIpv6Pool `pulumi:"ipv6Pools"`
-	// Enable/disable IPv6 tunnel service restriction. Valid values: `enable`, `disable`.
-	Ipv6ServiceRestriction *string `pulumi:"ipv6ServiceRestriction"`
-	// Enable/disable IPv6 split tunneling. Valid values: `enable`, `disable`.
-	Ipv6SplitTunneling *string `pulumi:"ipv6SplitTunneling"`
-	// IPv6 SSL-VPN tunnel mode firewall address objects that override firewall policy destination addresses to control split-tunneling access. The structure of `ipv6SplitTunnelingRoutingAddress` block is documented below.
+	AllowUserAccess                    *string                                           `pulumi:"allowUserAccess"`
+	AutoConnect                        *string                                           `pulumi:"autoConnect"`
+	BookmarkGroups                     []VpnSslWebPortalBookmarkGroup                    `pulumi:"bookmarkGroups"`
+	Clipboard                          *string                                           `pulumi:"clipboard"`
+	CustomLang                         *string                                           `pulumi:"customLang"`
+	CustomizeForticlientDownloadUrl    *string                                           `pulumi:"customizeForticlientDownloadUrl"`
+	DefaultWindowHeight                *int                                              `pulumi:"defaultWindowHeight"`
+	DefaultWindowWidth                 *int                                              `pulumi:"defaultWindowWidth"`
+	DhcpIpOverlap                      *string                                           `pulumi:"dhcpIpOverlap"`
+	DisplayBookmark                    *string                                           `pulumi:"displayBookmark"`
+	DisplayConnectionTools             *string                                           `pulumi:"displayConnectionTools"`
+	DisplayHistory                     *string                                           `pulumi:"displayHistory"`
+	DisplayStatus                      *string                                           `pulumi:"displayStatus"`
+	DnsServer1                         *string                                           `pulumi:"dnsServer1"`
+	DnsServer2                         *string                                           `pulumi:"dnsServer2"`
+	DnsSuffix                          *string                                           `pulumi:"dnsSuffix"`
+	DynamicSortSubtable                *string                                           `pulumi:"dynamicSortSubtable"`
+	ExclusiveRouting                   *string                                           `pulumi:"exclusiveRouting"`
+	ForticlientDownload                *string                                           `pulumi:"forticlientDownload"`
+	ForticlientDownloadMethod          *string                                           `pulumi:"forticlientDownloadMethod"`
+	Heading                            *string                                           `pulumi:"heading"`
+	HideSsoCredential                  *string                                           `pulumi:"hideSsoCredential"`
+	HostCheck                          *string                                           `pulumi:"hostCheck"`
+	HostCheckInterval                  *int                                              `pulumi:"hostCheckInterval"`
+	HostCheckPolicies                  []VpnSslWebPortalHostCheckPolicy                  `pulumi:"hostCheckPolicies"`
+	IpMode                             *string                                           `pulumi:"ipMode"`
+	IpPools                            []VpnSslWebPortalIpPool                           `pulumi:"ipPools"`
+	Ipv6DnsServer1                     *string                                           `pulumi:"ipv6DnsServer1"`
+	Ipv6DnsServer2                     *string                                           `pulumi:"ipv6DnsServer2"`
+	Ipv6ExclusiveRouting               *string                                           `pulumi:"ipv6ExclusiveRouting"`
+	Ipv6Pools                          []VpnSslWebPortalIpv6Pool                         `pulumi:"ipv6Pools"`
+	Ipv6ServiceRestriction             *string                                           `pulumi:"ipv6ServiceRestriction"`
+	Ipv6SplitTunneling                 *string                                           `pulumi:"ipv6SplitTunneling"`
 	Ipv6SplitTunnelingRoutingAddresses []VpnSslWebPortalIpv6SplitTunnelingRoutingAddress `pulumi:"ipv6SplitTunnelingRoutingAddresses"`
-	// Enable to negate IPv6 split tunneling routing address. Valid values: `enable`, `disable`.
-	Ipv6SplitTunnelingRoutingNegate *string `pulumi:"ipv6SplitTunnelingRoutingNegate"`
-	// Enable/disable IPv6 SSL-VPN tunnel mode. Valid values: `enable`, `disable`.
-	Ipv6TunnelMode *string `pulumi:"ipv6TunnelMode"`
-	// IPv6 WINS server 1.
-	Ipv6WinsServer1 *string `pulumi:"ipv6WinsServer1"`
-	// IPv6 WINS server 2.
-	Ipv6WinsServer2 *string `pulumi:"ipv6WinsServer2"`
-	// Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
-	KeepAlive *string `pulumi:"keepAlive"`
-	// Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
-	LimitUserLogins *string `pulumi:"limitUserLogins"`
-	// Client MAC address action. Valid values: `allow`, `deny`.
-	MacAddrAction *string `pulumi:"macAddrAction"`
-	// Enable/disable MAC address host checking. Valid values: `enable`, `disable`.
-	MacAddrCheck *string `pulumi:"macAddrCheck"`
-	// Client MAC address check rule. The structure of `macAddrCheckRule` block is documented below.
-	MacAddrCheckRules []VpnSslWebPortalMacAddrCheckRule `pulumi:"macAddrCheckRules"`
-	// Download URL for Mac FortiClient.
-	MacosForticlientDownloadUrl *string `pulumi:"macosForticlientDownloadUrl"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Enable to let the FortiGate decide action based on client OS. Valid values: `enable`, `disable`.
-	OsCheck *string `pulumi:"osCheck"`
-	// SSL VPN OS checks. The structure of `osCheckList` block is documented below.
-	OsCheckLists []VpnSslWebPortalOsCheckList `pulumi:"osCheckLists"`
-	// prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
-	PreferIpv6Dns *string `pulumi:"preferIpv6Dns"`
-	// Client login redirect URL.
-	RedirUrl *string `pulumi:"redirUrl"`
-	// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
-	RewriteIpUriUi *string `pulumi:"rewriteIpUriUi"`
-	// Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
-	SavePassword *string `pulumi:"savePassword"`
-	// Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
-	ServiceRestriction *string `pulumi:"serviceRestriction"`
-	// Enable to skip host check for browser support. Valid values: `enable`, `disable`.
-	SkipCheckForBrowser *string `pulumi:"skipCheckForBrowser"`
-	// Enable to skip host check if client OS does not support it. Valid values: `enable`, `disable`.
-	SkipCheckForUnsupportedOs *string `pulumi:"skipCheckForUnsupportedOs"`
-	// SMB maximum client protocol version. Valid values: `smbv1`, `smbv2`, `smbv3`.
-	SmbMaxVersion *string `pulumi:"smbMaxVersion"`
-	// SMB minimum client protocol version. Valid values: `smbv1`, `smbv2`, `smbv3`.
-	SmbMinVersion *string `pulumi:"smbMinVersion"`
-	// Enable support of NTLMv1 for Samba authentication. Valid values: `enable`, `disable`.
-	SmbNtlmv1Auth *string `pulumi:"smbNtlmv1Auth"`
-	// Enable/disable support of SMBv1 for Samba. Valid values: `enable`, `disable`.
-	Smbv1 *string `pulumi:"smbv1"`
-	// Split DNS for SSL VPN. The structure of `splitDns` block is documented below.
-	SplitDns []VpnSslWebPortalSplitDn `pulumi:"splitDns"`
-	// Enable/disable IPv4 split tunneling. Valid values: `enable`, `disable`.
-	SplitTunneling *string `pulumi:"splitTunneling"`
-	// IPv4 SSL-VPN tunnel mode firewall address objects that override firewall policy destination addresses to control split-tunneling access. The structure of `splitTunnelingRoutingAddress` block is documented below.
-	SplitTunnelingRoutingAddresses []VpnSslWebPortalSplitTunnelingRoutingAddress `pulumi:"splitTunnelingRoutingAddresses"`
-	// Enable to negate split tunneling routing address. Valid values: `enable`, `disable`.
-	SplitTunnelingRoutingNegate *string `pulumi:"splitTunnelingRoutingNegate"`
-	// Web portal color scheme.
-	Theme *string `pulumi:"theme"`
-	// Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
-	TransformBackwardSlashes *string `pulumi:"transformBackwardSlashes"`
-	// Enable/disable IPv4 SSL-VPN tunnel mode. Valid values: `enable`, `disable`.
-	TunnelMode *string `pulumi:"tunnelMode"`
-	// Use SD-WAN rules to get output interface. Valid values: `enable`, `disable`.
-	UseSdwan *string `pulumi:"useSdwan"`
-	// Enable to allow web portal users to create their own bookmarks. Valid values: `enable`, `disable`.
-	UserBookmark *string `pulumi:"userBookmark"`
-	// Enable to allow web portal users to create bookmarks for all users in the same user group. Valid values: `enable`, `disable`.
-	UserGroupBookmark *string `pulumi:"userGroupBookmark"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable SSL VPN web mode. Valid values: `enable`, `disable`.
-	WebMode *string `pulumi:"webMode"`
-	// Download URL for Windows FortiClient.
-	WindowsForticlientDownloadUrl *string `pulumi:"windowsForticlientDownloadUrl"`
-	// IPv4 WINS server 1.
-	WinsServer1 *string `pulumi:"winsServer1"`
-	// IPv4 WINS server 1.
-	WinsServer2 *string `pulumi:"winsServer2"`
+	Ipv6SplitTunnelingRoutingNegate    *string                                           `pulumi:"ipv6SplitTunnelingRoutingNegate"`
+	Ipv6TunnelMode                     *string                                           `pulumi:"ipv6TunnelMode"`
+	Ipv6WinsServer1                    *string                                           `pulumi:"ipv6WinsServer1"`
+	Ipv6WinsServer2                    *string                                           `pulumi:"ipv6WinsServer2"`
+	KeepAlive                          *string                                           `pulumi:"keepAlive"`
+	LimitUserLogins                    *string                                           `pulumi:"limitUserLogins"`
+	MacAddrAction                      *string                                           `pulumi:"macAddrAction"`
+	MacAddrCheck                       *string                                           `pulumi:"macAddrCheck"`
+	MacAddrCheckRules                  []VpnSslWebPortalMacAddrCheckRule                 `pulumi:"macAddrCheckRules"`
+	MacosForticlientDownloadUrl        *string                                           `pulumi:"macosForticlientDownloadUrl"`
+	Name                               *string                                           `pulumi:"name"`
+	OsCheck                            *string                                           `pulumi:"osCheck"`
+	OsCheckLists                       []VpnSslWebPortalOsCheckList                      `pulumi:"osCheckLists"`
+	PreferIpv6Dns                      *string                                           `pulumi:"preferIpv6Dns"`
+	RedirUrl                           *string                                           `pulumi:"redirUrl"`
+	RewriteIpUriUi                     *string                                           `pulumi:"rewriteIpUriUi"`
+	SavePassword                       *string                                           `pulumi:"savePassword"`
+	ServiceRestriction                 *string                                           `pulumi:"serviceRestriction"`
+	SkipCheckForBrowser                *string                                           `pulumi:"skipCheckForBrowser"`
+	SkipCheckForUnsupportedOs          *string                                           `pulumi:"skipCheckForUnsupportedOs"`
+	SmbMaxVersion                      *string                                           `pulumi:"smbMaxVersion"`
+	SmbMinVersion                      *string                                           `pulumi:"smbMinVersion"`
+	SmbNtlmv1Auth                      *string                                           `pulumi:"smbNtlmv1Auth"`
+	Smbv1                              *string                                           `pulumi:"smbv1"`
+	SplitDns                           []VpnSslWebPortalSplitDn                          `pulumi:"splitDns"`
+	SplitTunneling                     *string                                           `pulumi:"splitTunneling"`
+	SplitTunnelingRoutingAddresses     []VpnSslWebPortalSplitTunnelingRoutingAddress     `pulumi:"splitTunnelingRoutingAddresses"`
+	SplitTunnelingRoutingNegate        *string                                           `pulumi:"splitTunnelingRoutingNegate"`
+	Theme                              *string                                           `pulumi:"theme"`
+	TransformBackwardSlashes           *string                                           `pulumi:"transformBackwardSlashes"`
+	TunnelMode                         *string                                           `pulumi:"tunnelMode"`
+	UseSdwan                           *string                                           `pulumi:"useSdwan"`
+	UserBookmark                       *string                                           `pulumi:"userBookmark"`
+	UserGroupBookmark                  *string                                           `pulumi:"userGroupBookmark"`
+	Vdomparam                          *string                                           `pulumi:"vdomparam"`
+	WebMode                            *string                                           `pulumi:"webMode"`
+	WindowsForticlientDownloadUrl      *string                                           `pulumi:"windowsForticlientDownloadUrl"`
+	WinsServer1                        *string                                           `pulumi:"winsServer1"`
+	WinsServer2                        *string                                           `pulumi:"winsServer2"`
 }
 
 type VpnSslWebPortalState struct {
-	// Allow user access to SSL-VPN applications.
-	AllowUserAccess pulumi.StringPtrInput
-	// Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
-	AutoConnect pulumi.StringPtrInput
-	// Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
-	BookmarkGroups VpnSslWebPortalBookmarkGroupArrayInput
-	// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
-	Clipboard pulumi.StringPtrInput
-	// Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
-	CustomLang pulumi.StringPtrInput
-	// Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
-	CustomizeForticlientDownloadUrl pulumi.StringPtrInput
-	// Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
-	DisplayBookmark pulumi.StringPtrInput
-	// Enable to display the web portal connection tools widget. Valid values: `enable`, `disable`.
-	DisplayConnectionTools pulumi.StringPtrInput
-	// Enable to display the web portal user login history widget. Valid values: `enable`, `disable`.
-	DisplayHistory pulumi.StringPtrInput
-	// Enable to display the web portal status widget. Valid values: `enable`, `disable`.
-	DisplayStatus pulumi.StringPtrInput
-	// DNS server 1.
-	DnsServer1 pulumi.StringPtrInput
-	// DNS server 2.
-	DnsServer2 pulumi.StringPtrInput
-	// DNS suffix.
-	DnsSuffix pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable all traffic go through tunnel only. Valid values: `enable`, `disable`.
-	ExclusiveRouting pulumi.StringPtrInput
-	// Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
-	ForticlientDownload pulumi.StringPtrInput
-	// FortiClient download method. Valid values: `direct`, `ssl-vpn`.
-	ForticlientDownloadMethod pulumi.StringPtrInput
-	// Web portal heading message.
-	Heading pulumi.StringPtrInput
-	// Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
-	HideSsoCredential pulumi.StringPtrInput
-	// Type of host checking performed on endpoints. Valid values: `none`, `av`, `fw`, `av-fw`, `custom`.
-	HostCheck pulumi.StringPtrInput
-	// Periodic host check interval. Value of 0 means disabled and host checking only happens when the endpoint connects.
-	HostCheckInterval pulumi.IntPtrInput
-	// One or more policies to require the endpoint to have specific security software. The structure of `hostCheckPolicy` block is documented below.
-	HostCheckPolicies VpnSslWebPortalHostCheckPolicyArrayInput
-	// Method by which users of this SSL-VPN tunnel obtain IP addresses. Valid values: `range`, `user-group`.
-	IpMode pulumi.StringPtrInput
-	// IPv4 firewall source address objects reserved for SSL-VPN tunnel mode clients. The structure of `ipPools` block is documented below.
-	IpPools VpnSslWebPortalIpPoolArrayInput
-	// IPv6 DNS server 1.
-	Ipv6DnsServer1 pulumi.StringPtrInput
-	// IPv6 DNS server 2.
-	Ipv6DnsServer2 pulumi.StringPtrInput
-	// Enable/disable all IPv6 traffic go through tunnel only. Valid values: `enable`, `disable`.
-	Ipv6ExclusiveRouting pulumi.StringPtrInput
-	// IPv4 firewall source address objects reserved for SSL-VPN tunnel mode clients. The structure of `ipv6Pools` block is documented below.
-	Ipv6Pools VpnSslWebPortalIpv6PoolArrayInput
-	// Enable/disable IPv6 tunnel service restriction. Valid values: `enable`, `disable`.
-	Ipv6ServiceRestriction pulumi.StringPtrInput
-	// Enable/disable IPv6 split tunneling. Valid values: `enable`, `disable`.
-	Ipv6SplitTunneling pulumi.StringPtrInput
-	// IPv6 SSL-VPN tunnel mode firewall address objects that override firewall policy destination addresses to control split-tunneling access. The structure of `ipv6SplitTunnelingRoutingAddress` block is documented below.
+	AllowUserAccess                    pulumi.StringPtrInput
+	AutoConnect                        pulumi.StringPtrInput
+	BookmarkGroups                     VpnSslWebPortalBookmarkGroupArrayInput
+	Clipboard                          pulumi.StringPtrInput
+	CustomLang                         pulumi.StringPtrInput
+	CustomizeForticlientDownloadUrl    pulumi.StringPtrInput
+	DefaultWindowHeight                pulumi.IntPtrInput
+	DefaultWindowWidth                 pulumi.IntPtrInput
+	DhcpIpOverlap                      pulumi.StringPtrInput
+	DisplayBookmark                    pulumi.StringPtrInput
+	DisplayConnectionTools             pulumi.StringPtrInput
+	DisplayHistory                     pulumi.StringPtrInput
+	DisplayStatus                      pulumi.StringPtrInput
+	DnsServer1                         pulumi.StringPtrInput
+	DnsServer2                         pulumi.StringPtrInput
+	DnsSuffix                          pulumi.StringPtrInput
+	DynamicSortSubtable                pulumi.StringPtrInput
+	ExclusiveRouting                   pulumi.StringPtrInput
+	ForticlientDownload                pulumi.StringPtrInput
+	ForticlientDownloadMethod          pulumi.StringPtrInput
+	Heading                            pulumi.StringPtrInput
+	HideSsoCredential                  pulumi.StringPtrInput
+	HostCheck                          pulumi.StringPtrInput
+	HostCheckInterval                  pulumi.IntPtrInput
+	HostCheckPolicies                  VpnSslWebPortalHostCheckPolicyArrayInput
+	IpMode                             pulumi.StringPtrInput
+	IpPools                            VpnSslWebPortalIpPoolArrayInput
+	Ipv6DnsServer1                     pulumi.StringPtrInput
+	Ipv6DnsServer2                     pulumi.StringPtrInput
+	Ipv6ExclusiveRouting               pulumi.StringPtrInput
+	Ipv6Pools                          VpnSslWebPortalIpv6PoolArrayInput
+	Ipv6ServiceRestriction             pulumi.StringPtrInput
+	Ipv6SplitTunneling                 pulumi.StringPtrInput
 	Ipv6SplitTunnelingRoutingAddresses VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayInput
-	// Enable to negate IPv6 split tunneling routing address. Valid values: `enable`, `disable`.
-	Ipv6SplitTunnelingRoutingNegate pulumi.StringPtrInput
-	// Enable/disable IPv6 SSL-VPN tunnel mode. Valid values: `enable`, `disable`.
-	Ipv6TunnelMode pulumi.StringPtrInput
-	// IPv6 WINS server 1.
-	Ipv6WinsServer1 pulumi.StringPtrInput
-	// IPv6 WINS server 2.
-	Ipv6WinsServer2 pulumi.StringPtrInput
-	// Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
-	KeepAlive pulumi.StringPtrInput
-	// Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
-	LimitUserLogins pulumi.StringPtrInput
-	// Client MAC address action. Valid values: `allow`, `deny`.
-	MacAddrAction pulumi.StringPtrInput
-	// Enable/disable MAC address host checking. Valid values: `enable`, `disable`.
-	MacAddrCheck pulumi.StringPtrInput
-	// Client MAC address check rule. The structure of `macAddrCheckRule` block is documented below.
-	MacAddrCheckRules VpnSslWebPortalMacAddrCheckRuleArrayInput
-	// Download URL for Mac FortiClient.
-	MacosForticlientDownloadUrl pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Enable to let the FortiGate decide action based on client OS. Valid values: `enable`, `disable`.
-	OsCheck pulumi.StringPtrInput
-	// SSL VPN OS checks. The structure of `osCheckList` block is documented below.
-	OsCheckLists VpnSslWebPortalOsCheckListArrayInput
-	// prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
-	PreferIpv6Dns pulumi.StringPtrInput
-	// Client login redirect URL.
-	RedirUrl pulumi.StringPtrInput
-	// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
-	RewriteIpUriUi pulumi.StringPtrInput
-	// Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
-	SavePassword pulumi.StringPtrInput
-	// Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
-	ServiceRestriction pulumi.StringPtrInput
-	// Enable to skip host check for browser support. Valid values: `enable`, `disable`.
-	SkipCheckForBrowser pulumi.StringPtrInput
-	// Enable to skip host check if client OS does not support it. Valid values: `enable`, `disable`.
-	SkipCheckForUnsupportedOs pulumi.StringPtrInput
-	// SMB maximum client protocol version. Valid values: `smbv1`, `smbv2`, `smbv3`.
-	SmbMaxVersion pulumi.StringPtrInput
-	// SMB minimum client protocol version. Valid values: `smbv1`, `smbv2`, `smbv3`.
-	SmbMinVersion pulumi.StringPtrInput
-	// Enable support of NTLMv1 for Samba authentication. Valid values: `enable`, `disable`.
-	SmbNtlmv1Auth pulumi.StringPtrInput
-	// Enable/disable support of SMBv1 for Samba. Valid values: `enable`, `disable`.
-	Smbv1 pulumi.StringPtrInput
-	// Split DNS for SSL VPN. The structure of `splitDns` block is documented below.
-	SplitDns VpnSslWebPortalSplitDnArrayInput
-	// Enable/disable IPv4 split tunneling. Valid values: `enable`, `disable`.
-	SplitTunneling pulumi.StringPtrInput
-	// IPv4 SSL-VPN tunnel mode firewall address objects that override firewall policy destination addresses to control split-tunneling access. The structure of `splitTunnelingRoutingAddress` block is documented below.
-	SplitTunnelingRoutingAddresses VpnSslWebPortalSplitTunnelingRoutingAddressArrayInput
-	// Enable to negate split tunneling routing address. Valid values: `enable`, `disable`.
-	SplitTunnelingRoutingNegate pulumi.StringPtrInput
-	// Web portal color scheme.
-	Theme pulumi.StringPtrInput
-	// Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
-	TransformBackwardSlashes pulumi.StringPtrInput
-	// Enable/disable IPv4 SSL-VPN tunnel mode. Valid values: `enable`, `disable`.
-	TunnelMode pulumi.StringPtrInput
-	// Use SD-WAN rules to get output interface. Valid values: `enable`, `disable`.
-	UseSdwan pulumi.StringPtrInput
-	// Enable to allow web portal users to create their own bookmarks. Valid values: `enable`, `disable`.
-	UserBookmark pulumi.StringPtrInput
-	// Enable to allow web portal users to create bookmarks for all users in the same user group. Valid values: `enable`, `disable`.
-	UserGroupBookmark pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable SSL VPN web mode. Valid values: `enable`, `disable`.
-	WebMode pulumi.StringPtrInput
-	// Download URL for Windows FortiClient.
-	WindowsForticlientDownloadUrl pulumi.StringPtrInput
-	// IPv4 WINS server 1.
-	WinsServer1 pulumi.StringPtrInput
-	// IPv4 WINS server 1.
-	WinsServer2 pulumi.StringPtrInput
+	Ipv6SplitTunnelingRoutingNegate    pulumi.StringPtrInput
+	Ipv6TunnelMode                     pulumi.StringPtrInput
+	Ipv6WinsServer1                    pulumi.StringPtrInput
+	Ipv6WinsServer2                    pulumi.StringPtrInput
+	KeepAlive                          pulumi.StringPtrInput
+	LimitUserLogins                    pulumi.StringPtrInput
+	MacAddrAction                      pulumi.StringPtrInput
+	MacAddrCheck                       pulumi.StringPtrInput
+	MacAddrCheckRules                  VpnSslWebPortalMacAddrCheckRuleArrayInput
+	MacosForticlientDownloadUrl        pulumi.StringPtrInput
+	Name                               pulumi.StringPtrInput
+	OsCheck                            pulumi.StringPtrInput
+	OsCheckLists                       VpnSslWebPortalOsCheckListArrayInput
+	PreferIpv6Dns                      pulumi.StringPtrInput
+	RedirUrl                           pulumi.StringPtrInput
+	RewriteIpUriUi                     pulumi.StringPtrInput
+	SavePassword                       pulumi.StringPtrInput
+	ServiceRestriction                 pulumi.StringPtrInput
+	SkipCheckForBrowser                pulumi.StringPtrInput
+	SkipCheckForUnsupportedOs          pulumi.StringPtrInput
+	SmbMaxVersion                      pulumi.StringPtrInput
+	SmbMinVersion                      pulumi.StringPtrInput
+	SmbNtlmv1Auth                      pulumi.StringPtrInput
+	Smbv1                              pulumi.StringPtrInput
+	SplitDns                           VpnSslWebPortalSplitDnArrayInput
+	SplitTunneling                     pulumi.StringPtrInput
+	SplitTunnelingRoutingAddresses     VpnSslWebPortalSplitTunnelingRoutingAddressArrayInput
+	SplitTunnelingRoutingNegate        pulumi.StringPtrInput
+	Theme                              pulumi.StringPtrInput
+	TransformBackwardSlashes           pulumi.StringPtrInput
+	TunnelMode                         pulumi.StringPtrInput
+	UseSdwan                           pulumi.StringPtrInput
+	UserBookmark                       pulumi.StringPtrInput
+	UserGroupBookmark                  pulumi.StringPtrInput
+	Vdomparam                          pulumi.StringPtrInput
+	WebMode                            pulumi.StringPtrInput
+	WindowsForticlientDownloadUrl      pulumi.StringPtrInput
+	WinsServer1                        pulumi.StringPtrInput
+	WinsServer2                        pulumi.StringPtrInput
 }
 
 func (VpnSslWebPortalState) ElementType() reflect.Type {
@@ -568,290 +274,156 @@ func (VpnSslWebPortalState) ElementType() reflect.Type {
 }
 
 type vpnSslWebPortalArgs struct {
-	// Allow user access to SSL-VPN applications.
-	AllowUserAccess *string `pulumi:"allowUserAccess"`
-	// Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
-	AutoConnect *string `pulumi:"autoConnect"`
-	// Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
-	BookmarkGroups []VpnSslWebPortalBookmarkGroup `pulumi:"bookmarkGroups"`
-	// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
-	Clipboard *string `pulumi:"clipboard"`
-	// Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
-	CustomLang *string `pulumi:"customLang"`
-	// Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
-	CustomizeForticlientDownloadUrl *string `pulumi:"customizeForticlientDownloadUrl"`
-	// Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
-	DisplayBookmark *string `pulumi:"displayBookmark"`
-	// Enable to display the web portal connection tools widget. Valid values: `enable`, `disable`.
-	DisplayConnectionTools *string `pulumi:"displayConnectionTools"`
-	// Enable to display the web portal user login history widget. Valid values: `enable`, `disable`.
-	DisplayHistory *string `pulumi:"displayHistory"`
-	// Enable to display the web portal status widget. Valid values: `enable`, `disable`.
-	DisplayStatus *string `pulumi:"displayStatus"`
-	// DNS server 1.
-	DnsServer1 *string `pulumi:"dnsServer1"`
-	// DNS server 2.
-	DnsServer2 *string `pulumi:"dnsServer2"`
-	// DNS suffix.
-	DnsSuffix *string `pulumi:"dnsSuffix"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable all traffic go through tunnel only. Valid values: `enable`, `disable`.
-	ExclusiveRouting *string `pulumi:"exclusiveRouting"`
-	// Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
-	ForticlientDownload *string `pulumi:"forticlientDownload"`
-	// FortiClient download method. Valid values: `direct`, `ssl-vpn`.
-	ForticlientDownloadMethod *string `pulumi:"forticlientDownloadMethod"`
-	// Web portal heading message.
-	Heading *string `pulumi:"heading"`
-	// Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
-	HideSsoCredential *string `pulumi:"hideSsoCredential"`
-	// Type of host checking performed on endpoints. Valid values: `none`, `av`, `fw`, `av-fw`, `custom`.
-	HostCheck *string `pulumi:"hostCheck"`
-	// Periodic host check interval. Value of 0 means disabled and host checking only happens when the endpoint connects.
-	HostCheckInterval *int `pulumi:"hostCheckInterval"`
-	// One or more policies to require the endpoint to have specific security software. The structure of `hostCheckPolicy` block is documented below.
-	HostCheckPolicies []VpnSslWebPortalHostCheckPolicy `pulumi:"hostCheckPolicies"`
-	// Method by which users of this SSL-VPN tunnel obtain IP addresses. Valid values: `range`, `user-group`.
-	IpMode *string `pulumi:"ipMode"`
-	// IPv4 firewall source address objects reserved for SSL-VPN tunnel mode clients. The structure of `ipPools` block is documented below.
-	IpPools []VpnSslWebPortalIpPool `pulumi:"ipPools"`
-	// IPv6 DNS server 1.
-	Ipv6DnsServer1 *string `pulumi:"ipv6DnsServer1"`
-	// IPv6 DNS server 2.
-	Ipv6DnsServer2 *string `pulumi:"ipv6DnsServer2"`
-	// Enable/disable all IPv6 traffic go through tunnel only. Valid values: `enable`, `disable`.
-	Ipv6ExclusiveRouting *string `pulumi:"ipv6ExclusiveRouting"`
-	// IPv4 firewall source address objects reserved for SSL-VPN tunnel mode clients. The structure of `ipv6Pools` block is documented below.
-	Ipv6Pools []VpnSslWebPortalIpv6Pool `pulumi:"ipv6Pools"`
-	// Enable/disable IPv6 tunnel service restriction. Valid values: `enable`, `disable`.
-	Ipv6ServiceRestriction *string `pulumi:"ipv6ServiceRestriction"`
-	// Enable/disable IPv6 split tunneling. Valid values: `enable`, `disable`.
-	Ipv6SplitTunneling *string `pulumi:"ipv6SplitTunneling"`
-	// IPv6 SSL-VPN tunnel mode firewall address objects that override firewall policy destination addresses to control split-tunneling access. The structure of `ipv6SplitTunnelingRoutingAddress` block is documented below.
+	AllowUserAccess                    *string                                           `pulumi:"allowUserAccess"`
+	AutoConnect                        *string                                           `pulumi:"autoConnect"`
+	BookmarkGroups                     []VpnSslWebPortalBookmarkGroup                    `pulumi:"bookmarkGroups"`
+	Clipboard                          *string                                           `pulumi:"clipboard"`
+	CustomLang                         *string                                           `pulumi:"customLang"`
+	CustomizeForticlientDownloadUrl    *string                                           `pulumi:"customizeForticlientDownloadUrl"`
+	DefaultWindowHeight                *int                                              `pulumi:"defaultWindowHeight"`
+	DefaultWindowWidth                 *int                                              `pulumi:"defaultWindowWidth"`
+	DhcpIpOverlap                      *string                                           `pulumi:"dhcpIpOverlap"`
+	DisplayBookmark                    *string                                           `pulumi:"displayBookmark"`
+	DisplayConnectionTools             *string                                           `pulumi:"displayConnectionTools"`
+	DisplayHistory                     *string                                           `pulumi:"displayHistory"`
+	DisplayStatus                      *string                                           `pulumi:"displayStatus"`
+	DnsServer1                         *string                                           `pulumi:"dnsServer1"`
+	DnsServer2                         *string                                           `pulumi:"dnsServer2"`
+	DnsSuffix                          *string                                           `pulumi:"dnsSuffix"`
+	DynamicSortSubtable                *string                                           `pulumi:"dynamicSortSubtable"`
+	ExclusiveRouting                   *string                                           `pulumi:"exclusiveRouting"`
+	ForticlientDownload                *string                                           `pulumi:"forticlientDownload"`
+	ForticlientDownloadMethod          *string                                           `pulumi:"forticlientDownloadMethod"`
+	Heading                            *string                                           `pulumi:"heading"`
+	HideSsoCredential                  *string                                           `pulumi:"hideSsoCredential"`
+	HostCheck                          *string                                           `pulumi:"hostCheck"`
+	HostCheckInterval                  *int                                              `pulumi:"hostCheckInterval"`
+	HostCheckPolicies                  []VpnSslWebPortalHostCheckPolicy                  `pulumi:"hostCheckPolicies"`
+	IpMode                             *string                                           `pulumi:"ipMode"`
+	IpPools                            []VpnSslWebPortalIpPool                           `pulumi:"ipPools"`
+	Ipv6DnsServer1                     *string                                           `pulumi:"ipv6DnsServer1"`
+	Ipv6DnsServer2                     *string                                           `pulumi:"ipv6DnsServer2"`
+	Ipv6ExclusiveRouting               *string                                           `pulumi:"ipv6ExclusiveRouting"`
+	Ipv6Pools                          []VpnSslWebPortalIpv6Pool                         `pulumi:"ipv6Pools"`
+	Ipv6ServiceRestriction             *string                                           `pulumi:"ipv6ServiceRestriction"`
+	Ipv6SplitTunneling                 *string                                           `pulumi:"ipv6SplitTunneling"`
 	Ipv6SplitTunnelingRoutingAddresses []VpnSslWebPortalIpv6SplitTunnelingRoutingAddress `pulumi:"ipv6SplitTunnelingRoutingAddresses"`
-	// Enable to negate IPv6 split tunneling routing address. Valid values: `enable`, `disable`.
-	Ipv6SplitTunnelingRoutingNegate *string `pulumi:"ipv6SplitTunnelingRoutingNegate"`
-	// Enable/disable IPv6 SSL-VPN tunnel mode. Valid values: `enable`, `disable`.
-	Ipv6TunnelMode *string `pulumi:"ipv6TunnelMode"`
-	// IPv6 WINS server 1.
-	Ipv6WinsServer1 *string `pulumi:"ipv6WinsServer1"`
-	// IPv6 WINS server 2.
-	Ipv6WinsServer2 *string `pulumi:"ipv6WinsServer2"`
-	// Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
-	KeepAlive *string `pulumi:"keepAlive"`
-	// Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
-	LimitUserLogins *string `pulumi:"limitUserLogins"`
-	// Client MAC address action. Valid values: `allow`, `deny`.
-	MacAddrAction *string `pulumi:"macAddrAction"`
-	// Enable/disable MAC address host checking. Valid values: `enable`, `disable`.
-	MacAddrCheck *string `pulumi:"macAddrCheck"`
-	// Client MAC address check rule. The structure of `macAddrCheckRule` block is documented below.
-	MacAddrCheckRules []VpnSslWebPortalMacAddrCheckRule `pulumi:"macAddrCheckRules"`
-	// Download URL for Mac FortiClient.
-	MacosForticlientDownloadUrl *string `pulumi:"macosForticlientDownloadUrl"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Enable to let the FortiGate decide action based on client OS. Valid values: `enable`, `disable`.
-	OsCheck *string `pulumi:"osCheck"`
-	// SSL VPN OS checks. The structure of `osCheckList` block is documented below.
-	OsCheckLists []VpnSslWebPortalOsCheckList `pulumi:"osCheckLists"`
-	// prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
-	PreferIpv6Dns *string `pulumi:"preferIpv6Dns"`
-	// Client login redirect URL.
-	RedirUrl *string `pulumi:"redirUrl"`
-	// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
-	RewriteIpUriUi *string `pulumi:"rewriteIpUriUi"`
-	// Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
-	SavePassword *string `pulumi:"savePassword"`
-	// Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
-	ServiceRestriction *string `pulumi:"serviceRestriction"`
-	// Enable to skip host check for browser support. Valid values: `enable`, `disable`.
-	SkipCheckForBrowser *string `pulumi:"skipCheckForBrowser"`
-	// Enable to skip host check if client OS does not support it. Valid values: `enable`, `disable`.
-	SkipCheckForUnsupportedOs *string `pulumi:"skipCheckForUnsupportedOs"`
-	// SMB maximum client protocol version. Valid values: `smbv1`, `smbv2`, `smbv3`.
-	SmbMaxVersion *string `pulumi:"smbMaxVersion"`
-	// SMB minimum client protocol version. Valid values: `smbv1`, `smbv2`, `smbv3`.
-	SmbMinVersion *string `pulumi:"smbMinVersion"`
-	// Enable support of NTLMv1 for Samba authentication. Valid values: `enable`, `disable`.
-	SmbNtlmv1Auth *string `pulumi:"smbNtlmv1Auth"`
-	// Enable/disable support of SMBv1 for Samba. Valid values: `enable`, `disable`.
-	Smbv1 *string `pulumi:"smbv1"`
-	// Split DNS for SSL VPN. The structure of `splitDns` block is documented below.
-	SplitDns []VpnSslWebPortalSplitDn `pulumi:"splitDns"`
-	// Enable/disable IPv4 split tunneling. Valid values: `enable`, `disable`.
-	SplitTunneling *string `pulumi:"splitTunneling"`
-	// IPv4 SSL-VPN tunnel mode firewall address objects that override firewall policy destination addresses to control split-tunneling access. The structure of `splitTunnelingRoutingAddress` block is documented below.
-	SplitTunnelingRoutingAddresses []VpnSslWebPortalSplitTunnelingRoutingAddress `pulumi:"splitTunnelingRoutingAddresses"`
-	// Enable to negate split tunneling routing address. Valid values: `enable`, `disable`.
-	SplitTunnelingRoutingNegate *string `pulumi:"splitTunnelingRoutingNegate"`
-	// Web portal color scheme.
-	Theme *string `pulumi:"theme"`
-	// Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
-	TransformBackwardSlashes *string `pulumi:"transformBackwardSlashes"`
-	// Enable/disable IPv4 SSL-VPN tunnel mode. Valid values: `enable`, `disable`.
-	TunnelMode *string `pulumi:"tunnelMode"`
-	// Use SD-WAN rules to get output interface. Valid values: `enable`, `disable`.
-	UseSdwan *string `pulumi:"useSdwan"`
-	// Enable to allow web portal users to create their own bookmarks. Valid values: `enable`, `disable`.
-	UserBookmark *string `pulumi:"userBookmark"`
-	// Enable to allow web portal users to create bookmarks for all users in the same user group. Valid values: `enable`, `disable`.
-	UserGroupBookmark *string `pulumi:"userGroupBookmark"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable SSL VPN web mode. Valid values: `enable`, `disable`.
-	WebMode *string `pulumi:"webMode"`
-	// Download URL for Windows FortiClient.
-	WindowsForticlientDownloadUrl *string `pulumi:"windowsForticlientDownloadUrl"`
-	// IPv4 WINS server 1.
-	WinsServer1 *string `pulumi:"winsServer1"`
-	// IPv4 WINS server 1.
-	WinsServer2 *string `pulumi:"winsServer2"`
+	Ipv6SplitTunnelingRoutingNegate    *string                                           `pulumi:"ipv6SplitTunnelingRoutingNegate"`
+	Ipv6TunnelMode                     *string                                           `pulumi:"ipv6TunnelMode"`
+	Ipv6WinsServer1                    *string                                           `pulumi:"ipv6WinsServer1"`
+	Ipv6WinsServer2                    *string                                           `pulumi:"ipv6WinsServer2"`
+	KeepAlive                          *string                                           `pulumi:"keepAlive"`
+	LimitUserLogins                    *string                                           `pulumi:"limitUserLogins"`
+	MacAddrAction                      *string                                           `pulumi:"macAddrAction"`
+	MacAddrCheck                       *string                                           `pulumi:"macAddrCheck"`
+	MacAddrCheckRules                  []VpnSslWebPortalMacAddrCheckRule                 `pulumi:"macAddrCheckRules"`
+	MacosForticlientDownloadUrl        *string                                           `pulumi:"macosForticlientDownloadUrl"`
+	Name                               *string                                           `pulumi:"name"`
+	OsCheck                            *string                                           `pulumi:"osCheck"`
+	OsCheckLists                       []VpnSslWebPortalOsCheckList                      `pulumi:"osCheckLists"`
+	PreferIpv6Dns                      *string                                           `pulumi:"preferIpv6Dns"`
+	RedirUrl                           *string                                           `pulumi:"redirUrl"`
+	RewriteIpUriUi                     *string                                           `pulumi:"rewriteIpUriUi"`
+	SavePassword                       *string                                           `pulumi:"savePassword"`
+	ServiceRestriction                 *string                                           `pulumi:"serviceRestriction"`
+	SkipCheckForBrowser                *string                                           `pulumi:"skipCheckForBrowser"`
+	SkipCheckForUnsupportedOs          *string                                           `pulumi:"skipCheckForUnsupportedOs"`
+	SmbMaxVersion                      *string                                           `pulumi:"smbMaxVersion"`
+	SmbMinVersion                      *string                                           `pulumi:"smbMinVersion"`
+	SmbNtlmv1Auth                      *string                                           `pulumi:"smbNtlmv1Auth"`
+	Smbv1                              *string                                           `pulumi:"smbv1"`
+	SplitDns                           []VpnSslWebPortalSplitDn                          `pulumi:"splitDns"`
+	SplitTunneling                     *string                                           `pulumi:"splitTunneling"`
+	SplitTunnelingRoutingAddresses     []VpnSslWebPortalSplitTunnelingRoutingAddress     `pulumi:"splitTunnelingRoutingAddresses"`
+	SplitTunnelingRoutingNegate        *string                                           `pulumi:"splitTunnelingRoutingNegate"`
+	Theme                              *string                                           `pulumi:"theme"`
+	TransformBackwardSlashes           *string                                           `pulumi:"transformBackwardSlashes"`
+	TunnelMode                         *string                                           `pulumi:"tunnelMode"`
+	UseSdwan                           *string                                           `pulumi:"useSdwan"`
+	UserBookmark                       *string                                           `pulumi:"userBookmark"`
+	UserGroupBookmark                  *string                                           `pulumi:"userGroupBookmark"`
+	Vdomparam                          *string                                           `pulumi:"vdomparam"`
+	WebMode                            *string                                           `pulumi:"webMode"`
+	WindowsForticlientDownloadUrl      *string                                           `pulumi:"windowsForticlientDownloadUrl"`
+	WinsServer1                        *string                                           `pulumi:"winsServer1"`
+	WinsServer2                        *string                                           `pulumi:"winsServer2"`
 }
 
 // The set of arguments for constructing a VpnSslWebPortal resource.
 type VpnSslWebPortalArgs struct {
-	// Allow user access to SSL-VPN applications.
-	AllowUserAccess pulumi.StringPtrInput
-	// Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
-	AutoConnect pulumi.StringPtrInput
-	// Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
-	BookmarkGroups VpnSslWebPortalBookmarkGroupArrayInput
-	// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
-	Clipboard pulumi.StringPtrInput
-	// Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
-	CustomLang pulumi.StringPtrInput
-	// Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
-	CustomizeForticlientDownloadUrl pulumi.StringPtrInput
-	// Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
-	DisplayBookmark pulumi.StringPtrInput
-	// Enable to display the web portal connection tools widget. Valid values: `enable`, `disable`.
-	DisplayConnectionTools pulumi.StringPtrInput
-	// Enable to display the web portal user login history widget. Valid values: `enable`, `disable`.
-	DisplayHistory pulumi.StringPtrInput
-	// Enable to display the web portal status widget. Valid values: `enable`, `disable`.
-	DisplayStatus pulumi.StringPtrInput
-	// DNS server 1.
-	DnsServer1 pulumi.StringPtrInput
-	// DNS server 2.
-	DnsServer2 pulumi.StringPtrInput
-	// DNS suffix.
-	DnsSuffix pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable all traffic go through tunnel only. Valid values: `enable`, `disable`.
-	ExclusiveRouting pulumi.StringPtrInput
-	// Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
-	ForticlientDownload pulumi.StringPtrInput
-	// FortiClient download method. Valid values: `direct`, `ssl-vpn`.
-	ForticlientDownloadMethod pulumi.StringPtrInput
-	// Web portal heading message.
-	Heading pulumi.StringPtrInput
-	// Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
-	HideSsoCredential pulumi.StringPtrInput
-	// Type of host checking performed on endpoints. Valid values: `none`, `av`, `fw`, `av-fw`, `custom`.
-	HostCheck pulumi.StringPtrInput
-	// Periodic host check interval. Value of 0 means disabled and host checking only happens when the endpoint connects.
-	HostCheckInterval pulumi.IntPtrInput
-	// One or more policies to require the endpoint to have specific security software. The structure of `hostCheckPolicy` block is documented below.
-	HostCheckPolicies VpnSslWebPortalHostCheckPolicyArrayInput
-	// Method by which users of this SSL-VPN tunnel obtain IP addresses. Valid values: `range`, `user-group`.
-	IpMode pulumi.StringPtrInput
-	// IPv4 firewall source address objects reserved for SSL-VPN tunnel mode clients. The structure of `ipPools` block is documented below.
-	IpPools VpnSslWebPortalIpPoolArrayInput
-	// IPv6 DNS server 1.
-	Ipv6DnsServer1 pulumi.StringPtrInput
-	// IPv6 DNS server 2.
-	Ipv6DnsServer2 pulumi.StringPtrInput
-	// Enable/disable all IPv6 traffic go through tunnel only. Valid values: `enable`, `disable`.
-	Ipv6ExclusiveRouting pulumi.StringPtrInput
-	// IPv4 firewall source address objects reserved for SSL-VPN tunnel mode clients. The structure of `ipv6Pools` block is documented below.
-	Ipv6Pools VpnSslWebPortalIpv6PoolArrayInput
-	// Enable/disable IPv6 tunnel service restriction. Valid values: `enable`, `disable`.
-	Ipv6ServiceRestriction pulumi.StringPtrInput
-	// Enable/disable IPv6 split tunneling. Valid values: `enable`, `disable`.
-	Ipv6SplitTunneling pulumi.StringPtrInput
-	// IPv6 SSL-VPN tunnel mode firewall address objects that override firewall policy destination addresses to control split-tunneling access. The structure of `ipv6SplitTunnelingRoutingAddress` block is documented below.
+	AllowUserAccess                    pulumi.StringPtrInput
+	AutoConnect                        pulumi.StringPtrInput
+	BookmarkGroups                     VpnSslWebPortalBookmarkGroupArrayInput
+	Clipboard                          pulumi.StringPtrInput
+	CustomLang                         pulumi.StringPtrInput
+	CustomizeForticlientDownloadUrl    pulumi.StringPtrInput
+	DefaultWindowHeight                pulumi.IntPtrInput
+	DefaultWindowWidth                 pulumi.IntPtrInput
+	DhcpIpOverlap                      pulumi.StringPtrInput
+	DisplayBookmark                    pulumi.StringPtrInput
+	DisplayConnectionTools             pulumi.StringPtrInput
+	DisplayHistory                     pulumi.StringPtrInput
+	DisplayStatus                      pulumi.StringPtrInput
+	DnsServer1                         pulumi.StringPtrInput
+	DnsServer2                         pulumi.StringPtrInput
+	DnsSuffix                          pulumi.StringPtrInput
+	DynamicSortSubtable                pulumi.StringPtrInput
+	ExclusiveRouting                   pulumi.StringPtrInput
+	ForticlientDownload                pulumi.StringPtrInput
+	ForticlientDownloadMethod          pulumi.StringPtrInput
+	Heading                            pulumi.StringPtrInput
+	HideSsoCredential                  pulumi.StringPtrInput
+	HostCheck                          pulumi.StringPtrInput
+	HostCheckInterval                  pulumi.IntPtrInput
+	HostCheckPolicies                  VpnSslWebPortalHostCheckPolicyArrayInput
+	IpMode                             pulumi.StringPtrInput
+	IpPools                            VpnSslWebPortalIpPoolArrayInput
+	Ipv6DnsServer1                     pulumi.StringPtrInput
+	Ipv6DnsServer2                     pulumi.StringPtrInput
+	Ipv6ExclusiveRouting               pulumi.StringPtrInput
+	Ipv6Pools                          VpnSslWebPortalIpv6PoolArrayInput
+	Ipv6ServiceRestriction             pulumi.StringPtrInput
+	Ipv6SplitTunneling                 pulumi.StringPtrInput
 	Ipv6SplitTunnelingRoutingAddresses VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayInput
-	// Enable to negate IPv6 split tunneling routing address. Valid values: `enable`, `disable`.
-	Ipv6SplitTunnelingRoutingNegate pulumi.StringPtrInput
-	// Enable/disable IPv6 SSL-VPN tunnel mode. Valid values: `enable`, `disable`.
-	Ipv6TunnelMode pulumi.StringPtrInput
-	// IPv6 WINS server 1.
-	Ipv6WinsServer1 pulumi.StringPtrInput
-	// IPv6 WINS server 2.
-	Ipv6WinsServer2 pulumi.StringPtrInput
-	// Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
-	KeepAlive pulumi.StringPtrInput
-	// Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
-	LimitUserLogins pulumi.StringPtrInput
-	// Client MAC address action. Valid values: `allow`, `deny`.
-	MacAddrAction pulumi.StringPtrInput
-	// Enable/disable MAC address host checking. Valid values: `enable`, `disable`.
-	MacAddrCheck pulumi.StringPtrInput
-	// Client MAC address check rule. The structure of `macAddrCheckRule` block is documented below.
-	MacAddrCheckRules VpnSslWebPortalMacAddrCheckRuleArrayInput
-	// Download URL for Mac FortiClient.
-	MacosForticlientDownloadUrl pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Enable to let the FortiGate decide action based on client OS. Valid values: `enable`, `disable`.
-	OsCheck pulumi.StringPtrInput
-	// SSL VPN OS checks. The structure of `osCheckList` block is documented below.
-	OsCheckLists VpnSslWebPortalOsCheckListArrayInput
-	// prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
-	PreferIpv6Dns pulumi.StringPtrInput
-	// Client login redirect URL.
-	RedirUrl pulumi.StringPtrInput
-	// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
-	RewriteIpUriUi pulumi.StringPtrInput
-	// Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
-	SavePassword pulumi.StringPtrInput
-	// Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
-	ServiceRestriction pulumi.StringPtrInput
-	// Enable to skip host check for browser support. Valid values: `enable`, `disable`.
-	SkipCheckForBrowser pulumi.StringPtrInput
-	// Enable to skip host check if client OS does not support it. Valid values: `enable`, `disable`.
-	SkipCheckForUnsupportedOs pulumi.StringPtrInput
-	// SMB maximum client protocol version. Valid values: `smbv1`, `smbv2`, `smbv3`.
-	SmbMaxVersion pulumi.StringPtrInput
-	// SMB minimum client protocol version. Valid values: `smbv1`, `smbv2`, `smbv3`.
-	SmbMinVersion pulumi.StringPtrInput
-	// Enable support of NTLMv1 for Samba authentication. Valid values: `enable`, `disable`.
-	SmbNtlmv1Auth pulumi.StringPtrInput
-	// Enable/disable support of SMBv1 for Samba. Valid values: `enable`, `disable`.
-	Smbv1 pulumi.StringPtrInput
-	// Split DNS for SSL VPN. The structure of `splitDns` block is documented below.
-	SplitDns VpnSslWebPortalSplitDnArrayInput
-	// Enable/disable IPv4 split tunneling. Valid values: `enable`, `disable`.
-	SplitTunneling pulumi.StringPtrInput
-	// IPv4 SSL-VPN tunnel mode firewall address objects that override firewall policy destination addresses to control split-tunneling access. The structure of `splitTunnelingRoutingAddress` block is documented below.
-	SplitTunnelingRoutingAddresses VpnSslWebPortalSplitTunnelingRoutingAddressArrayInput
-	// Enable to negate split tunneling routing address. Valid values: `enable`, `disable`.
-	SplitTunnelingRoutingNegate pulumi.StringPtrInput
-	// Web portal color scheme.
-	Theme pulumi.StringPtrInput
-	// Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
-	TransformBackwardSlashes pulumi.StringPtrInput
-	// Enable/disable IPv4 SSL-VPN tunnel mode. Valid values: `enable`, `disable`.
-	TunnelMode pulumi.StringPtrInput
-	// Use SD-WAN rules to get output interface. Valid values: `enable`, `disable`.
-	UseSdwan pulumi.StringPtrInput
-	// Enable to allow web portal users to create their own bookmarks. Valid values: `enable`, `disable`.
-	UserBookmark pulumi.StringPtrInput
-	// Enable to allow web portal users to create bookmarks for all users in the same user group. Valid values: `enable`, `disable`.
-	UserGroupBookmark pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable SSL VPN web mode. Valid values: `enable`, `disable`.
-	WebMode pulumi.StringPtrInput
-	// Download URL for Windows FortiClient.
-	WindowsForticlientDownloadUrl pulumi.StringPtrInput
-	// IPv4 WINS server 1.
-	WinsServer1 pulumi.StringPtrInput
-	// IPv4 WINS server 1.
-	WinsServer2 pulumi.StringPtrInput
+	Ipv6SplitTunnelingRoutingNegate    pulumi.StringPtrInput
+	Ipv6TunnelMode                     pulumi.StringPtrInput
+	Ipv6WinsServer1                    pulumi.StringPtrInput
+	Ipv6WinsServer2                    pulumi.StringPtrInput
+	KeepAlive                          pulumi.StringPtrInput
+	LimitUserLogins                    pulumi.StringPtrInput
+	MacAddrAction                      pulumi.StringPtrInput
+	MacAddrCheck                       pulumi.StringPtrInput
+	MacAddrCheckRules                  VpnSslWebPortalMacAddrCheckRuleArrayInput
+	MacosForticlientDownloadUrl        pulumi.StringPtrInput
+	Name                               pulumi.StringPtrInput
+	OsCheck                            pulumi.StringPtrInput
+	OsCheckLists                       VpnSslWebPortalOsCheckListArrayInput
+	PreferIpv6Dns                      pulumi.StringPtrInput
+	RedirUrl                           pulumi.StringPtrInput
+	RewriteIpUriUi                     pulumi.StringPtrInput
+	SavePassword                       pulumi.StringPtrInput
+	ServiceRestriction                 pulumi.StringPtrInput
+	SkipCheckForBrowser                pulumi.StringPtrInput
+	SkipCheckForUnsupportedOs          pulumi.StringPtrInput
+	SmbMaxVersion                      pulumi.StringPtrInput
+	SmbMinVersion                      pulumi.StringPtrInput
+	SmbNtlmv1Auth                      pulumi.StringPtrInput
+	Smbv1                              pulumi.StringPtrInput
+	SplitDns                           VpnSslWebPortalSplitDnArrayInput
+	SplitTunneling                     pulumi.StringPtrInput
+	SplitTunnelingRoutingAddresses     VpnSslWebPortalSplitTunnelingRoutingAddressArrayInput
+	SplitTunnelingRoutingNegate        pulumi.StringPtrInput
+	Theme                              pulumi.StringPtrInput
+	TransformBackwardSlashes           pulumi.StringPtrInput
+	TunnelMode                         pulumi.StringPtrInput
+	UseSdwan                           pulumi.StringPtrInput
+	UserBookmark                       pulumi.StringPtrInput
+	UserGroupBookmark                  pulumi.StringPtrInput
+	Vdomparam                          pulumi.StringPtrInput
+	WebMode                            pulumi.StringPtrInput
+	WindowsForticlientDownloadUrl      pulumi.StringPtrInput
+	WinsServer1                        pulumi.StringPtrInput
+	WinsServer2                        pulumi.StringPtrInput
 }
 
 func (VpnSslWebPortalArgs) ElementType() reflect.Type {
@@ -880,7 +452,7 @@ func (i *VpnSslWebPortal) ToVpnSslWebPortalOutputWithContext(ctx context.Context
 // VpnSslWebPortalArrayInput is an input type that accepts VpnSslWebPortalArray and VpnSslWebPortalArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalArrayInput` via:
 //
-//          VpnSslWebPortalArray{ VpnSslWebPortalArgs{...} }
+//	VpnSslWebPortalArray{ VpnSslWebPortalArgs{...} }
 type VpnSslWebPortalArrayInput interface {
 	pulumi.Input
 
@@ -905,7 +477,7 @@ func (i VpnSslWebPortalArray) ToVpnSslWebPortalArrayOutputWithContext(ctx contex
 // VpnSslWebPortalMapInput is an input type that accepts VpnSslWebPortalMap and VpnSslWebPortalMapOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalMapInput` via:
 //
-//          VpnSslWebPortalMap{ "key": VpnSslWebPortalArgs{...} }
+//	VpnSslWebPortalMap{ "key": VpnSslWebPortalArgs{...} }
 type VpnSslWebPortalMapInput interface {
 	pulumi.Input
 
@@ -939,6 +511,302 @@ func (o VpnSslWebPortalOutput) ToVpnSslWebPortalOutput() VpnSslWebPortalOutput {
 
 func (o VpnSslWebPortalOutput) ToVpnSslWebPortalOutputWithContext(ctx context.Context) VpnSslWebPortalOutput {
 	return o
+}
+
+func (o VpnSslWebPortalOutput) AllowUserAccess() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.AllowUserAccess }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) AutoConnect() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.AutoConnect }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) BookmarkGroups() VpnSslWebPortalBookmarkGroupArrayOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) VpnSslWebPortalBookmarkGroupArrayOutput { return v.BookmarkGroups }).(VpnSslWebPortalBookmarkGroupArrayOutput)
+}
+
+func (o VpnSslWebPortalOutput) Clipboard() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Clipboard }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) CustomLang() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.CustomLang }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) CustomizeForticlientDownloadUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.CustomizeForticlientDownloadUrl }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) DefaultWindowHeight() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.IntOutput { return v.DefaultWindowHeight }).(pulumi.IntOutput)
+}
+
+func (o VpnSslWebPortalOutput) DefaultWindowWidth() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.IntOutput { return v.DefaultWindowWidth }).(pulumi.IntOutput)
+}
+
+func (o VpnSslWebPortalOutput) DhcpIpOverlap() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.DhcpIpOverlap }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) DisplayBookmark() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.DisplayBookmark }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) DisplayConnectionTools() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.DisplayConnectionTools }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) DisplayHistory() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.DisplayHistory }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) DisplayStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.DisplayStatus }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) DnsServer1() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.DnsServer1 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) DnsServer2() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.DnsServer2 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) DnsSuffix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringPtrOutput { return v.DnsSuffix }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalOutput) ExclusiveRouting() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.ExclusiveRouting }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) ForticlientDownload() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.ForticlientDownload }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) ForticlientDownloadMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.ForticlientDownloadMethod }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) Heading() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Heading }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) HideSsoCredential() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.HideSsoCredential }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) HostCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.HostCheck }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) HostCheckInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.IntOutput { return v.HostCheckInterval }).(pulumi.IntOutput)
+}
+
+func (o VpnSslWebPortalOutput) HostCheckPolicies() VpnSslWebPortalHostCheckPolicyArrayOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) VpnSslWebPortalHostCheckPolicyArrayOutput { return v.HostCheckPolicies }).(VpnSslWebPortalHostCheckPolicyArrayOutput)
+}
+
+func (o VpnSslWebPortalOutput) IpMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.IpMode }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) IpPools() VpnSslWebPortalIpPoolArrayOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) VpnSslWebPortalIpPoolArrayOutput { return v.IpPools }).(VpnSslWebPortalIpPoolArrayOutput)
+}
+
+func (o VpnSslWebPortalOutput) Ipv6DnsServer1() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Ipv6DnsServer1 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) Ipv6DnsServer2() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Ipv6DnsServer2 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) Ipv6ExclusiveRouting() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Ipv6ExclusiveRouting }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) Ipv6Pools() VpnSslWebPortalIpv6PoolArrayOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) VpnSslWebPortalIpv6PoolArrayOutput { return v.Ipv6Pools }).(VpnSslWebPortalIpv6PoolArrayOutput)
+}
+
+func (o VpnSslWebPortalOutput) Ipv6ServiceRestriction() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Ipv6ServiceRestriction }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) Ipv6SplitTunneling() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Ipv6SplitTunneling }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) Ipv6SplitTunnelingRoutingAddresses() VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput {
+		return v.Ipv6SplitTunnelingRoutingAddresses
+	}).(VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput)
+}
+
+func (o VpnSslWebPortalOutput) Ipv6SplitTunnelingRoutingNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Ipv6SplitTunnelingRoutingNegate }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) Ipv6TunnelMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Ipv6TunnelMode }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) Ipv6WinsServer1() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Ipv6WinsServer1 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) Ipv6WinsServer2() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Ipv6WinsServer2 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) KeepAlive() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.KeepAlive }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) LimitUserLogins() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.LimitUserLogins }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) MacAddrAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.MacAddrAction }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) MacAddrCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.MacAddrCheck }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) MacAddrCheckRules() VpnSslWebPortalMacAddrCheckRuleArrayOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) VpnSslWebPortalMacAddrCheckRuleArrayOutput { return v.MacAddrCheckRules }).(VpnSslWebPortalMacAddrCheckRuleArrayOutput)
+}
+
+func (o VpnSslWebPortalOutput) MacosForticlientDownloadUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringPtrOutput { return v.MacosForticlientDownloadUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) OsCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.OsCheck }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) OsCheckLists() VpnSslWebPortalOsCheckListArrayOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) VpnSslWebPortalOsCheckListArrayOutput { return v.OsCheckLists }).(VpnSslWebPortalOsCheckListArrayOutput)
+}
+
+func (o VpnSslWebPortalOutput) PreferIpv6Dns() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.PreferIpv6Dns }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) RedirUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringPtrOutput { return v.RedirUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalOutput) RewriteIpUriUi() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.RewriteIpUriUi }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) SavePassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.SavePassword }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) ServiceRestriction() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.ServiceRestriction }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) SkipCheckForBrowser() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.SkipCheckForBrowser }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) SkipCheckForUnsupportedOs() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.SkipCheckForUnsupportedOs }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) SmbMaxVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.SmbMaxVersion }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) SmbMinVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.SmbMinVersion }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) SmbNtlmv1Auth() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.SmbNtlmv1Auth }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) Smbv1() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Smbv1 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) SplitDns() VpnSslWebPortalSplitDnArrayOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) VpnSslWebPortalSplitDnArrayOutput { return v.SplitDns }).(VpnSslWebPortalSplitDnArrayOutput)
+}
+
+func (o VpnSslWebPortalOutput) SplitTunneling() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.SplitTunneling }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) SplitTunnelingRoutingAddresses() VpnSslWebPortalSplitTunnelingRoutingAddressArrayOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) VpnSslWebPortalSplitTunnelingRoutingAddressArrayOutput {
+		return v.SplitTunnelingRoutingAddresses
+	}).(VpnSslWebPortalSplitTunnelingRoutingAddressArrayOutput)
+}
+
+func (o VpnSslWebPortalOutput) SplitTunnelingRoutingNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.SplitTunnelingRoutingNegate }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) Theme() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Theme }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) TransformBackwardSlashes() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.TransformBackwardSlashes }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) TunnelMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.TunnelMode }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) UseSdwan() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.UseSdwan }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) UserBookmark() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.UserBookmark }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) UserGroupBookmark() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.UserGroupBookmark }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalOutput) WebMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.WebMode }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) WindowsForticlientDownloadUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringPtrOutput { return v.WindowsForticlientDownloadUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalOutput) WinsServer1() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.WinsServer1 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) WinsServer2() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.WinsServer2 }).(pulumi.StringOutput)
 }
 
 type VpnSslWebPortalArrayOutput struct{ *pulumi.OutputState }

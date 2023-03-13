@@ -10,56 +10,25 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// client Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// VpnSsl Client can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnSslClient:VpnSslClient labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnSslClient:VpnSslClient labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnSslClient struct {
 	pulumi.CustomResourceState
 
-	// Certificate to offer to SSL-VPN server if it requests one.
-	Certificate pulumi.StringOutput `pulumi:"certificate"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Distance for routes added by SSL-VPN (1 - 255).
-	Distance pulumi.IntOutput `pulumi:"distance"`
-	// SSL interface to send/receive traffic over.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// SSL-VPN tunnel name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Authenticate peer's certificate with the peer/peergrp.
-	Peer pulumi.StringOutput `pulumi:"peer"`
-	// SSL-VPN server port.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Priority for routes added by SSL-VPN (0 - 4294967295).
-	Priority pulumi.IntOutput `pulumi:"priority"`
-	// Pre-shared secret to authenticate with the server (ASCII string or hexadecimal encoded with a leading 0x).
-	Psk pulumi.StringPtrOutput `pulumi:"psk"`
-	// Realm name configured on SSL-VPN server.
-	Realm pulumi.StringOutput `pulumi:"realm"`
-	// IPv4, IPv6 or DNS address of the SSL-VPN server.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// IPv4 or IPv6 address to use as a source for the SSL-VPN connection to the server.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Enable/disable this SSL-VPN client configuration. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Username to offer to the peer to authenticate the client.
-	User pulumi.StringOutput `pulumi:"user"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Certificate pulumi.StringOutput    `pulumi:"certificate"`
+	ClassId     pulumi.IntOutput       `pulumi:"classId"`
+	Comment     pulumi.StringPtrOutput `pulumi:"comment"`
+	Distance    pulumi.IntOutput       `pulumi:"distance"`
+	Interface   pulumi.StringOutput    `pulumi:"interface"`
+	Name        pulumi.StringOutput    `pulumi:"name"`
+	Peer        pulumi.StringOutput    `pulumi:"peer"`
+	Port        pulumi.IntOutput       `pulumi:"port"`
+	Priority    pulumi.IntOutput       `pulumi:"priority"`
+	Psk         pulumi.StringPtrOutput `pulumi:"psk"`
+	Realm       pulumi.StringOutput    `pulumi:"realm"`
+	Server      pulumi.StringOutput    `pulumi:"server"`
+	SourceIp    pulumi.StringOutput    `pulumi:"sourceIp"`
+	Status      pulumi.StringOutput    `pulumi:"status"`
+	User        pulumi.StringOutput    `pulumi:"user"`
+	Vdomparam   pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewVpnSslClient registers a new resource with the given unique name, arguments, and options.
@@ -92,69 +61,41 @@ func GetVpnSslClient(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnSslClient resources.
 type vpnSslClientState struct {
-	// Certificate to offer to SSL-VPN server if it requests one.
 	Certificate *string `pulumi:"certificate"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Distance for routes added by SSL-VPN (1 - 255).
-	Distance *int `pulumi:"distance"`
-	// SSL interface to send/receive traffic over.
-	Interface *string `pulumi:"interface"`
-	// SSL-VPN tunnel name.
-	Name *string `pulumi:"name"`
-	// Authenticate peer's certificate with the peer/peergrp.
-	Peer *string `pulumi:"peer"`
-	// SSL-VPN server port.
-	Port *int `pulumi:"port"`
-	// Priority for routes added by SSL-VPN (0 - 4294967295).
-	Priority *int `pulumi:"priority"`
-	// Pre-shared secret to authenticate with the server (ASCII string or hexadecimal encoded with a leading 0x).
-	Psk *string `pulumi:"psk"`
-	// Realm name configured on SSL-VPN server.
-	Realm *string `pulumi:"realm"`
-	// IPv4, IPv6 or DNS address of the SSL-VPN server.
-	Server *string `pulumi:"server"`
-	// IPv4 or IPv6 address to use as a source for the SSL-VPN connection to the server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable this SSL-VPN client configuration. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Username to offer to the peer to authenticate the client.
-	User *string `pulumi:"user"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ClassId     *int    `pulumi:"classId"`
+	Comment     *string `pulumi:"comment"`
+	Distance    *int    `pulumi:"distance"`
+	Interface   *string `pulumi:"interface"`
+	Name        *string `pulumi:"name"`
+	Peer        *string `pulumi:"peer"`
+	Port        *int    `pulumi:"port"`
+	Priority    *int    `pulumi:"priority"`
+	Psk         *string `pulumi:"psk"`
+	Realm       *string `pulumi:"realm"`
+	Server      *string `pulumi:"server"`
+	SourceIp    *string `pulumi:"sourceIp"`
+	Status      *string `pulumi:"status"`
+	User        *string `pulumi:"user"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 }
 
 type VpnSslClientState struct {
-	// Certificate to offer to SSL-VPN server if it requests one.
 	Certificate pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Distance for routes added by SSL-VPN (1 - 255).
-	Distance pulumi.IntPtrInput
-	// SSL interface to send/receive traffic over.
-	Interface pulumi.StringPtrInput
-	// SSL-VPN tunnel name.
-	Name pulumi.StringPtrInput
-	// Authenticate peer's certificate with the peer/peergrp.
-	Peer pulumi.StringPtrInput
-	// SSL-VPN server port.
-	Port pulumi.IntPtrInput
-	// Priority for routes added by SSL-VPN (0 - 4294967295).
-	Priority pulumi.IntPtrInput
-	// Pre-shared secret to authenticate with the server (ASCII string or hexadecimal encoded with a leading 0x).
-	Psk pulumi.StringPtrInput
-	// Realm name configured on SSL-VPN server.
-	Realm pulumi.StringPtrInput
-	// IPv4, IPv6 or DNS address of the SSL-VPN server.
-	Server pulumi.StringPtrInput
-	// IPv4 or IPv6 address to use as a source for the SSL-VPN connection to the server.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable this SSL-VPN client configuration. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Username to offer to the peer to authenticate the client.
-	User pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ClassId     pulumi.IntPtrInput
+	Comment     pulumi.StringPtrInput
+	Distance    pulumi.IntPtrInput
+	Interface   pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Peer        pulumi.StringPtrInput
+	Port        pulumi.IntPtrInput
+	Priority    pulumi.IntPtrInput
+	Psk         pulumi.StringPtrInput
+	Realm       pulumi.StringPtrInput
+	Server      pulumi.StringPtrInput
+	SourceIp    pulumi.StringPtrInput
+	Status      pulumi.StringPtrInput
+	User        pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (VpnSslClientState) ElementType() reflect.Type {
@@ -162,70 +103,42 @@ func (VpnSslClientState) ElementType() reflect.Type {
 }
 
 type vpnSslClientArgs struct {
-	// Certificate to offer to SSL-VPN server if it requests one.
 	Certificate *string `pulumi:"certificate"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Distance for routes added by SSL-VPN (1 - 255).
-	Distance *int `pulumi:"distance"`
-	// SSL interface to send/receive traffic over.
-	Interface *string `pulumi:"interface"`
-	// SSL-VPN tunnel name.
-	Name *string `pulumi:"name"`
-	// Authenticate peer's certificate with the peer/peergrp.
-	Peer *string `pulumi:"peer"`
-	// SSL-VPN server port.
-	Port *int `pulumi:"port"`
-	// Priority for routes added by SSL-VPN (0 - 4294967295).
-	Priority *int `pulumi:"priority"`
-	// Pre-shared secret to authenticate with the server (ASCII string or hexadecimal encoded with a leading 0x).
-	Psk *string `pulumi:"psk"`
-	// Realm name configured on SSL-VPN server.
-	Realm *string `pulumi:"realm"`
-	// IPv4, IPv6 or DNS address of the SSL-VPN server.
-	Server *string `pulumi:"server"`
-	// IPv4 or IPv6 address to use as a source for the SSL-VPN connection to the server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable this SSL-VPN client configuration. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Username to offer to the peer to authenticate the client.
-	User *string `pulumi:"user"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ClassId     *int    `pulumi:"classId"`
+	Comment     *string `pulumi:"comment"`
+	Distance    *int    `pulumi:"distance"`
+	Interface   *string `pulumi:"interface"`
+	Name        *string `pulumi:"name"`
+	Peer        *string `pulumi:"peer"`
+	Port        *int    `pulumi:"port"`
+	Priority    *int    `pulumi:"priority"`
+	Psk         *string `pulumi:"psk"`
+	Realm       *string `pulumi:"realm"`
+	Server      *string `pulumi:"server"`
+	SourceIp    *string `pulumi:"sourceIp"`
+	Status      *string `pulumi:"status"`
+	User        *string `pulumi:"user"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VpnSslClient resource.
 type VpnSslClientArgs struct {
-	// Certificate to offer to SSL-VPN server if it requests one.
 	Certificate pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Distance for routes added by SSL-VPN (1 - 255).
-	Distance pulumi.IntPtrInput
-	// SSL interface to send/receive traffic over.
-	Interface pulumi.StringPtrInput
-	// SSL-VPN tunnel name.
-	Name pulumi.StringPtrInput
-	// Authenticate peer's certificate with the peer/peergrp.
-	Peer pulumi.StringPtrInput
-	// SSL-VPN server port.
-	Port pulumi.IntPtrInput
-	// Priority for routes added by SSL-VPN (0 - 4294967295).
-	Priority pulumi.IntPtrInput
-	// Pre-shared secret to authenticate with the server (ASCII string or hexadecimal encoded with a leading 0x).
-	Psk pulumi.StringPtrInput
-	// Realm name configured on SSL-VPN server.
-	Realm pulumi.StringPtrInput
-	// IPv4, IPv6 or DNS address of the SSL-VPN server.
-	Server pulumi.StringPtrInput
-	// IPv4 or IPv6 address to use as a source for the SSL-VPN connection to the server.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable this SSL-VPN client configuration. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Username to offer to the peer to authenticate the client.
-	User pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ClassId     pulumi.IntPtrInput
+	Comment     pulumi.StringPtrInput
+	Distance    pulumi.IntPtrInput
+	Interface   pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Peer        pulumi.StringPtrInput
+	Port        pulumi.IntPtrInput
+	Priority    pulumi.IntPtrInput
+	Psk         pulumi.StringPtrInput
+	Realm       pulumi.StringPtrInput
+	Server      pulumi.StringPtrInput
+	SourceIp    pulumi.StringPtrInput
+	Status      pulumi.StringPtrInput
+	User        pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (VpnSslClientArgs) ElementType() reflect.Type {
@@ -254,7 +167,7 @@ func (i *VpnSslClient) ToVpnSslClientOutputWithContext(ctx context.Context) VpnS
 // VpnSslClientArrayInput is an input type that accepts VpnSslClientArray and VpnSslClientArrayOutput values.
 // You can construct a concrete instance of `VpnSslClientArrayInput` via:
 //
-//          VpnSslClientArray{ VpnSslClientArgs{...} }
+//	VpnSslClientArray{ VpnSslClientArgs{...} }
 type VpnSslClientArrayInput interface {
 	pulumi.Input
 
@@ -279,7 +192,7 @@ func (i VpnSslClientArray) ToVpnSslClientArrayOutputWithContext(ctx context.Cont
 // VpnSslClientMapInput is an input type that accepts VpnSslClientMap and VpnSslClientMapOutput values.
 // You can construct a concrete instance of `VpnSslClientMapInput` via:
 //
-//          VpnSslClientMap{ "key": VpnSslClientArgs{...} }
+//	VpnSslClientMap{ "key": VpnSslClientArgs{...} }
 type VpnSslClientMapInput interface {
 	pulumi.Input
 
@@ -313,6 +226,70 @@ func (o VpnSslClientOutput) ToVpnSslClientOutput() VpnSslClientOutput {
 
 func (o VpnSslClientOutput) ToVpnSslClientOutputWithContext(ctx context.Context) VpnSslClientOutput {
 	return o
+}
+
+func (o VpnSslClientOutput) Certificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+func (o VpnSslClientOutput) ClassId() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.IntOutput { return v.ClassId }).(pulumi.IntOutput)
+}
+
+func (o VpnSslClientOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslClientOutput) Distance() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.IntOutput { return v.Distance }).(pulumi.IntOutput)
+}
+
+func (o VpnSslClientOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o VpnSslClientOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VpnSslClientOutput) Peer() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.StringOutput { return v.Peer }).(pulumi.StringOutput)
+}
+
+func (o VpnSslClientOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o VpnSslClientOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
+}
+
+func (o VpnSslClientOutput) Psk() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.StringPtrOutput { return v.Psk }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslClientOutput) Realm() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+func (o VpnSslClientOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o VpnSslClientOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o VpnSslClientOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o VpnSslClientOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.StringOutput { return v.User }).(pulumi.StringOutput)
+}
+
+func (o VpnSslClientOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type VpnSslClientArrayOutput struct{ *pulumi.OutputState }

@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.SystemDhcpServer`.
- */
 export function getSystemDhcpServerList(args?: GetSystemDhcpServerListArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemDhcpServerListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemDhcpServerList:GetSystemDhcpServerList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getSystemDhcpServerList(args?: GetSystemDhcpServerListArgs, opts
  */
 export interface GetSystemDhcpServerListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -36,9 +27,6 @@ export interface GetSystemDhcpServerListArgs {
  */
 export interface GetSystemDhcpServerListResult {
     readonly filter?: string;
-    /**
-     * A list of the `fortios.SystemDhcpServer`.
-     */
     readonly fosidlists: number[];
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -46,9 +34,8 @@ export interface GetSystemDhcpServerListResult {
     readonly id: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemDhcpServerListOutput(args?: GetSystemDhcpServerListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemDhcpServerListResult> {
-    return pulumi.output(args).apply(a => getSystemDhcpServerList(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemDhcpServerList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getSystemDhcpServerListOutput(args?: GetSystemDhcpServerListOutp
  */
 export interface GetSystemDhcpServerListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

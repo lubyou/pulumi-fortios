@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Settings for TACACS+ accounting events filter. Applies to FortiOS Version `>= 7.0.2`.
- *
- * ## Import
- *
- * LogTacacsAccounting2 Filter can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/logTacacsAccounting2Filter:LogTacacsAccounting2Filter labelname LogTacacsAccounting2Filter
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/logTacacsAccounting2Filter:LogTacacsAccounting2Filter labelname LogTacacsAccounting2Filter
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class LogTacacsAccounting2Filter extends pulumi.CustomResource {
     /**
      * Get an existing LogTacacsAccounting2Filter resource's state with the given name, ID, and optional extra
@@ -51,21 +32,9 @@ export class LogTacacsAccounting2Filter extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogTacacsAccounting2Filter.__pulumiType;
     }
 
-    /**
-     * Enable/disable TACACS+ accounting for CLI commands audit. Valid values: `enable`, `disable`.
-     */
     public readonly cliCmdAudit!: pulumi.Output<string>;
-    /**
-     * Enable/disable TACACS+ accounting for configuration change events audit. Valid values: `enable`, `disable`.
-     */
     public readonly configChangeAudit!: pulumi.Output<string>;
-    /**
-     * Enable/disable TACACS+ accounting for login events audit. Valid values: `enable`, `disable`.
-     */
     public readonly loginAudit!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -101,21 +70,9 @@ export class LogTacacsAccounting2Filter extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogTacacsAccounting2Filter resources.
  */
 export interface LogTacacsAccounting2FilterState {
-    /**
-     * Enable/disable TACACS+ accounting for CLI commands audit. Valid values: `enable`, `disable`.
-     */
     cliCmdAudit?: pulumi.Input<string>;
-    /**
-     * Enable/disable TACACS+ accounting for configuration change events audit. Valid values: `enable`, `disable`.
-     */
     configChangeAudit?: pulumi.Input<string>;
-    /**
-     * Enable/disable TACACS+ accounting for login events audit. Valid values: `enable`, `disable`.
-     */
     loginAudit?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -123,20 +80,8 @@ export interface LogTacacsAccounting2FilterState {
  * The set of arguments for constructing a LogTacacsAccounting2Filter resource.
  */
 export interface LogTacacsAccounting2FilterArgs {
-    /**
-     * Enable/disable TACACS+ accounting for CLI commands audit. Valid values: `enable`, `disable`.
-     */
     cliCmdAudit?: pulumi.Input<string>;
-    /**
-     * Enable/disable TACACS+ accounting for configuration change events audit. Valid values: `enable`, `disable`.
-     */
     configChangeAudit?: pulumi.Input<string>;
-    /**
-     * Enable/disable TACACS+ accounting for login events audit. Valid values: `enable`, `disable`.
-     */
     loginAudit?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

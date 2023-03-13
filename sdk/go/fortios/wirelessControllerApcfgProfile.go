@@ -10,46 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure AP local configuration profiles. Applies to FortiOS Version `>= 6.4.0`.
-//
-// ## Import
-//
-// WirelessController ApcfgProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerApcfgProfile:WirelessControllerApcfgProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerApcfgProfile:WirelessControllerApcfgProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerApcfgProfile struct {
 	pulumi.CustomResourceState
 
-	// IP address of the validation controller that AP must be able to join after applying AP local configuration.
-	AcIp pulumi.StringOutput `pulumi:"acIp"`
-	// Port of the validation controller that AP must be able to join after applying AP local configuration (1024 - 49150, default = 5246).
-	AcPort pulumi.IntOutput `pulumi:"acPort"`
-	// Maximum waiting time for the AP to join the validation controller after applying AP local configuration (3 - 30 min, default = 10).
-	AcTimer pulumi.IntOutput `pulumi:"acTimer"`
-	// Validation controller type (default = default). Valid values: `default`, `specify`, `apcfg`.
-	AcType pulumi.StringOutput `pulumi:"acType"`
-	// FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
-	ApFamily pulumi.StringOutput `pulumi:"apFamily"`
-	// AP local configuration command list. The structure of `commandList` block is documented below.
-	CommandLists WirelessControllerApcfgProfileCommandListArrayOutput `pulumi:"commandLists"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// AP local configuration command name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AcIp                pulumi.StringOutput                                  `pulumi:"acIp"`
+	AcPort              pulumi.IntOutput                                     `pulumi:"acPort"`
+	AcTimer             pulumi.IntOutput                                     `pulumi:"acTimer"`
+	AcType              pulumi.StringOutput                                  `pulumi:"acType"`
+	ApFamily            pulumi.StringOutput                                  `pulumi:"apFamily"`
+	CommandLists        WirelessControllerApcfgProfileCommandListArrayOutput `pulumi:"commandLists"`
+	Comment             pulumi.StringPtrOutput                               `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                               `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                                  `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                               `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerApcfgProfile registers a new resource with the given unique name, arguments, and options.
@@ -82,49 +55,29 @@ func GetWirelessControllerApcfgProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerApcfgProfile resources.
 type wirelessControllerApcfgProfileState struct {
-	// IP address of the validation controller that AP must be able to join after applying AP local configuration.
-	AcIp *string `pulumi:"acIp"`
-	// Port of the validation controller that AP must be able to join after applying AP local configuration (1024 - 49150, default = 5246).
-	AcPort *int `pulumi:"acPort"`
-	// Maximum waiting time for the AP to join the validation controller after applying AP local configuration (3 - 30 min, default = 10).
-	AcTimer *int `pulumi:"acTimer"`
-	// Validation controller type (default = default). Valid values: `default`, `specify`, `apcfg`.
-	AcType *string `pulumi:"acType"`
-	// FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
-	ApFamily *string `pulumi:"apFamily"`
-	// AP local configuration command list. The structure of `commandList` block is documented below.
-	CommandLists []WirelessControllerApcfgProfileCommandList `pulumi:"commandLists"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// AP local configuration command name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AcIp                *string                                     `pulumi:"acIp"`
+	AcPort              *int                                        `pulumi:"acPort"`
+	AcTimer             *int                                        `pulumi:"acTimer"`
+	AcType              *string                                     `pulumi:"acType"`
+	ApFamily            *string                                     `pulumi:"apFamily"`
+	CommandLists        []WirelessControllerApcfgProfileCommandList `pulumi:"commandLists"`
+	Comment             *string                                     `pulumi:"comment"`
+	DynamicSortSubtable *string                                     `pulumi:"dynamicSortSubtable"`
+	Name                *string                                     `pulumi:"name"`
+	Vdomparam           *string                                     `pulumi:"vdomparam"`
 }
 
 type WirelessControllerApcfgProfileState struct {
-	// IP address of the validation controller that AP must be able to join after applying AP local configuration.
-	AcIp pulumi.StringPtrInput
-	// Port of the validation controller that AP must be able to join after applying AP local configuration (1024 - 49150, default = 5246).
-	AcPort pulumi.IntPtrInput
-	// Maximum waiting time for the AP to join the validation controller after applying AP local configuration (3 - 30 min, default = 10).
-	AcTimer pulumi.IntPtrInput
-	// Validation controller type (default = default). Valid values: `default`, `specify`, `apcfg`.
-	AcType pulumi.StringPtrInput
-	// FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
-	ApFamily pulumi.StringPtrInput
-	// AP local configuration command list. The structure of `commandList` block is documented below.
-	CommandLists WirelessControllerApcfgProfileCommandListArrayInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AcIp                pulumi.StringPtrInput
+	AcPort              pulumi.IntPtrInput
+	AcTimer             pulumi.IntPtrInput
+	AcType              pulumi.StringPtrInput
+	ApFamily            pulumi.StringPtrInput
+	CommandLists        WirelessControllerApcfgProfileCommandListArrayInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// AP local configuration command name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerApcfgProfileState) ElementType() reflect.Type {
@@ -132,50 +85,30 @@ func (WirelessControllerApcfgProfileState) ElementType() reflect.Type {
 }
 
 type wirelessControllerApcfgProfileArgs struct {
-	// IP address of the validation controller that AP must be able to join after applying AP local configuration.
-	AcIp *string `pulumi:"acIp"`
-	// Port of the validation controller that AP must be able to join after applying AP local configuration (1024 - 49150, default = 5246).
-	AcPort *int `pulumi:"acPort"`
-	// Maximum waiting time for the AP to join the validation controller after applying AP local configuration (3 - 30 min, default = 10).
-	AcTimer *int `pulumi:"acTimer"`
-	// Validation controller type (default = default). Valid values: `default`, `specify`, `apcfg`.
-	AcType *string `pulumi:"acType"`
-	// FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
-	ApFamily *string `pulumi:"apFamily"`
-	// AP local configuration command list. The structure of `commandList` block is documented below.
-	CommandLists []WirelessControllerApcfgProfileCommandList `pulumi:"commandLists"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// AP local configuration command name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AcIp                *string                                     `pulumi:"acIp"`
+	AcPort              *int                                        `pulumi:"acPort"`
+	AcTimer             *int                                        `pulumi:"acTimer"`
+	AcType              *string                                     `pulumi:"acType"`
+	ApFamily            *string                                     `pulumi:"apFamily"`
+	CommandLists        []WirelessControllerApcfgProfileCommandList `pulumi:"commandLists"`
+	Comment             *string                                     `pulumi:"comment"`
+	DynamicSortSubtable *string                                     `pulumi:"dynamicSortSubtable"`
+	Name                *string                                     `pulumi:"name"`
+	Vdomparam           *string                                     `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerApcfgProfile resource.
 type WirelessControllerApcfgProfileArgs struct {
-	// IP address of the validation controller that AP must be able to join after applying AP local configuration.
-	AcIp pulumi.StringPtrInput
-	// Port of the validation controller that AP must be able to join after applying AP local configuration (1024 - 49150, default = 5246).
-	AcPort pulumi.IntPtrInput
-	// Maximum waiting time for the AP to join the validation controller after applying AP local configuration (3 - 30 min, default = 10).
-	AcTimer pulumi.IntPtrInput
-	// Validation controller type (default = default). Valid values: `default`, `specify`, `apcfg`.
-	AcType pulumi.StringPtrInput
-	// FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
-	ApFamily pulumi.StringPtrInput
-	// AP local configuration command list. The structure of `commandList` block is documented below.
-	CommandLists WirelessControllerApcfgProfileCommandListArrayInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AcIp                pulumi.StringPtrInput
+	AcPort              pulumi.IntPtrInput
+	AcTimer             pulumi.IntPtrInput
+	AcType              pulumi.StringPtrInput
+	ApFamily            pulumi.StringPtrInput
+	CommandLists        WirelessControllerApcfgProfileCommandListArrayInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// AP local configuration command name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerApcfgProfileArgs) ElementType() reflect.Type {
@@ -204,7 +137,7 @@ func (i *WirelessControllerApcfgProfile) ToWirelessControllerApcfgProfileOutputW
 // WirelessControllerApcfgProfileArrayInput is an input type that accepts WirelessControllerApcfgProfileArray and WirelessControllerApcfgProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerApcfgProfileArrayInput` via:
 //
-//          WirelessControllerApcfgProfileArray{ WirelessControllerApcfgProfileArgs{...} }
+//	WirelessControllerApcfgProfileArray{ WirelessControllerApcfgProfileArgs{...} }
 type WirelessControllerApcfgProfileArrayInput interface {
 	pulumi.Input
 
@@ -229,7 +162,7 @@ func (i WirelessControllerApcfgProfileArray) ToWirelessControllerApcfgProfileArr
 // WirelessControllerApcfgProfileMapInput is an input type that accepts WirelessControllerApcfgProfileMap and WirelessControllerApcfgProfileMapOutput values.
 // You can construct a concrete instance of `WirelessControllerApcfgProfileMapInput` via:
 //
-//          WirelessControllerApcfgProfileMap{ "key": WirelessControllerApcfgProfileArgs{...} }
+//	WirelessControllerApcfgProfileMap{ "key": WirelessControllerApcfgProfileArgs{...} }
 type WirelessControllerApcfgProfileMapInput interface {
 	pulumi.Input
 
@@ -263,6 +196,48 @@ func (o WirelessControllerApcfgProfileOutput) ToWirelessControllerApcfgProfileOu
 
 func (o WirelessControllerApcfgProfileOutput) ToWirelessControllerApcfgProfileOutputWithContext(ctx context.Context) WirelessControllerApcfgProfileOutput {
 	return o
+}
+
+func (o WirelessControllerApcfgProfileOutput) AcIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerApcfgProfile) pulumi.StringOutput { return v.AcIp }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerApcfgProfileOutput) AcPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerApcfgProfile) pulumi.IntOutput { return v.AcPort }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerApcfgProfileOutput) AcTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerApcfgProfile) pulumi.IntOutput { return v.AcTimer }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerApcfgProfileOutput) AcType() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerApcfgProfile) pulumi.StringOutput { return v.AcType }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerApcfgProfileOutput) ApFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerApcfgProfile) pulumi.StringOutput { return v.ApFamily }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerApcfgProfileOutput) CommandLists() WirelessControllerApcfgProfileCommandListArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerApcfgProfile) WirelessControllerApcfgProfileCommandListArrayOutput {
+		return v.CommandLists
+	}).(WirelessControllerApcfgProfileCommandListArrayOutput)
+}
+
+func (o WirelessControllerApcfgProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerApcfgProfile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerApcfgProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerApcfgProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerApcfgProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerApcfgProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerApcfgProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerApcfgProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerApcfgProfileArrayOutput struct{ *pulumi.OutputState }

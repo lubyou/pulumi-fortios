@@ -7,51 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports Create/Read/Update/Delete devicemanager script for FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"fmt"
-//
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerDVMScript(ctx, "test1", &fortios.FortimanagerDVMScriptArgs{
-// 			Content: pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v", "config system interface \n", " edit port3 \n", "	 set vdom \"root\"\n", "	 set ip 10.7.0.200 255.255.0.0 \n", "	 set allowaccess ping http https\n", "	 next \n", " end\n")),
-// 			Description: pulumi.String("description"),
-// 			Target:      pulumi.String("remote_device"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerDVMScript struct {
 	pulumi.CustomResourceState
 
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrOutput `pulumi:"adom"`
-	// Script content, only cli script is supported now
-	Content pulumi.StringOutput `pulumi:"content"`
-	// Description.
+	Adom        pulumi.StringPtrOutput `pulumi:"adom"`
+	Content     pulumi.StringOutput    `pulumi:"content"`
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Script name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Script target, Enum: ["deviceDatabase", "remoteDevice", "adomDatabase"]
-	Target pulumi.StringPtrOutput `pulumi:"target"`
+	Name        pulumi.StringOutput    `pulumi:"name"`
+	Target      pulumi.StringPtrOutput `pulumi:"target"`
 }
 
 // NewFortimanagerDVMScript registers a new resource with the given unique name, arguments, and options.
@@ -87,29 +54,19 @@ func GetFortimanagerDVMScript(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerDVMScript resources.
 type fortimanagerDVMScriptState struct {
-	// ADOM name. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// Script content, only cli script is supported now
-	Content *string `pulumi:"content"`
-	// Description.
+	Adom        *string `pulumi:"adom"`
+	Content     *string `pulumi:"content"`
 	Description *string `pulumi:"description"`
-	// Script name.
-	Name *string `pulumi:"name"`
-	// Script target, Enum: ["deviceDatabase", "remoteDevice", "adomDatabase"]
-	Target *string `pulumi:"target"`
+	Name        *string `pulumi:"name"`
+	Target      *string `pulumi:"target"`
 }
 
 type FortimanagerDVMScriptState struct {
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// Script content, only cli script is supported now
-	Content pulumi.StringPtrInput
-	// Description.
+	Adom        pulumi.StringPtrInput
+	Content     pulumi.StringPtrInput
 	Description pulumi.StringPtrInput
-	// Script name.
-	Name pulumi.StringPtrInput
-	// Script target, Enum: ["deviceDatabase", "remoteDevice", "adomDatabase"]
-	Target pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Target      pulumi.StringPtrInput
 }
 
 func (FortimanagerDVMScriptState) ElementType() reflect.Type {
@@ -117,30 +74,20 @@ func (FortimanagerDVMScriptState) ElementType() reflect.Type {
 }
 
 type fortimanagerDVMScriptArgs struct {
-	// ADOM name. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// Script content, only cli script is supported now
-	Content string `pulumi:"content"`
-	// Description.
+	Adom        *string `pulumi:"adom"`
+	Content     string  `pulumi:"content"`
 	Description *string `pulumi:"description"`
-	// Script name.
-	Name *string `pulumi:"name"`
-	// Script target, Enum: ["deviceDatabase", "remoteDevice", "adomDatabase"]
-	Target *string `pulumi:"target"`
+	Name        *string `pulumi:"name"`
+	Target      *string `pulumi:"target"`
 }
 
 // The set of arguments for constructing a FortimanagerDVMScript resource.
 type FortimanagerDVMScriptArgs struct {
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// Script content, only cli script is supported now
-	Content pulumi.StringInput
-	// Description.
+	Adom        pulumi.StringPtrInput
+	Content     pulumi.StringInput
 	Description pulumi.StringPtrInput
-	// Script name.
-	Name pulumi.StringPtrInput
-	// Script target, Enum: ["deviceDatabase", "remoteDevice", "adomDatabase"]
-	Target pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Target      pulumi.StringPtrInput
 }
 
 func (FortimanagerDVMScriptArgs) ElementType() reflect.Type {
@@ -169,7 +116,7 @@ func (i *FortimanagerDVMScript) ToFortimanagerDVMScriptOutputWithContext(ctx con
 // FortimanagerDVMScriptArrayInput is an input type that accepts FortimanagerDVMScriptArray and FortimanagerDVMScriptArrayOutput values.
 // You can construct a concrete instance of `FortimanagerDVMScriptArrayInput` via:
 //
-//          FortimanagerDVMScriptArray{ FortimanagerDVMScriptArgs{...} }
+//	FortimanagerDVMScriptArray{ FortimanagerDVMScriptArgs{...} }
 type FortimanagerDVMScriptArrayInput interface {
 	pulumi.Input
 
@@ -194,7 +141,7 @@ func (i FortimanagerDVMScriptArray) ToFortimanagerDVMScriptArrayOutputWithContex
 // FortimanagerDVMScriptMapInput is an input type that accepts FortimanagerDVMScriptMap and FortimanagerDVMScriptMapOutput values.
 // You can construct a concrete instance of `FortimanagerDVMScriptMapInput` via:
 //
-//          FortimanagerDVMScriptMap{ "key": FortimanagerDVMScriptArgs{...} }
+//	FortimanagerDVMScriptMap{ "key": FortimanagerDVMScriptArgs{...} }
 type FortimanagerDVMScriptMapInput interface {
 	pulumi.Input
 
@@ -228,6 +175,26 @@ func (o FortimanagerDVMScriptOutput) ToFortimanagerDVMScriptOutput() Fortimanage
 
 func (o FortimanagerDVMScriptOutput) ToFortimanagerDVMScriptOutputWithContext(ctx context.Context) FortimanagerDVMScriptOutput {
 	return o
+}
+
+func (o FortimanagerDVMScriptOutput) Adom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerDVMScript) pulumi.StringPtrOutput { return v.Adom }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerDVMScriptOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerDVMScript) pulumi.StringOutput { return v.Content }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerDVMScriptOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerDVMScript) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerDVMScriptOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerDVMScript) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerDVMScriptOutput) Target() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerDVMScript) pulumi.StringPtrOutput { return v.Target }).(pulumi.StringPtrOutput)
 }
 
 type FortimanagerDVMScriptArrayOutput struct{ *pulumi.OutputState }

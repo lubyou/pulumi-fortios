@@ -4,35 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure access profiles of FortiOS.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.SystemAccprofile`, we recommend that you use the new resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.SystemAdminProfiles("test1", {
- *     admintimeoutOverride: "disable",
- *     authgrp: "none",
- *     comments: "test",
- *     ftviewgrp: "read",
- *     fwgrp: "none",
- *     loggrp: "none",
- *     netgrp: "none",
- *     scope: "vdom",
- *     secfabgrp: "read-write",
- *     sysgrp: "read",
- *     utmgrp: "none",
- *     vpngrp: "none",
- *     wanoptgrp: "none",
- *     wifi: "none",
- * });
- * ```
- */
 export class SystemAdminProfiles extends pulumi.CustomResource {
     /**
      * Get an existing SystemAdminProfiles resource's state with the given name, ID, and optional extra
@@ -61,65 +32,20 @@ export class SystemAdminProfiles extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAdminProfiles.__pulumiType;
     }
 
-    /**
-     * Enable/disable overriding the global administrator idle timeout.
-     */
     public readonly admintimeoutOverride!: pulumi.Output<string>;
-    /**
-     * Administrator access to Users and Devices.
-     */
     public readonly authgrp!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * FortiView.
-     */
     public readonly ftviewgrp!: pulumi.Output<string>;
-    /**
-     * Administrator access to the Firewall configuration.
-     */
     public readonly fwgrp!: pulumi.Output<string>;
-    /**
-     * Administrator access to Logging and Reporting including viewing log messages.
-     */
     public readonly loggrp!: pulumi.Output<string>;
-    /**
-     * Profile name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Network Configuration.
-     */
     public readonly netgrp!: pulumi.Output<string>;
-    /**
-     * Scope of admin access.
-     */
     public readonly scope!: pulumi.Output<string>;
-    /**
-     * Security Fabric.
-     */
     public readonly secfabgrp!: pulumi.Output<string>;
-    /**
-     * System Configuration.
-     */
     public readonly sysgrp!: pulumi.Output<string>;
-    /**
-     * Administrator access to Security Profiles.
-     */
     public readonly utmgrp!: pulumi.Output<string>;
-    /**
-     * Administrator access to IPsec, SSL, PPTP, and L2TP VPN.
-     */
     public readonly vpngrp!: pulumi.Output<string>;
-    /**
-     * Administrator access to WAN Opt & Cache.
-     */
     public readonly wanoptgrp!: pulumi.Output<string>;
-    /**
-     * Administrator access to the WiFi controller and Switch controller.
-     */
     public readonly wifi!: pulumi.Output<string>;
 
     /**
@@ -177,65 +103,20 @@ export class SystemAdminProfiles extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAdminProfiles resources.
  */
 export interface SystemAdminProfilesState {
-    /**
-     * Enable/disable overriding the global administrator idle timeout.
-     */
     admintimeoutOverride?: pulumi.Input<string>;
-    /**
-     * Administrator access to Users and Devices.
-     */
     authgrp?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * FortiView.
-     */
     ftviewgrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to the Firewall configuration.
-     */
     fwgrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to Logging and Reporting including viewing log messages.
-     */
     loggrp?: pulumi.Input<string>;
-    /**
-     * Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Network Configuration.
-     */
     netgrp?: pulumi.Input<string>;
-    /**
-     * Scope of admin access.
-     */
     scope?: pulumi.Input<string>;
-    /**
-     * Security Fabric.
-     */
     secfabgrp?: pulumi.Input<string>;
-    /**
-     * System Configuration.
-     */
     sysgrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to Security Profiles.
-     */
     utmgrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to IPsec, SSL, PPTP, and L2TP VPN.
-     */
     vpngrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to WAN Opt & Cache.
-     */
     wanoptgrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to the WiFi controller and Switch controller.
-     */
     wifi?: pulumi.Input<string>;
 }
 
@@ -243,64 +124,19 @@ export interface SystemAdminProfilesState {
  * The set of arguments for constructing a SystemAdminProfiles resource.
  */
 export interface SystemAdminProfilesArgs {
-    /**
-     * Enable/disable overriding the global administrator idle timeout.
-     */
     admintimeoutOverride?: pulumi.Input<string>;
-    /**
-     * Administrator access to Users and Devices.
-     */
     authgrp?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * FortiView.
-     */
     ftviewgrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to the Firewall configuration.
-     */
     fwgrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to Logging and Reporting including viewing log messages.
-     */
     loggrp?: pulumi.Input<string>;
-    /**
-     * Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Network Configuration.
-     */
     netgrp?: pulumi.Input<string>;
-    /**
-     * Scope of admin access.
-     */
     scope?: pulumi.Input<string>;
-    /**
-     * Security Fabric.
-     */
     secfabgrp?: pulumi.Input<string>;
-    /**
-     * System Configuration.
-     */
     sysgrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to Security Profiles.
-     */
     utmgrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to IPsec, SSL, PPTP, and L2TP VPN.
-     */
     vpngrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to WAN Opt & Cache.
-     */
     wanoptgrp?: pulumi.Input<string>;
-    /**
-     * Administrator access to the WiFi controller and Switch controller.
-     */
     wifi?: pulumi.Input<string>;
 }

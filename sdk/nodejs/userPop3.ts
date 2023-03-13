@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * POP3 server entry configuration.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.UserPop3("trname", {
- *     port: 0,
- *     secure: "pop3s",
- *     server: "1.1.1.1",
- *     sslMinProtoVersion: "default",
- * });
- * ```
- *
- * ## Import
- *
- * User Pop3 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userPop3:UserPop3 labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userPop3:UserPop3 labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserPop3 extends pulumi.CustomResource {
     /**
      * Get an existing UserPop3 resource's state with the given name, ID, and optional extra
@@ -65,29 +32,11 @@ export class UserPop3 extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserPop3.__pulumiType;
     }
 
-    /**
-     * POP3 server entry name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * POP3 service port number.
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * SSL connection. Valid values: `none`, `starttls`, `pop3s`.
-     */
     public readonly secure!: pulumi.Output<string>;
-    /**
-     * {<name_str|ip_str>} server domain name or IP.
-     */
     public readonly server!: pulumi.Output<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     public readonly sslMinProtoVersion!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -130,29 +79,11 @@ export class UserPop3 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserPop3 resources.
  */
 export interface UserPop3State {
-    /**
-     * POP3 server entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * POP3 service port number.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * SSL connection. Valid values: `none`, `starttls`, `pop3s`.
-     */
     secure?: pulumi.Input<string>;
-    /**
-     * {<name_str|ip_str>} server domain name or IP.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     sslMinProtoVersion?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -160,28 +91,10 @@ export interface UserPop3State {
  * The set of arguments for constructing a UserPop3 resource.
  */
 export interface UserPop3Args {
-    /**
-     * POP3 server entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * POP3 service port number.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * SSL connection. Valid values: `none`, `starttls`, `pop3s`.
-     */
     secure?: pulumi.Input<string>;
-    /**
-     * {<name_str|ip_str>} server domain name or IP.
-     */
     server: pulumi.Input<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     sslMinProtoVersion?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,31 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Internet Service owner. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// Firewall InternetServiceOwner can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceOwner:FirewallInternetServiceOwner labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceOwner:FirewallInternetServiceOwner labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallInternetServiceOwner struct {
 	pulumi.CustomResourceState
 
-	// Internet Service owner ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Internet Service owner name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -68,20 +48,14 @@ func GetFirewallInternetServiceOwner(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallInternetServiceOwner resources.
 type firewallInternetServiceOwnerState struct {
-	// Internet Service owner ID.
-	Fosid *int `pulumi:"fosid"`
-	// Internet Service owner name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type FirewallInternetServiceOwnerState struct {
-	// Internet Service owner ID.
-	Fosid pulumi.IntPtrInput
-	// Internet Service owner name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -90,21 +64,15 @@ func (FirewallInternetServiceOwnerState) ElementType() reflect.Type {
 }
 
 type firewallInternetServiceOwnerArgs struct {
-	// Internet Service owner ID.
-	Fosid *int `pulumi:"fosid"`
-	// Internet Service owner name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallInternetServiceOwner resource.
 type FirewallInternetServiceOwnerArgs struct {
-	// Internet Service owner ID.
-	Fosid pulumi.IntPtrInput
-	// Internet Service owner name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -134,7 +102,7 @@ func (i *FirewallInternetServiceOwner) ToFirewallInternetServiceOwnerOutputWithC
 // FirewallInternetServiceOwnerArrayInput is an input type that accepts FirewallInternetServiceOwnerArray and FirewallInternetServiceOwnerArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceOwnerArrayInput` via:
 //
-//          FirewallInternetServiceOwnerArray{ FirewallInternetServiceOwnerArgs{...} }
+//	FirewallInternetServiceOwnerArray{ FirewallInternetServiceOwnerArgs{...} }
 type FirewallInternetServiceOwnerArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i FirewallInternetServiceOwnerArray) ToFirewallInternetServiceOwnerArrayOu
 // FirewallInternetServiceOwnerMapInput is an input type that accepts FirewallInternetServiceOwnerMap and FirewallInternetServiceOwnerMapOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceOwnerMapInput` via:
 //
-//          FirewallInternetServiceOwnerMap{ "key": FirewallInternetServiceOwnerArgs{...} }
+//	FirewallInternetServiceOwnerMap{ "key": FirewallInternetServiceOwnerArgs{...} }
 type FirewallInternetServiceOwnerMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o FirewallInternetServiceOwnerOutput) ToFirewallInternetServiceOwnerOutput
 
 func (o FirewallInternetServiceOwnerOutput) ToFirewallInternetServiceOwnerOutputWithContext(ctx context.Context) FirewallInternetServiceOwnerOutput {
 	return o
+}
+
+func (o FirewallInternetServiceOwnerOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceOwner) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceOwnerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceOwner) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallInternetServiceOwnerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceOwner) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallInternetServiceOwnerArrayOutput struct{ *pulumi.OutputState }

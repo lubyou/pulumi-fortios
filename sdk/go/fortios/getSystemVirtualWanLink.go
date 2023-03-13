@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios system virtualwanlink
 func LookupSystemVirtualWanLink(ctx *pulumi.Context, args *LookupSystemVirtualWanLinkArgs, opts ...pulumi.InvokeOption) (*LookupSystemVirtualWanLinkResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemVirtualWanLinkResult
@@ -23,39 +22,26 @@ func LookupSystemVirtualWanLink(ctx *pulumi.Context, args *LookupSystemVirtualWa
 
 // A collection of arguments for invoking GetSystemVirtualWanLink.
 type LookupSystemVirtualWanLinkArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemVirtualWanLink.
 type LookupSystemVirtualWanLinkResult struct {
-	// Physical interfaces that will be alerted. The structure of `failAlertInterfaces` block is documented below.
 	FailAlertInterfaces []GetSystemVirtualWanLinkFailAlertInterface `pulumi:"failAlertInterfaces"`
-	// Enable/disable SD-WAN Internet connection status checking (failure detection).
-	FailDetect string `pulumi:"failDetect"`
-	// Virtual WAN Link health-check.
-	HealthChecks []GetSystemVirtualWanLinkHealthCheck `pulumi:"healthChecks"`
+	FailDetect          string                                      `pulumi:"failDetect"`
+	HealthChecks        []GetSystemVirtualWanLinkHealthCheck        `pulumi:"healthChecks"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members.
-	LoadBalanceMode string `pulumi:"loadBalanceMode"`
-	// Member sequence number list. The structure of `members` block is documented below.
-	Members []GetSystemVirtualWanLinkMember `pulumi:"members"`
-	// Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).
-	NeighborHoldBootTime int `pulumi:"neighborHoldBootTime"`
-	// Enable/disable hold switching from the secondary neighbor to the primary neighbor.
-	NeighborHoldDown string `pulumi:"neighborHoldDown"`
-	// Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
-	NeighborHoldDownTime int `pulumi:"neighborHoldDownTime"`
-	// Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
-	Neighbors []GetSystemVirtualWanLinkNeighbor `pulumi:"neighbors"`
-	// Create SD-WAN rules or priority rules (also called services) to control how sessions are distributed to physical interfaces in the SD-WAN. The structure of `service` block is documented below.
-	Services []GetSystemVirtualWanLinkService `pulumi:"services"`
-	// Enable/disable SD-WAN service.
-	Status    string  `pulumi:"status"`
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Configure SD-WAN zones. The structure of `zone` block is documented below.
-	Zones []GetSystemVirtualWanLinkZone `pulumi:"zones"`
+	Id                   string                            `pulumi:"id"`
+	LoadBalanceMode      string                            `pulumi:"loadBalanceMode"`
+	Members              []GetSystemVirtualWanLinkMember   `pulumi:"members"`
+	NeighborHoldBootTime int                               `pulumi:"neighborHoldBootTime"`
+	NeighborHoldDown     string                            `pulumi:"neighborHoldDown"`
+	NeighborHoldDownTime int                               `pulumi:"neighborHoldDownTime"`
+	Neighbors            []GetSystemVirtualWanLinkNeighbor `pulumi:"neighbors"`
+	Services             []GetSystemVirtualWanLinkService  `pulumi:"services"`
+	Status               string                            `pulumi:"status"`
+	Vdomparam            *string                           `pulumi:"vdomparam"`
+	Zones                []GetSystemVirtualWanLinkZone     `pulumi:"zones"`
 }
 
 func LookupSystemVirtualWanLinkOutput(ctx *pulumi.Context, args LookupSystemVirtualWanLinkOutputArgs, opts ...pulumi.InvokeOption) LookupSystemVirtualWanLinkResultOutput {
@@ -73,7 +59,6 @@ func LookupSystemVirtualWanLinkOutput(ctx *pulumi.Context, args LookupSystemVirt
 
 // A collection of arguments for invoking GetSystemVirtualWanLink.
 type LookupSystemVirtualWanLinkOutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -96,19 +81,16 @@ func (o LookupSystemVirtualWanLinkResultOutput) ToLookupSystemVirtualWanLinkResu
 	return o
 }
 
-// Physical interfaces that will be alerted. The structure of `failAlertInterfaces` block is documented below.
 func (o LookupSystemVirtualWanLinkResultOutput) FailAlertInterfaces() GetSystemVirtualWanLinkFailAlertInterfaceArrayOutput {
 	return o.ApplyT(func(v LookupSystemVirtualWanLinkResult) []GetSystemVirtualWanLinkFailAlertInterface {
 		return v.FailAlertInterfaces
 	}).(GetSystemVirtualWanLinkFailAlertInterfaceArrayOutput)
 }
 
-// Enable/disable SD-WAN Internet connection status checking (failure detection).
 func (o LookupSystemVirtualWanLinkResultOutput) FailDetect() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemVirtualWanLinkResult) string { return v.FailDetect }).(pulumi.StringOutput)
 }
 
-// Virtual WAN Link health-check.
 func (o LookupSystemVirtualWanLinkResultOutput) HealthChecks() GetSystemVirtualWanLinkHealthCheckArrayOutput {
 	return o.ApplyT(func(v LookupSystemVirtualWanLinkResult) []GetSystemVirtualWanLinkHealthCheck { return v.HealthChecks }).(GetSystemVirtualWanLinkHealthCheckArrayOutput)
 }
@@ -118,42 +100,34 @@ func (o LookupSystemVirtualWanLinkResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemVirtualWanLinkResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members.
 func (o LookupSystemVirtualWanLinkResultOutput) LoadBalanceMode() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemVirtualWanLinkResult) string { return v.LoadBalanceMode }).(pulumi.StringOutput)
 }
 
-// Member sequence number list. The structure of `members` block is documented below.
 func (o LookupSystemVirtualWanLinkResultOutput) Members() GetSystemVirtualWanLinkMemberArrayOutput {
 	return o.ApplyT(func(v LookupSystemVirtualWanLinkResult) []GetSystemVirtualWanLinkMember { return v.Members }).(GetSystemVirtualWanLinkMemberArrayOutput)
 }
 
-// Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).
 func (o LookupSystemVirtualWanLinkResultOutput) NeighborHoldBootTime() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemVirtualWanLinkResult) int { return v.NeighborHoldBootTime }).(pulumi.IntOutput)
 }
 
-// Enable/disable hold switching from the secondary neighbor to the primary neighbor.
 func (o LookupSystemVirtualWanLinkResultOutput) NeighborHoldDown() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemVirtualWanLinkResult) string { return v.NeighborHoldDown }).(pulumi.StringOutput)
 }
 
-// Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
 func (o LookupSystemVirtualWanLinkResultOutput) NeighborHoldDownTime() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemVirtualWanLinkResult) int { return v.NeighborHoldDownTime }).(pulumi.IntOutput)
 }
 
-// Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
 func (o LookupSystemVirtualWanLinkResultOutput) Neighbors() GetSystemVirtualWanLinkNeighborArrayOutput {
 	return o.ApplyT(func(v LookupSystemVirtualWanLinkResult) []GetSystemVirtualWanLinkNeighbor { return v.Neighbors }).(GetSystemVirtualWanLinkNeighborArrayOutput)
 }
 
-// Create SD-WAN rules or priority rules (also called services) to control how sessions are distributed to physical interfaces in the SD-WAN. The structure of `service` block is documented below.
 func (o LookupSystemVirtualWanLinkResultOutput) Services() GetSystemVirtualWanLinkServiceArrayOutput {
 	return o.ApplyT(func(v LookupSystemVirtualWanLinkResult) []GetSystemVirtualWanLinkService { return v.Services }).(GetSystemVirtualWanLinkServiceArrayOutput)
 }
 
-// Enable/disable SD-WAN service.
 func (o LookupSystemVirtualWanLinkResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemVirtualWanLinkResult) string { return v.Status }).(pulumi.StringOutput)
 }
@@ -162,7 +136,6 @@ func (o LookupSystemVirtualWanLinkResultOutput) Vdomparam() pulumi.StringPtrOutp
 	return o.ApplyT(func(v LookupSystemVirtualWanLinkResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-// Configure SD-WAN zones. The structure of `zone` block is documented below.
 func (o LookupSystemVirtualWanLinkResultOutput) Zones() GetSystemVirtualWanLinkZoneArrayOutput {
 	return o.ApplyT(func(v LookupSystemVirtualWanLinkResult) []GetSystemVirtualWanLinkZone { return v.Zones }).(GetSystemVirtualWanLinkZoneArrayOutput)
 }

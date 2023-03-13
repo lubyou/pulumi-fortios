@@ -4,32 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports updating system network interface for FortiManager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerSystemNetworkInterface("test1", {
- *     allowAccesses: [
- *         "ping",
- *         "ssh",
- *         "https",
- *         "http",
- *     ],
- *     description: "",
- *     ip: "1.1.1.3 255.255.255.0",
- *     serviceAccesses: [
- *         "webfilter",
- *         "fgtupdates",
- *     ],
- *     status: "up",
- * });
- * ```
- */
 export class FortimanagerSystemNetworkInterface extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerSystemNetworkInterface resource's state with the given name, ID, and optional extra
@@ -58,26 +32,11 @@ export class FortimanagerSystemNetworkInterface extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerSystemNetworkInterface.__pulumiType;
     }
 
-    /**
-     * Allow managerment access to interface, Enum: ["ping", "https", "ssh", "snmp", "telnet", "http", "web"]
-     */
     public readonly allowAccesses!: pulumi.Output<string[] | undefined>;
-    /**
-     * Description.
-     */
     public readonly description!: pulumi.Output<string | undefined>;
-    /**
-     * Interface Ipaddress.
-     */
     public readonly ip!: pulumi.Output<string | undefined>;
-    /**
-     * Interface port.
-     */
     public readonly name!: pulumi.Output<string>;
     public readonly serviceAccesses!: pulumi.Output<string[] | undefined>;
-    /**
-     * Interface status, Enum: ["down", "up"]
-     */
     public readonly status!: pulumi.Output<string | undefined>;
 
     /**
@@ -117,26 +76,11 @@ export class FortimanagerSystemNetworkInterface extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerSystemNetworkInterface resources.
  */
 export interface FortimanagerSystemNetworkInterfaceState {
-    /**
-     * Allow managerment access to interface, Enum: ["ping", "https", "ssh", "snmp", "telnet", "http", "web"]
-     */
     allowAccesses?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Interface Ipaddress.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Interface port.
-     */
     name?: pulumi.Input<string>;
     serviceAccesses?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Interface status, Enum: ["down", "up"]
-     */
     status?: pulumi.Input<string>;
 }
 
@@ -144,25 +88,10 @@ export interface FortimanagerSystemNetworkInterfaceState {
  * The set of arguments for constructing a FortimanagerSystemNetworkInterface resource.
  */
 export interface FortimanagerSystemNetworkInterfaceArgs {
-    /**
-     * Allow managerment access to interface, Enum: ["ping", "https", "ssh", "snmp", "telnet", "http", "web"]
-     */
     allowAccesses?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Interface Ipaddress.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Interface port.
-     */
     name?: pulumi.Input<string>;
     serviceAccesses?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Interface status, Enum: ["down", "up"]
-     */
     status?: pulumi.Input<string>;
 }

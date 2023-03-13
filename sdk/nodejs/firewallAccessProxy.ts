@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv4 access proxy. Applies to FortiOS Version `>= 7.0.1`.
- *
- * ## Import
- *
- * Firewall AccessProxy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAccessProxy:FirewallAccessProxy labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAccessProxy:FirewallAccessProxy labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallAccessProxy extends pulumi.CustomResource {
     /**
      * Get an existing FirewallAccessProxy resource's state with the given name, ID, and optional extra
@@ -52,53 +34,19 @@ export class FirewallAccessProxy extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallAccessProxy.__pulumiType;
     }
 
-    /**
-     * Set IPv6 API Gateway. The structure of `apiGateway6` block is documented below.
-     */
+    public readonly addVhostDomainToDnsdb!: pulumi.Output<string>;
     public readonly apiGateway6s!: pulumi.Output<outputs.FirewallAccessProxyApiGateway6[] | undefined>;
-    /**
-     * Set IPv4 API Gateway. The structure of `apiGateway` block is documented below.
-     */
     public readonly apiGateways!: pulumi.Output<outputs.FirewallAccessProxyApiGateway[] | undefined>;
-    /**
-     * Enable/disable authentication portal. Valid values: `disable`, `enable`.
-     */
     public readonly authPortal!: pulumi.Output<string>;
-    /**
-     * Virtual host for authentication portal.
-     */
     public readonly authVirtualHost!: pulumi.Output<string>;
-    /**
-     * Enable/disable to request client certificate. Valid values: `disable`, `enable`.
-     */
     public readonly clientCert!: pulumi.Output<string>;
-    /**
-     * Decrypted traffic mirror.
-     */
     public readonly decryptedTrafficMirror!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Action of an empty client certificate. Valid values: `accept`, `block`.
-     */
     public readonly emptyCertAction!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
-     */
     public readonly logBlockedTraffic!: pulumi.Output<string>;
-    /**
-     * Server host key name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    public readonly userAgentDetect!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Virtual IP name.
-     */
     public readonly vip!: pulumi.Output<string>;
 
     /**
@@ -114,6 +62,7 @@ export class FirewallAccessProxy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallAccessProxyState | undefined;
+            resourceInputs["addVhostDomainToDnsdb"] = state ? state.addVhostDomainToDnsdb : undefined;
             resourceInputs["apiGateway6s"] = state ? state.apiGateway6s : undefined;
             resourceInputs["apiGateways"] = state ? state.apiGateways : undefined;
             resourceInputs["authPortal"] = state ? state.authPortal : undefined;
@@ -124,10 +73,12 @@ export class FirewallAccessProxy extends pulumi.CustomResource {
             resourceInputs["emptyCertAction"] = state ? state.emptyCertAction : undefined;
             resourceInputs["logBlockedTraffic"] = state ? state.logBlockedTraffic : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["userAgentDetect"] = state ? state.userAgentDetect : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["vip"] = state ? state.vip : undefined;
         } else {
             const args = argsOrState as FirewallAccessProxyArgs | undefined;
+            resourceInputs["addVhostDomainToDnsdb"] = args ? args.addVhostDomainToDnsdb : undefined;
             resourceInputs["apiGateway6s"] = args ? args.apiGateway6s : undefined;
             resourceInputs["apiGateways"] = args ? args.apiGateways : undefined;
             resourceInputs["authPortal"] = args ? args.authPortal : undefined;
@@ -138,6 +89,7 @@ export class FirewallAccessProxy extends pulumi.CustomResource {
             resourceInputs["emptyCertAction"] = args ? args.emptyCertAction : undefined;
             resourceInputs["logBlockedTraffic"] = args ? args.logBlockedTraffic : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["userAgentDetect"] = args ? args.userAgentDetect : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["vip"] = args ? args.vip : undefined;
         }
@@ -150,53 +102,19 @@ export class FirewallAccessProxy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallAccessProxy resources.
  */
 export interface FirewallAccessProxyState {
-    /**
-     * Set IPv6 API Gateway. The structure of `apiGateway6` block is documented below.
-     */
+    addVhostDomainToDnsdb?: pulumi.Input<string>;
     apiGateway6s?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxyApiGateway6>[]>;
-    /**
-     * Set IPv4 API Gateway. The structure of `apiGateway` block is documented below.
-     */
     apiGateways?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxyApiGateway>[]>;
-    /**
-     * Enable/disable authentication portal. Valid values: `disable`, `enable`.
-     */
     authPortal?: pulumi.Input<string>;
-    /**
-     * Virtual host for authentication portal.
-     */
     authVirtualHost?: pulumi.Input<string>;
-    /**
-     * Enable/disable to request client certificate. Valid values: `disable`, `enable`.
-     */
     clientCert?: pulumi.Input<string>;
-    /**
-     * Decrypted traffic mirror.
-     */
     decryptedTrafficMirror?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Action of an empty client certificate. Valid values: `accept`, `block`.
-     */
     emptyCertAction?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
-     */
     logBlockedTraffic?: pulumi.Input<string>;
-    /**
-     * Server host key name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    userAgentDetect?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Virtual IP name.
-     */
     vip?: pulumi.Input<string>;
 }
 
@@ -204,52 +122,18 @@ export interface FirewallAccessProxyState {
  * The set of arguments for constructing a FirewallAccessProxy resource.
  */
 export interface FirewallAccessProxyArgs {
-    /**
-     * Set IPv6 API Gateway. The structure of `apiGateway6` block is documented below.
-     */
+    addVhostDomainToDnsdb?: pulumi.Input<string>;
     apiGateway6s?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxyApiGateway6>[]>;
-    /**
-     * Set IPv4 API Gateway. The structure of `apiGateway` block is documented below.
-     */
     apiGateways?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxyApiGateway>[]>;
-    /**
-     * Enable/disable authentication portal. Valid values: `disable`, `enable`.
-     */
     authPortal?: pulumi.Input<string>;
-    /**
-     * Virtual host for authentication portal.
-     */
     authVirtualHost?: pulumi.Input<string>;
-    /**
-     * Enable/disable to request client certificate. Valid values: `disable`, `enable`.
-     */
     clientCert?: pulumi.Input<string>;
-    /**
-     * Decrypted traffic mirror.
-     */
     decryptedTrafficMirror?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Action of an empty client certificate. Valid values: `accept`, `block`.
-     */
     emptyCertAction?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
-     */
     logBlockedTraffic?: pulumi.Input<string>;
-    /**
-     * Server host key name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    userAgentDetect?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Virtual IP name.
-     */
     vip?: pulumi.Input<string>;
 }

@@ -2,77 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure DNS domain filter profiles.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.DnsfilterProfile("trname", {
- *     blockAction: "redirect",
- *     blockBotnet: "disable",
- *     domainFilter: {
- *         domainFilterTable: 0,
- *     },
- *     ftgdDns: {
- *         filters: [
- *             {
- *                 action: "block",
- *                 category: 26,
- *                 id: 1,
- *                 log: "enable",
- *             },
- *             {
- *                 action: "block",
- *                 category: 61,
- *                 id: 2,
- *                 log: "enable",
- *             },
- *             {
- *                 action: "block",
- *                 category: 86,
- *                 id: 3,
- *                 log: "enable",
- *             },
- *             {
- *                 action: "block",
- *                 category: 88,
- *                 id: 4,
- *                 log: "enable",
- *             },
- *         ],
- *     },
- *     logAllDomain: "disable",
- *     redirectPortal: "0.0.0.0",
- *     safeSearch: "disable",
- *     sdnsDomainLog: "enable",
- *     sdnsFtgdErrLog: "enable",
- *     youtubeRestrict: "strict",
- * });
- * ```
- *
- * ## Import
- *
- * Dnsfilter Profile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/dnsfilterProfile:DnsfilterProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/dnsfilterProfile:DnsfilterProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class DnsfilterProfile extends pulumi.CustomResource {
     /**
      * Get an existing DnsfilterProfile resource's state with the given name, ID, and optional extra
@@ -101,73 +34,22 @@ export class DnsfilterProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === DnsfilterProfile.__pulumiType;
     }
 
-    /**
-     * Action to take for blocked domains.
-     */
     public readonly blockAction!: pulumi.Output<string>;
-    /**
-     * Enable/disable blocking botnet C&C DNS lookups. Valid values: `disable`, `enable`.
-     */
     public readonly blockBotnet!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * DNS translation settings. The structure of `dnsTranslation` block is documented below.
-     */
     public readonly dnsTranslations!: pulumi.Output<outputs.DnsfilterProfileDnsTranslation[] | undefined>;
-    /**
-     * Domain filter settings. The structure of `domainFilter` block is documented below.
-     */
-    public readonly domainFilter!: pulumi.Output<outputs.DnsfilterProfileDomainFilter | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
+    public readonly domainFilter!: pulumi.Output<outputs.DnsfilterProfileDomainFilter>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * One or more external IP block lists. The structure of `externalIpBlocklist` block is documented below.
-     */
     public readonly externalIpBlocklists!: pulumi.Output<outputs.DnsfilterProfileExternalIpBlocklist[] | undefined>;
-    /**
-     * FortiGuard DNS Filter settings. The structure of `ftgdDns` block is documented below.
-     */
-    public readonly ftgdDns!: pulumi.Output<outputs.DnsfilterProfileFtgdDns | undefined>;
-    /**
-     * Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
-     */
+    public readonly ftgdDns!: pulumi.Output<outputs.DnsfilterProfileFtgdDns>;
     public readonly logAllDomain!: pulumi.Output<string>;
-    /**
-     * External domain block list name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * IP address of the SDNS redirect portal.
-     */
     public readonly redirectPortal!: pulumi.Output<string>;
-    /**
-     * IPv6 address of the SDNS redirect portal.
-     */
     public readonly redirectPortal6!: pulumi.Output<string>;
-    /**
-     * Enable/disable Google, Bing, and YouTube safe search. Valid values: `disable`, `enable`.
-     */
     public readonly safeSearch!: pulumi.Output<string>;
-    /**
-     * Enable/disable domain filtering and botnet domain logging. Valid values: `enable`, `disable`.
-     */
     public readonly sdnsDomainLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
-     */
     public readonly sdnsFtgdErrLog!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
-     */
     public readonly youtubeRestrict!: pulumi.Output<string>;
 
     /**
@@ -229,73 +111,22 @@ export class DnsfilterProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DnsfilterProfile resources.
  */
 export interface DnsfilterProfileState {
-    /**
-     * Action to take for blocked domains.
-     */
     blockAction?: pulumi.Input<string>;
-    /**
-     * Enable/disable blocking botnet C&C DNS lookups. Valid values: `disable`, `enable`.
-     */
     blockBotnet?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * DNS translation settings. The structure of `dnsTranslation` block is documented below.
-     */
     dnsTranslations?: pulumi.Input<pulumi.Input<inputs.DnsfilterProfileDnsTranslation>[]>;
-    /**
-     * Domain filter settings. The structure of `domainFilter` block is documented below.
-     */
     domainFilter?: pulumi.Input<inputs.DnsfilterProfileDomainFilter>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * One or more external IP block lists. The structure of `externalIpBlocklist` block is documented below.
-     */
     externalIpBlocklists?: pulumi.Input<pulumi.Input<inputs.DnsfilterProfileExternalIpBlocklist>[]>;
-    /**
-     * FortiGuard DNS Filter settings. The structure of `ftgdDns` block is documented below.
-     */
     ftgdDns?: pulumi.Input<inputs.DnsfilterProfileFtgdDns>;
-    /**
-     * Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
-     */
     logAllDomain?: pulumi.Input<string>;
-    /**
-     * External domain block list name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * IP address of the SDNS redirect portal.
-     */
     redirectPortal?: pulumi.Input<string>;
-    /**
-     * IPv6 address of the SDNS redirect portal.
-     */
     redirectPortal6?: pulumi.Input<string>;
-    /**
-     * Enable/disable Google, Bing, and YouTube safe search. Valid values: `disable`, `enable`.
-     */
     safeSearch?: pulumi.Input<string>;
-    /**
-     * Enable/disable domain filtering and botnet domain logging. Valid values: `enable`, `disable`.
-     */
     sdnsDomainLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
-     */
     sdnsFtgdErrLog?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
-     */
     youtubeRestrict?: pulumi.Input<string>;
 }
 
@@ -303,72 +134,21 @@ export interface DnsfilterProfileState {
  * The set of arguments for constructing a DnsfilterProfile resource.
  */
 export interface DnsfilterProfileArgs {
-    /**
-     * Action to take for blocked domains.
-     */
     blockAction?: pulumi.Input<string>;
-    /**
-     * Enable/disable blocking botnet C&C DNS lookups. Valid values: `disable`, `enable`.
-     */
     blockBotnet?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * DNS translation settings. The structure of `dnsTranslation` block is documented below.
-     */
     dnsTranslations?: pulumi.Input<pulumi.Input<inputs.DnsfilterProfileDnsTranslation>[]>;
-    /**
-     * Domain filter settings. The structure of `domainFilter` block is documented below.
-     */
     domainFilter?: pulumi.Input<inputs.DnsfilterProfileDomainFilter>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * One or more external IP block lists. The structure of `externalIpBlocklist` block is documented below.
-     */
     externalIpBlocklists?: pulumi.Input<pulumi.Input<inputs.DnsfilterProfileExternalIpBlocklist>[]>;
-    /**
-     * FortiGuard DNS Filter settings. The structure of `ftgdDns` block is documented below.
-     */
     ftgdDns?: pulumi.Input<inputs.DnsfilterProfileFtgdDns>;
-    /**
-     * Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
-     */
     logAllDomain?: pulumi.Input<string>;
-    /**
-     * External domain block list name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * IP address of the SDNS redirect portal.
-     */
     redirectPortal?: pulumi.Input<string>;
-    /**
-     * IPv6 address of the SDNS redirect portal.
-     */
     redirectPortal6?: pulumi.Input<string>;
-    /**
-     * Enable/disable Google, Bing, and YouTube safe search. Valid values: `disable`, `enable`.
-     */
     safeSearch?: pulumi.Input<string>;
-    /**
-     * Enable/disable domain filtering and botnet domain logging. Valid values: `enable`, `disable`.
-     */
     sdnsDomainLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
-     */
     sdnsFtgdErrLog?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
-     */
     youtubeRestrict?: pulumi.Input<string>;
 }

@@ -10,72 +10,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 extension header filter.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallIpv6EhFilter(ctx, "trname", &fortios.FirewallIpv6EhFilterArgs{
-// 			Auth:     pulumi.String("disable"),
-// 			DestOpt:  pulumi.String("disable"),
-// 			Fragment: pulumi.String("disable"),
-// 			HopOpt:   pulumi.String("disable"),
-// 			NoNext:   pulumi.String("disable"),
-// 			Routing:  pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall Ipv6EhFilter can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallIpv6EhFilter:FirewallIpv6EhFilter labelname FirewallIpv6EhFilter
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallIpv6EhFilter:FirewallIpv6EhFilter labelname FirewallIpv6EhFilter
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallIpv6EhFilter struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable blocking packets with the Authentication header (default = disable). Valid values: `enable`, `disable`.
-	Auth pulumi.StringOutput `pulumi:"auth"`
-	// Enable/disable blocking packets with Destination Options headers (default = disable). Valid values: `enable`, `disable`.
-	DestOpt pulumi.StringOutput `pulumi:"destOpt"`
-	// Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
-	Fragment pulumi.StringOutput `pulumi:"fragment"`
-	// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
-	HdoptType pulumi.IntOutput `pulumi:"hdoptType"`
-	// Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
-	HopOpt pulumi.StringOutput `pulumi:"hopOpt"`
-	// Enable/disable blocking packets with the No Next header (default = disable) Valid values: `enable`, `disable`.
-	NoNext pulumi.StringOutput `pulumi:"noNext"`
-	// Enable/disable blocking packets with Routing headers (default = enable). Valid values: `enable`, `disable`.
-	Routing pulumi.StringOutput `pulumi:"routing"`
-	// Block specific Routing header types (max. 7 types, each between 0 and 255, default =  0).
-	RoutingType pulumi.IntOutput `pulumi:"routingType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Auth        pulumi.StringOutput    `pulumi:"auth"`
+	DestOpt     pulumi.StringOutput    `pulumi:"destOpt"`
+	Fragment    pulumi.StringOutput    `pulumi:"fragment"`
+	HdoptType   pulumi.IntOutput       `pulumi:"hdoptType"`
+	HopOpt      pulumi.StringOutput    `pulumi:"hopOpt"`
+	NoNext      pulumi.StringOutput    `pulumi:"noNext"`
+	Routing     pulumi.StringOutput    `pulumi:"routing"`
+	RoutingType pulumi.IntOutput       `pulumi:"routingType"`
+	Vdomparam   pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallIpv6EhFilter registers a new resource with the given unique name, arguments, and options.
@@ -108,45 +54,27 @@ func GetFirewallIpv6EhFilter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallIpv6EhFilter resources.
 type firewallIpv6EhFilterState struct {
-	// Enable/disable blocking packets with the Authentication header (default = disable). Valid values: `enable`, `disable`.
-	Auth *string `pulumi:"auth"`
-	// Enable/disable blocking packets with Destination Options headers (default = disable). Valid values: `enable`, `disable`.
-	DestOpt *string `pulumi:"destOpt"`
-	// Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
-	Fragment *string `pulumi:"fragment"`
-	// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
-	HdoptType *int `pulumi:"hdoptType"`
-	// Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
-	HopOpt *string `pulumi:"hopOpt"`
-	// Enable/disable blocking packets with the No Next header (default = disable) Valid values: `enable`, `disable`.
-	NoNext *string `pulumi:"noNext"`
-	// Enable/disable blocking packets with Routing headers (default = enable). Valid values: `enable`, `disable`.
-	Routing *string `pulumi:"routing"`
-	// Block specific Routing header types (max. 7 types, each between 0 and 255, default =  0).
-	RoutingType *int `pulumi:"routingType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Auth        *string `pulumi:"auth"`
+	DestOpt     *string `pulumi:"destOpt"`
+	Fragment    *string `pulumi:"fragment"`
+	HdoptType   *int    `pulumi:"hdoptType"`
+	HopOpt      *string `pulumi:"hopOpt"`
+	NoNext      *string `pulumi:"noNext"`
+	Routing     *string `pulumi:"routing"`
+	RoutingType *int    `pulumi:"routingType"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 }
 
 type FirewallIpv6EhFilterState struct {
-	// Enable/disable blocking packets with the Authentication header (default = disable). Valid values: `enable`, `disable`.
-	Auth pulumi.StringPtrInput
-	// Enable/disable blocking packets with Destination Options headers (default = disable). Valid values: `enable`, `disable`.
-	DestOpt pulumi.StringPtrInput
-	// Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
-	Fragment pulumi.StringPtrInput
-	// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
-	HdoptType pulumi.IntPtrInput
-	// Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
-	HopOpt pulumi.StringPtrInput
-	// Enable/disable blocking packets with the No Next header (default = disable) Valid values: `enable`, `disable`.
-	NoNext pulumi.StringPtrInput
-	// Enable/disable blocking packets with Routing headers (default = enable). Valid values: `enable`, `disable`.
-	Routing pulumi.StringPtrInput
-	// Block specific Routing header types (max. 7 types, each between 0 and 255, default =  0).
+	Auth        pulumi.StringPtrInput
+	DestOpt     pulumi.StringPtrInput
+	Fragment    pulumi.StringPtrInput
+	HdoptType   pulumi.IntPtrInput
+	HopOpt      pulumi.StringPtrInput
+	NoNext      pulumi.StringPtrInput
+	Routing     pulumi.StringPtrInput
 	RoutingType pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (FirewallIpv6EhFilterState) ElementType() reflect.Type {
@@ -154,46 +82,28 @@ func (FirewallIpv6EhFilterState) ElementType() reflect.Type {
 }
 
 type firewallIpv6EhFilterArgs struct {
-	// Enable/disable blocking packets with the Authentication header (default = disable). Valid values: `enable`, `disable`.
-	Auth *string `pulumi:"auth"`
-	// Enable/disable blocking packets with Destination Options headers (default = disable). Valid values: `enable`, `disable`.
-	DestOpt *string `pulumi:"destOpt"`
-	// Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
-	Fragment *string `pulumi:"fragment"`
-	// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
-	HdoptType *int `pulumi:"hdoptType"`
-	// Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
-	HopOpt *string `pulumi:"hopOpt"`
-	// Enable/disable blocking packets with the No Next header (default = disable) Valid values: `enable`, `disable`.
-	NoNext *string `pulumi:"noNext"`
-	// Enable/disable blocking packets with Routing headers (default = enable). Valid values: `enable`, `disable`.
-	Routing *string `pulumi:"routing"`
-	// Block specific Routing header types (max. 7 types, each between 0 and 255, default =  0).
-	RoutingType *int `pulumi:"routingType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Auth        *string `pulumi:"auth"`
+	DestOpt     *string `pulumi:"destOpt"`
+	Fragment    *string `pulumi:"fragment"`
+	HdoptType   *int    `pulumi:"hdoptType"`
+	HopOpt      *string `pulumi:"hopOpt"`
+	NoNext      *string `pulumi:"noNext"`
+	Routing     *string `pulumi:"routing"`
+	RoutingType *int    `pulumi:"routingType"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallIpv6EhFilter resource.
 type FirewallIpv6EhFilterArgs struct {
-	// Enable/disable blocking packets with the Authentication header (default = disable). Valid values: `enable`, `disable`.
-	Auth pulumi.StringPtrInput
-	// Enable/disable blocking packets with Destination Options headers (default = disable). Valid values: `enable`, `disable`.
-	DestOpt pulumi.StringPtrInput
-	// Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
-	Fragment pulumi.StringPtrInput
-	// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
-	HdoptType pulumi.IntPtrInput
-	// Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
-	HopOpt pulumi.StringPtrInput
-	// Enable/disable blocking packets with the No Next header (default = disable) Valid values: `enable`, `disable`.
-	NoNext pulumi.StringPtrInput
-	// Enable/disable blocking packets with Routing headers (default = enable). Valid values: `enable`, `disable`.
-	Routing pulumi.StringPtrInput
-	// Block specific Routing header types (max. 7 types, each between 0 and 255, default =  0).
+	Auth        pulumi.StringPtrInput
+	DestOpt     pulumi.StringPtrInput
+	Fragment    pulumi.StringPtrInput
+	HdoptType   pulumi.IntPtrInput
+	HopOpt      pulumi.StringPtrInput
+	NoNext      pulumi.StringPtrInput
+	Routing     pulumi.StringPtrInput
 	RoutingType pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (FirewallIpv6EhFilterArgs) ElementType() reflect.Type {
@@ -222,7 +132,7 @@ func (i *FirewallIpv6EhFilter) ToFirewallIpv6EhFilterOutputWithContext(ctx conte
 // FirewallIpv6EhFilterArrayInput is an input type that accepts FirewallIpv6EhFilterArray and FirewallIpv6EhFilterArrayOutput values.
 // You can construct a concrete instance of `FirewallIpv6EhFilterArrayInput` via:
 //
-//          FirewallIpv6EhFilterArray{ FirewallIpv6EhFilterArgs{...} }
+//	FirewallIpv6EhFilterArray{ FirewallIpv6EhFilterArgs{...} }
 type FirewallIpv6EhFilterArrayInput interface {
 	pulumi.Input
 
@@ -247,7 +157,7 @@ func (i FirewallIpv6EhFilterArray) ToFirewallIpv6EhFilterArrayOutputWithContext(
 // FirewallIpv6EhFilterMapInput is an input type that accepts FirewallIpv6EhFilterMap and FirewallIpv6EhFilterMapOutput values.
 // You can construct a concrete instance of `FirewallIpv6EhFilterMapInput` via:
 //
-//          FirewallIpv6EhFilterMap{ "key": FirewallIpv6EhFilterArgs{...} }
+//	FirewallIpv6EhFilterMap{ "key": FirewallIpv6EhFilterArgs{...} }
 type FirewallIpv6EhFilterMapInput interface {
 	pulumi.Input
 
@@ -281,6 +191,42 @@ func (o FirewallIpv6EhFilterOutput) ToFirewallIpv6EhFilterOutput() FirewallIpv6E
 
 func (o FirewallIpv6EhFilterOutput) ToFirewallIpv6EhFilterOutputWithContext(ctx context.Context) FirewallIpv6EhFilterOutput {
 	return o
+}
+
+func (o FirewallIpv6EhFilterOutput) Auth() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpv6EhFilter) pulumi.StringOutput { return v.Auth }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpv6EhFilterOutput) DestOpt() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpv6EhFilter) pulumi.StringOutput { return v.DestOpt }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpv6EhFilterOutput) Fragment() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpv6EhFilter) pulumi.StringOutput { return v.Fragment }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpv6EhFilterOutput) HdoptType() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallIpv6EhFilter) pulumi.IntOutput { return v.HdoptType }).(pulumi.IntOutput)
+}
+
+func (o FirewallIpv6EhFilterOutput) HopOpt() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpv6EhFilter) pulumi.StringOutput { return v.HopOpt }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpv6EhFilterOutput) NoNext() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpv6EhFilter) pulumi.StringOutput { return v.NoNext }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpv6EhFilterOutput) Routing() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpv6EhFilter) pulumi.StringOutput { return v.Routing }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpv6EhFilterOutput) RoutingType() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallIpv6EhFilter) pulumi.IntOutput { return v.RoutingType }).(pulumi.IntOutput)
+}
+
+func (o FirewallIpv6EhFilterOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallIpv6EhFilter) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallIpv6EhFilterArrayOutput struct{ *pulumi.OutputState }

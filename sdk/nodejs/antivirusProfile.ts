@@ -2,49 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure AntiVirus profiles.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.AntivirusProfile("trname", {
- *     analyticsBlFiletype: 0,
- *     analyticsDb: "disable",
- *     analyticsMaxUpload: 10,
- *     analyticsWlFiletype: 0,
- *     avBlockLog: "enable",
- *     avVirusLog: "enable",
- *     extendedLog: "disable",
- *     ftgdAnalytics: "disable",
- *     inspectionMode: "flow-based",
- *     mobileMalwareDb: "enable",
- *     scanMode: "quick",
- * });
- * ```
- *
- * ## Import
- *
- * Antivirus Profile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/antivirusProfile:AntivirusProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/antivirusProfile:AntivirusProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class AntivirusProfile extends pulumi.CustomResource {
     /**
      * Get an existing AntivirusProfile resource's state with the given name, ID, and optional extra
@@ -73,157 +34,49 @@ export class AntivirusProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === AntivirusProfile.__pulumiType;
     }
 
-    /**
-     * Only submit files matching this DLP file-pattern to FortiSandbox.
-     */
     public readonly analyticsAcceptFiletype!: pulumi.Output<number>;
-    /**
-     * Only submit files matching this DLP file-pattern to FortiSandbox.
-     */
     public readonly analyticsBlFiletype!: pulumi.Output<number>;
-    /**
-     * Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. Valid values: `disable`, `enable`.
-     */
     public readonly analyticsDb!: pulumi.Output<string>;
-    /**
-     * Do not submit files matching this DLP file-pattern to FortiSandbox.
-     */
     public readonly analyticsIgnoreFiletype!: pulumi.Output<number>;
-    /**
-     * Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
-     */
     public readonly analyticsMaxUpload!: pulumi.Output<number>;
-    /**
-     * Do not submit files matching this DLP file-pattern to FortiSandbox.
-     */
     public readonly analyticsWlFiletype!: pulumi.Output<number>;
-    /**
-     * Enable/disable logging for AntiVirus file blocking. Valid values: `enable`, `disable`.
-     */
     public readonly avBlockLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable AntiVirus logging. Valid values: `enable`, `disable`.
-     */
     public readonly avVirusLog!: pulumi.Output<string>;
-    /**
-     * Configure CIFS AntiVirus options. The structure of `cifs` block is documented below.
-     */
-    public readonly cifs!: pulumi.Output<outputs.AntivirusProfileCifs | undefined>;
-    /**
-     * Comment.
-     */
+    public readonly cifs!: pulumi.Output<outputs.AntivirusProfileCifs>;
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
-     */
-    public readonly contentDisarm!: pulumi.Output<outputs.AntivirusProfileContentDisarm | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
+    public readonly contentDisarm!: pulumi.Output<outputs.AntivirusProfileContentDisarm>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
-     */
     public readonly emsThreatFeed!: pulumi.Output<string>;
-    /**
-     * Enable/disable extended logging for antivirus. Valid values: `enable`, `disable`.
-     */
     public readonly extendedLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable all external blocklists. Valid values: `disable`, `enable`.
-     */
     public readonly externalBlocklistEnableAll!: pulumi.Output<string>;
-    /**
-     * Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
-     */
     public readonly externalBlocklists!: pulumi.Output<outputs.AntivirusProfileExternalBlocklist[] | undefined>;
-    /**
-     * Flow/proxy feature set. Valid values: `flow`, `proxy`.
-     */
     public readonly featureSet!: pulumi.Output<string>;
-    /**
-     * Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
-     */
     public readonly fortiaiErrorAction!: pulumi.Output<string>;
-    /**
-     * Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
-     */
     public readonly fortiaiTimeoutAction!: pulumi.Output<string>;
-    /**
-     * Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
-     */
+    public readonly fortindrErrorAction!: pulumi.Output<string>;
+    public readonly fortindrTimeoutAction!: pulumi.Output<string>;
+    public readonly fortisandboxErrorAction!: pulumi.Output<string>;
+    public readonly fortisandboxMaxUpload!: pulumi.Output<number>;
+    public readonly fortisandboxMode!: pulumi.Output<string>;
+    public readonly fortisandboxTimeoutAction!: pulumi.Output<string>;
     public readonly ftgdAnalytics!: pulumi.Output<string>;
-    /**
-     * Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
-     */
-    public readonly ftp!: pulumi.Output<outputs.AntivirusProfileFtp | undefined>;
-    /**
-     * Configure HTTP AntiVirus options. The structure of `http` block is documented below.
-     */
-    public readonly http!: pulumi.Output<outputs.AntivirusProfileHttp | undefined>;
-    /**
-     * Configure IMAP AntiVirus options. The structure of `imap` block is documented below.
-     */
-    public readonly imap!: pulumi.Output<outputs.AntivirusProfileImap | undefined>;
-    /**
-     * Inspection mode. Valid values: `proxy`, `flow-based`.
-     */
+    public readonly ftp!: pulumi.Output<outputs.AntivirusProfileFtp>;
+    public readonly http!: pulumi.Output<outputs.AntivirusProfileHttp>;
+    public readonly imap!: pulumi.Output<outputs.AntivirusProfileImap>;
     public readonly inspectionMode!: pulumi.Output<string>;
-    /**
-     * Configure MAPI AntiVirus options. The structure of `mapi` block is documented below.
-     */
-    public readonly mapi!: pulumi.Output<outputs.AntivirusProfileMapi | undefined>;
-    /**
-     * Enable/disable using the mobile malware signature database. Valid values: `disable`, `enable`.
-     */
+    public readonly mapi!: pulumi.Output<outputs.AntivirusProfileMapi>;
     public readonly mobileMalwareDb!: pulumi.Output<string>;
-    /**
-     * Configure AntiVirus quarantine settings. The structure of `nacQuar` block is documented below.
-     */
-    public readonly nacQuar!: pulumi.Output<outputs.AntivirusProfileNacQuar | undefined>;
-    /**
-     * External blocklist.
-     */
+    public readonly nacQuar!: pulumi.Output<outputs.AntivirusProfileNacQuar>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Configure NNTP AntiVirus options. The structure of `nntp` block is documented below.
-     */
-    public readonly nntp!: pulumi.Output<outputs.AntivirusProfileNntp | undefined>;
-    /**
-     * Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
-     */
-    public readonly outbreakPrevention!: pulumi.Output<outputs.AntivirusProfileOutbreakPrevention | undefined>;
-    /**
-     * Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
-     */
+    public readonly nntp!: pulumi.Output<outputs.AntivirusProfileNntp>;
+    public readonly outbreakPrevention!: pulumi.Output<outputs.AntivirusProfileOutbreakPrevention>;
     public readonly outbreakPreventionArchiveScan!: pulumi.Output<string>;
-    /**
-     * Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
-     */
-    public readonly pop3!: pulumi.Output<outputs.AntivirusProfilePop3 | undefined>;
-    /**
-     * Replacement message group customized for this profile.
-     */
+    public readonly pop3!: pulumi.Output<outputs.AntivirusProfilePop3>;
     public readonly replacemsgGroup!: pulumi.Output<string>;
-    /**
-     * Choose between full scan mode and quick scan mode.
-     */
     public readonly scanMode!: pulumi.Output<string>;
-    /**
-     * Configure SMB AntiVirus options. The structure of `smb` block is documented below.
-     */
-    public readonly smb!: pulumi.Output<outputs.AntivirusProfileSmb | undefined>;
-    /**
-     * Configure SMTP AntiVirus options. The structure of `smtp` block is documented below.
-     */
-    public readonly smtp!: pulumi.Output<outputs.AntivirusProfileSmtp | undefined>;
-    /**
-     * Configure SFTP and SCP AntiVirus options. The structure of `ssh` block is documented below.
-     */
-    public readonly ssh!: pulumi.Output<outputs.AntivirusProfileSsh | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    public readonly smb!: pulumi.Output<outputs.AntivirusProfileSmb>;
+    public readonly smtp!: pulumi.Output<outputs.AntivirusProfileSmtp>;
+    public readonly ssh!: pulumi.Output<outputs.AntivirusProfileSsh>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -258,6 +111,12 @@ export class AntivirusProfile extends pulumi.CustomResource {
             resourceInputs["featureSet"] = state ? state.featureSet : undefined;
             resourceInputs["fortiaiErrorAction"] = state ? state.fortiaiErrorAction : undefined;
             resourceInputs["fortiaiTimeoutAction"] = state ? state.fortiaiTimeoutAction : undefined;
+            resourceInputs["fortindrErrorAction"] = state ? state.fortindrErrorAction : undefined;
+            resourceInputs["fortindrTimeoutAction"] = state ? state.fortindrTimeoutAction : undefined;
+            resourceInputs["fortisandboxErrorAction"] = state ? state.fortisandboxErrorAction : undefined;
+            resourceInputs["fortisandboxMaxUpload"] = state ? state.fortisandboxMaxUpload : undefined;
+            resourceInputs["fortisandboxMode"] = state ? state.fortisandboxMode : undefined;
+            resourceInputs["fortisandboxTimeoutAction"] = state ? state.fortisandboxTimeoutAction : undefined;
             resourceInputs["ftgdAnalytics"] = state ? state.ftgdAnalytics : undefined;
             resourceInputs["ftp"] = state ? state.ftp : undefined;
             resourceInputs["http"] = state ? state.http : undefined;
@@ -298,6 +157,12 @@ export class AntivirusProfile extends pulumi.CustomResource {
             resourceInputs["featureSet"] = args ? args.featureSet : undefined;
             resourceInputs["fortiaiErrorAction"] = args ? args.fortiaiErrorAction : undefined;
             resourceInputs["fortiaiTimeoutAction"] = args ? args.fortiaiTimeoutAction : undefined;
+            resourceInputs["fortindrErrorAction"] = args ? args.fortindrErrorAction : undefined;
+            resourceInputs["fortindrTimeoutAction"] = args ? args.fortindrTimeoutAction : undefined;
+            resourceInputs["fortisandboxErrorAction"] = args ? args.fortisandboxErrorAction : undefined;
+            resourceInputs["fortisandboxMaxUpload"] = args ? args.fortisandboxMaxUpload : undefined;
+            resourceInputs["fortisandboxMode"] = args ? args.fortisandboxMode : undefined;
+            resourceInputs["fortisandboxTimeoutAction"] = args ? args.fortisandboxTimeoutAction : undefined;
             resourceInputs["ftgdAnalytics"] = args ? args.ftgdAnalytics : undefined;
             resourceInputs["ftp"] = args ? args.ftp : undefined;
             resourceInputs["http"] = args ? args.http : undefined;
@@ -327,157 +192,49 @@ export class AntivirusProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AntivirusProfile resources.
  */
 export interface AntivirusProfileState {
-    /**
-     * Only submit files matching this DLP file-pattern to FortiSandbox.
-     */
     analyticsAcceptFiletype?: pulumi.Input<number>;
-    /**
-     * Only submit files matching this DLP file-pattern to FortiSandbox.
-     */
     analyticsBlFiletype?: pulumi.Input<number>;
-    /**
-     * Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. Valid values: `disable`, `enable`.
-     */
     analyticsDb?: pulumi.Input<string>;
-    /**
-     * Do not submit files matching this DLP file-pattern to FortiSandbox.
-     */
     analyticsIgnoreFiletype?: pulumi.Input<number>;
-    /**
-     * Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
-     */
     analyticsMaxUpload?: pulumi.Input<number>;
-    /**
-     * Do not submit files matching this DLP file-pattern to FortiSandbox.
-     */
     analyticsWlFiletype?: pulumi.Input<number>;
-    /**
-     * Enable/disable logging for AntiVirus file blocking. Valid values: `enable`, `disable`.
-     */
     avBlockLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable AntiVirus logging. Valid values: `enable`, `disable`.
-     */
     avVirusLog?: pulumi.Input<string>;
-    /**
-     * Configure CIFS AntiVirus options. The structure of `cifs` block is documented below.
-     */
     cifs?: pulumi.Input<inputs.AntivirusProfileCifs>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
-     */
     contentDisarm?: pulumi.Input<inputs.AntivirusProfileContentDisarm>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
-     */
     emsThreatFeed?: pulumi.Input<string>;
-    /**
-     * Enable/disable extended logging for antivirus. Valid values: `enable`, `disable`.
-     */
     extendedLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable all external blocklists. Valid values: `disable`, `enable`.
-     */
     externalBlocklistEnableAll?: pulumi.Input<string>;
-    /**
-     * Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
-     */
     externalBlocklists?: pulumi.Input<pulumi.Input<inputs.AntivirusProfileExternalBlocklist>[]>;
-    /**
-     * Flow/proxy feature set. Valid values: `flow`, `proxy`.
-     */
     featureSet?: pulumi.Input<string>;
-    /**
-     * Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
-     */
     fortiaiErrorAction?: pulumi.Input<string>;
-    /**
-     * Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
-     */
     fortiaiTimeoutAction?: pulumi.Input<string>;
-    /**
-     * Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
-     */
+    fortindrErrorAction?: pulumi.Input<string>;
+    fortindrTimeoutAction?: pulumi.Input<string>;
+    fortisandboxErrorAction?: pulumi.Input<string>;
+    fortisandboxMaxUpload?: pulumi.Input<number>;
+    fortisandboxMode?: pulumi.Input<string>;
+    fortisandboxTimeoutAction?: pulumi.Input<string>;
     ftgdAnalytics?: pulumi.Input<string>;
-    /**
-     * Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
-     */
     ftp?: pulumi.Input<inputs.AntivirusProfileFtp>;
-    /**
-     * Configure HTTP AntiVirus options. The structure of `http` block is documented below.
-     */
     http?: pulumi.Input<inputs.AntivirusProfileHttp>;
-    /**
-     * Configure IMAP AntiVirus options. The structure of `imap` block is documented below.
-     */
     imap?: pulumi.Input<inputs.AntivirusProfileImap>;
-    /**
-     * Inspection mode. Valid values: `proxy`, `flow-based`.
-     */
     inspectionMode?: pulumi.Input<string>;
-    /**
-     * Configure MAPI AntiVirus options. The structure of `mapi` block is documented below.
-     */
     mapi?: pulumi.Input<inputs.AntivirusProfileMapi>;
-    /**
-     * Enable/disable using the mobile malware signature database. Valid values: `disable`, `enable`.
-     */
     mobileMalwareDb?: pulumi.Input<string>;
-    /**
-     * Configure AntiVirus quarantine settings. The structure of `nacQuar` block is documented below.
-     */
     nacQuar?: pulumi.Input<inputs.AntivirusProfileNacQuar>;
-    /**
-     * External blocklist.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Configure NNTP AntiVirus options. The structure of `nntp` block is documented below.
-     */
     nntp?: pulumi.Input<inputs.AntivirusProfileNntp>;
-    /**
-     * Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
-     */
     outbreakPrevention?: pulumi.Input<inputs.AntivirusProfileOutbreakPrevention>;
-    /**
-     * Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
-     */
     outbreakPreventionArchiveScan?: pulumi.Input<string>;
-    /**
-     * Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
-     */
     pop3?: pulumi.Input<inputs.AntivirusProfilePop3>;
-    /**
-     * Replacement message group customized for this profile.
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * Choose between full scan mode and quick scan mode.
-     */
     scanMode?: pulumi.Input<string>;
-    /**
-     * Configure SMB AntiVirus options. The structure of `smb` block is documented below.
-     */
     smb?: pulumi.Input<inputs.AntivirusProfileSmb>;
-    /**
-     * Configure SMTP AntiVirus options. The structure of `smtp` block is documented below.
-     */
     smtp?: pulumi.Input<inputs.AntivirusProfileSmtp>;
-    /**
-     * Configure SFTP and SCP AntiVirus options. The structure of `ssh` block is documented below.
-     */
     ssh?: pulumi.Input<inputs.AntivirusProfileSsh>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -485,156 +242,48 @@ export interface AntivirusProfileState {
  * The set of arguments for constructing a AntivirusProfile resource.
  */
 export interface AntivirusProfileArgs {
-    /**
-     * Only submit files matching this DLP file-pattern to FortiSandbox.
-     */
     analyticsAcceptFiletype?: pulumi.Input<number>;
-    /**
-     * Only submit files matching this DLP file-pattern to FortiSandbox.
-     */
     analyticsBlFiletype?: pulumi.Input<number>;
-    /**
-     * Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. Valid values: `disable`, `enable`.
-     */
     analyticsDb?: pulumi.Input<string>;
-    /**
-     * Do not submit files matching this DLP file-pattern to FortiSandbox.
-     */
     analyticsIgnoreFiletype?: pulumi.Input<number>;
-    /**
-     * Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
-     */
     analyticsMaxUpload?: pulumi.Input<number>;
-    /**
-     * Do not submit files matching this DLP file-pattern to FortiSandbox.
-     */
     analyticsWlFiletype?: pulumi.Input<number>;
-    /**
-     * Enable/disable logging for AntiVirus file blocking. Valid values: `enable`, `disable`.
-     */
     avBlockLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable AntiVirus logging. Valid values: `enable`, `disable`.
-     */
     avVirusLog?: pulumi.Input<string>;
-    /**
-     * Configure CIFS AntiVirus options. The structure of `cifs` block is documented below.
-     */
     cifs?: pulumi.Input<inputs.AntivirusProfileCifs>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
-     */
     contentDisarm?: pulumi.Input<inputs.AntivirusProfileContentDisarm>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
-     */
     emsThreatFeed?: pulumi.Input<string>;
-    /**
-     * Enable/disable extended logging for antivirus. Valid values: `enable`, `disable`.
-     */
     extendedLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable all external blocklists. Valid values: `disable`, `enable`.
-     */
     externalBlocklistEnableAll?: pulumi.Input<string>;
-    /**
-     * Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
-     */
     externalBlocklists?: pulumi.Input<pulumi.Input<inputs.AntivirusProfileExternalBlocklist>[]>;
-    /**
-     * Flow/proxy feature set. Valid values: `flow`, `proxy`.
-     */
     featureSet?: pulumi.Input<string>;
-    /**
-     * Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
-     */
     fortiaiErrorAction?: pulumi.Input<string>;
-    /**
-     * Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
-     */
     fortiaiTimeoutAction?: pulumi.Input<string>;
-    /**
-     * Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
-     */
+    fortindrErrorAction?: pulumi.Input<string>;
+    fortindrTimeoutAction?: pulumi.Input<string>;
+    fortisandboxErrorAction?: pulumi.Input<string>;
+    fortisandboxMaxUpload?: pulumi.Input<number>;
+    fortisandboxMode?: pulumi.Input<string>;
+    fortisandboxTimeoutAction?: pulumi.Input<string>;
     ftgdAnalytics?: pulumi.Input<string>;
-    /**
-     * Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
-     */
     ftp?: pulumi.Input<inputs.AntivirusProfileFtp>;
-    /**
-     * Configure HTTP AntiVirus options. The structure of `http` block is documented below.
-     */
     http?: pulumi.Input<inputs.AntivirusProfileHttp>;
-    /**
-     * Configure IMAP AntiVirus options. The structure of `imap` block is documented below.
-     */
     imap?: pulumi.Input<inputs.AntivirusProfileImap>;
-    /**
-     * Inspection mode. Valid values: `proxy`, `flow-based`.
-     */
     inspectionMode?: pulumi.Input<string>;
-    /**
-     * Configure MAPI AntiVirus options. The structure of `mapi` block is documented below.
-     */
     mapi?: pulumi.Input<inputs.AntivirusProfileMapi>;
-    /**
-     * Enable/disable using the mobile malware signature database. Valid values: `disable`, `enable`.
-     */
     mobileMalwareDb?: pulumi.Input<string>;
-    /**
-     * Configure AntiVirus quarantine settings. The structure of `nacQuar` block is documented below.
-     */
     nacQuar?: pulumi.Input<inputs.AntivirusProfileNacQuar>;
-    /**
-     * External blocklist.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Configure NNTP AntiVirus options. The structure of `nntp` block is documented below.
-     */
     nntp?: pulumi.Input<inputs.AntivirusProfileNntp>;
-    /**
-     * Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
-     */
     outbreakPrevention?: pulumi.Input<inputs.AntivirusProfileOutbreakPrevention>;
-    /**
-     * Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
-     */
     outbreakPreventionArchiveScan?: pulumi.Input<string>;
-    /**
-     * Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
-     */
     pop3?: pulumi.Input<inputs.AntivirusProfilePop3>;
-    /**
-     * Replacement message group customized for this profile.
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * Choose between full scan mode and quick scan mode.
-     */
     scanMode?: pulumi.Input<string>;
-    /**
-     * Configure SMB AntiVirus options. The structure of `smb` block is documented below.
-     */
     smb?: pulumi.Input<inputs.AntivirusProfileSmb>;
-    /**
-     * Configure SMTP AntiVirus options. The structure of `smtp` block is documented below.
-     */
     smtp?: pulumi.Input<inputs.AntivirusProfileSmtp>;
-    /**
-     * Configure SFTP and SCP AntiVirus options. The structure of `ssh` block is documented below.
-     */
     ssh?: pulumi.Input<inputs.AntivirusProfileSsh>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

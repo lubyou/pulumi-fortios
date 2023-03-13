@@ -10,57 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch switch profile.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchControllerSwitchProfile(ctx, "trname", &fortios.SwitchControllerSwitchProfileArgs{
-// 			LoginPasswdOverride: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchController SwitchProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSwitchProfile:SwitchControllerSwitchProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSwitchProfile:SwitchControllerSwitchProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerSwitchProfile struct {
 	pulumi.CustomResourceState
 
-	// Login password of managed FortiSwitch.
-	LoginPasswd pulumi.StringPtrOutput `pulumi:"loginPasswd"`
-	// Enable/disable overriding the admin administrator password for a managed FortiSwitch with the FortiGate admin administrator account password. Valid values: `enable`, `disable`.
-	LoginPasswdOverride pulumi.StringOutput `pulumi:"loginPasswdOverride"`
-	// FortiSwitch Profile name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Login                   pulumi.StringOutput    `pulumi:"login"`
+	LoginPasswd             pulumi.StringPtrOutput `pulumi:"loginPasswd"`
+	LoginPasswdOverride     pulumi.StringOutput    `pulumi:"loginPasswdOverride"`
+	Name                    pulumi.StringOutput    `pulumi:"name"`
+	RevisionBackupOnLogout  pulumi.StringOutput    `pulumi:"revisionBackupOnLogout"`
+	RevisionBackupOnUpgrade pulumi.StringOutput    `pulumi:"revisionBackupOnUpgrade"`
+	Vdomparam               pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerSwitchProfile registers a new resource with the given unique name, arguments, and options.
@@ -70,6 +29,13 @@ func NewSwitchControllerSwitchProfile(ctx *pulumi.Context,
 		args = &SwitchControllerSwitchProfileArgs{}
 	}
 
+	if args.LoginPasswd != nil {
+		args.LoginPasswd = pulumi.ToSecret(args.LoginPasswd).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"loginPasswd",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSwitchProfile
 	err := ctx.RegisterResource("fortios:index/switchControllerSwitchProfile:SwitchControllerSwitchProfile", name, args, &resource, opts...)
@@ -93,25 +59,23 @@ func GetSwitchControllerSwitchProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerSwitchProfile resources.
 type switchControllerSwitchProfileState struct {
-	// Login password of managed FortiSwitch.
-	LoginPasswd *string `pulumi:"loginPasswd"`
-	// Enable/disable overriding the admin administrator password for a managed FortiSwitch with the FortiGate admin administrator account password. Valid values: `enable`, `disable`.
-	LoginPasswdOverride *string `pulumi:"loginPasswdOverride"`
-	// FortiSwitch Profile name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Login                   *string `pulumi:"login"`
+	LoginPasswd             *string `pulumi:"loginPasswd"`
+	LoginPasswdOverride     *string `pulumi:"loginPasswdOverride"`
+	Name                    *string `pulumi:"name"`
+	RevisionBackupOnLogout  *string `pulumi:"revisionBackupOnLogout"`
+	RevisionBackupOnUpgrade *string `pulumi:"revisionBackupOnUpgrade"`
+	Vdomparam               *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerSwitchProfileState struct {
-	// Login password of managed FortiSwitch.
-	LoginPasswd pulumi.StringPtrInput
-	// Enable/disable overriding the admin administrator password for a managed FortiSwitch with the FortiGate admin administrator account password. Valid values: `enable`, `disable`.
-	LoginPasswdOverride pulumi.StringPtrInput
-	// FortiSwitch Profile name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Login                   pulumi.StringPtrInput
+	LoginPasswd             pulumi.StringPtrInput
+	LoginPasswdOverride     pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	RevisionBackupOnLogout  pulumi.StringPtrInput
+	RevisionBackupOnUpgrade pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (SwitchControllerSwitchProfileState) ElementType() reflect.Type {
@@ -119,26 +83,24 @@ func (SwitchControllerSwitchProfileState) ElementType() reflect.Type {
 }
 
 type switchControllerSwitchProfileArgs struct {
-	// Login password of managed FortiSwitch.
-	LoginPasswd *string `pulumi:"loginPasswd"`
-	// Enable/disable overriding the admin administrator password for a managed FortiSwitch with the FortiGate admin administrator account password. Valid values: `enable`, `disable`.
-	LoginPasswdOverride *string `pulumi:"loginPasswdOverride"`
-	// FortiSwitch Profile name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Login                   *string `pulumi:"login"`
+	LoginPasswd             *string `pulumi:"loginPasswd"`
+	LoginPasswdOverride     *string `pulumi:"loginPasswdOverride"`
+	Name                    *string `pulumi:"name"`
+	RevisionBackupOnLogout  *string `pulumi:"revisionBackupOnLogout"`
+	RevisionBackupOnUpgrade *string `pulumi:"revisionBackupOnUpgrade"`
+	Vdomparam               *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerSwitchProfile resource.
 type SwitchControllerSwitchProfileArgs struct {
-	// Login password of managed FortiSwitch.
-	LoginPasswd pulumi.StringPtrInput
-	// Enable/disable overriding the admin administrator password for a managed FortiSwitch with the FortiGate admin administrator account password. Valid values: `enable`, `disable`.
-	LoginPasswdOverride pulumi.StringPtrInput
-	// FortiSwitch Profile name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Login                   pulumi.StringPtrInput
+	LoginPasswd             pulumi.StringPtrInput
+	LoginPasswdOverride     pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	RevisionBackupOnLogout  pulumi.StringPtrInput
+	RevisionBackupOnUpgrade pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (SwitchControllerSwitchProfileArgs) ElementType() reflect.Type {
@@ -167,7 +129,7 @@ func (i *SwitchControllerSwitchProfile) ToSwitchControllerSwitchProfileOutputWit
 // SwitchControllerSwitchProfileArrayInput is an input type that accepts SwitchControllerSwitchProfileArray and SwitchControllerSwitchProfileArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSwitchProfileArrayInput` via:
 //
-//          SwitchControllerSwitchProfileArray{ SwitchControllerSwitchProfileArgs{...} }
+//	SwitchControllerSwitchProfileArray{ SwitchControllerSwitchProfileArgs{...} }
 type SwitchControllerSwitchProfileArrayInput interface {
 	pulumi.Input
 
@@ -192,7 +154,7 @@ func (i SwitchControllerSwitchProfileArray) ToSwitchControllerSwitchProfileArray
 // SwitchControllerSwitchProfileMapInput is an input type that accepts SwitchControllerSwitchProfileMap and SwitchControllerSwitchProfileMapOutput values.
 // You can construct a concrete instance of `SwitchControllerSwitchProfileMapInput` via:
 //
-//          SwitchControllerSwitchProfileMap{ "key": SwitchControllerSwitchProfileArgs{...} }
+//	SwitchControllerSwitchProfileMap{ "key": SwitchControllerSwitchProfileArgs{...} }
 type SwitchControllerSwitchProfileMapInput interface {
 	pulumi.Input
 
@@ -226,6 +188,34 @@ func (o SwitchControllerSwitchProfileOutput) ToSwitchControllerSwitchProfileOutp
 
 func (o SwitchControllerSwitchProfileOutput) ToSwitchControllerSwitchProfileOutputWithContext(ctx context.Context) SwitchControllerSwitchProfileOutput {
 	return o
+}
+
+func (o SwitchControllerSwitchProfileOutput) Login() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchProfile) pulumi.StringOutput { return v.Login }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSwitchProfileOutput) LoginPasswd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchProfile) pulumi.StringPtrOutput { return v.LoginPasswd }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerSwitchProfileOutput) LoginPasswdOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchProfile) pulumi.StringOutput { return v.LoginPasswdOverride }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSwitchProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSwitchProfileOutput) RevisionBackupOnLogout() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchProfile) pulumi.StringOutput { return v.RevisionBackupOnLogout }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSwitchProfileOutput) RevisionBackupOnUpgrade() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchProfile) pulumi.StringOutput { return v.RevisionBackupOnUpgrade }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSwitchProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerSwitchProfileArrayOutput struct{ *pulumi.OutputState }

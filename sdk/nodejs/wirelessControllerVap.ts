@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure Virtual Access Points (VAPs).
- *
- * ## Import
- *
- * WirelessController Vap can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerVap:WirelessControllerVap labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerVap:WirelessControllerVap labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerVap extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerVap resource's state with the given name, ID, and optional extra
@@ -52,657 +34,180 @@ export class WirelessControllerVap extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerVap.__pulumiType;
     }
 
-    /**
-     * access-control-list profile name.
-     */
     public readonly accessControlList!: pulumi.Output<string>;
-    /**
-     * WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
-     */
     public readonly acctInterimInterval!: pulumi.Output<number>;
-    /**
-     * Additional AKMs. Valid values: `akm6`.
-     */
     public readonly additionalAkms!: pulumi.Output<string>;
-    /**
-     * Address group ID.
-     */
     public readonly addressGroup!: pulumi.Output<string>;
-    /**
-     * Alias.
-     */
+    public readonly addressGroupPolicy!: pulumi.Output<string>;
     public readonly alias!: pulumi.Output<string>;
-    /**
-     * AntiVirus profile name.
-     */
     public readonly antivirusProfile!: pulumi.Output<string>;
-    /**
-     * Application control list name.
-     */
+    public readonly applicationDetectionEngine!: pulumi.Output<string>;
+    public readonly applicationDscpMarking!: pulumi.Output<string>;
     public readonly applicationList!: pulumi.Output<string>;
-    /**
-     * Airtime weight in percentage (default = 20).
-     */
+    public readonly applicationReportIntv!: pulumi.Output<number>;
     public readonly atfWeight!: pulumi.Output<number>;
-    /**
-     * Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
-     */
     public readonly auth!: pulumi.Output<string>;
-    /**
-     * HTTPS server certificate.
-     */
     public readonly authCert!: pulumi.Output<string>;
-    /**
-     * Address of captive portal.
-     */
     public readonly authPortalAddr!: pulumi.Output<string>;
-    /**
-     * Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
-     */
     public readonly beaconAdvertising!: pulumi.Output<string>;
-    /**
-     * Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly broadcastSsid!: pulumi.Output<string>;
-    /**
-     * Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
-     */
     public readonly broadcastSuppression!: pulumi.Output<string>;
-    /**
-     * Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly bssColorPartial!: pulumi.Output<string>;
-    /**
-     * Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly bstmDisassociationImminent!: pulumi.Output<string>;
-    /**
-     * Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
-     */
     public readonly bstmLoadBalancingDisassocTimer!: pulumi.Output<number>;
-    /**
-     * Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
-     */
     public readonly bstmRssiDisassocTimer!: pulumi.Output<number>;
-    /**
-     * Local-bridging captive portal ac-name.
-     */
     public readonly captivePortalAcName!: pulumi.Output<string>;
-    /**
-     * Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
-     */
     public readonly captivePortalAuthTimeout!: pulumi.Output<number>;
-    /**
-     * Secret key to access the macauth RADIUS server.
-     */
     public readonly captivePortalMacauthRadiusSecret!: pulumi.Output<string | undefined>;
-    /**
-     * Captive portal external RADIUS server domain name or IP address.
-     */
     public readonly captivePortalMacauthRadiusServer!: pulumi.Output<string>;
-    /**
-     * Secret key to access the RADIUS server.
-     */
     public readonly captivePortalRadiusSecret!: pulumi.Output<string | undefined>;
-    /**
-     * Captive portal RADIUS server domain name or IP address.
-     */
     public readonly captivePortalRadiusServer!: pulumi.Output<string>;
-    /**
-     * Session timeout interval (0 - 864000 sec, default = 0).
-     */
     public readonly captivePortalSessionTimeoutInterval!: pulumi.Output<number>;
-    /**
-     * Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly dhcpAddressEnforcement!: pulumi.Output<string>;
-    /**
-     * DHCP lease time in seconds for NAT IP address.
-     */
     public readonly dhcpLeaseTime!: pulumi.Output<number>;
-    /**
-     * Enable/disable insertion of DHCP option 43 (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly dhcpOption43Insertion!: pulumi.Output<string>;
-    /**
-     * Enable/disable DHCP option 82 circuit-id insert (default = disable).
-     */
     public readonly dhcpOption82CircuitIdInsertion!: pulumi.Output<string>;
-    /**
-     * Enable/disable DHCP option 82 insert (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly dhcpOption82Insertion!: pulumi.Output<string>;
-    /**
-     * Enable/disable DHCP option 82 remote-id insert (default = disable). Valid values: `style-1`, `disable`.
-     */
     public readonly dhcpOption82RemoteIdInsertion!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable dynamic VLAN assignment. Valid values: `enable`, `disable`.
-     */
     public readonly dynamicVlan!: pulumi.Output<string>;
-    /**
-     * Enable/disable EAP re-authentication for WPA-Enterprise security. Valid values: `enable`, `disable`.
-     */
     public readonly eapReauth!: pulumi.Output<string>;
-    /**
-     * EAP re-authentication interval (1800 - 864000 sec, default = 86400).
-     */
     public readonly eapReauthIntv!: pulumi.Output<number>;
-    /**
-     * Enable/disable retransmission of EAPOL-Key frames (message 3/4 and group message 1/2) (default = enable). Valid values: `disable`, `enable`.
-     */
     public readonly eapolKeyRetries!: pulumi.Output<string>;
-    /**
-     * Encryption protocol to use (only available when security is set to a WPA type). Valid values: `TKIP`, `AES`, `TKIP-AES`.
-     */
     public readonly encrypt!: pulumi.Output<string>;
-    /**
-     * Enable/disable fast roaming or pre-authentication with external APs not managed by the FortiGate (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly externalFastRoaming!: pulumi.Output<string>;
-    /**
-     * URL of external authentication logout server.
-     */
     public readonly externalLogout!: pulumi.Output<string>;
-    /**
-     * URL of external authentication web server.
-     */
     public readonly externalWeb!: pulumi.Output<string>;
-    /**
-     * URL query parameter detection (default = auto-detect). Valid values: `auto-detect`, `no-query-string`, `partial-query-string`.
-     */
     public readonly externalWebFormat!: pulumi.Output<string>;
-    /**
-     * Enable/disable 802.11r Fast BSS Transition (FT) (default = disable). Valid values: `disable`, `enable`.
-     */
     public readonly fastBssTransition!: pulumi.Output<string>;
-    /**
-     * Enable/disable fast-roaming, or pre-authentication, where supported by clients (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly fastRoaming!: pulumi.Output<string>;
-    /**
-     * Mobility domain identifier in FT (1 - 65535, default = 1000).
-     */
     public readonly ftMobilityDomain!: pulumi.Output<number>;
-    /**
-     * Enable/disable FT over the Distribution System (DS). Valid values: `disable`, `enable`.
-     */
     public readonly ftOverDs!: pulumi.Output<string>;
-    /**
-     * Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
-     */
     public readonly ftR0KeyLifetime!: pulumi.Output<number>;
-    /**
-     * GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
-     */
     public readonly gasComebackDelay!: pulumi.Output<number>;
-    /**
-     * GAS fragmentation limit (512 - 4096, default = 1024).
-     */
     public readonly gasFragmentationLimit!: pulumi.Output<number>;
-    /**
-     * Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
-     */
     public readonly gtkRekey!: pulumi.Output<string>;
-    /**
-     * GTK rekey interval (1800 - 864000 sec, default = 86400).
-     */
     public readonly gtkRekeyIntv!: pulumi.Output<number>;
-    /**
-     * Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly highEfficiency!: pulumi.Output<string>;
-    /**
-     * Hotspot 2.0 profile name.
-     */
     public readonly hotspot20Profile!: pulumi.Output<string>;
-    /**
-     * Enable/disable IGMP snooping. Valid values: `enable`, `disable`.
-     */
     public readonly igmpSnooping!: pulumi.Output<string>;
-    /**
-     * Enable/disable blocking communication between clients on the same SSID (called intra-SSID privacy) (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly intraVapPrivacy!: pulumi.Output<string>;
-    /**
-     * IP address and subnet mask for the local standalone NAT subnet.
-     */
     public readonly ip!: pulumi.Output<string>;
-    /**
-     * IPS sensor name.
-     */
     public readonly ipsSensor!: pulumi.Output<string>;
-    /**
-     * Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
-     */
     public readonly ipv6Rules!: pulumi.Output<string>;
-    /**
-     * WEP Key.
-     */
     public readonly key!: pulumi.Output<string | undefined>;
-    /**
-     * WEP key index (1 - 4).
-     */
     public readonly keyindex!: pulumi.Output<number>;
-    /**
-     * VAP low-density parity-check (LDPC) coding configuration. Valid values: `disable`, `rx`, `tx`, `rxtx`.
-     */
+    public readonly l3Roaming!: pulumi.Output<string>;
+    public readonly l3RoamingMode!: pulumi.Output<string>;
     public readonly ldpc!: pulumi.Output<string>;
-    /**
-     * Enable/disable AP local authentication. Valid values: `enable`, `disable`.
-     */
     public readonly localAuthentication!: pulumi.Output<string>;
-    /**
-     * Enable/disable bridging of wireless and Ethernet interfaces on the FortiAP (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly localBridging!: pulumi.Output<string>;
-    /**
-     * Allow/deny traffic destined for a Class A, B, or C private IP address (default = allow). Valid values: `allow`, `deny`.
-     */
     public readonly localLan!: pulumi.Output<string>;
-    /**
-     * Enable/disable AP local standalone (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly localStandalone!: pulumi.Output<string>;
-    /**
-     * Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
-     */
     public readonly localStandaloneDns!: pulumi.Output<string>;
-    /**
-     * IPv4 addresses for the local standalone DNS.
-     */
     public readonly localStandaloneDnsIp!: pulumi.Output<string>;
-    /**
-     * Enable/disable AP local standalone NAT mode. Valid values: `enable`, `disable`.
-     */
     public readonly localStandaloneNat!: pulumi.Output<string>;
-    /**
-     * Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
-     */
     public readonly macAuthBypass!: pulumi.Output<string>;
-    /**
-     * MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
-     */
     public readonly macCalledStationDelimiter!: pulumi.Output<string>;
-    /**
-     * MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
-     */
     public readonly macCallingStationDelimiter!: pulumi.Output<string>;
-    /**
-     * MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
-     */
     public readonly macCase!: pulumi.Output<string>;
-    /**
-     * Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `enable`, `disable`.
-     */
     public readonly macFilter!: pulumi.Output<string>;
-    /**
-     * Create a list of MAC addresses for MAC address filtering. The structure of `macFilterList` block is documented below.
-     */
     public readonly macFilterLists!: pulumi.Output<outputs.WirelessControllerVapMacFilterList[] | undefined>;
-    /**
-     * Allow or block clients with MAC addresses that are not in the filter list. Valid values: `allow`, `deny`.
-     */
     public readonly macFilterPolicyOther!: pulumi.Output<string>;
-    /**
-     * MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
-     */
     public readonly macPasswordDelimiter!: pulumi.Output<string>;
-    /**
-     * MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
-     */
     public readonly macUsernameDelimiter!: pulumi.Output<string>;
-    /**
-     * Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
-     */
     public readonly maxClients!: pulumi.Output<number>;
-    /**
-     * Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
-     */
     public readonly maxClientsAp!: pulumi.Output<number>;
-    /**
-     * Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
-     */
     public readonly mbo!: pulumi.Output<string>;
-    /**
-     * MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
-     */
     public readonly mboCellDataConnPref!: pulumi.Output<string>;
-    /**
-     * Disable multicast enhancement when this many clients are receiving multicast traffic.
-     */
     public readonly meDisableThresh!: pulumi.Output<number>;
-    /**
-     * Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. Valid values: `enable`, `disable`.
-     */
     public readonly meshBackhaul!: pulumi.Output<string>;
-    /**
-     * Enable/disable multiple pre-shared keys (PSKs.) Valid values: `enable`, `disable`.
-     */
     public readonly mpsk!: pulumi.Output<string>;
-    /**
-     * Number of pre-shared keys (PSKs) to allow if multiple pre-shared keys are enabled.
-     */
     public readonly mpskConcurrentClients!: pulumi.Output<number>;
-    /**
-     * Pre-shared keys that can be used to connect to this virtual access point. The structure of `mpskKey` block is documented below.
-     */
     public readonly mpskKeys!: pulumi.Output<outputs.WirelessControllerVapMpskKey[] | undefined>;
-    /**
-     * MPSK profile name.
-     */
     public readonly mpskProfile!: pulumi.Output<string>;
-    /**
-     * Enable/disable Multi-user MIMO (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly muMimo!: pulumi.Output<string>;
-    /**
-     * Enable/disable converting multicast to unicast to improve performance (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly multicastEnhance!: pulumi.Output<string>;
-    /**
-     * Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
-     */
     public readonly multicastRate!: pulumi.Output<string>;
-    /**
-     * Enable/disable network access control. Valid values: `enable`, `disable`.
-     */
     public readonly nac!: pulumi.Output<string>;
-    /**
-     * NAC profile name.
-     */
     public readonly nacProfile!: pulumi.Output<string>;
-    /**
-     * VLAN name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
-     */
     public readonly neighborReportDualBand!: pulumi.Output<string>;
-    /**
-     * Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
-     */
     public readonly okc!: pulumi.Output<string>;
-    /**
-     * Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly osen!: pulumi.Output<string>;
-    /**
-     * OWE-Groups. Valid values: `19`, `20`, `21`.
-     */
     public readonly oweGroups!: pulumi.Output<string>;
-    /**
-     * Enable/disable OWE transition mode support. Valid values: `disable`, `enable`.
-     */
     public readonly oweTransition!: pulumi.Output<string>;
-    /**
-     * OWE transition mode peer SSID.
-     */
     public readonly oweTransitionSsid!: pulumi.Output<string>;
-    /**
-     * WPA Pre-shared key.
-     */
     public readonly passphrase!: pulumi.Output<string | undefined>;
-    /**
-     * Protected Management Frames (PMF) support (default = disable). Valid values: `disable`, `enable`, `optional`.
-     */
     public readonly pmf!: pulumi.Output<string>;
-    /**
-     * Protected Management Frames (PMF) comeback maximum timeout (1-20 sec).
-     */
     public readonly pmfAssocComebackTimeout!: pulumi.Output<number>;
-    /**
-     * Protected Management Frames (PMF) SA query retry timeout interval (1 - 5 100s of msec).
-     */
     public readonly pmfSaQueryRetryTimeout!: pulumi.Output<number>;
-    /**
-     * Enable/disable LAN port MAC authentication (default = disable). Valid values: `disable`, `radius`, `address-group`.
-     */
     public readonly portMacauth!: pulumi.Output<string>;
-    /**
-     * LAN port MAC authentication re-authentication timeout value (default = 7200 sec).
-     */
     public readonly portMacauthReauthTimeout!: pulumi.Output<number>;
-    /**
-     * LAN port MAC authentication idle timeout value (default = 600 sec).
-     */
     public readonly portMacauthTimeout!: pulumi.Output<number>;
-    /**
-     * Replacement message group for this VAP (only available when security is set to a captive portal type).
-     */
     public readonly portalMessageOverrideGroup!: pulumi.Output<string>;
-    /**
-     * Individual message overrides. The structure of `portalMessageOverrides` block is documented below.
-     */
-    public readonly portalMessageOverrides!: pulumi.Output<outputs.WirelessControllerVapPortalMessageOverrides | undefined>;
-    /**
-     * Captive portal functionality. Configure how the captive portal authenticates users and whether it includes a disclaimer.
-     */
+    public readonly portalMessageOverrides!: pulumi.Output<outputs.WirelessControllerVapPortalMessageOverrides>;
     public readonly portalType!: pulumi.Output<string>;
-    /**
-     * Primary wireless access gateway profile name.
-     */
     public readonly primaryWagProfile!: pulumi.Output<string>;
-    /**
-     * Enable/disable probe response suppression (to ignore weak signals) (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly probeRespSuppression!: pulumi.Output<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the AP response to probe requests (-95 to -20, default = -80).
-     */
     public readonly probeRespThreshold!: pulumi.Output<string>;
-    /**
-     * Enable/disable PTK rekey for WPA-Enterprise security. Valid values: `enable`, `disable`.
-     */
     public readonly ptkRekey!: pulumi.Output<string>;
-    /**
-     * PTK rekey interval (1800 - 864000 sec, default = 86400).
-     */
     public readonly ptkRekeyIntv!: pulumi.Output<number>;
-    /**
-     * Quality of service profile name.
-     */
     public readonly qosProfile!: pulumi.Output<string>;
-    /**
-     * Enable/disable station quarantine (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly quarantine!: pulumi.Output<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the AP response to receive a packet in 2.4G band (-95 to -20, default = -79).
-     */
     public readonly radio2gThreshold!: pulumi.Output<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the AP response to receive a packet in 5G band(-95 to -20, default = -76).
-     */
     public readonly radio5gThreshold!: pulumi.Output<string>;
-    /**
-     * Enable/disable software radio sensitivity (to ignore weak signals) (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly radioSensitivity!: pulumi.Output<string>;
-    /**
-     * Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly radiusMacAuth!: pulumi.Output<string>;
-    /**
-     * RADIUS-based MAC authentication server.
-     */
     public readonly radiusMacAuthServer!: pulumi.Output<string>;
-    /**
-     * Selective user groups that are permitted for RADIUS mac authentication. The structure of `radiusMacAuthUsergroups` block is documented below.
-     */
     public readonly radiusMacAuthUsergroups!: pulumi.Output<outputs.WirelessControllerVapRadiusMacAuthUsergroup[] | undefined>;
-    /**
-     * Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly radiusMacMpskAuth!: pulumi.Output<string>;
-    /**
-     * RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
-     */
     public readonly radiusMacMpskTimeout!: pulumi.Output<number>;
-    /**
-     * RADIUS server to be used to authenticate WiFi users.
-     */
     public readonly radiusServer!: pulumi.Output<string>;
-    /**
-     * Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
-     */
     public readonly rates11a!: pulumi.Output<string>;
-    /**
-     * Allowed data rates for 802.11ac with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
-     */
+    public readonly rates11acMcsMap!: pulumi.Output<string>;
     public readonly rates11acSs12!: pulumi.Output<string>;
-    /**
-     * Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
-     */
     public readonly rates11acSs34!: pulumi.Output<string>;
-    /**
-     * Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
-     */
+    public readonly rates11axMcsMap!: pulumi.Output<string>;
     public readonly rates11axSs12!: pulumi.Output<string>;
-    /**
-     * Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
-     */
     public readonly rates11axSs34!: pulumi.Output<string>;
-    /**
-     * Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
-     */
     public readonly rates11bg!: pulumi.Output<string>;
-    /**
-     * Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
-     */
     public readonly rates11nSs12!: pulumi.Output<string>;
-    /**
-     * Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
-     */
     public readonly rates11nSs34!: pulumi.Output<string>;
-    /**
-     * SAE-Groups. Valid values: `19`, `20`, `21`.
-     */
     public readonly saeGroups!: pulumi.Output<string>;
-    /**
-     * WPA3 SAE password to be used to authenticate WiFi users.
-     */
+    public readonly saeH2eOnly!: pulumi.Output<string>;
     public readonly saePassword!: pulumi.Output<string | undefined>;
-    /**
-     * Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
-     */
+    public readonly saePk!: pulumi.Output<string>;
+    public readonly saePrivateKey!: pulumi.Output<string>;
     public readonly scanBotnetConnections!: pulumi.Output<string>;
-    /**
-     * VAP schedule name.
-     */
     public readonly schedule!: pulumi.Output<string>;
-    /**
-     * Secondary wireless access gateway profile name.
-     */
     public readonly secondaryWagProfile!: pulumi.Output<string>;
-    /**
-     * Security mode for the wireless interface (default = wpa2-only-personal).
-     */
     public readonly security!: pulumi.Output<string>;
-    /**
-     * Optional security exempt list for captive portal authentication.
-     */
     public readonly securityExemptList!: pulumi.Output<string>;
-    /**
-     * Enable/disable obsolete security options. Valid values: `enable`, `disable`.
-     */
     public readonly securityObsoleteOption!: pulumi.Output<string>;
-    /**
-     * Optional URL for redirecting users after they pass captive portal authentication.
-     */
     public readonly securityRedirectUrl!: pulumi.Output<string>;
-    /**
-     * Selective user groups that are permitted to authenticate. The structure of `selectedUsergroups` block is documented below.
-     */
     public readonly selectedUsergroups!: pulumi.Output<outputs.WirelessControllerVapSelectedUsergroup[] | undefined>;
-    /**
-     * Enable/disable split tunneling (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly splitTunneling!: pulumi.Output<string>;
-    /**
-     * IEEE 802.11 service set identifier (SSID) for the wireless interface. Users who wish to use the wireless network must configure their computers to access this SSID name.
-     */
     public readonly ssid!: pulumi.Output<string>;
-    /**
-     * Enable/disable sticky client remove to maintain good signal level clients in SSID. (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly stickyClientRemove!: pulumi.Output<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the 2G client to be serviced by the AP (-95 to -20, default = -79).
-     */
     public readonly stickyClientThreshold2g!: pulumi.Output<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the 5G client to be serviced by the AP (-95 to -20, default = -76).
-     */
     public readonly stickyClientThreshold5g!: pulumi.Output<string>;
-    /**
-     * Enable/disable 802.11ax target wake time (default = enable). Valid values: `enable`, `disable`.
-     */
+    public readonly stickyClientThreshold6g!: pulumi.Output<string>;
     public readonly targetWakeTime!: pulumi.Output<string>;
-    /**
-     * Enable/disable TKIP counter measure. Valid values: `enable`, `disable`.
-     */
     public readonly tkipCounterMeasure!: pulumi.Output<string>;
-    /**
-     * The time interval to send echo to both primary and secondary tunnel peers (1 - 65535 sec, default = 300).
-     */
     public readonly tunnelEchoInterval!: pulumi.Output<number>;
-    /**
-     * The time interval for secondary tunnel to fall back to primary tunnel (0 - 65535 sec, default = 7200).
-     */
     public readonly tunnelFallbackInterval!: pulumi.Output<number>;
-    /**
-     * Firewall user group to be used to authenticate WiFi users. The structure of `usergroup` block is documented below.
-     */
     public readonly usergroups!: pulumi.Output<outputs.WirelessControllerVapUsergroup[] | undefined>;
-    /**
-     * Enable/disable UTM logging. Valid values: `enable`, `disable`.
-     */
     public readonly utmLog!: pulumi.Output<string>;
-    /**
-     * UTM profile name.
-     */
     public readonly utmProfile!: pulumi.Output<string>;
-    /**
-     * Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
-     */
     public readonly utmStatus!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
-     */
     public readonly vlanAuto!: pulumi.Output<string>;
-    /**
-     * Table for mapping VLAN name to VLAN ID. The structure of `vlanName` block is documented below.
-     */
     public readonly vlanNames!: pulumi.Output<outputs.WirelessControllerVapVlanName[] | undefined>;
-    /**
-     * Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
-     */
     public readonly vlanPooling!: pulumi.Output<string>;
-    /**
-     * VLAN pool. The structure of `vlanPool` block is documented below.
-     */
     public readonly vlanPools!: pulumi.Output<outputs.WirelessControllerVapVlanPool[] | undefined>;
-    /**
-     * Optional VLAN ID.
-     */
     public readonly vlanid!: pulumi.Output<number>;
-    /**
-     * Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
-     */
     public readonly voiceEnterprise!: pulumi.Output<string>;
-    /**
-     * WebFilter profile name.
-     */
     public readonly webfilterProfile!: pulumi.Output<string>;
 
     /**
@@ -722,9 +227,13 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["acctInterimInterval"] = state ? state.acctInterimInterval : undefined;
             resourceInputs["additionalAkms"] = state ? state.additionalAkms : undefined;
             resourceInputs["addressGroup"] = state ? state.addressGroup : undefined;
+            resourceInputs["addressGroupPolicy"] = state ? state.addressGroupPolicy : undefined;
             resourceInputs["alias"] = state ? state.alias : undefined;
             resourceInputs["antivirusProfile"] = state ? state.antivirusProfile : undefined;
+            resourceInputs["applicationDetectionEngine"] = state ? state.applicationDetectionEngine : undefined;
+            resourceInputs["applicationDscpMarking"] = state ? state.applicationDscpMarking : undefined;
             resourceInputs["applicationList"] = state ? state.applicationList : undefined;
+            resourceInputs["applicationReportIntv"] = state ? state.applicationReportIntv : undefined;
             resourceInputs["atfWeight"] = state ? state.atfWeight : undefined;
             resourceInputs["auth"] = state ? state.auth : undefined;
             resourceInputs["authCert"] = state ? state.authCert : undefined;
@@ -777,6 +286,8 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["ipv6Rules"] = state ? state.ipv6Rules : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
             resourceInputs["keyindex"] = state ? state.keyindex : undefined;
+            resourceInputs["l3Roaming"] = state ? state.l3Roaming : undefined;
+            resourceInputs["l3RoamingMode"] = state ? state.l3RoamingMode : undefined;
             resourceInputs["ldpc"] = state ? state.ldpc : undefined;
             resourceInputs["localAuthentication"] = state ? state.localAuthentication : undefined;
             resourceInputs["localBridging"] = state ? state.localBridging : undefined;
@@ -843,15 +354,20 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["radiusMacMpskTimeout"] = state ? state.radiusMacMpskTimeout : undefined;
             resourceInputs["radiusServer"] = state ? state.radiusServer : undefined;
             resourceInputs["rates11a"] = state ? state.rates11a : undefined;
+            resourceInputs["rates11acMcsMap"] = state ? state.rates11acMcsMap : undefined;
             resourceInputs["rates11acSs12"] = state ? state.rates11acSs12 : undefined;
             resourceInputs["rates11acSs34"] = state ? state.rates11acSs34 : undefined;
+            resourceInputs["rates11axMcsMap"] = state ? state.rates11axMcsMap : undefined;
             resourceInputs["rates11axSs12"] = state ? state.rates11axSs12 : undefined;
             resourceInputs["rates11axSs34"] = state ? state.rates11axSs34 : undefined;
             resourceInputs["rates11bg"] = state ? state.rates11bg : undefined;
             resourceInputs["rates11nSs12"] = state ? state.rates11nSs12 : undefined;
             resourceInputs["rates11nSs34"] = state ? state.rates11nSs34 : undefined;
             resourceInputs["saeGroups"] = state ? state.saeGroups : undefined;
+            resourceInputs["saeH2eOnly"] = state ? state.saeH2eOnly : undefined;
             resourceInputs["saePassword"] = state ? state.saePassword : undefined;
+            resourceInputs["saePk"] = state ? state.saePk : undefined;
+            resourceInputs["saePrivateKey"] = state ? state.saePrivateKey : undefined;
             resourceInputs["scanBotnetConnections"] = state ? state.scanBotnetConnections : undefined;
             resourceInputs["schedule"] = state ? state.schedule : undefined;
             resourceInputs["secondaryWagProfile"] = state ? state.secondaryWagProfile : undefined;
@@ -865,6 +381,7 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["stickyClientRemove"] = state ? state.stickyClientRemove : undefined;
             resourceInputs["stickyClientThreshold2g"] = state ? state.stickyClientThreshold2g : undefined;
             resourceInputs["stickyClientThreshold5g"] = state ? state.stickyClientThreshold5g : undefined;
+            resourceInputs["stickyClientThreshold6g"] = state ? state.stickyClientThreshold6g : undefined;
             resourceInputs["targetWakeTime"] = state ? state.targetWakeTime : undefined;
             resourceInputs["tkipCounterMeasure"] = state ? state.tkipCounterMeasure : undefined;
             resourceInputs["tunnelEchoInterval"] = state ? state.tunnelEchoInterval : undefined;
@@ -887,9 +404,13 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["acctInterimInterval"] = args ? args.acctInterimInterval : undefined;
             resourceInputs["additionalAkms"] = args ? args.additionalAkms : undefined;
             resourceInputs["addressGroup"] = args ? args.addressGroup : undefined;
+            resourceInputs["addressGroupPolicy"] = args ? args.addressGroupPolicy : undefined;
             resourceInputs["alias"] = args ? args.alias : undefined;
             resourceInputs["antivirusProfile"] = args ? args.antivirusProfile : undefined;
+            resourceInputs["applicationDetectionEngine"] = args ? args.applicationDetectionEngine : undefined;
+            resourceInputs["applicationDscpMarking"] = args ? args.applicationDscpMarking : undefined;
             resourceInputs["applicationList"] = args ? args.applicationList : undefined;
+            resourceInputs["applicationReportIntv"] = args ? args.applicationReportIntv : undefined;
             resourceInputs["atfWeight"] = args ? args.atfWeight : undefined;
             resourceInputs["auth"] = args ? args.auth : undefined;
             resourceInputs["authCert"] = args ? args.authCert : undefined;
@@ -903,9 +424,9 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["bstmRssiDisassocTimer"] = args ? args.bstmRssiDisassocTimer : undefined;
             resourceInputs["captivePortalAcName"] = args ? args.captivePortalAcName : undefined;
             resourceInputs["captivePortalAuthTimeout"] = args ? args.captivePortalAuthTimeout : undefined;
-            resourceInputs["captivePortalMacauthRadiusSecret"] = args ? args.captivePortalMacauthRadiusSecret : undefined;
+            resourceInputs["captivePortalMacauthRadiusSecret"] = args?.captivePortalMacauthRadiusSecret ? pulumi.secret(args.captivePortalMacauthRadiusSecret) : undefined;
             resourceInputs["captivePortalMacauthRadiusServer"] = args ? args.captivePortalMacauthRadiusServer : undefined;
-            resourceInputs["captivePortalRadiusSecret"] = args ? args.captivePortalRadiusSecret : undefined;
+            resourceInputs["captivePortalRadiusSecret"] = args?.captivePortalRadiusSecret ? pulumi.secret(args.captivePortalRadiusSecret) : undefined;
             resourceInputs["captivePortalRadiusServer"] = args ? args.captivePortalRadiusServer : undefined;
             resourceInputs["captivePortalSessionTimeoutInterval"] = args ? args.captivePortalSessionTimeoutInterval : undefined;
             resourceInputs["dhcpAddressEnforcement"] = args ? args.dhcpAddressEnforcement : undefined;
@@ -940,8 +461,10 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["ip"] = args ? args.ip : undefined;
             resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
             resourceInputs["ipv6Rules"] = args ? args.ipv6Rules : undefined;
-            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["key"] = args?.key ? pulumi.secret(args.key) : undefined;
             resourceInputs["keyindex"] = args ? args.keyindex : undefined;
+            resourceInputs["l3Roaming"] = args ? args.l3Roaming : undefined;
+            resourceInputs["l3RoamingMode"] = args ? args.l3RoamingMode : undefined;
             resourceInputs["ldpc"] = args ? args.ldpc : undefined;
             resourceInputs["localAuthentication"] = args ? args.localAuthentication : undefined;
             resourceInputs["localBridging"] = args ? args.localBridging : undefined;
@@ -981,7 +504,7 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["oweGroups"] = args ? args.oweGroups : undefined;
             resourceInputs["oweTransition"] = args ? args.oweTransition : undefined;
             resourceInputs["oweTransitionSsid"] = args ? args.oweTransitionSsid : undefined;
-            resourceInputs["passphrase"] = args ? args.passphrase : undefined;
+            resourceInputs["passphrase"] = args?.passphrase ? pulumi.secret(args.passphrase) : undefined;
             resourceInputs["pmf"] = args ? args.pmf : undefined;
             resourceInputs["pmfAssocComebackTimeout"] = args ? args.pmfAssocComebackTimeout : undefined;
             resourceInputs["pmfSaQueryRetryTimeout"] = args ? args.pmfSaQueryRetryTimeout : undefined;
@@ -1008,15 +531,20 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["radiusMacMpskTimeout"] = args ? args.radiusMacMpskTimeout : undefined;
             resourceInputs["radiusServer"] = args ? args.radiusServer : undefined;
             resourceInputs["rates11a"] = args ? args.rates11a : undefined;
+            resourceInputs["rates11acMcsMap"] = args ? args.rates11acMcsMap : undefined;
             resourceInputs["rates11acSs12"] = args ? args.rates11acSs12 : undefined;
             resourceInputs["rates11acSs34"] = args ? args.rates11acSs34 : undefined;
+            resourceInputs["rates11axMcsMap"] = args ? args.rates11axMcsMap : undefined;
             resourceInputs["rates11axSs12"] = args ? args.rates11axSs12 : undefined;
             resourceInputs["rates11axSs34"] = args ? args.rates11axSs34 : undefined;
             resourceInputs["rates11bg"] = args ? args.rates11bg : undefined;
             resourceInputs["rates11nSs12"] = args ? args.rates11nSs12 : undefined;
             resourceInputs["rates11nSs34"] = args ? args.rates11nSs34 : undefined;
             resourceInputs["saeGroups"] = args ? args.saeGroups : undefined;
-            resourceInputs["saePassword"] = args ? args.saePassword : undefined;
+            resourceInputs["saeH2eOnly"] = args ? args.saeH2eOnly : undefined;
+            resourceInputs["saePassword"] = args?.saePassword ? pulumi.secret(args.saePassword) : undefined;
+            resourceInputs["saePk"] = args ? args.saePk : undefined;
+            resourceInputs["saePrivateKey"] = args ? args.saePrivateKey : undefined;
             resourceInputs["scanBotnetConnections"] = args ? args.scanBotnetConnections : undefined;
             resourceInputs["schedule"] = args ? args.schedule : undefined;
             resourceInputs["secondaryWagProfile"] = args ? args.secondaryWagProfile : undefined;
@@ -1030,6 +558,7 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["stickyClientRemove"] = args ? args.stickyClientRemove : undefined;
             resourceInputs["stickyClientThreshold2g"] = args ? args.stickyClientThreshold2g : undefined;
             resourceInputs["stickyClientThreshold5g"] = args ? args.stickyClientThreshold5g : undefined;
+            resourceInputs["stickyClientThreshold6g"] = args ? args.stickyClientThreshold6g : undefined;
             resourceInputs["targetWakeTime"] = args ? args.targetWakeTime : undefined;
             resourceInputs["tkipCounterMeasure"] = args ? args.tkipCounterMeasure : undefined;
             resourceInputs["tunnelEchoInterval"] = args ? args.tunnelEchoInterval : undefined;
@@ -1048,6 +577,8 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["captivePortalMacauthRadiusSecret", "captivePortalRadiusSecret", "key", "passphrase", "saePassword"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(WirelessControllerVap.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -1056,657 +587,180 @@ export class WirelessControllerVap extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerVap resources.
  */
 export interface WirelessControllerVapState {
-    /**
-     * access-control-list profile name.
-     */
     accessControlList?: pulumi.Input<string>;
-    /**
-     * WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
-     */
     acctInterimInterval?: pulumi.Input<number>;
-    /**
-     * Additional AKMs. Valid values: `akm6`.
-     */
     additionalAkms?: pulumi.Input<string>;
-    /**
-     * Address group ID.
-     */
     addressGroup?: pulumi.Input<string>;
-    /**
-     * Alias.
-     */
+    addressGroupPolicy?: pulumi.Input<string>;
     alias?: pulumi.Input<string>;
-    /**
-     * AntiVirus profile name.
-     */
     antivirusProfile?: pulumi.Input<string>;
-    /**
-     * Application control list name.
-     */
+    applicationDetectionEngine?: pulumi.Input<string>;
+    applicationDscpMarking?: pulumi.Input<string>;
     applicationList?: pulumi.Input<string>;
-    /**
-     * Airtime weight in percentage (default = 20).
-     */
+    applicationReportIntv?: pulumi.Input<number>;
     atfWeight?: pulumi.Input<number>;
-    /**
-     * Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
-     */
     auth?: pulumi.Input<string>;
-    /**
-     * HTTPS server certificate.
-     */
     authCert?: pulumi.Input<string>;
-    /**
-     * Address of captive portal.
-     */
     authPortalAddr?: pulumi.Input<string>;
-    /**
-     * Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
-     */
     beaconAdvertising?: pulumi.Input<string>;
-    /**
-     * Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
-     */
     broadcastSsid?: pulumi.Input<string>;
-    /**
-     * Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
-     */
     broadcastSuppression?: pulumi.Input<string>;
-    /**
-     * Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
-     */
     bssColorPartial?: pulumi.Input<string>;
-    /**
-     * Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
-     */
     bstmDisassociationImminent?: pulumi.Input<string>;
-    /**
-     * Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
-     */
     bstmLoadBalancingDisassocTimer?: pulumi.Input<number>;
-    /**
-     * Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
-     */
     bstmRssiDisassocTimer?: pulumi.Input<number>;
-    /**
-     * Local-bridging captive portal ac-name.
-     */
     captivePortalAcName?: pulumi.Input<string>;
-    /**
-     * Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
-     */
     captivePortalAuthTimeout?: pulumi.Input<number>;
-    /**
-     * Secret key to access the macauth RADIUS server.
-     */
     captivePortalMacauthRadiusSecret?: pulumi.Input<string>;
-    /**
-     * Captive portal external RADIUS server domain name or IP address.
-     */
     captivePortalMacauthRadiusServer?: pulumi.Input<string>;
-    /**
-     * Secret key to access the RADIUS server.
-     */
     captivePortalRadiusSecret?: pulumi.Input<string>;
-    /**
-     * Captive portal RADIUS server domain name or IP address.
-     */
     captivePortalRadiusServer?: pulumi.Input<string>;
-    /**
-     * Session timeout interval (0 - 864000 sec, default = 0).
-     */
     captivePortalSessionTimeoutInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
-     */
     dhcpAddressEnforcement?: pulumi.Input<string>;
-    /**
-     * DHCP lease time in seconds for NAT IP address.
-     */
     dhcpLeaseTime?: pulumi.Input<number>;
-    /**
-     * Enable/disable insertion of DHCP option 43 (default = enable). Valid values: `enable`, `disable`.
-     */
     dhcpOption43Insertion?: pulumi.Input<string>;
-    /**
-     * Enable/disable DHCP option 82 circuit-id insert (default = disable).
-     */
     dhcpOption82CircuitIdInsertion?: pulumi.Input<string>;
-    /**
-     * Enable/disable DHCP option 82 insert (default = disable). Valid values: `enable`, `disable`.
-     */
     dhcpOption82Insertion?: pulumi.Input<string>;
-    /**
-     * Enable/disable DHCP option 82 remote-id insert (default = disable). Valid values: `style-1`, `disable`.
-     */
     dhcpOption82RemoteIdInsertion?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable dynamic VLAN assignment. Valid values: `enable`, `disable`.
-     */
     dynamicVlan?: pulumi.Input<string>;
-    /**
-     * Enable/disable EAP re-authentication for WPA-Enterprise security. Valid values: `enable`, `disable`.
-     */
     eapReauth?: pulumi.Input<string>;
-    /**
-     * EAP re-authentication interval (1800 - 864000 sec, default = 86400).
-     */
     eapReauthIntv?: pulumi.Input<number>;
-    /**
-     * Enable/disable retransmission of EAPOL-Key frames (message 3/4 and group message 1/2) (default = enable). Valid values: `disable`, `enable`.
-     */
     eapolKeyRetries?: pulumi.Input<string>;
-    /**
-     * Encryption protocol to use (only available when security is set to a WPA type). Valid values: `TKIP`, `AES`, `TKIP-AES`.
-     */
     encrypt?: pulumi.Input<string>;
-    /**
-     * Enable/disable fast roaming or pre-authentication with external APs not managed by the FortiGate (default = disable). Valid values: `enable`, `disable`.
-     */
     externalFastRoaming?: pulumi.Input<string>;
-    /**
-     * URL of external authentication logout server.
-     */
     externalLogout?: pulumi.Input<string>;
-    /**
-     * URL of external authentication web server.
-     */
     externalWeb?: pulumi.Input<string>;
-    /**
-     * URL query parameter detection (default = auto-detect). Valid values: `auto-detect`, `no-query-string`, `partial-query-string`.
-     */
     externalWebFormat?: pulumi.Input<string>;
-    /**
-     * Enable/disable 802.11r Fast BSS Transition (FT) (default = disable). Valid values: `disable`, `enable`.
-     */
     fastBssTransition?: pulumi.Input<string>;
-    /**
-     * Enable/disable fast-roaming, or pre-authentication, where supported by clients (default = disable). Valid values: `enable`, `disable`.
-     */
     fastRoaming?: pulumi.Input<string>;
-    /**
-     * Mobility domain identifier in FT (1 - 65535, default = 1000).
-     */
     ftMobilityDomain?: pulumi.Input<number>;
-    /**
-     * Enable/disable FT over the Distribution System (DS). Valid values: `disable`, `enable`.
-     */
     ftOverDs?: pulumi.Input<string>;
-    /**
-     * Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
-     */
     ftR0KeyLifetime?: pulumi.Input<number>;
-    /**
-     * GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
-     */
     gasComebackDelay?: pulumi.Input<number>;
-    /**
-     * GAS fragmentation limit (512 - 4096, default = 1024).
-     */
     gasFragmentationLimit?: pulumi.Input<number>;
-    /**
-     * Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
-     */
     gtkRekey?: pulumi.Input<string>;
-    /**
-     * GTK rekey interval (1800 - 864000 sec, default = 86400).
-     */
     gtkRekeyIntv?: pulumi.Input<number>;
-    /**
-     * Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
-     */
     highEfficiency?: pulumi.Input<string>;
-    /**
-     * Hotspot 2.0 profile name.
-     */
     hotspot20Profile?: pulumi.Input<string>;
-    /**
-     * Enable/disable IGMP snooping. Valid values: `enable`, `disable`.
-     */
     igmpSnooping?: pulumi.Input<string>;
-    /**
-     * Enable/disable blocking communication between clients on the same SSID (called intra-SSID privacy) (default = disable). Valid values: `enable`, `disable`.
-     */
     intraVapPrivacy?: pulumi.Input<string>;
-    /**
-     * IP address and subnet mask for the local standalone NAT subnet.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * IPS sensor name.
-     */
     ipsSensor?: pulumi.Input<string>;
-    /**
-     * Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
-     */
     ipv6Rules?: pulumi.Input<string>;
-    /**
-     * WEP Key.
-     */
     key?: pulumi.Input<string>;
-    /**
-     * WEP key index (1 - 4).
-     */
     keyindex?: pulumi.Input<number>;
-    /**
-     * VAP low-density parity-check (LDPC) coding configuration. Valid values: `disable`, `rx`, `tx`, `rxtx`.
-     */
+    l3Roaming?: pulumi.Input<string>;
+    l3RoamingMode?: pulumi.Input<string>;
     ldpc?: pulumi.Input<string>;
-    /**
-     * Enable/disable AP local authentication. Valid values: `enable`, `disable`.
-     */
     localAuthentication?: pulumi.Input<string>;
-    /**
-     * Enable/disable bridging of wireless and Ethernet interfaces on the FortiAP (default = disable). Valid values: `enable`, `disable`.
-     */
     localBridging?: pulumi.Input<string>;
-    /**
-     * Allow/deny traffic destined for a Class A, B, or C private IP address (default = allow). Valid values: `allow`, `deny`.
-     */
     localLan?: pulumi.Input<string>;
-    /**
-     * Enable/disable AP local standalone (default = disable). Valid values: `enable`, `disable`.
-     */
     localStandalone?: pulumi.Input<string>;
-    /**
-     * Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
-     */
     localStandaloneDns?: pulumi.Input<string>;
-    /**
-     * IPv4 addresses for the local standalone DNS.
-     */
     localStandaloneDnsIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable AP local standalone NAT mode. Valid values: `enable`, `disable`.
-     */
     localStandaloneNat?: pulumi.Input<string>;
-    /**
-     * Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
-     */
     macAuthBypass?: pulumi.Input<string>;
-    /**
-     * MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
-     */
     macCalledStationDelimiter?: pulumi.Input<string>;
-    /**
-     * MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
-     */
     macCallingStationDelimiter?: pulumi.Input<string>;
-    /**
-     * MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
-     */
     macCase?: pulumi.Input<string>;
-    /**
-     * Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `enable`, `disable`.
-     */
     macFilter?: pulumi.Input<string>;
-    /**
-     * Create a list of MAC addresses for MAC address filtering. The structure of `macFilterList` block is documented below.
-     */
     macFilterLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapMacFilterList>[]>;
-    /**
-     * Allow or block clients with MAC addresses that are not in the filter list. Valid values: `allow`, `deny`.
-     */
     macFilterPolicyOther?: pulumi.Input<string>;
-    /**
-     * MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
-     */
     macPasswordDelimiter?: pulumi.Input<string>;
-    /**
-     * MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
-     */
     macUsernameDelimiter?: pulumi.Input<string>;
-    /**
-     * Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
-     */
     maxClients?: pulumi.Input<number>;
-    /**
-     * Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
-     */
     maxClientsAp?: pulumi.Input<number>;
-    /**
-     * Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
-     */
     mbo?: pulumi.Input<string>;
-    /**
-     * MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
-     */
     mboCellDataConnPref?: pulumi.Input<string>;
-    /**
-     * Disable multicast enhancement when this many clients are receiving multicast traffic.
-     */
     meDisableThresh?: pulumi.Input<number>;
-    /**
-     * Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. Valid values: `enable`, `disable`.
-     */
     meshBackhaul?: pulumi.Input<string>;
-    /**
-     * Enable/disable multiple pre-shared keys (PSKs.) Valid values: `enable`, `disable`.
-     */
     mpsk?: pulumi.Input<string>;
-    /**
-     * Number of pre-shared keys (PSKs) to allow if multiple pre-shared keys are enabled.
-     */
     mpskConcurrentClients?: pulumi.Input<number>;
-    /**
-     * Pre-shared keys that can be used to connect to this virtual access point. The structure of `mpskKey` block is documented below.
-     */
     mpskKeys?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapMpskKey>[]>;
-    /**
-     * MPSK profile name.
-     */
     mpskProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable Multi-user MIMO (default = enable). Valid values: `enable`, `disable`.
-     */
     muMimo?: pulumi.Input<string>;
-    /**
-     * Enable/disable converting multicast to unicast to improve performance (default = disable). Valid values: `enable`, `disable`.
-     */
     multicastEnhance?: pulumi.Input<string>;
-    /**
-     * Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
-     */
     multicastRate?: pulumi.Input<string>;
-    /**
-     * Enable/disable network access control. Valid values: `enable`, `disable`.
-     */
     nac?: pulumi.Input<string>;
-    /**
-     * NAC profile name.
-     */
     nacProfile?: pulumi.Input<string>;
-    /**
-     * VLAN name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
-     */
     neighborReportDualBand?: pulumi.Input<string>;
-    /**
-     * Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
-     */
     okc?: pulumi.Input<string>;
-    /**
-     * Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
-     */
     osen?: pulumi.Input<string>;
-    /**
-     * OWE-Groups. Valid values: `19`, `20`, `21`.
-     */
     oweGroups?: pulumi.Input<string>;
-    /**
-     * Enable/disable OWE transition mode support. Valid values: `disable`, `enable`.
-     */
     oweTransition?: pulumi.Input<string>;
-    /**
-     * OWE transition mode peer SSID.
-     */
     oweTransitionSsid?: pulumi.Input<string>;
-    /**
-     * WPA Pre-shared key.
-     */
     passphrase?: pulumi.Input<string>;
-    /**
-     * Protected Management Frames (PMF) support (default = disable). Valid values: `disable`, `enable`, `optional`.
-     */
     pmf?: pulumi.Input<string>;
-    /**
-     * Protected Management Frames (PMF) comeback maximum timeout (1-20 sec).
-     */
     pmfAssocComebackTimeout?: pulumi.Input<number>;
-    /**
-     * Protected Management Frames (PMF) SA query retry timeout interval (1 - 5 100s of msec).
-     */
     pmfSaQueryRetryTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable LAN port MAC authentication (default = disable). Valid values: `disable`, `radius`, `address-group`.
-     */
     portMacauth?: pulumi.Input<string>;
-    /**
-     * LAN port MAC authentication re-authentication timeout value (default = 7200 sec).
-     */
     portMacauthReauthTimeout?: pulumi.Input<number>;
-    /**
-     * LAN port MAC authentication idle timeout value (default = 600 sec).
-     */
     portMacauthTimeout?: pulumi.Input<number>;
-    /**
-     * Replacement message group for this VAP (only available when security is set to a captive portal type).
-     */
     portalMessageOverrideGroup?: pulumi.Input<string>;
-    /**
-     * Individual message overrides. The structure of `portalMessageOverrides` block is documented below.
-     */
     portalMessageOverrides?: pulumi.Input<inputs.WirelessControllerVapPortalMessageOverrides>;
-    /**
-     * Captive portal functionality. Configure how the captive portal authenticates users and whether it includes a disclaimer.
-     */
     portalType?: pulumi.Input<string>;
-    /**
-     * Primary wireless access gateway profile name.
-     */
     primaryWagProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable probe response suppression (to ignore weak signals) (default = disable). Valid values: `enable`, `disable`.
-     */
     probeRespSuppression?: pulumi.Input<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the AP response to probe requests (-95 to -20, default = -80).
-     */
     probeRespThreshold?: pulumi.Input<string>;
-    /**
-     * Enable/disable PTK rekey for WPA-Enterprise security. Valid values: `enable`, `disable`.
-     */
     ptkRekey?: pulumi.Input<string>;
-    /**
-     * PTK rekey interval (1800 - 864000 sec, default = 86400).
-     */
     ptkRekeyIntv?: pulumi.Input<number>;
-    /**
-     * Quality of service profile name.
-     */
     qosProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable station quarantine (default = enable). Valid values: `enable`, `disable`.
-     */
     quarantine?: pulumi.Input<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the AP response to receive a packet in 2.4G band (-95 to -20, default = -79).
-     */
     radio2gThreshold?: pulumi.Input<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the AP response to receive a packet in 5G band(-95 to -20, default = -76).
-     */
     radio5gThreshold?: pulumi.Input<string>;
-    /**
-     * Enable/disable software radio sensitivity (to ignore weak signals) (default = disable). Valid values: `enable`, `disable`.
-     */
     radioSensitivity?: pulumi.Input<string>;
-    /**
-     * Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
-     */
     radiusMacAuth?: pulumi.Input<string>;
-    /**
-     * RADIUS-based MAC authentication server.
-     */
     radiusMacAuthServer?: pulumi.Input<string>;
-    /**
-     * Selective user groups that are permitted for RADIUS mac authentication. The structure of `radiusMacAuthUsergroups` block is documented below.
-     */
     radiusMacAuthUsergroups?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapRadiusMacAuthUsergroup>[]>;
-    /**
-     * Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
-     */
     radiusMacMpskAuth?: pulumi.Input<string>;
-    /**
-     * RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
-     */
     radiusMacMpskTimeout?: pulumi.Input<number>;
-    /**
-     * RADIUS server to be used to authenticate WiFi users.
-     */
     radiusServer?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
-     */
     rates11a?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11ac with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
-     */
+    rates11acMcsMap?: pulumi.Input<string>;
     rates11acSs12?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
-     */
     rates11acSs34?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
-     */
+    rates11axMcsMap?: pulumi.Input<string>;
     rates11axSs12?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
-     */
     rates11axSs34?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
-     */
     rates11bg?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
-     */
     rates11nSs12?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
-     */
     rates11nSs34?: pulumi.Input<string>;
-    /**
-     * SAE-Groups. Valid values: `19`, `20`, `21`.
-     */
     saeGroups?: pulumi.Input<string>;
-    /**
-     * WPA3 SAE password to be used to authenticate WiFi users.
-     */
+    saeH2eOnly?: pulumi.Input<string>;
     saePassword?: pulumi.Input<string>;
-    /**
-     * Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
-     */
+    saePk?: pulumi.Input<string>;
+    saePrivateKey?: pulumi.Input<string>;
     scanBotnetConnections?: pulumi.Input<string>;
-    /**
-     * VAP schedule name.
-     */
     schedule?: pulumi.Input<string>;
-    /**
-     * Secondary wireless access gateway profile name.
-     */
     secondaryWagProfile?: pulumi.Input<string>;
-    /**
-     * Security mode for the wireless interface (default = wpa2-only-personal).
-     */
     security?: pulumi.Input<string>;
-    /**
-     * Optional security exempt list for captive portal authentication.
-     */
     securityExemptList?: pulumi.Input<string>;
-    /**
-     * Enable/disable obsolete security options. Valid values: `enable`, `disable`.
-     */
     securityObsoleteOption?: pulumi.Input<string>;
-    /**
-     * Optional URL for redirecting users after they pass captive portal authentication.
-     */
     securityRedirectUrl?: pulumi.Input<string>;
-    /**
-     * Selective user groups that are permitted to authenticate. The structure of `selectedUsergroups` block is documented below.
-     */
     selectedUsergroups?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapSelectedUsergroup>[]>;
-    /**
-     * Enable/disable split tunneling (default = disable). Valid values: `enable`, `disable`.
-     */
     splitTunneling?: pulumi.Input<string>;
-    /**
-     * IEEE 802.11 service set identifier (SSID) for the wireless interface. Users who wish to use the wireless network must configure their computers to access this SSID name.
-     */
     ssid?: pulumi.Input<string>;
-    /**
-     * Enable/disable sticky client remove to maintain good signal level clients in SSID. (default = disable). Valid values: `enable`, `disable`.
-     */
     stickyClientRemove?: pulumi.Input<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the 2G client to be serviced by the AP (-95 to -20, default = -79).
-     */
     stickyClientThreshold2g?: pulumi.Input<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the 5G client to be serviced by the AP (-95 to -20, default = -76).
-     */
     stickyClientThreshold5g?: pulumi.Input<string>;
-    /**
-     * Enable/disable 802.11ax target wake time (default = enable). Valid values: `enable`, `disable`.
-     */
+    stickyClientThreshold6g?: pulumi.Input<string>;
     targetWakeTime?: pulumi.Input<string>;
-    /**
-     * Enable/disable TKIP counter measure. Valid values: `enable`, `disable`.
-     */
     tkipCounterMeasure?: pulumi.Input<string>;
-    /**
-     * The time interval to send echo to both primary and secondary tunnel peers (1 - 65535 sec, default = 300).
-     */
     tunnelEchoInterval?: pulumi.Input<number>;
-    /**
-     * The time interval for secondary tunnel to fall back to primary tunnel (0 - 65535 sec, default = 7200).
-     */
     tunnelFallbackInterval?: pulumi.Input<number>;
-    /**
-     * Firewall user group to be used to authenticate WiFi users. The structure of `usergroup` block is documented below.
-     */
     usergroups?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapUsergroup>[]>;
-    /**
-     * Enable/disable UTM logging. Valid values: `enable`, `disable`.
-     */
     utmLog?: pulumi.Input<string>;
-    /**
-     * UTM profile name.
-     */
     utmProfile?: pulumi.Input<string>;
-    /**
-     * Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
-     */
     utmStatus?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
-     */
     vlanAuto?: pulumi.Input<string>;
-    /**
-     * Table for mapping VLAN name to VLAN ID. The structure of `vlanName` block is documented below.
-     */
     vlanNames?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapVlanName>[]>;
-    /**
-     * Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
-     */
     vlanPooling?: pulumi.Input<string>;
-    /**
-     * VLAN pool. The structure of `vlanPool` block is documented below.
-     */
     vlanPools?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapVlanPool>[]>;
-    /**
-     * Optional VLAN ID.
-     */
     vlanid?: pulumi.Input<number>;
-    /**
-     * Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
-     */
     voiceEnterprise?: pulumi.Input<string>;
-    /**
-     * WebFilter profile name.
-     */
     webfilterProfile?: pulumi.Input<string>;
 }
 
@@ -1714,656 +768,179 @@ export interface WirelessControllerVapState {
  * The set of arguments for constructing a WirelessControllerVap resource.
  */
 export interface WirelessControllerVapArgs {
-    /**
-     * access-control-list profile name.
-     */
     accessControlList?: pulumi.Input<string>;
-    /**
-     * WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
-     */
     acctInterimInterval?: pulumi.Input<number>;
-    /**
-     * Additional AKMs. Valid values: `akm6`.
-     */
     additionalAkms?: pulumi.Input<string>;
-    /**
-     * Address group ID.
-     */
     addressGroup?: pulumi.Input<string>;
-    /**
-     * Alias.
-     */
+    addressGroupPolicy?: pulumi.Input<string>;
     alias?: pulumi.Input<string>;
-    /**
-     * AntiVirus profile name.
-     */
     antivirusProfile?: pulumi.Input<string>;
-    /**
-     * Application control list name.
-     */
+    applicationDetectionEngine?: pulumi.Input<string>;
+    applicationDscpMarking?: pulumi.Input<string>;
     applicationList?: pulumi.Input<string>;
-    /**
-     * Airtime weight in percentage (default = 20).
-     */
+    applicationReportIntv?: pulumi.Input<number>;
     atfWeight?: pulumi.Input<number>;
-    /**
-     * Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
-     */
     auth?: pulumi.Input<string>;
-    /**
-     * HTTPS server certificate.
-     */
     authCert?: pulumi.Input<string>;
-    /**
-     * Address of captive portal.
-     */
     authPortalAddr?: pulumi.Input<string>;
-    /**
-     * Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
-     */
     beaconAdvertising?: pulumi.Input<string>;
-    /**
-     * Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
-     */
     broadcastSsid?: pulumi.Input<string>;
-    /**
-     * Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
-     */
     broadcastSuppression?: pulumi.Input<string>;
-    /**
-     * Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
-     */
     bssColorPartial?: pulumi.Input<string>;
-    /**
-     * Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
-     */
     bstmDisassociationImminent?: pulumi.Input<string>;
-    /**
-     * Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
-     */
     bstmLoadBalancingDisassocTimer?: pulumi.Input<number>;
-    /**
-     * Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
-     */
     bstmRssiDisassocTimer?: pulumi.Input<number>;
-    /**
-     * Local-bridging captive portal ac-name.
-     */
     captivePortalAcName?: pulumi.Input<string>;
-    /**
-     * Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
-     */
     captivePortalAuthTimeout?: pulumi.Input<number>;
-    /**
-     * Secret key to access the macauth RADIUS server.
-     */
     captivePortalMacauthRadiusSecret?: pulumi.Input<string>;
-    /**
-     * Captive portal external RADIUS server domain name or IP address.
-     */
     captivePortalMacauthRadiusServer?: pulumi.Input<string>;
-    /**
-     * Secret key to access the RADIUS server.
-     */
     captivePortalRadiusSecret?: pulumi.Input<string>;
-    /**
-     * Captive portal RADIUS server domain name or IP address.
-     */
     captivePortalRadiusServer?: pulumi.Input<string>;
-    /**
-     * Session timeout interval (0 - 864000 sec, default = 0).
-     */
     captivePortalSessionTimeoutInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
-     */
     dhcpAddressEnforcement?: pulumi.Input<string>;
-    /**
-     * DHCP lease time in seconds for NAT IP address.
-     */
     dhcpLeaseTime?: pulumi.Input<number>;
-    /**
-     * Enable/disable insertion of DHCP option 43 (default = enable). Valid values: `enable`, `disable`.
-     */
     dhcpOption43Insertion?: pulumi.Input<string>;
-    /**
-     * Enable/disable DHCP option 82 circuit-id insert (default = disable).
-     */
     dhcpOption82CircuitIdInsertion?: pulumi.Input<string>;
-    /**
-     * Enable/disable DHCP option 82 insert (default = disable). Valid values: `enable`, `disable`.
-     */
     dhcpOption82Insertion?: pulumi.Input<string>;
-    /**
-     * Enable/disable DHCP option 82 remote-id insert (default = disable). Valid values: `style-1`, `disable`.
-     */
     dhcpOption82RemoteIdInsertion?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable dynamic VLAN assignment. Valid values: `enable`, `disable`.
-     */
     dynamicVlan?: pulumi.Input<string>;
-    /**
-     * Enable/disable EAP re-authentication for WPA-Enterprise security. Valid values: `enable`, `disable`.
-     */
     eapReauth?: pulumi.Input<string>;
-    /**
-     * EAP re-authentication interval (1800 - 864000 sec, default = 86400).
-     */
     eapReauthIntv?: pulumi.Input<number>;
-    /**
-     * Enable/disable retransmission of EAPOL-Key frames (message 3/4 and group message 1/2) (default = enable). Valid values: `disable`, `enable`.
-     */
     eapolKeyRetries?: pulumi.Input<string>;
-    /**
-     * Encryption protocol to use (only available when security is set to a WPA type). Valid values: `TKIP`, `AES`, `TKIP-AES`.
-     */
     encrypt?: pulumi.Input<string>;
-    /**
-     * Enable/disable fast roaming or pre-authentication with external APs not managed by the FortiGate (default = disable). Valid values: `enable`, `disable`.
-     */
     externalFastRoaming?: pulumi.Input<string>;
-    /**
-     * URL of external authentication logout server.
-     */
     externalLogout?: pulumi.Input<string>;
-    /**
-     * URL of external authentication web server.
-     */
     externalWeb?: pulumi.Input<string>;
-    /**
-     * URL query parameter detection (default = auto-detect). Valid values: `auto-detect`, `no-query-string`, `partial-query-string`.
-     */
     externalWebFormat?: pulumi.Input<string>;
-    /**
-     * Enable/disable 802.11r Fast BSS Transition (FT) (default = disable). Valid values: `disable`, `enable`.
-     */
     fastBssTransition?: pulumi.Input<string>;
-    /**
-     * Enable/disable fast-roaming, or pre-authentication, where supported by clients (default = disable). Valid values: `enable`, `disable`.
-     */
     fastRoaming?: pulumi.Input<string>;
-    /**
-     * Mobility domain identifier in FT (1 - 65535, default = 1000).
-     */
     ftMobilityDomain?: pulumi.Input<number>;
-    /**
-     * Enable/disable FT over the Distribution System (DS). Valid values: `disable`, `enable`.
-     */
     ftOverDs?: pulumi.Input<string>;
-    /**
-     * Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
-     */
     ftR0KeyLifetime?: pulumi.Input<number>;
-    /**
-     * GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
-     */
     gasComebackDelay?: pulumi.Input<number>;
-    /**
-     * GAS fragmentation limit (512 - 4096, default = 1024).
-     */
     gasFragmentationLimit?: pulumi.Input<number>;
-    /**
-     * Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
-     */
     gtkRekey?: pulumi.Input<string>;
-    /**
-     * GTK rekey interval (1800 - 864000 sec, default = 86400).
-     */
     gtkRekeyIntv?: pulumi.Input<number>;
-    /**
-     * Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
-     */
     highEfficiency?: pulumi.Input<string>;
-    /**
-     * Hotspot 2.0 profile name.
-     */
     hotspot20Profile?: pulumi.Input<string>;
-    /**
-     * Enable/disable IGMP snooping. Valid values: `enable`, `disable`.
-     */
     igmpSnooping?: pulumi.Input<string>;
-    /**
-     * Enable/disable blocking communication between clients on the same SSID (called intra-SSID privacy) (default = disable). Valid values: `enable`, `disable`.
-     */
     intraVapPrivacy?: pulumi.Input<string>;
-    /**
-     * IP address and subnet mask for the local standalone NAT subnet.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * IPS sensor name.
-     */
     ipsSensor?: pulumi.Input<string>;
-    /**
-     * Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
-     */
     ipv6Rules?: pulumi.Input<string>;
-    /**
-     * WEP Key.
-     */
     key?: pulumi.Input<string>;
-    /**
-     * WEP key index (1 - 4).
-     */
     keyindex?: pulumi.Input<number>;
-    /**
-     * VAP low-density parity-check (LDPC) coding configuration. Valid values: `disable`, `rx`, `tx`, `rxtx`.
-     */
+    l3Roaming?: pulumi.Input<string>;
+    l3RoamingMode?: pulumi.Input<string>;
     ldpc?: pulumi.Input<string>;
-    /**
-     * Enable/disable AP local authentication. Valid values: `enable`, `disable`.
-     */
     localAuthentication?: pulumi.Input<string>;
-    /**
-     * Enable/disable bridging of wireless and Ethernet interfaces on the FortiAP (default = disable). Valid values: `enable`, `disable`.
-     */
     localBridging?: pulumi.Input<string>;
-    /**
-     * Allow/deny traffic destined for a Class A, B, or C private IP address (default = allow). Valid values: `allow`, `deny`.
-     */
     localLan?: pulumi.Input<string>;
-    /**
-     * Enable/disable AP local standalone (default = disable). Valid values: `enable`, `disable`.
-     */
     localStandalone?: pulumi.Input<string>;
-    /**
-     * Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
-     */
     localStandaloneDns?: pulumi.Input<string>;
-    /**
-     * IPv4 addresses for the local standalone DNS.
-     */
     localStandaloneDnsIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable AP local standalone NAT mode. Valid values: `enable`, `disable`.
-     */
     localStandaloneNat?: pulumi.Input<string>;
-    /**
-     * Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
-     */
     macAuthBypass?: pulumi.Input<string>;
-    /**
-     * MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
-     */
     macCalledStationDelimiter?: pulumi.Input<string>;
-    /**
-     * MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
-     */
     macCallingStationDelimiter?: pulumi.Input<string>;
-    /**
-     * MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
-     */
     macCase?: pulumi.Input<string>;
-    /**
-     * Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `enable`, `disable`.
-     */
     macFilter?: pulumi.Input<string>;
-    /**
-     * Create a list of MAC addresses for MAC address filtering. The structure of `macFilterList` block is documented below.
-     */
     macFilterLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapMacFilterList>[]>;
-    /**
-     * Allow or block clients with MAC addresses that are not in the filter list. Valid values: `allow`, `deny`.
-     */
     macFilterPolicyOther?: pulumi.Input<string>;
-    /**
-     * MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
-     */
     macPasswordDelimiter?: pulumi.Input<string>;
-    /**
-     * MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
-     */
     macUsernameDelimiter?: pulumi.Input<string>;
-    /**
-     * Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
-     */
     maxClients?: pulumi.Input<number>;
-    /**
-     * Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
-     */
     maxClientsAp?: pulumi.Input<number>;
-    /**
-     * Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
-     */
     mbo?: pulumi.Input<string>;
-    /**
-     * MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
-     */
     mboCellDataConnPref?: pulumi.Input<string>;
-    /**
-     * Disable multicast enhancement when this many clients are receiving multicast traffic.
-     */
     meDisableThresh?: pulumi.Input<number>;
-    /**
-     * Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. Valid values: `enable`, `disable`.
-     */
     meshBackhaul?: pulumi.Input<string>;
-    /**
-     * Enable/disable multiple pre-shared keys (PSKs.) Valid values: `enable`, `disable`.
-     */
     mpsk?: pulumi.Input<string>;
-    /**
-     * Number of pre-shared keys (PSKs) to allow if multiple pre-shared keys are enabled.
-     */
     mpskConcurrentClients?: pulumi.Input<number>;
-    /**
-     * Pre-shared keys that can be used to connect to this virtual access point. The structure of `mpskKey` block is documented below.
-     */
     mpskKeys?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapMpskKey>[]>;
-    /**
-     * MPSK profile name.
-     */
     mpskProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable Multi-user MIMO (default = enable). Valid values: `enable`, `disable`.
-     */
     muMimo?: pulumi.Input<string>;
-    /**
-     * Enable/disable converting multicast to unicast to improve performance (default = disable). Valid values: `enable`, `disable`.
-     */
     multicastEnhance?: pulumi.Input<string>;
-    /**
-     * Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
-     */
     multicastRate?: pulumi.Input<string>;
-    /**
-     * Enable/disable network access control. Valid values: `enable`, `disable`.
-     */
     nac?: pulumi.Input<string>;
-    /**
-     * NAC profile name.
-     */
     nacProfile?: pulumi.Input<string>;
-    /**
-     * VLAN name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
-     */
     neighborReportDualBand?: pulumi.Input<string>;
-    /**
-     * Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
-     */
     okc?: pulumi.Input<string>;
-    /**
-     * Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
-     */
     osen?: pulumi.Input<string>;
-    /**
-     * OWE-Groups. Valid values: `19`, `20`, `21`.
-     */
     oweGroups?: pulumi.Input<string>;
-    /**
-     * Enable/disable OWE transition mode support. Valid values: `disable`, `enable`.
-     */
     oweTransition?: pulumi.Input<string>;
-    /**
-     * OWE transition mode peer SSID.
-     */
     oweTransitionSsid?: pulumi.Input<string>;
-    /**
-     * WPA Pre-shared key.
-     */
     passphrase?: pulumi.Input<string>;
-    /**
-     * Protected Management Frames (PMF) support (default = disable). Valid values: `disable`, `enable`, `optional`.
-     */
     pmf?: pulumi.Input<string>;
-    /**
-     * Protected Management Frames (PMF) comeback maximum timeout (1-20 sec).
-     */
     pmfAssocComebackTimeout?: pulumi.Input<number>;
-    /**
-     * Protected Management Frames (PMF) SA query retry timeout interval (1 - 5 100s of msec).
-     */
     pmfSaQueryRetryTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable LAN port MAC authentication (default = disable). Valid values: `disable`, `radius`, `address-group`.
-     */
     portMacauth?: pulumi.Input<string>;
-    /**
-     * LAN port MAC authentication re-authentication timeout value (default = 7200 sec).
-     */
     portMacauthReauthTimeout?: pulumi.Input<number>;
-    /**
-     * LAN port MAC authentication idle timeout value (default = 600 sec).
-     */
     portMacauthTimeout?: pulumi.Input<number>;
-    /**
-     * Replacement message group for this VAP (only available when security is set to a captive portal type).
-     */
     portalMessageOverrideGroup?: pulumi.Input<string>;
-    /**
-     * Individual message overrides. The structure of `portalMessageOverrides` block is documented below.
-     */
     portalMessageOverrides?: pulumi.Input<inputs.WirelessControllerVapPortalMessageOverrides>;
-    /**
-     * Captive portal functionality. Configure how the captive portal authenticates users and whether it includes a disclaimer.
-     */
     portalType?: pulumi.Input<string>;
-    /**
-     * Primary wireless access gateway profile name.
-     */
     primaryWagProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable probe response suppression (to ignore weak signals) (default = disable). Valid values: `enable`, `disable`.
-     */
     probeRespSuppression?: pulumi.Input<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the AP response to probe requests (-95 to -20, default = -80).
-     */
     probeRespThreshold?: pulumi.Input<string>;
-    /**
-     * Enable/disable PTK rekey for WPA-Enterprise security. Valid values: `enable`, `disable`.
-     */
     ptkRekey?: pulumi.Input<string>;
-    /**
-     * PTK rekey interval (1800 - 864000 sec, default = 86400).
-     */
     ptkRekeyIntv?: pulumi.Input<number>;
-    /**
-     * Quality of service profile name.
-     */
     qosProfile?: pulumi.Input<string>;
-    /**
-     * Enable/disable station quarantine (default = enable). Valid values: `enable`, `disable`.
-     */
     quarantine?: pulumi.Input<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the AP response to receive a packet in 2.4G band (-95 to -20, default = -79).
-     */
     radio2gThreshold?: pulumi.Input<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the AP response to receive a packet in 5G band(-95 to -20, default = -76).
-     */
     radio5gThreshold?: pulumi.Input<string>;
-    /**
-     * Enable/disable software radio sensitivity (to ignore weak signals) (default = disable). Valid values: `enable`, `disable`.
-     */
     radioSensitivity?: pulumi.Input<string>;
-    /**
-     * Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
-     */
     radiusMacAuth?: pulumi.Input<string>;
-    /**
-     * RADIUS-based MAC authentication server.
-     */
     radiusMacAuthServer?: pulumi.Input<string>;
-    /**
-     * Selective user groups that are permitted for RADIUS mac authentication. The structure of `radiusMacAuthUsergroups` block is documented below.
-     */
     radiusMacAuthUsergroups?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapRadiusMacAuthUsergroup>[]>;
-    /**
-     * Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
-     */
     radiusMacMpskAuth?: pulumi.Input<string>;
-    /**
-     * RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
-     */
     radiusMacMpskTimeout?: pulumi.Input<number>;
-    /**
-     * RADIUS server to be used to authenticate WiFi users.
-     */
     radiusServer?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
-     */
     rates11a?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11ac with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
-     */
+    rates11acMcsMap?: pulumi.Input<string>;
     rates11acSs12?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
-     */
     rates11acSs34?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
-     */
+    rates11axMcsMap?: pulumi.Input<string>;
     rates11axSs12?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
-     */
     rates11axSs34?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
-     */
     rates11bg?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
-     */
     rates11nSs12?: pulumi.Input<string>;
-    /**
-     * Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
-     */
     rates11nSs34?: pulumi.Input<string>;
-    /**
-     * SAE-Groups. Valid values: `19`, `20`, `21`.
-     */
     saeGroups?: pulumi.Input<string>;
-    /**
-     * WPA3 SAE password to be used to authenticate WiFi users.
-     */
+    saeH2eOnly?: pulumi.Input<string>;
     saePassword?: pulumi.Input<string>;
-    /**
-     * Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
-     */
+    saePk?: pulumi.Input<string>;
+    saePrivateKey?: pulumi.Input<string>;
     scanBotnetConnections?: pulumi.Input<string>;
-    /**
-     * VAP schedule name.
-     */
     schedule?: pulumi.Input<string>;
-    /**
-     * Secondary wireless access gateway profile name.
-     */
     secondaryWagProfile?: pulumi.Input<string>;
-    /**
-     * Security mode for the wireless interface (default = wpa2-only-personal).
-     */
     security?: pulumi.Input<string>;
-    /**
-     * Optional security exempt list for captive portal authentication.
-     */
     securityExemptList?: pulumi.Input<string>;
-    /**
-     * Enable/disable obsolete security options. Valid values: `enable`, `disable`.
-     */
     securityObsoleteOption?: pulumi.Input<string>;
-    /**
-     * Optional URL for redirecting users after they pass captive portal authentication.
-     */
     securityRedirectUrl?: pulumi.Input<string>;
-    /**
-     * Selective user groups that are permitted to authenticate. The structure of `selectedUsergroups` block is documented below.
-     */
     selectedUsergroups?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapSelectedUsergroup>[]>;
-    /**
-     * Enable/disable split tunneling (default = disable). Valid values: `enable`, `disable`.
-     */
     splitTunneling?: pulumi.Input<string>;
-    /**
-     * IEEE 802.11 service set identifier (SSID) for the wireless interface. Users who wish to use the wireless network must configure their computers to access this SSID name.
-     */
     ssid?: pulumi.Input<string>;
-    /**
-     * Enable/disable sticky client remove to maintain good signal level clients in SSID. (default = disable). Valid values: `enable`, `disable`.
-     */
     stickyClientRemove?: pulumi.Input<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the 2G client to be serviced by the AP (-95 to -20, default = -79).
-     */
     stickyClientThreshold2g?: pulumi.Input<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the 5G client to be serviced by the AP (-95 to -20, default = -76).
-     */
     stickyClientThreshold5g?: pulumi.Input<string>;
-    /**
-     * Enable/disable 802.11ax target wake time (default = enable). Valid values: `enable`, `disable`.
-     */
+    stickyClientThreshold6g?: pulumi.Input<string>;
     targetWakeTime?: pulumi.Input<string>;
-    /**
-     * Enable/disable TKIP counter measure. Valid values: `enable`, `disable`.
-     */
     tkipCounterMeasure?: pulumi.Input<string>;
-    /**
-     * The time interval to send echo to both primary and secondary tunnel peers (1 - 65535 sec, default = 300).
-     */
     tunnelEchoInterval?: pulumi.Input<number>;
-    /**
-     * The time interval for secondary tunnel to fall back to primary tunnel (0 - 65535 sec, default = 7200).
-     */
     tunnelFallbackInterval?: pulumi.Input<number>;
-    /**
-     * Firewall user group to be used to authenticate WiFi users. The structure of `usergroup` block is documented below.
-     */
     usergroups?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapUsergroup>[]>;
-    /**
-     * Enable/disable UTM logging. Valid values: `enable`, `disable`.
-     */
     utmLog?: pulumi.Input<string>;
-    /**
-     * UTM profile name.
-     */
     utmProfile?: pulumi.Input<string>;
-    /**
-     * Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
-     */
     utmStatus?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
-     */
     vlanAuto?: pulumi.Input<string>;
-    /**
-     * Table for mapping VLAN name to VLAN ID. The structure of `vlanName` block is documented below.
-     */
     vlanNames?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapVlanName>[]>;
-    /**
-     * Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
-     */
     vlanPooling?: pulumi.Input<string>;
-    /**
-     * VLAN pool. The structure of `vlanPool` block is documented below.
-     */
     vlanPools?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapVlanPool>[]>;
-    /**
-     * Optional VLAN ID.
-     */
     vlanid?: pulumi.Input<number>;
-    /**
-     * Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
-     */
     voiceEnterprise?: pulumi.Input<string>;
-    /**
-     * WebFilter profile name.
-     */
     webfilterProfile?: pulumi.Input<string>;
 }

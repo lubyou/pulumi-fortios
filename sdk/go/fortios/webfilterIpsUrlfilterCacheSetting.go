@@ -10,56 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPS URL filter cache settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWebfilterIpsUrlfilterCacheSetting(ctx, "trname", &fortios.WebfilterIpsUrlfilterCacheSettingArgs{
-// 			DnsRetryInterval: pulumi.Int(0),
-// 			ExtendedTtl:      pulumi.Int(0),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Webfilter IpsUrlfilterCacheSetting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterIpsUrlfilterCacheSetting:WebfilterIpsUrlfilterCacheSetting labelname WebfilterIpsUrlfilterCacheSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterIpsUrlfilterCacheSetting:WebfilterIpsUrlfilterCacheSetting labelname WebfilterIpsUrlfilterCacheSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebfilterIpsUrlfilterCacheSetting struct {
 	pulumi.CustomResourceState
 
-	// Retry interval. Refresh DNS faster than TTL to capture multiple IPs for hosts. 0 means use DNS server's TTL only.
-	DnsRetryInterval pulumi.IntOutput `pulumi:"dnsRetryInterval"`
-	// Extend time to live beyond reported by DNS. 0 means use DNS server's TTL
-	ExtendedTtl pulumi.IntOutput `pulumi:"extendedTtl"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DnsRetryInterval pulumi.IntOutput       `pulumi:"dnsRetryInterval"`
+	ExtendedTtl      pulumi.IntOutput       `pulumi:"extendedTtl"`
+	Vdomparam        pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWebfilterIpsUrlfilterCacheSetting registers a new resource with the given unique name, arguments, and options.
@@ -92,21 +48,15 @@ func GetWebfilterIpsUrlfilterCacheSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebfilterIpsUrlfilterCacheSetting resources.
 type webfilterIpsUrlfilterCacheSettingState struct {
-	// Retry interval. Refresh DNS faster than TTL to capture multiple IPs for hosts. 0 means use DNS server's TTL only.
-	DnsRetryInterval *int `pulumi:"dnsRetryInterval"`
-	// Extend time to live beyond reported by DNS. 0 means use DNS server's TTL
-	ExtendedTtl *int `pulumi:"extendedTtl"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DnsRetryInterval *int    `pulumi:"dnsRetryInterval"`
+	ExtendedTtl      *int    `pulumi:"extendedTtl"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 type WebfilterIpsUrlfilterCacheSettingState struct {
-	// Retry interval. Refresh DNS faster than TTL to capture multiple IPs for hosts. 0 means use DNS server's TTL only.
 	DnsRetryInterval pulumi.IntPtrInput
-	// Extend time to live beyond reported by DNS. 0 means use DNS server's TTL
-	ExtendedTtl pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ExtendedTtl      pulumi.IntPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (WebfilterIpsUrlfilterCacheSettingState) ElementType() reflect.Type {
@@ -114,22 +64,16 @@ func (WebfilterIpsUrlfilterCacheSettingState) ElementType() reflect.Type {
 }
 
 type webfilterIpsUrlfilterCacheSettingArgs struct {
-	// Retry interval. Refresh DNS faster than TTL to capture multiple IPs for hosts. 0 means use DNS server's TTL only.
-	DnsRetryInterval *int `pulumi:"dnsRetryInterval"`
-	// Extend time to live beyond reported by DNS. 0 means use DNS server's TTL
-	ExtendedTtl *int `pulumi:"extendedTtl"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DnsRetryInterval *int    `pulumi:"dnsRetryInterval"`
+	ExtendedTtl      *int    `pulumi:"extendedTtl"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebfilterIpsUrlfilterCacheSetting resource.
 type WebfilterIpsUrlfilterCacheSettingArgs struct {
-	// Retry interval. Refresh DNS faster than TTL to capture multiple IPs for hosts. 0 means use DNS server's TTL only.
 	DnsRetryInterval pulumi.IntPtrInput
-	// Extend time to live beyond reported by DNS. 0 means use DNS server's TTL
-	ExtendedTtl pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ExtendedTtl      pulumi.IntPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (WebfilterIpsUrlfilterCacheSettingArgs) ElementType() reflect.Type {
@@ -158,7 +102,7 @@ func (i *WebfilterIpsUrlfilterCacheSetting) ToWebfilterIpsUrlfilterCacheSettingO
 // WebfilterIpsUrlfilterCacheSettingArrayInput is an input type that accepts WebfilterIpsUrlfilterCacheSettingArray and WebfilterIpsUrlfilterCacheSettingArrayOutput values.
 // You can construct a concrete instance of `WebfilterIpsUrlfilterCacheSettingArrayInput` via:
 //
-//          WebfilterIpsUrlfilterCacheSettingArray{ WebfilterIpsUrlfilterCacheSettingArgs{...} }
+//	WebfilterIpsUrlfilterCacheSettingArray{ WebfilterIpsUrlfilterCacheSettingArgs{...} }
 type WebfilterIpsUrlfilterCacheSettingArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +127,7 @@ func (i WebfilterIpsUrlfilterCacheSettingArray) ToWebfilterIpsUrlfilterCacheSett
 // WebfilterIpsUrlfilterCacheSettingMapInput is an input type that accepts WebfilterIpsUrlfilterCacheSettingMap and WebfilterIpsUrlfilterCacheSettingMapOutput values.
 // You can construct a concrete instance of `WebfilterIpsUrlfilterCacheSettingMapInput` via:
 //
-//          WebfilterIpsUrlfilterCacheSettingMap{ "key": WebfilterIpsUrlfilterCacheSettingArgs{...} }
+//	WebfilterIpsUrlfilterCacheSettingMap{ "key": WebfilterIpsUrlfilterCacheSettingArgs{...} }
 type WebfilterIpsUrlfilterCacheSettingMapInput interface {
 	pulumi.Input
 
@@ -217,6 +161,18 @@ func (o WebfilterIpsUrlfilterCacheSettingOutput) ToWebfilterIpsUrlfilterCacheSet
 
 func (o WebfilterIpsUrlfilterCacheSettingOutput) ToWebfilterIpsUrlfilterCacheSettingOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterCacheSettingOutput {
 	return o
+}
+
+func (o WebfilterIpsUrlfilterCacheSettingOutput) DnsRetryInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterIpsUrlfilterCacheSetting) pulumi.IntOutput { return v.DnsRetryInterval }).(pulumi.IntOutput)
+}
+
+func (o WebfilterIpsUrlfilterCacheSettingOutput) ExtendedTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterIpsUrlfilterCacheSetting) pulumi.IntOutput { return v.ExtendedTtl }).(pulumi.IntOutput)
+}
+
+func (o WebfilterIpsUrlfilterCacheSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterIpsUrlfilterCacheSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebfilterIpsUrlfilterCacheSettingArrayOutput struct{ *pulumi.OutputState }

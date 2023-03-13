@@ -10,45 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports Create/Read/Update/Delete object adom revision for FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerObjectAdomRevision(ctx, "test1", &fortios.FortimanagerObjectAdomRevisionArgs{
-// 			CreatedBy:   pulumi.String("fortinet"),
-// 			Description: pulumi.String("adom revision"),
-// 			Locked:      pulumi.Int(0),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerObjectAdomRevision struct {
 	pulumi.CustomResourceState
 
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrOutput `pulumi:"adom"`
-	// Who created this adom revision.
-	CreatedBy pulumi.StringPtrOutput `pulumi:"createdBy"`
-	// Description.
+	Adom        pulumi.StringPtrOutput `pulumi:"adom"`
+	CreatedBy   pulumi.StringPtrOutput `pulumi:"createdBy"`
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// lock. 0 means unlock and 1 means locked.
-	Locked pulumi.IntPtrOutput `pulumi:"locked"`
-	// Adom revision name.
-	Name pulumi.StringOutput `pulumi:"name"`
+	Locked      pulumi.IntPtrOutput    `pulumi:"locked"`
+	Name        pulumi.StringOutput    `pulumi:"name"`
 }
 
 // NewFortimanagerObjectAdomRevision registers a new resource with the given unique name, arguments, and options.
@@ -81,29 +50,19 @@ func GetFortimanagerObjectAdomRevision(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerObjectAdomRevision resources.
 type fortimanagerObjectAdomRevisionState struct {
-	// ADOM name. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// Who created this adom revision.
-	CreatedBy *string `pulumi:"createdBy"`
-	// Description.
+	Adom        *string `pulumi:"adom"`
+	CreatedBy   *string `pulumi:"createdBy"`
 	Description *string `pulumi:"description"`
-	// lock. 0 means unlock and 1 means locked.
-	Locked *int `pulumi:"locked"`
-	// Adom revision name.
-	Name *string `pulumi:"name"`
+	Locked      *int    `pulumi:"locked"`
+	Name        *string `pulumi:"name"`
 }
 
 type FortimanagerObjectAdomRevisionState struct {
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// Who created this adom revision.
-	CreatedBy pulumi.StringPtrInput
-	// Description.
+	Adom        pulumi.StringPtrInput
+	CreatedBy   pulumi.StringPtrInput
 	Description pulumi.StringPtrInput
-	// lock. 0 means unlock and 1 means locked.
-	Locked pulumi.IntPtrInput
-	// Adom revision name.
-	Name pulumi.StringPtrInput
+	Locked      pulumi.IntPtrInput
+	Name        pulumi.StringPtrInput
 }
 
 func (FortimanagerObjectAdomRevisionState) ElementType() reflect.Type {
@@ -111,30 +70,20 @@ func (FortimanagerObjectAdomRevisionState) ElementType() reflect.Type {
 }
 
 type fortimanagerObjectAdomRevisionArgs struct {
-	// ADOM name. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// Who created this adom revision.
-	CreatedBy *string `pulumi:"createdBy"`
-	// Description.
+	Adom        *string `pulumi:"adom"`
+	CreatedBy   *string `pulumi:"createdBy"`
 	Description *string `pulumi:"description"`
-	// lock. 0 means unlock and 1 means locked.
-	Locked *int `pulumi:"locked"`
-	// Adom revision name.
-	Name *string `pulumi:"name"`
+	Locked      *int    `pulumi:"locked"`
+	Name        *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a FortimanagerObjectAdomRevision resource.
 type FortimanagerObjectAdomRevisionArgs struct {
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// Who created this adom revision.
-	CreatedBy pulumi.StringPtrInput
-	// Description.
+	Adom        pulumi.StringPtrInput
+	CreatedBy   pulumi.StringPtrInput
 	Description pulumi.StringPtrInput
-	// lock. 0 means unlock and 1 means locked.
-	Locked pulumi.IntPtrInput
-	// Adom revision name.
-	Name pulumi.StringPtrInput
+	Locked      pulumi.IntPtrInput
+	Name        pulumi.StringPtrInput
 }
 
 func (FortimanagerObjectAdomRevisionArgs) ElementType() reflect.Type {
@@ -163,7 +112,7 @@ func (i *FortimanagerObjectAdomRevision) ToFortimanagerObjectAdomRevisionOutputW
 // FortimanagerObjectAdomRevisionArrayInput is an input type that accepts FortimanagerObjectAdomRevisionArray and FortimanagerObjectAdomRevisionArrayOutput values.
 // You can construct a concrete instance of `FortimanagerObjectAdomRevisionArrayInput` via:
 //
-//          FortimanagerObjectAdomRevisionArray{ FortimanagerObjectAdomRevisionArgs{...} }
+//	FortimanagerObjectAdomRevisionArray{ FortimanagerObjectAdomRevisionArgs{...} }
 type FortimanagerObjectAdomRevisionArrayInput interface {
 	pulumi.Input
 
@@ -188,7 +137,7 @@ func (i FortimanagerObjectAdomRevisionArray) ToFortimanagerObjectAdomRevisionArr
 // FortimanagerObjectAdomRevisionMapInput is an input type that accepts FortimanagerObjectAdomRevisionMap and FortimanagerObjectAdomRevisionMapOutput values.
 // You can construct a concrete instance of `FortimanagerObjectAdomRevisionMapInput` via:
 //
-//          FortimanagerObjectAdomRevisionMap{ "key": FortimanagerObjectAdomRevisionArgs{...} }
+//	FortimanagerObjectAdomRevisionMap{ "key": FortimanagerObjectAdomRevisionArgs{...} }
 type FortimanagerObjectAdomRevisionMapInput interface {
 	pulumi.Input
 
@@ -222,6 +171,26 @@ func (o FortimanagerObjectAdomRevisionOutput) ToFortimanagerObjectAdomRevisionOu
 
 func (o FortimanagerObjectAdomRevisionOutput) ToFortimanagerObjectAdomRevisionOutputWithContext(ctx context.Context) FortimanagerObjectAdomRevisionOutput {
 	return o
+}
+
+func (o FortimanagerObjectAdomRevisionOutput) Adom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerObjectAdomRevision) pulumi.StringPtrOutput { return v.Adom }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerObjectAdomRevisionOutput) CreatedBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerObjectAdomRevision) pulumi.StringPtrOutput { return v.CreatedBy }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerObjectAdomRevisionOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerObjectAdomRevision) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerObjectAdomRevisionOutput) Locked() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FortimanagerObjectAdomRevision) pulumi.IntPtrOutput { return v.Locked }).(pulumi.IntPtrOutput)
+}
+
+func (o FortimanagerObjectAdomRevisionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerObjectAdomRevision) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 type FortimanagerObjectAdomRevisionArrayOutput struct{ *pulumi.OutputState }

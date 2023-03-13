@@ -4,46 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure auto script.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const auto2 = new fortios.SystemAutoScript("auto2", {
- *     interval: 1,
- *     outputSize: 10,
- *     repeat: 1,
- *     script: `config firewall address
- *     edit "111"
- *         set color 3
- *         set subnet 1.1.1.1 255.255.255.255
- *     next
- * end
- * `,
- *     start: "auto",
- * });
- * ```
- *
- * ## Import
- *
- * System AutoScript can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutoScript:SystemAutoScript labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutoScript:SystemAutoScript labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemAutoScript extends pulumi.CustomResource {
     /**
      * Get an existing SystemAutoScript resource's state with the given name, ID, and optional extra
@@ -72,37 +32,13 @@ export class SystemAutoScript extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAutoScript.__pulumiType;
     }
 
-    /**
-     * Repeat interval in seconds.
-     */
     public readonly interval!: pulumi.Output<number>;
-    /**
-     * Auto script name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Number of megabytes to limit script output to (10 - 1024, default = 10).
-     */
     public readonly outputSize!: pulumi.Output<number>;
-    /**
-     * Number of times to repeat this script (0 = infinite).
-     */
     public readonly repeat!: pulumi.Output<number>;
-    /**
-     * List of FortiOS CLI commands to repeat.
-     */
     public readonly script!: pulumi.Output<string | undefined>;
-    /**
-     * Script starting mode. Valid values: `manual`, `auto`.
-     */
     public readonly start!: pulumi.Output<string>;
-    /**
-     * Maximum running time for this script in seconds (0 = no timeout).
-     */
     public readonly timeout!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -146,37 +82,13 @@ export class SystemAutoScript extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAutoScript resources.
  */
 export interface SystemAutoScriptState {
-    /**
-     * Repeat interval in seconds.
-     */
     interval?: pulumi.Input<number>;
-    /**
-     * Auto script name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Number of megabytes to limit script output to (10 - 1024, default = 10).
-     */
     outputSize?: pulumi.Input<number>;
-    /**
-     * Number of times to repeat this script (0 = infinite).
-     */
     repeat?: pulumi.Input<number>;
-    /**
-     * List of FortiOS CLI commands to repeat.
-     */
     script?: pulumi.Input<string>;
-    /**
-     * Script starting mode. Valid values: `manual`, `auto`.
-     */
     start?: pulumi.Input<string>;
-    /**
-     * Maximum running time for this script in seconds (0 = no timeout).
-     */
     timeout?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -184,36 +96,12 @@ export interface SystemAutoScriptState {
  * The set of arguments for constructing a SystemAutoScript resource.
  */
 export interface SystemAutoScriptArgs {
-    /**
-     * Repeat interval in seconds.
-     */
     interval?: pulumi.Input<number>;
-    /**
-     * Auto script name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Number of megabytes to limit script output to (10 - 1024, default = 10).
-     */
     outputSize?: pulumi.Input<number>;
-    /**
-     * Number of times to repeat this script (0 = infinite).
-     */
     repeat?: pulumi.Input<number>;
-    /**
-     * List of FortiOS CLI commands to repeat.
-     */
     script?: pulumi.Input<string>;
-    /**
-     * Script starting mode. Valid values: `manual`, `auto`.
-     */
     start?: pulumi.Input<string>;
-    /**
-     * Maximum running time for this script in seconds (0 = no timeout).
-     */
     timeout?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -7,70 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Onetime schedule configuration.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallScheduleOnetime(ctx, "trname", &fortios.FirewallScheduleOnetimeArgs{
-// 			Color:          pulumi.Int(0),
-// 			End:            pulumi.String("00:00 2020/12/12"),
-// 			ExpirationDays: pulumi.Int(2),
-// 			Start:          pulumi.String("00:00 2010/12/12"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// FirewallSchedule Onetime can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallScheduleOnetime:FirewallScheduleOnetime labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallScheduleOnetime:FirewallScheduleOnetime labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallScheduleOnetime struct {
 	pulumi.CustomResourceState
 
-	// Color of icon on the GUI.
-	Color pulumi.IntOutput `pulumi:"color"`
-	// Schedule end date and time, format hh:mm yyyy/mm/dd.
-	End pulumi.StringOutput `pulumi:"end"`
-	// Write an event log message this many days before the schedule expires.
-	ExpirationDays pulumi.IntOutput `pulumi:"expirationDays"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
-	// Onetime schedule name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Schedule start date and time, format hh:mm yyyy/mm/dd.
-	Start pulumi.StringOutput `pulumi:"start"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Color          pulumi.IntOutput       `pulumi:"color"`
+	End            pulumi.StringOutput    `pulumi:"end"`
+	ExpirationDays pulumi.IntOutput       `pulumi:"expirationDays"`
+	FabricObject   pulumi.StringOutput    `pulumi:"fabricObject"`
+	Name           pulumi.StringOutput    `pulumi:"name"`
+	Start          pulumi.StringOutput    `pulumi:"start"`
+	Vdomparam      pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallScheduleOnetime registers a new resource with the given unique name, arguments, and options.
@@ -109,37 +59,23 @@ func GetFirewallScheduleOnetime(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallScheduleOnetime resources.
 type firewallScheduleOnetimeState struct {
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Schedule end date and time, format hh:mm yyyy/mm/dd.
-	End *string `pulumi:"end"`
-	// Write an event log message this many days before the schedule expires.
-	ExpirationDays *int `pulumi:"expirationDays"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// Onetime schedule name.
-	Name *string `pulumi:"name"`
-	// Schedule start date and time, format hh:mm yyyy/mm/dd.
-	Start *string `pulumi:"start"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Color          *int    `pulumi:"color"`
+	End            *string `pulumi:"end"`
+	ExpirationDays *int    `pulumi:"expirationDays"`
+	FabricObject   *string `pulumi:"fabricObject"`
+	Name           *string `pulumi:"name"`
+	Start          *string `pulumi:"start"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 type FirewallScheduleOnetimeState struct {
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Schedule end date and time, format hh:mm yyyy/mm/dd.
-	End pulumi.StringPtrInput
-	// Write an event log message this many days before the schedule expires.
+	Color          pulumi.IntPtrInput
+	End            pulumi.StringPtrInput
 	ExpirationDays pulumi.IntPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// Onetime schedule name.
-	Name pulumi.StringPtrInput
-	// Schedule start date and time, format hh:mm yyyy/mm/dd.
-	Start pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FabricObject   pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	Start          pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (FirewallScheduleOnetimeState) ElementType() reflect.Type {
@@ -147,38 +83,24 @@ func (FirewallScheduleOnetimeState) ElementType() reflect.Type {
 }
 
 type firewallScheduleOnetimeArgs struct {
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Schedule end date and time, format hh:mm yyyy/mm/dd.
-	End string `pulumi:"end"`
-	// Write an event log message this many days before the schedule expires.
-	ExpirationDays *int `pulumi:"expirationDays"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// Onetime schedule name.
-	Name *string `pulumi:"name"`
-	// Schedule start date and time, format hh:mm yyyy/mm/dd.
-	Start string `pulumi:"start"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Color          *int    `pulumi:"color"`
+	End            string  `pulumi:"end"`
+	ExpirationDays *int    `pulumi:"expirationDays"`
+	FabricObject   *string `pulumi:"fabricObject"`
+	Name           *string `pulumi:"name"`
+	Start          string  `pulumi:"start"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallScheduleOnetime resource.
 type FirewallScheduleOnetimeArgs struct {
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Schedule end date and time, format hh:mm yyyy/mm/dd.
-	End pulumi.StringInput
-	// Write an event log message this many days before the schedule expires.
+	Color          pulumi.IntPtrInput
+	End            pulumi.StringInput
 	ExpirationDays pulumi.IntPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// Onetime schedule name.
-	Name pulumi.StringPtrInput
-	// Schedule start date and time, format hh:mm yyyy/mm/dd.
-	Start pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FabricObject   pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	Start          pulumi.StringInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (FirewallScheduleOnetimeArgs) ElementType() reflect.Type {
@@ -207,7 +129,7 @@ func (i *FirewallScheduleOnetime) ToFirewallScheduleOnetimeOutputWithContext(ctx
 // FirewallScheduleOnetimeArrayInput is an input type that accepts FirewallScheduleOnetimeArray and FirewallScheduleOnetimeArrayOutput values.
 // You can construct a concrete instance of `FirewallScheduleOnetimeArrayInput` via:
 //
-//          FirewallScheduleOnetimeArray{ FirewallScheduleOnetimeArgs{...} }
+//	FirewallScheduleOnetimeArray{ FirewallScheduleOnetimeArgs{...} }
 type FirewallScheduleOnetimeArrayInput interface {
 	pulumi.Input
 
@@ -232,7 +154,7 @@ func (i FirewallScheduleOnetimeArray) ToFirewallScheduleOnetimeArrayOutputWithCo
 // FirewallScheduleOnetimeMapInput is an input type that accepts FirewallScheduleOnetimeMap and FirewallScheduleOnetimeMapOutput values.
 // You can construct a concrete instance of `FirewallScheduleOnetimeMapInput` via:
 //
-//          FirewallScheduleOnetimeMap{ "key": FirewallScheduleOnetimeArgs{...} }
+//	FirewallScheduleOnetimeMap{ "key": FirewallScheduleOnetimeArgs{...} }
 type FirewallScheduleOnetimeMapInput interface {
 	pulumi.Input
 
@@ -266,6 +188,34 @@ func (o FirewallScheduleOnetimeOutput) ToFirewallScheduleOnetimeOutput() Firewal
 
 func (o FirewallScheduleOnetimeOutput) ToFirewallScheduleOnetimeOutputWithContext(ctx context.Context) FirewallScheduleOnetimeOutput {
 	return o
+}
+
+func (o FirewallScheduleOnetimeOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallScheduleOnetime) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o FirewallScheduleOnetimeOutput) End() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallScheduleOnetime) pulumi.StringOutput { return v.End }).(pulumi.StringOutput)
+}
+
+func (o FirewallScheduleOnetimeOutput) ExpirationDays() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallScheduleOnetime) pulumi.IntOutput { return v.ExpirationDays }).(pulumi.IntOutput)
+}
+
+func (o FirewallScheduleOnetimeOutput) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallScheduleOnetime) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+func (o FirewallScheduleOnetimeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallScheduleOnetime) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallScheduleOnetimeOutput) Start() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallScheduleOnetime) pulumi.StringOutput { return v.Start }).(pulumi.StringOutput)
+}
+
+func (o FirewallScheduleOnetimeOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallScheduleOnetime) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallScheduleOnetimeArrayOutput struct{ *pulumi.OutputState }

@@ -10,78 +10,21 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure forward-server addresses.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWebProxyForwardServer(ctx, "trname", &fortios.WebProxyForwardServerArgs{
-// 			AddrType:         pulumi.String("fqdn"),
-// 			Healthcheck:      pulumi.String("disable"),
-// 			Ip:               pulumi.String("0.0.0.0"),
-// 			Monitor:          pulumi.String("http://www.google.com"),
-// 			Port:             pulumi.Int(3128),
-// 			ServerDownOption: pulumi.String("block"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// WebProxy ForwardServer can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webProxyForwardServer:WebProxyForwardServer labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webProxyForwardServer:WebProxyForwardServer labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebProxyForwardServer struct {
 	pulumi.CustomResourceState
 
-	// Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
-	AddrType pulumi.StringOutput `pulumi:"addrType"`
-	// Comment.
-	Comment pulumi.StringOutput `pulumi:"comment"`
-	// Forward server Fully Qualified Domain Name (FQDN).
-	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
-	// Enable/disable forward server health checking. Attempts to connect through the remote forwarding server to a destination to verify that the forwarding server is operating normally. Valid values: `disable`, `enable`.
-	Healthcheck pulumi.StringOutput `pulumi:"healthcheck"`
-	// Forward proxy server IP address.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// URL for forward server health check monitoring (default = http://www.google.com).
-	Monitor pulumi.StringOutput `pulumi:"monitor"`
-	// Server name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// HTTP authentication password.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Port number that the forwarding server expects to receive HTTP sessions on (1 - 65535, default = 3128).
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Action to take when the forward server is found to be down: block sessions until the server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
-	ServerDownOption pulumi.StringOutput `pulumi:"serverDownOption"`
-	// HTTP authentication user name.
-	Username pulumi.StringOutput `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AddrType         pulumi.StringOutput    `pulumi:"addrType"`
+	Comment          pulumi.StringOutput    `pulumi:"comment"`
+	Fqdn             pulumi.StringOutput    `pulumi:"fqdn"`
+	Healthcheck      pulumi.StringOutput    `pulumi:"healthcheck"`
+	Ip               pulumi.StringOutput    `pulumi:"ip"`
+	Monitor          pulumi.StringOutput    `pulumi:"monitor"`
+	Name             pulumi.StringOutput    `pulumi:"name"`
+	Password         pulumi.StringPtrOutput `pulumi:"password"`
+	Port             pulumi.IntOutput       `pulumi:"port"`
+	ServerDownOption pulumi.StringOutput    `pulumi:"serverDownOption"`
+	Username         pulumi.StringOutput    `pulumi:"username"`
+	Vdomparam        pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWebProxyForwardServer registers a new resource with the given unique name, arguments, and options.
@@ -91,6 +34,13 @@ func NewWebProxyForwardServer(ctx *pulumi.Context,
 		args = &WebProxyForwardServerArgs{}
 	}
 
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource WebProxyForwardServer
 	err := ctx.RegisterResource("fortios:index/webProxyForwardServer:WebProxyForwardServer", name, args, &resource, opts...)
@@ -114,57 +64,33 @@ func GetWebProxyForwardServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebProxyForwardServer resources.
 type webProxyForwardServerState struct {
-	// Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
-	AddrType *string `pulumi:"addrType"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Forward server Fully Qualified Domain Name (FQDN).
-	Fqdn *string `pulumi:"fqdn"`
-	// Enable/disable forward server health checking. Attempts to connect through the remote forwarding server to a destination to verify that the forwarding server is operating normally. Valid values: `disable`, `enable`.
-	Healthcheck *string `pulumi:"healthcheck"`
-	// Forward proxy server IP address.
-	Ip *string `pulumi:"ip"`
-	// URL for forward server health check monitoring (default = http://www.google.com).
-	Monitor *string `pulumi:"monitor"`
-	// Server name.
-	Name *string `pulumi:"name"`
-	// HTTP authentication password.
-	Password *string `pulumi:"password"`
-	// Port number that the forwarding server expects to receive HTTP sessions on (1 - 65535, default = 3128).
-	Port *int `pulumi:"port"`
-	// Action to take when the forward server is found to be down: block sessions until the server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
+	AddrType         *string `pulumi:"addrType"`
+	Comment          *string `pulumi:"comment"`
+	Fqdn             *string `pulumi:"fqdn"`
+	Healthcheck      *string `pulumi:"healthcheck"`
+	Ip               *string `pulumi:"ip"`
+	Monitor          *string `pulumi:"monitor"`
+	Name             *string `pulumi:"name"`
+	Password         *string `pulumi:"password"`
+	Port             *int    `pulumi:"port"`
 	ServerDownOption *string `pulumi:"serverDownOption"`
-	// HTTP authentication user name.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Username         *string `pulumi:"username"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 type WebProxyForwardServerState struct {
-	// Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
-	AddrType pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Forward server Fully Qualified Domain Name (FQDN).
-	Fqdn pulumi.StringPtrInput
-	// Enable/disable forward server health checking. Attempts to connect through the remote forwarding server to a destination to verify that the forwarding server is operating normally. Valid values: `disable`, `enable`.
-	Healthcheck pulumi.StringPtrInput
-	// Forward proxy server IP address.
-	Ip pulumi.StringPtrInput
-	// URL for forward server health check monitoring (default = http://www.google.com).
-	Monitor pulumi.StringPtrInput
-	// Server name.
-	Name pulumi.StringPtrInput
-	// HTTP authentication password.
-	Password pulumi.StringPtrInput
-	// Port number that the forwarding server expects to receive HTTP sessions on (1 - 65535, default = 3128).
-	Port pulumi.IntPtrInput
-	// Action to take when the forward server is found to be down: block sessions until the server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
+	AddrType         pulumi.StringPtrInput
+	Comment          pulumi.StringPtrInput
+	Fqdn             pulumi.StringPtrInput
+	Healthcheck      pulumi.StringPtrInput
+	Ip               pulumi.StringPtrInput
+	Monitor          pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	Password         pulumi.StringPtrInput
+	Port             pulumi.IntPtrInput
 	ServerDownOption pulumi.StringPtrInput
-	// HTTP authentication user name.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Username         pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (WebProxyForwardServerState) ElementType() reflect.Type {
@@ -172,58 +98,34 @@ func (WebProxyForwardServerState) ElementType() reflect.Type {
 }
 
 type webProxyForwardServerArgs struct {
-	// Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
-	AddrType *string `pulumi:"addrType"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Forward server Fully Qualified Domain Name (FQDN).
-	Fqdn *string `pulumi:"fqdn"`
-	// Enable/disable forward server health checking. Attempts to connect through the remote forwarding server to a destination to verify that the forwarding server is operating normally. Valid values: `disable`, `enable`.
-	Healthcheck *string `pulumi:"healthcheck"`
-	// Forward proxy server IP address.
-	Ip *string `pulumi:"ip"`
-	// URL for forward server health check monitoring (default = http://www.google.com).
-	Monitor *string `pulumi:"monitor"`
-	// Server name.
-	Name *string `pulumi:"name"`
-	// HTTP authentication password.
-	Password *string `pulumi:"password"`
-	// Port number that the forwarding server expects to receive HTTP sessions on (1 - 65535, default = 3128).
-	Port *int `pulumi:"port"`
-	// Action to take when the forward server is found to be down: block sessions until the server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
+	AddrType         *string `pulumi:"addrType"`
+	Comment          *string `pulumi:"comment"`
+	Fqdn             *string `pulumi:"fqdn"`
+	Healthcheck      *string `pulumi:"healthcheck"`
+	Ip               *string `pulumi:"ip"`
+	Monitor          *string `pulumi:"monitor"`
+	Name             *string `pulumi:"name"`
+	Password         *string `pulumi:"password"`
+	Port             *int    `pulumi:"port"`
 	ServerDownOption *string `pulumi:"serverDownOption"`
-	// HTTP authentication user name.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Username         *string `pulumi:"username"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebProxyForwardServer resource.
 type WebProxyForwardServerArgs struct {
-	// Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
-	AddrType pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Forward server Fully Qualified Domain Name (FQDN).
-	Fqdn pulumi.StringPtrInput
-	// Enable/disable forward server health checking. Attempts to connect through the remote forwarding server to a destination to verify that the forwarding server is operating normally. Valid values: `disable`, `enable`.
-	Healthcheck pulumi.StringPtrInput
-	// Forward proxy server IP address.
-	Ip pulumi.StringPtrInput
-	// URL for forward server health check monitoring (default = http://www.google.com).
-	Monitor pulumi.StringPtrInput
-	// Server name.
-	Name pulumi.StringPtrInput
-	// HTTP authentication password.
-	Password pulumi.StringPtrInput
-	// Port number that the forwarding server expects to receive HTTP sessions on (1 - 65535, default = 3128).
-	Port pulumi.IntPtrInput
-	// Action to take when the forward server is found to be down: block sessions until the server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
+	AddrType         pulumi.StringPtrInput
+	Comment          pulumi.StringPtrInput
+	Fqdn             pulumi.StringPtrInput
+	Healthcheck      pulumi.StringPtrInput
+	Ip               pulumi.StringPtrInput
+	Monitor          pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	Password         pulumi.StringPtrInput
+	Port             pulumi.IntPtrInput
 	ServerDownOption pulumi.StringPtrInput
-	// HTTP authentication user name.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Username         pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (WebProxyForwardServerArgs) ElementType() reflect.Type {
@@ -252,7 +154,7 @@ func (i *WebProxyForwardServer) ToWebProxyForwardServerOutputWithContext(ctx con
 // WebProxyForwardServerArrayInput is an input type that accepts WebProxyForwardServerArray and WebProxyForwardServerArrayOutput values.
 // You can construct a concrete instance of `WebProxyForwardServerArrayInput` via:
 //
-//          WebProxyForwardServerArray{ WebProxyForwardServerArgs{...} }
+//	WebProxyForwardServerArray{ WebProxyForwardServerArgs{...} }
 type WebProxyForwardServerArrayInput interface {
 	pulumi.Input
 
@@ -277,7 +179,7 @@ func (i WebProxyForwardServerArray) ToWebProxyForwardServerArrayOutputWithContex
 // WebProxyForwardServerMapInput is an input type that accepts WebProxyForwardServerMap and WebProxyForwardServerMapOutput values.
 // You can construct a concrete instance of `WebProxyForwardServerMapInput` via:
 //
-//          WebProxyForwardServerMap{ "key": WebProxyForwardServerArgs{...} }
+//	WebProxyForwardServerMap{ "key": WebProxyForwardServerArgs{...} }
 type WebProxyForwardServerMapInput interface {
 	pulumi.Input
 
@@ -311,6 +213,54 @@ func (o WebProxyForwardServerOutput) ToWebProxyForwardServerOutput() WebProxyFor
 
 func (o WebProxyForwardServerOutput) ToWebProxyForwardServerOutputWithContext(ctx context.Context) WebProxyForwardServerOutput {
 	return o
+}
+
+func (o WebProxyForwardServerOutput) AddrType() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyForwardServer) pulumi.StringOutput { return v.AddrType }).(pulumi.StringOutput)
+}
+
+func (o WebProxyForwardServerOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyForwardServer) pulumi.StringOutput { return v.Comment }).(pulumi.StringOutput)
+}
+
+func (o WebProxyForwardServerOutput) Fqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyForwardServer) pulumi.StringOutput { return v.Fqdn }).(pulumi.StringOutput)
+}
+
+func (o WebProxyForwardServerOutput) Healthcheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyForwardServer) pulumi.StringOutput { return v.Healthcheck }).(pulumi.StringOutput)
+}
+
+func (o WebProxyForwardServerOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyForwardServer) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o WebProxyForwardServerOutput) Monitor() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyForwardServer) pulumi.StringOutput { return v.Monitor }).(pulumi.StringOutput)
+}
+
+func (o WebProxyForwardServerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyForwardServer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WebProxyForwardServerOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyForwardServer) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o WebProxyForwardServerOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebProxyForwardServer) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o WebProxyForwardServerOutput) ServerDownOption() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyForwardServer) pulumi.StringOutput { return v.ServerDownOption }).(pulumi.StringOutput)
+}
+
+func (o WebProxyForwardServerOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyForwardServer) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
+func (o WebProxyForwardServerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyForwardServer) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebProxyForwardServerArrayOutput struct{ *pulumi.OutputState }

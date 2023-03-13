@@ -7,38 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure a RADIUS server to use as a RADIUS Single Sign On (RSSO) server for this VDOM.
-//
-// ## Import
-//
-// System VdomRadiusServer can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVdomRadiusServer:SystemVdomRadiusServer labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVdomRadiusServer:SystemVdomRadiusServer labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemVdomRadiusServer struct {
 	pulumi.CustomResourceState
 
-	// Name of the VDOM that you are adding the RADIUS server to.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Use this option to select another VDOM containing a VDOM RSSO RADIUS server to use for the current VDOM.
-	RadiusServerVdom pulumi.StringOutput `pulumi:"radiusServerVdom"`
-	// Enable/disable the RSSO RADIUS server for this VDOM. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Name             pulumi.StringOutput    `pulumi:"name"`
+	RadiusServerVdom pulumi.StringOutput    `pulumi:"radiusServerVdom"`
+	Status           pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam        pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemVdomRadiusServer registers a new resource with the given unique name, arguments, and options.
@@ -74,25 +53,17 @@ func GetSystemVdomRadiusServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemVdomRadiusServer resources.
 type systemVdomRadiusServerState struct {
-	// Name of the VDOM that you are adding the RADIUS server to.
-	Name *string `pulumi:"name"`
-	// Use this option to select another VDOM containing a VDOM RSSO RADIUS server to use for the current VDOM.
+	Name             *string `pulumi:"name"`
 	RadiusServerVdom *string `pulumi:"radiusServerVdom"`
-	// Enable/disable the RSSO RADIUS server for this VDOM. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Status           *string `pulumi:"status"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 type SystemVdomRadiusServerState struct {
-	// Name of the VDOM that you are adding the RADIUS server to.
-	Name pulumi.StringPtrInput
-	// Use this option to select another VDOM containing a VDOM RSSO RADIUS server to use for the current VDOM.
+	Name             pulumi.StringPtrInput
 	RadiusServerVdom pulumi.StringPtrInput
-	// Enable/disable the RSSO RADIUS server for this VDOM. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Status           pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (SystemVdomRadiusServerState) ElementType() reflect.Type {
@@ -100,26 +71,18 @@ func (SystemVdomRadiusServerState) ElementType() reflect.Type {
 }
 
 type systemVdomRadiusServerArgs struct {
-	// Name of the VDOM that you are adding the RADIUS server to.
-	Name *string `pulumi:"name"`
-	// Use this option to select another VDOM containing a VDOM RSSO RADIUS server to use for the current VDOM.
-	RadiusServerVdom string `pulumi:"radiusServerVdom"`
-	// Enable/disable the RSSO RADIUS server for this VDOM. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name             *string `pulumi:"name"`
+	RadiusServerVdom string  `pulumi:"radiusServerVdom"`
+	Status           *string `pulumi:"status"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemVdomRadiusServer resource.
 type SystemVdomRadiusServerArgs struct {
-	// Name of the VDOM that you are adding the RADIUS server to.
-	Name pulumi.StringPtrInput
-	// Use this option to select another VDOM containing a VDOM RSSO RADIUS server to use for the current VDOM.
+	Name             pulumi.StringPtrInput
 	RadiusServerVdom pulumi.StringInput
-	// Enable/disable the RSSO RADIUS server for this VDOM. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Status           pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (SystemVdomRadiusServerArgs) ElementType() reflect.Type {
@@ -148,7 +111,7 @@ func (i *SystemVdomRadiusServer) ToSystemVdomRadiusServerOutputWithContext(ctx c
 // SystemVdomRadiusServerArrayInput is an input type that accepts SystemVdomRadiusServerArray and SystemVdomRadiusServerArrayOutput values.
 // You can construct a concrete instance of `SystemVdomRadiusServerArrayInput` via:
 //
-//          SystemVdomRadiusServerArray{ SystemVdomRadiusServerArgs{...} }
+//	SystemVdomRadiusServerArray{ SystemVdomRadiusServerArgs{...} }
 type SystemVdomRadiusServerArrayInput interface {
 	pulumi.Input
 
@@ -173,7 +136,7 @@ func (i SystemVdomRadiusServerArray) ToSystemVdomRadiusServerArrayOutputWithCont
 // SystemVdomRadiusServerMapInput is an input type that accepts SystemVdomRadiusServerMap and SystemVdomRadiusServerMapOutput values.
 // You can construct a concrete instance of `SystemVdomRadiusServerMapInput` via:
 //
-//          SystemVdomRadiusServerMap{ "key": SystemVdomRadiusServerArgs{...} }
+//	SystemVdomRadiusServerMap{ "key": SystemVdomRadiusServerArgs{...} }
 type SystemVdomRadiusServerMapInput interface {
 	pulumi.Input
 
@@ -207,6 +170,22 @@ func (o SystemVdomRadiusServerOutput) ToSystemVdomRadiusServerOutput() SystemVdo
 
 func (o SystemVdomRadiusServerOutput) ToSystemVdomRadiusServerOutputWithContext(ctx context.Context) SystemVdomRadiusServerOutput {
 	return o
+}
+
+func (o SystemVdomRadiusServerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomRadiusServer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomRadiusServerOutput) RadiusServerVdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomRadiusServer) pulumi.StringOutput { return v.RadiusServerVdom }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomRadiusServerOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomRadiusServer) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomRadiusServerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVdomRadiusServer) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemVdomRadiusServerArrayOutput struct{ *pulumi.OutputState }

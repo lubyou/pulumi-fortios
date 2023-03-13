@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.FirewallCentralSnatMap`.
- */
 export function getFirewallCentralSnatMapList(args?: GetFirewallCentralSnatMapListArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallCentralSnatMapListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallCentralSnatMapList:GetFirewallCentralSnatMapList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getFirewallCentralSnatMapList(args?: GetFirewallCentralSnatMapLi
  */
 export interface GetFirewallCentralSnatMapListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -40,15 +31,11 @@ export interface GetFirewallCentralSnatMapListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.FirewallCentralSnatMap`.
-     */
     readonly policyidlists: number[];
     readonly vdomparam?: string;
 }
-
 export function getFirewallCentralSnatMapListOutput(args?: GetFirewallCentralSnatMapListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallCentralSnatMapListResult> {
-    return pulumi.output(args).apply(a => getFirewallCentralSnatMapList(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallCentralSnatMapList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getFirewallCentralSnatMapListOutput(args?: GetFirewallCentralSna
  */
 export interface GetFirewallCentralSnatMapListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

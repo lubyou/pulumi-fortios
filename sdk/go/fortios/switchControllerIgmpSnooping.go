@@ -10,56 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch IGMP snooping global settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchControllerIgmpSnooping(ctx, "trname", &fortios.SwitchControllerIgmpSnoopingArgs{
-// 			AgingTime:             pulumi.Int(300),
-// 			FloodUnknownMulticast: pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchController IgmpSnooping can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerIgmpSnooping:SwitchControllerIgmpSnooping labelname SwitchControllerIgmpSnooping
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerIgmpSnooping:SwitchControllerIgmpSnooping labelname SwitchControllerIgmpSnooping
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerIgmpSnooping struct {
 	pulumi.CustomResourceState
 
-	// Maximum number of seconds to retain a multicast snooping entry for which no packets have been seen (15 - 3600 sec, default = 300).
-	AgingTime pulumi.IntOutput `pulumi:"agingTime"`
-	// Enable/disable unknown multicast flooding. Valid values: `enable`, `disable`.
-	FloodUnknownMulticast pulumi.StringOutput `pulumi:"floodUnknownMulticast"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AgingTime             pulumi.IntOutput       `pulumi:"agingTime"`
+	FloodUnknownMulticast pulumi.StringOutput    `pulumi:"floodUnknownMulticast"`
+	QueryInterval         pulumi.IntOutput       `pulumi:"queryInterval"`
+	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerIgmpSnooping registers a new resource with the given unique name, arguments, and options.
@@ -92,21 +49,17 @@ func GetSwitchControllerIgmpSnooping(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerIgmpSnooping resources.
 type switchControllerIgmpSnoopingState struct {
-	// Maximum number of seconds to retain a multicast snooping entry for which no packets have been seen (15 - 3600 sec, default = 300).
-	AgingTime *int `pulumi:"agingTime"`
-	// Enable/disable unknown multicast flooding. Valid values: `enable`, `disable`.
+	AgingTime             *int    `pulumi:"agingTime"`
 	FloodUnknownMulticast *string `pulumi:"floodUnknownMulticast"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	QueryInterval         *int    `pulumi:"queryInterval"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerIgmpSnoopingState struct {
-	// Maximum number of seconds to retain a multicast snooping entry for which no packets have been seen (15 - 3600 sec, default = 300).
-	AgingTime pulumi.IntPtrInput
-	// Enable/disable unknown multicast flooding. Valid values: `enable`, `disable`.
+	AgingTime             pulumi.IntPtrInput
 	FloodUnknownMulticast pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	QueryInterval         pulumi.IntPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SwitchControllerIgmpSnoopingState) ElementType() reflect.Type {
@@ -114,22 +67,18 @@ func (SwitchControllerIgmpSnoopingState) ElementType() reflect.Type {
 }
 
 type switchControllerIgmpSnoopingArgs struct {
-	// Maximum number of seconds to retain a multicast snooping entry for which no packets have been seen (15 - 3600 sec, default = 300).
-	AgingTime *int `pulumi:"agingTime"`
-	// Enable/disable unknown multicast flooding. Valid values: `enable`, `disable`.
+	AgingTime             *int    `pulumi:"agingTime"`
 	FloodUnknownMulticast *string `pulumi:"floodUnknownMulticast"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	QueryInterval         *int    `pulumi:"queryInterval"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerIgmpSnooping resource.
 type SwitchControllerIgmpSnoopingArgs struct {
-	// Maximum number of seconds to retain a multicast snooping entry for which no packets have been seen (15 - 3600 sec, default = 300).
-	AgingTime pulumi.IntPtrInput
-	// Enable/disable unknown multicast flooding. Valid values: `enable`, `disable`.
+	AgingTime             pulumi.IntPtrInput
 	FloodUnknownMulticast pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	QueryInterval         pulumi.IntPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SwitchControllerIgmpSnoopingArgs) ElementType() reflect.Type {
@@ -158,7 +107,7 @@ func (i *SwitchControllerIgmpSnooping) ToSwitchControllerIgmpSnoopingOutputWithC
 // SwitchControllerIgmpSnoopingArrayInput is an input type that accepts SwitchControllerIgmpSnoopingArray and SwitchControllerIgmpSnoopingArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerIgmpSnoopingArrayInput` via:
 //
-//          SwitchControllerIgmpSnoopingArray{ SwitchControllerIgmpSnoopingArgs{...} }
+//	SwitchControllerIgmpSnoopingArray{ SwitchControllerIgmpSnoopingArgs{...} }
 type SwitchControllerIgmpSnoopingArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +132,7 @@ func (i SwitchControllerIgmpSnoopingArray) ToSwitchControllerIgmpSnoopingArrayOu
 // SwitchControllerIgmpSnoopingMapInput is an input type that accepts SwitchControllerIgmpSnoopingMap and SwitchControllerIgmpSnoopingMapOutput values.
 // You can construct a concrete instance of `SwitchControllerIgmpSnoopingMapInput` via:
 //
-//          SwitchControllerIgmpSnoopingMap{ "key": SwitchControllerIgmpSnoopingArgs{...} }
+//	SwitchControllerIgmpSnoopingMap{ "key": SwitchControllerIgmpSnoopingArgs{...} }
 type SwitchControllerIgmpSnoopingMapInput interface {
 	pulumi.Input
 
@@ -217,6 +166,22 @@ func (o SwitchControllerIgmpSnoopingOutput) ToSwitchControllerIgmpSnoopingOutput
 
 func (o SwitchControllerIgmpSnoopingOutput) ToSwitchControllerIgmpSnoopingOutputWithContext(ctx context.Context) SwitchControllerIgmpSnoopingOutput {
 	return o
+}
+
+func (o SwitchControllerIgmpSnoopingOutput) AgingTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerIgmpSnooping) pulumi.IntOutput { return v.AgingTime }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerIgmpSnoopingOutput) FloodUnknownMulticast() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerIgmpSnooping) pulumi.StringOutput { return v.FloodUnknownMulticast }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerIgmpSnoopingOutput) QueryInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerIgmpSnooping) pulumi.IntOutput { return v.QueryInterval }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerIgmpSnoopingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerIgmpSnooping) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerIgmpSnoopingArrayOutput struct{ *pulumi.OutputState }

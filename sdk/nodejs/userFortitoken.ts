@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiToken.
- *
- * ## Import
- *
- * User Fortitoken can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userFortitoken:UserFortitoken labelname {{serial_number}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userFortitoken:UserFortitoken labelname {{serial_number}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserFortitoken extends pulumi.CustomResource {
     /**
      * Get an existing UserFortitoken resource's state with the given name, ID, and optional extra
@@ -51,45 +32,15 @@ export class UserFortitoken extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserFortitoken.__pulumiType;
     }
 
-    /**
-     * Mobile token user activation-code.
-     */
     public readonly activationCode!: pulumi.Output<string>;
-    /**
-     * Mobile token user activation-code expire time.
-     */
     public readonly activationExpire!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Mobile token license.
-     */
     public readonly license!: pulumi.Output<string>;
-    /**
-     * Device Mobile Version.
-     */
     public readonly osVer!: pulumi.Output<string>;
-    /**
-     * Device Reg ID.
-     */
     public readonly regId!: pulumi.Output<string>;
-    /**
-     * Token seed.
-     */
     public readonly seed!: pulumi.Output<string>;
-    /**
-     * Serial number.
-     */
     public readonly serialNumber!: pulumi.Output<string>;
-    /**
-     * Status Valid values: `active`, `lock`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -137,45 +88,15 @@ export class UserFortitoken extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserFortitoken resources.
  */
 export interface UserFortitokenState {
-    /**
-     * Mobile token user activation-code.
-     */
     activationCode?: pulumi.Input<string>;
-    /**
-     * Mobile token user activation-code expire time.
-     */
     activationExpire?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Mobile token license.
-     */
     license?: pulumi.Input<string>;
-    /**
-     * Device Mobile Version.
-     */
     osVer?: pulumi.Input<string>;
-    /**
-     * Device Reg ID.
-     */
     regId?: pulumi.Input<string>;
-    /**
-     * Token seed.
-     */
     seed?: pulumi.Input<string>;
-    /**
-     * Serial number.
-     */
     serialNumber?: pulumi.Input<string>;
-    /**
-     * Status Valid values: `active`, `lock`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -183,44 +104,14 @@ export interface UserFortitokenState {
  * The set of arguments for constructing a UserFortitoken resource.
  */
 export interface UserFortitokenArgs {
-    /**
-     * Mobile token user activation-code.
-     */
     activationCode?: pulumi.Input<string>;
-    /**
-     * Mobile token user activation-code expire time.
-     */
     activationExpire?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Mobile token license.
-     */
     license?: pulumi.Input<string>;
-    /**
-     * Device Mobile Version.
-     */
     osVer?: pulumi.Input<string>;
-    /**
-     * Device Reg ID.
-     */
     regId?: pulumi.Input<string>;
-    /**
-     * Token seed.
-     */
     seed?: pulumi.Input<string>;
-    /**
-     * Serial number.
-     */
     serialNumber?: pulumi.Input<string>;
-    /**
-     * Status Valid values: `active`, `lock`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

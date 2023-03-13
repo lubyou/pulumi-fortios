@@ -10,44 +10,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Wireless Termination Points (WTP) system log server profile. Applies to FortiOS Version `>= 7.0.2`.
-//
-// ## Import
-//
-// WirelessController SyslogProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerSyslogProfile:WirelessControllerSyslogProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerSyslogProfile:WirelessControllerSyslogProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerSyslogProfile struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Lowest level of log messages that FortiAP units send to this server (default = information) Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debugging`.
-	LogLevel pulumi.StringOutput `pulumi:"logLevel"`
-	// WTP system log server profile name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Syslog server address type (default = IP) Valid values: `fqdn`, `ip`.
-	ServerAddrType pulumi.StringOutput `pulumi:"serverAddrType"`
-	// FQDN of syslog server that FortiAP units send log messages to.
-	ServerFqdn pulumi.StringOutput `pulumi:"serverFqdn"`
-	// IP address of syslog server that FortiAP units send log messages to.
-	ServerIp pulumi.StringOutput `pulumi:"serverIp"`
-	// Port number of syslog server that FortiAP units send log messages to (default = 514).
-	ServerPort pulumi.IntOutput `pulumi:"serverPort"`
-	// Enable/disable FortiAP units to send log messages to a syslog server (default = enable). Valid values: `enable`, `disable`.
-	ServerStatus pulumi.StringOutput `pulumi:"serverStatus"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment        pulumi.StringPtrOutput `pulumi:"comment"`
+	LogLevel       pulumi.StringOutput    `pulumi:"logLevel"`
+	Name           pulumi.StringOutput    `pulumi:"name"`
+	ServerAddrType pulumi.StringOutput    `pulumi:"serverAddrType"`
+	ServerFqdn     pulumi.StringOutput    `pulumi:"serverFqdn"`
+	ServerIp       pulumi.StringOutput    `pulumi:"serverIp"`
+	ServerPort     pulumi.IntOutput       `pulumi:"serverPort"`
+	ServerStatus   pulumi.StringOutput    `pulumi:"serverStatus"`
+	Vdomparam      pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerSyslogProfile registers a new resource with the given unique name, arguments, and options.
@@ -80,45 +54,27 @@ func GetWirelessControllerSyslogProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerSyslogProfile resources.
 type wirelessControllerSyslogProfileState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Lowest level of log messages that FortiAP units send to this server (default = information) Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debugging`.
-	LogLevel *string `pulumi:"logLevel"`
-	// WTP system log server profile name.
-	Name *string `pulumi:"name"`
-	// Syslog server address type (default = IP) Valid values: `fqdn`, `ip`.
+	Comment        *string `pulumi:"comment"`
+	LogLevel       *string `pulumi:"logLevel"`
+	Name           *string `pulumi:"name"`
 	ServerAddrType *string `pulumi:"serverAddrType"`
-	// FQDN of syslog server that FortiAP units send log messages to.
-	ServerFqdn *string `pulumi:"serverFqdn"`
-	// IP address of syslog server that FortiAP units send log messages to.
-	ServerIp *string `pulumi:"serverIp"`
-	// Port number of syslog server that FortiAP units send log messages to (default = 514).
-	ServerPort *int `pulumi:"serverPort"`
-	// Enable/disable FortiAP units to send log messages to a syslog server (default = enable). Valid values: `enable`, `disable`.
-	ServerStatus *string `pulumi:"serverStatus"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ServerFqdn     *string `pulumi:"serverFqdn"`
+	ServerIp       *string `pulumi:"serverIp"`
+	ServerPort     *int    `pulumi:"serverPort"`
+	ServerStatus   *string `pulumi:"serverStatus"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 type WirelessControllerSyslogProfileState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Lowest level of log messages that FortiAP units send to this server (default = information) Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debugging`.
-	LogLevel pulumi.StringPtrInput
-	// WTP system log server profile name.
-	Name pulumi.StringPtrInput
-	// Syslog server address type (default = IP) Valid values: `fqdn`, `ip`.
+	Comment        pulumi.StringPtrInput
+	LogLevel       pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
 	ServerAddrType pulumi.StringPtrInput
-	// FQDN of syslog server that FortiAP units send log messages to.
-	ServerFqdn pulumi.StringPtrInput
-	// IP address of syslog server that FortiAP units send log messages to.
-	ServerIp pulumi.StringPtrInput
-	// Port number of syslog server that FortiAP units send log messages to (default = 514).
-	ServerPort pulumi.IntPtrInput
-	// Enable/disable FortiAP units to send log messages to a syslog server (default = enable). Valid values: `enable`, `disable`.
-	ServerStatus pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ServerFqdn     pulumi.StringPtrInput
+	ServerIp       pulumi.StringPtrInput
+	ServerPort     pulumi.IntPtrInput
+	ServerStatus   pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (WirelessControllerSyslogProfileState) ElementType() reflect.Type {
@@ -126,46 +82,28 @@ func (WirelessControllerSyslogProfileState) ElementType() reflect.Type {
 }
 
 type wirelessControllerSyslogProfileArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Lowest level of log messages that FortiAP units send to this server (default = information) Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debugging`.
-	LogLevel *string `pulumi:"logLevel"`
-	// WTP system log server profile name.
-	Name *string `pulumi:"name"`
-	// Syslog server address type (default = IP) Valid values: `fqdn`, `ip`.
+	Comment        *string `pulumi:"comment"`
+	LogLevel       *string `pulumi:"logLevel"`
+	Name           *string `pulumi:"name"`
 	ServerAddrType *string `pulumi:"serverAddrType"`
-	// FQDN of syslog server that FortiAP units send log messages to.
-	ServerFqdn *string `pulumi:"serverFqdn"`
-	// IP address of syslog server that FortiAP units send log messages to.
-	ServerIp *string `pulumi:"serverIp"`
-	// Port number of syslog server that FortiAP units send log messages to (default = 514).
-	ServerPort *int `pulumi:"serverPort"`
-	// Enable/disable FortiAP units to send log messages to a syslog server (default = enable). Valid values: `enable`, `disable`.
-	ServerStatus *string `pulumi:"serverStatus"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ServerFqdn     *string `pulumi:"serverFqdn"`
+	ServerIp       *string `pulumi:"serverIp"`
+	ServerPort     *int    `pulumi:"serverPort"`
+	ServerStatus   *string `pulumi:"serverStatus"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerSyslogProfile resource.
 type WirelessControllerSyslogProfileArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Lowest level of log messages that FortiAP units send to this server (default = information) Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debugging`.
-	LogLevel pulumi.StringPtrInput
-	// WTP system log server profile name.
-	Name pulumi.StringPtrInput
-	// Syslog server address type (default = IP) Valid values: `fqdn`, `ip`.
+	Comment        pulumi.StringPtrInput
+	LogLevel       pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
 	ServerAddrType pulumi.StringPtrInput
-	// FQDN of syslog server that FortiAP units send log messages to.
-	ServerFqdn pulumi.StringPtrInput
-	// IP address of syslog server that FortiAP units send log messages to.
-	ServerIp pulumi.StringPtrInput
-	// Port number of syslog server that FortiAP units send log messages to (default = 514).
-	ServerPort pulumi.IntPtrInput
-	// Enable/disable FortiAP units to send log messages to a syslog server (default = enable). Valid values: `enable`, `disable`.
-	ServerStatus pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ServerFqdn     pulumi.StringPtrInput
+	ServerIp       pulumi.StringPtrInput
+	ServerPort     pulumi.IntPtrInput
+	ServerStatus   pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (WirelessControllerSyslogProfileArgs) ElementType() reflect.Type {
@@ -194,7 +132,7 @@ func (i *WirelessControllerSyslogProfile) ToWirelessControllerSyslogProfileOutpu
 // WirelessControllerSyslogProfileArrayInput is an input type that accepts WirelessControllerSyslogProfileArray and WirelessControllerSyslogProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerSyslogProfileArrayInput` via:
 //
-//          WirelessControllerSyslogProfileArray{ WirelessControllerSyslogProfileArgs{...} }
+//	WirelessControllerSyslogProfileArray{ WirelessControllerSyslogProfileArgs{...} }
 type WirelessControllerSyslogProfileArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +157,7 @@ func (i WirelessControllerSyslogProfileArray) ToWirelessControllerSyslogProfileA
 // WirelessControllerSyslogProfileMapInput is an input type that accepts WirelessControllerSyslogProfileMap and WirelessControllerSyslogProfileMapOutput values.
 // You can construct a concrete instance of `WirelessControllerSyslogProfileMapInput` via:
 //
-//          WirelessControllerSyslogProfileMap{ "key": WirelessControllerSyslogProfileArgs{...} }
+//	WirelessControllerSyslogProfileMap{ "key": WirelessControllerSyslogProfileArgs{...} }
 type WirelessControllerSyslogProfileMapInput interface {
 	pulumi.Input
 
@@ -253,6 +191,42 @@ func (o WirelessControllerSyslogProfileOutput) ToWirelessControllerSyslogProfile
 
 func (o WirelessControllerSyslogProfileOutput) ToWirelessControllerSyslogProfileOutputWithContext(ctx context.Context) WirelessControllerSyslogProfileOutput {
 	return o
+}
+
+func (o WirelessControllerSyslogProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerSyslogProfile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerSyslogProfileOutput) LogLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerSyslogProfile) pulumi.StringOutput { return v.LogLevel }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerSyslogProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerSyslogProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerSyslogProfileOutput) ServerAddrType() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerSyslogProfile) pulumi.StringOutput { return v.ServerAddrType }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerSyslogProfileOutput) ServerFqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerSyslogProfile) pulumi.StringOutput { return v.ServerFqdn }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerSyslogProfileOutput) ServerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerSyslogProfile) pulumi.StringOutput { return v.ServerIp }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerSyslogProfileOutput) ServerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerSyslogProfile) pulumi.IntOutput { return v.ServerPort }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerSyslogProfileOutput) ServerStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerSyslogProfile) pulumi.StringOutput { return v.ServerStatus }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerSyslogProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerSyslogProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerSyslogProfileArrayOutput struct{ *pulumi.OutputState }

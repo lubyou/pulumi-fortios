@@ -10,121 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure WAN optimization profiles.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWanoptProfile(ctx, "trname", &fortios.WanoptProfileArgs{
-// 			Cifs: &WanoptProfileCifsArgs{
-// 				ByteCaching:    pulumi.String("enable"),
-// 				LogTraffic:     pulumi.String("enable"),
-// 				Port:           pulumi.Int(445),
-// 				PreferChunking: pulumi.String("fix"),
-// 				SecureTunnel:   pulumi.String("disable"),
-// 				Status:         pulumi.String("disable"),
-// 				TunnelSharing:  pulumi.String("private"),
-// 			},
-// 			Comments: pulumi.String("test"),
-// 			Ftp: &WanoptProfileFtpArgs{
-// 				ByteCaching:    pulumi.String("enable"),
-// 				LogTraffic:     pulumi.String("enable"),
-// 				Port:           pulumi.Int(21),
-// 				PreferChunking: pulumi.String("fix"),
-// 				SecureTunnel:   pulumi.String("disable"),
-// 				Status:         pulumi.String("disable"),
-// 				TunnelSharing:  pulumi.String("private"),
-// 			},
-// 			Http: &WanoptProfileHttpArgs{
-// 				ByteCaching:        pulumi.String("enable"),
-// 				LogTraffic:         pulumi.String("enable"),
-// 				Port:               pulumi.Int(80),
-// 				PreferChunking:     pulumi.String("fix"),
-// 				SecureTunnel:       pulumi.String("disable"),
-// 				Ssl:                pulumi.String("disable"),
-// 				SslPort:            pulumi.Int(443),
-// 				Status:             pulumi.String("disable"),
-// 				TunnelNonHttp:      pulumi.String("disable"),
-// 				TunnelSharing:      pulumi.String("private"),
-// 				UnknownHttpVersion: pulumi.String("tunnel"),
-// 			},
-// 			Mapi: &WanoptProfileMapiArgs{
-// 				ByteCaching:   pulumi.String("enable"),
-// 				LogTraffic:    pulumi.String("enable"),
-// 				Port:          pulumi.Int(135),
-// 				SecureTunnel:  pulumi.String("disable"),
-// 				Status:        pulumi.String("disable"),
-// 				TunnelSharing: pulumi.String("private"),
-// 			},
-// 			Tcp: &WanoptProfileTcpArgs{
-// 				ByteCaching:    pulumi.String("disable"),
-// 				ByteCachingOpt: pulumi.String("mem-only"),
-// 				LogTraffic:     pulumi.String("enable"),
-// 				Port:           pulumi.String("1-65535"),
-// 				SecureTunnel:   pulumi.String("disable"),
-// 				Ssl:            pulumi.String("disable"),
-// 				SslPort:        pulumi.Int(443),
-// 				Status:         pulumi.String("disable"),
-// 				TunnelSharing:  pulumi.String("private"),
-// 			},
-// 			Transparent: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Wanopt Profile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wanoptProfile:WanoptProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wanoptProfile:WanoptProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WanoptProfile struct {
 	pulumi.CustomResourceState
 
-	// Optionally add an authentication group to restrict access to the WAN Optimization tunnel to peers in the authentication group.
-	AuthGroup pulumi.StringOutput `pulumi:"authGroup"`
-	// Enable/disable CIFS (Windows sharing) WAN Optimization and configure CIFS WAN Optimization features. The structure of `cifs` block is documented below.
-	Cifs WanoptProfileCifsPtrOutput `pulumi:"cifs"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features. The structure of `ftp` block is documented below.
-	Ftp WanoptProfileFtpPtrOutput `pulumi:"ftp"`
-	// Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features. The structure of `http` block is documented below.
-	Http WanoptProfileHttpPtrOutput `pulumi:"http"`
-	// Enable/disable MAPI email WAN Optimization and configure MAPI WAN Optimization features. The structure of `mapi` block is documented below.
-	Mapi WanoptProfileMapiPtrOutput `pulumi:"mapi"`
-	// Profile name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable TCP WAN Optimization and configure TCP WAN Optimization features. The structure of `tcp` block is documented below.
-	Tcp WanoptProfileTcpPtrOutput `pulumi:"tcp"`
-	// Enable/disable transparent mode. Valid values: `enable`, `disable`.
-	Transparent pulumi.StringOutput `pulumi:"transparent"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AuthGroup   pulumi.StringOutput     `pulumi:"authGroup"`
+	Cifs        WanoptProfileCifsOutput `pulumi:"cifs"`
+	Comments    pulumi.StringPtrOutput  `pulumi:"comments"`
+	Ftp         WanoptProfileFtpOutput  `pulumi:"ftp"`
+	Http        WanoptProfileHttpOutput `pulumi:"http"`
+	Mapi        WanoptProfileMapiOutput `pulumi:"mapi"`
+	Name        pulumi.StringOutput     `pulumi:"name"`
+	Tcp         WanoptProfileTcpOutput  `pulumi:"tcp"`
+	Transparent pulumi.StringOutput     `pulumi:"transparent"`
+	Vdomparam   pulumi.StringPtrOutput  `pulumi:"vdomparam"`
 }
 
 // NewWanoptProfile registers a new resource with the given unique name, arguments, and options.
@@ -157,49 +55,29 @@ func GetWanoptProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WanoptProfile resources.
 type wanoptProfileState struct {
-	// Optionally add an authentication group to restrict access to the WAN Optimization tunnel to peers in the authentication group.
-	AuthGroup *string `pulumi:"authGroup"`
-	// Enable/disable CIFS (Windows sharing) WAN Optimization and configure CIFS WAN Optimization features. The structure of `cifs` block is documented below.
-	Cifs *WanoptProfileCifs `pulumi:"cifs"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features. The structure of `ftp` block is documented below.
-	Ftp *WanoptProfileFtp `pulumi:"ftp"`
-	// Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features. The structure of `http` block is documented below.
-	Http *WanoptProfileHttp `pulumi:"http"`
-	// Enable/disable MAPI email WAN Optimization and configure MAPI WAN Optimization features. The structure of `mapi` block is documented below.
-	Mapi *WanoptProfileMapi `pulumi:"mapi"`
-	// Profile name.
-	Name *string `pulumi:"name"`
-	// Enable/disable TCP WAN Optimization and configure TCP WAN Optimization features. The structure of `tcp` block is documented below.
-	Tcp *WanoptProfileTcp `pulumi:"tcp"`
-	// Enable/disable transparent mode. Valid values: `enable`, `disable`.
-	Transparent *string `pulumi:"transparent"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AuthGroup   *string            `pulumi:"authGroup"`
+	Cifs        *WanoptProfileCifs `pulumi:"cifs"`
+	Comments    *string            `pulumi:"comments"`
+	Ftp         *WanoptProfileFtp  `pulumi:"ftp"`
+	Http        *WanoptProfileHttp `pulumi:"http"`
+	Mapi        *WanoptProfileMapi `pulumi:"mapi"`
+	Name        *string            `pulumi:"name"`
+	Tcp         *WanoptProfileTcp  `pulumi:"tcp"`
+	Transparent *string            `pulumi:"transparent"`
+	Vdomparam   *string            `pulumi:"vdomparam"`
 }
 
 type WanoptProfileState struct {
-	// Optionally add an authentication group to restrict access to the WAN Optimization tunnel to peers in the authentication group.
-	AuthGroup pulumi.StringPtrInput
-	// Enable/disable CIFS (Windows sharing) WAN Optimization and configure CIFS WAN Optimization features. The structure of `cifs` block is documented below.
-	Cifs WanoptProfileCifsPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features. The structure of `ftp` block is documented below.
-	Ftp WanoptProfileFtpPtrInput
-	// Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features. The structure of `http` block is documented below.
-	Http WanoptProfileHttpPtrInput
-	// Enable/disable MAPI email WAN Optimization and configure MAPI WAN Optimization features. The structure of `mapi` block is documented below.
-	Mapi WanoptProfileMapiPtrInput
-	// Profile name.
-	Name pulumi.StringPtrInput
-	// Enable/disable TCP WAN Optimization and configure TCP WAN Optimization features. The structure of `tcp` block is documented below.
-	Tcp WanoptProfileTcpPtrInput
-	// Enable/disable transparent mode. Valid values: `enable`, `disable`.
+	AuthGroup   pulumi.StringPtrInput
+	Cifs        WanoptProfileCifsPtrInput
+	Comments    pulumi.StringPtrInput
+	Ftp         WanoptProfileFtpPtrInput
+	Http        WanoptProfileHttpPtrInput
+	Mapi        WanoptProfileMapiPtrInput
+	Name        pulumi.StringPtrInput
+	Tcp         WanoptProfileTcpPtrInput
 	Transparent pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (WanoptProfileState) ElementType() reflect.Type {
@@ -207,50 +85,30 @@ func (WanoptProfileState) ElementType() reflect.Type {
 }
 
 type wanoptProfileArgs struct {
-	// Optionally add an authentication group to restrict access to the WAN Optimization tunnel to peers in the authentication group.
-	AuthGroup *string `pulumi:"authGroup"`
-	// Enable/disable CIFS (Windows sharing) WAN Optimization and configure CIFS WAN Optimization features. The structure of `cifs` block is documented below.
-	Cifs *WanoptProfileCifs `pulumi:"cifs"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features. The structure of `ftp` block is documented below.
-	Ftp *WanoptProfileFtp `pulumi:"ftp"`
-	// Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features. The structure of `http` block is documented below.
-	Http *WanoptProfileHttp `pulumi:"http"`
-	// Enable/disable MAPI email WAN Optimization and configure MAPI WAN Optimization features. The structure of `mapi` block is documented below.
-	Mapi *WanoptProfileMapi `pulumi:"mapi"`
-	// Profile name.
-	Name *string `pulumi:"name"`
-	// Enable/disable TCP WAN Optimization and configure TCP WAN Optimization features. The structure of `tcp` block is documented below.
-	Tcp *WanoptProfileTcp `pulumi:"tcp"`
-	// Enable/disable transparent mode. Valid values: `enable`, `disable`.
-	Transparent *string `pulumi:"transparent"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AuthGroup   *string            `pulumi:"authGroup"`
+	Cifs        *WanoptProfileCifs `pulumi:"cifs"`
+	Comments    *string            `pulumi:"comments"`
+	Ftp         *WanoptProfileFtp  `pulumi:"ftp"`
+	Http        *WanoptProfileHttp `pulumi:"http"`
+	Mapi        *WanoptProfileMapi `pulumi:"mapi"`
+	Name        *string            `pulumi:"name"`
+	Tcp         *WanoptProfileTcp  `pulumi:"tcp"`
+	Transparent *string            `pulumi:"transparent"`
+	Vdomparam   *string            `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WanoptProfile resource.
 type WanoptProfileArgs struct {
-	// Optionally add an authentication group to restrict access to the WAN Optimization tunnel to peers in the authentication group.
-	AuthGroup pulumi.StringPtrInput
-	// Enable/disable CIFS (Windows sharing) WAN Optimization and configure CIFS WAN Optimization features. The structure of `cifs` block is documented below.
-	Cifs WanoptProfileCifsPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features. The structure of `ftp` block is documented below.
-	Ftp WanoptProfileFtpPtrInput
-	// Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features. The structure of `http` block is documented below.
-	Http WanoptProfileHttpPtrInput
-	// Enable/disable MAPI email WAN Optimization and configure MAPI WAN Optimization features. The structure of `mapi` block is documented below.
-	Mapi WanoptProfileMapiPtrInput
-	// Profile name.
-	Name pulumi.StringPtrInput
-	// Enable/disable TCP WAN Optimization and configure TCP WAN Optimization features. The structure of `tcp` block is documented below.
-	Tcp WanoptProfileTcpPtrInput
-	// Enable/disable transparent mode. Valid values: `enable`, `disable`.
+	AuthGroup   pulumi.StringPtrInput
+	Cifs        WanoptProfileCifsPtrInput
+	Comments    pulumi.StringPtrInput
+	Ftp         WanoptProfileFtpPtrInput
+	Http        WanoptProfileHttpPtrInput
+	Mapi        WanoptProfileMapiPtrInput
+	Name        pulumi.StringPtrInput
+	Tcp         WanoptProfileTcpPtrInput
 	Transparent pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (WanoptProfileArgs) ElementType() reflect.Type {
@@ -279,7 +137,7 @@ func (i *WanoptProfile) ToWanoptProfileOutputWithContext(ctx context.Context) Wa
 // WanoptProfileArrayInput is an input type that accepts WanoptProfileArray and WanoptProfileArrayOutput values.
 // You can construct a concrete instance of `WanoptProfileArrayInput` via:
 //
-//          WanoptProfileArray{ WanoptProfileArgs{...} }
+//	WanoptProfileArray{ WanoptProfileArgs{...} }
 type WanoptProfileArrayInput interface {
 	pulumi.Input
 
@@ -304,7 +162,7 @@ func (i WanoptProfileArray) ToWanoptProfileArrayOutputWithContext(ctx context.Co
 // WanoptProfileMapInput is an input type that accepts WanoptProfileMap and WanoptProfileMapOutput values.
 // You can construct a concrete instance of `WanoptProfileMapInput` via:
 //
-//          WanoptProfileMap{ "key": WanoptProfileArgs{...} }
+//	WanoptProfileMap{ "key": WanoptProfileArgs{...} }
 type WanoptProfileMapInput interface {
 	pulumi.Input
 
@@ -338,6 +196,46 @@ func (o WanoptProfileOutput) ToWanoptProfileOutput() WanoptProfileOutput {
 
 func (o WanoptProfileOutput) ToWanoptProfileOutputWithContext(ctx context.Context) WanoptProfileOutput {
 	return o
+}
+
+func (o WanoptProfileOutput) AuthGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptProfile) pulumi.StringOutput { return v.AuthGroup }).(pulumi.StringOutput)
+}
+
+func (o WanoptProfileOutput) Cifs() WanoptProfileCifsOutput {
+	return o.ApplyT(func(v *WanoptProfile) WanoptProfileCifsOutput { return v.Cifs }).(WanoptProfileCifsOutput)
+}
+
+func (o WanoptProfileOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WanoptProfile) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o WanoptProfileOutput) Ftp() WanoptProfileFtpOutput {
+	return o.ApplyT(func(v *WanoptProfile) WanoptProfileFtpOutput { return v.Ftp }).(WanoptProfileFtpOutput)
+}
+
+func (o WanoptProfileOutput) Http() WanoptProfileHttpOutput {
+	return o.ApplyT(func(v *WanoptProfile) WanoptProfileHttpOutput { return v.Http }).(WanoptProfileHttpOutput)
+}
+
+func (o WanoptProfileOutput) Mapi() WanoptProfileMapiOutput {
+	return o.ApplyT(func(v *WanoptProfile) WanoptProfileMapiOutput { return v.Mapi }).(WanoptProfileMapiOutput)
+}
+
+func (o WanoptProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WanoptProfileOutput) Tcp() WanoptProfileTcpOutput {
+	return o.ApplyT(func(v *WanoptProfile) WanoptProfileTcpOutput { return v.Tcp }).(WanoptProfileTcpOutput)
+}
+
+func (o WanoptProfileOutput) Transparent() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptProfile) pulumi.StringOutput { return v.Transparent }).(pulumi.StringOutput)
+}
+
+func (o WanoptProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WanoptProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WanoptProfileArrayOutput struct{ *pulumi.OutputState }

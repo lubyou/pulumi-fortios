@@ -10,85 +10,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure web proxy profiles.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWebProxyProfile(ctx, "trname", &fortios.WebProxyProfileArgs{
-// 			HeaderClientIp:             pulumi.String("pass"),
-// 			HeaderFrontEndHttps:        pulumi.String("pass"),
-// 			HeaderViaRequest:           pulumi.String("add"),
-// 			HeaderViaResponse:          pulumi.String("pass"),
-// 			HeaderXAuthenticatedGroups: pulumi.String("pass"),
-// 			HeaderXAuthenticatedUser:   pulumi.String("pass"),
-// 			HeaderXForwardedFor:        pulumi.String("pass"),
-// 			LogHeaderChange:            pulumi.String("disable"),
-// 			StripEncoding:              pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// WebProxy Profile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webProxyProfile:WebProxyProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webProxyProfile:WebProxyProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebProxyProfile struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Action to take on the HTTP client-IP header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderClientIp pulumi.StringOutput `pulumi:"headerClientIp"`
-	// Action to take on the HTTP front-end-HTTPS header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderFrontEndHttps pulumi.StringOutput `pulumi:"headerFrontEndHttps"`
-	// Action to take on the HTTP via header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderViaRequest pulumi.StringOutput `pulumi:"headerViaRequest"`
-	// Action to take on the HTTP via header in forwarded responses: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderViaResponse pulumi.StringOutput `pulumi:"headerViaResponse"`
-	// Action to take on the HTTP x-authenticated-groups header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXAuthenticatedGroups pulumi.StringOutput `pulumi:"headerXAuthenticatedGroups"`
-	// Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXAuthenticatedUser pulumi.StringOutput `pulumi:"headerXAuthenticatedUser"`
-	// Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXForwardedClientCert pulumi.StringOutput `pulumi:"headerXForwardedClientCert"`
-	// Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXForwardedFor pulumi.StringOutput `pulumi:"headerXForwardedFor"`
-	// Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
-	Headers WebProxyProfileHeaderArrayOutput `pulumi:"headers"`
-	// Enable/disable logging HTTP header changes. Valid values: `enable`, `disable`.
-	LogHeaderChange pulumi.StringOutput `pulumi:"logHeaderChange"`
-	// Address name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable stripping unsupported encoding from the request header. Valid values: `enable`, `disable`.
-	StripEncoding pulumi.StringOutput `pulumi:"stripEncoding"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable        pulumi.StringPtrOutput           `pulumi:"dynamicSortSubtable"`
+	HeaderClientIp             pulumi.StringOutput              `pulumi:"headerClientIp"`
+	HeaderFrontEndHttps        pulumi.StringOutput              `pulumi:"headerFrontEndHttps"`
+	HeaderViaRequest           pulumi.StringOutput              `pulumi:"headerViaRequest"`
+	HeaderViaResponse          pulumi.StringOutput              `pulumi:"headerViaResponse"`
+	HeaderXAuthenticatedGroups pulumi.StringOutput              `pulumi:"headerXAuthenticatedGroups"`
+	HeaderXAuthenticatedUser   pulumi.StringOutput              `pulumi:"headerXAuthenticatedUser"`
+	HeaderXForwardedClientCert pulumi.StringOutput              `pulumi:"headerXForwardedClientCert"`
+	HeaderXForwardedFor        pulumi.StringOutput              `pulumi:"headerXForwardedFor"`
+	Headers                    WebProxyProfileHeaderArrayOutput `pulumi:"headers"`
+	LogHeaderChange            pulumi.StringOutput              `pulumi:"logHeaderChange"`
+	Name                       pulumi.StringOutput              `pulumi:"name"`
+	StripEncoding              pulumi.StringOutput              `pulumi:"stripEncoding"`
+	Vdomparam                  pulumi.StringPtrOutput           `pulumi:"vdomparam"`
 }
 
 // NewWebProxyProfile registers a new resource with the given unique name, arguments, and options.
@@ -121,65 +59,37 @@ func GetWebProxyProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebProxyProfile resources.
 type webProxyProfileState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Action to take on the HTTP client-IP header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderClientIp *string `pulumi:"headerClientIp"`
-	// Action to take on the HTTP front-end-HTTPS header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderFrontEndHttps *string `pulumi:"headerFrontEndHttps"`
-	// Action to take on the HTTP via header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderViaRequest *string `pulumi:"headerViaRequest"`
-	// Action to take on the HTTP via header in forwarded responses: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderViaResponse *string `pulumi:"headerViaResponse"`
-	// Action to take on the HTTP x-authenticated-groups header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXAuthenticatedGroups *string `pulumi:"headerXAuthenticatedGroups"`
-	// Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXAuthenticatedUser *string `pulumi:"headerXAuthenticatedUser"`
-	// Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXForwardedClientCert *string `pulumi:"headerXForwardedClientCert"`
-	// Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXForwardedFor *string `pulumi:"headerXForwardedFor"`
-	// Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
-	Headers []WebProxyProfileHeader `pulumi:"headers"`
-	// Enable/disable logging HTTP header changes. Valid values: `enable`, `disable`.
-	LogHeaderChange *string `pulumi:"logHeaderChange"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// Enable/disable stripping unsupported encoding from the request header. Valid values: `enable`, `disable`.
-	StripEncoding *string `pulumi:"stripEncoding"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable        *string                 `pulumi:"dynamicSortSubtable"`
+	HeaderClientIp             *string                 `pulumi:"headerClientIp"`
+	HeaderFrontEndHttps        *string                 `pulumi:"headerFrontEndHttps"`
+	HeaderViaRequest           *string                 `pulumi:"headerViaRequest"`
+	HeaderViaResponse          *string                 `pulumi:"headerViaResponse"`
+	HeaderXAuthenticatedGroups *string                 `pulumi:"headerXAuthenticatedGroups"`
+	HeaderXAuthenticatedUser   *string                 `pulumi:"headerXAuthenticatedUser"`
+	HeaderXForwardedClientCert *string                 `pulumi:"headerXForwardedClientCert"`
+	HeaderXForwardedFor        *string                 `pulumi:"headerXForwardedFor"`
+	Headers                    []WebProxyProfileHeader `pulumi:"headers"`
+	LogHeaderChange            *string                 `pulumi:"logHeaderChange"`
+	Name                       *string                 `pulumi:"name"`
+	StripEncoding              *string                 `pulumi:"stripEncoding"`
+	Vdomparam                  *string                 `pulumi:"vdomparam"`
 }
 
 type WebProxyProfileState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Action to take on the HTTP client-IP header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderClientIp pulumi.StringPtrInput
-	// Action to take on the HTTP front-end-HTTPS header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderFrontEndHttps pulumi.StringPtrInput
-	// Action to take on the HTTP via header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderViaRequest pulumi.StringPtrInput
-	// Action to take on the HTTP via header in forwarded responses: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderViaResponse pulumi.StringPtrInput
-	// Action to take on the HTTP x-authenticated-groups header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+	DynamicSortSubtable        pulumi.StringPtrInput
+	HeaderClientIp             pulumi.StringPtrInput
+	HeaderFrontEndHttps        pulumi.StringPtrInput
+	HeaderViaRequest           pulumi.StringPtrInput
+	HeaderViaResponse          pulumi.StringPtrInput
 	HeaderXAuthenticatedGroups pulumi.StringPtrInput
-	// Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXAuthenticatedUser pulumi.StringPtrInput
-	// Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+	HeaderXAuthenticatedUser   pulumi.StringPtrInput
 	HeaderXForwardedClientCert pulumi.StringPtrInput
-	// Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXForwardedFor pulumi.StringPtrInput
-	// Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
-	Headers WebProxyProfileHeaderArrayInput
-	// Enable/disable logging HTTP header changes. Valid values: `enable`, `disable`.
-	LogHeaderChange pulumi.StringPtrInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// Enable/disable stripping unsupported encoding from the request header. Valid values: `enable`, `disable`.
-	StripEncoding pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HeaderXForwardedFor        pulumi.StringPtrInput
+	Headers                    WebProxyProfileHeaderArrayInput
+	LogHeaderChange            pulumi.StringPtrInput
+	Name                       pulumi.StringPtrInput
+	StripEncoding              pulumi.StringPtrInput
+	Vdomparam                  pulumi.StringPtrInput
 }
 
 func (WebProxyProfileState) ElementType() reflect.Type {
@@ -187,66 +97,38 @@ func (WebProxyProfileState) ElementType() reflect.Type {
 }
 
 type webProxyProfileArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Action to take on the HTTP client-IP header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderClientIp *string `pulumi:"headerClientIp"`
-	// Action to take on the HTTP front-end-HTTPS header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderFrontEndHttps *string `pulumi:"headerFrontEndHttps"`
-	// Action to take on the HTTP via header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderViaRequest *string `pulumi:"headerViaRequest"`
-	// Action to take on the HTTP via header in forwarded responses: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderViaResponse *string `pulumi:"headerViaResponse"`
-	// Action to take on the HTTP x-authenticated-groups header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXAuthenticatedGroups *string `pulumi:"headerXAuthenticatedGroups"`
-	// Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXAuthenticatedUser *string `pulumi:"headerXAuthenticatedUser"`
-	// Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXForwardedClientCert *string `pulumi:"headerXForwardedClientCert"`
-	// Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXForwardedFor *string `pulumi:"headerXForwardedFor"`
-	// Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
-	Headers []WebProxyProfileHeader `pulumi:"headers"`
-	// Enable/disable logging HTTP header changes. Valid values: `enable`, `disable`.
-	LogHeaderChange *string `pulumi:"logHeaderChange"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// Enable/disable stripping unsupported encoding from the request header. Valid values: `enable`, `disable`.
-	StripEncoding *string `pulumi:"stripEncoding"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable        *string                 `pulumi:"dynamicSortSubtable"`
+	HeaderClientIp             *string                 `pulumi:"headerClientIp"`
+	HeaderFrontEndHttps        *string                 `pulumi:"headerFrontEndHttps"`
+	HeaderViaRequest           *string                 `pulumi:"headerViaRequest"`
+	HeaderViaResponse          *string                 `pulumi:"headerViaResponse"`
+	HeaderXAuthenticatedGroups *string                 `pulumi:"headerXAuthenticatedGroups"`
+	HeaderXAuthenticatedUser   *string                 `pulumi:"headerXAuthenticatedUser"`
+	HeaderXForwardedClientCert *string                 `pulumi:"headerXForwardedClientCert"`
+	HeaderXForwardedFor        *string                 `pulumi:"headerXForwardedFor"`
+	Headers                    []WebProxyProfileHeader `pulumi:"headers"`
+	LogHeaderChange            *string                 `pulumi:"logHeaderChange"`
+	Name                       *string                 `pulumi:"name"`
+	StripEncoding              *string                 `pulumi:"stripEncoding"`
+	Vdomparam                  *string                 `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebProxyProfile resource.
 type WebProxyProfileArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Action to take on the HTTP client-IP header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderClientIp pulumi.StringPtrInput
-	// Action to take on the HTTP front-end-HTTPS header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderFrontEndHttps pulumi.StringPtrInput
-	// Action to take on the HTTP via header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderViaRequest pulumi.StringPtrInput
-	// Action to take on the HTTP via header in forwarded responses: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderViaResponse pulumi.StringPtrInput
-	// Action to take on the HTTP x-authenticated-groups header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+	DynamicSortSubtable        pulumi.StringPtrInput
+	HeaderClientIp             pulumi.StringPtrInput
+	HeaderFrontEndHttps        pulumi.StringPtrInput
+	HeaderViaRequest           pulumi.StringPtrInput
+	HeaderViaResponse          pulumi.StringPtrInput
 	HeaderXAuthenticatedGroups pulumi.StringPtrInput
-	// Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXAuthenticatedUser pulumi.StringPtrInput
-	// Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+	HeaderXAuthenticatedUser   pulumi.StringPtrInput
 	HeaderXForwardedClientCert pulumi.StringPtrInput
-	// Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXForwardedFor pulumi.StringPtrInput
-	// Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
-	Headers WebProxyProfileHeaderArrayInput
-	// Enable/disable logging HTTP header changes. Valid values: `enable`, `disable`.
-	LogHeaderChange pulumi.StringPtrInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// Enable/disable stripping unsupported encoding from the request header. Valid values: `enable`, `disable`.
-	StripEncoding pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HeaderXForwardedFor        pulumi.StringPtrInput
+	Headers                    WebProxyProfileHeaderArrayInput
+	LogHeaderChange            pulumi.StringPtrInput
+	Name                       pulumi.StringPtrInput
+	StripEncoding              pulumi.StringPtrInput
+	Vdomparam                  pulumi.StringPtrInput
 }
 
 func (WebProxyProfileArgs) ElementType() reflect.Type {
@@ -275,7 +157,7 @@ func (i *WebProxyProfile) ToWebProxyProfileOutputWithContext(ctx context.Context
 // WebProxyProfileArrayInput is an input type that accepts WebProxyProfileArray and WebProxyProfileArrayOutput values.
 // You can construct a concrete instance of `WebProxyProfileArrayInput` via:
 //
-//          WebProxyProfileArray{ WebProxyProfileArgs{...} }
+//	WebProxyProfileArray{ WebProxyProfileArgs{...} }
 type WebProxyProfileArrayInput interface {
 	pulumi.Input
 
@@ -300,7 +182,7 @@ func (i WebProxyProfileArray) ToWebProxyProfileArrayOutputWithContext(ctx contex
 // WebProxyProfileMapInput is an input type that accepts WebProxyProfileMap and WebProxyProfileMapOutput values.
 // You can construct a concrete instance of `WebProxyProfileMapInput` via:
 //
-//          WebProxyProfileMap{ "key": WebProxyProfileArgs{...} }
+//	WebProxyProfileMap{ "key": WebProxyProfileArgs{...} }
 type WebProxyProfileMapInput interface {
 	pulumi.Input
 
@@ -334,6 +216,62 @@ func (o WebProxyProfileOutput) ToWebProxyProfileOutput() WebProxyProfileOutput {
 
 func (o WebProxyProfileOutput) ToWebProxyProfileOutputWithContext(ctx context.Context) WebProxyProfileOutput {
 	return o
+}
+
+func (o WebProxyProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WebProxyProfileOutput) HeaderClientIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyProfile) pulumi.StringOutput { return v.HeaderClientIp }).(pulumi.StringOutput)
+}
+
+func (o WebProxyProfileOutput) HeaderFrontEndHttps() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyProfile) pulumi.StringOutput { return v.HeaderFrontEndHttps }).(pulumi.StringOutput)
+}
+
+func (o WebProxyProfileOutput) HeaderViaRequest() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyProfile) pulumi.StringOutput { return v.HeaderViaRequest }).(pulumi.StringOutput)
+}
+
+func (o WebProxyProfileOutput) HeaderViaResponse() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyProfile) pulumi.StringOutput { return v.HeaderViaResponse }).(pulumi.StringOutput)
+}
+
+func (o WebProxyProfileOutput) HeaderXAuthenticatedGroups() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyProfile) pulumi.StringOutput { return v.HeaderXAuthenticatedGroups }).(pulumi.StringOutput)
+}
+
+func (o WebProxyProfileOutput) HeaderXAuthenticatedUser() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyProfile) pulumi.StringOutput { return v.HeaderXAuthenticatedUser }).(pulumi.StringOutput)
+}
+
+func (o WebProxyProfileOutput) HeaderXForwardedClientCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyProfile) pulumi.StringOutput { return v.HeaderXForwardedClientCert }).(pulumi.StringOutput)
+}
+
+func (o WebProxyProfileOutput) HeaderXForwardedFor() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyProfile) pulumi.StringOutput { return v.HeaderXForwardedFor }).(pulumi.StringOutput)
+}
+
+func (o WebProxyProfileOutput) Headers() WebProxyProfileHeaderArrayOutput {
+	return o.ApplyT(func(v *WebProxyProfile) WebProxyProfileHeaderArrayOutput { return v.Headers }).(WebProxyProfileHeaderArrayOutput)
+}
+
+func (o WebProxyProfileOutput) LogHeaderChange() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyProfile) pulumi.StringOutput { return v.LogHeaderChange }).(pulumi.StringOutput)
+}
+
+func (o WebProxyProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WebProxyProfileOutput) StripEncoding() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyProfile) pulumi.StringOutput { return v.StripEncoding }).(pulumi.StringOutput)
+}
+
+func (o WebProxyProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebProxyProfileArrayOutput struct{ *pulumi.OutputState }

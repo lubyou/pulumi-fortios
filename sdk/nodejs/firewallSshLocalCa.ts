@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * SSH proxy local CA.
- *
- * ## Import
- *
- * FirewallSsh LocalCa can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallSshLocalCa:FirewallSshLocalCa labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallSshLocalCa:FirewallSshLocalCa labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallSshLocalCa extends pulumi.CustomResource {
     /**
      * Get an existing FirewallSshLocalCa resource's state with the given name, ID, and optional extra
@@ -51,29 +32,11 @@ export class FirewallSshLocalCa extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallSshLocalCa.__pulumiType;
     }
 
-    /**
-     * SSH proxy local CA name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Password for SSH private key.
-     */
     public readonly password!: pulumi.Output<string | undefined>;
-    /**
-     * SSH proxy private key, encrypted with a password.
-     */
     public readonly privateKey!: pulumi.Output<string>;
-    /**
-     * SSH proxy public key.
-     */
     public readonly publicKey!: pulumi.Output<string>;
-    /**
-     * SSH proxy local CA source type. Valid values: `built-in`, `user`.
-     */
     public readonly source!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -104,13 +67,15 @@ export class FirewallSshLocalCa extends pulumi.CustomResource {
                 throw new Error("Missing required property 'publicKey'");
             }
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
-            resourceInputs["privateKey"] = args ? args.privateKey : undefined;
-            resourceInputs["publicKey"] = args ? args.publicKey : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
+            resourceInputs["publicKey"] = args?.publicKey ? pulumi.secret(args.publicKey) : undefined;
             resourceInputs["source"] = args ? args.source : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password", "privateKey", "publicKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(FirewallSshLocalCa.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -119,29 +84,11 @@ export class FirewallSshLocalCa extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallSshLocalCa resources.
  */
 export interface FirewallSshLocalCaState {
-    /**
-     * SSH proxy local CA name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Password for SSH private key.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * SSH proxy private key, encrypted with a password.
-     */
     privateKey?: pulumi.Input<string>;
-    /**
-     * SSH proxy public key.
-     */
     publicKey?: pulumi.Input<string>;
-    /**
-     * SSH proxy local CA source type. Valid values: `built-in`, `user`.
-     */
     source?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -149,28 +96,10 @@ export interface FirewallSshLocalCaState {
  * The set of arguments for constructing a FirewallSshLocalCa resource.
  */
 export interface FirewallSshLocalCaArgs {
-    /**
-     * SSH proxy local CA name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Password for SSH private key.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * SSH proxy private key, encrypted with a password.
-     */
     privateKey: pulumi.Input<string>;
-    /**
-     * SSH proxy public key.
-     */
     publicKey: pulumi.Input<string>;
-    /**
-     * SSH proxy local CA source type. Valid values: `built-in`, `user`.
-     */
     source?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

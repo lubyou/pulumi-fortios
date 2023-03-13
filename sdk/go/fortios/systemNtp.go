@@ -10,82 +10,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure system NTP information.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemNtp(ctx, "trname", &fortios.SystemNtpArgs{
-// 			Ntpsync:      pulumi.String("enable"),
-// 			ServerMode:   pulumi.String("disable"),
-// 			SourceIp:     pulumi.String("0.0.0.0"),
-// 			SourceIp6:    pulumi.String("::"),
-// 			Syncinterval: pulumi.Int(1),
-// 			Type:         pulumi.String("fortiguard"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Ntp can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemNtp:SystemNtp labelname SystemNtp
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemNtp:SystemNtp labelname SystemNtp
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemNtp struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable MD5/SHA1 authentication. Valid values: `enable`, `disable`.
-	Authentication pulumi.StringOutput `pulumi:"authentication"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Specify outgoing interface to reach server.
-	Interfaces SystemNtpInterfaceArrayOutput `pulumi:"interfaces"`
-	// Key for MD5/SHA1 authentication.
-	Key pulumi.StringPtrOutput `pulumi:"key"`
-	// Key ID for authentication.
-	KeyId pulumi.IntOutput `pulumi:"keyId"`
-	// Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
-	KeyType pulumi.StringOutput `pulumi:"keyType"`
-	// Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
-	Ntpservers SystemNtpNtpserverArrayOutput `pulumi:"ntpservers"`
-	// Enable/disable setting the FortiGate system time by synchronizing with an NTP Server. Valid values: `enable`, `disable`.
-	Ntpsync pulumi.StringOutput `pulumi:"ntpsync"`
-	// Enable/disable FortiGate NTP Server Mode. Your FortiGate becomes an NTP server for other devices on your network. The FortiGate relays NTP requests to its configured NTP server. Valid values: `enable`, `disable`.
-	ServerMode pulumi.StringOutput `pulumi:"serverMode"`
-	// Source IP address for communication to the NTP server.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Source IPv6 address for communication to the NTP server.
-	SourceIp6 pulumi.StringOutput `pulumi:"sourceIp6"`
-	// NTP synchronization interval (1 - 1440 min).
-	Syncinterval pulumi.IntOutput `pulumi:"syncinterval"`
-	// Use the FortiGuard NTP server or any other available NTP Server. Valid values: `fortiguard`, `custom`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Authentication      pulumi.StringOutput           `pulumi:"authentication"`
+	DynamicSortSubtable pulumi.StringPtrOutput        `pulumi:"dynamicSortSubtable"`
+	Interfaces          SystemNtpInterfaceArrayOutput `pulumi:"interfaces"`
+	Key                 pulumi.StringPtrOutput        `pulumi:"key"`
+	KeyId               pulumi.IntOutput              `pulumi:"keyId"`
+	KeyType             pulumi.StringOutput           `pulumi:"keyType"`
+	Ntpservers          SystemNtpNtpserverArrayOutput `pulumi:"ntpservers"`
+	Ntpsync             pulumi.StringOutput           `pulumi:"ntpsync"`
+	ServerMode          pulumi.StringOutput           `pulumi:"serverMode"`
+	SourceIp            pulumi.StringOutput           `pulumi:"sourceIp"`
+	SourceIp6           pulumi.StringOutput           `pulumi:"sourceIp6"`
+	Syncinterval        pulumi.IntOutput              `pulumi:"syncinterval"`
+	Type                pulumi.StringOutput           `pulumi:"type"`
+	Vdomparam           pulumi.StringPtrOutput        `pulumi:"vdomparam"`
 }
 
 // NewSystemNtp registers a new resource with the given unique name, arguments, and options.
@@ -95,6 +36,13 @@ func NewSystemNtp(ctx *pulumi.Context,
 		args = &SystemNtpArgs{}
 	}
 
+	if args.Key != nil {
+		args.Key = pulumi.ToSecret(args.Key).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"key",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemNtp
 	err := ctx.RegisterResource("fortios:index/systemNtp:SystemNtp", name, args, &resource, opts...)
@@ -118,65 +66,37 @@ func GetSystemNtp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemNtp resources.
 type systemNtpState struct {
-	// Enable/disable MD5/SHA1 authentication. Valid values: `enable`, `disable`.
-	Authentication *string `pulumi:"authentication"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Specify outgoing interface to reach server.
-	Interfaces []SystemNtpInterface `pulumi:"interfaces"`
-	// Key for MD5/SHA1 authentication.
-	Key *string `pulumi:"key"`
-	// Key ID for authentication.
-	KeyId *int `pulumi:"keyId"`
-	// Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
-	KeyType *string `pulumi:"keyType"`
-	// Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
-	Ntpservers []SystemNtpNtpserver `pulumi:"ntpservers"`
-	// Enable/disable setting the FortiGate system time by synchronizing with an NTP Server. Valid values: `enable`, `disable`.
-	Ntpsync *string `pulumi:"ntpsync"`
-	// Enable/disable FortiGate NTP Server Mode. Your FortiGate becomes an NTP server for other devices on your network. The FortiGate relays NTP requests to its configured NTP server. Valid values: `enable`, `disable`.
-	ServerMode *string `pulumi:"serverMode"`
-	// Source IP address for communication to the NTP server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Source IPv6 address for communication to the NTP server.
-	SourceIp6 *string `pulumi:"sourceIp6"`
-	// NTP synchronization interval (1 - 1440 min).
-	Syncinterval *int `pulumi:"syncinterval"`
-	// Use the FortiGuard NTP server or any other available NTP Server. Valid values: `fortiguard`, `custom`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Authentication      *string              `pulumi:"authentication"`
+	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
+	Interfaces          []SystemNtpInterface `pulumi:"interfaces"`
+	Key                 *string              `pulumi:"key"`
+	KeyId               *int                 `pulumi:"keyId"`
+	KeyType             *string              `pulumi:"keyType"`
+	Ntpservers          []SystemNtpNtpserver `pulumi:"ntpservers"`
+	Ntpsync             *string              `pulumi:"ntpsync"`
+	ServerMode          *string              `pulumi:"serverMode"`
+	SourceIp            *string              `pulumi:"sourceIp"`
+	SourceIp6           *string              `pulumi:"sourceIp6"`
+	Syncinterval        *int                 `pulumi:"syncinterval"`
+	Type                *string              `pulumi:"type"`
+	Vdomparam           *string              `pulumi:"vdomparam"`
 }
 
 type SystemNtpState struct {
-	// Enable/disable MD5/SHA1 authentication. Valid values: `enable`, `disable`.
-	Authentication pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Authentication      pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interfaces SystemNtpInterfaceArrayInput
-	// Key for MD5/SHA1 authentication.
-	Key pulumi.StringPtrInput
-	// Key ID for authentication.
-	KeyId pulumi.IntPtrInput
-	// Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
-	KeyType pulumi.StringPtrInput
-	// Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
-	Ntpservers SystemNtpNtpserverArrayInput
-	// Enable/disable setting the FortiGate system time by synchronizing with an NTP Server. Valid values: `enable`, `disable`.
-	Ntpsync pulumi.StringPtrInput
-	// Enable/disable FortiGate NTP Server Mode. Your FortiGate becomes an NTP server for other devices on your network. The FortiGate relays NTP requests to its configured NTP server. Valid values: `enable`, `disable`.
-	ServerMode pulumi.StringPtrInput
-	// Source IP address for communication to the NTP server.
-	SourceIp pulumi.StringPtrInput
-	// Source IPv6 address for communication to the NTP server.
-	SourceIp6 pulumi.StringPtrInput
-	// NTP synchronization interval (1 - 1440 min).
-	Syncinterval pulumi.IntPtrInput
-	// Use the FortiGuard NTP server or any other available NTP Server. Valid values: `fortiguard`, `custom`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interfaces          SystemNtpInterfaceArrayInput
+	Key                 pulumi.StringPtrInput
+	KeyId               pulumi.IntPtrInput
+	KeyType             pulumi.StringPtrInput
+	Ntpservers          SystemNtpNtpserverArrayInput
+	Ntpsync             pulumi.StringPtrInput
+	ServerMode          pulumi.StringPtrInput
+	SourceIp            pulumi.StringPtrInput
+	SourceIp6           pulumi.StringPtrInput
+	Syncinterval        pulumi.IntPtrInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemNtpState) ElementType() reflect.Type {
@@ -184,66 +104,38 @@ func (SystemNtpState) ElementType() reflect.Type {
 }
 
 type systemNtpArgs struct {
-	// Enable/disable MD5/SHA1 authentication. Valid values: `enable`, `disable`.
-	Authentication *string `pulumi:"authentication"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Specify outgoing interface to reach server.
-	Interfaces []SystemNtpInterface `pulumi:"interfaces"`
-	// Key for MD5/SHA1 authentication.
-	Key *string `pulumi:"key"`
-	// Key ID for authentication.
-	KeyId *int `pulumi:"keyId"`
-	// Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
-	KeyType *string `pulumi:"keyType"`
-	// Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
-	Ntpservers []SystemNtpNtpserver `pulumi:"ntpservers"`
-	// Enable/disable setting the FortiGate system time by synchronizing with an NTP Server. Valid values: `enable`, `disable`.
-	Ntpsync *string `pulumi:"ntpsync"`
-	// Enable/disable FortiGate NTP Server Mode. Your FortiGate becomes an NTP server for other devices on your network. The FortiGate relays NTP requests to its configured NTP server. Valid values: `enable`, `disable`.
-	ServerMode *string `pulumi:"serverMode"`
-	// Source IP address for communication to the NTP server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Source IPv6 address for communication to the NTP server.
-	SourceIp6 *string `pulumi:"sourceIp6"`
-	// NTP synchronization interval (1 - 1440 min).
-	Syncinterval *int `pulumi:"syncinterval"`
-	// Use the FortiGuard NTP server or any other available NTP Server. Valid values: `fortiguard`, `custom`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Authentication      *string              `pulumi:"authentication"`
+	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
+	Interfaces          []SystemNtpInterface `pulumi:"interfaces"`
+	Key                 *string              `pulumi:"key"`
+	KeyId               *int                 `pulumi:"keyId"`
+	KeyType             *string              `pulumi:"keyType"`
+	Ntpservers          []SystemNtpNtpserver `pulumi:"ntpservers"`
+	Ntpsync             *string              `pulumi:"ntpsync"`
+	ServerMode          *string              `pulumi:"serverMode"`
+	SourceIp            *string              `pulumi:"sourceIp"`
+	SourceIp6           *string              `pulumi:"sourceIp6"`
+	Syncinterval        *int                 `pulumi:"syncinterval"`
+	Type                *string              `pulumi:"type"`
+	Vdomparam           *string              `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemNtp resource.
 type SystemNtpArgs struct {
-	// Enable/disable MD5/SHA1 authentication. Valid values: `enable`, `disable`.
-	Authentication pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Authentication      pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interfaces SystemNtpInterfaceArrayInput
-	// Key for MD5/SHA1 authentication.
-	Key pulumi.StringPtrInput
-	// Key ID for authentication.
-	KeyId pulumi.IntPtrInput
-	// Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
-	KeyType pulumi.StringPtrInput
-	// Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
-	Ntpservers SystemNtpNtpserverArrayInput
-	// Enable/disable setting the FortiGate system time by synchronizing with an NTP Server. Valid values: `enable`, `disable`.
-	Ntpsync pulumi.StringPtrInput
-	// Enable/disable FortiGate NTP Server Mode. Your FortiGate becomes an NTP server for other devices on your network. The FortiGate relays NTP requests to its configured NTP server. Valid values: `enable`, `disable`.
-	ServerMode pulumi.StringPtrInput
-	// Source IP address for communication to the NTP server.
-	SourceIp pulumi.StringPtrInput
-	// Source IPv6 address for communication to the NTP server.
-	SourceIp6 pulumi.StringPtrInput
-	// NTP synchronization interval (1 - 1440 min).
-	Syncinterval pulumi.IntPtrInput
-	// Use the FortiGuard NTP server or any other available NTP Server. Valid values: `fortiguard`, `custom`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interfaces          SystemNtpInterfaceArrayInput
+	Key                 pulumi.StringPtrInput
+	KeyId               pulumi.IntPtrInput
+	KeyType             pulumi.StringPtrInput
+	Ntpservers          SystemNtpNtpserverArrayInput
+	Ntpsync             pulumi.StringPtrInput
+	ServerMode          pulumi.StringPtrInput
+	SourceIp            pulumi.StringPtrInput
+	SourceIp6           pulumi.StringPtrInput
+	Syncinterval        pulumi.IntPtrInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemNtpArgs) ElementType() reflect.Type {
@@ -272,7 +164,7 @@ func (i *SystemNtp) ToSystemNtpOutputWithContext(ctx context.Context) SystemNtpO
 // SystemNtpArrayInput is an input type that accepts SystemNtpArray and SystemNtpArrayOutput values.
 // You can construct a concrete instance of `SystemNtpArrayInput` via:
 //
-//          SystemNtpArray{ SystemNtpArgs{...} }
+//	SystemNtpArray{ SystemNtpArgs{...} }
 type SystemNtpArrayInput interface {
 	pulumi.Input
 
@@ -297,7 +189,7 @@ func (i SystemNtpArray) ToSystemNtpArrayOutputWithContext(ctx context.Context) S
 // SystemNtpMapInput is an input type that accepts SystemNtpMap and SystemNtpMapOutput values.
 // You can construct a concrete instance of `SystemNtpMapInput` via:
 //
-//          SystemNtpMap{ "key": SystemNtpArgs{...} }
+//	SystemNtpMap{ "key": SystemNtpArgs{...} }
 type SystemNtpMapInput interface {
 	pulumi.Input
 
@@ -331,6 +223,62 @@ func (o SystemNtpOutput) ToSystemNtpOutput() SystemNtpOutput {
 
 func (o SystemNtpOutput) ToSystemNtpOutputWithContext(ctx context.Context) SystemNtpOutput {
 	return o
+}
+
+func (o SystemNtpOutput) Authentication() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemNtp) pulumi.StringOutput { return v.Authentication }).(pulumi.StringOutput)
+}
+
+func (o SystemNtpOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemNtp) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemNtpOutput) Interfaces() SystemNtpInterfaceArrayOutput {
+	return o.ApplyT(func(v *SystemNtp) SystemNtpInterfaceArrayOutput { return v.Interfaces }).(SystemNtpInterfaceArrayOutput)
+}
+
+func (o SystemNtpOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemNtp) pulumi.StringPtrOutput { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemNtpOutput) KeyId() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemNtp) pulumi.IntOutput { return v.KeyId }).(pulumi.IntOutput)
+}
+
+func (o SystemNtpOutput) KeyType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemNtp) pulumi.StringOutput { return v.KeyType }).(pulumi.StringOutput)
+}
+
+func (o SystemNtpOutput) Ntpservers() SystemNtpNtpserverArrayOutput {
+	return o.ApplyT(func(v *SystemNtp) SystemNtpNtpserverArrayOutput { return v.Ntpservers }).(SystemNtpNtpserverArrayOutput)
+}
+
+func (o SystemNtpOutput) Ntpsync() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemNtp) pulumi.StringOutput { return v.Ntpsync }).(pulumi.StringOutput)
+}
+
+func (o SystemNtpOutput) ServerMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemNtp) pulumi.StringOutput { return v.ServerMode }).(pulumi.StringOutput)
+}
+
+func (o SystemNtpOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemNtp) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o SystemNtpOutput) SourceIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemNtp) pulumi.StringOutput { return v.SourceIp6 }).(pulumi.StringOutput)
+}
+
+func (o SystemNtpOutput) Syncinterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemNtp) pulumi.IntOutput { return v.Syncinterval }).(pulumi.IntOutput)
+}
+
+func (o SystemNtpOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemNtp) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o SystemNtpOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemNtp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemNtpArrayOutput struct{ *pulumi.OutputState }

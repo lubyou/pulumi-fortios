@@ -10,40 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure decrypted traffic mirror. Applies to FortiOS Version `>= 6.4.0`.
-//
-// ## Import
-//
-// Firewall DecryptedTrafficMirror can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallDecryptedTrafficMirror:FirewallDecryptedTrafficMirror labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallDecryptedTrafficMirror:FirewallDecryptedTrafficMirror labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallDecryptedTrafficMirror struct {
 	pulumi.CustomResourceState
 
-	// Set destination MAC address for mirrored traffic.
-	Dstmac pulumi.StringOutput `pulumi:"dstmac"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Decrypted traffic mirror interface The structure of `interface` block is documented below.
-	Interfaces FirewallDecryptedTrafficMirrorInterfaceArrayOutput `pulumi:"interfaces"`
-	// Decrypted traffic mirror interface.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Source of decrypted traffic to be mirrored. Valid values: `client`, `server`, `both`.
-	TrafficSource pulumi.StringOutput `pulumi:"trafficSource"`
-	// Types of decrypted traffic to be mirrored. Valid values: `ssl`, `ssh`.
-	TrafficType pulumi.StringOutput `pulumi:"trafficType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Dstmac              pulumi.StringOutput                                `pulumi:"dstmac"`
+	DynamicSortSubtable pulumi.StringPtrOutput                             `pulumi:"dynamicSortSubtable"`
+	Interfaces          FirewallDecryptedTrafficMirrorInterfaceArrayOutput `pulumi:"interfaces"`
+	Name                pulumi.StringOutput                                `pulumi:"name"`
+	TrafficSource       pulumi.StringOutput                                `pulumi:"trafficSource"`
+	TrafficType         pulumi.StringOutput                                `pulumi:"trafficType"`
+	Vdomparam           pulumi.StringPtrOutput                             `pulumi:"vdomparam"`
 }
 
 // NewFirewallDecryptedTrafficMirror registers a new resource with the given unique name, arguments, and options.
@@ -76,37 +52,23 @@ func GetFirewallDecryptedTrafficMirror(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallDecryptedTrafficMirror resources.
 type firewallDecryptedTrafficMirrorState struct {
-	// Set destination MAC address for mirrored traffic.
-	Dstmac *string `pulumi:"dstmac"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Decrypted traffic mirror interface The structure of `interface` block is documented below.
-	Interfaces []FirewallDecryptedTrafficMirrorInterface `pulumi:"interfaces"`
-	// Decrypted traffic mirror interface.
-	Name *string `pulumi:"name"`
-	// Source of decrypted traffic to be mirrored. Valid values: `client`, `server`, `both`.
-	TrafficSource *string `pulumi:"trafficSource"`
-	// Types of decrypted traffic to be mirrored. Valid values: `ssl`, `ssh`.
-	TrafficType *string `pulumi:"trafficType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Dstmac              *string                                   `pulumi:"dstmac"`
+	DynamicSortSubtable *string                                   `pulumi:"dynamicSortSubtable"`
+	Interfaces          []FirewallDecryptedTrafficMirrorInterface `pulumi:"interfaces"`
+	Name                *string                                   `pulumi:"name"`
+	TrafficSource       *string                                   `pulumi:"trafficSource"`
+	TrafficType         *string                                   `pulumi:"trafficType"`
+	Vdomparam           *string                                   `pulumi:"vdomparam"`
 }
 
 type FirewallDecryptedTrafficMirrorState struct {
-	// Set destination MAC address for mirrored traffic.
-	Dstmac pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Dstmac              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Decrypted traffic mirror interface The structure of `interface` block is documented below.
-	Interfaces FirewallDecryptedTrafficMirrorInterfaceArrayInput
-	// Decrypted traffic mirror interface.
-	Name pulumi.StringPtrInput
-	// Source of decrypted traffic to be mirrored. Valid values: `client`, `server`, `both`.
-	TrafficSource pulumi.StringPtrInput
-	// Types of decrypted traffic to be mirrored. Valid values: `ssl`, `ssh`.
-	TrafficType pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interfaces          FirewallDecryptedTrafficMirrorInterfaceArrayInput
+	Name                pulumi.StringPtrInput
+	TrafficSource       pulumi.StringPtrInput
+	TrafficType         pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallDecryptedTrafficMirrorState) ElementType() reflect.Type {
@@ -114,38 +76,24 @@ func (FirewallDecryptedTrafficMirrorState) ElementType() reflect.Type {
 }
 
 type firewallDecryptedTrafficMirrorArgs struct {
-	// Set destination MAC address for mirrored traffic.
-	Dstmac *string `pulumi:"dstmac"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Decrypted traffic mirror interface The structure of `interface` block is documented below.
-	Interfaces []FirewallDecryptedTrafficMirrorInterface `pulumi:"interfaces"`
-	// Decrypted traffic mirror interface.
-	Name *string `pulumi:"name"`
-	// Source of decrypted traffic to be mirrored. Valid values: `client`, `server`, `both`.
-	TrafficSource *string `pulumi:"trafficSource"`
-	// Types of decrypted traffic to be mirrored. Valid values: `ssl`, `ssh`.
-	TrafficType *string `pulumi:"trafficType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Dstmac              *string                                   `pulumi:"dstmac"`
+	DynamicSortSubtable *string                                   `pulumi:"dynamicSortSubtable"`
+	Interfaces          []FirewallDecryptedTrafficMirrorInterface `pulumi:"interfaces"`
+	Name                *string                                   `pulumi:"name"`
+	TrafficSource       *string                                   `pulumi:"trafficSource"`
+	TrafficType         *string                                   `pulumi:"trafficType"`
+	Vdomparam           *string                                   `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallDecryptedTrafficMirror resource.
 type FirewallDecryptedTrafficMirrorArgs struct {
-	// Set destination MAC address for mirrored traffic.
-	Dstmac pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Dstmac              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Decrypted traffic mirror interface The structure of `interface` block is documented below.
-	Interfaces FirewallDecryptedTrafficMirrorInterfaceArrayInput
-	// Decrypted traffic mirror interface.
-	Name pulumi.StringPtrInput
-	// Source of decrypted traffic to be mirrored. Valid values: `client`, `server`, `both`.
-	TrafficSource pulumi.StringPtrInput
-	// Types of decrypted traffic to be mirrored. Valid values: `ssl`, `ssh`.
-	TrafficType pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interfaces          FirewallDecryptedTrafficMirrorInterfaceArrayInput
+	Name                pulumi.StringPtrInput
+	TrafficSource       pulumi.StringPtrInput
+	TrafficType         pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallDecryptedTrafficMirrorArgs) ElementType() reflect.Type {
@@ -174,7 +122,7 @@ func (i *FirewallDecryptedTrafficMirror) ToFirewallDecryptedTrafficMirrorOutputW
 // FirewallDecryptedTrafficMirrorArrayInput is an input type that accepts FirewallDecryptedTrafficMirrorArray and FirewallDecryptedTrafficMirrorArrayOutput values.
 // You can construct a concrete instance of `FirewallDecryptedTrafficMirrorArrayInput` via:
 //
-//          FirewallDecryptedTrafficMirrorArray{ FirewallDecryptedTrafficMirrorArgs{...} }
+//	FirewallDecryptedTrafficMirrorArray{ FirewallDecryptedTrafficMirrorArgs{...} }
 type FirewallDecryptedTrafficMirrorArrayInput interface {
 	pulumi.Input
 
@@ -199,7 +147,7 @@ func (i FirewallDecryptedTrafficMirrorArray) ToFirewallDecryptedTrafficMirrorArr
 // FirewallDecryptedTrafficMirrorMapInput is an input type that accepts FirewallDecryptedTrafficMirrorMap and FirewallDecryptedTrafficMirrorMapOutput values.
 // You can construct a concrete instance of `FirewallDecryptedTrafficMirrorMapInput` via:
 //
-//          FirewallDecryptedTrafficMirrorMap{ "key": FirewallDecryptedTrafficMirrorArgs{...} }
+//	FirewallDecryptedTrafficMirrorMap{ "key": FirewallDecryptedTrafficMirrorArgs{...} }
 type FirewallDecryptedTrafficMirrorMapInput interface {
 	pulumi.Input
 
@@ -233,6 +181,36 @@ func (o FirewallDecryptedTrafficMirrorOutput) ToFirewallDecryptedTrafficMirrorOu
 
 func (o FirewallDecryptedTrafficMirrorOutput) ToFirewallDecryptedTrafficMirrorOutputWithContext(ctx context.Context) FirewallDecryptedTrafficMirrorOutput {
 	return o
+}
+
+func (o FirewallDecryptedTrafficMirrorOutput) Dstmac() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallDecryptedTrafficMirror) pulumi.StringOutput { return v.Dstmac }).(pulumi.StringOutput)
+}
+
+func (o FirewallDecryptedTrafficMirrorOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallDecryptedTrafficMirror) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallDecryptedTrafficMirrorOutput) Interfaces() FirewallDecryptedTrafficMirrorInterfaceArrayOutput {
+	return o.ApplyT(func(v *FirewallDecryptedTrafficMirror) FirewallDecryptedTrafficMirrorInterfaceArrayOutput {
+		return v.Interfaces
+	}).(FirewallDecryptedTrafficMirrorInterfaceArrayOutput)
+}
+
+func (o FirewallDecryptedTrafficMirrorOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallDecryptedTrafficMirror) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallDecryptedTrafficMirrorOutput) TrafficSource() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallDecryptedTrafficMirror) pulumi.StringOutput { return v.TrafficSource }).(pulumi.StringOutput)
+}
+
+func (o FirewallDecryptedTrafficMirrorOutput) TrafficType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallDecryptedTrafficMirror) pulumi.StringOutput { return v.TrafficType }).(pulumi.StringOutput)
+}
+
+func (o FirewallDecryptedTrafficMirrorOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallDecryptedTrafficMirror) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallDecryptedTrafficMirrorArrayOutput struct{ *pulumi.OutputState }

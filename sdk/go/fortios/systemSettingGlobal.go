@@ -7,25 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type SystemSettingGlobal struct {
 	pulumi.CustomResourceState
 
-	// Enable SCP over SSH
-	AdminScp pulumi.StringOutput `pulumi:"adminScp"`
-	// Administrative access port for HTTPS.
-	AdminSport pulumi.StringOutput `pulumi:"adminSport"`
-	// Administrative access port for SSH.
+	AdminScp     pulumi.StringOutput `pulumi:"adminScp"`
+	AdminSport   pulumi.StringOutput `pulumi:"adminSport"`
 	AdminSshPort pulumi.StringOutput `pulumi:"adminSshPort"`
-	// Number of minutes before an idle administrator session time out.
 	Admintimeout pulumi.StringOutput `pulumi:"admintimeout"`
-	// FortiGate unit's hostname.
-	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// Number corresponding to your time zone from 00 to 86.
-	Timezone pulumi.StringOutput `pulumi:"timezone"`
+	Hostname     pulumi.StringOutput `pulumi:"hostname"`
+	Timezone     pulumi.StringOutput `pulumi:"timezone"`
 }
 
 // NewSystemSettingGlobal registers a new resource with the given unique name, arguments, and options.
@@ -61,33 +55,21 @@ func GetSystemSettingGlobal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSettingGlobal resources.
 type systemSettingGlobalState struct {
-	// Enable SCP over SSH
-	AdminScp *string `pulumi:"adminScp"`
-	// Administrative access port for HTTPS.
-	AdminSport *string `pulumi:"adminSport"`
-	// Administrative access port for SSH.
+	AdminScp     *string `pulumi:"adminScp"`
+	AdminSport   *string `pulumi:"adminSport"`
 	AdminSshPort *string `pulumi:"adminSshPort"`
-	// Number of minutes before an idle administrator session time out.
 	Admintimeout *string `pulumi:"admintimeout"`
-	// FortiGate unit's hostname.
-	Hostname *string `pulumi:"hostname"`
-	// Number corresponding to your time zone from 00 to 86.
-	Timezone *string `pulumi:"timezone"`
+	Hostname     *string `pulumi:"hostname"`
+	Timezone     *string `pulumi:"timezone"`
 }
 
 type SystemSettingGlobalState struct {
-	// Enable SCP over SSH
-	AdminScp pulumi.StringPtrInput
-	// Administrative access port for HTTPS.
-	AdminSport pulumi.StringPtrInput
-	// Administrative access port for SSH.
+	AdminScp     pulumi.StringPtrInput
+	AdminSport   pulumi.StringPtrInput
 	AdminSshPort pulumi.StringPtrInput
-	// Number of minutes before an idle administrator session time out.
 	Admintimeout pulumi.StringPtrInput
-	// FortiGate unit's hostname.
-	Hostname pulumi.StringPtrInput
-	// Number corresponding to your time zone from 00 to 86.
-	Timezone pulumi.StringPtrInput
+	Hostname     pulumi.StringPtrInput
+	Timezone     pulumi.StringPtrInput
 }
 
 func (SystemSettingGlobalState) ElementType() reflect.Type {
@@ -95,34 +77,22 @@ func (SystemSettingGlobalState) ElementType() reflect.Type {
 }
 
 type systemSettingGlobalArgs struct {
-	// Enable SCP over SSH
-	AdminScp *string `pulumi:"adminScp"`
-	// Administrative access port for HTTPS.
-	AdminSport *string `pulumi:"adminSport"`
-	// Administrative access port for SSH.
+	AdminScp     *string `pulumi:"adminScp"`
+	AdminSport   *string `pulumi:"adminSport"`
 	AdminSshPort *string `pulumi:"adminSshPort"`
-	// Number of minutes before an idle administrator session time out.
 	Admintimeout *string `pulumi:"admintimeout"`
-	// FortiGate unit's hostname.
-	Hostname string `pulumi:"hostname"`
-	// Number corresponding to your time zone from 00 to 86.
-	Timezone *string `pulumi:"timezone"`
+	Hostname     string  `pulumi:"hostname"`
+	Timezone     *string `pulumi:"timezone"`
 }
 
 // The set of arguments for constructing a SystemSettingGlobal resource.
 type SystemSettingGlobalArgs struct {
-	// Enable SCP over SSH
-	AdminScp pulumi.StringPtrInput
-	// Administrative access port for HTTPS.
-	AdminSport pulumi.StringPtrInput
-	// Administrative access port for SSH.
+	AdminScp     pulumi.StringPtrInput
+	AdminSport   pulumi.StringPtrInput
 	AdminSshPort pulumi.StringPtrInput
-	// Number of minutes before an idle administrator session time out.
 	Admintimeout pulumi.StringPtrInput
-	// FortiGate unit's hostname.
-	Hostname pulumi.StringInput
-	// Number corresponding to your time zone from 00 to 86.
-	Timezone pulumi.StringPtrInput
+	Hostname     pulumi.StringInput
+	Timezone     pulumi.StringPtrInput
 }
 
 func (SystemSettingGlobalArgs) ElementType() reflect.Type {
@@ -151,7 +121,7 @@ func (i *SystemSettingGlobal) ToSystemSettingGlobalOutputWithContext(ctx context
 // SystemSettingGlobalArrayInput is an input type that accepts SystemSettingGlobalArray and SystemSettingGlobalArrayOutput values.
 // You can construct a concrete instance of `SystemSettingGlobalArrayInput` via:
 //
-//          SystemSettingGlobalArray{ SystemSettingGlobalArgs{...} }
+//	SystemSettingGlobalArray{ SystemSettingGlobalArgs{...} }
 type SystemSettingGlobalArrayInput interface {
 	pulumi.Input
 
@@ -176,7 +146,7 @@ func (i SystemSettingGlobalArray) ToSystemSettingGlobalArrayOutputWithContext(ct
 // SystemSettingGlobalMapInput is an input type that accepts SystemSettingGlobalMap and SystemSettingGlobalMapOutput values.
 // You can construct a concrete instance of `SystemSettingGlobalMapInput` via:
 //
-//          SystemSettingGlobalMap{ "key": SystemSettingGlobalArgs{...} }
+//	SystemSettingGlobalMap{ "key": SystemSettingGlobalArgs{...} }
 type SystemSettingGlobalMapInput interface {
 	pulumi.Input
 
@@ -210,6 +180,30 @@ func (o SystemSettingGlobalOutput) ToSystemSettingGlobalOutput() SystemSettingGl
 
 func (o SystemSettingGlobalOutput) ToSystemSettingGlobalOutputWithContext(ctx context.Context) SystemSettingGlobalOutput {
 	return o
+}
+
+func (o SystemSettingGlobalOutput) AdminScp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettingGlobal) pulumi.StringOutput { return v.AdminScp }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingGlobalOutput) AdminSport() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettingGlobal) pulumi.StringOutput { return v.AdminSport }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingGlobalOutput) AdminSshPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettingGlobal) pulumi.StringOutput { return v.AdminSshPort }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingGlobalOutput) Admintimeout() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettingGlobal) pulumi.StringOutput { return v.Admintimeout }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingGlobalOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettingGlobal) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingGlobalOutput) Timezone() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettingGlobal) pulumi.StringOutput { return v.Timezone }).(pulumi.StringOutput)
 }
 
 type SystemSettingGlobalArrayOutput struct{ *pulumi.OutputState }

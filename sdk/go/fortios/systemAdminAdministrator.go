@@ -7,66 +7,28 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure administrator accounts of FortiOS.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `SystemAdmin`, we recommend that you use the new resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAdminAdministrator(ctx, "admintest", &fortios.SystemAdminAdministratorArgs{
-// 			Accprofile: pulumi.String("3d3"),
-// 			Comments:   pulumi.String("comments"),
-// 			Password:   pulumi.String("cc37331AC1"),
-// 			Trusthost1: pulumi.String("1.1.1.0 255.255.255.0"),
-// 			Trusthost2: pulumi.String("2.2.2.0 255.255.255.0"),
-// 			Vdoms: pulumi.StringArray{
-// 				pulumi.String("root"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type SystemAdminAdministrator struct {
 	pulumi.CustomResourceState
 
-	// Access profile for this administrator. Access profiles control administrator access to FortiGate features.
-	Accprofile pulumi.StringOutput `pulumi:"accprofile"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// User name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Admin user password.
-	Password    pulumi.StringOutput `pulumi:"password"`
-	Trusthost1  pulumi.StringOutput `pulumi:"trusthost1"`
-	Trusthost10 pulumi.StringOutput `pulumi:"trusthost10"`
-	Trusthost2  pulumi.StringOutput `pulumi:"trusthost2"`
-	Trusthost3  pulumi.StringOutput `pulumi:"trusthost3"`
-	Trusthost4  pulumi.StringOutput `pulumi:"trusthost4"`
-	Trusthost5  pulumi.StringOutput `pulumi:"trusthost5"`
-	Trusthost6  pulumi.StringOutput `pulumi:"trusthost6"`
-	Trusthost7  pulumi.StringOutput `pulumi:"trusthost7"`
-	Trusthost8  pulumi.StringOutput `pulumi:"trusthost8"`
-	Trusthost9  pulumi.StringOutput `pulumi:"trusthost9"`
-	// Virtual domain(s) that the administrator can access.
-	Vdoms pulumi.StringArrayOutput `pulumi:"vdoms"`
+	Accprofile  pulumi.StringOutput      `pulumi:"accprofile"`
+	Comments    pulumi.StringPtrOutput   `pulumi:"comments"`
+	Name        pulumi.StringOutput      `pulumi:"name"`
+	Password    pulumi.StringOutput      `pulumi:"password"`
+	Trusthost1  pulumi.StringOutput      `pulumi:"trusthost1"`
+	Trusthost10 pulumi.StringOutput      `pulumi:"trusthost10"`
+	Trusthost2  pulumi.StringOutput      `pulumi:"trusthost2"`
+	Trusthost3  pulumi.StringOutput      `pulumi:"trusthost3"`
+	Trusthost4  pulumi.StringOutput      `pulumi:"trusthost4"`
+	Trusthost5  pulumi.StringOutput      `pulumi:"trusthost5"`
+	Trusthost6  pulumi.StringOutput      `pulumi:"trusthost6"`
+	Trusthost7  pulumi.StringOutput      `pulumi:"trusthost7"`
+	Trusthost8  pulumi.StringOutput      `pulumi:"trusthost8"`
+	Trusthost9  pulumi.StringOutput      `pulumi:"trusthost9"`
+	Vdoms       pulumi.StringArrayOutput `pulumi:"vdoms"`
 }
 
 // NewSystemAdminAdministrator registers a new resource with the given unique name, arguments, and options.
@@ -105,36 +67,27 @@ func GetSystemAdminAdministrator(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAdminAdministrator resources.
 type systemAdminAdministratorState struct {
-	// Access profile for this administrator. Access profiles control administrator access to FortiGate features.
-	Accprofile *string `pulumi:"accprofile"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// User name.
-	Name *string `pulumi:"name"`
-	// Admin user password.
-	Password    *string `pulumi:"password"`
-	Trusthost1  *string `pulumi:"trusthost1"`
-	Trusthost10 *string `pulumi:"trusthost10"`
-	Trusthost2  *string `pulumi:"trusthost2"`
-	Trusthost3  *string `pulumi:"trusthost3"`
-	Trusthost4  *string `pulumi:"trusthost4"`
-	Trusthost5  *string `pulumi:"trusthost5"`
-	Trusthost6  *string `pulumi:"trusthost6"`
-	Trusthost7  *string `pulumi:"trusthost7"`
-	Trusthost8  *string `pulumi:"trusthost8"`
-	Trusthost9  *string `pulumi:"trusthost9"`
-	// Virtual domain(s) that the administrator can access.
-	Vdoms []string `pulumi:"vdoms"`
+	Accprofile  *string  `pulumi:"accprofile"`
+	Comments    *string  `pulumi:"comments"`
+	Name        *string  `pulumi:"name"`
+	Password    *string  `pulumi:"password"`
+	Trusthost1  *string  `pulumi:"trusthost1"`
+	Trusthost10 *string  `pulumi:"trusthost10"`
+	Trusthost2  *string  `pulumi:"trusthost2"`
+	Trusthost3  *string  `pulumi:"trusthost3"`
+	Trusthost4  *string  `pulumi:"trusthost4"`
+	Trusthost5  *string  `pulumi:"trusthost5"`
+	Trusthost6  *string  `pulumi:"trusthost6"`
+	Trusthost7  *string  `pulumi:"trusthost7"`
+	Trusthost8  *string  `pulumi:"trusthost8"`
+	Trusthost9  *string  `pulumi:"trusthost9"`
+	Vdoms       []string `pulumi:"vdoms"`
 }
 
 type SystemAdminAdministratorState struct {
-	// Access profile for this administrator. Access profiles control administrator access to FortiGate features.
-	Accprofile pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// User name.
-	Name pulumi.StringPtrInput
-	// Admin user password.
+	Accprofile  pulumi.StringPtrInput
+	Comments    pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
 	Password    pulumi.StringPtrInput
 	Trusthost1  pulumi.StringPtrInput
 	Trusthost10 pulumi.StringPtrInput
@@ -146,8 +99,7 @@ type SystemAdminAdministratorState struct {
 	Trusthost7  pulumi.StringPtrInput
 	Trusthost8  pulumi.StringPtrInput
 	Trusthost9  pulumi.StringPtrInput
-	// Virtual domain(s) that the administrator can access.
-	Vdoms pulumi.StringArrayInput
+	Vdoms       pulumi.StringArrayInput
 }
 
 func (SystemAdminAdministratorState) ElementType() reflect.Type {
@@ -155,37 +107,28 @@ func (SystemAdminAdministratorState) ElementType() reflect.Type {
 }
 
 type systemAdminAdministratorArgs struct {
-	// Access profile for this administrator. Access profiles control administrator access to FortiGate features.
-	Accprofile string `pulumi:"accprofile"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// User name.
-	Name *string `pulumi:"name"`
-	// Admin user password.
-	Password    string  `pulumi:"password"`
-	Trusthost1  *string `pulumi:"trusthost1"`
-	Trusthost10 *string `pulumi:"trusthost10"`
-	Trusthost2  *string `pulumi:"trusthost2"`
-	Trusthost3  *string `pulumi:"trusthost3"`
-	Trusthost4  *string `pulumi:"trusthost4"`
-	Trusthost5  *string `pulumi:"trusthost5"`
-	Trusthost6  *string `pulumi:"trusthost6"`
-	Trusthost7  *string `pulumi:"trusthost7"`
-	Trusthost8  *string `pulumi:"trusthost8"`
-	Trusthost9  *string `pulumi:"trusthost9"`
-	// Virtual domain(s) that the administrator can access.
-	Vdoms []string `pulumi:"vdoms"`
+	Accprofile  string   `pulumi:"accprofile"`
+	Comments    *string  `pulumi:"comments"`
+	Name        *string  `pulumi:"name"`
+	Password    string   `pulumi:"password"`
+	Trusthost1  *string  `pulumi:"trusthost1"`
+	Trusthost10 *string  `pulumi:"trusthost10"`
+	Trusthost2  *string  `pulumi:"trusthost2"`
+	Trusthost3  *string  `pulumi:"trusthost3"`
+	Trusthost4  *string  `pulumi:"trusthost4"`
+	Trusthost5  *string  `pulumi:"trusthost5"`
+	Trusthost6  *string  `pulumi:"trusthost6"`
+	Trusthost7  *string  `pulumi:"trusthost7"`
+	Trusthost8  *string  `pulumi:"trusthost8"`
+	Trusthost9  *string  `pulumi:"trusthost9"`
+	Vdoms       []string `pulumi:"vdoms"`
 }
 
 // The set of arguments for constructing a SystemAdminAdministrator resource.
 type SystemAdminAdministratorArgs struct {
-	// Access profile for this administrator. Access profiles control administrator access to FortiGate features.
-	Accprofile pulumi.StringInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// User name.
-	Name pulumi.StringPtrInput
-	// Admin user password.
+	Accprofile  pulumi.StringInput
+	Comments    pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
 	Password    pulumi.StringInput
 	Trusthost1  pulumi.StringPtrInput
 	Trusthost10 pulumi.StringPtrInput
@@ -197,8 +140,7 @@ type SystemAdminAdministratorArgs struct {
 	Trusthost7  pulumi.StringPtrInput
 	Trusthost8  pulumi.StringPtrInput
 	Trusthost9  pulumi.StringPtrInput
-	// Virtual domain(s) that the administrator can access.
-	Vdoms pulumi.StringArrayInput
+	Vdoms       pulumi.StringArrayInput
 }
 
 func (SystemAdminAdministratorArgs) ElementType() reflect.Type {
@@ -227,7 +169,7 @@ func (i *SystemAdminAdministrator) ToSystemAdminAdministratorOutputWithContext(c
 // SystemAdminAdministratorArrayInput is an input type that accepts SystemAdminAdministratorArray and SystemAdminAdministratorArrayOutput values.
 // You can construct a concrete instance of `SystemAdminAdministratorArrayInput` via:
 //
-//          SystemAdminAdministratorArray{ SystemAdminAdministratorArgs{...} }
+//	SystemAdminAdministratorArray{ SystemAdminAdministratorArgs{...} }
 type SystemAdminAdministratorArrayInput interface {
 	pulumi.Input
 
@@ -252,7 +194,7 @@ func (i SystemAdminAdministratorArray) ToSystemAdminAdministratorArrayOutputWith
 // SystemAdminAdministratorMapInput is an input type that accepts SystemAdminAdministratorMap and SystemAdminAdministratorMapOutput values.
 // You can construct a concrete instance of `SystemAdminAdministratorMapInput` via:
 //
-//          SystemAdminAdministratorMap{ "key": SystemAdminAdministratorArgs{...} }
+//	SystemAdminAdministratorMap{ "key": SystemAdminAdministratorArgs{...} }
 type SystemAdminAdministratorMapInput interface {
 	pulumi.Input
 
@@ -286,6 +228,66 @@ func (o SystemAdminAdministratorOutput) ToSystemAdminAdministratorOutput() Syste
 
 func (o SystemAdminAdministratorOutput) ToSystemAdminAdministratorOutputWithContext(ctx context.Context) SystemAdminAdministratorOutput {
 	return o
+}
+
+func (o SystemAdminAdministratorOutput) Accprofile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminAdministrator) pulumi.StringOutput { return v.Accprofile }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminAdministratorOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAdminAdministrator) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAdminAdministratorOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminAdministrator) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminAdministratorOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminAdministrator) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminAdministratorOutput) Trusthost1() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminAdministrator) pulumi.StringOutput { return v.Trusthost1 }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminAdministratorOutput) Trusthost10() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminAdministrator) pulumi.StringOutput { return v.Trusthost10 }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminAdministratorOutput) Trusthost2() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminAdministrator) pulumi.StringOutput { return v.Trusthost2 }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminAdministratorOutput) Trusthost3() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminAdministrator) pulumi.StringOutput { return v.Trusthost3 }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminAdministratorOutput) Trusthost4() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminAdministrator) pulumi.StringOutput { return v.Trusthost4 }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminAdministratorOutput) Trusthost5() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminAdministrator) pulumi.StringOutput { return v.Trusthost5 }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminAdministratorOutput) Trusthost6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminAdministrator) pulumi.StringOutput { return v.Trusthost6 }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminAdministratorOutput) Trusthost7() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminAdministrator) pulumi.StringOutput { return v.Trusthost7 }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminAdministratorOutput) Trusthost8() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminAdministrator) pulumi.StringOutput { return v.Trusthost8 }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminAdministratorOutput) Trusthost9() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminAdministrator) pulumi.StringOutput { return v.Trusthost9 }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminAdministratorOutput) Vdoms() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SystemAdminAdministrator) pulumi.StringArrayOutput { return v.Vdoms }).(pulumi.StringArrayOutput)
 }
 
 type SystemAdminAdministratorArrayOutput struct{ *pulumi.OutputState }

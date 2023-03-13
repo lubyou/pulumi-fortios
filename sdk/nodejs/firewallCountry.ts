@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Define country table. Applies to FortiOS Version `>= 6.4.0`.
- *
- * ## Import
- *
- * Firewall Country can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallCountry:FirewallCountry labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallCountry:FirewallCountry labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallCountry extends pulumi.CustomResource {
     /**
      * Get an existing FirewallCountry resource's state with the given name, ID, and optional extra
@@ -52,25 +34,10 @@ export class FirewallCountry extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallCountry.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Country ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Country name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Region ID list. The structure of `region` block is documented below.
-     */
     public readonly regions!: pulumi.Output<outputs.FirewallCountryRegion[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -108,25 +75,10 @@ export class FirewallCountry extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallCountry resources.
  */
 export interface FirewallCountryState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Country ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Country name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Region ID list. The structure of `region` block is documented below.
-     */
     regions?: pulumi.Input<pulumi.Input<inputs.FirewallCountryRegion>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -134,24 +86,9 @@ export interface FirewallCountryState {
  * The set of arguments for constructing a FirewallCountry resource.
  */
 export interface FirewallCountryArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Country ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Country name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Region ID list. The structure of `region` block is documented below.
-     */
     regions?: pulumi.Input<pulumi.Input<inputs.FirewallCountryRegion>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

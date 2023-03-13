@@ -10,56 +10,24 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Certificate Revocation List as a PEM file.
-//
-// ## Import
-//
-// Certificate Crl can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/certificateCrl:CertificateCrl labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/certificateCrl:CertificateCrl labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type CertificateCrl struct {
 	pulumi.CustomResourceState
 
-	// Certificate Revocation List as a PEM file.
-	Crl pulumi.StringOutput `pulumi:"crl"`
-	// HTTP server URL for CRL auto-update.
-	HttpUrl pulumi.StringOutput `pulumi:"httpUrl"`
-	// Time at which CRL was last updated.
-	LastUpdated pulumi.IntOutput `pulumi:"lastUpdated"`
-	// LDAP server user password.
-	LdapPassword pulumi.StringPtrOutput `pulumi:"ldapPassword"`
-	// LDAP server name for CRL auto-update.
-	LdapServer pulumi.StringOutput `pulumi:"ldapServer"`
-	// LDAP server user name.
-	LdapUsername pulumi.StringOutput `pulumi:"ldapUsername"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Either global or VDOM IP address range for the certificate. Valid values: `global`, `vdom`.
-	Range pulumi.StringOutput `pulumi:"range"`
-	// Local certificate for SCEP communication for CRL auto-update.
-	ScepCert pulumi.StringOutput `pulumi:"scepCert"`
-	// SCEP server URL for CRL auto-update.
-	ScepUrl pulumi.StringOutput `pulumi:"scepUrl"`
-	// Certificate source type.
-	Source pulumi.StringOutput `pulumi:"source"`
-	// Source IP address for communications to a HTTP or SCEP CA server.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Time in seconds before the FortiGate checks for an updated CRL. Set to 0 to update only when it expires.
-	UpdateInterval pulumi.IntOutput `pulumi:"updateInterval"`
-	// VDOM for CRL update.
-	UpdateVdom pulumi.StringOutput `pulumi:"updateVdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Crl            pulumi.StringOutput    `pulumi:"crl"`
+	HttpUrl        pulumi.StringOutput    `pulumi:"httpUrl"`
+	LastUpdated    pulumi.IntOutput       `pulumi:"lastUpdated"`
+	LdapPassword   pulumi.StringPtrOutput `pulumi:"ldapPassword"`
+	LdapServer     pulumi.StringOutput    `pulumi:"ldapServer"`
+	LdapUsername   pulumi.StringOutput    `pulumi:"ldapUsername"`
+	Name           pulumi.StringOutput    `pulumi:"name"`
+	Range          pulumi.StringOutput    `pulumi:"range"`
+	ScepCert       pulumi.StringOutput    `pulumi:"scepCert"`
+	ScepUrl        pulumi.StringOutput    `pulumi:"scepUrl"`
+	Source         pulumi.StringOutput    `pulumi:"source"`
+	SourceIp       pulumi.StringOutput    `pulumi:"sourceIp"`
+	UpdateInterval pulumi.IntOutput       `pulumi:"updateInterval"`
+	UpdateVdom     pulumi.StringOutput    `pulumi:"updateVdom"`
+	Vdomparam      pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewCertificateCrl registers a new resource with the given unique name, arguments, and options.
@@ -69,6 +37,13 @@ func NewCertificateCrl(ctx *pulumi.Context,
 		args = &CertificateCrlArgs{}
 	}
 
+	if args.LdapPassword != nil {
+		args.LdapPassword = pulumi.ToSecret(args.LdapPassword).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"ldapPassword",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource CertificateCrl
 	err := ctx.RegisterResource("fortios:index/certificateCrl:CertificateCrl", name, args, &resource, opts...)
@@ -92,69 +67,39 @@ func GetCertificateCrl(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CertificateCrl resources.
 type certificateCrlState struct {
-	// Certificate Revocation List as a PEM file.
-	Crl *string `pulumi:"crl"`
-	// HTTP server URL for CRL auto-update.
-	HttpUrl *string `pulumi:"httpUrl"`
-	// Time at which CRL was last updated.
-	LastUpdated *int `pulumi:"lastUpdated"`
-	// LDAP server user password.
-	LdapPassword *string `pulumi:"ldapPassword"`
-	// LDAP server name for CRL auto-update.
-	LdapServer *string `pulumi:"ldapServer"`
-	// LDAP server user name.
-	LdapUsername *string `pulumi:"ldapUsername"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Either global or VDOM IP address range for the certificate. Valid values: `global`, `vdom`.
-	Range *string `pulumi:"range"`
-	// Local certificate for SCEP communication for CRL auto-update.
-	ScepCert *string `pulumi:"scepCert"`
-	// SCEP server URL for CRL auto-update.
-	ScepUrl *string `pulumi:"scepUrl"`
-	// Certificate source type.
-	Source *string `pulumi:"source"`
-	// Source IP address for communications to a HTTP or SCEP CA server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Time in seconds before the FortiGate checks for an updated CRL. Set to 0 to update only when it expires.
-	UpdateInterval *int `pulumi:"updateInterval"`
-	// VDOM for CRL update.
-	UpdateVdom *string `pulumi:"updateVdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Crl            *string `pulumi:"crl"`
+	HttpUrl        *string `pulumi:"httpUrl"`
+	LastUpdated    *int    `pulumi:"lastUpdated"`
+	LdapPassword   *string `pulumi:"ldapPassword"`
+	LdapServer     *string `pulumi:"ldapServer"`
+	LdapUsername   *string `pulumi:"ldapUsername"`
+	Name           *string `pulumi:"name"`
+	Range          *string `pulumi:"range"`
+	ScepCert       *string `pulumi:"scepCert"`
+	ScepUrl        *string `pulumi:"scepUrl"`
+	Source         *string `pulumi:"source"`
+	SourceIp       *string `pulumi:"sourceIp"`
+	UpdateInterval *int    `pulumi:"updateInterval"`
+	UpdateVdom     *string `pulumi:"updateVdom"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 type CertificateCrlState struct {
-	// Certificate Revocation List as a PEM file.
-	Crl pulumi.StringPtrInput
-	// HTTP server URL for CRL auto-update.
-	HttpUrl pulumi.StringPtrInput
-	// Time at which CRL was last updated.
-	LastUpdated pulumi.IntPtrInput
-	// LDAP server user password.
-	LdapPassword pulumi.StringPtrInput
-	// LDAP server name for CRL auto-update.
-	LdapServer pulumi.StringPtrInput
-	// LDAP server user name.
-	LdapUsername pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Either global or VDOM IP address range for the certificate. Valid values: `global`, `vdom`.
-	Range pulumi.StringPtrInput
-	// Local certificate for SCEP communication for CRL auto-update.
-	ScepCert pulumi.StringPtrInput
-	// SCEP server URL for CRL auto-update.
-	ScepUrl pulumi.StringPtrInput
-	// Certificate source type.
-	Source pulumi.StringPtrInput
-	// Source IP address for communications to a HTTP or SCEP CA server.
-	SourceIp pulumi.StringPtrInput
-	// Time in seconds before the FortiGate checks for an updated CRL. Set to 0 to update only when it expires.
+	Crl            pulumi.StringPtrInput
+	HttpUrl        pulumi.StringPtrInput
+	LastUpdated    pulumi.IntPtrInput
+	LdapPassword   pulumi.StringPtrInput
+	LdapServer     pulumi.StringPtrInput
+	LdapUsername   pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	Range          pulumi.StringPtrInput
+	ScepCert       pulumi.StringPtrInput
+	ScepUrl        pulumi.StringPtrInput
+	Source         pulumi.StringPtrInput
+	SourceIp       pulumi.StringPtrInput
 	UpdateInterval pulumi.IntPtrInput
-	// VDOM for CRL update.
-	UpdateVdom pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	UpdateVdom     pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (CertificateCrlState) ElementType() reflect.Type {
@@ -162,70 +107,40 @@ func (CertificateCrlState) ElementType() reflect.Type {
 }
 
 type certificateCrlArgs struct {
-	// Certificate Revocation List as a PEM file.
-	Crl *string `pulumi:"crl"`
-	// HTTP server URL for CRL auto-update.
-	HttpUrl *string `pulumi:"httpUrl"`
-	// Time at which CRL was last updated.
-	LastUpdated *int `pulumi:"lastUpdated"`
-	// LDAP server user password.
-	LdapPassword *string `pulumi:"ldapPassword"`
-	// LDAP server name for CRL auto-update.
-	LdapServer *string `pulumi:"ldapServer"`
-	// LDAP server user name.
-	LdapUsername *string `pulumi:"ldapUsername"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Either global or VDOM IP address range for the certificate. Valid values: `global`, `vdom`.
-	Range *string `pulumi:"range"`
-	// Local certificate for SCEP communication for CRL auto-update.
-	ScepCert *string `pulumi:"scepCert"`
-	// SCEP server URL for CRL auto-update.
-	ScepUrl *string `pulumi:"scepUrl"`
-	// Certificate source type.
-	Source *string `pulumi:"source"`
-	// Source IP address for communications to a HTTP or SCEP CA server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Time in seconds before the FortiGate checks for an updated CRL. Set to 0 to update only when it expires.
-	UpdateInterval *int `pulumi:"updateInterval"`
-	// VDOM for CRL update.
-	UpdateVdom *string `pulumi:"updateVdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Crl            *string `pulumi:"crl"`
+	HttpUrl        *string `pulumi:"httpUrl"`
+	LastUpdated    *int    `pulumi:"lastUpdated"`
+	LdapPassword   *string `pulumi:"ldapPassword"`
+	LdapServer     *string `pulumi:"ldapServer"`
+	LdapUsername   *string `pulumi:"ldapUsername"`
+	Name           *string `pulumi:"name"`
+	Range          *string `pulumi:"range"`
+	ScepCert       *string `pulumi:"scepCert"`
+	ScepUrl        *string `pulumi:"scepUrl"`
+	Source         *string `pulumi:"source"`
+	SourceIp       *string `pulumi:"sourceIp"`
+	UpdateInterval *int    `pulumi:"updateInterval"`
+	UpdateVdom     *string `pulumi:"updateVdom"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a CertificateCrl resource.
 type CertificateCrlArgs struct {
-	// Certificate Revocation List as a PEM file.
-	Crl pulumi.StringPtrInput
-	// HTTP server URL for CRL auto-update.
-	HttpUrl pulumi.StringPtrInput
-	// Time at which CRL was last updated.
-	LastUpdated pulumi.IntPtrInput
-	// LDAP server user password.
-	LdapPassword pulumi.StringPtrInput
-	// LDAP server name for CRL auto-update.
-	LdapServer pulumi.StringPtrInput
-	// LDAP server user name.
-	LdapUsername pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Either global or VDOM IP address range for the certificate. Valid values: `global`, `vdom`.
-	Range pulumi.StringPtrInput
-	// Local certificate for SCEP communication for CRL auto-update.
-	ScepCert pulumi.StringPtrInput
-	// SCEP server URL for CRL auto-update.
-	ScepUrl pulumi.StringPtrInput
-	// Certificate source type.
-	Source pulumi.StringPtrInput
-	// Source IP address for communications to a HTTP or SCEP CA server.
-	SourceIp pulumi.StringPtrInput
-	// Time in seconds before the FortiGate checks for an updated CRL. Set to 0 to update only when it expires.
+	Crl            pulumi.StringPtrInput
+	HttpUrl        pulumi.StringPtrInput
+	LastUpdated    pulumi.IntPtrInput
+	LdapPassword   pulumi.StringPtrInput
+	LdapServer     pulumi.StringPtrInput
+	LdapUsername   pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	Range          pulumi.StringPtrInput
+	ScepCert       pulumi.StringPtrInput
+	ScepUrl        pulumi.StringPtrInput
+	Source         pulumi.StringPtrInput
+	SourceIp       pulumi.StringPtrInput
 	UpdateInterval pulumi.IntPtrInput
-	// VDOM for CRL update.
-	UpdateVdom pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	UpdateVdom     pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (CertificateCrlArgs) ElementType() reflect.Type {
@@ -254,7 +169,7 @@ func (i *CertificateCrl) ToCertificateCrlOutputWithContext(ctx context.Context) 
 // CertificateCrlArrayInput is an input type that accepts CertificateCrlArray and CertificateCrlArrayOutput values.
 // You can construct a concrete instance of `CertificateCrlArrayInput` via:
 //
-//          CertificateCrlArray{ CertificateCrlArgs{...} }
+//	CertificateCrlArray{ CertificateCrlArgs{...} }
 type CertificateCrlArrayInput interface {
 	pulumi.Input
 
@@ -279,7 +194,7 @@ func (i CertificateCrlArray) ToCertificateCrlArrayOutputWithContext(ctx context.
 // CertificateCrlMapInput is an input type that accepts CertificateCrlMap and CertificateCrlMapOutput values.
 // You can construct a concrete instance of `CertificateCrlMapInput` via:
 //
-//          CertificateCrlMap{ "key": CertificateCrlArgs{...} }
+//	CertificateCrlMap{ "key": CertificateCrlArgs{...} }
 type CertificateCrlMapInput interface {
 	pulumi.Input
 
@@ -313,6 +228,66 @@ func (o CertificateCrlOutput) ToCertificateCrlOutput() CertificateCrlOutput {
 
 func (o CertificateCrlOutput) ToCertificateCrlOutputWithContext(ctx context.Context) CertificateCrlOutput {
 	return o
+}
+
+func (o CertificateCrlOutput) Crl() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateCrl) pulumi.StringOutput { return v.Crl }).(pulumi.StringOutput)
+}
+
+func (o CertificateCrlOutput) HttpUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateCrl) pulumi.StringOutput { return v.HttpUrl }).(pulumi.StringOutput)
+}
+
+func (o CertificateCrlOutput) LastUpdated() pulumi.IntOutput {
+	return o.ApplyT(func(v *CertificateCrl) pulumi.IntOutput { return v.LastUpdated }).(pulumi.IntOutput)
+}
+
+func (o CertificateCrlOutput) LdapPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CertificateCrl) pulumi.StringPtrOutput { return v.LdapPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o CertificateCrlOutput) LdapServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateCrl) pulumi.StringOutput { return v.LdapServer }).(pulumi.StringOutput)
+}
+
+func (o CertificateCrlOutput) LdapUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateCrl) pulumi.StringOutput { return v.LdapUsername }).(pulumi.StringOutput)
+}
+
+func (o CertificateCrlOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateCrl) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o CertificateCrlOutput) Range() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateCrl) pulumi.StringOutput { return v.Range }).(pulumi.StringOutput)
+}
+
+func (o CertificateCrlOutput) ScepCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateCrl) pulumi.StringOutput { return v.ScepCert }).(pulumi.StringOutput)
+}
+
+func (o CertificateCrlOutput) ScepUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateCrl) pulumi.StringOutput { return v.ScepUrl }).(pulumi.StringOutput)
+}
+
+func (o CertificateCrlOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateCrl) pulumi.StringOutput { return v.Source }).(pulumi.StringOutput)
+}
+
+func (o CertificateCrlOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateCrl) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o CertificateCrlOutput) UpdateInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *CertificateCrl) pulumi.IntOutput { return v.UpdateInterval }).(pulumi.IntOutput)
+}
+
+func (o CertificateCrlOutput) UpdateVdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateCrl) pulumi.StringOutput { return v.UpdateVdom }).(pulumi.StringOutput)
+}
+
+func (o CertificateCrlOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CertificateCrl) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type CertificateCrlArrayOutput struct{ *pulumi.OutputState }

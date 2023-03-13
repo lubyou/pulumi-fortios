@@ -2,60 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure service groups.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
- *
- * const trname1 = new fortios.FirewallServiceCustom("trname1", {
- *     appServiceType: "disable",
- *     category: "General",
- *     checkResetRange: "default",
- *     color: 0,
- *     helper: "auto",
- *     iprange: "0.0.0.0",
- *     protocol: "TCP/UDP/SCTP",
- *     protocolNumber: 6,
- *     proxy: "disable",
- *     tcpHalfcloseTimer: 0,
- *     tcpHalfopenTimer: 0,
- *     tcpPortrange: "223-332",
- *     tcpTimewaitTimer: 0,
- *     udpIdleTimer: 0,
- *     visibility: "enable",
- * });
- * const trname = new fortios.FirewallServiceGroup("trname", {
- *     color: 0,
- *     proxy: "disable",
- *     members: [{
- *         name: trname1.name,
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * FirewallService Group can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallServiceGroup:FirewallServiceGroup labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallServiceGroup:FirewallServiceGroup labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallServiceGroup extends pulumi.CustomResource {
     /**
      * Get an existing FirewallServiceGroup resource's state with the given name, ID, and optional extra
@@ -84,37 +34,13 @@ export class FirewallServiceGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallServiceGroup.__pulumiType;
     }
 
-    /**
-     * Color of icon on the GUI.
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     public readonly fabricObject!: pulumi.Output<string>;
-    /**
-     * Service objects contained within the group. The structure of `member` block is documented below.
-     */
     public readonly members!: pulumi.Output<outputs.FirewallServiceGroupMember[] | undefined>;
-    /**
-     * Address name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable web proxy service group. Valid values: `enable`, `disable`.
-     */
     public readonly proxy!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -158,37 +84,13 @@ export class FirewallServiceGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallServiceGroup resources.
  */
 export interface FirewallServiceGroupState {
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     fabricObject?: pulumi.Input<string>;
-    /**
-     * Service objects contained within the group. The structure of `member` block is documented below.
-     */
     members?: pulumi.Input<pulumi.Input<inputs.FirewallServiceGroupMember>[]>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable web proxy service group. Valid values: `enable`, `disable`.
-     */
     proxy?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -196,36 +98,12 @@ export interface FirewallServiceGroupState {
  * The set of arguments for constructing a FirewallServiceGroup resource.
  */
 export interface FirewallServiceGroupArgs {
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     fabricObject?: pulumi.Input<string>;
-    /**
-     * Service objects contained within the group. The structure of `member` block is documented below.
-     */
     members?: pulumi.Input<pulumi.Input<inputs.FirewallServiceGroupMember>[]>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable web proxy service group. Valid values: `enable`, `disable`.
-     */
     proxy?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

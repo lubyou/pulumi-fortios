@@ -10,70 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FM. Applies to FortiOS Version `<= 7.0.1`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemFm(ctx, "trname", &fortios.SystemFmArgs{
-// 			AutoBackup:             pulumi.String("disable"),
-// 			Ip:                     pulumi.String("0.0.0.0"),
-// 			Ipsec:                  pulumi.String("disable"),
-// 			ScheduledConfigRestore: pulumi.String("disable"),
-// 			Status:                 pulumi.String("disable"),
-// 			Vdom:                   pulumi.String("root"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Fm can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemFm:SystemFm labelname SystemFm
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemFm:SystemFm labelname SystemFm
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemFm struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable automatic backup. Valid values: `enable`, `disable`.
-	AutoBackup pulumi.StringOutput `pulumi:"autoBackup"`
-	// ID.
-	Fosid pulumi.StringOutput `pulumi:"fosid"`
-	// IP address.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// Enable/disable IPsec. Valid values: `enable`, `disable`.
-	Ipsec pulumi.StringOutput `pulumi:"ipsec"`
-	// Enable/disable scheduled configuration restore. Valid values: `enable`, `disable`.
-	ScheduledConfigRestore pulumi.StringOutput `pulumi:"scheduledConfigRestore"`
-	// Enable/disable FM. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// VDOM.
-	Vdom pulumi.StringOutput `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AutoBackup             pulumi.StringOutput    `pulumi:"autoBackup"`
+	Fosid                  pulumi.StringOutput    `pulumi:"fosid"`
+	Ip                     pulumi.StringOutput    `pulumi:"ip"`
+	Ipsec                  pulumi.StringOutput    `pulumi:"ipsec"`
+	ScheduledConfigRestore pulumi.StringOutput    `pulumi:"scheduledConfigRestore"`
+	Status                 pulumi.StringOutput    `pulumi:"status"`
+	Vdom                   pulumi.StringOutput    `pulumi:"vdom"`
+	Vdomparam              pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemFm registers a new resource with the given unique name, arguments, and options.
@@ -106,41 +53,25 @@ func GetSystemFm(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemFm resources.
 type systemFmState struct {
-	// Enable/disable automatic backup. Valid values: `enable`, `disable`.
-	AutoBackup *string `pulumi:"autoBackup"`
-	// ID.
-	Fosid *string `pulumi:"fosid"`
-	// IP address.
-	Ip *string `pulumi:"ip"`
-	// Enable/disable IPsec. Valid values: `enable`, `disable`.
-	Ipsec *string `pulumi:"ipsec"`
-	// Enable/disable scheduled configuration restore. Valid values: `enable`, `disable`.
+	AutoBackup             *string `pulumi:"autoBackup"`
+	Fosid                  *string `pulumi:"fosid"`
+	Ip                     *string `pulumi:"ip"`
+	Ipsec                  *string `pulumi:"ipsec"`
 	ScheduledConfigRestore *string `pulumi:"scheduledConfigRestore"`
-	// Enable/disable FM. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// VDOM.
-	Vdom *string `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Status                 *string `pulumi:"status"`
+	Vdom                   *string `pulumi:"vdom"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 type SystemFmState struct {
-	// Enable/disable automatic backup. Valid values: `enable`, `disable`.
-	AutoBackup pulumi.StringPtrInput
-	// ID.
-	Fosid pulumi.StringPtrInput
-	// IP address.
-	Ip pulumi.StringPtrInput
-	// Enable/disable IPsec. Valid values: `enable`, `disable`.
-	Ipsec pulumi.StringPtrInput
-	// Enable/disable scheduled configuration restore. Valid values: `enable`, `disable`.
+	AutoBackup             pulumi.StringPtrInput
+	Fosid                  pulumi.StringPtrInput
+	Ip                     pulumi.StringPtrInput
+	Ipsec                  pulumi.StringPtrInput
 	ScheduledConfigRestore pulumi.StringPtrInput
-	// Enable/disable FM. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// VDOM.
-	Vdom pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Status                 pulumi.StringPtrInput
+	Vdom                   pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SystemFmState) ElementType() reflect.Type {
@@ -148,42 +79,26 @@ func (SystemFmState) ElementType() reflect.Type {
 }
 
 type systemFmArgs struct {
-	// Enable/disable automatic backup. Valid values: `enable`, `disable`.
-	AutoBackup *string `pulumi:"autoBackup"`
-	// ID.
-	Fosid *string `pulumi:"fosid"`
-	// IP address.
-	Ip *string `pulumi:"ip"`
-	// Enable/disable IPsec. Valid values: `enable`, `disable`.
-	Ipsec *string `pulumi:"ipsec"`
-	// Enable/disable scheduled configuration restore. Valid values: `enable`, `disable`.
+	AutoBackup             *string `pulumi:"autoBackup"`
+	Fosid                  *string `pulumi:"fosid"`
+	Ip                     *string `pulumi:"ip"`
+	Ipsec                  *string `pulumi:"ipsec"`
 	ScheduledConfigRestore *string `pulumi:"scheduledConfigRestore"`
-	// Enable/disable FM. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// VDOM.
-	Vdom *string `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Status                 *string `pulumi:"status"`
+	Vdom                   *string `pulumi:"vdom"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemFm resource.
 type SystemFmArgs struct {
-	// Enable/disable automatic backup. Valid values: `enable`, `disable`.
-	AutoBackup pulumi.StringPtrInput
-	// ID.
-	Fosid pulumi.StringPtrInput
-	// IP address.
-	Ip pulumi.StringPtrInput
-	// Enable/disable IPsec. Valid values: `enable`, `disable`.
-	Ipsec pulumi.StringPtrInput
-	// Enable/disable scheduled configuration restore. Valid values: `enable`, `disable`.
+	AutoBackup             pulumi.StringPtrInput
+	Fosid                  pulumi.StringPtrInput
+	Ip                     pulumi.StringPtrInput
+	Ipsec                  pulumi.StringPtrInput
 	ScheduledConfigRestore pulumi.StringPtrInput
-	// Enable/disable FM. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// VDOM.
-	Vdom pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Status                 pulumi.StringPtrInput
+	Vdom                   pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SystemFmArgs) ElementType() reflect.Type {
@@ -212,7 +127,7 @@ func (i *SystemFm) ToSystemFmOutputWithContext(ctx context.Context) SystemFmOutp
 // SystemFmArrayInput is an input type that accepts SystemFmArray and SystemFmArrayOutput values.
 // You can construct a concrete instance of `SystemFmArrayInput` via:
 //
-//          SystemFmArray{ SystemFmArgs{...} }
+//	SystemFmArray{ SystemFmArgs{...} }
 type SystemFmArrayInput interface {
 	pulumi.Input
 
@@ -237,7 +152,7 @@ func (i SystemFmArray) ToSystemFmArrayOutputWithContext(ctx context.Context) Sys
 // SystemFmMapInput is an input type that accepts SystemFmMap and SystemFmMapOutput values.
 // You can construct a concrete instance of `SystemFmMapInput` via:
 //
-//          SystemFmMap{ "key": SystemFmArgs{...} }
+//	SystemFmMap{ "key": SystemFmArgs{...} }
 type SystemFmMapInput interface {
 	pulumi.Input
 
@@ -271,6 +186,38 @@ func (o SystemFmOutput) ToSystemFmOutput() SystemFmOutput {
 
 func (o SystemFmOutput) ToSystemFmOutputWithContext(ctx context.Context) SystemFmOutput {
 	return o
+}
+
+func (o SystemFmOutput) AutoBackup() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFm) pulumi.StringOutput { return v.AutoBackup }).(pulumi.StringOutput)
+}
+
+func (o SystemFmOutput) Fosid() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFm) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
+}
+
+func (o SystemFmOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFm) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o SystemFmOutput) Ipsec() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFm) pulumi.StringOutput { return v.Ipsec }).(pulumi.StringOutput)
+}
+
+func (o SystemFmOutput) ScheduledConfigRestore() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFm) pulumi.StringOutput { return v.ScheduledConfigRestore }).(pulumi.StringOutput)
+}
+
+func (o SystemFmOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFm) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemFmOutput) Vdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFm) pulumi.StringOutput { return v.Vdom }).(pulumi.StringOutput)
+}
+
+func (o SystemFmOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemFm) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemFmArrayOutput struct{ *pulumi.OutputState }

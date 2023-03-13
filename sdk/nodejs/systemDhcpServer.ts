@@ -2,50 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure DHCP servers.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemDhcpServer("trname", {
- *     dnsService: "default",
- *     fosid: 1,
- *     interface: "port2",
- *     ipRanges: [{
- *         endIp: "1.1.1.22",
- *         id: 1,
- *         startIp: "1.1.1.1",
- *     }],
- *     netmask: "255.255.255.0",
- *     ntpServer1: "192.168.52.22",
- *     status: "disable",
- *     timezone: "00",
- * });
- * ```
- *
- * ## Import
- *
- * SystemDhcp Server can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemDhcpServer:SystemDhcpServer labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemDhcpServer:SystemDhcpServer labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemDhcpServer extends pulumi.CustomResource {
     /**
      * Get an existing SystemDhcpServer resource's state with the given name, ID, and optional extra
@@ -74,213 +34,57 @@ export class SystemDhcpServer extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemDhcpServer.__pulumiType;
     }
 
-    /**
-     * Enable/disable auto configuration. Valid values: `disable`, `enable`.
-     */
     public readonly autoConfiguration!: pulumi.Output<string>;
-    /**
-     * Enable/disable use of this DHCP server once this interface has been assigned an IP address from FortiIPAM. Valid values: `disable`, `enable`.
-     */
     public readonly autoManagedStatus!: pulumi.Output<string>;
-    /**
-     * Time in seconds to wait after a conflicted IP address is removed from the DHCP range before it can be reused.
-     */
     public readonly conflictedIpTimeout!: pulumi.Output<number>;
-    /**
-     * DDNS authentication mode. Valid values: `disable`, `tsig`.
-     */
     public readonly ddnsAuth!: pulumi.Output<string>;
-    /**
-     * DDNS update key (base 64 encoding).
-     */
     public readonly ddnsKey!: pulumi.Output<string>;
-    /**
-     * DDNS update key name.
-     */
     public readonly ddnsKeyname!: pulumi.Output<string>;
-    /**
-     * DDNS server IP.
-     */
     public readonly ddnsServerIp!: pulumi.Output<string>;
-    /**
-     * TTL.
-     */
     public readonly ddnsTtl!: pulumi.Output<number>;
-    /**
-     * Enable/disable DDNS update for DHCP. Valid values: `disable`, `enable`.
-     */
     public readonly ddnsUpdate!: pulumi.Output<string>;
-    /**
-     * Enable/disable DDNS update override for DHCP. Valid values: `disable`, `enable`.
-     */
     public readonly ddnsUpdateOverride!: pulumi.Output<string>;
-    /**
-     * Zone of your domain name (ex. DDNS.com).
-     */
     public readonly ddnsZone!: pulumi.Output<string>;
-    /**
-     * Default gateway IP address assigned by the DHCP server.
-     */
     public readonly defaultGateway!: pulumi.Output<string>;
-    /**
-     * Enable/disable populating of DHCP server settings from FortiIPAM. Valid values: `disable`, `enable`.
-     */
     public readonly dhcpSettingsFromFortiipam!: pulumi.Output<string>;
-    /**
-     * DNS server 1.
-     */
     public readonly dnsServer1!: pulumi.Output<string>;
-    /**
-     * DNS server 2.
-     */
     public readonly dnsServer2!: pulumi.Output<string>;
-    /**
-     * DNS server 3.
-     */
     public readonly dnsServer3!: pulumi.Output<string>;
-    /**
-     * DNS server 4.
-     */
     public readonly dnsServer4!: pulumi.Output<string>;
-    /**
-     * Options for assigning DNS servers to DHCP clients. Valid values: `local`, `default`, `specify`.
-     */
     public readonly dnsService!: pulumi.Output<string>;
-    /**
-     * Domain name suffix for the IP addresses that the DHCP server assigns to clients.
-     */
     public readonly domain!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Exclude one or more ranges of IP addresses from being assigned to clients. The structure of `excludeRange` block is documented below.
-     */
     public readonly excludeRanges!: pulumi.Output<outputs.SystemDhcpServerExcludeRange[] | undefined>;
-    /**
-     * Name of the boot file on the TFTP server.
-     */
     public readonly filename!: pulumi.Output<string>;
-    /**
-     * Enable/disable FortiClient-On-Net service for this DHCP server. Valid values: `disable`, `enable`.
-     */
     public readonly forticlientOnNetStatus!: pulumi.Output<string>;
-    /**
-     * ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * DHCP server can assign IP configurations to clients connected to this interface.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Method used to assign client IP. Valid values: `range`, `usrgrp`.
-     */
     public readonly ipMode!: pulumi.Output<string>;
-    /**
-     * DHCP IP range configuration. The structure of `ipRange` block is documented below.
-     */
     public readonly ipRanges!: pulumi.Output<outputs.SystemDhcpServerIpRange[] | undefined>;
-    /**
-     * DHCP over IPsec leases expire this many seconds after tunnel down (0 to disable forced-expiry).
-     */
     public readonly ipsecLeaseHold!: pulumi.Output<number>;
-    /**
-     * Lease time in seconds, 0 means unlimited.
-     */
     public readonly leaseTime!: pulumi.Output<number>;
-    /**
-     * MAC access control default action (allow or block assigning IP settings). Valid values: `assign`, `block`.
-     */
     public readonly macAclDefaultAction!: pulumi.Output<string>;
-    /**
-     * Netmask assigned by the DHCP server.
-     */
     public readonly netmask!: pulumi.Output<string>;
-    /**
-     * IP address of a server (for example, a TFTP sever) that DHCP clients can download a boot file from.
-     */
     public readonly nextServer!: pulumi.Output<string>;
-    /**
-     * NTP server 1.
-     */
     public readonly ntpServer1!: pulumi.Output<string>;
-    /**
-     * NTP server 2.
-     */
     public readonly ntpServer2!: pulumi.Output<string>;
-    /**
-     * NTP server 3.
-     */
     public readonly ntpServer3!: pulumi.Output<string>;
-    /**
-     * Options for assigning Network Time Protocol (NTP) servers to DHCP clients. Valid values: `local`, `default`, `specify`.
-     */
     public readonly ntpService!: pulumi.Output<string>;
-    /**
-     * DHCP options. The structure of `options` block is documented below.
-     */
     public readonly options!: pulumi.Output<outputs.SystemDhcpServerOption[] | undefined>;
-    /**
-     * Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reservedAddress` block is documented below.
-     */
     public readonly reservedAddresses!: pulumi.Output<outputs.SystemDhcpServerReservedAddress[] | undefined>;
-    /**
-     * DHCP server can be a normal DHCP server or an IPsec DHCP server. Valid values: `regular`, `ipsec`.
-     */
     public readonly serverType!: pulumi.Output<string>;
-    /**
-     * Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * TFTP server.
-     */
     public readonly tftpServers!: pulumi.Output<outputs.SystemDhcpServerTftpServer[] | undefined>;
-    /**
-     * Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
-     */
     public readonly timezone!: pulumi.Output<string>;
-    /**
-     * Options for the DHCP server to set the client's time zone. Valid values: `disable`, `default`, `specify`.
-     */
     public readonly timezoneOption!: pulumi.Output<string>;
-    /**
-     * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served. Valid values: `disable`, `enable`.
-     */
     public readonly vciMatch!: pulumi.Output<string>;
-    /**
-     * VCI strings.
-     */
     public readonly vciStrings!: pulumi.Output<outputs.SystemDhcpServerVciString[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * WiFi Access Controller 1 IP address (DHCP option 138, RFC 5417).
-     */
     public readonly wifiAc1!: pulumi.Output<string>;
-    /**
-     * WiFi Access Controller 2 IP address (DHCP option 138, RFC 5417).
-     */
     public readonly wifiAc2!: pulumi.Output<string>;
-    /**
-     * WiFi Access Controller 3 IP address (DHCP option 138, RFC 5417).
-     */
     public readonly wifiAc3!: pulumi.Output<string>;
-    /**
-     * Options for assigning WiFi Access Controllers to DHCP clients Valid values: `specify`, `local`.
-     */
     public readonly wifiAcService!: pulumi.Output<string>;
-    /**
-     * WINS server 1.
-     */
     public readonly winsServer1!: pulumi.Output<string>;
-    /**
-     * WINS server 2.
-     */
     public readonly winsServer2!: pulumi.Output<string>;
 
     /**
@@ -350,9 +154,6 @@ export class SystemDhcpServer extends pulumi.CustomResource {
             resourceInputs["winsServer2"] = state ? state.winsServer2 : undefined;
         } else {
             const args = argsOrState as SystemDhcpServerArgs | undefined;
-            if ((!args || args.fosid === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'fosid'");
-            }
             if ((!args || args.interface === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'interface'");
             }
@@ -363,7 +164,7 @@ export class SystemDhcpServer extends pulumi.CustomResource {
             resourceInputs["autoManagedStatus"] = args ? args.autoManagedStatus : undefined;
             resourceInputs["conflictedIpTimeout"] = args ? args.conflictedIpTimeout : undefined;
             resourceInputs["ddnsAuth"] = args ? args.ddnsAuth : undefined;
-            resourceInputs["ddnsKey"] = args ? args.ddnsKey : undefined;
+            resourceInputs["ddnsKey"] = args?.ddnsKey ? pulumi.secret(args.ddnsKey) : undefined;
             resourceInputs["ddnsKeyname"] = args ? args.ddnsKeyname : undefined;
             resourceInputs["ddnsServerIp"] = args ? args.ddnsServerIp : undefined;
             resourceInputs["ddnsTtl"] = args ? args.ddnsTtl : undefined;
@@ -413,6 +214,8 @@ export class SystemDhcpServer extends pulumi.CustomResource {
             resourceInputs["winsServer2"] = args ? args.winsServer2 : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["ddnsKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemDhcpServer.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -421,213 +224,57 @@ export class SystemDhcpServer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemDhcpServer resources.
  */
 export interface SystemDhcpServerState {
-    /**
-     * Enable/disable auto configuration. Valid values: `disable`, `enable`.
-     */
     autoConfiguration?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of this DHCP server once this interface has been assigned an IP address from FortiIPAM. Valid values: `disable`, `enable`.
-     */
     autoManagedStatus?: pulumi.Input<string>;
-    /**
-     * Time in seconds to wait after a conflicted IP address is removed from the DHCP range before it can be reused.
-     */
     conflictedIpTimeout?: pulumi.Input<number>;
-    /**
-     * DDNS authentication mode. Valid values: `disable`, `tsig`.
-     */
     ddnsAuth?: pulumi.Input<string>;
-    /**
-     * DDNS update key (base 64 encoding).
-     */
     ddnsKey?: pulumi.Input<string>;
-    /**
-     * DDNS update key name.
-     */
     ddnsKeyname?: pulumi.Input<string>;
-    /**
-     * DDNS server IP.
-     */
     ddnsServerIp?: pulumi.Input<string>;
-    /**
-     * TTL.
-     */
     ddnsTtl?: pulumi.Input<number>;
-    /**
-     * Enable/disable DDNS update for DHCP. Valid values: `disable`, `enable`.
-     */
     ddnsUpdate?: pulumi.Input<string>;
-    /**
-     * Enable/disable DDNS update override for DHCP. Valid values: `disable`, `enable`.
-     */
     ddnsUpdateOverride?: pulumi.Input<string>;
-    /**
-     * Zone of your domain name (ex. DDNS.com).
-     */
     ddnsZone?: pulumi.Input<string>;
-    /**
-     * Default gateway IP address assigned by the DHCP server.
-     */
     defaultGateway?: pulumi.Input<string>;
-    /**
-     * Enable/disable populating of DHCP server settings from FortiIPAM. Valid values: `disable`, `enable`.
-     */
     dhcpSettingsFromFortiipam?: pulumi.Input<string>;
-    /**
-     * DNS server 1.
-     */
     dnsServer1?: pulumi.Input<string>;
-    /**
-     * DNS server 2.
-     */
     dnsServer2?: pulumi.Input<string>;
-    /**
-     * DNS server 3.
-     */
     dnsServer3?: pulumi.Input<string>;
-    /**
-     * DNS server 4.
-     */
     dnsServer4?: pulumi.Input<string>;
-    /**
-     * Options for assigning DNS servers to DHCP clients. Valid values: `local`, `default`, `specify`.
-     */
     dnsService?: pulumi.Input<string>;
-    /**
-     * Domain name suffix for the IP addresses that the DHCP server assigns to clients.
-     */
     domain?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Exclude one or more ranges of IP addresses from being assigned to clients. The structure of `excludeRange` block is documented below.
-     */
     excludeRanges?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerExcludeRange>[]>;
-    /**
-     * Name of the boot file on the TFTP server.
-     */
     filename?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiClient-On-Net service for this DHCP server. Valid values: `disable`, `enable`.
-     */
     forticlientOnNetStatus?: pulumi.Input<string>;
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * DHCP server can assign IP configurations to clients connected to this interface.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Method used to assign client IP. Valid values: `range`, `usrgrp`.
-     */
     ipMode?: pulumi.Input<string>;
-    /**
-     * DHCP IP range configuration. The structure of `ipRange` block is documented below.
-     */
     ipRanges?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerIpRange>[]>;
-    /**
-     * DHCP over IPsec leases expire this many seconds after tunnel down (0 to disable forced-expiry).
-     */
     ipsecLeaseHold?: pulumi.Input<number>;
-    /**
-     * Lease time in seconds, 0 means unlimited.
-     */
     leaseTime?: pulumi.Input<number>;
-    /**
-     * MAC access control default action (allow or block assigning IP settings). Valid values: `assign`, `block`.
-     */
     macAclDefaultAction?: pulumi.Input<string>;
-    /**
-     * Netmask assigned by the DHCP server.
-     */
     netmask?: pulumi.Input<string>;
-    /**
-     * IP address of a server (for example, a TFTP sever) that DHCP clients can download a boot file from.
-     */
     nextServer?: pulumi.Input<string>;
-    /**
-     * NTP server 1.
-     */
     ntpServer1?: pulumi.Input<string>;
-    /**
-     * NTP server 2.
-     */
     ntpServer2?: pulumi.Input<string>;
-    /**
-     * NTP server 3.
-     */
     ntpServer3?: pulumi.Input<string>;
-    /**
-     * Options for assigning Network Time Protocol (NTP) servers to DHCP clients. Valid values: `local`, `default`, `specify`.
-     */
     ntpService?: pulumi.Input<string>;
-    /**
-     * DHCP options. The structure of `options` block is documented below.
-     */
     options?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerOption>[]>;
-    /**
-     * Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reservedAddress` block is documented below.
-     */
     reservedAddresses?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerReservedAddress>[]>;
-    /**
-     * DHCP server can be a normal DHCP server or an IPsec DHCP server. Valid values: `regular`, `ipsec`.
-     */
     serverType?: pulumi.Input<string>;
-    /**
-     * Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * TFTP server.
-     */
     tftpServers?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerTftpServer>[]>;
-    /**
-     * Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
-     */
     timezone?: pulumi.Input<string>;
-    /**
-     * Options for the DHCP server to set the client's time zone. Valid values: `disable`, `default`, `specify`.
-     */
     timezoneOption?: pulumi.Input<string>;
-    /**
-     * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served. Valid values: `disable`, `enable`.
-     */
     vciMatch?: pulumi.Input<string>;
-    /**
-     * VCI strings.
-     */
     vciStrings?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerVciString>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * WiFi Access Controller 1 IP address (DHCP option 138, RFC 5417).
-     */
     wifiAc1?: pulumi.Input<string>;
-    /**
-     * WiFi Access Controller 2 IP address (DHCP option 138, RFC 5417).
-     */
     wifiAc2?: pulumi.Input<string>;
-    /**
-     * WiFi Access Controller 3 IP address (DHCP option 138, RFC 5417).
-     */
     wifiAc3?: pulumi.Input<string>;
-    /**
-     * Options for assigning WiFi Access Controllers to DHCP clients Valid values: `specify`, `local`.
-     */
     wifiAcService?: pulumi.Input<string>;
-    /**
-     * WINS server 1.
-     */
     winsServer1?: pulumi.Input<string>;
-    /**
-     * WINS server 2.
-     */
     winsServer2?: pulumi.Input<string>;
 }
 
@@ -635,212 +282,56 @@ export interface SystemDhcpServerState {
  * The set of arguments for constructing a SystemDhcpServer resource.
  */
 export interface SystemDhcpServerArgs {
-    /**
-     * Enable/disable auto configuration. Valid values: `disable`, `enable`.
-     */
     autoConfiguration?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of this DHCP server once this interface has been assigned an IP address from FortiIPAM. Valid values: `disable`, `enable`.
-     */
     autoManagedStatus?: pulumi.Input<string>;
-    /**
-     * Time in seconds to wait after a conflicted IP address is removed from the DHCP range before it can be reused.
-     */
     conflictedIpTimeout?: pulumi.Input<number>;
-    /**
-     * DDNS authentication mode. Valid values: `disable`, `tsig`.
-     */
     ddnsAuth?: pulumi.Input<string>;
-    /**
-     * DDNS update key (base 64 encoding).
-     */
     ddnsKey?: pulumi.Input<string>;
-    /**
-     * DDNS update key name.
-     */
     ddnsKeyname?: pulumi.Input<string>;
-    /**
-     * DDNS server IP.
-     */
     ddnsServerIp?: pulumi.Input<string>;
-    /**
-     * TTL.
-     */
     ddnsTtl?: pulumi.Input<number>;
-    /**
-     * Enable/disable DDNS update for DHCP. Valid values: `disable`, `enable`.
-     */
     ddnsUpdate?: pulumi.Input<string>;
-    /**
-     * Enable/disable DDNS update override for DHCP. Valid values: `disable`, `enable`.
-     */
     ddnsUpdateOverride?: pulumi.Input<string>;
-    /**
-     * Zone of your domain name (ex. DDNS.com).
-     */
     ddnsZone?: pulumi.Input<string>;
-    /**
-     * Default gateway IP address assigned by the DHCP server.
-     */
     defaultGateway?: pulumi.Input<string>;
-    /**
-     * Enable/disable populating of DHCP server settings from FortiIPAM. Valid values: `disable`, `enable`.
-     */
     dhcpSettingsFromFortiipam?: pulumi.Input<string>;
-    /**
-     * DNS server 1.
-     */
     dnsServer1?: pulumi.Input<string>;
-    /**
-     * DNS server 2.
-     */
     dnsServer2?: pulumi.Input<string>;
-    /**
-     * DNS server 3.
-     */
     dnsServer3?: pulumi.Input<string>;
-    /**
-     * DNS server 4.
-     */
     dnsServer4?: pulumi.Input<string>;
-    /**
-     * Options for assigning DNS servers to DHCP clients. Valid values: `local`, `default`, `specify`.
-     */
     dnsService?: pulumi.Input<string>;
-    /**
-     * Domain name suffix for the IP addresses that the DHCP server assigns to clients.
-     */
     domain?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Exclude one or more ranges of IP addresses from being assigned to clients. The structure of `excludeRange` block is documented below.
-     */
     excludeRanges?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerExcludeRange>[]>;
-    /**
-     * Name of the boot file on the TFTP server.
-     */
     filename?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiClient-On-Net service for this DHCP server. Valid values: `disable`, `enable`.
-     */
     forticlientOnNetStatus?: pulumi.Input<string>;
-    /**
-     * ID.
-     */
-    fosid: pulumi.Input<number>;
-    /**
-     * DHCP server can assign IP configurations to clients connected to this interface.
-     */
+    fosid?: pulumi.Input<number>;
     interface: pulumi.Input<string>;
-    /**
-     * Method used to assign client IP. Valid values: `range`, `usrgrp`.
-     */
     ipMode?: pulumi.Input<string>;
-    /**
-     * DHCP IP range configuration. The structure of `ipRange` block is documented below.
-     */
     ipRanges?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerIpRange>[]>;
-    /**
-     * DHCP over IPsec leases expire this many seconds after tunnel down (0 to disable forced-expiry).
-     */
     ipsecLeaseHold?: pulumi.Input<number>;
-    /**
-     * Lease time in seconds, 0 means unlimited.
-     */
     leaseTime?: pulumi.Input<number>;
-    /**
-     * MAC access control default action (allow or block assigning IP settings). Valid values: `assign`, `block`.
-     */
     macAclDefaultAction?: pulumi.Input<string>;
-    /**
-     * Netmask assigned by the DHCP server.
-     */
     netmask: pulumi.Input<string>;
-    /**
-     * IP address of a server (for example, a TFTP sever) that DHCP clients can download a boot file from.
-     */
     nextServer?: pulumi.Input<string>;
-    /**
-     * NTP server 1.
-     */
     ntpServer1?: pulumi.Input<string>;
-    /**
-     * NTP server 2.
-     */
     ntpServer2?: pulumi.Input<string>;
-    /**
-     * NTP server 3.
-     */
     ntpServer3?: pulumi.Input<string>;
-    /**
-     * Options for assigning Network Time Protocol (NTP) servers to DHCP clients. Valid values: `local`, `default`, `specify`.
-     */
     ntpService?: pulumi.Input<string>;
-    /**
-     * DHCP options. The structure of `options` block is documented below.
-     */
     options?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerOption>[]>;
-    /**
-     * Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reservedAddress` block is documented below.
-     */
     reservedAddresses?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerReservedAddress>[]>;
-    /**
-     * DHCP server can be a normal DHCP server or an IPsec DHCP server. Valid values: `regular`, `ipsec`.
-     */
     serverType?: pulumi.Input<string>;
-    /**
-     * Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * TFTP server.
-     */
     tftpServers?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerTftpServer>[]>;
-    /**
-     * Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
-     */
     timezone?: pulumi.Input<string>;
-    /**
-     * Options for the DHCP server to set the client's time zone. Valid values: `disable`, `default`, `specify`.
-     */
     timezoneOption?: pulumi.Input<string>;
-    /**
-     * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served. Valid values: `disable`, `enable`.
-     */
     vciMatch?: pulumi.Input<string>;
-    /**
-     * VCI strings.
-     */
     vciStrings?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerVciString>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * WiFi Access Controller 1 IP address (DHCP option 138, RFC 5417).
-     */
     wifiAc1?: pulumi.Input<string>;
-    /**
-     * WiFi Access Controller 2 IP address (DHCP option 138, RFC 5417).
-     */
     wifiAc2?: pulumi.Input<string>;
-    /**
-     * WiFi Access Controller 3 IP address (DHCP option 138, RFC 5417).
-     */
     wifiAc3?: pulumi.Input<string>;
-    /**
-     * Options for assigning WiFi Access Controllers to DHCP clients Valid values: `specify`, `local`.
-     */
     wifiAcService?: pulumi.Input<string>;
-    /**
-     * WINS server 1.
-     */
     winsServer1?: pulumi.Input<string>;
-    /**
-     * WINS server 2.
-     */
     winsServer2?: pulumi.Input<string>;
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemWccp`.
 func GetSystemWccpList(ctx *pulumi.Context, args *GetSystemWccpListArgs, opts ...pulumi.InvokeOption) (*GetSystemWccpListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemWccpListResult
@@ -23,8 +22,7 @@ func GetSystemWccpList(ctx *pulumi.Context, args *GetSystemWccpListArgs, opts ..
 
 // A collection of arguments for invoking GetSystemWccpList.
 type GetSystemWccpListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetSystemWccpListArgs struct {
 type GetSystemWccpListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `SystemWccp`.
+	Id             string   `pulumi:"id"`
 	ServiceIdlists []string `pulumi:"serviceIdlists"`
 	Vdomparam      *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetSystemWccpListOutput(ctx *pulumi.Context, args GetSystemWccpListOutputAr
 
 // A collection of arguments for invoking GetSystemWccpList.
 type GetSystemWccpListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetSystemWccpListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSystemWccpListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `SystemWccp`.
 func (o GetSystemWccpListResultOutput) ServiceIdlists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSystemWccpListResult) []string { return v.ServiceIdlists }).(pulumi.StringArrayOutput)
 }

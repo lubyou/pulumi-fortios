@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure access point status (rogue | accepted | suppressed).
- *
- * ## Import
- *
- * WirelessController ApStatus can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerApStatus:WirelessControllerApStatus labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerApStatus:WirelessControllerApStatus labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerApStatus extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerApStatus resource's state with the given name, ID, and optional extra
@@ -51,25 +32,10 @@ export class WirelessControllerApStatus extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerApStatus.__pulumiType;
     }
 
-    /**
-     * Access Point's (AP's) BSSID.
-     */
     public readonly bssid!: pulumi.Output<string>;
-    /**
-     * AP ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Access Point's (AP's) SSID.
-     */
     public readonly ssid!: pulumi.Output<string>;
-    /**
-     * Access Point's (AP's) status: rogue, accepted, or supressed. Valid values: `rogue`, `accepted`, `suppressed`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -107,25 +73,10 @@ export class WirelessControllerApStatus extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerApStatus resources.
  */
 export interface WirelessControllerApStatusState {
-    /**
-     * Access Point's (AP's) BSSID.
-     */
     bssid?: pulumi.Input<string>;
-    /**
-     * AP ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Access Point's (AP's) SSID.
-     */
     ssid?: pulumi.Input<string>;
-    /**
-     * Access Point's (AP's) status: rogue, accepted, or supressed. Valid values: `rogue`, `accepted`, `suppressed`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -133,24 +84,9 @@ export interface WirelessControllerApStatusState {
  * The set of arguments for constructing a WirelessControllerApStatus resource.
  */
 export interface WirelessControllerApStatusArgs {
-    /**
-     * Access Point's (AP's) BSSID.
-     */
     bssid?: pulumi.Input<string>;
-    /**
-     * AP ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Access Point's (AP's) SSID.
-     */
     ssid?: pulumi.Input<string>;
-    /**
-     * Access Point's (AP's) status: rogue, accepted, or supressed. Valid values: `rogue`, `accepted`, `suppressed`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -7,59 +7,16 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure SMS server for sending SMS messages to support user authentication.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemSmsServer(ctx, "trname", &fortios.SystemSmsServerArgs{
-// 			MailServer: pulumi.String("1.1.1.2"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System SmsServer can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSmsServer:SystemSmsServer labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSmsServer:SystemSmsServer labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemSmsServer struct {
 	pulumi.CustomResourceState
 
-	// Email-to-SMS server domain name.
-	MailServer pulumi.StringOutput `pulumi:"mailServer"`
-	// Name of SMS server.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	MailServer pulumi.StringOutput    `pulumi:"mailServer"`
+	Name       pulumi.StringOutput    `pulumi:"name"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemSmsServer registers a new resource with the given unique name, arguments, and options.
@@ -95,21 +52,15 @@ func GetSystemSmsServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSmsServer resources.
 type systemSmsServerState struct {
-	// Email-to-SMS server domain name.
 	MailServer *string `pulumi:"mailServer"`
-	// Name of SMS server.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name       *string `pulumi:"name"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type SystemSmsServerState struct {
-	// Email-to-SMS server domain name.
 	MailServer pulumi.StringPtrInput
-	// Name of SMS server.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name       pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (SystemSmsServerState) ElementType() reflect.Type {
@@ -117,22 +68,16 @@ func (SystemSmsServerState) ElementType() reflect.Type {
 }
 
 type systemSmsServerArgs struct {
-	// Email-to-SMS server domain name.
-	MailServer string `pulumi:"mailServer"`
-	// Name of SMS server.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	MailServer string  `pulumi:"mailServer"`
+	Name       *string `pulumi:"name"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemSmsServer resource.
 type SystemSmsServerArgs struct {
-	// Email-to-SMS server domain name.
 	MailServer pulumi.StringInput
-	// Name of SMS server.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name       pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (SystemSmsServerArgs) ElementType() reflect.Type {
@@ -161,7 +106,7 @@ func (i *SystemSmsServer) ToSystemSmsServerOutputWithContext(ctx context.Context
 // SystemSmsServerArrayInput is an input type that accepts SystemSmsServerArray and SystemSmsServerArrayOutput values.
 // You can construct a concrete instance of `SystemSmsServerArrayInput` via:
 //
-//          SystemSmsServerArray{ SystemSmsServerArgs{...} }
+//	SystemSmsServerArray{ SystemSmsServerArgs{...} }
 type SystemSmsServerArrayInput interface {
 	pulumi.Input
 
@@ -186,7 +131,7 @@ func (i SystemSmsServerArray) ToSystemSmsServerArrayOutputWithContext(ctx contex
 // SystemSmsServerMapInput is an input type that accepts SystemSmsServerMap and SystemSmsServerMapOutput values.
 // You can construct a concrete instance of `SystemSmsServerMapInput` via:
 //
-//          SystemSmsServerMap{ "key": SystemSmsServerArgs{...} }
+//	SystemSmsServerMap{ "key": SystemSmsServerArgs{...} }
 type SystemSmsServerMapInput interface {
 	pulumi.Input
 
@@ -220,6 +165,18 @@ func (o SystemSmsServerOutput) ToSystemSmsServerOutput() SystemSmsServerOutput {
 
 func (o SystemSmsServerOutput) ToSystemSmsServerOutputWithContext(ctx context.Context) SystemSmsServerOutput {
 	return o
+}
+
+func (o SystemSmsServerOutput) MailServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSmsServer) pulumi.StringOutput { return v.MailServer }).(pulumi.StringOutput)
+}
+
+func (o SystemSmsServerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSmsServer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemSmsServerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSmsServer) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemSmsServerArrayOutput struct{ *pulumi.OutputState }

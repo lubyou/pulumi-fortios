@@ -10,38 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch switch groups.
-//
-// ## Import
-//
-// SwitchController SwitchGroup can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSwitchGroup:SwitchControllerSwitchGroup labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSwitchGroup:SwitchControllerSwitchGroup labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerSwitchGroup struct {
 	pulumi.CustomResourceState
 
-	// Optional switch group description.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// FortiLink interface to which switch group members belong.
-	Fortilink pulumi.StringOutput `pulumi:"fortilink"`
-	// FortiSwitch members belonging to this switch group. The structure of `members` block is documented below.
-	Members SwitchControllerSwitchGroupMemberArrayOutput `pulumi:"members"`
-	// Managed device ID.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Description         pulumi.StringOutput                          `pulumi:"description"`
+	DynamicSortSubtable pulumi.StringPtrOutput                       `pulumi:"dynamicSortSubtable"`
+	Fortilink           pulumi.StringOutput                          `pulumi:"fortilink"`
+	Members             SwitchControllerSwitchGroupMemberArrayOutput `pulumi:"members"`
+	Name                pulumi.StringOutput                          `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                       `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerSwitchGroup registers a new resource with the given unique name, arguments, and options.
@@ -74,33 +51,21 @@ func GetSwitchControllerSwitchGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerSwitchGroup resources.
 type switchControllerSwitchGroupState struct {
-	// Optional switch group description.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// FortiLink interface to which switch group members belong.
-	Fortilink *string `pulumi:"fortilink"`
-	// FortiSwitch members belonging to this switch group. The structure of `members` block is documented below.
-	Members []SwitchControllerSwitchGroupMember `pulumi:"members"`
-	// Managed device ID.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Description         *string                             `pulumi:"description"`
+	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
+	Fortilink           *string                             `pulumi:"fortilink"`
+	Members             []SwitchControllerSwitchGroupMember `pulumi:"members"`
+	Name                *string                             `pulumi:"name"`
+	Vdomparam           *string                             `pulumi:"vdomparam"`
 }
 
 type SwitchControllerSwitchGroupState struct {
-	// Optional switch group description.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// FortiLink interface to which switch group members belong.
-	Fortilink pulumi.StringPtrInput
-	// FortiSwitch members belonging to this switch group. The structure of `members` block is documented below.
-	Members SwitchControllerSwitchGroupMemberArrayInput
-	// Managed device ID.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fortilink           pulumi.StringPtrInput
+	Members             SwitchControllerSwitchGroupMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerSwitchGroupState) ElementType() reflect.Type {
@@ -108,34 +73,22 @@ func (SwitchControllerSwitchGroupState) ElementType() reflect.Type {
 }
 
 type switchControllerSwitchGroupArgs struct {
-	// Optional switch group description.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// FortiLink interface to which switch group members belong.
-	Fortilink *string `pulumi:"fortilink"`
-	// FortiSwitch members belonging to this switch group. The structure of `members` block is documented below.
-	Members []SwitchControllerSwitchGroupMember `pulumi:"members"`
-	// Managed device ID.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Description         *string                             `pulumi:"description"`
+	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
+	Fortilink           *string                             `pulumi:"fortilink"`
+	Members             []SwitchControllerSwitchGroupMember `pulumi:"members"`
+	Name                *string                             `pulumi:"name"`
+	Vdomparam           *string                             `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerSwitchGroup resource.
 type SwitchControllerSwitchGroupArgs struct {
-	// Optional switch group description.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// FortiLink interface to which switch group members belong.
-	Fortilink pulumi.StringPtrInput
-	// FortiSwitch members belonging to this switch group. The structure of `members` block is documented below.
-	Members SwitchControllerSwitchGroupMemberArrayInput
-	// Managed device ID.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fortilink           pulumi.StringPtrInput
+	Members             SwitchControllerSwitchGroupMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerSwitchGroupArgs) ElementType() reflect.Type {
@@ -164,7 +117,7 @@ func (i *SwitchControllerSwitchGroup) ToSwitchControllerSwitchGroupOutputWithCon
 // SwitchControllerSwitchGroupArrayInput is an input type that accepts SwitchControllerSwitchGroupArray and SwitchControllerSwitchGroupArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSwitchGroupArrayInput` via:
 //
-//          SwitchControllerSwitchGroupArray{ SwitchControllerSwitchGroupArgs{...} }
+//	SwitchControllerSwitchGroupArray{ SwitchControllerSwitchGroupArgs{...} }
 type SwitchControllerSwitchGroupArrayInput interface {
 	pulumi.Input
 
@@ -189,7 +142,7 @@ func (i SwitchControllerSwitchGroupArray) ToSwitchControllerSwitchGroupArrayOutp
 // SwitchControllerSwitchGroupMapInput is an input type that accepts SwitchControllerSwitchGroupMap and SwitchControllerSwitchGroupMapOutput values.
 // You can construct a concrete instance of `SwitchControllerSwitchGroupMapInput` via:
 //
-//          SwitchControllerSwitchGroupMap{ "key": SwitchControllerSwitchGroupArgs{...} }
+//	SwitchControllerSwitchGroupMap{ "key": SwitchControllerSwitchGroupArgs{...} }
 type SwitchControllerSwitchGroupMapInput interface {
 	pulumi.Input
 
@@ -223,6 +176,30 @@ func (o SwitchControllerSwitchGroupOutput) ToSwitchControllerSwitchGroupOutput()
 
 func (o SwitchControllerSwitchGroupOutput) ToSwitchControllerSwitchGroupOutputWithContext(ctx context.Context) SwitchControllerSwitchGroupOutput {
 	return o
+}
+
+func (o SwitchControllerSwitchGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchGroup) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSwitchGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerSwitchGroupOutput) Fortilink() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchGroup) pulumi.StringOutput { return v.Fortilink }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSwitchGroupOutput) Members() SwitchControllerSwitchGroupMemberArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchGroup) SwitchControllerSwitchGroupMemberArrayOutput { return v.Members }).(SwitchControllerSwitchGroupMemberArrayOutput)
+}
+
+func (o SwitchControllerSwitchGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSwitchGroupOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchGroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerSwitchGroupArrayOutput struct{ *pulumi.OutputState }

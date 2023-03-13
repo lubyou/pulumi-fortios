@@ -7,64 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure session helper.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemSessionHelper(ctx, "trname", &fortios.SystemSessionHelperArgs{
-// 			Fosid:    pulumi.Int(33),
-// 			Port:     pulumi.Int(3234),
-// 			Protocol: pulumi.Int(17),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System SessionHelper can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSessionHelper:SystemSessionHelper labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSessionHelper:SystemSessionHelper labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemSessionHelper struct {
 	pulumi.CustomResourceState
 
-	// Session helper ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Helper name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Protocol port.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Protocol number.
-	Protocol pulumi.IntOutput `pulumi:"protocol"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
+	Port      pulumi.IntOutput       `pulumi:"port"`
+	Protocol  pulumi.IntOutput       `pulumi:"protocol"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -104,28 +57,18 @@ func GetSystemSessionHelper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSessionHelper resources.
 type systemSessionHelperState struct {
-	// Session helper ID.
-	Fosid *int `pulumi:"fosid"`
-	// Helper name.
-	Name *string `pulumi:"name"`
-	// Protocol port.
-	Port *int `pulumi:"port"`
-	// Protocol number.
-	Protocol *int `pulumi:"protocol"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
+	Port      *int    `pulumi:"port"`
+	Protocol  *int    `pulumi:"protocol"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemSessionHelperState struct {
-	// Session helper ID.
-	Fosid pulumi.IntPtrInput
-	// Helper name.
-	Name pulumi.StringPtrInput
-	// Protocol port.
-	Port pulumi.IntPtrInput
-	// Protocol number.
-	Protocol pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
+	Port      pulumi.IntPtrInput
+	Protocol  pulumi.IntPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -134,29 +77,19 @@ func (SystemSessionHelperState) ElementType() reflect.Type {
 }
 
 type systemSessionHelperArgs struct {
-	// Session helper ID.
-	Fosid *int `pulumi:"fosid"`
-	// Helper name.
-	Name *string `pulumi:"name"`
-	// Protocol port.
-	Port int `pulumi:"port"`
-	// Protocol number.
-	Protocol int `pulumi:"protocol"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
+	Port      int     `pulumi:"port"`
+	Protocol  int     `pulumi:"protocol"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemSessionHelper resource.
 type SystemSessionHelperArgs struct {
-	// Session helper ID.
-	Fosid pulumi.IntPtrInput
-	// Helper name.
-	Name pulumi.StringPtrInput
-	// Protocol port.
-	Port pulumi.IntInput
-	// Protocol number.
-	Protocol pulumi.IntInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
+	Port      pulumi.IntInput
+	Protocol  pulumi.IntInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -186,7 +119,7 @@ func (i *SystemSessionHelper) ToSystemSessionHelperOutputWithContext(ctx context
 // SystemSessionHelperArrayInput is an input type that accepts SystemSessionHelperArray and SystemSessionHelperArrayOutput values.
 // You can construct a concrete instance of `SystemSessionHelperArrayInput` via:
 //
-//          SystemSessionHelperArray{ SystemSessionHelperArgs{...} }
+//	SystemSessionHelperArray{ SystemSessionHelperArgs{...} }
 type SystemSessionHelperArrayInput interface {
 	pulumi.Input
 
@@ -211,7 +144,7 @@ func (i SystemSessionHelperArray) ToSystemSessionHelperArrayOutputWithContext(ct
 // SystemSessionHelperMapInput is an input type that accepts SystemSessionHelperMap and SystemSessionHelperMapOutput values.
 // You can construct a concrete instance of `SystemSessionHelperMapInput` via:
 //
-//          SystemSessionHelperMap{ "key": SystemSessionHelperArgs{...} }
+//	SystemSessionHelperMap{ "key": SystemSessionHelperArgs{...} }
 type SystemSessionHelperMapInput interface {
 	pulumi.Input
 
@@ -245,6 +178,26 @@ func (o SystemSessionHelperOutput) ToSystemSessionHelperOutput() SystemSessionHe
 
 func (o SystemSessionHelperOutput) ToSystemSessionHelperOutputWithContext(ctx context.Context) SystemSessionHelperOutput {
 	return o
+}
+
+func (o SystemSessionHelperOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSessionHelper) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SystemSessionHelperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSessionHelper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemSessionHelperOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSessionHelper) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o SystemSessionHelperOutput) Protocol() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSessionHelper) pulumi.IntOutput { return v.Protocol }).(pulumi.IntOutput)
+}
+
+func (o SystemSessionHelperOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSessionHelper) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemSessionHelperArrayOutput struct{ *pulumi.OutputState }

@@ -4,43 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch QoS 802.1p.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchControllerQosDot1PMap("trname", {
- *     priority0: "queue-0",
- *     priority1: "queue-0",
- *     priority2: "queue-0",
- *     priority3: "queue-0",
- *     priority4: "queue-0",
- *     priority5: "queue-0",
- *     priority6: "queue-0",
- *     priority7: "queue-0",
- * });
- * ```
- *
- * ## Import
- *
- * SwitchControllerQos Dot1PMap can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerQosDot1PMap:SwitchControllerQosDot1PMap labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerQosDot1PMap:SwitchControllerQosDot1PMap labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerQosDot1PMap extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerQosDot1PMap resource's state with the given name, ID, and optional extra
@@ -69,53 +32,17 @@ export class SwitchControllerQosDot1PMap extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerQosDot1PMap.__pulumiType;
     }
 
-    /**
-     * Description of the 802.1p name.
-     */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * Enable/disable egress priority-tag frame. Valid values: `disable`, `enable`.
-     */
     public readonly egressPriTagging!: pulumi.Output<string>;
-    /**
-     * Dot1p map name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     public readonly priority0!: pulumi.Output<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     public readonly priority1!: pulumi.Output<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     public readonly priority2!: pulumi.Output<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     public readonly priority3!: pulumi.Output<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     public readonly priority4!: pulumi.Output<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     public readonly priority5!: pulumi.Output<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     public readonly priority6!: pulumi.Output<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     public readonly priority7!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -167,53 +94,17 @@ export class SwitchControllerQosDot1PMap extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerQosDot1PMap resources.
  */
 export interface SwitchControllerQosDot1PMapState {
-    /**
-     * Description of the 802.1p name.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Enable/disable egress priority-tag frame. Valid values: `disable`, `enable`.
-     */
     egressPriTagging?: pulumi.Input<string>;
-    /**
-     * Dot1p map name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority0?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority1?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority2?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority3?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority4?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority5?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority6?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority7?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -221,52 +112,16 @@ export interface SwitchControllerQosDot1PMapState {
  * The set of arguments for constructing a SwitchControllerQosDot1PMap resource.
  */
 export interface SwitchControllerQosDot1PMapArgs {
-    /**
-     * Description of the 802.1p name.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Enable/disable egress priority-tag frame. Valid values: `disable`, `enable`.
-     */
     egressPriTagging?: pulumi.Input<string>;
-    /**
-     * Dot1p map name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority0?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority1?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority2?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority3?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority4?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority5?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority6?: pulumi.Input<string>;
-    /**
-     * COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
-     */
     priority7?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

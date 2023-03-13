@@ -2,51 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Report chart widget configuration. Applies to FortiOS Version `<= 7.0.0`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.ReportChart("trname", {
- *     category: "misc",
- *     comments: "test report chart",
- *     dataset: "s1",
- *     dimension: "3D",
- *     favorite: "no",
- *     graphType: "none",
- *     legend: "enable",
- *     legendFontSize: 0,
- *     period: "last24h",
- *     policy: 0,
- *     style: "auto",
- *     titleFontSize: 0,
- *     type: "graph",
- * });
- * ```
- *
- * ## Import
- *
- * Report Chart can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/reportChart:ReportChart labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/reportChart:ReportChart labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class ReportChart extends pulumi.CustomResource {
     /**
      * Get an existing ReportChart resource's state with the given name, ID, and optional extra
@@ -75,106 +34,31 @@ export class ReportChart extends pulumi.CustomResource {
         return obj['__pulumiType'] === ReportChart.__pulumiType;
     }
 
-    /**
-     * Chart background.
-     */
     public readonly background!: pulumi.Output<string>;
-    /**
-     * Category. Valid values: `misc`, `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `dlp`, `app-ctrl`, `vulnerability`.
-     */
     public readonly category!: pulumi.Output<string>;
-    /**
-     * Category series of pie chart. The structure of `categorySeries` block is documented below.
-     */
-    public readonly categorySeries!: pulumi.Output<outputs.ReportChartCategorySeries | undefined>;
-    /**
-     * Color palette (system will pick color automatically by default).
-     */
+    public readonly categorySeries!: pulumi.Output<outputs.ReportChartCategorySeries>;
     public readonly colorPalette!: pulumi.Output<string>;
-    /**
-     * Table column definition. The structure of `column` block is documented below.
-     */
     public readonly columns!: pulumi.Output<outputs.ReportChartColumn[] | undefined>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string>;
-    /**
-     * Bind dataset to chart.
-     */
     public readonly dataset!: pulumi.Output<string>;
-    /**
-     * Dimension. Valid values: `2D`, `3D`.
-     */
     public readonly dimension!: pulumi.Output<string>;
-    /**
-     * Drill down charts. The structure of `drillDownCharts` block is documented below.
-     */
     public readonly drillDownCharts!: pulumi.Output<outputs.ReportChartDrillDownChart[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Favorite. Valid values: `no`, `yes`.
-     */
     public readonly favorite!: pulumi.Output<string>;
-    /**
-     * Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
-     */
     public readonly graphType!: pulumi.Output<string>;
-    /**
-     * Enable/Disable Legend area. Valid values: `enable`, `disable`.
-     */
     public readonly legend!: pulumi.Output<string>;
-    /**
-     * Font size of legend area.
-     */
     public readonly legendFontSize!: pulumi.Output<number>;
-    /**
-     * Chart Widget Name
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Time period. Valid values: `last24h`, `last7d`.
-     */
     public readonly period!: pulumi.Output<string>;
-    /**
-     * Used by monitor policy.
-     */
     public readonly policy!: pulumi.Output<number>;
-    /**
-     * Style. Valid values: `auto`, `manual`.
-     */
     public readonly style!: pulumi.Output<string>;
-    /**
-     * Chart title.
-     */
     public readonly title!: pulumi.Output<string>;
-    /**
-     * Font size of chart title.
-     */
     public readonly titleFontSize!: pulumi.Output<number>;
-    /**
-     * Chart type. Valid values: `graph`, `table`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Value series of pie chart. The structure of `valueSeries` block is documented below.
-     */
-    public readonly valueSeries!: pulumi.Output<outputs.ReportChartValueSeries | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    public readonly valueSeries!: pulumi.Output<outputs.ReportChartValueSeries>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * X-series of chart. The structure of `xSeries` block is documented below.
-     */
-    public readonly xSeries!: pulumi.Output<outputs.ReportChartXSeries | undefined>;
-    /**
-     * Y-series of chart. The structure of `ySeries` block is documented below.
-     */
-    public readonly ySeries!: pulumi.Output<outputs.ReportChartYSeries | undefined>;
+    public readonly xSeries!: pulumi.Output<outputs.ReportChartXSeries>;
+    public readonly ySeries!: pulumi.Output<outputs.ReportChartYSeries>;
 
     /**
      * Create a ReportChart resource with the given unique name, arguments, and options.
@@ -257,105 +141,30 @@ export class ReportChart extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ReportChart resources.
  */
 export interface ReportChartState {
-    /**
-     * Chart background.
-     */
     background?: pulumi.Input<string>;
-    /**
-     * Category. Valid values: `misc`, `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `dlp`, `app-ctrl`, `vulnerability`.
-     */
     category?: pulumi.Input<string>;
-    /**
-     * Category series of pie chart. The structure of `categorySeries` block is documented below.
-     */
     categorySeries?: pulumi.Input<inputs.ReportChartCategorySeries>;
-    /**
-     * Color palette (system will pick color automatically by default).
-     */
     colorPalette?: pulumi.Input<string>;
-    /**
-     * Table column definition. The structure of `column` block is documented below.
-     */
     columns?: pulumi.Input<pulumi.Input<inputs.ReportChartColumn>[]>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Bind dataset to chart.
-     */
     dataset?: pulumi.Input<string>;
-    /**
-     * Dimension. Valid values: `2D`, `3D`.
-     */
     dimension?: pulumi.Input<string>;
-    /**
-     * Drill down charts. The structure of `drillDownCharts` block is documented below.
-     */
     drillDownCharts?: pulumi.Input<pulumi.Input<inputs.ReportChartDrillDownChart>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Favorite. Valid values: `no`, `yes`.
-     */
     favorite?: pulumi.Input<string>;
-    /**
-     * Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
-     */
     graphType?: pulumi.Input<string>;
-    /**
-     * Enable/Disable Legend area. Valid values: `enable`, `disable`.
-     */
     legend?: pulumi.Input<string>;
-    /**
-     * Font size of legend area.
-     */
     legendFontSize?: pulumi.Input<number>;
-    /**
-     * Chart Widget Name
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Time period. Valid values: `last24h`, `last7d`.
-     */
     period?: pulumi.Input<string>;
-    /**
-     * Used by monitor policy.
-     */
     policy?: pulumi.Input<number>;
-    /**
-     * Style. Valid values: `auto`, `manual`.
-     */
     style?: pulumi.Input<string>;
-    /**
-     * Chart title.
-     */
     title?: pulumi.Input<string>;
-    /**
-     * Font size of chart title.
-     */
     titleFontSize?: pulumi.Input<number>;
-    /**
-     * Chart type. Valid values: `graph`, `table`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Value series of pie chart. The structure of `valueSeries` block is documented below.
-     */
     valueSeries?: pulumi.Input<inputs.ReportChartValueSeries>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * X-series of chart. The structure of `xSeries` block is documented below.
-     */
     xSeries?: pulumi.Input<inputs.ReportChartXSeries>;
-    /**
-     * Y-series of chart. The structure of `ySeries` block is documented below.
-     */
     ySeries?: pulumi.Input<inputs.ReportChartYSeries>;
 }
 
@@ -363,104 +172,29 @@ export interface ReportChartState {
  * The set of arguments for constructing a ReportChart resource.
  */
 export interface ReportChartArgs {
-    /**
-     * Chart background.
-     */
     background?: pulumi.Input<string>;
-    /**
-     * Category. Valid values: `misc`, `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `dlp`, `app-ctrl`, `vulnerability`.
-     */
     category?: pulumi.Input<string>;
-    /**
-     * Category series of pie chart. The structure of `categorySeries` block is documented below.
-     */
     categorySeries?: pulumi.Input<inputs.ReportChartCategorySeries>;
-    /**
-     * Color palette (system will pick color automatically by default).
-     */
     colorPalette?: pulumi.Input<string>;
-    /**
-     * Table column definition. The structure of `column` block is documented below.
-     */
     columns?: pulumi.Input<pulumi.Input<inputs.ReportChartColumn>[]>;
-    /**
-     * Comment.
-     */
     comments: pulumi.Input<string>;
-    /**
-     * Bind dataset to chart.
-     */
     dataset: pulumi.Input<string>;
-    /**
-     * Dimension. Valid values: `2D`, `3D`.
-     */
     dimension?: pulumi.Input<string>;
-    /**
-     * Drill down charts. The structure of `drillDownCharts` block is documented below.
-     */
     drillDownCharts?: pulumi.Input<pulumi.Input<inputs.ReportChartDrillDownChart>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Favorite. Valid values: `no`, `yes`.
-     */
     favorite?: pulumi.Input<string>;
-    /**
-     * Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
-     */
     graphType?: pulumi.Input<string>;
-    /**
-     * Enable/Disable Legend area. Valid values: `enable`, `disable`.
-     */
     legend?: pulumi.Input<string>;
-    /**
-     * Font size of legend area.
-     */
     legendFontSize?: pulumi.Input<number>;
-    /**
-     * Chart Widget Name
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Time period. Valid values: `last24h`, `last7d`.
-     */
     period?: pulumi.Input<string>;
-    /**
-     * Used by monitor policy.
-     */
     policy?: pulumi.Input<number>;
-    /**
-     * Style. Valid values: `auto`, `manual`.
-     */
     style?: pulumi.Input<string>;
-    /**
-     * Chart title.
-     */
     title?: pulumi.Input<string>;
-    /**
-     * Font size of chart title.
-     */
     titleFontSize?: pulumi.Input<number>;
-    /**
-     * Chart type. Valid values: `graph`, `table`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Value series of pie chart. The structure of `valueSeries` block is documented below.
-     */
     valueSeries?: pulumi.Input<inputs.ReportChartValueSeries>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * X-series of chart. The structure of `xSeries` block is documented below.
-     */
     xSeries?: pulumi.Input<inputs.ReportChartXSeries>;
-    /**
-     * Y-series of chart. The structure of `ySeries` block is documented below.
-     */
     ySeries?: pulumi.Input<inputs.ReportChartYSeries>;
 }

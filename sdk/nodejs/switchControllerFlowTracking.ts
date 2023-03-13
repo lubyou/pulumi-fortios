@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch flow tracking and export via ipfix/netflow. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * SwitchController FlowTracking can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerFlowTracking:SwitchControllerFlowTracking labelname SwitchControllerFlowTracking
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerFlowTracking:SwitchControllerFlowTracking labelname SwitchControllerFlowTracking
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerFlowTracking extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerFlowTracking resource's state with the given name, ID, and optional extra
@@ -52,77 +34,25 @@ export class SwitchControllerFlowTracking extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerFlowTracking.__pulumiType;
     }
 
-    /**
-     * Configure aggregates in which all traffic sessions matching the IP Address will be grouped into the same flow. The structure of `aggregates` block is documented below.
-     */
     public readonly aggregates!: pulumi.Output<outputs.SwitchControllerFlowTrackingAggregate[] | undefined>;
-    /**
-     * Configure collector ip address.
-     */
     public readonly collectorIp!: pulumi.Output<string>;
-    /**
-     * Configure collector port number(0-65535, default=0).
-     */
     public readonly collectorPort!: pulumi.Output<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
+    public readonly collectors!: pulumi.Output<outputs.SwitchControllerFlowTrackingCollector[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
-     */
     public readonly format!: pulumi.Output<string>;
-    /**
-     * Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
-     */
     public readonly level!: pulumi.Output<string>;
-    /**
-     * Configure flow max export packet size (512-9216, default=512 bytes).
-     */
     public readonly maxExportPktSize!: pulumi.Output<number>;
-    /**
-     * Configure sample mode for the flow tracking. Valid values: `local`, `perimeter`, `device-ingress`.
-     */
     public readonly sampleMode!: pulumi.Output<string>;
-    /**
-     * Configure sample rate for the perimeter and device-ingress sampling(0 - 99999).
-     */
     public readonly sampleRate!: pulumi.Output<number>;
-    /**
-     * Configure flow session general timeout (60-604800, default=3600 seconds).
-     */
+    public readonly templateExportPeriod!: pulumi.Output<number>;
     public readonly timeoutGeneral!: pulumi.Output<number>;
-    /**
-     * Configure flow session ICMP timeout (60-604800, default=300 seconds).
-     */
     public readonly timeoutIcmp!: pulumi.Output<number>;
-    /**
-     * Configure flow session max timeout (60-604800, default=604800 seconds).
-     */
     public readonly timeoutMax!: pulumi.Output<number>;
-    /**
-     * Configure flow session TCP timeout (60-604800, default=3600 seconds).
-     */
     public readonly timeoutTcp!: pulumi.Output<number>;
-    /**
-     * Configure flow session TCP FIN timeout (60-604800, default=300 seconds).
-     */
     public readonly timeoutTcpFin!: pulumi.Output<number>;
-    /**
-     * Configure flow session TCP RST timeout (60-604800, default=120 seconds).
-     */
     public readonly timeoutTcpRst!: pulumi.Output<number>;
-    /**
-     * Configure flow session UDP timeout (60-604800, default=300 seconds).
-     */
     public readonly timeoutUdp!: pulumi.Output<number>;
-    /**
-     * Configure L4 transport protocol for exporting packets. Valid values: `udp`, `tcp`, `sctp`.
-     */
     public readonly transport!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -141,12 +71,14 @@ export class SwitchControllerFlowTracking extends pulumi.CustomResource {
             resourceInputs["aggregates"] = state ? state.aggregates : undefined;
             resourceInputs["collectorIp"] = state ? state.collectorIp : undefined;
             resourceInputs["collectorPort"] = state ? state.collectorPort : undefined;
+            resourceInputs["collectors"] = state ? state.collectors : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["format"] = state ? state.format : undefined;
             resourceInputs["level"] = state ? state.level : undefined;
             resourceInputs["maxExportPktSize"] = state ? state.maxExportPktSize : undefined;
             resourceInputs["sampleMode"] = state ? state.sampleMode : undefined;
             resourceInputs["sampleRate"] = state ? state.sampleRate : undefined;
+            resourceInputs["templateExportPeriod"] = state ? state.templateExportPeriod : undefined;
             resourceInputs["timeoutGeneral"] = state ? state.timeoutGeneral : undefined;
             resourceInputs["timeoutIcmp"] = state ? state.timeoutIcmp : undefined;
             resourceInputs["timeoutMax"] = state ? state.timeoutMax : undefined;
@@ -161,12 +93,14 @@ export class SwitchControllerFlowTracking extends pulumi.CustomResource {
             resourceInputs["aggregates"] = args ? args.aggregates : undefined;
             resourceInputs["collectorIp"] = args ? args.collectorIp : undefined;
             resourceInputs["collectorPort"] = args ? args.collectorPort : undefined;
+            resourceInputs["collectors"] = args ? args.collectors : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["format"] = args ? args.format : undefined;
             resourceInputs["level"] = args ? args.level : undefined;
             resourceInputs["maxExportPktSize"] = args ? args.maxExportPktSize : undefined;
             resourceInputs["sampleMode"] = args ? args.sampleMode : undefined;
             resourceInputs["sampleRate"] = args ? args.sampleRate : undefined;
+            resourceInputs["templateExportPeriod"] = args ? args.templateExportPeriod : undefined;
             resourceInputs["timeoutGeneral"] = args ? args.timeoutGeneral : undefined;
             resourceInputs["timeoutIcmp"] = args ? args.timeoutIcmp : undefined;
             resourceInputs["timeoutMax"] = args ? args.timeoutMax : undefined;
@@ -186,77 +120,25 @@ export class SwitchControllerFlowTracking extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerFlowTracking resources.
  */
 export interface SwitchControllerFlowTrackingState {
-    /**
-     * Configure aggregates in which all traffic sessions matching the IP Address will be grouped into the same flow. The structure of `aggregates` block is documented below.
-     */
     aggregates?: pulumi.Input<pulumi.Input<inputs.SwitchControllerFlowTrackingAggregate>[]>;
-    /**
-     * Configure collector ip address.
-     */
     collectorIp?: pulumi.Input<string>;
-    /**
-     * Configure collector port number(0-65535, default=0).
-     */
     collectorPort?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
+    collectors?: pulumi.Input<pulumi.Input<inputs.SwitchControllerFlowTrackingCollector>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
-     */
     format?: pulumi.Input<string>;
-    /**
-     * Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
-     */
     level?: pulumi.Input<string>;
-    /**
-     * Configure flow max export packet size (512-9216, default=512 bytes).
-     */
     maxExportPktSize?: pulumi.Input<number>;
-    /**
-     * Configure sample mode for the flow tracking. Valid values: `local`, `perimeter`, `device-ingress`.
-     */
     sampleMode?: pulumi.Input<string>;
-    /**
-     * Configure sample rate for the perimeter and device-ingress sampling(0 - 99999).
-     */
     sampleRate?: pulumi.Input<number>;
-    /**
-     * Configure flow session general timeout (60-604800, default=3600 seconds).
-     */
+    templateExportPeriod?: pulumi.Input<number>;
     timeoutGeneral?: pulumi.Input<number>;
-    /**
-     * Configure flow session ICMP timeout (60-604800, default=300 seconds).
-     */
     timeoutIcmp?: pulumi.Input<number>;
-    /**
-     * Configure flow session max timeout (60-604800, default=604800 seconds).
-     */
     timeoutMax?: pulumi.Input<number>;
-    /**
-     * Configure flow session TCP timeout (60-604800, default=3600 seconds).
-     */
     timeoutTcp?: pulumi.Input<number>;
-    /**
-     * Configure flow session TCP FIN timeout (60-604800, default=300 seconds).
-     */
     timeoutTcpFin?: pulumi.Input<number>;
-    /**
-     * Configure flow session TCP RST timeout (60-604800, default=120 seconds).
-     */
     timeoutTcpRst?: pulumi.Input<number>;
-    /**
-     * Configure flow session UDP timeout (60-604800, default=300 seconds).
-     */
     timeoutUdp?: pulumi.Input<number>;
-    /**
-     * Configure L4 transport protocol for exporting packets. Valid values: `udp`, `tcp`, `sctp`.
-     */
     transport?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -264,76 +146,24 @@ export interface SwitchControllerFlowTrackingState {
  * The set of arguments for constructing a SwitchControllerFlowTracking resource.
  */
 export interface SwitchControllerFlowTrackingArgs {
-    /**
-     * Configure aggregates in which all traffic sessions matching the IP Address will be grouped into the same flow. The structure of `aggregates` block is documented below.
-     */
     aggregates?: pulumi.Input<pulumi.Input<inputs.SwitchControllerFlowTrackingAggregate>[]>;
-    /**
-     * Configure collector ip address.
-     */
     collectorIp?: pulumi.Input<string>;
-    /**
-     * Configure collector port number(0-65535, default=0).
-     */
     collectorPort?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
+    collectors?: pulumi.Input<pulumi.Input<inputs.SwitchControllerFlowTrackingCollector>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
-     */
     format?: pulumi.Input<string>;
-    /**
-     * Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
-     */
     level?: pulumi.Input<string>;
-    /**
-     * Configure flow max export packet size (512-9216, default=512 bytes).
-     */
     maxExportPktSize?: pulumi.Input<number>;
-    /**
-     * Configure sample mode for the flow tracking. Valid values: `local`, `perimeter`, `device-ingress`.
-     */
     sampleMode?: pulumi.Input<string>;
-    /**
-     * Configure sample rate for the perimeter and device-ingress sampling(0 - 99999).
-     */
     sampleRate?: pulumi.Input<number>;
-    /**
-     * Configure flow session general timeout (60-604800, default=3600 seconds).
-     */
+    templateExportPeriod?: pulumi.Input<number>;
     timeoutGeneral?: pulumi.Input<number>;
-    /**
-     * Configure flow session ICMP timeout (60-604800, default=300 seconds).
-     */
     timeoutIcmp?: pulumi.Input<number>;
-    /**
-     * Configure flow session max timeout (60-604800, default=604800 seconds).
-     */
     timeoutMax?: pulumi.Input<number>;
-    /**
-     * Configure flow session TCP timeout (60-604800, default=3600 seconds).
-     */
     timeoutTcp?: pulumi.Input<number>;
-    /**
-     * Configure flow session TCP FIN timeout (60-604800, default=300 seconds).
-     */
     timeoutTcpFin?: pulumi.Input<number>;
-    /**
-     * Configure flow session TCP RST timeout (60-604800, default=120 seconds).
-     */
     timeoutTcpRst?: pulumi.Input<number>;
-    /**
-     * Configure flow session UDP timeout (60-604800, default=300 seconds).
-     */
     timeoutUdp?: pulumi.Input<number>;
-    /**
-     * Configure L4 transport protocol for exporting packets. Valid values: `udp`, `tcp`, `sctp`.
-     */
     transport?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

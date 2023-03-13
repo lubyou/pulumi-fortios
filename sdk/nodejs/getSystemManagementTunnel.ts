@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios system managementtunnel
- */
 export function getSystemManagementTunnel(args?: GetSystemManagementTunnelArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemManagementTunnelResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemManagementTunnel:GetSystemManagementTunnel", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getSystemManagementTunnel(args?: GetSystemManagementTunnelArgs, 
  * A collection of arguments for invoking GetSystemManagementTunnel.
  */
 export interface GetSystemManagementTunnelArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -33,51 +24,26 @@ export interface GetSystemManagementTunnelArgs {
  * A collection of values returned by GetSystemManagementTunnel.
  */
 export interface GetSystemManagementTunnelResult {
-    /**
-     * Enable/disable collection of run time statistics.
-     */
     readonly allowCollectStatistics: string;
-    /**
-     * Enable/disable allow config restore.
-     */
     readonly allowConfigRestore: string;
-    /**
-     * Enable/disable push configuration.
-     */
     readonly allowPushConfiguration: string;
-    /**
-     * Enable/disable push firmware.
-     */
     readonly allowPushFirmware: string;
-    /**
-     * Enable/disable restriction of authorized manager only.
-     */
     readonly authorizedManagerOnly: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Serial number.
-     */
     readonly serialNumber: string;
-    /**
-     * Enable/disable FGFM tunnel.
-     */
     readonly status: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemManagementTunnelOutput(args?: GetSystemManagementTunnelOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemManagementTunnelResult> {
-    return pulumi.output(args).apply(a => getSystemManagementTunnel(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemManagementTunnel(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemManagementTunnel.
  */
 export interface GetSystemManagementTunnelOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

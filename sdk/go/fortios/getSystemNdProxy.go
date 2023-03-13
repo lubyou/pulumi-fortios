@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios system ndproxy
 func LookupSystemNdProxy(ctx *pulumi.Context, args *LookupSystemNdProxyArgs, opts ...pulumi.InvokeOption) (*LookupSystemNdProxyResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemNdProxyResult
@@ -23,19 +22,16 @@ func LookupSystemNdProxy(ctx *pulumi.Context, args *LookupSystemNdProxyArgs, opt
 
 // A collection of arguments for invoking GetSystemNdProxy.
 type LookupSystemNdProxyArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemNdProxy.
 type LookupSystemNdProxyResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Interfaces using the neighbor discovery proxy. The structure of `member` block is documented below.
-	Members []GetSystemNdProxyMember `pulumi:"members"`
-	// Enable/disable neighbor discovery proxy.
-	Status    string  `pulumi:"status"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id        string                   `pulumi:"id"`
+	Members   []GetSystemNdProxyMember `pulumi:"members"`
+	Status    string                   `pulumi:"status"`
+	Vdomparam *string                  `pulumi:"vdomparam"`
 }
 
 func LookupSystemNdProxyOutput(ctx *pulumi.Context, args LookupSystemNdProxyOutputArgs, opts ...pulumi.InvokeOption) LookupSystemNdProxyResultOutput {
@@ -53,7 +49,6 @@ func LookupSystemNdProxyOutput(ctx *pulumi.Context, args LookupSystemNdProxyOutp
 
 // A collection of arguments for invoking GetSystemNdProxy.
 type LookupSystemNdProxyOutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -81,12 +76,10 @@ func (o LookupSystemNdProxyResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemNdProxyResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Interfaces using the neighbor discovery proxy. The structure of `member` block is documented below.
 func (o LookupSystemNdProxyResultOutput) Members() GetSystemNdProxyMemberArrayOutput {
 	return o.ApplyT(func(v LookupSystemNdProxyResult) []GetSystemNdProxyMember { return v.Members }).(GetSystemNdProxyMemberArrayOutput)
 }
 
-// Enable/disable neighbor discovery proxy.
 func (o LookupSystemNdProxyResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemNdProxyResult) string { return v.Status }).(pulumi.StringOutput)
 }

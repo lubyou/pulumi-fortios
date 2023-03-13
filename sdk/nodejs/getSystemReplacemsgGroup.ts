@@ -2,18 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios system replacemsggroup
- */
 export function getSystemReplacemsgGroup(args: GetSystemReplacemsgGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemReplacemsgGroupResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemReplacemsgGroup:GetSystemReplacemsgGroup", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -24,13 +19,7 @@ export function getSystemReplacemsgGroup(args: GetSystemReplacemsgGroupArgs, opt
  * A collection of arguments for invoking GetSystemReplacemsgGroup.
  */
 export interface GetSystemReplacemsgGroupArgs {
-    /**
-     * Specify the name of the desired system replacemsggroup.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -38,115 +27,42 @@ export interface GetSystemReplacemsgGroupArgs {
  * A collection of values returned by GetSystemReplacemsgGroup.
  */
 export interface GetSystemReplacemsgGroupResult {
-    /**
-     * Replacement message table entries. The structure of `admin` block is documented below.
-     */
     readonly admins: outputs.GetSystemReplacemsgGroupAdmin[];
-    /**
-     * Replacement message table entries. The structure of `alertmail` block is documented below.
-     */
     readonly alertmails: outputs.GetSystemReplacemsgGroupAlertmail[];
-    /**
-     * Replacement message table entries. The structure of `auth` block is documented below.
-     */
     readonly auths: outputs.GetSystemReplacemsgGroupAuth[];
-    /**
-     * Replacement message table entries. The structure of `automation` block is documented below.
-     */
     readonly automations: outputs.GetSystemReplacemsgGroupAutomation[];
-    /**
-     * Comment.
-     */
     readonly comment: string;
-    /**
-     * Replacement message table entries. The structure of `customMessage` block is documented below.
-     */
     readonly customMessages: outputs.GetSystemReplacemsgGroupCustomMessage[];
-    /**
-     * Replacement message table entries. The structure of `deviceDetectionPortal` block is documented below.
-     */
     readonly deviceDetectionPortals: outputs.GetSystemReplacemsgGroupDeviceDetectionPortal[];
-    /**
-     * Replacement message table entries. The structure of `ec` block is documented below.
-     */
     readonly ecs: outputs.GetSystemReplacemsgGroupEc[];
-    /**
-     * Replacement message table entries. The structure of `fortiguardWf` block is documented below.
-     */
     readonly fortiguardWfs: outputs.GetSystemReplacemsgGroupFortiguardWf[];
-    /**
-     * Replacement message table entries. The structure of `ftp` block is documented below.
-     */
     readonly ftps: outputs.GetSystemReplacemsgGroupFtp[];
-    /**
-     * Group type.
-     */
     readonly groupType: string;
-    /**
-     * Replacement message table entries. The structure of `http` block is documented below.
-     */
     readonly https: outputs.GetSystemReplacemsgGroupHttp[];
-    /**
-     * Replacement message table entries. The structure of `icap` block is documented below.
-     */
     readonly icaps: outputs.GetSystemReplacemsgGroupIcap[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Replacement message table entries. The structure of `mail` block is documented below.
-     */
     readonly mails: outputs.GetSystemReplacemsgGroupMail[];
-    /**
-     * Replacement message table entries. The structure of `nacQuar` block is documented below.
-     */
     readonly nacQuars: outputs.GetSystemReplacemsgGroupNacQuar[];
-    /**
-     * Group name.
-     */
     readonly name: string;
-    /**
-     * Replacement message table entries. The structure of `nntp` block is documented below.
-     */
     readonly nntps: outputs.GetSystemReplacemsgGroupNntp[];
-    /**
-     * Replacement message table entries. The structure of `spam` block is documented below.
-     */
     readonly spams: outputs.GetSystemReplacemsgGroupSpam[];
-    /**
-     * Replacement message table entries. The structure of `sslvpn` block is documented below.
-     */
     readonly sslvpns: outputs.GetSystemReplacemsgGroupSslvpn[];
-    /**
-     * Replacement message table entries. The structure of `trafficQuota` block is documented below.
-     */
     readonly trafficQuotas: outputs.GetSystemReplacemsgGroupTrafficQuota[];
-    /**
-     * Replacement message table entries. The structure of `utm` block is documented below.
-     */
     readonly utms: outputs.GetSystemReplacemsgGroupUtm[];
     readonly vdomparam?: string;
-    /**
-     * Replacement message table entries. The structure of `webproxy` block is documented below.
-     */
     readonly webproxies: outputs.GetSystemReplacemsgGroupWebproxy[];
 }
-
 export function getSystemReplacemsgGroupOutput(args: GetSystemReplacemsgGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemReplacemsgGroupResult> {
-    return pulumi.output(args).apply(a => getSystemReplacemsgGroup(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemReplacemsgGroup(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemReplacemsgGroup.
  */
 export interface GetSystemReplacemsgGroupOutputArgs {
-    /**
-     * Specify the name of the desired system replacemsggroup.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

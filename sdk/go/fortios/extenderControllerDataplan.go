@@ -10,66 +10,29 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// FortiExtender dataplan configuration. Applies to FortiOS Version `>= 6.4.2`.
-//
-// ## Import
-//
-// ExtenderController Dataplan can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/extenderControllerDataplan:ExtenderControllerDataplan labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/extenderControllerDataplan:ExtenderControllerDataplan labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type ExtenderControllerDataplan struct {
 	pulumi.CustomResourceState
 
-	// APN configuration.
-	Apn pulumi.StringOutput `pulumi:"apn"`
-	// Authentication type. Valid values: `none`, `pap`, `chap`.
-	AuthType pulumi.StringOutput `pulumi:"authType"`
-	// Billing day of the month (1 - 31).
-	BillingDate pulumi.IntOutput `pulumi:"billingDate"`
-	// Capacity in MB (0 - 102400000).
-	Capacity pulumi.IntOutput `pulumi:"capacity"`
-	// Carrier configuration.
-	Carrier pulumi.StringOutput `pulumi:"carrier"`
-	// ICCID configuration.
-	Iccid pulumi.StringOutput `pulumi:"iccid"`
-	// Dataplan's modem specifics, if any. Valid values: `modem1`, `modem2`, `all`.
-	ModemId pulumi.StringOutput `pulumi:"modemId"`
-	// Monthly fee of dataplan (0 - 100000, in local currency).
-	MonthlyFee pulumi.IntOutput `pulumi:"monthlyFee"`
-	// FortiExtender dataplan name
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable dataplan overage detection. Valid values: `disable`, `enable`.
-	Overage pulumi.StringOutput `pulumi:"overage"`
-	// Password.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
-	Pdn pulumi.StringOutput `pulumi:"pdn"`
-	// Preferred subnet mask (8 - 32).
-	PreferredSubnet pulumi.IntOutput `pulumi:"preferredSubnet"`
-	// Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
-	PrivateNetwork pulumi.StringOutput `pulumi:"privateNetwork"`
-	// Signal period (600 to 18000 seconds).
-	SignalPeriod pulumi.IntOutput `pulumi:"signalPeriod"`
-	// Signal threshold. Specify the range between 50 - 100, where 50/100 means -50/-100 dBm.
-	SignalThreshold pulumi.IntOutput `pulumi:"signalThreshold"`
-	// SIM slot configuration. Valid values: `sim1`, `sim2`.
-	Slot pulumi.StringOutput `pulumi:"slot"`
-	// Type preferences configuration. Valid values: `carrier`, `slot`, `iccid`, `generic`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Username.
-	Username pulumi.StringOutput `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Apn             pulumi.StringOutput    `pulumi:"apn"`
+	AuthType        pulumi.StringOutput    `pulumi:"authType"`
+	BillingDate     pulumi.IntOutput       `pulumi:"billingDate"`
+	Capacity        pulumi.IntOutput       `pulumi:"capacity"`
+	Carrier         pulumi.StringOutput    `pulumi:"carrier"`
+	Iccid           pulumi.StringOutput    `pulumi:"iccid"`
+	ModemId         pulumi.StringOutput    `pulumi:"modemId"`
+	MonthlyFee      pulumi.IntOutput       `pulumi:"monthlyFee"`
+	Name            pulumi.StringOutput    `pulumi:"name"`
+	Overage         pulumi.StringOutput    `pulumi:"overage"`
+	Password        pulumi.StringPtrOutput `pulumi:"password"`
+	Pdn             pulumi.StringOutput    `pulumi:"pdn"`
+	PreferredSubnet pulumi.IntOutput       `pulumi:"preferredSubnet"`
+	PrivateNetwork  pulumi.StringOutput    `pulumi:"privateNetwork"`
+	SignalPeriod    pulumi.IntOutput       `pulumi:"signalPeriod"`
+	SignalThreshold pulumi.IntOutput       `pulumi:"signalThreshold"`
+	Slot            pulumi.StringOutput    `pulumi:"slot"`
+	Type            pulumi.StringOutput    `pulumi:"type"`
+	Username        pulumi.StringOutput    `pulumi:"username"`
+	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewExtenderControllerDataplan registers a new resource with the given unique name, arguments, and options.
@@ -79,6 +42,13 @@ func NewExtenderControllerDataplan(ctx *pulumi.Context,
 		args = &ExtenderControllerDataplanArgs{}
 	}
 
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource ExtenderControllerDataplan
 	err := ctx.RegisterResource("fortios:index/extenderControllerDataplan:ExtenderControllerDataplan", name, args, &resource, opts...)
@@ -102,89 +72,49 @@ func GetExtenderControllerDataplan(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ExtenderControllerDataplan resources.
 type extenderControllerDataplanState struct {
-	// APN configuration.
-	Apn *string `pulumi:"apn"`
-	// Authentication type. Valid values: `none`, `pap`, `chap`.
-	AuthType *string `pulumi:"authType"`
-	// Billing day of the month (1 - 31).
-	BillingDate *int `pulumi:"billingDate"`
-	// Capacity in MB (0 - 102400000).
-	Capacity *int `pulumi:"capacity"`
-	// Carrier configuration.
-	Carrier *string `pulumi:"carrier"`
-	// ICCID configuration.
-	Iccid *string `pulumi:"iccid"`
-	// Dataplan's modem specifics, if any. Valid values: `modem1`, `modem2`, `all`.
-	ModemId *string `pulumi:"modemId"`
-	// Monthly fee of dataplan (0 - 100000, in local currency).
-	MonthlyFee *int `pulumi:"monthlyFee"`
-	// FortiExtender dataplan name
-	Name *string `pulumi:"name"`
-	// Enable/disable dataplan overage detection. Valid values: `disable`, `enable`.
-	Overage *string `pulumi:"overage"`
-	// Password.
-	Password *string `pulumi:"password"`
-	// PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
-	Pdn *string `pulumi:"pdn"`
-	// Preferred subnet mask (8 - 32).
-	PreferredSubnet *int `pulumi:"preferredSubnet"`
-	// Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
-	PrivateNetwork *string `pulumi:"privateNetwork"`
-	// Signal period (600 to 18000 seconds).
-	SignalPeriod *int `pulumi:"signalPeriod"`
-	// Signal threshold. Specify the range between 50 - 100, where 50/100 means -50/-100 dBm.
-	SignalThreshold *int `pulumi:"signalThreshold"`
-	// SIM slot configuration. Valid values: `sim1`, `sim2`.
-	Slot *string `pulumi:"slot"`
-	// Type preferences configuration. Valid values: `carrier`, `slot`, `iccid`, `generic`.
-	Type *string `pulumi:"type"`
-	// Username.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Apn             *string `pulumi:"apn"`
+	AuthType        *string `pulumi:"authType"`
+	BillingDate     *int    `pulumi:"billingDate"`
+	Capacity        *int    `pulumi:"capacity"`
+	Carrier         *string `pulumi:"carrier"`
+	Iccid           *string `pulumi:"iccid"`
+	ModemId         *string `pulumi:"modemId"`
+	MonthlyFee      *int    `pulumi:"monthlyFee"`
+	Name            *string `pulumi:"name"`
+	Overage         *string `pulumi:"overage"`
+	Password        *string `pulumi:"password"`
+	Pdn             *string `pulumi:"pdn"`
+	PreferredSubnet *int    `pulumi:"preferredSubnet"`
+	PrivateNetwork  *string `pulumi:"privateNetwork"`
+	SignalPeriod    *int    `pulumi:"signalPeriod"`
+	SignalThreshold *int    `pulumi:"signalThreshold"`
+	Slot            *string `pulumi:"slot"`
+	Type            *string `pulumi:"type"`
+	Username        *string `pulumi:"username"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 type ExtenderControllerDataplanState struct {
-	// APN configuration.
-	Apn pulumi.StringPtrInput
-	// Authentication type. Valid values: `none`, `pap`, `chap`.
-	AuthType pulumi.StringPtrInput
-	// Billing day of the month (1 - 31).
-	BillingDate pulumi.IntPtrInput
-	// Capacity in MB (0 - 102400000).
-	Capacity pulumi.IntPtrInput
-	// Carrier configuration.
-	Carrier pulumi.StringPtrInput
-	// ICCID configuration.
-	Iccid pulumi.StringPtrInput
-	// Dataplan's modem specifics, if any. Valid values: `modem1`, `modem2`, `all`.
-	ModemId pulumi.StringPtrInput
-	// Monthly fee of dataplan (0 - 100000, in local currency).
-	MonthlyFee pulumi.IntPtrInput
-	// FortiExtender dataplan name
-	Name pulumi.StringPtrInput
-	// Enable/disable dataplan overage detection. Valid values: `disable`, `enable`.
-	Overage pulumi.StringPtrInput
-	// Password.
-	Password pulumi.StringPtrInput
-	// PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
-	Pdn pulumi.StringPtrInput
-	// Preferred subnet mask (8 - 32).
+	Apn             pulumi.StringPtrInput
+	AuthType        pulumi.StringPtrInput
+	BillingDate     pulumi.IntPtrInput
+	Capacity        pulumi.IntPtrInput
+	Carrier         pulumi.StringPtrInput
+	Iccid           pulumi.StringPtrInput
+	ModemId         pulumi.StringPtrInput
+	MonthlyFee      pulumi.IntPtrInput
+	Name            pulumi.StringPtrInput
+	Overage         pulumi.StringPtrInput
+	Password        pulumi.StringPtrInput
+	Pdn             pulumi.StringPtrInput
 	PreferredSubnet pulumi.IntPtrInput
-	// Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
-	PrivateNetwork pulumi.StringPtrInput
-	// Signal period (600 to 18000 seconds).
-	SignalPeriod pulumi.IntPtrInput
-	// Signal threshold. Specify the range between 50 - 100, where 50/100 means -50/-100 dBm.
+	PrivateNetwork  pulumi.StringPtrInput
+	SignalPeriod    pulumi.IntPtrInput
 	SignalThreshold pulumi.IntPtrInput
-	// SIM slot configuration. Valid values: `sim1`, `sim2`.
-	Slot pulumi.StringPtrInput
-	// Type preferences configuration. Valid values: `carrier`, `slot`, `iccid`, `generic`.
-	Type pulumi.StringPtrInput
-	// Username.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Slot            pulumi.StringPtrInput
+	Type            pulumi.StringPtrInput
+	Username        pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (ExtenderControllerDataplanState) ElementType() reflect.Type {
@@ -192,90 +122,50 @@ func (ExtenderControllerDataplanState) ElementType() reflect.Type {
 }
 
 type extenderControllerDataplanArgs struct {
-	// APN configuration.
-	Apn *string `pulumi:"apn"`
-	// Authentication type. Valid values: `none`, `pap`, `chap`.
-	AuthType *string `pulumi:"authType"`
-	// Billing day of the month (1 - 31).
-	BillingDate *int `pulumi:"billingDate"`
-	// Capacity in MB (0 - 102400000).
-	Capacity *int `pulumi:"capacity"`
-	// Carrier configuration.
-	Carrier *string `pulumi:"carrier"`
-	// ICCID configuration.
-	Iccid *string `pulumi:"iccid"`
-	// Dataplan's modem specifics, if any. Valid values: `modem1`, `modem2`, `all`.
-	ModemId *string `pulumi:"modemId"`
-	// Monthly fee of dataplan (0 - 100000, in local currency).
-	MonthlyFee *int `pulumi:"monthlyFee"`
-	// FortiExtender dataplan name
-	Name *string `pulumi:"name"`
-	// Enable/disable dataplan overage detection. Valid values: `disable`, `enable`.
-	Overage *string `pulumi:"overage"`
-	// Password.
-	Password *string `pulumi:"password"`
-	// PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
-	Pdn *string `pulumi:"pdn"`
-	// Preferred subnet mask (8 - 32).
-	PreferredSubnet *int `pulumi:"preferredSubnet"`
-	// Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
-	PrivateNetwork *string `pulumi:"privateNetwork"`
-	// Signal period (600 to 18000 seconds).
-	SignalPeriod *int `pulumi:"signalPeriod"`
-	// Signal threshold. Specify the range between 50 - 100, where 50/100 means -50/-100 dBm.
-	SignalThreshold *int `pulumi:"signalThreshold"`
-	// SIM slot configuration. Valid values: `sim1`, `sim2`.
-	Slot *string `pulumi:"slot"`
-	// Type preferences configuration. Valid values: `carrier`, `slot`, `iccid`, `generic`.
-	Type *string `pulumi:"type"`
-	// Username.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Apn             *string `pulumi:"apn"`
+	AuthType        *string `pulumi:"authType"`
+	BillingDate     *int    `pulumi:"billingDate"`
+	Capacity        *int    `pulumi:"capacity"`
+	Carrier         *string `pulumi:"carrier"`
+	Iccid           *string `pulumi:"iccid"`
+	ModemId         *string `pulumi:"modemId"`
+	MonthlyFee      *int    `pulumi:"monthlyFee"`
+	Name            *string `pulumi:"name"`
+	Overage         *string `pulumi:"overage"`
+	Password        *string `pulumi:"password"`
+	Pdn             *string `pulumi:"pdn"`
+	PreferredSubnet *int    `pulumi:"preferredSubnet"`
+	PrivateNetwork  *string `pulumi:"privateNetwork"`
+	SignalPeriod    *int    `pulumi:"signalPeriod"`
+	SignalThreshold *int    `pulumi:"signalThreshold"`
+	Slot            *string `pulumi:"slot"`
+	Type            *string `pulumi:"type"`
+	Username        *string `pulumi:"username"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a ExtenderControllerDataplan resource.
 type ExtenderControllerDataplanArgs struct {
-	// APN configuration.
-	Apn pulumi.StringPtrInput
-	// Authentication type. Valid values: `none`, `pap`, `chap`.
-	AuthType pulumi.StringPtrInput
-	// Billing day of the month (1 - 31).
-	BillingDate pulumi.IntPtrInput
-	// Capacity in MB (0 - 102400000).
-	Capacity pulumi.IntPtrInput
-	// Carrier configuration.
-	Carrier pulumi.StringPtrInput
-	// ICCID configuration.
-	Iccid pulumi.StringPtrInput
-	// Dataplan's modem specifics, if any. Valid values: `modem1`, `modem2`, `all`.
-	ModemId pulumi.StringPtrInput
-	// Monthly fee of dataplan (0 - 100000, in local currency).
-	MonthlyFee pulumi.IntPtrInput
-	// FortiExtender dataplan name
-	Name pulumi.StringPtrInput
-	// Enable/disable dataplan overage detection. Valid values: `disable`, `enable`.
-	Overage pulumi.StringPtrInput
-	// Password.
-	Password pulumi.StringPtrInput
-	// PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
-	Pdn pulumi.StringPtrInput
-	// Preferred subnet mask (8 - 32).
+	Apn             pulumi.StringPtrInput
+	AuthType        pulumi.StringPtrInput
+	BillingDate     pulumi.IntPtrInput
+	Capacity        pulumi.IntPtrInput
+	Carrier         pulumi.StringPtrInput
+	Iccid           pulumi.StringPtrInput
+	ModemId         pulumi.StringPtrInput
+	MonthlyFee      pulumi.IntPtrInput
+	Name            pulumi.StringPtrInput
+	Overage         pulumi.StringPtrInput
+	Password        pulumi.StringPtrInput
+	Pdn             pulumi.StringPtrInput
 	PreferredSubnet pulumi.IntPtrInput
-	// Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
-	PrivateNetwork pulumi.StringPtrInput
-	// Signal period (600 to 18000 seconds).
-	SignalPeriod pulumi.IntPtrInput
-	// Signal threshold. Specify the range between 50 - 100, where 50/100 means -50/-100 dBm.
+	PrivateNetwork  pulumi.StringPtrInput
+	SignalPeriod    pulumi.IntPtrInput
 	SignalThreshold pulumi.IntPtrInput
-	// SIM slot configuration. Valid values: `sim1`, `sim2`.
-	Slot pulumi.StringPtrInput
-	// Type preferences configuration. Valid values: `carrier`, `slot`, `iccid`, `generic`.
-	Type pulumi.StringPtrInput
-	// Username.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Slot            pulumi.StringPtrInput
+	Type            pulumi.StringPtrInput
+	Username        pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (ExtenderControllerDataplanArgs) ElementType() reflect.Type {
@@ -304,7 +194,7 @@ func (i *ExtenderControllerDataplan) ToExtenderControllerDataplanOutputWithConte
 // ExtenderControllerDataplanArrayInput is an input type that accepts ExtenderControllerDataplanArray and ExtenderControllerDataplanArrayOutput values.
 // You can construct a concrete instance of `ExtenderControllerDataplanArrayInput` via:
 //
-//          ExtenderControllerDataplanArray{ ExtenderControllerDataplanArgs{...} }
+//	ExtenderControllerDataplanArray{ ExtenderControllerDataplanArgs{...} }
 type ExtenderControllerDataplanArrayInput interface {
 	pulumi.Input
 
@@ -329,7 +219,7 @@ func (i ExtenderControllerDataplanArray) ToExtenderControllerDataplanArrayOutput
 // ExtenderControllerDataplanMapInput is an input type that accepts ExtenderControllerDataplanMap and ExtenderControllerDataplanMapOutput values.
 // You can construct a concrete instance of `ExtenderControllerDataplanMapInput` via:
 //
-//          ExtenderControllerDataplanMap{ "key": ExtenderControllerDataplanArgs{...} }
+//	ExtenderControllerDataplanMap{ "key": ExtenderControllerDataplanArgs{...} }
 type ExtenderControllerDataplanMapInput interface {
 	pulumi.Input
 
@@ -363,6 +253,86 @@ func (o ExtenderControllerDataplanOutput) ToExtenderControllerDataplanOutput() E
 
 func (o ExtenderControllerDataplanOutput) ToExtenderControllerDataplanOutputWithContext(ctx context.Context) ExtenderControllerDataplanOutput {
 	return o
+}
+
+func (o ExtenderControllerDataplanOutput) Apn() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.StringOutput { return v.Apn }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.StringOutput { return v.AuthType }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) BillingDate() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.IntOutput { return v.BillingDate }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) Capacity() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.IntOutput { return v.Capacity }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) Carrier() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.StringOutput { return v.Carrier }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) Iccid() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.StringOutput { return v.Iccid }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) ModemId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.StringOutput { return v.ModemId }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) MonthlyFee() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.IntOutput { return v.MonthlyFee }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) Overage() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.StringOutput { return v.Overage }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) Pdn() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.StringOutput { return v.Pdn }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) PreferredSubnet() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.IntOutput { return v.PreferredSubnet }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) PrivateNetwork() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.StringOutput { return v.PrivateNetwork }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) SignalPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.IntOutput { return v.SignalPeriod }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) SignalThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.IntOutput { return v.SignalThreshold }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) Slot() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.StringOutput { return v.Slot }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerDataplanOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerDataplan) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type ExtenderControllerDataplanArrayOutput struct{ *pulumi.OutputState }

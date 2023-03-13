@@ -10,52 +10,24 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Show Internet Service application.
-//
-// ## Import
-//
-// Firewall InternetService can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetService:FirewallInternetService labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetService:FirewallInternetService labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallInternetService struct {
 	pulumi.CustomResourceState
 
-	// Database name this Internet Service belongs to. Valid values: `isdb`, `irdb`.
-	Database pulumi.StringOutput `pulumi:"database"`
-	// How this service may be used in a firewall policy (source, destination or both). Valid values: `src`, `dst`, `both`.
-	Direction pulumi.StringOutput `pulumi:"direction"`
-	// Extra number of IP ranges.
-	ExtraIpRangeNumber pulumi.IntOutput `pulumi:"extraIpRangeNumber"`
-	// Internet Service ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Icon ID of Internet Service.
-	IconId pulumi.IntOutput `pulumi:"iconId"`
-	// Total number of IP addresses.
-	IpNumber pulumi.IntOutput `pulumi:"ipNumber"`
-	// Total number of IP ranges.
-	IpRangeNumber pulumi.IntOutput `pulumi:"ipRangeNumber"`
-	// Internet Service name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Indicates whether the Internet Service can be used.
-	Obsolete pulumi.IntOutput `pulumi:"obsolete"`
-	// Reputation level of the Internet Service.
-	Reputation pulumi.IntOutput `pulumi:"reputation"`
-	// Singular level of the Internet Service.
-	Singularity pulumi.IntOutput `pulumi:"singularity"`
-	// Second Level Domain.
-	SldId pulumi.IntOutput `pulumi:"sldId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Database            pulumi.StringOutput    `pulumi:"database"`
+	Direction           pulumi.StringOutput    `pulumi:"direction"`
+	ExtraIp6RangeNumber pulumi.IntOutput       `pulumi:"extraIp6RangeNumber"`
+	ExtraIpRangeNumber  pulumi.IntOutput       `pulumi:"extraIpRangeNumber"`
+	Fosid               pulumi.IntOutput       `pulumi:"fosid"`
+	IconId              pulumi.IntOutput       `pulumi:"iconId"`
+	Ip6RangeNumber      pulumi.IntOutput       `pulumi:"ip6RangeNumber"`
+	IpNumber            pulumi.IntOutput       `pulumi:"ipNumber"`
+	IpRangeNumber       pulumi.IntOutput       `pulumi:"ipRangeNumber"`
+	Name                pulumi.StringOutput    `pulumi:"name"`
+	Obsolete            pulumi.IntOutput       `pulumi:"obsolete"`
+	Reputation          pulumi.IntOutput       `pulumi:"reputation"`
+	Singularity         pulumi.IntOutput       `pulumi:"singularity"`
+	SldId               pulumi.IntOutput       `pulumi:"sldId"`
+	Vdomparam           pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallInternetService registers a new resource with the given unique name, arguments, and options.
@@ -88,61 +60,39 @@ func GetFirewallInternetService(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallInternetService resources.
 type firewallInternetServiceState struct {
-	// Database name this Internet Service belongs to. Valid values: `isdb`, `irdb`.
-	Database *string `pulumi:"database"`
-	// How this service may be used in a firewall policy (source, destination or both). Valid values: `src`, `dst`, `both`.
-	Direction *string `pulumi:"direction"`
-	// Extra number of IP ranges.
-	ExtraIpRangeNumber *int `pulumi:"extraIpRangeNumber"`
-	// Internet Service ID.
-	Fosid *int `pulumi:"fosid"`
-	// Icon ID of Internet Service.
-	IconId *int `pulumi:"iconId"`
-	// Total number of IP addresses.
-	IpNumber *int `pulumi:"ipNumber"`
-	// Total number of IP ranges.
-	IpRangeNumber *int `pulumi:"ipRangeNumber"`
-	// Internet Service name.
-	Name *string `pulumi:"name"`
-	// Indicates whether the Internet Service can be used.
-	Obsolete *int `pulumi:"obsolete"`
-	// Reputation level of the Internet Service.
-	Reputation *int `pulumi:"reputation"`
-	// Singular level of the Internet Service.
-	Singularity *int `pulumi:"singularity"`
-	// Second Level Domain.
-	SldId *int `pulumi:"sldId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Database            *string `pulumi:"database"`
+	Direction           *string `pulumi:"direction"`
+	ExtraIp6RangeNumber *int    `pulumi:"extraIp6RangeNumber"`
+	ExtraIpRangeNumber  *int    `pulumi:"extraIpRangeNumber"`
+	Fosid               *int    `pulumi:"fosid"`
+	IconId              *int    `pulumi:"iconId"`
+	Ip6RangeNumber      *int    `pulumi:"ip6RangeNumber"`
+	IpNumber            *int    `pulumi:"ipNumber"`
+	IpRangeNumber       *int    `pulumi:"ipRangeNumber"`
+	Name                *string `pulumi:"name"`
+	Obsolete            *int    `pulumi:"obsolete"`
+	Reputation          *int    `pulumi:"reputation"`
+	Singularity         *int    `pulumi:"singularity"`
+	SldId               *int    `pulumi:"sldId"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 type FirewallInternetServiceState struct {
-	// Database name this Internet Service belongs to. Valid values: `isdb`, `irdb`.
-	Database pulumi.StringPtrInput
-	// How this service may be used in a firewall policy (source, destination or both). Valid values: `src`, `dst`, `both`.
-	Direction pulumi.StringPtrInput
-	// Extra number of IP ranges.
-	ExtraIpRangeNumber pulumi.IntPtrInput
-	// Internet Service ID.
-	Fosid pulumi.IntPtrInput
-	// Icon ID of Internet Service.
-	IconId pulumi.IntPtrInput
-	// Total number of IP addresses.
-	IpNumber pulumi.IntPtrInput
-	// Total number of IP ranges.
-	IpRangeNumber pulumi.IntPtrInput
-	// Internet Service name.
-	Name pulumi.StringPtrInput
-	// Indicates whether the Internet Service can be used.
-	Obsolete pulumi.IntPtrInput
-	// Reputation level of the Internet Service.
-	Reputation pulumi.IntPtrInput
-	// Singular level of the Internet Service.
-	Singularity pulumi.IntPtrInput
-	// Second Level Domain.
-	SldId pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Database            pulumi.StringPtrInput
+	Direction           pulumi.StringPtrInput
+	ExtraIp6RangeNumber pulumi.IntPtrInput
+	ExtraIpRangeNumber  pulumi.IntPtrInput
+	Fosid               pulumi.IntPtrInput
+	IconId              pulumi.IntPtrInput
+	Ip6RangeNumber      pulumi.IntPtrInput
+	IpNumber            pulumi.IntPtrInput
+	IpRangeNumber       pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Obsolete            pulumi.IntPtrInput
+	Reputation          pulumi.IntPtrInput
+	Singularity         pulumi.IntPtrInput
+	SldId               pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceState) ElementType() reflect.Type {
@@ -150,62 +100,40 @@ func (FirewallInternetServiceState) ElementType() reflect.Type {
 }
 
 type firewallInternetServiceArgs struct {
-	// Database name this Internet Service belongs to. Valid values: `isdb`, `irdb`.
-	Database *string `pulumi:"database"`
-	// How this service may be used in a firewall policy (source, destination or both). Valid values: `src`, `dst`, `both`.
-	Direction *string `pulumi:"direction"`
-	// Extra number of IP ranges.
-	ExtraIpRangeNumber *int `pulumi:"extraIpRangeNumber"`
-	// Internet Service ID.
-	Fosid *int `pulumi:"fosid"`
-	// Icon ID of Internet Service.
-	IconId *int `pulumi:"iconId"`
-	// Total number of IP addresses.
-	IpNumber *int `pulumi:"ipNumber"`
-	// Total number of IP ranges.
-	IpRangeNumber *int `pulumi:"ipRangeNumber"`
-	// Internet Service name.
-	Name *string `pulumi:"name"`
-	// Indicates whether the Internet Service can be used.
-	Obsolete *int `pulumi:"obsolete"`
-	// Reputation level of the Internet Service.
-	Reputation *int `pulumi:"reputation"`
-	// Singular level of the Internet Service.
-	Singularity *int `pulumi:"singularity"`
-	// Second Level Domain.
-	SldId *int `pulumi:"sldId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Database            *string `pulumi:"database"`
+	Direction           *string `pulumi:"direction"`
+	ExtraIp6RangeNumber *int    `pulumi:"extraIp6RangeNumber"`
+	ExtraIpRangeNumber  *int    `pulumi:"extraIpRangeNumber"`
+	Fosid               *int    `pulumi:"fosid"`
+	IconId              *int    `pulumi:"iconId"`
+	Ip6RangeNumber      *int    `pulumi:"ip6RangeNumber"`
+	IpNumber            *int    `pulumi:"ipNumber"`
+	IpRangeNumber       *int    `pulumi:"ipRangeNumber"`
+	Name                *string `pulumi:"name"`
+	Obsolete            *int    `pulumi:"obsolete"`
+	Reputation          *int    `pulumi:"reputation"`
+	Singularity         *int    `pulumi:"singularity"`
+	SldId               *int    `pulumi:"sldId"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallInternetService resource.
 type FirewallInternetServiceArgs struct {
-	// Database name this Internet Service belongs to. Valid values: `isdb`, `irdb`.
-	Database pulumi.StringPtrInput
-	// How this service may be used in a firewall policy (source, destination or both). Valid values: `src`, `dst`, `both`.
-	Direction pulumi.StringPtrInput
-	// Extra number of IP ranges.
-	ExtraIpRangeNumber pulumi.IntPtrInput
-	// Internet Service ID.
-	Fosid pulumi.IntPtrInput
-	// Icon ID of Internet Service.
-	IconId pulumi.IntPtrInput
-	// Total number of IP addresses.
-	IpNumber pulumi.IntPtrInput
-	// Total number of IP ranges.
-	IpRangeNumber pulumi.IntPtrInput
-	// Internet Service name.
-	Name pulumi.StringPtrInput
-	// Indicates whether the Internet Service can be used.
-	Obsolete pulumi.IntPtrInput
-	// Reputation level of the Internet Service.
-	Reputation pulumi.IntPtrInput
-	// Singular level of the Internet Service.
-	Singularity pulumi.IntPtrInput
-	// Second Level Domain.
-	SldId pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Database            pulumi.StringPtrInput
+	Direction           pulumi.StringPtrInput
+	ExtraIp6RangeNumber pulumi.IntPtrInput
+	ExtraIpRangeNumber  pulumi.IntPtrInput
+	Fosid               pulumi.IntPtrInput
+	IconId              pulumi.IntPtrInput
+	Ip6RangeNumber      pulumi.IntPtrInput
+	IpNumber            pulumi.IntPtrInput
+	IpRangeNumber       pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Obsolete            pulumi.IntPtrInput
+	Reputation          pulumi.IntPtrInput
+	Singularity         pulumi.IntPtrInput
+	SldId               pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceArgs) ElementType() reflect.Type {
@@ -234,7 +162,7 @@ func (i *FirewallInternetService) ToFirewallInternetServiceOutputWithContext(ctx
 // FirewallInternetServiceArrayInput is an input type that accepts FirewallInternetServiceArray and FirewallInternetServiceArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceArrayInput` via:
 //
-//          FirewallInternetServiceArray{ FirewallInternetServiceArgs{...} }
+//	FirewallInternetServiceArray{ FirewallInternetServiceArgs{...} }
 type FirewallInternetServiceArrayInput interface {
 	pulumi.Input
 
@@ -259,7 +187,7 @@ func (i FirewallInternetServiceArray) ToFirewallInternetServiceArrayOutputWithCo
 // FirewallInternetServiceMapInput is an input type that accepts FirewallInternetServiceMap and FirewallInternetServiceMapOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceMapInput` via:
 //
-//          FirewallInternetServiceMap{ "key": FirewallInternetServiceArgs{...} }
+//	FirewallInternetServiceMap{ "key": FirewallInternetServiceArgs{...} }
 type FirewallInternetServiceMapInput interface {
 	pulumi.Input
 
@@ -293,6 +221,66 @@ func (o FirewallInternetServiceOutput) ToFirewallInternetServiceOutput() Firewal
 
 func (o FirewallInternetServiceOutput) ToFirewallInternetServiceOutputWithContext(ctx context.Context) FirewallInternetServiceOutput {
 	return o
+}
+
+func (o FirewallInternetServiceOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInternetService) pulumi.StringOutput { return v.Database }).(pulumi.StringOutput)
+}
+
+func (o FirewallInternetServiceOutput) Direction() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInternetService) pulumi.StringOutput { return v.Direction }).(pulumi.StringOutput)
+}
+
+func (o FirewallInternetServiceOutput) ExtraIp6RangeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetService) pulumi.IntOutput { return v.ExtraIp6RangeNumber }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceOutput) ExtraIpRangeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetService) pulumi.IntOutput { return v.ExtraIpRangeNumber }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetService) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceOutput) IconId() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetService) pulumi.IntOutput { return v.IconId }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceOutput) Ip6RangeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetService) pulumi.IntOutput { return v.Ip6RangeNumber }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceOutput) IpNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetService) pulumi.IntOutput { return v.IpNumber }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceOutput) IpRangeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetService) pulumi.IntOutput { return v.IpRangeNumber }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInternetService) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallInternetServiceOutput) Obsolete() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetService) pulumi.IntOutput { return v.Obsolete }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceOutput) Reputation() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetService) pulumi.IntOutput { return v.Reputation }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceOutput) Singularity() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetService) pulumi.IntOutput { return v.Singularity }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceOutput) SldId() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetService) pulumi.IntOutput { return v.SldId }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetService) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallInternetServiceArrayOutput struct{ *pulumi.OutputState }

@@ -10,58 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure replacement message images.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemReplacemsgImage(ctx, "trname", &fortios.SystemReplacemsgImageArgs{
-// 			ImageBase64: pulumi.String("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEWAAABFgAVshLGQAAAAMSURBVBhXY/j//z8ABf4C/qc1gYQAAAAASUVORK5CYII="),
-// 			ImageType:   pulumi.String("png"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System ReplacemsgImage can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemReplacemsgImage:SystemReplacemsgImage labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemReplacemsgImage:SystemReplacemsgImage labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemReplacemsgImage struct {
 	pulumi.CustomResourceState
 
-	// Image data.
 	ImageBase64 pulumi.StringPtrOutput `pulumi:"imageBase64"`
-	// Image type. Valid values: `gif`, `jpg`, `tiff`, `png`.
-	ImageType pulumi.StringOutput `pulumi:"imageType"`
-	// Image name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	ImageType   pulumi.StringOutput    `pulumi:"imageType"`
+	Name        pulumi.StringOutput    `pulumi:"name"`
+	Vdomparam   pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemReplacemsgImage registers a new resource with the given unique name, arguments, and options.
@@ -94,25 +49,17 @@ func GetSystemReplacemsgImage(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemReplacemsgImage resources.
 type systemReplacemsgImageState struct {
-	// Image data.
 	ImageBase64 *string `pulumi:"imageBase64"`
-	// Image type. Valid values: `gif`, `jpg`, `tiff`, `png`.
-	ImageType *string `pulumi:"imageType"`
-	// Image name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ImageType   *string `pulumi:"imageType"`
+	Name        *string `pulumi:"name"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 }
 
 type SystemReplacemsgImageState struct {
-	// Image data.
 	ImageBase64 pulumi.StringPtrInput
-	// Image type. Valid values: `gif`, `jpg`, `tiff`, `png`.
-	ImageType pulumi.StringPtrInput
-	// Image name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ImageType   pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (SystemReplacemsgImageState) ElementType() reflect.Type {
@@ -120,26 +67,18 @@ func (SystemReplacemsgImageState) ElementType() reflect.Type {
 }
 
 type systemReplacemsgImageArgs struct {
-	// Image data.
 	ImageBase64 *string `pulumi:"imageBase64"`
-	// Image type. Valid values: `gif`, `jpg`, `tiff`, `png`.
-	ImageType *string `pulumi:"imageType"`
-	// Image name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ImageType   *string `pulumi:"imageType"`
+	Name        *string `pulumi:"name"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemReplacemsgImage resource.
 type SystemReplacemsgImageArgs struct {
-	// Image data.
 	ImageBase64 pulumi.StringPtrInput
-	// Image type. Valid values: `gif`, `jpg`, `tiff`, `png`.
-	ImageType pulumi.StringPtrInput
-	// Image name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ImageType   pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (SystemReplacemsgImageArgs) ElementType() reflect.Type {
@@ -168,7 +107,7 @@ func (i *SystemReplacemsgImage) ToSystemReplacemsgImageOutputWithContext(ctx con
 // SystemReplacemsgImageArrayInput is an input type that accepts SystemReplacemsgImageArray and SystemReplacemsgImageArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgImageArrayInput` via:
 //
-//          SystemReplacemsgImageArray{ SystemReplacemsgImageArgs{...} }
+//	SystemReplacemsgImageArray{ SystemReplacemsgImageArgs{...} }
 type SystemReplacemsgImageArrayInput interface {
 	pulumi.Input
 
@@ -193,7 +132,7 @@ func (i SystemReplacemsgImageArray) ToSystemReplacemsgImageArrayOutputWithContex
 // SystemReplacemsgImageMapInput is an input type that accepts SystemReplacemsgImageMap and SystemReplacemsgImageMapOutput values.
 // You can construct a concrete instance of `SystemReplacemsgImageMapInput` via:
 //
-//          SystemReplacemsgImageMap{ "key": SystemReplacemsgImageArgs{...} }
+//	SystemReplacemsgImageMap{ "key": SystemReplacemsgImageArgs{...} }
 type SystemReplacemsgImageMapInput interface {
 	pulumi.Input
 
@@ -227,6 +166,22 @@ func (o SystemReplacemsgImageOutput) ToSystemReplacemsgImageOutput() SystemRepla
 
 func (o SystemReplacemsgImageOutput) ToSystemReplacemsgImageOutputWithContext(ctx context.Context) SystemReplacemsgImageOutput {
 	return o
+}
+
+func (o SystemReplacemsgImageOutput) ImageBase64() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgImage) pulumi.StringPtrOutput { return v.ImageBase64 }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemReplacemsgImageOutput) ImageType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgImage) pulumi.StringOutput { return v.ImageType }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgImageOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgImage) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgImageOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgImage) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemReplacemsgImageArrayOutput struct{ *pulumi.OutputState }

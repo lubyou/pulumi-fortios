@@ -10,60 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure user password policy.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewUserPasswordPolicy(ctx, "trname", &fortios.UserPasswordPolicyArgs{
-// 			ExpireDays: pulumi.Int(22),
-// 			WarnDays:   pulumi.Int(13),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// User PasswordPolicy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userPasswordPolicy:UserPasswordPolicy labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userPasswordPolicy:UserPasswordPolicy labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserPasswordPolicy struct {
 	pulumi.CustomResourceState
 
-	// Time in days before the user's password expires.
-	ExpireDays pulumi.IntOutput `pulumi:"expireDays"`
-	// Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
-	ExpiredPasswordRenewal pulumi.StringOutput `pulumi:"expiredPasswordRenewal"`
-	// Password policy name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Time in days before a password expiration warning message is displayed to the user upon login.
-	WarnDays pulumi.IntOutput `pulumi:"warnDays"`
+	ExpireDays             pulumi.IntOutput       `pulumi:"expireDays"`
+	ExpiredPasswordRenewal pulumi.StringOutput    `pulumi:"expiredPasswordRenewal"`
+	Name                   pulumi.StringOutput    `pulumi:"name"`
+	Vdomparam              pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	WarnDays               pulumi.IntOutput       `pulumi:"warnDays"`
 }
 
 // NewUserPasswordPolicy registers a new resource with the given unique name, arguments, and options.
@@ -96,29 +50,19 @@ func GetUserPasswordPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserPasswordPolicy resources.
 type userPasswordPolicyState struct {
-	// Time in days before the user's password expires.
-	ExpireDays *int `pulumi:"expireDays"`
-	// Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
+	ExpireDays             *int    `pulumi:"expireDays"`
 	ExpiredPasswordRenewal *string `pulumi:"expiredPasswordRenewal"`
-	// Password policy name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Time in days before a password expiration warning message is displayed to the user upon login.
-	WarnDays *int `pulumi:"warnDays"`
+	Name                   *string `pulumi:"name"`
+	Vdomparam              *string `pulumi:"vdomparam"`
+	WarnDays               *int    `pulumi:"warnDays"`
 }
 
 type UserPasswordPolicyState struct {
-	// Time in days before the user's password expires.
-	ExpireDays pulumi.IntPtrInput
-	// Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
+	ExpireDays             pulumi.IntPtrInput
 	ExpiredPasswordRenewal pulumi.StringPtrInput
-	// Password policy name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Time in days before a password expiration warning message is displayed to the user upon login.
-	WarnDays pulumi.IntPtrInput
+	Name                   pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
+	WarnDays               pulumi.IntPtrInput
 }
 
 func (UserPasswordPolicyState) ElementType() reflect.Type {
@@ -126,30 +70,20 @@ func (UserPasswordPolicyState) ElementType() reflect.Type {
 }
 
 type userPasswordPolicyArgs struct {
-	// Time in days before the user's password expires.
-	ExpireDays *int `pulumi:"expireDays"`
-	// Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
+	ExpireDays             *int    `pulumi:"expireDays"`
 	ExpiredPasswordRenewal *string `pulumi:"expiredPasswordRenewal"`
-	// Password policy name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Time in days before a password expiration warning message is displayed to the user upon login.
-	WarnDays *int `pulumi:"warnDays"`
+	Name                   *string `pulumi:"name"`
+	Vdomparam              *string `pulumi:"vdomparam"`
+	WarnDays               *int    `pulumi:"warnDays"`
 }
 
 // The set of arguments for constructing a UserPasswordPolicy resource.
 type UserPasswordPolicyArgs struct {
-	// Time in days before the user's password expires.
-	ExpireDays pulumi.IntPtrInput
-	// Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
+	ExpireDays             pulumi.IntPtrInput
 	ExpiredPasswordRenewal pulumi.StringPtrInput
-	// Password policy name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Time in days before a password expiration warning message is displayed to the user upon login.
-	WarnDays pulumi.IntPtrInput
+	Name                   pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
+	WarnDays               pulumi.IntPtrInput
 }
 
 func (UserPasswordPolicyArgs) ElementType() reflect.Type {
@@ -178,7 +112,7 @@ func (i *UserPasswordPolicy) ToUserPasswordPolicyOutputWithContext(ctx context.C
 // UserPasswordPolicyArrayInput is an input type that accepts UserPasswordPolicyArray and UserPasswordPolicyArrayOutput values.
 // You can construct a concrete instance of `UserPasswordPolicyArrayInput` via:
 //
-//          UserPasswordPolicyArray{ UserPasswordPolicyArgs{...} }
+//	UserPasswordPolicyArray{ UserPasswordPolicyArgs{...} }
 type UserPasswordPolicyArrayInput interface {
 	pulumi.Input
 
@@ -203,7 +137,7 @@ func (i UserPasswordPolicyArray) ToUserPasswordPolicyArrayOutputWithContext(ctx 
 // UserPasswordPolicyMapInput is an input type that accepts UserPasswordPolicyMap and UserPasswordPolicyMapOutput values.
 // You can construct a concrete instance of `UserPasswordPolicyMapInput` via:
 //
-//          UserPasswordPolicyMap{ "key": UserPasswordPolicyArgs{...} }
+//	UserPasswordPolicyMap{ "key": UserPasswordPolicyArgs{...} }
 type UserPasswordPolicyMapInput interface {
 	pulumi.Input
 
@@ -237,6 +171,26 @@ func (o UserPasswordPolicyOutput) ToUserPasswordPolicyOutput() UserPasswordPolic
 
 func (o UserPasswordPolicyOutput) ToUserPasswordPolicyOutputWithContext(ctx context.Context) UserPasswordPolicyOutput {
 	return o
+}
+
+func (o UserPasswordPolicyOutput) ExpireDays() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.IntOutput { return v.ExpireDays }).(pulumi.IntOutput)
+}
+
+func (o UserPasswordPolicyOutput) ExpiredPasswordRenewal() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.StringOutput { return v.ExpiredPasswordRenewal }).(pulumi.StringOutput)
+}
+
+func (o UserPasswordPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserPasswordPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o UserPasswordPolicyOutput) WarnDays() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.IntOutput { return v.WarnDays }).(pulumi.IntOutput)
 }
 
 type UserPasswordPolicyArrayOutput struct{ *pulumi.OutputState }

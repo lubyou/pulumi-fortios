@@ -10,76 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IKE global attributes. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// System Ike can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemIke:SystemIke labelname SystemIke
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemIke:SystemIke labelname SystemIke
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemIke struct {
 	pulumi.CustomResourceState
 
-	// Diffie-Hellman group 1 (MODP-768). The structure of `dhGroup1` block is documented below.
-	DhGroup1 SystemIkeDhGroup1PtrOutput `pulumi:"dhGroup1"`
-	// Diffie-Hellman group 14 (MODP-2048). The structure of `dhGroup14` block is documented below.
-	DhGroup14 SystemIkeDhGroup14PtrOutput `pulumi:"dhGroup14"`
-	// Diffie-Hellman group 15 (MODP-3072). The structure of `dhGroup15` block is documented below.
-	DhGroup15 SystemIkeDhGroup15PtrOutput `pulumi:"dhGroup15"`
-	// Diffie-Hellman group 16 (MODP-4096). The structure of `dhGroup16` block is documented below.
-	DhGroup16 SystemIkeDhGroup16PtrOutput `pulumi:"dhGroup16"`
-	// Diffie-Hellman group 17 (MODP-6144). The structure of `dhGroup17` block is documented below.
-	DhGroup17 SystemIkeDhGroup17PtrOutput `pulumi:"dhGroup17"`
-	// Diffie-Hellman group 18 (MODP-8192). The structure of `dhGroup18` block is documented below.
-	DhGroup18 SystemIkeDhGroup18PtrOutput `pulumi:"dhGroup18"`
-	// Diffie-Hellman group 19 (EC-P256). The structure of `dhGroup19` block is documented below.
-	DhGroup19 SystemIkeDhGroup19PtrOutput `pulumi:"dhGroup19"`
-	// Diffie-Hellman group 2 (MODP-1024). The structure of `dhGroup2` block is documented below.
-	DhGroup2 SystemIkeDhGroup2PtrOutput `pulumi:"dhGroup2"`
-	// Diffie-Hellman group 20 (EC-P384). The structure of `dhGroup20` block is documented below.
-	DhGroup20 SystemIkeDhGroup20PtrOutput `pulumi:"dhGroup20"`
-	// Diffie-Hellman group 21 (EC-P521). The structure of `dhGroup21` block is documented below.
-	DhGroup21 SystemIkeDhGroup21PtrOutput `pulumi:"dhGroup21"`
-	// Diffie-Hellman group 27 (EC-P224BP). The structure of `dhGroup27` block is documented below.
-	DhGroup27 SystemIkeDhGroup27PtrOutput `pulumi:"dhGroup27"`
-	// Diffie-Hellman group 28 (EC-P256BP). The structure of `dhGroup28` block is documented below.
-	DhGroup28 SystemIkeDhGroup28PtrOutput `pulumi:"dhGroup28"`
-	// Diffie-Hellman group 29 (EC-P384BP). The structure of `dhGroup29` block is documented below.
-	DhGroup29 SystemIkeDhGroup29PtrOutput `pulumi:"dhGroup29"`
-	// Diffie-Hellman group 30 (EC-P512BP). The structure of `dhGroup30` block is documented below.
-	DhGroup30 SystemIkeDhGroup30PtrOutput `pulumi:"dhGroup30"`
-	// Diffie-Hellman group 31 (EC-X25519). The structure of `dhGroup31` block is documented below.
-	DhGroup31 SystemIkeDhGroup31PtrOutput `pulumi:"dhGroup31"`
-	// Diffie-Hellman group 32 (EC-X448). The structure of `dhGroup32` block is documented below.
-	DhGroup32 SystemIkeDhGroup32PtrOutput `pulumi:"dhGroup32"`
-	// Diffie-Hellman group 5 (MODP-1536). The structure of `dhGroup5` block is documented below.
-	DhGroup5 SystemIkeDhGroup5PtrOutput `pulumi:"dhGroup5"`
-	// Enable/disable Diffie-Hellman key pair cache. Valid values: `enable`, `disable`.
-	DhKeypairCache pulumi.StringOutput `pulumi:"dhKeypairCache"`
-	// Number of key pairs to pre-generate for each Diffie-Hellman group (per-worker).
-	DhKeypairCount pulumi.IntOutput `pulumi:"dhKeypairCount"`
-	// Enable/disable Diffie-Hellman key pair cache CPU throttling. Valid values: `enable`, `disable`.
-	DhKeypairThrottle pulumi.StringOutput `pulumi:"dhKeypairThrottle"`
-	// Use software (CPU) or hardware (CPX) to perform Diffie-Hellman calculations. Valid values: `software`, `hardware`.
-	DhMode pulumi.StringOutput `pulumi:"dhMode"`
-	// Enable/disable multiprocess Diffie-Hellman daemon for IKE. Valid values: `enable`, `disable`.
-	DhMultiprocess pulumi.StringOutput `pulumi:"dhMultiprocess"`
-	// Number of Diffie-Hellman workers to start.
-	DhWorkerCount pulumi.IntOutput `pulumi:"dhWorkerCount"`
-	// Maximum number of IPsec tunnels to negotiate simultaneously.
-	EmbryonicLimit pulumi.IntOutput `pulumi:"embryonicLimit"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DhGroup1          SystemIkeDhGroup1Output  `pulumi:"dhGroup1"`
+	DhGroup14         SystemIkeDhGroup14Output `pulumi:"dhGroup14"`
+	DhGroup15         SystemIkeDhGroup15Output `pulumi:"dhGroup15"`
+	DhGroup16         SystemIkeDhGroup16Output `pulumi:"dhGroup16"`
+	DhGroup17         SystemIkeDhGroup17Output `pulumi:"dhGroup17"`
+	DhGroup18         SystemIkeDhGroup18Output `pulumi:"dhGroup18"`
+	DhGroup19         SystemIkeDhGroup19Output `pulumi:"dhGroup19"`
+	DhGroup2          SystemIkeDhGroup2Output  `pulumi:"dhGroup2"`
+	DhGroup20         SystemIkeDhGroup20Output `pulumi:"dhGroup20"`
+	DhGroup21         SystemIkeDhGroup21Output `pulumi:"dhGroup21"`
+	DhGroup27         SystemIkeDhGroup27Output `pulumi:"dhGroup27"`
+	DhGroup28         SystemIkeDhGroup28Output `pulumi:"dhGroup28"`
+	DhGroup29         SystemIkeDhGroup29Output `pulumi:"dhGroup29"`
+	DhGroup30         SystemIkeDhGroup30Output `pulumi:"dhGroup30"`
+	DhGroup31         SystemIkeDhGroup31Output `pulumi:"dhGroup31"`
+	DhGroup32         SystemIkeDhGroup32Output `pulumi:"dhGroup32"`
+	DhGroup5          SystemIkeDhGroup5Output  `pulumi:"dhGroup5"`
+	DhKeypairCache    pulumi.StringOutput      `pulumi:"dhKeypairCache"`
+	DhKeypairCount    pulumi.IntOutput         `pulumi:"dhKeypairCount"`
+	DhKeypairThrottle pulumi.StringOutput      `pulumi:"dhKeypairThrottle"`
+	DhMode            pulumi.StringOutput      `pulumi:"dhMode"`
+	DhMultiprocess    pulumi.StringOutput      `pulumi:"dhMultiprocess"`
+	DhWorkerCount     pulumi.IntOutput         `pulumi:"dhWorkerCount"`
+	EmbryonicLimit    pulumi.IntOutput         `pulumi:"embryonicLimit"`
+	Vdomparam         pulumi.StringPtrOutput   `pulumi:"vdomparam"`
 }
 
 // NewSystemIke registers a new resource with the given unique name, arguments, and options.
@@ -112,109 +70,59 @@ func GetSystemIke(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemIke resources.
 type systemIkeState struct {
-	// Diffie-Hellman group 1 (MODP-768). The structure of `dhGroup1` block is documented below.
-	DhGroup1 *SystemIkeDhGroup1 `pulumi:"dhGroup1"`
-	// Diffie-Hellman group 14 (MODP-2048). The structure of `dhGroup14` block is documented below.
-	DhGroup14 *SystemIkeDhGroup14 `pulumi:"dhGroup14"`
-	// Diffie-Hellman group 15 (MODP-3072). The structure of `dhGroup15` block is documented below.
-	DhGroup15 *SystemIkeDhGroup15 `pulumi:"dhGroup15"`
-	// Diffie-Hellman group 16 (MODP-4096). The structure of `dhGroup16` block is documented below.
-	DhGroup16 *SystemIkeDhGroup16 `pulumi:"dhGroup16"`
-	// Diffie-Hellman group 17 (MODP-6144). The structure of `dhGroup17` block is documented below.
-	DhGroup17 *SystemIkeDhGroup17 `pulumi:"dhGroup17"`
-	// Diffie-Hellman group 18 (MODP-8192). The structure of `dhGroup18` block is documented below.
-	DhGroup18 *SystemIkeDhGroup18 `pulumi:"dhGroup18"`
-	// Diffie-Hellman group 19 (EC-P256). The structure of `dhGroup19` block is documented below.
-	DhGroup19 *SystemIkeDhGroup19 `pulumi:"dhGroup19"`
-	// Diffie-Hellman group 2 (MODP-1024). The structure of `dhGroup2` block is documented below.
-	DhGroup2 *SystemIkeDhGroup2 `pulumi:"dhGroup2"`
-	// Diffie-Hellman group 20 (EC-P384). The structure of `dhGroup20` block is documented below.
-	DhGroup20 *SystemIkeDhGroup20 `pulumi:"dhGroup20"`
-	// Diffie-Hellman group 21 (EC-P521). The structure of `dhGroup21` block is documented below.
-	DhGroup21 *SystemIkeDhGroup21 `pulumi:"dhGroup21"`
-	// Diffie-Hellman group 27 (EC-P224BP). The structure of `dhGroup27` block is documented below.
-	DhGroup27 *SystemIkeDhGroup27 `pulumi:"dhGroup27"`
-	// Diffie-Hellman group 28 (EC-P256BP). The structure of `dhGroup28` block is documented below.
-	DhGroup28 *SystemIkeDhGroup28 `pulumi:"dhGroup28"`
-	// Diffie-Hellman group 29 (EC-P384BP). The structure of `dhGroup29` block is documented below.
-	DhGroup29 *SystemIkeDhGroup29 `pulumi:"dhGroup29"`
-	// Diffie-Hellman group 30 (EC-P512BP). The structure of `dhGroup30` block is documented below.
-	DhGroup30 *SystemIkeDhGroup30 `pulumi:"dhGroup30"`
-	// Diffie-Hellman group 31 (EC-X25519). The structure of `dhGroup31` block is documented below.
-	DhGroup31 *SystemIkeDhGroup31 `pulumi:"dhGroup31"`
-	// Diffie-Hellman group 32 (EC-X448). The structure of `dhGroup32` block is documented below.
-	DhGroup32 *SystemIkeDhGroup32 `pulumi:"dhGroup32"`
-	// Diffie-Hellman group 5 (MODP-1536). The structure of `dhGroup5` block is documented below.
-	DhGroup5 *SystemIkeDhGroup5 `pulumi:"dhGroup5"`
-	// Enable/disable Diffie-Hellman key pair cache. Valid values: `enable`, `disable`.
-	DhKeypairCache *string `pulumi:"dhKeypairCache"`
-	// Number of key pairs to pre-generate for each Diffie-Hellman group (per-worker).
-	DhKeypairCount *int `pulumi:"dhKeypairCount"`
-	// Enable/disable Diffie-Hellman key pair cache CPU throttling. Valid values: `enable`, `disable`.
-	DhKeypairThrottle *string `pulumi:"dhKeypairThrottle"`
-	// Use software (CPU) or hardware (CPX) to perform Diffie-Hellman calculations. Valid values: `software`, `hardware`.
-	DhMode *string `pulumi:"dhMode"`
-	// Enable/disable multiprocess Diffie-Hellman daemon for IKE. Valid values: `enable`, `disable`.
-	DhMultiprocess *string `pulumi:"dhMultiprocess"`
-	// Number of Diffie-Hellman workers to start.
-	DhWorkerCount *int `pulumi:"dhWorkerCount"`
-	// Maximum number of IPsec tunnels to negotiate simultaneously.
-	EmbryonicLimit *int `pulumi:"embryonicLimit"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DhGroup1          *SystemIkeDhGroup1  `pulumi:"dhGroup1"`
+	DhGroup14         *SystemIkeDhGroup14 `pulumi:"dhGroup14"`
+	DhGroup15         *SystemIkeDhGroup15 `pulumi:"dhGroup15"`
+	DhGroup16         *SystemIkeDhGroup16 `pulumi:"dhGroup16"`
+	DhGroup17         *SystemIkeDhGroup17 `pulumi:"dhGroup17"`
+	DhGroup18         *SystemIkeDhGroup18 `pulumi:"dhGroup18"`
+	DhGroup19         *SystemIkeDhGroup19 `pulumi:"dhGroup19"`
+	DhGroup2          *SystemIkeDhGroup2  `pulumi:"dhGroup2"`
+	DhGroup20         *SystemIkeDhGroup20 `pulumi:"dhGroup20"`
+	DhGroup21         *SystemIkeDhGroup21 `pulumi:"dhGroup21"`
+	DhGroup27         *SystemIkeDhGroup27 `pulumi:"dhGroup27"`
+	DhGroup28         *SystemIkeDhGroup28 `pulumi:"dhGroup28"`
+	DhGroup29         *SystemIkeDhGroup29 `pulumi:"dhGroup29"`
+	DhGroup30         *SystemIkeDhGroup30 `pulumi:"dhGroup30"`
+	DhGroup31         *SystemIkeDhGroup31 `pulumi:"dhGroup31"`
+	DhGroup32         *SystemIkeDhGroup32 `pulumi:"dhGroup32"`
+	DhGroup5          *SystemIkeDhGroup5  `pulumi:"dhGroup5"`
+	DhKeypairCache    *string             `pulumi:"dhKeypairCache"`
+	DhKeypairCount    *int                `pulumi:"dhKeypairCount"`
+	DhKeypairThrottle *string             `pulumi:"dhKeypairThrottle"`
+	DhMode            *string             `pulumi:"dhMode"`
+	DhMultiprocess    *string             `pulumi:"dhMultiprocess"`
+	DhWorkerCount     *int                `pulumi:"dhWorkerCount"`
+	EmbryonicLimit    *int                `pulumi:"embryonicLimit"`
+	Vdomparam         *string             `pulumi:"vdomparam"`
 }
 
 type SystemIkeState struct {
-	// Diffie-Hellman group 1 (MODP-768). The structure of `dhGroup1` block is documented below.
-	DhGroup1 SystemIkeDhGroup1PtrInput
-	// Diffie-Hellman group 14 (MODP-2048). The structure of `dhGroup14` block is documented below.
-	DhGroup14 SystemIkeDhGroup14PtrInput
-	// Diffie-Hellman group 15 (MODP-3072). The structure of `dhGroup15` block is documented below.
-	DhGroup15 SystemIkeDhGroup15PtrInput
-	// Diffie-Hellman group 16 (MODP-4096). The structure of `dhGroup16` block is documented below.
-	DhGroup16 SystemIkeDhGroup16PtrInput
-	// Diffie-Hellman group 17 (MODP-6144). The structure of `dhGroup17` block is documented below.
-	DhGroup17 SystemIkeDhGroup17PtrInput
-	// Diffie-Hellman group 18 (MODP-8192). The structure of `dhGroup18` block is documented below.
-	DhGroup18 SystemIkeDhGroup18PtrInput
-	// Diffie-Hellman group 19 (EC-P256). The structure of `dhGroup19` block is documented below.
-	DhGroup19 SystemIkeDhGroup19PtrInput
-	// Diffie-Hellman group 2 (MODP-1024). The structure of `dhGroup2` block is documented below.
-	DhGroup2 SystemIkeDhGroup2PtrInput
-	// Diffie-Hellman group 20 (EC-P384). The structure of `dhGroup20` block is documented below.
-	DhGroup20 SystemIkeDhGroup20PtrInput
-	// Diffie-Hellman group 21 (EC-P521). The structure of `dhGroup21` block is documented below.
-	DhGroup21 SystemIkeDhGroup21PtrInput
-	// Diffie-Hellman group 27 (EC-P224BP). The structure of `dhGroup27` block is documented below.
-	DhGroup27 SystemIkeDhGroup27PtrInput
-	// Diffie-Hellman group 28 (EC-P256BP). The structure of `dhGroup28` block is documented below.
-	DhGroup28 SystemIkeDhGroup28PtrInput
-	// Diffie-Hellman group 29 (EC-P384BP). The structure of `dhGroup29` block is documented below.
-	DhGroup29 SystemIkeDhGroup29PtrInput
-	// Diffie-Hellman group 30 (EC-P512BP). The structure of `dhGroup30` block is documented below.
-	DhGroup30 SystemIkeDhGroup30PtrInput
-	// Diffie-Hellman group 31 (EC-X25519). The structure of `dhGroup31` block is documented below.
-	DhGroup31 SystemIkeDhGroup31PtrInput
-	// Diffie-Hellman group 32 (EC-X448). The structure of `dhGroup32` block is documented below.
-	DhGroup32 SystemIkeDhGroup32PtrInput
-	// Diffie-Hellman group 5 (MODP-1536). The structure of `dhGroup5` block is documented below.
-	DhGroup5 SystemIkeDhGroup5PtrInput
-	// Enable/disable Diffie-Hellman key pair cache. Valid values: `enable`, `disable`.
-	DhKeypairCache pulumi.StringPtrInput
-	// Number of key pairs to pre-generate for each Diffie-Hellman group (per-worker).
-	DhKeypairCount pulumi.IntPtrInput
-	// Enable/disable Diffie-Hellman key pair cache CPU throttling. Valid values: `enable`, `disable`.
+	DhGroup1          SystemIkeDhGroup1PtrInput
+	DhGroup14         SystemIkeDhGroup14PtrInput
+	DhGroup15         SystemIkeDhGroup15PtrInput
+	DhGroup16         SystemIkeDhGroup16PtrInput
+	DhGroup17         SystemIkeDhGroup17PtrInput
+	DhGroup18         SystemIkeDhGroup18PtrInput
+	DhGroup19         SystemIkeDhGroup19PtrInput
+	DhGroup2          SystemIkeDhGroup2PtrInput
+	DhGroup20         SystemIkeDhGroup20PtrInput
+	DhGroup21         SystemIkeDhGroup21PtrInput
+	DhGroup27         SystemIkeDhGroup27PtrInput
+	DhGroup28         SystemIkeDhGroup28PtrInput
+	DhGroup29         SystemIkeDhGroup29PtrInput
+	DhGroup30         SystemIkeDhGroup30PtrInput
+	DhGroup31         SystemIkeDhGroup31PtrInput
+	DhGroup32         SystemIkeDhGroup32PtrInput
+	DhGroup5          SystemIkeDhGroup5PtrInput
+	DhKeypairCache    pulumi.StringPtrInput
+	DhKeypairCount    pulumi.IntPtrInput
 	DhKeypairThrottle pulumi.StringPtrInput
-	// Use software (CPU) or hardware (CPX) to perform Diffie-Hellman calculations. Valid values: `software`, `hardware`.
-	DhMode pulumi.StringPtrInput
-	// Enable/disable multiprocess Diffie-Hellman daemon for IKE. Valid values: `enable`, `disable`.
-	DhMultiprocess pulumi.StringPtrInput
-	// Number of Diffie-Hellman workers to start.
-	DhWorkerCount pulumi.IntPtrInput
-	// Maximum number of IPsec tunnels to negotiate simultaneously.
-	EmbryonicLimit pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	DhMode            pulumi.StringPtrInput
+	DhMultiprocess    pulumi.StringPtrInput
+	DhWorkerCount     pulumi.IntPtrInput
+	EmbryonicLimit    pulumi.IntPtrInput
+	Vdomparam         pulumi.StringPtrInput
 }
 
 func (SystemIkeState) ElementType() reflect.Type {
@@ -222,110 +130,60 @@ func (SystemIkeState) ElementType() reflect.Type {
 }
 
 type systemIkeArgs struct {
-	// Diffie-Hellman group 1 (MODP-768). The structure of `dhGroup1` block is documented below.
-	DhGroup1 *SystemIkeDhGroup1 `pulumi:"dhGroup1"`
-	// Diffie-Hellman group 14 (MODP-2048). The structure of `dhGroup14` block is documented below.
-	DhGroup14 *SystemIkeDhGroup14 `pulumi:"dhGroup14"`
-	// Diffie-Hellman group 15 (MODP-3072). The structure of `dhGroup15` block is documented below.
-	DhGroup15 *SystemIkeDhGroup15 `pulumi:"dhGroup15"`
-	// Diffie-Hellman group 16 (MODP-4096). The structure of `dhGroup16` block is documented below.
-	DhGroup16 *SystemIkeDhGroup16 `pulumi:"dhGroup16"`
-	// Diffie-Hellman group 17 (MODP-6144). The structure of `dhGroup17` block is documented below.
-	DhGroup17 *SystemIkeDhGroup17 `pulumi:"dhGroup17"`
-	// Diffie-Hellman group 18 (MODP-8192). The structure of `dhGroup18` block is documented below.
-	DhGroup18 *SystemIkeDhGroup18 `pulumi:"dhGroup18"`
-	// Diffie-Hellman group 19 (EC-P256). The structure of `dhGroup19` block is documented below.
-	DhGroup19 *SystemIkeDhGroup19 `pulumi:"dhGroup19"`
-	// Diffie-Hellman group 2 (MODP-1024). The structure of `dhGroup2` block is documented below.
-	DhGroup2 *SystemIkeDhGroup2 `pulumi:"dhGroup2"`
-	// Diffie-Hellman group 20 (EC-P384). The structure of `dhGroup20` block is documented below.
-	DhGroup20 *SystemIkeDhGroup20 `pulumi:"dhGroup20"`
-	// Diffie-Hellman group 21 (EC-P521). The structure of `dhGroup21` block is documented below.
-	DhGroup21 *SystemIkeDhGroup21 `pulumi:"dhGroup21"`
-	// Diffie-Hellman group 27 (EC-P224BP). The structure of `dhGroup27` block is documented below.
-	DhGroup27 *SystemIkeDhGroup27 `pulumi:"dhGroup27"`
-	// Diffie-Hellman group 28 (EC-P256BP). The structure of `dhGroup28` block is documented below.
-	DhGroup28 *SystemIkeDhGroup28 `pulumi:"dhGroup28"`
-	// Diffie-Hellman group 29 (EC-P384BP). The structure of `dhGroup29` block is documented below.
-	DhGroup29 *SystemIkeDhGroup29 `pulumi:"dhGroup29"`
-	// Diffie-Hellman group 30 (EC-P512BP). The structure of `dhGroup30` block is documented below.
-	DhGroup30 *SystemIkeDhGroup30 `pulumi:"dhGroup30"`
-	// Diffie-Hellman group 31 (EC-X25519). The structure of `dhGroup31` block is documented below.
-	DhGroup31 *SystemIkeDhGroup31 `pulumi:"dhGroup31"`
-	// Diffie-Hellman group 32 (EC-X448). The structure of `dhGroup32` block is documented below.
-	DhGroup32 *SystemIkeDhGroup32 `pulumi:"dhGroup32"`
-	// Diffie-Hellman group 5 (MODP-1536). The structure of `dhGroup5` block is documented below.
-	DhGroup5 *SystemIkeDhGroup5 `pulumi:"dhGroup5"`
-	// Enable/disable Diffie-Hellman key pair cache. Valid values: `enable`, `disable`.
-	DhKeypairCache *string `pulumi:"dhKeypairCache"`
-	// Number of key pairs to pre-generate for each Diffie-Hellman group (per-worker).
-	DhKeypairCount *int `pulumi:"dhKeypairCount"`
-	// Enable/disable Diffie-Hellman key pair cache CPU throttling. Valid values: `enable`, `disable`.
-	DhKeypairThrottle *string `pulumi:"dhKeypairThrottle"`
-	// Use software (CPU) or hardware (CPX) to perform Diffie-Hellman calculations. Valid values: `software`, `hardware`.
-	DhMode *string `pulumi:"dhMode"`
-	// Enable/disable multiprocess Diffie-Hellman daemon for IKE. Valid values: `enable`, `disable`.
-	DhMultiprocess *string `pulumi:"dhMultiprocess"`
-	// Number of Diffie-Hellman workers to start.
-	DhWorkerCount *int `pulumi:"dhWorkerCount"`
-	// Maximum number of IPsec tunnels to negotiate simultaneously.
-	EmbryonicLimit *int `pulumi:"embryonicLimit"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DhGroup1          *SystemIkeDhGroup1  `pulumi:"dhGroup1"`
+	DhGroup14         *SystemIkeDhGroup14 `pulumi:"dhGroup14"`
+	DhGroup15         *SystemIkeDhGroup15 `pulumi:"dhGroup15"`
+	DhGroup16         *SystemIkeDhGroup16 `pulumi:"dhGroup16"`
+	DhGroup17         *SystemIkeDhGroup17 `pulumi:"dhGroup17"`
+	DhGroup18         *SystemIkeDhGroup18 `pulumi:"dhGroup18"`
+	DhGroup19         *SystemIkeDhGroup19 `pulumi:"dhGroup19"`
+	DhGroup2          *SystemIkeDhGroup2  `pulumi:"dhGroup2"`
+	DhGroup20         *SystemIkeDhGroup20 `pulumi:"dhGroup20"`
+	DhGroup21         *SystemIkeDhGroup21 `pulumi:"dhGroup21"`
+	DhGroup27         *SystemIkeDhGroup27 `pulumi:"dhGroup27"`
+	DhGroup28         *SystemIkeDhGroup28 `pulumi:"dhGroup28"`
+	DhGroup29         *SystemIkeDhGroup29 `pulumi:"dhGroup29"`
+	DhGroup30         *SystemIkeDhGroup30 `pulumi:"dhGroup30"`
+	DhGroup31         *SystemIkeDhGroup31 `pulumi:"dhGroup31"`
+	DhGroup32         *SystemIkeDhGroup32 `pulumi:"dhGroup32"`
+	DhGroup5          *SystemIkeDhGroup5  `pulumi:"dhGroup5"`
+	DhKeypairCache    *string             `pulumi:"dhKeypairCache"`
+	DhKeypairCount    *int                `pulumi:"dhKeypairCount"`
+	DhKeypairThrottle *string             `pulumi:"dhKeypairThrottle"`
+	DhMode            *string             `pulumi:"dhMode"`
+	DhMultiprocess    *string             `pulumi:"dhMultiprocess"`
+	DhWorkerCount     *int                `pulumi:"dhWorkerCount"`
+	EmbryonicLimit    *int                `pulumi:"embryonicLimit"`
+	Vdomparam         *string             `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemIke resource.
 type SystemIkeArgs struct {
-	// Diffie-Hellman group 1 (MODP-768). The structure of `dhGroup1` block is documented below.
-	DhGroup1 SystemIkeDhGroup1PtrInput
-	// Diffie-Hellman group 14 (MODP-2048). The structure of `dhGroup14` block is documented below.
-	DhGroup14 SystemIkeDhGroup14PtrInput
-	// Diffie-Hellman group 15 (MODP-3072). The structure of `dhGroup15` block is documented below.
-	DhGroup15 SystemIkeDhGroup15PtrInput
-	// Diffie-Hellman group 16 (MODP-4096). The structure of `dhGroup16` block is documented below.
-	DhGroup16 SystemIkeDhGroup16PtrInput
-	// Diffie-Hellman group 17 (MODP-6144). The structure of `dhGroup17` block is documented below.
-	DhGroup17 SystemIkeDhGroup17PtrInput
-	// Diffie-Hellman group 18 (MODP-8192). The structure of `dhGroup18` block is documented below.
-	DhGroup18 SystemIkeDhGroup18PtrInput
-	// Diffie-Hellman group 19 (EC-P256). The structure of `dhGroup19` block is documented below.
-	DhGroup19 SystemIkeDhGroup19PtrInput
-	// Diffie-Hellman group 2 (MODP-1024). The structure of `dhGroup2` block is documented below.
-	DhGroup2 SystemIkeDhGroup2PtrInput
-	// Diffie-Hellman group 20 (EC-P384). The structure of `dhGroup20` block is documented below.
-	DhGroup20 SystemIkeDhGroup20PtrInput
-	// Diffie-Hellman group 21 (EC-P521). The structure of `dhGroup21` block is documented below.
-	DhGroup21 SystemIkeDhGroup21PtrInput
-	// Diffie-Hellman group 27 (EC-P224BP). The structure of `dhGroup27` block is documented below.
-	DhGroup27 SystemIkeDhGroup27PtrInput
-	// Diffie-Hellman group 28 (EC-P256BP). The structure of `dhGroup28` block is documented below.
-	DhGroup28 SystemIkeDhGroup28PtrInput
-	// Diffie-Hellman group 29 (EC-P384BP). The structure of `dhGroup29` block is documented below.
-	DhGroup29 SystemIkeDhGroup29PtrInput
-	// Diffie-Hellman group 30 (EC-P512BP). The structure of `dhGroup30` block is documented below.
-	DhGroup30 SystemIkeDhGroup30PtrInput
-	// Diffie-Hellman group 31 (EC-X25519). The structure of `dhGroup31` block is documented below.
-	DhGroup31 SystemIkeDhGroup31PtrInput
-	// Diffie-Hellman group 32 (EC-X448). The structure of `dhGroup32` block is documented below.
-	DhGroup32 SystemIkeDhGroup32PtrInput
-	// Diffie-Hellman group 5 (MODP-1536). The structure of `dhGroup5` block is documented below.
-	DhGroup5 SystemIkeDhGroup5PtrInput
-	// Enable/disable Diffie-Hellman key pair cache. Valid values: `enable`, `disable`.
-	DhKeypairCache pulumi.StringPtrInput
-	// Number of key pairs to pre-generate for each Diffie-Hellman group (per-worker).
-	DhKeypairCount pulumi.IntPtrInput
-	// Enable/disable Diffie-Hellman key pair cache CPU throttling. Valid values: `enable`, `disable`.
+	DhGroup1          SystemIkeDhGroup1PtrInput
+	DhGroup14         SystemIkeDhGroup14PtrInput
+	DhGroup15         SystemIkeDhGroup15PtrInput
+	DhGroup16         SystemIkeDhGroup16PtrInput
+	DhGroup17         SystemIkeDhGroup17PtrInput
+	DhGroup18         SystemIkeDhGroup18PtrInput
+	DhGroup19         SystemIkeDhGroup19PtrInput
+	DhGroup2          SystemIkeDhGroup2PtrInput
+	DhGroup20         SystemIkeDhGroup20PtrInput
+	DhGroup21         SystemIkeDhGroup21PtrInput
+	DhGroup27         SystemIkeDhGroup27PtrInput
+	DhGroup28         SystemIkeDhGroup28PtrInput
+	DhGroup29         SystemIkeDhGroup29PtrInput
+	DhGroup30         SystemIkeDhGroup30PtrInput
+	DhGroup31         SystemIkeDhGroup31PtrInput
+	DhGroup32         SystemIkeDhGroup32PtrInput
+	DhGroup5          SystemIkeDhGroup5PtrInput
+	DhKeypairCache    pulumi.StringPtrInput
+	DhKeypairCount    pulumi.IntPtrInput
 	DhKeypairThrottle pulumi.StringPtrInput
-	// Use software (CPU) or hardware (CPX) to perform Diffie-Hellman calculations. Valid values: `software`, `hardware`.
-	DhMode pulumi.StringPtrInput
-	// Enable/disable multiprocess Diffie-Hellman daemon for IKE. Valid values: `enable`, `disable`.
-	DhMultiprocess pulumi.StringPtrInput
-	// Number of Diffie-Hellman workers to start.
-	DhWorkerCount pulumi.IntPtrInput
-	// Maximum number of IPsec tunnels to negotiate simultaneously.
-	EmbryonicLimit pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	DhMode            pulumi.StringPtrInput
+	DhMultiprocess    pulumi.StringPtrInput
+	DhWorkerCount     pulumi.IntPtrInput
+	EmbryonicLimit    pulumi.IntPtrInput
+	Vdomparam         pulumi.StringPtrInput
 }
 
 func (SystemIkeArgs) ElementType() reflect.Type {
@@ -354,7 +212,7 @@ func (i *SystemIke) ToSystemIkeOutputWithContext(ctx context.Context) SystemIkeO
 // SystemIkeArrayInput is an input type that accepts SystemIkeArray and SystemIkeArrayOutput values.
 // You can construct a concrete instance of `SystemIkeArrayInput` via:
 //
-//          SystemIkeArray{ SystemIkeArgs{...} }
+//	SystemIkeArray{ SystemIkeArgs{...} }
 type SystemIkeArrayInput interface {
 	pulumi.Input
 
@@ -379,7 +237,7 @@ func (i SystemIkeArray) ToSystemIkeArrayOutputWithContext(ctx context.Context) S
 // SystemIkeMapInput is an input type that accepts SystemIkeMap and SystemIkeMapOutput values.
 // You can construct a concrete instance of `SystemIkeMapInput` via:
 //
-//          SystemIkeMap{ "key": SystemIkeArgs{...} }
+//	SystemIkeMap{ "key": SystemIkeArgs{...} }
 type SystemIkeMapInput interface {
 	pulumi.Input
 
@@ -413,6 +271,106 @@ func (o SystemIkeOutput) ToSystemIkeOutput() SystemIkeOutput {
 
 func (o SystemIkeOutput) ToSystemIkeOutputWithContext(ctx context.Context) SystemIkeOutput {
 	return o
+}
+
+func (o SystemIkeOutput) DhGroup1() SystemIkeDhGroup1Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup1Output { return v.DhGroup1 }).(SystemIkeDhGroup1Output)
+}
+
+func (o SystemIkeOutput) DhGroup14() SystemIkeDhGroup14Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup14Output { return v.DhGroup14 }).(SystemIkeDhGroup14Output)
+}
+
+func (o SystemIkeOutput) DhGroup15() SystemIkeDhGroup15Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup15Output { return v.DhGroup15 }).(SystemIkeDhGroup15Output)
+}
+
+func (o SystemIkeOutput) DhGroup16() SystemIkeDhGroup16Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup16Output { return v.DhGroup16 }).(SystemIkeDhGroup16Output)
+}
+
+func (o SystemIkeOutput) DhGroup17() SystemIkeDhGroup17Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup17Output { return v.DhGroup17 }).(SystemIkeDhGroup17Output)
+}
+
+func (o SystemIkeOutput) DhGroup18() SystemIkeDhGroup18Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup18Output { return v.DhGroup18 }).(SystemIkeDhGroup18Output)
+}
+
+func (o SystemIkeOutput) DhGroup19() SystemIkeDhGroup19Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup19Output { return v.DhGroup19 }).(SystemIkeDhGroup19Output)
+}
+
+func (o SystemIkeOutput) DhGroup2() SystemIkeDhGroup2Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup2Output { return v.DhGroup2 }).(SystemIkeDhGroup2Output)
+}
+
+func (o SystemIkeOutput) DhGroup20() SystemIkeDhGroup20Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup20Output { return v.DhGroup20 }).(SystemIkeDhGroup20Output)
+}
+
+func (o SystemIkeOutput) DhGroup21() SystemIkeDhGroup21Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup21Output { return v.DhGroup21 }).(SystemIkeDhGroup21Output)
+}
+
+func (o SystemIkeOutput) DhGroup27() SystemIkeDhGroup27Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup27Output { return v.DhGroup27 }).(SystemIkeDhGroup27Output)
+}
+
+func (o SystemIkeOutput) DhGroup28() SystemIkeDhGroup28Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup28Output { return v.DhGroup28 }).(SystemIkeDhGroup28Output)
+}
+
+func (o SystemIkeOutput) DhGroup29() SystemIkeDhGroup29Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup29Output { return v.DhGroup29 }).(SystemIkeDhGroup29Output)
+}
+
+func (o SystemIkeOutput) DhGroup30() SystemIkeDhGroup30Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup30Output { return v.DhGroup30 }).(SystemIkeDhGroup30Output)
+}
+
+func (o SystemIkeOutput) DhGroup31() SystemIkeDhGroup31Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup31Output { return v.DhGroup31 }).(SystemIkeDhGroup31Output)
+}
+
+func (o SystemIkeOutput) DhGroup32() SystemIkeDhGroup32Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup32Output { return v.DhGroup32 }).(SystemIkeDhGroup32Output)
+}
+
+func (o SystemIkeOutput) DhGroup5() SystemIkeDhGroup5Output {
+	return o.ApplyT(func(v *SystemIke) SystemIkeDhGroup5Output { return v.DhGroup5 }).(SystemIkeDhGroup5Output)
+}
+
+func (o SystemIkeOutput) DhKeypairCache() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIke) pulumi.StringOutput { return v.DhKeypairCache }).(pulumi.StringOutput)
+}
+
+func (o SystemIkeOutput) DhKeypairCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemIke) pulumi.IntOutput { return v.DhKeypairCount }).(pulumi.IntOutput)
+}
+
+func (o SystemIkeOutput) DhKeypairThrottle() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIke) pulumi.StringOutput { return v.DhKeypairThrottle }).(pulumi.StringOutput)
+}
+
+func (o SystemIkeOutput) DhMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIke) pulumi.StringOutput { return v.DhMode }).(pulumi.StringOutput)
+}
+
+func (o SystemIkeOutput) DhMultiprocess() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIke) pulumi.StringOutput { return v.DhMultiprocess }).(pulumi.StringOutput)
+}
+
+func (o SystemIkeOutput) DhWorkerCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemIke) pulumi.IntOutput { return v.DhWorkerCount }).(pulumi.IntOutput)
+}
+
+func (o SystemIkeOutput) EmbryonicLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemIke) pulumi.IntOutput { return v.EmbryonicLimit }).(pulumi.IntOutput)
+}
+
+func (o SystemIkeOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemIke) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemIkeArrayOutput struct{ *pulumi.OutputState }

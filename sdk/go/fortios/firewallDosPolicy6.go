@@ -7,52 +7,24 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 DoS policies.
-//
-// ## Import
-//
-// Firewall DosPolicy6 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallDosPolicy6:FirewallDosPolicy6 labelname {{policyid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallDosPolicy6:FirewallDosPolicy6 labelname {{policyid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallDosPolicy6 struct {
 	pulumi.CustomResourceState
 
-	// Anomaly name. The structure of `anomaly` block is documented below.
-	Anomalies FirewallDosPolicy6AnomalyArrayOutput `pulumi:"anomalies"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Destination address name from available addresses. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallDosPolicy6DstaddrArrayOutput `pulumi:"dstaddrs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Incoming interface name from available interfaces.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Anomaly name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Policy ID.
-	Policyid pulumi.IntOutput `pulumi:"policyid"`
-	// Service object from available options. The structure of `service` block is documented below.
-	Services FirewallDosPolicy6ServiceArrayOutput `pulumi:"services"`
-	// Source address name from available addresses. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallDosPolicy6SrcaddrArrayOutput `pulumi:"srcaddrs"`
-	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Anomalies           FirewallDosPolicy6AnomalyArrayOutput `pulumi:"anomalies"`
+	Comments            pulumi.StringPtrOutput               `pulumi:"comments"`
+	Dstaddrs            FirewallDosPolicy6DstaddrArrayOutput `pulumi:"dstaddrs"`
+	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	Interface           pulumi.StringOutput                  `pulumi:"interface"`
+	Name                pulumi.StringOutput                  `pulumi:"name"`
+	Policyid            pulumi.IntOutput                     `pulumi:"policyid"`
+	Services            FirewallDosPolicy6ServiceArrayOutput `pulumi:"services"`
+	Srcaddrs            FirewallDosPolicy6SrcaddrArrayOutput `pulumi:"srcaddrs"`
+	Status              pulumi.StringOutput                  `pulumi:"status"`
+	Vdomparam           pulumi.StringPtrOutput               `pulumi:"vdomparam"`
 }
 
 // NewFirewallDosPolicy6 registers a new resource with the given unique name, arguments, and options.
@@ -94,53 +66,31 @@ func GetFirewallDosPolicy6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallDosPolicy6 resources.
 type firewallDosPolicy6State struct {
-	// Anomaly name. The structure of `anomaly` block is documented below.
-	Anomalies []FirewallDosPolicy6Anomaly `pulumi:"anomalies"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Destination address name from available addresses. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallDosPolicy6Dstaddr `pulumi:"dstaddrs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Incoming interface name from available interfaces.
-	Interface *string `pulumi:"interface"`
-	// Anomaly name.
-	Name *string `pulumi:"name"`
-	// Policy ID.
-	Policyid *int `pulumi:"policyid"`
-	// Service object from available options. The structure of `service` block is documented below.
-	Services []FirewallDosPolicy6Service `pulumi:"services"`
-	// Source address name from available addresses. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallDosPolicy6Srcaddr `pulumi:"srcaddrs"`
-	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Anomalies           []FirewallDosPolicy6Anomaly `pulumi:"anomalies"`
+	Comments            *string                     `pulumi:"comments"`
+	Dstaddrs            []FirewallDosPolicy6Dstaddr `pulumi:"dstaddrs"`
+	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	Interface           *string                     `pulumi:"interface"`
+	Name                *string                     `pulumi:"name"`
+	Policyid            *int                        `pulumi:"policyid"`
+	Services            []FirewallDosPolicy6Service `pulumi:"services"`
+	Srcaddrs            []FirewallDosPolicy6Srcaddr `pulumi:"srcaddrs"`
+	Status              *string                     `pulumi:"status"`
+	Vdomparam           *string                     `pulumi:"vdomparam"`
 }
 
 type FirewallDosPolicy6State struct {
-	// Anomaly name. The structure of `anomaly` block is documented below.
-	Anomalies FirewallDosPolicy6AnomalyArrayInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Destination address name from available addresses. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallDosPolicy6DstaddrArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Anomalies           FirewallDosPolicy6AnomalyArrayInput
+	Comments            pulumi.StringPtrInput
+	Dstaddrs            FirewallDosPolicy6DstaddrArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Incoming interface name from available interfaces.
-	Interface pulumi.StringPtrInput
-	// Anomaly name.
-	Name pulumi.StringPtrInput
-	// Policy ID.
-	Policyid pulumi.IntPtrInput
-	// Service object from available options. The structure of `service` block is documented below.
-	Services FirewallDosPolicy6ServiceArrayInput
-	// Source address name from available addresses. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallDosPolicy6SrcaddrArrayInput
-	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interface           pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Policyid            pulumi.IntPtrInput
+	Services            FirewallDosPolicy6ServiceArrayInput
+	Srcaddrs            FirewallDosPolicy6SrcaddrArrayInput
+	Status              pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallDosPolicy6State) ElementType() reflect.Type {
@@ -148,54 +98,32 @@ func (FirewallDosPolicy6State) ElementType() reflect.Type {
 }
 
 type firewallDosPolicy6Args struct {
-	// Anomaly name. The structure of `anomaly` block is documented below.
-	Anomalies []FirewallDosPolicy6Anomaly `pulumi:"anomalies"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Destination address name from available addresses. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallDosPolicy6Dstaddr `pulumi:"dstaddrs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Incoming interface name from available interfaces.
-	Interface string `pulumi:"interface"`
-	// Anomaly name.
-	Name *string `pulumi:"name"`
-	// Policy ID.
-	Policyid *int `pulumi:"policyid"`
-	// Service object from available options. The structure of `service` block is documented below.
-	Services []FirewallDosPolicy6Service `pulumi:"services"`
-	// Source address name from available addresses. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallDosPolicy6Srcaddr `pulumi:"srcaddrs"`
-	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Anomalies           []FirewallDosPolicy6Anomaly `pulumi:"anomalies"`
+	Comments            *string                     `pulumi:"comments"`
+	Dstaddrs            []FirewallDosPolicy6Dstaddr `pulumi:"dstaddrs"`
+	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	Interface           string                      `pulumi:"interface"`
+	Name                *string                     `pulumi:"name"`
+	Policyid            *int                        `pulumi:"policyid"`
+	Services            []FirewallDosPolicy6Service `pulumi:"services"`
+	Srcaddrs            []FirewallDosPolicy6Srcaddr `pulumi:"srcaddrs"`
+	Status              *string                     `pulumi:"status"`
+	Vdomparam           *string                     `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallDosPolicy6 resource.
 type FirewallDosPolicy6Args struct {
-	// Anomaly name. The structure of `anomaly` block is documented below.
-	Anomalies FirewallDosPolicy6AnomalyArrayInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Destination address name from available addresses. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallDosPolicy6DstaddrArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Anomalies           FirewallDosPolicy6AnomalyArrayInput
+	Comments            pulumi.StringPtrInput
+	Dstaddrs            FirewallDosPolicy6DstaddrArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Incoming interface name from available interfaces.
-	Interface pulumi.StringInput
-	// Anomaly name.
-	Name pulumi.StringPtrInput
-	// Policy ID.
-	Policyid pulumi.IntPtrInput
-	// Service object from available options. The structure of `service` block is documented below.
-	Services FirewallDosPolicy6ServiceArrayInput
-	// Source address name from available addresses. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallDosPolicy6SrcaddrArrayInput
-	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interface           pulumi.StringInput
+	Name                pulumi.StringPtrInput
+	Policyid            pulumi.IntPtrInput
+	Services            FirewallDosPolicy6ServiceArrayInput
+	Srcaddrs            FirewallDosPolicy6SrcaddrArrayInput
+	Status              pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallDosPolicy6Args) ElementType() reflect.Type {
@@ -224,7 +152,7 @@ func (i *FirewallDosPolicy6) ToFirewallDosPolicy6OutputWithContext(ctx context.C
 // FirewallDosPolicy6ArrayInput is an input type that accepts FirewallDosPolicy6Array and FirewallDosPolicy6ArrayOutput values.
 // You can construct a concrete instance of `FirewallDosPolicy6ArrayInput` via:
 //
-//          FirewallDosPolicy6Array{ FirewallDosPolicy6Args{...} }
+//	FirewallDosPolicy6Array{ FirewallDosPolicy6Args{...} }
 type FirewallDosPolicy6ArrayInput interface {
 	pulumi.Input
 
@@ -249,7 +177,7 @@ func (i FirewallDosPolicy6Array) ToFirewallDosPolicy6ArrayOutputWithContext(ctx 
 // FirewallDosPolicy6MapInput is an input type that accepts FirewallDosPolicy6Map and FirewallDosPolicy6MapOutput values.
 // You can construct a concrete instance of `FirewallDosPolicy6MapInput` via:
 //
-//          FirewallDosPolicy6Map{ "key": FirewallDosPolicy6Args{...} }
+//	FirewallDosPolicy6Map{ "key": FirewallDosPolicy6Args{...} }
 type FirewallDosPolicy6MapInput interface {
 	pulumi.Input
 
@@ -283,6 +211,50 @@ func (o FirewallDosPolicy6Output) ToFirewallDosPolicy6Output() FirewallDosPolicy
 
 func (o FirewallDosPolicy6Output) ToFirewallDosPolicy6OutputWithContext(ctx context.Context) FirewallDosPolicy6Output {
 	return o
+}
+
+func (o FirewallDosPolicy6Output) Anomalies() FirewallDosPolicy6AnomalyArrayOutput {
+	return o.ApplyT(func(v *FirewallDosPolicy6) FirewallDosPolicy6AnomalyArrayOutput { return v.Anomalies }).(FirewallDosPolicy6AnomalyArrayOutput)
+}
+
+func (o FirewallDosPolicy6Output) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallDosPolicy6) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallDosPolicy6Output) Dstaddrs() FirewallDosPolicy6DstaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallDosPolicy6) FirewallDosPolicy6DstaddrArrayOutput { return v.Dstaddrs }).(FirewallDosPolicy6DstaddrArrayOutput)
+}
+
+func (o FirewallDosPolicy6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallDosPolicy6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallDosPolicy6Output) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallDosPolicy6) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o FirewallDosPolicy6Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallDosPolicy6) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallDosPolicy6Output) Policyid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallDosPolicy6) pulumi.IntOutput { return v.Policyid }).(pulumi.IntOutput)
+}
+
+func (o FirewallDosPolicy6Output) Services() FirewallDosPolicy6ServiceArrayOutput {
+	return o.ApplyT(func(v *FirewallDosPolicy6) FirewallDosPolicy6ServiceArrayOutput { return v.Services }).(FirewallDosPolicy6ServiceArrayOutput)
+}
+
+func (o FirewallDosPolicy6Output) Srcaddrs() FirewallDosPolicy6SrcaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallDosPolicy6) FirewallDosPolicy6SrcaddrArrayOutput { return v.Srcaddrs }).(FirewallDosPolicy6SrcaddrArrayOutput)
+}
+
+func (o FirewallDosPolicy6Output) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallDosPolicy6) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o FirewallDosPolicy6Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallDosPolicy6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallDosPolicy6ArrayOutput struct{ *pulumi.OutputState }

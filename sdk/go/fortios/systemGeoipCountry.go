@@ -10,31 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Define geoip country name-ID table. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// System GeoipCountry can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemGeoipCountry:SystemGeoipCountry labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemGeoipCountry:SystemGeoipCountry labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemGeoipCountry struct {
 	pulumi.CustomResourceState
 
-	// Country ID.
-	Fosid pulumi.StringOutput `pulumi:"fosid"`
-	// Country name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.StringOutput    `pulumi:"fosid"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -68,20 +48,14 @@ func GetSystemGeoipCountry(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemGeoipCountry resources.
 type systemGeoipCountryState struct {
-	// Country ID.
-	Fosid *string `pulumi:"fosid"`
-	// Country name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *string `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemGeoipCountryState struct {
-	// Country ID.
-	Fosid pulumi.StringPtrInput
-	// Country name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -90,21 +64,15 @@ func (SystemGeoipCountryState) ElementType() reflect.Type {
 }
 
 type systemGeoipCountryArgs struct {
-	// Country ID.
-	Fosid *string `pulumi:"fosid"`
-	// Country name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *string `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemGeoipCountry resource.
 type SystemGeoipCountryArgs struct {
-	// Country ID.
-	Fosid pulumi.StringPtrInput
-	// Country name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -134,7 +102,7 @@ func (i *SystemGeoipCountry) ToSystemGeoipCountryOutputWithContext(ctx context.C
 // SystemGeoipCountryArrayInput is an input type that accepts SystemGeoipCountryArray and SystemGeoipCountryArrayOutput values.
 // You can construct a concrete instance of `SystemGeoipCountryArrayInput` via:
 //
-//          SystemGeoipCountryArray{ SystemGeoipCountryArgs{...} }
+//	SystemGeoipCountryArray{ SystemGeoipCountryArgs{...} }
 type SystemGeoipCountryArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i SystemGeoipCountryArray) ToSystemGeoipCountryArrayOutputWithContext(ctx 
 // SystemGeoipCountryMapInput is an input type that accepts SystemGeoipCountryMap and SystemGeoipCountryMapOutput values.
 // You can construct a concrete instance of `SystemGeoipCountryMapInput` via:
 //
-//          SystemGeoipCountryMap{ "key": SystemGeoipCountryArgs{...} }
+//	SystemGeoipCountryMap{ "key": SystemGeoipCountryArgs{...} }
 type SystemGeoipCountryMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o SystemGeoipCountryOutput) ToSystemGeoipCountryOutput() SystemGeoipCountr
 
 func (o SystemGeoipCountryOutput) ToSystemGeoipCountryOutputWithContext(ctx context.Context) SystemGeoipCountryOutput {
 	return o
+}
+
+func (o SystemGeoipCountryOutput) Fosid() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGeoipCountry) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
+}
+
+func (o SystemGeoipCountryOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGeoipCountry) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemGeoipCountryOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemGeoipCountry) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemGeoipCountryArrayOutput struct{ *pulumi.OutputState }

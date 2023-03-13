@@ -2,44 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure object tagging.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemObjectTagging("trname", {
- *     address: "disable",
- *     category: "s1",
- *     color: 0,
- *     device: "mandatory",
- *     interface: "disable",
- *     multiple: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * System ObjectTagging can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemObjectTagging:SystemObjectTagging labelname {{category}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemObjectTagging:SystemObjectTagging labelname {{category}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemObjectTagging extends pulumi.CustomResource {
     /**
      * Get an existing SystemObjectTagging resource's state with the given name, ID, and optional extra
@@ -68,41 +34,14 @@ export class SystemObjectTagging extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemObjectTagging.__pulumiType;
     }
 
-    /**
-     * Address. Valid values: `disable`, `mandatory`, `optional`.
-     */
     public readonly address!: pulumi.Output<string>;
-    /**
-     * Tag Category.
-     */
     public readonly category!: pulumi.Output<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * Device. Valid values: `disable`, `mandatory`, `optional`.
-     */
     public readonly device!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Interface. Valid values: `disable`, `mandatory`, `optional`.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Allow multiple tag selection. Valid values: `enable`, `disable`.
-     */
     public readonly multiple!: pulumi.Output<string>;
-    /**
-     * Tags. The structure of `tags` block is documented below.
-     */
     public readonly tags!: pulumi.Output<outputs.SystemObjectTaggingTag[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -148,41 +87,14 @@ export class SystemObjectTagging extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemObjectTagging resources.
  */
 export interface SystemObjectTaggingState {
-    /**
-     * Address. Valid values: `disable`, `mandatory`, `optional`.
-     */
     address?: pulumi.Input<string>;
-    /**
-     * Tag Category.
-     */
     category?: pulumi.Input<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Device. Valid values: `disable`, `mandatory`, `optional`.
-     */
     device?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Interface. Valid values: `disable`, `mandatory`, `optional`.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Allow multiple tag selection. Valid values: `enable`, `disable`.
-     */
     multiple?: pulumi.Input<string>;
-    /**
-     * Tags. The structure of `tags` block is documented below.
-     */
     tags?: pulumi.Input<pulumi.Input<inputs.SystemObjectTaggingTag>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -190,40 +102,13 @@ export interface SystemObjectTaggingState {
  * The set of arguments for constructing a SystemObjectTagging resource.
  */
 export interface SystemObjectTaggingArgs {
-    /**
-     * Address. Valid values: `disable`, `mandatory`, `optional`.
-     */
     address?: pulumi.Input<string>;
-    /**
-     * Tag Category.
-     */
     category?: pulumi.Input<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Device. Valid values: `disable`, `mandatory`, `optional`.
-     */
     device?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Interface. Valid values: `disable`, `mandatory`, `optional`.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Allow multiple tag selection. Valid values: `enable`, `disable`.
-     */
     multiple?: pulumi.Input<string>;
-    /**
-     * Tags. The structure of `tags` block is documented below.
-     */
     tags?: pulumi.Input<pulumi.Input<inputs.SystemObjectTaggingTag>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

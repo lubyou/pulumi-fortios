@@ -7,153 +7,33 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure interface settings of FortiOS.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `SystemInterface`, we recommend that you use the new resource.
-//
-// ## Example Usage
-// ### Loopback Interface
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewNetworkingInterfacePort(ctx, "loopback1", &fortios.NetworkingInterfacePortArgs{
-// 			Alias:       pulumi.String("cc1"),
-// 			Allowaccess: pulumi.String("ping http"),
-// 			Description: pulumi.String("description"),
-// 			Ip:          pulumi.String("23.123.33.10 255.255.255.0"),
-// 			Mode:        pulumi.String("static"),
-// 			Role:        pulumi.String("lan"),
-// 			Status:      pulumi.String("up"),
-// 			Type:        pulumi.String("loopback"),
-// 			Vdom:        pulumi.String("root"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### VLAN Interface
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewNetworkingInterfacePort(ctx, "vlan1", &fortios.NetworkingInterfacePortArgs{
-// 			Allowaccess: pulumi.String("ping"),
-// 			Defaultgw:   pulumi.String("enable"),
-// 			Distance:    pulumi.String("33"),
-// 			Interface:   pulumi.String("port2"),
-// 			Ip:          pulumi.String("3.123.33.10 255.255.255.0"),
-// 			Mode:        pulumi.String("static"),
-// 			Role:        pulumi.String("lan"),
-// 			Type:        pulumi.String("vlan"),
-// 			Vdom:        pulumi.String("root"),
-// 			Vlanid:      pulumi.String("3"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Physical Interface
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewNetworkingInterfacePort(ctx, "test1", &fortios.NetworkingInterfacePortArgs{
-// 			Alias:                pulumi.String("dkeeew"),
-// 			Allowaccess:          pulumi.String("ping https"),
-// 			Defaultgw:            pulumi.String("enable"),
-// 			Description:          pulumi.String("description"),
-// 			DeviceIdentification: pulumi.String("enable"),
-// 			Distance:             pulumi.String("33"),
-// 			DnsServerOverride:    pulumi.String("enable"),
-// 			Ip:                   pulumi.String("93.133.133.110 255.255.255.0"),
-// 			Mode:                 pulumi.String("static"),
-// 			Mtu:                  pulumi.String("2933"),
-// 			MtuOverride:          pulumi.String("enable"),
-// 			Role:                 pulumi.String("lan"),
-// 			Speed:                pulumi.String("auto"),
-// 			Status:               pulumi.String("up"),
-// 			TcpMss:               pulumi.String("3232"),
-// 			Type:                 pulumi.String("physical"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type NetworkingInterfacePort struct {
 	pulumi.CustomResourceState
 
-	// Alias will be displayed with the interface name to make it easier to distinguish.
-	Alias pulumi.StringOutput `pulumi:"alias"`
-	// Permitted types of management access to this interface.
-	Allowaccess pulumi.StringOutput `pulumi:"allowaccess"`
-	// Enable to get the gateway IP from the DHCP or PPPoE server.
-	Defaultgw pulumi.StringOutput `pulumi:"defaultgw"`
-	// Description.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Enable/disable passively gathering of device identity information about the devices on the network connected to this interface.
-	DeviceIdentification pulumi.StringOutput `pulumi:"deviceIdentification"`
-	// Distance for routes learned through PPPoE or DHCP, lower distance indicates preferred route.
-	Distance pulumi.StringOutput `pulumi:"distance"`
-	// Enable/disable use DNS acquired by DHCP or PPPoE.
-	DnsServerOverride pulumi.StringOutput `pulumi:"dnsServerOverride"`
-	// Interface name.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Interface IPv4 address and subnet mask, syntax` - X.X.X.X X.X.X.X.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// Addressing mode.
-	Mode pulumi.StringOutput `pulumi:"mode"`
-	// MTU value for this interface.
-	Mtu pulumi.StringOutput `pulumi:"mtu"`
-	// Enable to set a custom MTU for this interface.
-	MtuOverride pulumi.StringOutput `pulumi:"mtuOverride"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Interface role.
-	Role pulumi.StringOutput `pulumi:"role"`
-	// Interface speed. The default setting and the options available depend on the interface hardware.
-	Speed pulumi.StringOutput `pulumi:"speed"`
-	// Bring the interface up or shut the interface down.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// TCP maximum segment size. 0 means do not change segment size.
-	TcpMss pulumi.StringOutput `pulumi:"tcpMss"`
-	// Interface type (support physical, vlan, loopback).
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Interface is in this virtual domain (VDOM).
-	Vdom pulumi.StringOutput `pulumi:"vdom"`
-	// VLAN ID.
-	Vlanid pulumi.StringOutput `pulumi:"vlanid"`
+	Alias                pulumi.StringOutput    `pulumi:"alias"`
+	Allowaccess          pulumi.StringOutput    `pulumi:"allowaccess"`
+	Defaultgw            pulumi.StringOutput    `pulumi:"defaultgw"`
+	Description          pulumi.StringPtrOutput `pulumi:"description"`
+	DeviceIdentification pulumi.StringOutput    `pulumi:"deviceIdentification"`
+	Distance             pulumi.StringOutput    `pulumi:"distance"`
+	DnsServerOverride    pulumi.StringOutput    `pulumi:"dnsServerOverride"`
+	Interface            pulumi.StringOutput    `pulumi:"interface"`
+	Ip                   pulumi.StringOutput    `pulumi:"ip"`
+	Mode                 pulumi.StringOutput    `pulumi:"mode"`
+	Mtu                  pulumi.StringOutput    `pulumi:"mtu"`
+	MtuOverride          pulumi.StringOutput    `pulumi:"mtuOverride"`
+	Name                 pulumi.StringOutput    `pulumi:"name"`
+	Role                 pulumi.StringOutput    `pulumi:"role"`
+	Speed                pulumi.StringOutput    `pulumi:"speed"`
+	Status               pulumi.StringOutput    `pulumi:"status"`
+	TcpMss               pulumi.StringOutput    `pulumi:"tcpMss"`
+	Type                 pulumi.StringOutput    `pulumi:"type"`
+	Vdom                 pulumi.StringOutput    `pulumi:"vdom"`
+	Vlanid               pulumi.StringOutput    `pulumi:"vlanid"`
 }
 
 // NewNetworkingInterfacePort registers a new resource with the given unique name, arguments, and options.
@@ -189,89 +69,49 @@ func GetNetworkingInterfacePort(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NetworkingInterfacePort resources.
 type networkingInterfacePortState struct {
-	// Alias will be displayed with the interface name to make it easier to distinguish.
-	Alias *string `pulumi:"alias"`
-	// Permitted types of management access to this interface.
-	Allowaccess *string `pulumi:"allowaccess"`
-	// Enable to get the gateway IP from the DHCP or PPPoE server.
-	Defaultgw *string `pulumi:"defaultgw"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// Enable/disable passively gathering of device identity information about the devices on the network connected to this interface.
+	Alias                *string `pulumi:"alias"`
+	Allowaccess          *string `pulumi:"allowaccess"`
+	Defaultgw            *string `pulumi:"defaultgw"`
+	Description          *string `pulumi:"description"`
 	DeviceIdentification *string `pulumi:"deviceIdentification"`
-	// Distance for routes learned through PPPoE or DHCP, lower distance indicates preferred route.
-	Distance *string `pulumi:"distance"`
-	// Enable/disable use DNS acquired by DHCP or PPPoE.
-	DnsServerOverride *string `pulumi:"dnsServerOverride"`
-	// Interface name.
-	Interface *string `pulumi:"interface"`
-	// Interface IPv4 address and subnet mask, syntax` - X.X.X.X X.X.X.X.
-	Ip *string `pulumi:"ip"`
-	// Addressing mode.
-	Mode *string `pulumi:"mode"`
-	// MTU value for this interface.
-	Mtu *string `pulumi:"mtu"`
-	// Enable to set a custom MTU for this interface.
-	MtuOverride *string `pulumi:"mtuOverride"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Interface role.
-	Role *string `pulumi:"role"`
-	// Interface speed. The default setting and the options available depend on the interface hardware.
-	Speed *string `pulumi:"speed"`
-	// Bring the interface up or shut the interface down.
-	Status *string `pulumi:"status"`
-	// TCP maximum segment size. 0 means do not change segment size.
-	TcpMss *string `pulumi:"tcpMss"`
-	// Interface type (support physical, vlan, loopback).
-	Type *string `pulumi:"type"`
-	// Interface is in this virtual domain (VDOM).
-	Vdom *string `pulumi:"vdom"`
-	// VLAN ID.
-	Vlanid *string `pulumi:"vlanid"`
+	Distance             *string `pulumi:"distance"`
+	DnsServerOverride    *string `pulumi:"dnsServerOverride"`
+	Interface            *string `pulumi:"interface"`
+	Ip                   *string `pulumi:"ip"`
+	Mode                 *string `pulumi:"mode"`
+	Mtu                  *string `pulumi:"mtu"`
+	MtuOverride          *string `pulumi:"mtuOverride"`
+	Name                 *string `pulumi:"name"`
+	Role                 *string `pulumi:"role"`
+	Speed                *string `pulumi:"speed"`
+	Status               *string `pulumi:"status"`
+	TcpMss               *string `pulumi:"tcpMss"`
+	Type                 *string `pulumi:"type"`
+	Vdom                 *string `pulumi:"vdom"`
+	Vlanid               *string `pulumi:"vlanid"`
 }
 
 type NetworkingInterfacePortState struct {
-	// Alias will be displayed with the interface name to make it easier to distinguish.
-	Alias pulumi.StringPtrInput
-	// Permitted types of management access to this interface.
-	Allowaccess pulumi.StringPtrInput
-	// Enable to get the gateway IP from the DHCP or PPPoE server.
-	Defaultgw pulumi.StringPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// Enable/disable passively gathering of device identity information about the devices on the network connected to this interface.
+	Alias                pulumi.StringPtrInput
+	Allowaccess          pulumi.StringPtrInput
+	Defaultgw            pulumi.StringPtrInput
+	Description          pulumi.StringPtrInput
 	DeviceIdentification pulumi.StringPtrInput
-	// Distance for routes learned through PPPoE or DHCP, lower distance indicates preferred route.
-	Distance pulumi.StringPtrInput
-	// Enable/disable use DNS acquired by DHCP or PPPoE.
-	DnsServerOverride pulumi.StringPtrInput
-	// Interface name.
-	Interface pulumi.StringPtrInput
-	// Interface IPv4 address and subnet mask, syntax` - X.X.X.X X.X.X.X.
-	Ip pulumi.StringPtrInput
-	// Addressing mode.
-	Mode pulumi.StringPtrInput
-	// MTU value for this interface.
-	Mtu pulumi.StringPtrInput
-	// Enable to set a custom MTU for this interface.
-	MtuOverride pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Interface role.
-	Role pulumi.StringPtrInput
-	// Interface speed. The default setting and the options available depend on the interface hardware.
-	Speed pulumi.StringPtrInput
-	// Bring the interface up or shut the interface down.
-	Status pulumi.StringPtrInput
-	// TCP maximum segment size. 0 means do not change segment size.
-	TcpMss pulumi.StringPtrInput
-	// Interface type (support physical, vlan, loopback).
-	Type pulumi.StringPtrInput
-	// Interface is in this virtual domain (VDOM).
-	Vdom pulumi.StringPtrInput
-	// VLAN ID.
-	Vlanid pulumi.StringPtrInput
+	Distance             pulumi.StringPtrInput
+	DnsServerOverride    pulumi.StringPtrInput
+	Interface            pulumi.StringPtrInput
+	Ip                   pulumi.StringPtrInput
+	Mode                 pulumi.StringPtrInput
+	Mtu                  pulumi.StringPtrInput
+	MtuOverride          pulumi.StringPtrInput
+	Name                 pulumi.StringPtrInput
+	Role                 pulumi.StringPtrInput
+	Speed                pulumi.StringPtrInput
+	Status               pulumi.StringPtrInput
+	TcpMss               pulumi.StringPtrInput
+	Type                 pulumi.StringPtrInput
+	Vdom                 pulumi.StringPtrInput
+	Vlanid               pulumi.StringPtrInput
 }
 
 func (NetworkingInterfacePortState) ElementType() reflect.Type {
@@ -279,90 +119,50 @@ func (NetworkingInterfacePortState) ElementType() reflect.Type {
 }
 
 type networkingInterfacePortArgs struct {
-	// Alias will be displayed with the interface name to make it easier to distinguish.
-	Alias *string `pulumi:"alias"`
-	// Permitted types of management access to this interface.
-	Allowaccess *string `pulumi:"allowaccess"`
-	// Enable to get the gateway IP from the DHCP or PPPoE server.
-	Defaultgw *string `pulumi:"defaultgw"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// Enable/disable passively gathering of device identity information about the devices on the network connected to this interface.
+	Alias                *string `pulumi:"alias"`
+	Allowaccess          *string `pulumi:"allowaccess"`
+	Defaultgw            *string `pulumi:"defaultgw"`
+	Description          *string `pulumi:"description"`
 	DeviceIdentification *string `pulumi:"deviceIdentification"`
-	// Distance for routes learned through PPPoE or DHCP, lower distance indicates preferred route.
-	Distance *string `pulumi:"distance"`
-	// Enable/disable use DNS acquired by DHCP or PPPoE.
-	DnsServerOverride *string `pulumi:"dnsServerOverride"`
-	// Interface name.
-	Interface *string `pulumi:"interface"`
-	// Interface IPv4 address and subnet mask, syntax` - X.X.X.X X.X.X.X.
-	Ip *string `pulumi:"ip"`
-	// Addressing mode.
-	Mode *string `pulumi:"mode"`
-	// MTU value for this interface.
-	Mtu *string `pulumi:"mtu"`
-	// Enable to set a custom MTU for this interface.
-	MtuOverride *string `pulumi:"mtuOverride"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Interface role.
-	Role *string `pulumi:"role"`
-	// Interface speed. The default setting and the options available depend on the interface hardware.
-	Speed *string `pulumi:"speed"`
-	// Bring the interface up or shut the interface down.
-	Status *string `pulumi:"status"`
-	// TCP maximum segment size. 0 means do not change segment size.
-	TcpMss *string `pulumi:"tcpMss"`
-	// Interface type (support physical, vlan, loopback).
-	Type string `pulumi:"type"`
-	// Interface is in this virtual domain (VDOM).
-	Vdom *string `pulumi:"vdom"`
-	// VLAN ID.
-	Vlanid *string `pulumi:"vlanid"`
+	Distance             *string `pulumi:"distance"`
+	DnsServerOverride    *string `pulumi:"dnsServerOverride"`
+	Interface            *string `pulumi:"interface"`
+	Ip                   *string `pulumi:"ip"`
+	Mode                 *string `pulumi:"mode"`
+	Mtu                  *string `pulumi:"mtu"`
+	MtuOverride          *string `pulumi:"mtuOverride"`
+	Name                 *string `pulumi:"name"`
+	Role                 *string `pulumi:"role"`
+	Speed                *string `pulumi:"speed"`
+	Status               *string `pulumi:"status"`
+	TcpMss               *string `pulumi:"tcpMss"`
+	Type                 string  `pulumi:"type"`
+	Vdom                 *string `pulumi:"vdom"`
+	Vlanid               *string `pulumi:"vlanid"`
 }
 
 // The set of arguments for constructing a NetworkingInterfacePort resource.
 type NetworkingInterfacePortArgs struct {
-	// Alias will be displayed with the interface name to make it easier to distinguish.
-	Alias pulumi.StringPtrInput
-	// Permitted types of management access to this interface.
-	Allowaccess pulumi.StringPtrInput
-	// Enable to get the gateway IP from the DHCP or PPPoE server.
-	Defaultgw pulumi.StringPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// Enable/disable passively gathering of device identity information about the devices on the network connected to this interface.
+	Alias                pulumi.StringPtrInput
+	Allowaccess          pulumi.StringPtrInput
+	Defaultgw            pulumi.StringPtrInput
+	Description          pulumi.StringPtrInput
 	DeviceIdentification pulumi.StringPtrInput
-	// Distance for routes learned through PPPoE or DHCP, lower distance indicates preferred route.
-	Distance pulumi.StringPtrInput
-	// Enable/disable use DNS acquired by DHCP or PPPoE.
-	DnsServerOverride pulumi.StringPtrInput
-	// Interface name.
-	Interface pulumi.StringPtrInput
-	// Interface IPv4 address and subnet mask, syntax` - X.X.X.X X.X.X.X.
-	Ip pulumi.StringPtrInput
-	// Addressing mode.
-	Mode pulumi.StringPtrInput
-	// MTU value for this interface.
-	Mtu pulumi.StringPtrInput
-	// Enable to set a custom MTU for this interface.
-	MtuOverride pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Interface role.
-	Role pulumi.StringPtrInput
-	// Interface speed. The default setting and the options available depend on the interface hardware.
-	Speed pulumi.StringPtrInput
-	// Bring the interface up or shut the interface down.
-	Status pulumi.StringPtrInput
-	// TCP maximum segment size. 0 means do not change segment size.
-	TcpMss pulumi.StringPtrInput
-	// Interface type (support physical, vlan, loopback).
-	Type pulumi.StringInput
-	// Interface is in this virtual domain (VDOM).
-	Vdom pulumi.StringPtrInput
-	// VLAN ID.
-	Vlanid pulumi.StringPtrInput
+	Distance             pulumi.StringPtrInput
+	DnsServerOverride    pulumi.StringPtrInput
+	Interface            pulumi.StringPtrInput
+	Ip                   pulumi.StringPtrInput
+	Mode                 pulumi.StringPtrInput
+	Mtu                  pulumi.StringPtrInput
+	MtuOverride          pulumi.StringPtrInput
+	Name                 pulumi.StringPtrInput
+	Role                 pulumi.StringPtrInput
+	Speed                pulumi.StringPtrInput
+	Status               pulumi.StringPtrInput
+	TcpMss               pulumi.StringPtrInput
+	Type                 pulumi.StringInput
+	Vdom                 pulumi.StringPtrInput
+	Vlanid               pulumi.StringPtrInput
 }
 
 func (NetworkingInterfacePortArgs) ElementType() reflect.Type {
@@ -391,7 +191,7 @@ func (i *NetworkingInterfacePort) ToNetworkingInterfacePortOutputWithContext(ctx
 // NetworkingInterfacePortArrayInput is an input type that accepts NetworkingInterfacePortArray and NetworkingInterfacePortArrayOutput values.
 // You can construct a concrete instance of `NetworkingInterfacePortArrayInput` via:
 //
-//          NetworkingInterfacePortArray{ NetworkingInterfacePortArgs{...} }
+//	NetworkingInterfacePortArray{ NetworkingInterfacePortArgs{...} }
 type NetworkingInterfacePortArrayInput interface {
 	pulumi.Input
 
@@ -416,7 +216,7 @@ func (i NetworkingInterfacePortArray) ToNetworkingInterfacePortArrayOutputWithCo
 // NetworkingInterfacePortMapInput is an input type that accepts NetworkingInterfacePortMap and NetworkingInterfacePortMapOutput values.
 // You can construct a concrete instance of `NetworkingInterfacePortMapInput` via:
 //
-//          NetworkingInterfacePortMap{ "key": NetworkingInterfacePortArgs{...} }
+//	NetworkingInterfacePortMap{ "key": NetworkingInterfacePortArgs{...} }
 type NetworkingInterfacePortMapInput interface {
 	pulumi.Input
 
@@ -450,6 +250,86 @@ func (o NetworkingInterfacePortOutput) ToNetworkingInterfacePortOutput() Network
 
 func (o NetworkingInterfacePortOutput) ToNetworkingInterfacePortOutputWithContext(ctx context.Context) NetworkingInterfacePortOutput {
 	return o
+}
+
+func (o NetworkingInterfacePortOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) Allowaccess() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.Allowaccess }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) Defaultgw() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.Defaultgw }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o NetworkingInterfacePortOutput) DeviceIdentification() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.DeviceIdentification }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) Distance() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.Distance }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) DnsServerOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.DnsServerOverride }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) Mtu() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.Mtu }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) MtuOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.MtuOverride }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) Speed() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.Speed }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) TcpMss() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.TcpMss }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) Vdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.Vdom }).(pulumi.StringOutput)
+}
+
+func (o NetworkingInterfacePortOutput) Vlanid() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingInterfacePort) pulumi.StringOutput { return v.Vlanid }).(pulumi.StringOutput)
 }
 
 type NetworkingInterfacePortArrayOutput struct{ *pulumi.OutputState }

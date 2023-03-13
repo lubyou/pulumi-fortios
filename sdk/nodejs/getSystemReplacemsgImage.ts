@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios system replacemsgimage
- */
 export function getSystemReplacemsgImage(args: GetSystemReplacemsgImageArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemReplacemsgImageResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemReplacemsgImage:GetSystemReplacemsgImage", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getSystemReplacemsgImage(args: GetSystemReplacemsgImageArgs, opt
  * A collection of arguments for invoking GetSystemReplacemsgImage.
  */
 export interface GetSystemReplacemsgImageArgs {
-    /**
-     * Specify the name of the desired system replacemsgimage.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -41,35 +29,19 @@ export interface GetSystemReplacemsgImageResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Image data.
-     */
     readonly imageBase64: string;
-    /**
-     * Image type.
-     */
     readonly imageType: string;
-    /**
-     * Image name.
-     */
     readonly name: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemReplacemsgImageOutput(args: GetSystemReplacemsgImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemReplacemsgImageResult> {
-    return pulumi.output(args).apply(a => getSystemReplacemsgImage(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemReplacemsgImage(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemReplacemsgImage.
  */
 export interface GetSystemReplacemsgImageOutputArgs {
-    /**
-     * Specify the name of the desired system replacemsgimage.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

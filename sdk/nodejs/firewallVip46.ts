@@ -2,49 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv4 to IPv6 virtual IPs. Applies to FortiOS Version `<= 7.0.0`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallVip46("trname", {
- *     arpReply: "enable",
- *     color: 0,
- *     extip: "10.202.1.200",
- *     extport: "0-65535",
- *     fosid: 0,
- *     ldbMethod: "static",
- *     mappedip: "2001:1:1:2::200",
- *     mappedport: "0-65535",
- *     portforward: "disable",
- *     protocol: "tcp",
- *     type: "static-nat",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall Vip46 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallVip46:FirewallVip46 labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallVip46:FirewallVip46 labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallVip46 extends pulumi.CustomResource {
     /**
      * Get an existing FirewallVip46 resource's state with the given name, ID, and optional extra
@@ -73,89 +34,26 @@ export class FirewallVip46 extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallVip46.__pulumiType;
     }
 
-    /**
-     * Enable ARP reply. Valid values: `disable`, `enable`.
-     */
     public readonly arpReply!: pulumi.Output<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Start-external-IP [-end-external-IP].
-     */
     public readonly extip!: pulumi.Output<string>;
-    /**
-     * External service port.
-     */
     public readonly extport!: pulumi.Output<string>;
-    /**
-     * Custom defined id.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
-     */
     public readonly ldbMethod!: pulumi.Output<string>;
-    /**
-     * Start-mapped-IP [-end mapped-IP].
-     */
     public readonly mappedip!: pulumi.Output<string>;
-    /**
-     * Mapped service port.
-     */
     public readonly mappedport!: pulumi.Output<string>;
-    /**
-     * Health monitors.
-     */
     public readonly monitors!: pulumi.Output<outputs.FirewallVip46Monitor[] | undefined>;
-    /**
-     * Health monitor name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable port forwarding. Valid values: `disable`, `enable`.
-     */
     public readonly portforward!: pulumi.Output<string>;
-    /**
-     * Mapped port protocol. Valid values: `tcp`, `udp`.
-     */
     public readonly protocol!: pulumi.Output<string>;
-    /**
-     * Real servers. The structure of `realservers` block is documented below.
-     */
     public readonly realservers!: pulumi.Output<outputs.FirewallVip46Realserver[] | undefined>;
-    /**
-     * Server type. Valid values: `http`, `tcp`, `udp`, `ip`.
-     */
     public readonly serverType!: pulumi.Output<string>;
-    /**
-     * Source IP filter (x.x.x.x/x). The structure of `srcFilter` block is documented below.
-     */
     public readonly srcFilters!: pulumi.Output<outputs.FirewallVip46SrcFilter[] | undefined>;
-    /**
-     * Interfaces to which the VIP46 applies. Separate the names with spaces. The structure of `srcintfFilter` block is documented below.
-     */
     public readonly srcintfFilters!: pulumi.Output<outputs.FirewallVip46SrcintfFilter[] | undefined>;
-    /**
-     * VIP type: static NAT or server load balance. Valid values: `static-nat`, `server-load-balance`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -231,89 +129,26 @@ export class FirewallVip46 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallVip46 resources.
  */
 export interface FirewallVip46State {
-    /**
-     * Enable ARP reply. Valid values: `disable`, `enable`.
-     */
     arpReply?: pulumi.Input<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Start-external-IP [-end-external-IP].
-     */
     extip?: pulumi.Input<string>;
-    /**
-     * External service port.
-     */
     extport?: pulumi.Input<string>;
-    /**
-     * Custom defined id.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
-     */
     ldbMethod?: pulumi.Input<string>;
-    /**
-     * Start-mapped-IP [-end mapped-IP].
-     */
     mappedip?: pulumi.Input<string>;
-    /**
-     * Mapped service port.
-     */
     mappedport?: pulumi.Input<string>;
-    /**
-     * Health monitors.
-     */
     monitors?: pulumi.Input<pulumi.Input<inputs.FirewallVip46Monitor>[]>;
-    /**
-     * Health monitor name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable port forwarding. Valid values: `disable`, `enable`.
-     */
     portforward?: pulumi.Input<string>;
-    /**
-     * Mapped port protocol. Valid values: `tcp`, `udp`.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * Real servers. The structure of `realservers` block is documented below.
-     */
     realservers?: pulumi.Input<pulumi.Input<inputs.FirewallVip46Realserver>[]>;
-    /**
-     * Server type. Valid values: `http`, `tcp`, `udp`, `ip`.
-     */
     serverType?: pulumi.Input<string>;
-    /**
-     * Source IP filter (x.x.x.x/x). The structure of `srcFilter` block is documented below.
-     */
     srcFilters?: pulumi.Input<pulumi.Input<inputs.FirewallVip46SrcFilter>[]>;
-    /**
-     * Interfaces to which the VIP46 applies. Separate the names with spaces. The structure of `srcintfFilter` block is documented below.
-     */
     srcintfFilters?: pulumi.Input<pulumi.Input<inputs.FirewallVip46SrcintfFilter>[]>;
-    /**
-     * VIP type: static NAT or server load balance. Valid values: `static-nat`, `server-load-balance`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -321,88 +156,25 @@ export interface FirewallVip46State {
  * The set of arguments for constructing a FirewallVip46 resource.
  */
 export interface FirewallVip46Args {
-    /**
-     * Enable ARP reply. Valid values: `disable`, `enable`.
-     */
     arpReply?: pulumi.Input<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Start-external-IP [-end-external-IP].
-     */
     extip: pulumi.Input<string>;
-    /**
-     * External service port.
-     */
     extport?: pulumi.Input<string>;
-    /**
-     * Custom defined id.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
-     */
     ldbMethod?: pulumi.Input<string>;
-    /**
-     * Start-mapped-IP [-end mapped-IP].
-     */
     mappedip: pulumi.Input<string>;
-    /**
-     * Mapped service port.
-     */
     mappedport?: pulumi.Input<string>;
-    /**
-     * Health monitors.
-     */
     monitors?: pulumi.Input<pulumi.Input<inputs.FirewallVip46Monitor>[]>;
-    /**
-     * Health monitor name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable port forwarding. Valid values: `disable`, `enable`.
-     */
     portforward?: pulumi.Input<string>;
-    /**
-     * Mapped port protocol. Valid values: `tcp`, `udp`.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * Real servers. The structure of `realservers` block is documented below.
-     */
     realservers?: pulumi.Input<pulumi.Input<inputs.FirewallVip46Realserver>[]>;
-    /**
-     * Server type. Valid values: `http`, `tcp`, `udp`, `ip`.
-     */
     serverType?: pulumi.Input<string>;
-    /**
-     * Source IP filter (x.x.x.x/x). The structure of `srcFilter` block is documented below.
-     */
     srcFilters?: pulumi.Input<pulumi.Input<inputs.FirewallVip46SrcFilter>[]>;
-    /**
-     * Interfaces to which the VIP46 applies. Separate the names with spaces. The structure of `srcintfFilter` block is documented below.
-     */
     srcintfFilters?: pulumi.Input<pulumi.Input<inputs.FirewallVip46SrcintfFilter>[]>;
-    /**
-     * VIP type: static NAT or server load balance. Valid values: `static-nat`, `server-load-balance`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

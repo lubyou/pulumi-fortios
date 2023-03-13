@@ -10,53 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure AntiSpam options. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSpamfilterOptions(ctx, "trname", &fortios.SpamfilterOptionsArgs{
-// 			DnsTimeout: pulumi.Int(7),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Spamfilter Options can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/spamfilterOptions:SpamfilterOptions labelname SpamfilterOptions
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/spamfilterOptions:SpamfilterOptions labelname SpamfilterOptions
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SpamfilterOptions struct {
 	pulumi.CustomResourceState
 
-	// DNS query time out (1 - 30 sec).
-	DnsTimeout pulumi.IntOutput `pulumi:"dnsTimeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DnsTimeout pulumi.IntOutput       `pulumi:"dnsTimeout"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSpamfilterOptions registers a new resource with the given unique name, arguments, and options.
@@ -89,17 +47,13 @@ func GetSpamfilterOptions(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SpamfilterOptions resources.
 type spamfilterOptionsState struct {
-	// DNS query time out (1 - 30 sec).
-	DnsTimeout *int `pulumi:"dnsTimeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DnsTimeout *int    `pulumi:"dnsTimeout"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type SpamfilterOptionsState struct {
-	// DNS query time out (1 - 30 sec).
 	DnsTimeout pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (SpamfilterOptionsState) ElementType() reflect.Type {
@@ -107,18 +61,14 @@ func (SpamfilterOptionsState) ElementType() reflect.Type {
 }
 
 type spamfilterOptionsArgs struct {
-	// DNS query time out (1 - 30 sec).
-	DnsTimeout *int `pulumi:"dnsTimeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DnsTimeout *int    `pulumi:"dnsTimeout"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SpamfilterOptions resource.
 type SpamfilterOptionsArgs struct {
-	// DNS query time out (1 - 30 sec).
 	DnsTimeout pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (SpamfilterOptionsArgs) ElementType() reflect.Type {
@@ -147,7 +97,7 @@ func (i *SpamfilterOptions) ToSpamfilterOptionsOutputWithContext(ctx context.Con
 // SpamfilterOptionsArrayInput is an input type that accepts SpamfilterOptionsArray and SpamfilterOptionsArrayOutput values.
 // You can construct a concrete instance of `SpamfilterOptionsArrayInput` via:
 //
-//          SpamfilterOptionsArray{ SpamfilterOptionsArgs{...} }
+//	SpamfilterOptionsArray{ SpamfilterOptionsArgs{...} }
 type SpamfilterOptionsArrayInput interface {
 	pulumi.Input
 
@@ -172,7 +122,7 @@ func (i SpamfilterOptionsArray) ToSpamfilterOptionsArrayOutputWithContext(ctx co
 // SpamfilterOptionsMapInput is an input type that accepts SpamfilterOptionsMap and SpamfilterOptionsMapOutput values.
 // You can construct a concrete instance of `SpamfilterOptionsMapInput` via:
 //
-//          SpamfilterOptionsMap{ "key": SpamfilterOptionsArgs{...} }
+//	SpamfilterOptionsMap{ "key": SpamfilterOptionsArgs{...} }
 type SpamfilterOptionsMapInput interface {
 	pulumi.Input
 
@@ -206,6 +156,14 @@ func (o SpamfilterOptionsOutput) ToSpamfilterOptionsOutput() SpamfilterOptionsOu
 
 func (o SpamfilterOptionsOutput) ToSpamfilterOptionsOutputWithContext(ctx context.Context) SpamfilterOptionsOutput {
 	return o
+}
+
+func (o SpamfilterOptionsOutput) DnsTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SpamfilterOptions) pulumi.IntOutput { return v.DnsTimeout }).(pulumi.IntOutput)
+}
+
+func (o SpamfilterOptionsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpamfilterOptions) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SpamfilterOptionsArrayOutput struct{ *pulumi.OutputState }

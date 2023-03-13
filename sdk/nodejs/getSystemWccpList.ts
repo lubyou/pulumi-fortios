@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.SystemWccp`.
- */
 export function getSystemWccpList(args?: GetSystemWccpListArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemWccpListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemWccpList:GetSystemWccpList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getSystemWccpList(args?: GetSystemWccpListArgs, opts?: pulumi.In
  */
 export interface GetSystemWccpListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -40,15 +31,11 @@ export interface GetSystemWccpListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.SystemWccp`.
-     */
     readonly serviceIdlists: string[];
     readonly vdomparam?: string;
 }
-
 export function getSystemWccpListOutput(args?: GetSystemWccpListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemWccpListResult> {
-    return pulumi.output(args).apply(a => getSystemWccpList(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemWccpList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getSystemWccpListOutput(args?: GetSystemWccpListOutputArgs, opts
  */
 export interface GetSystemWccpListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

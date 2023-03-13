@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch location services. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// SwitchController Location can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerLocation:SwitchControllerLocation labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerLocation:SwitchControllerLocation labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerLocation struct {
 	pulumi.CustomResourceState
 
-	// Configure location civic address. The structure of `addressCivic` block is documented below.
-	AddressCivic SwitchControllerLocationAddressCivicPtrOutput `pulumi:"addressCivic"`
-	// Configure location GPS coordinates. The structure of `coordinates` block is documented below.
-	Coordinates SwitchControllerLocationCoordinatesPtrOutput `pulumi:"coordinates"`
-	// Configure location ELIN number. The structure of `elinNumber` block is documented below.
-	ElinNumber SwitchControllerLocationElinNumberPtrOutput `pulumi:"elinNumber"`
-	// Name (residence and office occupant).
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AddressCivic SwitchControllerLocationAddressCivicOutput `pulumi:"addressCivic"`
+	Coordinates  SwitchControllerLocationCoordinatesOutput  `pulumi:"coordinates"`
+	ElinNumber   SwitchControllerLocationElinNumberOutput   `pulumi:"elinNumber"`
+	Name         pulumi.StringOutput                        `pulumi:"name"`
+	Vdomparam    pulumi.StringPtrOutput                     `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerLocation registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetSwitchControllerLocation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerLocation resources.
 type switchControllerLocationState struct {
-	// Configure location civic address. The structure of `addressCivic` block is documented below.
 	AddressCivic *SwitchControllerLocationAddressCivic `pulumi:"addressCivic"`
-	// Configure location GPS coordinates. The structure of `coordinates` block is documented below.
-	Coordinates *SwitchControllerLocationCoordinates `pulumi:"coordinates"`
-	// Configure location ELIN number. The structure of `elinNumber` block is documented below.
-	ElinNumber *SwitchControllerLocationElinNumber `pulumi:"elinNumber"`
-	// Name (residence and office occupant).
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Coordinates  *SwitchControllerLocationCoordinates  `pulumi:"coordinates"`
+	ElinNumber   *SwitchControllerLocationElinNumber   `pulumi:"elinNumber"`
+	Name         *string                               `pulumi:"name"`
+	Vdomparam    *string                               `pulumi:"vdomparam"`
 }
 
 type SwitchControllerLocationState struct {
-	// Configure location civic address. The structure of `addressCivic` block is documented below.
 	AddressCivic SwitchControllerLocationAddressCivicPtrInput
-	// Configure location GPS coordinates. The structure of `coordinates` block is documented below.
-	Coordinates SwitchControllerLocationCoordinatesPtrInput
-	// Configure location ELIN number. The structure of `elinNumber` block is documented below.
-	ElinNumber SwitchControllerLocationElinNumberPtrInput
-	// Name (residence and office occupant).
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Coordinates  SwitchControllerLocationCoordinatesPtrInput
+	ElinNumber   SwitchControllerLocationElinNumberPtrInput
+	Name         pulumi.StringPtrInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (SwitchControllerLocationState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (SwitchControllerLocationState) ElementType() reflect.Type {
 }
 
 type switchControllerLocationArgs struct {
-	// Configure location civic address. The structure of `addressCivic` block is documented below.
 	AddressCivic *SwitchControllerLocationAddressCivic `pulumi:"addressCivic"`
-	// Configure location GPS coordinates. The structure of `coordinates` block is documented below.
-	Coordinates *SwitchControllerLocationCoordinates `pulumi:"coordinates"`
-	// Configure location ELIN number. The structure of `elinNumber` block is documented below.
-	ElinNumber *SwitchControllerLocationElinNumber `pulumi:"elinNumber"`
-	// Name (residence and office occupant).
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Coordinates  *SwitchControllerLocationCoordinates  `pulumi:"coordinates"`
+	ElinNumber   *SwitchControllerLocationElinNumber   `pulumi:"elinNumber"`
+	Name         *string                               `pulumi:"name"`
+	Vdomparam    *string                               `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerLocation resource.
 type SwitchControllerLocationArgs struct {
-	// Configure location civic address. The structure of `addressCivic` block is documented below.
 	AddressCivic SwitchControllerLocationAddressCivicPtrInput
-	// Configure location GPS coordinates. The structure of `coordinates` block is documented below.
-	Coordinates SwitchControllerLocationCoordinatesPtrInput
-	// Configure location ELIN number. The structure of `elinNumber` block is documented below.
-	ElinNumber SwitchControllerLocationElinNumberPtrInput
-	// Name (residence and office occupant).
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Coordinates  SwitchControllerLocationCoordinatesPtrInput
+	ElinNumber   SwitchControllerLocationElinNumberPtrInput
+	Name         pulumi.StringPtrInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (SwitchControllerLocationArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *SwitchControllerLocation) ToSwitchControllerLocationOutputWithContext(c
 // SwitchControllerLocationArrayInput is an input type that accepts SwitchControllerLocationArray and SwitchControllerLocationArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerLocationArrayInput` via:
 //
-//          SwitchControllerLocationArray{ SwitchControllerLocationArgs{...} }
+//	SwitchControllerLocationArray{ SwitchControllerLocationArgs{...} }
 type SwitchControllerLocationArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i SwitchControllerLocationArray) ToSwitchControllerLocationArrayOutputWith
 // SwitchControllerLocationMapInput is an input type that accepts SwitchControllerLocationMap and SwitchControllerLocationMapOutput values.
 // You can construct a concrete instance of `SwitchControllerLocationMapInput` via:
 //
-//          SwitchControllerLocationMap{ "key": SwitchControllerLocationArgs{...} }
+//	SwitchControllerLocationMap{ "key": SwitchControllerLocationArgs{...} }
 type SwitchControllerLocationMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o SwitchControllerLocationOutput) ToSwitchControllerLocationOutput() Switc
 
 func (o SwitchControllerLocationOutput) ToSwitchControllerLocationOutputWithContext(ctx context.Context) SwitchControllerLocationOutput {
 	return o
+}
+
+func (o SwitchControllerLocationOutput) AddressCivic() SwitchControllerLocationAddressCivicOutput {
+	return o.ApplyT(func(v *SwitchControllerLocation) SwitchControllerLocationAddressCivicOutput { return v.AddressCivic }).(SwitchControllerLocationAddressCivicOutput)
+}
+
+func (o SwitchControllerLocationOutput) Coordinates() SwitchControllerLocationCoordinatesOutput {
+	return o.ApplyT(func(v *SwitchControllerLocation) SwitchControllerLocationCoordinatesOutput { return v.Coordinates }).(SwitchControllerLocationCoordinatesOutput)
+}
+
+func (o SwitchControllerLocationOutput) ElinNumber() SwitchControllerLocationElinNumberOutput {
+	return o.ApplyT(func(v *SwitchControllerLocation) SwitchControllerLocationElinNumberOutput { return v.ElinNumber }).(SwitchControllerLocationElinNumberOutput)
+}
+
+func (o SwitchControllerLocationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerLocation) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerLocationOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerLocation) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerLocationArrayOutput struct{ *pulumi.OutputState }

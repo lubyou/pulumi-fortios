@@ -7,46 +7,16 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Resource to sort firewall security policies by policyid or policy name, in ascending or descending order.
-//
-// ## Example Usage
-// ### Example1
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test, err := fortios.NewFirewallSecurityPolicySort(ctx, "test", &fortios.FirewallSecurityPolicySortArgs{
-// 			Sortby:        pulumi.String("policyid"),
-// 			Sortdirection: pulumi.String("descending"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("policylistAfterApply", test.StatePolicyLists)
-// 		return nil
-// 	})
-// }
-// ```
 type FirewallSecurityPolicySort struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// The argument is optional, if it is set, when the value changes, the resource will be re-created. It is usually used when new policies are added, or old policies are deleted, or when the policy name is changed when `sortby` is set to `name`, see Example2.
-	ForceRecreate pulumi.StringPtrOutput `pulumi:"forceRecreate"`
-	// Sort security policies by the value, it currently supports "policyid" and "name".
-	Sortby pulumi.StringOutput `pulumi:"sortby"`
-	// Sort dirction, supports "ascending" and "descending".
+	Comment          pulumi.StringPtrOutput                               `pulumi:"comment"`
+	ForceRecreate    pulumi.StringPtrOutput                               `pulumi:"forceRecreate"`
+	Sortby           pulumi.StringOutput                                  `pulumi:"sortby"`
 	Sortdirection    pulumi.StringOutput                                  `pulumi:"sortdirection"`
 	StatePolicyLists FirewallSecurityPolicySortStatePolicyListArrayOutput `pulumi:"statePolicyLists"`
 	Status           pulumi.StringPtrOutput                               `pulumi:"status"`
@@ -89,13 +59,9 @@ func GetFirewallSecurityPolicySort(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallSecurityPolicySort resources.
 type firewallSecurityPolicySortState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// The argument is optional, if it is set, when the value changes, the resource will be re-created. It is usually used when new policies are added, or old policies are deleted, or when the policy name is changed when `sortby` is set to `name`, see Example2.
-	ForceRecreate *string `pulumi:"forceRecreate"`
-	// Sort security policies by the value, it currently supports "policyid" and "name".
-	Sortby *string `pulumi:"sortby"`
-	// Sort dirction, supports "ascending" and "descending".
+	Comment          *string                                     `pulumi:"comment"`
+	ForceRecreate    *string                                     `pulumi:"forceRecreate"`
+	Sortby           *string                                     `pulumi:"sortby"`
 	Sortdirection    *string                                     `pulumi:"sortdirection"`
 	StatePolicyLists []FirewallSecurityPolicySortStatePolicyList `pulumi:"statePolicyLists"`
 	Status           *string                                     `pulumi:"status"`
@@ -103,13 +69,9 @@ type firewallSecurityPolicySortState struct {
 }
 
 type FirewallSecurityPolicySortState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// The argument is optional, if it is set, when the value changes, the resource will be re-created. It is usually used when new policies are added, or old policies are deleted, or when the policy name is changed when `sortby` is set to `name`, see Example2.
-	ForceRecreate pulumi.StringPtrInput
-	// Sort security policies by the value, it currently supports "policyid" and "name".
-	Sortby pulumi.StringPtrInput
-	// Sort dirction, supports "ascending" and "descending".
+	Comment          pulumi.StringPtrInput
+	ForceRecreate    pulumi.StringPtrInput
+	Sortby           pulumi.StringPtrInput
 	Sortdirection    pulumi.StringPtrInput
 	StatePolicyLists FirewallSecurityPolicySortStatePolicyListArrayInput
 	Status           pulumi.StringPtrInput
@@ -121,13 +83,9 @@ func (FirewallSecurityPolicySortState) ElementType() reflect.Type {
 }
 
 type firewallSecurityPolicySortArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// The argument is optional, if it is set, when the value changes, the resource will be re-created. It is usually used when new policies are added, or old policies are deleted, or when the policy name is changed when `sortby` is set to `name`, see Example2.
+	Comment       *string `pulumi:"comment"`
 	ForceRecreate *string `pulumi:"forceRecreate"`
-	// Sort security policies by the value, it currently supports "policyid" and "name".
-	Sortby string `pulumi:"sortby"`
-	// Sort dirction, supports "ascending" and "descending".
+	Sortby        string  `pulumi:"sortby"`
 	Sortdirection string  `pulumi:"sortdirection"`
 	Status        *string `pulumi:"status"`
 	Vdomparam     *string `pulumi:"vdomparam"`
@@ -135,13 +93,9 @@ type firewallSecurityPolicySortArgs struct {
 
 // The set of arguments for constructing a FirewallSecurityPolicySort resource.
 type FirewallSecurityPolicySortArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// The argument is optional, if it is set, when the value changes, the resource will be re-created. It is usually used when new policies are added, or old policies are deleted, or when the policy name is changed when `sortby` is set to `name`, see Example2.
+	Comment       pulumi.StringPtrInput
 	ForceRecreate pulumi.StringPtrInput
-	// Sort security policies by the value, it currently supports "policyid" and "name".
-	Sortby pulumi.StringInput
-	// Sort dirction, supports "ascending" and "descending".
+	Sortby        pulumi.StringInput
 	Sortdirection pulumi.StringInput
 	Status        pulumi.StringPtrInput
 	Vdomparam     pulumi.StringPtrInput
@@ -173,7 +127,7 @@ func (i *FirewallSecurityPolicySort) ToFirewallSecurityPolicySortOutputWithConte
 // FirewallSecurityPolicySortArrayInput is an input type that accepts FirewallSecurityPolicySortArray and FirewallSecurityPolicySortArrayOutput values.
 // You can construct a concrete instance of `FirewallSecurityPolicySortArrayInput` via:
 //
-//          FirewallSecurityPolicySortArray{ FirewallSecurityPolicySortArgs{...} }
+//	FirewallSecurityPolicySortArray{ FirewallSecurityPolicySortArgs{...} }
 type FirewallSecurityPolicySortArrayInput interface {
 	pulumi.Input
 
@@ -198,7 +152,7 @@ func (i FirewallSecurityPolicySortArray) ToFirewallSecurityPolicySortArrayOutput
 // FirewallSecurityPolicySortMapInput is an input type that accepts FirewallSecurityPolicySortMap and FirewallSecurityPolicySortMapOutput values.
 // You can construct a concrete instance of `FirewallSecurityPolicySortMapInput` via:
 //
-//          FirewallSecurityPolicySortMap{ "key": FirewallSecurityPolicySortArgs{...} }
+//	FirewallSecurityPolicySortMap{ "key": FirewallSecurityPolicySortArgs{...} }
 type FirewallSecurityPolicySortMapInput interface {
 	pulumi.Input
 
@@ -232,6 +186,36 @@ func (o FirewallSecurityPolicySortOutput) ToFirewallSecurityPolicySortOutput() F
 
 func (o FirewallSecurityPolicySortOutput) ToFirewallSecurityPolicySortOutputWithContext(ctx context.Context) FirewallSecurityPolicySortOutput {
 	return o
+}
+
+func (o FirewallSecurityPolicySortOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicySort) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSecurityPolicySortOutput) ForceRecreate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicySort) pulumi.StringPtrOutput { return v.ForceRecreate }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSecurityPolicySortOutput) Sortby() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicySort) pulumi.StringOutput { return v.Sortby }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicySortOutput) Sortdirection() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicySort) pulumi.StringOutput { return v.Sortdirection }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicySortOutput) StatePolicyLists() FirewallSecurityPolicySortStatePolicyListArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicySort) FirewallSecurityPolicySortStatePolicyListArrayOutput {
+		return v.StatePolicyLists
+	}).(FirewallSecurityPolicySortStatePolicyListArrayOutput)
+}
+
+func (o FirewallSecurityPolicySortOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicySort) pulumi.StringPtrOutput { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSecurityPolicySortOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicySort) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallSecurityPolicySortArrayOutput struct{ *pulumi.OutputState }

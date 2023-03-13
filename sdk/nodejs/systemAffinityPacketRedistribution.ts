@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure packet redistribution.
- *
- * ## Import
- *
- * System AffinityPacketRedistribution can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAffinityPacketRedistribution:SystemAffinityPacketRedistribution labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAffinityPacketRedistribution:SystemAffinityPacketRedistribution labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemAffinityPacketRedistribution extends pulumi.CustomResource {
     /**
      * Get an existing SystemAffinityPacketRedistribution resource's state with the given name, ID, and optional extra
@@ -51,25 +32,10 @@ export class SystemAffinityPacketRedistribution extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAffinityPacketRedistribution.__pulumiType;
     }
 
-    /**
-     * Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
-     */
     public readonly affinityCpumask!: pulumi.Output<string>;
-    /**
-     * ID of the packet redistribution setting.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Physical interface name on which to perform packet redistribution.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
-     */
     public readonly rxqid!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -119,25 +85,10 @@ export class SystemAffinityPacketRedistribution extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAffinityPacketRedistribution resources.
  */
 export interface SystemAffinityPacketRedistributionState {
-    /**
-     * Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
-     */
     affinityCpumask?: pulumi.Input<string>;
-    /**
-     * ID of the packet redistribution setting.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Physical interface name on which to perform packet redistribution.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
-     */
     rxqid?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -145,24 +96,9 @@ export interface SystemAffinityPacketRedistributionState {
  * The set of arguments for constructing a SystemAffinityPacketRedistribution resource.
  */
 export interface SystemAffinityPacketRedistributionArgs {
-    /**
-     * Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
-     */
     affinityCpumask: pulumi.Input<string>;
-    /**
-     * ID of the packet redistribution setting.
-     */
     fosid: pulumi.Input<number>;
-    /**
-     * Physical interface name on which to perform packet redistribution.
-     */
     interface: pulumi.Input<string>;
-    /**
-     * ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
-     */
     rxqid: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

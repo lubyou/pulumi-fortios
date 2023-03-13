@@ -10,40 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// OSPF neighbor configuration are used when OSPF runs on non-broadcast media
-//
-// > The provider supports the definition of Neighbor in Router Ospf `RouterOspf`, and also allows the definition of separate Neighbor resources `RouterospfNeighbor`, but do not use a `RouterOspf` with in-line Neighbor in conjunction with any `RouterospfNeighbor` resources, otherwise conflicts and overwrite will occur.
-//
-// ## Import
-//
-// Routerospf Neighbor can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerospfNeighbor:RouterospfNeighbor labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerospfNeighbor:RouterospfNeighbor labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterospfNeighbor struct {
 	pulumi.CustomResourceState
 
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost pulumi.IntOutput `pulumi:"cost"`
-	// Neighbor entry ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Interface IP address of the neighbor.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// Poll interval time in seconds.
-	PollInterval pulumi.IntOutput `pulumi:"pollInterval"`
-	// Priority.
-	Priority pulumi.IntOutput `pulumi:"priority"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Cost         pulumi.IntOutput       `pulumi:"cost"`
+	Fosid        pulumi.IntOutput       `pulumi:"fosid"`
+	Ip           pulumi.StringOutput    `pulumi:"ip"`
+	PollInterval pulumi.IntOutput       `pulumi:"pollInterval"`
+	Priority     pulumi.IntOutput       `pulumi:"priority"`
+	Vdomparam    pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewRouterospfNeighbor registers a new resource with the given unique name, arguments, and options.
@@ -76,33 +51,21 @@ func GetRouterospfNeighbor(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterospfNeighbor resources.
 type routerospfNeighborState struct {
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost *int `pulumi:"cost"`
-	// Neighbor entry ID.
-	Fosid *int `pulumi:"fosid"`
-	// Interface IP address of the neighbor.
-	Ip *string `pulumi:"ip"`
-	// Poll interval time in seconds.
-	PollInterval *int `pulumi:"pollInterval"`
-	// Priority.
-	Priority *int `pulumi:"priority"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Cost         *int    `pulumi:"cost"`
+	Fosid        *int    `pulumi:"fosid"`
+	Ip           *string `pulumi:"ip"`
+	PollInterval *int    `pulumi:"pollInterval"`
+	Priority     *int    `pulumi:"priority"`
+	Vdomparam    *string `pulumi:"vdomparam"`
 }
 
 type RouterospfNeighborState struct {
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost pulumi.IntPtrInput
-	// Neighbor entry ID.
-	Fosid pulumi.IntPtrInput
-	// Interface IP address of the neighbor.
-	Ip pulumi.StringPtrInput
-	// Poll interval time in seconds.
+	Cost         pulumi.IntPtrInput
+	Fosid        pulumi.IntPtrInput
+	Ip           pulumi.StringPtrInput
 	PollInterval pulumi.IntPtrInput
-	// Priority.
-	Priority pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Priority     pulumi.IntPtrInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (RouterospfNeighborState) ElementType() reflect.Type {
@@ -110,34 +73,22 @@ func (RouterospfNeighborState) ElementType() reflect.Type {
 }
 
 type routerospfNeighborArgs struct {
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost *int `pulumi:"cost"`
-	// Neighbor entry ID.
-	Fosid *int `pulumi:"fosid"`
-	// Interface IP address of the neighbor.
-	Ip *string `pulumi:"ip"`
-	// Poll interval time in seconds.
-	PollInterval *int `pulumi:"pollInterval"`
-	// Priority.
-	Priority *int `pulumi:"priority"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Cost         *int    `pulumi:"cost"`
+	Fosid        *int    `pulumi:"fosid"`
+	Ip           *string `pulumi:"ip"`
+	PollInterval *int    `pulumi:"pollInterval"`
+	Priority     *int    `pulumi:"priority"`
+	Vdomparam    *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterospfNeighbor resource.
 type RouterospfNeighborArgs struct {
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost pulumi.IntPtrInput
-	// Neighbor entry ID.
-	Fosid pulumi.IntPtrInput
-	// Interface IP address of the neighbor.
-	Ip pulumi.StringPtrInput
-	// Poll interval time in seconds.
+	Cost         pulumi.IntPtrInput
+	Fosid        pulumi.IntPtrInput
+	Ip           pulumi.StringPtrInput
 	PollInterval pulumi.IntPtrInput
-	// Priority.
-	Priority pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Priority     pulumi.IntPtrInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (RouterospfNeighborArgs) ElementType() reflect.Type {
@@ -166,7 +117,7 @@ func (i *RouterospfNeighbor) ToRouterospfNeighborOutputWithContext(ctx context.C
 // RouterospfNeighborArrayInput is an input type that accepts RouterospfNeighborArray and RouterospfNeighborArrayOutput values.
 // You can construct a concrete instance of `RouterospfNeighborArrayInput` via:
 //
-//          RouterospfNeighborArray{ RouterospfNeighborArgs{...} }
+//	RouterospfNeighborArray{ RouterospfNeighborArgs{...} }
 type RouterospfNeighborArrayInput interface {
 	pulumi.Input
 
@@ -191,7 +142,7 @@ func (i RouterospfNeighborArray) ToRouterospfNeighborArrayOutputWithContext(ctx 
 // RouterospfNeighborMapInput is an input type that accepts RouterospfNeighborMap and RouterospfNeighborMapOutput values.
 // You can construct a concrete instance of `RouterospfNeighborMapInput` via:
 //
-//          RouterospfNeighborMap{ "key": RouterospfNeighborArgs{...} }
+//	RouterospfNeighborMap{ "key": RouterospfNeighborArgs{...} }
 type RouterospfNeighborMapInput interface {
 	pulumi.Input
 
@@ -225,6 +176,30 @@ func (o RouterospfNeighborOutput) ToRouterospfNeighborOutput() RouterospfNeighbo
 
 func (o RouterospfNeighborOutput) ToRouterospfNeighborOutputWithContext(ctx context.Context) RouterospfNeighborOutput {
 	return o
+}
+
+func (o RouterospfNeighborOutput) Cost() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterospfNeighbor) pulumi.IntOutput { return v.Cost }).(pulumi.IntOutput)
+}
+
+func (o RouterospfNeighborOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterospfNeighbor) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o RouterospfNeighborOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterospfNeighbor) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o RouterospfNeighborOutput) PollInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterospfNeighbor) pulumi.IntOutput { return v.PollInterval }).(pulumi.IntOutput)
+}
+
+func (o RouterospfNeighborOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterospfNeighbor) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
+}
+
+func (o RouterospfNeighborOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterospfNeighbor) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterospfNeighborArrayOutput struct{ *pulumi.OutputState }

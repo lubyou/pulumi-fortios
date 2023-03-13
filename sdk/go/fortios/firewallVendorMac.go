@@ -10,35 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Show vendor and the MAC address they have. Applies to FortiOS Version `>= 6.4.0`.
-//
-// ## Import
-//
-// Firewall VendorMac can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallVendorMac:FirewallVendorMac labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallVendorMac:FirewallVendorMac labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallVendorMac struct {
 	pulumi.CustomResourceState
 
-	// Vendor ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Total number of MAC addresses.
-	MacNumber pulumi.IntOutput `pulumi:"macNumber"`
-	// Vendor name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Indicates whether the Vendor ID can be used.
-	Obsolete pulumi.IntOutput `pulumi:"obsolete"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	MacNumber pulumi.IntOutput       `pulumi:"macNumber"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
+	Obsolete  pulumi.IntOutput       `pulumi:"obsolete"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -72,28 +50,18 @@ func GetFirewallVendorMac(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallVendorMac resources.
 type firewallVendorMacState struct {
-	// Vendor ID.
-	Fosid *int `pulumi:"fosid"`
-	// Total number of MAC addresses.
-	MacNumber *int `pulumi:"macNumber"`
-	// Vendor name.
-	Name *string `pulumi:"name"`
-	// Indicates whether the Vendor ID can be used.
-	Obsolete *int `pulumi:"obsolete"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	MacNumber *int    `pulumi:"macNumber"`
+	Name      *string `pulumi:"name"`
+	Obsolete  *int    `pulumi:"obsolete"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type FirewallVendorMacState struct {
-	// Vendor ID.
-	Fosid pulumi.IntPtrInput
-	// Total number of MAC addresses.
+	Fosid     pulumi.IntPtrInput
 	MacNumber pulumi.IntPtrInput
-	// Vendor name.
-	Name pulumi.StringPtrInput
-	// Indicates whether the Vendor ID can be used.
-	Obsolete pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringPtrInput
+	Obsolete  pulumi.IntPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -102,29 +70,19 @@ func (FirewallVendorMacState) ElementType() reflect.Type {
 }
 
 type firewallVendorMacArgs struct {
-	// Vendor ID.
-	Fosid *int `pulumi:"fosid"`
-	// Total number of MAC addresses.
-	MacNumber *int `pulumi:"macNumber"`
-	// Vendor name.
-	Name *string `pulumi:"name"`
-	// Indicates whether the Vendor ID can be used.
-	Obsolete *int `pulumi:"obsolete"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	MacNumber *int    `pulumi:"macNumber"`
+	Name      *string `pulumi:"name"`
+	Obsolete  *int    `pulumi:"obsolete"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallVendorMac resource.
 type FirewallVendorMacArgs struct {
-	// Vendor ID.
-	Fosid pulumi.IntPtrInput
-	// Total number of MAC addresses.
+	Fosid     pulumi.IntPtrInput
 	MacNumber pulumi.IntPtrInput
-	// Vendor name.
-	Name pulumi.StringPtrInput
-	// Indicates whether the Vendor ID can be used.
-	Obsolete pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringPtrInput
+	Obsolete  pulumi.IntPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -154,7 +112,7 @@ func (i *FirewallVendorMac) ToFirewallVendorMacOutputWithContext(ctx context.Con
 // FirewallVendorMacArrayInput is an input type that accepts FirewallVendorMacArray and FirewallVendorMacArrayOutput values.
 // You can construct a concrete instance of `FirewallVendorMacArrayInput` via:
 //
-//          FirewallVendorMacArray{ FirewallVendorMacArgs{...} }
+//	FirewallVendorMacArray{ FirewallVendorMacArgs{...} }
 type FirewallVendorMacArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i FirewallVendorMacArray) ToFirewallVendorMacArrayOutputWithContext(ctx co
 // FirewallVendorMacMapInput is an input type that accepts FirewallVendorMacMap and FirewallVendorMacMapOutput values.
 // You can construct a concrete instance of `FirewallVendorMacMapInput` via:
 //
-//          FirewallVendorMacMap{ "key": FirewallVendorMacArgs{...} }
+//	FirewallVendorMacMap{ "key": FirewallVendorMacArgs{...} }
 type FirewallVendorMacMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o FirewallVendorMacOutput) ToFirewallVendorMacOutput() FirewallVendorMacOu
 
 func (o FirewallVendorMacOutput) ToFirewallVendorMacOutputWithContext(ctx context.Context) FirewallVendorMacOutput {
 	return o
+}
+
+func (o FirewallVendorMacOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVendorMac) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallVendorMacOutput) MacNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVendorMac) pulumi.IntOutput { return v.MacNumber }).(pulumi.IntOutput)
+}
+
+func (o FirewallVendorMacOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVendorMac) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallVendorMacOutput) Obsolete() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVendorMac) pulumi.IntOutput { return v.Obsolete }).(pulumi.IntOutput)
+}
+
+func (o FirewallVendorMacOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallVendorMac) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallVendorMacArrayOutput struct{ *pulumi.OutputState }

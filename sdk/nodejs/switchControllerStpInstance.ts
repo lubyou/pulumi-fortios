@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch multiple spanning tree protocol (MSTP) instances. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * SwitchController StpInstance can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerStpInstance:SwitchControllerStpInstance labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerStpInstance:SwitchControllerStpInstance labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerStpInstance extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerStpInstance resource's state with the given name, ID, and optional extra
@@ -52,21 +34,9 @@ export class SwitchControllerStpInstance extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerStpInstance.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Instance ID.
-     */
     public readonly fosid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Configure VLAN range for STP instance. The structure of `vlanRange` block is documented below.
-     */
     public readonly vlanRanges!: pulumi.Output<outputs.SwitchControllerStpInstanceVlanRange[] | undefined>;
 
     /**
@@ -102,21 +72,9 @@ export class SwitchControllerStpInstance extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerStpInstance resources.
  */
 export interface SwitchControllerStpInstanceState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Instance ID.
-     */
     fosid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Configure VLAN range for STP instance. The structure of `vlanRange` block is documented below.
-     */
     vlanRanges?: pulumi.Input<pulumi.Input<inputs.SwitchControllerStpInstanceVlanRange>[]>;
 }
 
@@ -124,20 +82,8 @@ export interface SwitchControllerStpInstanceState {
  * The set of arguments for constructing a SwitchControllerStpInstance resource.
  */
 export interface SwitchControllerStpInstanceArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Instance ID.
-     */
     fosid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Configure VLAN range for STP instance. The structure of `vlanRange` block is documented below.
-     */
     vlanRanges?: pulumi.Input<pulumi.Input<inputs.SwitchControllerStpInstanceVlanRange>[]>;
 }

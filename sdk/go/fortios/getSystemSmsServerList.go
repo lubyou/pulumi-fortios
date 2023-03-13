@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemSmsServer`.
 func GetSystemSmsServerList(ctx *pulumi.Context, args *GetSystemSmsServerListArgs, opts ...pulumi.InvokeOption) (*GetSystemSmsServerListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemSmsServerListResult
@@ -23,8 +22,7 @@ func GetSystemSmsServerList(ctx *pulumi.Context, args *GetSystemSmsServerListArg
 
 // A collection of arguments for invoking GetSystemSmsServerList.
 type GetSystemSmsServerListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetSystemSmsServerListArgs struct {
 type GetSystemSmsServerListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `SystemSmsServer`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetSystemSmsServerListOutput(ctx *pulumi.Context, args GetSystemSmsServerLi
 
 // A collection of arguments for invoking GetSystemSmsServerList.
 type GetSystemSmsServerListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetSystemSmsServerListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSystemSmsServerListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `SystemSmsServer`.
 func (o GetSystemSmsServerListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSystemSmsServerListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

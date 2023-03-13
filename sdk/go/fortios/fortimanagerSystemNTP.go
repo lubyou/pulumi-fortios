@@ -7,45 +7,16 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports modifying system ntp setting for FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerSystemNTP(ctx, "test1", &fortios.FortimanagerSystemNTPArgs{
-// 			Server:       pulumi.String("ntp1.fortinet.com"),
-// 			Status:       pulumi.String("enable"),
-// 			SyncInterval: pulumi.Int(30),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerSystemNTP struct {
 	pulumi.CustomResourceState
 
-	// IP address/hostname of NTP Server.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// Enable/disable NTP.
-	Status pulumi.StringPtrOutput `pulumi:"status"`
-	// NTP sync interval (minute).
-	SyncInterval pulumi.IntPtrOutput `pulumi:"syncInterval"`
+	Server       pulumi.StringOutput    `pulumi:"server"`
+	Status       pulumi.StringPtrOutput `pulumi:"status"`
+	SyncInterval pulumi.IntPtrOutput    `pulumi:"syncInterval"`
 }
 
 // NewFortimanagerSystemNTP registers a new resource with the given unique name, arguments, and options.
@@ -81,20 +52,14 @@ func GetFortimanagerSystemNTP(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerSystemNTP resources.
 type fortimanagerSystemNTPState struct {
-	// IP address/hostname of NTP Server.
-	Server *string `pulumi:"server"`
-	// Enable/disable NTP.
-	Status *string `pulumi:"status"`
-	// NTP sync interval (minute).
-	SyncInterval *int `pulumi:"syncInterval"`
+	Server       *string `pulumi:"server"`
+	Status       *string `pulumi:"status"`
+	SyncInterval *int    `pulumi:"syncInterval"`
 }
 
 type FortimanagerSystemNTPState struct {
-	// IP address/hostname of NTP Server.
-	Server pulumi.StringPtrInput
-	// Enable/disable NTP.
-	Status pulumi.StringPtrInput
-	// NTP sync interval (minute).
+	Server       pulumi.StringPtrInput
+	Status       pulumi.StringPtrInput
 	SyncInterval pulumi.IntPtrInput
 }
 
@@ -103,21 +68,15 @@ func (FortimanagerSystemNTPState) ElementType() reflect.Type {
 }
 
 type fortimanagerSystemNTPArgs struct {
-	// IP address/hostname of NTP Server.
-	Server string `pulumi:"server"`
-	// Enable/disable NTP.
-	Status *string `pulumi:"status"`
-	// NTP sync interval (minute).
-	SyncInterval *int `pulumi:"syncInterval"`
+	Server       string  `pulumi:"server"`
+	Status       *string `pulumi:"status"`
+	SyncInterval *int    `pulumi:"syncInterval"`
 }
 
 // The set of arguments for constructing a FortimanagerSystemNTP resource.
 type FortimanagerSystemNTPArgs struct {
-	// IP address/hostname of NTP Server.
-	Server pulumi.StringInput
-	// Enable/disable NTP.
-	Status pulumi.StringPtrInput
-	// NTP sync interval (minute).
+	Server       pulumi.StringInput
+	Status       pulumi.StringPtrInput
 	SyncInterval pulumi.IntPtrInput
 }
 
@@ -147,7 +106,7 @@ func (i *FortimanagerSystemNTP) ToFortimanagerSystemNTPOutputWithContext(ctx con
 // FortimanagerSystemNTPArrayInput is an input type that accepts FortimanagerSystemNTPArray and FortimanagerSystemNTPArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemNTPArrayInput` via:
 //
-//          FortimanagerSystemNTPArray{ FortimanagerSystemNTPArgs{...} }
+//	FortimanagerSystemNTPArray{ FortimanagerSystemNTPArgs{...} }
 type FortimanagerSystemNTPArrayInput interface {
 	pulumi.Input
 
@@ -172,7 +131,7 @@ func (i FortimanagerSystemNTPArray) ToFortimanagerSystemNTPArrayOutputWithContex
 // FortimanagerSystemNTPMapInput is an input type that accepts FortimanagerSystemNTPMap and FortimanagerSystemNTPMapOutput values.
 // You can construct a concrete instance of `FortimanagerSystemNTPMapInput` via:
 //
-//          FortimanagerSystemNTPMap{ "key": FortimanagerSystemNTPArgs{...} }
+//	FortimanagerSystemNTPMap{ "key": FortimanagerSystemNTPArgs{...} }
 type FortimanagerSystemNTPMapInput interface {
 	pulumi.Input
 
@@ -206,6 +165,18 @@ func (o FortimanagerSystemNTPOutput) ToFortimanagerSystemNTPOutput() Fortimanage
 
 func (o FortimanagerSystemNTPOutput) ToFortimanagerSystemNTPOutputWithContext(ctx context.Context) FortimanagerSystemNTPOutput {
 	return o
+}
+
+func (o FortimanagerSystemNTPOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerSystemNTP) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerSystemNTPOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemNTP) pulumi.StringPtrOutput { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemNTPOutput) SyncInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemNTP) pulumi.IntPtrOutput { return v.SyncInterval }).(pulumi.IntPtrOutput)
 }
 
 type FortimanagerSystemNTPArrayOutput struct{ *pulumi.OutputState }

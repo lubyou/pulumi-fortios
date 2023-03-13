@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch logging (logs are transferred to and inserted into FortiGate event log).
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchControllerSwitchLog("trname", {
- *     severity: "critical",
- *     status: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * SwitchController SwitchLog can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSwitchLog:SwitchControllerSwitchLog labelname SwitchControllerSwitchLog
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSwitchLog:SwitchControllerSwitchLog labelname SwitchControllerSwitchLog
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerSwitchLog extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerSwitchLog resource's state with the given name, ID, and optional extra
@@ -63,17 +32,8 @@ export class SwitchControllerSwitchLog extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerSwitchLog.__pulumiType;
     }
 
-    /**
-     * Severity of FortiSwitch logs that are added to the FortiGate event log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly severity!: pulumi.Output<string>;
-    /**
-     * Enable/disable adding FortiSwitch logs to FortiGate event log. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -107,17 +67,8 @@ export class SwitchControllerSwitchLog extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerSwitchLog resources.
  */
 export interface SwitchControllerSwitchLogState {
-    /**
-     * Severity of FortiSwitch logs that are added to the FortiGate event log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     severity?: pulumi.Input<string>;
-    /**
-     * Enable/disable adding FortiSwitch logs to FortiGate event log. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -125,16 +76,7 @@ export interface SwitchControllerSwitchLogState {
  * The set of arguments for constructing a SwitchControllerSwitchLog resource.
  */
 export interface SwitchControllerSwitchLogArgs {
-    /**
-     * Severity of FortiSwitch logs that are added to the FortiGate event log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     severity?: pulumi.Input<string>;
-    /**
-     * Enable/disable adding FortiSwitch logs to FortiGate event log. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

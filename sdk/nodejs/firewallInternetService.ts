@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Show Internet Service application.
- *
- * ## Import
- *
- * Firewall InternetService can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInternetService:FirewallInternetService labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInternetService:FirewallInternetService labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallInternetService extends pulumi.CustomResource {
     /**
      * Get an existing FirewallInternetService resource's state with the given name, ID, and optional extra
@@ -51,57 +32,20 @@ export class FirewallInternetService extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallInternetService.__pulumiType;
     }
 
-    /**
-     * Database name this Internet Service belongs to. Valid values: `isdb`, `irdb`.
-     */
     public readonly database!: pulumi.Output<string>;
-    /**
-     * How this service may be used in a firewall policy (source, destination or both). Valid values: `src`, `dst`, `both`.
-     */
     public readonly direction!: pulumi.Output<string>;
-    /**
-     * Extra number of IP ranges.
-     */
+    public readonly extraIp6RangeNumber!: pulumi.Output<number>;
     public readonly extraIpRangeNumber!: pulumi.Output<number>;
-    /**
-     * Internet Service ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Icon ID of Internet Service.
-     */
     public readonly iconId!: pulumi.Output<number>;
-    /**
-     * Total number of IP addresses.
-     */
+    public readonly ip6RangeNumber!: pulumi.Output<number>;
     public readonly ipNumber!: pulumi.Output<number>;
-    /**
-     * Total number of IP ranges.
-     */
     public readonly ipRangeNumber!: pulumi.Output<number>;
-    /**
-     * Internet Service name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Indicates whether the Internet Service can be used.
-     */
     public readonly obsolete!: pulumi.Output<number>;
-    /**
-     * Reputation level of the Internet Service.
-     */
     public readonly reputation!: pulumi.Output<number>;
-    /**
-     * Singular level of the Internet Service.
-     */
     public readonly singularity!: pulumi.Output<number>;
-    /**
-     * Second Level Domain.
-     */
     public readonly sldId!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -119,9 +63,11 @@ export class FirewallInternetService extends pulumi.CustomResource {
             const state = argsOrState as FirewallInternetServiceState | undefined;
             resourceInputs["database"] = state ? state.database : undefined;
             resourceInputs["direction"] = state ? state.direction : undefined;
+            resourceInputs["extraIp6RangeNumber"] = state ? state.extraIp6RangeNumber : undefined;
             resourceInputs["extraIpRangeNumber"] = state ? state.extraIpRangeNumber : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
             resourceInputs["iconId"] = state ? state.iconId : undefined;
+            resourceInputs["ip6RangeNumber"] = state ? state.ip6RangeNumber : undefined;
             resourceInputs["ipNumber"] = state ? state.ipNumber : undefined;
             resourceInputs["ipRangeNumber"] = state ? state.ipRangeNumber : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -134,9 +80,11 @@ export class FirewallInternetService extends pulumi.CustomResource {
             const args = argsOrState as FirewallInternetServiceArgs | undefined;
             resourceInputs["database"] = args ? args.database : undefined;
             resourceInputs["direction"] = args ? args.direction : undefined;
+            resourceInputs["extraIp6RangeNumber"] = args ? args.extraIp6RangeNumber : undefined;
             resourceInputs["extraIpRangeNumber"] = args ? args.extraIpRangeNumber : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
             resourceInputs["iconId"] = args ? args.iconId : undefined;
+            resourceInputs["ip6RangeNumber"] = args ? args.ip6RangeNumber : undefined;
             resourceInputs["ipNumber"] = args ? args.ipNumber : undefined;
             resourceInputs["ipRangeNumber"] = args ? args.ipRangeNumber : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -155,57 +103,20 @@ export class FirewallInternetService extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallInternetService resources.
  */
 export interface FirewallInternetServiceState {
-    /**
-     * Database name this Internet Service belongs to. Valid values: `isdb`, `irdb`.
-     */
     database?: pulumi.Input<string>;
-    /**
-     * How this service may be used in a firewall policy (source, destination or both). Valid values: `src`, `dst`, `both`.
-     */
     direction?: pulumi.Input<string>;
-    /**
-     * Extra number of IP ranges.
-     */
+    extraIp6RangeNumber?: pulumi.Input<number>;
     extraIpRangeNumber?: pulumi.Input<number>;
-    /**
-     * Internet Service ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Icon ID of Internet Service.
-     */
     iconId?: pulumi.Input<number>;
-    /**
-     * Total number of IP addresses.
-     */
+    ip6RangeNumber?: pulumi.Input<number>;
     ipNumber?: pulumi.Input<number>;
-    /**
-     * Total number of IP ranges.
-     */
     ipRangeNumber?: pulumi.Input<number>;
-    /**
-     * Internet Service name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Indicates whether the Internet Service can be used.
-     */
     obsolete?: pulumi.Input<number>;
-    /**
-     * Reputation level of the Internet Service.
-     */
     reputation?: pulumi.Input<number>;
-    /**
-     * Singular level of the Internet Service.
-     */
     singularity?: pulumi.Input<number>;
-    /**
-     * Second Level Domain.
-     */
     sldId?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -213,56 +124,19 @@ export interface FirewallInternetServiceState {
  * The set of arguments for constructing a FirewallInternetService resource.
  */
 export interface FirewallInternetServiceArgs {
-    /**
-     * Database name this Internet Service belongs to. Valid values: `isdb`, `irdb`.
-     */
     database?: pulumi.Input<string>;
-    /**
-     * How this service may be used in a firewall policy (source, destination or both). Valid values: `src`, `dst`, `both`.
-     */
     direction?: pulumi.Input<string>;
-    /**
-     * Extra number of IP ranges.
-     */
+    extraIp6RangeNumber?: pulumi.Input<number>;
     extraIpRangeNumber?: pulumi.Input<number>;
-    /**
-     * Internet Service ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Icon ID of Internet Service.
-     */
     iconId?: pulumi.Input<number>;
-    /**
-     * Total number of IP addresses.
-     */
+    ip6RangeNumber?: pulumi.Input<number>;
     ipNumber?: pulumi.Input<number>;
-    /**
-     * Total number of IP ranges.
-     */
     ipRangeNumber?: pulumi.Input<number>;
-    /**
-     * Internet Service name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Indicates whether the Internet Service can be used.
-     */
     obsolete?: pulumi.Input<number>;
-    /**
-     * Reputation level of the Internet Service.
-     */
     reputation?: pulumi.Input<number>;
-    /**
-     * Singular level of the Internet Service.
-     */
     singularity?: pulumi.Input<number>;
-    /**
-     * Second Level Domain.
-     */
     sldId?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

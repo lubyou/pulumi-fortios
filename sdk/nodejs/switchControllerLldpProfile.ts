@@ -2,43 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch LLDP profiles.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchControllerLldpProfile("trname", {
- *     autoIsl: "enable",
- *     autoIslHelloTimer: 3,
- *     autoIslPortGroup: 0,
- *     autoIslReceiveTimeout: 60,
- *     medTlvs: "inventory-management network-policy",
- * });
- * ```
- *
- * ## Import
- *
- * SwitchController LldpProfile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerLldpProfile:SwitchControllerLldpProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerLldpProfile:SwitchControllerLldpProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerLldpProfile extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerLldpProfile resource's state with the given name, ID, and optional extra
@@ -67,61 +34,19 @@ export class SwitchControllerLldpProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerLldpProfile.__pulumiType;
     }
 
-    /**
-     * Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
-     */
     public readonly autoIsl!: pulumi.Output<string>;
-    /**
-     * Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
-     */
     public readonly autoIslHelloTimer!: pulumi.Output<number>;
-    /**
-     * Auto inter-switch LAG port group ID (0 - 9).
-     */
     public readonly autoIslPortGroup!: pulumi.Output<number>;
-    /**
-     * Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 9).
-     */
     public readonly autoIslReceiveTimeout!: pulumi.Output<number>;
-    /**
-     * Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
-     */
     public readonly autoMclagIcl!: pulumi.Output<string>;
-    /**
-     * Configuration method to edit custom TLV entries. The structure of `customTlvs` block is documented below.
-     */
     public readonly customTlvs!: pulumi.Output<outputs.SwitchControllerLldpProfileCustomTlv[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
-     */
     public readonly medLocationServices!: pulumi.Output<outputs.SwitchControllerLldpProfileMedLocationService[] | undefined>;
-    /**
-     * Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `medNetworkPolicy` block is documented below.
-     */
     public readonly medNetworkPolicies!: pulumi.Output<outputs.SwitchControllerLldpProfileMedNetworkPolicy[] | undefined>;
-    /**
-     * Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
-     */
     public readonly medTlvs!: pulumi.Output<string>;
-    /**
-     * Transmitted IEEE 802.1 TLVs. Valid values: `port-vlan-id`.
-     */
     public readonly n8021Tlvs!: pulumi.Output<string>;
-    /**
-     * Transmitted IEEE 802.3 TLVs.
-     */
     public readonly n8023Tlvs!: pulumi.Output<string>;
-    /**
-     * TLV name (not sent).
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -177,61 +102,19 @@ export class SwitchControllerLldpProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerLldpProfile resources.
  */
 export interface SwitchControllerLldpProfileState {
-    /**
-     * Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
-     */
     autoIsl?: pulumi.Input<string>;
-    /**
-     * Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
-     */
     autoIslHelloTimer?: pulumi.Input<number>;
-    /**
-     * Auto inter-switch LAG port group ID (0 - 9).
-     */
     autoIslPortGroup?: pulumi.Input<number>;
-    /**
-     * Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 9).
-     */
     autoIslReceiveTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
-     */
     autoMclagIcl?: pulumi.Input<string>;
-    /**
-     * Configuration method to edit custom TLV entries. The structure of `customTlvs` block is documented below.
-     */
     customTlvs?: pulumi.Input<pulumi.Input<inputs.SwitchControllerLldpProfileCustomTlv>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
-     */
     medLocationServices?: pulumi.Input<pulumi.Input<inputs.SwitchControllerLldpProfileMedLocationService>[]>;
-    /**
-     * Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `medNetworkPolicy` block is documented below.
-     */
     medNetworkPolicies?: pulumi.Input<pulumi.Input<inputs.SwitchControllerLldpProfileMedNetworkPolicy>[]>;
-    /**
-     * Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
-     */
     medTlvs?: pulumi.Input<string>;
-    /**
-     * Transmitted IEEE 802.1 TLVs. Valid values: `port-vlan-id`.
-     */
     n8021Tlvs?: pulumi.Input<string>;
-    /**
-     * Transmitted IEEE 802.3 TLVs.
-     */
     n8023Tlvs?: pulumi.Input<string>;
-    /**
-     * TLV name (not sent).
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -239,60 +122,18 @@ export interface SwitchControllerLldpProfileState {
  * The set of arguments for constructing a SwitchControllerLldpProfile resource.
  */
 export interface SwitchControllerLldpProfileArgs {
-    /**
-     * Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
-     */
     autoIsl?: pulumi.Input<string>;
-    /**
-     * Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
-     */
     autoIslHelloTimer?: pulumi.Input<number>;
-    /**
-     * Auto inter-switch LAG port group ID (0 - 9).
-     */
     autoIslPortGroup?: pulumi.Input<number>;
-    /**
-     * Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 9).
-     */
     autoIslReceiveTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
-     */
     autoMclagIcl?: pulumi.Input<string>;
-    /**
-     * Configuration method to edit custom TLV entries. The structure of `customTlvs` block is documented below.
-     */
     customTlvs?: pulumi.Input<pulumi.Input<inputs.SwitchControllerLldpProfileCustomTlv>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
-     */
     medLocationServices?: pulumi.Input<pulumi.Input<inputs.SwitchControllerLldpProfileMedLocationService>[]>;
-    /**
-     * Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `medNetworkPolicy` block is documented below.
-     */
     medNetworkPolicies?: pulumi.Input<pulumi.Input<inputs.SwitchControllerLldpProfileMedNetworkPolicy>[]>;
-    /**
-     * Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
-     */
     medTlvs?: pulumi.Input<string>;
-    /**
-     * Transmitted IEEE 802.1 TLVs. Valid values: `port-vlan-id`.
-     */
     n8021Tlvs?: pulumi.Input<string>;
-    /**
-     * Transmitted IEEE 802.3 TLVs.
-     */
     n8023Tlvs?: pulumi.Input<string>;
-    /**
-     * TLV name (not sent).
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

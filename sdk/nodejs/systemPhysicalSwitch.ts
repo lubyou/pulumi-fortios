@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure physical switches. Applies to FortiOS Version `>= 7.0.4`.
- *
- * ## Import
- *
- * System PhysicalSwitch can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemPhysicalSwitch:SystemPhysicalSwitch labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemPhysicalSwitch:SystemPhysicalSwitch labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemPhysicalSwitch extends pulumi.CustomResource {
     /**
      * Get an existing SystemPhysicalSwitch resource's state with the given name, ID, and optional extra
@@ -51,21 +32,9 @@ export class SystemPhysicalSwitch extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemPhysicalSwitch.__pulumiType;
     }
 
-    /**
-     * Enable/disable layer 2 age timer. Valid values: `enable`, `disable`.
-     */
     public readonly ageEnable!: pulumi.Output<string>;
-    /**
-     * Layer 2 table age timer value.
-     */
     public readonly ageVal!: pulumi.Output<number>;
-    /**
-     * Name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -101,21 +70,9 @@ export class SystemPhysicalSwitch extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemPhysicalSwitch resources.
  */
 export interface SystemPhysicalSwitchState {
-    /**
-     * Enable/disable layer 2 age timer. Valid values: `enable`, `disable`.
-     */
     ageEnable?: pulumi.Input<string>;
-    /**
-     * Layer 2 table age timer value.
-     */
     ageVal?: pulumi.Input<number>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -123,20 +80,8 @@ export interface SystemPhysicalSwitchState {
  * The set of arguments for constructing a SystemPhysicalSwitch resource.
  */
 export interface SystemPhysicalSwitchArgs {
-    /**
-     * Enable/disable layer 2 age timer. Valid values: `enable`, `disable`.
-     */
     ageEnable?: pulumi.Input<string>;
-    /**
-     * Layer 2 table age timer value.
-     */
     ageVal?: pulumi.Input<number>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

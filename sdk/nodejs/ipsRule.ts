@@ -2,52 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPS rules.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * // import first and then modify
- * const trname = new fortios.IpsRule("trname", {
- *     action: "block",
- *     application: "All",
- *     date: 1462435200,
- *     group: "backdoor",
- *     location: "server",
- *     log: "enable",
- *     logPacket: "disable",
- *     os: "All",
- *     rev: 6637,
- *     ruleId: 40473,
- *     service: "UDP, DNS",
- *     severity: "critical",
- *     status: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Ips Rule can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/ipsRule:IpsRule labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/ipsRule:IpsRule labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class IpsRule extends pulumi.CustomResource {
     /**
      * Get an existing IpsRule resource's state with the given name, ID, and optional extra
@@ -76,73 +34,22 @@ export class IpsRule extends pulumi.CustomResource {
         return obj['__pulumiType'] === IpsRule.__pulumiType;
     }
 
-    /**
-     * Action. Valid values: `pass`, `block`.
-     */
     public readonly action!: pulumi.Output<string>;
-    /**
-     * Vulnerable applications.
-     */
     public readonly application!: pulumi.Output<string>;
-    /**
-     * Date.
-     */
     public readonly date!: pulumi.Output<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Group.
-     */
     public readonly group!: pulumi.Output<string>;
-    /**
-     * Vulnerable location.
-     */
     public readonly location!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging. Valid values: `disable`, `enable`.
-     */
     public readonly log!: pulumi.Output<string>;
-    /**
-     * Enable/disable packet logging. Valid values: `disable`, `enable`.
-     */
     public readonly logPacket!: pulumi.Output<string>;
-    /**
-     * Meta data. The structure of `metadata` block is documented below.
-     */
     public readonly metadatas!: pulumi.Output<outputs.IpsRuleMetadata[] | undefined>;
-    /**
-     * Rule name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Vulnerable operation systems.
-     */
     public readonly os!: pulumi.Output<string>;
-    /**
-     * Revision.
-     */
     public readonly rev!: pulumi.Output<number>;
-    /**
-     * Rule ID.
-     */
     public readonly ruleId!: pulumi.Output<number>;
-    /**
-     * Vulnerable service.
-     */
     public readonly service!: pulumi.Output<string>;
-    /**
-     * Severity.
-     */
     public readonly severity!: pulumi.Output<string>;
-    /**
-     * Enable/disable status. Valid values: `disable`, `enable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -204,73 +111,22 @@ export class IpsRule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IpsRule resources.
  */
 export interface IpsRuleState {
-    /**
-     * Action. Valid values: `pass`, `block`.
-     */
     action?: pulumi.Input<string>;
-    /**
-     * Vulnerable applications.
-     */
     application?: pulumi.Input<string>;
-    /**
-     * Date.
-     */
     date?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Group.
-     */
     group?: pulumi.Input<string>;
-    /**
-     * Vulnerable location.
-     */
     location?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging. Valid values: `disable`, `enable`.
-     */
     log?: pulumi.Input<string>;
-    /**
-     * Enable/disable packet logging. Valid values: `disable`, `enable`.
-     */
     logPacket?: pulumi.Input<string>;
-    /**
-     * Meta data. The structure of `metadata` block is documented below.
-     */
     metadatas?: pulumi.Input<pulumi.Input<inputs.IpsRuleMetadata>[]>;
-    /**
-     * Rule name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Vulnerable operation systems.
-     */
     os?: pulumi.Input<string>;
-    /**
-     * Revision.
-     */
     rev?: pulumi.Input<number>;
-    /**
-     * Rule ID.
-     */
     ruleId?: pulumi.Input<number>;
-    /**
-     * Vulnerable service.
-     */
     service?: pulumi.Input<string>;
-    /**
-     * Severity.
-     */
     severity?: pulumi.Input<string>;
-    /**
-     * Enable/disable status. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -278,72 +134,21 @@ export interface IpsRuleState {
  * The set of arguments for constructing a IpsRule resource.
  */
 export interface IpsRuleArgs {
-    /**
-     * Action. Valid values: `pass`, `block`.
-     */
     action?: pulumi.Input<string>;
-    /**
-     * Vulnerable applications.
-     */
     application?: pulumi.Input<string>;
-    /**
-     * Date.
-     */
     date?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Group.
-     */
     group?: pulumi.Input<string>;
-    /**
-     * Vulnerable location.
-     */
     location?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging. Valid values: `disable`, `enable`.
-     */
     log?: pulumi.Input<string>;
-    /**
-     * Enable/disable packet logging. Valid values: `disable`, `enable`.
-     */
     logPacket?: pulumi.Input<string>;
-    /**
-     * Meta data. The structure of `metadata` block is documented below.
-     */
     metadatas?: pulumi.Input<pulumi.Input<inputs.IpsRuleMetadata>[]>;
-    /**
-     * Rule name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Vulnerable operation systems.
-     */
     os?: pulumi.Input<string>;
-    /**
-     * Revision.
-     */
     rev?: pulumi.Input<number>;
-    /**
-     * Rule ID.
-     */
     ruleId?: pulumi.Input<number>;
-    /**
-     * Vulnerable service.
-     */
     service?: pulumi.Input<string>;
-    /**
-     * Severity.
-     */
     severity?: pulumi.Input<string>;
-    /**
-     * Enable/disable status. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

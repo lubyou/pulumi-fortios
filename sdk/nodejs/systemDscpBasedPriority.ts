@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure DSCP based priority table.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemDscpBasedPriority("trname", {
- *     ds: 1,
- *     fosid: 1,
- *     priority: "low",
- * });
- * ```
- *
- * ## Import
- *
- * System DscpBasedPriority can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemDscpBasedPriority:SystemDscpBasedPriority labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemDscpBasedPriority:SystemDscpBasedPriority labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemDscpBasedPriority extends pulumi.CustomResource {
     /**
      * Get an existing SystemDscpBasedPriority resource's state with the given name, ID, and optional extra
@@ -64,21 +32,9 @@ export class SystemDscpBasedPriority extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemDscpBasedPriority.__pulumiType;
     }
 
-    /**
-     * DSCP(DiffServ) DS value (0 - 63).
-     */
     public readonly ds!: pulumi.Output<number>;
-    /**
-     * Item ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * DSCP based priority level. Valid values: `low`, `medium`, `high`.
-     */
     public readonly priority!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -114,21 +70,9 @@ export class SystemDscpBasedPriority extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemDscpBasedPriority resources.
  */
 export interface SystemDscpBasedPriorityState {
-    /**
-     * DSCP(DiffServ) DS value (0 - 63).
-     */
     ds?: pulumi.Input<number>;
-    /**
-     * Item ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * DSCP based priority level. Valid values: `low`, `medium`, `high`.
-     */
     priority?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -136,20 +80,8 @@ export interface SystemDscpBasedPriorityState {
  * The set of arguments for constructing a SystemDscpBasedPriority resource.
  */
 export interface SystemDscpBasedPriorityArgs {
-    /**
-     * DSCP(DiffServ) DS value (0 - 63).
-     */
     ds?: pulumi.Input<number>;
-    /**
-     * Item ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * DSCP based priority level. Valid values: `low`, `medium`, `high`.
-     */
     priority?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

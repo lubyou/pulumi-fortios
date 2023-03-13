@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.SystemSessionHelper`.
- */
 export function getSystemSessionHelperList(args?: GetSystemSessionHelperListArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemSessionHelperListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemSessionHelperList:GetSystemSessionHelperList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getSystemSessionHelperList(args?: GetSystemSessionHelperListArgs
  */
 export interface GetSystemSessionHelperListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -36,9 +27,6 @@ export interface GetSystemSessionHelperListArgs {
  */
 export interface GetSystemSessionHelperListResult {
     readonly filter?: string;
-    /**
-     * A list of the `fortios.SystemSessionHelper`.
-     */
     readonly fosidlists: number[];
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -46,9 +34,8 @@ export interface GetSystemSessionHelperListResult {
     readonly id: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemSessionHelperListOutput(args?: GetSystemSessionHelperListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemSessionHelperListResult> {
-    return pulumi.output(args).apply(a => getSystemSessionHelperList(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemSessionHelperList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getSystemSessionHelperListOutput(args?: GetSystemSessionHelperLi
  */
 export interface GetSystemSessionHelperListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

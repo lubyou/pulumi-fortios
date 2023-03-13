@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiCloud SSO admin users. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// System SsoForticloudAdmin can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSsoForticloudAdmin:SystemSsoForticloudAdmin labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSsoForticloudAdmin:SystemSsoForticloudAdmin labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemSsoForticloudAdmin struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Virtual domain name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
-	Vdoms SystemSsoForticloudAdminVdomArrayOutput `pulumi:"vdoms"`
+	DynamicSortSubtable pulumi.StringPtrOutput                  `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                     `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                  `pulumi:"vdomparam"`
+	Vdoms               SystemSsoForticloudAdminVdomArrayOutput `pulumi:"vdoms"`
 }
 
 // NewSystemSsoForticloudAdmin registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetSystemSsoForticloudAdmin(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSsoForticloudAdmin resources.
 type systemSsoForticloudAdminState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Virtual domain name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
-	Vdoms []SystemSsoForticloudAdminVdom `pulumi:"vdoms"`
+	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
+	Name                *string                        `pulumi:"name"`
+	Vdomparam           *string                        `pulumi:"vdomparam"`
+	Vdoms               []SystemSsoForticloudAdminVdom `pulumi:"vdoms"`
 }
 
 type SystemSsoForticloudAdminState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Virtual domain name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
-	Vdoms SystemSsoForticloudAdminVdomArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Vdoms               SystemSsoForticloudAdminVdomArrayInput
 }
 
 func (SystemSsoForticloudAdminState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (SystemSsoForticloudAdminState) ElementType() reflect.Type {
 }
 
 type systemSsoForticloudAdminArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Virtual domain name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
-	Vdoms []SystemSsoForticloudAdminVdom `pulumi:"vdoms"`
+	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
+	Name                *string                        `pulumi:"name"`
+	Vdomparam           *string                        `pulumi:"vdomparam"`
+	Vdoms               []SystemSsoForticloudAdminVdom `pulumi:"vdoms"`
 }
 
 // The set of arguments for constructing a SystemSsoForticloudAdmin resource.
 type SystemSsoForticloudAdminArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Virtual domain name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
-	Vdoms SystemSsoForticloudAdminVdomArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Vdoms               SystemSsoForticloudAdminVdomArrayInput
 }
 
 func (SystemSsoForticloudAdminArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *SystemSsoForticloudAdmin) ToSystemSsoForticloudAdminOutputWithContext(c
 // SystemSsoForticloudAdminArrayInput is an input type that accepts SystemSsoForticloudAdminArray and SystemSsoForticloudAdminArrayOutput values.
 // You can construct a concrete instance of `SystemSsoForticloudAdminArrayInput` via:
 //
-//          SystemSsoForticloudAdminArray{ SystemSsoForticloudAdminArgs{...} }
+//	SystemSsoForticloudAdminArray{ SystemSsoForticloudAdminArgs{...} }
 type SystemSsoForticloudAdminArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i SystemSsoForticloudAdminArray) ToSystemSsoForticloudAdminArrayOutputWith
 // SystemSsoForticloudAdminMapInput is an input type that accepts SystemSsoForticloudAdminMap and SystemSsoForticloudAdminMapOutput values.
 // You can construct a concrete instance of `SystemSsoForticloudAdminMapInput` via:
 //
-//          SystemSsoForticloudAdminMap{ "key": SystemSsoForticloudAdminArgs{...} }
+//	SystemSsoForticloudAdminMap{ "key": SystemSsoForticloudAdminArgs{...} }
 type SystemSsoForticloudAdminMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o SystemSsoForticloudAdminOutput) ToSystemSsoForticloudAdminOutput() Syste
 
 func (o SystemSsoForticloudAdminOutput) ToSystemSsoForticloudAdminOutputWithContext(ctx context.Context) SystemSsoForticloudAdminOutput {
 	return o
+}
+
+func (o SystemSsoForticloudAdminOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSsoForticloudAdmin) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSsoForticloudAdminOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSsoForticloudAdmin) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemSsoForticloudAdminOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSsoForticloudAdmin) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSsoForticloudAdminOutput) Vdoms() SystemSsoForticloudAdminVdomArrayOutput {
+	return o.ApplyT(func(v *SystemSsoForticloudAdmin) SystemSsoForticloudAdminVdomArrayOutput { return v.Vdoms }).(SystemSsoForticloudAdminVdomArrayOutput)
 }
 
 type SystemSsoForticloudAdminArrayOutput struct{ *pulumi.OutputState }

@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Report themes configuration Applies to FortiOS Version `<= 7.0.0`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.ReportTheme("trname", {
- *     columnCount: "1",
- *     graphChartStyle: "PS",
- *     pageOrient: "portrait",
- * });
- * ```
- *
- * ## Import
- *
- * Report Theme can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/reportTheme:ReportTheme labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/reportTheme:ReportTheme labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class ReportTheme extends pulumi.CustomResource {
     /**
      * Get an existing ReportTheme resource's state with the given name, ID, and optional extra
@@ -64,129 +32,36 @@ export class ReportTheme extends pulumi.CustomResource {
         return obj['__pulumiType'] === ReportTheme.__pulumiType;
     }
 
-    /**
-     * Bullet list style.
-     */
     public readonly bulletListStyle!: pulumi.Output<string>;
-    /**
-     * Report page column count. Valid values: `1`, `2`, `3`.
-     */
     public readonly columnCount!: pulumi.Output<string>;
-    /**
-     * Default HTML report style.
-     */
     public readonly defaultHtmlStyle!: pulumi.Output<string>;
-    /**
-     * Default PDF report style.
-     */
     public readonly defaultPdfStyle!: pulumi.Output<string>;
-    /**
-     * Graph chart style.
-     */
     public readonly graphChartStyle!: pulumi.Output<string>;
-    /**
-     * Report heading style.
-     */
     public readonly heading1Style!: pulumi.Output<string>;
-    /**
-     * Report heading style.
-     */
     public readonly heading2Style!: pulumi.Output<string>;
-    /**
-     * Report heading style.
-     */
     public readonly heading3Style!: pulumi.Output<string>;
-    /**
-     * Report heading style.
-     */
     public readonly heading4Style!: pulumi.Output<string>;
-    /**
-     * Horizontal line style.
-     */
     public readonly hlineStyle!: pulumi.Output<string>;
-    /**
-     * Image style.
-     */
     public readonly imageStyle!: pulumi.Output<string>;
-    /**
-     * Report theme name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Normal text style.
-     */
     public readonly normalTextStyle!: pulumi.Output<string>;
-    /**
-     * Numbered list style.
-     */
     public readonly numberedListStyle!: pulumi.Output<string>;
-    /**
-     * Report page footer style.
-     */
     public readonly pageFooterStyle!: pulumi.Output<string>;
-    /**
-     * Report page header style.
-     */
     public readonly pageHeaderStyle!: pulumi.Output<string>;
-    /**
-     * Report page orientation. Valid values: `portrait`, `landscape`.
-     */
     public readonly pageOrient!: pulumi.Output<string>;
-    /**
-     * Report page style.
-     */
     public readonly pageStyle!: pulumi.Output<string>;
-    /**
-     * Report subtitle style.
-     */
     public readonly reportSubtitleStyle!: pulumi.Output<string>;
-    /**
-     * Report title style.
-     */
     public readonly reportTitleStyle!: pulumi.Output<string>;
-    /**
-     * Table chart caption style.
-     */
     public readonly tableChartCaptionStyle!: pulumi.Output<string>;
-    /**
-     * Table chart even row style.
-     */
     public readonly tableChartEvenRowStyle!: pulumi.Output<string>;
-    /**
-     * Table chart head row style.
-     */
     public readonly tableChartHeadStyle!: pulumi.Output<string>;
-    /**
-     * Table chart odd row style.
-     */
     public readonly tableChartOddRowStyle!: pulumi.Output<string>;
-    /**
-     * Table chart style.
-     */
     public readonly tableChartStyle!: pulumi.Output<string>;
-    /**
-     * Table of contents heading style.
-     */
     public readonly tocHeading1Style!: pulumi.Output<string>;
-    /**
-     * Table of contents heading style.
-     */
     public readonly tocHeading2Style!: pulumi.Output<string>;
-    /**
-     * Table of contents heading style.
-     */
     public readonly tocHeading3Style!: pulumi.Output<string>;
-    /**
-     * Table of contents heading style.
-     */
     public readonly tocHeading4Style!: pulumi.Output<string>;
-    /**
-     * Table of contents title style.
-     */
     public readonly tocTitleStyle!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -276,129 +151,36 @@ export class ReportTheme extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ReportTheme resources.
  */
 export interface ReportThemeState {
-    /**
-     * Bullet list style.
-     */
     bulletListStyle?: pulumi.Input<string>;
-    /**
-     * Report page column count. Valid values: `1`, `2`, `3`.
-     */
     columnCount?: pulumi.Input<string>;
-    /**
-     * Default HTML report style.
-     */
     defaultHtmlStyle?: pulumi.Input<string>;
-    /**
-     * Default PDF report style.
-     */
     defaultPdfStyle?: pulumi.Input<string>;
-    /**
-     * Graph chart style.
-     */
     graphChartStyle?: pulumi.Input<string>;
-    /**
-     * Report heading style.
-     */
     heading1Style?: pulumi.Input<string>;
-    /**
-     * Report heading style.
-     */
     heading2Style?: pulumi.Input<string>;
-    /**
-     * Report heading style.
-     */
     heading3Style?: pulumi.Input<string>;
-    /**
-     * Report heading style.
-     */
     heading4Style?: pulumi.Input<string>;
-    /**
-     * Horizontal line style.
-     */
     hlineStyle?: pulumi.Input<string>;
-    /**
-     * Image style.
-     */
     imageStyle?: pulumi.Input<string>;
-    /**
-     * Report theme name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Normal text style.
-     */
     normalTextStyle?: pulumi.Input<string>;
-    /**
-     * Numbered list style.
-     */
     numberedListStyle?: pulumi.Input<string>;
-    /**
-     * Report page footer style.
-     */
     pageFooterStyle?: pulumi.Input<string>;
-    /**
-     * Report page header style.
-     */
     pageHeaderStyle?: pulumi.Input<string>;
-    /**
-     * Report page orientation. Valid values: `portrait`, `landscape`.
-     */
     pageOrient?: pulumi.Input<string>;
-    /**
-     * Report page style.
-     */
     pageStyle?: pulumi.Input<string>;
-    /**
-     * Report subtitle style.
-     */
     reportSubtitleStyle?: pulumi.Input<string>;
-    /**
-     * Report title style.
-     */
     reportTitleStyle?: pulumi.Input<string>;
-    /**
-     * Table chart caption style.
-     */
     tableChartCaptionStyle?: pulumi.Input<string>;
-    /**
-     * Table chart even row style.
-     */
     tableChartEvenRowStyle?: pulumi.Input<string>;
-    /**
-     * Table chart head row style.
-     */
     tableChartHeadStyle?: pulumi.Input<string>;
-    /**
-     * Table chart odd row style.
-     */
     tableChartOddRowStyle?: pulumi.Input<string>;
-    /**
-     * Table chart style.
-     */
     tableChartStyle?: pulumi.Input<string>;
-    /**
-     * Table of contents heading style.
-     */
     tocHeading1Style?: pulumi.Input<string>;
-    /**
-     * Table of contents heading style.
-     */
     tocHeading2Style?: pulumi.Input<string>;
-    /**
-     * Table of contents heading style.
-     */
     tocHeading3Style?: pulumi.Input<string>;
-    /**
-     * Table of contents heading style.
-     */
     tocHeading4Style?: pulumi.Input<string>;
-    /**
-     * Table of contents title style.
-     */
     tocTitleStyle?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -406,128 +188,35 @@ export interface ReportThemeState {
  * The set of arguments for constructing a ReportTheme resource.
  */
 export interface ReportThemeArgs {
-    /**
-     * Bullet list style.
-     */
     bulletListStyle?: pulumi.Input<string>;
-    /**
-     * Report page column count. Valid values: `1`, `2`, `3`.
-     */
     columnCount?: pulumi.Input<string>;
-    /**
-     * Default HTML report style.
-     */
     defaultHtmlStyle?: pulumi.Input<string>;
-    /**
-     * Default PDF report style.
-     */
     defaultPdfStyle?: pulumi.Input<string>;
-    /**
-     * Graph chart style.
-     */
     graphChartStyle?: pulumi.Input<string>;
-    /**
-     * Report heading style.
-     */
     heading1Style?: pulumi.Input<string>;
-    /**
-     * Report heading style.
-     */
     heading2Style?: pulumi.Input<string>;
-    /**
-     * Report heading style.
-     */
     heading3Style?: pulumi.Input<string>;
-    /**
-     * Report heading style.
-     */
     heading4Style?: pulumi.Input<string>;
-    /**
-     * Horizontal line style.
-     */
     hlineStyle?: pulumi.Input<string>;
-    /**
-     * Image style.
-     */
     imageStyle?: pulumi.Input<string>;
-    /**
-     * Report theme name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Normal text style.
-     */
     normalTextStyle?: pulumi.Input<string>;
-    /**
-     * Numbered list style.
-     */
     numberedListStyle?: pulumi.Input<string>;
-    /**
-     * Report page footer style.
-     */
     pageFooterStyle?: pulumi.Input<string>;
-    /**
-     * Report page header style.
-     */
     pageHeaderStyle?: pulumi.Input<string>;
-    /**
-     * Report page orientation. Valid values: `portrait`, `landscape`.
-     */
     pageOrient?: pulumi.Input<string>;
-    /**
-     * Report page style.
-     */
     pageStyle?: pulumi.Input<string>;
-    /**
-     * Report subtitle style.
-     */
     reportSubtitleStyle?: pulumi.Input<string>;
-    /**
-     * Report title style.
-     */
     reportTitleStyle?: pulumi.Input<string>;
-    /**
-     * Table chart caption style.
-     */
     tableChartCaptionStyle?: pulumi.Input<string>;
-    /**
-     * Table chart even row style.
-     */
     tableChartEvenRowStyle?: pulumi.Input<string>;
-    /**
-     * Table chart head row style.
-     */
     tableChartHeadStyle?: pulumi.Input<string>;
-    /**
-     * Table chart odd row style.
-     */
     tableChartOddRowStyle?: pulumi.Input<string>;
-    /**
-     * Table chart style.
-     */
     tableChartStyle?: pulumi.Input<string>;
-    /**
-     * Table of contents heading style.
-     */
     tocHeading1Style?: pulumi.Input<string>;
-    /**
-     * Table of contents heading style.
-     */
     tocHeading2Style?: pulumi.Input<string>;
-    /**
-     * Table of contents heading style.
-     */
     tocHeading3Style?: pulumi.Input<string>;
-    /**
-     * Table of contents heading style.
-     */
     tocHeading4Style?: pulumi.Input<string>;
-    /**
-     * Table of contents title style.
-     */
     tocTitleStyle?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

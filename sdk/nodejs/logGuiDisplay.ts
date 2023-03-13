@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure how log messages are displayed on the GUI.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.LogGuiDisplay("trname", {
- *     fortiviewUnscannedApps: "disable",
- *     resolveApps: "enable",
- *     resolveHosts: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Log GuiDisplay can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/logGuiDisplay:LogGuiDisplay labelname LogGuiDisplay
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/logGuiDisplay:LogGuiDisplay labelname LogGuiDisplay
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class LogGuiDisplay extends pulumi.CustomResource {
     /**
      * Get an existing LogGuiDisplay resource's state with the given name, ID, and optional extra
@@ -64,21 +32,9 @@ export class LogGuiDisplay extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogGuiDisplay.__pulumiType;
     }
 
-    /**
-     * Enable/disable showing unscanned traffic in FortiView application charts. Valid values: `enable`, `disable`.
-     */
     public readonly fortiviewUnscannedApps!: pulumi.Output<string>;
-    /**
-     * Resolve unknown applications on the GUI using Fortinet's remote application database. Valid values: `enable`, `disable`.
-     */
     public readonly resolveApps!: pulumi.Output<string>;
-    /**
-     * Enable/disable resolving IP addresses to hostname in log messages on the GUI using reverse DNS lookup Valid values: `enable`, `disable`.
-     */
     public readonly resolveHosts!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -114,21 +70,9 @@ export class LogGuiDisplay extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogGuiDisplay resources.
  */
 export interface LogGuiDisplayState {
-    /**
-     * Enable/disable showing unscanned traffic in FortiView application charts. Valid values: `enable`, `disable`.
-     */
     fortiviewUnscannedApps?: pulumi.Input<string>;
-    /**
-     * Resolve unknown applications on the GUI using Fortinet's remote application database. Valid values: `enable`, `disable`.
-     */
     resolveApps?: pulumi.Input<string>;
-    /**
-     * Enable/disable resolving IP addresses to hostname in log messages on the GUI using reverse DNS lookup Valid values: `enable`, `disable`.
-     */
     resolveHosts?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -136,20 +80,8 @@ export interface LogGuiDisplayState {
  * The set of arguments for constructing a LogGuiDisplay resource.
  */
 export interface LogGuiDisplayArgs {
-    /**
-     * Enable/disable showing unscanned traffic in FortiView application charts. Valid values: `enable`, `disable`.
-     */
     fortiviewUnscannedApps?: pulumi.Input<string>;
-    /**
-     * Resolve unknown applications on the GUI using Fortinet's remote application database. Valid values: `enable`, `disable`.
-     */
     resolveApps?: pulumi.Input<string>;
-    /**
-     * Enable/disable resolving IP addresses to hostname in log messages on the GUI using reverse DNS lookup Valid values: `enable`, `disable`.
-     */
     resolveHosts?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

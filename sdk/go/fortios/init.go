@@ -46,6 +46,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AuthenticationScheme{}
 	case "fortios:index/authenticationSetting:AuthenticationSetting":
 		r = &AuthenticationSetting{}
+	case "fortios:index/automationSetting:AutomationSetting":
+		r = &AutomationSetting{}
 	case "fortios:index/certificateCa:CertificateCa":
 		r = &CertificateCa{}
 	case "fortios:index/certificateCrl:CertificateCrl":
@@ -60,12 +62,18 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CifsProfile{}
 	case "fortios:index/credentialStoreDomainController:CredentialStoreDomainController":
 		r = &CredentialStoreDomainController{}
+	case "fortios:index/dlpDataType:DlpDataType":
+		r = &DlpDataType{}
+	case "fortios:index/dlpDictionary:DlpDictionary":
+		r = &DlpDictionary{}
 	case "fortios:index/dlpFilepattern:DlpFilepattern":
 		r = &DlpFilepattern{}
 	case "fortios:index/dlpFpDocSource:DlpFpDocSource":
 		r = &DlpFpDocSource{}
 	case "fortios:index/dlpFpSensitivity:DlpFpSensitivity":
 		r = &DlpFpSensitivity{}
+	case "fortios:index/dlpProfile:DlpProfile":
+		r = &DlpProfile{}
 	case "fortios:index/dlpSensitivity:DlpSensitivity":
 		r = &DlpSensitivity{}
 	case "fortios:index/dlpSensor:DlpSensor":
@@ -120,6 +128,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ExtenderControllerExtender{}
 	case "fortios:index/extenderControllerExtenderProfile:ExtenderControllerExtenderProfile":
 		r = &ExtenderControllerExtenderProfile{}
+	case "fortios:index/extensionControllerDataplan:ExtensionControllerDataplan":
+		r = &ExtensionControllerDataplan{}
+	case "fortios:index/extensionControllerExtender:ExtensionControllerExtender":
+		r = &ExtensionControllerExtender{}
+	case "fortios:index/extensionControllerExtenderProfile:ExtensionControllerExtenderProfile":
+		r = &ExtensionControllerExtenderProfile{}
+	case "fortios:index/extensionControllerFortigate:ExtensionControllerFortigate":
+		r = &ExtensionControllerFortigate{}
+	case "fortios:index/extensionControllerFortigateProfile:ExtensionControllerFortigateProfile":
+		r = &ExtensionControllerFortigateProfile{}
 	case "fortios:index/fileFilterProfile:FileFilterProfile":
 		r = &FileFilterProfile{}
 	case "fortios:index/firewallAccessProxy6:FirewallAccessProxy6":
@@ -162,6 +180,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FirewallDosPolicy6{}
 	case "fortios:index/firewallDosPolicy:FirewallDosPolicy":
 		r = &FirewallDosPolicy{}
+	case "fortios:index/firewallGlobal:FirewallGlobal":
+		r = &FirewallGlobal{}
 	case "fortios:index/firewallIdentityBasedRoute:FirewallIdentityBasedRoute":
 		r = &FirewallIdentityBasedRoute{}
 	case "fortios:index/firewallInterfacePolicy6:FirewallInterfacePolicy6":
@@ -224,6 +244,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FirewallMulticastPolicy6{}
 	case "fortios:index/firewallMulticastPolicy:FirewallMulticastPolicy":
 		r = &FirewallMulticastPolicy{}
+	case "fortios:index/firewallNetworkServiceDynamic:FirewallNetworkServiceDynamic":
+		r = &FirewallNetworkServiceDynamic{}
 	case "fortios:index/firewallObjectAddress:FirewallObjectAddress":
 		r = &FirewallObjectAddress{}
 	case "fortios:index/firewallObjectAddressGroup:FirewallObjectAddressGroup":
@@ -390,6 +412,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IcapProfile{}
 	case "fortios:index/icapServer:IcapServer":
 		r = &IcapServer{}
+	case "fortios:index/icapServerGroup:IcapServerGroup":
+		r = &IcapServerGroup{}
 	case "fortios:index/ipsCustom:IpsCustom":
 		r = &IpsCustom{}
 	case "fortios:index/ipsDecoder:IpsDecoder":
@@ -818,6 +842,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemFortiguard{}
 	case "fortios:index/systemFortimanager:SystemFortimanager":
 		r = &SystemFortimanager{}
+	case "fortios:index/systemFortindr:SystemFortindr":
+		r = &SystemFortindr{}
 	case "fortios:index/systemFortisandbox:SystemFortisandbox":
 		r = &SystemFortisandbox{}
 	case "fortios:index/systemFssoPolling:SystemFssoPolling":
@@ -974,6 +1000,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemSmsServer{}
 	case "fortios:index/systemSnmpCommunity:SystemSnmpCommunity":
 		r = &SystemSnmpCommunity{}
+	case "fortios:index/systemSnmpMibView:SystemSnmpMibView":
+		r = &SystemSnmpMibView{}
 	case "fortios:index/systemSnmpSysinfo:SystemSnmpSysinfo":
 		r = &SystemSnmpSysinfo{}
 	case "fortios:index/systemSnmpUser:SystemSnmpUser":
@@ -1391,6 +1419,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/automationSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/certificateCa",
 		&module{version},
 	)
@@ -1426,6 +1459,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/dlpDataType",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/dlpDictionary",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/dlpFilepattern",
 		&module{version},
 	)
@@ -1437,6 +1480,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/dlpFpSensitivity",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/dlpProfile",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -1576,6 +1624,31 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/extensionControllerDataplan",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/extensionControllerExtender",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/extensionControllerExtenderProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/extensionControllerFortigate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/extensionControllerFortigateProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/fileFilterProfile",
 		&module{version},
 	)
@@ -1677,6 +1750,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/firewallDosPolicy6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallGlobal",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -1832,6 +1910,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/firewallMulticastPolicy6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallNetworkServiceDynamic",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -2247,6 +2330,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/icapServer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/icapServerGroup",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -3321,6 +3409,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/systemFortindr",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/systemFortisandbox",
 		&module{version},
 	)
@@ -3707,6 +3800,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/systemSnmpCommunity",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSnmpMibView",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

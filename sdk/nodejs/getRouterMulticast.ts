@@ -2,19 +2,14 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios router multicast
- */
 export function getRouterMulticast(args?: GetRouterMulticastArgs, opts?: pulumi.InvokeOptions): Promise<GetRouterMulticastResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getRouterMulticast:GetRouterMulticast", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -24,9 +19,6 @@ export function getRouterMulticast(args?: GetRouterMulticastArgs, opts?: pulumi.
  * A collection of arguments for invoking GetRouterMulticast.
  */
 export interface GetRouterMulticastArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -38,39 +30,20 @@ export interface GetRouterMulticastResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * PIM interfaces. The structure of `interface` block is documented below.
-     */
     readonly interfaces: outputs.GetRouterMulticastInterface[];
-    /**
-     * Enable/disable IP multicast routing.
-     */
     readonly multicastRouting: string;
-    /**
-     * PIM sparse-mode global settings. The structure of `pimSmGlobal` block is documented below.
-     */
-    readonly pimSmGlobal: outputs.GetRouterMulticastPimSmGlobal;
-    /**
-     * Maximum number of multicast routes.
-     */
+    readonly pimSmGlobals: outputs.GetRouterMulticastPimSmGlobal[];
     readonly routeLimit: number;
-    /**
-     * Generate warnings when the number of multicast routes exceeds this number, must not be greater than route-limit.
-     */
     readonly routeThreshold: number;
     readonly vdomparam?: string;
 }
-
 export function getRouterMulticastOutput(args?: GetRouterMulticastOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterMulticastResult> {
-    return pulumi.output(args).apply(a => getRouterMulticast(a, opts))
+    return pulumi.output(args).apply((a: any) => getRouterMulticast(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetRouterMulticast.
  */
 export interface GetRouterMulticastOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

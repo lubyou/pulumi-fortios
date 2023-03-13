@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Define known domain controller servers. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1`.
- *
- * ## Import
- *
- * Cifs DomainController can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/cifsDomainController:CifsDomainController labelname {{server_name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/cifsDomainController:CifsDomainController labelname {{server_name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class CifsDomainController extends pulumi.CustomResource {
     /**
      * Get an existing CifsDomainController resource's state with the given name, ID, and optional extra
@@ -51,37 +32,13 @@ export class CifsDomainController extends pulumi.CustomResource {
         return obj['__pulumiType'] === CifsDomainController.__pulumiType;
     }
 
-    /**
-     * Fully qualified domain name (FQDN). E.g. 'EXAMPLE.COM'.
-     */
     public readonly domainName!: pulumi.Output<string>;
-    /**
-     * IPv4 server address.
-     */
     public readonly ip!: pulumi.Output<string>;
-    /**
-     * IPv6 server address.
-     */
     public readonly ip6!: pulumi.Output<string>;
-    /**
-     * Password for specified username.
-     */
     public readonly password!: pulumi.Output<string | undefined>;
-    /**
-     * Port number of service. Port number 0 indicates automatic discovery.
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Name of the server to connect to.
-     */
     public readonly serverName!: pulumi.Output<string>;
-    /**
-     * User name to sign in with. Must have proper permissions for service.
-     */
     public readonly username!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -110,13 +67,15 @@ export class CifsDomainController extends pulumi.CustomResource {
             resourceInputs["domainName"] = args ? args.domainName : undefined;
             resourceInputs["ip"] = args ? args.ip : undefined;
             resourceInputs["ip6"] = args ? args.ip6 : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
             resourceInputs["serverName"] = args ? args.serverName : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(CifsDomainController.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -125,37 +84,13 @@ export class CifsDomainController extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CifsDomainController resources.
  */
 export interface CifsDomainControllerState {
-    /**
-     * Fully qualified domain name (FQDN). E.g. 'EXAMPLE.COM'.
-     */
     domainName?: pulumi.Input<string>;
-    /**
-     * IPv4 server address.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * IPv6 server address.
-     */
     ip6?: pulumi.Input<string>;
-    /**
-     * Password for specified username.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Port number of service. Port number 0 indicates automatic discovery.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Name of the server to connect to.
-     */
     serverName?: pulumi.Input<string>;
-    /**
-     * User name to sign in with. Must have proper permissions for service.
-     */
     username?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -163,36 +98,12 @@ export interface CifsDomainControllerState {
  * The set of arguments for constructing a CifsDomainController resource.
  */
 export interface CifsDomainControllerArgs {
-    /**
-     * Fully qualified domain name (FQDN). E.g. 'EXAMPLE.COM'.
-     */
     domainName?: pulumi.Input<string>;
-    /**
-     * IPv4 server address.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * IPv6 server address.
-     */
     ip6?: pulumi.Input<string>;
-    /**
-     * Password for specified username.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Port number of service. Port number 0 indicates automatic discovery.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Name of the server to connect to.
-     */
     serverName?: pulumi.Input<string>;
-    /**
-     * User name to sign in with. Must have proper permissions for service.
-     */
     username?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

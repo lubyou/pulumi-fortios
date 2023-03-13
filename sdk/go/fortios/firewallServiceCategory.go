@@ -10,55 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure service categories.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallServiceCategory(ctx, "trname", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// FirewallService Category can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallServiceCategory:FirewallServiceCategory labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallServiceCategory:FirewallServiceCategory labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallServiceCategory struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
-	// Service category name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment      pulumi.StringPtrOutput `pulumi:"comment"`
+	FabricObject pulumi.StringOutput    `pulumi:"fabricObject"`
+	Name         pulumi.StringOutput    `pulumi:"name"`
+	Vdomparam    pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallServiceCategory registers a new resource with the given unique name, arguments, and options.
@@ -91,25 +49,17 @@ func GetFirewallServiceCategory(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallServiceCategory resources.
 type firewallServiceCategoryState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	Comment      *string `pulumi:"comment"`
 	FabricObject *string `pulumi:"fabricObject"`
-	// Service category name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name         *string `pulumi:"name"`
+	Vdomparam    *string `pulumi:"vdomparam"`
 }
 
 type FirewallServiceCategoryState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	Comment      pulumi.StringPtrInput
 	FabricObject pulumi.StringPtrInput
-	// Service category name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name         pulumi.StringPtrInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (FirewallServiceCategoryState) ElementType() reflect.Type {
@@ -117,26 +67,18 @@ func (FirewallServiceCategoryState) ElementType() reflect.Type {
 }
 
 type firewallServiceCategoryArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	Comment      *string `pulumi:"comment"`
 	FabricObject *string `pulumi:"fabricObject"`
-	// Service category name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name         *string `pulumi:"name"`
+	Vdomparam    *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallServiceCategory resource.
 type FirewallServiceCategoryArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	Comment      pulumi.StringPtrInput
 	FabricObject pulumi.StringPtrInput
-	// Service category name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name         pulumi.StringPtrInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (FirewallServiceCategoryArgs) ElementType() reflect.Type {
@@ -165,7 +107,7 @@ func (i *FirewallServiceCategory) ToFirewallServiceCategoryOutputWithContext(ctx
 // FirewallServiceCategoryArrayInput is an input type that accepts FirewallServiceCategoryArray and FirewallServiceCategoryArrayOutput values.
 // You can construct a concrete instance of `FirewallServiceCategoryArrayInput` via:
 //
-//          FirewallServiceCategoryArray{ FirewallServiceCategoryArgs{...} }
+//	FirewallServiceCategoryArray{ FirewallServiceCategoryArgs{...} }
 type FirewallServiceCategoryArrayInput interface {
 	pulumi.Input
 
@@ -190,7 +132,7 @@ func (i FirewallServiceCategoryArray) ToFirewallServiceCategoryArrayOutputWithCo
 // FirewallServiceCategoryMapInput is an input type that accepts FirewallServiceCategoryMap and FirewallServiceCategoryMapOutput values.
 // You can construct a concrete instance of `FirewallServiceCategoryMapInput` via:
 //
-//          FirewallServiceCategoryMap{ "key": FirewallServiceCategoryArgs{...} }
+//	FirewallServiceCategoryMap{ "key": FirewallServiceCategoryArgs{...} }
 type FirewallServiceCategoryMapInput interface {
 	pulumi.Input
 
@@ -224,6 +166,22 @@ func (o FirewallServiceCategoryOutput) ToFirewallServiceCategoryOutput() Firewal
 
 func (o FirewallServiceCategoryOutput) ToFirewallServiceCategoryOutputWithContext(ctx context.Context) FirewallServiceCategoryOutput {
 	return o
+}
+
+func (o FirewallServiceCategoryOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallServiceCategory) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallServiceCategoryOutput) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCategory) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCategoryOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceCategory) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCategoryOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallServiceCategory) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallServiceCategoryArrayOutput struct{ *pulumi.OutputState }

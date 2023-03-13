@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure file-filter profiles. Applies to FortiOS Version `>= 6.4.1`.
- *
- * ## Import
- *
- * FileFilter Profile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/fileFilterProfile:FileFilterProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/fileFilterProfile:FileFilterProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FileFilterProfile extends pulumi.CustomResource {
     /**
      * Get an existing FileFilterProfile resource's state with the given name, ID, and optional extra
@@ -52,45 +34,15 @@ export class FileFilterProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === FileFilterProfile.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable file-filter extended logging. Valid values: `disable`, `enable`.
-     */
     public readonly extendedLog!: pulumi.Output<string>;
-    /**
-     * Flow/proxy feature set. Valid values: `flow`, `proxy`.
-     */
     public readonly featureSet!: pulumi.Output<string>;
-    /**
-     * Enable/disable file-filter logging. Valid values: `disable`, `enable`.
-     */
     public readonly log!: pulumi.Output<string>;
-    /**
-     * File type name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Replacement message group
-     */
     public readonly replacemsgGroup!: pulumi.Output<string>;
-    /**
-     * File filter rules. The structure of `rules` block is documented below.
-     */
     public readonly rules!: pulumi.Output<outputs.FileFilterProfileRule[] | undefined>;
-    /**
-     * Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
-     */
     public readonly scanArchiveContents!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -138,45 +90,15 @@ export class FileFilterProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FileFilterProfile resources.
  */
 export interface FileFilterProfileState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable file-filter extended logging. Valid values: `disable`, `enable`.
-     */
     extendedLog?: pulumi.Input<string>;
-    /**
-     * Flow/proxy feature set. Valid values: `flow`, `proxy`.
-     */
     featureSet?: pulumi.Input<string>;
-    /**
-     * Enable/disable file-filter logging. Valid values: `disable`, `enable`.
-     */
     log?: pulumi.Input<string>;
-    /**
-     * File type name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Replacement message group
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * File filter rules. The structure of `rules` block is documented below.
-     */
     rules?: pulumi.Input<pulumi.Input<inputs.FileFilterProfileRule>[]>;
-    /**
-     * Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
-     */
     scanArchiveContents?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -184,44 +106,14 @@ export interface FileFilterProfileState {
  * The set of arguments for constructing a FileFilterProfile resource.
  */
 export interface FileFilterProfileArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable file-filter extended logging. Valid values: `disable`, `enable`.
-     */
     extendedLog?: pulumi.Input<string>;
-    /**
-     * Flow/proxy feature set. Valid values: `flow`, `proxy`.
-     */
     featureSet?: pulumi.Input<string>;
-    /**
-     * Enable/disable file-filter logging. Valid values: `disable`, `enable`.
-     */
     log?: pulumi.Input<string>;
-    /**
-     * File type name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Replacement message group
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * File filter rules. The structure of `rules` block is documented below.
-     */
     rules?: pulumi.Input<pulumi.Input<inputs.FileFilterProfileRule>[]>;
-    /**
-     * Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
-     */
     scanArchiveContents?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -2,30 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * OSPF6 interface configuration.
- *
- * > The provider supports the definition of Ospf6-Interface in Router Ospf6 `fortios.RouterOspf6`, and also allows the definition of separate Ospf6-Interface resources `fortios.Routerospf6Ospf6Interface`, but do not use a `fortios.RouterOspf6` with in-line Ospf6-Interface in conjunction with any `fortios.Routerospf6Ospf6Interface` resources, otherwise conflicts and overwrite will occur.
- *
- * ## Import
- *
- * Routerospf6 Ospf6Interface can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerospf6Ospf6Interface:Routerospf6Ospf6Interface labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerospf6Ospf6Interface:Routerospf6Ospf6Interface labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class Routerospf6Ospf6Interface extends pulumi.CustomResource {
     /**
      * Get an existing Routerospf6Ospf6Interface resource's state with the given name, ID, and optional extra
@@ -54,93 +34,27 @@ export class Routerospf6Ospf6Interface extends pulumi.CustomResource {
         return obj['__pulumiType'] === Routerospf6Ospf6Interface.__pulumiType;
     }
 
-    /**
-     * A.B.C.D, in IPv4 address format.
-     */
     public readonly areaId!: pulumi.Output<string>;
-    /**
-     * Authentication mode. Valid values: `none`, `ah`, `esp`, `area`.
-     */
     public readonly authentication!: pulumi.Output<string>;
-    /**
-     * Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-     */
     public readonly bfd!: pulumi.Output<string>;
-    /**
-     * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-     */
     public readonly cost!: pulumi.Output<number>;
-    /**
-     * Dead interval.
-     */
     public readonly deadInterval!: pulumi.Output<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Hello interval.
-     */
     public readonly helloInterval!: pulumi.Output<number>;
-    /**
-     * Configuration interface name.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Authentication algorithm. Valid values: `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-     */
     public readonly ipsecAuthAlg!: pulumi.Output<string>;
-    /**
-     * Encryption algorithm. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`.
-     */
     public readonly ipsecEncAlg!: pulumi.Output<string>;
-    /**
-     * IPsec authentication and encryption keys. The structure of `ipsecKeys` block is documented below.
-     */
     public readonly ipsecKeys!: pulumi.Output<outputs.Routerospf6Ospf6InterfaceIpsecKey[] | undefined>;
-    /**
-     * Key roll-over interval.
-     */
     public readonly keyRolloverInterval!: pulumi.Output<number>;
-    /**
-     * MTU for OSPFv3 packets.
-     */
     public readonly mtu!: pulumi.Output<number>;
-    /**
-     * Enable/disable ignoring MTU field in DBD packets. Valid values: `enable`, `disable`.
-     */
     public readonly mtuIgnore!: pulumi.Output<string>;
-    /**
-     * Interface entry name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * OSPFv3 neighbors are used when OSPFv3 runs on non-broadcast media The structure of `neighbor` block is documented below.
-     */
     public readonly neighbors!: pulumi.Output<outputs.Routerospf6Ospf6InterfaceNeighbor[] | undefined>;
-    /**
-     * Network type. Valid values: `broadcast`, `point-to-point`, `non-broadcast`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-     */
     public readonly networkType!: pulumi.Output<string>;
-    /**
-     * priority
-     */
     public readonly priority!: pulumi.Output<number>;
-    /**
-     * Retransmit interval.
-     */
     public readonly retransmitInterval!: pulumi.Output<number>;
-    /**
-     * Enable/disable OSPF6 routing on this interface. Valid values: `disable`, `enable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Transmit delay.
-     */
     public readonly transmitDelay!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -212,93 +126,27 @@ export class Routerospf6Ospf6Interface extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Routerospf6Ospf6Interface resources.
  */
 export interface Routerospf6Ospf6InterfaceState {
-    /**
-     * A.B.C.D, in IPv4 address format.
-     */
     areaId?: pulumi.Input<string>;
-    /**
-     * Authentication mode. Valid values: `none`, `ah`, `esp`, `area`.
-     */
     authentication?: pulumi.Input<string>;
-    /**
-     * Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-     */
     bfd?: pulumi.Input<string>;
-    /**
-     * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-     */
     cost?: pulumi.Input<number>;
-    /**
-     * Dead interval.
-     */
     deadInterval?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Hello interval.
-     */
     helloInterval?: pulumi.Input<number>;
-    /**
-     * Configuration interface name.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Authentication algorithm. Valid values: `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-     */
     ipsecAuthAlg?: pulumi.Input<string>;
-    /**
-     * Encryption algorithm. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`.
-     */
     ipsecEncAlg?: pulumi.Input<string>;
-    /**
-     * IPsec authentication and encryption keys. The structure of `ipsecKeys` block is documented below.
-     */
     ipsecKeys?: pulumi.Input<pulumi.Input<inputs.Routerospf6Ospf6InterfaceIpsecKey>[]>;
-    /**
-     * Key roll-over interval.
-     */
     keyRolloverInterval?: pulumi.Input<number>;
-    /**
-     * MTU for OSPFv3 packets.
-     */
     mtu?: pulumi.Input<number>;
-    /**
-     * Enable/disable ignoring MTU field in DBD packets. Valid values: `enable`, `disable`.
-     */
     mtuIgnore?: pulumi.Input<string>;
-    /**
-     * Interface entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * OSPFv3 neighbors are used when OSPFv3 runs on non-broadcast media The structure of `neighbor` block is documented below.
-     */
     neighbors?: pulumi.Input<pulumi.Input<inputs.Routerospf6Ospf6InterfaceNeighbor>[]>;
-    /**
-     * Network type. Valid values: `broadcast`, `point-to-point`, `non-broadcast`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-     */
     networkType?: pulumi.Input<string>;
-    /**
-     * priority
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * Retransmit interval.
-     */
     retransmitInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable OSPF6 routing on this interface. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Transmit delay.
-     */
     transmitDelay?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -306,92 +154,26 @@ export interface Routerospf6Ospf6InterfaceState {
  * The set of arguments for constructing a Routerospf6Ospf6Interface resource.
  */
 export interface Routerospf6Ospf6InterfaceArgs {
-    /**
-     * A.B.C.D, in IPv4 address format.
-     */
     areaId?: pulumi.Input<string>;
-    /**
-     * Authentication mode. Valid values: `none`, `ah`, `esp`, `area`.
-     */
     authentication?: pulumi.Input<string>;
-    /**
-     * Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-     */
     bfd?: pulumi.Input<string>;
-    /**
-     * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-     */
     cost?: pulumi.Input<number>;
-    /**
-     * Dead interval.
-     */
     deadInterval?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Hello interval.
-     */
     helloInterval?: pulumi.Input<number>;
-    /**
-     * Configuration interface name.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Authentication algorithm. Valid values: `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-     */
     ipsecAuthAlg?: pulumi.Input<string>;
-    /**
-     * Encryption algorithm. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`.
-     */
     ipsecEncAlg?: pulumi.Input<string>;
-    /**
-     * IPsec authentication and encryption keys. The structure of `ipsecKeys` block is documented below.
-     */
     ipsecKeys?: pulumi.Input<pulumi.Input<inputs.Routerospf6Ospf6InterfaceIpsecKey>[]>;
-    /**
-     * Key roll-over interval.
-     */
     keyRolloverInterval?: pulumi.Input<number>;
-    /**
-     * MTU for OSPFv3 packets.
-     */
     mtu?: pulumi.Input<number>;
-    /**
-     * Enable/disable ignoring MTU field in DBD packets. Valid values: `enable`, `disable`.
-     */
     mtuIgnore?: pulumi.Input<string>;
-    /**
-     * Interface entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * OSPFv3 neighbors are used when OSPFv3 runs on non-broadcast media The structure of `neighbor` block is documented below.
-     */
     neighbors?: pulumi.Input<pulumi.Input<inputs.Routerospf6Ospf6InterfaceNeighbor>[]>;
-    /**
-     * Network type. Valid values: `broadcast`, `point-to-point`, `non-broadcast`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-     */
     networkType?: pulumi.Input<string>;
-    /**
-     * priority
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * Retransmit interval.
-     */
     retransmitInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable OSPF6 routing on this interface. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Transmit delay.
-     */
     transmitDelay?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

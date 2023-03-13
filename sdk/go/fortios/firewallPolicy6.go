@@ -7,297 +7,105 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 policies. Applies to FortiOS Version `<= 6.4.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallPolicy6(ctx, "trname", &fortios.FirewallPolicy6Args{
-// 			Action:              pulumi.String("deny"),
-// 			DiffservForward:     pulumi.String("disable"),
-// 			DiffservReverse:     pulumi.String("disable"),
-// 			DiffservcodeForward: pulumi.String("000000"),
-// 			DiffservcodeRev:     pulumi.String("000000"),
-// 			Dsri:                pulumi.String("disable"),
-// 			Dstaddrs: FirewallPolicy6DstaddrArray{
-// 				&FirewallPolicy6DstaddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			DstaddrNegate: pulumi.String("disable"),
-// 			Dstintfs: FirewallPolicy6DstintfArray{
-// 				&FirewallPolicy6DstintfArgs{
-// 					Name: pulumi.String("port3"),
-// 				},
-// 			},
-// 			FirewallSessionDirty:   pulumi.String("check-all"),
-// 			Fixedport:              pulumi.String("disable"),
-// 			Inbound:                pulumi.String("disable"),
-// 			Ippool:                 pulumi.String("disable"),
-// 			Logtraffic:             pulumi.String("disable"),
-// 			LogtrafficStart:        pulumi.String("disable"),
-// 			Nat:                    pulumi.String("disable"),
-// 			Natinbound:             pulumi.String("disable"),
-// 			Natoutbound:            pulumi.String("disable"),
-// 			Outbound:               pulumi.String("disable"),
-// 			Policyid:               pulumi.Int(1),
-// 			ProfileProtocolOptions: pulumi.String("default"),
-// 			ProfileType:            pulumi.String("single"),
-// 			Rsso:                   pulumi.String("disable"),
-// 			Schedule:               pulumi.String("always"),
-// 			SendDenyPacket:         pulumi.String("disable"),
-// 			Services: FirewallPolicy6ServiceArray{
-// 				&FirewallPolicy6ServiceArgs{
-// 					Name: pulumi.String("ALL"),
-// 				},
-// 			},
-// 			ServiceNegate: pulumi.String("disable"),
-// 			Srcaddrs: FirewallPolicy6SrcaddrArray{
-// 				&FirewallPolicy6SrcaddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			SrcaddrNegate: pulumi.String("disable"),
-// 			Srcintfs: FirewallPolicy6SrcintfArray{
-// 				&FirewallPolicy6SrcintfArgs{
-// 					Name: pulumi.String("port4"),
-// 				},
-// 			},
-// 			SslMirror:            pulumi.String("disable"),
-// 			Status:               pulumi.String("enable"),
-// 			TcpMssReceiver:       pulumi.Int(0),
-// 			TcpMssSender:         pulumi.Int(0),
-// 			TcpSessionWithoutSyn: pulumi.String("disable"),
-// 			TimeoutSendRst:       pulumi.String("disable"),
-// 			Tos:                  pulumi.String("0x00"),
-// 			TosMask:              pulumi.String("0x00"),
-// 			TosNegate:            pulumi.String("disable"),
-// 			UtmStatus:            pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall Policy6 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallPolicy6:FirewallPolicy6 labelname {{policyid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallPolicy6:FirewallPolicy6 labelname {{policyid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallPolicy6 struct {
 	pulumi.CustomResourceState
 
-	// Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
-	Action pulumi.StringOutput `pulumi:"action"`
-	// Enable/disable anti-replay check. Valid values: `enable`, `disable`.
-	AntiReplay pulumi.StringOutput `pulumi:"antiReplay"`
-	// Application category ID list. The structure of `appCategory` block is documented below.
-	AppCategories FirewallPolicy6AppCategoryArrayOutput `pulumi:"appCategories"`
-	// Application group names. The structure of `appGroup` block is documented below.
-	AppGroups FirewallPolicy6AppGroupArrayOutput `pulumi:"appGroups"`
-	// Name of an existing Application list.
-	ApplicationList pulumi.StringOutput `pulumi:"applicationList"`
-	// Application ID list. The structure of `application` block is documented below.
-	Applications FirewallPolicy6ApplicationArrayOutput `pulumi:"applications"`
-	// Enable/disable policy traffic ASIC offloading. Valid values: `enable`, `disable`.
-	AutoAsicOffload pulumi.StringOutput `pulumi:"autoAsicOffload"`
-	// Name of an existing Antivirus profile.
-	AvProfile pulumi.StringOutput `pulumi:"avProfile"`
-	// Name of an existing CIFS profile.
-	CifsProfile pulumi.StringOutput `pulumi:"cifsProfile"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Log field index numbers to append custom log fields to log messages for this policy. The structure of `customLogFields` block is documented below.
-	CustomLogFields FirewallPolicy6CustomLogFieldArrayOutput `pulumi:"customLogFields"`
-	// Decrypted traffic mirror.
-	DecryptedTrafficMirror pulumi.StringOutput `pulumi:"decryptedTrafficMirror"`
-	// Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
-	Devices FirewallPolicy6DeviceArrayOutput `pulumi:"devices"`
-	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
-	DiffservForward pulumi.StringOutput `pulumi:"diffservForward"`
-	// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
-	DiffservReverse pulumi.StringOutput `pulumi:"diffservReverse"`
-	// Change packet's DiffServ to this value.
-	DiffservcodeForward pulumi.StringOutput `pulumi:"diffservcodeForward"`
-	// Change packet's reverse (reply) DiffServ to this value.
-	DiffservcodeRev pulumi.StringOutput `pulumi:"diffservcodeRev"`
-	// Name of an existing DLP sensor.
-	DlpSensor pulumi.StringOutput `pulumi:"dlpSensor"`
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile pulumi.StringOutput `pulumi:"dnsfilterProfile"`
-	// Enable DSRI to ignore HTTP server responses. Valid values: `enable`, `disable`.
-	Dsri pulumi.StringOutput `pulumi:"dsri"`
-	// When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-	DstaddrNegate pulumi.StringOutput `pulumi:"dstaddrNegate"`
-	// Destination address and address group names. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallPolicy6DstaddrArrayOutput `pulumi:"dstaddrs"`
-	// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
-	Dstintfs FirewallPolicy6DstintfArrayOutput `pulumi:"dstintfs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Name of an existing email filter profile.
-	EmailfilterProfile pulumi.StringOutput `pulumi:"emailfilterProfile"`
-	// How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
-	FirewallSessionDirty pulumi.StringOutput `pulumi:"firewallSessionDirty"`
-	// Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
-	Fixedport pulumi.StringOutput `pulumi:"fixedport"`
-	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
-	FssoGroups FirewallPolicy6FssoGroupArrayOutput `pulumi:"fssoGroups"`
-	// Label for the policy that appears when the GUI is in Global View mode.
-	GlobalLabel pulumi.StringOutput `pulumi:"globalLabel"`
-	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
-	Groups FirewallPolicy6GroupArrayOutput `pulumi:"groups"`
-	// Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
-	HttpPolicyRedirect pulumi.StringOutput `pulumi:"httpPolicyRedirect"`
-	// Name of an existing ICAP profile.
-	IcapProfile pulumi.StringOutput `pulumi:"icapProfile"`
-	// Policy-based IPsec VPN: only traffic from the remote network can initiate a VPN. Valid values: `enable`, `disable`.
-	Inbound pulumi.StringOutput `pulumi:"inbound"`
-	// Policy inspection mode (Flow/proxy). Default is Flow mode. Valid values: `proxy`, `flow`.
-	InspectionMode pulumi.StringOutput `pulumi:"inspectionMode"`
-	// Enable to use IP Pools for source NAT. Valid values: `enable`, `disable`.
-	Ippool pulumi.StringOutput `pulumi:"ippool"`
-	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringOutput `pulumi:"ipsSensor"`
-	// Label for the policy that appears when the GUI is in Section View mode.
-	Label pulumi.StringOutput `pulumi:"label"`
-	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
-	Logtraffic pulumi.StringOutput `pulumi:"logtraffic"`
-	// Record logs when a session starts. Valid values: `enable`, `disable`.
-	LogtrafficStart pulumi.StringOutput `pulumi:"logtrafficStart"`
-	// Names of FSSO groups.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable source NAT. Valid values: `enable`, `disable`.
-	Nat pulumi.StringOutput `pulumi:"nat"`
-	// Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
-	Natinbound pulumi.StringOutput `pulumi:"natinbound"`
-	// Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `enable`, `disable`.
-	Natoutbound pulumi.StringOutput `pulumi:"natoutbound"`
-	// Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
-	Outbound pulumi.StringOutput `pulumi:"outbound"`
-	// Per-IP traffic shaper.
-	PerIpShaper pulumi.StringOutput `pulumi:"perIpShaper"`
-	// Policy ID.
-	Policyid pulumi.IntOutput `pulumi:"policyid"`
-	// IP Pool names. The structure of `poolname` block is documented below.
-	Poolnames FirewallPolicy6PoolnameArrayOutput `pulumi:"poolnames"`
-	// Name of profile group.
-	ProfileGroup pulumi.StringOutput `pulumi:"profileGroup"`
-	// Name of an existing Protocol options profile.
-	ProfileProtocolOptions pulumi.StringOutput `pulumi:"profileProtocolOptions"`
-	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-	ProfileType pulumi.StringOutput `pulumi:"profileType"`
-	// Override the default replacement message group for this policy.
-	ReplacemsgOverrideGroup pulumi.StringOutput `pulumi:"replacemsgOverrideGroup"`
-	// Enable/disable RADIUS single sign-on (RSSO). Valid values: `enable`, `disable`.
-	Rsso pulumi.StringOutput `pulumi:"rsso"`
-	// Schedule name.
-	Schedule pulumi.StringOutput `pulumi:"schedule"`
-	// Enable/disable return of deny-packet. Valid values: `enable`, `disable`.
-	SendDenyPacket pulumi.StringOutput `pulumi:"sendDenyPacket"`
-	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	ServiceNegate pulumi.StringOutput `pulumi:"serviceNegate"`
-	// Service and service group names. The structure of `service` block is documented below.
-	Services FirewallPolicy6ServiceArrayOutput `pulumi:"services"`
-	// Session TTL in seconds for sessions accepted by this policy. 0 means use the system default session TTL.
-	SessionTtl pulumi.IntOutput `pulumi:"sessionTtl"`
-	// Name of an existing Spam filter profile.
-	SpamfilterProfile pulumi.StringOutput `pulumi:"spamfilterProfile"`
-	// When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-	SrcaddrNegate pulumi.StringOutput `pulumi:"srcaddrNegate"`
-	// Source address and address group names. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallPolicy6SrcaddrArrayOutput `pulumi:"srcaddrs"`
-	// Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-	Srcintfs FirewallPolicy6SrcintfArrayOutput `pulumi:"srcintfs"`
-	// Name of an existing SSH filter profile.
-	SshFilterProfile pulumi.StringOutput `pulumi:"sshFilterProfile"`
-	// Redirect SSH traffic to matching transparent proxy policy. Valid values: `enable`, `disable`.
-	SshPolicyRedirect pulumi.StringOutput `pulumi:"sshPolicyRedirect"`
-	// Enable to copy decrypted SSL traffic to a FortiGate interface (called SSL mirroring). Valid values: `enable`, `disable`.
-	SslMirror pulumi.StringOutput `pulumi:"sslMirror"`
-	// SSL mirror interface name. The structure of `sslMirrorIntf` block is documented below.
-	SslMirrorIntfs FirewallPolicy6SslMirrorIntfArrayOutput `pulumi:"sslMirrorIntfs"`
-	// Name of an existing SSL SSH profile.
-	SslSshProfile pulumi.StringOutput `pulumi:"sslSshProfile"`
-	// Enable or disable this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Receiver TCP maximum segment size (MSS).
-	TcpMssReceiver pulumi.IntOutput `pulumi:"tcpMssReceiver"`
-	// Sender TCP maximum segment size (MSS).
-	TcpMssSender pulumi.IntOutput `pulumi:"tcpMssSender"`
-	// Enable/disable creation of TCP session without SYN flag. Valid values: `all`, `data-only`, `disable`.
-	TcpSessionWithoutSyn pulumi.StringOutput `pulumi:"tcpSessionWithoutSyn"`
-	// Enable/disable sending RST packets when TCP sessions expire. Valid values: `enable`, `disable`.
-	TimeoutSendRst pulumi.StringOutput `pulumi:"timeoutSendRst"`
-	// ToS (Type of Service) value used for comparison.
-	Tos pulumi.StringOutput `pulumi:"tos"`
-	// Non-zero bit positions are used for comparison while zero bit positions are ignored.
-	TosMask pulumi.StringOutput `pulumi:"tosMask"`
-	// Enable negated TOS match. Valid values: `enable`, `disable`.
-	TosNegate pulumi.StringOutput `pulumi:"tosNegate"`
-	// Reverse traffic shaper.
-	TrafficShaper pulumi.StringOutput `pulumi:"trafficShaper"`
-	// Reverse traffic shaper.
-	TrafficShaperReverse pulumi.StringOutput `pulumi:"trafficShaperReverse"`
-	// URL category ID list. The structure of `urlCategory` block is documented below.
-	UrlCategories FirewallPolicy6UrlCategoryArrayOutput `pulumi:"urlCategories"`
-	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
-	Users FirewallPolicy6UserArrayOutput `pulumi:"users"`
-	// Enable AV/web/ips protection profile. Valid values: `enable`, `disable`.
-	UtmStatus pulumi.StringOutput `pulumi:"utmStatus"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringOutput `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest
-	VlanCosFwd pulumi.IntOutput `pulumi:"vlanCosFwd"`
-	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest
-	VlanCosRev pulumi.IntOutput `pulumi:"vlanCosRev"`
-	// Set VLAN filters.
-	VlanFilter pulumi.StringOutput `pulumi:"vlanFilter"`
-	// Name of an existing VoIP profile.
-	VoipProfile pulumi.StringOutput `pulumi:"voipProfile"`
-	// Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
-	Vpntunnel pulumi.StringOutput `pulumi:"vpntunnel"`
-	// Name of an existing Web application firewall profile.
-	WafProfile pulumi.StringOutput `pulumi:"wafProfile"`
-	// Enable/disable web cache. Valid values: `enable`, `disable`.
-	Webcache pulumi.StringOutput `pulumi:"webcache"`
-	// Enable/disable web cache for HTTPS. Valid values: `disable`, `enable`.
-	WebcacheHttps pulumi.StringOutput `pulumi:"webcacheHttps"`
-	// Name of an existing Web filter profile.
-	WebfilterProfile pulumi.StringOutput `pulumi:"webfilterProfile"`
-	// Web proxy forward server name.
-	WebproxyForwardServer pulumi.StringOutput `pulumi:"webproxyForwardServer"`
-	// Webproxy profile name.
-	WebproxyProfile pulumi.StringOutput `pulumi:"webproxyProfile"`
+	Action                  pulumi.StringOutput                      `pulumi:"action"`
+	AntiReplay              pulumi.StringOutput                      `pulumi:"antiReplay"`
+	AppCategories           FirewallPolicy6AppCategoryArrayOutput    `pulumi:"appCategories"`
+	AppGroups               FirewallPolicy6AppGroupArrayOutput       `pulumi:"appGroups"`
+	ApplicationList         pulumi.StringOutput                      `pulumi:"applicationList"`
+	Applications            FirewallPolicy6ApplicationArrayOutput    `pulumi:"applications"`
+	AutoAsicOffload         pulumi.StringOutput                      `pulumi:"autoAsicOffload"`
+	AvProfile               pulumi.StringOutput                      `pulumi:"avProfile"`
+	CifsProfile             pulumi.StringOutput                      `pulumi:"cifsProfile"`
+	Comments                pulumi.StringPtrOutput                   `pulumi:"comments"`
+	CustomLogFields         FirewallPolicy6CustomLogFieldArrayOutput `pulumi:"customLogFields"`
+	DecryptedTrafficMirror  pulumi.StringOutput                      `pulumi:"decryptedTrafficMirror"`
+	Devices                 FirewallPolicy6DeviceArrayOutput         `pulumi:"devices"`
+	DiffservForward         pulumi.StringOutput                      `pulumi:"diffservForward"`
+	DiffservReverse         pulumi.StringOutput                      `pulumi:"diffservReverse"`
+	DiffservcodeForward     pulumi.StringOutput                      `pulumi:"diffservcodeForward"`
+	DiffservcodeRev         pulumi.StringOutput                      `pulumi:"diffservcodeRev"`
+	DlpSensor               pulumi.StringOutput                      `pulumi:"dlpSensor"`
+	DnsfilterProfile        pulumi.StringOutput                      `pulumi:"dnsfilterProfile"`
+	Dsri                    pulumi.StringOutput                      `pulumi:"dsri"`
+	DstaddrNegate           pulumi.StringOutput                      `pulumi:"dstaddrNegate"`
+	Dstaddrs                FirewallPolicy6DstaddrArrayOutput        `pulumi:"dstaddrs"`
+	Dstintfs                FirewallPolicy6DstintfArrayOutput        `pulumi:"dstintfs"`
+	DynamicSortSubtable     pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
+	EmailfilterProfile      pulumi.StringOutput                      `pulumi:"emailfilterProfile"`
+	FirewallSessionDirty    pulumi.StringOutput                      `pulumi:"firewallSessionDirty"`
+	Fixedport               pulumi.StringOutput                      `pulumi:"fixedport"`
+	FssoGroups              FirewallPolicy6FssoGroupArrayOutput      `pulumi:"fssoGroups"`
+	GlobalLabel             pulumi.StringOutput                      `pulumi:"globalLabel"`
+	Groups                  FirewallPolicy6GroupArrayOutput          `pulumi:"groups"`
+	HttpPolicyRedirect      pulumi.StringOutput                      `pulumi:"httpPolicyRedirect"`
+	IcapProfile             pulumi.StringOutput                      `pulumi:"icapProfile"`
+	Inbound                 pulumi.StringOutput                      `pulumi:"inbound"`
+	InspectionMode          pulumi.StringOutput                      `pulumi:"inspectionMode"`
+	Ippool                  pulumi.StringOutput                      `pulumi:"ippool"`
+	IpsSensor               pulumi.StringOutput                      `pulumi:"ipsSensor"`
+	Label                   pulumi.StringOutput                      `pulumi:"label"`
+	Logtraffic              pulumi.StringOutput                      `pulumi:"logtraffic"`
+	LogtrafficStart         pulumi.StringOutput                      `pulumi:"logtrafficStart"`
+	Name                    pulumi.StringOutput                      `pulumi:"name"`
+	Nat                     pulumi.StringOutput                      `pulumi:"nat"`
+	Natinbound              pulumi.StringOutput                      `pulumi:"natinbound"`
+	Natoutbound             pulumi.StringOutput                      `pulumi:"natoutbound"`
+	Outbound                pulumi.StringOutput                      `pulumi:"outbound"`
+	PerIpShaper             pulumi.StringOutput                      `pulumi:"perIpShaper"`
+	Policyid                pulumi.IntOutput                         `pulumi:"policyid"`
+	Poolnames               FirewallPolicy6PoolnameArrayOutput       `pulumi:"poolnames"`
+	ProfileGroup            pulumi.StringOutput                      `pulumi:"profileGroup"`
+	ProfileProtocolOptions  pulumi.StringOutput                      `pulumi:"profileProtocolOptions"`
+	ProfileType             pulumi.StringOutput                      `pulumi:"profileType"`
+	ReplacemsgOverrideGroup pulumi.StringOutput                      `pulumi:"replacemsgOverrideGroup"`
+	Rsso                    pulumi.StringOutput                      `pulumi:"rsso"`
+	Schedule                pulumi.StringOutput                      `pulumi:"schedule"`
+	SendDenyPacket          pulumi.StringOutput                      `pulumi:"sendDenyPacket"`
+	ServiceNegate           pulumi.StringOutput                      `pulumi:"serviceNegate"`
+	Services                FirewallPolicy6ServiceArrayOutput        `pulumi:"services"`
+	SessionTtl              pulumi.IntOutput                         `pulumi:"sessionTtl"`
+	SpamfilterProfile       pulumi.StringOutput                      `pulumi:"spamfilterProfile"`
+	SrcaddrNegate           pulumi.StringOutput                      `pulumi:"srcaddrNegate"`
+	Srcaddrs                FirewallPolicy6SrcaddrArrayOutput        `pulumi:"srcaddrs"`
+	Srcintfs                FirewallPolicy6SrcintfArrayOutput        `pulumi:"srcintfs"`
+	SshFilterProfile        pulumi.StringOutput                      `pulumi:"sshFilterProfile"`
+	SshPolicyRedirect       pulumi.StringOutput                      `pulumi:"sshPolicyRedirect"`
+	SslMirror               pulumi.StringOutput                      `pulumi:"sslMirror"`
+	SslMirrorIntfs          FirewallPolicy6SslMirrorIntfArrayOutput  `pulumi:"sslMirrorIntfs"`
+	SslSshProfile           pulumi.StringOutput                      `pulumi:"sslSshProfile"`
+	Status                  pulumi.StringOutput                      `pulumi:"status"`
+	TcpMssReceiver          pulumi.IntOutput                         `pulumi:"tcpMssReceiver"`
+	TcpMssSender            pulumi.IntOutput                         `pulumi:"tcpMssSender"`
+	TcpSessionWithoutSyn    pulumi.StringOutput                      `pulumi:"tcpSessionWithoutSyn"`
+	TimeoutSendRst          pulumi.StringOutput                      `pulumi:"timeoutSendRst"`
+	Tos                     pulumi.StringOutput                      `pulumi:"tos"`
+	TosMask                 pulumi.StringOutput                      `pulumi:"tosMask"`
+	TosNegate               pulumi.StringOutput                      `pulumi:"tosNegate"`
+	TrafficShaper           pulumi.StringOutput                      `pulumi:"trafficShaper"`
+	TrafficShaperReverse    pulumi.StringOutput                      `pulumi:"trafficShaperReverse"`
+	UrlCategories           FirewallPolicy6UrlCategoryArrayOutput    `pulumi:"urlCategories"`
+	Users                   FirewallPolicy6UserArrayOutput           `pulumi:"users"`
+	UtmStatus               pulumi.StringOutput                      `pulumi:"utmStatus"`
+	Uuid                    pulumi.StringOutput                      `pulumi:"uuid"`
+	Vdomparam               pulumi.StringPtrOutput                   `pulumi:"vdomparam"`
+	VlanCosFwd              pulumi.IntOutput                         `pulumi:"vlanCosFwd"`
+	VlanCosRev              pulumi.IntOutput                         `pulumi:"vlanCosRev"`
+	VlanFilter              pulumi.StringOutput                      `pulumi:"vlanFilter"`
+	VoipProfile             pulumi.StringOutput                      `pulumi:"voipProfile"`
+	Vpntunnel               pulumi.StringOutput                      `pulumi:"vpntunnel"`
+	WafProfile              pulumi.StringOutput                      `pulumi:"wafProfile"`
+	Webcache                pulumi.StringOutput                      `pulumi:"webcache"`
+	WebcacheHttps           pulumi.StringOutput                      `pulumi:"webcacheHttps"`
+	WebfilterProfile        pulumi.StringOutput                      `pulumi:"webfilterProfile"`
+	WebproxyForwardServer   pulumi.StringOutput                      `pulumi:"webproxyForwardServer"`
+	WebproxyProfile         pulumi.StringOutput                      `pulumi:"webproxyProfile"`
 }
 
 // NewFirewallPolicy6 registers a new resource with the given unique name, arguments, and options.
@@ -345,377 +153,193 @@ func GetFirewallPolicy6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallPolicy6 resources.
 type firewallPolicy6State struct {
-	// Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
-	Action *string `pulumi:"action"`
-	// Enable/disable anti-replay check. Valid values: `enable`, `disable`.
-	AntiReplay *string `pulumi:"antiReplay"`
-	// Application category ID list. The structure of `appCategory` block is documented below.
-	AppCategories []FirewallPolicy6AppCategory `pulumi:"appCategories"`
-	// Application group names. The structure of `appGroup` block is documented below.
-	AppGroups []FirewallPolicy6AppGroup `pulumi:"appGroups"`
-	// Name of an existing Application list.
-	ApplicationList *string `pulumi:"applicationList"`
-	// Application ID list. The structure of `application` block is documented below.
-	Applications []FirewallPolicy6Application `pulumi:"applications"`
-	// Enable/disable policy traffic ASIC offloading. Valid values: `enable`, `disable`.
-	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
-	// Name of an existing Antivirus profile.
-	AvProfile *string `pulumi:"avProfile"`
-	// Name of an existing CIFS profile.
-	CifsProfile *string `pulumi:"cifsProfile"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Log field index numbers to append custom log fields to log messages for this policy. The structure of `customLogFields` block is documented below.
-	CustomLogFields []FirewallPolicy6CustomLogField `pulumi:"customLogFields"`
-	// Decrypted traffic mirror.
-	DecryptedTrafficMirror *string `pulumi:"decryptedTrafficMirror"`
-	// Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
-	Devices []FirewallPolicy6Device `pulumi:"devices"`
-	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
-	DiffservForward *string `pulumi:"diffservForward"`
-	// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
-	DiffservReverse *string `pulumi:"diffservReverse"`
-	// Change packet's DiffServ to this value.
-	DiffservcodeForward *string `pulumi:"diffservcodeForward"`
-	// Change packet's reverse (reply) DiffServ to this value.
-	DiffservcodeRev *string `pulumi:"diffservcodeRev"`
-	// Name of an existing DLP sensor.
-	DlpSensor *string `pulumi:"dlpSensor"`
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
-	// Enable DSRI to ignore HTTP server responses. Valid values: `enable`, `disable`.
-	Dsri *string `pulumi:"dsri"`
-	// When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-	DstaddrNegate *string `pulumi:"dstaddrNegate"`
-	// Destination address and address group names. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallPolicy6Dstaddr `pulumi:"dstaddrs"`
-	// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
-	Dstintfs []FirewallPolicy6Dstintf `pulumi:"dstintfs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name of an existing email filter profile.
-	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
-	// How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
-	FirewallSessionDirty *string `pulumi:"firewallSessionDirty"`
-	// Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
-	Fixedport *string `pulumi:"fixedport"`
-	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
-	FssoGroups []FirewallPolicy6FssoGroup `pulumi:"fssoGroups"`
-	// Label for the policy that appears when the GUI is in Global View mode.
-	GlobalLabel *string `pulumi:"globalLabel"`
-	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
-	Groups []FirewallPolicy6Group `pulumi:"groups"`
-	// Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
-	HttpPolicyRedirect *string `pulumi:"httpPolicyRedirect"`
-	// Name of an existing ICAP profile.
-	IcapProfile *string `pulumi:"icapProfile"`
-	// Policy-based IPsec VPN: only traffic from the remote network can initiate a VPN. Valid values: `enable`, `disable`.
-	Inbound *string `pulumi:"inbound"`
-	// Policy inspection mode (Flow/proxy). Default is Flow mode. Valid values: `proxy`, `flow`.
-	InspectionMode *string `pulumi:"inspectionMode"`
-	// Enable to use IP Pools for source NAT. Valid values: `enable`, `disable`.
-	Ippool *string `pulumi:"ippool"`
-	// Name of an existing IPS sensor.
-	IpsSensor *string `pulumi:"ipsSensor"`
-	// Label for the policy that appears when the GUI is in Section View mode.
-	Label *string `pulumi:"label"`
-	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
-	Logtraffic *string `pulumi:"logtraffic"`
-	// Record logs when a session starts. Valid values: `enable`, `disable`.
-	LogtrafficStart *string `pulumi:"logtrafficStart"`
-	// Names of FSSO groups.
-	Name *string `pulumi:"name"`
-	// Enable/disable source NAT. Valid values: `enable`, `disable`.
-	Nat *string `pulumi:"nat"`
-	// Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
-	Natinbound *string `pulumi:"natinbound"`
-	// Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `enable`, `disable`.
-	Natoutbound *string `pulumi:"natoutbound"`
-	// Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
-	Outbound *string `pulumi:"outbound"`
-	// Per-IP traffic shaper.
-	PerIpShaper *string `pulumi:"perIpShaper"`
-	// Policy ID.
-	Policyid *int `pulumi:"policyid"`
-	// IP Pool names. The structure of `poolname` block is documented below.
-	Poolnames []FirewallPolicy6Poolname `pulumi:"poolnames"`
-	// Name of profile group.
-	ProfileGroup *string `pulumi:"profileGroup"`
-	// Name of an existing Protocol options profile.
-	ProfileProtocolOptions *string `pulumi:"profileProtocolOptions"`
-	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-	ProfileType *string `pulumi:"profileType"`
-	// Override the default replacement message group for this policy.
-	ReplacemsgOverrideGroup *string `pulumi:"replacemsgOverrideGroup"`
-	// Enable/disable RADIUS single sign-on (RSSO). Valid values: `enable`, `disable`.
-	Rsso *string `pulumi:"rsso"`
-	// Schedule name.
-	Schedule *string `pulumi:"schedule"`
-	// Enable/disable return of deny-packet. Valid values: `enable`, `disable`.
-	SendDenyPacket *string `pulumi:"sendDenyPacket"`
-	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	ServiceNegate *string `pulumi:"serviceNegate"`
-	// Service and service group names. The structure of `service` block is documented below.
-	Services []FirewallPolicy6Service `pulumi:"services"`
-	// Session TTL in seconds for sessions accepted by this policy. 0 means use the system default session TTL.
-	SessionTtl *int `pulumi:"sessionTtl"`
-	// Name of an existing Spam filter profile.
-	SpamfilterProfile *string `pulumi:"spamfilterProfile"`
-	// When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-	SrcaddrNegate *string `pulumi:"srcaddrNegate"`
-	// Source address and address group names. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallPolicy6Srcaddr `pulumi:"srcaddrs"`
-	// Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-	Srcintfs []FirewallPolicy6Srcintf `pulumi:"srcintfs"`
-	// Name of an existing SSH filter profile.
-	SshFilterProfile *string `pulumi:"sshFilterProfile"`
-	// Redirect SSH traffic to matching transparent proxy policy. Valid values: `enable`, `disable`.
-	SshPolicyRedirect *string `pulumi:"sshPolicyRedirect"`
-	// Enable to copy decrypted SSL traffic to a FortiGate interface (called SSL mirroring). Valid values: `enable`, `disable`.
-	SslMirror *string `pulumi:"sslMirror"`
-	// SSL mirror interface name. The structure of `sslMirrorIntf` block is documented below.
-	SslMirrorIntfs []FirewallPolicy6SslMirrorIntf `pulumi:"sslMirrorIntfs"`
-	// Name of an existing SSL SSH profile.
-	SslSshProfile *string `pulumi:"sslSshProfile"`
-	// Enable or disable this policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Receiver TCP maximum segment size (MSS).
-	TcpMssReceiver *int `pulumi:"tcpMssReceiver"`
-	// Sender TCP maximum segment size (MSS).
-	TcpMssSender *int `pulumi:"tcpMssSender"`
-	// Enable/disable creation of TCP session without SYN flag. Valid values: `all`, `data-only`, `disable`.
-	TcpSessionWithoutSyn *string `pulumi:"tcpSessionWithoutSyn"`
-	// Enable/disable sending RST packets when TCP sessions expire. Valid values: `enable`, `disable`.
-	TimeoutSendRst *string `pulumi:"timeoutSendRst"`
-	// ToS (Type of Service) value used for comparison.
-	Tos *string `pulumi:"tos"`
-	// Non-zero bit positions are used for comparison while zero bit positions are ignored.
-	TosMask *string `pulumi:"tosMask"`
-	// Enable negated TOS match. Valid values: `enable`, `disable`.
-	TosNegate *string `pulumi:"tosNegate"`
-	// Reverse traffic shaper.
-	TrafficShaper *string `pulumi:"trafficShaper"`
-	// Reverse traffic shaper.
-	TrafficShaperReverse *string `pulumi:"trafficShaperReverse"`
-	// URL category ID list. The structure of `urlCategory` block is documented below.
-	UrlCategories []FirewallPolicy6UrlCategory `pulumi:"urlCategories"`
-	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
-	Users []FirewallPolicy6User `pulumi:"users"`
-	// Enable AV/web/ips protection profile. Valid values: `enable`, `disable`.
-	UtmStatus *string `pulumi:"utmStatus"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest
-	VlanCosFwd *int `pulumi:"vlanCosFwd"`
-	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest
-	VlanCosRev *int `pulumi:"vlanCosRev"`
-	// Set VLAN filters.
-	VlanFilter *string `pulumi:"vlanFilter"`
-	// Name of an existing VoIP profile.
-	VoipProfile *string `pulumi:"voipProfile"`
-	// Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
-	Vpntunnel *string `pulumi:"vpntunnel"`
-	// Name of an existing Web application firewall profile.
-	WafProfile *string `pulumi:"wafProfile"`
-	// Enable/disable web cache. Valid values: `enable`, `disable`.
-	Webcache *string `pulumi:"webcache"`
-	// Enable/disable web cache for HTTPS. Valid values: `disable`, `enable`.
-	WebcacheHttps *string `pulumi:"webcacheHttps"`
-	// Name of an existing Web filter profile.
-	WebfilterProfile *string `pulumi:"webfilterProfile"`
-	// Web proxy forward server name.
-	WebproxyForwardServer *string `pulumi:"webproxyForwardServer"`
-	// Webproxy profile name.
-	WebproxyProfile *string `pulumi:"webproxyProfile"`
+	Action                  *string                         `pulumi:"action"`
+	AntiReplay              *string                         `pulumi:"antiReplay"`
+	AppCategories           []FirewallPolicy6AppCategory    `pulumi:"appCategories"`
+	AppGroups               []FirewallPolicy6AppGroup       `pulumi:"appGroups"`
+	ApplicationList         *string                         `pulumi:"applicationList"`
+	Applications            []FirewallPolicy6Application    `pulumi:"applications"`
+	AutoAsicOffload         *string                         `pulumi:"autoAsicOffload"`
+	AvProfile               *string                         `pulumi:"avProfile"`
+	CifsProfile             *string                         `pulumi:"cifsProfile"`
+	Comments                *string                         `pulumi:"comments"`
+	CustomLogFields         []FirewallPolicy6CustomLogField `pulumi:"customLogFields"`
+	DecryptedTrafficMirror  *string                         `pulumi:"decryptedTrafficMirror"`
+	Devices                 []FirewallPolicy6Device         `pulumi:"devices"`
+	DiffservForward         *string                         `pulumi:"diffservForward"`
+	DiffservReverse         *string                         `pulumi:"diffservReverse"`
+	DiffservcodeForward     *string                         `pulumi:"diffservcodeForward"`
+	DiffservcodeRev         *string                         `pulumi:"diffservcodeRev"`
+	DlpSensor               *string                         `pulumi:"dlpSensor"`
+	DnsfilterProfile        *string                         `pulumi:"dnsfilterProfile"`
+	Dsri                    *string                         `pulumi:"dsri"`
+	DstaddrNegate           *string                         `pulumi:"dstaddrNegate"`
+	Dstaddrs                []FirewallPolicy6Dstaddr        `pulumi:"dstaddrs"`
+	Dstintfs                []FirewallPolicy6Dstintf        `pulumi:"dstintfs"`
+	DynamicSortSubtable     *string                         `pulumi:"dynamicSortSubtable"`
+	EmailfilterProfile      *string                         `pulumi:"emailfilterProfile"`
+	FirewallSessionDirty    *string                         `pulumi:"firewallSessionDirty"`
+	Fixedport               *string                         `pulumi:"fixedport"`
+	FssoGroups              []FirewallPolicy6FssoGroup      `pulumi:"fssoGroups"`
+	GlobalLabel             *string                         `pulumi:"globalLabel"`
+	Groups                  []FirewallPolicy6Group          `pulumi:"groups"`
+	HttpPolicyRedirect      *string                         `pulumi:"httpPolicyRedirect"`
+	IcapProfile             *string                         `pulumi:"icapProfile"`
+	Inbound                 *string                         `pulumi:"inbound"`
+	InspectionMode          *string                         `pulumi:"inspectionMode"`
+	Ippool                  *string                         `pulumi:"ippool"`
+	IpsSensor               *string                         `pulumi:"ipsSensor"`
+	Label                   *string                         `pulumi:"label"`
+	Logtraffic              *string                         `pulumi:"logtraffic"`
+	LogtrafficStart         *string                         `pulumi:"logtrafficStart"`
+	Name                    *string                         `pulumi:"name"`
+	Nat                     *string                         `pulumi:"nat"`
+	Natinbound              *string                         `pulumi:"natinbound"`
+	Natoutbound             *string                         `pulumi:"natoutbound"`
+	Outbound                *string                         `pulumi:"outbound"`
+	PerIpShaper             *string                         `pulumi:"perIpShaper"`
+	Policyid                *int                            `pulumi:"policyid"`
+	Poolnames               []FirewallPolicy6Poolname       `pulumi:"poolnames"`
+	ProfileGroup            *string                         `pulumi:"profileGroup"`
+	ProfileProtocolOptions  *string                         `pulumi:"profileProtocolOptions"`
+	ProfileType             *string                         `pulumi:"profileType"`
+	ReplacemsgOverrideGroup *string                         `pulumi:"replacemsgOverrideGroup"`
+	Rsso                    *string                         `pulumi:"rsso"`
+	Schedule                *string                         `pulumi:"schedule"`
+	SendDenyPacket          *string                         `pulumi:"sendDenyPacket"`
+	ServiceNegate           *string                         `pulumi:"serviceNegate"`
+	Services                []FirewallPolicy6Service        `pulumi:"services"`
+	SessionTtl              *int                            `pulumi:"sessionTtl"`
+	SpamfilterProfile       *string                         `pulumi:"spamfilterProfile"`
+	SrcaddrNegate           *string                         `pulumi:"srcaddrNegate"`
+	Srcaddrs                []FirewallPolicy6Srcaddr        `pulumi:"srcaddrs"`
+	Srcintfs                []FirewallPolicy6Srcintf        `pulumi:"srcintfs"`
+	SshFilterProfile        *string                         `pulumi:"sshFilterProfile"`
+	SshPolicyRedirect       *string                         `pulumi:"sshPolicyRedirect"`
+	SslMirror               *string                         `pulumi:"sslMirror"`
+	SslMirrorIntfs          []FirewallPolicy6SslMirrorIntf  `pulumi:"sslMirrorIntfs"`
+	SslSshProfile           *string                         `pulumi:"sslSshProfile"`
+	Status                  *string                         `pulumi:"status"`
+	TcpMssReceiver          *int                            `pulumi:"tcpMssReceiver"`
+	TcpMssSender            *int                            `pulumi:"tcpMssSender"`
+	TcpSessionWithoutSyn    *string                         `pulumi:"tcpSessionWithoutSyn"`
+	TimeoutSendRst          *string                         `pulumi:"timeoutSendRst"`
+	Tos                     *string                         `pulumi:"tos"`
+	TosMask                 *string                         `pulumi:"tosMask"`
+	TosNegate               *string                         `pulumi:"tosNegate"`
+	TrafficShaper           *string                         `pulumi:"trafficShaper"`
+	TrafficShaperReverse    *string                         `pulumi:"trafficShaperReverse"`
+	UrlCategories           []FirewallPolicy6UrlCategory    `pulumi:"urlCategories"`
+	Users                   []FirewallPolicy6User           `pulumi:"users"`
+	UtmStatus               *string                         `pulumi:"utmStatus"`
+	Uuid                    *string                         `pulumi:"uuid"`
+	Vdomparam               *string                         `pulumi:"vdomparam"`
+	VlanCosFwd              *int                            `pulumi:"vlanCosFwd"`
+	VlanCosRev              *int                            `pulumi:"vlanCosRev"`
+	VlanFilter              *string                         `pulumi:"vlanFilter"`
+	VoipProfile             *string                         `pulumi:"voipProfile"`
+	Vpntunnel               *string                         `pulumi:"vpntunnel"`
+	WafProfile              *string                         `pulumi:"wafProfile"`
+	Webcache                *string                         `pulumi:"webcache"`
+	WebcacheHttps           *string                         `pulumi:"webcacheHttps"`
+	WebfilterProfile        *string                         `pulumi:"webfilterProfile"`
+	WebproxyForwardServer   *string                         `pulumi:"webproxyForwardServer"`
+	WebproxyProfile         *string                         `pulumi:"webproxyProfile"`
 }
 
 type FirewallPolicy6State struct {
-	// Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
-	Action pulumi.StringPtrInput
-	// Enable/disable anti-replay check. Valid values: `enable`, `disable`.
-	AntiReplay pulumi.StringPtrInput
-	// Application category ID list. The structure of `appCategory` block is documented below.
-	AppCategories FirewallPolicy6AppCategoryArrayInput
-	// Application group names. The structure of `appGroup` block is documented below.
-	AppGroups FirewallPolicy6AppGroupArrayInput
-	// Name of an existing Application list.
-	ApplicationList pulumi.StringPtrInput
-	// Application ID list. The structure of `application` block is documented below.
-	Applications FirewallPolicy6ApplicationArrayInput
-	// Enable/disable policy traffic ASIC offloading. Valid values: `enable`, `disable`.
-	AutoAsicOffload pulumi.StringPtrInput
-	// Name of an existing Antivirus profile.
-	AvProfile pulumi.StringPtrInput
-	// Name of an existing CIFS profile.
-	CifsProfile pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Log field index numbers to append custom log fields to log messages for this policy. The structure of `customLogFields` block is documented below.
-	CustomLogFields FirewallPolicy6CustomLogFieldArrayInput
-	// Decrypted traffic mirror.
-	DecryptedTrafficMirror pulumi.StringPtrInput
-	// Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
-	Devices FirewallPolicy6DeviceArrayInput
-	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
-	DiffservForward pulumi.StringPtrInput
-	// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
-	DiffservReverse pulumi.StringPtrInput
-	// Change packet's DiffServ to this value.
-	DiffservcodeForward pulumi.StringPtrInput
-	// Change packet's reverse (reply) DiffServ to this value.
-	DiffservcodeRev pulumi.StringPtrInput
-	// Name of an existing DLP sensor.
-	DlpSensor pulumi.StringPtrInput
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile pulumi.StringPtrInput
-	// Enable DSRI to ignore HTTP server responses. Valid values: `enable`, `disable`.
-	Dsri pulumi.StringPtrInput
-	// When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-	DstaddrNegate pulumi.StringPtrInput
-	// Destination address and address group names. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallPolicy6DstaddrArrayInput
-	// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
-	Dstintfs FirewallPolicy6DstintfArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Name of an existing email filter profile.
-	EmailfilterProfile pulumi.StringPtrInput
-	// How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
-	FirewallSessionDirty pulumi.StringPtrInput
-	// Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
-	Fixedport pulumi.StringPtrInput
-	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
-	FssoGroups FirewallPolicy6FssoGroupArrayInput
-	// Label for the policy that appears when the GUI is in Global View mode.
-	GlobalLabel pulumi.StringPtrInput
-	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
-	Groups FirewallPolicy6GroupArrayInput
-	// Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
-	HttpPolicyRedirect pulumi.StringPtrInput
-	// Name of an existing ICAP profile.
-	IcapProfile pulumi.StringPtrInput
-	// Policy-based IPsec VPN: only traffic from the remote network can initiate a VPN. Valid values: `enable`, `disable`.
-	Inbound pulumi.StringPtrInput
-	// Policy inspection mode (Flow/proxy). Default is Flow mode. Valid values: `proxy`, `flow`.
-	InspectionMode pulumi.StringPtrInput
-	// Enable to use IP Pools for source NAT. Valid values: `enable`, `disable`.
-	Ippool pulumi.StringPtrInput
-	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringPtrInput
-	// Label for the policy that appears when the GUI is in Section View mode.
-	Label pulumi.StringPtrInput
-	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
-	Logtraffic pulumi.StringPtrInput
-	// Record logs when a session starts. Valid values: `enable`, `disable`.
-	LogtrafficStart pulumi.StringPtrInput
-	// Names of FSSO groups.
-	Name pulumi.StringPtrInput
-	// Enable/disable source NAT. Valid values: `enable`, `disable`.
-	Nat pulumi.StringPtrInput
-	// Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
-	Natinbound pulumi.StringPtrInput
-	// Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `enable`, `disable`.
-	Natoutbound pulumi.StringPtrInput
-	// Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
-	Outbound pulumi.StringPtrInput
-	// Per-IP traffic shaper.
-	PerIpShaper pulumi.StringPtrInput
-	// Policy ID.
-	Policyid pulumi.IntPtrInput
-	// IP Pool names. The structure of `poolname` block is documented below.
-	Poolnames FirewallPolicy6PoolnameArrayInput
-	// Name of profile group.
-	ProfileGroup pulumi.StringPtrInput
-	// Name of an existing Protocol options profile.
-	ProfileProtocolOptions pulumi.StringPtrInput
-	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-	ProfileType pulumi.StringPtrInput
-	// Override the default replacement message group for this policy.
+	Action                  pulumi.StringPtrInput
+	AntiReplay              pulumi.StringPtrInput
+	AppCategories           FirewallPolicy6AppCategoryArrayInput
+	AppGroups               FirewallPolicy6AppGroupArrayInput
+	ApplicationList         pulumi.StringPtrInput
+	Applications            FirewallPolicy6ApplicationArrayInput
+	AutoAsicOffload         pulumi.StringPtrInput
+	AvProfile               pulumi.StringPtrInput
+	CifsProfile             pulumi.StringPtrInput
+	Comments                pulumi.StringPtrInput
+	CustomLogFields         FirewallPolicy6CustomLogFieldArrayInput
+	DecryptedTrafficMirror  pulumi.StringPtrInput
+	Devices                 FirewallPolicy6DeviceArrayInput
+	DiffservForward         pulumi.StringPtrInput
+	DiffservReverse         pulumi.StringPtrInput
+	DiffservcodeForward     pulumi.StringPtrInput
+	DiffservcodeRev         pulumi.StringPtrInput
+	DlpSensor               pulumi.StringPtrInput
+	DnsfilterProfile        pulumi.StringPtrInput
+	Dsri                    pulumi.StringPtrInput
+	DstaddrNegate           pulumi.StringPtrInput
+	Dstaddrs                FirewallPolicy6DstaddrArrayInput
+	Dstintfs                FirewallPolicy6DstintfArrayInput
+	DynamicSortSubtable     pulumi.StringPtrInput
+	EmailfilterProfile      pulumi.StringPtrInput
+	FirewallSessionDirty    pulumi.StringPtrInput
+	Fixedport               pulumi.StringPtrInput
+	FssoGroups              FirewallPolicy6FssoGroupArrayInput
+	GlobalLabel             pulumi.StringPtrInput
+	Groups                  FirewallPolicy6GroupArrayInput
+	HttpPolicyRedirect      pulumi.StringPtrInput
+	IcapProfile             pulumi.StringPtrInput
+	Inbound                 pulumi.StringPtrInput
+	InspectionMode          pulumi.StringPtrInput
+	Ippool                  pulumi.StringPtrInput
+	IpsSensor               pulumi.StringPtrInput
+	Label                   pulumi.StringPtrInput
+	Logtraffic              pulumi.StringPtrInput
+	LogtrafficStart         pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	Nat                     pulumi.StringPtrInput
+	Natinbound              pulumi.StringPtrInput
+	Natoutbound             pulumi.StringPtrInput
+	Outbound                pulumi.StringPtrInput
+	PerIpShaper             pulumi.StringPtrInput
+	Policyid                pulumi.IntPtrInput
+	Poolnames               FirewallPolicy6PoolnameArrayInput
+	ProfileGroup            pulumi.StringPtrInput
+	ProfileProtocolOptions  pulumi.StringPtrInput
+	ProfileType             pulumi.StringPtrInput
 	ReplacemsgOverrideGroup pulumi.StringPtrInput
-	// Enable/disable RADIUS single sign-on (RSSO). Valid values: `enable`, `disable`.
-	Rsso pulumi.StringPtrInput
-	// Schedule name.
-	Schedule pulumi.StringPtrInput
-	// Enable/disable return of deny-packet. Valid values: `enable`, `disable`.
-	SendDenyPacket pulumi.StringPtrInput
-	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	ServiceNegate pulumi.StringPtrInput
-	// Service and service group names. The structure of `service` block is documented below.
-	Services FirewallPolicy6ServiceArrayInput
-	// Session TTL in seconds for sessions accepted by this policy. 0 means use the system default session TTL.
-	SessionTtl pulumi.IntPtrInput
-	// Name of an existing Spam filter profile.
-	SpamfilterProfile pulumi.StringPtrInput
-	// When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-	SrcaddrNegate pulumi.StringPtrInput
-	// Source address and address group names. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallPolicy6SrcaddrArrayInput
-	// Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-	Srcintfs FirewallPolicy6SrcintfArrayInput
-	// Name of an existing SSH filter profile.
-	SshFilterProfile pulumi.StringPtrInput
-	// Redirect SSH traffic to matching transparent proxy policy. Valid values: `enable`, `disable`.
-	SshPolicyRedirect pulumi.StringPtrInput
-	// Enable to copy decrypted SSL traffic to a FortiGate interface (called SSL mirroring). Valid values: `enable`, `disable`.
-	SslMirror pulumi.StringPtrInput
-	// SSL mirror interface name. The structure of `sslMirrorIntf` block is documented below.
-	SslMirrorIntfs FirewallPolicy6SslMirrorIntfArrayInput
-	// Name of an existing SSL SSH profile.
-	SslSshProfile pulumi.StringPtrInput
-	// Enable or disable this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Receiver TCP maximum segment size (MSS).
-	TcpMssReceiver pulumi.IntPtrInput
-	// Sender TCP maximum segment size (MSS).
-	TcpMssSender pulumi.IntPtrInput
-	// Enable/disable creation of TCP session without SYN flag. Valid values: `all`, `data-only`, `disable`.
-	TcpSessionWithoutSyn pulumi.StringPtrInput
-	// Enable/disable sending RST packets when TCP sessions expire. Valid values: `enable`, `disable`.
-	TimeoutSendRst pulumi.StringPtrInput
-	// ToS (Type of Service) value used for comparison.
-	Tos pulumi.StringPtrInput
-	// Non-zero bit positions are used for comparison while zero bit positions are ignored.
-	TosMask pulumi.StringPtrInput
-	// Enable negated TOS match. Valid values: `enable`, `disable`.
-	TosNegate pulumi.StringPtrInput
-	// Reverse traffic shaper.
-	TrafficShaper pulumi.StringPtrInput
-	// Reverse traffic shaper.
-	TrafficShaperReverse pulumi.StringPtrInput
-	// URL category ID list. The structure of `urlCategory` block is documented below.
-	UrlCategories FirewallPolicy6UrlCategoryArrayInput
-	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
-	Users FirewallPolicy6UserArrayInput
-	// Enable AV/web/ips protection profile. Valid values: `enable`, `disable`.
-	UtmStatus pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest
-	VlanCosFwd pulumi.IntPtrInput
-	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest
-	VlanCosRev pulumi.IntPtrInput
-	// Set VLAN filters.
-	VlanFilter pulumi.StringPtrInput
-	// Name of an existing VoIP profile.
-	VoipProfile pulumi.StringPtrInput
-	// Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
-	Vpntunnel pulumi.StringPtrInput
-	// Name of an existing Web application firewall profile.
-	WafProfile pulumi.StringPtrInput
-	// Enable/disable web cache. Valid values: `enable`, `disable`.
-	Webcache pulumi.StringPtrInput
-	// Enable/disable web cache for HTTPS. Valid values: `disable`, `enable`.
-	WebcacheHttps pulumi.StringPtrInput
-	// Name of an existing Web filter profile.
-	WebfilterProfile pulumi.StringPtrInput
-	// Web proxy forward server name.
-	WebproxyForwardServer pulumi.StringPtrInput
-	// Webproxy profile name.
-	WebproxyProfile pulumi.StringPtrInput
+	Rsso                    pulumi.StringPtrInput
+	Schedule                pulumi.StringPtrInput
+	SendDenyPacket          pulumi.StringPtrInput
+	ServiceNegate           pulumi.StringPtrInput
+	Services                FirewallPolicy6ServiceArrayInput
+	SessionTtl              pulumi.IntPtrInput
+	SpamfilterProfile       pulumi.StringPtrInput
+	SrcaddrNegate           pulumi.StringPtrInput
+	Srcaddrs                FirewallPolicy6SrcaddrArrayInput
+	Srcintfs                FirewallPolicy6SrcintfArrayInput
+	SshFilterProfile        pulumi.StringPtrInput
+	SshPolicyRedirect       pulumi.StringPtrInput
+	SslMirror               pulumi.StringPtrInput
+	SslMirrorIntfs          FirewallPolicy6SslMirrorIntfArrayInput
+	SslSshProfile           pulumi.StringPtrInput
+	Status                  pulumi.StringPtrInput
+	TcpMssReceiver          pulumi.IntPtrInput
+	TcpMssSender            pulumi.IntPtrInput
+	TcpSessionWithoutSyn    pulumi.StringPtrInput
+	TimeoutSendRst          pulumi.StringPtrInput
+	Tos                     pulumi.StringPtrInput
+	TosMask                 pulumi.StringPtrInput
+	TosNegate               pulumi.StringPtrInput
+	TrafficShaper           pulumi.StringPtrInput
+	TrafficShaperReverse    pulumi.StringPtrInput
+	UrlCategories           FirewallPolicy6UrlCategoryArrayInput
+	Users                   FirewallPolicy6UserArrayInput
+	UtmStatus               pulumi.StringPtrInput
+	Uuid                    pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
+	VlanCosFwd              pulumi.IntPtrInput
+	VlanCosRev              pulumi.IntPtrInput
+	VlanFilter              pulumi.StringPtrInput
+	VoipProfile             pulumi.StringPtrInput
+	Vpntunnel               pulumi.StringPtrInput
+	WafProfile              pulumi.StringPtrInput
+	Webcache                pulumi.StringPtrInput
+	WebcacheHttps           pulumi.StringPtrInput
+	WebfilterProfile        pulumi.StringPtrInput
+	WebproxyForwardServer   pulumi.StringPtrInput
+	WebproxyProfile         pulumi.StringPtrInput
 }
 
 func (FirewallPolicy6State) ElementType() reflect.Type {
@@ -723,378 +347,194 @@ func (FirewallPolicy6State) ElementType() reflect.Type {
 }
 
 type firewallPolicy6Args struct {
-	// Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
-	Action *string `pulumi:"action"`
-	// Enable/disable anti-replay check. Valid values: `enable`, `disable`.
-	AntiReplay *string `pulumi:"antiReplay"`
-	// Application category ID list. The structure of `appCategory` block is documented below.
-	AppCategories []FirewallPolicy6AppCategory `pulumi:"appCategories"`
-	// Application group names. The structure of `appGroup` block is documented below.
-	AppGroups []FirewallPolicy6AppGroup `pulumi:"appGroups"`
-	// Name of an existing Application list.
-	ApplicationList *string `pulumi:"applicationList"`
-	// Application ID list. The structure of `application` block is documented below.
-	Applications []FirewallPolicy6Application `pulumi:"applications"`
-	// Enable/disable policy traffic ASIC offloading. Valid values: `enable`, `disable`.
-	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
-	// Name of an existing Antivirus profile.
-	AvProfile *string `pulumi:"avProfile"`
-	// Name of an existing CIFS profile.
-	CifsProfile *string `pulumi:"cifsProfile"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Log field index numbers to append custom log fields to log messages for this policy. The structure of `customLogFields` block is documented below.
-	CustomLogFields []FirewallPolicy6CustomLogField `pulumi:"customLogFields"`
-	// Decrypted traffic mirror.
-	DecryptedTrafficMirror *string `pulumi:"decryptedTrafficMirror"`
-	// Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
-	Devices []FirewallPolicy6Device `pulumi:"devices"`
-	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
-	DiffservForward *string `pulumi:"diffservForward"`
-	// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
-	DiffservReverse *string `pulumi:"diffservReverse"`
-	// Change packet's DiffServ to this value.
-	DiffservcodeForward *string `pulumi:"diffservcodeForward"`
-	// Change packet's reverse (reply) DiffServ to this value.
-	DiffservcodeRev *string `pulumi:"diffservcodeRev"`
-	// Name of an existing DLP sensor.
-	DlpSensor *string `pulumi:"dlpSensor"`
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
-	// Enable DSRI to ignore HTTP server responses. Valid values: `enable`, `disable`.
-	Dsri *string `pulumi:"dsri"`
-	// When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-	DstaddrNegate *string `pulumi:"dstaddrNegate"`
-	// Destination address and address group names. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallPolicy6Dstaddr `pulumi:"dstaddrs"`
-	// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
-	Dstintfs []FirewallPolicy6Dstintf `pulumi:"dstintfs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name of an existing email filter profile.
-	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
-	// How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
-	FirewallSessionDirty *string `pulumi:"firewallSessionDirty"`
-	// Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
-	Fixedport *string `pulumi:"fixedport"`
-	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
-	FssoGroups []FirewallPolicy6FssoGroup `pulumi:"fssoGroups"`
-	// Label for the policy that appears when the GUI is in Global View mode.
-	GlobalLabel *string `pulumi:"globalLabel"`
-	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
-	Groups []FirewallPolicy6Group `pulumi:"groups"`
-	// Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
-	HttpPolicyRedirect *string `pulumi:"httpPolicyRedirect"`
-	// Name of an existing ICAP profile.
-	IcapProfile *string `pulumi:"icapProfile"`
-	// Policy-based IPsec VPN: only traffic from the remote network can initiate a VPN. Valid values: `enable`, `disable`.
-	Inbound *string `pulumi:"inbound"`
-	// Policy inspection mode (Flow/proxy). Default is Flow mode. Valid values: `proxy`, `flow`.
-	InspectionMode *string `pulumi:"inspectionMode"`
-	// Enable to use IP Pools for source NAT. Valid values: `enable`, `disable`.
-	Ippool *string `pulumi:"ippool"`
-	// Name of an existing IPS sensor.
-	IpsSensor *string `pulumi:"ipsSensor"`
-	// Label for the policy that appears when the GUI is in Section View mode.
-	Label *string `pulumi:"label"`
-	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
-	Logtraffic *string `pulumi:"logtraffic"`
-	// Record logs when a session starts. Valid values: `enable`, `disable`.
-	LogtrafficStart *string `pulumi:"logtrafficStart"`
-	// Names of FSSO groups.
-	Name *string `pulumi:"name"`
-	// Enable/disable source NAT. Valid values: `enable`, `disable`.
-	Nat *string `pulumi:"nat"`
-	// Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
-	Natinbound *string `pulumi:"natinbound"`
-	// Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `enable`, `disable`.
-	Natoutbound *string `pulumi:"natoutbound"`
-	// Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
-	Outbound *string `pulumi:"outbound"`
-	// Per-IP traffic shaper.
-	PerIpShaper *string `pulumi:"perIpShaper"`
-	// Policy ID.
-	Policyid *int `pulumi:"policyid"`
-	// IP Pool names. The structure of `poolname` block is documented below.
-	Poolnames []FirewallPolicy6Poolname `pulumi:"poolnames"`
-	// Name of profile group.
-	ProfileGroup *string `pulumi:"profileGroup"`
-	// Name of an existing Protocol options profile.
-	ProfileProtocolOptions *string `pulumi:"profileProtocolOptions"`
-	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-	ProfileType *string `pulumi:"profileType"`
-	// Override the default replacement message group for this policy.
-	ReplacemsgOverrideGroup *string `pulumi:"replacemsgOverrideGroup"`
-	// Enable/disable RADIUS single sign-on (RSSO). Valid values: `enable`, `disable`.
-	Rsso *string `pulumi:"rsso"`
-	// Schedule name.
-	Schedule string `pulumi:"schedule"`
-	// Enable/disable return of deny-packet. Valid values: `enable`, `disable`.
-	SendDenyPacket *string `pulumi:"sendDenyPacket"`
-	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	ServiceNegate *string `pulumi:"serviceNegate"`
-	// Service and service group names. The structure of `service` block is documented below.
-	Services []FirewallPolicy6Service `pulumi:"services"`
-	// Session TTL in seconds for sessions accepted by this policy. 0 means use the system default session TTL.
-	SessionTtl *int `pulumi:"sessionTtl"`
-	// Name of an existing Spam filter profile.
-	SpamfilterProfile *string `pulumi:"spamfilterProfile"`
-	// When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-	SrcaddrNegate *string `pulumi:"srcaddrNegate"`
-	// Source address and address group names. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallPolicy6Srcaddr `pulumi:"srcaddrs"`
-	// Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-	Srcintfs []FirewallPolicy6Srcintf `pulumi:"srcintfs"`
-	// Name of an existing SSH filter profile.
-	SshFilterProfile *string `pulumi:"sshFilterProfile"`
-	// Redirect SSH traffic to matching transparent proxy policy. Valid values: `enable`, `disable`.
-	SshPolicyRedirect *string `pulumi:"sshPolicyRedirect"`
-	// Enable to copy decrypted SSL traffic to a FortiGate interface (called SSL mirroring). Valid values: `enable`, `disable`.
-	SslMirror *string `pulumi:"sslMirror"`
-	// SSL mirror interface name. The structure of `sslMirrorIntf` block is documented below.
-	SslMirrorIntfs []FirewallPolicy6SslMirrorIntf `pulumi:"sslMirrorIntfs"`
-	// Name of an existing SSL SSH profile.
-	SslSshProfile *string `pulumi:"sslSshProfile"`
-	// Enable or disable this policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Receiver TCP maximum segment size (MSS).
-	TcpMssReceiver *int `pulumi:"tcpMssReceiver"`
-	// Sender TCP maximum segment size (MSS).
-	TcpMssSender *int `pulumi:"tcpMssSender"`
-	// Enable/disable creation of TCP session without SYN flag. Valid values: `all`, `data-only`, `disable`.
-	TcpSessionWithoutSyn *string `pulumi:"tcpSessionWithoutSyn"`
-	// Enable/disable sending RST packets when TCP sessions expire. Valid values: `enable`, `disable`.
-	TimeoutSendRst *string `pulumi:"timeoutSendRst"`
-	// ToS (Type of Service) value used for comparison.
-	Tos *string `pulumi:"tos"`
-	// Non-zero bit positions are used for comparison while zero bit positions are ignored.
-	TosMask *string `pulumi:"tosMask"`
-	// Enable negated TOS match. Valid values: `enable`, `disable`.
-	TosNegate *string `pulumi:"tosNegate"`
-	// Reverse traffic shaper.
-	TrafficShaper *string `pulumi:"trafficShaper"`
-	// Reverse traffic shaper.
-	TrafficShaperReverse *string `pulumi:"trafficShaperReverse"`
-	// URL category ID list. The structure of `urlCategory` block is documented below.
-	UrlCategories []FirewallPolicy6UrlCategory `pulumi:"urlCategories"`
-	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
-	Users []FirewallPolicy6User `pulumi:"users"`
-	// Enable AV/web/ips protection profile. Valid values: `enable`, `disable`.
-	UtmStatus *string `pulumi:"utmStatus"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest
-	VlanCosFwd *int `pulumi:"vlanCosFwd"`
-	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest
-	VlanCosRev *int `pulumi:"vlanCosRev"`
-	// Set VLAN filters.
-	VlanFilter *string `pulumi:"vlanFilter"`
-	// Name of an existing VoIP profile.
-	VoipProfile *string `pulumi:"voipProfile"`
-	// Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
-	Vpntunnel *string `pulumi:"vpntunnel"`
-	// Name of an existing Web application firewall profile.
-	WafProfile *string `pulumi:"wafProfile"`
-	// Enable/disable web cache. Valid values: `enable`, `disable`.
-	Webcache *string `pulumi:"webcache"`
-	// Enable/disable web cache for HTTPS. Valid values: `disable`, `enable`.
-	WebcacheHttps *string `pulumi:"webcacheHttps"`
-	// Name of an existing Web filter profile.
-	WebfilterProfile *string `pulumi:"webfilterProfile"`
-	// Web proxy forward server name.
-	WebproxyForwardServer *string `pulumi:"webproxyForwardServer"`
-	// Webproxy profile name.
-	WebproxyProfile *string `pulumi:"webproxyProfile"`
+	Action                  *string                         `pulumi:"action"`
+	AntiReplay              *string                         `pulumi:"antiReplay"`
+	AppCategories           []FirewallPolicy6AppCategory    `pulumi:"appCategories"`
+	AppGroups               []FirewallPolicy6AppGroup       `pulumi:"appGroups"`
+	ApplicationList         *string                         `pulumi:"applicationList"`
+	Applications            []FirewallPolicy6Application    `pulumi:"applications"`
+	AutoAsicOffload         *string                         `pulumi:"autoAsicOffload"`
+	AvProfile               *string                         `pulumi:"avProfile"`
+	CifsProfile             *string                         `pulumi:"cifsProfile"`
+	Comments                *string                         `pulumi:"comments"`
+	CustomLogFields         []FirewallPolicy6CustomLogField `pulumi:"customLogFields"`
+	DecryptedTrafficMirror  *string                         `pulumi:"decryptedTrafficMirror"`
+	Devices                 []FirewallPolicy6Device         `pulumi:"devices"`
+	DiffservForward         *string                         `pulumi:"diffservForward"`
+	DiffservReverse         *string                         `pulumi:"diffservReverse"`
+	DiffservcodeForward     *string                         `pulumi:"diffservcodeForward"`
+	DiffservcodeRev         *string                         `pulumi:"diffservcodeRev"`
+	DlpSensor               *string                         `pulumi:"dlpSensor"`
+	DnsfilterProfile        *string                         `pulumi:"dnsfilterProfile"`
+	Dsri                    *string                         `pulumi:"dsri"`
+	DstaddrNegate           *string                         `pulumi:"dstaddrNegate"`
+	Dstaddrs                []FirewallPolicy6Dstaddr        `pulumi:"dstaddrs"`
+	Dstintfs                []FirewallPolicy6Dstintf        `pulumi:"dstintfs"`
+	DynamicSortSubtable     *string                         `pulumi:"dynamicSortSubtable"`
+	EmailfilterProfile      *string                         `pulumi:"emailfilterProfile"`
+	FirewallSessionDirty    *string                         `pulumi:"firewallSessionDirty"`
+	Fixedport               *string                         `pulumi:"fixedport"`
+	FssoGroups              []FirewallPolicy6FssoGroup      `pulumi:"fssoGroups"`
+	GlobalLabel             *string                         `pulumi:"globalLabel"`
+	Groups                  []FirewallPolicy6Group          `pulumi:"groups"`
+	HttpPolicyRedirect      *string                         `pulumi:"httpPolicyRedirect"`
+	IcapProfile             *string                         `pulumi:"icapProfile"`
+	Inbound                 *string                         `pulumi:"inbound"`
+	InspectionMode          *string                         `pulumi:"inspectionMode"`
+	Ippool                  *string                         `pulumi:"ippool"`
+	IpsSensor               *string                         `pulumi:"ipsSensor"`
+	Label                   *string                         `pulumi:"label"`
+	Logtraffic              *string                         `pulumi:"logtraffic"`
+	LogtrafficStart         *string                         `pulumi:"logtrafficStart"`
+	Name                    *string                         `pulumi:"name"`
+	Nat                     *string                         `pulumi:"nat"`
+	Natinbound              *string                         `pulumi:"natinbound"`
+	Natoutbound             *string                         `pulumi:"natoutbound"`
+	Outbound                *string                         `pulumi:"outbound"`
+	PerIpShaper             *string                         `pulumi:"perIpShaper"`
+	Policyid                *int                            `pulumi:"policyid"`
+	Poolnames               []FirewallPolicy6Poolname       `pulumi:"poolnames"`
+	ProfileGroup            *string                         `pulumi:"profileGroup"`
+	ProfileProtocolOptions  *string                         `pulumi:"profileProtocolOptions"`
+	ProfileType             *string                         `pulumi:"profileType"`
+	ReplacemsgOverrideGroup *string                         `pulumi:"replacemsgOverrideGroup"`
+	Rsso                    *string                         `pulumi:"rsso"`
+	Schedule                string                          `pulumi:"schedule"`
+	SendDenyPacket          *string                         `pulumi:"sendDenyPacket"`
+	ServiceNegate           *string                         `pulumi:"serviceNegate"`
+	Services                []FirewallPolicy6Service        `pulumi:"services"`
+	SessionTtl              *int                            `pulumi:"sessionTtl"`
+	SpamfilterProfile       *string                         `pulumi:"spamfilterProfile"`
+	SrcaddrNegate           *string                         `pulumi:"srcaddrNegate"`
+	Srcaddrs                []FirewallPolicy6Srcaddr        `pulumi:"srcaddrs"`
+	Srcintfs                []FirewallPolicy6Srcintf        `pulumi:"srcintfs"`
+	SshFilterProfile        *string                         `pulumi:"sshFilterProfile"`
+	SshPolicyRedirect       *string                         `pulumi:"sshPolicyRedirect"`
+	SslMirror               *string                         `pulumi:"sslMirror"`
+	SslMirrorIntfs          []FirewallPolicy6SslMirrorIntf  `pulumi:"sslMirrorIntfs"`
+	SslSshProfile           *string                         `pulumi:"sslSshProfile"`
+	Status                  *string                         `pulumi:"status"`
+	TcpMssReceiver          *int                            `pulumi:"tcpMssReceiver"`
+	TcpMssSender            *int                            `pulumi:"tcpMssSender"`
+	TcpSessionWithoutSyn    *string                         `pulumi:"tcpSessionWithoutSyn"`
+	TimeoutSendRst          *string                         `pulumi:"timeoutSendRst"`
+	Tos                     *string                         `pulumi:"tos"`
+	TosMask                 *string                         `pulumi:"tosMask"`
+	TosNegate               *string                         `pulumi:"tosNegate"`
+	TrafficShaper           *string                         `pulumi:"trafficShaper"`
+	TrafficShaperReverse    *string                         `pulumi:"trafficShaperReverse"`
+	UrlCategories           []FirewallPolicy6UrlCategory    `pulumi:"urlCategories"`
+	Users                   []FirewallPolicy6User           `pulumi:"users"`
+	UtmStatus               *string                         `pulumi:"utmStatus"`
+	Uuid                    *string                         `pulumi:"uuid"`
+	Vdomparam               *string                         `pulumi:"vdomparam"`
+	VlanCosFwd              *int                            `pulumi:"vlanCosFwd"`
+	VlanCosRev              *int                            `pulumi:"vlanCosRev"`
+	VlanFilter              *string                         `pulumi:"vlanFilter"`
+	VoipProfile             *string                         `pulumi:"voipProfile"`
+	Vpntunnel               *string                         `pulumi:"vpntunnel"`
+	WafProfile              *string                         `pulumi:"wafProfile"`
+	Webcache                *string                         `pulumi:"webcache"`
+	WebcacheHttps           *string                         `pulumi:"webcacheHttps"`
+	WebfilterProfile        *string                         `pulumi:"webfilterProfile"`
+	WebproxyForwardServer   *string                         `pulumi:"webproxyForwardServer"`
+	WebproxyProfile         *string                         `pulumi:"webproxyProfile"`
 }
 
 // The set of arguments for constructing a FirewallPolicy6 resource.
 type FirewallPolicy6Args struct {
-	// Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
-	Action pulumi.StringPtrInput
-	// Enable/disable anti-replay check. Valid values: `enable`, `disable`.
-	AntiReplay pulumi.StringPtrInput
-	// Application category ID list. The structure of `appCategory` block is documented below.
-	AppCategories FirewallPolicy6AppCategoryArrayInput
-	// Application group names. The structure of `appGroup` block is documented below.
-	AppGroups FirewallPolicy6AppGroupArrayInput
-	// Name of an existing Application list.
-	ApplicationList pulumi.StringPtrInput
-	// Application ID list. The structure of `application` block is documented below.
-	Applications FirewallPolicy6ApplicationArrayInput
-	// Enable/disable policy traffic ASIC offloading. Valid values: `enable`, `disable`.
-	AutoAsicOffload pulumi.StringPtrInput
-	// Name of an existing Antivirus profile.
-	AvProfile pulumi.StringPtrInput
-	// Name of an existing CIFS profile.
-	CifsProfile pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Log field index numbers to append custom log fields to log messages for this policy. The structure of `customLogFields` block is documented below.
-	CustomLogFields FirewallPolicy6CustomLogFieldArrayInput
-	// Decrypted traffic mirror.
-	DecryptedTrafficMirror pulumi.StringPtrInput
-	// Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
-	Devices FirewallPolicy6DeviceArrayInput
-	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
-	DiffservForward pulumi.StringPtrInput
-	// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
-	DiffservReverse pulumi.StringPtrInput
-	// Change packet's DiffServ to this value.
-	DiffservcodeForward pulumi.StringPtrInput
-	// Change packet's reverse (reply) DiffServ to this value.
-	DiffservcodeRev pulumi.StringPtrInput
-	// Name of an existing DLP sensor.
-	DlpSensor pulumi.StringPtrInput
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile pulumi.StringPtrInput
-	// Enable DSRI to ignore HTTP server responses. Valid values: `enable`, `disable`.
-	Dsri pulumi.StringPtrInput
-	// When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-	DstaddrNegate pulumi.StringPtrInput
-	// Destination address and address group names. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallPolicy6DstaddrArrayInput
-	// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
-	Dstintfs FirewallPolicy6DstintfArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Name of an existing email filter profile.
-	EmailfilterProfile pulumi.StringPtrInput
-	// How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
-	FirewallSessionDirty pulumi.StringPtrInput
-	// Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
-	Fixedport pulumi.StringPtrInput
-	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
-	FssoGroups FirewallPolicy6FssoGroupArrayInput
-	// Label for the policy that appears when the GUI is in Global View mode.
-	GlobalLabel pulumi.StringPtrInput
-	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
-	Groups FirewallPolicy6GroupArrayInput
-	// Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
-	HttpPolicyRedirect pulumi.StringPtrInput
-	// Name of an existing ICAP profile.
-	IcapProfile pulumi.StringPtrInput
-	// Policy-based IPsec VPN: only traffic from the remote network can initiate a VPN. Valid values: `enable`, `disable`.
-	Inbound pulumi.StringPtrInput
-	// Policy inspection mode (Flow/proxy). Default is Flow mode. Valid values: `proxy`, `flow`.
-	InspectionMode pulumi.StringPtrInput
-	// Enable to use IP Pools for source NAT. Valid values: `enable`, `disable`.
-	Ippool pulumi.StringPtrInput
-	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringPtrInput
-	// Label for the policy that appears when the GUI is in Section View mode.
-	Label pulumi.StringPtrInput
-	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
-	Logtraffic pulumi.StringPtrInput
-	// Record logs when a session starts. Valid values: `enable`, `disable`.
-	LogtrafficStart pulumi.StringPtrInput
-	// Names of FSSO groups.
-	Name pulumi.StringPtrInput
-	// Enable/disable source NAT. Valid values: `enable`, `disable`.
-	Nat pulumi.StringPtrInput
-	// Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
-	Natinbound pulumi.StringPtrInput
-	// Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `enable`, `disable`.
-	Natoutbound pulumi.StringPtrInput
-	// Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
-	Outbound pulumi.StringPtrInput
-	// Per-IP traffic shaper.
-	PerIpShaper pulumi.StringPtrInput
-	// Policy ID.
-	Policyid pulumi.IntPtrInput
-	// IP Pool names. The structure of `poolname` block is documented below.
-	Poolnames FirewallPolicy6PoolnameArrayInput
-	// Name of profile group.
-	ProfileGroup pulumi.StringPtrInput
-	// Name of an existing Protocol options profile.
-	ProfileProtocolOptions pulumi.StringPtrInput
-	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-	ProfileType pulumi.StringPtrInput
-	// Override the default replacement message group for this policy.
+	Action                  pulumi.StringPtrInput
+	AntiReplay              pulumi.StringPtrInput
+	AppCategories           FirewallPolicy6AppCategoryArrayInput
+	AppGroups               FirewallPolicy6AppGroupArrayInput
+	ApplicationList         pulumi.StringPtrInput
+	Applications            FirewallPolicy6ApplicationArrayInput
+	AutoAsicOffload         pulumi.StringPtrInput
+	AvProfile               pulumi.StringPtrInput
+	CifsProfile             pulumi.StringPtrInput
+	Comments                pulumi.StringPtrInput
+	CustomLogFields         FirewallPolicy6CustomLogFieldArrayInput
+	DecryptedTrafficMirror  pulumi.StringPtrInput
+	Devices                 FirewallPolicy6DeviceArrayInput
+	DiffservForward         pulumi.StringPtrInput
+	DiffservReverse         pulumi.StringPtrInput
+	DiffservcodeForward     pulumi.StringPtrInput
+	DiffservcodeRev         pulumi.StringPtrInput
+	DlpSensor               pulumi.StringPtrInput
+	DnsfilterProfile        pulumi.StringPtrInput
+	Dsri                    pulumi.StringPtrInput
+	DstaddrNegate           pulumi.StringPtrInput
+	Dstaddrs                FirewallPolicy6DstaddrArrayInput
+	Dstintfs                FirewallPolicy6DstintfArrayInput
+	DynamicSortSubtable     pulumi.StringPtrInput
+	EmailfilterProfile      pulumi.StringPtrInput
+	FirewallSessionDirty    pulumi.StringPtrInput
+	Fixedport               pulumi.StringPtrInput
+	FssoGroups              FirewallPolicy6FssoGroupArrayInput
+	GlobalLabel             pulumi.StringPtrInput
+	Groups                  FirewallPolicy6GroupArrayInput
+	HttpPolicyRedirect      pulumi.StringPtrInput
+	IcapProfile             pulumi.StringPtrInput
+	Inbound                 pulumi.StringPtrInput
+	InspectionMode          pulumi.StringPtrInput
+	Ippool                  pulumi.StringPtrInput
+	IpsSensor               pulumi.StringPtrInput
+	Label                   pulumi.StringPtrInput
+	Logtraffic              pulumi.StringPtrInput
+	LogtrafficStart         pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	Nat                     pulumi.StringPtrInput
+	Natinbound              pulumi.StringPtrInput
+	Natoutbound             pulumi.StringPtrInput
+	Outbound                pulumi.StringPtrInput
+	PerIpShaper             pulumi.StringPtrInput
+	Policyid                pulumi.IntPtrInput
+	Poolnames               FirewallPolicy6PoolnameArrayInput
+	ProfileGroup            pulumi.StringPtrInput
+	ProfileProtocolOptions  pulumi.StringPtrInput
+	ProfileType             pulumi.StringPtrInput
 	ReplacemsgOverrideGroup pulumi.StringPtrInput
-	// Enable/disable RADIUS single sign-on (RSSO). Valid values: `enable`, `disable`.
-	Rsso pulumi.StringPtrInput
-	// Schedule name.
-	Schedule pulumi.StringInput
-	// Enable/disable return of deny-packet. Valid values: `enable`, `disable`.
-	SendDenyPacket pulumi.StringPtrInput
-	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	ServiceNegate pulumi.StringPtrInput
-	// Service and service group names. The structure of `service` block is documented below.
-	Services FirewallPolicy6ServiceArrayInput
-	// Session TTL in seconds for sessions accepted by this policy. 0 means use the system default session TTL.
-	SessionTtl pulumi.IntPtrInput
-	// Name of an existing Spam filter profile.
-	SpamfilterProfile pulumi.StringPtrInput
-	// When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-	SrcaddrNegate pulumi.StringPtrInput
-	// Source address and address group names. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallPolicy6SrcaddrArrayInput
-	// Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-	Srcintfs FirewallPolicy6SrcintfArrayInput
-	// Name of an existing SSH filter profile.
-	SshFilterProfile pulumi.StringPtrInput
-	// Redirect SSH traffic to matching transparent proxy policy. Valid values: `enable`, `disable`.
-	SshPolicyRedirect pulumi.StringPtrInput
-	// Enable to copy decrypted SSL traffic to a FortiGate interface (called SSL mirroring). Valid values: `enable`, `disable`.
-	SslMirror pulumi.StringPtrInput
-	// SSL mirror interface name. The structure of `sslMirrorIntf` block is documented below.
-	SslMirrorIntfs FirewallPolicy6SslMirrorIntfArrayInput
-	// Name of an existing SSL SSH profile.
-	SslSshProfile pulumi.StringPtrInput
-	// Enable or disable this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Receiver TCP maximum segment size (MSS).
-	TcpMssReceiver pulumi.IntPtrInput
-	// Sender TCP maximum segment size (MSS).
-	TcpMssSender pulumi.IntPtrInput
-	// Enable/disable creation of TCP session without SYN flag. Valid values: `all`, `data-only`, `disable`.
-	TcpSessionWithoutSyn pulumi.StringPtrInput
-	// Enable/disable sending RST packets when TCP sessions expire. Valid values: `enable`, `disable`.
-	TimeoutSendRst pulumi.StringPtrInput
-	// ToS (Type of Service) value used for comparison.
-	Tos pulumi.StringPtrInput
-	// Non-zero bit positions are used for comparison while zero bit positions are ignored.
-	TosMask pulumi.StringPtrInput
-	// Enable negated TOS match. Valid values: `enable`, `disable`.
-	TosNegate pulumi.StringPtrInput
-	// Reverse traffic shaper.
-	TrafficShaper pulumi.StringPtrInput
-	// Reverse traffic shaper.
-	TrafficShaperReverse pulumi.StringPtrInput
-	// URL category ID list. The structure of `urlCategory` block is documented below.
-	UrlCategories FirewallPolicy6UrlCategoryArrayInput
-	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
-	Users FirewallPolicy6UserArrayInput
-	// Enable AV/web/ips protection profile. Valid values: `enable`, `disable`.
-	UtmStatus pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest
-	VlanCosFwd pulumi.IntPtrInput
-	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest
-	VlanCosRev pulumi.IntPtrInput
-	// Set VLAN filters.
-	VlanFilter pulumi.StringPtrInput
-	// Name of an existing VoIP profile.
-	VoipProfile pulumi.StringPtrInput
-	// Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
-	Vpntunnel pulumi.StringPtrInput
-	// Name of an existing Web application firewall profile.
-	WafProfile pulumi.StringPtrInput
-	// Enable/disable web cache. Valid values: `enable`, `disable`.
-	Webcache pulumi.StringPtrInput
-	// Enable/disable web cache for HTTPS. Valid values: `disable`, `enable`.
-	WebcacheHttps pulumi.StringPtrInput
-	// Name of an existing Web filter profile.
-	WebfilterProfile pulumi.StringPtrInput
-	// Web proxy forward server name.
-	WebproxyForwardServer pulumi.StringPtrInput
-	// Webproxy profile name.
-	WebproxyProfile pulumi.StringPtrInput
+	Rsso                    pulumi.StringPtrInput
+	Schedule                pulumi.StringInput
+	SendDenyPacket          pulumi.StringPtrInput
+	ServiceNegate           pulumi.StringPtrInput
+	Services                FirewallPolicy6ServiceArrayInput
+	SessionTtl              pulumi.IntPtrInput
+	SpamfilterProfile       pulumi.StringPtrInput
+	SrcaddrNegate           pulumi.StringPtrInput
+	Srcaddrs                FirewallPolicy6SrcaddrArrayInput
+	Srcintfs                FirewallPolicy6SrcintfArrayInput
+	SshFilterProfile        pulumi.StringPtrInput
+	SshPolicyRedirect       pulumi.StringPtrInput
+	SslMirror               pulumi.StringPtrInput
+	SslMirrorIntfs          FirewallPolicy6SslMirrorIntfArrayInput
+	SslSshProfile           pulumi.StringPtrInput
+	Status                  pulumi.StringPtrInput
+	TcpMssReceiver          pulumi.IntPtrInput
+	TcpMssSender            pulumi.IntPtrInput
+	TcpSessionWithoutSyn    pulumi.StringPtrInput
+	TimeoutSendRst          pulumi.StringPtrInput
+	Tos                     pulumi.StringPtrInput
+	TosMask                 pulumi.StringPtrInput
+	TosNegate               pulumi.StringPtrInput
+	TrafficShaper           pulumi.StringPtrInput
+	TrafficShaperReverse    pulumi.StringPtrInput
+	UrlCategories           FirewallPolicy6UrlCategoryArrayInput
+	Users                   FirewallPolicy6UserArrayInput
+	UtmStatus               pulumi.StringPtrInput
+	Uuid                    pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
+	VlanCosFwd              pulumi.IntPtrInput
+	VlanCosRev              pulumi.IntPtrInput
+	VlanFilter              pulumi.StringPtrInput
+	VoipProfile             pulumi.StringPtrInput
+	Vpntunnel               pulumi.StringPtrInput
+	WafProfile              pulumi.StringPtrInput
+	Webcache                pulumi.StringPtrInput
+	WebcacheHttps           pulumi.StringPtrInput
+	WebfilterProfile        pulumi.StringPtrInput
+	WebproxyForwardServer   pulumi.StringPtrInput
+	WebproxyProfile         pulumi.StringPtrInput
 }
 
 func (FirewallPolicy6Args) ElementType() reflect.Type {
@@ -1123,7 +563,7 @@ func (i *FirewallPolicy6) ToFirewallPolicy6OutputWithContext(ctx context.Context
 // FirewallPolicy6ArrayInput is an input type that accepts FirewallPolicy6Array and FirewallPolicy6ArrayOutput values.
 // You can construct a concrete instance of `FirewallPolicy6ArrayInput` via:
 //
-//          FirewallPolicy6Array{ FirewallPolicy6Args{...} }
+//	FirewallPolicy6Array{ FirewallPolicy6Args{...} }
 type FirewallPolicy6ArrayInput interface {
 	pulumi.Input
 
@@ -1148,7 +588,7 @@ func (i FirewallPolicy6Array) ToFirewallPolicy6ArrayOutputWithContext(ctx contex
 // FirewallPolicy6MapInput is an input type that accepts FirewallPolicy6Map and FirewallPolicy6MapOutput values.
 // You can construct a concrete instance of `FirewallPolicy6MapInput` via:
 //
-//          FirewallPolicy6Map{ "key": FirewallPolicy6Args{...} }
+//	FirewallPolicy6Map{ "key": FirewallPolicy6Args{...} }
 type FirewallPolicy6MapInput interface {
 	pulumi.Input
 
@@ -1182,6 +622,374 @@ func (o FirewallPolicy6Output) ToFirewallPolicy6Output() FirewallPolicy6Output {
 
 func (o FirewallPolicy6Output) ToFirewallPolicy6OutputWithContext(ctx context.Context) FirewallPolicy6Output {
 	return o
+}
+
+func (o FirewallPolicy6Output) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) AntiReplay() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.AntiReplay }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) AppCategories() FirewallPolicy6AppCategoryArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6AppCategoryArrayOutput { return v.AppCategories }).(FirewallPolicy6AppCategoryArrayOutput)
+}
+
+func (o FirewallPolicy6Output) AppGroups() FirewallPolicy6AppGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6AppGroupArrayOutput { return v.AppGroups }).(FirewallPolicy6AppGroupArrayOutput)
+}
+
+func (o FirewallPolicy6Output) ApplicationList() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.ApplicationList }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Applications() FirewallPolicy6ApplicationArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6ApplicationArrayOutput { return v.Applications }).(FirewallPolicy6ApplicationArrayOutput)
+}
+
+func (o FirewallPolicy6Output) AutoAsicOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.AutoAsicOffload }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) AvProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.AvProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) CifsProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.CifsProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallPolicy6Output) CustomLogFields() FirewallPolicy6CustomLogFieldArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6CustomLogFieldArrayOutput { return v.CustomLogFields }).(FirewallPolicy6CustomLogFieldArrayOutput)
+}
+
+func (o FirewallPolicy6Output) DecryptedTrafficMirror() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.DecryptedTrafficMirror }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Devices() FirewallPolicy6DeviceArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6DeviceArrayOutput { return v.Devices }).(FirewallPolicy6DeviceArrayOutput)
+}
+
+func (o FirewallPolicy6Output) DiffservForward() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.DiffservForward }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) DiffservReverse() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.DiffservReverse }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) DiffservcodeForward() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.DiffservcodeForward }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) DiffservcodeRev() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.DiffservcodeRev }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) DlpSensor() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.DlpSensor }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) DnsfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.DnsfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Dsri() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Dsri }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) DstaddrNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.DstaddrNegate }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Dstaddrs() FirewallPolicy6DstaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6DstaddrArrayOutput { return v.Dstaddrs }).(FirewallPolicy6DstaddrArrayOutput)
+}
+
+func (o FirewallPolicy6Output) Dstintfs() FirewallPolicy6DstintfArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6DstintfArrayOutput { return v.Dstintfs }).(FirewallPolicy6DstintfArrayOutput)
+}
+
+func (o FirewallPolicy6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallPolicy6Output) EmailfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.EmailfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) FirewallSessionDirty() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.FirewallSessionDirty }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Fixedport() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Fixedport }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) FssoGroups() FirewallPolicy6FssoGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6FssoGroupArrayOutput { return v.FssoGroups }).(FirewallPolicy6FssoGroupArrayOutput)
+}
+
+func (o FirewallPolicy6Output) GlobalLabel() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.GlobalLabel }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Groups() FirewallPolicy6GroupArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6GroupArrayOutput { return v.Groups }).(FirewallPolicy6GroupArrayOutput)
+}
+
+func (o FirewallPolicy6Output) HttpPolicyRedirect() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.HttpPolicyRedirect }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) IcapProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.IcapProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Inbound() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Inbound }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) InspectionMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.InspectionMode }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Ippool() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Ippool }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) IpsSensor() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.IpsSensor }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Label }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Logtraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Logtraffic }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) LogtrafficStart() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.LogtrafficStart }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Nat() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Nat }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Natinbound() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Natinbound }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Natoutbound() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Natoutbound }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Outbound() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Outbound }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) PerIpShaper() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.PerIpShaper }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Policyid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.IntOutput { return v.Policyid }).(pulumi.IntOutput)
+}
+
+func (o FirewallPolicy6Output) Poolnames() FirewallPolicy6PoolnameArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6PoolnameArrayOutput { return v.Poolnames }).(FirewallPolicy6PoolnameArrayOutput)
+}
+
+func (o FirewallPolicy6Output) ProfileGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.ProfileGroup }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) ProfileProtocolOptions() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.ProfileProtocolOptions }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) ProfileType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.ProfileType }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) ReplacemsgOverrideGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.ReplacemsgOverrideGroup }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Rsso() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Rsso }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Schedule }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) SendDenyPacket() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.SendDenyPacket }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) ServiceNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.ServiceNegate }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Services() FirewallPolicy6ServiceArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6ServiceArrayOutput { return v.Services }).(FirewallPolicy6ServiceArrayOutput)
+}
+
+func (o FirewallPolicy6Output) SessionTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.IntOutput { return v.SessionTtl }).(pulumi.IntOutput)
+}
+
+func (o FirewallPolicy6Output) SpamfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.SpamfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) SrcaddrNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.SrcaddrNegate }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Srcaddrs() FirewallPolicy6SrcaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6SrcaddrArrayOutput { return v.Srcaddrs }).(FirewallPolicy6SrcaddrArrayOutput)
+}
+
+func (o FirewallPolicy6Output) Srcintfs() FirewallPolicy6SrcintfArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6SrcintfArrayOutput { return v.Srcintfs }).(FirewallPolicy6SrcintfArrayOutput)
+}
+
+func (o FirewallPolicy6Output) SshFilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.SshFilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) SshPolicyRedirect() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.SshPolicyRedirect }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) SslMirror() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.SslMirror }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) SslMirrorIntfs() FirewallPolicy6SslMirrorIntfArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6SslMirrorIntfArrayOutput { return v.SslMirrorIntfs }).(FirewallPolicy6SslMirrorIntfArrayOutput)
+}
+
+func (o FirewallPolicy6Output) SslSshProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.SslSshProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) TcpMssReceiver() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.IntOutput { return v.TcpMssReceiver }).(pulumi.IntOutput)
+}
+
+func (o FirewallPolicy6Output) TcpMssSender() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.IntOutput { return v.TcpMssSender }).(pulumi.IntOutput)
+}
+
+func (o FirewallPolicy6Output) TcpSessionWithoutSyn() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.TcpSessionWithoutSyn }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) TimeoutSendRst() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.TimeoutSendRst }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Tos() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Tos }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) TosMask() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.TosMask }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) TosNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.TosNegate }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) TrafficShaper() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.TrafficShaper }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) TrafficShaperReverse() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.TrafficShaperReverse }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) UrlCategories() FirewallPolicy6UrlCategoryArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6UrlCategoryArrayOutput { return v.UrlCategories }).(FirewallPolicy6UrlCategoryArrayOutput)
+}
+
+func (o FirewallPolicy6Output) Users() FirewallPolicy6UserArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6UserArrayOutput { return v.Users }).(FirewallPolicy6UserArrayOutput)
+}
+
+func (o FirewallPolicy6Output) UtmStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.UtmStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallPolicy6Output) VlanCosFwd() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.IntOutput { return v.VlanCosFwd }).(pulumi.IntOutput)
+}
+
+func (o FirewallPolicy6Output) VlanCosRev() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.IntOutput { return v.VlanCosRev }).(pulumi.IntOutput)
+}
+
+func (o FirewallPolicy6Output) VlanFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.VlanFilter }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) VoipProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.VoipProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Vpntunnel() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Vpntunnel }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) WafProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.WafProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) Webcache() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.Webcache }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) WebcacheHttps() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.WebcacheHttps }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) WebfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.WebfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) WebproxyForwardServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.WebproxyForwardServer }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicy6Output) WebproxyProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringOutput { return v.WebproxyProfile }).(pulumi.StringOutput)
 }
 
 type FirewallPolicy6ArrayOutput struct{ *pulumi.OutputState }

@@ -4,22 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports modifying system admin setting for FortiManager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerSystemAdmin("test1", {
- *     httpPort: 80,
- *     httpsPort: 443,
- *     idleTimeout: 20,
- * });
- * ```
- */
 export class FortimanagerSystemAdmin extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerSystemAdmin resource's state with the given name, ID, and optional extra
@@ -48,17 +32,8 @@ export class FortimanagerSystemAdmin extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerSystemAdmin.__pulumiType;
     }
 
-    /**
-     * Http port.
-     */
     public readonly httpPort!: pulumi.Output<number | undefined>;
-    /**
-     * Https port.
-     */
     public readonly httpsPort!: pulumi.Output<number | undefined>;
-    /**
-     * Idle Timeout(1-480 minute).
-     */
     public readonly idleTimeout!: pulumi.Output<number | undefined>;
 
     /**
@@ -92,17 +67,8 @@ export class FortimanagerSystemAdmin extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerSystemAdmin resources.
  */
 export interface FortimanagerSystemAdminState {
-    /**
-     * Http port.
-     */
     httpPort?: pulumi.Input<number>;
-    /**
-     * Https port.
-     */
     httpsPort?: pulumi.Input<number>;
-    /**
-     * Idle Timeout(1-480 minute).
-     */
     idleTimeout?: pulumi.Input<number>;
 }
 
@@ -110,16 +76,7 @@ export interface FortimanagerSystemAdminState {
  * The set of arguments for constructing a FortimanagerSystemAdmin resource.
  */
 export interface FortimanagerSystemAdminArgs {
-    /**
-     * Http port.
-     */
     httpPort?: pulumi.Input<number>;
-    /**
-     * Https port.
-     */
     httpsPort?: pulumi.Input<number>;
-    /**
-     * Idle Timeout(1-480 minute).
-     */
     idleTimeout?: pulumi.Input<number>;
 }

@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * SNMP system info configuration.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemSnmpSysinfo("trname", {
- *     status: "disable",
- *     trapHighCpuThreshold: 80,
- *     trapLogFullThreshold: 90,
- *     trapLowMemoryThreshold: 80,
- * });
- * ```
- *
- * ## Import
- *
- * SystemSnmp Sysinfo can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSnmpSysinfo:SystemSnmpSysinfo labelname SystemSnmpSysinfo
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSnmpSysinfo:SystemSnmpSysinfo labelname SystemSnmpSysinfo
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemSnmpSysinfo extends pulumi.CustomResource {
     /**
      * Get an existing SystemSnmpSysinfo resource's state with the given name, ID, and optional extra
@@ -65,45 +32,15 @@ export class SystemSnmpSysinfo extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemSnmpSysinfo.__pulumiType;
     }
 
-    /**
-     * Contact information.
-     */
     public readonly contactInfo!: pulumi.Output<string | undefined>;
-    /**
-     * System description.
-     */
     public readonly description!: pulumi.Output<string | undefined>;
-    /**
-     * Local SNMP engineID string (maximum 24 characters).
-     */
     public readonly engineId!: pulumi.Output<string>;
-    /**
-     * Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
-     */
     public readonly engineIdType!: pulumi.Output<string>;
-    /**
-     * System location.
-     */
     public readonly location!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable SNMP. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * CPU usage when trap is sent.
-     */
     public readonly trapHighCpuThreshold!: pulumi.Output<number>;
-    /**
-     * Log disk usage when trap is sent.
-     */
     public readonly trapLogFullThreshold!: pulumi.Output<number>;
-    /**
-     * Memory usage when trap is sent.
-     */
     public readonly trapLowMemoryThreshold!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -151,45 +88,15 @@ export class SystemSnmpSysinfo extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSnmpSysinfo resources.
  */
 export interface SystemSnmpSysinfoState {
-    /**
-     * Contact information.
-     */
     contactInfo?: pulumi.Input<string>;
-    /**
-     * System description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Local SNMP engineID string (maximum 24 characters).
-     */
     engineId?: pulumi.Input<string>;
-    /**
-     * Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
-     */
     engineIdType?: pulumi.Input<string>;
-    /**
-     * System location.
-     */
     location?: pulumi.Input<string>;
-    /**
-     * Enable/disable SNMP. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * CPU usage when trap is sent.
-     */
     trapHighCpuThreshold?: pulumi.Input<number>;
-    /**
-     * Log disk usage when trap is sent.
-     */
     trapLogFullThreshold?: pulumi.Input<number>;
-    /**
-     * Memory usage when trap is sent.
-     */
     trapLowMemoryThreshold?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -197,44 +104,14 @@ export interface SystemSnmpSysinfoState {
  * The set of arguments for constructing a SystemSnmpSysinfo resource.
  */
 export interface SystemSnmpSysinfoArgs {
-    /**
-     * Contact information.
-     */
     contactInfo?: pulumi.Input<string>;
-    /**
-     * System description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Local SNMP engineID string (maximum 24 characters).
-     */
     engineId?: pulumi.Input<string>;
-    /**
-     * Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
-     */
     engineIdType?: pulumi.Input<string>;
-    /**
-     * System location.
-     */
     location?: pulumi.Input<string>;
-    /**
-     * Enable/disable SNMP. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * CPU usage when trap is sent.
-     */
     trapHighCpuThreshold?: pulumi.Input<number>;
-    /**
-     * Log disk usage when trap is sent.
-     */
     trapLogFullThreshold?: pulumi.Input<number>;
-    /**
-     * Memory usage when trap is sent.
-     */
     trapLowMemoryThreshold?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

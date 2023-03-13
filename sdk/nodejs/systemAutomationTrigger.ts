@@ -2,45 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Trigger for automation stitches.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemAutomationTrigger("trname", {
- *     eventType: "event-log",
- *     iocLevel: "high",
- *     licenseType: "forticare-support",
- *     logid: 32002,
- *     triggerFrequency: "daily",
- *     triggerMinute: 60,
- *     triggerType: "event-based",
- * });
- * ```
- *
- * ## Import
- *
- * System AutomationTrigger can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutomationTrigger:SystemAutomationTrigger labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutomationTrigger:SystemAutomationTrigger labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemAutomationTrigger extends pulumi.CustomResource {
     /**
      * Get an existing SystemAutomationTrigger resource's state with the given name, ID, and optional extra
@@ -69,98 +34,31 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAutomationTrigger.__pulumiType;
     }
 
-    /**
-     * Description.
-     */
     public readonly description!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Event type.
-     */
     public readonly eventType!: pulumi.Output<string>;
-    /**
-     * Fabric connector event handler name.
-     */
     public readonly fabricEventName!: pulumi.Output<string | undefined>;
-    /**
-     * Fabric connector event severity.
-     */
     public readonly fabricEventSeverity!: pulumi.Output<string | undefined>;
-    /**
-     * FortiAnalyzer event handler name.
-     */
     public readonly fazEventName!: pulumi.Output<string | undefined>;
-    /**
-     * FortiAnalyzer event severity.
-     */
     public readonly fazEventSeverity!: pulumi.Output<string | undefined>;
-    /**
-     * FortiAnalyzer event tags.
-     */
     public readonly fazEventTags!: pulumi.Output<string | undefined>;
-    /**
-     * Customized trigger field settings. The structure of `fields` block is documented below.
-     */
     public readonly fields!: pulumi.Output<outputs.SystemAutomationTriggerField[] | undefined>;
-    /**
-     * IOC threat level. Valid values: `medium`, `high`.
-     */
     public readonly iocLevel!: pulumi.Output<string>;
-    /**
-     * License type.
-     */
     public readonly licenseType!: pulumi.Output<string>;
-    /**
-     * Log ID to trigger event.
-     */
     public readonly logid!: pulumi.Output<number>;
-    /**
-     * Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
-     */
     public readonly logidBlocks!: pulumi.Output<outputs.SystemAutomationTriggerLogidBlock[] | undefined>;
-    /**
-     * Name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Security Rating report.
-     */
     public readonly reportType!: pulumi.Output<string>;
-    /**
-     * Fabric connector serial number.
-     */
     public readonly serial!: pulumi.Output<string | undefined>;
-    /**
-     * Day within a month to trigger.
-     */
+    public readonly triggerDatetime!: pulumi.Output<string>;
     public readonly triggerDay!: pulumi.Output<number>;
-    /**
-     * Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
-     */
     public readonly triggerFrequency!: pulumi.Output<string>;
-    /**
-     * Hour of the day on which to trigger (0 - 23, default = 1).
-     */
     public readonly triggerHour!: pulumi.Output<number>;
-    /**
-     * Minute of the hour on which to trigger (0 - 59, 60 to randomize).
-     */
     public readonly triggerMinute!: pulumi.Output<number>;
-    /**
-     * Trigger type. Valid values: `event-based`, `scheduled`.
-     */
     public readonly triggerType!: pulumi.Output<string>;
-    /**
-     * Day of week for trigger. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-     */
     public readonly triggerWeekday!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdoms!: pulumi.Output<outputs.SystemAutomationTriggerVdom[] | undefined>;
 
     /**
      * Create a SystemAutomationTrigger resource with the given unique name, arguments, and options.
@@ -191,6 +89,7 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["reportType"] = state ? state.reportType : undefined;
             resourceInputs["serial"] = state ? state.serial : undefined;
+            resourceInputs["triggerDatetime"] = state ? state.triggerDatetime : undefined;
             resourceInputs["triggerDay"] = state ? state.triggerDay : undefined;
             resourceInputs["triggerFrequency"] = state ? state.triggerFrequency : undefined;
             resourceInputs["triggerHour"] = state ? state.triggerHour : undefined;
@@ -198,6 +97,7 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
             resourceInputs["triggerType"] = state ? state.triggerType : undefined;
             resourceInputs["triggerWeekday"] = state ? state.triggerWeekday : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vdoms"] = state ? state.vdoms : undefined;
         } else {
             const args = argsOrState as SystemAutomationTriggerArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
@@ -216,6 +116,7 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["reportType"] = args ? args.reportType : undefined;
             resourceInputs["serial"] = args ? args.serial : undefined;
+            resourceInputs["triggerDatetime"] = args ? args.triggerDatetime : undefined;
             resourceInputs["triggerDay"] = args ? args.triggerDay : undefined;
             resourceInputs["triggerFrequency"] = args ? args.triggerFrequency : undefined;
             resourceInputs["triggerHour"] = args ? args.triggerHour : undefined;
@@ -223,6 +124,7 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
             resourceInputs["triggerType"] = args ? args.triggerType : undefined;
             resourceInputs["triggerWeekday"] = args ? args.triggerWeekday : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vdoms"] = args ? args.vdoms : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SystemAutomationTrigger.__pulumiType, name, resourceInputs, opts);
@@ -233,194 +135,60 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAutomationTrigger resources.
  */
 export interface SystemAutomationTriggerState {
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Event type.
-     */
     eventType?: pulumi.Input<string>;
-    /**
-     * Fabric connector event handler name.
-     */
     fabricEventName?: pulumi.Input<string>;
-    /**
-     * Fabric connector event severity.
-     */
     fabricEventSeverity?: pulumi.Input<string>;
-    /**
-     * FortiAnalyzer event handler name.
-     */
     fazEventName?: pulumi.Input<string>;
-    /**
-     * FortiAnalyzer event severity.
-     */
     fazEventSeverity?: pulumi.Input<string>;
-    /**
-     * FortiAnalyzer event tags.
-     */
     fazEventTags?: pulumi.Input<string>;
-    /**
-     * Customized trigger field settings. The structure of `fields` block is documented below.
-     */
     fields?: pulumi.Input<pulumi.Input<inputs.SystemAutomationTriggerField>[]>;
-    /**
-     * IOC threat level. Valid values: `medium`, `high`.
-     */
     iocLevel?: pulumi.Input<string>;
-    /**
-     * License type.
-     */
     licenseType?: pulumi.Input<string>;
-    /**
-     * Log ID to trigger event.
-     */
     logid?: pulumi.Input<number>;
-    /**
-     * Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
-     */
     logidBlocks?: pulumi.Input<pulumi.Input<inputs.SystemAutomationTriggerLogidBlock>[]>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Security Rating report.
-     */
     reportType?: pulumi.Input<string>;
-    /**
-     * Fabric connector serial number.
-     */
     serial?: pulumi.Input<string>;
-    /**
-     * Day within a month to trigger.
-     */
+    triggerDatetime?: pulumi.Input<string>;
     triggerDay?: pulumi.Input<number>;
-    /**
-     * Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
-     */
     triggerFrequency?: pulumi.Input<string>;
-    /**
-     * Hour of the day on which to trigger (0 - 23, default = 1).
-     */
     triggerHour?: pulumi.Input<number>;
-    /**
-     * Minute of the hour on which to trigger (0 - 59, 60 to randomize).
-     */
     triggerMinute?: pulumi.Input<number>;
-    /**
-     * Trigger type. Valid values: `event-based`, `scheduled`.
-     */
     triggerType?: pulumi.Input<string>;
-    /**
-     * Day of week for trigger. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-     */
     triggerWeekday?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
+    vdoms?: pulumi.Input<pulumi.Input<inputs.SystemAutomationTriggerVdom>[]>;
 }
 
 /**
  * The set of arguments for constructing a SystemAutomationTrigger resource.
  */
 export interface SystemAutomationTriggerArgs {
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Event type.
-     */
     eventType?: pulumi.Input<string>;
-    /**
-     * Fabric connector event handler name.
-     */
     fabricEventName?: pulumi.Input<string>;
-    /**
-     * Fabric connector event severity.
-     */
     fabricEventSeverity?: pulumi.Input<string>;
-    /**
-     * FortiAnalyzer event handler name.
-     */
     fazEventName?: pulumi.Input<string>;
-    /**
-     * FortiAnalyzer event severity.
-     */
     fazEventSeverity?: pulumi.Input<string>;
-    /**
-     * FortiAnalyzer event tags.
-     */
     fazEventTags?: pulumi.Input<string>;
-    /**
-     * Customized trigger field settings. The structure of `fields` block is documented below.
-     */
     fields?: pulumi.Input<pulumi.Input<inputs.SystemAutomationTriggerField>[]>;
-    /**
-     * IOC threat level. Valid values: `medium`, `high`.
-     */
     iocLevel?: pulumi.Input<string>;
-    /**
-     * License type.
-     */
     licenseType?: pulumi.Input<string>;
-    /**
-     * Log ID to trigger event.
-     */
     logid?: pulumi.Input<number>;
-    /**
-     * Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
-     */
     logidBlocks?: pulumi.Input<pulumi.Input<inputs.SystemAutomationTriggerLogidBlock>[]>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Security Rating report.
-     */
     reportType?: pulumi.Input<string>;
-    /**
-     * Fabric connector serial number.
-     */
     serial?: pulumi.Input<string>;
-    /**
-     * Day within a month to trigger.
-     */
+    triggerDatetime?: pulumi.Input<string>;
     triggerDay?: pulumi.Input<number>;
-    /**
-     * Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
-     */
     triggerFrequency?: pulumi.Input<string>;
-    /**
-     * Hour of the day on which to trigger (0 - 23, default = 1).
-     */
     triggerHour?: pulumi.Input<number>;
-    /**
-     * Minute of the hour on which to trigger (0 - 59, 60 to randomize).
-     */
     triggerMinute?: pulumi.Input<number>;
-    /**
-     * Trigger type. Valid values: `event-based`, `scheduled`.
-     */
     triggerType?: pulumi.Input<string>;
-    /**
-     * Day of week for trigger. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-     */
     triggerWeekday?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
+    vdoms?: pulumi.Input<pulumi.Input<inputs.SystemAutomationTriggerVdom>[]>;
 }

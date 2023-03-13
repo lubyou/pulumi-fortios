@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiAI. Applies to FortiOS Version `>= 7.0.1`.
- *
- * ## Import
- *
- * System Fortiai can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemFortiai:SystemFortiai labelname SystemFortiai
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemFortiai:SystemFortiai labelname SystemFortiai
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemFortiai extends pulumi.CustomResource {
     /**
      * Get an existing SystemFortiai resource's state with the given name, ID, and optional extra
@@ -51,25 +32,10 @@ export class SystemFortiai extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemFortiai.__pulumiType;
     }
 
-    /**
-     * Specify outgoing interface to reach server.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
-    /**
-     * Source IP address for communications to FortiAI.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Enable/disable FortiAI. Valid values: `disable`, `enable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -107,25 +73,10 @@ export class SystemFortiai extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemFortiai resources.
  */
 export interface SystemFortiaiState {
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Source IP address for communications to FortiAI.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiAI. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -133,24 +84,9 @@ export interface SystemFortiaiState {
  * The set of arguments for constructing a SystemFortiai resource.
  */
 export interface SystemFortiaiArgs {
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Source IP address for communications to FortiAI.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiAI. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

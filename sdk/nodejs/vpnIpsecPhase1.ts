@@ -2,109 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure VPN remote gateway.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trnamex1 = new fortios.VpnIpsecPhase1("trnamex1", {
- *     acctVerify: "disable",
- *     addGwRoute: "disable",
- *     addRoute: "disable",
- *     assignIp: "enable",
- *     assignIpFrom: "range",
- *     authmethod: "psk",
- *     autoNegotiate: "enable",
- *     certIdValidation: "enable",
- *     childlessIke: "disable",
- *     clientAutoNegotiate: "disable",
- *     clientKeepAlive: "disable",
- *     dhgrp: "14 5",
- *     digitalSignatureAuth: "disable",
- *     distance: 15,
- *     dnsMode: "manual",
- *     dpd: "on-demand",
- *     dpdRetrycount: 3,
- *     dpdRetryinterval: "20",
- *     eap: "disable",
- *     eapIdentity: "use-id-payload",
- *     enforceUniqueId: "disable",
- *     forticlientEnforcement: "disable",
- *     fragmentation: "enable",
- *     fragmentationMtu: 1200,
- *     groupAuthentication: "disable",
- *     haSyncEspSeqno: "enable",
- *     idleTimeout: "disable",
- *     idleTimeoutinterval: 15,
- *     ikeVersion: "1",
- *     includeLocalLan: "disable",
- *     interface: "port4",
- *     ipv4DnsServer1: "0.0.0.0",
- *     ipv4DnsServer2: "0.0.0.0",
- *     ipv4DnsServer3: "0.0.0.0",
- *     ipv4EndIp: "0.0.0.0",
- *     ipv4Netmask: "255.255.255.255",
- *     ipv4StartIp: "0.0.0.0",
- *     ipv4WinsServer1: "0.0.0.0",
- *     ipv4WinsServer2: "0.0.0.0",
- *     ipv6DnsServer1: "::",
- *     ipv6DnsServer2: "::",
- *     ipv6DnsServer3: "::",
- *     ipv6EndIp: "::",
- *     ipv6Prefix: 128,
- *     ipv6StartIp: "::",
- *     keepalive: 10,
- *     keylife: 86400,
- *     localGw: "0.0.0.0",
- *     localidType: "auto",
- *     meshSelectorType: "disable",
- *     mode: "main",
- *     modeCfg: "disable",
- *     nattraversal: "enable",
- *     negotiateTimeout: 30,
- *     peertype: "any",
- *     ppk: "disable",
- *     priority: 0,
- *     proposal: "aes128-sha256 aes256-sha256 aes128-sha1 aes256-sha1",
- *     psksecret: "dewcEde2112",
- *     reauth: "disable",
- *     rekey: "enable",
- *     remoteGw: "1.1.1.1",
- *     rsaSignatureFormat: "pkcs1",
- *     savePassword: "disable",
- *     sendCertChain: "enable",
- *     signatureHashAlg: "sha2-512 sha2-384 sha2-256 sha1",
- *     suiteB: "disable",
- *     type: "static",
- *     unitySupport: "enable",
- *     wizardType: "custom",
- *     xauthtype: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * VpnIpsec Phase1 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnIpsecPhase1:VpnIpsecPhase1 labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnIpsecPhase1:VpnIpsecPhase1 labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VpnIpsecPhase1 extends pulumi.CustomResource {
     /**
      * Get an existing VpnIpsecPhase1 resource's state with the given name, ID, and optional extra
@@ -133,485 +34,129 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpnIpsecPhase1.__pulumiType;
     }
 
-    /**
-     * Enable/disable verification of RADIUS accounting record. Valid values: `enable`, `disable`.
-     */
     public readonly acctVerify!: pulumi.Output<string>;
-    /**
-     * Enable/disable automatically add a route to the remote gateway. Valid values: `enable`, `disable`.
-     */
     public readonly addGwRoute!: pulumi.Output<string>;
-    /**
-     * Enable/disable control addition of a route to peer destination selector. Valid values: `disable`, `enable`.
-     */
     public readonly addRoute!: pulumi.Output<string>;
-    /**
-     * Enable/disable assignment of IP to IPsec interface via configuration method. Valid values: `disable`, `enable`.
-     */
     public readonly assignIp!: pulumi.Output<string>;
-    /**
-     * Method by which the IP address will be assigned. Valid values: `range`, `usrgrp`, `dhcp`, `name`.
-     */
     public readonly assignIpFrom!: pulumi.Output<string>;
-    /**
-     * Authentication method. Valid values: `psk`, `signature`.
-     */
     public readonly authmethod!: pulumi.Output<string>;
-    /**
-     * Authentication method (remote side). Valid values: `psk`, `signature`.
-     */
     public readonly authmethodRemote!: pulumi.Output<string>;
-    /**
-     * XAuth password (max 35 characters).
-     */
     public readonly authpasswd!: pulumi.Output<string | undefined>;
-    /**
-     * XAuth user name.
-     */
     public readonly authusr!: pulumi.Output<string>;
-    /**
-     * Authentication user group.
-     */
     public readonly authusrgrp!: pulumi.Output<string>;
-    /**
-     * Enable/disable automatic initiation of IKE SA negotiation. Valid values: `enable`, `disable`.
-     */
     public readonly autoNegotiate!: pulumi.Output<string>;
-    /**
-     * Instruct unity clients about the backup gateway address(es). The structure of `backupGateway` block is documented below.
-     */
     public readonly backupGateways!: pulumi.Output<outputs.VpnIpsecPhase1BackupGateway[] | undefined>;
-    /**
-     * Message that unity client should display after connecting.
-     */
     public readonly banner!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
-     */
     public readonly certIdValidation!: pulumi.Output<string>;
-    /**
-     * Names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
-     */
     public readonly certificates!: pulumi.Output<outputs.VpnIpsecPhase1Certificate[] | undefined>;
-    /**
-     * Enable/disable childless IKEv2 initiation (RFC 6023). Valid values: `enable`, `disable`.
-     */
     public readonly childlessIke!: pulumi.Output<string>;
-    /**
-     * Enable/disable allowing the VPN client to bring up the tunnel when there is no traffic. Valid values: `disable`, `enable`.
-     */
     public readonly clientAutoNegotiate!: pulumi.Output<string>;
-    /**
-     * Enable/disable allowing the VPN client to keep the tunnel up when there is no traffic. Valid values: `disable`, `enable`.
-     */
     public readonly clientKeepAlive!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Relay agent IPv6 link address to use in DHCP6 requests.
-     */
     public readonly dhcp6RaLinkaddr!: pulumi.Output<string>;
-    /**
-     * Relay agent gateway IP address to use in the giaddr field of DHCP requests.
-     */
     public readonly dhcpRaGiaddr!: pulumi.Output<string>;
-    /**
-     * DH group. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`, `32`.
-     */
     public readonly dhgrp!: pulumi.Output<string>;
-    /**
-     * Enable/disable IKEv2 Digital Signature Authentication (RFC 7427). Valid values: `enable`, `disable`.
-     */
     public readonly digitalSignatureAuth!: pulumi.Output<string>;
-    /**
-     * Distance for routes added by IKE (1 - 255).
-     */
     public readonly distance!: pulumi.Output<number>;
-    /**
-     * DNS server mode. Valid values: `manual`, `auto`.
-     */
     public readonly dnsMode!: pulumi.Output<string>;
-    /**
-     * Instruct unity clients about the default DNS domain.
-     */
     public readonly domain!: pulumi.Output<string>;
-    /**
-     * Dead Peer Detection mode. Valid values: `disable`, `on-idle`, `on-demand`.
-     */
     public readonly dpd!: pulumi.Output<string>;
-    /**
-     * Number of DPD retry attempts.
-     */
     public readonly dpdRetrycount!: pulumi.Output<number>;
-    /**
-     * DPD retry interval.
-     */
     public readonly dpdRetryinterval!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable IKEv2 EAP authentication. Valid values: `enable`, `disable`.
-     */
     public readonly eap!: pulumi.Output<string>;
-    /**
-     * Peer group excluded from EAP authentication.
-     */
     public readonly eapExcludePeergrp!: pulumi.Output<string>;
-    /**
-     * IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
-     */
     public readonly eapIdentity!: pulumi.Output<string>;
-    /**
-     * Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
-     */
     public readonly enforceUniqueId!: pulumi.Output<string>;
-    /**
-     * Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
-     */
     public readonly esn!: pulumi.Output<string>;
-    /**
-     * Number of base Forward Error Correction packets (1 - 100).
-     */
     public readonly fecBase!: pulumi.Output<number>;
-    /**
-     * ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
-     */
     public readonly fecCodec!: pulumi.Output<number>;
-    /**
-     * Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
-     */
     public readonly fecEgress!: pulumi.Output<string>;
-    /**
-     * SD-WAN health check.
-     */
     public readonly fecHealthCheck!: pulumi.Output<string>;
-    /**
-     * Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
-     */
     public readonly fecIngress!: pulumi.Output<string>;
-    /**
-     * Forward Error Correction (FEC) mapping profile.
-     */
     public readonly fecMappingProfile!: pulumi.Output<string>;
-    /**
-     * Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
-     */
     public readonly fecReceiveTimeout!: pulumi.Output<number>;
-    /**
-     * Number of redundant Forward Error Correction packets (1 - 100).
-     */
     public readonly fecRedundant!: pulumi.Output<number>;
-    /**
-     * Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
-     */
     public readonly fecSendTimeout!: pulumi.Output<number>;
-    /**
-     * Enable/disable FortiClient enforcement. Valid values: `enable`, `disable`.
-     */
+    public readonly fgspSync!: pulumi.Output<string>;
     public readonly forticlientEnforcement!: pulumi.Output<string>;
-    /**
-     * Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
-     */
     public readonly fragmentation!: pulumi.Output<string>;
-    /**
-     * IKE fragmentation MTU (500 - 16000).
-     */
     public readonly fragmentationMtu!: pulumi.Output<number>;
-    /**
-     * Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
-     */
     public readonly groupAuthentication!: pulumi.Output<string>;
-    /**
-     * Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
-     */
     public readonly groupAuthenticationSecret!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable sequence number jump ahead for IPsec HA. Valid values: `enable`, `disable`.
-     */
     public readonly haSyncEspSeqno!: pulumi.Output<string>;
-    /**
-     * Enable/disable IPsec tunnel idle timeout. Valid values: `enable`, `disable`.
-     */
     public readonly idleTimeout!: pulumi.Output<string>;
-    /**
-     * IPsec tunnel idle timeout in minutes (5 - 43200).
-     */
     public readonly idleTimeoutinterval!: pulumi.Output<number>;
-    /**
-     * IKE protocol version. Valid values: `1`, `2`.
-     */
     public readonly ikeVersion!: pulumi.Output<string>;
-    /**
-     * Enable/disable allow local LAN access on unity clients. Valid values: `disable`, `enable`.
-     */
+    public readonly inboundDscpCopy!: pulumi.Output<string>;
     public readonly includeLocalLan!: pulumi.Output<string>;
-    /**
-     * Local physical, aggregate, or VLAN outgoing interface.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * IP address reuse delay interval in seconds (0 - 28800).
-     */
     public readonly ipDelayInterval!: pulumi.Output<number>;
-    /**
-     * IPv4 DNS server 1.
-     */
     public readonly ipv4DnsServer1!: pulumi.Output<string>;
-    /**
-     * IPv4 DNS server 2.
-     */
     public readonly ipv4DnsServer2!: pulumi.Output<string>;
-    /**
-     * IPv4 DNS server 3.
-     */
     public readonly ipv4DnsServer3!: pulumi.Output<string>;
-    /**
-     * End of IPv4 range.
-     */
     public readonly ipv4EndIp!: pulumi.Output<string>;
-    /**
-     * Configuration Method IPv4 exclude ranges. The structure of `ipv4ExcludeRange` block is documented below.
-     */
     public readonly ipv4ExcludeRanges!: pulumi.Output<outputs.VpnIpsecPhase1Ipv4ExcludeRange[] | undefined>;
-    /**
-     * IPv4 address name.
-     */
     public readonly ipv4Name!: pulumi.Output<string>;
-    /**
-     * IPv4 Netmask.
-     */
     public readonly ipv4Netmask!: pulumi.Output<string>;
-    /**
-     * IPv4 subnets that should not be sent over the IPsec tunnel.
-     */
     public readonly ipv4SplitExclude!: pulumi.Output<string>;
-    /**
-     * IPv4 split-include subnets.
-     */
     public readonly ipv4SplitInclude!: pulumi.Output<string>;
-    /**
-     * Start of IPv4 range.
-     */
     public readonly ipv4StartIp!: pulumi.Output<string>;
-    /**
-     * WINS server 1.
-     */
     public readonly ipv4WinsServer1!: pulumi.Output<string>;
-    /**
-     * WINS server 2.
-     */
     public readonly ipv4WinsServer2!: pulumi.Output<string>;
-    /**
-     * IPv6 DNS server 1.
-     */
     public readonly ipv6DnsServer1!: pulumi.Output<string>;
-    /**
-     * IPv6 DNS server 2.
-     */
     public readonly ipv6DnsServer2!: pulumi.Output<string>;
-    /**
-     * IPv6 DNS server 3.
-     */
     public readonly ipv6DnsServer3!: pulumi.Output<string>;
-    /**
-     * End of IPv6 range.
-     */
     public readonly ipv6EndIp!: pulumi.Output<string>;
-    /**
-     * Configuration method IPv6 exclude ranges. The structure of `ipv6ExcludeRange` block is documented below.
-     */
     public readonly ipv6ExcludeRanges!: pulumi.Output<outputs.VpnIpsecPhase1Ipv6ExcludeRange[] | undefined>;
-    /**
-     * IPv6 address name.
-     */
     public readonly ipv6Name!: pulumi.Output<string>;
-    /**
-     * IPv6 prefix.
-     */
     public readonly ipv6Prefix!: pulumi.Output<number>;
-    /**
-     * IPv6 subnets that should not be sent over the IPsec tunnel.
-     */
     public readonly ipv6SplitExclude!: pulumi.Output<string>;
-    /**
-     * IPv6 split-include subnets.
-     */
     public readonly ipv6SplitInclude!: pulumi.Output<string>;
-    /**
-     * Start of IPv6 range.
-     */
     public readonly ipv6StartIp!: pulumi.Output<string>;
-    /**
-     * NAT-T keep alive interval.
-     */
     public readonly keepalive!: pulumi.Output<number>;
-    /**
-     * Time to wait in seconds before phase 1 encryption key expires.
-     */
     public readonly keylife!: pulumi.Output<number>;
-    /**
-     * Local VPN gateway.
-     */
     public readonly localGw!: pulumi.Output<string>;
-    /**
-     * Local ID.
-     */
     public readonly localid!: pulumi.Output<string>;
-    /**
-     * Local ID type. Valid values: `auto`, `fqdn`, `user-fqdn`, `keyid`, `address`, `asn1dn`.
-     */
     public readonly localidType!: pulumi.Output<string>;
-    /**
-     * Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
-     */
     public readonly loopbackAsymroute!: pulumi.Output<string>;
-    /**
-     * Add selectors containing subsets of the configuration depending on traffic. Valid values: `disable`, `subnet`, `host`.
-     */
     public readonly meshSelectorType!: pulumi.Output<string>;
-    /**
-     * ID protection mode used to establish a secure channel. Valid values: `aggressive`, `main`.
-     */
     public readonly mode!: pulumi.Output<string>;
-    /**
-     * Enable/disable configuration method. Valid values: `disable`, `enable`.
-     */
     public readonly modeCfg!: pulumi.Output<string>;
-    /**
-     * Certificate name.
-     */
+    public readonly modeCfgAllowClientSelector!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable NAT traversal. Valid values: `enable`, `disable`, `forced`.
-     */
     public readonly nattraversal!: pulumi.Output<string>;
-    /**
-     * IKE SA negotiation timeout in seconds (1 - 300).
-     */
     public readonly negotiateTimeout!: pulumi.Output<number>;
-    /**
-     * VPN gateway network ID.
-     */
     public readonly networkId!: pulumi.Output<number>;
-    /**
-     * Enable/disable network overlays. Valid values: `disable`, `enable`.
-     */
     public readonly networkOverlay!: pulumi.Output<string>;
-    /**
-     * Enable/disable offloading NPU. Valid values: `enable`, `disable`.
-     */
     public readonly npuOffload!: pulumi.Output<string>;
-    /**
-     * Accept this peer certificate.
-     */
     public readonly peer!: pulumi.Output<string>;
-    /**
-     * Accept this peer certificate group.
-     */
     public readonly peergrp!: pulumi.Output<string>;
-    /**
-     * Accept this peer identity.
-     */
     public readonly peerid!: pulumi.Output<string>;
-    /**
-     * Accept this peer type. Valid values: `any`, `one`, `dialup`, `peer`, `peergrp`.
-     */
     public readonly peertype!: pulumi.Output<string>;
-    /**
-     * Enable/disable IKEv2 Postquantum Preshared Key (PPK). Valid values: `disable`, `allow`, `require`.
-     */
     public readonly ppk!: pulumi.Output<string>;
-    /**
-     * IKEv2 Postquantum Preshared Key Identity.
-     */
     public readonly ppkIdentity!: pulumi.Output<string>;
-    /**
-     * IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
-     */
     public readonly ppkSecret!: pulumi.Output<string | undefined>;
-    /**
-     * Priority for routes added by IKE (0 - 4294967295).
-     */
     public readonly priority!: pulumi.Output<number>;
-    /**
-     * Phase1 proposal. Valid values: `des-md5`, `des-sha1`, `des-sha256`, `des-sha384`, `des-sha512`, `3des-md5`, `3des-sha1`, `3des-sha256`, `3des-sha384`, `3des-sha512`, `aes128-md5`, `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes128gcm-prfsha1`, `aes128gcm-prfsha256`, `aes128gcm-prfsha384`, `aes128gcm-prfsha512`, `aes192-md5`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-md5`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes256gcm-prfsha1`, `aes256gcm-prfsha256`, `aes256gcm-prfsha384`, `aes256gcm-prfsha512`, `chacha20poly1305-prfsha1`, `chacha20poly1305-prfsha256`, `chacha20poly1305-prfsha384`, `chacha20poly1305-prfsha512`, `aria128-md5`, `aria128-sha1`, `aria128-sha256`, `aria128-sha384`, `aria128-sha512`, `aria192-md5`, `aria192-sha1`, `aria192-sha256`, `aria192-sha384`, `aria192-sha512`, `aria256-md5`, `aria256-sha1`, `aria256-sha256`, `aria256-sha384`, `aria256-sha512`, `seed-md5`, `seed-sha1`, `seed-sha256`, `seed-sha384`, `seed-sha512`.
-     */
     public readonly proposal!: pulumi.Output<string>;
-    /**
-     * Pre-shared secret for PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
-     */
     public readonly psksecret!: pulumi.Output<string>;
-    /**
-     * Pre-shared secret for remote side PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
-     */
     public readonly psksecretRemote!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
-     */
     public readonly reauth!: pulumi.Output<string>;
-    /**
-     * Enable/disable phase1 rekey. Valid values: `enable`, `disable`.
-     */
     public readonly rekey!: pulumi.Output<string>;
-    /**
-     * Remote VPN gateway.
-     */
     public readonly remoteGw!: pulumi.Output<string>;
-    /**
-     * Domain name of remote gateway (eg. name.DDNS.com).
-     */
     public readonly remotegwDdns!: pulumi.Output<string>;
-    /**
-     * Digital Signature Authentication RSA signature format. Valid values: `pkcs1`, `pss`.
-     */
     public readonly rsaSignatureFormat!: pulumi.Output<string>;
-    /**
-     * Enable/disable saving XAuth username and password on VPN clients. Valid values: `disable`, `enable`.
-     */
+    public readonly rsaSignatureHashOverride!: pulumi.Output<string>;
     public readonly savePassword!: pulumi.Output<string>;
-    /**
-     * Enable/disable sending certificate chain. Valid values: `enable`, `disable`.
-     */
     public readonly sendCertChain!: pulumi.Output<string>;
-    /**
-     * Digital Signature Authentication hash algorithms. Valid values: `sha1`, `sha2-256`, `sha2-384`, `sha2-512`.
-     */
     public readonly signatureHashAlg!: pulumi.Output<string>;
-    /**
-     * Split-include services.
-     */
     public readonly splitIncludeService!: pulumi.Output<string>;
-    /**
-     * Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
-     */
     public readonly suiteB!: pulumi.Output<string>;
-    /**
-     * Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Enable/disable support for Cisco UNITY Configuration Method extensions. Valid values: `disable`, `enable`.
-     */
     public readonly unitySupport!: pulumi.Output<string>;
-    /**
-     * User group name for dialup peers.
-     */
     public readonly usrgrp!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * GUI VPN Wizard Type.
-     */
     public readonly wizardType!: pulumi.Output<string>;
-    /**
-     * XAuth type. Valid values: `disable`, `client`, `pap`, `chap`, `auto`.
-     */
     public readonly xauthtype!: pulumi.Output<string>;
 
     /**
@@ -671,6 +216,7 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
             resourceInputs["fecReceiveTimeout"] = state ? state.fecReceiveTimeout : undefined;
             resourceInputs["fecRedundant"] = state ? state.fecRedundant : undefined;
             resourceInputs["fecSendTimeout"] = state ? state.fecSendTimeout : undefined;
+            resourceInputs["fgspSync"] = state ? state.fgspSync : undefined;
             resourceInputs["forticlientEnforcement"] = state ? state.forticlientEnforcement : undefined;
             resourceInputs["fragmentation"] = state ? state.fragmentation : undefined;
             resourceInputs["fragmentationMtu"] = state ? state.fragmentationMtu : undefined;
@@ -680,6 +226,7 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
             resourceInputs["idleTimeout"] = state ? state.idleTimeout : undefined;
             resourceInputs["idleTimeoutinterval"] = state ? state.idleTimeoutinterval : undefined;
             resourceInputs["ikeVersion"] = state ? state.ikeVersion : undefined;
+            resourceInputs["inboundDscpCopy"] = state ? state.inboundDscpCopy : undefined;
             resourceInputs["includeLocalLan"] = state ? state.includeLocalLan : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["ipDelayInterval"] = state ? state.ipDelayInterval : undefined;
@@ -714,6 +261,7 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
             resourceInputs["meshSelectorType"] = state ? state.meshSelectorType : undefined;
             resourceInputs["mode"] = state ? state.mode : undefined;
             resourceInputs["modeCfg"] = state ? state.modeCfg : undefined;
+            resourceInputs["modeCfgAllowClientSelector"] = state ? state.modeCfgAllowClientSelector : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nattraversal"] = state ? state.nattraversal : undefined;
             resourceInputs["negotiateTimeout"] = state ? state.negotiateTimeout : undefined;
@@ -736,6 +284,7 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
             resourceInputs["remoteGw"] = state ? state.remoteGw : undefined;
             resourceInputs["remotegwDdns"] = state ? state.remotegwDdns : undefined;
             resourceInputs["rsaSignatureFormat"] = state ? state.rsaSignatureFormat : undefined;
+            resourceInputs["rsaSignatureHashOverride"] = state ? state.rsaSignatureHashOverride : undefined;
             resourceInputs["savePassword"] = state ? state.savePassword : undefined;
             resourceInputs["sendCertChain"] = state ? state.sendCertChain : undefined;
             resourceInputs["signatureHashAlg"] = state ? state.signatureHashAlg : undefined;
@@ -765,7 +314,7 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
             resourceInputs["assignIpFrom"] = args ? args.assignIpFrom : undefined;
             resourceInputs["authmethod"] = args ? args.authmethod : undefined;
             resourceInputs["authmethodRemote"] = args ? args.authmethodRemote : undefined;
-            resourceInputs["authpasswd"] = args ? args.authpasswd : undefined;
+            resourceInputs["authpasswd"] = args?.authpasswd ? pulumi.secret(args.authpasswd) : undefined;
             resourceInputs["authusr"] = args ? args.authusr : undefined;
             resourceInputs["authusrgrp"] = args ? args.authusrgrp : undefined;
             resourceInputs["autoNegotiate"] = args ? args.autoNegotiate : undefined;
@@ -802,15 +351,17 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
             resourceInputs["fecReceiveTimeout"] = args ? args.fecReceiveTimeout : undefined;
             resourceInputs["fecRedundant"] = args ? args.fecRedundant : undefined;
             resourceInputs["fecSendTimeout"] = args ? args.fecSendTimeout : undefined;
+            resourceInputs["fgspSync"] = args ? args.fgspSync : undefined;
             resourceInputs["forticlientEnforcement"] = args ? args.forticlientEnforcement : undefined;
             resourceInputs["fragmentation"] = args ? args.fragmentation : undefined;
             resourceInputs["fragmentationMtu"] = args ? args.fragmentationMtu : undefined;
             resourceInputs["groupAuthentication"] = args ? args.groupAuthentication : undefined;
-            resourceInputs["groupAuthenticationSecret"] = args ? args.groupAuthenticationSecret : undefined;
+            resourceInputs["groupAuthenticationSecret"] = args?.groupAuthenticationSecret ? pulumi.secret(args.groupAuthenticationSecret) : undefined;
             resourceInputs["haSyncEspSeqno"] = args ? args.haSyncEspSeqno : undefined;
             resourceInputs["idleTimeout"] = args ? args.idleTimeout : undefined;
             resourceInputs["idleTimeoutinterval"] = args ? args.idleTimeoutinterval : undefined;
             resourceInputs["ikeVersion"] = args ? args.ikeVersion : undefined;
+            resourceInputs["inboundDscpCopy"] = args ? args.inboundDscpCopy : undefined;
             resourceInputs["includeLocalLan"] = args ? args.includeLocalLan : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["ipDelayInterval"] = args ? args.ipDelayInterval : undefined;
@@ -845,6 +396,7 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
             resourceInputs["meshSelectorType"] = args ? args.meshSelectorType : undefined;
             resourceInputs["mode"] = args ? args.mode : undefined;
             resourceInputs["modeCfg"] = args ? args.modeCfg : undefined;
+            resourceInputs["modeCfgAllowClientSelector"] = args ? args.modeCfgAllowClientSelector : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nattraversal"] = args ? args.nattraversal : undefined;
             resourceInputs["negotiateTimeout"] = args ? args.negotiateTimeout : undefined;
@@ -857,16 +409,17 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
             resourceInputs["peertype"] = args ? args.peertype : undefined;
             resourceInputs["ppk"] = args ? args.ppk : undefined;
             resourceInputs["ppkIdentity"] = args ? args.ppkIdentity : undefined;
-            resourceInputs["ppkSecret"] = args ? args.ppkSecret : undefined;
+            resourceInputs["ppkSecret"] = args?.ppkSecret ? pulumi.secret(args.ppkSecret) : undefined;
             resourceInputs["priority"] = args ? args.priority : undefined;
             resourceInputs["proposal"] = args ? args.proposal : undefined;
-            resourceInputs["psksecret"] = args ? args.psksecret : undefined;
-            resourceInputs["psksecretRemote"] = args ? args.psksecretRemote : undefined;
+            resourceInputs["psksecret"] = args?.psksecret ? pulumi.secret(args.psksecret) : undefined;
+            resourceInputs["psksecretRemote"] = args?.psksecretRemote ? pulumi.secret(args.psksecretRemote) : undefined;
             resourceInputs["reauth"] = args ? args.reauth : undefined;
             resourceInputs["rekey"] = args ? args.rekey : undefined;
             resourceInputs["remoteGw"] = args ? args.remoteGw : undefined;
             resourceInputs["remotegwDdns"] = args ? args.remotegwDdns : undefined;
             resourceInputs["rsaSignatureFormat"] = args ? args.rsaSignatureFormat : undefined;
+            resourceInputs["rsaSignatureHashOverride"] = args ? args.rsaSignatureHashOverride : undefined;
             resourceInputs["savePassword"] = args ? args.savePassword : undefined;
             resourceInputs["sendCertChain"] = args ? args.sendCertChain : undefined;
             resourceInputs["signatureHashAlg"] = args ? args.signatureHashAlg : undefined;
@@ -880,6 +433,8 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
             resourceInputs["xauthtype"] = args ? args.xauthtype : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["authpasswd", "groupAuthenticationSecret", "ppkSecret", "psksecret", "psksecretRemote"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(VpnIpsecPhase1.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -888,485 +443,129 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnIpsecPhase1 resources.
  */
 export interface VpnIpsecPhase1State {
-    /**
-     * Enable/disable verification of RADIUS accounting record. Valid values: `enable`, `disable`.
-     */
     acctVerify?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatically add a route to the remote gateway. Valid values: `enable`, `disable`.
-     */
     addGwRoute?: pulumi.Input<string>;
-    /**
-     * Enable/disable control addition of a route to peer destination selector. Valid values: `disable`, `enable`.
-     */
     addRoute?: pulumi.Input<string>;
-    /**
-     * Enable/disable assignment of IP to IPsec interface via configuration method. Valid values: `disable`, `enable`.
-     */
     assignIp?: pulumi.Input<string>;
-    /**
-     * Method by which the IP address will be assigned. Valid values: `range`, `usrgrp`, `dhcp`, `name`.
-     */
     assignIpFrom?: pulumi.Input<string>;
-    /**
-     * Authentication method. Valid values: `psk`, `signature`.
-     */
     authmethod?: pulumi.Input<string>;
-    /**
-     * Authentication method (remote side). Valid values: `psk`, `signature`.
-     */
     authmethodRemote?: pulumi.Input<string>;
-    /**
-     * XAuth password (max 35 characters).
-     */
     authpasswd?: pulumi.Input<string>;
-    /**
-     * XAuth user name.
-     */
     authusr?: pulumi.Input<string>;
-    /**
-     * Authentication user group.
-     */
     authusrgrp?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatic initiation of IKE SA negotiation. Valid values: `enable`, `disable`.
-     */
     autoNegotiate?: pulumi.Input<string>;
-    /**
-     * Instruct unity clients about the backup gateway address(es). The structure of `backupGateway` block is documented below.
-     */
     backupGateways?: pulumi.Input<pulumi.Input<inputs.VpnIpsecPhase1BackupGateway>[]>;
-    /**
-     * Message that unity client should display after connecting.
-     */
     banner?: pulumi.Input<string>;
-    /**
-     * Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
-     */
     certIdValidation?: pulumi.Input<string>;
-    /**
-     * Names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
-     */
     certificates?: pulumi.Input<pulumi.Input<inputs.VpnIpsecPhase1Certificate>[]>;
-    /**
-     * Enable/disable childless IKEv2 initiation (RFC 6023). Valid values: `enable`, `disable`.
-     */
     childlessIke?: pulumi.Input<string>;
-    /**
-     * Enable/disable allowing the VPN client to bring up the tunnel when there is no traffic. Valid values: `disable`, `enable`.
-     */
     clientAutoNegotiate?: pulumi.Input<string>;
-    /**
-     * Enable/disable allowing the VPN client to keep the tunnel up when there is no traffic. Valid values: `disable`, `enable`.
-     */
     clientKeepAlive?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Relay agent IPv6 link address to use in DHCP6 requests.
-     */
     dhcp6RaLinkaddr?: pulumi.Input<string>;
-    /**
-     * Relay agent gateway IP address to use in the giaddr field of DHCP requests.
-     */
     dhcpRaGiaddr?: pulumi.Input<string>;
-    /**
-     * DH group. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`, `32`.
-     */
     dhgrp?: pulumi.Input<string>;
-    /**
-     * Enable/disable IKEv2 Digital Signature Authentication (RFC 7427). Valid values: `enable`, `disable`.
-     */
     digitalSignatureAuth?: pulumi.Input<string>;
-    /**
-     * Distance for routes added by IKE (1 - 255).
-     */
     distance?: pulumi.Input<number>;
-    /**
-     * DNS server mode. Valid values: `manual`, `auto`.
-     */
     dnsMode?: pulumi.Input<string>;
-    /**
-     * Instruct unity clients about the default DNS domain.
-     */
     domain?: pulumi.Input<string>;
-    /**
-     * Dead Peer Detection mode. Valid values: `disable`, `on-idle`, `on-demand`.
-     */
     dpd?: pulumi.Input<string>;
-    /**
-     * Number of DPD retry attempts.
-     */
     dpdRetrycount?: pulumi.Input<number>;
-    /**
-     * DPD retry interval.
-     */
     dpdRetryinterval?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable IKEv2 EAP authentication. Valid values: `enable`, `disable`.
-     */
     eap?: pulumi.Input<string>;
-    /**
-     * Peer group excluded from EAP authentication.
-     */
     eapExcludePeergrp?: pulumi.Input<string>;
-    /**
-     * IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
-     */
     eapIdentity?: pulumi.Input<string>;
-    /**
-     * Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
-     */
     enforceUniqueId?: pulumi.Input<string>;
-    /**
-     * Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
-     */
     esn?: pulumi.Input<string>;
-    /**
-     * Number of base Forward Error Correction packets (1 - 100).
-     */
     fecBase?: pulumi.Input<number>;
-    /**
-     * ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
-     */
     fecCodec?: pulumi.Input<number>;
-    /**
-     * Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
-     */
     fecEgress?: pulumi.Input<string>;
-    /**
-     * SD-WAN health check.
-     */
     fecHealthCheck?: pulumi.Input<string>;
-    /**
-     * Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
-     */
     fecIngress?: pulumi.Input<string>;
-    /**
-     * Forward Error Correction (FEC) mapping profile.
-     */
     fecMappingProfile?: pulumi.Input<string>;
-    /**
-     * Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
-     */
     fecReceiveTimeout?: pulumi.Input<number>;
-    /**
-     * Number of redundant Forward Error Correction packets (1 - 100).
-     */
     fecRedundant?: pulumi.Input<number>;
-    /**
-     * Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
-     */
     fecSendTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable FortiClient enforcement. Valid values: `enable`, `disable`.
-     */
+    fgspSync?: pulumi.Input<string>;
     forticlientEnforcement?: pulumi.Input<string>;
-    /**
-     * Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
-     */
     fragmentation?: pulumi.Input<string>;
-    /**
-     * IKE fragmentation MTU (500 - 16000).
-     */
     fragmentationMtu?: pulumi.Input<number>;
-    /**
-     * Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
-     */
     groupAuthentication?: pulumi.Input<string>;
-    /**
-     * Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
-     */
     groupAuthenticationSecret?: pulumi.Input<string>;
-    /**
-     * Enable/disable sequence number jump ahead for IPsec HA. Valid values: `enable`, `disable`.
-     */
     haSyncEspSeqno?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPsec tunnel idle timeout. Valid values: `enable`, `disable`.
-     */
     idleTimeout?: pulumi.Input<string>;
-    /**
-     * IPsec tunnel idle timeout in minutes (5 - 43200).
-     */
     idleTimeoutinterval?: pulumi.Input<number>;
-    /**
-     * IKE protocol version. Valid values: `1`, `2`.
-     */
     ikeVersion?: pulumi.Input<string>;
-    /**
-     * Enable/disable allow local LAN access on unity clients. Valid values: `disable`, `enable`.
-     */
+    inboundDscpCopy?: pulumi.Input<string>;
     includeLocalLan?: pulumi.Input<string>;
-    /**
-     * Local physical, aggregate, or VLAN outgoing interface.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * IP address reuse delay interval in seconds (0 - 28800).
-     */
     ipDelayInterval?: pulumi.Input<number>;
-    /**
-     * IPv4 DNS server 1.
-     */
     ipv4DnsServer1?: pulumi.Input<string>;
-    /**
-     * IPv4 DNS server 2.
-     */
     ipv4DnsServer2?: pulumi.Input<string>;
-    /**
-     * IPv4 DNS server 3.
-     */
     ipv4DnsServer3?: pulumi.Input<string>;
-    /**
-     * End of IPv4 range.
-     */
     ipv4EndIp?: pulumi.Input<string>;
-    /**
-     * Configuration Method IPv4 exclude ranges. The structure of `ipv4ExcludeRange` block is documented below.
-     */
     ipv4ExcludeRanges?: pulumi.Input<pulumi.Input<inputs.VpnIpsecPhase1Ipv4ExcludeRange>[]>;
-    /**
-     * IPv4 address name.
-     */
     ipv4Name?: pulumi.Input<string>;
-    /**
-     * IPv4 Netmask.
-     */
     ipv4Netmask?: pulumi.Input<string>;
-    /**
-     * IPv4 subnets that should not be sent over the IPsec tunnel.
-     */
     ipv4SplitExclude?: pulumi.Input<string>;
-    /**
-     * IPv4 split-include subnets.
-     */
     ipv4SplitInclude?: pulumi.Input<string>;
-    /**
-     * Start of IPv4 range.
-     */
     ipv4StartIp?: pulumi.Input<string>;
-    /**
-     * WINS server 1.
-     */
     ipv4WinsServer1?: pulumi.Input<string>;
-    /**
-     * WINS server 2.
-     */
     ipv4WinsServer2?: pulumi.Input<string>;
-    /**
-     * IPv6 DNS server 1.
-     */
     ipv6DnsServer1?: pulumi.Input<string>;
-    /**
-     * IPv6 DNS server 2.
-     */
     ipv6DnsServer2?: pulumi.Input<string>;
-    /**
-     * IPv6 DNS server 3.
-     */
     ipv6DnsServer3?: pulumi.Input<string>;
-    /**
-     * End of IPv6 range.
-     */
     ipv6EndIp?: pulumi.Input<string>;
-    /**
-     * Configuration method IPv6 exclude ranges. The structure of `ipv6ExcludeRange` block is documented below.
-     */
     ipv6ExcludeRanges?: pulumi.Input<pulumi.Input<inputs.VpnIpsecPhase1Ipv6ExcludeRange>[]>;
-    /**
-     * IPv6 address name.
-     */
     ipv6Name?: pulumi.Input<string>;
-    /**
-     * IPv6 prefix.
-     */
     ipv6Prefix?: pulumi.Input<number>;
-    /**
-     * IPv6 subnets that should not be sent over the IPsec tunnel.
-     */
     ipv6SplitExclude?: pulumi.Input<string>;
-    /**
-     * IPv6 split-include subnets.
-     */
     ipv6SplitInclude?: pulumi.Input<string>;
-    /**
-     * Start of IPv6 range.
-     */
     ipv6StartIp?: pulumi.Input<string>;
-    /**
-     * NAT-T keep alive interval.
-     */
     keepalive?: pulumi.Input<number>;
-    /**
-     * Time to wait in seconds before phase 1 encryption key expires.
-     */
     keylife?: pulumi.Input<number>;
-    /**
-     * Local VPN gateway.
-     */
     localGw?: pulumi.Input<string>;
-    /**
-     * Local ID.
-     */
     localid?: pulumi.Input<string>;
-    /**
-     * Local ID type. Valid values: `auto`, `fqdn`, `user-fqdn`, `keyid`, `address`, `asn1dn`.
-     */
     localidType?: pulumi.Input<string>;
-    /**
-     * Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
-     */
     loopbackAsymroute?: pulumi.Input<string>;
-    /**
-     * Add selectors containing subsets of the configuration depending on traffic. Valid values: `disable`, `subnet`, `host`.
-     */
     meshSelectorType?: pulumi.Input<string>;
-    /**
-     * ID protection mode used to establish a secure channel. Valid values: `aggressive`, `main`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Enable/disable configuration method. Valid values: `disable`, `enable`.
-     */
     modeCfg?: pulumi.Input<string>;
-    /**
-     * Certificate name.
-     */
+    modeCfgAllowClientSelector?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAT traversal. Valid values: `enable`, `disable`, `forced`.
-     */
     nattraversal?: pulumi.Input<string>;
-    /**
-     * IKE SA negotiation timeout in seconds (1 - 300).
-     */
     negotiateTimeout?: pulumi.Input<number>;
-    /**
-     * VPN gateway network ID.
-     */
     networkId?: pulumi.Input<number>;
-    /**
-     * Enable/disable network overlays. Valid values: `disable`, `enable`.
-     */
     networkOverlay?: pulumi.Input<string>;
-    /**
-     * Enable/disable offloading NPU. Valid values: `enable`, `disable`.
-     */
     npuOffload?: pulumi.Input<string>;
-    /**
-     * Accept this peer certificate.
-     */
     peer?: pulumi.Input<string>;
-    /**
-     * Accept this peer certificate group.
-     */
     peergrp?: pulumi.Input<string>;
-    /**
-     * Accept this peer identity.
-     */
     peerid?: pulumi.Input<string>;
-    /**
-     * Accept this peer type. Valid values: `any`, `one`, `dialup`, `peer`, `peergrp`.
-     */
     peertype?: pulumi.Input<string>;
-    /**
-     * Enable/disable IKEv2 Postquantum Preshared Key (PPK). Valid values: `disable`, `allow`, `require`.
-     */
     ppk?: pulumi.Input<string>;
-    /**
-     * IKEv2 Postquantum Preshared Key Identity.
-     */
     ppkIdentity?: pulumi.Input<string>;
-    /**
-     * IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
-     */
     ppkSecret?: pulumi.Input<string>;
-    /**
-     * Priority for routes added by IKE (0 - 4294967295).
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * Phase1 proposal. Valid values: `des-md5`, `des-sha1`, `des-sha256`, `des-sha384`, `des-sha512`, `3des-md5`, `3des-sha1`, `3des-sha256`, `3des-sha384`, `3des-sha512`, `aes128-md5`, `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes128gcm-prfsha1`, `aes128gcm-prfsha256`, `aes128gcm-prfsha384`, `aes128gcm-prfsha512`, `aes192-md5`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-md5`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes256gcm-prfsha1`, `aes256gcm-prfsha256`, `aes256gcm-prfsha384`, `aes256gcm-prfsha512`, `chacha20poly1305-prfsha1`, `chacha20poly1305-prfsha256`, `chacha20poly1305-prfsha384`, `chacha20poly1305-prfsha512`, `aria128-md5`, `aria128-sha1`, `aria128-sha256`, `aria128-sha384`, `aria128-sha512`, `aria192-md5`, `aria192-sha1`, `aria192-sha256`, `aria192-sha384`, `aria192-sha512`, `aria256-md5`, `aria256-sha1`, `aria256-sha256`, `aria256-sha384`, `aria256-sha512`, `seed-md5`, `seed-sha1`, `seed-sha256`, `seed-sha384`, `seed-sha512`.
-     */
     proposal?: pulumi.Input<string>;
-    /**
-     * Pre-shared secret for PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
-     */
     psksecret?: pulumi.Input<string>;
-    /**
-     * Pre-shared secret for remote side PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
-     */
     psksecretRemote?: pulumi.Input<string>;
-    /**
-     * Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
-     */
     reauth?: pulumi.Input<string>;
-    /**
-     * Enable/disable phase1 rekey. Valid values: `enable`, `disable`.
-     */
     rekey?: pulumi.Input<string>;
-    /**
-     * Remote VPN gateway.
-     */
     remoteGw?: pulumi.Input<string>;
-    /**
-     * Domain name of remote gateway (eg. name.DDNS.com).
-     */
     remotegwDdns?: pulumi.Input<string>;
-    /**
-     * Digital Signature Authentication RSA signature format. Valid values: `pkcs1`, `pss`.
-     */
     rsaSignatureFormat?: pulumi.Input<string>;
-    /**
-     * Enable/disable saving XAuth username and password on VPN clients. Valid values: `disable`, `enable`.
-     */
+    rsaSignatureHashOverride?: pulumi.Input<string>;
     savePassword?: pulumi.Input<string>;
-    /**
-     * Enable/disable sending certificate chain. Valid values: `enable`, `disable`.
-     */
     sendCertChain?: pulumi.Input<string>;
-    /**
-     * Digital Signature Authentication hash algorithms. Valid values: `sha1`, `sha2-256`, `sha2-384`, `sha2-512`.
-     */
     signatureHashAlg?: pulumi.Input<string>;
-    /**
-     * Split-include services.
-     */
     splitIncludeService?: pulumi.Input<string>;
-    /**
-     * Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
-     */
     suiteB?: pulumi.Input<string>;
-    /**
-     * Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Enable/disable support for Cisco UNITY Configuration Method extensions. Valid values: `disable`, `enable`.
-     */
     unitySupport?: pulumi.Input<string>;
-    /**
-     * User group name for dialup peers.
-     */
     usrgrp?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * GUI VPN Wizard Type.
-     */
     wizardType?: pulumi.Input<string>;
-    /**
-     * XAuth type. Valid values: `disable`, `client`, `pap`, `chap`, `auto`.
-     */
     xauthtype?: pulumi.Input<string>;
 }
 
@@ -1374,484 +573,128 @@ export interface VpnIpsecPhase1State {
  * The set of arguments for constructing a VpnIpsecPhase1 resource.
  */
 export interface VpnIpsecPhase1Args {
-    /**
-     * Enable/disable verification of RADIUS accounting record. Valid values: `enable`, `disable`.
-     */
     acctVerify?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatically add a route to the remote gateway. Valid values: `enable`, `disable`.
-     */
     addGwRoute?: pulumi.Input<string>;
-    /**
-     * Enable/disable control addition of a route to peer destination selector. Valid values: `disable`, `enable`.
-     */
     addRoute?: pulumi.Input<string>;
-    /**
-     * Enable/disable assignment of IP to IPsec interface via configuration method. Valid values: `disable`, `enable`.
-     */
     assignIp?: pulumi.Input<string>;
-    /**
-     * Method by which the IP address will be assigned. Valid values: `range`, `usrgrp`, `dhcp`, `name`.
-     */
     assignIpFrom?: pulumi.Input<string>;
-    /**
-     * Authentication method. Valid values: `psk`, `signature`.
-     */
     authmethod?: pulumi.Input<string>;
-    /**
-     * Authentication method (remote side). Valid values: `psk`, `signature`.
-     */
     authmethodRemote?: pulumi.Input<string>;
-    /**
-     * XAuth password (max 35 characters).
-     */
     authpasswd?: pulumi.Input<string>;
-    /**
-     * XAuth user name.
-     */
     authusr?: pulumi.Input<string>;
-    /**
-     * Authentication user group.
-     */
     authusrgrp?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatic initiation of IKE SA negotiation. Valid values: `enable`, `disable`.
-     */
     autoNegotiate?: pulumi.Input<string>;
-    /**
-     * Instruct unity clients about the backup gateway address(es). The structure of `backupGateway` block is documented below.
-     */
     backupGateways?: pulumi.Input<pulumi.Input<inputs.VpnIpsecPhase1BackupGateway>[]>;
-    /**
-     * Message that unity client should display after connecting.
-     */
     banner?: pulumi.Input<string>;
-    /**
-     * Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
-     */
     certIdValidation?: pulumi.Input<string>;
-    /**
-     * Names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
-     */
     certificates?: pulumi.Input<pulumi.Input<inputs.VpnIpsecPhase1Certificate>[]>;
-    /**
-     * Enable/disable childless IKEv2 initiation (RFC 6023). Valid values: `enable`, `disable`.
-     */
     childlessIke?: pulumi.Input<string>;
-    /**
-     * Enable/disable allowing the VPN client to bring up the tunnel when there is no traffic. Valid values: `disable`, `enable`.
-     */
     clientAutoNegotiate?: pulumi.Input<string>;
-    /**
-     * Enable/disable allowing the VPN client to keep the tunnel up when there is no traffic. Valid values: `disable`, `enable`.
-     */
     clientKeepAlive?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Relay agent IPv6 link address to use in DHCP6 requests.
-     */
     dhcp6RaLinkaddr?: pulumi.Input<string>;
-    /**
-     * Relay agent gateway IP address to use in the giaddr field of DHCP requests.
-     */
     dhcpRaGiaddr?: pulumi.Input<string>;
-    /**
-     * DH group. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`, `32`.
-     */
     dhgrp?: pulumi.Input<string>;
-    /**
-     * Enable/disable IKEv2 Digital Signature Authentication (RFC 7427). Valid values: `enable`, `disable`.
-     */
     digitalSignatureAuth?: pulumi.Input<string>;
-    /**
-     * Distance for routes added by IKE (1 - 255).
-     */
     distance?: pulumi.Input<number>;
-    /**
-     * DNS server mode. Valid values: `manual`, `auto`.
-     */
     dnsMode?: pulumi.Input<string>;
-    /**
-     * Instruct unity clients about the default DNS domain.
-     */
     domain?: pulumi.Input<string>;
-    /**
-     * Dead Peer Detection mode. Valid values: `disable`, `on-idle`, `on-demand`.
-     */
     dpd?: pulumi.Input<string>;
-    /**
-     * Number of DPD retry attempts.
-     */
     dpdRetrycount?: pulumi.Input<number>;
-    /**
-     * DPD retry interval.
-     */
     dpdRetryinterval?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable IKEv2 EAP authentication. Valid values: `enable`, `disable`.
-     */
     eap?: pulumi.Input<string>;
-    /**
-     * Peer group excluded from EAP authentication.
-     */
     eapExcludePeergrp?: pulumi.Input<string>;
-    /**
-     * IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
-     */
     eapIdentity?: pulumi.Input<string>;
-    /**
-     * Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
-     */
     enforceUniqueId?: pulumi.Input<string>;
-    /**
-     * Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
-     */
     esn?: pulumi.Input<string>;
-    /**
-     * Number of base Forward Error Correction packets (1 - 100).
-     */
     fecBase?: pulumi.Input<number>;
-    /**
-     * ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
-     */
     fecCodec?: pulumi.Input<number>;
-    /**
-     * Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
-     */
     fecEgress?: pulumi.Input<string>;
-    /**
-     * SD-WAN health check.
-     */
     fecHealthCheck?: pulumi.Input<string>;
-    /**
-     * Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
-     */
     fecIngress?: pulumi.Input<string>;
-    /**
-     * Forward Error Correction (FEC) mapping profile.
-     */
     fecMappingProfile?: pulumi.Input<string>;
-    /**
-     * Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
-     */
     fecReceiveTimeout?: pulumi.Input<number>;
-    /**
-     * Number of redundant Forward Error Correction packets (1 - 100).
-     */
     fecRedundant?: pulumi.Input<number>;
-    /**
-     * Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
-     */
     fecSendTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable FortiClient enforcement. Valid values: `enable`, `disable`.
-     */
+    fgspSync?: pulumi.Input<string>;
     forticlientEnforcement?: pulumi.Input<string>;
-    /**
-     * Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
-     */
     fragmentation?: pulumi.Input<string>;
-    /**
-     * IKE fragmentation MTU (500 - 16000).
-     */
     fragmentationMtu?: pulumi.Input<number>;
-    /**
-     * Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
-     */
     groupAuthentication?: pulumi.Input<string>;
-    /**
-     * Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
-     */
     groupAuthenticationSecret?: pulumi.Input<string>;
-    /**
-     * Enable/disable sequence number jump ahead for IPsec HA. Valid values: `enable`, `disable`.
-     */
     haSyncEspSeqno?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPsec tunnel idle timeout. Valid values: `enable`, `disable`.
-     */
     idleTimeout?: pulumi.Input<string>;
-    /**
-     * IPsec tunnel idle timeout in minutes (5 - 43200).
-     */
     idleTimeoutinterval?: pulumi.Input<number>;
-    /**
-     * IKE protocol version. Valid values: `1`, `2`.
-     */
     ikeVersion?: pulumi.Input<string>;
-    /**
-     * Enable/disable allow local LAN access on unity clients. Valid values: `disable`, `enable`.
-     */
+    inboundDscpCopy?: pulumi.Input<string>;
     includeLocalLan?: pulumi.Input<string>;
-    /**
-     * Local physical, aggregate, or VLAN outgoing interface.
-     */
     interface: pulumi.Input<string>;
-    /**
-     * IP address reuse delay interval in seconds (0 - 28800).
-     */
     ipDelayInterval?: pulumi.Input<number>;
-    /**
-     * IPv4 DNS server 1.
-     */
     ipv4DnsServer1?: pulumi.Input<string>;
-    /**
-     * IPv4 DNS server 2.
-     */
     ipv4DnsServer2?: pulumi.Input<string>;
-    /**
-     * IPv4 DNS server 3.
-     */
     ipv4DnsServer3?: pulumi.Input<string>;
-    /**
-     * End of IPv4 range.
-     */
     ipv4EndIp?: pulumi.Input<string>;
-    /**
-     * Configuration Method IPv4 exclude ranges. The structure of `ipv4ExcludeRange` block is documented below.
-     */
     ipv4ExcludeRanges?: pulumi.Input<pulumi.Input<inputs.VpnIpsecPhase1Ipv4ExcludeRange>[]>;
-    /**
-     * IPv4 address name.
-     */
     ipv4Name?: pulumi.Input<string>;
-    /**
-     * IPv4 Netmask.
-     */
     ipv4Netmask?: pulumi.Input<string>;
-    /**
-     * IPv4 subnets that should not be sent over the IPsec tunnel.
-     */
     ipv4SplitExclude?: pulumi.Input<string>;
-    /**
-     * IPv4 split-include subnets.
-     */
     ipv4SplitInclude?: pulumi.Input<string>;
-    /**
-     * Start of IPv4 range.
-     */
     ipv4StartIp?: pulumi.Input<string>;
-    /**
-     * WINS server 1.
-     */
     ipv4WinsServer1?: pulumi.Input<string>;
-    /**
-     * WINS server 2.
-     */
     ipv4WinsServer2?: pulumi.Input<string>;
-    /**
-     * IPv6 DNS server 1.
-     */
     ipv6DnsServer1?: pulumi.Input<string>;
-    /**
-     * IPv6 DNS server 2.
-     */
     ipv6DnsServer2?: pulumi.Input<string>;
-    /**
-     * IPv6 DNS server 3.
-     */
     ipv6DnsServer3?: pulumi.Input<string>;
-    /**
-     * End of IPv6 range.
-     */
     ipv6EndIp?: pulumi.Input<string>;
-    /**
-     * Configuration method IPv6 exclude ranges. The structure of `ipv6ExcludeRange` block is documented below.
-     */
     ipv6ExcludeRanges?: pulumi.Input<pulumi.Input<inputs.VpnIpsecPhase1Ipv6ExcludeRange>[]>;
-    /**
-     * IPv6 address name.
-     */
     ipv6Name?: pulumi.Input<string>;
-    /**
-     * IPv6 prefix.
-     */
     ipv6Prefix?: pulumi.Input<number>;
-    /**
-     * IPv6 subnets that should not be sent over the IPsec tunnel.
-     */
     ipv6SplitExclude?: pulumi.Input<string>;
-    /**
-     * IPv6 split-include subnets.
-     */
     ipv6SplitInclude?: pulumi.Input<string>;
-    /**
-     * Start of IPv6 range.
-     */
     ipv6StartIp?: pulumi.Input<string>;
-    /**
-     * NAT-T keep alive interval.
-     */
     keepalive?: pulumi.Input<number>;
-    /**
-     * Time to wait in seconds before phase 1 encryption key expires.
-     */
     keylife?: pulumi.Input<number>;
-    /**
-     * Local VPN gateway.
-     */
     localGw?: pulumi.Input<string>;
-    /**
-     * Local ID.
-     */
     localid?: pulumi.Input<string>;
-    /**
-     * Local ID type. Valid values: `auto`, `fqdn`, `user-fqdn`, `keyid`, `address`, `asn1dn`.
-     */
     localidType?: pulumi.Input<string>;
-    /**
-     * Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
-     */
     loopbackAsymroute?: pulumi.Input<string>;
-    /**
-     * Add selectors containing subsets of the configuration depending on traffic. Valid values: `disable`, `subnet`, `host`.
-     */
     meshSelectorType?: pulumi.Input<string>;
-    /**
-     * ID protection mode used to establish a secure channel. Valid values: `aggressive`, `main`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Enable/disable configuration method. Valid values: `disable`, `enable`.
-     */
     modeCfg?: pulumi.Input<string>;
-    /**
-     * Certificate name.
-     */
+    modeCfgAllowClientSelector?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAT traversal. Valid values: `enable`, `disable`, `forced`.
-     */
     nattraversal?: pulumi.Input<string>;
-    /**
-     * IKE SA negotiation timeout in seconds (1 - 300).
-     */
     negotiateTimeout?: pulumi.Input<number>;
-    /**
-     * VPN gateway network ID.
-     */
     networkId?: pulumi.Input<number>;
-    /**
-     * Enable/disable network overlays. Valid values: `disable`, `enable`.
-     */
     networkOverlay?: pulumi.Input<string>;
-    /**
-     * Enable/disable offloading NPU. Valid values: `enable`, `disable`.
-     */
     npuOffload?: pulumi.Input<string>;
-    /**
-     * Accept this peer certificate.
-     */
     peer?: pulumi.Input<string>;
-    /**
-     * Accept this peer certificate group.
-     */
     peergrp?: pulumi.Input<string>;
-    /**
-     * Accept this peer identity.
-     */
     peerid?: pulumi.Input<string>;
-    /**
-     * Accept this peer type. Valid values: `any`, `one`, `dialup`, `peer`, `peergrp`.
-     */
     peertype?: pulumi.Input<string>;
-    /**
-     * Enable/disable IKEv2 Postquantum Preshared Key (PPK). Valid values: `disable`, `allow`, `require`.
-     */
     ppk?: pulumi.Input<string>;
-    /**
-     * IKEv2 Postquantum Preshared Key Identity.
-     */
     ppkIdentity?: pulumi.Input<string>;
-    /**
-     * IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
-     */
     ppkSecret?: pulumi.Input<string>;
-    /**
-     * Priority for routes added by IKE (0 - 4294967295).
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * Phase1 proposal. Valid values: `des-md5`, `des-sha1`, `des-sha256`, `des-sha384`, `des-sha512`, `3des-md5`, `3des-sha1`, `3des-sha256`, `3des-sha384`, `3des-sha512`, `aes128-md5`, `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes128gcm-prfsha1`, `aes128gcm-prfsha256`, `aes128gcm-prfsha384`, `aes128gcm-prfsha512`, `aes192-md5`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-md5`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes256gcm-prfsha1`, `aes256gcm-prfsha256`, `aes256gcm-prfsha384`, `aes256gcm-prfsha512`, `chacha20poly1305-prfsha1`, `chacha20poly1305-prfsha256`, `chacha20poly1305-prfsha384`, `chacha20poly1305-prfsha512`, `aria128-md5`, `aria128-sha1`, `aria128-sha256`, `aria128-sha384`, `aria128-sha512`, `aria192-md5`, `aria192-sha1`, `aria192-sha256`, `aria192-sha384`, `aria192-sha512`, `aria256-md5`, `aria256-sha1`, `aria256-sha256`, `aria256-sha384`, `aria256-sha512`, `seed-md5`, `seed-sha1`, `seed-sha256`, `seed-sha384`, `seed-sha512`.
-     */
     proposal: pulumi.Input<string>;
-    /**
-     * Pre-shared secret for PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
-     */
     psksecret: pulumi.Input<string>;
-    /**
-     * Pre-shared secret for remote side PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
-     */
     psksecretRemote?: pulumi.Input<string>;
-    /**
-     * Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
-     */
     reauth?: pulumi.Input<string>;
-    /**
-     * Enable/disable phase1 rekey. Valid values: `enable`, `disable`.
-     */
     rekey?: pulumi.Input<string>;
-    /**
-     * Remote VPN gateway.
-     */
     remoteGw?: pulumi.Input<string>;
-    /**
-     * Domain name of remote gateway (eg. name.DDNS.com).
-     */
     remotegwDdns?: pulumi.Input<string>;
-    /**
-     * Digital Signature Authentication RSA signature format. Valid values: `pkcs1`, `pss`.
-     */
     rsaSignatureFormat?: pulumi.Input<string>;
-    /**
-     * Enable/disable saving XAuth username and password on VPN clients. Valid values: `disable`, `enable`.
-     */
+    rsaSignatureHashOverride?: pulumi.Input<string>;
     savePassword?: pulumi.Input<string>;
-    /**
-     * Enable/disable sending certificate chain. Valid values: `enable`, `disable`.
-     */
     sendCertChain?: pulumi.Input<string>;
-    /**
-     * Digital Signature Authentication hash algorithms. Valid values: `sha1`, `sha2-256`, `sha2-384`, `sha2-512`.
-     */
     signatureHashAlg?: pulumi.Input<string>;
-    /**
-     * Split-include services.
-     */
     splitIncludeService?: pulumi.Input<string>;
-    /**
-     * Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
-     */
     suiteB?: pulumi.Input<string>;
-    /**
-     * Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Enable/disable support for Cisco UNITY Configuration Method extensions. Valid values: `disable`, `enable`.
-     */
     unitySupport?: pulumi.Input<string>;
-    /**
-     * User group name for dialup peers.
-     */
     usrgrp?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * GUI VPN Wizard Type.
-     */
     wizardType?: pulumi.Input<string>;
-    /**
-     * XAuth type. Valid values: `disable`, `client`, `pap`, `chap`, `auto`.
-     */
     xauthtype?: pulumi.Input<string>;
 }

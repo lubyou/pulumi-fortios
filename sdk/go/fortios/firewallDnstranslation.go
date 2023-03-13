@@ -10,61 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure DNS translation.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallDnstranslation(ctx, "trname", &fortios.FirewallDnstranslationArgs{
-// 			Dst:     pulumi.String("2.2.2.2"),
-// 			Fosid:   pulumi.Int(1),
-// 			Netmask: pulumi.String("255.0.0.0"),
-// 			Src:     pulumi.String("1.1.1.1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall Dnstranslation can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallDnstranslation:FirewallDnstranslation labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallDnstranslation:FirewallDnstranslation labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallDnstranslation struct {
 	pulumi.CustomResourceState
 
-	// IPv4 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src.
-	Dst pulumi.StringOutput `pulumi:"dst"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// If src and dst are subnets rather than single IP addresses, enter the netmask for both src and dst.
-	Netmask pulumi.StringOutput `pulumi:"netmask"`
-	// IPv4 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst.
-	Src pulumi.StringOutput `pulumi:"src"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Dst       pulumi.StringOutput    `pulumi:"dst"`
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Netmask   pulumi.StringOutput    `pulumi:"netmask"`
+	Src       pulumi.StringOutput    `pulumi:"src"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -98,28 +50,18 @@ func GetFirewallDnstranslation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallDnstranslation resources.
 type firewallDnstranslationState struct {
-	// IPv4 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src.
-	Dst *string `pulumi:"dst"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// If src and dst are subnets rather than single IP addresses, enter the netmask for both src and dst.
-	Netmask *string `pulumi:"netmask"`
-	// IPv4 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst.
-	Src *string `pulumi:"src"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Dst       *string `pulumi:"dst"`
+	Fosid     *int    `pulumi:"fosid"`
+	Netmask   *string `pulumi:"netmask"`
+	Src       *string `pulumi:"src"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type FirewallDnstranslationState struct {
-	// IPv4 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src.
-	Dst pulumi.StringPtrInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// If src and dst are subnets rather than single IP addresses, enter the netmask for both src and dst.
-	Netmask pulumi.StringPtrInput
-	// IPv4 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst.
-	Src pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Dst       pulumi.StringPtrInput
+	Fosid     pulumi.IntPtrInput
+	Netmask   pulumi.StringPtrInput
+	Src       pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -128,29 +70,19 @@ func (FirewallDnstranslationState) ElementType() reflect.Type {
 }
 
 type firewallDnstranslationArgs struct {
-	// IPv4 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src.
-	Dst *string `pulumi:"dst"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// If src and dst are subnets rather than single IP addresses, enter the netmask for both src and dst.
-	Netmask *string `pulumi:"netmask"`
-	// IPv4 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst.
-	Src *string `pulumi:"src"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Dst       *string `pulumi:"dst"`
+	Fosid     *int    `pulumi:"fosid"`
+	Netmask   *string `pulumi:"netmask"`
+	Src       *string `pulumi:"src"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallDnstranslation resource.
 type FirewallDnstranslationArgs struct {
-	// IPv4 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src.
-	Dst pulumi.StringPtrInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// If src and dst are subnets rather than single IP addresses, enter the netmask for both src and dst.
-	Netmask pulumi.StringPtrInput
-	// IPv4 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst.
-	Src pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Dst       pulumi.StringPtrInput
+	Fosid     pulumi.IntPtrInput
+	Netmask   pulumi.StringPtrInput
+	Src       pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -180,7 +112,7 @@ func (i *FirewallDnstranslation) ToFirewallDnstranslationOutputWithContext(ctx c
 // FirewallDnstranslationArrayInput is an input type that accepts FirewallDnstranslationArray and FirewallDnstranslationArrayOutput values.
 // You can construct a concrete instance of `FirewallDnstranslationArrayInput` via:
 //
-//          FirewallDnstranslationArray{ FirewallDnstranslationArgs{...} }
+//	FirewallDnstranslationArray{ FirewallDnstranslationArgs{...} }
 type FirewallDnstranslationArrayInput interface {
 	pulumi.Input
 
@@ -205,7 +137,7 @@ func (i FirewallDnstranslationArray) ToFirewallDnstranslationArrayOutputWithCont
 // FirewallDnstranslationMapInput is an input type that accepts FirewallDnstranslationMap and FirewallDnstranslationMapOutput values.
 // You can construct a concrete instance of `FirewallDnstranslationMapInput` via:
 //
-//          FirewallDnstranslationMap{ "key": FirewallDnstranslationArgs{...} }
+//	FirewallDnstranslationMap{ "key": FirewallDnstranslationArgs{...} }
 type FirewallDnstranslationMapInput interface {
 	pulumi.Input
 
@@ -239,6 +171,26 @@ func (o FirewallDnstranslationOutput) ToFirewallDnstranslationOutput() FirewallD
 
 func (o FirewallDnstranslationOutput) ToFirewallDnstranslationOutputWithContext(ctx context.Context) FirewallDnstranslationOutput {
 	return o
+}
+
+func (o FirewallDnstranslationOutput) Dst() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallDnstranslation) pulumi.StringOutput { return v.Dst }).(pulumi.StringOutput)
+}
+
+func (o FirewallDnstranslationOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallDnstranslation) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallDnstranslationOutput) Netmask() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallDnstranslation) pulumi.StringOutput { return v.Netmask }).(pulumi.StringOutput)
+}
+
+func (o FirewallDnstranslationOutput) Src() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallDnstranslation) pulumi.StringOutput { return v.Src }).(pulumi.StringOutput)
+}
+
+func (o FirewallDnstranslationOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallDnstranslation) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallDnstranslationArrayOutput struct{ *pulumi.OutputState }

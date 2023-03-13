@@ -10,57 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure global session TTL timers for this FortiGate.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemSessionTtl(ctx, "trname", &fortios.SystemSessionTtlArgs{
-// 			Default: pulumi.String("3600"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System SessionTtl can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSessionTtl:SystemSessionTtl labelname SystemSessionTtl
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSessionTtl:SystemSessionTtl labelname SystemSessionTtl
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemSessionTtl struct {
 	pulumi.CustomResourceState
 
-	// Default timeout.
-	Default pulumi.StringOutput `pulumi:"default"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Session TTL port. The structure of `port` block is documented below.
-	Ports SystemSessionTtlPortArrayOutput `pulumi:"ports"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Default             pulumi.StringOutput             `pulumi:"default"`
+	DynamicSortSubtable pulumi.StringPtrOutput          `pulumi:"dynamicSortSubtable"`
+	Ports               SystemSessionTtlPortArrayOutput `pulumi:"ports"`
+	Vdomparam           pulumi.StringPtrOutput          `pulumi:"vdomparam"`
 }
 
 // NewSystemSessionTtl registers a new resource with the given unique name, arguments, and options.
@@ -93,25 +49,17 @@ func GetSystemSessionTtl(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSessionTtl resources.
 type systemSessionTtlState struct {
-	// Default timeout.
-	Default *string `pulumi:"default"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Session TTL port. The structure of `port` block is documented below.
-	Ports []SystemSessionTtlPort `pulumi:"ports"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Default             *string                `pulumi:"default"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	Ports               []SystemSessionTtlPort `pulumi:"ports"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 type SystemSessionTtlState struct {
-	// Default timeout.
-	Default pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Default             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Session TTL port. The structure of `port` block is documented below.
-	Ports SystemSessionTtlPortArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Ports               SystemSessionTtlPortArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemSessionTtlState) ElementType() reflect.Type {
@@ -119,26 +67,18 @@ func (SystemSessionTtlState) ElementType() reflect.Type {
 }
 
 type systemSessionTtlArgs struct {
-	// Default timeout.
-	Default *string `pulumi:"default"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Session TTL port. The structure of `port` block is documented below.
-	Ports []SystemSessionTtlPort `pulumi:"ports"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Default             *string                `pulumi:"default"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	Ports               []SystemSessionTtlPort `pulumi:"ports"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemSessionTtl resource.
 type SystemSessionTtlArgs struct {
-	// Default timeout.
-	Default pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Default             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Session TTL port. The structure of `port` block is documented below.
-	Ports SystemSessionTtlPortArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Ports               SystemSessionTtlPortArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemSessionTtlArgs) ElementType() reflect.Type {
@@ -167,7 +107,7 @@ func (i *SystemSessionTtl) ToSystemSessionTtlOutputWithContext(ctx context.Conte
 // SystemSessionTtlArrayInput is an input type that accepts SystemSessionTtlArray and SystemSessionTtlArrayOutput values.
 // You can construct a concrete instance of `SystemSessionTtlArrayInput` via:
 //
-//          SystemSessionTtlArray{ SystemSessionTtlArgs{...} }
+//	SystemSessionTtlArray{ SystemSessionTtlArgs{...} }
 type SystemSessionTtlArrayInput interface {
 	pulumi.Input
 
@@ -192,7 +132,7 @@ func (i SystemSessionTtlArray) ToSystemSessionTtlArrayOutputWithContext(ctx cont
 // SystemSessionTtlMapInput is an input type that accepts SystemSessionTtlMap and SystemSessionTtlMapOutput values.
 // You can construct a concrete instance of `SystemSessionTtlMapInput` via:
 //
-//          SystemSessionTtlMap{ "key": SystemSessionTtlArgs{...} }
+//	SystemSessionTtlMap{ "key": SystemSessionTtlArgs{...} }
 type SystemSessionTtlMapInput interface {
 	pulumi.Input
 
@@ -226,6 +166,22 @@ func (o SystemSessionTtlOutput) ToSystemSessionTtlOutput() SystemSessionTtlOutpu
 
 func (o SystemSessionTtlOutput) ToSystemSessionTtlOutputWithContext(ctx context.Context) SystemSessionTtlOutput {
 	return o
+}
+
+func (o SystemSessionTtlOutput) Default() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSessionTtl) pulumi.StringOutput { return v.Default }).(pulumi.StringOutput)
+}
+
+func (o SystemSessionTtlOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSessionTtl) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSessionTtlOutput) Ports() SystemSessionTtlPortArrayOutput {
+	return o.ApplyT(func(v *SystemSessionTtl) SystemSessionTtlPortArrayOutput { return v.Ports }).(SystemSessionTtlPortArrayOutput)
+}
+
+func (o SystemSessionTtlOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSessionTtl) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemSessionTtlArrayOutput struct{ *pulumi.OutputState }

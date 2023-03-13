@@ -10,62 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Internet Services Extension.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallInternetServiceExtension(ctx, "trname", &fortios.FirewallInternetServiceExtensionArgs{
-// 			Comment: pulumi.String("EIWE"),
-// 			Fosid:   pulumi.Int(65536),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall InternetServiceExtension can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceExtension:FirewallInternetServiceExtension labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceExtension:FirewallInternetServiceExtension labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallInternetServiceExtension struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Disable entries in the Internet Service database. The structure of `disableEntry` block is documented below.
-	DisableEntries FirewallInternetServiceExtensionDisableEntryArrayOutput `pulumi:"disableEntries"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Entries added to the Internet Service extension database. The structure of `entry` block is documented below.
-	Entries FirewallInternetServiceExtensionEntryArrayOutput `pulumi:"entries"`
-	// Internet Service ID in the Internet Service database.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput                                  `pulumi:"comment"`
+	DisableEntries      FirewallInternetServiceExtensionDisableEntryArrayOutput `pulumi:"disableEntries"`
+	DynamicSortSubtable pulumi.StringPtrOutput                                  `pulumi:"dynamicSortSubtable"`
+	Entries             FirewallInternetServiceExtensionEntryArrayOutput        `pulumi:"entries"`
+	Fosid               pulumi.IntOutput                                        `pulumi:"fosid"`
+	Vdomparam           pulumi.StringPtrOutput                                  `pulumi:"vdomparam"`
 }
 
 // NewFirewallInternetServiceExtension registers a new resource with the given unique name, arguments, and options.
@@ -98,33 +51,21 @@ func GetFirewallInternetServiceExtension(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallInternetServiceExtension resources.
 type firewallInternetServiceExtensionState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Disable entries in the Internet Service database. The structure of `disableEntry` block is documented below.
-	DisableEntries []FirewallInternetServiceExtensionDisableEntry `pulumi:"disableEntries"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Entries added to the Internet Service extension database. The structure of `entry` block is documented below.
-	Entries []FirewallInternetServiceExtensionEntry `pulumi:"entries"`
-	// Internet Service ID in the Internet Service database.
-	Fosid *int `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                                        `pulumi:"comment"`
+	DisableEntries      []FirewallInternetServiceExtensionDisableEntry `pulumi:"disableEntries"`
+	DynamicSortSubtable *string                                        `pulumi:"dynamicSortSubtable"`
+	Entries             []FirewallInternetServiceExtensionEntry        `pulumi:"entries"`
+	Fosid               *int                                           `pulumi:"fosid"`
+	Vdomparam           *string                                        `pulumi:"vdomparam"`
 }
 
 type FirewallInternetServiceExtensionState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Disable entries in the Internet Service database. The structure of `disableEntry` block is documented below.
-	DisableEntries FirewallInternetServiceExtensionDisableEntryArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
+	DisableEntries      FirewallInternetServiceExtensionDisableEntryArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Entries added to the Internet Service extension database. The structure of `entry` block is documented below.
-	Entries FirewallInternetServiceExtensionEntryArrayInput
-	// Internet Service ID in the Internet Service database.
-	Fosid pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             FirewallInternetServiceExtensionEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceExtensionState) ElementType() reflect.Type {
@@ -132,34 +73,22 @@ func (FirewallInternetServiceExtensionState) ElementType() reflect.Type {
 }
 
 type firewallInternetServiceExtensionArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Disable entries in the Internet Service database. The structure of `disableEntry` block is documented below.
-	DisableEntries []FirewallInternetServiceExtensionDisableEntry `pulumi:"disableEntries"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Entries added to the Internet Service extension database. The structure of `entry` block is documented below.
-	Entries []FirewallInternetServiceExtensionEntry `pulumi:"entries"`
-	// Internet Service ID in the Internet Service database.
-	Fosid *int `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                                        `pulumi:"comment"`
+	DisableEntries      []FirewallInternetServiceExtensionDisableEntry `pulumi:"disableEntries"`
+	DynamicSortSubtable *string                                        `pulumi:"dynamicSortSubtable"`
+	Entries             []FirewallInternetServiceExtensionEntry        `pulumi:"entries"`
+	Fosid               *int                                           `pulumi:"fosid"`
+	Vdomparam           *string                                        `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallInternetServiceExtension resource.
 type FirewallInternetServiceExtensionArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Disable entries in the Internet Service database. The structure of `disableEntry` block is documented below.
-	DisableEntries FirewallInternetServiceExtensionDisableEntryArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
+	DisableEntries      FirewallInternetServiceExtensionDisableEntryArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Entries added to the Internet Service extension database. The structure of `entry` block is documented below.
-	Entries FirewallInternetServiceExtensionEntryArrayInput
-	// Internet Service ID in the Internet Service database.
-	Fosid pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             FirewallInternetServiceExtensionEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceExtensionArgs) ElementType() reflect.Type {
@@ -188,7 +117,7 @@ func (i *FirewallInternetServiceExtension) ToFirewallInternetServiceExtensionOut
 // FirewallInternetServiceExtensionArrayInput is an input type that accepts FirewallInternetServiceExtensionArray and FirewallInternetServiceExtensionArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceExtensionArrayInput` via:
 //
-//          FirewallInternetServiceExtensionArray{ FirewallInternetServiceExtensionArgs{...} }
+//	FirewallInternetServiceExtensionArray{ FirewallInternetServiceExtensionArgs{...} }
 type FirewallInternetServiceExtensionArrayInput interface {
 	pulumi.Input
 
@@ -213,7 +142,7 @@ func (i FirewallInternetServiceExtensionArray) ToFirewallInternetServiceExtensio
 // FirewallInternetServiceExtensionMapInput is an input type that accepts FirewallInternetServiceExtensionMap and FirewallInternetServiceExtensionMapOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceExtensionMapInput` via:
 //
-//          FirewallInternetServiceExtensionMap{ "key": FirewallInternetServiceExtensionArgs{...} }
+//	FirewallInternetServiceExtensionMap{ "key": FirewallInternetServiceExtensionArgs{...} }
 type FirewallInternetServiceExtensionMapInput interface {
 	pulumi.Input
 
@@ -247,6 +176,34 @@ func (o FirewallInternetServiceExtensionOutput) ToFirewallInternetServiceExtensi
 
 func (o FirewallInternetServiceExtensionOutput) ToFirewallInternetServiceExtensionOutputWithContext(ctx context.Context) FirewallInternetServiceExtensionOutput {
 	return o
+}
+
+func (o FirewallInternetServiceExtensionOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceExtension) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallInternetServiceExtensionOutput) DisableEntries() FirewallInternetServiceExtensionDisableEntryArrayOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceExtension) FirewallInternetServiceExtensionDisableEntryArrayOutput {
+		return v.DisableEntries
+	}).(FirewallInternetServiceExtensionDisableEntryArrayOutput)
+}
+
+func (o FirewallInternetServiceExtensionOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceExtension) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallInternetServiceExtensionOutput) Entries() FirewallInternetServiceExtensionEntryArrayOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceExtension) FirewallInternetServiceExtensionEntryArrayOutput {
+		return v.Entries
+	}).(FirewallInternetServiceExtensionEntryArrayOutput)
+}
+
+func (o FirewallInternetServiceExtensionOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceExtension) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceExtensionOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceExtension) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallInternetServiceExtensionArrayOutput struct{ *pulumi.OutputState }

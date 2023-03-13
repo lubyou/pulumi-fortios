@@ -4,26 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure firewall address group used in firewall policies of FortiOS.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.FirewallAddrgrp`, we recommend that you use the new resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const s1 = new fortios.FirewallObjectAddressGroup("s1", {
- *     comment: "dfdsad",
- *     members: [
- *         "google-play",
- *         "swscan.apple.com",
- *     ],
- * });
- * ```
- */
 export class FirewallObjectAddressGroup extends pulumi.CustomResource {
     /**
      * Get an existing FirewallObjectAddressGroup resource's state with the given name, ID, and optional extra
@@ -52,17 +32,8 @@ export class FirewallObjectAddressGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallObjectAddressGroup.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Address objects contained within the group.
-     */
     public readonly members!: pulumi.Output<string[]>;
-    /**
-     * Address group name.
-     */
     public readonly name!: pulumi.Output<string>;
 
     /**
@@ -99,17 +70,8 @@ export class FirewallObjectAddressGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallObjectAddressGroup resources.
  */
 export interface FirewallObjectAddressGroupState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Address objects contained within the group.
-     */
     members?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Address group name.
-     */
     name?: pulumi.Input<string>;
 }
 
@@ -117,16 +79,7 @@ export interface FirewallObjectAddressGroupState {
  * The set of arguments for constructing a FirewallObjectAddressGroup resource.
  */
 export interface FirewallObjectAddressGroupArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Address objects contained within the group.
-     */
     members: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Address group name.
-     */
     name?: pulumi.Input<string>;
 }

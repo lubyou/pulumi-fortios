@@ -10,92 +10,25 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure endpoint control settings. Applies to FortiOS Version `<= 6.2.6`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewEndpointControlSettings(ctx, "trname", &fortios.EndpointControlSettingsArgs{
-// 			DownloadLocation:                  pulumi.String("fortiguard"),
-// 			ForticlientAvdbUpdateInterval:     pulumi.Int(8),
-// 			ForticlientDeregUnsupportedClient: pulumi.String("enable"),
-// 			ForticlientEmsRestApiCallTimeout:  pulumi.Int(5000),
-// 			ForticlientKeepaliveInterval:      pulumi.Int(60),
-// 			ForticlientOfflineGrace:           pulumi.String("disable"),
-// 			ForticlientOfflineGraceInterval:   pulumi.Int(120),
-// 			ForticlientRegKeyEnforce:          pulumi.String("disable"),
-// 			ForticlientRegTimeout:             pulumi.Int(7),
-// 			ForticlientSysUpdateInterval:      pulumi.Int(720),
-// 			ForticlientUserAvatar:             pulumi.String("enable"),
-// 			ForticlientWarningInterval:        pulumi.Int(1),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// EndpointControl Settings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/endpointControlSettings:EndpointControlSettings labelname EndpointControlSettings
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/endpointControlSettings:EndpointControlSettings labelname EndpointControlSettings
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type EndpointControlSettings struct {
 	pulumi.CustomResourceState
 
-	// Customized URL for downloading FortiClient.
-	DownloadCustomLink pulumi.StringOutput `pulumi:"downloadCustomLink"`
-	// FortiClient download location (FortiGuard or custom). Valid values: `fortiguard`, `custom`.
-	DownloadLocation pulumi.StringOutput `pulumi:"downloadLocation"`
-	// Period of time between FortiClient AntiVirus database updates (0 - 24 hours, default = 8).
-	ForticlientAvdbUpdateInterval pulumi.IntOutput `pulumi:"forticlientAvdbUpdateInterval"`
-	// Enable/disable deregistering unsupported FortiClient endpoints. Valid values: `enable`, `disable`.
-	ForticlientDeregUnsupportedClient pulumi.StringOutput `pulumi:"forticlientDeregUnsupportedClient"`
-	// Enable/disable disconnecting of unsupported FortiClient endpoints. Valid values: `enable`, `disable`.
-	ForticlientDisconnectUnsupportedClient pulumi.StringOutput `pulumi:"forticlientDisconnectUnsupportedClient"`
-	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
-	ForticlientEmsRestApiCallTimeout pulumi.IntOutput `pulumi:"forticlientEmsRestApiCallTimeout"`
-	// Interval between two KeepAlive messages from FortiClient (20 - 300 sec, default = 60).
-	ForticlientKeepaliveInterval pulumi.IntOutput `pulumi:"forticlientKeepaliveInterval"`
-	// Enable/disable grace period for offline registered clients. Valid values: `enable`, `disable`.
-	ForticlientOfflineGrace pulumi.StringOutput `pulumi:"forticlientOfflineGrace"`
-	// Grace period for offline registered FortiClient (60 - 600 sec, default = 120).
-	ForticlientOfflineGraceInterval pulumi.IntOutput `pulumi:"forticlientOfflineGraceInterval"`
-	// FortiClient registration key.
-	ForticlientRegKey pulumi.StringPtrOutput `pulumi:"forticlientRegKey"`
-	// Enable/disable requiring or enforcing FortiClient registration keys. Valid values: `enable`, `disable`.
-	ForticlientRegKeyEnforce pulumi.StringOutput `pulumi:"forticlientRegKeyEnforce"`
-	// FortiClient registration license timeout (days, min = 1, max = 180, 0 means unlimited).
-	ForticlientRegTimeout pulumi.IntOutput `pulumi:"forticlientRegTimeout"`
-	// Interval between two system update messages from FortiClient (30 - 1440 min, default = 720).
-	ForticlientSysUpdateInterval pulumi.IntOutput `pulumi:"forticlientSysUpdateInterval"`
-	// Enable/disable uploading FortiClient user avatars. Valid values: `enable`, `disable`.
-	ForticlientUserAvatar pulumi.StringOutput `pulumi:"forticlientUserAvatar"`
-	// Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
-	ForticlientWarningInterval pulumi.IntOutput `pulumi:"forticlientWarningInterval"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DownloadCustomLink                     pulumi.StringOutput    `pulumi:"downloadCustomLink"`
+	DownloadLocation                       pulumi.StringOutput    `pulumi:"downloadLocation"`
+	ForticlientAvdbUpdateInterval          pulumi.IntOutput       `pulumi:"forticlientAvdbUpdateInterval"`
+	ForticlientDeregUnsupportedClient      pulumi.StringOutput    `pulumi:"forticlientDeregUnsupportedClient"`
+	ForticlientDisconnectUnsupportedClient pulumi.StringOutput    `pulumi:"forticlientDisconnectUnsupportedClient"`
+	ForticlientEmsRestApiCallTimeout       pulumi.IntOutput       `pulumi:"forticlientEmsRestApiCallTimeout"`
+	ForticlientKeepaliveInterval           pulumi.IntOutput       `pulumi:"forticlientKeepaliveInterval"`
+	ForticlientOfflineGrace                pulumi.StringOutput    `pulumi:"forticlientOfflineGrace"`
+	ForticlientOfflineGraceInterval        pulumi.IntOutput       `pulumi:"forticlientOfflineGraceInterval"`
+	ForticlientRegKey                      pulumi.StringPtrOutput `pulumi:"forticlientRegKey"`
+	ForticlientRegKeyEnforce               pulumi.StringOutput    `pulumi:"forticlientRegKeyEnforce"`
+	ForticlientRegTimeout                  pulumi.IntOutput       `pulumi:"forticlientRegTimeout"`
+	ForticlientSysUpdateInterval           pulumi.IntOutput       `pulumi:"forticlientSysUpdateInterval"`
+	ForticlientUserAvatar                  pulumi.StringOutput    `pulumi:"forticlientUserAvatar"`
+	ForticlientWarningInterval             pulumi.IntOutput       `pulumi:"forticlientWarningInterval"`
+	Vdomparam                              pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewEndpointControlSettings registers a new resource with the given unique name, arguments, and options.
@@ -105,6 +38,13 @@ func NewEndpointControlSettings(ctx *pulumi.Context,
 		args = &EndpointControlSettingsArgs{}
 	}
 
+	if args.ForticlientRegKey != nil {
+		args.ForticlientRegKey = pulumi.ToSecret(args.ForticlientRegKey).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"forticlientRegKey",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource EndpointControlSettings
 	err := ctx.RegisterResource("fortios:index/endpointControlSettings:EndpointControlSettings", name, args, &resource, opts...)
@@ -128,73 +68,41 @@ func GetEndpointControlSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EndpointControlSettings resources.
 type endpointControlSettingsState struct {
-	// Customized URL for downloading FortiClient.
-	DownloadCustomLink *string `pulumi:"downloadCustomLink"`
-	// FortiClient download location (FortiGuard or custom). Valid values: `fortiguard`, `custom`.
-	DownloadLocation *string `pulumi:"downloadLocation"`
-	// Period of time between FortiClient AntiVirus database updates (0 - 24 hours, default = 8).
-	ForticlientAvdbUpdateInterval *int `pulumi:"forticlientAvdbUpdateInterval"`
-	// Enable/disable deregistering unsupported FortiClient endpoints. Valid values: `enable`, `disable`.
-	ForticlientDeregUnsupportedClient *string `pulumi:"forticlientDeregUnsupportedClient"`
-	// Enable/disable disconnecting of unsupported FortiClient endpoints. Valid values: `enable`, `disable`.
+	DownloadCustomLink                     *string `pulumi:"downloadCustomLink"`
+	DownloadLocation                       *string `pulumi:"downloadLocation"`
+	ForticlientAvdbUpdateInterval          *int    `pulumi:"forticlientAvdbUpdateInterval"`
+	ForticlientDeregUnsupportedClient      *string `pulumi:"forticlientDeregUnsupportedClient"`
 	ForticlientDisconnectUnsupportedClient *string `pulumi:"forticlientDisconnectUnsupportedClient"`
-	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
-	ForticlientEmsRestApiCallTimeout *int `pulumi:"forticlientEmsRestApiCallTimeout"`
-	// Interval between two KeepAlive messages from FortiClient (20 - 300 sec, default = 60).
-	ForticlientKeepaliveInterval *int `pulumi:"forticlientKeepaliveInterval"`
-	// Enable/disable grace period for offline registered clients. Valid values: `enable`, `disable`.
-	ForticlientOfflineGrace *string `pulumi:"forticlientOfflineGrace"`
-	// Grace period for offline registered FortiClient (60 - 600 sec, default = 120).
-	ForticlientOfflineGraceInterval *int `pulumi:"forticlientOfflineGraceInterval"`
-	// FortiClient registration key.
-	ForticlientRegKey *string `pulumi:"forticlientRegKey"`
-	// Enable/disable requiring or enforcing FortiClient registration keys. Valid values: `enable`, `disable`.
-	ForticlientRegKeyEnforce *string `pulumi:"forticlientRegKeyEnforce"`
-	// FortiClient registration license timeout (days, min = 1, max = 180, 0 means unlimited).
-	ForticlientRegTimeout *int `pulumi:"forticlientRegTimeout"`
-	// Interval between two system update messages from FortiClient (30 - 1440 min, default = 720).
-	ForticlientSysUpdateInterval *int `pulumi:"forticlientSysUpdateInterval"`
-	// Enable/disable uploading FortiClient user avatars. Valid values: `enable`, `disable`.
-	ForticlientUserAvatar *string `pulumi:"forticlientUserAvatar"`
-	// Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
-	ForticlientWarningInterval *int `pulumi:"forticlientWarningInterval"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ForticlientEmsRestApiCallTimeout       *int    `pulumi:"forticlientEmsRestApiCallTimeout"`
+	ForticlientKeepaliveInterval           *int    `pulumi:"forticlientKeepaliveInterval"`
+	ForticlientOfflineGrace                *string `pulumi:"forticlientOfflineGrace"`
+	ForticlientOfflineGraceInterval        *int    `pulumi:"forticlientOfflineGraceInterval"`
+	ForticlientRegKey                      *string `pulumi:"forticlientRegKey"`
+	ForticlientRegKeyEnforce               *string `pulumi:"forticlientRegKeyEnforce"`
+	ForticlientRegTimeout                  *int    `pulumi:"forticlientRegTimeout"`
+	ForticlientSysUpdateInterval           *int    `pulumi:"forticlientSysUpdateInterval"`
+	ForticlientUserAvatar                  *string `pulumi:"forticlientUserAvatar"`
+	ForticlientWarningInterval             *int    `pulumi:"forticlientWarningInterval"`
+	Vdomparam                              *string `pulumi:"vdomparam"`
 }
 
 type EndpointControlSettingsState struct {
-	// Customized URL for downloading FortiClient.
-	DownloadCustomLink pulumi.StringPtrInput
-	// FortiClient download location (FortiGuard or custom). Valid values: `fortiguard`, `custom`.
-	DownloadLocation pulumi.StringPtrInput
-	// Period of time between FortiClient AntiVirus database updates (0 - 24 hours, default = 8).
-	ForticlientAvdbUpdateInterval pulumi.IntPtrInput
-	// Enable/disable deregistering unsupported FortiClient endpoints. Valid values: `enable`, `disable`.
-	ForticlientDeregUnsupportedClient pulumi.StringPtrInput
-	// Enable/disable disconnecting of unsupported FortiClient endpoints. Valid values: `enable`, `disable`.
+	DownloadCustomLink                     pulumi.StringPtrInput
+	DownloadLocation                       pulumi.StringPtrInput
+	ForticlientAvdbUpdateInterval          pulumi.IntPtrInput
+	ForticlientDeregUnsupportedClient      pulumi.StringPtrInput
 	ForticlientDisconnectUnsupportedClient pulumi.StringPtrInput
-	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
-	ForticlientEmsRestApiCallTimeout pulumi.IntPtrInput
-	// Interval between two KeepAlive messages from FortiClient (20 - 300 sec, default = 60).
-	ForticlientKeepaliveInterval pulumi.IntPtrInput
-	// Enable/disable grace period for offline registered clients. Valid values: `enable`, `disable`.
-	ForticlientOfflineGrace pulumi.StringPtrInput
-	// Grace period for offline registered FortiClient (60 - 600 sec, default = 120).
-	ForticlientOfflineGraceInterval pulumi.IntPtrInput
-	// FortiClient registration key.
-	ForticlientRegKey pulumi.StringPtrInput
-	// Enable/disable requiring or enforcing FortiClient registration keys. Valid values: `enable`, `disable`.
-	ForticlientRegKeyEnforce pulumi.StringPtrInput
-	// FortiClient registration license timeout (days, min = 1, max = 180, 0 means unlimited).
-	ForticlientRegTimeout pulumi.IntPtrInput
-	// Interval between two system update messages from FortiClient (30 - 1440 min, default = 720).
-	ForticlientSysUpdateInterval pulumi.IntPtrInput
-	// Enable/disable uploading FortiClient user avatars. Valid values: `enable`, `disable`.
-	ForticlientUserAvatar pulumi.StringPtrInput
-	// Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
-	ForticlientWarningInterval pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ForticlientEmsRestApiCallTimeout       pulumi.IntPtrInput
+	ForticlientKeepaliveInterval           pulumi.IntPtrInput
+	ForticlientOfflineGrace                pulumi.StringPtrInput
+	ForticlientOfflineGraceInterval        pulumi.IntPtrInput
+	ForticlientRegKey                      pulumi.StringPtrInput
+	ForticlientRegKeyEnforce               pulumi.StringPtrInput
+	ForticlientRegTimeout                  pulumi.IntPtrInput
+	ForticlientSysUpdateInterval           pulumi.IntPtrInput
+	ForticlientUserAvatar                  pulumi.StringPtrInput
+	ForticlientWarningInterval             pulumi.IntPtrInput
+	Vdomparam                              pulumi.StringPtrInput
 }
 
 func (EndpointControlSettingsState) ElementType() reflect.Type {
@@ -202,74 +110,42 @@ func (EndpointControlSettingsState) ElementType() reflect.Type {
 }
 
 type endpointControlSettingsArgs struct {
-	// Customized URL for downloading FortiClient.
-	DownloadCustomLink *string `pulumi:"downloadCustomLink"`
-	// FortiClient download location (FortiGuard or custom). Valid values: `fortiguard`, `custom`.
-	DownloadLocation *string `pulumi:"downloadLocation"`
-	// Period of time between FortiClient AntiVirus database updates (0 - 24 hours, default = 8).
-	ForticlientAvdbUpdateInterval *int `pulumi:"forticlientAvdbUpdateInterval"`
-	// Enable/disable deregistering unsupported FortiClient endpoints. Valid values: `enable`, `disable`.
-	ForticlientDeregUnsupportedClient *string `pulumi:"forticlientDeregUnsupportedClient"`
-	// Enable/disable disconnecting of unsupported FortiClient endpoints. Valid values: `enable`, `disable`.
+	DownloadCustomLink                     *string `pulumi:"downloadCustomLink"`
+	DownloadLocation                       *string `pulumi:"downloadLocation"`
+	ForticlientAvdbUpdateInterval          *int    `pulumi:"forticlientAvdbUpdateInterval"`
+	ForticlientDeregUnsupportedClient      *string `pulumi:"forticlientDeregUnsupportedClient"`
 	ForticlientDisconnectUnsupportedClient *string `pulumi:"forticlientDisconnectUnsupportedClient"`
-	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
-	ForticlientEmsRestApiCallTimeout *int `pulumi:"forticlientEmsRestApiCallTimeout"`
-	// Interval between two KeepAlive messages from FortiClient (20 - 300 sec, default = 60).
-	ForticlientKeepaliveInterval *int `pulumi:"forticlientKeepaliveInterval"`
-	// Enable/disable grace period for offline registered clients. Valid values: `enable`, `disable`.
-	ForticlientOfflineGrace *string `pulumi:"forticlientOfflineGrace"`
-	// Grace period for offline registered FortiClient (60 - 600 sec, default = 120).
-	ForticlientOfflineGraceInterval *int `pulumi:"forticlientOfflineGraceInterval"`
-	// FortiClient registration key.
-	ForticlientRegKey *string `pulumi:"forticlientRegKey"`
-	// Enable/disable requiring or enforcing FortiClient registration keys. Valid values: `enable`, `disable`.
-	ForticlientRegKeyEnforce *string `pulumi:"forticlientRegKeyEnforce"`
-	// FortiClient registration license timeout (days, min = 1, max = 180, 0 means unlimited).
-	ForticlientRegTimeout *int `pulumi:"forticlientRegTimeout"`
-	// Interval between two system update messages from FortiClient (30 - 1440 min, default = 720).
-	ForticlientSysUpdateInterval *int `pulumi:"forticlientSysUpdateInterval"`
-	// Enable/disable uploading FortiClient user avatars. Valid values: `enable`, `disable`.
-	ForticlientUserAvatar *string `pulumi:"forticlientUserAvatar"`
-	// Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
-	ForticlientWarningInterval *int `pulumi:"forticlientWarningInterval"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ForticlientEmsRestApiCallTimeout       *int    `pulumi:"forticlientEmsRestApiCallTimeout"`
+	ForticlientKeepaliveInterval           *int    `pulumi:"forticlientKeepaliveInterval"`
+	ForticlientOfflineGrace                *string `pulumi:"forticlientOfflineGrace"`
+	ForticlientOfflineGraceInterval        *int    `pulumi:"forticlientOfflineGraceInterval"`
+	ForticlientRegKey                      *string `pulumi:"forticlientRegKey"`
+	ForticlientRegKeyEnforce               *string `pulumi:"forticlientRegKeyEnforce"`
+	ForticlientRegTimeout                  *int    `pulumi:"forticlientRegTimeout"`
+	ForticlientSysUpdateInterval           *int    `pulumi:"forticlientSysUpdateInterval"`
+	ForticlientUserAvatar                  *string `pulumi:"forticlientUserAvatar"`
+	ForticlientWarningInterval             *int    `pulumi:"forticlientWarningInterval"`
+	Vdomparam                              *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a EndpointControlSettings resource.
 type EndpointControlSettingsArgs struct {
-	// Customized URL for downloading FortiClient.
-	DownloadCustomLink pulumi.StringPtrInput
-	// FortiClient download location (FortiGuard or custom). Valid values: `fortiguard`, `custom`.
-	DownloadLocation pulumi.StringPtrInput
-	// Period of time between FortiClient AntiVirus database updates (0 - 24 hours, default = 8).
-	ForticlientAvdbUpdateInterval pulumi.IntPtrInput
-	// Enable/disable deregistering unsupported FortiClient endpoints. Valid values: `enable`, `disable`.
-	ForticlientDeregUnsupportedClient pulumi.StringPtrInput
-	// Enable/disable disconnecting of unsupported FortiClient endpoints. Valid values: `enable`, `disable`.
+	DownloadCustomLink                     pulumi.StringPtrInput
+	DownloadLocation                       pulumi.StringPtrInput
+	ForticlientAvdbUpdateInterval          pulumi.IntPtrInput
+	ForticlientDeregUnsupportedClient      pulumi.StringPtrInput
 	ForticlientDisconnectUnsupportedClient pulumi.StringPtrInput
-	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
-	ForticlientEmsRestApiCallTimeout pulumi.IntPtrInput
-	// Interval between two KeepAlive messages from FortiClient (20 - 300 sec, default = 60).
-	ForticlientKeepaliveInterval pulumi.IntPtrInput
-	// Enable/disable grace period for offline registered clients. Valid values: `enable`, `disable`.
-	ForticlientOfflineGrace pulumi.StringPtrInput
-	// Grace period for offline registered FortiClient (60 - 600 sec, default = 120).
-	ForticlientOfflineGraceInterval pulumi.IntPtrInput
-	// FortiClient registration key.
-	ForticlientRegKey pulumi.StringPtrInput
-	// Enable/disable requiring or enforcing FortiClient registration keys. Valid values: `enable`, `disable`.
-	ForticlientRegKeyEnforce pulumi.StringPtrInput
-	// FortiClient registration license timeout (days, min = 1, max = 180, 0 means unlimited).
-	ForticlientRegTimeout pulumi.IntPtrInput
-	// Interval between two system update messages from FortiClient (30 - 1440 min, default = 720).
-	ForticlientSysUpdateInterval pulumi.IntPtrInput
-	// Enable/disable uploading FortiClient user avatars. Valid values: `enable`, `disable`.
-	ForticlientUserAvatar pulumi.StringPtrInput
-	// Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
-	ForticlientWarningInterval pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ForticlientEmsRestApiCallTimeout       pulumi.IntPtrInput
+	ForticlientKeepaliveInterval           pulumi.IntPtrInput
+	ForticlientOfflineGrace                pulumi.StringPtrInput
+	ForticlientOfflineGraceInterval        pulumi.IntPtrInput
+	ForticlientRegKey                      pulumi.StringPtrInput
+	ForticlientRegKeyEnforce               pulumi.StringPtrInput
+	ForticlientRegTimeout                  pulumi.IntPtrInput
+	ForticlientSysUpdateInterval           pulumi.IntPtrInput
+	ForticlientUserAvatar                  pulumi.StringPtrInput
+	ForticlientWarningInterval             pulumi.IntPtrInput
+	Vdomparam                              pulumi.StringPtrInput
 }
 
 func (EndpointControlSettingsArgs) ElementType() reflect.Type {
@@ -298,7 +174,7 @@ func (i *EndpointControlSettings) ToEndpointControlSettingsOutputWithContext(ctx
 // EndpointControlSettingsArrayInput is an input type that accepts EndpointControlSettingsArray and EndpointControlSettingsArrayOutput values.
 // You can construct a concrete instance of `EndpointControlSettingsArrayInput` via:
 //
-//          EndpointControlSettingsArray{ EndpointControlSettingsArgs{...} }
+//	EndpointControlSettingsArray{ EndpointControlSettingsArgs{...} }
 type EndpointControlSettingsArrayInput interface {
 	pulumi.Input
 
@@ -323,7 +199,7 @@ func (i EndpointControlSettingsArray) ToEndpointControlSettingsArrayOutputWithCo
 // EndpointControlSettingsMapInput is an input type that accepts EndpointControlSettingsMap and EndpointControlSettingsMapOutput values.
 // You can construct a concrete instance of `EndpointControlSettingsMapInput` via:
 //
-//          EndpointControlSettingsMap{ "key": EndpointControlSettingsArgs{...} }
+//	EndpointControlSettingsMap{ "key": EndpointControlSettingsArgs{...} }
 type EndpointControlSettingsMapInput interface {
 	pulumi.Input
 
@@ -357,6 +233,70 @@ func (o EndpointControlSettingsOutput) ToEndpointControlSettingsOutput() Endpoin
 
 func (o EndpointControlSettingsOutput) ToEndpointControlSettingsOutputWithContext(ctx context.Context) EndpointControlSettingsOutput {
 	return o
+}
+
+func (o EndpointControlSettingsOutput) DownloadCustomLink() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.StringOutput { return v.DownloadCustomLink }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlSettingsOutput) DownloadLocation() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.StringOutput { return v.DownloadLocation }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlSettingsOutput) ForticlientAvdbUpdateInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.IntOutput { return v.ForticlientAvdbUpdateInterval }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlSettingsOutput) ForticlientDeregUnsupportedClient() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.StringOutput { return v.ForticlientDeregUnsupportedClient }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlSettingsOutput) ForticlientDisconnectUnsupportedClient() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.StringOutput { return v.ForticlientDisconnectUnsupportedClient }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlSettingsOutput) ForticlientEmsRestApiCallTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.IntOutput { return v.ForticlientEmsRestApiCallTimeout }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlSettingsOutput) ForticlientKeepaliveInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.IntOutput { return v.ForticlientKeepaliveInterval }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlSettingsOutput) ForticlientOfflineGrace() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.StringOutput { return v.ForticlientOfflineGrace }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlSettingsOutput) ForticlientOfflineGraceInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.IntOutput { return v.ForticlientOfflineGraceInterval }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlSettingsOutput) ForticlientRegKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.StringPtrOutput { return v.ForticlientRegKey }).(pulumi.StringPtrOutput)
+}
+
+func (o EndpointControlSettingsOutput) ForticlientRegKeyEnforce() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.StringOutput { return v.ForticlientRegKeyEnforce }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlSettingsOutput) ForticlientRegTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.IntOutput { return v.ForticlientRegTimeout }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlSettingsOutput) ForticlientSysUpdateInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.IntOutput { return v.ForticlientSysUpdateInterval }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlSettingsOutput) ForticlientUserAvatar() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.StringOutput { return v.ForticlientUserAvatar }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlSettingsOutput) ForticlientWarningInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.IntOutput { return v.ForticlientWarningInterval }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type EndpointControlSettingsArrayOutput struct{ *pulumi.OutputState }

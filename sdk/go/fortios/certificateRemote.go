@@ -10,35 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Remote certificate as a PEM file. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// Certificate Remote can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/certificateRemote:CertificateRemote labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/certificateRemote:CertificateRemote labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type CertificateRemote struct {
 	pulumi.CustomResourceState
 
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Either the global or VDOM IP address range for the remote certificate. Valid values: `global`, `vdom`.
-	Range pulumi.StringOutput `pulumi:"range"`
-	// Remote certificate.
-	Remote pulumi.StringOutput `pulumi:"remote"`
-	// Remote certificate source type. Valid values: `factory`, `user`, `bundle`.
-	Source pulumi.StringOutput `pulumi:"source"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringOutput    `pulumi:"name"`
+	Range     pulumi.StringOutput    `pulumi:"range"`
+	Remote    pulumi.StringOutput    `pulumi:"remote"`
+	Source    pulumi.StringOutput    `pulumi:"source"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -72,28 +50,18 @@ func GetCertificateRemote(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CertificateRemote resources.
 type certificateRemoteState struct {
-	// Name.
-	Name *string `pulumi:"name"`
-	// Either the global or VDOM IP address range for the remote certificate. Valid values: `global`, `vdom`.
-	Range *string `pulumi:"range"`
-	// Remote certificate.
-	Remote *string `pulumi:"remote"`
-	// Remote certificate source type. Valid values: `factory`, `user`, `bundle`.
-	Source *string `pulumi:"source"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      *string `pulumi:"name"`
+	Range     *string `pulumi:"range"`
+	Remote    *string `pulumi:"remote"`
+	Source    *string `pulumi:"source"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type CertificateRemoteState struct {
-	// Name.
-	Name pulumi.StringPtrInput
-	// Either the global or VDOM IP address range for the remote certificate. Valid values: `global`, `vdom`.
-	Range pulumi.StringPtrInput
-	// Remote certificate.
-	Remote pulumi.StringPtrInput
-	// Remote certificate source type. Valid values: `factory`, `user`, `bundle`.
-	Source pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringPtrInput
+	Range     pulumi.StringPtrInput
+	Remote    pulumi.StringPtrInput
+	Source    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -102,29 +70,19 @@ func (CertificateRemoteState) ElementType() reflect.Type {
 }
 
 type certificateRemoteArgs struct {
-	// Name.
-	Name *string `pulumi:"name"`
-	// Either the global or VDOM IP address range for the remote certificate. Valid values: `global`, `vdom`.
-	Range *string `pulumi:"range"`
-	// Remote certificate.
-	Remote *string `pulumi:"remote"`
-	// Remote certificate source type. Valid values: `factory`, `user`, `bundle`.
-	Source *string `pulumi:"source"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      *string `pulumi:"name"`
+	Range     *string `pulumi:"range"`
+	Remote    *string `pulumi:"remote"`
+	Source    *string `pulumi:"source"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a CertificateRemote resource.
 type CertificateRemoteArgs struct {
-	// Name.
-	Name pulumi.StringPtrInput
-	// Either the global or VDOM IP address range for the remote certificate. Valid values: `global`, `vdom`.
-	Range pulumi.StringPtrInput
-	// Remote certificate.
-	Remote pulumi.StringPtrInput
-	// Remote certificate source type. Valid values: `factory`, `user`, `bundle`.
-	Source pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringPtrInput
+	Range     pulumi.StringPtrInput
+	Remote    pulumi.StringPtrInput
+	Source    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -154,7 +112,7 @@ func (i *CertificateRemote) ToCertificateRemoteOutputWithContext(ctx context.Con
 // CertificateRemoteArrayInput is an input type that accepts CertificateRemoteArray and CertificateRemoteArrayOutput values.
 // You can construct a concrete instance of `CertificateRemoteArrayInput` via:
 //
-//          CertificateRemoteArray{ CertificateRemoteArgs{...} }
+//	CertificateRemoteArray{ CertificateRemoteArgs{...} }
 type CertificateRemoteArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i CertificateRemoteArray) ToCertificateRemoteArrayOutputWithContext(ctx co
 // CertificateRemoteMapInput is an input type that accepts CertificateRemoteMap and CertificateRemoteMapOutput values.
 // You can construct a concrete instance of `CertificateRemoteMapInput` via:
 //
-//          CertificateRemoteMap{ "key": CertificateRemoteArgs{...} }
+//	CertificateRemoteMap{ "key": CertificateRemoteArgs{...} }
 type CertificateRemoteMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o CertificateRemoteOutput) ToCertificateRemoteOutput() CertificateRemoteOu
 
 func (o CertificateRemoteOutput) ToCertificateRemoteOutputWithContext(ctx context.Context) CertificateRemoteOutput {
 	return o
+}
+
+func (o CertificateRemoteOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateRemote) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o CertificateRemoteOutput) Range() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateRemote) pulumi.StringOutput { return v.Range }).(pulumi.StringOutput)
+}
+
+func (o CertificateRemoteOutput) Remote() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateRemote) pulumi.StringOutput { return v.Remote }).(pulumi.StringOutput)
+}
+
+func (o CertificateRemoteOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateRemote) pulumi.StringOutput { return v.Source }).(pulumi.StringOutput)
+}
+
+func (o CertificateRemoteOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CertificateRemote) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type CertificateRemoteArrayOutput struct{ *pulumi.OutputState }

@@ -10,40 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure template for auto-generated VLANs. Applies to FortiOS Version `>= 6.4.0`.
-//
-// ## Import
-//
-// SwitchControllerInitialConfig Template can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerInitialConfigTemplate:SwitchControllerInitialConfigTemplate labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerInitialConfigTemplate:SwitchControllerInitialConfigTemplate labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerInitialConfigTemplate struct {
 	pulumi.CustomResourceState
 
-	// Permitted types of management access to this interface. Valid values: `ping`, `https`, `ssh`, `snmp`, `http`, `telnet`, `fgfm`, `radius-acct`, `probe-response`, `fabric`, `ftm`.
-	Allowaccess pulumi.StringOutput `pulumi:"allowaccess"`
-	// Automatically allocate interface address and subnet block. Valid values: `enable`, `disable`.
-	AutoIp pulumi.StringOutput `pulumi:"autoIp"`
-	// Enable/disable a DHCP server on this interface. Valid values: `enable`, `disable`.
-	DhcpServer pulumi.StringOutput `pulumi:"dhcpServer"`
-	// Interface IPv4 address and subnet mask.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// Initial config template name
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Unique VLAN ID.
-	Vlanid pulumi.IntOutput `pulumi:"vlanid"`
+	Allowaccess pulumi.StringOutput    `pulumi:"allowaccess"`
+	AutoIp      pulumi.StringOutput    `pulumi:"autoIp"`
+	DhcpServer  pulumi.StringOutput    `pulumi:"dhcpServer"`
+	Ip          pulumi.StringOutput    `pulumi:"ip"`
+	Name        pulumi.StringOutput    `pulumi:"name"`
+	Vdomparam   pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vlanid      pulumi.IntOutput       `pulumi:"vlanid"`
 }
 
 // NewSwitchControllerInitialConfigTemplate registers a new resource with the given unique name, arguments, and options.
@@ -76,37 +52,23 @@ func GetSwitchControllerInitialConfigTemplate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerInitialConfigTemplate resources.
 type switchControllerInitialConfigTemplateState struct {
-	// Permitted types of management access to this interface. Valid values: `ping`, `https`, `ssh`, `snmp`, `http`, `telnet`, `fgfm`, `radius-acct`, `probe-response`, `fabric`, `ftm`.
 	Allowaccess *string `pulumi:"allowaccess"`
-	// Automatically allocate interface address and subnet block. Valid values: `enable`, `disable`.
-	AutoIp *string `pulumi:"autoIp"`
-	// Enable/disable a DHCP server on this interface. Valid values: `enable`, `disable`.
-	DhcpServer *string `pulumi:"dhcpServer"`
-	// Interface IPv4 address and subnet mask.
-	Ip *string `pulumi:"ip"`
-	// Initial config template name
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Unique VLAN ID.
-	Vlanid *int `pulumi:"vlanid"`
+	AutoIp      *string `pulumi:"autoIp"`
+	DhcpServer  *string `pulumi:"dhcpServer"`
+	Ip          *string `pulumi:"ip"`
+	Name        *string `pulumi:"name"`
+	Vdomparam   *string `pulumi:"vdomparam"`
+	Vlanid      *int    `pulumi:"vlanid"`
 }
 
 type SwitchControllerInitialConfigTemplateState struct {
-	// Permitted types of management access to this interface. Valid values: `ping`, `https`, `ssh`, `snmp`, `http`, `telnet`, `fgfm`, `radius-acct`, `probe-response`, `fabric`, `ftm`.
 	Allowaccess pulumi.StringPtrInput
-	// Automatically allocate interface address and subnet block. Valid values: `enable`, `disable`.
-	AutoIp pulumi.StringPtrInput
-	// Enable/disable a DHCP server on this interface. Valid values: `enable`, `disable`.
-	DhcpServer pulumi.StringPtrInput
-	// Interface IPv4 address and subnet mask.
-	Ip pulumi.StringPtrInput
-	// Initial config template name
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Unique VLAN ID.
-	Vlanid pulumi.IntPtrInput
+	AutoIp      pulumi.StringPtrInput
+	DhcpServer  pulumi.StringPtrInput
+	Ip          pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
+	Vlanid      pulumi.IntPtrInput
 }
 
 func (SwitchControllerInitialConfigTemplateState) ElementType() reflect.Type {
@@ -114,38 +76,24 @@ func (SwitchControllerInitialConfigTemplateState) ElementType() reflect.Type {
 }
 
 type switchControllerInitialConfigTemplateArgs struct {
-	// Permitted types of management access to this interface. Valid values: `ping`, `https`, `ssh`, `snmp`, `http`, `telnet`, `fgfm`, `radius-acct`, `probe-response`, `fabric`, `ftm`.
 	Allowaccess *string `pulumi:"allowaccess"`
-	// Automatically allocate interface address and subnet block. Valid values: `enable`, `disable`.
-	AutoIp *string `pulumi:"autoIp"`
-	// Enable/disable a DHCP server on this interface. Valid values: `enable`, `disable`.
-	DhcpServer *string `pulumi:"dhcpServer"`
-	// Interface IPv4 address and subnet mask.
-	Ip *string `pulumi:"ip"`
-	// Initial config template name
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Unique VLAN ID.
-	Vlanid *int `pulumi:"vlanid"`
+	AutoIp      *string `pulumi:"autoIp"`
+	DhcpServer  *string `pulumi:"dhcpServer"`
+	Ip          *string `pulumi:"ip"`
+	Name        *string `pulumi:"name"`
+	Vdomparam   *string `pulumi:"vdomparam"`
+	Vlanid      *int    `pulumi:"vlanid"`
 }
 
 // The set of arguments for constructing a SwitchControllerInitialConfigTemplate resource.
 type SwitchControllerInitialConfigTemplateArgs struct {
-	// Permitted types of management access to this interface. Valid values: `ping`, `https`, `ssh`, `snmp`, `http`, `telnet`, `fgfm`, `radius-acct`, `probe-response`, `fabric`, `ftm`.
 	Allowaccess pulumi.StringPtrInput
-	// Automatically allocate interface address and subnet block. Valid values: `enable`, `disable`.
-	AutoIp pulumi.StringPtrInput
-	// Enable/disable a DHCP server on this interface. Valid values: `enable`, `disable`.
-	DhcpServer pulumi.StringPtrInput
-	// Interface IPv4 address and subnet mask.
-	Ip pulumi.StringPtrInput
-	// Initial config template name
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Unique VLAN ID.
-	Vlanid pulumi.IntPtrInput
+	AutoIp      pulumi.StringPtrInput
+	DhcpServer  pulumi.StringPtrInput
+	Ip          pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
+	Vlanid      pulumi.IntPtrInput
 }
 
 func (SwitchControllerInitialConfigTemplateArgs) ElementType() reflect.Type {
@@ -174,7 +122,7 @@ func (i *SwitchControllerInitialConfigTemplate) ToSwitchControllerInitialConfigT
 // SwitchControllerInitialConfigTemplateArrayInput is an input type that accepts SwitchControllerInitialConfigTemplateArray and SwitchControllerInitialConfigTemplateArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerInitialConfigTemplateArrayInput` via:
 //
-//          SwitchControllerInitialConfigTemplateArray{ SwitchControllerInitialConfigTemplateArgs{...} }
+//	SwitchControllerInitialConfigTemplateArray{ SwitchControllerInitialConfigTemplateArgs{...} }
 type SwitchControllerInitialConfigTemplateArrayInput interface {
 	pulumi.Input
 
@@ -199,7 +147,7 @@ func (i SwitchControllerInitialConfigTemplateArray) ToSwitchControllerInitialCon
 // SwitchControllerInitialConfigTemplateMapInput is an input type that accepts SwitchControllerInitialConfigTemplateMap and SwitchControllerInitialConfigTemplateMapOutput values.
 // You can construct a concrete instance of `SwitchControllerInitialConfigTemplateMapInput` via:
 //
-//          SwitchControllerInitialConfigTemplateMap{ "key": SwitchControllerInitialConfigTemplateArgs{...} }
+//	SwitchControllerInitialConfigTemplateMap{ "key": SwitchControllerInitialConfigTemplateArgs{...} }
 type SwitchControllerInitialConfigTemplateMapInput interface {
 	pulumi.Input
 
@@ -233,6 +181,34 @@ func (o SwitchControllerInitialConfigTemplateOutput) ToSwitchControllerInitialCo
 
 func (o SwitchControllerInitialConfigTemplateOutput) ToSwitchControllerInitialConfigTemplateOutputWithContext(ctx context.Context) SwitchControllerInitialConfigTemplateOutput {
 	return o
+}
+
+func (o SwitchControllerInitialConfigTemplateOutput) Allowaccess() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerInitialConfigTemplate) pulumi.StringOutput { return v.Allowaccess }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerInitialConfigTemplateOutput) AutoIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerInitialConfigTemplate) pulumi.StringOutput { return v.AutoIp }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerInitialConfigTemplateOutput) DhcpServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerInitialConfigTemplate) pulumi.StringOutput { return v.DhcpServer }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerInitialConfigTemplateOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerInitialConfigTemplate) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerInitialConfigTemplateOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerInitialConfigTemplate) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerInitialConfigTemplateOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerInitialConfigTemplate) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerInitialConfigTemplateOutput) Vlanid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerInitialConfigTemplate) pulumi.IntOutput { return v.Vlanid }).(pulumi.IntOutput)
 }
 
 type SwitchControllerInitialConfigTemplateArrayOutput struct{ *pulumi.OutputState }

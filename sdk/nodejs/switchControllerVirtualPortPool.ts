@@ -4,36 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure virtual pool.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchControllerVirtualPortPool("trname", {
- *     description: "virtualport",
- * });
- * ```
- *
- * ## Import
- *
- * SwitchController VirtualPortPool can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerVirtualPortPool:SwitchControllerVirtualPortPool labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerVirtualPortPool:SwitchControllerVirtualPortPool labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerVirtualPortPool extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerVirtualPortPool resource's state with the given name, ID, and optional extra
@@ -62,17 +32,8 @@ export class SwitchControllerVirtualPortPool extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerVirtualPortPool.__pulumiType;
     }
 
-    /**
-     * Virtual switch pool description.
-     */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * Virtual switch pool name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -106,17 +67,8 @@ export class SwitchControllerVirtualPortPool extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerVirtualPortPool resources.
  */
 export interface SwitchControllerVirtualPortPoolState {
-    /**
-     * Virtual switch pool description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Virtual switch pool name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -124,16 +76,7 @@ export interface SwitchControllerVirtualPortPoolState {
  * The set of arguments for constructing a SwitchControllerVirtualPortPool resource.
  */
 export interface SwitchControllerVirtualPortPoolArgs {
-    /**
-     * Virtual switch pool description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Virtual switch pool name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

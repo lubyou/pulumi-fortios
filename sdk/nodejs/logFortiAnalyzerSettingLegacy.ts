@@ -4,28 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure configure logging to FortiAnalyzer log management devices.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.LogFortianalyzerSetting`, we recommend that you use the new resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.LogFortiAnalyzerSettingLegacy("test1", {
- *     encAlgorithm: "high-medium",
- *     hmacAlgorithm: "sha256",
- *     reliable: "enable",
- *     server: "10.2.2.99",
- *     sourceIp: "10.2.2.99",
- *     status: "enable",
- *     uploadOption: "realtime",
- * });
- * ```
- */
 export class LogFortiAnalyzerSettingLegacy extends pulumi.CustomResource {
     /**
      * Get an existing LogFortiAnalyzerSettingLegacy resource's state with the given name, ID, and optional extra
@@ -54,33 +32,12 @@ export class LogFortiAnalyzerSettingLegacy extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogFortiAnalyzerSettingLegacy.__pulumiType;
     }
 
-    /**
-     * Enable/disable sending FortiAnalyzer log data with SSL encryption.
-     */
     public readonly encAlgorithm!: pulumi.Output<string>;
-    /**
-     * FortiAnalyzer IPsec tunnel HMAC algorithm.
-     */
     public readonly hmacAlgorithm!: pulumi.Output<string>;
-    /**
-     * Enable/disable reliable logging to FortiAnalyzer.
-     */
     public readonly reliable!: pulumi.Output<string>;
-    /**
-     * The remote FortiAnalyzer.
-     */
     public readonly server!: pulumi.Output<string>;
-    /**
-     * Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging to FortiAnalyzer.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging to hard disk and then uploading to FortiAnalyzer.
-     */
     public readonly uploadOption!: pulumi.Output<string>;
 
     /**
@@ -125,33 +82,12 @@ export class LogFortiAnalyzerSettingLegacy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogFortiAnalyzerSettingLegacy resources.
  */
 export interface LogFortiAnalyzerSettingLegacyState {
-    /**
-     * Enable/disable sending FortiAnalyzer log data with SSL encryption.
-     */
     encAlgorithm?: pulumi.Input<string>;
-    /**
-     * FortiAnalyzer IPsec tunnel HMAC algorithm.
-     */
     hmacAlgorithm?: pulumi.Input<string>;
-    /**
-     * Enable/disable reliable logging to FortiAnalyzer.
-     */
     reliable?: pulumi.Input<string>;
-    /**
-     * The remote FortiAnalyzer.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging to FortiAnalyzer.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging to hard disk and then uploading to FortiAnalyzer.
-     */
     uploadOption?: pulumi.Input<string>;
 }
 
@@ -159,32 +95,11 @@ export interface LogFortiAnalyzerSettingLegacyState {
  * The set of arguments for constructing a LogFortiAnalyzerSettingLegacy resource.
  */
 export interface LogFortiAnalyzerSettingLegacyArgs {
-    /**
-     * Enable/disable sending FortiAnalyzer log data with SSL encryption.
-     */
     encAlgorithm?: pulumi.Input<string>;
-    /**
-     * FortiAnalyzer IPsec tunnel HMAC algorithm.
-     */
     hmacAlgorithm?: pulumi.Input<string>;
-    /**
-     * Enable/disable reliable logging to FortiAnalyzer.
-     */
     reliable?: pulumi.Input<string>;
-    /**
-     * The remote FortiAnalyzer.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging to FortiAnalyzer.
-     */
     status: pulumi.Input<string>;
-    /**
-     * Enable/disable logging to hard disk and then uploading to FortiAnalyzer.
-     */
     uploadOption?: pulumi.Input<string>;
 }

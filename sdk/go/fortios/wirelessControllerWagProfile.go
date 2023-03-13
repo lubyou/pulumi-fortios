@@ -10,46 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure wireless access gateway (WAG) profiles used for tunnels on AP. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// WirelessController WagProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerWagProfile:WirelessControllerWagProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerWagProfile:WirelessControllerWagProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerWagProfile struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// IP address of the monitoring DHCP request packet sent through the tunnel.
-	DhcpIpAddr pulumi.StringOutput `pulumi:"dhcpIpAddr"`
-	// Tunnel profile name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
-	PingInterval pulumi.IntOutput `pulumi:"pingInterval"`
-	// Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
-	PingNumber pulumi.IntOutput `pulumi:"pingNumber"`
-	// Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
-	ReturnPacketTimeout pulumi.IntOutput `pulumi:"returnPacketTimeout"`
-	// Tunnel type. Valid values: `l2tpv3`, `gre`.
-	TunnelType pulumi.StringOutput `pulumi:"tunnelType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// IP Address of the wireless access gateway.
-	WagIp pulumi.StringOutput `pulumi:"wagIp"`
-	// UDP port of the wireless access gateway.
-	WagPort pulumi.IntOutput `pulumi:"wagPort"`
+	Comment             pulumi.StringPtrOutput `pulumi:"comment"`
+	DhcpIpAddr          pulumi.StringOutput    `pulumi:"dhcpIpAddr"`
+	Name                pulumi.StringOutput    `pulumi:"name"`
+	PingInterval        pulumi.IntOutput       `pulumi:"pingInterval"`
+	PingNumber          pulumi.IntOutput       `pulumi:"pingNumber"`
+	ReturnPacketTimeout pulumi.IntOutput       `pulumi:"returnPacketTimeout"`
+	TunnelType          pulumi.StringOutput    `pulumi:"tunnelType"`
+	Vdomparam           pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	WagIp               pulumi.StringOutput    `pulumi:"wagIp"`
+	WagPort             pulumi.IntOutput       `pulumi:"wagPort"`
 }
 
 // NewWirelessControllerWagProfile registers a new resource with the given unique name, arguments, and options.
@@ -82,49 +55,29 @@ func GetWirelessControllerWagProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerWagProfile resources.
 type wirelessControllerWagProfileState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// IP address of the monitoring DHCP request packet sent through the tunnel.
-	DhcpIpAddr *string `pulumi:"dhcpIpAddr"`
-	// Tunnel profile name.
-	Name *string `pulumi:"name"`
-	// Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
-	PingInterval *int `pulumi:"pingInterval"`
-	// Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
-	PingNumber *int `pulumi:"pingNumber"`
-	// Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
-	ReturnPacketTimeout *int `pulumi:"returnPacketTimeout"`
-	// Tunnel type. Valid values: `l2tpv3`, `gre`.
-	TunnelType *string `pulumi:"tunnelType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// IP Address of the wireless access gateway.
-	WagIp *string `pulumi:"wagIp"`
-	// UDP port of the wireless access gateway.
-	WagPort *int `pulumi:"wagPort"`
+	Comment             *string `pulumi:"comment"`
+	DhcpIpAddr          *string `pulumi:"dhcpIpAddr"`
+	Name                *string `pulumi:"name"`
+	PingInterval        *int    `pulumi:"pingInterval"`
+	PingNumber          *int    `pulumi:"pingNumber"`
+	ReturnPacketTimeout *int    `pulumi:"returnPacketTimeout"`
+	TunnelType          *string `pulumi:"tunnelType"`
+	Vdomparam           *string `pulumi:"vdomparam"`
+	WagIp               *string `pulumi:"wagIp"`
+	WagPort             *int    `pulumi:"wagPort"`
 }
 
 type WirelessControllerWagProfileState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// IP address of the monitoring DHCP request packet sent through the tunnel.
-	DhcpIpAddr pulumi.StringPtrInput
-	// Tunnel profile name.
-	Name pulumi.StringPtrInput
-	// Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
-	PingInterval pulumi.IntPtrInput
-	// Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
-	PingNumber pulumi.IntPtrInput
-	// Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
+	Comment             pulumi.StringPtrInput
+	DhcpIpAddr          pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	PingInterval        pulumi.IntPtrInput
+	PingNumber          pulumi.IntPtrInput
 	ReturnPacketTimeout pulumi.IntPtrInput
-	// Tunnel type. Valid values: `l2tpv3`, `gre`.
-	TunnelType pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// IP Address of the wireless access gateway.
-	WagIp pulumi.StringPtrInput
-	// UDP port of the wireless access gateway.
-	WagPort pulumi.IntPtrInput
+	TunnelType          pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	WagIp               pulumi.StringPtrInput
+	WagPort             pulumi.IntPtrInput
 }
 
 func (WirelessControllerWagProfileState) ElementType() reflect.Type {
@@ -132,50 +85,30 @@ func (WirelessControllerWagProfileState) ElementType() reflect.Type {
 }
 
 type wirelessControllerWagProfileArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// IP address of the monitoring DHCP request packet sent through the tunnel.
-	DhcpIpAddr *string `pulumi:"dhcpIpAddr"`
-	// Tunnel profile name.
-	Name *string `pulumi:"name"`
-	// Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
-	PingInterval *int `pulumi:"pingInterval"`
-	// Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
-	PingNumber *int `pulumi:"pingNumber"`
-	// Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
-	ReturnPacketTimeout *int `pulumi:"returnPacketTimeout"`
-	// Tunnel type. Valid values: `l2tpv3`, `gre`.
-	TunnelType *string `pulumi:"tunnelType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// IP Address of the wireless access gateway.
-	WagIp *string `pulumi:"wagIp"`
-	// UDP port of the wireless access gateway.
-	WagPort *int `pulumi:"wagPort"`
+	Comment             *string `pulumi:"comment"`
+	DhcpIpAddr          *string `pulumi:"dhcpIpAddr"`
+	Name                *string `pulumi:"name"`
+	PingInterval        *int    `pulumi:"pingInterval"`
+	PingNumber          *int    `pulumi:"pingNumber"`
+	ReturnPacketTimeout *int    `pulumi:"returnPacketTimeout"`
+	TunnelType          *string `pulumi:"tunnelType"`
+	Vdomparam           *string `pulumi:"vdomparam"`
+	WagIp               *string `pulumi:"wagIp"`
+	WagPort             *int    `pulumi:"wagPort"`
 }
 
 // The set of arguments for constructing a WirelessControllerWagProfile resource.
 type WirelessControllerWagProfileArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// IP address of the monitoring DHCP request packet sent through the tunnel.
-	DhcpIpAddr pulumi.StringPtrInput
-	// Tunnel profile name.
-	Name pulumi.StringPtrInput
-	// Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
-	PingInterval pulumi.IntPtrInput
-	// Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
-	PingNumber pulumi.IntPtrInput
-	// Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
+	Comment             pulumi.StringPtrInput
+	DhcpIpAddr          pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	PingInterval        pulumi.IntPtrInput
+	PingNumber          pulumi.IntPtrInput
 	ReturnPacketTimeout pulumi.IntPtrInput
-	// Tunnel type. Valid values: `l2tpv3`, `gre`.
-	TunnelType pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// IP Address of the wireless access gateway.
-	WagIp pulumi.StringPtrInput
-	// UDP port of the wireless access gateway.
-	WagPort pulumi.IntPtrInput
+	TunnelType          pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	WagIp               pulumi.StringPtrInput
+	WagPort             pulumi.IntPtrInput
 }
 
 func (WirelessControllerWagProfileArgs) ElementType() reflect.Type {
@@ -204,7 +137,7 @@ func (i *WirelessControllerWagProfile) ToWirelessControllerWagProfileOutputWithC
 // WirelessControllerWagProfileArrayInput is an input type that accepts WirelessControllerWagProfileArray and WirelessControllerWagProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWagProfileArrayInput` via:
 //
-//          WirelessControllerWagProfileArray{ WirelessControllerWagProfileArgs{...} }
+//	WirelessControllerWagProfileArray{ WirelessControllerWagProfileArgs{...} }
 type WirelessControllerWagProfileArrayInput interface {
 	pulumi.Input
 
@@ -229,7 +162,7 @@ func (i WirelessControllerWagProfileArray) ToWirelessControllerWagProfileArrayOu
 // WirelessControllerWagProfileMapInput is an input type that accepts WirelessControllerWagProfileMap and WirelessControllerWagProfileMapOutput values.
 // You can construct a concrete instance of `WirelessControllerWagProfileMapInput` via:
 //
-//          WirelessControllerWagProfileMap{ "key": WirelessControllerWagProfileArgs{...} }
+//	WirelessControllerWagProfileMap{ "key": WirelessControllerWagProfileArgs{...} }
 type WirelessControllerWagProfileMapInput interface {
 	pulumi.Input
 
@@ -263,6 +196,46 @@ func (o WirelessControllerWagProfileOutput) ToWirelessControllerWagProfileOutput
 
 func (o WirelessControllerWagProfileOutput) ToWirelessControllerWagProfileOutputWithContext(ctx context.Context) WirelessControllerWagProfileOutput {
 	return o
+}
+
+func (o WirelessControllerWagProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWagProfile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWagProfileOutput) DhcpIpAddr() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWagProfile) pulumi.StringOutput { return v.DhcpIpAddr }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWagProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWagProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWagProfileOutput) PingInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWagProfile) pulumi.IntOutput { return v.PingInterval }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWagProfileOutput) PingNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWagProfile) pulumi.IntOutput { return v.PingNumber }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWagProfileOutput) ReturnPacketTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWagProfile) pulumi.IntOutput { return v.ReturnPacketTimeout }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWagProfileOutput) TunnelType() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWagProfile) pulumi.StringOutput { return v.TunnelType }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWagProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWagProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWagProfileOutput) WagIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWagProfile) pulumi.StringOutput { return v.WagIp }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWagProfileOutput) WagPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWagProfile) pulumi.IntOutput { return v.WagPort }).(pulumi.IntOutput)
 }
 
 type WirelessControllerWagProfileArrayOutput struct{ *pulumi.OutputState }

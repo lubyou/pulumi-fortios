@@ -10,31 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Hidden table for datasource.
-//
-// ## Import
-//
-// Waf SubClass can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wafSubClass:WafSubClass labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wafSubClass:WafSubClass labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WafSubClass struct {
 	pulumi.CustomResourceState
 
-	// Signature subclass ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Signature subclass name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -68,20 +48,14 @@ func GetWafSubClass(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WafSubClass resources.
 type wafSubClassState struct {
-	// Signature subclass ID.
-	Fosid *int `pulumi:"fosid"`
-	// Signature subclass name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type WafSubClassState struct {
-	// Signature subclass ID.
-	Fosid pulumi.IntPtrInput
-	// Signature subclass name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -90,21 +64,15 @@ func (WafSubClassState) ElementType() reflect.Type {
 }
 
 type wafSubClassArgs struct {
-	// Signature subclass ID.
-	Fosid *int `pulumi:"fosid"`
-	// Signature subclass name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WafSubClass resource.
 type WafSubClassArgs struct {
-	// Signature subclass ID.
-	Fosid pulumi.IntPtrInput
-	// Signature subclass name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -134,7 +102,7 @@ func (i *WafSubClass) ToWafSubClassOutputWithContext(ctx context.Context) WafSub
 // WafSubClassArrayInput is an input type that accepts WafSubClassArray and WafSubClassArrayOutput values.
 // You can construct a concrete instance of `WafSubClassArrayInput` via:
 //
-//          WafSubClassArray{ WafSubClassArgs{...} }
+//	WafSubClassArray{ WafSubClassArgs{...} }
 type WafSubClassArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i WafSubClassArray) ToWafSubClassArrayOutputWithContext(ctx context.Contex
 // WafSubClassMapInput is an input type that accepts WafSubClassMap and WafSubClassMapOutput values.
 // You can construct a concrete instance of `WafSubClassMapInput` via:
 //
-//          WafSubClassMap{ "key": WafSubClassArgs{...} }
+//	WafSubClassMap{ "key": WafSubClassArgs{...} }
 type WafSubClassMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o WafSubClassOutput) ToWafSubClassOutput() WafSubClassOutput {
 
 func (o WafSubClassOutput) ToWafSubClassOutputWithContext(ctx context.Context) WafSubClassOutput {
 	return o
+}
+
+func (o WafSubClassOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *WafSubClass) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o WafSubClassOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WafSubClass) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WafSubClassOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WafSubClass) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WafSubClassArrayOutput struct{ *pulumi.OutputState }

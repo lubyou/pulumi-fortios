@@ -4,34 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports Create/Read/Update/Delete admin user for FortiManager
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerSystemAdminUser("test1", {
- *     description: "local user",
- *     password: "123",
- *     profileid: "Standard_User",
- *     rpcPermit: "read",
- *     trusthost1: "1.1.1.1 255.255.255.255",
- *     userType: "local",
- *     userid: "user1",
- * });
- * const test2 = new fortios.FortimanagerSystemAdminUser("test2", {
- *     description: "api user",
- *     password: "098",
- *     profileid: "Standard_User",
- *     rpcPermit: "read-write",
- *     trusthost1: "2.2.2.2 255.255.255.255",
- *     userid: "user2",
- * });
- * ```
- */
 export class FortimanagerSystemAdminUser extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerSystemAdminUser resource's state with the given name, ID, and optional extra
@@ -60,45 +32,15 @@ export class FortimanagerSystemAdminUser extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerSystemAdminUser.__pulumiType;
     }
 
-    /**
-     * Description.
-     */
     public readonly description!: pulumi.Output<string | undefined>;
-    /**
-     * Password.
-     */
     public readonly password!: pulumi.Output<string | undefined>;
-    /**
-     * Profile id.
-     */
     public readonly profileid!: pulumi.Output<string | undefined>;
-    /**
-     * RADIUS server name.
-     */
     public readonly radiusServer!: pulumi.Output<string | undefined>;
-    /**
-     * Rpc permit, Enum: ["read-write", "none", "read"]
-     */
     public readonly rpcPermit!: pulumi.Output<string | undefined>;
-    /**
-     * Admin user trusted host IP, default 0.0.0.0 0.0.0.0 for all.
-     */
     public readonly trusthost1!: pulumi.Output<string | undefined>;
-    /**
-     * Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-     */
     public readonly trusthost2!: pulumi.Output<string | undefined>;
-    /**
-     * Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-     */
     public readonly trusthost3!: pulumi.Output<string | undefined>;
-    /**
-     * User type, Enum: ["local", "radius", "ldap", "tacacs-plus", "pki-auth", "group"]
-     */
     public readonly userType!: pulumi.Output<string | undefined>;
-    /**
-     * User name.
-     */
     public readonly userid!: pulumi.Output<string>;
 
     /**
@@ -149,45 +91,15 @@ export class FortimanagerSystemAdminUser extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerSystemAdminUser resources.
  */
 export interface FortimanagerSystemAdminUserState {
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Password.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Profile id.
-     */
     profileid?: pulumi.Input<string>;
-    /**
-     * RADIUS server name.
-     */
     radiusServer?: pulumi.Input<string>;
-    /**
-     * Rpc permit, Enum: ["read-write", "none", "read"]
-     */
     rpcPermit?: pulumi.Input<string>;
-    /**
-     * Admin user trusted host IP, default 0.0.0.0 0.0.0.0 for all.
-     */
     trusthost1?: pulumi.Input<string>;
-    /**
-     * Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-     */
     trusthost2?: pulumi.Input<string>;
-    /**
-     * Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-     */
     trusthost3?: pulumi.Input<string>;
-    /**
-     * User type, Enum: ["local", "radius", "ldap", "tacacs-plus", "pki-auth", "group"]
-     */
     userType?: pulumi.Input<string>;
-    /**
-     * User name.
-     */
     userid?: pulumi.Input<string>;
 }
 
@@ -195,44 +107,14 @@ export interface FortimanagerSystemAdminUserState {
  * The set of arguments for constructing a FortimanagerSystemAdminUser resource.
  */
 export interface FortimanagerSystemAdminUserArgs {
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Password.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Profile id.
-     */
     profileid?: pulumi.Input<string>;
-    /**
-     * RADIUS server name.
-     */
     radiusServer?: pulumi.Input<string>;
-    /**
-     * Rpc permit, Enum: ["read-write", "none", "read"]
-     */
     rpcPermit?: pulumi.Input<string>;
-    /**
-     * Admin user trusted host IP, default 0.0.0.0 0.0.0.0 for all.
-     */
     trusthost1?: pulumi.Input<string>;
-    /**
-     * Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-     */
     trusthost2?: pulumi.Input<string>;
-    /**
-     * Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
-     */
     trusthost3?: pulumi.Input<string>;
-    /**
-     * User type, Enum: ["local", "radius", "ldap", "tacacs-plus", "pki-auth", "group"]
-     */
     userType?: pulumi.Input<string>;
-    /**
-     * User name.
-     */
     userid: pulumi.Input<string>;
 }

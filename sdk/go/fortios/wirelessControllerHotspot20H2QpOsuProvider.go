@@ -10,44 +10,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure online sign up (OSU) provider list.
-//
-// ## Import
-//
-// WirelessControllerHotspot20 H2QpOsuProvider can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpOsuProvider:WirelessControllerHotspot20H2QpOsuProvider labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpOsuProvider:WirelessControllerHotspot20H2QpOsuProvider labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerHotspot20H2QpOsuProvider struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// OSU provider friendly name.
-	FriendlyNames WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutput `pulumi:"friendlyNames"`
-	// OSU provider icon.
-	Icon pulumi.StringOutput `pulumi:"icon"`
-	// OSU provider ID.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// OSU method list. Valid values: `oma-dm`, `soap-xml-spp`, `reserved`.
-	OsuMethod pulumi.StringOutput `pulumi:"osuMethod"`
-	// OSU NAI.
-	OsuNai pulumi.StringOutput `pulumi:"osuNai"`
-	// Server URI.
-	ServerUri pulumi.StringOutput `pulumi:"serverUri"`
-	// Service description.
+	DynamicSortSubtable pulumi.StringPtrOutput                                                  `pulumi:"dynamicSortSubtable"`
+	FriendlyNames       WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutput       `pulumi:"friendlyNames"`
+	Icon                pulumi.StringOutput                                                     `pulumi:"icon"`
+	Name                pulumi.StringOutput                                                     `pulumi:"name"`
+	OsuMethod           pulumi.StringOutput                                                     `pulumi:"osuMethod"`
+	OsuNai              pulumi.StringOutput                                                     `pulumi:"osuNai"`
+	ServerUri           pulumi.StringOutput                                                     `pulumi:"serverUri"`
 	ServiceDescriptions WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayOutput `pulumi:"serviceDescriptions"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam           pulumi.StringPtrOutput                                                  `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerHotspot20H2QpOsuProvider registers a new resource with the given unique name, arguments, and options.
@@ -80,45 +54,27 @@ func GetWirelessControllerHotspot20H2QpOsuProvider(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerHotspot20H2QpOsuProvider resources.
 type wirelessControllerHotspot20H2QpOsuProviderState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// OSU provider friendly name.
-	FriendlyNames []WirelessControllerHotspot20H2QpOsuProviderFriendlyName `pulumi:"friendlyNames"`
-	// OSU provider icon.
-	Icon *string `pulumi:"icon"`
-	// OSU provider ID.
-	Name *string `pulumi:"name"`
-	// OSU method list. Valid values: `oma-dm`, `soap-xml-spp`, `reserved`.
-	OsuMethod *string `pulumi:"osuMethod"`
-	// OSU NAI.
-	OsuNai *string `pulumi:"osuNai"`
-	// Server URI.
-	ServerUri *string `pulumi:"serverUri"`
-	// Service description.
+	DynamicSortSubtable *string                                                        `pulumi:"dynamicSortSubtable"`
+	FriendlyNames       []WirelessControllerHotspot20H2QpOsuProviderFriendlyName       `pulumi:"friendlyNames"`
+	Icon                *string                                                        `pulumi:"icon"`
+	Name                *string                                                        `pulumi:"name"`
+	OsuMethod           *string                                                        `pulumi:"osuMethod"`
+	OsuNai              *string                                                        `pulumi:"osuNai"`
+	ServerUri           *string                                                        `pulumi:"serverUri"`
 	ServiceDescriptions []WirelessControllerHotspot20H2QpOsuProviderServiceDescription `pulumi:"serviceDescriptions"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam           *string                                                        `pulumi:"vdomparam"`
 }
 
 type WirelessControllerHotspot20H2QpOsuProviderState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// OSU provider friendly name.
-	FriendlyNames WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayInput
-	// OSU provider icon.
-	Icon pulumi.StringPtrInput
-	// OSU provider ID.
-	Name pulumi.StringPtrInput
-	// OSU method list. Valid values: `oma-dm`, `soap-xml-spp`, `reserved`.
-	OsuMethod pulumi.StringPtrInput
-	// OSU NAI.
-	OsuNai pulumi.StringPtrInput
-	// Server URI.
-	ServerUri pulumi.StringPtrInput
-	// Service description.
+	FriendlyNames       WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayInput
+	Icon                pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	OsuMethod           pulumi.StringPtrInput
+	OsuNai              pulumi.StringPtrInput
+	ServerUri           pulumi.StringPtrInput
 	ServiceDescriptions WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20H2QpOsuProviderState) ElementType() reflect.Type {
@@ -126,46 +82,28 @@ func (WirelessControllerHotspot20H2QpOsuProviderState) ElementType() reflect.Typ
 }
 
 type wirelessControllerHotspot20H2QpOsuProviderArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// OSU provider friendly name.
-	FriendlyNames []WirelessControllerHotspot20H2QpOsuProviderFriendlyName `pulumi:"friendlyNames"`
-	// OSU provider icon.
-	Icon *string `pulumi:"icon"`
-	// OSU provider ID.
-	Name *string `pulumi:"name"`
-	// OSU method list. Valid values: `oma-dm`, `soap-xml-spp`, `reserved`.
-	OsuMethod *string `pulumi:"osuMethod"`
-	// OSU NAI.
-	OsuNai *string `pulumi:"osuNai"`
-	// Server URI.
-	ServerUri *string `pulumi:"serverUri"`
-	// Service description.
+	DynamicSortSubtable *string                                                        `pulumi:"dynamicSortSubtable"`
+	FriendlyNames       []WirelessControllerHotspot20H2QpOsuProviderFriendlyName       `pulumi:"friendlyNames"`
+	Icon                *string                                                        `pulumi:"icon"`
+	Name                *string                                                        `pulumi:"name"`
+	OsuMethod           *string                                                        `pulumi:"osuMethod"`
+	OsuNai              *string                                                        `pulumi:"osuNai"`
+	ServerUri           *string                                                        `pulumi:"serverUri"`
 	ServiceDescriptions []WirelessControllerHotspot20H2QpOsuProviderServiceDescription `pulumi:"serviceDescriptions"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam           *string                                                        `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerHotspot20H2QpOsuProvider resource.
 type WirelessControllerHotspot20H2QpOsuProviderArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// OSU provider friendly name.
-	FriendlyNames WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayInput
-	// OSU provider icon.
-	Icon pulumi.StringPtrInput
-	// OSU provider ID.
-	Name pulumi.StringPtrInput
-	// OSU method list. Valid values: `oma-dm`, `soap-xml-spp`, `reserved`.
-	OsuMethod pulumi.StringPtrInput
-	// OSU NAI.
-	OsuNai pulumi.StringPtrInput
-	// Server URI.
-	ServerUri pulumi.StringPtrInput
-	// Service description.
+	FriendlyNames       WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayInput
+	Icon                pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	OsuMethod           pulumi.StringPtrInput
+	OsuNai              pulumi.StringPtrInput
+	ServerUri           pulumi.StringPtrInput
 	ServiceDescriptions WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20H2QpOsuProviderArgs) ElementType() reflect.Type {
@@ -194,7 +132,7 @@ func (i *WirelessControllerHotspot20H2QpOsuProvider) ToWirelessControllerHotspot
 // WirelessControllerHotspot20H2QpOsuProviderArrayInput is an input type that accepts WirelessControllerHotspot20H2QpOsuProviderArray and WirelessControllerHotspot20H2QpOsuProviderArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpOsuProviderArrayInput` via:
 //
-//          WirelessControllerHotspot20H2QpOsuProviderArray{ WirelessControllerHotspot20H2QpOsuProviderArgs{...} }
+//	WirelessControllerHotspot20H2QpOsuProviderArray{ WirelessControllerHotspot20H2QpOsuProviderArgs{...} }
 type WirelessControllerHotspot20H2QpOsuProviderArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +157,7 @@ func (i WirelessControllerHotspot20H2QpOsuProviderArray) ToWirelessControllerHot
 // WirelessControllerHotspot20H2QpOsuProviderMapInput is an input type that accepts WirelessControllerHotspot20H2QpOsuProviderMap and WirelessControllerHotspot20H2QpOsuProviderMapOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpOsuProviderMapInput` via:
 //
-//          WirelessControllerHotspot20H2QpOsuProviderMap{ "key": WirelessControllerHotspot20H2QpOsuProviderArgs{...} }
+//	WirelessControllerHotspot20H2QpOsuProviderMap{ "key": WirelessControllerHotspot20H2QpOsuProviderArgs{...} }
 type WirelessControllerHotspot20H2QpOsuProviderMapInput interface {
 	pulumi.Input
 
@@ -253,6 +191,48 @@ func (o WirelessControllerHotspot20H2QpOsuProviderOutput) ToWirelessControllerHo
 
 func (o WirelessControllerHotspot20H2QpOsuProviderOutput) ToWirelessControllerHotspot20H2QpOsuProviderOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOsuProviderOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOsuProvider) pulumi.StringPtrOutput {
+		return v.DynamicSortSubtable
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderOutput) FriendlyNames() WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOsuProvider) WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutput {
+		return v.FriendlyNames
+	}).(WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderOutput) Icon() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOsuProvider) pulumi.StringOutput { return v.Icon }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOsuProvider) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderOutput) OsuMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOsuProvider) pulumi.StringOutput { return v.OsuMethod }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderOutput) OsuNai() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOsuProvider) pulumi.StringOutput { return v.OsuNai }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderOutput) ServerUri() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOsuProvider) pulumi.StringOutput { return v.ServerUri }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderOutput) ServiceDescriptions() WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOsuProvider) WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayOutput {
+		return v.ServiceDescriptions
+	}).(WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOsuProvider) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerHotspot20H2QpOsuProviderArrayOutput struct{ *pulumi.OutputState }

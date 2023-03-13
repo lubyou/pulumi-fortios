@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewallservice category
 func LookupFirewallServiceCategory(ctx *pulumi.Context, args *LookupFirewallServiceCategoryArgs, opts ...pulumi.InvokeOption) (*LookupFirewallServiceCategoryResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallServiceCategoryResult
@@ -23,21 +22,16 @@ func LookupFirewallServiceCategory(ctx *pulumi.Context, args *LookupFirewallServ
 
 // A collection of arguments for invoking GetFirewallServiceCategory.
 type LookupFirewallServiceCategoryArgs struct {
-	// Specify the name of the desired firewallservice category.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallServiceCategory.
 type LookupFirewallServiceCategoryResult struct {
-	// Comment.
-	Comment string `pulumi:"comment"`
-	// Security Fabric global object setting.
+	Comment      string `pulumi:"comment"`
 	FabricObject string `pulumi:"fabricObject"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Service category name.
+	Id        string  `pulumi:"id"`
 	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -57,9 +51,7 @@ func LookupFirewallServiceCategoryOutput(ctx *pulumi.Context, args LookupFirewal
 
 // A collection of arguments for invoking GetFirewallServiceCategory.
 type LookupFirewallServiceCategoryOutputArgs struct {
-	// Specify the name of the desired firewallservice category.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -82,12 +74,10 @@ func (o LookupFirewallServiceCategoryResultOutput) ToLookupFirewallServiceCatego
 	return o
 }
 
-// Comment.
 func (o LookupFirewallServiceCategoryResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallServiceCategoryResult) string { return v.Comment }).(pulumi.StringOutput)
 }
 
-// Security Fabric global object setting.
 func (o LookupFirewallServiceCategoryResultOutput) FabricObject() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallServiceCategoryResult) string { return v.FabricObject }).(pulumi.StringOutput)
 }
@@ -97,7 +87,6 @@ func (o LookupFirewallServiceCategoryResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallServiceCategoryResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Service category name.
 func (o LookupFirewallServiceCategoryResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallServiceCategoryResult) string { return v.Name }).(pulumi.StringOutput)
 }

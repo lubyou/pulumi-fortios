@@ -4,27 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * BGP network table.
- *
- * > The provider supports the definition of Network in Router Bgp `fortios.RouterBgp`, and also allows the definition of separate Network resources `fortios.RouterbgpNetwork`, but do not use a `fortios.RouterBgp` with in-line Network in conjunction with any `fortios.RouterbgpNetwork` resources, otherwise conflicts and overwrite will occur.
- *
- * ## Import
- *
- * Routerbgp Network can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerbgpNetwork:RouterbgpNetwork labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerbgpNetwork:RouterbgpNetwork labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterbgpNetwork extends pulumi.CustomResource {
     /**
      * Get an existing RouterbgpNetwork resource's state with the given name, ID, and optional extra
@@ -53,29 +32,11 @@ export class RouterbgpNetwork extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterbgpNetwork.__pulumiType;
     }
 
-    /**
-     * Enable/disable route as backdoor. Valid values: `enable`, `disable`.
-     */
     public readonly backdoor!: pulumi.Output<string>;
-    /**
-     * ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
-     */
     public readonly networkImportCheck!: pulumi.Output<string>;
-    /**
-     * Network prefix.
-     */
     public readonly prefix!: pulumi.Output<string>;
-    /**
-     * Route map to modify generated route.
-     */
     public readonly routeMap!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -118,29 +79,11 @@ export class RouterbgpNetwork extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterbgpNetwork resources.
  */
 export interface RouterbgpNetworkState {
-    /**
-     * Enable/disable route as backdoor. Valid values: `enable`, `disable`.
-     */
     backdoor?: pulumi.Input<string>;
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
-     */
     networkImportCheck?: pulumi.Input<string>;
-    /**
-     * Network prefix.
-     */
     prefix?: pulumi.Input<string>;
-    /**
-     * Route map to modify generated route.
-     */
     routeMap?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -148,28 +91,10 @@ export interface RouterbgpNetworkState {
  * The set of arguments for constructing a RouterbgpNetwork resource.
  */
 export interface RouterbgpNetworkArgs {
-    /**
-     * Enable/disable route as backdoor. Valid values: `enable`, `disable`.
-     */
     backdoor?: pulumi.Input<string>;
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
-     */
     networkImportCheck?: pulumi.Input<string>;
-    /**
-     * Network prefix.
-     */
     prefix: pulumi.Input<string>;
-    /**
-     * Route map to modify generated route.
-     */
     routeMap?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

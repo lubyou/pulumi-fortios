@@ -2,26 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * ## Import
- *
- * System ApiUser can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemApiUser:SystemApiUser labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemApiUser:SystemApiUser labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemApiUser extends pulumi.CustomResource {
     /**
      * Get an existing SystemApiUser resource's state with the given name, ID, and optional extra
@@ -50,53 +34,17 @@ export class SystemApiUser extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemApiUser.__pulumiType;
     }
 
-    /**
-     * Admin user access profile.
-     */
     public readonly accprofile!: pulumi.Output<string>;
-    /**
-     * Admin user password.
-     */
     public readonly apiKey!: pulumi.Output<string | undefined>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Value for Access-Control-Allow-Origin on API responses. Avoid using '*' if possible.
-     */
     public readonly corsAllowOrigin!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Virtual domain name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable peer authentication. Valid values: `enable`, `disable`.
-     */
     public readonly peerAuth!: pulumi.Output<string>;
-    /**
-     * Peer group name.
-     */
     public readonly peerGroup!: pulumi.Output<string>;
-    /**
-     * Schedule name.
-     */
     public readonly schedule!: pulumi.Output<string>;
-    /**
-     * Trusthost. The structure of `trusthost` block is documented below.
-     */
     public readonly trusthosts!: pulumi.Output<outputs.SystemApiUserTrusthost[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Virtual domains. The structure of `vdom` block is documented below.
-     */
     public readonly vdoms!: pulumi.Output<outputs.SystemApiUserVdom[] | undefined>;
 
     /**
@@ -130,7 +78,7 @@ export class SystemApiUser extends pulumi.CustomResource {
                 throw new Error("Missing required property 'accprofile'");
             }
             resourceInputs["accprofile"] = args ? args.accprofile : undefined;
-            resourceInputs["apiKey"] = args ? args.apiKey : undefined;
+            resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["corsAllowOrigin"] = args ? args.corsAllowOrigin : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
@@ -143,6 +91,8 @@ export class SystemApiUser extends pulumi.CustomResource {
             resourceInputs["vdoms"] = args ? args.vdoms : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["apiKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemApiUser.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -151,53 +101,17 @@ export class SystemApiUser extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemApiUser resources.
  */
 export interface SystemApiUserState {
-    /**
-     * Admin user access profile.
-     */
     accprofile?: pulumi.Input<string>;
-    /**
-     * Admin user password.
-     */
     apiKey?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Value for Access-Control-Allow-Origin on API responses. Avoid using '*' if possible.
-     */
     corsAllowOrigin?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Virtual domain name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable peer authentication. Valid values: `enable`, `disable`.
-     */
     peerAuth?: pulumi.Input<string>;
-    /**
-     * Peer group name.
-     */
     peerGroup?: pulumi.Input<string>;
-    /**
-     * Schedule name.
-     */
     schedule?: pulumi.Input<string>;
-    /**
-     * Trusthost. The structure of `trusthost` block is documented below.
-     */
     trusthosts?: pulumi.Input<pulumi.Input<inputs.SystemApiUserTrusthost>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Virtual domains. The structure of `vdom` block is documented below.
-     */
     vdoms?: pulumi.Input<pulumi.Input<inputs.SystemApiUserVdom>[]>;
 }
 
@@ -205,52 +119,16 @@ export interface SystemApiUserState {
  * The set of arguments for constructing a SystemApiUser resource.
  */
 export interface SystemApiUserArgs {
-    /**
-     * Admin user access profile.
-     */
     accprofile: pulumi.Input<string>;
-    /**
-     * Admin user password.
-     */
     apiKey?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Value for Access-Control-Allow-Origin on API responses. Avoid using '*' if possible.
-     */
     corsAllowOrigin?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Virtual domain name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable peer authentication. Valid values: `enable`, `disable`.
-     */
     peerAuth?: pulumi.Input<string>;
-    /**
-     * Peer group name.
-     */
     peerGroup?: pulumi.Input<string>;
-    /**
-     * Schedule name.
-     */
     schedule?: pulumi.Input<string>;
-    /**
-     * Trusthost. The structure of `trusthost` block is documented below.
-     */
     trusthosts?: pulumi.Input<pulumi.Input<inputs.SystemApiUserTrusthost>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Virtual domains. The structure of `vdom` block is documented below.
-     */
     vdoms?: pulumi.Input<pulumi.Input<inputs.SystemApiUserVdom>[]>;
 }

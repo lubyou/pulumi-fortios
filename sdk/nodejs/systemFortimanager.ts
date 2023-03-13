@@ -4,31 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiManager. Applies to FortiOS Version `<= 7.0.1`.
- *
- * By design considerations, the feature is using the fortios.SystemCentralManagement resource as documented below.
- *
- * ## Example
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemCentralManagement("trname", {
- *     allowMonitor: "enable",
- *     allowPushConfiguration: "enable",
- *     allowPushFirmware: "enable",
- *     allowRemoteFirmwareUpgrade: "enable",
- *     encAlgorithm: "high",
- *     fmg: "\"192.168.52.177\"",
- *     includeDefaultServers: "enable",
- *     mode: "normal",
- *     type: "fortimanager",
- *     vdom: "root",
- * });
- * ```
- */
 export class SystemFortimanager extends pulumi.CustomResource {
     /**
      * Get an existing SystemFortimanager resource's state with the given name, ID, and optional extra

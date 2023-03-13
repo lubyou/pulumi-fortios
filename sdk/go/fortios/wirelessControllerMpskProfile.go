@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure MPSK profile. Applies to FortiOS Version `>= 6.4.2`.
-//
-// ## Import
-//
-// WirelessController MpskProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerMpskProfile:WirelessControllerMpskProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerMpskProfile:WirelessControllerMpskProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerMpskProfile struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Maximum number of concurrent clients that connect using the same passphrase in multiple PSK authentication (0 - 65535, default = 0, meaning no limitation).
-	MpskConcurrentClients pulumi.IntOutput `pulumi:"mpskConcurrentClients"`
-	// List of multiple PSK groups. The structure of `mpskGroup` block is documented below.
-	MpskGroups WirelessControllerMpskProfileMpskGroupArrayOutput `pulumi:"mpskGroups"`
-	// Schedule name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable   pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
+	MpskConcurrentClients pulumi.IntOutput                                  `pulumi:"mpskConcurrentClients"`
+	MpskGroups            WirelessControllerMpskProfileMpskGroupArrayOutput `pulumi:"mpskGroups"`
+	Name                  pulumi.StringOutput                               `pulumi:"name"`
+	Vdomparam             pulumi.StringPtrOutput                            `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerMpskProfile registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetWirelessControllerMpskProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerMpskProfile resources.
 type wirelessControllerMpskProfileState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Maximum number of concurrent clients that connect using the same passphrase in multiple PSK authentication (0 - 65535, default = 0, meaning no limitation).
-	MpskConcurrentClients *int `pulumi:"mpskConcurrentClients"`
-	// List of multiple PSK groups. The structure of `mpskGroup` block is documented below.
-	MpskGroups []WirelessControllerMpskProfileMpskGroup `pulumi:"mpskGroups"`
-	// Schedule name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable   *string                                  `pulumi:"dynamicSortSubtable"`
+	MpskConcurrentClients *int                                     `pulumi:"mpskConcurrentClients"`
+	MpskGroups            []WirelessControllerMpskProfileMpskGroup `pulumi:"mpskGroups"`
+	Name                  *string                                  `pulumi:"name"`
+	Vdomparam             *string                                  `pulumi:"vdomparam"`
 }
 
 type WirelessControllerMpskProfileState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Maximum number of concurrent clients that connect using the same passphrase in multiple PSK authentication (0 - 65535, default = 0, meaning no limitation).
+	DynamicSortSubtable   pulumi.StringPtrInput
 	MpskConcurrentClients pulumi.IntPtrInput
-	// List of multiple PSK groups. The structure of `mpskGroup` block is documented below.
-	MpskGroups WirelessControllerMpskProfileMpskGroupArrayInput
-	// Schedule name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MpskGroups            WirelessControllerMpskProfileMpskGroupArrayInput
+	Name                  pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (WirelessControllerMpskProfileState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (WirelessControllerMpskProfileState) ElementType() reflect.Type {
 }
 
 type wirelessControllerMpskProfileArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Maximum number of concurrent clients that connect using the same passphrase in multiple PSK authentication (0 - 65535, default = 0, meaning no limitation).
-	MpskConcurrentClients *int `pulumi:"mpskConcurrentClients"`
-	// List of multiple PSK groups. The structure of `mpskGroup` block is documented below.
-	MpskGroups []WirelessControllerMpskProfileMpskGroup `pulumi:"mpskGroups"`
-	// Schedule name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable   *string                                  `pulumi:"dynamicSortSubtable"`
+	MpskConcurrentClients *int                                     `pulumi:"mpskConcurrentClients"`
+	MpskGroups            []WirelessControllerMpskProfileMpskGroup `pulumi:"mpskGroups"`
+	Name                  *string                                  `pulumi:"name"`
+	Vdomparam             *string                                  `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerMpskProfile resource.
 type WirelessControllerMpskProfileArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Maximum number of concurrent clients that connect using the same passphrase in multiple PSK authentication (0 - 65535, default = 0, meaning no limitation).
+	DynamicSortSubtable   pulumi.StringPtrInput
 	MpskConcurrentClients pulumi.IntPtrInput
-	// List of multiple PSK groups. The structure of `mpskGroup` block is documented below.
-	MpskGroups WirelessControllerMpskProfileMpskGroupArrayInput
-	// Schedule name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MpskGroups            WirelessControllerMpskProfileMpskGroupArrayInput
+	Name                  pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (WirelessControllerMpskProfileArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *WirelessControllerMpskProfile) ToWirelessControllerMpskProfileOutputWit
 // WirelessControllerMpskProfileArrayInput is an input type that accepts WirelessControllerMpskProfileArray and WirelessControllerMpskProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerMpskProfileArrayInput` via:
 //
-//          WirelessControllerMpskProfileArray{ WirelessControllerMpskProfileArgs{...} }
+//	WirelessControllerMpskProfileArray{ WirelessControllerMpskProfileArgs{...} }
 type WirelessControllerMpskProfileArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i WirelessControllerMpskProfileArray) ToWirelessControllerMpskProfileArray
 // WirelessControllerMpskProfileMapInput is an input type that accepts WirelessControllerMpskProfileMap and WirelessControllerMpskProfileMapOutput values.
 // You can construct a concrete instance of `WirelessControllerMpskProfileMapInput` via:
 //
-//          WirelessControllerMpskProfileMap{ "key": WirelessControllerMpskProfileArgs{...} }
+//	WirelessControllerMpskProfileMap{ "key": WirelessControllerMpskProfileArgs{...} }
 type WirelessControllerMpskProfileMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,28 @@ func (o WirelessControllerMpskProfileOutput) ToWirelessControllerMpskProfileOutp
 
 func (o WirelessControllerMpskProfileOutput) ToWirelessControllerMpskProfileOutputWithContext(ctx context.Context) WirelessControllerMpskProfileOutput {
 	return o
+}
+
+func (o WirelessControllerMpskProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerMpskProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerMpskProfileOutput) MpskConcurrentClients() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerMpskProfile) pulumi.IntOutput { return v.MpskConcurrentClients }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerMpskProfileOutput) MpskGroups() WirelessControllerMpskProfileMpskGroupArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerMpskProfile) WirelessControllerMpskProfileMpskGroupArrayOutput {
+		return v.MpskGroups
+	}).(WirelessControllerMpskProfileMpskGroupArrayOutput)
+}
+
+func (o WirelessControllerMpskProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerMpskProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerMpskProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerMpskProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerMpskProfileArrayOutput struct{ *pulumi.OutputState }

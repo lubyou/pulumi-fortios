@@ -2,47 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure application control lists.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.ApplicationList("trname", {
- *     appReplacemsg: "enable",
- *     deepAppInspection: "enable",
- *     enforceDefaultAppPort: "disable",
- *     extendedLog: "disable",
- *     options: "allow-dns",
- *     otherApplicationAction: "pass",
- *     otherApplicationLog: "disable",
- *     unknownApplicationAction: "pass",
- *     unknownApplicationLog: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * Application List can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/applicationList:ApplicationList labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/applicationList:ApplicationList labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class ApplicationList extends pulumi.CustomResource {
     /**
      * Get an existing ApplicationList resource's state with the given name, ID, and optional extra
@@ -71,85 +34,25 @@ export class ApplicationList extends pulumi.CustomResource {
         return obj['__pulumiType'] === ApplicationList.__pulumiType;
     }
 
-    /**
-     * Enable/disable replacement messages for blocked applications. Valid values: `disable`, `enable`.
-     */
     public readonly appReplacemsg!: pulumi.Output<string>;
-    /**
-     * comments
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable enforcement of protocols over selected ports. Valid values: `disable`, `enable`.
-     */
     public readonly controlDefaultNetworkServices!: pulumi.Output<string>;
-    /**
-     * Enable/disable deep application inspection. Valid values: `disable`, `enable`.
-     */
     public readonly deepAppInspection!: pulumi.Output<string>;
-    /**
-     * Default network service entries. The structure of `defaultNetworkServices` block is documented below.
-     */
     public readonly defaultNetworkServices!: pulumi.Output<outputs.ApplicationListDefaultNetworkService[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable default application port enforcement for allowed applications. Valid values: `disable`, `enable`.
-     */
     public readonly enforceDefaultAppPort!: pulumi.Output<string>;
-    /**
-     * Application list entries. The structure of `entries` block is documented below.
-     */
     public readonly entries!: pulumi.Output<outputs.ApplicationListEntry[] | undefined>;
-    /**
-     * Enable/disable extended logging. Valid values: `enable`, `disable`.
-     */
     public readonly extendedLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
-     */
     public readonly forceInclusionSslDiSigs!: pulumi.Output<string>;
-    /**
-     * Parameter name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
-     */
     public readonly options!: pulumi.Output<string>;
-    /**
-     * Action for other applications. Valid values: `pass`, `block`.
-     */
     public readonly otherApplicationAction!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging for other applications. Valid values: `disable`, `enable`.
-     */
     public readonly otherApplicationLog!: pulumi.Output<string>;
-    /**
-     * P2P applications to be black listed. Valid values: `skype`, `edonkey`, `bittorrent`.
-     */
     public readonly p2pBlackList!: pulumi.Output<string>;
-    /**
-     * P2P applications to be blocklisted. Valid values: `skype`, `edonkey`, `bittorrent`.
-     */
     public readonly p2pBlockList!: pulumi.Output<string>;
-    /**
-     * Replacement message group.
-     */
     public readonly replacemsgGroup!: pulumi.Output<string>;
-    /**
-     * Pass or block traffic from unknown applications. Valid values: `pass`, `block`.
-     */
     public readonly unknownApplicationAction!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging for unknown applications. Valid values: `disable`, `enable`.
-     */
     public readonly unknownApplicationLog!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -217,85 +120,25 @@ export class ApplicationList extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ApplicationList resources.
  */
 export interface ApplicationListState {
-    /**
-     * Enable/disable replacement messages for blocked applications. Valid values: `disable`, `enable`.
-     */
     appReplacemsg?: pulumi.Input<string>;
-    /**
-     * comments
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable/disable enforcement of protocols over selected ports. Valid values: `disable`, `enable`.
-     */
     controlDefaultNetworkServices?: pulumi.Input<string>;
-    /**
-     * Enable/disable deep application inspection. Valid values: `disable`, `enable`.
-     */
     deepAppInspection?: pulumi.Input<string>;
-    /**
-     * Default network service entries. The structure of `defaultNetworkServices` block is documented below.
-     */
     defaultNetworkServices?: pulumi.Input<pulumi.Input<inputs.ApplicationListDefaultNetworkService>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable default application port enforcement for allowed applications. Valid values: `disable`, `enable`.
-     */
     enforceDefaultAppPort?: pulumi.Input<string>;
-    /**
-     * Application list entries. The structure of `entries` block is documented below.
-     */
     entries?: pulumi.Input<pulumi.Input<inputs.ApplicationListEntry>[]>;
-    /**
-     * Enable/disable extended logging. Valid values: `enable`, `disable`.
-     */
     extendedLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
-     */
     forceInclusionSslDiSigs?: pulumi.Input<string>;
-    /**
-     * Parameter name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
-     */
     options?: pulumi.Input<string>;
-    /**
-     * Action for other applications. Valid values: `pass`, `block`.
-     */
     otherApplicationAction?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging for other applications. Valid values: `disable`, `enable`.
-     */
     otherApplicationLog?: pulumi.Input<string>;
-    /**
-     * P2P applications to be black listed. Valid values: `skype`, `edonkey`, `bittorrent`.
-     */
     p2pBlackList?: pulumi.Input<string>;
-    /**
-     * P2P applications to be blocklisted. Valid values: `skype`, `edonkey`, `bittorrent`.
-     */
     p2pBlockList?: pulumi.Input<string>;
-    /**
-     * Replacement message group.
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * Pass or block traffic from unknown applications. Valid values: `pass`, `block`.
-     */
     unknownApplicationAction?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging for unknown applications. Valid values: `disable`, `enable`.
-     */
     unknownApplicationLog?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -303,84 +146,24 @@ export interface ApplicationListState {
  * The set of arguments for constructing a ApplicationList resource.
  */
 export interface ApplicationListArgs {
-    /**
-     * Enable/disable replacement messages for blocked applications. Valid values: `disable`, `enable`.
-     */
     appReplacemsg?: pulumi.Input<string>;
-    /**
-     * comments
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable/disable enforcement of protocols over selected ports. Valid values: `disable`, `enable`.
-     */
     controlDefaultNetworkServices?: pulumi.Input<string>;
-    /**
-     * Enable/disable deep application inspection. Valid values: `disable`, `enable`.
-     */
     deepAppInspection?: pulumi.Input<string>;
-    /**
-     * Default network service entries. The structure of `defaultNetworkServices` block is documented below.
-     */
     defaultNetworkServices?: pulumi.Input<pulumi.Input<inputs.ApplicationListDefaultNetworkService>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable default application port enforcement for allowed applications. Valid values: `disable`, `enable`.
-     */
     enforceDefaultAppPort?: pulumi.Input<string>;
-    /**
-     * Application list entries. The structure of `entries` block is documented below.
-     */
     entries?: pulumi.Input<pulumi.Input<inputs.ApplicationListEntry>[]>;
-    /**
-     * Enable/disable extended logging. Valid values: `enable`, `disable`.
-     */
     extendedLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
-     */
     forceInclusionSslDiSigs?: pulumi.Input<string>;
-    /**
-     * Parameter name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
-     */
     options?: pulumi.Input<string>;
-    /**
-     * Action for other applications. Valid values: `pass`, `block`.
-     */
     otherApplicationAction?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging for other applications. Valid values: `disable`, `enable`.
-     */
     otherApplicationLog?: pulumi.Input<string>;
-    /**
-     * P2P applications to be black listed. Valid values: `skype`, `edonkey`, `bittorrent`.
-     */
     p2pBlackList?: pulumi.Input<string>;
-    /**
-     * P2P applications to be blocklisted. Valid values: `skype`, `edonkey`, `bittorrent`.
-     */
     p2pBlockList?: pulumi.Input<string>;
-    /**
-     * Replacement message group.
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * Pass or block traffic from unknown applications. Valid values: `pass`, `block`.
-     */
     unknownApplicationAction?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging for unknown applications. Valid values: `disable`, `enable`.
-     */
     unknownApplicationLog?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,50 +10,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure switch object tags.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchControllerSwitchInterfaceTag(ctx, "trname", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchController SwitchInterfaceTag can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSwitchInterfaceTag:SwitchControllerSwitchInterfaceTag labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSwitchInterfaceTag:SwitchControllerSwitchInterfaceTag labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerSwitchInterfaceTag struct {
 	pulumi.CustomResourceState
 
-	// Tag name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -87,16 +47,12 @@ func GetSwitchControllerSwitchInterfaceTag(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerSwitchInterfaceTag resources.
 type switchControllerSwitchInterfaceTagState struct {
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerSwitchInterfaceTagState struct {
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -105,17 +61,13 @@ func (SwitchControllerSwitchInterfaceTagState) ElementType() reflect.Type {
 }
 
 type switchControllerSwitchInterfaceTagArgs struct {
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerSwitchInterfaceTag resource.
 type SwitchControllerSwitchInterfaceTagArgs struct {
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -145,7 +97,7 @@ func (i *SwitchControllerSwitchInterfaceTag) ToSwitchControllerSwitchInterfaceTa
 // SwitchControllerSwitchInterfaceTagArrayInput is an input type that accepts SwitchControllerSwitchInterfaceTagArray and SwitchControllerSwitchInterfaceTagArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSwitchInterfaceTagArrayInput` via:
 //
-//          SwitchControllerSwitchInterfaceTagArray{ SwitchControllerSwitchInterfaceTagArgs{...} }
+//	SwitchControllerSwitchInterfaceTagArray{ SwitchControllerSwitchInterfaceTagArgs{...} }
 type SwitchControllerSwitchInterfaceTagArrayInput interface {
 	pulumi.Input
 
@@ -170,7 +122,7 @@ func (i SwitchControllerSwitchInterfaceTagArray) ToSwitchControllerSwitchInterfa
 // SwitchControllerSwitchInterfaceTagMapInput is an input type that accepts SwitchControllerSwitchInterfaceTagMap and SwitchControllerSwitchInterfaceTagMapOutput values.
 // You can construct a concrete instance of `SwitchControllerSwitchInterfaceTagMapInput` via:
 //
-//          SwitchControllerSwitchInterfaceTagMap{ "key": SwitchControllerSwitchInterfaceTagArgs{...} }
+//	SwitchControllerSwitchInterfaceTagMap{ "key": SwitchControllerSwitchInterfaceTagArgs{...} }
 type SwitchControllerSwitchInterfaceTagMapInput interface {
 	pulumi.Input
 
@@ -204,6 +156,14 @@ func (o SwitchControllerSwitchInterfaceTagOutput) ToSwitchControllerSwitchInterf
 
 func (o SwitchControllerSwitchInterfaceTagOutput) ToSwitchControllerSwitchInterfaceTagOutputWithContext(ctx context.Context) SwitchControllerSwitchInterfaceTagOutput {
 	return o
+}
+
+func (o SwitchControllerSwitchInterfaceTagOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchInterfaceTag) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSwitchInterfaceTagOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchInterfaceTag) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerSwitchInterfaceTagArrayOutput struct{ *pulumi.OutputState }

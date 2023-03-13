@@ -4,44 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * SAML server entry configuration. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const tr3 = new fortios.UserSaml("tr3", {
- *     cert: "Fortinet_Factory",
- *     entityId: "https://1.1.1.1",
- *     idpCert: "cer11",
- *     idpEntityId: "https://1.1.1.1/acc",
- *     idpSingleLogoutUrl: "https://1.1.1.1/lo",
- *     idpSingleSignOnUrl: "https://1.1.1.1/sou",
- *     singleLogoutUrl: "https://1.1.1.1/logout",
- *     singleSignOnUrl: "https://1.1.1.1/sign",
- *     userName: "ad111",
- * });
- * ```
- *
- * ## Import
- *
- * User Saml can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userSaml:UserSaml labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userSaml:UserSaml labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserSaml extends pulumi.CustomResource {
     /**
      * Get an existing UserSaml resource's state with the given name, ID, and optional extra
@@ -70,77 +32,24 @@ export class UserSaml extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserSaml.__pulumiType;
     }
 
-    /**
-     * Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly adfsClaim!: pulumi.Output<string>;
-    /**
-     * Certificate to sign SAML messages.
-     */
+    public readonly authUrl!: pulumi.Output<string | undefined>;
     public readonly cert!: pulumi.Output<string>;
-    /**
-     * Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
-     */
     public readonly clockTolerance!: pulumi.Output<number>;
-    /**
-     * Digest Method Algorithm. (default = sha1). Valid values: `sha1`, `sha256`.
-     */
     public readonly digestMethod!: pulumi.Output<string>;
-    /**
-     * SP entity ID.
-     */
     public readonly entityId!: pulumi.Output<string>;
-    /**
-     * Group claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
-     */
     public readonly groupClaimType!: pulumi.Output<string>;
-    /**
-     * Group name in assertion statement.
-     */
     public readonly groupName!: pulumi.Output<string>;
-    /**
-     * IDP Certificate name.
-     */
     public readonly idpCert!: pulumi.Output<string>;
-    /**
-     * IDP entity ID.
-     */
     public readonly idpEntityId!: pulumi.Output<string>;
-    /**
-     * IDP single logout url.
-     */
     public readonly idpSingleLogoutUrl!: pulumi.Output<string>;
-    /**
-     * IDP single sign-on URL.
-     */
     public readonly idpSingleSignOnUrl!: pulumi.Output<string>;
-    /**
-     * Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
-     */
     public readonly limitRelaystate!: pulumi.Output<string>;
-    /**
-     * SAML server entry name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * SP single logout URL.
-     */
     public readonly singleLogoutUrl!: pulumi.Output<string>;
-    /**
-     * SP single sign-on URL.
-     */
     public readonly singleSignOnUrl!: pulumi.Output<string>;
-    /**
-     * User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
-     */
     public readonly userClaimType!: pulumi.Output<string>;
-    /**
-     * User name in assertion statement.
-     */
     public readonly userName!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -157,6 +66,7 @@ export class UserSaml extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as UserSamlState | undefined;
             resourceInputs["adfsClaim"] = state ? state.adfsClaim : undefined;
+            resourceInputs["authUrl"] = state ? state.authUrl : undefined;
             resourceInputs["cert"] = state ? state.cert : undefined;
             resourceInputs["clockTolerance"] = state ? state.clockTolerance : undefined;
             resourceInputs["digestMethod"] = state ? state.digestMethod : undefined;
@@ -192,6 +102,7 @@ export class UserSaml extends pulumi.CustomResource {
                 throw new Error("Missing required property 'singleSignOnUrl'");
             }
             resourceInputs["adfsClaim"] = args ? args.adfsClaim : undefined;
+            resourceInputs["authUrl"] = args ? args.authUrl : undefined;
             resourceInputs["cert"] = args ? args.cert : undefined;
             resourceInputs["clockTolerance"] = args ? args.clockTolerance : undefined;
             resourceInputs["digestMethod"] = args ? args.digestMethod : undefined;
@@ -219,77 +130,24 @@ export class UserSaml extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserSaml resources.
  */
 export interface UserSamlState {
-    /**
-     * Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `enable`, `disable`.
-     */
     adfsClaim?: pulumi.Input<string>;
-    /**
-     * Certificate to sign SAML messages.
-     */
+    authUrl?: pulumi.Input<string>;
     cert?: pulumi.Input<string>;
-    /**
-     * Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
-     */
     clockTolerance?: pulumi.Input<number>;
-    /**
-     * Digest Method Algorithm. (default = sha1). Valid values: `sha1`, `sha256`.
-     */
     digestMethod?: pulumi.Input<string>;
-    /**
-     * SP entity ID.
-     */
     entityId?: pulumi.Input<string>;
-    /**
-     * Group claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
-     */
     groupClaimType?: pulumi.Input<string>;
-    /**
-     * Group name in assertion statement.
-     */
     groupName?: pulumi.Input<string>;
-    /**
-     * IDP Certificate name.
-     */
     idpCert?: pulumi.Input<string>;
-    /**
-     * IDP entity ID.
-     */
     idpEntityId?: pulumi.Input<string>;
-    /**
-     * IDP single logout url.
-     */
     idpSingleLogoutUrl?: pulumi.Input<string>;
-    /**
-     * IDP single sign-on URL.
-     */
     idpSingleSignOnUrl?: pulumi.Input<string>;
-    /**
-     * Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
-     */
     limitRelaystate?: pulumi.Input<string>;
-    /**
-     * SAML server entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * SP single logout URL.
-     */
     singleLogoutUrl?: pulumi.Input<string>;
-    /**
-     * SP single sign-on URL.
-     */
     singleSignOnUrl?: pulumi.Input<string>;
-    /**
-     * User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
-     */
     userClaimType?: pulumi.Input<string>;
-    /**
-     * User name in assertion statement.
-     */
     userName?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -297,76 +155,23 @@ export interface UserSamlState {
  * The set of arguments for constructing a UserSaml resource.
  */
 export interface UserSamlArgs {
-    /**
-     * Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `enable`, `disable`.
-     */
     adfsClaim?: pulumi.Input<string>;
-    /**
-     * Certificate to sign SAML messages.
-     */
+    authUrl?: pulumi.Input<string>;
     cert?: pulumi.Input<string>;
-    /**
-     * Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
-     */
     clockTolerance?: pulumi.Input<number>;
-    /**
-     * Digest Method Algorithm. (default = sha1). Valid values: `sha1`, `sha256`.
-     */
     digestMethod?: pulumi.Input<string>;
-    /**
-     * SP entity ID.
-     */
     entityId: pulumi.Input<string>;
-    /**
-     * Group claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
-     */
     groupClaimType?: pulumi.Input<string>;
-    /**
-     * Group name in assertion statement.
-     */
     groupName?: pulumi.Input<string>;
-    /**
-     * IDP Certificate name.
-     */
     idpCert: pulumi.Input<string>;
-    /**
-     * IDP entity ID.
-     */
     idpEntityId: pulumi.Input<string>;
-    /**
-     * IDP single logout url.
-     */
     idpSingleLogoutUrl?: pulumi.Input<string>;
-    /**
-     * IDP single sign-on URL.
-     */
     idpSingleSignOnUrl: pulumi.Input<string>;
-    /**
-     * Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
-     */
     limitRelaystate?: pulumi.Input<string>;
-    /**
-     * SAML server entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * SP single logout URL.
-     */
     singleLogoutUrl?: pulumi.Input<string>;
-    /**
-     * SP single sign-on URL.
-     */
     singleSignOnUrl: pulumi.Input<string>;
-    /**
-     * User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
-     */
     userClaimType?: pulumi.Input<string>;
-    /**
-     * User name in assertion statement.
-     */
     userName?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -4,43 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure WAN metrics.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WirelessControllerHotspot20H2QpWanMetric("trname", {
- *     downlinkLoad: 0,
- *     downlinkSpeed: 2400,
- *     linkAtCapacity: "disable",
- *     linkStatus: "up",
- *     loadMeasurementDuration: 0,
- *     symmetricWanLink: "symmetric",
- *     uplinkLoad: 0,
- *     uplinkSpeed: 2400,
- * });
- * ```
- *
- * ## Import
- *
- * WirelessControllerHotspot20 H2QpWanMetric can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpWanMetric:WirelessControllerHotspot20H2QpWanMetric labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpWanMetric:WirelessControllerHotspot20H2QpWanMetric labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerHotspot20H2QpWanMetric extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerHotspot20H2QpWanMetric resource's state with the given name, ID, and optional extra
@@ -69,45 +32,15 @@ export class WirelessControllerHotspot20H2QpWanMetric extends pulumi.CustomResou
         return obj['__pulumiType'] === WirelessControllerHotspot20H2QpWanMetric.__pulumiType;
     }
 
-    /**
-     * Downlink load.
-     */
     public readonly downlinkLoad!: pulumi.Output<number>;
-    /**
-     * Downlink speed (in kilobits/s).
-     */
     public readonly downlinkSpeed!: pulumi.Output<number>;
-    /**
-     * Link at capacity. Valid values: `enable`, `disable`.
-     */
     public readonly linkAtCapacity!: pulumi.Output<string>;
-    /**
-     * Link status. Valid values: `up`, `down`, `in-test`.
-     */
     public readonly linkStatus!: pulumi.Output<string>;
-    /**
-     * Load measurement duration (in tenths of a second).
-     */
     public readonly loadMeasurementDuration!: pulumi.Output<number>;
-    /**
-     * WAN metric name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * WAN link symmetry. Valid values: `symmetric`, `asymmetric`.
-     */
     public readonly symmetricWanLink!: pulumi.Output<string>;
-    /**
-     * Uplink load.
-     */
     public readonly uplinkLoad!: pulumi.Output<number>;
-    /**
-     * Uplink speed (in kilobits/s).
-     */
     public readonly uplinkSpeed!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -155,45 +88,15 @@ export class WirelessControllerHotspot20H2QpWanMetric extends pulumi.CustomResou
  * Input properties used for looking up and filtering WirelessControllerHotspot20H2QpWanMetric resources.
  */
 export interface WirelessControllerHotspot20H2QpWanMetricState {
-    /**
-     * Downlink load.
-     */
     downlinkLoad?: pulumi.Input<number>;
-    /**
-     * Downlink speed (in kilobits/s).
-     */
     downlinkSpeed?: pulumi.Input<number>;
-    /**
-     * Link at capacity. Valid values: `enable`, `disable`.
-     */
     linkAtCapacity?: pulumi.Input<string>;
-    /**
-     * Link status. Valid values: `up`, `down`, `in-test`.
-     */
     linkStatus?: pulumi.Input<string>;
-    /**
-     * Load measurement duration (in tenths of a second).
-     */
     loadMeasurementDuration?: pulumi.Input<number>;
-    /**
-     * WAN metric name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * WAN link symmetry. Valid values: `symmetric`, `asymmetric`.
-     */
     symmetricWanLink?: pulumi.Input<string>;
-    /**
-     * Uplink load.
-     */
     uplinkLoad?: pulumi.Input<number>;
-    /**
-     * Uplink speed (in kilobits/s).
-     */
     uplinkSpeed?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -201,44 +104,14 @@ export interface WirelessControllerHotspot20H2QpWanMetricState {
  * The set of arguments for constructing a WirelessControllerHotspot20H2QpWanMetric resource.
  */
 export interface WirelessControllerHotspot20H2QpWanMetricArgs {
-    /**
-     * Downlink load.
-     */
     downlinkLoad?: pulumi.Input<number>;
-    /**
-     * Downlink speed (in kilobits/s).
-     */
     downlinkSpeed?: pulumi.Input<number>;
-    /**
-     * Link at capacity. Valid values: `enable`, `disable`.
-     */
     linkAtCapacity?: pulumi.Input<string>;
-    /**
-     * Link status. Valid values: `up`, `down`, `in-test`.
-     */
     linkStatus?: pulumi.Input<string>;
-    /**
-     * Load measurement duration (in tenths of a second).
-     */
     loadMeasurementDuration?: pulumi.Input<number>;
-    /**
-     * WAN metric name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * WAN link symmetry. Valid values: `symmetric`, `asymmetric`.
-     */
     symmetricWanLink?: pulumi.Input<string>;
-    /**
-     * Uplink load.
-     */
     uplinkLoad?: pulumi.Input<number>;
-    /**
-     * Uplink speed (in kilobits/s).
-     */
     uplinkSpeed?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

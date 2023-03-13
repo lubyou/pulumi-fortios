@@ -4,56 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure Kerberos keytab entries.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
- *
- * const trname2 = new fortios.UserLdap("trname2", {
- *     accountKeyFilter: `(&(userPrincipalName=%s)(!(UserAccountControl:1.2.840.113556.1.4.803:=2)))`,
- *     accountKeyProcessing: "same",
- *     cnid: "cn",
- *     dn: "EIWNCIEW",
- *     groupMemberCheck: "user-attr",
- *     groupObjectFilter: "(&(objectcategory=group)(member=*))",
- *     memberAttr: "memberOf",
- *     passwordExpiryWarning: "disable",
- *     passwordRenewal: "disable",
- *     port: 389,
- *     secure: "disable",
- *     server: "1.1.1.1",
- *     serverIdentityCheck: "disable",
- *     sourceIp: "0.0.0.0",
- *     sslMinProtoVersion: "default",
- *     type: "simple",
- * });
- * const trname = new fortios.UserKrbKeytab("trname", {
- *     keytab: "ZXdlY2VxcmVxd3Jld3E=",
- *     ldapServer: trname2.name,
- *     principal: "testprin",
- * });
- * ```
- *
- * ## Import
- *
- * User KrbKeytab can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userKrbKeytab:UserKrbKeytab labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userKrbKeytab:UserKrbKeytab labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserKrbKeytab extends pulumi.CustomResource {
     /**
      * Get an existing UserKrbKeytab resource's state with the given name, ID, and optional extra
@@ -82,29 +32,11 @@ export class UserKrbKeytab extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserKrbKeytab.__pulumiType;
     }
 
-    /**
-     * base64 coded keytab file containing a pre-shared key.
-     */
     public readonly keytab!: pulumi.Output<string>;
-    /**
-     * LDAP server name.
-     */
     public readonly ldapServer!: pulumi.Output<string>;
-    /**
-     * Kerberos keytab entry name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable parsing PAC data in the ticket. Valid values: `enable`, `disable`.
-     */
     public readonly pacData!: pulumi.Output<string>;
-    /**
-     * Kerberos service principal, e.g. HTTP/fgt.example.com@EXAMPLE.COM.
-     */
     public readonly principal!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -137,7 +69,7 @@ export class UserKrbKeytab extends pulumi.CustomResource {
             if ((!args || args.principal === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'principal'");
             }
-            resourceInputs["keytab"] = args ? args.keytab : undefined;
+            resourceInputs["keytab"] = args?.keytab ? pulumi.secret(args.keytab) : undefined;
             resourceInputs["ldapServer"] = args ? args.ldapServer : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["pacData"] = args ? args.pacData : undefined;
@@ -145,6 +77,8 @@ export class UserKrbKeytab extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["keytab"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(UserKrbKeytab.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -153,29 +87,11 @@ export class UserKrbKeytab extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserKrbKeytab resources.
  */
 export interface UserKrbKeytabState {
-    /**
-     * base64 coded keytab file containing a pre-shared key.
-     */
     keytab?: pulumi.Input<string>;
-    /**
-     * LDAP server name.
-     */
     ldapServer?: pulumi.Input<string>;
-    /**
-     * Kerberos keytab entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable parsing PAC data in the ticket. Valid values: `enable`, `disable`.
-     */
     pacData?: pulumi.Input<string>;
-    /**
-     * Kerberos service principal, e.g. HTTP/fgt.example.com@EXAMPLE.COM.
-     */
     principal?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -183,28 +99,10 @@ export interface UserKrbKeytabState {
  * The set of arguments for constructing a UserKrbKeytab resource.
  */
 export interface UserKrbKeytabArgs {
-    /**
-     * base64 coded keytab file containing a pre-shared key.
-     */
     keytab: pulumi.Input<string>;
-    /**
-     * LDAP server name.
-     */
     ldapServer: pulumi.Input<string>;
-    /**
-     * Kerberos keytab entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable parsing PAC data in the ticket. Valid values: `enable`, `disable`.
-     */
     pacData?: pulumi.Input<string>;
-    /**
-     * Kerberos service principal, e.g. HTTP/fgt.example.com@EXAMPLE.COM.
-     */
     principal: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,130 +10,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiClient endpoint control profiles. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewEndpointControlProfile(ctx, "trname", &fortios.EndpointControlProfileArgs{
-// 			DeviceGroups: EndpointControlProfileDeviceGroupArray{
-// 				&EndpointControlProfileDeviceGroupArgs{
-// 					Name: pulumi.String("Mobile Devices"),
-// 				},
-// 			},
-// 			ForticlientAndroidSettings: &EndpointControlProfileForticlientAndroidSettingsArgs{
-// 				DisableWfWhenProtected:     pulumi.String("enable"),
-// 				ForticlientAdvancedVpn:     pulumi.String("disable"),
-// 				ForticlientVpnProvisioning: pulumi.String("disable"),
-// 				ForticlientWf:              pulumi.String("disable"),
-// 			},
-// 			ForticlientIosSettings: &EndpointControlProfileForticlientIosSettingsArgs{
-// 				ClientVpnProvisioning:          pulumi.String("disable"),
-// 				DisableWfWhenProtected:         pulumi.String("enable"),
-// 				DistributeConfigurationProfile: pulumi.String("disable"),
-// 				ForticlientWf:                  pulumi.String("disable"),
-// 			},
-// 			ForticlientWinmacSettings: &EndpointControlProfileForticlientWinmacSettingsArgs{
-// 				AvRealtimeProtection:                       pulumi.String("disable"),
-// 				AvSignatureUpToDate:                        pulumi.String("disable"),
-// 				ForticlientApplicationFirewall:             pulumi.String("disable"),
-// 				ForticlientAv:                              pulumi.String("disable"),
-// 				ForticlientEmsCompliance:                   pulumi.String("disable"),
-// 				ForticlientEmsComplianceAction:             pulumi.String("warning"),
-// 				ForticlientLinuxVer:                        pulumi.String("5.4.1"),
-// 				ForticlientLogUpload:                       pulumi.String("enable"),
-// 				ForticlientLogUploadLevel:                  pulumi.String("traffic vulnerability event"),
-// 				ForticlientMacVer:                          pulumi.String("5.4.1"),
-// 				ForticlientMinimumSoftwareVersion:          pulumi.String("disable"),
-// 				ForticlientRegistrationComplianceAction:    pulumi.String("warning"),
-// 				ForticlientSecurityPosture:                 pulumi.String("disable"),
-// 				ForticlientSecurityPostureComplianceAction: pulumi.String("warning"),
-// 				ForticlientSystemCompliance:                pulumi.String("enable"),
-// 				ForticlientSystemComplianceAction:          pulumi.String("warning"),
-// 				ForticlientVulnScan:                        pulumi.String("enable"),
-// 				ForticlientVulnScanComplianceAction:        pulumi.String("warning"),
-// 				ForticlientVulnScanEnforce:                 pulumi.String("high"),
-// 				ForticlientVulnScanEnforceGrace:            pulumi.Int(1),
-// 				ForticlientVulnScanExempt:                  pulumi.String("disable"),
-// 				ForticlientWf:                              pulumi.String("disable"),
-// 				ForticlientWinVer:                          pulumi.String("5.4.1"),
-// 				OsAvSoftwareInstalled:                      pulumi.String("disable"),
-// 				SandboxAnalysis:                            pulumi.String("disable"),
-// 			},
-// 			OnNetAddrs: EndpointControlProfileOnNetAddrArray{
-// 				&EndpointControlProfileOnNetAddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			ProfileName: pulumi.String("1"),
-// 			Users: EndpointControlProfileUserArray{
-// 				&EndpointControlProfileUserArgs{
-// 					Name: pulumi.String("guest"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// EndpointControl Profile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/endpointControlProfile:EndpointControlProfile labelname {{profile_name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/endpointControlProfile:EndpointControlProfile labelname {{profile_name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type EndpointControlProfile struct {
 	pulumi.CustomResourceState
 
-	// Description.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Device groups. The structure of `deviceGroups` block is documented below.
-	DeviceGroups EndpointControlProfileDeviceGroupArrayOutput `pulumi:"deviceGroups"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// FortiClient settings for Android platform. The structure of `forticlientAndroidSettings` block is documented below.
-	ForticlientAndroidSettings EndpointControlProfileForticlientAndroidSettingsPtrOutput `pulumi:"forticlientAndroidSettings"`
-	// FortiClient settings for iOS platform. The structure of `forticlientIosSettings` block is documented below.
-	ForticlientIosSettings EndpointControlProfileForticlientIosSettingsPtrOutput `pulumi:"forticlientIosSettings"`
-	// FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
-	ForticlientWinmacSettings EndpointControlProfileForticlientWinmacSettingsPtrOutput `pulumi:"forticlientWinmacSettings"`
-	// Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
-	OnNetAddrs EndpointControlProfileOnNetAddrArrayOutput `pulumi:"onNetAddrs"`
-	// Profile name.
-	ProfileName pulumi.StringOutput `pulumi:"profileName"`
-	// Select an endpoint control replacement message override group from available options.
-	ReplacemsgOverrideGroup pulumi.StringOutput `pulumi:"replacemsgOverrideGroup"`
-	// Source addresses. The structure of `srcAddr` block is documented below.
-	SrcAddrs EndpointControlProfileSrcAddrArrayOutput `pulumi:"srcAddrs"`
-	// User groups. The structure of `userGroups` block is documented below.
-	UserGroups EndpointControlProfileUserGroupArrayOutput `pulumi:"userGroups"`
-	// Users. The structure of `users` block is documented below.
-	Users EndpointControlProfileUserArrayOutput `pulumi:"users"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Description                pulumi.StringPtrOutput                                 `pulumi:"description"`
+	DeviceGroups               EndpointControlProfileDeviceGroupArrayOutput           `pulumi:"deviceGroups"`
+	DynamicSortSubtable        pulumi.StringPtrOutput                                 `pulumi:"dynamicSortSubtable"`
+	ForticlientAndroidSettings EndpointControlProfileForticlientAndroidSettingsOutput `pulumi:"forticlientAndroidSettings"`
+	ForticlientIosSettings     EndpointControlProfileForticlientIosSettingsOutput     `pulumi:"forticlientIosSettings"`
+	ForticlientWinmacSettings  EndpointControlProfileForticlientWinmacSettingsOutput  `pulumi:"forticlientWinmacSettings"`
+	OnNetAddrs                 EndpointControlProfileOnNetAddrArrayOutput             `pulumi:"onNetAddrs"`
+	ProfileName                pulumi.StringOutput                                    `pulumi:"profileName"`
+	ReplacemsgOverrideGroup    pulumi.StringOutput                                    `pulumi:"replacemsgOverrideGroup"`
+	SrcAddrs                   EndpointControlProfileSrcAddrArrayOutput               `pulumi:"srcAddrs"`
+	UserGroups                 EndpointControlProfileUserGroupArrayOutput             `pulumi:"userGroups"`
+	Users                      EndpointControlProfileUserArrayOutput                  `pulumi:"users"`
+	Vdomparam                  pulumi.StringPtrOutput                                 `pulumi:"vdomparam"`
 }
 
 // NewEndpointControlProfile registers a new resource with the given unique name, arguments, and options.
@@ -166,61 +58,35 @@ func GetEndpointControlProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EndpointControlProfile resources.
 type endpointControlProfileState struct {
-	// Description.
-	Description *string `pulumi:"description"`
-	// Device groups. The structure of `deviceGroups` block is documented below.
-	DeviceGroups []EndpointControlProfileDeviceGroup `pulumi:"deviceGroups"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// FortiClient settings for Android platform. The structure of `forticlientAndroidSettings` block is documented below.
+	Description                *string                                           `pulumi:"description"`
+	DeviceGroups               []EndpointControlProfileDeviceGroup               `pulumi:"deviceGroups"`
+	DynamicSortSubtable        *string                                           `pulumi:"dynamicSortSubtable"`
 	ForticlientAndroidSettings *EndpointControlProfileForticlientAndroidSettings `pulumi:"forticlientAndroidSettings"`
-	// FortiClient settings for iOS platform. The structure of `forticlientIosSettings` block is documented below.
-	ForticlientIosSettings *EndpointControlProfileForticlientIosSettings `pulumi:"forticlientIosSettings"`
-	// FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
-	ForticlientWinmacSettings *EndpointControlProfileForticlientWinmacSettings `pulumi:"forticlientWinmacSettings"`
-	// Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
-	OnNetAddrs []EndpointControlProfileOnNetAddr `pulumi:"onNetAddrs"`
-	// Profile name.
-	ProfileName *string `pulumi:"profileName"`
-	// Select an endpoint control replacement message override group from available options.
-	ReplacemsgOverrideGroup *string `pulumi:"replacemsgOverrideGroup"`
-	// Source addresses. The structure of `srcAddr` block is documented below.
-	SrcAddrs []EndpointControlProfileSrcAddr `pulumi:"srcAddrs"`
-	// User groups. The structure of `userGroups` block is documented below.
-	UserGroups []EndpointControlProfileUserGroup `pulumi:"userGroups"`
-	// Users. The structure of `users` block is documented below.
-	Users []EndpointControlProfileUser `pulumi:"users"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ForticlientIosSettings     *EndpointControlProfileForticlientIosSettings     `pulumi:"forticlientIosSettings"`
+	ForticlientWinmacSettings  *EndpointControlProfileForticlientWinmacSettings  `pulumi:"forticlientWinmacSettings"`
+	OnNetAddrs                 []EndpointControlProfileOnNetAddr                 `pulumi:"onNetAddrs"`
+	ProfileName                *string                                           `pulumi:"profileName"`
+	ReplacemsgOverrideGroup    *string                                           `pulumi:"replacemsgOverrideGroup"`
+	SrcAddrs                   []EndpointControlProfileSrcAddr                   `pulumi:"srcAddrs"`
+	UserGroups                 []EndpointControlProfileUserGroup                 `pulumi:"userGroups"`
+	Users                      []EndpointControlProfileUser                      `pulumi:"users"`
+	Vdomparam                  *string                                           `pulumi:"vdomparam"`
 }
 
 type EndpointControlProfileState struct {
-	// Description.
-	Description pulumi.StringPtrInput
-	// Device groups. The structure of `deviceGroups` block is documented below.
-	DeviceGroups EndpointControlProfileDeviceGroupArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// FortiClient settings for Android platform. The structure of `forticlientAndroidSettings` block is documented below.
+	Description                pulumi.StringPtrInput
+	DeviceGroups               EndpointControlProfileDeviceGroupArrayInput
+	DynamicSortSubtable        pulumi.StringPtrInput
 	ForticlientAndroidSettings EndpointControlProfileForticlientAndroidSettingsPtrInput
-	// FortiClient settings for iOS platform. The structure of `forticlientIosSettings` block is documented below.
-	ForticlientIosSettings EndpointControlProfileForticlientIosSettingsPtrInput
-	// FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
-	ForticlientWinmacSettings EndpointControlProfileForticlientWinmacSettingsPtrInput
-	// Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
-	OnNetAddrs EndpointControlProfileOnNetAddrArrayInput
-	// Profile name.
-	ProfileName pulumi.StringPtrInput
-	// Select an endpoint control replacement message override group from available options.
-	ReplacemsgOverrideGroup pulumi.StringPtrInput
-	// Source addresses. The structure of `srcAddr` block is documented below.
-	SrcAddrs EndpointControlProfileSrcAddrArrayInput
-	// User groups. The structure of `userGroups` block is documented below.
-	UserGroups EndpointControlProfileUserGroupArrayInput
-	// Users. The structure of `users` block is documented below.
-	Users EndpointControlProfileUserArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ForticlientIosSettings     EndpointControlProfileForticlientIosSettingsPtrInput
+	ForticlientWinmacSettings  EndpointControlProfileForticlientWinmacSettingsPtrInput
+	OnNetAddrs                 EndpointControlProfileOnNetAddrArrayInput
+	ProfileName                pulumi.StringPtrInput
+	ReplacemsgOverrideGroup    pulumi.StringPtrInput
+	SrcAddrs                   EndpointControlProfileSrcAddrArrayInput
+	UserGroups                 EndpointControlProfileUserGroupArrayInput
+	Users                      EndpointControlProfileUserArrayInput
+	Vdomparam                  pulumi.StringPtrInput
 }
 
 func (EndpointControlProfileState) ElementType() reflect.Type {
@@ -228,62 +94,36 @@ func (EndpointControlProfileState) ElementType() reflect.Type {
 }
 
 type endpointControlProfileArgs struct {
-	// Description.
-	Description *string `pulumi:"description"`
-	// Device groups. The structure of `deviceGroups` block is documented below.
-	DeviceGroups []EndpointControlProfileDeviceGroup `pulumi:"deviceGroups"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// FortiClient settings for Android platform. The structure of `forticlientAndroidSettings` block is documented below.
+	Description                *string                                           `pulumi:"description"`
+	DeviceGroups               []EndpointControlProfileDeviceGroup               `pulumi:"deviceGroups"`
+	DynamicSortSubtable        *string                                           `pulumi:"dynamicSortSubtable"`
 	ForticlientAndroidSettings *EndpointControlProfileForticlientAndroidSettings `pulumi:"forticlientAndroidSettings"`
-	// FortiClient settings for iOS platform. The structure of `forticlientIosSettings` block is documented below.
-	ForticlientIosSettings *EndpointControlProfileForticlientIosSettings `pulumi:"forticlientIosSettings"`
-	// FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
-	ForticlientWinmacSettings *EndpointControlProfileForticlientWinmacSettings `pulumi:"forticlientWinmacSettings"`
-	// Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
-	OnNetAddrs []EndpointControlProfileOnNetAddr `pulumi:"onNetAddrs"`
-	// Profile name.
-	ProfileName *string `pulumi:"profileName"`
-	// Select an endpoint control replacement message override group from available options.
-	ReplacemsgOverrideGroup *string `pulumi:"replacemsgOverrideGroup"`
-	// Source addresses. The structure of `srcAddr` block is documented below.
-	SrcAddrs []EndpointControlProfileSrcAddr `pulumi:"srcAddrs"`
-	// User groups. The structure of `userGroups` block is documented below.
-	UserGroups []EndpointControlProfileUserGroup `pulumi:"userGroups"`
-	// Users. The structure of `users` block is documented below.
-	Users []EndpointControlProfileUser `pulumi:"users"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ForticlientIosSettings     *EndpointControlProfileForticlientIosSettings     `pulumi:"forticlientIosSettings"`
+	ForticlientWinmacSettings  *EndpointControlProfileForticlientWinmacSettings  `pulumi:"forticlientWinmacSettings"`
+	OnNetAddrs                 []EndpointControlProfileOnNetAddr                 `pulumi:"onNetAddrs"`
+	ProfileName                *string                                           `pulumi:"profileName"`
+	ReplacemsgOverrideGroup    *string                                           `pulumi:"replacemsgOverrideGroup"`
+	SrcAddrs                   []EndpointControlProfileSrcAddr                   `pulumi:"srcAddrs"`
+	UserGroups                 []EndpointControlProfileUserGroup                 `pulumi:"userGroups"`
+	Users                      []EndpointControlProfileUser                      `pulumi:"users"`
+	Vdomparam                  *string                                           `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a EndpointControlProfile resource.
 type EndpointControlProfileArgs struct {
-	// Description.
-	Description pulumi.StringPtrInput
-	// Device groups. The structure of `deviceGroups` block is documented below.
-	DeviceGroups EndpointControlProfileDeviceGroupArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// FortiClient settings for Android platform. The structure of `forticlientAndroidSettings` block is documented below.
+	Description                pulumi.StringPtrInput
+	DeviceGroups               EndpointControlProfileDeviceGroupArrayInput
+	DynamicSortSubtable        pulumi.StringPtrInput
 	ForticlientAndroidSettings EndpointControlProfileForticlientAndroidSettingsPtrInput
-	// FortiClient settings for iOS platform. The structure of `forticlientIosSettings` block is documented below.
-	ForticlientIosSettings EndpointControlProfileForticlientIosSettingsPtrInput
-	// FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
-	ForticlientWinmacSettings EndpointControlProfileForticlientWinmacSettingsPtrInput
-	// Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
-	OnNetAddrs EndpointControlProfileOnNetAddrArrayInput
-	// Profile name.
-	ProfileName pulumi.StringPtrInput
-	// Select an endpoint control replacement message override group from available options.
-	ReplacemsgOverrideGroup pulumi.StringPtrInput
-	// Source addresses. The structure of `srcAddr` block is documented below.
-	SrcAddrs EndpointControlProfileSrcAddrArrayInput
-	// User groups. The structure of `userGroups` block is documented below.
-	UserGroups EndpointControlProfileUserGroupArrayInput
-	// Users. The structure of `users` block is documented below.
-	Users EndpointControlProfileUserArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ForticlientIosSettings     EndpointControlProfileForticlientIosSettingsPtrInput
+	ForticlientWinmacSettings  EndpointControlProfileForticlientWinmacSettingsPtrInput
+	OnNetAddrs                 EndpointControlProfileOnNetAddrArrayInput
+	ProfileName                pulumi.StringPtrInput
+	ReplacemsgOverrideGroup    pulumi.StringPtrInput
+	SrcAddrs                   EndpointControlProfileSrcAddrArrayInput
+	UserGroups                 EndpointControlProfileUserGroupArrayInput
+	Users                      EndpointControlProfileUserArrayInput
+	Vdomparam                  pulumi.StringPtrInput
 }
 
 func (EndpointControlProfileArgs) ElementType() reflect.Type {
@@ -312,7 +152,7 @@ func (i *EndpointControlProfile) ToEndpointControlProfileOutputWithContext(ctx c
 // EndpointControlProfileArrayInput is an input type that accepts EndpointControlProfileArray and EndpointControlProfileArrayOutput values.
 // You can construct a concrete instance of `EndpointControlProfileArrayInput` via:
 //
-//          EndpointControlProfileArray{ EndpointControlProfileArgs{...} }
+//	EndpointControlProfileArray{ EndpointControlProfileArgs{...} }
 type EndpointControlProfileArrayInput interface {
 	pulumi.Input
 
@@ -337,7 +177,7 @@ func (i EndpointControlProfileArray) ToEndpointControlProfileArrayOutputWithCont
 // EndpointControlProfileMapInput is an input type that accepts EndpointControlProfileMap and EndpointControlProfileMapOutput values.
 // You can construct a concrete instance of `EndpointControlProfileMapInput` via:
 //
-//          EndpointControlProfileMap{ "key": EndpointControlProfileArgs{...} }
+//	EndpointControlProfileMap{ "key": EndpointControlProfileArgs{...} }
 type EndpointControlProfileMapInput interface {
 	pulumi.Input
 
@@ -371,6 +211,64 @@ func (o EndpointControlProfileOutput) ToEndpointControlProfileOutput() EndpointC
 
 func (o EndpointControlProfileOutput) ToEndpointControlProfileOutputWithContext(ctx context.Context) EndpointControlProfileOutput {
 	return o
+}
+
+func (o EndpointControlProfileOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EndpointControlProfile) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o EndpointControlProfileOutput) DeviceGroups() EndpointControlProfileDeviceGroupArrayOutput {
+	return o.ApplyT(func(v *EndpointControlProfile) EndpointControlProfileDeviceGroupArrayOutput { return v.DeviceGroups }).(EndpointControlProfileDeviceGroupArrayOutput)
+}
+
+func (o EndpointControlProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EndpointControlProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o EndpointControlProfileOutput) ForticlientAndroidSettings() EndpointControlProfileForticlientAndroidSettingsOutput {
+	return o.ApplyT(func(v *EndpointControlProfile) EndpointControlProfileForticlientAndroidSettingsOutput {
+		return v.ForticlientAndroidSettings
+	}).(EndpointControlProfileForticlientAndroidSettingsOutput)
+}
+
+func (o EndpointControlProfileOutput) ForticlientIosSettings() EndpointControlProfileForticlientIosSettingsOutput {
+	return o.ApplyT(func(v *EndpointControlProfile) EndpointControlProfileForticlientIosSettingsOutput {
+		return v.ForticlientIosSettings
+	}).(EndpointControlProfileForticlientIosSettingsOutput)
+}
+
+func (o EndpointControlProfileOutput) ForticlientWinmacSettings() EndpointControlProfileForticlientWinmacSettingsOutput {
+	return o.ApplyT(func(v *EndpointControlProfile) EndpointControlProfileForticlientWinmacSettingsOutput {
+		return v.ForticlientWinmacSettings
+	}).(EndpointControlProfileForticlientWinmacSettingsOutput)
+}
+
+func (o EndpointControlProfileOutput) OnNetAddrs() EndpointControlProfileOnNetAddrArrayOutput {
+	return o.ApplyT(func(v *EndpointControlProfile) EndpointControlProfileOnNetAddrArrayOutput { return v.OnNetAddrs }).(EndpointControlProfileOnNetAddrArrayOutput)
+}
+
+func (o EndpointControlProfileOutput) ProfileName() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlProfile) pulumi.StringOutput { return v.ProfileName }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlProfileOutput) ReplacemsgOverrideGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlProfile) pulumi.StringOutput { return v.ReplacemsgOverrideGroup }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlProfileOutput) SrcAddrs() EndpointControlProfileSrcAddrArrayOutput {
+	return o.ApplyT(func(v *EndpointControlProfile) EndpointControlProfileSrcAddrArrayOutput { return v.SrcAddrs }).(EndpointControlProfileSrcAddrArrayOutput)
+}
+
+func (o EndpointControlProfileOutput) UserGroups() EndpointControlProfileUserGroupArrayOutput {
+	return o.ApplyT(func(v *EndpointControlProfile) EndpointControlProfileUserGroupArrayOutput { return v.UserGroups }).(EndpointControlProfileUserGroupArrayOutput)
+}
+
+func (o EndpointControlProfileOutput) Users() EndpointControlProfileUserArrayOutput {
+	return o.ApplyT(func(v *EndpointControlProfile) EndpointControlProfileUserArrayOutput { return v.Users }).(EndpointControlProfileUserArrayOutput)
+}
+
+func (o EndpointControlProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EndpointControlProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type EndpointControlProfileArrayOutput struct{ *pulumi.OutputState }

@@ -7,60 +7,16 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure custom languages.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemCustomLanguage(ctx, "trname", &fortios.SystemCustomLanguageArgs{
-// 			Filename: pulumi.String("en"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System CustomLanguage can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemCustomLanguage:SystemCustomLanguage labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemCustomLanguage:SystemCustomLanguage labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemCustomLanguage struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Custom language file path.
-	Filename pulumi.StringOutput `pulumi:"filename"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comments  pulumi.StringPtrOutput `pulumi:"comments"`
+	Filename  pulumi.StringOutput    `pulumi:"filename"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -97,24 +53,16 @@ func GetSystemCustomLanguage(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemCustomLanguage resources.
 type systemCustomLanguageState struct {
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Custom language file path.
-	Filename *string `pulumi:"filename"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comments  *string `pulumi:"comments"`
+	Filename  *string `pulumi:"filename"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemCustomLanguageState struct {
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Custom language file path.
-	Filename pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comments  pulumi.StringPtrInput
+	Filename  pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -123,25 +71,17 @@ func (SystemCustomLanguageState) ElementType() reflect.Type {
 }
 
 type systemCustomLanguageArgs struct {
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Custom language file path.
-	Filename string `pulumi:"filename"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comments  *string `pulumi:"comments"`
+	Filename  string  `pulumi:"filename"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemCustomLanguage resource.
 type SystemCustomLanguageArgs struct {
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Custom language file path.
-	Filename pulumi.StringInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comments  pulumi.StringPtrInput
+	Filename  pulumi.StringInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -171,7 +111,7 @@ func (i *SystemCustomLanguage) ToSystemCustomLanguageOutputWithContext(ctx conte
 // SystemCustomLanguageArrayInput is an input type that accepts SystemCustomLanguageArray and SystemCustomLanguageArrayOutput values.
 // You can construct a concrete instance of `SystemCustomLanguageArrayInput` via:
 //
-//          SystemCustomLanguageArray{ SystemCustomLanguageArgs{...} }
+//	SystemCustomLanguageArray{ SystemCustomLanguageArgs{...} }
 type SystemCustomLanguageArrayInput interface {
 	pulumi.Input
 
@@ -196,7 +136,7 @@ func (i SystemCustomLanguageArray) ToSystemCustomLanguageArrayOutputWithContext(
 // SystemCustomLanguageMapInput is an input type that accepts SystemCustomLanguageMap and SystemCustomLanguageMapOutput values.
 // You can construct a concrete instance of `SystemCustomLanguageMapInput` via:
 //
-//          SystemCustomLanguageMap{ "key": SystemCustomLanguageArgs{...} }
+//	SystemCustomLanguageMap{ "key": SystemCustomLanguageArgs{...} }
 type SystemCustomLanguageMapInput interface {
 	pulumi.Input
 
@@ -230,6 +170,22 @@ func (o SystemCustomLanguageOutput) ToSystemCustomLanguageOutput() SystemCustomL
 
 func (o SystemCustomLanguageOutput) ToSystemCustomLanguageOutputWithContext(ctx context.Context) SystemCustomLanguageOutput {
 	return o
+}
+
+func (o SystemCustomLanguageOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemCustomLanguage) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemCustomLanguageOutput) Filename() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCustomLanguage) pulumi.StringOutput { return v.Filename }).(pulumi.StringOutput)
+}
+
+func (o SystemCustomLanguageOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCustomLanguage) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemCustomLanguageOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemCustomLanguage) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemCustomLanguageArrayOutput struct{ *pulumi.OutputState }

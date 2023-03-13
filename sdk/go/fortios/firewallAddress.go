@@ -10,142 +10,52 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv4 addresses.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallAddress(ctx, "trname", &fortios.FirewallAddressArgs{
-// 			AllowRouting:        pulumi.String("disable"),
-// 			AssociatedInterface: pulumi.String("port2"),
-// 			Color:               pulumi.Int(3),
-// 			EndIp:               pulumi.String("255.255.255.0"),
-// 			StartIp:             pulumi.String("22.1.1.0"),
-// 			Subnet:              pulumi.String("22.1.1.0 255.255.255.0"),
-// 			Type:                pulumi.String("ipmask"),
-// 			Visibility:          pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall Address can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAddress:FirewallAddress labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAddress:FirewallAddress labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallAddress struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable use of this address in the static route configuration. Valid values: `enable`, `disable`.
-	AllowRouting pulumi.StringOutput `pulumi:"allowRouting"`
-	// Network interface associated with address.
-	AssociatedInterface pulumi.StringOutput `pulumi:"associatedInterface"`
-	// Defines the minimal TTL of individual IP addresses in FQDN cache measured in seconds.
-	CacheTtl pulumi.IntOutput `pulumi:"cacheTtl"`
-	// SPT (System Posture Token) value. Valid values: `unknown`, `healthy`, `quarantine`, `checkup`, `transient`, `infected`.
-	ClearpassSpt pulumi.StringOutput `pulumi:"clearpassSpt"`
-	// Color of icon on the GUI.
-	Color pulumi.IntOutput `pulumi:"color"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// IP addresses associated to a specific country.
-	Country pulumi.StringOutput `pulumi:"country"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Final IP address (inclusive) in the range for the address.
-	EndIp pulumi.StringOutput `pulumi:"endIp"`
-	// Last MAC address in the range.
-	EndMac pulumi.StringOutput `pulumi:"endMac"`
-	// Endpoint group name.
-	EpgName pulumi.StringOutput `pulumi:"epgName"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
-	// Match criteria filter.
-	Filter pulumi.StringPtrOutput `pulumi:"filter"`
-	// Fully Qualified Domain Name address.
-	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
-	// FSSO group(s). The structure of `fssoGroup` block is documented below.
-	FssoGroups FirewallAddressFssoGroupArrayOutput `pulumi:"fssoGroups"`
-	// Name of interface whose IP address is to be used.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// IP address list. The structure of `list` block is documented below.
-	Lists FirewallAddressListArrayOutput `pulumi:"lists"`
-	// MAC address ranges <start>[-<end>] separated by space.
-	Macaddrs FirewallAddressMacaddrArrayOutput `pulumi:"macaddrs"`
-	// Tag name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
-	NodeIpOnly pulumi.StringOutput `pulumi:"nodeIpOnly"`
-	// Object ID for NSX.
-	ObjId pulumi.StringPtrOutput `pulumi:"objId"`
-	// Tag of dynamic address object.
-	ObjTag pulumi.StringOutput `pulumi:"objTag"`
-	// Object type. Valid values: `ip`, `mac`.
-	ObjType pulumi.StringOutput `pulumi:"objType"`
-	// Organization domain name (Syntax: organization/domain).
-	Organization pulumi.StringOutput `pulumi:"organization"`
-	// Policy group name.
-	PolicyGroup pulumi.StringOutput `pulumi:"policyGroup"`
-	// SDN.
-	Sdn pulumi.StringOutput `pulumi:"sdn"`
-	// Type of addresses to collect. Valid values: `private`, `public`, `all`.
-	SdnAddrType pulumi.StringOutput `pulumi:"sdnAddrType"`
-	// SDN Tag.
-	SdnTag pulumi.StringOutput `pulumi:"sdnTag"`
-	// First IP address (inclusive) in the range for the address.
-	StartIp pulumi.StringOutput `pulumi:"startIp"`
-	// First MAC address in the range.
-	StartMac pulumi.StringOutput `pulumi:"startMac"`
-	// Sub-type of address.
-	SubType pulumi.StringOutput `pulumi:"subType"`
-	// IP address and subnet mask of address.
-	Subnet pulumi.StringOutput `pulumi:"subnet"`
-	// Subnet name.
-	SubnetName pulumi.StringOutput `pulumi:"subnetName"`
-	// Tag detection level of dynamic address object.
-	TagDetectionLevel pulumi.StringOutput `pulumi:"tagDetectionLevel"`
-	// Tag type of dynamic address object.
-	TagType pulumi.StringOutput `pulumi:"tagType"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings FirewallAddressTaggingArrayOutput `pulumi:"taggings"`
-	// Tenant.
-	Tenant pulumi.StringOutput `pulumi:"tenant"`
-	// Type of address.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringOutput `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable address visibility in the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringOutput `pulumi:"visibility"`
-	// IP address and wildcard netmask.
-	Wildcard pulumi.StringOutput `pulumi:"wildcard"`
-	// Fully Qualified Domain Name with wildcard characters.
-	WildcardFqdn pulumi.StringOutput `pulumi:"wildcardFqdn"`
+	AllowRouting        pulumi.StringOutput                 `pulumi:"allowRouting"`
+	AssociatedInterface pulumi.StringPtrOutput              `pulumi:"associatedInterface"`
+	CacheTtl            pulumi.IntPtrOutput                 `pulumi:"cacheTtl"`
+	ClearpassSpt        pulumi.StringOutput                 `pulumi:"clearpassSpt"`
+	Color               pulumi.IntPtrOutput                 `pulumi:"color"`
+	Comment             pulumi.StringPtrOutput              `pulumi:"comment"`
+	Country             pulumi.StringPtrOutput              `pulumi:"country"`
+	DynamicSortSubtable pulumi.StringPtrOutput              `pulumi:"dynamicSortSubtable"`
+	EndIp               pulumi.StringOutput                 `pulumi:"endIp"`
+	EndMac              pulumi.StringOutput                 `pulumi:"endMac"`
+	EpgName             pulumi.StringPtrOutput              `pulumi:"epgName"`
+	FabricObject        pulumi.StringOutput                 `pulumi:"fabricObject"`
+	Filter              pulumi.StringPtrOutput              `pulumi:"filter"`
+	Fqdn                pulumi.StringPtrOutput              `pulumi:"fqdn"`
+	FssoGroups          FirewallAddressFssoGroupArrayOutput `pulumi:"fssoGroups"`
+	Interface           pulumi.StringPtrOutput              `pulumi:"interface"`
+	Lists               FirewallAddressListArrayOutput      `pulumi:"lists"`
+	Macaddrs            FirewallAddressMacaddrArrayOutput   `pulumi:"macaddrs"`
+	Name                pulumi.StringOutput                 `pulumi:"name"`
+	NodeIpOnly          pulumi.StringOutput                 `pulumi:"nodeIpOnly"`
+	ObjId               pulumi.StringPtrOutput              `pulumi:"objId"`
+	ObjTag              pulumi.StringPtrOutput              `pulumi:"objTag"`
+	ObjType             pulumi.StringOutput                 `pulumi:"objType"`
+	Organization        pulumi.StringPtrOutput              `pulumi:"organization"`
+	PolicyGroup         pulumi.StringPtrOutput              `pulumi:"policyGroup"`
+	Sdn                 pulumi.StringPtrOutput              `pulumi:"sdn"`
+	SdnAddrType         pulumi.StringOutput                 `pulumi:"sdnAddrType"`
+	SdnTag              pulumi.StringPtrOutput              `pulumi:"sdnTag"`
+	StartIp             pulumi.StringOutput                 `pulumi:"startIp"`
+	StartMac            pulumi.StringOutput                 `pulumi:"startMac"`
+	SubType             pulumi.StringOutput                 `pulumi:"subType"`
+	Subnet              pulumi.StringOutput                 `pulumi:"subnet"`
+	SubnetName          pulumi.StringPtrOutput              `pulumi:"subnetName"`
+	TagDetectionLevel   pulumi.StringPtrOutput              `pulumi:"tagDetectionLevel"`
+	TagType             pulumi.StringPtrOutput              `pulumi:"tagType"`
+	Taggings            FirewallAddressTaggingArrayOutput   `pulumi:"taggings"`
+	Tenant              pulumi.StringPtrOutput              `pulumi:"tenant"`
+	Type                pulumi.StringOutput                 `pulumi:"type"`
+	Uuid                pulumi.StringOutput                 `pulumi:"uuid"`
+	Vdomparam           pulumi.StringPtrOutput              `pulumi:"vdomparam"`
+	Visibility          pulumi.StringPtrOutput              `pulumi:"visibility"`
+	Wildcard            pulumi.StringOutput                 `pulumi:"wildcard"`
+	WildcardFqdn        pulumi.StringPtrOutput              `pulumi:"wildcardFqdn"`
 }
 
 // NewFirewallAddress registers a new resource with the given unique name, arguments, and options.
@@ -178,181 +88,95 @@ func GetFirewallAddress(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallAddress resources.
 type firewallAddressState struct {
-	// Enable/disable use of this address in the static route configuration. Valid values: `enable`, `disable`.
-	AllowRouting *string `pulumi:"allowRouting"`
-	// Network interface associated with address.
-	AssociatedInterface *string `pulumi:"associatedInterface"`
-	// Defines the minimal TTL of individual IP addresses in FQDN cache measured in seconds.
-	CacheTtl *int `pulumi:"cacheTtl"`
-	// SPT (System Posture Token) value. Valid values: `unknown`, `healthy`, `quarantine`, `checkup`, `transient`, `infected`.
-	ClearpassSpt *string `pulumi:"clearpassSpt"`
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// IP addresses associated to a specific country.
-	Country *string `pulumi:"country"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Final IP address (inclusive) in the range for the address.
-	EndIp *string `pulumi:"endIp"`
-	// Last MAC address in the range.
-	EndMac *string `pulumi:"endMac"`
-	// Endpoint group name.
-	EpgName *string `pulumi:"epgName"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// Match criteria filter.
-	Filter *string `pulumi:"filter"`
-	// Fully Qualified Domain Name address.
-	Fqdn *string `pulumi:"fqdn"`
-	// FSSO group(s). The structure of `fssoGroup` block is documented below.
-	FssoGroups []FirewallAddressFssoGroup `pulumi:"fssoGroups"`
-	// Name of interface whose IP address is to be used.
-	Interface *string `pulumi:"interface"`
-	// IP address list. The structure of `list` block is documented below.
-	Lists []FirewallAddressList `pulumi:"lists"`
-	// MAC address ranges <start>[-<end>] separated by space.
-	Macaddrs []FirewallAddressMacaddr `pulumi:"macaddrs"`
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
-	NodeIpOnly *string `pulumi:"nodeIpOnly"`
-	// Object ID for NSX.
-	ObjId *string `pulumi:"objId"`
-	// Tag of dynamic address object.
-	ObjTag *string `pulumi:"objTag"`
-	// Object type. Valid values: `ip`, `mac`.
-	ObjType *string `pulumi:"objType"`
-	// Organization domain name (Syntax: organization/domain).
-	Organization *string `pulumi:"organization"`
-	// Policy group name.
-	PolicyGroup *string `pulumi:"policyGroup"`
-	// SDN.
-	Sdn *string `pulumi:"sdn"`
-	// Type of addresses to collect. Valid values: `private`, `public`, `all`.
-	SdnAddrType *string `pulumi:"sdnAddrType"`
-	// SDN Tag.
-	SdnTag *string `pulumi:"sdnTag"`
-	// First IP address (inclusive) in the range for the address.
-	StartIp *string `pulumi:"startIp"`
-	// First MAC address in the range.
-	StartMac *string `pulumi:"startMac"`
-	// Sub-type of address.
-	SubType *string `pulumi:"subType"`
-	// IP address and subnet mask of address.
-	Subnet *string `pulumi:"subnet"`
-	// Subnet name.
-	SubnetName *string `pulumi:"subnetName"`
-	// Tag detection level of dynamic address object.
-	TagDetectionLevel *string `pulumi:"tagDetectionLevel"`
-	// Tag type of dynamic address object.
-	TagType *string `pulumi:"tagType"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []FirewallAddressTagging `pulumi:"taggings"`
-	// Tenant.
-	Tenant *string `pulumi:"tenant"`
-	// Type of address.
-	Type *string `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable address visibility in the GUI. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
-	// IP address and wildcard netmask.
-	Wildcard *string `pulumi:"wildcard"`
-	// Fully Qualified Domain Name with wildcard characters.
-	WildcardFqdn *string `pulumi:"wildcardFqdn"`
+	AllowRouting        *string                    `pulumi:"allowRouting"`
+	AssociatedInterface *string                    `pulumi:"associatedInterface"`
+	CacheTtl            *int                       `pulumi:"cacheTtl"`
+	ClearpassSpt        *string                    `pulumi:"clearpassSpt"`
+	Color               *int                       `pulumi:"color"`
+	Comment             *string                    `pulumi:"comment"`
+	Country             *string                    `pulumi:"country"`
+	DynamicSortSubtable *string                    `pulumi:"dynamicSortSubtable"`
+	EndIp               *string                    `pulumi:"endIp"`
+	EndMac              *string                    `pulumi:"endMac"`
+	EpgName             *string                    `pulumi:"epgName"`
+	FabricObject        *string                    `pulumi:"fabricObject"`
+	Filter              *string                    `pulumi:"filter"`
+	Fqdn                *string                    `pulumi:"fqdn"`
+	FssoGroups          []FirewallAddressFssoGroup `pulumi:"fssoGroups"`
+	Interface           *string                    `pulumi:"interface"`
+	Lists               []FirewallAddressList      `pulumi:"lists"`
+	Macaddrs            []FirewallAddressMacaddr   `pulumi:"macaddrs"`
+	Name                *string                    `pulumi:"name"`
+	NodeIpOnly          *string                    `pulumi:"nodeIpOnly"`
+	ObjId               *string                    `pulumi:"objId"`
+	ObjTag              *string                    `pulumi:"objTag"`
+	ObjType             *string                    `pulumi:"objType"`
+	Organization        *string                    `pulumi:"organization"`
+	PolicyGroup         *string                    `pulumi:"policyGroup"`
+	Sdn                 *string                    `pulumi:"sdn"`
+	SdnAddrType         *string                    `pulumi:"sdnAddrType"`
+	SdnTag              *string                    `pulumi:"sdnTag"`
+	StartIp             *string                    `pulumi:"startIp"`
+	StartMac            *string                    `pulumi:"startMac"`
+	SubType             *string                    `pulumi:"subType"`
+	Subnet              *string                    `pulumi:"subnet"`
+	SubnetName          *string                    `pulumi:"subnetName"`
+	TagDetectionLevel   *string                    `pulumi:"tagDetectionLevel"`
+	TagType             *string                    `pulumi:"tagType"`
+	Taggings            []FirewallAddressTagging   `pulumi:"taggings"`
+	Tenant              *string                    `pulumi:"tenant"`
+	Type                *string                    `pulumi:"type"`
+	Uuid                *string                    `pulumi:"uuid"`
+	Vdomparam           *string                    `pulumi:"vdomparam"`
+	Visibility          *string                    `pulumi:"visibility"`
+	Wildcard            *string                    `pulumi:"wildcard"`
+	WildcardFqdn        *string                    `pulumi:"wildcardFqdn"`
 }
 
 type FirewallAddressState struct {
-	// Enable/disable use of this address in the static route configuration. Valid values: `enable`, `disable`.
-	AllowRouting pulumi.StringPtrInput
-	// Network interface associated with address.
+	AllowRouting        pulumi.StringPtrInput
 	AssociatedInterface pulumi.StringPtrInput
-	// Defines the minimal TTL of individual IP addresses in FQDN cache measured in seconds.
-	CacheTtl pulumi.IntPtrInput
-	// SPT (System Posture Token) value. Valid values: `unknown`, `healthy`, `quarantine`, `checkup`, `transient`, `infected`.
-	ClearpassSpt pulumi.StringPtrInput
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// IP addresses associated to a specific country.
-	Country pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	CacheTtl            pulumi.IntPtrInput
+	ClearpassSpt        pulumi.StringPtrInput
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
+	Country             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Final IP address (inclusive) in the range for the address.
-	EndIp pulumi.StringPtrInput
-	// Last MAC address in the range.
-	EndMac pulumi.StringPtrInput
-	// Endpoint group name.
-	EpgName pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// Match criteria filter.
-	Filter pulumi.StringPtrInput
-	// Fully Qualified Domain Name address.
-	Fqdn pulumi.StringPtrInput
-	// FSSO group(s). The structure of `fssoGroup` block is documented below.
-	FssoGroups FirewallAddressFssoGroupArrayInput
-	// Name of interface whose IP address is to be used.
-	Interface pulumi.StringPtrInput
-	// IP address list. The structure of `list` block is documented below.
-	Lists FirewallAddressListArrayInput
-	// MAC address ranges <start>[-<end>] separated by space.
-	Macaddrs FirewallAddressMacaddrArrayInput
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
-	NodeIpOnly pulumi.StringPtrInput
-	// Object ID for NSX.
-	ObjId pulumi.StringPtrInput
-	// Tag of dynamic address object.
-	ObjTag pulumi.StringPtrInput
-	// Object type. Valid values: `ip`, `mac`.
-	ObjType pulumi.StringPtrInput
-	// Organization domain name (Syntax: organization/domain).
-	Organization pulumi.StringPtrInput
-	// Policy group name.
-	PolicyGroup pulumi.StringPtrInput
-	// SDN.
-	Sdn pulumi.StringPtrInput
-	// Type of addresses to collect. Valid values: `private`, `public`, `all`.
-	SdnAddrType pulumi.StringPtrInput
-	// SDN Tag.
-	SdnTag pulumi.StringPtrInput
-	// First IP address (inclusive) in the range for the address.
-	StartIp pulumi.StringPtrInput
-	// First MAC address in the range.
-	StartMac pulumi.StringPtrInput
-	// Sub-type of address.
-	SubType pulumi.StringPtrInput
-	// IP address and subnet mask of address.
-	Subnet pulumi.StringPtrInput
-	// Subnet name.
-	SubnetName pulumi.StringPtrInput
-	// Tag detection level of dynamic address object.
-	TagDetectionLevel pulumi.StringPtrInput
-	// Tag type of dynamic address object.
-	TagType pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings FirewallAddressTaggingArrayInput
-	// Tenant.
-	Tenant pulumi.StringPtrInput
-	// Type of address.
-	Type pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable address visibility in the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
-	// IP address and wildcard netmask.
-	Wildcard pulumi.StringPtrInput
-	// Fully Qualified Domain Name with wildcard characters.
-	WildcardFqdn pulumi.StringPtrInput
+	EndIp               pulumi.StringPtrInput
+	EndMac              pulumi.StringPtrInput
+	EpgName             pulumi.StringPtrInput
+	FabricObject        pulumi.StringPtrInput
+	Filter              pulumi.StringPtrInput
+	Fqdn                pulumi.StringPtrInput
+	FssoGroups          FirewallAddressFssoGroupArrayInput
+	Interface           pulumi.StringPtrInput
+	Lists               FirewallAddressListArrayInput
+	Macaddrs            FirewallAddressMacaddrArrayInput
+	Name                pulumi.StringPtrInput
+	NodeIpOnly          pulumi.StringPtrInput
+	ObjId               pulumi.StringPtrInput
+	ObjTag              pulumi.StringPtrInput
+	ObjType             pulumi.StringPtrInput
+	Organization        pulumi.StringPtrInput
+	PolicyGroup         pulumi.StringPtrInput
+	Sdn                 pulumi.StringPtrInput
+	SdnAddrType         pulumi.StringPtrInput
+	SdnTag              pulumi.StringPtrInput
+	StartIp             pulumi.StringPtrInput
+	StartMac            pulumi.StringPtrInput
+	SubType             pulumi.StringPtrInput
+	Subnet              pulumi.StringPtrInput
+	SubnetName          pulumi.StringPtrInput
+	TagDetectionLevel   pulumi.StringPtrInput
+	TagType             pulumi.StringPtrInput
+	Taggings            FirewallAddressTaggingArrayInput
+	Tenant              pulumi.StringPtrInput
+	Type                pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
+	Wildcard            pulumi.StringPtrInput
+	WildcardFqdn        pulumi.StringPtrInput
 }
 
 func (FirewallAddressState) ElementType() reflect.Type {
@@ -360,182 +184,96 @@ func (FirewallAddressState) ElementType() reflect.Type {
 }
 
 type firewallAddressArgs struct {
-	// Enable/disable use of this address in the static route configuration. Valid values: `enable`, `disable`.
-	AllowRouting *string `pulumi:"allowRouting"`
-	// Network interface associated with address.
-	AssociatedInterface *string `pulumi:"associatedInterface"`
-	// Defines the minimal TTL of individual IP addresses in FQDN cache measured in seconds.
-	CacheTtl *int `pulumi:"cacheTtl"`
-	// SPT (System Posture Token) value. Valid values: `unknown`, `healthy`, `quarantine`, `checkup`, `transient`, `infected`.
-	ClearpassSpt *string `pulumi:"clearpassSpt"`
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// IP addresses associated to a specific country.
-	Country *string `pulumi:"country"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Final IP address (inclusive) in the range for the address.
-	EndIp *string `pulumi:"endIp"`
-	// Last MAC address in the range.
-	EndMac *string `pulumi:"endMac"`
-	// Endpoint group name.
-	EpgName *string `pulumi:"epgName"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// Match criteria filter.
-	Filter *string `pulumi:"filter"`
-	// Fully Qualified Domain Name address.
-	Fqdn *string `pulumi:"fqdn"`
-	// FSSO group(s). The structure of `fssoGroup` block is documented below.
-	FssoGroups []FirewallAddressFssoGroup `pulumi:"fssoGroups"`
-	// Name of interface whose IP address is to be used.
-	Interface *string `pulumi:"interface"`
-	// IP address list. The structure of `list` block is documented below.
-	Lists []FirewallAddressList `pulumi:"lists"`
-	// MAC address ranges <start>[-<end>] separated by space.
-	Macaddrs []FirewallAddressMacaddr `pulumi:"macaddrs"`
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
-	NodeIpOnly *string `pulumi:"nodeIpOnly"`
-	// Object ID for NSX.
-	ObjId *string `pulumi:"objId"`
-	// Tag of dynamic address object.
-	ObjTag *string `pulumi:"objTag"`
-	// Object type. Valid values: `ip`, `mac`.
-	ObjType *string `pulumi:"objType"`
-	// Organization domain name (Syntax: organization/domain).
-	Organization *string `pulumi:"organization"`
-	// Policy group name.
-	PolicyGroup *string `pulumi:"policyGroup"`
-	// SDN.
-	Sdn *string `pulumi:"sdn"`
-	// Type of addresses to collect. Valid values: `private`, `public`, `all`.
-	SdnAddrType *string `pulumi:"sdnAddrType"`
-	// SDN Tag.
-	SdnTag *string `pulumi:"sdnTag"`
-	// First IP address (inclusive) in the range for the address.
-	StartIp *string `pulumi:"startIp"`
-	// First MAC address in the range.
-	StartMac *string `pulumi:"startMac"`
-	// Sub-type of address.
-	SubType *string `pulumi:"subType"`
-	// IP address and subnet mask of address.
-	Subnet *string `pulumi:"subnet"`
-	// Subnet name.
-	SubnetName *string `pulumi:"subnetName"`
-	// Tag detection level of dynamic address object.
-	TagDetectionLevel *string `pulumi:"tagDetectionLevel"`
-	// Tag type of dynamic address object.
-	TagType *string `pulumi:"tagType"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []FirewallAddressTagging `pulumi:"taggings"`
-	// Tenant.
-	Tenant *string `pulumi:"tenant"`
-	// Type of address.
-	Type *string `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable address visibility in the GUI. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
-	// IP address and wildcard netmask.
-	Wildcard *string `pulumi:"wildcard"`
-	// Fully Qualified Domain Name with wildcard characters.
-	WildcardFqdn *string `pulumi:"wildcardFqdn"`
+	AllowRouting        *string                    `pulumi:"allowRouting"`
+	AssociatedInterface *string                    `pulumi:"associatedInterface"`
+	CacheTtl            *int                       `pulumi:"cacheTtl"`
+	ClearpassSpt        *string                    `pulumi:"clearpassSpt"`
+	Color               *int                       `pulumi:"color"`
+	Comment             *string                    `pulumi:"comment"`
+	Country             *string                    `pulumi:"country"`
+	DynamicSortSubtable *string                    `pulumi:"dynamicSortSubtable"`
+	EndIp               *string                    `pulumi:"endIp"`
+	EndMac              *string                    `pulumi:"endMac"`
+	EpgName             *string                    `pulumi:"epgName"`
+	FabricObject        *string                    `pulumi:"fabricObject"`
+	Filter              *string                    `pulumi:"filter"`
+	Fqdn                *string                    `pulumi:"fqdn"`
+	FssoGroups          []FirewallAddressFssoGroup `pulumi:"fssoGroups"`
+	Interface           *string                    `pulumi:"interface"`
+	Lists               []FirewallAddressList      `pulumi:"lists"`
+	Macaddrs            []FirewallAddressMacaddr   `pulumi:"macaddrs"`
+	Name                *string                    `pulumi:"name"`
+	NodeIpOnly          *string                    `pulumi:"nodeIpOnly"`
+	ObjId               *string                    `pulumi:"objId"`
+	ObjTag              *string                    `pulumi:"objTag"`
+	ObjType             *string                    `pulumi:"objType"`
+	Organization        *string                    `pulumi:"organization"`
+	PolicyGroup         *string                    `pulumi:"policyGroup"`
+	Sdn                 *string                    `pulumi:"sdn"`
+	SdnAddrType         *string                    `pulumi:"sdnAddrType"`
+	SdnTag              *string                    `pulumi:"sdnTag"`
+	StartIp             *string                    `pulumi:"startIp"`
+	StartMac            *string                    `pulumi:"startMac"`
+	SubType             *string                    `pulumi:"subType"`
+	Subnet              *string                    `pulumi:"subnet"`
+	SubnetName          *string                    `pulumi:"subnetName"`
+	TagDetectionLevel   *string                    `pulumi:"tagDetectionLevel"`
+	TagType             *string                    `pulumi:"tagType"`
+	Taggings            []FirewallAddressTagging   `pulumi:"taggings"`
+	Tenant              *string                    `pulumi:"tenant"`
+	Type                *string                    `pulumi:"type"`
+	Uuid                *string                    `pulumi:"uuid"`
+	Vdomparam           *string                    `pulumi:"vdomparam"`
+	Visibility          *string                    `pulumi:"visibility"`
+	Wildcard            *string                    `pulumi:"wildcard"`
+	WildcardFqdn        *string                    `pulumi:"wildcardFqdn"`
 }
 
 // The set of arguments for constructing a FirewallAddress resource.
 type FirewallAddressArgs struct {
-	// Enable/disable use of this address in the static route configuration. Valid values: `enable`, `disable`.
-	AllowRouting pulumi.StringPtrInput
-	// Network interface associated with address.
+	AllowRouting        pulumi.StringPtrInput
 	AssociatedInterface pulumi.StringPtrInput
-	// Defines the minimal TTL of individual IP addresses in FQDN cache measured in seconds.
-	CacheTtl pulumi.IntPtrInput
-	// SPT (System Posture Token) value. Valid values: `unknown`, `healthy`, `quarantine`, `checkup`, `transient`, `infected`.
-	ClearpassSpt pulumi.StringPtrInput
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// IP addresses associated to a specific country.
-	Country pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	CacheTtl            pulumi.IntPtrInput
+	ClearpassSpt        pulumi.StringPtrInput
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
+	Country             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Final IP address (inclusive) in the range for the address.
-	EndIp pulumi.StringPtrInput
-	// Last MAC address in the range.
-	EndMac pulumi.StringPtrInput
-	// Endpoint group name.
-	EpgName pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// Match criteria filter.
-	Filter pulumi.StringPtrInput
-	// Fully Qualified Domain Name address.
-	Fqdn pulumi.StringPtrInput
-	// FSSO group(s). The structure of `fssoGroup` block is documented below.
-	FssoGroups FirewallAddressFssoGroupArrayInput
-	// Name of interface whose IP address is to be used.
-	Interface pulumi.StringPtrInput
-	// IP address list. The structure of `list` block is documented below.
-	Lists FirewallAddressListArrayInput
-	// MAC address ranges <start>[-<end>] separated by space.
-	Macaddrs FirewallAddressMacaddrArrayInput
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
-	NodeIpOnly pulumi.StringPtrInput
-	// Object ID for NSX.
-	ObjId pulumi.StringPtrInput
-	// Tag of dynamic address object.
-	ObjTag pulumi.StringPtrInput
-	// Object type. Valid values: `ip`, `mac`.
-	ObjType pulumi.StringPtrInput
-	// Organization domain name (Syntax: organization/domain).
-	Organization pulumi.StringPtrInput
-	// Policy group name.
-	PolicyGroup pulumi.StringPtrInput
-	// SDN.
-	Sdn pulumi.StringPtrInput
-	// Type of addresses to collect. Valid values: `private`, `public`, `all`.
-	SdnAddrType pulumi.StringPtrInput
-	// SDN Tag.
-	SdnTag pulumi.StringPtrInput
-	// First IP address (inclusive) in the range for the address.
-	StartIp pulumi.StringPtrInput
-	// First MAC address in the range.
-	StartMac pulumi.StringPtrInput
-	// Sub-type of address.
-	SubType pulumi.StringPtrInput
-	// IP address and subnet mask of address.
-	Subnet pulumi.StringPtrInput
-	// Subnet name.
-	SubnetName pulumi.StringPtrInput
-	// Tag detection level of dynamic address object.
-	TagDetectionLevel pulumi.StringPtrInput
-	// Tag type of dynamic address object.
-	TagType pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings FirewallAddressTaggingArrayInput
-	// Tenant.
-	Tenant pulumi.StringPtrInput
-	// Type of address.
-	Type pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable address visibility in the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
-	// IP address and wildcard netmask.
-	Wildcard pulumi.StringPtrInput
-	// Fully Qualified Domain Name with wildcard characters.
-	WildcardFqdn pulumi.StringPtrInput
+	EndIp               pulumi.StringPtrInput
+	EndMac              pulumi.StringPtrInput
+	EpgName             pulumi.StringPtrInput
+	FabricObject        pulumi.StringPtrInput
+	Filter              pulumi.StringPtrInput
+	Fqdn                pulumi.StringPtrInput
+	FssoGroups          FirewallAddressFssoGroupArrayInput
+	Interface           pulumi.StringPtrInput
+	Lists               FirewallAddressListArrayInput
+	Macaddrs            FirewallAddressMacaddrArrayInput
+	Name                pulumi.StringPtrInput
+	NodeIpOnly          pulumi.StringPtrInput
+	ObjId               pulumi.StringPtrInput
+	ObjTag              pulumi.StringPtrInput
+	ObjType             pulumi.StringPtrInput
+	Organization        pulumi.StringPtrInput
+	PolicyGroup         pulumi.StringPtrInput
+	Sdn                 pulumi.StringPtrInput
+	SdnAddrType         pulumi.StringPtrInput
+	SdnTag              pulumi.StringPtrInput
+	StartIp             pulumi.StringPtrInput
+	StartMac            pulumi.StringPtrInput
+	SubType             pulumi.StringPtrInput
+	Subnet              pulumi.StringPtrInput
+	SubnetName          pulumi.StringPtrInput
+	TagDetectionLevel   pulumi.StringPtrInput
+	TagType             pulumi.StringPtrInput
+	Taggings            FirewallAddressTaggingArrayInput
+	Tenant              pulumi.StringPtrInput
+	Type                pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
+	Wildcard            pulumi.StringPtrInput
+	WildcardFqdn        pulumi.StringPtrInput
 }
 
 func (FirewallAddressArgs) ElementType() reflect.Type {
@@ -564,7 +302,7 @@ func (i *FirewallAddress) ToFirewallAddressOutputWithContext(ctx context.Context
 // FirewallAddressArrayInput is an input type that accepts FirewallAddressArray and FirewallAddressArrayOutput values.
 // You can construct a concrete instance of `FirewallAddressArrayInput` via:
 //
-//          FirewallAddressArray{ FirewallAddressArgs{...} }
+//	FirewallAddressArray{ FirewallAddressArgs{...} }
 type FirewallAddressArrayInput interface {
 	pulumi.Input
 
@@ -589,7 +327,7 @@ func (i FirewallAddressArray) ToFirewallAddressArrayOutputWithContext(ctx contex
 // FirewallAddressMapInput is an input type that accepts FirewallAddressMap and FirewallAddressMapOutput values.
 // You can construct a concrete instance of `FirewallAddressMapInput` via:
 //
-//          FirewallAddressMap{ "key": FirewallAddressArgs{...} }
+//	FirewallAddressMap{ "key": FirewallAddressArgs{...} }
 type FirewallAddressMapInput interface {
 	pulumi.Input
 
@@ -623,6 +361,178 @@ func (o FirewallAddressOutput) ToFirewallAddressOutput() FirewallAddressOutput {
 
 func (o FirewallAddressOutput) ToFirewallAddressOutputWithContext(ctx context.Context) FirewallAddressOutput {
 	return o
+}
+
+func (o FirewallAddressOutput) AllowRouting() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.AllowRouting }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) AssociatedInterface() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.AssociatedInterface }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) CacheTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.IntPtrOutput { return v.CacheTtl }).(pulumi.IntPtrOutput)
+}
+
+func (o FirewallAddressOutput) ClearpassSpt() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.ClearpassSpt }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) Color() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.IntPtrOutput { return v.Color }).(pulumi.IntPtrOutput)
+}
+
+func (o FirewallAddressOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) Country() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.Country }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) EndIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.EndIp }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) EndMac() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.EndMac }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) EpgName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.EpgName }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) Fqdn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.Fqdn }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) FssoGroups() FirewallAddressFssoGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallAddress) FirewallAddressFssoGroupArrayOutput { return v.FssoGroups }).(FirewallAddressFssoGroupArrayOutput)
+}
+
+func (o FirewallAddressOutput) Interface() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.Interface }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) Lists() FirewallAddressListArrayOutput {
+	return o.ApplyT(func(v *FirewallAddress) FirewallAddressListArrayOutput { return v.Lists }).(FirewallAddressListArrayOutput)
+}
+
+func (o FirewallAddressOutput) Macaddrs() FirewallAddressMacaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallAddress) FirewallAddressMacaddrArrayOutput { return v.Macaddrs }).(FirewallAddressMacaddrArrayOutput)
+}
+
+func (o FirewallAddressOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) NodeIpOnly() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.NodeIpOnly }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) ObjId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.ObjId }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) ObjTag() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.ObjTag }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) ObjType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.ObjType }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) Organization() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.Organization }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) PolicyGroup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.PolicyGroup }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) Sdn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.Sdn }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) SdnAddrType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.SdnAddrType }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) SdnTag() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.SdnTag }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) StartIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.StartIp }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) StartMac() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.StartMac }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) SubType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.SubType }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) Subnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.Subnet }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) SubnetName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.SubnetName }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) TagDetectionLevel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.TagDetectionLevel }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) TagType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.TagType }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) Taggings() FirewallAddressTaggingArrayOutput {
+	return o.ApplyT(func(v *FirewallAddress) FirewallAddressTaggingArrayOutput { return v.Taggings }).(FirewallAddressTaggingArrayOutput)
+}
+
+func (o FirewallAddressOutput) Tenant() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.Tenant }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) Visibility() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.Visibility }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) Wildcard() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringOutput { return v.Wildcard }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddressOutput) WildcardFqdn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.WildcardFqdn }).(pulumi.StringPtrOutput)
 }
 
 type FirewallAddressArrayOutput struct{ *pulumi.OutputState }

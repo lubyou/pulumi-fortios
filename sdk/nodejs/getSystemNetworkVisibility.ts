@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios system networkvisibility
- */
 export function getSystemNetworkVisibility(args?: GetSystemNetworkVisibilityArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemNetworkVisibilityResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemNetworkVisibility:GetSystemNetworkVisibility", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getSystemNetworkVisibility(args?: GetSystemNetworkVisibilityArgs
  * A collection of arguments for invoking GetSystemNetworkVisibility.
  */
 export interface GetSystemNetworkVisibilityArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -33,47 +24,25 @@ export interface GetSystemNetworkVisibilityArgs {
  * A collection of values returned by GetSystemNetworkVisibility.
  */
 export interface GetSystemNetworkVisibilityResult {
-    /**
-     * Enable/disable logging of destination hostname visibility.
-     */
     readonly destinationHostnameVisibility: string;
-    /**
-     * Enable/disable logging of destination geographical location visibility.
-     */
     readonly destinationLocation: string;
-    /**
-     * Enable/disable logging of destination visibility.
-     */
     readonly destinationVisibility: string;
-    /**
-     * Limit of the number of hostname table entries (0 - 50000).
-     */
     readonly hostnameLimit: number;
-    /**
-     * TTL of hostname table entries (60 - 86400).
-     */
     readonly hostnameTtl: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Enable/disable logging of source geographical location visibility.
-     */
     readonly sourceLocation: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemNetworkVisibilityOutput(args?: GetSystemNetworkVisibilityOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemNetworkVisibilityResult> {
-    return pulumi.output(args).apply(a => getSystemNetworkVisibility(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemNetworkVisibility(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemNetworkVisibility.
  */
 export interface GetSystemNetworkVisibilityOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

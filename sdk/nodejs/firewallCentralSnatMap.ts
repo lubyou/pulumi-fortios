@@ -2,56 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure central SNAT policies.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallCentralSnatMap("trname", {
- *     dstAddrs: [{
- *         name: "all",
- *     }],
- *     dstintfs: [{
- *         name: "port3",
- *     }],
- *     nat: "enable",
- *     natPort: "0",
- *     origAddrs: [{
- *         name: "all",
- *     }],
- *     origPort: "0",
- *     policyid: 1,
- *     protocol: 33,
- *     srcintfs: [{
- *         name: "port1",
- *     }],
- *     status: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall CentralSnatMap can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallCentralSnatMap:FirewallCentralSnatMap labelname {{policyid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallCentralSnatMap:FirewallCentralSnatMap labelname {{policyid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallCentralSnatMap extends pulumi.CustomResource {
     /**
      * Get an existing FirewallCentralSnatMap resource's state with the given name, ID, and optional extra
@@ -80,89 +34,26 @@ export class FirewallCentralSnatMap extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallCentralSnatMap.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * IPv6 Destination address. The structure of `dstAddr6` block is documented below.
-     */
     public readonly dstAddr6s!: pulumi.Output<outputs.FirewallCentralSnatMapDstAddr6[] | undefined>;
-    /**
-     * Destination address name from available addresses. The structure of `dstAddr` block is documented below.
-     */
     public readonly dstAddrs!: pulumi.Output<outputs.FirewallCentralSnatMapDstAddr[]>;
-    /**
-     * Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
-     */
     public readonly dstintfs!: pulumi.Output<outputs.FirewallCentralSnatMapDstintf[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable source NAT. Valid values: `disable`, `enable`.
-     */
     public readonly nat!: pulumi.Output<string>;
-    /**
-     * Enable/disable NAT46. Valid values: `enable`, `disable`.
-     */
     public readonly nat46!: pulumi.Output<string>;
-    /**
-     * Enable/disable NAT64. Valid values: `enable`, `disable`.
-     */
     public readonly nat64!: pulumi.Output<string>;
-    /**
-     * IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
-     */
     public readonly natIppool6s!: pulumi.Output<outputs.FirewallCentralSnatMapNatIppool6[] | undefined>;
-    /**
-     * Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
-     */
     public readonly natIppools!: pulumi.Output<outputs.FirewallCentralSnatMapNatIppool[] | undefined>;
-    /**
-     * Translated port or port range (0 to 65535).
-     */
     public readonly natPort!: pulumi.Output<string>;
-    /**
-     * IPv6 Original address. The structure of `origAddr6` block is documented below.
-     */
     public readonly origAddr6s!: pulumi.Output<outputs.FirewallCentralSnatMapOrigAddr6[] | undefined>;
-    /**
-     * Original address. The structure of `origAddr` block is documented below.
-     */
     public readonly origAddrs!: pulumi.Output<outputs.FirewallCentralSnatMapOrigAddr[]>;
-    /**
-     * Original TCP port (0 to 65535).
-     */
     public readonly origPort!: pulumi.Output<string>;
-    /**
-     * Policy ID.
-     */
     public readonly policyid!: pulumi.Output<number>;
-    /**
-     * Integer value for the protocol type (0 - 255).
-     */
     public readonly protocol!: pulumi.Output<number>;
-    /**
-     * Source interface name from available interfaces. The structure of `srcintf` block is documented below.
-     */
     public readonly srcintfs!: pulumi.Output<outputs.FirewallCentralSnatMapSrcintf[]>;
-    /**
-     * Enable/disable the active status of this policy. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * IPv4/IPv6 source NAT. Valid values: `ipv4`, `ipv6`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -253,89 +144,26 @@ export class FirewallCentralSnatMap extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallCentralSnatMap resources.
  */
 export interface FirewallCentralSnatMapState {
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * IPv6 Destination address. The structure of `dstAddr6` block is documented below.
-     */
     dstAddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapDstAddr6>[]>;
-    /**
-     * Destination address name from available addresses. The structure of `dstAddr` block is documented below.
-     */
     dstAddrs?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapDstAddr>[]>;
-    /**
-     * Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
-     */
     dstintfs?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapDstintf>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable source NAT. Valid values: `disable`, `enable`.
-     */
     nat?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAT46. Valid values: `enable`, `disable`.
-     */
     nat46?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAT64. Valid values: `enable`, `disable`.
-     */
     nat64?: pulumi.Input<string>;
-    /**
-     * IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
-     */
     natIppool6s?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapNatIppool6>[]>;
-    /**
-     * Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
-     */
     natIppools?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapNatIppool>[]>;
-    /**
-     * Translated port or port range (0 to 65535).
-     */
     natPort?: pulumi.Input<string>;
-    /**
-     * IPv6 Original address. The structure of `origAddr6` block is documented below.
-     */
     origAddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapOrigAddr6>[]>;
-    /**
-     * Original address. The structure of `origAddr` block is documented below.
-     */
     origAddrs?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapOrigAddr>[]>;
-    /**
-     * Original TCP port (0 to 65535).
-     */
     origPort?: pulumi.Input<string>;
-    /**
-     * Policy ID.
-     */
     policyid?: pulumi.Input<number>;
-    /**
-     * Integer value for the protocol type (0 - 255).
-     */
     protocol?: pulumi.Input<number>;
-    /**
-     * Source interface name from available interfaces. The structure of `srcintf` block is documented below.
-     */
     srcintfs?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapSrcintf>[]>;
-    /**
-     * Enable/disable the active status of this policy. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * IPv4/IPv6 source NAT. Valid values: `ipv4`, `ipv6`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -343,88 +171,25 @@ export interface FirewallCentralSnatMapState {
  * The set of arguments for constructing a FirewallCentralSnatMap resource.
  */
 export interface FirewallCentralSnatMapArgs {
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * IPv6 Destination address. The structure of `dstAddr6` block is documented below.
-     */
     dstAddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapDstAddr6>[]>;
-    /**
-     * Destination address name from available addresses. The structure of `dstAddr` block is documented below.
-     */
     dstAddrs: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapDstAddr>[]>;
-    /**
-     * Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
-     */
     dstintfs: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapDstintf>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable source NAT. Valid values: `disable`, `enable`.
-     */
     nat: pulumi.Input<string>;
-    /**
-     * Enable/disable NAT46. Valid values: `enable`, `disable`.
-     */
     nat46?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAT64. Valid values: `enable`, `disable`.
-     */
     nat64?: pulumi.Input<string>;
-    /**
-     * IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
-     */
     natIppool6s?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapNatIppool6>[]>;
-    /**
-     * Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
-     */
     natIppools?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapNatIppool>[]>;
-    /**
-     * Translated port or port range (0 to 65535).
-     */
     natPort?: pulumi.Input<string>;
-    /**
-     * IPv6 Original address. The structure of `origAddr6` block is documented below.
-     */
     origAddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapOrigAddr6>[]>;
-    /**
-     * Original address. The structure of `origAddr` block is documented below.
-     */
     origAddrs: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapOrigAddr>[]>;
-    /**
-     * Original TCP port (0 to 65535).
-     */
     origPort: pulumi.Input<string>;
-    /**
-     * Policy ID.
-     */
     policyid?: pulumi.Input<number>;
-    /**
-     * Integer value for the protocol type (0 - 255).
-     */
     protocol: pulumi.Input<number>;
-    /**
-     * Source interface name from available interfaces. The structure of `srcintf` block is documented below.
-     */
     srcintfs: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapSrcintf>[]>;
-    /**
-     * Enable/disable the active status of this policy. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * IPv4/IPv6 source NAT. Valid values: `ipv4`, `ipv6`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemAdmin`.
 func GetSystemAdminList(ctx *pulumi.Context, args *GetSystemAdminListArgs, opts ...pulumi.InvokeOption) (*GetSystemAdminListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemAdminListResult
@@ -23,8 +22,7 @@ func GetSystemAdminList(ctx *pulumi.Context, args *GetSystemAdminListArgs, opts 
 
 // A collection of arguments for invoking GetSystemAdminList.
 type GetSystemAdminListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetSystemAdminListArgs struct {
 type GetSystemAdminListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `SystemAdmin`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetSystemAdminListOutput(ctx *pulumi.Context, args GetSystemAdminListOutput
 
 // A collection of arguments for invoking GetSystemAdminList.
 type GetSystemAdminListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetSystemAdminListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSystemAdminListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `SystemAdmin`.
 func (o GetSystemAdminListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSystemAdminListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

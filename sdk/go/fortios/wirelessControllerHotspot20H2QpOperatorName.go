@@ -10,55 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure operator friendly name.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWirelessControllerHotspot20H2QpOperatorName(ctx, "trname", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// WirelessControllerHotspot20 H2QpOperatorName can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpOperatorName:WirelessControllerHotspot20H2QpOperatorName labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpOperatorName:WirelessControllerHotspot20H2QpOperatorName labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerHotspot20H2QpOperatorName struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Friendly name ID.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Name list. The structure of `valueList` block is documented below.
-	ValueLists WirelessControllerHotspot20H2QpOperatorNameValueListArrayOutput `pulumi:"valueLists"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                                          `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                                             `pulumi:"name"`
+	ValueLists          WirelessControllerHotspot20H2QpOperatorNameValueListArrayOutput `pulumi:"valueLists"`
+	Vdomparam           pulumi.StringPtrOutput                                          `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerHotspot20H2QpOperatorName registers a new resource with the given unique name, arguments, and options.
@@ -91,25 +49,17 @@ func GetWirelessControllerHotspot20H2QpOperatorName(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerHotspot20H2QpOperatorName resources.
 type wirelessControllerHotspot20H2QpOperatorNameState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Friendly name ID.
-	Name *string `pulumi:"name"`
-	// Name list. The structure of `valueList` block is documented below.
-	ValueLists []WirelessControllerHotspot20H2QpOperatorNameValueList `pulumi:"valueLists"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                                `pulumi:"dynamicSortSubtable"`
+	Name                *string                                                `pulumi:"name"`
+	ValueLists          []WirelessControllerHotspot20H2QpOperatorNameValueList `pulumi:"valueLists"`
+	Vdomparam           *string                                                `pulumi:"vdomparam"`
 }
 
 type WirelessControllerHotspot20H2QpOperatorNameState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Friendly name ID.
-	Name pulumi.StringPtrInput
-	// Name list. The structure of `valueList` block is documented below.
-	ValueLists WirelessControllerHotspot20H2QpOperatorNameValueListArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	ValueLists          WirelessControllerHotspot20H2QpOperatorNameValueListArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20H2QpOperatorNameState) ElementType() reflect.Type {
@@ -117,26 +67,18 @@ func (WirelessControllerHotspot20H2QpOperatorNameState) ElementType() reflect.Ty
 }
 
 type wirelessControllerHotspot20H2QpOperatorNameArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Friendly name ID.
-	Name *string `pulumi:"name"`
-	// Name list. The structure of `valueList` block is documented below.
-	ValueLists []WirelessControllerHotspot20H2QpOperatorNameValueList `pulumi:"valueLists"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                                `pulumi:"dynamicSortSubtable"`
+	Name                *string                                                `pulumi:"name"`
+	ValueLists          []WirelessControllerHotspot20H2QpOperatorNameValueList `pulumi:"valueLists"`
+	Vdomparam           *string                                                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerHotspot20H2QpOperatorName resource.
 type WirelessControllerHotspot20H2QpOperatorNameArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Friendly name ID.
-	Name pulumi.StringPtrInput
-	// Name list. The structure of `valueList` block is documented below.
-	ValueLists WirelessControllerHotspot20H2QpOperatorNameValueListArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	ValueLists          WirelessControllerHotspot20H2QpOperatorNameValueListArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20H2QpOperatorNameArgs) ElementType() reflect.Type {
@@ -165,7 +107,7 @@ func (i *WirelessControllerHotspot20H2QpOperatorName) ToWirelessControllerHotspo
 // WirelessControllerHotspot20H2QpOperatorNameArrayInput is an input type that accepts WirelessControllerHotspot20H2QpOperatorNameArray and WirelessControllerHotspot20H2QpOperatorNameArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpOperatorNameArrayInput` via:
 //
-//          WirelessControllerHotspot20H2QpOperatorNameArray{ WirelessControllerHotspot20H2QpOperatorNameArgs{...} }
+//	WirelessControllerHotspot20H2QpOperatorNameArray{ WirelessControllerHotspot20H2QpOperatorNameArgs{...} }
 type WirelessControllerHotspot20H2QpOperatorNameArrayInput interface {
 	pulumi.Input
 
@@ -190,7 +132,7 @@ func (i WirelessControllerHotspot20H2QpOperatorNameArray) ToWirelessControllerHo
 // WirelessControllerHotspot20H2QpOperatorNameMapInput is an input type that accepts WirelessControllerHotspot20H2QpOperatorNameMap and WirelessControllerHotspot20H2QpOperatorNameMapOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpOperatorNameMapInput` via:
 //
-//          WirelessControllerHotspot20H2QpOperatorNameMap{ "key": WirelessControllerHotspot20H2QpOperatorNameArgs{...} }
+//	WirelessControllerHotspot20H2QpOperatorNameMap{ "key": WirelessControllerHotspot20H2QpOperatorNameArgs{...} }
 type WirelessControllerHotspot20H2QpOperatorNameMapInput interface {
 	pulumi.Input
 
@@ -224,6 +166,26 @@ func (o WirelessControllerHotspot20H2QpOperatorNameOutput) ToWirelessControllerH
 
 func (o WirelessControllerHotspot20H2QpOperatorNameOutput) ToWirelessControllerHotspot20H2QpOperatorNameOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOperatorNameOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpOperatorNameOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOperatorName) pulumi.StringPtrOutput {
+		return v.DynamicSortSubtable
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpOperatorNameOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOperatorName) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpOperatorNameOutput) ValueLists() WirelessControllerHotspot20H2QpOperatorNameValueListArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOperatorName) WirelessControllerHotspot20H2QpOperatorNameValueListArrayOutput {
+		return v.ValueLists
+	}).(WirelessControllerHotspot20H2QpOperatorNameValueListArrayOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpOperatorNameOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOperatorName) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerHotspot20H2QpOperatorNameArrayOutput struct{ *pulumi.OutputState }

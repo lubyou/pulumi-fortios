@@ -7,144 +7,70 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch devices that are managed by this FortiGate.
-//
-// ## Import
-//
-// SwitchController ManagedSwitch can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerManagedSwitch:SwitchControllerManagedSwitch labelname {{switch_id}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerManagedSwitch:SwitchControllerManagedSwitch labelname {{switch_id}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerManagedSwitch struct {
 	pulumi.CustomResourceState
 
-	// FortiSwitch access profile.
-	AccessProfile pulumi.StringOutput `pulumi:"accessProfile"`
-	// Configuration method to edit FortiSwitch commands to be pushed to this FortiSwitch device upon rebooting the FortiGate switch controller or the FortiSwitch. The structure of `customCommand` block is documented below.
-	CustomCommands SwitchControllerManagedSwitchCustomCommandArrayOutput `pulumi:"customCommands"`
-	// Delayed restart triggered for this FortiSwitch.
-	DelayedRestartTrigger pulumi.IntOutput `pulumi:"delayedRestartTrigger"`
-	// Description.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
-	DhcpServerAccessList pulumi.StringOutput `pulumi:"dhcpServerAccessList"`
-	// Directly connected FortiSwitch.
-	DirectlyConnected pulumi.IntOutput `pulumi:"directlyConnected"`
-	// List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
-	DynamicCapability pulumi.IntOutput `pulumi:"dynamicCapability"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Dynamically discovered FortiSwitch.
-	DynamicallyDiscovered pulumi.IntOutput `pulumi:"dynamicallyDiscovered"`
-	// Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
-	FirmwareProvision pulumi.StringOutput `pulumi:"firmwareProvision"`
-	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
-	FirmwareProvisionLatest pulumi.StringOutput `pulumi:"firmwareProvisionLatest"`
-	// Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
-	FirmwareProvisionVersion pulumi.StringOutput `pulumi:"firmwareProvisionVersion"`
-	// Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
-	FlowIdentity pulumi.StringOutput `pulumi:"flowIdentity"`
-	// FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-	FswWan1Admin pulumi.StringOutput `pulumi:"fswWan1Admin"`
-	// Fortiswitch WAN1 peer port.
-	FswWan1Peer pulumi.StringOutput `pulumi:"fswWan1Peer"`
-	// FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-	FswWan2Admin pulumi.StringOutput `pulumi:"fswWan2Admin"`
-	// FortiSwitch WAN2 peer port.
-	FswWan2Peer pulumi.StringOutput `pulumi:"fswWan2Peer"`
-	// Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
-	IgmpSnooping SwitchControllerManagedSwitchIgmpSnoopingPtrOutput `pulumi:"igmpSnooping"`
-	// Enable/disable IP source guard. Valid values: `disable`, `enable`.
-	IpSourceGuards SwitchControllerManagedSwitchIpSourceGuardArrayOutput `pulumi:"ipSourceGuards"`
-	// Layer 3 management discovered.
-	L3Discovered pulumi.IntOutput `pulumi:"l3Discovered"`
-	// FortiSwitch maximum allowed trunk members.
-	MaxAllowedTrunkMembers pulumi.IntOutput `pulumi:"maxAllowedTrunkMembers"`
-	// Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
-	MclagIgmpSnoopingAware pulumi.StringOutput `pulumi:"mclagIgmpSnoopingAware"`
-	// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
-	Mirrors SwitchControllerManagedSwitchMirrorArrayOutput `pulumi:"mirrors"`
-	// Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
-	N8021xSettings SwitchControllerManagedSwitchN8021xSettingsPtrOutput `pulumi:"n8021xSettings"`
-	// Interface name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable overriding the global SNMP communities. Valid values: `enable`, `disable`.
-	OverrideSnmpCommunity pulumi.StringOutput `pulumi:"overrideSnmpCommunity"`
-	// Enable/disable overriding the global SNMP system information. Valid values: `disable`, `enable`.
-	OverrideSnmpSysinfo pulumi.StringOutput `pulumi:"overrideSnmpSysinfo"`
-	// Enable/disable overriding the global SNMP trap threshold values. Valid values: `enable`, `disable`.
-	OverrideSnmpTrapThreshold pulumi.StringOutput `pulumi:"overrideSnmpTrapThreshold"`
-	// Enable/disable overriding the global SNMP users. Valid values: `enable`, `disable`.
-	OverrideSnmpUser pulumi.StringOutput `pulumi:"overrideSnmpUser"`
-	// VDOM which owner of port belongs to.
-	OwnerVdom pulumi.StringOutput `pulumi:"ownerVdom"`
-	// PoE detection type for FortiSwitch.
-	PoeDetectionType pulumi.IntOutput `pulumi:"poeDetectionType"`
-	// Enable/disable PoE LLDP detection. Valid values: `enable`, `disable`.
-	PoeLldpDetection pulumi.StringOutput `pulumi:"poeLldpDetection"`
-	// Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
-	PoePreStandardDetection pulumi.StringOutput `pulumi:"poePreStandardDetection"`
-	// Managed-switch port list. The structure of `ports` block is documented below.
-	Ports SwitchControllerManagedSwitchPortArrayOutput `pulumi:"ports"`
-	// Pre-provisioned managed switch.
-	PreProvisioned pulumi.IntOutput `pulumi:"preProvisioned"`
-	// Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
-	QosDropPolicy pulumi.StringOutput `pulumi:"qosDropPolicy"`
-	// Set QoS RED/WRED drop probability.
-	QosRedProbability pulumi.IntOutput `pulumi:"qosRedProbability"`
-	// Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
-	RemoteLogs SwitchControllerManagedSwitchRemoteLogArrayOutput `pulumi:"remoteLogs"`
-	// Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
-	SnmpCommunities SwitchControllerManagedSwitchSnmpCommunityArrayOutput `pulumi:"snmpCommunities"`
-	// Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmpSysinfo` block is documented below.
-	SnmpSysinfo SwitchControllerManagedSwitchSnmpSysinfoPtrOutput `pulumi:"snmpSysinfo"`
-	// Configuration method to edit Simple Network Management Protocol (SNMP) trap threshold values. The structure of `snmpTrapThreshold` block is documented below.
-	SnmpTrapThreshold SwitchControllerManagedSwitchSnmpTrapThresholdPtrOutput `pulumi:"snmpTrapThreshold"`
-	// Configuration method to edit Simple Network Management Protocol (SNMP) users. The structure of `snmpUser` block is documented below.
-	SnmpUsers SwitchControllerManagedSwitchSnmpUserArrayOutput `pulumi:"snmpUsers"`
-	// Staged image version for FortiSwitch.
-	StagedImageVersion pulumi.StringOutput `pulumi:"stagedImageVersion"`
-	// Configuration method to edit FortiSwitch Static and Sticky MAC. The structure of `staticMac` block is documented below.
-	StaticMacs SwitchControllerManagedSwitchStaticMacArrayOutput `pulumi:"staticMacs"`
-	// Configuration method to edit FortiSwitch storm control for measuring traffic activity using data rates to prevent traffic disruption. The structure of `stormControl` block is documented below.
-	StormControl SwitchControllerManagedSwitchStormControlPtrOutput `pulumi:"stormControl"`
-	// Configuration method to edit Spanning Tree Protocol (STP) instances. The structure of `stpInstance` block is documented below.
-	StpInstances SwitchControllerManagedSwitchStpInstanceArrayOutput `pulumi:"stpInstances"`
-	// Configuration method to edit Spanning Tree Protocol (STP) settings used to prevent bridge loops. The structure of `stpSettings` block is documented below.
-	StpSettings SwitchControllerManagedSwitchStpSettingsPtrOutput `pulumi:"stpSettings"`
-	// User definable label/tag.
-	SwitchDeviceTag pulumi.StringOutput `pulumi:"switchDeviceTag"`
-	// DHCP option43 key.
-	SwitchDhcpOpt43Key pulumi.StringOutput `pulumi:"switchDhcpOpt43Key"`
-	// Switch id.
-	SwitchId pulumi.StringOutput `pulumi:"switchId"`
-	// Configuration method to edit FortiSwitch logging settings (logs are transferred to and inserted into the FortiGate event log). The structure of `switchLog` block is documented below.
-	SwitchLog SwitchControllerManagedSwitchSwitchLogPtrOutput `pulumi:"switchLog"`
-	// FortiSwitch profile.
-	SwitchProfile pulumi.StringOutput `pulumi:"switchProfile"`
-	// Configure spanning tree protocol (STP). The structure of `switchStpSettings` block is documented below.
-	SwitchStpSettings SwitchControllerManagedSwitchSwitchStpSettingsPtrOutput `pulumi:"switchStpSettings"`
-	// TDR supported.
-	TdrSupported pulumi.StringOutput `pulumi:"tdrSupported"`
-	// Type. Valid values: `static`, `sticky`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// IGMP snooping querier version.
-	Version pulumi.IntOutput `pulumi:"version"`
+	AccessProfile             pulumi.StringOutput                                   `pulumi:"accessProfile"`
+	CustomCommands            SwitchControllerManagedSwitchCustomCommandArrayOutput `pulumi:"customCommands"`
+	DelayedRestartTrigger     pulumi.IntOutput                                      `pulumi:"delayedRestartTrigger"`
+	Description               pulumi.StringOutput                                   `pulumi:"description"`
+	DhcpServerAccessList      pulumi.StringOutput                                   `pulumi:"dhcpServerAccessList"`
+	DirectlyConnected         pulumi.IntOutput                                      `pulumi:"directlyConnected"`
+	DynamicCapability         pulumi.IntOutput                                      `pulumi:"dynamicCapability"`
+	DynamicSortSubtable       pulumi.StringPtrOutput                                `pulumi:"dynamicSortSubtable"`
+	DynamicallyDiscovered     pulumi.IntOutput                                      `pulumi:"dynamicallyDiscovered"`
+	FirmwareProvision         pulumi.StringOutput                                   `pulumi:"firmwareProvision"`
+	FirmwareProvisionLatest   pulumi.StringOutput                                   `pulumi:"firmwareProvisionLatest"`
+	FirmwareProvisionVersion  pulumi.StringOutput                                   `pulumi:"firmwareProvisionVersion"`
+	FlowIdentity              pulumi.StringOutput                                   `pulumi:"flowIdentity"`
+	FswWan1Admin              pulumi.StringOutput                                   `pulumi:"fswWan1Admin"`
+	FswWan1Peer               pulumi.StringOutput                                   `pulumi:"fswWan1Peer"`
+	FswWan2Admin              pulumi.StringOutput                                   `pulumi:"fswWan2Admin"`
+	FswWan2Peer               pulumi.StringOutput                                   `pulumi:"fswWan2Peer"`
+	IgmpSnooping              SwitchControllerManagedSwitchIgmpSnoopingOutput       `pulumi:"igmpSnooping"`
+	IpSourceGuards            SwitchControllerManagedSwitchIpSourceGuardArrayOutput `pulumi:"ipSourceGuards"`
+	L3Discovered              pulumi.IntOutput                                      `pulumi:"l3Discovered"`
+	MaxAllowedTrunkMembers    pulumi.IntOutput                                      `pulumi:"maxAllowedTrunkMembers"`
+	MclagIgmpSnoopingAware    pulumi.StringOutput                                   `pulumi:"mclagIgmpSnoopingAware"`
+	Mirrors                   SwitchControllerManagedSwitchMirrorArrayOutput        `pulumi:"mirrors"`
+	N8021xSettings            SwitchControllerManagedSwitchN8021xSettingsOutput     `pulumi:"n8021xSettings"`
+	Name                      pulumi.StringOutput                                   `pulumi:"name"`
+	OverrideSnmpCommunity     pulumi.StringOutput                                   `pulumi:"overrideSnmpCommunity"`
+	OverrideSnmpSysinfo       pulumi.StringOutput                                   `pulumi:"overrideSnmpSysinfo"`
+	OverrideSnmpTrapThreshold pulumi.StringOutput                                   `pulumi:"overrideSnmpTrapThreshold"`
+	OverrideSnmpUser          pulumi.StringOutput                                   `pulumi:"overrideSnmpUser"`
+	OwnerVdom                 pulumi.StringOutput                                   `pulumi:"ownerVdom"`
+	PoeDetectionType          pulumi.IntOutput                                      `pulumi:"poeDetectionType"`
+	PoeLldpDetection          pulumi.StringOutput                                   `pulumi:"poeLldpDetection"`
+	PoePreStandardDetection   pulumi.StringOutput                                   `pulumi:"poePreStandardDetection"`
+	Ports                     SwitchControllerManagedSwitchPortArrayOutput          `pulumi:"ports"`
+	PreProvisioned            pulumi.IntOutput                                      `pulumi:"preProvisioned"`
+	QosDropPolicy             pulumi.StringOutput                                   `pulumi:"qosDropPolicy"`
+	QosRedProbability         pulumi.IntOutput                                      `pulumi:"qosRedProbability"`
+	RemoteLogs                SwitchControllerManagedSwitchRemoteLogArrayOutput     `pulumi:"remoteLogs"`
+	SnmpCommunities           SwitchControllerManagedSwitchSnmpCommunityArrayOutput `pulumi:"snmpCommunities"`
+	SnmpSysinfo               SwitchControllerManagedSwitchSnmpSysinfoOutput        `pulumi:"snmpSysinfo"`
+	SnmpTrapThreshold         SwitchControllerManagedSwitchSnmpTrapThresholdOutput  `pulumi:"snmpTrapThreshold"`
+	SnmpUsers                 SwitchControllerManagedSwitchSnmpUserArrayOutput      `pulumi:"snmpUsers"`
+	StagedImageVersion        pulumi.StringOutput                                   `pulumi:"stagedImageVersion"`
+	StaticMacs                SwitchControllerManagedSwitchStaticMacArrayOutput     `pulumi:"staticMacs"`
+	StormControl              SwitchControllerManagedSwitchStormControlOutput       `pulumi:"stormControl"`
+	StpInstances              SwitchControllerManagedSwitchStpInstanceArrayOutput   `pulumi:"stpInstances"`
+	StpSettings               SwitchControllerManagedSwitchStpSettingsOutput        `pulumi:"stpSettings"`
+	SwitchDeviceTag           pulumi.StringOutput                                   `pulumi:"switchDeviceTag"`
+	SwitchDhcpOpt43Key        pulumi.StringOutput                                   `pulumi:"switchDhcpOpt43Key"`
+	SwitchId                  pulumi.StringOutput                                   `pulumi:"switchId"`
+	SwitchLog                 SwitchControllerManagedSwitchSwitchLogOutput          `pulumi:"switchLog"`
+	SwitchProfile             pulumi.StringOutput                                   `pulumi:"switchProfile"`
+	SwitchStpSettings         SwitchControllerManagedSwitchSwitchStpSettingsOutput  `pulumi:"switchStpSettings"`
+	TdrSupported              pulumi.StringOutput                                   `pulumi:"tdrSupported"`
+	Type                      pulumi.StringOutput                                   `pulumi:"type"`
+	Vdomparam                 pulumi.StringPtrOutput                                `pulumi:"vdomparam"`
+	Version                   pulumi.IntOutput                                      `pulumi:"version"`
 }
 
 // NewSwitchControllerManagedSwitch registers a new resource with the given unique name, arguments, and options.
@@ -183,237 +109,123 @@ func GetSwitchControllerManagedSwitch(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerManagedSwitch resources.
 type switchControllerManagedSwitchState struct {
-	// FortiSwitch access profile.
-	AccessProfile *string `pulumi:"accessProfile"`
-	// Configuration method to edit FortiSwitch commands to be pushed to this FortiSwitch device upon rebooting the FortiGate switch controller or the FortiSwitch. The structure of `customCommand` block is documented below.
-	CustomCommands []SwitchControllerManagedSwitchCustomCommand `pulumi:"customCommands"`
-	// Delayed restart triggered for this FortiSwitch.
-	DelayedRestartTrigger *int `pulumi:"delayedRestartTrigger"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
-	DhcpServerAccessList *string `pulumi:"dhcpServerAccessList"`
-	// Directly connected FortiSwitch.
-	DirectlyConnected *int `pulumi:"directlyConnected"`
-	// List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
-	DynamicCapability *int `pulumi:"dynamicCapability"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Dynamically discovered FortiSwitch.
-	DynamicallyDiscovered *int `pulumi:"dynamicallyDiscovered"`
-	// Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
-	FirmwareProvision *string `pulumi:"firmwareProvision"`
-	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
-	FirmwareProvisionLatest *string `pulumi:"firmwareProvisionLatest"`
-	// Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
-	FirmwareProvisionVersion *string `pulumi:"firmwareProvisionVersion"`
-	// Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
-	FlowIdentity *string `pulumi:"flowIdentity"`
-	// FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-	FswWan1Admin *string `pulumi:"fswWan1Admin"`
-	// Fortiswitch WAN1 peer port.
-	FswWan1Peer *string `pulumi:"fswWan1Peer"`
-	// FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-	FswWan2Admin *string `pulumi:"fswWan2Admin"`
-	// FortiSwitch WAN2 peer port.
-	FswWan2Peer *string `pulumi:"fswWan2Peer"`
-	// Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
-	IgmpSnooping *SwitchControllerManagedSwitchIgmpSnooping `pulumi:"igmpSnooping"`
-	// Enable/disable IP source guard. Valid values: `disable`, `enable`.
-	IpSourceGuards []SwitchControllerManagedSwitchIpSourceGuard `pulumi:"ipSourceGuards"`
-	// Layer 3 management discovered.
-	L3Discovered *int `pulumi:"l3Discovered"`
-	// FortiSwitch maximum allowed trunk members.
-	MaxAllowedTrunkMembers *int `pulumi:"maxAllowedTrunkMembers"`
-	// Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
-	MclagIgmpSnoopingAware *string `pulumi:"mclagIgmpSnoopingAware"`
-	// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
-	Mirrors []SwitchControllerManagedSwitchMirror `pulumi:"mirrors"`
-	// Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
-	N8021xSettings *SwitchControllerManagedSwitchN8021xSettings `pulumi:"n8021xSettings"`
-	// Interface name.
-	Name *string `pulumi:"name"`
-	// Enable/disable overriding the global SNMP communities. Valid values: `enable`, `disable`.
-	OverrideSnmpCommunity *string `pulumi:"overrideSnmpCommunity"`
-	// Enable/disable overriding the global SNMP system information. Valid values: `disable`, `enable`.
-	OverrideSnmpSysinfo *string `pulumi:"overrideSnmpSysinfo"`
-	// Enable/disable overriding the global SNMP trap threshold values. Valid values: `enable`, `disable`.
-	OverrideSnmpTrapThreshold *string `pulumi:"overrideSnmpTrapThreshold"`
-	// Enable/disable overriding the global SNMP users. Valid values: `enable`, `disable`.
-	OverrideSnmpUser *string `pulumi:"overrideSnmpUser"`
-	// VDOM which owner of port belongs to.
-	OwnerVdom *string `pulumi:"ownerVdom"`
-	// PoE detection type for FortiSwitch.
-	PoeDetectionType *int `pulumi:"poeDetectionType"`
-	// Enable/disable PoE LLDP detection. Valid values: `enable`, `disable`.
-	PoeLldpDetection *string `pulumi:"poeLldpDetection"`
-	// Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
-	PoePreStandardDetection *string `pulumi:"poePreStandardDetection"`
-	// Managed-switch port list. The structure of `ports` block is documented below.
-	Ports []SwitchControllerManagedSwitchPort `pulumi:"ports"`
-	// Pre-provisioned managed switch.
-	PreProvisioned *int `pulumi:"preProvisioned"`
-	// Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
-	QosDropPolicy *string `pulumi:"qosDropPolicy"`
-	// Set QoS RED/WRED drop probability.
-	QosRedProbability *int `pulumi:"qosRedProbability"`
-	// Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
-	RemoteLogs []SwitchControllerManagedSwitchRemoteLog `pulumi:"remoteLogs"`
-	// Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
-	SnmpCommunities []SwitchControllerManagedSwitchSnmpCommunity `pulumi:"snmpCommunities"`
-	// Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmpSysinfo` block is documented below.
-	SnmpSysinfo *SwitchControllerManagedSwitchSnmpSysinfo `pulumi:"snmpSysinfo"`
-	// Configuration method to edit Simple Network Management Protocol (SNMP) trap threshold values. The structure of `snmpTrapThreshold` block is documented below.
-	SnmpTrapThreshold *SwitchControllerManagedSwitchSnmpTrapThreshold `pulumi:"snmpTrapThreshold"`
-	// Configuration method to edit Simple Network Management Protocol (SNMP) users. The structure of `snmpUser` block is documented below.
-	SnmpUsers []SwitchControllerManagedSwitchSnmpUser `pulumi:"snmpUsers"`
-	// Staged image version for FortiSwitch.
-	StagedImageVersion *string `pulumi:"stagedImageVersion"`
-	// Configuration method to edit FortiSwitch Static and Sticky MAC. The structure of `staticMac` block is documented below.
-	StaticMacs []SwitchControllerManagedSwitchStaticMac `pulumi:"staticMacs"`
-	// Configuration method to edit FortiSwitch storm control for measuring traffic activity using data rates to prevent traffic disruption. The structure of `stormControl` block is documented below.
-	StormControl *SwitchControllerManagedSwitchStormControl `pulumi:"stormControl"`
-	// Configuration method to edit Spanning Tree Protocol (STP) instances. The structure of `stpInstance` block is documented below.
-	StpInstances []SwitchControllerManagedSwitchStpInstance `pulumi:"stpInstances"`
-	// Configuration method to edit Spanning Tree Protocol (STP) settings used to prevent bridge loops. The structure of `stpSettings` block is documented below.
-	StpSettings *SwitchControllerManagedSwitchStpSettings `pulumi:"stpSettings"`
-	// User definable label/tag.
-	SwitchDeviceTag *string `pulumi:"switchDeviceTag"`
-	// DHCP option43 key.
-	SwitchDhcpOpt43Key *string `pulumi:"switchDhcpOpt43Key"`
-	// Switch id.
-	SwitchId *string `pulumi:"switchId"`
-	// Configuration method to edit FortiSwitch logging settings (logs are transferred to and inserted into the FortiGate event log). The structure of `switchLog` block is documented below.
-	SwitchLog *SwitchControllerManagedSwitchSwitchLog `pulumi:"switchLog"`
-	// FortiSwitch profile.
-	SwitchProfile *string `pulumi:"switchProfile"`
-	// Configure spanning tree protocol (STP). The structure of `switchStpSettings` block is documented below.
-	SwitchStpSettings *SwitchControllerManagedSwitchSwitchStpSettings `pulumi:"switchStpSettings"`
-	// TDR supported.
-	TdrSupported *string `pulumi:"tdrSupported"`
-	// Type. Valid values: `static`, `sticky`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// IGMP snooping querier version.
-	Version *int `pulumi:"version"`
+	AccessProfile             *string                                         `pulumi:"accessProfile"`
+	CustomCommands            []SwitchControllerManagedSwitchCustomCommand    `pulumi:"customCommands"`
+	DelayedRestartTrigger     *int                                            `pulumi:"delayedRestartTrigger"`
+	Description               *string                                         `pulumi:"description"`
+	DhcpServerAccessList      *string                                         `pulumi:"dhcpServerAccessList"`
+	DirectlyConnected         *int                                            `pulumi:"directlyConnected"`
+	DynamicCapability         *int                                            `pulumi:"dynamicCapability"`
+	DynamicSortSubtable       *string                                         `pulumi:"dynamicSortSubtable"`
+	DynamicallyDiscovered     *int                                            `pulumi:"dynamicallyDiscovered"`
+	FirmwareProvision         *string                                         `pulumi:"firmwareProvision"`
+	FirmwareProvisionLatest   *string                                         `pulumi:"firmwareProvisionLatest"`
+	FirmwareProvisionVersion  *string                                         `pulumi:"firmwareProvisionVersion"`
+	FlowIdentity              *string                                         `pulumi:"flowIdentity"`
+	FswWan1Admin              *string                                         `pulumi:"fswWan1Admin"`
+	FswWan1Peer               *string                                         `pulumi:"fswWan1Peer"`
+	FswWan2Admin              *string                                         `pulumi:"fswWan2Admin"`
+	FswWan2Peer               *string                                         `pulumi:"fswWan2Peer"`
+	IgmpSnooping              *SwitchControllerManagedSwitchIgmpSnooping      `pulumi:"igmpSnooping"`
+	IpSourceGuards            []SwitchControllerManagedSwitchIpSourceGuard    `pulumi:"ipSourceGuards"`
+	L3Discovered              *int                                            `pulumi:"l3Discovered"`
+	MaxAllowedTrunkMembers    *int                                            `pulumi:"maxAllowedTrunkMembers"`
+	MclagIgmpSnoopingAware    *string                                         `pulumi:"mclagIgmpSnoopingAware"`
+	Mirrors                   []SwitchControllerManagedSwitchMirror           `pulumi:"mirrors"`
+	N8021xSettings            *SwitchControllerManagedSwitchN8021xSettings    `pulumi:"n8021xSettings"`
+	Name                      *string                                         `pulumi:"name"`
+	OverrideSnmpCommunity     *string                                         `pulumi:"overrideSnmpCommunity"`
+	OverrideSnmpSysinfo       *string                                         `pulumi:"overrideSnmpSysinfo"`
+	OverrideSnmpTrapThreshold *string                                         `pulumi:"overrideSnmpTrapThreshold"`
+	OverrideSnmpUser          *string                                         `pulumi:"overrideSnmpUser"`
+	OwnerVdom                 *string                                         `pulumi:"ownerVdom"`
+	PoeDetectionType          *int                                            `pulumi:"poeDetectionType"`
+	PoeLldpDetection          *string                                         `pulumi:"poeLldpDetection"`
+	PoePreStandardDetection   *string                                         `pulumi:"poePreStandardDetection"`
+	Ports                     []SwitchControllerManagedSwitchPort             `pulumi:"ports"`
+	PreProvisioned            *int                                            `pulumi:"preProvisioned"`
+	QosDropPolicy             *string                                         `pulumi:"qosDropPolicy"`
+	QosRedProbability         *int                                            `pulumi:"qosRedProbability"`
+	RemoteLogs                []SwitchControllerManagedSwitchRemoteLog        `pulumi:"remoteLogs"`
+	SnmpCommunities           []SwitchControllerManagedSwitchSnmpCommunity    `pulumi:"snmpCommunities"`
+	SnmpSysinfo               *SwitchControllerManagedSwitchSnmpSysinfo       `pulumi:"snmpSysinfo"`
+	SnmpTrapThreshold         *SwitchControllerManagedSwitchSnmpTrapThreshold `pulumi:"snmpTrapThreshold"`
+	SnmpUsers                 []SwitchControllerManagedSwitchSnmpUser         `pulumi:"snmpUsers"`
+	StagedImageVersion        *string                                         `pulumi:"stagedImageVersion"`
+	StaticMacs                []SwitchControllerManagedSwitchStaticMac        `pulumi:"staticMacs"`
+	StormControl              *SwitchControllerManagedSwitchStormControl      `pulumi:"stormControl"`
+	StpInstances              []SwitchControllerManagedSwitchStpInstance      `pulumi:"stpInstances"`
+	StpSettings               *SwitchControllerManagedSwitchStpSettings       `pulumi:"stpSettings"`
+	SwitchDeviceTag           *string                                         `pulumi:"switchDeviceTag"`
+	SwitchDhcpOpt43Key        *string                                         `pulumi:"switchDhcpOpt43Key"`
+	SwitchId                  *string                                         `pulumi:"switchId"`
+	SwitchLog                 *SwitchControllerManagedSwitchSwitchLog         `pulumi:"switchLog"`
+	SwitchProfile             *string                                         `pulumi:"switchProfile"`
+	SwitchStpSettings         *SwitchControllerManagedSwitchSwitchStpSettings `pulumi:"switchStpSettings"`
+	TdrSupported              *string                                         `pulumi:"tdrSupported"`
+	Type                      *string                                         `pulumi:"type"`
+	Vdomparam                 *string                                         `pulumi:"vdomparam"`
+	Version                   *int                                            `pulumi:"version"`
 }
 
 type SwitchControllerManagedSwitchState struct {
-	// FortiSwitch access profile.
-	AccessProfile pulumi.StringPtrInput
-	// Configuration method to edit FortiSwitch commands to be pushed to this FortiSwitch device upon rebooting the FortiGate switch controller or the FortiSwitch. The structure of `customCommand` block is documented below.
-	CustomCommands SwitchControllerManagedSwitchCustomCommandArrayInput
-	// Delayed restart triggered for this FortiSwitch.
-	DelayedRestartTrigger pulumi.IntPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
-	DhcpServerAccessList pulumi.StringPtrInput
-	// Directly connected FortiSwitch.
-	DirectlyConnected pulumi.IntPtrInput
-	// List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
-	DynamicCapability pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Dynamically discovered FortiSwitch.
-	DynamicallyDiscovered pulumi.IntPtrInput
-	// Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
-	FirmwareProvision pulumi.StringPtrInput
-	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
-	FirmwareProvisionLatest pulumi.StringPtrInput
-	// Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
-	FirmwareProvisionVersion pulumi.StringPtrInput
-	// Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
-	FlowIdentity pulumi.StringPtrInput
-	// FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-	FswWan1Admin pulumi.StringPtrInput
-	// Fortiswitch WAN1 peer port.
-	FswWan1Peer pulumi.StringPtrInput
-	// FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-	FswWan2Admin pulumi.StringPtrInput
-	// FortiSwitch WAN2 peer port.
-	FswWan2Peer pulumi.StringPtrInput
-	// Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
-	IgmpSnooping SwitchControllerManagedSwitchIgmpSnoopingPtrInput
-	// Enable/disable IP source guard. Valid values: `disable`, `enable`.
-	IpSourceGuards SwitchControllerManagedSwitchIpSourceGuardArrayInput
-	// Layer 3 management discovered.
-	L3Discovered pulumi.IntPtrInput
-	// FortiSwitch maximum allowed trunk members.
-	MaxAllowedTrunkMembers pulumi.IntPtrInput
-	// Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
-	MclagIgmpSnoopingAware pulumi.StringPtrInput
-	// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
-	Mirrors SwitchControllerManagedSwitchMirrorArrayInput
-	// Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
-	N8021xSettings SwitchControllerManagedSwitchN8021xSettingsPtrInput
-	// Interface name.
-	Name pulumi.StringPtrInput
-	// Enable/disable overriding the global SNMP communities. Valid values: `enable`, `disable`.
-	OverrideSnmpCommunity pulumi.StringPtrInput
-	// Enable/disable overriding the global SNMP system information. Valid values: `disable`, `enable`.
-	OverrideSnmpSysinfo pulumi.StringPtrInput
-	// Enable/disable overriding the global SNMP trap threshold values. Valid values: `enable`, `disable`.
+	AccessProfile             pulumi.StringPtrInput
+	CustomCommands            SwitchControllerManagedSwitchCustomCommandArrayInput
+	DelayedRestartTrigger     pulumi.IntPtrInput
+	Description               pulumi.StringPtrInput
+	DhcpServerAccessList      pulumi.StringPtrInput
+	DirectlyConnected         pulumi.IntPtrInput
+	DynamicCapability         pulumi.IntPtrInput
+	DynamicSortSubtable       pulumi.StringPtrInput
+	DynamicallyDiscovered     pulumi.IntPtrInput
+	FirmwareProvision         pulumi.StringPtrInput
+	FirmwareProvisionLatest   pulumi.StringPtrInput
+	FirmwareProvisionVersion  pulumi.StringPtrInput
+	FlowIdentity              pulumi.StringPtrInput
+	FswWan1Admin              pulumi.StringPtrInput
+	FswWan1Peer               pulumi.StringPtrInput
+	FswWan2Admin              pulumi.StringPtrInput
+	FswWan2Peer               pulumi.StringPtrInput
+	IgmpSnooping              SwitchControllerManagedSwitchIgmpSnoopingPtrInput
+	IpSourceGuards            SwitchControllerManagedSwitchIpSourceGuardArrayInput
+	L3Discovered              pulumi.IntPtrInput
+	MaxAllowedTrunkMembers    pulumi.IntPtrInput
+	MclagIgmpSnoopingAware    pulumi.StringPtrInput
+	Mirrors                   SwitchControllerManagedSwitchMirrorArrayInput
+	N8021xSettings            SwitchControllerManagedSwitchN8021xSettingsPtrInput
+	Name                      pulumi.StringPtrInput
+	OverrideSnmpCommunity     pulumi.StringPtrInput
+	OverrideSnmpSysinfo       pulumi.StringPtrInput
 	OverrideSnmpTrapThreshold pulumi.StringPtrInput
-	// Enable/disable overriding the global SNMP users. Valid values: `enable`, `disable`.
-	OverrideSnmpUser pulumi.StringPtrInput
-	// VDOM which owner of port belongs to.
-	OwnerVdom pulumi.StringPtrInput
-	// PoE detection type for FortiSwitch.
-	PoeDetectionType pulumi.IntPtrInput
-	// Enable/disable PoE LLDP detection. Valid values: `enable`, `disable`.
-	PoeLldpDetection pulumi.StringPtrInput
-	// Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
-	PoePreStandardDetection pulumi.StringPtrInput
-	// Managed-switch port list. The structure of `ports` block is documented below.
-	Ports SwitchControllerManagedSwitchPortArrayInput
-	// Pre-provisioned managed switch.
-	PreProvisioned pulumi.IntPtrInput
-	// Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
-	QosDropPolicy pulumi.StringPtrInput
-	// Set QoS RED/WRED drop probability.
-	QosRedProbability pulumi.IntPtrInput
-	// Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
-	RemoteLogs SwitchControllerManagedSwitchRemoteLogArrayInput
-	// Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
-	SnmpCommunities SwitchControllerManagedSwitchSnmpCommunityArrayInput
-	// Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmpSysinfo` block is documented below.
-	SnmpSysinfo SwitchControllerManagedSwitchSnmpSysinfoPtrInput
-	// Configuration method to edit Simple Network Management Protocol (SNMP) trap threshold values. The structure of `snmpTrapThreshold` block is documented below.
-	SnmpTrapThreshold SwitchControllerManagedSwitchSnmpTrapThresholdPtrInput
-	// Configuration method to edit Simple Network Management Protocol (SNMP) users. The structure of `snmpUser` block is documented below.
-	SnmpUsers SwitchControllerManagedSwitchSnmpUserArrayInput
-	// Staged image version for FortiSwitch.
-	StagedImageVersion pulumi.StringPtrInput
-	// Configuration method to edit FortiSwitch Static and Sticky MAC. The structure of `staticMac` block is documented below.
-	StaticMacs SwitchControllerManagedSwitchStaticMacArrayInput
-	// Configuration method to edit FortiSwitch storm control for measuring traffic activity using data rates to prevent traffic disruption. The structure of `stormControl` block is documented below.
-	StormControl SwitchControllerManagedSwitchStormControlPtrInput
-	// Configuration method to edit Spanning Tree Protocol (STP) instances. The structure of `stpInstance` block is documented below.
-	StpInstances SwitchControllerManagedSwitchStpInstanceArrayInput
-	// Configuration method to edit Spanning Tree Protocol (STP) settings used to prevent bridge loops. The structure of `stpSettings` block is documented below.
-	StpSettings SwitchControllerManagedSwitchStpSettingsPtrInput
-	// User definable label/tag.
-	SwitchDeviceTag pulumi.StringPtrInput
-	// DHCP option43 key.
-	SwitchDhcpOpt43Key pulumi.StringPtrInput
-	// Switch id.
-	SwitchId pulumi.StringPtrInput
-	// Configuration method to edit FortiSwitch logging settings (logs are transferred to and inserted into the FortiGate event log). The structure of `switchLog` block is documented below.
-	SwitchLog SwitchControllerManagedSwitchSwitchLogPtrInput
-	// FortiSwitch profile.
-	SwitchProfile pulumi.StringPtrInput
-	// Configure spanning tree protocol (STP). The structure of `switchStpSettings` block is documented below.
-	SwitchStpSettings SwitchControllerManagedSwitchSwitchStpSettingsPtrInput
-	// TDR supported.
-	TdrSupported pulumi.StringPtrInput
-	// Type. Valid values: `static`, `sticky`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// IGMP snooping querier version.
-	Version pulumi.IntPtrInput
+	OverrideSnmpUser          pulumi.StringPtrInput
+	OwnerVdom                 pulumi.StringPtrInput
+	PoeDetectionType          pulumi.IntPtrInput
+	PoeLldpDetection          pulumi.StringPtrInput
+	PoePreStandardDetection   pulumi.StringPtrInput
+	Ports                     SwitchControllerManagedSwitchPortArrayInput
+	PreProvisioned            pulumi.IntPtrInput
+	QosDropPolicy             pulumi.StringPtrInput
+	QosRedProbability         pulumi.IntPtrInput
+	RemoteLogs                SwitchControllerManagedSwitchRemoteLogArrayInput
+	SnmpCommunities           SwitchControllerManagedSwitchSnmpCommunityArrayInput
+	SnmpSysinfo               SwitchControllerManagedSwitchSnmpSysinfoPtrInput
+	SnmpTrapThreshold         SwitchControllerManagedSwitchSnmpTrapThresholdPtrInput
+	SnmpUsers                 SwitchControllerManagedSwitchSnmpUserArrayInput
+	StagedImageVersion        pulumi.StringPtrInput
+	StaticMacs                SwitchControllerManagedSwitchStaticMacArrayInput
+	StormControl              SwitchControllerManagedSwitchStormControlPtrInput
+	StpInstances              SwitchControllerManagedSwitchStpInstanceArrayInput
+	StpSettings               SwitchControllerManagedSwitchStpSettingsPtrInput
+	SwitchDeviceTag           pulumi.StringPtrInput
+	SwitchDhcpOpt43Key        pulumi.StringPtrInput
+	SwitchId                  pulumi.StringPtrInput
+	SwitchLog                 SwitchControllerManagedSwitchSwitchLogPtrInput
+	SwitchProfile             pulumi.StringPtrInput
+	SwitchStpSettings         SwitchControllerManagedSwitchSwitchStpSettingsPtrInput
+	TdrSupported              pulumi.StringPtrInput
+	Type                      pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
+	Version                   pulumi.IntPtrInput
 }
 
 func (SwitchControllerManagedSwitchState) ElementType() reflect.Type {
@@ -421,238 +233,124 @@ func (SwitchControllerManagedSwitchState) ElementType() reflect.Type {
 }
 
 type switchControllerManagedSwitchArgs struct {
-	// FortiSwitch access profile.
-	AccessProfile *string `pulumi:"accessProfile"`
-	// Configuration method to edit FortiSwitch commands to be pushed to this FortiSwitch device upon rebooting the FortiGate switch controller or the FortiSwitch. The structure of `customCommand` block is documented below.
-	CustomCommands []SwitchControllerManagedSwitchCustomCommand `pulumi:"customCommands"`
-	// Delayed restart triggered for this FortiSwitch.
-	DelayedRestartTrigger *int `pulumi:"delayedRestartTrigger"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
-	DhcpServerAccessList *string `pulumi:"dhcpServerAccessList"`
-	// Directly connected FortiSwitch.
-	DirectlyConnected *int `pulumi:"directlyConnected"`
-	// List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
-	DynamicCapability *int `pulumi:"dynamicCapability"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Dynamically discovered FortiSwitch.
-	DynamicallyDiscovered *int `pulumi:"dynamicallyDiscovered"`
-	// Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
-	FirmwareProvision *string `pulumi:"firmwareProvision"`
-	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
-	FirmwareProvisionLatest *string `pulumi:"firmwareProvisionLatest"`
-	// Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
-	FirmwareProvisionVersion *string `pulumi:"firmwareProvisionVersion"`
-	// Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
-	FlowIdentity *string `pulumi:"flowIdentity"`
-	// FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-	FswWan1Admin *string `pulumi:"fswWan1Admin"`
-	// Fortiswitch WAN1 peer port.
-	FswWan1Peer string `pulumi:"fswWan1Peer"`
-	// FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-	FswWan2Admin *string `pulumi:"fswWan2Admin"`
-	// FortiSwitch WAN2 peer port.
-	FswWan2Peer *string `pulumi:"fswWan2Peer"`
-	// Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
-	IgmpSnooping *SwitchControllerManagedSwitchIgmpSnooping `pulumi:"igmpSnooping"`
-	// Enable/disable IP source guard. Valid values: `disable`, `enable`.
-	IpSourceGuards []SwitchControllerManagedSwitchIpSourceGuard `pulumi:"ipSourceGuards"`
-	// Layer 3 management discovered.
-	L3Discovered *int `pulumi:"l3Discovered"`
-	// FortiSwitch maximum allowed trunk members.
-	MaxAllowedTrunkMembers *int `pulumi:"maxAllowedTrunkMembers"`
-	// Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
-	MclagIgmpSnoopingAware *string `pulumi:"mclagIgmpSnoopingAware"`
-	// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
-	Mirrors []SwitchControllerManagedSwitchMirror `pulumi:"mirrors"`
-	// Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
-	N8021xSettings *SwitchControllerManagedSwitchN8021xSettings `pulumi:"n8021xSettings"`
-	// Interface name.
-	Name *string `pulumi:"name"`
-	// Enable/disable overriding the global SNMP communities. Valid values: `enable`, `disable`.
-	OverrideSnmpCommunity *string `pulumi:"overrideSnmpCommunity"`
-	// Enable/disable overriding the global SNMP system information. Valid values: `disable`, `enable`.
-	OverrideSnmpSysinfo *string `pulumi:"overrideSnmpSysinfo"`
-	// Enable/disable overriding the global SNMP trap threshold values. Valid values: `enable`, `disable`.
-	OverrideSnmpTrapThreshold *string `pulumi:"overrideSnmpTrapThreshold"`
-	// Enable/disable overriding the global SNMP users. Valid values: `enable`, `disable`.
-	OverrideSnmpUser *string `pulumi:"overrideSnmpUser"`
-	// VDOM which owner of port belongs to.
-	OwnerVdom *string `pulumi:"ownerVdom"`
-	// PoE detection type for FortiSwitch.
-	PoeDetectionType *int `pulumi:"poeDetectionType"`
-	// Enable/disable PoE LLDP detection. Valid values: `enable`, `disable`.
-	PoeLldpDetection *string `pulumi:"poeLldpDetection"`
-	// Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
-	PoePreStandardDetection *string `pulumi:"poePreStandardDetection"`
-	// Managed-switch port list. The structure of `ports` block is documented below.
-	Ports []SwitchControllerManagedSwitchPort `pulumi:"ports"`
-	// Pre-provisioned managed switch.
-	PreProvisioned *int `pulumi:"preProvisioned"`
-	// Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
-	QosDropPolicy *string `pulumi:"qosDropPolicy"`
-	// Set QoS RED/WRED drop probability.
-	QosRedProbability *int `pulumi:"qosRedProbability"`
-	// Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
-	RemoteLogs []SwitchControllerManagedSwitchRemoteLog `pulumi:"remoteLogs"`
-	// Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
-	SnmpCommunities []SwitchControllerManagedSwitchSnmpCommunity `pulumi:"snmpCommunities"`
-	// Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmpSysinfo` block is documented below.
-	SnmpSysinfo *SwitchControllerManagedSwitchSnmpSysinfo `pulumi:"snmpSysinfo"`
-	// Configuration method to edit Simple Network Management Protocol (SNMP) trap threshold values. The structure of `snmpTrapThreshold` block is documented below.
-	SnmpTrapThreshold *SwitchControllerManagedSwitchSnmpTrapThreshold `pulumi:"snmpTrapThreshold"`
-	// Configuration method to edit Simple Network Management Protocol (SNMP) users. The structure of `snmpUser` block is documented below.
-	SnmpUsers []SwitchControllerManagedSwitchSnmpUser `pulumi:"snmpUsers"`
-	// Staged image version for FortiSwitch.
-	StagedImageVersion *string `pulumi:"stagedImageVersion"`
-	// Configuration method to edit FortiSwitch Static and Sticky MAC. The structure of `staticMac` block is documented below.
-	StaticMacs []SwitchControllerManagedSwitchStaticMac `pulumi:"staticMacs"`
-	// Configuration method to edit FortiSwitch storm control for measuring traffic activity using data rates to prevent traffic disruption. The structure of `stormControl` block is documented below.
-	StormControl *SwitchControllerManagedSwitchStormControl `pulumi:"stormControl"`
-	// Configuration method to edit Spanning Tree Protocol (STP) instances. The structure of `stpInstance` block is documented below.
-	StpInstances []SwitchControllerManagedSwitchStpInstance `pulumi:"stpInstances"`
-	// Configuration method to edit Spanning Tree Protocol (STP) settings used to prevent bridge loops. The structure of `stpSettings` block is documented below.
-	StpSettings *SwitchControllerManagedSwitchStpSettings `pulumi:"stpSettings"`
-	// User definable label/tag.
-	SwitchDeviceTag *string `pulumi:"switchDeviceTag"`
-	// DHCP option43 key.
-	SwitchDhcpOpt43Key *string `pulumi:"switchDhcpOpt43Key"`
-	// Switch id.
-	SwitchId string `pulumi:"switchId"`
-	// Configuration method to edit FortiSwitch logging settings (logs are transferred to and inserted into the FortiGate event log). The structure of `switchLog` block is documented below.
-	SwitchLog *SwitchControllerManagedSwitchSwitchLog `pulumi:"switchLog"`
-	// FortiSwitch profile.
-	SwitchProfile *string `pulumi:"switchProfile"`
-	// Configure spanning tree protocol (STP). The structure of `switchStpSettings` block is documented below.
-	SwitchStpSettings *SwitchControllerManagedSwitchSwitchStpSettings `pulumi:"switchStpSettings"`
-	// TDR supported.
-	TdrSupported *string `pulumi:"tdrSupported"`
-	// Type. Valid values: `static`, `sticky`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// IGMP snooping querier version.
-	Version *int `pulumi:"version"`
+	AccessProfile             *string                                         `pulumi:"accessProfile"`
+	CustomCommands            []SwitchControllerManagedSwitchCustomCommand    `pulumi:"customCommands"`
+	DelayedRestartTrigger     *int                                            `pulumi:"delayedRestartTrigger"`
+	Description               *string                                         `pulumi:"description"`
+	DhcpServerAccessList      *string                                         `pulumi:"dhcpServerAccessList"`
+	DirectlyConnected         *int                                            `pulumi:"directlyConnected"`
+	DynamicCapability         *int                                            `pulumi:"dynamicCapability"`
+	DynamicSortSubtable       *string                                         `pulumi:"dynamicSortSubtable"`
+	DynamicallyDiscovered     *int                                            `pulumi:"dynamicallyDiscovered"`
+	FirmwareProvision         *string                                         `pulumi:"firmwareProvision"`
+	FirmwareProvisionLatest   *string                                         `pulumi:"firmwareProvisionLatest"`
+	FirmwareProvisionVersion  *string                                         `pulumi:"firmwareProvisionVersion"`
+	FlowIdentity              *string                                         `pulumi:"flowIdentity"`
+	FswWan1Admin              *string                                         `pulumi:"fswWan1Admin"`
+	FswWan1Peer               string                                          `pulumi:"fswWan1Peer"`
+	FswWan2Admin              *string                                         `pulumi:"fswWan2Admin"`
+	FswWan2Peer               *string                                         `pulumi:"fswWan2Peer"`
+	IgmpSnooping              *SwitchControllerManagedSwitchIgmpSnooping      `pulumi:"igmpSnooping"`
+	IpSourceGuards            []SwitchControllerManagedSwitchIpSourceGuard    `pulumi:"ipSourceGuards"`
+	L3Discovered              *int                                            `pulumi:"l3Discovered"`
+	MaxAllowedTrunkMembers    *int                                            `pulumi:"maxAllowedTrunkMembers"`
+	MclagIgmpSnoopingAware    *string                                         `pulumi:"mclagIgmpSnoopingAware"`
+	Mirrors                   []SwitchControllerManagedSwitchMirror           `pulumi:"mirrors"`
+	N8021xSettings            *SwitchControllerManagedSwitchN8021xSettings    `pulumi:"n8021xSettings"`
+	Name                      *string                                         `pulumi:"name"`
+	OverrideSnmpCommunity     *string                                         `pulumi:"overrideSnmpCommunity"`
+	OverrideSnmpSysinfo       *string                                         `pulumi:"overrideSnmpSysinfo"`
+	OverrideSnmpTrapThreshold *string                                         `pulumi:"overrideSnmpTrapThreshold"`
+	OverrideSnmpUser          *string                                         `pulumi:"overrideSnmpUser"`
+	OwnerVdom                 *string                                         `pulumi:"ownerVdom"`
+	PoeDetectionType          *int                                            `pulumi:"poeDetectionType"`
+	PoeLldpDetection          *string                                         `pulumi:"poeLldpDetection"`
+	PoePreStandardDetection   *string                                         `pulumi:"poePreStandardDetection"`
+	Ports                     []SwitchControllerManagedSwitchPort             `pulumi:"ports"`
+	PreProvisioned            *int                                            `pulumi:"preProvisioned"`
+	QosDropPolicy             *string                                         `pulumi:"qosDropPolicy"`
+	QosRedProbability         *int                                            `pulumi:"qosRedProbability"`
+	RemoteLogs                []SwitchControllerManagedSwitchRemoteLog        `pulumi:"remoteLogs"`
+	SnmpCommunities           []SwitchControllerManagedSwitchSnmpCommunity    `pulumi:"snmpCommunities"`
+	SnmpSysinfo               *SwitchControllerManagedSwitchSnmpSysinfo       `pulumi:"snmpSysinfo"`
+	SnmpTrapThreshold         *SwitchControllerManagedSwitchSnmpTrapThreshold `pulumi:"snmpTrapThreshold"`
+	SnmpUsers                 []SwitchControllerManagedSwitchSnmpUser         `pulumi:"snmpUsers"`
+	StagedImageVersion        *string                                         `pulumi:"stagedImageVersion"`
+	StaticMacs                []SwitchControllerManagedSwitchStaticMac        `pulumi:"staticMacs"`
+	StormControl              *SwitchControllerManagedSwitchStormControl      `pulumi:"stormControl"`
+	StpInstances              []SwitchControllerManagedSwitchStpInstance      `pulumi:"stpInstances"`
+	StpSettings               *SwitchControllerManagedSwitchStpSettings       `pulumi:"stpSettings"`
+	SwitchDeviceTag           *string                                         `pulumi:"switchDeviceTag"`
+	SwitchDhcpOpt43Key        *string                                         `pulumi:"switchDhcpOpt43Key"`
+	SwitchId                  string                                          `pulumi:"switchId"`
+	SwitchLog                 *SwitchControllerManagedSwitchSwitchLog         `pulumi:"switchLog"`
+	SwitchProfile             *string                                         `pulumi:"switchProfile"`
+	SwitchStpSettings         *SwitchControllerManagedSwitchSwitchStpSettings `pulumi:"switchStpSettings"`
+	TdrSupported              *string                                         `pulumi:"tdrSupported"`
+	Type                      *string                                         `pulumi:"type"`
+	Vdomparam                 *string                                         `pulumi:"vdomparam"`
+	Version                   *int                                            `pulumi:"version"`
 }
 
 // The set of arguments for constructing a SwitchControllerManagedSwitch resource.
 type SwitchControllerManagedSwitchArgs struct {
-	// FortiSwitch access profile.
-	AccessProfile pulumi.StringPtrInput
-	// Configuration method to edit FortiSwitch commands to be pushed to this FortiSwitch device upon rebooting the FortiGate switch controller or the FortiSwitch. The structure of `customCommand` block is documented below.
-	CustomCommands SwitchControllerManagedSwitchCustomCommandArrayInput
-	// Delayed restart triggered for this FortiSwitch.
-	DelayedRestartTrigger pulumi.IntPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
-	DhcpServerAccessList pulumi.StringPtrInput
-	// Directly connected FortiSwitch.
-	DirectlyConnected pulumi.IntPtrInput
-	// List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
-	DynamicCapability pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Dynamically discovered FortiSwitch.
-	DynamicallyDiscovered pulumi.IntPtrInput
-	// Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
-	FirmwareProvision pulumi.StringPtrInput
-	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
-	FirmwareProvisionLatest pulumi.StringPtrInput
-	// Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
-	FirmwareProvisionVersion pulumi.StringPtrInput
-	// Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
-	FlowIdentity pulumi.StringPtrInput
-	// FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-	FswWan1Admin pulumi.StringPtrInput
-	// Fortiswitch WAN1 peer port.
-	FswWan1Peer pulumi.StringInput
-	// FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
-	FswWan2Admin pulumi.StringPtrInput
-	// FortiSwitch WAN2 peer port.
-	FswWan2Peer pulumi.StringPtrInput
-	// Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
-	IgmpSnooping SwitchControllerManagedSwitchIgmpSnoopingPtrInput
-	// Enable/disable IP source guard. Valid values: `disable`, `enable`.
-	IpSourceGuards SwitchControllerManagedSwitchIpSourceGuardArrayInput
-	// Layer 3 management discovered.
-	L3Discovered pulumi.IntPtrInput
-	// FortiSwitch maximum allowed trunk members.
-	MaxAllowedTrunkMembers pulumi.IntPtrInput
-	// Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
-	MclagIgmpSnoopingAware pulumi.StringPtrInput
-	// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
-	Mirrors SwitchControllerManagedSwitchMirrorArrayInput
-	// Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
-	N8021xSettings SwitchControllerManagedSwitchN8021xSettingsPtrInput
-	// Interface name.
-	Name pulumi.StringPtrInput
-	// Enable/disable overriding the global SNMP communities. Valid values: `enable`, `disable`.
-	OverrideSnmpCommunity pulumi.StringPtrInput
-	// Enable/disable overriding the global SNMP system information. Valid values: `disable`, `enable`.
-	OverrideSnmpSysinfo pulumi.StringPtrInput
-	// Enable/disable overriding the global SNMP trap threshold values. Valid values: `enable`, `disable`.
+	AccessProfile             pulumi.StringPtrInput
+	CustomCommands            SwitchControllerManagedSwitchCustomCommandArrayInput
+	DelayedRestartTrigger     pulumi.IntPtrInput
+	Description               pulumi.StringPtrInput
+	DhcpServerAccessList      pulumi.StringPtrInput
+	DirectlyConnected         pulumi.IntPtrInput
+	DynamicCapability         pulumi.IntPtrInput
+	DynamicSortSubtable       pulumi.StringPtrInput
+	DynamicallyDiscovered     pulumi.IntPtrInput
+	FirmwareProvision         pulumi.StringPtrInput
+	FirmwareProvisionLatest   pulumi.StringPtrInput
+	FirmwareProvisionVersion  pulumi.StringPtrInput
+	FlowIdentity              pulumi.StringPtrInput
+	FswWan1Admin              pulumi.StringPtrInput
+	FswWan1Peer               pulumi.StringInput
+	FswWan2Admin              pulumi.StringPtrInput
+	FswWan2Peer               pulumi.StringPtrInput
+	IgmpSnooping              SwitchControllerManagedSwitchIgmpSnoopingPtrInput
+	IpSourceGuards            SwitchControllerManagedSwitchIpSourceGuardArrayInput
+	L3Discovered              pulumi.IntPtrInput
+	MaxAllowedTrunkMembers    pulumi.IntPtrInput
+	MclagIgmpSnoopingAware    pulumi.StringPtrInput
+	Mirrors                   SwitchControllerManagedSwitchMirrorArrayInput
+	N8021xSettings            SwitchControllerManagedSwitchN8021xSettingsPtrInput
+	Name                      pulumi.StringPtrInput
+	OverrideSnmpCommunity     pulumi.StringPtrInput
+	OverrideSnmpSysinfo       pulumi.StringPtrInput
 	OverrideSnmpTrapThreshold pulumi.StringPtrInput
-	// Enable/disable overriding the global SNMP users. Valid values: `enable`, `disable`.
-	OverrideSnmpUser pulumi.StringPtrInput
-	// VDOM which owner of port belongs to.
-	OwnerVdom pulumi.StringPtrInput
-	// PoE detection type for FortiSwitch.
-	PoeDetectionType pulumi.IntPtrInput
-	// Enable/disable PoE LLDP detection. Valid values: `enable`, `disable`.
-	PoeLldpDetection pulumi.StringPtrInput
-	// Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
-	PoePreStandardDetection pulumi.StringPtrInput
-	// Managed-switch port list. The structure of `ports` block is documented below.
-	Ports SwitchControllerManagedSwitchPortArrayInput
-	// Pre-provisioned managed switch.
-	PreProvisioned pulumi.IntPtrInput
-	// Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
-	QosDropPolicy pulumi.StringPtrInput
-	// Set QoS RED/WRED drop probability.
-	QosRedProbability pulumi.IntPtrInput
-	// Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
-	RemoteLogs SwitchControllerManagedSwitchRemoteLogArrayInput
-	// Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
-	SnmpCommunities SwitchControllerManagedSwitchSnmpCommunityArrayInput
-	// Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmpSysinfo` block is documented below.
-	SnmpSysinfo SwitchControllerManagedSwitchSnmpSysinfoPtrInput
-	// Configuration method to edit Simple Network Management Protocol (SNMP) trap threshold values. The structure of `snmpTrapThreshold` block is documented below.
-	SnmpTrapThreshold SwitchControllerManagedSwitchSnmpTrapThresholdPtrInput
-	// Configuration method to edit Simple Network Management Protocol (SNMP) users. The structure of `snmpUser` block is documented below.
-	SnmpUsers SwitchControllerManagedSwitchSnmpUserArrayInput
-	// Staged image version for FortiSwitch.
-	StagedImageVersion pulumi.StringPtrInput
-	// Configuration method to edit FortiSwitch Static and Sticky MAC. The structure of `staticMac` block is documented below.
-	StaticMacs SwitchControllerManagedSwitchStaticMacArrayInput
-	// Configuration method to edit FortiSwitch storm control for measuring traffic activity using data rates to prevent traffic disruption. The structure of `stormControl` block is documented below.
-	StormControl SwitchControllerManagedSwitchStormControlPtrInput
-	// Configuration method to edit Spanning Tree Protocol (STP) instances. The structure of `stpInstance` block is documented below.
-	StpInstances SwitchControllerManagedSwitchStpInstanceArrayInput
-	// Configuration method to edit Spanning Tree Protocol (STP) settings used to prevent bridge loops. The structure of `stpSettings` block is documented below.
-	StpSettings SwitchControllerManagedSwitchStpSettingsPtrInput
-	// User definable label/tag.
-	SwitchDeviceTag pulumi.StringPtrInput
-	// DHCP option43 key.
-	SwitchDhcpOpt43Key pulumi.StringPtrInput
-	// Switch id.
-	SwitchId pulumi.StringInput
-	// Configuration method to edit FortiSwitch logging settings (logs are transferred to and inserted into the FortiGate event log). The structure of `switchLog` block is documented below.
-	SwitchLog SwitchControllerManagedSwitchSwitchLogPtrInput
-	// FortiSwitch profile.
-	SwitchProfile pulumi.StringPtrInput
-	// Configure spanning tree protocol (STP). The structure of `switchStpSettings` block is documented below.
-	SwitchStpSettings SwitchControllerManagedSwitchSwitchStpSettingsPtrInput
-	// TDR supported.
-	TdrSupported pulumi.StringPtrInput
-	// Type. Valid values: `static`, `sticky`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// IGMP snooping querier version.
-	Version pulumi.IntPtrInput
+	OverrideSnmpUser          pulumi.StringPtrInput
+	OwnerVdom                 pulumi.StringPtrInput
+	PoeDetectionType          pulumi.IntPtrInput
+	PoeLldpDetection          pulumi.StringPtrInput
+	PoePreStandardDetection   pulumi.StringPtrInput
+	Ports                     SwitchControllerManagedSwitchPortArrayInput
+	PreProvisioned            pulumi.IntPtrInput
+	QosDropPolicy             pulumi.StringPtrInput
+	QosRedProbability         pulumi.IntPtrInput
+	RemoteLogs                SwitchControllerManagedSwitchRemoteLogArrayInput
+	SnmpCommunities           SwitchControllerManagedSwitchSnmpCommunityArrayInput
+	SnmpSysinfo               SwitchControllerManagedSwitchSnmpSysinfoPtrInput
+	SnmpTrapThreshold         SwitchControllerManagedSwitchSnmpTrapThresholdPtrInput
+	SnmpUsers                 SwitchControllerManagedSwitchSnmpUserArrayInput
+	StagedImageVersion        pulumi.StringPtrInput
+	StaticMacs                SwitchControllerManagedSwitchStaticMacArrayInput
+	StormControl              SwitchControllerManagedSwitchStormControlPtrInput
+	StpInstances              SwitchControllerManagedSwitchStpInstanceArrayInput
+	StpSettings               SwitchControllerManagedSwitchStpSettingsPtrInput
+	SwitchDeviceTag           pulumi.StringPtrInput
+	SwitchDhcpOpt43Key        pulumi.StringPtrInput
+	SwitchId                  pulumi.StringInput
+	SwitchLog                 SwitchControllerManagedSwitchSwitchLogPtrInput
+	SwitchProfile             pulumi.StringPtrInput
+	SwitchStpSettings         SwitchControllerManagedSwitchSwitchStpSettingsPtrInput
+	TdrSupported              pulumi.StringPtrInput
+	Type                      pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
+	Version                   pulumi.IntPtrInput
 }
 
 func (SwitchControllerManagedSwitchArgs) ElementType() reflect.Type {
@@ -681,7 +379,7 @@ func (i *SwitchControllerManagedSwitch) ToSwitchControllerManagedSwitchOutputWit
 // SwitchControllerManagedSwitchArrayInput is an input type that accepts SwitchControllerManagedSwitchArray and SwitchControllerManagedSwitchArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerManagedSwitchArrayInput` via:
 //
-//          SwitchControllerManagedSwitchArray{ SwitchControllerManagedSwitchArgs{...} }
+//	SwitchControllerManagedSwitchArray{ SwitchControllerManagedSwitchArgs{...} }
 type SwitchControllerManagedSwitchArrayInput interface {
 	pulumi.Input
 
@@ -706,7 +404,7 @@ func (i SwitchControllerManagedSwitchArray) ToSwitchControllerManagedSwitchArray
 // SwitchControllerManagedSwitchMapInput is an input type that accepts SwitchControllerManagedSwitchMap and SwitchControllerManagedSwitchMapOutput values.
 // You can construct a concrete instance of `SwitchControllerManagedSwitchMapInput` via:
 //
-//          SwitchControllerManagedSwitchMap{ "key": SwitchControllerManagedSwitchArgs{...} }
+//	SwitchControllerManagedSwitchMap{ "key": SwitchControllerManagedSwitchArgs{...} }
 type SwitchControllerManagedSwitchMapInput interface {
 	pulumi.Input
 
@@ -740,6 +438,266 @@ func (o SwitchControllerManagedSwitchOutput) ToSwitchControllerManagedSwitchOutp
 
 func (o SwitchControllerManagedSwitchOutput) ToSwitchControllerManagedSwitchOutputWithContext(ctx context.Context) SwitchControllerManagedSwitchOutput {
 	return o
+}
+
+func (o SwitchControllerManagedSwitchOutput) AccessProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.AccessProfile }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) CustomCommands() SwitchControllerManagedSwitchCustomCommandArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchCustomCommandArrayOutput {
+		return v.CustomCommands
+	}).(SwitchControllerManagedSwitchCustomCommandArrayOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) DelayedRestartTrigger() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.IntOutput { return v.DelayedRestartTrigger }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) DhcpServerAccessList() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.DhcpServerAccessList }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) DirectlyConnected() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.IntOutput { return v.DirectlyConnected }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) DynamicCapability() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.IntOutput { return v.DynamicCapability }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) DynamicallyDiscovered() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.IntOutput { return v.DynamicallyDiscovered }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) FirmwareProvision() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.FirmwareProvision }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) FirmwareProvisionLatest() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.FirmwareProvisionLatest }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) FirmwareProvisionVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.FirmwareProvisionVersion }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) FlowIdentity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.FlowIdentity }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) FswWan1Admin() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.FswWan1Admin }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) FswWan1Peer() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.FswWan1Peer }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) FswWan2Admin() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.FswWan2Admin }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) FswWan2Peer() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.FswWan2Peer }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) IgmpSnooping() SwitchControllerManagedSwitchIgmpSnoopingOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchIgmpSnoopingOutput {
+		return v.IgmpSnooping
+	}).(SwitchControllerManagedSwitchIgmpSnoopingOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) IpSourceGuards() SwitchControllerManagedSwitchIpSourceGuardArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchIpSourceGuardArrayOutput {
+		return v.IpSourceGuards
+	}).(SwitchControllerManagedSwitchIpSourceGuardArrayOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) L3Discovered() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.IntOutput { return v.L3Discovered }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) MaxAllowedTrunkMembers() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.IntOutput { return v.MaxAllowedTrunkMembers }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) MclagIgmpSnoopingAware() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.MclagIgmpSnoopingAware }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) Mirrors() SwitchControllerManagedSwitchMirrorArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchMirrorArrayOutput {
+		return v.Mirrors
+	}).(SwitchControllerManagedSwitchMirrorArrayOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) N8021xSettings() SwitchControllerManagedSwitchN8021xSettingsOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchN8021xSettingsOutput {
+		return v.N8021xSettings
+	}).(SwitchControllerManagedSwitchN8021xSettingsOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) OverrideSnmpCommunity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.OverrideSnmpCommunity }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) OverrideSnmpSysinfo() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.OverrideSnmpSysinfo }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) OverrideSnmpTrapThreshold() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.OverrideSnmpTrapThreshold }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) OverrideSnmpUser() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.OverrideSnmpUser }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) OwnerVdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.OwnerVdom }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) PoeDetectionType() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.IntOutput { return v.PoeDetectionType }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) PoeLldpDetection() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.PoeLldpDetection }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) PoePreStandardDetection() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.PoePreStandardDetection }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) Ports() SwitchControllerManagedSwitchPortArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchPortArrayOutput { return v.Ports }).(SwitchControllerManagedSwitchPortArrayOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) PreProvisioned() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.IntOutput { return v.PreProvisioned }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) QosDropPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.QosDropPolicy }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) QosRedProbability() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.IntOutput { return v.QosRedProbability }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) RemoteLogs() SwitchControllerManagedSwitchRemoteLogArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchRemoteLogArrayOutput {
+		return v.RemoteLogs
+	}).(SwitchControllerManagedSwitchRemoteLogArrayOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) SnmpCommunities() SwitchControllerManagedSwitchSnmpCommunityArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchSnmpCommunityArrayOutput {
+		return v.SnmpCommunities
+	}).(SwitchControllerManagedSwitchSnmpCommunityArrayOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) SnmpSysinfo() SwitchControllerManagedSwitchSnmpSysinfoOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchSnmpSysinfoOutput {
+		return v.SnmpSysinfo
+	}).(SwitchControllerManagedSwitchSnmpSysinfoOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) SnmpTrapThreshold() SwitchControllerManagedSwitchSnmpTrapThresholdOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchSnmpTrapThresholdOutput {
+		return v.SnmpTrapThreshold
+	}).(SwitchControllerManagedSwitchSnmpTrapThresholdOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) SnmpUsers() SwitchControllerManagedSwitchSnmpUserArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchSnmpUserArrayOutput {
+		return v.SnmpUsers
+	}).(SwitchControllerManagedSwitchSnmpUserArrayOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) StagedImageVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.StagedImageVersion }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) StaticMacs() SwitchControllerManagedSwitchStaticMacArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchStaticMacArrayOutput {
+		return v.StaticMacs
+	}).(SwitchControllerManagedSwitchStaticMacArrayOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) StormControl() SwitchControllerManagedSwitchStormControlOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchStormControlOutput {
+		return v.StormControl
+	}).(SwitchControllerManagedSwitchStormControlOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) StpInstances() SwitchControllerManagedSwitchStpInstanceArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchStpInstanceArrayOutput {
+		return v.StpInstances
+	}).(SwitchControllerManagedSwitchStpInstanceArrayOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) StpSettings() SwitchControllerManagedSwitchStpSettingsOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchStpSettingsOutput {
+		return v.StpSettings
+	}).(SwitchControllerManagedSwitchStpSettingsOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) SwitchDeviceTag() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.SwitchDeviceTag }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) SwitchDhcpOpt43Key() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.SwitchDhcpOpt43Key }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) SwitchId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.SwitchId }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) SwitchLog() SwitchControllerManagedSwitchSwitchLogOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchSwitchLogOutput {
+		return v.SwitchLog
+	}).(SwitchControllerManagedSwitchSwitchLogOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) SwitchProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.SwitchProfile }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) SwitchStpSettings() SwitchControllerManagedSwitchSwitchStpSettingsOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchSwitchStpSettingsOutput {
+		return v.SwitchStpSettings
+	}).(SwitchControllerManagedSwitchSwitchStpSettingsOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) TdrSupported() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.TdrSupported }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) Version() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.IntOutput { return v.Version }).(pulumi.IntOutput)
 }
 
 type SwitchControllerManagedSwitchArrayOutput struct{ *pulumi.OutputState }

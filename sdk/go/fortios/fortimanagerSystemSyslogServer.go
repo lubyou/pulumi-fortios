@@ -10,40 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports Create/Delete system syslog server for FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerSystemSyslogServer(ctx, "test1", &fortios.FortimanagerSystemSyslogServerArgs{
-// 			Ip:   pulumi.String("1.1.1.1"),
-// 			Port: pulumi.Int(99),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerSystemSyslogServer struct {
 	pulumi.CustomResourceState
 
-	// Ipaddress of the syslog server.
-	Ip pulumi.StringPtrOutput `pulumi:"ip"`
-	// Syslog server name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Port of the syslog server.
-	Port pulumi.IntPtrOutput `pulumi:"port"`
+	Ip   pulumi.StringPtrOutput `pulumi:"ip"`
+	Name pulumi.StringOutput    `pulumi:"name"`
+	Port pulumi.IntPtrOutput    `pulumi:"port"`
 }
 
 // NewFortimanagerSystemSyslogServer registers a new resource with the given unique name, arguments, and options.
@@ -76,20 +48,14 @@ func GetFortimanagerSystemSyslogServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerSystemSyslogServer resources.
 type fortimanagerSystemSyslogServerState struct {
-	// Ipaddress of the syslog server.
-	Ip *string `pulumi:"ip"`
-	// Syslog server name.
+	Ip   *string `pulumi:"ip"`
 	Name *string `pulumi:"name"`
-	// Port of the syslog server.
-	Port *int `pulumi:"port"`
+	Port *int    `pulumi:"port"`
 }
 
 type FortimanagerSystemSyslogServerState struct {
-	// Ipaddress of the syslog server.
-	Ip pulumi.StringPtrInput
-	// Syslog server name.
+	Ip   pulumi.StringPtrInput
 	Name pulumi.StringPtrInput
-	// Port of the syslog server.
 	Port pulumi.IntPtrInput
 }
 
@@ -98,21 +64,15 @@ func (FortimanagerSystemSyslogServerState) ElementType() reflect.Type {
 }
 
 type fortimanagerSystemSyslogServerArgs struct {
-	// Ipaddress of the syslog server.
-	Ip *string `pulumi:"ip"`
-	// Syslog server name.
+	Ip   *string `pulumi:"ip"`
 	Name *string `pulumi:"name"`
-	// Port of the syslog server.
-	Port *int `pulumi:"port"`
+	Port *int    `pulumi:"port"`
 }
 
 // The set of arguments for constructing a FortimanagerSystemSyslogServer resource.
 type FortimanagerSystemSyslogServerArgs struct {
-	// Ipaddress of the syslog server.
-	Ip pulumi.StringPtrInput
-	// Syslog server name.
+	Ip   pulumi.StringPtrInput
 	Name pulumi.StringPtrInput
-	// Port of the syslog server.
 	Port pulumi.IntPtrInput
 }
 
@@ -142,7 +102,7 @@ func (i *FortimanagerSystemSyslogServer) ToFortimanagerSystemSyslogServerOutputW
 // FortimanagerSystemSyslogServerArrayInput is an input type that accepts FortimanagerSystemSyslogServerArray and FortimanagerSystemSyslogServerArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemSyslogServerArrayInput` via:
 //
-//          FortimanagerSystemSyslogServerArray{ FortimanagerSystemSyslogServerArgs{...} }
+//	FortimanagerSystemSyslogServerArray{ FortimanagerSystemSyslogServerArgs{...} }
 type FortimanagerSystemSyslogServerArrayInput interface {
 	pulumi.Input
 
@@ -167,7 +127,7 @@ func (i FortimanagerSystemSyslogServerArray) ToFortimanagerSystemSyslogServerArr
 // FortimanagerSystemSyslogServerMapInput is an input type that accepts FortimanagerSystemSyslogServerMap and FortimanagerSystemSyslogServerMapOutput values.
 // You can construct a concrete instance of `FortimanagerSystemSyslogServerMapInput` via:
 //
-//          FortimanagerSystemSyslogServerMap{ "key": FortimanagerSystemSyslogServerArgs{...} }
+//	FortimanagerSystemSyslogServerMap{ "key": FortimanagerSystemSyslogServerArgs{...} }
 type FortimanagerSystemSyslogServerMapInput interface {
 	pulumi.Input
 
@@ -201,6 +161,18 @@ func (o FortimanagerSystemSyslogServerOutput) ToFortimanagerSystemSyslogServerOu
 
 func (o FortimanagerSystemSyslogServerOutput) ToFortimanagerSystemSyslogServerOutputWithContext(ctx context.Context) FortimanagerSystemSyslogServerOutput {
 	return o
+}
+
+func (o FortimanagerSystemSyslogServerOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemSyslogServer) pulumi.StringPtrOutput { return v.Ip }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemSyslogServerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerSystemSyslogServer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerSystemSyslogServerOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemSyslogServer) pulumi.IntPtrOutput { return v.Port }).(pulumi.IntPtrOutput)
 }
 
 type FortimanagerSystemSyslogServerArrayOutput struct{ *pulumi.OutputState }

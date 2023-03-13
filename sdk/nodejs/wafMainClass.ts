@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Hidden table for datasource.
- *
- * ## Import
- *
- * Waf MainClass can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wafMainClass:WafMainClass labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wafMainClass:WafMainClass labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WafMainClass extends pulumi.CustomResource {
     /**
      * Get an existing WafMainClass resource's state with the given name, ID, and optional extra
@@ -51,17 +32,8 @@ export class WafMainClass extends pulumi.CustomResource {
         return obj['__pulumiType'] === WafMainClass.__pulumiType;
     }
 
-    /**
-     * Main signature class ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Main signature class name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -95,17 +67,8 @@ export class WafMainClass extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WafMainClass resources.
  */
 export interface WafMainClassState {
-    /**
-     * Main signature class ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Main signature class name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -113,16 +76,7 @@ export interface WafMainClassState {
  * The set of arguments for constructing a WafMainClass resource.
  */
 export interface WafMainClassArgs {
-    /**
-     * Main signature class ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Main signature class name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

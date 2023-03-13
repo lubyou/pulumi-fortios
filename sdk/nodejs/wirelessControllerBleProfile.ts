@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure Bluetooth Low Energy profile.
- *
- * ## Import
- *
- * WirelessController BleProfile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerBleProfile:WirelessControllerBleProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerBleProfile:WirelessControllerBleProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerBleProfile extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerBleProfile resource's state with the given name, ID, and optional extra
@@ -51,61 +32,19 @@ export class WirelessControllerBleProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerBleProfile.__pulumiType;
     }
 
-    /**
-     * Advertising type. Valid values: `ibeacon`, `eddystone-uid`, `eddystone-url`.
-     */
     public readonly advertising!: pulumi.Output<string>;
-    /**
-     * Beacon interval (default = 100 msec).
-     */
     public readonly beaconInterval!: pulumi.Output<number>;
-    /**
-     * Enable/disable Bluetooth Low Energy (BLE) scanning. Valid values: `enable`, `disable`.
-     */
     public readonly bleScanning!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string>;
-    /**
-     * Eddystone instance ID.
-     */
     public readonly eddystoneInstance!: pulumi.Output<string>;
-    /**
-     * Eddystone namespace ID.
-     */
     public readonly eddystoneNamespace!: pulumi.Output<string>;
-    /**
-     * Eddystone URL.
-     */
     public readonly eddystoneUrl!: pulumi.Output<string>;
-    /**
-     * Eddystone encoded URL hexadecimal string
-     */
     public readonly eddystoneUrlEncodeHex!: pulumi.Output<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly ibeaconUuid!: pulumi.Output<string>;
-    /**
-     * Major ID.
-     */
     public readonly majorId!: pulumi.Output<number>;
-    /**
-     * Minor ID.
-     */
     public readonly minorId!: pulumi.Output<number>;
-    /**
-     * Bluetooth Low Energy profile name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
-     */
     public readonly txpower!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -161,61 +100,19 @@ export class WirelessControllerBleProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerBleProfile resources.
  */
 export interface WirelessControllerBleProfileState {
-    /**
-     * Advertising type. Valid values: `ibeacon`, `eddystone-uid`, `eddystone-url`.
-     */
     advertising?: pulumi.Input<string>;
-    /**
-     * Beacon interval (default = 100 msec).
-     */
     beaconInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable Bluetooth Low Energy (BLE) scanning. Valid values: `enable`, `disable`.
-     */
     bleScanning?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Eddystone instance ID.
-     */
     eddystoneInstance?: pulumi.Input<string>;
-    /**
-     * Eddystone namespace ID.
-     */
     eddystoneNamespace?: pulumi.Input<string>;
-    /**
-     * Eddystone URL.
-     */
     eddystoneUrl?: pulumi.Input<string>;
-    /**
-     * Eddystone encoded URL hexadecimal string
-     */
     eddystoneUrlEncodeHex?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     ibeaconUuid?: pulumi.Input<string>;
-    /**
-     * Major ID.
-     */
     majorId?: pulumi.Input<number>;
-    /**
-     * Minor ID.
-     */
     minorId?: pulumi.Input<number>;
-    /**
-     * Bluetooth Low Energy profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
-     */
     txpower?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -223,60 +120,18 @@ export interface WirelessControllerBleProfileState {
  * The set of arguments for constructing a WirelessControllerBleProfile resource.
  */
 export interface WirelessControllerBleProfileArgs {
-    /**
-     * Advertising type. Valid values: `ibeacon`, `eddystone-uid`, `eddystone-url`.
-     */
     advertising?: pulumi.Input<string>;
-    /**
-     * Beacon interval (default = 100 msec).
-     */
     beaconInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable Bluetooth Low Energy (BLE) scanning. Valid values: `enable`, `disable`.
-     */
     bleScanning?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Eddystone instance ID.
-     */
     eddystoneInstance?: pulumi.Input<string>;
-    /**
-     * Eddystone namespace ID.
-     */
     eddystoneNamespace?: pulumi.Input<string>;
-    /**
-     * Eddystone URL.
-     */
     eddystoneUrl?: pulumi.Input<string>;
-    /**
-     * Eddystone encoded URL hexadecimal string
-     */
     eddystoneUrlEncodeHex?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     ibeaconUuid?: pulumi.Input<string>;
-    /**
-     * Major ID.
-     */
     majorId?: pulumi.Input<number>;
-    /**
-     * Minor ID.
-     */
     minorId?: pulumi.Input<number>;
-    /**
-     * Bluetooth Low Energy profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
-     */
     txpower?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

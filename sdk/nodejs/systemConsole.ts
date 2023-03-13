@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure console.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemConsole("trname", {
- *     baudrate: "9600",
- *     login: "enable",
- *     mode: "line",
- *     output: "more",
- * });
- * ```
- *
- * ## Import
- *
- * System Console can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemConsole:SystemConsole labelname SystemConsole
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemConsole:SystemConsole labelname SystemConsole
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemConsole extends pulumi.CustomResource {
     /**
      * Get an existing SystemConsole resource's state with the given name, ID, and optional extra
@@ -65,29 +32,11 @@ export class SystemConsole extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemConsole.__pulumiType;
     }
 
-    /**
-     * Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
-     */
     public readonly baudrate!: pulumi.Output<string>;
-    /**
-     * Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
-     */
     public readonly fortiexplorer!: pulumi.Output<string>;
-    /**
-     * Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
-     */
     public readonly login!: pulumi.Output<string>;
-    /**
-     * Console mode. Valid values: `batch`, `line`.
-     */
     public readonly mode!: pulumi.Output<string>;
-    /**
-     * Console output mode. Valid values: `standard`, `more`.
-     */
     public readonly output!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -127,29 +76,11 @@ export class SystemConsole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemConsole resources.
  */
 export interface SystemConsoleState {
-    /**
-     * Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
-     */
     baudrate?: pulumi.Input<string>;
-    /**
-     * Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
-     */
     fortiexplorer?: pulumi.Input<string>;
-    /**
-     * Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
-     */
     login?: pulumi.Input<string>;
-    /**
-     * Console mode. Valid values: `batch`, `line`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Console output mode. Valid values: `standard`, `more`.
-     */
     output?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -157,28 +88,10 @@ export interface SystemConsoleState {
  * The set of arguments for constructing a SystemConsole resource.
  */
 export interface SystemConsoleArgs {
-    /**
-     * Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
-     */
     baudrate?: pulumi.Input<string>;
-    /**
-     * Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
-     */
     fortiexplorer?: pulumi.Input<string>;
-    /**
-     * Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
-     */
     login?: pulumi.Input<string>;
-    /**
-     * Console mode. Valid values: `batch`, `line`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Console output mode. Valid values: `standard`, `more`.
-     */
     output?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios systemautoupdate pushupdate
 func LookupSystemAutoupdatePushUpdate(ctx *pulumi.Context, args *LookupSystemAutoupdatePushUpdateArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutoupdatePushUpdateResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAutoupdatePushUpdateResult
@@ -23,21 +22,16 @@ func LookupSystemAutoupdatePushUpdate(ctx *pulumi.Context, args *LookupSystemAut
 
 // A collection of arguments for invoking GetSystemAutoupdatePushUpdate.
 type LookupSystemAutoupdatePushUpdateArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemAutoupdatePushUpdate.
 type LookupSystemAutoupdatePushUpdateResult struct {
-	// Push update override server.
 	Address string `pulumi:"address"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Enable/disable push update override server.
-	Override string `pulumi:"override"`
-	// Push update override port. (Do not overlap with other service ports)
-	Port int `pulumi:"port"`
-	// Enable/disable push updates.
+	Id        string  `pulumi:"id"`
+	Override  string  `pulumi:"override"`
+	Port      int     `pulumi:"port"`
 	Status    string  `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -57,7 +51,6 @@ func LookupSystemAutoupdatePushUpdateOutput(ctx *pulumi.Context, args LookupSyst
 
 // A collection of arguments for invoking GetSystemAutoupdatePushUpdate.
 type LookupSystemAutoupdatePushUpdateOutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -80,7 +73,6 @@ func (o LookupSystemAutoupdatePushUpdateResultOutput) ToLookupSystemAutoupdatePu
 	return o
 }
 
-// Push update override server.
 func (o LookupSystemAutoupdatePushUpdateResultOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAutoupdatePushUpdateResult) string { return v.Address }).(pulumi.StringOutput)
 }
@@ -90,17 +82,14 @@ func (o LookupSystemAutoupdatePushUpdateResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAutoupdatePushUpdateResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Enable/disable push update override server.
 func (o LookupSystemAutoupdatePushUpdateResultOutput) Override() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAutoupdatePushUpdateResult) string { return v.Override }).(pulumi.StringOutput)
 }
 
-// Push update override port. (Do not overlap with other service ports)
 func (o LookupSystemAutoupdatePushUpdateResultOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemAutoupdatePushUpdateResult) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// Enable/disable push updates.
 func (o LookupSystemAutoupdatePushUpdateResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAutoupdatePushUpdateResult) string { return v.Status }).(pulumi.StringOutput)
 }

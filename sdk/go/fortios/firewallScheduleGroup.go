@@ -7,80 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Schedule group configuration.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trname1, err := fortios.NewFirewallScheduleRecurring(ctx, "trname1", &fortios.FirewallScheduleRecurringArgs{
-// 			Color: pulumi.Int(0),
-// 			Day:   pulumi.String("sunday"),
-// 			End:   pulumi.String("00:00"),
-// 			Start: pulumi.String("00:00"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewFirewallScheduleGroup(ctx, "trname", &fortios.FirewallScheduleGroupArgs{
-// 			Color: pulumi.Int(0),
-// 			Members: FirewallScheduleGroupMemberArray{
-// 				&FirewallScheduleGroupMemberArgs{
-// 					Name: trname1.Name,
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// FirewallSchedule Group can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallScheduleGroup:FirewallScheduleGroup labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallScheduleGroup:FirewallScheduleGroup labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallScheduleGroup struct {
 	pulumi.CustomResourceState
 
-	// Color of icon on the GUI.
-	Color pulumi.IntOutput `pulumi:"color"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
-	// Schedules added to the schedule group. The structure of `member` block is documented below.
-	Members FirewallScheduleGroupMemberArrayOutput `pulumi:"members"`
-	// Schedule name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Color               pulumi.IntOutput                       `pulumi:"color"`
+	DynamicSortSubtable pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	FabricObject        pulumi.StringOutput                    `pulumi:"fabricObject"`
+	Members             FirewallScheduleGroupMemberArrayOutput `pulumi:"members"`
+	Name                pulumi.StringOutput                    `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                 `pulumi:"vdomparam"`
 }
 
 // NewFirewallScheduleGroup registers a new resource with the given unique name, arguments, and options.
@@ -116,33 +55,21 @@ func GetFirewallScheduleGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallScheduleGroup resources.
 type firewallScheduleGroupState struct {
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// Schedules added to the schedule group. The structure of `member` block is documented below.
-	Members []FirewallScheduleGroupMember `pulumi:"members"`
-	// Schedule name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Color               *int                          `pulumi:"color"`
+	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	FabricObject        *string                       `pulumi:"fabricObject"`
+	Members             []FirewallScheduleGroupMember `pulumi:"members"`
+	Name                *string                       `pulumi:"name"`
+	Vdomparam           *string                       `pulumi:"vdomparam"`
 }
 
 type FirewallScheduleGroupState struct {
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// Schedules added to the schedule group. The structure of `member` block is documented below.
-	Members FirewallScheduleGroupMemberArrayInput
-	// Schedule name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FabricObject        pulumi.StringPtrInput
+	Members             FirewallScheduleGroupMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallScheduleGroupState) ElementType() reflect.Type {
@@ -150,34 +77,22 @@ func (FirewallScheduleGroupState) ElementType() reflect.Type {
 }
 
 type firewallScheduleGroupArgs struct {
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// Schedules added to the schedule group. The structure of `member` block is documented below.
-	Members []FirewallScheduleGroupMember `pulumi:"members"`
-	// Schedule name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Color               *int                          `pulumi:"color"`
+	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	FabricObject        *string                       `pulumi:"fabricObject"`
+	Members             []FirewallScheduleGroupMember `pulumi:"members"`
+	Name                *string                       `pulumi:"name"`
+	Vdomparam           *string                       `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallScheduleGroup resource.
 type FirewallScheduleGroupArgs struct {
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// Schedules added to the schedule group. The structure of `member` block is documented below.
-	Members FirewallScheduleGroupMemberArrayInput
-	// Schedule name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FabricObject        pulumi.StringPtrInput
+	Members             FirewallScheduleGroupMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallScheduleGroupArgs) ElementType() reflect.Type {
@@ -206,7 +121,7 @@ func (i *FirewallScheduleGroup) ToFirewallScheduleGroupOutputWithContext(ctx con
 // FirewallScheduleGroupArrayInput is an input type that accepts FirewallScheduleGroupArray and FirewallScheduleGroupArrayOutput values.
 // You can construct a concrete instance of `FirewallScheduleGroupArrayInput` via:
 //
-//          FirewallScheduleGroupArray{ FirewallScheduleGroupArgs{...} }
+//	FirewallScheduleGroupArray{ FirewallScheduleGroupArgs{...} }
 type FirewallScheduleGroupArrayInput interface {
 	pulumi.Input
 
@@ -231,7 +146,7 @@ func (i FirewallScheduleGroupArray) ToFirewallScheduleGroupArrayOutputWithContex
 // FirewallScheduleGroupMapInput is an input type that accepts FirewallScheduleGroupMap and FirewallScheduleGroupMapOutput values.
 // You can construct a concrete instance of `FirewallScheduleGroupMapInput` via:
 //
-//          FirewallScheduleGroupMap{ "key": FirewallScheduleGroupArgs{...} }
+//	FirewallScheduleGroupMap{ "key": FirewallScheduleGroupArgs{...} }
 type FirewallScheduleGroupMapInput interface {
 	pulumi.Input
 
@@ -265,6 +180,30 @@ func (o FirewallScheduleGroupOutput) ToFirewallScheduleGroupOutput() FirewallSch
 
 func (o FirewallScheduleGroupOutput) ToFirewallScheduleGroupOutputWithContext(ctx context.Context) FirewallScheduleGroupOutput {
 	return o
+}
+
+func (o FirewallScheduleGroupOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallScheduleGroup) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o FirewallScheduleGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallScheduleGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallScheduleGroupOutput) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallScheduleGroup) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+func (o FirewallScheduleGroupOutput) Members() FirewallScheduleGroupMemberArrayOutput {
+	return o.ApplyT(func(v *FirewallScheduleGroup) FirewallScheduleGroupMemberArrayOutput { return v.Members }).(FirewallScheduleGroupMemberArrayOutput)
+}
+
+func (o FirewallScheduleGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallScheduleGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallScheduleGroupOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallScheduleGroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallScheduleGroupArrayOutput struct{ *pulumi.OutputState }

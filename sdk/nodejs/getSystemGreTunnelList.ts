@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.SystemGreTunnel`.
- */
 export function getSystemGreTunnelList(args?: GetSystemGreTunnelListArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemGreTunnelListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemGreTunnelList:GetSystemGreTunnelList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getSystemGreTunnelList(args?: GetSystemGreTunnelListArgs, opts?:
  */
 export interface GetSystemGreTunnelListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -40,15 +31,11 @@ export interface GetSystemGreTunnelListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.SystemGreTunnel`.
-     */
     readonly namelists: string[];
     readonly vdomparam?: string;
 }
-
 export function getSystemGreTunnelListOutput(args?: GetSystemGreTunnelListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemGreTunnelListResult> {
-    return pulumi.output(args).apply(a => getSystemGreTunnelList(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemGreTunnelList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getSystemGreTunnelListOutput(args?: GetSystemGreTunnelListOutput
  */
 export interface GetSystemGreTunnelListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system sessionhelper
 func LookupSystemSessionHelper(ctx *pulumi.Context, args *LookupSystemSessionHelperArgs, opts ...pulumi.InvokeOption) (*LookupSystemSessionHelperResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemSessionHelperResult
@@ -23,23 +22,17 @@ func LookupSystemSessionHelper(ctx *pulumi.Context, args *LookupSystemSessionHel
 
 // A collection of arguments for invoking GetSystemSessionHelper.
 type LookupSystemSessionHelperArgs struct {
-	// Specify the fosid of the desired system sessionhelper.
-	Fosid int `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     int     `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemSessionHelper.
 type LookupSystemSessionHelperResult struct {
-	// Session helper ID.
 	Fosid int `pulumi:"fosid"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Helper name.
-	Name string `pulumi:"name"`
-	// Protocol port.
-	Port int `pulumi:"port"`
-	// Protocol number.
+	Id        string  `pulumi:"id"`
+	Name      string  `pulumi:"name"`
+	Port      int     `pulumi:"port"`
 	Protocol  int     `pulumi:"protocol"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -59,9 +52,7 @@ func LookupSystemSessionHelperOutput(ctx *pulumi.Context, args LookupSystemSessi
 
 // A collection of arguments for invoking GetSystemSessionHelper.
 type LookupSystemSessionHelperOutputArgs struct {
-	// Specify the fosid of the desired system sessionhelper.
-	Fosid pulumi.IntInput `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntInput       `pulumi:"fosid"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -84,7 +75,6 @@ func (o LookupSystemSessionHelperResultOutput) ToLookupSystemSessionHelperResult
 	return o
 }
 
-// Session helper ID.
 func (o LookupSystemSessionHelperResultOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSessionHelperResult) int { return v.Fosid }).(pulumi.IntOutput)
 }
@@ -94,17 +84,14 @@ func (o LookupSystemSessionHelperResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSessionHelperResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Helper name.
 func (o LookupSystemSessionHelperResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSessionHelperResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Protocol port.
 func (o LookupSystemSessionHelperResultOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSessionHelperResult) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// Protocol number.
 func (o LookupSystemSessionHelperResultOutput) Protocol() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSessionHelperResult) int { return v.Protocol }).(pulumi.IntOutput)
 }

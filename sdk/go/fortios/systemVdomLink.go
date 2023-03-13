@@ -10,33 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure VDOM links.
-//
-// ## Import
-//
-// System VdomLink can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVdomLink:SystemVdomLink labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVdomLink:SystemVdomLink labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemVdomLink struct {
 	pulumi.CustomResourceState
 
-	// VDOM link name (maximum = 8 characters).
-	Name pulumi.StringOutput `pulumi:"name"`
-	// VDOM link type: PPP or Ethernet. Valid values: `ppp`, `ethernet`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Virtual cluster. Valid values: `vcluster1`, `vcluster2`.
-	Vcluster pulumi.StringOutput `pulumi:"vcluster"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringOutput    `pulumi:"name"`
+	Type      pulumi.StringOutput    `pulumi:"type"`
+	Vcluster  pulumi.StringOutput    `pulumi:"vcluster"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -70,24 +49,16 @@ func GetSystemVdomLink(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemVdomLink resources.
 type systemVdomLinkState struct {
-	// VDOM link name (maximum = 8 characters).
-	Name *string `pulumi:"name"`
-	// VDOM link type: PPP or Ethernet. Valid values: `ppp`, `ethernet`.
-	Type *string `pulumi:"type"`
-	// Virtual cluster. Valid values: `vcluster1`, `vcluster2`.
-	Vcluster *string `pulumi:"vcluster"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      *string `pulumi:"name"`
+	Type      *string `pulumi:"type"`
+	Vcluster  *string `pulumi:"vcluster"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemVdomLinkState struct {
-	// VDOM link name (maximum = 8 characters).
-	Name pulumi.StringPtrInput
-	// VDOM link type: PPP or Ethernet. Valid values: `ppp`, `ethernet`.
-	Type pulumi.StringPtrInput
-	// Virtual cluster. Valid values: `vcluster1`, `vcluster2`.
-	Vcluster pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringPtrInput
+	Type      pulumi.StringPtrInput
+	Vcluster  pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -96,25 +67,17 @@ func (SystemVdomLinkState) ElementType() reflect.Type {
 }
 
 type systemVdomLinkArgs struct {
-	// VDOM link name (maximum = 8 characters).
-	Name *string `pulumi:"name"`
-	// VDOM link type: PPP or Ethernet. Valid values: `ppp`, `ethernet`.
-	Type *string `pulumi:"type"`
-	// Virtual cluster. Valid values: `vcluster1`, `vcluster2`.
-	Vcluster *string `pulumi:"vcluster"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      *string `pulumi:"name"`
+	Type      *string `pulumi:"type"`
+	Vcluster  *string `pulumi:"vcluster"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemVdomLink resource.
 type SystemVdomLinkArgs struct {
-	// VDOM link name (maximum = 8 characters).
-	Name pulumi.StringPtrInput
-	// VDOM link type: PPP or Ethernet. Valid values: `ppp`, `ethernet`.
-	Type pulumi.StringPtrInput
-	// Virtual cluster. Valid values: `vcluster1`, `vcluster2`.
-	Vcluster pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringPtrInput
+	Type      pulumi.StringPtrInput
+	Vcluster  pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -144,7 +107,7 @@ func (i *SystemVdomLink) ToSystemVdomLinkOutputWithContext(ctx context.Context) 
 // SystemVdomLinkArrayInput is an input type that accepts SystemVdomLinkArray and SystemVdomLinkArrayOutput values.
 // You can construct a concrete instance of `SystemVdomLinkArrayInput` via:
 //
-//          SystemVdomLinkArray{ SystemVdomLinkArgs{...} }
+//	SystemVdomLinkArray{ SystemVdomLinkArgs{...} }
 type SystemVdomLinkArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i SystemVdomLinkArray) ToSystemVdomLinkArrayOutputWithContext(ctx context.
 // SystemVdomLinkMapInput is an input type that accepts SystemVdomLinkMap and SystemVdomLinkMapOutput values.
 // You can construct a concrete instance of `SystemVdomLinkMapInput` via:
 //
-//          SystemVdomLinkMap{ "key": SystemVdomLinkArgs{...} }
+//	SystemVdomLinkMap{ "key": SystemVdomLinkArgs{...} }
 type SystemVdomLinkMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o SystemVdomLinkOutput) ToSystemVdomLinkOutput() SystemVdomLinkOutput {
 
 func (o SystemVdomLinkOutput) ToSystemVdomLinkOutputWithContext(ctx context.Context) SystemVdomLinkOutput {
 	return o
+}
+
+func (o SystemVdomLinkOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomLink) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomLinkOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomLink) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomLinkOutput) Vcluster() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomLink) pulumi.StringOutput { return v.Vcluster }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomLinkOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVdomLink) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemVdomLinkArrayOutput struct{ *pulumi.OutputState }

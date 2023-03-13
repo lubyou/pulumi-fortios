@@ -10,31 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Hidden table for datasource.
-//
-// ## Import
-//
-// Waf Signature can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wafSignature:WafSignature labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wafSignature:WafSignature labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WafSignature struct {
 	pulumi.CustomResourceState
 
-	// Signature description.
-	Desc pulumi.StringOutput `pulumi:"desc"`
-	// Signature ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Desc      pulumi.StringOutput    `pulumi:"desc"`
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -68,20 +48,14 @@ func GetWafSignature(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WafSignature resources.
 type wafSignatureState struct {
-	// Signature description.
-	Desc *string `pulumi:"desc"`
-	// Signature ID.
-	Fosid *int `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Desc      *string `pulumi:"desc"`
+	Fosid     *int    `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type WafSignatureState struct {
-	// Signature description.
-	Desc pulumi.StringPtrInput
-	// Signature ID.
-	Fosid pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Desc      pulumi.StringPtrInput
+	Fosid     pulumi.IntPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -90,21 +64,15 @@ func (WafSignatureState) ElementType() reflect.Type {
 }
 
 type wafSignatureArgs struct {
-	// Signature description.
-	Desc *string `pulumi:"desc"`
-	// Signature ID.
-	Fosid *int `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Desc      *string `pulumi:"desc"`
+	Fosid     *int    `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WafSignature resource.
 type WafSignatureArgs struct {
-	// Signature description.
-	Desc pulumi.StringPtrInput
-	// Signature ID.
-	Fosid pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Desc      pulumi.StringPtrInput
+	Fosid     pulumi.IntPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -134,7 +102,7 @@ func (i *WafSignature) ToWafSignatureOutputWithContext(ctx context.Context) WafS
 // WafSignatureArrayInput is an input type that accepts WafSignatureArray and WafSignatureArrayOutput values.
 // You can construct a concrete instance of `WafSignatureArrayInput` via:
 //
-//          WafSignatureArray{ WafSignatureArgs{...} }
+//	WafSignatureArray{ WafSignatureArgs{...} }
 type WafSignatureArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i WafSignatureArray) ToWafSignatureArrayOutputWithContext(ctx context.Cont
 // WafSignatureMapInput is an input type that accepts WafSignatureMap and WafSignatureMapOutput values.
 // You can construct a concrete instance of `WafSignatureMapInput` via:
 //
-//          WafSignatureMap{ "key": WafSignatureArgs{...} }
+//	WafSignatureMap{ "key": WafSignatureArgs{...} }
 type WafSignatureMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o WafSignatureOutput) ToWafSignatureOutput() WafSignatureOutput {
 
 func (o WafSignatureOutput) ToWafSignatureOutputWithContext(ctx context.Context) WafSignatureOutput {
 	return o
+}
+
+func (o WafSignatureOutput) Desc() pulumi.StringOutput {
+	return o.ApplyT(func(v *WafSignature) pulumi.StringOutput { return v.Desc }).(pulumi.StringOutput)
+}
+
+func (o WafSignatureOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *WafSignature) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o WafSignatureOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WafSignature) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WafSignatureArrayOutput struct{ *pulumi.OutputState }

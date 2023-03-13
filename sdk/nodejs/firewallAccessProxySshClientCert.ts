@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure Access Proxy SSH client certificate. Applies to FortiOS Version `>= 7.0.1`.
- *
- * ## Import
- *
- * Firewall AccessProxySshClientCert can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAccessProxySshClientCert:FirewallAccessProxySshClientCert labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAccessProxySshClientCert:FirewallAccessProxySshClientCert labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallAccessProxySshClientCert extends pulumi.CustomResource {
     /**
      * Get an existing FirewallAccessProxySshClientCert resource's state with the given name, ID, and optional extra
@@ -52,49 +34,16 @@ export class FirewallAccessProxySshClientCert extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallAccessProxySshClientCert.__pulumiType;
     }
 
-    /**
-     * Name of the SSH server public key authentication CA.
-     */
     public readonly authCa!: pulumi.Output<string>;
-    /**
-     * Configure certificate extension for user certificate. The structure of `certExtension` block is documented below.
-     */
     public readonly certExtensions!: pulumi.Output<outputs.FirewallAccessProxySshClientCertCertExtension[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Name of certificate extension.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable appending permit-agent-forwarding certificate extension. Valid values: `enable`, `disable`.
-     */
     public readonly permitAgentForwarding!: pulumi.Output<string>;
-    /**
-     * Enable/disable appending permit-port-forwarding certificate extension. Valid values: `enable`, `disable`.
-     */
     public readonly permitPortForwarding!: pulumi.Output<string>;
-    /**
-     * Enable/disable appending permit-pty certificate extension. Valid values: `enable`, `disable`.
-     */
     public readonly permitPty!: pulumi.Output<string>;
-    /**
-     * Enable/disable appending permit-user-rc certificate extension. Valid values: `enable`, `disable`.
-     */
     public readonly permitUserRc!: pulumi.Output<string>;
-    /**
-     * Enable/disable appending permit-x11-forwarding certificate extension. Valid values: `enable`, `disable`.
-     */
     public readonly permitX11Forwarding!: pulumi.Output<string>;
-    /**
-     * Enable/disable appending source-address certificate critical option. This option ensure certificate only accepted from FortiGate source address. Valid values: `enable`, `disable`.
-     */
     public readonly sourceAddress!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -144,49 +93,16 @@ export class FirewallAccessProxySshClientCert extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallAccessProxySshClientCert resources.
  */
 export interface FirewallAccessProxySshClientCertState {
-    /**
-     * Name of the SSH server public key authentication CA.
-     */
     authCa?: pulumi.Input<string>;
-    /**
-     * Configure certificate extension for user certificate. The structure of `certExtension` block is documented below.
-     */
     certExtensions?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxySshClientCertCertExtension>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Name of certificate extension.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable appending permit-agent-forwarding certificate extension. Valid values: `enable`, `disable`.
-     */
     permitAgentForwarding?: pulumi.Input<string>;
-    /**
-     * Enable/disable appending permit-port-forwarding certificate extension. Valid values: `enable`, `disable`.
-     */
     permitPortForwarding?: pulumi.Input<string>;
-    /**
-     * Enable/disable appending permit-pty certificate extension. Valid values: `enable`, `disable`.
-     */
     permitPty?: pulumi.Input<string>;
-    /**
-     * Enable/disable appending permit-user-rc certificate extension. Valid values: `enable`, `disable`.
-     */
     permitUserRc?: pulumi.Input<string>;
-    /**
-     * Enable/disable appending permit-x11-forwarding certificate extension. Valid values: `enable`, `disable`.
-     */
     permitX11Forwarding?: pulumi.Input<string>;
-    /**
-     * Enable/disable appending source-address certificate critical option. This option ensure certificate only accepted from FortiGate source address. Valid values: `enable`, `disable`.
-     */
     sourceAddress?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -194,48 +110,15 @@ export interface FirewallAccessProxySshClientCertState {
  * The set of arguments for constructing a FirewallAccessProxySshClientCert resource.
  */
 export interface FirewallAccessProxySshClientCertArgs {
-    /**
-     * Name of the SSH server public key authentication CA.
-     */
     authCa?: pulumi.Input<string>;
-    /**
-     * Configure certificate extension for user certificate. The structure of `certExtension` block is documented below.
-     */
     certExtensions?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxySshClientCertCertExtension>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Name of certificate extension.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable appending permit-agent-forwarding certificate extension. Valid values: `enable`, `disable`.
-     */
     permitAgentForwarding?: pulumi.Input<string>;
-    /**
-     * Enable/disable appending permit-port-forwarding certificate extension. Valid values: `enable`, `disable`.
-     */
     permitPortForwarding?: pulumi.Input<string>;
-    /**
-     * Enable/disable appending permit-pty certificate extension. Valid values: `enable`, `disable`.
-     */
     permitPty?: pulumi.Input<string>;
-    /**
-     * Enable/disable appending permit-user-rc certificate extension. Valid values: `enable`, `disable`.
-     */
     permitUserRc?: pulumi.Input<string>;
-    /**
-     * Enable/disable appending permit-x11-forwarding certificate extension. Valid values: `enable`, `disable`.
-     */
     permitX11Forwarding?: pulumi.Input<string>;
-    /**
-     * Enable/disable appending source-address certificate critical option. This option ensure certificate only accepted from FortiGate source address. Valid values: `enable`, `disable`.
-     */
     sourceAddress?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

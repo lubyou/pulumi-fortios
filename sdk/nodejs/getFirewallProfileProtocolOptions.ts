@@ -2,18 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios firewall profileprotocoloptions
- */
 export function getFirewallProfileProtocolOptions(args: GetFirewallProfileProtocolOptionsArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallProfileProtocolOptionsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallProfileProtocolOptions:GetFirewallProfileProtocolOptions", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -24,13 +19,7 @@ export function getFirewallProfileProtocolOptions(args: GetFirewallProfileProtoc
  * A collection of arguments for invoking GetFirewallProfileProtocolOptions.
  */
 export interface GetFirewallProfileProtocolOptionsArgs {
-    /**
-     * Specify the name of the desired firewall profileprotocoloptions.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -38,99 +27,38 @@ export interface GetFirewallProfileProtocolOptionsArgs {
  * A collection of values returned by GetFirewallProfileProtocolOptions.
  */
 export interface GetFirewallProfileProtocolOptionsResult {
-    /**
-     * Configure CIFS protocol options. The structure of `cifs` block is documented below.
-     */
-    readonly cifs: outputs.GetFirewallProfileProtocolOptionsCifs;
-    /**
-     * Optional comments.
-     */
+    readonly cifs: outputs.GetFirewallProfileProtocolOptionsCif[];
     readonly comment: string;
-    /**
-     * Configure DNS protocol options. The structure of `dns` block is documented below.
-     */
-    readonly dns: outputs.GetFirewallProfileProtocolOptionsDns;
-    /**
-     * Flow/proxy feature set.
-     */
+    readonly dns: outputs.GetFirewallProfileProtocolOptionsDn[];
     readonly featureSet: string;
-    /**
-     * Configure FTP protocol options. The structure of `ftp` block is documented below.
-     */
-    readonly ftp: outputs.GetFirewallProfileProtocolOptionsFtp;
-    /**
-     * Configure HTTP protocol options. The structure of `http` block is documented below.
-     */
-    readonly http: outputs.GetFirewallProfileProtocolOptionsHttp;
+    readonly ftps: outputs.GetFirewallProfileProtocolOptionsFtp[];
+    readonly https: outputs.GetFirewallProfileProtocolOptionsHttp[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Configure IMAP protocol options. The structure of `imap` block is documented below.
-     */
-    readonly imap: outputs.GetFirewallProfileProtocolOptionsImap;
-    /**
-     * Configure Mail signature. The structure of `mailSignature` block is documented below.
-     */
-    readonly mailSignature: outputs.GetFirewallProfileProtocolOptionsMailSignature;
-    /**
-     * Configure MAPI protocol options. The structure of `mapi` block is documented below.
-     */
-    readonly mapi: outputs.GetFirewallProfileProtocolOptionsMapi;
-    /**
-     * Name.
-     */
+    readonly imaps: outputs.GetFirewallProfileProtocolOptionsImap[];
+    readonly mailSignatures: outputs.GetFirewallProfileProtocolOptionsMailSignature[];
+    readonly mapis: outputs.GetFirewallProfileProtocolOptionsMapi[];
     readonly name: string;
-    /**
-     * Configure NNTP protocol options. The structure of `nntp` block is documented below.
-     */
-    readonly nntp: outputs.GetFirewallProfileProtocolOptionsNntp;
-    /**
-     * Enable/disable logging for antivirus oversize file blocking.
-     */
+    readonly nntps: outputs.GetFirewallProfileProtocolOptionsNntp[];
     readonly oversizeLog: string;
-    /**
-     * Configure POP3 protocol options. The structure of `pop3` block is documented below.
-     */
-    readonly pop3: outputs.GetFirewallProfileProtocolOptionsPop3;
-    /**
-     * Name of the replacement message group to be used
-     */
+    readonly pop3s: outputs.GetFirewallProfileProtocolOptionsPop3[];
     readonly replacemsgGroup: string;
-    /**
-     * Enable/disable inspection of RPC over HTTP.
-     */
     readonly rpcOverHttp: string;
-    /**
-     * Configure SMTP protocol options. The structure of `smtp` block is documented below.
-     */
-    readonly smtp: outputs.GetFirewallProfileProtocolOptionsSmtp;
-    /**
-     * Configure SFTP and SCP protocol options. The structure of `ssh` block is documented below.
-     */
-    readonly ssh: outputs.GetFirewallProfileProtocolOptionsSsh;
-    /**
-     * Enable/disable logging for HTTP/HTTPS switching protocols.
-     */
+    readonly smtps: outputs.GetFirewallProfileProtocolOptionsSmtp[];
+    readonly sshes: outputs.GetFirewallProfileProtocolOptionsSsh[];
     readonly switchingProtocolsLog: string;
     readonly vdomparam?: string;
 }
-
 export function getFirewallProfileProtocolOptionsOutput(args: GetFirewallProfileProtocolOptionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallProfileProtocolOptionsResult> {
-    return pulumi.output(args).apply(a => getFirewallProfileProtocolOptions(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallProfileProtocolOptions(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetFirewallProfileProtocolOptions.
  */
 export interface GetFirewallProfileProtocolOptionsOutputArgs {
-    /**
-     * Specify the name of the desired firewall profileprotocoloptions.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

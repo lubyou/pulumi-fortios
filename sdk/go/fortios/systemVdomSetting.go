@@ -10,41 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure VDOM of FortiOS. The API user of the token for this feature should have a super admin profile, It can be set in CLI while GUI does not allow.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `SystemVdom`, we recommend that you use the new resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemVdomSetting(ctx, "test2", &fortios.SystemVdomSettingArgs{
-// 			ShortName: pulumi.String("aa1122"),
-// 			Temporary: pulumi.String("0"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type SystemVdomSetting struct {
 	pulumi.CustomResourceState
 
-	// VDOM name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// VDOM short name.
+	Name      pulumi.StringOutput `pulumi:"name"`
 	ShortName pulumi.StringOutput `pulumi:"shortName"`
-	// Temporary.
 	Temporary pulumi.StringOutput `pulumi:"temporary"`
 }
 
@@ -78,20 +48,14 @@ func GetSystemVdomSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemVdomSetting resources.
 type systemVdomSettingState struct {
-	// VDOM name.
-	Name *string `pulumi:"name"`
-	// VDOM short name.
+	Name      *string `pulumi:"name"`
 	ShortName *string `pulumi:"shortName"`
-	// Temporary.
 	Temporary *string `pulumi:"temporary"`
 }
 
 type SystemVdomSettingState struct {
-	// VDOM name.
-	Name pulumi.StringPtrInput
-	// VDOM short name.
+	Name      pulumi.StringPtrInput
 	ShortName pulumi.StringPtrInput
-	// Temporary.
 	Temporary pulumi.StringPtrInput
 }
 
@@ -100,21 +64,15 @@ func (SystemVdomSettingState) ElementType() reflect.Type {
 }
 
 type systemVdomSettingArgs struct {
-	// VDOM name.
-	Name *string `pulumi:"name"`
-	// VDOM short name.
+	Name      *string `pulumi:"name"`
 	ShortName *string `pulumi:"shortName"`
-	// Temporary.
 	Temporary *string `pulumi:"temporary"`
 }
 
 // The set of arguments for constructing a SystemVdomSetting resource.
 type SystemVdomSettingArgs struct {
-	// VDOM name.
-	Name pulumi.StringPtrInput
-	// VDOM short name.
+	Name      pulumi.StringPtrInput
 	ShortName pulumi.StringPtrInput
-	// Temporary.
 	Temporary pulumi.StringPtrInput
 }
 
@@ -144,7 +102,7 @@ func (i *SystemVdomSetting) ToSystemVdomSettingOutputWithContext(ctx context.Con
 // SystemVdomSettingArrayInput is an input type that accepts SystemVdomSettingArray and SystemVdomSettingArrayOutput values.
 // You can construct a concrete instance of `SystemVdomSettingArrayInput` via:
 //
-//          SystemVdomSettingArray{ SystemVdomSettingArgs{...} }
+//	SystemVdomSettingArray{ SystemVdomSettingArgs{...} }
 type SystemVdomSettingArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +127,7 @@ func (i SystemVdomSettingArray) ToSystemVdomSettingArrayOutputWithContext(ctx co
 // SystemVdomSettingMapInput is an input type that accepts SystemVdomSettingMap and SystemVdomSettingMapOutput values.
 // You can construct a concrete instance of `SystemVdomSettingMapInput` via:
 //
-//          SystemVdomSettingMap{ "key": SystemVdomSettingArgs{...} }
+//	SystemVdomSettingMap{ "key": SystemVdomSettingArgs{...} }
 type SystemVdomSettingMapInput interface {
 	pulumi.Input
 
@@ -203,6 +161,18 @@ func (o SystemVdomSettingOutput) ToSystemVdomSettingOutput() SystemVdomSettingOu
 
 func (o SystemVdomSettingOutput) ToSystemVdomSettingOutputWithContext(ctx context.Context) SystemVdomSettingOutput {
 	return o
+}
+
+func (o SystemVdomSettingOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomSetting) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomSettingOutput) ShortName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomSetting) pulumi.StringOutput { return v.ShortName }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomSettingOutput) Temporary() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomSetting) pulumi.StringOutput { return v.Temporary }).(pulumi.StringOutput)
 }
 
 type SystemVdomSettingArrayOutput struct{ *pulumi.OutputState }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios system fssopolling
 func LookupSystemFssoPolling(ctx *pulumi.Context, args *LookupSystemFssoPollingArgs, opts ...pulumi.InvokeOption) (*LookupSystemFssoPollingResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemFssoPollingResult
@@ -23,23 +22,18 @@ func LookupSystemFssoPolling(ctx *pulumi.Context, args *LookupSystemFssoPollingA
 
 // A collection of arguments for invoking GetSystemFssoPolling.
 type LookupSystemFssoPollingArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemFssoPolling.
 type LookupSystemFssoPollingResult struct {
-	// Password to connect to FSSO Agent.
-	AuthPassword string `pulumi:"authPassword"`
-	// Enable/disable FSSO Agent Authentication.
+	AuthPassword   string `pulumi:"authPassword"`
 	Authentication string `pulumi:"authentication"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Listening port to accept clients (1 - 65535).
-	ListeningPort int `pulumi:"listeningPort"`
-	// Enable/disable FSSO Polling Mode.
-	Status    string  `pulumi:"status"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id            string  `pulumi:"id"`
+	ListeningPort int     `pulumi:"listeningPort"`
+	Status        string  `pulumi:"status"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 func LookupSystemFssoPollingOutput(ctx *pulumi.Context, args LookupSystemFssoPollingOutputArgs, opts ...pulumi.InvokeOption) LookupSystemFssoPollingResultOutput {
@@ -57,7 +51,6 @@ func LookupSystemFssoPollingOutput(ctx *pulumi.Context, args LookupSystemFssoPol
 
 // A collection of arguments for invoking GetSystemFssoPolling.
 type LookupSystemFssoPollingOutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -80,12 +73,10 @@ func (o LookupSystemFssoPollingResultOutput) ToLookupSystemFssoPollingResultOutp
 	return o
 }
 
-// Password to connect to FSSO Agent.
 func (o LookupSystemFssoPollingResultOutput) AuthPassword() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFssoPollingResult) string { return v.AuthPassword }).(pulumi.StringOutput)
 }
 
-// Enable/disable FSSO Agent Authentication.
 func (o LookupSystemFssoPollingResultOutput) Authentication() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFssoPollingResult) string { return v.Authentication }).(pulumi.StringOutput)
 }
@@ -95,12 +86,10 @@ func (o LookupSystemFssoPollingResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFssoPollingResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Listening port to accept clients (1 - 65535).
 func (o LookupSystemFssoPollingResultOutput) ListeningPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemFssoPollingResult) int { return v.ListeningPort }).(pulumi.IntOutput)
 }
 
-// Enable/disable FSSO Polling Mode.
 func (o LookupSystemFssoPollingResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFssoPollingResult) string { return v.Status }).(pulumi.StringOutput)
 }

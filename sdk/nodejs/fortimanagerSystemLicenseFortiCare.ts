@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports uploading FortiCare registration code to FortiGate through FortiManager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerSystemLicenseFortiCare("test1", {
- *     registrationCode: "jn3t3Nw7qckQzt955Htkfj5hwQ6aaa",
- *     target: "fortigate-test",
- * });
- * ```
- */
 export class FortimanagerSystemLicenseFortiCare extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerSystemLicenseFortiCare resource's state with the given name, ID, and optional extra
@@ -47,17 +32,8 @@ export class FortimanagerSystemLicenseFortiCare extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerSystemLicenseFortiCare.__pulumiType;
     }
 
-    /**
-     * ADOM that the target device belongs to. default is 'root'.
-     */
     public readonly adom!: pulumi.Output<string | undefined>;
-    /**
-     * Registration code.
-     */
     public readonly registrationCode!: pulumi.Output<string>;
-    /**
-     * Target name, which is managed by FortiManager.
-     */
     public readonly target!: pulumi.Output<string>;
 
     /**
@@ -97,17 +73,8 @@ export class FortimanagerSystemLicenseFortiCare extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerSystemLicenseFortiCare resources.
  */
 export interface FortimanagerSystemLicenseFortiCareState {
-    /**
-     * ADOM that the target device belongs to. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Registration code.
-     */
     registrationCode?: pulumi.Input<string>;
-    /**
-     * Target name, which is managed by FortiManager.
-     */
     target?: pulumi.Input<string>;
 }
 
@@ -115,16 +82,7 @@ export interface FortimanagerSystemLicenseFortiCareState {
  * The set of arguments for constructing a FortimanagerSystemLicenseFortiCare resource.
  */
 export interface FortimanagerSystemLicenseFortiCareArgs {
-    /**
-     * ADOM that the target device belongs to. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Registration code.
-     */
     registrationCode: pulumi.Input<string>;
-    /**
-     * Target name, which is managed by FortiManager.
-     */
     target: pulumi.Input<string>;
 }

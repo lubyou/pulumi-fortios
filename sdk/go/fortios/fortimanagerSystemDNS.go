@@ -10,37 +10,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports modifying system dns setting for FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerSystemDNS(ctx, "test1", &fortios.FortimanagerSystemDNSArgs{
-// 			Primary:   pulumi.String("208.91.112.52"),
-// 			Secondary: pulumi.String("208.91.112.54"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerSystemDNS struct {
 	pulumi.CustomResourceState
 
-	// Primary DNS IP.
-	Primary pulumi.StringPtrOutput `pulumi:"primary"`
-	// Secondary DNS IP.
+	Primary   pulumi.StringPtrOutput `pulumi:"primary"`
 	Secondary pulumi.StringPtrOutput `pulumi:"secondary"`
 }
 
@@ -74,16 +47,12 @@ func GetFortimanagerSystemDNS(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerSystemDNS resources.
 type fortimanagerSystemDNSState struct {
-	// Primary DNS IP.
-	Primary *string `pulumi:"primary"`
-	// Secondary DNS IP.
+	Primary   *string `pulumi:"primary"`
 	Secondary *string `pulumi:"secondary"`
 }
 
 type FortimanagerSystemDNSState struct {
-	// Primary DNS IP.
-	Primary pulumi.StringPtrInput
-	// Secondary DNS IP.
+	Primary   pulumi.StringPtrInput
 	Secondary pulumi.StringPtrInput
 }
 
@@ -92,17 +61,13 @@ func (FortimanagerSystemDNSState) ElementType() reflect.Type {
 }
 
 type fortimanagerSystemDNSArgs struct {
-	// Primary DNS IP.
-	Primary *string `pulumi:"primary"`
-	// Secondary DNS IP.
+	Primary   *string `pulumi:"primary"`
 	Secondary *string `pulumi:"secondary"`
 }
 
 // The set of arguments for constructing a FortimanagerSystemDNS resource.
 type FortimanagerSystemDNSArgs struct {
-	// Primary DNS IP.
-	Primary pulumi.StringPtrInput
-	// Secondary DNS IP.
+	Primary   pulumi.StringPtrInput
 	Secondary pulumi.StringPtrInput
 }
 
@@ -132,7 +97,7 @@ func (i *FortimanagerSystemDNS) ToFortimanagerSystemDNSOutputWithContext(ctx con
 // FortimanagerSystemDNSArrayInput is an input type that accepts FortimanagerSystemDNSArray and FortimanagerSystemDNSArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemDNSArrayInput` via:
 //
-//          FortimanagerSystemDNSArray{ FortimanagerSystemDNSArgs{...} }
+//	FortimanagerSystemDNSArray{ FortimanagerSystemDNSArgs{...} }
 type FortimanagerSystemDNSArrayInput interface {
 	pulumi.Input
 
@@ -157,7 +122,7 @@ func (i FortimanagerSystemDNSArray) ToFortimanagerSystemDNSArrayOutputWithContex
 // FortimanagerSystemDNSMapInput is an input type that accepts FortimanagerSystemDNSMap and FortimanagerSystemDNSMapOutput values.
 // You can construct a concrete instance of `FortimanagerSystemDNSMapInput` via:
 //
-//          FortimanagerSystemDNSMap{ "key": FortimanagerSystemDNSArgs{...} }
+//	FortimanagerSystemDNSMap{ "key": FortimanagerSystemDNSArgs{...} }
 type FortimanagerSystemDNSMapInput interface {
 	pulumi.Input
 
@@ -191,6 +156,14 @@ func (o FortimanagerSystemDNSOutput) ToFortimanagerSystemDNSOutput() Fortimanage
 
 func (o FortimanagerSystemDNSOutput) ToFortimanagerSystemDNSOutputWithContext(ctx context.Context) FortimanagerSystemDNSOutput {
 	return o
+}
+
+func (o FortimanagerSystemDNSOutput) Primary() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemDNS) pulumi.StringPtrOutput { return v.Primary }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemDNSOutput) Secondary() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemDNS) pulumi.StringPtrOutput { return v.Secondary }).(pulumi.StringPtrOutput)
 }
 
 type FortimanagerSystemDNSArrayOutput struct{ *pulumi.OutputState }

@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure VideoFilter profile. Applies to FortiOS Version `>= 7.0.1`.
- *
- * ## Import
- *
- * Videofilter Profile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/videofilterProfile:VideofilterProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/videofilterProfile:VideofilterProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VideofilterProfile extends pulumi.CustomResource {
     /**
      * Get an existing VideofilterProfile resource's state with the given name, ID, and optional extra
@@ -52,41 +34,14 @@ export class VideofilterProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === VideofilterProfile.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable Dailymotion video source. Valid values: `enable`, `disable`.
-     */
     public readonly dailymotion!: pulumi.Output<string>;
-    /**
-     * Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
-     */
-    public readonly fortiguardCategory!: pulumi.Output<outputs.VideofilterProfileFortiguardCategory | undefined>;
-    /**
-     * Name.
-     */
+    public readonly fortiguardCategory!: pulumi.Output<outputs.VideofilterProfileFortiguardCategory>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Replacement message group.
-     */
     public readonly replacemsgGroup!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable Vimeo video source. Valid values: `enable`, `disable`.
-     */
     public readonly vimeo!: pulumi.Output<string>;
-    /**
-     * Enable/disable YouTube video source. Valid values: `enable`, `disable`.
-     */
     public readonly youtube!: pulumi.Output<string>;
-    /**
-     * Set YouTube channel filter.
-     */
     public readonly youtubeChannelFilter!: pulumi.Output<number>;
 
     /**
@@ -132,41 +87,14 @@ export class VideofilterProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VideofilterProfile resources.
  */
 export interface VideofilterProfileState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable/disable Dailymotion video source. Valid values: `enable`, `disable`.
-     */
     dailymotion?: pulumi.Input<string>;
-    /**
-     * Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
-     */
     fortiguardCategory?: pulumi.Input<inputs.VideofilterProfileFortiguardCategory>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Replacement message group.
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable Vimeo video source. Valid values: `enable`, `disable`.
-     */
     vimeo?: pulumi.Input<string>;
-    /**
-     * Enable/disable YouTube video source. Valid values: `enable`, `disable`.
-     */
     youtube?: pulumi.Input<string>;
-    /**
-     * Set YouTube channel filter.
-     */
     youtubeChannelFilter?: pulumi.Input<number>;
 }
 
@@ -174,40 +102,13 @@ export interface VideofilterProfileState {
  * The set of arguments for constructing a VideofilterProfile resource.
  */
 export interface VideofilterProfileArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable/disable Dailymotion video source. Valid values: `enable`, `disable`.
-     */
     dailymotion?: pulumi.Input<string>;
-    /**
-     * Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
-     */
     fortiguardCategory?: pulumi.Input<inputs.VideofilterProfileFortiguardCategory>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Replacement message group.
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable Vimeo video source. Valid values: `enable`, `disable`.
-     */
     vimeo?: pulumi.Input<string>;
-    /**
-     * Enable/disable YouTube video source. Valid values: `enable`, `disable`.
-     */
     youtube?: pulumi.Input<string>;
-    /**
-     * Set YouTube channel filter.
-     */
     youtubeChannelFilter?: pulumi.Input<number>;
 }

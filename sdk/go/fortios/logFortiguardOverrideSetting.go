@@ -10,73 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Override global FortiCloud logging settings for this VDOM.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogFortiguardOverrideSetting(ctx, "trname", &fortios.LogFortiguardOverrideSettingArgs{
-// 			Override:       pulumi.String("disable"),
-// 			Status:         pulumi.String("disable"),
-// 			UploadInterval: pulumi.String("daily"),
-// 			UploadOption:   pulumi.String("5-minute"),
-// 			UploadTime:     pulumi.String("00:00"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// LogFortiguard OverrideSetting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logFortiguardOverrideSetting:LogFortiguardOverrideSetting labelname LogFortiguardOverrideSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logFortiguardOverrideSetting:LogFortiguardOverrideSetting labelname LogFortiguardOverrideSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogFortiguardOverrideSetting struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-	AccessConfig pulumi.StringOutput `pulumi:"accessConfig"`
-	// FortiCloud maximum log rate in MBps (0 = unlimited).
-	MaxLogRate pulumi.IntOutput `pulumi:"maxLogRate"`
-	// Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
-	Override pulumi.StringOutput `pulumi:"override"`
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority pulumi.StringOutput `pulumi:"priority"`
-	// Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Day of week to roll logs.
-	UploadDay pulumi.StringOutput `pulumi:"uploadDay"`
-	// Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
-	UploadInterval pulumi.StringOutput `pulumi:"uploadInterval"`
-	// Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-	UploadOption pulumi.StringOutput `pulumi:"uploadOption"`
-	// Time of day to roll logs (hh:mm).
-	UploadTime pulumi.StringOutput `pulumi:"uploadTime"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AccessConfig   pulumi.StringOutput    `pulumi:"accessConfig"`
+	MaxLogRate     pulumi.IntOutput       `pulumi:"maxLogRate"`
+	Override       pulumi.StringOutput    `pulumi:"override"`
+	Priority       pulumi.StringOutput    `pulumi:"priority"`
+	Status         pulumi.StringOutput    `pulumi:"status"`
+	UploadDay      pulumi.StringOutput    `pulumi:"uploadDay"`
+	UploadInterval pulumi.StringOutput    `pulumi:"uploadInterval"`
+	UploadOption   pulumi.StringOutput    `pulumi:"uploadOption"`
+	UploadTime     pulumi.StringOutput    `pulumi:"uploadTime"`
+	Vdomparam      pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewLogFortiguardOverrideSetting registers a new resource with the given unique name, arguments, and options.
@@ -109,49 +55,29 @@ func GetLogFortiguardOverrideSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogFortiguardOverrideSetting resources.
 type logFortiguardOverrideSettingState struct {
-	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-	AccessConfig *string `pulumi:"accessConfig"`
-	// FortiCloud maximum log rate in MBps (0 = unlimited).
-	MaxLogRate *int `pulumi:"maxLogRate"`
-	// Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
-	Override *string `pulumi:"override"`
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority *string `pulumi:"priority"`
-	// Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Day of week to roll logs.
-	UploadDay *string `pulumi:"uploadDay"`
-	// Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
+	AccessConfig   *string `pulumi:"accessConfig"`
+	MaxLogRate     *int    `pulumi:"maxLogRate"`
+	Override       *string `pulumi:"override"`
+	Priority       *string `pulumi:"priority"`
+	Status         *string `pulumi:"status"`
+	UploadDay      *string `pulumi:"uploadDay"`
 	UploadInterval *string `pulumi:"uploadInterval"`
-	// Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-	UploadOption *string `pulumi:"uploadOption"`
-	// Time of day to roll logs (hh:mm).
-	UploadTime *string `pulumi:"uploadTime"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	UploadOption   *string `pulumi:"uploadOption"`
+	UploadTime     *string `pulumi:"uploadTime"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 type LogFortiguardOverrideSettingState struct {
-	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-	AccessConfig pulumi.StringPtrInput
-	// FortiCloud maximum log rate in MBps (0 = unlimited).
-	MaxLogRate pulumi.IntPtrInput
-	// Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
-	Override pulumi.StringPtrInput
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority pulumi.StringPtrInput
-	// Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Day of week to roll logs.
-	UploadDay pulumi.StringPtrInput
-	// Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
+	AccessConfig   pulumi.StringPtrInput
+	MaxLogRate     pulumi.IntPtrInput
+	Override       pulumi.StringPtrInput
+	Priority       pulumi.StringPtrInput
+	Status         pulumi.StringPtrInput
+	UploadDay      pulumi.StringPtrInput
 	UploadInterval pulumi.StringPtrInput
-	// Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-	UploadOption pulumi.StringPtrInput
-	// Time of day to roll logs (hh:mm).
-	UploadTime pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	UploadOption   pulumi.StringPtrInput
+	UploadTime     pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (LogFortiguardOverrideSettingState) ElementType() reflect.Type {
@@ -159,50 +85,30 @@ func (LogFortiguardOverrideSettingState) ElementType() reflect.Type {
 }
 
 type logFortiguardOverrideSettingArgs struct {
-	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-	AccessConfig *string `pulumi:"accessConfig"`
-	// FortiCloud maximum log rate in MBps (0 = unlimited).
-	MaxLogRate *int `pulumi:"maxLogRate"`
-	// Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
-	Override *string `pulumi:"override"`
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority *string `pulumi:"priority"`
-	// Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Day of week to roll logs.
-	UploadDay *string `pulumi:"uploadDay"`
-	// Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
+	AccessConfig   *string `pulumi:"accessConfig"`
+	MaxLogRate     *int    `pulumi:"maxLogRate"`
+	Override       *string `pulumi:"override"`
+	Priority       *string `pulumi:"priority"`
+	Status         *string `pulumi:"status"`
+	UploadDay      *string `pulumi:"uploadDay"`
 	UploadInterval *string `pulumi:"uploadInterval"`
-	// Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-	UploadOption *string `pulumi:"uploadOption"`
-	// Time of day to roll logs (hh:mm).
-	UploadTime *string `pulumi:"uploadTime"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	UploadOption   *string `pulumi:"uploadOption"`
+	UploadTime     *string `pulumi:"uploadTime"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogFortiguardOverrideSetting resource.
 type LogFortiguardOverrideSettingArgs struct {
-	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-	AccessConfig pulumi.StringPtrInput
-	// FortiCloud maximum log rate in MBps (0 = unlimited).
-	MaxLogRate pulumi.IntPtrInput
-	// Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
-	Override pulumi.StringPtrInput
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority pulumi.StringPtrInput
-	// Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Day of week to roll logs.
-	UploadDay pulumi.StringPtrInput
-	// Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
+	AccessConfig   pulumi.StringPtrInput
+	MaxLogRate     pulumi.IntPtrInput
+	Override       pulumi.StringPtrInput
+	Priority       pulumi.StringPtrInput
+	Status         pulumi.StringPtrInput
+	UploadDay      pulumi.StringPtrInput
 	UploadInterval pulumi.StringPtrInput
-	// Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-	UploadOption pulumi.StringPtrInput
-	// Time of day to roll logs (hh:mm).
-	UploadTime pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	UploadOption   pulumi.StringPtrInput
+	UploadTime     pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (LogFortiguardOverrideSettingArgs) ElementType() reflect.Type {
@@ -231,7 +137,7 @@ func (i *LogFortiguardOverrideSetting) ToLogFortiguardOverrideSettingOutputWithC
 // LogFortiguardOverrideSettingArrayInput is an input type that accepts LogFortiguardOverrideSettingArray and LogFortiguardOverrideSettingArrayOutput values.
 // You can construct a concrete instance of `LogFortiguardOverrideSettingArrayInput` via:
 //
-//          LogFortiguardOverrideSettingArray{ LogFortiguardOverrideSettingArgs{...} }
+//	LogFortiguardOverrideSettingArray{ LogFortiguardOverrideSettingArgs{...} }
 type LogFortiguardOverrideSettingArrayInput interface {
 	pulumi.Input
 
@@ -256,7 +162,7 @@ func (i LogFortiguardOverrideSettingArray) ToLogFortiguardOverrideSettingArrayOu
 // LogFortiguardOverrideSettingMapInput is an input type that accepts LogFortiguardOverrideSettingMap and LogFortiguardOverrideSettingMapOutput values.
 // You can construct a concrete instance of `LogFortiguardOverrideSettingMapInput` via:
 //
-//          LogFortiguardOverrideSettingMap{ "key": LogFortiguardOverrideSettingArgs{...} }
+//	LogFortiguardOverrideSettingMap{ "key": LogFortiguardOverrideSettingArgs{...} }
 type LogFortiguardOverrideSettingMapInput interface {
 	pulumi.Input
 
@@ -290,6 +196,46 @@ func (o LogFortiguardOverrideSettingOutput) ToLogFortiguardOverrideSettingOutput
 
 func (o LogFortiguardOverrideSettingOutput) ToLogFortiguardOverrideSettingOutputWithContext(ctx context.Context) LogFortiguardOverrideSettingOutput {
 	return o
+}
+
+func (o LogFortiguardOverrideSettingOutput) AccessConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardOverrideSetting) pulumi.StringOutput { return v.AccessConfig }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardOverrideSettingOutput) MaxLogRate() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogFortiguardOverrideSetting) pulumi.IntOutput { return v.MaxLogRate }).(pulumi.IntOutput)
+}
+
+func (o LogFortiguardOverrideSettingOutput) Override() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardOverrideSetting) pulumi.StringOutput { return v.Override }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardOverrideSettingOutput) Priority() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardOverrideSetting) pulumi.StringOutput { return v.Priority }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardOverrideSettingOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardOverrideSetting) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardOverrideSettingOutput) UploadDay() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardOverrideSetting) pulumi.StringOutput { return v.UploadDay }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardOverrideSettingOutput) UploadInterval() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardOverrideSetting) pulumi.StringOutput { return v.UploadInterval }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardOverrideSettingOutput) UploadOption() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardOverrideSetting) pulumi.StringOutput { return v.UploadOption }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardOverrideSettingOutput) UploadTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiguardOverrideSetting) pulumi.StringOutput { return v.UploadTime }).(pulumi.StringOutput)
+}
+
+func (o LogFortiguardOverrideSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogFortiguardOverrideSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type LogFortiguardOverrideSettingArrayOutput struct{ *pulumi.OutputState }

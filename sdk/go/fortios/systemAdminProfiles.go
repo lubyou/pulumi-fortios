@@ -10,78 +10,24 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure access profiles of FortiOS.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `SystemAccprofile`, we recommend that you use the new resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAdminProfiles(ctx, "test1", &fortios.SystemAdminProfilesArgs{
-// 			AdmintimeoutOverride: pulumi.String("disable"),
-// 			Authgrp:              pulumi.String("none"),
-// 			Comments:             pulumi.String("test"),
-// 			Ftviewgrp:            pulumi.String("read"),
-// 			Fwgrp:                pulumi.String("none"),
-// 			Loggrp:               pulumi.String("none"),
-// 			Netgrp:               pulumi.String("none"),
-// 			Scope:                pulumi.String("vdom"),
-// 			Secfabgrp:            pulumi.String("read-write"),
-// 			Sysgrp:               pulumi.String("read"),
-// 			Utmgrp:               pulumi.String("none"),
-// 			Vpngrp:               pulumi.String("none"),
-// 			Wanoptgrp:            pulumi.String("none"),
-// 			Wifi:                 pulumi.String("none"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type SystemAdminProfiles struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable overriding the global administrator idle timeout.
-	AdmintimeoutOverride pulumi.StringOutput `pulumi:"admintimeoutOverride"`
-	// Administrator access to Users and Devices.
-	Authgrp pulumi.StringOutput `pulumi:"authgrp"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// FortiView.
-	Ftviewgrp pulumi.StringOutput `pulumi:"ftviewgrp"`
-	// Administrator access to the Firewall configuration.
-	Fwgrp pulumi.StringOutput `pulumi:"fwgrp"`
-	// Administrator access to Logging and Reporting including viewing log messages.
-	Loggrp pulumi.StringOutput `pulumi:"loggrp"`
-	// Profile name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Network Configuration.
-	Netgrp pulumi.StringOutput `pulumi:"netgrp"`
-	// Scope of admin access.
-	Scope pulumi.StringOutput `pulumi:"scope"`
-	// Security Fabric.
-	Secfabgrp pulumi.StringOutput `pulumi:"secfabgrp"`
-	// System Configuration.
-	Sysgrp pulumi.StringOutput `pulumi:"sysgrp"`
-	// Administrator access to Security Profiles.
-	Utmgrp pulumi.StringOutput `pulumi:"utmgrp"`
-	// Administrator access to IPsec, SSL, PPTP, and L2TP VPN.
-	Vpngrp pulumi.StringOutput `pulumi:"vpngrp"`
-	// Administrator access to WAN Opt & Cache.
-	Wanoptgrp pulumi.StringOutput `pulumi:"wanoptgrp"`
-	// Administrator access to the WiFi controller and Switch controller.
-	Wifi pulumi.StringOutput `pulumi:"wifi"`
+	AdmintimeoutOverride pulumi.StringOutput    `pulumi:"admintimeoutOverride"`
+	Authgrp              pulumi.StringOutput    `pulumi:"authgrp"`
+	Comments             pulumi.StringPtrOutput `pulumi:"comments"`
+	Ftviewgrp            pulumi.StringOutput    `pulumi:"ftviewgrp"`
+	Fwgrp                pulumi.StringOutput    `pulumi:"fwgrp"`
+	Loggrp               pulumi.StringOutput    `pulumi:"loggrp"`
+	Name                 pulumi.StringOutput    `pulumi:"name"`
+	Netgrp               pulumi.StringOutput    `pulumi:"netgrp"`
+	Scope                pulumi.StringOutput    `pulumi:"scope"`
+	Secfabgrp            pulumi.StringOutput    `pulumi:"secfabgrp"`
+	Sysgrp               pulumi.StringOutput    `pulumi:"sysgrp"`
+	Utmgrp               pulumi.StringOutput    `pulumi:"utmgrp"`
+	Vpngrp               pulumi.StringOutput    `pulumi:"vpngrp"`
+	Wanoptgrp            pulumi.StringOutput    `pulumi:"wanoptgrp"`
+	Wifi                 pulumi.StringOutput    `pulumi:"wifi"`
 }
 
 // NewSystemAdminProfiles registers a new resource with the given unique name, arguments, and options.
@@ -114,69 +60,39 @@ func GetSystemAdminProfiles(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAdminProfiles resources.
 type systemAdminProfilesState struct {
-	// Enable/disable overriding the global administrator idle timeout.
 	AdmintimeoutOverride *string `pulumi:"admintimeoutOverride"`
-	// Administrator access to Users and Devices.
-	Authgrp *string `pulumi:"authgrp"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// FortiView.
-	Ftviewgrp *string `pulumi:"ftviewgrp"`
-	// Administrator access to the Firewall configuration.
-	Fwgrp *string `pulumi:"fwgrp"`
-	// Administrator access to Logging and Reporting including viewing log messages.
-	Loggrp *string `pulumi:"loggrp"`
-	// Profile name.
-	Name *string `pulumi:"name"`
-	// Network Configuration.
-	Netgrp *string `pulumi:"netgrp"`
-	// Scope of admin access.
-	Scope *string `pulumi:"scope"`
-	// Security Fabric.
-	Secfabgrp *string `pulumi:"secfabgrp"`
-	// System Configuration.
-	Sysgrp *string `pulumi:"sysgrp"`
-	// Administrator access to Security Profiles.
-	Utmgrp *string `pulumi:"utmgrp"`
-	// Administrator access to IPsec, SSL, PPTP, and L2TP VPN.
-	Vpngrp *string `pulumi:"vpngrp"`
-	// Administrator access to WAN Opt & Cache.
-	Wanoptgrp *string `pulumi:"wanoptgrp"`
-	// Administrator access to the WiFi controller and Switch controller.
-	Wifi *string `pulumi:"wifi"`
+	Authgrp              *string `pulumi:"authgrp"`
+	Comments             *string `pulumi:"comments"`
+	Ftviewgrp            *string `pulumi:"ftviewgrp"`
+	Fwgrp                *string `pulumi:"fwgrp"`
+	Loggrp               *string `pulumi:"loggrp"`
+	Name                 *string `pulumi:"name"`
+	Netgrp               *string `pulumi:"netgrp"`
+	Scope                *string `pulumi:"scope"`
+	Secfabgrp            *string `pulumi:"secfabgrp"`
+	Sysgrp               *string `pulumi:"sysgrp"`
+	Utmgrp               *string `pulumi:"utmgrp"`
+	Vpngrp               *string `pulumi:"vpngrp"`
+	Wanoptgrp            *string `pulumi:"wanoptgrp"`
+	Wifi                 *string `pulumi:"wifi"`
 }
 
 type SystemAdminProfilesState struct {
-	// Enable/disable overriding the global administrator idle timeout.
 	AdmintimeoutOverride pulumi.StringPtrInput
-	// Administrator access to Users and Devices.
-	Authgrp pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// FortiView.
-	Ftviewgrp pulumi.StringPtrInput
-	// Administrator access to the Firewall configuration.
-	Fwgrp pulumi.StringPtrInput
-	// Administrator access to Logging and Reporting including viewing log messages.
-	Loggrp pulumi.StringPtrInput
-	// Profile name.
-	Name pulumi.StringPtrInput
-	// Network Configuration.
-	Netgrp pulumi.StringPtrInput
-	// Scope of admin access.
-	Scope pulumi.StringPtrInput
-	// Security Fabric.
-	Secfabgrp pulumi.StringPtrInput
-	// System Configuration.
-	Sysgrp pulumi.StringPtrInput
-	// Administrator access to Security Profiles.
-	Utmgrp pulumi.StringPtrInput
-	// Administrator access to IPsec, SSL, PPTP, and L2TP VPN.
-	Vpngrp pulumi.StringPtrInput
-	// Administrator access to WAN Opt & Cache.
-	Wanoptgrp pulumi.StringPtrInput
-	// Administrator access to the WiFi controller and Switch controller.
-	Wifi pulumi.StringPtrInput
+	Authgrp              pulumi.StringPtrInput
+	Comments             pulumi.StringPtrInput
+	Ftviewgrp            pulumi.StringPtrInput
+	Fwgrp                pulumi.StringPtrInput
+	Loggrp               pulumi.StringPtrInput
+	Name                 pulumi.StringPtrInput
+	Netgrp               pulumi.StringPtrInput
+	Scope                pulumi.StringPtrInput
+	Secfabgrp            pulumi.StringPtrInput
+	Sysgrp               pulumi.StringPtrInput
+	Utmgrp               pulumi.StringPtrInput
+	Vpngrp               pulumi.StringPtrInput
+	Wanoptgrp            pulumi.StringPtrInput
+	Wifi                 pulumi.StringPtrInput
 }
 
 func (SystemAdminProfilesState) ElementType() reflect.Type {
@@ -184,70 +100,40 @@ func (SystemAdminProfilesState) ElementType() reflect.Type {
 }
 
 type systemAdminProfilesArgs struct {
-	// Enable/disable overriding the global administrator idle timeout.
 	AdmintimeoutOverride *string `pulumi:"admintimeoutOverride"`
-	// Administrator access to Users and Devices.
-	Authgrp *string `pulumi:"authgrp"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// FortiView.
-	Ftviewgrp *string `pulumi:"ftviewgrp"`
-	// Administrator access to the Firewall configuration.
-	Fwgrp *string `pulumi:"fwgrp"`
-	// Administrator access to Logging and Reporting including viewing log messages.
-	Loggrp *string `pulumi:"loggrp"`
-	// Profile name.
-	Name *string `pulumi:"name"`
-	// Network Configuration.
-	Netgrp *string `pulumi:"netgrp"`
-	// Scope of admin access.
-	Scope *string `pulumi:"scope"`
-	// Security Fabric.
-	Secfabgrp *string `pulumi:"secfabgrp"`
-	// System Configuration.
-	Sysgrp *string `pulumi:"sysgrp"`
-	// Administrator access to Security Profiles.
-	Utmgrp *string `pulumi:"utmgrp"`
-	// Administrator access to IPsec, SSL, PPTP, and L2TP VPN.
-	Vpngrp *string `pulumi:"vpngrp"`
-	// Administrator access to WAN Opt & Cache.
-	Wanoptgrp *string `pulumi:"wanoptgrp"`
-	// Administrator access to the WiFi controller and Switch controller.
-	Wifi *string `pulumi:"wifi"`
+	Authgrp              *string `pulumi:"authgrp"`
+	Comments             *string `pulumi:"comments"`
+	Ftviewgrp            *string `pulumi:"ftviewgrp"`
+	Fwgrp                *string `pulumi:"fwgrp"`
+	Loggrp               *string `pulumi:"loggrp"`
+	Name                 *string `pulumi:"name"`
+	Netgrp               *string `pulumi:"netgrp"`
+	Scope                *string `pulumi:"scope"`
+	Secfabgrp            *string `pulumi:"secfabgrp"`
+	Sysgrp               *string `pulumi:"sysgrp"`
+	Utmgrp               *string `pulumi:"utmgrp"`
+	Vpngrp               *string `pulumi:"vpngrp"`
+	Wanoptgrp            *string `pulumi:"wanoptgrp"`
+	Wifi                 *string `pulumi:"wifi"`
 }
 
 // The set of arguments for constructing a SystemAdminProfiles resource.
 type SystemAdminProfilesArgs struct {
-	// Enable/disable overriding the global administrator idle timeout.
 	AdmintimeoutOverride pulumi.StringPtrInput
-	// Administrator access to Users and Devices.
-	Authgrp pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// FortiView.
-	Ftviewgrp pulumi.StringPtrInput
-	// Administrator access to the Firewall configuration.
-	Fwgrp pulumi.StringPtrInput
-	// Administrator access to Logging and Reporting including viewing log messages.
-	Loggrp pulumi.StringPtrInput
-	// Profile name.
-	Name pulumi.StringPtrInput
-	// Network Configuration.
-	Netgrp pulumi.StringPtrInput
-	// Scope of admin access.
-	Scope pulumi.StringPtrInput
-	// Security Fabric.
-	Secfabgrp pulumi.StringPtrInput
-	// System Configuration.
-	Sysgrp pulumi.StringPtrInput
-	// Administrator access to Security Profiles.
-	Utmgrp pulumi.StringPtrInput
-	// Administrator access to IPsec, SSL, PPTP, and L2TP VPN.
-	Vpngrp pulumi.StringPtrInput
-	// Administrator access to WAN Opt & Cache.
-	Wanoptgrp pulumi.StringPtrInput
-	// Administrator access to the WiFi controller and Switch controller.
-	Wifi pulumi.StringPtrInput
+	Authgrp              pulumi.StringPtrInput
+	Comments             pulumi.StringPtrInput
+	Ftviewgrp            pulumi.StringPtrInput
+	Fwgrp                pulumi.StringPtrInput
+	Loggrp               pulumi.StringPtrInput
+	Name                 pulumi.StringPtrInput
+	Netgrp               pulumi.StringPtrInput
+	Scope                pulumi.StringPtrInput
+	Secfabgrp            pulumi.StringPtrInput
+	Sysgrp               pulumi.StringPtrInput
+	Utmgrp               pulumi.StringPtrInput
+	Vpngrp               pulumi.StringPtrInput
+	Wanoptgrp            pulumi.StringPtrInput
+	Wifi                 pulumi.StringPtrInput
 }
 
 func (SystemAdminProfilesArgs) ElementType() reflect.Type {
@@ -276,7 +162,7 @@ func (i *SystemAdminProfiles) ToSystemAdminProfilesOutputWithContext(ctx context
 // SystemAdminProfilesArrayInput is an input type that accepts SystemAdminProfilesArray and SystemAdminProfilesArrayOutput values.
 // You can construct a concrete instance of `SystemAdminProfilesArrayInput` via:
 //
-//          SystemAdminProfilesArray{ SystemAdminProfilesArgs{...} }
+//	SystemAdminProfilesArray{ SystemAdminProfilesArgs{...} }
 type SystemAdminProfilesArrayInput interface {
 	pulumi.Input
 
@@ -301,7 +187,7 @@ func (i SystemAdminProfilesArray) ToSystemAdminProfilesArrayOutputWithContext(ct
 // SystemAdminProfilesMapInput is an input type that accepts SystemAdminProfilesMap and SystemAdminProfilesMapOutput values.
 // You can construct a concrete instance of `SystemAdminProfilesMapInput` via:
 //
-//          SystemAdminProfilesMap{ "key": SystemAdminProfilesArgs{...} }
+//	SystemAdminProfilesMap{ "key": SystemAdminProfilesArgs{...} }
 type SystemAdminProfilesMapInput interface {
 	pulumi.Input
 
@@ -335,6 +221,66 @@ func (o SystemAdminProfilesOutput) ToSystemAdminProfilesOutput() SystemAdminProf
 
 func (o SystemAdminProfilesOutput) ToSystemAdminProfilesOutputWithContext(ctx context.Context) SystemAdminProfilesOutput {
 	return o
+}
+
+func (o SystemAdminProfilesOutput) AdmintimeoutOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminProfiles) pulumi.StringOutput { return v.AdmintimeoutOverride }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminProfilesOutput) Authgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminProfiles) pulumi.StringOutput { return v.Authgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminProfilesOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAdminProfiles) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAdminProfilesOutput) Ftviewgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminProfiles) pulumi.StringOutput { return v.Ftviewgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminProfilesOutput) Fwgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminProfiles) pulumi.StringOutput { return v.Fwgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminProfilesOutput) Loggrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminProfiles) pulumi.StringOutput { return v.Loggrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminProfilesOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminProfiles) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminProfilesOutput) Netgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminProfiles) pulumi.StringOutput { return v.Netgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminProfilesOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminProfiles) pulumi.StringOutput { return v.Scope }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminProfilesOutput) Secfabgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminProfiles) pulumi.StringOutput { return v.Secfabgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminProfilesOutput) Sysgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminProfiles) pulumi.StringOutput { return v.Sysgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminProfilesOutput) Utmgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminProfiles) pulumi.StringOutput { return v.Utmgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminProfilesOutput) Vpngrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminProfiles) pulumi.StringOutput { return v.Vpngrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminProfilesOutput) Wanoptgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminProfiles) pulumi.StringOutput { return v.Wanoptgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminProfilesOutput) Wifi() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAdminProfiles) pulumi.StringOutput { return v.Wifi }).(pulumi.StringOutput)
 }
 
 type SystemAdminProfilesArrayOutput struct{ *pulumi.OutputState }

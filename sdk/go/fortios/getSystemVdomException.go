@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system vdomexception
 func LookupSystemVdomException(ctx *pulumi.Context, args *LookupSystemVdomExceptionArgs, opts ...pulumi.InvokeOption) (*LookupSystemVdomExceptionResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemVdomExceptionResult
@@ -23,27 +22,20 @@ func LookupSystemVdomException(ctx *pulumi.Context, args *LookupSystemVdomExcept
 
 // A collection of arguments for invoking GetSystemVdomException.
 type LookupSystemVdomExceptionArgs struct {
-	// Specify the fosid of the desired system vdomexception.
-	Fosid int `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     int     `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemVdomException.
 type LookupSystemVdomExceptionResult struct {
-	// Index <1-4096>.
 	Fosid int `pulumi:"fosid"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Name of the configuration object that can be configured independently for all VDOMs.
-	Object string `pulumi:"object"`
-	// Object ID.
-	Oid int `pulumi:"oid"`
-	// Determine whether the configuration object can be configured separately for all VDOMs or if some VDOMs share the same configuration.
-	Scope     string  `pulumi:"scope"`
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Names of the VDOMs. The structure of `vdom` block is documented below.
-	Vdoms []GetSystemVdomExceptionVdom `pulumi:"vdoms"`
+	Id        string                       `pulumi:"id"`
+	Object    string                       `pulumi:"object"`
+	Oid       int                          `pulumi:"oid"`
+	Scope     string                       `pulumi:"scope"`
+	Vdomparam *string                      `pulumi:"vdomparam"`
+	Vdoms     []GetSystemVdomExceptionVdom `pulumi:"vdoms"`
 }
 
 func LookupSystemVdomExceptionOutput(ctx *pulumi.Context, args LookupSystemVdomExceptionOutputArgs, opts ...pulumi.InvokeOption) LookupSystemVdomExceptionResultOutput {
@@ -61,9 +53,7 @@ func LookupSystemVdomExceptionOutput(ctx *pulumi.Context, args LookupSystemVdomE
 
 // A collection of arguments for invoking GetSystemVdomException.
 type LookupSystemVdomExceptionOutputArgs struct {
-	// Specify the fosid of the desired system vdomexception.
-	Fosid pulumi.IntInput `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntInput       `pulumi:"fosid"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +76,6 @@ func (o LookupSystemVdomExceptionResultOutput) ToLookupSystemVdomExceptionResult
 	return o
 }
 
-// Index <1-4096>.
 func (o LookupSystemVdomExceptionResultOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemVdomExceptionResult) int { return v.Fosid }).(pulumi.IntOutput)
 }
@@ -96,17 +85,14 @@ func (o LookupSystemVdomExceptionResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemVdomExceptionResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Name of the configuration object that can be configured independently for all VDOMs.
 func (o LookupSystemVdomExceptionResultOutput) Object() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemVdomExceptionResult) string { return v.Object }).(pulumi.StringOutput)
 }
 
-// Object ID.
 func (o LookupSystemVdomExceptionResultOutput) Oid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemVdomExceptionResult) int { return v.Oid }).(pulumi.IntOutput)
 }
 
-// Determine whether the configuration object can be configured separately for all VDOMs or if some VDOMs share the same configuration.
 func (o LookupSystemVdomExceptionResultOutput) Scope() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemVdomExceptionResult) string { return v.Scope }).(pulumi.StringOutput)
 }
@@ -115,7 +101,6 @@ func (o LookupSystemVdomExceptionResultOutput) Vdomparam() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v LookupSystemVdomExceptionResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-// Names of the VDOMs. The structure of `vdom` block is documented below.
 func (o LookupSystemVdomExceptionResultOutput) Vdoms() GetSystemVdomExceptionVdomArrayOutput {
 	return o.ApplyT(func(v LookupSystemVdomExceptionResult) []GetSystemVdomExceptionVdom { return v.Vdoms }).(GetSystemVdomExceptionVdomArrayOutput)
 }

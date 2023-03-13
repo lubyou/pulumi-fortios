@@ -10,83 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure a forward server group consisting or multiple forward servers. Supports failover and load balancing.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trname1WebProxyForwardServer, err := fortios.NewWebProxyForwardServer(ctx, "trname1WebProxyForwardServer", &fortios.WebProxyForwardServerArgs{
-// 			AddrType:         pulumi.String("fqdn"),
-// 			Healthcheck:      pulumi.String("disable"),
-// 			Ip:               pulumi.String("0.0.0.0"),
-// 			Monitor:          pulumi.String("http://www.google.com"),
-// 			Port:             pulumi.Int(1128),
-// 			ServerDownOption: pulumi.String("block"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewWebProxyForwardServerGroup(ctx, "trname1WebProxyForwardServerGroup", &fortios.WebProxyForwardServerGroupArgs{
-// 			Affinity:        pulumi.String("disable"),
-// 			GroupDownOption: pulumi.String("block"),
-// 			LdbMethod:       pulumi.String("weighted"),
-// 			ServerLists: WebProxyForwardServerGroupServerListArray{
-// 				&WebProxyForwardServerGroupServerListArgs{
-// 					Name:   trname1WebProxyForwardServer.Name,
-// 					Weight: pulumi.Int(12),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// WebProxy ForwardServerGroup can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webProxyForwardServerGroup:WebProxyForwardServerGroup labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webProxyForwardServerGroup:WebProxyForwardServerGroup labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebProxyForwardServerGroup struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable affinity, attaching a source-ip's traffic to the assigned forwarding server until the forward-server-affinity-timeout is reached (under web-proxy global). Valid values: `enable`, `disable`.
-	Affinity pulumi.StringOutput `pulumi:"affinity"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Action to take when all of the servers in the forward server group are down: block sessions until at least one server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
-	GroupDownOption pulumi.StringOutput `pulumi:"groupDownOption"`
-	// Load balance method: weighted or least-session.
-	LdbMethod pulumi.StringOutput `pulumi:"ldbMethod"`
-	// Forward server name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Add web forward servers to a list to form a server group. Optionally assign weights to each server. The structure of `serverList` block is documented below.
-	ServerLists WebProxyForwardServerGroupServerListArrayOutput `pulumi:"serverLists"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Affinity            pulumi.StringOutput                             `pulumi:"affinity"`
+	DynamicSortSubtable pulumi.StringPtrOutput                          `pulumi:"dynamicSortSubtable"`
+	GroupDownOption     pulumi.StringOutput                             `pulumi:"groupDownOption"`
+	LdbMethod           pulumi.StringOutput                             `pulumi:"ldbMethod"`
+	Name                pulumi.StringOutput                             `pulumi:"name"`
+	ServerLists         WebProxyForwardServerGroupServerListArrayOutput `pulumi:"serverLists"`
+	Vdomparam           pulumi.StringPtrOutput                          `pulumi:"vdomparam"`
 }
 
 // NewWebProxyForwardServerGroup registers a new resource with the given unique name, arguments, and options.
@@ -119,37 +52,23 @@ func GetWebProxyForwardServerGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebProxyForwardServerGroup resources.
 type webProxyForwardServerGroupState struct {
-	// Enable/disable affinity, attaching a source-ip's traffic to the assigned forwarding server until the forward-server-affinity-timeout is reached (under web-proxy global). Valid values: `enable`, `disable`.
-	Affinity *string `pulumi:"affinity"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Action to take when all of the servers in the forward server group are down: block sessions until at least one server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
-	GroupDownOption *string `pulumi:"groupDownOption"`
-	// Load balance method: weighted or least-session.
-	LdbMethod *string `pulumi:"ldbMethod"`
-	// Forward server name.
-	Name *string `pulumi:"name"`
-	// Add web forward servers to a list to form a server group. Optionally assign weights to each server. The structure of `serverList` block is documented below.
-	ServerLists []WebProxyForwardServerGroupServerList `pulumi:"serverLists"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Affinity            *string                                `pulumi:"affinity"`
+	DynamicSortSubtable *string                                `pulumi:"dynamicSortSubtable"`
+	GroupDownOption     *string                                `pulumi:"groupDownOption"`
+	LdbMethod           *string                                `pulumi:"ldbMethod"`
+	Name                *string                                `pulumi:"name"`
+	ServerLists         []WebProxyForwardServerGroupServerList `pulumi:"serverLists"`
+	Vdomparam           *string                                `pulumi:"vdomparam"`
 }
 
 type WebProxyForwardServerGroupState struct {
-	// Enable/disable affinity, attaching a source-ip's traffic to the assigned forwarding server until the forward-server-affinity-timeout is reached (under web-proxy global). Valid values: `enable`, `disable`.
-	Affinity pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Affinity            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Action to take when all of the servers in the forward server group are down: block sessions until at least one server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
-	GroupDownOption pulumi.StringPtrInput
-	// Load balance method: weighted or least-session.
-	LdbMethod pulumi.StringPtrInput
-	// Forward server name.
-	Name pulumi.StringPtrInput
-	// Add web forward servers to a list to form a server group. Optionally assign weights to each server. The structure of `serverList` block is documented below.
-	ServerLists WebProxyForwardServerGroupServerListArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	GroupDownOption     pulumi.StringPtrInput
+	LdbMethod           pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	ServerLists         WebProxyForwardServerGroupServerListArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WebProxyForwardServerGroupState) ElementType() reflect.Type {
@@ -157,38 +76,24 @@ func (WebProxyForwardServerGroupState) ElementType() reflect.Type {
 }
 
 type webProxyForwardServerGroupArgs struct {
-	// Enable/disable affinity, attaching a source-ip's traffic to the assigned forwarding server until the forward-server-affinity-timeout is reached (under web-proxy global). Valid values: `enable`, `disable`.
-	Affinity *string `pulumi:"affinity"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Action to take when all of the servers in the forward server group are down: block sessions until at least one server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
-	GroupDownOption *string `pulumi:"groupDownOption"`
-	// Load balance method: weighted or least-session.
-	LdbMethod *string `pulumi:"ldbMethod"`
-	// Forward server name.
-	Name *string `pulumi:"name"`
-	// Add web forward servers to a list to form a server group. Optionally assign weights to each server. The structure of `serverList` block is documented below.
-	ServerLists []WebProxyForwardServerGroupServerList `pulumi:"serverLists"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Affinity            *string                                `pulumi:"affinity"`
+	DynamicSortSubtable *string                                `pulumi:"dynamicSortSubtable"`
+	GroupDownOption     *string                                `pulumi:"groupDownOption"`
+	LdbMethod           *string                                `pulumi:"ldbMethod"`
+	Name                *string                                `pulumi:"name"`
+	ServerLists         []WebProxyForwardServerGroupServerList `pulumi:"serverLists"`
+	Vdomparam           *string                                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebProxyForwardServerGroup resource.
 type WebProxyForwardServerGroupArgs struct {
-	// Enable/disable affinity, attaching a source-ip's traffic to the assigned forwarding server until the forward-server-affinity-timeout is reached (under web-proxy global). Valid values: `enable`, `disable`.
-	Affinity pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Affinity            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Action to take when all of the servers in the forward server group are down: block sessions until at least one server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
-	GroupDownOption pulumi.StringPtrInput
-	// Load balance method: weighted or least-session.
-	LdbMethod pulumi.StringPtrInput
-	// Forward server name.
-	Name pulumi.StringPtrInput
-	// Add web forward servers to a list to form a server group. Optionally assign weights to each server. The structure of `serverList` block is documented below.
-	ServerLists WebProxyForwardServerGroupServerListArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	GroupDownOption     pulumi.StringPtrInput
+	LdbMethod           pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	ServerLists         WebProxyForwardServerGroupServerListArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WebProxyForwardServerGroupArgs) ElementType() reflect.Type {
@@ -217,7 +122,7 @@ func (i *WebProxyForwardServerGroup) ToWebProxyForwardServerGroupOutputWithConte
 // WebProxyForwardServerGroupArrayInput is an input type that accepts WebProxyForwardServerGroupArray and WebProxyForwardServerGroupArrayOutput values.
 // You can construct a concrete instance of `WebProxyForwardServerGroupArrayInput` via:
 //
-//          WebProxyForwardServerGroupArray{ WebProxyForwardServerGroupArgs{...} }
+//	WebProxyForwardServerGroupArray{ WebProxyForwardServerGroupArgs{...} }
 type WebProxyForwardServerGroupArrayInput interface {
 	pulumi.Input
 
@@ -242,7 +147,7 @@ func (i WebProxyForwardServerGroupArray) ToWebProxyForwardServerGroupArrayOutput
 // WebProxyForwardServerGroupMapInput is an input type that accepts WebProxyForwardServerGroupMap and WebProxyForwardServerGroupMapOutput values.
 // You can construct a concrete instance of `WebProxyForwardServerGroupMapInput` via:
 //
-//          WebProxyForwardServerGroupMap{ "key": WebProxyForwardServerGroupArgs{...} }
+//	WebProxyForwardServerGroupMap{ "key": WebProxyForwardServerGroupArgs{...} }
 type WebProxyForwardServerGroupMapInput interface {
 	pulumi.Input
 
@@ -276,6 +181,36 @@ func (o WebProxyForwardServerGroupOutput) ToWebProxyForwardServerGroupOutput() W
 
 func (o WebProxyForwardServerGroupOutput) ToWebProxyForwardServerGroupOutputWithContext(ctx context.Context) WebProxyForwardServerGroupOutput {
 	return o
+}
+
+func (o WebProxyForwardServerGroupOutput) Affinity() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyForwardServerGroup) pulumi.StringOutput { return v.Affinity }).(pulumi.StringOutput)
+}
+
+func (o WebProxyForwardServerGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyForwardServerGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WebProxyForwardServerGroupOutput) GroupDownOption() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyForwardServerGroup) pulumi.StringOutput { return v.GroupDownOption }).(pulumi.StringOutput)
+}
+
+func (o WebProxyForwardServerGroupOutput) LdbMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyForwardServerGroup) pulumi.StringOutput { return v.LdbMethod }).(pulumi.StringOutput)
+}
+
+func (o WebProxyForwardServerGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyForwardServerGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WebProxyForwardServerGroupOutput) ServerLists() WebProxyForwardServerGroupServerListArrayOutput {
+	return o.ApplyT(func(v *WebProxyForwardServerGroup) WebProxyForwardServerGroupServerListArrayOutput {
+		return v.ServerLists
+	}).(WebProxyForwardServerGroupServerListArrayOutput)
+}
+
+func (o WebProxyForwardServerGroupOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyForwardServerGroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebProxyForwardServerGroupArrayOutput struct{ *pulumi.OutputState }

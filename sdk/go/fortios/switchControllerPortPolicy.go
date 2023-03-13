@@ -10,44 +10,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure port policy to be applied on the managed FortiSwitch ports through NAC device. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,7.0.0`.
-//
-// ## Import
-//
-// SwitchController PortPolicy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerPortPolicy:SwitchControllerPortPolicy labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerPortPolicy:SwitchControllerPortPolicy labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerPortPolicy struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable bouncing (administratively bring the link down, up) of a switch port where this port policy is applied. Helps to clear and reassign VLAN from lldp-profile. Valid values: `disable`, `enable`.
-	BouncePortLink pulumi.StringOutput `pulumi:"bouncePortLink"`
-	// Description for the port policy.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// FortiLink interface for which this port policy belongs to.
-	Fortilink pulumi.StringOutput `pulumi:"fortilink"`
-	// LLDP profile to be applied when using this port-policy.
-	LldpProfile pulumi.StringOutput `pulumi:"lldpProfile"`
-	// 802.1x security policy to be applied when using this port-policy.
-	N8021x pulumi.StringOutput `pulumi:"n8021x"`
-	// Port policy name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// QoS policy to be applied when using this port-policy.
-	QosPolicy pulumi.StringOutput `pulumi:"qosPolicy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// VLAN policy to be applied when using this port-policy.
-	VlanPolicy pulumi.StringOutput `pulumi:"vlanPolicy"`
+	BouncePortLink pulumi.StringOutput    `pulumi:"bouncePortLink"`
+	Description    pulumi.StringOutput    `pulumi:"description"`
+	Fortilink      pulumi.StringOutput    `pulumi:"fortilink"`
+	LldpProfile    pulumi.StringOutput    `pulumi:"lldpProfile"`
+	N8021x         pulumi.StringOutput    `pulumi:"n8021x"`
+	Name           pulumi.StringOutput    `pulumi:"name"`
+	QosPolicy      pulumi.StringOutput    `pulumi:"qosPolicy"`
+	Vdomparam      pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	VlanPolicy     pulumi.StringOutput    `pulumi:"vlanPolicy"`
 }
 
 // NewSwitchControllerPortPolicy registers a new resource with the given unique name, arguments, and options.
@@ -80,45 +54,27 @@ func GetSwitchControllerPortPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerPortPolicy resources.
 type switchControllerPortPolicyState struct {
-	// Enable/disable bouncing (administratively bring the link down, up) of a switch port where this port policy is applied. Helps to clear and reassign VLAN from lldp-profile. Valid values: `disable`, `enable`.
 	BouncePortLink *string `pulumi:"bouncePortLink"`
-	// Description for the port policy.
-	Description *string `pulumi:"description"`
-	// FortiLink interface for which this port policy belongs to.
-	Fortilink *string `pulumi:"fortilink"`
-	// LLDP profile to be applied when using this port-policy.
-	LldpProfile *string `pulumi:"lldpProfile"`
-	// 802.1x security policy to be applied when using this port-policy.
-	N8021x *string `pulumi:"n8021x"`
-	// Port policy name.
-	Name *string `pulumi:"name"`
-	// QoS policy to be applied when using this port-policy.
-	QosPolicy *string `pulumi:"qosPolicy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// VLAN policy to be applied when using this port-policy.
-	VlanPolicy *string `pulumi:"vlanPolicy"`
+	Description    *string `pulumi:"description"`
+	Fortilink      *string `pulumi:"fortilink"`
+	LldpProfile    *string `pulumi:"lldpProfile"`
+	N8021x         *string `pulumi:"n8021x"`
+	Name           *string `pulumi:"name"`
+	QosPolicy      *string `pulumi:"qosPolicy"`
+	Vdomparam      *string `pulumi:"vdomparam"`
+	VlanPolicy     *string `pulumi:"vlanPolicy"`
 }
 
 type SwitchControllerPortPolicyState struct {
-	// Enable/disable bouncing (administratively bring the link down, up) of a switch port where this port policy is applied. Helps to clear and reassign VLAN from lldp-profile. Valid values: `disable`, `enable`.
 	BouncePortLink pulumi.StringPtrInput
-	// Description for the port policy.
-	Description pulumi.StringPtrInput
-	// FortiLink interface for which this port policy belongs to.
-	Fortilink pulumi.StringPtrInput
-	// LLDP profile to be applied when using this port-policy.
-	LldpProfile pulumi.StringPtrInput
-	// 802.1x security policy to be applied when using this port-policy.
-	N8021x pulumi.StringPtrInput
-	// Port policy name.
-	Name pulumi.StringPtrInput
-	// QoS policy to be applied when using this port-policy.
-	QosPolicy pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// VLAN policy to be applied when using this port-policy.
-	VlanPolicy pulumi.StringPtrInput
+	Description    pulumi.StringPtrInput
+	Fortilink      pulumi.StringPtrInput
+	LldpProfile    pulumi.StringPtrInput
+	N8021x         pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	QosPolicy      pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
+	VlanPolicy     pulumi.StringPtrInput
 }
 
 func (SwitchControllerPortPolicyState) ElementType() reflect.Type {
@@ -126,46 +82,28 @@ func (SwitchControllerPortPolicyState) ElementType() reflect.Type {
 }
 
 type switchControllerPortPolicyArgs struct {
-	// Enable/disable bouncing (administratively bring the link down, up) of a switch port where this port policy is applied. Helps to clear and reassign VLAN from lldp-profile. Valid values: `disable`, `enable`.
 	BouncePortLink *string `pulumi:"bouncePortLink"`
-	// Description for the port policy.
-	Description *string `pulumi:"description"`
-	// FortiLink interface for which this port policy belongs to.
-	Fortilink *string `pulumi:"fortilink"`
-	// LLDP profile to be applied when using this port-policy.
-	LldpProfile *string `pulumi:"lldpProfile"`
-	// 802.1x security policy to be applied when using this port-policy.
-	N8021x *string `pulumi:"n8021x"`
-	// Port policy name.
-	Name *string `pulumi:"name"`
-	// QoS policy to be applied when using this port-policy.
-	QosPolicy *string `pulumi:"qosPolicy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// VLAN policy to be applied when using this port-policy.
-	VlanPolicy *string `pulumi:"vlanPolicy"`
+	Description    *string `pulumi:"description"`
+	Fortilink      *string `pulumi:"fortilink"`
+	LldpProfile    *string `pulumi:"lldpProfile"`
+	N8021x         *string `pulumi:"n8021x"`
+	Name           *string `pulumi:"name"`
+	QosPolicy      *string `pulumi:"qosPolicy"`
+	Vdomparam      *string `pulumi:"vdomparam"`
+	VlanPolicy     *string `pulumi:"vlanPolicy"`
 }
 
 // The set of arguments for constructing a SwitchControllerPortPolicy resource.
 type SwitchControllerPortPolicyArgs struct {
-	// Enable/disable bouncing (administratively bring the link down, up) of a switch port where this port policy is applied. Helps to clear and reassign VLAN from lldp-profile. Valid values: `disable`, `enable`.
 	BouncePortLink pulumi.StringPtrInput
-	// Description for the port policy.
-	Description pulumi.StringPtrInput
-	// FortiLink interface for which this port policy belongs to.
-	Fortilink pulumi.StringPtrInput
-	// LLDP profile to be applied when using this port-policy.
-	LldpProfile pulumi.StringPtrInput
-	// 802.1x security policy to be applied when using this port-policy.
-	N8021x pulumi.StringPtrInput
-	// Port policy name.
-	Name pulumi.StringPtrInput
-	// QoS policy to be applied when using this port-policy.
-	QosPolicy pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// VLAN policy to be applied when using this port-policy.
-	VlanPolicy pulumi.StringPtrInput
+	Description    pulumi.StringPtrInput
+	Fortilink      pulumi.StringPtrInput
+	LldpProfile    pulumi.StringPtrInput
+	N8021x         pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	QosPolicy      pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
+	VlanPolicy     pulumi.StringPtrInput
 }
 
 func (SwitchControllerPortPolicyArgs) ElementType() reflect.Type {
@@ -194,7 +132,7 @@ func (i *SwitchControllerPortPolicy) ToSwitchControllerPortPolicyOutputWithConte
 // SwitchControllerPortPolicyArrayInput is an input type that accepts SwitchControllerPortPolicyArray and SwitchControllerPortPolicyArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerPortPolicyArrayInput` via:
 //
-//          SwitchControllerPortPolicyArray{ SwitchControllerPortPolicyArgs{...} }
+//	SwitchControllerPortPolicyArray{ SwitchControllerPortPolicyArgs{...} }
 type SwitchControllerPortPolicyArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +157,7 @@ func (i SwitchControllerPortPolicyArray) ToSwitchControllerPortPolicyArrayOutput
 // SwitchControllerPortPolicyMapInput is an input type that accepts SwitchControllerPortPolicyMap and SwitchControllerPortPolicyMapOutput values.
 // You can construct a concrete instance of `SwitchControllerPortPolicyMapInput` via:
 //
-//          SwitchControllerPortPolicyMap{ "key": SwitchControllerPortPolicyArgs{...} }
+//	SwitchControllerPortPolicyMap{ "key": SwitchControllerPortPolicyArgs{...} }
 type SwitchControllerPortPolicyMapInput interface {
 	pulumi.Input
 
@@ -253,6 +191,42 @@ func (o SwitchControllerPortPolicyOutput) ToSwitchControllerPortPolicyOutput() S
 
 func (o SwitchControllerPortPolicyOutput) ToSwitchControllerPortPolicyOutputWithContext(ctx context.Context) SwitchControllerPortPolicyOutput {
 	return o
+}
+
+func (o SwitchControllerPortPolicyOutput) BouncePortLink() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerPortPolicy) pulumi.StringOutput { return v.BouncePortLink }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerPortPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerPortPolicy) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerPortPolicyOutput) Fortilink() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerPortPolicy) pulumi.StringOutput { return v.Fortilink }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerPortPolicyOutput) LldpProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerPortPolicy) pulumi.StringOutput { return v.LldpProfile }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerPortPolicyOutput) N8021x() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerPortPolicy) pulumi.StringOutput { return v.N8021x }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerPortPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerPortPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerPortPolicyOutput) QosPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerPortPolicy) pulumi.StringOutput { return v.QosPolicy }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerPortPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerPortPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerPortPolicyOutput) VlanPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerPortPolicy) pulumi.StringOutput { return v.VlanPolicy }).(pulumi.StringOutput)
 }
 
 type SwitchControllerPortPolicyArrayOutput struct{ *pulumi.OutputState }

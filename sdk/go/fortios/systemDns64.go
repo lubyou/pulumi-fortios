@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure DNS64. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// System Dns64 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDns64:SystemDns64 labelname SystemDns64
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDns64:SystemDns64 labelname SystemDns64
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemDns64 struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable AAAA record synthesis (default = enable). Valid values: `enable`, `disable`.
-	AlwaysSynthesizeAaaaRecord pulumi.StringOutput `pulumi:"alwaysSynthesizeAaaaRecord"`
-	// DNS64 prefix must be ::/96 (default = 64:ff9b::/96).
-	Dns64Prefix pulumi.StringOutput `pulumi:"dns64Prefix"`
-	// Enable/disable DNS64 (default = disable). Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AlwaysSynthesizeAaaaRecord pulumi.StringOutput    `pulumi:"alwaysSynthesizeAaaaRecord"`
+	Dns64Prefix                pulumi.StringOutput    `pulumi:"dns64Prefix"`
+	Status                     pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam                  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemDns64 registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetSystemDns64(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemDns64 resources.
 type systemDns64State struct {
-	// Enable/disable AAAA record synthesis (default = enable). Valid values: `enable`, `disable`.
 	AlwaysSynthesizeAaaaRecord *string `pulumi:"alwaysSynthesizeAaaaRecord"`
-	// DNS64 prefix must be ::/96 (default = 64:ff9b::/96).
-	Dns64Prefix *string `pulumi:"dns64Prefix"`
-	// Enable/disable DNS64 (default = disable). Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Dns64Prefix                *string `pulumi:"dns64Prefix"`
+	Status                     *string `pulumi:"status"`
+	Vdomparam                  *string `pulumi:"vdomparam"`
 }
 
 type SystemDns64State struct {
-	// Enable/disable AAAA record synthesis (default = enable). Valid values: `enable`, `disable`.
 	AlwaysSynthesizeAaaaRecord pulumi.StringPtrInput
-	// DNS64 prefix must be ::/96 (default = 64:ff9b::/96).
-	Dns64Prefix pulumi.StringPtrInput
-	// Enable/disable DNS64 (default = disable). Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Dns64Prefix                pulumi.StringPtrInput
+	Status                     pulumi.StringPtrInput
+	Vdomparam                  pulumi.StringPtrInput
 }
 
 func (SystemDns64State) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (SystemDns64State) ElementType() reflect.Type {
 }
 
 type systemDns64Args struct {
-	// Enable/disable AAAA record synthesis (default = enable). Valid values: `enable`, `disable`.
 	AlwaysSynthesizeAaaaRecord *string `pulumi:"alwaysSynthesizeAaaaRecord"`
-	// DNS64 prefix must be ::/96 (default = 64:ff9b::/96).
-	Dns64Prefix *string `pulumi:"dns64Prefix"`
-	// Enable/disable DNS64 (default = disable). Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Dns64Prefix                *string `pulumi:"dns64Prefix"`
+	Status                     *string `pulumi:"status"`
+	Vdomparam                  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemDns64 resource.
 type SystemDns64Args struct {
-	// Enable/disable AAAA record synthesis (default = enable). Valid values: `enable`, `disable`.
 	AlwaysSynthesizeAaaaRecord pulumi.StringPtrInput
-	// DNS64 prefix must be ::/96 (default = 64:ff9b::/96).
-	Dns64Prefix pulumi.StringPtrInput
-	// Enable/disable DNS64 (default = disable). Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Dns64Prefix                pulumi.StringPtrInput
+	Status                     pulumi.StringPtrInput
+	Vdomparam                  pulumi.StringPtrInput
 }
 
 func (SystemDns64Args) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *SystemDns64) ToSystemDns64OutputWithContext(ctx context.Context) System
 // SystemDns64ArrayInput is an input type that accepts SystemDns64Array and SystemDns64ArrayOutput values.
 // You can construct a concrete instance of `SystemDns64ArrayInput` via:
 //
-//          SystemDns64Array{ SystemDns64Args{...} }
+//	SystemDns64Array{ SystemDns64Args{...} }
 type SystemDns64ArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i SystemDns64Array) ToSystemDns64ArrayOutputWithContext(ctx context.Contex
 // SystemDns64MapInput is an input type that accepts SystemDns64Map and SystemDns64MapOutput values.
 // You can construct a concrete instance of `SystemDns64MapInput` via:
 //
-//          SystemDns64Map{ "key": SystemDns64Args{...} }
+//	SystemDns64Map{ "key": SystemDns64Args{...} }
 type SystemDns64MapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o SystemDns64Output) ToSystemDns64Output() SystemDns64Output {
 
 func (o SystemDns64Output) ToSystemDns64OutputWithContext(ctx context.Context) SystemDns64Output {
 	return o
+}
+
+func (o SystemDns64Output) AlwaysSynthesizeAaaaRecord() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns64) pulumi.StringOutput { return v.AlwaysSynthesizeAaaaRecord }).(pulumi.StringOutput)
+}
+
+func (o SystemDns64Output) Dns64Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns64) pulumi.StringOutput { return v.Dns64Prefix }).(pulumi.StringOutput)
+}
+
+func (o SystemDns64Output) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns64) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemDns64Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDns64) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemDns64ArrayOutput struct{ *pulumi.OutputState }

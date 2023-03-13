@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure security exemption list.
-//
-// ## Import
-//
-// User SecurityExemptList can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userSecurityExemptList:UserSecurityExemptList labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userSecurityExemptList:UserSecurityExemptList labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserSecurityExemptList struct {
 	pulumi.CustomResourceState
 
-	// Description.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Service name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Configure rules for exempting users from captive portal authentication. The structure of `rule` block is documented below.
-	Rules UserSecurityExemptListRuleArrayOutput `pulumi:"rules"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Description         pulumi.StringOutput                   `pulumi:"description"`
+	DynamicSortSubtable pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                   `pulumi:"name"`
+	Rules               UserSecurityExemptListRuleArrayOutput `pulumi:"rules"`
+	Vdomparam           pulumi.StringPtrOutput                `pulumi:"vdomparam"`
 }
 
 // NewUserSecurityExemptList registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetUserSecurityExemptList(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserSecurityExemptList resources.
 type userSecurityExemptListState struct {
-	// Description.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Service name.
-	Name *string `pulumi:"name"`
-	// Configure rules for exempting users from captive portal authentication. The structure of `rule` block is documented below.
-	Rules []UserSecurityExemptListRule `pulumi:"rules"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Description         *string                      `pulumi:"description"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	Name                *string                      `pulumi:"name"`
+	Rules               []UserSecurityExemptListRule `pulumi:"rules"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 type UserSecurityExemptListState struct {
-	// Description.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Service name.
-	Name pulumi.StringPtrInput
-	// Configure rules for exempting users from captive portal authentication. The structure of `rule` block is documented below.
-	Rules UserSecurityExemptListRuleArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Rules               UserSecurityExemptListRuleArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserSecurityExemptListState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (UserSecurityExemptListState) ElementType() reflect.Type {
 }
 
 type userSecurityExemptListArgs struct {
-	// Description.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Service name.
-	Name *string `pulumi:"name"`
-	// Configure rules for exempting users from captive portal authentication. The structure of `rule` block is documented below.
-	Rules []UserSecurityExemptListRule `pulumi:"rules"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Description         *string                      `pulumi:"description"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	Name                *string                      `pulumi:"name"`
+	Rules               []UserSecurityExemptListRule `pulumi:"rules"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserSecurityExemptList resource.
 type UserSecurityExemptListArgs struct {
-	// Description.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Service name.
-	Name pulumi.StringPtrInput
-	// Configure rules for exempting users from captive portal authentication. The structure of `rule` block is documented below.
-	Rules UserSecurityExemptListRuleArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Rules               UserSecurityExemptListRuleArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserSecurityExemptListArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *UserSecurityExemptList) ToUserSecurityExemptListOutputWithContext(ctx c
 // UserSecurityExemptListArrayInput is an input type that accepts UserSecurityExemptListArray and UserSecurityExemptListArrayOutput values.
 // You can construct a concrete instance of `UserSecurityExemptListArrayInput` via:
 //
-//          UserSecurityExemptListArray{ UserSecurityExemptListArgs{...} }
+//	UserSecurityExemptListArray{ UserSecurityExemptListArgs{...} }
 type UserSecurityExemptListArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i UserSecurityExemptListArray) ToUserSecurityExemptListArrayOutputWithCont
 // UserSecurityExemptListMapInput is an input type that accepts UserSecurityExemptListMap and UserSecurityExemptListMapOutput values.
 // You can construct a concrete instance of `UserSecurityExemptListMapInput` via:
 //
-//          UserSecurityExemptListMap{ "key": UserSecurityExemptListArgs{...} }
+//	UserSecurityExemptListMap{ "key": UserSecurityExemptListArgs{...} }
 type UserSecurityExemptListMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o UserSecurityExemptListOutput) ToUserSecurityExemptListOutput() UserSecur
 
 func (o UserSecurityExemptListOutput) ToUserSecurityExemptListOutputWithContext(ctx context.Context) UserSecurityExemptListOutput {
 	return o
+}
+
+func (o UserSecurityExemptListOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserSecurityExemptList) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o UserSecurityExemptListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserSecurityExemptList) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserSecurityExemptListOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserSecurityExemptList) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserSecurityExemptListOutput) Rules() UserSecurityExemptListRuleArrayOutput {
+	return o.ApplyT(func(v *UserSecurityExemptList) UserSecurityExemptListRuleArrayOutput { return v.Rules }).(UserSecurityExemptListRuleArrayOutput)
+}
+
+func (o UserSecurityExemptListOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserSecurityExemptList) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserSecurityExemptListArrayOutput struct{ *pulumi.OutputState }

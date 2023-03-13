@@ -2,37 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv4 prefix lists.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.RouterPrefixList("trname", {});
- * ```
- *
- * ## Import
- *
- * Router PrefixList can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerPrefixList:RouterPrefixList labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerPrefixList:RouterPrefixList labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterPrefixList extends pulumi.CustomResource {
     /**
      * Get an existing RouterPrefixList resource's state with the given name, ID, and optional extra
@@ -61,25 +34,10 @@ export class RouterPrefixList extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterPrefixList.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * IPv4 prefix list rule. The structure of `rule` block is documented below.
-     */
     public readonly rules!: pulumi.Output<outputs.RouterPrefixListRule[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -117,25 +75,10 @@ export class RouterPrefixList extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterPrefixList resources.
  */
 export interface RouterPrefixListState {
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * IPv4 prefix list rule. The structure of `rule` block is documented below.
-     */
     rules?: pulumi.Input<pulumi.Input<inputs.RouterPrefixListRule>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -143,24 +86,9 @@ export interface RouterPrefixListState {
  * The set of arguments for constructing a RouterPrefixList resource.
  */
 export interface RouterPrefixListArgs {
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * IPv4 prefix list rule. The structure of `rule` block is documented below.
-     */
     rules?: pulumi.Input<pulumi.Input<inputs.RouterPrefixListRule>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

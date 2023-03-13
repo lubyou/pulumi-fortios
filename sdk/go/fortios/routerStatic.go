@@ -10,110 +10,32 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv4 static routing tables.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewRouterStatic(ctx, "trname", &fortios.RouterStaticArgs{
-// 			Bfd:               pulumi.String("disable"),
-// 			Blackhole:         pulumi.String("disable"),
-// 			Device:            pulumi.String("port4"),
-// 			Distance:          pulumi.Int(10),
-// 			Dst:               pulumi.String("1.0.0.0 255.240.0.0"),
-// 			DynamicGateway:    pulumi.String("disable"),
-// 			Gateway:           pulumi.String("0.0.0.0"),
-// 			InternetService:   pulumi.Int(0),
-// 			LinkMonitorExempt: pulumi.String("disable"),
-// 			Priority:          pulumi.Int(22),
-// 			SeqNum:            pulumi.Int(1),
-// 			Src:               pulumi.String("0.0.0.0 0.0.0.0"),
-// 			Status:            pulumi.String("enable"),
-// 			VirtualWanLink:    pulumi.String("disable"),
-// 			Vrf:               pulumi.Int(0),
-// 			Weight:            pulumi.Int(2),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Router Static can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerStatic:RouterStatic labelname {{seq_num}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerStatic:RouterStatic labelname {{seq_num}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterStatic struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `enable`, `disable`.
-	Bfd pulumi.StringOutput `pulumi:"bfd"`
-	// Enable/disable black hole. Valid values: `enable`, `disable`.
-	Blackhole pulumi.StringOutput `pulumi:"blackhole"`
-	// Optional comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Gateway out interface or tunnel.
-	Device pulumi.StringOutput `pulumi:"device"`
-	// Administrative distance (1 - 255).
-	Distance pulumi.IntOutput `pulumi:"distance"`
-	// Destination IP and mask for this route.
-	Dst pulumi.StringOutput `pulumi:"dst"`
-	// Name of firewall address or address group.
-	Dstaddr pulumi.StringOutput `pulumi:"dstaddr"`
-	// Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
-	DynamicGateway pulumi.StringOutput `pulumi:"dynamicGateway"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Gateway IP for this route.
-	Gateway pulumi.StringOutput `pulumi:"gateway"`
-	// Application ID in the Internet service database.
-	InternetService pulumi.IntOutput `pulumi:"internetService"`
-	// Application name in the Internet service custom database.
-	InternetServiceCustom pulumi.StringOutput `pulumi:"internetServiceCustom"`
-	// Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
-	LinkMonitorExempt pulumi.StringOutput `pulumi:"linkMonitorExempt"`
-	// Administrative priority (0 - 4294967295).
-	Priority pulumi.IntOutput `pulumi:"priority"`
-	// Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
-	Sdwan pulumi.StringOutput `pulumi:"sdwan"`
-	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
-	SdwanZones RouterStaticSdwanZoneArrayOutput `pulumi:"sdwanZones"`
-	// Sequence number.
-	SeqNum pulumi.IntOutput `pulumi:"seqNum"`
-	// Source prefix for this route.
-	Src pulumi.StringOutput `pulumi:"src"`
-	// Enable/disable this static route. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
-	VirtualWanLink pulumi.StringOutput `pulumi:"virtualWanLink"`
-	// Virtual Routing Forwarding ID.
-	Vrf pulumi.IntOutput `pulumi:"vrf"`
-	// Administrative weight (0 - 255).
-	Weight pulumi.IntOutput `pulumi:"weight"`
+	Bfd                   pulumi.StringOutput              `pulumi:"bfd"`
+	Blackhole             pulumi.StringOutput              `pulumi:"blackhole"`
+	Comment               pulumi.StringPtrOutput           `pulumi:"comment"`
+	Device                pulumi.StringOutput              `pulumi:"device"`
+	Distance              pulumi.IntOutput                 `pulumi:"distance"`
+	Dst                   pulumi.StringOutput              `pulumi:"dst"`
+	Dstaddr               pulumi.StringOutput              `pulumi:"dstaddr"`
+	DynamicGateway        pulumi.StringOutput              `pulumi:"dynamicGateway"`
+	DynamicSortSubtable   pulumi.StringPtrOutput           `pulumi:"dynamicSortSubtable"`
+	Gateway               pulumi.StringOutput              `pulumi:"gateway"`
+	InternetService       pulumi.IntOutput                 `pulumi:"internetService"`
+	InternetServiceCustom pulumi.StringOutput              `pulumi:"internetServiceCustom"`
+	LinkMonitorExempt     pulumi.StringOutput              `pulumi:"linkMonitorExempt"`
+	Priority              pulumi.IntOutput                 `pulumi:"priority"`
+	Sdwan                 pulumi.StringOutput              `pulumi:"sdwan"`
+	SdwanZones            RouterStaticSdwanZoneArrayOutput `pulumi:"sdwanZones"`
+	SeqNum                pulumi.IntOutput                 `pulumi:"seqNum"`
+	Src                   pulumi.StringOutput              `pulumi:"src"`
+	Status                pulumi.StringOutput              `pulumi:"status"`
+	Vdomparam             pulumi.StringPtrOutput           `pulumi:"vdomparam"`
+	VirtualWanLink        pulumi.StringOutput              `pulumi:"virtualWanLink"`
+	Vrf                   pulumi.IntOutput                 `pulumi:"vrf"`
+	Weight                pulumi.IntOutput                 `pulumi:"weight"`
 }
 
 // NewRouterStatic registers a new resource with the given unique name, arguments, and options.
@@ -146,101 +68,55 @@ func GetRouterStatic(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterStatic resources.
 type routerStaticState struct {
-	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `enable`, `disable`.
-	Bfd *string `pulumi:"bfd"`
-	// Enable/disable black hole. Valid values: `enable`, `disable`.
-	Blackhole *string `pulumi:"blackhole"`
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// Gateway out interface or tunnel.
-	Device *string `pulumi:"device"`
-	// Administrative distance (1 - 255).
-	Distance *int `pulumi:"distance"`
-	// Destination IP and mask for this route.
-	Dst *string `pulumi:"dst"`
-	// Name of firewall address or address group.
-	Dstaddr *string `pulumi:"dstaddr"`
-	// Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
-	DynamicGateway *string `pulumi:"dynamicGateway"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Gateway IP for this route.
-	Gateway *string `pulumi:"gateway"`
-	// Application ID in the Internet service database.
-	InternetService *int `pulumi:"internetService"`
-	// Application name in the Internet service custom database.
-	InternetServiceCustom *string `pulumi:"internetServiceCustom"`
-	// Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
-	LinkMonitorExempt *string `pulumi:"linkMonitorExempt"`
-	// Administrative priority (0 - 4294967295).
-	Priority *int `pulumi:"priority"`
-	// Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
-	Sdwan *string `pulumi:"sdwan"`
-	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
-	SdwanZones []RouterStaticSdwanZone `pulumi:"sdwanZones"`
-	// Sequence number.
-	SeqNum *int `pulumi:"seqNum"`
-	// Source prefix for this route.
-	Src *string `pulumi:"src"`
-	// Enable/disable this static route. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
-	VirtualWanLink *string `pulumi:"virtualWanLink"`
-	// Virtual Routing Forwarding ID.
-	Vrf *int `pulumi:"vrf"`
-	// Administrative weight (0 - 255).
-	Weight *int `pulumi:"weight"`
+	Bfd                   *string                 `pulumi:"bfd"`
+	Blackhole             *string                 `pulumi:"blackhole"`
+	Comment               *string                 `pulumi:"comment"`
+	Device                *string                 `pulumi:"device"`
+	Distance              *int                    `pulumi:"distance"`
+	Dst                   *string                 `pulumi:"dst"`
+	Dstaddr               *string                 `pulumi:"dstaddr"`
+	DynamicGateway        *string                 `pulumi:"dynamicGateway"`
+	DynamicSortSubtable   *string                 `pulumi:"dynamicSortSubtable"`
+	Gateway               *string                 `pulumi:"gateway"`
+	InternetService       *int                    `pulumi:"internetService"`
+	InternetServiceCustom *string                 `pulumi:"internetServiceCustom"`
+	LinkMonitorExempt     *string                 `pulumi:"linkMonitorExempt"`
+	Priority              *int                    `pulumi:"priority"`
+	Sdwan                 *string                 `pulumi:"sdwan"`
+	SdwanZones            []RouterStaticSdwanZone `pulumi:"sdwanZones"`
+	SeqNum                *int                    `pulumi:"seqNum"`
+	Src                   *string                 `pulumi:"src"`
+	Status                *string                 `pulumi:"status"`
+	Vdomparam             *string                 `pulumi:"vdomparam"`
+	VirtualWanLink        *string                 `pulumi:"virtualWanLink"`
+	Vrf                   *int                    `pulumi:"vrf"`
+	Weight                *int                    `pulumi:"weight"`
 }
 
 type RouterStaticState struct {
-	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `enable`, `disable`.
-	Bfd pulumi.StringPtrInput
-	// Enable/disable black hole. Valid values: `enable`, `disable`.
-	Blackhole pulumi.StringPtrInput
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// Gateway out interface or tunnel.
-	Device pulumi.StringPtrInput
-	// Administrative distance (1 - 255).
-	Distance pulumi.IntPtrInput
-	// Destination IP and mask for this route.
-	Dst pulumi.StringPtrInput
-	// Name of firewall address or address group.
-	Dstaddr pulumi.StringPtrInput
-	// Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
-	DynamicGateway pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Gateway IP for this route.
-	Gateway pulumi.StringPtrInput
-	// Application ID in the Internet service database.
-	InternetService pulumi.IntPtrInput
-	// Application name in the Internet service custom database.
+	Bfd                   pulumi.StringPtrInput
+	Blackhole             pulumi.StringPtrInput
+	Comment               pulumi.StringPtrInput
+	Device                pulumi.StringPtrInput
+	Distance              pulumi.IntPtrInput
+	Dst                   pulumi.StringPtrInput
+	Dstaddr               pulumi.StringPtrInput
+	DynamicGateway        pulumi.StringPtrInput
+	DynamicSortSubtable   pulumi.StringPtrInput
+	Gateway               pulumi.StringPtrInput
+	InternetService       pulumi.IntPtrInput
 	InternetServiceCustom pulumi.StringPtrInput
-	// Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
-	LinkMonitorExempt pulumi.StringPtrInput
-	// Administrative priority (0 - 4294967295).
-	Priority pulumi.IntPtrInput
-	// Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
-	Sdwan pulumi.StringPtrInput
-	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
-	SdwanZones RouterStaticSdwanZoneArrayInput
-	// Sequence number.
-	SeqNum pulumi.IntPtrInput
-	// Source prefix for this route.
-	Src pulumi.StringPtrInput
-	// Enable/disable this static route. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
-	VirtualWanLink pulumi.StringPtrInput
-	// Virtual Routing Forwarding ID.
-	Vrf pulumi.IntPtrInput
-	// Administrative weight (0 - 255).
-	Weight pulumi.IntPtrInput
+	LinkMonitorExempt     pulumi.StringPtrInput
+	Priority              pulumi.IntPtrInput
+	Sdwan                 pulumi.StringPtrInput
+	SdwanZones            RouterStaticSdwanZoneArrayInput
+	SeqNum                pulumi.IntPtrInput
+	Src                   pulumi.StringPtrInput
+	Status                pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
+	VirtualWanLink        pulumi.StringPtrInput
+	Vrf                   pulumi.IntPtrInput
+	Weight                pulumi.IntPtrInput
 }
 
 func (RouterStaticState) ElementType() reflect.Type {
@@ -248,102 +124,56 @@ func (RouterStaticState) ElementType() reflect.Type {
 }
 
 type routerStaticArgs struct {
-	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `enable`, `disable`.
-	Bfd *string `pulumi:"bfd"`
-	// Enable/disable black hole. Valid values: `enable`, `disable`.
-	Blackhole *string `pulumi:"blackhole"`
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// Gateway out interface or tunnel.
-	Device *string `pulumi:"device"`
-	// Administrative distance (1 - 255).
-	Distance *int `pulumi:"distance"`
-	// Destination IP and mask for this route.
-	Dst *string `pulumi:"dst"`
-	// Name of firewall address or address group.
-	Dstaddr *string `pulumi:"dstaddr"`
-	// Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
-	DynamicGateway *string `pulumi:"dynamicGateway"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Gateway IP for this route.
-	Gateway *string `pulumi:"gateway"`
-	// Application ID in the Internet service database.
-	InternetService *int `pulumi:"internetService"`
-	// Application name in the Internet service custom database.
-	InternetServiceCustom *string `pulumi:"internetServiceCustom"`
-	// Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
-	LinkMonitorExempt *string `pulumi:"linkMonitorExempt"`
-	// Administrative priority (0 - 4294967295).
-	Priority *int `pulumi:"priority"`
-	// Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
-	Sdwan *string `pulumi:"sdwan"`
-	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
-	SdwanZones []RouterStaticSdwanZone `pulumi:"sdwanZones"`
-	// Sequence number.
-	SeqNum *int `pulumi:"seqNum"`
-	// Source prefix for this route.
-	Src *string `pulumi:"src"`
-	// Enable/disable this static route. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
-	VirtualWanLink *string `pulumi:"virtualWanLink"`
-	// Virtual Routing Forwarding ID.
-	Vrf *int `pulumi:"vrf"`
-	// Administrative weight (0 - 255).
-	Weight *int `pulumi:"weight"`
+	Bfd                   *string                 `pulumi:"bfd"`
+	Blackhole             *string                 `pulumi:"blackhole"`
+	Comment               *string                 `pulumi:"comment"`
+	Device                *string                 `pulumi:"device"`
+	Distance              *int                    `pulumi:"distance"`
+	Dst                   *string                 `pulumi:"dst"`
+	Dstaddr               *string                 `pulumi:"dstaddr"`
+	DynamicGateway        *string                 `pulumi:"dynamicGateway"`
+	DynamicSortSubtable   *string                 `pulumi:"dynamicSortSubtable"`
+	Gateway               *string                 `pulumi:"gateway"`
+	InternetService       *int                    `pulumi:"internetService"`
+	InternetServiceCustom *string                 `pulumi:"internetServiceCustom"`
+	LinkMonitorExempt     *string                 `pulumi:"linkMonitorExempt"`
+	Priority              *int                    `pulumi:"priority"`
+	Sdwan                 *string                 `pulumi:"sdwan"`
+	SdwanZones            []RouterStaticSdwanZone `pulumi:"sdwanZones"`
+	SeqNum                *int                    `pulumi:"seqNum"`
+	Src                   *string                 `pulumi:"src"`
+	Status                *string                 `pulumi:"status"`
+	Vdomparam             *string                 `pulumi:"vdomparam"`
+	VirtualWanLink        *string                 `pulumi:"virtualWanLink"`
+	Vrf                   *int                    `pulumi:"vrf"`
+	Weight                *int                    `pulumi:"weight"`
 }
 
 // The set of arguments for constructing a RouterStatic resource.
 type RouterStaticArgs struct {
-	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `enable`, `disable`.
-	Bfd pulumi.StringPtrInput
-	// Enable/disable black hole. Valid values: `enable`, `disable`.
-	Blackhole pulumi.StringPtrInput
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// Gateway out interface or tunnel.
-	Device pulumi.StringPtrInput
-	// Administrative distance (1 - 255).
-	Distance pulumi.IntPtrInput
-	// Destination IP and mask for this route.
-	Dst pulumi.StringPtrInput
-	// Name of firewall address or address group.
-	Dstaddr pulumi.StringPtrInput
-	// Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
-	DynamicGateway pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Gateway IP for this route.
-	Gateway pulumi.StringPtrInput
-	// Application ID in the Internet service database.
-	InternetService pulumi.IntPtrInput
-	// Application name in the Internet service custom database.
+	Bfd                   pulumi.StringPtrInput
+	Blackhole             pulumi.StringPtrInput
+	Comment               pulumi.StringPtrInput
+	Device                pulumi.StringPtrInput
+	Distance              pulumi.IntPtrInput
+	Dst                   pulumi.StringPtrInput
+	Dstaddr               pulumi.StringPtrInput
+	DynamicGateway        pulumi.StringPtrInput
+	DynamicSortSubtable   pulumi.StringPtrInput
+	Gateway               pulumi.StringPtrInput
+	InternetService       pulumi.IntPtrInput
 	InternetServiceCustom pulumi.StringPtrInput
-	// Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
-	LinkMonitorExempt pulumi.StringPtrInput
-	// Administrative priority (0 - 4294967295).
-	Priority pulumi.IntPtrInput
-	// Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
-	Sdwan pulumi.StringPtrInput
-	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
-	SdwanZones RouterStaticSdwanZoneArrayInput
-	// Sequence number.
-	SeqNum pulumi.IntPtrInput
-	// Source prefix for this route.
-	Src pulumi.StringPtrInput
-	// Enable/disable this static route. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
-	VirtualWanLink pulumi.StringPtrInput
-	// Virtual Routing Forwarding ID.
-	Vrf pulumi.IntPtrInput
-	// Administrative weight (0 - 255).
-	Weight pulumi.IntPtrInput
+	LinkMonitorExempt     pulumi.StringPtrInput
+	Priority              pulumi.IntPtrInput
+	Sdwan                 pulumi.StringPtrInput
+	SdwanZones            RouterStaticSdwanZoneArrayInput
+	SeqNum                pulumi.IntPtrInput
+	Src                   pulumi.StringPtrInput
+	Status                pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
+	VirtualWanLink        pulumi.StringPtrInput
+	Vrf                   pulumi.IntPtrInput
+	Weight                pulumi.IntPtrInput
 }
 
 func (RouterStaticArgs) ElementType() reflect.Type {
@@ -372,7 +202,7 @@ func (i *RouterStatic) ToRouterStaticOutputWithContext(ctx context.Context) Rout
 // RouterStaticArrayInput is an input type that accepts RouterStaticArray and RouterStaticArrayOutput values.
 // You can construct a concrete instance of `RouterStaticArrayInput` via:
 //
-//          RouterStaticArray{ RouterStaticArgs{...} }
+//	RouterStaticArray{ RouterStaticArgs{...} }
 type RouterStaticArrayInput interface {
 	pulumi.Input
 
@@ -397,7 +227,7 @@ func (i RouterStaticArray) ToRouterStaticArrayOutputWithContext(ctx context.Cont
 // RouterStaticMapInput is an input type that accepts RouterStaticMap and RouterStaticMapOutput values.
 // You can construct a concrete instance of `RouterStaticMapInput` via:
 //
-//          RouterStaticMap{ "key": RouterStaticArgs{...} }
+//	RouterStaticMap{ "key": RouterStaticArgs{...} }
 type RouterStaticMapInput interface {
 	pulumi.Input
 
@@ -431,6 +261,98 @@ func (o RouterStaticOutput) ToRouterStaticOutput() RouterStaticOutput {
 
 func (o RouterStaticOutput) ToRouterStaticOutputWithContext(ctx context.Context) RouterStaticOutput {
 	return o
+}
+
+func (o RouterStaticOutput) Bfd() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.Bfd }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticOutput) Blackhole() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.Blackhole }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterStaticOutput) Device() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.Device }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticOutput) Distance() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.IntOutput { return v.Distance }).(pulumi.IntOutput)
+}
+
+func (o RouterStaticOutput) Dst() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.Dst }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticOutput) Dstaddr() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.Dstaddr }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticOutput) DynamicGateway() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.DynamicGateway }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterStaticOutput) Gateway() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticOutput) InternetService() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.IntOutput { return v.InternetService }).(pulumi.IntOutput)
+}
+
+func (o RouterStaticOutput) InternetServiceCustom() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.InternetServiceCustom }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticOutput) LinkMonitorExempt() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.LinkMonitorExempt }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
+}
+
+func (o RouterStaticOutput) Sdwan() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.Sdwan }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticOutput) SdwanZones() RouterStaticSdwanZoneArrayOutput {
+	return o.ApplyT(func(v *RouterStatic) RouterStaticSdwanZoneArrayOutput { return v.SdwanZones }).(RouterStaticSdwanZoneArrayOutput)
+}
+
+func (o RouterStaticOutput) SeqNum() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.IntOutput { return v.SeqNum }).(pulumi.IntOutput)
+}
+
+func (o RouterStaticOutput) Src() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.Src }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterStaticOutput) VirtualWanLink() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.VirtualWanLink }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticOutput) Vrf() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.IntOutput { return v.Vrf }).(pulumi.IntOutput)
+}
+
+func (o RouterStaticOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.IntOutput { return v.Weight }).(pulumi.IntOutput)
 }
 
 type RouterStaticArrayOutput struct{ *pulumi.OutputState }

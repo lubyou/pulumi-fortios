@@ -10,40 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure CIFS profile. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1`.
-//
-// ## Import
-//
-// Cifs Profile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/cifsProfile:CifsProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/cifsProfile:CifsProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type CifsProfile struct {
 	pulumi.CustomResourceState
 
-	// Domain for which to decrypt CIFS traffic.
-	DomainController pulumi.StringOutput `pulumi:"domainController"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter CifsProfileFileFilterPtrOutput `pulumi:"fileFilter"`
-	// File type name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// CIFS server credential type. Valid values: `none`, `credential-replication`, `credential-keytab`.
-	ServerCredentialType pulumi.StringOutput `pulumi:"serverCredentialType"`
-	// Server keytab. The structure of `serverKeytab` block is documented below.
-	ServerKeytabs CifsProfileServerKeytabArrayOutput `pulumi:"serverKeytabs"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DomainController     pulumi.StringOutput                `pulumi:"domainController"`
+	DynamicSortSubtable  pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
+	FileFilter           CifsProfileFileFilterOutput        `pulumi:"fileFilter"`
+	Name                 pulumi.StringOutput                `pulumi:"name"`
+	ServerCredentialType pulumi.StringOutput                `pulumi:"serverCredentialType"`
+	ServerKeytabs        CifsProfileServerKeytabArrayOutput `pulumi:"serverKeytabs"`
+	Vdomparam            pulumi.StringPtrOutput             `pulumi:"vdomparam"`
 }
 
 // NewCifsProfile registers a new resource with the given unique name, arguments, and options.
@@ -76,37 +52,23 @@ func GetCifsProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CifsProfile resources.
 type cifsProfileState struct {
-	// Domain for which to decrypt CIFS traffic.
-	DomainController *string `pulumi:"domainController"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter *CifsProfileFileFilter `pulumi:"fileFilter"`
-	// File type name.
-	Name *string `pulumi:"name"`
-	// CIFS server credential type. Valid values: `none`, `credential-replication`, `credential-keytab`.
-	ServerCredentialType *string `pulumi:"serverCredentialType"`
-	// Server keytab. The structure of `serverKeytab` block is documented below.
-	ServerKeytabs []CifsProfileServerKeytab `pulumi:"serverKeytabs"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DomainController     *string                   `pulumi:"domainController"`
+	DynamicSortSubtable  *string                   `pulumi:"dynamicSortSubtable"`
+	FileFilter           *CifsProfileFileFilter    `pulumi:"fileFilter"`
+	Name                 *string                   `pulumi:"name"`
+	ServerCredentialType *string                   `pulumi:"serverCredentialType"`
+	ServerKeytabs        []CifsProfileServerKeytab `pulumi:"serverKeytabs"`
+	Vdomparam            *string                   `pulumi:"vdomparam"`
 }
 
 type CifsProfileState struct {
-	// Domain for which to decrypt CIFS traffic.
-	DomainController pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter CifsProfileFileFilterPtrInput
-	// File type name.
-	Name pulumi.StringPtrInput
-	// CIFS server credential type. Valid values: `none`, `credential-replication`, `credential-keytab`.
+	DomainController     pulumi.StringPtrInput
+	DynamicSortSubtable  pulumi.StringPtrInput
+	FileFilter           CifsProfileFileFilterPtrInput
+	Name                 pulumi.StringPtrInput
 	ServerCredentialType pulumi.StringPtrInput
-	// Server keytab. The structure of `serverKeytab` block is documented below.
-	ServerKeytabs CifsProfileServerKeytabArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ServerKeytabs        CifsProfileServerKeytabArrayInput
+	Vdomparam            pulumi.StringPtrInput
 }
 
 func (CifsProfileState) ElementType() reflect.Type {
@@ -114,38 +76,24 @@ func (CifsProfileState) ElementType() reflect.Type {
 }
 
 type cifsProfileArgs struct {
-	// Domain for which to decrypt CIFS traffic.
-	DomainController *string `pulumi:"domainController"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter *CifsProfileFileFilter `pulumi:"fileFilter"`
-	// File type name.
-	Name *string `pulumi:"name"`
-	// CIFS server credential type. Valid values: `none`, `credential-replication`, `credential-keytab`.
-	ServerCredentialType *string `pulumi:"serverCredentialType"`
-	// Server keytab. The structure of `serverKeytab` block is documented below.
-	ServerKeytabs []CifsProfileServerKeytab `pulumi:"serverKeytabs"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DomainController     *string                   `pulumi:"domainController"`
+	DynamicSortSubtable  *string                   `pulumi:"dynamicSortSubtable"`
+	FileFilter           *CifsProfileFileFilter    `pulumi:"fileFilter"`
+	Name                 *string                   `pulumi:"name"`
+	ServerCredentialType *string                   `pulumi:"serverCredentialType"`
+	ServerKeytabs        []CifsProfileServerKeytab `pulumi:"serverKeytabs"`
+	Vdomparam            *string                   `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a CifsProfile resource.
 type CifsProfileArgs struct {
-	// Domain for which to decrypt CIFS traffic.
-	DomainController pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter CifsProfileFileFilterPtrInput
-	// File type name.
-	Name pulumi.StringPtrInput
-	// CIFS server credential type. Valid values: `none`, `credential-replication`, `credential-keytab`.
+	DomainController     pulumi.StringPtrInput
+	DynamicSortSubtable  pulumi.StringPtrInput
+	FileFilter           CifsProfileFileFilterPtrInput
+	Name                 pulumi.StringPtrInput
 	ServerCredentialType pulumi.StringPtrInput
-	// Server keytab. The structure of `serverKeytab` block is documented below.
-	ServerKeytabs CifsProfileServerKeytabArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ServerKeytabs        CifsProfileServerKeytabArrayInput
+	Vdomparam            pulumi.StringPtrInput
 }
 
 func (CifsProfileArgs) ElementType() reflect.Type {
@@ -174,7 +122,7 @@ func (i *CifsProfile) ToCifsProfileOutputWithContext(ctx context.Context) CifsPr
 // CifsProfileArrayInput is an input type that accepts CifsProfileArray and CifsProfileArrayOutput values.
 // You can construct a concrete instance of `CifsProfileArrayInput` via:
 //
-//          CifsProfileArray{ CifsProfileArgs{...} }
+//	CifsProfileArray{ CifsProfileArgs{...} }
 type CifsProfileArrayInput interface {
 	pulumi.Input
 
@@ -199,7 +147,7 @@ func (i CifsProfileArray) ToCifsProfileArrayOutputWithContext(ctx context.Contex
 // CifsProfileMapInput is an input type that accepts CifsProfileMap and CifsProfileMapOutput values.
 // You can construct a concrete instance of `CifsProfileMapInput` via:
 //
-//          CifsProfileMap{ "key": CifsProfileArgs{...} }
+//	CifsProfileMap{ "key": CifsProfileArgs{...} }
 type CifsProfileMapInput interface {
 	pulumi.Input
 
@@ -233,6 +181,34 @@ func (o CifsProfileOutput) ToCifsProfileOutput() CifsProfileOutput {
 
 func (o CifsProfileOutput) ToCifsProfileOutputWithContext(ctx context.Context) CifsProfileOutput {
 	return o
+}
+
+func (o CifsProfileOutput) DomainController() pulumi.StringOutput {
+	return o.ApplyT(func(v *CifsProfile) pulumi.StringOutput { return v.DomainController }).(pulumi.StringOutput)
+}
+
+func (o CifsProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CifsProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o CifsProfileOutput) FileFilter() CifsProfileFileFilterOutput {
+	return o.ApplyT(func(v *CifsProfile) CifsProfileFileFilterOutput { return v.FileFilter }).(CifsProfileFileFilterOutput)
+}
+
+func (o CifsProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *CifsProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o CifsProfileOutput) ServerCredentialType() pulumi.StringOutput {
+	return o.ApplyT(func(v *CifsProfile) pulumi.StringOutput { return v.ServerCredentialType }).(pulumi.StringOutput)
+}
+
+func (o CifsProfileOutput) ServerKeytabs() CifsProfileServerKeytabArrayOutput {
+	return o.ApplyT(func(v *CifsProfile) CifsProfileServerKeytabArrayOutput { return v.ServerKeytabs }).(CifsProfileServerKeytabArrayOutput)
+}
+
+func (o CifsProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CifsProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type CifsProfileArrayOutput struct{ *pulumi.OutputState }

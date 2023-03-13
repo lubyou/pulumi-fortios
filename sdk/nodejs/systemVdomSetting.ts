@@ -4,23 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure VDOM of FortiOS. The API user of the token for this feature should have a super admin profile, It can be set in CLI while GUI does not allow.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.SystemVdom`, we recommend that you use the new resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test2 = new fortios.SystemVdomSetting("test2", {
- *     shortName: "aa1122",
- *     temporary: "0",
- * });
- * ```
- */
 export class SystemVdomSetting extends pulumi.CustomResource {
     /**
      * Get an existing SystemVdomSetting resource's state with the given name, ID, and optional extra
@@ -49,17 +32,8 @@ export class SystemVdomSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemVdomSetting.__pulumiType;
     }
 
-    /**
-     * VDOM name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * VDOM short name.
-     */
     public readonly shortName!: pulumi.Output<string>;
-    /**
-     * Temporary.
-     */
     public readonly temporary!: pulumi.Output<string>;
 
     /**
@@ -93,17 +67,8 @@ export class SystemVdomSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemVdomSetting resources.
  */
 export interface SystemVdomSettingState {
-    /**
-     * VDOM name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * VDOM short name.
-     */
     shortName?: pulumi.Input<string>;
-    /**
-     * Temporary.
-     */
     temporary?: pulumi.Input<string>;
 }
 
@@ -111,16 +76,7 @@ export interface SystemVdomSettingState {
  * The set of arguments for constructing a SystemVdomSetting resource.
  */
 export interface SystemVdomSettingArgs {
-    /**
-     * VDOM name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * VDOM short name.
-     */
     shortName?: pulumi.Input<string>;
-    /**
-     * Temporary.
-     */
     temporary?: pulumi.Input<string>;
 }

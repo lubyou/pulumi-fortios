@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewall internetservice
 func LookupFirewallInternetService(ctx *pulumi.Context, args *LookupFirewallInternetServiceArgs, opts ...pulumi.InvokeOption) (*LookupFirewallInternetServiceResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallInternetServiceResult
@@ -23,41 +22,29 @@ func LookupFirewallInternetService(ctx *pulumi.Context, args *LookupFirewallInte
 
 // A collection of arguments for invoking GetFirewallInternetService.
 type LookupFirewallInternetServiceArgs struct {
-	// Specify the fosid of the desired firewall internetservice.
-	Fosid int `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     int     `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallInternetService.
 type LookupFirewallInternetServiceResult struct {
-	// Database name this Internet Service belongs to.
-	Database string `pulumi:"database"`
-	// How this service may be used in a firewall policy (source, destination or both).
-	Direction string `pulumi:"direction"`
-	// Extra number of IP ranges.
-	ExtraIpRangeNumber int `pulumi:"extraIpRangeNumber"`
-	// Internet Service ID.
-	Fosid int `pulumi:"fosid"`
-	// Icon ID of Internet Service.
-	IconId int `pulumi:"iconId"`
+	Database            string `pulumi:"database"`
+	Direction           string `pulumi:"direction"`
+	ExtraIp6RangeNumber int    `pulumi:"extraIp6RangeNumber"`
+	ExtraIpRangeNumber  int    `pulumi:"extraIpRangeNumber"`
+	Fosid               int    `pulumi:"fosid"`
+	IconId              int    `pulumi:"iconId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Total number of IP addresses.
-	IpNumber int `pulumi:"ipNumber"`
-	// Total number of IP ranges.
-	IpRangeNumber int `pulumi:"ipRangeNumber"`
-	// Internet Service name.
-	Name string `pulumi:"name"`
-	// Indicates whether the Internet Service can be used.
-	Obsolete int `pulumi:"obsolete"`
-	// Reputation level of the Internet Service.
-	Reputation int `pulumi:"reputation"`
-	// Singular level of the Internet Service.
-	Singularity int `pulumi:"singularity"`
-	// Second Level Domain.
-	SldId     int     `pulumi:"sldId"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id             string  `pulumi:"id"`
+	Ip6RangeNumber int     `pulumi:"ip6RangeNumber"`
+	IpNumber       int     `pulumi:"ipNumber"`
+	IpRangeNumber  int     `pulumi:"ipRangeNumber"`
+	Name           string  `pulumi:"name"`
+	Obsolete       int     `pulumi:"obsolete"`
+	Reputation     int     `pulumi:"reputation"`
+	Singularity    int     `pulumi:"singularity"`
+	SldId          int     `pulumi:"sldId"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 func LookupFirewallInternetServiceOutput(ctx *pulumi.Context, args LookupFirewallInternetServiceOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallInternetServiceResultOutput {
@@ -75,9 +62,7 @@ func LookupFirewallInternetServiceOutput(ctx *pulumi.Context, args LookupFirewal
 
 // A collection of arguments for invoking GetFirewallInternetService.
 type LookupFirewallInternetServiceOutputArgs struct {
-	// Specify the fosid of the desired firewall internetservice.
-	Fosid pulumi.IntInput `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntInput       `pulumi:"fosid"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -100,27 +85,26 @@ func (o LookupFirewallInternetServiceResultOutput) ToLookupFirewallInternetServi
 	return o
 }
 
-// Database name this Internet Service belongs to.
 func (o LookupFirewallInternetServiceResultOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceResult) string { return v.Database }).(pulumi.StringOutput)
 }
 
-// How this service may be used in a firewall policy (source, destination or both).
 func (o LookupFirewallInternetServiceResultOutput) Direction() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceResult) string { return v.Direction }).(pulumi.StringOutput)
 }
 
-// Extra number of IP ranges.
+func (o LookupFirewallInternetServiceResultOutput) ExtraIp6RangeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallInternetServiceResult) int { return v.ExtraIp6RangeNumber }).(pulumi.IntOutput)
+}
+
 func (o LookupFirewallInternetServiceResultOutput) ExtraIpRangeNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceResult) int { return v.ExtraIpRangeNumber }).(pulumi.IntOutput)
 }
 
-// Internet Service ID.
 func (o LookupFirewallInternetServiceResultOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceResult) int { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Icon ID of Internet Service.
 func (o LookupFirewallInternetServiceResultOutput) IconId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceResult) int { return v.IconId }).(pulumi.IntOutput)
 }
@@ -130,37 +114,34 @@ func (o LookupFirewallInternetServiceResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Total number of IP addresses.
+func (o LookupFirewallInternetServiceResultOutput) Ip6RangeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallInternetServiceResult) int { return v.Ip6RangeNumber }).(pulumi.IntOutput)
+}
+
 func (o LookupFirewallInternetServiceResultOutput) IpNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceResult) int { return v.IpNumber }).(pulumi.IntOutput)
 }
 
-// Total number of IP ranges.
 func (o LookupFirewallInternetServiceResultOutput) IpRangeNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceResult) int { return v.IpRangeNumber }).(pulumi.IntOutput)
 }
 
-// Internet Service name.
 func (o LookupFirewallInternetServiceResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Indicates whether the Internet Service can be used.
 func (o LookupFirewallInternetServiceResultOutput) Obsolete() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceResult) int { return v.Obsolete }).(pulumi.IntOutput)
 }
 
-// Reputation level of the Internet Service.
 func (o LookupFirewallInternetServiceResultOutput) Reputation() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceResult) int { return v.Reputation }).(pulumi.IntOutput)
 }
 
-// Singular level of the Internet Service.
 func (o LookupFirewallInternetServiceResultOutput) Singularity() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceResult) int { return v.Singularity }).(pulumi.IntOutput)
 }
 
-// Second Level Domain.
 func (o LookupFirewallInternetServiceResultOutput) SldId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceResult) int { return v.SldId }).(pulumi.IntOutput)
 }

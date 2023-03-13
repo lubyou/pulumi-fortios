@@ -4,40 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch LLDP settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchControllerLldpSettings("trname", {
- *     fastStartInterval: 2,
- *     managementInterface: "internal",
- *     status: "enable",
- *     txHold: 4,
- *     txInterval: 30,
- * });
- * ```
- *
- * ## Import
- *
- * SwitchController LldpSettings can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerLldpSettings:SwitchControllerLldpSettings labelname SwitchControllerLldpSettings
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerLldpSettings:SwitchControllerLldpSettings labelname SwitchControllerLldpSettings
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerLldpSettings extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerLldpSettings resource's state with the given name, ID, and optional extra
@@ -66,33 +32,12 @@ export class SwitchControllerLldpSettings extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerLldpSettings.__pulumiType;
     }
 
-    /**
-     * Enable/disable dynamic detection of LLDP neighbor devices for VLAN assignment. Valid values: `disable`, `enable`.
-     */
     public readonly deviceDetection!: pulumi.Output<string>;
-    /**
-     * Frequency of LLDP PDU transmission from FortiSwitch for the first 4 packets when the link is up (2 - 5 sec, default = 2, 0 = disable fast start).
-     */
     public readonly fastStartInterval!: pulumi.Output<number>;
-    /**
-     * Primary management interface to be advertised in LLDP and CDP PDUs. Valid values: `internal`, `mgmt`.
-     */
     public readonly managementInterface!: pulumi.Output<string>;
-    /**
-     * Enable/disable LLDP global settings. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Number of tx-intervals before local LLDP data expires (1 - 16, default = 4). Packet TTL is tx-hold * tx-interval.
-     */
     public readonly txHold!: pulumi.Output<number>;
-    /**
-     * Frequency of LLDP PDU transmission from FortiSwitch (5 - 4095 sec, default = 30). Packet TTL is tx-hold * tx-interval.
-     */
     public readonly txInterval!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -134,33 +79,12 @@ export class SwitchControllerLldpSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerLldpSettings resources.
  */
 export interface SwitchControllerLldpSettingsState {
-    /**
-     * Enable/disable dynamic detection of LLDP neighbor devices for VLAN assignment. Valid values: `disable`, `enable`.
-     */
     deviceDetection?: pulumi.Input<string>;
-    /**
-     * Frequency of LLDP PDU transmission from FortiSwitch for the first 4 packets when the link is up (2 - 5 sec, default = 2, 0 = disable fast start).
-     */
     fastStartInterval?: pulumi.Input<number>;
-    /**
-     * Primary management interface to be advertised in LLDP and CDP PDUs. Valid values: `internal`, `mgmt`.
-     */
     managementInterface?: pulumi.Input<string>;
-    /**
-     * Enable/disable LLDP global settings. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Number of tx-intervals before local LLDP data expires (1 - 16, default = 4). Packet TTL is tx-hold * tx-interval.
-     */
     txHold?: pulumi.Input<number>;
-    /**
-     * Frequency of LLDP PDU transmission from FortiSwitch (5 - 4095 sec, default = 30). Packet TTL is tx-hold * tx-interval.
-     */
     txInterval?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -168,32 +92,11 @@ export interface SwitchControllerLldpSettingsState {
  * The set of arguments for constructing a SwitchControllerLldpSettings resource.
  */
 export interface SwitchControllerLldpSettingsArgs {
-    /**
-     * Enable/disable dynamic detection of LLDP neighbor devices for VLAN assignment. Valid values: `disable`, `enable`.
-     */
     deviceDetection?: pulumi.Input<string>;
-    /**
-     * Frequency of LLDP PDU transmission from FortiSwitch for the first 4 packets when the link is up (2 - 5 sec, default = 2, 0 = disable fast start).
-     */
     fastStartInterval?: pulumi.Input<number>;
-    /**
-     * Primary management interface to be advertised in LLDP and CDP PDUs. Valid values: `internal`, `mgmt`.
-     */
     managementInterface?: pulumi.Input<string>;
-    /**
-     * Enable/disable LLDP global settings. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Number of tx-intervals before local LLDP data expires (1 - 16, default = 4). Packet TTL is tx-hold * tx-interval.
-     */
     txHold?: pulumi.Input<number>;
-    /**
-     * Frequency of LLDP PDU transmission from FortiSwitch (5 - 4095 sec, default = 30). Packet TTL is tx-hold * tx-interval.
-     */
     txInterval?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

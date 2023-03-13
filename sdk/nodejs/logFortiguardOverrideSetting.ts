@@ -4,40 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Override global FortiCloud logging settings for this VDOM.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.LogFortiguardOverrideSetting("trname", {
- *     override: "disable",
- *     status: "disable",
- *     uploadInterval: "daily",
- *     uploadOption: "5-minute",
- *     uploadTime: "00:00",
- * });
- * ```
- *
- * ## Import
- *
- * LogFortiguard OverrideSetting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/logFortiguardOverrideSetting:LogFortiguardOverrideSetting labelname LogFortiguardOverrideSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/logFortiguardOverrideSetting:LogFortiguardOverrideSetting labelname LogFortiguardOverrideSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class LogFortiguardOverrideSetting extends pulumi.CustomResource {
     /**
      * Get an existing LogFortiguardOverrideSetting resource's state with the given name, ID, and optional extra
@@ -66,45 +32,15 @@ export class LogFortiguardOverrideSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogFortiguardOverrideSetting.__pulumiType;
     }
 
-    /**
-     * Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-     */
     public readonly accessConfig!: pulumi.Output<string>;
-    /**
-     * FortiCloud maximum log rate in MBps (0 = unlimited).
-     */
     public readonly maxLogRate!: pulumi.Output<number>;
-    /**
-     * Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
-     */
     public readonly override!: pulumi.Output<string>;
-    /**
-     * Set log transmission priority. Valid values: `default`, `low`.
-     */
     public readonly priority!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Day of week to roll logs.
-     */
     public readonly uploadDay!: pulumi.Output<string>;
-    /**
-     * Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
-     */
     public readonly uploadInterval!: pulumi.Output<string>;
-    /**
-     * Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-     */
     public readonly uploadOption!: pulumi.Output<string>;
-    /**
-     * Time of day to roll logs (hh:mm).
-     */
     public readonly uploadTime!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -152,45 +88,15 @@ export class LogFortiguardOverrideSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogFortiguardOverrideSetting resources.
  */
 export interface LogFortiguardOverrideSettingState {
-    /**
-     * Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-     */
     accessConfig?: pulumi.Input<string>;
-    /**
-     * FortiCloud maximum log rate in MBps (0 = unlimited).
-     */
     maxLogRate?: pulumi.Input<number>;
-    /**
-     * Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
-     */
     override?: pulumi.Input<string>;
-    /**
-     * Set log transmission priority. Valid values: `default`, `low`.
-     */
     priority?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Day of week to roll logs.
-     */
     uploadDay?: pulumi.Input<string>;
-    /**
-     * Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
-     */
     uploadInterval?: pulumi.Input<string>;
-    /**
-     * Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-     */
     uploadOption?: pulumi.Input<string>;
-    /**
-     * Time of day to roll logs (hh:mm).
-     */
     uploadTime?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -198,44 +104,14 @@ export interface LogFortiguardOverrideSettingState {
  * The set of arguments for constructing a LogFortiguardOverrideSetting resource.
  */
 export interface LogFortiguardOverrideSettingArgs {
-    /**
-     * Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-     */
     accessConfig?: pulumi.Input<string>;
-    /**
-     * FortiCloud maximum log rate in MBps (0 = unlimited).
-     */
     maxLogRate?: pulumi.Input<number>;
-    /**
-     * Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
-     */
     override?: pulumi.Input<string>;
-    /**
-     * Set log transmission priority. Valid values: `default`, `low`.
-     */
     priority?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Day of week to roll logs.
-     */
     uploadDay?: pulumi.Input<string>;
-    /**
-     * Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
-     */
     uploadInterval?: pulumi.Input<string>;
-    /**
-     * Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-     */
     uploadOption?: pulumi.Input<string>;
-    /**
-     * Time of day to roll logs (hh:mm).
-     */
     uploadTime?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

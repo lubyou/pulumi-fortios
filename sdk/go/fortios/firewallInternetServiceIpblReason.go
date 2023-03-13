@@ -10,31 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// IP blacklist reason. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// Firewall InternetServiceIpblReason can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceIpblReason:FirewallInternetServiceIpblReason labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceIpblReason:FirewallInternetServiceIpblReason labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallInternetServiceIpblReason struct {
 	pulumi.CustomResourceState
 
-	// IP blacklist reason ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// IP blacklist reason name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -68,20 +48,14 @@ func GetFirewallInternetServiceIpblReason(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallInternetServiceIpblReason resources.
 type firewallInternetServiceIpblReasonState struct {
-	// IP blacklist reason ID.
-	Fosid *int `pulumi:"fosid"`
-	// IP blacklist reason name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type FirewallInternetServiceIpblReasonState struct {
-	// IP blacklist reason ID.
-	Fosid pulumi.IntPtrInput
-	// IP blacklist reason name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -90,21 +64,15 @@ func (FirewallInternetServiceIpblReasonState) ElementType() reflect.Type {
 }
 
 type firewallInternetServiceIpblReasonArgs struct {
-	// IP blacklist reason ID.
-	Fosid *int `pulumi:"fosid"`
-	// IP blacklist reason name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallInternetServiceIpblReason resource.
 type FirewallInternetServiceIpblReasonArgs struct {
-	// IP blacklist reason ID.
-	Fosid pulumi.IntPtrInput
-	// IP blacklist reason name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -134,7 +102,7 @@ func (i *FirewallInternetServiceIpblReason) ToFirewallInternetServiceIpblReasonO
 // FirewallInternetServiceIpblReasonArrayInput is an input type that accepts FirewallInternetServiceIpblReasonArray and FirewallInternetServiceIpblReasonArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceIpblReasonArrayInput` via:
 //
-//          FirewallInternetServiceIpblReasonArray{ FirewallInternetServiceIpblReasonArgs{...} }
+//	FirewallInternetServiceIpblReasonArray{ FirewallInternetServiceIpblReasonArgs{...} }
 type FirewallInternetServiceIpblReasonArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i FirewallInternetServiceIpblReasonArray) ToFirewallInternetServiceIpblRea
 // FirewallInternetServiceIpblReasonMapInput is an input type that accepts FirewallInternetServiceIpblReasonMap and FirewallInternetServiceIpblReasonMapOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceIpblReasonMapInput` via:
 //
-//          FirewallInternetServiceIpblReasonMap{ "key": FirewallInternetServiceIpblReasonArgs{...} }
+//	FirewallInternetServiceIpblReasonMap{ "key": FirewallInternetServiceIpblReasonArgs{...} }
 type FirewallInternetServiceIpblReasonMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o FirewallInternetServiceIpblReasonOutput) ToFirewallInternetServiceIpblRe
 
 func (o FirewallInternetServiceIpblReasonOutput) ToFirewallInternetServiceIpblReasonOutputWithContext(ctx context.Context) FirewallInternetServiceIpblReasonOutput {
 	return o
+}
+
+func (o FirewallInternetServiceIpblReasonOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceIpblReason) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceIpblReasonOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceIpblReason) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallInternetServiceIpblReasonOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceIpblReason) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallInternetServiceIpblReasonArrayOutput struct{ *pulumi.OutputState }

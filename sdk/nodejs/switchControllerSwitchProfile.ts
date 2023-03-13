@@ -4,36 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch switch profile.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchControllerSwitchProfile("trname", {
- *     loginPasswdOverride: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * SwitchController SwitchProfile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSwitchProfile:SwitchControllerSwitchProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSwitchProfile:SwitchControllerSwitchProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerSwitchProfile extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerSwitchProfile resource's state with the given name, ID, and optional extra
@@ -62,21 +32,12 @@ export class SwitchControllerSwitchProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerSwitchProfile.__pulumiType;
     }
 
-    /**
-     * Login password of managed FortiSwitch.
-     */
+    public readonly login!: pulumi.Output<string>;
     public readonly loginPasswd!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable overriding the admin administrator password for a managed FortiSwitch with the FortiGate admin administrator account password. Valid values: `enable`, `disable`.
-     */
     public readonly loginPasswdOverride!: pulumi.Output<string>;
-    /**
-     * FortiSwitch Profile name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    public readonly revisionBackupOnLogout!: pulumi.Output<string>;
+    public readonly revisionBackupOnUpgrade!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -92,18 +53,26 @@ export class SwitchControllerSwitchProfile extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerSwitchProfileState | undefined;
+            resourceInputs["login"] = state ? state.login : undefined;
             resourceInputs["loginPasswd"] = state ? state.loginPasswd : undefined;
             resourceInputs["loginPasswdOverride"] = state ? state.loginPasswdOverride : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["revisionBackupOnLogout"] = state ? state.revisionBackupOnLogout : undefined;
+            resourceInputs["revisionBackupOnUpgrade"] = state ? state.revisionBackupOnUpgrade : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerSwitchProfileArgs | undefined;
-            resourceInputs["loginPasswd"] = args ? args.loginPasswd : undefined;
+            resourceInputs["login"] = args ? args.login : undefined;
+            resourceInputs["loginPasswd"] = args?.loginPasswd ? pulumi.secret(args.loginPasswd) : undefined;
             resourceInputs["loginPasswdOverride"] = args ? args.loginPasswdOverride : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["revisionBackupOnLogout"] = args ? args.revisionBackupOnLogout : undefined;
+            resourceInputs["revisionBackupOnUpgrade"] = args ? args.revisionBackupOnUpgrade : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["loginPasswd"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SwitchControllerSwitchProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -112,21 +81,12 @@ export class SwitchControllerSwitchProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerSwitchProfile resources.
  */
 export interface SwitchControllerSwitchProfileState {
-    /**
-     * Login password of managed FortiSwitch.
-     */
+    login?: pulumi.Input<string>;
     loginPasswd?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the admin administrator password for a managed FortiSwitch with the FortiGate admin administrator account password. Valid values: `enable`, `disable`.
-     */
     loginPasswdOverride?: pulumi.Input<string>;
-    /**
-     * FortiSwitch Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    revisionBackupOnLogout?: pulumi.Input<string>;
+    revisionBackupOnUpgrade?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -134,20 +94,11 @@ export interface SwitchControllerSwitchProfileState {
  * The set of arguments for constructing a SwitchControllerSwitchProfile resource.
  */
 export interface SwitchControllerSwitchProfileArgs {
-    /**
-     * Login password of managed FortiSwitch.
-     */
+    login?: pulumi.Input<string>;
     loginPasswd?: pulumi.Input<string>;
-    /**
-     * Enable/disable overriding the admin administrator password for a managed FortiSwitch with the FortiGate admin administrator account password. Valid values: `enable`, `disable`.
-     */
     loginPasswdOverride?: pulumi.Input<string>;
-    /**
-     * FortiSwitch Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    revisionBackupOnLogout?: pulumi.Input<string>;
+    revisionBackupOnUpgrade?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

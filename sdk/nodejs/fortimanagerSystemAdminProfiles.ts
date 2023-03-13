@@ -4,50 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports Create/Read/Update/Delete admin profiles for FortiManager
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerSystemAdminProfiles("test1", {
- *     adomPolicyPackages: "read",
- *     adomSwitch: "read",
- *     assignment: "read",
- *     configRetrieve: "read",
- *     configRevert: "read",
- *     consistencyCheck: "read-write",
- *     deployManagement: "read",
- *     description: "11",
- *     deviceAp: "none",
- *     deviceConfig: "read",
- *     deviceForticlient: "read",
- *     deviceFortiswitch: "read",
- *     deviceManager: "read-write",
- *     deviceOperation: "read",
- *     deviceProfile: "read",
- *     deviceRevisionDeletion: "read",
- *     deviceWanLinkLoadBalance: "read",
- *     fortiguardCenter: "read",
- *     fortiguardCenterAdvanced: "read",
- *     fortiguardCenterFirmwareManagerment: "read",
- *     fortiguardCenterLicensing: "read",
- *     globalPolicyPackages: "read-write",
- *     importPolicyPackages: "read",
- *     intfMapping: "read-write",
- *     logViewer: "read",
- *     policyObjects: "read-write",
- *     profileid: "terraform-test1",
- *     setInstallTargets: "read-write",
- *     systemSetting: "read",
- *     terminalAccess: "read",
- *     vpnManager: "read",
- * });
- * ```
- */
 export class FortimanagerSystemAdminProfiles extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerSystemAdminProfiles resource's state with the given name, ID, and optional extra
@@ -76,129 +32,36 @@ export class FortimanagerSystemAdminProfiles extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerSystemAdminProfiles.__pulumiType;
     }
 
-    /**
-     * Adom policy packages.
-     */
     public readonly adomPolicyPackages!: pulumi.Output<string | undefined>;
-    /**
-     * Administrator Domain.
-     */
     public readonly adomSwitch!: pulumi.Output<string | undefined>;
-    /**
-     * Assignment Permission.
-     */
     public readonly assignment!: pulumi.Output<string | undefined>;
-    /**
-     * Configuration Retrieve.
-     */
     public readonly configRetrieve!: pulumi.Output<string | undefined>;
-    /**
-     * Revert Configuration from Revision History.
-     */
     public readonly configRevert!: pulumi.Output<string | undefined>;
-    /**
-     * Consistency check.
-     */
     public readonly consistencyCheck!: pulumi.Output<string | undefined>;
-    /**
-     * Install to devices.
-     */
     public readonly deployManagement!: pulumi.Output<string | undefined>;
-    /**
-     * Description.
-     */
     public readonly description!: pulumi.Output<string | undefined>;
-    /**
-     * Manage AP.
-     */
     public readonly deviceAp!: pulumi.Output<string | undefined>;
-    /**
-     * Manage device configurations.
-     */
     public readonly deviceConfig!: pulumi.Output<string | undefined>;
-    /**
-     * Manage FortiClient.
-     */
     public readonly deviceForticlient!: pulumi.Output<string | undefined>;
-    /**
-     * Manage FortiSwitch.
-     */
     public readonly deviceFortiswitch!: pulumi.Output<string | undefined>;
-    /**
-     * Device Manager.
-     */
     public readonly deviceManager!: pulumi.Output<string | undefined>;
-    /**
-     * Device add/delete/edit.
-     */
     public readonly deviceOperation!: pulumi.Output<string | undefined>;
-    /**
-     * Device profile permission.
-     */
     public readonly deviceProfile!: pulumi.Output<string | undefined>;
-    /**
-     * Delete device revision.
-     */
     public readonly deviceRevisionDeletion!: pulumi.Output<string | undefined>;
-    /**
-     * Manage WAN link load balance.
-     */
     public readonly deviceWanLinkLoadBalance!: pulumi.Output<string | undefined>;
-    /**
-     * FortiGuard Center.
-     */
     public readonly fortiguardCenter!: pulumi.Output<string | undefined>;
-    /**
-     * FortiGuard Center Advanced.
-     */
     public readonly fortiguardCenterAdvanced!: pulumi.Output<string | undefined>;
-    /**
-     * FortiGuard Center Firmware Managerment.
-     */
     public readonly fortiguardCenterFirmwareManagerment!: pulumi.Output<string | undefined>;
-    /**
-     * FortiGuard Center Licensing.
-     */
     public readonly fortiguardCenterLicensing!: pulumi.Output<string | undefined>;
-    /**
-     * Global policy packages.
-     */
     public readonly globalPolicyPackages!: pulumi.Output<string | undefined>;
-    /**
-     * Import Policy Package.
-     */
     public readonly importPolicyPackages!: pulumi.Output<string | undefined>;
-    /**
-     * Interface Mapping.
-     */
     public readonly intfMapping!: pulumi.Output<string | undefined>;
-    /**
-     * Log Viewer.
-     */
     public readonly logViewer!: pulumi.Output<string | undefined>;
-    /**
-     * Policy objects permission.
-     */
     public readonly policyObjects!: pulumi.Output<string | undefined>;
-    /**
-     * Profile name.
-     */
     public readonly profileid!: pulumi.Output<string>;
-    /**
-     * Edit installation targets.
-     */
     public readonly setInstallTargets!: pulumi.Output<string | undefined>;
-    /**
-     * System Setting.
-     */
     public readonly systemSetting!: pulumi.Output<string | undefined>;
-    /**
-     * Terminal access.
-     */
     public readonly terminalAccess!: pulumi.Output<string | undefined>;
-    /**
-     * VPN Manager.
-     */
     public readonly vpnManager!: pulumi.Output<string | undefined>;
 
     /**
@@ -291,129 +154,36 @@ export class FortimanagerSystemAdminProfiles extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerSystemAdminProfiles resources.
  */
 export interface FortimanagerSystemAdminProfilesState {
-    /**
-     * Adom policy packages.
-     */
     adomPolicyPackages?: pulumi.Input<string>;
-    /**
-     * Administrator Domain.
-     */
     adomSwitch?: pulumi.Input<string>;
-    /**
-     * Assignment Permission.
-     */
     assignment?: pulumi.Input<string>;
-    /**
-     * Configuration Retrieve.
-     */
     configRetrieve?: pulumi.Input<string>;
-    /**
-     * Revert Configuration from Revision History.
-     */
     configRevert?: pulumi.Input<string>;
-    /**
-     * Consistency check.
-     */
     consistencyCheck?: pulumi.Input<string>;
-    /**
-     * Install to devices.
-     */
     deployManagement?: pulumi.Input<string>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Manage AP.
-     */
     deviceAp?: pulumi.Input<string>;
-    /**
-     * Manage device configurations.
-     */
     deviceConfig?: pulumi.Input<string>;
-    /**
-     * Manage FortiClient.
-     */
     deviceForticlient?: pulumi.Input<string>;
-    /**
-     * Manage FortiSwitch.
-     */
     deviceFortiswitch?: pulumi.Input<string>;
-    /**
-     * Device Manager.
-     */
     deviceManager?: pulumi.Input<string>;
-    /**
-     * Device add/delete/edit.
-     */
     deviceOperation?: pulumi.Input<string>;
-    /**
-     * Device profile permission.
-     */
     deviceProfile?: pulumi.Input<string>;
-    /**
-     * Delete device revision.
-     */
     deviceRevisionDeletion?: pulumi.Input<string>;
-    /**
-     * Manage WAN link load balance.
-     */
     deviceWanLinkLoadBalance?: pulumi.Input<string>;
-    /**
-     * FortiGuard Center.
-     */
     fortiguardCenter?: pulumi.Input<string>;
-    /**
-     * FortiGuard Center Advanced.
-     */
     fortiguardCenterAdvanced?: pulumi.Input<string>;
-    /**
-     * FortiGuard Center Firmware Managerment.
-     */
     fortiguardCenterFirmwareManagerment?: pulumi.Input<string>;
-    /**
-     * FortiGuard Center Licensing.
-     */
     fortiguardCenterLicensing?: pulumi.Input<string>;
-    /**
-     * Global policy packages.
-     */
     globalPolicyPackages?: pulumi.Input<string>;
-    /**
-     * Import Policy Package.
-     */
     importPolicyPackages?: pulumi.Input<string>;
-    /**
-     * Interface Mapping.
-     */
     intfMapping?: pulumi.Input<string>;
-    /**
-     * Log Viewer.
-     */
     logViewer?: pulumi.Input<string>;
-    /**
-     * Policy objects permission.
-     */
     policyObjects?: pulumi.Input<string>;
-    /**
-     * Profile name.
-     */
     profileid?: pulumi.Input<string>;
-    /**
-     * Edit installation targets.
-     */
     setInstallTargets?: pulumi.Input<string>;
-    /**
-     * System Setting.
-     */
     systemSetting?: pulumi.Input<string>;
-    /**
-     * Terminal access.
-     */
     terminalAccess?: pulumi.Input<string>;
-    /**
-     * VPN Manager.
-     */
     vpnManager?: pulumi.Input<string>;
 }
 
@@ -421,128 +191,35 @@ export interface FortimanagerSystemAdminProfilesState {
  * The set of arguments for constructing a FortimanagerSystemAdminProfiles resource.
  */
 export interface FortimanagerSystemAdminProfilesArgs {
-    /**
-     * Adom policy packages.
-     */
     adomPolicyPackages?: pulumi.Input<string>;
-    /**
-     * Administrator Domain.
-     */
     adomSwitch?: pulumi.Input<string>;
-    /**
-     * Assignment Permission.
-     */
     assignment?: pulumi.Input<string>;
-    /**
-     * Configuration Retrieve.
-     */
     configRetrieve?: pulumi.Input<string>;
-    /**
-     * Revert Configuration from Revision History.
-     */
     configRevert?: pulumi.Input<string>;
-    /**
-     * Consistency check.
-     */
     consistencyCheck?: pulumi.Input<string>;
-    /**
-     * Install to devices.
-     */
     deployManagement?: pulumi.Input<string>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Manage AP.
-     */
     deviceAp?: pulumi.Input<string>;
-    /**
-     * Manage device configurations.
-     */
     deviceConfig?: pulumi.Input<string>;
-    /**
-     * Manage FortiClient.
-     */
     deviceForticlient?: pulumi.Input<string>;
-    /**
-     * Manage FortiSwitch.
-     */
     deviceFortiswitch?: pulumi.Input<string>;
-    /**
-     * Device Manager.
-     */
     deviceManager?: pulumi.Input<string>;
-    /**
-     * Device add/delete/edit.
-     */
     deviceOperation?: pulumi.Input<string>;
-    /**
-     * Device profile permission.
-     */
     deviceProfile?: pulumi.Input<string>;
-    /**
-     * Delete device revision.
-     */
     deviceRevisionDeletion?: pulumi.Input<string>;
-    /**
-     * Manage WAN link load balance.
-     */
     deviceWanLinkLoadBalance?: pulumi.Input<string>;
-    /**
-     * FortiGuard Center.
-     */
     fortiguardCenter?: pulumi.Input<string>;
-    /**
-     * FortiGuard Center Advanced.
-     */
     fortiguardCenterAdvanced?: pulumi.Input<string>;
-    /**
-     * FortiGuard Center Firmware Managerment.
-     */
     fortiguardCenterFirmwareManagerment?: pulumi.Input<string>;
-    /**
-     * FortiGuard Center Licensing.
-     */
     fortiguardCenterLicensing?: pulumi.Input<string>;
-    /**
-     * Global policy packages.
-     */
     globalPolicyPackages?: pulumi.Input<string>;
-    /**
-     * Import Policy Package.
-     */
     importPolicyPackages?: pulumi.Input<string>;
-    /**
-     * Interface Mapping.
-     */
     intfMapping?: pulumi.Input<string>;
-    /**
-     * Log Viewer.
-     */
     logViewer?: pulumi.Input<string>;
-    /**
-     * Policy objects permission.
-     */
     policyObjects?: pulumi.Input<string>;
-    /**
-     * Profile name.
-     */
     profileid: pulumi.Input<string>;
-    /**
-     * Edit installation targets.
-     */
     setInstallTargets?: pulumi.Input<string>;
-    /**
-     * System Setting.
-     */
     systemSetting?: pulumi.Input<string>;
-    /**
-     * Terminal access.
-     */
     terminalAccess?: pulumi.Input<string>;
-    /**
-     * VPN Manager.
-     */
     vpnManager?: pulumi.Input<string>;
 }

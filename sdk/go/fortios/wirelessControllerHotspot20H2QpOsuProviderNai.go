@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure online sign up (OSU) provider NAI list. Applies to FortiOS Version `>= 7.0.2`.
-//
-// ## Import
-//
-// WirelessControllerHotspot20 H2QpOsuProviderNai can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpOsuProviderNai:WirelessControllerHotspot20H2QpOsuProviderNai labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpOsuProviderNai:WirelessControllerHotspot20H2QpOsuProviderNai labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerHotspot20H2QpOsuProviderNai struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// OSU NAI list. The structure of `naiList` block is documented below.
-	NaiLists WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayOutput `pulumi:"naiLists"`
-	// OSU NAI ID.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                                          `pulumi:"dynamicSortSubtable"`
+	NaiLists            WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayOutput `pulumi:"naiLists"`
+	Name                pulumi.StringOutput                                             `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                                          `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerHotspot20H2QpOsuProviderNai registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetWirelessControllerHotspot20H2QpOsuProviderNai(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerHotspot20H2QpOsuProviderNai resources.
 type wirelessControllerHotspot20H2QpOsuProviderNaiState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// OSU NAI list. The structure of `naiList` block is documented below.
-	NaiLists []WirelessControllerHotspot20H2QpOsuProviderNaiNaiList `pulumi:"naiLists"`
-	// OSU NAI ID.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                                `pulumi:"dynamicSortSubtable"`
+	NaiLists            []WirelessControllerHotspot20H2QpOsuProviderNaiNaiList `pulumi:"naiLists"`
+	Name                *string                                                `pulumi:"name"`
+	Vdomparam           *string                                                `pulumi:"vdomparam"`
 }
 
 type WirelessControllerHotspot20H2QpOsuProviderNaiState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// OSU NAI list. The structure of `naiList` block is documented below.
-	NaiLists WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayInput
-	// OSU NAI ID.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	NaiLists            WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20H2QpOsuProviderNaiState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (WirelessControllerHotspot20H2QpOsuProviderNaiState) ElementType() reflect.
 }
 
 type wirelessControllerHotspot20H2QpOsuProviderNaiArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// OSU NAI list. The structure of `naiList` block is documented below.
-	NaiLists []WirelessControllerHotspot20H2QpOsuProviderNaiNaiList `pulumi:"naiLists"`
-	// OSU NAI ID.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                                `pulumi:"dynamicSortSubtable"`
+	NaiLists            []WirelessControllerHotspot20H2QpOsuProviderNaiNaiList `pulumi:"naiLists"`
+	Name                *string                                                `pulumi:"name"`
+	Vdomparam           *string                                                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerHotspot20H2QpOsuProviderNai resource.
 type WirelessControllerHotspot20H2QpOsuProviderNaiArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// OSU NAI list. The structure of `naiList` block is documented below.
-	NaiLists WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayInput
-	// OSU NAI ID.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	NaiLists            WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20H2QpOsuProviderNaiArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *WirelessControllerHotspot20H2QpOsuProviderNai) ToWirelessControllerHots
 // WirelessControllerHotspot20H2QpOsuProviderNaiArrayInput is an input type that accepts WirelessControllerHotspot20H2QpOsuProviderNaiArray and WirelessControllerHotspot20H2QpOsuProviderNaiArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpOsuProviderNaiArrayInput` via:
 //
-//          WirelessControllerHotspot20H2QpOsuProviderNaiArray{ WirelessControllerHotspot20H2QpOsuProviderNaiArgs{...} }
+//	WirelessControllerHotspot20H2QpOsuProviderNaiArray{ WirelessControllerHotspot20H2QpOsuProviderNaiArgs{...} }
 type WirelessControllerHotspot20H2QpOsuProviderNaiArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i WirelessControllerHotspot20H2QpOsuProviderNaiArray) ToWirelessController
 // WirelessControllerHotspot20H2QpOsuProviderNaiMapInput is an input type that accepts WirelessControllerHotspot20H2QpOsuProviderNaiMap and WirelessControllerHotspot20H2QpOsuProviderNaiMapOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpOsuProviderNaiMapInput` via:
 //
-//          WirelessControllerHotspot20H2QpOsuProviderNaiMap{ "key": WirelessControllerHotspot20H2QpOsuProviderNaiArgs{...} }
+//	WirelessControllerHotspot20H2QpOsuProviderNaiMap{ "key": WirelessControllerHotspot20H2QpOsuProviderNaiArgs{...} }
 type WirelessControllerHotspot20H2QpOsuProviderNaiMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,26 @@ func (o WirelessControllerHotspot20H2QpOsuProviderNaiOutput) ToWirelessControlle
 
 func (o WirelessControllerHotspot20H2QpOsuProviderNaiOutput) ToWirelessControllerHotspot20H2QpOsuProviderNaiOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOsuProviderNaiOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderNaiOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOsuProviderNai) pulumi.StringPtrOutput {
+		return v.DynamicSortSubtable
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderNaiOutput) NaiLists() WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOsuProviderNai) WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayOutput {
+		return v.NaiLists
+	}).(WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderNaiOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOsuProviderNai) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderNaiOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOsuProviderNai) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerHotspot20H2QpOsuProviderNaiArrayOutput struct{ *pulumi.OutputState }

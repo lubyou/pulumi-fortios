@@ -7,109 +7,38 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Add this FortiGate to a Security Fabric or set up a new Security Fabric on this FortiGate.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemCsf(ctx, "trname", &fortios.SystemCsfArgs{
-// 			ConfigurationSync: pulumi.String("default"),
-// 			GroupPassword:     pulumi.String("tmp"),
-// 			ManagementIp:      pulumi.String("0.0.0.0"),
-// 			ManagementPort:    pulumi.Int(33),
-// 			Status:            pulumi.String("disable"),
-// 			UpstreamIp:        pulumi.String("0.0.0.0"),
-// 			UpstreamPort:      pulumi.Int(8013),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Csf can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemCsf:SystemCsf labelname SystemCsf
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemCsf:SystemCsf labelname SystemCsf
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemCsf struct {
 	pulumi.CustomResourceState
 
-	// Accept connections with unknown certificates and ask admin for approval. Valid values: `disable`, `enable`.
-	AcceptAuthByCert pulumi.StringOutput `pulumi:"acceptAuthByCert"`
-	// Authorization request type. Valid values: `serial`, `certificate`.
-	AuthorizationRequestType pulumi.StringOutput `pulumi:"authorizationRequestType"`
-	// Certificate.
-	Certificate pulumi.StringOutput `pulumi:"certificate"`
-	// Configuration sync mode. Valid values: `default`, `local`.
-	ConfigurationSync pulumi.StringOutput `pulumi:"configurationSync"`
-	// Enable/disable downstream device access to this device's configuration and data. Valid values: `enable`, `disable`.
-	DownstreamAccess pulumi.StringOutput `pulumi:"downstreamAccess"`
-	// Default access profile for requests from downstream devices.
-	DownstreamAccprofile pulumi.StringOutput `pulumi:"downstreamAccprofile"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Fabric connector configuration. The structure of `fabricConnector` block is documented below.
-	FabricConnectors SystemCsfFabricConnectorArrayOutput `pulumi:"fabricConnectors"`
-	// Fabric device configuration. The structure of `fabricDevice` block is documented below.
-	FabricDevices SystemCsfFabricDeviceArrayOutput `pulumi:"fabricDevices"`
-	// Fabric CMDB Object Unification Valid values: `default`, `local`.
-	FabricObjectUnification pulumi.StringOutput `pulumi:"fabricObjectUnification"`
-	// Number of worker processes for Security Fabric daemon.
-	FabricWorkers pulumi.IntOutput `pulumi:"fabricWorkers"`
-	// Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
-	FixedKey pulumi.StringPtrOutput `pulumi:"fixedKey"`
-	// Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
-	ForticloudAccountEnforcement pulumi.StringOutput `pulumi:"forticloudAccountEnforcement"`
-	// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
-	GroupName pulumi.StringOutput `pulumi:"groupName"`
-	// Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
-	GroupPassword pulumi.StringPtrOutput `pulumi:"groupPassword"`
-	// Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
-	LogUnification pulumi.StringOutput `pulumi:"logUnification"`
-	// Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
-	ManagementIp pulumi.StringOutput `pulumi:"managementIp"`
-	// Overriding port for management connection (Overrides admin port).
-	ManagementPort pulumi.IntOutput `pulumi:"managementPort"`
-	// SAML setting configuration synchronization. Valid values: `default`, `local`.
-	SamlConfigurationSync pulumi.StringOutput `pulumi:"samlConfigurationSync"`
-	// Enable/disable Security Fabric. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
-	TrustedLists SystemCsfTrustedListArrayOutput `pulumi:"trustedLists"`
-	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
-	Upstream pulumi.StringOutput `pulumi:"upstream"`
-	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
-	UpstreamIp pulumi.StringOutput `pulumi:"upstreamIp"`
-	// The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
-	UpstreamPort pulumi.IntOutput `pulumi:"upstreamPort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AcceptAuthByCert             pulumi.StringOutput                 `pulumi:"acceptAuthByCert"`
+	AuthorizationRequestType     pulumi.StringOutput                 `pulumi:"authorizationRequestType"`
+	Certificate                  pulumi.StringOutput                 `pulumi:"certificate"`
+	ConfigurationSync            pulumi.StringOutput                 `pulumi:"configurationSync"`
+	DownstreamAccess             pulumi.StringOutput                 `pulumi:"downstreamAccess"`
+	DownstreamAccprofile         pulumi.StringOutput                 `pulumi:"downstreamAccprofile"`
+	DynamicSortSubtable          pulumi.StringPtrOutput              `pulumi:"dynamicSortSubtable"`
+	FabricConnectors             SystemCsfFabricConnectorArrayOutput `pulumi:"fabricConnectors"`
+	FabricDevices                SystemCsfFabricDeviceArrayOutput    `pulumi:"fabricDevices"`
+	FabricObjectUnification      pulumi.StringOutput                 `pulumi:"fabricObjectUnification"`
+	FabricWorkers                pulumi.IntOutput                    `pulumi:"fabricWorkers"`
+	FixedKey                     pulumi.StringPtrOutput              `pulumi:"fixedKey"`
+	ForticloudAccountEnforcement pulumi.StringOutput                 `pulumi:"forticloudAccountEnforcement"`
+	GroupName                    pulumi.StringOutput                 `pulumi:"groupName"`
+	GroupPassword                pulumi.StringPtrOutput              `pulumi:"groupPassword"`
+	LogUnification               pulumi.StringOutput                 `pulumi:"logUnification"`
+	ManagementIp                 pulumi.StringOutput                 `pulumi:"managementIp"`
+	ManagementPort               pulumi.IntOutput                    `pulumi:"managementPort"`
+	SamlConfigurationSync        pulumi.StringOutput                 `pulumi:"samlConfigurationSync"`
+	Status                       pulumi.StringOutput                 `pulumi:"status"`
+	TrustedLists                 SystemCsfTrustedListArrayOutput     `pulumi:"trustedLists"`
+	Upstream                     pulumi.StringOutput                 `pulumi:"upstream"`
+	UpstreamIp                   pulumi.StringOutput                 `pulumi:"upstreamIp"`
+	UpstreamPort                 pulumi.IntOutput                    `pulumi:"upstreamPort"`
+	Vdomparam                    pulumi.StringPtrOutput              `pulumi:"vdomparam"`
 }
 
 // NewSystemCsf registers a new resource with the given unique name, arguments, and options.
@@ -122,6 +51,17 @@ func NewSystemCsf(ctx *pulumi.Context,
 	if args.Status == nil {
 		return nil, errors.New("invalid value for required argument 'Status'")
 	}
+	if args.FixedKey != nil {
+		args.FixedKey = pulumi.ToSecret(args.FixedKey).(pulumi.StringPtrInput)
+	}
+	if args.GroupPassword != nil {
+		args.GroupPassword = pulumi.ToSecret(args.GroupPassword).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"fixedKey",
+		"groupPassword",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemCsf
 	err := ctx.RegisterResource("fortios:index/systemCsf:SystemCsf", name, args, &resource, opts...)
@@ -145,109 +85,59 @@ func GetSystemCsf(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemCsf resources.
 type systemCsfState struct {
-	// Accept connections with unknown certificates and ask admin for approval. Valid values: `disable`, `enable`.
-	AcceptAuthByCert *string `pulumi:"acceptAuthByCert"`
-	// Authorization request type. Valid values: `serial`, `certificate`.
-	AuthorizationRequestType *string `pulumi:"authorizationRequestType"`
-	// Certificate.
-	Certificate *string `pulumi:"certificate"`
-	// Configuration sync mode. Valid values: `default`, `local`.
-	ConfigurationSync *string `pulumi:"configurationSync"`
-	// Enable/disable downstream device access to this device's configuration and data. Valid values: `enable`, `disable`.
-	DownstreamAccess *string `pulumi:"downstreamAccess"`
-	// Default access profile for requests from downstream devices.
-	DownstreamAccprofile *string `pulumi:"downstreamAccprofile"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Fabric connector configuration. The structure of `fabricConnector` block is documented below.
-	FabricConnectors []SystemCsfFabricConnector `pulumi:"fabricConnectors"`
-	// Fabric device configuration. The structure of `fabricDevice` block is documented below.
-	FabricDevices []SystemCsfFabricDevice `pulumi:"fabricDevices"`
-	// Fabric CMDB Object Unification Valid values: `default`, `local`.
-	FabricObjectUnification *string `pulumi:"fabricObjectUnification"`
-	// Number of worker processes for Security Fabric daemon.
-	FabricWorkers *int `pulumi:"fabricWorkers"`
-	// Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
-	FixedKey *string `pulumi:"fixedKey"`
-	// Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
-	ForticloudAccountEnforcement *string `pulumi:"forticloudAccountEnforcement"`
-	// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
-	GroupName *string `pulumi:"groupName"`
-	// Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
-	GroupPassword *string `pulumi:"groupPassword"`
-	// Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
-	LogUnification *string `pulumi:"logUnification"`
-	// Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
-	ManagementIp *string `pulumi:"managementIp"`
-	// Overriding port for management connection (Overrides admin port).
-	ManagementPort *int `pulumi:"managementPort"`
-	// SAML setting configuration synchronization. Valid values: `default`, `local`.
-	SamlConfigurationSync *string `pulumi:"samlConfigurationSync"`
-	// Enable/disable Security Fabric. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
-	TrustedLists []SystemCsfTrustedList `pulumi:"trustedLists"`
-	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
-	Upstream *string `pulumi:"upstream"`
-	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
-	UpstreamIp *string `pulumi:"upstreamIp"`
-	// The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
-	UpstreamPort *int `pulumi:"upstreamPort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AcceptAuthByCert             *string                    `pulumi:"acceptAuthByCert"`
+	AuthorizationRequestType     *string                    `pulumi:"authorizationRequestType"`
+	Certificate                  *string                    `pulumi:"certificate"`
+	ConfigurationSync            *string                    `pulumi:"configurationSync"`
+	DownstreamAccess             *string                    `pulumi:"downstreamAccess"`
+	DownstreamAccprofile         *string                    `pulumi:"downstreamAccprofile"`
+	DynamicSortSubtable          *string                    `pulumi:"dynamicSortSubtable"`
+	FabricConnectors             []SystemCsfFabricConnector `pulumi:"fabricConnectors"`
+	FabricDevices                []SystemCsfFabricDevice    `pulumi:"fabricDevices"`
+	FabricObjectUnification      *string                    `pulumi:"fabricObjectUnification"`
+	FabricWorkers                *int                       `pulumi:"fabricWorkers"`
+	FixedKey                     *string                    `pulumi:"fixedKey"`
+	ForticloudAccountEnforcement *string                    `pulumi:"forticloudAccountEnforcement"`
+	GroupName                    *string                    `pulumi:"groupName"`
+	GroupPassword                *string                    `pulumi:"groupPassword"`
+	LogUnification               *string                    `pulumi:"logUnification"`
+	ManagementIp                 *string                    `pulumi:"managementIp"`
+	ManagementPort               *int                       `pulumi:"managementPort"`
+	SamlConfigurationSync        *string                    `pulumi:"samlConfigurationSync"`
+	Status                       *string                    `pulumi:"status"`
+	TrustedLists                 []SystemCsfTrustedList     `pulumi:"trustedLists"`
+	Upstream                     *string                    `pulumi:"upstream"`
+	UpstreamIp                   *string                    `pulumi:"upstreamIp"`
+	UpstreamPort                 *int                       `pulumi:"upstreamPort"`
+	Vdomparam                    *string                    `pulumi:"vdomparam"`
 }
 
 type SystemCsfState struct {
-	// Accept connections with unknown certificates and ask admin for approval. Valid values: `disable`, `enable`.
-	AcceptAuthByCert pulumi.StringPtrInput
-	// Authorization request type. Valid values: `serial`, `certificate`.
-	AuthorizationRequestType pulumi.StringPtrInput
-	// Certificate.
-	Certificate pulumi.StringPtrInput
-	// Configuration sync mode. Valid values: `default`, `local`.
-	ConfigurationSync pulumi.StringPtrInput
-	// Enable/disable downstream device access to this device's configuration and data. Valid values: `enable`, `disable`.
-	DownstreamAccess pulumi.StringPtrInput
-	// Default access profile for requests from downstream devices.
-	DownstreamAccprofile pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Fabric connector configuration. The structure of `fabricConnector` block is documented below.
-	FabricConnectors SystemCsfFabricConnectorArrayInput
-	// Fabric device configuration. The structure of `fabricDevice` block is documented below.
-	FabricDevices SystemCsfFabricDeviceArrayInput
-	// Fabric CMDB Object Unification Valid values: `default`, `local`.
-	FabricObjectUnification pulumi.StringPtrInput
-	// Number of worker processes for Security Fabric daemon.
-	FabricWorkers pulumi.IntPtrInput
-	// Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
-	FixedKey pulumi.StringPtrInput
-	// Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
+	AcceptAuthByCert             pulumi.StringPtrInput
+	AuthorizationRequestType     pulumi.StringPtrInput
+	Certificate                  pulumi.StringPtrInput
+	ConfigurationSync            pulumi.StringPtrInput
+	DownstreamAccess             pulumi.StringPtrInput
+	DownstreamAccprofile         pulumi.StringPtrInput
+	DynamicSortSubtable          pulumi.StringPtrInput
+	FabricConnectors             SystemCsfFabricConnectorArrayInput
+	FabricDevices                SystemCsfFabricDeviceArrayInput
+	FabricObjectUnification      pulumi.StringPtrInput
+	FabricWorkers                pulumi.IntPtrInput
+	FixedKey                     pulumi.StringPtrInput
 	ForticloudAccountEnforcement pulumi.StringPtrInput
-	// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
-	GroupName pulumi.StringPtrInput
-	// Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
-	GroupPassword pulumi.StringPtrInput
-	// Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
-	LogUnification pulumi.StringPtrInput
-	// Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
-	ManagementIp pulumi.StringPtrInput
-	// Overriding port for management connection (Overrides admin port).
-	ManagementPort pulumi.IntPtrInput
-	// SAML setting configuration synchronization. Valid values: `default`, `local`.
-	SamlConfigurationSync pulumi.StringPtrInput
-	// Enable/disable Security Fabric. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
-	TrustedLists SystemCsfTrustedListArrayInput
-	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
-	Upstream pulumi.StringPtrInput
-	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
-	UpstreamIp pulumi.StringPtrInput
-	// The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
-	UpstreamPort pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	GroupName                    pulumi.StringPtrInput
+	GroupPassword                pulumi.StringPtrInput
+	LogUnification               pulumi.StringPtrInput
+	ManagementIp                 pulumi.StringPtrInput
+	ManagementPort               pulumi.IntPtrInput
+	SamlConfigurationSync        pulumi.StringPtrInput
+	Status                       pulumi.StringPtrInput
+	TrustedLists                 SystemCsfTrustedListArrayInput
+	Upstream                     pulumi.StringPtrInput
+	UpstreamIp                   pulumi.StringPtrInput
+	UpstreamPort                 pulumi.IntPtrInput
+	Vdomparam                    pulumi.StringPtrInput
 }
 
 func (SystemCsfState) ElementType() reflect.Type {
@@ -255,110 +145,60 @@ func (SystemCsfState) ElementType() reflect.Type {
 }
 
 type systemCsfArgs struct {
-	// Accept connections with unknown certificates and ask admin for approval. Valid values: `disable`, `enable`.
-	AcceptAuthByCert *string `pulumi:"acceptAuthByCert"`
-	// Authorization request type. Valid values: `serial`, `certificate`.
-	AuthorizationRequestType *string `pulumi:"authorizationRequestType"`
-	// Certificate.
-	Certificate *string `pulumi:"certificate"`
-	// Configuration sync mode. Valid values: `default`, `local`.
-	ConfigurationSync *string `pulumi:"configurationSync"`
-	// Enable/disable downstream device access to this device's configuration and data. Valid values: `enable`, `disable`.
-	DownstreamAccess *string `pulumi:"downstreamAccess"`
-	// Default access profile for requests from downstream devices.
-	DownstreamAccprofile *string `pulumi:"downstreamAccprofile"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Fabric connector configuration. The structure of `fabricConnector` block is documented below.
-	FabricConnectors []SystemCsfFabricConnector `pulumi:"fabricConnectors"`
-	// Fabric device configuration. The structure of `fabricDevice` block is documented below.
-	FabricDevices []SystemCsfFabricDevice `pulumi:"fabricDevices"`
-	// Fabric CMDB Object Unification Valid values: `default`, `local`.
-	FabricObjectUnification *string `pulumi:"fabricObjectUnification"`
-	// Number of worker processes for Security Fabric daemon.
-	FabricWorkers *int `pulumi:"fabricWorkers"`
-	// Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
-	FixedKey *string `pulumi:"fixedKey"`
-	// Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
-	ForticloudAccountEnforcement *string `pulumi:"forticloudAccountEnforcement"`
-	// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
-	GroupName *string `pulumi:"groupName"`
-	// Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
-	GroupPassword *string `pulumi:"groupPassword"`
-	// Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
-	LogUnification *string `pulumi:"logUnification"`
-	// Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
-	ManagementIp *string `pulumi:"managementIp"`
-	// Overriding port for management connection (Overrides admin port).
-	ManagementPort *int `pulumi:"managementPort"`
-	// SAML setting configuration synchronization. Valid values: `default`, `local`.
-	SamlConfigurationSync *string `pulumi:"samlConfigurationSync"`
-	// Enable/disable Security Fabric. Valid values: `enable`, `disable`.
-	Status string `pulumi:"status"`
-	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
-	TrustedLists []SystemCsfTrustedList `pulumi:"trustedLists"`
-	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
-	Upstream *string `pulumi:"upstream"`
-	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
-	UpstreamIp *string `pulumi:"upstreamIp"`
-	// The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
-	UpstreamPort *int `pulumi:"upstreamPort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AcceptAuthByCert             *string                    `pulumi:"acceptAuthByCert"`
+	AuthorizationRequestType     *string                    `pulumi:"authorizationRequestType"`
+	Certificate                  *string                    `pulumi:"certificate"`
+	ConfigurationSync            *string                    `pulumi:"configurationSync"`
+	DownstreamAccess             *string                    `pulumi:"downstreamAccess"`
+	DownstreamAccprofile         *string                    `pulumi:"downstreamAccprofile"`
+	DynamicSortSubtable          *string                    `pulumi:"dynamicSortSubtable"`
+	FabricConnectors             []SystemCsfFabricConnector `pulumi:"fabricConnectors"`
+	FabricDevices                []SystemCsfFabricDevice    `pulumi:"fabricDevices"`
+	FabricObjectUnification      *string                    `pulumi:"fabricObjectUnification"`
+	FabricWorkers                *int                       `pulumi:"fabricWorkers"`
+	FixedKey                     *string                    `pulumi:"fixedKey"`
+	ForticloudAccountEnforcement *string                    `pulumi:"forticloudAccountEnforcement"`
+	GroupName                    *string                    `pulumi:"groupName"`
+	GroupPassword                *string                    `pulumi:"groupPassword"`
+	LogUnification               *string                    `pulumi:"logUnification"`
+	ManagementIp                 *string                    `pulumi:"managementIp"`
+	ManagementPort               *int                       `pulumi:"managementPort"`
+	SamlConfigurationSync        *string                    `pulumi:"samlConfigurationSync"`
+	Status                       string                     `pulumi:"status"`
+	TrustedLists                 []SystemCsfTrustedList     `pulumi:"trustedLists"`
+	Upstream                     *string                    `pulumi:"upstream"`
+	UpstreamIp                   *string                    `pulumi:"upstreamIp"`
+	UpstreamPort                 *int                       `pulumi:"upstreamPort"`
+	Vdomparam                    *string                    `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemCsf resource.
 type SystemCsfArgs struct {
-	// Accept connections with unknown certificates and ask admin for approval. Valid values: `disable`, `enable`.
-	AcceptAuthByCert pulumi.StringPtrInput
-	// Authorization request type. Valid values: `serial`, `certificate`.
-	AuthorizationRequestType pulumi.StringPtrInput
-	// Certificate.
-	Certificate pulumi.StringPtrInput
-	// Configuration sync mode. Valid values: `default`, `local`.
-	ConfigurationSync pulumi.StringPtrInput
-	// Enable/disable downstream device access to this device's configuration and data. Valid values: `enable`, `disable`.
-	DownstreamAccess pulumi.StringPtrInput
-	// Default access profile for requests from downstream devices.
-	DownstreamAccprofile pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Fabric connector configuration. The structure of `fabricConnector` block is documented below.
-	FabricConnectors SystemCsfFabricConnectorArrayInput
-	// Fabric device configuration. The structure of `fabricDevice` block is documented below.
-	FabricDevices SystemCsfFabricDeviceArrayInput
-	// Fabric CMDB Object Unification Valid values: `default`, `local`.
-	FabricObjectUnification pulumi.StringPtrInput
-	// Number of worker processes for Security Fabric daemon.
-	FabricWorkers pulumi.IntPtrInput
-	// Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
-	FixedKey pulumi.StringPtrInput
-	// Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
+	AcceptAuthByCert             pulumi.StringPtrInput
+	AuthorizationRequestType     pulumi.StringPtrInput
+	Certificate                  pulumi.StringPtrInput
+	ConfigurationSync            pulumi.StringPtrInput
+	DownstreamAccess             pulumi.StringPtrInput
+	DownstreamAccprofile         pulumi.StringPtrInput
+	DynamicSortSubtable          pulumi.StringPtrInput
+	FabricConnectors             SystemCsfFabricConnectorArrayInput
+	FabricDevices                SystemCsfFabricDeviceArrayInput
+	FabricObjectUnification      pulumi.StringPtrInput
+	FabricWorkers                pulumi.IntPtrInput
+	FixedKey                     pulumi.StringPtrInput
 	ForticloudAccountEnforcement pulumi.StringPtrInput
-	// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
-	GroupName pulumi.StringPtrInput
-	// Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
-	GroupPassword pulumi.StringPtrInput
-	// Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
-	LogUnification pulumi.StringPtrInput
-	// Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
-	ManagementIp pulumi.StringPtrInput
-	// Overriding port for management connection (Overrides admin port).
-	ManagementPort pulumi.IntPtrInput
-	// SAML setting configuration synchronization. Valid values: `default`, `local`.
-	SamlConfigurationSync pulumi.StringPtrInput
-	// Enable/disable Security Fabric. Valid values: `enable`, `disable`.
-	Status pulumi.StringInput
-	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
-	TrustedLists SystemCsfTrustedListArrayInput
-	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
-	Upstream pulumi.StringPtrInput
-	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
-	UpstreamIp pulumi.StringPtrInput
-	// The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
-	UpstreamPort pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	GroupName                    pulumi.StringPtrInput
+	GroupPassword                pulumi.StringPtrInput
+	LogUnification               pulumi.StringPtrInput
+	ManagementIp                 pulumi.StringPtrInput
+	ManagementPort               pulumi.IntPtrInput
+	SamlConfigurationSync        pulumi.StringPtrInput
+	Status                       pulumi.StringInput
+	TrustedLists                 SystemCsfTrustedListArrayInput
+	Upstream                     pulumi.StringPtrInput
+	UpstreamIp                   pulumi.StringPtrInput
+	UpstreamPort                 pulumi.IntPtrInput
+	Vdomparam                    pulumi.StringPtrInput
 }
 
 func (SystemCsfArgs) ElementType() reflect.Type {
@@ -387,7 +227,7 @@ func (i *SystemCsf) ToSystemCsfOutputWithContext(ctx context.Context) SystemCsfO
 // SystemCsfArrayInput is an input type that accepts SystemCsfArray and SystemCsfArrayOutput values.
 // You can construct a concrete instance of `SystemCsfArrayInput` via:
 //
-//          SystemCsfArray{ SystemCsfArgs{...} }
+//	SystemCsfArray{ SystemCsfArgs{...} }
 type SystemCsfArrayInput interface {
 	pulumi.Input
 
@@ -412,7 +252,7 @@ func (i SystemCsfArray) ToSystemCsfArrayOutputWithContext(ctx context.Context) S
 // SystemCsfMapInput is an input type that accepts SystemCsfMap and SystemCsfMapOutput values.
 // You can construct a concrete instance of `SystemCsfMapInput` via:
 //
-//          SystemCsfMap{ "key": SystemCsfArgs{...} }
+//	SystemCsfMap{ "key": SystemCsfArgs{...} }
 type SystemCsfMapInput interface {
 	pulumi.Input
 
@@ -446,6 +286,106 @@ func (o SystemCsfOutput) ToSystemCsfOutput() SystemCsfOutput {
 
 func (o SystemCsfOutput) ToSystemCsfOutputWithContext(ctx context.Context) SystemCsfOutput {
 	return o
+}
+
+func (o SystemCsfOutput) AcceptAuthByCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.AcceptAuthByCert }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) AuthorizationRequestType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.AuthorizationRequestType }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) Certificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) ConfigurationSync() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.ConfigurationSync }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) DownstreamAccess() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.DownstreamAccess }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) DownstreamAccprofile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.DownstreamAccprofile }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemCsfOutput) FabricConnectors() SystemCsfFabricConnectorArrayOutput {
+	return o.ApplyT(func(v *SystemCsf) SystemCsfFabricConnectorArrayOutput { return v.FabricConnectors }).(SystemCsfFabricConnectorArrayOutput)
+}
+
+func (o SystemCsfOutput) FabricDevices() SystemCsfFabricDeviceArrayOutput {
+	return o.ApplyT(func(v *SystemCsf) SystemCsfFabricDeviceArrayOutput { return v.FabricDevices }).(SystemCsfFabricDeviceArrayOutput)
+}
+
+func (o SystemCsfOutput) FabricObjectUnification() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.FabricObjectUnification }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) FabricWorkers() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.IntOutput { return v.FabricWorkers }).(pulumi.IntOutput)
+}
+
+func (o SystemCsfOutput) FixedKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringPtrOutput { return v.FixedKey }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemCsfOutput) ForticloudAccountEnforcement() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.ForticloudAccountEnforcement }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) GroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.GroupName }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) GroupPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringPtrOutput { return v.GroupPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemCsfOutput) LogUnification() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.LogUnification }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) ManagementIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.ManagementIp }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) ManagementPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.IntOutput { return v.ManagementPort }).(pulumi.IntOutput)
+}
+
+func (o SystemCsfOutput) SamlConfigurationSync() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.SamlConfigurationSync }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) TrustedLists() SystemCsfTrustedListArrayOutput {
+	return o.ApplyT(func(v *SystemCsf) SystemCsfTrustedListArrayOutput { return v.TrustedLists }).(SystemCsfTrustedListArrayOutput)
+}
+
+func (o SystemCsfOutput) Upstream() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.Upstream }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) UpstreamIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.UpstreamIp }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) UpstreamPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.IntOutput { return v.UpstreamPort }).(pulumi.IntOutput)
+}
+
+func (o SystemCsfOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemCsfArrayOutput struct{ *pulumi.OutputState }

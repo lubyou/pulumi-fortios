@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system automationdestination
 func LookupSystemAutomationDestination(ctx *pulumi.Context, args *LookupSystemAutomationDestinationArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutomationDestinationResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAutomationDestinationResult
@@ -23,23 +22,17 @@ func LookupSystemAutomationDestination(ctx *pulumi.Context, args *LookupSystemAu
 
 // A collection of arguments for invoking GetSystemAutomationDestination.
 type LookupSystemAutomationDestinationArgs struct {
-	// Specify the name of the desired system automationdestination.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemAutomationDestination.
 type LookupSystemAutomationDestinationResult struct {
-	// Destinations. The structure of `destination` block is documented below.
 	Destinations []GetSystemAutomationDestinationDestination `pulumi:"destinations"`
-	// Cluster group ID set for this destination (default = 0).
-	HaGroupId int `pulumi:"haGroupId"`
+	HaGroupId    int                                         `pulumi:"haGroupId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Destination.
-	Name string `pulumi:"name"`
-	// Destination type.
+	Id        string  `pulumi:"id"`
+	Name      string  `pulumi:"name"`
 	Type      string  `pulumi:"type"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -59,9 +52,7 @@ func LookupSystemAutomationDestinationOutput(ctx *pulumi.Context, args LookupSys
 
 // A collection of arguments for invoking GetSystemAutomationDestination.
 type LookupSystemAutomationDestinationOutputArgs struct {
-	// Specify the name of the desired system automationdestination.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -84,14 +75,12 @@ func (o LookupSystemAutomationDestinationResultOutput) ToLookupSystemAutomationD
 	return o
 }
 
-// Destinations. The structure of `destination` block is documented below.
 func (o LookupSystemAutomationDestinationResultOutput) Destinations() GetSystemAutomationDestinationDestinationArrayOutput {
 	return o.ApplyT(func(v LookupSystemAutomationDestinationResult) []GetSystemAutomationDestinationDestination {
 		return v.Destinations
 	}).(GetSystemAutomationDestinationDestinationArrayOutput)
 }
 
-// Cluster group ID set for this destination (default = 0).
 func (o LookupSystemAutomationDestinationResultOutput) HaGroupId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemAutomationDestinationResult) int { return v.HaGroupId }).(pulumi.IntOutput)
 }
@@ -101,12 +90,10 @@ func (o LookupSystemAutomationDestinationResultOutput) Id() pulumi.StringOutput 
 	return o.ApplyT(func(v LookupSystemAutomationDestinationResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Destination.
 func (o LookupSystemAutomationDestinationResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAutomationDestinationResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Destination type.
 func (o LookupSystemAutomationDestinationResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAutomationDestinationResult) string { return v.Type }).(pulumi.StringOutput)
 }

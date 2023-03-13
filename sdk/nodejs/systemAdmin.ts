@@ -2,54 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure admin users.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemAdmin("trname", {
- *     accprofile: "super_admin",
- *     accprofileOverride: "disable",
- *     allowRemoveAdminSession: "enable",
- *     forcePasswordChange: "disable",
- *     guestAuth: "disable",
- *     hidden: 0,
- *     password: "fdafdace",
- *     passwordExpire: "0000-00-00 00:00:00",
- *     peerAuth: "disable",
- *     radiusVdomOverride: "disable",
- *     remoteAuth: "disable",
- *     twoFactor: "disable",
- *     vdoms: [{
- *         name: "root",
- *     }],
- *     wildcard: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * System Admin can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAdmin:SystemAdmin labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAdmin:SystemAdmin labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemAdmin extends pulumi.CustomResource {
     /**
      * Get an existing SystemAdmin resource's state with the given name, ID, and optional extra
@@ -78,249 +34,67 @@ export class SystemAdmin extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAdmin.__pulumiType;
     }
 
-    /**
-     * Access profile for this administrator. Access profiles control administrator access to FortiGate features.
-     */
     public readonly accprofile!: pulumi.Output<string>;
-    /**
-     * Enable to use the name of an access profile provided by the remote authentication server to control the FortiGate features that this administrator can access. Valid values: `enable`, `disable`.
-     */
     public readonly accprofileOverride!: pulumi.Output<string>;
-    /**
-     * Enable/disable allow admin session to be removed by privileged admin users. Valid values: `enable`, `disable`.
-     */
     public readonly allowRemoveAdminSession!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * This administrator's email address.
-     */
     public readonly emailTo!: pulumi.Output<string>;
-    /**
-     * Enable/disable force password change on next login. Valid values: `enable`, `disable`.
-     */
     public readonly forcePasswordChange!: pulumi.Output<string>;
-    /**
-     * This administrator's FortiToken serial number.
-     */
     public readonly fortitoken!: pulumi.Output<string>;
-    /**
-     * Enable/disable guest authentication. Valid values: `disable`, `enable`.
-     */
     public readonly guestAuth!: pulumi.Output<string>;
-    /**
-     * Guest management portal language.
-     */
     public readonly guestLang!: pulumi.Output<string>;
-    /**
-     * Select guest user groups. The structure of `guestUsergroups` block is documented below.
-     */
     public readonly guestUsergroups!: pulumi.Output<outputs.SystemAdminGuestUsergroup[] | undefined>;
-    /**
-     * GUI dashboards. The structure of `guiDashboard` block is documented below.
-     */
     public readonly guiDashboards!: pulumi.Output<outputs.SystemAdminGuiDashboard[] | undefined>;
-    /**
-     * Favorite GUI menu IDs for the global VDOM. The structure of `guiGlobalMenuFavorites` block is documented below.
-     */
     public readonly guiGlobalMenuFavorites!: pulumi.Output<outputs.SystemAdminGuiGlobalMenuFavorite[] | undefined>;
-    /**
-     * Acknowledgement of new features. The structure of `guiNewFeatureAcknowledge` block is documented below.
-     */
     public readonly guiNewFeatureAcknowledges!: pulumi.Output<outputs.SystemAdminGuiNewFeatureAcknowledge[] | undefined>;
-    /**
-     * Favorite GUI menu IDs for VDOMs. The structure of `guiVdomMenuFavorites` block is documented below.
-     */
     public readonly guiVdomMenuFavorites!: pulumi.Output<outputs.SystemAdminGuiVdomMenuFavorite[] | undefined>;
-    /**
-     * Admin user hidden attribute.
-     */
     public readonly hidden!: pulumi.Output<number>;
-    /**
-     * history0
-     */
     public readonly history0!: pulumi.Output<string | undefined>;
-    /**
-     * history1
-     */
     public readonly history1!: pulumi.Output<string | undefined>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     public readonly ip6Trusthost1!: pulumi.Output<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     public readonly ip6Trusthost10!: pulumi.Output<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     public readonly ip6Trusthost2!: pulumi.Output<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     public readonly ip6Trusthost3!: pulumi.Output<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     public readonly ip6Trusthost4!: pulumi.Output<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     public readonly ip6Trusthost5!: pulumi.Output<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     public readonly ip6Trusthost6!: pulumi.Output<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     public readonly ip6Trusthost7!: pulumi.Output<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     public readonly ip6Trusthost8!: pulumi.Output<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     public readonly ip6Trusthost9!: pulumi.Output<string>;
-    /**
-     * Record user login time. The structure of `loginTime` block is documented below.
-     */
     public readonly loginTimes!: pulumi.Output<outputs.SystemAdminLoginTime[] | undefined>;
-    /**
-     * Select guest user groups.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Admin user password.
-     */
     public readonly password!: pulumi.Output<string | undefined>;
-    /**
-     * Password expire time.
-     */
     public readonly passwordExpire!: pulumi.Output<string>;
-    /**
-     * Set to enable peer certificate authentication (for HTTPS admin access). Valid values: `enable`, `disable`.
-     */
     public readonly peerAuth!: pulumi.Output<string>;
-    /**
-     * Name of peer group defined under config user group which has PKI members. Used for peer certificate authentication (for HTTPS admin access).
-     */
     public readonly peerGroup!: pulumi.Output<string>;
-    /**
-     * Enable to use the names of VDOMs provided by the remote authentication server to control the VDOMs that this administrator can access. Valid values: `enable`, `disable`.
-     */
     public readonly radiusVdomOverride!: pulumi.Output<string>;
-    /**
-     * Enable/disable authentication using a remote RADIUS, LDAP, or TACACS+ server. Valid values: `enable`, `disable`.
-     */
     public readonly remoteAuth!: pulumi.Output<string>;
-    /**
-     * User group name used for remote auth.
-     */
     public readonly remoteGroup!: pulumi.Output<string>;
-    /**
-     * Firewall schedule used to restrict when the administrator can log in. No schedule means no restrictions.
-     */
     public readonly schedule!: pulumi.Output<string>;
-    /**
-     * Custom SMS server to send SMS messages to.
-     */
     public readonly smsCustomServer!: pulumi.Output<string>;
-    /**
-     * Phone number on which the administrator receives SMS messages.
-     */
     public readonly smsPhone!: pulumi.Output<string>;
-    /**
-     * Send SMS messages using the FortiGuard SMS server or a custom server. Valid values: `fortiguard`, `custom`.
-     */
     public readonly smsServer!: pulumi.Output<string>;
-    /**
-     * Select the certificate to be used by the FortiGate for authentication with an SSH client.
-     */
     public readonly sshCertificate!: pulumi.Output<string>;
-    /**
-     * Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application.
-     */
     public readonly sshPublicKey1!: pulumi.Output<string>;
-    /**
-     * Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application.
-     */
     public readonly sshPublicKey2!: pulumi.Output<string>;
-    /**
-     * Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application.
-     */
     public readonly sshPublicKey3!: pulumi.Output<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     public readonly trusthost1!: pulumi.Output<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     public readonly trusthost10!: pulumi.Output<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     public readonly trusthost2!: pulumi.Output<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     public readonly trusthost3!: pulumi.Output<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     public readonly trusthost4!: pulumi.Output<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     public readonly trusthost5!: pulumi.Output<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     public readonly trusthost6!: pulumi.Output<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     public readonly trusthost7!: pulumi.Output<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     public readonly trusthost8!: pulumi.Output<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     public readonly trusthost9!: pulumi.Output<string>;
-    /**
-     * Enable/disable two-factor authentication.
-     */
     public readonly twoFactor!: pulumi.Output<string>;
-    /**
-     * Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
-     */
     public readonly twoFactorAuthentication!: pulumi.Output<string>;
-    /**
-     * Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
-     */
     public readonly twoFactorNotification!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    public readonly vdomOverride!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
-     */
     public readonly vdoms!: pulumi.Output<outputs.SystemAdminVdom[] | undefined>;
-    /**
-     * Enable/disable wildcard RADIUS authentication. Valid values: `enable`, `disable`.
-     */
     public readonly wildcard!: pulumi.Output<string>;
 
     /**
@@ -394,6 +168,7 @@ export class SystemAdmin extends pulumi.CustomResource {
             resourceInputs["twoFactor"] = state ? state.twoFactor : undefined;
             resourceInputs["twoFactorAuthentication"] = state ? state.twoFactorAuthentication : undefined;
             resourceInputs["twoFactorNotification"] = state ? state.twoFactorNotification : undefined;
+            resourceInputs["vdomOverride"] = state ? state.vdomOverride : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["vdoms"] = state ? state.vdoms : undefined;
             resourceInputs["wildcard"] = state ? state.wildcard : undefined;
@@ -415,8 +190,8 @@ export class SystemAdmin extends pulumi.CustomResource {
             resourceInputs["guiNewFeatureAcknowledges"] = args ? args.guiNewFeatureAcknowledges : undefined;
             resourceInputs["guiVdomMenuFavorites"] = args ? args.guiVdomMenuFavorites : undefined;
             resourceInputs["hidden"] = args ? args.hidden : undefined;
-            resourceInputs["history0"] = args ? args.history0 : undefined;
-            resourceInputs["history1"] = args ? args.history1 : undefined;
+            resourceInputs["history0"] = args?.history0 ? pulumi.secret(args.history0) : undefined;
+            resourceInputs["history1"] = args?.history1 ? pulumi.secret(args.history1) : undefined;
             resourceInputs["ip6Trusthost1"] = args ? args.ip6Trusthost1 : undefined;
             resourceInputs["ip6Trusthost10"] = args ? args.ip6Trusthost10 : undefined;
             resourceInputs["ip6Trusthost2"] = args ? args.ip6Trusthost2 : undefined;
@@ -429,7 +204,7 @@ export class SystemAdmin extends pulumi.CustomResource {
             resourceInputs["ip6Trusthost9"] = args ? args.ip6Trusthost9 : undefined;
             resourceInputs["loginTimes"] = args ? args.loginTimes : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["passwordExpire"] = args ? args.passwordExpire : undefined;
             resourceInputs["peerAuth"] = args ? args.peerAuth : undefined;
             resourceInputs["peerGroup"] = args ? args.peerGroup : undefined;
@@ -441,9 +216,9 @@ export class SystemAdmin extends pulumi.CustomResource {
             resourceInputs["smsPhone"] = args ? args.smsPhone : undefined;
             resourceInputs["smsServer"] = args ? args.smsServer : undefined;
             resourceInputs["sshCertificate"] = args ? args.sshCertificate : undefined;
-            resourceInputs["sshPublicKey1"] = args ? args.sshPublicKey1 : undefined;
-            resourceInputs["sshPublicKey2"] = args ? args.sshPublicKey2 : undefined;
-            resourceInputs["sshPublicKey3"] = args ? args.sshPublicKey3 : undefined;
+            resourceInputs["sshPublicKey1"] = args?.sshPublicKey1 ? pulumi.secret(args.sshPublicKey1) : undefined;
+            resourceInputs["sshPublicKey2"] = args?.sshPublicKey2 ? pulumi.secret(args.sshPublicKey2) : undefined;
+            resourceInputs["sshPublicKey3"] = args?.sshPublicKey3 ? pulumi.secret(args.sshPublicKey3) : undefined;
             resourceInputs["trusthost1"] = args ? args.trusthost1 : undefined;
             resourceInputs["trusthost10"] = args ? args.trusthost10 : undefined;
             resourceInputs["trusthost2"] = args ? args.trusthost2 : undefined;
@@ -457,11 +232,14 @@ export class SystemAdmin extends pulumi.CustomResource {
             resourceInputs["twoFactor"] = args ? args.twoFactor : undefined;
             resourceInputs["twoFactorAuthentication"] = args ? args.twoFactorAuthentication : undefined;
             resourceInputs["twoFactorNotification"] = args ? args.twoFactorNotification : undefined;
+            resourceInputs["vdomOverride"] = args ? args.vdomOverride : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["vdoms"] = args ? args.vdoms : undefined;
             resourceInputs["wildcard"] = args ? args.wildcard : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["history0", "history1", "password", "sshPublicKey1", "sshPublicKey2", "sshPublicKey3"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemAdmin.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -470,249 +248,67 @@ export class SystemAdmin extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAdmin resources.
  */
 export interface SystemAdminState {
-    /**
-     * Access profile for this administrator. Access profiles control administrator access to FortiGate features.
-     */
     accprofile?: pulumi.Input<string>;
-    /**
-     * Enable to use the name of an access profile provided by the remote authentication server to control the FortiGate features that this administrator can access. Valid values: `enable`, `disable`.
-     */
     accprofileOverride?: pulumi.Input<string>;
-    /**
-     * Enable/disable allow admin session to be removed by privileged admin users. Valid values: `enable`, `disable`.
-     */
     allowRemoveAdminSession?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * This administrator's email address.
-     */
     emailTo?: pulumi.Input<string>;
-    /**
-     * Enable/disable force password change on next login. Valid values: `enable`, `disable`.
-     */
     forcePasswordChange?: pulumi.Input<string>;
-    /**
-     * This administrator's FortiToken serial number.
-     */
     fortitoken?: pulumi.Input<string>;
-    /**
-     * Enable/disable guest authentication. Valid values: `disable`, `enable`.
-     */
     guestAuth?: pulumi.Input<string>;
-    /**
-     * Guest management portal language.
-     */
     guestLang?: pulumi.Input<string>;
-    /**
-     * Select guest user groups. The structure of `guestUsergroups` block is documented below.
-     */
     guestUsergroups?: pulumi.Input<pulumi.Input<inputs.SystemAdminGuestUsergroup>[]>;
-    /**
-     * GUI dashboards. The structure of `guiDashboard` block is documented below.
-     */
     guiDashboards?: pulumi.Input<pulumi.Input<inputs.SystemAdminGuiDashboard>[]>;
-    /**
-     * Favorite GUI menu IDs for the global VDOM. The structure of `guiGlobalMenuFavorites` block is documented below.
-     */
     guiGlobalMenuFavorites?: pulumi.Input<pulumi.Input<inputs.SystemAdminGuiGlobalMenuFavorite>[]>;
-    /**
-     * Acknowledgement of new features. The structure of `guiNewFeatureAcknowledge` block is documented below.
-     */
     guiNewFeatureAcknowledges?: pulumi.Input<pulumi.Input<inputs.SystemAdminGuiNewFeatureAcknowledge>[]>;
-    /**
-     * Favorite GUI menu IDs for VDOMs. The structure of `guiVdomMenuFavorites` block is documented below.
-     */
     guiVdomMenuFavorites?: pulumi.Input<pulumi.Input<inputs.SystemAdminGuiVdomMenuFavorite>[]>;
-    /**
-     * Admin user hidden attribute.
-     */
     hidden?: pulumi.Input<number>;
-    /**
-     * history0
-     */
     history0?: pulumi.Input<string>;
-    /**
-     * history1
-     */
     history1?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost1?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost10?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost2?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost3?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost4?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost5?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost6?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost7?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost8?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost9?: pulumi.Input<string>;
-    /**
-     * Record user login time. The structure of `loginTime` block is documented below.
-     */
     loginTimes?: pulumi.Input<pulumi.Input<inputs.SystemAdminLoginTime>[]>;
-    /**
-     * Select guest user groups.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Admin user password.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Password expire time.
-     */
     passwordExpire?: pulumi.Input<string>;
-    /**
-     * Set to enable peer certificate authentication (for HTTPS admin access). Valid values: `enable`, `disable`.
-     */
     peerAuth?: pulumi.Input<string>;
-    /**
-     * Name of peer group defined under config user group which has PKI members. Used for peer certificate authentication (for HTTPS admin access).
-     */
     peerGroup?: pulumi.Input<string>;
-    /**
-     * Enable to use the names of VDOMs provided by the remote authentication server to control the VDOMs that this administrator can access. Valid values: `enable`, `disable`.
-     */
     radiusVdomOverride?: pulumi.Input<string>;
-    /**
-     * Enable/disable authentication using a remote RADIUS, LDAP, or TACACS+ server. Valid values: `enable`, `disable`.
-     */
     remoteAuth?: pulumi.Input<string>;
-    /**
-     * User group name used for remote auth.
-     */
     remoteGroup?: pulumi.Input<string>;
-    /**
-     * Firewall schedule used to restrict when the administrator can log in. No schedule means no restrictions.
-     */
     schedule?: pulumi.Input<string>;
-    /**
-     * Custom SMS server to send SMS messages to.
-     */
     smsCustomServer?: pulumi.Input<string>;
-    /**
-     * Phone number on which the administrator receives SMS messages.
-     */
     smsPhone?: pulumi.Input<string>;
-    /**
-     * Send SMS messages using the FortiGuard SMS server or a custom server. Valid values: `fortiguard`, `custom`.
-     */
     smsServer?: pulumi.Input<string>;
-    /**
-     * Select the certificate to be used by the FortiGate for authentication with an SSH client.
-     */
     sshCertificate?: pulumi.Input<string>;
-    /**
-     * Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application.
-     */
     sshPublicKey1?: pulumi.Input<string>;
-    /**
-     * Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application.
-     */
     sshPublicKey2?: pulumi.Input<string>;
-    /**
-     * Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application.
-     */
     sshPublicKey3?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost1?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost10?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost2?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost3?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost4?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost5?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost6?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost7?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost8?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost9?: pulumi.Input<string>;
-    /**
-     * Enable/disable two-factor authentication.
-     */
     twoFactor?: pulumi.Input<string>;
-    /**
-     * Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
-     */
     twoFactorAuthentication?: pulumi.Input<string>;
-    /**
-     * Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
-     */
     twoFactorNotification?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    vdomOverride?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
-     */
     vdoms?: pulumi.Input<pulumi.Input<inputs.SystemAdminVdom>[]>;
-    /**
-     * Enable/disable wildcard RADIUS authentication. Valid values: `enable`, `disable`.
-     */
     wildcard?: pulumi.Input<string>;
 }
 
@@ -720,248 +316,66 @@ export interface SystemAdminState {
  * The set of arguments for constructing a SystemAdmin resource.
  */
 export interface SystemAdminArgs {
-    /**
-     * Access profile for this administrator. Access profiles control administrator access to FortiGate features.
-     */
     accprofile?: pulumi.Input<string>;
-    /**
-     * Enable to use the name of an access profile provided by the remote authentication server to control the FortiGate features that this administrator can access. Valid values: `enable`, `disable`.
-     */
     accprofileOverride?: pulumi.Input<string>;
-    /**
-     * Enable/disable allow admin session to be removed by privileged admin users. Valid values: `enable`, `disable`.
-     */
     allowRemoveAdminSession?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * This administrator's email address.
-     */
     emailTo?: pulumi.Input<string>;
-    /**
-     * Enable/disable force password change on next login. Valid values: `enable`, `disable`.
-     */
     forcePasswordChange?: pulumi.Input<string>;
-    /**
-     * This administrator's FortiToken serial number.
-     */
     fortitoken?: pulumi.Input<string>;
-    /**
-     * Enable/disable guest authentication. Valid values: `disable`, `enable`.
-     */
     guestAuth?: pulumi.Input<string>;
-    /**
-     * Guest management portal language.
-     */
     guestLang?: pulumi.Input<string>;
-    /**
-     * Select guest user groups. The structure of `guestUsergroups` block is documented below.
-     */
     guestUsergroups?: pulumi.Input<pulumi.Input<inputs.SystemAdminGuestUsergroup>[]>;
-    /**
-     * GUI dashboards. The structure of `guiDashboard` block is documented below.
-     */
     guiDashboards?: pulumi.Input<pulumi.Input<inputs.SystemAdminGuiDashboard>[]>;
-    /**
-     * Favorite GUI menu IDs for the global VDOM. The structure of `guiGlobalMenuFavorites` block is documented below.
-     */
     guiGlobalMenuFavorites?: pulumi.Input<pulumi.Input<inputs.SystemAdminGuiGlobalMenuFavorite>[]>;
-    /**
-     * Acknowledgement of new features. The structure of `guiNewFeatureAcknowledge` block is documented below.
-     */
     guiNewFeatureAcknowledges?: pulumi.Input<pulumi.Input<inputs.SystemAdminGuiNewFeatureAcknowledge>[]>;
-    /**
-     * Favorite GUI menu IDs for VDOMs. The structure of `guiVdomMenuFavorites` block is documented below.
-     */
     guiVdomMenuFavorites?: pulumi.Input<pulumi.Input<inputs.SystemAdminGuiVdomMenuFavorite>[]>;
-    /**
-     * Admin user hidden attribute.
-     */
     hidden?: pulumi.Input<number>;
-    /**
-     * history0
-     */
     history0?: pulumi.Input<string>;
-    /**
-     * history1
-     */
     history1?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost1?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost10?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost2?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost3?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost4?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost5?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost6?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost7?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost8?: pulumi.Input<string>;
-    /**
-     * Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
-     */
     ip6Trusthost9?: pulumi.Input<string>;
-    /**
-     * Record user login time. The structure of `loginTime` block is documented below.
-     */
     loginTimes?: pulumi.Input<pulumi.Input<inputs.SystemAdminLoginTime>[]>;
-    /**
-     * Select guest user groups.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Admin user password.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Password expire time.
-     */
     passwordExpire?: pulumi.Input<string>;
-    /**
-     * Set to enable peer certificate authentication (for HTTPS admin access). Valid values: `enable`, `disable`.
-     */
     peerAuth?: pulumi.Input<string>;
-    /**
-     * Name of peer group defined under config user group which has PKI members. Used for peer certificate authentication (for HTTPS admin access).
-     */
     peerGroup?: pulumi.Input<string>;
-    /**
-     * Enable to use the names of VDOMs provided by the remote authentication server to control the VDOMs that this administrator can access. Valid values: `enable`, `disable`.
-     */
     radiusVdomOverride?: pulumi.Input<string>;
-    /**
-     * Enable/disable authentication using a remote RADIUS, LDAP, or TACACS+ server. Valid values: `enable`, `disable`.
-     */
     remoteAuth?: pulumi.Input<string>;
-    /**
-     * User group name used for remote auth.
-     */
     remoteGroup?: pulumi.Input<string>;
-    /**
-     * Firewall schedule used to restrict when the administrator can log in. No schedule means no restrictions.
-     */
     schedule?: pulumi.Input<string>;
-    /**
-     * Custom SMS server to send SMS messages to.
-     */
     smsCustomServer?: pulumi.Input<string>;
-    /**
-     * Phone number on which the administrator receives SMS messages.
-     */
     smsPhone?: pulumi.Input<string>;
-    /**
-     * Send SMS messages using the FortiGuard SMS server or a custom server. Valid values: `fortiguard`, `custom`.
-     */
     smsServer?: pulumi.Input<string>;
-    /**
-     * Select the certificate to be used by the FortiGate for authentication with an SSH client.
-     */
     sshCertificate?: pulumi.Input<string>;
-    /**
-     * Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application.
-     */
     sshPublicKey1?: pulumi.Input<string>;
-    /**
-     * Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application.
-     */
     sshPublicKey2?: pulumi.Input<string>;
-    /**
-     * Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application.
-     */
     sshPublicKey3?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost1?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost10?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost2?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost3?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost4?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost5?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost6?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost7?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost8?: pulumi.Input<string>;
-    /**
-     * Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address.
-     */
     trusthost9?: pulumi.Input<string>;
-    /**
-     * Enable/disable two-factor authentication.
-     */
     twoFactor?: pulumi.Input<string>;
-    /**
-     * Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
-     */
     twoFactorAuthentication?: pulumi.Input<string>;
-    /**
-     * Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
-     */
     twoFactorNotification?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    vdomOverride?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
-     */
     vdoms?: pulumi.Input<pulumi.Input<inputs.SystemAdminVdom>[]>;
-    /**
-     * Enable/disable wildcard RADIUS authentication. Valid values: `enable`, `disable`.
-     */
     wildcard?: pulumi.Input<string>;
 }

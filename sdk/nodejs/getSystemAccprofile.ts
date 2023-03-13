@@ -2,18 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios system accprofile
- */
 export function getSystemAccprofile(args: GetSystemAccprofileArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemAccprofileResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemAccprofile:GetSystemAccprofile", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -24,13 +19,7 @@ export function getSystemAccprofile(args: GetSystemAccprofileArgs, opts?: pulumi
  * A collection of arguments for invoking GetSystemAccprofile.
  */
 export interface GetSystemAccprofileArgs {
-    /**
-     * Specify the name of the desired system accprofile.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -38,115 +27,44 @@ export interface GetSystemAccprofileArgs {
  * A collection of values returned by GetSystemAccprofile.
  */
 export interface GetSystemAccprofileResult {
-    /**
-     * Administrator timeout for this access profile (0 - 480 min, default = 10, 0 means never timeout).
-     */
     readonly admintimeout: number;
-    /**
-     * Enable/disable overriding the global administrator idle timeout.
-     */
     readonly admintimeoutOverride: string;
-    /**
-     * Administrator access to Users and Devices.
-     */
     readonly authgrp: string;
-    /**
-     * Comment.
-     */
     readonly comments: string;
-    /**
-     * FortiView.
-     */
     readonly ftviewgrp: string;
-    /**
-     * Administrator access to the Firewall configuration.
-     */
     readonly fwgrp: string;
-    /**
-     * Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
-     */
-    readonly fwgrpPermission: outputs.GetSystemAccprofileFwgrpPermission;
+    readonly fwgrpPermissions: outputs.GetSystemAccprofileFwgrpPermission[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Administrator access to Logging and Reporting including viewing log messages.
-     */
     readonly loggrp: string;
-    /**
-     * Custom Log & Report permission. The structure of `loggrpPermission` block is documented below.
-     */
-    readonly loggrpPermission: outputs.GetSystemAccprofileLoggrpPermission;
-    /**
-     * Profile name.
-     */
+    readonly loggrpPermissions: outputs.GetSystemAccprofileLoggrpPermission[];
     readonly name: string;
-    /**
-     * Network Configuration.
-     */
     readonly netgrp: string;
-    /**
-     * Custom network permission. The structure of `netgrpPermission` block is documented below.
-     */
-    readonly netgrpPermission: outputs.GetSystemAccprofileNetgrpPermission;
-    /**
-     * Scope of admin access: global or specific VDOM(s).
-     */
+    readonly netgrpPermissions: outputs.GetSystemAccprofileNetgrpPermission[];
     readonly scope: string;
-    /**
-     * Security Fabric.
-     */
     readonly secfabgrp: string;
-    /**
-     * System Configuration.
-     */
     readonly sysgrp: string;
-    /**
-     * Custom system permission. The structure of `sysgrpPermission` block is documented below.
-     */
-    readonly sysgrpPermission: outputs.GetSystemAccprofileSysgrpPermission;
-    /**
-     * Enable/disable permission to run system diagnostic commands.
-     */
+    readonly sysgrpPermissions: outputs.GetSystemAccprofileSysgrpPermission[];
     readonly systemDiagnostics: string;
-    /**
-     * Administrator access to Security Profiles.
-     */
+    readonly systemExecuteSsh: string;
+    readonly systemExecuteTelnet: string;
     readonly utmgrp: string;
-    /**
-     * Custom Security Profile permissions. The structure of `utmgrpPermission` block is documented below.
-     */
-    readonly utmgrpPermission: outputs.GetSystemAccprofileUtmgrpPermission;
+    readonly utmgrpPermissions: outputs.GetSystemAccprofileUtmgrpPermission[];
     readonly vdomparam?: string;
-    /**
-     * Administrator access to IPsec, SSL, PPTP, and L2TP VPN.
-     */
     readonly vpngrp: string;
-    /**
-     * Administrator access to WAN Opt & Cache.
-     */
     readonly wanoptgrp: string;
-    /**
-     * Administrator access to the WiFi controller and Switch controller.
-     */
     readonly wifi: string;
 }
-
 export function getSystemAccprofileOutput(args: GetSystemAccprofileOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemAccprofileResult> {
-    return pulumi.output(args).apply(a => getSystemAccprofile(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemAccprofile(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemAccprofile.
  */
 export interface GetSystemAccprofileOutputArgs {
-    /**
-     * Specify the name of the desired system accprofile.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

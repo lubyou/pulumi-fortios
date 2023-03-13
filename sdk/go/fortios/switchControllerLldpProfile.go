@@ -10,81 +10,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch LLDP profiles.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchControllerLldpProfile(ctx, "trname", &fortios.SwitchControllerLldpProfileArgs{
-// 			AutoIsl:               pulumi.String("enable"),
-// 			AutoIslHelloTimer:     pulumi.Int(3),
-// 			AutoIslPortGroup:      pulumi.Int(0),
-// 			AutoIslReceiveTimeout: pulumi.Int(60),
-// 			MedTlvs:               pulumi.String("inventory-management network-policy"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchController LldpProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerLldpProfile:SwitchControllerLldpProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerLldpProfile:SwitchControllerLldpProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerLldpProfile struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
-	AutoIsl pulumi.StringOutput `pulumi:"autoIsl"`
-	// Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
-	AutoIslHelloTimer pulumi.IntOutput `pulumi:"autoIslHelloTimer"`
-	// Auto inter-switch LAG port group ID (0 - 9).
-	AutoIslPortGroup pulumi.IntOutput `pulumi:"autoIslPortGroup"`
-	// Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 9).
-	AutoIslReceiveTimeout pulumi.IntOutput `pulumi:"autoIslReceiveTimeout"`
-	// Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
-	AutoMclagIcl pulumi.StringOutput `pulumi:"autoMclagIcl"`
-	// Configuration method to edit custom TLV entries. The structure of `customTlvs` block is documented below.
-	CustomTlvs SwitchControllerLldpProfileCustomTlvArrayOutput `pulumi:"customTlvs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
-	MedLocationServices SwitchControllerLldpProfileMedLocationServiceArrayOutput `pulumi:"medLocationServices"`
-	// Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `medNetworkPolicy` block is documented below.
-	MedNetworkPolicies SwitchControllerLldpProfileMedNetworkPolicyArrayOutput `pulumi:"medNetworkPolicies"`
-	// Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
-	MedTlvs pulumi.StringOutput `pulumi:"medTlvs"`
-	// Transmitted IEEE 802.1 TLVs. Valid values: `port-vlan-id`.
-	N8021Tlvs pulumi.StringOutput `pulumi:"n8021Tlvs"`
-	// Transmitted IEEE 802.3 TLVs.
-	N8023Tlvs pulumi.StringOutput `pulumi:"n8023Tlvs"`
-	// TLV name (not sent).
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AutoIsl               pulumi.StringOutput                                      `pulumi:"autoIsl"`
+	AutoIslHelloTimer     pulumi.IntOutput                                         `pulumi:"autoIslHelloTimer"`
+	AutoIslPortGroup      pulumi.IntOutput                                         `pulumi:"autoIslPortGroup"`
+	AutoIslReceiveTimeout pulumi.IntOutput                                         `pulumi:"autoIslReceiveTimeout"`
+	AutoMclagIcl          pulumi.StringOutput                                      `pulumi:"autoMclagIcl"`
+	CustomTlvs            SwitchControllerLldpProfileCustomTlvArrayOutput          `pulumi:"customTlvs"`
+	DynamicSortSubtable   pulumi.StringPtrOutput                                   `pulumi:"dynamicSortSubtable"`
+	MedLocationServices   SwitchControllerLldpProfileMedLocationServiceArrayOutput `pulumi:"medLocationServices"`
+	MedNetworkPolicies    SwitchControllerLldpProfileMedNetworkPolicyArrayOutput   `pulumi:"medNetworkPolicies"`
+	MedTlvs               pulumi.StringOutput                                      `pulumi:"medTlvs"`
+	N8021Tlvs             pulumi.StringOutput                                      `pulumi:"n8021Tlvs"`
+	N8023Tlvs             pulumi.StringOutput                                      `pulumi:"n8023Tlvs"`
+	Name                  pulumi.StringOutput                                      `pulumi:"name"`
+	Vdomparam             pulumi.StringPtrOutput                                   `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerLldpProfile registers a new resource with the given unique name, arguments, and options.
@@ -117,65 +59,37 @@ func GetSwitchControllerLldpProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerLldpProfile resources.
 type switchControllerLldpProfileState struct {
-	// Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
-	AutoIsl *string `pulumi:"autoIsl"`
-	// Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
-	AutoIslHelloTimer *int `pulumi:"autoIslHelloTimer"`
-	// Auto inter-switch LAG port group ID (0 - 9).
-	AutoIslPortGroup *int `pulumi:"autoIslPortGroup"`
-	// Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 9).
-	AutoIslReceiveTimeout *int `pulumi:"autoIslReceiveTimeout"`
-	// Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
-	AutoMclagIcl *string `pulumi:"autoMclagIcl"`
-	// Configuration method to edit custom TLV entries. The structure of `customTlvs` block is documented below.
-	CustomTlvs []SwitchControllerLldpProfileCustomTlv `pulumi:"customTlvs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
-	MedLocationServices []SwitchControllerLldpProfileMedLocationService `pulumi:"medLocationServices"`
-	// Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `medNetworkPolicy` block is documented below.
-	MedNetworkPolicies []SwitchControllerLldpProfileMedNetworkPolicy `pulumi:"medNetworkPolicies"`
-	// Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
-	MedTlvs *string `pulumi:"medTlvs"`
-	// Transmitted IEEE 802.1 TLVs. Valid values: `port-vlan-id`.
-	N8021Tlvs *string `pulumi:"n8021Tlvs"`
-	// Transmitted IEEE 802.3 TLVs.
-	N8023Tlvs *string `pulumi:"n8023Tlvs"`
-	// TLV name (not sent).
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AutoIsl               *string                                         `pulumi:"autoIsl"`
+	AutoIslHelloTimer     *int                                            `pulumi:"autoIslHelloTimer"`
+	AutoIslPortGroup      *int                                            `pulumi:"autoIslPortGroup"`
+	AutoIslReceiveTimeout *int                                            `pulumi:"autoIslReceiveTimeout"`
+	AutoMclagIcl          *string                                         `pulumi:"autoMclagIcl"`
+	CustomTlvs            []SwitchControllerLldpProfileCustomTlv          `pulumi:"customTlvs"`
+	DynamicSortSubtable   *string                                         `pulumi:"dynamicSortSubtable"`
+	MedLocationServices   []SwitchControllerLldpProfileMedLocationService `pulumi:"medLocationServices"`
+	MedNetworkPolicies    []SwitchControllerLldpProfileMedNetworkPolicy   `pulumi:"medNetworkPolicies"`
+	MedTlvs               *string                                         `pulumi:"medTlvs"`
+	N8021Tlvs             *string                                         `pulumi:"n8021Tlvs"`
+	N8023Tlvs             *string                                         `pulumi:"n8023Tlvs"`
+	Name                  *string                                         `pulumi:"name"`
+	Vdomparam             *string                                         `pulumi:"vdomparam"`
 }
 
 type SwitchControllerLldpProfileState struct {
-	// Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
-	AutoIsl pulumi.StringPtrInput
-	// Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
-	AutoIslHelloTimer pulumi.IntPtrInput
-	// Auto inter-switch LAG port group ID (0 - 9).
-	AutoIslPortGroup pulumi.IntPtrInput
-	// Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 9).
+	AutoIsl               pulumi.StringPtrInput
+	AutoIslHelloTimer     pulumi.IntPtrInput
+	AutoIslPortGroup      pulumi.IntPtrInput
 	AutoIslReceiveTimeout pulumi.IntPtrInput
-	// Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
-	AutoMclagIcl pulumi.StringPtrInput
-	// Configuration method to edit custom TLV entries. The structure of `customTlvs` block is documented below.
-	CustomTlvs SwitchControllerLldpProfileCustomTlvArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
-	MedLocationServices SwitchControllerLldpProfileMedLocationServiceArrayInput
-	// Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `medNetworkPolicy` block is documented below.
-	MedNetworkPolicies SwitchControllerLldpProfileMedNetworkPolicyArrayInput
-	// Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
-	MedTlvs pulumi.StringPtrInput
-	// Transmitted IEEE 802.1 TLVs. Valid values: `port-vlan-id`.
-	N8021Tlvs pulumi.StringPtrInput
-	// Transmitted IEEE 802.3 TLVs.
-	N8023Tlvs pulumi.StringPtrInput
-	// TLV name (not sent).
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	AutoMclagIcl          pulumi.StringPtrInput
+	CustomTlvs            SwitchControllerLldpProfileCustomTlvArrayInput
+	DynamicSortSubtable   pulumi.StringPtrInput
+	MedLocationServices   SwitchControllerLldpProfileMedLocationServiceArrayInput
+	MedNetworkPolicies    SwitchControllerLldpProfileMedNetworkPolicyArrayInput
+	MedTlvs               pulumi.StringPtrInput
+	N8021Tlvs             pulumi.StringPtrInput
+	N8023Tlvs             pulumi.StringPtrInput
+	Name                  pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SwitchControllerLldpProfileState) ElementType() reflect.Type {
@@ -183,66 +97,38 @@ func (SwitchControllerLldpProfileState) ElementType() reflect.Type {
 }
 
 type switchControllerLldpProfileArgs struct {
-	// Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
-	AutoIsl *string `pulumi:"autoIsl"`
-	// Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
-	AutoIslHelloTimer *int `pulumi:"autoIslHelloTimer"`
-	// Auto inter-switch LAG port group ID (0 - 9).
-	AutoIslPortGroup *int `pulumi:"autoIslPortGroup"`
-	// Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 9).
-	AutoIslReceiveTimeout *int `pulumi:"autoIslReceiveTimeout"`
-	// Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
-	AutoMclagIcl *string `pulumi:"autoMclagIcl"`
-	// Configuration method to edit custom TLV entries. The structure of `customTlvs` block is documented below.
-	CustomTlvs []SwitchControllerLldpProfileCustomTlv `pulumi:"customTlvs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
-	MedLocationServices []SwitchControllerLldpProfileMedLocationService `pulumi:"medLocationServices"`
-	// Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `medNetworkPolicy` block is documented below.
-	MedNetworkPolicies []SwitchControllerLldpProfileMedNetworkPolicy `pulumi:"medNetworkPolicies"`
-	// Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
-	MedTlvs *string `pulumi:"medTlvs"`
-	// Transmitted IEEE 802.1 TLVs. Valid values: `port-vlan-id`.
-	N8021Tlvs *string `pulumi:"n8021Tlvs"`
-	// Transmitted IEEE 802.3 TLVs.
-	N8023Tlvs *string `pulumi:"n8023Tlvs"`
-	// TLV name (not sent).
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AutoIsl               *string                                         `pulumi:"autoIsl"`
+	AutoIslHelloTimer     *int                                            `pulumi:"autoIslHelloTimer"`
+	AutoIslPortGroup      *int                                            `pulumi:"autoIslPortGroup"`
+	AutoIslReceiveTimeout *int                                            `pulumi:"autoIslReceiveTimeout"`
+	AutoMclagIcl          *string                                         `pulumi:"autoMclagIcl"`
+	CustomTlvs            []SwitchControllerLldpProfileCustomTlv          `pulumi:"customTlvs"`
+	DynamicSortSubtable   *string                                         `pulumi:"dynamicSortSubtable"`
+	MedLocationServices   []SwitchControllerLldpProfileMedLocationService `pulumi:"medLocationServices"`
+	MedNetworkPolicies    []SwitchControllerLldpProfileMedNetworkPolicy   `pulumi:"medNetworkPolicies"`
+	MedTlvs               *string                                         `pulumi:"medTlvs"`
+	N8021Tlvs             *string                                         `pulumi:"n8021Tlvs"`
+	N8023Tlvs             *string                                         `pulumi:"n8023Tlvs"`
+	Name                  *string                                         `pulumi:"name"`
+	Vdomparam             *string                                         `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerLldpProfile resource.
 type SwitchControllerLldpProfileArgs struct {
-	// Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
-	AutoIsl pulumi.StringPtrInput
-	// Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
-	AutoIslHelloTimer pulumi.IntPtrInput
-	// Auto inter-switch LAG port group ID (0 - 9).
-	AutoIslPortGroup pulumi.IntPtrInput
-	// Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 9).
+	AutoIsl               pulumi.StringPtrInput
+	AutoIslHelloTimer     pulumi.IntPtrInput
+	AutoIslPortGroup      pulumi.IntPtrInput
 	AutoIslReceiveTimeout pulumi.IntPtrInput
-	// Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
-	AutoMclagIcl pulumi.StringPtrInput
-	// Configuration method to edit custom TLV entries. The structure of `customTlvs` block is documented below.
-	CustomTlvs SwitchControllerLldpProfileCustomTlvArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
-	MedLocationServices SwitchControllerLldpProfileMedLocationServiceArrayInput
-	// Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `medNetworkPolicy` block is documented below.
-	MedNetworkPolicies SwitchControllerLldpProfileMedNetworkPolicyArrayInput
-	// Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
-	MedTlvs pulumi.StringPtrInput
-	// Transmitted IEEE 802.1 TLVs. Valid values: `port-vlan-id`.
-	N8021Tlvs pulumi.StringPtrInput
-	// Transmitted IEEE 802.3 TLVs.
-	N8023Tlvs pulumi.StringPtrInput
-	// TLV name (not sent).
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	AutoMclagIcl          pulumi.StringPtrInput
+	CustomTlvs            SwitchControllerLldpProfileCustomTlvArrayInput
+	DynamicSortSubtable   pulumi.StringPtrInput
+	MedLocationServices   SwitchControllerLldpProfileMedLocationServiceArrayInput
+	MedNetworkPolicies    SwitchControllerLldpProfileMedNetworkPolicyArrayInput
+	MedTlvs               pulumi.StringPtrInput
+	N8021Tlvs             pulumi.StringPtrInput
+	N8023Tlvs             pulumi.StringPtrInput
+	Name                  pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SwitchControllerLldpProfileArgs) ElementType() reflect.Type {
@@ -271,7 +157,7 @@ func (i *SwitchControllerLldpProfile) ToSwitchControllerLldpProfileOutputWithCon
 // SwitchControllerLldpProfileArrayInput is an input type that accepts SwitchControllerLldpProfileArray and SwitchControllerLldpProfileArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerLldpProfileArrayInput` via:
 //
-//          SwitchControllerLldpProfileArray{ SwitchControllerLldpProfileArgs{...} }
+//	SwitchControllerLldpProfileArray{ SwitchControllerLldpProfileArgs{...} }
 type SwitchControllerLldpProfileArrayInput interface {
 	pulumi.Input
 
@@ -296,7 +182,7 @@ func (i SwitchControllerLldpProfileArray) ToSwitchControllerLldpProfileArrayOutp
 // SwitchControllerLldpProfileMapInput is an input type that accepts SwitchControllerLldpProfileMap and SwitchControllerLldpProfileMapOutput values.
 // You can construct a concrete instance of `SwitchControllerLldpProfileMapInput` via:
 //
-//          SwitchControllerLldpProfileMap{ "key": SwitchControllerLldpProfileArgs{...} }
+//	SwitchControllerLldpProfileMap{ "key": SwitchControllerLldpProfileArgs{...} }
 type SwitchControllerLldpProfileMapInput interface {
 	pulumi.Input
 
@@ -330,6 +216,68 @@ func (o SwitchControllerLldpProfileOutput) ToSwitchControllerLldpProfileOutput()
 
 func (o SwitchControllerLldpProfileOutput) ToSwitchControllerLldpProfileOutputWithContext(ctx context.Context) SwitchControllerLldpProfileOutput {
 	return o
+}
+
+func (o SwitchControllerLldpProfileOutput) AutoIsl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringOutput { return v.AutoIsl }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) AutoIslHelloTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.IntOutput { return v.AutoIslHelloTimer }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) AutoIslPortGroup() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.IntOutput { return v.AutoIslPortGroup }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) AutoIslReceiveTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.IntOutput { return v.AutoIslReceiveTimeout }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) AutoMclagIcl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringOutput { return v.AutoMclagIcl }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) CustomTlvs() SwitchControllerLldpProfileCustomTlvArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) SwitchControllerLldpProfileCustomTlvArrayOutput {
+		return v.CustomTlvs
+	}).(SwitchControllerLldpProfileCustomTlvArrayOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) MedLocationServices() SwitchControllerLldpProfileMedLocationServiceArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) SwitchControllerLldpProfileMedLocationServiceArrayOutput {
+		return v.MedLocationServices
+	}).(SwitchControllerLldpProfileMedLocationServiceArrayOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) MedNetworkPolicies() SwitchControllerLldpProfileMedNetworkPolicyArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) SwitchControllerLldpProfileMedNetworkPolicyArrayOutput {
+		return v.MedNetworkPolicies
+	}).(SwitchControllerLldpProfileMedNetworkPolicyArrayOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) MedTlvs() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringOutput { return v.MedTlvs }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) N8021Tlvs() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringOutput { return v.N8021Tlvs }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) N8023Tlvs() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringOutput { return v.N8023Tlvs }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerLldpProfileArrayOutput struct{ *pulumi.OutputState }

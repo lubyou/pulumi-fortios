@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure Overlay Controller VPN settings. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * Vpn Ocvpn can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnOcvpn:VpnOcvpn labelname VpnOcvpn
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnOcvpn:VpnOcvpn labelname VpnOcvpn
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VpnOcvpn extends pulumi.CustomResource {
     /**
      * Get an existing VpnOcvpn resource's state with the given name, ID, and optional extra
@@ -52,73 +34,22 @@ export class VpnOcvpn extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpnOcvpn.__pulumiType;
     }
 
-    /**
-     * Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
-     */
     public readonly autoDiscovery!: pulumi.Output<string>;
-    /**
-     * Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
-     */
     public readonly autoDiscoveryShortcutMode!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
-     */
     public readonly eap!: pulumi.Output<string>;
-    /**
-     * EAP authentication user group.
-     */
     public readonly eapUsers!: pulumi.Output<string>;
-    /**
-     * Configure FortiClient settings. The structure of `forticlientAccess` block is documented below.
-     */
-    public readonly forticlientAccess!: pulumi.Output<outputs.VpnOcvpnForticlientAccess | undefined>;
-    /**
-     * Class B subnet reserved for private IP address assignment.
-     */
+    public readonly forticlientAccess!: pulumi.Output<outputs.VpnOcvpnForticlientAccess>;
     public readonly ipAllocationBlock!: pulumi.Output<string>;
-    /**
-     * Enable/disable multipath redundancy. Valid values: `enable`, `disable`.
-     */
     public readonly multipath!: pulumi.Output<string>;
-    /**
-     * Enable/disable inter-overlay source NAT. Valid values: `enable`, `disable`.
-     */
     public readonly nat!: pulumi.Output<string>;
-    /**
-     * OCVPN overlays to allow access to. The structure of `overlays` block is documented below.
-     */
     public readonly overlays!: pulumi.Output<outputs.VpnOcvpnOverlay[] | undefined>;
-    /**
-     * Overlay Controller VPN polling interval.
-     */
     public readonly pollInterval!: pulumi.Output<number>;
-    /**
-     * Set device role. Valid values: `spoke`, `primary-hub`, `secondary-hub`.
-     */
     public readonly role!: pulumi.Output<string>;
-    /**
-     * Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
-     */
     public readonly sdwan!: pulumi.Output<string>;
-    /**
-     * Set SD-WAN zone.
-     */
     public readonly sdwanZone!: pulumi.Output<string>;
-    /**
-     * Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * FortiGate WAN interfaces to use with OCVPN. The structure of `wanInterface` block is documented below.
-     */
     public readonly wanInterfaces!: pulumi.Output<outputs.VpnOcvpnWanInterface[] | undefined>;
 
     /**
@@ -180,73 +111,22 @@ export class VpnOcvpn extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnOcvpn resources.
  */
 export interface VpnOcvpnState {
-    /**
-     * Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
-     */
     autoDiscovery?: pulumi.Input<string>;
-    /**
-     * Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
-     */
     autoDiscoveryShortcutMode?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
-     */
     eap?: pulumi.Input<string>;
-    /**
-     * EAP authentication user group.
-     */
     eapUsers?: pulumi.Input<string>;
-    /**
-     * Configure FortiClient settings. The structure of `forticlientAccess` block is documented below.
-     */
     forticlientAccess?: pulumi.Input<inputs.VpnOcvpnForticlientAccess>;
-    /**
-     * Class B subnet reserved for private IP address assignment.
-     */
     ipAllocationBlock?: pulumi.Input<string>;
-    /**
-     * Enable/disable multipath redundancy. Valid values: `enable`, `disable`.
-     */
     multipath?: pulumi.Input<string>;
-    /**
-     * Enable/disable inter-overlay source NAT. Valid values: `enable`, `disable`.
-     */
     nat?: pulumi.Input<string>;
-    /**
-     * OCVPN overlays to allow access to. The structure of `overlays` block is documented below.
-     */
     overlays?: pulumi.Input<pulumi.Input<inputs.VpnOcvpnOverlay>[]>;
-    /**
-     * Overlay Controller VPN polling interval.
-     */
     pollInterval?: pulumi.Input<number>;
-    /**
-     * Set device role. Valid values: `spoke`, `primary-hub`, `secondary-hub`.
-     */
     role?: pulumi.Input<string>;
-    /**
-     * Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
-     */
     sdwan?: pulumi.Input<string>;
-    /**
-     * Set SD-WAN zone.
-     */
     sdwanZone?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * FortiGate WAN interfaces to use with OCVPN. The structure of `wanInterface` block is documented below.
-     */
     wanInterfaces?: pulumi.Input<pulumi.Input<inputs.VpnOcvpnWanInterface>[]>;
 }
 
@@ -254,72 +134,21 @@ export interface VpnOcvpnState {
  * The set of arguments for constructing a VpnOcvpn resource.
  */
 export interface VpnOcvpnArgs {
-    /**
-     * Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
-     */
     autoDiscovery?: pulumi.Input<string>;
-    /**
-     * Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
-     */
     autoDiscoveryShortcutMode?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
-     */
     eap?: pulumi.Input<string>;
-    /**
-     * EAP authentication user group.
-     */
     eapUsers?: pulumi.Input<string>;
-    /**
-     * Configure FortiClient settings. The structure of `forticlientAccess` block is documented below.
-     */
     forticlientAccess?: pulumi.Input<inputs.VpnOcvpnForticlientAccess>;
-    /**
-     * Class B subnet reserved for private IP address assignment.
-     */
     ipAllocationBlock?: pulumi.Input<string>;
-    /**
-     * Enable/disable multipath redundancy. Valid values: `enable`, `disable`.
-     */
     multipath?: pulumi.Input<string>;
-    /**
-     * Enable/disable inter-overlay source NAT. Valid values: `enable`, `disable`.
-     */
     nat?: pulumi.Input<string>;
-    /**
-     * OCVPN overlays to allow access to. The structure of `overlays` block is documented below.
-     */
     overlays?: pulumi.Input<pulumi.Input<inputs.VpnOcvpnOverlay>[]>;
-    /**
-     * Overlay Controller VPN polling interval.
-     */
     pollInterval?: pulumi.Input<number>;
-    /**
-     * Set device role. Valid values: `spoke`, `primary-hub`, `secondary-hub`.
-     */
     role?: pulumi.Input<string>;
-    /**
-     * Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
-     */
     sdwan?: pulumi.Input<string>;
-    /**
-     * Set SD-WAN zone.
-     */
     sdwanZone?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * FortiGate WAN interfaces to use with OCVPN. The structure of `wanInterface` block is documented below.
-     */
     wanInterfaces?: pulumi.Input<pulumi.Input<inputs.VpnOcvpnWanInterface>[]>;
 }

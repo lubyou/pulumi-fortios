@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure global DPDK options. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * Dpdk Global can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/dpdkGlobal:DpdkGlobal labelname DpdkGlobal
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/dpdkGlobal:DpdkGlobal labelname DpdkGlobal
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class DpdkGlobal extends pulumi.CustomResource {
     /**
      * Get an existing DpdkGlobal resource's state with the given name, ID, and optional extra
@@ -52,45 +34,16 @@ export class DpdkGlobal extends pulumi.CustomResource {
         return obj['__pulumiType'] === DpdkGlobal.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
-     */
     public readonly elasticbuffer!: pulumi.Output<string>;
-    /**
-     * Percentage of main memory allocated to hugepages, which are available for DPDK operation.
-     */
     public readonly hugepagePercentage!: pulumi.Output<number>;
-    /**
-     * Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
-     */
     public readonly interfaces!: pulumi.Output<outputs.DpdkGlobalInterface[] | undefined>;
-    /**
-     * Percentage of main memory allocated to DPDK packet buffer.
-     */
+    public readonly ipsecOffload!: pulumi.Output<string>;
     public readonly mbufpoolPercentage!: pulumi.Output<number>;
-    /**
-     * Enable/disable multi-queue RX/TX support for all DPDK ports. Valid values: `disable`, `enable`.
-     */
     public readonly multiqueue!: pulumi.Output<string>;
-    /**
-     * Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
-     */
     public readonly perSessionAccounting!: pulumi.Output<string>;
-    /**
-     * Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
-     */
     public readonly sleepOnIdle!: pulumi.Output<string>;
-    /**
-     * Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -110,6 +63,7 @@ export class DpdkGlobal extends pulumi.CustomResource {
             resourceInputs["elasticbuffer"] = state ? state.elasticbuffer : undefined;
             resourceInputs["hugepagePercentage"] = state ? state.hugepagePercentage : undefined;
             resourceInputs["interfaces"] = state ? state.interfaces : undefined;
+            resourceInputs["ipsecOffload"] = state ? state.ipsecOffload : undefined;
             resourceInputs["mbufpoolPercentage"] = state ? state.mbufpoolPercentage : undefined;
             resourceInputs["multiqueue"] = state ? state.multiqueue : undefined;
             resourceInputs["perSessionAccounting"] = state ? state.perSessionAccounting : undefined;
@@ -122,6 +76,7 @@ export class DpdkGlobal extends pulumi.CustomResource {
             resourceInputs["elasticbuffer"] = args ? args.elasticbuffer : undefined;
             resourceInputs["hugepagePercentage"] = args ? args.hugepagePercentage : undefined;
             resourceInputs["interfaces"] = args ? args.interfaces : undefined;
+            resourceInputs["ipsecOffload"] = args ? args.ipsecOffload : undefined;
             resourceInputs["mbufpoolPercentage"] = args ? args.mbufpoolPercentage : undefined;
             resourceInputs["multiqueue"] = args ? args.multiqueue : undefined;
             resourceInputs["perSessionAccounting"] = args ? args.perSessionAccounting : undefined;
@@ -138,45 +93,16 @@ export class DpdkGlobal extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DpdkGlobal resources.
  */
 export interface DpdkGlobalState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
-     */
     elasticbuffer?: pulumi.Input<string>;
-    /**
-     * Percentage of main memory allocated to hugepages, which are available for DPDK operation.
-     */
     hugepagePercentage?: pulumi.Input<number>;
-    /**
-     * Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
-     */
     interfaces?: pulumi.Input<pulumi.Input<inputs.DpdkGlobalInterface>[]>;
-    /**
-     * Percentage of main memory allocated to DPDK packet buffer.
-     */
+    ipsecOffload?: pulumi.Input<string>;
     mbufpoolPercentage?: pulumi.Input<number>;
-    /**
-     * Enable/disable multi-queue RX/TX support for all DPDK ports. Valid values: `disable`, `enable`.
-     */
     multiqueue?: pulumi.Input<string>;
-    /**
-     * Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
-     */
     perSessionAccounting?: pulumi.Input<string>;
-    /**
-     * Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
-     */
     sleepOnIdle?: pulumi.Input<string>;
-    /**
-     * Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -184,44 +110,15 @@ export interface DpdkGlobalState {
  * The set of arguments for constructing a DpdkGlobal resource.
  */
 export interface DpdkGlobalArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
-     */
     elasticbuffer?: pulumi.Input<string>;
-    /**
-     * Percentage of main memory allocated to hugepages, which are available for DPDK operation.
-     */
     hugepagePercentage?: pulumi.Input<number>;
-    /**
-     * Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
-     */
     interfaces?: pulumi.Input<pulumi.Input<inputs.DpdkGlobalInterface>[]>;
-    /**
-     * Percentage of main memory allocated to DPDK packet buffer.
-     */
+    ipsecOffload?: pulumi.Input<string>;
     mbufpoolPercentage?: pulumi.Input<number>;
-    /**
-     * Enable/disable multi-queue RX/TX support for all DPDK ports. Valid values: `disable`, `enable`.
-     */
     multiqueue?: pulumi.Input<string>;
-    /**
-     * Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
-     */
     perSessionAccounting?: pulumi.Input<string>;
-    /**
-     * Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
-     */
     sleepOnIdle?: pulumi.Input<string>;
-    /**
-     * Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

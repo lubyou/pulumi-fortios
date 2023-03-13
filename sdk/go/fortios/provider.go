@@ -17,6 +17,8 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
+	// CA Bundle file content
+	Cabundlecontent pulumi.StringPtrOutput `pulumi:"cabundlecontent"`
 	// CA Bundle file
 	Cabundlefile pulumi.StringPtrOutput `pulumi:"cabundlefile"`
 	// CA certtificate(Optional)
@@ -33,6 +35,8 @@ type Provider struct {
 	FmgUsername pulumi.StringPtrOutput `pulumi:"fmgUsername"`
 	// The hostname/IP address of the FortiOS to be connected
 	Hostname pulumi.StringPtrOutput `pulumi:"hostname"`
+	// HTTP proxy address
+	HttpProxy pulumi.StringPtrOutput `pulumi:"httpProxy"`
 	// Enable/disable peer authentication, can be 'enable' or 'disable'
 	Peerauth pulumi.StringPtrOutput `pulumi:"peerauth"`
 	Token    pulumi.StringPtrOutput `pulumi:"token"`
@@ -46,31 +50,31 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
-	if isZero(args.Cabundlefile) {
+	if args.Cabundlefile == nil {
 		args.Cabundlefile = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_CA_CABUNDLE").(string))
 	}
-	if isZero(args.FmgCabundlefile) {
+	if args.FmgCabundlefile == nil {
 		args.FmgCabundlefile = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_CABUNDLE").(string))
 	}
-	if isZero(args.FmgHostname) {
+	if args.FmgHostname == nil {
 		args.FmgHostname = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_HOSTNAME").(string))
 	}
-	if isZero(args.FmgInsecure) {
+	if args.FmgInsecure == nil {
 		args.FmgInsecure = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "FORTIOS_FMG_INSECURE").(bool))
 	}
-	if isZero(args.FmgPasswd) {
+	if args.FmgPasswd == nil {
 		args.FmgPasswd = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_PASSWORD").(string))
 	}
-	if isZero(args.FmgUsername) {
+	if args.FmgUsername == nil {
 		args.FmgUsername = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_USERNAME").(string))
 	}
-	if isZero(args.Hostname) {
+	if args.Hostname == nil {
 		args.Hostname = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_ACCESS_HOSTNAME").(string))
 	}
-	if isZero(args.Insecure) {
+	if args.Insecure == nil {
 		args.Insecure = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "FORTIOS_INSECURE").(bool))
 	}
-	if isZero(args.Token) {
+	if args.Token == nil {
 		args.Token = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_ACCESS_TOKEN").(string))
 	}
 	opts = pkgResourceDefaultOpts(opts)
@@ -83,6 +87,8 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
+	// CA Bundle file content
+	Cabundlecontent *string `pulumi:"cabundlecontent"`
 	// CA Bundle file
 	Cabundlefile *string `pulumi:"cabundlefile"`
 	// CA certtificate(Optional)
@@ -100,7 +106,9 @@ type providerArgs struct {
 	FmgUsername *string `pulumi:"fmgUsername"`
 	// The hostname/IP address of the FortiOS to be connected
 	Hostname *string `pulumi:"hostname"`
-	Insecure *bool   `pulumi:"insecure"`
+	// HTTP proxy address
+	HttpProxy *string `pulumi:"httpProxy"`
+	Insecure  *bool   `pulumi:"insecure"`
 	// Enable/disable peer authentication, can be 'enable' or 'disable'
 	Peerauth *string `pulumi:"peerauth"`
 	Token    *string `pulumi:"token"`
@@ -109,6 +117,8 @@ type providerArgs struct {
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
+	// CA Bundle file content
+	Cabundlecontent pulumi.StringPtrInput
 	// CA Bundle file
 	Cabundlefile pulumi.StringPtrInput
 	// CA certtificate(Optional)
@@ -126,7 +136,9 @@ type ProviderArgs struct {
 	FmgUsername pulumi.StringPtrInput
 	// The hostname/IP address of the FortiOS to be connected
 	Hostname pulumi.StringPtrInput
-	Insecure pulumi.BoolPtrInput
+	// HTTP proxy address
+	HttpProxy pulumi.StringPtrInput
+	Insecure  pulumi.BoolPtrInput
 	// Enable/disable peer authentication, can be 'enable' or 'disable'
 	Peerauth pulumi.StringPtrInput
 	Token    pulumi.StringPtrInput
@@ -168,6 +180,72 @@ func (o ProviderOutput) ToProviderOutput() ProviderOutput {
 
 func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
 	return o
+}
+
+// CA Bundle file content
+func (o ProviderOutput) Cabundlecontent() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Cabundlecontent }).(pulumi.StringPtrOutput)
+}
+
+// CA Bundle file
+func (o ProviderOutput) Cabundlefile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Cabundlefile }).(pulumi.StringPtrOutput)
+}
+
+// CA certtificate(Optional)
+func (o ProviderOutput) Cacert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Cacert }).(pulumi.StringPtrOutput)
+}
+
+// User certificate
+func (o ProviderOutput) Clientcert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Clientcert }).(pulumi.StringPtrOutput)
+}
+
+// User private key
+func (o ProviderOutput) Clientkey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Clientkey }).(pulumi.StringPtrOutput)
+}
+
+// CA Bundle file
+func (o ProviderOutput) FmgCabundlefile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.FmgCabundlefile }).(pulumi.StringPtrOutput)
+}
+
+// Hostname/IP address of the FortiManager to connect to
+func (o ProviderOutput) FmgHostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.FmgHostname }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderOutput) FmgPasswd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.FmgPasswd }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderOutput) FmgUsername() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.FmgUsername }).(pulumi.StringPtrOutput)
+}
+
+// The hostname/IP address of the FortiOS to be connected
+func (o ProviderOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Hostname }).(pulumi.StringPtrOutput)
+}
+
+// HTTP proxy address
+func (o ProviderOutput) HttpProxy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.HttpProxy }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable peer authentication, can be 'enable' or 'disable'
+func (o ProviderOutput) Peerauth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Peerauth }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderOutput) Vdom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Vdom }).(pulumi.StringPtrOutput)
 }
 
 func init() {

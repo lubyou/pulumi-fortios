@@ -10,120 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure VoIP profiles.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewVoipProfile(ctx, "trname", &fortios.VoipProfileArgs{
-// 			Comment: pulumi.String("test"),
-// 			Sccp: &VoipProfileSccpArgs{
-// 				BlockMcast:     pulumi.String("disable"),
-// 				LogCallSummary: pulumi.String("disable"),
-// 				LogViolations:  pulumi.String("disable"),
-// 				MaxCalls:       pulumi.Int(0),
-// 				Status:         pulumi.String("enable"),
-// 				VerifyHeader:   pulumi.String("disable"),
-// 			},
-// 			Sip: &VoipProfileSipArgs{
-// 				AckRate:                     pulumi.Int(0),
-// 				ByeRate:                     pulumi.Int(0),
-// 				CallKeepalive:               pulumi.Int(0),
-// 				CancelRate:                  pulumi.Int(0),
-// 				ContactFixup:                pulumi.String("enable"),
-// 				HntRestrictSourceIp:         pulumi.String("disable"),
-// 				HostedNatTraversal:          pulumi.String("disable"),
-// 				InfoRate:                    pulumi.Int(0),
-// 				InviteRate:                  pulumi.Int(0),
-// 				IpsRtp:                      pulumi.String("enable"),
-// 				LogCallSummary:              pulumi.String("enable"),
-// 				LogViolations:               pulumi.String("disable"),
-// 				MaxBodyLength:               pulumi.Int(0),
-// 				MaxDialogs:                  pulumi.Int(0),
-// 				MaxIdleDialogs:              pulumi.Int(0),
-// 				MaxLineLength:               pulumi.Int(998),
-// 				MessageRate:                 pulumi.Int(0),
-// 				NatTrace:                    pulumi.String("enable"),
-// 				NoSdpFixup:                  pulumi.String("disable"),
-// 				NotifyRate:                  pulumi.Int(0),
-// 				OpenContactPinhole:          pulumi.String("enable"),
-// 				OpenRecordRoutePinhole:      pulumi.String("enable"),
-// 				OpenRegisterPinhole:         pulumi.String("enable"),
-// 				OpenViaPinhole:              pulumi.String("disable"),
-// 				OptionsRate:                 pulumi.Int(0),
-// 				PrackRate:                   pulumi.Int(0),
-// 				PreserveOverride:            pulumi.String("disable"),
-// 				ProvisionalInviteExpiryTime: pulumi.Int(210),
-// 				PublishRate:                 pulumi.Int(0),
-// 				ReferRate:                   pulumi.Int(0),
-// 				RegisterContactTrace:        pulumi.String("disable"),
-// 				RegisterRate:                pulumi.Int(0),
-// 				Rfc2543Branch:               pulumi.String("disable"),
-// 				Rtp:                         pulumi.String("enable"),
-// 				SslAlgorithm:                pulumi.String("high"),
-// 				SslClientRenegotiation:      pulumi.String("allow"),
-// 				SslMaxVersion:               pulumi.String("tls-1.2"),
-// 				SslMinVersion:               pulumi.String("tls-1.1"),
-// 				SslMode:                     pulumi.String("off"),
-// 				SslPfs:                      pulumi.String("allow"),
-// 				SslSendEmptyFrags:           pulumi.String("enable"),
-// 				Status:                      pulumi.String("enable"),
-// 				StrictRegister:              pulumi.String("enable"),
-// 				SubscribeRate:               pulumi.Int(0),
-// 				UnknownHeader:               pulumi.String("pass"),
-// 				UpdateRate:                  pulumi.Int(0),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Voip Profile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/voipProfile:VoipProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/voipProfile:VoipProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VoipProfile struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
-	FeatureSet pulumi.StringOutput `pulumi:"featureSet"`
-	// MSRP. The structure of `msrp` block is documented below.
-	Msrp VoipProfileMsrpPtrOutput `pulumi:"msrp"`
-	// Profile name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// SCCP. The structure of `sccp` block is documented below.
-	Sccp VoipProfileSccpPtrOutput `pulumi:"sccp"`
-	// SIP. The structure of `sip` block is documented below.
-	Sip VoipProfileSipPtrOutput `pulumi:"sip"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment    pulumi.StringPtrOutput `pulumi:"comment"`
+	FeatureSet pulumi.StringOutput    `pulumi:"featureSet"`
+	Msrp       VoipProfileMsrpOutput  `pulumi:"msrp"`
+	Name       pulumi.StringOutput    `pulumi:"name"`
+	Sccp       VoipProfileSccpOutput  `pulumi:"sccp"`
+	Sip        VoipProfileSipOutput   `pulumi:"sip"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewVoipProfile registers a new resource with the given unique name, arguments, and options.
@@ -156,37 +52,23 @@ func GetVoipProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VoipProfile resources.
 type voipProfileState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
-	FeatureSet *string `pulumi:"featureSet"`
-	// MSRP. The structure of `msrp` block is documented below.
-	Msrp *VoipProfileMsrp `pulumi:"msrp"`
-	// Profile name.
-	Name *string `pulumi:"name"`
-	// SCCP. The structure of `sccp` block is documented below.
-	Sccp *VoipProfileSccp `pulumi:"sccp"`
-	// SIP. The structure of `sip` block is documented below.
-	Sip *VoipProfileSip `pulumi:"sip"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment    *string          `pulumi:"comment"`
+	FeatureSet *string          `pulumi:"featureSet"`
+	Msrp       *VoipProfileMsrp `pulumi:"msrp"`
+	Name       *string          `pulumi:"name"`
+	Sccp       *VoipProfileSccp `pulumi:"sccp"`
+	Sip        *VoipProfileSip  `pulumi:"sip"`
+	Vdomparam  *string          `pulumi:"vdomparam"`
 }
 
 type VoipProfileState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+	Comment    pulumi.StringPtrInput
 	FeatureSet pulumi.StringPtrInput
-	// MSRP. The structure of `msrp` block is documented below.
-	Msrp VoipProfileMsrpPtrInput
-	// Profile name.
-	Name pulumi.StringPtrInput
-	// SCCP. The structure of `sccp` block is documented below.
-	Sccp VoipProfileSccpPtrInput
-	// SIP. The structure of `sip` block is documented below.
-	Sip VoipProfileSipPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Msrp       VoipProfileMsrpPtrInput
+	Name       pulumi.StringPtrInput
+	Sccp       VoipProfileSccpPtrInput
+	Sip        VoipProfileSipPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (VoipProfileState) ElementType() reflect.Type {
@@ -194,38 +76,24 @@ func (VoipProfileState) ElementType() reflect.Type {
 }
 
 type voipProfileArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
-	FeatureSet *string `pulumi:"featureSet"`
-	// MSRP. The structure of `msrp` block is documented below.
-	Msrp *VoipProfileMsrp `pulumi:"msrp"`
-	// Profile name.
-	Name *string `pulumi:"name"`
-	// SCCP. The structure of `sccp` block is documented below.
-	Sccp *VoipProfileSccp `pulumi:"sccp"`
-	// SIP. The structure of `sip` block is documented below.
-	Sip *VoipProfileSip `pulumi:"sip"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment    *string          `pulumi:"comment"`
+	FeatureSet *string          `pulumi:"featureSet"`
+	Msrp       *VoipProfileMsrp `pulumi:"msrp"`
+	Name       *string          `pulumi:"name"`
+	Sccp       *VoipProfileSccp `pulumi:"sccp"`
+	Sip        *VoipProfileSip  `pulumi:"sip"`
+	Vdomparam  *string          `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VoipProfile resource.
 type VoipProfileArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+	Comment    pulumi.StringPtrInput
 	FeatureSet pulumi.StringPtrInput
-	// MSRP. The structure of `msrp` block is documented below.
-	Msrp VoipProfileMsrpPtrInput
-	// Profile name.
-	Name pulumi.StringPtrInput
-	// SCCP. The structure of `sccp` block is documented below.
-	Sccp VoipProfileSccpPtrInput
-	// SIP. The structure of `sip` block is documented below.
-	Sip VoipProfileSipPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Msrp       VoipProfileMsrpPtrInput
+	Name       pulumi.StringPtrInput
+	Sccp       VoipProfileSccpPtrInput
+	Sip        VoipProfileSipPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (VoipProfileArgs) ElementType() reflect.Type {
@@ -254,7 +122,7 @@ func (i *VoipProfile) ToVoipProfileOutputWithContext(ctx context.Context) VoipPr
 // VoipProfileArrayInput is an input type that accepts VoipProfileArray and VoipProfileArrayOutput values.
 // You can construct a concrete instance of `VoipProfileArrayInput` via:
 //
-//          VoipProfileArray{ VoipProfileArgs{...} }
+//	VoipProfileArray{ VoipProfileArgs{...} }
 type VoipProfileArrayInput interface {
 	pulumi.Input
 
@@ -279,7 +147,7 @@ func (i VoipProfileArray) ToVoipProfileArrayOutputWithContext(ctx context.Contex
 // VoipProfileMapInput is an input type that accepts VoipProfileMap and VoipProfileMapOutput values.
 // You can construct a concrete instance of `VoipProfileMapInput` via:
 //
-//          VoipProfileMap{ "key": VoipProfileArgs{...} }
+//	VoipProfileMap{ "key": VoipProfileArgs{...} }
 type VoipProfileMapInput interface {
 	pulumi.Input
 
@@ -313,6 +181,34 @@ func (o VoipProfileOutput) ToVoipProfileOutput() VoipProfileOutput {
 
 func (o VoipProfileOutput) ToVoipProfileOutputWithContext(ctx context.Context) VoipProfileOutput {
 	return o
+}
+
+func (o VoipProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileOutput) FeatureSet() pulumi.StringOutput {
+	return o.ApplyT(func(v *VoipProfile) pulumi.StringOutput { return v.FeatureSet }).(pulumi.StringOutput)
+}
+
+func (o VoipProfileOutput) Msrp() VoipProfileMsrpOutput {
+	return o.ApplyT(func(v *VoipProfile) VoipProfileMsrpOutput { return v.Msrp }).(VoipProfileMsrpOutput)
+}
+
+func (o VoipProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VoipProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VoipProfileOutput) Sccp() VoipProfileSccpOutput {
+	return o.ApplyT(func(v *VoipProfile) VoipProfileSccpOutput { return v.Sccp }).(VoipProfileSccpOutput)
+}
+
+func (o VoipProfileOutput) Sip() VoipProfileSipOutput {
+	return o.ApplyT(func(v *VoipProfile) VoipProfileSipOutput { return v.Sip }).(VoipProfileSipOutput)
+}
+
+func (o VoipProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type VoipProfileArrayOutput struct{ *pulumi.OutputState }

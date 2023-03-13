@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure Access Proxy virtual hosts. Applies to FortiOS Version `>= 7.0.1`.
- *
- * ## Import
- *
- * Firewall AccessProxyVirtualHost can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAccessProxyVirtualHost:FirewallAccessProxyVirtualHost labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAccessProxyVirtualHost:FirewallAccessProxyVirtualHost labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallAccessProxyVirtualHost extends pulumi.CustomResource {
     /**
      * Get an existing FirewallAccessProxyVirtualHost resource's state with the given name, ID, and optional extra
@@ -51,25 +32,11 @@ export class FirewallAccessProxyVirtualHost extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallAccessProxyVirtualHost.__pulumiType;
     }
 
-    /**
-     * The host name.
-     */
     public readonly host!: pulumi.Output<string>;
-    /**
-     * Type of host pattern. Valid values: `sub-string`, `wildcard`.
-     */
     public readonly hostType!: pulumi.Output<string>;
-    /**
-     * Virtual host name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * SSL certificate for this host.
-     */
+    public readonly replacemsgGroup!: pulumi.Output<string>;
     public readonly sslCertificate!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -88,6 +55,7 @@ export class FirewallAccessProxyVirtualHost extends pulumi.CustomResource {
             resourceInputs["host"] = state ? state.host : undefined;
             resourceInputs["hostType"] = state ? state.hostType : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
             resourceInputs["sslCertificate"] = state ? state.sslCertificate : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -95,6 +63,7 @@ export class FirewallAccessProxyVirtualHost extends pulumi.CustomResource {
             resourceInputs["host"] = args ? args.host : undefined;
             resourceInputs["hostType"] = args ? args.hostType : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
             resourceInputs["sslCertificate"] = args ? args.sslCertificate : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -107,25 +76,11 @@ export class FirewallAccessProxyVirtualHost extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallAccessProxyVirtualHost resources.
  */
 export interface FirewallAccessProxyVirtualHostState {
-    /**
-     * The host name.
-     */
     host?: pulumi.Input<string>;
-    /**
-     * Type of host pattern. Valid values: `sub-string`, `wildcard`.
-     */
     hostType?: pulumi.Input<string>;
-    /**
-     * Virtual host name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * SSL certificate for this host.
-     */
+    replacemsgGroup?: pulumi.Input<string>;
     sslCertificate?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -133,24 +88,10 @@ export interface FirewallAccessProxyVirtualHostState {
  * The set of arguments for constructing a FirewallAccessProxyVirtualHost resource.
  */
 export interface FirewallAccessProxyVirtualHostArgs {
-    /**
-     * The host name.
-     */
     host?: pulumi.Input<string>;
-    /**
-     * Type of host pattern. Valid values: `sub-string`, `wildcard`.
-     */
     hostType?: pulumi.Input<string>;
-    /**
-     * Virtual host name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * SSL certificate for this host.
-     */
+    replacemsgGroup?: pulumi.Input<string>;
     sslCertificate?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

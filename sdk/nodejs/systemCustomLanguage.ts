@@ -4,36 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure custom languages.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemCustomLanguage("trname", {
- *     filename: "en",
- * });
- * ```
- *
- * ## Import
- *
- * System CustomLanguage can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemCustomLanguage:SystemCustomLanguage labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemCustomLanguage:SystemCustomLanguage labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemCustomLanguage extends pulumi.CustomResource {
     /**
      * Get an existing SystemCustomLanguage resource's state with the given name, ID, and optional extra
@@ -62,21 +32,9 @@ export class SystemCustomLanguage extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemCustomLanguage.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Custom language file path.
-     */
     public readonly filename!: pulumi.Output<string>;
-    /**
-     * Name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -115,21 +73,9 @@ export class SystemCustomLanguage extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemCustomLanguage resources.
  */
 export interface SystemCustomLanguageState {
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Custom language file path.
-     */
     filename?: pulumi.Input<string>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -137,20 +83,8 @@ export interface SystemCustomLanguageState {
  * The set of arguments for constructing a SystemCustomLanguage resource.
  */
 export interface SystemCustomLanguageArgs {
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Custom language file path.
-     */
     filename: pulumi.Input<string>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

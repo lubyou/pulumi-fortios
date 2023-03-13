@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios system hamonitor
- */
 export function getSystemHaMonitor(args?: GetSystemHaMonitorArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemHaMonitorResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemHaMonitor:GetSystemHaMonitor", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getSystemHaMonitor(args?: GetSystemHaMonitorArgs, opts?: pulumi.
  * A collection of arguments for invoking GetSystemHaMonitor.
  */
 export interface GetSystemHaMonitorArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,31 +28,18 @@ export interface GetSystemHaMonitorResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Enable/disable monitor VLAN interfaces.
-     */
     readonly monitorVlan: string;
     readonly vdomparam?: string;
-    /**
-     * Configure heartbeat interval (seconds).
-     */
     readonly vlanHbInterval: number;
-    /**
-     * VLAN lost heartbeat threshold (1 - 60).
-     */
     readonly vlanHbLostThreshold: number;
 }
-
 export function getSystemHaMonitorOutput(args?: GetSystemHaMonitorOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemHaMonitorResult> {
-    return pulumi.output(args).apply(a => getSystemHaMonitor(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemHaMonitor(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemHaMonitor.
  */
 export interface GetSystemHaMonitorOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

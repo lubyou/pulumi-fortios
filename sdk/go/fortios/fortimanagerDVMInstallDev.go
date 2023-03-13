@@ -7,46 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports installing devicemanager script from FortiManager to the related device
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerDVMInstallDev(ctx, "test1", &fortios.FortimanagerDVMInstallDevArgs{
-// 			TargetDevname: pulumi.String("FGVM64-test"),
-// 			Timeout:       pulumi.Int(5),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerDVMInstallDev struct {
 	pulumi.CustomResourceState
 
-	// Source ADOM name. default is 'root'
-	Adom pulumi.StringPtrOutput `pulumi:"adom"`
-	// Target device name.
-	TargetDevname pulumi.StringOutput `pulumi:"targetDevname"`
-	// Timeout for installing the script to the target, default: 3 minutes.
-	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
-	// Vdom of managed device. default is 'root'
-	Vdom pulumi.StringPtrOutput `pulumi:"vdom"`
+	Adom          pulumi.StringPtrOutput `pulumi:"adom"`
+	TargetDevname pulumi.StringOutput    `pulumi:"targetDevname"`
+	// Timeout for installing the script to the target, default: 3 minutes
+	Timeout pulumi.IntPtrOutput    `pulumi:"timeout"`
+	Vdom    pulumi.StringPtrOutput `pulumi:"vdom"`
 }
 
 // NewFortimanagerDVMInstallDev registers a new resource with the given unique name, arguments, and options.
@@ -82,25 +54,19 @@ func GetFortimanagerDVMInstallDev(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerDVMInstallDev resources.
 type fortimanagerDVMInstallDevState struct {
-	// Source ADOM name. default is 'root'
-	Adom *string `pulumi:"adom"`
-	// Target device name.
+	Adom          *string `pulumi:"adom"`
 	TargetDevname *string `pulumi:"targetDevname"`
-	// Timeout for installing the script to the target, default: 3 minutes.
-	Timeout *int `pulumi:"timeout"`
-	// Vdom of managed device. default is 'root'
-	Vdom *string `pulumi:"vdom"`
+	// Timeout for installing the script to the target, default: 3 minutes
+	Timeout *int    `pulumi:"timeout"`
+	Vdom    *string `pulumi:"vdom"`
 }
 
 type FortimanagerDVMInstallDevState struct {
-	// Source ADOM name. default is 'root'
-	Adom pulumi.StringPtrInput
-	// Target device name.
+	Adom          pulumi.StringPtrInput
 	TargetDevname pulumi.StringPtrInput
-	// Timeout for installing the script to the target, default: 3 minutes.
+	// Timeout for installing the script to the target, default: 3 minutes
 	Timeout pulumi.IntPtrInput
-	// Vdom of managed device. default is 'root'
-	Vdom pulumi.StringPtrInput
+	Vdom    pulumi.StringPtrInput
 }
 
 func (FortimanagerDVMInstallDevState) ElementType() reflect.Type {
@@ -108,26 +74,20 @@ func (FortimanagerDVMInstallDevState) ElementType() reflect.Type {
 }
 
 type fortimanagerDVMInstallDevArgs struct {
-	// Source ADOM name. default is 'root'
-	Adom *string `pulumi:"adom"`
-	// Target device name.
-	TargetDevname string `pulumi:"targetDevname"`
-	// Timeout for installing the script to the target, default: 3 minutes.
-	Timeout *int `pulumi:"timeout"`
-	// Vdom of managed device. default is 'root'
-	Vdom *string `pulumi:"vdom"`
+	Adom          *string `pulumi:"adom"`
+	TargetDevname string  `pulumi:"targetDevname"`
+	// Timeout for installing the script to the target, default: 3 minutes
+	Timeout *int    `pulumi:"timeout"`
+	Vdom    *string `pulumi:"vdom"`
 }
 
 // The set of arguments for constructing a FortimanagerDVMInstallDev resource.
 type FortimanagerDVMInstallDevArgs struct {
-	// Source ADOM name. default is 'root'
-	Adom pulumi.StringPtrInput
-	// Target device name.
+	Adom          pulumi.StringPtrInput
 	TargetDevname pulumi.StringInput
-	// Timeout for installing the script to the target, default: 3 minutes.
+	// Timeout for installing the script to the target, default: 3 minutes
 	Timeout pulumi.IntPtrInput
-	// Vdom of managed device. default is 'root'
-	Vdom pulumi.StringPtrInput
+	Vdom    pulumi.StringPtrInput
 }
 
 func (FortimanagerDVMInstallDevArgs) ElementType() reflect.Type {
@@ -156,7 +116,7 @@ func (i *FortimanagerDVMInstallDev) ToFortimanagerDVMInstallDevOutputWithContext
 // FortimanagerDVMInstallDevArrayInput is an input type that accepts FortimanagerDVMInstallDevArray and FortimanagerDVMInstallDevArrayOutput values.
 // You can construct a concrete instance of `FortimanagerDVMInstallDevArrayInput` via:
 //
-//          FortimanagerDVMInstallDevArray{ FortimanagerDVMInstallDevArgs{...} }
+//	FortimanagerDVMInstallDevArray{ FortimanagerDVMInstallDevArgs{...} }
 type FortimanagerDVMInstallDevArrayInput interface {
 	pulumi.Input
 
@@ -181,7 +141,7 @@ func (i FortimanagerDVMInstallDevArray) ToFortimanagerDVMInstallDevArrayOutputWi
 // FortimanagerDVMInstallDevMapInput is an input type that accepts FortimanagerDVMInstallDevMap and FortimanagerDVMInstallDevMapOutput values.
 // You can construct a concrete instance of `FortimanagerDVMInstallDevMapInput` via:
 //
-//          FortimanagerDVMInstallDevMap{ "key": FortimanagerDVMInstallDevArgs{...} }
+//	FortimanagerDVMInstallDevMap{ "key": FortimanagerDVMInstallDevArgs{...} }
 type FortimanagerDVMInstallDevMapInput interface {
 	pulumi.Input
 
@@ -215,6 +175,23 @@ func (o FortimanagerDVMInstallDevOutput) ToFortimanagerDVMInstallDevOutput() For
 
 func (o FortimanagerDVMInstallDevOutput) ToFortimanagerDVMInstallDevOutputWithContext(ctx context.Context) FortimanagerDVMInstallDevOutput {
 	return o
+}
+
+func (o FortimanagerDVMInstallDevOutput) Adom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerDVMInstallDev) pulumi.StringPtrOutput { return v.Adom }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerDVMInstallDevOutput) TargetDevname() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerDVMInstallDev) pulumi.StringOutput { return v.TargetDevname }).(pulumi.StringOutput)
+}
+
+// Timeout for installing the script to the target, default: 3 minutes
+func (o FortimanagerDVMInstallDevOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FortimanagerDVMInstallDev) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
+}
+
+func (o FortimanagerDVMInstallDevOutput) Vdom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerDVMInstallDev) pulumi.StringPtrOutput { return v.Vdom }).(pulumi.StringPtrOutput)
 }
 
 type FortimanagerDVMInstallDevArrayOutput struct{ *pulumi.OutputState }

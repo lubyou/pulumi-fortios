@@ -4,30 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.FirewallPolicy`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const sample1 = fortios.GetFirewallPolicyList({});
- * export const output1 = sample1;
- * const sample2 = fortios.GetFirewallPolicyList({
- *     filter: "schedule==always&action==accept,action==deny",
- * });
- * export const sample2Output = sample2.then(sample2 => sample2.policyidlists);
- * ```
- */
 export function getFirewallPolicyList(args?: GetFirewallPolicyListArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallPolicyListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallPolicyList:GetFirewallPolicyList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -39,9 +19,6 @@ export function getFirewallPolicyList(args?: GetFirewallPolicyListArgs, opts?: p
  */
 export interface GetFirewallPolicyListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -54,15 +31,11 @@ export interface GetFirewallPolicyListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.FirewallPolicy`.
-     */
     readonly policyidlists: number[];
     readonly vdomparam?: string;
 }
-
 export function getFirewallPolicyListOutput(args?: GetFirewallPolicyListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallPolicyListResult> {
-    return pulumi.output(args).apply(a => getFirewallPolicyList(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallPolicyList(a, opts))
 }
 
 /**
@@ -70,8 +43,5 @@ export function getFirewallPolicyListOutput(args?: GetFirewallPolicyListOutputAr
  */
 export interface GetFirewallPolicyListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

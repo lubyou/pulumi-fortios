@@ -10,70 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure system probe response.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemProbeResponse(ctx, "trname", &fortios.SystemProbeResponseArgs{
-// 			HttpProbeValue: pulumi.String("OK"),
-// 			Mode:           pulumi.String("none"),
-// 			Port:           pulumi.Int(8008),
-// 			SecurityMode:   pulumi.String("none"),
-// 			Timeout:        pulumi.Int(300),
-// 			TtlMode:        pulumi.String("retain"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System ProbeResponse can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemProbeResponse:SystemProbeResponse labelname SystemProbeResponse
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemProbeResponse:SystemProbeResponse labelname SystemProbeResponse
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemProbeResponse struct {
 	pulumi.CustomResourceState
 
-	// Value to respond to the monitoring server.
-	HttpProbeValue pulumi.StringOutput `pulumi:"httpProbeValue"`
-	// SLA response mode. Valid values: `none`, `http-probe`, `twamp`.
-	Mode pulumi.StringOutput `pulumi:"mode"`
-	// Twamp respondor password in authentication mode
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Port number to response.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Twamp respondor security mode. Valid values: `none`, `authentication`.
-	SecurityMode pulumi.StringOutput `pulumi:"securityMode"`
-	// An inactivity timer for a twamp test session.
-	Timeout pulumi.IntOutput `pulumi:"timeout"`
-	// Mode for TWAMP packet TTL modification. Valid values: `reinit`, `decrease`, `retain`.
-	TtlMode pulumi.StringOutput `pulumi:"ttlMode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	HttpProbeValue pulumi.StringOutput    `pulumi:"httpProbeValue"`
+	Mode           pulumi.StringOutput    `pulumi:"mode"`
+	Password       pulumi.StringPtrOutput `pulumi:"password"`
+	Port           pulumi.IntOutput       `pulumi:"port"`
+	SecurityMode   pulumi.StringOutput    `pulumi:"securityMode"`
+	Timeout        pulumi.IntOutput       `pulumi:"timeout"`
+	TtlMode        pulumi.StringOutput    `pulumi:"ttlMode"`
+	Vdomparam      pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemProbeResponse registers a new resource with the given unique name, arguments, and options.
@@ -83,6 +30,13 @@ func NewSystemProbeResponse(ctx *pulumi.Context,
 		args = &SystemProbeResponseArgs{}
 	}
 
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemProbeResponse
 	err := ctx.RegisterResource("fortios:index/systemProbeResponse:SystemProbeResponse", name, args, &resource, opts...)
@@ -106,41 +60,25 @@ func GetSystemProbeResponse(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemProbeResponse resources.
 type systemProbeResponseState struct {
-	// Value to respond to the monitoring server.
 	HttpProbeValue *string `pulumi:"httpProbeValue"`
-	// SLA response mode. Valid values: `none`, `http-probe`, `twamp`.
-	Mode *string `pulumi:"mode"`
-	// Twamp respondor password in authentication mode
-	Password *string `pulumi:"password"`
-	// Port number to response.
-	Port *int `pulumi:"port"`
-	// Twamp respondor security mode. Valid values: `none`, `authentication`.
-	SecurityMode *string `pulumi:"securityMode"`
-	// An inactivity timer for a twamp test session.
-	Timeout *int `pulumi:"timeout"`
-	// Mode for TWAMP packet TTL modification. Valid values: `reinit`, `decrease`, `retain`.
-	TtlMode *string `pulumi:"ttlMode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Mode           *string `pulumi:"mode"`
+	Password       *string `pulumi:"password"`
+	Port           *int    `pulumi:"port"`
+	SecurityMode   *string `pulumi:"securityMode"`
+	Timeout        *int    `pulumi:"timeout"`
+	TtlMode        *string `pulumi:"ttlMode"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 type SystemProbeResponseState struct {
-	// Value to respond to the monitoring server.
 	HttpProbeValue pulumi.StringPtrInput
-	// SLA response mode. Valid values: `none`, `http-probe`, `twamp`.
-	Mode pulumi.StringPtrInput
-	// Twamp respondor password in authentication mode
-	Password pulumi.StringPtrInput
-	// Port number to response.
-	Port pulumi.IntPtrInput
-	// Twamp respondor security mode. Valid values: `none`, `authentication`.
-	SecurityMode pulumi.StringPtrInput
-	// An inactivity timer for a twamp test session.
-	Timeout pulumi.IntPtrInput
-	// Mode for TWAMP packet TTL modification. Valid values: `reinit`, `decrease`, `retain`.
-	TtlMode pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Mode           pulumi.StringPtrInput
+	Password       pulumi.StringPtrInput
+	Port           pulumi.IntPtrInput
+	SecurityMode   pulumi.StringPtrInput
+	Timeout        pulumi.IntPtrInput
+	TtlMode        pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (SystemProbeResponseState) ElementType() reflect.Type {
@@ -148,42 +86,26 @@ func (SystemProbeResponseState) ElementType() reflect.Type {
 }
 
 type systemProbeResponseArgs struct {
-	// Value to respond to the monitoring server.
 	HttpProbeValue *string `pulumi:"httpProbeValue"`
-	// SLA response mode. Valid values: `none`, `http-probe`, `twamp`.
-	Mode *string `pulumi:"mode"`
-	// Twamp respondor password in authentication mode
-	Password *string `pulumi:"password"`
-	// Port number to response.
-	Port *int `pulumi:"port"`
-	// Twamp respondor security mode. Valid values: `none`, `authentication`.
-	SecurityMode *string `pulumi:"securityMode"`
-	// An inactivity timer for a twamp test session.
-	Timeout *int `pulumi:"timeout"`
-	// Mode for TWAMP packet TTL modification. Valid values: `reinit`, `decrease`, `retain`.
-	TtlMode *string `pulumi:"ttlMode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Mode           *string `pulumi:"mode"`
+	Password       *string `pulumi:"password"`
+	Port           *int    `pulumi:"port"`
+	SecurityMode   *string `pulumi:"securityMode"`
+	Timeout        *int    `pulumi:"timeout"`
+	TtlMode        *string `pulumi:"ttlMode"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemProbeResponse resource.
 type SystemProbeResponseArgs struct {
-	// Value to respond to the monitoring server.
 	HttpProbeValue pulumi.StringPtrInput
-	// SLA response mode. Valid values: `none`, `http-probe`, `twamp`.
-	Mode pulumi.StringPtrInput
-	// Twamp respondor password in authentication mode
-	Password pulumi.StringPtrInput
-	// Port number to response.
-	Port pulumi.IntPtrInput
-	// Twamp respondor security mode. Valid values: `none`, `authentication`.
-	SecurityMode pulumi.StringPtrInput
-	// An inactivity timer for a twamp test session.
-	Timeout pulumi.IntPtrInput
-	// Mode for TWAMP packet TTL modification. Valid values: `reinit`, `decrease`, `retain`.
-	TtlMode pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Mode           pulumi.StringPtrInput
+	Password       pulumi.StringPtrInput
+	Port           pulumi.IntPtrInput
+	SecurityMode   pulumi.StringPtrInput
+	Timeout        pulumi.IntPtrInput
+	TtlMode        pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (SystemProbeResponseArgs) ElementType() reflect.Type {
@@ -212,7 +134,7 @@ func (i *SystemProbeResponse) ToSystemProbeResponseOutputWithContext(ctx context
 // SystemProbeResponseArrayInput is an input type that accepts SystemProbeResponseArray and SystemProbeResponseArrayOutput values.
 // You can construct a concrete instance of `SystemProbeResponseArrayInput` via:
 //
-//          SystemProbeResponseArray{ SystemProbeResponseArgs{...} }
+//	SystemProbeResponseArray{ SystemProbeResponseArgs{...} }
 type SystemProbeResponseArrayInput interface {
 	pulumi.Input
 
@@ -237,7 +159,7 @@ func (i SystemProbeResponseArray) ToSystemProbeResponseArrayOutputWithContext(ct
 // SystemProbeResponseMapInput is an input type that accepts SystemProbeResponseMap and SystemProbeResponseMapOutput values.
 // You can construct a concrete instance of `SystemProbeResponseMapInput` via:
 //
-//          SystemProbeResponseMap{ "key": SystemProbeResponseArgs{...} }
+//	SystemProbeResponseMap{ "key": SystemProbeResponseArgs{...} }
 type SystemProbeResponseMapInput interface {
 	pulumi.Input
 
@@ -271,6 +193,38 @@ func (o SystemProbeResponseOutput) ToSystemProbeResponseOutput() SystemProbeResp
 
 func (o SystemProbeResponseOutput) ToSystemProbeResponseOutputWithContext(ctx context.Context) SystemProbeResponseOutput {
 	return o
+}
+
+func (o SystemProbeResponseOutput) HttpProbeValue() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemProbeResponse) pulumi.StringOutput { return v.HttpProbeValue }).(pulumi.StringOutput)
+}
+
+func (o SystemProbeResponseOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemProbeResponse) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o SystemProbeResponseOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemProbeResponse) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemProbeResponseOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemProbeResponse) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o SystemProbeResponseOutput) SecurityMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemProbeResponse) pulumi.StringOutput { return v.SecurityMode }).(pulumi.StringOutput)
+}
+
+func (o SystemProbeResponseOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemProbeResponse) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
+}
+
+func (o SystemProbeResponseOutput) TtlMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemProbeResponse) pulumi.StringOutput { return v.TtlMode }).(pulumi.StringOutput)
+}
+
+func (o SystemProbeResponseOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemProbeResponse) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemProbeResponseArrayOutput struct{ *pulumi.OutputState }

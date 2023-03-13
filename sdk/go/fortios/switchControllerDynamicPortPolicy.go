@@ -10,38 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Dynamic port policy to be applied on the managed FortiSwitch ports through DPP device. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// SwitchController DynamicPortPolicy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerDynamicPortPolicy:SwitchControllerDynamicPortPolicy labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerDynamicPortPolicy:SwitchControllerDynamicPortPolicy labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerDynamicPortPolicy struct {
 	pulumi.CustomResourceState
 
-	// Description for the policy.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// FortiLink interface for which this Dynamic port policy belongs to.
-	Fortilink pulumi.StringOutput `pulumi:"fortilink"`
-	// Policy name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Port policies with matching criteria and actions. The structure of `policy` block is documented below.
-	Policies SwitchControllerDynamicPortPolicyPolicyArrayOutput `pulumi:"policies"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Description         pulumi.StringOutput                                `pulumi:"description"`
+	DynamicSortSubtable pulumi.StringPtrOutput                             `pulumi:"dynamicSortSubtable"`
+	Fortilink           pulumi.StringOutput                                `pulumi:"fortilink"`
+	Name                pulumi.StringOutput                                `pulumi:"name"`
+	Policies            SwitchControllerDynamicPortPolicyPolicyArrayOutput `pulumi:"policies"`
+	Vdomparam           pulumi.StringPtrOutput                             `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerDynamicPortPolicy registers a new resource with the given unique name, arguments, and options.
@@ -74,33 +51,21 @@ func GetSwitchControllerDynamicPortPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerDynamicPortPolicy resources.
 type switchControllerDynamicPortPolicyState struct {
-	// Description for the policy.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// FortiLink interface for which this Dynamic port policy belongs to.
-	Fortilink *string `pulumi:"fortilink"`
-	// Policy name.
-	Name *string `pulumi:"name"`
-	// Port policies with matching criteria and actions. The structure of `policy` block is documented below.
-	Policies []SwitchControllerDynamicPortPolicyPolicy `pulumi:"policies"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Description         *string                                   `pulumi:"description"`
+	DynamicSortSubtable *string                                   `pulumi:"dynamicSortSubtable"`
+	Fortilink           *string                                   `pulumi:"fortilink"`
+	Name                *string                                   `pulumi:"name"`
+	Policies            []SwitchControllerDynamicPortPolicyPolicy `pulumi:"policies"`
+	Vdomparam           *string                                   `pulumi:"vdomparam"`
 }
 
 type SwitchControllerDynamicPortPolicyState struct {
-	// Description for the policy.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// FortiLink interface for which this Dynamic port policy belongs to.
-	Fortilink pulumi.StringPtrInput
-	// Policy name.
-	Name pulumi.StringPtrInput
-	// Port policies with matching criteria and actions. The structure of `policy` block is documented below.
-	Policies SwitchControllerDynamicPortPolicyPolicyArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fortilink           pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Policies            SwitchControllerDynamicPortPolicyPolicyArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerDynamicPortPolicyState) ElementType() reflect.Type {
@@ -108,34 +73,22 @@ func (SwitchControllerDynamicPortPolicyState) ElementType() reflect.Type {
 }
 
 type switchControllerDynamicPortPolicyArgs struct {
-	// Description for the policy.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// FortiLink interface for which this Dynamic port policy belongs to.
-	Fortilink *string `pulumi:"fortilink"`
-	// Policy name.
-	Name *string `pulumi:"name"`
-	// Port policies with matching criteria and actions. The structure of `policy` block is documented below.
-	Policies []SwitchControllerDynamicPortPolicyPolicy `pulumi:"policies"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Description         *string                                   `pulumi:"description"`
+	DynamicSortSubtable *string                                   `pulumi:"dynamicSortSubtable"`
+	Fortilink           *string                                   `pulumi:"fortilink"`
+	Name                *string                                   `pulumi:"name"`
+	Policies            []SwitchControllerDynamicPortPolicyPolicy `pulumi:"policies"`
+	Vdomparam           *string                                   `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerDynamicPortPolicy resource.
 type SwitchControllerDynamicPortPolicyArgs struct {
-	// Description for the policy.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// FortiLink interface for which this Dynamic port policy belongs to.
-	Fortilink pulumi.StringPtrInput
-	// Policy name.
-	Name pulumi.StringPtrInput
-	// Port policies with matching criteria and actions. The structure of `policy` block is documented below.
-	Policies SwitchControllerDynamicPortPolicyPolicyArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fortilink           pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Policies            SwitchControllerDynamicPortPolicyPolicyArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerDynamicPortPolicyArgs) ElementType() reflect.Type {
@@ -164,7 +117,7 @@ func (i *SwitchControllerDynamicPortPolicy) ToSwitchControllerDynamicPortPolicyO
 // SwitchControllerDynamicPortPolicyArrayInput is an input type that accepts SwitchControllerDynamicPortPolicyArray and SwitchControllerDynamicPortPolicyArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerDynamicPortPolicyArrayInput` via:
 //
-//          SwitchControllerDynamicPortPolicyArray{ SwitchControllerDynamicPortPolicyArgs{...} }
+//	SwitchControllerDynamicPortPolicyArray{ SwitchControllerDynamicPortPolicyArgs{...} }
 type SwitchControllerDynamicPortPolicyArrayInput interface {
 	pulumi.Input
 
@@ -189,7 +142,7 @@ func (i SwitchControllerDynamicPortPolicyArray) ToSwitchControllerDynamicPortPol
 // SwitchControllerDynamicPortPolicyMapInput is an input type that accepts SwitchControllerDynamicPortPolicyMap and SwitchControllerDynamicPortPolicyMapOutput values.
 // You can construct a concrete instance of `SwitchControllerDynamicPortPolicyMapInput` via:
 //
-//          SwitchControllerDynamicPortPolicyMap{ "key": SwitchControllerDynamicPortPolicyArgs{...} }
+//	SwitchControllerDynamicPortPolicyMap{ "key": SwitchControllerDynamicPortPolicyArgs{...} }
 type SwitchControllerDynamicPortPolicyMapInput interface {
 	pulumi.Input
 
@@ -223,6 +176,32 @@ func (o SwitchControllerDynamicPortPolicyOutput) ToSwitchControllerDynamicPortPo
 
 func (o SwitchControllerDynamicPortPolicyOutput) ToSwitchControllerDynamicPortPolicyOutputWithContext(ctx context.Context) SwitchControllerDynamicPortPolicyOutput {
 	return o
+}
+
+func (o SwitchControllerDynamicPortPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerDynamicPortPolicy) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerDynamicPortPolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerDynamicPortPolicy) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerDynamicPortPolicyOutput) Fortilink() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerDynamicPortPolicy) pulumi.StringOutput { return v.Fortilink }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerDynamicPortPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerDynamicPortPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerDynamicPortPolicyOutput) Policies() SwitchControllerDynamicPortPolicyPolicyArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerDynamicPortPolicy) SwitchControllerDynamicPortPolicyPolicyArrayOutput {
+		return v.Policies
+	}).(SwitchControllerDynamicPortPolicyPolicyArrayOutput)
+}
+
+func (o SwitchControllerDynamicPortPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerDynamicPortPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerDynamicPortPolicyArrayOutput struct{ *pulumi.OutputState }

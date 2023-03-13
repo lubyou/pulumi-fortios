@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios router communitylist
 func LookupRouterCommunityList(ctx *pulumi.Context, args *LookupRouterCommunityListArgs, opts ...pulumi.InvokeOption) (*LookupRouterCommunityListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterCommunityListResult
@@ -23,23 +22,18 @@ func LookupRouterCommunityList(ctx *pulumi.Context, args *LookupRouterCommunityL
 
 // A collection of arguments for invoking GetRouterCommunityList.
 type LookupRouterCommunityListArgs struct {
-	// Specify the name of the desired router communitylist.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetRouterCommunityList.
 type LookupRouterCommunityListResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Community list name.
-	Name string `pulumi:"name"`
-	// Community list rule. The structure of `rule` block is documented below.
-	Rules []GetRouterCommunityListRule `pulumi:"rules"`
-	// Community list type (standard or expanded).
-	Type      string  `pulumi:"type"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id        string                       `pulumi:"id"`
+	Name      string                       `pulumi:"name"`
+	Rules     []GetRouterCommunityListRule `pulumi:"rules"`
+	Type      string                       `pulumi:"type"`
+	Vdomparam *string                      `pulumi:"vdomparam"`
 }
 
 func LookupRouterCommunityListOutput(ctx *pulumi.Context, args LookupRouterCommunityListOutputArgs, opts ...pulumi.InvokeOption) LookupRouterCommunityListResultOutput {
@@ -57,9 +51,7 @@ func LookupRouterCommunityListOutput(ctx *pulumi.Context, args LookupRouterCommu
 
 // A collection of arguments for invoking GetRouterCommunityList.
 type LookupRouterCommunityListOutputArgs struct {
-	// Specify the name of the desired router communitylist.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -87,17 +79,14 @@ func (o LookupRouterCommunityListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterCommunityListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Community list name.
 func (o LookupRouterCommunityListResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterCommunityListResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Community list rule. The structure of `rule` block is documented below.
 func (o LookupRouterCommunityListResultOutput) Rules() GetRouterCommunityListRuleArrayOutput {
 	return o.ApplyT(func(v LookupRouterCommunityListResult) []GetRouterCommunityListRule { return v.Rules }).(GetRouterCommunityListRuleArrayOutput)
 }
 
-// Community list type (standard or expanded).
 func (o LookupRouterCommunityListResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterCommunityListResult) string { return v.Type }).(pulumi.StringOutput)
 }

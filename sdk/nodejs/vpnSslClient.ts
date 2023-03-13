@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * client Applies to FortiOS Version `>= 7.0.1`.
- *
- * ## Import
- *
- * VpnSsl Client can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnSslClient:VpnSslClient labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnSslClient:VpnSslClient labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VpnSslClient extends pulumi.CustomResource {
     /**
      * Get an existing VpnSslClient resource's state with the given name, ID, and optional extra
@@ -51,65 +32,21 @@ export class VpnSslClient extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpnSslClient.__pulumiType;
     }
 
-    /**
-     * Certificate to offer to SSL-VPN server if it requests one.
-     */
     public readonly certificate!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
+    public readonly classId!: pulumi.Output<number>;
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Distance for routes added by SSL-VPN (1 - 255).
-     */
     public readonly distance!: pulumi.Output<number>;
-    /**
-     * SSL interface to send/receive traffic over.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * SSL-VPN tunnel name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Authenticate peer's certificate with the peer/peergrp.
-     */
     public readonly peer!: pulumi.Output<string>;
-    /**
-     * SSL-VPN server port.
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Priority for routes added by SSL-VPN (0 - 4294967295).
-     */
     public readonly priority!: pulumi.Output<number>;
-    /**
-     * Pre-shared secret to authenticate with the server (ASCII string or hexadecimal encoded with a leading 0x).
-     */
     public readonly psk!: pulumi.Output<string | undefined>;
-    /**
-     * Realm name configured on SSL-VPN server.
-     */
     public readonly realm!: pulumi.Output<string>;
-    /**
-     * IPv4, IPv6 or DNS address of the SSL-VPN server.
-     */
     public readonly server!: pulumi.Output<string>;
-    /**
-     * IPv4 or IPv6 address to use as a source for the SSL-VPN connection to the server.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Enable/disable this SSL-VPN client configuration. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Username to offer to the peer to authenticate the client.
-     */
     public readonly user!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -126,6 +63,7 @@ export class VpnSslClient extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as VpnSslClientState | undefined;
             resourceInputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["classId"] = state ? state.classId : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["distance"] = state ? state.distance : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
@@ -143,6 +81,7 @@ export class VpnSslClient extends pulumi.CustomResource {
         } else {
             const args = argsOrState as VpnSslClientArgs | undefined;
             resourceInputs["certificate"] = args ? args.certificate : undefined;
+            resourceInputs["classId"] = args ? args.classId : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["distance"] = args ? args.distance : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
@@ -167,65 +106,21 @@ export class VpnSslClient extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnSslClient resources.
  */
 export interface VpnSslClientState {
-    /**
-     * Certificate to offer to SSL-VPN server if it requests one.
-     */
     certificate?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
+    classId?: pulumi.Input<number>;
     comment?: pulumi.Input<string>;
-    /**
-     * Distance for routes added by SSL-VPN (1 - 255).
-     */
     distance?: pulumi.Input<number>;
-    /**
-     * SSL interface to send/receive traffic over.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * SSL-VPN tunnel name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Authenticate peer's certificate with the peer/peergrp.
-     */
     peer?: pulumi.Input<string>;
-    /**
-     * SSL-VPN server port.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Priority for routes added by SSL-VPN (0 - 4294967295).
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * Pre-shared secret to authenticate with the server (ASCII string or hexadecimal encoded with a leading 0x).
-     */
     psk?: pulumi.Input<string>;
-    /**
-     * Realm name configured on SSL-VPN server.
-     */
     realm?: pulumi.Input<string>;
-    /**
-     * IPv4, IPv6 or DNS address of the SSL-VPN server.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * IPv4 or IPv6 address to use as a source for the SSL-VPN connection to the server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable this SSL-VPN client configuration. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Username to offer to the peer to authenticate the client.
-     */
     user?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -233,64 +128,20 @@ export interface VpnSslClientState {
  * The set of arguments for constructing a VpnSslClient resource.
  */
 export interface VpnSslClientArgs {
-    /**
-     * Certificate to offer to SSL-VPN server if it requests one.
-     */
     certificate?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
+    classId?: pulumi.Input<number>;
     comment?: pulumi.Input<string>;
-    /**
-     * Distance for routes added by SSL-VPN (1 - 255).
-     */
     distance?: pulumi.Input<number>;
-    /**
-     * SSL interface to send/receive traffic over.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * SSL-VPN tunnel name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Authenticate peer's certificate with the peer/peergrp.
-     */
     peer?: pulumi.Input<string>;
-    /**
-     * SSL-VPN server port.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Priority for routes added by SSL-VPN (0 - 4294967295).
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * Pre-shared secret to authenticate with the server (ASCII string or hexadecimal encoded with a leading 0x).
-     */
     psk?: pulumi.Input<string>;
-    /**
-     * Realm name configured on SSL-VPN server.
-     */
     realm?: pulumi.Input<string>;
-    /**
-     * IPv4, IPv6 or DNS address of the SSL-VPN server.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * IPv4 or IPv6 address to use as a source for the SSL-VPN connection to the server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable this SSL-VPN client configuration. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Username to offer to the peer to authenticate the client.
-     */
     user?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

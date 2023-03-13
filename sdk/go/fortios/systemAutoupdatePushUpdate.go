@@ -7,65 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure push updates. Applies to FortiOS Version `<= 7.0.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAutoupdatePushUpdate(ctx, "trname", &fortios.SystemAutoupdatePushUpdateArgs{
-// 			Address:  pulumi.String("0.0.0.0"),
-// 			Override: pulumi.String("disable"),
-// 			Port:     pulumi.Int(9443),
-// 			Status:   pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SystemAutoupdate PushUpdate can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutoupdatePushUpdate:SystemAutoupdatePushUpdate labelname SystemAutoupdatePushUpdate
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutoupdatePushUpdate:SystemAutoupdatePushUpdate labelname SystemAutoupdatePushUpdate
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemAutoupdatePushUpdate struct {
 	pulumi.CustomResourceState
 
-	// Push update override server.
-	Address pulumi.StringOutput `pulumi:"address"`
-	// Enable/disable push update override server. Valid values: `enable`, `disable`.
-	Override pulumi.StringOutput `pulumi:"override"`
-	// Push update override port. (Do not overlap with other service ports)
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Enable/disable push updates. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Address   pulumi.StringOutput    `pulumi:"address"`
+	Override  pulumi.StringOutput    `pulumi:"override"`
+	Port      pulumi.IntOutput       `pulumi:"port"`
+	Status    pulumi.StringOutput    `pulumi:"status"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -111,28 +63,18 @@ func GetSystemAutoupdatePushUpdate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAutoupdatePushUpdate resources.
 type systemAutoupdatePushUpdateState struct {
-	// Push update override server.
-	Address *string `pulumi:"address"`
-	// Enable/disable push update override server. Valid values: `enable`, `disable`.
-	Override *string `pulumi:"override"`
-	// Push update override port. (Do not overlap with other service ports)
-	Port *int `pulumi:"port"`
-	// Enable/disable push updates. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Address   *string `pulumi:"address"`
+	Override  *string `pulumi:"override"`
+	Port      *int    `pulumi:"port"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemAutoupdatePushUpdateState struct {
-	// Push update override server.
-	Address pulumi.StringPtrInput
-	// Enable/disable push update override server. Valid values: `enable`, `disable`.
-	Override pulumi.StringPtrInput
-	// Push update override port. (Do not overlap with other service ports)
-	Port pulumi.IntPtrInput
-	// Enable/disable push updates. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Address   pulumi.StringPtrInput
+	Override  pulumi.StringPtrInput
+	Port      pulumi.IntPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -141,29 +83,19 @@ func (SystemAutoupdatePushUpdateState) ElementType() reflect.Type {
 }
 
 type systemAutoupdatePushUpdateArgs struct {
-	// Push update override server.
-	Address string `pulumi:"address"`
-	// Enable/disable push update override server. Valid values: `enable`, `disable`.
-	Override string `pulumi:"override"`
-	// Push update override port. (Do not overlap with other service ports)
-	Port int `pulumi:"port"`
-	// Enable/disable push updates. Valid values: `enable`, `disable`.
-	Status string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Address   string  `pulumi:"address"`
+	Override  string  `pulumi:"override"`
+	Port      int     `pulumi:"port"`
+	Status    string  `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemAutoupdatePushUpdate resource.
 type SystemAutoupdatePushUpdateArgs struct {
-	// Push update override server.
-	Address pulumi.StringInput
-	// Enable/disable push update override server. Valid values: `enable`, `disable`.
-	Override pulumi.StringInput
-	// Push update override port. (Do not overlap with other service ports)
-	Port pulumi.IntInput
-	// Enable/disable push updates. Valid values: `enable`, `disable`.
-	Status pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Address   pulumi.StringInput
+	Override  pulumi.StringInput
+	Port      pulumi.IntInput
+	Status    pulumi.StringInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -193,7 +125,7 @@ func (i *SystemAutoupdatePushUpdate) ToSystemAutoupdatePushUpdateOutputWithConte
 // SystemAutoupdatePushUpdateArrayInput is an input type that accepts SystemAutoupdatePushUpdateArray and SystemAutoupdatePushUpdateArrayOutput values.
 // You can construct a concrete instance of `SystemAutoupdatePushUpdateArrayInput` via:
 //
-//          SystemAutoupdatePushUpdateArray{ SystemAutoupdatePushUpdateArgs{...} }
+//	SystemAutoupdatePushUpdateArray{ SystemAutoupdatePushUpdateArgs{...} }
 type SystemAutoupdatePushUpdateArrayInput interface {
 	pulumi.Input
 
@@ -218,7 +150,7 @@ func (i SystemAutoupdatePushUpdateArray) ToSystemAutoupdatePushUpdateArrayOutput
 // SystemAutoupdatePushUpdateMapInput is an input type that accepts SystemAutoupdatePushUpdateMap and SystemAutoupdatePushUpdateMapOutput values.
 // You can construct a concrete instance of `SystemAutoupdatePushUpdateMapInput` via:
 //
-//          SystemAutoupdatePushUpdateMap{ "key": SystemAutoupdatePushUpdateArgs{...} }
+//	SystemAutoupdatePushUpdateMap{ "key": SystemAutoupdatePushUpdateArgs{...} }
 type SystemAutoupdatePushUpdateMapInput interface {
 	pulumi.Input
 
@@ -252,6 +184,26 @@ func (o SystemAutoupdatePushUpdateOutput) ToSystemAutoupdatePushUpdateOutput() S
 
 func (o SystemAutoupdatePushUpdateOutput) ToSystemAutoupdatePushUpdateOutputWithContext(ctx context.Context) SystemAutoupdatePushUpdateOutput {
 	return o
+}
+
+func (o SystemAutoupdatePushUpdateOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoupdatePushUpdate) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoupdatePushUpdateOutput) Override() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoupdatePushUpdate) pulumi.StringOutput { return v.Override }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoupdatePushUpdateOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutoupdatePushUpdate) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o SystemAutoupdatePushUpdateOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoupdatePushUpdate) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoupdatePushUpdateOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutoupdatePushUpdate) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemAutoupdatePushUpdateArrayOutput struct{ *pulumi.OutputState }

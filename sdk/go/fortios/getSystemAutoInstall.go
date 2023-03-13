@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios system autoinstall
 func LookupSystemAutoInstall(ctx *pulumi.Context, args *LookupSystemAutoInstallArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutoInstallResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAutoInstallResult
@@ -23,20 +22,15 @@ func LookupSystemAutoInstall(ctx *pulumi.Context, args *LookupSystemAutoInstallA
 
 // A collection of arguments for invoking GetSystemAutoInstall.
 type LookupSystemAutoInstallArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemAutoInstall.
 type LookupSystemAutoInstallResult struct {
-	// Enable/disable auto install the config in USB disk.
 	AutoInstallConfig string `pulumi:"autoInstallConfig"`
-	// Enable/disable auto install the image in USB disk.
-	AutoInstallImage string `pulumi:"autoInstallImage"`
-	// Default config file name in USB disk.
+	AutoInstallImage  string `pulumi:"autoInstallImage"`
 	DefaultConfigFile string `pulumi:"defaultConfigFile"`
-	// Default image file name in USB disk.
-	DefaultImageFile string `pulumi:"defaultImageFile"`
+	DefaultImageFile  string `pulumi:"defaultImageFile"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -57,7 +51,6 @@ func LookupSystemAutoInstallOutput(ctx *pulumi.Context, args LookupSystemAutoIns
 
 // A collection of arguments for invoking GetSystemAutoInstall.
 type LookupSystemAutoInstallOutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -80,22 +73,18 @@ func (o LookupSystemAutoInstallResultOutput) ToLookupSystemAutoInstallResultOutp
 	return o
 }
 
-// Enable/disable auto install the config in USB disk.
 func (o LookupSystemAutoInstallResultOutput) AutoInstallConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAutoInstallResult) string { return v.AutoInstallConfig }).(pulumi.StringOutput)
 }
 
-// Enable/disable auto install the image in USB disk.
 func (o LookupSystemAutoInstallResultOutput) AutoInstallImage() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAutoInstallResult) string { return v.AutoInstallImage }).(pulumi.StringOutput)
 }
 
-// Default config file name in USB disk.
 func (o LookupSystemAutoInstallResultOutput) DefaultConfigFile() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAutoInstallResult) string { return v.DefaultConfigFile }).(pulumi.StringOutput)
 }
 
-// Default image file name in USB disk.
 func (o LookupSystemAutoInstallResultOutput) DefaultImageFile() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAutoInstallResult) string { return v.DefaultImageFile }).(pulumi.StringOutput)
 }

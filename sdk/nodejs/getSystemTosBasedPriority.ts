@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios system tosbasedpriority
- */
 export function getSystemTosBasedPriority(args: GetSystemTosBasedPriorityArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemTosBasedPriorityResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemTosBasedPriority:GetSystemTosBasedPriority", {
         "fosid": args.fosid,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getSystemTosBasedPriority(args: GetSystemTosBasedPriorityArgs, o
  * A collection of arguments for invoking GetSystemTosBasedPriority.
  */
 export interface GetSystemTosBasedPriorityArgs {
-    /**
-     * Specify the fosid of the desired system tosbasedpriority.
-     */
     fosid: number;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,39 +25,23 @@ export interface GetSystemTosBasedPriorityArgs {
  * A collection of values returned by GetSystemTosBasedPriority.
  */
 export interface GetSystemTosBasedPriorityResult {
-    /**
-     * Item ID.
-     */
     readonly fosid: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * ToS based priority level to low, medium or high (these priorities match firewall traffic shaping priorities) (default = medium).
-     */
     readonly priority: string;
-    /**
-     * Value of the ToS byte in the IP datagram header (0-15, 8: minimize delay, 4: maximize throughput, 2: maximize reliability, 1: minimize monetary cost, and 0: default service).
-     */
     readonly tos: number;
     readonly vdomparam?: string;
 }
-
 export function getSystemTosBasedPriorityOutput(args: GetSystemTosBasedPriorityOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemTosBasedPriorityResult> {
-    return pulumi.output(args).apply(a => getSystemTosBasedPriority(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemTosBasedPriority(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemTosBasedPriority.
  */
 export interface GetSystemTosBasedPriorityOutputArgs {
-    /**
-     * Specify the fosid of the desired system tosbasedpriority.
-     */
     fosid: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

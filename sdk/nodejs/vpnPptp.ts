@@ -4,41 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure PPTP.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.VpnPptp("trname", {
- *     eip: "1.1.1.22",
- *     ipMode: "range",
- *     localIp: "0.0.0.0",
- *     sip: "1.1.1.1",
- *     status: "enable",
- *     usrgrp: "Guest-group",
- * });
- * ```
- *
- * ## Import
- *
- * Vpn Pptp can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnPptp:VpnPptp labelname VpnPptp
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnPptp:VpnPptp labelname VpnPptp
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VpnPptp extends pulumi.CustomResource {
     /**
      * Get an existing VpnPptp resource's state with the given name, ID, and optional extra
@@ -67,33 +32,12 @@ export class VpnPptp extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpnPptp.__pulumiType;
     }
 
-    /**
-     * End IP.
-     */
     public readonly eip!: pulumi.Output<string>;
-    /**
-     * IP assignment mode for PPTP client. Valid values: `range`, `usrgrp`.
-     */
     public readonly ipMode!: pulumi.Output<string>;
-    /**
-     * Local IP to be used for peer's remote IP.
-     */
     public readonly localIp!: pulumi.Output<string>;
-    /**
-     * Start IP.
-     */
     public readonly sip!: pulumi.Output<string>;
-    /**
-     * Enable/disable FortiGate as a PPTP gateway. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * User group.
-     */
     public readonly usrgrp!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -138,33 +82,12 @@ export class VpnPptp extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnPptp resources.
  */
 export interface VpnPptpState {
-    /**
-     * End IP.
-     */
     eip?: pulumi.Input<string>;
-    /**
-     * IP assignment mode for PPTP client. Valid values: `range`, `usrgrp`.
-     */
     ipMode?: pulumi.Input<string>;
-    /**
-     * Local IP to be used for peer's remote IP.
-     */
     localIp?: pulumi.Input<string>;
-    /**
-     * Start IP.
-     */
     sip?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiGate as a PPTP gateway. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * User group.
-     */
     usrgrp?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -172,32 +95,11 @@ export interface VpnPptpState {
  * The set of arguments for constructing a VpnPptp resource.
  */
 export interface VpnPptpArgs {
-    /**
-     * End IP.
-     */
     eip?: pulumi.Input<string>;
-    /**
-     * IP assignment mode for PPTP client. Valid values: `range`, `usrgrp`.
-     */
     ipMode?: pulumi.Input<string>;
-    /**
-     * Local IP to be used for peer's remote IP.
-     */
     localIp?: pulumi.Input<string>;
-    /**
-     * Start IP.
-     */
     sip?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiGate as a PPTP gateway. Valid values: `enable`, `disable`.
-     */
     status: pulumi.Input<string>;
-    /**
-     * User group.
-     */
     usrgrp?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

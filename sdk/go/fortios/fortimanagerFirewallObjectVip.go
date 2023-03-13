@@ -10,70 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports Create/Read/Update/Delete firewall object virtual ip for FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerFirewallObjectVip(ctx, "test1", &fortios.FortimanagerFirewallObjectVipArgs{
-// 			ArpReply:      pulumi.String("enable"),
-// 			Comment:       pulumi.String("test obj vip"),
-// 			ConfigDefault: pulumi.String("enable"),
-// 			ExtIntf:       pulumi.String("any"),
-// 			ExtIp:         pulumi.String("2.2.2.2"),
-// 			MappedIp:      pulumi.String("1.1.1.1"),
-// 			Type:          pulumi.String("static-nat"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewFortimanagerFirewallObjectVip(ctx, "test2", &fortios.FortimanagerFirewallObjectVipArgs{
-// 			ArpReply:      pulumi.String("disable"),
-// 			Comment:       pulumi.String("test obj vip"),
-// 			ConfigDefault: pulumi.String("enable"),
-// 			ExtIp:         pulumi.String("2.2.2.2-2.2.2.100"),
-// 			MappedAddr:    pulumi.String("update.microsoft.com"),
-// 			Type:          pulumi.String("fqdn"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerFirewallObjectVip struct {
 	pulumi.CustomResourceState
 
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrOutput `pulumi:"adom"`
-	// Enable to respond to ARP requests for this virtual IP address. Enabled by default.
-	ArpReply pulumi.StringPtrOutput `pulumi:"arpReply"`
-	// Comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Enable/Disable config default value. enabled by default.
+	Adom          pulumi.StringPtrOutput `pulumi:"adom"`
+	ArpReply      pulumi.StringPtrOutput `pulumi:"arpReply"`
+	Comment       pulumi.StringPtrOutput `pulumi:"comment"`
 	ConfigDefault pulumi.StringPtrOutput `pulumi:"configDefault"`
-	// Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-	ExtIntf pulumi.StringPtrOutput `pulumi:"extIntf"`
-	// IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-	ExtIp pulumi.StringPtrOutput `pulumi:"extIp"`
-	// Mapped FQDN address name.
-	MappedAddr pulumi.StringPtrOutput `pulumi:"mappedAddr"`
-	// Mapped Ip address.
-	MappedIp pulumi.StringPtrOutput `pulumi:"mappedIp"`
-	// Virtual IP name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Virtual IP type, Enum: ["static-nat", "dns-translation", "fqdn"]
-	Type pulumi.StringPtrOutput `pulumi:"type"`
+	ExtIntf       pulumi.StringPtrOutput `pulumi:"extIntf"`
+	ExtIp         pulumi.StringPtrOutput `pulumi:"extIp"`
+	MappedAddr    pulumi.StringPtrOutput `pulumi:"mappedAddr"`
+	MappedIp      pulumi.StringPtrOutput `pulumi:"mappedIp"`
+	Name          pulumi.StringOutput    `pulumi:"name"`
+	Type          pulumi.StringPtrOutput `pulumi:"type"`
 }
 
 // NewFortimanagerFirewallObjectVip registers a new resource with the given unique name, arguments, and options.
@@ -106,49 +55,29 @@ func GetFortimanagerFirewallObjectVip(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerFirewallObjectVip resources.
 type fortimanagerFirewallObjectVipState struct {
-	// ADOM name. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// Enable to respond to ARP requests for this virtual IP address. Enabled by default.
-	ArpReply *string `pulumi:"arpReply"`
-	// Comments.
-	Comment *string `pulumi:"comment"`
-	// Enable/Disable config default value. enabled by default.
+	Adom          *string `pulumi:"adom"`
+	ArpReply      *string `pulumi:"arpReply"`
+	Comment       *string `pulumi:"comment"`
 	ConfigDefault *string `pulumi:"configDefault"`
-	// Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-	ExtIntf *string `pulumi:"extIntf"`
-	// IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-	ExtIp *string `pulumi:"extIp"`
-	// Mapped FQDN address name.
-	MappedAddr *string `pulumi:"mappedAddr"`
-	// Mapped Ip address.
-	MappedIp *string `pulumi:"mappedIp"`
-	// Virtual IP name.
-	Name *string `pulumi:"name"`
-	// Virtual IP type, Enum: ["static-nat", "dns-translation", "fqdn"]
-	Type *string `pulumi:"type"`
+	ExtIntf       *string `pulumi:"extIntf"`
+	ExtIp         *string `pulumi:"extIp"`
+	MappedAddr    *string `pulumi:"mappedAddr"`
+	MappedIp      *string `pulumi:"mappedIp"`
+	Name          *string `pulumi:"name"`
+	Type          *string `pulumi:"type"`
 }
 
 type FortimanagerFirewallObjectVipState struct {
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// Enable to respond to ARP requests for this virtual IP address. Enabled by default.
-	ArpReply pulumi.StringPtrInput
-	// Comments.
-	Comment pulumi.StringPtrInput
-	// Enable/Disable config default value. enabled by default.
+	Adom          pulumi.StringPtrInput
+	ArpReply      pulumi.StringPtrInput
+	Comment       pulumi.StringPtrInput
 	ConfigDefault pulumi.StringPtrInput
-	// Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-	ExtIntf pulumi.StringPtrInput
-	// IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-	ExtIp pulumi.StringPtrInput
-	// Mapped FQDN address name.
-	MappedAddr pulumi.StringPtrInput
-	// Mapped Ip address.
-	MappedIp pulumi.StringPtrInput
-	// Virtual IP name.
-	Name pulumi.StringPtrInput
-	// Virtual IP type, Enum: ["static-nat", "dns-translation", "fqdn"]
-	Type pulumi.StringPtrInput
+	ExtIntf       pulumi.StringPtrInput
+	ExtIp         pulumi.StringPtrInput
+	MappedAddr    pulumi.StringPtrInput
+	MappedIp      pulumi.StringPtrInput
+	Name          pulumi.StringPtrInput
+	Type          pulumi.StringPtrInput
 }
 
 func (FortimanagerFirewallObjectVipState) ElementType() reflect.Type {
@@ -156,50 +85,30 @@ func (FortimanagerFirewallObjectVipState) ElementType() reflect.Type {
 }
 
 type fortimanagerFirewallObjectVipArgs struct {
-	// ADOM name. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// Enable to respond to ARP requests for this virtual IP address. Enabled by default.
-	ArpReply *string `pulumi:"arpReply"`
-	// Comments.
-	Comment *string `pulumi:"comment"`
-	// Enable/Disable config default value. enabled by default.
+	Adom          *string `pulumi:"adom"`
+	ArpReply      *string `pulumi:"arpReply"`
+	Comment       *string `pulumi:"comment"`
 	ConfigDefault *string `pulumi:"configDefault"`
-	// Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-	ExtIntf *string `pulumi:"extIntf"`
-	// IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-	ExtIp *string `pulumi:"extIp"`
-	// Mapped FQDN address name.
-	MappedAddr *string `pulumi:"mappedAddr"`
-	// Mapped Ip address.
-	MappedIp *string `pulumi:"mappedIp"`
-	// Virtual IP name.
-	Name *string `pulumi:"name"`
-	// Virtual IP type, Enum: ["static-nat", "dns-translation", "fqdn"]
-	Type *string `pulumi:"type"`
+	ExtIntf       *string `pulumi:"extIntf"`
+	ExtIp         *string `pulumi:"extIp"`
+	MappedAddr    *string `pulumi:"mappedAddr"`
+	MappedIp      *string `pulumi:"mappedIp"`
+	Name          *string `pulumi:"name"`
+	Type          *string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a FortimanagerFirewallObjectVip resource.
 type FortimanagerFirewallObjectVipArgs struct {
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// Enable to respond to ARP requests for this virtual IP address. Enabled by default.
-	ArpReply pulumi.StringPtrInput
-	// Comments.
-	Comment pulumi.StringPtrInput
-	// Enable/Disable config default value. enabled by default.
+	Adom          pulumi.StringPtrInput
+	ArpReply      pulumi.StringPtrInput
+	Comment       pulumi.StringPtrInput
 	ConfigDefault pulumi.StringPtrInput
-	// Interface connected to the source network that receives the packets that will be forwarded to the destination network.
-	ExtIntf pulumi.StringPtrInput
-	// IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-	ExtIp pulumi.StringPtrInput
-	// Mapped FQDN address name.
-	MappedAddr pulumi.StringPtrInput
-	// Mapped Ip address.
-	MappedIp pulumi.StringPtrInput
-	// Virtual IP name.
-	Name pulumi.StringPtrInput
-	// Virtual IP type, Enum: ["static-nat", "dns-translation", "fqdn"]
-	Type pulumi.StringPtrInput
+	ExtIntf       pulumi.StringPtrInput
+	ExtIp         pulumi.StringPtrInput
+	MappedAddr    pulumi.StringPtrInput
+	MappedIp      pulumi.StringPtrInput
+	Name          pulumi.StringPtrInput
+	Type          pulumi.StringPtrInput
 }
 
 func (FortimanagerFirewallObjectVipArgs) ElementType() reflect.Type {
@@ -228,7 +137,7 @@ func (i *FortimanagerFirewallObjectVip) ToFortimanagerFirewallObjectVipOutputWit
 // FortimanagerFirewallObjectVipArrayInput is an input type that accepts FortimanagerFirewallObjectVipArray and FortimanagerFirewallObjectVipArrayOutput values.
 // You can construct a concrete instance of `FortimanagerFirewallObjectVipArrayInput` via:
 //
-//          FortimanagerFirewallObjectVipArray{ FortimanagerFirewallObjectVipArgs{...} }
+//	FortimanagerFirewallObjectVipArray{ FortimanagerFirewallObjectVipArgs{...} }
 type FortimanagerFirewallObjectVipArrayInput interface {
 	pulumi.Input
 
@@ -253,7 +162,7 @@ func (i FortimanagerFirewallObjectVipArray) ToFortimanagerFirewallObjectVipArray
 // FortimanagerFirewallObjectVipMapInput is an input type that accepts FortimanagerFirewallObjectVipMap and FortimanagerFirewallObjectVipMapOutput values.
 // You can construct a concrete instance of `FortimanagerFirewallObjectVipMapInput` via:
 //
-//          FortimanagerFirewallObjectVipMap{ "key": FortimanagerFirewallObjectVipArgs{...} }
+//	FortimanagerFirewallObjectVipMap{ "key": FortimanagerFirewallObjectVipArgs{...} }
 type FortimanagerFirewallObjectVipMapInput interface {
 	pulumi.Input
 
@@ -287,6 +196,46 @@ func (o FortimanagerFirewallObjectVipOutput) ToFortimanagerFirewallObjectVipOutp
 
 func (o FortimanagerFirewallObjectVipOutput) ToFortimanagerFirewallObjectVipOutputWithContext(ctx context.Context) FortimanagerFirewallObjectVipOutput {
 	return o
+}
+
+func (o FortimanagerFirewallObjectVipOutput) Adom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectVip) pulumi.StringPtrOutput { return v.Adom }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectVipOutput) ArpReply() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectVip) pulumi.StringPtrOutput { return v.ArpReply }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectVipOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectVip) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectVipOutput) ConfigDefault() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectVip) pulumi.StringPtrOutput { return v.ConfigDefault }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectVipOutput) ExtIntf() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectVip) pulumi.StringPtrOutput { return v.ExtIntf }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectVipOutput) ExtIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectVip) pulumi.StringPtrOutput { return v.ExtIp }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectVipOutput) MappedAddr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectVip) pulumi.StringPtrOutput { return v.MappedAddr }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectVipOutput) MappedIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectVip) pulumi.StringPtrOutput { return v.MappedIp }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectVipOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectVip) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerFirewallObjectVipOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectVip) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 type FortimanagerFirewallObjectVipArrayOutput struct{ *pulumi.OutputState }

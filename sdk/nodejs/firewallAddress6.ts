@@ -2,47 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv6 firewall addresses.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallAddress6("trname", {
- *     cacheTtl: 0,
- *     color: 0,
- *     endIp: "::",
- *     host: "fdff:ffff::",
- *     hostType: "any",
- *     ip6: "fdff:ffff::/120",
- *     startIp: "fdff:ffff::",
- *     type: "ipprefix",
- *     visibility: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall Address6 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAddress6:FirewallAddress6 labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAddress6:FirewallAddress6 labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallAddress6 extends pulumi.CustomResource {
     /**
      * Get an existing FirewallAddress6 resource's state with the given name, ID, and optional extra
@@ -71,109 +34,34 @@ export class FirewallAddress6 extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallAddress6.__pulumiType;
     }
 
-    /**
-     * Minimal TTL of individual IPv6 addresses in FQDN cache.
-     */
     public readonly cacheTtl!: pulumi.Output<number>;
-    /**
-     * Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * IPv6 addresses associated to a specific country.
-     */
     public readonly country!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-     */
     public readonly endIp!: pulumi.Output<string>;
-    /**
-     * Last MAC address in the range.
-     */
     public readonly endMac!: pulumi.Output<string>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
+    public readonly epgName!: pulumi.Output<string>;
     public readonly fabricObject!: pulumi.Output<string>;
-    /**
-     * Fully qualified domain name.
-     */
     public readonly fqdn!: pulumi.Output<string>;
-    /**
-     * Host Address.
-     */
     public readonly host!: pulumi.Output<string>;
-    /**
-     * Host type. Valid values: `any`, `specific`.
-     */
     public readonly hostType!: pulumi.Output<string>;
-    /**
-     * IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-     */
     public readonly ip6!: pulumi.Output<string>;
-    /**
-     * IP address list. The structure of `list` block is documented below.
-     */
     public readonly lists!: pulumi.Output<outputs.FirewallAddress6List[] | undefined>;
-    /**
-     * MAC address ranges <start>[-<end>] separated by space.
-     */
     public readonly macaddrs!: pulumi.Output<outputs.FirewallAddress6Macaddr[] | undefined>;
-    /**
-     * Name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Object ID for NSX.
-     */
     public readonly objId!: pulumi.Output<string | undefined>;
-    /**
-     * SDN.
-     */
     public readonly sdn!: pulumi.Output<string>;
-    /**
-     * First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-     */
+    public readonly sdnTag!: pulumi.Output<string>;
     public readonly startIp!: pulumi.Output<string>;
-    /**
-     * First MAC address in the range.
-     */
     public readonly startMac!: pulumi.Output<string>;
-    /**
-     * IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-     */
     public readonly subnetSegments!: pulumi.Output<outputs.FirewallAddress6SubnetSegment[] | undefined>;
-    /**
-     * Config object tagging The structure of `tagging` block is documented below.
-     */
     public readonly taggings!: pulumi.Output<outputs.FirewallAddress6Tagging[] | undefined>;
-    /**
-     * IPv6 address template.
-     */
     public readonly template!: pulumi.Output<string>;
-    /**
-     * Subnet segment type. Valid values: `any`, `specific`.
-     */
+    public readonly tenant!: pulumi.Output<string>;
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable the visibility of the object in the GUI. Valid values: `enable`, `disable`.
-     */
     public readonly visibility!: pulumi.Output<string>;
 
     /**
@@ -196,6 +84,7 @@ export class FirewallAddress6 extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["endIp"] = state ? state.endIp : undefined;
             resourceInputs["endMac"] = state ? state.endMac : undefined;
+            resourceInputs["epgName"] = state ? state.epgName : undefined;
             resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
             resourceInputs["fqdn"] = state ? state.fqdn : undefined;
             resourceInputs["host"] = state ? state.host : undefined;
@@ -206,11 +95,13 @@ export class FirewallAddress6 extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["objId"] = state ? state.objId : undefined;
             resourceInputs["sdn"] = state ? state.sdn : undefined;
+            resourceInputs["sdnTag"] = state ? state.sdnTag : undefined;
             resourceInputs["startIp"] = state ? state.startIp : undefined;
             resourceInputs["startMac"] = state ? state.startMac : undefined;
             resourceInputs["subnetSegments"] = state ? state.subnetSegments : undefined;
             resourceInputs["taggings"] = state ? state.taggings : undefined;
             resourceInputs["template"] = state ? state.template : undefined;
+            resourceInputs["tenant"] = state ? state.tenant : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -224,6 +115,7 @@ export class FirewallAddress6 extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["endIp"] = args ? args.endIp : undefined;
             resourceInputs["endMac"] = args ? args.endMac : undefined;
+            resourceInputs["epgName"] = args ? args.epgName : undefined;
             resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
             resourceInputs["fqdn"] = args ? args.fqdn : undefined;
             resourceInputs["host"] = args ? args.host : undefined;
@@ -234,11 +126,13 @@ export class FirewallAddress6 extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["objId"] = args ? args.objId : undefined;
             resourceInputs["sdn"] = args ? args.sdn : undefined;
+            resourceInputs["sdnTag"] = args ? args.sdnTag : undefined;
             resourceInputs["startIp"] = args ? args.startIp : undefined;
             resourceInputs["startMac"] = args ? args.startMac : undefined;
             resourceInputs["subnetSegments"] = args ? args.subnetSegments : undefined;
             resourceInputs["taggings"] = args ? args.taggings : undefined;
             resourceInputs["template"] = args ? args.template : undefined;
+            resourceInputs["tenant"] = args ? args.tenant : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -253,109 +147,34 @@ export class FirewallAddress6 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallAddress6 resources.
  */
 export interface FirewallAddress6State {
-    /**
-     * Minimal TTL of individual IPv6 addresses in FQDN cache.
-     */
     cacheTtl?: pulumi.Input<number>;
-    /**
-     * Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * IPv6 addresses associated to a specific country.
-     */
     country?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-     */
     endIp?: pulumi.Input<string>;
-    /**
-     * Last MAC address in the range.
-     */
     endMac?: pulumi.Input<string>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
+    epgName?: pulumi.Input<string>;
     fabricObject?: pulumi.Input<string>;
-    /**
-     * Fully qualified domain name.
-     */
     fqdn?: pulumi.Input<string>;
-    /**
-     * Host Address.
-     */
     host?: pulumi.Input<string>;
-    /**
-     * Host type. Valid values: `any`, `specific`.
-     */
     hostType?: pulumi.Input<string>;
-    /**
-     * IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-     */
     ip6?: pulumi.Input<string>;
-    /**
-     * IP address list. The structure of `list` block is documented below.
-     */
     lists?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6List>[]>;
-    /**
-     * MAC address ranges <start>[-<end>] separated by space.
-     */
     macaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6Macaddr>[]>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Object ID for NSX.
-     */
     objId?: pulumi.Input<string>;
-    /**
-     * SDN.
-     */
     sdn?: pulumi.Input<string>;
-    /**
-     * First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-     */
+    sdnTag?: pulumi.Input<string>;
     startIp?: pulumi.Input<string>;
-    /**
-     * First MAC address in the range.
-     */
     startMac?: pulumi.Input<string>;
-    /**
-     * IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-     */
     subnetSegments?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6SubnetSegment>[]>;
-    /**
-     * Config object tagging The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6Tagging>[]>;
-    /**
-     * IPv6 address template.
-     */
     template?: pulumi.Input<string>;
-    /**
-     * Subnet segment type. Valid values: `any`, `specific`.
-     */
+    tenant?: pulumi.Input<string>;
     type?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable the visibility of the object in the GUI. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
 }
 
@@ -363,108 +182,33 @@ export interface FirewallAddress6State {
  * The set of arguments for constructing a FirewallAddress6 resource.
  */
 export interface FirewallAddress6Args {
-    /**
-     * Minimal TTL of individual IPv6 addresses in FQDN cache.
-     */
     cacheTtl?: pulumi.Input<number>;
-    /**
-     * Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * IPv6 addresses associated to a specific country.
-     */
     country?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-     */
     endIp?: pulumi.Input<string>;
-    /**
-     * Last MAC address in the range.
-     */
     endMac?: pulumi.Input<string>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
+    epgName?: pulumi.Input<string>;
     fabricObject?: pulumi.Input<string>;
-    /**
-     * Fully qualified domain name.
-     */
     fqdn?: pulumi.Input<string>;
-    /**
-     * Host Address.
-     */
     host?: pulumi.Input<string>;
-    /**
-     * Host type. Valid values: `any`, `specific`.
-     */
     hostType?: pulumi.Input<string>;
-    /**
-     * IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-     */
     ip6?: pulumi.Input<string>;
-    /**
-     * IP address list. The structure of `list` block is documented below.
-     */
     lists?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6List>[]>;
-    /**
-     * MAC address ranges <start>[-<end>] separated by space.
-     */
     macaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6Macaddr>[]>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Object ID for NSX.
-     */
     objId?: pulumi.Input<string>;
-    /**
-     * SDN.
-     */
     sdn?: pulumi.Input<string>;
-    /**
-     * First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-     */
+    sdnTag?: pulumi.Input<string>;
     startIp?: pulumi.Input<string>;
-    /**
-     * First MAC address in the range.
-     */
     startMac?: pulumi.Input<string>;
-    /**
-     * IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-     */
     subnetSegments?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6SubnetSegment>[]>;
-    /**
-     * Config object tagging The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6Tagging>[]>;
-    /**
-     * IPv6 address template.
-     */
     template?: pulumi.Input<string>;
-    /**
-     * Subnet segment type. Valid values: `any`, `specific`.
-     */
+    tenant?: pulumi.Input<string>;
     type?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable the visibility of the object in the GUI. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
 }

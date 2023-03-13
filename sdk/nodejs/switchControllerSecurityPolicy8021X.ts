@@ -2,53 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure 802.1x MAC Authentication Bypass (MAB) policies.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchControllerSecurityPolicy8021X("trname", {
- *     authFailVlan: "disable",
- *     authFailVlanid: 0,
- *     eapPassthru: "disable",
- *     framevidApply: "enable",
- *     guestAuthDelay: 30,
- *     guestVlan: "disable",
- *     guestVlanid: 100,
- *     macAuthBypass: "disable",
- *     openAuth: "disable",
- *     policyType: "802.1X",
- *     radiusTimeoutOverwrite: "disable",
- *     securityMode: "802.1X",
- *     userGroups: [{
- *         name: "Guest-group",
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * SwitchControllerSecurityPolicy 8021X can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSecurityPolicy8021X:SwitchControllerSecurityPolicy8021X labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSecurityPolicy8021X:SwitchControllerSecurityPolicy8021X labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerSecurityPolicy8021X extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerSecurityPolicy8021X resource's state with the given name, ID, and optional extra
@@ -77,93 +34,27 @@ export class SwitchControllerSecurityPolicy8021X extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerSecurityPolicy8021X.__pulumiType;
     }
 
-    /**
-     * Enable to allow limited access to clients that cannot authenticate. Valid values: `disable`, `enable`.
-     */
     public readonly authFailVlan!: pulumi.Output<string>;
-    /**
-     * VLAN ID on which authentication failed.
-     */
     public readonly authFailVlanId!: pulumi.Output<string>;
-    /**
-     * VLAN ID on which authentication failed.
-     */
     public readonly authFailVlanid!: pulumi.Output<number>;
-    /**
-     * Authentication server timeout period (3 - 15 sec, default = 3).
-     */
     public readonly authserverTimeoutPeriod!: pulumi.Output<number>;
-    /**
-     * Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
-     */
     public readonly authserverTimeoutVlan!: pulumi.Output<string>;
-    /**
-     * Authentication server timeout VLAN name.
-     */
     public readonly authserverTimeoutVlanid!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable automatic inclusion of untagged VLANs. Valid values: `disable`, `enable`.
-     */
     public readonly eapAutoUntaggedVlans!: pulumi.Output<string>;
-    /**
-     * Enable/disable EAP pass-through mode, allowing protocols (such as LLDP) to pass through ports for more flexible authentication. Valid values: `disable`, `enable`.
-     */
     public readonly eapPassthru!: pulumi.Output<string>;
-    /**
-     * Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
-     */
     public readonly framevidApply!: pulumi.Output<string>;
-    /**
-     * Guest authentication delay (1 - 900  sec, default = 30).
-     */
     public readonly guestAuthDelay!: pulumi.Output<number>;
-    /**
-     * Enable the guest VLAN feature to allow limited access to non-802.1X-compliant clients. Valid values: `disable`, `enable`.
-     */
     public readonly guestVlan!: pulumi.Output<string>;
-    /**
-     * Guest VLAN name.
-     */
     public readonly guestVlanId!: pulumi.Output<string>;
-    /**
-     * Guest VLAN ID.
-     */
     public readonly guestVlanid!: pulumi.Output<number>;
-    /**
-     * Enable/disable MAB for this policy. Valid values: `disable`, `enable`.
-     */
     public readonly macAuthBypass!: pulumi.Output<string>;
-    /**
-     * Group name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable open authentication for this policy. Valid values: `disable`, `enable`.
-     */
     public readonly openAuth!: pulumi.Output<string>;
-    /**
-     * Policy type. Valid values: `802.1X`.
-     */
     public readonly policyType!: pulumi.Output<string>;
-    /**
-     * Enable to override the global RADIUS session timeout. Valid values: `disable`, `enable`.
-     */
     public readonly radiusTimeoutOverwrite!: pulumi.Output<string>;
-    /**
-     * Port or MAC based 802.1X security mode. Valid values: `802.1X`, `802.1X-mac-based`.
-     */
     public readonly securityMode!: pulumi.Output<string>;
-    /**
-     * Name of user-group to assign to this MAC Authentication Bypass (MAB) policy. The structure of `userGroup` block is documented below.
-     */
     public readonly userGroups!: pulumi.Output<outputs.SwitchControllerSecurityPolicy8021XUserGroup[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -235,93 +126,27 @@ export class SwitchControllerSecurityPolicy8021X extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerSecurityPolicy8021X resources.
  */
 export interface SwitchControllerSecurityPolicy8021XState {
-    /**
-     * Enable to allow limited access to clients that cannot authenticate. Valid values: `disable`, `enable`.
-     */
     authFailVlan?: pulumi.Input<string>;
-    /**
-     * VLAN ID on which authentication failed.
-     */
     authFailVlanId?: pulumi.Input<string>;
-    /**
-     * VLAN ID on which authentication failed.
-     */
     authFailVlanid?: pulumi.Input<number>;
-    /**
-     * Authentication server timeout period (3 - 15 sec, default = 3).
-     */
     authserverTimeoutPeriod?: pulumi.Input<number>;
-    /**
-     * Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
-     */
     authserverTimeoutVlan?: pulumi.Input<string>;
-    /**
-     * Authentication server timeout VLAN name.
-     */
     authserverTimeoutVlanid?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatic inclusion of untagged VLANs. Valid values: `disable`, `enable`.
-     */
     eapAutoUntaggedVlans?: pulumi.Input<string>;
-    /**
-     * Enable/disable EAP pass-through mode, allowing protocols (such as LLDP) to pass through ports for more flexible authentication. Valid values: `disable`, `enable`.
-     */
     eapPassthru?: pulumi.Input<string>;
-    /**
-     * Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
-     */
     framevidApply?: pulumi.Input<string>;
-    /**
-     * Guest authentication delay (1 - 900  sec, default = 30).
-     */
     guestAuthDelay?: pulumi.Input<number>;
-    /**
-     * Enable the guest VLAN feature to allow limited access to non-802.1X-compliant clients. Valid values: `disable`, `enable`.
-     */
     guestVlan?: pulumi.Input<string>;
-    /**
-     * Guest VLAN name.
-     */
     guestVlanId?: pulumi.Input<string>;
-    /**
-     * Guest VLAN ID.
-     */
     guestVlanid?: pulumi.Input<number>;
-    /**
-     * Enable/disable MAB for this policy. Valid values: `disable`, `enable`.
-     */
     macAuthBypass?: pulumi.Input<string>;
-    /**
-     * Group name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable open authentication for this policy. Valid values: `disable`, `enable`.
-     */
     openAuth?: pulumi.Input<string>;
-    /**
-     * Policy type. Valid values: `802.1X`.
-     */
     policyType?: pulumi.Input<string>;
-    /**
-     * Enable to override the global RADIUS session timeout. Valid values: `disable`, `enable`.
-     */
     radiusTimeoutOverwrite?: pulumi.Input<string>;
-    /**
-     * Port or MAC based 802.1X security mode. Valid values: `802.1X`, `802.1X-mac-based`.
-     */
     securityMode?: pulumi.Input<string>;
-    /**
-     * Name of user-group to assign to this MAC Authentication Bypass (MAB) policy. The structure of `userGroup` block is documented below.
-     */
     userGroups?: pulumi.Input<pulumi.Input<inputs.SwitchControllerSecurityPolicy8021XUserGroup>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -329,92 +154,26 @@ export interface SwitchControllerSecurityPolicy8021XState {
  * The set of arguments for constructing a SwitchControllerSecurityPolicy8021X resource.
  */
 export interface SwitchControllerSecurityPolicy8021XArgs {
-    /**
-     * Enable to allow limited access to clients that cannot authenticate. Valid values: `disable`, `enable`.
-     */
     authFailVlan?: pulumi.Input<string>;
-    /**
-     * VLAN ID on which authentication failed.
-     */
     authFailVlanId?: pulumi.Input<string>;
-    /**
-     * VLAN ID on which authentication failed.
-     */
     authFailVlanid?: pulumi.Input<number>;
-    /**
-     * Authentication server timeout period (3 - 15 sec, default = 3).
-     */
     authserverTimeoutPeriod?: pulumi.Input<number>;
-    /**
-     * Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
-     */
     authserverTimeoutVlan?: pulumi.Input<string>;
-    /**
-     * Authentication server timeout VLAN name.
-     */
     authserverTimeoutVlanid?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatic inclusion of untagged VLANs. Valid values: `disable`, `enable`.
-     */
     eapAutoUntaggedVlans?: pulumi.Input<string>;
-    /**
-     * Enable/disable EAP pass-through mode, allowing protocols (such as LLDP) to pass through ports for more flexible authentication. Valid values: `disable`, `enable`.
-     */
     eapPassthru?: pulumi.Input<string>;
-    /**
-     * Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
-     */
     framevidApply?: pulumi.Input<string>;
-    /**
-     * Guest authentication delay (1 - 900  sec, default = 30).
-     */
     guestAuthDelay?: pulumi.Input<number>;
-    /**
-     * Enable the guest VLAN feature to allow limited access to non-802.1X-compliant clients. Valid values: `disable`, `enable`.
-     */
     guestVlan?: pulumi.Input<string>;
-    /**
-     * Guest VLAN name.
-     */
     guestVlanId?: pulumi.Input<string>;
-    /**
-     * Guest VLAN ID.
-     */
     guestVlanid?: pulumi.Input<number>;
-    /**
-     * Enable/disable MAB for this policy. Valid values: `disable`, `enable`.
-     */
     macAuthBypass?: pulumi.Input<string>;
-    /**
-     * Group name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable open authentication for this policy. Valid values: `disable`, `enable`.
-     */
     openAuth?: pulumi.Input<string>;
-    /**
-     * Policy type. Valid values: `802.1X`.
-     */
     policyType?: pulumi.Input<string>;
-    /**
-     * Enable to override the global RADIUS session timeout. Valid values: `disable`, `enable`.
-     */
     radiusTimeoutOverwrite?: pulumi.Input<string>;
-    /**
-     * Port or MAC based 802.1X security mode. Valid values: `802.1X`, `802.1X-mac-based`.
-     */
     securityMode?: pulumi.Input<string>;
-    /**
-     * Name of user-group to assign to this MAC Authentication Bypass (MAB) policy. The structure of `userGroup` block is documented below.
-     */
     userGroups?: pulumi.Input<pulumi.Input<inputs.SwitchControllerSecurityPolicy8021XUserGroup>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

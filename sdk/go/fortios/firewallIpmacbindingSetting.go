@@ -10,59 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IP to MAC binding settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallIpmacbindingSetting(ctx, "trname", &fortios.FirewallIpmacbindingSettingArgs{
-// 			Bindthroughfw: pulumi.String("disable"),
-// 			Bindtofw:      pulumi.String("disable"),
-// 			Undefinedhost: pulumi.String("block"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// FirewallIpmacbinding Setting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallIpmacbindingSetting:FirewallIpmacbindingSetting labelname FirewallIpmacbindingSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallIpmacbindingSetting:FirewallIpmacbindingSetting labelname FirewallIpmacbindingSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallIpmacbindingSetting struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable use of IP/MAC binding to filter packets that would normally go through the firewall. Valid values: `enable`, `disable`.
-	Bindthroughfw pulumi.StringOutput `pulumi:"bindthroughfw"`
-	// Enable/disable use of IP/MAC binding to filter packets that would normally go to the firewall. Valid values: `enable`, `disable`.
-	Bindtofw pulumi.StringOutput `pulumi:"bindtofw"`
-	// Select action to take on packets with IP/MAC addresses not in the binding list (default = block). Valid values: `allow`, `block`.
-	Undefinedhost pulumi.StringOutput `pulumi:"undefinedhost"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Bindthroughfw pulumi.StringOutput    `pulumi:"bindthroughfw"`
+	Bindtofw      pulumi.StringOutput    `pulumi:"bindtofw"`
+	Undefinedhost pulumi.StringOutput    `pulumi:"undefinedhost"`
+	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallIpmacbindingSetting registers a new resource with the given unique name, arguments, and options.
@@ -95,25 +49,17 @@ func GetFirewallIpmacbindingSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallIpmacbindingSetting resources.
 type firewallIpmacbindingSettingState struct {
-	// Enable/disable use of IP/MAC binding to filter packets that would normally go through the firewall. Valid values: `enable`, `disable`.
 	Bindthroughfw *string `pulumi:"bindthroughfw"`
-	// Enable/disable use of IP/MAC binding to filter packets that would normally go to the firewall. Valid values: `enable`, `disable`.
-	Bindtofw *string `pulumi:"bindtofw"`
-	// Select action to take on packets with IP/MAC addresses not in the binding list (default = block). Valid values: `allow`, `block`.
+	Bindtofw      *string `pulumi:"bindtofw"`
 	Undefinedhost *string `pulumi:"undefinedhost"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 type FirewallIpmacbindingSettingState struct {
-	// Enable/disable use of IP/MAC binding to filter packets that would normally go through the firewall. Valid values: `enable`, `disable`.
 	Bindthroughfw pulumi.StringPtrInput
-	// Enable/disable use of IP/MAC binding to filter packets that would normally go to the firewall. Valid values: `enable`, `disable`.
-	Bindtofw pulumi.StringPtrInput
-	// Select action to take on packets with IP/MAC addresses not in the binding list (default = block). Valid values: `allow`, `block`.
+	Bindtofw      pulumi.StringPtrInput
 	Undefinedhost pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (FirewallIpmacbindingSettingState) ElementType() reflect.Type {
@@ -121,26 +67,18 @@ func (FirewallIpmacbindingSettingState) ElementType() reflect.Type {
 }
 
 type firewallIpmacbindingSettingArgs struct {
-	// Enable/disable use of IP/MAC binding to filter packets that would normally go through the firewall. Valid values: `enable`, `disable`.
 	Bindthroughfw *string `pulumi:"bindthroughfw"`
-	// Enable/disable use of IP/MAC binding to filter packets that would normally go to the firewall. Valid values: `enable`, `disable`.
-	Bindtofw *string `pulumi:"bindtofw"`
-	// Select action to take on packets with IP/MAC addresses not in the binding list (default = block). Valid values: `allow`, `block`.
+	Bindtofw      *string `pulumi:"bindtofw"`
 	Undefinedhost *string `pulumi:"undefinedhost"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallIpmacbindingSetting resource.
 type FirewallIpmacbindingSettingArgs struct {
-	// Enable/disable use of IP/MAC binding to filter packets that would normally go through the firewall. Valid values: `enable`, `disable`.
 	Bindthroughfw pulumi.StringPtrInput
-	// Enable/disable use of IP/MAC binding to filter packets that would normally go to the firewall. Valid values: `enable`, `disable`.
-	Bindtofw pulumi.StringPtrInput
-	// Select action to take on packets with IP/MAC addresses not in the binding list (default = block). Valid values: `allow`, `block`.
+	Bindtofw      pulumi.StringPtrInput
 	Undefinedhost pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (FirewallIpmacbindingSettingArgs) ElementType() reflect.Type {
@@ -169,7 +107,7 @@ func (i *FirewallIpmacbindingSetting) ToFirewallIpmacbindingSettingOutputWithCon
 // FirewallIpmacbindingSettingArrayInput is an input type that accepts FirewallIpmacbindingSettingArray and FirewallIpmacbindingSettingArrayOutput values.
 // You can construct a concrete instance of `FirewallIpmacbindingSettingArrayInput` via:
 //
-//          FirewallIpmacbindingSettingArray{ FirewallIpmacbindingSettingArgs{...} }
+//	FirewallIpmacbindingSettingArray{ FirewallIpmacbindingSettingArgs{...} }
 type FirewallIpmacbindingSettingArrayInput interface {
 	pulumi.Input
 
@@ -194,7 +132,7 @@ func (i FirewallIpmacbindingSettingArray) ToFirewallIpmacbindingSettingArrayOutp
 // FirewallIpmacbindingSettingMapInput is an input type that accepts FirewallIpmacbindingSettingMap and FirewallIpmacbindingSettingMapOutput values.
 // You can construct a concrete instance of `FirewallIpmacbindingSettingMapInput` via:
 //
-//          FirewallIpmacbindingSettingMap{ "key": FirewallIpmacbindingSettingArgs{...} }
+//	FirewallIpmacbindingSettingMap{ "key": FirewallIpmacbindingSettingArgs{...} }
 type FirewallIpmacbindingSettingMapInput interface {
 	pulumi.Input
 
@@ -228,6 +166,22 @@ func (o FirewallIpmacbindingSettingOutput) ToFirewallIpmacbindingSettingOutput()
 
 func (o FirewallIpmacbindingSettingOutput) ToFirewallIpmacbindingSettingOutputWithContext(ctx context.Context) FirewallIpmacbindingSettingOutput {
 	return o
+}
+
+func (o FirewallIpmacbindingSettingOutput) Bindthroughfw() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpmacbindingSetting) pulumi.StringOutput { return v.Bindthroughfw }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpmacbindingSettingOutput) Bindtofw() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpmacbindingSetting) pulumi.StringOutput { return v.Bindtofw }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpmacbindingSettingOutput) Undefinedhost() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpmacbindingSetting) pulumi.StringOutput { return v.Undefinedhost }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpmacbindingSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallIpmacbindingSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallIpmacbindingSettingArrayOutput struct{ *pulumi.OutputState }

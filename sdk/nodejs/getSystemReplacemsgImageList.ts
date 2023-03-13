@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.SystemReplacemsgImage`.
- */
 export function getSystemReplacemsgImageList(args?: GetSystemReplacemsgImageListArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemReplacemsgImageListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemReplacemsgImageList:GetSystemReplacemsgImageList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getSystemReplacemsgImageList(args?: GetSystemReplacemsgImageList
  */
 export interface GetSystemReplacemsgImageListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -40,15 +31,11 @@ export interface GetSystemReplacemsgImageListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.SystemReplacemsgImage`.
-     */
     readonly namelists: string[];
     readonly vdomparam?: string;
 }
-
 export function getSystemReplacemsgImageListOutput(args?: GetSystemReplacemsgImageListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemReplacemsgImageListResult> {
-    return pulumi.output(args).apply(a => getSystemReplacemsgImageList(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemReplacemsgImageList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getSystemReplacemsgImageListOutput(args?: GetSystemReplacemsgIma
  */
 export interface GetSystemReplacemsgImageListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

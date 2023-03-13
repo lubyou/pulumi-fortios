@@ -10,52 +10,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure global heuristic options. Applies to FortiOS Version `<= 7.0.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewAntivirusHeuristic(ctx, "trname", &fortios.AntivirusHeuristicArgs{
-// 			Mode: pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Antivirus Heuristic can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/antivirusHeuristic:AntivirusHeuristic labelname AntivirusHeuristic
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/antivirusHeuristic:AntivirusHeuristic labelname AntivirusHeuristic
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type AntivirusHeuristic struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable heuristics and determine how the system behaves if heuristics detects a problem. Valid values: `pass`, `block`, `disable`.
-	Mode pulumi.StringOutput `pulumi:"mode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Mode      pulumi.StringOutput    `pulumi:"mode"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -89,16 +47,12 @@ func GetAntivirusHeuristic(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AntivirusHeuristic resources.
 type antivirusHeuristicState struct {
-	// Enable/disable heuristics and determine how the system behaves if heuristics detects a problem. Valid values: `pass`, `block`, `disable`.
-	Mode *string `pulumi:"mode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Mode      *string `pulumi:"mode"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type AntivirusHeuristicState struct {
-	// Enable/disable heuristics and determine how the system behaves if heuristics detects a problem. Valid values: `pass`, `block`, `disable`.
-	Mode pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Mode      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -107,17 +61,13 @@ func (AntivirusHeuristicState) ElementType() reflect.Type {
 }
 
 type antivirusHeuristicArgs struct {
-	// Enable/disable heuristics and determine how the system behaves if heuristics detects a problem. Valid values: `pass`, `block`, `disable`.
-	Mode *string `pulumi:"mode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Mode      *string `pulumi:"mode"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a AntivirusHeuristic resource.
 type AntivirusHeuristicArgs struct {
-	// Enable/disable heuristics and determine how the system behaves if heuristics detects a problem. Valid values: `pass`, `block`, `disable`.
-	Mode pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Mode      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -147,7 +97,7 @@ func (i *AntivirusHeuristic) ToAntivirusHeuristicOutputWithContext(ctx context.C
 // AntivirusHeuristicArrayInput is an input type that accepts AntivirusHeuristicArray and AntivirusHeuristicArrayOutput values.
 // You can construct a concrete instance of `AntivirusHeuristicArrayInput` via:
 //
-//          AntivirusHeuristicArray{ AntivirusHeuristicArgs{...} }
+//	AntivirusHeuristicArray{ AntivirusHeuristicArgs{...} }
 type AntivirusHeuristicArrayInput interface {
 	pulumi.Input
 
@@ -172,7 +122,7 @@ func (i AntivirusHeuristicArray) ToAntivirusHeuristicArrayOutputWithContext(ctx 
 // AntivirusHeuristicMapInput is an input type that accepts AntivirusHeuristicMap and AntivirusHeuristicMapOutput values.
 // You can construct a concrete instance of `AntivirusHeuristicMapInput` via:
 //
-//          AntivirusHeuristicMap{ "key": AntivirusHeuristicArgs{...} }
+//	AntivirusHeuristicMap{ "key": AntivirusHeuristicArgs{...} }
 type AntivirusHeuristicMapInput interface {
 	pulumi.Input
 
@@ -206,6 +156,14 @@ func (o AntivirusHeuristicOutput) ToAntivirusHeuristicOutput() AntivirusHeuristi
 
 func (o AntivirusHeuristicOutput) ToAntivirusHeuristicOutputWithContext(ctx context.Context) AntivirusHeuristicOutput {
 	return o
+}
+
+func (o AntivirusHeuristicOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *AntivirusHeuristic) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o AntivirusHeuristicOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AntivirusHeuristic) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type AntivirusHeuristicArrayOutput struct{ *pulumi.OutputState }

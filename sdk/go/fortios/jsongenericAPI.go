@@ -7,72 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// FortiAPI Generic Interface.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"fmt"
-//
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test1, err := fortios.NewJSONGenericAPI(ctx, "test1", &fortios.JSONGenericAPIArgs{
-// 			Json:   pulumi.String(""),
-// 			Method: pulumi.String("GET"),
-// 			Path:   pulumi.String("/api/v2/cmdb/firewall/address"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("response1", test1.Response)
-// 		test2, err := fortios.NewJSONGenericAPI(ctx, "test2", &fortios.JSONGenericAPIArgs{
-// 			Json:   pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v", "{\n", "  \"name\": \"11221\",\n", "  \"type\": \"geography\",\n", "  \"fqdn\": \"\",\n", "  \"country\": \"AL\",\n", "  \"comment\": \"ccc\",\n", "  \"visibility\": \"enable\",\n", "  \"associated-interface\": \"port1\",\n", "  \"allow-routing\": \"disable\"\n", "}\n", "\n")),
-// 			Method: pulumi.String("POST"),
-// 			Path:   pulumi.String("/api/v2/cmdb/firewall/address"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("response2", test2.Response)
-// 		test3, err := fortios.NewJSONGenericAPI(ctx, "test3", &fortios.JSONGenericAPIArgs{
-// 			Json:          pulumi.String(""),
-// 			Method:        pulumi.String("PUT"),
-// 			Path:          pulumi.String("/api/v2/cmdb/firewall/policy/3"),
-// 			Specialparams: pulumi.String("action=move&after=1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("response3", test3.Response)
-// 		return nil
-// 	})
-// }
-// ```
 type JSONGenericAPI struct {
 	pulumi.CustomResourceState
 
-	// The argument is optional, if it is set, when its value changes, the resource will be re-created. It is usually used when the return value needs to be forced to update.
 	ForceRecreate pulumi.StringPtrOutput `pulumi:"forceRecreate"`
-	// Body data in JSON format.
-	Json pulumi.StringPtrOutput `pulumi:"json"`
-	// HTTP method.
-	Method pulumi.StringOutput `pulumi:"method"`
-	// FortiAPI URL path.
-	Path pulumi.StringOutput `pulumi:"path"`
-	// FortiAPI returns results.
-	Response pulumi.StringOutput `pulumi:"response"`
-	// URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path.
+	Json          pulumi.StringPtrOutput `pulumi:"json"`
+	Method        pulumi.StringOutput    `pulumi:"method"`
+	Path          pulumi.StringOutput    `pulumi:"path"`
+	Response      pulumi.StringOutput    `pulumi:"response"`
 	Specialparams pulumi.StringPtrOutput `pulumi:"specialparams"`
 	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -113,33 +59,21 @@ func GetJSONGenericAPI(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering JSONGenericAPI resources.
 type jsongenericAPIState struct {
-	// The argument is optional, if it is set, when its value changes, the resource will be re-created. It is usually used when the return value needs to be forced to update.
 	ForceRecreate *string `pulumi:"forceRecreate"`
-	// Body data in JSON format.
-	Json *string `pulumi:"json"`
-	// HTTP method.
-	Method *string `pulumi:"method"`
-	// FortiAPI URL path.
-	Path *string `pulumi:"path"`
-	// FortiAPI returns results.
-	Response *string `pulumi:"response"`
-	// URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path.
+	Json          *string `pulumi:"json"`
+	Method        *string `pulumi:"method"`
+	Path          *string `pulumi:"path"`
+	Response      *string `pulumi:"response"`
 	Specialparams *string `pulumi:"specialparams"`
 	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 type JSONGenericAPIState struct {
-	// The argument is optional, if it is set, when its value changes, the resource will be re-created. It is usually used when the return value needs to be forced to update.
 	ForceRecreate pulumi.StringPtrInput
-	// Body data in JSON format.
-	Json pulumi.StringPtrInput
-	// HTTP method.
-	Method pulumi.StringPtrInput
-	// FortiAPI URL path.
-	Path pulumi.StringPtrInput
-	// FortiAPI returns results.
-	Response pulumi.StringPtrInput
-	// URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path.
+	Json          pulumi.StringPtrInput
+	Method        pulumi.StringPtrInput
+	Path          pulumi.StringPtrInput
+	Response      pulumi.StringPtrInput
 	Specialparams pulumi.StringPtrInput
 	Vdomparam     pulumi.StringPtrInput
 }
@@ -149,30 +83,20 @@ func (JSONGenericAPIState) ElementType() reflect.Type {
 }
 
 type jsongenericAPIArgs struct {
-	// The argument is optional, if it is set, when its value changes, the resource will be re-created. It is usually used when the return value needs to be forced to update.
 	ForceRecreate *string `pulumi:"forceRecreate"`
-	// Body data in JSON format.
-	Json *string `pulumi:"json"`
-	// HTTP method.
-	Method string `pulumi:"method"`
-	// FortiAPI URL path.
-	Path string `pulumi:"path"`
-	// URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path.
+	Json          *string `pulumi:"json"`
+	Method        string  `pulumi:"method"`
+	Path          string  `pulumi:"path"`
 	Specialparams *string `pulumi:"specialparams"`
 	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a JSONGenericAPI resource.
 type JSONGenericAPIArgs struct {
-	// The argument is optional, if it is set, when its value changes, the resource will be re-created. It is usually used when the return value needs to be forced to update.
 	ForceRecreate pulumi.StringPtrInput
-	// Body data in JSON format.
-	Json pulumi.StringPtrInput
-	// HTTP method.
-	Method pulumi.StringInput
-	// FortiAPI URL path.
-	Path pulumi.StringInput
-	// URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path.
+	Json          pulumi.StringPtrInput
+	Method        pulumi.StringInput
+	Path          pulumi.StringInput
 	Specialparams pulumi.StringPtrInput
 	Vdomparam     pulumi.StringPtrInput
 }
@@ -203,7 +127,7 @@ func (i *JSONGenericAPI) ToJSONGenericAPIOutputWithContext(ctx context.Context) 
 // JSONGenericAPIArrayInput is an input type that accepts JSONGenericAPIArray and JSONGenericAPIArrayOutput values.
 // You can construct a concrete instance of `JSONGenericAPIArrayInput` via:
 //
-//          JSONGenericAPIArray{ JSONGenericAPIArgs{...} }
+//	JSONGenericAPIArray{ JSONGenericAPIArgs{...} }
 type JSONGenericAPIArrayInput interface {
 	pulumi.Input
 
@@ -228,7 +152,7 @@ func (i JSONGenericAPIArray) ToJSONGenericAPIArrayOutputWithContext(ctx context.
 // JSONGenericAPIMapInput is an input type that accepts JSONGenericAPIMap and JSONGenericAPIMapOutput values.
 // You can construct a concrete instance of `JSONGenericAPIMapInput` via:
 //
-//          JSONGenericAPIMap{ "key": JSONGenericAPIArgs{...} }
+//	JSONGenericAPIMap{ "key": JSONGenericAPIArgs{...} }
 type JSONGenericAPIMapInput interface {
 	pulumi.Input
 
@@ -262,6 +186,34 @@ func (o JSONGenericAPIOutput) ToJSONGenericAPIOutput() JSONGenericAPIOutput {
 
 func (o JSONGenericAPIOutput) ToJSONGenericAPIOutputWithContext(ctx context.Context) JSONGenericAPIOutput {
 	return o
+}
+
+func (o JSONGenericAPIOutput) ForceRecreate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *JSONGenericAPI) pulumi.StringPtrOutput { return v.ForceRecreate }).(pulumi.StringPtrOutput)
+}
+
+func (o JSONGenericAPIOutput) Json() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *JSONGenericAPI) pulumi.StringPtrOutput { return v.Json }).(pulumi.StringPtrOutput)
+}
+
+func (o JSONGenericAPIOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v *JSONGenericAPI) pulumi.StringOutput { return v.Method }).(pulumi.StringOutput)
+}
+
+func (o JSONGenericAPIOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v *JSONGenericAPI) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+func (o JSONGenericAPIOutput) Response() pulumi.StringOutput {
+	return o.ApplyT(func(v *JSONGenericAPI) pulumi.StringOutput { return v.Response }).(pulumi.StringOutput)
+}
+
+func (o JSONGenericAPIOutput) Specialparams() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *JSONGenericAPI) pulumi.StringPtrOutput { return v.Specialparams }).(pulumi.StringPtrOutput)
+}
+
+func (o JSONGenericAPIOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *JSONGenericAPI) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type JSONGenericAPIArrayOutput struct{ *pulumi.OutputState }

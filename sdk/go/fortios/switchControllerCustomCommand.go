@@ -7,62 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure the FortiGate switch controller to send custom commands to managed FortiSwitch devices.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchControllerCustomCommand(ctx, "trname", &fortios.SwitchControllerCustomCommandArgs{
-// 			Command:     pulumi.String("ls"),
-// 			CommandName: pulumi.String("1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchController CustomCommand can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerCustomCommand:SwitchControllerCustomCommand labelname {{command_name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerCustomCommand:SwitchControllerCustomCommand labelname {{command_name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerCustomCommand struct {
 	pulumi.CustomResourceState
 
-	// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
-	Command pulumi.StringOutput `pulumi:"command"`
-	// Command name called by the FortiGate switch controller in the execute command.
-	CommandName pulumi.StringOutput `pulumi:"commandName"`
-	// Description.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Command     pulumi.StringOutput    `pulumi:"command"`
+	CommandName pulumi.StringOutput    `pulumi:"commandName"`
+	Description pulumi.StringOutput    `pulumi:"description"`
+	Vdomparam   pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerCustomCommand registers a new resource with the given unique name, arguments, and options.
@@ -98,25 +53,17 @@ func GetSwitchControllerCustomCommand(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerCustomCommand resources.
 type switchControllerCustomCommandState struct {
-	// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
-	Command *string `pulumi:"command"`
-	// Command name called by the FortiGate switch controller in the execute command.
+	Command     *string `pulumi:"command"`
 	CommandName *string `pulumi:"commandName"`
-	// Description.
 	Description *string `pulumi:"description"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerCustomCommandState struct {
-	// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
-	Command pulumi.StringPtrInput
-	// Command name called by the FortiGate switch controller in the execute command.
+	Command     pulumi.StringPtrInput
 	CommandName pulumi.StringPtrInput
-	// Description.
 	Description pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (SwitchControllerCustomCommandState) ElementType() reflect.Type {
@@ -124,26 +71,18 @@ func (SwitchControllerCustomCommandState) ElementType() reflect.Type {
 }
 
 type switchControllerCustomCommandArgs struct {
-	// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
-	Command string `pulumi:"command"`
-	// Command name called by the FortiGate switch controller in the execute command.
+	Command     string  `pulumi:"command"`
 	CommandName *string `pulumi:"commandName"`
-	// Description.
 	Description *string `pulumi:"description"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerCustomCommand resource.
 type SwitchControllerCustomCommandArgs struct {
-	// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
-	Command pulumi.StringInput
-	// Command name called by the FortiGate switch controller in the execute command.
+	Command     pulumi.StringInput
 	CommandName pulumi.StringPtrInput
-	// Description.
 	Description pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (SwitchControllerCustomCommandArgs) ElementType() reflect.Type {
@@ -172,7 +111,7 @@ func (i *SwitchControllerCustomCommand) ToSwitchControllerCustomCommandOutputWit
 // SwitchControllerCustomCommandArrayInput is an input type that accepts SwitchControllerCustomCommandArray and SwitchControllerCustomCommandArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerCustomCommandArrayInput` via:
 //
-//          SwitchControllerCustomCommandArray{ SwitchControllerCustomCommandArgs{...} }
+//	SwitchControllerCustomCommandArray{ SwitchControllerCustomCommandArgs{...} }
 type SwitchControllerCustomCommandArrayInput interface {
 	pulumi.Input
 
@@ -197,7 +136,7 @@ func (i SwitchControllerCustomCommandArray) ToSwitchControllerCustomCommandArray
 // SwitchControllerCustomCommandMapInput is an input type that accepts SwitchControllerCustomCommandMap and SwitchControllerCustomCommandMapOutput values.
 // You can construct a concrete instance of `SwitchControllerCustomCommandMapInput` via:
 //
-//          SwitchControllerCustomCommandMap{ "key": SwitchControllerCustomCommandArgs{...} }
+//	SwitchControllerCustomCommandMap{ "key": SwitchControllerCustomCommandArgs{...} }
 type SwitchControllerCustomCommandMapInput interface {
 	pulumi.Input
 
@@ -231,6 +170,22 @@ func (o SwitchControllerCustomCommandOutput) ToSwitchControllerCustomCommandOutp
 
 func (o SwitchControllerCustomCommandOutput) ToSwitchControllerCustomCommandOutputWithContext(ctx context.Context) SwitchControllerCustomCommandOutput {
 	return o
+}
+
+func (o SwitchControllerCustomCommandOutput) Command() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerCustomCommand) pulumi.StringOutput { return v.Command }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerCustomCommandOutput) CommandName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerCustomCommand) pulumi.StringOutput { return v.CommandName }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerCustomCommandOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerCustomCommand) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerCustomCommandOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerCustomCommand) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerCustomCommandArrayOutput struct{ *pulumi.OutputState }

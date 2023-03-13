@@ -10,43 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure DNS of FortiOS.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `SystemDns`, we recommend that you use the new resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemSettingDNS(ctx, "test1", &fortios.SystemSettingDNSArgs{
-// 			DnsOverTls: pulumi.String("disable"),
-// 			Primary:    pulumi.String("208.91.112.53"),
-// 			Secondary:  pulumi.String("208.91.112.22"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type SystemSettingDNS struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable/enforce DNS over TLS(available since v6.2.0). Enum: [ disable, enable, enforce ]
 	DnsOverTls pulumi.StringOutput `pulumi:"dnsOverTls"`
-	// Primary DNS server IP address.
-	Primary pulumi.StringOutput `pulumi:"primary"`
-	// Secondary DNS server IP address.
-	Secondary pulumi.StringOutput `pulumi:"secondary"`
+	Primary    pulumi.StringOutput `pulumi:"primary"`
+	Secondary  pulumi.StringOutput `pulumi:"secondary"`
 }
 
 // NewSystemSettingDNS registers a new resource with the given unique name, arguments, and options.
@@ -79,21 +48,15 @@ func GetSystemSettingDNS(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSettingDNS resources.
 type systemSettingDNSState struct {
-	// Enable/disable/enforce DNS over TLS(available since v6.2.0). Enum: [ disable, enable, enforce ]
 	DnsOverTls *string `pulumi:"dnsOverTls"`
-	// Primary DNS server IP address.
-	Primary *string `pulumi:"primary"`
-	// Secondary DNS server IP address.
-	Secondary *string `pulumi:"secondary"`
+	Primary    *string `pulumi:"primary"`
+	Secondary  *string `pulumi:"secondary"`
 }
 
 type SystemSettingDNSState struct {
-	// Enable/disable/enforce DNS over TLS(available since v6.2.0). Enum: [ disable, enable, enforce ]
 	DnsOverTls pulumi.StringPtrInput
-	// Primary DNS server IP address.
-	Primary pulumi.StringPtrInput
-	// Secondary DNS server IP address.
-	Secondary pulumi.StringPtrInput
+	Primary    pulumi.StringPtrInput
+	Secondary  pulumi.StringPtrInput
 }
 
 func (SystemSettingDNSState) ElementType() reflect.Type {
@@ -101,22 +64,16 @@ func (SystemSettingDNSState) ElementType() reflect.Type {
 }
 
 type systemSettingDNSArgs struct {
-	// Enable/disable/enforce DNS over TLS(available since v6.2.0). Enum: [ disable, enable, enforce ]
 	DnsOverTls *string `pulumi:"dnsOverTls"`
-	// Primary DNS server IP address.
-	Primary *string `pulumi:"primary"`
-	// Secondary DNS server IP address.
-	Secondary *string `pulumi:"secondary"`
+	Primary    *string `pulumi:"primary"`
+	Secondary  *string `pulumi:"secondary"`
 }
 
 // The set of arguments for constructing a SystemSettingDNS resource.
 type SystemSettingDNSArgs struct {
-	// Enable/disable/enforce DNS over TLS(available since v6.2.0). Enum: [ disable, enable, enforce ]
 	DnsOverTls pulumi.StringPtrInput
-	// Primary DNS server IP address.
-	Primary pulumi.StringPtrInput
-	// Secondary DNS server IP address.
-	Secondary pulumi.StringPtrInput
+	Primary    pulumi.StringPtrInput
+	Secondary  pulumi.StringPtrInput
 }
 
 func (SystemSettingDNSArgs) ElementType() reflect.Type {
@@ -145,7 +102,7 @@ func (i *SystemSettingDNS) ToSystemSettingDNSOutputWithContext(ctx context.Conte
 // SystemSettingDNSArrayInput is an input type that accepts SystemSettingDNSArray and SystemSettingDNSArrayOutput values.
 // You can construct a concrete instance of `SystemSettingDNSArrayInput` via:
 //
-//          SystemSettingDNSArray{ SystemSettingDNSArgs{...} }
+//	SystemSettingDNSArray{ SystemSettingDNSArgs{...} }
 type SystemSettingDNSArrayInput interface {
 	pulumi.Input
 
@@ -170,7 +127,7 @@ func (i SystemSettingDNSArray) ToSystemSettingDNSArrayOutputWithContext(ctx cont
 // SystemSettingDNSMapInput is an input type that accepts SystemSettingDNSMap and SystemSettingDNSMapOutput values.
 // You can construct a concrete instance of `SystemSettingDNSMapInput` via:
 //
-//          SystemSettingDNSMap{ "key": SystemSettingDNSArgs{...} }
+//	SystemSettingDNSMap{ "key": SystemSettingDNSArgs{...} }
 type SystemSettingDNSMapInput interface {
 	pulumi.Input
 
@@ -204,6 +161,18 @@ func (o SystemSettingDNSOutput) ToSystemSettingDNSOutput() SystemSettingDNSOutpu
 
 func (o SystemSettingDNSOutput) ToSystemSettingDNSOutputWithContext(ctx context.Context) SystemSettingDNSOutput {
 	return o
+}
+
+func (o SystemSettingDNSOutput) DnsOverTls() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettingDNS) pulumi.StringOutput { return v.DnsOverTls }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingDNSOutput) Primary() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettingDNS) pulumi.StringOutput { return v.Primary }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingDNSOutput) Secondary() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettingDNS) pulumi.StringOutput { return v.Secondary }).(pulumi.StringOutput)
 }
 
 type SystemSettingDNSArrayOutput struct{ *pulumi.OutputState }

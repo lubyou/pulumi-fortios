@@ -4,22 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure firewall service category of FortiOS.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.FirewallServiceCategory`, we recommend that you use the new resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const testCategoryName = new fortios.FirewallObjectServiceCategory("test_category_name", {
- *     comment: "comment",
- * });
- * ```
- */
 export class FirewallObjectServiceCategory extends pulumi.CustomResource {
     /**
      * Get an existing FirewallObjectServiceCategory resource's state with the given name, ID, and optional extra
@@ -48,13 +32,7 @@ export class FirewallObjectServiceCategory extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallObjectServiceCategory.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Category name.
-     */
     public readonly name!: pulumi.Output<string>;
 
     /**
@@ -86,13 +64,7 @@ export class FirewallObjectServiceCategory extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallObjectServiceCategory resources.
  */
 export interface FirewallObjectServiceCategoryState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Category name.
-     */
     name?: pulumi.Input<string>;
 }
 
@@ -100,12 +72,6 @@ export interface FirewallObjectServiceCategoryState {
  * The set of arguments for constructing a FirewallObjectServiceCategory resource.
  */
 export interface FirewallObjectServiceCategoryArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Category name.
-     */
     name?: pulumi.Input<string>;
 }

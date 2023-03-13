@@ -26,6 +26,10 @@ export class Provider extends pulumi.ProviderResource {
     }
 
     /**
+     * CA Bundle file content
+     */
+    public readonly cabundlecontent!: pulumi.Output<string | undefined>;
+    /**
      * CA Bundle file
      */
     public readonly cabundlefile!: pulumi.Output<string | undefined>;
@@ -56,6 +60,10 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly hostname!: pulumi.Output<string | undefined>;
     /**
+     * HTTP proxy address
+     */
+    public readonly httpProxy!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable peer authentication, can be 'enable' or 'disable'
      */
     public readonly peerauth!: pulumi.Output<string | undefined>;
@@ -73,6 +81,7 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
+            resourceInputs["cabundlecontent"] = args ? args.cabundlecontent : undefined;
             resourceInputs["cabundlefile"] = (args ? args.cabundlefile : undefined) ?? utilities.getEnv("FORTIOS_CA_CABUNDLE");
             resourceInputs["cacert"] = args ? args.cacert : undefined;
             resourceInputs["clientcert"] = args ? args.clientcert : undefined;
@@ -83,6 +92,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["fmgPasswd"] = (args ? args.fmgPasswd : undefined) ?? utilities.getEnv("FORTIOS_FMG_PASSWORD");
             resourceInputs["fmgUsername"] = (args ? args.fmgUsername : undefined) ?? utilities.getEnv("FORTIOS_FMG_USERNAME");
             resourceInputs["hostname"] = (args ? args.hostname : undefined) ?? utilities.getEnv("FORTIOS_ACCESS_HOSTNAME");
+            resourceInputs["httpProxy"] = args ? args.httpProxy : undefined;
             resourceInputs["insecure"] = pulumi.output((args ? args.insecure : undefined) ?? utilities.getEnvBoolean("FORTIOS_INSECURE")).apply(JSON.stringify);
             resourceInputs["peerauth"] = args ? args.peerauth : undefined;
             resourceInputs["token"] = (args ? args.token : undefined) ?? utilities.getEnv("FORTIOS_ACCESS_TOKEN");
@@ -97,6 +107,10 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
+    /**
+     * CA Bundle file content
+     */
+    cabundlecontent?: pulumi.Input<string>;
     /**
      * CA Bundle file
      */
@@ -128,6 +142,10 @@ export interface ProviderArgs {
      * The hostname/IP address of the FortiOS to be connected
      */
     hostname?: pulumi.Input<string>;
+    /**
+     * HTTP proxy address
+     */
+    httpProxy?: pulumi.Input<string>;
     insecure?: pulumi.Input<boolean>;
     /**
      * Enable/disable peer authentication, can be 'enable' or 'disable'

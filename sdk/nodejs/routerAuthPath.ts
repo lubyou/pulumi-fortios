@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure authentication based routing.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.RouterAuthPath("trname", {
- *     device: "port3",
- *     gateway: "1.1.1.1",
- * });
- * ```
- *
- * ## Import
- *
- * Router AuthPath can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerAuthPath:RouterAuthPath labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerAuthPath:RouterAuthPath labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterAuthPath extends pulumi.CustomResource {
     /**
      * Get an existing RouterAuthPath resource's state with the given name, ID, and optional extra
@@ -63,21 +32,9 @@ export class RouterAuthPath extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterAuthPath.__pulumiType;
     }
 
-    /**
-     * Outgoing interface.
-     */
     public readonly device!: pulumi.Output<string>;
-    /**
-     * Gateway IP address.
-     */
     public readonly gateway!: pulumi.Output<string>;
-    /**
-     * Name of the entry.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -116,21 +73,9 @@ export class RouterAuthPath extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterAuthPath resources.
  */
 export interface RouterAuthPathState {
-    /**
-     * Outgoing interface.
-     */
     device?: pulumi.Input<string>;
-    /**
-     * Gateway IP address.
-     */
     gateway?: pulumi.Input<string>;
-    /**
-     * Name of the entry.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -138,20 +83,8 @@ export interface RouterAuthPathState {
  * The set of arguments for constructing a RouterAuthPath resource.
  */
 export interface RouterAuthPathArgs {
-    /**
-     * Outgoing interface.
-     */
     device: pulumi.Input<string>;
-    /**
-     * Gateway IP address.
-     */
     gateway?: pulumi.Input<string>;
-    /**
-     * Name of the entry.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

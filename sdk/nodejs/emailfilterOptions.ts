@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure AntiSpam options. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * Emailfilter Options can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/emailfilterOptions:EmailfilterOptions labelname EmailfilterOptions
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/emailfilterOptions:EmailfilterOptions labelname EmailfilterOptions
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class EmailfilterOptions extends pulumi.CustomResource {
     /**
      * Get an existing EmailfilterOptions resource's state with the given name, ID, and optional extra
@@ -51,13 +32,7 @@ export class EmailfilterOptions extends pulumi.CustomResource {
         return obj['__pulumiType'] === EmailfilterOptions.__pulumiType;
     }
 
-    /**
-     * DNS query time out (1 - 30 sec).
-     */
     public readonly dnsTimeout!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -89,13 +64,7 @@ export class EmailfilterOptions extends pulumi.CustomResource {
  * Input properties used for looking up and filtering EmailfilterOptions resources.
  */
 export interface EmailfilterOptionsState {
-    /**
-     * DNS query time out (1 - 30 sec).
-     */
     dnsTimeout?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -103,12 +72,6 @@ export interface EmailfilterOptionsState {
  * The set of arguments for constructing a EmailfilterOptions resource.
  */
 export interface EmailfilterOptionsArgs {
-    /**
-     * DNS query time out (1 - 30 sec).
-     */
     dnsTimeout?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

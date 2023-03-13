@@ -10,530 +10,258 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure global attributes.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemGlobal(ctx, "trname", &fortios.SystemGlobalArgs{
-// 			AdminSport: pulumi.Int(443),
-// 			Alias:      pulumi.String("FGVM02TM20003062"),
-// 			Hostname:   pulumi.String("ste11"),
-// 			Timezone:   pulumi.String("04"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Global can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemGlobal:SystemGlobal labelname SystemGlobal
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemGlobal:SystemGlobal labelname SystemGlobal
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemGlobal struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
-	AdminConcurrent pulumi.StringOutput `pulumi:"adminConcurrent"`
-	// Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
-	AdminConsoleTimeout pulumi.IntOutput `pulumi:"adminConsoleTimeout"`
-	// Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
-	AdminForticloudSsoLogin pulumi.StringOutput `pulumi:"adminForticloudSsoLogin"`
-	// HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
-	AdminHstsMaxAge pulumi.IntOutput `pulumi:"adminHstsMaxAge"`
-	// Enable/disable admin login method. Enable to force administrators to provide a valid certificate to log in if PKI is enabled. Disable to allow administrators to log in with a certificate or password. Valid values: `enable`, `disable`.
-	AdminHttpsPkiRequired pulumi.StringOutput `pulumi:"adminHttpsPkiRequired"`
-	// Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
-	AdminHttpsRedirect pulumi.StringOutput `pulumi:"adminHttpsRedirect"`
-	// Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
-	AdminHttpsSslBannedCiphers pulumi.StringOutput `pulumi:"adminHttpsSslBannedCiphers"`
-	// Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-	AdminHttpsSslCiphersuites pulumi.StringOutput `pulumi:"adminHttpsSslCiphersuites"`
-	// Allowed TLS versions for web administration.
-	AdminHttpsSslVersions pulumi.StringOutput `pulumi:"adminHttpsSslVersions"`
-	// Amount of time in seconds that an administrator account is locked out after reaching the admin-lockout-threshold for repeated failed login attempts.
-	AdminLockoutDuration pulumi.IntOutput `pulumi:"adminLockoutDuration"`
-	// Number of failed login attempts before an administrator account is locked out for the admin-lockout-duration.
-	AdminLockoutThreshold pulumi.IntOutput `pulumi:"adminLockoutThreshold"`
-	// Maximum number of administrators who can be logged in at the same time (1 - 100, default = 100)
-	AdminLoginMax pulumi.IntOutput `pulumi:"adminLoginMax"`
-	// Enable/disable maintainer administrator login. When enabled, the maintainer account can be used to log in from the console after a hard reboot. The password is "bcpb" followed by the FortiGate unit serial number. You have limited time to complete this login. Valid values: `enable`, `disable`.
-	AdminMaintainer pulumi.StringOutput `pulumi:"adminMaintainer"`
-	// Administrative access port for HTTP. (1 - 65535, default = 80).
-	AdminPort pulumi.IntOutput `pulumi:"adminPort"`
-	// Enable/disable local admin authentication restriction when remote authenticator is up and running. (default = disable) Valid values: `enable`, `disable`.
-	AdminRestrictLocal pulumi.StringOutput `pulumi:"adminRestrictLocal"`
-	// Enable/disable using SCP to download the system configuration. You can use SCP as an alternative method for backing up the configuration. Valid values: `enable`, `disable`.
-	AdminScp pulumi.StringOutput `pulumi:"adminScp"`
-	// Server certificate that the FortiGate uses for HTTPS administrative connections.
-	AdminServerCert pulumi.StringOutput `pulumi:"adminServerCert"`
-	// Administrative access port for HTTPS. (1 - 65535, default = 443).
-	AdminSport pulumi.IntOutput `pulumi:"adminSport"`
-	// Maximum time in seconds permitted between making an SSH connection to the FortiGate unit and authenticating (10 - 3600 sec (1 hour), default 120).
-	AdminSshGraceTime pulumi.IntOutput `pulumi:"adminSshGraceTime"`
-	// Enable/disable password authentication for SSH admin access. Valid values: `enable`, `disable`.
-	AdminSshPassword pulumi.StringOutput `pulumi:"adminSshPassword"`
-	// Administrative access port for SSH. (1 - 65535, default = 22).
-	AdminSshPort pulumi.IntOutput `pulumi:"adminSshPort"`
-	// Enable/disable SSH v1 compatibility. Valid values: `enable`, `disable`.
-	AdminSshV1 pulumi.StringOutput `pulumi:"adminSshV1"`
-	// Enable/disable TELNET service. Valid values: `enable`, `disable`.
-	AdminTelnet pulumi.StringOutput `pulumi:"adminTelnet"`
-	// Administrative access port for TELNET. (1 - 65535, default = 23).
-	AdminTelnetPort pulumi.IntOutput `pulumi:"adminTelnetPort"`
-	// Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
-	Admintimeout pulumi.IntOutput `pulumi:"admintimeout"`
-	// Alias for your FortiGate unit.
-	Alias pulumi.StringOutput `pulumi:"alias"`
-	// Disable to allow traffic to be routed back on a different interface. Valid values: `enable`, `disable`.
-	AllowTrafficRedirect pulumi.StringOutput `pulumi:"allowTrafficRedirect"`
-	// Level of checking for packet replay and TCP sequence checking. Valid values: `disable`, `loose`, `strict`.
-	AntiReplay pulumi.StringOutput `pulumi:"antiReplay"`
-	// Maximum number of dynamically learned MAC addresses that can be added to the ARP table (131072 - 2147483647, default = 131072).
-	ArpMaxEntry pulumi.IntOutput `pulumi:"arpMaxEntry"`
-	// Enable/disable asymmetric route. Valid values: `enable`, `disable`.
-	Asymroute pulumi.StringOutput `pulumi:"asymroute"`
-	// Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
-	AuthCert pulumi.StringOutput `pulumi:"authCert"`
-	// User authentication HTTP port. (1 - 65535, default = 80).
-	AuthHttpPort pulumi.IntOutput `pulumi:"authHttpPort"`
-	// User authentication HTTPS port. (1 - 65535, default = 443).
-	AuthHttpsPort pulumi.IntOutput `pulumi:"authHttpsPort"`
-	// Enable to prevent user authentication sessions from timing out when idle. Valid values: `enable`, `disable`.
-	AuthKeepalive pulumi.StringOutput `pulumi:"authKeepalive"`
-	// Action to take when the number of allowed user authenticated sessions is reached. Valid values: `block-new`, `logout-inactive`.
-	AuthSessionLimit pulumi.StringOutput `pulumi:"authSessionLimit"`
-	// Enable/disable automatic authorization of dedicated Fortinet extension devices. Valid values: `enable`, `disable`.
-	AutoAuthExtensionDevice pulumi.StringOutput `pulumi:"autoAuthExtensionDevice"`
-	// Enable/disable automatic log partition check after ungraceful shutdown. Valid values: `enable`, `disable`.
-	AutorunLogFsck pulumi.StringOutput `pulumi:"autorunLogFsck"`
-	// Affinity setting for AV scanning (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	AvAffinity pulumi.StringOutput `pulumi:"avAffinity"`
-	// Set the action to take if the FortiGate is running low on memory or the proxy connection limit has been reached. Valid values: `pass`, `off`, `one-shot`.
-	AvFailopen pulumi.StringOutput `pulumi:"avFailopen"`
-	// When enabled and a proxy for a protocol runs out of room in its session table, that protocol goes into failopen mode and enacts the action specified by av-failopen. Valid values: `enable`, `disable`.
-	AvFailopenSession pulumi.StringOutput `pulumi:"avFailopenSession"`
-	// Enable/disable batch mode, allowing you to enter a series of CLI commands that will execute as a group once they are loaded. Valid values: `enable`, `disable`.
-	BatchCmdb pulumi.StringOutput `pulumi:"batchCmdb"`
-	// Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
-	BlockSessionTimer pulumi.IntOutput `pulumi:"blockSessionTimer"`
-	// Maximum number of bridge forwarding database (FDB) entries.
-	BrFdbMaxEntry pulumi.IntOutput `pulumi:"brFdbMaxEntry"`
-	// Maximum number of certificates that can be traversed in a certificate chain.
-	CertChainMax pulumi.IntOutput `pulumi:"certChainMax"`
-	// Time-out for reverting to the last saved configuration.
-	CfgRevertTimeout pulumi.IntOutput `pulumi:"cfgRevertTimeout"`
-	// Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
-	CfgSave pulumi.StringOutput `pulumi:"cfgSave"`
-	// Level of checking performed on protocol headers. Strict checking is more thorough but may affect performance. Loose checking is ok in most cases. Valid values: `loose`, `strict`.
-	CheckProtocolHeader pulumi.StringOutput `pulumi:"checkProtocolHeader"`
-	// Configure ICMP error message verification. You can either apply strict RST range checking or disable it. Valid values: `strict`, `disable`.
-	CheckResetRange pulumi.StringOutput `pulumi:"checkResetRange"`
-	// Enable/disable CLI audit log. Valid values: `enable`, `disable`.
-	CliAuditLog pulumi.StringOutput `pulumi:"cliAuditLog"`
-	// Enable/disable all cloud communication. Valid values: `enable`, `disable`.
-	CloudCommunication pulumi.StringOutput `pulumi:"cloudCommunication"`
-	// Enable/disable requiring administrators to have a client certificate to log into the GUI using HTTPS. Valid values: `enable`, `disable`.
-	CltCertReq pulumi.StringOutput `pulumi:"cltCertReq"`
-	// Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	CmdbsvrAffinity pulumi.StringOutput `pulumi:"cmdbsvrAffinity"`
-	// Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
-	ComplianceCheck pulumi.StringOutput `pulumi:"complianceCheck"`
-	// Time of day to run scheduled PCI DSS compliance checks.
-	ComplianceCheckTime pulumi.StringOutput `pulumi:"complianceCheckTime"`
-	// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
-	CpuUseThreshold pulumi.IntOutput `pulumi:"cpuUseThreshold"`
-	// Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
-	CsrCaAttribute pulumi.StringOutput `pulumi:"csrCaAttribute"`
-	// Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
-	DailyRestart pulumi.StringOutput `pulumi:"dailyRestart"`
-	// Default service source port range. (default=1-65535)
-	DefaultServiceSourcePort pulumi.StringOutput `pulumi:"defaultServiceSourcePort"`
-	// Number of seconds to passively scan a device before performing an active scan. (20 - 3600 sec, (20 sec to 1 hour), default = 90).
-	DeviceIdentificationActiveScanDelay pulumi.IntOutput `pulumi:"deviceIdentificationActiveScanDelay"`
-	// Time in seconds that a device must be idle to automatically log the device user out. (30 - 31536000 sec (30 sec to 1 year), default = 300).
-	DeviceIdleTimeout pulumi.IntOutput `pulumi:"deviceIdleTimeout"`
-	// Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
-	DhParams pulumi.StringOutput `pulumi:"dhParams"`
-	// DNS proxy worker count.
-	DnsproxyWorkerCount pulumi.IntOutput `pulumi:"dnsproxyWorkerCount"`
-	// Enable/disable daylight saving time. Valid values: `enable`, `disable`.
-	Dst pulumi.StringOutput `pulumi:"dst"`
-	// Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
-	EditVdomPrompt pulumi.StringOutput `pulumi:"editVdomPrompt"`
-	// Enable/disable access to the FortiGuard network for non-compliant endpoints. Valid values: `enable`, `disable`.
-	EndpointControlFdsAccess pulumi.StringOutput `pulumi:"endpointControlFdsAccess"`
-	// Endpoint control portal port (1 - 65535).
-	EndpointControlPortalPort pulumi.IntOutput `pulumi:"endpointControlPortalPort"`
-	// Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
-	ExtenderControllerReservedNetwork pulumi.StringOutput `pulumi:"extenderControllerReservedNetwork"`
-	// Fail-time for server lost.
-	Failtime pulumi.IntOutput `pulumi:"failtime"`
-	// Maximum disk buffer size to temporarily store logs destined for FortiAnalyzer. To be used in the event that FortiAnalyzer is unavailalble.
-	FazDiskBufferSize pulumi.IntOutput `pulumi:"fazDiskBufferSize"`
-	// Enable/disable sending IPS, Application Control, and AntiVirus data to FortiGuard. This data is used to improve FortiGuard services and is not shared with external parties and is protected by Fortinet's privacy policy. Valid values: `enable`, `disable`.
-	FdsStatistics pulumi.StringOutput `pulumi:"fdsStatistics"`
-	// FortiGuard statistics collection period in minutes. (1 - 1440 min (1 min to 24 hours), default = 60).
-	FdsStatisticsPeriod pulumi.IntOutput `pulumi:"fdsStatisticsPeriod"`
-	// Local UDP port for Forward Error Correction (49152 - 65535).
-	FecPort pulumi.IntOutput `pulumi:"fecPort"`
-	// Type of alert to retrieve from FortiGuard. Valid values: `advisory`, `latest-threat`, `latest-virus`, `latest-attack`, `new-antivirus-db`, `new-attack-db`.
-	FgdAlertSubscription pulumi.StringOutput `pulumi:"fgdAlertSubscription"`
-	// Enable/disable FortiExtender. Valid values: `enable`, `disable`.
-	Fortiextender pulumi.StringOutput `pulumi:"fortiextender"`
-	// FortiExtender data port (1024 - 49150, default = 25246).
-	FortiextenderDataPort pulumi.IntOutput `pulumi:"fortiextenderDataPort"`
-	// Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
-	FortiextenderDiscoveryLockdown pulumi.StringOutput `pulumi:"fortiextenderDiscoveryLockdown"`
-	// Enable/disable FortiExtender VLAN mode. Valid values: `enable`, `disable`.
-	FortiextenderVlanMode pulumi.StringOutput `pulumi:"fortiextenderVlanMode"`
-	// Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
-	FortiipamIntegration pulumi.StringOutput `pulumi:"fortiipamIntegration"`
-	// FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port.
-	FortiservicePort pulumi.IntOutput `pulumi:"fortiservicePort"`
-	// Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
-	FortitokenCloud pulumi.StringOutput `pulumi:"fortitokenCloud"`
-	// Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
-	GuiAllowDefaultHostname pulumi.StringOutput `pulumi:"guiAllowDefaultHostname"`
-	// Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
-	GuiCdnUsage pulumi.StringOutput `pulumi:"guiCdnUsage"`
-	// Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. Valid values: `enable`, `disable`.
-	GuiCertificates pulumi.StringOutput `pulumi:"guiCertificates"`
-	// Enable/disable custom languages in GUI. Valid values: `enable`, `disable`.
-	GuiCustomLanguage pulumi.StringOutput `pulumi:"guiCustomLanguage"`
-	// Default date format used throughout GUI. Valid values: `yyyy/MM/dd`, `dd/MM/yyyy`, `MM/dd/yyyy`, `yyyy-MM-dd`, `dd-MM-yyyy`, `MM-dd-yyyy`.
-	GuiDateFormat pulumi.StringOutput `pulumi:"guiDateFormat"`
-	// Source from which the FortiGate GUI uses to display date and time entries. Valid values: `system`, `browser`.
-	GuiDateTimeSource pulumi.StringOutput `pulumi:"guiDateTimeSource"`
-	// Add the latitude of the location of this FortiGate to position it on the Threat Map.
-	GuiDeviceLatitude pulumi.StringOutput `pulumi:"guiDeviceLatitude"`
-	// Add the longitude of the location of this FortiGate to position it on the Threat Map.
-	GuiDeviceLongitude pulumi.StringOutput `pulumi:"guiDeviceLongitude"`
-	// Enable/disable displaying the FortiGate's hostname on the GUI login page. Valid values: `enable`, `disable`.
-	GuiDisplayHostname pulumi.StringOutput `pulumi:"guiDisplayHostname"`
-	// Enable/disable the firmware upgrade warning on GUI setup wizard. Valid values: `enable`, `disable`.
-	GuiFirmwareUpgradeSetupWarning pulumi.StringOutput `pulumi:"guiFirmwareUpgradeSetupWarning"`
-	// Enable/disable the firmware upgrade warning on the GUI. Valid values: `enable`, `disable`.
-	GuiFirmwareUpgradeWarning pulumi.StringOutput `pulumi:"guiFirmwareUpgradeWarning"`
-	// Enable/disable the FortiCare registration setup warning on the GUI. Valid values: `enable`, `disable`.
-	GuiForticareRegistrationSetupWarning pulumi.StringOutput `pulumi:"guiForticareRegistrationSetupWarning"`
-	// Enable/disable displaying FortiGate Cloud Sandbox on the GUI. Valid values: `enable`, `disable`.
-	GuiFortigateCloudSandbox pulumi.StringOutput `pulumi:"guiFortigateCloudSandbox"`
-	// Enable/disable displaying FortiSandbox Cloud on the GUI. Valid values: `enable`, `disable`.
-	GuiFortisandboxCloud pulumi.StringOutput `pulumi:"guiFortisandboxCloud"`
-	// Enable/disable IPv6 settings on the GUI. Valid values: `enable`, `disable`.
-	GuiIpv6 pulumi.StringOutput `pulumi:"guiIpv6"`
-	// Number of lines to display per page for web administration.
-	GuiLinesPerPage pulumi.IntOutput `pulumi:"guiLinesPerPage"`
-	// Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
-	GuiLocalOut pulumi.StringOutput `pulumi:"guiLocalOut"`
-	// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
-	GuiReplacementMessageGroups pulumi.StringOutput `pulumi:"guiReplacementMessageGroups"`
-	// Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
-	GuiRestApiCache pulumi.StringOutput `pulumi:"guiRestApiCache"`
-	// Color scheme for the administration GUI.
-	GuiTheme pulumi.StringOutput `pulumi:"guiTheme"`
-	// Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
-	GuiWirelessOpensecurity pulumi.StringOutput `pulumi:"guiWirelessOpensecurity"`
-	// Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	HaAffinity pulumi.StringOutput `pulumi:"haAffinity"`
-	// Enable/disable honoring of Don't-Fragment (DF) flag. Valid values: `enable`, `disable`.
-	HonorDf pulumi.StringOutput `pulumi:"honorDf"`
-	// FortiGate unit's hostname. Most models will truncate names longer than 24 characters. Some models support hostnames up to 35 characters.
-	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// Maximum number of IGMP memberships (96 - 64000, default = 3200).
-	IgmpStateLimit pulumi.IntOutput `pulumi:"igmpStateLimit"`
-	// Maximum number of IPsec tunnels to negotiate simultaneously.
-	IkeEmbryonicLimit pulumi.IntOutput `pulumi:"ikeEmbryonicLimit"`
-	// Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
-	InternetServiceDatabase pulumi.StringOutput `pulumi:"internetServiceDatabase"`
-	// Dead gateway detection interval.
-	Interval pulumi.IntOutput `pulumi:"interval"`
-	// IP source port range used for traffic originating from the FortiGate unit.
-	IpSrcPortRange pulumi.StringOutput `pulumi:"ipSrcPortRange"`
-	// Affinity setting for IPS (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx; allowed CPUs must be less than total number of IPS engine daemons).
-	IpsAffinity pulumi.StringOutput `pulumi:"ipsAffinity"`
-	// Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
-	IpsecAsicOffload pulumi.StringOutput `pulumi:"ipsecAsicOffload"`
-	// ESP jump ahead rate (1G - 10G pps equivalent).
-	IpsecHaSeqjumpRate pulumi.IntOutput `pulumi:"ipsecHaSeqjumpRate"`
-	// Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
-	IpsecHmacOffload pulumi.StringOutput `pulumi:"ipsecHmacOffload"`
-	// Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
-	IpsecSoftDecAsync pulumi.StringOutput `pulumi:"ipsecSoftDecAsync"`
-	// Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
-	Ipv6AcceptDad pulumi.IntOutput `pulumi:"ipv6AcceptDad"`
-	// Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
-	Ipv6AllowAnycastProbe pulumi.StringOutput `pulumi:"ipv6AllowAnycastProbe"`
-	// Disable to prevent IPv6 traffic with same local ingress and egress interface from being forwarded without policy check. Valid values: `enable`, `disable`.
-	Ipv6AllowTrafficRedirect pulumi.StringOutput `pulumi:"ipv6AllowTrafficRedirect"`
-	// Configure CPU IRQ time accounting mode. Valid values: `auto`, `force`.
-	IrqTimeAccounting pulumi.StringOutput `pulumi:"irqTimeAccounting"`
-	// GUI display language. Valid values: `english`, `french`, `spanish`, `portuguese`, `japanese`, `trach`, `simch`, `korean`.
-	Language pulumi.StringOutput `pulumi:"language"`
-	// Global timeout for connections with remote LDAP servers in milliseconds (1 - 300000, default 500).
-	Ldapconntimeout pulumi.IntOutput `pulumi:"ldapconntimeout"`
-	// Enable/disable Link Layer Discovery Protocol (LLDP) reception. Valid values: `enable`, `disable`.
-	LldpReception pulumi.StringOutput `pulumi:"lldpReception"`
-	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission. Valid values: `enable`, `disable`.
-	LldpTransmission pulumi.StringOutput `pulumi:"lldpTransmission"`
-	// Enable/disable logging of SSL connection events. Valid values: `enable`, `disable`.
-	LogSslConnection pulumi.StringOutput `pulumi:"logSslConnection"`
-	// Enable/disable insertion of address UUIDs to traffic logs. Valid values: `enable`, `disable`.
-	LogUuidAddress pulumi.StringOutput `pulumi:"logUuidAddress"`
-	// Enable/disable insertion of policy UUIDs to traffic logs. Valid values: `enable`, `disable`.
-	LogUuidPolicy pulumi.StringOutput `pulumi:"logUuidPolicy"`
-	// Enable/disable login time recording. Valid values: `enable`, `disable`.
-	LoginTimestamp pulumi.StringOutput `pulumi:"loginTimestamp"`
-	// Enable/disable long VDOM name support. Valid values: `enable`, `disable`.
-	LongVdomName pulumi.StringOutput `pulumi:"longVdomName"`
-	// Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
-	ManagementIp pulumi.StringOutput `pulumi:"managementIp"`
-	// Overriding port for management connection (Overrides admin port).
-	ManagementPort pulumi.IntOutput `pulumi:"managementPort"`
-	// Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
-	ManagementPortUseAdminSport pulumi.StringOutput `pulumi:"managementPortUseAdminSport"`
-	// Management virtual domain name.
-	ManagementVdom pulumi.StringOutput `pulumi:"managementVdom"`
-	// Maximum DLP stat memory (0 - 4294967295).
-	MaxDlpstatMemory pulumi.IntOutput `pulumi:"maxDlpstatMemory"`
-	// Maximum number of IP route cache entries (0 - 2147483647).
-	MaxRouteCacheSize pulumi.IntOutput `pulumi:"maxRouteCacheSize"`
-	// Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-	McTtlNotchange pulumi.StringOutput `pulumi:"mcTtlNotchange"`
-	// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
-	MemoryUseThresholdExtreme pulumi.IntOutput `pulumi:"memoryUseThresholdExtreme"`
-	// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
-	MemoryUseThresholdGreen pulumi.IntOutput `pulumi:"memoryUseThresholdGreen"`
-	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
-	MemoryUseThresholdRed pulumi.IntOutput `pulumi:"memoryUseThresholdRed"`
-	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
-	MiglogAffinity pulumi.StringOutput `pulumi:"miglogAffinity"`
-	// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
-	MiglogdChildren pulumi.IntOutput `pulumi:"miglogdChildren"`
-	// Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
-	MultiFactorAuthentication pulumi.StringOutput `pulumi:"multiFactorAuthentication"`
-	// Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
-	MulticastForward pulumi.StringOutput `pulumi:"multicastForward"`
-	// Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
-	NdpMaxEntry pulumi.IntOutput `pulumi:"ndpMaxEntry"`
-	// Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
-	PerUserBal pulumi.StringOutput `pulumi:"perUserBal"`
-	// Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
-	PerUserBwl pulumi.StringOutput `pulumi:"perUserBwl"`
-	// Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
-	PmtuDiscovery pulumi.StringOutput `pulumi:"pmtuDiscovery"`
-	// Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
-	PolicyAuthConcurrent pulumi.IntOutput `pulumi:"policyAuthConcurrent"`
-	// Enable/disable displaying the administrator access disclaimer message after an administrator successfully logs in. Valid values: `disable`, `enable`.
-	PostLoginBanner pulumi.StringOutput `pulumi:"postLoginBanner"`
-	// Enable/disable displaying the administrator access disclaimer message on the login page before an administrator logs in. Valid values: `enable`, `disable`.
-	PreLoginBanner pulumi.StringOutput `pulumi:"preLoginBanner"`
-	// Enable/disable private data encryption using an AES 128-bit key. Valid values: `disable`, `enable`.
-	PrivateDataEncryption pulumi.StringOutput `pulumi:"privateDataEncryption"`
-	// Enable/disable authenticated users lifetime control.  This is a cap on the total time a proxy user can be authenticated for after which re-authentication will take place. Valid values: `enable`, `disable`.
-	ProxyAuthLifetime pulumi.StringOutput `pulumi:"proxyAuthLifetime"`
-	// Lifetime timeout in minutes for authenticated users (5  - 65535 min, default=480 (8 hours)).
-	ProxyAuthLifetimeTimeout pulumi.IntOutput `pulumi:"proxyAuthLifetimeTimeout"`
-	// Authentication timeout in minutes for authenticated users (1 - 300 min, default = 10).
-	ProxyAuthTimeout pulumi.IntOutput `pulumi:"proxyAuthTimeout"`
-	// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
-	ProxyCertUseMgmtVdom pulumi.StringOutput `pulumi:"proxyCertUseMgmtVdom"`
-	// Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
-	ProxyCipherHardwareAcceleration pulumi.StringOutput `pulumi:"proxyCipherHardwareAcceleration"`
-	// Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
-	ProxyHardwareAcceleration pulumi.StringOutput `pulumi:"proxyHardwareAcceleration"`
-	// Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
-	ProxyKxpHardwareAcceleration pulumi.StringOutput `pulumi:"proxyKxpHardwareAcceleration"`
-	// Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
-	ProxyReAuthenticationMode pulumi.StringOutput `pulumi:"proxyReAuthenticationMode"`
-	// Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
-	ProxyResourceMode pulumi.StringOutput `pulumi:"proxyResourceMode"`
-	// Proxy worker count.
-	ProxyWorkerCount pulumi.IntOutput `pulumi:"proxyWorkerCount"`
-	// RADIUS service port number.
-	RadiusPort pulumi.IntOutput `pulumi:"radiusPort"`
-	// Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
-	RebootUponConfigRestore pulumi.StringOutput `pulumi:"rebootUponConfigRestore"`
-	// Statistics refresh interval in GUI.
-	Refresh pulumi.IntOutput `pulumi:"refresh"`
-	// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
-	Remoteauthtimeout pulumi.IntOutput `pulumi:"remoteauthtimeout"`
-	// Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
-	ResetSessionlessTcp pulumi.StringOutput `pulumi:"resetSessionlessTcp"`
-	// Daily restart time (hh:mm).
-	RestartTime pulumi.StringOutput `pulumi:"restartTime"`
-	// Enable/disable back-up of the latest configuration revision when an administrator logs out of the CLI or GUI. Valid values: `enable`, `disable`.
-	RevisionBackupOnLogout pulumi.StringOutput `pulumi:"revisionBackupOnLogout"`
-	// Enable/disable back-up of the latest configuration revision after the firmware is upgraded. Valid values: `enable`, `disable`.
-	RevisionImageAutoBackup pulumi.StringOutput `pulumi:"revisionImageAutoBackup"`
-	// Number of scanunits. The range and the default depend on the number of CPUs. Only available on FortiGate units with multiple CPUs.
-	ScanunitCount pulumi.IntOutput `pulumi:"scanunitCount"`
-	// Enable/disable the submission of Security Rating results to FortiGuard. Valid values: `enable`, `disable`.
-	SecurityRatingResultSubmission pulumi.StringOutput `pulumi:"securityRatingResultSubmission"`
-	// Enable/disable scheduled runs of Security Rating. Valid values: `enable`, `disable`.
-	SecurityRatingRunOnSchedule pulumi.StringOutput `pulumi:"securityRatingRunOnSchedule"`
-	// Enable/disable sending of path maximum transmission unit (PMTU) - ICMP destination unreachable packet and to support PMTUD protocol on your network to reduce fragmentation of packets. Valid values: `enable`, `disable`.
-	SendPmtuIcmp pulumi.StringOutput `pulumi:"sendPmtuIcmp"`
-	// Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
-	SnatRouteChange pulumi.StringOutput `pulumi:"snatRouteChange"`
-	// Enable/disable IPS detection of HIBUN format files when using Data Leak Protection. Valid values: `disable`, `enable`.
-	SpecialFile23Support pulumi.StringOutput `pulumi:"specialFile23Support"`
-	// Enable/disable speed test server. Valid values: `enable`, `disable`.
-	SpeedtestServer pulumi.StringOutput `pulumi:"speedtestServer"`
-	// Split port(s) to multiple 10Gbps ports.
-	SplitPort pulumi.StringOutput `pulumi:"splitPort"`
-	// Date within a month to run ssd trim.
-	SsdTrimDate pulumi.IntOutput `pulumi:"ssdTrimDate"`
-	// How often to run SSD Trim (default = weekly). SSD Trim prevents SSD drive data loss by finding and isolating errors. Valid values: `never`, `hourly`, `daily`, `weekly`, `monthly`.
-	SsdTrimFreq pulumi.StringOutput `pulumi:"ssdTrimFreq"`
-	// Hour of the day on which to run SSD Trim (0 - 23, default = 1).
-	SsdTrimHour pulumi.IntOutput `pulumi:"ssdTrimHour"`
-	// Minute of the hour on which to run SSD Trim (0 - 59, 60 for random).
-	SsdTrimMin pulumi.IntOutput `pulumi:"ssdTrimMin"`
-	// Day of week to run SSD Trim. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	SsdTrimWeekday pulumi.StringOutput `pulumi:"ssdTrimWeekday"`
-	// Enable/disable CBC cipher for SSH access. Valid values: `enable`, `disable`.
-	SshCbcCipher pulumi.StringOutput `pulumi:"sshCbcCipher"`
-	// Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
-	SshEncAlgo pulumi.StringOutput `pulumi:"sshEncAlgo"`
-	// Enable/disable HMAC-MD5 for SSH access. Valid values: `enable`, `disable`.
-	SshHmacMd5 pulumi.StringOutput `pulumi:"sshHmacMd5"`
-	// Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
-	SshKexAlgo pulumi.StringOutput `pulumi:"sshKexAlgo"`
-	// Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
-	SshKexSha1 pulumi.StringOutput `pulumi:"sshKexSha1"`
-	// Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
-	SshMacAlgo pulumi.StringOutput `pulumi:"sshMacAlgo"`
-	// Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access. Valid values: `enable`, `disable`.
-	SshMacWeak pulumi.StringOutput `pulumi:"sshMacWeak"`
-	// Minimum supported protocol version for SSL/TLS connections (default = TLSv1.2).
-	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
-	// Enable/disable static key ciphers in SSL/TLS connections (e.g. AES128-SHA, AES256-SHA, AES128-SHA256, AES256-SHA256). Valid values: `enable`, `disable`.
-	SslStaticKeyCiphers pulumi.StringOutput `pulumi:"sslStaticKeyCiphers"`
-	// Enable/disable SSL VPN hardware acceleration. Valid values: `enable`, `disable`.
-	SslvpnCipherHardwareAcceleration pulumi.StringOutput `pulumi:"sslvpnCipherHardwareAcceleration"`
-	// Enable/disable verification of EMS serial number in SSL-VPN connection. Valid values: `enable`, `disable`.
-	SslvpnEmsSnCheck pulumi.StringOutput `pulumi:"sslvpnEmsSnCheck"`
-	// Enable/disable SSL VPN KXP hardware acceleration. Valid values: `enable`, `disable`.
-	SslvpnKxpHardwareAcceleration pulumi.StringOutput `pulumi:"sslvpnKxpHardwareAcceleration"`
-	// Maximum number of SSL VPN processes. Upper limit for this value is the number of CPUs and depends on the model.
-	SslvpnMaxWorkerCount pulumi.IntOutput `pulumi:"sslvpnMaxWorkerCount"`
-	// Enable/disable checking browser's plugin version by SSL VPN. Valid values: `enable`, `disable`.
-	SslvpnPluginVersionCheck pulumi.StringOutput `pulumi:"sslvpnPluginVersionCheck"`
-	// Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
-	StrictDirtySessionCheck pulumi.StringOutput `pulumi:"strictDirtySessionCheck"`
-	// Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
-	StrongCrypto pulumi.StringOutput `pulumi:"strongCrypto"`
-	// Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
-	SwitchController pulumi.StringOutput `pulumi:"switchController"`
-	// Enable reserved network subnet for controlled switches. This is available when the switch controller is enabled.
-	SwitchControllerReservedNetwork pulumi.StringOutput `pulumi:"switchControllerReservedNetwork"`
-	// Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
-	SysPerfLogInterval pulumi.IntOutput `pulumi:"sysPerfLogInterval"`
-	// Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
-	TcpHalfcloseTimer pulumi.IntOutput `pulumi:"tcpHalfcloseTimer"`
-	// Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
-	TcpHalfopenTimer pulumi.IntOutput `pulumi:"tcpHalfopenTimer"`
-	// Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
-	TcpOption pulumi.StringOutput `pulumi:"tcpOption"`
-	// Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
-	TcpRstTimer pulumi.IntOutput `pulumi:"tcpRstTimer"`
-	// Length of the TCP TIME-WAIT state in seconds.
-	TcpTimewaitTimer pulumi.IntOutput `pulumi:"tcpTimewaitTimer"`
-	// Enable/disable TFTP. Valid values: `enable`, `disable`.
-	Tftp pulumi.StringOutput `pulumi:"tftp"`
-	// Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
-	Timezone pulumi.StringOutput `pulumi:"timezone"`
-	// Enable/disable skip policy check and allow multicast through. Valid values: `enable`, `disable`.
-	TpMcSkipPolicy pulumi.StringOutput `pulumi:"tpMcSkipPolicy"`
-	// Choose Type of Service (ToS) or Differentiated Services Code Point (DSCP) for traffic prioritization in traffic shaping. Valid values: `tos`, `dscp`.
-	TrafficPriority pulumi.StringOutput `pulumi:"trafficPriority"`
-	// Default system-wide level of priority for traffic prioritization. Valid values: `low`, `medium`, `high`.
-	TrafficPriorityLevel pulumi.StringOutput `pulumi:"trafficPriorityLevel"`
-	// Email-based two-factor authentication session timeout (30 - 300 seconds (5 minutes), default = 60).
-	TwoFactorEmailExpiry pulumi.IntOutput `pulumi:"twoFactorEmailExpiry"`
-	// FortiAuthenticator token authentication session timeout (10 - 3600 seconds (1 hour), default = 60).
-	TwoFactorFacExpiry pulumi.IntOutput `pulumi:"twoFactorFacExpiry"`
-	// FortiToken authentication session timeout (60 - 600 sec (10 minutes), default = 60).
-	TwoFactorFtkExpiry pulumi.IntOutput `pulumi:"twoFactorFtkExpiry"`
-	// FortiToken Mobile session timeout (1 - 168 hours (7 days), default = 72).
-	TwoFactorFtmExpiry pulumi.IntOutput `pulumi:"twoFactorFtmExpiry"`
-	// SMS-based two-factor authentication session timeout (30 - 300 sec, default = 60).
-	TwoFactorSmsExpiry pulumi.IntOutput `pulumi:"twoFactorSmsExpiry"`
-	// UDP connection session timeout. This command can be useful in managing CPU and memory resources (1 - 86400 seconds (1 day), default = 60).
-	UdpIdleTimer pulumi.IntOutput `pulumi:"udpIdleTimer"`
-	// URL filter CPU affinity.
-	UrlFilterAffinity pulumi.StringOutput `pulumi:"urlFilterAffinity"`
-	// URL filter daemon count.
-	UrlFilterCount pulumi.IntOutput `pulumi:"urlFilterCount"`
-	// Maximum number of devices allowed in user device store.
-	UserDeviceStoreMaxDevices pulumi.IntOutput `pulumi:"userDeviceStoreMaxDevices"`
-	// Maximum unified memory allowed in user device store.
-	UserDeviceStoreMaxUnifiedMem pulumi.IntOutput `pulumi:"userDeviceStoreMaxUnifiedMem"`
-	// Maximum number of users allowed in user device store.
-	UserDeviceStoreMaxUsers pulumi.IntOutput `pulumi:"userDeviceStoreMaxUsers"`
-	// Certificate to use for https user authentication.
-	UserServerCert pulumi.StringOutput `pulumi:"userServerCert"`
-	// Enable/disable support for multiple virtual domains (VDOMs). Valid values: `enable`, `disable`.
-	VdomAdmin pulumi.StringOutput `pulumi:"vdomAdmin"`
-	// Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
-	VdomMode pulumi.StringOutput `pulumi:"vdomMode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.
-	VipArpRange pulumi.StringOutput `pulumi:"vipArpRange"`
-	// Maximum number of virtual server processes to create. The maximum is the number of CPU cores. This is not available on single-core CPUs.
-	VirtualServerCount pulumi.IntOutput `pulumi:"virtualServerCount"`
-	// Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
-	VirtualServerHardwareAcceleration pulumi.StringOutput `pulumi:"virtualServerHardwareAcceleration"`
-	// Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
-	VirtualSwitchVlan pulumi.StringOutput `pulumi:"virtualSwitchVlan"`
-	// Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	WadAffinity pulumi.StringOutput `pulumi:"wadAffinity"`
-	// Number of concurrent WAD-cache-service object-cache processes.
-	WadCsvcCsCount pulumi.IntOutput `pulumi:"wadCsvcCsCount"`
-	// Number of concurrent WAD-cache-service byte-cache processes.
-	WadCsvcDbCount pulumi.IntOutput `pulumi:"wadCsvcDbCount"`
-	// Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection.
-	WadMemoryChangeGranularity pulumi.IntOutput `pulumi:"wadMemoryChangeGranularity"`
-	// Enable/disable dispatching traffic to WAD workers based on source affinity. Valid values: `disable`, `enable`.
-	WadSourceAffinity pulumi.StringOutput `pulumi:"wadSourceAffinity"`
-	// Number of explicit proxy WAN optimization daemon (WAD) processes. By default WAN optimization, explicit proxy, and web caching is handled by all of the CPU cores in a FortiGate unit.
-	WadWorkerCount pulumi.IntOutput `pulumi:"wadWorkerCount"`
-	// CA certificate that verifies the WiFi certificate.
-	WifiCaCertificate pulumi.StringOutput `pulumi:"wifiCaCertificate"`
-	// Certificate to use for WiFi authentication.
-	WifiCertificate pulumi.StringOutput `pulumi:"wifiCertificate"`
-	// Enable/disable comparability with WiMAX 4G USB devices. Valid values: `enable`, `disable`.
-	Wimax4gUsb pulumi.StringOutput `pulumi:"wimax4gUsb"`
-	// Enable/disable the wireless controller feature to use the FortiGate unit to manage FortiAPs. Valid values: `enable`, `disable`.
-	WirelessController pulumi.StringOutput `pulumi:"wirelessController"`
-	// Port used for the control channel in wireless controller mode (wireless-mode is ac). The data channel port is the control channel port number plus one (1024 - 49150, default = 5246).
-	WirelessControllerPort pulumi.IntOutput `pulumi:"wirelessControllerPort"`
+	AdminConcurrent                       pulumi.StringOutput    `pulumi:"adminConcurrent"`
+	AdminConsoleTimeout                   pulumi.IntOutput       `pulumi:"adminConsoleTimeout"`
+	AdminForticloudSsoLogin               pulumi.StringOutput    `pulumi:"adminForticloudSsoLogin"`
+	AdminHost                             pulumi.StringOutput    `pulumi:"adminHost"`
+	AdminHstsMaxAge                       pulumi.IntOutput       `pulumi:"adminHstsMaxAge"`
+	AdminHttpsPkiRequired                 pulumi.StringOutput    `pulumi:"adminHttpsPkiRequired"`
+	AdminHttpsRedirect                    pulumi.StringOutput    `pulumi:"adminHttpsRedirect"`
+	AdminHttpsSslBannedCiphers            pulumi.StringOutput    `pulumi:"adminHttpsSslBannedCiphers"`
+	AdminHttpsSslCiphersuites             pulumi.StringOutput    `pulumi:"adminHttpsSslCiphersuites"`
+	AdminHttpsSslVersions                 pulumi.StringOutput    `pulumi:"adminHttpsSslVersions"`
+	AdminLockoutDuration                  pulumi.IntOutput       `pulumi:"adminLockoutDuration"`
+	AdminLockoutThreshold                 pulumi.IntOutput       `pulumi:"adminLockoutThreshold"`
+	AdminLoginMax                         pulumi.IntOutput       `pulumi:"adminLoginMax"`
+	AdminMaintainer                       pulumi.StringOutput    `pulumi:"adminMaintainer"`
+	AdminPort                             pulumi.IntOutput       `pulumi:"adminPort"`
+	AdminRestrictLocal                    pulumi.StringOutput    `pulumi:"adminRestrictLocal"`
+	AdminScp                              pulumi.StringOutput    `pulumi:"adminScp"`
+	AdminServerCert                       pulumi.StringOutput    `pulumi:"adminServerCert"`
+	AdminSport                            pulumi.IntOutput       `pulumi:"adminSport"`
+	AdminSshGraceTime                     pulumi.IntOutput       `pulumi:"adminSshGraceTime"`
+	AdminSshPassword                      pulumi.StringOutput    `pulumi:"adminSshPassword"`
+	AdminSshPort                          pulumi.IntOutput       `pulumi:"adminSshPort"`
+	AdminSshV1                            pulumi.StringOutput    `pulumi:"adminSshV1"`
+	AdminTelnet                           pulumi.StringOutput    `pulumi:"adminTelnet"`
+	AdminTelnetPort                       pulumi.IntOutput       `pulumi:"adminTelnetPort"`
+	Admintimeout                          pulumi.IntOutput       `pulumi:"admintimeout"`
+	Alias                                 pulumi.StringOutput    `pulumi:"alias"`
+	AllowTrafficRedirect                  pulumi.StringOutput    `pulumi:"allowTrafficRedirect"`
+	AntiReplay                            pulumi.StringOutput    `pulumi:"antiReplay"`
+	ArpMaxEntry                           pulumi.IntOutput       `pulumi:"arpMaxEntry"`
+	Asymroute                             pulumi.StringOutput    `pulumi:"asymroute"`
+	AuthCert                              pulumi.StringOutput    `pulumi:"authCert"`
+	AuthHttpPort                          pulumi.IntOutput       `pulumi:"authHttpPort"`
+	AuthHttpsPort                         pulumi.IntOutput       `pulumi:"authHttpsPort"`
+	AuthIkeSamlPort                       pulumi.IntOutput       `pulumi:"authIkeSamlPort"`
+	AuthKeepalive                         pulumi.StringOutput    `pulumi:"authKeepalive"`
+	AuthSessionLimit                      pulumi.StringOutput    `pulumi:"authSessionLimit"`
+	AutoAuthExtensionDevice               pulumi.StringOutput    `pulumi:"autoAuthExtensionDevice"`
+	AutorunLogFsck                        pulumi.StringOutput    `pulumi:"autorunLogFsck"`
+	AvAffinity                            pulumi.StringOutput    `pulumi:"avAffinity"`
+	AvFailopen                            pulumi.StringOutput    `pulumi:"avFailopen"`
+	AvFailopenSession                     pulumi.StringOutput    `pulumi:"avFailopenSession"`
+	BatchCmdb                             pulumi.StringOutput    `pulumi:"batchCmdb"`
+	BlockSessionTimer                     pulumi.IntOutput       `pulumi:"blockSessionTimer"`
+	BrFdbMaxEntry                         pulumi.IntOutput       `pulumi:"brFdbMaxEntry"`
+	CertChainMax                          pulumi.IntOutput       `pulumi:"certChainMax"`
+	CfgRevertTimeout                      pulumi.IntOutput       `pulumi:"cfgRevertTimeout"`
+	CfgSave                               pulumi.StringOutput    `pulumi:"cfgSave"`
+	CheckProtocolHeader                   pulumi.StringOutput    `pulumi:"checkProtocolHeader"`
+	CheckResetRange                       pulumi.StringOutput    `pulumi:"checkResetRange"`
+	CliAuditLog                           pulumi.StringOutput    `pulumi:"cliAuditLog"`
+	CloudCommunication                    pulumi.StringOutput    `pulumi:"cloudCommunication"`
+	CltCertReq                            pulumi.StringOutput    `pulumi:"cltCertReq"`
+	CmdbsvrAffinity                       pulumi.StringOutput    `pulumi:"cmdbsvrAffinity"`
+	ComplianceCheck                       pulumi.StringOutput    `pulumi:"complianceCheck"`
+	ComplianceCheckTime                   pulumi.StringOutput    `pulumi:"complianceCheckTime"`
+	CpuUseThreshold                       pulumi.IntOutput       `pulumi:"cpuUseThreshold"`
+	CsrCaAttribute                        pulumi.StringOutput    `pulumi:"csrCaAttribute"`
+	DailyRestart                          pulumi.StringOutput    `pulumi:"dailyRestart"`
+	DefaultServiceSourcePort              pulumi.StringOutput    `pulumi:"defaultServiceSourcePort"`
+	DeviceIdentificationActiveScanDelay   pulumi.IntOutput       `pulumi:"deviceIdentificationActiveScanDelay"`
+	DeviceIdleTimeout                     pulumi.IntOutput       `pulumi:"deviceIdleTimeout"`
+	DhParams                              pulumi.StringOutput    `pulumi:"dhParams"`
+	DnsproxyWorkerCount                   pulumi.IntOutput       `pulumi:"dnsproxyWorkerCount"`
+	Dst                                   pulumi.StringOutput    `pulumi:"dst"`
+	EarlyTcpNpuSession                    pulumi.StringOutput    `pulumi:"earlyTcpNpuSession"`
+	EditVdomPrompt                        pulumi.StringOutput    `pulumi:"editVdomPrompt"`
+	EndpointControlFdsAccess              pulumi.StringOutput    `pulumi:"endpointControlFdsAccess"`
+	EndpointControlPortalPort             pulumi.IntOutput       `pulumi:"endpointControlPortalPort"`
+	ExtenderControllerReservedNetwork     pulumi.StringOutput    `pulumi:"extenderControllerReservedNetwork"`
+	Failtime                              pulumi.IntOutput       `pulumi:"failtime"`
+	FazDiskBufferSize                     pulumi.IntOutput       `pulumi:"fazDiskBufferSize"`
+	FdsStatistics                         pulumi.StringOutput    `pulumi:"fdsStatistics"`
+	FdsStatisticsPeriod                   pulumi.IntOutput       `pulumi:"fdsStatisticsPeriod"`
+	FecPort                               pulumi.IntOutput       `pulumi:"fecPort"`
+	FgdAlertSubscription                  pulumi.StringOutput    `pulumi:"fgdAlertSubscription"`
+	Fortiextender                         pulumi.StringOutput    `pulumi:"fortiextender"`
+	FortiextenderDataPort                 pulumi.IntOutput       `pulumi:"fortiextenderDataPort"`
+	FortiextenderDiscoveryLockdown        pulumi.StringOutput    `pulumi:"fortiextenderDiscoveryLockdown"`
+	FortiextenderProvisionOnAuthorization pulumi.StringOutput    `pulumi:"fortiextenderProvisionOnAuthorization"`
+	FortiextenderVlanMode                 pulumi.StringOutput    `pulumi:"fortiextenderVlanMode"`
+	FortiipamIntegration                  pulumi.StringOutput    `pulumi:"fortiipamIntegration"`
+	FortiservicePort                      pulumi.IntOutput       `pulumi:"fortiservicePort"`
+	FortitokenCloud                       pulumi.StringOutput    `pulumi:"fortitokenCloud"`
+	GuiAllowDefaultHostname               pulumi.StringOutput    `pulumi:"guiAllowDefaultHostname"`
+	GuiAppDetectionSdwan                  pulumi.StringOutput    `pulumi:"guiAppDetectionSdwan"`
+	GuiCdnUsage                           pulumi.StringOutput    `pulumi:"guiCdnUsage"`
+	GuiCertificates                       pulumi.StringOutput    `pulumi:"guiCertificates"`
+	GuiCustomLanguage                     pulumi.StringOutput    `pulumi:"guiCustomLanguage"`
+	GuiDateFormat                         pulumi.StringOutput    `pulumi:"guiDateFormat"`
+	GuiDateTimeSource                     pulumi.StringOutput    `pulumi:"guiDateTimeSource"`
+	GuiDeviceLatitude                     pulumi.StringOutput    `pulumi:"guiDeviceLatitude"`
+	GuiDeviceLongitude                    pulumi.StringOutput    `pulumi:"guiDeviceLongitude"`
+	GuiDisplayHostname                    pulumi.StringOutput    `pulumi:"guiDisplayHostname"`
+	GuiFirmwareUpgradeSetupWarning        pulumi.StringOutput    `pulumi:"guiFirmwareUpgradeSetupWarning"`
+	GuiFirmwareUpgradeWarning             pulumi.StringOutput    `pulumi:"guiFirmwareUpgradeWarning"`
+	GuiForticareRegistrationSetupWarning  pulumi.StringOutput    `pulumi:"guiForticareRegistrationSetupWarning"`
+	GuiFortigateCloudSandbox              pulumi.StringOutput    `pulumi:"guiFortigateCloudSandbox"`
+	GuiFortiguardResourceFetch            pulumi.StringOutput    `pulumi:"guiFortiguardResourceFetch"`
+	GuiFortisandboxCloud                  pulumi.StringOutput    `pulumi:"guiFortisandboxCloud"`
+	GuiIpv6                               pulumi.StringOutput    `pulumi:"guiIpv6"`
+	GuiLinesPerPage                       pulumi.IntOutput       `pulumi:"guiLinesPerPage"`
+	GuiLocalOut                           pulumi.StringOutput    `pulumi:"guiLocalOut"`
+	GuiReplacementMessageGroups           pulumi.StringOutput    `pulumi:"guiReplacementMessageGroups"`
+	GuiRestApiCache                       pulumi.StringOutput    `pulumi:"guiRestApiCache"`
+	GuiTheme                              pulumi.StringOutput    `pulumi:"guiTheme"`
+	GuiWirelessOpensecurity               pulumi.StringOutput    `pulumi:"guiWirelessOpensecurity"`
+	GuiWorkflowManagement                 pulumi.StringOutput    `pulumi:"guiWorkflowManagement"`
+	HaAffinity                            pulumi.StringOutput    `pulumi:"haAffinity"`
+	HonorDf                               pulumi.StringOutput    `pulumi:"honorDf"`
+	Hostname                              pulumi.StringOutput    `pulumi:"hostname"`
+	IgmpStateLimit                        pulumi.IntOutput       `pulumi:"igmpStateLimit"`
+	IkeEmbryonicLimit                     pulumi.IntOutput       `pulumi:"ikeEmbryonicLimit"`
+	InternetServiceDatabase               pulumi.StringOutput    `pulumi:"internetServiceDatabase"`
+	Interval                              pulumi.IntOutput       `pulumi:"interval"`
+	IpSrcPortRange                        pulumi.StringOutput    `pulumi:"ipSrcPortRange"`
+	IpsAffinity                           pulumi.StringOutput    `pulumi:"ipsAffinity"`
+	IpsecAsicOffload                      pulumi.StringOutput    `pulumi:"ipsecAsicOffload"`
+	IpsecHaSeqjumpRate                    pulumi.IntOutput       `pulumi:"ipsecHaSeqjumpRate"`
+	IpsecHmacOffload                      pulumi.StringOutput    `pulumi:"ipsecHmacOffload"`
+	IpsecRoundRobin                       pulumi.StringOutput    `pulumi:"ipsecRoundRobin"`
+	IpsecSoftDecAsync                     pulumi.StringOutput    `pulumi:"ipsecSoftDecAsync"`
+	Ipv6AcceptDad                         pulumi.IntOutput       `pulumi:"ipv6AcceptDad"`
+	Ipv6AllowAnycastProbe                 pulumi.StringOutput    `pulumi:"ipv6AllowAnycastProbe"`
+	Ipv6AllowLocalInSlientDrop            pulumi.StringOutput    `pulumi:"ipv6AllowLocalInSlientDrop"`
+	Ipv6AllowMulticastProbe               pulumi.StringOutput    `pulumi:"ipv6AllowMulticastProbe"`
+	Ipv6AllowTrafficRedirect              pulumi.StringOutput    `pulumi:"ipv6AllowTrafficRedirect"`
+	IrqTimeAccounting                     pulumi.StringOutput    `pulumi:"irqTimeAccounting"`
+	Language                              pulumi.StringOutput    `pulumi:"language"`
+	Ldapconntimeout                       pulumi.IntOutput       `pulumi:"ldapconntimeout"`
+	LldpReception                         pulumi.StringOutput    `pulumi:"lldpReception"`
+	LldpTransmission                      pulumi.StringOutput    `pulumi:"lldpTransmission"`
+	LogSslConnection                      pulumi.StringOutput    `pulumi:"logSslConnection"`
+	LogUuidAddress                        pulumi.StringOutput    `pulumi:"logUuidAddress"`
+	LogUuidPolicy                         pulumi.StringOutput    `pulumi:"logUuidPolicy"`
+	LoginTimestamp                        pulumi.StringOutput    `pulumi:"loginTimestamp"`
+	LongVdomName                          pulumi.StringOutput    `pulumi:"longVdomName"`
+	ManagementIp                          pulumi.StringOutput    `pulumi:"managementIp"`
+	ManagementPort                        pulumi.IntOutput       `pulumi:"managementPort"`
+	ManagementPortUseAdminSport           pulumi.StringOutput    `pulumi:"managementPortUseAdminSport"`
+	ManagementVdom                        pulumi.StringOutput    `pulumi:"managementVdom"`
+	MaxDlpstatMemory                      pulumi.IntOutput       `pulumi:"maxDlpstatMemory"`
+	MaxRouteCacheSize                     pulumi.IntOutput       `pulumi:"maxRouteCacheSize"`
+	McTtlNotchange                        pulumi.StringOutput    `pulumi:"mcTtlNotchange"`
+	MemoryUseThresholdExtreme             pulumi.IntOutput       `pulumi:"memoryUseThresholdExtreme"`
+	MemoryUseThresholdGreen               pulumi.IntOutput       `pulumi:"memoryUseThresholdGreen"`
+	MemoryUseThresholdRed                 pulumi.IntOutput       `pulumi:"memoryUseThresholdRed"`
+	MiglogAffinity                        pulumi.StringOutput    `pulumi:"miglogAffinity"`
+	MiglogdChildren                       pulumi.IntOutput       `pulumi:"miglogdChildren"`
+	MultiFactorAuthentication             pulumi.StringOutput    `pulumi:"multiFactorAuthentication"`
+	MulticastForward                      pulumi.StringOutput    `pulumi:"multicastForward"`
+	NdpMaxEntry                           pulumi.IntOutput       `pulumi:"ndpMaxEntry"`
+	PerUserBal                            pulumi.StringOutput    `pulumi:"perUserBal"`
+	PerUserBwl                            pulumi.StringOutput    `pulumi:"perUserBwl"`
+	PmtuDiscovery                         pulumi.StringOutput    `pulumi:"pmtuDiscovery"`
+	PolicyAuthConcurrent                  pulumi.IntOutput       `pulumi:"policyAuthConcurrent"`
+	PostLoginBanner                       pulumi.StringOutput    `pulumi:"postLoginBanner"`
+	PreLoginBanner                        pulumi.StringOutput    `pulumi:"preLoginBanner"`
+	PrivateDataEncryption                 pulumi.StringOutput    `pulumi:"privateDataEncryption"`
+	ProxyAuthLifetime                     pulumi.StringOutput    `pulumi:"proxyAuthLifetime"`
+	ProxyAuthLifetimeTimeout              pulumi.IntOutput       `pulumi:"proxyAuthLifetimeTimeout"`
+	ProxyAuthTimeout                      pulumi.IntOutput       `pulumi:"proxyAuthTimeout"`
+	ProxyCertUseMgmtVdom                  pulumi.StringOutput    `pulumi:"proxyCertUseMgmtVdom"`
+	ProxyCipherHardwareAcceleration       pulumi.StringOutput    `pulumi:"proxyCipherHardwareAcceleration"`
+	ProxyHardwareAcceleration             pulumi.StringOutput    `pulumi:"proxyHardwareAcceleration"`
+	ProxyKxpHardwareAcceleration          pulumi.StringOutput    `pulumi:"proxyKxpHardwareAcceleration"`
+	ProxyReAuthenticationMode             pulumi.StringOutput    `pulumi:"proxyReAuthenticationMode"`
+	ProxyResourceMode                     pulumi.StringOutput    `pulumi:"proxyResourceMode"`
+	ProxyWorkerCount                      pulumi.IntOutput       `pulumi:"proxyWorkerCount"`
+	RadiusPort                            pulumi.IntOutput       `pulumi:"radiusPort"`
+	RebootUponConfigRestore               pulumi.StringOutput    `pulumi:"rebootUponConfigRestore"`
+	Refresh                               pulumi.IntOutput       `pulumi:"refresh"`
+	Remoteauthtimeout                     pulumi.IntOutput       `pulumi:"remoteauthtimeout"`
+	ResetSessionlessTcp                   pulumi.StringOutput    `pulumi:"resetSessionlessTcp"`
+	RestartTime                           pulumi.StringOutput    `pulumi:"restartTime"`
+	RevisionBackupOnLogout                pulumi.StringOutput    `pulumi:"revisionBackupOnLogout"`
+	RevisionImageAutoBackup               pulumi.StringOutput    `pulumi:"revisionImageAutoBackup"`
+	ScanunitCount                         pulumi.IntOutput       `pulumi:"scanunitCount"`
+	SecurityRatingResultSubmission        pulumi.StringOutput    `pulumi:"securityRatingResultSubmission"`
+	SecurityRatingRunOnSchedule           pulumi.StringOutput    `pulumi:"securityRatingRunOnSchedule"`
+	SendPmtuIcmp                          pulumi.StringOutput    `pulumi:"sendPmtuIcmp"`
+	SnatRouteChange                       pulumi.StringOutput    `pulumi:"snatRouteChange"`
+	SpecialFile23Support                  pulumi.StringOutput    `pulumi:"specialFile23Support"`
+	SpeedtestServer                       pulumi.StringOutput    `pulumi:"speedtestServer"`
+	SplitPort                             pulumi.StringOutput    `pulumi:"splitPort"`
+	SsdTrimDate                           pulumi.IntOutput       `pulumi:"ssdTrimDate"`
+	SsdTrimFreq                           pulumi.StringOutput    `pulumi:"ssdTrimFreq"`
+	SsdTrimHour                           pulumi.IntOutput       `pulumi:"ssdTrimHour"`
+	SsdTrimMin                            pulumi.IntOutput       `pulumi:"ssdTrimMin"`
+	SsdTrimWeekday                        pulumi.StringOutput    `pulumi:"ssdTrimWeekday"`
+	SshCbcCipher                          pulumi.StringOutput    `pulumi:"sshCbcCipher"`
+	SshEncAlgo                            pulumi.StringOutput    `pulumi:"sshEncAlgo"`
+	SshHmacMd5                            pulumi.StringOutput    `pulumi:"sshHmacMd5"`
+	SshKexAlgo                            pulumi.StringOutput    `pulumi:"sshKexAlgo"`
+	SshKexSha1                            pulumi.StringOutput    `pulumi:"sshKexSha1"`
+	SshMacAlgo                            pulumi.StringOutput    `pulumi:"sshMacAlgo"`
+	SshMacWeak                            pulumi.StringOutput    `pulumi:"sshMacWeak"`
+	SslMinProtoVersion                    pulumi.StringOutput    `pulumi:"sslMinProtoVersion"`
+	SslStaticKeyCiphers                   pulumi.StringOutput    `pulumi:"sslStaticKeyCiphers"`
+	SslvpnCipherHardwareAcceleration      pulumi.StringOutput    `pulumi:"sslvpnCipherHardwareAcceleration"`
+	SslvpnEmsSnCheck                      pulumi.StringOutput    `pulumi:"sslvpnEmsSnCheck"`
+	SslvpnKxpHardwareAcceleration         pulumi.StringOutput    `pulumi:"sslvpnKxpHardwareAcceleration"`
+	SslvpnMaxWorkerCount                  pulumi.IntOutput       `pulumi:"sslvpnMaxWorkerCount"`
+	SslvpnPluginVersionCheck              pulumi.StringOutput    `pulumi:"sslvpnPluginVersionCheck"`
+	StrictDirtySessionCheck               pulumi.StringOutput    `pulumi:"strictDirtySessionCheck"`
+	StrongCrypto                          pulumi.StringOutput    `pulumi:"strongCrypto"`
+	SwitchController                      pulumi.StringOutput    `pulumi:"switchController"`
+	SwitchControllerReservedNetwork       pulumi.StringOutput    `pulumi:"switchControllerReservedNetwork"`
+	SysPerfLogInterval                    pulumi.IntOutput       `pulumi:"sysPerfLogInterval"`
+	TcpHalfcloseTimer                     pulumi.IntOutput       `pulumi:"tcpHalfcloseTimer"`
+	TcpHalfopenTimer                      pulumi.IntOutput       `pulumi:"tcpHalfopenTimer"`
+	TcpOption                             pulumi.StringOutput    `pulumi:"tcpOption"`
+	TcpRstTimer                           pulumi.IntOutput       `pulumi:"tcpRstTimer"`
+	TcpTimewaitTimer                      pulumi.IntOutput       `pulumi:"tcpTimewaitTimer"`
+	Tftp                                  pulumi.StringOutput    `pulumi:"tftp"`
+	Timezone                              pulumi.StringOutput    `pulumi:"timezone"`
+	TpMcSkipPolicy                        pulumi.StringOutput    `pulumi:"tpMcSkipPolicy"`
+	TrafficPriority                       pulumi.StringOutput    `pulumi:"trafficPriority"`
+	TrafficPriorityLevel                  pulumi.StringOutput    `pulumi:"trafficPriorityLevel"`
+	TwoFactorEmailExpiry                  pulumi.IntOutput       `pulumi:"twoFactorEmailExpiry"`
+	TwoFactorFacExpiry                    pulumi.IntOutput       `pulumi:"twoFactorFacExpiry"`
+	TwoFactorFtkExpiry                    pulumi.IntOutput       `pulumi:"twoFactorFtkExpiry"`
+	TwoFactorFtmExpiry                    pulumi.IntOutput       `pulumi:"twoFactorFtmExpiry"`
+	TwoFactorSmsExpiry                    pulumi.IntOutput       `pulumi:"twoFactorSmsExpiry"`
+	UdpIdleTimer                          pulumi.IntOutput       `pulumi:"udpIdleTimer"`
+	UrlFilterAffinity                     pulumi.StringOutput    `pulumi:"urlFilterAffinity"`
+	UrlFilterCount                        pulumi.IntOutput       `pulumi:"urlFilterCount"`
+	UserDeviceStoreMaxDevices             pulumi.IntOutput       `pulumi:"userDeviceStoreMaxDevices"`
+	UserDeviceStoreMaxUnifiedMem          pulumi.IntOutput       `pulumi:"userDeviceStoreMaxUnifiedMem"`
+	UserDeviceStoreMaxUsers               pulumi.IntOutput       `pulumi:"userDeviceStoreMaxUsers"`
+	UserServerCert                        pulumi.StringOutput    `pulumi:"userServerCert"`
+	VdomAdmin                             pulumi.StringOutput    `pulumi:"vdomAdmin"`
+	VdomMode                              pulumi.StringOutput    `pulumi:"vdomMode"`
+	Vdomparam                             pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	VipArpRange                           pulumi.StringOutput    `pulumi:"vipArpRange"`
+	VirtualServerCount                    pulumi.IntOutput       `pulumi:"virtualServerCount"`
+	VirtualServerHardwareAcceleration     pulumi.StringOutput    `pulumi:"virtualServerHardwareAcceleration"`
+	VirtualSwitchVlan                     pulumi.StringOutput    `pulumi:"virtualSwitchVlan"`
+	WadAffinity                           pulumi.StringOutput    `pulumi:"wadAffinity"`
+	WadCsvcCsCount                        pulumi.IntOutput       `pulumi:"wadCsvcCsCount"`
+	WadCsvcDbCount                        pulumi.IntOutput       `pulumi:"wadCsvcDbCount"`
+	WadMemoryChangeGranularity            pulumi.IntOutput       `pulumi:"wadMemoryChangeGranularity"`
+	WadSourceAffinity                     pulumi.StringOutput    `pulumi:"wadSourceAffinity"`
+	WadWorkerCount                        pulumi.IntOutput       `pulumi:"wadWorkerCount"`
+	WifiCaCertificate                     pulumi.StringOutput    `pulumi:"wifiCaCertificate"`
+	WifiCertificate                       pulumi.StringOutput    `pulumi:"wifiCertificate"`
+	Wimax4gUsb                            pulumi.StringOutput    `pulumi:"wimax4gUsb"`
+	WirelessController                    pulumi.StringOutput    `pulumi:"wirelessController"`
+	WirelessControllerPort                pulumi.IntOutput       `pulumi:"wirelessControllerPort"`
 }
 
 // NewSystemGlobal registers a new resource with the given unique name, arguments, and options.
@@ -566,965 +294,507 @@ func GetSystemGlobal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemGlobal resources.
 type systemGlobalState struct {
-	// Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
-	AdminConcurrent *string `pulumi:"adminConcurrent"`
-	// Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
-	AdminConsoleTimeout *int `pulumi:"adminConsoleTimeout"`
-	// Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
-	AdminForticloudSsoLogin *string `pulumi:"adminForticloudSsoLogin"`
-	// HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
-	AdminHstsMaxAge *int `pulumi:"adminHstsMaxAge"`
-	// Enable/disable admin login method. Enable to force administrators to provide a valid certificate to log in if PKI is enabled. Disable to allow administrators to log in with a certificate or password. Valid values: `enable`, `disable`.
-	AdminHttpsPkiRequired *string `pulumi:"adminHttpsPkiRequired"`
-	// Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
-	AdminHttpsRedirect *string `pulumi:"adminHttpsRedirect"`
-	// Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
-	AdminHttpsSslBannedCiphers *string `pulumi:"adminHttpsSslBannedCiphers"`
-	// Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-	AdminHttpsSslCiphersuites *string `pulumi:"adminHttpsSslCiphersuites"`
-	// Allowed TLS versions for web administration.
-	AdminHttpsSslVersions *string `pulumi:"adminHttpsSslVersions"`
-	// Amount of time in seconds that an administrator account is locked out after reaching the admin-lockout-threshold for repeated failed login attempts.
-	AdminLockoutDuration *int `pulumi:"adminLockoutDuration"`
-	// Number of failed login attempts before an administrator account is locked out for the admin-lockout-duration.
-	AdminLockoutThreshold *int `pulumi:"adminLockoutThreshold"`
-	// Maximum number of administrators who can be logged in at the same time (1 - 100, default = 100)
-	AdminLoginMax *int `pulumi:"adminLoginMax"`
-	// Enable/disable maintainer administrator login. When enabled, the maintainer account can be used to log in from the console after a hard reboot. The password is "bcpb" followed by the FortiGate unit serial number. You have limited time to complete this login. Valid values: `enable`, `disable`.
-	AdminMaintainer *string `pulumi:"adminMaintainer"`
-	// Administrative access port for HTTP. (1 - 65535, default = 80).
-	AdminPort *int `pulumi:"adminPort"`
-	// Enable/disable local admin authentication restriction when remote authenticator is up and running. (default = disable) Valid values: `enable`, `disable`.
-	AdminRestrictLocal *string `pulumi:"adminRestrictLocal"`
-	// Enable/disable using SCP to download the system configuration. You can use SCP as an alternative method for backing up the configuration. Valid values: `enable`, `disable`.
-	AdminScp *string `pulumi:"adminScp"`
-	// Server certificate that the FortiGate uses for HTTPS administrative connections.
-	AdminServerCert *string `pulumi:"adminServerCert"`
-	// Administrative access port for HTTPS. (1 - 65535, default = 443).
-	AdminSport *int `pulumi:"adminSport"`
-	// Maximum time in seconds permitted between making an SSH connection to the FortiGate unit and authenticating (10 - 3600 sec (1 hour), default 120).
-	AdminSshGraceTime *int `pulumi:"adminSshGraceTime"`
-	// Enable/disable password authentication for SSH admin access. Valid values: `enable`, `disable`.
-	AdminSshPassword *string `pulumi:"adminSshPassword"`
-	// Administrative access port for SSH. (1 - 65535, default = 22).
-	AdminSshPort *int `pulumi:"adminSshPort"`
-	// Enable/disable SSH v1 compatibility. Valid values: `enable`, `disable`.
-	AdminSshV1 *string `pulumi:"adminSshV1"`
-	// Enable/disable TELNET service. Valid values: `enable`, `disable`.
-	AdminTelnet *string `pulumi:"adminTelnet"`
-	// Administrative access port for TELNET. (1 - 65535, default = 23).
-	AdminTelnetPort *int `pulumi:"adminTelnetPort"`
-	// Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
-	Admintimeout *int `pulumi:"admintimeout"`
-	// Alias for your FortiGate unit.
-	Alias *string `pulumi:"alias"`
-	// Disable to allow traffic to be routed back on a different interface. Valid values: `enable`, `disable`.
-	AllowTrafficRedirect *string `pulumi:"allowTrafficRedirect"`
-	// Level of checking for packet replay and TCP sequence checking. Valid values: `disable`, `loose`, `strict`.
-	AntiReplay *string `pulumi:"antiReplay"`
-	// Maximum number of dynamically learned MAC addresses that can be added to the ARP table (131072 - 2147483647, default = 131072).
-	ArpMaxEntry *int `pulumi:"arpMaxEntry"`
-	// Enable/disable asymmetric route. Valid values: `enable`, `disable`.
-	Asymroute *string `pulumi:"asymroute"`
-	// Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
-	AuthCert *string `pulumi:"authCert"`
-	// User authentication HTTP port. (1 - 65535, default = 80).
-	AuthHttpPort *int `pulumi:"authHttpPort"`
-	// User authentication HTTPS port. (1 - 65535, default = 443).
-	AuthHttpsPort *int `pulumi:"authHttpsPort"`
-	// Enable to prevent user authentication sessions from timing out when idle. Valid values: `enable`, `disable`.
-	AuthKeepalive *string `pulumi:"authKeepalive"`
-	// Action to take when the number of allowed user authenticated sessions is reached. Valid values: `block-new`, `logout-inactive`.
-	AuthSessionLimit *string `pulumi:"authSessionLimit"`
-	// Enable/disable automatic authorization of dedicated Fortinet extension devices. Valid values: `enable`, `disable`.
-	AutoAuthExtensionDevice *string `pulumi:"autoAuthExtensionDevice"`
-	// Enable/disable automatic log partition check after ungraceful shutdown. Valid values: `enable`, `disable`.
-	AutorunLogFsck *string `pulumi:"autorunLogFsck"`
-	// Affinity setting for AV scanning (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	AvAffinity *string `pulumi:"avAffinity"`
-	// Set the action to take if the FortiGate is running low on memory or the proxy connection limit has been reached. Valid values: `pass`, `off`, `one-shot`.
-	AvFailopen *string `pulumi:"avFailopen"`
-	// When enabled and a proxy for a protocol runs out of room in its session table, that protocol goes into failopen mode and enacts the action specified by av-failopen. Valid values: `enable`, `disable`.
-	AvFailopenSession *string `pulumi:"avFailopenSession"`
-	// Enable/disable batch mode, allowing you to enter a series of CLI commands that will execute as a group once they are loaded. Valid values: `enable`, `disable`.
-	BatchCmdb *string `pulumi:"batchCmdb"`
-	// Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
-	BlockSessionTimer *int `pulumi:"blockSessionTimer"`
-	// Maximum number of bridge forwarding database (FDB) entries.
-	BrFdbMaxEntry *int `pulumi:"brFdbMaxEntry"`
-	// Maximum number of certificates that can be traversed in a certificate chain.
-	CertChainMax *int `pulumi:"certChainMax"`
-	// Time-out for reverting to the last saved configuration.
-	CfgRevertTimeout *int `pulumi:"cfgRevertTimeout"`
-	// Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
-	CfgSave *string `pulumi:"cfgSave"`
-	// Level of checking performed on protocol headers. Strict checking is more thorough but may affect performance. Loose checking is ok in most cases. Valid values: `loose`, `strict`.
-	CheckProtocolHeader *string `pulumi:"checkProtocolHeader"`
-	// Configure ICMP error message verification. You can either apply strict RST range checking or disable it. Valid values: `strict`, `disable`.
-	CheckResetRange *string `pulumi:"checkResetRange"`
-	// Enable/disable CLI audit log. Valid values: `enable`, `disable`.
-	CliAuditLog *string `pulumi:"cliAuditLog"`
-	// Enable/disable all cloud communication. Valid values: `enable`, `disable`.
-	CloudCommunication *string `pulumi:"cloudCommunication"`
-	// Enable/disable requiring administrators to have a client certificate to log into the GUI using HTTPS. Valid values: `enable`, `disable`.
-	CltCertReq *string `pulumi:"cltCertReq"`
-	// Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	CmdbsvrAffinity *string `pulumi:"cmdbsvrAffinity"`
-	// Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
-	ComplianceCheck *string `pulumi:"complianceCheck"`
-	// Time of day to run scheduled PCI DSS compliance checks.
-	ComplianceCheckTime *string `pulumi:"complianceCheckTime"`
-	// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
-	CpuUseThreshold *int `pulumi:"cpuUseThreshold"`
-	// Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
-	CsrCaAttribute *string `pulumi:"csrCaAttribute"`
-	// Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
-	DailyRestart *string `pulumi:"dailyRestart"`
-	// Default service source port range. (default=1-65535)
-	DefaultServiceSourcePort *string `pulumi:"defaultServiceSourcePort"`
-	// Number of seconds to passively scan a device before performing an active scan. (20 - 3600 sec, (20 sec to 1 hour), default = 90).
-	DeviceIdentificationActiveScanDelay *int `pulumi:"deviceIdentificationActiveScanDelay"`
-	// Time in seconds that a device must be idle to automatically log the device user out. (30 - 31536000 sec (30 sec to 1 year), default = 300).
-	DeviceIdleTimeout *int `pulumi:"deviceIdleTimeout"`
-	// Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
-	DhParams *string `pulumi:"dhParams"`
-	// DNS proxy worker count.
-	DnsproxyWorkerCount *int `pulumi:"dnsproxyWorkerCount"`
-	// Enable/disable daylight saving time. Valid values: `enable`, `disable`.
-	Dst *string `pulumi:"dst"`
-	// Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
-	EditVdomPrompt *string `pulumi:"editVdomPrompt"`
-	// Enable/disable access to the FortiGuard network for non-compliant endpoints. Valid values: `enable`, `disable`.
-	EndpointControlFdsAccess *string `pulumi:"endpointControlFdsAccess"`
-	// Endpoint control portal port (1 - 65535).
-	EndpointControlPortalPort *int `pulumi:"endpointControlPortalPort"`
-	// Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
-	ExtenderControllerReservedNetwork *string `pulumi:"extenderControllerReservedNetwork"`
-	// Fail-time for server lost.
-	Failtime *int `pulumi:"failtime"`
-	// Maximum disk buffer size to temporarily store logs destined for FortiAnalyzer. To be used in the event that FortiAnalyzer is unavailalble.
-	FazDiskBufferSize *int `pulumi:"fazDiskBufferSize"`
-	// Enable/disable sending IPS, Application Control, and AntiVirus data to FortiGuard. This data is used to improve FortiGuard services and is not shared with external parties and is protected by Fortinet's privacy policy. Valid values: `enable`, `disable`.
-	FdsStatistics *string `pulumi:"fdsStatistics"`
-	// FortiGuard statistics collection period in minutes. (1 - 1440 min (1 min to 24 hours), default = 60).
-	FdsStatisticsPeriod *int `pulumi:"fdsStatisticsPeriod"`
-	// Local UDP port for Forward Error Correction (49152 - 65535).
-	FecPort *int `pulumi:"fecPort"`
-	// Type of alert to retrieve from FortiGuard. Valid values: `advisory`, `latest-threat`, `latest-virus`, `latest-attack`, `new-antivirus-db`, `new-attack-db`.
-	FgdAlertSubscription *string `pulumi:"fgdAlertSubscription"`
-	// Enable/disable FortiExtender. Valid values: `enable`, `disable`.
-	Fortiextender *string `pulumi:"fortiextender"`
-	// FortiExtender data port (1024 - 49150, default = 25246).
-	FortiextenderDataPort *int `pulumi:"fortiextenderDataPort"`
-	// Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
-	FortiextenderDiscoveryLockdown *string `pulumi:"fortiextenderDiscoveryLockdown"`
-	// Enable/disable FortiExtender VLAN mode. Valid values: `enable`, `disable`.
-	FortiextenderVlanMode *string `pulumi:"fortiextenderVlanMode"`
-	// Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
-	FortiipamIntegration *string `pulumi:"fortiipamIntegration"`
-	// FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port.
-	FortiservicePort *int `pulumi:"fortiservicePort"`
-	// Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
-	FortitokenCloud *string `pulumi:"fortitokenCloud"`
-	// Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
-	GuiAllowDefaultHostname *string `pulumi:"guiAllowDefaultHostname"`
-	// Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
-	GuiCdnUsage *string `pulumi:"guiCdnUsage"`
-	// Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. Valid values: `enable`, `disable`.
-	GuiCertificates *string `pulumi:"guiCertificates"`
-	// Enable/disable custom languages in GUI. Valid values: `enable`, `disable`.
-	GuiCustomLanguage *string `pulumi:"guiCustomLanguage"`
-	// Default date format used throughout GUI. Valid values: `yyyy/MM/dd`, `dd/MM/yyyy`, `MM/dd/yyyy`, `yyyy-MM-dd`, `dd-MM-yyyy`, `MM-dd-yyyy`.
-	GuiDateFormat *string `pulumi:"guiDateFormat"`
-	// Source from which the FortiGate GUI uses to display date and time entries. Valid values: `system`, `browser`.
-	GuiDateTimeSource *string `pulumi:"guiDateTimeSource"`
-	// Add the latitude of the location of this FortiGate to position it on the Threat Map.
-	GuiDeviceLatitude *string `pulumi:"guiDeviceLatitude"`
-	// Add the longitude of the location of this FortiGate to position it on the Threat Map.
-	GuiDeviceLongitude *string `pulumi:"guiDeviceLongitude"`
-	// Enable/disable displaying the FortiGate's hostname on the GUI login page. Valid values: `enable`, `disable`.
-	GuiDisplayHostname *string `pulumi:"guiDisplayHostname"`
-	// Enable/disable the firmware upgrade warning on GUI setup wizard. Valid values: `enable`, `disable`.
-	GuiFirmwareUpgradeSetupWarning *string `pulumi:"guiFirmwareUpgradeSetupWarning"`
-	// Enable/disable the firmware upgrade warning on the GUI. Valid values: `enable`, `disable`.
-	GuiFirmwareUpgradeWarning *string `pulumi:"guiFirmwareUpgradeWarning"`
-	// Enable/disable the FortiCare registration setup warning on the GUI. Valid values: `enable`, `disable`.
-	GuiForticareRegistrationSetupWarning *string `pulumi:"guiForticareRegistrationSetupWarning"`
-	// Enable/disable displaying FortiGate Cloud Sandbox on the GUI. Valid values: `enable`, `disable`.
-	GuiFortigateCloudSandbox *string `pulumi:"guiFortigateCloudSandbox"`
-	// Enable/disable displaying FortiSandbox Cloud on the GUI. Valid values: `enable`, `disable`.
-	GuiFortisandboxCloud *string `pulumi:"guiFortisandboxCloud"`
-	// Enable/disable IPv6 settings on the GUI. Valid values: `enable`, `disable`.
-	GuiIpv6 *string `pulumi:"guiIpv6"`
-	// Number of lines to display per page for web administration.
-	GuiLinesPerPage *int `pulumi:"guiLinesPerPage"`
-	// Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
-	GuiLocalOut *string `pulumi:"guiLocalOut"`
-	// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
-	GuiReplacementMessageGroups *string `pulumi:"guiReplacementMessageGroups"`
-	// Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
-	GuiRestApiCache *string `pulumi:"guiRestApiCache"`
-	// Color scheme for the administration GUI.
-	GuiTheme *string `pulumi:"guiTheme"`
-	// Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
-	GuiWirelessOpensecurity *string `pulumi:"guiWirelessOpensecurity"`
-	// Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	HaAffinity *string `pulumi:"haAffinity"`
-	// Enable/disable honoring of Don't-Fragment (DF) flag. Valid values: `enable`, `disable`.
-	HonorDf *string `pulumi:"honorDf"`
-	// FortiGate unit's hostname. Most models will truncate names longer than 24 characters. Some models support hostnames up to 35 characters.
-	Hostname *string `pulumi:"hostname"`
-	// Maximum number of IGMP memberships (96 - 64000, default = 3200).
-	IgmpStateLimit *int `pulumi:"igmpStateLimit"`
-	// Maximum number of IPsec tunnels to negotiate simultaneously.
-	IkeEmbryonicLimit *int `pulumi:"ikeEmbryonicLimit"`
-	// Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
-	InternetServiceDatabase *string `pulumi:"internetServiceDatabase"`
-	// Dead gateway detection interval.
-	Interval *int `pulumi:"interval"`
-	// IP source port range used for traffic originating from the FortiGate unit.
-	IpSrcPortRange *string `pulumi:"ipSrcPortRange"`
-	// Affinity setting for IPS (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx; allowed CPUs must be less than total number of IPS engine daemons).
-	IpsAffinity *string `pulumi:"ipsAffinity"`
-	// Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
-	IpsecAsicOffload *string `pulumi:"ipsecAsicOffload"`
-	// ESP jump ahead rate (1G - 10G pps equivalent).
-	IpsecHaSeqjumpRate *int `pulumi:"ipsecHaSeqjumpRate"`
-	// Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
-	IpsecHmacOffload *string `pulumi:"ipsecHmacOffload"`
-	// Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
-	IpsecSoftDecAsync *string `pulumi:"ipsecSoftDecAsync"`
-	// Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
-	Ipv6AcceptDad *int `pulumi:"ipv6AcceptDad"`
-	// Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
-	Ipv6AllowAnycastProbe *string `pulumi:"ipv6AllowAnycastProbe"`
-	// Disable to prevent IPv6 traffic with same local ingress and egress interface from being forwarded without policy check. Valid values: `enable`, `disable`.
-	Ipv6AllowTrafficRedirect *string `pulumi:"ipv6AllowTrafficRedirect"`
-	// Configure CPU IRQ time accounting mode. Valid values: `auto`, `force`.
-	IrqTimeAccounting *string `pulumi:"irqTimeAccounting"`
-	// GUI display language. Valid values: `english`, `french`, `spanish`, `portuguese`, `japanese`, `trach`, `simch`, `korean`.
-	Language *string `pulumi:"language"`
-	// Global timeout for connections with remote LDAP servers in milliseconds (1 - 300000, default 500).
-	Ldapconntimeout *int `pulumi:"ldapconntimeout"`
-	// Enable/disable Link Layer Discovery Protocol (LLDP) reception. Valid values: `enable`, `disable`.
-	LldpReception *string `pulumi:"lldpReception"`
-	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission. Valid values: `enable`, `disable`.
-	LldpTransmission *string `pulumi:"lldpTransmission"`
-	// Enable/disable logging of SSL connection events. Valid values: `enable`, `disable`.
-	LogSslConnection *string `pulumi:"logSslConnection"`
-	// Enable/disable insertion of address UUIDs to traffic logs. Valid values: `enable`, `disable`.
-	LogUuidAddress *string `pulumi:"logUuidAddress"`
-	// Enable/disable insertion of policy UUIDs to traffic logs. Valid values: `enable`, `disable`.
-	LogUuidPolicy *string `pulumi:"logUuidPolicy"`
-	// Enable/disable login time recording. Valid values: `enable`, `disable`.
-	LoginTimestamp *string `pulumi:"loginTimestamp"`
-	// Enable/disable long VDOM name support. Valid values: `enable`, `disable`.
-	LongVdomName *string `pulumi:"longVdomName"`
-	// Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
-	ManagementIp *string `pulumi:"managementIp"`
-	// Overriding port for management connection (Overrides admin port).
-	ManagementPort *int `pulumi:"managementPort"`
-	// Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
-	ManagementPortUseAdminSport *string `pulumi:"managementPortUseAdminSport"`
-	// Management virtual domain name.
-	ManagementVdom *string `pulumi:"managementVdom"`
-	// Maximum DLP stat memory (0 - 4294967295).
-	MaxDlpstatMemory *int `pulumi:"maxDlpstatMemory"`
-	// Maximum number of IP route cache entries (0 - 2147483647).
-	MaxRouteCacheSize *int `pulumi:"maxRouteCacheSize"`
-	// Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-	McTtlNotchange *string `pulumi:"mcTtlNotchange"`
-	// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
-	MemoryUseThresholdExtreme *int `pulumi:"memoryUseThresholdExtreme"`
-	// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
-	MemoryUseThresholdGreen *int `pulumi:"memoryUseThresholdGreen"`
-	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
-	MemoryUseThresholdRed *int `pulumi:"memoryUseThresholdRed"`
-	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
-	MiglogAffinity *string `pulumi:"miglogAffinity"`
-	// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
-	MiglogdChildren *int `pulumi:"miglogdChildren"`
-	// Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
-	MultiFactorAuthentication *string `pulumi:"multiFactorAuthentication"`
-	// Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
-	MulticastForward *string `pulumi:"multicastForward"`
-	// Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
-	NdpMaxEntry *int `pulumi:"ndpMaxEntry"`
-	// Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
-	PerUserBal *string `pulumi:"perUserBal"`
-	// Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
-	PerUserBwl *string `pulumi:"perUserBwl"`
-	// Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
-	PmtuDiscovery *string `pulumi:"pmtuDiscovery"`
-	// Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
-	PolicyAuthConcurrent *int `pulumi:"policyAuthConcurrent"`
-	// Enable/disable displaying the administrator access disclaimer message after an administrator successfully logs in. Valid values: `disable`, `enable`.
-	PostLoginBanner *string `pulumi:"postLoginBanner"`
-	// Enable/disable displaying the administrator access disclaimer message on the login page before an administrator logs in. Valid values: `enable`, `disable`.
-	PreLoginBanner *string `pulumi:"preLoginBanner"`
-	// Enable/disable private data encryption using an AES 128-bit key. Valid values: `disable`, `enable`.
-	PrivateDataEncryption *string `pulumi:"privateDataEncryption"`
-	// Enable/disable authenticated users lifetime control.  This is a cap on the total time a proxy user can be authenticated for after which re-authentication will take place. Valid values: `enable`, `disable`.
-	ProxyAuthLifetime *string `pulumi:"proxyAuthLifetime"`
-	// Lifetime timeout in minutes for authenticated users (5  - 65535 min, default=480 (8 hours)).
-	ProxyAuthLifetimeTimeout *int `pulumi:"proxyAuthLifetimeTimeout"`
-	// Authentication timeout in minutes for authenticated users (1 - 300 min, default = 10).
-	ProxyAuthTimeout *int `pulumi:"proxyAuthTimeout"`
-	// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
-	ProxyCertUseMgmtVdom *string `pulumi:"proxyCertUseMgmtVdom"`
-	// Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
-	ProxyCipherHardwareAcceleration *string `pulumi:"proxyCipherHardwareAcceleration"`
-	// Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
-	ProxyHardwareAcceleration *string `pulumi:"proxyHardwareAcceleration"`
-	// Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
-	ProxyKxpHardwareAcceleration *string `pulumi:"proxyKxpHardwareAcceleration"`
-	// Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
-	ProxyReAuthenticationMode *string `pulumi:"proxyReAuthenticationMode"`
-	// Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
-	ProxyResourceMode *string `pulumi:"proxyResourceMode"`
-	// Proxy worker count.
-	ProxyWorkerCount *int `pulumi:"proxyWorkerCount"`
-	// RADIUS service port number.
-	RadiusPort *int `pulumi:"radiusPort"`
-	// Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
-	RebootUponConfigRestore *string `pulumi:"rebootUponConfigRestore"`
-	// Statistics refresh interval in GUI.
-	Refresh *int `pulumi:"refresh"`
-	// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
-	Remoteauthtimeout *int `pulumi:"remoteauthtimeout"`
-	// Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
-	ResetSessionlessTcp *string `pulumi:"resetSessionlessTcp"`
-	// Daily restart time (hh:mm).
-	RestartTime *string `pulumi:"restartTime"`
-	// Enable/disable back-up of the latest configuration revision when an administrator logs out of the CLI or GUI. Valid values: `enable`, `disable`.
-	RevisionBackupOnLogout *string `pulumi:"revisionBackupOnLogout"`
-	// Enable/disable back-up of the latest configuration revision after the firmware is upgraded. Valid values: `enable`, `disable`.
-	RevisionImageAutoBackup *string `pulumi:"revisionImageAutoBackup"`
-	// Number of scanunits. The range and the default depend on the number of CPUs. Only available on FortiGate units with multiple CPUs.
-	ScanunitCount *int `pulumi:"scanunitCount"`
-	// Enable/disable the submission of Security Rating results to FortiGuard. Valid values: `enable`, `disable`.
-	SecurityRatingResultSubmission *string `pulumi:"securityRatingResultSubmission"`
-	// Enable/disable scheduled runs of Security Rating. Valid values: `enable`, `disable`.
-	SecurityRatingRunOnSchedule *string `pulumi:"securityRatingRunOnSchedule"`
-	// Enable/disable sending of path maximum transmission unit (PMTU) - ICMP destination unreachable packet and to support PMTUD protocol on your network to reduce fragmentation of packets. Valid values: `enable`, `disable`.
-	SendPmtuIcmp *string `pulumi:"sendPmtuIcmp"`
-	// Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
-	SnatRouteChange *string `pulumi:"snatRouteChange"`
-	// Enable/disable IPS detection of HIBUN format files when using Data Leak Protection. Valid values: `disable`, `enable`.
-	SpecialFile23Support *string `pulumi:"specialFile23Support"`
-	// Enable/disable speed test server. Valid values: `enable`, `disable`.
-	SpeedtestServer *string `pulumi:"speedtestServer"`
-	// Split port(s) to multiple 10Gbps ports.
-	SplitPort *string `pulumi:"splitPort"`
-	// Date within a month to run ssd trim.
-	SsdTrimDate *int `pulumi:"ssdTrimDate"`
-	// How often to run SSD Trim (default = weekly). SSD Trim prevents SSD drive data loss by finding and isolating errors. Valid values: `never`, `hourly`, `daily`, `weekly`, `monthly`.
-	SsdTrimFreq *string `pulumi:"ssdTrimFreq"`
-	// Hour of the day on which to run SSD Trim (0 - 23, default = 1).
-	SsdTrimHour *int `pulumi:"ssdTrimHour"`
-	// Minute of the hour on which to run SSD Trim (0 - 59, 60 for random).
-	SsdTrimMin *int `pulumi:"ssdTrimMin"`
-	// Day of week to run SSD Trim. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	SsdTrimWeekday *string `pulumi:"ssdTrimWeekday"`
-	// Enable/disable CBC cipher for SSH access. Valid values: `enable`, `disable`.
-	SshCbcCipher *string `pulumi:"sshCbcCipher"`
-	// Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
-	SshEncAlgo *string `pulumi:"sshEncAlgo"`
-	// Enable/disable HMAC-MD5 for SSH access. Valid values: `enable`, `disable`.
-	SshHmacMd5 *string `pulumi:"sshHmacMd5"`
-	// Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
-	SshKexAlgo *string `pulumi:"sshKexAlgo"`
-	// Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
-	SshKexSha1 *string `pulumi:"sshKexSha1"`
-	// Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
-	SshMacAlgo *string `pulumi:"sshMacAlgo"`
-	// Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access. Valid values: `enable`, `disable`.
-	SshMacWeak *string `pulumi:"sshMacWeak"`
-	// Minimum supported protocol version for SSL/TLS connections (default = TLSv1.2).
-	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
-	// Enable/disable static key ciphers in SSL/TLS connections (e.g. AES128-SHA, AES256-SHA, AES128-SHA256, AES256-SHA256). Valid values: `enable`, `disable`.
-	SslStaticKeyCiphers *string `pulumi:"sslStaticKeyCiphers"`
-	// Enable/disable SSL VPN hardware acceleration. Valid values: `enable`, `disable`.
-	SslvpnCipherHardwareAcceleration *string `pulumi:"sslvpnCipherHardwareAcceleration"`
-	// Enable/disable verification of EMS serial number in SSL-VPN connection. Valid values: `enable`, `disable`.
-	SslvpnEmsSnCheck *string `pulumi:"sslvpnEmsSnCheck"`
-	// Enable/disable SSL VPN KXP hardware acceleration. Valid values: `enable`, `disable`.
-	SslvpnKxpHardwareAcceleration *string `pulumi:"sslvpnKxpHardwareAcceleration"`
-	// Maximum number of SSL VPN processes. Upper limit for this value is the number of CPUs and depends on the model.
-	SslvpnMaxWorkerCount *int `pulumi:"sslvpnMaxWorkerCount"`
-	// Enable/disable checking browser's plugin version by SSL VPN. Valid values: `enable`, `disable`.
-	SslvpnPluginVersionCheck *string `pulumi:"sslvpnPluginVersionCheck"`
-	// Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
-	StrictDirtySessionCheck *string `pulumi:"strictDirtySessionCheck"`
-	// Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
-	StrongCrypto *string `pulumi:"strongCrypto"`
-	// Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
-	SwitchController *string `pulumi:"switchController"`
-	// Enable reserved network subnet for controlled switches. This is available when the switch controller is enabled.
-	SwitchControllerReservedNetwork *string `pulumi:"switchControllerReservedNetwork"`
-	// Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
-	SysPerfLogInterval *int `pulumi:"sysPerfLogInterval"`
-	// Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
-	TcpHalfcloseTimer *int `pulumi:"tcpHalfcloseTimer"`
-	// Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
-	TcpHalfopenTimer *int `pulumi:"tcpHalfopenTimer"`
-	// Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
-	TcpOption *string `pulumi:"tcpOption"`
-	// Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
-	TcpRstTimer *int `pulumi:"tcpRstTimer"`
-	// Length of the TCP TIME-WAIT state in seconds.
-	TcpTimewaitTimer *int `pulumi:"tcpTimewaitTimer"`
-	// Enable/disable TFTP. Valid values: `enable`, `disable`.
-	Tftp *string `pulumi:"tftp"`
-	// Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
-	Timezone *string `pulumi:"timezone"`
-	// Enable/disable skip policy check and allow multicast through. Valid values: `enable`, `disable`.
-	TpMcSkipPolicy *string `pulumi:"tpMcSkipPolicy"`
-	// Choose Type of Service (ToS) or Differentiated Services Code Point (DSCP) for traffic prioritization in traffic shaping. Valid values: `tos`, `dscp`.
-	TrafficPriority *string `pulumi:"trafficPriority"`
-	// Default system-wide level of priority for traffic prioritization. Valid values: `low`, `medium`, `high`.
-	TrafficPriorityLevel *string `pulumi:"trafficPriorityLevel"`
-	// Email-based two-factor authentication session timeout (30 - 300 seconds (5 minutes), default = 60).
-	TwoFactorEmailExpiry *int `pulumi:"twoFactorEmailExpiry"`
-	// FortiAuthenticator token authentication session timeout (10 - 3600 seconds (1 hour), default = 60).
-	TwoFactorFacExpiry *int `pulumi:"twoFactorFacExpiry"`
-	// FortiToken authentication session timeout (60 - 600 sec (10 minutes), default = 60).
-	TwoFactorFtkExpiry *int `pulumi:"twoFactorFtkExpiry"`
-	// FortiToken Mobile session timeout (1 - 168 hours (7 days), default = 72).
-	TwoFactorFtmExpiry *int `pulumi:"twoFactorFtmExpiry"`
-	// SMS-based two-factor authentication session timeout (30 - 300 sec, default = 60).
-	TwoFactorSmsExpiry *int `pulumi:"twoFactorSmsExpiry"`
-	// UDP connection session timeout. This command can be useful in managing CPU and memory resources (1 - 86400 seconds (1 day), default = 60).
-	UdpIdleTimer *int `pulumi:"udpIdleTimer"`
-	// URL filter CPU affinity.
-	UrlFilterAffinity *string `pulumi:"urlFilterAffinity"`
-	// URL filter daemon count.
-	UrlFilterCount *int `pulumi:"urlFilterCount"`
-	// Maximum number of devices allowed in user device store.
-	UserDeviceStoreMaxDevices *int `pulumi:"userDeviceStoreMaxDevices"`
-	// Maximum unified memory allowed in user device store.
-	UserDeviceStoreMaxUnifiedMem *int `pulumi:"userDeviceStoreMaxUnifiedMem"`
-	// Maximum number of users allowed in user device store.
-	UserDeviceStoreMaxUsers *int `pulumi:"userDeviceStoreMaxUsers"`
-	// Certificate to use for https user authentication.
-	UserServerCert *string `pulumi:"userServerCert"`
-	// Enable/disable support for multiple virtual domains (VDOMs). Valid values: `enable`, `disable`.
-	VdomAdmin *string `pulumi:"vdomAdmin"`
-	// Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
-	VdomMode *string `pulumi:"vdomMode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.
-	VipArpRange *string `pulumi:"vipArpRange"`
-	// Maximum number of virtual server processes to create. The maximum is the number of CPU cores. This is not available on single-core CPUs.
-	VirtualServerCount *int `pulumi:"virtualServerCount"`
-	// Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
-	VirtualServerHardwareAcceleration *string `pulumi:"virtualServerHardwareAcceleration"`
-	// Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
-	VirtualSwitchVlan *string `pulumi:"virtualSwitchVlan"`
-	// Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	WadAffinity *string `pulumi:"wadAffinity"`
-	// Number of concurrent WAD-cache-service object-cache processes.
-	WadCsvcCsCount *int `pulumi:"wadCsvcCsCount"`
-	// Number of concurrent WAD-cache-service byte-cache processes.
-	WadCsvcDbCount *int `pulumi:"wadCsvcDbCount"`
-	// Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection.
-	WadMemoryChangeGranularity *int `pulumi:"wadMemoryChangeGranularity"`
-	// Enable/disable dispatching traffic to WAD workers based on source affinity. Valid values: `disable`, `enable`.
-	WadSourceAffinity *string `pulumi:"wadSourceAffinity"`
-	// Number of explicit proxy WAN optimization daemon (WAD) processes. By default WAN optimization, explicit proxy, and web caching is handled by all of the CPU cores in a FortiGate unit.
-	WadWorkerCount *int `pulumi:"wadWorkerCount"`
-	// CA certificate that verifies the WiFi certificate.
-	WifiCaCertificate *string `pulumi:"wifiCaCertificate"`
-	// Certificate to use for WiFi authentication.
-	WifiCertificate *string `pulumi:"wifiCertificate"`
-	// Enable/disable comparability with WiMAX 4G USB devices. Valid values: `enable`, `disable`.
-	Wimax4gUsb *string `pulumi:"wimax4gUsb"`
-	// Enable/disable the wireless controller feature to use the FortiGate unit to manage FortiAPs. Valid values: `enable`, `disable`.
-	WirelessController *string `pulumi:"wirelessController"`
-	// Port used for the control channel in wireless controller mode (wireless-mode is ac). The data channel port is the control channel port number plus one (1024 - 49150, default = 5246).
-	WirelessControllerPort *int `pulumi:"wirelessControllerPort"`
+	AdminConcurrent                       *string `pulumi:"adminConcurrent"`
+	AdminConsoleTimeout                   *int    `pulumi:"adminConsoleTimeout"`
+	AdminForticloudSsoLogin               *string `pulumi:"adminForticloudSsoLogin"`
+	AdminHost                             *string `pulumi:"adminHost"`
+	AdminHstsMaxAge                       *int    `pulumi:"adminHstsMaxAge"`
+	AdminHttpsPkiRequired                 *string `pulumi:"adminHttpsPkiRequired"`
+	AdminHttpsRedirect                    *string `pulumi:"adminHttpsRedirect"`
+	AdminHttpsSslBannedCiphers            *string `pulumi:"adminHttpsSslBannedCiphers"`
+	AdminHttpsSslCiphersuites             *string `pulumi:"adminHttpsSslCiphersuites"`
+	AdminHttpsSslVersions                 *string `pulumi:"adminHttpsSslVersions"`
+	AdminLockoutDuration                  *int    `pulumi:"adminLockoutDuration"`
+	AdminLockoutThreshold                 *int    `pulumi:"adminLockoutThreshold"`
+	AdminLoginMax                         *int    `pulumi:"adminLoginMax"`
+	AdminMaintainer                       *string `pulumi:"adminMaintainer"`
+	AdminPort                             *int    `pulumi:"adminPort"`
+	AdminRestrictLocal                    *string `pulumi:"adminRestrictLocal"`
+	AdminScp                              *string `pulumi:"adminScp"`
+	AdminServerCert                       *string `pulumi:"adminServerCert"`
+	AdminSport                            *int    `pulumi:"adminSport"`
+	AdminSshGraceTime                     *int    `pulumi:"adminSshGraceTime"`
+	AdminSshPassword                      *string `pulumi:"adminSshPassword"`
+	AdminSshPort                          *int    `pulumi:"adminSshPort"`
+	AdminSshV1                            *string `pulumi:"adminSshV1"`
+	AdminTelnet                           *string `pulumi:"adminTelnet"`
+	AdminTelnetPort                       *int    `pulumi:"adminTelnetPort"`
+	Admintimeout                          *int    `pulumi:"admintimeout"`
+	Alias                                 *string `pulumi:"alias"`
+	AllowTrafficRedirect                  *string `pulumi:"allowTrafficRedirect"`
+	AntiReplay                            *string `pulumi:"antiReplay"`
+	ArpMaxEntry                           *int    `pulumi:"arpMaxEntry"`
+	Asymroute                             *string `pulumi:"asymroute"`
+	AuthCert                              *string `pulumi:"authCert"`
+	AuthHttpPort                          *int    `pulumi:"authHttpPort"`
+	AuthHttpsPort                         *int    `pulumi:"authHttpsPort"`
+	AuthIkeSamlPort                       *int    `pulumi:"authIkeSamlPort"`
+	AuthKeepalive                         *string `pulumi:"authKeepalive"`
+	AuthSessionLimit                      *string `pulumi:"authSessionLimit"`
+	AutoAuthExtensionDevice               *string `pulumi:"autoAuthExtensionDevice"`
+	AutorunLogFsck                        *string `pulumi:"autorunLogFsck"`
+	AvAffinity                            *string `pulumi:"avAffinity"`
+	AvFailopen                            *string `pulumi:"avFailopen"`
+	AvFailopenSession                     *string `pulumi:"avFailopenSession"`
+	BatchCmdb                             *string `pulumi:"batchCmdb"`
+	BlockSessionTimer                     *int    `pulumi:"blockSessionTimer"`
+	BrFdbMaxEntry                         *int    `pulumi:"brFdbMaxEntry"`
+	CertChainMax                          *int    `pulumi:"certChainMax"`
+	CfgRevertTimeout                      *int    `pulumi:"cfgRevertTimeout"`
+	CfgSave                               *string `pulumi:"cfgSave"`
+	CheckProtocolHeader                   *string `pulumi:"checkProtocolHeader"`
+	CheckResetRange                       *string `pulumi:"checkResetRange"`
+	CliAuditLog                           *string `pulumi:"cliAuditLog"`
+	CloudCommunication                    *string `pulumi:"cloudCommunication"`
+	CltCertReq                            *string `pulumi:"cltCertReq"`
+	CmdbsvrAffinity                       *string `pulumi:"cmdbsvrAffinity"`
+	ComplianceCheck                       *string `pulumi:"complianceCheck"`
+	ComplianceCheckTime                   *string `pulumi:"complianceCheckTime"`
+	CpuUseThreshold                       *int    `pulumi:"cpuUseThreshold"`
+	CsrCaAttribute                        *string `pulumi:"csrCaAttribute"`
+	DailyRestart                          *string `pulumi:"dailyRestart"`
+	DefaultServiceSourcePort              *string `pulumi:"defaultServiceSourcePort"`
+	DeviceIdentificationActiveScanDelay   *int    `pulumi:"deviceIdentificationActiveScanDelay"`
+	DeviceIdleTimeout                     *int    `pulumi:"deviceIdleTimeout"`
+	DhParams                              *string `pulumi:"dhParams"`
+	DnsproxyWorkerCount                   *int    `pulumi:"dnsproxyWorkerCount"`
+	Dst                                   *string `pulumi:"dst"`
+	EarlyTcpNpuSession                    *string `pulumi:"earlyTcpNpuSession"`
+	EditVdomPrompt                        *string `pulumi:"editVdomPrompt"`
+	EndpointControlFdsAccess              *string `pulumi:"endpointControlFdsAccess"`
+	EndpointControlPortalPort             *int    `pulumi:"endpointControlPortalPort"`
+	ExtenderControllerReservedNetwork     *string `pulumi:"extenderControllerReservedNetwork"`
+	Failtime                              *int    `pulumi:"failtime"`
+	FazDiskBufferSize                     *int    `pulumi:"fazDiskBufferSize"`
+	FdsStatistics                         *string `pulumi:"fdsStatistics"`
+	FdsStatisticsPeriod                   *int    `pulumi:"fdsStatisticsPeriod"`
+	FecPort                               *int    `pulumi:"fecPort"`
+	FgdAlertSubscription                  *string `pulumi:"fgdAlertSubscription"`
+	Fortiextender                         *string `pulumi:"fortiextender"`
+	FortiextenderDataPort                 *int    `pulumi:"fortiextenderDataPort"`
+	FortiextenderDiscoveryLockdown        *string `pulumi:"fortiextenderDiscoveryLockdown"`
+	FortiextenderProvisionOnAuthorization *string `pulumi:"fortiextenderProvisionOnAuthorization"`
+	FortiextenderVlanMode                 *string `pulumi:"fortiextenderVlanMode"`
+	FortiipamIntegration                  *string `pulumi:"fortiipamIntegration"`
+	FortiservicePort                      *int    `pulumi:"fortiservicePort"`
+	FortitokenCloud                       *string `pulumi:"fortitokenCloud"`
+	GuiAllowDefaultHostname               *string `pulumi:"guiAllowDefaultHostname"`
+	GuiAppDetectionSdwan                  *string `pulumi:"guiAppDetectionSdwan"`
+	GuiCdnUsage                           *string `pulumi:"guiCdnUsage"`
+	GuiCertificates                       *string `pulumi:"guiCertificates"`
+	GuiCustomLanguage                     *string `pulumi:"guiCustomLanguage"`
+	GuiDateFormat                         *string `pulumi:"guiDateFormat"`
+	GuiDateTimeSource                     *string `pulumi:"guiDateTimeSource"`
+	GuiDeviceLatitude                     *string `pulumi:"guiDeviceLatitude"`
+	GuiDeviceLongitude                    *string `pulumi:"guiDeviceLongitude"`
+	GuiDisplayHostname                    *string `pulumi:"guiDisplayHostname"`
+	GuiFirmwareUpgradeSetupWarning        *string `pulumi:"guiFirmwareUpgradeSetupWarning"`
+	GuiFirmwareUpgradeWarning             *string `pulumi:"guiFirmwareUpgradeWarning"`
+	GuiForticareRegistrationSetupWarning  *string `pulumi:"guiForticareRegistrationSetupWarning"`
+	GuiFortigateCloudSandbox              *string `pulumi:"guiFortigateCloudSandbox"`
+	GuiFortiguardResourceFetch            *string `pulumi:"guiFortiguardResourceFetch"`
+	GuiFortisandboxCloud                  *string `pulumi:"guiFortisandboxCloud"`
+	GuiIpv6                               *string `pulumi:"guiIpv6"`
+	GuiLinesPerPage                       *int    `pulumi:"guiLinesPerPage"`
+	GuiLocalOut                           *string `pulumi:"guiLocalOut"`
+	GuiReplacementMessageGroups           *string `pulumi:"guiReplacementMessageGroups"`
+	GuiRestApiCache                       *string `pulumi:"guiRestApiCache"`
+	GuiTheme                              *string `pulumi:"guiTheme"`
+	GuiWirelessOpensecurity               *string `pulumi:"guiWirelessOpensecurity"`
+	GuiWorkflowManagement                 *string `pulumi:"guiWorkflowManagement"`
+	HaAffinity                            *string `pulumi:"haAffinity"`
+	HonorDf                               *string `pulumi:"honorDf"`
+	Hostname                              *string `pulumi:"hostname"`
+	IgmpStateLimit                        *int    `pulumi:"igmpStateLimit"`
+	IkeEmbryonicLimit                     *int    `pulumi:"ikeEmbryonicLimit"`
+	InternetServiceDatabase               *string `pulumi:"internetServiceDatabase"`
+	Interval                              *int    `pulumi:"interval"`
+	IpSrcPortRange                        *string `pulumi:"ipSrcPortRange"`
+	IpsAffinity                           *string `pulumi:"ipsAffinity"`
+	IpsecAsicOffload                      *string `pulumi:"ipsecAsicOffload"`
+	IpsecHaSeqjumpRate                    *int    `pulumi:"ipsecHaSeqjumpRate"`
+	IpsecHmacOffload                      *string `pulumi:"ipsecHmacOffload"`
+	IpsecRoundRobin                       *string `pulumi:"ipsecRoundRobin"`
+	IpsecSoftDecAsync                     *string `pulumi:"ipsecSoftDecAsync"`
+	Ipv6AcceptDad                         *int    `pulumi:"ipv6AcceptDad"`
+	Ipv6AllowAnycastProbe                 *string `pulumi:"ipv6AllowAnycastProbe"`
+	Ipv6AllowLocalInSlientDrop            *string `pulumi:"ipv6AllowLocalInSlientDrop"`
+	Ipv6AllowMulticastProbe               *string `pulumi:"ipv6AllowMulticastProbe"`
+	Ipv6AllowTrafficRedirect              *string `pulumi:"ipv6AllowTrafficRedirect"`
+	IrqTimeAccounting                     *string `pulumi:"irqTimeAccounting"`
+	Language                              *string `pulumi:"language"`
+	Ldapconntimeout                       *int    `pulumi:"ldapconntimeout"`
+	LldpReception                         *string `pulumi:"lldpReception"`
+	LldpTransmission                      *string `pulumi:"lldpTransmission"`
+	LogSslConnection                      *string `pulumi:"logSslConnection"`
+	LogUuidAddress                        *string `pulumi:"logUuidAddress"`
+	LogUuidPolicy                         *string `pulumi:"logUuidPolicy"`
+	LoginTimestamp                        *string `pulumi:"loginTimestamp"`
+	LongVdomName                          *string `pulumi:"longVdomName"`
+	ManagementIp                          *string `pulumi:"managementIp"`
+	ManagementPort                        *int    `pulumi:"managementPort"`
+	ManagementPortUseAdminSport           *string `pulumi:"managementPortUseAdminSport"`
+	ManagementVdom                        *string `pulumi:"managementVdom"`
+	MaxDlpstatMemory                      *int    `pulumi:"maxDlpstatMemory"`
+	MaxRouteCacheSize                     *int    `pulumi:"maxRouteCacheSize"`
+	McTtlNotchange                        *string `pulumi:"mcTtlNotchange"`
+	MemoryUseThresholdExtreme             *int    `pulumi:"memoryUseThresholdExtreme"`
+	MemoryUseThresholdGreen               *int    `pulumi:"memoryUseThresholdGreen"`
+	MemoryUseThresholdRed                 *int    `pulumi:"memoryUseThresholdRed"`
+	MiglogAffinity                        *string `pulumi:"miglogAffinity"`
+	MiglogdChildren                       *int    `pulumi:"miglogdChildren"`
+	MultiFactorAuthentication             *string `pulumi:"multiFactorAuthentication"`
+	MulticastForward                      *string `pulumi:"multicastForward"`
+	NdpMaxEntry                           *int    `pulumi:"ndpMaxEntry"`
+	PerUserBal                            *string `pulumi:"perUserBal"`
+	PerUserBwl                            *string `pulumi:"perUserBwl"`
+	PmtuDiscovery                         *string `pulumi:"pmtuDiscovery"`
+	PolicyAuthConcurrent                  *int    `pulumi:"policyAuthConcurrent"`
+	PostLoginBanner                       *string `pulumi:"postLoginBanner"`
+	PreLoginBanner                        *string `pulumi:"preLoginBanner"`
+	PrivateDataEncryption                 *string `pulumi:"privateDataEncryption"`
+	ProxyAuthLifetime                     *string `pulumi:"proxyAuthLifetime"`
+	ProxyAuthLifetimeTimeout              *int    `pulumi:"proxyAuthLifetimeTimeout"`
+	ProxyAuthTimeout                      *int    `pulumi:"proxyAuthTimeout"`
+	ProxyCertUseMgmtVdom                  *string `pulumi:"proxyCertUseMgmtVdom"`
+	ProxyCipherHardwareAcceleration       *string `pulumi:"proxyCipherHardwareAcceleration"`
+	ProxyHardwareAcceleration             *string `pulumi:"proxyHardwareAcceleration"`
+	ProxyKxpHardwareAcceleration          *string `pulumi:"proxyKxpHardwareAcceleration"`
+	ProxyReAuthenticationMode             *string `pulumi:"proxyReAuthenticationMode"`
+	ProxyResourceMode                     *string `pulumi:"proxyResourceMode"`
+	ProxyWorkerCount                      *int    `pulumi:"proxyWorkerCount"`
+	RadiusPort                            *int    `pulumi:"radiusPort"`
+	RebootUponConfigRestore               *string `pulumi:"rebootUponConfigRestore"`
+	Refresh                               *int    `pulumi:"refresh"`
+	Remoteauthtimeout                     *int    `pulumi:"remoteauthtimeout"`
+	ResetSessionlessTcp                   *string `pulumi:"resetSessionlessTcp"`
+	RestartTime                           *string `pulumi:"restartTime"`
+	RevisionBackupOnLogout                *string `pulumi:"revisionBackupOnLogout"`
+	RevisionImageAutoBackup               *string `pulumi:"revisionImageAutoBackup"`
+	ScanunitCount                         *int    `pulumi:"scanunitCount"`
+	SecurityRatingResultSubmission        *string `pulumi:"securityRatingResultSubmission"`
+	SecurityRatingRunOnSchedule           *string `pulumi:"securityRatingRunOnSchedule"`
+	SendPmtuIcmp                          *string `pulumi:"sendPmtuIcmp"`
+	SnatRouteChange                       *string `pulumi:"snatRouteChange"`
+	SpecialFile23Support                  *string `pulumi:"specialFile23Support"`
+	SpeedtestServer                       *string `pulumi:"speedtestServer"`
+	SplitPort                             *string `pulumi:"splitPort"`
+	SsdTrimDate                           *int    `pulumi:"ssdTrimDate"`
+	SsdTrimFreq                           *string `pulumi:"ssdTrimFreq"`
+	SsdTrimHour                           *int    `pulumi:"ssdTrimHour"`
+	SsdTrimMin                            *int    `pulumi:"ssdTrimMin"`
+	SsdTrimWeekday                        *string `pulumi:"ssdTrimWeekday"`
+	SshCbcCipher                          *string `pulumi:"sshCbcCipher"`
+	SshEncAlgo                            *string `pulumi:"sshEncAlgo"`
+	SshHmacMd5                            *string `pulumi:"sshHmacMd5"`
+	SshKexAlgo                            *string `pulumi:"sshKexAlgo"`
+	SshKexSha1                            *string `pulumi:"sshKexSha1"`
+	SshMacAlgo                            *string `pulumi:"sshMacAlgo"`
+	SshMacWeak                            *string `pulumi:"sshMacWeak"`
+	SslMinProtoVersion                    *string `pulumi:"sslMinProtoVersion"`
+	SslStaticKeyCiphers                   *string `pulumi:"sslStaticKeyCiphers"`
+	SslvpnCipherHardwareAcceleration      *string `pulumi:"sslvpnCipherHardwareAcceleration"`
+	SslvpnEmsSnCheck                      *string `pulumi:"sslvpnEmsSnCheck"`
+	SslvpnKxpHardwareAcceleration         *string `pulumi:"sslvpnKxpHardwareAcceleration"`
+	SslvpnMaxWorkerCount                  *int    `pulumi:"sslvpnMaxWorkerCount"`
+	SslvpnPluginVersionCheck              *string `pulumi:"sslvpnPluginVersionCheck"`
+	StrictDirtySessionCheck               *string `pulumi:"strictDirtySessionCheck"`
+	StrongCrypto                          *string `pulumi:"strongCrypto"`
+	SwitchController                      *string `pulumi:"switchController"`
+	SwitchControllerReservedNetwork       *string `pulumi:"switchControllerReservedNetwork"`
+	SysPerfLogInterval                    *int    `pulumi:"sysPerfLogInterval"`
+	TcpHalfcloseTimer                     *int    `pulumi:"tcpHalfcloseTimer"`
+	TcpHalfopenTimer                      *int    `pulumi:"tcpHalfopenTimer"`
+	TcpOption                             *string `pulumi:"tcpOption"`
+	TcpRstTimer                           *int    `pulumi:"tcpRstTimer"`
+	TcpTimewaitTimer                      *int    `pulumi:"tcpTimewaitTimer"`
+	Tftp                                  *string `pulumi:"tftp"`
+	Timezone                              *string `pulumi:"timezone"`
+	TpMcSkipPolicy                        *string `pulumi:"tpMcSkipPolicy"`
+	TrafficPriority                       *string `pulumi:"trafficPriority"`
+	TrafficPriorityLevel                  *string `pulumi:"trafficPriorityLevel"`
+	TwoFactorEmailExpiry                  *int    `pulumi:"twoFactorEmailExpiry"`
+	TwoFactorFacExpiry                    *int    `pulumi:"twoFactorFacExpiry"`
+	TwoFactorFtkExpiry                    *int    `pulumi:"twoFactorFtkExpiry"`
+	TwoFactorFtmExpiry                    *int    `pulumi:"twoFactorFtmExpiry"`
+	TwoFactorSmsExpiry                    *int    `pulumi:"twoFactorSmsExpiry"`
+	UdpIdleTimer                          *int    `pulumi:"udpIdleTimer"`
+	UrlFilterAffinity                     *string `pulumi:"urlFilterAffinity"`
+	UrlFilterCount                        *int    `pulumi:"urlFilterCount"`
+	UserDeviceStoreMaxDevices             *int    `pulumi:"userDeviceStoreMaxDevices"`
+	UserDeviceStoreMaxUnifiedMem          *int    `pulumi:"userDeviceStoreMaxUnifiedMem"`
+	UserDeviceStoreMaxUsers               *int    `pulumi:"userDeviceStoreMaxUsers"`
+	UserServerCert                        *string `pulumi:"userServerCert"`
+	VdomAdmin                             *string `pulumi:"vdomAdmin"`
+	VdomMode                              *string `pulumi:"vdomMode"`
+	Vdomparam                             *string `pulumi:"vdomparam"`
+	VipArpRange                           *string `pulumi:"vipArpRange"`
+	VirtualServerCount                    *int    `pulumi:"virtualServerCount"`
+	VirtualServerHardwareAcceleration     *string `pulumi:"virtualServerHardwareAcceleration"`
+	VirtualSwitchVlan                     *string `pulumi:"virtualSwitchVlan"`
+	WadAffinity                           *string `pulumi:"wadAffinity"`
+	WadCsvcCsCount                        *int    `pulumi:"wadCsvcCsCount"`
+	WadCsvcDbCount                        *int    `pulumi:"wadCsvcDbCount"`
+	WadMemoryChangeGranularity            *int    `pulumi:"wadMemoryChangeGranularity"`
+	WadSourceAffinity                     *string `pulumi:"wadSourceAffinity"`
+	WadWorkerCount                        *int    `pulumi:"wadWorkerCount"`
+	WifiCaCertificate                     *string `pulumi:"wifiCaCertificate"`
+	WifiCertificate                       *string `pulumi:"wifiCertificate"`
+	Wimax4gUsb                            *string `pulumi:"wimax4gUsb"`
+	WirelessController                    *string `pulumi:"wirelessController"`
+	WirelessControllerPort                *int    `pulumi:"wirelessControllerPort"`
 }
 
 type SystemGlobalState struct {
-	// Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
-	AdminConcurrent pulumi.StringPtrInput
-	// Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
-	AdminConsoleTimeout pulumi.IntPtrInput
-	// Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
-	AdminForticloudSsoLogin pulumi.StringPtrInput
-	// HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
-	AdminHstsMaxAge pulumi.IntPtrInput
-	// Enable/disable admin login method. Enable to force administrators to provide a valid certificate to log in if PKI is enabled. Disable to allow administrators to log in with a certificate or password. Valid values: `enable`, `disable`.
-	AdminHttpsPkiRequired pulumi.StringPtrInput
-	// Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
-	AdminHttpsRedirect pulumi.StringPtrInput
-	// Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
-	AdminHttpsSslBannedCiphers pulumi.StringPtrInput
-	// Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-	AdminHttpsSslCiphersuites pulumi.StringPtrInput
-	// Allowed TLS versions for web administration.
-	AdminHttpsSslVersions pulumi.StringPtrInput
-	// Amount of time in seconds that an administrator account is locked out after reaching the admin-lockout-threshold for repeated failed login attempts.
-	AdminLockoutDuration pulumi.IntPtrInput
-	// Number of failed login attempts before an administrator account is locked out for the admin-lockout-duration.
-	AdminLockoutThreshold pulumi.IntPtrInput
-	// Maximum number of administrators who can be logged in at the same time (1 - 100, default = 100)
-	AdminLoginMax pulumi.IntPtrInput
-	// Enable/disable maintainer administrator login. When enabled, the maintainer account can be used to log in from the console after a hard reboot. The password is "bcpb" followed by the FortiGate unit serial number. You have limited time to complete this login. Valid values: `enable`, `disable`.
-	AdminMaintainer pulumi.StringPtrInput
-	// Administrative access port for HTTP. (1 - 65535, default = 80).
-	AdminPort pulumi.IntPtrInput
-	// Enable/disable local admin authentication restriction when remote authenticator is up and running. (default = disable) Valid values: `enable`, `disable`.
-	AdminRestrictLocal pulumi.StringPtrInput
-	// Enable/disable using SCP to download the system configuration. You can use SCP as an alternative method for backing up the configuration. Valid values: `enable`, `disable`.
-	AdminScp pulumi.StringPtrInput
-	// Server certificate that the FortiGate uses for HTTPS administrative connections.
-	AdminServerCert pulumi.StringPtrInput
-	// Administrative access port for HTTPS. (1 - 65535, default = 443).
-	AdminSport pulumi.IntPtrInput
-	// Maximum time in seconds permitted between making an SSH connection to the FortiGate unit and authenticating (10 - 3600 sec (1 hour), default 120).
-	AdminSshGraceTime pulumi.IntPtrInput
-	// Enable/disable password authentication for SSH admin access. Valid values: `enable`, `disable`.
-	AdminSshPassword pulumi.StringPtrInput
-	// Administrative access port for SSH. (1 - 65535, default = 22).
-	AdminSshPort pulumi.IntPtrInput
-	// Enable/disable SSH v1 compatibility. Valid values: `enable`, `disable`.
-	AdminSshV1 pulumi.StringPtrInput
-	// Enable/disable TELNET service. Valid values: `enable`, `disable`.
-	AdminTelnet pulumi.StringPtrInput
-	// Administrative access port for TELNET. (1 - 65535, default = 23).
-	AdminTelnetPort pulumi.IntPtrInput
-	// Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
-	Admintimeout pulumi.IntPtrInput
-	// Alias for your FortiGate unit.
-	Alias pulumi.StringPtrInput
-	// Disable to allow traffic to be routed back on a different interface. Valid values: `enable`, `disable`.
-	AllowTrafficRedirect pulumi.StringPtrInput
-	// Level of checking for packet replay and TCP sequence checking. Valid values: `disable`, `loose`, `strict`.
-	AntiReplay pulumi.StringPtrInput
-	// Maximum number of dynamically learned MAC addresses that can be added to the ARP table (131072 - 2147483647, default = 131072).
-	ArpMaxEntry pulumi.IntPtrInput
-	// Enable/disable asymmetric route. Valid values: `enable`, `disable`.
-	Asymroute pulumi.StringPtrInput
-	// Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
-	AuthCert pulumi.StringPtrInput
-	// User authentication HTTP port. (1 - 65535, default = 80).
-	AuthHttpPort pulumi.IntPtrInput
-	// User authentication HTTPS port. (1 - 65535, default = 443).
-	AuthHttpsPort pulumi.IntPtrInput
-	// Enable to prevent user authentication sessions from timing out when idle. Valid values: `enable`, `disable`.
-	AuthKeepalive pulumi.StringPtrInput
-	// Action to take when the number of allowed user authenticated sessions is reached. Valid values: `block-new`, `logout-inactive`.
-	AuthSessionLimit pulumi.StringPtrInput
-	// Enable/disable automatic authorization of dedicated Fortinet extension devices. Valid values: `enable`, `disable`.
-	AutoAuthExtensionDevice pulumi.StringPtrInput
-	// Enable/disable automatic log partition check after ungraceful shutdown. Valid values: `enable`, `disable`.
-	AutorunLogFsck pulumi.StringPtrInput
-	// Affinity setting for AV scanning (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	AvAffinity pulumi.StringPtrInput
-	// Set the action to take if the FortiGate is running low on memory or the proxy connection limit has been reached. Valid values: `pass`, `off`, `one-shot`.
-	AvFailopen pulumi.StringPtrInput
-	// When enabled and a proxy for a protocol runs out of room in its session table, that protocol goes into failopen mode and enacts the action specified by av-failopen. Valid values: `enable`, `disable`.
-	AvFailopenSession pulumi.StringPtrInput
-	// Enable/disable batch mode, allowing you to enter a series of CLI commands that will execute as a group once they are loaded. Valid values: `enable`, `disable`.
-	BatchCmdb pulumi.StringPtrInput
-	// Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
-	BlockSessionTimer pulumi.IntPtrInput
-	// Maximum number of bridge forwarding database (FDB) entries.
-	BrFdbMaxEntry pulumi.IntPtrInput
-	// Maximum number of certificates that can be traversed in a certificate chain.
-	CertChainMax pulumi.IntPtrInput
-	// Time-out for reverting to the last saved configuration.
-	CfgRevertTimeout pulumi.IntPtrInput
-	// Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
-	CfgSave pulumi.StringPtrInput
-	// Level of checking performed on protocol headers. Strict checking is more thorough but may affect performance. Loose checking is ok in most cases. Valid values: `loose`, `strict`.
-	CheckProtocolHeader pulumi.StringPtrInput
-	// Configure ICMP error message verification. You can either apply strict RST range checking or disable it. Valid values: `strict`, `disable`.
-	CheckResetRange pulumi.StringPtrInput
-	// Enable/disable CLI audit log. Valid values: `enable`, `disable`.
-	CliAuditLog pulumi.StringPtrInput
-	// Enable/disable all cloud communication. Valid values: `enable`, `disable`.
-	CloudCommunication pulumi.StringPtrInput
-	// Enable/disable requiring administrators to have a client certificate to log into the GUI using HTTPS. Valid values: `enable`, `disable`.
-	CltCertReq pulumi.StringPtrInput
-	// Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	CmdbsvrAffinity pulumi.StringPtrInput
-	// Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
-	ComplianceCheck pulumi.StringPtrInput
-	// Time of day to run scheduled PCI DSS compliance checks.
-	ComplianceCheckTime pulumi.StringPtrInput
-	// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
-	CpuUseThreshold pulumi.IntPtrInput
-	// Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
-	CsrCaAttribute pulumi.StringPtrInput
-	// Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
-	DailyRestart pulumi.StringPtrInput
-	// Default service source port range. (default=1-65535)
-	DefaultServiceSourcePort pulumi.StringPtrInput
-	// Number of seconds to passively scan a device before performing an active scan. (20 - 3600 sec, (20 sec to 1 hour), default = 90).
-	DeviceIdentificationActiveScanDelay pulumi.IntPtrInput
-	// Time in seconds that a device must be idle to automatically log the device user out. (30 - 31536000 sec (30 sec to 1 year), default = 300).
-	DeviceIdleTimeout pulumi.IntPtrInput
-	// Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
-	DhParams pulumi.StringPtrInput
-	// DNS proxy worker count.
-	DnsproxyWorkerCount pulumi.IntPtrInput
-	// Enable/disable daylight saving time. Valid values: `enable`, `disable`.
-	Dst pulumi.StringPtrInput
-	// Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
-	EditVdomPrompt pulumi.StringPtrInput
-	// Enable/disable access to the FortiGuard network for non-compliant endpoints. Valid values: `enable`, `disable`.
-	EndpointControlFdsAccess pulumi.StringPtrInput
-	// Endpoint control portal port (1 - 65535).
-	EndpointControlPortalPort pulumi.IntPtrInput
-	// Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
-	ExtenderControllerReservedNetwork pulumi.StringPtrInput
-	// Fail-time for server lost.
-	Failtime pulumi.IntPtrInput
-	// Maximum disk buffer size to temporarily store logs destined for FortiAnalyzer. To be used in the event that FortiAnalyzer is unavailalble.
-	FazDiskBufferSize pulumi.IntPtrInput
-	// Enable/disable sending IPS, Application Control, and AntiVirus data to FortiGuard. This data is used to improve FortiGuard services and is not shared with external parties and is protected by Fortinet's privacy policy. Valid values: `enable`, `disable`.
-	FdsStatistics pulumi.StringPtrInput
-	// FortiGuard statistics collection period in minutes. (1 - 1440 min (1 min to 24 hours), default = 60).
-	FdsStatisticsPeriod pulumi.IntPtrInput
-	// Local UDP port for Forward Error Correction (49152 - 65535).
-	FecPort pulumi.IntPtrInput
-	// Type of alert to retrieve from FortiGuard. Valid values: `advisory`, `latest-threat`, `latest-virus`, `latest-attack`, `new-antivirus-db`, `new-attack-db`.
-	FgdAlertSubscription pulumi.StringPtrInput
-	// Enable/disable FortiExtender. Valid values: `enable`, `disable`.
-	Fortiextender pulumi.StringPtrInput
-	// FortiExtender data port (1024 - 49150, default = 25246).
-	FortiextenderDataPort pulumi.IntPtrInput
-	// Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
-	FortiextenderDiscoveryLockdown pulumi.StringPtrInput
-	// Enable/disable FortiExtender VLAN mode. Valid values: `enable`, `disable`.
-	FortiextenderVlanMode pulumi.StringPtrInput
-	// Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
-	FortiipamIntegration pulumi.StringPtrInput
-	// FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port.
-	FortiservicePort pulumi.IntPtrInput
-	// Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
-	FortitokenCloud pulumi.StringPtrInput
-	// Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
-	GuiAllowDefaultHostname pulumi.StringPtrInput
-	// Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
-	GuiCdnUsage pulumi.StringPtrInput
-	// Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. Valid values: `enable`, `disable`.
-	GuiCertificates pulumi.StringPtrInput
-	// Enable/disable custom languages in GUI. Valid values: `enable`, `disable`.
-	GuiCustomLanguage pulumi.StringPtrInput
-	// Default date format used throughout GUI. Valid values: `yyyy/MM/dd`, `dd/MM/yyyy`, `MM/dd/yyyy`, `yyyy-MM-dd`, `dd-MM-yyyy`, `MM-dd-yyyy`.
-	GuiDateFormat pulumi.StringPtrInput
-	// Source from which the FortiGate GUI uses to display date and time entries. Valid values: `system`, `browser`.
-	GuiDateTimeSource pulumi.StringPtrInput
-	// Add the latitude of the location of this FortiGate to position it on the Threat Map.
-	GuiDeviceLatitude pulumi.StringPtrInput
-	// Add the longitude of the location of this FortiGate to position it on the Threat Map.
-	GuiDeviceLongitude pulumi.StringPtrInput
-	// Enable/disable displaying the FortiGate's hostname on the GUI login page. Valid values: `enable`, `disable`.
-	GuiDisplayHostname pulumi.StringPtrInput
-	// Enable/disable the firmware upgrade warning on GUI setup wizard. Valid values: `enable`, `disable`.
-	GuiFirmwareUpgradeSetupWarning pulumi.StringPtrInput
-	// Enable/disable the firmware upgrade warning on the GUI. Valid values: `enable`, `disable`.
-	GuiFirmwareUpgradeWarning pulumi.StringPtrInput
-	// Enable/disable the FortiCare registration setup warning on the GUI. Valid values: `enable`, `disable`.
-	GuiForticareRegistrationSetupWarning pulumi.StringPtrInput
-	// Enable/disable displaying FortiGate Cloud Sandbox on the GUI. Valid values: `enable`, `disable`.
-	GuiFortigateCloudSandbox pulumi.StringPtrInput
-	// Enable/disable displaying FortiSandbox Cloud on the GUI. Valid values: `enable`, `disable`.
-	GuiFortisandboxCloud pulumi.StringPtrInput
-	// Enable/disable IPv6 settings on the GUI. Valid values: `enable`, `disable`.
-	GuiIpv6 pulumi.StringPtrInput
-	// Number of lines to display per page for web administration.
-	GuiLinesPerPage pulumi.IntPtrInput
-	// Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
-	GuiLocalOut pulumi.StringPtrInput
-	// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
-	GuiReplacementMessageGroups pulumi.StringPtrInput
-	// Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
-	GuiRestApiCache pulumi.StringPtrInput
-	// Color scheme for the administration GUI.
-	GuiTheme pulumi.StringPtrInput
-	// Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
-	GuiWirelessOpensecurity pulumi.StringPtrInput
-	// Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	HaAffinity pulumi.StringPtrInput
-	// Enable/disable honoring of Don't-Fragment (DF) flag. Valid values: `enable`, `disable`.
-	HonorDf pulumi.StringPtrInput
-	// FortiGate unit's hostname. Most models will truncate names longer than 24 characters. Some models support hostnames up to 35 characters.
-	Hostname pulumi.StringPtrInput
-	// Maximum number of IGMP memberships (96 - 64000, default = 3200).
-	IgmpStateLimit pulumi.IntPtrInput
-	// Maximum number of IPsec tunnels to negotiate simultaneously.
-	IkeEmbryonicLimit pulumi.IntPtrInput
-	// Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
-	InternetServiceDatabase pulumi.StringPtrInput
-	// Dead gateway detection interval.
-	Interval pulumi.IntPtrInput
-	// IP source port range used for traffic originating from the FortiGate unit.
-	IpSrcPortRange pulumi.StringPtrInput
-	// Affinity setting for IPS (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx; allowed CPUs must be less than total number of IPS engine daemons).
-	IpsAffinity pulumi.StringPtrInput
-	// Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
-	IpsecAsicOffload pulumi.StringPtrInput
-	// ESP jump ahead rate (1G - 10G pps equivalent).
-	IpsecHaSeqjumpRate pulumi.IntPtrInput
-	// Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
-	IpsecHmacOffload pulumi.StringPtrInput
-	// Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
-	IpsecSoftDecAsync pulumi.StringPtrInput
-	// Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
-	Ipv6AcceptDad pulumi.IntPtrInput
-	// Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
-	Ipv6AllowAnycastProbe pulumi.StringPtrInput
-	// Disable to prevent IPv6 traffic with same local ingress and egress interface from being forwarded without policy check. Valid values: `enable`, `disable`.
-	Ipv6AllowTrafficRedirect pulumi.StringPtrInput
-	// Configure CPU IRQ time accounting mode. Valid values: `auto`, `force`.
-	IrqTimeAccounting pulumi.StringPtrInput
-	// GUI display language. Valid values: `english`, `french`, `spanish`, `portuguese`, `japanese`, `trach`, `simch`, `korean`.
-	Language pulumi.StringPtrInput
-	// Global timeout for connections with remote LDAP servers in milliseconds (1 - 300000, default 500).
-	Ldapconntimeout pulumi.IntPtrInput
-	// Enable/disable Link Layer Discovery Protocol (LLDP) reception. Valid values: `enable`, `disable`.
-	LldpReception pulumi.StringPtrInput
-	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission. Valid values: `enable`, `disable`.
-	LldpTransmission pulumi.StringPtrInput
-	// Enable/disable logging of SSL connection events. Valid values: `enable`, `disable`.
-	LogSslConnection pulumi.StringPtrInput
-	// Enable/disable insertion of address UUIDs to traffic logs. Valid values: `enable`, `disable`.
-	LogUuidAddress pulumi.StringPtrInput
-	// Enable/disable insertion of policy UUIDs to traffic logs. Valid values: `enable`, `disable`.
-	LogUuidPolicy pulumi.StringPtrInput
-	// Enable/disable login time recording. Valid values: `enable`, `disable`.
-	LoginTimestamp pulumi.StringPtrInput
-	// Enable/disable long VDOM name support. Valid values: `enable`, `disable`.
-	LongVdomName pulumi.StringPtrInput
-	// Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
-	ManagementIp pulumi.StringPtrInput
-	// Overriding port for management connection (Overrides admin port).
-	ManagementPort pulumi.IntPtrInput
-	// Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
-	ManagementPortUseAdminSport pulumi.StringPtrInput
-	// Management virtual domain name.
-	ManagementVdom pulumi.StringPtrInput
-	// Maximum DLP stat memory (0 - 4294967295).
-	MaxDlpstatMemory pulumi.IntPtrInput
-	// Maximum number of IP route cache entries (0 - 2147483647).
-	MaxRouteCacheSize pulumi.IntPtrInput
-	// Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-	McTtlNotchange pulumi.StringPtrInput
-	// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
-	MemoryUseThresholdExtreme pulumi.IntPtrInput
-	// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
-	MemoryUseThresholdGreen pulumi.IntPtrInput
-	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
-	MemoryUseThresholdRed pulumi.IntPtrInput
-	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
-	MiglogAffinity pulumi.StringPtrInput
-	// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
-	MiglogdChildren pulumi.IntPtrInput
-	// Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
-	MultiFactorAuthentication pulumi.StringPtrInput
-	// Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
-	MulticastForward pulumi.StringPtrInput
-	// Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
-	NdpMaxEntry pulumi.IntPtrInput
-	// Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
-	PerUserBal pulumi.StringPtrInput
-	// Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
-	PerUserBwl pulumi.StringPtrInput
-	// Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
-	PmtuDiscovery pulumi.StringPtrInput
-	// Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
-	PolicyAuthConcurrent pulumi.IntPtrInput
-	// Enable/disable displaying the administrator access disclaimer message after an administrator successfully logs in. Valid values: `disable`, `enable`.
-	PostLoginBanner pulumi.StringPtrInput
-	// Enable/disable displaying the administrator access disclaimer message on the login page before an administrator logs in. Valid values: `enable`, `disable`.
-	PreLoginBanner pulumi.StringPtrInput
-	// Enable/disable private data encryption using an AES 128-bit key. Valid values: `disable`, `enable`.
-	PrivateDataEncryption pulumi.StringPtrInput
-	// Enable/disable authenticated users lifetime control.  This is a cap on the total time a proxy user can be authenticated for after which re-authentication will take place. Valid values: `enable`, `disable`.
-	ProxyAuthLifetime pulumi.StringPtrInput
-	// Lifetime timeout in minutes for authenticated users (5  - 65535 min, default=480 (8 hours)).
-	ProxyAuthLifetimeTimeout pulumi.IntPtrInput
-	// Authentication timeout in minutes for authenticated users (1 - 300 min, default = 10).
-	ProxyAuthTimeout pulumi.IntPtrInput
-	// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
-	ProxyCertUseMgmtVdom pulumi.StringPtrInput
-	// Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
-	ProxyCipherHardwareAcceleration pulumi.StringPtrInput
-	// Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
-	ProxyHardwareAcceleration pulumi.StringPtrInput
-	// Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
-	ProxyKxpHardwareAcceleration pulumi.StringPtrInput
-	// Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
-	ProxyReAuthenticationMode pulumi.StringPtrInput
-	// Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
-	ProxyResourceMode pulumi.StringPtrInput
-	// Proxy worker count.
-	ProxyWorkerCount pulumi.IntPtrInput
-	// RADIUS service port number.
-	RadiusPort pulumi.IntPtrInput
-	// Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
-	RebootUponConfigRestore pulumi.StringPtrInput
-	// Statistics refresh interval in GUI.
-	Refresh pulumi.IntPtrInput
-	// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
-	Remoteauthtimeout pulumi.IntPtrInput
-	// Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
-	ResetSessionlessTcp pulumi.StringPtrInput
-	// Daily restart time (hh:mm).
-	RestartTime pulumi.StringPtrInput
-	// Enable/disable back-up of the latest configuration revision when an administrator logs out of the CLI or GUI. Valid values: `enable`, `disable`.
-	RevisionBackupOnLogout pulumi.StringPtrInput
-	// Enable/disable back-up of the latest configuration revision after the firmware is upgraded. Valid values: `enable`, `disable`.
-	RevisionImageAutoBackup pulumi.StringPtrInput
-	// Number of scanunits. The range and the default depend on the number of CPUs. Only available on FortiGate units with multiple CPUs.
-	ScanunitCount pulumi.IntPtrInput
-	// Enable/disable the submission of Security Rating results to FortiGuard. Valid values: `enable`, `disable`.
-	SecurityRatingResultSubmission pulumi.StringPtrInput
-	// Enable/disable scheduled runs of Security Rating. Valid values: `enable`, `disable`.
-	SecurityRatingRunOnSchedule pulumi.StringPtrInput
-	// Enable/disable sending of path maximum transmission unit (PMTU) - ICMP destination unreachable packet and to support PMTUD protocol on your network to reduce fragmentation of packets. Valid values: `enable`, `disable`.
-	SendPmtuIcmp pulumi.StringPtrInput
-	// Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
-	SnatRouteChange pulumi.StringPtrInput
-	// Enable/disable IPS detection of HIBUN format files when using Data Leak Protection. Valid values: `disable`, `enable`.
-	SpecialFile23Support pulumi.StringPtrInput
-	// Enable/disable speed test server. Valid values: `enable`, `disable`.
-	SpeedtestServer pulumi.StringPtrInput
-	// Split port(s) to multiple 10Gbps ports.
-	SplitPort pulumi.StringPtrInput
-	// Date within a month to run ssd trim.
-	SsdTrimDate pulumi.IntPtrInput
-	// How often to run SSD Trim (default = weekly). SSD Trim prevents SSD drive data loss by finding and isolating errors. Valid values: `never`, `hourly`, `daily`, `weekly`, `monthly`.
-	SsdTrimFreq pulumi.StringPtrInput
-	// Hour of the day on which to run SSD Trim (0 - 23, default = 1).
-	SsdTrimHour pulumi.IntPtrInput
-	// Minute of the hour on which to run SSD Trim (0 - 59, 60 for random).
-	SsdTrimMin pulumi.IntPtrInput
-	// Day of week to run SSD Trim. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	SsdTrimWeekday pulumi.StringPtrInput
-	// Enable/disable CBC cipher for SSH access. Valid values: `enable`, `disable`.
-	SshCbcCipher pulumi.StringPtrInput
-	// Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
-	SshEncAlgo pulumi.StringPtrInput
-	// Enable/disable HMAC-MD5 for SSH access. Valid values: `enable`, `disable`.
-	SshHmacMd5 pulumi.StringPtrInput
-	// Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
-	SshKexAlgo pulumi.StringPtrInput
-	// Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
-	SshKexSha1 pulumi.StringPtrInput
-	// Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
-	SshMacAlgo pulumi.StringPtrInput
-	// Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access. Valid values: `enable`, `disable`.
-	SshMacWeak pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default = TLSv1.2).
-	SslMinProtoVersion pulumi.StringPtrInput
-	// Enable/disable static key ciphers in SSL/TLS connections (e.g. AES128-SHA, AES256-SHA, AES128-SHA256, AES256-SHA256). Valid values: `enable`, `disable`.
-	SslStaticKeyCiphers pulumi.StringPtrInput
-	// Enable/disable SSL VPN hardware acceleration. Valid values: `enable`, `disable`.
-	SslvpnCipherHardwareAcceleration pulumi.StringPtrInput
-	// Enable/disable verification of EMS serial number in SSL-VPN connection. Valid values: `enable`, `disable`.
-	SslvpnEmsSnCheck pulumi.StringPtrInput
-	// Enable/disable SSL VPN KXP hardware acceleration. Valid values: `enable`, `disable`.
-	SslvpnKxpHardwareAcceleration pulumi.StringPtrInput
-	// Maximum number of SSL VPN processes. Upper limit for this value is the number of CPUs and depends on the model.
-	SslvpnMaxWorkerCount pulumi.IntPtrInput
-	// Enable/disable checking browser's plugin version by SSL VPN. Valid values: `enable`, `disable`.
-	SslvpnPluginVersionCheck pulumi.StringPtrInput
-	// Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
-	StrictDirtySessionCheck pulumi.StringPtrInput
-	// Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
-	StrongCrypto pulumi.StringPtrInput
-	// Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
-	SwitchController pulumi.StringPtrInput
-	// Enable reserved network subnet for controlled switches. This is available when the switch controller is enabled.
-	SwitchControllerReservedNetwork pulumi.StringPtrInput
-	// Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
-	SysPerfLogInterval pulumi.IntPtrInput
-	// Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
-	TcpHalfcloseTimer pulumi.IntPtrInput
-	// Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
-	TcpHalfopenTimer pulumi.IntPtrInput
-	// Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
-	TcpOption pulumi.StringPtrInput
-	// Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
-	TcpRstTimer pulumi.IntPtrInput
-	// Length of the TCP TIME-WAIT state in seconds.
-	TcpTimewaitTimer pulumi.IntPtrInput
-	// Enable/disable TFTP. Valid values: `enable`, `disable`.
-	Tftp pulumi.StringPtrInput
-	// Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
-	Timezone pulumi.StringPtrInput
-	// Enable/disable skip policy check and allow multicast through. Valid values: `enable`, `disable`.
-	TpMcSkipPolicy pulumi.StringPtrInput
-	// Choose Type of Service (ToS) or Differentiated Services Code Point (DSCP) for traffic prioritization in traffic shaping. Valid values: `tos`, `dscp`.
-	TrafficPriority pulumi.StringPtrInput
-	// Default system-wide level of priority for traffic prioritization. Valid values: `low`, `medium`, `high`.
-	TrafficPriorityLevel pulumi.StringPtrInput
-	// Email-based two-factor authentication session timeout (30 - 300 seconds (5 minutes), default = 60).
-	TwoFactorEmailExpiry pulumi.IntPtrInput
-	// FortiAuthenticator token authentication session timeout (10 - 3600 seconds (1 hour), default = 60).
-	TwoFactorFacExpiry pulumi.IntPtrInput
-	// FortiToken authentication session timeout (60 - 600 sec (10 minutes), default = 60).
-	TwoFactorFtkExpiry pulumi.IntPtrInput
-	// FortiToken Mobile session timeout (1 - 168 hours (7 days), default = 72).
-	TwoFactorFtmExpiry pulumi.IntPtrInput
-	// SMS-based two-factor authentication session timeout (30 - 300 sec, default = 60).
-	TwoFactorSmsExpiry pulumi.IntPtrInput
-	// UDP connection session timeout. This command can be useful in managing CPU and memory resources (1 - 86400 seconds (1 day), default = 60).
-	UdpIdleTimer pulumi.IntPtrInput
-	// URL filter CPU affinity.
-	UrlFilterAffinity pulumi.StringPtrInput
-	// URL filter daemon count.
-	UrlFilterCount pulumi.IntPtrInput
-	// Maximum number of devices allowed in user device store.
-	UserDeviceStoreMaxDevices pulumi.IntPtrInput
-	// Maximum unified memory allowed in user device store.
-	UserDeviceStoreMaxUnifiedMem pulumi.IntPtrInput
-	// Maximum number of users allowed in user device store.
-	UserDeviceStoreMaxUsers pulumi.IntPtrInput
-	// Certificate to use for https user authentication.
-	UserServerCert pulumi.StringPtrInput
-	// Enable/disable support for multiple virtual domains (VDOMs). Valid values: `enable`, `disable`.
-	VdomAdmin pulumi.StringPtrInput
-	// Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
-	VdomMode pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.
-	VipArpRange pulumi.StringPtrInput
-	// Maximum number of virtual server processes to create. The maximum is the number of CPU cores. This is not available on single-core CPUs.
-	VirtualServerCount pulumi.IntPtrInput
-	// Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
-	VirtualServerHardwareAcceleration pulumi.StringPtrInput
-	// Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
-	VirtualSwitchVlan pulumi.StringPtrInput
-	// Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	WadAffinity pulumi.StringPtrInput
-	// Number of concurrent WAD-cache-service object-cache processes.
-	WadCsvcCsCount pulumi.IntPtrInput
-	// Number of concurrent WAD-cache-service byte-cache processes.
-	WadCsvcDbCount pulumi.IntPtrInput
-	// Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection.
-	WadMemoryChangeGranularity pulumi.IntPtrInput
-	// Enable/disable dispatching traffic to WAD workers based on source affinity. Valid values: `disable`, `enable`.
-	WadSourceAffinity pulumi.StringPtrInput
-	// Number of explicit proxy WAN optimization daemon (WAD) processes. By default WAN optimization, explicit proxy, and web caching is handled by all of the CPU cores in a FortiGate unit.
-	WadWorkerCount pulumi.IntPtrInput
-	// CA certificate that verifies the WiFi certificate.
-	WifiCaCertificate pulumi.StringPtrInput
-	// Certificate to use for WiFi authentication.
-	WifiCertificate pulumi.StringPtrInput
-	// Enable/disable comparability with WiMAX 4G USB devices. Valid values: `enable`, `disable`.
-	Wimax4gUsb pulumi.StringPtrInput
-	// Enable/disable the wireless controller feature to use the FortiGate unit to manage FortiAPs. Valid values: `enable`, `disable`.
-	WirelessController pulumi.StringPtrInput
-	// Port used for the control channel in wireless controller mode (wireless-mode is ac). The data channel port is the control channel port number plus one (1024 - 49150, default = 5246).
-	WirelessControllerPort pulumi.IntPtrInput
+	AdminConcurrent                       pulumi.StringPtrInput
+	AdminConsoleTimeout                   pulumi.IntPtrInput
+	AdminForticloudSsoLogin               pulumi.StringPtrInput
+	AdminHost                             pulumi.StringPtrInput
+	AdminHstsMaxAge                       pulumi.IntPtrInput
+	AdminHttpsPkiRequired                 pulumi.StringPtrInput
+	AdminHttpsRedirect                    pulumi.StringPtrInput
+	AdminHttpsSslBannedCiphers            pulumi.StringPtrInput
+	AdminHttpsSslCiphersuites             pulumi.StringPtrInput
+	AdminHttpsSslVersions                 pulumi.StringPtrInput
+	AdminLockoutDuration                  pulumi.IntPtrInput
+	AdminLockoutThreshold                 pulumi.IntPtrInput
+	AdminLoginMax                         pulumi.IntPtrInput
+	AdminMaintainer                       pulumi.StringPtrInput
+	AdminPort                             pulumi.IntPtrInput
+	AdminRestrictLocal                    pulumi.StringPtrInput
+	AdminScp                              pulumi.StringPtrInput
+	AdminServerCert                       pulumi.StringPtrInput
+	AdminSport                            pulumi.IntPtrInput
+	AdminSshGraceTime                     pulumi.IntPtrInput
+	AdminSshPassword                      pulumi.StringPtrInput
+	AdminSshPort                          pulumi.IntPtrInput
+	AdminSshV1                            pulumi.StringPtrInput
+	AdminTelnet                           pulumi.StringPtrInput
+	AdminTelnetPort                       pulumi.IntPtrInput
+	Admintimeout                          pulumi.IntPtrInput
+	Alias                                 pulumi.StringPtrInput
+	AllowTrafficRedirect                  pulumi.StringPtrInput
+	AntiReplay                            pulumi.StringPtrInput
+	ArpMaxEntry                           pulumi.IntPtrInput
+	Asymroute                             pulumi.StringPtrInput
+	AuthCert                              pulumi.StringPtrInput
+	AuthHttpPort                          pulumi.IntPtrInput
+	AuthHttpsPort                         pulumi.IntPtrInput
+	AuthIkeSamlPort                       pulumi.IntPtrInput
+	AuthKeepalive                         pulumi.StringPtrInput
+	AuthSessionLimit                      pulumi.StringPtrInput
+	AutoAuthExtensionDevice               pulumi.StringPtrInput
+	AutorunLogFsck                        pulumi.StringPtrInput
+	AvAffinity                            pulumi.StringPtrInput
+	AvFailopen                            pulumi.StringPtrInput
+	AvFailopenSession                     pulumi.StringPtrInput
+	BatchCmdb                             pulumi.StringPtrInput
+	BlockSessionTimer                     pulumi.IntPtrInput
+	BrFdbMaxEntry                         pulumi.IntPtrInput
+	CertChainMax                          pulumi.IntPtrInput
+	CfgRevertTimeout                      pulumi.IntPtrInput
+	CfgSave                               pulumi.StringPtrInput
+	CheckProtocolHeader                   pulumi.StringPtrInput
+	CheckResetRange                       pulumi.StringPtrInput
+	CliAuditLog                           pulumi.StringPtrInput
+	CloudCommunication                    pulumi.StringPtrInput
+	CltCertReq                            pulumi.StringPtrInput
+	CmdbsvrAffinity                       pulumi.StringPtrInput
+	ComplianceCheck                       pulumi.StringPtrInput
+	ComplianceCheckTime                   pulumi.StringPtrInput
+	CpuUseThreshold                       pulumi.IntPtrInput
+	CsrCaAttribute                        pulumi.StringPtrInput
+	DailyRestart                          pulumi.StringPtrInput
+	DefaultServiceSourcePort              pulumi.StringPtrInput
+	DeviceIdentificationActiveScanDelay   pulumi.IntPtrInput
+	DeviceIdleTimeout                     pulumi.IntPtrInput
+	DhParams                              pulumi.StringPtrInput
+	DnsproxyWorkerCount                   pulumi.IntPtrInput
+	Dst                                   pulumi.StringPtrInput
+	EarlyTcpNpuSession                    pulumi.StringPtrInput
+	EditVdomPrompt                        pulumi.StringPtrInput
+	EndpointControlFdsAccess              pulumi.StringPtrInput
+	EndpointControlPortalPort             pulumi.IntPtrInput
+	ExtenderControllerReservedNetwork     pulumi.StringPtrInput
+	Failtime                              pulumi.IntPtrInput
+	FazDiskBufferSize                     pulumi.IntPtrInput
+	FdsStatistics                         pulumi.StringPtrInput
+	FdsStatisticsPeriod                   pulumi.IntPtrInput
+	FecPort                               pulumi.IntPtrInput
+	FgdAlertSubscription                  pulumi.StringPtrInput
+	Fortiextender                         pulumi.StringPtrInput
+	FortiextenderDataPort                 pulumi.IntPtrInput
+	FortiextenderDiscoveryLockdown        pulumi.StringPtrInput
+	FortiextenderProvisionOnAuthorization pulumi.StringPtrInput
+	FortiextenderVlanMode                 pulumi.StringPtrInput
+	FortiipamIntegration                  pulumi.StringPtrInput
+	FortiservicePort                      pulumi.IntPtrInput
+	FortitokenCloud                       pulumi.StringPtrInput
+	GuiAllowDefaultHostname               pulumi.StringPtrInput
+	GuiAppDetectionSdwan                  pulumi.StringPtrInput
+	GuiCdnUsage                           pulumi.StringPtrInput
+	GuiCertificates                       pulumi.StringPtrInput
+	GuiCustomLanguage                     pulumi.StringPtrInput
+	GuiDateFormat                         pulumi.StringPtrInput
+	GuiDateTimeSource                     pulumi.StringPtrInput
+	GuiDeviceLatitude                     pulumi.StringPtrInput
+	GuiDeviceLongitude                    pulumi.StringPtrInput
+	GuiDisplayHostname                    pulumi.StringPtrInput
+	GuiFirmwareUpgradeSetupWarning        pulumi.StringPtrInput
+	GuiFirmwareUpgradeWarning             pulumi.StringPtrInput
+	GuiForticareRegistrationSetupWarning  pulumi.StringPtrInput
+	GuiFortigateCloudSandbox              pulumi.StringPtrInput
+	GuiFortiguardResourceFetch            pulumi.StringPtrInput
+	GuiFortisandboxCloud                  pulumi.StringPtrInput
+	GuiIpv6                               pulumi.StringPtrInput
+	GuiLinesPerPage                       pulumi.IntPtrInput
+	GuiLocalOut                           pulumi.StringPtrInput
+	GuiReplacementMessageGroups           pulumi.StringPtrInput
+	GuiRestApiCache                       pulumi.StringPtrInput
+	GuiTheme                              pulumi.StringPtrInput
+	GuiWirelessOpensecurity               pulumi.StringPtrInput
+	GuiWorkflowManagement                 pulumi.StringPtrInput
+	HaAffinity                            pulumi.StringPtrInput
+	HonorDf                               pulumi.StringPtrInput
+	Hostname                              pulumi.StringPtrInput
+	IgmpStateLimit                        pulumi.IntPtrInput
+	IkeEmbryonicLimit                     pulumi.IntPtrInput
+	InternetServiceDatabase               pulumi.StringPtrInput
+	Interval                              pulumi.IntPtrInput
+	IpSrcPortRange                        pulumi.StringPtrInput
+	IpsAffinity                           pulumi.StringPtrInput
+	IpsecAsicOffload                      pulumi.StringPtrInput
+	IpsecHaSeqjumpRate                    pulumi.IntPtrInput
+	IpsecHmacOffload                      pulumi.StringPtrInput
+	IpsecRoundRobin                       pulumi.StringPtrInput
+	IpsecSoftDecAsync                     pulumi.StringPtrInput
+	Ipv6AcceptDad                         pulumi.IntPtrInput
+	Ipv6AllowAnycastProbe                 pulumi.StringPtrInput
+	Ipv6AllowLocalInSlientDrop            pulumi.StringPtrInput
+	Ipv6AllowMulticastProbe               pulumi.StringPtrInput
+	Ipv6AllowTrafficRedirect              pulumi.StringPtrInput
+	IrqTimeAccounting                     pulumi.StringPtrInput
+	Language                              pulumi.StringPtrInput
+	Ldapconntimeout                       pulumi.IntPtrInput
+	LldpReception                         pulumi.StringPtrInput
+	LldpTransmission                      pulumi.StringPtrInput
+	LogSslConnection                      pulumi.StringPtrInput
+	LogUuidAddress                        pulumi.StringPtrInput
+	LogUuidPolicy                         pulumi.StringPtrInput
+	LoginTimestamp                        pulumi.StringPtrInput
+	LongVdomName                          pulumi.StringPtrInput
+	ManagementIp                          pulumi.StringPtrInput
+	ManagementPort                        pulumi.IntPtrInput
+	ManagementPortUseAdminSport           pulumi.StringPtrInput
+	ManagementVdom                        pulumi.StringPtrInput
+	MaxDlpstatMemory                      pulumi.IntPtrInput
+	MaxRouteCacheSize                     pulumi.IntPtrInput
+	McTtlNotchange                        pulumi.StringPtrInput
+	MemoryUseThresholdExtreme             pulumi.IntPtrInput
+	MemoryUseThresholdGreen               pulumi.IntPtrInput
+	MemoryUseThresholdRed                 pulumi.IntPtrInput
+	MiglogAffinity                        pulumi.StringPtrInput
+	MiglogdChildren                       pulumi.IntPtrInput
+	MultiFactorAuthentication             pulumi.StringPtrInput
+	MulticastForward                      pulumi.StringPtrInput
+	NdpMaxEntry                           pulumi.IntPtrInput
+	PerUserBal                            pulumi.StringPtrInput
+	PerUserBwl                            pulumi.StringPtrInput
+	PmtuDiscovery                         pulumi.StringPtrInput
+	PolicyAuthConcurrent                  pulumi.IntPtrInput
+	PostLoginBanner                       pulumi.StringPtrInput
+	PreLoginBanner                        pulumi.StringPtrInput
+	PrivateDataEncryption                 pulumi.StringPtrInput
+	ProxyAuthLifetime                     pulumi.StringPtrInput
+	ProxyAuthLifetimeTimeout              pulumi.IntPtrInput
+	ProxyAuthTimeout                      pulumi.IntPtrInput
+	ProxyCertUseMgmtVdom                  pulumi.StringPtrInput
+	ProxyCipherHardwareAcceleration       pulumi.StringPtrInput
+	ProxyHardwareAcceleration             pulumi.StringPtrInput
+	ProxyKxpHardwareAcceleration          pulumi.StringPtrInput
+	ProxyReAuthenticationMode             pulumi.StringPtrInput
+	ProxyResourceMode                     pulumi.StringPtrInput
+	ProxyWorkerCount                      pulumi.IntPtrInput
+	RadiusPort                            pulumi.IntPtrInput
+	RebootUponConfigRestore               pulumi.StringPtrInput
+	Refresh                               pulumi.IntPtrInput
+	Remoteauthtimeout                     pulumi.IntPtrInput
+	ResetSessionlessTcp                   pulumi.StringPtrInput
+	RestartTime                           pulumi.StringPtrInput
+	RevisionBackupOnLogout                pulumi.StringPtrInput
+	RevisionImageAutoBackup               pulumi.StringPtrInput
+	ScanunitCount                         pulumi.IntPtrInput
+	SecurityRatingResultSubmission        pulumi.StringPtrInput
+	SecurityRatingRunOnSchedule           pulumi.StringPtrInput
+	SendPmtuIcmp                          pulumi.StringPtrInput
+	SnatRouteChange                       pulumi.StringPtrInput
+	SpecialFile23Support                  pulumi.StringPtrInput
+	SpeedtestServer                       pulumi.StringPtrInput
+	SplitPort                             pulumi.StringPtrInput
+	SsdTrimDate                           pulumi.IntPtrInput
+	SsdTrimFreq                           pulumi.StringPtrInput
+	SsdTrimHour                           pulumi.IntPtrInput
+	SsdTrimMin                            pulumi.IntPtrInput
+	SsdTrimWeekday                        pulumi.StringPtrInput
+	SshCbcCipher                          pulumi.StringPtrInput
+	SshEncAlgo                            pulumi.StringPtrInput
+	SshHmacMd5                            pulumi.StringPtrInput
+	SshKexAlgo                            pulumi.StringPtrInput
+	SshKexSha1                            pulumi.StringPtrInput
+	SshMacAlgo                            pulumi.StringPtrInput
+	SshMacWeak                            pulumi.StringPtrInput
+	SslMinProtoVersion                    pulumi.StringPtrInput
+	SslStaticKeyCiphers                   pulumi.StringPtrInput
+	SslvpnCipherHardwareAcceleration      pulumi.StringPtrInput
+	SslvpnEmsSnCheck                      pulumi.StringPtrInput
+	SslvpnKxpHardwareAcceleration         pulumi.StringPtrInput
+	SslvpnMaxWorkerCount                  pulumi.IntPtrInput
+	SslvpnPluginVersionCheck              pulumi.StringPtrInput
+	StrictDirtySessionCheck               pulumi.StringPtrInput
+	StrongCrypto                          pulumi.StringPtrInput
+	SwitchController                      pulumi.StringPtrInput
+	SwitchControllerReservedNetwork       pulumi.StringPtrInput
+	SysPerfLogInterval                    pulumi.IntPtrInput
+	TcpHalfcloseTimer                     pulumi.IntPtrInput
+	TcpHalfopenTimer                      pulumi.IntPtrInput
+	TcpOption                             pulumi.StringPtrInput
+	TcpRstTimer                           pulumi.IntPtrInput
+	TcpTimewaitTimer                      pulumi.IntPtrInput
+	Tftp                                  pulumi.StringPtrInput
+	Timezone                              pulumi.StringPtrInput
+	TpMcSkipPolicy                        pulumi.StringPtrInput
+	TrafficPriority                       pulumi.StringPtrInput
+	TrafficPriorityLevel                  pulumi.StringPtrInput
+	TwoFactorEmailExpiry                  pulumi.IntPtrInput
+	TwoFactorFacExpiry                    pulumi.IntPtrInput
+	TwoFactorFtkExpiry                    pulumi.IntPtrInput
+	TwoFactorFtmExpiry                    pulumi.IntPtrInput
+	TwoFactorSmsExpiry                    pulumi.IntPtrInput
+	UdpIdleTimer                          pulumi.IntPtrInput
+	UrlFilterAffinity                     pulumi.StringPtrInput
+	UrlFilterCount                        pulumi.IntPtrInput
+	UserDeviceStoreMaxDevices             pulumi.IntPtrInput
+	UserDeviceStoreMaxUnifiedMem          pulumi.IntPtrInput
+	UserDeviceStoreMaxUsers               pulumi.IntPtrInput
+	UserServerCert                        pulumi.StringPtrInput
+	VdomAdmin                             pulumi.StringPtrInput
+	VdomMode                              pulumi.StringPtrInput
+	Vdomparam                             pulumi.StringPtrInput
+	VipArpRange                           pulumi.StringPtrInput
+	VirtualServerCount                    pulumi.IntPtrInput
+	VirtualServerHardwareAcceleration     pulumi.StringPtrInput
+	VirtualSwitchVlan                     pulumi.StringPtrInput
+	WadAffinity                           pulumi.StringPtrInput
+	WadCsvcCsCount                        pulumi.IntPtrInput
+	WadCsvcDbCount                        pulumi.IntPtrInput
+	WadMemoryChangeGranularity            pulumi.IntPtrInput
+	WadSourceAffinity                     pulumi.StringPtrInput
+	WadWorkerCount                        pulumi.IntPtrInput
+	WifiCaCertificate                     pulumi.StringPtrInput
+	WifiCertificate                       pulumi.StringPtrInput
+	Wimax4gUsb                            pulumi.StringPtrInput
+	WirelessController                    pulumi.StringPtrInput
+	WirelessControllerPort                pulumi.IntPtrInput
 }
 
 func (SystemGlobalState) ElementType() reflect.Type {
@@ -1532,966 +802,508 @@ func (SystemGlobalState) ElementType() reflect.Type {
 }
 
 type systemGlobalArgs struct {
-	// Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
-	AdminConcurrent *string `pulumi:"adminConcurrent"`
-	// Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
-	AdminConsoleTimeout *int `pulumi:"adminConsoleTimeout"`
-	// Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
-	AdminForticloudSsoLogin *string `pulumi:"adminForticloudSsoLogin"`
-	// HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
-	AdminHstsMaxAge *int `pulumi:"adminHstsMaxAge"`
-	// Enable/disable admin login method. Enable to force administrators to provide a valid certificate to log in if PKI is enabled. Disable to allow administrators to log in with a certificate or password. Valid values: `enable`, `disable`.
-	AdminHttpsPkiRequired *string `pulumi:"adminHttpsPkiRequired"`
-	// Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
-	AdminHttpsRedirect *string `pulumi:"adminHttpsRedirect"`
-	// Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
-	AdminHttpsSslBannedCiphers *string `pulumi:"adminHttpsSslBannedCiphers"`
-	// Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-	AdminHttpsSslCiphersuites *string `pulumi:"adminHttpsSslCiphersuites"`
-	// Allowed TLS versions for web administration.
-	AdminHttpsSslVersions *string `pulumi:"adminHttpsSslVersions"`
-	// Amount of time in seconds that an administrator account is locked out after reaching the admin-lockout-threshold for repeated failed login attempts.
-	AdminLockoutDuration *int `pulumi:"adminLockoutDuration"`
-	// Number of failed login attempts before an administrator account is locked out for the admin-lockout-duration.
-	AdminLockoutThreshold *int `pulumi:"adminLockoutThreshold"`
-	// Maximum number of administrators who can be logged in at the same time (1 - 100, default = 100)
-	AdminLoginMax *int `pulumi:"adminLoginMax"`
-	// Enable/disable maintainer administrator login. When enabled, the maintainer account can be used to log in from the console after a hard reboot. The password is "bcpb" followed by the FortiGate unit serial number. You have limited time to complete this login. Valid values: `enable`, `disable`.
-	AdminMaintainer *string `pulumi:"adminMaintainer"`
-	// Administrative access port for HTTP. (1 - 65535, default = 80).
-	AdminPort *int `pulumi:"adminPort"`
-	// Enable/disable local admin authentication restriction when remote authenticator is up and running. (default = disable) Valid values: `enable`, `disable`.
-	AdminRestrictLocal *string `pulumi:"adminRestrictLocal"`
-	// Enable/disable using SCP to download the system configuration. You can use SCP as an alternative method for backing up the configuration. Valid values: `enable`, `disable`.
-	AdminScp *string `pulumi:"adminScp"`
-	// Server certificate that the FortiGate uses for HTTPS administrative connections.
-	AdminServerCert *string `pulumi:"adminServerCert"`
-	// Administrative access port for HTTPS. (1 - 65535, default = 443).
-	AdminSport *int `pulumi:"adminSport"`
-	// Maximum time in seconds permitted between making an SSH connection to the FortiGate unit and authenticating (10 - 3600 sec (1 hour), default 120).
-	AdminSshGraceTime *int `pulumi:"adminSshGraceTime"`
-	// Enable/disable password authentication for SSH admin access. Valid values: `enable`, `disable`.
-	AdminSshPassword *string `pulumi:"adminSshPassword"`
-	// Administrative access port for SSH. (1 - 65535, default = 22).
-	AdminSshPort *int `pulumi:"adminSshPort"`
-	// Enable/disable SSH v1 compatibility. Valid values: `enable`, `disable`.
-	AdminSshV1 *string `pulumi:"adminSshV1"`
-	// Enable/disable TELNET service. Valid values: `enable`, `disable`.
-	AdminTelnet *string `pulumi:"adminTelnet"`
-	// Administrative access port for TELNET. (1 - 65535, default = 23).
-	AdminTelnetPort *int `pulumi:"adminTelnetPort"`
-	// Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
-	Admintimeout *int `pulumi:"admintimeout"`
-	// Alias for your FortiGate unit.
-	Alias *string `pulumi:"alias"`
-	// Disable to allow traffic to be routed back on a different interface. Valid values: `enable`, `disable`.
-	AllowTrafficRedirect *string `pulumi:"allowTrafficRedirect"`
-	// Level of checking for packet replay and TCP sequence checking. Valid values: `disable`, `loose`, `strict`.
-	AntiReplay *string `pulumi:"antiReplay"`
-	// Maximum number of dynamically learned MAC addresses that can be added to the ARP table (131072 - 2147483647, default = 131072).
-	ArpMaxEntry *int `pulumi:"arpMaxEntry"`
-	// Enable/disable asymmetric route. Valid values: `enable`, `disable`.
-	Asymroute *string `pulumi:"asymroute"`
-	// Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
-	AuthCert *string `pulumi:"authCert"`
-	// User authentication HTTP port. (1 - 65535, default = 80).
-	AuthHttpPort *int `pulumi:"authHttpPort"`
-	// User authentication HTTPS port. (1 - 65535, default = 443).
-	AuthHttpsPort *int `pulumi:"authHttpsPort"`
-	// Enable to prevent user authentication sessions from timing out when idle. Valid values: `enable`, `disable`.
-	AuthKeepalive *string `pulumi:"authKeepalive"`
-	// Action to take when the number of allowed user authenticated sessions is reached. Valid values: `block-new`, `logout-inactive`.
-	AuthSessionLimit *string `pulumi:"authSessionLimit"`
-	// Enable/disable automatic authorization of dedicated Fortinet extension devices. Valid values: `enable`, `disable`.
-	AutoAuthExtensionDevice *string `pulumi:"autoAuthExtensionDevice"`
-	// Enable/disable automatic log partition check after ungraceful shutdown. Valid values: `enable`, `disable`.
-	AutorunLogFsck *string `pulumi:"autorunLogFsck"`
-	// Affinity setting for AV scanning (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	AvAffinity *string `pulumi:"avAffinity"`
-	// Set the action to take if the FortiGate is running low on memory or the proxy connection limit has been reached. Valid values: `pass`, `off`, `one-shot`.
-	AvFailopen *string `pulumi:"avFailopen"`
-	// When enabled and a proxy for a protocol runs out of room in its session table, that protocol goes into failopen mode and enacts the action specified by av-failopen. Valid values: `enable`, `disable`.
-	AvFailopenSession *string `pulumi:"avFailopenSession"`
-	// Enable/disable batch mode, allowing you to enter a series of CLI commands that will execute as a group once they are loaded. Valid values: `enable`, `disable`.
-	BatchCmdb *string `pulumi:"batchCmdb"`
-	// Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
-	BlockSessionTimer *int `pulumi:"blockSessionTimer"`
-	// Maximum number of bridge forwarding database (FDB) entries.
-	BrFdbMaxEntry *int `pulumi:"brFdbMaxEntry"`
-	// Maximum number of certificates that can be traversed in a certificate chain.
-	CertChainMax *int `pulumi:"certChainMax"`
-	// Time-out for reverting to the last saved configuration.
-	CfgRevertTimeout *int `pulumi:"cfgRevertTimeout"`
-	// Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
-	CfgSave *string `pulumi:"cfgSave"`
-	// Level of checking performed on protocol headers. Strict checking is more thorough but may affect performance. Loose checking is ok in most cases. Valid values: `loose`, `strict`.
-	CheckProtocolHeader *string `pulumi:"checkProtocolHeader"`
-	// Configure ICMP error message verification. You can either apply strict RST range checking or disable it. Valid values: `strict`, `disable`.
-	CheckResetRange *string `pulumi:"checkResetRange"`
-	// Enable/disable CLI audit log. Valid values: `enable`, `disable`.
-	CliAuditLog *string `pulumi:"cliAuditLog"`
-	// Enable/disable all cloud communication. Valid values: `enable`, `disable`.
-	CloudCommunication *string `pulumi:"cloudCommunication"`
-	// Enable/disable requiring administrators to have a client certificate to log into the GUI using HTTPS. Valid values: `enable`, `disable`.
-	CltCertReq *string `pulumi:"cltCertReq"`
-	// Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	CmdbsvrAffinity *string `pulumi:"cmdbsvrAffinity"`
-	// Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
-	ComplianceCheck *string `pulumi:"complianceCheck"`
-	// Time of day to run scheduled PCI DSS compliance checks.
-	ComplianceCheckTime *string `pulumi:"complianceCheckTime"`
-	// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
-	CpuUseThreshold *int `pulumi:"cpuUseThreshold"`
-	// Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
-	CsrCaAttribute *string `pulumi:"csrCaAttribute"`
-	// Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
-	DailyRestart *string `pulumi:"dailyRestart"`
-	// Default service source port range. (default=1-65535)
-	DefaultServiceSourcePort *string `pulumi:"defaultServiceSourcePort"`
-	// Number of seconds to passively scan a device before performing an active scan. (20 - 3600 sec, (20 sec to 1 hour), default = 90).
-	DeviceIdentificationActiveScanDelay *int `pulumi:"deviceIdentificationActiveScanDelay"`
-	// Time in seconds that a device must be idle to automatically log the device user out. (30 - 31536000 sec (30 sec to 1 year), default = 300).
-	DeviceIdleTimeout *int `pulumi:"deviceIdleTimeout"`
-	// Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
-	DhParams *string `pulumi:"dhParams"`
-	// DNS proxy worker count.
-	DnsproxyWorkerCount *int `pulumi:"dnsproxyWorkerCount"`
-	// Enable/disable daylight saving time. Valid values: `enable`, `disable`.
-	Dst *string `pulumi:"dst"`
-	// Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
-	EditVdomPrompt *string `pulumi:"editVdomPrompt"`
-	// Enable/disable access to the FortiGuard network for non-compliant endpoints. Valid values: `enable`, `disable`.
-	EndpointControlFdsAccess *string `pulumi:"endpointControlFdsAccess"`
-	// Endpoint control portal port (1 - 65535).
-	EndpointControlPortalPort *int `pulumi:"endpointControlPortalPort"`
-	// Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
-	ExtenderControllerReservedNetwork *string `pulumi:"extenderControllerReservedNetwork"`
-	// Fail-time for server lost.
-	Failtime *int `pulumi:"failtime"`
-	// Maximum disk buffer size to temporarily store logs destined for FortiAnalyzer. To be used in the event that FortiAnalyzer is unavailalble.
-	FazDiskBufferSize *int `pulumi:"fazDiskBufferSize"`
-	// Enable/disable sending IPS, Application Control, and AntiVirus data to FortiGuard. This data is used to improve FortiGuard services and is not shared with external parties and is protected by Fortinet's privacy policy. Valid values: `enable`, `disable`.
-	FdsStatistics *string `pulumi:"fdsStatistics"`
-	// FortiGuard statistics collection period in minutes. (1 - 1440 min (1 min to 24 hours), default = 60).
-	FdsStatisticsPeriod *int `pulumi:"fdsStatisticsPeriod"`
-	// Local UDP port for Forward Error Correction (49152 - 65535).
-	FecPort *int `pulumi:"fecPort"`
-	// Type of alert to retrieve from FortiGuard. Valid values: `advisory`, `latest-threat`, `latest-virus`, `latest-attack`, `new-antivirus-db`, `new-attack-db`.
-	FgdAlertSubscription *string `pulumi:"fgdAlertSubscription"`
-	// Enable/disable FortiExtender. Valid values: `enable`, `disable`.
-	Fortiextender *string `pulumi:"fortiextender"`
-	// FortiExtender data port (1024 - 49150, default = 25246).
-	FortiextenderDataPort *int `pulumi:"fortiextenderDataPort"`
-	// Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
-	FortiextenderDiscoveryLockdown *string `pulumi:"fortiextenderDiscoveryLockdown"`
-	// Enable/disable FortiExtender VLAN mode. Valid values: `enable`, `disable`.
-	FortiextenderVlanMode *string `pulumi:"fortiextenderVlanMode"`
-	// Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
-	FortiipamIntegration *string `pulumi:"fortiipamIntegration"`
-	// FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port.
-	FortiservicePort *int `pulumi:"fortiservicePort"`
-	// Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
-	FortitokenCloud *string `pulumi:"fortitokenCloud"`
-	// Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
-	GuiAllowDefaultHostname *string `pulumi:"guiAllowDefaultHostname"`
-	// Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
-	GuiCdnUsage *string `pulumi:"guiCdnUsage"`
-	// Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. Valid values: `enable`, `disable`.
-	GuiCertificates *string `pulumi:"guiCertificates"`
-	// Enable/disable custom languages in GUI. Valid values: `enable`, `disable`.
-	GuiCustomLanguage *string `pulumi:"guiCustomLanguage"`
-	// Default date format used throughout GUI. Valid values: `yyyy/MM/dd`, `dd/MM/yyyy`, `MM/dd/yyyy`, `yyyy-MM-dd`, `dd-MM-yyyy`, `MM-dd-yyyy`.
-	GuiDateFormat *string `pulumi:"guiDateFormat"`
-	// Source from which the FortiGate GUI uses to display date and time entries. Valid values: `system`, `browser`.
-	GuiDateTimeSource *string `pulumi:"guiDateTimeSource"`
-	// Add the latitude of the location of this FortiGate to position it on the Threat Map.
-	GuiDeviceLatitude *string `pulumi:"guiDeviceLatitude"`
-	// Add the longitude of the location of this FortiGate to position it on the Threat Map.
-	GuiDeviceLongitude *string `pulumi:"guiDeviceLongitude"`
-	// Enable/disable displaying the FortiGate's hostname on the GUI login page. Valid values: `enable`, `disable`.
-	GuiDisplayHostname *string `pulumi:"guiDisplayHostname"`
-	// Enable/disable the firmware upgrade warning on GUI setup wizard. Valid values: `enable`, `disable`.
-	GuiFirmwareUpgradeSetupWarning *string `pulumi:"guiFirmwareUpgradeSetupWarning"`
-	// Enable/disable the firmware upgrade warning on the GUI. Valid values: `enable`, `disable`.
-	GuiFirmwareUpgradeWarning *string `pulumi:"guiFirmwareUpgradeWarning"`
-	// Enable/disable the FortiCare registration setup warning on the GUI. Valid values: `enable`, `disable`.
-	GuiForticareRegistrationSetupWarning *string `pulumi:"guiForticareRegistrationSetupWarning"`
-	// Enable/disable displaying FortiGate Cloud Sandbox on the GUI. Valid values: `enable`, `disable`.
-	GuiFortigateCloudSandbox *string `pulumi:"guiFortigateCloudSandbox"`
-	// Enable/disable displaying FortiSandbox Cloud on the GUI. Valid values: `enable`, `disable`.
-	GuiFortisandboxCloud *string `pulumi:"guiFortisandboxCloud"`
-	// Enable/disable IPv6 settings on the GUI. Valid values: `enable`, `disable`.
-	GuiIpv6 *string `pulumi:"guiIpv6"`
-	// Number of lines to display per page for web administration.
-	GuiLinesPerPage *int `pulumi:"guiLinesPerPage"`
-	// Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
-	GuiLocalOut *string `pulumi:"guiLocalOut"`
-	// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
-	GuiReplacementMessageGroups *string `pulumi:"guiReplacementMessageGroups"`
-	// Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
-	GuiRestApiCache *string `pulumi:"guiRestApiCache"`
-	// Color scheme for the administration GUI.
-	GuiTheme *string `pulumi:"guiTheme"`
-	// Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
-	GuiWirelessOpensecurity *string `pulumi:"guiWirelessOpensecurity"`
-	// Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	HaAffinity *string `pulumi:"haAffinity"`
-	// Enable/disable honoring of Don't-Fragment (DF) flag. Valid values: `enable`, `disable`.
-	HonorDf *string `pulumi:"honorDf"`
-	// FortiGate unit's hostname. Most models will truncate names longer than 24 characters. Some models support hostnames up to 35 characters.
-	Hostname *string `pulumi:"hostname"`
-	// Maximum number of IGMP memberships (96 - 64000, default = 3200).
-	IgmpStateLimit *int `pulumi:"igmpStateLimit"`
-	// Maximum number of IPsec tunnels to negotiate simultaneously.
-	IkeEmbryonicLimit *int `pulumi:"ikeEmbryonicLimit"`
-	// Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
-	InternetServiceDatabase *string `pulumi:"internetServiceDatabase"`
-	// Dead gateway detection interval.
-	Interval *int `pulumi:"interval"`
-	// IP source port range used for traffic originating from the FortiGate unit.
-	IpSrcPortRange *string `pulumi:"ipSrcPortRange"`
-	// Affinity setting for IPS (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx; allowed CPUs must be less than total number of IPS engine daemons).
-	IpsAffinity *string `pulumi:"ipsAffinity"`
-	// Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
-	IpsecAsicOffload *string `pulumi:"ipsecAsicOffload"`
-	// ESP jump ahead rate (1G - 10G pps equivalent).
-	IpsecHaSeqjumpRate *int `pulumi:"ipsecHaSeqjumpRate"`
-	// Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
-	IpsecHmacOffload *string `pulumi:"ipsecHmacOffload"`
-	// Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
-	IpsecSoftDecAsync *string `pulumi:"ipsecSoftDecAsync"`
-	// Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
-	Ipv6AcceptDad *int `pulumi:"ipv6AcceptDad"`
-	// Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
-	Ipv6AllowAnycastProbe *string `pulumi:"ipv6AllowAnycastProbe"`
-	// Disable to prevent IPv6 traffic with same local ingress and egress interface from being forwarded without policy check. Valid values: `enable`, `disable`.
-	Ipv6AllowTrafficRedirect *string `pulumi:"ipv6AllowTrafficRedirect"`
-	// Configure CPU IRQ time accounting mode. Valid values: `auto`, `force`.
-	IrqTimeAccounting *string `pulumi:"irqTimeAccounting"`
-	// GUI display language. Valid values: `english`, `french`, `spanish`, `portuguese`, `japanese`, `trach`, `simch`, `korean`.
-	Language *string `pulumi:"language"`
-	// Global timeout for connections with remote LDAP servers in milliseconds (1 - 300000, default 500).
-	Ldapconntimeout *int `pulumi:"ldapconntimeout"`
-	// Enable/disable Link Layer Discovery Protocol (LLDP) reception. Valid values: `enable`, `disable`.
-	LldpReception *string `pulumi:"lldpReception"`
-	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission. Valid values: `enable`, `disable`.
-	LldpTransmission *string `pulumi:"lldpTransmission"`
-	// Enable/disable logging of SSL connection events. Valid values: `enable`, `disable`.
-	LogSslConnection *string `pulumi:"logSslConnection"`
-	// Enable/disable insertion of address UUIDs to traffic logs. Valid values: `enable`, `disable`.
-	LogUuidAddress *string `pulumi:"logUuidAddress"`
-	// Enable/disable insertion of policy UUIDs to traffic logs. Valid values: `enable`, `disable`.
-	LogUuidPolicy *string `pulumi:"logUuidPolicy"`
-	// Enable/disable login time recording. Valid values: `enable`, `disable`.
-	LoginTimestamp *string `pulumi:"loginTimestamp"`
-	// Enable/disable long VDOM name support. Valid values: `enable`, `disable`.
-	LongVdomName *string `pulumi:"longVdomName"`
-	// Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
-	ManagementIp *string `pulumi:"managementIp"`
-	// Overriding port for management connection (Overrides admin port).
-	ManagementPort *int `pulumi:"managementPort"`
-	// Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
-	ManagementPortUseAdminSport *string `pulumi:"managementPortUseAdminSport"`
-	// Management virtual domain name.
-	ManagementVdom *string `pulumi:"managementVdom"`
-	// Maximum DLP stat memory (0 - 4294967295).
-	MaxDlpstatMemory *int `pulumi:"maxDlpstatMemory"`
-	// Maximum number of IP route cache entries (0 - 2147483647).
-	MaxRouteCacheSize *int `pulumi:"maxRouteCacheSize"`
-	// Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-	McTtlNotchange *string `pulumi:"mcTtlNotchange"`
-	// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
-	MemoryUseThresholdExtreme *int `pulumi:"memoryUseThresholdExtreme"`
-	// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
-	MemoryUseThresholdGreen *int `pulumi:"memoryUseThresholdGreen"`
-	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
-	MemoryUseThresholdRed *int `pulumi:"memoryUseThresholdRed"`
-	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
-	MiglogAffinity *string `pulumi:"miglogAffinity"`
-	// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
-	MiglogdChildren *int `pulumi:"miglogdChildren"`
-	// Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
-	MultiFactorAuthentication *string `pulumi:"multiFactorAuthentication"`
-	// Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
-	MulticastForward *string `pulumi:"multicastForward"`
-	// Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
-	NdpMaxEntry *int `pulumi:"ndpMaxEntry"`
-	// Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
-	PerUserBal *string `pulumi:"perUserBal"`
-	// Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
-	PerUserBwl *string `pulumi:"perUserBwl"`
-	// Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
-	PmtuDiscovery *string `pulumi:"pmtuDiscovery"`
-	// Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
-	PolicyAuthConcurrent *int `pulumi:"policyAuthConcurrent"`
-	// Enable/disable displaying the administrator access disclaimer message after an administrator successfully logs in. Valid values: `disable`, `enable`.
-	PostLoginBanner *string `pulumi:"postLoginBanner"`
-	// Enable/disable displaying the administrator access disclaimer message on the login page before an administrator logs in. Valid values: `enable`, `disable`.
-	PreLoginBanner *string `pulumi:"preLoginBanner"`
-	// Enable/disable private data encryption using an AES 128-bit key. Valid values: `disable`, `enable`.
-	PrivateDataEncryption *string `pulumi:"privateDataEncryption"`
-	// Enable/disable authenticated users lifetime control.  This is a cap on the total time a proxy user can be authenticated for after which re-authentication will take place. Valid values: `enable`, `disable`.
-	ProxyAuthLifetime *string `pulumi:"proxyAuthLifetime"`
-	// Lifetime timeout in minutes for authenticated users (5  - 65535 min, default=480 (8 hours)).
-	ProxyAuthLifetimeTimeout *int `pulumi:"proxyAuthLifetimeTimeout"`
-	// Authentication timeout in minutes for authenticated users (1 - 300 min, default = 10).
-	ProxyAuthTimeout *int `pulumi:"proxyAuthTimeout"`
-	// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
-	ProxyCertUseMgmtVdom *string `pulumi:"proxyCertUseMgmtVdom"`
-	// Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
-	ProxyCipherHardwareAcceleration *string `pulumi:"proxyCipherHardwareAcceleration"`
-	// Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
-	ProxyHardwareAcceleration *string `pulumi:"proxyHardwareAcceleration"`
-	// Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
-	ProxyKxpHardwareAcceleration *string `pulumi:"proxyKxpHardwareAcceleration"`
-	// Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
-	ProxyReAuthenticationMode *string `pulumi:"proxyReAuthenticationMode"`
-	// Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
-	ProxyResourceMode *string `pulumi:"proxyResourceMode"`
-	// Proxy worker count.
-	ProxyWorkerCount *int `pulumi:"proxyWorkerCount"`
-	// RADIUS service port number.
-	RadiusPort *int `pulumi:"radiusPort"`
-	// Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
-	RebootUponConfigRestore *string `pulumi:"rebootUponConfigRestore"`
-	// Statistics refresh interval in GUI.
-	Refresh *int `pulumi:"refresh"`
-	// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
-	Remoteauthtimeout *int `pulumi:"remoteauthtimeout"`
-	// Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
-	ResetSessionlessTcp *string `pulumi:"resetSessionlessTcp"`
-	// Daily restart time (hh:mm).
-	RestartTime *string `pulumi:"restartTime"`
-	// Enable/disable back-up of the latest configuration revision when an administrator logs out of the CLI or GUI. Valid values: `enable`, `disable`.
-	RevisionBackupOnLogout *string `pulumi:"revisionBackupOnLogout"`
-	// Enable/disable back-up of the latest configuration revision after the firmware is upgraded. Valid values: `enable`, `disable`.
-	RevisionImageAutoBackup *string `pulumi:"revisionImageAutoBackup"`
-	// Number of scanunits. The range and the default depend on the number of CPUs. Only available on FortiGate units with multiple CPUs.
-	ScanunitCount *int `pulumi:"scanunitCount"`
-	// Enable/disable the submission of Security Rating results to FortiGuard. Valid values: `enable`, `disable`.
-	SecurityRatingResultSubmission *string `pulumi:"securityRatingResultSubmission"`
-	// Enable/disable scheduled runs of Security Rating. Valid values: `enable`, `disable`.
-	SecurityRatingRunOnSchedule *string `pulumi:"securityRatingRunOnSchedule"`
-	// Enable/disable sending of path maximum transmission unit (PMTU) - ICMP destination unreachable packet and to support PMTUD protocol on your network to reduce fragmentation of packets. Valid values: `enable`, `disable`.
-	SendPmtuIcmp *string `pulumi:"sendPmtuIcmp"`
-	// Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
-	SnatRouteChange *string `pulumi:"snatRouteChange"`
-	// Enable/disable IPS detection of HIBUN format files when using Data Leak Protection. Valid values: `disable`, `enable`.
-	SpecialFile23Support *string `pulumi:"specialFile23Support"`
-	// Enable/disable speed test server. Valid values: `enable`, `disable`.
-	SpeedtestServer *string `pulumi:"speedtestServer"`
-	// Split port(s) to multiple 10Gbps ports.
-	SplitPort *string `pulumi:"splitPort"`
-	// Date within a month to run ssd trim.
-	SsdTrimDate *int `pulumi:"ssdTrimDate"`
-	// How often to run SSD Trim (default = weekly). SSD Trim prevents SSD drive data loss by finding and isolating errors. Valid values: `never`, `hourly`, `daily`, `weekly`, `monthly`.
-	SsdTrimFreq *string `pulumi:"ssdTrimFreq"`
-	// Hour of the day on which to run SSD Trim (0 - 23, default = 1).
-	SsdTrimHour *int `pulumi:"ssdTrimHour"`
-	// Minute of the hour on which to run SSD Trim (0 - 59, 60 for random).
-	SsdTrimMin *int `pulumi:"ssdTrimMin"`
-	// Day of week to run SSD Trim. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	SsdTrimWeekday *string `pulumi:"ssdTrimWeekday"`
-	// Enable/disable CBC cipher for SSH access. Valid values: `enable`, `disable`.
-	SshCbcCipher *string `pulumi:"sshCbcCipher"`
-	// Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
-	SshEncAlgo *string `pulumi:"sshEncAlgo"`
-	// Enable/disable HMAC-MD5 for SSH access. Valid values: `enable`, `disable`.
-	SshHmacMd5 *string `pulumi:"sshHmacMd5"`
-	// Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
-	SshKexAlgo *string `pulumi:"sshKexAlgo"`
-	// Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
-	SshKexSha1 *string `pulumi:"sshKexSha1"`
-	// Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
-	SshMacAlgo *string `pulumi:"sshMacAlgo"`
-	// Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access. Valid values: `enable`, `disable`.
-	SshMacWeak *string `pulumi:"sshMacWeak"`
-	// Minimum supported protocol version for SSL/TLS connections (default = TLSv1.2).
-	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
-	// Enable/disable static key ciphers in SSL/TLS connections (e.g. AES128-SHA, AES256-SHA, AES128-SHA256, AES256-SHA256). Valid values: `enable`, `disable`.
-	SslStaticKeyCiphers *string `pulumi:"sslStaticKeyCiphers"`
-	// Enable/disable SSL VPN hardware acceleration. Valid values: `enable`, `disable`.
-	SslvpnCipherHardwareAcceleration *string `pulumi:"sslvpnCipherHardwareAcceleration"`
-	// Enable/disable verification of EMS serial number in SSL-VPN connection. Valid values: `enable`, `disable`.
-	SslvpnEmsSnCheck *string `pulumi:"sslvpnEmsSnCheck"`
-	// Enable/disable SSL VPN KXP hardware acceleration. Valid values: `enable`, `disable`.
-	SslvpnKxpHardwareAcceleration *string `pulumi:"sslvpnKxpHardwareAcceleration"`
-	// Maximum number of SSL VPN processes. Upper limit for this value is the number of CPUs and depends on the model.
-	SslvpnMaxWorkerCount *int `pulumi:"sslvpnMaxWorkerCount"`
-	// Enable/disable checking browser's plugin version by SSL VPN. Valid values: `enable`, `disable`.
-	SslvpnPluginVersionCheck *string `pulumi:"sslvpnPluginVersionCheck"`
-	// Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
-	StrictDirtySessionCheck *string `pulumi:"strictDirtySessionCheck"`
-	// Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
-	StrongCrypto *string `pulumi:"strongCrypto"`
-	// Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
-	SwitchController *string `pulumi:"switchController"`
-	// Enable reserved network subnet for controlled switches. This is available when the switch controller is enabled.
-	SwitchControllerReservedNetwork *string `pulumi:"switchControllerReservedNetwork"`
-	// Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
-	SysPerfLogInterval *int `pulumi:"sysPerfLogInterval"`
-	// Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
-	TcpHalfcloseTimer *int `pulumi:"tcpHalfcloseTimer"`
-	// Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
-	TcpHalfopenTimer *int `pulumi:"tcpHalfopenTimer"`
-	// Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
-	TcpOption *string `pulumi:"tcpOption"`
-	// Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
-	TcpRstTimer *int `pulumi:"tcpRstTimer"`
-	// Length of the TCP TIME-WAIT state in seconds.
-	TcpTimewaitTimer *int `pulumi:"tcpTimewaitTimer"`
-	// Enable/disable TFTP. Valid values: `enable`, `disable`.
-	Tftp *string `pulumi:"tftp"`
-	// Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
-	Timezone *string `pulumi:"timezone"`
-	// Enable/disable skip policy check and allow multicast through. Valid values: `enable`, `disable`.
-	TpMcSkipPolicy *string `pulumi:"tpMcSkipPolicy"`
-	// Choose Type of Service (ToS) or Differentiated Services Code Point (DSCP) for traffic prioritization in traffic shaping. Valid values: `tos`, `dscp`.
-	TrafficPriority *string `pulumi:"trafficPriority"`
-	// Default system-wide level of priority for traffic prioritization. Valid values: `low`, `medium`, `high`.
-	TrafficPriorityLevel *string `pulumi:"trafficPriorityLevel"`
-	// Email-based two-factor authentication session timeout (30 - 300 seconds (5 minutes), default = 60).
-	TwoFactorEmailExpiry *int `pulumi:"twoFactorEmailExpiry"`
-	// FortiAuthenticator token authentication session timeout (10 - 3600 seconds (1 hour), default = 60).
-	TwoFactorFacExpiry *int `pulumi:"twoFactorFacExpiry"`
-	// FortiToken authentication session timeout (60 - 600 sec (10 minutes), default = 60).
-	TwoFactorFtkExpiry *int `pulumi:"twoFactorFtkExpiry"`
-	// FortiToken Mobile session timeout (1 - 168 hours (7 days), default = 72).
-	TwoFactorFtmExpiry *int `pulumi:"twoFactorFtmExpiry"`
-	// SMS-based two-factor authentication session timeout (30 - 300 sec, default = 60).
-	TwoFactorSmsExpiry *int `pulumi:"twoFactorSmsExpiry"`
-	// UDP connection session timeout. This command can be useful in managing CPU and memory resources (1 - 86400 seconds (1 day), default = 60).
-	UdpIdleTimer *int `pulumi:"udpIdleTimer"`
-	// URL filter CPU affinity.
-	UrlFilterAffinity *string `pulumi:"urlFilterAffinity"`
-	// URL filter daemon count.
-	UrlFilterCount *int `pulumi:"urlFilterCount"`
-	// Maximum number of devices allowed in user device store.
-	UserDeviceStoreMaxDevices *int `pulumi:"userDeviceStoreMaxDevices"`
-	// Maximum unified memory allowed in user device store.
-	UserDeviceStoreMaxUnifiedMem *int `pulumi:"userDeviceStoreMaxUnifiedMem"`
-	// Maximum number of users allowed in user device store.
-	UserDeviceStoreMaxUsers *int `pulumi:"userDeviceStoreMaxUsers"`
-	// Certificate to use for https user authentication.
-	UserServerCert *string `pulumi:"userServerCert"`
-	// Enable/disable support for multiple virtual domains (VDOMs). Valid values: `enable`, `disable`.
-	VdomAdmin *string `pulumi:"vdomAdmin"`
-	// Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
-	VdomMode *string `pulumi:"vdomMode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.
-	VipArpRange *string `pulumi:"vipArpRange"`
-	// Maximum number of virtual server processes to create. The maximum is the number of CPU cores. This is not available on single-core CPUs.
-	VirtualServerCount *int `pulumi:"virtualServerCount"`
-	// Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
-	VirtualServerHardwareAcceleration *string `pulumi:"virtualServerHardwareAcceleration"`
-	// Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
-	VirtualSwitchVlan *string `pulumi:"virtualSwitchVlan"`
-	// Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	WadAffinity *string `pulumi:"wadAffinity"`
-	// Number of concurrent WAD-cache-service object-cache processes.
-	WadCsvcCsCount *int `pulumi:"wadCsvcCsCount"`
-	// Number of concurrent WAD-cache-service byte-cache processes.
-	WadCsvcDbCount *int `pulumi:"wadCsvcDbCount"`
-	// Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection.
-	WadMemoryChangeGranularity *int `pulumi:"wadMemoryChangeGranularity"`
-	// Enable/disable dispatching traffic to WAD workers based on source affinity. Valid values: `disable`, `enable`.
-	WadSourceAffinity *string `pulumi:"wadSourceAffinity"`
-	// Number of explicit proxy WAN optimization daemon (WAD) processes. By default WAN optimization, explicit proxy, and web caching is handled by all of the CPU cores in a FortiGate unit.
-	WadWorkerCount *int `pulumi:"wadWorkerCount"`
-	// CA certificate that verifies the WiFi certificate.
-	WifiCaCertificate *string `pulumi:"wifiCaCertificate"`
-	// Certificate to use for WiFi authentication.
-	WifiCertificate *string `pulumi:"wifiCertificate"`
-	// Enable/disable comparability with WiMAX 4G USB devices. Valid values: `enable`, `disable`.
-	Wimax4gUsb *string `pulumi:"wimax4gUsb"`
-	// Enable/disable the wireless controller feature to use the FortiGate unit to manage FortiAPs. Valid values: `enable`, `disable`.
-	WirelessController *string `pulumi:"wirelessController"`
-	// Port used for the control channel in wireless controller mode (wireless-mode is ac). The data channel port is the control channel port number plus one (1024 - 49150, default = 5246).
-	WirelessControllerPort *int `pulumi:"wirelessControllerPort"`
+	AdminConcurrent                       *string `pulumi:"adminConcurrent"`
+	AdminConsoleTimeout                   *int    `pulumi:"adminConsoleTimeout"`
+	AdminForticloudSsoLogin               *string `pulumi:"adminForticloudSsoLogin"`
+	AdminHost                             *string `pulumi:"adminHost"`
+	AdminHstsMaxAge                       *int    `pulumi:"adminHstsMaxAge"`
+	AdminHttpsPkiRequired                 *string `pulumi:"adminHttpsPkiRequired"`
+	AdminHttpsRedirect                    *string `pulumi:"adminHttpsRedirect"`
+	AdminHttpsSslBannedCiphers            *string `pulumi:"adminHttpsSslBannedCiphers"`
+	AdminHttpsSslCiphersuites             *string `pulumi:"adminHttpsSslCiphersuites"`
+	AdminHttpsSslVersions                 *string `pulumi:"adminHttpsSslVersions"`
+	AdminLockoutDuration                  *int    `pulumi:"adminLockoutDuration"`
+	AdminLockoutThreshold                 *int    `pulumi:"adminLockoutThreshold"`
+	AdminLoginMax                         *int    `pulumi:"adminLoginMax"`
+	AdminMaintainer                       *string `pulumi:"adminMaintainer"`
+	AdminPort                             *int    `pulumi:"adminPort"`
+	AdminRestrictLocal                    *string `pulumi:"adminRestrictLocal"`
+	AdminScp                              *string `pulumi:"adminScp"`
+	AdminServerCert                       *string `pulumi:"adminServerCert"`
+	AdminSport                            *int    `pulumi:"adminSport"`
+	AdminSshGraceTime                     *int    `pulumi:"adminSshGraceTime"`
+	AdminSshPassword                      *string `pulumi:"adminSshPassword"`
+	AdminSshPort                          *int    `pulumi:"adminSshPort"`
+	AdminSshV1                            *string `pulumi:"adminSshV1"`
+	AdminTelnet                           *string `pulumi:"adminTelnet"`
+	AdminTelnetPort                       *int    `pulumi:"adminTelnetPort"`
+	Admintimeout                          *int    `pulumi:"admintimeout"`
+	Alias                                 *string `pulumi:"alias"`
+	AllowTrafficRedirect                  *string `pulumi:"allowTrafficRedirect"`
+	AntiReplay                            *string `pulumi:"antiReplay"`
+	ArpMaxEntry                           *int    `pulumi:"arpMaxEntry"`
+	Asymroute                             *string `pulumi:"asymroute"`
+	AuthCert                              *string `pulumi:"authCert"`
+	AuthHttpPort                          *int    `pulumi:"authHttpPort"`
+	AuthHttpsPort                         *int    `pulumi:"authHttpsPort"`
+	AuthIkeSamlPort                       *int    `pulumi:"authIkeSamlPort"`
+	AuthKeepalive                         *string `pulumi:"authKeepalive"`
+	AuthSessionLimit                      *string `pulumi:"authSessionLimit"`
+	AutoAuthExtensionDevice               *string `pulumi:"autoAuthExtensionDevice"`
+	AutorunLogFsck                        *string `pulumi:"autorunLogFsck"`
+	AvAffinity                            *string `pulumi:"avAffinity"`
+	AvFailopen                            *string `pulumi:"avFailopen"`
+	AvFailopenSession                     *string `pulumi:"avFailopenSession"`
+	BatchCmdb                             *string `pulumi:"batchCmdb"`
+	BlockSessionTimer                     *int    `pulumi:"blockSessionTimer"`
+	BrFdbMaxEntry                         *int    `pulumi:"brFdbMaxEntry"`
+	CertChainMax                          *int    `pulumi:"certChainMax"`
+	CfgRevertTimeout                      *int    `pulumi:"cfgRevertTimeout"`
+	CfgSave                               *string `pulumi:"cfgSave"`
+	CheckProtocolHeader                   *string `pulumi:"checkProtocolHeader"`
+	CheckResetRange                       *string `pulumi:"checkResetRange"`
+	CliAuditLog                           *string `pulumi:"cliAuditLog"`
+	CloudCommunication                    *string `pulumi:"cloudCommunication"`
+	CltCertReq                            *string `pulumi:"cltCertReq"`
+	CmdbsvrAffinity                       *string `pulumi:"cmdbsvrAffinity"`
+	ComplianceCheck                       *string `pulumi:"complianceCheck"`
+	ComplianceCheckTime                   *string `pulumi:"complianceCheckTime"`
+	CpuUseThreshold                       *int    `pulumi:"cpuUseThreshold"`
+	CsrCaAttribute                        *string `pulumi:"csrCaAttribute"`
+	DailyRestart                          *string `pulumi:"dailyRestart"`
+	DefaultServiceSourcePort              *string `pulumi:"defaultServiceSourcePort"`
+	DeviceIdentificationActiveScanDelay   *int    `pulumi:"deviceIdentificationActiveScanDelay"`
+	DeviceIdleTimeout                     *int    `pulumi:"deviceIdleTimeout"`
+	DhParams                              *string `pulumi:"dhParams"`
+	DnsproxyWorkerCount                   *int    `pulumi:"dnsproxyWorkerCount"`
+	Dst                                   *string `pulumi:"dst"`
+	EarlyTcpNpuSession                    *string `pulumi:"earlyTcpNpuSession"`
+	EditVdomPrompt                        *string `pulumi:"editVdomPrompt"`
+	EndpointControlFdsAccess              *string `pulumi:"endpointControlFdsAccess"`
+	EndpointControlPortalPort             *int    `pulumi:"endpointControlPortalPort"`
+	ExtenderControllerReservedNetwork     *string `pulumi:"extenderControllerReservedNetwork"`
+	Failtime                              *int    `pulumi:"failtime"`
+	FazDiskBufferSize                     *int    `pulumi:"fazDiskBufferSize"`
+	FdsStatistics                         *string `pulumi:"fdsStatistics"`
+	FdsStatisticsPeriod                   *int    `pulumi:"fdsStatisticsPeriod"`
+	FecPort                               *int    `pulumi:"fecPort"`
+	FgdAlertSubscription                  *string `pulumi:"fgdAlertSubscription"`
+	Fortiextender                         *string `pulumi:"fortiextender"`
+	FortiextenderDataPort                 *int    `pulumi:"fortiextenderDataPort"`
+	FortiextenderDiscoveryLockdown        *string `pulumi:"fortiextenderDiscoveryLockdown"`
+	FortiextenderProvisionOnAuthorization *string `pulumi:"fortiextenderProvisionOnAuthorization"`
+	FortiextenderVlanMode                 *string `pulumi:"fortiextenderVlanMode"`
+	FortiipamIntegration                  *string `pulumi:"fortiipamIntegration"`
+	FortiservicePort                      *int    `pulumi:"fortiservicePort"`
+	FortitokenCloud                       *string `pulumi:"fortitokenCloud"`
+	GuiAllowDefaultHostname               *string `pulumi:"guiAllowDefaultHostname"`
+	GuiAppDetectionSdwan                  *string `pulumi:"guiAppDetectionSdwan"`
+	GuiCdnUsage                           *string `pulumi:"guiCdnUsage"`
+	GuiCertificates                       *string `pulumi:"guiCertificates"`
+	GuiCustomLanguage                     *string `pulumi:"guiCustomLanguage"`
+	GuiDateFormat                         *string `pulumi:"guiDateFormat"`
+	GuiDateTimeSource                     *string `pulumi:"guiDateTimeSource"`
+	GuiDeviceLatitude                     *string `pulumi:"guiDeviceLatitude"`
+	GuiDeviceLongitude                    *string `pulumi:"guiDeviceLongitude"`
+	GuiDisplayHostname                    *string `pulumi:"guiDisplayHostname"`
+	GuiFirmwareUpgradeSetupWarning        *string `pulumi:"guiFirmwareUpgradeSetupWarning"`
+	GuiFirmwareUpgradeWarning             *string `pulumi:"guiFirmwareUpgradeWarning"`
+	GuiForticareRegistrationSetupWarning  *string `pulumi:"guiForticareRegistrationSetupWarning"`
+	GuiFortigateCloudSandbox              *string `pulumi:"guiFortigateCloudSandbox"`
+	GuiFortiguardResourceFetch            *string `pulumi:"guiFortiguardResourceFetch"`
+	GuiFortisandboxCloud                  *string `pulumi:"guiFortisandboxCloud"`
+	GuiIpv6                               *string `pulumi:"guiIpv6"`
+	GuiLinesPerPage                       *int    `pulumi:"guiLinesPerPage"`
+	GuiLocalOut                           *string `pulumi:"guiLocalOut"`
+	GuiReplacementMessageGroups           *string `pulumi:"guiReplacementMessageGroups"`
+	GuiRestApiCache                       *string `pulumi:"guiRestApiCache"`
+	GuiTheme                              *string `pulumi:"guiTheme"`
+	GuiWirelessOpensecurity               *string `pulumi:"guiWirelessOpensecurity"`
+	GuiWorkflowManagement                 *string `pulumi:"guiWorkflowManagement"`
+	HaAffinity                            *string `pulumi:"haAffinity"`
+	HonorDf                               *string `pulumi:"honorDf"`
+	Hostname                              *string `pulumi:"hostname"`
+	IgmpStateLimit                        *int    `pulumi:"igmpStateLimit"`
+	IkeEmbryonicLimit                     *int    `pulumi:"ikeEmbryonicLimit"`
+	InternetServiceDatabase               *string `pulumi:"internetServiceDatabase"`
+	Interval                              *int    `pulumi:"interval"`
+	IpSrcPortRange                        *string `pulumi:"ipSrcPortRange"`
+	IpsAffinity                           *string `pulumi:"ipsAffinity"`
+	IpsecAsicOffload                      *string `pulumi:"ipsecAsicOffload"`
+	IpsecHaSeqjumpRate                    *int    `pulumi:"ipsecHaSeqjumpRate"`
+	IpsecHmacOffload                      *string `pulumi:"ipsecHmacOffload"`
+	IpsecRoundRobin                       *string `pulumi:"ipsecRoundRobin"`
+	IpsecSoftDecAsync                     *string `pulumi:"ipsecSoftDecAsync"`
+	Ipv6AcceptDad                         *int    `pulumi:"ipv6AcceptDad"`
+	Ipv6AllowAnycastProbe                 *string `pulumi:"ipv6AllowAnycastProbe"`
+	Ipv6AllowLocalInSlientDrop            *string `pulumi:"ipv6AllowLocalInSlientDrop"`
+	Ipv6AllowMulticastProbe               *string `pulumi:"ipv6AllowMulticastProbe"`
+	Ipv6AllowTrafficRedirect              *string `pulumi:"ipv6AllowTrafficRedirect"`
+	IrqTimeAccounting                     *string `pulumi:"irqTimeAccounting"`
+	Language                              *string `pulumi:"language"`
+	Ldapconntimeout                       *int    `pulumi:"ldapconntimeout"`
+	LldpReception                         *string `pulumi:"lldpReception"`
+	LldpTransmission                      *string `pulumi:"lldpTransmission"`
+	LogSslConnection                      *string `pulumi:"logSslConnection"`
+	LogUuidAddress                        *string `pulumi:"logUuidAddress"`
+	LogUuidPolicy                         *string `pulumi:"logUuidPolicy"`
+	LoginTimestamp                        *string `pulumi:"loginTimestamp"`
+	LongVdomName                          *string `pulumi:"longVdomName"`
+	ManagementIp                          *string `pulumi:"managementIp"`
+	ManagementPort                        *int    `pulumi:"managementPort"`
+	ManagementPortUseAdminSport           *string `pulumi:"managementPortUseAdminSport"`
+	ManagementVdom                        *string `pulumi:"managementVdom"`
+	MaxDlpstatMemory                      *int    `pulumi:"maxDlpstatMemory"`
+	MaxRouteCacheSize                     *int    `pulumi:"maxRouteCacheSize"`
+	McTtlNotchange                        *string `pulumi:"mcTtlNotchange"`
+	MemoryUseThresholdExtreme             *int    `pulumi:"memoryUseThresholdExtreme"`
+	MemoryUseThresholdGreen               *int    `pulumi:"memoryUseThresholdGreen"`
+	MemoryUseThresholdRed                 *int    `pulumi:"memoryUseThresholdRed"`
+	MiglogAffinity                        *string `pulumi:"miglogAffinity"`
+	MiglogdChildren                       *int    `pulumi:"miglogdChildren"`
+	MultiFactorAuthentication             *string `pulumi:"multiFactorAuthentication"`
+	MulticastForward                      *string `pulumi:"multicastForward"`
+	NdpMaxEntry                           *int    `pulumi:"ndpMaxEntry"`
+	PerUserBal                            *string `pulumi:"perUserBal"`
+	PerUserBwl                            *string `pulumi:"perUserBwl"`
+	PmtuDiscovery                         *string `pulumi:"pmtuDiscovery"`
+	PolicyAuthConcurrent                  *int    `pulumi:"policyAuthConcurrent"`
+	PostLoginBanner                       *string `pulumi:"postLoginBanner"`
+	PreLoginBanner                        *string `pulumi:"preLoginBanner"`
+	PrivateDataEncryption                 *string `pulumi:"privateDataEncryption"`
+	ProxyAuthLifetime                     *string `pulumi:"proxyAuthLifetime"`
+	ProxyAuthLifetimeTimeout              *int    `pulumi:"proxyAuthLifetimeTimeout"`
+	ProxyAuthTimeout                      *int    `pulumi:"proxyAuthTimeout"`
+	ProxyCertUseMgmtVdom                  *string `pulumi:"proxyCertUseMgmtVdom"`
+	ProxyCipherHardwareAcceleration       *string `pulumi:"proxyCipherHardwareAcceleration"`
+	ProxyHardwareAcceleration             *string `pulumi:"proxyHardwareAcceleration"`
+	ProxyKxpHardwareAcceleration          *string `pulumi:"proxyKxpHardwareAcceleration"`
+	ProxyReAuthenticationMode             *string `pulumi:"proxyReAuthenticationMode"`
+	ProxyResourceMode                     *string `pulumi:"proxyResourceMode"`
+	ProxyWorkerCount                      *int    `pulumi:"proxyWorkerCount"`
+	RadiusPort                            *int    `pulumi:"radiusPort"`
+	RebootUponConfigRestore               *string `pulumi:"rebootUponConfigRestore"`
+	Refresh                               *int    `pulumi:"refresh"`
+	Remoteauthtimeout                     *int    `pulumi:"remoteauthtimeout"`
+	ResetSessionlessTcp                   *string `pulumi:"resetSessionlessTcp"`
+	RestartTime                           *string `pulumi:"restartTime"`
+	RevisionBackupOnLogout                *string `pulumi:"revisionBackupOnLogout"`
+	RevisionImageAutoBackup               *string `pulumi:"revisionImageAutoBackup"`
+	ScanunitCount                         *int    `pulumi:"scanunitCount"`
+	SecurityRatingResultSubmission        *string `pulumi:"securityRatingResultSubmission"`
+	SecurityRatingRunOnSchedule           *string `pulumi:"securityRatingRunOnSchedule"`
+	SendPmtuIcmp                          *string `pulumi:"sendPmtuIcmp"`
+	SnatRouteChange                       *string `pulumi:"snatRouteChange"`
+	SpecialFile23Support                  *string `pulumi:"specialFile23Support"`
+	SpeedtestServer                       *string `pulumi:"speedtestServer"`
+	SplitPort                             *string `pulumi:"splitPort"`
+	SsdTrimDate                           *int    `pulumi:"ssdTrimDate"`
+	SsdTrimFreq                           *string `pulumi:"ssdTrimFreq"`
+	SsdTrimHour                           *int    `pulumi:"ssdTrimHour"`
+	SsdTrimMin                            *int    `pulumi:"ssdTrimMin"`
+	SsdTrimWeekday                        *string `pulumi:"ssdTrimWeekday"`
+	SshCbcCipher                          *string `pulumi:"sshCbcCipher"`
+	SshEncAlgo                            *string `pulumi:"sshEncAlgo"`
+	SshHmacMd5                            *string `pulumi:"sshHmacMd5"`
+	SshKexAlgo                            *string `pulumi:"sshKexAlgo"`
+	SshKexSha1                            *string `pulumi:"sshKexSha1"`
+	SshMacAlgo                            *string `pulumi:"sshMacAlgo"`
+	SshMacWeak                            *string `pulumi:"sshMacWeak"`
+	SslMinProtoVersion                    *string `pulumi:"sslMinProtoVersion"`
+	SslStaticKeyCiphers                   *string `pulumi:"sslStaticKeyCiphers"`
+	SslvpnCipherHardwareAcceleration      *string `pulumi:"sslvpnCipherHardwareAcceleration"`
+	SslvpnEmsSnCheck                      *string `pulumi:"sslvpnEmsSnCheck"`
+	SslvpnKxpHardwareAcceleration         *string `pulumi:"sslvpnKxpHardwareAcceleration"`
+	SslvpnMaxWorkerCount                  *int    `pulumi:"sslvpnMaxWorkerCount"`
+	SslvpnPluginVersionCheck              *string `pulumi:"sslvpnPluginVersionCheck"`
+	StrictDirtySessionCheck               *string `pulumi:"strictDirtySessionCheck"`
+	StrongCrypto                          *string `pulumi:"strongCrypto"`
+	SwitchController                      *string `pulumi:"switchController"`
+	SwitchControllerReservedNetwork       *string `pulumi:"switchControllerReservedNetwork"`
+	SysPerfLogInterval                    *int    `pulumi:"sysPerfLogInterval"`
+	TcpHalfcloseTimer                     *int    `pulumi:"tcpHalfcloseTimer"`
+	TcpHalfopenTimer                      *int    `pulumi:"tcpHalfopenTimer"`
+	TcpOption                             *string `pulumi:"tcpOption"`
+	TcpRstTimer                           *int    `pulumi:"tcpRstTimer"`
+	TcpTimewaitTimer                      *int    `pulumi:"tcpTimewaitTimer"`
+	Tftp                                  *string `pulumi:"tftp"`
+	Timezone                              *string `pulumi:"timezone"`
+	TpMcSkipPolicy                        *string `pulumi:"tpMcSkipPolicy"`
+	TrafficPriority                       *string `pulumi:"trafficPriority"`
+	TrafficPriorityLevel                  *string `pulumi:"trafficPriorityLevel"`
+	TwoFactorEmailExpiry                  *int    `pulumi:"twoFactorEmailExpiry"`
+	TwoFactorFacExpiry                    *int    `pulumi:"twoFactorFacExpiry"`
+	TwoFactorFtkExpiry                    *int    `pulumi:"twoFactorFtkExpiry"`
+	TwoFactorFtmExpiry                    *int    `pulumi:"twoFactorFtmExpiry"`
+	TwoFactorSmsExpiry                    *int    `pulumi:"twoFactorSmsExpiry"`
+	UdpIdleTimer                          *int    `pulumi:"udpIdleTimer"`
+	UrlFilterAffinity                     *string `pulumi:"urlFilterAffinity"`
+	UrlFilterCount                        *int    `pulumi:"urlFilterCount"`
+	UserDeviceStoreMaxDevices             *int    `pulumi:"userDeviceStoreMaxDevices"`
+	UserDeviceStoreMaxUnifiedMem          *int    `pulumi:"userDeviceStoreMaxUnifiedMem"`
+	UserDeviceStoreMaxUsers               *int    `pulumi:"userDeviceStoreMaxUsers"`
+	UserServerCert                        *string `pulumi:"userServerCert"`
+	VdomAdmin                             *string `pulumi:"vdomAdmin"`
+	VdomMode                              *string `pulumi:"vdomMode"`
+	Vdomparam                             *string `pulumi:"vdomparam"`
+	VipArpRange                           *string `pulumi:"vipArpRange"`
+	VirtualServerCount                    *int    `pulumi:"virtualServerCount"`
+	VirtualServerHardwareAcceleration     *string `pulumi:"virtualServerHardwareAcceleration"`
+	VirtualSwitchVlan                     *string `pulumi:"virtualSwitchVlan"`
+	WadAffinity                           *string `pulumi:"wadAffinity"`
+	WadCsvcCsCount                        *int    `pulumi:"wadCsvcCsCount"`
+	WadCsvcDbCount                        *int    `pulumi:"wadCsvcDbCount"`
+	WadMemoryChangeGranularity            *int    `pulumi:"wadMemoryChangeGranularity"`
+	WadSourceAffinity                     *string `pulumi:"wadSourceAffinity"`
+	WadWorkerCount                        *int    `pulumi:"wadWorkerCount"`
+	WifiCaCertificate                     *string `pulumi:"wifiCaCertificate"`
+	WifiCertificate                       *string `pulumi:"wifiCertificate"`
+	Wimax4gUsb                            *string `pulumi:"wimax4gUsb"`
+	WirelessController                    *string `pulumi:"wirelessController"`
+	WirelessControllerPort                *int    `pulumi:"wirelessControllerPort"`
 }
 
 // The set of arguments for constructing a SystemGlobal resource.
 type SystemGlobalArgs struct {
-	// Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
-	AdminConcurrent pulumi.StringPtrInput
-	// Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
-	AdminConsoleTimeout pulumi.IntPtrInput
-	// Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
-	AdminForticloudSsoLogin pulumi.StringPtrInput
-	// HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
-	AdminHstsMaxAge pulumi.IntPtrInput
-	// Enable/disable admin login method. Enable to force administrators to provide a valid certificate to log in if PKI is enabled. Disable to allow administrators to log in with a certificate or password. Valid values: `enable`, `disable`.
-	AdminHttpsPkiRequired pulumi.StringPtrInput
-	// Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
-	AdminHttpsRedirect pulumi.StringPtrInput
-	// Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
-	AdminHttpsSslBannedCiphers pulumi.StringPtrInput
-	// Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-	AdminHttpsSslCiphersuites pulumi.StringPtrInput
-	// Allowed TLS versions for web administration.
-	AdminHttpsSslVersions pulumi.StringPtrInput
-	// Amount of time in seconds that an administrator account is locked out after reaching the admin-lockout-threshold for repeated failed login attempts.
-	AdminLockoutDuration pulumi.IntPtrInput
-	// Number of failed login attempts before an administrator account is locked out for the admin-lockout-duration.
-	AdminLockoutThreshold pulumi.IntPtrInput
-	// Maximum number of administrators who can be logged in at the same time (1 - 100, default = 100)
-	AdminLoginMax pulumi.IntPtrInput
-	// Enable/disable maintainer administrator login. When enabled, the maintainer account can be used to log in from the console after a hard reboot. The password is "bcpb" followed by the FortiGate unit serial number. You have limited time to complete this login. Valid values: `enable`, `disable`.
-	AdminMaintainer pulumi.StringPtrInput
-	// Administrative access port for HTTP. (1 - 65535, default = 80).
-	AdminPort pulumi.IntPtrInput
-	// Enable/disable local admin authentication restriction when remote authenticator is up and running. (default = disable) Valid values: `enable`, `disable`.
-	AdminRestrictLocal pulumi.StringPtrInput
-	// Enable/disable using SCP to download the system configuration. You can use SCP as an alternative method for backing up the configuration. Valid values: `enable`, `disable`.
-	AdminScp pulumi.StringPtrInput
-	// Server certificate that the FortiGate uses for HTTPS administrative connections.
-	AdminServerCert pulumi.StringPtrInput
-	// Administrative access port for HTTPS. (1 - 65535, default = 443).
-	AdminSport pulumi.IntPtrInput
-	// Maximum time in seconds permitted between making an SSH connection to the FortiGate unit and authenticating (10 - 3600 sec (1 hour), default 120).
-	AdminSshGraceTime pulumi.IntPtrInput
-	// Enable/disable password authentication for SSH admin access. Valid values: `enable`, `disable`.
-	AdminSshPassword pulumi.StringPtrInput
-	// Administrative access port for SSH. (1 - 65535, default = 22).
-	AdminSshPort pulumi.IntPtrInput
-	// Enable/disable SSH v1 compatibility. Valid values: `enable`, `disable`.
-	AdminSshV1 pulumi.StringPtrInput
-	// Enable/disable TELNET service. Valid values: `enable`, `disable`.
-	AdminTelnet pulumi.StringPtrInput
-	// Administrative access port for TELNET. (1 - 65535, default = 23).
-	AdminTelnetPort pulumi.IntPtrInput
-	// Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
-	Admintimeout pulumi.IntPtrInput
-	// Alias for your FortiGate unit.
-	Alias pulumi.StringPtrInput
-	// Disable to allow traffic to be routed back on a different interface. Valid values: `enable`, `disable`.
-	AllowTrafficRedirect pulumi.StringPtrInput
-	// Level of checking for packet replay and TCP sequence checking. Valid values: `disable`, `loose`, `strict`.
-	AntiReplay pulumi.StringPtrInput
-	// Maximum number of dynamically learned MAC addresses that can be added to the ARP table (131072 - 2147483647, default = 131072).
-	ArpMaxEntry pulumi.IntPtrInput
-	// Enable/disable asymmetric route. Valid values: `enable`, `disable`.
-	Asymroute pulumi.StringPtrInput
-	// Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
-	AuthCert pulumi.StringPtrInput
-	// User authentication HTTP port. (1 - 65535, default = 80).
-	AuthHttpPort pulumi.IntPtrInput
-	// User authentication HTTPS port. (1 - 65535, default = 443).
-	AuthHttpsPort pulumi.IntPtrInput
-	// Enable to prevent user authentication sessions from timing out when idle. Valid values: `enable`, `disable`.
-	AuthKeepalive pulumi.StringPtrInput
-	// Action to take when the number of allowed user authenticated sessions is reached. Valid values: `block-new`, `logout-inactive`.
-	AuthSessionLimit pulumi.StringPtrInput
-	// Enable/disable automatic authorization of dedicated Fortinet extension devices. Valid values: `enable`, `disable`.
-	AutoAuthExtensionDevice pulumi.StringPtrInput
-	// Enable/disable automatic log partition check after ungraceful shutdown. Valid values: `enable`, `disable`.
-	AutorunLogFsck pulumi.StringPtrInput
-	// Affinity setting for AV scanning (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	AvAffinity pulumi.StringPtrInput
-	// Set the action to take if the FortiGate is running low on memory or the proxy connection limit has been reached. Valid values: `pass`, `off`, `one-shot`.
-	AvFailopen pulumi.StringPtrInput
-	// When enabled and a proxy for a protocol runs out of room in its session table, that protocol goes into failopen mode and enacts the action specified by av-failopen. Valid values: `enable`, `disable`.
-	AvFailopenSession pulumi.StringPtrInput
-	// Enable/disable batch mode, allowing you to enter a series of CLI commands that will execute as a group once they are loaded. Valid values: `enable`, `disable`.
-	BatchCmdb pulumi.StringPtrInput
-	// Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
-	BlockSessionTimer pulumi.IntPtrInput
-	// Maximum number of bridge forwarding database (FDB) entries.
-	BrFdbMaxEntry pulumi.IntPtrInput
-	// Maximum number of certificates that can be traversed in a certificate chain.
-	CertChainMax pulumi.IntPtrInput
-	// Time-out for reverting to the last saved configuration.
-	CfgRevertTimeout pulumi.IntPtrInput
-	// Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
-	CfgSave pulumi.StringPtrInput
-	// Level of checking performed on protocol headers. Strict checking is more thorough but may affect performance. Loose checking is ok in most cases. Valid values: `loose`, `strict`.
-	CheckProtocolHeader pulumi.StringPtrInput
-	// Configure ICMP error message verification. You can either apply strict RST range checking or disable it. Valid values: `strict`, `disable`.
-	CheckResetRange pulumi.StringPtrInput
-	// Enable/disable CLI audit log. Valid values: `enable`, `disable`.
-	CliAuditLog pulumi.StringPtrInput
-	// Enable/disable all cloud communication. Valid values: `enable`, `disable`.
-	CloudCommunication pulumi.StringPtrInput
-	// Enable/disable requiring administrators to have a client certificate to log into the GUI using HTTPS. Valid values: `enable`, `disable`.
-	CltCertReq pulumi.StringPtrInput
-	// Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	CmdbsvrAffinity pulumi.StringPtrInput
-	// Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
-	ComplianceCheck pulumi.StringPtrInput
-	// Time of day to run scheduled PCI DSS compliance checks.
-	ComplianceCheckTime pulumi.StringPtrInput
-	// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
-	CpuUseThreshold pulumi.IntPtrInput
-	// Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
-	CsrCaAttribute pulumi.StringPtrInput
-	// Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
-	DailyRestart pulumi.StringPtrInput
-	// Default service source port range. (default=1-65535)
-	DefaultServiceSourcePort pulumi.StringPtrInput
-	// Number of seconds to passively scan a device before performing an active scan. (20 - 3600 sec, (20 sec to 1 hour), default = 90).
-	DeviceIdentificationActiveScanDelay pulumi.IntPtrInput
-	// Time in seconds that a device must be idle to automatically log the device user out. (30 - 31536000 sec (30 sec to 1 year), default = 300).
-	DeviceIdleTimeout pulumi.IntPtrInput
-	// Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
-	DhParams pulumi.StringPtrInput
-	// DNS proxy worker count.
-	DnsproxyWorkerCount pulumi.IntPtrInput
-	// Enable/disable daylight saving time. Valid values: `enable`, `disable`.
-	Dst pulumi.StringPtrInput
-	// Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
-	EditVdomPrompt pulumi.StringPtrInput
-	// Enable/disable access to the FortiGuard network for non-compliant endpoints. Valid values: `enable`, `disable`.
-	EndpointControlFdsAccess pulumi.StringPtrInput
-	// Endpoint control portal port (1 - 65535).
-	EndpointControlPortalPort pulumi.IntPtrInput
-	// Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
-	ExtenderControllerReservedNetwork pulumi.StringPtrInput
-	// Fail-time for server lost.
-	Failtime pulumi.IntPtrInput
-	// Maximum disk buffer size to temporarily store logs destined for FortiAnalyzer. To be used in the event that FortiAnalyzer is unavailalble.
-	FazDiskBufferSize pulumi.IntPtrInput
-	// Enable/disable sending IPS, Application Control, and AntiVirus data to FortiGuard. This data is used to improve FortiGuard services and is not shared with external parties and is protected by Fortinet's privacy policy. Valid values: `enable`, `disable`.
-	FdsStatistics pulumi.StringPtrInput
-	// FortiGuard statistics collection period in minutes. (1 - 1440 min (1 min to 24 hours), default = 60).
-	FdsStatisticsPeriod pulumi.IntPtrInput
-	// Local UDP port for Forward Error Correction (49152 - 65535).
-	FecPort pulumi.IntPtrInput
-	// Type of alert to retrieve from FortiGuard. Valid values: `advisory`, `latest-threat`, `latest-virus`, `latest-attack`, `new-antivirus-db`, `new-attack-db`.
-	FgdAlertSubscription pulumi.StringPtrInput
-	// Enable/disable FortiExtender. Valid values: `enable`, `disable`.
-	Fortiextender pulumi.StringPtrInput
-	// FortiExtender data port (1024 - 49150, default = 25246).
-	FortiextenderDataPort pulumi.IntPtrInput
-	// Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
-	FortiextenderDiscoveryLockdown pulumi.StringPtrInput
-	// Enable/disable FortiExtender VLAN mode. Valid values: `enable`, `disable`.
-	FortiextenderVlanMode pulumi.StringPtrInput
-	// Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
-	FortiipamIntegration pulumi.StringPtrInput
-	// FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port.
-	FortiservicePort pulumi.IntPtrInput
-	// Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
-	FortitokenCloud pulumi.StringPtrInput
-	// Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
-	GuiAllowDefaultHostname pulumi.StringPtrInput
-	// Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
-	GuiCdnUsage pulumi.StringPtrInput
-	// Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. Valid values: `enable`, `disable`.
-	GuiCertificates pulumi.StringPtrInput
-	// Enable/disable custom languages in GUI. Valid values: `enable`, `disable`.
-	GuiCustomLanguage pulumi.StringPtrInput
-	// Default date format used throughout GUI. Valid values: `yyyy/MM/dd`, `dd/MM/yyyy`, `MM/dd/yyyy`, `yyyy-MM-dd`, `dd-MM-yyyy`, `MM-dd-yyyy`.
-	GuiDateFormat pulumi.StringPtrInput
-	// Source from which the FortiGate GUI uses to display date and time entries. Valid values: `system`, `browser`.
-	GuiDateTimeSource pulumi.StringPtrInput
-	// Add the latitude of the location of this FortiGate to position it on the Threat Map.
-	GuiDeviceLatitude pulumi.StringPtrInput
-	// Add the longitude of the location of this FortiGate to position it on the Threat Map.
-	GuiDeviceLongitude pulumi.StringPtrInput
-	// Enable/disable displaying the FortiGate's hostname on the GUI login page. Valid values: `enable`, `disable`.
-	GuiDisplayHostname pulumi.StringPtrInput
-	// Enable/disable the firmware upgrade warning on GUI setup wizard. Valid values: `enable`, `disable`.
-	GuiFirmwareUpgradeSetupWarning pulumi.StringPtrInput
-	// Enable/disable the firmware upgrade warning on the GUI. Valid values: `enable`, `disable`.
-	GuiFirmwareUpgradeWarning pulumi.StringPtrInput
-	// Enable/disable the FortiCare registration setup warning on the GUI. Valid values: `enable`, `disable`.
-	GuiForticareRegistrationSetupWarning pulumi.StringPtrInput
-	// Enable/disable displaying FortiGate Cloud Sandbox on the GUI. Valid values: `enable`, `disable`.
-	GuiFortigateCloudSandbox pulumi.StringPtrInput
-	// Enable/disable displaying FortiSandbox Cloud on the GUI. Valid values: `enable`, `disable`.
-	GuiFortisandboxCloud pulumi.StringPtrInput
-	// Enable/disable IPv6 settings on the GUI. Valid values: `enable`, `disable`.
-	GuiIpv6 pulumi.StringPtrInput
-	// Number of lines to display per page for web administration.
-	GuiLinesPerPage pulumi.IntPtrInput
-	// Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
-	GuiLocalOut pulumi.StringPtrInput
-	// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
-	GuiReplacementMessageGroups pulumi.StringPtrInput
-	// Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
-	GuiRestApiCache pulumi.StringPtrInput
-	// Color scheme for the administration GUI.
-	GuiTheme pulumi.StringPtrInput
-	// Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
-	GuiWirelessOpensecurity pulumi.StringPtrInput
-	// Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	HaAffinity pulumi.StringPtrInput
-	// Enable/disable honoring of Don't-Fragment (DF) flag. Valid values: `enable`, `disable`.
-	HonorDf pulumi.StringPtrInput
-	// FortiGate unit's hostname. Most models will truncate names longer than 24 characters. Some models support hostnames up to 35 characters.
-	Hostname pulumi.StringPtrInput
-	// Maximum number of IGMP memberships (96 - 64000, default = 3200).
-	IgmpStateLimit pulumi.IntPtrInput
-	// Maximum number of IPsec tunnels to negotiate simultaneously.
-	IkeEmbryonicLimit pulumi.IntPtrInput
-	// Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
-	InternetServiceDatabase pulumi.StringPtrInput
-	// Dead gateway detection interval.
-	Interval pulumi.IntPtrInput
-	// IP source port range used for traffic originating from the FortiGate unit.
-	IpSrcPortRange pulumi.StringPtrInput
-	// Affinity setting for IPS (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx; allowed CPUs must be less than total number of IPS engine daemons).
-	IpsAffinity pulumi.StringPtrInput
-	// Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
-	IpsecAsicOffload pulumi.StringPtrInput
-	// ESP jump ahead rate (1G - 10G pps equivalent).
-	IpsecHaSeqjumpRate pulumi.IntPtrInput
-	// Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
-	IpsecHmacOffload pulumi.StringPtrInput
-	// Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
-	IpsecSoftDecAsync pulumi.StringPtrInput
-	// Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
-	Ipv6AcceptDad pulumi.IntPtrInput
-	// Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
-	Ipv6AllowAnycastProbe pulumi.StringPtrInput
-	// Disable to prevent IPv6 traffic with same local ingress and egress interface from being forwarded without policy check. Valid values: `enable`, `disable`.
-	Ipv6AllowTrafficRedirect pulumi.StringPtrInput
-	// Configure CPU IRQ time accounting mode. Valid values: `auto`, `force`.
-	IrqTimeAccounting pulumi.StringPtrInput
-	// GUI display language. Valid values: `english`, `french`, `spanish`, `portuguese`, `japanese`, `trach`, `simch`, `korean`.
-	Language pulumi.StringPtrInput
-	// Global timeout for connections with remote LDAP servers in milliseconds (1 - 300000, default 500).
-	Ldapconntimeout pulumi.IntPtrInput
-	// Enable/disable Link Layer Discovery Protocol (LLDP) reception. Valid values: `enable`, `disable`.
-	LldpReception pulumi.StringPtrInput
-	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission. Valid values: `enable`, `disable`.
-	LldpTransmission pulumi.StringPtrInput
-	// Enable/disable logging of SSL connection events. Valid values: `enable`, `disable`.
-	LogSslConnection pulumi.StringPtrInput
-	// Enable/disable insertion of address UUIDs to traffic logs. Valid values: `enable`, `disable`.
-	LogUuidAddress pulumi.StringPtrInput
-	// Enable/disable insertion of policy UUIDs to traffic logs. Valid values: `enable`, `disable`.
-	LogUuidPolicy pulumi.StringPtrInput
-	// Enable/disable login time recording. Valid values: `enable`, `disable`.
-	LoginTimestamp pulumi.StringPtrInput
-	// Enable/disable long VDOM name support. Valid values: `enable`, `disable`.
-	LongVdomName pulumi.StringPtrInput
-	// Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
-	ManagementIp pulumi.StringPtrInput
-	// Overriding port for management connection (Overrides admin port).
-	ManagementPort pulumi.IntPtrInput
-	// Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
-	ManagementPortUseAdminSport pulumi.StringPtrInput
-	// Management virtual domain name.
-	ManagementVdom pulumi.StringPtrInput
-	// Maximum DLP stat memory (0 - 4294967295).
-	MaxDlpstatMemory pulumi.IntPtrInput
-	// Maximum number of IP route cache entries (0 - 2147483647).
-	MaxRouteCacheSize pulumi.IntPtrInput
-	// Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-	McTtlNotchange pulumi.StringPtrInput
-	// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
-	MemoryUseThresholdExtreme pulumi.IntPtrInput
-	// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
-	MemoryUseThresholdGreen pulumi.IntPtrInput
-	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
-	MemoryUseThresholdRed pulumi.IntPtrInput
-	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
-	MiglogAffinity pulumi.StringPtrInput
-	// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
-	MiglogdChildren pulumi.IntPtrInput
-	// Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
-	MultiFactorAuthentication pulumi.StringPtrInput
-	// Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
-	MulticastForward pulumi.StringPtrInput
-	// Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
-	NdpMaxEntry pulumi.IntPtrInput
-	// Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
-	PerUserBal pulumi.StringPtrInput
-	// Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
-	PerUserBwl pulumi.StringPtrInput
-	// Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
-	PmtuDiscovery pulumi.StringPtrInput
-	// Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
-	PolicyAuthConcurrent pulumi.IntPtrInput
-	// Enable/disable displaying the administrator access disclaimer message after an administrator successfully logs in. Valid values: `disable`, `enable`.
-	PostLoginBanner pulumi.StringPtrInput
-	// Enable/disable displaying the administrator access disclaimer message on the login page before an administrator logs in. Valid values: `enable`, `disable`.
-	PreLoginBanner pulumi.StringPtrInput
-	// Enable/disable private data encryption using an AES 128-bit key. Valid values: `disable`, `enable`.
-	PrivateDataEncryption pulumi.StringPtrInput
-	// Enable/disable authenticated users lifetime control.  This is a cap on the total time a proxy user can be authenticated for after which re-authentication will take place. Valid values: `enable`, `disable`.
-	ProxyAuthLifetime pulumi.StringPtrInput
-	// Lifetime timeout in minutes for authenticated users (5  - 65535 min, default=480 (8 hours)).
-	ProxyAuthLifetimeTimeout pulumi.IntPtrInput
-	// Authentication timeout in minutes for authenticated users (1 - 300 min, default = 10).
-	ProxyAuthTimeout pulumi.IntPtrInput
-	// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
-	ProxyCertUseMgmtVdom pulumi.StringPtrInput
-	// Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
-	ProxyCipherHardwareAcceleration pulumi.StringPtrInput
-	// Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
-	ProxyHardwareAcceleration pulumi.StringPtrInput
-	// Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
-	ProxyKxpHardwareAcceleration pulumi.StringPtrInput
-	// Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
-	ProxyReAuthenticationMode pulumi.StringPtrInput
-	// Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
-	ProxyResourceMode pulumi.StringPtrInput
-	// Proxy worker count.
-	ProxyWorkerCount pulumi.IntPtrInput
-	// RADIUS service port number.
-	RadiusPort pulumi.IntPtrInput
-	// Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
-	RebootUponConfigRestore pulumi.StringPtrInput
-	// Statistics refresh interval in GUI.
-	Refresh pulumi.IntPtrInput
-	// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
-	Remoteauthtimeout pulumi.IntPtrInput
-	// Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
-	ResetSessionlessTcp pulumi.StringPtrInput
-	// Daily restart time (hh:mm).
-	RestartTime pulumi.StringPtrInput
-	// Enable/disable back-up of the latest configuration revision when an administrator logs out of the CLI or GUI. Valid values: `enable`, `disable`.
-	RevisionBackupOnLogout pulumi.StringPtrInput
-	// Enable/disable back-up of the latest configuration revision after the firmware is upgraded. Valid values: `enable`, `disable`.
-	RevisionImageAutoBackup pulumi.StringPtrInput
-	// Number of scanunits. The range and the default depend on the number of CPUs. Only available on FortiGate units with multiple CPUs.
-	ScanunitCount pulumi.IntPtrInput
-	// Enable/disable the submission of Security Rating results to FortiGuard. Valid values: `enable`, `disable`.
-	SecurityRatingResultSubmission pulumi.StringPtrInput
-	// Enable/disable scheduled runs of Security Rating. Valid values: `enable`, `disable`.
-	SecurityRatingRunOnSchedule pulumi.StringPtrInput
-	// Enable/disable sending of path maximum transmission unit (PMTU) - ICMP destination unreachable packet and to support PMTUD protocol on your network to reduce fragmentation of packets. Valid values: `enable`, `disable`.
-	SendPmtuIcmp pulumi.StringPtrInput
-	// Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
-	SnatRouteChange pulumi.StringPtrInput
-	// Enable/disable IPS detection of HIBUN format files when using Data Leak Protection. Valid values: `disable`, `enable`.
-	SpecialFile23Support pulumi.StringPtrInput
-	// Enable/disable speed test server. Valid values: `enable`, `disable`.
-	SpeedtestServer pulumi.StringPtrInput
-	// Split port(s) to multiple 10Gbps ports.
-	SplitPort pulumi.StringPtrInput
-	// Date within a month to run ssd trim.
-	SsdTrimDate pulumi.IntPtrInput
-	// How often to run SSD Trim (default = weekly). SSD Trim prevents SSD drive data loss by finding and isolating errors. Valid values: `never`, `hourly`, `daily`, `weekly`, `monthly`.
-	SsdTrimFreq pulumi.StringPtrInput
-	// Hour of the day on which to run SSD Trim (0 - 23, default = 1).
-	SsdTrimHour pulumi.IntPtrInput
-	// Minute of the hour on which to run SSD Trim (0 - 59, 60 for random).
-	SsdTrimMin pulumi.IntPtrInput
-	// Day of week to run SSD Trim. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	SsdTrimWeekday pulumi.StringPtrInput
-	// Enable/disable CBC cipher for SSH access. Valid values: `enable`, `disable`.
-	SshCbcCipher pulumi.StringPtrInput
-	// Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
-	SshEncAlgo pulumi.StringPtrInput
-	// Enable/disable HMAC-MD5 for SSH access. Valid values: `enable`, `disable`.
-	SshHmacMd5 pulumi.StringPtrInput
-	// Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
-	SshKexAlgo pulumi.StringPtrInput
-	// Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
-	SshKexSha1 pulumi.StringPtrInput
-	// Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
-	SshMacAlgo pulumi.StringPtrInput
-	// Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access. Valid values: `enable`, `disable`.
-	SshMacWeak pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default = TLSv1.2).
-	SslMinProtoVersion pulumi.StringPtrInput
-	// Enable/disable static key ciphers in SSL/TLS connections (e.g. AES128-SHA, AES256-SHA, AES128-SHA256, AES256-SHA256). Valid values: `enable`, `disable`.
-	SslStaticKeyCiphers pulumi.StringPtrInput
-	// Enable/disable SSL VPN hardware acceleration. Valid values: `enable`, `disable`.
-	SslvpnCipherHardwareAcceleration pulumi.StringPtrInput
-	// Enable/disable verification of EMS serial number in SSL-VPN connection. Valid values: `enable`, `disable`.
-	SslvpnEmsSnCheck pulumi.StringPtrInput
-	// Enable/disable SSL VPN KXP hardware acceleration. Valid values: `enable`, `disable`.
-	SslvpnKxpHardwareAcceleration pulumi.StringPtrInput
-	// Maximum number of SSL VPN processes. Upper limit for this value is the number of CPUs and depends on the model.
-	SslvpnMaxWorkerCount pulumi.IntPtrInput
-	// Enable/disable checking browser's plugin version by SSL VPN. Valid values: `enable`, `disable`.
-	SslvpnPluginVersionCheck pulumi.StringPtrInput
-	// Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
-	StrictDirtySessionCheck pulumi.StringPtrInput
-	// Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
-	StrongCrypto pulumi.StringPtrInput
-	// Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
-	SwitchController pulumi.StringPtrInput
-	// Enable reserved network subnet for controlled switches. This is available when the switch controller is enabled.
-	SwitchControllerReservedNetwork pulumi.StringPtrInput
-	// Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
-	SysPerfLogInterval pulumi.IntPtrInput
-	// Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
-	TcpHalfcloseTimer pulumi.IntPtrInput
-	// Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
-	TcpHalfopenTimer pulumi.IntPtrInput
-	// Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
-	TcpOption pulumi.StringPtrInput
-	// Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
-	TcpRstTimer pulumi.IntPtrInput
-	// Length of the TCP TIME-WAIT state in seconds.
-	TcpTimewaitTimer pulumi.IntPtrInput
-	// Enable/disable TFTP. Valid values: `enable`, `disable`.
-	Tftp pulumi.StringPtrInput
-	// Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
-	Timezone pulumi.StringPtrInput
-	// Enable/disable skip policy check and allow multicast through. Valid values: `enable`, `disable`.
-	TpMcSkipPolicy pulumi.StringPtrInput
-	// Choose Type of Service (ToS) or Differentiated Services Code Point (DSCP) for traffic prioritization in traffic shaping. Valid values: `tos`, `dscp`.
-	TrafficPriority pulumi.StringPtrInput
-	// Default system-wide level of priority for traffic prioritization. Valid values: `low`, `medium`, `high`.
-	TrafficPriorityLevel pulumi.StringPtrInput
-	// Email-based two-factor authentication session timeout (30 - 300 seconds (5 minutes), default = 60).
-	TwoFactorEmailExpiry pulumi.IntPtrInput
-	// FortiAuthenticator token authentication session timeout (10 - 3600 seconds (1 hour), default = 60).
-	TwoFactorFacExpiry pulumi.IntPtrInput
-	// FortiToken authentication session timeout (60 - 600 sec (10 minutes), default = 60).
-	TwoFactorFtkExpiry pulumi.IntPtrInput
-	// FortiToken Mobile session timeout (1 - 168 hours (7 days), default = 72).
-	TwoFactorFtmExpiry pulumi.IntPtrInput
-	// SMS-based two-factor authentication session timeout (30 - 300 sec, default = 60).
-	TwoFactorSmsExpiry pulumi.IntPtrInput
-	// UDP connection session timeout. This command can be useful in managing CPU and memory resources (1 - 86400 seconds (1 day), default = 60).
-	UdpIdleTimer pulumi.IntPtrInput
-	// URL filter CPU affinity.
-	UrlFilterAffinity pulumi.StringPtrInput
-	// URL filter daemon count.
-	UrlFilterCount pulumi.IntPtrInput
-	// Maximum number of devices allowed in user device store.
-	UserDeviceStoreMaxDevices pulumi.IntPtrInput
-	// Maximum unified memory allowed in user device store.
-	UserDeviceStoreMaxUnifiedMem pulumi.IntPtrInput
-	// Maximum number of users allowed in user device store.
-	UserDeviceStoreMaxUsers pulumi.IntPtrInput
-	// Certificate to use for https user authentication.
-	UserServerCert pulumi.StringPtrInput
-	// Enable/disable support for multiple virtual domains (VDOMs). Valid values: `enable`, `disable`.
-	VdomAdmin pulumi.StringPtrInput
-	// Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
-	VdomMode pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.
-	VipArpRange pulumi.StringPtrInput
-	// Maximum number of virtual server processes to create. The maximum is the number of CPU cores. This is not available on single-core CPUs.
-	VirtualServerCount pulumi.IntPtrInput
-	// Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
-	VirtualServerHardwareAcceleration pulumi.StringPtrInput
-	// Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
-	VirtualSwitchVlan pulumi.StringPtrInput
-	// Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-	WadAffinity pulumi.StringPtrInput
-	// Number of concurrent WAD-cache-service object-cache processes.
-	WadCsvcCsCount pulumi.IntPtrInput
-	// Number of concurrent WAD-cache-service byte-cache processes.
-	WadCsvcDbCount pulumi.IntPtrInput
-	// Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection.
-	WadMemoryChangeGranularity pulumi.IntPtrInput
-	// Enable/disable dispatching traffic to WAD workers based on source affinity. Valid values: `disable`, `enable`.
-	WadSourceAffinity pulumi.StringPtrInput
-	// Number of explicit proxy WAN optimization daemon (WAD) processes. By default WAN optimization, explicit proxy, and web caching is handled by all of the CPU cores in a FortiGate unit.
-	WadWorkerCount pulumi.IntPtrInput
-	// CA certificate that verifies the WiFi certificate.
-	WifiCaCertificate pulumi.StringPtrInput
-	// Certificate to use for WiFi authentication.
-	WifiCertificate pulumi.StringPtrInput
-	// Enable/disable comparability with WiMAX 4G USB devices. Valid values: `enable`, `disable`.
-	Wimax4gUsb pulumi.StringPtrInput
-	// Enable/disable the wireless controller feature to use the FortiGate unit to manage FortiAPs. Valid values: `enable`, `disable`.
-	WirelessController pulumi.StringPtrInput
-	// Port used for the control channel in wireless controller mode (wireless-mode is ac). The data channel port is the control channel port number plus one (1024 - 49150, default = 5246).
-	WirelessControllerPort pulumi.IntPtrInput
+	AdminConcurrent                       pulumi.StringPtrInput
+	AdminConsoleTimeout                   pulumi.IntPtrInput
+	AdminForticloudSsoLogin               pulumi.StringPtrInput
+	AdminHost                             pulumi.StringPtrInput
+	AdminHstsMaxAge                       pulumi.IntPtrInput
+	AdminHttpsPkiRequired                 pulumi.StringPtrInput
+	AdminHttpsRedirect                    pulumi.StringPtrInput
+	AdminHttpsSslBannedCiphers            pulumi.StringPtrInput
+	AdminHttpsSslCiphersuites             pulumi.StringPtrInput
+	AdminHttpsSslVersions                 pulumi.StringPtrInput
+	AdminLockoutDuration                  pulumi.IntPtrInput
+	AdminLockoutThreshold                 pulumi.IntPtrInput
+	AdminLoginMax                         pulumi.IntPtrInput
+	AdminMaintainer                       pulumi.StringPtrInput
+	AdminPort                             pulumi.IntPtrInput
+	AdminRestrictLocal                    pulumi.StringPtrInput
+	AdminScp                              pulumi.StringPtrInput
+	AdminServerCert                       pulumi.StringPtrInput
+	AdminSport                            pulumi.IntPtrInput
+	AdminSshGraceTime                     pulumi.IntPtrInput
+	AdminSshPassword                      pulumi.StringPtrInput
+	AdminSshPort                          pulumi.IntPtrInput
+	AdminSshV1                            pulumi.StringPtrInput
+	AdminTelnet                           pulumi.StringPtrInput
+	AdminTelnetPort                       pulumi.IntPtrInput
+	Admintimeout                          pulumi.IntPtrInput
+	Alias                                 pulumi.StringPtrInput
+	AllowTrafficRedirect                  pulumi.StringPtrInput
+	AntiReplay                            pulumi.StringPtrInput
+	ArpMaxEntry                           pulumi.IntPtrInput
+	Asymroute                             pulumi.StringPtrInput
+	AuthCert                              pulumi.StringPtrInput
+	AuthHttpPort                          pulumi.IntPtrInput
+	AuthHttpsPort                         pulumi.IntPtrInput
+	AuthIkeSamlPort                       pulumi.IntPtrInput
+	AuthKeepalive                         pulumi.StringPtrInput
+	AuthSessionLimit                      pulumi.StringPtrInput
+	AutoAuthExtensionDevice               pulumi.StringPtrInput
+	AutorunLogFsck                        pulumi.StringPtrInput
+	AvAffinity                            pulumi.StringPtrInput
+	AvFailopen                            pulumi.StringPtrInput
+	AvFailopenSession                     pulumi.StringPtrInput
+	BatchCmdb                             pulumi.StringPtrInput
+	BlockSessionTimer                     pulumi.IntPtrInput
+	BrFdbMaxEntry                         pulumi.IntPtrInput
+	CertChainMax                          pulumi.IntPtrInput
+	CfgRevertTimeout                      pulumi.IntPtrInput
+	CfgSave                               pulumi.StringPtrInput
+	CheckProtocolHeader                   pulumi.StringPtrInput
+	CheckResetRange                       pulumi.StringPtrInput
+	CliAuditLog                           pulumi.StringPtrInput
+	CloudCommunication                    pulumi.StringPtrInput
+	CltCertReq                            pulumi.StringPtrInput
+	CmdbsvrAffinity                       pulumi.StringPtrInput
+	ComplianceCheck                       pulumi.StringPtrInput
+	ComplianceCheckTime                   pulumi.StringPtrInput
+	CpuUseThreshold                       pulumi.IntPtrInput
+	CsrCaAttribute                        pulumi.StringPtrInput
+	DailyRestart                          pulumi.StringPtrInput
+	DefaultServiceSourcePort              pulumi.StringPtrInput
+	DeviceIdentificationActiveScanDelay   pulumi.IntPtrInput
+	DeviceIdleTimeout                     pulumi.IntPtrInput
+	DhParams                              pulumi.StringPtrInput
+	DnsproxyWorkerCount                   pulumi.IntPtrInput
+	Dst                                   pulumi.StringPtrInput
+	EarlyTcpNpuSession                    pulumi.StringPtrInput
+	EditVdomPrompt                        pulumi.StringPtrInput
+	EndpointControlFdsAccess              pulumi.StringPtrInput
+	EndpointControlPortalPort             pulumi.IntPtrInput
+	ExtenderControllerReservedNetwork     pulumi.StringPtrInput
+	Failtime                              pulumi.IntPtrInput
+	FazDiskBufferSize                     pulumi.IntPtrInput
+	FdsStatistics                         pulumi.StringPtrInput
+	FdsStatisticsPeriod                   pulumi.IntPtrInput
+	FecPort                               pulumi.IntPtrInput
+	FgdAlertSubscription                  pulumi.StringPtrInput
+	Fortiextender                         pulumi.StringPtrInput
+	FortiextenderDataPort                 pulumi.IntPtrInput
+	FortiextenderDiscoveryLockdown        pulumi.StringPtrInput
+	FortiextenderProvisionOnAuthorization pulumi.StringPtrInput
+	FortiextenderVlanMode                 pulumi.StringPtrInput
+	FortiipamIntegration                  pulumi.StringPtrInput
+	FortiservicePort                      pulumi.IntPtrInput
+	FortitokenCloud                       pulumi.StringPtrInput
+	GuiAllowDefaultHostname               pulumi.StringPtrInput
+	GuiAppDetectionSdwan                  pulumi.StringPtrInput
+	GuiCdnUsage                           pulumi.StringPtrInput
+	GuiCertificates                       pulumi.StringPtrInput
+	GuiCustomLanguage                     pulumi.StringPtrInput
+	GuiDateFormat                         pulumi.StringPtrInput
+	GuiDateTimeSource                     pulumi.StringPtrInput
+	GuiDeviceLatitude                     pulumi.StringPtrInput
+	GuiDeviceLongitude                    pulumi.StringPtrInput
+	GuiDisplayHostname                    pulumi.StringPtrInput
+	GuiFirmwareUpgradeSetupWarning        pulumi.StringPtrInput
+	GuiFirmwareUpgradeWarning             pulumi.StringPtrInput
+	GuiForticareRegistrationSetupWarning  pulumi.StringPtrInput
+	GuiFortigateCloudSandbox              pulumi.StringPtrInput
+	GuiFortiguardResourceFetch            pulumi.StringPtrInput
+	GuiFortisandboxCloud                  pulumi.StringPtrInput
+	GuiIpv6                               pulumi.StringPtrInput
+	GuiLinesPerPage                       pulumi.IntPtrInput
+	GuiLocalOut                           pulumi.StringPtrInput
+	GuiReplacementMessageGroups           pulumi.StringPtrInput
+	GuiRestApiCache                       pulumi.StringPtrInput
+	GuiTheme                              pulumi.StringPtrInput
+	GuiWirelessOpensecurity               pulumi.StringPtrInput
+	GuiWorkflowManagement                 pulumi.StringPtrInput
+	HaAffinity                            pulumi.StringPtrInput
+	HonorDf                               pulumi.StringPtrInput
+	Hostname                              pulumi.StringPtrInput
+	IgmpStateLimit                        pulumi.IntPtrInput
+	IkeEmbryonicLimit                     pulumi.IntPtrInput
+	InternetServiceDatabase               pulumi.StringPtrInput
+	Interval                              pulumi.IntPtrInput
+	IpSrcPortRange                        pulumi.StringPtrInput
+	IpsAffinity                           pulumi.StringPtrInput
+	IpsecAsicOffload                      pulumi.StringPtrInput
+	IpsecHaSeqjumpRate                    pulumi.IntPtrInput
+	IpsecHmacOffload                      pulumi.StringPtrInput
+	IpsecRoundRobin                       pulumi.StringPtrInput
+	IpsecSoftDecAsync                     pulumi.StringPtrInput
+	Ipv6AcceptDad                         pulumi.IntPtrInput
+	Ipv6AllowAnycastProbe                 pulumi.StringPtrInput
+	Ipv6AllowLocalInSlientDrop            pulumi.StringPtrInput
+	Ipv6AllowMulticastProbe               pulumi.StringPtrInput
+	Ipv6AllowTrafficRedirect              pulumi.StringPtrInput
+	IrqTimeAccounting                     pulumi.StringPtrInput
+	Language                              pulumi.StringPtrInput
+	Ldapconntimeout                       pulumi.IntPtrInput
+	LldpReception                         pulumi.StringPtrInput
+	LldpTransmission                      pulumi.StringPtrInput
+	LogSslConnection                      pulumi.StringPtrInput
+	LogUuidAddress                        pulumi.StringPtrInput
+	LogUuidPolicy                         pulumi.StringPtrInput
+	LoginTimestamp                        pulumi.StringPtrInput
+	LongVdomName                          pulumi.StringPtrInput
+	ManagementIp                          pulumi.StringPtrInput
+	ManagementPort                        pulumi.IntPtrInput
+	ManagementPortUseAdminSport           pulumi.StringPtrInput
+	ManagementVdom                        pulumi.StringPtrInput
+	MaxDlpstatMemory                      pulumi.IntPtrInput
+	MaxRouteCacheSize                     pulumi.IntPtrInput
+	McTtlNotchange                        pulumi.StringPtrInput
+	MemoryUseThresholdExtreme             pulumi.IntPtrInput
+	MemoryUseThresholdGreen               pulumi.IntPtrInput
+	MemoryUseThresholdRed                 pulumi.IntPtrInput
+	MiglogAffinity                        pulumi.StringPtrInput
+	MiglogdChildren                       pulumi.IntPtrInput
+	MultiFactorAuthentication             pulumi.StringPtrInput
+	MulticastForward                      pulumi.StringPtrInput
+	NdpMaxEntry                           pulumi.IntPtrInput
+	PerUserBal                            pulumi.StringPtrInput
+	PerUserBwl                            pulumi.StringPtrInput
+	PmtuDiscovery                         pulumi.StringPtrInput
+	PolicyAuthConcurrent                  pulumi.IntPtrInput
+	PostLoginBanner                       pulumi.StringPtrInput
+	PreLoginBanner                        pulumi.StringPtrInput
+	PrivateDataEncryption                 pulumi.StringPtrInput
+	ProxyAuthLifetime                     pulumi.StringPtrInput
+	ProxyAuthLifetimeTimeout              pulumi.IntPtrInput
+	ProxyAuthTimeout                      pulumi.IntPtrInput
+	ProxyCertUseMgmtVdom                  pulumi.StringPtrInput
+	ProxyCipherHardwareAcceleration       pulumi.StringPtrInput
+	ProxyHardwareAcceleration             pulumi.StringPtrInput
+	ProxyKxpHardwareAcceleration          pulumi.StringPtrInput
+	ProxyReAuthenticationMode             pulumi.StringPtrInput
+	ProxyResourceMode                     pulumi.StringPtrInput
+	ProxyWorkerCount                      pulumi.IntPtrInput
+	RadiusPort                            pulumi.IntPtrInput
+	RebootUponConfigRestore               pulumi.StringPtrInput
+	Refresh                               pulumi.IntPtrInput
+	Remoteauthtimeout                     pulumi.IntPtrInput
+	ResetSessionlessTcp                   pulumi.StringPtrInput
+	RestartTime                           pulumi.StringPtrInput
+	RevisionBackupOnLogout                pulumi.StringPtrInput
+	RevisionImageAutoBackup               pulumi.StringPtrInput
+	ScanunitCount                         pulumi.IntPtrInput
+	SecurityRatingResultSubmission        pulumi.StringPtrInput
+	SecurityRatingRunOnSchedule           pulumi.StringPtrInput
+	SendPmtuIcmp                          pulumi.StringPtrInput
+	SnatRouteChange                       pulumi.StringPtrInput
+	SpecialFile23Support                  pulumi.StringPtrInput
+	SpeedtestServer                       pulumi.StringPtrInput
+	SplitPort                             pulumi.StringPtrInput
+	SsdTrimDate                           pulumi.IntPtrInput
+	SsdTrimFreq                           pulumi.StringPtrInput
+	SsdTrimHour                           pulumi.IntPtrInput
+	SsdTrimMin                            pulumi.IntPtrInput
+	SsdTrimWeekday                        pulumi.StringPtrInput
+	SshCbcCipher                          pulumi.StringPtrInput
+	SshEncAlgo                            pulumi.StringPtrInput
+	SshHmacMd5                            pulumi.StringPtrInput
+	SshKexAlgo                            pulumi.StringPtrInput
+	SshKexSha1                            pulumi.StringPtrInput
+	SshMacAlgo                            pulumi.StringPtrInput
+	SshMacWeak                            pulumi.StringPtrInput
+	SslMinProtoVersion                    pulumi.StringPtrInput
+	SslStaticKeyCiphers                   pulumi.StringPtrInput
+	SslvpnCipherHardwareAcceleration      pulumi.StringPtrInput
+	SslvpnEmsSnCheck                      pulumi.StringPtrInput
+	SslvpnKxpHardwareAcceleration         pulumi.StringPtrInput
+	SslvpnMaxWorkerCount                  pulumi.IntPtrInput
+	SslvpnPluginVersionCheck              pulumi.StringPtrInput
+	StrictDirtySessionCheck               pulumi.StringPtrInput
+	StrongCrypto                          pulumi.StringPtrInput
+	SwitchController                      pulumi.StringPtrInput
+	SwitchControllerReservedNetwork       pulumi.StringPtrInput
+	SysPerfLogInterval                    pulumi.IntPtrInput
+	TcpHalfcloseTimer                     pulumi.IntPtrInput
+	TcpHalfopenTimer                      pulumi.IntPtrInput
+	TcpOption                             pulumi.StringPtrInput
+	TcpRstTimer                           pulumi.IntPtrInput
+	TcpTimewaitTimer                      pulumi.IntPtrInput
+	Tftp                                  pulumi.StringPtrInput
+	Timezone                              pulumi.StringPtrInput
+	TpMcSkipPolicy                        pulumi.StringPtrInput
+	TrafficPriority                       pulumi.StringPtrInput
+	TrafficPriorityLevel                  pulumi.StringPtrInput
+	TwoFactorEmailExpiry                  pulumi.IntPtrInput
+	TwoFactorFacExpiry                    pulumi.IntPtrInput
+	TwoFactorFtkExpiry                    pulumi.IntPtrInput
+	TwoFactorFtmExpiry                    pulumi.IntPtrInput
+	TwoFactorSmsExpiry                    pulumi.IntPtrInput
+	UdpIdleTimer                          pulumi.IntPtrInput
+	UrlFilterAffinity                     pulumi.StringPtrInput
+	UrlFilterCount                        pulumi.IntPtrInput
+	UserDeviceStoreMaxDevices             pulumi.IntPtrInput
+	UserDeviceStoreMaxUnifiedMem          pulumi.IntPtrInput
+	UserDeviceStoreMaxUsers               pulumi.IntPtrInput
+	UserServerCert                        pulumi.StringPtrInput
+	VdomAdmin                             pulumi.StringPtrInput
+	VdomMode                              pulumi.StringPtrInput
+	Vdomparam                             pulumi.StringPtrInput
+	VipArpRange                           pulumi.StringPtrInput
+	VirtualServerCount                    pulumi.IntPtrInput
+	VirtualServerHardwareAcceleration     pulumi.StringPtrInput
+	VirtualSwitchVlan                     pulumi.StringPtrInput
+	WadAffinity                           pulumi.StringPtrInput
+	WadCsvcCsCount                        pulumi.IntPtrInput
+	WadCsvcDbCount                        pulumi.IntPtrInput
+	WadMemoryChangeGranularity            pulumi.IntPtrInput
+	WadSourceAffinity                     pulumi.StringPtrInput
+	WadWorkerCount                        pulumi.IntPtrInput
+	WifiCaCertificate                     pulumi.StringPtrInput
+	WifiCertificate                       pulumi.StringPtrInput
+	Wimax4gUsb                            pulumi.StringPtrInput
+	WirelessController                    pulumi.StringPtrInput
+	WirelessControllerPort                pulumi.IntPtrInput
 }
 
 func (SystemGlobalArgs) ElementType() reflect.Type {
@@ -2520,7 +1332,7 @@ func (i *SystemGlobal) ToSystemGlobalOutputWithContext(ctx context.Context) Syst
 // SystemGlobalArrayInput is an input type that accepts SystemGlobalArray and SystemGlobalArrayOutput values.
 // You can construct a concrete instance of `SystemGlobalArrayInput` via:
 //
-//          SystemGlobalArray{ SystemGlobalArgs{...} }
+//	SystemGlobalArray{ SystemGlobalArgs{...} }
 type SystemGlobalArrayInput interface {
 	pulumi.Input
 
@@ -2545,7 +1357,7 @@ func (i SystemGlobalArray) ToSystemGlobalArrayOutputWithContext(ctx context.Cont
 // SystemGlobalMapInput is an input type that accepts SystemGlobalMap and SystemGlobalMapOutput values.
 // You can construct a concrete instance of `SystemGlobalMapInput` via:
 //
-//          SystemGlobalMap{ "key": SystemGlobalArgs{...} }
+//	SystemGlobalMap{ "key": SystemGlobalArgs{...} }
 type SystemGlobalMapInput interface {
 	pulumi.Input
 
@@ -2579,6 +1391,1002 @@ func (o SystemGlobalOutput) ToSystemGlobalOutput() SystemGlobalOutput {
 
 func (o SystemGlobalOutput) ToSystemGlobalOutputWithContext(ctx context.Context) SystemGlobalOutput {
 	return o
+}
+
+func (o SystemGlobalOutput) AdminConcurrent() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminConcurrent }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AdminConsoleTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.AdminConsoleTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) AdminForticloudSsoLogin() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminForticloudSsoLogin }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AdminHost() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminHost }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AdminHstsMaxAge() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.AdminHstsMaxAge }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) AdminHttpsPkiRequired() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminHttpsPkiRequired }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AdminHttpsRedirect() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminHttpsRedirect }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AdminHttpsSslBannedCiphers() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminHttpsSslBannedCiphers }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AdminHttpsSslCiphersuites() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminHttpsSslCiphersuites }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AdminHttpsSslVersions() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminHttpsSslVersions }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AdminLockoutDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.AdminLockoutDuration }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) AdminLockoutThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.AdminLockoutThreshold }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) AdminLoginMax() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.AdminLoginMax }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) AdminMaintainer() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminMaintainer }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AdminPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.AdminPort }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) AdminRestrictLocal() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminRestrictLocal }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AdminScp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminScp }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AdminServerCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminServerCert }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AdminSport() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.AdminSport }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) AdminSshGraceTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.AdminSshGraceTime }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) AdminSshPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminSshPassword }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AdminSshPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.AdminSshPort }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) AdminSshV1() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminSshV1 }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AdminTelnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminTelnet }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AdminTelnetPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.AdminTelnetPort }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) Admintimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.Admintimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AllowTrafficRedirect() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AllowTrafficRedirect }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AntiReplay() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AntiReplay }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ArpMaxEntry() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.ArpMaxEntry }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) Asymroute() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.Asymroute }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AuthCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AuthCert }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AuthHttpPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.AuthHttpPort }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) AuthHttpsPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.AuthHttpsPort }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) AuthIkeSamlPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.AuthIkeSamlPort }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) AuthKeepalive() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AuthKeepalive }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AuthSessionLimit() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AuthSessionLimit }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AutoAuthExtensionDevice() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AutoAuthExtensionDevice }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AutorunLogFsck() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AutorunLogFsck }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AvAffinity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AvAffinity }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AvFailopen() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AvFailopen }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) AvFailopenSession() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AvFailopenSession }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) BatchCmdb() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.BatchCmdb }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) BlockSessionTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.BlockSessionTimer }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) BrFdbMaxEntry() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.BrFdbMaxEntry }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) CertChainMax() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.CertChainMax }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) CfgRevertTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.CfgRevertTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) CfgSave() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.CfgSave }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) CheckProtocolHeader() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.CheckProtocolHeader }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) CheckResetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.CheckResetRange }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) CliAuditLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.CliAuditLog }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) CloudCommunication() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.CloudCommunication }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) CltCertReq() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.CltCertReq }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) CmdbsvrAffinity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.CmdbsvrAffinity }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ComplianceCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ComplianceCheck }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ComplianceCheckTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ComplianceCheckTime }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) CpuUseThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.CpuUseThreshold }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) CsrCaAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.CsrCaAttribute }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) DailyRestart() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.DailyRestart }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) DefaultServiceSourcePort() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.DefaultServiceSourcePort }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) DeviceIdentificationActiveScanDelay() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.DeviceIdentificationActiveScanDelay }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) DeviceIdleTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.DeviceIdleTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) DhParams() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.DhParams }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) DnsproxyWorkerCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.DnsproxyWorkerCount }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) Dst() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.Dst }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) EarlyTcpNpuSession() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.EarlyTcpNpuSession }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) EditVdomPrompt() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.EditVdomPrompt }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) EndpointControlFdsAccess() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.EndpointControlFdsAccess }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) EndpointControlPortalPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.EndpointControlPortalPort }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) ExtenderControllerReservedNetwork() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ExtenderControllerReservedNetwork }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) Failtime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.Failtime }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) FazDiskBufferSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.FazDiskBufferSize }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) FdsStatistics() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.FdsStatistics }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) FdsStatisticsPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.FdsStatisticsPeriod }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) FecPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.FecPort }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) FgdAlertSubscription() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.FgdAlertSubscription }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) Fortiextender() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.Fortiextender }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) FortiextenderDataPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.FortiextenderDataPort }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) FortiextenderDiscoveryLockdown() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.FortiextenderDiscoveryLockdown }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) FortiextenderProvisionOnAuthorization() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.FortiextenderProvisionOnAuthorization }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) FortiextenderVlanMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.FortiextenderVlanMode }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) FortiipamIntegration() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.FortiipamIntegration }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) FortiservicePort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.FortiservicePort }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) FortitokenCloud() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.FortitokenCloud }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiAllowDefaultHostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiAllowDefaultHostname }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiAppDetectionSdwan() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiAppDetectionSdwan }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiCdnUsage() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiCdnUsage }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiCertificates() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiCertificates }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiCustomLanguage() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiCustomLanguage }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiDateFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiDateFormat }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiDateTimeSource() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiDateTimeSource }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiDeviceLatitude() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiDeviceLatitude }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiDeviceLongitude() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiDeviceLongitude }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiDisplayHostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiDisplayHostname }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiFirmwareUpgradeSetupWarning() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiFirmwareUpgradeSetupWarning }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiFirmwareUpgradeWarning() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiFirmwareUpgradeWarning }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiForticareRegistrationSetupWarning() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiForticareRegistrationSetupWarning }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiFortigateCloudSandbox() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiFortigateCloudSandbox }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiFortiguardResourceFetch() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiFortiguardResourceFetch }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiFortisandboxCloud() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiFortisandboxCloud }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiIpv6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiIpv6 }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiLinesPerPage() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.GuiLinesPerPage }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) GuiLocalOut() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiLocalOut }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiReplacementMessageGroups() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiReplacementMessageGroups }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiRestApiCache() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiRestApiCache }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiTheme() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiTheme }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiWirelessOpensecurity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiWirelessOpensecurity }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiWorkflowManagement() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiWorkflowManagement }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) HaAffinity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.HaAffinity }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) HonorDf() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.HonorDf }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) IgmpStateLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.IgmpStateLimit }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) IkeEmbryonicLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.IkeEmbryonicLimit }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) InternetServiceDatabase() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.InternetServiceDatabase }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) Interval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.Interval }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) IpSrcPortRange() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.IpSrcPortRange }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) IpsAffinity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.IpsAffinity }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) IpsecAsicOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.IpsecAsicOffload }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) IpsecHaSeqjumpRate() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.IpsecHaSeqjumpRate }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) IpsecHmacOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.IpsecHmacOffload }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) IpsecRoundRobin() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.IpsecRoundRobin }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) IpsecSoftDecAsync() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.IpsecSoftDecAsync }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) Ipv6AcceptDad() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.Ipv6AcceptDad }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) Ipv6AllowAnycastProbe() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.Ipv6AllowAnycastProbe }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) Ipv6AllowLocalInSlientDrop() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.Ipv6AllowLocalInSlientDrop }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) Ipv6AllowMulticastProbe() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.Ipv6AllowMulticastProbe }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) Ipv6AllowTrafficRedirect() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.Ipv6AllowTrafficRedirect }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) IrqTimeAccounting() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.IrqTimeAccounting }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) Language() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.Language }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) Ldapconntimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.Ldapconntimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) LldpReception() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.LldpReception }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) LldpTransmission() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.LldpTransmission }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) LogSslConnection() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.LogSslConnection }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) LogUuidAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.LogUuidAddress }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) LogUuidPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.LogUuidPolicy }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) LoginTimestamp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.LoginTimestamp }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) LongVdomName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.LongVdomName }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ManagementIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ManagementIp }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ManagementPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.ManagementPort }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) ManagementPortUseAdminSport() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ManagementPortUseAdminSport }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ManagementVdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ManagementVdom }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) MaxDlpstatMemory() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.MaxDlpstatMemory }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) MaxRouteCacheSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.MaxRouteCacheSize }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) McTtlNotchange() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.McTtlNotchange }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) MemoryUseThresholdExtreme() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.MemoryUseThresholdExtreme }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) MemoryUseThresholdGreen() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.MemoryUseThresholdGreen }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) MemoryUseThresholdRed() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.MemoryUseThresholdRed }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) MiglogAffinity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.MiglogAffinity }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) MiglogdChildren() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.MiglogdChildren }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) MultiFactorAuthentication() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.MultiFactorAuthentication }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) MulticastForward() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.MulticastForward }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) NdpMaxEntry() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.NdpMaxEntry }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) PerUserBal() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.PerUserBal }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) PerUserBwl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.PerUserBwl }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) PmtuDiscovery() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.PmtuDiscovery }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) PolicyAuthConcurrent() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.PolicyAuthConcurrent }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) PostLoginBanner() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.PostLoginBanner }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) PreLoginBanner() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.PreLoginBanner }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) PrivateDataEncryption() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.PrivateDataEncryption }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ProxyAuthLifetime() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ProxyAuthLifetime }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ProxyAuthLifetimeTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.ProxyAuthLifetimeTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) ProxyAuthTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.ProxyAuthTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) ProxyCertUseMgmtVdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ProxyCertUseMgmtVdom }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ProxyCipherHardwareAcceleration() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ProxyCipherHardwareAcceleration }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ProxyHardwareAcceleration() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ProxyHardwareAcceleration }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ProxyKxpHardwareAcceleration() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ProxyKxpHardwareAcceleration }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ProxyReAuthenticationMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ProxyReAuthenticationMode }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ProxyResourceMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ProxyResourceMode }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ProxyWorkerCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.ProxyWorkerCount }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) RadiusPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.RadiusPort }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) RebootUponConfigRestore() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.RebootUponConfigRestore }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) Refresh() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.Refresh }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) Remoteauthtimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.Remoteauthtimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) ResetSessionlessTcp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ResetSessionlessTcp }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) RestartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.RestartTime }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) RevisionBackupOnLogout() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.RevisionBackupOnLogout }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) RevisionImageAutoBackup() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.RevisionImageAutoBackup }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ScanunitCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.ScanunitCount }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) SecurityRatingResultSubmission() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SecurityRatingResultSubmission }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SecurityRatingRunOnSchedule() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SecurityRatingRunOnSchedule }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SendPmtuIcmp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SendPmtuIcmp }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SnatRouteChange() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SnatRouteChange }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SpecialFile23Support() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SpecialFile23Support }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SpeedtestServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SpeedtestServer }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SplitPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SplitPort }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SsdTrimDate() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.SsdTrimDate }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) SsdTrimFreq() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SsdTrimFreq }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SsdTrimHour() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.SsdTrimHour }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) SsdTrimMin() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.SsdTrimMin }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) SsdTrimWeekday() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SsdTrimWeekday }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SshCbcCipher() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SshCbcCipher }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SshEncAlgo() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SshEncAlgo }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SshHmacMd5() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SshHmacMd5 }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SshKexAlgo() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SshKexAlgo }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SshKexSha1() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SshKexSha1 }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SshMacAlgo() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SshMacAlgo }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SshMacWeak() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SshMacWeak }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SslMinProtoVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SslMinProtoVersion }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SslStaticKeyCiphers() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SslStaticKeyCiphers }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SslvpnCipherHardwareAcceleration() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SslvpnCipherHardwareAcceleration }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SslvpnEmsSnCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SslvpnEmsSnCheck }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SslvpnKxpHardwareAcceleration() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SslvpnKxpHardwareAcceleration }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SslvpnMaxWorkerCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.SslvpnMaxWorkerCount }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) SslvpnPluginVersionCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SslvpnPluginVersionCheck }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) StrictDirtySessionCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.StrictDirtySessionCheck }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) StrongCrypto() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.StrongCrypto }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SwitchController() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SwitchController }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SwitchControllerReservedNetwork() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SwitchControllerReservedNetwork }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SysPerfLogInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.SysPerfLogInterval }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) TcpHalfcloseTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.TcpHalfcloseTimer }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) TcpHalfopenTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.TcpHalfopenTimer }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) TcpOption() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.TcpOption }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) TcpRstTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.TcpRstTimer }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) TcpTimewaitTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.TcpTimewaitTimer }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) Tftp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.Tftp }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) Timezone() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.Timezone }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) TpMcSkipPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.TpMcSkipPolicy }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) TrafficPriority() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.TrafficPriority }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) TrafficPriorityLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.TrafficPriorityLevel }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) TwoFactorEmailExpiry() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.TwoFactorEmailExpiry }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) TwoFactorFacExpiry() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.TwoFactorFacExpiry }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) TwoFactorFtkExpiry() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.TwoFactorFtkExpiry }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) TwoFactorFtmExpiry() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.TwoFactorFtmExpiry }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) TwoFactorSmsExpiry() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.TwoFactorSmsExpiry }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) UdpIdleTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.UdpIdleTimer }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) UrlFilterAffinity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.UrlFilterAffinity }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) UrlFilterCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.UrlFilterCount }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) UserDeviceStoreMaxDevices() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.UserDeviceStoreMaxDevices }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) UserDeviceStoreMaxUnifiedMem() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.UserDeviceStoreMaxUnifiedMem }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) UserDeviceStoreMaxUsers() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.UserDeviceStoreMaxUsers }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) UserServerCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.UserServerCert }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) VdomAdmin() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.VdomAdmin }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) VdomMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.VdomMode }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemGlobalOutput) VipArpRange() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.VipArpRange }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) VirtualServerCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.VirtualServerCount }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) VirtualServerHardwareAcceleration() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.VirtualServerHardwareAcceleration }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) VirtualSwitchVlan() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.VirtualSwitchVlan }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) WadAffinity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.WadAffinity }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) WadCsvcCsCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.WadCsvcCsCount }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) WadCsvcDbCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.WadCsvcDbCount }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) WadMemoryChangeGranularity() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.WadMemoryChangeGranularity }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) WadSourceAffinity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.WadSourceAffinity }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) WadWorkerCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.WadWorkerCount }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) WifiCaCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.WifiCaCertificate }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) WifiCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.WifiCertificate }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) Wimax4gUsb() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.Wimax4gUsb }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) WirelessController() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.WirelessController }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) WirelessControllerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.WirelessControllerPort }).(pulumi.IntOutput)
 }
 
 type SystemGlobalArrayOutput struct{ *pulumi.OutputState }

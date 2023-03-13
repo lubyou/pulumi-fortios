@@ -4,43 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Report style configuration. Applies to FortiOS Version `<= 7.0.0`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.ReportStyle("trname", {
- *     borderBottom: "\" none \"",
- *     borderLeft: "\" none \"",
- *     borderRight: "\" none \"",
- *     borderTop: "\" none \"",
- *     columnSpan: "none",
- *     fontStyle: "normal",
- *     fontWeight: "normal",
- *     options: "font text color",
- * });
- * ```
- *
- * ## Import
- *
- * Report Style can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/reportStyle:ReportStyle labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/reportStyle:ReportStyle labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class ReportStyle extends pulumi.CustomResource {
     /**
      * Get an existing ReportStyle resource's state with the given name, ID, and optional extra
@@ -69,113 +32,32 @@ export class ReportStyle extends pulumi.CustomResource {
         return obj['__pulumiType'] === ReportStyle.__pulumiType;
     }
 
-    /**
-     * Alignment. Valid values: `left`, `center`, `right`, `justify`.
-     */
     public readonly align!: pulumi.Output<string>;
-    /**
-     * Background color.
-     */
     public readonly bgColor!: pulumi.Output<string>;
-    /**
-     * Border bottom.
-     */
     public readonly borderBottom!: pulumi.Output<string>;
-    /**
-     * Border left.
-     */
     public readonly borderLeft!: pulumi.Output<string>;
-    /**
-     * Border right.
-     */
     public readonly borderRight!: pulumi.Output<string>;
-    /**
-     * Border top.
-     */
     public readonly borderTop!: pulumi.Output<string>;
-    /**
-     * Column gap.
-     */
     public readonly columnGap!: pulumi.Output<string>;
-    /**
-     * Column span. Valid values: `none`, `all`.
-     */
     public readonly columnSpan!: pulumi.Output<string>;
-    /**
-     * Foreground color.
-     */
     public readonly fgColor!: pulumi.Output<string>;
-    /**
-     * Font family. Valid values: `Verdana`, `Arial`, `Helvetica`, `Courier`, `Times`.
-     */
     public readonly fontFamily!: pulumi.Output<string>;
-    /**
-     * Font size.
-     */
     public readonly fontSize!: pulumi.Output<string>;
-    /**
-     * Font style. Valid values: `normal`, `italic`.
-     */
     public readonly fontStyle!: pulumi.Output<string>;
-    /**
-     * Font weight. Valid values: `normal`, `bold`.
-     */
     public readonly fontWeight!: pulumi.Output<string>;
-    /**
-     * Height.
-     */
     public readonly height!: pulumi.Output<string>;
-    /**
-     * Text line height.
-     */
     public readonly lineHeight!: pulumi.Output<string>;
-    /**
-     * Margin bottom.
-     */
     public readonly marginBottom!: pulumi.Output<string>;
-    /**
-     * Margin left.
-     */
     public readonly marginLeft!: pulumi.Output<string>;
-    /**
-     * Margin right.
-     */
     public readonly marginRight!: pulumi.Output<string>;
-    /**
-     * Margin top.
-     */
     public readonly marginTop!: pulumi.Output<string>;
-    /**
-     * Report style name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Report style options. Valid values: `font`, `text`, `color`, `align`, `size`, `margin`, `border`, `padding`, `column`.
-     */
     public readonly options!: pulumi.Output<string>;
-    /**
-     * Padding bottom.
-     */
     public readonly paddingBottom!: pulumi.Output<string>;
-    /**
-     * Padding left.
-     */
     public readonly paddingLeft!: pulumi.Output<string>;
-    /**
-     * Padding right.
-     */
     public readonly paddingRight!: pulumi.Output<string>;
-    /**
-     * Padding top.
-     */
     public readonly paddingTop!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Width.
-     */
     public readonly width!: pulumi.Output<string>;
 
     /**
@@ -257,113 +139,32 @@ export class ReportStyle extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ReportStyle resources.
  */
 export interface ReportStyleState {
-    /**
-     * Alignment. Valid values: `left`, `center`, `right`, `justify`.
-     */
     align?: pulumi.Input<string>;
-    /**
-     * Background color.
-     */
     bgColor?: pulumi.Input<string>;
-    /**
-     * Border bottom.
-     */
     borderBottom?: pulumi.Input<string>;
-    /**
-     * Border left.
-     */
     borderLeft?: pulumi.Input<string>;
-    /**
-     * Border right.
-     */
     borderRight?: pulumi.Input<string>;
-    /**
-     * Border top.
-     */
     borderTop?: pulumi.Input<string>;
-    /**
-     * Column gap.
-     */
     columnGap?: pulumi.Input<string>;
-    /**
-     * Column span. Valid values: `none`, `all`.
-     */
     columnSpan?: pulumi.Input<string>;
-    /**
-     * Foreground color.
-     */
     fgColor?: pulumi.Input<string>;
-    /**
-     * Font family. Valid values: `Verdana`, `Arial`, `Helvetica`, `Courier`, `Times`.
-     */
     fontFamily?: pulumi.Input<string>;
-    /**
-     * Font size.
-     */
     fontSize?: pulumi.Input<string>;
-    /**
-     * Font style. Valid values: `normal`, `italic`.
-     */
     fontStyle?: pulumi.Input<string>;
-    /**
-     * Font weight. Valid values: `normal`, `bold`.
-     */
     fontWeight?: pulumi.Input<string>;
-    /**
-     * Height.
-     */
     height?: pulumi.Input<string>;
-    /**
-     * Text line height.
-     */
     lineHeight?: pulumi.Input<string>;
-    /**
-     * Margin bottom.
-     */
     marginBottom?: pulumi.Input<string>;
-    /**
-     * Margin left.
-     */
     marginLeft?: pulumi.Input<string>;
-    /**
-     * Margin right.
-     */
     marginRight?: pulumi.Input<string>;
-    /**
-     * Margin top.
-     */
     marginTop?: pulumi.Input<string>;
-    /**
-     * Report style name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Report style options. Valid values: `font`, `text`, `color`, `align`, `size`, `margin`, `border`, `padding`, `column`.
-     */
     options?: pulumi.Input<string>;
-    /**
-     * Padding bottom.
-     */
     paddingBottom?: pulumi.Input<string>;
-    /**
-     * Padding left.
-     */
     paddingLeft?: pulumi.Input<string>;
-    /**
-     * Padding right.
-     */
     paddingRight?: pulumi.Input<string>;
-    /**
-     * Padding top.
-     */
     paddingTop?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Width.
-     */
     width?: pulumi.Input<string>;
 }
 
@@ -371,112 +172,31 @@ export interface ReportStyleState {
  * The set of arguments for constructing a ReportStyle resource.
  */
 export interface ReportStyleArgs {
-    /**
-     * Alignment. Valid values: `left`, `center`, `right`, `justify`.
-     */
     align?: pulumi.Input<string>;
-    /**
-     * Background color.
-     */
     bgColor?: pulumi.Input<string>;
-    /**
-     * Border bottom.
-     */
     borderBottom?: pulumi.Input<string>;
-    /**
-     * Border left.
-     */
     borderLeft?: pulumi.Input<string>;
-    /**
-     * Border right.
-     */
     borderRight?: pulumi.Input<string>;
-    /**
-     * Border top.
-     */
     borderTop?: pulumi.Input<string>;
-    /**
-     * Column gap.
-     */
     columnGap?: pulumi.Input<string>;
-    /**
-     * Column span. Valid values: `none`, `all`.
-     */
     columnSpan?: pulumi.Input<string>;
-    /**
-     * Foreground color.
-     */
     fgColor?: pulumi.Input<string>;
-    /**
-     * Font family. Valid values: `Verdana`, `Arial`, `Helvetica`, `Courier`, `Times`.
-     */
     fontFamily?: pulumi.Input<string>;
-    /**
-     * Font size.
-     */
     fontSize?: pulumi.Input<string>;
-    /**
-     * Font style. Valid values: `normal`, `italic`.
-     */
     fontStyle?: pulumi.Input<string>;
-    /**
-     * Font weight. Valid values: `normal`, `bold`.
-     */
     fontWeight?: pulumi.Input<string>;
-    /**
-     * Height.
-     */
     height?: pulumi.Input<string>;
-    /**
-     * Text line height.
-     */
     lineHeight?: pulumi.Input<string>;
-    /**
-     * Margin bottom.
-     */
     marginBottom?: pulumi.Input<string>;
-    /**
-     * Margin left.
-     */
     marginLeft?: pulumi.Input<string>;
-    /**
-     * Margin right.
-     */
     marginRight?: pulumi.Input<string>;
-    /**
-     * Margin top.
-     */
     marginTop?: pulumi.Input<string>;
-    /**
-     * Report style name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Report style options. Valid values: `font`, `text`, `color`, `align`, `size`, `margin`, `border`, `padding`, `column`.
-     */
     options?: pulumi.Input<string>;
-    /**
-     * Padding bottom.
-     */
     paddingBottom?: pulumi.Input<string>;
-    /**
-     * Padding left.
-     */
     paddingLeft?: pulumi.Input<string>;
-    /**
-     * Padding right.
-     */
     paddingRight?: pulumi.Input<string>;
-    /**
-     * Padding top.
-     */
     paddingTop?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Width.
-     */
     width?: pulumi.Input<string>;
 }

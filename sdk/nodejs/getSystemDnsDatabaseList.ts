@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.SystemDnsDatabase`.
- */
 export function getSystemDnsDatabaseList(args?: GetSystemDnsDatabaseListArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemDnsDatabaseListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemDnsDatabaseList:GetSystemDnsDatabaseList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getSystemDnsDatabaseList(args?: GetSystemDnsDatabaseListArgs, op
  */
 export interface GetSystemDnsDatabaseListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -40,15 +31,11 @@ export interface GetSystemDnsDatabaseListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.SystemDnsDatabase`.
-     */
     readonly namelists: string[];
     readonly vdomparam?: string;
 }
-
 export function getSystemDnsDatabaseListOutput(args?: GetSystemDnsDatabaseListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemDnsDatabaseListResult> {
-    return pulumi.output(args).apply(a => getSystemDnsDatabaseList(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemDnsDatabaseList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getSystemDnsDatabaseListOutput(args?: GetSystemDnsDatabaseListOu
  */
 export interface GetSystemDnsDatabaseListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

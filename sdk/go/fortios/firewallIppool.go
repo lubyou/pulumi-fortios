@@ -7,102 +7,33 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv4 IP pools.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallIppool(ctx, "trname", &fortios.FirewallIppoolArgs{
-// 			ArpReply:         pulumi.String("enable"),
-// 			BlockSize:        pulumi.Int(128),
-// 			Endip:            pulumi.String("1.0.0.20"),
-// 			NumBlocksPerUser: pulumi.Int(8),
-// 			PbaTimeout:       pulumi.Int(30),
-// 			PermitAnyHost:    pulumi.String("disable"),
-// 			SourceEndip:      pulumi.String("0.0.0.0"),
-// 			SourceStartip:    pulumi.String("0.0.0.0"),
-// 			Startip:          pulumi.String("1.0.0.0"),
-// 			Type:             pulumi.String("overload"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall Ippool can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallIppool:FirewallIppool labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallIppool:FirewallIppool labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallIppool struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-	AddNat64Route pulumi.StringOutput `pulumi:"addNat64Route"`
-	// Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
-	ArpIntf pulumi.StringOutput `pulumi:"arpIntf"`
-	// Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
-	ArpReply pulumi.StringOutput `pulumi:"arpReply"`
-	// Associated interface name.
-	AssociatedInterface pulumi.StringOutput `pulumi:"associatedInterface"`
-	// Number of addresses in a block (64 to 4096, default = 128).
-	BlockSize pulumi.IntOutput `pulumi:"blockSize"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	Endip pulumi.StringOutput `pulumi:"endip"`
-	// Final port number (inclusive) in the range for the address pool (Default: 65533).
-	Endport pulumi.IntOutput `pulumi:"endport"`
-	// IP pool name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable NAT64. Valid values: `disable`, `enable`.
-	Nat64 pulumi.StringOutput `pulumi:"nat64"`
-	// Number of addresses blocks that can be used by a user (1 to 128, default = 8).
-	NumBlocksPerUser pulumi.IntOutput `pulumi:"numBlocksPerUser"`
-	// Port block allocation timeout (seconds).
-	PbaTimeout pulumi.IntOutput `pulumi:"pbaTimeout"`
-	// Enable/disable full cone NAT. Valid values: `disable`, `enable`.
-	PermitAnyHost pulumi.StringOutput `pulumi:"permitAnyHost"`
-	// Number of port for each user (32 to 60416, default = 0, auto).
-	PortPerUser pulumi.IntOutput `pulumi:"portPerUser"`
-	// Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	SourceEndip pulumi.StringOutput `pulumi:"sourceEndip"`
-	// First IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	SourceStartip pulumi.StringOutput `pulumi:"sourceStartip"`
-	// First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	Startip pulumi.StringOutput `pulumi:"startip"`
-	// First port number (inclusive) in the range for the address pool (Default: 5117).
-	Startport pulumi.IntOutput `pulumi:"startport"`
-	// IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AddNat64Route       pulumi.StringOutput    `pulumi:"addNat64Route"`
+	ArpIntf             pulumi.StringOutput    `pulumi:"arpIntf"`
+	ArpReply            pulumi.StringOutput    `pulumi:"arpReply"`
+	AssociatedInterface pulumi.StringOutput    `pulumi:"associatedInterface"`
+	BlockSize           pulumi.IntOutput       `pulumi:"blockSize"`
+	Comments            pulumi.StringPtrOutput `pulumi:"comments"`
+	Endip               pulumi.StringOutput    `pulumi:"endip"`
+	Endport             pulumi.IntOutput       `pulumi:"endport"`
+	Name                pulumi.StringOutput    `pulumi:"name"`
+	Nat64               pulumi.StringOutput    `pulumi:"nat64"`
+	NumBlocksPerUser    pulumi.IntOutput       `pulumi:"numBlocksPerUser"`
+	PbaTimeout          pulumi.IntOutput       `pulumi:"pbaTimeout"`
+	PermitAnyHost       pulumi.StringOutput    `pulumi:"permitAnyHost"`
+	PortPerUser         pulumi.IntOutput       `pulumi:"portPerUser"`
+	SourceEndip         pulumi.StringOutput    `pulumi:"sourceEndip"`
+	SourceStartip       pulumi.StringOutput    `pulumi:"sourceStartip"`
+	Startip             pulumi.StringOutput    `pulumi:"startip"`
+	Startport           pulumi.IntOutput       `pulumi:"startport"`
+	Type                pulumi.StringOutput    `pulumi:"type"`
+	Vdomparam           pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallIppool registers a new resource with the given unique name, arguments, and options.
@@ -141,89 +72,49 @@ func GetFirewallIppool(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallIppool resources.
 type firewallIppoolState struct {
-	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-	AddNat64Route *string `pulumi:"addNat64Route"`
-	// Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
-	ArpIntf *string `pulumi:"arpIntf"`
-	// Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
-	ArpReply *string `pulumi:"arpReply"`
-	// Associated interface name.
+	AddNat64Route       *string `pulumi:"addNat64Route"`
+	ArpIntf             *string `pulumi:"arpIntf"`
+	ArpReply            *string `pulumi:"arpReply"`
 	AssociatedInterface *string `pulumi:"associatedInterface"`
-	// Number of addresses in a block (64 to 4096, default = 128).
-	BlockSize *int `pulumi:"blockSize"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	Endip *string `pulumi:"endip"`
-	// Final port number (inclusive) in the range for the address pool (Default: 65533).
-	Endport *int `pulumi:"endport"`
-	// IP pool name.
-	Name *string `pulumi:"name"`
-	// Enable/disable NAT64. Valid values: `disable`, `enable`.
-	Nat64 *string `pulumi:"nat64"`
-	// Number of addresses blocks that can be used by a user (1 to 128, default = 8).
-	NumBlocksPerUser *int `pulumi:"numBlocksPerUser"`
-	// Port block allocation timeout (seconds).
-	PbaTimeout *int `pulumi:"pbaTimeout"`
-	// Enable/disable full cone NAT. Valid values: `disable`, `enable`.
-	PermitAnyHost *string `pulumi:"permitAnyHost"`
-	// Number of port for each user (32 to 60416, default = 0, auto).
-	PortPerUser *int `pulumi:"portPerUser"`
-	// Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	SourceEndip *string `pulumi:"sourceEndip"`
-	// First IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	SourceStartip *string `pulumi:"sourceStartip"`
-	// First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	Startip *string `pulumi:"startip"`
-	// First port number (inclusive) in the range for the address pool (Default: 5117).
-	Startport *int `pulumi:"startport"`
-	// IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	BlockSize           *int    `pulumi:"blockSize"`
+	Comments            *string `pulumi:"comments"`
+	Endip               *string `pulumi:"endip"`
+	Endport             *int    `pulumi:"endport"`
+	Name                *string `pulumi:"name"`
+	Nat64               *string `pulumi:"nat64"`
+	NumBlocksPerUser    *int    `pulumi:"numBlocksPerUser"`
+	PbaTimeout          *int    `pulumi:"pbaTimeout"`
+	PermitAnyHost       *string `pulumi:"permitAnyHost"`
+	PortPerUser         *int    `pulumi:"portPerUser"`
+	SourceEndip         *string `pulumi:"sourceEndip"`
+	SourceStartip       *string `pulumi:"sourceStartip"`
+	Startip             *string `pulumi:"startip"`
+	Startport           *int    `pulumi:"startport"`
+	Type                *string `pulumi:"type"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 type FirewallIppoolState struct {
-	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-	AddNat64Route pulumi.StringPtrInput
-	// Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
-	ArpIntf pulumi.StringPtrInput
-	// Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
-	ArpReply pulumi.StringPtrInput
-	// Associated interface name.
+	AddNat64Route       pulumi.StringPtrInput
+	ArpIntf             pulumi.StringPtrInput
+	ArpReply            pulumi.StringPtrInput
 	AssociatedInterface pulumi.StringPtrInput
-	// Number of addresses in a block (64 to 4096, default = 128).
-	BlockSize pulumi.IntPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	Endip pulumi.StringPtrInput
-	// Final port number (inclusive) in the range for the address pool (Default: 65533).
-	Endport pulumi.IntPtrInput
-	// IP pool name.
-	Name pulumi.StringPtrInput
-	// Enable/disable NAT64. Valid values: `disable`, `enable`.
-	Nat64 pulumi.StringPtrInput
-	// Number of addresses blocks that can be used by a user (1 to 128, default = 8).
-	NumBlocksPerUser pulumi.IntPtrInput
-	// Port block allocation timeout (seconds).
-	PbaTimeout pulumi.IntPtrInput
-	// Enable/disable full cone NAT. Valid values: `disable`, `enable`.
-	PermitAnyHost pulumi.StringPtrInput
-	// Number of port for each user (32 to 60416, default = 0, auto).
-	PortPerUser pulumi.IntPtrInput
-	// Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	SourceEndip pulumi.StringPtrInput
-	// First IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	SourceStartip pulumi.StringPtrInput
-	// First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	Startip pulumi.StringPtrInput
-	// First port number (inclusive) in the range for the address pool (Default: 5117).
-	Startport pulumi.IntPtrInput
-	// IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	BlockSize           pulumi.IntPtrInput
+	Comments            pulumi.StringPtrInput
+	Endip               pulumi.StringPtrInput
+	Endport             pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Nat64               pulumi.StringPtrInput
+	NumBlocksPerUser    pulumi.IntPtrInput
+	PbaTimeout          pulumi.IntPtrInput
+	PermitAnyHost       pulumi.StringPtrInput
+	PortPerUser         pulumi.IntPtrInput
+	SourceEndip         pulumi.StringPtrInput
+	SourceStartip       pulumi.StringPtrInput
+	Startip             pulumi.StringPtrInput
+	Startport           pulumi.IntPtrInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallIppoolState) ElementType() reflect.Type {
@@ -231,90 +122,50 @@ func (FirewallIppoolState) ElementType() reflect.Type {
 }
 
 type firewallIppoolArgs struct {
-	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-	AddNat64Route *string `pulumi:"addNat64Route"`
-	// Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
-	ArpIntf *string `pulumi:"arpIntf"`
-	// Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
-	ArpReply *string `pulumi:"arpReply"`
-	// Associated interface name.
+	AddNat64Route       *string `pulumi:"addNat64Route"`
+	ArpIntf             *string `pulumi:"arpIntf"`
+	ArpReply            *string `pulumi:"arpReply"`
 	AssociatedInterface *string `pulumi:"associatedInterface"`
-	// Number of addresses in a block (64 to 4096, default = 128).
-	BlockSize *int `pulumi:"blockSize"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	Endip string `pulumi:"endip"`
-	// Final port number (inclusive) in the range for the address pool (Default: 65533).
-	Endport *int `pulumi:"endport"`
-	// IP pool name.
-	Name *string `pulumi:"name"`
-	// Enable/disable NAT64. Valid values: `disable`, `enable`.
-	Nat64 *string `pulumi:"nat64"`
-	// Number of addresses blocks that can be used by a user (1 to 128, default = 8).
-	NumBlocksPerUser *int `pulumi:"numBlocksPerUser"`
-	// Port block allocation timeout (seconds).
-	PbaTimeout *int `pulumi:"pbaTimeout"`
-	// Enable/disable full cone NAT. Valid values: `disable`, `enable`.
-	PermitAnyHost *string `pulumi:"permitAnyHost"`
-	// Number of port for each user (32 to 60416, default = 0, auto).
-	PortPerUser *int `pulumi:"portPerUser"`
-	// Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	SourceEndip *string `pulumi:"sourceEndip"`
-	// First IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	SourceStartip *string `pulumi:"sourceStartip"`
-	// First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	Startip string `pulumi:"startip"`
-	// First port number (inclusive) in the range for the address pool (Default: 5117).
-	Startport *int `pulumi:"startport"`
-	// IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	BlockSize           *int    `pulumi:"blockSize"`
+	Comments            *string `pulumi:"comments"`
+	Endip               string  `pulumi:"endip"`
+	Endport             *int    `pulumi:"endport"`
+	Name                *string `pulumi:"name"`
+	Nat64               *string `pulumi:"nat64"`
+	NumBlocksPerUser    *int    `pulumi:"numBlocksPerUser"`
+	PbaTimeout          *int    `pulumi:"pbaTimeout"`
+	PermitAnyHost       *string `pulumi:"permitAnyHost"`
+	PortPerUser         *int    `pulumi:"portPerUser"`
+	SourceEndip         *string `pulumi:"sourceEndip"`
+	SourceStartip       *string `pulumi:"sourceStartip"`
+	Startip             string  `pulumi:"startip"`
+	Startport           *int    `pulumi:"startport"`
+	Type                *string `pulumi:"type"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallIppool resource.
 type FirewallIppoolArgs struct {
-	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-	AddNat64Route pulumi.StringPtrInput
-	// Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
-	ArpIntf pulumi.StringPtrInput
-	// Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
-	ArpReply pulumi.StringPtrInput
-	// Associated interface name.
+	AddNat64Route       pulumi.StringPtrInput
+	ArpIntf             pulumi.StringPtrInput
+	ArpReply            pulumi.StringPtrInput
 	AssociatedInterface pulumi.StringPtrInput
-	// Number of addresses in a block (64 to 4096, default = 128).
-	BlockSize pulumi.IntPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	Endip pulumi.StringInput
-	// Final port number (inclusive) in the range for the address pool (Default: 65533).
-	Endport pulumi.IntPtrInput
-	// IP pool name.
-	Name pulumi.StringPtrInput
-	// Enable/disable NAT64. Valid values: `disable`, `enable`.
-	Nat64 pulumi.StringPtrInput
-	// Number of addresses blocks that can be used by a user (1 to 128, default = 8).
-	NumBlocksPerUser pulumi.IntPtrInput
-	// Port block allocation timeout (seconds).
-	PbaTimeout pulumi.IntPtrInput
-	// Enable/disable full cone NAT. Valid values: `disable`, `enable`.
-	PermitAnyHost pulumi.StringPtrInput
-	// Number of port for each user (32 to 60416, default = 0, auto).
-	PortPerUser pulumi.IntPtrInput
-	// Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	SourceEndip pulumi.StringPtrInput
-	// First IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	SourceStartip pulumi.StringPtrInput
-	// First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-	Startip pulumi.StringInput
-	// First port number (inclusive) in the range for the address pool (Default: 5117).
-	Startport pulumi.IntPtrInput
-	// IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	BlockSize           pulumi.IntPtrInput
+	Comments            pulumi.StringPtrInput
+	Endip               pulumi.StringInput
+	Endport             pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Nat64               pulumi.StringPtrInput
+	NumBlocksPerUser    pulumi.IntPtrInput
+	PbaTimeout          pulumi.IntPtrInput
+	PermitAnyHost       pulumi.StringPtrInput
+	PortPerUser         pulumi.IntPtrInput
+	SourceEndip         pulumi.StringPtrInput
+	SourceStartip       pulumi.StringPtrInput
+	Startip             pulumi.StringInput
+	Startport           pulumi.IntPtrInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallIppoolArgs) ElementType() reflect.Type {
@@ -343,7 +194,7 @@ func (i *FirewallIppool) ToFirewallIppoolOutputWithContext(ctx context.Context) 
 // FirewallIppoolArrayInput is an input type that accepts FirewallIppoolArray and FirewallIppoolArrayOutput values.
 // You can construct a concrete instance of `FirewallIppoolArrayInput` via:
 //
-//          FirewallIppoolArray{ FirewallIppoolArgs{...} }
+//	FirewallIppoolArray{ FirewallIppoolArgs{...} }
 type FirewallIppoolArrayInput interface {
 	pulumi.Input
 
@@ -368,7 +219,7 @@ func (i FirewallIppoolArray) ToFirewallIppoolArrayOutputWithContext(ctx context.
 // FirewallIppoolMapInput is an input type that accepts FirewallIppoolMap and FirewallIppoolMapOutput values.
 // You can construct a concrete instance of `FirewallIppoolMapInput` via:
 //
-//          FirewallIppoolMap{ "key": FirewallIppoolArgs{...} }
+//	FirewallIppoolMap{ "key": FirewallIppoolArgs{...} }
 type FirewallIppoolMapInput interface {
 	pulumi.Input
 
@@ -402,6 +253,86 @@ func (o FirewallIppoolOutput) ToFirewallIppoolOutput() FirewallIppoolOutput {
 
 func (o FirewallIppoolOutput) ToFirewallIppoolOutputWithContext(ctx context.Context) FirewallIppoolOutput {
 	return o
+}
+
+func (o FirewallIppoolOutput) AddNat64Route() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.StringOutput { return v.AddNat64Route }).(pulumi.StringOutput)
+}
+
+func (o FirewallIppoolOutput) ArpIntf() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.StringOutput { return v.ArpIntf }).(pulumi.StringOutput)
+}
+
+func (o FirewallIppoolOutput) ArpReply() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.StringOutput { return v.ArpReply }).(pulumi.StringOutput)
+}
+
+func (o FirewallIppoolOutput) AssociatedInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.StringOutput { return v.AssociatedInterface }).(pulumi.StringOutput)
+}
+
+func (o FirewallIppoolOutput) BlockSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.IntOutput { return v.BlockSize }).(pulumi.IntOutput)
+}
+
+func (o FirewallIppoolOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallIppoolOutput) Endip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.StringOutput { return v.Endip }).(pulumi.StringOutput)
+}
+
+func (o FirewallIppoolOutput) Endport() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.IntOutput { return v.Endport }).(pulumi.IntOutput)
+}
+
+func (o FirewallIppoolOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallIppoolOutput) Nat64() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.StringOutput { return v.Nat64 }).(pulumi.StringOutput)
+}
+
+func (o FirewallIppoolOutput) NumBlocksPerUser() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.IntOutput { return v.NumBlocksPerUser }).(pulumi.IntOutput)
+}
+
+func (o FirewallIppoolOutput) PbaTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.IntOutput { return v.PbaTimeout }).(pulumi.IntOutput)
+}
+
+func (o FirewallIppoolOutput) PermitAnyHost() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.StringOutput { return v.PermitAnyHost }).(pulumi.StringOutput)
+}
+
+func (o FirewallIppoolOutput) PortPerUser() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.IntOutput { return v.PortPerUser }).(pulumi.IntOutput)
+}
+
+func (o FirewallIppoolOutput) SourceEndip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.StringOutput { return v.SourceEndip }).(pulumi.StringOutput)
+}
+
+func (o FirewallIppoolOutput) SourceStartip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.StringOutput { return v.SourceStartip }).(pulumi.StringOutput)
+}
+
+func (o FirewallIppoolOutput) Startip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.StringOutput { return v.Startip }).(pulumi.StringOutput)
+}
+
+func (o FirewallIppoolOutput) Startport() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.IntOutput { return v.Startport }).(pulumi.IntOutput)
+}
+
+func (o FirewallIppoolOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o FirewallIppoolOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallIppoolArrayOutput struct{ *pulumi.OutputState }

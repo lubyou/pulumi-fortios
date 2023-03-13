@@ -10,101 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Trigger for automation stitches.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAutomationTrigger(ctx, "trname", &fortios.SystemAutomationTriggerArgs{
-// 			EventType:        pulumi.String("event-log"),
-// 			IocLevel:         pulumi.String("high"),
-// 			LicenseType:      pulumi.String("forticare-support"),
-// 			Logid:            pulumi.Int(32002),
-// 			TriggerFrequency: pulumi.String("daily"),
-// 			TriggerMinute:    pulumi.Int(60),
-// 			TriggerType:      pulumi.String("event-based"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System AutomationTrigger can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutomationTrigger:SystemAutomationTrigger labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutomationTrigger:SystemAutomationTrigger labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemAutomationTrigger struct {
 	pulumi.CustomResourceState
 
-	// Description.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Event type.
-	EventType pulumi.StringOutput `pulumi:"eventType"`
-	// Fabric connector event handler name.
-	FabricEventName pulumi.StringPtrOutput `pulumi:"fabricEventName"`
-	// Fabric connector event severity.
-	FabricEventSeverity pulumi.StringPtrOutput `pulumi:"fabricEventSeverity"`
-	// FortiAnalyzer event handler name.
-	FazEventName pulumi.StringPtrOutput `pulumi:"fazEventName"`
-	// FortiAnalyzer event severity.
-	FazEventSeverity pulumi.StringPtrOutput `pulumi:"fazEventSeverity"`
-	// FortiAnalyzer event tags.
-	FazEventTags pulumi.StringPtrOutput `pulumi:"fazEventTags"`
-	// Customized trigger field settings. The structure of `fields` block is documented below.
-	Fields SystemAutomationTriggerFieldArrayOutput `pulumi:"fields"`
-	// IOC threat level. Valid values: `medium`, `high`.
-	IocLevel pulumi.StringOutput `pulumi:"iocLevel"`
-	// License type.
-	LicenseType pulumi.StringOutput `pulumi:"licenseType"`
-	// Log ID to trigger event.
-	Logid pulumi.IntOutput `pulumi:"logid"`
-	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
-	LogidBlocks SystemAutomationTriggerLogidBlockArrayOutput `pulumi:"logidBlocks"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Security Rating report.
-	ReportType pulumi.StringOutput `pulumi:"reportType"`
-	// Fabric connector serial number.
-	Serial pulumi.StringPtrOutput `pulumi:"serial"`
-	// Day within a month to trigger.
-	TriggerDay pulumi.IntOutput `pulumi:"triggerDay"`
-	// Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
-	TriggerFrequency pulumi.StringOutput `pulumi:"triggerFrequency"`
-	// Hour of the day on which to trigger (0 - 23, default = 1).
-	TriggerHour pulumi.IntOutput `pulumi:"triggerHour"`
-	// Minute of the hour on which to trigger (0 - 59, 60 to randomize).
-	TriggerMinute pulumi.IntOutput `pulumi:"triggerMinute"`
-	// Trigger type. Valid values: `event-based`, `scheduled`.
-	TriggerType pulumi.StringOutput `pulumi:"triggerType"`
-	// Day of week for trigger. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	TriggerWeekday pulumi.StringOutput `pulumi:"triggerWeekday"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Description         pulumi.StringPtrOutput                       `pulumi:"description"`
+	DynamicSortSubtable pulumi.StringPtrOutput                       `pulumi:"dynamicSortSubtable"`
+	EventType           pulumi.StringOutput                          `pulumi:"eventType"`
+	FabricEventName     pulumi.StringPtrOutput                       `pulumi:"fabricEventName"`
+	FabricEventSeverity pulumi.StringPtrOutput                       `pulumi:"fabricEventSeverity"`
+	FazEventName        pulumi.StringPtrOutput                       `pulumi:"fazEventName"`
+	FazEventSeverity    pulumi.StringPtrOutput                       `pulumi:"fazEventSeverity"`
+	FazEventTags        pulumi.StringPtrOutput                       `pulumi:"fazEventTags"`
+	Fields              SystemAutomationTriggerFieldArrayOutput      `pulumi:"fields"`
+	IocLevel            pulumi.StringOutput                          `pulumi:"iocLevel"`
+	LicenseType         pulumi.StringOutput                          `pulumi:"licenseType"`
+	Logid               pulumi.IntOutput                             `pulumi:"logid"`
+	LogidBlocks         SystemAutomationTriggerLogidBlockArrayOutput `pulumi:"logidBlocks"`
+	Name                pulumi.StringOutput                          `pulumi:"name"`
+	ReportType          pulumi.StringOutput                          `pulumi:"reportType"`
+	Serial              pulumi.StringPtrOutput                       `pulumi:"serial"`
+	TriggerDatetime     pulumi.StringOutput                          `pulumi:"triggerDatetime"`
+	TriggerDay          pulumi.IntOutput                             `pulumi:"triggerDay"`
+	TriggerFrequency    pulumi.StringOutput                          `pulumi:"triggerFrequency"`
+	TriggerHour         pulumi.IntOutput                             `pulumi:"triggerHour"`
+	TriggerMinute       pulumi.IntOutput                             `pulumi:"triggerMinute"`
+	TriggerType         pulumi.StringOutput                          `pulumi:"triggerType"`
+	TriggerWeekday      pulumi.StringOutput                          `pulumi:"triggerWeekday"`
+	Vdomparam           pulumi.StringPtrOutput                       `pulumi:"vdomparam"`
+	Vdoms               SystemAutomationTriggerVdomArrayOutput       `pulumi:"vdoms"`
 }
 
 // NewSystemAutomationTrigger registers a new resource with the given unique name, arguments, and options.
@@ -137,101 +70,59 @@ func GetSystemAutomationTrigger(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAutomationTrigger resources.
 type systemAutomationTriggerState struct {
-	// Description.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Event type.
-	EventType *string `pulumi:"eventType"`
-	// Fabric connector event handler name.
-	FabricEventName *string `pulumi:"fabricEventName"`
-	// Fabric connector event severity.
-	FabricEventSeverity *string `pulumi:"fabricEventSeverity"`
-	// FortiAnalyzer event handler name.
-	FazEventName *string `pulumi:"fazEventName"`
-	// FortiAnalyzer event severity.
-	FazEventSeverity *string `pulumi:"fazEventSeverity"`
-	// FortiAnalyzer event tags.
-	FazEventTags *string `pulumi:"fazEventTags"`
-	// Customized trigger field settings. The structure of `fields` block is documented below.
-	Fields []SystemAutomationTriggerField `pulumi:"fields"`
-	// IOC threat level. Valid values: `medium`, `high`.
-	IocLevel *string `pulumi:"iocLevel"`
-	// License type.
-	LicenseType *string `pulumi:"licenseType"`
-	// Log ID to trigger event.
-	Logid *int `pulumi:"logid"`
-	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
-	LogidBlocks []SystemAutomationTriggerLogidBlock `pulumi:"logidBlocks"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Security Rating report.
-	ReportType *string `pulumi:"reportType"`
-	// Fabric connector serial number.
-	Serial *string `pulumi:"serial"`
-	// Day within a month to trigger.
-	TriggerDay *int `pulumi:"triggerDay"`
-	// Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
-	TriggerFrequency *string `pulumi:"triggerFrequency"`
-	// Hour of the day on which to trigger (0 - 23, default = 1).
-	TriggerHour *int `pulumi:"triggerHour"`
-	// Minute of the hour on which to trigger (0 - 59, 60 to randomize).
-	TriggerMinute *int `pulumi:"triggerMinute"`
-	// Trigger type. Valid values: `event-based`, `scheduled`.
-	TriggerType *string `pulumi:"triggerType"`
-	// Day of week for trigger. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	TriggerWeekday *string `pulumi:"triggerWeekday"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Description         *string                             `pulumi:"description"`
+	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
+	EventType           *string                             `pulumi:"eventType"`
+	FabricEventName     *string                             `pulumi:"fabricEventName"`
+	FabricEventSeverity *string                             `pulumi:"fabricEventSeverity"`
+	FazEventName        *string                             `pulumi:"fazEventName"`
+	FazEventSeverity    *string                             `pulumi:"fazEventSeverity"`
+	FazEventTags        *string                             `pulumi:"fazEventTags"`
+	Fields              []SystemAutomationTriggerField      `pulumi:"fields"`
+	IocLevel            *string                             `pulumi:"iocLevel"`
+	LicenseType         *string                             `pulumi:"licenseType"`
+	Logid               *int                                `pulumi:"logid"`
+	LogidBlocks         []SystemAutomationTriggerLogidBlock `pulumi:"logidBlocks"`
+	Name                *string                             `pulumi:"name"`
+	ReportType          *string                             `pulumi:"reportType"`
+	Serial              *string                             `pulumi:"serial"`
+	TriggerDatetime     *string                             `pulumi:"triggerDatetime"`
+	TriggerDay          *int                                `pulumi:"triggerDay"`
+	TriggerFrequency    *string                             `pulumi:"triggerFrequency"`
+	TriggerHour         *int                                `pulumi:"triggerHour"`
+	TriggerMinute       *int                                `pulumi:"triggerMinute"`
+	TriggerType         *string                             `pulumi:"triggerType"`
+	TriggerWeekday      *string                             `pulumi:"triggerWeekday"`
+	Vdomparam           *string                             `pulumi:"vdomparam"`
+	Vdoms               []SystemAutomationTriggerVdom       `pulumi:"vdoms"`
 }
 
 type SystemAutomationTriggerState struct {
-	// Description.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Event type.
-	EventType pulumi.StringPtrInput
-	// Fabric connector event handler name.
-	FabricEventName pulumi.StringPtrInput
-	// Fabric connector event severity.
+	EventType           pulumi.StringPtrInput
+	FabricEventName     pulumi.StringPtrInput
 	FabricEventSeverity pulumi.StringPtrInput
-	// FortiAnalyzer event handler name.
-	FazEventName pulumi.StringPtrInput
-	// FortiAnalyzer event severity.
-	FazEventSeverity pulumi.StringPtrInput
-	// FortiAnalyzer event tags.
-	FazEventTags pulumi.StringPtrInput
-	// Customized trigger field settings. The structure of `fields` block is documented below.
-	Fields SystemAutomationTriggerFieldArrayInput
-	// IOC threat level. Valid values: `medium`, `high`.
-	IocLevel pulumi.StringPtrInput
-	// License type.
-	LicenseType pulumi.StringPtrInput
-	// Log ID to trigger event.
-	Logid pulumi.IntPtrInput
-	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
-	LogidBlocks SystemAutomationTriggerLogidBlockArrayInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Security Rating report.
-	ReportType pulumi.StringPtrInput
-	// Fabric connector serial number.
-	Serial pulumi.StringPtrInput
-	// Day within a month to trigger.
-	TriggerDay pulumi.IntPtrInput
-	// Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
-	TriggerFrequency pulumi.StringPtrInput
-	// Hour of the day on which to trigger (0 - 23, default = 1).
-	TriggerHour pulumi.IntPtrInput
-	// Minute of the hour on which to trigger (0 - 59, 60 to randomize).
-	TriggerMinute pulumi.IntPtrInput
-	// Trigger type. Valid values: `event-based`, `scheduled`.
-	TriggerType pulumi.StringPtrInput
-	// Day of week for trigger. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	TriggerWeekday pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FazEventName        pulumi.StringPtrInput
+	FazEventSeverity    pulumi.StringPtrInput
+	FazEventTags        pulumi.StringPtrInput
+	Fields              SystemAutomationTriggerFieldArrayInput
+	IocLevel            pulumi.StringPtrInput
+	LicenseType         pulumi.StringPtrInput
+	Logid               pulumi.IntPtrInput
+	LogidBlocks         SystemAutomationTriggerLogidBlockArrayInput
+	Name                pulumi.StringPtrInput
+	ReportType          pulumi.StringPtrInput
+	Serial              pulumi.StringPtrInput
+	TriggerDatetime     pulumi.StringPtrInput
+	TriggerDay          pulumi.IntPtrInput
+	TriggerFrequency    pulumi.StringPtrInput
+	TriggerHour         pulumi.IntPtrInput
+	TriggerMinute       pulumi.IntPtrInput
+	TriggerType         pulumi.StringPtrInput
+	TriggerWeekday      pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Vdoms               SystemAutomationTriggerVdomArrayInput
 }
 
 func (SystemAutomationTriggerState) ElementType() reflect.Type {
@@ -239,102 +130,60 @@ func (SystemAutomationTriggerState) ElementType() reflect.Type {
 }
 
 type systemAutomationTriggerArgs struct {
-	// Description.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Event type.
-	EventType *string `pulumi:"eventType"`
-	// Fabric connector event handler name.
-	FabricEventName *string `pulumi:"fabricEventName"`
-	// Fabric connector event severity.
-	FabricEventSeverity *string `pulumi:"fabricEventSeverity"`
-	// FortiAnalyzer event handler name.
-	FazEventName *string `pulumi:"fazEventName"`
-	// FortiAnalyzer event severity.
-	FazEventSeverity *string `pulumi:"fazEventSeverity"`
-	// FortiAnalyzer event tags.
-	FazEventTags *string `pulumi:"fazEventTags"`
-	// Customized trigger field settings. The structure of `fields` block is documented below.
-	Fields []SystemAutomationTriggerField `pulumi:"fields"`
-	// IOC threat level. Valid values: `medium`, `high`.
-	IocLevel *string `pulumi:"iocLevel"`
-	// License type.
-	LicenseType *string `pulumi:"licenseType"`
-	// Log ID to trigger event.
-	Logid *int `pulumi:"logid"`
-	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
-	LogidBlocks []SystemAutomationTriggerLogidBlock `pulumi:"logidBlocks"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Security Rating report.
-	ReportType *string `pulumi:"reportType"`
-	// Fabric connector serial number.
-	Serial *string `pulumi:"serial"`
-	// Day within a month to trigger.
-	TriggerDay *int `pulumi:"triggerDay"`
-	// Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
-	TriggerFrequency *string `pulumi:"triggerFrequency"`
-	// Hour of the day on which to trigger (0 - 23, default = 1).
-	TriggerHour *int `pulumi:"triggerHour"`
-	// Minute of the hour on which to trigger (0 - 59, 60 to randomize).
-	TriggerMinute *int `pulumi:"triggerMinute"`
-	// Trigger type. Valid values: `event-based`, `scheduled`.
-	TriggerType *string `pulumi:"triggerType"`
-	// Day of week for trigger. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	TriggerWeekday *string `pulumi:"triggerWeekday"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Description         *string                             `pulumi:"description"`
+	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
+	EventType           *string                             `pulumi:"eventType"`
+	FabricEventName     *string                             `pulumi:"fabricEventName"`
+	FabricEventSeverity *string                             `pulumi:"fabricEventSeverity"`
+	FazEventName        *string                             `pulumi:"fazEventName"`
+	FazEventSeverity    *string                             `pulumi:"fazEventSeverity"`
+	FazEventTags        *string                             `pulumi:"fazEventTags"`
+	Fields              []SystemAutomationTriggerField      `pulumi:"fields"`
+	IocLevel            *string                             `pulumi:"iocLevel"`
+	LicenseType         *string                             `pulumi:"licenseType"`
+	Logid               *int                                `pulumi:"logid"`
+	LogidBlocks         []SystemAutomationTriggerLogidBlock `pulumi:"logidBlocks"`
+	Name                *string                             `pulumi:"name"`
+	ReportType          *string                             `pulumi:"reportType"`
+	Serial              *string                             `pulumi:"serial"`
+	TriggerDatetime     *string                             `pulumi:"triggerDatetime"`
+	TriggerDay          *int                                `pulumi:"triggerDay"`
+	TriggerFrequency    *string                             `pulumi:"triggerFrequency"`
+	TriggerHour         *int                                `pulumi:"triggerHour"`
+	TriggerMinute       *int                                `pulumi:"triggerMinute"`
+	TriggerType         *string                             `pulumi:"triggerType"`
+	TriggerWeekday      *string                             `pulumi:"triggerWeekday"`
+	Vdomparam           *string                             `pulumi:"vdomparam"`
+	Vdoms               []SystemAutomationTriggerVdom       `pulumi:"vdoms"`
 }
 
 // The set of arguments for constructing a SystemAutomationTrigger resource.
 type SystemAutomationTriggerArgs struct {
-	// Description.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Event type.
-	EventType pulumi.StringPtrInput
-	// Fabric connector event handler name.
-	FabricEventName pulumi.StringPtrInput
-	// Fabric connector event severity.
+	EventType           pulumi.StringPtrInput
+	FabricEventName     pulumi.StringPtrInput
 	FabricEventSeverity pulumi.StringPtrInput
-	// FortiAnalyzer event handler name.
-	FazEventName pulumi.StringPtrInput
-	// FortiAnalyzer event severity.
-	FazEventSeverity pulumi.StringPtrInput
-	// FortiAnalyzer event tags.
-	FazEventTags pulumi.StringPtrInput
-	// Customized trigger field settings. The structure of `fields` block is documented below.
-	Fields SystemAutomationTriggerFieldArrayInput
-	// IOC threat level. Valid values: `medium`, `high`.
-	IocLevel pulumi.StringPtrInput
-	// License type.
-	LicenseType pulumi.StringPtrInput
-	// Log ID to trigger event.
-	Logid pulumi.IntPtrInput
-	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
-	LogidBlocks SystemAutomationTriggerLogidBlockArrayInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Security Rating report.
-	ReportType pulumi.StringPtrInput
-	// Fabric connector serial number.
-	Serial pulumi.StringPtrInput
-	// Day within a month to trigger.
-	TriggerDay pulumi.IntPtrInput
-	// Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
-	TriggerFrequency pulumi.StringPtrInput
-	// Hour of the day on which to trigger (0 - 23, default = 1).
-	TriggerHour pulumi.IntPtrInput
-	// Minute of the hour on which to trigger (0 - 59, 60 to randomize).
-	TriggerMinute pulumi.IntPtrInput
-	// Trigger type. Valid values: `event-based`, `scheduled`.
-	TriggerType pulumi.StringPtrInput
-	// Day of week for trigger. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	TriggerWeekday pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FazEventName        pulumi.StringPtrInput
+	FazEventSeverity    pulumi.StringPtrInput
+	FazEventTags        pulumi.StringPtrInput
+	Fields              SystemAutomationTriggerFieldArrayInput
+	IocLevel            pulumi.StringPtrInput
+	LicenseType         pulumi.StringPtrInput
+	Logid               pulumi.IntPtrInput
+	LogidBlocks         SystemAutomationTriggerLogidBlockArrayInput
+	Name                pulumi.StringPtrInput
+	ReportType          pulumi.StringPtrInput
+	Serial              pulumi.StringPtrInput
+	TriggerDatetime     pulumi.StringPtrInput
+	TriggerDay          pulumi.IntPtrInput
+	TriggerFrequency    pulumi.StringPtrInput
+	TriggerHour         pulumi.IntPtrInput
+	TriggerMinute       pulumi.IntPtrInput
+	TriggerType         pulumi.StringPtrInput
+	TriggerWeekday      pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Vdoms               SystemAutomationTriggerVdomArrayInput
 }
 
 func (SystemAutomationTriggerArgs) ElementType() reflect.Type {
@@ -363,7 +212,7 @@ func (i *SystemAutomationTrigger) ToSystemAutomationTriggerOutputWithContext(ctx
 // SystemAutomationTriggerArrayInput is an input type that accepts SystemAutomationTriggerArray and SystemAutomationTriggerArrayOutput values.
 // You can construct a concrete instance of `SystemAutomationTriggerArrayInput` via:
 //
-//          SystemAutomationTriggerArray{ SystemAutomationTriggerArgs{...} }
+//	SystemAutomationTriggerArray{ SystemAutomationTriggerArgs{...} }
 type SystemAutomationTriggerArrayInput interface {
 	pulumi.Input
 
@@ -388,7 +237,7 @@ func (i SystemAutomationTriggerArray) ToSystemAutomationTriggerArrayOutputWithCo
 // SystemAutomationTriggerMapInput is an input type that accepts SystemAutomationTriggerMap and SystemAutomationTriggerMapOutput values.
 // You can construct a concrete instance of `SystemAutomationTriggerMapInput` via:
 //
-//          SystemAutomationTriggerMap{ "key": SystemAutomationTriggerArgs{...} }
+//	SystemAutomationTriggerMap{ "key": SystemAutomationTriggerArgs{...} }
 type SystemAutomationTriggerMapInput interface {
 	pulumi.Input
 
@@ -422,6 +271,106 @@ func (o SystemAutomationTriggerOutput) ToSystemAutomationTriggerOutput() SystemA
 
 func (o SystemAutomationTriggerOutput) ToSystemAutomationTriggerOutputWithContext(ctx context.Context) SystemAutomationTriggerOutput {
 	return o
+}
+
+func (o SystemAutomationTriggerOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationTriggerOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationTriggerOutput) EventType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringOutput { return v.EventType }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationTriggerOutput) FabricEventName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringPtrOutput { return v.FabricEventName }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationTriggerOutput) FabricEventSeverity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringPtrOutput { return v.FabricEventSeverity }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationTriggerOutput) FazEventName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringPtrOutput { return v.FazEventName }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationTriggerOutput) FazEventSeverity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringPtrOutput { return v.FazEventSeverity }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationTriggerOutput) FazEventTags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringPtrOutput { return v.FazEventTags }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationTriggerOutput) Fields() SystemAutomationTriggerFieldArrayOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) SystemAutomationTriggerFieldArrayOutput { return v.Fields }).(SystemAutomationTriggerFieldArrayOutput)
+}
+
+func (o SystemAutomationTriggerOutput) IocLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringOutput { return v.IocLevel }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationTriggerOutput) LicenseType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringOutput { return v.LicenseType }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationTriggerOutput) Logid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.IntOutput { return v.Logid }).(pulumi.IntOutput)
+}
+
+func (o SystemAutomationTriggerOutput) LogidBlocks() SystemAutomationTriggerLogidBlockArrayOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) SystemAutomationTriggerLogidBlockArrayOutput { return v.LogidBlocks }).(SystemAutomationTriggerLogidBlockArrayOutput)
+}
+
+func (o SystemAutomationTriggerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationTriggerOutput) ReportType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringOutput { return v.ReportType }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationTriggerOutput) Serial() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringPtrOutput { return v.Serial }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationTriggerOutput) TriggerDatetime() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringOutput { return v.TriggerDatetime }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationTriggerOutput) TriggerDay() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.IntOutput { return v.TriggerDay }).(pulumi.IntOutput)
+}
+
+func (o SystemAutomationTriggerOutput) TriggerFrequency() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringOutput { return v.TriggerFrequency }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationTriggerOutput) TriggerHour() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.IntOutput { return v.TriggerHour }).(pulumi.IntOutput)
+}
+
+func (o SystemAutomationTriggerOutput) TriggerMinute() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.IntOutput { return v.TriggerMinute }).(pulumi.IntOutput)
+}
+
+func (o SystemAutomationTriggerOutput) TriggerType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringOutput { return v.TriggerType }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationTriggerOutput) TriggerWeekday() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringOutput { return v.TriggerWeekday }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationTriggerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationTriggerOutput) Vdoms() SystemAutomationTriggerVdomArrayOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) SystemAutomationTriggerVdomArrayOutput { return v.Vdoms }).(SystemAutomationTriggerVdomArrayOutput)
 }
 
 type SystemAutomationTriggerArrayOutput struct{ *pulumi.OutputState }

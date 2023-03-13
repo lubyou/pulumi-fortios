@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports installing devicemanager script from FortiManager to the related device
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerDVMInstallDev("test1", {
- *     targetDevname: "FGVM64-test",
- *     timeout: 5,
- * });
- * ```
- */
 export class FortimanagerDVMInstallDev extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerDVMInstallDev resource's state with the given name, ID, and optional extra
@@ -47,21 +32,12 @@ export class FortimanagerDVMInstallDev extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerDVMInstallDev.__pulumiType;
     }
 
-    /**
-     * Source ADOM name. default is 'root'
-     */
     public readonly adom!: pulumi.Output<string | undefined>;
-    /**
-     * Target device name.
-     */
     public readonly targetDevname!: pulumi.Output<string>;
     /**
-     * Timeout for installing the script to the target, default: 3 minutes.
+     * Timeout for installing the script to the target, default: 3 minutes
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
-    /**
-     * Vdom of managed device. default is 'root'
-     */
     public readonly vdom!: pulumi.Output<string | undefined>;
 
     /**
@@ -100,21 +76,12 @@ export class FortimanagerDVMInstallDev extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerDVMInstallDev resources.
  */
 export interface FortimanagerDVMInstallDevState {
-    /**
-     * Source ADOM name. default is 'root'
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Target device name.
-     */
     targetDevname?: pulumi.Input<string>;
     /**
-     * Timeout for installing the script to the target, default: 3 minutes.
+     * Timeout for installing the script to the target, default: 3 minutes
      */
     timeout?: pulumi.Input<number>;
-    /**
-     * Vdom of managed device. default is 'root'
-     */
     vdom?: pulumi.Input<string>;
 }
 
@@ -122,20 +89,11 @@ export interface FortimanagerDVMInstallDevState {
  * The set of arguments for constructing a FortimanagerDVMInstallDev resource.
  */
 export interface FortimanagerDVMInstallDevArgs {
-    /**
-     * Source ADOM name. default is 'root'
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Target device name.
-     */
     targetDevname: pulumi.Input<string>;
     /**
-     * Timeout for installing the script to the target, default: 3 minutes.
+     * Timeout for installing the script to the target, default: 3 minutes
      */
     timeout?: pulumi.Input<number>;
-    /**
-     * Vdom of managed device. default is 'root'
-     */
     vdom?: pulumi.Input<string>;
 }

@@ -10,48 +10,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure USB LTE/WIMAX devices. Applies to FortiOS Version `>= 7.0.4`.
-//
-// ## Import
-//
-// System LteModem can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemLteModem:SystemLteModem labelname SystemLteModem
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemLteModem:SystemLteModem labelname SystemLteModem
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemLteModem struct {
 	pulumi.CustomResourceState
 
-	// Login APN string for PDP-IP packet data calls.
-	Apn pulumi.StringOutput `pulumi:"apn"`
-	// Authentication type for PDP-IP packet data calls. Valid values: `none`, `pap`, `chap`.
-	Authtype pulumi.StringOutput `pulumi:"authtype"`
-	// Extra initialization string for USB LTE/WIMAX devices.
-	ExtraInit pulumi.StringOutput `pulumi:"extraInit"`
-	// Hold down timer (10 - 60 sec).
-	HolddownTimer pulumi.IntOutput `pulumi:"holddownTimer"`
-	// The interface that the modem is acting as a redundant interface for.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Modem operation mode. Valid values: `standalone`, `redundant`.
-	Mode pulumi.StringOutput `pulumi:"mode"`
-	// Modem port index (0 - 20).
-	ModemPort pulumi.IntOutput `pulumi:"modemPort"`
-	// Authentication password for PDP-IP packet data calls.
-	Passwd pulumi.StringPtrOutput `pulumi:"passwd"`
-	// Enable/disable USB LTE/WIMAX device. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Authentication username for PDP-IP packet data calls.
-	Username pulumi.StringOutput `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Apn           pulumi.StringOutput    `pulumi:"apn"`
+	Authtype      pulumi.StringOutput    `pulumi:"authtype"`
+	ExtraInit     pulumi.StringOutput    `pulumi:"extraInit"`
+	HolddownTimer pulumi.IntOutput       `pulumi:"holddownTimer"`
+	Interface     pulumi.StringOutput    `pulumi:"interface"`
+	Mode          pulumi.StringOutput    `pulumi:"mode"`
+	ModemPort     pulumi.IntOutput       `pulumi:"modemPort"`
+	Passwd        pulumi.StringPtrOutput `pulumi:"passwd"`
+	Status        pulumi.StringOutput    `pulumi:"status"`
+	Username      pulumi.StringOutput    `pulumi:"username"`
+	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemLteModem registers a new resource with the given unique name, arguments, and options.
@@ -84,53 +56,31 @@ func GetSystemLteModem(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemLteModem resources.
 type systemLteModemState struct {
-	// Login APN string for PDP-IP packet data calls.
-	Apn *string `pulumi:"apn"`
-	// Authentication type for PDP-IP packet data calls. Valid values: `none`, `pap`, `chap`.
-	Authtype *string `pulumi:"authtype"`
-	// Extra initialization string for USB LTE/WIMAX devices.
-	ExtraInit *string `pulumi:"extraInit"`
-	// Hold down timer (10 - 60 sec).
-	HolddownTimer *int `pulumi:"holddownTimer"`
-	// The interface that the modem is acting as a redundant interface for.
-	Interface *string `pulumi:"interface"`
-	// Modem operation mode. Valid values: `standalone`, `redundant`.
-	Mode *string `pulumi:"mode"`
-	// Modem port index (0 - 20).
-	ModemPort *int `pulumi:"modemPort"`
-	// Authentication password for PDP-IP packet data calls.
-	Passwd *string `pulumi:"passwd"`
-	// Enable/disable USB LTE/WIMAX device. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Authentication username for PDP-IP packet data calls.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Apn           *string `pulumi:"apn"`
+	Authtype      *string `pulumi:"authtype"`
+	ExtraInit     *string `pulumi:"extraInit"`
+	HolddownTimer *int    `pulumi:"holddownTimer"`
+	Interface     *string `pulumi:"interface"`
+	Mode          *string `pulumi:"mode"`
+	ModemPort     *int    `pulumi:"modemPort"`
+	Passwd        *string `pulumi:"passwd"`
+	Status        *string `pulumi:"status"`
+	Username      *string `pulumi:"username"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 type SystemLteModemState struct {
-	// Login APN string for PDP-IP packet data calls.
-	Apn pulumi.StringPtrInput
-	// Authentication type for PDP-IP packet data calls. Valid values: `none`, `pap`, `chap`.
-	Authtype pulumi.StringPtrInput
-	// Extra initialization string for USB LTE/WIMAX devices.
-	ExtraInit pulumi.StringPtrInput
-	// Hold down timer (10 - 60 sec).
+	Apn           pulumi.StringPtrInput
+	Authtype      pulumi.StringPtrInput
+	ExtraInit     pulumi.StringPtrInput
 	HolddownTimer pulumi.IntPtrInput
-	// The interface that the modem is acting as a redundant interface for.
-	Interface pulumi.StringPtrInput
-	// Modem operation mode. Valid values: `standalone`, `redundant`.
-	Mode pulumi.StringPtrInput
-	// Modem port index (0 - 20).
-	ModemPort pulumi.IntPtrInput
-	// Authentication password for PDP-IP packet data calls.
-	Passwd pulumi.StringPtrInput
-	// Enable/disable USB LTE/WIMAX device. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Authentication username for PDP-IP packet data calls.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interface     pulumi.StringPtrInput
+	Mode          pulumi.StringPtrInput
+	ModemPort     pulumi.IntPtrInput
+	Passwd        pulumi.StringPtrInput
+	Status        pulumi.StringPtrInput
+	Username      pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (SystemLteModemState) ElementType() reflect.Type {
@@ -138,54 +88,32 @@ func (SystemLteModemState) ElementType() reflect.Type {
 }
 
 type systemLteModemArgs struct {
-	// Login APN string for PDP-IP packet data calls.
-	Apn *string `pulumi:"apn"`
-	// Authentication type for PDP-IP packet data calls. Valid values: `none`, `pap`, `chap`.
-	Authtype *string `pulumi:"authtype"`
-	// Extra initialization string for USB LTE/WIMAX devices.
-	ExtraInit *string `pulumi:"extraInit"`
-	// Hold down timer (10 - 60 sec).
-	HolddownTimer *int `pulumi:"holddownTimer"`
-	// The interface that the modem is acting as a redundant interface for.
-	Interface *string `pulumi:"interface"`
-	// Modem operation mode. Valid values: `standalone`, `redundant`.
-	Mode *string `pulumi:"mode"`
-	// Modem port index (0 - 20).
-	ModemPort *int `pulumi:"modemPort"`
-	// Authentication password for PDP-IP packet data calls.
-	Passwd *string `pulumi:"passwd"`
-	// Enable/disable USB LTE/WIMAX device. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Authentication username for PDP-IP packet data calls.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Apn           *string `pulumi:"apn"`
+	Authtype      *string `pulumi:"authtype"`
+	ExtraInit     *string `pulumi:"extraInit"`
+	HolddownTimer *int    `pulumi:"holddownTimer"`
+	Interface     *string `pulumi:"interface"`
+	Mode          *string `pulumi:"mode"`
+	ModemPort     *int    `pulumi:"modemPort"`
+	Passwd        *string `pulumi:"passwd"`
+	Status        *string `pulumi:"status"`
+	Username      *string `pulumi:"username"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemLteModem resource.
 type SystemLteModemArgs struct {
-	// Login APN string for PDP-IP packet data calls.
-	Apn pulumi.StringPtrInput
-	// Authentication type for PDP-IP packet data calls. Valid values: `none`, `pap`, `chap`.
-	Authtype pulumi.StringPtrInput
-	// Extra initialization string for USB LTE/WIMAX devices.
-	ExtraInit pulumi.StringPtrInput
-	// Hold down timer (10 - 60 sec).
+	Apn           pulumi.StringPtrInput
+	Authtype      pulumi.StringPtrInput
+	ExtraInit     pulumi.StringPtrInput
 	HolddownTimer pulumi.IntPtrInput
-	// The interface that the modem is acting as a redundant interface for.
-	Interface pulumi.StringPtrInput
-	// Modem operation mode. Valid values: `standalone`, `redundant`.
-	Mode pulumi.StringPtrInput
-	// Modem port index (0 - 20).
-	ModemPort pulumi.IntPtrInput
-	// Authentication password for PDP-IP packet data calls.
-	Passwd pulumi.StringPtrInput
-	// Enable/disable USB LTE/WIMAX device. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Authentication username for PDP-IP packet data calls.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interface     pulumi.StringPtrInput
+	Mode          pulumi.StringPtrInput
+	ModemPort     pulumi.IntPtrInput
+	Passwd        pulumi.StringPtrInput
+	Status        pulumi.StringPtrInput
+	Username      pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (SystemLteModemArgs) ElementType() reflect.Type {
@@ -214,7 +142,7 @@ func (i *SystemLteModem) ToSystemLteModemOutputWithContext(ctx context.Context) 
 // SystemLteModemArrayInput is an input type that accepts SystemLteModemArray and SystemLteModemArrayOutput values.
 // You can construct a concrete instance of `SystemLteModemArrayInput` via:
 //
-//          SystemLteModemArray{ SystemLteModemArgs{...} }
+//	SystemLteModemArray{ SystemLteModemArgs{...} }
 type SystemLteModemArrayInput interface {
 	pulumi.Input
 
@@ -239,7 +167,7 @@ func (i SystemLteModemArray) ToSystemLteModemArrayOutputWithContext(ctx context.
 // SystemLteModemMapInput is an input type that accepts SystemLteModemMap and SystemLteModemMapOutput values.
 // You can construct a concrete instance of `SystemLteModemMapInput` via:
 //
-//          SystemLteModemMap{ "key": SystemLteModemArgs{...} }
+//	SystemLteModemMap{ "key": SystemLteModemArgs{...} }
 type SystemLteModemMapInput interface {
 	pulumi.Input
 
@@ -273,6 +201,50 @@ func (o SystemLteModemOutput) ToSystemLteModemOutput() SystemLteModemOutput {
 
 func (o SystemLteModemOutput) ToSystemLteModemOutputWithContext(ctx context.Context) SystemLteModemOutput {
 	return o
+}
+
+func (o SystemLteModemOutput) Apn() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLteModem) pulumi.StringOutput { return v.Apn }).(pulumi.StringOutput)
+}
+
+func (o SystemLteModemOutput) Authtype() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLteModem) pulumi.StringOutput { return v.Authtype }).(pulumi.StringOutput)
+}
+
+func (o SystemLteModemOutput) ExtraInit() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLteModem) pulumi.StringOutput { return v.ExtraInit }).(pulumi.StringOutput)
+}
+
+func (o SystemLteModemOutput) HolddownTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemLteModem) pulumi.IntOutput { return v.HolddownTimer }).(pulumi.IntOutput)
+}
+
+func (o SystemLteModemOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLteModem) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemLteModemOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLteModem) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o SystemLteModemOutput) ModemPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemLteModem) pulumi.IntOutput { return v.ModemPort }).(pulumi.IntOutput)
+}
+
+func (o SystemLteModemOutput) Passwd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemLteModem) pulumi.StringPtrOutput { return v.Passwd }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemLteModemOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLteModem) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemLteModemOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLteModem) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
+func (o SystemLteModemOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemLteModem) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemLteModemArrayOutput struct{ *pulumi.OutputState }

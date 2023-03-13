@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios router multicast
 func LookupRouterMulticast(ctx *pulumi.Context, args *LookupRouterMulticastArgs, opts ...pulumi.InvokeOption) (*LookupRouterMulticastResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterMulticastResult
@@ -23,25 +22,19 @@ func LookupRouterMulticast(ctx *pulumi.Context, args *LookupRouterMulticastArgs,
 
 // A collection of arguments for invoking GetRouterMulticast.
 type LookupRouterMulticastArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetRouterMulticast.
 type LookupRouterMulticastResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// PIM interfaces. The structure of `interface` block is documented below.
-	Interfaces []GetRouterMulticastInterface `pulumi:"interfaces"`
-	// Enable/disable IP multicast routing.
-	MulticastRouting string `pulumi:"multicastRouting"`
-	// PIM sparse-mode global settings. The structure of `pimSmGlobal` block is documented below.
-	PimSmGlobal GetRouterMulticastPimSmGlobal `pulumi:"pimSmGlobal"`
-	// Maximum number of multicast routes.
-	RouteLimit int `pulumi:"routeLimit"`
-	// Generate warnings when the number of multicast routes exceeds this number, must not be greater than route-limit.
-	RouteThreshold int     `pulumi:"routeThreshold"`
-	Vdomparam      *string `pulumi:"vdomparam"`
+	Id               string                          `pulumi:"id"`
+	Interfaces       []GetRouterMulticastInterface   `pulumi:"interfaces"`
+	MulticastRouting string                          `pulumi:"multicastRouting"`
+	PimSmGlobals     []GetRouterMulticastPimSmGlobal `pulumi:"pimSmGlobals"`
+	RouteLimit       int                             `pulumi:"routeLimit"`
+	RouteThreshold   int                             `pulumi:"routeThreshold"`
+	Vdomparam        *string                         `pulumi:"vdomparam"`
 }
 
 func LookupRouterMulticastOutput(ctx *pulumi.Context, args LookupRouterMulticastOutputArgs, opts ...pulumi.InvokeOption) LookupRouterMulticastResultOutput {
@@ -59,7 +52,6 @@ func LookupRouterMulticastOutput(ctx *pulumi.Context, args LookupRouterMulticast
 
 // A collection of arguments for invoking GetRouterMulticast.
 type LookupRouterMulticastOutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -87,27 +79,22 @@ func (o LookupRouterMulticastResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterMulticastResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// PIM interfaces. The structure of `interface` block is documented below.
 func (o LookupRouterMulticastResultOutput) Interfaces() GetRouterMulticastInterfaceArrayOutput {
 	return o.ApplyT(func(v LookupRouterMulticastResult) []GetRouterMulticastInterface { return v.Interfaces }).(GetRouterMulticastInterfaceArrayOutput)
 }
 
-// Enable/disable IP multicast routing.
 func (o LookupRouterMulticastResultOutput) MulticastRouting() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterMulticastResult) string { return v.MulticastRouting }).(pulumi.StringOutput)
 }
 
-// PIM sparse-mode global settings. The structure of `pimSmGlobal` block is documented below.
-func (o LookupRouterMulticastResultOutput) PimSmGlobal() GetRouterMulticastPimSmGlobalOutput {
-	return o.ApplyT(func(v LookupRouterMulticastResult) GetRouterMulticastPimSmGlobal { return v.PimSmGlobal }).(GetRouterMulticastPimSmGlobalOutput)
+func (o LookupRouterMulticastResultOutput) PimSmGlobals() GetRouterMulticastPimSmGlobalArrayOutput {
+	return o.ApplyT(func(v LookupRouterMulticastResult) []GetRouterMulticastPimSmGlobal { return v.PimSmGlobals }).(GetRouterMulticastPimSmGlobalArrayOutput)
 }
 
-// Maximum number of multicast routes.
 func (o LookupRouterMulticastResultOutput) RouteLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterMulticastResult) int { return v.RouteLimit }).(pulumi.IntOutput)
 }
 
-// Generate warnings when the number of multicast routes exceeds this number, must not be greater than route-limit.
 func (o LookupRouterMulticastResultOutput) RouteThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterMulticastResult) int { return v.RouteThreshold }).(pulumi.IntOutput)
 }

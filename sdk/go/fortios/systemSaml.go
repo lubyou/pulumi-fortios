@@ -10,94 +10,29 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Global settings for SAML authentication. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemSaml(ctx, "trname", &fortios.SystemSamlArgs{
-// 			DefaultLoginPage: pulumi.String("normal"),
-// 			DefaultProfile:   pulumi.String("admin_no_access"),
-// 			Life:             pulumi.Int(30),
-// 			Role:             pulumi.String("service-provider"),
-// 			Status:           pulumi.String("disable"),
-// 			Tolerance:        pulumi.Int(5),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Saml can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSaml:SystemSaml labelname SystemSaml
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSaml:SystemSaml labelname SystemSaml
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemSaml struct {
 	pulumi.CustomResourceState
 
-	// IdP Binding protocol. Valid values: `post`, `redirect`.
-	BindingProtocol pulumi.StringOutput `pulumi:"bindingProtocol"`
-	// Certificate to sign SAML messages.
-	Cert pulumi.StringOutput `pulumi:"cert"`
-	// Choose default login page. Valid values: `normal`, `sso`.
-	DefaultLoginPage pulumi.StringOutput `pulumi:"defaultLoginPage"`
-	// Default profile for new SSO admin.
-	DefaultProfile pulumi.StringOutput `pulumi:"defaultProfile"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// SP entity ID.
-	EntityId pulumi.StringOutput `pulumi:"entityId"`
-	// IDP certificate name.
-	IdpCert pulumi.StringOutput `pulumi:"idpCert"`
-	// IDP entity ID.
-	IdpEntityId pulumi.StringOutput `pulumi:"idpEntityId"`
-	// IDP single logout URL.
-	IdpSingleLogoutUrl pulumi.StringOutput `pulumi:"idpSingleLogoutUrl"`
-	// IDP single sign-on URL.
-	IdpSingleSignOnUrl pulumi.StringOutput `pulumi:"idpSingleSignOnUrl"`
-	// Length of the range of time when the assertion is valid (in minutes).
-	Life pulumi.IntOutput `pulumi:"life"`
-	// SP portal URL.
-	PortalUrl pulumi.StringOutput `pulumi:"portalUrl"`
-	// SAML role. Valid values: `identity-provider`, `service-provider`.
-	Role pulumi.StringOutput `pulumi:"role"`
-	// Server address.
-	ServerAddress pulumi.StringOutput `pulumi:"serverAddress"`
-	// Authorized service providers. The structure of `serviceProviders` block is documented below.
-	ServiceProviders SystemSamlServiceProviderArrayOutput `pulumi:"serviceProviders"`
-	// SP single logout URL.
-	SingleLogoutUrl pulumi.StringOutput `pulumi:"singleLogoutUrl"`
-	// SP single sign-on URL.
-	SingleSignOnUrl pulumi.StringOutput `pulumi:"singleSignOnUrl"`
-	// Enable/disable SAML authentication (default = disable). Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Tolerance to the range of time when the assertion is valid (in minutes).
-	Tolerance pulumi.IntOutput `pulumi:"tolerance"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	BindingProtocol     pulumi.StringOutput                  `pulumi:"bindingProtocol"`
+	Cert                pulumi.StringOutput                  `pulumi:"cert"`
+	DefaultLoginPage    pulumi.StringOutput                  `pulumi:"defaultLoginPage"`
+	DefaultProfile      pulumi.StringOutput                  `pulumi:"defaultProfile"`
+	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	EntityId            pulumi.StringOutput                  `pulumi:"entityId"`
+	IdpCert             pulumi.StringOutput                  `pulumi:"idpCert"`
+	IdpEntityId         pulumi.StringOutput                  `pulumi:"idpEntityId"`
+	IdpSingleLogoutUrl  pulumi.StringOutput                  `pulumi:"idpSingleLogoutUrl"`
+	IdpSingleSignOnUrl  pulumi.StringOutput                  `pulumi:"idpSingleSignOnUrl"`
+	Life                pulumi.IntOutput                     `pulumi:"life"`
+	PortalUrl           pulumi.StringOutput                  `pulumi:"portalUrl"`
+	Role                pulumi.StringOutput                  `pulumi:"role"`
+	ServerAddress       pulumi.StringOutput                  `pulumi:"serverAddress"`
+	ServiceProviders    SystemSamlServiceProviderArrayOutput `pulumi:"serviceProviders"`
+	SingleLogoutUrl     pulumi.StringOutput                  `pulumi:"singleLogoutUrl"`
+	SingleSignOnUrl     pulumi.StringOutput                  `pulumi:"singleSignOnUrl"`
+	Status              pulumi.StringOutput                  `pulumi:"status"`
+	Tolerance           pulumi.IntOutput                     `pulumi:"tolerance"`
+	Vdomparam           pulumi.StringPtrOutput               `pulumi:"vdomparam"`
 }
 
 // NewSystemSaml registers a new resource with the given unique name, arguments, and options.
@@ -130,89 +65,49 @@ func GetSystemSaml(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSaml resources.
 type systemSamlState struct {
-	// IdP Binding protocol. Valid values: `post`, `redirect`.
-	BindingProtocol *string `pulumi:"bindingProtocol"`
-	// Certificate to sign SAML messages.
-	Cert *string `pulumi:"cert"`
-	// Choose default login page. Valid values: `normal`, `sso`.
-	DefaultLoginPage *string `pulumi:"defaultLoginPage"`
-	// Default profile for new SSO admin.
-	DefaultProfile *string `pulumi:"defaultProfile"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// SP entity ID.
-	EntityId *string `pulumi:"entityId"`
-	// IDP certificate name.
-	IdpCert *string `pulumi:"idpCert"`
-	// IDP entity ID.
-	IdpEntityId *string `pulumi:"idpEntityId"`
-	// IDP single logout URL.
-	IdpSingleLogoutUrl *string `pulumi:"idpSingleLogoutUrl"`
-	// IDP single sign-on URL.
-	IdpSingleSignOnUrl *string `pulumi:"idpSingleSignOnUrl"`
-	// Length of the range of time when the assertion is valid (in minutes).
-	Life *int `pulumi:"life"`
-	// SP portal URL.
-	PortalUrl *string `pulumi:"portalUrl"`
-	// SAML role. Valid values: `identity-provider`, `service-provider`.
-	Role *string `pulumi:"role"`
-	// Server address.
-	ServerAddress *string `pulumi:"serverAddress"`
-	// Authorized service providers. The structure of `serviceProviders` block is documented below.
-	ServiceProviders []SystemSamlServiceProvider `pulumi:"serviceProviders"`
-	// SP single logout URL.
-	SingleLogoutUrl *string `pulumi:"singleLogoutUrl"`
-	// SP single sign-on URL.
-	SingleSignOnUrl *string `pulumi:"singleSignOnUrl"`
-	// Enable/disable SAML authentication (default = disable). Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Tolerance to the range of time when the assertion is valid (in minutes).
-	Tolerance *int `pulumi:"tolerance"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	BindingProtocol     *string                     `pulumi:"bindingProtocol"`
+	Cert                *string                     `pulumi:"cert"`
+	DefaultLoginPage    *string                     `pulumi:"defaultLoginPage"`
+	DefaultProfile      *string                     `pulumi:"defaultProfile"`
+	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	EntityId            *string                     `pulumi:"entityId"`
+	IdpCert             *string                     `pulumi:"idpCert"`
+	IdpEntityId         *string                     `pulumi:"idpEntityId"`
+	IdpSingleLogoutUrl  *string                     `pulumi:"idpSingleLogoutUrl"`
+	IdpSingleSignOnUrl  *string                     `pulumi:"idpSingleSignOnUrl"`
+	Life                *int                        `pulumi:"life"`
+	PortalUrl           *string                     `pulumi:"portalUrl"`
+	Role                *string                     `pulumi:"role"`
+	ServerAddress       *string                     `pulumi:"serverAddress"`
+	ServiceProviders    []SystemSamlServiceProvider `pulumi:"serviceProviders"`
+	SingleLogoutUrl     *string                     `pulumi:"singleLogoutUrl"`
+	SingleSignOnUrl     *string                     `pulumi:"singleSignOnUrl"`
+	Status              *string                     `pulumi:"status"`
+	Tolerance           *int                        `pulumi:"tolerance"`
+	Vdomparam           *string                     `pulumi:"vdomparam"`
 }
 
 type SystemSamlState struct {
-	// IdP Binding protocol. Valid values: `post`, `redirect`.
-	BindingProtocol pulumi.StringPtrInput
-	// Certificate to sign SAML messages.
-	Cert pulumi.StringPtrInput
-	// Choose default login page. Valid values: `normal`, `sso`.
-	DefaultLoginPage pulumi.StringPtrInput
-	// Default profile for new SSO admin.
-	DefaultProfile pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	BindingProtocol     pulumi.StringPtrInput
+	Cert                pulumi.StringPtrInput
+	DefaultLoginPage    pulumi.StringPtrInput
+	DefaultProfile      pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// SP entity ID.
-	EntityId pulumi.StringPtrInput
-	// IDP certificate name.
-	IdpCert pulumi.StringPtrInput
-	// IDP entity ID.
-	IdpEntityId pulumi.StringPtrInput
-	// IDP single logout URL.
-	IdpSingleLogoutUrl pulumi.StringPtrInput
-	// IDP single sign-on URL.
-	IdpSingleSignOnUrl pulumi.StringPtrInput
-	// Length of the range of time when the assertion is valid (in minutes).
-	Life pulumi.IntPtrInput
-	// SP portal URL.
-	PortalUrl pulumi.StringPtrInput
-	// SAML role. Valid values: `identity-provider`, `service-provider`.
-	Role pulumi.StringPtrInput
-	// Server address.
-	ServerAddress pulumi.StringPtrInput
-	// Authorized service providers. The structure of `serviceProviders` block is documented below.
-	ServiceProviders SystemSamlServiceProviderArrayInput
-	// SP single logout URL.
-	SingleLogoutUrl pulumi.StringPtrInput
-	// SP single sign-on URL.
-	SingleSignOnUrl pulumi.StringPtrInput
-	// Enable/disable SAML authentication (default = disable). Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Tolerance to the range of time when the assertion is valid (in minutes).
-	Tolerance pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	EntityId            pulumi.StringPtrInput
+	IdpCert             pulumi.StringPtrInput
+	IdpEntityId         pulumi.StringPtrInput
+	IdpSingleLogoutUrl  pulumi.StringPtrInput
+	IdpSingleSignOnUrl  pulumi.StringPtrInput
+	Life                pulumi.IntPtrInput
+	PortalUrl           pulumi.StringPtrInput
+	Role                pulumi.StringPtrInput
+	ServerAddress       pulumi.StringPtrInput
+	ServiceProviders    SystemSamlServiceProviderArrayInput
+	SingleLogoutUrl     pulumi.StringPtrInput
+	SingleSignOnUrl     pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	Tolerance           pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemSamlState) ElementType() reflect.Type {
@@ -220,90 +115,50 @@ func (SystemSamlState) ElementType() reflect.Type {
 }
 
 type systemSamlArgs struct {
-	// IdP Binding protocol. Valid values: `post`, `redirect`.
-	BindingProtocol *string `pulumi:"bindingProtocol"`
-	// Certificate to sign SAML messages.
-	Cert *string `pulumi:"cert"`
-	// Choose default login page. Valid values: `normal`, `sso`.
-	DefaultLoginPage *string `pulumi:"defaultLoginPage"`
-	// Default profile for new SSO admin.
-	DefaultProfile *string `pulumi:"defaultProfile"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// SP entity ID.
-	EntityId *string `pulumi:"entityId"`
-	// IDP certificate name.
-	IdpCert *string `pulumi:"idpCert"`
-	// IDP entity ID.
-	IdpEntityId *string `pulumi:"idpEntityId"`
-	// IDP single logout URL.
-	IdpSingleLogoutUrl *string `pulumi:"idpSingleLogoutUrl"`
-	// IDP single sign-on URL.
-	IdpSingleSignOnUrl *string `pulumi:"idpSingleSignOnUrl"`
-	// Length of the range of time when the assertion is valid (in minutes).
-	Life *int `pulumi:"life"`
-	// SP portal URL.
-	PortalUrl *string `pulumi:"portalUrl"`
-	// SAML role. Valid values: `identity-provider`, `service-provider`.
-	Role *string `pulumi:"role"`
-	// Server address.
-	ServerAddress *string `pulumi:"serverAddress"`
-	// Authorized service providers. The structure of `serviceProviders` block is documented below.
-	ServiceProviders []SystemSamlServiceProvider `pulumi:"serviceProviders"`
-	// SP single logout URL.
-	SingleLogoutUrl *string `pulumi:"singleLogoutUrl"`
-	// SP single sign-on URL.
-	SingleSignOnUrl *string `pulumi:"singleSignOnUrl"`
-	// Enable/disable SAML authentication (default = disable). Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Tolerance to the range of time when the assertion is valid (in minutes).
-	Tolerance *int `pulumi:"tolerance"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	BindingProtocol     *string                     `pulumi:"bindingProtocol"`
+	Cert                *string                     `pulumi:"cert"`
+	DefaultLoginPage    *string                     `pulumi:"defaultLoginPage"`
+	DefaultProfile      *string                     `pulumi:"defaultProfile"`
+	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	EntityId            *string                     `pulumi:"entityId"`
+	IdpCert             *string                     `pulumi:"idpCert"`
+	IdpEntityId         *string                     `pulumi:"idpEntityId"`
+	IdpSingleLogoutUrl  *string                     `pulumi:"idpSingleLogoutUrl"`
+	IdpSingleSignOnUrl  *string                     `pulumi:"idpSingleSignOnUrl"`
+	Life                *int                        `pulumi:"life"`
+	PortalUrl           *string                     `pulumi:"portalUrl"`
+	Role                *string                     `pulumi:"role"`
+	ServerAddress       *string                     `pulumi:"serverAddress"`
+	ServiceProviders    []SystemSamlServiceProvider `pulumi:"serviceProviders"`
+	SingleLogoutUrl     *string                     `pulumi:"singleLogoutUrl"`
+	SingleSignOnUrl     *string                     `pulumi:"singleSignOnUrl"`
+	Status              *string                     `pulumi:"status"`
+	Tolerance           *int                        `pulumi:"tolerance"`
+	Vdomparam           *string                     `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemSaml resource.
 type SystemSamlArgs struct {
-	// IdP Binding protocol. Valid values: `post`, `redirect`.
-	BindingProtocol pulumi.StringPtrInput
-	// Certificate to sign SAML messages.
-	Cert pulumi.StringPtrInput
-	// Choose default login page. Valid values: `normal`, `sso`.
-	DefaultLoginPage pulumi.StringPtrInput
-	// Default profile for new SSO admin.
-	DefaultProfile pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	BindingProtocol     pulumi.StringPtrInput
+	Cert                pulumi.StringPtrInput
+	DefaultLoginPage    pulumi.StringPtrInput
+	DefaultProfile      pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// SP entity ID.
-	EntityId pulumi.StringPtrInput
-	// IDP certificate name.
-	IdpCert pulumi.StringPtrInput
-	// IDP entity ID.
-	IdpEntityId pulumi.StringPtrInput
-	// IDP single logout URL.
-	IdpSingleLogoutUrl pulumi.StringPtrInput
-	// IDP single sign-on URL.
-	IdpSingleSignOnUrl pulumi.StringPtrInput
-	// Length of the range of time when the assertion is valid (in minutes).
-	Life pulumi.IntPtrInput
-	// SP portal URL.
-	PortalUrl pulumi.StringPtrInput
-	// SAML role. Valid values: `identity-provider`, `service-provider`.
-	Role pulumi.StringPtrInput
-	// Server address.
-	ServerAddress pulumi.StringPtrInput
-	// Authorized service providers. The structure of `serviceProviders` block is documented below.
-	ServiceProviders SystemSamlServiceProviderArrayInput
-	// SP single logout URL.
-	SingleLogoutUrl pulumi.StringPtrInput
-	// SP single sign-on URL.
-	SingleSignOnUrl pulumi.StringPtrInput
-	// Enable/disable SAML authentication (default = disable). Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Tolerance to the range of time when the assertion is valid (in minutes).
-	Tolerance pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	EntityId            pulumi.StringPtrInput
+	IdpCert             pulumi.StringPtrInput
+	IdpEntityId         pulumi.StringPtrInput
+	IdpSingleLogoutUrl  pulumi.StringPtrInput
+	IdpSingleSignOnUrl  pulumi.StringPtrInput
+	Life                pulumi.IntPtrInput
+	PortalUrl           pulumi.StringPtrInput
+	Role                pulumi.StringPtrInput
+	ServerAddress       pulumi.StringPtrInput
+	ServiceProviders    SystemSamlServiceProviderArrayInput
+	SingleLogoutUrl     pulumi.StringPtrInput
+	SingleSignOnUrl     pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	Tolerance           pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemSamlArgs) ElementType() reflect.Type {
@@ -332,7 +187,7 @@ func (i *SystemSaml) ToSystemSamlOutputWithContext(ctx context.Context) SystemSa
 // SystemSamlArrayInput is an input type that accepts SystemSamlArray and SystemSamlArrayOutput values.
 // You can construct a concrete instance of `SystemSamlArrayInput` via:
 //
-//          SystemSamlArray{ SystemSamlArgs{...} }
+//	SystemSamlArray{ SystemSamlArgs{...} }
 type SystemSamlArrayInput interface {
 	pulumi.Input
 
@@ -357,7 +212,7 @@ func (i SystemSamlArray) ToSystemSamlArrayOutputWithContext(ctx context.Context)
 // SystemSamlMapInput is an input type that accepts SystemSamlMap and SystemSamlMapOutput values.
 // You can construct a concrete instance of `SystemSamlMapInput` via:
 //
-//          SystemSamlMap{ "key": SystemSamlArgs{...} }
+//	SystemSamlMap{ "key": SystemSamlArgs{...} }
 type SystemSamlMapInput interface {
 	pulumi.Input
 
@@ -391,6 +246,86 @@ func (o SystemSamlOutput) ToSystemSamlOutput() SystemSamlOutput {
 
 func (o SystemSamlOutput) ToSystemSamlOutputWithContext(ctx context.Context) SystemSamlOutput {
 	return o
+}
+
+func (o SystemSamlOutput) BindingProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.BindingProtocol }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) Cert() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.Cert }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) DefaultLoginPage() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.DefaultLoginPage }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) DefaultProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.DefaultProfile }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSamlOutput) EntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.EntityId }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) IdpCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.IdpCert }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) IdpEntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.IdpEntityId }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) IdpSingleLogoutUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.IdpSingleLogoutUrl }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) IdpSingleSignOnUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.IdpSingleSignOnUrl }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) Life() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.IntOutput { return v.Life }).(pulumi.IntOutput)
+}
+
+func (o SystemSamlOutput) PortalUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.PortalUrl }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) ServerAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.ServerAddress }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) ServiceProviders() SystemSamlServiceProviderArrayOutput {
+	return o.ApplyT(func(v *SystemSaml) SystemSamlServiceProviderArrayOutput { return v.ServiceProviders }).(SystemSamlServiceProviderArrayOutput)
+}
+
+func (o SystemSamlOutput) SingleLogoutUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.SingleLogoutUrl }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) SingleSignOnUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.SingleSignOnUrl }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) Tolerance() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.IntOutput { return v.Tolerance }).(pulumi.IntOutput)
+}
+
+func (o SystemSamlOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemSamlArrayOutput struct{ *pulumi.OutputState }

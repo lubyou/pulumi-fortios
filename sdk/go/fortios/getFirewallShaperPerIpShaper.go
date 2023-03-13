@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewallshaper peripshaper
 func LookupFirewallShaperPerIpShaper(ctx *pulumi.Context, args *LookupFirewallShaperPerIpShaperArgs, opts ...pulumi.InvokeOption) (*LookupFirewallShaperPerIpShaperResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallShaperPerIpShaperResult
@@ -23,37 +22,25 @@ func LookupFirewallShaperPerIpShaper(ctx *pulumi.Context, args *LookupFirewallSh
 
 // A collection of arguments for invoking GetFirewallShaperPerIpShaper.
 type LookupFirewallShaperPerIpShaperArgs struct {
-	// Specify the name of the desired firewallshaper peripshaper.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallShaperPerIpShaper.
 type LookupFirewallShaperPerIpShaperResult struct {
-	// Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps).
-	BandwidthUnit string `pulumi:"bandwidthUnit"`
-	// Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper.
-	DiffservForward string `pulumi:"diffservForward"`
-	// Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper.
-	DiffservReverse string `pulumi:"diffservReverse"`
-	// Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
+	BandwidthUnit       string `pulumi:"bandwidthUnit"`
+	DiffservForward     string `pulumi:"diffservForward"`
+	DiffservReverse     string `pulumi:"diffservReverse"`
 	DiffservcodeForward string `pulumi:"diffservcodeForward"`
-	// Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
-	DiffservcodeRev string `pulumi:"diffservcodeRev"`
+	DiffservcodeRev     string `pulumi:"diffservcodeRev"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-	MaxBandwidth int `pulumi:"maxBandwidth"`
-	// Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-	MaxConcurrentSession int `pulumi:"maxConcurrentSession"`
-	// Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-	MaxConcurrentTcpSession int `pulumi:"maxConcurrentTcpSession"`
-	// Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-	MaxConcurrentUdpSession int `pulumi:"maxConcurrentUdpSession"`
-	// Traffic shaper name.
-	Name      string  `pulumi:"name"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id                      string  `pulumi:"id"`
+	MaxBandwidth            int     `pulumi:"maxBandwidth"`
+	MaxConcurrentSession    int     `pulumi:"maxConcurrentSession"`
+	MaxConcurrentTcpSession int     `pulumi:"maxConcurrentTcpSession"`
+	MaxConcurrentUdpSession int     `pulumi:"maxConcurrentUdpSession"`
+	Name                    string  `pulumi:"name"`
+	Vdomparam               *string `pulumi:"vdomparam"`
 }
 
 func LookupFirewallShaperPerIpShaperOutput(ctx *pulumi.Context, args LookupFirewallShaperPerIpShaperOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallShaperPerIpShaperResultOutput {
@@ -71,9 +58,7 @@ func LookupFirewallShaperPerIpShaperOutput(ctx *pulumi.Context, args LookupFirew
 
 // A collection of arguments for invoking GetFirewallShaperPerIpShaper.
 type LookupFirewallShaperPerIpShaperOutputArgs struct {
-	// Specify the name of the desired firewallshaper peripshaper.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -96,27 +81,22 @@ func (o LookupFirewallShaperPerIpShaperResultOutput) ToLookupFirewallShaperPerIp
 	return o
 }
 
-// Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps).
 func (o LookupFirewallShaperPerIpShaperResultOutput) BandwidthUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) string { return v.BandwidthUnit }).(pulumi.StringOutput)
 }
 
-// Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper.
 func (o LookupFirewallShaperPerIpShaperResultOutput) DiffservForward() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) string { return v.DiffservForward }).(pulumi.StringOutput)
 }
 
-// Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper.
 func (o LookupFirewallShaperPerIpShaperResultOutput) DiffservReverse() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) string { return v.DiffservReverse }).(pulumi.StringOutput)
 }
 
-// Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
 func (o LookupFirewallShaperPerIpShaperResultOutput) DiffservcodeForward() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) string { return v.DiffservcodeForward }).(pulumi.StringOutput)
 }
 
-// Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
 func (o LookupFirewallShaperPerIpShaperResultOutput) DiffservcodeRev() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) string { return v.DiffservcodeRev }).(pulumi.StringOutput)
 }
@@ -126,27 +106,22 @@ func (o LookupFirewallShaperPerIpShaperResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
 func (o LookupFirewallShaperPerIpShaperResultOutput) MaxBandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) int { return v.MaxBandwidth }).(pulumi.IntOutput)
 }
 
-// Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
 func (o LookupFirewallShaperPerIpShaperResultOutput) MaxConcurrentSession() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) int { return v.MaxConcurrentSession }).(pulumi.IntOutput)
 }
 
-// Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
 func (o LookupFirewallShaperPerIpShaperResultOutput) MaxConcurrentTcpSession() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) int { return v.MaxConcurrentTcpSession }).(pulumi.IntOutput)
 }
 
-// Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
 func (o LookupFirewallShaperPerIpShaperResultOutput) MaxConcurrentUdpSession() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) int { return v.MaxConcurrentUdpSession }).(pulumi.IntOutput)
 }
 
-// Traffic shaper name.
 func (o LookupFirewallShaperPerIpShaperResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) string { return v.Name }).(pulumi.StringOutput)
 }

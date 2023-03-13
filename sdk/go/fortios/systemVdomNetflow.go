@@ -10,66 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure NetFlow per VDOM.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemVdomNetflow(ctx, "trname", &fortios.SystemVdomNetflowArgs{
-// 			CollectorIp:   pulumi.String("0.0.0.0"),
-// 			CollectorPort: pulumi.Int(2055),
-// 			SourceIp:      pulumi.String("0.0.0.0"),
-// 			VdomNetflow:   pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System VdomNetflow can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVdomNetflow:SystemVdomNetflow labelname SystemVdomNetflow
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVdomNetflow:SystemVdomNetflow labelname SystemVdomNetflow
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemVdomNetflow struct {
 	pulumi.CustomResourceState
 
-	// NetFlow collector IP address.
-	CollectorIp pulumi.StringOutput `pulumi:"collectorIp"`
-	// NetFlow collector port number.
-	CollectorPort pulumi.IntOutput `pulumi:"collectorPort"`
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
-	// Source IP address for communication with the NetFlow agent.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Enable/disable NetFlow per VDOM. Valid values: `enable`, `disable`.
-	VdomNetflow pulumi.StringOutput `pulumi:"vdomNetflow"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	CollectorIp           pulumi.StringOutput    `pulumi:"collectorIp"`
+	CollectorPort         pulumi.IntOutput       `pulumi:"collectorPort"`
+	Interface             pulumi.StringOutput    `pulumi:"interface"`
+	InterfaceSelectMethod pulumi.StringOutput    `pulumi:"interfaceSelectMethod"`
+	SourceIp              pulumi.StringOutput    `pulumi:"sourceIp"`
+	VdomNetflow           pulumi.StringOutput    `pulumi:"vdomNetflow"`
+	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemVdomNetflow registers a new resource with the given unique name, arguments, and options.
@@ -102,37 +52,23 @@ func GetSystemVdomNetflow(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemVdomNetflow resources.
 type systemVdomNetflowState struct {
-	// NetFlow collector IP address.
-	CollectorIp *string `pulumi:"collectorIp"`
-	// NetFlow collector port number.
-	CollectorPort *int `pulumi:"collectorPort"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	CollectorIp           *string `pulumi:"collectorIp"`
+	CollectorPort         *int    `pulumi:"collectorPort"`
+	Interface             *string `pulumi:"interface"`
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Source IP address for communication with the NetFlow agent.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable NetFlow per VDOM. Valid values: `enable`, `disable`.
-	VdomNetflow *string `pulumi:"vdomNetflow"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	VdomNetflow           *string `pulumi:"vdomNetflow"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 type SystemVdomNetflowState struct {
-	// NetFlow collector IP address.
-	CollectorIp pulumi.StringPtrInput
-	// NetFlow collector port number.
-	CollectorPort pulumi.IntPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	CollectorIp           pulumi.StringPtrInput
+	CollectorPort         pulumi.IntPtrInput
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// Source IP address for communication with the NetFlow agent.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable NetFlow per VDOM. Valid values: `enable`, `disable`.
-	VdomNetflow pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	VdomNetflow           pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SystemVdomNetflowState) ElementType() reflect.Type {
@@ -140,38 +76,24 @@ func (SystemVdomNetflowState) ElementType() reflect.Type {
 }
 
 type systemVdomNetflowArgs struct {
-	// NetFlow collector IP address.
-	CollectorIp *string `pulumi:"collectorIp"`
-	// NetFlow collector port number.
-	CollectorPort *int `pulumi:"collectorPort"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	CollectorIp           *string `pulumi:"collectorIp"`
+	CollectorPort         *int    `pulumi:"collectorPort"`
+	Interface             *string `pulumi:"interface"`
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Source IP address for communication with the NetFlow agent.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable NetFlow per VDOM. Valid values: `enable`, `disable`.
-	VdomNetflow *string `pulumi:"vdomNetflow"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	VdomNetflow           *string `pulumi:"vdomNetflow"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemVdomNetflow resource.
 type SystemVdomNetflowArgs struct {
-	// NetFlow collector IP address.
-	CollectorIp pulumi.StringPtrInput
-	// NetFlow collector port number.
-	CollectorPort pulumi.IntPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	CollectorIp           pulumi.StringPtrInput
+	CollectorPort         pulumi.IntPtrInput
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// Source IP address for communication with the NetFlow agent.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable NetFlow per VDOM. Valid values: `enable`, `disable`.
-	VdomNetflow pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	VdomNetflow           pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SystemVdomNetflowArgs) ElementType() reflect.Type {
@@ -200,7 +122,7 @@ func (i *SystemVdomNetflow) ToSystemVdomNetflowOutputWithContext(ctx context.Con
 // SystemVdomNetflowArrayInput is an input type that accepts SystemVdomNetflowArray and SystemVdomNetflowArrayOutput values.
 // You can construct a concrete instance of `SystemVdomNetflowArrayInput` via:
 //
-//          SystemVdomNetflowArray{ SystemVdomNetflowArgs{...} }
+//	SystemVdomNetflowArray{ SystemVdomNetflowArgs{...} }
 type SystemVdomNetflowArrayInput interface {
 	pulumi.Input
 
@@ -225,7 +147,7 @@ func (i SystemVdomNetflowArray) ToSystemVdomNetflowArrayOutputWithContext(ctx co
 // SystemVdomNetflowMapInput is an input type that accepts SystemVdomNetflowMap and SystemVdomNetflowMapOutput values.
 // You can construct a concrete instance of `SystemVdomNetflowMapInput` via:
 //
-//          SystemVdomNetflowMap{ "key": SystemVdomNetflowArgs{...} }
+//	SystemVdomNetflowMap{ "key": SystemVdomNetflowArgs{...} }
 type SystemVdomNetflowMapInput interface {
 	pulumi.Input
 
@@ -259,6 +181,34 @@ func (o SystemVdomNetflowOutput) ToSystemVdomNetflowOutput() SystemVdomNetflowOu
 
 func (o SystemVdomNetflowOutput) ToSystemVdomNetflowOutputWithContext(ctx context.Context) SystemVdomNetflowOutput {
 	return o
+}
+
+func (o SystemVdomNetflowOutput) CollectorIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomNetflow) pulumi.StringOutput { return v.CollectorIp }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomNetflowOutput) CollectorPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemVdomNetflow) pulumi.IntOutput { return v.CollectorPort }).(pulumi.IntOutput)
+}
+
+func (o SystemVdomNetflowOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomNetflow) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomNetflowOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomNetflow) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomNetflowOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomNetflow) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomNetflowOutput) VdomNetflow() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomNetflow) pulumi.StringOutput { return v.VdomNetflow }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomNetflowOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVdomNetflow) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemVdomNetflowArrayOutput struct{ *pulumi.OutputState }

@@ -4,42 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure per-IP traffic shaper.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallShaperPerIpShaper("trname", {
- *     bandwidthUnit: "kbps",
- *     diffservForward: "disable",
- *     diffservReverse: "disable",
- *     diffservcodeForward: "000000",
- *     diffservcodeRev: "000000",
- *     maxBandwidth: 1024,
- *     maxConcurrentSession: 33,
- * });
- * ```
- *
- * ## Import
- *
- * FirewallShaper PerIpShaper can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallShaperPerIpShaper:FirewallShaperPerIpShaper labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallShaperPerIpShaper:FirewallShaperPerIpShaper labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallShaperPerIpShaper extends pulumi.CustomResource {
     /**
      * Get an existing FirewallShaperPerIpShaper resource's state with the given name, ID, and optional extra
@@ -68,49 +32,16 @@ export class FirewallShaperPerIpShaper extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallShaperPerIpShaper.__pulumiType;
     }
 
-    /**
-     * Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
-     */
     public readonly bandwidthUnit!: pulumi.Output<string>;
-    /**
-     * Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-     */
     public readonly diffservForward!: pulumi.Output<string>;
-    /**
-     * Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-     */
     public readonly diffservReverse!: pulumi.Output<string>;
-    /**
-     * Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
-     */
     public readonly diffservcodeForward!: pulumi.Output<string>;
-    /**
-     * Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
-     */
     public readonly diffservcodeRev!: pulumi.Output<string>;
-    /**
-     * Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-     */
     public readonly maxBandwidth!: pulumi.Output<number>;
-    /**
-     * Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-     */
     public readonly maxConcurrentSession!: pulumi.Output<number>;
-    /**
-     * Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-     */
     public readonly maxConcurrentTcpSession!: pulumi.Output<number>;
-    /**
-     * Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-     */
     public readonly maxConcurrentUdpSession!: pulumi.Output<number>;
-    /**
-     * Traffic shaper name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -160,49 +91,16 @@ export class FirewallShaperPerIpShaper extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallShaperPerIpShaper resources.
  */
 export interface FirewallShaperPerIpShaperState {
-    /**
-     * Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
-     */
     bandwidthUnit?: pulumi.Input<string>;
-    /**
-     * Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-     */
     diffservForward?: pulumi.Input<string>;
-    /**
-     * Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-     */
     diffservReverse?: pulumi.Input<string>;
-    /**
-     * Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
-     */
     diffservcodeForward?: pulumi.Input<string>;
-    /**
-     * Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
-     */
     diffservcodeRev?: pulumi.Input<string>;
-    /**
-     * Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-     */
     maxBandwidth?: pulumi.Input<number>;
-    /**
-     * Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-     */
     maxConcurrentSession?: pulumi.Input<number>;
-    /**
-     * Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-     */
     maxConcurrentTcpSession?: pulumi.Input<number>;
-    /**
-     * Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-     */
     maxConcurrentUdpSession?: pulumi.Input<number>;
-    /**
-     * Traffic shaper name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -210,48 +108,15 @@ export interface FirewallShaperPerIpShaperState {
  * The set of arguments for constructing a FirewallShaperPerIpShaper resource.
  */
 export interface FirewallShaperPerIpShaperArgs {
-    /**
-     * Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
-     */
     bandwidthUnit?: pulumi.Input<string>;
-    /**
-     * Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-     */
     diffservForward?: pulumi.Input<string>;
-    /**
-     * Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-     */
     diffservReverse?: pulumi.Input<string>;
-    /**
-     * Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
-     */
     diffservcodeForward?: pulumi.Input<string>;
-    /**
-     * Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
-     */
     diffservcodeRev?: pulumi.Input<string>;
-    /**
-     * Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-     */
     maxBandwidth?: pulumi.Input<number>;
-    /**
-     * Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-     */
     maxConcurrentSession?: pulumi.Input<number>;
-    /**
-     * Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-     */
     maxConcurrentTcpSession?: pulumi.Input<number>;
-    /**
-     * Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-     */
     maxConcurrentUdpSession?: pulumi.Input<number>;
-    /**
-     * Traffic shaper name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

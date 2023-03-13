@@ -4,28 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.RouterStatic`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const sample1 = fortios.GetRouterStaticList({
- *     filter: "seq_num>1",
- * });
- * export const output1 = sample1.then(sample1 => sample1.seqNumlists);
- * ```
- */
 export function getRouterStaticList(args?: GetRouterStaticListArgs, opts?: pulumi.InvokeOptions): Promise<GetRouterStaticListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getRouterStaticList:GetRouterStaticList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -37,9 +19,6 @@ export function getRouterStaticList(args?: GetRouterStaticListArgs, opts?: pulum
  */
 export interface GetRouterStaticListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -52,15 +31,11 @@ export interface GetRouterStaticListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.RouterStatic`.
-     */
     readonly seqNumlists: number[];
     readonly vdomparam?: string;
 }
-
 export function getRouterStaticListOutput(args?: GetRouterStaticListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterStaticListResult> {
-    return pulumi.output(args).apply(a => getRouterStaticList(a, opts))
+    return pulumi.output(args).apply((a: any) => getRouterStaticList(a, opts))
 }
 
 /**
@@ -68,8 +43,5 @@ export function getRouterStaticListOutput(args?: GetRouterStaticListOutputArgs, 
  */
 export interface GetRouterStaticListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

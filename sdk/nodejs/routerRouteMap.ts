@@ -2,69 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure route maps.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.RouterRouteMap("trname", {
- *     rules: [{
- *         action: "deny",
- *         matchCommunityExact: "disable",
- *         matchFlags: 0,
- *         matchMetric: 0,
- *         matchOrigin: "none",
- *         matchRouteType: "No type specified",
- *         matchTag: 0,
- *         setAggregatorAs: 0,
- *         setAggregatorIp: "0.0.0.0",
- *         setAspathAction: "prepend",
- *         setAtomicAggregate: "disable",
- *         setCommunityAdditive: "disable",
- *         setDampeningMaxSuppress: 0,
- *         setDampeningReachabilityHalfLife: 0,
- *         setDampeningReuse: 0,
- *         setDampeningSuppress: 0,
- *         setDampeningUnreachabilityHalfLife: 0,
- *         setFlags: 128,
- *         setIp6Nexthop: "::",
- *         setIp6NexthopLocal: "::",
- *         setIpNexthop: "0.0.0.0",
- *         setLocalPreference: 0,
- *         setMetric: 0,
- *         setMetricType: "No type specified",
- *         setOrigin: "none",
- *         setOriginatorId: "0.0.0.0",
- *         setRouteTag: 0,
- *         setTag: 0,
- *         setWeight: 21,
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * Router RouteMap can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerRouteMap:RouterRouteMap labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerRouteMap:RouterRouteMap labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterRouteMap extends pulumi.CustomResource {
     /**
      * Get an existing RouterRouteMap resource's state with the given name, ID, and optional extra
@@ -93,25 +34,10 @@ export class RouterRouteMap extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterRouteMap.__pulumiType;
     }
 
-    /**
-     * Optional comments.
-     */
     public readonly comments!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Rule. The structure of `rule` block is documented below.
-     */
     public readonly rules!: pulumi.Output<outputs.RouterRouteMapRule[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -149,25 +75,10 @@ export class RouterRouteMap extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterRouteMap resources.
  */
 export interface RouterRouteMapState {
-    /**
-     * Optional comments.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Rule. The structure of `rule` block is documented below.
-     */
     rules?: pulumi.Input<pulumi.Input<inputs.RouterRouteMapRule>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -175,24 +86,9 @@ export interface RouterRouteMapState {
  * The set of arguments for constructing a RouterRouteMap resource.
  */
 export interface RouterRouteMapArgs {
-    /**
-     * Optional comments.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Rule. The structure of `rule` block is documented below.
-     */
     rules?: pulumi.Input<pulumi.Input<inputs.RouterRouteMapRule>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

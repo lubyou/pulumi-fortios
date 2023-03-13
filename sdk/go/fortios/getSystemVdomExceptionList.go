@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemVdomException`.
 func GetSystemVdomExceptionList(ctx *pulumi.Context, args *GetSystemVdomExceptionListArgs, opts ...pulumi.InvokeOption) (*GetSystemVdomExceptionListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemVdomExceptionListResult
@@ -23,16 +22,14 @@ func GetSystemVdomExceptionList(ctx *pulumi.Context, args *GetSystemVdomExceptio
 
 // A collection of arguments for invoking GetSystemVdomExceptionList.
 type GetSystemVdomExceptionListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemVdomExceptionList.
 type GetSystemVdomExceptionListResult struct {
-	Filter *string `pulumi:"filter"`
-	// A list of the `SystemVdomException`.
-	Fosidlists []int `pulumi:"fosidlists"`
+	Filter     *string `pulumi:"filter"`
+	Fosidlists []int   `pulumi:"fosidlists"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -53,8 +50,7 @@ func GetSystemVdomExceptionListOutput(ctx *pulumi.Context, args GetSystemVdomExc
 
 // A collection of arguments for invoking GetSystemVdomExceptionList.
 type GetSystemVdomExceptionListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -81,7 +77,6 @@ func (o GetSystemVdomExceptionListResultOutput) Filter() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v GetSystemVdomExceptionListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
 }
 
-// A list of the `SystemVdomException`.
 func (o GetSystemVdomExceptionListResultOutput) Fosidlists() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v GetSystemVdomExceptionListResult) []int { return v.Fosidlists }).(pulumi.IntArrayOutput)
 }

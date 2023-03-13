@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemProxyArp`.
 func GetSystemProxyArpList(ctx *pulumi.Context, args *GetSystemProxyArpListArgs, opts ...pulumi.InvokeOption) (*GetSystemProxyArpListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemProxyArpListResult
@@ -23,16 +22,14 @@ func GetSystemProxyArpList(ctx *pulumi.Context, args *GetSystemProxyArpListArgs,
 
 // A collection of arguments for invoking GetSystemProxyArpList.
 type GetSystemProxyArpListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemProxyArpList.
 type GetSystemProxyArpListResult struct {
-	Filter *string `pulumi:"filter"`
-	// A list of the `SystemProxyArp`.
-	Fosidlists []int `pulumi:"fosidlists"`
+	Filter     *string `pulumi:"filter"`
+	Fosidlists []int   `pulumi:"fosidlists"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -53,8 +50,7 @@ func GetSystemProxyArpListOutput(ctx *pulumi.Context, args GetSystemProxyArpList
 
 // A collection of arguments for invoking GetSystemProxyArpList.
 type GetSystemProxyArpListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -81,7 +77,6 @@ func (o GetSystemProxyArpListResultOutput) Filter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetSystemProxyArpListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
 }
 
-// A list of the `SystemProxyArp`.
 func (o GetSystemProxyArpListResultOutput) Fosidlists() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v GetSystemProxyArpListResult) []int { return v.Fosidlists }).(pulumi.IntArrayOutput)
 }

@@ -2,54 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * VPN certificate setting.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.VpnCertificateSetting("trname", {
- *     certnameDsa1024: "Fortinet_SSL_DSA1024",
- *     certnameDsa2048: "Fortinet_SSL_DSA2048",
- *     certnameEcdsa256: "Fortinet_SSL_ECDSA256",
- *     certnameEcdsa384: "Fortinet_SSL_ECDSA384",
- *     certnameRsa1024: "Fortinet_SSL_RSA1024",
- *     certnameRsa2048: "Fortinet_SSL_RSA2048",
- *     checkCaCert: "enable",
- *     checkCaChain: "disable",
- *     cmpSaveExtraCerts: "disable",
- *     cnMatch: "substring",
- *     ocspOption: "server",
- *     ocspStatus: "disable",
- *     sslMinProtoVersion: "default",
- *     strictCrlCheck: "disable",
- *     strictOcspCheck: "disable",
- *     subjectMatch: "substring",
- * });
- * ```
- *
- * ## Import
- *
- * VpnCertificate Setting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnCertificateSetting:VpnCertificateSetting labelname VpnCertificateSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnCertificateSetting:VpnCertificateSetting labelname VpnCertificateSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VpnCertificateSetting extends pulumi.CustomResource {
     /**
      * Get an existing VpnCertificateSetting resource's state with the given name, ID, and optional extra
@@ -78,121 +34,35 @@ export class VpnCertificateSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpnCertificateSetting.__pulumiType;
     }
 
-    /**
-     * 1024 bit DSA key certificate for re-signing server certificates for SSL inspection.
-     */
+    public readonly certExpireWarning!: pulumi.Output<number>;
     public readonly certnameDsa1024!: pulumi.Output<string>;
-    /**
-     * 2048 bit DSA key certificate for re-signing server certificates for SSL inspection.
-     */
     public readonly certnameDsa2048!: pulumi.Output<string>;
-    /**
-     * 256 bit ECDSA key certificate for re-signing server certificates for SSL inspection.
-     */
     public readonly certnameEcdsa256!: pulumi.Output<string>;
-    /**
-     * 384 bit ECDSA key certificate for re-signing server certificates for SSL inspection.
-     */
     public readonly certnameEcdsa384!: pulumi.Output<string>;
-    /**
-     * 521 bit ECDSA key certificate for re-signing server certificates for SSL inspection.
-     */
     public readonly certnameEcdsa521!: pulumi.Output<string>;
-    /**
-     * 253 bit EdDSA key certificate for re-signing server certificates for SSL inspection.
-     */
     public readonly certnameEd25519!: pulumi.Output<string>;
-    /**
-     * 456 bit EdDSA key certificate for re-signing server certificates for SSL inspection.
-     */
     public readonly certnameEd448!: pulumi.Output<string>;
-    /**
-     * 1024 bit RSA key certificate for re-signing server certificates for SSL inspection.
-     */
     public readonly certnameRsa1024!: pulumi.Output<string>;
-    /**
-     * 2048 bit RSA key certificate for re-signing server certificates for SSL inspection.
-     */
     public readonly certnameRsa2048!: pulumi.Output<string>;
-    /**
-     * 4096 bit RSA key certificate for re-signing server certificates for SSL inspection.
-     */
     public readonly certnameRsa4096!: pulumi.Output<string>;
-    /**
-     * Enable/disable verification of the user certificate and pass authentication if any CA in the chain is trusted (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly checkCaCert!: pulumi.Output<string>;
-    /**
-     * Enable/disable verification of the entire certificate chain and pass authentication only if the chain is complete and all of the CAs in the chain are trusted (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly checkCaChain!: pulumi.Output<string>;
-    /**
-     * Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly cmpKeyUsageChecking!: pulumi.Output<string>;
-    /**
-     * Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
-     */
     public readonly cmpSaveExtraCerts!: pulumi.Output<string>;
-    /**
-     * When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
-     */
     public readonly cnAllowMulti!: pulumi.Output<string>;
-    /**
-     * When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
-     */
     public readonly cnMatch!: pulumi.Output<string>;
-    /**
-     * CRL verification options. The structure of `crlVerification` block is documented below.
-     */
-    public readonly crlVerification!: pulumi.Output<outputs.VpnCertificateSettingCrlVerification | undefined>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
+    public readonly crlVerification!: pulumi.Output<outputs.VpnCertificateSettingCrlVerification>;
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
-    /**
-     * Default OCSP server.
-     */
     public readonly ocspDefaultServer!: pulumi.Output<string>;
-    /**
-     * Specify whether the OCSP URL is from certificate or configured OCSP server. Valid values: `certificate`, `server`.
-     */
     public readonly ocspOption!: pulumi.Output<string>;
-    /**
-     * Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
-     */
     public readonly ocspStatus!: pulumi.Output<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     public readonly sslMinProtoVersion!: pulumi.Output<string>;
-    /**
-     * Source IP address to use to communicate with the OCSP server.
-     */
     public readonly sslOcspSourceIp!: pulumi.Output<string>;
-    /**
-     * Enable/disable strict mode CRL checking. Valid values: `enable`, `disable`.
-     */
     public readonly strictCrlCheck!: pulumi.Output<string>;
-    /**
-     * Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
-     */
     public readonly strictOcspCheck!: pulumi.Output<string>;
-    /**
-     * When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
-     */
     public readonly subjectMatch!: pulumi.Output<string>;
-    /**
-     * When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
-     */
     public readonly subjectSet!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -208,6 +78,7 @@ export class VpnCertificateSetting extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnCertificateSettingState | undefined;
+            resourceInputs["certExpireWarning"] = state ? state.certExpireWarning : undefined;
             resourceInputs["certnameDsa1024"] = state ? state.certnameDsa1024 : undefined;
             resourceInputs["certnameDsa2048"] = state ? state.certnameDsa2048 : undefined;
             resourceInputs["certnameEcdsa256"] = state ? state.certnameEcdsa256 : undefined;
@@ -257,6 +128,7 @@ export class VpnCertificateSetting extends pulumi.CustomResource {
             if ((!args || args.certnameRsa2048 === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'certnameRsa2048'");
             }
+            resourceInputs["certExpireWarning"] = args ? args.certExpireWarning : undefined;
             resourceInputs["certnameDsa1024"] = args ? args.certnameDsa1024 : undefined;
             resourceInputs["certnameDsa2048"] = args ? args.certnameDsa2048 : undefined;
             resourceInputs["certnameEcdsa256"] = args ? args.certnameEcdsa256 : undefined;
@@ -296,121 +168,35 @@ export class VpnCertificateSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnCertificateSetting resources.
  */
 export interface VpnCertificateSettingState {
-    /**
-     * 1024 bit DSA key certificate for re-signing server certificates for SSL inspection.
-     */
+    certExpireWarning?: pulumi.Input<number>;
     certnameDsa1024?: pulumi.Input<string>;
-    /**
-     * 2048 bit DSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameDsa2048?: pulumi.Input<string>;
-    /**
-     * 256 bit ECDSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameEcdsa256?: pulumi.Input<string>;
-    /**
-     * 384 bit ECDSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameEcdsa384?: pulumi.Input<string>;
-    /**
-     * 521 bit ECDSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameEcdsa521?: pulumi.Input<string>;
-    /**
-     * 253 bit EdDSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameEd25519?: pulumi.Input<string>;
-    /**
-     * 456 bit EdDSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameEd448?: pulumi.Input<string>;
-    /**
-     * 1024 bit RSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameRsa1024?: pulumi.Input<string>;
-    /**
-     * 2048 bit RSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameRsa2048?: pulumi.Input<string>;
-    /**
-     * 4096 bit RSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameRsa4096?: pulumi.Input<string>;
-    /**
-     * Enable/disable verification of the user certificate and pass authentication if any CA in the chain is trusted (default = enable). Valid values: `enable`, `disable`.
-     */
     checkCaCert?: pulumi.Input<string>;
-    /**
-     * Enable/disable verification of the entire certificate chain and pass authentication only if the chain is complete and all of the CAs in the chain are trusted (default = disable). Valid values: `enable`, `disable`.
-     */
     checkCaChain?: pulumi.Input<string>;
-    /**
-     * Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
-     */
     cmpKeyUsageChecking?: pulumi.Input<string>;
-    /**
-     * Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
-     */
     cmpSaveExtraCerts?: pulumi.Input<string>;
-    /**
-     * When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
-     */
     cnAllowMulti?: pulumi.Input<string>;
-    /**
-     * When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
-     */
     cnMatch?: pulumi.Input<string>;
-    /**
-     * CRL verification options. The structure of `crlVerification` block is documented below.
-     */
     crlVerification?: pulumi.Input<inputs.VpnCertificateSettingCrlVerification>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Default OCSP server.
-     */
     ocspDefaultServer?: pulumi.Input<string>;
-    /**
-     * Specify whether the OCSP URL is from certificate or configured OCSP server. Valid values: `certificate`, `server`.
-     */
     ocspOption?: pulumi.Input<string>;
-    /**
-     * Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
-     */
     ocspStatus?: pulumi.Input<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     sslMinProtoVersion?: pulumi.Input<string>;
-    /**
-     * Source IP address to use to communicate with the OCSP server.
-     */
     sslOcspSourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable strict mode CRL checking. Valid values: `enable`, `disable`.
-     */
     strictCrlCheck?: pulumi.Input<string>;
-    /**
-     * Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
-     */
     strictOcspCheck?: pulumi.Input<string>;
-    /**
-     * When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
-     */
     subjectMatch?: pulumi.Input<string>;
-    /**
-     * When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
-     */
     subjectSet?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -418,120 +204,34 @@ export interface VpnCertificateSettingState {
  * The set of arguments for constructing a VpnCertificateSetting resource.
  */
 export interface VpnCertificateSettingArgs {
-    /**
-     * 1024 bit DSA key certificate for re-signing server certificates for SSL inspection.
-     */
+    certExpireWarning?: pulumi.Input<number>;
     certnameDsa1024: pulumi.Input<string>;
-    /**
-     * 2048 bit DSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameDsa2048: pulumi.Input<string>;
-    /**
-     * 256 bit ECDSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameEcdsa256: pulumi.Input<string>;
-    /**
-     * 384 bit ECDSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameEcdsa384: pulumi.Input<string>;
-    /**
-     * 521 bit ECDSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameEcdsa521?: pulumi.Input<string>;
-    /**
-     * 253 bit EdDSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameEd25519?: pulumi.Input<string>;
-    /**
-     * 456 bit EdDSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameEd448?: pulumi.Input<string>;
-    /**
-     * 1024 bit RSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameRsa1024: pulumi.Input<string>;
-    /**
-     * 2048 bit RSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameRsa2048: pulumi.Input<string>;
-    /**
-     * 4096 bit RSA key certificate for re-signing server certificates for SSL inspection.
-     */
     certnameRsa4096?: pulumi.Input<string>;
-    /**
-     * Enable/disable verification of the user certificate and pass authentication if any CA in the chain is trusted (default = enable). Valid values: `enable`, `disable`.
-     */
     checkCaCert?: pulumi.Input<string>;
-    /**
-     * Enable/disable verification of the entire certificate chain and pass authentication only if the chain is complete and all of the CAs in the chain are trusted (default = disable). Valid values: `enable`, `disable`.
-     */
     checkCaChain?: pulumi.Input<string>;
-    /**
-     * Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
-     */
     cmpKeyUsageChecking?: pulumi.Input<string>;
-    /**
-     * Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
-     */
     cmpSaveExtraCerts?: pulumi.Input<string>;
-    /**
-     * When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
-     */
     cnAllowMulti?: pulumi.Input<string>;
-    /**
-     * When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
-     */
     cnMatch?: pulumi.Input<string>;
-    /**
-     * CRL verification options. The structure of `crlVerification` block is documented below.
-     */
     crlVerification?: pulumi.Input<inputs.VpnCertificateSettingCrlVerification>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Default OCSP server.
-     */
     ocspDefaultServer?: pulumi.Input<string>;
-    /**
-     * Specify whether the OCSP URL is from certificate or configured OCSP server. Valid values: `certificate`, `server`.
-     */
     ocspOption?: pulumi.Input<string>;
-    /**
-     * Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
-     */
     ocspStatus?: pulumi.Input<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     sslMinProtoVersion?: pulumi.Input<string>;
-    /**
-     * Source IP address to use to communicate with the OCSP server.
-     */
     sslOcspSourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable strict mode CRL checking. Valid values: `enable`, `disable`.
-     */
     strictCrlCheck?: pulumi.Input<string>;
-    /**
-     * Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
-     */
     strictOcspCheck?: pulumi.Input<string>;
-    /**
-     * When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
-     */
     subjectMatch?: pulumi.Input<string>;
-    /**
-     * When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
-     */
     subjectSet?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

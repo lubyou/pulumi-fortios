@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure YouTube channel filter. Applies to FortiOS Version `>= 7.0.1`.
- *
- * ## Import
- *
- * Videofilter YoutubeChannelFilter can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/videofilterYoutubeChannelFilter:VideofilterYoutubeChannelFilter labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/videofilterYoutubeChannelFilter:VideofilterYoutubeChannelFilter labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VideofilterYoutubeChannelFilter extends pulumi.CustomResource {
     /**
      * Get an existing VideofilterYoutubeChannelFilter resource's state with the given name, ID, and optional extra
@@ -52,37 +34,14 @@ export class VideofilterYoutubeChannelFilter extends pulumi.CustomResource {
         return obj['__pulumiType'] === VideofilterYoutubeChannelFilter.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * YouTube channel filter default action. Valid values: `allow`, `monitor`, `block`.
-     */
     public readonly defaultAction!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * YouTube filter entries. The structure of `entries` block is documented below.
-     */
     public readonly entries!: pulumi.Output<outputs.VideofilterYoutubeChannelFilterEntry[] | undefined>;
-    /**
-     * ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Eanble/disable logging. Valid values: `enable`, `disable`.
-     */
     public readonly log!: pulumi.Output<string>;
-    /**
-     * Name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    public readonly overrideCategory!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -105,6 +64,7 @@ export class VideofilterYoutubeChannelFilter extends pulumi.CustomResource {
             resourceInputs["fosid"] = state ? state.fosid : undefined;
             resourceInputs["log"] = state ? state.log : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["overrideCategory"] = state ? state.overrideCategory : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VideofilterYoutubeChannelFilterArgs | undefined;
@@ -115,6 +75,7 @@ export class VideofilterYoutubeChannelFilter extends pulumi.CustomResource {
             resourceInputs["fosid"] = args ? args.fosid : undefined;
             resourceInputs["log"] = args ? args.log : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["overrideCategory"] = args ? args.overrideCategory : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -126,37 +87,14 @@ export class VideofilterYoutubeChannelFilter extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VideofilterYoutubeChannelFilter resources.
  */
 export interface VideofilterYoutubeChannelFilterState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * YouTube channel filter default action. Valid values: `allow`, `monitor`, `block`.
-     */
     defaultAction?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * YouTube filter entries. The structure of `entries` block is documented below.
-     */
     entries?: pulumi.Input<pulumi.Input<inputs.VideofilterYoutubeChannelFilterEntry>[]>;
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Eanble/disable logging. Valid values: `enable`, `disable`.
-     */
     log?: pulumi.Input<string>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    overrideCategory?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -164,36 +102,13 @@ export interface VideofilterYoutubeChannelFilterState {
  * The set of arguments for constructing a VideofilterYoutubeChannelFilter resource.
  */
 export interface VideofilterYoutubeChannelFilterArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * YouTube channel filter default action. Valid values: `allow`, `monitor`, `block`.
-     */
     defaultAction?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * YouTube filter entries. The structure of `entries` block is documented below.
-     */
     entries?: pulumi.Input<pulumi.Input<inputs.VideofilterYoutubeChannelFilterEntry>[]>;
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Eanble/disable logging. Valid values: `enable`, `disable`.
-     */
     log?: pulumi.Input<string>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    overrideCategory?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure SNMP. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * WirelessController Snmp can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerSnmp:WirelessControllerSnmp labelname WirelessControllerSnmp
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerSnmp:WirelessControllerSnmp labelname WirelessControllerSnmp
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerSnmp extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerSnmp resource's state with the given name, ID, and optional extra
@@ -52,37 +34,13 @@ export class WirelessControllerSnmp extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerSnmp.__pulumiType;
     }
 
-    /**
-     * SNMP Community Configuration. The structure of `community` block is documented below.
-     */
     public readonly communities!: pulumi.Output<outputs.WirelessControllerSnmpCommunity[] | undefined>;
-    /**
-     * Contact Information.
-     */
     public readonly contactInfo!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * AC SNMP engineId string (maximum 24 characters).
-     */
     public readonly engineId!: pulumi.Output<string>;
-    /**
-     * CPU usage when trap is sent.
-     */
     public readonly trapHighCpuThreshold!: pulumi.Output<number>;
-    /**
-     * Memory usage when trap is sent.
-     */
     public readonly trapHighMemThreshold!: pulumi.Output<number>;
-    /**
-     * SNMP User Configuration. The structure of `user` block is documented below.
-     */
     public readonly users!: pulumi.Output<outputs.WirelessControllerSnmpUser[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -126,37 +84,13 @@ export class WirelessControllerSnmp extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerSnmp resources.
  */
 export interface WirelessControllerSnmpState {
-    /**
-     * SNMP Community Configuration. The structure of `community` block is documented below.
-     */
     communities?: pulumi.Input<pulumi.Input<inputs.WirelessControllerSnmpCommunity>[]>;
-    /**
-     * Contact Information.
-     */
     contactInfo?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * AC SNMP engineId string (maximum 24 characters).
-     */
     engineId?: pulumi.Input<string>;
-    /**
-     * CPU usage when trap is sent.
-     */
     trapHighCpuThreshold?: pulumi.Input<number>;
-    /**
-     * Memory usage when trap is sent.
-     */
     trapHighMemThreshold?: pulumi.Input<number>;
-    /**
-     * SNMP User Configuration. The structure of `user` block is documented below.
-     */
     users?: pulumi.Input<pulumi.Input<inputs.WirelessControllerSnmpUser>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -164,36 +98,12 @@ export interface WirelessControllerSnmpState {
  * The set of arguments for constructing a WirelessControllerSnmp resource.
  */
 export interface WirelessControllerSnmpArgs {
-    /**
-     * SNMP Community Configuration. The structure of `community` block is documented below.
-     */
     communities?: pulumi.Input<pulumi.Input<inputs.WirelessControllerSnmpCommunity>[]>;
-    /**
-     * Contact Information.
-     */
     contactInfo?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * AC SNMP engineId string (maximum 24 characters).
-     */
     engineId?: pulumi.Input<string>;
-    /**
-     * CPU usage when trap is sent.
-     */
     trapHighCpuThreshold?: pulumi.Input<number>;
-    /**
-     * Memory usage when trap is sent.
-     */
     trapHighMemThreshold?: pulumi.Input<number>;
-    /**
-     * SNMP User Configuration. The structure of `user` block is documented below.
-     */
     users?: pulumi.Input<pulumi.Input<inputs.WirelessControllerSnmpUser>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

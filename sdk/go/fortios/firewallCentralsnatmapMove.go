@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -127,7 +127,7 @@ func (i *FirewallCentralsnatmapMove) ToFirewallCentralsnatmapMoveOutputWithConte
 // FirewallCentralsnatmapMoveArrayInput is an input type that accepts FirewallCentralsnatmapMoveArray and FirewallCentralsnatmapMoveArrayOutput values.
 // You can construct a concrete instance of `FirewallCentralsnatmapMoveArrayInput` via:
 //
-//          FirewallCentralsnatmapMoveArray{ FirewallCentralsnatmapMoveArgs{...} }
+//	FirewallCentralsnatmapMoveArray{ FirewallCentralsnatmapMoveArgs{...} }
 type FirewallCentralsnatmapMoveArrayInput interface {
 	pulumi.Input
 
@@ -152,7 +152,7 @@ func (i FirewallCentralsnatmapMoveArray) ToFirewallCentralsnatmapMoveArrayOutput
 // FirewallCentralsnatmapMoveMapInput is an input type that accepts FirewallCentralsnatmapMoveMap and FirewallCentralsnatmapMoveMapOutput values.
 // You can construct a concrete instance of `FirewallCentralsnatmapMoveMapInput` via:
 //
-//          FirewallCentralsnatmapMoveMap{ "key": FirewallCentralsnatmapMoveArgs{...} }
+//	FirewallCentralsnatmapMoveMap{ "key": FirewallCentralsnatmapMoveArgs{...} }
 type FirewallCentralsnatmapMoveMapInput interface {
 	pulumi.Input
 
@@ -186,6 +186,30 @@ func (o FirewallCentralsnatmapMoveOutput) ToFirewallCentralsnatmapMoveOutput() F
 
 func (o FirewallCentralsnatmapMoveOutput) ToFirewallCentralsnatmapMoveOutputWithContext(ctx context.Context) FirewallCentralsnatmapMoveOutput {
 	return o
+}
+
+func (o FirewallCentralsnatmapMoveOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapMove) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallCentralsnatmapMoveOutput) Move() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapMove) pulumi.StringOutput { return v.Move }).(pulumi.StringOutput)
+}
+
+func (o FirewallCentralsnatmapMoveOutput) PolicyidDst() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapMove) pulumi.IntOutput { return v.PolicyidDst }).(pulumi.IntOutput)
+}
+
+func (o FirewallCentralsnatmapMoveOutput) PolicyidSrc() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapMove) pulumi.IntOutput { return v.PolicyidSrc }).(pulumi.IntOutput)
+}
+
+func (o FirewallCentralsnatmapMoveOutput) StatePolicySrcdstPos() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapMove) pulumi.StringPtrOutput { return v.StatePolicySrcdstPos }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallCentralsnatmapMoveOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapMove) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallCentralsnatmapMoveArrayOutput struct{ *pulumi.OutputState }

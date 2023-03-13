@@ -10,44 +10,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Define known domain controller servers. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,7.0.0`.
-//
-// ## Import
-//
-// CredentialStore DomainController can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/credentialStoreDomainController:CredentialStoreDomainController labelname {{server_name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/credentialStoreDomainController:CredentialStoreDomainController labelname {{server_name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type CredentialStoreDomainController struct {
 	pulumi.CustomResourceState
 
-	// Fully qualified domain name (FQDN).
-	DomainName pulumi.StringOutput `pulumi:"domainName"`
-	// Hostname of the server to connect to.
-	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// IPv4 server address.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// IPv6 server address.
-	Ip6 pulumi.StringOutput `pulumi:"ip6"`
-	// Password for specified username.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Port number of service. Port number 0 indicates automatic discovery.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Name of the server to connect to.
-	ServerName pulumi.StringOutput `pulumi:"serverName"`
-	// User name to sign in with. Must have proper permissions for service.
-	Username pulumi.StringOutput `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DomainName pulumi.StringOutput    `pulumi:"domainName"`
+	Hostname   pulumi.StringOutput    `pulumi:"hostname"`
+	Ip         pulumi.StringOutput    `pulumi:"ip"`
+	Ip6        pulumi.StringOutput    `pulumi:"ip6"`
+	Password   pulumi.StringPtrOutput `pulumi:"password"`
+	Port       pulumi.IntOutput       `pulumi:"port"`
+	ServerName pulumi.StringOutput    `pulumi:"serverName"`
+	Username   pulumi.StringOutput    `pulumi:"username"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewCredentialStoreDomainController registers a new resource with the given unique name, arguments, and options.
@@ -57,6 +31,13 @@ func NewCredentialStoreDomainController(ctx *pulumi.Context,
 		args = &CredentialStoreDomainControllerArgs{}
 	}
 
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource CredentialStoreDomainController
 	err := ctx.RegisterResource("fortios:index/credentialStoreDomainController:CredentialStoreDomainController", name, args, &resource, opts...)
@@ -80,45 +61,27 @@ func GetCredentialStoreDomainController(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CredentialStoreDomainController resources.
 type credentialStoreDomainControllerState struct {
-	// Fully qualified domain name (FQDN).
 	DomainName *string `pulumi:"domainName"`
-	// Hostname of the server to connect to.
-	Hostname *string `pulumi:"hostname"`
-	// IPv4 server address.
-	Ip *string `pulumi:"ip"`
-	// IPv6 server address.
-	Ip6 *string `pulumi:"ip6"`
-	// Password for specified username.
-	Password *string `pulumi:"password"`
-	// Port number of service. Port number 0 indicates automatic discovery.
-	Port *int `pulumi:"port"`
-	// Name of the server to connect to.
+	Hostname   *string `pulumi:"hostname"`
+	Ip         *string `pulumi:"ip"`
+	Ip6        *string `pulumi:"ip6"`
+	Password   *string `pulumi:"password"`
+	Port       *int    `pulumi:"port"`
 	ServerName *string `pulumi:"serverName"`
-	// User name to sign in with. Must have proper permissions for service.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Username   *string `pulumi:"username"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type CredentialStoreDomainControllerState struct {
-	// Fully qualified domain name (FQDN).
 	DomainName pulumi.StringPtrInput
-	// Hostname of the server to connect to.
-	Hostname pulumi.StringPtrInput
-	// IPv4 server address.
-	Ip pulumi.StringPtrInput
-	// IPv6 server address.
-	Ip6 pulumi.StringPtrInput
-	// Password for specified username.
-	Password pulumi.StringPtrInput
-	// Port number of service. Port number 0 indicates automatic discovery.
-	Port pulumi.IntPtrInput
-	// Name of the server to connect to.
+	Hostname   pulumi.StringPtrInput
+	Ip         pulumi.StringPtrInput
+	Ip6        pulumi.StringPtrInput
+	Password   pulumi.StringPtrInput
+	Port       pulumi.IntPtrInput
 	ServerName pulumi.StringPtrInput
-	// User name to sign in with. Must have proper permissions for service.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Username   pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (CredentialStoreDomainControllerState) ElementType() reflect.Type {
@@ -126,46 +89,28 @@ func (CredentialStoreDomainControllerState) ElementType() reflect.Type {
 }
 
 type credentialStoreDomainControllerArgs struct {
-	// Fully qualified domain name (FQDN).
 	DomainName *string `pulumi:"domainName"`
-	// Hostname of the server to connect to.
-	Hostname *string `pulumi:"hostname"`
-	// IPv4 server address.
-	Ip *string `pulumi:"ip"`
-	// IPv6 server address.
-	Ip6 *string `pulumi:"ip6"`
-	// Password for specified username.
-	Password *string `pulumi:"password"`
-	// Port number of service. Port number 0 indicates automatic discovery.
-	Port *int `pulumi:"port"`
-	// Name of the server to connect to.
+	Hostname   *string `pulumi:"hostname"`
+	Ip         *string `pulumi:"ip"`
+	Ip6        *string `pulumi:"ip6"`
+	Password   *string `pulumi:"password"`
+	Port       *int    `pulumi:"port"`
 	ServerName *string `pulumi:"serverName"`
-	// User name to sign in with. Must have proper permissions for service.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Username   *string `pulumi:"username"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a CredentialStoreDomainController resource.
 type CredentialStoreDomainControllerArgs struct {
-	// Fully qualified domain name (FQDN).
 	DomainName pulumi.StringPtrInput
-	// Hostname of the server to connect to.
-	Hostname pulumi.StringPtrInput
-	// IPv4 server address.
-	Ip pulumi.StringPtrInput
-	// IPv6 server address.
-	Ip6 pulumi.StringPtrInput
-	// Password for specified username.
-	Password pulumi.StringPtrInput
-	// Port number of service. Port number 0 indicates automatic discovery.
-	Port pulumi.IntPtrInput
-	// Name of the server to connect to.
+	Hostname   pulumi.StringPtrInput
+	Ip         pulumi.StringPtrInput
+	Ip6        pulumi.StringPtrInput
+	Password   pulumi.StringPtrInput
+	Port       pulumi.IntPtrInput
 	ServerName pulumi.StringPtrInput
-	// User name to sign in with. Must have proper permissions for service.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Username   pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (CredentialStoreDomainControllerArgs) ElementType() reflect.Type {
@@ -194,7 +139,7 @@ func (i *CredentialStoreDomainController) ToCredentialStoreDomainControllerOutpu
 // CredentialStoreDomainControllerArrayInput is an input type that accepts CredentialStoreDomainControllerArray and CredentialStoreDomainControllerArrayOutput values.
 // You can construct a concrete instance of `CredentialStoreDomainControllerArrayInput` via:
 //
-//          CredentialStoreDomainControllerArray{ CredentialStoreDomainControllerArgs{...} }
+//	CredentialStoreDomainControllerArray{ CredentialStoreDomainControllerArgs{...} }
 type CredentialStoreDomainControllerArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +164,7 @@ func (i CredentialStoreDomainControllerArray) ToCredentialStoreDomainControllerA
 // CredentialStoreDomainControllerMapInput is an input type that accepts CredentialStoreDomainControllerMap and CredentialStoreDomainControllerMapOutput values.
 // You can construct a concrete instance of `CredentialStoreDomainControllerMapInput` via:
 //
-//          CredentialStoreDomainControllerMap{ "key": CredentialStoreDomainControllerArgs{...} }
+//	CredentialStoreDomainControllerMap{ "key": CredentialStoreDomainControllerArgs{...} }
 type CredentialStoreDomainControllerMapInput interface {
 	pulumi.Input
 
@@ -253,6 +198,42 @@ func (o CredentialStoreDomainControllerOutput) ToCredentialStoreDomainController
 
 func (o CredentialStoreDomainControllerOutput) ToCredentialStoreDomainControllerOutputWithContext(ctx context.Context) CredentialStoreDomainControllerOutput {
 	return o
+}
+
+func (o CredentialStoreDomainControllerOutput) DomainName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CredentialStoreDomainController) pulumi.StringOutput { return v.DomainName }).(pulumi.StringOutput)
+}
+
+func (o CredentialStoreDomainControllerOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *CredentialStoreDomainController) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
+}
+
+func (o CredentialStoreDomainControllerOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *CredentialStoreDomainController) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o CredentialStoreDomainControllerOutput) Ip6() pulumi.StringOutput {
+	return o.ApplyT(func(v *CredentialStoreDomainController) pulumi.StringOutput { return v.Ip6 }).(pulumi.StringOutput)
+}
+
+func (o CredentialStoreDomainControllerOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CredentialStoreDomainController) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o CredentialStoreDomainControllerOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *CredentialStoreDomainController) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o CredentialStoreDomainControllerOutput) ServerName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CredentialStoreDomainController) pulumi.StringOutput { return v.ServerName }).(pulumi.StringOutput)
+}
+
+func (o CredentialStoreDomainControllerOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *CredentialStoreDomainController) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
+func (o CredentialStoreDomainControllerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CredentialStoreDomainController) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type CredentialStoreDomainControllerArrayOutput struct{ *pulumi.OutputState }

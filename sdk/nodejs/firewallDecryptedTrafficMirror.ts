@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure decrypted traffic mirror. Applies to FortiOS Version `>= 6.4.0`.
- *
- * ## Import
- *
- * Firewall DecryptedTrafficMirror can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallDecryptedTrafficMirror:FirewallDecryptedTrafficMirror labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallDecryptedTrafficMirror:FirewallDecryptedTrafficMirror labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallDecryptedTrafficMirror extends pulumi.CustomResource {
     /**
      * Get an existing FirewallDecryptedTrafficMirror resource's state with the given name, ID, and optional extra
@@ -52,33 +34,12 @@ export class FirewallDecryptedTrafficMirror extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallDecryptedTrafficMirror.__pulumiType;
     }
 
-    /**
-     * Set destination MAC address for mirrored traffic.
-     */
     public readonly dstmac!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Decrypted traffic mirror interface The structure of `interface` block is documented below.
-     */
     public readonly interfaces!: pulumi.Output<outputs.FirewallDecryptedTrafficMirrorInterface[] | undefined>;
-    /**
-     * Decrypted traffic mirror interface.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Source of decrypted traffic to be mirrored. Valid values: `client`, `server`, `both`.
-     */
     public readonly trafficSource!: pulumi.Output<string>;
-    /**
-     * Types of decrypted traffic to be mirrored. Valid values: `ssl`, `ssh`.
-     */
     public readonly trafficType!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -120,33 +81,12 @@ export class FirewallDecryptedTrafficMirror extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallDecryptedTrafficMirror resources.
  */
 export interface FirewallDecryptedTrafficMirrorState {
-    /**
-     * Set destination MAC address for mirrored traffic.
-     */
     dstmac?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Decrypted traffic mirror interface The structure of `interface` block is documented below.
-     */
     interfaces?: pulumi.Input<pulumi.Input<inputs.FirewallDecryptedTrafficMirrorInterface>[]>;
-    /**
-     * Decrypted traffic mirror interface.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Source of decrypted traffic to be mirrored. Valid values: `client`, `server`, `both`.
-     */
     trafficSource?: pulumi.Input<string>;
-    /**
-     * Types of decrypted traffic to be mirrored. Valid values: `ssl`, `ssh`.
-     */
     trafficType?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -154,32 +94,11 @@ export interface FirewallDecryptedTrafficMirrorState {
  * The set of arguments for constructing a FirewallDecryptedTrafficMirror resource.
  */
 export interface FirewallDecryptedTrafficMirrorArgs {
-    /**
-     * Set destination MAC address for mirrored traffic.
-     */
     dstmac?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Decrypted traffic mirror interface The structure of `interface` block is documented below.
-     */
     interfaces?: pulumi.Input<pulumi.Input<inputs.FirewallDecryptedTrafficMirrorInterface>[]>;
-    /**
-     * Decrypted traffic mirror interface.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Source of decrypted traffic to be mirrored. Valid values: `client`, `server`, `both`.
-     */
     trafficSource?: pulumi.Input<string>;
-    /**
-     * Types of decrypted traffic to be mirrored. Valid values: `ssl`, `ssh`.
-     */
     trafficType?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

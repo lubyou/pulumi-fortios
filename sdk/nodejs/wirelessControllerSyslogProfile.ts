@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure Wireless Termination Points (WTP) system log server profile. Applies to FortiOS Version `>= 7.0.2`.
- *
- * ## Import
- *
- * WirelessController SyslogProfile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerSyslogProfile:WirelessControllerSyslogProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerSyslogProfile:WirelessControllerSyslogProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerSyslogProfile extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerSyslogProfile resource's state with the given name, ID, and optional extra
@@ -51,41 +32,14 @@ export class WirelessControllerSyslogProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerSyslogProfile.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Lowest level of log messages that FortiAP units send to this server (default = information) Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debugging`.
-     */
     public readonly logLevel!: pulumi.Output<string>;
-    /**
-     * WTP system log server profile name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Syslog server address type (default = IP) Valid values: `fqdn`, `ip`.
-     */
     public readonly serverAddrType!: pulumi.Output<string>;
-    /**
-     * FQDN of syslog server that FortiAP units send log messages to.
-     */
     public readonly serverFqdn!: pulumi.Output<string>;
-    /**
-     * IP address of syslog server that FortiAP units send log messages to.
-     */
     public readonly serverIp!: pulumi.Output<string>;
-    /**
-     * Port number of syslog server that FortiAP units send log messages to (default = 514).
-     */
     public readonly serverPort!: pulumi.Output<number>;
-    /**
-     * Enable/disable FortiAP units to send log messages to a syslog server (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly serverStatus!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -131,41 +85,14 @@ export class WirelessControllerSyslogProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerSyslogProfile resources.
  */
 export interface WirelessControllerSyslogProfileState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Lowest level of log messages that FortiAP units send to this server (default = information) Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debugging`.
-     */
     logLevel?: pulumi.Input<string>;
-    /**
-     * WTP system log server profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Syslog server address type (default = IP) Valid values: `fqdn`, `ip`.
-     */
     serverAddrType?: pulumi.Input<string>;
-    /**
-     * FQDN of syslog server that FortiAP units send log messages to.
-     */
     serverFqdn?: pulumi.Input<string>;
-    /**
-     * IP address of syslog server that FortiAP units send log messages to.
-     */
     serverIp?: pulumi.Input<string>;
-    /**
-     * Port number of syslog server that FortiAP units send log messages to (default = 514).
-     */
     serverPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable FortiAP units to send log messages to a syslog server (default = enable). Valid values: `enable`, `disable`.
-     */
     serverStatus?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -173,40 +100,13 @@ export interface WirelessControllerSyslogProfileState {
  * The set of arguments for constructing a WirelessControllerSyslogProfile resource.
  */
 export interface WirelessControllerSyslogProfileArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Lowest level of log messages that FortiAP units send to this server (default = information) Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debugging`.
-     */
     logLevel?: pulumi.Input<string>;
-    /**
-     * WTP system log server profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Syslog server address type (default = IP) Valid values: `fqdn`, `ip`.
-     */
     serverAddrType?: pulumi.Input<string>;
-    /**
-     * FQDN of syslog server that FortiAP units send log messages to.
-     */
     serverFqdn?: pulumi.Input<string>;
-    /**
-     * IP address of syslog server that FortiAP units send log messages to.
-     */
     serverIp?: pulumi.Input<string>;
-    /**
-     * Port number of syslog server that FortiAP units send log messages to (default = 514).
-     */
     serverPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable FortiAP units to send log messages to a syslog server (default = enable). Valid values: `enable`, `disable`.
-     */
     serverStatus?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

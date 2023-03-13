@@ -4,53 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure resource limits.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemResourceLimits("trname", {
- *     customService: 0,
- *     dialupTunnel: 0,
- *     firewallAddress: 41024,
- *     firewallAddrgrp: 10692,
- *     firewallPolicy: 41024,
- *     ipsecPhase1: 2000,
- *     ipsecPhase1Interface: 0,
- *     ipsecPhase2: 2000,
- *     ipsecPhase2Interface: 0,
- *     logDiskQuota: 30235,
- *     onetimeSchedule: 0,
- *     proxy: 64000,
- *     recurringSchedule: 0,
- *     serviceGroup: 0,
- *     session: 0,
- *     sslvpn: 0,
- *     user: 0,
- *     userGroup: 0,
- * });
- * ```
- *
- * ## Import
- *
- * System ResourceLimits can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemResourceLimits:SystemResourceLimits labelname SystemResourceLimits
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemResourceLimits:SystemResourceLimits labelname SystemResourceLimits
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemResourceLimits extends pulumi.CustomResource {
     /**
      * Get an existing SystemResourceLimits resource's state with the given name, ID, and optional extra
@@ -79,81 +32,24 @@ export class SystemResourceLimits extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemResourceLimits.__pulumiType;
     }
 
-    /**
-     * Maximum number of firewall custom services.
-     */
     public readonly customService!: pulumi.Output<number>;
-    /**
-     * Maximum number of dial-up tunnels.
-     */
     public readonly dialupTunnel!: pulumi.Output<number>;
-    /**
-     * Maximum number of firewall addresses (IPv4, IPv6, multicast).
-     */
     public readonly firewallAddress!: pulumi.Output<number>;
-    /**
-     * Maximum number of firewall address groups (IPv4, IPv6).
-     */
     public readonly firewallAddrgrp!: pulumi.Output<number>;
-    /**
-     * Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-     */
     public readonly firewallPolicy!: pulumi.Output<number>;
-    /**
-     * Maximum number of VPN IPsec phase1 tunnels.
-     */
     public readonly ipsecPhase1!: pulumi.Output<number>;
-    /**
-     * Maximum number of VPN IPsec phase1 interface tunnels.
-     */
     public readonly ipsecPhase1Interface!: pulumi.Output<number>;
-    /**
-     * Maximum number of VPN IPsec phase2 tunnels.
-     */
     public readonly ipsecPhase2!: pulumi.Output<number>;
-    /**
-     * Maximum number of VPN IPsec phase2 interface tunnels.
-     */
     public readonly ipsecPhase2Interface!: pulumi.Output<number>;
-    /**
-     * Log disk quota in MB.
-     */
     public readonly logDiskQuota!: pulumi.Output<number>;
-    /**
-     * Maximum number of firewall one-time schedules.
-     */
     public readonly onetimeSchedule!: pulumi.Output<number>;
-    /**
-     * Maximum number of concurrent proxy users.
-     */
     public readonly proxy!: pulumi.Output<number>;
-    /**
-     * Maximum number of firewall recurring schedules.
-     */
     public readonly recurringSchedule!: pulumi.Output<number>;
-    /**
-     * Maximum number of firewall service groups.
-     */
     public readonly serviceGroup!: pulumi.Output<number>;
-    /**
-     * Maximum number of sessions.
-     */
     public readonly session!: pulumi.Output<number>;
-    /**
-     * Maximum number of SSL-VPN.
-     */
     public readonly sslvpn!: pulumi.Output<number>;
-    /**
-     * Maximum number of local users.
-     */
     public readonly user!: pulumi.Output<number>;
-    /**
-     * Maximum number of user groups.
-     */
     public readonly userGroup!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -219,81 +115,24 @@ export class SystemResourceLimits extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemResourceLimits resources.
  */
 export interface SystemResourceLimitsState {
-    /**
-     * Maximum number of firewall custom services.
-     */
     customService?: pulumi.Input<number>;
-    /**
-     * Maximum number of dial-up tunnels.
-     */
     dialupTunnel?: pulumi.Input<number>;
-    /**
-     * Maximum number of firewall addresses (IPv4, IPv6, multicast).
-     */
     firewallAddress?: pulumi.Input<number>;
-    /**
-     * Maximum number of firewall address groups (IPv4, IPv6).
-     */
     firewallAddrgrp?: pulumi.Input<number>;
-    /**
-     * Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-     */
     firewallPolicy?: pulumi.Input<number>;
-    /**
-     * Maximum number of VPN IPsec phase1 tunnels.
-     */
     ipsecPhase1?: pulumi.Input<number>;
-    /**
-     * Maximum number of VPN IPsec phase1 interface tunnels.
-     */
     ipsecPhase1Interface?: pulumi.Input<number>;
-    /**
-     * Maximum number of VPN IPsec phase2 tunnels.
-     */
     ipsecPhase2?: pulumi.Input<number>;
-    /**
-     * Maximum number of VPN IPsec phase2 interface tunnels.
-     */
     ipsecPhase2Interface?: pulumi.Input<number>;
-    /**
-     * Log disk quota in MB.
-     */
     logDiskQuota?: pulumi.Input<number>;
-    /**
-     * Maximum number of firewall one-time schedules.
-     */
     onetimeSchedule?: pulumi.Input<number>;
-    /**
-     * Maximum number of concurrent proxy users.
-     */
     proxy?: pulumi.Input<number>;
-    /**
-     * Maximum number of firewall recurring schedules.
-     */
     recurringSchedule?: pulumi.Input<number>;
-    /**
-     * Maximum number of firewall service groups.
-     */
     serviceGroup?: pulumi.Input<number>;
-    /**
-     * Maximum number of sessions.
-     */
     session?: pulumi.Input<number>;
-    /**
-     * Maximum number of SSL-VPN.
-     */
     sslvpn?: pulumi.Input<number>;
-    /**
-     * Maximum number of local users.
-     */
     user?: pulumi.Input<number>;
-    /**
-     * Maximum number of user groups.
-     */
     userGroup?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -301,80 +140,23 @@ export interface SystemResourceLimitsState {
  * The set of arguments for constructing a SystemResourceLimits resource.
  */
 export interface SystemResourceLimitsArgs {
-    /**
-     * Maximum number of firewall custom services.
-     */
     customService?: pulumi.Input<number>;
-    /**
-     * Maximum number of dial-up tunnels.
-     */
     dialupTunnel?: pulumi.Input<number>;
-    /**
-     * Maximum number of firewall addresses (IPv4, IPv6, multicast).
-     */
     firewallAddress?: pulumi.Input<number>;
-    /**
-     * Maximum number of firewall address groups (IPv4, IPv6).
-     */
     firewallAddrgrp?: pulumi.Input<number>;
-    /**
-     * Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-     */
     firewallPolicy?: pulumi.Input<number>;
-    /**
-     * Maximum number of VPN IPsec phase1 tunnels.
-     */
     ipsecPhase1?: pulumi.Input<number>;
-    /**
-     * Maximum number of VPN IPsec phase1 interface tunnels.
-     */
     ipsecPhase1Interface?: pulumi.Input<number>;
-    /**
-     * Maximum number of VPN IPsec phase2 tunnels.
-     */
     ipsecPhase2?: pulumi.Input<number>;
-    /**
-     * Maximum number of VPN IPsec phase2 interface tunnels.
-     */
     ipsecPhase2Interface?: pulumi.Input<number>;
-    /**
-     * Log disk quota in MB.
-     */
     logDiskQuota?: pulumi.Input<number>;
-    /**
-     * Maximum number of firewall one-time schedules.
-     */
     onetimeSchedule?: pulumi.Input<number>;
-    /**
-     * Maximum number of concurrent proxy users.
-     */
     proxy?: pulumi.Input<number>;
-    /**
-     * Maximum number of firewall recurring schedules.
-     */
     recurringSchedule?: pulumi.Input<number>;
-    /**
-     * Maximum number of firewall service groups.
-     */
     serviceGroup?: pulumi.Input<number>;
-    /**
-     * Maximum number of sessions.
-     */
     session?: pulumi.Input<number>;
-    /**
-     * Maximum number of SSL-VPN.
-     */
     sslvpn?: pulumi.Input<number>;
-    /**
-     * Maximum number of local users.
-     */
     user?: pulumi.Input<number>;
-    /**
-     * Maximum number of user groups.
-     */
     userGroup?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

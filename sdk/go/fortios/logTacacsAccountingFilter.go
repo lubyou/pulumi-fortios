@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Settings for TACACS+ accounting events filter. Applies to FortiOS Version `>= 7.0.2`.
-//
-// ## Import
-//
-// LogTacacsAccounting Filter can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logTacacsAccountingFilter:LogTacacsAccountingFilter labelname LogTacacsAccountingFilter
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logTacacsAccountingFilter:LogTacacsAccountingFilter labelname LogTacacsAccountingFilter
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogTacacsAccountingFilter struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable TACACS+ accounting for CLI commands audit. Valid values: `enable`, `disable`.
-	CliCmdAudit pulumi.StringOutput `pulumi:"cliCmdAudit"`
-	// Enable/disable TACACS+ accounting for configuration change events audit. Valid values: `enable`, `disable`.
-	ConfigChangeAudit pulumi.StringOutput `pulumi:"configChangeAudit"`
-	// Enable/disable TACACS+ accounting for login events audit. Valid values: `enable`, `disable`.
-	LoginAudit pulumi.StringOutput `pulumi:"loginAudit"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	CliCmdAudit       pulumi.StringOutput    `pulumi:"cliCmdAudit"`
+	ConfigChangeAudit pulumi.StringOutput    `pulumi:"configChangeAudit"`
+	LoginAudit        pulumi.StringOutput    `pulumi:"loginAudit"`
+	Vdomparam         pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewLogTacacsAccountingFilter registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetLogTacacsAccountingFilter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogTacacsAccountingFilter resources.
 type logTacacsAccountingFilterState struct {
-	// Enable/disable TACACS+ accounting for CLI commands audit. Valid values: `enable`, `disable`.
-	CliCmdAudit *string `pulumi:"cliCmdAudit"`
-	// Enable/disable TACACS+ accounting for configuration change events audit. Valid values: `enable`, `disable`.
+	CliCmdAudit       *string `pulumi:"cliCmdAudit"`
 	ConfigChangeAudit *string `pulumi:"configChangeAudit"`
-	// Enable/disable TACACS+ accounting for login events audit. Valid values: `enable`, `disable`.
-	LoginAudit *string `pulumi:"loginAudit"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	LoginAudit        *string `pulumi:"loginAudit"`
+	Vdomparam         *string `pulumi:"vdomparam"`
 }
 
 type LogTacacsAccountingFilterState struct {
-	// Enable/disable TACACS+ accounting for CLI commands audit. Valid values: `enable`, `disable`.
-	CliCmdAudit pulumi.StringPtrInput
-	// Enable/disable TACACS+ accounting for configuration change events audit. Valid values: `enable`, `disable`.
+	CliCmdAudit       pulumi.StringPtrInput
 	ConfigChangeAudit pulumi.StringPtrInput
-	// Enable/disable TACACS+ accounting for login events audit. Valid values: `enable`, `disable`.
-	LoginAudit pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	LoginAudit        pulumi.StringPtrInput
+	Vdomparam         pulumi.StringPtrInput
 }
 
 func (LogTacacsAccountingFilterState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (LogTacacsAccountingFilterState) ElementType() reflect.Type {
 }
 
 type logTacacsAccountingFilterArgs struct {
-	// Enable/disable TACACS+ accounting for CLI commands audit. Valid values: `enable`, `disable`.
-	CliCmdAudit *string `pulumi:"cliCmdAudit"`
-	// Enable/disable TACACS+ accounting for configuration change events audit. Valid values: `enable`, `disable`.
+	CliCmdAudit       *string `pulumi:"cliCmdAudit"`
 	ConfigChangeAudit *string `pulumi:"configChangeAudit"`
-	// Enable/disable TACACS+ accounting for login events audit. Valid values: `enable`, `disable`.
-	LoginAudit *string `pulumi:"loginAudit"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	LoginAudit        *string `pulumi:"loginAudit"`
+	Vdomparam         *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogTacacsAccountingFilter resource.
 type LogTacacsAccountingFilterArgs struct {
-	// Enable/disable TACACS+ accounting for CLI commands audit. Valid values: `enable`, `disable`.
-	CliCmdAudit pulumi.StringPtrInput
-	// Enable/disable TACACS+ accounting for configuration change events audit. Valid values: `enable`, `disable`.
+	CliCmdAudit       pulumi.StringPtrInput
 	ConfigChangeAudit pulumi.StringPtrInput
-	// Enable/disable TACACS+ accounting for login events audit. Valid values: `enable`, `disable`.
-	LoginAudit pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	LoginAudit        pulumi.StringPtrInput
+	Vdomparam         pulumi.StringPtrInput
 }
 
 func (LogTacacsAccountingFilterArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *LogTacacsAccountingFilter) ToLogTacacsAccountingFilterOutputWithContext
 // LogTacacsAccountingFilterArrayInput is an input type that accepts LogTacacsAccountingFilterArray and LogTacacsAccountingFilterArrayOutput values.
 // You can construct a concrete instance of `LogTacacsAccountingFilterArrayInput` via:
 //
-//          LogTacacsAccountingFilterArray{ LogTacacsAccountingFilterArgs{...} }
+//	LogTacacsAccountingFilterArray{ LogTacacsAccountingFilterArgs{...} }
 type LogTacacsAccountingFilterArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i LogTacacsAccountingFilterArray) ToLogTacacsAccountingFilterArrayOutputWi
 // LogTacacsAccountingFilterMapInput is an input type that accepts LogTacacsAccountingFilterMap and LogTacacsAccountingFilterMapOutput values.
 // You can construct a concrete instance of `LogTacacsAccountingFilterMapInput` via:
 //
-//          LogTacacsAccountingFilterMap{ "key": LogTacacsAccountingFilterArgs{...} }
+//	LogTacacsAccountingFilterMap{ "key": LogTacacsAccountingFilterArgs{...} }
 type LogTacacsAccountingFilterMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o LogTacacsAccountingFilterOutput) ToLogTacacsAccountingFilterOutput() Log
 
 func (o LogTacacsAccountingFilterOutput) ToLogTacacsAccountingFilterOutputWithContext(ctx context.Context) LogTacacsAccountingFilterOutput {
 	return o
+}
+
+func (o LogTacacsAccountingFilterOutput) CliCmdAudit() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogTacacsAccountingFilter) pulumi.StringOutput { return v.CliCmdAudit }).(pulumi.StringOutput)
+}
+
+func (o LogTacacsAccountingFilterOutput) ConfigChangeAudit() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogTacacsAccountingFilter) pulumi.StringOutput { return v.ConfigChangeAudit }).(pulumi.StringOutput)
+}
+
+func (o LogTacacsAccountingFilterOutput) LoginAudit() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogTacacsAccountingFilter) pulumi.StringOutput { return v.LoginAudit }).(pulumi.StringOutput)
+}
+
+func (o LogTacacsAccountingFilterOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogTacacsAccountingFilter) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type LogTacacsAccountingFilterArrayOutput struct{ *pulumi.OutputState }

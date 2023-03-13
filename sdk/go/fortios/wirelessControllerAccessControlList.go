@@ -10,38 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure WiFi bridge access control list. Applies to FortiOS Version `>= 6.4.0`.
-//
-// ## Import
-//
-// WirelessController AccessControlList can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerAccessControlList:WirelessControllerAccessControlList labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerAccessControlList:WirelessControllerAccessControlList labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerAccessControlList struct {
 	pulumi.CustomResourceState
 
-	// Description.
-	Comment pulumi.StringOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// AP ACL layer3 ipv4 rule list. The structure of `layer3Ipv4Rules` block is documented below.
-	Layer3Ipv4Rules WirelessControllerAccessControlListLayer3Ipv4RuleArrayOutput `pulumi:"layer3Ipv4Rules"`
-	// AP ACL layer3 ipv6 rule list. The structure of `layer3Ipv6Rules` block is documented below.
-	Layer3Ipv6Rules WirelessControllerAccessControlListLayer3Ipv6RuleArrayOutput `pulumi:"layer3Ipv6Rules"`
-	// AP access control list name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringOutput                                          `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                                       `pulumi:"dynamicSortSubtable"`
+	Layer3Ipv4Rules     WirelessControllerAccessControlListLayer3Ipv4RuleArrayOutput `pulumi:"layer3Ipv4Rules"`
+	Layer3Ipv6Rules     WirelessControllerAccessControlListLayer3Ipv6RuleArrayOutput `pulumi:"layer3Ipv6Rules"`
+	Name                pulumi.StringOutput                                          `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                                       `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerAccessControlList registers a new resource with the given unique name, arguments, and options.
@@ -74,33 +51,21 @@ func GetWirelessControllerAccessControlList(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerAccessControlList resources.
 type wirelessControllerAccessControlListState struct {
-	// Description.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// AP ACL layer3 ipv4 rule list. The structure of `layer3Ipv4Rules` block is documented below.
-	Layer3Ipv4Rules []WirelessControllerAccessControlListLayer3Ipv4Rule `pulumi:"layer3Ipv4Rules"`
-	// AP ACL layer3 ipv6 rule list. The structure of `layer3Ipv6Rules` block is documented below.
-	Layer3Ipv6Rules []WirelessControllerAccessControlListLayer3Ipv6Rule `pulumi:"layer3Ipv6Rules"`
-	// AP access control list name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                                             `pulumi:"comment"`
+	DynamicSortSubtable *string                                             `pulumi:"dynamicSortSubtable"`
+	Layer3Ipv4Rules     []WirelessControllerAccessControlListLayer3Ipv4Rule `pulumi:"layer3Ipv4Rules"`
+	Layer3Ipv6Rules     []WirelessControllerAccessControlListLayer3Ipv6Rule `pulumi:"layer3Ipv6Rules"`
+	Name                *string                                             `pulumi:"name"`
+	Vdomparam           *string                                             `pulumi:"vdomparam"`
 }
 
 type WirelessControllerAccessControlListState struct {
-	// Description.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// AP ACL layer3 ipv4 rule list. The structure of `layer3Ipv4Rules` block is documented below.
-	Layer3Ipv4Rules WirelessControllerAccessControlListLayer3Ipv4RuleArrayInput
-	// AP ACL layer3 ipv6 rule list. The structure of `layer3Ipv6Rules` block is documented below.
-	Layer3Ipv6Rules WirelessControllerAccessControlListLayer3Ipv6RuleArrayInput
-	// AP access control list name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Layer3Ipv4Rules     WirelessControllerAccessControlListLayer3Ipv4RuleArrayInput
+	Layer3Ipv6Rules     WirelessControllerAccessControlListLayer3Ipv6RuleArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerAccessControlListState) ElementType() reflect.Type {
@@ -108,34 +73,22 @@ func (WirelessControllerAccessControlListState) ElementType() reflect.Type {
 }
 
 type wirelessControllerAccessControlListArgs struct {
-	// Description.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// AP ACL layer3 ipv4 rule list. The structure of `layer3Ipv4Rules` block is documented below.
-	Layer3Ipv4Rules []WirelessControllerAccessControlListLayer3Ipv4Rule `pulumi:"layer3Ipv4Rules"`
-	// AP ACL layer3 ipv6 rule list. The structure of `layer3Ipv6Rules` block is documented below.
-	Layer3Ipv6Rules []WirelessControllerAccessControlListLayer3Ipv6Rule `pulumi:"layer3Ipv6Rules"`
-	// AP access control list name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                                             `pulumi:"comment"`
+	DynamicSortSubtable *string                                             `pulumi:"dynamicSortSubtable"`
+	Layer3Ipv4Rules     []WirelessControllerAccessControlListLayer3Ipv4Rule `pulumi:"layer3Ipv4Rules"`
+	Layer3Ipv6Rules     []WirelessControllerAccessControlListLayer3Ipv6Rule `pulumi:"layer3Ipv6Rules"`
+	Name                *string                                             `pulumi:"name"`
+	Vdomparam           *string                                             `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerAccessControlList resource.
 type WirelessControllerAccessControlListArgs struct {
-	// Description.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// AP ACL layer3 ipv4 rule list. The structure of `layer3Ipv4Rules` block is documented below.
-	Layer3Ipv4Rules WirelessControllerAccessControlListLayer3Ipv4RuleArrayInput
-	// AP ACL layer3 ipv6 rule list. The structure of `layer3Ipv6Rules` block is documented below.
-	Layer3Ipv6Rules WirelessControllerAccessControlListLayer3Ipv6RuleArrayInput
-	// AP access control list name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Layer3Ipv4Rules     WirelessControllerAccessControlListLayer3Ipv4RuleArrayInput
+	Layer3Ipv6Rules     WirelessControllerAccessControlListLayer3Ipv6RuleArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerAccessControlListArgs) ElementType() reflect.Type {
@@ -164,7 +117,7 @@ func (i *WirelessControllerAccessControlList) ToWirelessControllerAccessControlL
 // WirelessControllerAccessControlListArrayInput is an input type that accepts WirelessControllerAccessControlListArray and WirelessControllerAccessControlListArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerAccessControlListArrayInput` via:
 //
-//          WirelessControllerAccessControlListArray{ WirelessControllerAccessControlListArgs{...} }
+//	WirelessControllerAccessControlListArray{ WirelessControllerAccessControlListArgs{...} }
 type WirelessControllerAccessControlListArrayInput interface {
 	pulumi.Input
 
@@ -189,7 +142,7 @@ func (i WirelessControllerAccessControlListArray) ToWirelessControllerAccessCont
 // WirelessControllerAccessControlListMapInput is an input type that accepts WirelessControllerAccessControlListMap and WirelessControllerAccessControlListMapOutput values.
 // You can construct a concrete instance of `WirelessControllerAccessControlListMapInput` via:
 //
-//          WirelessControllerAccessControlListMap{ "key": WirelessControllerAccessControlListArgs{...} }
+//	WirelessControllerAccessControlListMap{ "key": WirelessControllerAccessControlListArgs{...} }
 type WirelessControllerAccessControlListMapInput interface {
 	pulumi.Input
 
@@ -223,6 +176,34 @@ func (o WirelessControllerAccessControlListOutput) ToWirelessControllerAccessCon
 
 func (o WirelessControllerAccessControlListOutput) ToWirelessControllerAccessControlListOutputWithContext(ctx context.Context) WirelessControllerAccessControlListOutput {
 	return o
+}
+
+func (o WirelessControllerAccessControlListOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerAccessControlList) pulumi.StringOutput { return v.Comment }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerAccessControlListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerAccessControlList) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerAccessControlListOutput) Layer3Ipv4Rules() WirelessControllerAccessControlListLayer3Ipv4RuleArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerAccessControlList) WirelessControllerAccessControlListLayer3Ipv4RuleArrayOutput {
+		return v.Layer3Ipv4Rules
+	}).(WirelessControllerAccessControlListLayer3Ipv4RuleArrayOutput)
+}
+
+func (o WirelessControllerAccessControlListOutput) Layer3Ipv6Rules() WirelessControllerAccessControlListLayer3Ipv6RuleArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerAccessControlList) WirelessControllerAccessControlListLayer3Ipv6RuleArrayOutput {
+		return v.Layer3Ipv6Rules
+	}).(WirelessControllerAccessControlListLayer3Ipv6RuleArrayOutput)
+}
+
+func (o WirelessControllerAccessControlListOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerAccessControlList) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerAccessControlListOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerAccessControlList) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerAccessControlListArrayOutput struct{ *pulumi.OutputState }

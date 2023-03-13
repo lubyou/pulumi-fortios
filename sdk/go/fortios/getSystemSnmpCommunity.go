@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios systemsnmp community
 func LookupSystemSnmpCommunity(ctx *pulumi.Context, args *LookupSystemSnmpCommunityArgs, opts ...pulumi.InvokeOption) (*LookupSystemSnmpCommunityResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemSnmpCommunityResult
@@ -23,49 +22,33 @@ func LookupSystemSnmpCommunity(ctx *pulumi.Context, args *LookupSystemSnmpCommun
 
 // A collection of arguments for invoking GetSystemSnmpCommunity.
 type LookupSystemSnmpCommunityArgs struct {
-	// Specify the fosid of the desired systemsnmp community.
-	Fosid int `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     int     `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemSnmpCommunity.
 type LookupSystemSnmpCommunityResult struct {
-	// SNMP trap events.
-	Events string `pulumi:"events"`
-	// Community ID.
-	Fosid int `pulumi:"fosid"`
-	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
-	Hosts []GetSystemSnmpCommunityHost `pulumi:"hosts"`
-	// Configure IPv6 SNMP managers. The structure of `hosts6` block is documented below.
+	Events  string                         `pulumi:"events"`
+	Fosid   int                            `pulumi:"fosid"`
+	Hosts   []GetSystemSnmpCommunityHost   `pulumi:"hosts"`
 	Hosts6s []GetSystemSnmpCommunityHosts6 `pulumi:"hosts6s"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Community name.
-	Name string `pulumi:"name"`
-	// SNMP v1 query port (default = 161).
-	QueryV1Port int `pulumi:"queryV1Port"`
-	// Enable/disable SNMP v1 queries.
-	QueryV1Status string `pulumi:"queryV1Status"`
-	// SNMP v2c query port (default = 161).
-	QueryV2cPort int `pulumi:"queryV2cPort"`
-	// Enable/disable SNMP v2c queries.
-	QueryV2cStatus string `pulumi:"queryV2cStatus"`
-	// Enable/disable this SNMP community.
-	Status string `pulumi:"status"`
-	// SNMP v1 trap local port (default = 162).
-	TrapV1Lport int `pulumi:"trapV1Lport"`
-	// SNMP v1 trap remote port (default = 162).
-	TrapV1Rport int `pulumi:"trapV1Rport"`
-	// Enable/disable SNMP v1 traps.
-	TrapV1Status string `pulumi:"trapV1Status"`
-	// SNMP v2c trap local port (default = 162).
-	TrapV2cLport int `pulumi:"trapV2cLport"`
-	// SNMP v2c trap remote port (default = 162).
-	TrapV2cRport int `pulumi:"trapV2cRport"`
-	// Enable/disable SNMP v2c traps.
-	TrapV2cStatus string  `pulumi:"trapV2cStatus"`
-	Vdomparam     *string `pulumi:"vdomparam"`
+	Id             string                       `pulumi:"id"`
+	MibView        string                       `pulumi:"mibView"`
+	Name           string                       `pulumi:"name"`
+	QueryV1Port    int                          `pulumi:"queryV1Port"`
+	QueryV1Status  string                       `pulumi:"queryV1Status"`
+	QueryV2cPort   int                          `pulumi:"queryV2cPort"`
+	QueryV2cStatus string                       `pulumi:"queryV2cStatus"`
+	Status         string                       `pulumi:"status"`
+	TrapV1Lport    int                          `pulumi:"trapV1Lport"`
+	TrapV1Rport    int                          `pulumi:"trapV1Rport"`
+	TrapV1Status   string                       `pulumi:"trapV1Status"`
+	TrapV2cLport   int                          `pulumi:"trapV2cLport"`
+	TrapV2cRport   int                          `pulumi:"trapV2cRport"`
+	TrapV2cStatus  string                       `pulumi:"trapV2cStatus"`
+	Vdomparam      *string                      `pulumi:"vdomparam"`
+	Vdoms          []GetSystemSnmpCommunityVdom `pulumi:"vdoms"`
 }
 
 func LookupSystemSnmpCommunityOutput(ctx *pulumi.Context, args LookupSystemSnmpCommunityOutputArgs, opts ...pulumi.InvokeOption) LookupSystemSnmpCommunityResultOutput {
@@ -83,9 +66,7 @@ func LookupSystemSnmpCommunityOutput(ctx *pulumi.Context, args LookupSystemSnmpC
 
 // A collection of arguments for invoking GetSystemSnmpCommunity.
 type LookupSystemSnmpCommunityOutputArgs struct {
-	// Specify the fosid of the desired systemsnmp community.
-	Fosid pulumi.IntInput `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntInput       `pulumi:"fosid"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -108,22 +89,18 @@ func (o LookupSystemSnmpCommunityResultOutput) ToLookupSystemSnmpCommunityResult
 	return o
 }
 
-// SNMP trap events.
 func (o LookupSystemSnmpCommunityResultOutput) Events() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) string { return v.Events }).(pulumi.StringOutput)
 }
 
-// Community ID.
 func (o LookupSystemSnmpCommunityResultOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) int { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
 func (o LookupSystemSnmpCommunityResultOutput) Hosts() GetSystemSnmpCommunityHostArrayOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) []GetSystemSnmpCommunityHost { return v.Hosts }).(GetSystemSnmpCommunityHostArrayOutput)
 }
 
-// Configure IPv6 SNMP managers. The structure of `hosts6` block is documented below.
 func (o LookupSystemSnmpCommunityResultOutput) Hosts6s() GetSystemSnmpCommunityHosts6ArrayOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) []GetSystemSnmpCommunityHosts6 { return v.Hosts6s }).(GetSystemSnmpCommunityHosts6ArrayOutput)
 }
@@ -133,68 +110,64 @@ func (o LookupSystemSnmpCommunityResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Community name.
+func (o LookupSystemSnmpCommunityResultOutput) MibView() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) string { return v.MibView }).(pulumi.StringOutput)
+}
+
 func (o LookupSystemSnmpCommunityResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// SNMP v1 query port (default = 161).
 func (o LookupSystemSnmpCommunityResultOutput) QueryV1Port() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) int { return v.QueryV1Port }).(pulumi.IntOutput)
 }
 
-// Enable/disable SNMP v1 queries.
 func (o LookupSystemSnmpCommunityResultOutput) QueryV1Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) string { return v.QueryV1Status }).(pulumi.StringOutput)
 }
 
-// SNMP v2c query port (default = 161).
 func (o LookupSystemSnmpCommunityResultOutput) QueryV2cPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) int { return v.QueryV2cPort }).(pulumi.IntOutput)
 }
 
-// Enable/disable SNMP v2c queries.
 func (o LookupSystemSnmpCommunityResultOutput) QueryV2cStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) string { return v.QueryV2cStatus }).(pulumi.StringOutput)
 }
 
-// Enable/disable this SNMP community.
 func (o LookupSystemSnmpCommunityResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// SNMP v1 trap local port (default = 162).
 func (o LookupSystemSnmpCommunityResultOutput) TrapV1Lport() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) int { return v.TrapV1Lport }).(pulumi.IntOutput)
 }
 
-// SNMP v1 trap remote port (default = 162).
 func (o LookupSystemSnmpCommunityResultOutput) TrapV1Rport() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) int { return v.TrapV1Rport }).(pulumi.IntOutput)
 }
 
-// Enable/disable SNMP v1 traps.
 func (o LookupSystemSnmpCommunityResultOutput) TrapV1Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) string { return v.TrapV1Status }).(pulumi.StringOutput)
 }
 
-// SNMP v2c trap local port (default = 162).
 func (o LookupSystemSnmpCommunityResultOutput) TrapV2cLport() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) int { return v.TrapV2cLport }).(pulumi.IntOutput)
 }
 
-// SNMP v2c trap remote port (default = 162).
 func (o LookupSystemSnmpCommunityResultOutput) TrapV2cRport() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) int { return v.TrapV2cRport }).(pulumi.IntOutput)
 }
 
-// Enable/disable SNMP v2c traps.
 func (o LookupSystemSnmpCommunityResultOutput) TrapV2cStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) string { return v.TrapV2cStatus }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemSnmpCommunityResultOutput) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupSystemSnmpCommunityResultOutput) Vdoms() GetSystemSnmpCommunityVdomArrayOutput {
+	return o.ApplyT(func(v LookupSystemSnmpCommunityResult) []GetSystemSnmpCommunityVdom { return v.Vdoms }).(GetSystemSnmpCommunityVdomArrayOutput)
 }
 
 func init() {

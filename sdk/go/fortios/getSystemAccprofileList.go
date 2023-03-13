@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemAccprofile`.
 func GetSystemAccprofileList(ctx *pulumi.Context, args *GetSystemAccprofileListArgs, opts ...pulumi.InvokeOption) (*GetSystemAccprofileListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemAccprofileListResult
@@ -23,8 +22,7 @@ func GetSystemAccprofileList(ctx *pulumi.Context, args *GetSystemAccprofileListA
 
 // A collection of arguments for invoking GetSystemAccprofileList.
 type GetSystemAccprofileListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetSystemAccprofileListArgs struct {
 type GetSystemAccprofileListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `SystemAccprofile`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetSystemAccprofileListOutput(ctx *pulumi.Context, args GetSystemAccprofile
 
 // A collection of arguments for invoking GetSystemAccprofileList.
 type GetSystemAccprofileListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetSystemAccprofileListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSystemAccprofileListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `SystemAccprofile`.
 func (o GetSystemAccprofileListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSystemAccprofileListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

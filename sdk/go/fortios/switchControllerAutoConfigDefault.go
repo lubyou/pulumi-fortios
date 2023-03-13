@@ -10,33 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure default auto-config QoS policy for FortiSwitch.
-//
-// ## Import
-//
-// SwitchControllerAutoConfig Default can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerAutoConfigDefault:SwitchControllerAutoConfigDefault labelname SwitchControllerAutoConfigDefault
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerAutoConfigDefault:SwitchControllerAutoConfigDefault labelname SwitchControllerAutoConfigDefault
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerAutoConfigDefault struct {
 	pulumi.CustomResourceState
 
-	// Default FortiLink auto-config policy.
-	FgtPolicy pulumi.StringOutput `pulumi:"fgtPolicy"`
-	// Default ICL auto-config policy.
-	IclPolicy pulumi.StringOutput `pulumi:"iclPolicy"`
-	// Default ISL auto-config policy.
-	IslPolicy pulumi.StringOutput `pulumi:"islPolicy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	FgtPolicy pulumi.StringOutput    `pulumi:"fgtPolicy"`
+	IclPolicy pulumi.StringOutput    `pulumi:"iclPolicy"`
+	IslPolicy pulumi.StringOutput    `pulumi:"islPolicy"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -70,24 +49,16 @@ func GetSwitchControllerAutoConfigDefault(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerAutoConfigDefault resources.
 type switchControllerAutoConfigDefaultState struct {
-	// Default FortiLink auto-config policy.
 	FgtPolicy *string `pulumi:"fgtPolicy"`
-	// Default ICL auto-config policy.
 	IclPolicy *string `pulumi:"iclPolicy"`
-	// Default ISL auto-config policy.
 	IslPolicy *string `pulumi:"islPolicy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerAutoConfigDefaultState struct {
-	// Default FortiLink auto-config policy.
 	FgtPolicy pulumi.StringPtrInput
-	// Default ICL auto-config policy.
 	IclPolicy pulumi.StringPtrInput
-	// Default ISL auto-config policy.
 	IslPolicy pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -96,25 +67,17 @@ func (SwitchControllerAutoConfigDefaultState) ElementType() reflect.Type {
 }
 
 type switchControllerAutoConfigDefaultArgs struct {
-	// Default FortiLink auto-config policy.
 	FgtPolicy *string `pulumi:"fgtPolicy"`
-	// Default ICL auto-config policy.
 	IclPolicy *string `pulumi:"iclPolicy"`
-	// Default ISL auto-config policy.
 	IslPolicy *string `pulumi:"islPolicy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerAutoConfigDefault resource.
 type SwitchControllerAutoConfigDefaultArgs struct {
-	// Default FortiLink auto-config policy.
 	FgtPolicy pulumi.StringPtrInput
-	// Default ICL auto-config policy.
 	IclPolicy pulumi.StringPtrInput
-	// Default ISL auto-config policy.
 	IslPolicy pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -144,7 +107,7 @@ func (i *SwitchControllerAutoConfigDefault) ToSwitchControllerAutoConfigDefaultO
 // SwitchControllerAutoConfigDefaultArrayInput is an input type that accepts SwitchControllerAutoConfigDefaultArray and SwitchControllerAutoConfigDefaultArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerAutoConfigDefaultArrayInput` via:
 //
-//          SwitchControllerAutoConfigDefaultArray{ SwitchControllerAutoConfigDefaultArgs{...} }
+//	SwitchControllerAutoConfigDefaultArray{ SwitchControllerAutoConfigDefaultArgs{...} }
 type SwitchControllerAutoConfigDefaultArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i SwitchControllerAutoConfigDefaultArray) ToSwitchControllerAutoConfigDefa
 // SwitchControllerAutoConfigDefaultMapInput is an input type that accepts SwitchControllerAutoConfigDefaultMap and SwitchControllerAutoConfigDefaultMapOutput values.
 // You can construct a concrete instance of `SwitchControllerAutoConfigDefaultMapInput` via:
 //
-//          SwitchControllerAutoConfigDefaultMap{ "key": SwitchControllerAutoConfigDefaultArgs{...} }
+//	SwitchControllerAutoConfigDefaultMap{ "key": SwitchControllerAutoConfigDefaultArgs{...} }
 type SwitchControllerAutoConfigDefaultMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o SwitchControllerAutoConfigDefaultOutput) ToSwitchControllerAutoConfigDef
 
 func (o SwitchControllerAutoConfigDefaultOutput) ToSwitchControllerAutoConfigDefaultOutputWithContext(ctx context.Context) SwitchControllerAutoConfigDefaultOutput {
 	return o
+}
+
+func (o SwitchControllerAutoConfigDefaultOutput) FgtPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigDefault) pulumi.StringOutput { return v.FgtPolicy }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerAutoConfigDefaultOutput) IclPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigDefault) pulumi.StringOutput { return v.IclPolicy }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerAutoConfigDefaultOutput) IslPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigDefault) pulumi.StringOutput { return v.IslPolicy }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerAutoConfigDefaultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigDefault) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerAutoConfigDefaultArrayOutput struct{ *pulumi.OutputState }

@@ -10,31 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure YouTube API keys. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// Videofilter YoutubeKey can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/videofilterYoutubeKey:VideofilterYoutubeKey labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/videofilterYoutubeKey:VideofilterYoutubeKey labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VideofilterYoutubeKey struct {
 	pulumi.CustomResourceState
 
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Key.
-	Key pulumi.StringOutput `pulumi:"key"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Key       pulumi.StringOutput    `pulumi:"key"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -68,20 +48,14 @@ func GetVideofilterYoutubeKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VideofilterYoutubeKey resources.
 type videofilterYoutubeKeyState struct {
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Key.
-	Key *string `pulumi:"key"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Key       *string `pulumi:"key"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type VideofilterYoutubeKeyState struct {
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Key.
-	Key pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Key       pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -90,21 +64,15 @@ func (VideofilterYoutubeKeyState) ElementType() reflect.Type {
 }
 
 type videofilterYoutubeKeyArgs struct {
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Key.
-	Key *string `pulumi:"key"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Key       *string `pulumi:"key"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VideofilterYoutubeKey resource.
 type VideofilterYoutubeKeyArgs struct {
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Key.
-	Key pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Key       pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -134,7 +102,7 @@ func (i *VideofilterYoutubeKey) ToVideofilterYoutubeKeyOutputWithContext(ctx con
 // VideofilterYoutubeKeyArrayInput is an input type that accepts VideofilterYoutubeKeyArray and VideofilterYoutubeKeyArrayOutput values.
 // You can construct a concrete instance of `VideofilterYoutubeKeyArrayInput` via:
 //
-//          VideofilterYoutubeKeyArray{ VideofilterYoutubeKeyArgs{...} }
+//	VideofilterYoutubeKeyArray{ VideofilterYoutubeKeyArgs{...} }
 type VideofilterYoutubeKeyArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i VideofilterYoutubeKeyArray) ToVideofilterYoutubeKeyArrayOutputWithContex
 // VideofilterYoutubeKeyMapInput is an input type that accepts VideofilterYoutubeKeyMap and VideofilterYoutubeKeyMapOutput values.
 // You can construct a concrete instance of `VideofilterYoutubeKeyMapInput` via:
 //
-//          VideofilterYoutubeKeyMap{ "key": VideofilterYoutubeKeyArgs{...} }
+//	VideofilterYoutubeKeyMap{ "key": VideofilterYoutubeKeyArgs{...} }
 type VideofilterYoutubeKeyMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o VideofilterYoutubeKeyOutput) ToVideofilterYoutubeKeyOutput() Videofilter
 
 func (o VideofilterYoutubeKeyOutput) ToVideofilterYoutubeKeyOutputWithContext(ctx context.Context) VideofilterYoutubeKeyOutput {
 	return o
+}
+
+func (o VideofilterYoutubeKeyOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *VideofilterYoutubeKey) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o VideofilterYoutubeKeyOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v *VideofilterYoutubeKey) pulumi.StringOutput { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o VideofilterYoutubeKeyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VideofilterYoutubeKey) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type VideofilterYoutubeKeyArrayOutput struct{ *pulumi.OutputState }

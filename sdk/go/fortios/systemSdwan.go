@@ -10,60 +10,26 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure redundant internet connections using SD-WAN (formerly virtual WAN link). Applies to FortiOS Version `>= 6.4.1`.
-//
-// ## Import
-//
-// System Sdwan can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSdwan:SystemSdwan labelname SystemSdwan
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSdwan:SystemSdwan labelname SystemSdwan
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemSdwan struct {
 	pulumi.CustomResourceState
 
-	// Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
-	DuplicationMaxNum pulumi.IntOutput `pulumi:"duplicationMaxNum"`
-	// Create SD-WAN duplication rule. The structure of `duplication` block is documented below.
-	Duplications SystemSdwanDuplicationArrayOutput `pulumi:"duplications"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Physical interfaces that will be alerted. The structure of `failAlertInterfaces` block is documented below.
-	FailAlertInterfaces SystemSdwanFailAlertInterfaceArrayOutput `pulumi:"failAlertInterfaces"`
-	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
-	FailDetect pulumi.StringOutput `pulumi:"failDetect"`
-	// SD-WAN health-check.
-	HealthChecks SystemSdwanHealthCheckArrayOutput `pulumi:"healthChecks"`
-	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
-	LoadBalanceMode pulumi.StringOutput `pulumi:"loadBalanceMode"`
-	// Member sequence number list. The structure of `members` block is documented below.
-	Members SystemSdwanMemberArrayOutput `pulumi:"members"`
-	// Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).
-	NeighborHoldBootTime pulumi.IntOutput `pulumi:"neighborHoldBootTime"`
-	// Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: `enable`, `disable`.
-	NeighborHoldDown pulumi.StringOutput `pulumi:"neighborHoldDown"`
-	// Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
-	NeighborHoldDownTime pulumi.IntOutput `pulumi:"neighborHoldDownTime"`
-	// Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
-	Neighbors SystemSdwanNeighborArrayOutput `pulumi:"neighbors"`
-	// Service and service group name. The structure of `service` block is documented below.
-	Services SystemSdwanServiceArrayOutput `pulumi:"services"`
-	// Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
-	SpeedtestBypassRouting pulumi.StringOutput `pulumi:"speedtestBypassRouting"`
-	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Zone name.
-	Zones SystemSdwanZoneArrayOutput `pulumi:"zones"`
+	DuplicationMaxNum      pulumi.IntOutput                         `pulumi:"duplicationMaxNum"`
+	Duplications           SystemSdwanDuplicationArrayOutput        `pulumi:"duplications"`
+	DynamicSortSubtable    pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
+	FailAlertInterfaces    SystemSdwanFailAlertInterfaceArrayOutput `pulumi:"failAlertInterfaces"`
+	FailDetect             pulumi.StringOutput                      `pulumi:"failDetect"`
+	HealthChecks           SystemSdwanHealthCheckArrayOutput        `pulumi:"healthChecks"`
+	LoadBalanceMode        pulumi.StringOutput                      `pulumi:"loadBalanceMode"`
+	Members                SystemSdwanMemberArrayOutput             `pulumi:"members"`
+	NeighborHoldBootTime   pulumi.IntOutput                         `pulumi:"neighborHoldBootTime"`
+	NeighborHoldDown       pulumi.StringOutput                      `pulumi:"neighborHoldDown"`
+	NeighborHoldDownTime   pulumi.IntOutput                         `pulumi:"neighborHoldDownTime"`
+	Neighbors              SystemSdwanNeighborArrayOutput           `pulumi:"neighbors"`
+	Services               SystemSdwanServiceArrayOutput            `pulumi:"services"`
+	SpeedtestBypassRouting pulumi.StringOutput                      `pulumi:"speedtestBypassRouting"`
+	Status                 pulumi.StringOutput                      `pulumi:"status"`
+	Vdomparam              pulumi.StringPtrOutput                   `pulumi:"vdomparam"`
+	Zones                  SystemSdwanZoneArrayOutput               `pulumi:"zones"`
 }
 
 // NewSystemSdwan registers a new resource with the given unique name, arguments, and options.
@@ -96,77 +62,43 @@ func GetSystemSdwan(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSdwan resources.
 type systemSdwanState struct {
-	// Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
-	DuplicationMaxNum *int `pulumi:"duplicationMaxNum"`
-	// Create SD-WAN duplication rule. The structure of `duplication` block is documented below.
-	Duplications []SystemSdwanDuplication `pulumi:"duplications"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Physical interfaces that will be alerted. The structure of `failAlertInterfaces` block is documented below.
-	FailAlertInterfaces []SystemSdwanFailAlertInterface `pulumi:"failAlertInterfaces"`
-	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
-	FailDetect *string `pulumi:"failDetect"`
-	// SD-WAN health-check.
-	HealthChecks []SystemSdwanHealthCheck `pulumi:"healthChecks"`
-	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
-	LoadBalanceMode *string `pulumi:"loadBalanceMode"`
-	// Member sequence number list. The structure of `members` block is documented below.
-	Members []SystemSdwanMember `pulumi:"members"`
-	// Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).
-	NeighborHoldBootTime *int `pulumi:"neighborHoldBootTime"`
-	// Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: `enable`, `disable`.
-	NeighborHoldDown *string `pulumi:"neighborHoldDown"`
-	// Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
-	NeighborHoldDownTime *int `pulumi:"neighborHoldDownTime"`
-	// Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
-	Neighbors []SystemSdwanNeighbor `pulumi:"neighbors"`
-	// Service and service group name. The structure of `service` block is documented below.
-	Services []SystemSdwanService `pulumi:"services"`
-	// Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
-	SpeedtestBypassRouting *string `pulumi:"speedtestBypassRouting"`
-	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Zone name.
-	Zones []SystemSdwanZone `pulumi:"zones"`
+	DuplicationMaxNum      *int                            `pulumi:"duplicationMaxNum"`
+	Duplications           []SystemSdwanDuplication        `pulumi:"duplications"`
+	DynamicSortSubtable    *string                         `pulumi:"dynamicSortSubtable"`
+	FailAlertInterfaces    []SystemSdwanFailAlertInterface `pulumi:"failAlertInterfaces"`
+	FailDetect             *string                         `pulumi:"failDetect"`
+	HealthChecks           []SystemSdwanHealthCheck        `pulumi:"healthChecks"`
+	LoadBalanceMode        *string                         `pulumi:"loadBalanceMode"`
+	Members                []SystemSdwanMember             `pulumi:"members"`
+	NeighborHoldBootTime   *int                            `pulumi:"neighborHoldBootTime"`
+	NeighborHoldDown       *string                         `pulumi:"neighborHoldDown"`
+	NeighborHoldDownTime   *int                            `pulumi:"neighborHoldDownTime"`
+	Neighbors              []SystemSdwanNeighbor           `pulumi:"neighbors"`
+	Services               []SystemSdwanService            `pulumi:"services"`
+	SpeedtestBypassRouting *string                         `pulumi:"speedtestBypassRouting"`
+	Status                 *string                         `pulumi:"status"`
+	Vdomparam              *string                         `pulumi:"vdomparam"`
+	Zones                  []SystemSdwanZone               `pulumi:"zones"`
 }
 
 type SystemSdwanState struct {
-	// Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
-	DuplicationMaxNum pulumi.IntPtrInput
-	// Create SD-WAN duplication rule. The structure of `duplication` block is documented below.
-	Duplications SystemSdwanDuplicationArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Physical interfaces that will be alerted. The structure of `failAlertInterfaces` block is documented below.
-	FailAlertInterfaces SystemSdwanFailAlertInterfaceArrayInput
-	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
-	FailDetect pulumi.StringPtrInput
-	// SD-WAN health-check.
-	HealthChecks SystemSdwanHealthCheckArrayInput
-	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
-	LoadBalanceMode pulumi.StringPtrInput
-	// Member sequence number list. The structure of `members` block is documented below.
-	Members SystemSdwanMemberArrayInput
-	// Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).
-	NeighborHoldBootTime pulumi.IntPtrInput
-	// Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: `enable`, `disable`.
-	NeighborHoldDown pulumi.StringPtrInput
-	// Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
-	NeighborHoldDownTime pulumi.IntPtrInput
-	// Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
-	Neighbors SystemSdwanNeighborArrayInput
-	// Service and service group name. The structure of `service` block is documented below.
-	Services SystemSdwanServiceArrayInput
-	// Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
+	DuplicationMaxNum      pulumi.IntPtrInput
+	Duplications           SystemSdwanDuplicationArrayInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	FailAlertInterfaces    SystemSdwanFailAlertInterfaceArrayInput
+	FailDetect             pulumi.StringPtrInput
+	HealthChecks           SystemSdwanHealthCheckArrayInput
+	LoadBalanceMode        pulumi.StringPtrInput
+	Members                SystemSdwanMemberArrayInput
+	NeighborHoldBootTime   pulumi.IntPtrInput
+	NeighborHoldDown       pulumi.StringPtrInput
+	NeighborHoldDownTime   pulumi.IntPtrInput
+	Neighbors              SystemSdwanNeighborArrayInput
+	Services               SystemSdwanServiceArrayInput
 	SpeedtestBypassRouting pulumi.StringPtrInput
-	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Zone name.
-	Zones SystemSdwanZoneArrayInput
+	Status                 pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
+	Zones                  SystemSdwanZoneArrayInput
 }
 
 func (SystemSdwanState) ElementType() reflect.Type {
@@ -174,78 +106,44 @@ func (SystemSdwanState) ElementType() reflect.Type {
 }
 
 type systemSdwanArgs struct {
-	// Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
-	DuplicationMaxNum *int `pulumi:"duplicationMaxNum"`
-	// Create SD-WAN duplication rule. The structure of `duplication` block is documented below.
-	Duplications []SystemSdwanDuplication `pulumi:"duplications"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Physical interfaces that will be alerted. The structure of `failAlertInterfaces` block is documented below.
-	FailAlertInterfaces []SystemSdwanFailAlertInterface `pulumi:"failAlertInterfaces"`
-	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
-	FailDetect *string `pulumi:"failDetect"`
-	// SD-WAN health-check.
-	HealthChecks []SystemSdwanHealthCheck `pulumi:"healthChecks"`
-	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
-	LoadBalanceMode *string `pulumi:"loadBalanceMode"`
-	// Member sequence number list. The structure of `members` block is documented below.
-	Members []SystemSdwanMember `pulumi:"members"`
-	// Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).
-	NeighborHoldBootTime *int `pulumi:"neighborHoldBootTime"`
-	// Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: `enable`, `disable`.
-	NeighborHoldDown *string `pulumi:"neighborHoldDown"`
-	// Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
-	NeighborHoldDownTime *int `pulumi:"neighborHoldDownTime"`
-	// Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
-	Neighbors []SystemSdwanNeighbor `pulumi:"neighbors"`
-	// Service and service group name. The structure of `service` block is documented below.
-	Services []SystemSdwanService `pulumi:"services"`
-	// Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
-	SpeedtestBypassRouting *string `pulumi:"speedtestBypassRouting"`
-	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Zone name.
-	Zones []SystemSdwanZone `pulumi:"zones"`
+	DuplicationMaxNum      *int                            `pulumi:"duplicationMaxNum"`
+	Duplications           []SystemSdwanDuplication        `pulumi:"duplications"`
+	DynamicSortSubtable    *string                         `pulumi:"dynamicSortSubtable"`
+	FailAlertInterfaces    []SystemSdwanFailAlertInterface `pulumi:"failAlertInterfaces"`
+	FailDetect             *string                         `pulumi:"failDetect"`
+	HealthChecks           []SystemSdwanHealthCheck        `pulumi:"healthChecks"`
+	LoadBalanceMode        *string                         `pulumi:"loadBalanceMode"`
+	Members                []SystemSdwanMember             `pulumi:"members"`
+	NeighborHoldBootTime   *int                            `pulumi:"neighborHoldBootTime"`
+	NeighborHoldDown       *string                         `pulumi:"neighborHoldDown"`
+	NeighborHoldDownTime   *int                            `pulumi:"neighborHoldDownTime"`
+	Neighbors              []SystemSdwanNeighbor           `pulumi:"neighbors"`
+	Services               []SystemSdwanService            `pulumi:"services"`
+	SpeedtestBypassRouting *string                         `pulumi:"speedtestBypassRouting"`
+	Status                 *string                         `pulumi:"status"`
+	Vdomparam              *string                         `pulumi:"vdomparam"`
+	Zones                  []SystemSdwanZone               `pulumi:"zones"`
 }
 
 // The set of arguments for constructing a SystemSdwan resource.
 type SystemSdwanArgs struct {
-	// Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
-	DuplicationMaxNum pulumi.IntPtrInput
-	// Create SD-WAN duplication rule. The structure of `duplication` block is documented below.
-	Duplications SystemSdwanDuplicationArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Physical interfaces that will be alerted. The structure of `failAlertInterfaces` block is documented below.
-	FailAlertInterfaces SystemSdwanFailAlertInterfaceArrayInput
-	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
-	FailDetect pulumi.StringPtrInput
-	// SD-WAN health-check.
-	HealthChecks SystemSdwanHealthCheckArrayInput
-	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
-	LoadBalanceMode pulumi.StringPtrInput
-	// Member sequence number list. The structure of `members` block is documented below.
-	Members SystemSdwanMemberArrayInput
-	// Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).
-	NeighborHoldBootTime pulumi.IntPtrInput
-	// Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: `enable`, `disable`.
-	NeighborHoldDown pulumi.StringPtrInput
-	// Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
-	NeighborHoldDownTime pulumi.IntPtrInput
-	// Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
-	Neighbors SystemSdwanNeighborArrayInput
-	// Service and service group name. The structure of `service` block is documented below.
-	Services SystemSdwanServiceArrayInput
-	// Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
+	DuplicationMaxNum      pulumi.IntPtrInput
+	Duplications           SystemSdwanDuplicationArrayInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	FailAlertInterfaces    SystemSdwanFailAlertInterfaceArrayInput
+	FailDetect             pulumi.StringPtrInput
+	HealthChecks           SystemSdwanHealthCheckArrayInput
+	LoadBalanceMode        pulumi.StringPtrInput
+	Members                SystemSdwanMemberArrayInput
+	NeighborHoldBootTime   pulumi.IntPtrInput
+	NeighborHoldDown       pulumi.StringPtrInput
+	NeighborHoldDownTime   pulumi.IntPtrInput
+	Neighbors              SystemSdwanNeighborArrayInput
+	Services               SystemSdwanServiceArrayInput
 	SpeedtestBypassRouting pulumi.StringPtrInput
-	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Zone name.
-	Zones SystemSdwanZoneArrayInput
+	Status                 pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
+	Zones                  SystemSdwanZoneArrayInput
 }
 
 func (SystemSdwanArgs) ElementType() reflect.Type {
@@ -274,7 +172,7 @@ func (i *SystemSdwan) ToSystemSdwanOutputWithContext(ctx context.Context) System
 // SystemSdwanArrayInput is an input type that accepts SystemSdwanArray and SystemSdwanArrayOutput values.
 // You can construct a concrete instance of `SystemSdwanArrayInput` via:
 //
-//          SystemSdwanArray{ SystemSdwanArgs{...} }
+//	SystemSdwanArray{ SystemSdwanArgs{...} }
 type SystemSdwanArrayInput interface {
 	pulumi.Input
 
@@ -299,7 +197,7 @@ func (i SystemSdwanArray) ToSystemSdwanArrayOutputWithContext(ctx context.Contex
 // SystemSdwanMapInput is an input type that accepts SystemSdwanMap and SystemSdwanMapOutput values.
 // You can construct a concrete instance of `SystemSdwanMapInput` via:
 //
-//          SystemSdwanMap{ "key": SystemSdwanArgs{...} }
+//	SystemSdwanMap{ "key": SystemSdwanArgs{...} }
 type SystemSdwanMapInput interface {
 	pulumi.Input
 
@@ -333,6 +231,74 @@ func (o SystemSdwanOutput) ToSystemSdwanOutput() SystemSdwanOutput {
 
 func (o SystemSdwanOutput) ToSystemSdwanOutputWithContext(ctx context.Context) SystemSdwanOutput {
 	return o
+}
+
+func (o SystemSdwanOutput) DuplicationMaxNum() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSdwan) pulumi.IntOutput { return v.DuplicationMaxNum }).(pulumi.IntOutput)
+}
+
+func (o SystemSdwanOutput) Duplications() SystemSdwanDuplicationArrayOutput {
+	return o.ApplyT(func(v *SystemSdwan) SystemSdwanDuplicationArrayOutput { return v.Duplications }).(SystemSdwanDuplicationArrayOutput)
+}
+
+func (o SystemSdwanOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSdwan) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSdwanOutput) FailAlertInterfaces() SystemSdwanFailAlertInterfaceArrayOutput {
+	return o.ApplyT(func(v *SystemSdwan) SystemSdwanFailAlertInterfaceArrayOutput { return v.FailAlertInterfaces }).(SystemSdwanFailAlertInterfaceArrayOutput)
+}
+
+func (o SystemSdwanOutput) FailDetect() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSdwan) pulumi.StringOutput { return v.FailDetect }).(pulumi.StringOutput)
+}
+
+func (o SystemSdwanOutput) HealthChecks() SystemSdwanHealthCheckArrayOutput {
+	return o.ApplyT(func(v *SystemSdwan) SystemSdwanHealthCheckArrayOutput { return v.HealthChecks }).(SystemSdwanHealthCheckArrayOutput)
+}
+
+func (o SystemSdwanOutput) LoadBalanceMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSdwan) pulumi.StringOutput { return v.LoadBalanceMode }).(pulumi.StringOutput)
+}
+
+func (o SystemSdwanOutput) Members() SystemSdwanMemberArrayOutput {
+	return o.ApplyT(func(v *SystemSdwan) SystemSdwanMemberArrayOutput { return v.Members }).(SystemSdwanMemberArrayOutput)
+}
+
+func (o SystemSdwanOutput) NeighborHoldBootTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSdwan) pulumi.IntOutput { return v.NeighborHoldBootTime }).(pulumi.IntOutput)
+}
+
+func (o SystemSdwanOutput) NeighborHoldDown() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSdwan) pulumi.StringOutput { return v.NeighborHoldDown }).(pulumi.StringOutput)
+}
+
+func (o SystemSdwanOutput) NeighborHoldDownTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSdwan) pulumi.IntOutput { return v.NeighborHoldDownTime }).(pulumi.IntOutput)
+}
+
+func (o SystemSdwanOutput) Neighbors() SystemSdwanNeighborArrayOutput {
+	return o.ApplyT(func(v *SystemSdwan) SystemSdwanNeighborArrayOutput { return v.Neighbors }).(SystemSdwanNeighborArrayOutput)
+}
+
+func (o SystemSdwanOutput) Services() SystemSdwanServiceArrayOutput {
+	return o.ApplyT(func(v *SystemSdwan) SystemSdwanServiceArrayOutput { return v.Services }).(SystemSdwanServiceArrayOutput)
+}
+
+func (o SystemSdwanOutput) SpeedtestBypassRouting() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSdwan) pulumi.StringOutput { return v.SpeedtestBypassRouting }).(pulumi.StringOutput)
+}
+
+func (o SystemSdwanOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSdwan) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemSdwanOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSdwan) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSdwanOutput) Zones() SystemSdwanZoneArrayOutput {
+	return o.ApplyT(func(v *SystemSdwan) SystemSdwanZoneArrayOutput { return v.Zones }).(SystemSdwanZoneArrayOutput)
 }
 
 type SystemSdwanArrayOutput struct{ *pulumi.OutputState }

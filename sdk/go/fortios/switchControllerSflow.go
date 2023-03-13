@@ -7,60 +7,16 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch sFlow.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchControllerSflow(ctx, "trname", &fortios.SwitchControllerSflowArgs{
-// 			CollectorIp:   pulumi.String("0.0.0.0"),
-// 			CollectorPort: pulumi.Int(6343),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchController Sflow can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSflow:SwitchControllerSflow labelname SwitchControllerSflow
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSflow:SwitchControllerSflow labelname SwitchControllerSflow
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerSflow struct {
 	pulumi.CustomResourceState
 
-	// Collector IP.
-	CollectorIp pulumi.StringOutput `pulumi:"collectorIp"`
-	// SFlow collector port (0 - 65535).
-	CollectorPort pulumi.IntOutput `pulumi:"collectorPort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	CollectorIp   pulumi.StringOutput    `pulumi:"collectorIp"`
+	CollectorPort pulumi.IntOutput       `pulumi:"collectorPort"`
+	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerSflow registers a new resource with the given unique name, arguments, and options.
@@ -96,21 +52,15 @@ func GetSwitchControllerSflow(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerSflow resources.
 type switchControllerSflowState struct {
-	// Collector IP.
-	CollectorIp *string `pulumi:"collectorIp"`
-	// SFlow collector port (0 - 65535).
-	CollectorPort *int `pulumi:"collectorPort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	CollectorIp   *string `pulumi:"collectorIp"`
+	CollectorPort *int    `pulumi:"collectorPort"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerSflowState struct {
-	// Collector IP.
-	CollectorIp pulumi.StringPtrInput
-	// SFlow collector port (0 - 65535).
+	CollectorIp   pulumi.StringPtrInput
 	CollectorPort pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (SwitchControllerSflowState) ElementType() reflect.Type {
@@ -118,22 +68,16 @@ func (SwitchControllerSflowState) ElementType() reflect.Type {
 }
 
 type switchControllerSflowArgs struct {
-	// Collector IP.
-	CollectorIp string `pulumi:"collectorIp"`
-	// SFlow collector port (0 - 65535).
-	CollectorPort *int `pulumi:"collectorPort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	CollectorIp   string  `pulumi:"collectorIp"`
+	CollectorPort *int    `pulumi:"collectorPort"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerSflow resource.
 type SwitchControllerSflowArgs struct {
-	// Collector IP.
-	CollectorIp pulumi.StringInput
-	// SFlow collector port (0 - 65535).
+	CollectorIp   pulumi.StringInput
 	CollectorPort pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (SwitchControllerSflowArgs) ElementType() reflect.Type {
@@ -162,7 +106,7 @@ func (i *SwitchControllerSflow) ToSwitchControllerSflowOutputWithContext(ctx con
 // SwitchControllerSflowArrayInput is an input type that accepts SwitchControllerSflowArray and SwitchControllerSflowArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSflowArrayInput` via:
 //
-//          SwitchControllerSflowArray{ SwitchControllerSflowArgs{...} }
+//	SwitchControllerSflowArray{ SwitchControllerSflowArgs{...} }
 type SwitchControllerSflowArrayInput interface {
 	pulumi.Input
 
@@ -187,7 +131,7 @@ func (i SwitchControllerSflowArray) ToSwitchControllerSflowArrayOutputWithContex
 // SwitchControllerSflowMapInput is an input type that accepts SwitchControllerSflowMap and SwitchControllerSflowMapOutput values.
 // You can construct a concrete instance of `SwitchControllerSflowMapInput` via:
 //
-//          SwitchControllerSflowMap{ "key": SwitchControllerSflowArgs{...} }
+//	SwitchControllerSflowMap{ "key": SwitchControllerSflowArgs{...} }
 type SwitchControllerSflowMapInput interface {
 	pulumi.Input
 
@@ -221,6 +165,18 @@ func (o SwitchControllerSflowOutput) ToSwitchControllerSflowOutput() SwitchContr
 
 func (o SwitchControllerSflowOutput) ToSwitchControllerSflowOutputWithContext(ctx context.Context) SwitchControllerSflowOutput {
 	return o
+}
+
+func (o SwitchControllerSflowOutput) CollectorIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSflow) pulumi.StringOutput { return v.CollectorIp }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSflowOutput) CollectorPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSflow) pulumi.IntOutput { return v.CollectorPort }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSflowOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSflow) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerSflowArrayOutput struct{ *pulumi.OutputState }

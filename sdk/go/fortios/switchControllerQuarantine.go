@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch quarantine support.
-//
-// ## Import
-//
-// SwitchController Quarantine can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerQuarantine:SwitchControllerQuarantine labelname SwitchControllerQuarantine
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerQuarantine:SwitchControllerQuarantine labelname SwitchControllerQuarantine
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerQuarantine struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable quarantine. Valid values: `enable`, `disable`.
-	Quarantine pulumi.StringOutput `pulumi:"quarantine"`
-	// Quarantine MACs. The structure of `targets` block is documented below.
-	Targets SwitchControllerQuarantineTargetArrayOutput `pulumi:"targets"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
+	Quarantine          pulumi.StringOutput                         `pulumi:"quarantine"`
+	Targets             SwitchControllerQuarantineTargetArrayOutput `pulumi:"targets"`
+	Vdomparam           pulumi.StringPtrOutput                      `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerQuarantine registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetSwitchControllerQuarantine(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerQuarantine resources.
 type switchControllerQuarantineState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable quarantine. Valid values: `enable`, `disable`.
-	Quarantine *string `pulumi:"quarantine"`
-	// Quarantine MACs. The structure of `targets` block is documented below.
-	Targets []SwitchControllerQuarantineTarget `pulumi:"targets"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	Quarantine          *string                            `pulumi:"quarantine"`
+	Targets             []SwitchControllerQuarantineTarget `pulumi:"targets"`
+	Vdomparam           *string                            `pulumi:"vdomparam"`
 }
 
 type SwitchControllerQuarantineState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable quarantine. Valid values: `enable`, `disable`.
-	Quarantine pulumi.StringPtrInput
-	// Quarantine MACs. The structure of `targets` block is documented below.
-	Targets SwitchControllerQuarantineTargetArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Quarantine          pulumi.StringPtrInput
+	Targets             SwitchControllerQuarantineTargetArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerQuarantineState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (SwitchControllerQuarantineState) ElementType() reflect.Type {
 }
 
 type switchControllerQuarantineArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable quarantine. Valid values: `enable`, `disable`.
-	Quarantine *string `pulumi:"quarantine"`
-	// Quarantine MACs. The structure of `targets` block is documented below.
-	Targets []SwitchControllerQuarantineTarget `pulumi:"targets"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	Quarantine          *string                            `pulumi:"quarantine"`
+	Targets             []SwitchControllerQuarantineTarget `pulumi:"targets"`
+	Vdomparam           *string                            `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerQuarantine resource.
 type SwitchControllerQuarantineArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable quarantine. Valid values: `enable`, `disable`.
-	Quarantine pulumi.StringPtrInput
-	// Quarantine MACs. The structure of `targets` block is documented below.
-	Targets SwitchControllerQuarantineTargetArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Quarantine          pulumi.StringPtrInput
+	Targets             SwitchControllerQuarantineTargetArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerQuarantineArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *SwitchControllerQuarantine) ToSwitchControllerQuarantineOutputWithConte
 // SwitchControllerQuarantineArrayInput is an input type that accepts SwitchControllerQuarantineArray and SwitchControllerQuarantineArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerQuarantineArrayInput` via:
 //
-//          SwitchControllerQuarantineArray{ SwitchControllerQuarantineArgs{...} }
+//	SwitchControllerQuarantineArray{ SwitchControllerQuarantineArgs{...} }
 type SwitchControllerQuarantineArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i SwitchControllerQuarantineArray) ToSwitchControllerQuarantineArrayOutput
 // SwitchControllerQuarantineMapInput is an input type that accepts SwitchControllerQuarantineMap and SwitchControllerQuarantineMapOutput values.
 // You can construct a concrete instance of `SwitchControllerQuarantineMapInput` via:
 //
-//          SwitchControllerQuarantineMap{ "key": SwitchControllerQuarantineArgs{...} }
+//	SwitchControllerQuarantineMap{ "key": SwitchControllerQuarantineArgs{...} }
 type SwitchControllerQuarantineMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o SwitchControllerQuarantineOutput) ToSwitchControllerQuarantineOutput() S
 
 func (o SwitchControllerQuarantineOutput) ToSwitchControllerQuarantineOutputWithContext(ctx context.Context) SwitchControllerQuarantineOutput {
 	return o
+}
+
+func (o SwitchControllerQuarantineOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerQuarantine) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerQuarantineOutput) Quarantine() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQuarantine) pulumi.StringOutput { return v.Quarantine }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQuarantineOutput) Targets() SwitchControllerQuarantineTargetArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerQuarantine) SwitchControllerQuarantineTargetArrayOutput { return v.Targets }).(SwitchControllerQuarantineTargetArrayOutput)
+}
+
+func (o SwitchControllerQuarantineOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerQuarantine) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerQuarantineArrayOutput struct{ *pulumi.OutputState }

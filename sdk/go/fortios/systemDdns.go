@@ -7,117 +7,36 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure DDNS.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemDdns(ctx, "trname", &fortios.SystemDdnsArgs{
-// 			BoundIp:      pulumi.String("0.0.0.0"),
-// 			ClearText:    pulumi.String("disable"),
-// 			DdnsAuth:     pulumi.String("disable"),
-// 			DdnsDomain:   pulumi.String("www.s.com"),
-// 			DdnsPassword: pulumi.String("ewewcd"),
-// 			DdnsServer:   pulumi.String("tzo.com"),
-// 			DdnsServerIp: pulumi.String("0.0.0.0"),
-// 			DdnsTtl:      pulumi.Int(300),
-// 			DdnsUsername: pulumi.String("sie2ae"),
-// 			Ddnsid:       pulumi.Int(1),
-// 			MonitorInterfaces: SystemDdnsMonitorInterfaceArray{
-// 				&SystemDdnsMonitorInterfaceArgs{
-// 					InterfaceName: pulumi.String("port2"),
-// 				},
-// 			},
-// 			SslCertificate: pulumi.String("Fortinet_Factory"),
-// 			UpdateInterval: pulumi.Int(300),
-// 			UsePublicIp:    pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Ddns can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDdns:SystemDdns labelname {{ddnsid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDdns:SystemDdns labelname {{ddnsid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemDdns struct {
 	pulumi.CustomResourceState
 
-	// Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
-	AddrType pulumi.StringOutput `pulumi:"addrType"`
-	// Bound IP address.
-	BoundIp pulumi.StringOutput `pulumi:"boundIp"`
-	// Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
-	ClearText pulumi.StringOutput `pulumi:"clearText"`
-	// Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
-	DdnsAuth pulumi.StringOutput `pulumi:"ddnsAuth"`
-	// Your fully qualified domain name (for example, yourname.DDNS.com).
-	DdnsDomain pulumi.StringOutput `pulumi:"ddnsDomain"`
-	// DDNS update key (base 64 encoding).
-	DdnsKey pulumi.StringOutput `pulumi:"ddnsKey"`
-	// DDNS update key name.
-	DdnsKeyname pulumi.StringOutput `pulumi:"ddnsKeyname"`
-	// DDNS password.
-	DdnsPassword pulumi.StringPtrOutput `pulumi:"ddnsPassword"`
-	// Select a DDNS service provider. Valid values: `dyndns.org`, `dyns.net`, `tzo.com`, `vavic.com`, `dipdns.net`, `now.net.cn`, `dhs.org`, `easydns.com`, `genericDDNS`, `FortiGuardDDNS`, `noip.com`.
-	DdnsServer pulumi.StringOutput `pulumi:"ddnsServer"`
-	// Generic DDNS server IP/FQDN list. The structure of `ddnsServerAddr` block is documented below.
-	DdnsServerAddrs SystemDdnsDdnsServerAddrArrayOutput `pulumi:"ddnsServerAddrs"`
-	// Generic DDNS server IP.
-	DdnsServerIp pulumi.StringOutput `pulumi:"ddnsServerIp"`
-	// DDNS Serial Number.
-	DdnsSn pulumi.StringOutput `pulumi:"ddnsSn"`
-	// Time-to-live for DDNS packets.
-	DdnsTtl pulumi.IntOutput `pulumi:"ddnsTtl"`
-	// DDNS user name.
-	DdnsUsername pulumi.StringOutput `pulumi:"ddnsUsername"`
-	// Zone of your domain name (for example, DDNS.com).
-	DdnsZone pulumi.StringOutput `pulumi:"ddnsZone"`
-	// DDNS ID.
-	Ddnsid pulumi.IntOutput `pulumi:"ddnsid"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Monitored interface. The structure of `monitorInterface` block is documented below.
-	MonitorInterfaces SystemDdnsMonitorInterfaceArrayOutput `pulumi:"monitorInterfaces"`
-	// Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
-	ServerType pulumi.StringOutput `pulumi:"serverType"`
-	// Name of local certificate for SSL connections.
-	SslCertificate pulumi.StringOutput `pulumi:"sslCertificate"`
-	// DDNS update interval (60 - 2592000 sec, default = 300).
-	UpdateInterval pulumi.IntOutput `pulumi:"updateInterval"`
-	// Enable/disable use of public IP address. Valid values: `disable`, `enable`.
-	UsePublicIp pulumi.StringOutput `pulumi:"usePublicIp"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AddrType            pulumi.StringOutput                   `pulumi:"addrType"`
+	BoundIp             pulumi.StringOutput                   `pulumi:"boundIp"`
+	ClearText           pulumi.StringOutput                   `pulumi:"clearText"`
+	DdnsAuth            pulumi.StringOutput                   `pulumi:"ddnsAuth"`
+	DdnsDomain          pulumi.StringOutput                   `pulumi:"ddnsDomain"`
+	DdnsKey             pulumi.StringOutput                   `pulumi:"ddnsKey"`
+	DdnsKeyname         pulumi.StringOutput                   `pulumi:"ddnsKeyname"`
+	DdnsPassword        pulumi.StringPtrOutput                `pulumi:"ddnsPassword"`
+	DdnsServer          pulumi.StringOutput                   `pulumi:"ddnsServer"`
+	DdnsServerAddrs     SystemDdnsDdnsServerAddrArrayOutput   `pulumi:"ddnsServerAddrs"`
+	DdnsServerIp        pulumi.StringOutput                   `pulumi:"ddnsServerIp"`
+	DdnsSn              pulumi.StringOutput                   `pulumi:"ddnsSn"`
+	DdnsTtl             pulumi.IntOutput                      `pulumi:"ddnsTtl"`
+	DdnsUsername        pulumi.StringOutput                   `pulumi:"ddnsUsername"`
+	DdnsZone            pulumi.StringOutput                   `pulumi:"ddnsZone"`
+	Ddnsid              pulumi.IntOutput                      `pulumi:"ddnsid"`
+	DynamicSortSubtable pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
+	MonitorInterfaces   SystemDdnsMonitorInterfaceArrayOutput `pulumi:"monitorInterfaces"`
+	ServerType          pulumi.StringOutput                   `pulumi:"serverType"`
+	SslCertificate      pulumi.StringOutput                   `pulumi:"sslCertificate"`
+	UpdateInterval      pulumi.IntOutput                      `pulumi:"updateInterval"`
+	UsePublicIp         pulumi.StringOutput                   `pulumi:"usePublicIp"`
+	Vdomparam           pulumi.StringPtrOutput                `pulumi:"vdomparam"`
 }
 
 // NewSystemDdns registers a new resource with the given unique name, arguments, and options.
@@ -133,6 +52,17 @@ func NewSystemDdns(ctx *pulumi.Context,
 	if args.MonitorInterfaces == nil {
 		return nil, errors.New("invalid value for required argument 'MonitorInterfaces'")
 	}
+	if args.DdnsKey != nil {
+		args.DdnsKey = pulumi.ToSecret(args.DdnsKey).(pulumi.StringPtrInput)
+	}
+	if args.DdnsPassword != nil {
+		args.DdnsPassword = pulumi.ToSecret(args.DdnsPassword).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"ddnsKey",
+		"ddnsPassword",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemDdns
 	err := ctx.RegisterResource("fortios:index/systemDdns:SystemDdns", name, args, &resource, opts...)
@@ -156,101 +86,55 @@ func GetSystemDdns(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemDdns resources.
 type systemDdnsState struct {
-	// Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
-	AddrType *string `pulumi:"addrType"`
-	// Bound IP address.
-	BoundIp *string `pulumi:"boundIp"`
-	// Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
-	ClearText *string `pulumi:"clearText"`
-	// Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
-	DdnsAuth *string `pulumi:"ddnsAuth"`
-	// Your fully qualified domain name (for example, yourname.DDNS.com).
-	DdnsDomain *string `pulumi:"ddnsDomain"`
-	// DDNS update key (base 64 encoding).
-	DdnsKey *string `pulumi:"ddnsKey"`
-	// DDNS update key name.
-	DdnsKeyname *string `pulumi:"ddnsKeyname"`
-	// DDNS password.
-	DdnsPassword *string `pulumi:"ddnsPassword"`
-	// Select a DDNS service provider. Valid values: `dyndns.org`, `dyns.net`, `tzo.com`, `vavic.com`, `dipdns.net`, `now.net.cn`, `dhs.org`, `easydns.com`, `genericDDNS`, `FortiGuardDDNS`, `noip.com`.
-	DdnsServer *string `pulumi:"ddnsServer"`
-	// Generic DDNS server IP/FQDN list. The structure of `ddnsServerAddr` block is documented below.
-	DdnsServerAddrs []SystemDdnsDdnsServerAddr `pulumi:"ddnsServerAddrs"`
-	// Generic DDNS server IP.
-	DdnsServerIp *string `pulumi:"ddnsServerIp"`
-	// DDNS Serial Number.
-	DdnsSn *string `pulumi:"ddnsSn"`
-	// Time-to-live for DDNS packets.
-	DdnsTtl *int `pulumi:"ddnsTtl"`
-	// DDNS user name.
-	DdnsUsername *string `pulumi:"ddnsUsername"`
-	// Zone of your domain name (for example, DDNS.com).
-	DdnsZone *string `pulumi:"ddnsZone"`
-	// DDNS ID.
-	Ddnsid *int `pulumi:"ddnsid"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Monitored interface. The structure of `monitorInterface` block is documented below.
-	MonitorInterfaces []SystemDdnsMonitorInterface `pulumi:"monitorInterfaces"`
-	// Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
-	ServerType *string `pulumi:"serverType"`
-	// Name of local certificate for SSL connections.
-	SslCertificate *string `pulumi:"sslCertificate"`
-	// DDNS update interval (60 - 2592000 sec, default = 300).
-	UpdateInterval *int `pulumi:"updateInterval"`
-	// Enable/disable use of public IP address. Valid values: `disable`, `enable`.
-	UsePublicIp *string `pulumi:"usePublicIp"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AddrType            *string                      `pulumi:"addrType"`
+	BoundIp             *string                      `pulumi:"boundIp"`
+	ClearText           *string                      `pulumi:"clearText"`
+	DdnsAuth            *string                      `pulumi:"ddnsAuth"`
+	DdnsDomain          *string                      `pulumi:"ddnsDomain"`
+	DdnsKey             *string                      `pulumi:"ddnsKey"`
+	DdnsKeyname         *string                      `pulumi:"ddnsKeyname"`
+	DdnsPassword        *string                      `pulumi:"ddnsPassword"`
+	DdnsServer          *string                      `pulumi:"ddnsServer"`
+	DdnsServerAddrs     []SystemDdnsDdnsServerAddr   `pulumi:"ddnsServerAddrs"`
+	DdnsServerIp        *string                      `pulumi:"ddnsServerIp"`
+	DdnsSn              *string                      `pulumi:"ddnsSn"`
+	DdnsTtl             *int                         `pulumi:"ddnsTtl"`
+	DdnsUsername        *string                      `pulumi:"ddnsUsername"`
+	DdnsZone            *string                      `pulumi:"ddnsZone"`
+	Ddnsid              *int                         `pulumi:"ddnsid"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	MonitorInterfaces   []SystemDdnsMonitorInterface `pulumi:"monitorInterfaces"`
+	ServerType          *string                      `pulumi:"serverType"`
+	SslCertificate      *string                      `pulumi:"sslCertificate"`
+	UpdateInterval      *int                         `pulumi:"updateInterval"`
+	UsePublicIp         *string                      `pulumi:"usePublicIp"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 type SystemDdnsState struct {
-	// Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
-	AddrType pulumi.StringPtrInput
-	// Bound IP address.
-	BoundIp pulumi.StringPtrInput
-	// Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
-	ClearText pulumi.StringPtrInput
-	// Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
-	DdnsAuth pulumi.StringPtrInput
-	// Your fully qualified domain name (for example, yourname.DDNS.com).
-	DdnsDomain pulumi.StringPtrInput
-	// DDNS update key (base 64 encoding).
-	DdnsKey pulumi.StringPtrInput
-	// DDNS update key name.
-	DdnsKeyname pulumi.StringPtrInput
-	// DDNS password.
-	DdnsPassword pulumi.StringPtrInput
-	// Select a DDNS service provider. Valid values: `dyndns.org`, `dyns.net`, `tzo.com`, `vavic.com`, `dipdns.net`, `now.net.cn`, `dhs.org`, `easydns.com`, `genericDDNS`, `FortiGuardDDNS`, `noip.com`.
-	DdnsServer pulumi.StringPtrInput
-	// Generic DDNS server IP/FQDN list. The structure of `ddnsServerAddr` block is documented below.
-	DdnsServerAddrs SystemDdnsDdnsServerAddrArrayInput
-	// Generic DDNS server IP.
-	DdnsServerIp pulumi.StringPtrInput
-	// DDNS Serial Number.
-	DdnsSn pulumi.StringPtrInput
-	// Time-to-live for DDNS packets.
-	DdnsTtl pulumi.IntPtrInput
-	// DDNS user name.
-	DdnsUsername pulumi.StringPtrInput
-	// Zone of your domain name (for example, DDNS.com).
-	DdnsZone pulumi.StringPtrInput
-	// DDNS ID.
-	Ddnsid pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AddrType            pulumi.StringPtrInput
+	BoundIp             pulumi.StringPtrInput
+	ClearText           pulumi.StringPtrInput
+	DdnsAuth            pulumi.StringPtrInput
+	DdnsDomain          pulumi.StringPtrInput
+	DdnsKey             pulumi.StringPtrInput
+	DdnsKeyname         pulumi.StringPtrInput
+	DdnsPassword        pulumi.StringPtrInput
+	DdnsServer          pulumi.StringPtrInput
+	DdnsServerAddrs     SystemDdnsDdnsServerAddrArrayInput
+	DdnsServerIp        pulumi.StringPtrInput
+	DdnsSn              pulumi.StringPtrInput
+	DdnsTtl             pulumi.IntPtrInput
+	DdnsUsername        pulumi.StringPtrInput
+	DdnsZone            pulumi.StringPtrInput
+	Ddnsid              pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Monitored interface. The structure of `monitorInterface` block is documented below.
-	MonitorInterfaces SystemDdnsMonitorInterfaceArrayInput
-	// Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
-	ServerType pulumi.StringPtrInput
-	// Name of local certificate for SSL connections.
-	SslCertificate pulumi.StringPtrInput
-	// DDNS update interval (60 - 2592000 sec, default = 300).
-	UpdateInterval pulumi.IntPtrInput
-	// Enable/disable use of public IP address. Valid values: `disable`, `enable`.
-	UsePublicIp pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MonitorInterfaces   SystemDdnsMonitorInterfaceArrayInput
+	ServerType          pulumi.StringPtrInput
+	SslCertificate      pulumi.StringPtrInput
+	UpdateInterval      pulumi.IntPtrInput
+	UsePublicIp         pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemDdnsState) ElementType() reflect.Type {
@@ -258,102 +142,56 @@ func (SystemDdnsState) ElementType() reflect.Type {
 }
 
 type systemDdnsArgs struct {
-	// Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
-	AddrType *string `pulumi:"addrType"`
-	// Bound IP address.
-	BoundIp *string `pulumi:"boundIp"`
-	// Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
-	ClearText *string `pulumi:"clearText"`
-	// Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
-	DdnsAuth *string `pulumi:"ddnsAuth"`
-	// Your fully qualified domain name (for example, yourname.DDNS.com).
-	DdnsDomain *string `pulumi:"ddnsDomain"`
-	// DDNS update key (base 64 encoding).
-	DdnsKey *string `pulumi:"ddnsKey"`
-	// DDNS update key name.
-	DdnsKeyname *string `pulumi:"ddnsKeyname"`
-	// DDNS password.
-	DdnsPassword *string `pulumi:"ddnsPassword"`
-	// Select a DDNS service provider. Valid values: `dyndns.org`, `dyns.net`, `tzo.com`, `vavic.com`, `dipdns.net`, `now.net.cn`, `dhs.org`, `easydns.com`, `genericDDNS`, `FortiGuardDDNS`, `noip.com`.
-	DdnsServer string `pulumi:"ddnsServer"`
-	// Generic DDNS server IP/FQDN list. The structure of `ddnsServerAddr` block is documented below.
-	DdnsServerAddrs []SystemDdnsDdnsServerAddr `pulumi:"ddnsServerAddrs"`
-	// Generic DDNS server IP.
-	DdnsServerIp *string `pulumi:"ddnsServerIp"`
-	// DDNS Serial Number.
-	DdnsSn *string `pulumi:"ddnsSn"`
-	// Time-to-live for DDNS packets.
-	DdnsTtl *int `pulumi:"ddnsTtl"`
-	// DDNS user name.
-	DdnsUsername *string `pulumi:"ddnsUsername"`
-	// Zone of your domain name (for example, DDNS.com).
-	DdnsZone *string `pulumi:"ddnsZone"`
-	// DDNS ID.
-	Ddnsid *int `pulumi:"ddnsid"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Monitored interface. The structure of `monitorInterface` block is documented below.
-	MonitorInterfaces []SystemDdnsMonitorInterface `pulumi:"monitorInterfaces"`
-	// Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
-	ServerType *string `pulumi:"serverType"`
-	// Name of local certificate for SSL connections.
-	SslCertificate *string `pulumi:"sslCertificate"`
-	// DDNS update interval (60 - 2592000 sec, default = 300).
-	UpdateInterval *int `pulumi:"updateInterval"`
-	// Enable/disable use of public IP address. Valid values: `disable`, `enable`.
-	UsePublicIp *string `pulumi:"usePublicIp"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AddrType            *string                      `pulumi:"addrType"`
+	BoundIp             *string                      `pulumi:"boundIp"`
+	ClearText           *string                      `pulumi:"clearText"`
+	DdnsAuth            *string                      `pulumi:"ddnsAuth"`
+	DdnsDomain          *string                      `pulumi:"ddnsDomain"`
+	DdnsKey             *string                      `pulumi:"ddnsKey"`
+	DdnsKeyname         *string                      `pulumi:"ddnsKeyname"`
+	DdnsPassword        *string                      `pulumi:"ddnsPassword"`
+	DdnsServer          string                       `pulumi:"ddnsServer"`
+	DdnsServerAddrs     []SystemDdnsDdnsServerAddr   `pulumi:"ddnsServerAddrs"`
+	DdnsServerIp        *string                      `pulumi:"ddnsServerIp"`
+	DdnsSn              *string                      `pulumi:"ddnsSn"`
+	DdnsTtl             *int                         `pulumi:"ddnsTtl"`
+	DdnsUsername        *string                      `pulumi:"ddnsUsername"`
+	DdnsZone            *string                      `pulumi:"ddnsZone"`
+	Ddnsid              *int                         `pulumi:"ddnsid"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	MonitorInterfaces   []SystemDdnsMonitorInterface `pulumi:"monitorInterfaces"`
+	ServerType          *string                      `pulumi:"serverType"`
+	SslCertificate      *string                      `pulumi:"sslCertificate"`
+	UpdateInterval      *int                         `pulumi:"updateInterval"`
+	UsePublicIp         *string                      `pulumi:"usePublicIp"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemDdns resource.
 type SystemDdnsArgs struct {
-	// Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
-	AddrType pulumi.StringPtrInput
-	// Bound IP address.
-	BoundIp pulumi.StringPtrInput
-	// Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
-	ClearText pulumi.StringPtrInput
-	// Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
-	DdnsAuth pulumi.StringPtrInput
-	// Your fully qualified domain name (for example, yourname.DDNS.com).
-	DdnsDomain pulumi.StringPtrInput
-	// DDNS update key (base 64 encoding).
-	DdnsKey pulumi.StringPtrInput
-	// DDNS update key name.
-	DdnsKeyname pulumi.StringPtrInput
-	// DDNS password.
-	DdnsPassword pulumi.StringPtrInput
-	// Select a DDNS service provider. Valid values: `dyndns.org`, `dyns.net`, `tzo.com`, `vavic.com`, `dipdns.net`, `now.net.cn`, `dhs.org`, `easydns.com`, `genericDDNS`, `FortiGuardDDNS`, `noip.com`.
-	DdnsServer pulumi.StringInput
-	// Generic DDNS server IP/FQDN list. The structure of `ddnsServerAddr` block is documented below.
-	DdnsServerAddrs SystemDdnsDdnsServerAddrArrayInput
-	// Generic DDNS server IP.
-	DdnsServerIp pulumi.StringPtrInput
-	// DDNS Serial Number.
-	DdnsSn pulumi.StringPtrInput
-	// Time-to-live for DDNS packets.
-	DdnsTtl pulumi.IntPtrInput
-	// DDNS user name.
-	DdnsUsername pulumi.StringPtrInput
-	// Zone of your domain name (for example, DDNS.com).
-	DdnsZone pulumi.StringPtrInput
-	// DDNS ID.
-	Ddnsid pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AddrType            pulumi.StringPtrInput
+	BoundIp             pulumi.StringPtrInput
+	ClearText           pulumi.StringPtrInput
+	DdnsAuth            pulumi.StringPtrInput
+	DdnsDomain          pulumi.StringPtrInput
+	DdnsKey             pulumi.StringPtrInput
+	DdnsKeyname         pulumi.StringPtrInput
+	DdnsPassword        pulumi.StringPtrInput
+	DdnsServer          pulumi.StringInput
+	DdnsServerAddrs     SystemDdnsDdnsServerAddrArrayInput
+	DdnsServerIp        pulumi.StringPtrInput
+	DdnsSn              pulumi.StringPtrInput
+	DdnsTtl             pulumi.IntPtrInput
+	DdnsUsername        pulumi.StringPtrInput
+	DdnsZone            pulumi.StringPtrInput
+	Ddnsid              pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Monitored interface. The structure of `monitorInterface` block is documented below.
-	MonitorInterfaces SystemDdnsMonitorInterfaceArrayInput
-	// Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
-	ServerType pulumi.StringPtrInput
-	// Name of local certificate for SSL connections.
-	SslCertificate pulumi.StringPtrInput
-	// DDNS update interval (60 - 2592000 sec, default = 300).
-	UpdateInterval pulumi.IntPtrInput
-	// Enable/disable use of public IP address. Valid values: `disable`, `enable`.
-	UsePublicIp pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MonitorInterfaces   SystemDdnsMonitorInterfaceArrayInput
+	ServerType          pulumi.StringPtrInput
+	SslCertificate      pulumi.StringPtrInput
+	UpdateInterval      pulumi.IntPtrInput
+	UsePublicIp         pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemDdnsArgs) ElementType() reflect.Type {
@@ -382,7 +220,7 @@ func (i *SystemDdns) ToSystemDdnsOutputWithContext(ctx context.Context) SystemDd
 // SystemDdnsArrayInput is an input type that accepts SystemDdnsArray and SystemDdnsArrayOutput values.
 // You can construct a concrete instance of `SystemDdnsArrayInput` via:
 //
-//          SystemDdnsArray{ SystemDdnsArgs{...} }
+//	SystemDdnsArray{ SystemDdnsArgs{...} }
 type SystemDdnsArrayInput interface {
 	pulumi.Input
 
@@ -407,7 +245,7 @@ func (i SystemDdnsArray) ToSystemDdnsArrayOutputWithContext(ctx context.Context)
 // SystemDdnsMapInput is an input type that accepts SystemDdnsMap and SystemDdnsMapOutput values.
 // You can construct a concrete instance of `SystemDdnsMapInput` via:
 //
-//          SystemDdnsMap{ "key": SystemDdnsArgs{...} }
+//	SystemDdnsMap{ "key": SystemDdnsArgs{...} }
 type SystemDdnsMapInput interface {
 	pulumi.Input
 
@@ -441,6 +279,98 @@ func (o SystemDdnsOutput) ToSystemDdnsOutput() SystemDdnsOutput {
 
 func (o SystemDdnsOutput) ToSystemDdnsOutputWithContext(ctx context.Context) SystemDdnsOutput {
 	return o
+}
+
+func (o SystemDdnsOutput) AddrType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringOutput { return v.AddrType }).(pulumi.StringOutput)
+}
+
+func (o SystemDdnsOutput) BoundIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringOutput { return v.BoundIp }).(pulumi.StringOutput)
+}
+
+func (o SystemDdnsOutput) ClearText() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringOutput { return v.ClearText }).(pulumi.StringOutput)
+}
+
+func (o SystemDdnsOutput) DdnsAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringOutput { return v.DdnsAuth }).(pulumi.StringOutput)
+}
+
+func (o SystemDdnsOutput) DdnsDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringOutput { return v.DdnsDomain }).(pulumi.StringOutput)
+}
+
+func (o SystemDdnsOutput) DdnsKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringOutput { return v.DdnsKey }).(pulumi.StringOutput)
+}
+
+func (o SystemDdnsOutput) DdnsKeyname() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringOutput { return v.DdnsKeyname }).(pulumi.StringOutput)
+}
+
+func (o SystemDdnsOutput) DdnsPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringPtrOutput { return v.DdnsPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemDdnsOutput) DdnsServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringOutput { return v.DdnsServer }).(pulumi.StringOutput)
+}
+
+func (o SystemDdnsOutput) DdnsServerAddrs() SystemDdnsDdnsServerAddrArrayOutput {
+	return o.ApplyT(func(v *SystemDdns) SystemDdnsDdnsServerAddrArrayOutput { return v.DdnsServerAddrs }).(SystemDdnsDdnsServerAddrArrayOutput)
+}
+
+func (o SystemDdnsOutput) DdnsServerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringOutput { return v.DdnsServerIp }).(pulumi.StringOutput)
+}
+
+func (o SystemDdnsOutput) DdnsSn() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringOutput { return v.DdnsSn }).(pulumi.StringOutput)
+}
+
+func (o SystemDdnsOutput) DdnsTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.IntOutput { return v.DdnsTtl }).(pulumi.IntOutput)
+}
+
+func (o SystemDdnsOutput) DdnsUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringOutput { return v.DdnsUsername }).(pulumi.StringOutput)
+}
+
+func (o SystemDdnsOutput) DdnsZone() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringOutput { return v.DdnsZone }).(pulumi.StringOutput)
+}
+
+func (o SystemDdnsOutput) Ddnsid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.IntOutput { return v.Ddnsid }).(pulumi.IntOutput)
+}
+
+func (o SystemDdnsOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemDdnsOutput) MonitorInterfaces() SystemDdnsMonitorInterfaceArrayOutput {
+	return o.ApplyT(func(v *SystemDdns) SystemDdnsMonitorInterfaceArrayOutput { return v.MonitorInterfaces }).(SystemDdnsMonitorInterfaceArrayOutput)
+}
+
+func (o SystemDdnsOutput) ServerType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringOutput { return v.ServerType }).(pulumi.StringOutput)
+}
+
+func (o SystemDdnsOutput) SslCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringOutput { return v.SslCertificate }).(pulumi.StringOutput)
+}
+
+func (o SystemDdnsOutput) UpdateInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.IntOutput { return v.UpdateInterval }).(pulumi.IntOutput)
+}
+
+func (o SystemDdnsOutput) UsePublicIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringOutput { return v.UsePublicIp }).(pulumi.StringOutput)
+}
+
+func (o SystemDdnsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemDdnsArrayOutput struct{ *pulumi.OutputState }

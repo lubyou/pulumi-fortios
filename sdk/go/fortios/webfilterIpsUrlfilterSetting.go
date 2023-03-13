@@ -10,59 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPS URL filter settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWebfilterIpsUrlfilterSetting(ctx, "trname", &fortios.WebfilterIpsUrlfilterSettingArgs{
-// 			Distance: pulumi.Int(1),
-// 			Gateway:  pulumi.String("0.0.0.0"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Webfilter IpsUrlfilterSetting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterIpsUrlfilterSetting:WebfilterIpsUrlfilterSetting labelname WebfilterIpsUrlfilterSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterIpsUrlfilterSetting:WebfilterIpsUrlfilterSetting labelname WebfilterIpsUrlfilterSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebfilterIpsUrlfilterSetting struct {
 	pulumi.CustomResourceState
 
-	// Interface for this route.
-	Device pulumi.StringOutput `pulumi:"device"`
-	// Administrative distance (1 - 255) for this route.
-	Distance pulumi.IntOutput `pulumi:"distance"`
-	// Gateway IP address for this route.
-	Gateway pulumi.StringOutput `pulumi:"gateway"`
-	// Filter based on geographical location. Route will NOT be installed if the resolved IP address belongs to the country in the filter.
+	Device    pulumi.StringOutput    `pulumi:"device"`
+	Distance  pulumi.IntOutput       `pulumi:"distance"`
+	Gateway   pulumi.StringOutput    `pulumi:"gateway"`
 	GeoFilter pulumi.StringPtrOutput `pulumi:"geoFilter"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -96,28 +50,18 @@ func GetWebfilterIpsUrlfilterSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebfilterIpsUrlfilterSetting resources.
 type webfilterIpsUrlfilterSettingState struct {
-	// Interface for this route.
-	Device *string `pulumi:"device"`
-	// Administrative distance (1 - 255) for this route.
-	Distance *int `pulumi:"distance"`
-	// Gateway IP address for this route.
-	Gateway *string `pulumi:"gateway"`
-	// Filter based on geographical location. Route will NOT be installed if the resolved IP address belongs to the country in the filter.
+	Device    *string `pulumi:"device"`
+	Distance  *int    `pulumi:"distance"`
+	Gateway   *string `pulumi:"gateway"`
 	GeoFilter *string `pulumi:"geoFilter"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type WebfilterIpsUrlfilterSettingState struct {
-	// Interface for this route.
-	Device pulumi.StringPtrInput
-	// Administrative distance (1 - 255) for this route.
-	Distance pulumi.IntPtrInput
-	// Gateway IP address for this route.
-	Gateway pulumi.StringPtrInput
-	// Filter based on geographical location. Route will NOT be installed if the resolved IP address belongs to the country in the filter.
+	Device    pulumi.StringPtrInput
+	Distance  pulumi.IntPtrInput
+	Gateway   pulumi.StringPtrInput
 	GeoFilter pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -126,29 +70,19 @@ func (WebfilterIpsUrlfilterSettingState) ElementType() reflect.Type {
 }
 
 type webfilterIpsUrlfilterSettingArgs struct {
-	// Interface for this route.
-	Device *string `pulumi:"device"`
-	// Administrative distance (1 - 255) for this route.
-	Distance *int `pulumi:"distance"`
-	// Gateway IP address for this route.
-	Gateway *string `pulumi:"gateway"`
-	// Filter based on geographical location. Route will NOT be installed if the resolved IP address belongs to the country in the filter.
+	Device    *string `pulumi:"device"`
+	Distance  *int    `pulumi:"distance"`
+	Gateway   *string `pulumi:"gateway"`
 	GeoFilter *string `pulumi:"geoFilter"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebfilterIpsUrlfilterSetting resource.
 type WebfilterIpsUrlfilterSettingArgs struct {
-	// Interface for this route.
-	Device pulumi.StringPtrInput
-	// Administrative distance (1 - 255) for this route.
-	Distance pulumi.IntPtrInput
-	// Gateway IP address for this route.
-	Gateway pulumi.StringPtrInput
-	// Filter based on geographical location. Route will NOT be installed if the resolved IP address belongs to the country in the filter.
+	Device    pulumi.StringPtrInput
+	Distance  pulumi.IntPtrInput
+	Gateway   pulumi.StringPtrInput
 	GeoFilter pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -178,7 +112,7 @@ func (i *WebfilterIpsUrlfilterSetting) ToWebfilterIpsUrlfilterSettingOutputWithC
 // WebfilterIpsUrlfilterSettingArrayInput is an input type that accepts WebfilterIpsUrlfilterSettingArray and WebfilterIpsUrlfilterSettingArrayOutput values.
 // You can construct a concrete instance of `WebfilterIpsUrlfilterSettingArrayInput` via:
 //
-//          WebfilterIpsUrlfilterSettingArray{ WebfilterIpsUrlfilterSettingArgs{...} }
+//	WebfilterIpsUrlfilterSettingArray{ WebfilterIpsUrlfilterSettingArgs{...} }
 type WebfilterIpsUrlfilterSettingArrayInput interface {
 	pulumi.Input
 
@@ -203,7 +137,7 @@ func (i WebfilterIpsUrlfilterSettingArray) ToWebfilterIpsUrlfilterSettingArrayOu
 // WebfilterIpsUrlfilterSettingMapInput is an input type that accepts WebfilterIpsUrlfilterSettingMap and WebfilterIpsUrlfilterSettingMapOutput values.
 // You can construct a concrete instance of `WebfilterIpsUrlfilterSettingMapInput` via:
 //
-//          WebfilterIpsUrlfilterSettingMap{ "key": WebfilterIpsUrlfilterSettingArgs{...} }
+//	WebfilterIpsUrlfilterSettingMap{ "key": WebfilterIpsUrlfilterSettingArgs{...} }
 type WebfilterIpsUrlfilterSettingMapInput interface {
 	pulumi.Input
 
@@ -237,6 +171,26 @@ func (o WebfilterIpsUrlfilterSettingOutput) ToWebfilterIpsUrlfilterSettingOutput
 
 func (o WebfilterIpsUrlfilterSettingOutput) ToWebfilterIpsUrlfilterSettingOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterSettingOutput {
 	return o
+}
+
+func (o WebfilterIpsUrlfilterSettingOutput) Device() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterIpsUrlfilterSetting) pulumi.StringOutput { return v.Device }).(pulumi.StringOutput)
+}
+
+func (o WebfilterIpsUrlfilterSettingOutput) Distance() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterIpsUrlfilterSetting) pulumi.IntOutput { return v.Distance }).(pulumi.IntOutput)
+}
+
+func (o WebfilterIpsUrlfilterSettingOutput) Gateway() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterIpsUrlfilterSetting) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
+}
+
+func (o WebfilterIpsUrlfilterSettingOutput) GeoFilter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterIpsUrlfilterSetting) pulumi.StringPtrOutput { return v.GeoFilter }).(pulumi.StringPtrOutput)
+}
+
+func (o WebfilterIpsUrlfilterSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterIpsUrlfilterSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebfilterIpsUrlfilterSettingArrayOutput struct{ *pulumi.OutputState }

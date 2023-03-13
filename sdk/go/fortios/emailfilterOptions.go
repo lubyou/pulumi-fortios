@@ -10,30 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure AntiSpam options. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// Emailfilter Options can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/emailfilterOptions:EmailfilterOptions labelname EmailfilterOptions
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/emailfilterOptions:EmailfilterOptions labelname EmailfilterOptions
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type EmailfilterOptions struct {
 	pulumi.CustomResourceState
 
-	// DNS query time out (1 - 30 sec).
-	DnsTimeout pulumi.IntOutput `pulumi:"dnsTimeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DnsTimeout pulumi.IntOutput       `pulumi:"dnsTimeout"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewEmailfilterOptions registers a new resource with the given unique name, arguments, and options.
@@ -66,17 +47,13 @@ func GetEmailfilterOptions(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EmailfilterOptions resources.
 type emailfilterOptionsState struct {
-	// DNS query time out (1 - 30 sec).
-	DnsTimeout *int `pulumi:"dnsTimeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DnsTimeout *int    `pulumi:"dnsTimeout"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type EmailfilterOptionsState struct {
-	// DNS query time out (1 - 30 sec).
 	DnsTimeout pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (EmailfilterOptionsState) ElementType() reflect.Type {
@@ -84,18 +61,14 @@ func (EmailfilterOptionsState) ElementType() reflect.Type {
 }
 
 type emailfilterOptionsArgs struct {
-	// DNS query time out (1 - 30 sec).
-	DnsTimeout *int `pulumi:"dnsTimeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DnsTimeout *int    `pulumi:"dnsTimeout"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a EmailfilterOptions resource.
 type EmailfilterOptionsArgs struct {
-	// DNS query time out (1 - 30 sec).
 	DnsTimeout pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (EmailfilterOptionsArgs) ElementType() reflect.Type {
@@ -124,7 +97,7 @@ func (i *EmailfilterOptions) ToEmailfilterOptionsOutputWithContext(ctx context.C
 // EmailfilterOptionsArrayInput is an input type that accepts EmailfilterOptionsArray and EmailfilterOptionsArrayOutput values.
 // You can construct a concrete instance of `EmailfilterOptionsArrayInput` via:
 //
-//          EmailfilterOptionsArray{ EmailfilterOptionsArgs{...} }
+//	EmailfilterOptionsArray{ EmailfilterOptionsArgs{...} }
 type EmailfilterOptionsArrayInput interface {
 	pulumi.Input
 
@@ -149,7 +122,7 @@ func (i EmailfilterOptionsArray) ToEmailfilterOptionsArrayOutputWithContext(ctx 
 // EmailfilterOptionsMapInput is an input type that accepts EmailfilterOptionsMap and EmailfilterOptionsMapOutput values.
 // You can construct a concrete instance of `EmailfilterOptionsMapInput` via:
 //
-//          EmailfilterOptionsMap{ "key": EmailfilterOptionsArgs{...} }
+//	EmailfilterOptionsMap{ "key": EmailfilterOptionsArgs{...} }
 type EmailfilterOptionsMapInput interface {
 	pulumi.Input
 
@@ -183,6 +156,14 @@ func (o EmailfilterOptionsOutput) ToEmailfilterOptionsOutput() EmailfilterOption
 
 func (o EmailfilterOptionsOutput) ToEmailfilterOptionsOutputWithContext(ctx context.Context) EmailfilterOptionsOutput {
 	return o
+}
+
+func (o EmailfilterOptionsOutput) DnsTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *EmailfilterOptions) pulumi.IntOutput { return v.DnsTimeout }).(pulumi.IntOutput)
+}
+
+func (o EmailfilterOptionsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterOptions) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type EmailfilterOptionsArrayOutput struct{ *pulumi.OutputState }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system linkmonitor
 func LookupSystemLinkMonitor(ctx *pulumi.Context, args *LookupSystemLinkMonitorArgs, opts ...pulumi.InvokeOption) (*LookupSystemLinkMonitorResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemLinkMonitorResult
@@ -23,83 +22,49 @@ func LookupSystemLinkMonitor(ctx *pulumi.Context, args *LookupSystemLinkMonitorA
 
 // A collection of arguments for invoking GetSystemLinkMonitor.
 type LookupSystemLinkMonitorArgs struct {
-	// Specify the name of the desired system linkmonitor.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemLinkMonitor.
 type LookupSystemLinkMonitorResult struct {
-	// Address mode (IPv4 or IPv6).
-	AddrMode string `pulumi:"addrMode"`
-	// Traffic class ID.
-	ClassId int `pulumi:"classId"`
-	// Differentiated services code point (DSCP) in the IP header of the probe packet.
+	AddrMode     string `pulumi:"addrMode"`
+	ClassId      int    `pulumi:"classId"`
 	Diffservcode string `pulumi:"diffservcode"`
-	// Threshold weight to trigger link failure alert.
-	FailWeight int `pulumi:"failWeight"`
-	// Number of retry attempts before the server is considered down (1 - 10, default = 5)
-	Failtime int `pulumi:"failtime"`
-	// Gateway IP address used to probe the server.
-	GatewayIp string `pulumi:"gatewayIp"`
-	// Gateway IPv6 address used to probe the server.
-	GatewayIp6 string `pulumi:"gatewayIp6"`
-	// HA election priority (1 - 50).
-	HaPriority int `pulumi:"haPriority"`
-	// String in the http-agent field in the HTTP header.
-	HttpAgent string `pulumi:"httpAgent"`
-	// If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string.
-	HttpGet string `pulumi:"httpGet"`
-	// String that you expect to see in the HTTP-GET requests of the traffic to be monitored.
-	HttpMatch string `pulumi:"httpMatch"`
+	FailWeight   int    `pulumi:"failWeight"`
+	Failtime     int    `pulumi:"failtime"`
+	GatewayIp    string `pulumi:"gatewayIp"`
+	GatewayIp6   string `pulumi:"gatewayIp6"`
+	HaPriority   int    `pulumi:"haPriority"`
+	HttpAgent    string `pulumi:"httpAgent"`
+	HttpGet      string `pulumi:"httpGet"`
+	HttpMatch    string `pulumi:"httpMatch"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Detection interval (1 - 3600 sec, default = 5).
-	Interval int `pulumi:"interval"`
-	// Link monitor name.
-	Name string `pulumi:"name"`
-	// Packet size of a twamp test session,
-	PacketSize int `pulumi:"packetSize"`
-	// Twamp controller password in authentication mode
-	Password string `pulumi:"password"`
-	// Port number of the traffic to be used to monitor the server.
-	Port int `pulumi:"port"`
-	// Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
-	ProbeCount int `pulumi:"probeCount"`
-	// Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
-	ProbeTimeout int `pulumi:"probeTimeout"`
-	// Protocols used to monitor the server.
-	Protocol string `pulumi:"protocol"`
-	// Number of successful responses received before server is considered recovered (1 - 10, default = 5).
-	Recoverytime int `pulumi:"recoverytime"`
-	// Subnet to monitor. The structure of `route` block is documented below.
-	Routes []GetSystemLinkMonitorRoute `pulumi:"routes"`
-	// Twamp controller security mode.
-	SecurityMode string `pulumi:"securityMode"`
-	// Mode of server configuration.
-	ServerConfig string `pulumi:"serverConfig"`
-	// Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
-	ServerLists []GetSystemLinkMonitorServerList `pulumi:"serverLists"`
-	// IP address of the server(s) to be monitored. The structure of `server` block is documented below.
-	Servers []GetSystemLinkMonitorServer `pulumi:"servers"`
-	// Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated.
-	ServiceDetection string `pulumi:"serviceDetection"`
-	// Source IP address used in packet to the server.
-	SourceIp string `pulumi:"sourceIp"`
-	// Source IPv6 address used in packet to the server.
-	SourceIp6 string `pulumi:"sourceIp6"`
-	// Interface that receives the traffic to be monitored.
-	Srcintf string `pulumi:"srcintf"`
-	// Enable/disable this link monitor.
-	Status string `pulumi:"status"`
-	// Enable/disable update cascade interface.
-	UpdateCascadeInterface string `pulumi:"updateCascadeInterface"`
-	// Enable/disable updating the policy route.
-	UpdatePolicyRoute string `pulumi:"updatePolicyRoute"`
-	// Enable/disable updating the static route.
-	UpdateStaticRoute string  `pulumi:"updateStaticRoute"`
-	Vdomparam         *string `pulumi:"vdomparam"`
+	Id                     string                           `pulumi:"id"`
+	Interval               int                              `pulumi:"interval"`
+	Name                   string                           `pulumi:"name"`
+	PacketSize             int                              `pulumi:"packetSize"`
+	Password               string                           `pulumi:"password"`
+	Port                   int                              `pulumi:"port"`
+	ProbeCount             int                              `pulumi:"probeCount"`
+	ProbeTimeout           int                              `pulumi:"probeTimeout"`
+	Protocol               string                           `pulumi:"protocol"`
+	Recoverytime           int                              `pulumi:"recoverytime"`
+	Routes                 []GetSystemLinkMonitorRoute      `pulumi:"routes"`
+	SecurityMode           string                           `pulumi:"securityMode"`
+	ServerConfig           string                           `pulumi:"serverConfig"`
+	ServerLists            []GetSystemLinkMonitorServerList `pulumi:"serverLists"`
+	ServerType             string                           `pulumi:"serverType"`
+	Servers                []GetSystemLinkMonitorServer     `pulumi:"servers"`
+	ServiceDetection       string                           `pulumi:"serviceDetection"`
+	SourceIp               string                           `pulumi:"sourceIp"`
+	SourceIp6              string                           `pulumi:"sourceIp6"`
+	Srcintf                string                           `pulumi:"srcintf"`
+	Status                 string                           `pulumi:"status"`
+	UpdateCascadeInterface string                           `pulumi:"updateCascadeInterface"`
+	UpdatePolicyRoute      string                           `pulumi:"updatePolicyRoute"`
+	UpdateStaticRoute      string                           `pulumi:"updateStaticRoute"`
+	Vdomparam              *string                          `pulumi:"vdomparam"`
 }
 
 func LookupSystemLinkMonitorOutput(ctx *pulumi.Context, args LookupSystemLinkMonitorOutputArgs, opts ...pulumi.InvokeOption) LookupSystemLinkMonitorResultOutput {
@@ -117,9 +82,7 @@ func LookupSystemLinkMonitorOutput(ctx *pulumi.Context, args LookupSystemLinkMon
 
 // A collection of arguments for invoking GetSystemLinkMonitor.
 type LookupSystemLinkMonitorOutputArgs struct {
-	// Specify the name of the desired system linkmonitor.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -142,57 +105,46 @@ func (o LookupSystemLinkMonitorResultOutput) ToLookupSystemLinkMonitorResultOutp
 	return o
 }
 
-// Address mode (IPv4 or IPv6).
 func (o LookupSystemLinkMonitorResultOutput) AddrMode() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.AddrMode }).(pulumi.StringOutput)
 }
 
-// Traffic class ID.
 func (o LookupSystemLinkMonitorResultOutput) ClassId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) int { return v.ClassId }).(pulumi.IntOutput)
 }
 
-// Differentiated services code point (DSCP) in the IP header of the probe packet.
 func (o LookupSystemLinkMonitorResultOutput) Diffservcode() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.Diffservcode }).(pulumi.StringOutput)
 }
 
-// Threshold weight to trigger link failure alert.
 func (o LookupSystemLinkMonitorResultOutput) FailWeight() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) int { return v.FailWeight }).(pulumi.IntOutput)
 }
 
-// Number of retry attempts before the server is considered down (1 - 10, default = 5)
 func (o LookupSystemLinkMonitorResultOutput) Failtime() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) int { return v.Failtime }).(pulumi.IntOutput)
 }
 
-// Gateway IP address used to probe the server.
 func (o LookupSystemLinkMonitorResultOutput) GatewayIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.GatewayIp }).(pulumi.StringOutput)
 }
 
-// Gateway IPv6 address used to probe the server.
 func (o LookupSystemLinkMonitorResultOutput) GatewayIp6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.GatewayIp6 }).(pulumi.StringOutput)
 }
 
-// HA election priority (1 - 50).
 func (o LookupSystemLinkMonitorResultOutput) HaPriority() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) int { return v.HaPriority }).(pulumi.IntOutput)
 }
 
-// String in the http-agent field in the HTTP header.
 func (o LookupSystemLinkMonitorResultOutput) HttpAgent() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.HttpAgent }).(pulumi.StringOutput)
 }
 
-// If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string.
 func (o LookupSystemLinkMonitorResultOutput) HttpGet() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.HttpGet }).(pulumi.StringOutput)
 }
 
-// String that you expect to see in the HTTP-GET requests of the traffic to be monitored.
 func (o LookupSystemLinkMonitorResultOutput) HttpMatch() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.HttpMatch }).(pulumi.StringOutput)
 }
@@ -202,112 +154,94 @@ func (o LookupSystemLinkMonitorResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Detection interval (1 - 3600 sec, default = 5).
 func (o LookupSystemLinkMonitorResultOutput) Interval() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) int { return v.Interval }).(pulumi.IntOutput)
 }
 
-// Link monitor name.
 func (o LookupSystemLinkMonitorResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Packet size of a twamp test session,
 func (o LookupSystemLinkMonitorResultOutput) PacketSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) int { return v.PacketSize }).(pulumi.IntOutput)
 }
 
-// Twamp controller password in authentication mode
 func (o LookupSystemLinkMonitorResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// Port number of the traffic to be used to monitor the server.
 func (o LookupSystemLinkMonitorResultOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
 func (o LookupSystemLinkMonitorResultOutput) ProbeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) int { return v.ProbeCount }).(pulumi.IntOutput)
 }
 
-// Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
 func (o LookupSystemLinkMonitorResultOutput) ProbeTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) int { return v.ProbeTimeout }).(pulumi.IntOutput)
 }
 
-// Protocols used to monitor the server.
 func (o LookupSystemLinkMonitorResultOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
-// Number of successful responses received before server is considered recovered (1 - 10, default = 5).
 func (o LookupSystemLinkMonitorResultOutput) Recoverytime() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) int { return v.Recoverytime }).(pulumi.IntOutput)
 }
 
-// Subnet to monitor. The structure of `route` block is documented below.
 func (o LookupSystemLinkMonitorResultOutput) Routes() GetSystemLinkMonitorRouteArrayOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) []GetSystemLinkMonitorRoute { return v.Routes }).(GetSystemLinkMonitorRouteArrayOutput)
 }
 
-// Twamp controller security mode.
 func (o LookupSystemLinkMonitorResultOutput) SecurityMode() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.SecurityMode }).(pulumi.StringOutput)
 }
 
-// Mode of server configuration.
 func (o LookupSystemLinkMonitorResultOutput) ServerConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.ServerConfig }).(pulumi.StringOutput)
 }
 
-// Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
 func (o LookupSystemLinkMonitorResultOutput) ServerLists() GetSystemLinkMonitorServerListArrayOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) []GetSystemLinkMonitorServerList { return v.ServerLists }).(GetSystemLinkMonitorServerListArrayOutput)
 }
 
-// IP address of the server(s) to be monitored. The structure of `server` block is documented below.
+func (o LookupSystemLinkMonitorResultOutput) ServerType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.ServerType }).(pulumi.StringOutput)
+}
+
 func (o LookupSystemLinkMonitorResultOutput) Servers() GetSystemLinkMonitorServerArrayOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) []GetSystemLinkMonitorServer { return v.Servers }).(GetSystemLinkMonitorServerArrayOutput)
 }
 
-// Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated.
 func (o LookupSystemLinkMonitorResultOutput) ServiceDetection() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.ServiceDetection }).(pulumi.StringOutput)
 }
 
-// Source IP address used in packet to the server.
 func (o LookupSystemLinkMonitorResultOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.SourceIp }).(pulumi.StringOutput)
 }
 
-// Source IPv6 address used in packet to the server.
 func (o LookupSystemLinkMonitorResultOutput) SourceIp6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.SourceIp6 }).(pulumi.StringOutput)
 }
 
-// Interface that receives the traffic to be monitored.
 func (o LookupSystemLinkMonitorResultOutput) Srcintf() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.Srcintf }).(pulumi.StringOutput)
 }
 
-// Enable/disable this link monitor.
 func (o LookupSystemLinkMonitorResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// Enable/disable update cascade interface.
 func (o LookupSystemLinkMonitorResultOutput) UpdateCascadeInterface() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.UpdateCascadeInterface }).(pulumi.StringOutput)
 }
 
-// Enable/disable updating the policy route.
 func (o LookupSystemLinkMonitorResultOutput) UpdatePolicyRoute() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.UpdatePolicyRoute }).(pulumi.StringOutput)
 }
 
-// Enable/disable updating the static route.
 func (o LookupSystemLinkMonitorResultOutput) UpdateStaticRoute() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLinkMonitorResult) string { return v.UpdateStaticRoute }).(pulumi.StringOutput)
 }

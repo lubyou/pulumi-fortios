@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewall multicastaddress
 func LookupFirewallMulticastAddress(ctx *pulumi.Context, args *LookupFirewallMulticastAddressArgs, opts ...pulumi.InvokeOption) (*LookupFirewallMulticastAddressResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallMulticastAddressResult
@@ -23,37 +22,25 @@ func LookupFirewallMulticastAddress(ctx *pulumi.Context, args *LookupFirewallMul
 
 // A collection of arguments for invoking GetFirewallMulticastAddress.
 type LookupFirewallMulticastAddressArgs struct {
-	// Specify the name of the desired firewall multicastaddress.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallMulticastAddress.
 type LookupFirewallMulticastAddressResult struct {
-	// Interface associated with the address object. When setting up a policy, only addresses associated with this interface are available.
 	AssociatedInterface string `pulumi:"associatedInterface"`
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-	Color int `pulumi:"color"`
-	// Comment.
-	Comment string `pulumi:"comment"`
-	// Final IPv4 address (inclusive) in the range for the address.
-	EndIp string `pulumi:"endIp"`
+	Color               int    `pulumi:"color"`
+	Comment             string `pulumi:"comment"`
+	EndIp               string `pulumi:"endIp"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Tag name.
-	Name string `pulumi:"name"`
-	// First IPv4 address (inclusive) in the range for the address.
-	StartIp string `pulumi:"startIp"`
-	// Broadcast address and subnet.
-	Subnet string `pulumi:"subnet"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []GetFirewallMulticastAddressTagging `pulumi:"taggings"`
-	// Type of address object: multicast IP address range or broadcast IP/mask to be treated as a multicast address.
-	Type      string  `pulumi:"type"`
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable visibility of the multicast address on the GUI.
-	Visibility string `pulumi:"visibility"`
+	Id         string                               `pulumi:"id"`
+	Name       string                               `pulumi:"name"`
+	StartIp    string                               `pulumi:"startIp"`
+	Subnet     string                               `pulumi:"subnet"`
+	Taggings   []GetFirewallMulticastAddressTagging `pulumi:"taggings"`
+	Type       string                               `pulumi:"type"`
+	Vdomparam  *string                              `pulumi:"vdomparam"`
+	Visibility string                               `pulumi:"visibility"`
 }
 
 func LookupFirewallMulticastAddressOutput(ctx *pulumi.Context, args LookupFirewallMulticastAddressOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallMulticastAddressResultOutput {
@@ -71,9 +58,7 @@ func LookupFirewallMulticastAddressOutput(ctx *pulumi.Context, args LookupFirewa
 
 // A collection of arguments for invoking GetFirewallMulticastAddress.
 type LookupFirewallMulticastAddressOutputArgs struct {
-	// Specify the name of the desired firewall multicastaddress.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -96,22 +81,18 @@ func (o LookupFirewallMulticastAddressResultOutput) ToLookupFirewallMulticastAdd
 	return o
 }
 
-// Interface associated with the address object. When setting up a policy, only addresses associated with this interface are available.
 func (o LookupFirewallMulticastAddressResultOutput) AssociatedInterface() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddressResult) string { return v.AssociatedInterface }).(pulumi.StringOutput)
 }
 
-// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
 func (o LookupFirewallMulticastAddressResultOutput) Color() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddressResult) int { return v.Color }).(pulumi.IntOutput)
 }
 
-// Comment.
 func (o LookupFirewallMulticastAddressResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddressResult) string { return v.Comment }).(pulumi.StringOutput)
 }
 
-// Final IPv4 address (inclusive) in the range for the address.
 func (o LookupFirewallMulticastAddressResultOutput) EndIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddressResult) string { return v.EndIp }).(pulumi.StringOutput)
 }
@@ -121,27 +102,22 @@ func (o LookupFirewallMulticastAddressResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddressResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Tag name.
 func (o LookupFirewallMulticastAddressResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddressResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// First IPv4 address (inclusive) in the range for the address.
 func (o LookupFirewallMulticastAddressResultOutput) StartIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddressResult) string { return v.StartIp }).(pulumi.StringOutput)
 }
 
-// Broadcast address and subnet.
 func (o LookupFirewallMulticastAddressResultOutput) Subnet() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddressResult) string { return v.Subnet }).(pulumi.StringOutput)
 }
 
-// Config object tagging. The structure of `tagging` block is documented below.
 func (o LookupFirewallMulticastAddressResultOutput) Taggings() GetFirewallMulticastAddressTaggingArrayOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddressResult) []GetFirewallMulticastAddressTagging { return v.Taggings }).(GetFirewallMulticastAddressTaggingArrayOutput)
 }
 
-// Type of address object: multicast IP address range or broadcast IP/mask to be treated as a multicast address.
 func (o LookupFirewallMulticastAddressResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddressResult) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -150,7 +126,6 @@ func (o LookupFirewallMulticastAddressResultOutput) Vdomparam() pulumi.StringPtr
 	return o.ApplyT(func(v LookupFirewallMulticastAddressResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable visibility of the multicast address on the GUI.
 func (o LookupFirewallMulticastAddressResultOutput) Visibility() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddressResult) string { return v.Visibility }).(pulumi.StringOutput)
 }

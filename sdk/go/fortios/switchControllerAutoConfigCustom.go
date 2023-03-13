@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch Auto-Config custom QoS policy.
-//
-// ## Import
-//
-// SwitchControllerAutoConfig Custom can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerAutoConfigCustom:SwitchControllerAutoConfigCustom labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerAutoConfigCustom:SwitchControllerAutoConfigCustom labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerAutoConfigCustom struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Auto-Config FortiLink or ISL/ICL interface name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Switch binding list. The structure of `switchBinding` block is documented below.
-	SwitchBindings SwitchControllerAutoConfigCustomSwitchBindingArrayOutput `pulumi:"switchBindings"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                                   `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                                      `pulumi:"name"`
+	SwitchBindings      SwitchControllerAutoConfigCustomSwitchBindingArrayOutput `pulumi:"switchBindings"`
+	Vdomparam           pulumi.StringPtrOutput                                   `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerAutoConfigCustom registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetSwitchControllerAutoConfigCustom(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerAutoConfigCustom resources.
 type switchControllerAutoConfigCustomState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Auto-Config FortiLink or ISL/ICL interface name.
-	Name *string `pulumi:"name"`
-	// Switch binding list. The structure of `switchBinding` block is documented below.
-	SwitchBindings []SwitchControllerAutoConfigCustomSwitchBinding `pulumi:"switchBindings"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                         `pulumi:"dynamicSortSubtable"`
+	Name                *string                                         `pulumi:"name"`
+	SwitchBindings      []SwitchControllerAutoConfigCustomSwitchBinding `pulumi:"switchBindings"`
+	Vdomparam           *string                                         `pulumi:"vdomparam"`
 }
 
 type SwitchControllerAutoConfigCustomState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Auto-Config FortiLink or ISL/ICL interface name.
-	Name pulumi.StringPtrInput
-	// Switch binding list. The structure of `switchBinding` block is documented below.
-	SwitchBindings SwitchControllerAutoConfigCustomSwitchBindingArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	SwitchBindings      SwitchControllerAutoConfigCustomSwitchBindingArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerAutoConfigCustomState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (SwitchControllerAutoConfigCustomState) ElementType() reflect.Type {
 }
 
 type switchControllerAutoConfigCustomArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Auto-Config FortiLink or ISL/ICL interface name.
-	Name *string `pulumi:"name"`
-	// Switch binding list. The structure of `switchBinding` block is documented below.
-	SwitchBindings []SwitchControllerAutoConfigCustomSwitchBinding `pulumi:"switchBindings"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                         `pulumi:"dynamicSortSubtable"`
+	Name                *string                                         `pulumi:"name"`
+	SwitchBindings      []SwitchControllerAutoConfigCustomSwitchBinding `pulumi:"switchBindings"`
+	Vdomparam           *string                                         `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerAutoConfigCustom resource.
 type SwitchControllerAutoConfigCustomArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Auto-Config FortiLink or ISL/ICL interface name.
-	Name pulumi.StringPtrInput
-	// Switch binding list. The structure of `switchBinding` block is documented below.
-	SwitchBindings SwitchControllerAutoConfigCustomSwitchBindingArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	SwitchBindings      SwitchControllerAutoConfigCustomSwitchBindingArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerAutoConfigCustomArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *SwitchControllerAutoConfigCustom) ToSwitchControllerAutoConfigCustomOut
 // SwitchControllerAutoConfigCustomArrayInput is an input type that accepts SwitchControllerAutoConfigCustomArray and SwitchControllerAutoConfigCustomArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerAutoConfigCustomArrayInput` via:
 //
-//          SwitchControllerAutoConfigCustomArray{ SwitchControllerAutoConfigCustomArgs{...} }
+//	SwitchControllerAutoConfigCustomArray{ SwitchControllerAutoConfigCustomArgs{...} }
 type SwitchControllerAutoConfigCustomArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i SwitchControllerAutoConfigCustomArray) ToSwitchControllerAutoConfigCusto
 // SwitchControllerAutoConfigCustomMapInput is an input type that accepts SwitchControllerAutoConfigCustomMap and SwitchControllerAutoConfigCustomMapOutput values.
 // You can construct a concrete instance of `SwitchControllerAutoConfigCustomMapInput` via:
 //
-//          SwitchControllerAutoConfigCustomMap{ "key": SwitchControllerAutoConfigCustomArgs{...} }
+//	SwitchControllerAutoConfigCustomMap{ "key": SwitchControllerAutoConfigCustomArgs{...} }
 type SwitchControllerAutoConfigCustomMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,24 @@ func (o SwitchControllerAutoConfigCustomOutput) ToSwitchControllerAutoConfigCust
 
 func (o SwitchControllerAutoConfigCustomOutput) ToSwitchControllerAutoConfigCustomOutputWithContext(ctx context.Context) SwitchControllerAutoConfigCustomOutput {
 	return o
+}
+
+func (o SwitchControllerAutoConfigCustomOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigCustom) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerAutoConfigCustomOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigCustom) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerAutoConfigCustomOutput) SwitchBindings() SwitchControllerAutoConfigCustomSwitchBindingArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigCustom) SwitchControllerAutoConfigCustomSwitchBindingArrayOutput {
+		return v.SwitchBindings
+	}).(SwitchControllerAutoConfigCustomSwitchBindingArrayOutput)
+}
+
+func (o SwitchControllerAutoConfigCustomOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigCustom) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerAutoConfigCustomArrayOutput struct{ *pulumi.OutputState }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemObjectTagging`.
 func GetSystemObjectTaggingList(ctx *pulumi.Context, args *GetSystemObjectTaggingListArgs, opts ...pulumi.InvokeOption) (*GetSystemObjectTaggingListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemObjectTaggingListResult
@@ -23,14 +22,12 @@ func GetSystemObjectTaggingList(ctx *pulumi.Context, args *GetSystemObjectTaggin
 
 // A collection of arguments for invoking GetSystemObjectTaggingList.
 type GetSystemObjectTaggingListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemObjectTaggingList.
 type GetSystemObjectTaggingListResult struct {
-	// A list of the `SystemObjectTagging`.
 	Categorylists []string `pulumi:"categorylists"`
 	Filter        *string  `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
@@ -53,8 +50,7 @@ func GetSystemObjectTaggingListOutput(ctx *pulumi.Context, args GetSystemObjectT
 
 // A collection of arguments for invoking GetSystemObjectTaggingList.
 type GetSystemObjectTaggingListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -77,7 +73,6 @@ func (o GetSystemObjectTaggingListResultOutput) ToGetSystemObjectTaggingListResu
 	return o
 }
 
-// A list of the `SystemObjectTagging`.
 func (o GetSystemObjectTaggingListResultOutput) Categorylists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSystemObjectTaggingListResult) []string { return v.Categorylists }).(pulumi.StringArrayOutput)
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system tosbasedpriority
 func LookupSystemTosBasedPriority(ctx *pulumi.Context, args *LookupSystemTosBasedPriorityArgs, opts ...pulumi.InvokeOption) (*LookupSystemTosBasedPriorityResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemTosBasedPriorityResult
@@ -23,21 +22,16 @@ func LookupSystemTosBasedPriority(ctx *pulumi.Context, args *LookupSystemTosBase
 
 // A collection of arguments for invoking GetSystemTosBasedPriority.
 type LookupSystemTosBasedPriorityArgs struct {
-	// Specify the fosid of the desired system tosbasedpriority.
-	Fosid int `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     int     `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemTosBasedPriority.
 type LookupSystemTosBasedPriorityResult struct {
-	// Item ID.
 	Fosid int `pulumi:"fosid"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// ToS based priority level to low, medium or high (these priorities match firewall traffic shaping priorities) (default = medium).
-	Priority string `pulumi:"priority"`
-	// Value of the ToS byte in the IP datagram header (0-15, 8: minimize delay, 4: maximize throughput, 2: maximize reliability, 1: minimize monetary cost, and 0: default service).
+	Id        string  `pulumi:"id"`
+	Priority  string  `pulumi:"priority"`
 	Tos       int     `pulumi:"tos"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -57,9 +51,7 @@ func LookupSystemTosBasedPriorityOutput(ctx *pulumi.Context, args LookupSystemTo
 
 // A collection of arguments for invoking GetSystemTosBasedPriority.
 type LookupSystemTosBasedPriorityOutputArgs struct {
-	// Specify the fosid of the desired system tosbasedpriority.
-	Fosid pulumi.IntInput `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntInput       `pulumi:"fosid"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -82,7 +74,6 @@ func (o LookupSystemTosBasedPriorityResultOutput) ToLookupSystemTosBasedPriority
 	return o
 }
 
-// Item ID.
 func (o LookupSystemTosBasedPriorityResultOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemTosBasedPriorityResult) int { return v.Fosid }).(pulumi.IntOutput)
 }
@@ -92,12 +83,10 @@ func (o LookupSystemTosBasedPriorityResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemTosBasedPriorityResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// ToS based priority level to low, medium or high (these priorities match firewall traffic shaping priorities) (default = medium).
 func (o LookupSystemTosBasedPriorityResultOutput) Priority() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemTosBasedPriorityResult) string { return v.Priority }).(pulumi.StringOutput)
 }
 
-// Value of the ToS byte in the IP datagram header (0-15, 8: minimize delay, 4: maximize throughput, 2: maximize reliability, 1: minimize monetary cost, and 0: default service).
 func (o LookupSystemTosBasedPriorityResultOutput) Tos() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemTosBasedPriorityResult) int { return v.Tos }).(pulumi.IntOutput)
 }

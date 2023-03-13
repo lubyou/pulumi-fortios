@@ -7,65 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure file patterns used by DLP blocking.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewDlpFilepattern(ctx, "trname", &fortios.DlpFilepatternArgs{
-// 			Fosid: pulumi.Int(9),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Dlp Filepattern can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/dlpFilepattern:DlpFilepattern labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/dlpFilepattern:DlpFilepattern labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type DlpFilepattern struct {
 	pulumi.CustomResourceState
 
-	// Optional comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Configure file patterns used by DLP blocking. The structure of `entries` block is documented below.
-	Entries DlpFilepatternEntryArrayOutput `pulumi:"entries"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Name of table containing the file pattern list.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput         `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
+	Entries             DlpFilepatternEntryArrayOutput `pulumi:"entries"`
+	Fosid               pulumi.IntOutput               `pulumi:"fosid"`
+	Name                pulumi.StringOutput            `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput         `pulumi:"vdomparam"`
 }
 
 // NewDlpFilepattern registers a new resource with the given unique name, arguments, and options.
@@ -101,33 +55,21 @@ func GetDlpFilepattern(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DlpFilepattern resources.
 type dlpFilepatternState struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configure file patterns used by DLP blocking. The structure of `entries` block is documented below.
-	Entries []DlpFilepatternEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name of table containing the file pattern list.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string               `pulumi:"comment"`
+	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	Entries             []DlpFilepatternEntry `pulumi:"entries"`
+	Fosid               *int                  `pulumi:"fosid"`
+	Name                *string               `pulumi:"name"`
+	Vdomparam           *string               `pulumi:"vdomparam"`
 }
 
 type DlpFilepatternState struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Configure file patterns used by DLP blocking. The structure of `entries` block is documented below.
-	Entries DlpFilepatternEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Name of table containing the file pattern list.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             DlpFilepatternEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (DlpFilepatternState) ElementType() reflect.Type {
@@ -135,34 +77,22 @@ func (DlpFilepatternState) ElementType() reflect.Type {
 }
 
 type dlpFilepatternArgs struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configure file patterns used by DLP blocking. The structure of `entries` block is documented below.
-	Entries []DlpFilepatternEntry `pulumi:"entries"`
-	// ID.
-	Fosid int `pulumi:"fosid"`
-	// Name of table containing the file pattern list.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string               `pulumi:"comment"`
+	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	Entries             []DlpFilepatternEntry `pulumi:"entries"`
+	Fosid               int                   `pulumi:"fosid"`
+	Name                *string               `pulumi:"name"`
+	Vdomparam           *string               `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a DlpFilepattern resource.
 type DlpFilepatternArgs struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Configure file patterns used by DLP blocking. The structure of `entries` block is documented below.
-	Entries DlpFilepatternEntryArrayInput
-	// ID.
-	Fosid pulumi.IntInput
-	// Name of table containing the file pattern list.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             DlpFilepatternEntryArrayInput
+	Fosid               pulumi.IntInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (DlpFilepatternArgs) ElementType() reflect.Type {
@@ -191,7 +121,7 @@ func (i *DlpFilepattern) ToDlpFilepatternOutputWithContext(ctx context.Context) 
 // DlpFilepatternArrayInput is an input type that accepts DlpFilepatternArray and DlpFilepatternArrayOutput values.
 // You can construct a concrete instance of `DlpFilepatternArrayInput` via:
 //
-//          DlpFilepatternArray{ DlpFilepatternArgs{...} }
+//	DlpFilepatternArray{ DlpFilepatternArgs{...} }
 type DlpFilepatternArrayInput interface {
 	pulumi.Input
 
@@ -216,7 +146,7 @@ func (i DlpFilepatternArray) ToDlpFilepatternArrayOutputWithContext(ctx context.
 // DlpFilepatternMapInput is an input type that accepts DlpFilepatternMap and DlpFilepatternMapOutput values.
 // You can construct a concrete instance of `DlpFilepatternMapInput` via:
 //
-//          DlpFilepatternMap{ "key": DlpFilepatternArgs{...} }
+//	DlpFilepatternMap{ "key": DlpFilepatternArgs{...} }
 type DlpFilepatternMapInput interface {
 	pulumi.Input
 
@@ -250,6 +180,30 @@ func (o DlpFilepatternOutput) ToDlpFilepatternOutput() DlpFilepatternOutput {
 
 func (o DlpFilepatternOutput) ToDlpFilepatternOutputWithContext(ctx context.Context) DlpFilepatternOutput {
 	return o
+}
+
+func (o DlpFilepatternOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DlpFilepattern) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o DlpFilepatternOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DlpFilepattern) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o DlpFilepatternOutput) Entries() DlpFilepatternEntryArrayOutput {
+	return o.ApplyT(func(v *DlpFilepattern) DlpFilepatternEntryArrayOutput { return v.Entries }).(DlpFilepatternEntryArrayOutput)
+}
+
+func (o DlpFilepatternOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *DlpFilepattern) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o DlpFilepatternOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFilepattern) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o DlpFilepatternOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DlpFilepattern) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type DlpFilepatternArrayOutput struct{ *pulumi.OutputState }

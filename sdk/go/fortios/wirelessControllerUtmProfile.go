@@ -10,44 +10,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure UTM (Unified Threat Management) profile.
-//
-// ## Import
-//
-// WirelessController UtmProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerUtmProfile:WirelessControllerUtmProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerUtmProfile:WirelessControllerUtmProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerUtmProfile struct {
 	pulumi.CustomResourceState
 
-	// AntiVirus profile name.
-	AntivirusProfile pulumi.StringOutput `pulumi:"antivirusProfile"`
-	// Application control list name.
-	ApplicationList pulumi.StringOutput `pulumi:"applicationList"`
-	// Comment.
-	Comment pulumi.StringOutput `pulumi:"comment"`
-	// IPS sensor name.
-	IpsSensor pulumi.StringOutput `pulumi:"ipsSensor"`
-	// UTM profile name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
-	ScanBotnetConnections pulumi.StringOutput `pulumi:"scanBotnetConnections"`
-	// Enable/disable UTM logging. Valid values: `enable`, `disable`.
-	UtmLog pulumi.StringOutput `pulumi:"utmLog"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// WebFilter profile name.
-	WebfilterProfile pulumi.StringOutput `pulumi:"webfilterProfile"`
+	AntivirusProfile      pulumi.StringOutput    `pulumi:"antivirusProfile"`
+	ApplicationList       pulumi.StringOutput    `pulumi:"applicationList"`
+	Comment               pulumi.StringOutput    `pulumi:"comment"`
+	IpsSensor             pulumi.StringOutput    `pulumi:"ipsSensor"`
+	Name                  pulumi.StringOutput    `pulumi:"name"`
+	ScanBotnetConnections pulumi.StringOutput    `pulumi:"scanBotnetConnections"`
+	UtmLog                pulumi.StringOutput    `pulumi:"utmLog"`
+	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	WebfilterProfile      pulumi.StringOutput    `pulumi:"webfilterProfile"`
 }
 
 // NewWirelessControllerUtmProfile registers a new resource with the given unique name, arguments, and options.
@@ -80,45 +54,27 @@ func GetWirelessControllerUtmProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerUtmProfile resources.
 type wirelessControllerUtmProfileState struct {
-	// AntiVirus profile name.
-	AntivirusProfile *string `pulumi:"antivirusProfile"`
-	// Application control list name.
-	ApplicationList *string `pulumi:"applicationList"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// IPS sensor name.
-	IpsSensor *string `pulumi:"ipsSensor"`
-	// UTM profile name.
-	Name *string `pulumi:"name"`
-	// Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
+	AntivirusProfile      *string `pulumi:"antivirusProfile"`
+	ApplicationList       *string `pulumi:"applicationList"`
+	Comment               *string `pulumi:"comment"`
+	IpsSensor             *string `pulumi:"ipsSensor"`
+	Name                  *string `pulumi:"name"`
 	ScanBotnetConnections *string `pulumi:"scanBotnetConnections"`
-	// Enable/disable UTM logging. Valid values: `enable`, `disable`.
-	UtmLog *string `pulumi:"utmLog"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// WebFilter profile name.
-	WebfilterProfile *string `pulumi:"webfilterProfile"`
+	UtmLog                *string `pulumi:"utmLog"`
+	Vdomparam             *string `pulumi:"vdomparam"`
+	WebfilterProfile      *string `pulumi:"webfilterProfile"`
 }
 
 type WirelessControllerUtmProfileState struct {
-	// AntiVirus profile name.
-	AntivirusProfile pulumi.StringPtrInput
-	// Application control list name.
-	ApplicationList pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// IPS sensor name.
-	IpsSensor pulumi.StringPtrInput
-	// UTM profile name.
-	Name pulumi.StringPtrInput
-	// Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
+	AntivirusProfile      pulumi.StringPtrInput
+	ApplicationList       pulumi.StringPtrInput
+	Comment               pulumi.StringPtrInput
+	IpsSensor             pulumi.StringPtrInput
+	Name                  pulumi.StringPtrInput
 	ScanBotnetConnections pulumi.StringPtrInput
-	// Enable/disable UTM logging. Valid values: `enable`, `disable`.
-	UtmLog pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// WebFilter profile name.
-	WebfilterProfile pulumi.StringPtrInput
+	UtmLog                pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
+	WebfilterProfile      pulumi.StringPtrInput
 }
 
 func (WirelessControllerUtmProfileState) ElementType() reflect.Type {
@@ -126,46 +82,28 @@ func (WirelessControllerUtmProfileState) ElementType() reflect.Type {
 }
 
 type wirelessControllerUtmProfileArgs struct {
-	// AntiVirus profile name.
-	AntivirusProfile *string `pulumi:"antivirusProfile"`
-	// Application control list name.
-	ApplicationList *string `pulumi:"applicationList"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// IPS sensor name.
-	IpsSensor *string `pulumi:"ipsSensor"`
-	// UTM profile name.
-	Name *string `pulumi:"name"`
-	// Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
+	AntivirusProfile      *string `pulumi:"antivirusProfile"`
+	ApplicationList       *string `pulumi:"applicationList"`
+	Comment               *string `pulumi:"comment"`
+	IpsSensor             *string `pulumi:"ipsSensor"`
+	Name                  *string `pulumi:"name"`
 	ScanBotnetConnections *string `pulumi:"scanBotnetConnections"`
-	// Enable/disable UTM logging. Valid values: `enable`, `disable`.
-	UtmLog *string `pulumi:"utmLog"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// WebFilter profile name.
-	WebfilterProfile *string `pulumi:"webfilterProfile"`
+	UtmLog                *string `pulumi:"utmLog"`
+	Vdomparam             *string `pulumi:"vdomparam"`
+	WebfilterProfile      *string `pulumi:"webfilterProfile"`
 }
 
 // The set of arguments for constructing a WirelessControllerUtmProfile resource.
 type WirelessControllerUtmProfileArgs struct {
-	// AntiVirus profile name.
-	AntivirusProfile pulumi.StringPtrInput
-	// Application control list name.
-	ApplicationList pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// IPS sensor name.
-	IpsSensor pulumi.StringPtrInput
-	// UTM profile name.
-	Name pulumi.StringPtrInput
-	// Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
+	AntivirusProfile      pulumi.StringPtrInput
+	ApplicationList       pulumi.StringPtrInput
+	Comment               pulumi.StringPtrInput
+	IpsSensor             pulumi.StringPtrInput
+	Name                  pulumi.StringPtrInput
 	ScanBotnetConnections pulumi.StringPtrInput
-	// Enable/disable UTM logging. Valid values: `enable`, `disable`.
-	UtmLog pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// WebFilter profile name.
-	WebfilterProfile pulumi.StringPtrInput
+	UtmLog                pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
+	WebfilterProfile      pulumi.StringPtrInput
 }
 
 func (WirelessControllerUtmProfileArgs) ElementType() reflect.Type {
@@ -194,7 +132,7 @@ func (i *WirelessControllerUtmProfile) ToWirelessControllerUtmProfileOutputWithC
 // WirelessControllerUtmProfileArrayInput is an input type that accepts WirelessControllerUtmProfileArray and WirelessControllerUtmProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerUtmProfileArrayInput` via:
 //
-//          WirelessControllerUtmProfileArray{ WirelessControllerUtmProfileArgs{...} }
+//	WirelessControllerUtmProfileArray{ WirelessControllerUtmProfileArgs{...} }
 type WirelessControllerUtmProfileArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +157,7 @@ func (i WirelessControllerUtmProfileArray) ToWirelessControllerUtmProfileArrayOu
 // WirelessControllerUtmProfileMapInput is an input type that accepts WirelessControllerUtmProfileMap and WirelessControllerUtmProfileMapOutput values.
 // You can construct a concrete instance of `WirelessControllerUtmProfileMapInput` via:
 //
-//          WirelessControllerUtmProfileMap{ "key": WirelessControllerUtmProfileArgs{...} }
+//	WirelessControllerUtmProfileMap{ "key": WirelessControllerUtmProfileArgs{...} }
 type WirelessControllerUtmProfileMapInput interface {
 	pulumi.Input
 
@@ -253,6 +191,42 @@ func (o WirelessControllerUtmProfileOutput) ToWirelessControllerUtmProfileOutput
 
 func (o WirelessControllerUtmProfileOutput) ToWirelessControllerUtmProfileOutputWithContext(ctx context.Context) WirelessControllerUtmProfileOutput {
 	return o
+}
+
+func (o WirelessControllerUtmProfileOutput) AntivirusProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerUtmProfile) pulumi.StringOutput { return v.AntivirusProfile }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerUtmProfileOutput) ApplicationList() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerUtmProfile) pulumi.StringOutput { return v.ApplicationList }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerUtmProfileOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerUtmProfile) pulumi.StringOutput { return v.Comment }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerUtmProfileOutput) IpsSensor() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerUtmProfile) pulumi.StringOutput { return v.IpsSensor }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerUtmProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerUtmProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerUtmProfileOutput) ScanBotnetConnections() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerUtmProfile) pulumi.StringOutput { return v.ScanBotnetConnections }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerUtmProfileOutput) UtmLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerUtmProfile) pulumi.StringOutput { return v.UtmLog }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerUtmProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerUtmProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerUtmProfileOutput) WebfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerUtmProfile) pulumi.StringOutput { return v.WebfilterProfile }).(pulumi.StringOutput)
 }
 
 type WirelessControllerUtmProfileArrayOutput struct{ *pulumi.OutputState }

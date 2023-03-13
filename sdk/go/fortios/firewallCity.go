@@ -10,31 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Define city table. Applies to FortiOS Version `>= 6.4.0`.
-//
-// ## Import
-//
-// Firewall City can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallCity:FirewallCity labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallCity:FirewallCity labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallCity struct {
 	pulumi.CustomResourceState
 
-	// City ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// City name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -68,20 +48,14 @@ func GetFirewallCity(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallCity resources.
 type firewallCityState struct {
-	// City ID.
-	Fosid *int `pulumi:"fosid"`
-	// City name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type FirewallCityState struct {
-	// City ID.
-	Fosid pulumi.IntPtrInput
-	// City name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -90,21 +64,15 @@ func (FirewallCityState) ElementType() reflect.Type {
 }
 
 type firewallCityArgs struct {
-	// City ID.
-	Fosid *int `pulumi:"fosid"`
-	// City name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallCity resource.
 type FirewallCityArgs struct {
-	// City ID.
-	Fosid pulumi.IntPtrInput
-	// City name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -134,7 +102,7 @@ func (i *FirewallCity) ToFirewallCityOutputWithContext(ctx context.Context) Fire
 // FirewallCityArrayInput is an input type that accepts FirewallCityArray and FirewallCityArrayOutput values.
 // You can construct a concrete instance of `FirewallCityArrayInput` via:
 //
-//          FirewallCityArray{ FirewallCityArgs{...} }
+//	FirewallCityArray{ FirewallCityArgs{...} }
 type FirewallCityArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i FirewallCityArray) ToFirewallCityArrayOutputWithContext(ctx context.Cont
 // FirewallCityMapInput is an input type that accepts FirewallCityMap and FirewallCityMapOutput values.
 // You can construct a concrete instance of `FirewallCityMapInput` via:
 //
-//          FirewallCityMap{ "key": FirewallCityArgs{...} }
+//	FirewallCityMap{ "key": FirewallCityArgs{...} }
 type FirewallCityMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o FirewallCityOutput) ToFirewallCityOutput() FirewallCityOutput {
 
 func (o FirewallCityOutput) ToFirewallCityOutputWithContext(ctx context.Context) FirewallCityOutput {
 	return o
+}
+
+func (o FirewallCityOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallCity) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallCityOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallCity) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallCityOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallCity) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallCityArrayOutput struct{ *pulumi.OutputState }

@@ -10,77 +10,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure per-IP traffic shaper.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallShaperPerIpShaper(ctx, "trname", &fortios.FirewallShaperPerIpShaperArgs{
-// 			BandwidthUnit:        pulumi.String("kbps"),
-// 			DiffservForward:      pulumi.String("disable"),
-// 			DiffservReverse:      pulumi.String("disable"),
-// 			DiffservcodeForward:  pulumi.String("000000"),
-// 			DiffservcodeRev:      pulumi.String("000000"),
-// 			MaxBandwidth:         pulumi.Int(1024),
-// 			MaxConcurrentSession: pulumi.Int(33),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// FirewallShaper PerIpShaper can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallShaperPerIpShaper:FirewallShaperPerIpShaper labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallShaperPerIpShaper:FirewallShaperPerIpShaper labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallShaperPerIpShaper struct {
 	pulumi.CustomResourceState
 
-	// Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
-	BandwidthUnit pulumi.StringOutput `pulumi:"bandwidthUnit"`
-	// Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-	DiffservForward pulumi.StringOutput `pulumi:"diffservForward"`
-	// Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-	DiffservReverse pulumi.StringOutput `pulumi:"diffservReverse"`
-	// Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
-	DiffservcodeForward pulumi.StringOutput `pulumi:"diffservcodeForward"`
-	// Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
-	DiffservcodeRev pulumi.StringOutput `pulumi:"diffservcodeRev"`
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-	MaxBandwidth pulumi.IntOutput `pulumi:"maxBandwidth"`
-	// Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-	MaxConcurrentSession pulumi.IntOutput `pulumi:"maxConcurrentSession"`
-	// Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-	MaxConcurrentTcpSession pulumi.IntOutput `pulumi:"maxConcurrentTcpSession"`
-	// Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-	MaxConcurrentUdpSession pulumi.IntOutput `pulumi:"maxConcurrentUdpSession"`
-	// Traffic shaper name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	BandwidthUnit           pulumi.StringOutput    `pulumi:"bandwidthUnit"`
+	DiffservForward         pulumi.StringOutput    `pulumi:"diffservForward"`
+	DiffservReverse         pulumi.StringOutput    `pulumi:"diffservReverse"`
+	DiffservcodeForward     pulumi.StringOutput    `pulumi:"diffservcodeForward"`
+	DiffservcodeRev         pulumi.StringOutput    `pulumi:"diffservcodeRev"`
+	MaxBandwidth            pulumi.IntOutput       `pulumi:"maxBandwidth"`
+	MaxConcurrentSession    pulumi.IntOutput       `pulumi:"maxConcurrentSession"`
+	MaxConcurrentTcpSession pulumi.IntOutput       `pulumi:"maxConcurrentTcpSession"`
+	MaxConcurrentUdpSession pulumi.IntOutput       `pulumi:"maxConcurrentUdpSession"`
+	Name                    pulumi.StringOutput    `pulumi:"name"`
+	Vdomparam               pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallShaperPerIpShaper registers a new resource with the given unique name, arguments, and options.
@@ -113,53 +56,31 @@ func GetFirewallShaperPerIpShaper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallShaperPerIpShaper resources.
 type firewallShaperPerIpShaperState struct {
-	// Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
-	BandwidthUnit *string `pulumi:"bandwidthUnit"`
-	// Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-	DiffservForward *string `pulumi:"diffservForward"`
-	// Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-	DiffservReverse *string `pulumi:"diffservReverse"`
-	// Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
-	DiffservcodeForward *string `pulumi:"diffservcodeForward"`
-	// Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
-	DiffservcodeRev *string `pulumi:"diffservcodeRev"`
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-	MaxBandwidth *int `pulumi:"maxBandwidth"`
-	// Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-	MaxConcurrentSession *int `pulumi:"maxConcurrentSession"`
-	// Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-	MaxConcurrentTcpSession *int `pulumi:"maxConcurrentTcpSession"`
-	// Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-	MaxConcurrentUdpSession *int `pulumi:"maxConcurrentUdpSession"`
-	// Traffic shaper name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	BandwidthUnit           *string `pulumi:"bandwidthUnit"`
+	DiffservForward         *string `pulumi:"diffservForward"`
+	DiffservReverse         *string `pulumi:"diffservReverse"`
+	DiffservcodeForward     *string `pulumi:"diffservcodeForward"`
+	DiffservcodeRev         *string `pulumi:"diffservcodeRev"`
+	MaxBandwidth            *int    `pulumi:"maxBandwidth"`
+	MaxConcurrentSession    *int    `pulumi:"maxConcurrentSession"`
+	MaxConcurrentTcpSession *int    `pulumi:"maxConcurrentTcpSession"`
+	MaxConcurrentUdpSession *int    `pulumi:"maxConcurrentUdpSession"`
+	Name                    *string `pulumi:"name"`
+	Vdomparam               *string `pulumi:"vdomparam"`
 }
 
 type FirewallShaperPerIpShaperState struct {
-	// Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
-	BandwidthUnit pulumi.StringPtrInput
-	// Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-	DiffservForward pulumi.StringPtrInput
-	// Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-	DiffservReverse pulumi.StringPtrInput
-	// Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
-	DiffservcodeForward pulumi.StringPtrInput
-	// Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
-	DiffservcodeRev pulumi.StringPtrInput
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-	MaxBandwidth pulumi.IntPtrInput
-	// Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-	MaxConcurrentSession pulumi.IntPtrInput
-	// Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
+	BandwidthUnit           pulumi.StringPtrInput
+	DiffservForward         pulumi.StringPtrInput
+	DiffservReverse         pulumi.StringPtrInput
+	DiffservcodeForward     pulumi.StringPtrInput
+	DiffservcodeRev         pulumi.StringPtrInput
+	MaxBandwidth            pulumi.IntPtrInput
+	MaxConcurrentSession    pulumi.IntPtrInput
 	MaxConcurrentTcpSession pulumi.IntPtrInput
-	// Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
 	MaxConcurrentUdpSession pulumi.IntPtrInput
-	// Traffic shaper name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (FirewallShaperPerIpShaperState) ElementType() reflect.Type {
@@ -167,54 +88,32 @@ func (FirewallShaperPerIpShaperState) ElementType() reflect.Type {
 }
 
 type firewallShaperPerIpShaperArgs struct {
-	// Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
-	BandwidthUnit *string `pulumi:"bandwidthUnit"`
-	// Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-	DiffservForward *string `pulumi:"diffservForward"`
-	// Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-	DiffservReverse *string `pulumi:"diffservReverse"`
-	// Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
-	DiffservcodeForward *string `pulumi:"diffservcodeForward"`
-	// Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
-	DiffservcodeRev *string `pulumi:"diffservcodeRev"`
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-	MaxBandwidth *int `pulumi:"maxBandwidth"`
-	// Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-	MaxConcurrentSession *int `pulumi:"maxConcurrentSession"`
-	// Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-	MaxConcurrentTcpSession *int `pulumi:"maxConcurrentTcpSession"`
-	// Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-	MaxConcurrentUdpSession *int `pulumi:"maxConcurrentUdpSession"`
-	// Traffic shaper name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	BandwidthUnit           *string `pulumi:"bandwidthUnit"`
+	DiffservForward         *string `pulumi:"diffservForward"`
+	DiffservReverse         *string `pulumi:"diffservReverse"`
+	DiffservcodeForward     *string `pulumi:"diffservcodeForward"`
+	DiffservcodeRev         *string `pulumi:"diffservcodeRev"`
+	MaxBandwidth            *int    `pulumi:"maxBandwidth"`
+	MaxConcurrentSession    *int    `pulumi:"maxConcurrentSession"`
+	MaxConcurrentTcpSession *int    `pulumi:"maxConcurrentTcpSession"`
+	MaxConcurrentUdpSession *int    `pulumi:"maxConcurrentUdpSession"`
+	Name                    *string `pulumi:"name"`
+	Vdomparam               *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallShaperPerIpShaper resource.
 type FirewallShaperPerIpShaperArgs struct {
-	// Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
-	BandwidthUnit pulumi.StringPtrInput
-	// Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-	DiffservForward pulumi.StringPtrInput
-	// Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
-	DiffservReverse pulumi.StringPtrInput
-	// Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
-	DiffservcodeForward pulumi.StringPtrInput
-	// Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
-	DiffservcodeRev pulumi.StringPtrInput
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-	MaxBandwidth pulumi.IntPtrInput
-	// Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-	MaxConcurrentSession pulumi.IntPtrInput
-	// Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
+	BandwidthUnit           pulumi.StringPtrInput
+	DiffservForward         pulumi.StringPtrInput
+	DiffservReverse         pulumi.StringPtrInput
+	DiffservcodeForward     pulumi.StringPtrInput
+	DiffservcodeRev         pulumi.StringPtrInput
+	MaxBandwidth            pulumi.IntPtrInput
+	MaxConcurrentSession    pulumi.IntPtrInput
 	MaxConcurrentTcpSession pulumi.IntPtrInput
-	// Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
 	MaxConcurrentUdpSession pulumi.IntPtrInput
-	// Traffic shaper name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (FirewallShaperPerIpShaperArgs) ElementType() reflect.Type {
@@ -243,7 +142,7 @@ func (i *FirewallShaperPerIpShaper) ToFirewallShaperPerIpShaperOutputWithContext
 // FirewallShaperPerIpShaperArrayInput is an input type that accepts FirewallShaperPerIpShaperArray and FirewallShaperPerIpShaperArrayOutput values.
 // You can construct a concrete instance of `FirewallShaperPerIpShaperArrayInput` via:
 //
-//          FirewallShaperPerIpShaperArray{ FirewallShaperPerIpShaperArgs{...} }
+//	FirewallShaperPerIpShaperArray{ FirewallShaperPerIpShaperArgs{...} }
 type FirewallShaperPerIpShaperArrayInput interface {
 	pulumi.Input
 
@@ -268,7 +167,7 @@ func (i FirewallShaperPerIpShaperArray) ToFirewallShaperPerIpShaperArrayOutputWi
 // FirewallShaperPerIpShaperMapInput is an input type that accepts FirewallShaperPerIpShaperMap and FirewallShaperPerIpShaperMapOutput values.
 // You can construct a concrete instance of `FirewallShaperPerIpShaperMapInput` via:
 //
-//          FirewallShaperPerIpShaperMap{ "key": FirewallShaperPerIpShaperArgs{...} }
+//	FirewallShaperPerIpShaperMap{ "key": FirewallShaperPerIpShaperArgs{...} }
 type FirewallShaperPerIpShaperMapInput interface {
 	pulumi.Input
 
@@ -302,6 +201,50 @@ func (o FirewallShaperPerIpShaperOutput) ToFirewallShaperPerIpShaperOutput() Fir
 
 func (o FirewallShaperPerIpShaperOutput) ToFirewallShaperPerIpShaperOutputWithContext(ctx context.Context) FirewallShaperPerIpShaperOutput {
 	return o
+}
+
+func (o FirewallShaperPerIpShaperOutput) BandwidthUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperPerIpShaper) pulumi.StringOutput { return v.BandwidthUnit }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperPerIpShaperOutput) DiffservForward() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperPerIpShaper) pulumi.StringOutput { return v.DiffservForward }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperPerIpShaperOutput) DiffservReverse() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperPerIpShaper) pulumi.StringOutput { return v.DiffservReverse }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperPerIpShaperOutput) DiffservcodeForward() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperPerIpShaper) pulumi.StringOutput { return v.DiffservcodeForward }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperPerIpShaperOutput) DiffservcodeRev() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperPerIpShaper) pulumi.StringOutput { return v.DiffservcodeRev }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperPerIpShaperOutput) MaxBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallShaperPerIpShaper) pulumi.IntOutput { return v.MaxBandwidth }).(pulumi.IntOutput)
+}
+
+func (o FirewallShaperPerIpShaperOutput) MaxConcurrentSession() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallShaperPerIpShaper) pulumi.IntOutput { return v.MaxConcurrentSession }).(pulumi.IntOutput)
+}
+
+func (o FirewallShaperPerIpShaperOutput) MaxConcurrentTcpSession() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallShaperPerIpShaper) pulumi.IntOutput { return v.MaxConcurrentTcpSession }).(pulumi.IntOutput)
+}
+
+func (o FirewallShaperPerIpShaperOutput) MaxConcurrentUdpSession() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallShaperPerIpShaper) pulumi.IntOutput { return v.MaxConcurrentUdpSession }).(pulumi.IntOutput)
+}
+
+func (o FirewallShaperPerIpShaperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperPerIpShaper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperPerIpShaperOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallShaperPerIpShaper) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallShaperPerIpShaperArrayOutput struct{ *pulumi.OutputState }

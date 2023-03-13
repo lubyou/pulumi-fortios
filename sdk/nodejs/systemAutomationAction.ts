@@ -2,46 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Action for automation stitches.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemAutomationAction("trname", {
- *     actionType: "email",
- *     awsDomain: "amazonaws.com",
- *     delay: 0,
- *     emailSubject: "SUBJECT1",
- *     method: "post",
- *     minimumInterval: 1,
- *     protocol: "http",
- *     required: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * System AutomationAction can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutomationAction:SystemAutomationAction labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutomationAction:SystemAutomationAction labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemAutomationAction extends pulumi.CustomResource {
     /**
      * Get an existing SystemAutomationAction resource's state with the given name, ID, and optional extra
@@ -70,217 +34,62 @@ export class SystemAutomationAction extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAutomationAction.__pulumiType;
     }
 
-    /**
-     * Access profile for CLI script action to access FortiGate features.
-     */
     public readonly accprofile!: pulumi.Output<string>;
-    /**
-     * Action type.
-     */
     public readonly actionType!: pulumi.Output<string>;
-    /**
-     * AliCloud AccessKey ID.
-     */
     public readonly alicloudAccessKeyId!: pulumi.Output<string>;
-    /**
-     * AliCloud AccessKey secret.
-     */
     public readonly alicloudAccessKeySecret!: pulumi.Output<string | undefined>;
-    /**
-     * AliCloud account ID.
-     */
     public readonly alicloudAccountId!: pulumi.Output<string>;
-    /**
-     * AliCloud function name.
-     */
     public readonly alicloudFunction!: pulumi.Output<string>;
-    /**
-     * AliCloud function authorization type. Valid values: `anonymous`, `function`.
-     */
     public readonly alicloudFunctionAuthorization!: pulumi.Output<string>;
-    /**
-     * AliCloud function domain.
-     */
     public readonly alicloudFunctionDomain!: pulumi.Output<string>;
-    /**
-     * AliCloud region.
-     */
     public readonly alicloudRegion!: pulumi.Output<string>;
-    /**
-     * AliCloud service name.
-     */
     public readonly alicloudService!: pulumi.Output<string>;
-    /**
-     * AliCloud version.
-     */
     public readonly alicloudVersion!: pulumi.Output<string>;
-    /**
-     * AWS API Gateway ID.
-     */
     public readonly awsApiId!: pulumi.Output<string>;
-    /**
-     * AWS API Gateway API key.
-     */
     public readonly awsApiKey!: pulumi.Output<string | undefined>;
-    /**
-     * AWS API Gateway path.
-     */
     public readonly awsApiPath!: pulumi.Output<string>;
-    /**
-     * AWS API Gateway deployment stage name.
-     */
     public readonly awsApiStage!: pulumi.Output<string>;
-    /**
-     * AWS domain.
-     */
     public readonly awsDomain!: pulumi.Output<string>;
-    /**
-     * AWS region.
-     */
     public readonly awsRegion!: pulumi.Output<string>;
-    /**
-     * Azure function API key.
-     */
     public readonly azureApiKey!: pulumi.Output<string | undefined>;
-    /**
-     * Azure function application name.
-     */
     public readonly azureApp!: pulumi.Output<string>;
-    /**
-     * Azure function domain.
-     */
     public readonly azureDomain!: pulumi.Output<string>;
-    /**
-     * Azure function name.
-     */
     public readonly azureFunction!: pulumi.Output<string>;
-    /**
-     * Azure function authorization level. Valid values: `anonymous`, `function`, `admin`.
-     */
     public readonly azureFunctionAuthorization!: pulumi.Output<string>;
-    /**
-     * Delay before execution (in seconds).
-     */
     public readonly delay!: pulumi.Output<number>;
-    /**
-     * Description.
-     */
     public readonly description!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Email body.
-     */
     public readonly emailBody!: pulumi.Output<string>;
-    /**
-     * Email sender name.
-     */
     public readonly emailFrom!: pulumi.Output<string | undefined>;
-    /**
-     * Email subject.
-     */
     public readonly emailSubject!: pulumi.Output<string | undefined>;
-    /**
-     * Email addresses. The structure of `emailTo` block is documented below.
-     */
     public readonly emailTos!: pulumi.Output<outputs.SystemAutomationActionEmailTo[] | undefined>;
-    /**
-     * Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
-     */
     public readonly executeSecurityFabric!: pulumi.Output<string>;
-    /**
-     * Google Cloud function name.
-     */
     public readonly gcpFunction!: pulumi.Output<string>;
-    /**
-     * Google Cloud function domain.
-     */
     public readonly gcpFunctionDomain!: pulumi.Output<string>;
-    /**
-     * Google Cloud function region.
-     */
     public readonly gcpFunctionRegion!: pulumi.Output<string>;
-    /**
-     * Google Cloud Platform project name.
-     */
     public readonly gcpProject!: pulumi.Output<string>;
-    /**
-     * Request headers. The structure of `headers` block is documented below.
-     */
     public readonly headers!: pulumi.Output<outputs.SystemAutomationActionHeader[] | undefined>;
-    /**
-     * Request body (if necessary). Should be serialized json string.
-     */
     public readonly httpBody!: pulumi.Output<string | undefined>;
-    /**
-     * Message content.
-     */
+    public readonly httpHeaders!: pulumi.Output<outputs.SystemAutomationActionHttpHeader[] | undefined>;
     public readonly message!: pulumi.Output<string>;
-    /**
-     * Message type. Valid values: `text`, `json`.
-     */
     public readonly messageType!: pulumi.Output<string>;
-    /**
-     * Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
-     */
     public readonly method!: pulumi.Output<string>;
-    /**
-     * Limit execution to no more than once in this interval (in seconds).
-     */
     public readonly minimumInterval!: pulumi.Output<number>;
-    /**
-     * SDN connector name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Protocol port.
-     */
+    public readonly outputSize!: pulumi.Output<number>;
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Request protocol. Valid values: `http`, `https`.
-     */
     public readonly protocol!: pulumi.Output<string>;
-    /**
-     * Enable/disable replacement message. Valid values: `enable`, `disable`.
-     */
     public readonly replacementMessage!: pulumi.Output<string>;
-    /**
-     * Replacement message group.
-     */
     public readonly replacemsgGroup!: pulumi.Output<string>;
-    /**
-     * Required in action chain. Valid values: `enable`, `disable`.
-     */
     public readonly required!: pulumi.Output<string>;
-    /**
-     * CLI script.
-     */
     public readonly script!: pulumi.Output<string | undefined>;
-    /**
-     * NSX SDN connector names. The structure of `sdnConnector` block is documented below.
-     */
     public readonly sdnConnectors!: pulumi.Output<outputs.SystemAutomationActionSdnConnector[] | undefined>;
-    /**
-     * NSX security tag.
-     */
     public readonly securityTag!: pulumi.Output<string>;
-    /**
-     * Custom TLS certificate for API request.
-     */
+    public readonly systemAction!: pulumi.Output<string>;
+    public readonly timeout!: pulumi.Output<number>;
     public readonly tlsCertificate!: pulumi.Output<string>;
-    /**
-     * Request API URI.
-     */
     public readonly uri!: pulumi.Output<string | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
-     */
     public readonly verifyHostCert!: pulumi.Output<string>;
 
     /**
@@ -332,11 +141,13 @@ export class SystemAutomationAction extends pulumi.CustomResource {
             resourceInputs["gcpProject"] = state ? state.gcpProject : undefined;
             resourceInputs["headers"] = state ? state.headers : undefined;
             resourceInputs["httpBody"] = state ? state.httpBody : undefined;
+            resourceInputs["httpHeaders"] = state ? state.httpHeaders : undefined;
             resourceInputs["message"] = state ? state.message : undefined;
             resourceInputs["messageType"] = state ? state.messageType : undefined;
             resourceInputs["method"] = state ? state.method : undefined;
             resourceInputs["minimumInterval"] = state ? state.minimumInterval : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["outputSize"] = state ? state.outputSize : undefined;
             resourceInputs["port"] = state ? state.port : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
             resourceInputs["replacementMessage"] = state ? state.replacementMessage : undefined;
@@ -345,6 +156,8 @@ export class SystemAutomationAction extends pulumi.CustomResource {
             resourceInputs["script"] = state ? state.script : undefined;
             resourceInputs["sdnConnectors"] = state ? state.sdnConnectors : undefined;
             resourceInputs["securityTag"] = state ? state.securityTag : undefined;
+            resourceInputs["systemAction"] = state ? state.systemAction : undefined;
+            resourceInputs["timeout"] = state ? state.timeout : undefined;
             resourceInputs["tlsCertificate"] = state ? state.tlsCertificate : undefined;
             resourceInputs["uri"] = state ? state.uri : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -354,7 +167,7 @@ export class SystemAutomationAction extends pulumi.CustomResource {
             resourceInputs["accprofile"] = args ? args.accprofile : undefined;
             resourceInputs["actionType"] = args ? args.actionType : undefined;
             resourceInputs["alicloudAccessKeyId"] = args ? args.alicloudAccessKeyId : undefined;
-            resourceInputs["alicloudAccessKeySecret"] = args ? args.alicloudAccessKeySecret : undefined;
+            resourceInputs["alicloudAccessKeySecret"] = args?.alicloudAccessKeySecret ? pulumi.secret(args.alicloudAccessKeySecret) : undefined;
             resourceInputs["alicloudAccountId"] = args ? args.alicloudAccountId : undefined;
             resourceInputs["alicloudFunction"] = args ? args.alicloudFunction : undefined;
             resourceInputs["alicloudFunctionAuthorization"] = args ? args.alicloudFunctionAuthorization : undefined;
@@ -363,12 +176,12 @@ export class SystemAutomationAction extends pulumi.CustomResource {
             resourceInputs["alicloudService"] = args ? args.alicloudService : undefined;
             resourceInputs["alicloudVersion"] = args ? args.alicloudVersion : undefined;
             resourceInputs["awsApiId"] = args ? args.awsApiId : undefined;
-            resourceInputs["awsApiKey"] = args ? args.awsApiKey : undefined;
+            resourceInputs["awsApiKey"] = args?.awsApiKey ? pulumi.secret(args.awsApiKey) : undefined;
             resourceInputs["awsApiPath"] = args ? args.awsApiPath : undefined;
             resourceInputs["awsApiStage"] = args ? args.awsApiStage : undefined;
             resourceInputs["awsDomain"] = args ? args.awsDomain : undefined;
             resourceInputs["awsRegion"] = args ? args.awsRegion : undefined;
-            resourceInputs["azureApiKey"] = args ? args.azureApiKey : undefined;
+            resourceInputs["azureApiKey"] = args?.azureApiKey ? pulumi.secret(args.azureApiKey) : undefined;
             resourceInputs["azureApp"] = args ? args.azureApp : undefined;
             resourceInputs["azureDomain"] = args ? args.azureDomain : undefined;
             resourceInputs["azureFunction"] = args ? args.azureFunction : undefined;
@@ -387,11 +200,13 @@ export class SystemAutomationAction extends pulumi.CustomResource {
             resourceInputs["gcpProject"] = args ? args.gcpProject : undefined;
             resourceInputs["headers"] = args ? args.headers : undefined;
             resourceInputs["httpBody"] = args ? args.httpBody : undefined;
+            resourceInputs["httpHeaders"] = args ? args.httpHeaders : undefined;
             resourceInputs["message"] = args ? args.message : undefined;
             resourceInputs["messageType"] = args ? args.messageType : undefined;
             resourceInputs["method"] = args ? args.method : undefined;
             resourceInputs["minimumInterval"] = args ? args.minimumInterval : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["outputSize"] = args ? args.outputSize : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
             resourceInputs["replacementMessage"] = args ? args.replacementMessage : undefined;
@@ -400,12 +215,16 @@ export class SystemAutomationAction extends pulumi.CustomResource {
             resourceInputs["script"] = args ? args.script : undefined;
             resourceInputs["sdnConnectors"] = args ? args.sdnConnectors : undefined;
             resourceInputs["securityTag"] = args ? args.securityTag : undefined;
+            resourceInputs["systemAction"] = args ? args.systemAction : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
             resourceInputs["tlsCertificate"] = args ? args.tlsCertificate : undefined;
             resourceInputs["uri"] = args ? args.uri : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["verifyHostCert"] = args ? args.verifyHostCert : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["alicloudAccessKeySecret", "awsApiKey", "azureApiKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemAutomationAction.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -414,217 +233,62 @@ export class SystemAutomationAction extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAutomationAction resources.
  */
 export interface SystemAutomationActionState {
-    /**
-     * Access profile for CLI script action to access FortiGate features.
-     */
     accprofile?: pulumi.Input<string>;
-    /**
-     * Action type.
-     */
     actionType?: pulumi.Input<string>;
-    /**
-     * AliCloud AccessKey ID.
-     */
     alicloudAccessKeyId?: pulumi.Input<string>;
-    /**
-     * AliCloud AccessKey secret.
-     */
     alicloudAccessKeySecret?: pulumi.Input<string>;
-    /**
-     * AliCloud account ID.
-     */
     alicloudAccountId?: pulumi.Input<string>;
-    /**
-     * AliCloud function name.
-     */
     alicloudFunction?: pulumi.Input<string>;
-    /**
-     * AliCloud function authorization type. Valid values: `anonymous`, `function`.
-     */
     alicloudFunctionAuthorization?: pulumi.Input<string>;
-    /**
-     * AliCloud function domain.
-     */
     alicloudFunctionDomain?: pulumi.Input<string>;
-    /**
-     * AliCloud region.
-     */
     alicloudRegion?: pulumi.Input<string>;
-    /**
-     * AliCloud service name.
-     */
     alicloudService?: pulumi.Input<string>;
-    /**
-     * AliCloud version.
-     */
     alicloudVersion?: pulumi.Input<string>;
-    /**
-     * AWS API Gateway ID.
-     */
     awsApiId?: pulumi.Input<string>;
-    /**
-     * AWS API Gateway API key.
-     */
     awsApiKey?: pulumi.Input<string>;
-    /**
-     * AWS API Gateway path.
-     */
     awsApiPath?: pulumi.Input<string>;
-    /**
-     * AWS API Gateway deployment stage name.
-     */
     awsApiStage?: pulumi.Input<string>;
-    /**
-     * AWS domain.
-     */
     awsDomain?: pulumi.Input<string>;
-    /**
-     * AWS region.
-     */
     awsRegion?: pulumi.Input<string>;
-    /**
-     * Azure function API key.
-     */
     azureApiKey?: pulumi.Input<string>;
-    /**
-     * Azure function application name.
-     */
     azureApp?: pulumi.Input<string>;
-    /**
-     * Azure function domain.
-     */
     azureDomain?: pulumi.Input<string>;
-    /**
-     * Azure function name.
-     */
     azureFunction?: pulumi.Input<string>;
-    /**
-     * Azure function authorization level. Valid values: `anonymous`, `function`, `admin`.
-     */
     azureFunctionAuthorization?: pulumi.Input<string>;
-    /**
-     * Delay before execution (in seconds).
-     */
     delay?: pulumi.Input<number>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Email body.
-     */
     emailBody?: pulumi.Input<string>;
-    /**
-     * Email sender name.
-     */
     emailFrom?: pulumi.Input<string>;
-    /**
-     * Email subject.
-     */
     emailSubject?: pulumi.Input<string>;
-    /**
-     * Email addresses. The structure of `emailTo` block is documented below.
-     */
     emailTos?: pulumi.Input<pulumi.Input<inputs.SystemAutomationActionEmailTo>[]>;
-    /**
-     * Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
-     */
     executeSecurityFabric?: pulumi.Input<string>;
-    /**
-     * Google Cloud function name.
-     */
     gcpFunction?: pulumi.Input<string>;
-    /**
-     * Google Cloud function domain.
-     */
     gcpFunctionDomain?: pulumi.Input<string>;
-    /**
-     * Google Cloud function region.
-     */
     gcpFunctionRegion?: pulumi.Input<string>;
-    /**
-     * Google Cloud Platform project name.
-     */
     gcpProject?: pulumi.Input<string>;
-    /**
-     * Request headers. The structure of `headers` block is documented below.
-     */
     headers?: pulumi.Input<pulumi.Input<inputs.SystemAutomationActionHeader>[]>;
-    /**
-     * Request body (if necessary). Should be serialized json string.
-     */
     httpBody?: pulumi.Input<string>;
-    /**
-     * Message content.
-     */
+    httpHeaders?: pulumi.Input<pulumi.Input<inputs.SystemAutomationActionHttpHeader>[]>;
     message?: pulumi.Input<string>;
-    /**
-     * Message type. Valid values: `text`, `json`.
-     */
     messageType?: pulumi.Input<string>;
-    /**
-     * Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
-     */
     method?: pulumi.Input<string>;
-    /**
-     * Limit execution to no more than once in this interval (in seconds).
-     */
     minimumInterval?: pulumi.Input<number>;
-    /**
-     * SDN connector name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Protocol port.
-     */
+    outputSize?: pulumi.Input<number>;
     port?: pulumi.Input<number>;
-    /**
-     * Request protocol. Valid values: `http`, `https`.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * Enable/disable replacement message. Valid values: `enable`, `disable`.
-     */
     replacementMessage?: pulumi.Input<string>;
-    /**
-     * Replacement message group.
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * Required in action chain. Valid values: `enable`, `disable`.
-     */
     required?: pulumi.Input<string>;
-    /**
-     * CLI script.
-     */
     script?: pulumi.Input<string>;
-    /**
-     * NSX SDN connector names. The structure of `sdnConnector` block is documented below.
-     */
     sdnConnectors?: pulumi.Input<pulumi.Input<inputs.SystemAutomationActionSdnConnector>[]>;
-    /**
-     * NSX security tag.
-     */
     securityTag?: pulumi.Input<string>;
-    /**
-     * Custom TLS certificate for API request.
-     */
+    systemAction?: pulumi.Input<string>;
+    timeout?: pulumi.Input<number>;
     tlsCertificate?: pulumi.Input<string>;
-    /**
-     * Request API URI.
-     */
     uri?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
-     */
     verifyHostCert?: pulumi.Input<string>;
 }
 
@@ -632,216 +296,61 @@ export interface SystemAutomationActionState {
  * The set of arguments for constructing a SystemAutomationAction resource.
  */
 export interface SystemAutomationActionArgs {
-    /**
-     * Access profile for CLI script action to access FortiGate features.
-     */
     accprofile?: pulumi.Input<string>;
-    /**
-     * Action type.
-     */
     actionType?: pulumi.Input<string>;
-    /**
-     * AliCloud AccessKey ID.
-     */
     alicloudAccessKeyId?: pulumi.Input<string>;
-    /**
-     * AliCloud AccessKey secret.
-     */
     alicloudAccessKeySecret?: pulumi.Input<string>;
-    /**
-     * AliCloud account ID.
-     */
     alicloudAccountId?: pulumi.Input<string>;
-    /**
-     * AliCloud function name.
-     */
     alicloudFunction?: pulumi.Input<string>;
-    /**
-     * AliCloud function authorization type. Valid values: `anonymous`, `function`.
-     */
     alicloudFunctionAuthorization?: pulumi.Input<string>;
-    /**
-     * AliCloud function domain.
-     */
     alicloudFunctionDomain?: pulumi.Input<string>;
-    /**
-     * AliCloud region.
-     */
     alicloudRegion?: pulumi.Input<string>;
-    /**
-     * AliCloud service name.
-     */
     alicloudService?: pulumi.Input<string>;
-    /**
-     * AliCloud version.
-     */
     alicloudVersion?: pulumi.Input<string>;
-    /**
-     * AWS API Gateway ID.
-     */
     awsApiId?: pulumi.Input<string>;
-    /**
-     * AWS API Gateway API key.
-     */
     awsApiKey?: pulumi.Input<string>;
-    /**
-     * AWS API Gateway path.
-     */
     awsApiPath?: pulumi.Input<string>;
-    /**
-     * AWS API Gateway deployment stage name.
-     */
     awsApiStage?: pulumi.Input<string>;
-    /**
-     * AWS domain.
-     */
     awsDomain?: pulumi.Input<string>;
-    /**
-     * AWS region.
-     */
     awsRegion?: pulumi.Input<string>;
-    /**
-     * Azure function API key.
-     */
     azureApiKey?: pulumi.Input<string>;
-    /**
-     * Azure function application name.
-     */
     azureApp?: pulumi.Input<string>;
-    /**
-     * Azure function domain.
-     */
     azureDomain?: pulumi.Input<string>;
-    /**
-     * Azure function name.
-     */
     azureFunction?: pulumi.Input<string>;
-    /**
-     * Azure function authorization level. Valid values: `anonymous`, `function`, `admin`.
-     */
     azureFunctionAuthorization?: pulumi.Input<string>;
-    /**
-     * Delay before execution (in seconds).
-     */
     delay?: pulumi.Input<number>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Email body.
-     */
     emailBody?: pulumi.Input<string>;
-    /**
-     * Email sender name.
-     */
     emailFrom?: pulumi.Input<string>;
-    /**
-     * Email subject.
-     */
     emailSubject?: pulumi.Input<string>;
-    /**
-     * Email addresses. The structure of `emailTo` block is documented below.
-     */
     emailTos?: pulumi.Input<pulumi.Input<inputs.SystemAutomationActionEmailTo>[]>;
-    /**
-     * Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
-     */
     executeSecurityFabric?: pulumi.Input<string>;
-    /**
-     * Google Cloud function name.
-     */
     gcpFunction?: pulumi.Input<string>;
-    /**
-     * Google Cloud function domain.
-     */
     gcpFunctionDomain?: pulumi.Input<string>;
-    /**
-     * Google Cloud function region.
-     */
     gcpFunctionRegion?: pulumi.Input<string>;
-    /**
-     * Google Cloud Platform project name.
-     */
     gcpProject?: pulumi.Input<string>;
-    /**
-     * Request headers. The structure of `headers` block is documented below.
-     */
     headers?: pulumi.Input<pulumi.Input<inputs.SystemAutomationActionHeader>[]>;
-    /**
-     * Request body (if necessary). Should be serialized json string.
-     */
     httpBody?: pulumi.Input<string>;
-    /**
-     * Message content.
-     */
+    httpHeaders?: pulumi.Input<pulumi.Input<inputs.SystemAutomationActionHttpHeader>[]>;
     message?: pulumi.Input<string>;
-    /**
-     * Message type. Valid values: `text`, `json`.
-     */
     messageType?: pulumi.Input<string>;
-    /**
-     * Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
-     */
     method?: pulumi.Input<string>;
-    /**
-     * Limit execution to no more than once in this interval (in seconds).
-     */
     minimumInterval?: pulumi.Input<number>;
-    /**
-     * SDN connector name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Protocol port.
-     */
+    outputSize?: pulumi.Input<number>;
     port?: pulumi.Input<number>;
-    /**
-     * Request protocol. Valid values: `http`, `https`.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * Enable/disable replacement message. Valid values: `enable`, `disable`.
-     */
     replacementMessage?: pulumi.Input<string>;
-    /**
-     * Replacement message group.
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * Required in action chain. Valid values: `enable`, `disable`.
-     */
     required?: pulumi.Input<string>;
-    /**
-     * CLI script.
-     */
     script?: pulumi.Input<string>;
-    /**
-     * NSX SDN connector names. The structure of `sdnConnector` block is documented below.
-     */
     sdnConnectors?: pulumi.Input<pulumi.Input<inputs.SystemAutomationActionSdnConnector>[]>;
-    /**
-     * NSX security tag.
-     */
     securityTag?: pulumi.Input<string>;
-    /**
-     * Custom TLS certificate for API request.
-     */
+    systemAction?: pulumi.Input<string>;
+    timeout?: pulumi.Input<number>;
     tlsCertificate?: pulumi.Input<string>;
-    /**
-     * Request API URI.
-     */
     uri?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
-     */
     verifyHostCert?: pulumi.Input<string>;
 }

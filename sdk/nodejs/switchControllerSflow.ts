@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch sFlow.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchControllerSflow("trname", {
- *     collectorIp: "0.0.0.0",
- *     collectorPort: 6343,
- * });
- * ```
- *
- * ## Import
- *
- * SwitchController Sflow can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSflow:SwitchControllerSflow labelname SwitchControllerSflow
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSflow:SwitchControllerSflow labelname SwitchControllerSflow
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerSflow extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerSflow resource's state with the given name, ID, and optional extra
@@ -63,17 +32,8 @@ export class SwitchControllerSflow extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerSflow.__pulumiType;
     }
 
-    /**
-     * Collector IP.
-     */
     public readonly collectorIp!: pulumi.Output<string>;
-    /**
-     * SFlow collector port (0 - 65535).
-     */
     public readonly collectorPort!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -110,17 +70,8 @@ export class SwitchControllerSflow extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerSflow resources.
  */
 export interface SwitchControllerSflowState {
-    /**
-     * Collector IP.
-     */
     collectorIp?: pulumi.Input<string>;
-    /**
-     * SFlow collector port (0 - 65535).
-     */
     collectorPort?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -128,16 +79,7 @@ export interface SwitchControllerSflowState {
  * The set of arguments for constructing a SwitchControllerSflow resource.
  */
 export interface SwitchControllerSflowArgs {
-    /**
-     * Collector IP.
-     */
     collectorIp: pulumi.Input<string>;
-    /**
-     * SFlow collector port (0 - 65535).
-     */
     collectorPort?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

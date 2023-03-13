@@ -7,52 +7,25 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Import
-//
-// System ApiUser can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemApiUser:SystemApiUser labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemApiUser:SystemApiUser labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemApiUser struct {
 	pulumi.CustomResourceState
 
-	// Admin user access profile.
-	Accprofile pulumi.StringOutput `pulumi:"accprofile"`
-	// Admin user password.
-	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Value for Access-Control-Allow-Origin on API responses. Avoid using '*' if possible.
-	CorsAllowOrigin pulumi.StringOutput `pulumi:"corsAllowOrigin"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Virtual domain name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable peer authentication. Valid values: `enable`, `disable`.
-	PeerAuth pulumi.StringOutput `pulumi:"peerAuth"`
-	// Peer group name.
-	PeerGroup pulumi.StringOutput `pulumi:"peerGroup"`
-	// Schedule name.
-	Schedule pulumi.StringOutput `pulumi:"schedule"`
-	// Trusthost. The structure of `trusthost` block is documented below.
-	Trusthosts SystemApiUserTrusthostArrayOutput `pulumi:"trusthosts"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Virtual domains. The structure of `vdom` block is documented below.
-	Vdoms SystemApiUserVdomArrayOutput `pulumi:"vdoms"`
+	Accprofile          pulumi.StringOutput               `pulumi:"accprofile"`
+	ApiKey              pulumi.StringPtrOutput            `pulumi:"apiKey"`
+	Comments            pulumi.StringPtrOutput            `pulumi:"comments"`
+	CorsAllowOrigin     pulumi.StringOutput               `pulumi:"corsAllowOrigin"`
+	DynamicSortSubtable pulumi.StringPtrOutput            `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput               `pulumi:"name"`
+	PeerAuth            pulumi.StringOutput               `pulumi:"peerAuth"`
+	PeerGroup           pulumi.StringOutput               `pulumi:"peerGroup"`
+	Schedule            pulumi.StringOutput               `pulumi:"schedule"`
+	Trusthosts          SystemApiUserTrusthostArrayOutput `pulumi:"trusthosts"`
+	Vdomparam           pulumi.StringPtrOutput            `pulumi:"vdomparam"`
+	Vdoms               SystemApiUserVdomArrayOutput      `pulumi:"vdoms"`
 }
 
 // NewSystemApiUser registers a new resource with the given unique name, arguments, and options.
@@ -65,6 +38,13 @@ func NewSystemApiUser(ctx *pulumi.Context,
 	if args.Accprofile == nil {
 		return nil, errors.New("invalid value for required argument 'Accprofile'")
 	}
+	if args.ApiKey != nil {
+		args.ApiKey = pulumi.ToSecret(args.ApiKey).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"apiKey",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemApiUser
 	err := ctx.RegisterResource("fortios:index/systemApiUser:SystemApiUser", name, args, &resource, opts...)
@@ -88,57 +68,33 @@ func GetSystemApiUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemApiUser resources.
 type systemApiUserState struct {
-	// Admin user access profile.
-	Accprofile *string `pulumi:"accprofile"`
-	// Admin user password.
-	ApiKey *string `pulumi:"apiKey"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Value for Access-Control-Allow-Origin on API responses. Avoid using '*' if possible.
-	CorsAllowOrigin *string `pulumi:"corsAllowOrigin"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Virtual domain name.
-	Name *string `pulumi:"name"`
-	// Enable/disable peer authentication. Valid values: `enable`, `disable`.
-	PeerAuth *string `pulumi:"peerAuth"`
-	// Peer group name.
-	PeerGroup *string `pulumi:"peerGroup"`
-	// Schedule name.
-	Schedule *string `pulumi:"schedule"`
-	// Trusthost. The structure of `trusthost` block is documented below.
-	Trusthosts []SystemApiUserTrusthost `pulumi:"trusthosts"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Virtual domains. The structure of `vdom` block is documented below.
-	Vdoms []SystemApiUserVdom `pulumi:"vdoms"`
+	Accprofile          *string                  `pulumi:"accprofile"`
+	ApiKey              *string                  `pulumi:"apiKey"`
+	Comments            *string                  `pulumi:"comments"`
+	CorsAllowOrigin     *string                  `pulumi:"corsAllowOrigin"`
+	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
+	Name                *string                  `pulumi:"name"`
+	PeerAuth            *string                  `pulumi:"peerAuth"`
+	PeerGroup           *string                  `pulumi:"peerGroup"`
+	Schedule            *string                  `pulumi:"schedule"`
+	Trusthosts          []SystemApiUserTrusthost `pulumi:"trusthosts"`
+	Vdomparam           *string                  `pulumi:"vdomparam"`
+	Vdoms               []SystemApiUserVdom      `pulumi:"vdoms"`
 }
 
 type SystemApiUserState struct {
-	// Admin user access profile.
-	Accprofile pulumi.StringPtrInput
-	// Admin user password.
-	ApiKey pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Value for Access-Control-Allow-Origin on API responses. Avoid using '*' if possible.
-	CorsAllowOrigin pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Accprofile          pulumi.StringPtrInput
+	ApiKey              pulumi.StringPtrInput
+	Comments            pulumi.StringPtrInput
+	CorsAllowOrigin     pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Virtual domain name.
-	Name pulumi.StringPtrInput
-	// Enable/disable peer authentication. Valid values: `enable`, `disable`.
-	PeerAuth pulumi.StringPtrInput
-	// Peer group name.
-	PeerGroup pulumi.StringPtrInput
-	// Schedule name.
-	Schedule pulumi.StringPtrInput
-	// Trusthost. The structure of `trusthost` block is documented below.
-	Trusthosts SystemApiUserTrusthostArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Virtual domains. The structure of `vdom` block is documented below.
-	Vdoms SystemApiUserVdomArrayInput
+	Name                pulumi.StringPtrInput
+	PeerAuth            pulumi.StringPtrInput
+	PeerGroup           pulumi.StringPtrInput
+	Schedule            pulumi.StringPtrInput
+	Trusthosts          SystemApiUserTrusthostArrayInput
+	Vdomparam           pulumi.StringPtrInput
+	Vdoms               SystemApiUserVdomArrayInput
 }
 
 func (SystemApiUserState) ElementType() reflect.Type {
@@ -146,58 +102,34 @@ func (SystemApiUserState) ElementType() reflect.Type {
 }
 
 type systemApiUserArgs struct {
-	// Admin user access profile.
-	Accprofile string `pulumi:"accprofile"`
-	// Admin user password.
-	ApiKey *string `pulumi:"apiKey"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Value for Access-Control-Allow-Origin on API responses. Avoid using '*' if possible.
-	CorsAllowOrigin *string `pulumi:"corsAllowOrigin"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Virtual domain name.
-	Name *string `pulumi:"name"`
-	// Enable/disable peer authentication. Valid values: `enable`, `disable`.
-	PeerAuth *string `pulumi:"peerAuth"`
-	// Peer group name.
-	PeerGroup *string `pulumi:"peerGroup"`
-	// Schedule name.
-	Schedule *string `pulumi:"schedule"`
-	// Trusthost. The structure of `trusthost` block is documented below.
-	Trusthosts []SystemApiUserTrusthost `pulumi:"trusthosts"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Virtual domains. The structure of `vdom` block is documented below.
-	Vdoms []SystemApiUserVdom `pulumi:"vdoms"`
+	Accprofile          string                   `pulumi:"accprofile"`
+	ApiKey              *string                  `pulumi:"apiKey"`
+	Comments            *string                  `pulumi:"comments"`
+	CorsAllowOrigin     *string                  `pulumi:"corsAllowOrigin"`
+	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
+	Name                *string                  `pulumi:"name"`
+	PeerAuth            *string                  `pulumi:"peerAuth"`
+	PeerGroup           *string                  `pulumi:"peerGroup"`
+	Schedule            *string                  `pulumi:"schedule"`
+	Trusthosts          []SystemApiUserTrusthost `pulumi:"trusthosts"`
+	Vdomparam           *string                  `pulumi:"vdomparam"`
+	Vdoms               []SystemApiUserVdom      `pulumi:"vdoms"`
 }
 
 // The set of arguments for constructing a SystemApiUser resource.
 type SystemApiUserArgs struct {
-	// Admin user access profile.
-	Accprofile pulumi.StringInput
-	// Admin user password.
-	ApiKey pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Value for Access-Control-Allow-Origin on API responses. Avoid using '*' if possible.
-	CorsAllowOrigin pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Accprofile          pulumi.StringInput
+	ApiKey              pulumi.StringPtrInput
+	Comments            pulumi.StringPtrInput
+	CorsAllowOrigin     pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Virtual domain name.
-	Name pulumi.StringPtrInput
-	// Enable/disable peer authentication. Valid values: `enable`, `disable`.
-	PeerAuth pulumi.StringPtrInput
-	// Peer group name.
-	PeerGroup pulumi.StringPtrInput
-	// Schedule name.
-	Schedule pulumi.StringPtrInput
-	// Trusthost. The structure of `trusthost` block is documented below.
-	Trusthosts SystemApiUserTrusthostArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Virtual domains. The structure of `vdom` block is documented below.
-	Vdoms SystemApiUserVdomArrayInput
+	Name                pulumi.StringPtrInput
+	PeerAuth            pulumi.StringPtrInput
+	PeerGroup           pulumi.StringPtrInput
+	Schedule            pulumi.StringPtrInput
+	Trusthosts          SystemApiUserTrusthostArrayInput
+	Vdomparam           pulumi.StringPtrInput
+	Vdoms               SystemApiUserVdomArrayInput
 }
 
 func (SystemApiUserArgs) ElementType() reflect.Type {
@@ -226,7 +158,7 @@ func (i *SystemApiUser) ToSystemApiUserOutputWithContext(ctx context.Context) Sy
 // SystemApiUserArrayInput is an input type that accepts SystemApiUserArray and SystemApiUserArrayOutput values.
 // You can construct a concrete instance of `SystemApiUserArrayInput` via:
 //
-//          SystemApiUserArray{ SystemApiUserArgs{...} }
+//	SystemApiUserArray{ SystemApiUserArgs{...} }
 type SystemApiUserArrayInput interface {
 	pulumi.Input
 
@@ -251,7 +183,7 @@ func (i SystemApiUserArray) ToSystemApiUserArrayOutputWithContext(ctx context.Co
 // SystemApiUserMapInput is an input type that accepts SystemApiUserMap and SystemApiUserMapOutput values.
 // You can construct a concrete instance of `SystemApiUserMapInput` via:
 //
-//          SystemApiUserMap{ "key": SystemApiUserArgs{...} }
+//	SystemApiUserMap{ "key": SystemApiUserArgs{...} }
 type SystemApiUserMapInput interface {
 	pulumi.Input
 
@@ -285,6 +217,54 @@ func (o SystemApiUserOutput) ToSystemApiUserOutput() SystemApiUserOutput {
 
 func (o SystemApiUserOutput) ToSystemApiUserOutputWithContext(ctx context.Context) SystemApiUserOutput {
 	return o
+}
+
+func (o SystemApiUserOutput) Accprofile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemApiUser) pulumi.StringOutput { return v.Accprofile }).(pulumi.StringOutput)
+}
+
+func (o SystemApiUserOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemApiUser) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemApiUserOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemApiUser) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemApiUserOutput) CorsAllowOrigin() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemApiUser) pulumi.StringOutput { return v.CorsAllowOrigin }).(pulumi.StringOutput)
+}
+
+func (o SystemApiUserOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemApiUser) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemApiUserOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemApiUser) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemApiUserOutput) PeerAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemApiUser) pulumi.StringOutput { return v.PeerAuth }).(pulumi.StringOutput)
+}
+
+func (o SystemApiUserOutput) PeerGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemApiUser) pulumi.StringOutput { return v.PeerGroup }).(pulumi.StringOutput)
+}
+
+func (o SystemApiUserOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemApiUser) pulumi.StringOutput { return v.Schedule }).(pulumi.StringOutput)
+}
+
+func (o SystemApiUserOutput) Trusthosts() SystemApiUserTrusthostArrayOutput {
+	return o.ApplyT(func(v *SystemApiUser) SystemApiUserTrusthostArrayOutput { return v.Trusthosts }).(SystemApiUserTrusthostArrayOutput)
+}
+
+func (o SystemApiUserOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemApiUser) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemApiUserOutput) Vdoms() SystemApiUserVdomArrayOutput {
+	return o.ApplyT(func(v *SystemApiUser) SystemApiUserVdomArrayOutput { return v.Vdoms }).(SystemApiUserVdomArrayOutput)
 }
 
 type SystemApiUserArrayOutput struct{ *pulumi.OutputState }

@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure sFlow per VDOM to add or change the IP address and UDP port that FortiGate sFlow agents in this VDOM use to send sFlow datagrams to an sFlow collector.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemVdomSflow("trname", {
- *     collectorIp: "0.0.0.0",
- *     collectorPort: 6343,
- *     sourceIp: "0.0.0.0",
- *     vdomSflow: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * System VdomSflow can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVdomSflow:SystemVdomSflow labelname SystemVdomSflow
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVdomSflow:SystemVdomSflow labelname SystemVdomSflow
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemVdomSflow extends pulumi.CustomResource {
     /**
      * Get an existing SystemVdomSflow resource's state with the given name, ID, and optional extra
@@ -65,33 +32,12 @@ export class SystemVdomSflow extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemVdomSflow.__pulumiType;
     }
 
-    /**
-     * IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
-     */
     public readonly collectorIp!: pulumi.Output<string>;
-    /**
-     * UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
-     */
     public readonly collectorPort!: pulumi.Output<number>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
-    /**
-     * Source IP address for sFlow agent.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Enable/disable the sFlow configuration for the current VDOM. Valid values: `enable`, `disable`.
-     */
     public readonly vdomSflow!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -133,33 +79,12 @@ export class SystemVdomSflow extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemVdomSflow resources.
  */
 export interface SystemVdomSflowState {
-    /**
-     * IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
-     */
     collectorIp?: pulumi.Input<string>;
-    /**
-     * UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
-     */
     collectorPort?: pulumi.Input<number>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Source IP address for sFlow agent.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable the sFlow configuration for the current VDOM. Valid values: `enable`, `disable`.
-     */
     vdomSflow?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -167,32 +92,11 @@ export interface SystemVdomSflowState {
  * The set of arguments for constructing a SystemVdomSflow resource.
  */
 export interface SystemVdomSflowArgs {
-    /**
-     * IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
-     */
     collectorIp?: pulumi.Input<string>;
-    /**
-     * UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
-     */
     collectorPort?: pulumi.Input<number>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Source IP address for sFlow agent.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable the sFlow configuration for the current VDOM. Valid values: `enable`, `disable`.
-     */
     vdomSflow?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -24,6 +24,7 @@
     },
     "pulumi": {
         "resource": true,
-        "pluginDownloadURL": "https://s3.vnci.io/pulumi/releases/plugins"
+        "name": "fortios",
+        "server": "https://s3.vnci.io/pulumi/releases/plugins"
     }
 }

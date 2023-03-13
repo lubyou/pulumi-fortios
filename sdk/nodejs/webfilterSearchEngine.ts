@@ -4,40 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure web filter search engines.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WebfilterSearchEngine("trname", {
- *     charset: "utf-8",
- *     hostname: "sg.eiwuc.com",
- *     query: "sc=",
- *     safesearch: "disable",
- *     url: "^\\/f",
- * });
- * ```
- *
- * ## Import
- *
- * Webfilter SearchEngine can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/webfilterSearchEngine:WebfilterSearchEngine labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/webfilterSearchEngine:WebfilterSearchEngine labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WebfilterSearchEngine extends pulumi.CustomResource {
     /**
      * Get an existing WebfilterSearchEngine resource's state with the given name, ID, and optional extra
@@ -66,37 +32,13 @@ export class WebfilterSearchEngine extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebfilterSearchEngine.__pulumiType;
     }
 
-    /**
-     * Search engine charset. Valid values: `utf-8`, `gb2312`.
-     */
     public readonly charset!: pulumi.Output<string>;
-    /**
-     * Hostname (regular expression).
-     */
     public readonly hostname!: pulumi.Output<string>;
-    /**
-     * Search engine name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Code used to prefix a query (must end with an equals character).
-     */
     public readonly query!: pulumi.Output<string>;
-    /**
-     * Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
-     */
     public readonly safesearch!: pulumi.Output<string>;
-    /**
-     * Safe search parameter used in the URL.
-     */
     public readonly safesearchStr!: pulumi.Output<string>;
-    /**
-     * URL (regular expression).
-     */
     public readonly url!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -140,37 +82,13 @@ export class WebfilterSearchEngine extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WebfilterSearchEngine resources.
  */
 export interface WebfilterSearchEngineState {
-    /**
-     * Search engine charset. Valid values: `utf-8`, `gb2312`.
-     */
     charset?: pulumi.Input<string>;
-    /**
-     * Hostname (regular expression).
-     */
     hostname?: pulumi.Input<string>;
-    /**
-     * Search engine name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Code used to prefix a query (must end with an equals character).
-     */
     query?: pulumi.Input<string>;
-    /**
-     * Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
-     */
     safesearch?: pulumi.Input<string>;
-    /**
-     * Safe search parameter used in the URL.
-     */
     safesearchStr?: pulumi.Input<string>;
-    /**
-     * URL (regular expression).
-     */
     url?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -178,36 +96,12 @@ export interface WebfilterSearchEngineState {
  * The set of arguments for constructing a WebfilterSearchEngine resource.
  */
 export interface WebfilterSearchEngineArgs {
-    /**
-     * Search engine charset. Valid values: `utf-8`, `gb2312`.
-     */
     charset?: pulumi.Input<string>;
-    /**
-     * Hostname (regular expression).
-     */
     hostname?: pulumi.Input<string>;
-    /**
-     * Search engine name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Code used to prefix a query (must end with an equals character).
-     */
     query?: pulumi.Input<string>;
-    /**
-     * Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
-     */
     safesearch?: pulumi.Input<string>;
-    /**
-     * Safe search parameter used in the URL.
-     */
     safesearchStr?: pulumi.Input<string>;
-    /**
-     * URL (regular expression).
-     */
     url?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

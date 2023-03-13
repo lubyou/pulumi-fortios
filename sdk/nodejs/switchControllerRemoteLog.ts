@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure logging by FortiSwitch device to a remote syslog server. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * SwitchController RemoteLog can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerRemoteLog:SwitchControllerRemoteLog labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerRemoteLog:SwitchControllerRemoteLog labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerRemoteLog extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerRemoteLog resource's state with the given name, ID, and optional extra
@@ -51,37 +32,13 @@ export class SwitchControllerRemoteLog extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerRemoteLog.__pulumiType;
     }
 
-    /**
-     * Enable/disable comma-separated value (CSV) strings. Valid values: `enable`, `disable`.
-     */
     public readonly csv!: pulumi.Output<string>;
-    /**
-     * Facility to log to remote syslog server. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-     */
     public readonly facility!: pulumi.Output<string>;
-    /**
-     * Remote log name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Remote syslog server listening port.
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * IPv4 address of the remote syslog server.
-     */
     public readonly server!: pulumi.Output<string>;
-    /**
-     * Severity of logs to be transferred to remote log server. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly severity!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging by FortiSwitch device to a remote syslog server. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -125,37 +82,13 @@ export class SwitchControllerRemoteLog extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerRemoteLog resources.
  */
 export interface SwitchControllerRemoteLogState {
-    /**
-     * Enable/disable comma-separated value (CSV) strings. Valid values: `enable`, `disable`.
-     */
     csv?: pulumi.Input<string>;
-    /**
-     * Facility to log to remote syslog server. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-     */
     facility?: pulumi.Input<string>;
-    /**
-     * Remote log name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Remote syslog server listening port.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * IPv4 address of the remote syslog server.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Severity of logs to be transferred to remote log server. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     severity?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging by FortiSwitch device to a remote syslog server. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -163,36 +96,12 @@ export interface SwitchControllerRemoteLogState {
  * The set of arguments for constructing a SwitchControllerRemoteLog resource.
  */
 export interface SwitchControllerRemoteLogArgs {
-    /**
-     * Enable/disable comma-separated value (CSV) strings. Valid values: `enable`, `disable`.
-     */
     csv?: pulumi.Input<string>;
-    /**
-     * Facility to log to remote syslog server. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-     */
     facility?: pulumi.Input<string>;
-    /**
-     * Remote log name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Remote syslog server listening port.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * IPv4 address of the remote syslog server.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Severity of logs to be transferred to remote log server. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     severity?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging by FortiSwitch device to a remote syslog server. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

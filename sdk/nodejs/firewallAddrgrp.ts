@@ -2,56 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv4 address groups.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
- *
- * const trname1 = new fortios.FirewallAddress("trname1", {
- *     allowRouting: "disable",
- *     cacheTtl: 0,
- *     color: 0,
- *     endIp: "255.0.0.0",
- *     startIp: "12.0.0.0",
- *     subnet: "12.0.0.0 255.0.0.0",
- *     type: "ipmask",
- *     visibility: "enable",
- *     wildcard: "12.0.0.0 255.0.0.0",
- * });
- * const trname = new fortios.FirewallAddrgrp("trname", {
- *     allowRouting: "disable",
- *     color: 0,
- *     exclude: "disable",
- *     visibility: "enable",
- *     members: [{
- *         name: trname1.name,
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * Firewall Addrgrp can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAddrgrp:FirewallAddrgrp labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAddrgrp:FirewallAddrgrp labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallAddrgrp extends pulumi.CustomResource {
     /**
      * Get an existing FirewallAddrgrp resource's state with the given name, ID, and optional extra
@@ -80,65 +34,20 @@ export class FirewallAddrgrp extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallAddrgrp.__pulumiType;
     }
 
-    /**
-     * Enable/disable use of this group in the static route configuration. Valid values: `enable`, `disable`.
-     */
     public readonly allowRouting!: pulumi.Output<string>;
-    /**
-     * Tag category.
-     */
     public readonly category!: pulumi.Output<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable address exclusion. Valid values: `enable`, `disable`.
-     */
     public readonly exclude!: pulumi.Output<string>;
-    /**
-     * Address exclusion member. The structure of `excludeMember` block is documented below.
-     */
     public readonly excludeMembers!: pulumi.Output<outputs.FirewallAddrgrpExcludeMember[] | undefined>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     public readonly fabricObject!: pulumi.Output<string>;
-    /**
-     * Address objects contained within the group. The structure of `member` block is documented below.
-     */
     public readonly members!: pulumi.Output<outputs.FirewallAddrgrpMember[]>;
-    /**
-     * Tag name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     public readonly taggings!: pulumi.Output<outputs.FirewallAddrgrpTagging[] | undefined>;
-    /**
-     * Address group type. Valid values: `default`, `folder`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable address visibility in the GUI. Valid values: `enable`, `disable`.
-     */
     public readonly visibility!: pulumi.Output<string>;
 
     /**
@@ -199,65 +108,20 @@ export class FirewallAddrgrp extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallAddrgrp resources.
  */
 export interface FirewallAddrgrpState {
-    /**
-     * Enable/disable use of this group in the static route configuration. Valid values: `enable`, `disable`.
-     */
     allowRouting?: pulumi.Input<string>;
-    /**
-     * Tag category.
-     */
     category?: pulumi.Input<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable address exclusion. Valid values: `enable`, `disable`.
-     */
     exclude?: pulumi.Input<string>;
-    /**
-     * Address exclusion member. The structure of `excludeMember` block is documented below.
-     */
     excludeMembers?: pulumi.Input<pulumi.Input<inputs.FirewallAddrgrpExcludeMember>[]>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     fabricObject?: pulumi.Input<string>;
-    /**
-     * Address objects contained within the group. The structure of `member` block is documented below.
-     */
     members?: pulumi.Input<pulumi.Input<inputs.FirewallAddrgrpMember>[]>;
-    /**
-     * Tag name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallAddrgrpTagging>[]>;
-    /**
-     * Address group type. Valid values: `default`, `folder`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable address visibility in the GUI. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
 }
 
@@ -265,64 +129,19 @@ export interface FirewallAddrgrpState {
  * The set of arguments for constructing a FirewallAddrgrp resource.
  */
 export interface FirewallAddrgrpArgs {
-    /**
-     * Enable/disable use of this group in the static route configuration. Valid values: `enable`, `disable`.
-     */
     allowRouting?: pulumi.Input<string>;
-    /**
-     * Tag category.
-     */
     category?: pulumi.Input<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable address exclusion. Valid values: `enable`, `disable`.
-     */
     exclude?: pulumi.Input<string>;
-    /**
-     * Address exclusion member. The structure of `excludeMember` block is documented below.
-     */
     excludeMembers?: pulumi.Input<pulumi.Input<inputs.FirewallAddrgrpExcludeMember>[]>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     fabricObject?: pulumi.Input<string>;
-    /**
-     * Address objects contained within the group. The structure of `member` block is documented below.
-     */
     members: pulumi.Input<pulumi.Input<inputs.FirewallAddrgrpMember>[]>;
-    /**
-     * Tag name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallAddrgrpTagging>[]>;
-    /**
-     * Address group type. Valid values: `default`, `folder`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable address visibility in the GUI. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
 }

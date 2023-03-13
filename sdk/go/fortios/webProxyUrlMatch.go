@@ -7,81 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Exempt URLs from web proxy forwarding and caching.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trname2, err := fortios.NewWebProxyForwardServer(ctx, "trname2", &fortios.WebProxyForwardServerArgs{
-// 			AddrType:         pulumi.String("fqdn"),
-// 			Healthcheck:      pulumi.String("disable"),
-// 			Ip:               pulumi.String("0.0.0.0"),
-// 			Monitor:          pulumi.String("http://www.google.com"),
-// 			Port:             pulumi.Int(3128),
-// 			ServerDownOption: pulumi.String("block"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewWebProxyUrlMatch(ctx, "trname", &fortios.WebProxyUrlMatchArgs{
-// 			CacheExemption: pulumi.String("disable"),
-// 			ForwardServer:  trname2.Name,
-// 			Status:         pulumi.String("enable"),
-// 			UrlPattern:     pulumi.String("/examples/servlet/*Servlet"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// WebProxy UrlMatch can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webProxyUrlMatch:WebProxyUrlMatch labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webProxyUrlMatch:WebProxyUrlMatch labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebProxyUrlMatch struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable exempting this URL pattern from caching. Valid values: `enable`, `disable`.
-	CacheExemption pulumi.StringOutput `pulumi:"cacheExemption"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Forward server name.
-	ForwardServer pulumi.StringOutput `pulumi:"forwardServer"`
-	// Configure a name for the URL to be exempted.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable exempting the URLs matching the URL pattern from web proxy forwarding and caching. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// URL pattern to be exempted from web proxy forwarding and caching.
-	UrlPattern pulumi.StringOutput `pulumi:"urlPattern"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	CacheExemption pulumi.StringOutput    `pulumi:"cacheExemption"`
+	Comment        pulumi.StringPtrOutput `pulumi:"comment"`
+	ForwardServer  pulumi.StringOutput    `pulumi:"forwardServer"`
+	Name           pulumi.StringOutput    `pulumi:"name"`
+	Status         pulumi.StringOutput    `pulumi:"status"`
+	UrlPattern     pulumi.StringOutput    `pulumi:"urlPattern"`
+	Vdomparam      pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWebProxyUrlMatch registers a new resource with the given unique name, arguments, and options.
@@ -117,37 +56,23 @@ func GetWebProxyUrlMatch(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebProxyUrlMatch resources.
 type webProxyUrlMatchState struct {
-	// Enable/disable exempting this URL pattern from caching. Valid values: `enable`, `disable`.
 	CacheExemption *string `pulumi:"cacheExemption"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Forward server name.
-	ForwardServer *string `pulumi:"forwardServer"`
-	// Configure a name for the URL to be exempted.
-	Name *string `pulumi:"name"`
-	// Enable/disable exempting the URLs matching the URL pattern from web proxy forwarding and caching. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// URL pattern to be exempted from web proxy forwarding and caching.
-	UrlPattern *string `pulumi:"urlPattern"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment        *string `pulumi:"comment"`
+	ForwardServer  *string `pulumi:"forwardServer"`
+	Name           *string `pulumi:"name"`
+	Status         *string `pulumi:"status"`
+	UrlPattern     *string `pulumi:"urlPattern"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 type WebProxyUrlMatchState struct {
-	// Enable/disable exempting this URL pattern from caching. Valid values: `enable`, `disable`.
 	CacheExemption pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Forward server name.
-	ForwardServer pulumi.StringPtrInput
-	// Configure a name for the URL to be exempted.
-	Name pulumi.StringPtrInput
-	// Enable/disable exempting the URLs matching the URL pattern from web proxy forwarding and caching. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// URL pattern to be exempted from web proxy forwarding and caching.
-	UrlPattern pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Comment        pulumi.StringPtrInput
+	ForwardServer  pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	Status         pulumi.StringPtrInput
+	UrlPattern     pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (WebProxyUrlMatchState) ElementType() reflect.Type {
@@ -155,38 +80,24 @@ func (WebProxyUrlMatchState) ElementType() reflect.Type {
 }
 
 type webProxyUrlMatchArgs struct {
-	// Enable/disable exempting this URL pattern from caching. Valid values: `enable`, `disable`.
 	CacheExemption *string `pulumi:"cacheExemption"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Forward server name.
-	ForwardServer *string `pulumi:"forwardServer"`
-	// Configure a name for the URL to be exempted.
-	Name *string `pulumi:"name"`
-	// Enable/disable exempting the URLs matching the URL pattern from web proxy forwarding and caching. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// URL pattern to be exempted from web proxy forwarding and caching.
-	UrlPattern string `pulumi:"urlPattern"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment        *string `pulumi:"comment"`
+	ForwardServer  *string `pulumi:"forwardServer"`
+	Name           *string `pulumi:"name"`
+	Status         *string `pulumi:"status"`
+	UrlPattern     string  `pulumi:"urlPattern"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebProxyUrlMatch resource.
 type WebProxyUrlMatchArgs struct {
-	// Enable/disable exempting this URL pattern from caching. Valid values: `enable`, `disable`.
 	CacheExemption pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Forward server name.
-	ForwardServer pulumi.StringPtrInput
-	// Configure a name for the URL to be exempted.
-	Name pulumi.StringPtrInput
-	// Enable/disable exempting the URLs matching the URL pattern from web proxy forwarding and caching. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// URL pattern to be exempted from web proxy forwarding and caching.
-	UrlPattern pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Comment        pulumi.StringPtrInput
+	ForwardServer  pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	Status         pulumi.StringPtrInput
+	UrlPattern     pulumi.StringInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (WebProxyUrlMatchArgs) ElementType() reflect.Type {
@@ -215,7 +126,7 @@ func (i *WebProxyUrlMatch) ToWebProxyUrlMatchOutputWithContext(ctx context.Conte
 // WebProxyUrlMatchArrayInput is an input type that accepts WebProxyUrlMatchArray and WebProxyUrlMatchArrayOutput values.
 // You can construct a concrete instance of `WebProxyUrlMatchArrayInput` via:
 //
-//          WebProxyUrlMatchArray{ WebProxyUrlMatchArgs{...} }
+//	WebProxyUrlMatchArray{ WebProxyUrlMatchArgs{...} }
 type WebProxyUrlMatchArrayInput interface {
 	pulumi.Input
 
@@ -240,7 +151,7 @@ func (i WebProxyUrlMatchArray) ToWebProxyUrlMatchArrayOutputWithContext(ctx cont
 // WebProxyUrlMatchMapInput is an input type that accepts WebProxyUrlMatchMap and WebProxyUrlMatchMapOutput values.
 // You can construct a concrete instance of `WebProxyUrlMatchMapInput` via:
 //
-//          WebProxyUrlMatchMap{ "key": WebProxyUrlMatchArgs{...} }
+//	WebProxyUrlMatchMap{ "key": WebProxyUrlMatchArgs{...} }
 type WebProxyUrlMatchMapInput interface {
 	pulumi.Input
 
@@ -274,6 +185,34 @@ func (o WebProxyUrlMatchOutput) ToWebProxyUrlMatchOutput() WebProxyUrlMatchOutpu
 
 func (o WebProxyUrlMatchOutput) ToWebProxyUrlMatchOutputWithContext(ctx context.Context) WebProxyUrlMatchOutput {
 	return o
+}
+
+func (o WebProxyUrlMatchOutput) CacheExemption() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyUrlMatch) pulumi.StringOutput { return v.CacheExemption }).(pulumi.StringOutput)
+}
+
+func (o WebProxyUrlMatchOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyUrlMatch) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o WebProxyUrlMatchOutput) ForwardServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyUrlMatch) pulumi.StringOutput { return v.ForwardServer }).(pulumi.StringOutput)
+}
+
+func (o WebProxyUrlMatchOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyUrlMatch) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WebProxyUrlMatchOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyUrlMatch) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o WebProxyUrlMatchOutput) UrlPattern() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyUrlMatch) pulumi.StringOutput { return v.UrlPattern }).(pulumi.StringOutput)
+}
+
+func (o WebProxyUrlMatchOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyUrlMatch) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebProxyUrlMatchArrayOutput struct{ *pulumi.OutputState }

@@ -10,52 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure alias command.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAlias(ctx, "trname", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Alias can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAlias:SystemAlias labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAlias:SystemAlias labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemAlias struct {
 	pulumi.CustomResourceState
 
-	// Command list to execute.
-	Command pulumi.StringPtrOutput `pulumi:"command"`
-	// Alias command name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Command   pulumi.StringPtrOutput `pulumi:"command"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -89,20 +48,14 @@ func GetSystemAlias(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAlias resources.
 type systemAliasState struct {
-	// Command list to execute.
-	Command *string `pulumi:"command"`
-	// Alias command name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Command   *string `pulumi:"command"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemAliasState struct {
-	// Command list to execute.
-	Command pulumi.StringPtrInput
-	// Alias command name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Command   pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -111,21 +64,15 @@ func (SystemAliasState) ElementType() reflect.Type {
 }
 
 type systemAliasArgs struct {
-	// Command list to execute.
-	Command *string `pulumi:"command"`
-	// Alias command name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Command   *string `pulumi:"command"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemAlias resource.
 type SystemAliasArgs struct {
-	// Command list to execute.
-	Command pulumi.StringPtrInput
-	// Alias command name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Command   pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -155,7 +102,7 @@ func (i *SystemAlias) ToSystemAliasOutputWithContext(ctx context.Context) System
 // SystemAliasArrayInput is an input type that accepts SystemAliasArray and SystemAliasArrayOutput values.
 // You can construct a concrete instance of `SystemAliasArrayInput` via:
 //
-//          SystemAliasArray{ SystemAliasArgs{...} }
+//	SystemAliasArray{ SystemAliasArgs{...} }
 type SystemAliasArrayInput interface {
 	pulumi.Input
 
@@ -180,7 +127,7 @@ func (i SystemAliasArray) ToSystemAliasArrayOutputWithContext(ctx context.Contex
 // SystemAliasMapInput is an input type that accepts SystemAliasMap and SystemAliasMapOutput values.
 // You can construct a concrete instance of `SystemAliasMapInput` via:
 //
-//          SystemAliasMap{ "key": SystemAliasArgs{...} }
+//	SystemAliasMap{ "key": SystemAliasArgs{...} }
 type SystemAliasMapInput interface {
 	pulumi.Input
 
@@ -214,6 +161,18 @@ func (o SystemAliasOutput) ToSystemAliasOutput() SystemAliasOutput {
 
 func (o SystemAliasOutput) ToSystemAliasOutputWithContext(ctx context.Context) SystemAliasOutput {
 	return o
+}
+
+func (o SystemAliasOutput) Command() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAlias) pulumi.StringPtrOutput { return v.Command }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAliasOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAlias) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemAliasOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAlias) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemAliasArrayOutput struct{ *pulumi.OutputState }

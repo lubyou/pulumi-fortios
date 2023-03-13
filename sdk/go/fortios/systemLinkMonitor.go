@@ -7,147 +7,49 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Link Health Monitor.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemLinkMonitor(ctx, "trname", &fortios.SystemLinkMonitorArgs{
-// 			AddrMode:     pulumi.String("ipv4"),
-// 			Failtime:     pulumi.Int(5),
-// 			GatewayIp:    pulumi.String("2.2.2.2"),
-// 			GatewayIp6:   pulumi.String("::"),
-// 			HaPriority:   pulumi.Int(1),
-// 			HttpAgent:    pulumi.String("Chrome/ Safari/"),
-// 			HttpGet:      pulumi.String("/"),
-// 			Interval:     pulumi.Int(1),
-// 			PacketSize:   pulumi.Int(64),
-// 			Port:         pulumi.Int(80),
-// 			Protocol:     pulumi.String("ping"),
-// 			Recoverytime: pulumi.Int(5),
-// 			SecurityMode: pulumi.String("none"),
-// 			Servers: SystemLinkMonitorServerArray{
-// 				&SystemLinkMonitorServerArgs{
-// 					Address: pulumi.String("3.3.3.3"),
-// 				},
-// 			},
-// 			SourceIp:               pulumi.String("0.0.0.0"),
-// 			SourceIp6:              pulumi.String("::"),
-// 			Srcintf:                pulumi.String("port4"),
-// 			Status:                 pulumi.String("enable"),
-// 			UpdateCascadeInterface: pulumi.String("enable"),
-// 			UpdateStaticRoute:      pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System LinkMonitor can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemLinkMonitor:SystemLinkMonitor labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemLinkMonitor:SystemLinkMonitor labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemLinkMonitor struct {
 	pulumi.CustomResourceState
 
-	// Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-	AddrMode pulumi.StringOutput `pulumi:"addrMode"`
-	// Traffic class ID.
-	ClassId pulumi.IntOutput `pulumi:"classId"`
-	// Differentiated services code point (DSCP) in the IP header of the probe packet.
-	Diffservcode pulumi.StringOutput `pulumi:"diffservcode"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Threshold weight to trigger link failure alert.
-	FailWeight pulumi.IntOutput `pulumi:"failWeight"`
-	// Number of retry attempts before the server is considered down (1 - 10, default = 5)
-	Failtime pulumi.IntOutput `pulumi:"failtime"`
-	// Gateway IP address used to probe the server.
-	GatewayIp pulumi.StringOutput `pulumi:"gatewayIp"`
-	// Gateway IPv6 address used to probe the server.
-	GatewayIp6 pulumi.StringOutput `pulumi:"gatewayIp6"`
-	// HA election priority (1 - 50).
-	HaPriority pulumi.IntOutput `pulumi:"haPriority"`
-	// String in the http-agent field in the HTTP header.
-	HttpAgent pulumi.StringOutput `pulumi:"httpAgent"`
-	// If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string.
-	HttpGet pulumi.StringOutput `pulumi:"httpGet"`
-	// String that you expect to see in the HTTP-GET requests of the traffic to be monitored.
-	HttpMatch pulumi.StringOutput `pulumi:"httpMatch"`
-	// Detection interval (1 - 3600 sec, default = 5).
-	Interval pulumi.IntOutput `pulumi:"interval"`
-	// Link monitor name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Packet size of a twamp test session,
-	PacketSize pulumi.IntOutput `pulumi:"packetSize"`
-	// Twamp controller password in authentication mode
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Port number of the traffic to be used to monitor the server.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
-	ProbeCount pulumi.IntOutput `pulumi:"probeCount"`
-	// Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
-	ProbeTimeout pulumi.IntOutput `pulumi:"probeTimeout"`
-	// Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
-	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// Number of successful responses received before server is considered recovered (1 - 10, default = 5).
-	Recoverytime pulumi.IntOutput `pulumi:"recoverytime"`
-	// Subnet to monitor. The structure of `route` block is documented below.
-	Routes SystemLinkMonitorRouteArrayOutput `pulumi:"routes"`
-	// Twamp controller security mode. Valid values: `none`, `authentication`.
-	SecurityMode pulumi.StringOutput `pulumi:"securityMode"`
-	// Mode of server configuration. Valid values: `default`, `individual`.
-	ServerConfig pulumi.StringOutput `pulumi:"serverConfig"`
-	// Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
-	ServerLists SystemLinkMonitorServerListArrayOutput `pulumi:"serverLists"`
-	// IP address of the server(s) to be monitored. The structure of `server` block is documented below.
-	Servers SystemLinkMonitorServerArrayOutput `pulumi:"servers"`
-	// Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
-	ServiceDetection pulumi.StringOutput `pulumi:"serviceDetection"`
-	// Source IP address used in packet to the server.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Source IPv6 address used in packet to the server.
-	SourceIp6 pulumi.StringOutput `pulumi:"sourceIp6"`
-	// Interface that receives the traffic to be monitored.
-	Srcintf pulumi.StringOutput `pulumi:"srcintf"`
-	// Enable/disable this link monitor. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Enable/disable update cascade interface. Valid values: `enable`, `disable`.
-	UpdateCascadeInterface pulumi.StringOutput `pulumi:"updateCascadeInterface"`
-	// Enable/disable updating the policy route. Valid values: `enable`, `disable`.
-	UpdatePolicyRoute pulumi.StringOutput `pulumi:"updatePolicyRoute"`
-	// Enable/disable updating the static route. Valid values: `enable`, `disable`.
-	UpdateStaticRoute pulumi.StringOutput `pulumi:"updateStaticRoute"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AddrMode               pulumi.StringOutput                    `pulumi:"addrMode"`
+	ClassId                pulumi.IntOutput                       `pulumi:"classId"`
+	Diffservcode           pulumi.StringOutput                    `pulumi:"diffservcode"`
+	DynamicSortSubtable    pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	FailWeight             pulumi.IntOutput                       `pulumi:"failWeight"`
+	Failtime               pulumi.IntOutput                       `pulumi:"failtime"`
+	GatewayIp              pulumi.StringOutput                    `pulumi:"gatewayIp"`
+	GatewayIp6             pulumi.StringOutput                    `pulumi:"gatewayIp6"`
+	HaPriority             pulumi.IntOutput                       `pulumi:"haPriority"`
+	HttpAgent              pulumi.StringOutput                    `pulumi:"httpAgent"`
+	HttpGet                pulumi.StringOutput                    `pulumi:"httpGet"`
+	HttpMatch              pulumi.StringOutput                    `pulumi:"httpMatch"`
+	Interval               pulumi.IntOutput                       `pulumi:"interval"`
+	Name                   pulumi.StringOutput                    `pulumi:"name"`
+	PacketSize             pulumi.IntOutput                       `pulumi:"packetSize"`
+	Password               pulumi.StringPtrOutput                 `pulumi:"password"`
+	Port                   pulumi.IntOutput                       `pulumi:"port"`
+	ProbeCount             pulumi.IntOutput                       `pulumi:"probeCount"`
+	ProbeTimeout           pulumi.IntOutput                       `pulumi:"probeTimeout"`
+	Protocol               pulumi.StringOutput                    `pulumi:"protocol"`
+	Recoverytime           pulumi.IntOutput                       `pulumi:"recoverytime"`
+	Routes                 SystemLinkMonitorRouteArrayOutput      `pulumi:"routes"`
+	SecurityMode           pulumi.StringOutput                    `pulumi:"securityMode"`
+	ServerConfig           pulumi.StringOutput                    `pulumi:"serverConfig"`
+	ServerLists            SystemLinkMonitorServerListArrayOutput `pulumi:"serverLists"`
+	ServerType             pulumi.StringOutput                    `pulumi:"serverType"`
+	Servers                SystemLinkMonitorServerArrayOutput     `pulumi:"servers"`
+	ServiceDetection       pulumi.StringOutput                    `pulumi:"serviceDetection"`
+	SourceIp               pulumi.StringOutput                    `pulumi:"sourceIp"`
+	SourceIp6              pulumi.StringOutput                    `pulumi:"sourceIp6"`
+	Srcintf                pulumi.StringOutput                    `pulumi:"srcintf"`
+	Status                 pulumi.StringOutput                    `pulumi:"status"`
+	UpdateCascadeInterface pulumi.StringOutput                    `pulumi:"updateCascadeInterface"`
+	UpdatePolicyRoute      pulumi.StringOutput                    `pulumi:"updatePolicyRoute"`
+	UpdateStaticRoute      pulumi.StringOutput                    `pulumi:"updateStaticRoute"`
+	Vdomparam              pulumi.StringPtrOutput                 `pulumi:"vdomparam"`
 }
 
 // NewSystemLinkMonitor registers a new resource with the given unique name, arguments, and options.
@@ -160,6 +62,13 @@ func NewSystemLinkMonitor(ctx *pulumi.Context,
 	if args.Servers == nil {
 		return nil, errors.New("invalid value for required argument 'Servers'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemLinkMonitor
 	err := ctx.RegisterResource("fortios:index/systemLinkMonitor:SystemLinkMonitor", name, args, &resource, opts...)
@@ -183,149 +92,81 @@ func GetSystemLinkMonitor(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemLinkMonitor resources.
 type systemLinkMonitorState struct {
-	// Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-	AddrMode *string `pulumi:"addrMode"`
-	// Traffic class ID.
-	ClassId *int `pulumi:"classId"`
-	// Differentiated services code point (DSCP) in the IP header of the probe packet.
-	Diffservcode *string `pulumi:"diffservcode"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Threshold weight to trigger link failure alert.
-	FailWeight *int `pulumi:"failWeight"`
-	// Number of retry attempts before the server is considered down (1 - 10, default = 5)
-	Failtime *int `pulumi:"failtime"`
-	// Gateway IP address used to probe the server.
-	GatewayIp *string `pulumi:"gatewayIp"`
-	// Gateway IPv6 address used to probe the server.
-	GatewayIp6 *string `pulumi:"gatewayIp6"`
-	// HA election priority (1 - 50).
-	HaPriority *int `pulumi:"haPriority"`
-	// String in the http-agent field in the HTTP header.
-	HttpAgent *string `pulumi:"httpAgent"`
-	// If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string.
-	HttpGet *string `pulumi:"httpGet"`
-	// String that you expect to see in the HTTP-GET requests of the traffic to be monitored.
-	HttpMatch *string `pulumi:"httpMatch"`
-	// Detection interval (1 - 3600 sec, default = 5).
-	Interval *int `pulumi:"interval"`
-	// Link monitor name.
-	Name *string `pulumi:"name"`
-	// Packet size of a twamp test session,
-	PacketSize *int `pulumi:"packetSize"`
-	// Twamp controller password in authentication mode
-	Password *string `pulumi:"password"`
-	// Port number of the traffic to be used to monitor the server.
-	Port *int `pulumi:"port"`
-	// Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
-	ProbeCount *int `pulumi:"probeCount"`
-	// Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
-	ProbeTimeout *int `pulumi:"probeTimeout"`
-	// Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
-	Protocol *string `pulumi:"protocol"`
-	// Number of successful responses received before server is considered recovered (1 - 10, default = 5).
-	Recoverytime *int `pulumi:"recoverytime"`
-	// Subnet to monitor. The structure of `route` block is documented below.
-	Routes []SystemLinkMonitorRoute `pulumi:"routes"`
-	// Twamp controller security mode. Valid values: `none`, `authentication`.
-	SecurityMode *string `pulumi:"securityMode"`
-	// Mode of server configuration. Valid values: `default`, `individual`.
-	ServerConfig *string `pulumi:"serverConfig"`
-	// Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
-	ServerLists []SystemLinkMonitorServerList `pulumi:"serverLists"`
-	// IP address of the server(s) to be monitored. The structure of `server` block is documented below.
-	Servers []SystemLinkMonitorServer `pulumi:"servers"`
-	// Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
-	ServiceDetection *string `pulumi:"serviceDetection"`
-	// Source IP address used in packet to the server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Source IPv6 address used in packet to the server.
-	SourceIp6 *string `pulumi:"sourceIp6"`
-	// Interface that receives the traffic to be monitored.
-	Srcintf *string `pulumi:"srcintf"`
-	// Enable/disable this link monitor. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Enable/disable update cascade interface. Valid values: `enable`, `disable`.
-	UpdateCascadeInterface *string `pulumi:"updateCascadeInterface"`
-	// Enable/disable updating the policy route. Valid values: `enable`, `disable`.
-	UpdatePolicyRoute *string `pulumi:"updatePolicyRoute"`
-	// Enable/disable updating the static route. Valid values: `enable`, `disable`.
-	UpdateStaticRoute *string `pulumi:"updateStaticRoute"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AddrMode               *string                       `pulumi:"addrMode"`
+	ClassId                *int                          `pulumi:"classId"`
+	Diffservcode           *string                       `pulumi:"diffservcode"`
+	DynamicSortSubtable    *string                       `pulumi:"dynamicSortSubtable"`
+	FailWeight             *int                          `pulumi:"failWeight"`
+	Failtime               *int                          `pulumi:"failtime"`
+	GatewayIp              *string                       `pulumi:"gatewayIp"`
+	GatewayIp6             *string                       `pulumi:"gatewayIp6"`
+	HaPriority             *int                          `pulumi:"haPriority"`
+	HttpAgent              *string                       `pulumi:"httpAgent"`
+	HttpGet                *string                       `pulumi:"httpGet"`
+	HttpMatch              *string                       `pulumi:"httpMatch"`
+	Interval               *int                          `pulumi:"interval"`
+	Name                   *string                       `pulumi:"name"`
+	PacketSize             *int                          `pulumi:"packetSize"`
+	Password               *string                       `pulumi:"password"`
+	Port                   *int                          `pulumi:"port"`
+	ProbeCount             *int                          `pulumi:"probeCount"`
+	ProbeTimeout           *int                          `pulumi:"probeTimeout"`
+	Protocol               *string                       `pulumi:"protocol"`
+	Recoverytime           *int                          `pulumi:"recoverytime"`
+	Routes                 []SystemLinkMonitorRoute      `pulumi:"routes"`
+	SecurityMode           *string                       `pulumi:"securityMode"`
+	ServerConfig           *string                       `pulumi:"serverConfig"`
+	ServerLists            []SystemLinkMonitorServerList `pulumi:"serverLists"`
+	ServerType             *string                       `pulumi:"serverType"`
+	Servers                []SystemLinkMonitorServer     `pulumi:"servers"`
+	ServiceDetection       *string                       `pulumi:"serviceDetection"`
+	SourceIp               *string                       `pulumi:"sourceIp"`
+	SourceIp6              *string                       `pulumi:"sourceIp6"`
+	Srcintf                *string                       `pulumi:"srcintf"`
+	Status                 *string                       `pulumi:"status"`
+	UpdateCascadeInterface *string                       `pulumi:"updateCascadeInterface"`
+	UpdatePolicyRoute      *string                       `pulumi:"updatePolicyRoute"`
+	UpdateStaticRoute      *string                       `pulumi:"updateStaticRoute"`
+	Vdomparam              *string                       `pulumi:"vdomparam"`
 }
 
 type SystemLinkMonitorState struct {
-	// Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-	AddrMode pulumi.StringPtrInput
-	// Traffic class ID.
-	ClassId pulumi.IntPtrInput
-	// Differentiated services code point (DSCP) in the IP header of the probe packet.
-	Diffservcode pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Threshold weight to trigger link failure alert.
-	FailWeight pulumi.IntPtrInput
-	// Number of retry attempts before the server is considered down (1 - 10, default = 5)
-	Failtime pulumi.IntPtrInput
-	// Gateway IP address used to probe the server.
-	GatewayIp pulumi.StringPtrInput
-	// Gateway IPv6 address used to probe the server.
-	GatewayIp6 pulumi.StringPtrInput
-	// HA election priority (1 - 50).
-	HaPriority pulumi.IntPtrInput
-	// String in the http-agent field in the HTTP header.
-	HttpAgent pulumi.StringPtrInput
-	// If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string.
-	HttpGet pulumi.StringPtrInput
-	// String that you expect to see in the HTTP-GET requests of the traffic to be monitored.
-	HttpMatch pulumi.StringPtrInput
-	// Detection interval (1 - 3600 sec, default = 5).
-	Interval pulumi.IntPtrInput
-	// Link monitor name.
-	Name pulumi.StringPtrInput
-	// Packet size of a twamp test session,
-	PacketSize pulumi.IntPtrInput
-	// Twamp controller password in authentication mode
-	Password pulumi.StringPtrInput
-	// Port number of the traffic to be used to monitor the server.
-	Port pulumi.IntPtrInput
-	// Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
-	ProbeCount pulumi.IntPtrInput
-	// Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
-	ProbeTimeout pulumi.IntPtrInput
-	// Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
-	Protocol pulumi.StringPtrInput
-	// Number of successful responses received before server is considered recovered (1 - 10, default = 5).
-	Recoverytime pulumi.IntPtrInput
-	// Subnet to monitor. The structure of `route` block is documented below.
-	Routes SystemLinkMonitorRouteArrayInput
-	// Twamp controller security mode. Valid values: `none`, `authentication`.
-	SecurityMode pulumi.StringPtrInput
-	// Mode of server configuration. Valid values: `default`, `individual`.
-	ServerConfig pulumi.StringPtrInput
-	// Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
-	ServerLists SystemLinkMonitorServerListArrayInput
-	// IP address of the server(s) to be monitored. The structure of `server` block is documented below.
-	Servers SystemLinkMonitorServerArrayInput
-	// Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
-	ServiceDetection pulumi.StringPtrInput
-	// Source IP address used in packet to the server.
-	SourceIp pulumi.StringPtrInput
-	// Source IPv6 address used in packet to the server.
-	SourceIp6 pulumi.StringPtrInput
-	// Interface that receives the traffic to be monitored.
-	Srcintf pulumi.StringPtrInput
-	// Enable/disable this link monitor. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Enable/disable update cascade interface. Valid values: `enable`, `disable`.
+	AddrMode               pulumi.StringPtrInput
+	ClassId                pulumi.IntPtrInput
+	Diffservcode           pulumi.StringPtrInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	FailWeight             pulumi.IntPtrInput
+	Failtime               pulumi.IntPtrInput
+	GatewayIp              pulumi.StringPtrInput
+	GatewayIp6             pulumi.StringPtrInput
+	HaPriority             pulumi.IntPtrInput
+	HttpAgent              pulumi.StringPtrInput
+	HttpGet                pulumi.StringPtrInput
+	HttpMatch              pulumi.StringPtrInput
+	Interval               pulumi.IntPtrInput
+	Name                   pulumi.StringPtrInput
+	PacketSize             pulumi.IntPtrInput
+	Password               pulumi.StringPtrInput
+	Port                   pulumi.IntPtrInput
+	ProbeCount             pulumi.IntPtrInput
+	ProbeTimeout           pulumi.IntPtrInput
+	Protocol               pulumi.StringPtrInput
+	Recoverytime           pulumi.IntPtrInput
+	Routes                 SystemLinkMonitorRouteArrayInput
+	SecurityMode           pulumi.StringPtrInput
+	ServerConfig           pulumi.StringPtrInput
+	ServerLists            SystemLinkMonitorServerListArrayInput
+	ServerType             pulumi.StringPtrInput
+	Servers                SystemLinkMonitorServerArrayInput
+	ServiceDetection       pulumi.StringPtrInput
+	SourceIp               pulumi.StringPtrInput
+	SourceIp6              pulumi.StringPtrInput
+	Srcintf                pulumi.StringPtrInput
+	Status                 pulumi.StringPtrInput
 	UpdateCascadeInterface pulumi.StringPtrInput
-	// Enable/disable updating the policy route. Valid values: `enable`, `disable`.
-	UpdatePolicyRoute pulumi.StringPtrInput
-	// Enable/disable updating the static route. Valid values: `enable`, `disable`.
-	UpdateStaticRoute pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	UpdatePolicyRoute      pulumi.StringPtrInput
+	UpdateStaticRoute      pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SystemLinkMonitorState) ElementType() reflect.Type {
@@ -333,150 +174,82 @@ func (SystemLinkMonitorState) ElementType() reflect.Type {
 }
 
 type systemLinkMonitorArgs struct {
-	// Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-	AddrMode *string `pulumi:"addrMode"`
-	// Traffic class ID.
-	ClassId *int `pulumi:"classId"`
-	// Differentiated services code point (DSCP) in the IP header of the probe packet.
-	Diffservcode *string `pulumi:"diffservcode"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Threshold weight to trigger link failure alert.
-	FailWeight *int `pulumi:"failWeight"`
-	// Number of retry attempts before the server is considered down (1 - 10, default = 5)
-	Failtime *int `pulumi:"failtime"`
-	// Gateway IP address used to probe the server.
-	GatewayIp *string `pulumi:"gatewayIp"`
-	// Gateway IPv6 address used to probe the server.
-	GatewayIp6 *string `pulumi:"gatewayIp6"`
-	// HA election priority (1 - 50).
-	HaPriority *int `pulumi:"haPriority"`
-	// String in the http-agent field in the HTTP header.
-	HttpAgent *string `pulumi:"httpAgent"`
-	// If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string.
-	HttpGet *string `pulumi:"httpGet"`
-	// String that you expect to see in the HTTP-GET requests of the traffic to be monitored.
-	HttpMatch *string `pulumi:"httpMatch"`
-	// Detection interval (1 - 3600 sec, default = 5).
-	Interval *int `pulumi:"interval"`
-	// Link monitor name.
-	Name *string `pulumi:"name"`
-	// Packet size of a twamp test session,
-	PacketSize *int `pulumi:"packetSize"`
-	// Twamp controller password in authentication mode
-	Password *string `pulumi:"password"`
-	// Port number of the traffic to be used to monitor the server.
-	Port *int `pulumi:"port"`
-	// Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
-	ProbeCount *int `pulumi:"probeCount"`
-	// Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
-	ProbeTimeout *int `pulumi:"probeTimeout"`
-	// Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
-	Protocol *string `pulumi:"protocol"`
-	// Number of successful responses received before server is considered recovered (1 - 10, default = 5).
-	Recoverytime *int `pulumi:"recoverytime"`
-	// Subnet to monitor. The structure of `route` block is documented below.
-	Routes []SystemLinkMonitorRoute `pulumi:"routes"`
-	// Twamp controller security mode. Valid values: `none`, `authentication`.
-	SecurityMode *string `pulumi:"securityMode"`
-	// Mode of server configuration. Valid values: `default`, `individual`.
-	ServerConfig *string `pulumi:"serverConfig"`
-	// Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
-	ServerLists []SystemLinkMonitorServerList `pulumi:"serverLists"`
-	// IP address of the server(s) to be monitored. The structure of `server` block is documented below.
-	Servers []SystemLinkMonitorServer `pulumi:"servers"`
-	// Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
-	ServiceDetection *string `pulumi:"serviceDetection"`
-	// Source IP address used in packet to the server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Source IPv6 address used in packet to the server.
-	SourceIp6 *string `pulumi:"sourceIp6"`
-	// Interface that receives the traffic to be monitored.
-	Srcintf *string `pulumi:"srcintf"`
-	// Enable/disable this link monitor. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Enable/disable update cascade interface. Valid values: `enable`, `disable`.
-	UpdateCascadeInterface *string `pulumi:"updateCascadeInterface"`
-	// Enable/disable updating the policy route. Valid values: `enable`, `disable`.
-	UpdatePolicyRoute *string `pulumi:"updatePolicyRoute"`
-	// Enable/disable updating the static route. Valid values: `enable`, `disable`.
-	UpdateStaticRoute *string `pulumi:"updateStaticRoute"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AddrMode               *string                       `pulumi:"addrMode"`
+	ClassId                *int                          `pulumi:"classId"`
+	Diffservcode           *string                       `pulumi:"diffservcode"`
+	DynamicSortSubtable    *string                       `pulumi:"dynamicSortSubtable"`
+	FailWeight             *int                          `pulumi:"failWeight"`
+	Failtime               *int                          `pulumi:"failtime"`
+	GatewayIp              *string                       `pulumi:"gatewayIp"`
+	GatewayIp6             *string                       `pulumi:"gatewayIp6"`
+	HaPriority             *int                          `pulumi:"haPriority"`
+	HttpAgent              *string                       `pulumi:"httpAgent"`
+	HttpGet                *string                       `pulumi:"httpGet"`
+	HttpMatch              *string                       `pulumi:"httpMatch"`
+	Interval               *int                          `pulumi:"interval"`
+	Name                   *string                       `pulumi:"name"`
+	PacketSize             *int                          `pulumi:"packetSize"`
+	Password               *string                       `pulumi:"password"`
+	Port                   *int                          `pulumi:"port"`
+	ProbeCount             *int                          `pulumi:"probeCount"`
+	ProbeTimeout           *int                          `pulumi:"probeTimeout"`
+	Protocol               *string                       `pulumi:"protocol"`
+	Recoverytime           *int                          `pulumi:"recoverytime"`
+	Routes                 []SystemLinkMonitorRoute      `pulumi:"routes"`
+	SecurityMode           *string                       `pulumi:"securityMode"`
+	ServerConfig           *string                       `pulumi:"serverConfig"`
+	ServerLists            []SystemLinkMonitorServerList `pulumi:"serverLists"`
+	ServerType             *string                       `pulumi:"serverType"`
+	Servers                []SystemLinkMonitorServer     `pulumi:"servers"`
+	ServiceDetection       *string                       `pulumi:"serviceDetection"`
+	SourceIp               *string                       `pulumi:"sourceIp"`
+	SourceIp6              *string                       `pulumi:"sourceIp6"`
+	Srcintf                *string                       `pulumi:"srcintf"`
+	Status                 *string                       `pulumi:"status"`
+	UpdateCascadeInterface *string                       `pulumi:"updateCascadeInterface"`
+	UpdatePolicyRoute      *string                       `pulumi:"updatePolicyRoute"`
+	UpdateStaticRoute      *string                       `pulumi:"updateStaticRoute"`
+	Vdomparam              *string                       `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemLinkMonitor resource.
 type SystemLinkMonitorArgs struct {
-	// Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-	AddrMode pulumi.StringPtrInput
-	// Traffic class ID.
-	ClassId pulumi.IntPtrInput
-	// Differentiated services code point (DSCP) in the IP header of the probe packet.
-	Diffservcode pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Threshold weight to trigger link failure alert.
-	FailWeight pulumi.IntPtrInput
-	// Number of retry attempts before the server is considered down (1 - 10, default = 5)
-	Failtime pulumi.IntPtrInput
-	// Gateway IP address used to probe the server.
-	GatewayIp pulumi.StringPtrInput
-	// Gateway IPv6 address used to probe the server.
-	GatewayIp6 pulumi.StringPtrInput
-	// HA election priority (1 - 50).
-	HaPriority pulumi.IntPtrInput
-	// String in the http-agent field in the HTTP header.
-	HttpAgent pulumi.StringPtrInput
-	// If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string.
-	HttpGet pulumi.StringPtrInput
-	// String that you expect to see in the HTTP-GET requests of the traffic to be monitored.
-	HttpMatch pulumi.StringPtrInput
-	// Detection interval (1 - 3600 sec, default = 5).
-	Interval pulumi.IntPtrInput
-	// Link monitor name.
-	Name pulumi.StringPtrInput
-	// Packet size of a twamp test session,
-	PacketSize pulumi.IntPtrInput
-	// Twamp controller password in authentication mode
-	Password pulumi.StringPtrInput
-	// Port number of the traffic to be used to monitor the server.
-	Port pulumi.IntPtrInput
-	// Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
-	ProbeCount pulumi.IntPtrInput
-	// Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
-	ProbeTimeout pulumi.IntPtrInput
-	// Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
-	Protocol pulumi.StringPtrInput
-	// Number of successful responses received before server is considered recovered (1 - 10, default = 5).
-	Recoverytime pulumi.IntPtrInput
-	// Subnet to monitor. The structure of `route` block is documented below.
-	Routes SystemLinkMonitorRouteArrayInput
-	// Twamp controller security mode. Valid values: `none`, `authentication`.
-	SecurityMode pulumi.StringPtrInput
-	// Mode of server configuration. Valid values: `default`, `individual`.
-	ServerConfig pulumi.StringPtrInput
-	// Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
-	ServerLists SystemLinkMonitorServerListArrayInput
-	// IP address of the server(s) to be monitored. The structure of `server` block is documented below.
-	Servers SystemLinkMonitorServerArrayInput
-	// Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
-	ServiceDetection pulumi.StringPtrInput
-	// Source IP address used in packet to the server.
-	SourceIp pulumi.StringPtrInput
-	// Source IPv6 address used in packet to the server.
-	SourceIp6 pulumi.StringPtrInput
-	// Interface that receives the traffic to be monitored.
-	Srcintf pulumi.StringPtrInput
-	// Enable/disable this link monitor. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Enable/disable update cascade interface. Valid values: `enable`, `disable`.
+	AddrMode               pulumi.StringPtrInput
+	ClassId                pulumi.IntPtrInput
+	Diffservcode           pulumi.StringPtrInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	FailWeight             pulumi.IntPtrInput
+	Failtime               pulumi.IntPtrInput
+	GatewayIp              pulumi.StringPtrInput
+	GatewayIp6             pulumi.StringPtrInput
+	HaPriority             pulumi.IntPtrInput
+	HttpAgent              pulumi.StringPtrInput
+	HttpGet                pulumi.StringPtrInput
+	HttpMatch              pulumi.StringPtrInput
+	Interval               pulumi.IntPtrInput
+	Name                   pulumi.StringPtrInput
+	PacketSize             pulumi.IntPtrInput
+	Password               pulumi.StringPtrInput
+	Port                   pulumi.IntPtrInput
+	ProbeCount             pulumi.IntPtrInput
+	ProbeTimeout           pulumi.IntPtrInput
+	Protocol               pulumi.StringPtrInput
+	Recoverytime           pulumi.IntPtrInput
+	Routes                 SystemLinkMonitorRouteArrayInput
+	SecurityMode           pulumi.StringPtrInput
+	ServerConfig           pulumi.StringPtrInput
+	ServerLists            SystemLinkMonitorServerListArrayInput
+	ServerType             pulumi.StringPtrInput
+	Servers                SystemLinkMonitorServerArrayInput
+	ServiceDetection       pulumi.StringPtrInput
+	SourceIp               pulumi.StringPtrInput
+	SourceIp6              pulumi.StringPtrInput
+	Srcintf                pulumi.StringPtrInput
+	Status                 pulumi.StringPtrInput
 	UpdateCascadeInterface pulumi.StringPtrInput
-	// Enable/disable updating the policy route. Valid values: `enable`, `disable`.
-	UpdatePolicyRoute pulumi.StringPtrInput
-	// Enable/disable updating the static route. Valid values: `enable`, `disable`.
-	UpdateStaticRoute pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	UpdatePolicyRoute      pulumi.StringPtrInput
+	UpdateStaticRoute      pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SystemLinkMonitorArgs) ElementType() reflect.Type {
@@ -505,7 +278,7 @@ func (i *SystemLinkMonitor) ToSystemLinkMonitorOutputWithContext(ctx context.Con
 // SystemLinkMonitorArrayInput is an input type that accepts SystemLinkMonitorArray and SystemLinkMonitorArrayOutput values.
 // You can construct a concrete instance of `SystemLinkMonitorArrayInput` via:
 //
-//          SystemLinkMonitorArray{ SystemLinkMonitorArgs{...} }
+//	SystemLinkMonitorArray{ SystemLinkMonitorArgs{...} }
 type SystemLinkMonitorArrayInput interface {
 	pulumi.Input
 
@@ -530,7 +303,7 @@ func (i SystemLinkMonitorArray) ToSystemLinkMonitorArrayOutputWithContext(ctx co
 // SystemLinkMonitorMapInput is an input type that accepts SystemLinkMonitorMap and SystemLinkMonitorMapOutput values.
 // You can construct a concrete instance of `SystemLinkMonitorMapInput` via:
 //
-//          SystemLinkMonitorMap{ "key": SystemLinkMonitorArgs{...} }
+//	SystemLinkMonitorMap{ "key": SystemLinkMonitorArgs{...} }
 type SystemLinkMonitorMapInput interface {
 	pulumi.Input
 
@@ -564,6 +337,150 @@ func (o SystemLinkMonitorOutput) ToSystemLinkMonitorOutput() SystemLinkMonitorOu
 
 func (o SystemLinkMonitorOutput) ToSystemLinkMonitorOutputWithContext(ctx context.Context) SystemLinkMonitorOutput {
 	return o
+}
+
+func (o SystemLinkMonitorOutput) AddrMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.AddrMode }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) ClassId() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.IntOutput { return v.ClassId }).(pulumi.IntOutput)
+}
+
+func (o SystemLinkMonitorOutput) Diffservcode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.Diffservcode }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemLinkMonitorOutput) FailWeight() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.IntOutput { return v.FailWeight }).(pulumi.IntOutput)
+}
+
+func (o SystemLinkMonitorOutput) Failtime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.IntOutput { return v.Failtime }).(pulumi.IntOutput)
+}
+
+func (o SystemLinkMonitorOutput) GatewayIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.GatewayIp }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) GatewayIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.GatewayIp6 }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) HaPriority() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.IntOutput { return v.HaPriority }).(pulumi.IntOutput)
+}
+
+func (o SystemLinkMonitorOutput) HttpAgent() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.HttpAgent }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) HttpGet() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.HttpGet }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) HttpMatch() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.HttpMatch }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) Interval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.IntOutput { return v.Interval }).(pulumi.IntOutput)
+}
+
+func (o SystemLinkMonitorOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) PacketSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.IntOutput { return v.PacketSize }).(pulumi.IntOutput)
+}
+
+func (o SystemLinkMonitorOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemLinkMonitorOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o SystemLinkMonitorOutput) ProbeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.IntOutput { return v.ProbeCount }).(pulumi.IntOutput)
+}
+
+func (o SystemLinkMonitorOutput) ProbeTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.IntOutput { return v.ProbeTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemLinkMonitorOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) Recoverytime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.IntOutput { return v.Recoverytime }).(pulumi.IntOutput)
+}
+
+func (o SystemLinkMonitorOutput) Routes() SystemLinkMonitorRouteArrayOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) SystemLinkMonitorRouteArrayOutput { return v.Routes }).(SystemLinkMonitorRouteArrayOutput)
+}
+
+func (o SystemLinkMonitorOutput) SecurityMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.SecurityMode }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) ServerConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.ServerConfig }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) ServerLists() SystemLinkMonitorServerListArrayOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) SystemLinkMonitorServerListArrayOutput { return v.ServerLists }).(SystemLinkMonitorServerListArrayOutput)
+}
+
+func (o SystemLinkMonitorOutput) ServerType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.ServerType }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) Servers() SystemLinkMonitorServerArrayOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) SystemLinkMonitorServerArrayOutput { return v.Servers }).(SystemLinkMonitorServerArrayOutput)
+}
+
+func (o SystemLinkMonitorOutput) ServiceDetection() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.ServiceDetection }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) SourceIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.SourceIp6 }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) Srcintf() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.Srcintf }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) UpdateCascadeInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.UpdateCascadeInterface }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) UpdatePolicyRoute() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.UpdatePolicyRoute }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) UpdateStaticRoute() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.UpdateStaticRoute }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemLinkMonitorArrayOutput struct{ *pulumi.OutputState }

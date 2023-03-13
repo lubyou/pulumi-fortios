@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch storm control.
-//
-// ## Import
-//
-// SwitchController StormControl can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerStormControl:SwitchControllerStormControl labelname SwitchControllerStormControl
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerStormControl:SwitchControllerStormControl labelname SwitchControllerStormControl
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerStormControl struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable storm control to drop broadcast traffic. Valid values: `enable`, `disable`.
-	Broadcast pulumi.StringOutput `pulumi:"broadcast"`
-	// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
-	Rate pulumi.IntOutput `pulumi:"rate"`
-	// Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
-	UnknownMulticast pulumi.StringOutput `pulumi:"unknownMulticast"`
-	// Enable/disable storm control to drop unknown unicast traffic. Valid values: `enable`, `disable`.
-	UnknownUnicast pulumi.StringOutput `pulumi:"unknownUnicast"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Broadcast        pulumi.StringOutput    `pulumi:"broadcast"`
+	Rate             pulumi.IntOutput       `pulumi:"rate"`
+	UnknownMulticast pulumi.StringOutput    `pulumi:"unknownMulticast"`
+	UnknownUnicast   pulumi.StringOutput    `pulumi:"unknownUnicast"`
+	Vdomparam        pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerStormControl registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetSwitchControllerStormControl(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerStormControl resources.
 type switchControllerStormControlState struct {
-	// Enable/disable storm control to drop broadcast traffic. Valid values: `enable`, `disable`.
-	Broadcast *string `pulumi:"broadcast"`
-	// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
-	Rate *int `pulumi:"rate"`
-	// Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
+	Broadcast        *string `pulumi:"broadcast"`
+	Rate             *int    `pulumi:"rate"`
 	UnknownMulticast *string `pulumi:"unknownMulticast"`
-	// Enable/disable storm control to drop unknown unicast traffic. Valid values: `enable`, `disable`.
-	UnknownUnicast *string `pulumi:"unknownUnicast"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	UnknownUnicast   *string `pulumi:"unknownUnicast"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerStormControlState struct {
-	// Enable/disable storm control to drop broadcast traffic. Valid values: `enable`, `disable`.
-	Broadcast pulumi.StringPtrInput
-	// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
-	Rate pulumi.IntPtrInput
-	// Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
+	Broadcast        pulumi.StringPtrInput
+	Rate             pulumi.IntPtrInput
 	UnknownMulticast pulumi.StringPtrInput
-	// Enable/disable storm control to drop unknown unicast traffic. Valid values: `enable`, `disable`.
-	UnknownUnicast pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	UnknownUnicast   pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (SwitchControllerStormControlState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (SwitchControllerStormControlState) ElementType() reflect.Type {
 }
 
 type switchControllerStormControlArgs struct {
-	// Enable/disable storm control to drop broadcast traffic. Valid values: `enable`, `disable`.
-	Broadcast *string `pulumi:"broadcast"`
-	// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
-	Rate *int `pulumi:"rate"`
-	// Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
+	Broadcast        *string `pulumi:"broadcast"`
+	Rate             *int    `pulumi:"rate"`
 	UnknownMulticast *string `pulumi:"unknownMulticast"`
-	// Enable/disable storm control to drop unknown unicast traffic. Valid values: `enable`, `disable`.
-	UnknownUnicast *string `pulumi:"unknownUnicast"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	UnknownUnicast   *string `pulumi:"unknownUnicast"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerStormControl resource.
 type SwitchControllerStormControlArgs struct {
-	// Enable/disable storm control to drop broadcast traffic. Valid values: `enable`, `disable`.
-	Broadcast pulumi.StringPtrInput
-	// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
-	Rate pulumi.IntPtrInput
-	// Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
+	Broadcast        pulumi.StringPtrInput
+	Rate             pulumi.IntPtrInput
 	UnknownMulticast pulumi.StringPtrInput
-	// Enable/disable storm control to drop unknown unicast traffic. Valid values: `enable`, `disable`.
-	UnknownUnicast pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	UnknownUnicast   pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (SwitchControllerStormControlArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *SwitchControllerStormControl) ToSwitchControllerStormControlOutputWithC
 // SwitchControllerStormControlArrayInput is an input type that accepts SwitchControllerStormControlArray and SwitchControllerStormControlArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerStormControlArrayInput` via:
 //
-//          SwitchControllerStormControlArray{ SwitchControllerStormControlArgs{...} }
+//	SwitchControllerStormControlArray{ SwitchControllerStormControlArgs{...} }
 type SwitchControllerStormControlArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i SwitchControllerStormControlArray) ToSwitchControllerStormControlArrayOu
 // SwitchControllerStormControlMapInput is an input type that accepts SwitchControllerStormControlMap and SwitchControllerStormControlMapOutput values.
 // You can construct a concrete instance of `SwitchControllerStormControlMapInput` via:
 //
-//          SwitchControllerStormControlMap{ "key": SwitchControllerStormControlArgs{...} }
+//	SwitchControllerStormControlMap{ "key": SwitchControllerStormControlArgs{...} }
 type SwitchControllerStormControlMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o SwitchControllerStormControlOutput) ToSwitchControllerStormControlOutput
 
 func (o SwitchControllerStormControlOutput) ToSwitchControllerStormControlOutputWithContext(ctx context.Context) SwitchControllerStormControlOutput {
 	return o
+}
+
+func (o SwitchControllerStormControlOutput) Broadcast() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerStormControl) pulumi.StringOutput { return v.Broadcast }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerStormControlOutput) Rate() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerStormControl) pulumi.IntOutput { return v.Rate }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerStormControlOutput) UnknownMulticast() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerStormControl) pulumi.StringOutput { return v.UnknownMulticast }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerStormControlOutput) UnknownUnicast() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerStormControl) pulumi.StringOutput { return v.UnknownUnicast }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerStormControlOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerStormControl) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerStormControlArrayOutput struct{ *pulumi.OutputState }

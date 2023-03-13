@@ -7,106 +7,30 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 multicast NAT policies.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallMulticastPolicy6(ctx, "trname", &fortios.FirewallMulticastPolicy6Args{
-// 			Action: pulumi.String("accept"),
-// 			Dstaddrs: FirewallMulticastPolicy6DstaddrArray{
-// 				&FirewallMulticastPolicy6DstaddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			Dstintf:    pulumi.String("port4"),
-// 			EndPort:    pulumi.Int(65535),
-// 			Fosid:      pulumi.Int(1),
-// 			Logtraffic: pulumi.String("disable"),
-// 			Protocol:   pulumi.Int(0),
-// 			Srcaddrs: FirewallMulticastPolicy6SrcaddrArray{
-// 				&FirewallMulticastPolicy6SrcaddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			Srcintf:   pulumi.String("port3"),
-// 			StartPort: pulumi.Int(1),
-// 			Status:    pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall MulticastPolicy6 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallMulticastPolicy6:FirewallMulticastPolicy6 labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallMulticastPolicy6:FirewallMulticastPolicy6 labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallMulticastPolicy6 struct {
 	pulumi.CustomResourceState
 
-	// Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-	Action pulumi.StringOutput `pulumi:"action"`
-	// Enable/disable offloading policy traffic for hardware acceleration. Valid values: `enable`, `disable`.
-	AutoAsicOffload pulumi.StringOutput `pulumi:"autoAsicOffload"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// IPv6 destination address name. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallMulticastPolicy6DstaddrArrayOutput `pulumi:"dstaddrs"`
-	// IPv6 destination interface name.
-	Dstintf pulumi.StringOutput `pulumi:"dstintf"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).
-	EndPort pulumi.IntOutput `pulumi:"endPort"`
-	// Policy ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
-	Logtraffic pulumi.StringOutput `pulumi:"logtraffic"`
-	// Address name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Integer value for the protocol type as defined by IANA (0 - 255, default = 0).
-	Protocol pulumi.IntOutput `pulumi:"protocol"`
-	// IPv6 source address name. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallMulticastPolicy6SrcaddrArrayOutput `pulumi:"srcaddrs"`
-	// IPv6 source interface name.
-	Srcintf pulumi.StringOutput `pulumi:"srcintf"`
-	// Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
-	StartPort pulumi.IntOutput `pulumi:"startPort"`
-	// Enable/disable this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringOutput `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Action              pulumi.StringOutput                        `pulumi:"action"`
+	AutoAsicOffload     pulumi.StringOutput                        `pulumi:"autoAsicOffload"`
+	Comments            pulumi.StringPtrOutput                     `pulumi:"comments"`
+	Dstaddrs            FirewallMulticastPolicy6DstaddrArrayOutput `pulumi:"dstaddrs"`
+	Dstintf             pulumi.StringOutput                        `pulumi:"dstintf"`
+	DynamicSortSubtable pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
+	EndPort             pulumi.IntOutput                           `pulumi:"endPort"`
+	Fosid               pulumi.IntOutput                           `pulumi:"fosid"`
+	Logtraffic          pulumi.StringOutput                        `pulumi:"logtraffic"`
+	Name                pulumi.StringOutput                        `pulumi:"name"`
+	Protocol            pulumi.IntOutput                           `pulumi:"protocol"`
+	Srcaddrs            FirewallMulticastPolicy6SrcaddrArrayOutput `pulumi:"srcaddrs"`
+	Srcintf             pulumi.StringOutput                        `pulumi:"srcintf"`
+	StartPort           pulumi.IntOutput                           `pulumi:"startPort"`
+	Status              pulumi.StringOutput                        `pulumi:"status"`
+	Uuid                pulumi.StringOutput                        `pulumi:"uuid"`
+	Vdomparam           pulumi.StringPtrOutput                     `pulumi:"vdomparam"`
 }
 
 // NewFirewallMulticastPolicy6 registers a new resource with the given unique name, arguments, and options.
@@ -151,77 +75,43 @@ func GetFirewallMulticastPolicy6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallMulticastPolicy6 resources.
 type firewallMulticastPolicy6State struct {
-	// Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-	Action *string `pulumi:"action"`
-	// Enable/disable offloading policy traffic for hardware acceleration. Valid values: `enable`, `disable`.
-	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// IPv6 destination address name. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallMulticastPolicy6Dstaddr `pulumi:"dstaddrs"`
-	// IPv6 destination interface name.
-	Dstintf *string `pulumi:"dstintf"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).
-	EndPort *int `pulumi:"endPort"`
-	// Policy ID.
-	Fosid *int `pulumi:"fosid"`
-	// Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
-	Logtraffic *string `pulumi:"logtraffic"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// Integer value for the protocol type as defined by IANA (0 - 255, default = 0).
-	Protocol *int `pulumi:"protocol"`
-	// IPv6 source address name. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallMulticastPolicy6Srcaddr `pulumi:"srcaddrs"`
-	// IPv6 source interface name.
-	Srcintf *string `pulumi:"srcintf"`
-	// Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
-	StartPort *int `pulumi:"startPort"`
-	// Enable/disable this policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Action              *string                           `pulumi:"action"`
+	AutoAsicOffload     *string                           `pulumi:"autoAsicOffload"`
+	Comments            *string                           `pulumi:"comments"`
+	Dstaddrs            []FirewallMulticastPolicy6Dstaddr `pulumi:"dstaddrs"`
+	Dstintf             *string                           `pulumi:"dstintf"`
+	DynamicSortSubtable *string                           `pulumi:"dynamicSortSubtable"`
+	EndPort             *int                              `pulumi:"endPort"`
+	Fosid               *int                              `pulumi:"fosid"`
+	Logtraffic          *string                           `pulumi:"logtraffic"`
+	Name                *string                           `pulumi:"name"`
+	Protocol            *int                              `pulumi:"protocol"`
+	Srcaddrs            []FirewallMulticastPolicy6Srcaddr `pulumi:"srcaddrs"`
+	Srcintf             *string                           `pulumi:"srcintf"`
+	StartPort           *int                              `pulumi:"startPort"`
+	Status              *string                           `pulumi:"status"`
+	Uuid                *string                           `pulumi:"uuid"`
+	Vdomparam           *string                           `pulumi:"vdomparam"`
 }
 
 type FirewallMulticastPolicy6State struct {
-	// Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-	Action pulumi.StringPtrInput
-	// Enable/disable offloading policy traffic for hardware acceleration. Valid values: `enable`, `disable`.
-	AutoAsicOffload pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// IPv6 destination address name. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallMulticastPolicy6DstaddrArrayInput
-	// IPv6 destination interface name.
-	Dstintf pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Action              pulumi.StringPtrInput
+	AutoAsicOffload     pulumi.StringPtrInput
+	Comments            pulumi.StringPtrInput
+	Dstaddrs            FirewallMulticastPolicy6DstaddrArrayInput
+	Dstintf             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).
-	EndPort pulumi.IntPtrInput
-	// Policy ID.
-	Fosid pulumi.IntPtrInput
-	// Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
-	Logtraffic pulumi.StringPtrInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// Integer value for the protocol type as defined by IANA (0 - 255, default = 0).
-	Protocol pulumi.IntPtrInput
-	// IPv6 source address name. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallMulticastPolicy6SrcaddrArrayInput
-	// IPv6 source interface name.
-	Srcintf pulumi.StringPtrInput
-	// Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
-	StartPort pulumi.IntPtrInput
-	// Enable/disable this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	EndPort             pulumi.IntPtrInput
+	Fosid               pulumi.IntPtrInput
+	Logtraffic          pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Protocol            pulumi.IntPtrInput
+	Srcaddrs            FirewallMulticastPolicy6SrcaddrArrayInput
+	Srcintf             pulumi.StringPtrInput
+	StartPort           pulumi.IntPtrInput
+	Status              pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallMulticastPolicy6State) ElementType() reflect.Type {
@@ -229,78 +119,44 @@ func (FirewallMulticastPolicy6State) ElementType() reflect.Type {
 }
 
 type firewallMulticastPolicy6Args struct {
-	// Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-	Action *string `pulumi:"action"`
-	// Enable/disable offloading policy traffic for hardware acceleration. Valid values: `enable`, `disable`.
-	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// IPv6 destination address name. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallMulticastPolicy6Dstaddr `pulumi:"dstaddrs"`
-	// IPv6 destination interface name.
-	Dstintf string `pulumi:"dstintf"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).
-	EndPort *int `pulumi:"endPort"`
-	// Policy ID.
-	Fosid *int `pulumi:"fosid"`
-	// Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
-	Logtraffic *string `pulumi:"logtraffic"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// Integer value for the protocol type as defined by IANA (0 - 255, default = 0).
-	Protocol *int `pulumi:"protocol"`
-	// IPv6 source address name. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallMulticastPolicy6Srcaddr `pulumi:"srcaddrs"`
-	// IPv6 source interface name.
-	Srcintf string `pulumi:"srcintf"`
-	// Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
-	StartPort *int `pulumi:"startPort"`
-	// Enable/disable this policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Action              *string                           `pulumi:"action"`
+	AutoAsicOffload     *string                           `pulumi:"autoAsicOffload"`
+	Comments            *string                           `pulumi:"comments"`
+	Dstaddrs            []FirewallMulticastPolicy6Dstaddr `pulumi:"dstaddrs"`
+	Dstintf             string                            `pulumi:"dstintf"`
+	DynamicSortSubtable *string                           `pulumi:"dynamicSortSubtable"`
+	EndPort             *int                              `pulumi:"endPort"`
+	Fosid               *int                              `pulumi:"fosid"`
+	Logtraffic          *string                           `pulumi:"logtraffic"`
+	Name                *string                           `pulumi:"name"`
+	Protocol            *int                              `pulumi:"protocol"`
+	Srcaddrs            []FirewallMulticastPolicy6Srcaddr `pulumi:"srcaddrs"`
+	Srcintf             string                            `pulumi:"srcintf"`
+	StartPort           *int                              `pulumi:"startPort"`
+	Status              *string                           `pulumi:"status"`
+	Uuid                *string                           `pulumi:"uuid"`
+	Vdomparam           *string                           `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallMulticastPolicy6 resource.
 type FirewallMulticastPolicy6Args struct {
-	// Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-	Action pulumi.StringPtrInput
-	// Enable/disable offloading policy traffic for hardware acceleration. Valid values: `enable`, `disable`.
-	AutoAsicOffload pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// IPv6 destination address name. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallMulticastPolicy6DstaddrArrayInput
-	// IPv6 destination interface name.
-	Dstintf pulumi.StringInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Action              pulumi.StringPtrInput
+	AutoAsicOffload     pulumi.StringPtrInput
+	Comments            pulumi.StringPtrInput
+	Dstaddrs            FirewallMulticastPolicy6DstaddrArrayInput
+	Dstintf             pulumi.StringInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).
-	EndPort pulumi.IntPtrInput
-	// Policy ID.
-	Fosid pulumi.IntPtrInput
-	// Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
-	Logtraffic pulumi.StringPtrInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// Integer value for the protocol type as defined by IANA (0 - 255, default = 0).
-	Protocol pulumi.IntPtrInput
-	// IPv6 source address name. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallMulticastPolicy6SrcaddrArrayInput
-	// IPv6 source interface name.
-	Srcintf pulumi.StringInput
-	// Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
-	StartPort pulumi.IntPtrInput
-	// Enable/disable this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	EndPort             pulumi.IntPtrInput
+	Fosid               pulumi.IntPtrInput
+	Logtraffic          pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Protocol            pulumi.IntPtrInput
+	Srcaddrs            FirewallMulticastPolicy6SrcaddrArrayInput
+	Srcintf             pulumi.StringInput
+	StartPort           pulumi.IntPtrInput
+	Status              pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallMulticastPolicy6Args) ElementType() reflect.Type {
@@ -329,7 +185,7 @@ func (i *FirewallMulticastPolicy6) ToFirewallMulticastPolicy6OutputWithContext(c
 // FirewallMulticastPolicy6ArrayInput is an input type that accepts FirewallMulticastPolicy6Array and FirewallMulticastPolicy6ArrayOutput values.
 // You can construct a concrete instance of `FirewallMulticastPolicy6ArrayInput` via:
 //
-//          FirewallMulticastPolicy6Array{ FirewallMulticastPolicy6Args{...} }
+//	FirewallMulticastPolicy6Array{ FirewallMulticastPolicy6Args{...} }
 type FirewallMulticastPolicy6ArrayInput interface {
 	pulumi.Input
 
@@ -354,7 +210,7 @@ func (i FirewallMulticastPolicy6Array) ToFirewallMulticastPolicy6ArrayOutputWith
 // FirewallMulticastPolicy6MapInput is an input type that accepts FirewallMulticastPolicy6Map and FirewallMulticastPolicy6MapOutput values.
 // You can construct a concrete instance of `FirewallMulticastPolicy6MapInput` via:
 //
-//          FirewallMulticastPolicy6Map{ "key": FirewallMulticastPolicy6Args{...} }
+//	FirewallMulticastPolicy6Map{ "key": FirewallMulticastPolicy6Args{...} }
 type FirewallMulticastPolicy6MapInput interface {
 	pulumi.Input
 
@@ -388,6 +244,74 @@ func (o FirewallMulticastPolicy6Output) ToFirewallMulticastPolicy6Output() Firew
 
 func (o FirewallMulticastPolicy6Output) ToFirewallMulticastPolicy6OutputWithContext(ctx context.Context) FirewallMulticastPolicy6Output {
 	return o
+}
+
+func (o FirewallMulticastPolicy6Output) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) AutoAsicOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.StringOutput { return v.AutoAsicOffload }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) Dstaddrs() FirewallMulticastPolicy6DstaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) FirewallMulticastPolicy6DstaddrArrayOutput { return v.Dstaddrs }).(FirewallMulticastPolicy6DstaddrArrayOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) Dstintf() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.StringOutput { return v.Dstintf }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) EndPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.IntOutput { return v.EndPort }).(pulumi.IntOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) Logtraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.StringOutput { return v.Logtraffic }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) Protocol() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.IntOutput { return v.Protocol }).(pulumi.IntOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) Srcaddrs() FirewallMulticastPolicy6SrcaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) FirewallMulticastPolicy6SrcaddrArrayOutput { return v.Srcaddrs }).(FirewallMulticastPolicy6SrcaddrArrayOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) Srcintf() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.StringOutput { return v.Srcintf }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) StartPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.IntOutput { return v.StartPort }).(pulumi.IntOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallMulticastPolicy6ArrayOutput struct{ *pulumi.OutputState }

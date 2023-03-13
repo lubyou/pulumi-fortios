@@ -10,63 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure zones to group two or more interfaces. When a zone is created you can configure policies for the zone instead of individual interfaces in the zone.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemZone(ctx, "trname", &fortios.SystemZoneArgs{
-// 			Intrazone: pulumi.String("allow"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Zone can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemZone:SystemZone labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemZone:SystemZone labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemZone struct {
 	pulumi.CustomResourceState
 
-	// Description.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Add interfaces to this zone. Interfaces must not be assigned to another zone or have firewall policies defined. The structure of `interface` block is documented below.
-	Interfaces SystemZoneInterfaceArrayOutput `pulumi:"interfaces"`
-	// Allow or deny traffic routing between different interfaces in the same zone (default = deny). Valid values: `allow`, `deny`.
-	Intrazone pulumi.StringOutput `pulumi:"intrazone"`
-	// Tag name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings SystemZoneTaggingArrayOutput `pulumi:"taggings"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Description         pulumi.StringOutput            `pulumi:"description"`
+	DynamicSortSubtable pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
+	Interfaces          SystemZoneInterfaceArrayOutput `pulumi:"interfaces"`
+	Intrazone           pulumi.StringOutput            `pulumi:"intrazone"`
+	Name                pulumi.StringOutput            `pulumi:"name"`
+	Taggings            SystemZoneTaggingArrayOutput   `pulumi:"taggings"`
+	Vdomparam           pulumi.StringPtrOutput         `pulumi:"vdomparam"`
 }
 
 // NewSystemZone registers a new resource with the given unique name, arguments, and options.
@@ -99,37 +52,23 @@ func GetSystemZone(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemZone resources.
 type systemZoneState struct {
-	// Description.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Add interfaces to this zone. Interfaces must not be assigned to another zone or have firewall policies defined. The structure of `interface` block is documented below.
-	Interfaces []SystemZoneInterface `pulumi:"interfaces"`
-	// Allow or deny traffic routing between different interfaces in the same zone (default = deny). Valid values: `allow`, `deny`.
-	Intrazone *string `pulumi:"intrazone"`
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []SystemZoneTagging `pulumi:"taggings"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Description         *string               `pulumi:"description"`
+	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	Interfaces          []SystemZoneInterface `pulumi:"interfaces"`
+	Intrazone           *string               `pulumi:"intrazone"`
+	Name                *string               `pulumi:"name"`
+	Taggings            []SystemZoneTagging   `pulumi:"taggings"`
+	Vdomparam           *string               `pulumi:"vdomparam"`
 }
 
 type SystemZoneState struct {
-	// Description.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Add interfaces to this zone. Interfaces must not be assigned to another zone or have firewall policies defined. The structure of `interface` block is documented below.
-	Interfaces SystemZoneInterfaceArrayInput
-	// Allow or deny traffic routing between different interfaces in the same zone (default = deny). Valid values: `allow`, `deny`.
-	Intrazone pulumi.StringPtrInput
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings SystemZoneTaggingArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interfaces          SystemZoneInterfaceArrayInput
+	Intrazone           pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Taggings            SystemZoneTaggingArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemZoneState) ElementType() reflect.Type {
@@ -137,38 +76,24 @@ func (SystemZoneState) ElementType() reflect.Type {
 }
 
 type systemZoneArgs struct {
-	// Description.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Add interfaces to this zone. Interfaces must not be assigned to another zone or have firewall policies defined. The structure of `interface` block is documented below.
-	Interfaces []SystemZoneInterface `pulumi:"interfaces"`
-	// Allow or deny traffic routing between different interfaces in the same zone (default = deny). Valid values: `allow`, `deny`.
-	Intrazone *string `pulumi:"intrazone"`
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []SystemZoneTagging `pulumi:"taggings"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Description         *string               `pulumi:"description"`
+	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	Interfaces          []SystemZoneInterface `pulumi:"interfaces"`
+	Intrazone           *string               `pulumi:"intrazone"`
+	Name                *string               `pulumi:"name"`
+	Taggings            []SystemZoneTagging   `pulumi:"taggings"`
+	Vdomparam           *string               `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemZone resource.
 type SystemZoneArgs struct {
-	// Description.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Add interfaces to this zone. Interfaces must not be assigned to another zone or have firewall policies defined. The structure of `interface` block is documented below.
-	Interfaces SystemZoneInterfaceArrayInput
-	// Allow or deny traffic routing between different interfaces in the same zone (default = deny). Valid values: `allow`, `deny`.
-	Intrazone pulumi.StringPtrInput
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings SystemZoneTaggingArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interfaces          SystemZoneInterfaceArrayInput
+	Intrazone           pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Taggings            SystemZoneTaggingArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemZoneArgs) ElementType() reflect.Type {
@@ -197,7 +122,7 @@ func (i *SystemZone) ToSystemZoneOutputWithContext(ctx context.Context) SystemZo
 // SystemZoneArrayInput is an input type that accepts SystemZoneArray and SystemZoneArrayOutput values.
 // You can construct a concrete instance of `SystemZoneArrayInput` via:
 //
-//          SystemZoneArray{ SystemZoneArgs{...} }
+//	SystemZoneArray{ SystemZoneArgs{...} }
 type SystemZoneArrayInput interface {
 	pulumi.Input
 
@@ -222,7 +147,7 @@ func (i SystemZoneArray) ToSystemZoneArrayOutputWithContext(ctx context.Context)
 // SystemZoneMapInput is an input type that accepts SystemZoneMap and SystemZoneMapOutput values.
 // You can construct a concrete instance of `SystemZoneMapInput` via:
 //
-//          SystemZoneMap{ "key": SystemZoneArgs{...} }
+//	SystemZoneMap{ "key": SystemZoneArgs{...} }
 type SystemZoneMapInput interface {
 	pulumi.Input
 
@@ -256,6 +181,34 @@ func (o SystemZoneOutput) ToSystemZoneOutput() SystemZoneOutput {
 
 func (o SystemZoneOutput) ToSystemZoneOutputWithContext(ctx context.Context) SystemZoneOutput {
 	return o
+}
+
+func (o SystemZoneOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemZone) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o SystemZoneOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemZone) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemZoneOutput) Interfaces() SystemZoneInterfaceArrayOutput {
+	return o.ApplyT(func(v *SystemZone) SystemZoneInterfaceArrayOutput { return v.Interfaces }).(SystemZoneInterfaceArrayOutput)
+}
+
+func (o SystemZoneOutput) Intrazone() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemZone) pulumi.StringOutput { return v.Intrazone }).(pulumi.StringOutput)
+}
+
+func (o SystemZoneOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemZone) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemZoneOutput) Taggings() SystemZoneTaggingArrayOutput {
+	return o.ApplyT(func(v *SystemZone) SystemZoneTaggingArrayOutput { return v.Taggings }).(SystemZoneTaggingArrayOutput)
+}
+
+func (o SystemZoneOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemZone) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemZoneArrayOutput struct{ *pulumi.OutputState }

@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Recurring schedule configuration.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallScheduleRecurring("trname", {
- *     color: 0,
- *     day: "sunday",
- *     end: "00:00",
- *     start: "00:00",
- * });
- * ```
- *
- * ## Import
- *
- * FirewallSchedule Recurring can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallScheduleRecurring:FirewallScheduleRecurring labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallScheduleRecurring:FirewallScheduleRecurring labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallScheduleRecurring extends pulumi.CustomResource {
     /**
      * Get an existing FirewallScheduleRecurring resource's state with the given name, ID, and optional extra
@@ -65,33 +32,12 @@ export class FirewallScheduleRecurring extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallScheduleRecurring.__pulumiType;
     }
 
-    /**
-     * Color of icon on the GUI.
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * One or more days of the week on which the schedule is valid. Separate the names of the days with a space. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `none`.
-     */
     public readonly day!: pulumi.Output<string>;
-    /**
-     * Time of day to end the schedule, format hh:mm.
-     */
     public readonly end!: pulumi.Output<string>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     public readonly fabricObject!: pulumi.Output<string>;
-    /**
-     * Recurring schedule name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Time of day to start the schedule, format hh:mm.
-     */
     public readonly start!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -139,33 +85,12 @@ export class FirewallScheduleRecurring extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallScheduleRecurring resources.
  */
 export interface FirewallScheduleRecurringState {
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * One or more days of the week on which the schedule is valid. Separate the names of the days with a space. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `none`.
-     */
     day?: pulumi.Input<string>;
-    /**
-     * Time of day to end the schedule, format hh:mm.
-     */
     end?: pulumi.Input<string>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     fabricObject?: pulumi.Input<string>;
-    /**
-     * Recurring schedule name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Time of day to start the schedule, format hh:mm.
-     */
     start?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -173,32 +98,11 @@ export interface FirewallScheduleRecurringState {
  * The set of arguments for constructing a FirewallScheduleRecurring resource.
  */
 export interface FirewallScheduleRecurringArgs {
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * One or more days of the week on which the schedule is valid. Separate the names of the days with a space. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `none`.
-     */
     day?: pulumi.Input<string>;
-    /**
-     * Time of day to end the schedule, format hh:mm.
-     */
     end: pulumi.Input<string>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     fabricObject?: pulumi.Input<string>;
-    /**
-     * Recurring schedule name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Time of day to start the schedule, format hh:mm.
-     */
     start: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,38 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure anti-spam black/white list. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1,6.4.2`.
-//
-// ## Import
-//
-// Emailfilter Bwl can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/emailfilterBwl:EmailfilterBwl labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/emailfilterBwl:EmailfilterBwl labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type EmailfilterBwl struct {
 	pulumi.CustomResourceState
 
-	// Optional comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Anti-spam black/white list entries. The structure of `entries` block is documented below.
-	Entries EmailfilterBwlEntryArrayOutput `pulumi:"entries"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Name of table.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput         `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
+	Entries             EmailfilterBwlEntryArrayOutput `pulumi:"entries"`
+	Fosid               pulumi.IntOutput               `pulumi:"fosid"`
+	Name                pulumi.StringOutput            `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput         `pulumi:"vdomparam"`
 }
 
 // NewEmailfilterBwl registers a new resource with the given unique name, arguments, and options.
@@ -74,33 +51,21 @@ func GetEmailfilterBwl(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EmailfilterBwl resources.
 type emailfilterBwlState struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Anti-spam black/white list entries. The structure of `entries` block is documented below.
-	Entries []EmailfilterBwlEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string               `pulumi:"comment"`
+	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	Entries             []EmailfilterBwlEntry `pulumi:"entries"`
+	Fosid               *int                  `pulumi:"fosid"`
+	Name                *string               `pulumi:"name"`
+	Vdomparam           *string               `pulumi:"vdomparam"`
 }
 
 type EmailfilterBwlState struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Anti-spam black/white list entries. The structure of `entries` block is documented below.
-	Entries EmailfilterBwlEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             EmailfilterBwlEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (EmailfilterBwlState) ElementType() reflect.Type {
@@ -108,34 +73,22 @@ func (EmailfilterBwlState) ElementType() reflect.Type {
 }
 
 type emailfilterBwlArgs struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Anti-spam black/white list entries. The structure of `entries` block is documented below.
-	Entries []EmailfilterBwlEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string               `pulumi:"comment"`
+	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	Entries             []EmailfilterBwlEntry `pulumi:"entries"`
+	Fosid               *int                  `pulumi:"fosid"`
+	Name                *string               `pulumi:"name"`
+	Vdomparam           *string               `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a EmailfilterBwl resource.
 type EmailfilterBwlArgs struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Anti-spam black/white list entries. The structure of `entries` block is documented below.
-	Entries EmailfilterBwlEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             EmailfilterBwlEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (EmailfilterBwlArgs) ElementType() reflect.Type {
@@ -164,7 +117,7 @@ func (i *EmailfilterBwl) ToEmailfilterBwlOutputWithContext(ctx context.Context) 
 // EmailfilterBwlArrayInput is an input type that accepts EmailfilterBwlArray and EmailfilterBwlArrayOutput values.
 // You can construct a concrete instance of `EmailfilterBwlArrayInput` via:
 //
-//          EmailfilterBwlArray{ EmailfilterBwlArgs{...} }
+//	EmailfilterBwlArray{ EmailfilterBwlArgs{...} }
 type EmailfilterBwlArrayInput interface {
 	pulumi.Input
 
@@ -189,7 +142,7 @@ func (i EmailfilterBwlArray) ToEmailfilterBwlArrayOutputWithContext(ctx context.
 // EmailfilterBwlMapInput is an input type that accepts EmailfilterBwlMap and EmailfilterBwlMapOutput values.
 // You can construct a concrete instance of `EmailfilterBwlMapInput` via:
 //
-//          EmailfilterBwlMap{ "key": EmailfilterBwlArgs{...} }
+//	EmailfilterBwlMap{ "key": EmailfilterBwlArgs{...} }
 type EmailfilterBwlMapInput interface {
 	pulumi.Input
 
@@ -223,6 +176,30 @@ func (o EmailfilterBwlOutput) ToEmailfilterBwlOutput() EmailfilterBwlOutput {
 
 func (o EmailfilterBwlOutput) ToEmailfilterBwlOutputWithContext(ctx context.Context) EmailfilterBwlOutput {
 	return o
+}
+
+func (o EmailfilterBwlOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterBwl) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o EmailfilterBwlOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterBwl) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o EmailfilterBwlOutput) Entries() EmailfilterBwlEntryArrayOutput {
+	return o.ApplyT(func(v *EmailfilterBwl) EmailfilterBwlEntryArrayOutput { return v.Entries }).(EmailfilterBwlEntryArrayOutput)
+}
+
+func (o EmailfilterBwlOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *EmailfilterBwl) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o EmailfilterBwlOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *EmailfilterBwl) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o EmailfilterBwlOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterBwl) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type EmailfilterBwlArrayOutput struct{ *pulumi.OutputState }

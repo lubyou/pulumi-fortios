@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system arptable
 func LookupSystemArpTable(ctx *pulumi.Context, args *LookupSystemArpTableArgs, opts ...pulumi.InvokeOption) (*LookupSystemArpTableResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemArpTableResult
@@ -23,23 +22,17 @@ func LookupSystemArpTable(ctx *pulumi.Context, args *LookupSystemArpTableArgs, o
 
 // A collection of arguments for invoking GetSystemArpTable.
 type LookupSystemArpTableArgs struct {
-	// Specify the fosid of the desired system arptable.
-	Fosid int `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     int     `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemArpTable.
 type LookupSystemArpTableResult struct {
-	// Unique integer ID of the entry.
 	Fosid int `pulumi:"fosid"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Interface name.
-	Interface string `pulumi:"interface"`
-	// IP address.
-	Ip string `pulumi:"ip"`
-	// MAC address.
+	Id        string  `pulumi:"id"`
+	Interface string  `pulumi:"interface"`
+	Ip        string  `pulumi:"ip"`
 	Mac       string  `pulumi:"mac"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -59,9 +52,7 @@ func LookupSystemArpTableOutput(ctx *pulumi.Context, args LookupSystemArpTableOu
 
 // A collection of arguments for invoking GetSystemArpTable.
 type LookupSystemArpTableOutputArgs struct {
-	// Specify the fosid of the desired system arptable.
-	Fosid pulumi.IntInput `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntInput       `pulumi:"fosid"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -84,7 +75,6 @@ func (o LookupSystemArpTableResultOutput) ToLookupSystemArpTableResultOutputWith
 	return o
 }
 
-// Unique integer ID of the entry.
 func (o LookupSystemArpTableResultOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemArpTableResult) int { return v.Fosid }).(pulumi.IntOutput)
 }
@@ -94,17 +84,14 @@ func (o LookupSystemArpTableResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemArpTableResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Interface name.
 func (o LookupSystemArpTableResultOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemArpTableResult) string { return v.Interface }).(pulumi.StringOutput)
 }
 
-// IP address.
 func (o LookupSystemArpTableResultOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemArpTableResult) string { return v.Ip }).(pulumi.StringOutput)
 }
 
-// MAC address.
 func (o LookupSystemArpTableResultOutput) Mac() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemArpTableResult) string { return v.Mac }).(pulumi.StringOutput)
 }

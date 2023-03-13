@@ -4,34 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Create self-explanatory DLP sensitivity levels to be used when setting sensitivity under config fp-doc-source. Applies to FortiOS Version `<= 6.2.0`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.DlpFpSensitivity("trname", {});
- * ```
- *
- * ## Import
- *
- * Dlp FpSensitivity can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/dlpFpSensitivity:DlpFpSensitivity labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/dlpFpSensitivity:DlpFpSensitivity labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class DlpFpSensitivity extends pulumi.CustomResource {
     /**
      * Get an existing DlpFpSensitivity resource's state with the given name, ID, and optional extra
@@ -60,13 +32,7 @@ export class DlpFpSensitivity extends pulumi.CustomResource {
         return obj['__pulumiType'] === DlpFpSensitivity.__pulumiType;
     }
 
-    /**
-     * DLP Sensitivity Levels.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -98,13 +64,7 @@ export class DlpFpSensitivity extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DlpFpSensitivity resources.
  */
 export interface DlpFpSensitivityState {
-    /**
-     * DLP Sensitivity Levels.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -112,12 +72,6 @@ export interface DlpFpSensitivityState {
  * The set of arguments for constructing a DlpFpSensitivity resource.
  */
 export interface DlpFpSensitivityArgs {
-    /**
-     * DLP Sensitivity Levels.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

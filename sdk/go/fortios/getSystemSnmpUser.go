@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios systemsnmp user
 func LookupSystemSnmpUser(ctx *pulumi.Context, args *LookupSystemSnmpUserArgs, opts ...pulumi.InvokeOption) (*LookupSystemSnmpUserResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemSnmpUserResult
@@ -23,53 +22,35 @@ func LookupSystemSnmpUser(ctx *pulumi.Context, args *LookupSystemSnmpUserArgs, o
 
 // A collection of arguments for invoking GetSystemSnmpUser.
 type LookupSystemSnmpUserArgs struct {
-	// Specify the name of the desired systemsnmp user.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemSnmpUser.
 type LookupSystemSnmpUserResult struct {
-	// Authentication protocol.
 	AuthProto string `pulumi:"authProto"`
-	// Password for authentication protocol.
-	AuthPwd string `pulumi:"authPwd"`
-	// SNMP notifications (traps) to send.
-	Events string `pulumi:"events"`
-	// Enable/disable direct management of HA cluster members.
-	HaDirect string `pulumi:"haDirect"`
+	AuthPwd   string `pulumi:"authPwd"`
+	Events    string `pulumi:"events"`
+	HaDirect  string `pulumi:"haDirect"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// SNMP user name.
-	Name string `pulumi:"name"`
-	// SNMP managers to send notifications (traps) to.
-	NotifyHosts string `pulumi:"notifyHosts"`
-	// IPv6 SNMP managers to send notifications (traps) to.
-	NotifyHosts6 string `pulumi:"notifyHosts6"`
-	// Privacy (encryption) protocol.
-	PrivProto string `pulumi:"privProto"`
-	// Password for privacy (encryption) protocol.
-	PrivPwd string `pulumi:"privPwd"`
-	// Enable/disable SNMP queries for this user.
-	Queries string `pulumi:"queries"`
-	// SNMPv3 query port (default = 161).
-	QueryPort int `pulumi:"queryPort"`
-	// Security level for message authentication and encryption.
-	SecurityLevel string `pulumi:"securityLevel"`
-	// Source IP for SNMP trap.
-	SourceIp string `pulumi:"sourceIp"`
-	// Source IPv6 for SNMP trap.
-	SourceIpv6 string `pulumi:"sourceIpv6"`
-	// Enable/disable this SNMP user.
-	Status string `pulumi:"status"`
-	// SNMPv3 local trap port (default = 162).
-	TrapLport int `pulumi:"trapLport"`
-	// SNMPv3 trap remote port (default = 162).
-	TrapRport int `pulumi:"trapRport"`
-	// Enable/disable traps for this SNMP user.
-	TrapStatus string  `pulumi:"trapStatus"`
-	Vdomparam  *string `pulumi:"vdomparam"`
+	Id            string                  `pulumi:"id"`
+	MibView       string                  `pulumi:"mibView"`
+	Name          string                  `pulumi:"name"`
+	NotifyHosts   string                  `pulumi:"notifyHosts"`
+	NotifyHosts6  string                  `pulumi:"notifyHosts6"`
+	PrivProto     string                  `pulumi:"privProto"`
+	PrivPwd       string                  `pulumi:"privPwd"`
+	Queries       string                  `pulumi:"queries"`
+	QueryPort     int                     `pulumi:"queryPort"`
+	SecurityLevel string                  `pulumi:"securityLevel"`
+	SourceIp      string                  `pulumi:"sourceIp"`
+	SourceIpv6    string                  `pulumi:"sourceIpv6"`
+	Status        string                  `pulumi:"status"`
+	TrapLport     int                     `pulumi:"trapLport"`
+	TrapRport     int                     `pulumi:"trapRport"`
+	TrapStatus    string                  `pulumi:"trapStatus"`
+	Vdomparam     *string                 `pulumi:"vdomparam"`
+	Vdoms         []GetSystemSnmpUserVdom `pulumi:"vdoms"`
 }
 
 func LookupSystemSnmpUserOutput(ctx *pulumi.Context, args LookupSystemSnmpUserOutputArgs, opts ...pulumi.InvokeOption) LookupSystemSnmpUserResultOutput {
@@ -87,9 +68,7 @@ func LookupSystemSnmpUserOutput(ctx *pulumi.Context, args LookupSystemSnmpUserOu
 
 // A collection of arguments for invoking GetSystemSnmpUser.
 type LookupSystemSnmpUserOutputArgs struct {
-	// Specify the name of the desired systemsnmp user.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -112,22 +91,18 @@ func (o LookupSystemSnmpUserResultOutput) ToLookupSystemSnmpUserResultOutputWith
 	return o
 }
 
-// Authentication protocol.
 func (o LookupSystemSnmpUserResultOutput) AuthProto() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.AuthProto }).(pulumi.StringOutput)
 }
 
-// Password for authentication protocol.
 func (o LookupSystemSnmpUserResultOutput) AuthPwd() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.AuthPwd }).(pulumi.StringOutput)
 }
 
-// SNMP notifications (traps) to send.
 func (o LookupSystemSnmpUserResultOutput) Events() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.Events }).(pulumi.StringOutput)
 }
 
-// Enable/disable direct management of HA cluster members.
 func (o LookupSystemSnmpUserResultOutput) HaDirect() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.HaDirect }).(pulumi.StringOutput)
 }
@@ -137,78 +112,72 @@ func (o LookupSystemSnmpUserResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// SNMP user name.
+func (o LookupSystemSnmpUserResultOutput) MibView() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.MibView }).(pulumi.StringOutput)
+}
+
 func (o LookupSystemSnmpUserResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// SNMP managers to send notifications (traps) to.
 func (o LookupSystemSnmpUserResultOutput) NotifyHosts() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.NotifyHosts }).(pulumi.StringOutput)
 }
 
-// IPv6 SNMP managers to send notifications (traps) to.
 func (o LookupSystemSnmpUserResultOutput) NotifyHosts6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.NotifyHosts6 }).(pulumi.StringOutput)
 }
 
-// Privacy (encryption) protocol.
 func (o LookupSystemSnmpUserResultOutput) PrivProto() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.PrivProto }).(pulumi.StringOutput)
 }
 
-// Password for privacy (encryption) protocol.
 func (o LookupSystemSnmpUserResultOutput) PrivPwd() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.PrivPwd }).(pulumi.StringOutput)
 }
 
-// Enable/disable SNMP queries for this user.
 func (o LookupSystemSnmpUserResultOutput) Queries() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.Queries }).(pulumi.StringOutput)
 }
 
-// SNMPv3 query port (default = 161).
 func (o LookupSystemSnmpUserResultOutput) QueryPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) int { return v.QueryPort }).(pulumi.IntOutput)
 }
 
-// Security level for message authentication and encryption.
 func (o LookupSystemSnmpUserResultOutput) SecurityLevel() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.SecurityLevel }).(pulumi.StringOutput)
 }
 
-// Source IP for SNMP trap.
 func (o LookupSystemSnmpUserResultOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.SourceIp }).(pulumi.StringOutput)
 }
 
-// Source IPv6 for SNMP trap.
 func (o LookupSystemSnmpUserResultOutput) SourceIpv6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.SourceIpv6 }).(pulumi.StringOutput)
 }
 
-// Enable/disable this SNMP user.
 func (o LookupSystemSnmpUserResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// SNMPv3 local trap port (default = 162).
 func (o LookupSystemSnmpUserResultOutput) TrapLport() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) int { return v.TrapLport }).(pulumi.IntOutput)
 }
 
-// SNMPv3 trap remote port (default = 162).
 func (o LookupSystemSnmpUserResultOutput) TrapRport() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) int { return v.TrapRport }).(pulumi.IntOutput)
 }
 
-// Enable/disable traps for this SNMP user.
 func (o LookupSystemSnmpUserResultOutput) TrapStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) string { return v.TrapStatus }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemSnmpUserResultOutput) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSystemSnmpUserResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupSystemSnmpUserResultOutput) Vdoms() GetSystemSnmpUserVdomArrayOutput {
+	return o.ApplyT(func(v LookupSystemSnmpUserResult) []GetSystemSnmpUserVdom { return v.Vdoms }).(GetSystemSnmpUserVdomArrayOutput)
 }
 
 func init() {

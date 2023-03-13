@@ -7,65 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Web filter banned word table.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWebfilterContent(ctx, "trname", &fortios.WebfilterContentArgs{
-// 			Fosid: pulumi.Int(1),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Webfilter Content can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterContent:WebfilterContent labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterContent:WebfilterContent labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebfilterContent struct {
 	pulumi.CustomResourceState
 
-	// Optional comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Configure banned word entries. The structure of `entries` block is documented below.
-	Entries WebfilterContentEntryArrayOutput `pulumi:"entries"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Banned word.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput           `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput           `pulumi:"dynamicSortSubtable"`
+	Entries             WebfilterContentEntryArrayOutput `pulumi:"entries"`
+	Fosid               pulumi.IntOutput                 `pulumi:"fosid"`
+	Name                pulumi.StringOutput              `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput           `pulumi:"vdomparam"`
 }
 
 // NewWebfilterContent registers a new resource with the given unique name, arguments, and options.
@@ -101,33 +55,21 @@ func GetWebfilterContent(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebfilterContent resources.
 type webfilterContentState struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configure banned word entries. The structure of `entries` block is documented below.
-	Entries []WebfilterContentEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Banned word.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                 `pulumi:"comment"`
+	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
+	Entries             []WebfilterContentEntry `pulumi:"entries"`
+	Fosid               *int                    `pulumi:"fosid"`
+	Name                *string                 `pulumi:"name"`
+	Vdomparam           *string                 `pulumi:"vdomparam"`
 }
 
 type WebfilterContentState struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Configure banned word entries. The structure of `entries` block is documented below.
-	Entries WebfilterContentEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Banned word.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             WebfilterContentEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WebfilterContentState) ElementType() reflect.Type {
@@ -135,34 +77,22 @@ func (WebfilterContentState) ElementType() reflect.Type {
 }
 
 type webfilterContentArgs struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configure banned word entries. The structure of `entries` block is documented below.
-	Entries []WebfilterContentEntry `pulumi:"entries"`
-	// ID.
-	Fosid int `pulumi:"fosid"`
-	// Banned word.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                 `pulumi:"comment"`
+	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
+	Entries             []WebfilterContentEntry `pulumi:"entries"`
+	Fosid               int                     `pulumi:"fosid"`
+	Name                *string                 `pulumi:"name"`
+	Vdomparam           *string                 `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebfilterContent resource.
 type WebfilterContentArgs struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Configure banned word entries. The structure of `entries` block is documented below.
-	Entries WebfilterContentEntryArrayInput
-	// ID.
-	Fosid pulumi.IntInput
-	// Banned word.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             WebfilterContentEntryArrayInput
+	Fosid               pulumi.IntInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WebfilterContentArgs) ElementType() reflect.Type {
@@ -191,7 +121,7 @@ func (i *WebfilterContent) ToWebfilterContentOutputWithContext(ctx context.Conte
 // WebfilterContentArrayInput is an input type that accepts WebfilterContentArray and WebfilterContentArrayOutput values.
 // You can construct a concrete instance of `WebfilterContentArrayInput` via:
 //
-//          WebfilterContentArray{ WebfilterContentArgs{...} }
+//	WebfilterContentArray{ WebfilterContentArgs{...} }
 type WebfilterContentArrayInput interface {
 	pulumi.Input
 
@@ -216,7 +146,7 @@ func (i WebfilterContentArray) ToWebfilterContentArrayOutputWithContext(ctx cont
 // WebfilterContentMapInput is an input type that accepts WebfilterContentMap and WebfilterContentMapOutput values.
 // You can construct a concrete instance of `WebfilterContentMapInput` via:
 //
-//          WebfilterContentMap{ "key": WebfilterContentArgs{...} }
+//	WebfilterContentMap{ "key": WebfilterContentArgs{...} }
 type WebfilterContentMapInput interface {
 	pulumi.Input
 
@@ -250,6 +180,30 @@ func (o WebfilterContentOutput) ToWebfilterContentOutput() WebfilterContentOutpu
 
 func (o WebfilterContentOutput) ToWebfilterContentOutputWithContext(ctx context.Context) WebfilterContentOutput {
 	return o
+}
+
+func (o WebfilterContentOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterContent) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o WebfilterContentOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterContent) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WebfilterContentOutput) Entries() WebfilterContentEntryArrayOutput {
+	return o.ApplyT(func(v *WebfilterContent) WebfilterContentEntryArrayOutput { return v.Entries }).(WebfilterContentEntryArrayOutput)
+}
+
+func (o WebfilterContentOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterContent) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o WebfilterContentOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterContent) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WebfilterContentOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterContent) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebfilterContentArrayOutput struct{ *pulumi.OutputState }

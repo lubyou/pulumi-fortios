@@ -10,33 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure physical switches. Applies to FortiOS Version `>= 7.0.4`.
-//
-// ## Import
-//
-// System PhysicalSwitch can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemPhysicalSwitch:SystemPhysicalSwitch labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemPhysicalSwitch:SystemPhysicalSwitch labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemPhysicalSwitch struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable layer 2 age timer. Valid values: `enable`, `disable`.
-	AgeEnable pulumi.StringOutput `pulumi:"ageEnable"`
-	// Layer 2 table age timer value.
-	AgeVal pulumi.IntOutput `pulumi:"ageVal"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	AgeEnable pulumi.StringOutput    `pulumi:"ageEnable"`
+	AgeVal    pulumi.IntOutput       `pulumi:"ageVal"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -70,24 +49,16 @@ func GetSystemPhysicalSwitch(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemPhysicalSwitch resources.
 type systemPhysicalSwitchState struct {
-	// Enable/disable layer 2 age timer. Valid values: `enable`, `disable`.
 	AgeEnable *string `pulumi:"ageEnable"`
-	// Layer 2 table age timer value.
-	AgeVal *int `pulumi:"ageVal"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	AgeVal    *int    `pulumi:"ageVal"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemPhysicalSwitchState struct {
-	// Enable/disable layer 2 age timer. Valid values: `enable`, `disable`.
 	AgeEnable pulumi.StringPtrInput
-	// Layer 2 table age timer value.
-	AgeVal pulumi.IntPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	AgeVal    pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -96,25 +67,17 @@ func (SystemPhysicalSwitchState) ElementType() reflect.Type {
 }
 
 type systemPhysicalSwitchArgs struct {
-	// Enable/disable layer 2 age timer. Valid values: `enable`, `disable`.
 	AgeEnable *string `pulumi:"ageEnable"`
-	// Layer 2 table age timer value.
-	AgeVal *int `pulumi:"ageVal"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	AgeVal    *int    `pulumi:"ageVal"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemPhysicalSwitch resource.
 type SystemPhysicalSwitchArgs struct {
-	// Enable/disable layer 2 age timer. Valid values: `enable`, `disable`.
 	AgeEnable pulumi.StringPtrInput
-	// Layer 2 table age timer value.
-	AgeVal pulumi.IntPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	AgeVal    pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -144,7 +107,7 @@ func (i *SystemPhysicalSwitch) ToSystemPhysicalSwitchOutputWithContext(ctx conte
 // SystemPhysicalSwitchArrayInput is an input type that accepts SystemPhysicalSwitchArray and SystemPhysicalSwitchArrayOutput values.
 // You can construct a concrete instance of `SystemPhysicalSwitchArrayInput` via:
 //
-//          SystemPhysicalSwitchArray{ SystemPhysicalSwitchArgs{...} }
+//	SystemPhysicalSwitchArray{ SystemPhysicalSwitchArgs{...} }
 type SystemPhysicalSwitchArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i SystemPhysicalSwitchArray) ToSystemPhysicalSwitchArrayOutputWithContext(
 // SystemPhysicalSwitchMapInput is an input type that accepts SystemPhysicalSwitchMap and SystemPhysicalSwitchMapOutput values.
 // You can construct a concrete instance of `SystemPhysicalSwitchMapInput` via:
 //
-//          SystemPhysicalSwitchMap{ "key": SystemPhysicalSwitchArgs{...} }
+//	SystemPhysicalSwitchMap{ "key": SystemPhysicalSwitchArgs{...} }
 type SystemPhysicalSwitchMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o SystemPhysicalSwitchOutput) ToSystemPhysicalSwitchOutput() SystemPhysica
 
 func (o SystemPhysicalSwitchOutput) ToSystemPhysicalSwitchOutputWithContext(ctx context.Context) SystemPhysicalSwitchOutput {
 	return o
+}
+
+func (o SystemPhysicalSwitchOutput) AgeEnable() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPhysicalSwitch) pulumi.StringOutput { return v.AgeEnable }).(pulumi.StringOutput)
+}
+
+func (o SystemPhysicalSwitchOutput) AgeVal() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemPhysicalSwitch) pulumi.IntOutput { return v.AgeVal }).(pulumi.IntOutput)
+}
+
+func (o SystemPhysicalSwitchOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPhysicalSwitch) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemPhysicalSwitchOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemPhysicalSwitch) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemPhysicalSwitchArrayOutput struct{ *pulumi.OutputState }

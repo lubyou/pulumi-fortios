@@ -10,63 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Autonomous System (AS) path lists.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewRouterAspathList(ctx, "trname", &fortios.RouterAspathListArgs{
-// 			Rules: RouterAspathListRuleArray{
-// 				&RouterAspathListRuleArgs{
-// 					Action: pulumi.String("deny"),
-// 					Regexp: pulumi.String("/d+/n"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Router AspathList can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerAspathList:RouterAspathList labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerAspathList:RouterAspathList labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterAspathList struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// AS path list name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// AS path list rule. The structure of `rule` block is documented below.
-	Rules RouterAspathListRuleArrayOutput `pulumi:"rules"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput          `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput             `pulumi:"name"`
+	Rules               RouterAspathListRuleArrayOutput `pulumi:"rules"`
+	Vdomparam           pulumi.StringPtrOutput          `pulumi:"vdomparam"`
 }
 
 // NewRouterAspathList registers a new resource with the given unique name, arguments, and options.
@@ -99,25 +49,17 @@ func GetRouterAspathList(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterAspathList resources.
 type routerAspathListState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// AS path list name.
-	Name *string `pulumi:"name"`
-	// AS path list rule. The structure of `rule` block is documented below.
-	Rules []RouterAspathListRule `pulumi:"rules"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	Name                *string                `pulumi:"name"`
+	Rules               []RouterAspathListRule `pulumi:"rules"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 type RouterAspathListState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// AS path list name.
-	Name pulumi.StringPtrInput
-	// AS path list rule. The structure of `rule` block is documented below.
-	Rules RouterAspathListRuleArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Rules               RouterAspathListRuleArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterAspathListState) ElementType() reflect.Type {
@@ -125,26 +67,18 @@ func (RouterAspathListState) ElementType() reflect.Type {
 }
 
 type routerAspathListArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// AS path list name.
-	Name *string `pulumi:"name"`
-	// AS path list rule. The structure of `rule` block is documented below.
-	Rules []RouterAspathListRule `pulumi:"rules"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	Name                *string                `pulumi:"name"`
+	Rules               []RouterAspathListRule `pulumi:"rules"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterAspathList resource.
 type RouterAspathListArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// AS path list name.
-	Name pulumi.StringPtrInput
-	// AS path list rule. The structure of `rule` block is documented below.
-	Rules RouterAspathListRuleArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Rules               RouterAspathListRuleArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterAspathListArgs) ElementType() reflect.Type {
@@ -173,7 +107,7 @@ func (i *RouterAspathList) ToRouterAspathListOutputWithContext(ctx context.Conte
 // RouterAspathListArrayInput is an input type that accepts RouterAspathListArray and RouterAspathListArrayOutput values.
 // You can construct a concrete instance of `RouterAspathListArrayInput` via:
 //
-//          RouterAspathListArray{ RouterAspathListArgs{...} }
+//	RouterAspathListArray{ RouterAspathListArgs{...} }
 type RouterAspathListArrayInput interface {
 	pulumi.Input
 
@@ -198,7 +132,7 @@ func (i RouterAspathListArray) ToRouterAspathListArrayOutputWithContext(ctx cont
 // RouterAspathListMapInput is an input type that accepts RouterAspathListMap and RouterAspathListMapOutput values.
 // You can construct a concrete instance of `RouterAspathListMapInput` via:
 //
-//          RouterAspathListMap{ "key": RouterAspathListArgs{...} }
+//	RouterAspathListMap{ "key": RouterAspathListArgs{...} }
 type RouterAspathListMapInput interface {
 	pulumi.Input
 
@@ -232,6 +166,22 @@ func (o RouterAspathListOutput) ToRouterAspathListOutput() RouterAspathListOutpu
 
 func (o RouterAspathListOutput) ToRouterAspathListOutputWithContext(ctx context.Context) RouterAspathListOutput {
 	return o
+}
+
+func (o RouterAspathListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterAspathList) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterAspathListOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterAspathList) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o RouterAspathListOutput) Rules() RouterAspathListRuleArrayOutput {
+	return o.ApplyT(func(v *RouterAspathList) RouterAspathListRuleArrayOutput { return v.Rules }).(RouterAspathListRuleArrayOutput)
+}
+
+func (o RouterAspathListOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterAspathList) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterAspathListArrayOutput struct{ *pulumi.OutputState }

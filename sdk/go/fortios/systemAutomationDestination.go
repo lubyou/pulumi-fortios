@@ -10,62 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Automation destinations.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAutomationDestination(ctx, "trname", &fortios.SystemAutomationDestinationArgs{
-// 			HaGroupId: pulumi.Int(0),
-// 			Type:      pulumi.String("fortigate"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System AutomationDestination can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutomationDestination:SystemAutomationDestination labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutomationDestination:SystemAutomationDestination labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemAutomationDestination struct {
 	pulumi.CustomResourceState
 
-	// Destinations. The structure of `destination` block is documented below.
-	Destinations SystemAutomationDestinationDestinationArrayOutput `pulumi:"destinations"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Cluster group ID set for this destination (default = 0).
-	HaGroupId pulumi.IntOutput `pulumi:"haGroupId"`
-	// Destination.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Destination type. Valid values: `fortigate`, `ha-cluster`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Destinations        SystemAutomationDestinationDestinationArrayOutput `pulumi:"destinations"`
+	DynamicSortSubtable pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
+	HaGroupId           pulumi.IntOutput                                  `pulumi:"haGroupId"`
+	Name                pulumi.StringOutput                               `pulumi:"name"`
+	Type                pulumi.StringOutput                               `pulumi:"type"`
+	Vdomparam           pulumi.StringPtrOutput                            `pulumi:"vdomparam"`
 }
 
 // NewSystemAutomationDestination registers a new resource with the given unique name, arguments, and options.
@@ -98,33 +51,21 @@ func GetSystemAutomationDestination(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAutomationDestination resources.
 type systemAutomationDestinationState struct {
-	// Destinations. The structure of `destination` block is documented below.
-	Destinations []SystemAutomationDestinationDestination `pulumi:"destinations"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Cluster group ID set for this destination (default = 0).
-	HaGroupId *int `pulumi:"haGroupId"`
-	// Destination.
-	Name *string `pulumi:"name"`
-	// Destination type. Valid values: `fortigate`, `ha-cluster`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Destinations        []SystemAutomationDestinationDestination `pulumi:"destinations"`
+	DynamicSortSubtable *string                                  `pulumi:"dynamicSortSubtable"`
+	HaGroupId           *int                                     `pulumi:"haGroupId"`
+	Name                *string                                  `pulumi:"name"`
+	Type                *string                                  `pulumi:"type"`
+	Vdomparam           *string                                  `pulumi:"vdomparam"`
 }
 
 type SystemAutomationDestinationState struct {
-	// Destinations. The structure of `destination` block is documented below.
-	Destinations SystemAutomationDestinationDestinationArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Destinations        SystemAutomationDestinationDestinationArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Cluster group ID set for this destination (default = 0).
-	HaGroupId pulumi.IntPtrInput
-	// Destination.
-	Name pulumi.StringPtrInput
-	// Destination type. Valid values: `fortigate`, `ha-cluster`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HaGroupId           pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemAutomationDestinationState) ElementType() reflect.Type {
@@ -132,34 +73,22 @@ func (SystemAutomationDestinationState) ElementType() reflect.Type {
 }
 
 type systemAutomationDestinationArgs struct {
-	// Destinations. The structure of `destination` block is documented below.
-	Destinations []SystemAutomationDestinationDestination `pulumi:"destinations"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Cluster group ID set for this destination (default = 0).
-	HaGroupId *int `pulumi:"haGroupId"`
-	// Destination.
-	Name *string `pulumi:"name"`
-	// Destination type. Valid values: `fortigate`, `ha-cluster`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Destinations        []SystemAutomationDestinationDestination `pulumi:"destinations"`
+	DynamicSortSubtable *string                                  `pulumi:"dynamicSortSubtable"`
+	HaGroupId           *int                                     `pulumi:"haGroupId"`
+	Name                *string                                  `pulumi:"name"`
+	Type                *string                                  `pulumi:"type"`
+	Vdomparam           *string                                  `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemAutomationDestination resource.
 type SystemAutomationDestinationArgs struct {
-	// Destinations. The structure of `destination` block is documented below.
-	Destinations SystemAutomationDestinationDestinationArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Destinations        SystemAutomationDestinationDestinationArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Cluster group ID set for this destination (default = 0).
-	HaGroupId pulumi.IntPtrInput
-	// Destination.
-	Name pulumi.StringPtrInput
-	// Destination type. Valid values: `fortigate`, `ha-cluster`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HaGroupId           pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemAutomationDestinationArgs) ElementType() reflect.Type {
@@ -188,7 +117,7 @@ func (i *SystemAutomationDestination) ToSystemAutomationDestinationOutputWithCon
 // SystemAutomationDestinationArrayInput is an input type that accepts SystemAutomationDestinationArray and SystemAutomationDestinationArrayOutput values.
 // You can construct a concrete instance of `SystemAutomationDestinationArrayInput` via:
 //
-//          SystemAutomationDestinationArray{ SystemAutomationDestinationArgs{...} }
+//	SystemAutomationDestinationArray{ SystemAutomationDestinationArgs{...} }
 type SystemAutomationDestinationArrayInput interface {
 	pulumi.Input
 
@@ -213,7 +142,7 @@ func (i SystemAutomationDestinationArray) ToSystemAutomationDestinationArrayOutp
 // SystemAutomationDestinationMapInput is an input type that accepts SystemAutomationDestinationMap and SystemAutomationDestinationMapOutput values.
 // You can construct a concrete instance of `SystemAutomationDestinationMapInput` via:
 //
-//          SystemAutomationDestinationMap{ "key": SystemAutomationDestinationArgs{...} }
+//	SystemAutomationDestinationMap{ "key": SystemAutomationDestinationArgs{...} }
 type SystemAutomationDestinationMapInput interface {
 	pulumi.Input
 
@@ -247,6 +176,32 @@ func (o SystemAutomationDestinationOutput) ToSystemAutomationDestinationOutput()
 
 func (o SystemAutomationDestinationOutput) ToSystemAutomationDestinationOutputWithContext(ctx context.Context) SystemAutomationDestinationOutput {
 	return o
+}
+
+func (o SystemAutomationDestinationOutput) Destinations() SystemAutomationDestinationDestinationArrayOutput {
+	return o.ApplyT(func(v *SystemAutomationDestination) SystemAutomationDestinationDestinationArrayOutput {
+		return v.Destinations
+	}).(SystemAutomationDestinationDestinationArrayOutput)
+}
+
+func (o SystemAutomationDestinationOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationDestination) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationDestinationOutput) HaGroupId() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutomationDestination) pulumi.IntOutput { return v.HaGroupId }).(pulumi.IntOutput)
+}
+
+func (o SystemAutomationDestinationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationDestination) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationDestinationOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationDestination) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationDestinationOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationDestination) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemAutomationDestinationArrayOutput struct{ *pulumi.OutputState }

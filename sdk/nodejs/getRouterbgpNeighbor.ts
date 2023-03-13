@@ -2,30 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios routerbgp neighbor
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const sample1 = fortios.GetRouterbgpNeighbor({
- *     ip: "21.1.1.12",
- * });
- * export const output1 = sample1;
- * ```
- */
 export function getRouterbgpNeighbor(args: GetRouterbgpNeighborArgs, opts?: pulumi.InvokeOptions): Promise<GetRouterbgpNeighborResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getRouterbgpNeighbor:GetRouterbgpNeighbor", {
         "ip": args.ip,
         "vdomparam": args.vdomparam,
@@ -36,13 +19,7 @@ export function getRouterbgpNeighbor(args: GetRouterbgpNeighborArgs, opts?: pulu
  * A collection of arguments for invoking GetRouterbgpNeighbor.
  */
 export interface GetRouterbgpNeighborArgs {
-    /**
-     * Specify the ip of the desired routerbgp neighbor.
-     */
     ip: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -50,395 +27,134 @@ export interface GetRouterbgpNeighborArgs {
  * A collection of values returned by GetRouterbgpNeighbor.
  */
 export interface GetRouterbgpNeighborResult {
-    /**
-     * Enable/disable address family IPv4 for this neighbor.
-     */
     readonly activate: string;
-    /**
-     * Enable/disable address family IPv6 for this neighbor.
-     */
     readonly activate6: string;
-    /**
-     * Enable/disable IPv4 additional-path capability.
-     */
+    readonly activateVpnv4: string;
     readonly additionalPath: string;
-    /**
-     * Enable/disable IPv6 additional-path capability.
-     */
     readonly additionalPath6: string;
-    /**
-     * Number of IPv4 additional paths that can be advertised to this neighbor.
-     */
+    readonly additionalPathVpnv4: string;
     readonly advAdditionalPath: number;
-    /**
-     * Number of IPv6 additional paths that can be advertised to this neighbor.
-     */
     readonly advAdditionalPath6: number;
-    /**
-     * Minimum interval (sec) between sending updates.
-     */
+    readonly advAdditionalPathVpnv4: number;
     readonly advertisementInterval: number;
-    /**
-     * IPv4 The maximum number of occurrence of my AS number allowed.
-     */
     readonly allowasIn: number;
-    /**
-     * IPv6 The maximum number of occurrence of my AS number allowed.
-     */
     readonly allowasIn6: number;
-    /**
-     * Enable/disable IPv4 Enable to allow my AS in AS path.
-     */
     readonly allowasInEnable: string;
-    /**
-     * Enable/disable IPv6 Enable to allow my AS in AS path.
-     */
     readonly allowasInEnable6: string;
-    /**
-     * Enable/disable replace peer AS with own AS for IPv4.
-     */
+    readonly allowasInVpnv4: number;
     readonly asOverride: string;
-    /**
-     * Enable/disable replace peer AS with own AS for IPv6.
-     */
     readonly asOverride6: string;
-    /**
-     * IPv4 List of attributes that should be unchanged.
-     */
     readonly attributeUnchanged: string;
-    /**
-     * IPv6 List of attributes that should be unchanged.
-     */
     readonly attributeUnchanged6: string;
-    /**
-     * Enable/disable BFD for this neighbor.
-     */
+    readonly attributeUnchangedVpnv4: string;
     readonly bfd: string;
-    /**
-     * Enable/disable advertise default IPv4 route to this neighbor.
-     */
     readonly capabilityDefaultOriginate: string;
-    /**
-     * Enable/disable advertise default IPv6 route to this neighbor.
-     */
     readonly capabilityDefaultOriginate6: string;
-    /**
-     * Enable/disable advertise dynamic capability to this neighbor.
-     */
     readonly capabilityDynamic: string;
-    /**
-     * Enable/disable advertise IPv4 graceful restart capability to this neighbor.
-     */
     readonly capabilityGracefulRestart: string;
-    /**
-     * Enable/disable advertise IPv6 graceful restart capability to this neighbor.
-     */
     readonly capabilityGracefulRestart6: string;
-    /**
-     * Accept/Send IPv4 ORF lists to/from this neighbor.
-     */
+    readonly capabilityGracefulRestartVpnv4: string;
     readonly capabilityOrf: string;
-    /**
-     * Accept/Send IPv6 ORF lists to/from this neighbor.
-     */
     readonly capabilityOrf6: string;
-    /**
-     * Enable/disable advertise route refresh capability to this neighbor.
-     */
     readonly capabilityRouteRefresh: string;
-    /**
-     * IPv6 conditional advertisement. The structure of `conditionalAdvertise6` block is documented below.
-     */
     readonly conditionalAdvertise6s: outputs.GetRouterbgpNeighborConditionalAdvertise6[];
-    /**
-     * Conditional advertisement. The structure of `conditionalAdvertise` block is documented below.
-     */
     readonly conditionalAdvertises: outputs.GetRouterbgpNeighborConditionalAdvertise[];
-    /**
-     * Interval (sec) for connect timer.
-     */
     readonly connectTimer: number;
-    /**
-     * Route map to specify criteria to originate IPv4 default.
-     */
     readonly defaultOriginateRoutemap: string;
-    /**
-     * Route map to specify criteria to originate IPv6 default.
-     */
     readonly defaultOriginateRoutemap6: string;
-    /**
-     * Description.
-     */
     readonly description: string;
-    /**
-     * Filter for IPv4 updates from this neighbor.
-     */
     readonly distributeListIn: string;
-    /**
-     * Filter for IPv6 updates from this neighbor.
-     */
     readonly distributeListIn6: string;
-    /**
-     * Filter for IPv4 updates to this neighbor.
-     */
+    readonly distributeListInVpnv4: string;
     readonly distributeListOut: string;
-    /**
-     * Filter for IPv6 updates to this neighbor.
-     */
     readonly distributeListOut6: string;
-    /**
-     * Don't negotiate capabilities with this neighbor
-     */
+    readonly distributeListOutVpnv4: string;
     readonly dontCapabilityNegotiate: string;
-    /**
-     * Enable/disable allow multi-hop EBGP neighbors.
-     */
     readonly ebgpEnforceMultihop: string;
-    /**
-     * EBGP multihop TTL for this peer.
-     */
     readonly ebgpMultihopTtl: number;
-    /**
-     * BGP filter for IPv4 inbound routes.
-     */
     readonly filterListIn: string;
-    /**
-     * BGP filter for IPv6 inbound routes.
-     */
     readonly filterListIn6: string;
-    /**
-     * BGP filter for IPv4 outbound routes.
-     */
     readonly filterListOut: string;
-    /**
-     * BGP filter for IPv6 outbound routes.
-     */
     readonly filterListOut6: string;
-    /**
-     * Interval (sec) before peer considered dead.
-     */
     readonly holdtimeTimer: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Interface
-     */
     readonly interface: string;
-    /**
-     * IP/IPv6 address of neighbor.
-     */
     readonly ip: string;
-    /**
-     * Keep alive timer interval (sec).
-     */
     readonly keepAliveTimer: number;
-    /**
-     * Enable/disable failover upon link down.
-     */
     readonly linkDownFailover: string;
-    /**
-     * Local AS number of neighbor.
-     */
     readonly localAs: number;
-    /**
-     * Do not prepend local-as to incoming updates.
-     */
     readonly localAsNoPrepend: string;
-    /**
-     * Replace real AS with local-as in outgoing updates.
-     */
     readonly localAsReplaceAs: string;
-    /**
-     * Maximum number of IPv4 prefixes to accept from this peer.
-     */
     readonly maximumPrefix: number;
-    /**
-     * Maximum number of IPv6 prefixes to accept from this peer.
-     */
     readonly maximumPrefix6: number;
-    /**
-     * Maximum IPv4 prefix threshold value (1 - 100 percent).
-     */
     readonly maximumPrefixThreshold: number;
-    /**
-     * Maximum IPv6 prefix threshold value (1 - 100 percent).
-     */
     readonly maximumPrefixThreshold6: number;
-    /**
-     * Enable/disable IPv4 Only give warning message when limit is exceeded.
-     */
+    readonly maximumPrefixThresholdVpnv4: number;
+    readonly maximumPrefixVpnv4: number;
     readonly maximumPrefixWarningOnly: string;
-    /**
-     * Enable/disable IPv6 Only give warning message when limit is exceeded.
-     */
     readonly maximumPrefixWarningOnly6: string;
-    /**
-     * Enable/disable IPv4 next-hop calculation for this neighbor.
-     */
+    readonly maximumPrefixWarningOnlyVpnv4: string;
     readonly nextHopSelf: string;
-    /**
-     * Enable/disable IPv6 next-hop calculation for this neighbor.
-     */
     readonly nextHopSelf6: string;
-    /**
-     * Enable/disable setting nexthop's address to interface's IPv4 address for route-reflector routes.
-     */
     readonly nextHopSelfRr: string;
-    /**
-     * Enable/disable setting nexthop's address to interface's IPv6 address for route-reflector routes.
-     */
     readonly nextHopSelfRr6: string;
-    /**
-     * Enable/disable override result of capability negotiation.
-     */
+    readonly nextHopSelfVpnv4: string;
     readonly overrideCapability: string;
-    /**
-     * Enable/disable sending of open messages to this neighbor.
-     */
     readonly passive: string;
-    /**
-     * Password used in MD5 authentication.
-     */
     readonly password: string;
-    /**
-     * IPv4 Inbound filter for updates from this neighbor.
-     */
     readonly prefixListIn: string;
-    /**
-     * IPv6 Inbound filter for updates from this neighbor.
-     */
     readonly prefixListIn6: string;
-    /**
-     * IPv4 Outbound filter for updates to this neighbor.
-     */
+    readonly prefixListInVpnv4: string;
     readonly prefixListOut: string;
-    /**
-     * IPv6 Outbound filter for updates to this neighbor.
-     */
     readonly prefixListOut6: string;
-    /**
-     * AS number of neighbor.
-     */
+    readonly prefixListOutVpnv4: string;
     readonly remoteAs: number;
-    /**
-     * Enable/disable remove private AS number from IPv4 outbound updates.
-     */
     readonly removePrivateAs: string;
-    /**
-     * Enable/disable remove private AS number from IPv6 outbound updates.
-     */
     readonly removePrivateAs6: string;
-    /**
-     * Graceful restart delay time (sec, 0 = global default).
-     */
+    readonly removePrivateAsVpnv4: string;
     readonly restartTime: number;
-    /**
-     * Time to retain stale routes.
-     */
     readonly retainStaleTime: number;
-    /**
-     * IPv4 Inbound route map filter.
-     */
     readonly routeMapIn: string;
-    /**
-     * IPv6 Inbound route map filter.
-     */
     readonly routeMapIn6: string;
-    /**
-     * IPv4 Outbound route map filter.
-     */
+    readonly routeMapInVpnv4: string;
     readonly routeMapOut: string;
-    /**
-     * IPv6 Outbound route map filter.
-     */
     readonly routeMapOut6: string;
-    /**
-     * IPv6 outbound route map filter if the peer is preferred.
-     */
     readonly routeMapOut6Preferable: string;
-    /**
-     * IPv4 outbound route map filter if the peer is preferred.
-     */
     readonly routeMapOutPreferable: string;
-    /**
-     * Enable/disable IPv4 AS route reflector client.
-     */
+    readonly routeMapOutVpnv4: string;
+    readonly routeMapOutVpnv4Preferable: string;
     readonly routeReflectorClient: string;
-    /**
-     * Enable/disable IPv6 AS route reflector client.
-     */
     readonly routeReflectorClient6: string;
-    /**
-     * Enable/disable IPv4 AS route server client.
-     */
+    readonly routeReflectorClientVpnv4: string;
     readonly routeServerClient: string;
-    /**
-     * Enable/disable IPv6 AS route server client.
-     */
     readonly routeServerClient6: string;
-    /**
-     * IPv4 Send community attribute to neighbor.
-     */
+    readonly routeServerClientVpnv4: string;
     readonly sendCommunity: string;
-    /**
-     * IPv6 Send community attribute to neighbor.
-     */
     readonly sendCommunity6: string;
-    /**
-     * Enable/disable shutdown this neighbor.
-     */
+    readonly sendCommunityVpnv4: string;
     readonly shutdown: string;
-    /**
-     * Enable/disable allow IPv4 inbound soft reconfiguration.
-     */
     readonly softReconfiguration: string;
-    /**
-     * Enable/disable allow IPv6 inbound soft reconfiguration.
-     */
     readonly softReconfiguration6: string;
-    /**
-     * Enable/disable stale route after neighbor down.
-     */
+    readonly softReconfigurationVpnv4: string;
     readonly staleRoute: string;
-    /**
-     * Enable/disable strict capability matching.
-     */
     readonly strictCapabilityMatch: string;
-    /**
-     * IPv4 Route map to selectively unsuppress suppressed routes.
-     */
     readonly unsuppressMap: string;
-    /**
-     * IPv6 Route map to selectively unsuppress suppressed routes.
-     */
     readonly unsuppressMap6: string;
-    /**
-     * Interface to use as source IP/IPv6 address of TCP connections.
-     */
     readonly updateSource: string;
     readonly vdomparam?: string;
-    /**
-     * Neighbor weight.
-     */
     readonly weight: number;
 }
-
 export function getRouterbgpNeighborOutput(args: GetRouterbgpNeighborOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterbgpNeighborResult> {
-    return pulumi.output(args).apply(a => getRouterbgpNeighbor(a, opts))
+    return pulumi.output(args).apply((a: any) => getRouterbgpNeighbor(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetRouterbgpNeighbor.
  */
 export interface GetRouterbgpNeighborOutputArgs {
-    /**
-     * Specify the ip of the desired routerbgp neighbor.
-     */
     ip: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

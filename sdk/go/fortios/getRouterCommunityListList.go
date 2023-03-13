@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `RouterCommunityList`.
 func GetRouterCommunityListList(ctx *pulumi.Context, args *GetRouterCommunityListListArgs, opts ...pulumi.InvokeOption) (*GetRouterCommunityListListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetRouterCommunityListListResult
@@ -23,8 +22,7 @@ func GetRouterCommunityListList(ctx *pulumi.Context, args *GetRouterCommunityLis
 
 // A collection of arguments for invoking GetRouterCommunityListList.
 type GetRouterCommunityListListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetRouterCommunityListListArgs struct {
 type GetRouterCommunityListListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `RouterCommunityList`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetRouterCommunityListListOutput(ctx *pulumi.Context, args GetRouterCommuni
 
 // A collection of arguments for invoking GetRouterCommunityListList.
 type GetRouterCommunityListListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetRouterCommunityListListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRouterCommunityListListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `RouterCommunityList`.
 func (o GetRouterCommunityListListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRouterCommunityListListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

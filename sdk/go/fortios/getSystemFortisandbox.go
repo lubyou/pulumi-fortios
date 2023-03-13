@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios system fortisandbox
 func LookupSystemFortisandbox(ctx *pulumi.Context, args *LookupSystemFortisandboxArgs, opts ...pulumi.InvokeOption) (*LookupSystemFortisandboxResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemFortisandboxResult
@@ -23,33 +22,24 @@ func LookupSystemFortisandbox(ctx *pulumi.Context, args *LookupSystemFortisandbo
 
 // A collection of arguments for invoking GetSystemFortisandbox.
 type LookupSystemFortisandboxArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemFortisandbox.
 type LookupSystemFortisandboxResult struct {
-	// Notifier email address.
-	Email string `pulumi:"email"`
-	// Configure the level of SSL protection for secure communication with FortiSandbox.
+	Email        string `pulumi:"email"`
 	EncAlgorithm string `pulumi:"encAlgorithm"`
-	// Enable/disable FortiSandbox Cloud.
-	Forticloud string `pulumi:"forticloud"`
+	Forticloud   string `pulumi:"forticloud"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Specify outgoing interface to reach server.
-	Interface string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server.
-	InterfaceSelectMethod string `pulumi:"interfaceSelectMethod"`
-	// IPv4 or IPv6 address of the remote FortiSandbox.
-	Server string `pulumi:"server"`
-	// Source IP address for communications to FortiSandbox.
-	SourceIp string `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
-	SslMinProtoVersion string `pulumi:"sslMinProtoVersion"`
-	// Enable/disable FortiSandbox.
-	Status    string  `pulumi:"status"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id                    string  `pulumi:"id"`
+	InlineScan            string  `pulumi:"inlineScan"`
+	Interface             string  `pulumi:"interface"`
+	InterfaceSelectMethod string  `pulumi:"interfaceSelectMethod"`
+	Server                string  `pulumi:"server"`
+	SourceIp              string  `pulumi:"sourceIp"`
+	SslMinProtoVersion    string  `pulumi:"sslMinProtoVersion"`
+	Status                string  `pulumi:"status"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 func LookupSystemFortisandboxOutput(ctx *pulumi.Context, args LookupSystemFortisandboxOutputArgs, opts ...pulumi.InvokeOption) LookupSystemFortisandboxResultOutput {
@@ -67,7 +57,6 @@ func LookupSystemFortisandboxOutput(ctx *pulumi.Context, args LookupSystemFortis
 
 // A collection of arguments for invoking GetSystemFortisandbox.
 type LookupSystemFortisandboxOutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -90,17 +79,14 @@ func (o LookupSystemFortisandboxResultOutput) ToLookupSystemFortisandboxResultOu
 	return o
 }
 
-// Notifier email address.
 func (o LookupSystemFortisandboxResultOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFortisandboxResult) string { return v.Email }).(pulumi.StringOutput)
 }
 
-// Configure the level of SSL protection for secure communication with FortiSandbox.
 func (o LookupSystemFortisandboxResultOutput) EncAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFortisandboxResult) string { return v.EncAlgorithm }).(pulumi.StringOutput)
 }
 
-// Enable/disable FortiSandbox Cloud.
 func (o LookupSystemFortisandboxResultOutput) Forticloud() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFortisandboxResult) string { return v.Forticloud }).(pulumi.StringOutput)
 }
@@ -110,32 +96,30 @@ func (o LookupSystemFortisandboxResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFortisandboxResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Specify outgoing interface to reach server.
+func (o LookupSystemFortisandboxResultOutput) InlineScan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortisandboxResult) string { return v.InlineScan }).(pulumi.StringOutput)
+}
+
 func (o LookupSystemFortisandboxResultOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFortisandboxResult) string { return v.Interface }).(pulumi.StringOutput)
 }
 
-// Specify how to select outgoing interface to reach server.
 func (o LookupSystemFortisandboxResultOutput) InterfaceSelectMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFortisandboxResult) string { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
 }
 
-// IPv4 or IPv6 address of the remote FortiSandbox.
 func (o LookupSystemFortisandboxResultOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFortisandboxResult) string { return v.Server }).(pulumi.StringOutput)
 }
 
-// Source IP address for communications to FortiSandbox.
 func (o LookupSystemFortisandboxResultOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFortisandboxResult) string { return v.SourceIp }).(pulumi.StringOutput)
 }
 
-// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 func (o LookupSystemFortisandboxResultOutput) SslMinProtoVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFortisandboxResult) string { return v.SslMinProtoVersion }).(pulumi.StringOutput)
 }
 
-// Enable/disable FortiSandbox.
 func (o LookupSystemFortisandboxResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFortisandboxResult) string { return v.Status }).(pulumi.StringOutput)
 }

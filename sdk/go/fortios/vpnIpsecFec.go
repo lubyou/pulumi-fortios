@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Forward Error Correction (FEC) mapping profiles. Applies to FortiOS Version `>= 7.0.2`.
-//
-// ## Import
-//
-// VpnIpsec Fec can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnIpsecFec:VpnIpsecFec labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnIpsecFec:VpnIpsecFec labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnIpsecFec struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// FEC redundancy mapping table. The structure of `mappings` block is documented below.
-	Mappings VpnIpsecFecMappingArrayOutput `pulumi:"mappings"`
-	// Profile name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput        `pulumi:"dynamicSortSubtable"`
+	Mappings            VpnIpsecFecMappingArrayOutput `pulumi:"mappings"`
+	Name                pulumi.StringOutput           `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput        `pulumi:"vdomparam"`
 }
 
 // NewVpnIpsecFec registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetVpnIpsecFec(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnIpsecFec resources.
 type vpnIpsecFecState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// FEC redundancy mapping table. The structure of `mappings` block is documented below.
-	Mappings []VpnIpsecFecMapping `pulumi:"mappings"`
-	// Profile name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
+	Mappings            []VpnIpsecFecMapping `pulumi:"mappings"`
+	Name                *string              `pulumi:"name"`
+	Vdomparam           *string              `pulumi:"vdomparam"`
 }
 
 type VpnIpsecFecState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// FEC redundancy mapping table. The structure of `mappings` block is documented below.
-	Mappings VpnIpsecFecMappingArrayInput
-	// Profile name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Mappings            VpnIpsecFecMappingArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (VpnIpsecFecState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (VpnIpsecFecState) ElementType() reflect.Type {
 }
 
 type vpnIpsecFecArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// FEC redundancy mapping table. The structure of `mappings` block is documented below.
-	Mappings []VpnIpsecFecMapping `pulumi:"mappings"`
-	// Profile name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
+	Mappings            []VpnIpsecFecMapping `pulumi:"mappings"`
+	Name                *string              `pulumi:"name"`
+	Vdomparam           *string              `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VpnIpsecFec resource.
 type VpnIpsecFecArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// FEC redundancy mapping table. The structure of `mappings` block is documented below.
-	Mappings VpnIpsecFecMappingArrayInput
-	// Profile name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Mappings            VpnIpsecFecMappingArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (VpnIpsecFecArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *VpnIpsecFec) ToVpnIpsecFecOutputWithContext(ctx context.Context) VpnIps
 // VpnIpsecFecArrayInput is an input type that accepts VpnIpsecFecArray and VpnIpsecFecArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecFecArrayInput` via:
 //
-//          VpnIpsecFecArray{ VpnIpsecFecArgs{...} }
+//	VpnIpsecFecArray{ VpnIpsecFecArgs{...} }
 type VpnIpsecFecArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i VpnIpsecFecArray) ToVpnIpsecFecArrayOutputWithContext(ctx context.Contex
 // VpnIpsecFecMapInput is an input type that accepts VpnIpsecFecMap and VpnIpsecFecMapOutput values.
 // You can construct a concrete instance of `VpnIpsecFecMapInput` via:
 //
-//          VpnIpsecFecMap{ "key": VpnIpsecFecArgs{...} }
+//	VpnIpsecFecMap{ "key": VpnIpsecFecArgs{...} }
 type VpnIpsecFecMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o VpnIpsecFecOutput) ToVpnIpsecFecOutput() VpnIpsecFecOutput {
 
 func (o VpnIpsecFecOutput) ToVpnIpsecFecOutputWithContext(ctx context.Context) VpnIpsecFecOutput {
 	return o
+}
+
+func (o VpnIpsecFecOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnIpsecFec) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnIpsecFecOutput) Mappings() VpnIpsecFecMappingArrayOutput {
+	return o.ApplyT(func(v *VpnIpsecFec) VpnIpsecFecMappingArrayOutput { return v.Mappings }).(VpnIpsecFecMappingArrayOutput)
+}
+
+func (o VpnIpsecFecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecFec) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecFecOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnIpsecFec) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type VpnIpsecFecArrayOutput struct{ *pulumi.OutputState }

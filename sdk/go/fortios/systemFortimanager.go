@@ -10,41 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiManager. Applies to FortiOS Version `<= 7.0.1`.
-//
-// By design considerations, the feature is using the SystemCentralManagement resource as documented below.
-//
-// ## Example
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemCentralManagement(ctx, "trname", &fortios.SystemCentralManagementArgs{
-// 			AllowMonitor:               pulumi.String("enable"),
-// 			AllowPushConfiguration:     pulumi.String("enable"),
-// 			AllowPushFirmware:          pulumi.String("enable"),
-// 			AllowRemoteFirmwareUpgrade: pulumi.String("enable"),
-// 			EncAlgorithm:               pulumi.String("high"),
-// 			Fmg:                        pulumi.String("\"192.168.52.177\""),
-// 			IncludeDefaultServers:      pulumi.String("enable"),
-// 			Mode:                       pulumi.String("normal"),
-// 			Type:                       pulumi.String("fortimanager"),
-// 			Vdom:                       pulumi.String("root"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type SystemFortimanager struct {
 	pulumi.CustomResourceState
 
@@ -162,7 +127,7 @@ func (i *SystemFortimanager) ToSystemFortimanagerOutputWithContext(ctx context.C
 // SystemFortimanagerArrayInput is an input type that accepts SystemFortimanagerArray and SystemFortimanagerArrayOutput values.
 // You can construct a concrete instance of `SystemFortimanagerArrayInput` via:
 //
-//          SystemFortimanagerArray{ SystemFortimanagerArgs{...} }
+//	SystemFortimanagerArray{ SystemFortimanagerArgs{...} }
 type SystemFortimanagerArrayInput interface {
 	pulumi.Input
 
@@ -187,7 +152,7 @@ func (i SystemFortimanagerArray) ToSystemFortimanagerArrayOutputWithContext(ctx 
 // SystemFortimanagerMapInput is an input type that accepts SystemFortimanagerMap and SystemFortimanagerMapOutput values.
 // You can construct a concrete instance of `SystemFortimanagerMapInput` via:
 //
-//          SystemFortimanagerMap{ "key": SystemFortimanagerArgs{...} }
+//	SystemFortimanagerMap{ "key": SystemFortimanagerArgs{...} }
 type SystemFortimanagerMapInput interface {
 	pulumi.Input
 
@@ -221,6 +186,38 @@ func (o SystemFortimanagerOutput) ToSystemFortimanagerOutput() SystemFortimanage
 
 func (o SystemFortimanagerOutput) ToSystemFortimanagerOutputWithContext(ctx context.Context) SystemFortimanagerOutput {
 	return o
+}
+
+func (o SystemFortimanagerOutput) CentralManagement() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortimanager) pulumi.StringOutput { return v.CentralManagement }).(pulumi.StringOutput)
+}
+
+func (o SystemFortimanagerOutput) CentralMgmtAutoBackup() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortimanager) pulumi.StringOutput { return v.CentralMgmtAutoBackup }).(pulumi.StringOutput)
+}
+
+func (o SystemFortimanagerOutput) CentralMgmtScheduleConfigRestore() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortimanager) pulumi.StringOutput { return v.CentralMgmtScheduleConfigRestore }).(pulumi.StringOutput)
+}
+
+func (o SystemFortimanagerOutput) CentralMgmtScheduleScriptRestore() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortimanager) pulumi.StringOutput { return v.CentralMgmtScheduleScriptRestore }).(pulumi.StringOutput)
+}
+
+func (o SystemFortimanagerOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortimanager) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o SystemFortimanagerOutput) Ipsec() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortimanager) pulumi.StringOutput { return v.Ipsec }).(pulumi.StringOutput)
+}
+
+func (o SystemFortimanagerOutput) Vdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortimanager) pulumi.StringOutput { return v.Vdom }).(pulumi.StringOutput)
+}
+
+func (o SystemFortimanagerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemFortimanager) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemFortimanagerArrayOutput struct{ *pulumi.OutputState }

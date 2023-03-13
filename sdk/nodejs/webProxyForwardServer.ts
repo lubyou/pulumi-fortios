@@ -4,41 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure forward-server addresses.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WebProxyForwardServer("trname", {
- *     addrType: "fqdn",
- *     healthcheck: "disable",
- *     ip: "0.0.0.0",
- *     monitor: "http://www.google.com",
- *     port: 3128,
- *     serverDownOption: "block",
- * });
- * ```
- *
- * ## Import
- *
- * WebProxy ForwardServer can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/webProxyForwardServer:WebProxyForwardServer labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/webProxyForwardServer:WebProxyForwardServer labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WebProxyForwardServer extends pulumi.CustomResource {
     /**
      * Get an existing WebProxyForwardServer resource's state with the given name, ID, and optional extra
@@ -67,53 +32,17 @@ export class WebProxyForwardServer extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebProxyForwardServer.__pulumiType;
     }
 
-    /**
-     * Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
-     */
     public readonly addrType!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string>;
-    /**
-     * Forward server Fully Qualified Domain Name (FQDN).
-     */
     public readonly fqdn!: pulumi.Output<string>;
-    /**
-     * Enable/disable forward server health checking. Attempts to connect through the remote forwarding server to a destination to verify that the forwarding server is operating normally. Valid values: `disable`, `enable`.
-     */
     public readonly healthcheck!: pulumi.Output<string>;
-    /**
-     * Forward proxy server IP address.
-     */
     public readonly ip!: pulumi.Output<string>;
-    /**
-     * URL for forward server health check monitoring (default = http://www.google.com).
-     */
     public readonly monitor!: pulumi.Output<string>;
-    /**
-     * Server name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * HTTP authentication password.
-     */
     public readonly password!: pulumi.Output<string | undefined>;
-    /**
-     * Port number that the forwarding server expects to receive HTTP sessions on (1 - 65535, default = 3128).
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Action to take when the forward server is found to be down: block sessions until the server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
-     */
     public readonly serverDownOption!: pulumi.Output<string>;
-    /**
-     * HTTP authentication user name.
-     */
     public readonly username!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -150,13 +79,15 @@ export class WebProxyForwardServer extends pulumi.CustomResource {
             resourceInputs["ip"] = args ? args.ip : undefined;
             resourceInputs["monitor"] = args ? args.monitor : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
             resourceInputs["serverDownOption"] = args ? args.serverDownOption : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(WebProxyForwardServer.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -165,53 +96,17 @@ export class WebProxyForwardServer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WebProxyForwardServer resources.
  */
 export interface WebProxyForwardServerState {
-    /**
-     * Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
-     */
     addrType?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Forward server Fully Qualified Domain Name (FQDN).
-     */
     fqdn?: pulumi.Input<string>;
-    /**
-     * Enable/disable forward server health checking. Attempts to connect through the remote forwarding server to a destination to verify that the forwarding server is operating normally. Valid values: `disable`, `enable`.
-     */
     healthcheck?: pulumi.Input<string>;
-    /**
-     * Forward proxy server IP address.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * URL for forward server health check monitoring (default = http://www.google.com).
-     */
     monitor?: pulumi.Input<string>;
-    /**
-     * Server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * HTTP authentication password.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Port number that the forwarding server expects to receive HTTP sessions on (1 - 65535, default = 3128).
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Action to take when the forward server is found to be down: block sessions until the server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
-     */
     serverDownOption?: pulumi.Input<string>;
-    /**
-     * HTTP authentication user name.
-     */
     username?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -219,52 +114,16 @@ export interface WebProxyForwardServerState {
  * The set of arguments for constructing a WebProxyForwardServer resource.
  */
 export interface WebProxyForwardServerArgs {
-    /**
-     * Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
-     */
     addrType?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Forward server Fully Qualified Domain Name (FQDN).
-     */
     fqdn?: pulumi.Input<string>;
-    /**
-     * Enable/disable forward server health checking. Attempts to connect through the remote forwarding server to a destination to verify that the forwarding server is operating normally. Valid values: `disable`, `enable`.
-     */
     healthcheck?: pulumi.Input<string>;
-    /**
-     * Forward proxy server IP address.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * URL for forward server health check monitoring (default = http://www.google.com).
-     */
     monitor?: pulumi.Input<string>;
-    /**
-     * Server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * HTTP authentication password.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Port number that the forwarding server expects to receive HTTP sessions on (1 - 65535, default = 3128).
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Action to take when the forward server is found to be down: block sessions until the server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
-     */
     serverDownOption?: pulumi.Input<string>;
-    /**
-     * HTTP authentication user name.
-     */
     username?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

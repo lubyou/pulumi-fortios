@@ -7,106 +7,29 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure user defined IPv4 local-in policies.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallLocalInPolicy(ctx, "trname", &fortios.FirewallLocalInPolicyArgs{
-// 			Action: pulumi.String("accept"),
-// 			Dstaddrs: FirewallLocalInPolicyDstaddrArray{
-// 				&FirewallLocalInPolicyDstaddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			HaMgmtIntfOnly: pulumi.String("disable"),
-// 			Intf:           pulumi.String("port4"),
-// 			Policyid:       pulumi.Int(1),
-// 			Schedule:       pulumi.String("always"),
-// 			Services: FirewallLocalInPolicyServiceArray{
-// 				&FirewallLocalInPolicyServiceArgs{
-// 					Name: pulumi.String("ALL"),
-// 				},
-// 			},
-// 			Srcaddrs: FirewallLocalInPolicySrcaddrArray{
-// 				&FirewallLocalInPolicySrcaddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			Status: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall LocalInPolicy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallLocalInPolicy:FirewallLocalInPolicy labelname {{policyid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallLocalInPolicy:FirewallLocalInPolicy labelname {{policyid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallLocalInPolicy struct {
 	pulumi.CustomResourceState
 
-	// Action performed on traffic matching the policy (default = deny). Valid values: `accept`, `deny`.
-	Action pulumi.StringOutput `pulumi:"action"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-	DstaddrNegate pulumi.StringOutput `pulumi:"dstaddrNegate"`
-	// Destination address object from available options. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallLocalInPolicyDstaddrArrayOutput `pulumi:"dstaddrs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `enable`, `disable`.
-	HaMgmtIntfOnly pulumi.StringOutput `pulumi:"haMgmtIntfOnly"`
-	// Incoming interface name from available options.
-	Intf pulumi.StringOutput `pulumi:"intf"`
-	// User defined local in policy ID.
-	Policyid pulumi.IntOutput `pulumi:"policyid"`
-	// Schedule object from available options.
-	Schedule pulumi.StringOutput `pulumi:"schedule"`
-	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	ServiceNegate pulumi.StringOutput `pulumi:"serviceNegate"`
-	// Service object from available options. The structure of `service` block is documented below.
-	Services FirewallLocalInPolicyServiceArrayOutput `pulumi:"services"`
-	// When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-	SrcaddrNegate pulumi.StringOutput `pulumi:"srcaddrNegate"`
-	// Source address object from available options. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallLocalInPolicySrcaddrArrayOutput `pulumi:"srcaddrs"`
-	// Enable/disable this local-in policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringOutput `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Action              pulumi.StringOutput                     `pulumi:"action"`
+	Comments            pulumi.StringPtrOutput                  `pulumi:"comments"`
+	DstaddrNegate       pulumi.StringOutput                     `pulumi:"dstaddrNegate"`
+	Dstaddrs            FirewallLocalInPolicyDstaddrArrayOutput `pulumi:"dstaddrs"`
+	DynamicSortSubtable pulumi.StringPtrOutput                  `pulumi:"dynamicSortSubtable"`
+	HaMgmtIntfOnly      pulumi.StringOutput                     `pulumi:"haMgmtIntfOnly"`
+	Intf                pulumi.StringOutput                     `pulumi:"intf"`
+	Policyid            pulumi.IntOutput                        `pulumi:"policyid"`
+	Schedule            pulumi.StringOutput                     `pulumi:"schedule"`
+	ServiceNegate       pulumi.StringOutput                     `pulumi:"serviceNegate"`
+	Services            FirewallLocalInPolicyServiceArrayOutput `pulumi:"services"`
+	SrcaddrNegate       pulumi.StringOutput                     `pulumi:"srcaddrNegate"`
+	Srcaddrs            FirewallLocalInPolicySrcaddrArrayOutput `pulumi:"srcaddrs"`
+	Status              pulumi.StringOutput                     `pulumi:"status"`
+	Uuid                pulumi.StringOutput                     `pulumi:"uuid"`
+	Vdomparam           pulumi.StringPtrOutput                  `pulumi:"vdomparam"`
 }
 
 // NewFirewallLocalInPolicy registers a new resource with the given unique name, arguments, and options.
@@ -148,73 +71,41 @@ func GetFirewallLocalInPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallLocalInPolicy resources.
 type firewallLocalInPolicyState struct {
-	// Action performed on traffic matching the policy (default = deny). Valid values: `accept`, `deny`.
-	Action *string `pulumi:"action"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-	DstaddrNegate *string `pulumi:"dstaddrNegate"`
-	// Destination address object from available options. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallLocalInPolicyDstaddr `pulumi:"dstaddrs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `enable`, `disable`.
-	HaMgmtIntfOnly *string `pulumi:"haMgmtIntfOnly"`
-	// Incoming interface name from available options.
-	Intf *string `pulumi:"intf"`
-	// User defined local in policy ID.
-	Policyid *int `pulumi:"policyid"`
-	// Schedule object from available options.
-	Schedule *string `pulumi:"schedule"`
-	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	ServiceNegate *string `pulumi:"serviceNegate"`
-	// Service object from available options. The structure of `service` block is documented below.
-	Services []FirewallLocalInPolicyService `pulumi:"services"`
-	// When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-	SrcaddrNegate *string `pulumi:"srcaddrNegate"`
-	// Source address object from available options. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallLocalInPolicySrcaddr `pulumi:"srcaddrs"`
-	// Enable/disable this local-in policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Action              *string                        `pulumi:"action"`
+	Comments            *string                        `pulumi:"comments"`
+	DstaddrNegate       *string                        `pulumi:"dstaddrNegate"`
+	Dstaddrs            []FirewallLocalInPolicyDstaddr `pulumi:"dstaddrs"`
+	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
+	HaMgmtIntfOnly      *string                        `pulumi:"haMgmtIntfOnly"`
+	Intf                *string                        `pulumi:"intf"`
+	Policyid            *int                           `pulumi:"policyid"`
+	Schedule            *string                        `pulumi:"schedule"`
+	ServiceNegate       *string                        `pulumi:"serviceNegate"`
+	Services            []FirewallLocalInPolicyService `pulumi:"services"`
+	SrcaddrNegate       *string                        `pulumi:"srcaddrNegate"`
+	Srcaddrs            []FirewallLocalInPolicySrcaddr `pulumi:"srcaddrs"`
+	Status              *string                        `pulumi:"status"`
+	Uuid                *string                        `pulumi:"uuid"`
+	Vdomparam           *string                        `pulumi:"vdomparam"`
 }
 
 type FirewallLocalInPolicyState struct {
-	// Action performed on traffic matching the policy (default = deny). Valid values: `accept`, `deny`.
-	Action pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-	DstaddrNegate pulumi.StringPtrInput
-	// Destination address object from available options. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallLocalInPolicyDstaddrArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Action              pulumi.StringPtrInput
+	Comments            pulumi.StringPtrInput
+	DstaddrNegate       pulumi.StringPtrInput
+	Dstaddrs            FirewallLocalInPolicyDstaddrArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `enable`, `disable`.
-	HaMgmtIntfOnly pulumi.StringPtrInput
-	// Incoming interface name from available options.
-	Intf pulumi.StringPtrInput
-	// User defined local in policy ID.
-	Policyid pulumi.IntPtrInput
-	// Schedule object from available options.
-	Schedule pulumi.StringPtrInput
-	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	ServiceNegate pulumi.StringPtrInput
-	// Service object from available options. The structure of `service` block is documented below.
-	Services FirewallLocalInPolicyServiceArrayInput
-	// When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-	SrcaddrNegate pulumi.StringPtrInput
-	// Source address object from available options. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallLocalInPolicySrcaddrArrayInput
-	// Enable/disable this local-in policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HaMgmtIntfOnly      pulumi.StringPtrInput
+	Intf                pulumi.StringPtrInput
+	Policyid            pulumi.IntPtrInput
+	Schedule            pulumi.StringPtrInput
+	ServiceNegate       pulumi.StringPtrInput
+	Services            FirewallLocalInPolicyServiceArrayInput
+	SrcaddrNegate       pulumi.StringPtrInput
+	Srcaddrs            FirewallLocalInPolicySrcaddrArrayInput
+	Status              pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallLocalInPolicyState) ElementType() reflect.Type {
@@ -222,74 +113,42 @@ func (FirewallLocalInPolicyState) ElementType() reflect.Type {
 }
 
 type firewallLocalInPolicyArgs struct {
-	// Action performed on traffic matching the policy (default = deny). Valid values: `accept`, `deny`.
-	Action *string `pulumi:"action"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-	DstaddrNegate *string `pulumi:"dstaddrNegate"`
-	// Destination address object from available options. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallLocalInPolicyDstaddr `pulumi:"dstaddrs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `enable`, `disable`.
-	HaMgmtIntfOnly *string `pulumi:"haMgmtIntfOnly"`
-	// Incoming interface name from available options.
-	Intf *string `pulumi:"intf"`
-	// User defined local in policy ID.
-	Policyid *int `pulumi:"policyid"`
-	// Schedule object from available options.
-	Schedule string `pulumi:"schedule"`
-	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	ServiceNegate *string `pulumi:"serviceNegate"`
-	// Service object from available options. The structure of `service` block is documented below.
-	Services []FirewallLocalInPolicyService `pulumi:"services"`
-	// When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-	SrcaddrNegate *string `pulumi:"srcaddrNegate"`
-	// Source address object from available options. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallLocalInPolicySrcaddr `pulumi:"srcaddrs"`
-	// Enable/disable this local-in policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Action              *string                        `pulumi:"action"`
+	Comments            *string                        `pulumi:"comments"`
+	DstaddrNegate       *string                        `pulumi:"dstaddrNegate"`
+	Dstaddrs            []FirewallLocalInPolicyDstaddr `pulumi:"dstaddrs"`
+	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
+	HaMgmtIntfOnly      *string                        `pulumi:"haMgmtIntfOnly"`
+	Intf                *string                        `pulumi:"intf"`
+	Policyid            *int                           `pulumi:"policyid"`
+	Schedule            string                         `pulumi:"schedule"`
+	ServiceNegate       *string                        `pulumi:"serviceNegate"`
+	Services            []FirewallLocalInPolicyService `pulumi:"services"`
+	SrcaddrNegate       *string                        `pulumi:"srcaddrNegate"`
+	Srcaddrs            []FirewallLocalInPolicySrcaddr `pulumi:"srcaddrs"`
+	Status              *string                        `pulumi:"status"`
+	Uuid                *string                        `pulumi:"uuid"`
+	Vdomparam           *string                        `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallLocalInPolicy resource.
 type FirewallLocalInPolicyArgs struct {
-	// Action performed on traffic matching the policy (default = deny). Valid values: `accept`, `deny`.
-	Action pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-	DstaddrNegate pulumi.StringPtrInput
-	// Destination address object from available options. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallLocalInPolicyDstaddrArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Action              pulumi.StringPtrInput
+	Comments            pulumi.StringPtrInput
+	DstaddrNegate       pulumi.StringPtrInput
+	Dstaddrs            FirewallLocalInPolicyDstaddrArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `enable`, `disable`.
-	HaMgmtIntfOnly pulumi.StringPtrInput
-	// Incoming interface name from available options.
-	Intf pulumi.StringPtrInput
-	// User defined local in policy ID.
-	Policyid pulumi.IntPtrInput
-	// Schedule object from available options.
-	Schedule pulumi.StringInput
-	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	ServiceNegate pulumi.StringPtrInput
-	// Service object from available options. The structure of `service` block is documented below.
-	Services FirewallLocalInPolicyServiceArrayInput
-	// When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-	SrcaddrNegate pulumi.StringPtrInput
-	// Source address object from available options. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallLocalInPolicySrcaddrArrayInput
-	// Enable/disable this local-in policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HaMgmtIntfOnly      pulumi.StringPtrInput
+	Intf                pulumi.StringPtrInput
+	Policyid            pulumi.IntPtrInput
+	Schedule            pulumi.StringInput
+	ServiceNegate       pulumi.StringPtrInput
+	Services            FirewallLocalInPolicyServiceArrayInput
+	SrcaddrNegate       pulumi.StringPtrInput
+	Srcaddrs            FirewallLocalInPolicySrcaddrArrayInput
+	Status              pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallLocalInPolicyArgs) ElementType() reflect.Type {
@@ -318,7 +177,7 @@ func (i *FirewallLocalInPolicy) ToFirewallLocalInPolicyOutputWithContext(ctx con
 // FirewallLocalInPolicyArrayInput is an input type that accepts FirewallLocalInPolicyArray and FirewallLocalInPolicyArrayOutput values.
 // You can construct a concrete instance of `FirewallLocalInPolicyArrayInput` via:
 //
-//          FirewallLocalInPolicyArray{ FirewallLocalInPolicyArgs{...} }
+//	FirewallLocalInPolicyArray{ FirewallLocalInPolicyArgs{...} }
 type FirewallLocalInPolicyArrayInput interface {
 	pulumi.Input
 
@@ -343,7 +202,7 @@ func (i FirewallLocalInPolicyArray) ToFirewallLocalInPolicyArrayOutputWithContex
 // FirewallLocalInPolicyMapInput is an input type that accepts FirewallLocalInPolicyMap and FirewallLocalInPolicyMapOutput values.
 // You can construct a concrete instance of `FirewallLocalInPolicyMapInput` via:
 //
-//          FirewallLocalInPolicyMap{ "key": FirewallLocalInPolicyArgs{...} }
+//	FirewallLocalInPolicyMap{ "key": FirewallLocalInPolicyArgs{...} }
 type FirewallLocalInPolicyMapInput interface {
 	pulumi.Input
 
@@ -377,6 +236,70 @@ func (o FirewallLocalInPolicyOutput) ToFirewallLocalInPolicyOutput() FirewallLoc
 
 func (o FirewallLocalInPolicyOutput) ToFirewallLocalInPolicyOutputWithContext(ctx context.Context) FirewallLocalInPolicyOutput {
 	return o
+}
+
+func (o FirewallLocalInPolicyOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) DstaddrNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringOutput { return v.DstaddrNegate }).(pulumi.StringOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) Dstaddrs() FirewallLocalInPolicyDstaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) FirewallLocalInPolicyDstaddrArrayOutput { return v.Dstaddrs }).(FirewallLocalInPolicyDstaddrArrayOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) HaMgmtIntfOnly() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringOutput { return v.HaMgmtIntfOnly }).(pulumi.StringOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) Intf() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringOutput { return v.Intf }).(pulumi.StringOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) Policyid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.IntOutput { return v.Policyid }).(pulumi.IntOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringOutput { return v.Schedule }).(pulumi.StringOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) ServiceNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringOutput { return v.ServiceNegate }).(pulumi.StringOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) Services() FirewallLocalInPolicyServiceArrayOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) FirewallLocalInPolicyServiceArrayOutput { return v.Services }).(FirewallLocalInPolicyServiceArrayOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) SrcaddrNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringOutput { return v.SrcaddrNegate }).(pulumi.StringOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) Srcaddrs() FirewallLocalInPolicySrcaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) FirewallLocalInPolicySrcaddrArrayOutput { return v.Srcaddrs }).(FirewallLocalInPolicySrcaddrArrayOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallLocalInPolicyArrayOutput struct{ *pulumi.OutputState }

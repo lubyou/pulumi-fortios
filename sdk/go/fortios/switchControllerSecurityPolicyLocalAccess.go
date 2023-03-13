@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure allowaccess list for mgmt and internal interfaces on managed FortiSwitch. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// SwitchControllerSecurityPolicy LocalAccess can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSecurityPolicyLocalAccess:SwitchControllerSecurityPolicyLocalAccess labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSecurityPolicyLocalAccess:SwitchControllerSecurityPolicyLocalAccess labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerSecurityPolicyLocalAccess struct {
 	pulumi.CustomResourceState
 
-	// Allowed access on the switch internal interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
-	InternalAllowaccess pulumi.StringOutput `pulumi:"internalAllowaccess"`
-	// Allowed access on the switch management interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
-	MgmtAllowaccess pulumi.StringOutput `pulumi:"mgmtAllowaccess"`
-	// Policy name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	InternalAllowaccess pulumi.StringOutput    `pulumi:"internalAllowaccess"`
+	MgmtAllowaccess     pulumi.StringOutput    `pulumi:"mgmtAllowaccess"`
+	Name                pulumi.StringOutput    `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerSecurityPolicyLocalAccess registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetSwitchControllerSecurityPolicyLocalAccess(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerSecurityPolicyLocalAccess resources.
 type switchControllerSecurityPolicyLocalAccessState struct {
-	// Allowed access on the switch internal interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
 	InternalAllowaccess *string `pulumi:"internalAllowaccess"`
-	// Allowed access on the switch management interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
-	MgmtAllowaccess *string `pulumi:"mgmtAllowaccess"`
-	// Policy name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	MgmtAllowaccess     *string `pulumi:"mgmtAllowaccess"`
+	Name                *string `pulumi:"name"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerSecurityPolicyLocalAccessState struct {
-	// Allowed access on the switch internal interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
 	InternalAllowaccess pulumi.StringPtrInput
-	// Allowed access on the switch management interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
-	MgmtAllowaccess pulumi.StringPtrInput
-	// Policy name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MgmtAllowaccess     pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerSecurityPolicyLocalAccessState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (SwitchControllerSecurityPolicyLocalAccessState) ElementType() reflect.Type
 }
 
 type switchControllerSecurityPolicyLocalAccessArgs struct {
-	// Allowed access on the switch internal interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
 	InternalAllowaccess *string `pulumi:"internalAllowaccess"`
-	// Allowed access on the switch management interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
-	MgmtAllowaccess *string `pulumi:"mgmtAllowaccess"`
-	// Policy name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	MgmtAllowaccess     *string `pulumi:"mgmtAllowaccess"`
+	Name                *string `pulumi:"name"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerSecurityPolicyLocalAccess resource.
 type SwitchControllerSecurityPolicyLocalAccessArgs struct {
-	// Allowed access on the switch internal interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
 	InternalAllowaccess pulumi.StringPtrInput
-	// Allowed access on the switch management interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `radius-acct`.
-	MgmtAllowaccess pulumi.StringPtrInput
-	// Policy name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MgmtAllowaccess     pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerSecurityPolicyLocalAccessArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *SwitchControllerSecurityPolicyLocalAccess) ToSwitchControllerSecurityPo
 // SwitchControllerSecurityPolicyLocalAccessArrayInput is an input type that accepts SwitchControllerSecurityPolicyLocalAccessArray and SwitchControllerSecurityPolicyLocalAccessArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSecurityPolicyLocalAccessArrayInput` via:
 //
-//          SwitchControllerSecurityPolicyLocalAccessArray{ SwitchControllerSecurityPolicyLocalAccessArgs{...} }
+//	SwitchControllerSecurityPolicyLocalAccessArray{ SwitchControllerSecurityPolicyLocalAccessArgs{...} }
 type SwitchControllerSecurityPolicyLocalAccessArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i SwitchControllerSecurityPolicyLocalAccessArray) ToSwitchControllerSecuri
 // SwitchControllerSecurityPolicyLocalAccessMapInput is an input type that accepts SwitchControllerSecurityPolicyLocalAccessMap and SwitchControllerSecurityPolicyLocalAccessMapOutput values.
 // You can construct a concrete instance of `SwitchControllerSecurityPolicyLocalAccessMapInput` via:
 //
-//          SwitchControllerSecurityPolicyLocalAccessMap{ "key": SwitchControllerSecurityPolicyLocalAccessArgs{...} }
+//	SwitchControllerSecurityPolicyLocalAccessMap{ "key": SwitchControllerSecurityPolicyLocalAccessArgs{...} }
 type SwitchControllerSecurityPolicyLocalAccessMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o SwitchControllerSecurityPolicyLocalAccessOutput) ToSwitchControllerSecur
 
 func (o SwitchControllerSecurityPolicyLocalAccessOutput) ToSwitchControllerSecurityPolicyLocalAccessOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyLocalAccessOutput {
 	return o
+}
+
+func (o SwitchControllerSecurityPolicyLocalAccessOutput) InternalAllowaccess() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSecurityPolicyLocalAccess) pulumi.StringOutput { return v.InternalAllowaccess }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSecurityPolicyLocalAccessOutput) MgmtAllowaccess() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSecurityPolicyLocalAccess) pulumi.StringOutput { return v.MgmtAllowaccess }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSecurityPolicyLocalAccessOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSecurityPolicyLocalAccess) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSecurityPolicyLocalAccessOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSecurityPolicyLocalAccess) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerSecurityPolicyLocalAccessArrayOutput struct{ *pulumi.OutputState }

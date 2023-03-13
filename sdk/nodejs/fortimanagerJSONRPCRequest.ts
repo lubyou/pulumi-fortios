@@ -4,75 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports handling JSON RPC request for FortiManager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerJSONRPCRequest("test1", {
- *     jsonContent: `{
- *   "method": "add",
- *   "params": [
- *     {
- *       "data": [
- *         {
- *           "action": "accept",
- *           "dstaddr": ["all"],
- *           "dstintf": "any",
- *           "name": "policytest",
- *           "schedule": "none",
- *           "service": "ALL",
- *           "srcaddr": "all",
- *           "srcintf": "any",
- *           "internet-service": "enable",
- *           "internet-service-id": "Alibaba-Web",
- *           "internet-service-src": "enable",
- *           "internet-service-src-id": "Alibaba-Web",
- *           "users": "guest",
- *           "groups": "Guest-group"
- *         }
- *       ],
- *       "url": "/pm/config/adom/root/pkg/default/firewall/policy"
- *     }
- *   ]
- * }
- * `,
- * });
- * const test2 = new fortios.FortimanagerJSONRPCRequest("test2", {
- *     jsonContent: `{
- *   "method": "add",
- *   "params": [
- *     {
- *       "data": [
- *         {
- *           "ip": "192.168.1.2",
- *           "name": "logserver4",
- *           "port": "514"
- *         }
- *       ],
- *       "url": "/cli/global/system/syslog"
- *     }
- *   ]
- * }
- * `,
- * });
- * const test3 = new fortios.FortimanagerJSONRPCRequest("test3", {
- *     jsonContent: `{
- *   "method": "get",
- *   "params": [
- *     {
- *       "url": "/cli/global/system/admin/user/APIUser"
- *     }
- *   ]
- * }
- * `,
- * });
- * ```
- */
 export class FortimanagerJSONRPCRequest extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerJSONRPCRequest resource's state with the given name, ID, and optional extra
@@ -101,17 +32,8 @@ export class FortimanagerJSONRPCRequest extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerJSONRPCRequest.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * JSON RPC request, which should contain 'method' and 'params' parameters.
-     */
     public readonly jsonContent!: pulumi.Output<string>;
-    /**
-     * JSON RPC request response data.
-     */
     public /*out*/ readonly response!: pulumi.Output<string>;
 
     /**
@@ -148,17 +70,8 @@ export class FortimanagerJSONRPCRequest extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerJSONRPCRequest resources.
  */
 export interface FortimanagerJSONRPCRequestState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * JSON RPC request, which should contain 'method' and 'params' parameters.
-     */
     jsonContent?: pulumi.Input<string>;
-    /**
-     * JSON RPC request response data.
-     */
     response?: pulumi.Input<string>;
 }
 
@@ -166,12 +79,6 @@ export interface FortimanagerJSONRPCRequestState {
  * The set of arguments for constructing a FortimanagerJSONRPCRequest resource.
  */
 export interface FortimanagerJSONRPCRequestArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * JSON RPC request, which should contain 'method' and 'params' parameters.
-     */
     jsonContent: pulumi.Input<string>;
 }

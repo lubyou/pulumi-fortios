@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios system autoinstall
- */
 export function getSystemAutoInstall(args?: GetSystemAutoInstallArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemAutoInstallResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemAutoInstall:GetSystemAutoInstall", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getSystemAutoInstall(args?: GetSystemAutoInstallArgs, opts?: pul
  * A collection of arguments for invoking GetSystemAutoInstall.
  */
 export interface GetSystemAutoInstallArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -33,21 +24,9 @@ export interface GetSystemAutoInstallArgs {
  * A collection of values returned by GetSystemAutoInstall.
  */
 export interface GetSystemAutoInstallResult {
-    /**
-     * Enable/disable auto install the config in USB disk.
-     */
     readonly autoInstallConfig: string;
-    /**
-     * Enable/disable auto install the image in USB disk.
-     */
     readonly autoInstallImage: string;
-    /**
-     * Default config file name in USB disk.
-     */
     readonly defaultConfigFile: string;
-    /**
-     * Default image file name in USB disk.
-     */
     readonly defaultImageFile: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -55,17 +34,13 @@ export interface GetSystemAutoInstallResult {
     readonly id: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemAutoInstallOutput(args?: GetSystemAutoInstallOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemAutoInstallResult> {
-    return pulumi.output(args).apply(a => getSystemAutoInstall(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemAutoInstall(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemAutoInstall.
  */
 export interface GetSystemAutoInstallOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

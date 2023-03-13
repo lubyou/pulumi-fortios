@@ -2,44 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure multicast addresses.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallMulticastAddress("trname", {
- *     color: 0,
- *     endIp: "224.0.0.22",
- *     startIp: "224.0.0.11",
- *     subnet: "224.0.0.11 224.0.0.22",
- *     type: "multicastrange",
- *     visibility: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall MulticastAddress can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallMulticastAddress:FirewallMulticastAddress labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallMulticastAddress:FirewallMulticastAddress labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallMulticastAddress extends pulumi.CustomResource {
     /**
      * Get an existing FirewallMulticastAddress resource's state with the given name, ID, and optional extra
@@ -68,53 +34,17 @@ export class FirewallMulticastAddress extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallMulticastAddress.__pulumiType;
     }
 
-    /**
-     * Interface associated with the address object. When setting up a policy, only addresses associated with this interface are available.
-     */
     public readonly associatedInterface!: pulumi.Output<string>;
-    /**
-     * Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Final IPv4 address (inclusive) in the range for the address.
-     */
     public readonly endIp!: pulumi.Output<string>;
-    /**
-     * Tag name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * First IPv4 address (inclusive) in the range for the address.
-     */
     public readonly startIp!: pulumi.Output<string>;
-    /**
-     * Broadcast address and subnet.
-     */
     public readonly subnet!: pulumi.Output<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     public readonly taggings!: pulumi.Output<outputs.FirewallMulticastAddressTagging[] | undefined>;
-    /**
-     * Type of address object: multicast IP address range or broadcast IP/mask to be treated as a multicast address. Valid values: `multicastrange`, `broadcastmask`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable visibility of the multicast address on the GUI. Valid values: `enable`, `disable`.
-     */
     public readonly visibility!: pulumi.Output<string>;
 
     /**
@@ -166,53 +96,17 @@ export class FirewallMulticastAddress extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallMulticastAddress resources.
  */
 export interface FirewallMulticastAddressState {
-    /**
-     * Interface associated with the address object. When setting up a policy, only addresses associated with this interface are available.
-     */
     associatedInterface?: pulumi.Input<string>;
-    /**
-     * Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Final IPv4 address (inclusive) in the range for the address.
-     */
     endIp?: pulumi.Input<string>;
-    /**
-     * Tag name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * First IPv4 address (inclusive) in the range for the address.
-     */
     startIp?: pulumi.Input<string>;
-    /**
-     * Broadcast address and subnet.
-     */
     subnet?: pulumi.Input<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallMulticastAddressTagging>[]>;
-    /**
-     * Type of address object: multicast IP address range or broadcast IP/mask to be treated as a multicast address. Valid values: `multicastrange`, `broadcastmask`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable visibility of the multicast address on the GUI. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
 }
 
@@ -220,52 +114,16 @@ export interface FirewallMulticastAddressState {
  * The set of arguments for constructing a FirewallMulticastAddress resource.
  */
 export interface FirewallMulticastAddressArgs {
-    /**
-     * Interface associated with the address object. When setting up a policy, only addresses associated with this interface are available.
-     */
     associatedInterface?: pulumi.Input<string>;
-    /**
-     * Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Final IPv4 address (inclusive) in the range for the address.
-     */
     endIp?: pulumi.Input<string>;
-    /**
-     * Tag name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * First IPv4 address (inclusive) in the range for the address.
-     */
     startIp?: pulumi.Input<string>;
-    /**
-     * Broadcast address and subnet.
-     */
     subnet?: pulumi.Input<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallMulticastAddressTagging>[]>;
-    /**
-     * Type of address object: multicast IP address range or broadcast IP/mask to be treated as a multicast address. Valid values: `multicastrange`, `broadcastmask`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable visibility of the multicast address on the GUI. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
 }

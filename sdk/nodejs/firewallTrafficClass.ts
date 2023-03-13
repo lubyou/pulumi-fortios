@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure names for shaping classes. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * Firewall TrafficClass can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallTrafficClass:FirewallTrafficClass labelname {{class_id}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallTrafficClass:FirewallTrafficClass labelname {{class_id}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallTrafficClass extends pulumi.CustomResource {
     /**
      * Get an existing FirewallTrafficClass resource's state with the given name, ID, and optional extra
@@ -51,17 +32,8 @@ export class FirewallTrafficClass extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallTrafficClass.__pulumiType;
     }
 
-    /**
-     * Class ID to be named.
-     */
     public readonly classId!: pulumi.Output<number>;
-    /**
-     * Define the name for this class-id.
-     */
     public readonly className!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -95,17 +67,8 @@ export class FirewallTrafficClass extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallTrafficClass resources.
  */
 export interface FirewallTrafficClassState {
-    /**
-     * Class ID to be named.
-     */
     classId?: pulumi.Input<number>;
-    /**
-     * Define the name for this class-id.
-     */
     className?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -113,16 +76,7 @@ export interface FirewallTrafficClassState {
  * The set of arguments for constructing a FirewallTrafficClass resource.
  */
 export interface FirewallTrafficClassArgs {
-    /**
-     * Class ID to be named.
-     */
     classId?: pulumi.Input<number>;
-    /**
-     * Define the name for this class-id.
-     */
     className?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

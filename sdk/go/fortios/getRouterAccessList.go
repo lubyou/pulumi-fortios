@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios router accesslist
 func LookupRouterAccessList(ctx *pulumi.Context, args *LookupRouterAccessListArgs, opts ...pulumi.InvokeOption) (*LookupRouterAccessListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterAccessListResult
@@ -23,21 +22,16 @@ func LookupRouterAccessList(ctx *pulumi.Context, args *LookupRouterAccessListArg
 
 // A collection of arguments for invoking GetRouterAccessList.
 type LookupRouterAccessListArgs struct {
-	// Specify the name of the desired router accesslist.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetRouterAccessList.
 type LookupRouterAccessListResult struct {
-	// Comment.
 	Comments string `pulumi:"comments"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Name.
-	Name string `pulumi:"name"`
-	// Rule. The structure of `rule` block is documented below.
+	Id        string                    `pulumi:"id"`
+	Name      string                    `pulumi:"name"`
 	Rules     []GetRouterAccessListRule `pulumi:"rules"`
 	Vdomparam *string                   `pulumi:"vdomparam"`
 }
@@ -57,9 +51,7 @@ func LookupRouterAccessListOutput(ctx *pulumi.Context, args LookupRouterAccessLi
 
 // A collection of arguments for invoking GetRouterAccessList.
 type LookupRouterAccessListOutputArgs struct {
-	// Specify the name of the desired router accesslist.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -82,7 +74,6 @@ func (o LookupRouterAccessListResultOutput) ToLookupRouterAccessListResultOutput
 	return o
 }
 
-// Comment.
 func (o LookupRouterAccessListResultOutput) Comments() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterAccessListResult) string { return v.Comments }).(pulumi.StringOutput)
 }
@@ -92,12 +83,10 @@ func (o LookupRouterAccessListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterAccessListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Name.
 func (o LookupRouterAccessListResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterAccessListResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Rule. The structure of `rule` block is documented below.
 func (o LookupRouterAccessListResultOutput) Rules() GetRouterAccessListRuleArrayOutput {
 	return o.ApplyT(func(v LookupRouterAccessListResult) []GetRouterAccessListRule { return v.Rules }).(GetRouterAccessListRuleArrayOutput)
 }

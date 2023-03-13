@@ -4,34 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure service categories.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallServiceCategory("trname", {});
- * ```
- *
- * ## Import
- *
- * FirewallService Category can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallServiceCategory:FirewallServiceCategory labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallServiceCategory:FirewallServiceCategory labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallServiceCategory extends pulumi.CustomResource {
     /**
      * Get an existing FirewallServiceCategory resource's state with the given name, ID, and optional extra
@@ -60,21 +32,9 @@ export class FirewallServiceCategory extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallServiceCategory.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     public readonly fabricObject!: pulumi.Output<string>;
-    /**
-     * Service category name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -110,21 +70,9 @@ export class FirewallServiceCategory extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallServiceCategory resources.
  */
 export interface FirewallServiceCategoryState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     fabricObject?: pulumi.Input<string>;
-    /**
-     * Service category name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -132,20 +80,8 @@ export interface FirewallServiceCategoryState {
  * The set of arguments for constructing a FirewallServiceCategory resource.
  */
 export interface FirewallServiceCategoryArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     fabricObject?: pulumi.Input<string>;
-    /**
-     * Service category name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

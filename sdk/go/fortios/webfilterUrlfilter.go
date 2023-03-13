@@ -7,71 +7,21 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure URL filter lists.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWebfilterUrlfilter(ctx, "trname", &fortios.WebfilterUrlfilterArgs{
-// 			Fosid:              pulumi.Int(1),
-// 			IpAddrBlock:        pulumi.String("enable"),
-// 			OneArmIpsUrlfilter: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Webfilter Urlfilter can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterUrlfilter:WebfilterUrlfilter labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterUrlfilter:WebfilterUrlfilter labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebfilterUrlfilter struct {
 	pulumi.CustomResourceState
 
-	// Optional comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// URL filter entries. The structure of `entries` block is documented below.
-	Entries WebfilterUrlfilterEntryArrayOutput `pulumi:"entries"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
-	IpAddrBlock pulumi.StringOutput `pulumi:"ipAddrBlock"`
-	// Name of URL filter list.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable DNS resolver for one-arm IPS URL filter operation. Valid values: `enable`, `disable`.
-	OneArmIpsUrlfilter pulumi.StringOutput `pulumi:"oneArmIpsUrlfilter"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput             `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
+	Entries             WebfilterUrlfilterEntryArrayOutput `pulumi:"entries"`
+	Fosid               pulumi.IntOutput                   `pulumi:"fosid"`
+	IpAddrBlock         pulumi.StringOutput                `pulumi:"ipAddrBlock"`
+	Name                pulumi.StringOutput                `pulumi:"name"`
+	OneArmIpsUrlfilter  pulumi.StringOutput                `pulumi:"oneArmIpsUrlfilter"`
+	Vdomparam           pulumi.StringPtrOutput             `pulumi:"vdomparam"`
 }
 
 // NewWebfilterUrlfilter registers a new resource with the given unique name, arguments, and options.
@@ -107,41 +57,25 @@ func GetWebfilterUrlfilter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebfilterUrlfilter resources.
 type webfilterUrlfilterState struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// URL filter entries. The structure of `entries` block is documented below.
-	Entries []WebfilterUrlfilterEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
-	IpAddrBlock *string `pulumi:"ipAddrBlock"`
-	// Name of URL filter list.
-	Name *string `pulumi:"name"`
-	// Enable/disable DNS resolver for one-arm IPS URL filter operation. Valid values: `enable`, `disable`.
-	OneArmIpsUrlfilter *string `pulumi:"oneArmIpsUrlfilter"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                   `pulumi:"comment"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Entries             []WebfilterUrlfilterEntry `pulumi:"entries"`
+	Fosid               *int                      `pulumi:"fosid"`
+	IpAddrBlock         *string                   `pulumi:"ipAddrBlock"`
+	Name                *string                   `pulumi:"name"`
+	OneArmIpsUrlfilter  *string                   `pulumi:"oneArmIpsUrlfilter"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
 
 type WebfilterUrlfilterState struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// URL filter entries. The structure of `entries` block is documented below.
-	Entries WebfilterUrlfilterEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
-	IpAddrBlock pulumi.StringPtrInput
-	// Name of URL filter list.
-	Name pulumi.StringPtrInput
-	// Enable/disable DNS resolver for one-arm IPS URL filter operation. Valid values: `enable`, `disable`.
-	OneArmIpsUrlfilter pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             WebfilterUrlfilterEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	IpAddrBlock         pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	OneArmIpsUrlfilter  pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WebfilterUrlfilterState) ElementType() reflect.Type {
@@ -149,42 +83,26 @@ func (WebfilterUrlfilterState) ElementType() reflect.Type {
 }
 
 type webfilterUrlfilterArgs struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// URL filter entries. The structure of `entries` block is documented below.
-	Entries []WebfilterUrlfilterEntry `pulumi:"entries"`
-	// ID.
-	Fosid int `pulumi:"fosid"`
-	// Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
-	IpAddrBlock *string `pulumi:"ipAddrBlock"`
-	// Name of URL filter list.
-	Name *string `pulumi:"name"`
-	// Enable/disable DNS resolver for one-arm IPS URL filter operation. Valid values: `enable`, `disable`.
-	OneArmIpsUrlfilter *string `pulumi:"oneArmIpsUrlfilter"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                   `pulumi:"comment"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Entries             []WebfilterUrlfilterEntry `pulumi:"entries"`
+	Fosid               int                       `pulumi:"fosid"`
+	IpAddrBlock         *string                   `pulumi:"ipAddrBlock"`
+	Name                *string                   `pulumi:"name"`
+	OneArmIpsUrlfilter  *string                   `pulumi:"oneArmIpsUrlfilter"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebfilterUrlfilter resource.
 type WebfilterUrlfilterArgs struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// URL filter entries. The structure of `entries` block is documented below.
-	Entries WebfilterUrlfilterEntryArrayInput
-	// ID.
-	Fosid pulumi.IntInput
-	// Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
-	IpAddrBlock pulumi.StringPtrInput
-	// Name of URL filter list.
-	Name pulumi.StringPtrInput
-	// Enable/disable DNS resolver for one-arm IPS URL filter operation. Valid values: `enable`, `disable`.
-	OneArmIpsUrlfilter pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             WebfilterUrlfilterEntryArrayInput
+	Fosid               pulumi.IntInput
+	IpAddrBlock         pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	OneArmIpsUrlfilter  pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WebfilterUrlfilterArgs) ElementType() reflect.Type {
@@ -213,7 +131,7 @@ func (i *WebfilterUrlfilter) ToWebfilterUrlfilterOutputWithContext(ctx context.C
 // WebfilterUrlfilterArrayInput is an input type that accepts WebfilterUrlfilterArray and WebfilterUrlfilterArrayOutput values.
 // You can construct a concrete instance of `WebfilterUrlfilterArrayInput` via:
 //
-//          WebfilterUrlfilterArray{ WebfilterUrlfilterArgs{...} }
+//	WebfilterUrlfilterArray{ WebfilterUrlfilterArgs{...} }
 type WebfilterUrlfilterArrayInput interface {
 	pulumi.Input
 
@@ -238,7 +156,7 @@ func (i WebfilterUrlfilterArray) ToWebfilterUrlfilterArrayOutputWithContext(ctx 
 // WebfilterUrlfilterMapInput is an input type that accepts WebfilterUrlfilterMap and WebfilterUrlfilterMapOutput values.
 // You can construct a concrete instance of `WebfilterUrlfilterMapInput` via:
 //
-//          WebfilterUrlfilterMap{ "key": WebfilterUrlfilterArgs{...} }
+//	WebfilterUrlfilterMap{ "key": WebfilterUrlfilterArgs{...} }
 type WebfilterUrlfilterMapInput interface {
 	pulumi.Input
 
@@ -272,6 +190,38 @@ func (o WebfilterUrlfilterOutput) ToWebfilterUrlfilterOutput() WebfilterUrlfilte
 
 func (o WebfilterUrlfilterOutput) ToWebfilterUrlfilterOutputWithContext(ctx context.Context) WebfilterUrlfilterOutput {
 	return o
+}
+
+func (o WebfilterUrlfilterOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterUrlfilter) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o WebfilterUrlfilterOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterUrlfilter) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WebfilterUrlfilterOutput) Entries() WebfilterUrlfilterEntryArrayOutput {
+	return o.ApplyT(func(v *WebfilterUrlfilter) WebfilterUrlfilterEntryArrayOutput { return v.Entries }).(WebfilterUrlfilterEntryArrayOutput)
+}
+
+func (o WebfilterUrlfilterOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterUrlfilter) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o WebfilterUrlfilterOutput) IpAddrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterUrlfilter) pulumi.StringOutput { return v.IpAddrBlock }).(pulumi.StringOutput)
+}
+
+func (o WebfilterUrlfilterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterUrlfilter) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WebfilterUrlfilterOutput) OneArmIpsUrlfilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterUrlfilter) pulumi.StringOutput { return v.OneArmIpsUrlfilter }).(pulumi.StringOutput)
+}
+
+func (o WebfilterUrlfilterOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterUrlfilter) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebfilterUrlfilterArrayOutput struct{ *pulumi.OutputState }

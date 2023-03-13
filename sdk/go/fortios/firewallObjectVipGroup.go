@@ -7,52 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure virtual IP groups of FortiOS.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `FirewallVipgrp`, we recommend that you use the new resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallObjectVipGroup(ctx, "v11", &fortios.FirewallObjectVipGroupArgs{
-// 			Comments:  pulumi.String("comments"),
-// 			Interface: pulumi.String("port3"),
-// 			Members: pulumi.StringArray{
-// 				pulumi.String("vip1"),
-// 				pulumi.String("vip3"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FirewallObjectVipGroup struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Interface name.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Member VIP objects of the group.
-	Members pulumi.StringArrayOutput `pulumi:"members"`
-	// VIP group name.
-	Name pulumi.StringOutput `pulumi:"name"`
+	Comments  pulumi.StringPtrOutput   `pulumi:"comments"`
+	Interface pulumi.StringOutput      `pulumi:"interface"`
+	Members   pulumi.StringArrayOutput `pulumi:"members"`
+	Name      pulumi.StringOutput      `pulumi:"name"`
 }
 
 // NewFirewallObjectVipGroup registers a new resource with the given unique name, arguments, and options.
@@ -88,25 +53,17 @@ func GetFirewallObjectVipGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallObjectVipGroup resources.
 type firewallObjectVipGroupState struct {
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Interface name.
-	Interface *string `pulumi:"interface"`
-	// Member VIP objects of the group.
-	Members []string `pulumi:"members"`
-	// VIP group name.
-	Name *string `pulumi:"name"`
+	Comments  *string  `pulumi:"comments"`
+	Interface *string  `pulumi:"interface"`
+	Members   []string `pulumi:"members"`
+	Name      *string  `pulumi:"name"`
 }
 
 type FirewallObjectVipGroupState struct {
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Interface name.
+	Comments  pulumi.StringPtrInput
 	Interface pulumi.StringPtrInput
-	// Member VIP objects of the group.
-	Members pulumi.StringArrayInput
-	// VIP group name.
-	Name pulumi.StringPtrInput
+	Members   pulumi.StringArrayInput
+	Name      pulumi.StringPtrInput
 }
 
 func (FirewallObjectVipGroupState) ElementType() reflect.Type {
@@ -114,26 +71,18 @@ func (FirewallObjectVipGroupState) ElementType() reflect.Type {
 }
 
 type firewallObjectVipGroupArgs struct {
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Interface name.
-	Interface *string `pulumi:"interface"`
-	// Member VIP objects of the group.
-	Members []string `pulumi:"members"`
-	// VIP group name.
-	Name *string `pulumi:"name"`
+	Comments  *string  `pulumi:"comments"`
+	Interface *string  `pulumi:"interface"`
+	Members   []string `pulumi:"members"`
+	Name      *string  `pulumi:"name"`
 }
 
 // The set of arguments for constructing a FirewallObjectVipGroup resource.
 type FirewallObjectVipGroupArgs struct {
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Interface name.
+	Comments  pulumi.StringPtrInput
 	Interface pulumi.StringPtrInput
-	// Member VIP objects of the group.
-	Members pulumi.StringArrayInput
-	// VIP group name.
-	Name pulumi.StringPtrInput
+	Members   pulumi.StringArrayInput
+	Name      pulumi.StringPtrInput
 }
 
 func (FirewallObjectVipGroupArgs) ElementType() reflect.Type {
@@ -162,7 +111,7 @@ func (i *FirewallObjectVipGroup) ToFirewallObjectVipGroupOutputWithContext(ctx c
 // FirewallObjectVipGroupArrayInput is an input type that accepts FirewallObjectVipGroupArray and FirewallObjectVipGroupArrayOutput values.
 // You can construct a concrete instance of `FirewallObjectVipGroupArrayInput` via:
 //
-//          FirewallObjectVipGroupArray{ FirewallObjectVipGroupArgs{...} }
+//	FirewallObjectVipGroupArray{ FirewallObjectVipGroupArgs{...} }
 type FirewallObjectVipGroupArrayInput interface {
 	pulumi.Input
 
@@ -187,7 +136,7 @@ func (i FirewallObjectVipGroupArray) ToFirewallObjectVipGroupArrayOutputWithCont
 // FirewallObjectVipGroupMapInput is an input type that accepts FirewallObjectVipGroupMap and FirewallObjectVipGroupMapOutput values.
 // You can construct a concrete instance of `FirewallObjectVipGroupMapInput` via:
 //
-//          FirewallObjectVipGroupMap{ "key": FirewallObjectVipGroupArgs{...} }
+//	FirewallObjectVipGroupMap{ "key": FirewallObjectVipGroupArgs{...} }
 type FirewallObjectVipGroupMapInput interface {
 	pulumi.Input
 
@@ -221,6 +170,22 @@ func (o FirewallObjectVipGroupOutput) ToFirewallObjectVipGroupOutput() FirewallO
 
 func (o FirewallObjectVipGroupOutput) ToFirewallObjectVipGroupOutputWithContext(ctx context.Context) FirewallObjectVipGroupOutput {
 	return o
+}
+
+func (o FirewallObjectVipGroupOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallObjectVipGroup) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallObjectVipGroupOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectVipGroup) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectVipGroupOutput) Members() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallObjectVipGroup) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
+}
+
+func (o FirewallObjectVipGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectVipGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 type FirewallObjectVipGroupArrayOutput struct{ *pulumi.OutputState }

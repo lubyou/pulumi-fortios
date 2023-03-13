@@ -4,48 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure SSL servers.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallSslServer("trname", {
- *     addHeaderXForwardedProto: "enable",
- *     ip: "1.1.1.1",
- *     mappedPort: 2234,
- *     port: 32321,
- *     sslAlgorithm: "high",
- *     sslCert: "Fortinet_CA_SSL",
- *     sslClientRenegotiation: "allow",
- *     sslDhBits: "2048",
- *     sslMaxVersion: "tls-1.2",
- *     sslMinVersion: "tls-1.1",
- *     sslMode: "half",
- *     sslSendEmptyFrags: "enable",
- *     urlRewrite: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall SslServer can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallSslServer:FirewallSslServer labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallSslServer:FirewallSslServer labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallSslServer extends pulumi.CustomResource {
     /**
      * Get an existing FirewallSslServer resource's state with the given name, ID, and optional extra
@@ -74,65 +32,20 @@ export class FirewallSslServer extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallSslServer.__pulumiType;
     }
 
-    /**
-     * Enable/disable adding an X-Forwarded-Proto header to forwarded requests. Valid values: `enable`, `disable`.
-     */
     public readonly addHeaderXForwardedProto!: pulumi.Output<string>;
-    /**
-     * IPv4 address of the SSL server.
-     */
     public readonly ip!: pulumi.Output<string>;
-    /**
-     * Mapped server service port (1 - 65535, default = 80).
-     */
     public readonly mappedPort!: pulumi.Output<number>;
-    /**
-     * Server name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Server service port (1 - 65535, default = 443).
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-     */
     public readonly sslAlgorithm!: pulumi.Output<string>;
-    /**
-     * Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
-     */
     public readonly sslCert!: pulumi.Output<string>;
-    /**
-     * Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
-     */
     public readonly sslClientRenegotiation!: pulumi.Output<string>;
-    /**
-     * Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-     */
     public readonly sslDhBits!: pulumi.Output<string>;
-    /**
-     * Highest SSL/TLS version to negotiate.
-     */
     public readonly sslMaxVersion!: pulumi.Output<string>;
-    /**
-     * Lowest SSL/TLS version to negotiate.
-     */
     public readonly sslMinVersion!: pulumi.Output<string>;
-    /**
-     * SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
-     */
     public readonly sslMode!: pulumi.Output<string>;
-    /**
-     * Enable/disable sending empty fragments to avoid attack on CBC IV. Valid values: `enable`, `disable`.
-     */
     public readonly sslSendEmptyFrags!: pulumi.Output<string>;
-    /**
-     * Enable/disable rewriting the URL. Valid values: `enable`, `disable`.
-     */
     public readonly urlRewrite!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -199,65 +112,20 @@ export class FirewallSslServer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallSslServer resources.
  */
 export interface FirewallSslServerState {
-    /**
-     * Enable/disable adding an X-Forwarded-Proto header to forwarded requests. Valid values: `enable`, `disable`.
-     */
     addHeaderXForwardedProto?: pulumi.Input<string>;
-    /**
-     * IPv4 address of the SSL server.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Mapped server service port (1 - 65535, default = 80).
-     */
     mappedPort?: pulumi.Input<number>;
-    /**
-     * Server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Server service port (1 - 65535, default = 443).
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-     */
     sslAlgorithm?: pulumi.Input<string>;
-    /**
-     * Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
-     */
     sslCert?: pulumi.Input<string>;
-    /**
-     * Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
-     */
     sslClientRenegotiation?: pulumi.Input<string>;
-    /**
-     * Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-     */
     sslDhBits?: pulumi.Input<string>;
-    /**
-     * Highest SSL/TLS version to negotiate.
-     */
     sslMaxVersion?: pulumi.Input<string>;
-    /**
-     * Lowest SSL/TLS version to negotiate.
-     */
     sslMinVersion?: pulumi.Input<string>;
-    /**
-     * SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
-     */
     sslMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable sending empty fragments to avoid attack on CBC IV. Valid values: `enable`, `disable`.
-     */
     sslSendEmptyFrags?: pulumi.Input<string>;
-    /**
-     * Enable/disable rewriting the URL. Valid values: `enable`, `disable`.
-     */
     urlRewrite?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -265,64 +133,19 @@ export interface FirewallSslServerState {
  * The set of arguments for constructing a FirewallSslServer resource.
  */
 export interface FirewallSslServerArgs {
-    /**
-     * Enable/disable adding an X-Forwarded-Proto header to forwarded requests. Valid values: `enable`, `disable`.
-     */
     addHeaderXForwardedProto?: pulumi.Input<string>;
-    /**
-     * IPv4 address of the SSL server.
-     */
     ip: pulumi.Input<string>;
-    /**
-     * Mapped server service port (1 - 65535, default = 80).
-     */
     mappedPort?: pulumi.Input<number>;
-    /**
-     * Server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Server service port (1 - 65535, default = 443).
-     */
     port: pulumi.Input<number>;
-    /**
-     * Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-     */
     sslAlgorithm?: pulumi.Input<string>;
-    /**
-     * Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
-     */
     sslCert: pulumi.Input<string>;
-    /**
-     * Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
-     */
     sslClientRenegotiation?: pulumi.Input<string>;
-    /**
-     * Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-     */
     sslDhBits?: pulumi.Input<string>;
-    /**
-     * Highest SSL/TLS version to negotiate.
-     */
     sslMaxVersion?: pulumi.Input<string>;
-    /**
-     * Lowest SSL/TLS version to negotiate.
-     */
     sslMinVersion?: pulumi.Input<string>;
-    /**
-     * SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
-     */
     sslMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable sending empty fragments to avoid attack on CBC IV. Valid values: `enable`, `disable`.
-     */
     sslSendEmptyFrags?: pulumi.Input<string>;
-    /**
-     * Enable/disable rewriting the URL. Valid values: `enable`, `disable`.
-     */
     urlRewrite?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

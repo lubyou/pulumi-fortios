@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios system emailserver
- */
 export function getSystemEmailServer(args?: GetSystemEmailServerArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemEmailServerResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemEmailServer:GetSystemEmailServer", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getSystemEmailServer(args?: GetSystemEmailServerArgs, opts?: pul
  * A collection of arguments for invoking GetSystemEmailServer.
  */
 export interface GetSystemEmailServerArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -33,79 +24,33 @@ export interface GetSystemEmailServerArgs {
  * A collection of values returned by GetSystemEmailServer.
  */
 export interface GetSystemEmailServerResult {
-    /**
-     * Enable/disable authentication.
-     */
     readonly authenticate: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     readonly interface: string;
-    /**
-     * Specify how to select outgoing interface to reach server.
-     */
     readonly interfaceSelectMethod: string;
-    /**
-     * SMTP server user password for authentication.
-     */
     readonly password: string;
-    /**
-     * SMTP server port.
-     */
     readonly port: number;
-    /**
-     * Reply-To email address.
-     */
     readonly replyTo: string;
-    /**
-     * Connection security used by the email server.
-     */
     readonly security: string;
-    /**
-     * SMTP server IP address or hostname.
-     */
     readonly server: string;
-    /**
-     * SMTP server IPv4 source IP.
-     */
     readonly sourceIp: string;
-    /**
-     * SMTP server IPv6 source IP.
-     */
     readonly sourceIp6: string;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
-     */
     readonly sslMinProtoVersion: string;
-    /**
-     * Use FortiGuard Message service or custom email server.
-     */
     readonly type: string;
-    /**
-     * SMTP server user name for authentication.
-     */
     readonly username: string;
-    /**
-     * Enable/disable validation of server certificate.
-     */
     readonly validateServer: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemEmailServerOutput(args?: GetSystemEmailServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemEmailServerResult> {
-    return pulumi.output(args).apply(a => getSystemEmailServer(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemEmailServer(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemEmailServer.
  */
 export interface GetSystemEmailServerOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -7,70 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Global configuration objects that can be configured independently for all VDOMs or for the defined VDOM scope.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemVdomException(ctx, "trname", &fortios.SystemVdomExceptionArgs{
-// 			Fosid:  pulumi.Int(1),
-// 			Object: pulumi.String("log.fortianalyzer.setting"),
-// 			Oid:    pulumi.Int(7150),
-// 			Scope:  pulumi.String("all"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System VdomException can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVdomException:SystemVdomException labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVdomException:SystemVdomException labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemVdomException struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Index <1-4096>.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Name of the configuration object that can be configured independently for all VDOMs.
-	Object pulumi.StringOutput `pulumi:"object"`
-	// Object ID.
-	Oid pulumi.IntOutput `pulumi:"oid"`
-	// Determine whether the configuration object can be configured separately for all VDOMs or if some VDOMs share the same configuration. Valid values: `all`, `inclusive`, `exclusive`.
-	Scope pulumi.StringOutput `pulumi:"scope"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Names of the VDOMs. The structure of `vdom` block is documented below.
-	Vdoms SystemVdomExceptionVdomArrayOutput `pulumi:"vdoms"`
+	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
+	Fosid               pulumi.IntOutput                   `pulumi:"fosid"`
+	Object              pulumi.StringOutput                `pulumi:"object"`
+	Oid                 pulumi.IntOutput                   `pulumi:"oid"`
+	Scope               pulumi.StringOutput                `pulumi:"scope"`
+	Vdomparam           pulumi.StringPtrOutput             `pulumi:"vdomparam"`
+	Vdoms               SystemVdomExceptionVdomArrayOutput `pulumi:"vdoms"`
 }
 
 // NewSystemVdomException registers a new resource with the given unique name, arguments, and options.
@@ -106,37 +56,23 @@ func GetSystemVdomException(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemVdomException resources.
 type systemVdomExceptionState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Index <1-4096>.
-	Fosid *int `pulumi:"fosid"`
-	// Name of the configuration object that can be configured independently for all VDOMs.
-	Object *string `pulumi:"object"`
-	// Object ID.
-	Oid *int `pulumi:"oid"`
-	// Determine whether the configuration object can be configured separately for all VDOMs or if some VDOMs share the same configuration. Valid values: `all`, `inclusive`, `exclusive`.
-	Scope *string `pulumi:"scope"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Names of the VDOMs. The structure of `vdom` block is documented below.
-	Vdoms []SystemVdomExceptionVdom `pulumi:"vdoms"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Fosid               *int                      `pulumi:"fosid"`
+	Object              *string                   `pulumi:"object"`
+	Oid                 *int                      `pulumi:"oid"`
+	Scope               *string                   `pulumi:"scope"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
+	Vdoms               []SystemVdomExceptionVdom `pulumi:"vdoms"`
 }
 
 type SystemVdomExceptionState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Index <1-4096>.
-	Fosid pulumi.IntPtrInput
-	// Name of the configuration object that can be configured independently for all VDOMs.
-	Object pulumi.StringPtrInput
-	// Object ID.
-	Oid pulumi.IntPtrInput
-	// Determine whether the configuration object can be configured separately for all VDOMs or if some VDOMs share the same configuration. Valid values: `all`, `inclusive`, `exclusive`.
-	Scope pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Names of the VDOMs. The structure of `vdom` block is documented below.
-	Vdoms SystemVdomExceptionVdomArrayInput
+	Fosid               pulumi.IntPtrInput
+	Object              pulumi.StringPtrInput
+	Oid                 pulumi.IntPtrInput
+	Scope               pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Vdoms               SystemVdomExceptionVdomArrayInput
 }
 
 func (SystemVdomExceptionState) ElementType() reflect.Type {
@@ -144,38 +80,24 @@ func (SystemVdomExceptionState) ElementType() reflect.Type {
 }
 
 type systemVdomExceptionArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Index <1-4096>.
-	Fosid *int `pulumi:"fosid"`
-	// Name of the configuration object that can be configured independently for all VDOMs.
-	Object string `pulumi:"object"`
-	// Object ID.
-	Oid *int `pulumi:"oid"`
-	// Determine whether the configuration object can be configured separately for all VDOMs or if some VDOMs share the same configuration. Valid values: `all`, `inclusive`, `exclusive`.
-	Scope *string `pulumi:"scope"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Names of the VDOMs. The structure of `vdom` block is documented below.
-	Vdoms []SystemVdomExceptionVdom `pulumi:"vdoms"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Fosid               *int                      `pulumi:"fosid"`
+	Object              string                    `pulumi:"object"`
+	Oid                 *int                      `pulumi:"oid"`
+	Scope               *string                   `pulumi:"scope"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
+	Vdoms               []SystemVdomExceptionVdom `pulumi:"vdoms"`
 }
 
 // The set of arguments for constructing a SystemVdomException resource.
 type SystemVdomExceptionArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Index <1-4096>.
-	Fosid pulumi.IntPtrInput
-	// Name of the configuration object that can be configured independently for all VDOMs.
-	Object pulumi.StringInput
-	// Object ID.
-	Oid pulumi.IntPtrInput
-	// Determine whether the configuration object can be configured separately for all VDOMs or if some VDOMs share the same configuration. Valid values: `all`, `inclusive`, `exclusive`.
-	Scope pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Names of the VDOMs. The structure of `vdom` block is documented below.
-	Vdoms SystemVdomExceptionVdomArrayInput
+	Fosid               pulumi.IntPtrInput
+	Object              pulumi.StringInput
+	Oid                 pulumi.IntPtrInput
+	Scope               pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Vdoms               SystemVdomExceptionVdomArrayInput
 }
 
 func (SystemVdomExceptionArgs) ElementType() reflect.Type {
@@ -204,7 +126,7 @@ func (i *SystemVdomException) ToSystemVdomExceptionOutputWithContext(ctx context
 // SystemVdomExceptionArrayInput is an input type that accepts SystemVdomExceptionArray and SystemVdomExceptionArrayOutput values.
 // You can construct a concrete instance of `SystemVdomExceptionArrayInput` via:
 //
-//          SystemVdomExceptionArray{ SystemVdomExceptionArgs{...} }
+//	SystemVdomExceptionArray{ SystemVdomExceptionArgs{...} }
 type SystemVdomExceptionArrayInput interface {
 	pulumi.Input
 
@@ -229,7 +151,7 @@ func (i SystemVdomExceptionArray) ToSystemVdomExceptionArrayOutputWithContext(ct
 // SystemVdomExceptionMapInput is an input type that accepts SystemVdomExceptionMap and SystemVdomExceptionMapOutput values.
 // You can construct a concrete instance of `SystemVdomExceptionMapInput` via:
 //
-//          SystemVdomExceptionMap{ "key": SystemVdomExceptionArgs{...} }
+//	SystemVdomExceptionMap{ "key": SystemVdomExceptionArgs{...} }
 type SystemVdomExceptionMapInput interface {
 	pulumi.Input
 
@@ -263,6 +185,34 @@ func (o SystemVdomExceptionOutput) ToSystemVdomExceptionOutput() SystemVdomExcep
 
 func (o SystemVdomExceptionOutput) ToSystemVdomExceptionOutputWithContext(ctx context.Context) SystemVdomExceptionOutput {
 	return o
+}
+
+func (o SystemVdomExceptionOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVdomException) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemVdomExceptionOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemVdomException) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SystemVdomExceptionOutput) Object() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomException) pulumi.StringOutput { return v.Object }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomExceptionOutput) Oid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemVdomException) pulumi.IntOutput { return v.Oid }).(pulumi.IntOutput)
+}
+
+func (o SystemVdomExceptionOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomException) pulumi.StringOutput { return v.Scope }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomExceptionOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVdomException) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemVdomExceptionOutput) Vdoms() SystemVdomExceptionVdomArrayOutput {
+	return o.ApplyT(func(v *SystemVdomException) SystemVdomExceptionVdomArrayOutput { return v.Vdoms }).(SystemVdomExceptionVdomArrayOutput)
 }
 
 type SystemVdomExceptionArrayOutput struct{ *pulumi.OutputState }

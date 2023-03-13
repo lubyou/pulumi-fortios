@@ -7,38 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure interrupt affinity.
-//
-// ## Import
-//
-// System AffinityInterrupt can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAffinityInterrupt:SystemAffinityInterrupt labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAffinityInterrupt:SystemAffinityInterrupt labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemAffinityInterrupt struct {
 	pulumi.CustomResourceState
 
-	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
-	AffinityCpumask pulumi.StringOutput `pulumi:"affinityCpumask"`
-	// ID of the interrupt affinity setting.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Interrupt name.
-	Interrupt pulumi.StringOutput `pulumi:"interrupt"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AffinityCpumask pulumi.StringOutput    `pulumi:"affinityCpumask"`
+	Fosid           pulumi.IntOutput       `pulumi:"fosid"`
+	Interrupt       pulumi.StringOutput    `pulumi:"interrupt"`
+	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemAffinityInterrupt registers a new resource with the given unique name, arguments, and options.
@@ -80,25 +59,17 @@ func GetSystemAffinityInterrupt(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAffinityInterrupt resources.
 type systemAffinityInterruptState struct {
-	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask *string `pulumi:"affinityCpumask"`
-	// ID of the interrupt affinity setting.
-	Fosid *int `pulumi:"fosid"`
-	// Interrupt name.
-	Interrupt *string `pulumi:"interrupt"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Fosid           *int    `pulumi:"fosid"`
+	Interrupt       *string `pulumi:"interrupt"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 type SystemAffinityInterruptState struct {
-	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask pulumi.StringPtrInput
-	// ID of the interrupt affinity setting.
-	Fosid pulumi.IntPtrInput
-	// Interrupt name.
-	Interrupt pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid           pulumi.IntPtrInput
+	Interrupt       pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (SystemAffinityInterruptState) ElementType() reflect.Type {
@@ -106,26 +77,18 @@ func (SystemAffinityInterruptState) ElementType() reflect.Type {
 }
 
 type systemAffinityInterruptArgs struct {
-	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
-	AffinityCpumask string `pulumi:"affinityCpumask"`
-	// ID of the interrupt affinity setting.
-	Fosid int `pulumi:"fosid"`
-	// Interrupt name.
-	Interrupt string `pulumi:"interrupt"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AffinityCpumask string  `pulumi:"affinityCpumask"`
+	Fosid           int     `pulumi:"fosid"`
+	Interrupt       string  `pulumi:"interrupt"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemAffinityInterrupt resource.
 type SystemAffinityInterruptArgs struct {
-	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask pulumi.StringInput
-	// ID of the interrupt affinity setting.
-	Fosid pulumi.IntInput
-	// Interrupt name.
-	Interrupt pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid           pulumi.IntInput
+	Interrupt       pulumi.StringInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (SystemAffinityInterruptArgs) ElementType() reflect.Type {
@@ -154,7 +117,7 @@ func (i *SystemAffinityInterrupt) ToSystemAffinityInterruptOutputWithContext(ctx
 // SystemAffinityInterruptArrayInput is an input type that accepts SystemAffinityInterruptArray and SystemAffinityInterruptArrayOutput values.
 // You can construct a concrete instance of `SystemAffinityInterruptArrayInput` via:
 //
-//          SystemAffinityInterruptArray{ SystemAffinityInterruptArgs{...} }
+//	SystemAffinityInterruptArray{ SystemAffinityInterruptArgs{...} }
 type SystemAffinityInterruptArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +142,7 @@ func (i SystemAffinityInterruptArray) ToSystemAffinityInterruptArrayOutputWithCo
 // SystemAffinityInterruptMapInput is an input type that accepts SystemAffinityInterruptMap and SystemAffinityInterruptMapOutput values.
 // You can construct a concrete instance of `SystemAffinityInterruptMapInput` via:
 //
-//          SystemAffinityInterruptMap{ "key": SystemAffinityInterruptArgs{...} }
+//	SystemAffinityInterruptMap{ "key": SystemAffinityInterruptArgs{...} }
 type SystemAffinityInterruptMapInput interface {
 	pulumi.Input
 
@@ -213,6 +176,22 @@ func (o SystemAffinityInterruptOutput) ToSystemAffinityInterruptOutput() SystemA
 
 func (o SystemAffinityInterruptOutput) ToSystemAffinityInterruptOutputWithContext(ctx context.Context) SystemAffinityInterruptOutput {
 	return o
+}
+
+func (o SystemAffinityInterruptOutput) AffinityCpumask() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAffinityInterrupt) pulumi.StringOutput { return v.AffinityCpumask }).(pulumi.StringOutput)
+}
+
+func (o SystemAffinityInterruptOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAffinityInterrupt) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SystemAffinityInterruptOutput) Interrupt() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAffinityInterrupt) pulumi.StringOutput { return v.Interrupt }).(pulumi.StringOutput)
+}
+
+func (o SystemAffinityInterruptOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAffinityInterrupt) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemAffinityInterruptArrayOutput struct{ *pulumi.OutputState }

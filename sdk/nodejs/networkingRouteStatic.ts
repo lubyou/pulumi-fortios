@@ -4,41 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure static route of FortiOS.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.RouterStatic`, we recommend that you use the new resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const subnet = new fortios.NetworkingRouteStatic("subnet", {
- *     blackhole: "disable",
- *     comment: "Terraform test",
- *     device: "port2",
- *     distance: "22",
- *     dst: "110.2.2.122/32",
- *     gateway: "2.2.2.2",
- *     priority: "3",
- *     status: "enable",
- *     weight: "3",
- * });
- * const internetService = new fortios.NetworkingRouteStatic("internet_service", {
- *     blackhole: "disable",
- *     comment: "Terraform Test",
- *     device: "port2",
- *     distance: "22",
- *     gateway: "2.2.2.2",
- *     internetService: 5242881,
- *     priority: "3",
- *     status: "enable",
- *     weight: "3",
- * });
- * ```
- */
 export class NetworkingRouteStatic extends pulumi.CustomResource {
     /**
      * Get an existing NetworkingRouteStatic resource's state with the given name, ID, and optional extra
@@ -67,45 +32,15 @@ export class NetworkingRouteStatic extends pulumi.CustomResource {
         return obj['__pulumiType'] === NetworkingRouteStatic.__pulumiType;
     }
 
-    /**
-     * Enable/disable black hole.
-     */
     public readonly blackhole!: pulumi.Output<string>;
-    /**
-     * Optional comments.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Gateway out interface or tunnel.
-     */
     public readonly device!: pulumi.Output<string>;
-    /**
-     * Administrative distance.
-     */
     public readonly distance!: pulumi.Output<string>;
-    /**
-     * Destination IP and mask for this route.
-     */
     public readonly dst!: pulumi.Output<string>;
-    /**
-     * Gateway IP for this route.
-     */
     public readonly gateway!: pulumi.Output<string>;
-    /**
-     * Application ID in the Internet service database.
-     */
     public readonly internetService!: pulumi.Output<number>;
-    /**
-     * Administrative priority.
-     */
     public readonly priority!: pulumi.Output<string>;
-    /**
-     * Enable/disable this static route. default is "enable".
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Administrative weight.
-     */
     public readonly weight!: pulumi.Output<string>;
 
     /**
@@ -159,45 +94,15 @@ export class NetworkingRouteStatic extends pulumi.CustomResource {
  * Input properties used for looking up and filtering NetworkingRouteStatic resources.
  */
 export interface NetworkingRouteStaticState {
-    /**
-     * Enable/disable black hole.
-     */
     blackhole?: pulumi.Input<string>;
-    /**
-     * Optional comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Gateway out interface or tunnel.
-     */
     device?: pulumi.Input<string>;
-    /**
-     * Administrative distance.
-     */
     distance?: pulumi.Input<string>;
-    /**
-     * Destination IP and mask for this route.
-     */
     dst?: pulumi.Input<string>;
-    /**
-     * Gateway IP for this route.
-     */
     gateway?: pulumi.Input<string>;
-    /**
-     * Application ID in the Internet service database.
-     */
     internetService?: pulumi.Input<number>;
-    /**
-     * Administrative priority.
-     */
     priority?: pulumi.Input<string>;
-    /**
-     * Enable/disable this static route. default is "enable".
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Administrative weight.
-     */
     weight?: pulumi.Input<string>;
 }
 
@@ -205,44 +110,14 @@ export interface NetworkingRouteStaticState {
  * The set of arguments for constructing a NetworkingRouteStatic resource.
  */
 export interface NetworkingRouteStaticArgs {
-    /**
-     * Enable/disable black hole.
-     */
     blackhole?: pulumi.Input<string>;
-    /**
-     * Optional comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Gateway out interface or tunnel.
-     */
     device: pulumi.Input<string>;
-    /**
-     * Administrative distance.
-     */
     distance?: pulumi.Input<string>;
-    /**
-     * Destination IP and mask for this route.
-     */
     dst?: pulumi.Input<string>;
-    /**
-     * Gateway IP for this route.
-     */
     gateway: pulumi.Input<string>;
-    /**
-     * Application ID in the Internet service database.
-     */
     internetService?: pulumi.Input<number>;
-    /**
-     * Administrative priority.
-     */
     priority?: pulumi.Input<string>;
-    /**
-     * Enable/disable this static route. default is "enable".
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Administrative weight.
-     */
     weight?: pulumi.Input<string>;
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewall profileprotocoloptions
 func LookupFirewallProfileProtocolOptions(ctx *pulumi.Context, args *LookupFirewallProfileProtocolOptionsArgs, opts ...pulumi.InvokeOption) (*LookupFirewallProfileProtocolOptionsResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallProfileProtocolOptionsResult
@@ -23,53 +22,33 @@ func LookupFirewallProfileProtocolOptions(ctx *pulumi.Context, args *LookupFirew
 
 // A collection of arguments for invoking GetFirewallProfileProtocolOptions.
 type LookupFirewallProfileProtocolOptionsArgs struct {
-	// Specify the name of the desired firewall profileprotocoloptions.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallProfileProtocolOptions.
 type LookupFirewallProfileProtocolOptionsResult struct {
-	// Configure CIFS protocol options. The structure of `cifs` block is documented below.
-	Cifs GetFirewallProfileProtocolOptionsCifs `pulumi:"cifs"`
-	// Optional comments.
-	Comment string `pulumi:"comment"`
-	// Configure DNS protocol options. The structure of `dns` block is documented below.
-	Dns GetFirewallProfileProtocolOptionsDns `pulumi:"dns"`
-	// Flow/proxy feature set.
-	FeatureSet string `pulumi:"featureSet"`
-	// Configure FTP protocol options. The structure of `ftp` block is documented below.
-	Ftp GetFirewallProfileProtocolOptionsFtp `pulumi:"ftp"`
-	// Configure HTTP protocol options. The structure of `http` block is documented below.
-	Http GetFirewallProfileProtocolOptionsHttp `pulumi:"http"`
+	Cifs       []GetFirewallProfileProtocolOptionsCif  `pulumi:"cifs"`
+	Comment    string                                  `pulumi:"comment"`
+	Dns        []GetFirewallProfileProtocolOptionsDn   `pulumi:"dns"`
+	FeatureSet string                                  `pulumi:"featureSet"`
+	Ftps       []GetFirewallProfileProtocolOptionsFtp  `pulumi:"ftps"`
+	Https      []GetFirewallProfileProtocolOptionsHttp `pulumi:"https"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Configure IMAP protocol options. The structure of `imap` block is documented below.
-	Imap GetFirewallProfileProtocolOptionsImap `pulumi:"imap"`
-	// Configure Mail signature. The structure of `mailSignature` block is documented below.
-	MailSignature GetFirewallProfileProtocolOptionsMailSignature `pulumi:"mailSignature"`
-	// Configure MAPI protocol options. The structure of `mapi` block is documented below.
-	Mapi GetFirewallProfileProtocolOptionsMapi `pulumi:"mapi"`
-	// Name.
-	Name string `pulumi:"name"`
-	// Configure NNTP protocol options. The structure of `nntp` block is documented below.
-	Nntp GetFirewallProfileProtocolOptionsNntp `pulumi:"nntp"`
-	// Enable/disable logging for antivirus oversize file blocking.
-	OversizeLog string `pulumi:"oversizeLog"`
-	// Configure POP3 protocol options. The structure of `pop3` block is documented below.
-	Pop3 GetFirewallProfileProtocolOptionsPop3 `pulumi:"pop3"`
-	// Name of the replacement message group to be used
-	ReplacemsgGroup string `pulumi:"replacemsgGroup"`
-	// Enable/disable inspection of RPC over HTTP.
-	RpcOverHttp string `pulumi:"rpcOverHttp"`
-	// Configure SMTP protocol options. The structure of `smtp` block is documented below.
-	Smtp GetFirewallProfileProtocolOptionsSmtp `pulumi:"smtp"`
-	// Configure SFTP and SCP protocol options. The structure of `ssh` block is documented below.
-	Ssh GetFirewallProfileProtocolOptionsSsh `pulumi:"ssh"`
-	// Enable/disable logging for HTTP/HTTPS switching protocols.
-	SwitchingProtocolsLog string  `pulumi:"switchingProtocolsLog"`
-	Vdomparam             *string `pulumi:"vdomparam"`
+	Id                    string                                           `pulumi:"id"`
+	Imaps                 []GetFirewallProfileProtocolOptionsImap          `pulumi:"imaps"`
+	MailSignatures        []GetFirewallProfileProtocolOptionsMailSignature `pulumi:"mailSignatures"`
+	Mapis                 []GetFirewallProfileProtocolOptionsMapi          `pulumi:"mapis"`
+	Name                  string                                           `pulumi:"name"`
+	Nntps                 []GetFirewallProfileProtocolOptionsNntp          `pulumi:"nntps"`
+	OversizeLog           string                                           `pulumi:"oversizeLog"`
+	Pop3s                 []GetFirewallProfileProtocolOptionsPop3          `pulumi:"pop3s"`
+	ReplacemsgGroup       string                                           `pulumi:"replacemsgGroup"`
+	RpcOverHttp           string                                           `pulumi:"rpcOverHttp"`
+	Smtps                 []GetFirewallProfileProtocolOptionsSmtp          `pulumi:"smtps"`
+	Sshes                 []GetFirewallProfileProtocolOptionsSsh           `pulumi:"sshes"`
+	SwitchingProtocolsLog string                                           `pulumi:"switchingProtocolsLog"`
+	Vdomparam             *string                                          `pulumi:"vdomparam"`
 }
 
 func LookupFirewallProfileProtocolOptionsOutput(ctx *pulumi.Context, args LookupFirewallProfileProtocolOptionsOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallProfileProtocolOptionsResultOutput {
@@ -87,9 +66,7 @@ func LookupFirewallProfileProtocolOptionsOutput(ctx *pulumi.Context, args Lookup
 
 // A collection of arguments for invoking GetFirewallProfileProtocolOptions.
 type LookupFirewallProfileProtocolOptionsOutputArgs struct {
-	// Specify the name of the desired firewall profileprotocoloptions.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -112,38 +89,34 @@ func (o LookupFirewallProfileProtocolOptionsResultOutput) ToLookupFirewallProfil
 	return o
 }
 
-// Configure CIFS protocol options. The structure of `cifs` block is documented below.
-func (o LookupFirewallProfileProtocolOptionsResultOutput) Cifs() GetFirewallProfileProtocolOptionsCifsOutput {
-	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) GetFirewallProfileProtocolOptionsCifs {
+func (o LookupFirewallProfileProtocolOptionsResultOutput) Cifs() GetFirewallProfileProtocolOptionsCifArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) []GetFirewallProfileProtocolOptionsCif {
 		return v.Cifs
-	}).(GetFirewallProfileProtocolOptionsCifsOutput)
+	}).(GetFirewallProfileProtocolOptionsCifArrayOutput)
 }
 
-// Optional comments.
 func (o LookupFirewallProfileProtocolOptionsResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) string { return v.Comment }).(pulumi.StringOutput)
 }
 
-// Configure DNS protocol options. The structure of `dns` block is documented below.
-func (o LookupFirewallProfileProtocolOptionsResultOutput) Dns() GetFirewallProfileProtocolOptionsDnsOutput {
-	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) GetFirewallProfileProtocolOptionsDns { return v.Dns }).(GetFirewallProfileProtocolOptionsDnsOutput)
+func (o LookupFirewallProfileProtocolOptionsResultOutput) Dns() GetFirewallProfileProtocolOptionsDnArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) []GetFirewallProfileProtocolOptionsDn { return v.Dns }).(GetFirewallProfileProtocolOptionsDnArrayOutput)
 }
 
-// Flow/proxy feature set.
 func (o LookupFirewallProfileProtocolOptionsResultOutput) FeatureSet() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) string { return v.FeatureSet }).(pulumi.StringOutput)
 }
 
-// Configure FTP protocol options. The structure of `ftp` block is documented below.
-func (o LookupFirewallProfileProtocolOptionsResultOutput) Ftp() GetFirewallProfileProtocolOptionsFtpOutput {
-	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) GetFirewallProfileProtocolOptionsFtp { return v.Ftp }).(GetFirewallProfileProtocolOptionsFtpOutput)
+func (o LookupFirewallProfileProtocolOptionsResultOutput) Ftps() GetFirewallProfileProtocolOptionsFtpArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) []GetFirewallProfileProtocolOptionsFtp {
+		return v.Ftps
+	}).(GetFirewallProfileProtocolOptionsFtpArrayOutput)
 }
 
-// Configure HTTP protocol options. The structure of `http` block is documented below.
-func (o LookupFirewallProfileProtocolOptionsResultOutput) Http() GetFirewallProfileProtocolOptionsHttpOutput {
-	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) GetFirewallProfileProtocolOptionsHttp {
-		return v.Http
-	}).(GetFirewallProfileProtocolOptionsHttpOutput)
+func (o LookupFirewallProfileProtocolOptionsResultOutput) Https() GetFirewallProfileProtocolOptionsHttpArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) []GetFirewallProfileProtocolOptionsHttp {
+		return v.Https
+	}).(GetFirewallProfileProtocolOptionsHttpArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
@@ -151,74 +124,64 @@ func (o LookupFirewallProfileProtocolOptionsResultOutput) Id() pulumi.StringOutp
 	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Configure IMAP protocol options. The structure of `imap` block is documented below.
-func (o LookupFirewallProfileProtocolOptionsResultOutput) Imap() GetFirewallProfileProtocolOptionsImapOutput {
-	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) GetFirewallProfileProtocolOptionsImap {
-		return v.Imap
-	}).(GetFirewallProfileProtocolOptionsImapOutput)
+func (o LookupFirewallProfileProtocolOptionsResultOutput) Imaps() GetFirewallProfileProtocolOptionsImapArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) []GetFirewallProfileProtocolOptionsImap {
+		return v.Imaps
+	}).(GetFirewallProfileProtocolOptionsImapArrayOutput)
 }
 
-// Configure Mail signature. The structure of `mailSignature` block is documented below.
-func (o LookupFirewallProfileProtocolOptionsResultOutput) MailSignature() GetFirewallProfileProtocolOptionsMailSignatureOutput {
-	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) GetFirewallProfileProtocolOptionsMailSignature {
-		return v.MailSignature
-	}).(GetFirewallProfileProtocolOptionsMailSignatureOutput)
+func (o LookupFirewallProfileProtocolOptionsResultOutput) MailSignatures() GetFirewallProfileProtocolOptionsMailSignatureArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) []GetFirewallProfileProtocolOptionsMailSignature {
+		return v.MailSignatures
+	}).(GetFirewallProfileProtocolOptionsMailSignatureArrayOutput)
 }
 
-// Configure MAPI protocol options. The structure of `mapi` block is documented below.
-func (o LookupFirewallProfileProtocolOptionsResultOutput) Mapi() GetFirewallProfileProtocolOptionsMapiOutput {
-	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) GetFirewallProfileProtocolOptionsMapi {
-		return v.Mapi
-	}).(GetFirewallProfileProtocolOptionsMapiOutput)
+func (o LookupFirewallProfileProtocolOptionsResultOutput) Mapis() GetFirewallProfileProtocolOptionsMapiArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) []GetFirewallProfileProtocolOptionsMapi {
+		return v.Mapis
+	}).(GetFirewallProfileProtocolOptionsMapiArrayOutput)
 }
 
-// Name.
 func (o LookupFirewallProfileProtocolOptionsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Configure NNTP protocol options. The structure of `nntp` block is documented below.
-func (o LookupFirewallProfileProtocolOptionsResultOutput) Nntp() GetFirewallProfileProtocolOptionsNntpOutput {
-	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) GetFirewallProfileProtocolOptionsNntp {
-		return v.Nntp
-	}).(GetFirewallProfileProtocolOptionsNntpOutput)
+func (o LookupFirewallProfileProtocolOptionsResultOutput) Nntps() GetFirewallProfileProtocolOptionsNntpArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) []GetFirewallProfileProtocolOptionsNntp {
+		return v.Nntps
+	}).(GetFirewallProfileProtocolOptionsNntpArrayOutput)
 }
 
-// Enable/disable logging for antivirus oversize file blocking.
 func (o LookupFirewallProfileProtocolOptionsResultOutput) OversizeLog() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) string { return v.OversizeLog }).(pulumi.StringOutput)
 }
 
-// Configure POP3 protocol options. The structure of `pop3` block is documented below.
-func (o LookupFirewallProfileProtocolOptionsResultOutput) Pop3() GetFirewallProfileProtocolOptionsPop3Output {
-	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) GetFirewallProfileProtocolOptionsPop3 {
-		return v.Pop3
-	}).(GetFirewallProfileProtocolOptionsPop3Output)
+func (o LookupFirewallProfileProtocolOptionsResultOutput) Pop3s() GetFirewallProfileProtocolOptionsPop3ArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) []GetFirewallProfileProtocolOptionsPop3 {
+		return v.Pop3s
+	}).(GetFirewallProfileProtocolOptionsPop3ArrayOutput)
 }
 
-// Name of the replacement message group to be used
 func (o LookupFirewallProfileProtocolOptionsResultOutput) ReplacemsgGroup() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) string { return v.ReplacemsgGroup }).(pulumi.StringOutput)
 }
 
-// Enable/disable inspection of RPC over HTTP.
 func (o LookupFirewallProfileProtocolOptionsResultOutput) RpcOverHttp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) string { return v.RpcOverHttp }).(pulumi.StringOutput)
 }
 
-// Configure SMTP protocol options. The structure of `smtp` block is documented below.
-func (o LookupFirewallProfileProtocolOptionsResultOutput) Smtp() GetFirewallProfileProtocolOptionsSmtpOutput {
-	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) GetFirewallProfileProtocolOptionsSmtp {
-		return v.Smtp
-	}).(GetFirewallProfileProtocolOptionsSmtpOutput)
+func (o LookupFirewallProfileProtocolOptionsResultOutput) Smtps() GetFirewallProfileProtocolOptionsSmtpArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) []GetFirewallProfileProtocolOptionsSmtp {
+		return v.Smtps
+	}).(GetFirewallProfileProtocolOptionsSmtpArrayOutput)
 }
 
-// Configure SFTP and SCP protocol options. The structure of `ssh` block is documented below.
-func (o LookupFirewallProfileProtocolOptionsResultOutput) Ssh() GetFirewallProfileProtocolOptionsSshOutput {
-	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) GetFirewallProfileProtocolOptionsSsh { return v.Ssh }).(GetFirewallProfileProtocolOptionsSshOutput)
+func (o LookupFirewallProfileProtocolOptionsResultOutput) Sshes() GetFirewallProfileProtocolOptionsSshArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) []GetFirewallProfileProtocolOptionsSsh {
+		return v.Sshes
+	}).(GetFirewallProfileProtocolOptionsSshArrayOutput)
 }
 
-// Enable/disable logging for HTTP/HTTPS switching protocols.
 func (o LookupFirewallProfileProtocolOptionsResultOutput) SwitchingProtocolsLog() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProfileProtocolOptionsResult) string { return v.SwitchingProtocolsLog }).(pulumi.StringOutput)
 }

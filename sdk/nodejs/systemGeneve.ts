@@ -4,41 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure GENEVE devices. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemGeneve("trname", {
- *     dstport: 22,
- *     interface: "port2",
- *     ipVersion: "ipv4-unicast",
- *     remoteIp: "1.1.1.1",
- *     remoteIp6: "::",
- *     vni: 0,
- * });
- * ```
- *
- * ## Import
- *
- * System Geneve can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemGeneve:SystemGeneve labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemGeneve:SystemGeneve labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemGeneve extends pulumi.CustomResource {
     /**
      * Get an existing SystemGeneve resource's state with the given name, ID, and optional extra
@@ -67,41 +32,14 @@ export class SystemGeneve extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemGeneve.__pulumiType;
     }
 
-    /**
-     * GENEVE destination port (1 - 65535, default = 6081).
-     */
     public readonly dstport!: pulumi.Output<number>;
-    /**
-     * Outgoing interface for GENEVE encapsulated traffic.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * IP version to use for the GENEVE interface and so for communication over the GENEVE. IPv4 or IPv6 unicast. Valid values: `ipv4-unicast`, `ipv6-unicast`.
-     */
     public readonly ipVersion!: pulumi.Output<string>;
-    /**
-     * GENEVE device or interface name. Must be an unique interface name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * IPv4 address of the GENEVE interface on the device at the remote end of the GENEVE.
-     */
     public readonly remoteIp!: pulumi.Output<string>;
-    /**
-     * IPv6 IP address of the GENEVE interface on the device at the remote end of the GENEVE.
-     */
     public readonly remoteIp6!: pulumi.Output<string>;
-    /**
-     * GENEVE type. Valid values: `ethernet`, `ppp`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * GENEVE network ID.
-     */
     public readonly vni!: pulumi.Output<number>;
 
     /**
@@ -159,41 +97,14 @@ export class SystemGeneve extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemGeneve resources.
  */
 export interface SystemGeneveState {
-    /**
-     * GENEVE destination port (1 - 65535, default = 6081).
-     */
     dstport?: pulumi.Input<number>;
-    /**
-     * Outgoing interface for GENEVE encapsulated traffic.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * IP version to use for the GENEVE interface and so for communication over the GENEVE. IPv4 or IPv6 unicast. Valid values: `ipv4-unicast`, `ipv6-unicast`.
-     */
     ipVersion?: pulumi.Input<string>;
-    /**
-     * GENEVE device or interface name. Must be an unique interface name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * IPv4 address of the GENEVE interface on the device at the remote end of the GENEVE.
-     */
     remoteIp?: pulumi.Input<string>;
-    /**
-     * IPv6 IP address of the GENEVE interface on the device at the remote end of the GENEVE.
-     */
     remoteIp6?: pulumi.Input<string>;
-    /**
-     * GENEVE type. Valid values: `ethernet`, `ppp`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * GENEVE network ID.
-     */
     vni?: pulumi.Input<number>;
 }
 
@@ -201,40 +112,13 @@ export interface SystemGeneveState {
  * The set of arguments for constructing a SystemGeneve resource.
  */
 export interface SystemGeneveArgs {
-    /**
-     * GENEVE destination port (1 - 65535, default = 6081).
-     */
     dstport?: pulumi.Input<number>;
-    /**
-     * Outgoing interface for GENEVE encapsulated traffic.
-     */
     interface: pulumi.Input<string>;
-    /**
-     * IP version to use for the GENEVE interface and so for communication over the GENEVE. IPv4 or IPv6 unicast. Valid values: `ipv4-unicast`, `ipv6-unicast`.
-     */
     ipVersion: pulumi.Input<string>;
-    /**
-     * GENEVE device or interface name. Must be an unique interface name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * IPv4 address of the GENEVE interface on the device at the remote end of the GENEVE.
-     */
     remoteIp: pulumi.Input<string>;
-    /**
-     * IPv6 IP address of the GENEVE interface on the device at the remote end of the GENEVE.
-     */
     remoteIp6?: pulumi.Input<string>;
-    /**
-     * GENEVE type. Valid values: `ethernet`, `ppp`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * GENEVE network ID.
-     */
     vni: pulumi.Input<number>;
 }

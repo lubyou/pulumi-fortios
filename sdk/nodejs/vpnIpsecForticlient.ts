@@ -4,179 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiClient policy realm.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
- *
- * // fortios_vpnipsec_phase1interface.trname2:
- * const trname4 = new fortios.VpnIpsecPhase1Interface("trname4", {
- *     acctVerify: "disable",
- *     addGwRoute: "disable",
- *     addRoute: "enable",
- *     assignIp: "enable",
- *     assignIpFrom: "range",
- *     authmethod: "psk",
- *     authusrgrp: "Guest-group",
- *     autoDiscoveryForwarder: "disable",
- *     autoDiscoveryPsk: "disable",
- *     autoDiscoveryReceiver: "disable",
- *     autoDiscoverySender: "disable",
- *     autoNegotiate: "enable",
- *     certIdValidation: "enable",
- *     childlessIke: "disable",
- *     clientAutoNegotiate: "disable",
- *     clientKeepAlive: "disable",
- *     comments: "VPN: Dialup_IPsec (Created by VPN wizard)",
- *     defaultGw: "0.0.0.0",
- *     defaultGwPriority: 0,
- *     dhgrp: "14 5",
- *     digitalSignatureAuth: "disable",
- *     distance: 15,
- *     dnsMode: "auto",
- *     dpd: "on-idle",
- *     dpdRetrycount: 3,
- *     dpdRetryinterval: "60",
- *     eap: "disable",
- *     eapIdentity: "use-id-payload",
- *     encapLocalGw4: "0.0.0.0",
- *     encapLocalGw6: "::",
- *     encapRemoteGw4: "0.0.0.0",
- *     encapRemoteGw6: "::",
- *     encapsulation: "none",
- *     encapsulationAddress: "ike",
- *     enforceUniqueId: "disable",
- *     exchangeInterfaceIp: "disable",
- *     exchangeIpAddr4: "0.0.0.0",
- *     exchangeIpAddr6: "::",
- *     forticlientEnforcement: "disable",
- *     fragmentation: "enable",
- *     fragmentationMtu: 1200,
- *     groupAuthentication: "disable",
- *     haSyncEspSeqno: "enable",
- *     idleTimeout: "disable",
- *     idleTimeoutinterval: 15,
- *     ikeVersion: "1",
- *     includeLocalLan: "disable",
- *     "interface": "port4",
- *     ipVersion: "4",
- *     ipv4DnsServer1: "0.0.0.0",
- *     ipv4DnsServer2: "0.0.0.0",
- *     ipv4DnsServer3: "0.0.0.0",
- *     ipv4EndIp: "10.10.10.10",
- *     ipv4Netmask: "255.255.255.192",
- *     ipv4SplitInclude: "FIREWALL_AUTH_PORTAL_ADDRESS",
- *     ipv4StartIp: "10.10.10.1",
- *     ipv4WinsServer1: "0.0.0.0",
- *     ipv4WinsServer2: "0.0.0.0",
- *     ipv6DnsServer1: "::",
- *     ipv6DnsServer2: "::",
- *     ipv6DnsServer3: "::",
- *     ipv6EndIp: "::",
- *     ipv6Prefix: 128,
- *     ipv6StartIp: "::",
- *     keepalive: 10,
- *     keylife: 86400,
- *     localGw: "0.0.0.0",
- *     localGw6: "::",
- *     localidType: "auto",
- *     meshSelectorType: "disable",
- *     mode: "aggressive",
- *     modeCfg: "enable",
- *     monitorHoldDownDelay: 0,
- *     monitorHoldDownTime: "00:00",
- *     monitorHoldDownType: "immediate",
- *     monitorHoldDownWeekday: "sunday",
- *     nattraversal: "enable",
- *     negotiateTimeout: 30,
- *     netDevice: "enable",
- *     passiveMode: "disable",
- *     peertype: "any",
- *     psksecret: "NCIEW32930293203932",
- *     ppk: "disable",
- *     priority: 0,
- *     proposal: "aes128-sha256 aes256-sha256 aes128-sha1 aes256-sha1",
- *     reauth: "disable",
- *     rekey: "enable",
- *     remoteGw: "0.0.0.0",
- *     remoteGw6: "::",
- *     rsaSignatureFormat: "pkcs1",
- *     savePassword: "enable",
- *     sendCertChain: "enable",
- *     signatureHashAlg: "sha2-512 sha2-384 sha2-256 sha1",
- *     suiteB: "disable",
- *     tunnelSearch: "selectors",
- *     type: "dynamic",
- *     unitySupport: "enable",
- *     wizardType: "dialup-forticlient",
- *     xauthtype: "auto",
- * });
- * // fortios_vpnipsec_phase2interface.trname1:
- * const trname3 = new fortios.VpnIpsecPhase2Interface("trname3", {
- *     addRoute: "phase1",
- *     autoDiscoveryForwarder: "phase1",
- *     autoDiscoverySender: "phase1",
- *     autoNegotiate: "disable",
- *     dhcpIpsec: "disable",
- *     dhgrp: "14 5",
- *     dstAddrType: "subnet",
- *     dstEndIp: "0.0.0.0",
- *     dstEndIp6: "::",
- *     dstPort: 0,
- *     dstStartIp: "0.0.0.0",
- *     dstStartIp6: "::",
- *     dstSubnet: "0.0.0.0 0.0.0.0",
- *     dstSubnet6: "::/0",
- *     encapsulation: "tunnel-mode",
- *     keepalive: "disable",
- *     keylifeType: "seconds",
- *     keylifekbs: 5120,
- *     keylifeseconds: 43200,
- *     l2tp: "disable",
- *     pfs: "enable",
- *     phase1name: trname4.name,
- *     proposal: "aes128-sha1 aes256-sha1 aes128-sha256 aes256-sha256 aes128gcm aes256gcm chacha20poly1305",
- *     protocol: 0,
- *     replay: "enable",
- *     routeOverlap: "use-new",
- *     singleSource: "disable",
- *     srcAddrType: "subnet",
- *     srcEndIp: "0.0.0.0",
- *     srcEndIp6: "::",
- *     srcPort: 0,
- *     srcStartIp: "0.0.0.0",
- *     srcStartIp6: "::",
- *     srcSubnet: "0.0.0.0 0.0.0.0",
- *     srcSubnet6: "::/0",
- * });
- * const trname = new fortios.VpnIpsecForticlient("trname", {
- *     phase2name: trname3.name,
- *     realm: "1",
- *     status: "enable",
- *     usergroupname: "Guest-group",
- * });
- * ```
- *
- * ## Import
- *
- * VpnIpsec Forticlient can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnIpsecForticlient:VpnIpsecForticlient labelname {{realm}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnIpsecForticlient:VpnIpsecForticlient labelname {{realm}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VpnIpsecForticlient extends pulumi.CustomResource {
     /**
      * Get an existing VpnIpsecForticlient resource's state with the given name, ID, and optional extra
@@ -205,25 +32,10 @@ export class VpnIpsecForticlient extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpnIpsecForticlient.__pulumiType;
     }
 
-    /**
-     * Phase 2 tunnel name that you defined in the FortiClient dialup configuration.
-     */
     public readonly phase2name!: pulumi.Output<string>;
-    /**
-     * FortiClient realm name.
-     */
     public readonly realm!: pulumi.Output<string>;
-    /**
-     * Enable/disable this FortiClient configuration. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * User group name for FortiClient users.
-     */
     public readonly usergroupname!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -267,25 +79,10 @@ export class VpnIpsecForticlient extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnIpsecForticlient resources.
  */
 export interface VpnIpsecForticlientState {
-    /**
-     * Phase 2 tunnel name that you defined in the FortiClient dialup configuration.
-     */
     phase2name?: pulumi.Input<string>;
-    /**
-     * FortiClient realm name.
-     */
     realm?: pulumi.Input<string>;
-    /**
-     * Enable/disable this FortiClient configuration. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * User group name for FortiClient users.
-     */
     usergroupname?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -293,24 +90,9 @@ export interface VpnIpsecForticlientState {
  * The set of arguments for constructing a VpnIpsecForticlient resource.
  */
 export interface VpnIpsecForticlientArgs {
-    /**
-     * Phase 2 tunnel name that you defined in the FortiClient dialup configuration.
-     */
     phase2name: pulumi.Input<string>;
-    /**
-     * FortiClient realm name.
-     */
     realm?: pulumi.Input<string>;
-    /**
-     * Enable/disable this FortiClient configuration. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * User group name for FortiClient users.
-     */
     usergroupname: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

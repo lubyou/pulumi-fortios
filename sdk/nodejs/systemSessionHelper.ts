@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure session helper.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemSessionHelper("trname", {
- *     fosid: 33,
- *     port: 3234,
- *     protocol: 17,
- * });
- * ```
- *
- * ## Import
- *
- * System SessionHelper can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSessionHelper:SystemSessionHelper labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSessionHelper:SystemSessionHelper labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemSessionHelper extends pulumi.CustomResource {
     /**
      * Get an existing SystemSessionHelper resource's state with the given name, ID, and optional extra
@@ -64,25 +32,10 @@ export class SystemSessionHelper extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemSessionHelper.__pulumiType;
     }
 
-    /**
-     * Session helper ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Helper name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Protocol port.
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Protocol number.
-     */
     public readonly protocol!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -126,25 +79,10 @@ export class SystemSessionHelper extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSessionHelper resources.
  */
 export interface SystemSessionHelperState {
-    /**
-     * Session helper ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Helper name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Protocol port.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Protocol number.
-     */
     protocol?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -152,24 +90,9 @@ export interface SystemSessionHelperState {
  * The set of arguments for constructing a SystemSessionHelper resource.
  */
 export interface SystemSessionHelperArgs {
-    /**
-     * Session helper ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Helper name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Protocol port.
-     */
     port: pulumi.Input<number>;
-    /**
-     * Protocol number.
-     */
     protocol: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

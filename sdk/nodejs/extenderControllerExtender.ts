@@ -2,59 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Extender controller configuration.
- *
- * > The resource applies to FortiOS Version < 6.4.2. For FortiOS Version >= 6.4.2, see `fortios.ExtenderControllerExtender1`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.ExtenderControllerExtender("trname", {
- *     admin: "disable",
- *     billingStartDay: 1,
- *     connStatus: 0,
- *     dialMode: "always-connect",
- *     dialStatus: 0,
- *     extName: "332",
- *     fosid: "1",
- *     initiatedUpdate: "disable",
- *     mode: "standalone",
- *     modemType: "gsm/lte",
- *     multiMode: "auto",
- *     pppAuthProtocol: "auto",
- *     pppEchoRequest: "disable",
- *     quotaLimitMb: 0,
- *     redial: "none",
- *     roaming: "disable",
- *     role: "primary",
- *     vdom: 0,
- *     wimaxAuthProtocol: "tls",
- * });
- * ```
- *
- * ## Import
- *
- * ExtenderController Extender can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/extenderControllerExtender:ExtenderControllerExtender labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/extenderControllerExtender:ExtenderControllerExtender labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class ExtenderControllerExtender extends pulumi.CustomResource {
     /**
      * Get an existing ExtenderControllerExtender resource's state with the given name, ID, and optional extra
@@ -83,225 +34,60 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
         return obj['__pulumiType'] === ExtenderControllerExtender.__pulumiType;
     }
 
-    /**
-     * AAA shared secret.
-     */
     public readonly aaaSharedSecret!: pulumi.Output<string | undefined>;
-    /**
-     * Access point name(APN).
-     */
     public readonly accessPointName!: pulumi.Output<string>;
-    /**
-     * FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
-     */
     public readonly admin!: pulumi.Output<string>;
-    /**
-     * Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-     */
     public readonly allowaccess!: pulumi.Output<string>;
-    /**
-     * Initialization AT commands specific to the MODEM.
-     */
     public readonly atDialScript!: pulumi.Output<string>;
-    /**
-     * FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-     */
     public readonly authorized!: pulumi.Output<string>;
-    /**
-     * FortiExtender LAN extension bandwidth limit (Mbps).
-     */
     public readonly bandwidthLimit!: pulumi.Output<number>;
-    /**
-     * Billing start day.
-     */
     public readonly billingStartDay!: pulumi.Output<number>;
-    /**
-     * CDMA AAA SPI.
-     */
     public readonly cdmaAaaSpi!: pulumi.Output<string>;
-    /**
-     * CDMA HA SPI.
-     */
     public readonly cdmaHaSpi!: pulumi.Output<string>;
-    /**
-     * NAI for CDMA MODEMS.
-     */
     public readonly cdmaNai!: pulumi.Output<string>;
-    /**
-     * Connection status.
-     */
     public readonly connStatus!: pulumi.Output<number>;
-    /**
-     * FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
-     */
-    public readonly controllerReport!: pulumi.Output<outputs.ExtenderControllerExtenderControllerReport | undefined>;
-    /**
-     * Description.
-     */
+    public readonly controllerReport!: pulumi.Output<outputs.ExtenderControllerExtenderControllerReport>;
     public readonly description!: pulumi.Output<string>;
-    /**
-     * device-id
-     */
     public readonly deviceId!: pulumi.Output<number>;
-    /**
-     * Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
-     */
     public readonly dialMode!: pulumi.Output<string>;
-    /**
-     * Dial status.
-     */
     public readonly dialStatus!: pulumi.Output<number>;
-    /**
-     * Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-     */
     public readonly enforceBandwidth!: pulumi.Output<string>;
-    /**
-     * FortiExtender name.
-     */
     public readonly extName!: pulumi.Output<string>;
-    /**
-     * Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
-     */
     public readonly extensionType!: pulumi.Output<string>;
-    /**
-     * FortiExtender serial number.
-     */
     public readonly fosid!: pulumi.Output<string>;
-    /**
-     * HA shared secret.
-     */
     public readonly haSharedSecret!: pulumi.Output<string | undefined>;
-    /**
-     * FortiExtender interface name.
-     */
     public readonly ifname!: pulumi.Output<string>;
-    /**
-     * Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
-     */
     public readonly initiatedUpdate!: pulumi.Output<string>;
-    /**
-     * FortiExtender login password.
-     */
     public readonly loginPassword!: pulumi.Output<string | undefined>;
-    /**
-     * Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-     */
     public readonly loginPasswordChange!: pulumi.Output<string>;
-    /**
-     * FortiExtender mode. Valid values: `standalone`, `redundant`.
-     */
     public readonly mode!: pulumi.Output<string>;
-    /**
-     * Configuration options for modem 1. The structure of `modem1` block is documented below.
-     */
-    public readonly modem1!: pulumi.Output<outputs.ExtenderControllerExtenderModem1 | undefined>;
-    /**
-     * Configuration options for modem 2. The structure of `modem2` block is documented below.
-     */
-    public readonly modem2!: pulumi.Output<outputs.ExtenderControllerExtenderModem2 | undefined>;
-    /**
-     * MODEM password.
-     */
+    public readonly modem1!: pulumi.Output<outputs.ExtenderControllerExtenderModem1>;
+    public readonly modem2!: pulumi.Output<outputs.ExtenderControllerExtenderModem2>;
     public readonly modemPasswd!: pulumi.Output<string | undefined>;
-    /**
-     * MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
-     */
     public readonly modemType!: pulumi.Output<string>;
-    /**
-     * MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
-     */
     public readonly multiMode!: pulumi.Output<string>;
-    /**
-     * FortiExtender entry name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
-     */
     public readonly overrideAllowaccess!: pulumi.Output<string>;
-    /**
-     * Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
-     */
     public readonly overrideEnforceBandwidth!: pulumi.Output<string>;
-    /**
-     * Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
-     */
     public readonly overrideLoginPasswordChange!: pulumi.Output<string>;
-    /**
-     * PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
-     */
     public readonly pppAuthProtocol!: pulumi.Output<string>;
-    /**
-     * Enable/disable PPP echo request. Valid values: `enable`, `disable`.
-     */
     public readonly pppEchoRequest!: pulumi.Output<string>;
-    /**
-     * PPP password.
-     */
     public readonly pppPassword!: pulumi.Output<string | undefined>;
-    /**
-     * PPP username.
-     */
     public readonly pppUsername!: pulumi.Output<string>;
-    /**
-     * Primary HA.
-     */
     public readonly primaryHa!: pulumi.Output<string>;
-    /**
-     * FortiExtender profile configuration.
-     */
     public readonly profile!: pulumi.Output<string>;
-    /**
-     * Monthly quota limit (MB).
-     */
     public readonly quotaLimitMb!: pulumi.Output<number>;
-    /**
-     * Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-     */
     public readonly redial!: pulumi.Output<string>;
-    /**
-     * Redundant interface.
-     */
     public readonly redundantIntf!: pulumi.Output<string>;
-    /**
-     * Enable/disable MODEM roaming. Valid values: `enable`, `disable`.
-     */
     public readonly roaming!: pulumi.Output<string>;
-    /**
-     * FortiExtender work role(Primary, Secondary, None). Valid values: `none`, `primary`, `secondary`.
-     */
     public readonly role!: pulumi.Output<string>;
-    /**
-     * Secondary HA.
-     */
     public readonly secondaryHa!: pulumi.Output<string>;
-    /**
-     * SIM PIN.
-     */
     public readonly simPin!: pulumi.Output<string | undefined>;
-    /**
-     * VDOM
-     */
     public readonly vdom!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
-     */
-    public readonly wanExtension!: pulumi.Output<outputs.ExtenderControllerExtenderWanExtension | undefined>;
-    /**
-     * WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
-     */
+    public readonly wanExtension!: pulumi.Output<outputs.ExtenderControllerExtenderWanExtension>;
     public readonly wimaxAuthProtocol!: pulumi.Output<string>;
-    /**
-     * WiMax carrier.
-     */
     public readonly wimaxCarrier!: pulumi.Output<string>;
-    /**
-     * WiMax realm.
-     */
     public readonly wimaxRealm!: pulumi.Output<string>;
 
     /**
@@ -383,7 +169,7 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
             if ((!args || args.role === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            resourceInputs["aaaSharedSecret"] = args ? args.aaaSharedSecret : undefined;
+            resourceInputs["aaaSharedSecret"] = args?.aaaSharedSecret ? pulumi.secret(args.aaaSharedSecret) : undefined;
             resourceInputs["accessPointName"] = args ? args.accessPointName : undefined;
             resourceInputs["admin"] = args ? args.admin : undefined;
             resourceInputs["allowaccess"] = args ? args.allowaccess : undefined;
@@ -404,7 +190,7 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
             resourceInputs["extName"] = args ? args.extName : undefined;
             resourceInputs["extensionType"] = args ? args.extensionType : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
-            resourceInputs["haSharedSecret"] = args ? args.haSharedSecret : undefined;
+            resourceInputs["haSharedSecret"] = args?.haSharedSecret ? pulumi.secret(args.haSharedSecret) : undefined;
             resourceInputs["ifname"] = args ? args.ifname : undefined;
             resourceInputs["initiatedUpdate"] = args ? args.initiatedUpdate : undefined;
             resourceInputs["loginPassword"] = args ? args.loginPassword : undefined;
@@ -412,7 +198,7 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
             resourceInputs["mode"] = args ? args.mode : undefined;
             resourceInputs["modem1"] = args ? args.modem1 : undefined;
             resourceInputs["modem2"] = args ? args.modem2 : undefined;
-            resourceInputs["modemPasswd"] = args ? args.modemPasswd : undefined;
+            resourceInputs["modemPasswd"] = args?.modemPasswd ? pulumi.secret(args.modemPasswd) : undefined;
             resourceInputs["modemType"] = args ? args.modemType : undefined;
             resourceInputs["multiMode"] = args ? args.multiMode : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -421,7 +207,7 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
             resourceInputs["overrideLoginPasswordChange"] = args ? args.overrideLoginPasswordChange : undefined;
             resourceInputs["pppAuthProtocol"] = args ? args.pppAuthProtocol : undefined;
             resourceInputs["pppEchoRequest"] = args ? args.pppEchoRequest : undefined;
-            resourceInputs["pppPassword"] = args ? args.pppPassword : undefined;
+            resourceInputs["pppPassword"] = args?.pppPassword ? pulumi.secret(args.pppPassword) : undefined;
             resourceInputs["pppUsername"] = args ? args.pppUsername : undefined;
             resourceInputs["primaryHa"] = args ? args.primaryHa : undefined;
             resourceInputs["profile"] = args ? args.profile : undefined;
@@ -431,7 +217,7 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
             resourceInputs["roaming"] = args ? args.roaming : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
             resourceInputs["secondaryHa"] = args ? args.secondaryHa : undefined;
-            resourceInputs["simPin"] = args ? args.simPin : undefined;
+            resourceInputs["simPin"] = args?.simPin ? pulumi.secret(args.simPin) : undefined;
             resourceInputs["vdom"] = args ? args.vdom : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["wanExtension"] = args ? args.wanExtension : undefined;
@@ -440,6 +226,8 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
             resourceInputs["wimaxRealm"] = args ? args.wimaxRealm : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["aaaSharedSecret", "haSharedSecret", "modemPasswd", "pppPassword", "simPin"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(ExtenderControllerExtender.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -448,225 +236,60 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ExtenderControllerExtender resources.
  */
 export interface ExtenderControllerExtenderState {
-    /**
-     * AAA shared secret.
-     */
     aaaSharedSecret?: pulumi.Input<string>;
-    /**
-     * Access point name(APN).
-     */
     accessPointName?: pulumi.Input<string>;
-    /**
-     * FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
-     */
     admin?: pulumi.Input<string>;
-    /**
-     * Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-     */
     allowaccess?: pulumi.Input<string>;
-    /**
-     * Initialization AT commands specific to the MODEM.
-     */
     atDialScript?: pulumi.Input<string>;
-    /**
-     * FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-     */
     authorized?: pulumi.Input<string>;
-    /**
-     * FortiExtender LAN extension bandwidth limit (Mbps).
-     */
     bandwidthLimit?: pulumi.Input<number>;
-    /**
-     * Billing start day.
-     */
     billingStartDay?: pulumi.Input<number>;
-    /**
-     * CDMA AAA SPI.
-     */
     cdmaAaaSpi?: pulumi.Input<string>;
-    /**
-     * CDMA HA SPI.
-     */
     cdmaHaSpi?: pulumi.Input<string>;
-    /**
-     * NAI for CDMA MODEMS.
-     */
     cdmaNai?: pulumi.Input<string>;
-    /**
-     * Connection status.
-     */
     connStatus?: pulumi.Input<number>;
-    /**
-     * FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
-     */
     controllerReport?: pulumi.Input<inputs.ExtenderControllerExtenderControllerReport>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * device-id
-     */
     deviceId?: pulumi.Input<number>;
-    /**
-     * Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
-     */
     dialMode?: pulumi.Input<string>;
-    /**
-     * Dial status.
-     */
     dialStatus?: pulumi.Input<number>;
-    /**
-     * Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-     */
     enforceBandwidth?: pulumi.Input<string>;
-    /**
-     * FortiExtender name.
-     */
     extName?: pulumi.Input<string>;
-    /**
-     * Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
-     */
     extensionType?: pulumi.Input<string>;
-    /**
-     * FortiExtender serial number.
-     */
     fosid?: pulumi.Input<string>;
-    /**
-     * HA shared secret.
-     */
     haSharedSecret?: pulumi.Input<string>;
-    /**
-     * FortiExtender interface name.
-     */
     ifname?: pulumi.Input<string>;
-    /**
-     * Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
-     */
     initiatedUpdate?: pulumi.Input<string>;
-    /**
-     * FortiExtender login password.
-     */
     loginPassword?: pulumi.Input<string>;
-    /**
-     * Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-     */
     loginPasswordChange?: pulumi.Input<string>;
-    /**
-     * FortiExtender mode. Valid values: `standalone`, `redundant`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Configuration options for modem 1. The structure of `modem1` block is documented below.
-     */
     modem1?: pulumi.Input<inputs.ExtenderControllerExtenderModem1>;
-    /**
-     * Configuration options for modem 2. The structure of `modem2` block is documented below.
-     */
     modem2?: pulumi.Input<inputs.ExtenderControllerExtenderModem2>;
-    /**
-     * MODEM password.
-     */
     modemPasswd?: pulumi.Input<string>;
-    /**
-     * MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
-     */
     modemType?: pulumi.Input<string>;
-    /**
-     * MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
-     */
     multiMode?: pulumi.Input<string>;
-    /**
-     * FortiExtender entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
-     */
     overrideAllowaccess?: pulumi.Input<string>;
-    /**
-     * Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
-     */
     overrideEnforceBandwidth?: pulumi.Input<string>;
-    /**
-     * Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
-     */
     overrideLoginPasswordChange?: pulumi.Input<string>;
-    /**
-     * PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
-     */
     pppAuthProtocol?: pulumi.Input<string>;
-    /**
-     * Enable/disable PPP echo request. Valid values: `enable`, `disable`.
-     */
     pppEchoRequest?: pulumi.Input<string>;
-    /**
-     * PPP password.
-     */
     pppPassword?: pulumi.Input<string>;
-    /**
-     * PPP username.
-     */
     pppUsername?: pulumi.Input<string>;
-    /**
-     * Primary HA.
-     */
     primaryHa?: pulumi.Input<string>;
-    /**
-     * FortiExtender profile configuration.
-     */
     profile?: pulumi.Input<string>;
-    /**
-     * Monthly quota limit (MB).
-     */
     quotaLimitMb?: pulumi.Input<number>;
-    /**
-     * Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-     */
     redial?: pulumi.Input<string>;
-    /**
-     * Redundant interface.
-     */
     redundantIntf?: pulumi.Input<string>;
-    /**
-     * Enable/disable MODEM roaming. Valid values: `enable`, `disable`.
-     */
     roaming?: pulumi.Input<string>;
-    /**
-     * FortiExtender work role(Primary, Secondary, None). Valid values: `none`, `primary`, `secondary`.
-     */
     role?: pulumi.Input<string>;
-    /**
-     * Secondary HA.
-     */
     secondaryHa?: pulumi.Input<string>;
-    /**
-     * SIM PIN.
-     */
     simPin?: pulumi.Input<string>;
-    /**
-     * VDOM
-     */
     vdom?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
-     */
     wanExtension?: pulumi.Input<inputs.ExtenderControllerExtenderWanExtension>;
-    /**
-     * WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
-     */
     wimaxAuthProtocol?: pulumi.Input<string>;
-    /**
-     * WiMax carrier.
-     */
     wimaxCarrier?: pulumi.Input<string>;
-    /**
-     * WiMax realm.
-     */
     wimaxRealm?: pulumi.Input<string>;
 }
 
@@ -674,224 +297,59 @@ export interface ExtenderControllerExtenderState {
  * The set of arguments for constructing a ExtenderControllerExtender resource.
  */
 export interface ExtenderControllerExtenderArgs {
-    /**
-     * AAA shared secret.
-     */
     aaaSharedSecret?: pulumi.Input<string>;
-    /**
-     * Access point name(APN).
-     */
     accessPointName?: pulumi.Input<string>;
-    /**
-     * FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
-     */
     admin: pulumi.Input<string>;
-    /**
-     * Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-     */
     allowaccess?: pulumi.Input<string>;
-    /**
-     * Initialization AT commands specific to the MODEM.
-     */
     atDialScript?: pulumi.Input<string>;
-    /**
-     * FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-     */
     authorized?: pulumi.Input<string>;
-    /**
-     * FortiExtender LAN extension bandwidth limit (Mbps).
-     */
     bandwidthLimit?: pulumi.Input<number>;
-    /**
-     * Billing start day.
-     */
     billingStartDay?: pulumi.Input<number>;
-    /**
-     * CDMA AAA SPI.
-     */
     cdmaAaaSpi?: pulumi.Input<string>;
-    /**
-     * CDMA HA SPI.
-     */
     cdmaHaSpi?: pulumi.Input<string>;
-    /**
-     * NAI for CDMA MODEMS.
-     */
     cdmaNai?: pulumi.Input<string>;
-    /**
-     * Connection status.
-     */
     connStatus?: pulumi.Input<number>;
-    /**
-     * FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
-     */
     controllerReport?: pulumi.Input<inputs.ExtenderControllerExtenderControllerReport>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * device-id
-     */
     deviceId?: pulumi.Input<number>;
-    /**
-     * Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
-     */
     dialMode?: pulumi.Input<string>;
-    /**
-     * Dial status.
-     */
     dialStatus?: pulumi.Input<number>;
-    /**
-     * Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-     */
     enforceBandwidth?: pulumi.Input<string>;
-    /**
-     * FortiExtender name.
-     */
     extName?: pulumi.Input<string>;
-    /**
-     * Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
-     */
     extensionType?: pulumi.Input<string>;
-    /**
-     * FortiExtender serial number.
-     */
     fosid: pulumi.Input<string>;
-    /**
-     * HA shared secret.
-     */
     haSharedSecret?: pulumi.Input<string>;
-    /**
-     * FortiExtender interface name.
-     */
     ifname?: pulumi.Input<string>;
-    /**
-     * Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
-     */
     initiatedUpdate?: pulumi.Input<string>;
-    /**
-     * FortiExtender login password.
-     */
     loginPassword?: pulumi.Input<string>;
-    /**
-     * Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-     */
     loginPasswordChange?: pulumi.Input<string>;
-    /**
-     * FortiExtender mode. Valid values: `standalone`, `redundant`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Configuration options for modem 1. The structure of `modem1` block is documented below.
-     */
     modem1?: pulumi.Input<inputs.ExtenderControllerExtenderModem1>;
-    /**
-     * Configuration options for modem 2. The structure of `modem2` block is documented below.
-     */
     modem2?: pulumi.Input<inputs.ExtenderControllerExtenderModem2>;
-    /**
-     * MODEM password.
-     */
     modemPasswd?: pulumi.Input<string>;
-    /**
-     * MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
-     */
     modemType?: pulumi.Input<string>;
-    /**
-     * MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
-     */
     multiMode?: pulumi.Input<string>;
-    /**
-     * FortiExtender entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
-     */
     overrideAllowaccess?: pulumi.Input<string>;
-    /**
-     * Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
-     */
     overrideEnforceBandwidth?: pulumi.Input<string>;
-    /**
-     * Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
-     */
     overrideLoginPasswordChange?: pulumi.Input<string>;
-    /**
-     * PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
-     */
     pppAuthProtocol?: pulumi.Input<string>;
-    /**
-     * Enable/disable PPP echo request. Valid values: `enable`, `disable`.
-     */
     pppEchoRequest?: pulumi.Input<string>;
-    /**
-     * PPP password.
-     */
     pppPassword?: pulumi.Input<string>;
-    /**
-     * PPP username.
-     */
     pppUsername?: pulumi.Input<string>;
-    /**
-     * Primary HA.
-     */
     primaryHa?: pulumi.Input<string>;
-    /**
-     * FortiExtender profile configuration.
-     */
     profile?: pulumi.Input<string>;
-    /**
-     * Monthly quota limit (MB).
-     */
     quotaLimitMb?: pulumi.Input<number>;
-    /**
-     * Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-     */
     redial?: pulumi.Input<string>;
-    /**
-     * Redundant interface.
-     */
     redundantIntf?: pulumi.Input<string>;
-    /**
-     * Enable/disable MODEM roaming. Valid values: `enable`, `disable`.
-     */
     roaming?: pulumi.Input<string>;
-    /**
-     * FortiExtender work role(Primary, Secondary, None). Valid values: `none`, `primary`, `secondary`.
-     */
     role: pulumi.Input<string>;
-    /**
-     * Secondary HA.
-     */
     secondaryHa?: pulumi.Input<string>;
-    /**
-     * SIM PIN.
-     */
     simPin?: pulumi.Input<string>;
-    /**
-     * VDOM
-     */
     vdom?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
-     */
     wanExtension?: pulumi.Input<inputs.ExtenderControllerExtenderWanExtension>;
-    /**
-     * WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
-     */
     wimaxAuthProtocol?: pulumi.Input<string>;
-    /**
-     * WiMax carrier.
-     */
     wimaxCarrier?: pulumi.Input<string>;
-    /**
-     * WiMax realm.
-     */
     wimaxRealm?: pulumi.Input<string>;
 }

@@ -7,129 +7,44 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports Create/Read/Update/Delete admin profiles for FortiManager
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerSystemAdminProfiles(ctx, "test1", &fortios.FortimanagerSystemAdminProfilesArgs{
-// 			AdomPolicyPackages:                  pulumi.String("read"),
-// 			AdomSwitch:                          pulumi.String("read"),
-// 			Assignment:                          pulumi.String("read"),
-// 			ConfigRetrieve:                      pulumi.String("read"),
-// 			ConfigRevert:                        pulumi.String("read"),
-// 			ConsistencyCheck:                    pulumi.String("read-write"),
-// 			DeployManagement:                    pulumi.String("read"),
-// 			Description:                         pulumi.String("11"),
-// 			DeviceAp:                            pulumi.String("none"),
-// 			DeviceConfig:                        pulumi.String("read"),
-// 			DeviceForticlient:                   pulumi.String("read"),
-// 			DeviceFortiswitch:                   pulumi.String("read"),
-// 			DeviceManager:                       pulumi.String("read-write"),
-// 			DeviceOperation:                     pulumi.String("read"),
-// 			DeviceProfile:                       pulumi.String("read"),
-// 			DeviceRevisionDeletion:              pulumi.String("read"),
-// 			DeviceWanLinkLoadBalance:            pulumi.String("read"),
-// 			FortiguardCenter:                    pulumi.String("read"),
-// 			FortiguardCenterAdvanced:            pulumi.String("read"),
-// 			FortiguardCenterFirmwareManagerment: pulumi.String("read"),
-// 			FortiguardCenterLicensing:           pulumi.String("read"),
-// 			GlobalPolicyPackages:                pulumi.String("read-write"),
-// 			ImportPolicyPackages:                pulumi.String("read"),
-// 			IntfMapping:                         pulumi.String("read-write"),
-// 			LogViewer:                           pulumi.String("read"),
-// 			PolicyObjects:                       pulumi.String("read-write"),
-// 			Profileid:                           pulumi.String("terraform-test1"),
-// 			SetInstallTargets:                   pulumi.String("read-write"),
-// 			SystemSetting:                       pulumi.String("read"),
-// 			TerminalAccess:                      pulumi.String("read"),
-// 			VpnManager:                          pulumi.String("read"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerSystemAdminProfiles struct {
 	pulumi.CustomResourceState
 
-	// Adom policy packages.
-	AdomPolicyPackages pulumi.StringPtrOutput `pulumi:"adomPolicyPackages"`
-	// Administrator Domain.
-	AdomSwitch pulumi.StringPtrOutput `pulumi:"adomSwitch"`
-	// Assignment Permission.
-	Assignment pulumi.StringPtrOutput `pulumi:"assignment"`
-	// Configuration Retrieve.
-	ConfigRetrieve pulumi.StringPtrOutput `pulumi:"configRetrieve"`
-	// Revert Configuration from Revision History.
-	ConfigRevert pulumi.StringPtrOutput `pulumi:"configRevert"`
-	// Consistency check.
-	ConsistencyCheck pulumi.StringPtrOutput `pulumi:"consistencyCheck"`
-	// Install to devices.
-	DeployManagement pulumi.StringPtrOutput `pulumi:"deployManagement"`
-	// Description.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Manage AP.
-	DeviceAp pulumi.StringPtrOutput `pulumi:"deviceAp"`
-	// Manage device configurations.
-	DeviceConfig pulumi.StringPtrOutput `pulumi:"deviceConfig"`
-	// Manage FortiClient.
-	DeviceForticlient pulumi.StringPtrOutput `pulumi:"deviceForticlient"`
-	// Manage FortiSwitch.
-	DeviceFortiswitch pulumi.StringPtrOutput `pulumi:"deviceFortiswitch"`
-	// Device Manager.
-	DeviceManager pulumi.StringPtrOutput `pulumi:"deviceManager"`
-	// Device add/delete/edit.
-	DeviceOperation pulumi.StringPtrOutput `pulumi:"deviceOperation"`
-	// Device profile permission.
-	DeviceProfile pulumi.StringPtrOutput `pulumi:"deviceProfile"`
-	// Delete device revision.
-	DeviceRevisionDeletion pulumi.StringPtrOutput `pulumi:"deviceRevisionDeletion"`
-	// Manage WAN link load balance.
-	DeviceWanLinkLoadBalance pulumi.StringPtrOutput `pulumi:"deviceWanLinkLoadBalance"`
-	// FortiGuard Center.
-	FortiguardCenter pulumi.StringPtrOutput `pulumi:"fortiguardCenter"`
-	// FortiGuard Center Advanced.
-	FortiguardCenterAdvanced pulumi.StringPtrOutput `pulumi:"fortiguardCenterAdvanced"`
-	// FortiGuard Center Firmware Managerment.
+	AdomPolicyPackages                  pulumi.StringPtrOutput `pulumi:"adomPolicyPackages"`
+	AdomSwitch                          pulumi.StringPtrOutput `pulumi:"adomSwitch"`
+	Assignment                          pulumi.StringPtrOutput `pulumi:"assignment"`
+	ConfigRetrieve                      pulumi.StringPtrOutput `pulumi:"configRetrieve"`
+	ConfigRevert                        pulumi.StringPtrOutput `pulumi:"configRevert"`
+	ConsistencyCheck                    pulumi.StringPtrOutput `pulumi:"consistencyCheck"`
+	DeployManagement                    pulumi.StringPtrOutput `pulumi:"deployManagement"`
+	Description                         pulumi.StringPtrOutput `pulumi:"description"`
+	DeviceAp                            pulumi.StringPtrOutput `pulumi:"deviceAp"`
+	DeviceConfig                        pulumi.StringPtrOutput `pulumi:"deviceConfig"`
+	DeviceForticlient                   pulumi.StringPtrOutput `pulumi:"deviceForticlient"`
+	DeviceFortiswitch                   pulumi.StringPtrOutput `pulumi:"deviceFortiswitch"`
+	DeviceManager                       pulumi.StringPtrOutput `pulumi:"deviceManager"`
+	DeviceOperation                     pulumi.StringPtrOutput `pulumi:"deviceOperation"`
+	DeviceProfile                       pulumi.StringPtrOutput `pulumi:"deviceProfile"`
+	DeviceRevisionDeletion              pulumi.StringPtrOutput `pulumi:"deviceRevisionDeletion"`
+	DeviceWanLinkLoadBalance            pulumi.StringPtrOutput `pulumi:"deviceWanLinkLoadBalance"`
+	FortiguardCenter                    pulumi.StringPtrOutput `pulumi:"fortiguardCenter"`
+	FortiguardCenterAdvanced            pulumi.StringPtrOutput `pulumi:"fortiguardCenterAdvanced"`
 	FortiguardCenterFirmwareManagerment pulumi.StringPtrOutput `pulumi:"fortiguardCenterFirmwareManagerment"`
-	// FortiGuard Center Licensing.
-	FortiguardCenterLicensing pulumi.StringPtrOutput `pulumi:"fortiguardCenterLicensing"`
-	// Global policy packages.
-	GlobalPolicyPackages pulumi.StringPtrOutput `pulumi:"globalPolicyPackages"`
-	// Import Policy Package.
-	ImportPolicyPackages pulumi.StringPtrOutput `pulumi:"importPolicyPackages"`
-	// Interface Mapping.
-	IntfMapping pulumi.StringPtrOutput `pulumi:"intfMapping"`
-	// Log Viewer.
-	LogViewer pulumi.StringPtrOutput `pulumi:"logViewer"`
-	// Policy objects permission.
-	PolicyObjects pulumi.StringPtrOutput `pulumi:"policyObjects"`
-	// Profile name.
-	Profileid pulumi.StringOutput `pulumi:"profileid"`
-	// Edit installation targets.
-	SetInstallTargets pulumi.StringPtrOutput `pulumi:"setInstallTargets"`
-	// System Setting.
-	SystemSetting pulumi.StringPtrOutput `pulumi:"systemSetting"`
-	// Terminal access.
-	TerminalAccess pulumi.StringPtrOutput `pulumi:"terminalAccess"`
-	// VPN Manager.
-	VpnManager pulumi.StringPtrOutput `pulumi:"vpnManager"`
+	FortiguardCenterLicensing           pulumi.StringPtrOutput `pulumi:"fortiguardCenterLicensing"`
+	GlobalPolicyPackages                pulumi.StringPtrOutput `pulumi:"globalPolicyPackages"`
+	ImportPolicyPackages                pulumi.StringPtrOutput `pulumi:"importPolicyPackages"`
+	IntfMapping                         pulumi.StringPtrOutput `pulumi:"intfMapping"`
+	LogViewer                           pulumi.StringPtrOutput `pulumi:"logViewer"`
+	PolicyObjects                       pulumi.StringPtrOutput `pulumi:"policyObjects"`
+	Profileid                           pulumi.StringOutput    `pulumi:"profileid"`
+	SetInstallTargets                   pulumi.StringPtrOutput `pulumi:"setInstallTargets"`
+	SystemSetting                       pulumi.StringPtrOutput `pulumi:"systemSetting"`
+	TerminalAccess                      pulumi.StringPtrOutput `pulumi:"terminalAccess"`
+	VpnManager                          pulumi.StringPtrOutput `pulumi:"vpnManager"`
 }
 
 // NewFortimanagerSystemAdminProfiles registers a new resource with the given unique name, arguments, and options.
@@ -165,133 +80,71 @@ func GetFortimanagerSystemAdminProfiles(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerSystemAdminProfiles resources.
 type fortimanagerSystemAdminProfilesState struct {
-	// Adom policy packages.
-	AdomPolicyPackages *string `pulumi:"adomPolicyPackages"`
-	// Administrator Domain.
-	AdomSwitch *string `pulumi:"adomSwitch"`
-	// Assignment Permission.
-	Assignment *string `pulumi:"assignment"`
-	// Configuration Retrieve.
-	ConfigRetrieve *string `pulumi:"configRetrieve"`
-	// Revert Configuration from Revision History.
-	ConfigRevert *string `pulumi:"configRevert"`
-	// Consistency check.
-	ConsistencyCheck *string `pulumi:"consistencyCheck"`
-	// Install to devices.
-	DeployManagement *string `pulumi:"deployManagement"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// Manage AP.
-	DeviceAp *string `pulumi:"deviceAp"`
-	// Manage device configurations.
-	DeviceConfig *string `pulumi:"deviceConfig"`
-	// Manage FortiClient.
-	DeviceForticlient *string `pulumi:"deviceForticlient"`
-	// Manage FortiSwitch.
-	DeviceFortiswitch *string `pulumi:"deviceFortiswitch"`
-	// Device Manager.
-	DeviceManager *string `pulumi:"deviceManager"`
-	// Device add/delete/edit.
-	DeviceOperation *string `pulumi:"deviceOperation"`
-	// Device profile permission.
-	DeviceProfile *string `pulumi:"deviceProfile"`
-	// Delete device revision.
-	DeviceRevisionDeletion *string `pulumi:"deviceRevisionDeletion"`
-	// Manage WAN link load balance.
-	DeviceWanLinkLoadBalance *string `pulumi:"deviceWanLinkLoadBalance"`
-	// FortiGuard Center.
-	FortiguardCenter *string `pulumi:"fortiguardCenter"`
-	// FortiGuard Center Advanced.
-	FortiguardCenterAdvanced *string `pulumi:"fortiguardCenterAdvanced"`
-	// FortiGuard Center Firmware Managerment.
+	AdomPolicyPackages                  *string `pulumi:"adomPolicyPackages"`
+	AdomSwitch                          *string `pulumi:"adomSwitch"`
+	Assignment                          *string `pulumi:"assignment"`
+	ConfigRetrieve                      *string `pulumi:"configRetrieve"`
+	ConfigRevert                        *string `pulumi:"configRevert"`
+	ConsistencyCheck                    *string `pulumi:"consistencyCheck"`
+	DeployManagement                    *string `pulumi:"deployManagement"`
+	Description                         *string `pulumi:"description"`
+	DeviceAp                            *string `pulumi:"deviceAp"`
+	DeviceConfig                        *string `pulumi:"deviceConfig"`
+	DeviceForticlient                   *string `pulumi:"deviceForticlient"`
+	DeviceFortiswitch                   *string `pulumi:"deviceFortiswitch"`
+	DeviceManager                       *string `pulumi:"deviceManager"`
+	DeviceOperation                     *string `pulumi:"deviceOperation"`
+	DeviceProfile                       *string `pulumi:"deviceProfile"`
+	DeviceRevisionDeletion              *string `pulumi:"deviceRevisionDeletion"`
+	DeviceWanLinkLoadBalance            *string `pulumi:"deviceWanLinkLoadBalance"`
+	FortiguardCenter                    *string `pulumi:"fortiguardCenter"`
+	FortiguardCenterAdvanced            *string `pulumi:"fortiguardCenterAdvanced"`
 	FortiguardCenterFirmwareManagerment *string `pulumi:"fortiguardCenterFirmwareManagerment"`
-	// FortiGuard Center Licensing.
-	FortiguardCenterLicensing *string `pulumi:"fortiguardCenterLicensing"`
-	// Global policy packages.
-	GlobalPolicyPackages *string `pulumi:"globalPolicyPackages"`
-	// Import Policy Package.
-	ImportPolicyPackages *string `pulumi:"importPolicyPackages"`
-	// Interface Mapping.
-	IntfMapping *string `pulumi:"intfMapping"`
-	// Log Viewer.
-	LogViewer *string `pulumi:"logViewer"`
-	// Policy objects permission.
-	PolicyObjects *string `pulumi:"policyObjects"`
-	// Profile name.
-	Profileid *string `pulumi:"profileid"`
-	// Edit installation targets.
-	SetInstallTargets *string `pulumi:"setInstallTargets"`
-	// System Setting.
-	SystemSetting *string `pulumi:"systemSetting"`
-	// Terminal access.
-	TerminalAccess *string `pulumi:"terminalAccess"`
-	// VPN Manager.
-	VpnManager *string `pulumi:"vpnManager"`
+	FortiguardCenterLicensing           *string `pulumi:"fortiguardCenterLicensing"`
+	GlobalPolicyPackages                *string `pulumi:"globalPolicyPackages"`
+	ImportPolicyPackages                *string `pulumi:"importPolicyPackages"`
+	IntfMapping                         *string `pulumi:"intfMapping"`
+	LogViewer                           *string `pulumi:"logViewer"`
+	PolicyObjects                       *string `pulumi:"policyObjects"`
+	Profileid                           *string `pulumi:"profileid"`
+	SetInstallTargets                   *string `pulumi:"setInstallTargets"`
+	SystemSetting                       *string `pulumi:"systemSetting"`
+	TerminalAccess                      *string `pulumi:"terminalAccess"`
+	VpnManager                          *string `pulumi:"vpnManager"`
 }
 
 type FortimanagerSystemAdminProfilesState struct {
-	// Adom policy packages.
-	AdomPolicyPackages pulumi.StringPtrInput
-	// Administrator Domain.
-	AdomSwitch pulumi.StringPtrInput
-	// Assignment Permission.
-	Assignment pulumi.StringPtrInput
-	// Configuration Retrieve.
-	ConfigRetrieve pulumi.StringPtrInput
-	// Revert Configuration from Revision History.
-	ConfigRevert pulumi.StringPtrInput
-	// Consistency check.
-	ConsistencyCheck pulumi.StringPtrInput
-	// Install to devices.
-	DeployManagement pulumi.StringPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// Manage AP.
-	DeviceAp pulumi.StringPtrInput
-	// Manage device configurations.
-	DeviceConfig pulumi.StringPtrInput
-	// Manage FortiClient.
-	DeviceForticlient pulumi.StringPtrInput
-	// Manage FortiSwitch.
-	DeviceFortiswitch pulumi.StringPtrInput
-	// Device Manager.
-	DeviceManager pulumi.StringPtrInput
-	// Device add/delete/edit.
-	DeviceOperation pulumi.StringPtrInput
-	// Device profile permission.
-	DeviceProfile pulumi.StringPtrInput
-	// Delete device revision.
-	DeviceRevisionDeletion pulumi.StringPtrInput
-	// Manage WAN link load balance.
-	DeviceWanLinkLoadBalance pulumi.StringPtrInput
-	// FortiGuard Center.
-	FortiguardCenter pulumi.StringPtrInput
-	// FortiGuard Center Advanced.
-	FortiguardCenterAdvanced pulumi.StringPtrInput
-	// FortiGuard Center Firmware Managerment.
+	AdomPolicyPackages                  pulumi.StringPtrInput
+	AdomSwitch                          pulumi.StringPtrInput
+	Assignment                          pulumi.StringPtrInput
+	ConfigRetrieve                      pulumi.StringPtrInput
+	ConfigRevert                        pulumi.StringPtrInput
+	ConsistencyCheck                    pulumi.StringPtrInput
+	DeployManagement                    pulumi.StringPtrInput
+	Description                         pulumi.StringPtrInput
+	DeviceAp                            pulumi.StringPtrInput
+	DeviceConfig                        pulumi.StringPtrInput
+	DeviceForticlient                   pulumi.StringPtrInput
+	DeviceFortiswitch                   pulumi.StringPtrInput
+	DeviceManager                       pulumi.StringPtrInput
+	DeviceOperation                     pulumi.StringPtrInput
+	DeviceProfile                       pulumi.StringPtrInput
+	DeviceRevisionDeletion              pulumi.StringPtrInput
+	DeviceWanLinkLoadBalance            pulumi.StringPtrInput
+	FortiguardCenter                    pulumi.StringPtrInput
+	FortiguardCenterAdvanced            pulumi.StringPtrInput
 	FortiguardCenterFirmwareManagerment pulumi.StringPtrInput
-	// FortiGuard Center Licensing.
-	FortiguardCenterLicensing pulumi.StringPtrInput
-	// Global policy packages.
-	GlobalPolicyPackages pulumi.StringPtrInput
-	// Import Policy Package.
-	ImportPolicyPackages pulumi.StringPtrInput
-	// Interface Mapping.
-	IntfMapping pulumi.StringPtrInput
-	// Log Viewer.
-	LogViewer pulumi.StringPtrInput
-	// Policy objects permission.
-	PolicyObjects pulumi.StringPtrInput
-	// Profile name.
-	Profileid pulumi.StringPtrInput
-	// Edit installation targets.
-	SetInstallTargets pulumi.StringPtrInput
-	// System Setting.
-	SystemSetting pulumi.StringPtrInput
-	// Terminal access.
-	TerminalAccess pulumi.StringPtrInput
-	// VPN Manager.
-	VpnManager pulumi.StringPtrInput
+	FortiguardCenterLicensing           pulumi.StringPtrInput
+	GlobalPolicyPackages                pulumi.StringPtrInput
+	ImportPolicyPackages                pulumi.StringPtrInput
+	IntfMapping                         pulumi.StringPtrInput
+	LogViewer                           pulumi.StringPtrInput
+	PolicyObjects                       pulumi.StringPtrInput
+	Profileid                           pulumi.StringPtrInput
+	SetInstallTargets                   pulumi.StringPtrInput
+	SystemSetting                       pulumi.StringPtrInput
+	TerminalAccess                      pulumi.StringPtrInput
+	VpnManager                          pulumi.StringPtrInput
 }
 
 func (FortimanagerSystemAdminProfilesState) ElementType() reflect.Type {
@@ -299,134 +152,72 @@ func (FortimanagerSystemAdminProfilesState) ElementType() reflect.Type {
 }
 
 type fortimanagerSystemAdminProfilesArgs struct {
-	// Adom policy packages.
-	AdomPolicyPackages *string `pulumi:"adomPolicyPackages"`
-	// Administrator Domain.
-	AdomSwitch *string `pulumi:"adomSwitch"`
-	// Assignment Permission.
-	Assignment *string `pulumi:"assignment"`
-	// Configuration Retrieve.
-	ConfigRetrieve *string `pulumi:"configRetrieve"`
-	// Revert Configuration from Revision History.
-	ConfigRevert *string `pulumi:"configRevert"`
-	// Consistency check.
-	ConsistencyCheck *string `pulumi:"consistencyCheck"`
-	// Install to devices.
-	DeployManagement *string `pulumi:"deployManagement"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// Manage AP.
-	DeviceAp *string `pulumi:"deviceAp"`
-	// Manage device configurations.
-	DeviceConfig *string `pulumi:"deviceConfig"`
-	// Manage FortiClient.
-	DeviceForticlient *string `pulumi:"deviceForticlient"`
-	// Manage FortiSwitch.
-	DeviceFortiswitch *string `pulumi:"deviceFortiswitch"`
-	// Device Manager.
-	DeviceManager *string `pulumi:"deviceManager"`
-	// Device add/delete/edit.
-	DeviceOperation *string `pulumi:"deviceOperation"`
-	// Device profile permission.
-	DeviceProfile *string `pulumi:"deviceProfile"`
-	// Delete device revision.
-	DeviceRevisionDeletion *string `pulumi:"deviceRevisionDeletion"`
-	// Manage WAN link load balance.
-	DeviceWanLinkLoadBalance *string `pulumi:"deviceWanLinkLoadBalance"`
-	// FortiGuard Center.
-	FortiguardCenter *string `pulumi:"fortiguardCenter"`
-	// FortiGuard Center Advanced.
-	FortiguardCenterAdvanced *string `pulumi:"fortiguardCenterAdvanced"`
-	// FortiGuard Center Firmware Managerment.
+	AdomPolicyPackages                  *string `pulumi:"adomPolicyPackages"`
+	AdomSwitch                          *string `pulumi:"adomSwitch"`
+	Assignment                          *string `pulumi:"assignment"`
+	ConfigRetrieve                      *string `pulumi:"configRetrieve"`
+	ConfigRevert                        *string `pulumi:"configRevert"`
+	ConsistencyCheck                    *string `pulumi:"consistencyCheck"`
+	DeployManagement                    *string `pulumi:"deployManagement"`
+	Description                         *string `pulumi:"description"`
+	DeviceAp                            *string `pulumi:"deviceAp"`
+	DeviceConfig                        *string `pulumi:"deviceConfig"`
+	DeviceForticlient                   *string `pulumi:"deviceForticlient"`
+	DeviceFortiswitch                   *string `pulumi:"deviceFortiswitch"`
+	DeviceManager                       *string `pulumi:"deviceManager"`
+	DeviceOperation                     *string `pulumi:"deviceOperation"`
+	DeviceProfile                       *string `pulumi:"deviceProfile"`
+	DeviceRevisionDeletion              *string `pulumi:"deviceRevisionDeletion"`
+	DeviceWanLinkLoadBalance            *string `pulumi:"deviceWanLinkLoadBalance"`
+	FortiguardCenter                    *string `pulumi:"fortiguardCenter"`
+	FortiguardCenterAdvanced            *string `pulumi:"fortiguardCenterAdvanced"`
 	FortiguardCenterFirmwareManagerment *string `pulumi:"fortiguardCenterFirmwareManagerment"`
-	// FortiGuard Center Licensing.
-	FortiguardCenterLicensing *string `pulumi:"fortiguardCenterLicensing"`
-	// Global policy packages.
-	GlobalPolicyPackages *string `pulumi:"globalPolicyPackages"`
-	// Import Policy Package.
-	ImportPolicyPackages *string `pulumi:"importPolicyPackages"`
-	// Interface Mapping.
-	IntfMapping *string `pulumi:"intfMapping"`
-	// Log Viewer.
-	LogViewer *string `pulumi:"logViewer"`
-	// Policy objects permission.
-	PolicyObjects *string `pulumi:"policyObjects"`
-	// Profile name.
-	Profileid string `pulumi:"profileid"`
-	// Edit installation targets.
-	SetInstallTargets *string `pulumi:"setInstallTargets"`
-	// System Setting.
-	SystemSetting *string `pulumi:"systemSetting"`
-	// Terminal access.
-	TerminalAccess *string `pulumi:"terminalAccess"`
-	// VPN Manager.
-	VpnManager *string `pulumi:"vpnManager"`
+	FortiguardCenterLicensing           *string `pulumi:"fortiguardCenterLicensing"`
+	GlobalPolicyPackages                *string `pulumi:"globalPolicyPackages"`
+	ImportPolicyPackages                *string `pulumi:"importPolicyPackages"`
+	IntfMapping                         *string `pulumi:"intfMapping"`
+	LogViewer                           *string `pulumi:"logViewer"`
+	PolicyObjects                       *string `pulumi:"policyObjects"`
+	Profileid                           string  `pulumi:"profileid"`
+	SetInstallTargets                   *string `pulumi:"setInstallTargets"`
+	SystemSetting                       *string `pulumi:"systemSetting"`
+	TerminalAccess                      *string `pulumi:"terminalAccess"`
+	VpnManager                          *string `pulumi:"vpnManager"`
 }
 
 // The set of arguments for constructing a FortimanagerSystemAdminProfiles resource.
 type FortimanagerSystemAdminProfilesArgs struct {
-	// Adom policy packages.
-	AdomPolicyPackages pulumi.StringPtrInput
-	// Administrator Domain.
-	AdomSwitch pulumi.StringPtrInput
-	// Assignment Permission.
-	Assignment pulumi.StringPtrInput
-	// Configuration Retrieve.
-	ConfigRetrieve pulumi.StringPtrInput
-	// Revert Configuration from Revision History.
-	ConfigRevert pulumi.StringPtrInput
-	// Consistency check.
-	ConsistencyCheck pulumi.StringPtrInput
-	// Install to devices.
-	DeployManagement pulumi.StringPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// Manage AP.
-	DeviceAp pulumi.StringPtrInput
-	// Manage device configurations.
-	DeviceConfig pulumi.StringPtrInput
-	// Manage FortiClient.
-	DeviceForticlient pulumi.StringPtrInput
-	// Manage FortiSwitch.
-	DeviceFortiswitch pulumi.StringPtrInput
-	// Device Manager.
-	DeviceManager pulumi.StringPtrInput
-	// Device add/delete/edit.
-	DeviceOperation pulumi.StringPtrInput
-	// Device profile permission.
-	DeviceProfile pulumi.StringPtrInput
-	// Delete device revision.
-	DeviceRevisionDeletion pulumi.StringPtrInput
-	// Manage WAN link load balance.
-	DeviceWanLinkLoadBalance pulumi.StringPtrInput
-	// FortiGuard Center.
-	FortiguardCenter pulumi.StringPtrInput
-	// FortiGuard Center Advanced.
-	FortiguardCenterAdvanced pulumi.StringPtrInput
-	// FortiGuard Center Firmware Managerment.
+	AdomPolicyPackages                  pulumi.StringPtrInput
+	AdomSwitch                          pulumi.StringPtrInput
+	Assignment                          pulumi.StringPtrInput
+	ConfigRetrieve                      pulumi.StringPtrInput
+	ConfigRevert                        pulumi.StringPtrInput
+	ConsistencyCheck                    pulumi.StringPtrInput
+	DeployManagement                    pulumi.StringPtrInput
+	Description                         pulumi.StringPtrInput
+	DeviceAp                            pulumi.StringPtrInput
+	DeviceConfig                        pulumi.StringPtrInput
+	DeviceForticlient                   pulumi.StringPtrInput
+	DeviceFortiswitch                   pulumi.StringPtrInput
+	DeviceManager                       pulumi.StringPtrInput
+	DeviceOperation                     pulumi.StringPtrInput
+	DeviceProfile                       pulumi.StringPtrInput
+	DeviceRevisionDeletion              pulumi.StringPtrInput
+	DeviceWanLinkLoadBalance            pulumi.StringPtrInput
+	FortiguardCenter                    pulumi.StringPtrInput
+	FortiguardCenterAdvanced            pulumi.StringPtrInput
 	FortiguardCenterFirmwareManagerment pulumi.StringPtrInput
-	// FortiGuard Center Licensing.
-	FortiguardCenterLicensing pulumi.StringPtrInput
-	// Global policy packages.
-	GlobalPolicyPackages pulumi.StringPtrInput
-	// Import Policy Package.
-	ImportPolicyPackages pulumi.StringPtrInput
-	// Interface Mapping.
-	IntfMapping pulumi.StringPtrInput
-	// Log Viewer.
-	LogViewer pulumi.StringPtrInput
-	// Policy objects permission.
-	PolicyObjects pulumi.StringPtrInput
-	// Profile name.
-	Profileid pulumi.StringInput
-	// Edit installation targets.
-	SetInstallTargets pulumi.StringPtrInput
-	// System Setting.
-	SystemSetting pulumi.StringPtrInput
-	// Terminal access.
-	TerminalAccess pulumi.StringPtrInput
-	// VPN Manager.
-	VpnManager pulumi.StringPtrInput
+	FortiguardCenterLicensing           pulumi.StringPtrInput
+	GlobalPolicyPackages                pulumi.StringPtrInput
+	ImportPolicyPackages                pulumi.StringPtrInput
+	IntfMapping                         pulumi.StringPtrInput
+	LogViewer                           pulumi.StringPtrInput
+	PolicyObjects                       pulumi.StringPtrInput
+	Profileid                           pulumi.StringInput
+	SetInstallTargets                   pulumi.StringPtrInput
+	SystemSetting                       pulumi.StringPtrInput
+	TerminalAccess                      pulumi.StringPtrInput
+	VpnManager                          pulumi.StringPtrInput
 }
 
 func (FortimanagerSystemAdminProfilesArgs) ElementType() reflect.Type {
@@ -455,7 +246,7 @@ func (i *FortimanagerSystemAdminProfiles) ToFortimanagerSystemAdminProfilesOutpu
 // FortimanagerSystemAdminProfilesArrayInput is an input type that accepts FortimanagerSystemAdminProfilesArray and FortimanagerSystemAdminProfilesArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemAdminProfilesArrayInput` via:
 //
-//          FortimanagerSystemAdminProfilesArray{ FortimanagerSystemAdminProfilesArgs{...} }
+//	FortimanagerSystemAdminProfilesArray{ FortimanagerSystemAdminProfilesArgs{...} }
 type FortimanagerSystemAdminProfilesArrayInput interface {
 	pulumi.Input
 
@@ -480,7 +271,7 @@ func (i FortimanagerSystemAdminProfilesArray) ToFortimanagerSystemAdminProfilesA
 // FortimanagerSystemAdminProfilesMapInput is an input type that accepts FortimanagerSystemAdminProfilesMap and FortimanagerSystemAdminProfilesMapOutput values.
 // You can construct a concrete instance of `FortimanagerSystemAdminProfilesMapInput` via:
 //
-//          FortimanagerSystemAdminProfilesMap{ "key": FortimanagerSystemAdminProfilesArgs{...} }
+//	FortimanagerSystemAdminProfilesMap{ "key": FortimanagerSystemAdminProfilesArgs{...} }
 type FortimanagerSystemAdminProfilesMapInput interface {
 	pulumi.Input
 
@@ -514,6 +305,132 @@ func (o FortimanagerSystemAdminProfilesOutput) ToFortimanagerSystemAdminProfiles
 
 func (o FortimanagerSystemAdminProfilesOutput) ToFortimanagerSystemAdminProfilesOutputWithContext(ctx context.Context) FortimanagerSystemAdminProfilesOutput {
 	return o
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) AdomPolicyPackages() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.AdomPolicyPackages }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) AdomSwitch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.AdomSwitch }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) Assignment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.Assignment }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) ConfigRetrieve() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.ConfigRetrieve }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) ConfigRevert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.ConfigRevert }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) ConsistencyCheck() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.ConsistencyCheck }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) DeployManagement() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.DeployManagement }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) DeviceAp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.DeviceAp }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) DeviceConfig() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.DeviceConfig }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) DeviceForticlient() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.DeviceForticlient }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) DeviceFortiswitch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.DeviceFortiswitch }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) DeviceManager() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.DeviceManager }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) DeviceOperation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.DeviceOperation }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) DeviceProfile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.DeviceProfile }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) DeviceRevisionDeletion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.DeviceRevisionDeletion }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) DeviceWanLinkLoadBalance() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.DeviceWanLinkLoadBalance }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) FortiguardCenter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.FortiguardCenter }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) FortiguardCenterAdvanced() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.FortiguardCenterAdvanced }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) FortiguardCenterFirmwareManagerment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput {
+		return v.FortiguardCenterFirmwareManagerment
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) FortiguardCenterLicensing() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.FortiguardCenterLicensing }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) GlobalPolicyPackages() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.GlobalPolicyPackages }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) ImportPolicyPackages() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.ImportPolicyPackages }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) IntfMapping() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.IntfMapping }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) LogViewer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.LogViewer }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) PolicyObjects() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.PolicyObjects }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) Profileid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringOutput { return v.Profileid }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) SetInstallTargets() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.SetInstallTargets }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) SystemSetting() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.SystemSetting }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) TerminalAccess() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.TerminalAccess }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) VpnManager() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdminProfiles) pulumi.StringPtrOutput { return v.VpnManager }).(pulumi.StringPtrOutput)
 }
 
 type FortimanagerSystemAdminProfilesArrayOutput struct{ *pulumi.OutputState }

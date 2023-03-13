@@ -10,31 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Hidden table for datasource.
-//
-// ## Import
-//
-// Waf MainClass can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wafMainClass:WafMainClass labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wafMainClass:WafMainClass labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WafMainClass struct {
 	pulumi.CustomResourceState
 
-	// Main signature class ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Main signature class name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -68,20 +48,14 @@ func GetWafMainClass(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WafMainClass resources.
 type wafMainClassState struct {
-	// Main signature class ID.
-	Fosid *int `pulumi:"fosid"`
-	// Main signature class name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type WafMainClassState struct {
-	// Main signature class ID.
-	Fosid pulumi.IntPtrInput
-	// Main signature class name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -90,21 +64,15 @@ func (WafMainClassState) ElementType() reflect.Type {
 }
 
 type wafMainClassArgs struct {
-	// Main signature class ID.
-	Fosid *int `pulumi:"fosid"`
-	// Main signature class name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WafMainClass resource.
 type WafMainClassArgs struct {
-	// Main signature class ID.
-	Fosid pulumi.IntPtrInput
-	// Main signature class name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -134,7 +102,7 @@ func (i *WafMainClass) ToWafMainClassOutputWithContext(ctx context.Context) WafM
 // WafMainClassArrayInput is an input type that accepts WafMainClassArray and WafMainClassArrayOutput values.
 // You can construct a concrete instance of `WafMainClassArrayInput` via:
 //
-//          WafMainClassArray{ WafMainClassArgs{...} }
+//	WafMainClassArray{ WafMainClassArgs{...} }
 type WafMainClassArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i WafMainClassArray) ToWafMainClassArrayOutputWithContext(ctx context.Cont
 // WafMainClassMapInput is an input type that accepts WafMainClassMap and WafMainClassMapOutput values.
 // You can construct a concrete instance of `WafMainClassMapInput` via:
 //
-//          WafMainClassMap{ "key": WafMainClassArgs{...} }
+//	WafMainClassMap{ "key": WafMainClassArgs{...} }
 type WafMainClassMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o WafMainClassOutput) ToWafMainClassOutput() WafMainClassOutput {
 
 func (o WafMainClassOutput) ToWafMainClassOutputWithContext(ctx context.Context) WafMainClassOutput {
 	return o
+}
+
+func (o WafMainClassOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *WafMainClass) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o WafMainClassOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WafMainClass) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WafMainClassOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WafMainClass) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WafMainClassArrayOutput struct{ *pulumi.OutputState }

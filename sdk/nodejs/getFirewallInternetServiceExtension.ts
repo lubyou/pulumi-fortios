@@ -2,18 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios firewall internetserviceextension
- */
 export function getFirewallInternetServiceExtension(args: GetFirewallInternetServiceExtensionArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallInternetServiceExtensionResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallInternetServiceExtension:GetFirewallInternetServiceExtension", {
         "fosid": args.fosid,
         "vdomparam": args.vdomparam,
@@ -24,13 +19,7 @@ export function getFirewallInternetServiceExtension(args: GetFirewallInternetSer
  * A collection of arguments for invoking GetFirewallInternetServiceExtension.
  */
 export interface GetFirewallInternetServiceExtensionArgs {
-    /**
-     * Specify the fosid of the desired firewall internetserviceextension.
-     */
     fosid: number;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -38,21 +27,9 @@ export interface GetFirewallInternetServiceExtensionArgs {
  * A collection of values returned by GetFirewallInternetServiceExtension.
  */
 export interface GetFirewallInternetServiceExtensionResult {
-    /**
-     * Comment.
-     */
     readonly comment: string;
-    /**
-     * Disable entries in the Internet Service database. The structure of `disableEntry` block is documented below.
-     */
     readonly disableEntries: outputs.GetFirewallInternetServiceExtensionDisableEntry[];
-    /**
-     * Entries added to the Internet Service extension database. The structure of `entry` block is documented below.
-     */
     readonly entries: outputs.GetFirewallInternetServiceExtensionEntry[];
-    /**
-     * Internet Service ID in the Internet Service database.
-     */
     readonly fosid: number;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -60,21 +37,14 @@ export interface GetFirewallInternetServiceExtensionResult {
     readonly id: string;
     readonly vdomparam?: string;
 }
-
 export function getFirewallInternetServiceExtensionOutput(args: GetFirewallInternetServiceExtensionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallInternetServiceExtensionResult> {
-    return pulumi.output(args).apply(a => getFirewallInternetServiceExtension(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallInternetServiceExtension(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetFirewallInternetServiceExtension.
  */
 export interface GetFirewallInternetServiceExtensionOutputArgs {
-    /**
-     * Specify the fosid of the desired firewall internetserviceextension.
-     */
     fosid: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

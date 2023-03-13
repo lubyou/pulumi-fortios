@@ -10,162 +10,66 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Action for automation stitches.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAutomationAction(ctx, "trname", &fortios.SystemAutomationActionArgs{
-// 			ActionType:      pulumi.String("email"),
-// 			AwsDomain:       pulumi.String("amazonaws.com"),
-// 			Delay:           pulumi.Int(0),
-// 			EmailSubject:    pulumi.String("SUBJECT1"),
-// 			Method:          pulumi.String("post"),
-// 			MinimumInterval: pulumi.Int(1),
-// 			Protocol:        pulumi.String("http"),
-// 			Required:        pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System AutomationAction can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutomationAction:SystemAutomationAction labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutomationAction:SystemAutomationAction labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemAutomationAction struct {
 	pulumi.CustomResourceState
 
-	// Access profile for CLI script action to access FortiGate features.
-	Accprofile pulumi.StringOutput `pulumi:"accprofile"`
-	// Action type.
-	ActionType pulumi.StringOutput `pulumi:"actionType"`
-	// AliCloud AccessKey ID.
-	AlicloudAccessKeyId pulumi.StringOutput `pulumi:"alicloudAccessKeyId"`
-	// AliCloud AccessKey secret.
-	AlicloudAccessKeySecret pulumi.StringPtrOutput `pulumi:"alicloudAccessKeySecret"`
-	// AliCloud account ID.
-	AlicloudAccountId pulumi.StringOutput `pulumi:"alicloudAccountId"`
-	// AliCloud function name.
-	AlicloudFunction pulumi.StringOutput `pulumi:"alicloudFunction"`
-	// AliCloud function authorization type. Valid values: `anonymous`, `function`.
-	AlicloudFunctionAuthorization pulumi.StringOutput `pulumi:"alicloudFunctionAuthorization"`
-	// AliCloud function domain.
-	AlicloudFunctionDomain pulumi.StringOutput `pulumi:"alicloudFunctionDomain"`
-	// AliCloud region.
-	AlicloudRegion pulumi.StringOutput `pulumi:"alicloudRegion"`
-	// AliCloud service name.
-	AlicloudService pulumi.StringOutput `pulumi:"alicloudService"`
-	// AliCloud version.
-	AlicloudVersion pulumi.StringOutput `pulumi:"alicloudVersion"`
-	// AWS API Gateway ID.
-	AwsApiId pulumi.StringOutput `pulumi:"awsApiId"`
-	// AWS API Gateway API key.
-	AwsApiKey pulumi.StringPtrOutput `pulumi:"awsApiKey"`
-	// AWS API Gateway path.
-	AwsApiPath pulumi.StringOutput `pulumi:"awsApiPath"`
-	// AWS API Gateway deployment stage name.
-	AwsApiStage pulumi.StringOutput `pulumi:"awsApiStage"`
-	// AWS domain.
-	AwsDomain pulumi.StringOutput `pulumi:"awsDomain"`
-	// AWS region.
-	AwsRegion pulumi.StringOutput `pulumi:"awsRegion"`
-	// Azure function API key.
-	AzureApiKey pulumi.StringPtrOutput `pulumi:"azureApiKey"`
-	// Azure function application name.
-	AzureApp pulumi.StringOutput `pulumi:"azureApp"`
-	// Azure function domain.
-	AzureDomain pulumi.StringOutput `pulumi:"azureDomain"`
-	// Azure function name.
-	AzureFunction pulumi.StringOutput `pulumi:"azureFunction"`
-	// Azure function authorization level. Valid values: `anonymous`, `function`, `admin`.
-	AzureFunctionAuthorization pulumi.StringOutput `pulumi:"azureFunctionAuthorization"`
-	// Delay before execution (in seconds).
-	Delay pulumi.IntOutput `pulumi:"delay"`
-	// Description.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Email body.
-	EmailBody pulumi.StringOutput `pulumi:"emailBody"`
-	// Email sender name.
-	EmailFrom pulumi.StringPtrOutput `pulumi:"emailFrom"`
-	// Email subject.
-	EmailSubject pulumi.StringPtrOutput `pulumi:"emailSubject"`
-	// Email addresses. The structure of `emailTo` block is documented below.
-	EmailTos SystemAutomationActionEmailToArrayOutput `pulumi:"emailTos"`
-	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
-	ExecuteSecurityFabric pulumi.StringOutput `pulumi:"executeSecurityFabric"`
-	// Google Cloud function name.
-	GcpFunction pulumi.StringOutput `pulumi:"gcpFunction"`
-	// Google Cloud function domain.
-	GcpFunctionDomain pulumi.StringOutput `pulumi:"gcpFunctionDomain"`
-	// Google Cloud function region.
-	GcpFunctionRegion pulumi.StringOutput `pulumi:"gcpFunctionRegion"`
-	// Google Cloud Platform project name.
-	GcpProject pulumi.StringOutput `pulumi:"gcpProject"`
-	// Request headers. The structure of `headers` block is documented below.
-	Headers SystemAutomationActionHeaderArrayOutput `pulumi:"headers"`
-	// Request body (if necessary). Should be serialized json string.
-	HttpBody pulumi.StringPtrOutput `pulumi:"httpBody"`
-	// Message content.
-	Message pulumi.StringOutput `pulumi:"message"`
-	// Message type. Valid values: `text`, `json`.
-	MessageType pulumi.StringOutput `pulumi:"messageType"`
-	// Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
-	Method pulumi.StringOutput `pulumi:"method"`
-	// Limit execution to no more than once in this interval (in seconds).
-	MinimumInterval pulumi.IntOutput `pulumi:"minimumInterval"`
-	// SDN connector name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Protocol port.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Request protocol. Valid values: `http`, `https`.
-	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// Enable/disable replacement message. Valid values: `enable`, `disable`.
-	ReplacementMessage pulumi.StringOutput `pulumi:"replacementMessage"`
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringOutput `pulumi:"replacemsgGroup"`
-	// Required in action chain. Valid values: `enable`, `disable`.
-	Required pulumi.StringOutput `pulumi:"required"`
-	// CLI script.
-	Script pulumi.StringPtrOutput `pulumi:"script"`
-	// NSX SDN connector names. The structure of `sdnConnector` block is documented below.
-	SdnConnectors SystemAutomationActionSdnConnectorArrayOutput `pulumi:"sdnConnectors"`
-	// NSX security tag.
-	SecurityTag pulumi.StringOutput `pulumi:"securityTag"`
-	// Custom TLS certificate for API request.
-	TlsCertificate pulumi.StringOutput `pulumi:"tlsCertificate"`
-	// Request API URI.
-	Uri pulumi.StringPtrOutput `pulumi:"uri"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
-	VerifyHostCert pulumi.StringOutput `pulumi:"verifyHostCert"`
+	Accprofile                    pulumi.StringOutput                           `pulumi:"accprofile"`
+	ActionType                    pulumi.StringOutput                           `pulumi:"actionType"`
+	AlicloudAccessKeyId           pulumi.StringOutput                           `pulumi:"alicloudAccessKeyId"`
+	AlicloudAccessKeySecret       pulumi.StringPtrOutput                        `pulumi:"alicloudAccessKeySecret"`
+	AlicloudAccountId             pulumi.StringOutput                           `pulumi:"alicloudAccountId"`
+	AlicloudFunction              pulumi.StringOutput                           `pulumi:"alicloudFunction"`
+	AlicloudFunctionAuthorization pulumi.StringOutput                           `pulumi:"alicloudFunctionAuthorization"`
+	AlicloudFunctionDomain        pulumi.StringOutput                           `pulumi:"alicloudFunctionDomain"`
+	AlicloudRegion                pulumi.StringOutput                           `pulumi:"alicloudRegion"`
+	AlicloudService               pulumi.StringOutput                           `pulumi:"alicloudService"`
+	AlicloudVersion               pulumi.StringOutput                           `pulumi:"alicloudVersion"`
+	AwsApiId                      pulumi.StringOutput                           `pulumi:"awsApiId"`
+	AwsApiKey                     pulumi.StringPtrOutput                        `pulumi:"awsApiKey"`
+	AwsApiPath                    pulumi.StringOutput                           `pulumi:"awsApiPath"`
+	AwsApiStage                   pulumi.StringOutput                           `pulumi:"awsApiStage"`
+	AwsDomain                     pulumi.StringOutput                           `pulumi:"awsDomain"`
+	AwsRegion                     pulumi.StringOutput                           `pulumi:"awsRegion"`
+	AzureApiKey                   pulumi.StringPtrOutput                        `pulumi:"azureApiKey"`
+	AzureApp                      pulumi.StringOutput                           `pulumi:"azureApp"`
+	AzureDomain                   pulumi.StringOutput                           `pulumi:"azureDomain"`
+	AzureFunction                 pulumi.StringOutput                           `pulumi:"azureFunction"`
+	AzureFunctionAuthorization    pulumi.StringOutput                           `pulumi:"azureFunctionAuthorization"`
+	Delay                         pulumi.IntOutput                              `pulumi:"delay"`
+	Description                   pulumi.StringPtrOutput                        `pulumi:"description"`
+	DynamicSortSubtable           pulumi.StringPtrOutput                        `pulumi:"dynamicSortSubtable"`
+	EmailBody                     pulumi.StringOutput                           `pulumi:"emailBody"`
+	EmailFrom                     pulumi.StringPtrOutput                        `pulumi:"emailFrom"`
+	EmailSubject                  pulumi.StringPtrOutput                        `pulumi:"emailSubject"`
+	EmailTos                      SystemAutomationActionEmailToArrayOutput      `pulumi:"emailTos"`
+	ExecuteSecurityFabric         pulumi.StringOutput                           `pulumi:"executeSecurityFabric"`
+	GcpFunction                   pulumi.StringOutput                           `pulumi:"gcpFunction"`
+	GcpFunctionDomain             pulumi.StringOutput                           `pulumi:"gcpFunctionDomain"`
+	GcpFunctionRegion             pulumi.StringOutput                           `pulumi:"gcpFunctionRegion"`
+	GcpProject                    pulumi.StringOutput                           `pulumi:"gcpProject"`
+	Headers                       SystemAutomationActionHeaderArrayOutput       `pulumi:"headers"`
+	HttpBody                      pulumi.StringPtrOutput                        `pulumi:"httpBody"`
+	HttpHeaders                   SystemAutomationActionHttpHeaderArrayOutput   `pulumi:"httpHeaders"`
+	Message                       pulumi.StringOutput                           `pulumi:"message"`
+	MessageType                   pulumi.StringOutput                           `pulumi:"messageType"`
+	Method                        pulumi.StringOutput                           `pulumi:"method"`
+	MinimumInterval               pulumi.IntOutput                              `pulumi:"minimumInterval"`
+	Name                          pulumi.StringOutput                           `pulumi:"name"`
+	OutputSize                    pulumi.IntOutput                              `pulumi:"outputSize"`
+	Port                          pulumi.IntOutput                              `pulumi:"port"`
+	Protocol                      pulumi.StringOutput                           `pulumi:"protocol"`
+	ReplacementMessage            pulumi.StringOutput                           `pulumi:"replacementMessage"`
+	ReplacemsgGroup               pulumi.StringOutput                           `pulumi:"replacemsgGroup"`
+	Required                      pulumi.StringOutput                           `pulumi:"required"`
+	Script                        pulumi.StringPtrOutput                        `pulumi:"script"`
+	SdnConnectors                 SystemAutomationActionSdnConnectorArrayOutput `pulumi:"sdnConnectors"`
+	SecurityTag                   pulumi.StringOutput                           `pulumi:"securityTag"`
+	SystemAction                  pulumi.StringOutput                           `pulumi:"systemAction"`
+	Timeout                       pulumi.IntOutput                              `pulumi:"timeout"`
+	TlsCertificate                pulumi.StringOutput                           `pulumi:"tlsCertificate"`
+	Uri                           pulumi.StringPtrOutput                        `pulumi:"uri"`
+	Vdomparam                     pulumi.StringPtrOutput                        `pulumi:"vdomparam"`
+	VerifyHostCert                pulumi.StringOutput                           `pulumi:"verifyHostCert"`
 }
 
 // NewSystemAutomationAction registers a new resource with the given unique name, arguments, and options.
@@ -175,6 +79,21 @@ func NewSystemAutomationAction(ctx *pulumi.Context,
 		args = &SystemAutomationActionArgs{}
 	}
 
+	if args.AlicloudAccessKeySecret != nil {
+		args.AlicloudAccessKeySecret = pulumi.ToSecret(args.AlicloudAccessKeySecret).(pulumi.StringPtrInput)
+	}
+	if args.AwsApiKey != nil {
+		args.AwsApiKey = pulumi.ToSecret(args.AwsApiKey).(pulumi.StringPtrInput)
+	}
+	if args.AzureApiKey != nil {
+		args.AzureApiKey = pulumi.ToSecret(args.AzureApiKey).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"alicloudAccessKeySecret",
+		"awsApiKey",
+		"azureApiKey",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAutomationAction
 	err := ctx.RegisterResource("fortios:index/systemAutomationAction:SystemAutomationAction", name, args, &resource, opts...)
@@ -198,221 +117,123 @@ func GetSystemAutomationAction(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAutomationAction resources.
 type systemAutomationActionState struct {
-	// Access profile for CLI script action to access FortiGate features.
-	Accprofile *string `pulumi:"accprofile"`
-	// Action type.
-	ActionType *string `pulumi:"actionType"`
-	// AliCloud AccessKey ID.
-	AlicloudAccessKeyId *string `pulumi:"alicloudAccessKeyId"`
-	// AliCloud AccessKey secret.
-	AlicloudAccessKeySecret *string `pulumi:"alicloudAccessKeySecret"`
-	// AliCloud account ID.
-	AlicloudAccountId *string `pulumi:"alicloudAccountId"`
-	// AliCloud function name.
-	AlicloudFunction *string `pulumi:"alicloudFunction"`
-	// AliCloud function authorization type. Valid values: `anonymous`, `function`.
-	AlicloudFunctionAuthorization *string `pulumi:"alicloudFunctionAuthorization"`
-	// AliCloud function domain.
-	AlicloudFunctionDomain *string `pulumi:"alicloudFunctionDomain"`
-	// AliCloud region.
-	AlicloudRegion *string `pulumi:"alicloudRegion"`
-	// AliCloud service name.
-	AlicloudService *string `pulumi:"alicloudService"`
-	// AliCloud version.
-	AlicloudVersion *string `pulumi:"alicloudVersion"`
-	// AWS API Gateway ID.
-	AwsApiId *string `pulumi:"awsApiId"`
-	// AWS API Gateway API key.
-	AwsApiKey *string `pulumi:"awsApiKey"`
-	// AWS API Gateway path.
-	AwsApiPath *string `pulumi:"awsApiPath"`
-	// AWS API Gateway deployment stage name.
-	AwsApiStage *string `pulumi:"awsApiStage"`
-	// AWS domain.
-	AwsDomain *string `pulumi:"awsDomain"`
-	// AWS region.
-	AwsRegion *string `pulumi:"awsRegion"`
-	// Azure function API key.
-	AzureApiKey *string `pulumi:"azureApiKey"`
-	// Azure function application name.
-	AzureApp *string `pulumi:"azureApp"`
-	// Azure function domain.
-	AzureDomain *string `pulumi:"azureDomain"`
-	// Azure function name.
-	AzureFunction *string `pulumi:"azureFunction"`
-	// Azure function authorization level. Valid values: `anonymous`, `function`, `admin`.
-	AzureFunctionAuthorization *string `pulumi:"azureFunctionAuthorization"`
-	// Delay before execution (in seconds).
-	Delay *int `pulumi:"delay"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Email body.
-	EmailBody *string `pulumi:"emailBody"`
-	// Email sender name.
-	EmailFrom *string `pulumi:"emailFrom"`
-	// Email subject.
-	EmailSubject *string `pulumi:"emailSubject"`
-	// Email addresses. The structure of `emailTo` block is documented below.
-	EmailTos []SystemAutomationActionEmailTo `pulumi:"emailTos"`
-	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
-	ExecuteSecurityFabric *string `pulumi:"executeSecurityFabric"`
-	// Google Cloud function name.
-	GcpFunction *string `pulumi:"gcpFunction"`
-	// Google Cloud function domain.
-	GcpFunctionDomain *string `pulumi:"gcpFunctionDomain"`
-	// Google Cloud function region.
-	GcpFunctionRegion *string `pulumi:"gcpFunctionRegion"`
-	// Google Cloud Platform project name.
-	GcpProject *string `pulumi:"gcpProject"`
-	// Request headers. The structure of `headers` block is documented below.
-	Headers []SystemAutomationActionHeader `pulumi:"headers"`
-	// Request body (if necessary). Should be serialized json string.
-	HttpBody *string `pulumi:"httpBody"`
-	// Message content.
-	Message *string `pulumi:"message"`
-	// Message type. Valid values: `text`, `json`.
-	MessageType *string `pulumi:"messageType"`
-	// Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
-	Method *string `pulumi:"method"`
-	// Limit execution to no more than once in this interval (in seconds).
-	MinimumInterval *int `pulumi:"minimumInterval"`
-	// SDN connector name.
-	Name *string `pulumi:"name"`
-	// Protocol port.
-	Port *int `pulumi:"port"`
-	// Request protocol. Valid values: `http`, `https`.
-	Protocol *string `pulumi:"protocol"`
-	// Enable/disable replacement message. Valid values: `enable`, `disable`.
-	ReplacementMessage *string `pulumi:"replacementMessage"`
-	// Replacement message group.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Required in action chain. Valid values: `enable`, `disable`.
-	Required *string `pulumi:"required"`
-	// CLI script.
-	Script *string `pulumi:"script"`
-	// NSX SDN connector names. The structure of `sdnConnector` block is documented below.
-	SdnConnectors []SystemAutomationActionSdnConnector `pulumi:"sdnConnectors"`
-	// NSX security tag.
-	SecurityTag *string `pulumi:"securityTag"`
-	// Custom TLS certificate for API request.
-	TlsCertificate *string `pulumi:"tlsCertificate"`
-	// Request API URI.
-	Uri *string `pulumi:"uri"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
-	VerifyHostCert *string `pulumi:"verifyHostCert"`
+	Accprofile                    *string                              `pulumi:"accprofile"`
+	ActionType                    *string                              `pulumi:"actionType"`
+	AlicloudAccessKeyId           *string                              `pulumi:"alicloudAccessKeyId"`
+	AlicloudAccessKeySecret       *string                              `pulumi:"alicloudAccessKeySecret"`
+	AlicloudAccountId             *string                              `pulumi:"alicloudAccountId"`
+	AlicloudFunction              *string                              `pulumi:"alicloudFunction"`
+	AlicloudFunctionAuthorization *string                              `pulumi:"alicloudFunctionAuthorization"`
+	AlicloudFunctionDomain        *string                              `pulumi:"alicloudFunctionDomain"`
+	AlicloudRegion                *string                              `pulumi:"alicloudRegion"`
+	AlicloudService               *string                              `pulumi:"alicloudService"`
+	AlicloudVersion               *string                              `pulumi:"alicloudVersion"`
+	AwsApiId                      *string                              `pulumi:"awsApiId"`
+	AwsApiKey                     *string                              `pulumi:"awsApiKey"`
+	AwsApiPath                    *string                              `pulumi:"awsApiPath"`
+	AwsApiStage                   *string                              `pulumi:"awsApiStage"`
+	AwsDomain                     *string                              `pulumi:"awsDomain"`
+	AwsRegion                     *string                              `pulumi:"awsRegion"`
+	AzureApiKey                   *string                              `pulumi:"azureApiKey"`
+	AzureApp                      *string                              `pulumi:"azureApp"`
+	AzureDomain                   *string                              `pulumi:"azureDomain"`
+	AzureFunction                 *string                              `pulumi:"azureFunction"`
+	AzureFunctionAuthorization    *string                              `pulumi:"azureFunctionAuthorization"`
+	Delay                         *int                                 `pulumi:"delay"`
+	Description                   *string                              `pulumi:"description"`
+	DynamicSortSubtable           *string                              `pulumi:"dynamicSortSubtable"`
+	EmailBody                     *string                              `pulumi:"emailBody"`
+	EmailFrom                     *string                              `pulumi:"emailFrom"`
+	EmailSubject                  *string                              `pulumi:"emailSubject"`
+	EmailTos                      []SystemAutomationActionEmailTo      `pulumi:"emailTos"`
+	ExecuteSecurityFabric         *string                              `pulumi:"executeSecurityFabric"`
+	GcpFunction                   *string                              `pulumi:"gcpFunction"`
+	GcpFunctionDomain             *string                              `pulumi:"gcpFunctionDomain"`
+	GcpFunctionRegion             *string                              `pulumi:"gcpFunctionRegion"`
+	GcpProject                    *string                              `pulumi:"gcpProject"`
+	Headers                       []SystemAutomationActionHeader       `pulumi:"headers"`
+	HttpBody                      *string                              `pulumi:"httpBody"`
+	HttpHeaders                   []SystemAutomationActionHttpHeader   `pulumi:"httpHeaders"`
+	Message                       *string                              `pulumi:"message"`
+	MessageType                   *string                              `pulumi:"messageType"`
+	Method                        *string                              `pulumi:"method"`
+	MinimumInterval               *int                                 `pulumi:"minimumInterval"`
+	Name                          *string                              `pulumi:"name"`
+	OutputSize                    *int                                 `pulumi:"outputSize"`
+	Port                          *int                                 `pulumi:"port"`
+	Protocol                      *string                              `pulumi:"protocol"`
+	ReplacementMessage            *string                              `pulumi:"replacementMessage"`
+	ReplacemsgGroup               *string                              `pulumi:"replacemsgGroup"`
+	Required                      *string                              `pulumi:"required"`
+	Script                        *string                              `pulumi:"script"`
+	SdnConnectors                 []SystemAutomationActionSdnConnector `pulumi:"sdnConnectors"`
+	SecurityTag                   *string                              `pulumi:"securityTag"`
+	SystemAction                  *string                              `pulumi:"systemAction"`
+	Timeout                       *int                                 `pulumi:"timeout"`
+	TlsCertificate                *string                              `pulumi:"tlsCertificate"`
+	Uri                           *string                              `pulumi:"uri"`
+	Vdomparam                     *string                              `pulumi:"vdomparam"`
+	VerifyHostCert                *string                              `pulumi:"verifyHostCert"`
 }
 
 type SystemAutomationActionState struct {
-	// Access profile for CLI script action to access FortiGate features.
-	Accprofile pulumi.StringPtrInput
-	// Action type.
-	ActionType pulumi.StringPtrInput
-	// AliCloud AccessKey ID.
-	AlicloudAccessKeyId pulumi.StringPtrInput
-	// AliCloud AccessKey secret.
-	AlicloudAccessKeySecret pulumi.StringPtrInput
-	// AliCloud account ID.
-	AlicloudAccountId pulumi.StringPtrInput
-	// AliCloud function name.
-	AlicloudFunction pulumi.StringPtrInput
-	// AliCloud function authorization type. Valid values: `anonymous`, `function`.
+	Accprofile                    pulumi.StringPtrInput
+	ActionType                    pulumi.StringPtrInput
+	AlicloudAccessKeyId           pulumi.StringPtrInput
+	AlicloudAccessKeySecret       pulumi.StringPtrInput
+	AlicloudAccountId             pulumi.StringPtrInput
+	AlicloudFunction              pulumi.StringPtrInput
 	AlicloudFunctionAuthorization pulumi.StringPtrInput
-	// AliCloud function domain.
-	AlicloudFunctionDomain pulumi.StringPtrInput
-	// AliCloud region.
-	AlicloudRegion pulumi.StringPtrInput
-	// AliCloud service name.
-	AlicloudService pulumi.StringPtrInput
-	// AliCloud version.
-	AlicloudVersion pulumi.StringPtrInput
-	// AWS API Gateway ID.
-	AwsApiId pulumi.StringPtrInput
-	// AWS API Gateway API key.
-	AwsApiKey pulumi.StringPtrInput
-	// AWS API Gateway path.
-	AwsApiPath pulumi.StringPtrInput
-	// AWS API Gateway deployment stage name.
-	AwsApiStage pulumi.StringPtrInput
-	// AWS domain.
-	AwsDomain pulumi.StringPtrInput
-	// AWS region.
-	AwsRegion pulumi.StringPtrInput
-	// Azure function API key.
-	AzureApiKey pulumi.StringPtrInput
-	// Azure function application name.
-	AzureApp pulumi.StringPtrInput
-	// Azure function domain.
-	AzureDomain pulumi.StringPtrInput
-	// Azure function name.
-	AzureFunction pulumi.StringPtrInput
-	// Azure function authorization level. Valid values: `anonymous`, `function`, `admin`.
-	AzureFunctionAuthorization pulumi.StringPtrInput
-	// Delay before execution (in seconds).
-	Delay pulumi.IntPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Email body.
-	EmailBody pulumi.StringPtrInput
-	// Email sender name.
-	EmailFrom pulumi.StringPtrInput
-	// Email subject.
-	EmailSubject pulumi.StringPtrInput
-	// Email addresses. The structure of `emailTo` block is documented below.
-	EmailTos SystemAutomationActionEmailToArrayInput
-	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
-	ExecuteSecurityFabric pulumi.StringPtrInput
-	// Google Cloud function name.
-	GcpFunction pulumi.StringPtrInput
-	// Google Cloud function domain.
-	GcpFunctionDomain pulumi.StringPtrInput
-	// Google Cloud function region.
-	GcpFunctionRegion pulumi.StringPtrInput
-	// Google Cloud Platform project name.
-	GcpProject pulumi.StringPtrInput
-	// Request headers. The structure of `headers` block is documented below.
-	Headers SystemAutomationActionHeaderArrayInput
-	// Request body (if necessary). Should be serialized json string.
-	HttpBody pulumi.StringPtrInput
-	// Message content.
-	Message pulumi.StringPtrInput
-	// Message type. Valid values: `text`, `json`.
-	MessageType pulumi.StringPtrInput
-	// Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
-	Method pulumi.StringPtrInput
-	// Limit execution to no more than once in this interval (in seconds).
-	MinimumInterval pulumi.IntPtrInput
-	// SDN connector name.
-	Name pulumi.StringPtrInput
-	// Protocol port.
-	Port pulumi.IntPtrInput
-	// Request protocol. Valid values: `http`, `https`.
-	Protocol pulumi.StringPtrInput
-	// Enable/disable replacement message. Valid values: `enable`, `disable`.
-	ReplacementMessage pulumi.StringPtrInput
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// Required in action chain. Valid values: `enable`, `disable`.
-	Required pulumi.StringPtrInput
-	// CLI script.
-	Script pulumi.StringPtrInput
-	// NSX SDN connector names. The structure of `sdnConnector` block is documented below.
-	SdnConnectors SystemAutomationActionSdnConnectorArrayInput
-	// NSX security tag.
-	SecurityTag pulumi.StringPtrInput
-	// Custom TLS certificate for API request.
-	TlsCertificate pulumi.StringPtrInput
-	// Request API URI.
-	Uri pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
-	VerifyHostCert pulumi.StringPtrInput
+	AlicloudFunctionDomain        pulumi.StringPtrInput
+	AlicloudRegion                pulumi.StringPtrInput
+	AlicloudService               pulumi.StringPtrInput
+	AlicloudVersion               pulumi.StringPtrInput
+	AwsApiId                      pulumi.StringPtrInput
+	AwsApiKey                     pulumi.StringPtrInput
+	AwsApiPath                    pulumi.StringPtrInput
+	AwsApiStage                   pulumi.StringPtrInput
+	AwsDomain                     pulumi.StringPtrInput
+	AwsRegion                     pulumi.StringPtrInput
+	AzureApiKey                   pulumi.StringPtrInput
+	AzureApp                      pulumi.StringPtrInput
+	AzureDomain                   pulumi.StringPtrInput
+	AzureFunction                 pulumi.StringPtrInput
+	AzureFunctionAuthorization    pulumi.StringPtrInput
+	Delay                         pulumi.IntPtrInput
+	Description                   pulumi.StringPtrInput
+	DynamicSortSubtable           pulumi.StringPtrInput
+	EmailBody                     pulumi.StringPtrInput
+	EmailFrom                     pulumi.StringPtrInput
+	EmailSubject                  pulumi.StringPtrInput
+	EmailTos                      SystemAutomationActionEmailToArrayInput
+	ExecuteSecurityFabric         pulumi.StringPtrInput
+	GcpFunction                   pulumi.StringPtrInput
+	GcpFunctionDomain             pulumi.StringPtrInput
+	GcpFunctionRegion             pulumi.StringPtrInput
+	GcpProject                    pulumi.StringPtrInput
+	Headers                       SystemAutomationActionHeaderArrayInput
+	HttpBody                      pulumi.StringPtrInput
+	HttpHeaders                   SystemAutomationActionHttpHeaderArrayInput
+	Message                       pulumi.StringPtrInput
+	MessageType                   pulumi.StringPtrInput
+	Method                        pulumi.StringPtrInput
+	MinimumInterval               pulumi.IntPtrInput
+	Name                          pulumi.StringPtrInput
+	OutputSize                    pulumi.IntPtrInput
+	Port                          pulumi.IntPtrInput
+	Protocol                      pulumi.StringPtrInput
+	ReplacementMessage            pulumi.StringPtrInput
+	ReplacemsgGroup               pulumi.StringPtrInput
+	Required                      pulumi.StringPtrInput
+	Script                        pulumi.StringPtrInput
+	SdnConnectors                 SystemAutomationActionSdnConnectorArrayInput
+	SecurityTag                   pulumi.StringPtrInput
+	SystemAction                  pulumi.StringPtrInput
+	Timeout                       pulumi.IntPtrInput
+	TlsCertificate                pulumi.StringPtrInput
+	Uri                           pulumi.StringPtrInput
+	Vdomparam                     pulumi.StringPtrInput
+	VerifyHostCert                pulumi.StringPtrInput
 }
 
 func (SystemAutomationActionState) ElementType() reflect.Type {
@@ -420,222 +241,124 @@ func (SystemAutomationActionState) ElementType() reflect.Type {
 }
 
 type systemAutomationActionArgs struct {
-	// Access profile for CLI script action to access FortiGate features.
-	Accprofile *string `pulumi:"accprofile"`
-	// Action type.
-	ActionType *string `pulumi:"actionType"`
-	// AliCloud AccessKey ID.
-	AlicloudAccessKeyId *string `pulumi:"alicloudAccessKeyId"`
-	// AliCloud AccessKey secret.
-	AlicloudAccessKeySecret *string `pulumi:"alicloudAccessKeySecret"`
-	// AliCloud account ID.
-	AlicloudAccountId *string `pulumi:"alicloudAccountId"`
-	// AliCloud function name.
-	AlicloudFunction *string `pulumi:"alicloudFunction"`
-	// AliCloud function authorization type. Valid values: `anonymous`, `function`.
-	AlicloudFunctionAuthorization *string `pulumi:"alicloudFunctionAuthorization"`
-	// AliCloud function domain.
-	AlicloudFunctionDomain *string `pulumi:"alicloudFunctionDomain"`
-	// AliCloud region.
-	AlicloudRegion *string `pulumi:"alicloudRegion"`
-	// AliCloud service name.
-	AlicloudService *string `pulumi:"alicloudService"`
-	// AliCloud version.
-	AlicloudVersion *string `pulumi:"alicloudVersion"`
-	// AWS API Gateway ID.
-	AwsApiId *string `pulumi:"awsApiId"`
-	// AWS API Gateway API key.
-	AwsApiKey *string `pulumi:"awsApiKey"`
-	// AWS API Gateway path.
-	AwsApiPath *string `pulumi:"awsApiPath"`
-	// AWS API Gateway deployment stage name.
-	AwsApiStage *string `pulumi:"awsApiStage"`
-	// AWS domain.
-	AwsDomain *string `pulumi:"awsDomain"`
-	// AWS region.
-	AwsRegion *string `pulumi:"awsRegion"`
-	// Azure function API key.
-	AzureApiKey *string `pulumi:"azureApiKey"`
-	// Azure function application name.
-	AzureApp *string `pulumi:"azureApp"`
-	// Azure function domain.
-	AzureDomain *string `pulumi:"azureDomain"`
-	// Azure function name.
-	AzureFunction *string `pulumi:"azureFunction"`
-	// Azure function authorization level. Valid values: `anonymous`, `function`, `admin`.
-	AzureFunctionAuthorization *string `pulumi:"azureFunctionAuthorization"`
-	// Delay before execution (in seconds).
-	Delay *int `pulumi:"delay"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Email body.
-	EmailBody *string `pulumi:"emailBody"`
-	// Email sender name.
-	EmailFrom *string `pulumi:"emailFrom"`
-	// Email subject.
-	EmailSubject *string `pulumi:"emailSubject"`
-	// Email addresses. The structure of `emailTo` block is documented below.
-	EmailTos []SystemAutomationActionEmailTo `pulumi:"emailTos"`
-	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
-	ExecuteSecurityFabric *string `pulumi:"executeSecurityFabric"`
-	// Google Cloud function name.
-	GcpFunction *string `pulumi:"gcpFunction"`
-	// Google Cloud function domain.
-	GcpFunctionDomain *string `pulumi:"gcpFunctionDomain"`
-	// Google Cloud function region.
-	GcpFunctionRegion *string `pulumi:"gcpFunctionRegion"`
-	// Google Cloud Platform project name.
-	GcpProject *string `pulumi:"gcpProject"`
-	// Request headers. The structure of `headers` block is documented below.
-	Headers []SystemAutomationActionHeader `pulumi:"headers"`
-	// Request body (if necessary). Should be serialized json string.
-	HttpBody *string `pulumi:"httpBody"`
-	// Message content.
-	Message *string `pulumi:"message"`
-	// Message type. Valid values: `text`, `json`.
-	MessageType *string `pulumi:"messageType"`
-	// Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
-	Method *string `pulumi:"method"`
-	// Limit execution to no more than once in this interval (in seconds).
-	MinimumInterval *int `pulumi:"minimumInterval"`
-	// SDN connector name.
-	Name *string `pulumi:"name"`
-	// Protocol port.
-	Port *int `pulumi:"port"`
-	// Request protocol. Valid values: `http`, `https`.
-	Protocol *string `pulumi:"protocol"`
-	// Enable/disable replacement message. Valid values: `enable`, `disable`.
-	ReplacementMessage *string `pulumi:"replacementMessage"`
-	// Replacement message group.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Required in action chain. Valid values: `enable`, `disable`.
-	Required *string `pulumi:"required"`
-	// CLI script.
-	Script *string `pulumi:"script"`
-	// NSX SDN connector names. The structure of `sdnConnector` block is documented below.
-	SdnConnectors []SystemAutomationActionSdnConnector `pulumi:"sdnConnectors"`
-	// NSX security tag.
-	SecurityTag *string `pulumi:"securityTag"`
-	// Custom TLS certificate for API request.
-	TlsCertificate *string `pulumi:"tlsCertificate"`
-	// Request API URI.
-	Uri *string `pulumi:"uri"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
-	VerifyHostCert *string `pulumi:"verifyHostCert"`
+	Accprofile                    *string                              `pulumi:"accprofile"`
+	ActionType                    *string                              `pulumi:"actionType"`
+	AlicloudAccessKeyId           *string                              `pulumi:"alicloudAccessKeyId"`
+	AlicloudAccessKeySecret       *string                              `pulumi:"alicloudAccessKeySecret"`
+	AlicloudAccountId             *string                              `pulumi:"alicloudAccountId"`
+	AlicloudFunction              *string                              `pulumi:"alicloudFunction"`
+	AlicloudFunctionAuthorization *string                              `pulumi:"alicloudFunctionAuthorization"`
+	AlicloudFunctionDomain        *string                              `pulumi:"alicloudFunctionDomain"`
+	AlicloudRegion                *string                              `pulumi:"alicloudRegion"`
+	AlicloudService               *string                              `pulumi:"alicloudService"`
+	AlicloudVersion               *string                              `pulumi:"alicloudVersion"`
+	AwsApiId                      *string                              `pulumi:"awsApiId"`
+	AwsApiKey                     *string                              `pulumi:"awsApiKey"`
+	AwsApiPath                    *string                              `pulumi:"awsApiPath"`
+	AwsApiStage                   *string                              `pulumi:"awsApiStage"`
+	AwsDomain                     *string                              `pulumi:"awsDomain"`
+	AwsRegion                     *string                              `pulumi:"awsRegion"`
+	AzureApiKey                   *string                              `pulumi:"azureApiKey"`
+	AzureApp                      *string                              `pulumi:"azureApp"`
+	AzureDomain                   *string                              `pulumi:"azureDomain"`
+	AzureFunction                 *string                              `pulumi:"azureFunction"`
+	AzureFunctionAuthorization    *string                              `pulumi:"azureFunctionAuthorization"`
+	Delay                         *int                                 `pulumi:"delay"`
+	Description                   *string                              `pulumi:"description"`
+	DynamicSortSubtable           *string                              `pulumi:"dynamicSortSubtable"`
+	EmailBody                     *string                              `pulumi:"emailBody"`
+	EmailFrom                     *string                              `pulumi:"emailFrom"`
+	EmailSubject                  *string                              `pulumi:"emailSubject"`
+	EmailTos                      []SystemAutomationActionEmailTo      `pulumi:"emailTos"`
+	ExecuteSecurityFabric         *string                              `pulumi:"executeSecurityFabric"`
+	GcpFunction                   *string                              `pulumi:"gcpFunction"`
+	GcpFunctionDomain             *string                              `pulumi:"gcpFunctionDomain"`
+	GcpFunctionRegion             *string                              `pulumi:"gcpFunctionRegion"`
+	GcpProject                    *string                              `pulumi:"gcpProject"`
+	Headers                       []SystemAutomationActionHeader       `pulumi:"headers"`
+	HttpBody                      *string                              `pulumi:"httpBody"`
+	HttpHeaders                   []SystemAutomationActionHttpHeader   `pulumi:"httpHeaders"`
+	Message                       *string                              `pulumi:"message"`
+	MessageType                   *string                              `pulumi:"messageType"`
+	Method                        *string                              `pulumi:"method"`
+	MinimumInterval               *int                                 `pulumi:"minimumInterval"`
+	Name                          *string                              `pulumi:"name"`
+	OutputSize                    *int                                 `pulumi:"outputSize"`
+	Port                          *int                                 `pulumi:"port"`
+	Protocol                      *string                              `pulumi:"protocol"`
+	ReplacementMessage            *string                              `pulumi:"replacementMessage"`
+	ReplacemsgGroup               *string                              `pulumi:"replacemsgGroup"`
+	Required                      *string                              `pulumi:"required"`
+	Script                        *string                              `pulumi:"script"`
+	SdnConnectors                 []SystemAutomationActionSdnConnector `pulumi:"sdnConnectors"`
+	SecurityTag                   *string                              `pulumi:"securityTag"`
+	SystemAction                  *string                              `pulumi:"systemAction"`
+	Timeout                       *int                                 `pulumi:"timeout"`
+	TlsCertificate                *string                              `pulumi:"tlsCertificate"`
+	Uri                           *string                              `pulumi:"uri"`
+	Vdomparam                     *string                              `pulumi:"vdomparam"`
+	VerifyHostCert                *string                              `pulumi:"verifyHostCert"`
 }
 
 // The set of arguments for constructing a SystemAutomationAction resource.
 type SystemAutomationActionArgs struct {
-	// Access profile for CLI script action to access FortiGate features.
-	Accprofile pulumi.StringPtrInput
-	// Action type.
-	ActionType pulumi.StringPtrInput
-	// AliCloud AccessKey ID.
-	AlicloudAccessKeyId pulumi.StringPtrInput
-	// AliCloud AccessKey secret.
-	AlicloudAccessKeySecret pulumi.StringPtrInput
-	// AliCloud account ID.
-	AlicloudAccountId pulumi.StringPtrInput
-	// AliCloud function name.
-	AlicloudFunction pulumi.StringPtrInput
-	// AliCloud function authorization type. Valid values: `anonymous`, `function`.
+	Accprofile                    pulumi.StringPtrInput
+	ActionType                    pulumi.StringPtrInput
+	AlicloudAccessKeyId           pulumi.StringPtrInput
+	AlicloudAccessKeySecret       pulumi.StringPtrInput
+	AlicloudAccountId             pulumi.StringPtrInput
+	AlicloudFunction              pulumi.StringPtrInput
 	AlicloudFunctionAuthorization pulumi.StringPtrInput
-	// AliCloud function domain.
-	AlicloudFunctionDomain pulumi.StringPtrInput
-	// AliCloud region.
-	AlicloudRegion pulumi.StringPtrInput
-	// AliCloud service name.
-	AlicloudService pulumi.StringPtrInput
-	// AliCloud version.
-	AlicloudVersion pulumi.StringPtrInput
-	// AWS API Gateway ID.
-	AwsApiId pulumi.StringPtrInput
-	// AWS API Gateway API key.
-	AwsApiKey pulumi.StringPtrInput
-	// AWS API Gateway path.
-	AwsApiPath pulumi.StringPtrInput
-	// AWS API Gateway deployment stage name.
-	AwsApiStage pulumi.StringPtrInput
-	// AWS domain.
-	AwsDomain pulumi.StringPtrInput
-	// AWS region.
-	AwsRegion pulumi.StringPtrInput
-	// Azure function API key.
-	AzureApiKey pulumi.StringPtrInput
-	// Azure function application name.
-	AzureApp pulumi.StringPtrInput
-	// Azure function domain.
-	AzureDomain pulumi.StringPtrInput
-	// Azure function name.
-	AzureFunction pulumi.StringPtrInput
-	// Azure function authorization level. Valid values: `anonymous`, `function`, `admin`.
-	AzureFunctionAuthorization pulumi.StringPtrInput
-	// Delay before execution (in seconds).
-	Delay pulumi.IntPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Email body.
-	EmailBody pulumi.StringPtrInput
-	// Email sender name.
-	EmailFrom pulumi.StringPtrInput
-	// Email subject.
-	EmailSubject pulumi.StringPtrInput
-	// Email addresses. The structure of `emailTo` block is documented below.
-	EmailTos SystemAutomationActionEmailToArrayInput
-	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
-	ExecuteSecurityFabric pulumi.StringPtrInput
-	// Google Cloud function name.
-	GcpFunction pulumi.StringPtrInput
-	// Google Cloud function domain.
-	GcpFunctionDomain pulumi.StringPtrInput
-	// Google Cloud function region.
-	GcpFunctionRegion pulumi.StringPtrInput
-	// Google Cloud Platform project name.
-	GcpProject pulumi.StringPtrInput
-	// Request headers. The structure of `headers` block is documented below.
-	Headers SystemAutomationActionHeaderArrayInput
-	// Request body (if necessary). Should be serialized json string.
-	HttpBody pulumi.StringPtrInput
-	// Message content.
-	Message pulumi.StringPtrInput
-	// Message type. Valid values: `text`, `json`.
-	MessageType pulumi.StringPtrInput
-	// Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
-	Method pulumi.StringPtrInput
-	// Limit execution to no more than once in this interval (in seconds).
-	MinimumInterval pulumi.IntPtrInput
-	// SDN connector name.
-	Name pulumi.StringPtrInput
-	// Protocol port.
-	Port pulumi.IntPtrInput
-	// Request protocol. Valid values: `http`, `https`.
-	Protocol pulumi.StringPtrInput
-	// Enable/disable replacement message. Valid values: `enable`, `disable`.
-	ReplacementMessage pulumi.StringPtrInput
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// Required in action chain. Valid values: `enable`, `disable`.
-	Required pulumi.StringPtrInput
-	// CLI script.
-	Script pulumi.StringPtrInput
-	// NSX SDN connector names. The structure of `sdnConnector` block is documented below.
-	SdnConnectors SystemAutomationActionSdnConnectorArrayInput
-	// NSX security tag.
-	SecurityTag pulumi.StringPtrInput
-	// Custom TLS certificate for API request.
-	TlsCertificate pulumi.StringPtrInput
-	// Request API URI.
-	Uri pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
-	VerifyHostCert pulumi.StringPtrInput
+	AlicloudFunctionDomain        pulumi.StringPtrInput
+	AlicloudRegion                pulumi.StringPtrInput
+	AlicloudService               pulumi.StringPtrInput
+	AlicloudVersion               pulumi.StringPtrInput
+	AwsApiId                      pulumi.StringPtrInput
+	AwsApiKey                     pulumi.StringPtrInput
+	AwsApiPath                    pulumi.StringPtrInput
+	AwsApiStage                   pulumi.StringPtrInput
+	AwsDomain                     pulumi.StringPtrInput
+	AwsRegion                     pulumi.StringPtrInput
+	AzureApiKey                   pulumi.StringPtrInput
+	AzureApp                      pulumi.StringPtrInput
+	AzureDomain                   pulumi.StringPtrInput
+	AzureFunction                 pulumi.StringPtrInput
+	AzureFunctionAuthorization    pulumi.StringPtrInput
+	Delay                         pulumi.IntPtrInput
+	Description                   pulumi.StringPtrInput
+	DynamicSortSubtable           pulumi.StringPtrInput
+	EmailBody                     pulumi.StringPtrInput
+	EmailFrom                     pulumi.StringPtrInput
+	EmailSubject                  pulumi.StringPtrInput
+	EmailTos                      SystemAutomationActionEmailToArrayInput
+	ExecuteSecurityFabric         pulumi.StringPtrInput
+	GcpFunction                   pulumi.StringPtrInput
+	GcpFunctionDomain             pulumi.StringPtrInput
+	GcpFunctionRegion             pulumi.StringPtrInput
+	GcpProject                    pulumi.StringPtrInput
+	Headers                       SystemAutomationActionHeaderArrayInput
+	HttpBody                      pulumi.StringPtrInput
+	HttpHeaders                   SystemAutomationActionHttpHeaderArrayInput
+	Message                       pulumi.StringPtrInput
+	MessageType                   pulumi.StringPtrInput
+	Method                        pulumi.StringPtrInput
+	MinimumInterval               pulumi.IntPtrInput
+	Name                          pulumi.StringPtrInput
+	OutputSize                    pulumi.IntPtrInput
+	Port                          pulumi.IntPtrInput
+	Protocol                      pulumi.StringPtrInput
+	ReplacementMessage            pulumi.StringPtrInput
+	ReplacemsgGroup               pulumi.StringPtrInput
+	Required                      pulumi.StringPtrInput
+	Script                        pulumi.StringPtrInput
+	SdnConnectors                 SystemAutomationActionSdnConnectorArrayInput
+	SecurityTag                   pulumi.StringPtrInput
+	SystemAction                  pulumi.StringPtrInput
+	Timeout                       pulumi.IntPtrInput
+	TlsCertificate                pulumi.StringPtrInput
+	Uri                           pulumi.StringPtrInput
+	Vdomparam                     pulumi.StringPtrInput
+	VerifyHostCert                pulumi.StringPtrInput
 }
 
 func (SystemAutomationActionArgs) ElementType() reflect.Type {
@@ -664,7 +387,7 @@ func (i *SystemAutomationAction) ToSystemAutomationActionOutputWithContext(ctx c
 // SystemAutomationActionArrayInput is an input type that accepts SystemAutomationActionArray and SystemAutomationActionArrayOutput values.
 // You can construct a concrete instance of `SystemAutomationActionArrayInput` via:
 //
-//          SystemAutomationActionArray{ SystemAutomationActionArgs{...} }
+//	SystemAutomationActionArray{ SystemAutomationActionArgs{...} }
 type SystemAutomationActionArrayInput interface {
 	pulumi.Input
 
@@ -689,7 +412,7 @@ func (i SystemAutomationActionArray) ToSystemAutomationActionArrayOutputWithCont
 // SystemAutomationActionMapInput is an input type that accepts SystemAutomationActionMap and SystemAutomationActionMapOutput values.
 // You can construct a concrete instance of `SystemAutomationActionMapInput` via:
 //
-//          SystemAutomationActionMap{ "key": SystemAutomationActionArgs{...} }
+//	SystemAutomationActionMap{ "key": SystemAutomationActionArgs{...} }
 type SystemAutomationActionMapInput interface {
 	pulumi.Input
 
@@ -723,6 +446,234 @@ func (o SystemAutomationActionOutput) ToSystemAutomationActionOutput() SystemAut
 
 func (o SystemAutomationActionOutput) ToSystemAutomationActionOutputWithContext(ctx context.Context) SystemAutomationActionOutput {
 	return o
+}
+
+func (o SystemAutomationActionOutput) Accprofile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.Accprofile }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) ActionType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.ActionType }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AlicloudAccessKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AlicloudAccessKeyId }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AlicloudAccessKeySecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringPtrOutput { return v.AlicloudAccessKeySecret }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationActionOutput) AlicloudAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AlicloudAccountId }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AlicloudFunction() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AlicloudFunction }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AlicloudFunctionAuthorization() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AlicloudFunctionAuthorization }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AlicloudFunctionDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AlicloudFunctionDomain }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AlicloudRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AlicloudRegion }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AlicloudService() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AlicloudService }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AlicloudVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AlicloudVersion }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AwsApiId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AwsApiId }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AwsApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringPtrOutput { return v.AwsApiKey }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationActionOutput) AwsApiPath() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AwsApiPath }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AwsApiStage() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AwsApiStage }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AwsDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AwsDomain }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AwsRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AwsRegion }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AzureApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringPtrOutput { return v.AzureApiKey }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationActionOutput) AzureApp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AzureApp }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AzureDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AzureDomain }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AzureFunction() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AzureFunction }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) AzureFunctionAuthorization() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.AzureFunctionAuthorization }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) Delay() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.IntOutput { return v.Delay }).(pulumi.IntOutput)
+}
+
+func (o SystemAutomationActionOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationActionOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationActionOutput) EmailBody() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.EmailBody }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) EmailFrom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringPtrOutput { return v.EmailFrom }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationActionOutput) EmailSubject() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringPtrOutput { return v.EmailSubject }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationActionOutput) EmailTos() SystemAutomationActionEmailToArrayOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) SystemAutomationActionEmailToArrayOutput { return v.EmailTos }).(SystemAutomationActionEmailToArrayOutput)
+}
+
+func (o SystemAutomationActionOutput) ExecuteSecurityFabric() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.ExecuteSecurityFabric }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) GcpFunction() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.GcpFunction }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) GcpFunctionDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.GcpFunctionDomain }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) GcpFunctionRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.GcpFunctionRegion }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) GcpProject() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.GcpProject }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) Headers() SystemAutomationActionHeaderArrayOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) SystemAutomationActionHeaderArrayOutput { return v.Headers }).(SystemAutomationActionHeaderArrayOutput)
+}
+
+func (o SystemAutomationActionOutput) HttpBody() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringPtrOutput { return v.HttpBody }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationActionOutput) HttpHeaders() SystemAutomationActionHttpHeaderArrayOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) SystemAutomationActionHttpHeaderArrayOutput { return v.HttpHeaders }).(SystemAutomationActionHttpHeaderArrayOutput)
+}
+
+func (o SystemAutomationActionOutput) Message() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.Message }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) MessageType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.MessageType }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.Method }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) MinimumInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.IntOutput { return v.MinimumInterval }).(pulumi.IntOutput)
+}
+
+func (o SystemAutomationActionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) OutputSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.IntOutput { return v.OutputSize }).(pulumi.IntOutput)
+}
+
+func (o SystemAutomationActionOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o SystemAutomationActionOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) ReplacementMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.ReplacementMessage }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) ReplacemsgGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.ReplacemsgGroup }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) Required() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.Required }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) Script() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringPtrOutput { return v.Script }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationActionOutput) SdnConnectors() SystemAutomationActionSdnConnectorArrayOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) SystemAutomationActionSdnConnectorArrayOutput { return v.SdnConnectors }).(SystemAutomationActionSdnConnectorArrayOutput)
+}
+
+func (o SystemAutomationActionOutput) SecurityTag() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.SecurityTag }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) SystemAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.SystemAction }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
+}
+
+func (o SystemAutomationActionOutput) TlsCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.TlsCertificate }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) Uri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringPtrOutput { return v.Uri }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationActionOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationActionOutput) VerifyHostCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.VerifyHostCert }).(pulumi.StringOutput)
 }
 
 type SystemAutomationActionArrayOutput struct{ *pulumi.OutputState }

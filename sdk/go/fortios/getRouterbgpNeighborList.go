@@ -10,30 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `RouterbgpNeighbor`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		sample1, err := fortios.GetRouterbgpNeighborList(ctx, nil, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("output1", sample1.Iplists)
-// 		return nil
-// 	})
-// }
-// ```
 func GetRouterbgpNeighborList(ctx *pulumi.Context, args *GetRouterbgpNeighborListArgs, opts ...pulumi.InvokeOption) (*GetRouterbgpNeighborListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetRouterbgpNeighborListResult
@@ -46,8 +22,7 @@ func GetRouterbgpNeighborList(ctx *pulumi.Context, args *GetRouterbgpNeighborLis
 
 // A collection of arguments for invoking GetRouterbgpNeighborList.
 type GetRouterbgpNeighborListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -55,8 +30,7 @@ type GetRouterbgpNeighborListArgs struct {
 type GetRouterbgpNeighborListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `RouterbgpNeighbor`.
+	Id        string   `pulumi:"id"`
 	Iplists   []string `pulumi:"iplists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -76,8 +50,7 @@ func GetRouterbgpNeighborListOutput(ctx *pulumi.Context, args GetRouterbgpNeighb
 
 // A collection of arguments for invoking GetRouterbgpNeighborList.
 type GetRouterbgpNeighborListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -109,7 +82,6 @@ func (o GetRouterbgpNeighborListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRouterbgpNeighborListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `RouterbgpNeighbor`.
 func (o GetRouterbgpNeighborListResultOutput) Iplists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRouterbgpNeighborListResult) []string { return v.Iplists }).(pulumi.StringArrayOutput)
 }

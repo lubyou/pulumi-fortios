@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.RouterPolicy6`.
- */
 export function getRouterPolicy6List(args?: GetRouterPolicy6ListArgs, opts?: pulumi.InvokeOptions): Promise<GetRouterPolicy6ListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getRouterPolicy6List:GetRouterPolicy6List", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getRouterPolicy6List(args?: GetRouterPolicy6ListArgs, opts?: pul
  */
 export interface GetRouterPolicy6ListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -40,15 +31,11 @@ export interface GetRouterPolicy6ListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.RouterPolicy6`.
-     */
     readonly seqNumlists: number[];
     readonly vdomparam?: string;
 }
-
 export function getRouterPolicy6ListOutput(args?: GetRouterPolicy6ListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterPolicy6ListResult> {
-    return pulumi.output(args).apply(a => getRouterPolicy6List(a, opts))
+    return pulumi.output(args).apply((a: any) => getRouterPolicy6List(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getRouterPolicy6ListOutput(args?: GetRouterPolicy6ListOutputArgs
  */
 export interface GetRouterPolicy6ListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

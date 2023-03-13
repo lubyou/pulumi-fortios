@@ -7,100 +7,28 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Authentication Schemes.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trname3, err := fortios.NewUserFsso(ctx, "trname3", &fortios.UserFssoArgs{
-// 			Port:      pulumi.Int(8000),
-// 			Port2:     pulumi.Int(8000),
-// 			Port3:     pulumi.Int(8000),
-// 			Port4:     pulumi.Int(8000),
-// 			Port5:     pulumi.Int(8000),
-// 			Server:    pulumi.String("1.1.1.1"),
-// 			SourceIp:  pulumi.String("0.0.0.0"),
-// 			SourceIp6: pulumi.String("::"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewAuthenticationScheme(ctx, "trname", &fortios.AuthenticationSchemeArgs{
-// 			FssoAgentForNtlm: trname3.Name,
-// 			FssoGuest:        pulumi.String("disable"),
-// 			Method:           pulumi.String("ntlm"),
-// 			NegotiateNtlm:    pulumi.String("enable"),
-// 			RequireTfa:       pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Authentication Scheme can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/authenticationScheme:AuthenticationScheme labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/authenticationScheme:AuthenticationScheme labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type AuthenticationScheme struct {
 	pulumi.CustomResourceState
 
-	// Domain controller setting.
-	DomainController pulumi.StringOutput `pulumi:"domainController"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// FSSO agent to use for NTLM authentication.
-	FssoAgentForNtlm pulumi.StringOutput `pulumi:"fssoAgentForNtlm"`
-	// Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
-	FssoGuest pulumi.StringOutput `pulumi:"fssoGuest"`
-	// Kerberos keytab setting.
-	KerberosKeytab pulumi.StringOutput `pulumi:"kerberosKeytab"`
-	// Authentication methods (default = basic).
-	Method pulumi.StringOutput `pulumi:"method"`
-	// Authentication server name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable negotiate authentication for NTLM (default = disable). Valid values: `enable`, `disable`.
-	NegotiateNtlm pulumi.StringOutput `pulumi:"negotiateNtlm"`
-	// Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
-	RequireTfa pulumi.StringOutput `pulumi:"requireTfa"`
-	// SAML configuration.
-	SamlServer pulumi.StringOutput `pulumi:"samlServer"`
-	// SAML authentication timeout in seconds.
-	SamlTimeout pulumi.IntOutput `pulumi:"samlTimeout"`
-	// SSH CA name.
-	SshCa pulumi.StringOutput `pulumi:"sshCa"`
-	// Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
-	UserCert pulumi.StringOutput `pulumi:"userCert"`
-	// Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
-	UserDatabases AuthenticationSchemeUserDatabaseArrayOutput `pulumi:"userDatabases"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DomainController    pulumi.StringOutput                         `pulumi:"domainController"`
+	DynamicSortSubtable pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
+	FssoAgentForNtlm    pulumi.StringOutput                         `pulumi:"fssoAgentForNtlm"`
+	FssoGuest           pulumi.StringOutput                         `pulumi:"fssoGuest"`
+	KerberosKeytab      pulumi.StringOutput                         `pulumi:"kerberosKeytab"`
+	Method              pulumi.StringOutput                         `pulumi:"method"`
+	Name                pulumi.StringOutput                         `pulumi:"name"`
+	NegotiateNtlm       pulumi.StringOutput                         `pulumi:"negotiateNtlm"`
+	RequireTfa          pulumi.StringOutput                         `pulumi:"requireTfa"`
+	SamlServer          pulumi.StringOutput                         `pulumi:"samlServer"`
+	SamlTimeout         pulumi.IntOutput                            `pulumi:"samlTimeout"`
+	SshCa               pulumi.StringOutput                         `pulumi:"sshCa"`
+	UserCert            pulumi.StringOutput                         `pulumi:"userCert"`
+	UserDatabases       AuthenticationSchemeUserDatabaseArrayOutput `pulumi:"userDatabases"`
+	Vdomparam           pulumi.StringPtrOutput                      `pulumi:"vdomparam"`
 }
 
 // NewAuthenticationScheme registers a new resource with the given unique name, arguments, and options.
@@ -136,69 +64,39 @@ func GetAuthenticationScheme(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AuthenticationScheme resources.
 type authenticationSchemeState struct {
-	// Domain controller setting.
-	DomainController *string `pulumi:"domainController"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// FSSO agent to use for NTLM authentication.
-	FssoAgentForNtlm *string `pulumi:"fssoAgentForNtlm"`
-	// Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
-	FssoGuest *string `pulumi:"fssoGuest"`
-	// Kerberos keytab setting.
-	KerberosKeytab *string `pulumi:"kerberosKeytab"`
-	// Authentication methods (default = basic).
-	Method *string `pulumi:"method"`
-	// Authentication server name.
-	Name *string `pulumi:"name"`
-	// Enable/disable negotiate authentication for NTLM (default = disable). Valid values: `enable`, `disable`.
-	NegotiateNtlm *string `pulumi:"negotiateNtlm"`
-	// Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
-	RequireTfa *string `pulumi:"requireTfa"`
-	// SAML configuration.
-	SamlServer *string `pulumi:"samlServer"`
-	// SAML authentication timeout in seconds.
-	SamlTimeout *int `pulumi:"samlTimeout"`
-	// SSH CA name.
-	SshCa *string `pulumi:"sshCa"`
-	// Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
-	UserCert *string `pulumi:"userCert"`
-	// Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
-	UserDatabases []AuthenticationSchemeUserDatabase `pulumi:"userDatabases"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DomainController    *string                            `pulumi:"domainController"`
+	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	FssoAgentForNtlm    *string                            `pulumi:"fssoAgentForNtlm"`
+	FssoGuest           *string                            `pulumi:"fssoGuest"`
+	KerberosKeytab      *string                            `pulumi:"kerberosKeytab"`
+	Method              *string                            `pulumi:"method"`
+	Name                *string                            `pulumi:"name"`
+	NegotiateNtlm       *string                            `pulumi:"negotiateNtlm"`
+	RequireTfa          *string                            `pulumi:"requireTfa"`
+	SamlServer          *string                            `pulumi:"samlServer"`
+	SamlTimeout         *int                               `pulumi:"samlTimeout"`
+	SshCa               *string                            `pulumi:"sshCa"`
+	UserCert            *string                            `pulumi:"userCert"`
+	UserDatabases       []AuthenticationSchemeUserDatabase `pulumi:"userDatabases"`
+	Vdomparam           *string                            `pulumi:"vdomparam"`
 }
 
 type AuthenticationSchemeState struct {
-	// Domain controller setting.
-	DomainController pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DomainController    pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// FSSO agent to use for NTLM authentication.
-	FssoAgentForNtlm pulumi.StringPtrInput
-	// Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
-	FssoGuest pulumi.StringPtrInput
-	// Kerberos keytab setting.
-	KerberosKeytab pulumi.StringPtrInput
-	// Authentication methods (default = basic).
-	Method pulumi.StringPtrInput
-	// Authentication server name.
-	Name pulumi.StringPtrInput
-	// Enable/disable negotiate authentication for NTLM (default = disable). Valid values: `enable`, `disable`.
-	NegotiateNtlm pulumi.StringPtrInput
-	// Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
-	RequireTfa pulumi.StringPtrInput
-	// SAML configuration.
-	SamlServer pulumi.StringPtrInput
-	// SAML authentication timeout in seconds.
-	SamlTimeout pulumi.IntPtrInput
-	// SSH CA name.
-	SshCa pulumi.StringPtrInput
-	// Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
-	UserCert pulumi.StringPtrInput
-	// Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
-	UserDatabases AuthenticationSchemeUserDatabaseArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FssoAgentForNtlm    pulumi.StringPtrInput
+	FssoGuest           pulumi.StringPtrInput
+	KerberosKeytab      pulumi.StringPtrInput
+	Method              pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	NegotiateNtlm       pulumi.StringPtrInput
+	RequireTfa          pulumi.StringPtrInput
+	SamlServer          pulumi.StringPtrInput
+	SamlTimeout         pulumi.IntPtrInput
+	SshCa               pulumi.StringPtrInput
+	UserCert            pulumi.StringPtrInput
+	UserDatabases       AuthenticationSchemeUserDatabaseArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (AuthenticationSchemeState) ElementType() reflect.Type {
@@ -206,70 +104,40 @@ func (AuthenticationSchemeState) ElementType() reflect.Type {
 }
 
 type authenticationSchemeArgs struct {
-	// Domain controller setting.
-	DomainController *string `pulumi:"domainController"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// FSSO agent to use for NTLM authentication.
-	FssoAgentForNtlm *string `pulumi:"fssoAgentForNtlm"`
-	// Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
-	FssoGuest *string `pulumi:"fssoGuest"`
-	// Kerberos keytab setting.
-	KerberosKeytab *string `pulumi:"kerberosKeytab"`
-	// Authentication methods (default = basic).
-	Method string `pulumi:"method"`
-	// Authentication server name.
-	Name *string `pulumi:"name"`
-	// Enable/disable negotiate authentication for NTLM (default = disable). Valid values: `enable`, `disable`.
-	NegotiateNtlm *string `pulumi:"negotiateNtlm"`
-	// Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
-	RequireTfa *string `pulumi:"requireTfa"`
-	// SAML configuration.
-	SamlServer *string `pulumi:"samlServer"`
-	// SAML authentication timeout in seconds.
-	SamlTimeout *int `pulumi:"samlTimeout"`
-	// SSH CA name.
-	SshCa *string `pulumi:"sshCa"`
-	// Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
-	UserCert *string `pulumi:"userCert"`
-	// Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
-	UserDatabases []AuthenticationSchemeUserDatabase `pulumi:"userDatabases"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DomainController    *string                            `pulumi:"domainController"`
+	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	FssoAgentForNtlm    *string                            `pulumi:"fssoAgentForNtlm"`
+	FssoGuest           *string                            `pulumi:"fssoGuest"`
+	KerberosKeytab      *string                            `pulumi:"kerberosKeytab"`
+	Method              string                             `pulumi:"method"`
+	Name                *string                            `pulumi:"name"`
+	NegotiateNtlm       *string                            `pulumi:"negotiateNtlm"`
+	RequireTfa          *string                            `pulumi:"requireTfa"`
+	SamlServer          *string                            `pulumi:"samlServer"`
+	SamlTimeout         *int                               `pulumi:"samlTimeout"`
+	SshCa               *string                            `pulumi:"sshCa"`
+	UserCert            *string                            `pulumi:"userCert"`
+	UserDatabases       []AuthenticationSchemeUserDatabase `pulumi:"userDatabases"`
+	Vdomparam           *string                            `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a AuthenticationScheme resource.
 type AuthenticationSchemeArgs struct {
-	// Domain controller setting.
-	DomainController pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DomainController    pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// FSSO agent to use for NTLM authentication.
-	FssoAgentForNtlm pulumi.StringPtrInput
-	// Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
-	FssoGuest pulumi.StringPtrInput
-	// Kerberos keytab setting.
-	KerberosKeytab pulumi.StringPtrInput
-	// Authentication methods (default = basic).
-	Method pulumi.StringInput
-	// Authentication server name.
-	Name pulumi.StringPtrInput
-	// Enable/disable negotiate authentication for NTLM (default = disable). Valid values: `enable`, `disable`.
-	NegotiateNtlm pulumi.StringPtrInput
-	// Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
-	RequireTfa pulumi.StringPtrInput
-	// SAML configuration.
-	SamlServer pulumi.StringPtrInput
-	// SAML authentication timeout in seconds.
-	SamlTimeout pulumi.IntPtrInput
-	// SSH CA name.
-	SshCa pulumi.StringPtrInput
-	// Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
-	UserCert pulumi.StringPtrInput
-	// Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
-	UserDatabases AuthenticationSchemeUserDatabaseArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FssoAgentForNtlm    pulumi.StringPtrInput
+	FssoGuest           pulumi.StringPtrInput
+	KerberosKeytab      pulumi.StringPtrInput
+	Method              pulumi.StringInput
+	Name                pulumi.StringPtrInput
+	NegotiateNtlm       pulumi.StringPtrInput
+	RequireTfa          pulumi.StringPtrInput
+	SamlServer          pulumi.StringPtrInput
+	SamlTimeout         pulumi.IntPtrInput
+	SshCa               pulumi.StringPtrInput
+	UserCert            pulumi.StringPtrInput
+	UserDatabases       AuthenticationSchemeUserDatabaseArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (AuthenticationSchemeArgs) ElementType() reflect.Type {
@@ -298,7 +166,7 @@ func (i *AuthenticationScheme) ToAuthenticationSchemeOutputWithContext(ctx conte
 // AuthenticationSchemeArrayInput is an input type that accepts AuthenticationSchemeArray and AuthenticationSchemeArrayOutput values.
 // You can construct a concrete instance of `AuthenticationSchemeArrayInput` via:
 //
-//          AuthenticationSchemeArray{ AuthenticationSchemeArgs{...} }
+//	AuthenticationSchemeArray{ AuthenticationSchemeArgs{...} }
 type AuthenticationSchemeArrayInput interface {
 	pulumi.Input
 
@@ -323,7 +191,7 @@ func (i AuthenticationSchemeArray) ToAuthenticationSchemeArrayOutputWithContext(
 // AuthenticationSchemeMapInput is an input type that accepts AuthenticationSchemeMap and AuthenticationSchemeMapOutput values.
 // You can construct a concrete instance of `AuthenticationSchemeMapInput` via:
 //
-//          AuthenticationSchemeMap{ "key": AuthenticationSchemeArgs{...} }
+//	AuthenticationSchemeMap{ "key": AuthenticationSchemeArgs{...} }
 type AuthenticationSchemeMapInput interface {
 	pulumi.Input
 
@@ -357,6 +225,66 @@ func (o AuthenticationSchemeOutput) ToAuthenticationSchemeOutput() Authenticatio
 
 func (o AuthenticationSchemeOutput) ToAuthenticationSchemeOutputWithContext(ctx context.Context) AuthenticationSchemeOutput {
 	return o
+}
+
+func (o AuthenticationSchemeOutput) DomainController() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) pulumi.StringOutput { return v.DomainController }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSchemeOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthenticationSchemeOutput) FssoAgentForNtlm() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) pulumi.StringOutput { return v.FssoAgentForNtlm }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSchemeOutput) FssoGuest() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) pulumi.StringOutput { return v.FssoGuest }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSchemeOutput) KerberosKeytab() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) pulumi.StringOutput { return v.KerberosKeytab }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSchemeOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) pulumi.StringOutput { return v.Method }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSchemeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSchemeOutput) NegotiateNtlm() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) pulumi.StringOutput { return v.NegotiateNtlm }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSchemeOutput) RequireTfa() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) pulumi.StringOutput { return v.RequireTfa }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSchemeOutput) SamlServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) pulumi.StringOutput { return v.SamlServer }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSchemeOutput) SamlTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) pulumi.IntOutput { return v.SamlTimeout }).(pulumi.IntOutput)
+}
+
+func (o AuthenticationSchemeOutput) SshCa() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) pulumi.StringOutput { return v.SshCa }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSchemeOutput) UserCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) pulumi.StringOutput { return v.UserCert }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSchemeOutput) UserDatabases() AuthenticationSchemeUserDatabaseArrayOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) AuthenticationSchemeUserDatabaseArrayOutput { return v.UserDatabases }).(AuthenticationSchemeUserDatabaseArrayOutput)
+}
+
+func (o AuthenticationSchemeOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type AuthenticationSchemeArrayOutput struct{ *pulumi.OutputState }

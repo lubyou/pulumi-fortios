@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios router multicast6
 func LookupRouterMulticast6(ctx *pulumi.Context, args *LookupRouterMulticast6Args, opts ...pulumi.InvokeOption) (*LookupRouterMulticast6Result, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterMulticast6Result
@@ -23,23 +22,18 @@ func LookupRouterMulticast6(ctx *pulumi.Context, args *LookupRouterMulticast6Arg
 
 // A collection of arguments for invoking GetRouterMulticast6.
 type LookupRouterMulticast6Args struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetRouterMulticast6.
 type LookupRouterMulticast6Result struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Protocol Independent Multicast (PIM) interfaces. The structure of `interface` block is documented below.
-	Interfaces []GetRouterMulticast6Interface `pulumi:"interfaces"`
-	// Enable/disable PMTU for IPv6 multicast.
-	MulticastPmtu string `pulumi:"multicastPmtu"`
-	// Enable/disable IPv6 multicast routing.
-	MulticastRouting string `pulumi:"multicastRouting"`
-	// PIM sparse-mode global settings. The structure of `pimSmGlobal` block is documented below.
-	PimSmGlobal GetRouterMulticast6PimSmGlobal `pulumi:"pimSmGlobal"`
-	Vdomparam   *string                        `pulumi:"vdomparam"`
+	Id               string                           `pulumi:"id"`
+	Interfaces       []GetRouterMulticast6Interface   `pulumi:"interfaces"`
+	MulticastPmtu    string                           `pulumi:"multicastPmtu"`
+	MulticastRouting string                           `pulumi:"multicastRouting"`
+	PimSmGlobals     []GetRouterMulticast6PimSmGlobal `pulumi:"pimSmGlobals"`
+	Vdomparam        *string                          `pulumi:"vdomparam"`
 }
 
 func LookupRouterMulticast6Output(ctx *pulumi.Context, args LookupRouterMulticast6OutputArgs, opts ...pulumi.InvokeOption) LookupRouterMulticast6ResultOutput {
@@ -57,7 +51,6 @@ func LookupRouterMulticast6Output(ctx *pulumi.Context, args LookupRouterMulticas
 
 // A collection of arguments for invoking GetRouterMulticast6.
 type LookupRouterMulticast6OutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -85,24 +78,20 @@ func (o LookupRouterMulticast6ResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterMulticast6Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Protocol Independent Multicast (PIM) interfaces. The structure of `interface` block is documented below.
 func (o LookupRouterMulticast6ResultOutput) Interfaces() GetRouterMulticast6InterfaceArrayOutput {
 	return o.ApplyT(func(v LookupRouterMulticast6Result) []GetRouterMulticast6Interface { return v.Interfaces }).(GetRouterMulticast6InterfaceArrayOutput)
 }
 
-// Enable/disable PMTU for IPv6 multicast.
 func (o LookupRouterMulticast6ResultOutput) MulticastPmtu() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterMulticast6Result) string { return v.MulticastPmtu }).(pulumi.StringOutput)
 }
 
-// Enable/disable IPv6 multicast routing.
 func (o LookupRouterMulticast6ResultOutput) MulticastRouting() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterMulticast6Result) string { return v.MulticastRouting }).(pulumi.StringOutput)
 }
 
-// PIM sparse-mode global settings. The structure of `pimSmGlobal` block is documented below.
-func (o LookupRouterMulticast6ResultOutput) PimSmGlobal() GetRouterMulticast6PimSmGlobalOutput {
-	return o.ApplyT(func(v LookupRouterMulticast6Result) GetRouterMulticast6PimSmGlobal { return v.PimSmGlobal }).(GetRouterMulticast6PimSmGlobalOutput)
+func (o LookupRouterMulticast6ResultOutput) PimSmGlobals() GetRouterMulticast6PimSmGlobalArrayOutput {
+	return o.ApplyT(func(v LookupRouterMulticast6Result) []GetRouterMulticast6PimSmGlobal { return v.PimSmGlobals }).(GetRouterMulticast6PimSmGlobalArrayOutput)
 }
 
 func (o LookupRouterMulticast6ResultOutput) Vdomparam() pulumi.StringPtrOutput {

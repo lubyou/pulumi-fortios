@@ -7,77 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure AntiSpam MIME header. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSpamfilterMheader(ctx, "trname", &fortios.SpamfilterMheaderArgs{
-// 			Comment: pulumi.String("test"),
-// 			Entries: SpamfilterMheaderEntryArray{
-// 				&SpamfilterMheaderEntryArgs{
-// 					Action:      pulumi.String("spam"),
-// 					Fieldbody:   pulumi.String("scstest"),
-// 					Fieldname:   pulumi.String("EIWEtest"),
-// 					Id:          pulumi.Int(1),
-// 					PatternType: pulumi.String("wildcard"),
-// 					Status:      pulumi.String("enable"),
-// 				},
-// 			},
-// 			Fosid: pulumi.Int(1),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Spamfilter Mheader can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/spamfilterMheader:SpamfilterMheader labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/spamfilterMheader:SpamfilterMheader labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SpamfilterMheader struct {
 	pulumi.CustomResourceState
 
-	// Optional comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Spam filter mime header content. The structure of `entries` block is documented below.
-	Entries SpamfilterMheaderEntryArrayOutput `pulumi:"entries"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Name of table.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput            `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput            `pulumi:"dynamicSortSubtable"`
+	Entries             SpamfilterMheaderEntryArrayOutput `pulumi:"entries"`
+	Fosid               pulumi.IntOutput                  `pulumi:"fosid"`
+	Name                pulumi.StringOutput               `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput            `pulumi:"vdomparam"`
 }
 
 // NewSpamfilterMheader registers a new resource with the given unique name, arguments, and options.
@@ -113,33 +55,21 @@ func GetSpamfilterMheader(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SpamfilterMheader resources.
 type spamfilterMheaderState struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Spam filter mime header content. The structure of `entries` block is documented below.
-	Entries []SpamfilterMheaderEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                  `pulumi:"comment"`
+	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
+	Entries             []SpamfilterMheaderEntry `pulumi:"entries"`
+	Fosid               *int                     `pulumi:"fosid"`
+	Name                *string                  `pulumi:"name"`
+	Vdomparam           *string                  `pulumi:"vdomparam"`
 }
 
 type SpamfilterMheaderState struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Spam filter mime header content. The structure of `entries` block is documented below.
-	Entries SpamfilterMheaderEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             SpamfilterMheaderEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SpamfilterMheaderState) ElementType() reflect.Type {
@@ -147,34 +77,22 @@ func (SpamfilterMheaderState) ElementType() reflect.Type {
 }
 
 type spamfilterMheaderArgs struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Spam filter mime header content. The structure of `entries` block is documented below.
-	Entries []SpamfilterMheaderEntry `pulumi:"entries"`
-	// ID.
-	Fosid int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                  `pulumi:"comment"`
+	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
+	Entries             []SpamfilterMheaderEntry `pulumi:"entries"`
+	Fosid               int                      `pulumi:"fosid"`
+	Name                *string                  `pulumi:"name"`
+	Vdomparam           *string                  `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SpamfilterMheader resource.
 type SpamfilterMheaderArgs struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Spam filter mime header content. The structure of `entries` block is documented below.
-	Entries SpamfilterMheaderEntryArrayInput
-	// ID.
-	Fosid pulumi.IntInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             SpamfilterMheaderEntryArrayInput
+	Fosid               pulumi.IntInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SpamfilterMheaderArgs) ElementType() reflect.Type {
@@ -203,7 +121,7 @@ func (i *SpamfilterMheader) ToSpamfilterMheaderOutputWithContext(ctx context.Con
 // SpamfilterMheaderArrayInput is an input type that accepts SpamfilterMheaderArray and SpamfilterMheaderArrayOutput values.
 // You can construct a concrete instance of `SpamfilterMheaderArrayInput` via:
 //
-//          SpamfilterMheaderArray{ SpamfilterMheaderArgs{...} }
+//	SpamfilterMheaderArray{ SpamfilterMheaderArgs{...} }
 type SpamfilterMheaderArrayInput interface {
 	pulumi.Input
 
@@ -228,7 +146,7 @@ func (i SpamfilterMheaderArray) ToSpamfilterMheaderArrayOutputWithContext(ctx co
 // SpamfilterMheaderMapInput is an input type that accepts SpamfilterMheaderMap and SpamfilterMheaderMapOutput values.
 // You can construct a concrete instance of `SpamfilterMheaderMapInput` via:
 //
-//          SpamfilterMheaderMap{ "key": SpamfilterMheaderArgs{...} }
+//	SpamfilterMheaderMap{ "key": SpamfilterMheaderArgs{...} }
 type SpamfilterMheaderMapInput interface {
 	pulumi.Input
 
@@ -262,6 +180,30 @@ func (o SpamfilterMheaderOutput) ToSpamfilterMheaderOutput() SpamfilterMheaderOu
 
 func (o SpamfilterMheaderOutput) ToSpamfilterMheaderOutputWithContext(ctx context.Context) SpamfilterMheaderOutput {
 	return o
+}
+
+func (o SpamfilterMheaderOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpamfilterMheader) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o SpamfilterMheaderOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpamfilterMheader) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SpamfilterMheaderOutput) Entries() SpamfilterMheaderEntryArrayOutput {
+	return o.ApplyT(func(v *SpamfilterMheader) SpamfilterMheaderEntryArrayOutput { return v.Entries }).(SpamfilterMheaderEntryArrayOutput)
+}
+
+func (o SpamfilterMheaderOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SpamfilterMheader) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SpamfilterMheaderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SpamfilterMheader) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SpamfilterMheaderOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpamfilterMheader) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SpamfilterMheaderArrayOutput struct{ *pulumi.OutputState }

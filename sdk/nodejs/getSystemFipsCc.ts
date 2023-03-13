@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios system fipscc
- */
 export function getSystemFipsCc(args?: GetSystemFipsCcArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemFipsCcResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemFipsCc:GetSystemFipsCc", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getSystemFipsCc(args?: GetSystemFipsCcArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking GetSystemFipsCc.
  */
 export interface GetSystemFipsCcArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -33,39 +24,23 @@ export interface GetSystemFipsCcArgs {
  * A collection of values returned by GetSystemFipsCc.
  */
 export interface GetSystemFipsCcResult {
-    /**
-     * Enable/disable/dynamic entropy token.
-     */
     readonly entropyToken: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Enable/disable self tests after key generation.
-     */
     readonly keyGenerationSelfTest: string;
-    /**
-     * Self test period.
-     */
     readonly selfTestPeriod: number;
-    /**
-     * Enable/disable FIPS-CC mode.
-     */
     readonly status: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemFipsCcOutput(args?: GetSystemFipsCcOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemFipsCcResult> {
-    return pulumi.output(args).apply(a => getSystemFipsCc(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemFipsCc(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemFipsCc.
  */
 export interface GetSystemFipsCcOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

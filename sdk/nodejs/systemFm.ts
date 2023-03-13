@@ -4,41 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FM. Applies to FortiOS Version `<= 7.0.1`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemFm("trname", {
- *     autoBackup: "disable",
- *     ip: "0.0.0.0",
- *     ipsec: "disable",
- *     scheduledConfigRestore: "disable",
- *     status: "disable",
- *     vdom: "root",
- * });
- * ```
- *
- * ## Import
- *
- * System Fm can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemFm:SystemFm labelname SystemFm
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemFm:SystemFm labelname SystemFm
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemFm extends pulumi.CustomResource {
     /**
      * Get an existing SystemFm resource's state with the given name, ID, and optional extra
@@ -67,37 +32,13 @@ export class SystemFm extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemFm.__pulumiType;
     }
 
-    /**
-     * Enable/disable automatic backup. Valid values: `enable`, `disable`.
-     */
     public readonly autoBackup!: pulumi.Output<string>;
-    /**
-     * ID.
-     */
     public readonly fosid!: pulumi.Output<string>;
-    /**
-     * IP address.
-     */
     public readonly ip!: pulumi.Output<string>;
-    /**
-     * Enable/disable IPsec. Valid values: `enable`, `disable`.
-     */
     public readonly ipsec!: pulumi.Output<string>;
-    /**
-     * Enable/disable scheduled configuration restore. Valid values: `enable`, `disable`.
-     */
     public readonly scheduledConfigRestore!: pulumi.Output<string>;
-    /**
-     * Enable/disable FM. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * VDOM.
-     */
     public readonly vdom!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -141,37 +82,13 @@ export class SystemFm extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemFm resources.
  */
 export interface SystemFmState {
-    /**
-     * Enable/disable automatic backup. Valid values: `enable`, `disable`.
-     */
     autoBackup?: pulumi.Input<string>;
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<string>;
-    /**
-     * IP address.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPsec. Valid values: `enable`, `disable`.
-     */
     ipsec?: pulumi.Input<string>;
-    /**
-     * Enable/disable scheduled configuration restore. Valid values: `enable`, `disable`.
-     */
     scheduledConfigRestore?: pulumi.Input<string>;
-    /**
-     * Enable/disable FM. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * VDOM.
-     */
     vdom?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -179,36 +96,12 @@ export interface SystemFmState {
  * The set of arguments for constructing a SystemFm resource.
  */
 export interface SystemFmArgs {
-    /**
-     * Enable/disable automatic backup. Valid values: `enable`, `disable`.
-     */
     autoBackup?: pulumi.Input<string>;
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<string>;
-    /**
-     * IP address.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPsec. Valid values: `enable`, `disable`.
-     */
     ipsec?: pulumi.Input<string>;
-    /**
-     * Enable/disable scheduled configuration restore. Valid values: `enable`, `disable`.
-     */
     scheduledConfigRestore?: pulumi.Input<string>;
-    /**
-     * Enable/disable FM. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * VDOM.
-     */
     vdom?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

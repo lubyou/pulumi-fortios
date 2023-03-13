@@ -4,40 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure Wireless Internet service provider (WISP) servers.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WebProxyWisp("trname", {
- *     maxConnections: 64,
- *     outgoingIp: "0.0.0.0",
- *     serverIp: "1.1.1.1",
- *     serverPort: 15868,
- *     timeout: 5,
- * });
- * ```
- *
- * ## Import
- *
- * WebProxy Wisp can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/webProxyWisp:WebProxyWisp labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/webProxyWisp:WebProxyWisp labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WebProxyWisp extends pulumi.CustomResource {
     /**
      * Get an existing WebProxyWisp resource's state with the given name, ID, and optional extra
@@ -66,37 +32,13 @@ export class WebProxyWisp extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebProxyWisp.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Maximum number of web proxy WISP connections (4 - 4096, default = 64).
-     */
     public readonly maxConnections!: pulumi.Output<number>;
-    /**
-     * Server name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * WISP outgoing IP address.
-     */
     public readonly outgoingIp!: pulumi.Output<string>;
-    /**
-     * WISP server IP address.
-     */
     public readonly serverIp!: pulumi.Output<string>;
-    /**
-     * WISP server port (1 - 65535, default = 15868).
-     */
     public readonly serverPort!: pulumi.Output<number>;
-    /**
-     * Period of time before WISP requests time out (1 - 15 sec, default = 5).
-     */
     public readonly timeout!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -146,37 +88,13 @@ export class WebProxyWisp extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WebProxyWisp resources.
  */
 export interface WebProxyWispState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Maximum number of web proxy WISP connections (4 - 4096, default = 64).
-     */
     maxConnections?: pulumi.Input<number>;
-    /**
-     * Server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * WISP outgoing IP address.
-     */
     outgoingIp?: pulumi.Input<string>;
-    /**
-     * WISP server IP address.
-     */
     serverIp?: pulumi.Input<string>;
-    /**
-     * WISP server port (1 - 65535, default = 15868).
-     */
     serverPort?: pulumi.Input<number>;
-    /**
-     * Period of time before WISP requests time out (1 - 15 sec, default = 5).
-     */
     timeout?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -184,36 +102,12 @@ export interface WebProxyWispState {
  * The set of arguments for constructing a WebProxyWisp resource.
  */
 export interface WebProxyWispArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Maximum number of web proxy WISP connections (4 - 4096, default = 64).
-     */
     maxConnections?: pulumi.Input<number>;
-    /**
-     * Server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * WISP outgoing IP address.
-     */
     outgoingIp?: pulumi.Input<string>;
-    /**
-     * WISP server IP address.
-     */
     serverIp: pulumi.Input<string>;
-    /**
-     * WISP server port (1 - 65535, default = 15868).
-     */
     serverPort: pulumi.Input<number>;
-    /**
-     * Period of time before WISP requests time out (1 - 15 sec, default = 5).
-     */
     timeout?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

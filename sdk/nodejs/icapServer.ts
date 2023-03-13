@@ -4,40 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure ICAP servers.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.IcapServer("trname", {
- *     ip6Address: "::",
- *     ipAddress: "1.1.1.1",
- *     ipVersion: "4",
- *     maxConnections: 100,
- *     port: 22,
- * });
- * ```
- *
- * ## Import
- *
- * Icap Server can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/icapServer:IcapServer labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/icapServer:IcapServer labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class IcapServer extends pulumi.CustomResource {
     /**
      * Get an existing IcapServer resource's state with the given name, ID, and optional extra
@@ -66,41 +32,18 @@ export class IcapServer extends pulumi.CustomResource {
         return obj['__pulumiType'] === IcapServer.__pulumiType;
     }
 
-    /**
-     * IPv6 address of the ICAP server.
-     */
+    public readonly addrType!: pulumi.Output<string>;
+    public readonly fqdn!: pulumi.Output<string>;
+    public readonly healthcheck!: pulumi.Output<string>;
+    public readonly healthcheckService!: pulumi.Output<string>;
     public readonly ip6Address!: pulumi.Output<string>;
-    /**
-     * IPv4 address of the ICAP server.
-     */
     public readonly ipAddress!: pulumi.Output<string>;
-    /**
-     * IP version. Valid values: `4`, `6`.
-     */
     public readonly ipVersion!: pulumi.Output<string>;
-    /**
-     * Maximum number of concurrent connections to ICAP server.
-     */
     public readonly maxConnections!: pulumi.Output<number>;
-    /**
-     * Server name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * ICAP server port.
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Enable/disable secure connection to ICAP server. Valid values: `enable`, `disable`.
-     */
     public readonly secure!: pulumi.Output<string>;
-    /**
-     * CA certificate name.
-     */
     public readonly sslCert!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -116,6 +59,10 @@ export class IcapServer extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IcapServerState | undefined;
+            resourceInputs["addrType"] = state ? state.addrType : undefined;
+            resourceInputs["fqdn"] = state ? state.fqdn : undefined;
+            resourceInputs["healthcheck"] = state ? state.healthcheck : undefined;
+            resourceInputs["healthcheckService"] = state ? state.healthcheckService : undefined;
             resourceInputs["ip6Address"] = state ? state.ip6Address : undefined;
             resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
             resourceInputs["ipVersion"] = state ? state.ipVersion : undefined;
@@ -127,6 +74,10 @@ export class IcapServer extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as IcapServerArgs | undefined;
+            resourceInputs["addrType"] = args ? args.addrType : undefined;
+            resourceInputs["fqdn"] = args ? args.fqdn : undefined;
+            resourceInputs["healthcheck"] = args ? args.healthcheck : undefined;
+            resourceInputs["healthcheckService"] = args ? args.healthcheckService : undefined;
             resourceInputs["ip6Address"] = args ? args.ip6Address : undefined;
             resourceInputs["ipAddress"] = args ? args.ipAddress : undefined;
             resourceInputs["ipVersion"] = args ? args.ipVersion : undefined;
@@ -146,41 +97,18 @@ export class IcapServer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IcapServer resources.
  */
 export interface IcapServerState {
-    /**
-     * IPv6 address of the ICAP server.
-     */
+    addrType?: pulumi.Input<string>;
+    fqdn?: pulumi.Input<string>;
+    healthcheck?: pulumi.Input<string>;
+    healthcheckService?: pulumi.Input<string>;
     ip6Address?: pulumi.Input<string>;
-    /**
-     * IPv4 address of the ICAP server.
-     */
     ipAddress?: pulumi.Input<string>;
-    /**
-     * IP version. Valid values: `4`, `6`.
-     */
     ipVersion?: pulumi.Input<string>;
-    /**
-     * Maximum number of concurrent connections to ICAP server.
-     */
     maxConnections?: pulumi.Input<number>;
-    /**
-     * Server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * ICAP server port.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Enable/disable secure connection to ICAP server. Valid values: `enable`, `disable`.
-     */
     secure?: pulumi.Input<string>;
-    /**
-     * CA certificate name.
-     */
     sslCert?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -188,40 +116,17 @@ export interface IcapServerState {
  * The set of arguments for constructing a IcapServer resource.
  */
 export interface IcapServerArgs {
-    /**
-     * IPv6 address of the ICAP server.
-     */
+    addrType?: pulumi.Input<string>;
+    fqdn?: pulumi.Input<string>;
+    healthcheck?: pulumi.Input<string>;
+    healthcheckService?: pulumi.Input<string>;
     ip6Address?: pulumi.Input<string>;
-    /**
-     * IPv4 address of the ICAP server.
-     */
     ipAddress?: pulumi.Input<string>;
-    /**
-     * IP version. Valid values: `4`, `6`.
-     */
     ipVersion?: pulumi.Input<string>;
-    /**
-     * Maximum number of concurrent connections to ICAP server.
-     */
     maxConnections?: pulumi.Input<number>;
-    /**
-     * Server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * ICAP server port.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Enable/disable secure connection to ICAP server. Valid values: `enable`, `disable`.
-     */
     secure?: pulumi.Input<string>;
-    /**
-     * CA certificate name.
-     */
     sslCert?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

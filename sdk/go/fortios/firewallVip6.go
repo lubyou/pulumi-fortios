@@ -7,255 +7,90 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure virtual IP for IPv6.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallVip6(ctx, "trname", &fortios.FirewallVip6Args{
-// 			ArpReply:                     pulumi.String("enable"),
-// 			Color:                        pulumi.Int(0),
-// 			Extip:                        pulumi.String("2001:1:1:12::100"),
-// 			Extport:                      pulumi.String("0-65535"),
-// 			Fosid:                        pulumi.Int(0),
-// 			HttpCookieAge:                pulumi.Int(60),
-// 			HttpCookieDomainFromHost:     pulumi.String("disable"),
-// 			HttpCookieGeneration:         pulumi.Int(0),
-// 			HttpCookieShare:              pulumi.String("same-ip"),
-// 			HttpIpHeader:                 pulumi.String("disable"),
-// 			HttpMultiplex:                pulumi.String("disable"),
-// 			HttpsCookieSecure:            pulumi.String("disable"),
-// 			LdbMethod:                    pulumi.String("static"),
-// 			Mappedip:                     pulumi.String("2001:1:1:12::200"),
-// 			Mappedport:                   pulumi.String("0-65535"),
-// 			MaxEmbryonicConnections:      pulumi.Int(1000),
-// 			OutlookWebAccess:             pulumi.String("disable"),
-// 			Persistence:                  pulumi.String("none"),
-// 			Portforward:                  pulumi.String("disable"),
-// 			Protocol:                     pulumi.String("tcp"),
-// 			SslAlgorithm:                 pulumi.String("high"),
-// 			SslClientFallback:            pulumi.String("enable"),
-// 			SslClientRenegotiation:       pulumi.String("secure"),
-// 			SslClientSessionStateMax:     pulumi.Int(1000),
-// 			SslClientSessionStateTimeout: pulumi.Int(30),
-// 			SslClientSessionStateType:    pulumi.String("both"),
-// 			SslDhBits:                    pulumi.String("2048"),
-// 			SslHpkp:                      pulumi.String("disable"),
-// 			SslHpkpAge:                   pulumi.Int(5184000),
-// 			SslHpkpIncludeSubdomains:     pulumi.String("disable"),
-// 			SslHsts:                      pulumi.String("disable"),
-// 			SslHstsAge:                   pulumi.Int(5184000),
-// 			SslHstsIncludeSubdomains:     pulumi.String("disable"),
-// 			SslHttpLocationConversion:    pulumi.String("disable"),
-// 			SslHttpMatchHost:             pulumi.String("enable"),
-// 			SslMaxVersion:                pulumi.String("tls-1.2"),
-// 			SslMinVersion:                pulumi.String("tls-1.1"),
-// 			SslMode:                      pulumi.String("half"),
-// 			SslPfs:                       pulumi.String("require"),
-// 			SslSendEmptyFrags:            pulumi.String("enable"),
-// 			SslServerAlgorithm:           pulumi.String("client"),
-// 			SslServerMaxVersion:          pulumi.String("client"),
-// 			SslServerMinVersion:          pulumi.String("client"),
-// 			SslServerSessionStateMax:     pulumi.Int(100),
-// 			SslServerSessionStateTimeout: pulumi.Int(60),
-// 			SslServerSessionStateType:    pulumi.String("both"),
-// 			Type:                         pulumi.String("static-nat"),
-// 			WeblogicServer:               pulumi.String("disable"),
-// 			WebsphereServer:              pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall Vip6 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallVip6:FirewallVip6 labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallVip6:FirewallVip6 labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallVip6 struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-	AddNat64Route pulumi.StringOutput `pulumi:"addNat64Route"`
-	// Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
-	ArpReply pulumi.StringOutput `pulumi:"arpReply"`
-	// Color of icon on the GUI.
-	Color pulumi.IntOutput `pulumi:"color"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
-	EmbeddedIpv4Address pulumi.StringOutput `pulumi:"embeddedIpv4Address"`
-	// IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-	Extip pulumi.StringOutput `pulumi:"extip"`
-	// Incoming port number range that you want to map to a port number range on the destination network.
-	Extport pulumi.StringOutput `pulumi:"extport"`
-	// Custom defined ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
-	HttpCookieAge pulumi.IntOutput `pulumi:"httpCookieAge"`
-	// Domain that HTTP cookie persistence should apply to.
-	HttpCookieDomain pulumi.StringOutput `pulumi:"httpCookieDomain"`
-	// Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-	HttpCookieDomainFromHost pulumi.StringOutput `pulumi:"httpCookieDomainFromHost"`
-	// Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-	HttpCookieGeneration pulumi.IntOutput `pulumi:"httpCookieGeneration"`
-	// Limit HTTP cookie persistence to the specified path.
-	HttpCookiePath pulumi.StringOutput `pulumi:"httpCookiePath"`
-	// Control sharing of cookies across virtual servers. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-	HttpCookieShare pulumi.StringOutput `pulumi:"httpCookieShare"`
-	// For HTTP multiplexing, enable to add the original client IP address in the XForwarded-For HTTP header. Valid values: `enable`, `disable`.
-	HttpIpHeader pulumi.StringOutput `pulumi:"httpIpHeader"`
-	// For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
-	HttpIpHeaderName pulumi.StringOutput `pulumi:"httpIpHeaderName"`
-	// Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
-	HttpMultiplex pulumi.StringOutput `pulumi:"httpMultiplex"`
-	// Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
-	HttpRedirect pulumi.StringOutput `pulumi:"httpRedirect"`
-	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-	HttpsCookieSecure pulumi.StringOutput `pulumi:"httpsCookieSecure"`
-	// Start-mapped-IPv4-address [-end mapped-IPv4-address].
-	Ipv4Mappedip pulumi.StringOutput `pulumi:"ipv4Mappedip"`
-	// IPv4 port number range on the destination network to which the external port number range is mapped.
-	Ipv4Mappedport pulumi.StringOutput `pulumi:"ipv4Mappedport"`
-	// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
-	LdbMethod pulumi.StringOutput `pulumi:"ldbMethod"`
-	// Mapped IP address range in the format startIP-endIP.
-	Mappedip pulumi.StringOutput `pulumi:"mappedip"`
-	// Port number range on the destination network to which the external port number range is mapped.
-	Mappedport pulumi.StringOutput `pulumi:"mappedport"`
-	// Maximum number of incomplete connections.
-	MaxEmbryonicConnections pulumi.IntOutput `pulumi:"maxEmbryonicConnections"`
-	// Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
-	Monitors FirewallVip6MonitorArrayOutput `pulumi:"monitors"`
-	// Health monitor name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable DNAT64. Valid values: `disable`, `enable`.
-	Nat64 pulumi.StringOutput `pulumi:"nat64"`
-	// Enable/disable DNAT66. Valid values: `disable`, `enable`.
-	Nat66 pulumi.StringOutput `pulumi:"nat66"`
-	// Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
-	NatSourceVip pulumi.StringOutput `pulumi:"natSourceVip"`
-	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
-	OutlookWebAccess pulumi.StringOutput `pulumi:"outlookWebAccess"`
-	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
-	Persistence pulumi.StringOutput `pulumi:"persistence"`
-	// Enable port forwarding. Valid values: `disable`, `enable`.
-	Portforward pulumi.StringOutput `pulumi:"portforward"`
-	// Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
-	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
-	Realservers FirewallVip6RealserverArrayOutput `pulumi:"realservers"`
-	// Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
-	ServerType pulumi.StringOutput `pulumi:"serverType"`
-	// Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
-	SrcFilters FirewallVip6SrcFilterArrayOutput `pulumi:"srcFilters"`
-	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
-	SslAcceptFfdheGroups pulumi.StringOutput `pulumi:"sslAcceptFfdheGroups"`
-	// Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
-	SslAlgorithm pulumi.StringOutput `pulumi:"sslAlgorithm"`
-	// The name of the SSL certificate to use for SSL acceleration.
-	SslCertificate pulumi.StringOutput `pulumi:"sslCertificate"`
-	// SSL/TLS cipher suites acceptable from a client, ordered by priority. The structure of `sslCipherSuites` block is documented below.
-	SslCipherSuites FirewallVip6SslCipherSuiteArrayOutput `pulumi:"sslCipherSuites"`
-	// Enable/disable support for preventing Downgrade Attacks on client connections (RFC 7507). Valid values: `disable`, `enable`.
-	SslClientFallback pulumi.StringOutput `pulumi:"sslClientFallback"`
-	// Maximum length of data in MB before triggering a client rekey (0 = disable).
-	SslClientRekeyCount pulumi.IntOutput `pulumi:"sslClientRekeyCount"`
-	// Allow, deny, or require secure renegotiation of client sessions to comply with RFC 5746. Valid values: `allow`, `deny`, `secure`.
-	SslClientRenegotiation pulumi.StringOutput `pulumi:"sslClientRenegotiation"`
-	// Maximum number of client to FortiGate SSL session states to keep.
-	SslClientSessionStateMax pulumi.IntOutput `pulumi:"sslClientSessionStateMax"`
-	// Number of minutes to keep client to FortiGate SSL session state.
-	SslClientSessionStateTimeout pulumi.IntOutput `pulumi:"sslClientSessionStateTimeout"`
-	// How to expire SSL sessions for the segment of the SSL connection between the client and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-	SslClientSessionStateType pulumi.StringOutput `pulumi:"sslClientSessionStateType"`
-	// Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-	SslDhBits pulumi.StringOutput `pulumi:"sslDhBits"`
-	// Enable/disable including HPKP header in response. Valid values: `disable`, `enable`, `report-only`.
-	SslHpkp pulumi.StringOutput `pulumi:"sslHpkp"`
-	// Number of minutes the web browser should keep HPKP.
-	SslHpkpAge pulumi.IntOutput `pulumi:"sslHpkpAge"`
-	// Certificate to generate backup HPKP pin from.
-	SslHpkpBackup pulumi.StringOutput `pulumi:"sslHpkpBackup"`
-	// Indicate that HPKP header applies to all subdomains. Valid values: `disable`, `enable`.
-	SslHpkpIncludeSubdomains pulumi.StringOutput `pulumi:"sslHpkpIncludeSubdomains"`
-	// Certificate to generate primary HPKP pin from.
-	SslHpkpPrimary pulumi.StringOutput `pulumi:"sslHpkpPrimary"`
-	// URL to report HPKP violations to.
-	SslHpkpReportUri pulumi.StringPtrOutput `pulumi:"sslHpkpReportUri"`
-	// Enable/disable including HSTS header in response. Valid values: `disable`, `enable`.
-	SslHsts pulumi.StringOutput `pulumi:"sslHsts"`
-	// Number of seconds the client should honour the HSTS setting.
-	SslHstsAge pulumi.IntOutput `pulumi:"sslHstsAge"`
-	// Indicate that HSTS header applies to all subdomains. Valid values: `disable`, `enable`.
-	SslHstsIncludeSubdomains pulumi.StringOutput `pulumi:"sslHstsIncludeSubdomains"`
-	// Enable to replace HTTP with HTTPS in the reply's Location HTTP header field. Valid values: `enable`, `disable`.
-	SslHttpLocationConversion pulumi.StringOutput `pulumi:"sslHttpLocationConversion"`
-	// Enable/disable HTTP host matching for location conversion. Valid values: `enable`, `disable`.
-	SslHttpMatchHost pulumi.StringOutput `pulumi:"sslHttpMatchHost"`
-	// Highest SSL/TLS version acceptable from a client.
-	SslMaxVersion pulumi.StringOutput `pulumi:"sslMaxVersion"`
-	// Lowest SSL/TLS version acceptable from a client.
-	SslMinVersion pulumi.StringOutput `pulumi:"sslMinVersion"`
-	// Apply SSL offloading between the client and the FortiGate (half) or from the client to the FortiGate and from the FortiGate to the server (full). Valid values: `half`, `full`.
-	SslMode pulumi.StringOutput `pulumi:"sslMode"`
-	// Select the cipher suites that can be used for SSL perfect forward secrecy (PFS). Applies to both client and server sessions. Valid values: `require`, `deny`, `allow`.
-	SslPfs pulumi.StringOutput `pulumi:"sslPfs"`
-	// Enable/disable sending empty fragments to avoid CBC IV attacks (SSL 3.0 & TLS 1.0 only). May need to be disabled for compatibility with older systems. Valid values: `enable`, `disable`.
-	SslSendEmptyFrags pulumi.StringOutput `pulumi:"sslSendEmptyFrags"`
-	// Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`, `client`.
-	SslServerAlgorithm pulumi.StringOutput `pulumi:"sslServerAlgorithm"`
-	// SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslServerCipherSuites` block is documented below.
-	SslServerCipherSuites FirewallVip6SslServerCipherSuiteArrayOutput `pulumi:"sslServerCipherSuites"`
-	// Highest SSL/TLS version acceptable from a server. Use the client setting by default.
-	SslServerMaxVersion pulumi.StringOutput `pulumi:"sslServerMaxVersion"`
-	// Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
-	SslServerMinVersion pulumi.StringOutput `pulumi:"sslServerMinVersion"`
-	// Maximum number of FortiGate to Server SSL session states to keep.
-	SslServerSessionStateMax pulumi.IntOutput `pulumi:"sslServerSessionStateMax"`
-	// Number of minutes to keep FortiGate to Server SSL session state.
-	SslServerSessionStateTimeout pulumi.IntOutput `pulumi:"sslServerSessionStateTimeout"`
-	// How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-	SslServerSessionStateType pulumi.StringOutput `pulumi:"sslServerSessionStateType"`
-	// Configure a static NAT or server load balance VIP.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringOutput `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
-	WeblogicServer pulumi.StringOutput `pulumi:"weblogicServer"`
-	// Enable to add an HTTP header to indicate SSL offloading for a WebSphere server. Valid values: `disable`, `enable`.
-	WebsphereServer pulumi.StringOutput `pulumi:"websphereServer"`
+	AddNat64Route                pulumi.StringOutput                         `pulumi:"addNat64Route"`
+	ArpReply                     pulumi.StringOutput                         `pulumi:"arpReply"`
+	Color                        pulumi.IntOutput                            `pulumi:"color"`
+	Comment                      pulumi.StringPtrOutput                      `pulumi:"comment"`
+	DynamicSortSubtable          pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
+	EmbeddedIpv4Address          pulumi.StringOutput                         `pulumi:"embeddedIpv4Address"`
+	Extip                        pulumi.StringOutput                         `pulumi:"extip"`
+	Extport                      pulumi.StringOutput                         `pulumi:"extport"`
+	Fosid                        pulumi.IntOutput                            `pulumi:"fosid"`
+	HttpCookieAge                pulumi.IntOutput                            `pulumi:"httpCookieAge"`
+	HttpCookieDomain             pulumi.StringOutput                         `pulumi:"httpCookieDomain"`
+	HttpCookieDomainFromHost     pulumi.StringOutput                         `pulumi:"httpCookieDomainFromHost"`
+	HttpCookieGeneration         pulumi.IntOutput                            `pulumi:"httpCookieGeneration"`
+	HttpCookiePath               pulumi.StringOutput                         `pulumi:"httpCookiePath"`
+	HttpCookieShare              pulumi.StringOutput                         `pulumi:"httpCookieShare"`
+	HttpIpHeader                 pulumi.StringOutput                         `pulumi:"httpIpHeader"`
+	HttpIpHeaderName             pulumi.StringOutput                         `pulumi:"httpIpHeaderName"`
+	HttpMultiplex                pulumi.StringOutput                         `pulumi:"httpMultiplex"`
+	HttpRedirect                 pulumi.StringOutput                         `pulumi:"httpRedirect"`
+	HttpsCookieSecure            pulumi.StringOutput                         `pulumi:"httpsCookieSecure"`
+	Ipv4Mappedip                 pulumi.StringOutput                         `pulumi:"ipv4Mappedip"`
+	Ipv4Mappedport               pulumi.StringOutput                         `pulumi:"ipv4Mappedport"`
+	LdbMethod                    pulumi.StringOutput                         `pulumi:"ldbMethod"`
+	Mappedip                     pulumi.StringOutput                         `pulumi:"mappedip"`
+	Mappedport                   pulumi.StringOutput                         `pulumi:"mappedport"`
+	MaxEmbryonicConnections      pulumi.IntOutput                            `pulumi:"maxEmbryonicConnections"`
+	Monitors                     FirewallVip6MonitorArrayOutput              `pulumi:"monitors"`
+	Name                         pulumi.StringOutput                         `pulumi:"name"`
+	Nat64                        pulumi.StringOutput                         `pulumi:"nat64"`
+	Nat66                        pulumi.StringOutput                         `pulumi:"nat66"`
+	NatSourceVip                 pulumi.StringOutput                         `pulumi:"natSourceVip"`
+	OutlookWebAccess             pulumi.StringOutput                         `pulumi:"outlookWebAccess"`
+	Persistence                  pulumi.StringOutput                         `pulumi:"persistence"`
+	Portforward                  pulumi.StringOutput                         `pulumi:"portforward"`
+	Protocol                     pulumi.StringOutput                         `pulumi:"protocol"`
+	Realservers                  FirewallVip6RealserverArrayOutput           `pulumi:"realservers"`
+	ServerType                   pulumi.StringOutput                         `pulumi:"serverType"`
+	SrcFilters                   FirewallVip6SrcFilterArrayOutput            `pulumi:"srcFilters"`
+	SslAcceptFfdheGroups         pulumi.StringOutput                         `pulumi:"sslAcceptFfdheGroups"`
+	SslAlgorithm                 pulumi.StringOutput                         `pulumi:"sslAlgorithm"`
+	SslCertificate               pulumi.StringOutput                         `pulumi:"sslCertificate"`
+	SslCipherSuites              FirewallVip6SslCipherSuiteArrayOutput       `pulumi:"sslCipherSuites"`
+	SslClientFallback            pulumi.StringOutput                         `pulumi:"sslClientFallback"`
+	SslClientRekeyCount          pulumi.IntOutput                            `pulumi:"sslClientRekeyCount"`
+	SslClientRenegotiation       pulumi.StringOutput                         `pulumi:"sslClientRenegotiation"`
+	SslClientSessionStateMax     pulumi.IntOutput                            `pulumi:"sslClientSessionStateMax"`
+	SslClientSessionStateTimeout pulumi.IntOutput                            `pulumi:"sslClientSessionStateTimeout"`
+	SslClientSessionStateType    pulumi.StringOutput                         `pulumi:"sslClientSessionStateType"`
+	SslDhBits                    pulumi.StringOutput                         `pulumi:"sslDhBits"`
+	SslHpkp                      pulumi.StringOutput                         `pulumi:"sslHpkp"`
+	SslHpkpAge                   pulumi.IntOutput                            `pulumi:"sslHpkpAge"`
+	SslHpkpBackup                pulumi.StringOutput                         `pulumi:"sslHpkpBackup"`
+	SslHpkpIncludeSubdomains     pulumi.StringOutput                         `pulumi:"sslHpkpIncludeSubdomains"`
+	SslHpkpPrimary               pulumi.StringOutput                         `pulumi:"sslHpkpPrimary"`
+	SslHpkpReportUri             pulumi.StringPtrOutput                      `pulumi:"sslHpkpReportUri"`
+	SslHsts                      pulumi.StringOutput                         `pulumi:"sslHsts"`
+	SslHstsAge                   pulumi.IntOutput                            `pulumi:"sslHstsAge"`
+	SslHstsIncludeSubdomains     pulumi.StringOutput                         `pulumi:"sslHstsIncludeSubdomains"`
+	SslHttpLocationConversion    pulumi.StringOutput                         `pulumi:"sslHttpLocationConversion"`
+	SslHttpMatchHost             pulumi.StringOutput                         `pulumi:"sslHttpMatchHost"`
+	SslMaxVersion                pulumi.StringOutput                         `pulumi:"sslMaxVersion"`
+	SslMinVersion                pulumi.StringOutput                         `pulumi:"sslMinVersion"`
+	SslMode                      pulumi.StringOutput                         `pulumi:"sslMode"`
+	SslPfs                       pulumi.StringOutput                         `pulumi:"sslPfs"`
+	SslSendEmptyFrags            pulumi.StringOutput                         `pulumi:"sslSendEmptyFrags"`
+	SslServerAlgorithm           pulumi.StringOutput                         `pulumi:"sslServerAlgorithm"`
+	SslServerCipherSuites        FirewallVip6SslServerCipherSuiteArrayOutput `pulumi:"sslServerCipherSuites"`
+	SslServerMaxVersion          pulumi.StringOutput                         `pulumi:"sslServerMaxVersion"`
+	SslServerMinVersion          pulumi.StringOutput                         `pulumi:"sslServerMinVersion"`
+	SslServerSessionStateMax     pulumi.IntOutput                            `pulumi:"sslServerSessionStateMax"`
+	SslServerSessionStateTimeout pulumi.IntOutput                            `pulumi:"sslServerSessionStateTimeout"`
+	SslServerSessionStateType    pulumi.StringOutput                         `pulumi:"sslServerSessionStateType"`
+	Type                         pulumi.StringOutput                         `pulumi:"type"`
+	Uuid                         pulumi.StringOutput                         `pulumi:"uuid"`
+	Vdomparam                    pulumi.StringPtrOutput                      `pulumi:"vdomparam"`
+	WeblogicServer               pulumi.StringOutput                         `pulumi:"weblogicServer"`
+	WebsphereServer              pulumi.StringOutput                         `pulumi:"websphereServer"`
 }
 
 // NewFirewallVip6 registers a new resource with the given unique name, arguments, and options.
@@ -294,317 +129,163 @@ func GetFirewallVip6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallVip6 resources.
 type firewallVip6State struct {
-	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-	AddNat64Route *string `pulumi:"addNat64Route"`
-	// Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
-	ArpReply *string `pulumi:"arpReply"`
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
-	EmbeddedIpv4Address *string `pulumi:"embeddedIpv4Address"`
-	// IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-	Extip *string `pulumi:"extip"`
-	// Incoming port number range that you want to map to a port number range on the destination network.
-	Extport *string `pulumi:"extport"`
-	// Custom defined ID.
-	Fosid *int `pulumi:"fosid"`
-	// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
-	HttpCookieAge *int `pulumi:"httpCookieAge"`
-	// Domain that HTTP cookie persistence should apply to.
-	HttpCookieDomain *string `pulumi:"httpCookieDomain"`
-	// Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-	HttpCookieDomainFromHost *string `pulumi:"httpCookieDomainFromHost"`
-	// Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-	HttpCookieGeneration *int `pulumi:"httpCookieGeneration"`
-	// Limit HTTP cookie persistence to the specified path.
-	HttpCookiePath *string `pulumi:"httpCookiePath"`
-	// Control sharing of cookies across virtual servers. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-	HttpCookieShare *string `pulumi:"httpCookieShare"`
-	// For HTTP multiplexing, enable to add the original client IP address in the XForwarded-For HTTP header. Valid values: `enable`, `disable`.
-	HttpIpHeader *string `pulumi:"httpIpHeader"`
-	// For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
-	HttpIpHeaderName *string `pulumi:"httpIpHeaderName"`
-	// Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
-	HttpMultiplex *string `pulumi:"httpMultiplex"`
-	// Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
-	HttpRedirect *string `pulumi:"httpRedirect"`
-	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-	HttpsCookieSecure *string `pulumi:"httpsCookieSecure"`
-	// Start-mapped-IPv4-address [-end mapped-IPv4-address].
-	Ipv4Mappedip *string `pulumi:"ipv4Mappedip"`
-	// IPv4 port number range on the destination network to which the external port number range is mapped.
-	Ipv4Mappedport *string `pulumi:"ipv4Mappedport"`
-	// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
-	LdbMethod *string `pulumi:"ldbMethod"`
-	// Mapped IP address range in the format startIP-endIP.
-	Mappedip *string `pulumi:"mappedip"`
-	// Port number range on the destination network to which the external port number range is mapped.
-	Mappedport *string `pulumi:"mappedport"`
-	// Maximum number of incomplete connections.
-	MaxEmbryonicConnections *int `pulumi:"maxEmbryonicConnections"`
-	// Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
-	Monitors []FirewallVip6Monitor `pulumi:"monitors"`
-	// Health monitor name.
-	Name *string `pulumi:"name"`
-	// Enable/disable DNAT64. Valid values: `disable`, `enable`.
-	Nat64 *string `pulumi:"nat64"`
-	// Enable/disable DNAT66. Valid values: `disable`, `enable`.
-	Nat66 *string `pulumi:"nat66"`
-	// Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
-	NatSourceVip *string `pulumi:"natSourceVip"`
-	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
-	OutlookWebAccess *string `pulumi:"outlookWebAccess"`
-	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
-	Persistence *string `pulumi:"persistence"`
-	// Enable port forwarding. Valid values: `disable`, `enable`.
-	Portforward *string `pulumi:"portforward"`
-	// Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
-	Protocol *string `pulumi:"protocol"`
-	// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
-	Realservers []FirewallVip6Realserver `pulumi:"realservers"`
-	// Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
-	ServerType *string `pulumi:"serverType"`
-	// Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
-	SrcFilters []FirewallVip6SrcFilter `pulumi:"srcFilters"`
-	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
-	SslAcceptFfdheGroups *string `pulumi:"sslAcceptFfdheGroups"`
-	// Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
-	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// The name of the SSL certificate to use for SSL acceleration.
-	SslCertificate *string `pulumi:"sslCertificate"`
-	// SSL/TLS cipher suites acceptable from a client, ordered by priority. The structure of `sslCipherSuites` block is documented below.
-	SslCipherSuites []FirewallVip6SslCipherSuite `pulumi:"sslCipherSuites"`
-	// Enable/disable support for preventing Downgrade Attacks on client connections (RFC 7507). Valid values: `disable`, `enable`.
-	SslClientFallback *string `pulumi:"sslClientFallback"`
-	// Maximum length of data in MB before triggering a client rekey (0 = disable).
-	SslClientRekeyCount *int `pulumi:"sslClientRekeyCount"`
-	// Allow, deny, or require secure renegotiation of client sessions to comply with RFC 5746. Valid values: `allow`, `deny`, `secure`.
-	SslClientRenegotiation *string `pulumi:"sslClientRenegotiation"`
-	// Maximum number of client to FortiGate SSL session states to keep.
-	SslClientSessionStateMax *int `pulumi:"sslClientSessionStateMax"`
-	// Number of minutes to keep client to FortiGate SSL session state.
-	SslClientSessionStateTimeout *int `pulumi:"sslClientSessionStateTimeout"`
-	// How to expire SSL sessions for the segment of the SSL connection between the client and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-	SslClientSessionStateType *string `pulumi:"sslClientSessionStateType"`
-	// Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-	SslDhBits *string `pulumi:"sslDhBits"`
-	// Enable/disable including HPKP header in response. Valid values: `disable`, `enable`, `report-only`.
-	SslHpkp *string `pulumi:"sslHpkp"`
-	// Number of minutes the web browser should keep HPKP.
-	SslHpkpAge *int `pulumi:"sslHpkpAge"`
-	// Certificate to generate backup HPKP pin from.
-	SslHpkpBackup *string `pulumi:"sslHpkpBackup"`
-	// Indicate that HPKP header applies to all subdomains. Valid values: `disable`, `enable`.
-	SslHpkpIncludeSubdomains *string `pulumi:"sslHpkpIncludeSubdomains"`
-	// Certificate to generate primary HPKP pin from.
-	SslHpkpPrimary *string `pulumi:"sslHpkpPrimary"`
-	// URL to report HPKP violations to.
-	SslHpkpReportUri *string `pulumi:"sslHpkpReportUri"`
-	// Enable/disable including HSTS header in response. Valid values: `disable`, `enable`.
-	SslHsts *string `pulumi:"sslHsts"`
-	// Number of seconds the client should honour the HSTS setting.
-	SslHstsAge *int `pulumi:"sslHstsAge"`
-	// Indicate that HSTS header applies to all subdomains. Valid values: `disable`, `enable`.
-	SslHstsIncludeSubdomains *string `pulumi:"sslHstsIncludeSubdomains"`
-	// Enable to replace HTTP with HTTPS in the reply's Location HTTP header field. Valid values: `enable`, `disable`.
-	SslHttpLocationConversion *string `pulumi:"sslHttpLocationConversion"`
-	// Enable/disable HTTP host matching for location conversion. Valid values: `enable`, `disable`.
-	SslHttpMatchHost *string `pulumi:"sslHttpMatchHost"`
-	// Highest SSL/TLS version acceptable from a client.
-	SslMaxVersion *string `pulumi:"sslMaxVersion"`
-	// Lowest SSL/TLS version acceptable from a client.
-	SslMinVersion *string `pulumi:"sslMinVersion"`
-	// Apply SSL offloading between the client and the FortiGate (half) or from the client to the FortiGate and from the FortiGate to the server (full). Valid values: `half`, `full`.
-	SslMode *string `pulumi:"sslMode"`
-	// Select the cipher suites that can be used for SSL perfect forward secrecy (PFS). Applies to both client and server sessions. Valid values: `require`, `deny`, `allow`.
-	SslPfs *string `pulumi:"sslPfs"`
-	// Enable/disable sending empty fragments to avoid CBC IV attacks (SSL 3.0 & TLS 1.0 only). May need to be disabled for compatibility with older systems. Valid values: `enable`, `disable`.
-	SslSendEmptyFrags *string `pulumi:"sslSendEmptyFrags"`
-	// Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`, `client`.
-	SslServerAlgorithm *string `pulumi:"sslServerAlgorithm"`
-	// SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslServerCipherSuites` block is documented below.
-	SslServerCipherSuites []FirewallVip6SslServerCipherSuite `pulumi:"sslServerCipherSuites"`
-	// Highest SSL/TLS version acceptable from a server. Use the client setting by default.
-	SslServerMaxVersion *string `pulumi:"sslServerMaxVersion"`
-	// Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
-	SslServerMinVersion *string `pulumi:"sslServerMinVersion"`
-	// Maximum number of FortiGate to Server SSL session states to keep.
-	SslServerSessionStateMax *int `pulumi:"sslServerSessionStateMax"`
-	// Number of minutes to keep FortiGate to Server SSL session state.
-	SslServerSessionStateTimeout *int `pulumi:"sslServerSessionStateTimeout"`
-	// How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-	SslServerSessionStateType *string `pulumi:"sslServerSessionStateType"`
-	// Configure a static NAT or server load balance VIP.
-	Type *string `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
-	WeblogicServer *string `pulumi:"weblogicServer"`
-	// Enable to add an HTTP header to indicate SSL offloading for a WebSphere server. Valid values: `disable`, `enable`.
-	WebsphereServer *string `pulumi:"websphereServer"`
+	AddNat64Route                *string                            `pulumi:"addNat64Route"`
+	ArpReply                     *string                            `pulumi:"arpReply"`
+	Color                        *int                               `pulumi:"color"`
+	Comment                      *string                            `pulumi:"comment"`
+	DynamicSortSubtable          *string                            `pulumi:"dynamicSortSubtable"`
+	EmbeddedIpv4Address          *string                            `pulumi:"embeddedIpv4Address"`
+	Extip                        *string                            `pulumi:"extip"`
+	Extport                      *string                            `pulumi:"extport"`
+	Fosid                        *int                               `pulumi:"fosid"`
+	HttpCookieAge                *int                               `pulumi:"httpCookieAge"`
+	HttpCookieDomain             *string                            `pulumi:"httpCookieDomain"`
+	HttpCookieDomainFromHost     *string                            `pulumi:"httpCookieDomainFromHost"`
+	HttpCookieGeneration         *int                               `pulumi:"httpCookieGeneration"`
+	HttpCookiePath               *string                            `pulumi:"httpCookiePath"`
+	HttpCookieShare              *string                            `pulumi:"httpCookieShare"`
+	HttpIpHeader                 *string                            `pulumi:"httpIpHeader"`
+	HttpIpHeaderName             *string                            `pulumi:"httpIpHeaderName"`
+	HttpMultiplex                *string                            `pulumi:"httpMultiplex"`
+	HttpRedirect                 *string                            `pulumi:"httpRedirect"`
+	HttpsCookieSecure            *string                            `pulumi:"httpsCookieSecure"`
+	Ipv4Mappedip                 *string                            `pulumi:"ipv4Mappedip"`
+	Ipv4Mappedport               *string                            `pulumi:"ipv4Mappedport"`
+	LdbMethod                    *string                            `pulumi:"ldbMethod"`
+	Mappedip                     *string                            `pulumi:"mappedip"`
+	Mappedport                   *string                            `pulumi:"mappedport"`
+	MaxEmbryonicConnections      *int                               `pulumi:"maxEmbryonicConnections"`
+	Monitors                     []FirewallVip6Monitor              `pulumi:"monitors"`
+	Name                         *string                            `pulumi:"name"`
+	Nat64                        *string                            `pulumi:"nat64"`
+	Nat66                        *string                            `pulumi:"nat66"`
+	NatSourceVip                 *string                            `pulumi:"natSourceVip"`
+	OutlookWebAccess             *string                            `pulumi:"outlookWebAccess"`
+	Persistence                  *string                            `pulumi:"persistence"`
+	Portforward                  *string                            `pulumi:"portforward"`
+	Protocol                     *string                            `pulumi:"protocol"`
+	Realservers                  []FirewallVip6Realserver           `pulumi:"realservers"`
+	ServerType                   *string                            `pulumi:"serverType"`
+	SrcFilters                   []FirewallVip6SrcFilter            `pulumi:"srcFilters"`
+	SslAcceptFfdheGroups         *string                            `pulumi:"sslAcceptFfdheGroups"`
+	SslAlgorithm                 *string                            `pulumi:"sslAlgorithm"`
+	SslCertificate               *string                            `pulumi:"sslCertificate"`
+	SslCipherSuites              []FirewallVip6SslCipherSuite       `pulumi:"sslCipherSuites"`
+	SslClientFallback            *string                            `pulumi:"sslClientFallback"`
+	SslClientRekeyCount          *int                               `pulumi:"sslClientRekeyCount"`
+	SslClientRenegotiation       *string                            `pulumi:"sslClientRenegotiation"`
+	SslClientSessionStateMax     *int                               `pulumi:"sslClientSessionStateMax"`
+	SslClientSessionStateTimeout *int                               `pulumi:"sslClientSessionStateTimeout"`
+	SslClientSessionStateType    *string                            `pulumi:"sslClientSessionStateType"`
+	SslDhBits                    *string                            `pulumi:"sslDhBits"`
+	SslHpkp                      *string                            `pulumi:"sslHpkp"`
+	SslHpkpAge                   *int                               `pulumi:"sslHpkpAge"`
+	SslHpkpBackup                *string                            `pulumi:"sslHpkpBackup"`
+	SslHpkpIncludeSubdomains     *string                            `pulumi:"sslHpkpIncludeSubdomains"`
+	SslHpkpPrimary               *string                            `pulumi:"sslHpkpPrimary"`
+	SslHpkpReportUri             *string                            `pulumi:"sslHpkpReportUri"`
+	SslHsts                      *string                            `pulumi:"sslHsts"`
+	SslHstsAge                   *int                               `pulumi:"sslHstsAge"`
+	SslHstsIncludeSubdomains     *string                            `pulumi:"sslHstsIncludeSubdomains"`
+	SslHttpLocationConversion    *string                            `pulumi:"sslHttpLocationConversion"`
+	SslHttpMatchHost             *string                            `pulumi:"sslHttpMatchHost"`
+	SslMaxVersion                *string                            `pulumi:"sslMaxVersion"`
+	SslMinVersion                *string                            `pulumi:"sslMinVersion"`
+	SslMode                      *string                            `pulumi:"sslMode"`
+	SslPfs                       *string                            `pulumi:"sslPfs"`
+	SslSendEmptyFrags            *string                            `pulumi:"sslSendEmptyFrags"`
+	SslServerAlgorithm           *string                            `pulumi:"sslServerAlgorithm"`
+	SslServerCipherSuites        []FirewallVip6SslServerCipherSuite `pulumi:"sslServerCipherSuites"`
+	SslServerMaxVersion          *string                            `pulumi:"sslServerMaxVersion"`
+	SslServerMinVersion          *string                            `pulumi:"sslServerMinVersion"`
+	SslServerSessionStateMax     *int                               `pulumi:"sslServerSessionStateMax"`
+	SslServerSessionStateTimeout *int                               `pulumi:"sslServerSessionStateTimeout"`
+	SslServerSessionStateType    *string                            `pulumi:"sslServerSessionStateType"`
+	Type                         *string                            `pulumi:"type"`
+	Uuid                         *string                            `pulumi:"uuid"`
+	Vdomparam                    *string                            `pulumi:"vdomparam"`
+	WeblogicServer               *string                            `pulumi:"weblogicServer"`
+	WebsphereServer              *string                            `pulumi:"websphereServer"`
 }
 
 type FirewallVip6State struct {
-	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-	AddNat64Route pulumi.StringPtrInput
-	// Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
-	ArpReply pulumi.StringPtrInput
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
-	EmbeddedIpv4Address pulumi.StringPtrInput
-	// IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-	Extip pulumi.StringPtrInput
-	// Incoming port number range that you want to map to a port number range on the destination network.
-	Extport pulumi.StringPtrInput
-	// Custom defined ID.
-	Fosid pulumi.IntPtrInput
-	// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
-	HttpCookieAge pulumi.IntPtrInput
-	// Domain that HTTP cookie persistence should apply to.
-	HttpCookieDomain pulumi.StringPtrInput
-	// Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-	HttpCookieDomainFromHost pulumi.StringPtrInput
-	// Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-	HttpCookieGeneration pulumi.IntPtrInput
-	// Limit HTTP cookie persistence to the specified path.
-	HttpCookiePath pulumi.StringPtrInput
-	// Control sharing of cookies across virtual servers. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-	HttpCookieShare pulumi.StringPtrInput
-	// For HTTP multiplexing, enable to add the original client IP address in the XForwarded-For HTTP header. Valid values: `enable`, `disable`.
-	HttpIpHeader pulumi.StringPtrInput
-	// For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
-	HttpIpHeaderName pulumi.StringPtrInput
-	// Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
-	HttpMultiplex pulumi.StringPtrInput
-	// Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
-	HttpRedirect pulumi.StringPtrInput
-	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-	HttpsCookieSecure pulumi.StringPtrInput
-	// Start-mapped-IPv4-address [-end mapped-IPv4-address].
-	Ipv4Mappedip pulumi.StringPtrInput
-	// IPv4 port number range on the destination network to which the external port number range is mapped.
-	Ipv4Mappedport pulumi.StringPtrInput
-	// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
-	LdbMethod pulumi.StringPtrInput
-	// Mapped IP address range in the format startIP-endIP.
-	Mappedip pulumi.StringPtrInput
-	// Port number range on the destination network to which the external port number range is mapped.
-	Mappedport pulumi.StringPtrInput
-	// Maximum number of incomplete connections.
-	MaxEmbryonicConnections pulumi.IntPtrInput
-	// Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
-	Monitors FirewallVip6MonitorArrayInput
-	// Health monitor name.
-	Name pulumi.StringPtrInput
-	// Enable/disable DNAT64. Valid values: `disable`, `enable`.
-	Nat64 pulumi.StringPtrInput
-	// Enable/disable DNAT66. Valid values: `disable`, `enable`.
-	Nat66 pulumi.StringPtrInput
-	// Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
-	NatSourceVip pulumi.StringPtrInput
-	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
-	OutlookWebAccess pulumi.StringPtrInput
-	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
-	Persistence pulumi.StringPtrInput
-	// Enable port forwarding. Valid values: `disable`, `enable`.
-	Portforward pulumi.StringPtrInput
-	// Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
-	Protocol pulumi.StringPtrInput
-	// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
-	Realservers FirewallVip6RealserverArrayInput
-	// Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
-	ServerType pulumi.StringPtrInput
-	// Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
-	SrcFilters FirewallVip6SrcFilterArrayInput
-	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
-	SslAcceptFfdheGroups pulumi.StringPtrInput
-	// Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
-	SslAlgorithm pulumi.StringPtrInput
-	// The name of the SSL certificate to use for SSL acceleration.
-	SslCertificate pulumi.StringPtrInput
-	// SSL/TLS cipher suites acceptable from a client, ordered by priority. The structure of `sslCipherSuites` block is documented below.
-	SslCipherSuites FirewallVip6SslCipherSuiteArrayInput
-	// Enable/disable support for preventing Downgrade Attacks on client connections (RFC 7507). Valid values: `disable`, `enable`.
-	SslClientFallback pulumi.StringPtrInput
-	// Maximum length of data in MB before triggering a client rekey (0 = disable).
-	SslClientRekeyCount pulumi.IntPtrInput
-	// Allow, deny, or require secure renegotiation of client sessions to comply with RFC 5746. Valid values: `allow`, `deny`, `secure`.
-	SslClientRenegotiation pulumi.StringPtrInput
-	// Maximum number of client to FortiGate SSL session states to keep.
-	SslClientSessionStateMax pulumi.IntPtrInput
-	// Number of minutes to keep client to FortiGate SSL session state.
+	AddNat64Route                pulumi.StringPtrInput
+	ArpReply                     pulumi.StringPtrInput
+	Color                        pulumi.IntPtrInput
+	Comment                      pulumi.StringPtrInput
+	DynamicSortSubtable          pulumi.StringPtrInput
+	EmbeddedIpv4Address          pulumi.StringPtrInput
+	Extip                        pulumi.StringPtrInput
+	Extport                      pulumi.StringPtrInput
+	Fosid                        pulumi.IntPtrInput
+	HttpCookieAge                pulumi.IntPtrInput
+	HttpCookieDomain             pulumi.StringPtrInput
+	HttpCookieDomainFromHost     pulumi.StringPtrInput
+	HttpCookieGeneration         pulumi.IntPtrInput
+	HttpCookiePath               pulumi.StringPtrInput
+	HttpCookieShare              pulumi.StringPtrInput
+	HttpIpHeader                 pulumi.StringPtrInput
+	HttpIpHeaderName             pulumi.StringPtrInput
+	HttpMultiplex                pulumi.StringPtrInput
+	HttpRedirect                 pulumi.StringPtrInput
+	HttpsCookieSecure            pulumi.StringPtrInput
+	Ipv4Mappedip                 pulumi.StringPtrInput
+	Ipv4Mappedport               pulumi.StringPtrInput
+	LdbMethod                    pulumi.StringPtrInput
+	Mappedip                     pulumi.StringPtrInput
+	Mappedport                   pulumi.StringPtrInput
+	MaxEmbryonicConnections      pulumi.IntPtrInput
+	Monitors                     FirewallVip6MonitorArrayInput
+	Name                         pulumi.StringPtrInput
+	Nat64                        pulumi.StringPtrInput
+	Nat66                        pulumi.StringPtrInput
+	NatSourceVip                 pulumi.StringPtrInput
+	OutlookWebAccess             pulumi.StringPtrInput
+	Persistence                  pulumi.StringPtrInput
+	Portforward                  pulumi.StringPtrInput
+	Protocol                     pulumi.StringPtrInput
+	Realservers                  FirewallVip6RealserverArrayInput
+	ServerType                   pulumi.StringPtrInput
+	SrcFilters                   FirewallVip6SrcFilterArrayInput
+	SslAcceptFfdheGroups         pulumi.StringPtrInput
+	SslAlgorithm                 pulumi.StringPtrInput
+	SslCertificate               pulumi.StringPtrInput
+	SslCipherSuites              FirewallVip6SslCipherSuiteArrayInput
+	SslClientFallback            pulumi.StringPtrInput
+	SslClientRekeyCount          pulumi.IntPtrInput
+	SslClientRenegotiation       pulumi.StringPtrInput
+	SslClientSessionStateMax     pulumi.IntPtrInput
 	SslClientSessionStateTimeout pulumi.IntPtrInput
-	// How to expire SSL sessions for the segment of the SSL connection between the client and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-	SslClientSessionStateType pulumi.StringPtrInput
-	// Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-	SslDhBits pulumi.StringPtrInput
-	// Enable/disable including HPKP header in response. Valid values: `disable`, `enable`, `report-only`.
-	SslHpkp pulumi.StringPtrInput
-	// Number of minutes the web browser should keep HPKP.
-	SslHpkpAge pulumi.IntPtrInput
-	// Certificate to generate backup HPKP pin from.
-	SslHpkpBackup pulumi.StringPtrInput
-	// Indicate that HPKP header applies to all subdomains. Valid values: `disable`, `enable`.
-	SslHpkpIncludeSubdomains pulumi.StringPtrInput
-	// Certificate to generate primary HPKP pin from.
-	SslHpkpPrimary pulumi.StringPtrInput
-	// URL to report HPKP violations to.
-	SslHpkpReportUri pulumi.StringPtrInput
-	// Enable/disable including HSTS header in response. Valid values: `disable`, `enable`.
-	SslHsts pulumi.StringPtrInput
-	// Number of seconds the client should honour the HSTS setting.
-	SslHstsAge pulumi.IntPtrInput
-	// Indicate that HSTS header applies to all subdomains. Valid values: `disable`, `enable`.
-	SslHstsIncludeSubdomains pulumi.StringPtrInput
-	// Enable to replace HTTP with HTTPS in the reply's Location HTTP header field. Valid values: `enable`, `disable`.
-	SslHttpLocationConversion pulumi.StringPtrInput
-	// Enable/disable HTTP host matching for location conversion. Valid values: `enable`, `disable`.
-	SslHttpMatchHost pulumi.StringPtrInput
-	// Highest SSL/TLS version acceptable from a client.
-	SslMaxVersion pulumi.StringPtrInput
-	// Lowest SSL/TLS version acceptable from a client.
-	SslMinVersion pulumi.StringPtrInput
-	// Apply SSL offloading between the client and the FortiGate (half) or from the client to the FortiGate and from the FortiGate to the server (full). Valid values: `half`, `full`.
-	SslMode pulumi.StringPtrInput
-	// Select the cipher suites that can be used for SSL perfect forward secrecy (PFS). Applies to both client and server sessions. Valid values: `require`, `deny`, `allow`.
-	SslPfs pulumi.StringPtrInput
-	// Enable/disable sending empty fragments to avoid CBC IV attacks (SSL 3.0 & TLS 1.0 only). May need to be disabled for compatibility with older systems. Valid values: `enable`, `disable`.
-	SslSendEmptyFrags pulumi.StringPtrInput
-	// Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`, `client`.
-	SslServerAlgorithm pulumi.StringPtrInput
-	// SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslServerCipherSuites` block is documented below.
-	SslServerCipherSuites FirewallVip6SslServerCipherSuiteArrayInput
-	// Highest SSL/TLS version acceptable from a server. Use the client setting by default.
-	SslServerMaxVersion pulumi.StringPtrInput
-	// Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
-	SslServerMinVersion pulumi.StringPtrInput
-	// Maximum number of FortiGate to Server SSL session states to keep.
-	SslServerSessionStateMax pulumi.IntPtrInput
-	// Number of minutes to keep FortiGate to Server SSL session state.
+	SslClientSessionStateType    pulumi.StringPtrInput
+	SslDhBits                    pulumi.StringPtrInput
+	SslHpkp                      pulumi.StringPtrInput
+	SslHpkpAge                   pulumi.IntPtrInput
+	SslHpkpBackup                pulumi.StringPtrInput
+	SslHpkpIncludeSubdomains     pulumi.StringPtrInput
+	SslHpkpPrimary               pulumi.StringPtrInput
+	SslHpkpReportUri             pulumi.StringPtrInput
+	SslHsts                      pulumi.StringPtrInput
+	SslHstsAge                   pulumi.IntPtrInput
+	SslHstsIncludeSubdomains     pulumi.StringPtrInput
+	SslHttpLocationConversion    pulumi.StringPtrInput
+	SslHttpMatchHost             pulumi.StringPtrInput
+	SslMaxVersion                pulumi.StringPtrInput
+	SslMinVersion                pulumi.StringPtrInput
+	SslMode                      pulumi.StringPtrInput
+	SslPfs                       pulumi.StringPtrInput
+	SslSendEmptyFrags            pulumi.StringPtrInput
+	SslServerAlgorithm           pulumi.StringPtrInput
+	SslServerCipherSuites        FirewallVip6SslServerCipherSuiteArrayInput
+	SslServerMaxVersion          pulumi.StringPtrInput
+	SslServerMinVersion          pulumi.StringPtrInput
+	SslServerSessionStateMax     pulumi.IntPtrInput
 	SslServerSessionStateTimeout pulumi.IntPtrInput
-	// How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-	SslServerSessionStateType pulumi.StringPtrInput
-	// Configure a static NAT or server load balance VIP.
-	Type pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
-	WeblogicServer pulumi.StringPtrInput
-	// Enable to add an HTTP header to indicate SSL offloading for a WebSphere server. Valid values: `disable`, `enable`.
-	WebsphereServer pulumi.StringPtrInput
+	SslServerSessionStateType    pulumi.StringPtrInput
+	Type                         pulumi.StringPtrInput
+	Uuid                         pulumi.StringPtrInput
+	Vdomparam                    pulumi.StringPtrInput
+	WeblogicServer               pulumi.StringPtrInput
+	WebsphereServer              pulumi.StringPtrInput
 }
 
 func (FirewallVip6State) ElementType() reflect.Type {
@@ -612,318 +293,164 @@ func (FirewallVip6State) ElementType() reflect.Type {
 }
 
 type firewallVip6Args struct {
-	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-	AddNat64Route *string `pulumi:"addNat64Route"`
-	// Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
-	ArpReply *string `pulumi:"arpReply"`
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
-	EmbeddedIpv4Address *string `pulumi:"embeddedIpv4Address"`
-	// IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-	Extip string `pulumi:"extip"`
-	// Incoming port number range that you want to map to a port number range on the destination network.
-	Extport *string `pulumi:"extport"`
-	// Custom defined ID.
-	Fosid *int `pulumi:"fosid"`
-	// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
-	HttpCookieAge *int `pulumi:"httpCookieAge"`
-	// Domain that HTTP cookie persistence should apply to.
-	HttpCookieDomain *string `pulumi:"httpCookieDomain"`
-	// Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-	HttpCookieDomainFromHost *string `pulumi:"httpCookieDomainFromHost"`
-	// Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-	HttpCookieGeneration *int `pulumi:"httpCookieGeneration"`
-	// Limit HTTP cookie persistence to the specified path.
-	HttpCookiePath *string `pulumi:"httpCookiePath"`
-	// Control sharing of cookies across virtual servers. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-	HttpCookieShare *string `pulumi:"httpCookieShare"`
-	// For HTTP multiplexing, enable to add the original client IP address in the XForwarded-For HTTP header. Valid values: `enable`, `disable`.
-	HttpIpHeader *string `pulumi:"httpIpHeader"`
-	// For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
-	HttpIpHeaderName *string `pulumi:"httpIpHeaderName"`
-	// Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
-	HttpMultiplex *string `pulumi:"httpMultiplex"`
-	// Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
-	HttpRedirect *string `pulumi:"httpRedirect"`
-	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-	HttpsCookieSecure *string `pulumi:"httpsCookieSecure"`
-	// Start-mapped-IPv4-address [-end mapped-IPv4-address].
-	Ipv4Mappedip *string `pulumi:"ipv4Mappedip"`
-	// IPv4 port number range on the destination network to which the external port number range is mapped.
-	Ipv4Mappedport *string `pulumi:"ipv4Mappedport"`
-	// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
-	LdbMethod *string `pulumi:"ldbMethod"`
-	// Mapped IP address range in the format startIP-endIP.
-	Mappedip string `pulumi:"mappedip"`
-	// Port number range on the destination network to which the external port number range is mapped.
-	Mappedport *string `pulumi:"mappedport"`
-	// Maximum number of incomplete connections.
-	MaxEmbryonicConnections *int `pulumi:"maxEmbryonicConnections"`
-	// Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
-	Monitors []FirewallVip6Monitor `pulumi:"monitors"`
-	// Health monitor name.
-	Name *string `pulumi:"name"`
-	// Enable/disable DNAT64. Valid values: `disable`, `enable`.
-	Nat64 *string `pulumi:"nat64"`
-	// Enable/disable DNAT66. Valid values: `disable`, `enable`.
-	Nat66 *string `pulumi:"nat66"`
-	// Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
-	NatSourceVip *string `pulumi:"natSourceVip"`
-	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
-	OutlookWebAccess *string `pulumi:"outlookWebAccess"`
-	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
-	Persistence *string `pulumi:"persistence"`
-	// Enable port forwarding. Valid values: `disable`, `enable`.
-	Portforward *string `pulumi:"portforward"`
-	// Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
-	Protocol *string `pulumi:"protocol"`
-	// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
-	Realservers []FirewallVip6Realserver `pulumi:"realservers"`
-	// Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
-	ServerType *string `pulumi:"serverType"`
-	// Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
-	SrcFilters []FirewallVip6SrcFilter `pulumi:"srcFilters"`
-	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
-	SslAcceptFfdheGroups *string `pulumi:"sslAcceptFfdheGroups"`
-	// Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
-	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// The name of the SSL certificate to use for SSL acceleration.
-	SslCertificate *string `pulumi:"sslCertificate"`
-	// SSL/TLS cipher suites acceptable from a client, ordered by priority. The structure of `sslCipherSuites` block is documented below.
-	SslCipherSuites []FirewallVip6SslCipherSuite `pulumi:"sslCipherSuites"`
-	// Enable/disable support for preventing Downgrade Attacks on client connections (RFC 7507). Valid values: `disable`, `enable`.
-	SslClientFallback *string `pulumi:"sslClientFallback"`
-	// Maximum length of data in MB before triggering a client rekey (0 = disable).
-	SslClientRekeyCount *int `pulumi:"sslClientRekeyCount"`
-	// Allow, deny, or require secure renegotiation of client sessions to comply with RFC 5746. Valid values: `allow`, `deny`, `secure`.
-	SslClientRenegotiation *string `pulumi:"sslClientRenegotiation"`
-	// Maximum number of client to FortiGate SSL session states to keep.
-	SslClientSessionStateMax *int `pulumi:"sslClientSessionStateMax"`
-	// Number of minutes to keep client to FortiGate SSL session state.
-	SslClientSessionStateTimeout *int `pulumi:"sslClientSessionStateTimeout"`
-	// How to expire SSL sessions for the segment of the SSL connection between the client and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-	SslClientSessionStateType *string `pulumi:"sslClientSessionStateType"`
-	// Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-	SslDhBits *string `pulumi:"sslDhBits"`
-	// Enable/disable including HPKP header in response. Valid values: `disable`, `enable`, `report-only`.
-	SslHpkp *string `pulumi:"sslHpkp"`
-	// Number of minutes the web browser should keep HPKP.
-	SslHpkpAge *int `pulumi:"sslHpkpAge"`
-	// Certificate to generate backup HPKP pin from.
-	SslHpkpBackup *string `pulumi:"sslHpkpBackup"`
-	// Indicate that HPKP header applies to all subdomains. Valid values: `disable`, `enable`.
-	SslHpkpIncludeSubdomains *string `pulumi:"sslHpkpIncludeSubdomains"`
-	// Certificate to generate primary HPKP pin from.
-	SslHpkpPrimary *string `pulumi:"sslHpkpPrimary"`
-	// URL to report HPKP violations to.
-	SslHpkpReportUri *string `pulumi:"sslHpkpReportUri"`
-	// Enable/disable including HSTS header in response. Valid values: `disable`, `enable`.
-	SslHsts *string `pulumi:"sslHsts"`
-	// Number of seconds the client should honour the HSTS setting.
-	SslHstsAge *int `pulumi:"sslHstsAge"`
-	// Indicate that HSTS header applies to all subdomains. Valid values: `disable`, `enable`.
-	SslHstsIncludeSubdomains *string `pulumi:"sslHstsIncludeSubdomains"`
-	// Enable to replace HTTP with HTTPS in the reply's Location HTTP header field. Valid values: `enable`, `disable`.
-	SslHttpLocationConversion *string `pulumi:"sslHttpLocationConversion"`
-	// Enable/disable HTTP host matching for location conversion. Valid values: `enable`, `disable`.
-	SslHttpMatchHost *string `pulumi:"sslHttpMatchHost"`
-	// Highest SSL/TLS version acceptable from a client.
-	SslMaxVersion *string `pulumi:"sslMaxVersion"`
-	// Lowest SSL/TLS version acceptable from a client.
-	SslMinVersion *string `pulumi:"sslMinVersion"`
-	// Apply SSL offloading between the client and the FortiGate (half) or from the client to the FortiGate and from the FortiGate to the server (full). Valid values: `half`, `full`.
-	SslMode *string `pulumi:"sslMode"`
-	// Select the cipher suites that can be used for SSL perfect forward secrecy (PFS). Applies to both client and server sessions. Valid values: `require`, `deny`, `allow`.
-	SslPfs *string `pulumi:"sslPfs"`
-	// Enable/disable sending empty fragments to avoid CBC IV attacks (SSL 3.0 & TLS 1.0 only). May need to be disabled for compatibility with older systems. Valid values: `enable`, `disable`.
-	SslSendEmptyFrags *string `pulumi:"sslSendEmptyFrags"`
-	// Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`, `client`.
-	SslServerAlgorithm *string `pulumi:"sslServerAlgorithm"`
-	// SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslServerCipherSuites` block is documented below.
-	SslServerCipherSuites []FirewallVip6SslServerCipherSuite `pulumi:"sslServerCipherSuites"`
-	// Highest SSL/TLS version acceptable from a server. Use the client setting by default.
-	SslServerMaxVersion *string `pulumi:"sslServerMaxVersion"`
-	// Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
-	SslServerMinVersion *string `pulumi:"sslServerMinVersion"`
-	// Maximum number of FortiGate to Server SSL session states to keep.
-	SslServerSessionStateMax *int `pulumi:"sslServerSessionStateMax"`
-	// Number of minutes to keep FortiGate to Server SSL session state.
-	SslServerSessionStateTimeout *int `pulumi:"sslServerSessionStateTimeout"`
-	// How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-	SslServerSessionStateType *string `pulumi:"sslServerSessionStateType"`
-	// Configure a static NAT or server load balance VIP.
-	Type *string `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
-	WeblogicServer *string `pulumi:"weblogicServer"`
-	// Enable to add an HTTP header to indicate SSL offloading for a WebSphere server. Valid values: `disable`, `enable`.
-	WebsphereServer *string `pulumi:"websphereServer"`
+	AddNat64Route                *string                            `pulumi:"addNat64Route"`
+	ArpReply                     *string                            `pulumi:"arpReply"`
+	Color                        *int                               `pulumi:"color"`
+	Comment                      *string                            `pulumi:"comment"`
+	DynamicSortSubtable          *string                            `pulumi:"dynamicSortSubtable"`
+	EmbeddedIpv4Address          *string                            `pulumi:"embeddedIpv4Address"`
+	Extip                        string                             `pulumi:"extip"`
+	Extport                      *string                            `pulumi:"extport"`
+	Fosid                        *int                               `pulumi:"fosid"`
+	HttpCookieAge                *int                               `pulumi:"httpCookieAge"`
+	HttpCookieDomain             *string                            `pulumi:"httpCookieDomain"`
+	HttpCookieDomainFromHost     *string                            `pulumi:"httpCookieDomainFromHost"`
+	HttpCookieGeneration         *int                               `pulumi:"httpCookieGeneration"`
+	HttpCookiePath               *string                            `pulumi:"httpCookiePath"`
+	HttpCookieShare              *string                            `pulumi:"httpCookieShare"`
+	HttpIpHeader                 *string                            `pulumi:"httpIpHeader"`
+	HttpIpHeaderName             *string                            `pulumi:"httpIpHeaderName"`
+	HttpMultiplex                *string                            `pulumi:"httpMultiplex"`
+	HttpRedirect                 *string                            `pulumi:"httpRedirect"`
+	HttpsCookieSecure            *string                            `pulumi:"httpsCookieSecure"`
+	Ipv4Mappedip                 *string                            `pulumi:"ipv4Mappedip"`
+	Ipv4Mappedport               *string                            `pulumi:"ipv4Mappedport"`
+	LdbMethod                    *string                            `pulumi:"ldbMethod"`
+	Mappedip                     string                             `pulumi:"mappedip"`
+	Mappedport                   *string                            `pulumi:"mappedport"`
+	MaxEmbryonicConnections      *int                               `pulumi:"maxEmbryonicConnections"`
+	Monitors                     []FirewallVip6Monitor              `pulumi:"monitors"`
+	Name                         *string                            `pulumi:"name"`
+	Nat64                        *string                            `pulumi:"nat64"`
+	Nat66                        *string                            `pulumi:"nat66"`
+	NatSourceVip                 *string                            `pulumi:"natSourceVip"`
+	OutlookWebAccess             *string                            `pulumi:"outlookWebAccess"`
+	Persistence                  *string                            `pulumi:"persistence"`
+	Portforward                  *string                            `pulumi:"portforward"`
+	Protocol                     *string                            `pulumi:"protocol"`
+	Realservers                  []FirewallVip6Realserver           `pulumi:"realservers"`
+	ServerType                   *string                            `pulumi:"serverType"`
+	SrcFilters                   []FirewallVip6SrcFilter            `pulumi:"srcFilters"`
+	SslAcceptFfdheGroups         *string                            `pulumi:"sslAcceptFfdheGroups"`
+	SslAlgorithm                 *string                            `pulumi:"sslAlgorithm"`
+	SslCertificate               *string                            `pulumi:"sslCertificate"`
+	SslCipherSuites              []FirewallVip6SslCipherSuite       `pulumi:"sslCipherSuites"`
+	SslClientFallback            *string                            `pulumi:"sslClientFallback"`
+	SslClientRekeyCount          *int                               `pulumi:"sslClientRekeyCount"`
+	SslClientRenegotiation       *string                            `pulumi:"sslClientRenegotiation"`
+	SslClientSessionStateMax     *int                               `pulumi:"sslClientSessionStateMax"`
+	SslClientSessionStateTimeout *int                               `pulumi:"sslClientSessionStateTimeout"`
+	SslClientSessionStateType    *string                            `pulumi:"sslClientSessionStateType"`
+	SslDhBits                    *string                            `pulumi:"sslDhBits"`
+	SslHpkp                      *string                            `pulumi:"sslHpkp"`
+	SslHpkpAge                   *int                               `pulumi:"sslHpkpAge"`
+	SslHpkpBackup                *string                            `pulumi:"sslHpkpBackup"`
+	SslHpkpIncludeSubdomains     *string                            `pulumi:"sslHpkpIncludeSubdomains"`
+	SslHpkpPrimary               *string                            `pulumi:"sslHpkpPrimary"`
+	SslHpkpReportUri             *string                            `pulumi:"sslHpkpReportUri"`
+	SslHsts                      *string                            `pulumi:"sslHsts"`
+	SslHstsAge                   *int                               `pulumi:"sslHstsAge"`
+	SslHstsIncludeSubdomains     *string                            `pulumi:"sslHstsIncludeSubdomains"`
+	SslHttpLocationConversion    *string                            `pulumi:"sslHttpLocationConversion"`
+	SslHttpMatchHost             *string                            `pulumi:"sslHttpMatchHost"`
+	SslMaxVersion                *string                            `pulumi:"sslMaxVersion"`
+	SslMinVersion                *string                            `pulumi:"sslMinVersion"`
+	SslMode                      *string                            `pulumi:"sslMode"`
+	SslPfs                       *string                            `pulumi:"sslPfs"`
+	SslSendEmptyFrags            *string                            `pulumi:"sslSendEmptyFrags"`
+	SslServerAlgorithm           *string                            `pulumi:"sslServerAlgorithm"`
+	SslServerCipherSuites        []FirewallVip6SslServerCipherSuite `pulumi:"sslServerCipherSuites"`
+	SslServerMaxVersion          *string                            `pulumi:"sslServerMaxVersion"`
+	SslServerMinVersion          *string                            `pulumi:"sslServerMinVersion"`
+	SslServerSessionStateMax     *int                               `pulumi:"sslServerSessionStateMax"`
+	SslServerSessionStateTimeout *int                               `pulumi:"sslServerSessionStateTimeout"`
+	SslServerSessionStateType    *string                            `pulumi:"sslServerSessionStateType"`
+	Type                         *string                            `pulumi:"type"`
+	Uuid                         *string                            `pulumi:"uuid"`
+	Vdomparam                    *string                            `pulumi:"vdomparam"`
+	WeblogicServer               *string                            `pulumi:"weblogicServer"`
+	WebsphereServer              *string                            `pulumi:"websphereServer"`
 }
 
 // The set of arguments for constructing a FirewallVip6 resource.
 type FirewallVip6Args struct {
-	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-	AddNat64Route pulumi.StringPtrInput
-	// Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
-	ArpReply pulumi.StringPtrInput
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
-	EmbeddedIpv4Address pulumi.StringPtrInput
-	// IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-	Extip pulumi.StringInput
-	// Incoming port number range that you want to map to a port number range on the destination network.
-	Extport pulumi.StringPtrInput
-	// Custom defined ID.
-	Fosid pulumi.IntPtrInput
-	// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
-	HttpCookieAge pulumi.IntPtrInput
-	// Domain that HTTP cookie persistence should apply to.
-	HttpCookieDomain pulumi.StringPtrInput
-	// Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-	HttpCookieDomainFromHost pulumi.StringPtrInput
-	// Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-	HttpCookieGeneration pulumi.IntPtrInput
-	// Limit HTTP cookie persistence to the specified path.
-	HttpCookiePath pulumi.StringPtrInput
-	// Control sharing of cookies across virtual servers. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-	HttpCookieShare pulumi.StringPtrInput
-	// For HTTP multiplexing, enable to add the original client IP address in the XForwarded-For HTTP header. Valid values: `enable`, `disable`.
-	HttpIpHeader pulumi.StringPtrInput
-	// For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
-	HttpIpHeaderName pulumi.StringPtrInput
-	// Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
-	HttpMultiplex pulumi.StringPtrInput
-	// Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
-	HttpRedirect pulumi.StringPtrInput
-	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-	HttpsCookieSecure pulumi.StringPtrInput
-	// Start-mapped-IPv4-address [-end mapped-IPv4-address].
-	Ipv4Mappedip pulumi.StringPtrInput
-	// IPv4 port number range on the destination network to which the external port number range is mapped.
-	Ipv4Mappedport pulumi.StringPtrInput
-	// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
-	LdbMethod pulumi.StringPtrInput
-	// Mapped IP address range in the format startIP-endIP.
-	Mappedip pulumi.StringInput
-	// Port number range on the destination network to which the external port number range is mapped.
-	Mappedport pulumi.StringPtrInput
-	// Maximum number of incomplete connections.
-	MaxEmbryonicConnections pulumi.IntPtrInput
-	// Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
-	Monitors FirewallVip6MonitorArrayInput
-	// Health monitor name.
-	Name pulumi.StringPtrInput
-	// Enable/disable DNAT64. Valid values: `disable`, `enable`.
-	Nat64 pulumi.StringPtrInput
-	// Enable/disable DNAT66. Valid values: `disable`, `enable`.
-	Nat66 pulumi.StringPtrInput
-	// Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
-	NatSourceVip pulumi.StringPtrInput
-	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
-	OutlookWebAccess pulumi.StringPtrInput
-	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
-	Persistence pulumi.StringPtrInput
-	// Enable port forwarding. Valid values: `disable`, `enable`.
-	Portforward pulumi.StringPtrInput
-	// Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
-	Protocol pulumi.StringPtrInput
-	// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
-	Realservers FirewallVip6RealserverArrayInput
-	// Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
-	ServerType pulumi.StringPtrInput
-	// Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
-	SrcFilters FirewallVip6SrcFilterArrayInput
-	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
-	SslAcceptFfdheGroups pulumi.StringPtrInput
-	// Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
-	SslAlgorithm pulumi.StringPtrInput
-	// The name of the SSL certificate to use for SSL acceleration.
-	SslCertificate pulumi.StringPtrInput
-	// SSL/TLS cipher suites acceptable from a client, ordered by priority. The structure of `sslCipherSuites` block is documented below.
-	SslCipherSuites FirewallVip6SslCipherSuiteArrayInput
-	// Enable/disable support for preventing Downgrade Attacks on client connections (RFC 7507). Valid values: `disable`, `enable`.
-	SslClientFallback pulumi.StringPtrInput
-	// Maximum length of data in MB before triggering a client rekey (0 = disable).
-	SslClientRekeyCount pulumi.IntPtrInput
-	// Allow, deny, or require secure renegotiation of client sessions to comply with RFC 5746. Valid values: `allow`, `deny`, `secure`.
-	SslClientRenegotiation pulumi.StringPtrInput
-	// Maximum number of client to FortiGate SSL session states to keep.
-	SslClientSessionStateMax pulumi.IntPtrInput
-	// Number of minutes to keep client to FortiGate SSL session state.
+	AddNat64Route                pulumi.StringPtrInput
+	ArpReply                     pulumi.StringPtrInput
+	Color                        pulumi.IntPtrInput
+	Comment                      pulumi.StringPtrInput
+	DynamicSortSubtable          pulumi.StringPtrInput
+	EmbeddedIpv4Address          pulumi.StringPtrInput
+	Extip                        pulumi.StringInput
+	Extport                      pulumi.StringPtrInput
+	Fosid                        pulumi.IntPtrInput
+	HttpCookieAge                pulumi.IntPtrInput
+	HttpCookieDomain             pulumi.StringPtrInput
+	HttpCookieDomainFromHost     pulumi.StringPtrInput
+	HttpCookieGeneration         pulumi.IntPtrInput
+	HttpCookiePath               pulumi.StringPtrInput
+	HttpCookieShare              pulumi.StringPtrInput
+	HttpIpHeader                 pulumi.StringPtrInput
+	HttpIpHeaderName             pulumi.StringPtrInput
+	HttpMultiplex                pulumi.StringPtrInput
+	HttpRedirect                 pulumi.StringPtrInput
+	HttpsCookieSecure            pulumi.StringPtrInput
+	Ipv4Mappedip                 pulumi.StringPtrInput
+	Ipv4Mappedport               pulumi.StringPtrInput
+	LdbMethod                    pulumi.StringPtrInput
+	Mappedip                     pulumi.StringInput
+	Mappedport                   pulumi.StringPtrInput
+	MaxEmbryonicConnections      pulumi.IntPtrInput
+	Monitors                     FirewallVip6MonitorArrayInput
+	Name                         pulumi.StringPtrInput
+	Nat64                        pulumi.StringPtrInput
+	Nat66                        pulumi.StringPtrInput
+	NatSourceVip                 pulumi.StringPtrInput
+	OutlookWebAccess             pulumi.StringPtrInput
+	Persistence                  pulumi.StringPtrInput
+	Portforward                  pulumi.StringPtrInput
+	Protocol                     pulumi.StringPtrInput
+	Realservers                  FirewallVip6RealserverArrayInput
+	ServerType                   pulumi.StringPtrInput
+	SrcFilters                   FirewallVip6SrcFilterArrayInput
+	SslAcceptFfdheGroups         pulumi.StringPtrInput
+	SslAlgorithm                 pulumi.StringPtrInput
+	SslCertificate               pulumi.StringPtrInput
+	SslCipherSuites              FirewallVip6SslCipherSuiteArrayInput
+	SslClientFallback            pulumi.StringPtrInput
+	SslClientRekeyCount          pulumi.IntPtrInput
+	SslClientRenegotiation       pulumi.StringPtrInput
+	SslClientSessionStateMax     pulumi.IntPtrInput
 	SslClientSessionStateTimeout pulumi.IntPtrInput
-	// How to expire SSL sessions for the segment of the SSL connection between the client and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-	SslClientSessionStateType pulumi.StringPtrInput
-	// Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-	SslDhBits pulumi.StringPtrInput
-	// Enable/disable including HPKP header in response. Valid values: `disable`, `enable`, `report-only`.
-	SslHpkp pulumi.StringPtrInput
-	// Number of minutes the web browser should keep HPKP.
-	SslHpkpAge pulumi.IntPtrInput
-	// Certificate to generate backup HPKP pin from.
-	SslHpkpBackup pulumi.StringPtrInput
-	// Indicate that HPKP header applies to all subdomains. Valid values: `disable`, `enable`.
-	SslHpkpIncludeSubdomains pulumi.StringPtrInput
-	// Certificate to generate primary HPKP pin from.
-	SslHpkpPrimary pulumi.StringPtrInput
-	// URL to report HPKP violations to.
-	SslHpkpReportUri pulumi.StringPtrInput
-	// Enable/disable including HSTS header in response. Valid values: `disable`, `enable`.
-	SslHsts pulumi.StringPtrInput
-	// Number of seconds the client should honour the HSTS setting.
-	SslHstsAge pulumi.IntPtrInput
-	// Indicate that HSTS header applies to all subdomains. Valid values: `disable`, `enable`.
-	SslHstsIncludeSubdomains pulumi.StringPtrInput
-	// Enable to replace HTTP with HTTPS in the reply's Location HTTP header field. Valid values: `enable`, `disable`.
-	SslHttpLocationConversion pulumi.StringPtrInput
-	// Enable/disable HTTP host matching for location conversion. Valid values: `enable`, `disable`.
-	SslHttpMatchHost pulumi.StringPtrInput
-	// Highest SSL/TLS version acceptable from a client.
-	SslMaxVersion pulumi.StringPtrInput
-	// Lowest SSL/TLS version acceptable from a client.
-	SslMinVersion pulumi.StringPtrInput
-	// Apply SSL offloading between the client and the FortiGate (half) or from the client to the FortiGate and from the FortiGate to the server (full). Valid values: `half`, `full`.
-	SslMode pulumi.StringPtrInput
-	// Select the cipher suites that can be used for SSL perfect forward secrecy (PFS). Applies to both client and server sessions. Valid values: `require`, `deny`, `allow`.
-	SslPfs pulumi.StringPtrInput
-	// Enable/disable sending empty fragments to avoid CBC IV attacks (SSL 3.0 & TLS 1.0 only). May need to be disabled for compatibility with older systems. Valid values: `enable`, `disable`.
-	SslSendEmptyFrags pulumi.StringPtrInput
-	// Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`, `client`.
-	SslServerAlgorithm pulumi.StringPtrInput
-	// SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslServerCipherSuites` block is documented below.
-	SslServerCipherSuites FirewallVip6SslServerCipherSuiteArrayInput
-	// Highest SSL/TLS version acceptable from a server. Use the client setting by default.
-	SslServerMaxVersion pulumi.StringPtrInput
-	// Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
-	SslServerMinVersion pulumi.StringPtrInput
-	// Maximum number of FortiGate to Server SSL session states to keep.
-	SslServerSessionStateMax pulumi.IntPtrInput
-	// Number of minutes to keep FortiGate to Server SSL session state.
+	SslClientSessionStateType    pulumi.StringPtrInput
+	SslDhBits                    pulumi.StringPtrInput
+	SslHpkp                      pulumi.StringPtrInput
+	SslHpkpAge                   pulumi.IntPtrInput
+	SslHpkpBackup                pulumi.StringPtrInput
+	SslHpkpIncludeSubdomains     pulumi.StringPtrInput
+	SslHpkpPrimary               pulumi.StringPtrInput
+	SslHpkpReportUri             pulumi.StringPtrInput
+	SslHsts                      pulumi.StringPtrInput
+	SslHstsAge                   pulumi.IntPtrInput
+	SslHstsIncludeSubdomains     pulumi.StringPtrInput
+	SslHttpLocationConversion    pulumi.StringPtrInput
+	SslHttpMatchHost             pulumi.StringPtrInput
+	SslMaxVersion                pulumi.StringPtrInput
+	SslMinVersion                pulumi.StringPtrInput
+	SslMode                      pulumi.StringPtrInput
+	SslPfs                       pulumi.StringPtrInput
+	SslSendEmptyFrags            pulumi.StringPtrInput
+	SslServerAlgorithm           pulumi.StringPtrInput
+	SslServerCipherSuites        FirewallVip6SslServerCipherSuiteArrayInput
+	SslServerMaxVersion          pulumi.StringPtrInput
+	SslServerMinVersion          pulumi.StringPtrInput
+	SslServerSessionStateMax     pulumi.IntPtrInput
 	SslServerSessionStateTimeout pulumi.IntPtrInput
-	// How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-	SslServerSessionStateType pulumi.StringPtrInput
-	// Configure a static NAT or server load balance VIP.
-	Type pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
-	WeblogicServer pulumi.StringPtrInput
-	// Enable to add an HTTP header to indicate SSL offloading for a WebSphere server. Valid values: `disable`, `enable`.
-	WebsphereServer pulumi.StringPtrInput
+	SslServerSessionStateType    pulumi.StringPtrInput
+	Type                         pulumi.StringPtrInput
+	Uuid                         pulumi.StringPtrInput
+	Vdomparam                    pulumi.StringPtrInput
+	WeblogicServer               pulumi.StringPtrInput
+	WebsphereServer              pulumi.StringPtrInput
 }
 
 func (FirewallVip6Args) ElementType() reflect.Type {
@@ -952,7 +479,7 @@ func (i *FirewallVip6) ToFirewallVip6OutputWithContext(ctx context.Context) Fire
 // FirewallVip6ArrayInput is an input type that accepts FirewallVip6Array and FirewallVip6ArrayOutput values.
 // You can construct a concrete instance of `FirewallVip6ArrayInput` via:
 //
-//          FirewallVip6Array{ FirewallVip6Args{...} }
+//	FirewallVip6Array{ FirewallVip6Args{...} }
 type FirewallVip6ArrayInput interface {
 	pulumi.Input
 
@@ -977,7 +504,7 @@ func (i FirewallVip6Array) ToFirewallVip6ArrayOutputWithContext(ctx context.Cont
 // FirewallVip6MapInput is an input type that accepts FirewallVip6Map and FirewallVip6MapOutput values.
 // You can construct a concrete instance of `FirewallVip6MapInput` via:
 //
-//          FirewallVip6Map{ "key": FirewallVip6Args{...} }
+//	FirewallVip6Map{ "key": FirewallVip6Args{...} }
 type FirewallVip6MapInput interface {
 	pulumi.Input
 
@@ -1011,6 +538,314 @@ func (o FirewallVip6Output) ToFirewallVip6Output() FirewallVip6Output {
 
 func (o FirewallVip6Output) ToFirewallVip6OutputWithContext(ctx context.Context) FirewallVip6Output {
 	return o
+}
+
+func (o FirewallVip6Output) AddNat64Route() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.AddNat64Route }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) ArpReply() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.ArpReply }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o FirewallVip6Output) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallVip6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallVip6Output) EmbeddedIpv4Address() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.EmbeddedIpv4Address }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Extip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.Extip }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Extport() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.Extport }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallVip6Output) HttpCookieAge() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.IntOutput { return v.HttpCookieAge }).(pulumi.IntOutput)
+}
+
+func (o FirewallVip6Output) HttpCookieDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.HttpCookieDomain }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) HttpCookieDomainFromHost() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.HttpCookieDomainFromHost }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) HttpCookieGeneration() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.IntOutput { return v.HttpCookieGeneration }).(pulumi.IntOutput)
+}
+
+func (o FirewallVip6Output) HttpCookiePath() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.HttpCookiePath }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) HttpCookieShare() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.HttpCookieShare }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) HttpIpHeader() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.HttpIpHeader }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) HttpIpHeaderName() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.HttpIpHeaderName }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) HttpMultiplex() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.HttpMultiplex }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) HttpRedirect() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.HttpRedirect }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) HttpsCookieSecure() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.HttpsCookieSecure }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Ipv4Mappedip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.Ipv4Mappedip }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Ipv4Mappedport() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.Ipv4Mappedport }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) LdbMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.LdbMethod }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Mappedip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.Mappedip }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Mappedport() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.Mappedport }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) MaxEmbryonicConnections() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.IntOutput { return v.MaxEmbryonicConnections }).(pulumi.IntOutput)
+}
+
+func (o FirewallVip6Output) Monitors() FirewallVip6MonitorArrayOutput {
+	return o.ApplyT(func(v *FirewallVip6) FirewallVip6MonitorArrayOutput { return v.Monitors }).(FirewallVip6MonitorArrayOutput)
+}
+
+func (o FirewallVip6Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Nat64() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.Nat64 }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Nat66() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.Nat66 }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) NatSourceVip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.NatSourceVip }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) OutlookWebAccess() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.OutlookWebAccess }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Persistence() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.Persistence }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Portforward() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.Portforward }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Realservers() FirewallVip6RealserverArrayOutput {
+	return o.ApplyT(func(v *FirewallVip6) FirewallVip6RealserverArrayOutput { return v.Realservers }).(FirewallVip6RealserverArrayOutput)
+}
+
+func (o FirewallVip6Output) ServerType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.ServerType }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SrcFilters() FirewallVip6SrcFilterArrayOutput {
+	return o.ApplyT(func(v *FirewallVip6) FirewallVip6SrcFilterArrayOutput { return v.SrcFilters }).(FirewallVip6SrcFilterArrayOutput)
+}
+
+func (o FirewallVip6Output) SslAcceptFfdheGroups() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslAcceptFfdheGroups }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslCertificate }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslCipherSuites() FirewallVip6SslCipherSuiteArrayOutput {
+	return o.ApplyT(func(v *FirewallVip6) FirewallVip6SslCipherSuiteArrayOutput { return v.SslCipherSuites }).(FirewallVip6SslCipherSuiteArrayOutput)
+}
+
+func (o FirewallVip6Output) SslClientFallback() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslClientFallback }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslClientRekeyCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.IntOutput { return v.SslClientRekeyCount }).(pulumi.IntOutput)
+}
+
+func (o FirewallVip6Output) SslClientRenegotiation() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslClientRenegotiation }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslClientSessionStateMax() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.IntOutput { return v.SslClientSessionStateMax }).(pulumi.IntOutput)
+}
+
+func (o FirewallVip6Output) SslClientSessionStateTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.IntOutput { return v.SslClientSessionStateTimeout }).(pulumi.IntOutput)
+}
+
+func (o FirewallVip6Output) SslClientSessionStateType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslClientSessionStateType }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslDhBits() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslDhBits }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslHpkp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslHpkp }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslHpkpAge() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.IntOutput { return v.SslHpkpAge }).(pulumi.IntOutput)
+}
+
+func (o FirewallVip6Output) SslHpkpBackup() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslHpkpBackup }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslHpkpIncludeSubdomains() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslHpkpIncludeSubdomains }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslHpkpPrimary() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslHpkpPrimary }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslHpkpReportUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringPtrOutput { return v.SslHpkpReportUri }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallVip6Output) SslHsts() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslHsts }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslHstsAge() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.IntOutput { return v.SslHstsAge }).(pulumi.IntOutput)
+}
+
+func (o FirewallVip6Output) SslHstsIncludeSubdomains() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslHstsIncludeSubdomains }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslHttpLocationConversion() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslHttpLocationConversion }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslHttpMatchHost() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslHttpMatchHost }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslMaxVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslMaxVersion }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslMinVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslMinVersion }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslMode }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslPfs() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslPfs }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslSendEmptyFrags() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslSendEmptyFrags }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslServerAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslServerAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslServerCipherSuites() FirewallVip6SslServerCipherSuiteArrayOutput {
+	return o.ApplyT(func(v *FirewallVip6) FirewallVip6SslServerCipherSuiteArrayOutput { return v.SslServerCipherSuites }).(FirewallVip6SslServerCipherSuiteArrayOutput)
+}
+
+func (o FirewallVip6Output) SslServerMaxVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslServerMaxVersion }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslServerMinVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslServerMinVersion }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) SslServerSessionStateMax() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.IntOutput { return v.SslServerSessionStateMax }).(pulumi.IntOutput)
+}
+
+func (o FirewallVip6Output) SslServerSessionStateTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.IntOutput { return v.SslServerSessionStateTimeout }).(pulumi.IntOutput)
+}
+
+func (o FirewallVip6Output) SslServerSessionStateType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.SslServerSessionStateType }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallVip6Output) WeblogicServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.WeblogicServer }).(pulumi.StringOutput)
+}
+
+func (o FirewallVip6Output) WebsphereServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip6) pulumi.StringOutput { return v.WebsphereServer }).(pulumi.StringOutput)
 }
 
 type FirewallVip6ArrayOutput struct{ *pulumi.OutputState }

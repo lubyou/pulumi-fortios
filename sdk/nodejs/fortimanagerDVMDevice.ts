@@ -4,23 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports adding/deleting online FortiGate to/from FortiManager
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerDVMDevice("test1", {
- *     deviceName: "FGVM64-test",
- *     ipaddr: "192.168.88.101",
- *     password: "",
- *     userid: "admin",
- * });
- * ```
- */
 export class FortimanagerDVMDevice extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerDVMDevice resource's state with the given name, ID, and optional extra
@@ -49,25 +32,10 @@ export class FortimanagerDVMDevice extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerDVMDevice.__pulumiType;
     }
 
-    /**
-     * Name or ID of the ADOM where the command is to be executed on.
-     */
     public readonly adom!: pulumi.Output<string | undefined>;
-    /**
-     * Fortigate's device name.
-     */
     public readonly deviceName!: pulumi.Output<string>;
-    /**
-     * Fortigate's ipaddress.
-     */
     public readonly ipaddr!: pulumi.Output<string>;
-    /**
-     * Password.
-     */
     public readonly password!: pulumi.Output<string | undefined>;
-    /**
-     * User name.
-     */
     public readonly userid!: pulumi.Output<string>;
 
     /**
@@ -114,25 +82,10 @@ export class FortimanagerDVMDevice extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerDVMDevice resources.
  */
 export interface FortimanagerDVMDeviceState {
-    /**
-     * Name or ID of the ADOM where the command is to be executed on.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Fortigate's device name.
-     */
     deviceName?: pulumi.Input<string>;
-    /**
-     * Fortigate's ipaddress.
-     */
     ipaddr?: pulumi.Input<string>;
-    /**
-     * Password.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * User name.
-     */
     userid?: pulumi.Input<string>;
 }
 
@@ -140,24 +93,9 @@ export interface FortimanagerDVMDeviceState {
  * The set of arguments for constructing a FortimanagerDVMDevice resource.
  */
 export interface FortimanagerDVMDeviceArgs {
-    /**
-     * Name or ID of the ADOM where the command is to be executed on.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Fortigate's device name.
-     */
     deviceName: pulumi.Input<string>;
-    /**
-     * Fortigate's ipaddress.
-     */
     ipaddr: pulumi.Input<string>;
-    /**
-     * Password.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * User name.
-     */
     userid: pulumi.Input<string>;
 }

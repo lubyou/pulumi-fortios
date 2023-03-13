@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios firewallshaper peripshaper
- */
 export function getFirewallShaperPerIpShaper(args: GetFirewallShaperPerIpShaperArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallShaperPerIpShaperResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallShaperPerIpShaper:GetFirewallShaperPerIpShaper", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getFirewallShaperPerIpShaper(args: GetFirewallShaperPerIpShaperA
  * A collection of arguments for invoking GetFirewallShaperPerIpShaper.
  */
 export interface GetFirewallShaperPerIpShaperArgs {
-    /**
-     * Specify the name of the desired firewallshaper peripshaper.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,67 +25,30 @@ export interface GetFirewallShaperPerIpShaperArgs {
  * A collection of values returned by GetFirewallShaperPerIpShaper.
  */
 export interface GetFirewallShaperPerIpShaperResult {
-    /**
-     * Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps).
-     */
     readonly bandwidthUnit: string;
-    /**
-     * Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper.
-     */
     readonly diffservForward: string;
-    /**
-     * Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper.
-     */
     readonly diffservReverse: string;
-    /**
-     * Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
-     */
     readonly diffservcodeForward: string;
-    /**
-     * Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
-     */
     readonly diffservcodeRev: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
-     */
     readonly maxBandwidth: number;
-    /**
-     * Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-     */
     readonly maxConcurrentSession: number;
-    /**
-     * Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-     */
     readonly maxConcurrentTcpSession: number;
-    /**
-     * Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
-     */
     readonly maxConcurrentUdpSession: number;
-    /**
-     * Traffic shaper name.
-     */
     readonly name: string;
     readonly vdomparam?: string;
 }
-
 export function getFirewallShaperPerIpShaperOutput(args: GetFirewallShaperPerIpShaperOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallShaperPerIpShaperResult> {
-    return pulumi.output(args).apply(a => getFirewallShaperPerIpShaper(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallShaperPerIpShaper(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetFirewallShaperPerIpShaper.
  */
 export interface GetFirewallShaperPerIpShaperOutputArgs {
-    /**
-     * Specify the name of the desired firewallshaper peripshaper.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

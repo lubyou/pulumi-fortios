@@ -7,174 +7,58 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure shaping policies.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallShapingPolicy(ctx, "trname", &fortios.FirewallShapingPolicyArgs{
-// 			ClassId:             pulumi.Int(0),
-// 			DiffservForward:     pulumi.String("disable"),
-// 			DiffservReverse:     pulumi.String("disable"),
-// 			DiffservcodeForward: pulumi.String("000000"),
-// 			DiffservcodeRev:     pulumi.String("000000"),
-// 			Dstaddrs: FirewallShapingPolicyDstaddrArray{
-// 				&FirewallShapingPolicyDstaddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			Dstintfs: FirewallShapingPolicyDstintfArray{
-// 				&FirewallShapingPolicyDstintfArgs{
-// 					Name: pulumi.String("port4"),
-// 				},
-// 			},
-// 			Fosid:              pulumi.Int(1),
-// 			InternetService:    pulumi.String("disable"),
-// 			InternetServiceSrc: pulumi.String("disable"),
-// 			IpVersion:          pulumi.String("4"),
-// 			Services: FirewallShapingPolicyServiceArray{
-// 				&FirewallShapingPolicyServiceArgs{
-// 					Name: pulumi.String("ALL"),
-// 				},
-// 			},
-// 			Srcaddrs: FirewallShapingPolicySrcaddrArray{
-// 				&FirewallShapingPolicySrcaddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			Status:    pulumi.String("enable"),
-// 			Tos:       pulumi.String("0x00"),
-// 			TosMask:   pulumi.String("0x00"),
-// 			TosNegate: pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall ShapingPolicy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallShapingPolicy:FirewallShapingPolicy labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallShapingPolicy:FirewallShapingPolicy labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallShapingPolicy struct {
 	pulumi.CustomResourceState
 
-	// IDs of one or more application categories that this shaper applies application control traffic shaping to. The structure of `appCategory` block is documented below.
-	AppCategories FirewallShapingPolicyAppCategoryArrayOutput `pulumi:"appCategories"`
-	// One or more application group names. The structure of `appGroup` block is documented below.
-	AppGroups FirewallShapingPolicyAppGroupArrayOutput `pulumi:"appGroups"`
-	// IDs of one or more applications that this shaper applies application control traffic shaping to. The structure of `application` block is documented below.
-	Applications FirewallShapingPolicyApplicationArrayOutput `pulumi:"applications"`
-	// Traffic class ID.
-	ClassId pulumi.IntOutput `pulumi:"classId"`
-	// Comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
-	DiffservForward pulumi.StringOutput `pulumi:"diffservForward"`
-	// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
-	DiffservReverse pulumi.StringOutput `pulumi:"diffservReverse"`
-	// Change packet's DiffServ to this value.
-	DiffservcodeForward pulumi.StringOutput `pulumi:"diffservcodeForward"`
-	// Change packet's reverse (reply) DiffServ to this value.
-	DiffservcodeRev pulumi.StringOutput `pulumi:"diffservcodeRev"`
-	// IPv6 destination address and address group names. The structure of `dstaddr6` block is documented below.
-	Dstaddr6s FirewallShapingPolicyDstaddr6ArrayOutput `pulumi:"dstaddr6s"`
-	// IPv4 destination address and address group names. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallShapingPolicyDstaddrArrayOutput `pulumi:"dstaddrs"`
-	// One or more outgoing (egress) interfaces. The structure of `dstintf` block is documented below.
-	Dstintfs FirewallShapingPolicyDstintfArrayOutput `pulumi:"dstintfs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Shaping policy ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
-	Groups FirewallShapingPolicyGroupArrayOutput `pulumi:"groups"`
-	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.  Valid values: `enable`, `disable`.
-	InternetService pulumi.StringOutput `pulumi:"internetService"`
-	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
-	InternetServiceCustomGroups FirewallShapingPolicyInternetServiceCustomGroupArrayOutput `pulumi:"internetServiceCustomGroups"`
-	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
-	InternetServiceCustoms FirewallShapingPolicyInternetServiceCustomArrayOutput `pulumi:"internetServiceCustoms"`
-	// Internet Service group name. The structure of `internetServiceGroup` block is documented below.
-	InternetServiceGroups FirewallShapingPolicyInternetServiceGroupArrayOutput `pulumi:"internetServiceGroups"`
-	// Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds FirewallShapingPolicyInternetServiceIdArrayOutput `pulumi:"internetServiceIds"`
-	// Internet Service ID. The structure of `internetServiceName` block is documented below.
-	InternetServiceNames FirewallShapingPolicyInternetServiceNameArrayOutput `pulumi:"internetServiceNames"`
-	// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used.  Valid values: `enable`, `disable`.
-	InternetServiceSrc pulumi.StringOutput `pulumi:"internetServiceSrc"`
-	// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
+	AppCategories                  FirewallShapingPolicyAppCategoryArrayOutput                   `pulumi:"appCategories"`
+	AppGroups                      FirewallShapingPolicyAppGroupArrayOutput                      `pulumi:"appGroups"`
+	Applications                   FirewallShapingPolicyApplicationArrayOutput                   `pulumi:"applications"`
+	ClassId                        pulumi.IntOutput                                              `pulumi:"classId"`
+	Comment                        pulumi.StringPtrOutput                                        `pulumi:"comment"`
+	DiffservForward                pulumi.StringOutput                                           `pulumi:"diffservForward"`
+	DiffservReverse                pulumi.StringOutput                                           `pulumi:"diffservReverse"`
+	DiffservcodeForward            pulumi.StringOutput                                           `pulumi:"diffservcodeForward"`
+	DiffservcodeRev                pulumi.StringOutput                                           `pulumi:"diffservcodeRev"`
+	Dstaddr6s                      FirewallShapingPolicyDstaddr6ArrayOutput                      `pulumi:"dstaddr6s"`
+	Dstaddrs                       FirewallShapingPolicyDstaddrArrayOutput                       `pulumi:"dstaddrs"`
+	Dstintfs                       FirewallShapingPolicyDstintfArrayOutput                       `pulumi:"dstintfs"`
+	DynamicSortSubtable            pulumi.StringPtrOutput                                        `pulumi:"dynamicSortSubtable"`
+	Fosid                          pulumi.IntOutput                                              `pulumi:"fosid"`
+	Groups                         FirewallShapingPolicyGroupArrayOutput                         `pulumi:"groups"`
+	InternetService                pulumi.StringOutput                                           `pulumi:"internetService"`
+	InternetServiceCustomGroups    FirewallShapingPolicyInternetServiceCustomGroupArrayOutput    `pulumi:"internetServiceCustomGroups"`
+	InternetServiceCustoms         FirewallShapingPolicyInternetServiceCustomArrayOutput         `pulumi:"internetServiceCustoms"`
+	InternetServiceGroups          FirewallShapingPolicyInternetServiceGroupArrayOutput          `pulumi:"internetServiceGroups"`
+	InternetServiceIds             FirewallShapingPolicyInternetServiceIdArrayOutput             `pulumi:"internetServiceIds"`
+	InternetServiceNames           FirewallShapingPolicyInternetServiceNameArrayOutput           `pulumi:"internetServiceNames"`
+	InternetServiceSrc             pulumi.StringOutput                                           `pulumi:"internetServiceSrc"`
 	InternetServiceSrcCustomGroups FirewallShapingPolicyInternetServiceSrcCustomGroupArrayOutput `pulumi:"internetServiceSrcCustomGroups"`
-	// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
-	InternetServiceSrcCustoms FirewallShapingPolicyInternetServiceSrcCustomArrayOutput `pulumi:"internetServiceSrcCustoms"`
-	// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
-	InternetServiceSrcGroups FirewallShapingPolicyInternetServiceSrcGroupArrayOutput `pulumi:"internetServiceSrcGroups"`
-	// Internet Service source ID. The structure of `internetServiceSrcId` block is documented below.
-	InternetServiceSrcIds FirewallShapingPolicyInternetServiceSrcIdArrayOutput `pulumi:"internetServiceSrcIds"`
-	// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
-	InternetServiceSrcNames FirewallShapingPolicyInternetServiceSrcNameArrayOutput `pulumi:"internetServiceSrcNames"`
-	// Apply this traffic shaping policy to IPv4 or IPv6 traffic. Valid values: `4`, `6`.
-	IpVersion pulumi.StringOutput `pulumi:"ipVersion"`
-	// Interface name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Per-IP traffic shaper to apply with this policy.
-	PerIpShaper pulumi.StringOutput `pulumi:"perIpShaper"`
-	// Schedule name.
-	Schedule pulumi.StringOutput `pulumi:"schedule"`
-	// Service and service group names. The structure of `service` block is documented below.
-	Services FirewallShapingPolicyServiceArrayOutput `pulumi:"services"`
-	// IPv6 source address and address group names. The structure of `srcaddr6` block is documented below.
-	Srcaddr6s FirewallShapingPolicySrcaddr6ArrayOutput `pulumi:"srcaddr6s"`
-	// IPv4 source address and address group names. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallShapingPolicySrcaddrArrayOutput `pulumi:"srcaddrs"`
-	// One or more incoming (ingress) interfaces. The structure of `srcintf` block is documented below.
-	Srcintfs FirewallShapingPolicySrcintfArrayOutput `pulumi:"srcintfs"`
-	// Enable/disable this traffic shaping policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// ToS (Type of Service) value used for comparison.
-	Tos pulumi.StringOutput `pulumi:"tos"`
-	// Non-zero bit positions are used for comparison while zero bit positions are ignored.
-	TosMask pulumi.StringOutput `pulumi:"tosMask"`
-	// Enable negated TOS match. Valid values: `enable`, `disable`.
-	TosNegate pulumi.StringOutput `pulumi:"tosNegate"`
-	// Traffic shaper to apply to traffic forwarded by the firewall policy.
-	TrafficShaper pulumi.StringOutput `pulumi:"trafficShaper"`
-	// Traffic shaper to apply to response traffic received by the firewall policy.
-	TrafficShaperReverse pulumi.StringOutput `pulumi:"trafficShaperReverse"`
-	// IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `urlCategory` block is documented below.
-	UrlCategories FirewallShapingPolicyUrlCategoryArrayOutput `pulumi:"urlCategories"`
-	// Apply this traffic shaping policy to individual users that have authenticated with the FortiGate. The structure of `users` block is documented below.
-	Users FirewallShapingPolicyUserArrayOutput `pulumi:"users"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	InternetServiceSrcCustoms      FirewallShapingPolicyInternetServiceSrcCustomArrayOutput      `pulumi:"internetServiceSrcCustoms"`
+	InternetServiceSrcGroups       FirewallShapingPolicyInternetServiceSrcGroupArrayOutput       `pulumi:"internetServiceSrcGroups"`
+	InternetServiceSrcIds          FirewallShapingPolicyInternetServiceSrcIdArrayOutput          `pulumi:"internetServiceSrcIds"`
+	InternetServiceSrcNames        FirewallShapingPolicyInternetServiceSrcNameArrayOutput        `pulumi:"internetServiceSrcNames"`
+	IpVersion                      pulumi.StringOutput                                           `pulumi:"ipVersion"`
+	Name                           pulumi.StringOutput                                           `pulumi:"name"`
+	PerIpShaper                    pulumi.StringOutput                                           `pulumi:"perIpShaper"`
+	Schedule                       pulumi.StringOutput                                           `pulumi:"schedule"`
+	Services                       FirewallShapingPolicyServiceArrayOutput                       `pulumi:"services"`
+	Srcaddr6s                      FirewallShapingPolicySrcaddr6ArrayOutput                      `pulumi:"srcaddr6s"`
+	Srcaddrs                       FirewallShapingPolicySrcaddrArrayOutput                       `pulumi:"srcaddrs"`
+	Srcintfs                       FirewallShapingPolicySrcintfArrayOutput                       `pulumi:"srcintfs"`
+	Status                         pulumi.StringOutput                                           `pulumi:"status"`
+	Tos                            pulumi.StringOutput                                           `pulumi:"tos"`
+	TosMask                        pulumi.StringOutput                                           `pulumi:"tosMask"`
+	TosNegate                      pulumi.StringOutput                                           `pulumi:"tosNegate"`
+	TrafficShaper                  pulumi.StringOutput                                           `pulumi:"trafficShaper"`
+	TrafficShaperReverse           pulumi.StringOutput                                           `pulumi:"trafficShaperReverse"`
+	UrlCategories                  FirewallShapingPolicyUrlCategoryArrayOutput                   `pulumi:"urlCategories"`
+	Users                          FirewallShapingPolicyUserArrayOutput                          `pulumi:"users"`
+	Uuid                           pulumi.StringOutput                                           `pulumi:"uuid"`
+	Vdomparam                      pulumi.StringPtrOutput                                        `pulumi:"vdomparam"`
 }
 
 // NewFirewallShapingPolicy registers a new resource with the given unique name, arguments, and options.
@@ -219,185 +103,99 @@ func GetFirewallShapingPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallShapingPolicy resources.
 type firewallShapingPolicyState struct {
-	// IDs of one or more application categories that this shaper applies application control traffic shaping to. The structure of `appCategory` block is documented below.
-	AppCategories []FirewallShapingPolicyAppCategory `pulumi:"appCategories"`
-	// One or more application group names. The structure of `appGroup` block is documented below.
-	AppGroups []FirewallShapingPolicyAppGroup `pulumi:"appGroups"`
-	// IDs of one or more applications that this shaper applies application control traffic shaping to. The structure of `application` block is documented below.
-	Applications []FirewallShapingPolicyApplication `pulumi:"applications"`
-	// Traffic class ID.
-	ClassId *int `pulumi:"classId"`
-	// Comments.
-	Comment *string `pulumi:"comment"`
-	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
-	DiffservForward *string `pulumi:"diffservForward"`
-	// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
-	DiffservReverse *string `pulumi:"diffservReverse"`
-	// Change packet's DiffServ to this value.
-	DiffservcodeForward *string `pulumi:"diffservcodeForward"`
-	// Change packet's reverse (reply) DiffServ to this value.
-	DiffservcodeRev *string `pulumi:"diffservcodeRev"`
-	// IPv6 destination address and address group names. The structure of `dstaddr6` block is documented below.
-	Dstaddr6s []FirewallShapingPolicyDstaddr6 `pulumi:"dstaddr6s"`
-	// IPv4 destination address and address group names. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallShapingPolicyDstaddr `pulumi:"dstaddrs"`
-	// One or more outgoing (egress) interfaces. The structure of `dstintf` block is documented below.
-	Dstintfs []FirewallShapingPolicyDstintf `pulumi:"dstintfs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Shaping policy ID.
-	Fosid *int `pulumi:"fosid"`
-	// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
-	Groups []FirewallShapingPolicyGroup `pulumi:"groups"`
-	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.  Valid values: `enable`, `disable`.
-	InternetService *string `pulumi:"internetService"`
-	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
-	InternetServiceCustomGroups []FirewallShapingPolicyInternetServiceCustomGroup `pulumi:"internetServiceCustomGroups"`
-	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
-	InternetServiceCustoms []FirewallShapingPolicyInternetServiceCustom `pulumi:"internetServiceCustoms"`
-	// Internet Service group name. The structure of `internetServiceGroup` block is documented below.
-	InternetServiceGroups []FirewallShapingPolicyInternetServiceGroup `pulumi:"internetServiceGroups"`
-	// Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds []FirewallShapingPolicyInternetServiceId `pulumi:"internetServiceIds"`
-	// Internet Service ID. The structure of `internetServiceName` block is documented below.
-	InternetServiceNames []FirewallShapingPolicyInternetServiceName `pulumi:"internetServiceNames"`
-	// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used.  Valid values: `enable`, `disable`.
-	InternetServiceSrc *string `pulumi:"internetServiceSrc"`
-	// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
+	AppCategories                  []FirewallShapingPolicyAppCategory                   `pulumi:"appCategories"`
+	AppGroups                      []FirewallShapingPolicyAppGroup                      `pulumi:"appGroups"`
+	Applications                   []FirewallShapingPolicyApplication                   `pulumi:"applications"`
+	ClassId                        *int                                                 `pulumi:"classId"`
+	Comment                        *string                                              `pulumi:"comment"`
+	DiffservForward                *string                                              `pulumi:"diffservForward"`
+	DiffservReverse                *string                                              `pulumi:"diffservReverse"`
+	DiffservcodeForward            *string                                              `pulumi:"diffservcodeForward"`
+	DiffservcodeRev                *string                                              `pulumi:"diffservcodeRev"`
+	Dstaddr6s                      []FirewallShapingPolicyDstaddr6                      `pulumi:"dstaddr6s"`
+	Dstaddrs                       []FirewallShapingPolicyDstaddr                       `pulumi:"dstaddrs"`
+	Dstintfs                       []FirewallShapingPolicyDstintf                       `pulumi:"dstintfs"`
+	DynamicSortSubtable            *string                                              `pulumi:"dynamicSortSubtable"`
+	Fosid                          *int                                                 `pulumi:"fosid"`
+	Groups                         []FirewallShapingPolicyGroup                         `pulumi:"groups"`
+	InternetService                *string                                              `pulumi:"internetService"`
+	InternetServiceCustomGroups    []FirewallShapingPolicyInternetServiceCustomGroup    `pulumi:"internetServiceCustomGroups"`
+	InternetServiceCustoms         []FirewallShapingPolicyInternetServiceCustom         `pulumi:"internetServiceCustoms"`
+	InternetServiceGroups          []FirewallShapingPolicyInternetServiceGroup          `pulumi:"internetServiceGroups"`
+	InternetServiceIds             []FirewallShapingPolicyInternetServiceId             `pulumi:"internetServiceIds"`
+	InternetServiceNames           []FirewallShapingPolicyInternetServiceName           `pulumi:"internetServiceNames"`
+	InternetServiceSrc             *string                                              `pulumi:"internetServiceSrc"`
 	InternetServiceSrcCustomGroups []FirewallShapingPolicyInternetServiceSrcCustomGroup `pulumi:"internetServiceSrcCustomGroups"`
-	// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
-	InternetServiceSrcCustoms []FirewallShapingPolicyInternetServiceSrcCustom `pulumi:"internetServiceSrcCustoms"`
-	// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
-	InternetServiceSrcGroups []FirewallShapingPolicyInternetServiceSrcGroup `pulumi:"internetServiceSrcGroups"`
-	// Internet Service source ID. The structure of `internetServiceSrcId` block is documented below.
-	InternetServiceSrcIds []FirewallShapingPolicyInternetServiceSrcId `pulumi:"internetServiceSrcIds"`
-	// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
-	InternetServiceSrcNames []FirewallShapingPolicyInternetServiceSrcName `pulumi:"internetServiceSrcNames"`
-	// Apply this traffic shaping policy to IPv4 or IPv6 traffic. Valid values: `4`, `6`.
-	IpVersion *string `pulumi:"ipVersion"`
-	// Interface name.
-	Name *string `pulumi:"name"`
-	// Per-IP traffic shaper to apply with this policy.
-	PerIpShaper *string `pulumi:"perIpShaper"`
-	// Schedule name.
-	Schedule *string `pulumi:"schedule"`
-	// Service and service group names. The structure of `service` block is documented below.
-	Services []FirewallShapingPolicyService `pulumi:"services"`
-	// IPv6 source address and address group names. The structure of `srcaddr6` block is documented below.
-	Srcaddr6s []FirewallShapingPolicySrcaddr6 `pulumi:"srcaddr6s"`
-	// IPv4 source address and address group names. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallShapingPolicySrcaddr `pulumi:"srcaddrs"`
-	// One or more incoming (ingress) interfaces. The structure of `srcintf` block is documented below.
-	Srcintfs []FirewallShapingPolicySrcintf `pulumi:"srcintfs"`
-	// Enable/disable this traffic shaping policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// ToS (Type of Service) value used for comparison.
-	Tos *string `pulumi:"tos"`
-	// Non-zero bit positions are used for comparison while zero bit positions are ignored.
-	TosMask *string `pulumi:"tosMask"`
-	// Enable negated TOS match. Valid values: `enable`, `disable`.
-	TosNegate *string `pulumi:"tosNegate"`
-	// Traffic shaper to apply to traffic forwarded by the firewall policy.
-	TrafficShaper *string `pulumi:"trafficShaper"`
-	// Traffic shaper to apply to response traffic received by the firewall policy.
-	TrafficShaperReverse *string `pulumi:"trafficShaperReverse"`
-	// IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `urlCategory` block is documented below.
-	UrlCategories []FirewallShapingPolicyUrlCategory `pulumi:"urlCategories"`
-	// Apply this traffic shaping policy to individual users that have authenticated with the FortiGate. The structure of `users` block is documented below.
-	Users []FirewallShapingPolicyUser `pulumi:"users"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	InternetServiceSrcCustoms      []FirewallShapingPolicyInternetServiceSrcCustom      `pulumi:"internetServiceSrcCustoms"`
+	InternetServiceSrcGroups       []FirewallShapingPolicyInternetServiceSrcGroup       `pulumi:"internetServiceSrcGroups"`
+	InternetServiceSrcIds          []FirewallShapingPolicyInternetServiceSrcId          `pulumi:"internetServiceSrcIds"`
+	InternetServiceSrcNames        []FirewallShapingPolicyInternetServiceSrcName        `pulumi:"internetServiceSrcNames"`
+	IpVersion                      *string                                              `pulumi:"ipVersion"`
+	Name                           *string                                              `pulumi:"name"`
+	PerIpShaper                    *string                                              `pulumi:"perIpShaper"`
+	Schedule                       *string                                              `pulumi:"schedule"`
+	Services                       []FirewallShapingPolicyService                       `pulumi:"services"`
+	Srcaddr6s                      []FirewallShapingPolicySrcaddr6                      `pulumi:"srcaddr6s"`
+	Srcaddrs                       []FirewallShapingPolicySrcaddr                       `pulumi:"srcaddrs"`
+	Srcintfs                       []FirewallShapingPolicySrcintf                       `pulumi:"srcintfs"`
+	Status                         *string                                              `pulumi:"status"`
+	Tos                            *string                                              `pulumi:"tos"`
+	TosMask                        *string                                              `pulumi:"tosMask"`
+	TosNegate                      *string                                              `pulumi:"tosNegate"`
+	TrafficShaper                  *string                                              `pulumi:"trafficShaper"`
+	TrafficShaperReverse           *string                                              `pulumi:"trafficShaperReverse"`
+	UrlCategories                  []FirewallShapingPolicyUrlCategory                   `pulumi:"urlCategories"`
+	Users                          []FirewallShapingPolicyUser                          `pulumi:"users"`
+	Uuid                           *string                                              `pulumi:"uuid"`
+	Vdomparam                      *string                                              `pulumi:"vdomparam"`
 }
 
 type FirewallShapingPolicyState struct {
-	// IDs of one or more application categories that this shaper applies application control traffic shaping to. The structure of `appCategory` block is documented below.
-	AppCategories FirewallShapingPolicyAppCategoryArrayInput
-	// One or more application group names. The structure of `appGroup` block is documented below.
-	AppGroups FirewallShapingPolicyAppGroupArrayInput
-	// IDs of one or more applications that this shaper applies application control traffic shaping to. The structure of `application` block is documented below.
-	Applications FirewallShapingPolicyApplicationArrayInput
-	// Traffic class ID.
-	ClassId pulumi.IntPtrInput
-	// Comments.
-	Comment pulumi.StringPtrInput
-	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
-	DiffservForward pulumi.StringPtrInput
-	// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
-	DiffservReverse pulumi.StringPtrInput
-	// Change packet's DiffServ to this value.
-	DiffservcodeForward pulumi.StringPtrInput
-	// Change packet's reverse (reply) DiffServ to this value.
-	DiffservcodeRev pulumi.StringPtrInput
-	// IPv6 destination address and address group names. The structure of `dstaddr6` block is documented below.
-	Dstaddr6s FirewallShapingPolicyDstaddr6ArrayInput
-	// IPv4 destination address and address group names. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallShapingPolicyDstaddrArrayInput
-	// One or more outgoing (egress) interfaces. The structure of `dstintf` block is documented below.
-	Dstintfs FirewallShapingPolicyDstintfArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Shaping policy ID.
-	Fosid pulumi.IntPtrInput
-	// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
-	Groups FirewallShapingPolicyGroupArrayInput
-	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.  Valid values: `enable`, `disable`.
-	InternetService pulumi.StringPtrInput
-	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
-	InternetServiceCustomGroups FirewallShapingPolicyInternetServiceCustomGroupArrayInput
-	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
-	InternetServiceCustoms FirewallShapingPolicyInternetServiceCustomArrayInput
-	// Internet Service group name. The structure of `internetServiceGroup` block is documented below.
-	InternetServiceGroups FirewallShapingPolicyInternetServiceGroupArrayInput
-	// Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds FirewallShapingPolicyInternetServiceIdArrayInput
-	// Internet Service ID. The structure of `internetServiceName` block is documented below.
-	InternetServiceNames FirewallShapingPolicyInternetServiceNameArrayInput
-	// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used.  Valid values: `enable`, `disable`.
-	InternetServiceSrc pulumi.StringPtrInput
-	// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
+	AppCategories                  FirewallShapingPolicyAppCategoryArrayInput
+	AppGroups                      FirewallShapingPolicyAppGroupArrayInput
+	Applications                   FirewallShapingPolicyApplicationArrayInput
+	ClassId                        pulumi.IntPtrInput
+	Comment                        pulumi.StringPtrInput
+	DiffservForward                pulumi.StringPtrInput
+	DiffservReverse                pulumi.StringPtrInput
+	DiffservcodeForward            pulumi.StringPtrInput
+	DiffservcodeRev                pulumi.StringPtrInput
+	Dstaddr6s                      FirewallShapingPolicyDstaddr6ArrayInput
+	Dstaddrs                       FirewallShapingPolicyDstaddrArrayInput
+	Dstintfs                       FirewallShapingPolicyDstintfArrayInput
+	DynamicSortSubtable            pulumi.StringPtrInput
+	Fosid                          pulumi.IntPtrInput
+	Groups                         FirewallShapingPolicyGroupArrayInput
+	InternetService                pulumi.StringPtrInput
+	InternetServiceCustomGroups    FirewallShapingPolicyInternetServiceCustomGroupArrayInput
+	InternetServiceCustoms         FirewallShapingPolicyInternetServiceCustomArrayInput
+	InternetServiceGroups          FirewallShapingPolicyInternetServiceGroupArrayInput
+	InternetServiceIds             FirewallShapingPolicyInternetServiceIdArrayInput
+	InternetServiceNames           FirewallShapingPolicyInternetServiceNameArrayInput
+	InternetServiceSrc             pulumi.StringPtrInput
 	InternetServiceSrcCustomGroups FirewallShapingPolicyInternetServiceSrcCustomGroupArrayInput
-	// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
-	InternetServiceSrcCustoms FirewallShapingPolicyInternetServiceSrcCustomArrayInput
-	// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
-	InternetServiceSrcGroups FirewallShapingPolicyInternetServiceSrcGroupArrayInput
-	// Internet Service source ID. The structure of `internetServiceSrcId` block is documented below.
-	InternetServiceSrcIds FirewallShapingPolicyInternetServiceSrcIdArrayInput
-	// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
-	InternetServiceSrcNames FirewallShapingPolicyInternetServiceSrcNameArrayInput
-	// Apply this traffic shaping policy to IPv4 or IPv6 traffic. Valid values: `4`, `6`.
-	IpVersion pulumi.StringPtrInput
-	// Interface name.
-	Name pulumi.StringPtrInput
-	// Per-IP traffic shaper to apply with this policy.
-	PerIpShaper pulumi.StringPtrInput
-	// Schedule name.
-	Schedule pulumi.StringPtrInput
-	// Service and service group names. The structure of `service` block is documented below.
-	Services FirewallShapingPolicyServiceArrayInput
-	// IPv6 source address and address group names. The structure of `srcaddr6` block is documented below.
-	Srcaddr6s FirewallShapingPolicySrcaddr6ArrayInput
-	// IPv4 source address and address group names. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallShapingPolicySrcaddrArrayInput
-	// One or more incoming (ingress) interfaces. The structure of `srcintf` block is documented below.
-	Srcintfs FirewallShapingPolicySrcintfArrayInput
-	// Enable/disable this traffic shaping policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// ToS (Type of Service) value used for comparison.
-	Tos pulumi.StringPtrInput
-	// Non-zero bit positions are used for comparison while zero bit positions are ignored.
-	TosMask pulumi.StringPtrInput
-	// Enable negated TOS match. Valid values: `enable`, `disable`.
-	TosNegate pulumi.StringPtrInput
-	// Traffic shaper to apply to traffic forwarded by the firewall policy.
-	TrafficShaper pulumi.StringPtrInput
-	// Traffic shaper to apply to response traffic received by the firewall policy.
-	TrafficShaperReverse pulumi.StringPtrInput
-	// IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `urlCategory` block is documented below.
-	UrlCategories FirewallShapingPolicyUrlCategoryArrayInput
-	// Apply this traffic shaping policy to individual users that have authenticated with the FortiGate. The structure of `users` block is documented below.
-	Users FirewallShapingPolicyUserArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	InternetServiceSrcCustoms      FirewallShapingPolicyInternetServiceSrcCustomArrayInput
+	InternetServiceSrcGroups       FirewallShapingPolicyInternetServiceSrcGroupArrayInput
+	InternetServiceSrcIds          FirewallShapingPolicyInternetServiceSrcIdArrayInput
+	InternetServiceSrcNames        FirewallShapingPolicyInternetServiceSrcNameArrayInput
+	IpVersion                      pulumi.StringPtrInput
+	Name                           pulumi.StringPtrInput
+	PerIpShaper                    pulumi.StringPtrInput
+	Schedule                       pulumi.StringPtrInput
+	Services                       FirewallShapingPolicyServiceArrayInput
+	Srcaddr6s                      FirewallShapingPolicySrcaddr6ArrayInput
+	Srcaddrs                       FirewallShapingPolicySrcaddrArrayInput
+	Srcintfs                       FirewallShapingPolicySrcintfArrayInput
+	Status                         pulumi.StringPtrInput
+	Tos                            pulumi.StringPtrInput
+	TosMask                        pulumi.StringPtrInput
+	TosNegate                      pulumi.StringPtrInput
+	TrafficShaper                  pulumi.StringPtrInput
+	TrafficShaperReverse           pulumi.StringPtrInput
+	UrlCategories                  FirewallShapingPolicyUrlCategoryArrayInput
+	Users                          FirewallShapingPolicyUserArrayInput
+	Uuid                           pulumi.StringPtrInput
+	Vdomparam                      pulumi.StringPtrInput
 }
 
 func (FirewallShapingPolicyState) ElementType() reflect.Type {
@@ -405,186 +203,100 @@ func (FirewallShapingPolicyState) ElementType() reflect.Type {
 }
 
 type firewallShapingPolicyArgs struct {
-	// IDs of one or more application categories that this shaper applies application control traffic shaping to. The structure of `appCategory` block is documented below.
-	AppCategories []FirewallShapingPolicyAppCategory `pulumi:"appCategories"`
-	// One or more application group names. The structure of `appGroup` block is documented below.
-	AppGroups []FirewallShapingPolicyAppGroup `pulumi:"appGroups"`
-	// IDs of one or more applications that this shaper applies application control traffic shaping to. The structure of `application` block is documented below.
-	Applications []FirewallShapingPolicyApplication `pulumi:"applications"`
-	// Traffic class ID.
-	ClassId *int `pulumi:"classId"`
-	// Comments.
-	Comment *string `pulumi:"comment"`
-	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
-	DiffservForward *string `pulumi:"diffservForward"`
-	// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
-	DiffservReverse *string `pulumi:"diffservReverse"`
-	// Change packet's DiffServ to this value.
-	DiffservcodeForward *string `pulumi:"diffservcodeForward"`
-	// Change packet's reverse (reply) DiffServ to this value.
-	DiffservcodeRev *string `pulumi:"diffservcodeRev"`
-	// IPv6 destination address and address group names. The structure of `dstaddr6` block is documented below.
-	Dstaddr6s []FirewallShapingPolicyDstaddr6 `pulumi:"dstaddr6s"`
-	// IPv4 destination address and address group names. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallShapingPolicyDstaddr `pulumi:"dstaddrs"`
-	// One or more outgoing (egress) interfaces. The structure of `dstintf` block is documented below.
-	Dstintfs []FirewallShapingPolicyDstintf `pulumi:"dstintfs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Shaping policy ID.
-	Fosid *int `pulumi:"fosid"`
-	// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
-	Groups []FirewallShapingPolicyGroup `pulumi:"groups"`
-	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.  Valid values: `enable`, `disable`.
-	InternetService *string `pulumi:"internetService"`
-	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
-	InternetServiceCustomGroups []FirewallShapingPolicyInternetServiceCustomGroup `pulumi:"internetServiceCustomGroups"`
-	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
-	InternetServiceCustoms []FirewallShapingPolicyInternetServiceCustom `pulumi:"internetServiceCustoms"`
-	// Internet Service group name. The structure of `internetServiceGroup` block is documented below.
-	InternetServiceGroups []FirewallShapingPolicyInternetServiceGroup `pulumi:"internetServiceGroups"`
-	// Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds []FirewallShapingPolicyInternetServiceId `pulumi:"internetServiceIds"`
-	// Internet Service ID. The structure of `internetServiceName` block is documented below.
-	InternetServiceNames []FirewallShapingPolicyInternetServiceName `pulumi:"internetServiceNames"`
-	// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used.  Valid values: `enable`, `disable`.
-	InternetServiceSrc *string `pulumi:"internetServiceSrc"`
-	// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
+	AppCategories                  []FirewallShapingPolicyAppCategory                   `pulumi:"appCategories"`
+	AppGroups                      []FirewallShapingPolicyAppGroup                      `pulumi:"appGroups"`
+	Applications                   []FirewallShapingPolicyApplication                   `pulumi:"applications"`
+	ClassId                        *int                                                 `pulumi:"classId"`
+	Comment                        *string                                              `pulumi:"comment"`
+	DiffservForward                *string                                              `pulumi:"diffservForward"`
+	DiffservReverse                *string                                              `pulumi:"diffservReverse"`
+	DiffservcodeForward            *string                                              `pulumi:"diffservcodeForward"`
+	DiffservcodeRev                *string                                              `pulumi:"diffservcodeRev"`
+	Dstaddr6s                      []FirewallShapingPolicyDstaddr6                      `pulumi:"dstaddr6s"`
+	Dstaddrs                       []FirewallShapingPolicyDstaddr                       `pulumi:"dstaddrs"`
+	Dstintfs                       []FirewallShapingPolicyDstintf                       `pulumi:"dstintfs"`
+	DynamicSortSubtable            *string                                              `pulumi:"dynamicSortSubtable"`
+	Fosid                          *int                                                 `pulumi:"fosid"`
+	Groups                         []FirewallShapingPolicyGroup                         `pulumi:"groups"`
+	InternetService                *string                                              `pulumi:"internetService"`
+	InternetServiceCustomGroups    []FirewallShapingPolicyInternetServiceCustomGroup    `pulumi:"internetServiceCustomGroups"`
+	InternetServiceCustoms         []FirewallShapingPolicyInternetServiceCustom         `pulumi:"internetServiceCustoms"`
+	InternetServiceGroups          []FirewallShapingPolicyInternetServiceGroup          `pulumi:"internetServiceGroups"`
+	InternetServiceIds             []FirewallShapingPolicyInternetServiceId             `pulumi:"internetServiceIds"`
+	InternetServiceNames           []FirewallShapingPolicyInternetServiceName           `pulumi:"internetServiceNames"`
+	InternetServiceSrc             *string                                              `pulumi:"internetServiceSrc"`
 	InternetServiceSrcCustomGroups []FirewallShapingPolicyInternetServiceSrcCustomGroup `pulumi:"internetServiceSrcCustomGroups"`
-	// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
-	InternetServiceSrcCustoms []FirewallShapingPolicyInternetServiceSrcCustom `pulumi:"internetServiceSrcCustoms"`
-	// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
-	InternetServiceSrcGroups []FirewallShapingPolicyInternetServiceSrcGroup `pulumi:"internetServiceSrcGroups"`
-	// Internet Service source ID. The structure of `internetServiceSrcId` block is documented below.
-	InternetServiceSrcIds []FirewallShapingPolicyInternetServiceSrcId `pulumi:"internetServiceSrcIds"`
-	// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
-	InternetServiceSrcNames []FirewallShapingPolicyInternetServiceSrcName `pulumi:"internetServiceSrcNames"`
-	// Apply this traffic shaping policy to IPv4 or IPv6 traffic. Valid values: `4`, `6`.
-	IpVersion *string `pulumi:"ipVersion"`
-	// Interface name.
-	Name *string `pulumi:"name"`
-	// Per-IP traffic shaper to apply with this policy.
-	PerIpShaper *string `pulumi:"perIpShaper"`
-	// Schedule name.
-	Schedule *string `pulumi:"schedule"`
-	// Service and service group names. The structure of `service` block is documented below.
-	Services []FirewallShapingPolicyService `pulumi:"services"`
-	// IPv6 source address and address group names. The structure of `srcaddr6` block is documented below.
-	Srcaddr6s []FirewallShapingPolicySrcaddr6 `pulumi:"srcaddr6s"`
-	// IPv4 source address and address group names. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallShapingPolicySrcaddr `pulumi:"srcaddrs"`
-	// One or more incoming (ingress) interfaces. The structure of `srcintf` block is documented below.
-	Srcintfs []FirewallShapingPolicySrcintf `pulumi:"srcintfs"`
-	// Enable/disable this traffic shaping policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// ToS (Type of Service) value used for comparison.
-	Tos *string `pulumi:"tos"`
-	// Non-zero bit positions are used for comparison while zero bit positions are ignored.
-	TosMask *string `pulumi:"tosMask"`
-	// Enable negated TOS match. Valid values: `enable`, `disable`.
-	TosNegate *string `pulumi:"tosNegate"`
-	// Traffic shaper to apply to traffic forwarded by the firewall policy.
-	TrafficShaper *string `pulumi:"trafficShaper"`
-	// Traffic shaper to apply to response traffic received by the firewall policy.
-	TrafficShaperReverse *string `pulumi:"trafficShaperReverse"`
-	// IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `urlCategory` block is documented below.
-	UrlCategories []FirewallShapingPolicyUrlCategory `pulumi:"urlCategories"`
-	// Apply this traffic shaping policy to individual users that have authenticated with the FortiGate. The structure of `users` block is documented below.
-	Users []FirewallShapingPolicyUser `pulumi:"users"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	InternetServiceSrcCustoms      []FirewallShapingPolicyInternetServiceSrcCustom      `pulumi:"internetServiceSrcCustoms"`
+	InternetServiceSrcGroups       []FirewallShapingPolicyInternetServiceSrcGroup       `pulumi:"internetServiceSrcGroups"`
+	InternetServiceSrcIds          []FirewallShapingPolicyInternetServiceSrcId          `pulumi:"internetServiceSrcIds"`
+	InternetServiceSrcNames        []FirewallShapingPolicyInternetServiceSrcName        `pulumi:"internetServiceSrcNames"`
+	IpVersion                      *string                                              `pulumi:"ipVersion"`
+	Name                           *string                                              `pulumi:"name"`
+	PerIpShaper                    *string                                              `pulumi:"perIpShaper"`
+	Schedule                       *string                                              `pulumi:"schedule"`
+	Services                       []FirewallShapingPolicyService                       `pulumi:"services"`
+	Srcaddr6s                      []FirewallShapingPolicySrcaddr6                      `pulumi:"srcaddr6s"`
+	Srcaddrs                       []FirewallShapingPolicySrcaddr                       `pulumi:"srcaddrs"`
+	Srcintfs                       []FirewallShapingPolicySrcintf                       `pulumi:"srcintfs"`
+	Status                         *string                                              `pulumi:"status"`
+	Tos                            *string                                              `pulumi:"tos"`
+	TosMask                        *string                                              `pulumi:"tosMask"`
+	TosNegate                      *string                                              `pulumi:"tosNegate"`
+	TrafficShaper                  *string                                              `pulumi:"trafficShaper"`
+	TrafficShaperReverse           *string                                              `pulumi:"trafficShaperReverse"`
+	UrlCategories                  []FirewallShapingPolicyUrlCategory                   `pulumi:"urlCategories"`
+	Users                          []FirewallShapingPolicyUser                          `pulumi:"users"`
+	Uuid                           *string                                              `pulumi:"uuid"`
+	Vdomparam                      *string                                              `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallShapingPolicy resource.
 type FirewallShapingPolicyArgs struct {
-	// IDs of one or more application categories that this shaper applies application control traffic shaping to. The structure of `appCategory` block is documented below.
-	AppCategories FirewallShapingPolicyAppCategoryArrayInput
-	// One or more application group names. The structure of `appGroup` block is documented below.
-	AppGroups FirewallShapingPolicyAppGroupArrayInput
-	// IDs of one or more applications that this shaper applies application control traffic shaping to. The structure of `application` block is documented below.
-	Applications FirewallShapingPolicyApplicationArrayInput
-	// Traffic class ID.
-	ClassId pulumi.IntPtrInput
-	// Comments.
-	Comment pulumi.StringPtrInput
-	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
-	DiffservForward pulumi.StringPtrInput
-	// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
-	DiffservReverse pulumi.StringPtrInput
-	// Change packet's DiffServ to this value.
-	DiffservcodeForward pulumi.StringPtrInput
-	// Change packet's reverse (reply) DiffServ to this value.
-	DiffservcodeRev pulumi.StringPtrInput
-	// IPv6 destination address and address group names. The structure of `dstaddr6` block is documented below.
-	Dstaddr6s FirewallShapingPolicyDstaddr6ArrayInput
-	// IPv4 destination address and address group names. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallShapingPolicyDstaddrArrayInput
-	// One or more outgoing (egress) interfaces. The structure of `dstintf` block is documented below.
-	Dstintfs FirewallShapingPolicyDstintfArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Shaping policy ID.
-	Fosid pulumi.IntPtrInput
-	// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
-	Groups FirewallShapingPolicyGroupArrayInput
-	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.  Valid values: `enable`, `disable`.
-	InternetService pulumi.StringPtrInput
-	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
-	InternetServiceCustomGroups FirewallShapingPolicyInternetServiceCustomGroupArrayInput
-	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
-	InternetServiceCustoms FirewallShapingPolicyInternetServiceCustomArrayInput
-	// Internet Service group name. The structure of `internetServiceGroup` block is documented below.
-	InternetServiceGroups FirewallShapingPolicyInternetServiceGroupArrayInput
-	// Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds FirewallShapingPolicyInternetServiceIdArrayInput
-	// Internet Service ID. The structure of `internetServiceName` block is documented below.
-	InternetServiceNames FirewallShapingPolicyInternetServiceNameArrayInput
-	// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used.  Valid values: `enable`, `disable`.
-	InternetServiceSrc pulumi.StringPtrInput
-	// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
+	AppCategories                  FirewallShapingPolicyAppCategoryArrayInput
+	AppGroups                      FirewallShapingPolicyAppGroupArrayInput
+	Applications                   FirewallShapingPolicyApplicationArrayInput
+	ClassId                        pulumi.IntPtrInput
+	Comment                        pulumi.StringPtrInput
+	DiffservForward                pulumi.StringPtrInput
+	DiffservReverse                pulumi.StringPtrInput
+	DiffservcodeForward            pulumi.StringPtrInput
+	DiffservcodeRev                pulumi.StringPtrInput
+	Dstaddr6s                      FirewallShapingPolicyDstaddr6ArrayInput
+	Dstaddrs                       FirewallShapingPolicyDstaddrArrayInput
+	Dstintfs                       FirewallShapingPolicyDstintfArrayInput
+	DynamicSortSubtable            pulumi.StringPtrInput
+	Fosid                          pulumi.IntPtrInput
+	Groups                         FirewallShapingPolicyGroupArrayInput
+	InternetService                pulumi.StringPtrInput
+	InternetServiceCustomGroups    FirewallShapingPolicyInternetServiceCustomGroupArrayInput
+	InternetServiceCustoms         FirewallShapingPolicyInternetServiceCustomArrayInput
+	InternetServiceGroups          FirewallShapingPolicyInternetServiceGroupArrayInput
+	InternetServiceIds             FirewallShapingPolicyInternetServiceIdArrayInput
+	InternetServiceNames           FirewallShapingPolicyInternetServiceNameArrayInput
+	InternetServiceSrc             pulumi.StringPtrInput
 	InternetServiceSrcCustomGroups FirewallShapingPolicyInternetServiceSrcCustomGroupArrayInput
-	// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
-	InternetServiceSrcCustoms FirewallShapingPolicyInternetServiceSrcCustomArrayInput
-	// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
-	InternetServiceSrcGroups FirewallShapingPolicyInternetServiceSrcGroupArrayInput
-	// Internet Service source ID. The structure of `internetServiceSrcId` block is documented below.
-	InternetServiceSrcIds FirewallShapingPolicyInternetServiceSrcIdArrayInput
-	// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
-	InternetServiceSrcNames FirewallShapingPolicyInternetServiceSrcNameArrayInput
-	// Apply this traffic shaping policy to IPv4 or IPv6 traffic. Valid values: `4`, `6`.
-	IpVersion pulumi.StringPtrInput
-	// Interface name.
-	Name pulumi.StringPtrInput
-	// Per-IP traffic shaper to apply with this policy.
-	PerIpShaper pulumi.StringPtrInput
-	// Schedule name.
-	Schedule pulumi.StringPtrInput
-	// Service and service group names. The structure of `service` block is documented below.
-	Services FirewallShapingPolicyServiceArrayInput
-	// IPv6 source address and address group names. The structure of `srcaddr6` block is documented below.
-	Srcaddr6s FirewallShapingPolicySrcaddr6ArrayInput
-	// IPv4 source address and address group names. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallShapingPolicySrcaddrArrayInput
-	// One or more incoming (ingress) interfaces. The structure of `srcintf` block is documented below.
-	Srcintfs FirewallShapingPolicySrcintfArrayInput
-	// Enable/disable this traffic shaping policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// ToS (Type of Service) value used for comparison.
-	Tos pulumi.StringPtrInput
-	// Non-zero bit positions are used for comparison while zero bit positions are ignored.
-	TosMask pulumi.StringPtrInput
-	// Enable negated TOS match. Valid values: `enable`, `disable`.
-	TosNegate pulumi.StringPtrInput
-	// Traffic shaper to apply to traffic forwarded by the firewall policy.
-	TrafficShaper pulumi.StringPtrInput
-	// Traffic shaper to apply to response traffic received by the firewall policy.
-	TrafficShaperReverse pulumi.StringPtrInput
-	// IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `urlCategory` block is documented below.
-	UrlCategories FirewallShapingPolicyUrlCategoryArrayInput
-	// Apply this traffic shaping policy to individual users that have authenticated with the FortiGate. The structure of `users` block is documented below.
-	Users FirewallShapingPolicyUserArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	InternetServiceSrcCustoms      FirewallShapingPolicyInternetServiceSrcCustomArrayInput
+	InternetServiceSrcGroups       FirewallShapingPolicyInternetServiceSrcGroupArrayInput
+	InternetServiceSrcIds          FirewallShapingPolicyInternetServiceSrcIdArrayInput
+	InternetServiceSrcNames        FirewallShapingPolicyInternetServiceSrcNameArrayInput
+	IpVersion                      pulumi.StringPtrInput
+	Name                           pulumi.StringPtrInput
+	PerIpShaper                    pulumi.StringPtrInput
+	Schedule                       pulumi.StringPtrInput
+	Services                       FirewallShapingPolicyServiceArrayInput
+	Srcaddr6s                      FirewallShapingPolicySrcaddr6ArrayInput
+	Srcaddrs                       FirewallShapingPolicySrcaddrArrayInput
+	Srcintfs                       FirewallShapingPolicySrcintfArrayInput
+	Status                         pulumi.StringPtrInput
+	Tos                            pulumi.StringPtrInput
+	TosMask                        pulumi.StringPtrInput
+	TosNegate                      pulumi.StringPtrInput
+	TrafficShaper                  pulumi.StringPtrInput
+	TrafficShaperReverse           pulumi.StringPtrInput
+	UrlCategories                  FirewallShapingPolicyUrlCategoryArrayInput
+	Users                          FirewallShapingPolicyUserArrayInput
+	Uuid                           pulumi.StringPtrInput
+	Vdomparam                      pulumi.StringPtrInput
 }
 
 func (FirewallShapingPolicyArgs) ElementType() reflect.Type {
@@ -613,7 +325,7 @@ func (i *FirewallShapingPolicy) ToFirewallShapingPolicyOutputWithContext(ctx con
 // FirewallShapingPolicyArrayInput is an input type that accepts FirewallShapingPolicyArray and FirewallShapingPolicyArrayOutput values.
 // You can construct a concrete instance of `FirewallShapingPolicyArrayInput` via:
 //
-//          FirewallShapingPolicyArray{ FirewallShapingPolicyArgs{...} }
+//	FirewallShapingPolicyArray{ FirewallShapingPolicyArgs{...} }
 type FirewallShapingPolicyArrayInput interface {
 	pulumi.Input
 
@@ -638,7 +350,7 @@ func (i FirewallShapingPolicyArray) ToFirewallShapingPolicyArrayOutputWithContex
 // FirewallShapingPolicyMapInput is an input type that accepts FirewallShapingPolicyMap and FirewallShapingPolicyMapOutput values.
 // You can construct a concrete instance of `FirewallShapingPolicyMapInput` via:
 //
-//          FirewallShapingPolicyMap{ "key": FirewallShapingPolicyArgs{...} }
+//	FirewallShapingPolicyMap{ "key": FirewallShapingPolicyArgs{...} }
 type FirewallShapingPolicyMapInput interface {
 	pulumi.Input
 
@@ -672,6 +384,206 @@ func (o FirewallShapingPolicyOutput) ToFirewallShapingPolicyOutput() FirewallSha
 
 func (o FirewallShapingPolicyOutput) ToFirewallShapingPolicyOutputWithContext(ctx context.Context) FirewallShapingPolicyOutput {
 	return o
+}
+
+func (o FirewallShapingPolicyOutput) AppCategories() FirewallShapingPolicyAppCategoryArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyAppCategoryArrayOutput { return v.AppCategories }).(FirewallShapingPolicyAppCategoryArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) AppGroups() FirewallShapingPolicyAppGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyAppGroupArrayOutput { return v.AppGroups }).(FirewallShapingPolicyAppGroupArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Applications() FirewallShapingPolicyApplicationArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyApplicationArrayOutput { return v.Applications }).(FirewallShapingPolicyApplicationArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) ClassId() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.IntOutput { return v.ClassId }).(pulumi.IntOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallShapingPolicyOutput) DiffservForward() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.DiffservForward }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) DiffservReverse() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.DiffservReverse }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) DiffservcodeForward() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.DiffservcodeForward }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) DiffservcodeRev() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.DiffservcodeRev }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Dstaddr6s() FirewallShapingPolicyDstaddr6ArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyDstaddr6ArrayOutput { return v.Dstaddr6s }).(FirewallShapingPolicyDstaddr6ArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Dstaddrs() FirewallShapingPolicyDstaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyDstaddrArrayOutput { return v.Dstaddrs }).(FirewallShapingPolicyDstaddrArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Dstintfs() FirewallShapingPolicyDstintfArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyDstintfArrayOutput { return v.Dstintfs }).(FirewallShapingPolicyDstintfArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Groups() FirewallShapingPolicyGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyGroupArrayOutput { return v.Groups }).(FirewallShapingPolicyGroupArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) InternetService() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.InternetService }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) InternetServiceCustomGroups() FirewallShapingPolicyInternetServiceCustomGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyInternetServiceCustomGroupArrayOutput {
+		return v.InternetServiceCustomGroups
+	}).(FirewallShapingPolicyInternetServiceCustomGroupArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) InternetServiceCustoms() FirewallShapingPolicyInternetServiceCustomArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyInternetServiceCustomArrayOutput {
+		return v.InternetServiceCustoms
+	}).(FirewallShapingPolicyInternetServiceCustomArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) InternetServiceGroups() FirewallShapingPolicyInternetServiceGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyInternetServiceGroupArrayOutput {
+		return v.InternetServiceGroups
+	}).(FirewallShapingPolicyInternetServiceGroupArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) InternetServiceIds() FirewallShapingPolicyInternetServiceIdArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyInternetServiceIdArrayOutput {
+		return v.InternetServiceIds
+	}).(FirewallShapingPolicyInternetServiceIdArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) InternetServiceNames() FirewallShapingPolicyInternetServiceNameArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyInternetServiceNameArrayOutput {
+		return v.InternetServiceNames
+	}).(FirewallShapingPolicyInternetServiceNameArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) InternetServiceSrc() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.InternetServiceSrc }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) InternetServiceSrcCustomGroups() FirewallShapingPolicyInternetServiceSrcCustomGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyInternetServiceSrcCustomGroupArrayOutput {
+		return v.InternetServiceSrcCustomGroups
+	}).(FirewallShapingPolicyInternetServiceSrcCustomGroupArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) InternetServiceSrcCustoms() FirewallShapingPolicyInternetServiceSrcCustomArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyInternetServiceSrcCustomArrayOutput {
+		return v.InternetServiceSrcCustoms
+	}).(FirewallShapingPolicyInternetServiceSrcCustomArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) InternetServiceSrcGroups() FirewallShapingPolicyInternetServiceSrcGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyInternetServiceSrcGroupArrayOutput {
+		return v.InternetServiceSrcGroups
+	}).(FirewallShapingPolicyInternetServiceSrcGroupArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) InternetServiceSrcIds() FirewallShapingPolicyInternetServiceSrcIdArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyInternetServiceSrcIdArrayOutput {
+		return v.InternetServiceSrcIds
+	}).(FirewallShapingPolicyInternetServiceSrcIdArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) InternetServiceSrcNames() FirewallShapingPolicyInternetServiceSrcNameArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyInternetServiceSrcNameArrayOutput {
+		return v.InternetServiceSrcNames
+	}).(FirewallShapingPolicyInternetServiceSrcNameArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) IpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.IpVersion }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) PerIpShaper() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.PerIpShaper }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.Schedule }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Services() FirewallShapingPolicyServiceArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyServiceArrayOutput { return v.Services }).(FirewallShapingPolicyServiceArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Srcaddr6s() FirewallShapingPolicySrcaddr6ArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicySrcaddr6ArrayOutput { return v.Srcaddr6s }).(FirewallShapingPolicySrcaddr6ArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Srcaddrs() FirewallShapingPolicySrcaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicySrcaddrArrayOutput { return v.Srcaddrs }).(FirewallShapingPolicySrcaddrArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Srcintfs() FirewallShapingPolicySrcintfArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicySrcintfArrayOutput { return v.Srcintfs }).(FirewallShapingPolicySrcintfArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Tos() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.Tos }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) TosMask() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.TosMask }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) TosNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.TosNegate }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) TrafficShaper() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.TrafficShaper }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) TrafficShaperReverse() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.TrafficShaperReverse }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) UrlCategories() FirewallShapingPolicyUrlCategoryArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyUrlCategoryArrayOutput { return v.UrlCategories }).(FirewallShapingPolicyUrlCategoryArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Users() FirewallShapingPolicyUserArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) FirewallShapingPolicyUserArrayOutput { return v.Users }).(FirewallShapingPolicyUserArrayOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallShapingPolicyArrayOutput struct{ *pulumi.OutputState }

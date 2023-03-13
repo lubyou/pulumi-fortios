@@ -4,42 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure NetFlow.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemNetflow("trname", {
- *     activeFlowTimeout: 30,
- *     collectorIp: "0.0.0.0",
- *     collectorPort: 2055,
- *     inactiveFlowTimeout: 15,
- *     sourceIp: "0.0.0.0",
- *     templateTxCounter: 20,
- *     templateTxTimeout: 30,
- * });
- * ```
- *
- * ## Import
- *
- * System Netflow can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemNetflow:SystemNetflow labelname SystemNetflow
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemNetflow:SystemNetflow labelname SystemNetflow
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemNetflow extends pulumi.CustomResource {
     /**
      * Get an existing SystemNetflow resource's state with the given name, ID, and optional extra
@@ -68,45 +32,15 @@ export class SystemNetflow extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemNetflow.__pulumiType;
     }
 
-    /**
-     * Timeout to report active flows (1 - 60 min, default = 30).
-     */
     public readonly activeFlowTimeout!: pulumi.Output<number>;
-    /**
-     * Collector IP.
-     */
     public readonly collectorIp!: pulumi.Output<string>;
-    /**
-     * NetFlow collector port number.
-     */
     public readonly collectorPort!: pulumi.Output<number>;
-    /**
-     * Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
-     */
     public readonly inactiveFlowTimeout!: pulumi.Output<number>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
-    /**
-     * Source IP address for communication with the NetFlow agent.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Counter of flowset records before resending a template flowset record.
-     */
     public readonly templateTxCounter!: pulumi.Output<number>;
-    /**
-     * Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
-     */
     public readonly templateTxTimeout!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -154,45 +88,15 @@ export class SystemNetflow extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemNetflow resources.
  */
 export interface SystemNetflowState {
-    /**
-     * Timeout to report active flows (1 - 60 min, default = 30).
-     */
     activeFlowTimeout?: pulumi.Input<number>;
-    /**
-     * Collector IP.
-     */
     collectorIp?: pulumi.Input<string>;
-    /**
-     * NetFlow collector port number.
-     */
     collectorPort?: pulumi.Input<number>;
-    /**
-     * Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
-     */
     inactiveFlowTimeout?: pulumi.Input<number>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Source IP address for communication with the NetFlow agent.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Counter of flowset records before resending a template flowset record.
-     */
     templateTxCounter?: pulumi.Input<number>;
-    /**
-     * Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
-     */
     templateTxTimeout?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -200,44 +104,14 @@ export interface SystemNetflowState {
  * The set of arguments for constructing a SystemNetflow resource.
  */
 export interface SystemNetflowArgs {
-    /**
-     * Timeout to report active flows (1 - 60 min, default = 30).
-     */
     activeFlowTimeout?: pulumi.Input<number>;
-    /**
-     * Collector IP.
-     */
     collectorIp?: pulumi.Input<string>;
-    /**
-     * NetFlow collector port number.
-     */
     collectorPort?: pulumi.Input<number>;
-    /**
-     * Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
-     */
     inactiveFlowTimeout?: pulumi.Input<number>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Source IP address for communication with the NetFlow agent.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Counter of flowset records before resending a template flowset record.
-     */
     templateTxCounter?: pulumi.Input<number>;
-    /**
-     * Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
-     */
     templateTxTimeout?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemSnmpUser`.
 func GetSystemSnmpUserList(ctx *pulumi.Context, args *GetSystemSnmpUserListArgs, opts ...pulumi.InvokeOption) (*GetSystemSnmpUserListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemSnmpUserListResult
@@ -23,8 +22,7 @@ func GetSystemSnmpUserList(ctx *pulumi.Context, args *GetSystemSnmpUserListArgs,
 
 // A collection of arguments for invoking GetSystemSnmpUserList.
 type GetSystemSnmpUserListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetSystemSnmpUserListArgs struct {
 type GetSystemSnmpUserListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `SystemSnmpUser`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetSystemSnmpUserListOutput(ctx *pulumi.Context, args GetSystemSnmpUserList
 
 // A collection of arguments for invoking GetSystemSnmpUserList.
 type GetSystemSnmpUserListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetSystemSnmpUserListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSystemSnmpUserListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `SystemSnmpUser`.
 func (o GetSystemSnmpUserListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSystemSnmpUserListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

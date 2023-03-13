@@ -2,44 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure community lists.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.RouterCommunityList("trname", {
- *     rules: [{
- *         action: "deny",
- *         match: "123:234 345:456",
- *         regexp: "123:234 345:456",
- *     }],
- *     type: "standard",
- * });
- * ```
- *
- * ## Import
- *
- * Router CommunityList can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerCommunityList:RouterCommunityList labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerCommunityList:RouterCommunityList labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterCommunityList extends pulumi.CustomResource {
     /**
      * Get an existing RouterCommunityList resource's state with the given name, ID, and optional extra
@@ -68,25 +34,10 @@ export class RouterCommunityList extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterCommunityList.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Community list name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Community list rule. The structure of `rule` block is documented below.
-     */
     public readonly rules!: pulumi.Output<outputs.RouterCommunityListRule[] | undefined>;
-    /**
-     * Community list type (standard or expanded). Valid values: `standard`, `expanded`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -127,25 +78,10 @@ export class RouterCommunityList extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterCommunityList resources.
  */
 export interface RouterCommunityListState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Community list name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Community list rule. The structure of `rule` block is documented below.
-     */
     rules?: pulumi.Input<pulumi.Input<inputs.RouterCommunityListRule>[]>;
-    /**
-     * Community list type (standard or expanded). Valid values: `standard`, `expanded`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -153,24 +89,9 @@ export interface RouterCommunityListState {
  * The set of arguments for constructing a RouterCommunityList resource.
  */
 export interface RouterCommunityListArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Community list name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Community list rule. The structure of `rule` block is documented below.
-     */
     rules?: pulumi.Input<pulumi.Input<inputs.RouterCommunityListRule>[]>;
-    /**
-     * Community list type (standard or expanded). Valid values: `standard`, `expanded`.
-     */
     type: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

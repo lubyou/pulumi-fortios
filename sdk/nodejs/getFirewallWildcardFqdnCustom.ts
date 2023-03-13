@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios firewallwildcardfqdn custom
- */
 export function getFirewallWildcardFqdnCustom(args: GetFirewallWildcardFqdnCustomArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallWildcardFqdnCustomResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallWildcardFqdnCustom:GetFirewallWildcardFqdnCustom", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getFirewallWildcardFqdnCustom(args: GetFirewallWildcardFqdnCusto
  * A collection of arguments for invoking GetFirewallWildcardFqdnCustom.
  */
 export interface GetFirewallWildcardFqdnCustomArgs {
-    /**
-     * Specify the name of the desired firewallwildcardfqdn custom.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,51 +25,26 @@ export interface GetFirewallWildcardFqdnCustomArgs {
  * A collection of values returned by GetFirewallWildcardFqdnCustom.
  */
 export interface GetFirewallWildcardFqdnCustomResult {
-    /**
-     * GUI icon color.
-     */
     readonly color: number;
-    /**
-     * Comment.
-     */
     readonly comment: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Address name.
-     */
     readonly name: string;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     readonly uuid: string;
     readonly vdomparam?: string;
-    /**
-     * Enable/disable address visibility.
-     */
     readonly visibility: string;
-    /**
-     * Wildcard FQDN.
-     */
     readonly wildcardFqdn: string;
 }
-
 export function getFirewallWildcardFqdnCustomOutput(args: GetFirewallWildcardFqdnCustomOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallWildcardFqdnCustomResult> {
-    return pulumi.output(args).apply(a => getFirewallWildcardFqdnCustom(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallWildcardFqdnCustom(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetFirewallWildcardFqdnCustom.
  */
 export interface GetFirewallWildcardFqdnCustomOutputArgs {
-    /**
-     * Specify the name of the desired firewallwildcardfqdn custom.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

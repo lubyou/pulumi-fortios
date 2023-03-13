@@ -2,60 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure domain controller entries.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
- *
- * const trname1 = new fortios.UserLdap("trname1", {
- *     accountKeyFilter: `(&(userPrincipalName=%s)(!(UserAccountControl:1.2.840.113556.1.4.803:=2)))`,
- *     accountKeyProcessing: "same",
- *     cnid: "cn",
- *     dn: "EIWNCIEW",
- *     groupMemberCheck: "user-attr",
- *     groupObjectFilter: "(&(objectcategory=group)(member=*))",
- *     memberAttr: "memberOf",
- *     passwordExpiryWarning: "disable",
- *     passwordRenewal: "disable",
- *     port: 389,
- *     secure: "disable",
- *     server: "1.1.1.1",
- *     serverIdentityCheck: "disable",
- *     sourceIp: "0.0.0.0",
- *     sslMinProtoVersion: "default",
- *     type: "simple",
- * });
- * const trname = new fortios.UserDomainController("trname", {
- *     domainName: "s.com",
- *     ipAddress: "1.1.1.1",
- *     ldapServer: trname1.name,
- *     port: 445,
- * });
- * ```
- *
- * ## Import
- *
- * User DomainController can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userDomainController:UserDomainController labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userDomainController:UserDomainController labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserDomainController extends pulumi.CustomResource {
     /**
      * Get an existing UserDomainController resource's state with the given name, ID, and optional extra
@@ -84,101 +34,29 @@ export class UserDomainController extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserDomainController.__pulumiType;
     }
 
-    /**
-     * Set Active Directory mode. Valid values: `none`, `ds`, `lds`.
-     */
     public readonly adMode!: pulumi.Output<string>;
-    /**
-     * AD LDS distinguished name.
-     */
     public readonly adldsDn!: pulumi.Output<string>;
-    /**
-     * AD LDS IPv6 address.
-     */
     public readonly adldsIp6!: pulumi.Output<string>;
-    /**
-     * AD LDS IPv4 address.
-     */
     public readonly adldsIpAddress!: pulumi.Output<string>;
-    /**
-     * Port number of AD LDS service (default = 389).
-     */
     public readonly adldsPort!: pulumi.Output<number>;
-    /**
-     * Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
-     */
     public readonly dnsSrvLookup!: pulumi.Output<string>;
-    /**
-     * Domain DNS name.
-     */
     public readonly domainName!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * extra servers. The structure of `extraServer` block is documented below.
-     */
     public readonly extraServers!: pulumi.Output<outputs.UserDomainControllerExtraServer[] | undefined>;
-    /**
-     * Hostname of the server to connect to.
-     */
     public readonly hostname!: pulumi.Output<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
-    /**
-     * Domain controller IPv6 address.
-     */
     public readonly ip6!: pulumi.Output<string>;
-    /**
-     * Domain controller IP address.
-     */
     public readonly ipAddress!: pulumi.Output<string>;
-    /**
-     * LDAP server name.
-     */
     public readonly ldapServer!: pulumi.Output<string>;
-    /**
-     * Domain controller entry name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Password for specified username.
-     */
     public readonly password!: pulumi.Output<string | undefined>;
-    /**
-     * Port to be used for communication with the domain controller (default = 445).
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Port to be used for communication with the domain controller for replication service. Port number 0 indicates automatic discovery.
-     */
     public readonly replicationPort!: pulumi.Output<number>;
-    /**
-     * FortiGate IPv6 address to be used for communication with the domain controller.
-     */
     public readonly sourceIp6!: pulumi.Output<string>;
-    /**
-     * FortiGate IPv4 address to be used for communication with the domain controller.
-     */
     public readonly sourceIpAddress!: pulumi.Output<string>;
-    /**
-     * Source port to be used for communication with the domain controller.
-     */
     public readonly sourcePort!: pulumi.Output<number>;
-    /**
-     * User name to sign in with. Must have proper permissions for service.
-     */
     public readonly username!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -260,101 +138,29 @@ export class UserDomainController extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserDomainController resources.
  */
 export interface UserDomainControllerState {
-    /**
-     * Set Active Directory mode. Valid values: `none`, `ds`, `lds`.
-     */
     adMode?: pulumi.Input<string>;
-    /**
-     * AD LDS distinguished name.
-     */
     adldsDn?: pulumi.Input<string>;
-    /**
-     * AD LDS IPv6 address.
-     */
     adldsIp6?: pulumi.Input<string>;
-    /**
-     * AD LDS IPv4 address.
-     */
     adldsIpAddress?: pulumi.Input<string>;
-    /**
-     * Port number of AD LDS service (default = 389).
-     */
     adldsPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
-     */
     dnsSrvLookup?: pulumi.Input<string>;
-    /**
-     * Domain DNS name.
-     */
     domainName?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * extra servers. The structure of `extraServer` block is documented below.
-     */
     extraServers?: pulumi.Input<pulumi.Input<inputs.UserDomainControllerExtraServer>[]>;
-    /**
-     * Hostname of the server to connect to.
-     */
     hostname?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Domain controller IPv6 address.
-     */
     ip6?: pulumi.Input<string>;
-    /**
-     * Domain controller IP address.
-     */
     ipAddress?: pulumi.Input<string>;
-    /**
-     * LDAP server name.
-     */
     ldapServer?: pulumi.Input<string>;
-    /**
-     * Domain controller entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Password for specified username.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Port to be used for communication with the domain controller (default = 445).
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Port to be used for communication with the domain controller for replication service. Port number 0 indicates automatic discovery.
-     */
     replicationPort?: pulumi.Input<number>;
-    /**
-     * FortiGate IPv6 address to be used for communication with the domain controller.
-     */
     sourceIp6?: pulumi.Input<string>;
-    /**
-     * FortiGate IPv4 address to be used for communication with the domain controller.
-     */
     sourceIpAddress?: pulumi.Input<string>;
-    /**
-     * Source port to be used for communication with the domain controller.
-     */
     sourcePort?: pulumi.Input<number>;
-    /**
-     * User name to sign in with. Must have proper permissions for service.
-     */
     username?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -362,100 +168,28 @@ export interface UserDomainControllerState {
  * The set of arguments for constructing a UserDomainController resource.
  */
 export interface UserDomainControllerArgs {
-    /**
-     * Set Active Directory mode. Valid values: `none`, `ds`, `lds`.
-     */
     adMode?: pulumi.Input<string>;
-    /**
-     * AD LDS distinguished name.
-     */
     adldsDn?: pulumi.Input<string>;
-    /**
-     * AD LDS IPv6 address.
-     */
     adldsIp6?: pulumi.Input<string>;
-    /**
-     * AD LDS IPv4 address.
-     */
     adldsIpAddress?: pulumi.Input<string>;
-    /**
-     * Port number of AD LDS service (default = 389).
-     */
     adldsPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
-     */
     dnsSrvLookup?: pulumi.Input<string>;
-    /**
-     * Domain DNS name.
-     */
     domainName?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * extra servers. The structure of `extraServer` block is documented below.
-     */
     extraServers?: pulumi.Input<pulumi.Input<inputs.UserDomainControllerExtraServer>[]>;
-    /**
-     * Hostname of the server to connect to.
-     */
     hostname?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Domain controller IPv6 address.
-     */
     ip6?: pulumi.Input<string>;
-    /**
-     * Domain controller IP address.
-     */
     ipAddress: pulumi.Input<string>;
-    /**
-     * LDAP server name.
-     */
     ldapServer: pulumi.Input<string>;
-    /**
-     * Domain controller entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Password for specified username.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Port to be used for communication with the domain controller (default = 445).
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Port to be used for communication with the domain controller for replication service. Port number 0 indicates automatic discovery.
-     */
     replicationPort?: pulumi.Input<number>;
-    /**
-     * FortiGate IPv6 address to be used for communication with the domain controller.
-     */
     sourceIp6?: pulumi.Input<string>;
-    /**
-     * FortiGate IPv4 address to be used for communication with the domain controller.
-     */
     sourceIpAddress?: pulumi.Input<string>;
-    /**
-     * Source port to be used for communication with the domain controller.
-     */
     sourcePort?: pulumi.Input<number>;
-    /**
-     * User name to sign in with. Must have proper permissions for service.
-     */
     username?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

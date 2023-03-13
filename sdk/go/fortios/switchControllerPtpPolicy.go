@@ -10,31 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// PTP policy configuration. Applies to FortiOS Version `>= 6.4.2`.
-//
-// ## Import
-//
-// SwitchControllerPtp Policy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerPtpPolicy:SwitchControllerPtpPolicy labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerPtpPolicy:SwitchControllerPtpPolicy labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerPtpPolicy struct {
 	pulumi.CustomResourceState
 
-	// Policy name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable PTP policy. Valid values: `disable`, `enable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringOutput    `pulumi:"name"`
+	Status    pulumi.StringOutput    `pulumi:"status"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -68,20 +48,14 @@ func GetSwitchControllerPtpPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerPtpPolicy resources.
 type switchControllerPtpPolicyState struct {
-	// Policy name.
-	Name *string `pulumi:"name"`
-	// Enable/disable PTP policy. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      *string `pulumi:"name"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerPtpPolicyState struct {
-	// Policy name.
-	Name pulumi.StringPtrInput
-	// Enable/disable PTP policy. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -90,21 +64,15 @@ func (SwitchControllerPtpPolicyState) ElementType() reflect.Type {
 }
 
 type switchControllerPtpPolicyArgs struct {
-	// Policy name.
-	Name *string `pulumi:"name"`
-	// Enable/disable PTP policy. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      *string `pulumi:"name"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerPtpPolicy resource.
 type SwitchControllerPtpPolicyArgs struct {
-	// Policy name.
-	Name pulumi.StringPtrInput
-	// Enable/disable PTP policy. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -134,7 +102,7 @@ func (i *SwitchControllerPtpPolicy) ToSwitchControllerPtpPolicyOutputWithContext
 // SwitchControllerPtpPolicyArrayInput is an input type that accepts SwitchControllerPtpPolicyArray and SwitchControllerPtpPolicyArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerPtpPolicyArrayInput` via:
 //
-//          SwitchControllerPtpPolicyArray{ SwitchControllerPtpPolicyArgs{...} }
+//	SwitchControllerPtpPolicyArray{ SwitchControllerPtpPolicyArgs{...} }
 type SwitchControllerPtpPolicyArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i SwitchControllerPtpPolicyArray) ToSwitchControllerPtpPolicyArrayOutputWi
 // SwitchControllerPtpPolicyMapInput is an input type that accepts SwitchControllerPtpPolicyMap and SwitchControllerPtpPolicyMapOutput values.
 // You can construct a concrete instance of `SwitchControllerPtpPolicyMapInput` via:
 //
-//          SwitchControllerPtpPolicyMap{ "key": SwitchControllerPtpPolicyArgs{...} }
+//	SwitchControllerPtpPolicyMap{ "key": SwitchControllerPtpPolicyArgs{...} }
 type SwitchControllerPtpPolicyMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o SwitchControllerPtpPolicyOutput) ToSwitchControllerPtpPolicyOutput() Swi
 
 func (o SwitchControllerPtpPolicyOutput) ToSwitchControllerPtpPolicyOutputWithContext(ctx context.Context) SwitchControllerPtpPolicyOutput {
 	return o
+}
+
+func (o SwitchControllerPtpPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerPtpPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerPtpPolicyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerPtpPolicy) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerPtpPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerPtpPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerPtpPolicyArrayOutput struct{ *pulumi.OutputState }

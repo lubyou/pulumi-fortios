@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch location services. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * SwitchController Location can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerLocation:SwitchControllerLocation labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerLocation:SwitchControllerLocation labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerLocation extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerLocation resource's state with the given name, ID, and optional extra
@@ -52,25 +34,10 @@ export class SwitchControllerLocation extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerLocation.__pulumiType;
     }
 
-    /**
-     * Configure location civic address. The structure of `addressCivic` block is documented below.
-     */
-    public readonly addressCivic!: pulumi.Output<outputs.SwitchControllerLocationAddressCivic | undefined>;
-    /**
-     * Configure location GPS coordinates. The structure of `coordinates` block is documented below.
-     */
-    public readonly coordinates!: pulumi.Output<outputs.SwitchControllerLocationCoordinates | undefined>;
-    /**
-     * Configure location ELIN number. The structure of `elinNumber` block is documented below.
-     */
-    public readonly elinNumber!: pulumi.Output<outputs.SwitchControllerLocationElinNumber | undefined>;
-    /**
-     * Name (residence and office occupant).
-     */
+    public readonly addressCivic!: pulumi.Output<outputs.SwitchControllerLocationAddressCivic>;
+    public readonly coordinates!: pulumi.Output<outputs.SwitchControllerLocationCoordinates>;
+    public readonly elinNumber!: pulumi.Output<outputs.SwitchControllerLocationElinNumber>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -108,25 +75,10 @@ export class SwitchControllerLocation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerLocation resources.
  */
 export interface SwitchControllerLocationState {
-    /**
-     * Configure location civic address. The structure of `addressCivic` block is documented below.
-     */
     addressCivic?: pulumi.Input<inputs.SwitchControllerLocationAddressCivic>;
-    /**
-     * Configure location GPS coordinates. The structure of `coordinates` block is documented below.
-     */
     coordinates?: pulumi.Input<inputs.SwitchControllerLocationCoordinates>;
-    /**
-     * Configure location ELIN number. The structure of `elinNumber` block is documented below.
-     */
     elinNumber?: pulumi.Input<inputs.SwitchControllerLocationElinNumber>;
-    /**
-     * Name (residence and office occupant).
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -134,24 +86,9 @@ export interface SwitchControllerLocationState {
  * The set of arguments for constructing a SwitchControllerLocation resource.
  */
 export interface SwitchControllerLocationArgs {
-    /**
-     * Configure location civic address. The structure of `addressCivic` block is documented below.
-     */
     addressCivic?: pulumi.Input<inputs.SwitchControllerLocationAddressCivic>;
-    /**
-     * Configure location GPS coordinates. The structure of `coordinates` block is documented below.
-     */
     coordinates?: pulumi.Input<inputs.SwitchControllerLocationCoordinates>;
-    /**
-     * Configure location ELIN number. The structure of `elinNumber` block is documented below.
-     */
     elinNumber?: pulumi.Input<inputs.SwitchControllerLocationElinNumber>;
-    /**
-     * Name (residence and office occupant).
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

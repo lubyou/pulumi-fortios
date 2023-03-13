@@ -10,80 +10,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure TACACS+ server entries.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewUserTacacs(ctx, "trname", &fortios.UserTacacsArgs{
-// 			AuthenType:    pulumi.String("auto"),
-// 			Authorization: pulumi.String("disable"),
-// 			Port:          pulumi.Int(2342),
-// 			Server:        pulumi.String("1.1.1.1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// User Tacacs can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userTacacs:UserTacacs labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userTacacs:UserTacacs labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserTacacs struct {
 	pulumi.CustomResourceState
 
-	// Allowed authentication protocols/methods. Valid values: `mschap`, `chap`, `pap`, `ascii`, `auto`.
-	AuthenType pulumi.StringOutput `pulumi:"authenType"`
-	// Enable/disable TACACS+ authorization. Valid values: `enable`, `disable`.
-	Authorization pulumi.StringOutput `pulumi:"authorization"`
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
-	// Key to access the primary server.
-	Key pulumi.StringPtrOutput `pulumi:"key"`
-	// TACACS+ server entry name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Port number of the TACACS+ server.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Key to access the secondary server.
-	SecondaryKey pulumi.StringPtrOutput `pulumi:"secondaryKey"`
-	// Secondary TACACS+ server CN domain name or IP address.
-	SecondaryServer pulumi.StringOutput `pulumi:"secondaryServer"`
-	// Primary TACACS+ server CN domain name or IP address.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// source IP for communications to TACACS+ server.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Key to access the tertiary server.
-	TertiaryKey pulumi.StringPtrOutput `pulumi:"tertiaryKey"`
-	// Tertiary TACACS+ server CN domain name or IP address.
-	TertiaryServer pulumi.StringOutput `pulumi:"tertiaryServer"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AuthenType            pulumi.StringOutput    `pulumi:"authenType"`
+	Authorization         pulumi.StringOutput    `pulumi:"authorization"`
+	Interface             pulumi.StringOutput    `pulumi:"interface"`
+	InterfaceSelectMethod pulumi.StringOutput    `pulumi:"interfaceSelectMethod"`
+	Key                   pulumi.StringPtrOutput `pulumi:"key"`
+	Name                  pulumi.StringOutput    `pulumi:"name"`
+	Port                  pulumi.IntOutput       `pulumi:"port"`
+	SecondaryKey          pulumi.StringPtrOutput `pulumi:"secondaryKey"`
+	SecondaryServer       pulumi.StringOutput    `pulumi:"secondaryServer"`
+	Server                pulumi.StringOutput    `pulumi:"server"`
+	SourceIp              pulumi.StringOutput    `pulumi:"sourceIp"`
+	TertiaryKey           pulumi.StringPtrOutput `pulumi:"tertiaryKey"`
+	TertiaryServer        pulumi.StringOutput    `pulumi:"tertiaryServer"`
+	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewUserTacacs registers a new resource with the given unique name, arguments, and options.
@@ -93,6 +36,21 @@ func NewUserTacacs(ctx *pulumi.Context,
 		args = &UserTacacsArgs{}
 	}
 
+	if args.Key != nil {
+		args.Key = pulumi.ToSecret(args.Key).(pulumi.StringPtrInput)
+	}
+	if args.SecondaryKey != nil {
+		args.SecondaryKey = pulumi.ToSecret(args.SecondaryKey).(pulumi.StringPtrInput)
+	}
+	if args.TertiaryKey != nil {
+		args.TertiaryKey = pulumi.ToSecret(args.TertiaryKey).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"key",
+		"secondaryKey",
+		"tertiaryKey",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource UserTacacs
 	err := ctx.RegisterResource("fortios:index/userTacacs:UserTacacs", name, args, &resource, opts...)
@@ -116,65 +74,37 @@ func GetUserTacacs(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserTacacs resources.
 type userTacacsState struct {
-	// Allowed authentication protocols/methods. Valid values: `mschap`, `chap`, `pap`, `ascii`, `auto`.
-	AuthenType *string `pulumi:"authenType"`
-	// Enable/disable TACACS+ authorization. Valid values: `enable`, `disable`.
-	Authorization *string `pulumi:"authorization"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	AuthenType            *string `pulumi:"authenType"`
+	Authorization         *string `pulumi:"authorization"`
+	Interface             *string `pulumi:"interface"`
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Key to access the primary server.
-	Key *string `pulumi:"key"`
-	// TACACS+ server entry name.
-	Name *string `pulumi:"name"`
-	// Port number of the TACACS+ server.
-	Port *int `pulumi:"port"`
-	// Key to access the secondary server.
-	SecondaryKey *string `pulumi:"secondaryKey"`
-	// Secondary TACACS+ server CN domain name or IP address.
-	SecondaryServer *string `pulumi:"secondaryServer"`
-	// Primary TACACS+ server CN domain name or IP address.
-	Server *string `pulumi:"server"`
-	// source IP for communications to TACACS+ server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Key to access the tertiary server.
-	TertiaryKey *string `pulumi:"tertiaryKey"`
-	// Tertiary TACACS+ server CN domain name or IP address.
-	TertiaryServer *string `pulumi:"tertiaryServer"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Key                   *string `pulumi:"key"`
+	Name                  *string `pulumi:"name"`
+	Port                  *int    `pulumi:"port"`
+	SecondaryKey          *string `pulumi:"secondaryKey"`
+	SecondaryServer       *string `pulumi:"secondaryServer"`
+	Server                *string `pulumi:"server"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	TertiaryKey           *string `pulumi:"tertiaryKey"`
+	TertiaryServer        *string `pulumi:"tertiaryServer"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 type UserTacacsState struct {
-	// Allowed authentication protocols/methods. Valid values: `mschap`, `chap`, `pap`, `ascii`, `auto`.
-	AuthenType pulumi.StringPtrInput
-	// Enable/disable TACACS+ authorization. Valid values: `enable`, `disable`.
-	Authorization pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	AuthenType            pulumi.StringPtrInput
+	Authorization         pulumi.StringPtrInput
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// Key to access the primary server.
-	Key pulumi.StringPtrInput
-	// TACACS+ server entry name.
-	Name pulumi.StringPtrInput
-	// Port number of the TACACS+ server.
-	Port pulumi.IntPtrInput
-	// Key to access the secondary server.
-	SecondaryKey pulumi.StringPtrInput
-	// Secondary TACACS+ server CN domain name or IP address.
-	SecondaryServer pulumi.StringPtrInput
-	// Primary TACACS+ server CN domain name or IP address.
-	Server pulumi.StringPtrInput
-	// source IP for communications to TACACS+ server.
-	SourceIp pulumi.StringPtrInput
-	// Key to access the tertiary server.
-	TertiaryKey pulumi.StringPtrInput
-	// Tertiary TACACS+ server CN domain name or IP address.
-	TertiaryServer pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Key                   pulumi.StringPtrInput
+	Name                  pulumi.StringPtrInput
+	Port                  pulumi.IntPtrInput
+	SecondaryKey          pulumi.StringPtrInput
+	SecondaryServer       pulumi.StringPtrInput
+	Server                pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	TertiaryKey           pulumi.StringPtrInput
+	TertiaryServer        pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (UserTacacsState) ElementType() reflect.Type {
@@ -182,66 +112,38 @@ func (UserTacacsState) ElementType() reflect.Type {
 }
 
 type userTacacsArgs struct {
-	// Allowed authentication protocols/methods. Valid values: `mschap`, `chap`, `pap`, `ascii`, `auto`.
-	AuthenType *string `pulumi:"authenType"`
-	// Enable/disable TACACS+ authorization. Valid values: `enable`, `disable`.
-	Authorization *string `pulumi:"authorization"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	AuthenType            *string `pulumi:"authenType"`
+	Authorization         *string `pulumi:"authorization"`
+	Interface             *string `pulumi:"interface"`
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Key to access the primary server.
-	Key *string `pulumi:"key"`
-	// TACACS+ server entry name.
-	Name *string `pulumi:"name"`
-	// Port number of the TACACS+ server.
-	Port *int `pulumi:"port"`
-	// Key to access the secondary server.
-	SecondaryKey *string `pulumi:"secondaryKey"`
-	// Secondary TACACS+ server CN domain name or IP address.
-	SecondaryServer *string `pulumi:"secondaryServer"`
-	// Primary TACACS+ server CN domain name or IP address.
-	Server *string `pulumi:"server"`
-	// source IP for communications to TACACS+ server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Key to access the tertiary server.
-	TertiaryKey *string `pulumi:"tertiaryKey"`
-	// Tertiary TACACS+ server CN domain name or IP address.
-	TertiaryServer *string `pulumi:"tertiaryServer"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Key                   *string `pulumi:"key"`
+	Name                  *string `pulumi:"name"`
+	Port                  *int    `pulumi:"port"`
+	SecondaryKey          *string `pulumi:"secondaryKey"`
+	SecondaryServer       *string `pulumi:"secondaryServer"`
+	Server                *string `pulumi:"server"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	TertiaryKey           *string `pulumi:"tertiaryKey"`
+	TertiaryServer        *string `pulumi:"tertiaryServer"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserTacacs resource.
 type UserTacacsArgs struct {
-	// Allowed authentication protocols/methods. Valid values: `mschap`, `chap`, `pap`, `ascii`, `auto`.
-	AuthenType pulumi.StringPtrInput
-	// Enable/disable TACACS+ authorization. Valid values: `enable`, `disable`.
-	Authorization pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	AuthenType            pulumi.StringPtrInput
+	Authorization         pulumi.StringPtrInput
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// Key to access the primary server.
-	Key pulumi.StringPtrInput
-	// TACACS+ server entry name.
-	Name pulumi.StringPtrInput
-	// Port number of the TACACS+ server.
-	Port pulumi.IntPtrInput
-	// Key to access the secondary server.
-	SecondaryKey pulumi.StringPtrInput
-	// Secondary TACACS+ server CN domain name or IP address.
-	SecondaryServer pulumi.StringPtrInput
-	// Primary TACACS+ server CN domain name or IP address.
-	Server pulumi.StringPtrInput
-	// source IP for communications to TACACS+ server.
-	SourceIp pulumi.StringPtrInput
-	// Key to access the tertiary server.
-	TertiaryKey pulumi.StringPtrInput
-	// Tertiary TACACS+ server CN domain name or IP address.
-	TertiaryServer pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Key                   pulumi.StringPtrInput
+	Name                  pulumi.StringPtrInput
+	Port                  pulumi.IntPtrInput
+	SecondaryKey          pulumi.StringPtrInput
+	SecondaryServer       pulumi.StringPtrInput
+	Server                pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	TertiaryKey           pulumi.StringPtrInput
+	TertiaryServer        pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (UserTacacsArgs) ElementType() reflect.Type {
@@ -270,7 +172,7 @@ func (i *UserTacacs) ToUserTacacsOutputWithContext(ctx context.Context) UserTaca
 // UserTacacsArrayInput is an input type that accepts UserTacacsArray and UserTacacsArrayOutput values.
 // You can construct a concrete instance of `UserTacacsArrayInput` via:
 //
-//          UserTacacsArray{ UserTacacsArgs{...} }
+//	UserTacacsArray{ UserTacacsArgs{...} }
 type UserTacacsArrayInput interface {
 	pulumi.Input
 
@@ -295,7 +197,7 @@ func (i UserTacacsArray) ToUserTacacsArrayOutputWithContext(ctx context.Context)
 // UserTacacsMapInput is an input type that accepts UserTacacsMap and UserTacacsMapOutput values.
 // You can construct a concrete instance of `UserTacacsMapInput` via:
 //
-//          UserTacacsMap{ "key": UserTacacsArgs{...} }
+//	UserTacacsMap{ "key": UserTacacsArgs{...} }
 type UserTacacsMapInput interface {
 	pulumi.Input
 
@@ -329,6 +231,62 @@ func (o UserTacacsOutput) ToUserTacacsOutput() UserTacacsOutput {
 
 func (o UserTacacsOutput) ToUserTacacsOutputWithContext(ctx context.Context) UserTacacsOutput {
 	return o
+}
+
+func (o UserTacacsOutput) AuthenType() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserTacacs) pulumi.StringOutput { return v.AuthenType }).(pulumi.StringOutput)
+}
+
+func (o UserTacacsOutput) Authorization() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserTacacs) pulumi.StringOutput { return v.Authorization }).(pulumi.StringOutput)
+}
+
+func (o UserTacacsOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserTacacs) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o UserTacacsOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserTacacs) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o UserTacacsOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserTacacs) pulumi.StringPtrOutput { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+func (o UserTacacsOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserTacacs) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserTacacsOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserTacacs) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o UserTacacsOutput) SecondaryKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserTacacs) pulumi.StringPtrOutput { return v.SecondaryKey }).(pulumi.StringPtrOutput)
+}
+
+func (o UserTacacsOutput) SecondaryServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserTacacs) pulumi.StringOutput { return v.SecondaryServer }).(pulumi.StringOutput)
+}
+
+func (o UserTacacsOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserTacacs) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o UserTacacsOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserTacacs) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o UserTacacsOutput) TertiaryKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserTacacs) pulumi.StringPtrOutput { return v.TertiaryKey }).(pulumi.StringPtrOutput)
+}
+
+func (o UserTacacsOutput) TertiaryServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserTacacs) pulumi.StringOutput { return v.TertiaryServer }).(pulumi.StringOutput)
+}
+
+func (o UserTacacsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserTacacs) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserTacacsArrayOutput struct{ *pulumi.OutputState }

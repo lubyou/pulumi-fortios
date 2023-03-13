@@ -7,56 +7,14 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Settings for null device logging.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogNullDeviceSetting(ctx, "trname", &fortios.LogNullDeviceSettingArgs{
-// 			Status: pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// LogNullDevice Setting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logNullDeviceSetting:LogNullDeviceSetting labelname LogNullDeviceSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logNullDeviceSetting:LogNullDeviceSetting labelname LogNullDeviceSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogNullDeviceSetting struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable statistics collection for when no external logging destination, such as FortiAnalyzer, is present (data is not saved). Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    pulumi.StringOutput    `pulumi:"status"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -93,16 +51,12 @@ func GetLogNullDeviceSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogNullDeviceSetting resources.
 type logNullDeviceSettingState struct {
-	// Enable/disable statistics collection for when no external logging destination, such as FortiAnalyzer, is present (data is not saved). Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type LogNullDeviceSettingState struct {
-	// Enable/disable statistics collection for when no external logging destination, such as FortiAnalyzer, is present (data is not saved). Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -111,17 +65,13 @@ func (LogNullDeviceSettingState) ElementType() reflect.Type {
 }
 
 type logNullDeviceSettingArgs struct {
-	// Enable/disable statistics collection for when no external logging destination, such as FortiAnalyzer, is present (data is not saved). Valid values: `enable`, `disable`.
-	Status string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    string  `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogNullDeviceSetting resource.
 type LogNullDeviceSettingArgs struct {
-	// Enable/disable statistics collection for when no external logging destination, such as FortiAnalyzer, is present (data is not saved). Valid values: `enable`, `disable`.
-	Status pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    pulumi.StringInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -151,7 +101,7 @@ func (i *LogNullDeviceSetting) ToLogNullDeviceSettingOutputWithContext(ctx conte
 // LogNullDeviceSettingArrayInput is an input type that accepts LogNullDeviceSettingArray and LogNullDeviceSettingArrayOutput values.
 // You can construct a concrete instance of `LogNullDeviceSettingArrayInput` via:
 //
-//          LogNullDeviceSettingArray{ LogNullDeviceSettingArgs{...} }
+//	LogNullDeviceSettingArray{ LogNullDeviceSettingArgs{...} }
 type LogNullDeviceSettingArrayInput interface {
 	pulumi.Input
 
@@ -176,7 +126,7 @@ func (i LogNullDeviceSettingArray) ToLogNullDeviceSettingArrayOutputWithContext(
 // LogNullDeviceSettingMapInput is an input type that accepts LogNullDeviceSettingMap and LogNullDeviceSettingMapOutput values.
 // You can construct a concrete instance of `LogNullDeviceSettingMapInput` via:
 //
-//          LogNullDeviceSettingMap{ "key": LogNullDeviceSettingArgs{...} }
+//	LogNullDeviceSettingMap{ "key": LogNullDeviceSettingArgs{...} }
 type LogNullDeviceSettingMapInput interface {
 	pulumi.Input
 
@@ -210,6 +160,14 @@ func (o LogNullDeviceSettingOutput) ToLogNullDeviceSettingOutput() LogNullDevice
 
 func (o LogNullDeviceSettingOutput) ToLogNullDeviceSettingOutputWithContext(ctx context.Context) LogNullDeviceSettingOutput {
 	return o
+}
+
+func (o LogNullDeviceSettingOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogNullDeviceSetting) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LogNullDeviceSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogNullDeviceSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type LogNullDeviceSettingArrayOutput struct{ *pulumi.OutputState }

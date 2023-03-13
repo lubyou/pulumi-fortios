@@ -10,42 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,7.0.0`.
-//
-// ## Import
-//
-// SwitchController NacSettings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerNacSettings:SwitchControllerNacSettings labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerNacSettings:SwitchControllerNacSettings labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerNacSettings struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable NAC device auto authorization when discovered and nac-policy matched. Valid values: `disable`, `enable`.
-	AutoAuth pulumi.StringOutput `pulumi:"autoAuth"`
-	// Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-	BounceNacPort pulumi.StringOutput `pulumi:"bounceNacPort"`
-	// Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
-	InactiveTimer pulumi.IntOutput `pulumi:"inactiveTimer"`
-	// Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
-	LinkDownFlush pulumi.StringOutput `pulumi:"linkDownFlush"`
-	// Set NAC mode to be used on the FortiSwitch ports. Valid values: `local`, `global`.
-	Mode pulumi.StringOutput `pulumi:"mode"`
-	// NAC settings name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Default NAC Onboarding VLAN when NAC devices are discovered.
-	OnboardingVlan pulumi.StringOutput `pulumi:"onboardingVlan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AutoAuth       pulumi.StringOutput    `pulumi:"autoAuth"`
+	BounceNacPort  pulumi.StringOutput    `pulumi:"bounceNacPort"`
+	InactiveTimer  pulumi.IntOutput       `pulumi:"inactiveTimer"`
+	LinkDownFlush  pulumi.StringOutput    `pulumi:"linkDownFlush"`
+	Mode           pulumi.StringOutput    `pulumi:"mode"`
+	Name           pulumi.StringOutput    `pulumi:"name"`
+	OnboardingVlan pulumi.StringOutput    `pulumi:"onboardingVlan"`
+	Vdomparam      pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerNacSettings registers a new resource with the given unique name, arguments, and options.
@@ -78,41 +53,25 @@ func GetSwitchControllerNacSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerNacSettings resources.
 type switchControllerNacSettingsState struct {
-	// Enable/disable NAC device auto authorization when discovered and nac-policy matched. Valid values: `disable`, `enable`.
-	AutoAuth *string `pulumi:"autoAuth"`
-	// Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-	BounceNacPort *string `pulumi:"bounceNacPort"`
-	// Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
-	InactiveTimer *int `pulumi:"inactiveTimer"`
-	// Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
-	LinkDownFlush *string `pulumi:"linkDownFlush"`
-	// Set NAC mode to be used on the FortiSwitch ports. Valid values: `local`, `global`.
-	Mode *string `pulumi:"mode"`
-	// NAC settings name.
-	Name *string `pulumi:"name"`
-	// Default NAC Onboarding VLAN when NAC devices are discovered.
+	AutoAuth       *string `pulumi:"autoAuth"`
+	BounceNacPort  *string `pulumi:"bounceNacPort"`
+	InactiveTimer  *int    `pulumi:"inactiveTimer"`
+	LinkDownFlush  *string `pulumi:"linkDownFlush"`
+	Mode           *string `pulumi:"mode"`
+	Name           *string `pulumi:"name"`
 	OnboardingVlan *string `pulumi:"onboardingVlan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerNacSettingsState struct {
-	// Enable/disable NAC device auto authorization when discovered and nac-policy matched. Valid values: `disable`, `enable`.
-	AutoAuth pulumi.StringPtrInput
-	// Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-	BounceNacPort pulumi.StringPtrInput
-	// Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
-	InactiveTimer pulumi.IntPtrInput
-	// Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
-	LinkDownFlush pulumi.StringPtrInput
-	// Set NAC mode to be used on the FortiSwitch ports. Valid values: `local`, `global`.
-	Mode pulumi.StringPtrInput
-	// NAC settings name.
-	Name pulumi.StringPtrInput
-	// Default NAC Onboarding VLAN when NAC devices are discovered.
+	AutoAuth       pulumi.StringPtrInput
+	BounceNacPort  pulumi.StringPtrInput
+	InactiveTimer  pulumi.IntPtrInput
+	LinkDownFlush  pulumi.StringPtrInput
+	Mode           pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
 	OnboardingVlan pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (SwitchControllerNacSettingsState) ElementType() reflect.Type {
@@ -120,42 +79,26 @@ func (SwitchControllerNacSettingsState) ElementType() reflect.Type {
 }
 
 type switchControllerNacSettingsArgs struct {
-	// Enable/disable NAC device auto authorization when discovered and nac-policy matched. Valid values: `disable`, `enable`.
-	AutoAuth *string `pulumi:"autoAuth"`
-	// Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-	BounceNacPort *string `pulumi:"bounceNacPort"`
-	// Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
-	InactiveTimer *int `pulumi:"inactiveTimer"`
-	// Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
-	LinkDownFlush *string `pulumi:"linkDownFlush"`
-	// Set NAC mode to be used on the FortiSwitch ports. Valid values: `local`, `global`.
-	Mode *string `pulumi:"mode"`
-	// NAC settings name.
-	Name *string `pulumi:"name"`
-	// Default NAC Onboarding VLAN when NAC devices are discovered.
+	AutoAuth       *string `pulumi:"autoAuth"`
+	BounceNacPort  *string `pulumi:"bounceNacPort"`
+	InactiveTimer  *int    `pulumi:"inactiveTimer"`
+	LinkDownFlush  *string `pulumi:"linkDownFlush"`
+	Mode           *string `pulumi:"mode"`
+	Name           *string `pulumi:"name"`
 	OnboardingVlan *string `pulumi:"onboardingVlan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerNacSettings resource.
 type SwitchControllerNacSettingsArgs struct {
-	// Enable/disable NAC device auto authorization when discovered and nac-policy matched. Valid values: `disable`, `enable`.
-	AutoAuth pulumi.StringPtrInput
-	// Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-	BounceNacPort pulumi.StringPtrInput
-	// Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
-	InactiveTimer pulumi.IntPtrInput
-	// Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
-	LinkDownFlush pulumi.StringPtrInput
-	// Set NAC mode to be used on the FortiSwitch ports. Valid values: `local`, `global`.
-	Mode pulumi.StringPtrInput
-	// NAC settings name.
-	Name pulumi.StringPtrInput
-	// Default NAC Onboarding VLAN when NAC devices are discovered.
+	AutoAuth       pulumi.StringPtrInput
+	BounceNacPort  pulumi.StringPtrInput
+	InactiveTimer  pulumi.IntPtrInput
+	LinkDownFlush  pulumi.StringPtrInput
+	Mode           pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
 	OnboardingVlan pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (SwitchControllerNacSettingsArgs) ElementType() reflect.Type {
@@ -184,7 +127,7 @@ func (i *SwitchControllerNacSettings) ToSwitchControllerNacSettingsOutputWithCon
 // SwitchControllerNacSettingsArrayInput is an input type that accepts SwitchControllerNacSettingsArray and SwitchControllerNacSettingsArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerNacSettingsArrayInput` via:
 //
-//          SwitchControllerNacSettingsArray{ SwitchControllerNacSettingsArgs{...} }
+//	SwitchControllerNacSettingsArray{ SwitchControllerNacSettingsArgs{...} }
 type SwitchControllerNacSettingsArrayInput interface {
 	pulumi.Input
 
@@ -209,7 +152,7 @@ func (i SwitchControllerNacSettingsArray) ToSwitchControllerNacSettingsArrayOutp
 // SwitchControllerNacSettingsMapInput is an input type that accepts SwitchControllerNacSettingsMap and SwitchControllerNacSettingsMapOutput values.
 // You can construct a concrete instance of `SwitchControllerNacSettingsMapInput` via:
 //
-//          SwitchControllerNacSettingsMap{ "key": SwitchControllerNacSettingsArgs{...} }
+//	SwitchControllerNacSettingsMap{ "key": SwitchControllerNacSettingsArgs{...} }
 type SwitchControllerNacSettingsMapInput interface {
 	pulumi.Input
 
@@ -243,6 +186,38 @@ func (o SwitchControllerNacSettingsOutput) ToSwitchControllerNacSettingsOutput()
 
 func (o SwitchControllerNacSettingsOutput) ToSwitchControllerNacSettingsOutputWithContext(ctx context.Context) SwitchControllerNacSettingsOutput {
 	return o
+}
+
+func (o SwitchControllerNacSettingsOutput) AutoAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerNacSettings) pulumi.StringOutput { return v.AutoAuth }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerNacSettingsOutput) BounceNacPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerNacSettings) pulumi.StringOutput { return v.BounceNacPort }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerNacSettingsOutput) InactiveTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerNacSettings) pulumi.IntOutput { return v.InactiveTimer }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerNacSettingsOutput) LinkDownFlush() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerNacSettings) pulumi.StringOutput { return v.LinkDownFlush }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerNacSettingsOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerNacSettings) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerNacSettingsOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerNacSettings) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerNacSettingsOutput) OnboardingVlan() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerNacSettings) pulumi.StringOutput { return v.OnboardingVlan }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerNacSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerNacSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerNacSettingsArrayOutput struct{ *pulumi.OutputState }

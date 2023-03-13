@@ -7,70 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Recurring schedule configuration.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallScheduleRecurring(ctx, "trname", &fortios.FirewallScheduleRecurringArgs{
-// 			Color: pulumi.Int(0),
-// 			Day:   pulumi.String("sunday"),
-// 			End:   pulumi.String("00:00"),
-// 			Start: pulumi.String("00:00"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// FirewallSchedule Recurring can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallScheduleRecurring:FirewallScheduleRecurring labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallScheduleRecurring:FirewallScheduleRecurring labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallScheduleRecurring struct {
 	pulumi.CustomResourceState
 
-	// Color of icon on the GUI.
-	Color pulumi.IntOutput `pulumi:"color"`
-	// One or more days of the week on which the schedule is valid. Separate the names of the days with a space. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `none`.
-	Day pulumi.StringOutput `pulumi:"day"`
-	// Time of day to end the schedule, format hh:mm.
-	End pulumi.StringOutput `pulumi:"end"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
-	// Recurring schedule name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Time of day to start the schedule, format hh:mm.
-	Start pulumi.StringOutput `pulumi:"start"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Color        pulumi.IntOutput       `pulumi:"color"`
+	Day          pulumi.StringOutput    `pulumi:"day"`
+	End          pulumi.StringOutput    `pulumi:"end"`
+	FabricObject pulumi.StringOutput    `pulumi:"fabricObject"`
+	Name         pulumi.StringOutput    `pulumi:"name"`
+	Start        pulumi.StringOutput    `pulumi:"start"`
+	Vdomparam    pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallScheduleRecurring registers a new resource with the given unique name, arguments, and options.
@@ -109,37 +59,23 @@ func GetFirewallScheduleRecurring(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallScheduleRecurring resources.
 type firewallScheduleRecurringState struct {
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// One or more days of the week on which the schedule is valid. Separate the names of the days with a space. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `none`.
-	Day *string `pulumi:"day"`
-	// Time of day to end the schedule, format hh:mm.
-	End *string `pulumi:"end"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	Color        *int    `pulumi:"color"`
+	Day          *string `pulumi:"day"`
+	End          *string `pulumi:"end"`
 	FabricObject *string `pulumi:"fabricObject"`
-	// Recurring schedule name.
-	Name *string `pulumi:"name"`
-	// Time of day to start the schedule, format hh:mm.
-	Start *string `pulumi:"start"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name         *string `pulumi:"name"`
+	Start        *string `pulumi:"start"`
+	Vdomparam    *string `pulumi:"vdomparam"`
 }
 
 type FirewallScheduleRecurringState struct {
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// One or more days of the week on which the schedule is valid. Separate the names of the days with a space. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `none`.
-	Day pulumi.StringPtrInput
-	// Time of day to end the schedule, format hh:mm.
-	End pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	Color        pulumi.IntPtrInput
+	Day          pulumi.StringPtrInput
+	End          pulumi.StringPtrInput
 	FabricObject pulumi.StringPtrInput
-	// Recurring schedule name.
-	Name pulumi.StringPtrInput
-	// Time of day to start the schedule, format hh:mm.
-	Start pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name         pulumi.StringPtrInput
+	Start        pulumi.StringPtrInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (FirewallScheduleRecurringState) ElementType() reflect.Type {
@@ -147,38 +83,24 @@ func (FirewallScheduleRecurringState) ElementType() reflect.Type {
 }
 
 type firewallScheduleRecurringArgs struct {
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// One or more days of the week on which the schedule is valid. Separate the names of the days with a space. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `none`.
-	Day *string `pulumi:"day"`
-	// Time of day to end the schedule, format hh:mm.
-	End string `pulumi:"end"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	Color        *int    `pulumi:"color"`
+	Day          *string `pulumi:"day"`
+	End          string  `pulumi:"end"`
 	FabricObject *string `pulumi:"fabricObject"`
-	// Recurring schedule name.
-	Name *string `pulumi:"name"`
-	// Time of day to start the schedule, format hh:mm.
-	Start string `pulumi:"start"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name         *string `pulumi:"name"`
+	Start        string  `pulumi:"start"`
+	Vdomparam    *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallScheduleRecurring resource.
 type FirewallScheduleRecurringArgs struct {
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// One or more days of the week on which the schedule is valid. Separate the names of the days with a space. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `none`.
-	Day pulumi.StringPtrInput
-	// Time of day to end the schedule, format hh:mm.
-	End pulumi.StringInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	Color        pulumi.IntPtrInput
+	Day          pulumi.StringPtrInput
+	End          pulumi.StringInput
 	FabricObject pulumi.StringPtrInput
-	// Recurring schedule name.
-	Name pulumi.StringPtrInput
-	// Time of day to start the schedule, format hh:mm.
-	Start pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name         pulumi.StringPtrInput
+	Start        pulumi.StringInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (FirewallScheduleRecurringArgs) ElementType() reflect.Type {
@@ -207,7 +129,7 @@ func (i *FirewallScheduleRecurring) ToFirewallScheduleRecurringOutputWithContext
 // FirewallScheduleRecurringArrayInput is an input type that accepts FirewallScheduleRecurringArray and FirewallScheduleRecurringArrayOutput values.
 // You can construct a concrete instance of `FirewallScheduleRecurringArrayInput` via:
 //
-//          FirewallScheduleRecurringArray{ FirewallScheduleRecurringArgs{...} }
+//	FirewallScheduleRecurringArray{ FirewallScheduleRecurringArgs{...} }
 type FirewallScheduleRecurringArrayInput interface {
 	pulumi.Input
 
@@ -232,7 +154,7 @@ func (i FirewallScheduleRecurringArray) ToFirewallScheduleRecurringArrayOutputWi
 // FirewallScheduleRecurringMapInput is an input type that accepts FirewallScheduleRecurringMap and FirewallScheduleRecurringMapOutput values.
 // You can construct a concrete instance of `FirewallScheduleRecurringMapInput` via:
 //
-//          FirewallScheduleRecurringMap{ "key": FirewallScheduleRecurringArgs{...} }
+//	FirewallScheduleRecurringMap{ "key": FirewallScheduleRecurringArgs{...} }
 type FirewallScheduleRecurringMapInput interface {
 	pulumi.Input
 
@@ -266,6 +188,34 @@ func (o FirewallScheduleRecurringOutput) ToFirewallScheduleRecurringOutput() Fir
 
 func (o FirewallScheduleRecurringOutput) ToFirewallScheduleRecurringOutputWithContext(ctx context.Context) FirewallScheduleRecurringOutput {
 	return o
+}
+
+func (o FirewallScheduleRecurringOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallScheduleRecurring) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o FirewallScheduleRecurringOutput) Day() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallScheduleRecurring) pulumi.StringOutput { return v.Day }).(pulumi.StringOutput)
+}
+
+func (o FirewallScheduleRecurringOutput) End() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallScheduleRecurring) pulumi.StringOutput { return v.End }).(pulumi.StringOutput)
+}
+
+func (o FirewallScheduleRecurringOutput) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallScheduleRecurring) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+func (o FirewallScheduleRecurringOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallScheduleRecurring) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallScheduleRecurringOutput) Start() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallScheduleRecurring) pulumi.StringOutput { return v.Start }).(pulumi.StringOutput)
+}
+
+func (o FirewallScheduleRecurringOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallScheduleRecurring) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallScheduleRecurringArrayOutput struct{ *pulumi.OutputState }

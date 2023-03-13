@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure AntiVirus settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.AntivirusSettings("trname", {
- *     defaultDb: "extended",
- *     grayware: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Antivirus Settings can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/antivirusSettings:AntivirusSettings labelname AntivirusSettings
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/antivirusSettings:AntivirusSettings labelname AntivirusSettings
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class AntivirusSettings extends pulumi.CustomResource {
     /**
      * Get an existing AntivirusSettings resource's state with the given name, ID, and optional extra
@@ -63,37 +32,13 @@ export class AntivirusSettings extends pulumi.CustomResource {
         return obj['__pulumiType'] === AntivirusSettings.__pulumiType;
     }
 
-    /**
-     * Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly cacheCleanResult!: pulumi.Output<string>;
-    /**
-     * Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly cacheInfectedResult!: pulumi.Output<string>;
-    /**
-     * Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
-     */
     public readonly defaultDb!: pulumi.Output<string>;
-    /**
-     * Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
-     */
     public readonly grayware!: pulumi.Output<string>;
-    /**
-     * Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
-     */
     public readonly machineLearningDetection!: pulumi.Output<string>;
-    /**
-     * Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
-     */
     public readonly overrideTimeout!: pulumi.Output<number>;
-    /**
-     * Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
-     */
     public readonly useExtremeDb!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -137,37 +82,13 @@ export class AntivirusSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AntivirusSettings resources.
  */
 export interface AntivirusSettingsState {
-    /**
-     * Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
-     */
     cacheCleanResult?: pulumi.Input<string>;
-    /**
-     * Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
-     */
     cacheInfectedResult?: pulumi.Input<string>;
-    /**
-     * Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
-     */
     defaultDb?: pulumi.Input<string>;
-    /**
-     * Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
-     */
     grayware?: pulumi.Input<string>;
-    /**
-     * Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
-     */
     machineLearningDetection?: pulumi.Input<string>;
-    /**
-     * Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
-     */
     overrideTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
-     */
     useExtremeDb?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -175,36 +96,12 @@ export interface AntivirusSettingsState {
  * The set of arguments for constructing a AntivirusSettings resource.
  */
 export interface AntivirusSettingsArgs {
-    /**
-     * Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
-     */
     cacheCleanResult?: pulumi.Input<string>;
-    /**
-     * Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
-     */
     cacheInfectedResult?: pulumi.Input<string>;
-    /**
-     * Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
-     */
     defaultDb?: pulumi.Input<string>;
-    /**
-     * Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
-     */
     grayware?: pulumi.Input<string>;
-    /**
-     * Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
-     */
     machineLearningDetection?: pulumi.Input<string>;
-    /**
-     * Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
-     */
     overrideTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
-     */
     useExtremeDb?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

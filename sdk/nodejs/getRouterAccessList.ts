@@ -2,18 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios router accesslist
- */
 export function getRouterAccessList(args: GetRouterAccessListArgs, opts?: pulumi.InvokeOptions): Promise<GetRouterAccessListResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getRouterAccessList:GetRouterAccessList", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -24,13 +19,7 @@ export function getRouterAccessList(args: GetRouterAccessListArgs, opts?: pulumi
  * A collection of arguments for invoking GetRouterAccessList.
  */
 export interface GetRouterAccessListArgs {
-    /**
-     * Specify the name of the desired router accesslist.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -38,39 +27,23 @@ export interface GetRouterAccessListArgs {
  * A collection of values returned by GetRouterAccessList.
  */
 export interface GetRouterAccessListResult {
-    /**
-     * Comment.
-     */
     readonly comments: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Name.
-     */
     readonly name: string;
-    /**
-     * Rule. The structure of `rule` block is documented below.
-     */
     readonly rules: outputs.GetRouterAccessListRule[];
     readonly vdomparam?: string;
 }
-
 export function getRouterAccessListOutput(args: GetRouterAccessListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterAccessListResult> {
-    return pulumi.output(args).apply(a => getRouterAccessList(a, opts))
+    return pulumi.output(args).apply((a: any) => getRouterAccessList(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetRouterAccessList.
  */
 export interface GetRouterAccessListOutputArgs {
-    /**
-     * Specify the name of the desired router accesslist.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewallwildcardfqdn custom
 func LookupFirewallWildcardFqdnCustom(ctx *pulumi.Context, args *LookupFirewallWildcardFqdnCustomArgs, opts ...pulumi.InvokeOption) (*LookupFirewallWildcardFqdnCustomResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallWildcardFqdnCustomResult
@@ -23,29 +22,21 @@ func LookupFirewallWildcardFqdnCustom(ctx *pulumi.Context, args *LookupFirewallW
 
 // A collection of arguments for invoking GetFirewallWildcardFqdnCustom.
 type LookupFirewallWildcardFqdnCustomArgs struct {
-	// Specify the name of the desired firewallwildcardfqdn custom.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallWildcardFqdnCustom.
 type LookupFirewallWildcardFqdnCustomResult struct {
-	// GUI icon color.
-	Color int `pulumi:"color"`
-	// Comment.
+	Color   int    `pulumi:"color"`
 	Comment string `pulumi:"comment"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Address name.
-	Name string `pulumi:"name"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid      string  `pulumi:"uuid"`
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable address visibility.
-	Visibility string `pulumi:"visibility"`
-	// Wildcard FQDN.
-	WildcardFqdn string `pulumi:"wildcardFqdn"`
+	Id           string  `pulumi:"id"`
+	Name         string  `pulumi:"name"`
+	Uuid         string  `pulumi:"uuid"`
+	Vdomparam    *string `pulumi:"vdomparam"`
+	Visibility   string  `pulumi:"visibility"`
+	WildcardFqdn string  `pulumi:"wildcardFqdn"`
 }
 
 func LookupFirewallWildcardFqdnCustomOutput(ctx *pulumi.Context, args LookupFirewallWildcardFqdnCustomOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallWildcardFqdnCustomResultOutput {
@@ -63,9 +54,7 @@ func LookupFirewallWildcardFqdnCustomOutput(ctx *pulumi.Context, args LookupFire
 
 // A collection of arguments for invoking GetFirewallWildcardFqdnCustom.
 type LookupFirewallWildcardFqdnCustomOutputArgs struct {
-	// Specify the name of the desired firewallwildcardfqdn custom.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -88,12 +77,10 @@ func (o LookupFirewallWildcardFqdnCustomResultOutput) ToLookupFirewallWildcardFq
 	return o
 }
 
-// GUI icon color.
 func (o LookupFirewallWildcardFqdnCustomResultOutput) Color() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnCustomResult) int { return v.Color }).(pulumi.IntOutput)
 }
 
-// Comment.
 func (o LookupFirewallWildcardFqdnCustomResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnCustomResult) string { return v.Comment }).(pulumi.StringOutput)
 }
@@ -103,12 +90,10 @@ func (o LookupFirewallWildcardFqdnCustomResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnCustomResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Address name.
 func (o LookupFirewallWildcardFqdnCustomResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnCustomResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 func (o LookupFirewallWildcardFqdnCustomResultOutput) Uuid() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnCustomResult) string { return v.Uuid }).(pulumi.StringOutput)
 }
@@ -117,12 +102,10 @@ func (o LookupFirewallWildcardFqdnCustomResultOutput) Vdomparam() pulumi.StringP
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnCustomResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable address visibility.
 func (o LookupFirewallWildcardFqdnCustomResultOutput) Visibility() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnCustomResult) string { return v.Visibility }).(pulumi.StringOutput)
 }
 
-// Wildcard FQDN.
 func (o LookupFirewallWildcardFqdnCustomResultOutput) WildcardFqdn() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnCustomResult) string { return v.WildcardFqdn }).(pulumi.StringOutput)
 }

@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * CA certificate.
- *
- * ## Import
- *
- * Certificate Ca can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/certificateCa:CertificateCa labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/certificateCa:CertificateCa labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class CertificateCa extends pulumi.CustomResource {
     /**
      * Get an existing CertificateCa resource's state with the given name, ID, and optional extra
@@ -51,57 +32,19 @@ export class CertificateCa extends pulumi.CustomResource {
         return obj['__pulumiType'] === CertificateCa.__pulumiType;
     }
 
-    /**
-     * Number of days to wait before requesting an updated CA certificate (0 - 4294967295, 0 = disabled).
-     */
     public readonly autoUpdateDays!: pulumi.Output<number>;
-    /**
-     * Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
-     */
     public readonly autoUpdateDaysWarning!: pulumi.Output<number>;
-    /**
-     * CA certificate as a PEM file.
-     */
     public readonly ca!: pulumi.Output<string>;
-    /**
-     * CA identifier of the SCEP server.
-     */
     public readonly caIdentifier!: pulumi.Output<string>;
-    /**
-     * Time at which CA was last updated.
-     */
     public readonly lastUpdated!: pulumi.Output<number>;
-    /**
-     * Name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Either global or VDOM IP address range for the CA certificate. Valid values: `global`, `vdom`.
-     */
+    public readonly obsolete!: pulumi.Output<string>;
     public readonly range!: pulumi.Output<string>;
-    /**
-     * URL of the SCEP server.
-     */
     public readonly scepUrl!: pulumi.Output<string>;
-    /**
-     * CA certificate source type.
-     */
     public readonly source!: pulumi.Output<string>;
-    /**
-     * Source IP address for communications to the SCEP server.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Enable/disable this CA as a trusted CA for SSL inspection. Valid values: `enable`, `disable`.
-     */
     public readonly sslInspectionTrusted!: pulumi.Output<string>;
-    /**
-     * Enable/disable as a trusted CA. Valid values: `enable`, `disable`.
-     */
     public readonly trusted!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -123,6 +66,7 @@ export class CertificateCa extends pulumi.CustomResource {
             resourceInputs["caIdentifier"] = state ? state.caIdentifier : undefined;
             resourceInputs["lastUpdated"] = state ? state.lastUpdated : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["obsolete"] = state ? state.obsolete : undefined;
             resourceInputs["range"] = state ? state.range : undefined;
             resourceInputs["scepUrl"] = state ? state.scepUrl : undefined;
             resourceInputs["source"] = state ? state.source : undefined;
@@ -141,6 +85,7 @@ export class CertificateCa extends pulumi.CustomResource {
             resourceInputs["caIdentifier"] = args ? args.caIdentifier : undefined;
             resourceInputs["lastUpdated"] = args ? args.lastUpdated : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["obsolete"] = args ? args.obsolete : undefined;
             resourceInputs["range"] = args ? args.range : undefined;
             resourceInputs["scepUrl"] = args ? args.scepUrl : undefined;
             resourceInputs["source"] = args ? args.source : undefined;
@@ -158,57 +103,19 @@ export class CertificateCa extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CertificateCa resources.
  */
 export interface CertificateCaState {
-    /**
-     * Number of days to wait before requesting an updated CA certificate (0 - 4294967295, 0 = disabled).
-     */
     autoUpdateDays?: pulumi.Input<number>;
-    /**
-     * Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
-     */
     autoUpdateDaysWarning?: pulumi.Input<number>;
-    /**
-     * CA certificate as a PEM file.
-     */
     ca?: pulumi.Input<string>;
-    /**
-     * CA identifier of the SCEP server.
-     */
     caIdentifier?: pulumi.Input<string>;
-    /**
-     * Time at which CA was last updated.
-     */
     lastUpdated?: pulumi.Input<number>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Either global or VDOM IP address range for the CA certificate. Valid values: `global`, `vdom`.
-     */
+    obsolete?: pulumi.Input<string>;
     range?: pulumi.Input<string>;
-    /**
-     * URL of the SCEP server.
-     */
     scepUrl?: pulumi.Input<string>;
-    /**
-     * CA certificate source type.
-     */
     source?: pulumi.Input<string>;
-    /**
-     * Source IP address for communications to the SCEP server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable this CA as a trusted CA for SSL inspection. Valid values: `enable`, `disable`.
-     */
     sslInspectionTrusted?: pulumi.Input<string>;
-    /**
-     * Enable/disable as a trusted CA. Valid values: `enable`, `disable`.
-     */
     trusted?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -216,56 +123,18 @@ export interface CertificateCaState {
  * The set of arguments for constructing a CertificateCa resource.
  */
 export interface CertificateCaArgs {
-    /**
-     * Number of days to wait before requesting an updated CA certificate (0 - 4294967295, 0 = disabled).
-     */
     autoUpdateDays?: pulumi.Input<number>;
-    /**
-     * Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
-     */
     autoUpdateDaysWarning?: pulumi.Input<number>;
-    /**
-     * CA certificate as a PEM file.
-     */
     ca: pulumi.Input<string>;
-    /**
-     * CA identifier of the SCEP server.
-     */
     caIdentifier?: pulumi.Input<string>;
-    /**
-     * Time at which CA was last updated.
-     */
     lastUpdated?: pulumi.Input<number>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Either global or VDOM IP address range for the CA certificate. Valid values: `global`, `vdom`.
-     */
+    obsolete?: pulumi.Input<string>;
     range?: pulumi.Input<string>;
-    /**
-     * URL of the SCEP server.
-     */
     scepUrl?: pulumi.Input<string>;
-    /**
-     * CA certificate source type.
-     */
     source?: pulumi.Input<string>;
-    /**
-     * Source IP address for communications to the SCEP server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable this CA as a trusted CA for SSL inspection. Valid values: `enable`, `disable`.
-     */
     sslInspectionTrusted?: pulumi.Input<string>;
-    /**
-     * Enable/disable as a trusted CA. Valid values: `enable`, `disable`.
-     */
     trusted?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

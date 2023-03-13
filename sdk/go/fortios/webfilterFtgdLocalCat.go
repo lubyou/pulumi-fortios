@@ -10,58 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiGuard Web Filter local categories.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWebfilterFtgdLocalCat(ctx, "trname", &fortios.WebfilterFtgdLocalCatArgs{
-// 			Desc:   pulumi.String("s1"),
-// 			Fosid:  pulumi.Int(188),
-// 			Status: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Webfilter FtgdLocalCat can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterFtgdLocalCat:WebfilterFtgdLocalCat labelname {{desc}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterFtgdLocalCat:WebfilterFtgdLocalCat labelname {{desc}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebfilterFtgdLocalCat struct {
 	pulumi.CustomResourceState
 
-	// Local category description.
-	Desc pulumi.StringOutput `pulumi:"desc"`
-	// Local category ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Enable/disable the local category. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Desc      pulumi.StringOutput    `pulumi:"desc"`
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Status    pulumi.StringOutput    `pulumi:"status"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -95,24 +49,16 @@ func GetWebfilterFtgdLocalCat(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebfilterFtgdLocalCat resources.
 type webfilterFtgdLocalCatState struct {
-	// Local category description.
-	Desc *string `pulumi:"desc"`
-	// Local category ID.
-	Fosid *int `pulumi:"fosid"`
-	// Enable/disable the local category. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Desc      *string `pulumi:"desc"`
+	Fosid     *int    `pulumi:"fosid"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type WebfilterFtgdLocalCatState struct {
-	// Local category description.
-	Desc pulumi.StringPtrInput
-	// Local category ID.
-	Fosid pulumi.IntPtrInput
-	// Enable/disable the local category. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Desc      pulumi.StringPtrInput
+	Fosid     pulumi.IntPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -121,25 +67,17 @@ func (WebfilterFtgdLocalCatState) ElementType() reflect.Type {
 }
 
 type webfilterFtgdLocalCatArgs struct {
-	// Local category description.
-	Desc *string `pulumi:"desc"`
-	// Local category ID.
-	Fosid *int `pulumi:"fosid"`
-	// Enable/disable the local category. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Desc      *string `pulumi:"desc"`
+	Fosid     *int    `pulumi:"fosid"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebfilterFtgdLocalCat resource.
 type WebfilterFtgdLocalCatArgs struct {
-	// Local category description.
-	Desc pulumi.StringPtrInput
-	// Local category ID.
-	Fosid pulumi.IntPtrInput
-	// Enable/disable the local category. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Desc      pulumi.StringPtrInput
+	Fosid     pulumi.IntPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -169,7 +107,7 @@ func (i *WebfilterFtgdLocalCat) ToWebfilterFtgdLocalCatOutputWithContext(ctx con
 // WebfilterFtgdLocalCatArrayInput is an input type that accepts WebfilterFtgdLocalCatArray and WebfilterFtgdLocalCatArrayOutput values.
 // You can construct a concrete instance of `WebfilterFtgdLocalCatArrayInput` via:
 //
-//          WebfilterFtgdLocalCatArray{ WebfilterFtgdLocalCatArgs{...} }
+//	WebfilterFtgdLocalCatArray{ WebfilterFtgdLocalCatArgs{...} }
 type WebfilterFtgdLocalCatArrayInput interface {
 	pulumi.Input
 
@@ -194,7 +132,7 @@ func (i WebfilterFtgdLocalCatArray) ToWebfilterFtgdLocalCatArrayOutputWithContex
 // WebfilterFtgdLocalCatMapInput is an input type that accepts WebfilterFtgdLocalCatMap and WebfilterFtgdLocalCatMapOutput values.
 // You can construct a concrete instance of `WebfilterFtgdLocalCatMapInput` via:
 //
-//          WebfilterFtgdLocalCatMap{ "key": WebfilterFtgdLocalCatArgs{...} }
+//	WebfilterFtgdLocalCatMap{ "key": WebfilterFtgdLocalCatArgs{...} }
 type WebfilterFtgdLocalCatMapInput interface {
 	pulumi.Input
 
@@ -228,6 +166,22 @@ func (o WebfilterFtgdLocalCatOutput) ToWebfilterFtgdLocalCatOutput() WebfilterFt
 
 func (o WebfilterFtgdLocalCatOutput) ToWebfilterFtgdLocalCatOutputWithContext(ctx context.Context) WebfilterFtgdLocalCatOutput {
 	return o
+}
+
+func (o WebfilterFtgdLocalCatOutput) Desc() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterFtgdLocalCat) pulumi.StringOutput { return v.Desc }).(pulumi.StringOutput)
+}
+
+func (o WebfilterFtgdLocalCatOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterFtgdLocalCat) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o WebfilterFtgdLocalCatOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterFtgdLocalCat) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o WebfilterFtgdLocalCatOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterFtgdLocalCat) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebfilterFtgdLocalCatArrayOutput struct{ *pulumi.OutputState }

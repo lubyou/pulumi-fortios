@@ -10,67 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch LLDP settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchControllerLldpSettings(ctx, "trname", &fortios.SwitchControllerLldpSettingsArgs{
-// 			FastStartInterval:   pulumi.Int(2),
-// 			ManagementInterface: pulumi.String("internal"),
-// 			Status:              pulumi.String("enable"),
-// 			TxHold:              pulumi.Int(4),
-// 			TxInterval:          pulumi.Int(30),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchController LldpSettings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerLldpSettings:SwitchControllerLldpSettings labelname SwitchControllerLldpSettings
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerLldpSettings:SwitchControllerLldpSettings labelname SwitchControllerLldpSettings
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerLldpSettings struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable dynamic detection of LLDP neighbor devices for VLAN assignment. Valid values: `disable`, `enable`.
-	DeviceDetection pulumi.StringOutput `pulumi:"deviceDetection"`
-	// Frequency of LLDP PDU transmission from FortiSwitch for the first 4 packets when the link is up (2 - 5 sec, default = 2, 0 = disable fast start).
-	FastStartInterval pulumi.IntOutput `pulumi:"fastStartInterval"`
-	// Primary management interface to be advertised in LLDP and CDP PDUs. Valid values: `internal`, `mgmt`.
-	ManagementInterface pulumi.StringOutput `pulumi:"managementInterface"`
-	// Enable/disable LLDP global settings. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Number of tx-intervals before local LLDP data expires (1 - 16, default = 4). Packet TTL is tx-hold * tx-interval.
-	TxHold pulumi.IntOutput `pulumi:"txHold"`
-	// Frequency of LLDP PDU transmission from FortiSwitch (5 - 4095 sec, default = 30). Packet TTL is tx-hold * tx-interval.
-	TxInterval pulumi.IntOutput `pulumi:"txInterval"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DeviceDetection     pulumi.StringOutput    `pulumi:"deviceDetection"`
+	FastStartInterval   pulumi.IntOutput       `pulumi:"fastStartInterval"`
+	ManagementInterface pulumi.StringOutput    `pulumi:"managementInterface"`
+	Status              pulumi.StringOutput    `pulumi:"status"`
+	TxHold              pulumi.IntOutput       `pulumi:"txHold"`
+	TxInterval          pulumi.IntOutput       `pulumi:"txInterval"`
+	Vdomparam           pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerLldpSettings registers a new resource with the given unique name, arguments, and options.
@@ -103,37 +52,23 @@ func GetSwitchControllerLldpSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerLldpSettings resources.
 type switchControllerLldpSettingsState struct {
-	// Enable/disable dynamic detection of LLDP neighbor devices for VLAN assignment. Valid values: `disable`, `enable`.
-	DeviceDetection *string `pulumi:"deviceDetection"`
-	// Frequency of LLDP PDU transmission from FortiSwitch for the first 4 packets when the link is up (2 - 5 sec, default = 2, 0 = disable fast start).
-	FastStartInterval *int `pulumi:"fastStartInterval"`
-	// Primary management interface to be advertised in LLDP and CDP PDUs. Valid values: `internal`, `mgmt`.
+	DeviceDetection     *string `pulumi:"deviceDetection"`
+	FastStartInterval   *int    `pulumi:"fastStartInterval"`
 	ManagementInterface *string `pulumi:"managementInterface"`
-	// Enable/disable LLDP global settings. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Number of tx-intervals before local LLDP data expires (1 - 16, default = 4). Packet TTL is tx-hold * tx-interval.
-	TxHold *int `pulumi:"txHold"`
-	// Frequency of LLDP PDU transmission from FortiSwitch (5 - 4095 sec, default = 30). Packet TTL is tx-hold * tx-interval.
-	TxInterval *int `pulumi:"txInterval"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Status              *string `pulumi:"status"`
+	TxHold              *int    `pulumi:"txHold"`
+	TxInterval          *int    `pulumi:"txInterval"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerLldpSettingsState struct {
-	// Enable/disable dynamic detection of LLDP neighbor devices for VLAN assignment. Valid values: `disable`, `enable`.
-	DeviceDetection pulumi.StringPtrInput
-	// Frequency of LLDP PDU transmission from FortiSwitch for the first 4 packets when the link is up (2 - 5 sec, default = 2, 0 = disable fast start).
-	FastStartInterval pulumi.IntPtrInput
-	// Primary management interface to be advertised in LLDP and CDP PDUs. Valid values: `internal`, `mgmt`.
+	DeviceDetection     pulumi.StringPtrInput
+	FastStartInterval   pulumi.IntPtrInput
 	ManagementInterface pulumi.StringPtrInput
-	// Enable/disable LLDP global settings. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Number of tx-intervals before local LLDP data expires (1 - 16, default = 4). Packet TTL is tx-hold * tx-interval.
-	TxHold pulumi.IntPtrInput
-	// Frequency of LLDP PDU transmission from FortiSwitch (5 - 4095 sec, default = 30). Packet TTL is tx-hold * tx-interval.
-	TxInterval pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	TxHold              pulumi.IntPtrInput
+	TxInterval          pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerLldpSettingsState) ElementType() reflect.Type {
@@ -141,38 +76,24 @@ func (SwitchControllerLldpSettingsState) ElementType() reflect.Type {
 }
 
 type switchControllerLldpSettingsArgs struct {
-	// Enable/disable dynamic detection of LLDP neighbor devices for VLAN assignment. Valid values: `disable`, `enable`.
-	DeviceDetection *string `pulumi:"deviceDetection"`
-	// Frequency of LLDP PDU transmission from FortiSwitch for the first 4 packets when the link is up (2 - 5 sec, default = 2, 0 = disable fast start).
-	FastStartInterval *int `pulumi:"fastStartInterval"`
-	// Primary management interface to be advertised in LLDP and CDP PDUs. Valid values: `internal`, `mgmt`.
+	DeviceDetection     *string `pulumi:"deviceDetection"`
+	FastStartInterval   *int    `pulumi:"fastStartInterval"`
 	ManagementInterface *string `pulumi:"managementInterface"`
-	// Enable/disable LLDP global settings. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Number of tx-intervals before local LLDP data expires (1 - 16, default = 4). Packet TTL is tx-hold * tx-interval.
-	TxHold *int `pulumi:"txHold"`
-	// Frequency of LLDP PDU transmission from FortiSwitch (5 - 4095 sec, default = 30). Packet TTL is tx-hold * tx-interval.
-	TxInterval *int `pulumi:"txInterval"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Status              *string `pulumi:"status"`
+	TxHold              *int    `pulumi:"txHold"`
+	TxInterval          *int    `pulumi:"txInterval"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerLldpSettings resource.
 type SwitchControllerLldpSettingsArgs struct {
-	// Enable/disable dynamic detection of LLDP neighbor devices for VLAN assignment. Valid values: `disable`, `enable`.
-	DeviceDetection pulumi.StringPtrInput
-	// Frequency of LLDP PDU transmission from FortiSwitch for the first 4 packets when the link is up (2 - 5 sec, default = 2, 0 = disable fast start).
-	FastStartInterval pulumi.IntPtrInput
-	// Primary management interface to be advertised in LLDP and CDP PDUs. Valid values: `internal`, `mgmt`.
+	DeviceDetection     pulumi.StringPtrInput
+	FastStartInterval   pulumi.IntPtrInput
 	ManagementInterface pulumi.StringPtrInput
-	// Enable/disable LLDP global settings. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Number of tx-intervals before local LLDP data expires (1 - 16, default = 4). Packet TTL is tx-hold * tx-interval.
-	TxHold pulumi.IntPtrInput
-	// Frequency of LLDP PDU transmission from FortiSwitch (5 - 4095 sec, default = 30). Packet TTL is tx-hold * tx-interval.
-	TxInterval pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	TxHold              pulumi.IntPtrInput
+	TxInterval          pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerLldpSettingsArgs) ElementType() reflect.Type {
@@ -201,7 +122,7 @@ func (i *SwitchControllerLldpSettings) ToSwitchControllerLldpSettingsOutputWithC
 // SwitchControllerLldpSettingsArrayInput is an input type that accepts SwitchControllerLldpSettingsArray and SwitchControllerLldpSettingsArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerLldpSettingsArrayInput` via:
 //
-//          SwitchControllerLldpSettingsArray{ SwitchControllerLldpSettingsArgs{...} }
+//	SwitchControllerLldpSettingsArray{ SwitchControllerLldpSettingsArgs{...} }
 type SwitchControllerLldpSettingsArrayInput interface {
 	pulumi.Input
 
@@ -226,7 +147,7 @@ func (i SwitchControllerLldpSettingsArray) ToSwitchControllerLldpSettingsArrayOu
 // SwitchControllerLldpSettingsMapInput is an input type that accepts SwitchControllerLldpSettingsMap and SwitchControllerLldpSettingsMapOutput values.
 // You can construct a concrete instance of `SwitchControllerLldpSettingsMapInput` via:
 //
-//          SwitchControllerLldpSettingsMap{ "key": SwitchControllerLldpSettingsArgs{...} }
+//	SwitchControllerLldpSettingsMap{ "key": SwitchControllerLldpSettingsArgs{...} }
 type SwitchControllerLldpSettingsMapInput interface {
 	pulumi.Input
 
@@ -260,6 +181,34 @@ func (o SwitchControllerLldpSettingsOutput) ToSwitchControllerLldpSettingsOutput
 
 func (o SwitchControllerLldpSettingsOutput) ToSwitchControllerLldpSettingsOutputWithContext(ctx context.Context) SwitchControllerLldpSettingsOutput {
 	return o
+}
+
+func (o SwitchControllerLldpSettingsOutput) DeviceDetection() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpSettings) pulumi.StringOutput { return v.DeviceDetection }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerLldpSettingsOutput) FastStartInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpSettings) pulumi.IntOutput { return v.FastStartInterval }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerLldpSettingsOutput) ManagementInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpSettings) pulumi.StringOutput { return v.ManagementInterface }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerLldpSettingsOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpSettings) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerLldpSettingsOutput) TxHold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpSettings) pulumi.IntOutput { return v.TxHold }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerLldpSettingsOutput) TxInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpSettings) pulumi.IntOutput { return v.TxInterval }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerLldpSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerLldpSettingsArrayOutput struct{ *pulumi.OutputState }

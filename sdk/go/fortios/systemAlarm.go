@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure alarm.
-//
-// ## Import
-//
-// System Alarm can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAlarm:SystemAlarm labelname SystemAlarm
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAlarm:SystemAlarm labelname SystemAlarm
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemAlarm struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable audible alarm. Valid values: `enable`, `disable`.
-	Audible pulumi.StringOutput `pulumi:"audible"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Alarm groups. The structure of `groups` block is documented below.
-	Groups SystemAlarmGroupArrayOutput `pulumi:"groups"`
-	// Enable/disable alarm. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Audible             pulumi.StringOutput         `pulumi:"audible"`
+	DynamicSortSubtable pulumi.StringPtrOutput      `pulumi:"dynamicSortSubtable"`
+	Groups              SystemAlarmGroupArrayOutput `pulumi:"groups"`
+	Status              pulumi.StringOutput         `pulumi:"status"`
+	Vdomparam           pulumi.StringPtrOutput      `pulumi:"vdomparam"`
 }
 
 // NewSystemAlarm registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetSystemAlarm(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAlarm resources.
 type systemAlarmState struct {
-	// Enable/disable audible alarm. Valid values: `enable`, `disable`.
-	Audible *string `pulumi:"audible"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Alarm groups. The structure of `groups` block is documented below.
-	Groups []SystemAlarmGroup `pulumi:"groups"`
-	// Enable/disable alarm. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Audible             *string            `pulumi:"audible"`
+	DynamicSortSubtable *string            `pulumi:"dynamicSortSubtable"`
+	Groups              []SystemAlarmGroup `pulumi:"groups"`
+	Status              *string            `pulumi:"status"`
+	Vdomparam           *string            `pulumi:"vdomparam"`
 }
 
 type SystemAlarmState struct {
-	// Enable/disable audible alarm. Valid values: `enable`, `disable`.
-	Audible pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Audible             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Alarm groups. The structure of `groups` block is documented below.
-	Groups SystemAlarmGroupArrayInput
-	// Enable/disable alarm. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Groups              SystemAlarmGroupArrayInput
+	Status              pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemAlarmState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (SystemAlarmState) ElementType() reflect.Type {
 }
 
 type systemAlarmArgs struct {
-	// Enable/disable audible alarm. Valid values: `enable`, `disable`.
-	Audible *string `pulumi:"audible"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Alarm groups. The structure of `groups` block is documented below.
-	Groups []SystemAlarmGroup `pulumi:"groups"`
-	// Enable/disable alarm. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Audible             *string            `pulumi:"audible"`
+	DynamicSortSubtable *string            `pulumi:"dynamicSortSubtable"`
+	Groups              []SystemAlarmGroup `pulumi:"groups"`
+	Status              *string            `pulumi:"status"`
+	Vdomparam           *string            `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemAlarm resource.
 type SystemAlarmArgs struct {
-	// Enable/disable audible alarm. Valid values: `enable`, `disable`.
-	Audible pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Audible             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Alarm groups. The structure of `groups` block is documented below.
-	Groups SystemAlarmGroupArrayInput
-	// Enable/disable alarm. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Groups              SystemAlarmGroupArrayInput
+	Status              pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemAlarmArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *SystemAlarm) ToSystemAlarmOutputWithContext(ctx context.Context) System
 // SystemAlarmArrayInput is an input type that accepts SystemAlarmArray and SystemAlarmArrayOutput values.
 // You can construct a concrete instance of `SystemAlarmArrayInput` via:
 //
-//          SystemAlarmArray{ SystemAlarmArgs{...} }
+//	SystemAlarmArray{ SystemAlarmArgs{...} }
 type SystemAlarmArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i SystemAlarmArray) ToSystemAlarmArrayOutputWithContext(ctx context.Contex
 // SystemAlarmMapInput is an input type that accepts SystemAlarmMap and SystemAlarmMapOutput values.
 // You can construct a concrete instance of `SystemAlarmMapInput` via:
 //
-//          SystemAlarmMap{ "key": SystemAlarmArgs{...} }
+//	SystemAlarmMap{ "key": SystemAlarmArgs{...} }
 type SystemAlarmMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o SystemAlarmOutput) ToSystemAlarmOutput() SystemAlarmOutput {
 
 func (o SystemAlarmOutput) ToSystemAlarmOutputWithContext(ctx context.Context) SystemAlarmOutput {
 	return o
+}
+
+func (o SystemAlarmOutput) Audible() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAlarm) pulumi.StringOutput { return v.Audible }).(pulumi.StringOutput)
+}
+
+func (o SystemAlarmOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAlarm) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAlarmOutput) Groups() SystemAlarmGroupArrayOutput {
+	return o.ApplyT(func(v *SystemAlarm) SystemAlarmGroupArrayOutput { return v.Groups }).(SystemAlarmGroupArrayOutput)
+}
+
+func (o SystemAlarmOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAlarm) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemAlarmOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAlarm) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemAlarmArrayOutput struct{ *pulumi.OutputState }

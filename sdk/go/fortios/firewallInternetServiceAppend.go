@@ -10,32 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure additional port mappings for Internet Services. Applies to FortiOS Version `6.2.4,6.2.6,6.4.1,6.4.2,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4`.
-//
-// ## Import
-//
-// Firewall InternetServiceAppend can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceAppend:FirewallInternetServiceAppend labelname FirewallInternetServiceAppend
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceAppend:FirewallInternetServiceAppend labelname FirewallInternetServiceAppend
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallInternetServiceAppend struct {
 	pulumi.CustomResourceState
 
-	// Appending TCP/UDP/SCTP destination port (1 to 65535).
-	AppendPort pulumi.IntOutput `pulumi:"appendPort"`
-	// Matching TCP/UDP/SCTP destination port (1 to 65535).
-	MatchPort pulumi.IntOutput `pulumi:"matchPort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AddrMode   pulumi.StringOutput    `pulumi:"addrMode"`
+	AppendPort pulumi.IntOutput       `pulumi:"appendPort"`
+	MatchPort  pulumi.IntOutput       `pulumi:"matchPort"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallInternetServiceAppend registers a new resource with the given unique name, arguments, and options.
@@ -68,21 +49,17 @@ func GetFirewallInternetServiceAppend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallInternetServiceAppend resources.
 type firewallInternetServiceAppendState struct {
-	// Appending TCP/UDP/SCTP destination port (1 to 65535).
-	AppendPort *int `pulumi:"appendPort"`
-	// Matching TCP/UDP/SCTP destination port (1 to 65535).
-	MatchPort *int `pulumi:"matchPort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AddrMode   *string `pulumi:"addrMode"`
+	AppendPort *int    `pulumi:"appendPort"`
+	MatchPort  *int    `pulumi:"matchPort"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type FirewallInternetServiceAppendState struct {
-	// Appending TCP/UDP/SCTP destination port (1 to 65535).
+	AddrMode   pulumi.StringPtrInput
 	AppendPort pulumi.IntPtrInput
-	// Matching TCP/UDP/SCTP destination port (1 to 65535).
-	MatchPort pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MatchPort  pulumi.IntPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceAppendState) ElementType() reflect.Type {
@@ -90,22 +67,18 @@ func (FirewallInternetServiceAppendState) ElementType() reflect.Type {
 }
 
 type firewallInternetServiceAppendArgs struct {
-	// Appending TCP/UDP/SCTP destination port (1 to 65535).
-	AppendPort *int `pulumi:"appendPort"`
-	// Matching TCP/UDP/SCTP destination port (1 to 65535).
-	MatchPort *int `pulumi:"matchPort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AddrMode   *string `pulumi:"addrMode"`
+	AppendPort *int    `pulumi:"appendPort"`
+	MatchPort  *int    `pulumi:"matchPort"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallInternetServiceAppend resource.
 type FirewallInternetServiceAppendArgs struct {
-	// Appending TCP/UDP/SCTP destination port (1 to 65535).
+	AddrMode   pulumi.StringPtrInput
 	AppendPort pulumi.IntPtrInput
-	// Matching TCP/UDP/SCTP destination port (1 to 65535).
-	MatchPort pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MatchPort  pulumi.IntPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceAppendArgs) ElementType() reflect.Type {
@@ -134,7 +107,7 @@ func (i *FirewallInternetServiceAppend) ToFirewallInternetServiceAppendOutputWit
 // FirewallInternetServiceAppendArrayInput is an input type that accepts FirewallInternetServiceAppendArray and FirewallInternetServiceAppendArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceAppendArrayInput` via:
 //
-//          FirewallInternetServiceAppendArray{ FirewallInternetServiceAppendArgs{...} }
+//	FirewallInternetServiceAppendArray{ FirewallInternetServiceAppendArgs{...} }
 type FirewallInternetServiceAppendArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +132,7 @@ func (i FirewallInternetServiceAppendArray) ToFirewallInternetServiceAppendArray
 // FirewallInternetServiceAppendMapInput is an input type that accepts FirewallInternetServiceAppendMap and FirewallInternetServiceAppendMapOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceAppendMapInput` via:
 //
-//          FirewallInternetServiceAppendMap{ "key": FirewallInternetServiceAppendArgs{...} }
+//	FirewallInternetServiceAppendMap{ "key": FirewallInternetServiceAppendArgs{...} }
 type FirewallInternetServiceAppendMapInput interface {
 	pulumi.Input
 
@@ -193,6 +166,22 @@ func (o FirewallInternetServiceAppendOutput) ToFirewallInternetServiceAppendOutp
 
 func (o FirewallInternetServiceAppendOutput) ToFirewallInternetServiceAppendOutputWithContext(ctx context.Context) FirewallInternetServiceAppendOutput {
 	return o
+}
+
+func (o FirewallInternetServiceAppendOutput) AddrMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceAppend) pulumi.StringOutput { return v.AddrMode }).(pulumi.StringOutput)
+}
+
+func (o FirewallInternetServiceAppendOutput) AppendPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceAppend) pulumi.IntOutput { return v.AppendPort }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceAppendOutput) MatchPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceAppend) pulumi.IntOutput { return v.MatchPort }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceAppendOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceAppend) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallInternetServiceAppendArrayOutput struct{ *pulumi.OutputState }

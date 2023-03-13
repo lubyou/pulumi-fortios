@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure DNS servers.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemDnsServer("trname", {
- *     dnsfilterProfile: "default",
- *     mode: "forward-only",
- * });
- * ```
- *
- * ## Import
- *
- * System DnsServer can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemDnsServer:SystemDnsServer labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemDnsServer:SystemDnsServer labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemDnsServer extends pulumi.CustomResource {
     /**
      * Get an existing SystemDnsServer resource's state with the given name, ID, and optional extra
@@ -63,25 +32,10 @@ export class SystemDnsServer extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemDnsServer.__pulumiType;
     }
 
-    /**
-     * DNS filter profile.
-     */
     public readonly dnsfilterProfile!: pulumi.Output<string>;
-    /**
-     * DNS over HTTPS. Valid values: `enable`, `disable`.
-     */
     public readonly doh!: pulumi.Output<string>;
-    /**
-     * DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
-     */
     public readonly mode!: pulumi.Output<string>;
-    /**
-     * DNS server name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -119,25 +73,10 @@ export class SystemDnsServer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemDnsServer resources.
  */
 export interface SystemDnsServerState {
-    /**
-     * DNS filter profile.
-     */
     dnsfilterProfile?: pulumi.Input<string>;
-    /**
-     * DNS over HTTPS. Valid values: `enable`, `disable`.
-     */
     doh?: pulumi.Input<string>;
-    /**
-     * DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * DNS server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -145,24 +84,9 @@ export interface SystemDnsServerState {
  * The set of arguments for constructing a SystemDnsServer resource.
  */
 export interface SystemDnsServerArgs {
-    /**
-     * DNS filter profile.
-     */
     dnsfilterProfile?: pulumi.Input<string>;
-    /**
-     * DNS over HTTPS. Valid values: `enable`, `disable`.
-     */
     doh?: pulumi.Input<string>;
-    /**
-     * DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * DNS server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,59 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiGuard - AntiSpam. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSpamfilterFortishield(ctx, "trname", &fortios.SpamfilterFortishieldArgs{
-// 			SpamSubmitForce:   pulumi.String("enable"),
-// 			SpamSubmitSrv:     pulumi.String("www.nospammer.net"),
-// 			SpamSubmitTxt2htm: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Spamfilter Fortishield can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/spamfilterFortishield:SpamfilterFortishield labelname SpamfilterFortishield
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/spamfilterFortishield:SpamfilterFortishield labelname SpamfilterFortishield
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SpamfilterFortishield struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable force insertion of a new mime entity for the submission text. Valid values: `enable`, `disable`.
-	SpamSubmitForce pulumi.StringOutput `pulumi:"spamSubmitForce"`
-	// Hostname of the spam submission server.
-	SpamSubmitSrv pulumi.StringOutput `pulumi:"spamSubmitSrv"`
-	// Enable/disable conversion of text email to HTML email. Valid values: `enable`, `disable`.
-	SpamSubmitTxt2htm pulumi.StringOutput `pulumi:"spamSubmitTxt2htm"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	SpamSubmitForce   pulumi.StringOutput    `pulumi:"spamSubmitForce"`
+	SpamSubmitSrv     pulumi.StringOutput    `pulumi:"spamSubmitSrv"`
+	SpamSubmitTxt2htm pulumi.StringOutput    `pulumi:"spamSubmitTxt2htm"`
+	Vdomparam         pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSpamfilterFortishield registers a new resource with the given unique name, arguments, and options.
@@ -95,25 +49,17 @@ func GetSpamfilterFortishield(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SpamfilterFortishield resources.
 type spamfilterFortishieldState struct {
-	// Enable/disable force insertion of a new mime entity for the submission text. Valid values: `enable`, `disable`.
-	SpamSubmitForce *string `pulumi:"spamSubmitForce"`
-	// Hostname of the spam submission server.
-	SpamSubmitSrv *string `pulumi:"spamSubmitSrv"`
-	// Enable/disable conversion of text email to HTML email. Valid values: `enable`, `disable`.
+	SpamSubmitForce   *string `pulumi:"spamSubmitForce"`
+	SpamSubmitSrv     *string `pulumi:"spamSubmitSrv"`
 	SpamSubmitTxt2htm *string `pulumi:"spamSubmitTxt2htm"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam         *string `pulumi:"vdomparam"`
 }
 
 type SpamfilterFortishieldState struct {
-	// Enable/disable force insertion of a new mime entity for the submission text. Valid values: `enable`, `disable`.
-	SpamSubmitForce pulumi.StringPtrInput
-	// Hostname of the spam submission server.
-	SpamSubmitSrv pulumi.StringPtrInput
-	// Enable/disable conversion of text email to HTML email. Valid values: `enable`, `disable`.
+	SpamSubmitForce   pulumi.StringPtrInput
+	SpamSubmitSrv     pulumi.StringPtrInput
 	SpamSubmitTxt2htm pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam         pulumi.StringPtrInput
 }
 
 func (SpamfilterFortishieldState) ElementType() reflect.Type {
@@ -121,26 +67,18 @@ func (SpamfilterFortishieldState) ElementType() reflect.Type {
 }
 
 type spamfilterFortishieldArgs struct {
-	// Enable/disable force insertion of a new mime entity for the submission text. Valid values: `enable`, `disable`.
-	SpamSubmitForce *string `pulumi:"spamSubmitForce"`
-	// Hostname of the spam submission server.
-	SpamSubmitSrv *string `pulumi:"spamSubmitSrv"`
-	// Enable/disable conversion of text email to HTML email. Valid values: `enable`, `disable`.
+	SpamSubmitForce   *string `pulumi:"spamSubmitForce"`
+	SpamSubmitSrv     *string `pulumi:"spamSubmitSrv"`
 	SpamSubmitTxt2htm *string `pulumi:"spamSubmitTxt2htm"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam         *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SpamfilterFortishield resource.
 type SpamfilterFortishieldArgs struct {
-	// Enable/disable force insertion of a new mime entity for the submission text. Valid values: `enable`, `disable`.
-	SpamSubmitForce pulumi.StringPtrInput
-	// Hostname of the spam submission server.
-	SpamSubmitSrv pulumi.StringPtrInput
-	// Enable/disable conversion of text email to HTML email. Valid values: `enable`, `disable`.
+	SpamSubmitForce   pulumi.StringPtrInput
+	SpamSubmitSrv     pulumi.StringPtrInput
 	SpamSubmitTxt2htm pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam         pulumi.StringPtrInput
 }
 
 func (SpamfilterFortishieldArgs) ElementType() reflect.Type {
@@ -169,7 +107,7 @@ func (i *SpamfilterFortishield) ToSpamfilterFortishieldOutputWithContext(ctx con
 // SpamfilterFortishieldArrayInput is an input type that accepts SpamfilterFortishieldArray and SpamfilterFortishieldArrayOutput values.
 // You can construct a concrete instance of `SpamfilterFortishieldArrayInput` via:
 //
-//          SpamfilterFortishieldArray{ SpamfilterFortishieldArgs{...} }
+//	SpamfilterFortishieldArray{ SpamfilterFortishieldArgs{...} }
 type SpamfilterFortishieldArrayInput interface {
 	pulumi.Input
 
@@ -194,7 +132,7 @@ func (i SpamfilterFortishieldArray) ToSpamfilterFortishieldArrayOutputWithContex
 // SpamfilterFortishieldMapInput is an input type that accepts SpamfilterFortishieldMap and SpamfilterFortishieldMapOutput values.
 // You can construct a concrete instance of `SpamfilterFortishieldMapInput` via:
 //
-//          SpamfilterFortishieldMap{ "key": SpamfilterFortishieldArgs{...} }
+//	SpamfilterFortishieldMap{ "key": SpamfilterFortishieldArgs{...} }
 type SpamfilterFortishieldMapInput interface {
 	pulumi.Input
 
@@ -228,6 +166,22 @@ func (o SpamfilterFortishieldOutput) ToSpamfilterFortishieldOutput() SpamfilterF
 
 func (o SpamfilterFortishieldOutput) ToSpamfilterFortishieldOutputWithContext(ctx context.Context) SpamfilterFortishieldOutput {
 	return o
+}
+
+func (o SpamfilterFortishieldOutput) SpamSubmitForce() pulumi.StringOutput {
+	return o.ApplyT(func(v *SpamfilterFortishield) pulumi.StringOutput { return v.SpamSubmitForce }).(pulumi.StringOutput)
+}
+
+func (o SpamfilterFortishieldOutput) SpamSubmitSrv() pulumi.StringOutput {
+	return o.ApplyT(func(v *SpamfilterFortishield) pulumi.StringOutput { return v.SpamSubmitSrv }).(pulumi.StringOutput)
+}
+
+func (o SpamfilterFortishieldOutput) SpamSubmitTxt2htm() pulumi.StringOutput {
+	return o.ApplyT(func(v *SpamfilterFortishield) pulumi.StringOutput { return v.SpamSubmitTxt2htm }).(pulumi.StringOutput)
+}
+
+func (o SpamfilterFortishieldOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpamfilterFortishield) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SpamfilterFortishieldArrayOutput struct{ *pulumi.OutputState }

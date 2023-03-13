@@ -10,64 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Report dataset configuration. Applies to FortiOS Version `<= 7.0.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewReportDataset(ctx, "trname", &fortios.ReportDatasetArgs{
-// 			Policy: pulumi.Int(0),
-// 			Query:  pulumi.String("select * from testdb"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Report Dataset can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/reportDataset:ReportDataset labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/reportDataset:ReportDataset labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type ReportDataset struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// SQL field name.
-	Fields ReportDatasetFieldArrayOutput `pulumi:"fields"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Parameters. The structure of `parameters` block is documented below.
-	Parameters ReportDatasetParameterArrayOutput `pulumi:"parameters"`
-	// Used by monitor policy.
-	Policy pulumi.IntOutput `pulumi:"policy"`
-	// SQL query statement.
-	Query pulumi.StringOutput `pulumi:"query"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput            `pulumi:"dynamicSortSubtable"`
+	Fields              ReportDatasetFieldArrayOutput     `pulumi:"fields"`
+	Name                pulumi.StringOutput               `pulumi:"name"`
+	Parameters          ReportDatasetParameterArrayOutput `pulumi:"parameters"`
+	Policy              pulumi.IntOutput                  `pulumi:"policy"`
+	Query               pulumi.StringOutput               `pulumi:"query"`
+	Vdomparam           pulumi.StringPtrOutput            `pulumi:"vdomparam"`
 }
 
 // NewReportDataset registers a new resource with the given unique name, arguments, and options.
@@ -100,37 +52,23 @@ func GetReportDataset(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ReportDataset resources.
 type reportDatasetState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// SQL field name.
-	Fields []ReportDatasetField `pulumi:"fields"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Parameters. The structure of `parameters` block is documented below.
-	Parameters []ReportDatasetParameter `pulumi:"parameters"`
-	// Used by monitor policy.
-	Policy *int `pulumi:"policy"`
-	// SQL query statement.
-	Query *string `pulumi:"query"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
+	Fields              []ReportDatasetField     `pulumi:"fields"`
+	Name                *string                  `pulumi:"name"`
+	Parameters          []ReportDatasetParameter `pulumi:"parameters"`
+	Policy              *int                     `pulumi:"policy"`
+	Query               *string                  `pulumi:"query"`
+	Vdomparam           *string                  `pulumi:"vdomparam"`
 }
 
 type ReportDatasetState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// SQL field name.
-	Fields ReportDatasetFieldArrayInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Parameters. The structure of `parameters` block is documented below.
-	Parameters ReportDatasetParameterArrayInput
-	// Used by monitor policy.
-	Policy pulumi.IntPtrInput
-	// SQL query statement.
-	Query pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fields              ReportDatasetFieldArrayInput
+	Name                pulumi.StringPtrInput
+	Parameters          ReportDatasetParameterArrayInput
+	Policy              pulumi.IntPtrInput
+	Query               pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (ReportDatasetState) ElementType() reflect.Type {
@@ -138,38 +76,24 @@ func (ReportDatasetState) ElementType() reflect.Type {
 }
 
 type reportDatasetArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// SQL field name.
-	Fields []ReportDatasetField `pulumi:"fields"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Parameters. The structure of `parameters` block is documented below.
-	Parameters []ReportDatasetParameter `pulumi:"parameters"`
-	// Used by monitor policy.
-	Policy *int `pulumi:"policy"`
-	// SQL query statement.
-	Query *string `pulumi:"query"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
+	Fields              []ReportDatasetField     `pulumi:"fields"`
+	Name                *string                  `pulumi:"name"`
+	Parameters          []ReportDatasetParameter `pulumi:"parameters"`
+	Policy              *int                     `pulumi:"policy"`
+	Query               *string                  `pulumi:"query"`
+	Vdomparam           *string                  `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a ReportDataset resource.
 type ReportDatasetArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// SQL field name.
-	Fields ReportDatasetFieldArrayInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Parameters. The structure of `parameters` block is documented below.
-	Parameters ReportDatasetParameterArrayInput
-	// Used by monitor policy.
-	Policy pulumi.IntPtrInput
-	// SQL query statement.
-	Query pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fields              ReportDatasetFieldArrayInput
+	Name                pulumi.StringPtrInput
+	Parameters          ReportDatasetParameterArrayInput
+	Policy              pulumi.IntPtrInput
+	Query               pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (ReportDatasetArgs) ElementType() reflect.Type {
@@ -198,7 +122,7 @@ func (i *ReportDataset) ToReportDatasetOutputWithContext(ctx context.Context) Re
 // ReportDatasetArrayInput is an input type that accepts ReportDatasetArray and ReportDatasetArrayOutput values.
 // You can construct a concrete instance of `ReportDatasetArrayInput` via:
 //
-//          ReportDatasetArray{ ReportDatasetArgs{...} }
+//	ReportDatasetArray{ ReportDatasetArgs{...} }
 type ReportDatasetArrayInput interface {
 	pulumi.Input
 
@@ -223,7 +147,7 @@ func (i ReportDatasetArray) ToReportDatasetArrayOutputWithContext(ctx context.Co
 // ReportDatasetMapInput is an input type that accepts ReportDatasetMap and ReportDatasetMapOutput values.
 // You can construct a concrete instance of `ReportDatasetMapInput` via:
 //
-//          ReportDatasetMap{ "key": ReportDatasetArgs{...} }
+//	ReportDatasetMap{ "key": ReportDatasetArgs{...} }
 type ReportDatasetMapInput interface {
 	pulumi.Input
 
@@ -257,6 +181,34 @@ func (o ReportDatasetOutput) ToReportDatasetOutput() ReportDatasetOutput {
 
 func (o ReportDatasetOutput) ToReportDatasetOutputWithContext(ctx context.Context) ReportDatasetOutput {
 	return o
+}
+
+func (o ReportDatasetOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportDataset) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o ReportDatasetOutput) Fields() ReportDatasetFieldArrayOutput {
+	return o.ApplyT(func(v *ReportDataset) ReportDatasetFieldArrayOutput { return v.Fields }).(ReportDatasetFieldArrayOutput)
+}
+
+func (o ReportDatasetOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportDataset) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ReportDatasetOutput) Parameters() ReportDatasetParameterArrayOutput {
+	return o.ApplyT(func(v *ReportDataset) ReportDatasetParameterArrayOutput { return v.Parameters }).(ReportDatasetParameterArrayOutput)
+}
+
+func (o ReportDatasetOutput) Policy() pulumi.IntOutput {
+	return o.ApplyT(func(v *ReportDataset) pulumi.IntOutput { return v.Policy }).(pulumi.IntOutput)
+}
+
+func (o ReportDatasetOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportDataset) pulumi.StringOutput { return v.Query }).(pulumi.StringOutput)
+}
+
+func (o ReportDatasetOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportDataset) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type ReportDatasetArrayOutput struct{ *pulumi.OutputState }

@@ -10,44 +10,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure VideoFilter profile. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// Videofilter Profile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/videofilterProfile:VideofilterProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/videofilterProfile:VideofilterProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VideofilterProfile struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Enable/disable Dailymotion video source. Valid values: `enable`, `disable`.
-	Dailymotion pulumi.StringOutput `pulumi:"dailymotion"`
-	// Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
-	FortiguardCategory VideofilterProfileFortiguardCategoryPtrOutput `pulumi:"fortiguardCategory"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringOutput `pulumi:"replacemsgGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable Vimeo video source. Valid values: `enable`, `disable`.
-	Vimeo pulumi.StringOutput `pulumi:"vimeo"`
-	// Enable/disable YouTube video source. Valid values: `enable`, `disable`.
-	Youtube pulumi.StringOutput `pulumi:"youtube"`
-	// Set YouTube channel filter.
-	YoutubeChannelFilter pulumi.IntOutput `pulumi:"youtubeChannelFilter"`
+	Comment              pulumi.StringPtrOutput                     `pulumi:"comment"`
+	Dailymotion          pulumi.StringOutput                        `pulumi:"dailymotion"`
+	FortiguardCategory   VideofilterProfileFortiguardCategoryOutput `pulumi:"fortiguardCategory"`
+	Name                 pulumi.StringOutput                        `pulumi:"name"`
+	ReplacemsgGroup      pulumi.StringOutput                        `pulumi:"replacemsgGroup"`
+	Vdomparam            pulumi.StringPtrOutput                     `pulumi:"vdomparam"`
+	Vimeo                pulumi.StringOutput                        `pulumi:"vimeo"`
+	Youtube              pulumi.StringOutput                        `pulumi:"youtube"`
+	YoutubeChannelFilter pulumi.IntOutput                           `pulumi:"youtubeChannelFilter"`
 }
 
 // NewVideofilterProfile registers a new resource with the given unique name, arguments, and options.
@@ -80,44 +54,26 @@ func GetVideofilterProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VideofilterProfile resources.
 type videofilterProfileState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Enable/disable Dailymotion video source. Valid values: `enable`, `disable`.
-	Dailymotion *string `pulumi:"dailymotion"`
-	// Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
-	FortiguardCategory *VideofilterProfileFortiguardCategory `pulumi:"fortiguardCategory"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Replacement message group.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable Vimeo video source. Valid values: `enable`, `disable`.
-	Vimeo *string `pulumi:"vimeo"`
-	// Enable/disable YouTube video source. Valid values: `enable`, `disable`.
-	Youtube *string `pulumi:"youtube"`
-	// Set YouTube channel filter.
-	YoutubeChannelFilter *int `pulumi:"youtubeChannelFilter"`
+	Comment              *string                               `pulumi:"comment"`
+	Dailymotion          *string                               `pulumi:"dailymotion"`
+	FortiguardCategory   *VideofilterProfileFortiguardCategory `pulumi:"fortiguardCategory"`
+	Name                 *string                               `pulumi:"name"`
+	ReplacemsgGroup      *string                               `pulumi:"replacemsgGroup"`
+	Vdomparam            *string                               `pulumi:"vdomparam"`
+	Vimeo                *string                               `pulumi:"vimeo"`
+	Youtube              *string                               `pulumi:"youtube"`
+	YoutubeChannelFilter *int                                  `pulumi:"youtubeChannelFilter"`
 }
 
 type VideofilterProfileState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Enable/disable Dailymotion video source. Valid values: `enable`, `disable`.
-	Dailymotion pulumi.StringPtrInput
-	// Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
-	FortiguardCategory VideofilterProfileFortiguardCategoryPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable Vimeo video source. Valid values: `enable`, `disable`.
-	Vimeo pulumi.StringPtrInput
-	// Enable/disable YouTube video source. Valid values: `enable`, `disable`.
-	Youtube pulumi.StringPtrInput
-	// Set YouTube channel filter.
+	Comment              pulumi.StringPtrInput
+	Dailymotion          pulumi.StringPtrInput
+	FortiguardCategory   VideofilterProfileFortiguardCategoryPtrInput
+	Name                 pulumi.StringPtrInput
+	ReplacemsgGroup      pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
+	Vimeo                pulumi.StringPtrInput
+	Youtube              pulumi.StringPtrInput
 	YoutubeChannelFilter pulumi.IntPtrInput
 }
 
@@ -126,45 +82,27 @@ func (VideofilterProfileState) ElementType() reflect.Type {
 }
 
 type videofilterProfileArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Enable/disable Dailymotion video source. Valid values: `enable`, `disable`.
-	Dailymotion *string `pulumi:"dailymotion"`
-	// Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
-	FortiguardCategory *VideofilterProfileFortiguardCategory `pulumi:"fortiguardCategory"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Replacement message group.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable Vimeo video source. Valid values: `enable`, `disable`.
-	Vimeo *string `pulumi:"vimeo"`
-	// Enable/disable YouTube video source. Valid values: `enable`, `disable`.
-	Youtube *string `pulumi:"youtube"`
-	// Set YouTube channel filter.
-	YoutubeChannelFilter *int `pulumi:"youtubeChannelFilter"`
+	Comment              *string                               `pulumi:"comment"`
+	Dailymotion          *string                               `pulumi:"dailymotion"`
+	FortiguardCategory   *VideofilterProfileFortiguardCategory `pulumi:"fortiguardCategory"`
+	Name                 *string                               `pulumi:"name"`
+	ReplacemsgGroup      *string                               `pulumi:"replacemsgGroup"`
+	Vdomparam            *string                               `pulumi:"vdomparam"`
+	Vimeo                *string                               `pulumi:"vimeo"`
+	Youtube              *string                               `pulumi:"youtube"`
+	YoutubeChannelFilter *int                                  `pulumi:"youtubeChannelFilter"`
 }
 
 // The set of arguments for constructing a VideofilterProfile resource.
 type VideofilterProfileArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Enable/disable Dailymotion video source. Valid values: `enable`, `disable`.
-	Dailymotion pulumi.StringPtrInput
-	// Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
-	FortiguardCategory VideofilterProfileFortiguardCategoryPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable Vimeo video source. Valid values: `enable`, `disable`.
-	Vimeo pulumi.StringPtrInput
-	// Enable/disable YouTube video source. Valid values: `enable`, `disable`.
-	Youtube pulumi.StringPtrInput
-	// Set YouTube channel filter.
+	Comment              pulumi.StringPtrInput
+	Dailymotion          pulumi.StringPtrInput
+	FortiguardCategory   VideofilterProfileFortiguardCategoryPtrInput
+	Name                 pulumi.StringPtrInput
+	ReplacemsgGroup      pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
+	Vimeo                pulumi.StringPtrInput
+	Youtube              pulumi.StringPtrInput
 	YoutubeChannelFilter pulumi.IntPtrInput
 }
 
@@ -194,7 +132,7 @@ func (i *VideofilterProfile) ToVideofilterProfileOutputWithContext(ctx context.C
 // VideofilterProfileArrayInput is an input type that accepts VideofilterProfileArray and VideofilterProfileArrayOutput values.
 // You can construct a concrete instance of `VideofilterProfileArrayInput` via:
 //
-//          VideofilterProfileArray{ VideofilterProfileArgs{...} }
+//	VideofilterProfileArray{ VideofilterProfileArgs{...} }
 type VideofilterProfileArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +157,7 @@ func (i VideofilterProfileArray) ToVideofilterProfileArrayOutputWithContext(ctx 
 // VideofilterProfileMapInput is an input type that accepts VideofilterProfileMap and VideofilterProfileMapOutput values.
 // You can construct a concrete instance of `VideofilterProfileMapInput` via:
 //
-//          VideofilterProfileMap{ "key": VideofilterProfileArgs{...} }
+//	VideofilterProfileMap{ "key": VideofilterProfileArgs{...} }
 type VideofilterProfileMapInput interface {
 	pulumi.Input
 
@@ -253,6 +191,42 @@ func (o VideofilterProfileOutput) ToVideofilterProfileOutput() VideofilterProfil
 
 func (o VideofilterProfileOutput) ToVideofilterProfileOutputWithContext(ctx context.Context) VideofilterProfileOutput {
 	return o
+}
+
+func (o VideofilterProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VideofilterProfile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o VideofilterProfileOutput) Dailymotion() pulumi.StringOutput {
+	return o.ApplyT(func(v *VideofilterProfile) pulumi.StringOutput { return v.Dailymotion }).(pulumi.StringOutput)
+}
+
+func (o VideofilterProfileOutput) FortiguardCategory() VideofilterProfileFortiguardCategoryOutput {
+	return o.ApplyT(func(v *VideofilterProfile) VideofilterProfileFortiguardCategoryOutput { return v.FortiguardCategory }).(VideofilterProfileFortiguardCategoryOutput)
+}
+
+func (o VideofilterProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VideofilterProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VideofilterProfileOutput) ReplacemsgGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *VideofilterProfile) pulumi.StringOutput { return v.ReplacemsgGroup }).(pulumi.StringOutput)
+}
+
+func (o VideofilterProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VideofilterProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o VideofilterProfileOutput) Vimeo() pulumi.StringOutput {
+	return o.ApplyT(func(v *VideofilterProfile) pulumi.StringOutput { return v.Vimeo }).(pulumi.StringOutput)
+}
+
+func (o VideofilterProfileOutput) Youtube() pulumi.StringOutput {
+	return o.ApplyT(func(v *VideofilterProfile) pulumi.StringOutput { return v.Youtube }).(pulumi.StringOutput)
+}
+
+func (o VideofilterProfileOutput) YoutubeChannelFilter() pulumi.IntOutput {
+	return o.ApplyT(func(v *VideofilterProfile) pulumi.IntOutput { return v.YoutubeChannelFilter }).(pulumi.IntOutput)
 }
 
 type VideofilterProfileArrayOutput struct{ *pulumi.OutputState }

@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios system autoscript
- */
 export function getSystemAutoScript(args: GetSystemAutoScriptArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemAutoScriptResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemAutoScript:GetSystemAutoScript", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getSystemAutoScript(args: GetSystemAutoScriptArgs, opts?: pulumi
  * A collection of arguments for invoking GetSystemAutoScript.
  */
 export interface GetSystemAutoScriptArgs {
-    /**
-     * Specify the name of the desired system autoscript.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -41,51 +29,23 @@ export interface GetSystemAutoScriptResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Repeat interval in seconds.
-     */
     readonly interval: number;
-    /**
-     * Auto script name.
-     */
     readonly name: string;
-    /**
-     * Number of megabytes to limit script output to (10 - 1024, default = 10).
-     */
     readonly outputSize: number;
-    /**
-     * Number of times to repeat this script (0 = infinite).
-     */
     readonly repeat: number;
-    /**
-     * List of FortiOS CLI commands to repeat.
-     */
     readonly script: string;
-    /**
-     * Script starting mode.
-     */
     readonly start: string;
-    /**
-     * Maximum running time for this script in seconds (0 = no timeout).
-     */
     readonly timeout: number;
     readonly vdomparam?: string;
 }
-
 export function getSystemAutoScriptOutput(args: GetSystemAutoScriptOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemAutoScriptResult> {
-    return pulumi.output(args).apply(a => getSystemAutoScript(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemAutoScript(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemAutoScript.
  */
 export interface GetSystemAutoScriptOutputArgs {
-    /**
-     * Specify the name of the desired system autoscript.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

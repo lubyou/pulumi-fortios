@@ -10,61 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure web proxy tunnelling for the FDN.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAutoupdateTunneling(ctx, "trname", &fortios.SystemAutoupdateTunnelingArgs{
-// 			Port:   pulumi.Int(0),
-// 			Status: pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SystemAutoupdate Tunneling can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutoupdateTunneling:SystemAutoupdateTunneling labelname SystemAutoupdateTunneling
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutoupdateTunneling:SystemAutoupdateTunneling labelname SystemAutoupdateTunneling
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemAutoupdateTunneling struct {
 	pulumi.CustomResourceState
 
-	// Web proxy IP address or FQDN.
-	Address pulumi.StringOutput `pulumi:"address"`
-	// Web proxy password.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Web proxy port.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Enable/disable web proxy tunnelling. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Web proxy username.
-	Username pulumi.StringOutput `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Address   pulumi.StringOutput    `pulumi:"address"`
+	Password  pulumi.StringPtrOutput `pulumi:"password"`
+	Port      pulumi.IntOutput       `pulumi:"port"`
+	Status    pulumi.StringOutput    `pulumi:"status"`
+	Username  pulumi.StringOutput    `pulumi:"username"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -75,6 +28,13 @@ func NewSystemAutoupdateTunneling(ctx *pulumi.Context,
 		args = &SystemAutoupdateTunnelingArgs{}
 	}
 
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAutoupdateTunneling
 	err := ctx.RegisterResource("fortios:index/systemAutoupdateTunneling:SystemAutoupdateTunneling", name, args, &resource, opts...)
@@ -98,32 +58,20 @@ func GetSystemAutoupdateTunneling(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAutoupdateTunneling resources.
 type systemAutoupdateTunnelingState struct {
-	// Web proxy IP address or FQDN.
-	Address *string `pulumi:"address"`
-	// Web proxy password.
-	Password *string `pulumi:"password"`
-	// Web proxy port.
-	Port *int `pulumi:"port"`
-	// Enable/disable web proxy tunnelling. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Web proxy username.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Address   *string `pulumi:"address"`
+	Password  *string `pulumi:"password"`
+	Port      *int    `pulumi:"port"`
+	Status    *string `pulumi:"status"`
+	Username  *string `pulumi:"username"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemAutoupdateTunnelingState struct {
-	// Web proxy IP address or FQDN.
-	Address pulumi.StringPtrInput
-	// Web proxy password.
-	Password pulumi.StringPtrInput
-	// Web proxy port.
-	Port pulumi.IntPtrInput
-	// Enable/disable web proxy tunnelling. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Web proxy username.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Address   pulumi.StringPtrInput
+	Password  pulumi.StringPtrInput
+	Port      pulumi.IntPtrInput
+	Status    pulumi.StringPtrInput
+	Username  pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -132,33 +80,21 @@ func (SystemAutoupdateTunnelingState) ElementType() reflect.Type {
 }
 
 type systemAutoupdateTunnelingArgs struct {
-	// Web proxy IP address or FQDN.
-	Address *string `pulumi:"address"`
-	// Web proxy password.
-	Password *string `pulumi:"password"`
-	// Web proxy port.
-	Port *int `pulumi:"port"`
-	// Enable/disable web proxy tunnelling. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Web proxy username.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Address   *string `pulumi:"address"`
+	Password  *string `pulumi:"password"`
+	Port      *int    `pulumi:"port"`
+	Status    *string `pulumi:"status"`
+	Username  *string `pulumi:"username"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemAutoupdateTunneling resource.
 type SystemAutoupdateTunnelingArgs struct {
-	// Web proxy IP address or FQDN.
-	Address pulumi.StringPtrInput
-	// Web proxy password.
-	Password pulumi.StringPtrInput
-	// Web proxy port.
-	Port pulumi.IntPtrInput
-	// Enable/disable web proxy tunnelling. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Web proxy username.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Address   pulumi.StringPtrInput
+	Password  pulumi.StringPtrInput
+	Port      pulumi.IntPtrInput
+	Status    pulumi.StringPtrInput
+	Username  pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -188,7 +124,7 @@ func (i *SystemAutoupdateTunneling) ToSystemAutoupdateTunnelingOutputWithContext
 // SystemAutoupdateTunnelingArrayInput is an input type that accepts SystemAutoupdateTunnelingArray and SystemAutoupdateTunnelingArrayOutput values.
 // You can construct a concrete instance of `SystemAutoupdateTunnelingArrayInput` via:
 //
-//          SystemAutoupdateTunnelingArray{ SystemAutoupdateTunnelingArgs{...} }
+//	SystemAutoupdateTunnelingArray{ SystemAutoupdateTunnelingArgs{...} }
 type SystemAutoupdateTunnelingArrayInput interface {
 	pulumi.Input
 
@@ -213,7 +149,7 @@ func (i SystemAutoupdateTunnelingArray) ToSystemAutoupdateTunnelingArrayOutputWi
 // SystemAutoupdateTunnelingMapInput is an input type that accepts SystemAutoupdateTunnelingMap and SystemAutoupdateTunnelingMapOutput values.
 // You can construct a concrete instance of `SystemAutoupdateTunnelingMapInput` via:
 //
-//          SystemAutoupdateTunnelingMap{ "key": SystemAutoupdateTunnelingArgs{...} }
+//	SystemAutoupdateTunnelingMap{ "key": SystemAutoupdateTunnelingArgs{...} }
 type SystemAutoupdateTunnelingMapInput interface {
 	pulumi.Input
 
@@ -247,6 +183,30 @@ func (o SystemAutoupdateTunnelingOutput) ToSystemAutoupdateTunnelingOutput() Sys
 
 func (o SystemAutoupdateTunnelingOutput) ToSystemAutoupdateTunnelingOutputWithContext(ctx context.Context) SystemAutoupdateTunnelingOutput {
 	return o
+}
+
+func (o SystemAutoupdateTunnelingOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoupdateTunneling) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoupdateTunnelingOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutoupdateTunneling) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutoupdateTunnelingOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAutoupdateTunneling) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o SystemAutoupdateTunnelingOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoupdateTunneling) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoupdateTunnelingOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoupdateTunneling) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoupdateTunnelingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutoupdateTunneling) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemAutoupdateTunnelingArrayOutput struct{ *pulumi.OutputState }

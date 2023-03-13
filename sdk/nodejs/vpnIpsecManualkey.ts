@@ -4,44 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPsec manual keys.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.VpnIpsecManualkey("trname", {
- *     authentication: "md5",
- *     authkey: "EE32CA121ECD772A-ECACAABA212345EC",
- *     enckey: "-",
- *     encryption: "null",
- *     interface: "port4",
- *     localGw: "0.0.0.0",
- *     localspi: "0x100",
- *     remoteGw: "1.1.1.1",
- *     remotespi: "0x100",
- * });
- * ```
- *
- * ## Import
- *
- * VpnIpsec Manualkey can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnIpsecManualkey:VpnIpsecManualkey labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnIpsecManualkey:VpnIpsecManualkey labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VpnIpsecManualkey extends pulumi.CustomResource {
     /**
      * Get an existing VpnIpsecManualkey resource's state with the given name, ID, and optional extra
@@ -70,53 +32,17 @@ export class VpnIpsecManualkey extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpnIpsecManualkey.__pulumiType;
     }
 
-    /**
-     * Authentication algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-     */
     public readonly authentication!: pulumi.Output<string>;
-    /**
-     * Hexadecimal authentication key in 16-digit (8-byte) segments separated by hyphens.
-     */
     public readonly authkey!: pulumi.Output<string>;
-    /**
-     * Hexadecimal encryption key in 16-digit (8-byte) segments separated by hyphens.
-     */
     public readonly enckey!: pulumi.Output<string>;
-    /**
-     * Encryption algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`, `aria128`, `aria192`, `aria256`, `seed`.
-     */
     public readonly encryption!: pulumi.Output<string>;
-    /**
-     * Name of the physical, aggregate, or VLAN interface.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Local gateway.
-     */
     public readonly localGw!: pulumi.Output<string>;
-    /**
-     * Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-     */
     public readonly localspi!: pulumi.Output<string>;
-    /**
-     * IPsec tunnel name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable NPU offloading. Valid values: `enable`, `disable`.
-     */
     public readonly npuOffload!: pulumi.Output<string>;
-    /**
-     * Peer gateway.
-     */
     public readonly remoteGw!: pulumi.Output<string>;
-    /**
-     * Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-     */
     public readonly remotespi!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -159,8 +85,8 @@ export class VpnIpsecManualkey extends pulumi.CustomResource {
                 throw new Error("Missing required property 'remoteGw'");
             }
             resourceInputs["authentication"] = args ? args.authentication : undefined;
-            resourceInputs["authkey"] = args ? args.authkey : undefined;
-            resourceInputs["enckey"] = args ? args.enckey : undefined;
+            resourceInputs["authkey"] = args?.authkey ? pulumi.secret(args.authkey) : undefined;
+            resourceInputs["enckey"] = args?.enckey ? pulumi.secret(args.enckey) : undefined;
             resourceInputs["encryption"] = args ? args.encryption : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["localGw"] = args ? args.localGw : undefined;
@@ -172,6 +98,8 @@ export class VpnIpsecManualkey extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["authkey", "enckey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(VpnIpsecManualkey.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -180,53 +108,17 @@ export class VpnIpsecManualkey extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnIpsecManualkey resources.
  */
 export interface VpnIpsecManualkeyState {
-    /**
-     * Authentication algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-     */
     authentication?: pulumi.Input<string>;
-    /**
-     * Hexadecimal authentication key in 16-digit (8-byte) segments separated by hyphens.
-     */
     authkey?: pulumi.Input<string>;
-    /**
-     * Hexadecimal encryption key in 16-digit (8-byte) segments separated by hyphens.
-     */
     enckey?: pulumi.Input<string>;
-    /**
-     * Encryption algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`, `aria128`, `aria192`, `aria256`, `seed`.
-     */
     encryption?: pulumi.Input<string>;
-    /**
-     * Name of the physical, aggregate, or VLAN interface.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Local gateway.
-     */
     localGw?: pulumi.Input<string>;
-    /**
-     * Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-     */
     localspi?: pulumi.Input<string>;
-    /**
-     * IPsec tunnel name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable NPU offloading. Valid values: `enable`, `disable`.
-     */
     npuOffload?: pulumi.Input<string>;
-    /**
-     * Peer gateway.
-     */
     remoteGw?: pulumi.Input<string>;
-    /**
-     * Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-     */
     remotespi?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -234,52 +126,16 @@ export interface VpnIpsecManualkeyState {
  * The set of arguments for constructing a VpnIpsecManualkey resource.
  */
 export interface VpnIpsecManualkeyArgs {
-    /**
-     * Authentication algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-     */
     authentication: pulumi.Input<string>;
-    /**
-     * Hexadecimal authentication key in 16-digit (8-byte) segments separated by hyphens.
-     */
     authkey?: pulumi.Input<string>;
-    /**
-     * Hexadecimal encryption key in 16-digit (8-byte) segments separated by hyphens.
-     */
     enckey?: pulumi.Input<string>;
-    /**
-     * Encryption algorithm. Must be the same for both ends of the tunnel. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`, `aria128`, `aria192`, `aria256`, `seed`.
-     */
     encryption: pulumi.Input<string>;
-    /**
-     * Name of the physical, aggregate, or VLAN interface.
-     */
     interface: pulumi.Input<string>;
-    /**
-     * Local gateway.
-     */
     localGw?: pulumi.Input<string>;
-    /**
-     * Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-     */
     localspi?: pulumi.Input<string>;
-    /**
-     * IPsec tunnel name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable NPU offloading. Valid values: `enable`, `disable`.
-     */
     npuOffload?: pulumi.Input<string>;
-    /**
-     * Peer gateway.
-     */
     remoteGw: pulumi.Input<string>;
-    /**
-     * Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
-     */
     remotespi?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

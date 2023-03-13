@@ -7,105 +7,32 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure GRE tunnel.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemGreTunnel(ctx, "trname", &fortios.SystemGreTunnelArgs{
-// 			ChecksumReception:          pulumi.String("disable"),
-// 			ChecksumTransmission:       pulumi.String("disable"),
-// 			DscpCopying:                pulumi.String("disable"),
-// 			Interface:                  pulumi.String("port3"),
-// 			IpVersion:                  pulumi.String("4"),
-// 			KeepaliveFailtimes:         pulumi.Int(10),
-// 			KeepaliveInterval:          pulumi.Int(0),
-// 			KeyInbound:                 pulumi.Int(0),
-// 			KeyOutbound:                pulumi.Int(0),
-// 			LocalGw:                    pulumi.String("3.3.3.3"),
-// 			LocalGw6:                   pulumi.String("::"),
-// 			RemoteGw:                   pulumi.String("1.1.1.1"),
-// 			RemoteGw6:                  pulumi.String("::"),
-// 			SequenceNumberReception:    pulumi.String("disable"),
-// 			SequenceNumberTransmission: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System GreTunnel can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemGreTunnel:SystemGreTunnel labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemGreTunnel:SystemGreTunnel labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemGreTunnel struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable validating checksums in received GRE packets. Valid values: `disable`, `enable`.
-	ChecksumReception pulumi.StringOutput `pulumi:"checksumReception"`
-	// Enable/disable including checksums in transmitted GRE packets. Valid values: `disable`, `enable`.
-	ChecksumTransmission pulumi.StringOutput `pulumi:"checksumTransmission"`
-	// DiffServ setting to be applied to GRE tunnel outer IP header.
-	Diffservcode pulumi.StringOutput `pulumi:"diffservcode"`
-	// Enable/disable DSCP copying. Valid values: `disable`, `enable`.
-	DscpCopying pulumi.StringOutput `pulumi:"dscpCopying"`
-	// Interface name.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// IP version to use for VPN interface. Valid values: `4`, `6`.
-	IpVersion pulumi.StringOutput `pulumi:"ipVersion"`
-	// Number of consecutive unreturned keepalive messages before a GRE connection is considered down (1 - 255).
-	KeepaliveFailtimes pulumi.IntOutput `pulumi:"keepaliveFailtimes"`
-	// Keepalive message interval (0 - 32767, 0 = disabled).
-	KeepaliveInterval pulumi.IntOutput `pulumi:"keepaliveInterval"`
-	// Require received GRE packets contain this key (0 - 4294967295).
-	KeyInbound pulumi.IntOutput `pulumi:"keyInbound"`
-	// Include this key in transmitted GRE packets (0 - 4294967295).
-	KeyOutbound pulumi.IntOutput `pulumi:"keyOutbound"`
-	// IP address of the local gateway.
-	LocalGw pulumi.StringOutput `pulumi:"localGw"`
-	// IPv6 address of the local gateway.
-	LocalGw6 pulumi.StringOutput `pulumi:"localGw6"`
-	// Tunnel name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// IP address of the remote gateway.
-	RemoteGw pulumi.StringOutput `pulumi:"remoteGw"`
-	// IPv6 address of the remote gateway.
-	RemoteGw6 pulumi.StringOutput `pulumi:"remoteGw6"`
-	// Enable/disable validating sequence numbers in received GRE packets. Valid values: `disable`, `enable`.
-	SequenceNumberReception pulumi.StringOutput `pulumi:"sequenceNumberReception"`
-	// Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
-	SequenceNumberTransmission pulumi.StringOutput `pulumi:"sequenceNumberTransmission"`
-	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-	UseSdwan pulumi.StringOutput `pulumi:"useSdwan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	ChecksumReception          pulumi.StringOutput    `pulumi:"checksumReception"`
+	ChecksumTransmission       pulumi.StringOutput    `pulumi:"checksumTransmission"`
+	Diffservcode               pulumi.StringOutput    `pulumi:"diffservcode"`
+	DscpCopying                pulumi.StringOutput    `pulumi:"dscpCopying"`
+	Interface                  pulumi.StringOutput    `pulumi:"interface"`
+	IpVersion                  pulumi.StringOutput    `pulumi:"ipVersion"`
+	KeepaliveFailtimes         pulumi.IntOutput       `pulumi:"keepaliveFailtimes"`
+	KeepaliveInterval          pulumi.IntOutput       `pulumi:"keepaliveInterval"`
+	KeyInbound                 pulumi.IntOutput       `pulumi:"keyInbound"`
+	KeyOutbound                pulumi.IntOutput       `pulumi:"keyOutbound"`
+	LocalGw                    pulumi.StringOutput    `pulumi:"localGw"`
+	LocalGw6                   pulumi.StringOutput    `pulumi:"localGw6"`
+	Name                       pulumi.StringOutput    `pulumi:"name"`
+	RemoteGw                   pulumi.StringOutput    `pulumi:"remoteGw"`
+	RemoteGw6                  pulumi.StringOutput    `pulumi:"remoteGw6"`
+	SequenceNumberReception    pulumi.StringOutput    `pulumi:"sequenceNumberReception"`
+	SequenceNumberTransmission pulumi.StringOutput    `pulumi:"sequenceNumberTransmission"`
+	UseSdwan                   pulumi.StringOutput    `pulumi:"useSdwan"`
+	Vdomparam                  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemGreTunnel registers a new resource with the given unique name, arguments, and options.
@@ -144,85 +71,47 @@ func GetSystemGreTunnel(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemGreTunnel resources.
 type systemGreTunnelState struct {
-	// Enable/disable validating checksums in received GRE packets. Valid values: `disable`, `enable`.
-	ChecksumReception *string `pulumi:"checksumReception"`
-	// Enable/disable including checksums in transmitted GRE packets. Valid values: `disable`, `enable`.
-	ChecksumTransmission *string `pulumi:"checksumTransmission"`
-	// DiffServ setting to be applied to GRE tunnel outer IP header.
-	Diffservcode *string `pulumi:"diffservcode"`
-	// Enable/disable DSCP copying. Valid values: `disable`, `enable`.
-	DscpCopying *string `pulumi:"dscpCopying"`
-	// Interface name.
-	Interface *string `pulumi:"interface"`
-	// IP version to use for VPN interface. Valid values: `4`, `6`.
-	IpVersion *string `pulumi:"ipVersion"`
-	// Number of consecutive unreturned keepalive messages before a GRE connection is considered down (1 - 255).
-	KeepaliveFailtimes *int `pulumi:"keepaliveFailtimes"`
-	// Keepalive message interval (0 - 32767, 0 = disabled).
-	KeepaliveInterval *int `pulumi:"keepaliveInterval"`
-	// Require received GRE packets contain this key (0 - 4294967295).
-	KeyInbound *int `pulumi:"keyInbound"`
-	// Include this key in transmitted GRE packets (0 - 4294967295).
-	KeyOutbound *int `pulumi:"keyOutbound"`
-	// IP address of the local gateway.
-	LocalGw *string `pulumi:"localGw"`
-	// IPv6 address of the local gateway.
-	LocalGw6 *string `pulumi:"localGw6"`
-	// Tunnel name.
-	Name *string `pulumi:"name"`
-	// IP address of the remote gateway.
-	RemoteGw *string `pulumi:"remoteGw"`
-	// IPv6 address of the remote gateway.
-	RemoteGw6 *string `pulumi:"remoteGw6"`
-	// Enable/disable validating sequence numbers in received GRE packets. Valid values: `disable`, `enable`.
-	SequenceNumberReception *string `pulumi:"sequenceNumberReception"`
-	// Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
+	ChecksumReception          *string `pulumi:"checksumReception"`
+	ChecksumTransmission       *string `pulumi:"checksumTransmission"`
+	Diffservcode               *string `pulumi:"diffservcode"`
+	DscpCopying                *string `pulumi:"dscpCopying"`
+	Interface                  *string `pulumi:"interface"`
+	IpVersion                  *string `pulumi:"ipVersion"`
+	KeepaliveFailtimes         *int    `pulumi:"keepaliveFailtimes"`
+	KeepaliveInterval          *int    `pulumi:"keepaliveInterval"`
+	KeyInbound                 *int    `pulumi:"keyInbound"`
+	KeyOutbound                *int    `pulumi:"keyOutbound"`
+	LocalGw                    *string `pulumi:"localGw"`
+	LocalGw6                   *string `pulumi:"localGw6"`
+	Name                       *string `pulumi:"name"`
+	RemoteGw                   *string `pulumi:"remoteGw"`
+	RemoteGw6                  *string `pulumi:"remoteGw6"`
+	SequenceNumberReception    *string `pulumi:"sequenceNumberReception"`
 	SequenceNumberTransmission *string `pulumi:"sequenceNumberTransmission"`
-	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-	UseSdwan *string `pulumi:"useSdwan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	UseSdwan                   *string `pulumi:"useSdwan"`
+	Vdomparam                  *string `pulumi:"vdomparam"`
 }
 
 type SystemGreTunnelState struct {
-	// Enable/disable validating checksums in received GRE packets. Valid values: `disable`, `enable`.
-	ChecksumReception pulumi.StringPtrInput
-	// Enable/disable including checksums in transmitted GRE packets. Valid values: `disable`, `enable`.
-	ChecksumTransmission pulumi.StringPtrInput
-	// DiffServ setting to be applied to GRE tunnel outer IP header.
-	Diffservcode pulumi.StringPtrInput
-	// Enable/disable DSCP copying. Valid values: `disable`, `enable`.
-	DscpCopying pulumi.StringPtrInput
-	// Interface name.
-	Interface pulumi.StringPtrInput
-	// IP version to use for VPN interface. Valid values: `4`, `6`.
-	IpVersion pulumi.StringPtrInput
-	// Number of consecutive unreturned keepalive messages before a GRE connection is considered down (1 - 255).
-	KeepaliveFailtimes pulumi.IntPtrInput
-	// Keepalive message interval (0 - 32767, 0 = disabled).
-	KeepaliveInterval pulumi.IntPtrInput
-	// Require received GRE packets contain this key (0 - 4294967295).
-	KeyInbound pulumi.IntPtrInput
-	// Include this key in transmitted GRE packets (0 - 4294967295).
-	KeyOutbound pulumi.IntPtrInput
-	// IP address of the local gateway.
-	LocalGw pulumi.StringPtrInput
-	// IPv6 address of the local gateway.
-	LocalGw6 pulumi.StringPtrInput
-	// Tunnel name.
-	Name pulumi.StringPtrInput
-	// IP address of the remote gateway.
-	RemoteGw pulumi.StringPtrInput
-	// IPv6 address of the remote gateway.
-	RemoteGw6 pulumi.StringPtrInput
-	// Enable/disable validating sequence numbers in received GRE packets. Valid values: `disable`, `enable`.
-	SequenceNumberReception pulumi.StringPtrInput
-	// Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
+	ChecksumReception          pulumi.StringPtrInput
+	ChecksumTransmission       pulumi.StringPtrInput
+	Diffservcode               pulumi.StringPtrInput
+	DscpCopying                pulumi.StringPtrInput
+	Interface                  pulumi.StringPtrInput
+	IpVersion                  pulumi.StringPtrInput
+	KeepaliveFailtimes         pulumi.IntPtrInput
+	KeepaliveInterval          pulumi.IntPtrInput
+	KeyInbound                 pulumi.IntPtrInput
+	KeyOutbound                pulumi.IntPtrInput
+	LocalGw                    pulumi.StringPtrInput
+	LocalGw6                   pulumi.StringPtrInput
+	Name                       pulumi.StringPtrInput
+	RemoteGw                   pulumi.StringPtrInput
+	RemoteGw6                  pulumi.StringPtrInput
+	SequenceNumberReception    pulumi.StringPtrInput
 	SequenceNumberTransmission pulumi.StringPtrInput
-	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-	UseSdwan pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	UseSdwan                   pulumi.StringPtrInput
+	Vdomparam                  pulumi.StringPtrInput
 }
 
 func (SystemGreTunnelState) ElementType() reflect.Type {
@@ -230,86 +119,48 @@ func (SystemGreTunnelState) ElementType() reflect.Type {
 }
 
 type systemGreTunnelArgs struct {
-	// Enable/disable validating checksums in received GRE packets. Valid values: `disable`, `enable`.
-	ChecksumReception *string `pulumi:"checksumReception"`
-	// Enable/disable including checksums in transmitted GRE packets. Valid values: `disable`, `enable`.
-	ChecksumTransmission *string `pulumi:"checksumTransmission"`
-	// DiffServ setting to be applied to GRE tunnel outer IP header.
-	Diffservcode *string `pulumi:"diffservcode"`
-	// Enable/disable DSCP copying. Valid values: `disable`, `enable`.
-	DscpCopying *string `pulumi:"dscpCopying"`
-	// Interface name.
-	Interface *string `pulumi:"interface"`
-	// IP version to use for VPN interface. Valid values: `4`, `6`.
-	IpVersion *string `pulumi:"ipVersion"`
-	// Number of consecutive unreturned keepalive messages before a GRE connection is considered down (1 - 255).
-	KeepaliveFailtimes *int `pulumi:"keepaliveFailtimes"`
-	// Keepalive message interval (0 - 32767, 0 = disabled).
-	KeepaliveInterval *int `pulumi:"keepaliveInterval"`
-	// Require received GRE packets contain this key (0 - 4294967295).
-	KeyInbound *int `pulumi:"keyInbound"`
-	// Include this key in transmitted GRE packets (0 - 4294967295).
-	KeyOutbound *int `pulumi:"keyOutbound"`
-	// IP address of the local gateway.
-	LocalGw string `pulumi:"localGw"`
-	// IPv6 address of the local gateway.
-	LocalGw6 *string `pulumi:"localGw6"`
-	// Tunnel name.
-	Name *string `pulumi:"name"`
-	// IP address of the remote gateway.
-	RemoteGw string `pulumi:"remoteGw"`
-	// IPv6 address of the remote gateway.
-	RemoteGw6 *string `pulumi:"remoteGw6"`
-	// Enable/disable validating sequence numbers in received GRE packets. Valid values: `disable`, `enable`.
-	SequenceNumberReception *string `pulumi:"sequenceNumberReception"`
-	// Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
+	ChecksumReception          *string `pulumi:"checksumReception"`
+	ChecksumTransmission       *string `pulumi:"checksumTransmission"`
+	Diffservcode               *string `pulumi:"diffservcode"`
+	DscpCopying                *string `pulumi:"dscpCopying"`
+	Interface                  *string `pulumi:"interface"`
+	IpVersion                  *string `pulumi:"ipVersion"`
+	KeepaliveFailtimes         *int    `pulumi:"keepaliveFailtimes"`
+	KeepaliveInterval          *int    `pulumi:"keepaliveInterval"`
+	KeyInbound                 *int    `pulumi:"keyInbound"`
+	KeyOutbound                *int    `pulumi:"keyOutbound"`
+	LocalGw                    string  `pulumi:"localGw"`
+	LocalGw6                   *string `pulumi:"localGw6"`
+	Name                       *string `pulumi:"name"`
+	RemoteGw                   string  `pulumi:"remoteGw"`
+	RemoteGw6                  *string `pulumi:"remoteGw6"`
+	SequenceNumberReception    *string `pulumi:"sequenceNumberReception"`
 	SequenceNumberTransmission *string `pulumi:"sequenceNumberTransmission"`
-	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-	UseSdwan *string `pulumi:"useSdwan"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	UseSdwan                   *string `pulumi:"useSdwan"`
+	Vdomparam                  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemGreTunnel resource.
 type SystemGreTunnelArgs struct {
-	// Enable/disable validating checksums in received GRE packets. Valid values: `disable`, `enable`.
-	ChecksumReception pulumi.StringPtrInput
-	// Enable/disable including checksums in transmitted GRE packets. Valid values: `disable`, `enable`.
-	ChecksumTransmission pulumi.StringPtrInput
-	// DiffServ setting to be applied to GRE tunnel outer IP header.
-	Diffservcode pulumi.StringPtrInput
-	// Enable/disable DSCP copying. Valid values: `disable`, `enable`.
-	DscpCopying pulumi.StringPtrInput
-	// Interface name.
-	Interface pulumi.StringPtrInput
-	// IP version to use for VPN interface. Valid values: `4`, `6`.
-	IpVersion pulumi.StringPtrInput
-	// Number of consecutive unreturned keepalive messages before a GRE connection is considered down (1 - 255).
-	KeepaliveFailtimes pulumi.IntPtrInput
-	// Keepalive message interval (0 - 32767, 0 = disabled).
-	KeepaliveInterval pulumi.IntPtrInput
-	// Require received GRE packets contain this key (0 - 4294967295).
-	KeyInbound pulumi.IntPtrInput
-	// Include this key in transmitted GRE packets (0 - 4294967295).
-	KeyOutbound pulumi.IntPtrInput
-	// IP address of the local gateway.
-	LocalGw pulumi.StringInput
-	// IPv6 address of the local gateway.
-	LocalGw6 pulumi.StringPtrInput
-	// Tunnel name.
-	Name pulumi.StringPtrInput
-	// IP address of the remote gateway.
-	RemoteGw pulumi.StringInput
-	// IPv6 address of the remote gateway.
-	RemoteGw6 pulumi.StringPtrInput
-	// Enable/disable validating sequence numbers in received GRE packets. Valid values: `disable`, `enable`.
-	SequenceNumberReception pulumi.StringPtrInput
-	// Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
+	ChecksumReception          pulumi.StringPtrInput
+	ChecksumTransmission       pulumi.StringPtrInput
+	Diffservcode               pulumi.StringPtrInput
+	DscpCopying                pulumi.StringPtrInput
+	Interface                  pulumi.StringPtrInput
+	IpVersion                  pulumi.StringPtrInput
+	KeepaliveFailtimes         pulumi.IntPtrInput
+	KeepaliveInterval          pulumi.IntPtrInput
+	KeyInbound                 pulumi.IntPtrInput
+	KeyOutbound                pulumi.IntPtrInput
+	LocalGw                    pulumi.StringInput
+	LocalGw6                   pulumi.StringPtrInput
+	Name                       pulumi.StringPtrInput
+	RemoteGw                   pulumi.StringInput
+	RemoteGw6                  pulumi.StringPtrInput
+	SequenceNumberReception    pulumi.StringPtrInput
 	SequenceNumberTransmission pulumi.StringPtrInput
-	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
-	UseSdwan pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	UseSdwan                   pulumi.StringPtrInput
+	Vdomparam                  pulumi.StringPtrInput
 }
 
 func (SystemGreTunnelArgs) ElementType() reflect.Type {
@@ -338,7 +189,7 @@ func (i *SystemGreTunnel) ToSystemGreTunnelOutputWithContext(ctx context.Context
 // SystemGreTunnelArrayInput is an input type that accepts SystemGreTunnelArray and SystemGreTunnelArrayOutput values.
 // You can construct a concrete instance of `SystemGreTunnelArrayInput` via:
 //
-//          SystemGreTunnelArray{ SystemGreTunnelArgs{...} }
+//	SystemGreTunnelArray{ SystemGreTunnelArgs{...} }
 type SystemGreTunnelArrayInput interface {
 	pulumi.Input
 
@@ -363,7 +214,7 @@ func (i SystemGreTunnelArray) ToSystemGreTunnelArrayOutputWithContext(ctx contex
 // SystemGreTunnelMapInput is an input type that accepts SystemGreTunnelMap and SystemGreTunnelMapOutput values.
 // You can construct a concrete instance of `SystemGreTunnelMapInput` via:
 //
-//          SystemGreTunnelMap{ "key": SystemGreTunnelArgs{...} }
+//	SystemGreTunnelMap{ "key": SystemGreTunnelArgs{...} }
 type SystemGreTunnelMapInput interface {
 	pulumi.Input
 
@@ -397,6 +248,82 @@ func (o SystemGreTunnelOutput) ToSystemGreTunnelOutput() SystemGreTunnelOutput {
 
 func (o SystemGreTunnelOutput) ToSystemGreTunnelOutputWithContext(ctx context.Context) SystemGreTunnelOutput {
 	return o
+}
+
+func (o SystemGreTunnelOutput) ChecksumReception() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.StringOutput { return v.ChecksumReception }).(pulumi.StringOutput)
+}
+
+func (o SystemGreTunnelOutput) ChecksumTransmission() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.StringOutput { return v.ChecksumTransmission }).(pulumi.StringOutput)
+}
+
+func (o SystemGreTunnelOutput) Diffservcode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.StringOutput { return v.Diffservcode }).(pulumi.StringOutput)
+}
+
+func (o SystemGreTunnelOutput) DscpCopying() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.StringOutput { return v.DscpCopying }).(pulumi.StringOutput)
+}
+
+func (o SystemGreTunnelOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemGreTunnelOutput) IpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.StringOutput { return v.IpVersion }).(pulumi.StringOutput)
+}
+
+func (o SystemGreTunnelOutput) KeepaliveFailtimes() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.IntOutput { return v.KeepaliveFailtimes }).(pulumi.IntOutput)
+}
+
+func (o SystemGreTunnelOutput) KeepaliveInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.IntOutput { return v.KeepaliveInterval }).(pulumi.IntOutput)
+}
+
+func (o SystemGreTunnelOutput) KeyInbound() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.IntOutput { return v.KeyInbound }).(pulumi.IntOutput)
+}
+
+func (o SystemGreTunnelOutput) KeyOutbound() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.IntOutput { return v.KeyOutbound }).(pulumi.IntOutput)
+}
+
+func (o SystemGreTunnelOutput) LocalGw() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.StringOutput { return v.LocalGw }).(pulumi.StringOutput)
+}
+
+func (o SystemGreTunnelOutput) LocalGw6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.StringOutput { return v.LocalGw6 }).(pulumi.StringOutput)
+}
+
+func (o SystemGreTunnelOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemGreTunnelOutput) RemoteGw() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.StringOutput { return v.RemoteGw }).(pulumi.StringOutput)
+}
+
+func (o SystemGreTunnelOutput) RemoteGw6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.StringOutput { return v.RemoteGw6 }).(pulumi.StringOutput)
+}
+
+func (o SystemGreTunnelOutput) SequenceNumberReception() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.StringOutput { return v.SequenceNumberReception }).(pulumi.StringOutput)
+}
+
+func (o SystemGreTunnelOutput) SequenceNumberTransmission() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.StringOutput { return v.SequenceNumberTransmission }).(pulumi.StringOutput)
+}
+
+func (o SystemGreTunnelOutput) UseSdwan() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.StringOutput { return v.UseSdwan }).(pulumi.StringOutput)
+}
+
+func (o SystemGreTunnelOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemGreTunnel) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemGreTunnelArrayOutput struct{ *pulumi.OutputState }

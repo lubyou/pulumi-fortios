@@ -4,41 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports Create/Read/Update/Delete firewall security policy on FortiManager which could be installed to the FortiGate later
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerFirewallSecurityPolicy("test1", {
- *     action: "accept",
- *     avProfiles: ["g-default"],
- *     capturePacket: "enable",
- *     comments: "policy test",
- *     dnsfilterProfiles: ["default"],
- *     dstaddrs: ["all"],
- *     dstintfs: ["any"],
- *     fixedport: "enable",
- *     groups: ["Guest-group"],
- *     ippool: "disable",
- *     logtraffic: "all",
- *     logtrafficStart: "enable",
- *     nat: "enable",
- *     packageName: "dvm-test",
- *     profileType: "single",
- *     schedules: ["always"],
- *     services: ["ALL"],
- *     srcaddrs: ["all"],
- *     srcintfs: ["any"],
- *     trafficShapers: ["high-priority"],
- *     users: ["guest"],
- *     utmStatus: "enable",
- * });
- * ```
- */
 export class FortimanagerFirewallSecurityPolicy extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerFirewallSecurityPolicy resource's state with the given name, ID, and optional extra
@@ -67,174 +32,48 @@ export class FortimanagerFirewallSecurityPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerFirewallSecurityPolicy.__pulumiType;
     }
 
-    /**
-     * Policy action, default is deny. Enum: [allow, deny, ipsec].
-     */
     public readonly action!: pulumi.Output<string | undefined>;
-    /**
-     * ADOM name. default is 'root'.
-     */
     public readonly adom!: pulumi.Output<string | undefined>;
-    /**
-     * Name of an existing Application list.
-     */
     public readonly applicationLists!: pulumi.Output<string[] | undefined>;
-    /**
-     * Name of an existing Antivirus profile.
-     */
     public readonly avProfiles!: pulumi.Output<string[] | undefined>;
-    /**
-     * Enable/disable capture packets.
-     */
     public readonly capturePacket!: pulumi.Output<string | undefined>;
-    /**
-     * Comments.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Name of an existing DNS filter profile.
-     */
     public readonly dnsfilterProfiles!: pulumi.Output<string[] | undefined>;
-    /**
-     * Destination address and adress group names.
-     */
     public readonly dstaddrs!: pulumi.Output<string[]>;
-    /**
-     * Outgoing interface.
-     */
     public readonly dstintfs!: pulumi.Output<string[]>;
-    /**
-     * Enable/disable to prevent source NAT from changing a session's source port.
-     */
     public readonly fixedport!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable Fortinet Single Sign-On.
-     */
     public readonly fsso!: pulumi.Output<string | undefined>;
-    /**
-     * Names of user groups that can authenticate with this policy.
-     */
     public readonly groups!: pulumi.Output<string[] | undefined>;
-    /**
-     * Policy-based IPsec VPN: only traffic from the remote network can initiate a VPN. Enum: [disable, enable]
-     */
     public readonly inbound!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable use of Destination Internet Services for this policy.
-     */
     public readonly internetService!: pulumi.Output<string>;
-    /**
-     * Destination Internet Service ID.
-     */
     public readonly internetServiceIds!: pulumi.Output<string[] | undefined>;
-    /**
-     * Destination Internet Service Name.
-     */
     public readonly internetServiceNames!: pulumi.Output<string[] | undefined>;
-    /**
-     * Enable/disable use of Source Internet Services for this policy.
-     */
     public readonly internetServiceSrc!: pulumi.Output<string>;
-    /**
-     * Source Internet Service ID.
-     */
     public readonly internetServiceSrcIds!: pulumi.Output<string[] | undefined>;
-    /**
-     * Source Internet Service Name.
-     */
     public readonly internetServiceSrcNames!: pulumi.Output<string[] | undefined>;
-    /**
-     * Enable/disable to use IP Pools for source NAT.
-     */
     public readonly ippool!: pulumi.Output<string | undefined>;
-    /**
-     * Name of an existing IPS sensor.
-     */
     public readonly ipsSensors!: pulumi.Output<string[] | undefined>;
-    /**
-     * Enable or disable logging. Enum: [disable, all, utm]
-     */
     public readonly logtraffic!: pulumi.Output<string | undefined>;
-    /**
-     * Record logs when a session starts and ends. Enum: [disable, enable]
-     */
     public readonly logtrafficStart!: pulumi.Output<string | undefined>;
-    /**
-     * Policy name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable source NAT.
-     */
     public readonly nat!: pulumi.Output<string | undefined>;
-    /**
-     * The package name which the policy will be added to.
-     */
     public readonly packageName!: pulumi.Output<string | undefined>;
-    /**
-     * Per-IP traffic shaper.
-     */
     public readonly perIpShapers!: pulumi.Output<string[] | undefined>;
-    /**
-     * IP Pool names.
-     */
     public readonly poolnames!: pulumi.Output<string[] | undefined>;
-    /**
-     * Name of profile group.
-     */
     public readonly profileGroups!: pulumi.Output<string[] | undefined>;
-    /**
-     * Name of an existing Protocol options profile.
-     */
     public readonly profileProtocolOptions!: pulumi.Output<string[] | undefined>;
-    /**
-     * Determine whether the firewall policy allows security profile groups or single profiles only. Enum: [single, group]
-     */
     public readonly profileType!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable RADIUS Single Sign-On.
-     */
     public readonly rsso!: pulumi.Output<string | undefined>;
-    /**
-     * Schedule name.
-     */
     public readonly schedules!: pulumi.Output<string[]>;
-    /**
-     * Service and service group names.
-     */
     public readonly services!: pulumi.Output<string[]>;
-    /**
-     * Source address and adress group names.
-     */
     public readonly srcaddrs!: pulumi.Output<string[]>;
-    /**
-     * Incoming interface.
-     */
     public readonly srcintfs!: pulumi.Output<string[]>;
-    /**
-     * Reverse traffic shaper.
-     */
     public readonly trafficShaperReverses!: pulumi.Output<string[] | undefined>;
-    /**
-     * Traffic shaper.
-     */
     public readonly trafficShapers!: pulumi.Output<string[] | undefined>;
-    /**
-     * Names of individual users that can authenticate with this policy.
-     */
     public readonly users!: pulumi.Output<string[] | undefined>;
-    /**
-     * Enable/disable to add one or more security profiles (AV, IPS, etc.) to the firewall policy.
-     */
     public readonly utmStatus!: pulumi.Output<string | undefined>;
     public readonly vpnTunnels!: pulumi.Output<string[] | undefined>;
-    /**
-     * Name of an existing Web application firewall profile.
-     */
     public readonly wafProfiles!: pulumi.Output<string[] | undefined>;
-    /**
-     * Name of an existing Web filter profile.
-     */
     public readonly webfilterProfiles!: pulumi.Output<string[] | undefined>;
 
     /**
@@ -366,174 +205,48 @@ export class FortimanagerFirewallSecurityPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerFirewallSecurityPolicy resources.
  */
 export interface FortimanagerFirewallSecurityPolicyState {
-    /**
-     * Policy action, default is deny. Enum: [allow, deny, ipsec].
-     */
     action?: pulumi.Input<string>;
-    /**
-     * ADOM name. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Name of an existing Application list.
-     */
     applicationLists?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of an existing Antivirus profile.
-     */
     avProfiles?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable/disable capture packets.
-     */
     capturePacket?: pulumi.Input<string>;
-    /**
-     * Comments.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Name of an existing DNS filter profile.
-     */
     dnsfilterProfiles?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Destination address and adress group names.
-     */
     dstaddrs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Outgoing interface.
-     */
     dstintfs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable/disable to prevent source NAT from changing a session's source port.
-     */
     fixedport?: pulumi.Input<string>;
-    /**
-     * Enable/disable Fortinet Single Sign-On.
-     */
     fsso?: pulumi.Input<string>;
-    /**
-     * Names of user groups that can authenticate with this policy.
-     */
     groups?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Policy-based IPsec VPN: only traffic from the remote network can initiate a VPN. Enum: [disable, enable]
-     */
     inbound?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of Destination Internet Services for this policy.
-     */
     internetService?: pulumi.Input<string>;
-    /**
-     * Destination Internet Service ID.
-     */
     internetServiceIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Destination Internet Service Name.
-     */
     internetServiceNames?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable/disable use of Source Internet Services for this policy.
-     */
     internetServiceSrc?: pulumi.Input<string>;
-    /**
-     * Source Internet Service ID.
-     */
     internetServiceSrcIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Source Internet Service Name.
-     */
     internetServiceSrcNames?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable/disable to use IP Pools for source NAT.
-     */
     ippool?: pulumi.Input<string>;
-    /**
-     * Name of an existing IPS sensor.
-     */
     ipsSensors?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable or disable logging. Enum: [disable, all, utm]
-     */
     logtraffic?: pulumi.Input<string>;
-    /**
-     * Record logs when a session starts and ends. Enum: [disable, enable]
-     */
     logtrafficStart?: pulumi.Input<string>;
-    /**
-     * Policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable source NAT.
-     */
     nat?: pulumi.Input<string>;
-    /**
-     * The package name which the policy will be added to.
-     */
     packageName?: pulumi.Input<string>;
-    /**
-     * Per-IP traffic shaper.
-     */
     perIpShapers?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * IP Pool names.
-     */
     poolnames?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of profile group.
-     */
     profileGroups?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of an existing Protocol options profile.
-     */
     profileProtocolOptions?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Determine whether the firewall policy allows security profile groups or single profiles only. Enum: [single, group]
-     */
     profileType?: pulumi.Input<string>;
-    /**
-     * Enable/disable RADIUS Single Sign-On.
-     */
     rsso?: pulumi.Input<string>;
-    /**
-     * Schedule name.
-     */
     schedules?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Service and service group names.
-     */
     services?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Source address and adress group names.
-     */
     srcaddrs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Incoming interface.
-     */
     srcintfs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Reverse traffic shaper.
-     */
     trafficShaperReverses?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Traffic shaper.
-     */
     trafficShapers?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Names of individual users that can authenticate with this policy.
-     */
     users?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable/disable to add one or more security profiles (AV, IPS, etc.) to the firewall policy.
-     */
     utmStatus?: pulumi.Input<string>;
     vpnTunnels?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of an existing Web application firewall profile.
-     */
     wafProfiles?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of an existing Web filter profile.
-     */
     webfilterProfiles?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -541,173 +254,47 @@ export interface FortimanagerFirewallSecurityPolicyState {
  * The set of arguments for constructing a FortimanagerFirewallSecurityPolicy resource.
  */
 export interface FortimanagerFirewallSecurityPolicyArgs {
-    /**
-     * Policy action, default is deny. Enum: [allow, deny, ipsec].
-     */
     action?: pulumi.Input<string>;
-    /**
-     * ADOM name. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Name of an existing Application list.
-     */
     applicationLists?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of an existing Antivirus profile.
-     */
     avProfiles?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable/disable capture packets.
-     */
     capturePacket?: pulumi.Input<string>;
-    /**
-     * Comments.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Name of an existing DNS filter profile.
-     */
     dnsfilterProfiles?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Destination address and adress group names.
-     */
     dstaddrs: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Outgoing interface.
-     */
     dstintfs: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable/disable to prevent source NAT from changing a session's source port.
-     */
     fixedport?: pulumi.Input<string>;
-    /**
-     * Enable/disable Fortinet Single Sign-On.
-     */
     fsso?: pulumi.Input<string>;
-    /**
-     * Names of user groups that can authenticate with this policy.
-     */
     groups?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Policy-based IPsec VPN: only traffic from the remote network can initiate a VPN. Enum: [disable, enable]
-     */
     inbound?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of Destination Internet Services for this policy.
-     */
     internetService?: pulumi.Input<string>;
-    /**
-     * Destination Internet Service ID.
-     */
     internetServiceIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Destination Internet Service Name.
-     */
     internetServiceNames?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable/disable use of Source Internet Services for this policy.
-     */
     internetServiceSrc?: pulumi.Input<string>;
-    /**
-     * Source Internet Service ID.
-     */
     internetServiceSrcIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Source Internet Service Name.
-     */
     internetServiceSrcNames?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable/disable to use IP Pools for source NAT.
-     */
     ippool?: pulumi.Input<string>;
-    /**
-     * Name of an existing IPS sensor.
-     */
     ipsSensors?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable or disable logging. Enum: [disable, all, utm]
-     */
     logtraffic?: pulumi.Input<string>;
-    /**
-     * Record logs when a session starts and ends. Enum: [disable, enable]
-     */
     logtrafficStart?: pulumi.Input<string>;
-    /**
-     * Policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable source NAT.
-     */
     nat?: pulumi.Input<string>;
-    /**
-     * The package name which the policy will be added to.
-     */
     packageName?: pulumi.Input<string>;
-    /**
-     * Per-IP traffic shaper.
-     */
     perIpShapers?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * IP Pool names.
-     */
     poolnames?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of profile group.
-     */
     profileGroups?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of an existing Protocol options profile.
-     */
     profileProtocolOptions?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Determine whether the firewall policy allows security profile groups or single profiles only. Enum: [single, group]
-     */
     profileType?: pulumi.Input<string>;
-    /**
-     * Enable/disable RADIUS Single Sign-On.
-     */
     rsso?: pulumi.Input<string>;
-    /**
-     * Schedule name.
-     */
     schedules: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Service and service group names.
-     */
     services: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Source address and adress group names.
-     */
     srcaddrs: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Incoming interface.
-     */
     srcintfs: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Reverse traffic shaper.
-     */
     trafficShaperReverses?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Traffic shaper.
-     */
     trafficShapers?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Names of individual users that can authenticate with this policy.
-     */
     users?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable/disable to add one or more security profiles (AV, IPS, etc.) to the firewall policy.
-     */
     utmStatus?: pulumi.Input<string>;
     vpnTunnels?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of an existing Web application firewall profile.
-     */
     wafProfiles?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of an existing Web filter profile.
-     */
     webfilterProfiles?: pulumi.Input<pulumi.Input<string>[]>;
 }

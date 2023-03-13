@@ -7,67 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IP to MAC address pairs in the IP/MAC binding table.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallIpmacbindingTable(ctx, "trname", &fortios.FirewallIpmacbindingTableArgs{
-// 			Ip:     pulumi.String("1.1.1.1"),
-// 			Mac:    pulumi.String("00:01:6c:06:a6:29"),
-// 			SeqNum: pulumi.Int(1),
-// 			Status: pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// FirewallIpmacbinding Table can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallIpmacbindingTable:FirewallIpmacbindingTable labelname {{seq_num}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallIpmacbindingTable:FirewallIpmacbindingTable labelname {{seq_num}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallIpmacbindingTable struct {
 	pulumi.CustomResourceState
 
-	// IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
-	Mac pulumi.StringOutput `pulumi:"mac"`
-	// Name of the pair (optional, default = no name).
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Entry number.
-	SeqNum pulumi.IntOutput `pulumi:"seqNum"`
-	// Enable/disable this IP-mac binding pair. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ip        pulumi.StringOutput    `pulumi:"ip"`
+	Mac       pulumi.StringOutput    `pulumi:"mac"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
+	SeqNum    pulumi.IntOutput       `pulumi:"seqNum"`
+	Status    pulumi.StringOutput    `pulumi:"status"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -104,32 +55,20 @@ func GetFirewallIpmacbindingTable(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallIpmacbindingTable resources.
 type firewallIpmacbindingTableState struct {
-	// IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
-	Ip *string `pulumi:"ip"`
-	// MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
-	Mac *string `pulumi:"mac"`
-	// Name of the pair (optional, default = no name).
-	Name *string `pulumi:"name"`
-	// Entry number.
-	SeqNum *int `pulumi:"seqNum"`
-	// Enable/disable this IP-mac binding pair. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ip        *string `pulumi:"ip"`
+	Mac       *string `pulumi:"mac"`
+	Name      *string `pulumi:"name"`
+	SeqNum    *int    `pulumi:"seqNum"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type FirewallIpmacbindingTableState struct {
-	// IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
-	Ip pulumi.StringPtrInput
-	// MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
-	Mac pulumi.StringPtrInput
-	// Name of the pair (optional, default = no name).
-	Name pulumi.StringPtrInput
-	// Entry number.
-	SeqNum pulumi.IntPtrInput
-	// Enable/disable this IP-mac binding pair. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ip        pulumi.StringPtrInput
+	Mac       pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
+	SeqNum    pulumi.IntPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -138,33 +77,21 @@ func (FirewallIpmacbindingTableState) ElementType() reflect.Type {
 }
 
 type firewallIpmacbindingTableArgs struct {
-	// IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
-	Ip string `pulumi:"ip"`
-	// MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
-	Mac *string `pulumi:"mac"`
-	// Name of the pair (optional, default = no name).
-	Name *string `pulumi:"name"`
-	// Entry number.
-	SeqNum *int `pulumi:"seqNum"`
-	// Enable/disable this IP-mac binding pair. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ip        string  `pulumi:"ip"`
+	Mac       *string `pulumi:"mac"`
+	Name      *string `pulumi:"name"`
+	SeqNum    *int    `pulumi:"seqNum"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallIpmacbindingTable resource.
 type FirewallIpmacbindingTableArgs struct {
-	// IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
-	Ip pulumi.StringInput
-	// MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
-	Mac pulumi.StringPtrInput
-	// Name of the pair (optional, default = no name).
-	Name pulumi.StringPtrInput
-	// Entry number.
-	SeqNum pulumi.IntPtrInput
-	// Enable/disable this IP-mac binding pair. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ip        pulumi.StringInput
+	Mac       pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
+	SeqNum    pulumi.IntPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -194,7 +121,7 @@ func (i *FirewallIpmacbindingTable) ToFirewallIpmacbindingTableOutputWithContext
 // FirewallIpmacbindingTableArrayInput is an input type that accepts FirewallIpmacbindingTableArray and FirewallIpmacbindingTableArrayOutput values.
 // You can construct a concrete instance of `FirewallIpmacbindingTableArrayInput` via:
 //
-//          FirewallIpmacbindingTableArray{ FirewallIpmacbindingTableArgs{...} }
+//	FirewallIpmacbindingTableArray{ FirewallIpmacbindingTableArgs{...} }
 type FirewallIpmacbindingTableArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +146,7 @@ func (i FirewallIpmacbindingTableArray) ToFirewallIpmacbindingTableArrayOutputWi
 // FirewallIpmacbindingTableMapInput is an input type that accepts FirewallIpmacbindingTableMap and FirewallIpmacbindingTableMapOutput values.
 // You can construct a concrete instance of `FirewallIpmacbindingTableMapInput` via:
 //
-//          FirewallIpmacbindingTableMap{ "key": FirewallIpmacbindingTableArgs{...} }
+//	FirewallIpmacbindingTableMap{ "key": FirewallIpmacbindingTableArgs{...} }
 type FirewallIpmacbindingTableMapInput interface {
 	pulumi.Input
 
@@ -253,6 +180,30 @@ func (o FirewallIpmacbindingTableOutput) ToFirewallIpmacbindingTableOutput() Fir
 
 func (o FirewallIpmacbindingTableOutput) ToFirewallIpmacbindingTableOutputWithContext(ctx context.Context) FirewallIpmacbindingTableOutput {
 	return o
+}
+
+func (o FirewallIpmacbindingTableOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpmacbindingTable) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpmacbindingTableOutput) Mac() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpmacbindingTable) pulumi.StringOutput { return v.Mac }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpmacbindingTableOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpmacbindingTable) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpmacbindingTableOutput) SeqNum() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallIpmacbindingTable) pulumi.IntOutput { return v.SeqNum }).(pulumi.IntOutput)
+}
+
+func (o FirewallIpmacbindingTableOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpmacbindingTable) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpmacbindingTableOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallIpmacbindingTable) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallIpmacbindingTableArrayOutput struct{ *pulumi.OutputState }

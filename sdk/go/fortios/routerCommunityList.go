@@ -7,71 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure community lists.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewRouterCommunityList(ctx, "trname", &fortios.RouterCommunityListArgs{
-// 			Rules: RouterCommunityListRuleArray{
-// 				&RouterCommunityListRuleArgs{
-// 					Action: pulumi.String("deny"),
-// 					Match:  pulumi.String("123:234 345:456"),
-// 					Regexp: pulumi.String("123:234 345:456"),
-// 				},
-// 			},
-// 			Type: pulumi.String("standard"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Router CommunityList can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerCommunityList:RouterCommunityList labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerCommunityList:RouterCommunityList labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterCommunityList struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Community list name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Community list rule. The structure of `rule` block is documented below.
-	Rules RouterCommunityListRuleArrayOutput `pulumi:"rules"`
-	// Community list type (standard or expanded). Valid values: `standard`, `expanded`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                `pulumi:"name"`
+	Rules               RouterCommunityListRuleArrayOutput `pulumi:"rules"`
+	Type                pulumi.StringOutput                `pulumi:"type"`
+	Vdomparam           pulumi.StringPtrOutput             `pulumi:"vdomparam"`
 }
 
 // NewRouterCommunityList registers a new resource with the given unique name, arguments, and options.
@@ -107,29 +54,19 @@ func GetRouterCommunityList(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterCommunityList resources.
 type routerCommunityListState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Community list name.
-	Name *string `pulumi:"name"`
-	// Community list rule. The structure of `rule` block is documented below.
-	Rules []RouterCommunityListRule `pulumi:"rules"`
-	// Community list type (standard or expanded). Valid values: `standard`, `expanded`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Name                *string                   `pulumi:"name"`
+	Rules               []RouterCommunityListRule `pulumi:"rules"`
+	Type                *string                   `pulumi:"type"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
 
 type RouterCommunityListState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Community list name.
-	Name pulumi.StringPtrInput
-	// Community list rule. The structure of `rule` block is documented below.
-	Rules RouterCommunityListRuleArrayInput
-	// Community list type (standard or expanded). Valid values: `standard`, `expanded`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Rules               RouterCommunityListRuleArrayInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterCommunityListState) ElementType() reflect.Type {
@@ -137,30 +74,20 @@ func (RouterCommunityListState) ElementType() reflect.Type {
 }
 
 type routerCommunityListArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Community list name.
-	Name *string `pulumi:"name"`
-	// Community list rule. The structure of `rule` block is documented below.
-	Rules []RouterCommunityListRule `pulumi:"rules"`
-	// Community list type (standard or expanded). Valid values: `standard`, `expanded`.
-	Type string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Name                *string                   `pulumi:"name"`
+	Rules               []RouterCommunityListRule `pulumi:"rules"`
+	Type                string                    `pulumi:"type"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterCommunityList resource.
 type RouterCommunityListArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Community list name.
-	Name pulumi.StringPtrInput
-	// Community list rule. The structure of `rule` block is documented below.
-	Rules RouterCommunityListRuleArrayInput
-	// Community list type (standard or expanded). Valid values: `standard`, `expanded`.
-	Type pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Rules               RouterCommunityListRuleArrayInput
+	Type                pulumi.StringInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterCommunityListArgs) ElementType() reflect.Type {
@@ -189,7 +116,7 @@ func (i *RouterCommunityList) ToRouterCommunityListOutputWithContext(ctx context
 // RouterCommunityListArrayInput is an input type that accepts RouterCommunityListArray and RouterCommunityListArrayOutput values.
 // You can construct a concrete instance of `RouterCommunityListArrayInput` via:
 //
-//          RouterCommunityListArray{ RouterCommunityListArgs{...} }
+//	RouterCommunityListArray{ RouterCommunityListArgs{...} }
 type RouterCommunityListArrayInput interface {
 	pulumi.Input
 
@@ -214,7 +141,7 @@ func (i RouterCommunityListArray) ToRouterCommunityListArrayOutputWithContext(ct
 // RouterCommunityListMapInput is an input type that accepts RouterCommunityListMap and RouterCommunityListMapOutput values.
 // You can construct a concrete instance of `RouterCommunityListMapInput` via:
 //
-//          RouterCommunityListMap{ "key": RouterCommunityListArgs{...} }
+//	RouterCommunityListMap{ "key": RouterCommunityListArgs{...} }
 type RouterCommunityListMapInput interface {
 	pulumi.Input
 
@@ -248,6 +175,26 @@ func (o RouterCommunityListOutput) ToRouterCommunityListOutput() RouterCommunity
 
 func (o RouterCommunityListOutput) ToRouterCommunityListOutputWithContext(ctx context.Context) RouterCommunityListOutput {
 	return o
+}
+
+func (o RouterCommunityListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterCommunityList) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterCommunityListOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterCommunityList) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o RouterCommunityListOutput) Rules() RouterCommunityListRuleArrayOutput {
+	return o.ApplyT(func(v *RouterCommunityList) RouterCommunityListRuleArrayOutput { return v.Rules }).(RouterCommunityListRuleArrayOutput)
+}
+
+func (o RouterCommunityListOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterCommunityList) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o RouterCommunityListOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterCommunityList) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterCommunityListArrayOutput struct{ *pulumi.OutputState }

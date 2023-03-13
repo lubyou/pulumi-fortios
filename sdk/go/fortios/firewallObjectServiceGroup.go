@@ -7,50 +7,16 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure firewall service group of FortiOS.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `FirewallServiceGroup`, we recommend that you use the new resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallObjectServiceGroup(ctx, "v11", &fortios.FirewallObjectServiceGroupArgs{
-// 			Comment: pulumi.String("fdsafdsa"),
-// 			Members: pulumi.StringArray{
-// 				pulumi.String("DCE-RPC"),
-// 				pulumi.String("DNS"),
-// 				pulumi.String("HTTPS"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FirewallObjectServiceGroup struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Service objects contained within the group.
+	Comment pulumi.StringPtrOutput   `pulumi:"comment"`
 	Members pulumi.StringArrayOutput `pulumi:"members"`
-	// Service group name.
-	Name pulumi.StringOutput `pulumi:"name"`
+	Name    pulumi.StringOutput      `pulumi:"name"`
 }
 
 // NewFirewallObjectServiceGroup registers a new resource with the given unique name, arguments, and options.
@@ -86,21 +52,15 @@ func GetFirewallObjectServiceGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallObjectServiceGroup resources.
 type firewallObjectServiceGroupState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Service objects contained within the group.
+	Comment *string  `pulumi:"comment"`
 	Members []string `pulumi:"members"`
-	// Service group name.
-	Name *string `pulumi:"name"`
+	Name    *string  `pulumi:"name"`
 }
 
 type FirewallObjectServiceGroupState struct {
-	// Comment.
 	Comment pulumi.StringPtrInput
-	// Service objects contained within the group.
 	Members pulumi.StringArrayInput
-	// Service group name.
-	Name pulumi.StringPtrInput
+	Name    pulumi.StringPtrInput
 }
 
 func (FirewallObjectServiceGroupState) ElementType() reflect.Type {
@@ -108,22 +68,16 @@ func (FirewallObjectServiceGroupState) ElementType() reflect.Type {
 }
 
 type firewallObjectServiceGroupArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Service objects contained within the group.
+	Comment *string  `pulumi:"comment"`
 	Members []string `pulumi:"members"`
-	// Service group name.
-	Name *string `pulumi:"name"`
+	Name    *string  `pulumi:"name"`
 }
 
 // The set of arguments for constructing a FirewallObjectServiceGroup resource.
 type FirewallObjectServiceGroupArgs struct {
-	// Comment.
 	Comment pulumi.StringPtrInput
-	// Service objects contained within the group.
 	Members pulumi.StringArrayInput
-	// Service group name.
-	Name pulumi.StringPtrInput
+	Name    pulumi.StringPtrInput
 }
 
 func (FirewallObjectServiceGroupArgs) ElementType() reflect.Type {
@@ -152,7 +106,7 @@ func (i *FirewallObjectServiceGroup) ToFirewallObjectServiceGroupOutputWithConte
 // FirewallObjectServiceGroupArrayInput is an input type that accepts FirewallObjectServiceGroupArray and FirewallObjectServiceGroupArrayOutput values.
 // You can construct a concrete instance of `FirewallObjectServiceGroupArrayInput` via:
 //
-//          FirewallObjectServiceGroupArray{ FirewallObjectServiceGroupArgs{...} }
+//	FirewallObjectServiceGroupArray{ FirewallObjectServiceGroupArgs{...} }
 type FirewallObjectServiceGroupArrayInput interface {
 	pulumi.Input
 
@@ -177,7 +131,7 @@ func (i FirewallObjectServiceGroupArray) ToFirewallObjectServiceGroupArrayOutput
 // FirewallObjectServiceGroupMapInput is an input type that accepts FirewallObjectServiceGroupMap and FirewallObjectServiceGroupMapOutput values.
 // You can construct a concrete instance of `FirewallObjectServiceGroupMapInput` via:
 //
-//          FirewallObjectServiceGroupMap{ "key": FirewallObjectServiceGroupArgs{...} }
+//	FirewallObjectServiceGroupMap{ "key": FirewallObjectServiceGroupArgs{...} }
 type FirewallObjectServiceGroupMapInput interface {
 	pulumi.Input
 
@@ -211,6 +165,18 @@ func (o FirewallObjectServiceGroupOutput) ToFirewallObjectServiceGroupOutput() F
 
 func (o FirewallObjectServiceGroupOutput) ToFirewallObjectServiceGroupOutputWithContext(ctx context.Context) FirewallObjectServiceGroupOutput {
 	return o
+}
+
+func (o FirewallObjectServiceGroupOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallObjectServiceGroup) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallObjectServiceGroupOutput) Members() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallObjectServiceGroup) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
+}
+
+func (o FirewallObjectServiceGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectServiceGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 type FirewallObjectServiceGroupArrayOutput struct{ *pulumi.OutputState }

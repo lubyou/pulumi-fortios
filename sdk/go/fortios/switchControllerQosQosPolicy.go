@@ -7,42 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch QoS policy.
-//
-// ## Import
-//
-// SwitchControllerQos QosPolicy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerQosQosPolicy:SwitchControllerQosQosPolicy labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerQosQosPolicy:SwitchControllerQosQosPolicy labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerQosQosPolicy struct {
 	pulumi.CustomResourceState
 
-	// Default cos queue for untagged packets.
-	DefaultCos pulumi.IntOutput `pulumi:"defaultCos"`
-	// QoS policy name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// QoS egress queue policy.
-	QueuePolicy pulumi.StringOutput `pulumi:"queuePolicy"`
-	// QoS trust 802.1p map.
-	TrustDot1pMap pulumi.StringOutput `pulumi:"trustDot1pMap"`
-	// QoS trust ip dscp map.
-	TrustIpDscpMap pulumi.StringOutput `pulumi:"trustIpDscpMap"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DefaultCos     pulumi.IntOutput       `pulumi:"defaultCos"`
+	Name           pulumi.StringOutput    `pulumi:"name"`
+	QueuePolicy    pulumi.StringOutput    `pulumi:"queuePolicy"`
+	TrustDot1pMap  pulumi.StringOutput    `pulumi:"trustDot1pMap"`
+	TrustIpDscpMap pulumi.StringOutput    `pulumi:"trustIpDscpMap"`
+	Vdomparam      pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerQosQosPolicy registers a new resource with the given unique name, arguments, and options.
@@ -78,33 +55,21 @@ func GetSwitchControllerQosQosPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerQosQosPolicy resources.
 type switchControllerQosQosPolicyState struct {
-	// Default cos queue for untagged packets.
-	DefaultCos *int `pulumi:"defaultCos"`
-	// QoS policy name.
-	Name *string `pulumi:"name"`
-	// QoS egress queue policy.
-	QueuePolicy *string `pulumi:"queuePolicy"`
-	// QoS trust 802.1p map.
-	TrustDot1pMap *string `pulumi:"trustDot1pMap"`
-	// QoS trust ip dscp map.
+	DefaultCos     *int    `pulumi:"defaultCos"`
+	Name           *string `pulumi:"name"`
+	QueuePolicy    *string `pulumi:"queuePolicy"`
+	TrustDot1pMap  *string `pulumi:"trustDot1pMap"`
 	TrustIpDscpMap *string `pulumi:"trustIpDscpMap"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerQosQosPolicyState struct {
-	// Default cos queue for untagged packets.
-	DefaultCos pulumi.IntPtrInput
-	// QoS policy name.
-	Name pulumi.StringPtrInput
-	// QoS egress queue policy.
-	QueuePolicy pulumi.StringPtrInput
-	// QoS trust 802.1p map.
-	TrustDot1pMap pulumi.StringPtrInput
-	// QoS trust ip dscp map.
+	DefaultCos     pulumi.IntPtrInput
+	Name           pulumi.StringPtrInput
+	QueuePolicy    pulumi.StringPtrInput
+	TrustDot1pMap  pulumi.StringPtrInput
 	TrustIpDscpMap pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (SwitchControllerQosQosPolicyState) ElementType() reflect.Type {
@@ -112,34 +77,22 @@ func (SwitchControllerQosQosPolicyState) ElementType() reflect.Type {
 }
 
 type switchControllerQosQosPolicyArgs struct {
-	// Default cos queue for untagged packets.
-	DefaultCos int `pulumi:"defaultCos"`
-	// QoS policy name.
-	Name *string `pulumi:"name"`
-	// QoS egress queue policy.
-	QueuePolicy *string `pulumi:"queuePolicy"`
-	// QoS trust 802.1p map.
-	TrustDot1pMap *string `pulumi:"trustDot1pMap"`
-	// QoS trust ip dscp map.
+	DefaultCos     int     `pulumi:"defaultCos"`
+	Name           *string `pulumi:"name"`
+	QueuePolicy    *string `pulumi:"queuePolicy"`
+	TrustDot1pMap  *string `pulumi:"trustDot1pMap"`
 	TrustIpDscpMap *string `pulumi:"trustIpDscpMap"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerQosQosPolicy resource.
 type SwitchControllerQosQosPolicyArgs struct {
-	// Default cos queue for untagged packets.
-	DefaultCos pulumi.IntInput
-	// QoS policy name.
-	Name pulumi.StringPtrInput
-	// QoS egress queue policy.
-	QueuePolicy pulumi.StringPtrInput
-	// QoS trust 802.1p map.
-	TrustDot1pMap pulumi.StringPtrInput
-	// QoS trust ip dscp map.
+	DefaultCos     pulumi.IntInput
+	Name           pulumi.StringPtrInput
+	QueuePolicy    pulumi.StringPtrInput
+	TrustDot1pMap  pulumi.StringPtrInput
 	TrustIpDscpMap pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (SwitchControllerQosQosPolicyArgs) ElementType() reflect.Type {
@@ -168,7 +121,7 @@ func (i *SwitchControllerQosQosPolicy) ToSwitchControllerQosQosPolicyOutputWithC
 // SwitchControllerQosQosPolicyArrayInput is an input type that accepts SwitchControllerQosQosPolicyArray and SwitchControllerQosQosPolicyArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerQosQosPolicyArrayInput` via:
 //
-//          SwitchControllerQosQosPolicyArray{ SwitchControllerQosQosPolicyArgs{...} }
+//	SwitchControllerQosQosPolicyArray{ SwitchControllerQosQosPolicyArgs{...} }
 type SwitchControllerQosQosPolicyArrayInput interface {
 	pulumi.Input
 
@@ -193,7 +146,7 @@ func (i SwitchControllerQosQosPolicyArray) ToSwitchControllerQosQosPolicyArrayOu
 // SwitchControllerQosQosPolicyMapInput is an input type that accepts SwitchControllerQosQosPolicyMap and SwitchControllerQosQosPolicyMapOutput values.
 // You can construct a concrete instance of `SwitchControllerQosQosPolicyMapInput` via:
 //
-//          SwitchControllerQosQosPolicyMap{ "key": SwitchControllerQosQosPolicyArgs{...} }
+//	SwitchControllerQosQosPolicyMap{ "key": SwitchControllerQosQosPolicyArgs{...} }
 type SwitchControllerQosQosPolicyMapInput interface {
 	pulumi.Input
 
@@ -227,6 +180,30 @@ func (o SwitchControllerQosQosPolicyOutput) ToSwitchControllerQosQosPolicyOutput
 
 func (o SwitchControllerQosQosPolicyOutput) ToSwitchControllerQosQosPolicyOutputWithContext(ctx context.Context) SwitchControllerQosQosPolicyOutput {
 	return o
+}
+
+func (o SwitchControllerQosQosPolicyOutput) DefaultCos() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerQosQosPolicy) pulumi.IntOutput { return v.DefaultCos }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerQosQosPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosQosPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosQosPolicyOutput) QueuePolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosQosPolicy) pulumi.StringOutput { return v.QueuePolicy }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosQosPolicyOutput) TrustDot1pMap() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosQosPolicy) pulumi.StringOutput { return v.TrustDot1pMap }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosQosPolicyOutput) TrustIpDscpMap() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosQosPolicy) pulumi.StringOutput { return v.TrustIpDscpMap }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosQosPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerQosQosPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerQosQosPolicyArrayOutput struct{ *pulumi.OutputState }

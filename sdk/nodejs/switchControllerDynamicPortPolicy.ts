@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure Dynamic port policy to be applied on the managed FortiSwitch ports through DPP device. Applies to FortiOS Version `>= 7.0.1`.
- *
- * ## Import
- *
- * SwitchController DynamicPortPolicy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerDynamicPortPolicy:SwitchControllerDynamicPortPolicy labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerDynamicPortPolicy:SwitchControllerDynamicPortPolicy labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerDynamicPortPolicy extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerDynamicPortPolicy resource's state with the given name, ID, and optional extra
@@ -52,29 +34,11 @@ export class SwitchControllerDynamicPortPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerDynamicPortPolicy.__pulumiType;
     }
 
-    /**
-     * Description for the policy.
-     */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * FortiLink interface for which this Dynamic port policy belongs to.
-     */
     public readonly fortilink!: pulumi.Output<string>;
-    /**
-     * Policy name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Port policies with matching criteria and actions. The structure of `policy` block is documented below.
-     */
     public readonly policies!: pulumi.Output<outputs.SwitchControllerDynamicPortPolicyPolicy[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -114,29 +78,11 @@ export class SwitchControllerDynamicPortPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerDynamicPortPolicy resources.
  */
 export interface SwitchControllerDynamicPortPolicyState {
-    /**
-     * Description for the policy.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * FortiLink interface for which this Dynamic port policy belongs to.
-     */
     fortilink?: pulumi.Input<string>;
-    /**
-     * Policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Port policies with matching criteria and actions. The structure of `policy` block is documented below.
-     */
     policies?: pulumi.Input<pulumi.Input<inputs.SwitchControllerDynamicPortPolicyPolicy>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -144,28 +90,10 @@ export interface SwitchControllerDynamicPortPolicyState {
  * The set of arguments for constructing a SwitchControllerDynamicPortPolicy resource.
  */
 export interface SwitchControllerDynamicPortPolicyArgs {
-    /**
-     * Description for the policy.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * FortiLink interface for which this Dynamic port policy belongs to.
-     */
     fortilink?: pulumi.Input<string>;
-    /**
-     * Policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Port policies with matching criteria and actions. The structure of `policy` block is documented below.
-     */
     policies?: pulumi.Input<pulumi.Input<inputs.SwitchControllerDynamicPortPolicyPolicy>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

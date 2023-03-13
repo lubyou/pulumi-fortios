@@ -10,78 +10,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Email Filter profiles. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// Emailfilter Profile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/emailfilterProfile:EmailfilterProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/emailfilterProfile:EmailfilterProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type EmailfilterProfile struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Enable/disable external Email inspection. Valid values: `enable`, `disable`.
-	External pulumi.StringOutput `pulumi:"external"`
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet pulumi.StringOutput `pulumi:"featureSet"`
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter EmailfilterProfileFileFilterPtrOutput `pulumi:"fileFilter"`
-	// Gmail. The structure of `gmail` block is documented below.
-	Gmail EmailfilterProfileGmailPtrOutput `pulumi:"gmail"`
-	// IMAP. The structure of `imap` block is documented below.
-	Imap EmailfilterProfileImapPtrOutput `pulumi:"imap"`
-	// MAPI. The structure of `mapi` block is documented below.
-	Mapi EmailfilterProfileMapiPtrOutput `pulumi:"mapi"`
-	// MSN Hotmail. The structure of `msnHotmail` block is documented below.
-	MsnHotmail EmailfilterProfileMsnHotmailPtrOutput `pulumi:"msnHotmail"`
-	// File type name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Options.
-	Options pulumi.StringOutput `pulumi:"options"`
-	// Other supported webmails. The structure of `otherWebmails` block is documented below.
-	OtherWebmails EmailfilterProfileOtherWebmailsPtrOutput `pulumi:"otherWebmails"`
-	// POP3. The structure of `pop3` block is documented below.
-	Pop3 EmailfilterProfilePop3PtrOutput `pulumi:"pop3"`
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringOutput `pulumi:"replacemsgGroup"`
-	// SMTP. The structure of `smtp` block is documented below.
-	Smtp EmailfilterProfileSmtpPtrOutput `pulumi:"smtp"`
-	// Anti-spam block/allow list table ID.
-	SpamBalTable pulumi.IntOutput `pulumi:"spamBalTable"`
-	// Anti-spam black/white list table ID.
-	SpamBwlTable pulumi.IntOutput `pulumi:"spamBwlTable"`
-	// Anti-spam banned word table ID.
-	SpamBwordTable pulumi.IntOutput `pulumi:"spamBwordTable"`
-	// Spam banned word threshold.
-	SpamBwordThreshold pulumi.IntOutput `pulumi:"spamBwordThreshold"`
-	// Enable/disable spam filtering. Valid values: `enable`, `disable`.
-	SpamFiltering pulumi.StringOutput `pulumi:"spamFiltering"`
-	// Anti-spam IP trust table ID.
-	SpamIptrustTable pulumi.IntOutput `pulumi:"spamIptrustTable"`
-	// Enable/disable spam logging for email filtering. Valid values: `disable`, `enable`.
-	SpamLog pulumi.StringOutput `pulumi:"spamLog"`
-	// Enable/disable logging FortiGuard spam response. Valid values: `disable`, `enable`.
-	SpamLogFortiguardResponse pulumi.StringOutput `pulumi:"spamLogFortiguardResponse"`
-	// Anti-spam MIME header table ID.
-	SpamMheaderTable pulumi.IntOutput `pulumi:"spamMheaderTable"`
-	// Anti-spam DNSBL table ID.
-	SpamRblTable pulumi.IntOutput `pulumi:"spamRblTable"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Yahoo! Mail. The structure of `yahooMail` block is documented below.
-	YahooMail EmailfilterProfileYahooMailPtrOutput `pulumi:"yahooMail"`
+	Comment                   pulumi.StringPtrOutput                `pulumi:"comment"`
+	External                  pulumi.StringOutput                   `pulumi:"external"`
+	FeatureSet                pulumi.StringOutput                   `pulumi:"featureSet"`
+	FileFilter                EmailfilterProfileFileFilterOutput    `pulumi:"fileFilter"`
+	Gmail                     EmailfilterProfileGmailOutput         `pulumi:"gmail"`
+	Imap                      EmailfilterProfileImapOutput          `pulumi:"imap"`
+	Mapi                      EmailfilterProfileMapiOutput          `pulumi:"mapi"`
+	MsnHotmail                EmailfilterProfileMsnHotmailOutput    `pulumi:"msnHotmail"`
+	Name                      pulumi.StringOutput                   `pulumi:"name"`
+	Options                   pulumi.StringOutput                   `pulumi:"options"`
+	OtherWebmails             EmailfilterProfileOtherWebmailsOutput `pulumi:"otherWebmails"`
+	Pop3                      EmailfilterProfilePop3Output          `pulumi:"pop3"`
+	ReplacemsgGroup           pulumi.StringOutput                   `pulumi:"replacemsgGroup"`
+	Smtp                      EmailfilterProfileSmtpOutput          `pulumi:"smtp"`
+	SpamBalTable              pulumi.IntOutput                      `pulumi:"spamBalTable"`
+	SpamBwlTable              pulumi.IntOutput                      `pulumi:"spamBwlTable"`
+	SpamBwordTable            pulumi.IntOutput                      `pulumi:"spamBwordTable"`
+	SpamBwordThreshold        pulumi.IntOutput                      `pulumi:"spamBwordThreshold"`
+	SpamFiltering             pulumi.StringOutput                   `pulumi:"spamFiltering"`
+	SpamIptrustTable          pulumi.IntOutput                      `pulumi:"spamIptrustTable"`
+	SpamLog                   pulumi.StringOutput                   `pulumi:"spamLog"`
+	SpamLogFortiguardResponse pulumi.StringOutput                   `pulumi:"spamLogFortiguardResponse"`
+	SpamMheaderTable          pulumi.IntOutput                      `pulumi:"spamMheaderTable"`
+	SpamRblTable              pulumi.IntOutput                      `pulumi:"spamRblTable"`
+	Vdomparam                 pulumi.StringPtrOutput                `pulumi:"vdomparam"`
+	YahooMail                 EmailfilterProfileYahooMailOutput     `pulumi:"yahooMail"`
 }
 
 // NewEmailfilterProfile registers a new resource with the given unique name, arguments, and options.
@@ -114,113 +71,61 @@ func GetEmailfilterProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EmailfilterProfile resources.
 type emailfilterProfileState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Enable/disable external Email inspection. Valid values: `enable`, `disable`.
-	External *string `pulumi:"external"`
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet *string `pulumi:"featureSet"`
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter *EmailfilterProfileFileFilter `pulumi:"fileFilter"`
-	// Gmail. The structure of `gmail` block is documented below.
-	Gmail *EmailfilterProfileGmail `pulumi:"gmail"`
-	// IMAP. The structure of `imap` block is documented below.
-	Imap *EmailfilterProfileImap `pulumi:"imap"`
-	// MAPI. The structure of `mapi` block is documented below.
-	Mapi *EmailfilterProfileMapi `pulumi:"mapi"`
-	// MSN Hotmail. The structure of `msnHotmail` block is documented below.
-	MsnHotmail *EmailfilterProfileMsnHotmail `pulumi:"msnHotmail"`
-	// File type name.
-	Name *string `pulumi:"name"`
-	// Options.
-	Options *string `pulumi:"options"`
-	// Other supported webmails. The structure of `otherWebmails` block is documented below.
-	OtherWebmails *EmailfilterProfileOtherWebmails `pulumi:"otherWebmails"`
-	// POP3. The structure of `pop3` block is documented below.
-	Pop3 *EmailfilterProfilePop3 `pulumi:"pop3"`
-	// Replacement message group.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// SMTP. The structure of `smtp` block is documented below.
-	Smtp *EmailfilterProfileSmtp `pulumi:"smtp"`
-	// Anti-spam block/allow list table ID.
-	SpamBalTable *int `pulumi:"spamBalTable"`
-	// Anti-spam black/white list table ID.
-	SpamBwlTable *int `pulumi:"spamBwlTable"`
-	// Anti-spam banned word table ID.
-	SpamBwordTable *int `pulumi:"spamBwordTable"`
-	// Spam banned word threshold.
-	SpamBwordThreshold *int `pulumi:"spamBwordThreshold"`
-	// Enable/disable spam filtering. Valid values: `enable`, `disable`.
-	SpamFiltering *string `pulumi:"spamFiltering"`
-	// Anti-spam IP trust table ID.
-	SpamIptrustTable *int `pulumi:"spamIptrustTable"`
-	// Enable/disable spam logging for email filtering. Valid values: `disable`, `enable`.
-	SpamLog *string `pulumi:"spamLog"`
-	// Enable/disable logging FortiGuard spam response. Valid values: `disable`, `enable`.
-	SpamLogFortiguardResponse *string `pulumi:"spamLogFortiguardResponse"`
-	// Anti-spam MIME header table ID.
-	SpamMheaderTable *int `pulumi:"spamMheaderTable"`
-	// Anti-spam DNSBL table ID.
-	SpamRblTable *int `pulumi:"spamRblTable"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Yahoo! Mail. The structure of `yahooMail` block is documented below.
-	YahooMail *EmailfilterProfileYahooMail `pulumi:"yahooMail"`
+	Comment                   *string                          `pulumi:"comment"`
+	External                  *string                          `pulumi:"external"`
+	FeatureSet                *string                          `pulumi:"featureSet"`
+	FileFilter                *EmailfilterProfileFileFilter    `pulumi:"fileFilter"`
+	Gmail                     *EmailfilterProfileGmail         `pulumi:"gmail"`
+	Imap                      *EmailfilterProfileImap          `pulumi:"imap"`
+	Mapi                      *EmailfilterProfileMapi          `pulumi:"mapi"`
+	MsnHotmail                *EmailfilterProfileMsnHotmail    `pulumi:"msnHotmail"`
+	Name                      *string                          `pulumi:"name"`
+	Options                   *string                          `pulumi:"options"`
+	OtherWebmails             *EmailfilterProfileOtherWebmails `pulumi:"otherWebmails"`
+	Pop3                      *EmailfilterProfilePop3          `pulumi:"pop3"`
+	ReplacemsgGroup           *string                          `pulumi:"replacemsgGroup"`
+	Smtp                      *EmailfilterProfileSmtp          `pulumi:"smtp"`
+	SpamBalTable              *int                             `pulumi:"spamBalTable"`
+	SpamBwlTable              *int                             `pulumi:"spamBwlTable"`
+	SpamBwordTable            *int                             `pulumi:"spamBwordTable"`
+	SpamBwordThreshold        *int                             `pulumi:"spamBwordThreshold"`
+	SpamFiltering             *string                          `pulumi:"spamFiltering"`
+	SpamIptrustTable          *int                             `pulumi:"spamIptrustTable"`
+	SpamLog                   *string                          `pulumi:"spamLog"`
+	SpamLogFortiguardResponse *string                          `pulumi:"spamLogFortiguardResponse"`
+	SpamMheaderTable          *int                             `pulumi:"spamMheaderTable"`
+	SpamRblTable              *int                             `pulumi:"spamRblTable"`
+	Vdomparam                 *string                          `pulumi:"vdomparam"`
+	YahooMail                 *EmailfilterProfileYahooMail     `pulumi:"yahooMail"`
 }
 
 type EmailfilterProfileState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Enable/disable external Email inspection. Valid values: `enable`, `disable`.
-	External pulumi.StringPtrInput
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet pulumi.StringPtrInput
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter EmailfilterProfileFileFilterPtrInput
-	// Gmail. The structure of `gmail` block is documented below.
-	Gmail EmailfilterProfileGmailPtrInput
-	// IMAP. The structure of `imap` block is documented below.
-	Imap EmailfilterProfileImapPtrInput
-	// MAPI. The structure of `mapi` block is documented below.
-	Mapi EmailfilterProfileMapiPtrInput
-	// MSN Hotmail. The structure of `msnHotmail` block is documented below.
-	MsnHotmail EmailfilterProfileMsnHotmailPtrInput
-	// File type name.
-	Name pulumi.StringPtrInput
-	// Options.
-	Options pulumi.StringPtrInput
-	// Other supported webmails. The structure of `otherWebmails` block is documented below.
-	OtherWebmails EmailfilterProfileOtherWebmailsPtrInput
-	// POP3. The structure of `pop3` block is documented below.
-	Pop3 EmailfilterProfilePop3PtrInput
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// SMTP. The structure of `smtp` block is documented below.
-	Smtp EmailfilterProfileSmtpPtrInput
-	// Anti-spam block/allow list table ID.
-	SpamBalTable pulumi.IntPtrInput
-	// Anti-spam black/white list table ID.
-	SpamBwlTable pulumi.IntPtrInput
-	// Anti-spam banned word table ID.
-	SpamBwordTable pulumi.IntPtrInput
-	// Spam banned word threshold.
-	SpamBwordThreshold pulumi.IntPtrInput
-	// Enable/disable spam filtering. Valid values: `enable`, `disable`.
-	SpamFiltering pulumi.StringPtrInput
-	// Anti-spam IP trust table ID.
-	SpamIptrustTable pulumi.IntPtrInput
-	// Enable/disable spam logging for email filtering. Valid values: `disable`, `enable`.
-	SpamLog pulumi.StringPtrInput
-	// Enable/disable logging FortiGuard spam response. Valid values: `disable`, `enable`.
+	Comment                   pulumi.StringPtrInput
+	External                  pulumi.StringPtrInput
+	FeatureSet                pulumi.StringPtrInput
+	FileFilter                EmailfilterProfileFileFilterPtrInput
+	Gmail                     EmailfilterProfileGmailPtrInput
+	Imap                      EmailfilterProfileImapPtrInput
+	Mapi                      EmailfilterProfileMapiPtrInput
+	MsnHotmail                EmailfilterProfileMsnHotmailPtrInput
+	Name                      pulumi.StringPtrInput
+	Options                   pulumi.StringPtrInput
+	OtherWebmails             EmailfilterProfileOtherWebmailsPtrInput
+	Pop3                      EmailfilterProfilePop3PtrInput
+	ReplacemsgGroup           pulumi.StringPtrInput
+	Smtp                      EmailfilterProfileSmtpPtrInput
+	SpamBalTable              pulumi.IntPtrInput
+	SpamBwlTable              pulumi.IntPtrInput
+	SpamBwordTable            pulumi.IntPtrInput
+	SpamBwordThreshold        pulumi.IntPtrInput
+	SpamFiltering             pulumi.StringPtrInput
+	SpamIptrustTable          pulumi.IntPtrInput
+	SpamLog                   pulumi.StringPtrInput
 	SpamLogFortiguardResponse pulumi.StringPtrInput
-	// Anti-spam MIME header table ID.
-	SpamMheaderTable pulumi.IntPtrInput
-	// Anti-spam DNSBL table ID.
-	SpamRblTable pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Yahoo! Mail. The structure of `yahooMail` block is documented below.
-	YahooMail EmailfilterProfileYahooMailPtrInput
+	SpamMheaderTable          pulumi.IntPtrInput
+	SpamRblTable              pulumi.IntPtrInput
+	Vdomparam                 pulumi.StringPtrInput
+	YahooMail                 EmailfilterProfileYahooMailPtrInput
 }
 
 func (EmailfilterProfileState) ElementType() reflect.Type {
@@ -228,114 +133,62 @@ func (EmailfilterProfileState) ElementType() reflect.Type {
 }
 
 type emailfilterProfileArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Enable/disable external Email inspection. Valid values: `enable`, `disable`.
-	External *string `pulumi:"external"`
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet *string `pulumi:"featureSet"`
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter *EmailfilterProfileFileFilter `pulumi:"fileFilter"`
-	// Gmail. The structure of `gmail` block is documented below.
-	Gmail *EmailfilterProfileGmail `pulumi:"gmail"`
-	// IMAP. The structure of `imap` block is documented below.
-	Imap *EmailfilterProfileImap `pulumi:"imap"`
-	// MAPI. The structure of `mapi` block is documented below.
-	Mapi *EmailfilterProfileMapi `pulumi:"mapi"`
-	// MSN Hotmail. The structure of `msnHotmail` block is documented below.
-	MsnHotmail *EmailfilterProfileMsnHotmail `pulumi:"msnHotmail"`
-	// File type name.
-	Name *string `pulumi:"name"`
-	// Options.
-	Options *string `pulumi:"options"`
-	// Other supported webmails. The structure of `otherWebmails` block is documented below.
-	OtherWebmails *EmailfilterProfileOtherWebmails `pulumi:"otherWebmails"`
-	// POP3. The structure of `pop3` block is documented below.
-	Pop3 *EmailfilterProfilePop3 `pulumi:"pop3"`
-	// Replacement message group.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// SMTP. The structure of `smtp` block is documented below.
-	Smtp *EmailfilterProfileSmtp `pulumi:"smtp"`
-	// Anti-spam block/allow list table ID.
-	SpamBalTable *int `pulumi:"spamBalTable"`
-	// Anti-spam black/white list table ID.
-	SpamBwlTable *int `pulumi:"spamBwlTable"`
-	// Anti-spam banned word table ID.
-	SpamBwordTable *int `pulumi:"spamBwordTable"`
-	// Spam banned word threshold.
-	SpamBwordThreshold *int `pulumi:"spamBwordThreshold"`
-	// Enable/disable spam filtering. Valid values: `enable`, `disable`.
-	SpamFiltering *string `pulumi:"spamFiltering"`
-	// Anti-spam IP trust table ID.
-	SpamIptrustTable *int `pulumi:"spamIptrustTable"`
-	// Enable/disable spam logging for email filtering. Valid values: `disable`, `enable`.
-	SpamLog *string `pulumi:"spamLog"`
-	// Enable/disable logging FortiGuard spam response. Valid values: `disable`, `enable`.
-	SpamLogFortiguardResponse *string `pulumi:"spamLogFortiguardResponse"`
-	// Anti-spam MIME header table ID.
-	SpamMheaderTable *int `pulumi:"spamMheaderTable"`
-	// Anti-spam DNSBL table ID.
-	SpamRblTable *int `pulumi:"spamRblTable"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Yahoo! Mail. The structure of `yahooMail` block is documented below.
-	YahooMail *EmailfilterProfileYahooMail `pulumi:"yahooMail"`
+	Comment                   *string                          `pulumi:"comment"`
+	External                  *string                          `pulumi:"external"`
+	FeatureSet                *string                          `pulumi:"featureSet"`
+	FileFilter                *EmailfilterProfileFileFilter    `pulumi:"fileFilter"`
+	Gmail                     *EmailfilterProfileGmail         `pulumi:"gmail"`
+	Imap                      *EmailfilterProfileImap          `pulumi:"imap"`
+	Mapi                      *EmailfilterProfileMapi          `pulumi:"mapi"`
+	MsnHotmail                *EmailfilterProfileMsnHotmail    `pulumi:"msnHotmail"`
+	Name                      *string                          `pulumi:"name"`
+	Options                   *string                          `pulumi:"options"`
+	OtherWebmails             *EmailfilterProfileOtherWebmails `pulumi:"otherWebmails"`
+	Pop3                      *EmailfilterProfilePop3          `pulumi:"pop3"`
+	ReplacemsgGroup           *string                          `pulumi:"replacemsgGroup"`
+	Smtp                      *EmailfilterProfileSmtp          `pulumi:"smtp"`
+	SpamBalTable              *int                             `pulumi:"spamBalTable"`
+	SpamBwlTable              *int                             `pulumi:"spamBwlTable"`
+	SpamBwordTable            *int                             `pulumi:"spamBwordTable"`
+	SpamBwordThreshold        *int                             `pulumi:"spamBwordThreshold"`
+	SpamFiltering             *string                          `pulumi:"spamFiltering"`
+	SpamIptrustTable          *int                             `pulumi:"spamIptrustTable"`
+	SpamLog                   *string                          `pulumi:"spamLog"`
+	SpamLogFortiguardResponse *string                          `pulumi:"spamLogFortiguardResponse"`
+	SpamMheaderTable          *int                             `pulumi:"spamMheaderTable"`
+	SpamRblTable              *int                             `pulumi:"spamRblTable"`
+	Vdomparam                 *string                          `pulumi:"vdomparam"`
+	YahooMail                 *EmailfilterProfileYahooMail     `pulumi:"yahooMail"`
 }
 
 // The set of arguments for constructing a EmailfilterProfile resource.
 type EmailfilterProfileArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Enable/disable external Email inspection. Valid values: `enable`, `disable`.
-	External pulumi.StringPtrInput
-	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
-	FeatureSet pulumi.StringPtrInput
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter EmailfilterProfileFileFilterPtrInput
-	// Gmail. The structure of `gmail` block is documented below.
-	Gmail EmailfilterProfileGmailPtrInput
-	// IMAP. The structure of `imap` block is documented below.
-	Imap EmailfilterProfileImapPtrInput
-	// MAPI. The structure of `mapi` block is documented below.
-	Mapi EmailfilterProfileMapiPtrInput
-	// MSN Hotmail. The structure of `msnHotmail` block is documented below.
-	MsnHotmail EmailfilterProfileMsnHotmailPtrInput
-	// File type name.
-	Name pulumi.StringPtrInput
-	// Options.
-	Options pulumi.StringPtrInput
-	// Other supported webmails. The structure of `otherWebmails` block is documented below.
-	OtherWebmails EmailfilterProfileOtherWebmailsPtrInput
-	// POP3. The structure of `pop3` block is documented below.
-	Pop3 EmailfilterProfilePop3PtrInput
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// SMTP. The structure of `smtp` block is documented below.
-	Smtp EmailfilterProfileSmtpPtrInput
-	// Anti-spam block/allow list table ID.
-	SpamBalTable pulumi.IntPtrInput
-	// Anti-spam black/white list table ID.
-	SpamBwlTable pulumi.IntPtrInput
-	// Anti-spam banned word table ID.
-	SpamBwordTable pulumi.IntPtrInput
-	// Spam banned word threshold.
-	SpamBwordThreshold pulumi.IntPtrInput
-	// Enable/disable spam filtering. Valid values: `enable`, `disable`.
-	SpamFiltering pulumi.StringPtrInput
-	// Anti-spam IP trust table ID.
-	SpamIptrustTable pulumi.IntPtrInput
-	// Enable/disable spam logging for email filtering. Valid values: `disable`, `enable`.
-	SpamLog pulumi.StringPtrInput
-	// Enable/disable logging FortiGuard spam response. Valid values: `disable`, `enable`.
+	Comment                   pulumi.StringPtrInput
+	External                  pulumi.StringPtrInput
+	FeatureSet                pulumi.StringPtrInput
+	FileFilter                EmailfilterProfileFileFilterPtrInput
+	Gmail                     EmailfilterProfileGmailPtrInput
+	Imap                      EmailfilterProfileImapPtrInput
+	Mapi                      EmailfilterProfileMapiPtrInput
+	MsnHotmail                EmailfilterProfileMsnHotmailPtrInput
+	Name                      pulumi.StringPtrInput
+	Options                   pulumi.StringPtrInput
+	OtherWebmails             EmailfilterProfileOtherWebmailsPtrInput
+	Pop3                      EmailfilterProfilePop3PtrInput
+	ReplacemsgGroup           pulumi.StringPtrInput
+	Smtp                      EmailfilterProfileSmtpPtrInput
+	SpamBalTable              pulumi.IntPtrInput
+	SpamBwlTable              pulumi.IntPtrInput
+	SpamBwordTable            pulumi.IntPtrInput
+	SpamBwordThreshold        pulumi.IntPtrInput
+	SpamFiltering             pulumi.StringPtrInput
+	SpamIptrustTable          pulumi.IntPtrInput
+	SpamLog                   pulumi.StringPtrInput
 	SpamLogFortiguardResponse pulumi.StringPtrInput
-	// Anti-spam MIME header table ID.
-	SpamMheaderTable pulumi.IntPtrInput
-	// Anti-spam DNSBL table ID.
-	SpamRblTable pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Yahoo! Mail. The structure of `yahooMail` block is documented below.
-	YahooMail EmailfilterProfileYahooMailPtrInput
+	SpamMheaderTable          pulumi.IntPtrInput
+	SpamRblTable              pulumi.IntPtrInput
+	Vdomparam                 pulumi.StringPtrInput
+	YahooMail                 EmailfilterProfileYahooMailPtrInput
 }
 
 func (EmailfilterProfileArgs) ElementType() reflect.Type {
@@ -364,7 +217,7 @@ func (i *EmailfilterProfile) ToEmailfilterProfileOutputWithContext(ctx context.C
 // EmailfilterProfileArrayInput is an input type that accepts EmailfilterProfileArray and EmailfilterProfileArrayOutput values.
 // You can construct a concrete instance of `EmailfilterProfileArrayInput` via:
 //
-//          EmailfilterProfileArray{ EmailfilterProfileArgs{...} }
+//	EmailfilterProfileArray{ EmailfilterProfileArgs{...} }
 type EmailfilterProfileArrayInput interface {
 	pulumi.Input
 
@@ -389,7 +242,7 @@ func (i EmailfilterProfileArray) ToEmailfilterProfileArrayOutputWithContext(ctx 
 // EmailfilterProfileMapInput is an input type that accepts EmailfilterProfileMap and EmailfilterProfileMapOutput values.
 // You can construct a concrete instance of `EmailfilterProfileMapInput` via:
 //
-//          EmailfilterProfileMap{ "key": EmailfilterProfileArgs{...} }
+//	EmailfilterProfileMap{ "key": EmailfilterProfileArgs{...} }
 type EmailfilterProfileMapInput interface {
 	pulumi.Input
 
@@ -423,6 +276,110 @@ func (o EmailfilterProfileOutput) ToEmailfilterProfileOutput() EmailfilterProfil
 
 func (o EmailfilterProfileOutput) ToEmailfilterProfileOutputWithContext(ctx context.Context) EmailfilterProfileOutput {
 	return o
+}
+
+func (o EmailfilterProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o EmailfilterProfileOutput) External() pulumi.StringOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.StringOutput { return v.External }).(pulumi.StringOutput)
+}
+
+func (o EmailfilterProfileOutput) FeatureSet() pulumi.StringOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.StringOutput { return v.FeatureSet }).(pulumi.StringOutput)
+}
+
+func (o EmailfilterProfileOutput) FileFilter() EmailfilterProfileFileFilterOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) EmailfilterProfileFileFilterOutput { return v.FileFilter }).(EmailfilterProfileFileFilterOutput)
+}
+
+func (o EmailfilterProfileOutput) Gmail() EmailfilterProfileGmailOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) EmailfilterProfileGmailOutput { return v.Gmail }).(EmailfilterProfileGmailOutput)
+}
+
+func (o EmailfilterProfileOutput) Imap() EmailfilterProfileImapOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) EmailfilterProfileImapOutput { return v.Imap }).(EmailfilterProfileImapOutput)
+}
+
+func (o EmailfilterProfileOutput) Mapi() EmailfilterProfileMapiOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) EmailfilterProfileMapiOutput { return v.Mapi }).(EmailfilterProfileMapiOutput)
+}
+
+func (o EmailfilterProfileOutput) MsnHotmail() EmailfilterProfileMsnHotmailOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) EmailfilterProfileMsnHotmailOutput { return v.MsnHotmail }).(EmailfilterProfileMsnHotmailOutput)
+}
+
+func (o EmailfilterProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o EmailfilterProfileOutput) Options() pulumi.StringOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.StringOutput { return v.Options }).(pulumi.StringOutput)
+}
+
+func (o EmailfilterProfileOutput) OtherWebmails() EmailfilterProfileOtherWebmailsOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) EmailfilterProfileOtherWebmailsOutput { return v.OtherWebmails }).(EmailfilterProfileOtherWebmailsOutput)
+}
+
+func (o EmailfilterProfileOutput) Pop3() EmailfilterProfilePop3Output {
+	return o.ApplyT(func(v *EmailfilterProfile) EmailfilterProfilePop3Output { return v.Pop3 }).(EmailfilterProfilePop3Output)
+}
+
+func (o EmailfilterProfileOutput) ReplacemsgGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.StringOutput { return v.ReplacemsgGroup }).(pulumi.StringOutput)
+}
+
+func (o EmailfilterProfileOutput) Smtp() EmailfilterProfileSmtpOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) EmailfilterProfileSmtpOutput { return v.Smtp }).(EmailfilterProfileSmtpOutput)
+}
+
+func (o EmailfilterProfileOutput) SpamBalTable() pulumi.IntOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.IntOutput { return v.SpamBalTable }).(pulumi.IntOutput)
+}
+
+func (o EmailfilterProfileOutput) SpamBwlTable() pulumi.IntOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.IntOutput { return v.SpamBwlTable }).(pulumi.IntOutput)
+}
+
+func (o EmailfilterProfileOutput) SpamBwordTable() pulumi.IntOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.IntOutput { return v.SpamBwordTable }).(pulumi.IntOutput)
+}
+
+func (o EmailfilterProfileOutput) SpamBwordThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.IntOutput { return v.SpamBwordThreshold }).(pulumi.IntOutput)
+}
+
+func (o EmailfilterProfileOutput) SpamFiltering() pulumi.StringOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.StringOutput { return v.SpamFiltering }).(pulumi.StringOutput)
+}
+
+func (o EmailfilterProfileOutput) SpamIptrustTable() pulumi.IntOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.IntOutput { return v.SpamIptrustTable }).(pulumi.IntOutput)
+}
+
+func (o EmailfilterProfileOutput) SpamLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.StringOutput { return v.SpamLog }).(pulumi.StringOutput)
+}
+
+func (o EmailfilterProfileOutput) SpamLogFortiguardResponse() pulumi.StringOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.StringOutput { return v.SpamLogFortiguardResponse }).(pulumi.StringOutput)
+}
+
+func (o EmailfilterProfileOutput) SpamMheaderTable() pulumi.IntOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.IntOutput { return v.SpamMheaderTable }).(pulumi.IntOutput)
+}
+
+func (o EmailfilterProfileOutput) SpamRblTable() pulumi.IntOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.IntOutput { return v.SpamRblTable }).(pulumi.IntOutput)
+}
+
+func (o EmailfilterProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o EmailfilterProfileOutput) YahooMail() EmailfilterProfileYahooMailOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) EmailfilterProfileYahooMailOutput { return v.YahooMail }).(EmailfilterProfileYahooMailOutput)
 }
 
 type EmailfilterProfileArrayOutput struct{ *pulumi.OutputState }

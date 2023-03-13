@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewallwildcardfqdn group
 func LookupFirewallWildcardFqdnGroup(ctx *pulumi.Context, args *LookupFirewallWildcardFqdnGroupArgs, opts ...pulumi.InvokeOption) (*LookupFirewallWildcardFqdnGroupResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallWildcardFqdnGroupResult
@@ -23,29 +22,21 @@ func LookupFirewallWildcardFqdnGroup(ctx *pulumi.Context, args *LookupFirewallWi
 
 // A collection of arguments for invoking GetFirewallWildcardFqdnGroup.
 type LookupFirewallWildcardFqdnGroupArgs struct {
-	// Specify the name of the desired firewallwildcardfqdn group.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallWildcardFqdnGroup.
 type LookupFirewallWildcardFqdnGroupResult struct {
-	// GUI icon color.
-	Color int `pulumi:"color"`
-	// Comment.
+	Color   int    `pulumi:"color"`
 	Comment string `pulumi:"comment"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Address group members. The structure of `member` block is documented below.
-	Members []GetFirewallWildcardFqdnGroupMember `pulumi:"members"`
-	// Address name.
-	Name string `pulumi:"name"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid      string  `pulumi:"uuid"`
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable address visibility.
-	Visibility string `pulumi:"visibility"`
+	Id         string                               `pulumi:"id"`
+	Members    []GetFirewallWildcardFqdnGroupMember `pulumi:"members"`
+	Name       string                               `pulumi:"name"`
+	Uuid       string                               `pulumi:"uuid"`
+	Vdomparam  *string                              `pulumi:"vdomparam"`
+	Visibility string                               `pulumi:"visibility"`
 }
 
 func LookupFirewallWildcardFqdnGroupOutput(ctx *pulumi.Context, args LookupFirewallWildcardFqdnGroupOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallWildcardFqdnGroupResultOutput {
@@ -63,9 +54,7 @@ func LookupFirewallWildcardFqdnGroupOutput(ctx *pulumi.Context, args LookupFirew
 
 // A collection of arguments for invoking GetFirewallWildcardFqdnGroup.
 type LookupFirewallWildcardFqdnGroupOutputArgs struct {
-	// Specify the name of the desired firewallwildcardfqdn group.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -88,12 +77,10 @@ func (o LookupFirewallWildcardFqdnGroupResultOutput) ToLookupFirewallWildcardFqd
 	return o
 }
 
-// GUI icon color.
 func (o LookupFirewallWildcardFqdnGroupResultOutput) Color() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) int { return v.Color }).(pulumi.IntOutput)
 }
 
-// Comment.
 func (o LookupFirewallWildcardFqdnGroupResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) string { return v.Comment }).(pulumi.StringOutput)
 }
@@ -103,17 +90,14 @@ func (o LookupFirewallWildcardFqdnGroupResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Address group members. The structure of `member` block is documented below.
 func (o LookupFirewallWildcardFqdnGroupResultOutput) Members() GetFirewallWildcardFqdnGroupMemberArrayOutput {
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) []GetFirewallWildcardFqdnGroupMember { return v.Members }).(GetFirewallWildcardFqdnGroupMemberArrayOutput)
 }
 
-// Address name.
 func (o LookupFirewallWildcardFqdnGroupResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 func (o LookupFirewallWildcardFqdnGroupResultOutput) Uuid() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) string { return v.Uuid }).(pulumi.StringOutput)
 }
@@ -122,7 +106,6 @@ func (o LookupFirewallWildcardFqdnGroupResultOutput) Vdomparam() pulumi.StringPt
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable address visibility.
 func (o LookupFirewallWildcardFqdnGroupResultOutput) Visibility() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) string { return v.Visibility }).(pulumi.StringOutput)
 }

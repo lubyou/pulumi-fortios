@@ -8,6 +8,17 @@ declare var exports: any;
 const __config = new pulumi.Config("fortios");
 
 /**
+ * CA Bundle file content
+ */
+export declare const cabundlecontent: string | undefined;
+Object.defineProperty(exports, "cabundlecontent", {
+    get() {
+        return __config.get("cabundlecontent");
+    },
+    enumerable: true,
+});
+
+/**
  * CA Bundle file
  */
 export declare const cabundlefile: string | undefined;
@@ -104,6 +115,17 @@ export declare const hostname: string | undefined;
 Object.defineProperty(exports, "hostname", {
     get() {
         return __config.get("hostname") ?? utilities.getEnv("FORTIOS_ACCESS_HOSTNAME");
+    },
+    enumerable: true,
+});
+
+/**
+ * HTTP proxy address
+ */
+export declare const httpProxy: string | undefined;
+Object.defineProperty(exports, "httpProxy", {
+    get() {
+        return __config.get("httpProxy");
     },
     enumerable: true,
 });

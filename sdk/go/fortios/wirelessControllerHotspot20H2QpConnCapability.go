@@ -10,85 +10,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure connection capability.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWirelessControllerHotspot20H2QpConnCapability(ctx, "trname", &fortios.WirelessControllerHotspot20H2QpConnCapabilityArgs{
-// 			EspPort:     pulumi.String("unknown"),
-// 			FtpPort:     pulumi.String("unknown"),
-// 			HttpPort:    pulumi.String("unknown"),
-// 			IcmpPort:    pulumi.String("closed"),
-// 			Ikev2Port:   pulumi.String("unknown"),
-// 			Ikev2XxPort: pulumi.String("unknown"),
-// 			PptpVpnPort: pulumi.String("unknown"),
-// 			SshPort:     pulumi.String("unknown"),
-// 			TlsPort:     pulumi.String("unknown"),
-// 			VoipTcpPort: pulumi.String("unknown"),
-// 			VoipUdpPort: pulumi.String("unknown"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// WirelessControllerHotspot20 H2QpConnCapability can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpConnCapability:WirelessControllerHotspot20H2QpConnCapability labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpConnCapability:WirelessControllerHotspot20H2QpConnCapability labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerHotspot20H2QpConnCapability struct {
 	pulumi.CustomResourceState
 
-	// Set ESP port service (used by IPsec VPNs) status. Valid values: `closed`, `open`, `unknown`.
-	EspPort pulumi.StringOutput `pulumi:"espPort"`
-	// Set FTP port service status. Valid values: `closed`, `open`, `unknown`.
-	FtpPort pulumi.StringOutput `pulumi:"ftpPort"`
-	// Set HTTP port service status. Valid values: `closed`, `open`, `unknown`.
-	HttpPort pulumi.StringOutput `pulumi:"httpPort"`
-	// Set ICMP port service status. Valid values: `closed`, `open`, `unknown`.
-	IcmpPort pulumi.StringOutput `pulumi:"icmpPort"`
-	// Set IKEv2 port service for IPsec VPN status. Valid values: `closed`, `open`, `unknown`.
-	Ikev2Port pulumi.StringOutput `pulumi:"ikev2Port"`
-	// Set UDP port 4500 (which may be used by IKEv2 for IPsec VPN) service status. Valid values: `closed`, `open`, `unknown`.
-	Ikev2XxPort pulumi.StringOutput `pulumi:"ikev2XxPort"`
-	// Connection capability name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Set Point to Point Tunneling Protocol (PPTP) VPN port service status. Valid values: `closed`, `open`, `unknown`.
-	PptpVpnPort pulumi.StringOutput `pulumi:"pptpVpnPort"`
-	// Set SSH port service status. Valid values: `closed`, `open`, `unknown`.
-	SshPort pulumi.StringOutput `pulumi:"sshPort"`
-	// Set TLS VPN (HTTPS) port service status. Valid values: `closed`, `open`, `unknown`.
-	TlsPort pulumi.StringOutput `pulumi:"tlsPort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Set VoIP TCP port service status. Valid values: `closed`, `open`, `unknown`.
-	VoipTcpPort pulumi.StringOutput `pulumi:"voipTcpPort"`
-	// Set VoIP UDP port service status. Valid values: `closed`, `open`, `unknown`.
-	VoipUdpPort pulumi.StringOutput `pulumi:"voipUdpPort"`
+	EspPort     pulumi.StringOutput    `pulumi:"espPort"`
+	FtpPort     pulumi.StringOutput    `pulumi:"ftpPort"`
+	HttpPort    pulumi.StringOutput    `pulumi:"httpPort"`
+	IcmpPort    pulumi.StringOutput    `pulumi:"icmpPort"`
+	Ikev2Port   pulumi.StringOutput    `pulumi:"ikev2Port"`
+	Ikev2XxPort pulumi.StringOutput    `pulumi:"ikev2XxPort"`
+	Name        pulumi.StringOutput    `pulumi:"name"`
+	PptpVpnPort pulumi.StringOutput    `pulumi:"pptpVpnPort"`
+	SshPort     pulumi.StringOutput    `pulumi:"sshPort"`
+	TlsPort     pulumi.StringOutput    `pulumi:"tlsPort"`
+	Vdomparam   pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	VoipTcpPort pulumi.StringOutput    `pulumi:"voipTcpPort"`
+	VoipUdpPort pulumi.StringOutput    `pulumi:"voipUdpPort"`
 }
 
 // NewWirelessControllerHotspot20H2QpConnCapability registers a new resource with the given unique name, arguments, and options.
@@ -121,60 +58,34 @@ func GetWirelessControllerHotspot20H2QpConnCapability(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerHotspot20H2QpConnCapability resources.
 type wirelessControllerHotspot20H2QpConnCapabilityState struct {
-	// Set ESP port service (used by IPsec VPNs) status. Valid values: `closed`, `open`, `unknown`.
-	EspPort *string `pulumi:"espPort"`
-	// Set FTP port service status. Valid values: `closed`, `open`, `unknown`.
-	FtpPort *string `pulumi:"ftpPort"`
-	// Set HTTP port service status. Valid values: `closed`, `open`, `unknown`.
-	HttpPort *string `pulumi:"httpPort"`
-	// Set ICMP port service status. Valid values: `closed`, `open`, `unknown`.
-	IcmpPort *string `pulumi:"icmpPort"`
-	// Set IKEv2 port service for IPsec VPN status. Valid values: `closed`, `open`, `unknown`.
-	Ikev2Port *string `pulumi:"ikev2Port"`
-	// Set UDP port 4500 (which may be used by IKEv2 for IPsec VPN) service status. Valid values: `closed`, `open`, `unknown`.
+	EspPort     *string `pulumi:"espPort"`
+	FtpPort     *string `pulumi:"ftpPort"`
+	HttpPort    *string `pulumi:"httpPort"`
+	IcmpPort    *string `pulumi:"icmpPort"`
+	Ikev2Port   *string `pulumi:"ikev2Port"`
 	Ikev2XxPort *string `pulumi:"ikev2XxPort"`
-	// Connection capability name.
-	Name *string `pulumi:"name"`
-	// Set Point to Point Tunneling Protocol (PPTP) VPN port service status. Valid values: `closed`, `open`, `unknown`.
+	Name        *string `pulumi:"name"`
 	PptpVpnPort *string `pulumi:"pptpVpnPort"`
-	// Set SSH port service status. Valid values: `closed`, `open`, `unknown`.
-	SshPort *string `pulumi:"sshPort"`
-	// Set TLS VPN (HTTPS) port service status. Valid values: `closed`, `open`, `unknown`.
-	TlsPort *string `pulumi:"tlsPort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Set VoIP TCP port service status. Valid values: `closed`, `open`, `unknown`.
+	SshPort     *string `pulumi:"sshPort"`
+	TlsPort     *string `pulumi:"tlsPort"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 	VoipTcpPort *string `pulumi:"voipTcpPort"`
-	// Set VoIP UDP port service status. Valid values: `closed`, `open`, `unknown`.
 	VoipUdpPort *string `pulumi:"voipUdpPort"`
 }
 
 type WirelessControllerHotspot20H2QpConnCapabilityState struct {
-	// Set ESP port service (used by IPsec VPNs) status. Valid values: `closed`, `open`, `unknown`.
-	EspPort pulumi.StringPtrInput
-	// Set FTP port service status. Valid values: `closed`, `open`, `unknown`.
-	FtpPort pulumi.StringPtrInput
-	// Set HTTP port service status. Valid values: `closed`, `open`, `unknown`.
-	HttpPort pulumi.StringPtrInput
-	// Set ICMP port service status. Valid values: `closed`, `open`, `unknown`.
-	IcmpPort pulumi.StringPtrInput
-	// Set IKEv2 port service for IPsec VPN status. Valid values: `closed`, `open`, `unknown`.
-	Ikev2Port pulumi.StringPtrInput
-	// Set UDP port 4500 (which may be used by IKEv2 for IPsec VPN) service status. Valid values: `closed`, `open`, `unknown`.
+	EspPort     pulumi.StringPtrInput
+	FtpPort     pulumi.StringPtrInput
+	HttpPort    pulumi.StringPtrInput
+	IcmpPort    pulumi.StringPtrInput
+	Ikev2Port   pulumi.StringPtrInput
 	Ikev2XxPort pulumi.StringPtrInput
-	// Connection capability name.
-	Name pulumi.StringPtrInput
-	// Set Point to Point Tunneling Protocol (PPTP) VPN port service status. Valid values: `closed`, `open`, `unknown`.
+	Name        pulumi.StringPtrInput
 	PptpVpnPort pulumi.StringPtrInput
-	// Set SSH port service status. Valid values: `closed`, `open`, `unknown`.
-	SshPort pulumi.StringPtrInput
-	// Set TLS VPN (HTTPS) port service status. Valid values: `closed`, `open`, `unknown`.
-	TlsPort pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Set VoIP TCP port service status. Valid values: `closed`, `open`, `unknown`.
+	SshPort     pulumi.StringPtrInput
+	TlsPort     pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 	VoipTcpPort pulumi.StringPtrInput
-	// Set VoIP UDP port service status. Valid values: `closed`, `open`, `unknown`.
 	VoipUdpPort pulumi.StringPtrInput
 }
 
@@ -183,61 +94,35 @@ func (WirelessControllerHotspot20H2QpConnCapabilityState) ElementType() reflect.
 }
 
 type wirelessControllerHotspot20H2QpConnCapabilityArgs struct {
-	// Set ESP port service (used by IPsec VPNs) status. Valid values: `closed`, `open`, `unknown`.
-	EspPort *string `pulumi:"espPort"`
-	// Set FTP port service status. Valid values: `closed`, `open`, `unknown`.
-	FtpPort *string `pulumi:"ftpPort"`
-	// Set HTTP port service status. Valid values: `closed`, `open`, `unknown`.
-	HttpPort *string `pulumi:"httpPort"`
-	// Set ICMP port service status. Valid values: `closed`, `open`, `unknown`.
-	IcmpPort *string `pulumi:"icmpPort"`
-	// Set IKEv2 port service for IPsec VPN status. Valid values: `closed`, `open`, `unknown`.
-	Ikev2Port *string `pulumi:"ikev2Port"`
-	// Set UDP port 4500 (which may be used by IKEv2 for IPsec VPN) service status. Valid values: `closed`, `open`, `unknown`.
+	EspPort     *string `pulumi:"espPort"`
+	FtpPort     *string `pulumi:"ftpPort"`
+	HttpPort    *string `pulumi:"httpPort"`
+	IcmpPort    *string `pulumi:"icmpPort"`
+	Ikev2Port   *string `pulumi:"ikev2Port"`
 	Ikev2XxPort *string `pulumi:"ikev2XxPort"`
-	// Connection capability name.
-	Name *string `pulumi:"name"`
-	// Set Point to Point Tunneling Protocol (PPTP) VPN port service status. Valid values: `closed`, `open`, `unknown`.
+	Name        *string `pulumi:"name"`
 	PptpVpnPort *string `pulumi:"pptpVpnPort"`
-	// Set SSH port service status. Valid values: `closed`, `open`, `unknown`.
-	SshPort *string `pulumi:"sshPort"`
-	// Set TLS VPN (HTTPS) port service status. Valid values: `closed`, `open`, `unknown`.
-	TlsPort *string `pulumi:"tlsPort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Set VoIP TCP port service status. Valid values: `closed`, `open`, `unknown`.
+	SshPort     *string `pulumi:"sshPort"`
+	TlsPort     *string `pulumi:"tlsPort"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 	VoipTcpPort *string `pulumi:"voipTcpPort"`
-	// Set VoIP UDP port service status. Valid values: `closed`, `open`, `unknown`.
 	VoipUdpPort *string `pulumi:"voipUdpPort"`
 }
 
 // The set of arguments for constructing a WirelessControllerHotspot20H2QpConnCapability resource.
 type WirelessControllerHotspot20H2QpConnCapabilityArgs struct {
-	// Set ESP port service (used by IPsec VPNs) status. Valid values: `closed`, `open`, `unknown`.
-	EspPort pulumi.StringPtrInput
-	// Set FTP port service status. Valid values: `closed`, `open`, `unknown`.
-	FtpPort pulumi.StringPtrInput
-	// Set HTTP port service status. Valid values: `closed`, `open`, `unknown`.
-	HttpPort pulumi.StringPtrInput
-	// Set ICMP port service status. Valid values: `closed`, `open`, `unknown`.
-	IcmpPort pulumi.StringPtrInput
-	// Set IKEv2 port service for IPsec VPN status. Valid values: `closed`, `open`, `unknown`.
-	Ikev2Port pulumi.StringPtrInput
-	// Set UDP port 4500 (which may be used by IKEv2 for IPsec VPN) service status. Valid values: `closed`, `open`, `unknown`.
+	EspPort     pulumi.StringPtrInput
+	FtpPort     pulumi.StringPtrInput
+	HttpPort    pulumi.StringPtrInput
+	IcmpPort    pulumi.StringPtrInput
+	Ikev2Port   pulumi.StringPtrInput
 	Ikev2XxPort pulumi.StringPtrInput
-	// Connection capability name.
-	Name pulumi.StringPtrInput
-	// Set Point to Point Tunneling Protocol (PPTP) VPN port service status. Valid values: `closed`, `open`, `unknown`.
+	Name        pulumi.StringPtrInput
 	PptpVpnPort pulumi.StringPtrInput
-	// Set SSH port service status. Valid values: `closed`, `open`, `unknown`.
-	SshPort pulumi.StringPtrInput
-	// Set TLS VPN (HTTPS) port service status. Valid values: `closed`, `open`, `unknown`.
-	TlsPort pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Set VoIP TCP port service status. Valid values: `closed`, `open`, `unknown`.
+	SshPort     pulumi.StringPtrInput
+	TlsPort     pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 	VoipTcpPort pulumi.StringPtrInput
-	// Set VoIP UDP port service status. Valid values: `closed`, `open`, `unknown`.
 	VoipUdpPort pulumi.StringPtrInput
 }
 
@@ -267,7 +152,7 @@ func (i *WirelessControllerHotspot20H2QpConnCapability) ToWirelessControllerHots
 // WirelessControllerHotspot20H2QpConnCapabilityArrayInput is an input type that accepts WirelessControllerHotspot20H2QpConnCapabilityArray and WirelessControllerHotspot20H2QpConnCapabilityArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpConnCapabilityArrayInput` via:
 //
-//          WirelessControllerHotspot20H2QpConnCapabilityArray{ WirelessControllerHotspot20H2QpConnCapabilityArgs{...} }
+//	WirelessControllerHotspot20H2QpConnCapabilityArray{ WirelessControllerHotspot20H2QpConnCapabilityArgs{...} }
 type WirelessControllerHotspot20H2QpConnCapabilityArrayInput interface {
 	pulumi.Input
 
@@ -292,7 +177,7 @@ func (i WirelessControllerHotspot20H2QpConnCapabilityArray) ToWirelessController
 // WirelessControllerHotspot20H2QpConnCapabilityMapInput is an input type that accepts WirelessControllerHotspot20H2QpConnCapabilityMap and WirelessControllerHotspot20H2QpConnCapabilityMapOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpConnCapabilityMapInput` via:
 //
-//          WirelessControllerHotspot20H2QpConnCapabilityMap{ "key": WirelessControllerHotspot20H2QpConnCapabilityArgs{...} }
+//	WirelessControllerHotspot20H2QpConnCapabilityMap{ "key": WirelessControllerHotspot20H2QpConnCapabilityArgs{...} }
 type WirelessControllerHotspot20H2QpConnCapabilityMapInput interface {
 	pulumi.Input
 
@@ -326,6 +211,58 @@ func (o WirelessControllerHotspot20H2QpConnCapabilityOutput) ToWirelessControlle
 
 func (o WirelessControllerHotspot20H2QpConnCapabilityOutput) ToWirelessControllerHotspot20H2QpConnCapabilityOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpConnCapabilityOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpConnCapabilityOutput) EspPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpConnCapability) pulumi.StringOutput { return v.EspPort }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpConnCapabilityOutput) FtpPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpConnCapability) pulumi.StringOutput { return v.FtpPort }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpConnCapabilityOutput) HttpPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpConnCapability) pulumi.StringOutput { return v.HttpPort }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpConnCapabilityOutput) IcmpPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpConnCapability) pulumi.StringOutput { return v.IcmpPort }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpConnCapabilityOutput) Ikev2Port() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpConnCapability) pulumi.StringOutput { return v.Ikev2Port }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpConnCapabilityOutput) Ikev2XxPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpConnCapability) pulumi.StringOutput { return v.Ikev2XxPort }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpConnCapabilityOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpConnCapability) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpConnCapabilityOutput) PptpVpnPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpConnCapability) pulumi.StringOutput { return v.PptpVpnPort }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpConnCapabilityOutput) SshPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpConnCapability) pulumi.StringOutput { return v.SshPort }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpConnCapabilityOutput) TlsPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpConnCapability) pulumi.StringOutput { return v.TlsPort }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpConnCapabilityOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpConnCapability) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpConnCapabilityOutput) VoipTcpPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpConnCapability) pulumi.StringOutput { return v.VoipTcpPort }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpConnCapabilityOutput) VoipUdpPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpConnCapability) pulumi.StringOutput { return v.VoipUdpPort }).(pulumi.StringOutput)
 }
 
 type WirelessControllerHotspot20H2QpConnCapabilityArrayOutput struct{ *pulumi.OutputState }

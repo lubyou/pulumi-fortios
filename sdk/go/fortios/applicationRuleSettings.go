@@ -10,29 +10,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure application rule settings.
-//
-// ## Import
-//
-// Application RuleSettings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/applicationRuleSettings:ApplicationRuleSettings labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/applicationRuleSettings:ApplicationRuleSettings labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type ApplicationRuleSettings struct {
 	pulumi.CustomResourceState
 
-	// Rule ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -66,16 +47,12 @@ func GetApplicationRuleSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ApplicationRuleSettings resources.
 type applicationRuleSettingsState struct {
-	// Rule ID.
-	Fosid *int `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type ApplicationRuleSettingsState struct {
-	// Rule ID.
-	Fosid pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -84,17 +61,13 @@ func (ApplicationRuleSettingsState) ElementType() reflect.Type {
 }
 
 type applicationRuleSettingsArgs struct {
-	// Rule ID.
-	Fosid *int `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a ApplicationRuleSettings resource.
 type ApplicationRuleSettingsArgs struct {
-	// Rule ID.
-	Fosid pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -124,7 +97,7 @@ func (i *ApplicationRuleSettings) ToApplicationRuleSettingsOutputWithContext(ctx
 // ApplicationRuleSettingsArrayInput is an input type that accepts ApplicationRuleSettingsArray and ApplicationRuleSettingsArrayOutput values.
 // You can construct a concrete instance of `ApplicationRuleSettingsArrayInput` via:
 //
-//          ApplicationRuleSettingsArray{ ApplicationRuleSettingsArgs{...} }
+//	ApplicationRuleSettingsArray{ ApplicationRuleSettingsArgs{...} }
 type ApplicationRuleSettingsArrayInput interface {
 	pulumi.Input
 
@@ -149,7 +122,7 @@ func (i ApplicationRuleSettingsArray) ToApplicationRuleSettingsArrayOutputWithCo
 // ApplicationRuleSettingsMapInput is an input type that accepts ApplicationRuleSettingsMap and ApplicationRuleSettingsMapOutput values.
 // You can construct a concrete instance of `ApplicationRuleSettingsMapInput` via:
 //
-//          ApplicationRuleSettingsMap{ "key": ApplicationRuleSettingsArgs{...} }
+//	ApplicationRuleSettingsMap{ "key": ApplicationRuleSettingsArgs{...} }
 type ApplicationRuleSettingsMapInput interface {
 	pulumi.Input
 
@@ -183,6 +156,14 @@ func (o ApplicationRuleSettingsOutput) ToApplicationRuleSettingsOutput() Applica
 
 func (o ApplicationRuleSettingsOutput) ToApplicationRuleSettingsOutputWithContext(ctx context.Context) ApplicationRuleSettingsOutput {
 	return o
+}
+
+func (o ApplicationRuleSettingsOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *ApplicationRuleSettings) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o ApplicationRuleSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationRuleSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type ApplicationRuleSettingsArrayOutput struct{ *pulumi.OutputState }

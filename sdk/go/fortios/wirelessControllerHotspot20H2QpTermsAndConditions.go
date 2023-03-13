@@ -10,35 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure terms and conditions. Applies to FortiOS Version `>= 7.0.2`.
-//
-// ## Import
-//
-// WirelessControllerHotspot20 H2QpTermsAndConditions can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpTermsAndConditions:WirelessControllerHotspot20H2QpTermsAndConditions labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpTermsAndConditions:WirelessControllerHotspot20H2QpTermsAndConditions labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerHotspot20H2QpTermsAndConditions struct {
 	pulumi.CustomResourceState
 
-	// Filename.
-	Filename pulumi.StringOutput `pulumi:"filename"`
-	// Terms and Conditions ID.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Timestamp.
-	Timestamp pulumi.IntOutput `pulumi:"timestamp"`
-	// URL.
-	Url pulumi.StringOutput `pulumi:"url"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filename  pulumi.StringOutput    `pulumi:"filename"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
+	Timestamp pulumi.IntOutput       `pulumi:"timestamp"`
+	Url       pulumi.StringOutput    `pulumi:"url"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -72,28 +50,18 @@ func GetWirelessControllerHotspot20H2QpTermsAndConditions(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerHotspot20H2QpTermsAndConditions resources.
 type wirelessControllerHotspot20H2QpTermsAndConditionsState struct {
-	// Filename.
-	Filename *string `pulumi:"filename"`
-	// Terms and Conditions ID.
-	Name *string `pulumi:"name"`
-	// Timestamp.
-	Timestamp *int `pulumi:"timestamp"`
-	// URL.
-	Url *string `pulumi:"url"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filename  *string `pulumi:"filename"`
+	Name      *string `pulumi:"name"`
+	Timestamp *int    `pulumi:"timestamp"`
+	Url       *string `pulumi:"url"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type WirelessControllerHotspot20H2QpTermsAndConditionsState struct {
-	// Filename.
-	Filename pulumi.StringPtrInput
-	// Terms and Conditions ID.
-	Name pulumi.StringPtrInput
-	// Timestamp.
+	Filename  pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
 	Timestamp pulumi.IntPtrInput
-	// URL.
-	Url pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Url       pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -102,29 +70,19 @@ func (WirelessControllerHotspot20H2QpTermsAndConditionsState) ElementType() refl
 }
 
 type wirelessControllerHotspot20H2QpTermsAndConditionsArgs struct {
-	// Filename.
-	Filename *string `pulumi:"filename"`
-	// Terms and Conditions ID.
-	Name *string `pulumi:"name"`
-	// Timestamp.
-	Timestamp *int `pulumi:"timestamp"`
-	// URL.
-	Url *string `pulumi:"url"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filename  *string `pulumi:"filename"`
+	Name      *string `pulumi:"name"`
+	Timestamp *int    `pulumi:"timestamp"`
+	Url       *string `pulumi:"url"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerHotspot20H2QpTermsAndConditions resource.
 type WirelessControllerHotspot20H2QpTermsAndConditionsArgs struct {
-	// Filename.
-	Filename pulumi.StringPtrInput
-	// Terms and Conditions ID.
-	Name pulumi.StringPtrInput
-	// Timestamp.
+	Filename  pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
 	Timestamp pulumi.IntPtrInput
-	// URL.
-	Url pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Url       pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -154,7 +112,7 @@ func (i *WirelessControllerHotspot20H2QpTermsAndConditions) ToWirelessController
 // WirelessControllerHotspot20H2QpTermsAndConditionsArrayInput is an input type that accepts WirelessControllerHotspot20H2QpTermsAndConditionsArray and WirelessControllerHotspot20H2QpTermsAndConditionsArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpTermsAndConditionsArrayInput` via:
 //
-//          WirelessControllerHotspot20H2QpTermsAndConditionsArray{ WirelessControllerHotspot20H2QpTermsAndConditionsArgs{...} }
+//	WirelessControllerHotspot20H2QpTermsAndConditionsArray{ WirelessControllerHotspot20H2QpTermsAndConditionsArgs{...} }
 type WirelessControllerHotspot20H2QpTermsAndConditionsArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i WirelessControllerHotspot20H2QpTermsAndConditionsArray) ToWirelessContro
 // WirelessControllerHotspot20H2QpTermsAndConditionsMapInput is an input type that accepts WirelessControllerHotspot20H2QpTermsAndConditionsMap and WirelessControllerHotspot20H2QpTermsAndConditionsMapOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpTermsAndConditionsMapInput` via:
 //
-//          WirelessControllerHotspot20H2QpTermsAndConditionsMap{ "key": WirelessControllerHotspot20H2QpTermsAndConditionsArgs{...} }
+//	WirelessControllerHotspot20H2QpTermsAndConditionsMap{ "key": WirelessControllerHotspot20H2QpTermsAndConditionsArgs{...} }
 type WirelessControllerHotspot20H2QpTermsAndConditionsMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o WirelessControllerHotspot20H2QpTermsAndConditionsOutput) ToWirelessContr
 
 func (o WirelessControllerHotspot20H2QpTermsAndConditionsOutput) ToWirelessControllerHotspot20H2QpTermsAndConditionsOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpTermsAndConditionsOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpTermsAndConditionsOutput) Filename() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpTermsAndConditions) pulumi.StringOutput { return v.Filename }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpTermsAndConditionsOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpTermsAndConditions) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpTermsAndConditionsOutput) Timestamp() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpTermsAndConditions) pulumi.IntOutput { return v.Timestamp }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpTermsAndConditionsOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpTermsAndConditions) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpTermsAndConditionsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpTermsAndConditions) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerHotspot20H2QpTermsAndConditionsArrayOutput struct{ *pulumi.OutputState }

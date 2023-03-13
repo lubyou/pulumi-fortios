@@ -7,39 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Replacement messages.
-//
-// ## Import
-//
-// SystemReplacemsg Sslvpn can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemReplacemsgSslvpn:SystemReplacemsgSslvpn labelname {{msg_type}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemReplacemsgSslvpn:SystemReplacemsgSslvpn labelname {{msg_type}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemReplacemsgSslvpn struct {
 	pulumi.CustomResourceState
 
-	// Message string.
-	Buffer pulumi.StringPtrOutput `pulumi:"buffer"`
-	// Format flag.
-	Format pulumi.StringOutput `pulumi:"format"`
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header pulumi.StringOutput `pulumi:"header"`
-	// Message type.
-	MsgType pulumi.StringOutput `pulumi:"msgType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    pulumi.StringPtrOutput `pulumi:"buffer"`
+	Format    pulumi.StringOutput    `pulumi:"format"`
+	Header    pulumi.StringOutput    `pulumi:"header"`
+	MsgType   pulumi.StringOutput    `pulumi:"msgType"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -76,28 +54,18 @@ func GetSystemReplacemsgSslvpn(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemReplacemsgSslvpn resources.
 type systemReplacemsgSslvpnState struct {
-	// Message string.
-	Buffer *string `pulumi:"buffer"`
-	// Format flag.
-	Format *string `pulumi:"format"`
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header *string `pulumi:"header"`
-	// Message type.
-	MsgType *string `pulumi:"msgType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    *string `pulumi:"buffer"`
+	Format    *string `pulumi:"format"`
+	Header    *string `pulumi:"header"`
+	MsgType   *string `pulumi:"msgType"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemReplacemsgSslvpnState struct {
-	// Message string.
-	Buffer pulumi.StringPtrInput
-	// Format flag.
-	Format pulumi.StringPtrInput
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header pulumi.StringPtrInput
-	// Message type.
-	MsgType pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    pulumi.StringPtrInput
+	Format    pulumi.StringPtrInput
+	Header    pulumi.StringPtrInput
+	MsgType   pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -106,29 +74,19 @@ func (SystemReplacemsgSslvpnState) ElementType() reflect.Type {
 }
 
 type systemReplacemsgSslvpnArgs struct {
-	// Message string.
-	Buffer *string `pulumi:"buffer"`
-	// Format flag.
-	Format *string `pulumi:"format"`
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header *string `pulumi:"header"`
-	// Message type.
-	MsgType string `pulumi:"msgType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    *string `pulumi:"buffer"`
+	Format    *string `pulumi:"format"`
+	Header    *string `pulumi:"header"`
+	MsgType   string  `pulumi:"msgType"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemReplacemsgSslvpn resource.
 type SystemReplacemsgSslvpnArgs struct {
-	// Message string.
-	Buffer pulumi.StringPtrInput
-	// Format flag.
-	Format pulumi.StringPtrInput
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header pulumi.StringPtrInput
-	// Message type.
-	MsgType pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    pulumi.StringPtrInput
+	Format    pulumi.StringPtrInput
+	Header    pulumi.StringPtrInput
+	MsgType   pulumi.StringInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -158,7 +116,7 @@ func (i *SystemReplacemsgSslvpn) ToSystemReplacemsgSslvpnOutputWithContext(ctx c
 // SystemReplacemsgSslvpnArrayInput is an input type that accepts SystemReplacemsgSslvpnArray and SystemReplacemsgSslvpnArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgSslvpnArrayInput` via:
 //
-//          SystemReplacemsgSslvpnArray{ SystemReplacemsgSslvpnArgs{...} }
+//	SystemReplacemsgSslvpnArray{ SystemReplacemsgSslvpnArgs{...} }
 type SystemReplacemsgSslvpnArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +141,7 @@ func (i SystemReplacemsgSslvpnArray) ToSystemReplacemsgSslvpnArrayOutputWithCont
 // SystemReplacemsgSslvpnMapInput is an input type that accepts SystemReplacemsgSslvpnMap and SystemReplacemsgSslvpnMapOutput values.
 // You can construct a concrete instance of `SystemReplacemsgSslvpnMapInput` via:
 //
-//          SystemReplacemsgSslvpnMap{ "key": SystemReplacemsgSslvpnArgs{...} }
+//	SystemReplacemsgSslvpnMap{ "key": SystemReplacemsgSslvpnArgs{...} }
 type SystemReplacemsgSslvpnMapInput interface {
 	pulumi.Input
 
@@ -217,6 +175,26 @@ func (o SystemReplacemsgSslvpnOutput) ToSystemReplacemsgSslvpnOutput() SystemRep
 
 func (o SystemReplacemsgSslvpnOutput) ToSystemReplacemsgSslvpnOutputWithContext(ctx context.Context) SystemReplacemsgSslvpnOutput {
 	return o
+}
+
+func (o SystemReplacemsgSslvpnOutput) Buffer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgSslvpn) pulumi.StringPtrOutput { return v.Buffer }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemReplacemsgSslvpnOutput) Format() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgSslvpn) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgSslvpnOutput) Header() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgSslvpn) pulumi.StringOutput { return v.Header }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgSslvpnOutput) MsgType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgSslvpn) pulumi.StringOutput { return v.MsgType }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgSslvpnOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgSslvpn) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemReplacemsgSslvpnArrayOutput struct{ *pulumi.OutputState }

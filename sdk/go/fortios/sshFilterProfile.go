@@ -10,67 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// SSH filter profile.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSshFilterProfile(ctx, "trname", &fortios.SshFilterProfileArgs{
-// 			Block:             pulumi.String("x11"),
-// 			DefaultCommandLog: pulumi.String("enable"),
-// 			Log:               pulumi.String("x11"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SshFilter Profile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/sshFilterProfile:SshFilterProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/sshFilterProfile:SshFilterProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SshFilterProfile struct {
 	pulumi.CustomResourceState
 
-	// SSH blocking options.
-	Block pulumi.StringOutput `pulumi:"block"`
-	// Enable/disable logging unmatched shell commands. Valid values: `enable`, `disable`.
-	DefaultCommandLog pulumi.StringOutput `pulumi:"defaultCommandLog"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter SshFilterProfileFileFilterPtrOutput `pulumi:"fileFilter"`
-	// Enable/disable file filter logging. Valid values: `enable`, `disable`.
-	Log pulumi.StringOutput `pulumi:"log"`
-	// File type name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// SSH command filter. The structure of `shellCommands` block is documented below.
-	ShellCommands SshFilterProfileShellCommandArrayOutput `pulumi:"shellCommands"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Block               pulumi.StringOutput                     `pulumi:"block"`
+	DefaultCommandLog   pulumi.StringOutput                     `pulumi:"defaultCommandLog"`
+	DynamicSortSubtable pulumi.StringPtrOutput                  `pulumi:"dynamicSortSubtable"`
+	FileFilter          SshFilterProfileFileFilterOutput        `pulumi:"fileFilter"`
+	Log                 pulumi.StringOutput                     `pulumi:"log"`
+	Name                pulumi.StringOutput                     `pulumi:"name"`
+	ShellCommands       SshFilterProfileShellCommandArrayOutput `pulumi:"shellCommands"`
+	Vdomparam           pulumi.StringPtrOutput                  `pulumi:"vdomparam"`
 }
 
 // NewSshFilterProfile registers a new resource with the given unique name, arguments, and options.
@@ -103,41 +53,25 @@ func GetSshFilterProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SshFilterProfile resources.
 type sshFilterProfileState struct {
-	// SSH blocking options.
-	Block *string `pulumi:"block"`
-	// Enable/disable logging unmatched shell commands. Valid values: `enable`, `disable`.
-	DefaultCommandLog *string `pulumi:"defaultCommandLog"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter *SshFilterProfileFileFilter `pulumi:"fileFilter"`
-	// Enable/disable file filter logging. Valid values: `enable`, `disable`.
-	Log *string `pulumi:"log"`
-	// File type name.
-	Name *string `pulumi:"name"`
-	// SSH command filter. The structure of `shellCommands` block is documented below.
-	ShellCommands []SshFilterProfileShellCommand `pulumi:"shellCommands"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Block               *string                        `pulumi:"block"`
+	DefaultCommandLog   *string                        `pulumi:"defaultCommandLog"`
+	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
+	FileFilter          *SshFilterProfileFileFilter    `pulumi:"fileFilter"`
+	Log                 *string                        `pulumi:"log"`
+	Name                *string                        `pulumi:"name"`
+	ShellCommands       []SshFilterProfileShellCommand `pulumi:"shellCommands"`
+	Vdomparam           *string                        `pulumi:"vdomparam"`
 }
 
 type SshFilterProfileState struct {
-	// SSH blocking options.
-	Block pulumi.StringPtrInput
-	// Enable/disable logging unmatched shell commands. Valid values: `enable`, `disable`.
-	DefaultCommandLog pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Block               pulumi.StringPtrInput
+	DefaultCommandLog   pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter SshFilterProfileFileFilterPtrInput
-	// Enable/disable file filter logging. Valid values: `enable`, `disable`.
-	Log pulumi.StringPtrInput
-	// File type name.
-	Name pulumi.StringPtrInput
-	// SSH command filter. The structure of `shellCommands` block is documented below.
-	ShellCommands SshFilterProfileShellCommandArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FileFilter          SshFilterProfileFileFilterPtrInput
+	Log                 pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	ShellCommands       SshFilterProfileShellCommandArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SshFilterProfileState) ElementType() reflect.Type {
@@ -145,42 +79,26 @@ func (SshFilterProfileState) ElementType() reflect.Type {
 }
 
 type sshFilterProfileArgs struct {
-	// SSH blocking options.
-	Block *string `pulumi:"block"`
-	// Enable/disable logging unmatched shell commands. Valid values: `enable`, `disable`.
-	DefaultCommandLog *string `pulumi:"defaultCommandLog"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter *SshFilterProfileFileFilter `pulumi:"fileFilter"`
-	// Enable/disable file filter logging. Valid values: `enable`, `disable`.
-	Log *string `pulumi:"log"`
-	// File type name.
-	Name *string `pulumi:"name"`
-	// SSH command filter. The structure of `shellCommands` block is documented below.
-	ShellCommands []SshFilterProfileShellCommand `pulumi:"shellCommands"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Block               *string                        `pulumi:"block"`
+	DefaultCommandLog   *string                        `pulumi:"defaultCommandLog"`
+	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
+	FileFilter          *SshFilterProfileFileFilter    `pulumi:"fileFilter"`
+	Log                 *string                        `pulumi:"log"`
+	Name                *string                        `pulumi:"name"`
+	ShellCommands       []SshFilterProfileShellCommand `pulumi:"shellCommands"`
+	Vdomparam           *string                        `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SshFilterProfile resource.
 type SshFilterProfileArgs struct {
-	// SSH blocking options.
-	Block pulumi.StringPtrInput
-	// Enable/disable logging unmatched shell commands. Valid values: `enable`, `disable`.
-	DefaultCommandLog pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Block               pulumi.StringPtrInput
+	DefaultCommandLog   pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// File filter. The structure of `fileFilter` block is documented below.
-	FileFilter SshFilterProfileFileFilterPtrInput
-	// Enable/disable file filter logging. Valid values: `enable`, `disable`.
-	Log pulumi.StringPtrInput
-	// File type name.
-	Name pulumi.StringPtrInput
-	// SSH command filter. The structure of `shellCommands` block is documented below.
-	ShellCommands SshFilterProfileShellCommandArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FileFilter          SshFilterProfileFileFilterPtrInput
+	Log                 pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	ShellCommands       SshFilterProfileShellCommandArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SshFilterProfileArgs) ElementType() reflect.Type {
@@ -209,7 +127,7 @@ func (i *SshFilterProfile) ToSshFilterProfileOutputWithContext(ctx context.Conte
 // SshFilterProfileArrayInput is an input type that accepts SshFilterProfileArray and SshFilterProfileArrayOutput values.
 // You can construct a concrete instance of `SshFilterProfileArrayInput` via:
 //
-//          SshFilterProfileArray{ SshFilterProfileArgs{...} }
+//	SshFilterProfileArray{ SshFilterProfileArgs{...} }
 type SshFilterProfileArrayInput interface {
 	pulumi.Input
 
@@ -234,7 +152,7 @@ func (i SshFilterProfileArray) ToSshFilterProfileArrayOutputWithContext(ctx cont
 // SshFilterProfileMapInput is an input type that accepts SshFilterProfileMap and SshFilterProfileMapOutput values.
 // You can construct a concrete instance of `SshFilterProfileMapInput` via:
 //
-//          SshFilterProfileMap{ "key": SshFilterProfileArgs{...} }
+//	SshFilterProfileMap{ "key": SshFilterProfileArgs{...} }
 type SshFilterProfileMapInput interface {
 	pulumi.Input
 
@@ -268,6 +186,38 @@ func (o SshFilterProfileOutput) ToSshFilterProfileOutput() SshFilterProfileOutpu
 
 func (o SshFilterProfileOutput) ToSshFilterProfileOutputWithContext(ctx context.Context) SshFilterProfileOutput {
 	return o
+}
+
+func (o SshFilterProfileOutput) Block() pulumi.StringOutput {
+	return o.ApplyT(func(v *SshFilterProfile) pulumi.StringOutput { return v.Block }).(pulumi.StringOutput)
+}
+
+func (o SshFilterProfileOutput) DefaultCommandLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *SshFilterProfile) pulumi.StringOutput { return v.DefaultCommandLog }).(pulumi.StringOutput)
+}
+
+func (o SshFilterProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SshFilterProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SshFilterProfileOutput) FileFilter() SshFilterProfileFileFilterOutput {
+	return o.ApplyT(func(v *SshFilterProfile) SshFilterProfileFileFilterOutput { return v.FileFilter }).(SshFilterProfileFileFilterOutput)
+}
+
+func (o SshFilterProfileOutput) Log() pulumi.StringOutput {
+	return o.ApplyT(func(v *SshFilterProfile) pulumi.StringOutput { return v.Log }).(pulumi.StringOutput)
+}
+
+func (o SshFilterProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SshFilterProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SshFilterProfileOutput) ShellCommands() SshFilterProfileShellCommandArrayOutput {
+	return o.ApplyT(func(v *SshFilterProfile) SshFilterProfileShellCommandArrayOutput { return v.ShellCommands }).(SshFilterProfileShellCommandArrayOutput)
+}
+
+func (o SshFilterProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SshFilterProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SshFilterProfileArrayOutput struct{ *pulumi.OutputState }

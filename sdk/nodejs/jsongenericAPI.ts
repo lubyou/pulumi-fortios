@@ -4,47 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * FortiAPI Generic Interface.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.JSONGenericAPI("test1", {
- *     json: "",
- *     method: "GET",
- *     path: "/api/v2/cmdb/firewall/address",
- * });
- * const test2 = new fortios.JSONGenericAPI("test2", {
- *     json: `{
- *   "name": "11221",
- *   "type": "geography",
- *   "fqdn": "",
- *   "country": "AL",
- *   "comment": "ccc",
- *   "visibility": "enable",
- *   "associated-interface": "port1",
- *   "allow-routing": "disable"
- * }
- * `,
- *     method: "POST",
- *     path: "/api/v2/cmdb/firewall/address",
- * });
- * const test3 = new fortios.JSONGenericAPI("test3", {
- *     json: "",
- *     method: "PUT",
- *     path: "/api/v2/cmdb/firewall/policy/3",
- *     specialparams: "action=move&after=1",
- * });
- *
- * export const response1 = test1.response;
- * export const response2 = test2.response;
- * export const response3 = test3.response;
- * ```
- */
 export class JSONGenericAPI extends pulumi.CustomResource {
     /**
      * Get an existing JSONGenericAPI resource's state with the given name, ID, and optional extra
@@ -73,29 +32,11 @@ export class JSONGenericAPI extends pulumi.CustomResource {
         return obj['__pulumiType'] === JSONGenericAPI.__pulumiType;
     }
 
-    /**
-     * The argument is optional, if it is set, when its value changes, the resource will be re-created. It is usually used when the return value needs to be forced to update.
-     */
     public readonly forceRecreate!: pulumi.Output<string | undefined>;
-    /**
-     * Body data in JSON format.
-     */
     public readonly json!: pulumi.Output<string | undefined>;
-    /**
-     * HTTP method.
-     */
     public readonly method!: pulumi.Output<string>;
-    /**
-     * FortiAPI URL path.
-     */
     public readonly path!: pulumi.Output<string>;
-    /**
-     * FortiAPI returns results.
-     */
     public /*out*/ readonly response!: pulumi.Output<string>;
-    /**
-     * URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path.
-     */
     public readonly specialparams!: pulumi.Output<string | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
@@ -144,29 +85,11 @@ export class JSONGenericAPI extends pulumi.CustomResource {
  * Input properties used for looking up and filtering JSONGenericAPI resources.
  */
 export interface JSONGenericAPIState {
-    /**
-     * The argument is optional, if it is set, when its value changes, the resource will be re-created. It is usually used when the return value needs to be forced to update.
-     */
     forceRecreate?: pulumi.Input<string>;
-    /**
-     * Body data in JSON format.
-     */
     json?: pulumi.Input<string>;
-    /**
-     * HTTP method.
-     */
     method?: pulumi.Input<string>;
-    /**
-     * FortiAPI URL path.
-     */
     path?: pulumi.Input<string>;
-    /**
-     * FortiAPI returns results.
-     */
     response?: pulumi.Input<string>;
-    /**
-     * URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path.
-     */
     specialparams?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
@@ -175,25 +98,10 @@ export interface JSONGenericAPIState {
  * The set of arguments for constructing a JSONGenericAPI resource.
  */
 export interface JSONGenericAPIArgs {
-    /**
-     * The argument is optional, if it is set, when its value changes, the resource will be re-created. It is usually used when the return value needs to be forced to update.
-     */
     forceRecreate?: pulumi.Input<string>;
-    /**
-     * Body data in JSON format.
-     */
     json?: pulumi.Input<string>;
-    /**
-     * HTTP method.
-     */
     method: pulumi.Input<string>;
-    /**
-     * FortiAPI URL path.
-     */
     path: pulumi.Input<string>;
-    /**
-     * URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path.
-     */
     specialparams?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

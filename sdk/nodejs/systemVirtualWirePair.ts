@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure virtual wire pairs.
- *
- * ## Import
- *
- * System VirtualWirePair can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVirtualWirePair:SystemVirtualWirePair labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVirtualWirePair:SystemVirtualWirePair labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemVirtualWirePair extends pulumi.CustomResource {
     /**
      * Get an existing SystemVirtualWirePair resource's state with the given name, ID, and optional extra
@@ -52,29 +34,11 @@ export class SystemVirtualWirePair extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemVirtualWirePair.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Interfaces belong to the virtual-wire-pair. The structure of `member` block is documented below.
-     */
     public readonly members!: pulumi.Output<outputs.SystemVirtualWirePairMember[]>;
-    /**
-     * Virtual-wire-pair name. Must be a unique interface name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Set VLAN filters.
-     */
     public readonly vlanFilter!: pulumi.Output<string>;
-    /**
-     * Enable/disable wildcard VLAN. Valid values: `enable`, `disable`.
-     */
     public readonly wildcardVlan!: pulumi.Output<string>;
 
     /**
@@ -117,29 +81,11 @@ export class SystemVirtualWirePair extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemVirtualWirePair resources.
  */
 export interface SystemVirtualWirePairState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Interfaces belong to the virtual-wire-pair. The structure of `member` block is documented below.
-     */
     members?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWirePairMember>[]>;
-    /**
-     * Virtual-wire-pair name. Must be a unique interface name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Set VLAN filters.
-     */
     vlanFilter?: pulumi.Input<string>;
-    /**
-     * Enable/disable wildcard VLAN. Valid values: `enable`, `disable`.
-     */
     wildcardVlan?: pulumi.Input<string>;
 }
 
@@ -147,28 +93,10 @@ export interface SystemVirtualWirePairState {
  * The set of arguments for constructing a SystemVirtualWirePair resource.
  */
 export interface SystemVirtualWirePairArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Interfaces belong to the virtual-wire-pair. The structure of `member` block is documented below.
-     */
     members: pulumi.Input<pulumi.Input<inputs.SystemVirtualWirePairMember>[]>;
-    /**
-     * Virtual-wire-pair name. Must be a unique interface name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Set VLAN filters.
-     */
     vlanFilter?: pulumi.Input<string>;
-    /**
-     * Enable/disable wildcard VLAN. Valid values: `enable`, `disable`.
-     */
     wildcardVlan?: pulumi.Input<string>;
 }

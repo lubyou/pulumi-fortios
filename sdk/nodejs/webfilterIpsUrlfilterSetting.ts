@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPS URL filter settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WebfilterIpsUrlfilterSetting("trname", {
- *     distance: 1,
- *     gateway: "0.0.0.0",
- * });
- * ```
- *
- * ## Import
- *
- * Webfilter IpsUrlfilterSetting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/webfilterIpsUrlfilterSetting:WebfilterIpsUrlfilterSetting labelname WebfilterIpsUrlfilterSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/webfilterIpsUrlfilterSetting:WebfilterIpsUrlfilterSetting labelname WebfilterIpsUrlfilterSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WebfilterIpsUrlfilterSetting extends pulumi.CustomResource {
     /**
      * Get an existing WebfilterIpsUrlfilterSetting resource's state with the given name, ID, and optional extra
@@ -63,25 +32,10 @@ export class WebfilterIpsUrlfilterSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebfilterIpsUrlfilterSetting.__pulumiType;
     }
 
-    /**
-     * Interface for this route.
-     */
     public readonly device!: pulumi.Output<string>;
-    /**
-     * Administrative distance (1 - 255) for this route.
-     */
     public readonly distance!: pulumi.Output<number>;
-    /**
-     * Gateway IP address for this route.
-     */
     public readonly gateway!: pulumi.Output<string>;
-    /**
-     * Filter based on geographical location. Route will NOT be installed if the resolved IP address belongs to the country in the filter.
-     */
     public readonly geoFilter!: pulumi.Output<string | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -119,25 +73,10 @@ export class WebfilterIpsUrlfilterSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WebfilterIpsUrlfilterSetting resources.
  */
 export interface WebfilterIpsUrlfilterSettingState {
-    /**
-     * Interface for this route.
-     */
     device?: pulumi.Input<string>;
-    /**
-     * Administrative distance (1 - 255) for this route.
-     */
     distance?: pulumi.Input<number>;
-    /**
-     * Gateway IP address for this route.
-     */
     gateway?: pulumi.Input<string>;
-    /**
-     * Filter based on geographical location. Route will NOT be installed if the resolved IP address belongs to the country in the filter.
-     */
     geoFilter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -145,24 +84,9 @@ export interface WebfilterIpsUrlfilterSettingState {
  * The set of arguments for constructing a WebfilterIpsUrlfilterSetting resource.
  */
 export interface WebfilterIpsUrlfilterSettingArgs {
-    /**
-     * Interface for this route.
-     */
     device?: pulumi.Input<string>;
-    /**
-     * Administrative distance (1 - 255) for this route.
-     */
     distance?: pulumi.Input<number>;
-    /**
-     * Gateway IP address for this route.
-     */
     gateway?: pulumi.Input<string>;
-    /**
-     * Filter based on geographical location. Route will NOT be installed if the resolved IP address belongs to the country in the filter.
-     */
     geoFilter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

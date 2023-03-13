@@ -2,47 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure shaping profiles.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallShapingProfile("trname", {
- *     defaultClassId: 2,
- *     profileName: "shapingprofiles1",
- *     shapingEntries: [{
- *         classId: 2,
- *         guaranteedBandwidthPercentage: 33,
- *         id: 1,
- *         maximumBandwidthPercentage: 88,
- *         priority: "high",
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * Firewall ShapingProfile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallShapingProfile:FirewallShapingProfile labelname {{profile_name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallShapingProfile:FirewallShapingProfile labelname {{profile_name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallShapingProfile extends pulumi.CustomResource {
     /**
      * Get an existing FirewallShapingProfile resource's state with the given name, ID, and optional extra
@@ -71,33 +34,12 @@ export class FirewallShapingProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallShapingProfile.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Default class ID to handle unclassified packets (including all local traffic).
-     */
     public readonly defaultClassId!: pulumi.Output<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Shaping profile name.
-     */
     public readonly profileName!: pulumi.Output<string>;
-    /**
-     * Define shaping entries of this shaping profile. The structure of `shapingEntries` block is documented below.
-     */
     public readonly shapingEntries!: pulumi.Output<outputs.FirewallShapingProfileShapingEntry[] | undefined>;
-    /**
-     * Select shaping profile type: policing / queuing. Valid values: `policing`, `queuing`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -145,33 +87,12 @@ export class FirewallShapingProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallShapingProfile resources.
  */
 export interface FirewallShapingProfileState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Default class ID to handle unclassified packets (including all local traffic).
-     */
     defaultClassId?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Shaping profile name.
-     */
     profileName?: pulumi.Input<string>;
-    /**
-     * Define shaping entries of this shaping profile. The structure of `shapingEntries` block is documented below.
-     */
     shapingEntries?: pulumi.Input<pulumi.Input<inputs.FirewallShapingProfileShapingEntry>[]>;
-    /**
-     * Select shaping profile type: policing / queuing. Valid values: `policing`, `queuing`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -179,32 +100,11 @@ export interface FirewallShapingProfileState {
  * The set of arguments for constructing a FirewallShapingProfile resource.
  */
 export interface FirewallShapingProfileArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Default class ID to handle unclassified packets (including all local traffic).
-     */
     defaultClassId: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Shaping profile name.
-     */
     profileName: pulumi.Input<string>;
-    /**
-     * Define shaping entries of this shaping profile. The structure of `shapingEntries` block is documented below.
-     */
     shapingEntries?: pulumi.Input<pulumi.Input<inputs.FirewallShapingProfileShapingEntry>[]>;
-    /**
-     * Select shaping profile type: policing / queuing. Valid values: `policing`, `queuing`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

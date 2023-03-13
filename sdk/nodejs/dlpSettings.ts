@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Designate logical storage for DLP fingerprint database.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.DlpSettings("trname", {
- *     cacheMemPercent: 2,
- *     chunkSize: 2800,
- *     dbMode: "stop-adding",
- *     size: 16,
- * });
- * ```
- *
- * ## Import
- *
- * Dlp Settings can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/dlpSettings:DlpSettings labelname DlpSettings
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/dlpSettings:DlpSettings labelname DlpSettings
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class DlpSettings extends pulumi.CustomResource {
     /**
      * Get an existing DlpSettings resource's state with the given name, ID, and optional extra
@@ -65,29 +32,11 @@ export class DlpSettings extends pulumi.CustomResource {
         return obj['__pulumiType'] === DlpSettings.__pulumiType;
     }
 
-    /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%).
-     */
     public readonly cacheMemPercent!: pulumi.Output<number>;
-    /**
-     * Maximum fingerprint chunk size.  **Changing will flush the entire database**.
-     */
     public readonly chunkSize!: pulumi.Output<number>;
-    /**
-     * Behaviour when the maximum size is reached. Valid values: `stop-adding`, `remove-modified-then-oldest`, `remove-oldest`.
-     */
     public readonly dbMode!: pulumi.Output<string>;
-    /**
-     * Maximum total size of files within the storage (MB).
-     */
     public readonly size!: pulumi.Output<number>;
-    /**
-     * Storage device name.
-     */
     public readonly storageDevice!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -127,29 +76,11 @@ export class DlpSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DlpSettings resources.
  */
 export interface DlpSettingsState {
-    /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%).
-     */
     cacheMemPercent?: pulumi.Input<number>;
-    /**
-     * Maximum fingerprint chunk size.  **Changing will flush the entire database**.
-     */
     chunkSize?: pulumi.Input<number>;
-    /**
-     * Behaviour when the maximum size is reached. Valid values: `stop-adding`, `remove-modified-then-oldest`, `remove-oldest`.
-     */
     dbMode?: pulumi.Input<string>;
-    /**
-     * Maximum total size of files within the storage (MB).
-     */
     size?: pulumi.Input<number>;
-    /**
-     * Storage device name.
-     */
     storageDevice?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -157,28 +88,10 @@ export interface DlpSettingsState {
  * The set of arguments for constructing a DlpSettings resource.
  */
 export interface DlpSettingsArgs {
-    /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%).
-     */
     cacheMemPercent?: pulumi.Input<number>;
-    /**
-     * Maximum fingerprint chunk size.  **Changing will flush the entire database**.
-     */
     chunkSize?: pulumi.Input<number>;
-    /**
-     * Behaviour when the maximum size is reached. Valid values: `stop-adding`, `remove-modified-then-oldest`, `remove-oldest`.
-     */
     dbMode?: pulumi.Input<string>;
-    /**
-     * Maximum total size of files within the storage (MB).
-     */
     size?: pulumi.Input<number>;
-    /**
-     * Storage device name.
-     */
     storageDevice?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

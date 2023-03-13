@@ -10,113 +10,40 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Report themes configuration Applies to FortiOS Version `<= 7.0.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewReportTheme(ctx, "trname", &fortios.ReportThemeArgs{
-// 			ColumnCount:     pulumi.String("1"),
-// 			GraphChartStyle: pulumi.String("PS"),
-// 			PageOrient:      pulumi.String("portrait"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Report Theme can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/reportTheme:ReportTheme labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/reportTheme:ReportTheme labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type ReportTheme struct {
 	pulumi.CustomResourceState
 
-	// Bullet list style.
-	BulletListStyle pulumi.StringOutput `pulumi:"bulletListStyle"`
-	// Report page column count. Valid values: `1`, `2`, `3`.
-	ColumnCount pulumi.StringOutput `pulumi:"columnCount"`
-	// Default HTML report style.
-	DefaultHtmlStyle pulumi.StringOutput `pulumi:"defaultHtmlStyle"`
-	// Default PDF report style.
-	DefaultPdfStyle pulumi.StringOutput `pulumi:"defaultPdfStyle"`
-	// Graph chart style.
-	GraphChartStyle pulumi.StringOutput `pulumi:"graphChartStyle"`
-	// Report heading style.
-	Heading1Style pulumi.StringOutput `pulumi:"heading1Style"`
-	// Report heading style.
-	Heading2Style pulumi.StringOutput `pulumi:"heading2Style"`
-	// Report heading style.
-	Heading3Style pulumi.StringOutput `pulumi:"heading3Style"`
-	// Report heading style.
-	Heading4Style pulumi.StringOutput `pulumi:"heading4Style"`
-	// Horizontal line style.
-	HlineStyle pulumi.StringOutput `pulumi:"hlineStyle"`
-	// Image style.
-	ImageStyle pulumi.StringOutput `pulumi:"imageStyle"`
-	// Report theme name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Normal text style.
-	NormalTextStyle pulumi.StringOutput `pulumi:"normalTextStyle"`
-	// Numbered list style.
-	NumberedListStyle pulumi.StringOutput `pulumi:"numberedListStyle"`
-	// Report page footer style.
-	PageFooterStyle pulumi.StringOutput `pulumi:"pageFooterStyle"`
-	// Report page header style.
-	PageHeaderStyle pulumi.StringOutput `pulumi:"pageHeaderStyle"`
-	// Report page orientation. Valid values: `portrait`, `landscape`.
-	PageOrient pulumi.StringOutput `pulumi:"pageOrient"`
-	// Report page style.
-	PageStyle pulumi.StringOutput `pulumi:"pageStyle"`
-	// Report subtitle style.
-	ReportSubtitleStyle pulumi.StringOutput `pulumi:"reportSubtitleStyle"`
-	// Report title style.
-	ReportTitleStyle pulumi.StringOutput `pulumi:"reportTitleStyle"`
-	// Table chart caption style.
-	TableChartCaptionStyle pulumi.StringOutput `pulumi:"tableChartCaptionStyle"`
-	// Table chart even row style.
-	TableChartEvenRowStyle pulumi.StringOutput `pulumi:"tableChartEvenRowStyle"`
-	// Table chart head row style.
-	TableChartHeadStyle pulumi.StringOutput `pulumi:"tableChartHeadStyle"`
-	// Table chart odd row style.
-	TableChartOddRowStyle pulumi.StringOutput `pulumi:"tableChartOddRowStyle"`
-	// Table chart style.
-	TableChartStyle pulumi.StringOutput `pulumi:"tableChartStyle"`
-	// Table of contents heading style.
-	TocHeading1Style pulumi.StringOutput `pulumi:"tocHeading1Style"`
-	// Table of contents heading style.
-	TocHeading2Style pulumi.StringOutput `pulumi:"tocHeading2Style"`
-	// Table of contents heading style.
-	TocHeading3Style pulumi.StringOutput `pulumi:"tocHeading3Style"`
-	// Table of contents heading style.
-	TocHeading4Style pulumi.StringOutput `pulumi:"tocHeading4Style"`
-	// Table of contents title style.
-	TocTitleStyle pulumi.StringOutput `pulumi:"tocTitleStyle"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	BulletListStyle        pulumi.StringOutput    `pulumi:"bulletListStyle"`
+	ColumnCount            pulumi.StringOutput    `pulumi:"columnCount"`
+	DefaultHtmlStyle       pulumi.StringOutput    `pulumi:"defaultHtmlStyle"`
+	DefaultPdfStyle        pulumi.StringOutput    `pulumi:"defaultPdfStyle"`
+	GraphChartStyle        pulumi.StringOutput    `pulumi:"graphChartStyle"`
+	Heading1Style          pulumi.StringOutput    `pulumi:"heading1Style"`
+	Heading2Style          pulumi.StringOutput    `pulumi:"heading2Style"`
+	Heading3Style          pulumi.StringOutput    `pulumi:"heading3Style"`
+	Heading4Style          pulumi.StringOutput    `pulumi:"heading4Style"`
+	HlineStyle             pulumi.StringOutput    `pulumi:"hlineStyle"`
+	ImageStyle             pulumi.StringOutput    `pulumi:"imageStyle"`
+	Name                   pulumi.StringOutput    `pulumi:"name"`
+	NormalTextStyle        pulumi.StringOutput    `pulumi:"normalTextStyle"`
+	NumberedListStyle      pulumi.StringOutput    `pulumi:"numberedListStyle"`
+	PageFooterStyle        pulumi.StringOutput    `pulumi:"pageFooterStyle"`
+	PageHeaderStyle        pulumi.StringOutput    `pulumi:"pageHeaderStyle"`
+	PageOrient             pulumi.StringOutput    `pulumi:"pageOrient"`
+	PageStyle              pulumi.StringOutput    `pulumi:"pageStyle"`
+	ReportSubtitleStyle    pulumi.StringOutput    `pulumi:"reportSubtitleStyle"`
+	ReportTitleStyle       pulumi.StringOutput    `pulumi:"reportTitleStyle"`
+	TableChartCaptionStyle pulumi.StringOutput    `pulumi:"tableChartCaptionStyle"`
+	TableChartEvenRowStyle pulumi.StringOutput    `pulumi:"tableChartEvenRowStyle"`
+	TableChartHeadStyle    pulumi.StringOutput    `pulumi:"tableChartHeadStyle"`
+	TableChartOddRowStyle  pulumi.StringOutput    `pulumi:"tableChartOddRowStyle"`
+	TableChartStyle        pulumi.StringOutput    `pulumi:"tableChartStyle"`
+	TocHeading1Style       pulumi.StringOutput    `pulumi:"tocHeading1Style"`
+	TocHeading2Style       pulumi.StringOutput    `pulumi:"tocHeading2Style"`
+	TocHeading3Style       pulumi.StringOutput    `pulumi:"tocHeading3Style"`
+	TocHeading4Style       pulumi.StringOutput    `pulumi:"tocHeading4Style"`
+	TocTitleStyle          pulumi.StringOutput    `pulumi:"tocTitleStyle"`
+	Vdomparam              pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewReportTheme registers a new resource with the given unique name, arguments, and options.
@@ -149,133 +76,71 @@ func GetReportTheme(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ReportTheme resources.
 type reportThemeState struct {
-	// Bullet list style.
-	BulletListStyle *string `pulumi:"bulletListStyle"`
-	// Report page column count. Valid values: `1`, `2`, `3`.
-	ColumnCount *string `pulumi:"columnCount"`
-	// Default HTML report style.
-	DefaultHtmlStyle *string `pulumi:"defaultHtmlStyle"`
-	// Default PDF report style.
-	DefaultPdfStyle *string `pulumi:"defaultPdfStyle"`
-	// Graph chart style.
-	GraphChartStyle *string `pulumi:"graphChartStyle"`
-	// Report heading style.
-	Heading1Style *string `pulumi:"heading1Style"`
-	// Report heading style.
-	Heading2Style *string `pulumi:"heading2Style"`
-	// Report heading style.
-	Heading3Style *string `pulumi:"heading3Style"`
-	// Report heading style.
-	Heading4Style *string `pulumi:"heading4Style"`
-	// Horizontal line style.
-	HlineStyle *string `pulumi:"hlineStyle"`
-	// Image style.
-	ImageStyle *string `pulumi:"imageStyle"`
-	// Report theme name.
-	Name *string `pulumi:"name"`
-	// Normal text style.
-	NormalTextStyle *string `pulumi:"normalTextStyle"`
-	// Numbered list style.
-	NumberedListStyle *string `pulumi:"numberedListStyle"`
-	// Report page footer style.
-	PageFooterStyle *string `pulumi:"pageFooterStyle"`
-	// Report page header style.
-	PageHeaderStyle *string `pulumi:"pageHeaderStyle"`
-	// Report page orientation. Valid values: `portrait`, `landscape`.
-	PageOrient *string `pulumi:"pageOrient"`
-	// Report page style.
-	PageStyle *string `pulumi:"pageStyle"`
-	// Report subtitle style.
-	ReportSubtitleStyle *string `pulumi:"reportSubtitleStyle"`
-	// Report title style.
-	ReportTitleStyle *string `pulumi:"reportTitleStyle"`
-	// Table chart caption style.
+	BulletListStyle        *string `pulumi:"bulletListStyle"`
+	ColumnCount            *string `pulumi:"columnCount"`
+	DefaultHtmlStyle       *string `pulumi:"defaultHtmlStyle"`
+	DefaultPdfStyle        *string `pulumi:"defaultPdfStyle"`
+	GraphChartStyle        *string `pulumi:"graphChartStyle"`
+	Heading1Style          *string `pulumi:"heading1Style"`
+	Heading2Style          *string `pulumi:"heading2Style"`
+	Heading3Style          *string `pulumi:"heading3Style"`
+	Heading4Style          *string `pulumi:"heading4Style"`
+	HlineStyle             *string `pulumi:"hlineStyle"`
+	ImageStyle             *string `pulumi:"imageStyle"`
+	Name                   *string `pulumi:"name"`
+	NormalTextStyle        *string `pulumi:"normalTextStyle"`
+	NumberedListStyle      *string `pulumi:"numberedListStyle"`
+	PageFooterStyle        *string `pulumi:"pageFooterStyle"`
+	PageHeaderStyle        *string `pulumi:"pageHeaderStyle"`
+	PageOrient             *string `pulumi:"pageOrient"`
+	PageStyle              *string `pulumi:"pageStyle"`
+	ReportSubtitleStyle    *string `pulumi:"reportSubtitleStyle"`
+	ReportTitleStyle       *string `pulumi:"reportTitleStyle"`
 	TableChartCaptionStyle *string `pulumi:"tableChartCaptionStyle"`
-	// Table chart even row style.
 	TableChartEvenRowStyle *string `pulumi:"tableChartEvenRowStyle"`
-	// Table chart head row style.
-	TableChartHeadStyle *string `pulumi:"tableChartHeadStyle"`
-	// Table chart odd row style.
-	TableChartOddRowStyle *string `pulumi:"tableChartOddRowStyle"`
-	// Table chart style.
-	TableChartStyle *string `pulumi:"tableChartStyle"`
-	// Table of contents heading style.
-	TocHeading1Style *string `pulumi:"tocHeading1Style"`
-	// Table of contents heading style.
-	TocHeading2Style *string `pulumi:"tocHeading2Style"`
-	// Table of contents heading style.
-	TocHeading3Style *string `pulumi:"tocHeading3Style"`
-	// Table of contents heading style.
-	TocHeading4Style *string `pulumi:"tocHeading4Style"`
-	// Table of contents title style.
-	TocTitleStyle *string `pulumi:"tocTitleStyle"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	TableChartHeadStyle    *string `pulumi:"tableChartHeadStyle"`
+	TableChartOddRowStyle  *string `pulumi:"tableChartOddRowStyle"`
+	TableChartStyle        *string `pulumi:"tableChartStyle"`
+	TocHeading1Style       *string `pulumi:"tocHeading1Style"`
+	TocHeading2Style       *string `pulumi:"tocHeading2Style"`
+	TocHeading3Style       *string `pulumi:"tocHeading3Style"`
+	TocHeading4Style       *string `pulumi:"tocHeading4Style"`
+	TocTitleStyle          *string `pulumi:"tocTitleStyle"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 type ReportThemeState struct {
-	// Bullet list style.
-	BulletListStyle pulumi.StringPtrInput
-	// Report page column count. Valid values: `1`, `2`, `3`.
-	ColumnCount pulumi.StringPtrInput
-	// Default HTML report style.
-	DefaultHtmlStyle pulumi.StringPtrInput
-	// Default PDF report style.
-	DefaultPdfStyle pulumi.StringPtrInput
-	// Graph chart style.
-	GraphChartStyle pulumi.StringPtrInput
-	// Report heading style.
-	Heading1Style pulumi.StringPtrInput
-	// Report heading style.
-	Heading2Style pulumi.StringPtrInput
-	// Report heading style.
-	Heading3Style pulumi.StringPtrInput
-	// Report heading style.
-	Heading4Style pulumi.StringPtrInput
-	// Horizontal line style.
-	HlineStyle pulumi.StringPtrInput
-	// Image style.
-	ImageStyle pulumi.StringPtrInput
-	// Report theme name.
-	Name pulumi.StringPtrInput
-	// Normal text style.
-	NormalTextStyle pulumi.StringPtrInput
-	// Numbered list style.
-	NumberedListStyle pulumi.StringPtrInput
-	// Report page footer style.
-	PageFooterStyle pulumi.StringPtrInput
-	// Report page header style.
-	PageHeaderStyle pulumi.StringPtrInput
-	// Report page orientation. Valid values: `portrait`, `landscape`.
-	PageOrient pulumi.StringPtrInput
-	// Report page style.
-	PageStyle pulumi.StringPtrInput
-	// Report subtitle style.
-	ReportSubtitleStyle pulumi.StringPtrInput
-	// Report title style.
-	ReportTitleStyle pulumi.StringPtrInput
-	// Table chart caption style.
+	BulletListStyle        pulumi.StringPtrInput
+	ColumnCount            pulumi.StringPtrInput
+	DefaultHtmlStyle       pulumi.StringPtrInput
+	DefaultPdfStyle        pulumi.StringPtrInput
+	GraphChartStyle        pulumi.StringPtrInput
+	Heading1Style          pulumi.StringPtrInput
+	Heading2Style          pulumi.StringPtrInput
+	Heading3Style          pulumi.StringPtrInput
+	Heading4Style          pulumi.StringPtrInput
+	HlineStyle             pulumi.StringPtrInput
+	ImageStyle             pulumi.StringPtrInput
+	Name                   pulumi.StringPtrInput
+	NormalTextStyle        pulumi.StringPtrInput
+	NumberedListStyle      pulumi.StringPtrInput
+	PageFooterStyle        pulumi.StringPtrInput
+	PageHeaderStyle        pulumi.StringPtrInput
+	PageOrient             pulumi.StringPtrInput
+	PageStyle              pulumi.StringPtrInput
+	ReportSubtitleStyle    pulumi.StringPtrInput
+	ReportTitleStyle       pulumi.StringPtrInput
 	TableChartCaptionStyle pulumi.StringPtrInput
-	// Table chart even row style.
 	TableChartEvenRowStyle pulumi.StringPtrInput
-	// Table chart head row style.
-	TableChartHeadStyle pulumi.StringPtrInput
-	// Table chart odd row style.
-	TableChartOddRowStyle pulumi.StringPtrInput
-	// Table chart style.
-	TableChartStyle pulumi.StringPtrInput
-	// Table of contents heading style.
-	TocHeading1Style pulumi.StringPtrInput
-	// Table of contents heading style.
-	TocHeading2Style pulumi.StringPtrInput
-	// Table of contents heading style.
-	TocHeading3Style pulumi.StringPtrInput
-	// Table of contents heading style.
-	TocHeading4Style pulumi.StringPtrInput
-	// Table of contents title style.
-	TocTitleStyle pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	TableChartHeadStyle    pulumi.StringPtrInput
+	TableChartOddRowStyle  pulumi.StringPtrInput
+	TableChartStyle        pulumi.StringPtrInput
+	TocHeading1Style       pulumi.StringPtrInput
+	TocHeading2Style       pulumi.StringPtrInput
+	TocHeading3Style       pulumi.StringPtrInput
+	TocHeading4Style       pulumi.StringPtrInput
+	TocTitleStyle          pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (ReportThemeState) ElementType() reflect.Type {
@@ -283,134 +148,72 @@ func (ReportThemeState) ElementType() reflect.Type {
 }
 
 type reportThemeArgs struct {
-	// Bullet list style.
-	BulletListStyle *string `pulumi:"bulletListStyle"`
-	// Report page column count. Valid values: `1`, `2`, `3`.
-	ColumnCount *string `pulumi:"columnCount"`
-	// Default HTML report style.
-	DefaultHtmlStyle *string `pulumi:"defaultHtmlStyle"`
-	// Default PDF report style.
-	DefaultPdfStyle *string `pulumi:"defaultPdfStyle"`
-	// Graph chart style.
-	GraphChartStyle *string `pulumi:"graphChartStyle"`
-	// Report heading style.
-	Heading1Style *string `pulumi:"heading1Style"`
-	// Report heading style.
-	Heading2Style *string `pulumi:"heading2Style"`
-	// Report heading style.
-	Heading3Style *string `pulumi:"heading3Style"`
-	// Report heading style.
-	Heading4Style *string `pulumi:"heading4Style"`
-	// Horizontal line style.
-	HlineStyle *string `pulumi:"hlineStyle"`
-	// Image style.
-	ImageStyle *string `pulumi:"imageStyle"`
-	// Report theme name.
-	Name *string `pulumi:"name"`
-	// Normal text style.
-	NormalTextStyle *string `pulumi:"normalTextStyle"`
-	// Numbered list style.
-	NumberedListStyle *string `pulumi:"numberedListStyle"`
-	// Report page footer style.
-	PageFooterStyle *string `pulumi:"pageFooterStyle"`
-	// Report page header style.
-	PageHeaderStyle *string `pulumi:"pageHeaderStyle"`
-	// Report page orientation. Valid values: `portrait`, `landscape`.
-	PageOrient *string `pulumi:"pageOrient"`
-	// Report page style.
-	PageStyle *string `pulumi:"pageStyle"`
-	// Report subtitle style.
-	ReportSubtitleStyle *string `pulumi:"reportSubtitleStyle"`
-	// Report title style.
-	ReportTitleStyle *string `pulumi:"reportTitleStyle"`
-	// Table chart caption style.
+	BulletListStyle        *string `pulumi:"bulletListStyle"`
+	ColumnCount            *string `pulumi:"columnCount"`
+	DefaultHtmlStyle       *string `pulumi:"defaultHtmlStyle"`
+	DefaultPdfStyle        *string `pulumi:"defaultPdfStyle"`
+	GraphChartStyle        *string `pulumi:"graphChartStyle"`
+	Heading1Style          *string `pulumi:"heading1Style"`
+	Heading2Style          *string `pulumi:"heading2Style"`
+	Heading3Style          *string `pulumi:"heading3Style"`
+	Heading4Style          *string `pulumi:"heading4Style"`
+	HlineStyle             *string `pulumi:"hlineStyle"`
+	ImageStyle             *string `pulumi:"imageStyle"`
+	Name                   *string `pulumi:"name"`
+	NormalTextStyle        *string `pulumi:"normalTextStyle"`
+	NumberedListStyle      *string `pulumi:"numberedListStyle"`
+	PageFooterStyle        *string `pulumi:"pageFooterStyle"`
+	PageHeaderStyle        *string `pulumi:"pageHeaderStyle"`
+	PageOrient             *string `pulumi:"pageOrient"`
+	PageStyle              *string `pulumi:"pageStyle"`
+	ReportSubtitleStyle    *string `pulumi:"reportSubtitleStyle"`
+	ReportTitleStyle       *string `pulumi:"reportTitleStyle"`
 	TableChartCaptionStyle *string `pulumi:"tableChartCaptionStyle"`
-	// Table chart even row style.
 	TableChartEvenRowStyle *string `pulumi:"tableChartEvenRowStyle"`
-	// Table chart head row style.
-	TableChartHeadStyle *string `pulumi:"tableChartHeadStyle"`
-	// Table chart odd row style.
-	TableChartOddRowStyle *string `pulumi:"tableChartOddRowStyle"`
-	// Table chart style.
-	TableChartStyle *string `pulumi:"tableChartStyle"`
-	// Table of contents heading style.
-	TocHeading1Style *string `pulumi:"tocHeading1Style"`
-	// Table of contents heading style.
-	TocHeading2Style *string `pulumi:"tocHeading2Style"`
-	// Table of contents heading style.
-	TocHeading3Style *string `pulumi:"tocHeading3Style"`
-	// Table of contents heading style.
-	TocHeading4Style *string `pulumi:"tocHeading4Style"`
-	// Table of contents title style.
-	TocTitleStyle *string `pulumi:"tocTitleStyle"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	TableChartHeadStyle    *string `pulumi:"tableChartHeadStyle"`
+	TableChartOddRowStyle  *string `pulumi:"tableChartOddRowStyle"`
+	TableChartStyle        *string `pulumi:"tableChartStyle"`
+	TocHeading1Style       *string `pulumi:"tocHeading1Style"`
+	TocHeading2Style       *string `pulumi:"tocHeading2Style"`
+	TocHeading3Style       *string `pulumi:"tocHeading3Style"`
+	TocHeading4Style       *string `pulumi:"tocHeading4Style"`
+	TocTitleStyle          *string `pulumi:"tocTitleStyle"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a ReportTheme resource.
 type ReportThemeArgs struct {
-	// Bullet list style.
-	BulletListStyle pulumi.StringPtrInput
-	// Report page column count. Valid values: `1`, `2`, `3`.
-	ColumnCount pulumi.StringPtrInput
-	// Default HTML report style.
-	DefaultHtmlStyle pulumi.StringPtrInput
-	// Default PDF report style.
-	DefaultPdfStyle pulumi.StringPtrInput
-	// Graph chart style.
-	GraphChartStyle pulumi.StringPtrInput
-	// Report heading style.
-	Heading1Style pulumi.StringPtrInput
-	// Report heading style.
-	Heading2Style pulumi.StringPtrInput
-	// Report heading style.
-	Heading3Style pulumi.StringPtrInput
-	// Report heading style.
-	Heading4Style pulumi.StringPtrInput
-	// Horizontal line style.
-	HlineStyle pulumi.StringPtrInput
-	// Image style.
-	ImageStyle pulumi.StringPtrInput
-	// Report theme name.
-	Name pulumi.StringPtrInput
-	// Normal text style.
-	NormalTextStyle pulumi.StringPtrInput
-	// Numbered list style.
-	NumberedListStyle pulumi.StringPtrInput
-	// Report page footer style.
-	PageFooterStyle pulumi.StringPtrInput
-	// Report page header style.
-	PageHeaderStyle pulumi.StringPtrInput
-	// Report page orientation. Valid values: `portrait`, `landscape`.
-	PageOrient pulumi.StringPtrInput
-	// Report page style.
-	PageStyle pulumi.StringPtrInput
-	// Report subtitle style.
-	ReportSubtitleStyle pulumi.StringPtrInput
-	// Report title style.
-	ReportTitleStyle pulumi.StringPtrInput
-	// Table chart caption style.
+	BulletListStyle        pulumi.StringPtrInput
+	ColumnCount            pulumi.StringPtrInput
+	DefaultHtmlStyle       pulumi.StringPtrInput
+	DefaultPdfStyle        pulumi.StringPtrInput
+	GraphChartStyle        pulumi.StringPtrInput
+	Heading1Style          pulumi.StringPtrInput
+	Heading2Style          pulumi.StringPtrInput
+	Heading3Style          pulumi.StringPtrInput
+	Heading4Style          pulumi.StringPtrInput
+	HlineStyle             pulumi.StringPtrInput
+	ImageStyle             pulumi.StringPtrInput
+	Name                   pulumi.StringPtrInput
+	NormalTextStyle        pulumi.StringPtrInput
+	NumberedListStyle      pulumi.StringPtrInput
+	PageFooterStyle        pulumi.StringPtrInput
+	PageHeaderStyle        pulumi.StringPtrInput
+	PageOrient             pulumi.StringPtrInput
+	PageStyle              pulumi.StringPtrInput
+	ReportSubtitleStyle    pulumi.StringPtrInput
+	ReportTitleStyle       pulumi.StringPtrInput
 	TableChartCaptionStyle pulumi.StringPtrInput
-	// Table chart even row style.
 	TableChartEvenRowStyle pulumi.StringPtrInput
-	// Table chart head row style.
-	TableChartHeadStyle pulumi.StringPtrInput
-	// Table chart odd row style.
-	TableChartOddRowStyle pulumi.StringPtrInput
-	// Table chart style.
-	TableChartStyle pulumi.StringPtrInput
-	// Table of contents heading style.
-	TocHeading1Style pulumi.StringPtrInput
-	// Table of contents heading style.
-	TocHeading2Style pulumi.StringPtrInput
-	// Table of contents heading style.
-	TocHeading3Style pulumi.StringPtrInput
-	// Table of contents heading style.
-	TocHeading4Style pulumi.StringPtrInput
-	// Table of contents title style.
-	TocTitleStyle pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	TableChartHeadStyle    pulumi.StringPtrInput
+	TableChartOddRowStyle  pulumi.StringPtrInput
+	TableChartStyle        pulumi.StringPtrInput
+	TocHeading1Style       pulumi.StringPtrInput
+	TocHeading2Style       pulumi.StringPtrInput
+	TocHeading3Style       pulumi.StringPtrInput
+	TocHeading4Style       pulumi.StringPtrInput
+	TocTitleStyle          pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (ReportThemeArgs) ElementType() reflect.Type {
@@ -439,7 +242,7 @@ func (i *ReportTheme) ToReportThemeOutputWithContext(ctx context.Context) Report
 // ReportThemeArrayInput is an input type that accepts ReportThemeArray and ReportThemeArrayOutput values.
 // You can construct a concrete instance of `ReportThemeArrayInput` via:
 //
-//          ReportThemeArray{ ReportThemeArgs{...} }
+//	ReportThemeArray{ ReportThemeArgs{...} }
 type ReportThemeArrayInput interface {
 	pulumi.Input
 
@@ -464,7 +267,7 @@ func (i ReportThemeArray) ToReportThemeArrayOutputWithContext(ctx context.Contex
 // ReportThemeMapInput is an input type that accepts ReportThemeMap and ReportThemeMapOutput values.
 // You can construct a concrete instance of `ReportThemeMapInput` via:
 //
-//          ReportThemeMap{ "key": ReportThemeArgs{...} }
+//	ReportThemeMap{ "key": ReportThemeArgs{...} }
 type ReportThemeMapInput interface {
 	pulumi.Input
 
@@ -498,6 +301,130 @@ func (o ReportThemeOutput) ToReportThemeOutput() ReportThemeOutput {
 
 func (o ReportThemeOutput) ToReportThemeOutputWithContext(ctx context.Context) ReportThemeOutput {
 	return o
+}
+
+func (o ReportThemeOutput) BulletListStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.BulletListStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) ColumnCount() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.ColumnCount }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) DefaultHtmlStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.DefaultHtmlStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) DefaultPdfStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.DefaultPdfStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) GraphChartStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.GraphChartStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) Heading1Style() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.Heading1Style }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) Heading2Style() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.Heading2Style }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) Heading3Style() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.Heading3Style }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) Heading4Style() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.Heading4Style }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) HlineStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.HlineStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) ImageStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.ImageStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) NormalTextStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.NormalTextStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) NumberedListStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.NumberedListStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) PageFooterStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.PageFooterStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) PageHeaderStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.PageHeaderStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) PageOrient() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.PageOrient }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) PageStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.PageStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) ReportSubtitleStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.ReportSubtitleStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) ReportTitleStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.ReportTitleStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) TableChartCaptionStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.TableChartCaptionStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) TableChartEvenRowStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.TableChartEvenRowStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) TableChartHeadStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.TableChartHeadStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) TableChartOddRowStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.TableChartOddRowStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) TableChartStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.TableChartStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) TocHeading1Style() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.TocHeading1Style }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) TocHeading2Style() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.TocHeading2Style }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) TocHeading3Style() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.TocHeading3Style }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) TocHeading4Style() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.TocHeading4Style }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) TocTitleStyle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringOutput { return v.TocTitleStyle }).(pulumi.StringOutput)
+}
+
+func (o ReportThemeOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportTheme) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type ReportThemeArrayOutput struct{ *pulumi.OutputState }

@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure global attributes.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemGlobal("trname", {
- *     adminSport: 443,
- *     alias: "FGVM02TM20003062",
- *     hostname: "ste11",
- *     timezone: "04",
- * });
- * ```
- *
- * ## Import
- *
- * System Global can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemGlobal:SystemGlobal labelname SystemGlobal
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemGlobal:SystemGlobal labelname SystemGlobal
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemGlobal extends pulumi.CustomResource {
     /**
      * Get an existing SystemGlobal resource's state with the given name, ID, and optional extra
@@ -65,961 +32,254 @@ export class SystemGlobal extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemGlobal.__pulumiType;
     }
 
-    /**
-     * Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
-     */
     public readonly adminConcurrent!: pulumi.Output<string>;
-    /**
-     * Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
-     */
     public readonly adminConsoleTimeout!: pulumi.Output<number>;
-    /**
-     * Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
-     */
     public readonly adminForticloudSsoLogin!: pulumi.Output<string>;
-    /**
-     * HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
-     */
+    public readonly adminHost!: pulumi.Output<string>;
     public readonly adminHstsMaxAge!: pulumi.Output<number>;
-    /**
-     * Enable/disable admin login method. Enable to force administrators to provide a valid certificate to log in if PKI is enabled. Disable to allow administrators to log in with a certificate or password. Valid values: `enable`, `disable`.
-     */
     public readonly adminHttpsPkiRequired!: pulumi.Output<string>;
-    /**
-     * Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
-     */
     public readonly adminHttpsRedirect!: pulumi.Output<string>;
-    /**
-     * Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
-     */
     public readonly adminHttpsSslBannedCiphers!: pulumi.Output<string>;
-    /**
-     * Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-     */
     public readonly adminHttpsSslCiphersuites!: pulumi.Output<string>;
-    /**
-     * Allowed TLS versions for web administration.
-     */
     public readonly adminHttpsSslVersions!: pulumi.Output<string>;
-    /**
-     * Amount of time in seconds that an administrator account is locked out after reaching the admin-lockout-threshold for repeated failed login attempts.
-     */
     public readonly adminLockoutDuration!: pulumi.Output<number>;
-    /**
-     * Number of failed login attempts before an administrator account is locked out for the admin-lockout-duration.
-     */
     public readonly adminLockoutThreshold!: pulumi.Output<number>;
-    /**
-     * Maximum number of administrators who can be logged in at the same time (1 - 100, default = 100)
-     */
     public readonly adminLoginMax!: pulumi.Output<number>;
-    /**
-     * Enable/disable maintainer administrator login. When enabled, the maintainer account can be used to log in from the console after a hard reboot. The password is "bcpb" followed by the FortiGate unit serial number. You have limited time to complete this login. Valid values: `enable`, `disable`.
-     */
     public readonly adminMaintainer!: pulumi.Output<string>;
-    /**
-     * Administrative access port for HTTP. (1 - 65535, default = 80).
-     */
     public readonly adminPort!: pulumi.Output<number>;
-    /**
-     * Enable/disable local admin authentication restriction when remote authenticator is up and running. (default = disable) Valid values: `enable`, `disable`.
-     */
     public readonly adminRestrictLocal!: pulumi.Output<string>;
-    /**
-     * Enable/disable using SCP to download the system configuration. You can use SCP as an alternative method for backing up the configuration. Valid values: `enable`, `disable`.
-     */
     public readonly adminScp!: pulumi.Output<string>;
-    /**
-     * Server certificate that the FortiGate uses for HTTPS administrative connections.
-     */
     public readonly adminServerCert!: pulumi.Output<string>;
-    /**
-     * Administrative access port for HTTPS. (1 - 65535, default = 443).
-     */
     public readonly adminSport!: pulumi.Output<number>;
-    /**
-     * Maximum time in seconds permitted between making an SSH connection to the FortiGate unit and authenticating (10 - 3600 sec (1 hour), default 120).
-     */
     public readonly adminSshGraceTime!: pulumi.Output<number>;
-    /**
-     * Enable/disable password authentication for SSH admin access. Valid values: `enable`, `disable`.
-     */
     public readonly adminSshPassword!: pulumi.Output<string>;
-    /**
-     * Administrative access port for SSH. (1 - 65535, default = 22).
-     */
     public readonly adminSshPort!: pulumi.Output<number>;
-    /**
-     * Enable/disable SSH v1 compatibility. Valid values: `enable`, `disable`.
-     */
     public readonly adminSshV1!: pulumi.Output<string>;
-    /**
-     * Enable/disable TELNET service. Valid values: `enable`, `disable`.
-     */
     public readonly adminTelnet!: pulumi.Output<string>;
-    /**
-     * Administrative access port for TELNET. (1 - 65535, default = 23).
-     */
     public readonly adminTelnetPort!: pulumi.Output<number>;
-    /**
-     * Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
-     */
     public readonly admintimeout!: pulumi.Output<number>;
-    /**
-     * Alias for your FortiGate unit.
-     */
     public readonly alias!: pulumi.Output<string>;
-    /**
-     * Disable to allow traffic to be routed back on a different interface. Valid values: `enable`, `disable`.
-     */
     public readonly allowTrafficRedirect!: pulumi.Output<string>;
-    /**
-     * Level of checking for packet replay and TCP sequence checking. Valid values: `disable`, `loose`, `strict`.
-     */
     public readonly antiReplay!: pulumi.Output<string>;
-    /**
-     * Maximum number of dynamically learned MAC addresses that can be added to the ARP table (131072 - 2147483647, default = 131072).
-     */
     public readonly arpMaxEntry!: pulumi.Output<number>;
-    /**
-     * Enable/disable asymmetric route. Valid values: `enable`, `disable`.
-     */
     public readonly asymroute!: pulumi.Output<string>;
-    /**
-     * Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
-     */
     public readonly authCert!: pulumi.Output<string>;
-    /**
-     * User authentication HTTP port. (1 - 65535, default = 80).
-     */
     public readonly authHttpPort!: pulumi.Output<number>;
-    /**
-     * User authentication HTTPS port. (1 - 65535, default = 443).
-     */
     public readonly authHttpsPort!: pulumi.Output<number>;
-    /**
-     * Enable to prevent user authentication sessions from timing out when idle. Valid values: `enable`, `disable`.
-     */
+    public readonly authIkeSamlPort!: pulumi.Output<number>;
     public readonly authKeepalive!: pulumi.Output<string>;
-    /**
-     * Action to take when the number of allowed user authenticated sessions is reached. Valid values: `block-new`, `logout-inactive`.
-     */
     public readonly authSessionLimit!: pulumi.Output<string>;
-    /**
-     * Enable/disable automatic authorization of dedicated Fortinet extension devices. Valid values: `enable`, `disable`.
-     */
     public readonly autoAuthExtensionDevice!: pulumi.Output<string>;
-    /**
-     * Enable/disable automatic log partition check after ungraceful shutdown. Valid values: `enable`, `disable`.
-     */
     public readonly autorunLogFsck!: pulumi.Output<string>;
-    /**
-     * Affinity setting for AV scanning (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-     */
     public readonly avAffinity!: pulumi.Output<string>;
-    /**
-     * Set the action to take if the FortiGate is running low on memory or the proxy connection limit has been reached. Valid values: `pass`, `off`, `one-shot`.
-     */
     public readonly avFailopen!: pulumi.Output<string>;
-    /**
-     * When enabled and a proxy for a protocol runs out of room in its session table, that protocol goes into failopen mode and enacts the action specified by av-failopen. Valid values: `enable`, `disable`.
-     */
     public readonly avFailopenSession!: pulumi.Output<string>;
-    /**
-     * Enable/disable batch mode, allowing you to enter a series of CLI commands that will execute as a group once they are loaded. Valid values: `enable`, `disable`.
-     */
     public readonly batchCmdb!: pulumi.Output<string>;
-    /**
-     * Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
-     */
     public readonly blockSessionTimer!: pulumi.Output<number>;
-    /**
-     * Maximum number of bridge forwarding database (FDB) entries.
-     */
     public readonly brFdbMaxEntry!: pulumi.Output<number>;
-    /**
-     * Maximum number of certificates that can be traversed in a certificate chain.
-     */
     public readonly certChainMax!: pulumi.Output<number>;
-    /**
-     * Time-out for reverting to the last saved configuration.
-     */
     public readonly cfgRevertTimeout!: pulumi.Output<number>;
-    /**
-     * Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
-     */
     public readonly cfgSave!: pulumi.Output<string>;
-    /**
-     * Level of checking performed on protocol headers. Strict checking is more thorough but may affect performance. Loose checking is ok in most cases. Valid values: `loose`, `strict`.
-     */
     public readonly checkProtocolHeader!: pulumi.Output<string>;
-    /**
-     * Configure ICMP error message verification. You can either apply strict RST range checking or disable it. Valid values: `strict`, `disable`.
-     */
     public readonly checkResetRange!: pulumi.Output<string>;
-    /**
-     * Enable/disable CLI audit log. Valid values: `enable`, `disable`.
-     */
     public readonly cliAuditLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable all cloud communication. Valid values: `enable`, `disable`.
-     */
     public readonly cloudCommunication!: pulumi.Output<string>;
-    /**
-     * Enable/disable requiring administrators to have a client certificate to log into the GUI using HTTPS. Valid values: `enable`, `disable`.
-     */
     public readonly cltCertReq!: pulumi.Output<string>;
-    /**
-     * Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-     */
     public readonly cmdbsvrAffinity!: pulumi.Output<string>;
-    /**
-     * Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
-     */
     public readonly complianceCheck!: pulumi.Output<string>;
-    /**
-     * Time of day to run scheduled PCI DSS compliance checks.
-     */
     public readonly complianceCheckTime!: pulumi.Output<string>;
-    /**
-     * Threshold at which CPU usage is reported. (% of total CPU, default = 90).
-     */
     public readonly cpuUseThreshold!: pulumi.Output<number>;
-    /**
-     * Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
-     */
     public readonly csrCaAttribute!: pulumi.Output<string>;
-    /**
-     * Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
-     */
     public readonly dailyRestart!: pulumi.Output<string>;
-    /**
-     * Default service source port range. (default=1-65535)
-     */
     public readonly defaultServiceSourcePort!: pulumi.Output<string>;
-    /**
-     * Number of seconds to passively scan a device before performing an active scan. (20 - 3600 sec, (20 sec to 1 hour), default = 90).
-     */
     public readonly deviceIdentificationActiveScanDelay!: pulumi.Output<number>;
-    /**
-     * Time in seconds that a device must be idle to automatically log the device user out. (30 - 31536000 sec (30 sec to 1 year), default = 300).
-     */
     public readonly deviceIdleTimeout!: pulumi.Output<number>;
-    /**
-     * Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
-     */
     public readonly dhParams!: pulumi.Output<string>;
-    /**
-     * DNS proxy worker count.
-     */
     public readonly dnsproxyWorkerCount!: pulumi.Output<number>;
-    /**
-     * Enable/disable daylight saving time. Valid values: `enable`, `disable`.
-     */
     public readonly dst!: pulumi.Output<string>;
-    /**
-     * Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
-     */
+    public readonly earlyTcpNpuSession!: pulumi.Output<string>;
     public readonly editVdomPrompt!: pulumi.Output<string>;
-    /**
-     * Enable/disable access to the FortiGuard network for non-compliant endpoints. Valid values: `enable`, `disable`.
-     */
     public readonly endpointControlFdsAccess!: pulumi.Output<string>;
-    /**
-     * Endpoint control portal port (1 - 65535).
-     */
     public readonly endpointControlPortalPort!: pulumi.Output<number>;
-    /**
-     * Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
-     */
     public readonly extenderControllerReservedNetwork!: pulumi.Output<string>;
-    /**
-     * Fail-time for server lost.
-     */
     public readonly failtime!: pulumi.Output<number>;
-    /**
-     * Maximum disk buffer size to temporarily store logs destined for FortiAnalyzer. To be used in the event that FortiAnalyzer is unavailalble.
-     */
     public readonly fazDiskBufferSize!: pulumi.Output<number>;
-    /**
-     * Enable/disable sending IPS, Application Control, and AntiVirus data to FortiGuard. This data is used to improve FortiGuard services and is not shared with external parties and is protected by Fortinet's privacy policy. Valid values: `enable`, `disable`.
-     */
     public readonly fdsStatistics!: pulumi.Output<string>;
-    /**
-     * FortiGuard statistics collection period in minutes. (1 - 1440 min (1 min to 24 hours), default = 60).
-     */
     public readonly fdsStatisticsPeriod!: pulumi.Output<number>;
-    /**
-     * Local UDP port for Forward Error Correction (49152 - 65535).
-     */
     public readonly fecPort!: pulumi.Output<number>;
-    /**
-     * Type of alert to retrieve from FortiGuard. Valid values: `advisory`, `latest-threat`, `latest-virus`, `latest-attack`, `new-antivirus-db`, `new-attack-db`.
-     */
     public readonly fgdAlertSubscription!: pulumi.Output<string>;
-    /**
-     * Enable/disable FortiExtender. Valid values: `enable`, `disable`.
-     */
     public readonly fortiextender!: pulumi.Output<string>;
-    /**
-     * FortiExtender data port (1024 - 49150, default = 25246).
-     */
     public readonly fortiextenderDataPort!: pulumi.Output<number>;
-    /**
-     * Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
-     */
     public readonly fortiextenderDiscoveryLockdown!: pulumi.Output<string>;
-    /**
-     * Enable/disable FortiExtender VLAN mode. Valid values: `enable`, `disable`.
-     */
+    public readonly fortiextenderProvisionOnAuthorization!: pulumi.Output<string>;
     public readonly fortiextenderVlanMode!: pulumi.Output<string>;
-    /**
-     * Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
-     */
     public readonly fortiipamIntegration!: pulumi.Output<string>;
-    /**
-     * FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port.
-     */
     public readonly fortiservicePort!: pulumi.Output<number>;
-    /**
-     * Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
-     */
     public readonly fortitokenCloud!: pulumi.Output<string>;
-    /**
-     * Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
-     */
     public readonly guiAllowDefaultHostname!: pulumi.Output<string>;
-    /**
-     * Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
-     */
+    public readonly guiAppDetectionSdwan!: pulumi.Output<string>;
     public readonly guiCdnUsage!: pulumi.Output<string>;
-    /**
-     * Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. Valid values: `enable`, `disable`.
-     */
     public readonly guiCertificates!: pulumi.Output<string>;
-    /**
-     * Enable/disable custom languages in GUI. Valid values: `enable`, `disable`.
-     */
     public readonly guiCustomLanguage!: pulumi.Output<string>;
-    /**
-     * Default date format used throughout GUI. Valid values: `yyyy/MM/dd`, `dd/MM/yyyy`, `MM/dd/yyyy`, `yyyy-MM-dd`, `dd-MM-yyyy`, `MM-dd-yyyy`.
-     */
     public readonly guiDateFormat!: pulumi.Output<string>;
-    /**
-     * Source from which the FortiGate GUI uses to display date and time entries. Valid values: `system`, `browser`.
-     */
     public readonly guiDateTimeSource!: pulumi.Output<string>;
-    /**
-     * Add the latitude of the location of this FortiGate to position it on the Threat Map.
-     */
     public readonly guiDeviceLatitude!: pulumi.Output<string>;
-    /**
-     * Add the longitude of the location of this FortiGate to position it on the Threat Map.
-     */
     public readonly guiDeviceLongitude!: pulumi.Output<string>;
-    /**
-     * Enable/disable displaying the FortiGate's hostname on the GUI login page. Valid values: `enable`, `disable`.
-     */
     public readonly guiDisplayHostname!: pulumi.Output<string>;
-    /**
-     * Enable/disable the firmware upgrade warning on GUI setup wizard. Valid values: `enable`, `disable`.
-     */
     public readonly guiFirmwareUpgradeSetupWarning!: pulumi.Output<string>;
-    /**
-     * Enable/disable the firmware upgrade warning on the GUI. Valid values: `enable`, `disable`.
-     */
     public readonly guiFirmwareUpgradeWarning!: pulumi.Output<string>;
-    /**
-     * Enable/disable the FortiCare registration setup warning on the GUI. Valid values: `enable`, `disable`.
-     */
     public readonly guiForticareRegistrationSetupWarning!: pulumi.Output<string>;
-    /**
-     * Enable/disable displaying FortiGate Cloud Sandbox on the GUI. Valid values: `enable`, `disable`.
-     */
     public readonly guiFortigateCloudSandbox!: pulumi.Output<string>;
-    /**
-     * Enable/disable displaying FortiSandbox Cloud on the GUI. Valid values: `enable`, `disable`.
-     */
+    public readonly guiFortiguardResourceFetch!: pulumi.Output<string>;
     public readonly guiFortisandboxCloud!: pulumi.Output<string>;
-    /**
-     * Enable/disable IPv6 settings on the GUI. Valid values: `enable`, `disable`.
-     */
     public readonly guiIpv6!: pulumi.Output<string>;
-    /**
-     * Number of lines to display per page for web administration.
-     */
     public readonly guiLinesPerPage!: pulumi.Output<number>;
-    /**
-     * Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
-     */
     public readonly guiLocalOut!: pulumi.Output<string>;
-    /**
-     * Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
-     */
     public readonly guiReplacementMessageGroups!: pulumi.Output<string>;
-    /**
-     * Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
-     */
     public readonly guiRestApiCache!: pulumi.Output<string>;
-    /**
-     * Color scheme for the administration GUI.
-     */
     public readonly guiTheme!: pulumi.Output<string>;
-    /**
-     * Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
-     */
     public readonly guiWirelessOpensecurity!: pulumi.Output<string>;
-    /**
-     * Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-     */
+    public readonly guiWorkflowManagement!: pulumi.Output<string>;
     public readonly haAffinity!: pulumi.Output<string>;
-    /**
-     * Enable/disable honoring of Don't-Fragment (DF) flag. Valid values: `enable`, `disable`.
-     */
     public readonly honorDf!: pulumi.Output<string>;
-    /**
-     * FortiGate unit's hostname. Most models will truncate names longer than 24 characters. Some models support hostnames up to 35 characters.
-     */
     public readonly hostname!: pulumi.Output<string>;
-    /**
-     * Maximum number of IGMP memberships (96 - 64000, default = 3200).
-     */
     public readonly igmpStateLimit!: pulumi.Output<number>;
-    /**
-     * Maximum number of IPsec tunnels to negotiate simultaneously.
-     */
     public readonly ikeEmbryonicLimit!: pulumi.Output<number>;
-    /**
-     * Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
-     */
     public readonly internetServiceDatabase!: pulumi.Output<string>;
-    /**
-     * Dead gateway detection interval.
-     */
     public readonly interval!: pulumi.Output<number>;
-    /**
-     * IP source port range used for traffic originating from the FortiGate unit.
-     */
     public readonly ipSrcPortRange!: pulumi.Output<string>;
-    /**
-     * Affinity setting for IPS (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx; allowed CPUs must be less than total number of IPS engine daemons).
-     */
     public readonly ipsAffinity!: pulumi.Output<string>;
-    /**
-     * Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
-     */
     public readonly ipsecAsicOffload!: pulumi.Output<string>;
-    /**
-     * ESP jump ahead rate (1G - 10G pps equivalent).
-     */
     public readonly ipsecHaSeqjumpRate!: pulumi.Output<number>;
-    /**
-     * Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
-     */
     public readonly ipsecHmacOffload!: pulumi.Output<string>;
-    /**
-     * Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
-     */
+    public readonly ipsecRoundRobin!: pulumi.Output<string>;
     public readonly ipsecSoftDecAsync!: pulumi.Output<string>;
-    /**
-     * Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
-     */
     public readonly ipv6AcceptDad!: pulumi.Output<number>;
-    /**
-     * Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
-     */
     public readonly ipv6AllowAnycastProbe!: pulumi.Output<string>;
-    /**
-     * Disable to prevent IPv6 traffic with same local ingress and egress interface from being forwarded without policy check. Valid values: `enable`, `disable`.
-     */
+    public readonly ipv6AllowLocalInSlientDrop!: pulumi.Output<string>;
+    public readonly ipv6AllowMulticastProbe!: pulumi.Output<string>;
     public readonly ipv6AllowTrafficRedirect!: pulumi.Output<string>;
-    /**
-     * Configure CPU IRQ time accounting mode. Valid values: `auto`, `force`.
-     */
     public readonly irqTimeAccounting!: pulumi.Output<string>;
-    /**
-     * GUI display language. Valid values: `english`, `french`, `spanish`, `portuguese`, `japanese`, `trach`, `simch`, `korean`.
-     */
     public readonly language!: pulumi.Output<string>;
-    /**
-     * Global timeout for connections with remote LDAP servers in milliseconds (1 - 300000, default 500).
-     */
     public readonly ldapconntimeout!: pulumi.Output<number>;
-    /**
-     * Enable/disable Link Layer Discovery Protocol (LLDP) reception. Valid values: `enable`, `disable`.
-     */
     public readonly lldpReception!: pulumi.Output<string>;
-    /**
-     * Enable/disable Link Layer Discovery Protocol (LLDP) transmission. Valid values: `enable`, `disable`.
-     */
     public readonly lldpTransmission!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging of SSL connection events. Valid values: `enable`, `disable`.
-     */
     public readonly logSslConnection!: pulumi.Output<string>;
-    /**
-     * Enable/disable insertion of address UUIDs to traffic logs. Valid values: `enable`, `disable`.
-     */
     public readonly logUuidAddress!: pulumi.Output<string>;
-    /**
-     * Enable/disable insertion of policy UUIDs to traffic logs. Valid values: `enable`, `disable`.
-     */
     public readonly logUuidPolicy!: pulumi.Output<string>;
-    /**
-     * Enable/disable login time recording. Valid values: `enable`, `disable`.
-     */
     public readonly loginTimestamp!: pulumi.Output<string>;
-    /**
-     * Enable/disable long VDOM name support. Valid values: `enable`, `disable`.
-     */
     public readonly longVdomName!: pulumi.Output<string>;
-    /**
-     * Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
-     */
     public readonly managementIp!: pulumi.Output<string>;
-    /**
-     * Overriding port for management connection (Overrides admin port).
-     */
     public readonly managementPort!: pulumi.Output<number>;
-    /**
-     * Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
-     */
     public readonly managementPortUseAdminSport!: pulumi.Output<string>;
-    /**
-     * Management virtual domain name.
-     */
     public readonly managementVdom!: pulumi.Output<string>;
-    /**
-     * Maximum DLP stat memory (0 - 4294967295).
-     */
     public readonly maxDlpstatMemory!: pulumi.Output<number>;
-    /**
-     * Maximum number of IP route cache entries (0 - 2147483647).
-     */
     public readonly maxRouteCacheSize!: pulumi.Output<number>;
-    /**
-     * Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-     */
     public readonly mcTtlNotchange!: pulumi.Output<string>;
-    /**
-     * Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
-     */
     public readonly memoryUseThresholdExtreme!: pulumi.Output<number>;
-    /**
-     * Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
-     */
     public readonly memoryUseThresholdGreen!: pulumi.Output<number>;
-    /**
-     * Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
-     */
     public readonly memoryUseThresholdRed!: pulumi.Output<number>;
-    /**
-     * Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
-     */
     public readonly miglogAffinity!: pulumi.Output<string>;
-    /**
-     * Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
-     */
     public readonly miglogdChildren!: pulumi.Output<number>;
-    /**
-     * Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
-     */
     public readonly multiFactorAuthentication!: pulumi.Output<string>;
-    /**
-     * Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
-     */
     public readonly multicastForward!: pulumi.Output<string>;
-    /**
-     * Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
-     */
     public readonly ndpMaxEntry!: pulumi.Output<number>;
-    /**
-     * Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
-     */
     public readonly perUserBal!: pulumi.Output<string>;
-    /**
-     * Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
-     */
     public readonly perUserBwl!: pulumi.Output<string>;
-    /**
-     * Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
-     */
     public readonly pmtuDiscovery!: pulumi.Output<string>;
-    /**
-     * Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
-     */
     public readonly policyAuthConcurrent!: pulumi.Output<number>;
-    /**
-     * Enable/disable displaying the administrator access disclaimer message after an administrator successfully logs in. Valid values: `disable`, `enable`.
-     */
     public readonly postLoginBanner!: pulumi.Output<string>;
-    /**
-     * Enable/disable displaying the administrator access disclaimer message on the login page before an administrator logs in. Valid values: `enable`, `disable`.
-     */
     public readonly preLoginBanner!: pulumi.Output<string>;
-    /**
-     * Enable/disable private data encryption using an AES 128-bit key. Valid values: `disable`, `enable`.
-     */
     public readonly privateDataEncryption!: pulumi.Output<string>;
-    /**
-     * Enable/disable authenticated users lifetime control.  This is a cap on the total time a proxy user can be authenticated for after which re-authentication will take place. Valid values: `enable`, `disable`.
-     */
     public readonly proxyAuthLifetime!: pulumi.Output<string>;
-    /**
-     * Lifetime timeout in minutes for authenticated users (5  - 65535 min, default=480 (8 hours)).
-     */
     public readonly proxyAuthLifetimeTimeout!: pulumi.Output<number>;
-    /**
-     * Authentication timeout in minutes for authenticated users (1 - 300 min, default = 10).
-     */
     public readonly proxyAuthTimeout!: pulumi.Output<number>;
-    /**
-     * Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
-     */
     public readonly proxyCertUseMgmtVdom!: pulumi.Output<string>;
-    /**
-     * Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
-     */
     public readonly proxyCipherHardwareAcceleration!: pulumi.Output<string>;
-    /**
-     * Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
-     */
     public readonly proxyHardwareAcceleration!: pulumi.Output<string>;
-    /**
-     * Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
-     */
     public readonly proxyKxpHardwareAcceleration!: pulumi.Output<string>;
-    /**
-     * Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
-     */
     public readonly proxyReAuthenticationMode!: pulumi.Output<string>;
-    /**
-     * Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
-     */
     public readonly proxyResourceMode!: pulumi.Output<string>;
-    /**
-     * Proxy worker count.
-     */
     public readonly proxyWorkerCount!: pulumi.Output<number>;
-    /**
-     * RADIUS service port number.
-     */
     public readonly radiusPort!: pulumi.Output<number>;
-    /**
-     * Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
-     */
     public readonly rebootUponConfigRestore!: pulumi.Output<string>;
-    /**
-     * Statistics refresh interval in GUI.
-     */
     public readonly refresh!: pulumi.Output<number>;
-    /**
-     * Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
-     */
     public readonly remoteauthtimeout!: pulumi.Output<number>;
-    /**
-     * Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
-     */
     public readonly resetSessionlessTcp!: pulumi.Output<string>;
-    /**
-     * Daily restart time (hh:mm).
-     */
     public readonly restartTime!: pulumi.Output<string>;
-    /**
-     * Enable/disable back-up of the latest configuration revision when an administrator logs out of the CLI or GUI. Valid values: `enable`, `disable`.
-     */
     public readonly revisionBackupOnLogout!: pulumi.Output<string>;
-    /**
-     * Enable/disable back-up of the latest configuration revision after the firmware is upgraded. Valid values: `enable`, `disable`.
-     */
     public readonly revisionImageAutoBackup!: pulumi.Output<string>;
-    /**
-     * Number of scanunits. The range and the default depend on the number of CPUs. Only available on FortiGate units with multiple CPUs.
-     */
     public readonly scanunitCount!: pulumi.Output<number>;
-    /**
-     * Enable/disable the submission of Security Rating results to FortiGuard. Valid values: `enable`, `disable`.
-     */
     public readonly securityRatingResultSubmission!: pulumi.Output<string>;
-    /**
-     * Enable/disable scheduled runs of Security Rating. Valid values: `enable`, `disable`.
-     */
     public readonly securityRatingRunOnSchedule!: pulumi.Output<string>;
-    /**
-     * Enable/disable sending of path maximum transmission unit (PMTU) - ICMP destination unreachable packet and to support PMTUD protocol on your network to reduce fragmentation of packets. Valid values: `enable`, `disable`.
-     */
     public readonly sendPmtuIcmp!: pulumi.Output<string>;
-    /**
-     * Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
-     */
     public readonly snatRouteChange!: pulumi.Output<string>;
-    /**
-     * Enable/disable IPS detection of HIBUN format files when using Data Leak Protection. Valid values: `disable`, `enable`.
-     */
     public readonly specialFile23Support!: pulumi.Output<string>;
-    /**
-     * Enable/disable speed test server. Valid values: `enable`, `disable`.
-     */
     public readonly speedtestServer!: pulumi.Output<string>;
-    /**
-     * Split port(s) to multiple 10Gbps ports.
-     */
     public readonly splitPort!: pulumi.Output<string>;
-    /**
-     * Date within a month to run ssd trim.
-     */
     public readonly ssdTrimDate!: pulumi.Output<number>;
-    /**
-     * How often to run SSD Trim (default = weekly). SSD Trim prevents SSD drive data loss by finding and isolating errors. Valid values: `never`, `hourly`, `daily`, `weekly`, `monthly`.
-     */
     public readonly ssdTrimFreq!: pulumi.Output<string>;
-    /**
-     * Hour of the day on which to run SSD Trim (0 - 23, default = 1).
-     */
     public readonly ssdTrimHour!: pulumi.Output<number>;
-    /**
-     * Minute of the hour on which to run SSD Trim (0 - 59, 60 for random).
-     */
     public readonly ssdTrimMin!: pulumi.Output<number>;
-    /**
-     * Day of week to run SSD Trim. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-     */
     public readonly ssdTrimWeekday!: pulumi.Output<string>;
-    /**
-     * Enable/disable CBC cipher for SSH access. Valid values: `enable`, `disable`.
-     */
     public readonly sshCbcCipher!: pulumi.Output<string>;
-    /**
-     * Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
-     */
     public readonly sshEncAlgo!: pulumi.Output<string>;
-    /**
-     * Enable/disable HMAC-MD5 for SSH access. Valid values: `enable`, `disable`.
-     */
     public readonly sshHmacMd5!: pulumi.Output<string>;
-    /**
-     * Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
-     */
     public readonly sshKexAlgo!: pulumi.Output<string>;
-    /**
-     * Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
-     */
     public readonly sshKexSha1!: pulumi.Output<string>;
-    /**
-     * Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
-     */
     public readonly sshMacAlgo!: pulumi.Output<string>;
-    /**
-     * Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access. Valid values: `enable`, `disable`.
-     */
     public readonly sshMacWeak!: pulumi.Output<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default = TLSv1.2).
-     */
     public readonly sslMinProtoVersion!: pulumi.Output<string>;
-    /**
-     * Enable/disable static key ciphers in SSL/TLS connections (e.g. AES128-SHA, AES256-SHA, AES128-SHA256, AES256-SHA256). Valid values: `enable`, `disable`.
-     */
     public readonly sslStaticKeyCiphers!: pulumi.Output<string>;
-    /**
-     * Enable/disable SSL VPN hardware acceleration. Valid values: `enable`, `disable`.
-     */
     public readonly sslvpnCipherHardwareAcceleration!: pulumi.Output<string>;
-    /**
-     * Enable/disable verification of EMS serial number in SSL-VPN connection. Valid values: `enable`, `disable`.
-     */
     public readonly sslvpnEmsSnCheck!: pulumi.Output<string>;
-    /**
-     * Enable/disable SSL VPN KXP hardware acceleration. Valid values: `enable`, `disable`.
-     */
     public readonly sslvpnKxpHardwareAcceleration!: pulumi.Output<string>;
-    /**
-     * Maximum number of SSL VPN processes. Upper limit for this value is the number of CPUs and depends on the model.
-     */
     public readonly sslvpnMaxWorkerCount!: pulumi.Output<number>;
-    /**
-     * Enable/disable checking browser's plugin version by SSL VPN. Valid values: `enable`, `disable`.
-     */
     public readonly sslvpnPluginVersionCheck!: pulumi.Output<string>;
-    /**
-     * Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
-     */
     public readonly strictDirtySessionCheck!: pulumi.Output<string>;
-    /**
-     * Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
-     */
     public readonly strongCrypto!: pulumi.Output<string>;
-    /**
-     * Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
-     */
     public readonly switchController!: pulumi.Output<string>;
-    /**
-     * Enable reserved network subnet for controlled switches. This is available when the switch controller is enabled.
-     */
     public readonly switchControllerReservedNetwork!: pulumi.Output<string>;
-    /**
-     * Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
-     */
     public readonly sysPerfLogInterval!: pulumi.Output<number>;
-    /**
-     * Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
-     */
     public readonly tcpHalfcloseTimer!: pulumi.Output<number>;
-    /**
-     * Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
-     */
     public readonly tcpHalfopenTimer!: pulumi.Output<number>;
-    /**
-     * Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
-     */
     public readonly tcpOption!: pulumi.Output<string>;
-    /**
-     * Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
-     */
     public readonly tcpRstTimer!: pulumi.Output<number>;
-    /**
-     * Length of the TCP TIME-WAIT state in seconds.
-     */
     public readonly tcpTimewaitTimer!: pulumi.Output<number>;
-    /**
-     * Enable/disable TFTP. Valid values: `enable`, `disable`.
-     */
     public readonly tftp!: pulumi.Output<string>;
-    /**
-     * Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
-     */
     public readonly timezone!: pulumi.Output<string>;
-    /**
-     * Enable/disable skip policy check and allow multicast through. Valid values: `enable`, `disable`.
-     */
     public readonly tpMcSkipPolicy!: pulumi.Output<string>;
-    /**
-     * Choose Type of Service (ToS) or Differentiated Services Code Point (DSCP) for traffic prioritization in traffic shaping. Valid values: `tos`, `dscp`.
-     */
     public readonly trafficPriority!: pulumi.Output<string>;
-    /**
-     * Default system-wide level of priority for traffic prioritization. Valid values: `low`, `medium`, `high`.
-     */
     public readonly trafficPriorityLevel!: pulumi.Output<string>;
-    /**
-     * Email-based two-factor authentication session timeout (30 - 300 seconds (5 minutes), default = 60).
-     */
     public readonly twoFactorEmailExpiry!: pulumi.Output<number>;
-    /**
-     * FortiAuthenticator token authentication session timeout (10 - 3600 seconds (1 hour), default = 60).
-     */
     public readonly twoFactorFacExpiry!: pulumi.Output<number>;
-    /**
-     * FortiToken authentication session timeout (60 - 600 sec (10 minutes), default = 60).
-     */
     public readonly twoFactorFtkExpiry!: pulumi.Output<number>;
-    /**
-     * FortiToken Mobile session timeout (1 - 168 hours (7 days), default = 72).
-     */
     public readonly twoFactorFtmExpiry!: pulumi.Output<number>;
-    /**
-     * SMS-based two-factor authentication session timeout (30 - 300 sec, default = 60).
-     */
     public readonly twoFactorSmsExpiry!: pulumi.Output<number>;
-    /**
-     * UDP connection session timeout. This command can be useful in managing CPU and memory resources (1 - 86400 seconds (1 day), default = 60).
-     */
     public readonly udpIdleTimer!: pulumi.Output<number>;
-    /**
-     * URL filter CPU affinity.
-     */
     public readonly urlFilterAffinity!: pulumi.Output<string>;
-    /**
-     * URL filter daemon count.
-     */
     public readonly urlFilterCount!: pulumi.Output<number>;
-    /**
-     * Maximum number of devices allowed in user device store.
-     */
     public readonly userDeviceStoreMaxDevices!: pulumi.Output<number>;
-    /**
-     * Maximum unified memory allowed in user device store.
-     */
     public readonly userDeviceStoreMaxUnifiedMem!: pulumi.Output<number>;
-    /**
-     * Maximum number of users allowed in user device store.
-     */
     public readonly userDeviceStoreMaxUsers!: pulumi.Output<number>;
-    /**
-     * Certificate to use for https user authentication.
-     */
     public readonly userServerCert!: pulumi.Output<string>;
-    /**
-     * Enable/disable support for multiple virtual domains (VDOMs). Valid values: `enable`, `disable`.
-     */
     public readonly vdomAdmin!: pulumi.Output<string>;
-    /**
-     * Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
-     */
     public readonly vdomMode!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.
-     */
     public readonly vipArpRange!: pulumi.Output<string>;
-    /**
-     * Maximum number of virtual server processes to create. The maximum is the number of CPU cores. This is not available on single-core CPUs.
-     */
     public readonly virtualServerCount!: pulumi.Output<number>;
-    /**
-     * Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
-     */
     public readonly virtualServerHardwareAcceleration!: pulumi.Output<string>;
-    /**
-     * Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
-     */
     public readonly virtualSwitchVlan!: pulumi.Output<string>;
-    /**
-     * Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-     */
     public readonly wadAffinity!: pulumi.Output<string>;
-    /**
-     * Number of concurrent WAD-cache-service object-cache processes.
-     */
     public readonly wadCsvcCsCount!: pulumi.Output<number>;
-    /**
-     * Number of concurrent WAD-cache-service byte-cache processes.
-     */
     public readonly wadCsvcDbCount!: pulumi.Output<number>;
-    /**
-     * Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection.
-     */
     public readonly wadMemoryChangeGranularity!: pulumi.Output<number>;
-    /**
-     * Enable/disable dispatching traffic to WAD workers based on source affinity. Valid values: `disable`, `enable`.
-     */
     public readonly wadSourceAffinity!: pulumi.Output<string>;
-    /**
-     * Number of explicit proxy WAN optimization daemon (WAD) processes. By default WAN optimization, explicit proxy, and web caching is handled by all of the CPU cores in a FortiGate unit.
-     */
     public readonly wadWorkerCount!: pulumi.Output<number>;
-    /**
-     * CA certificate that verifies the WiFi certificate.
-     */
     public readonly wifiCaCertificate!: pulumi.Output<string>;
-    /**
-     * Certificate to use for WiFi authentication.
-     */
     public readonly wifiCertificate!: pulumi.Output<string>;
-    /**
-     * Enable/disable comparability with WiMAX 4G USB devices. Valid values: `enable`, `disable`.
-     */
     public readonly wimax4gUsb!: pulumi.Output<string>;
-    /**
-     * Enable/disable the wireless controller feature to use the FortiGate unit to manage FortiAPs. Valid values: `enable`, `disable`.
-     */
     public readonly wirelessController!: pulumi.Output<string>;
-    /**
-     * Port used for the control channel in wireless controller mode (wireless-mode is ac). The data channel port is the control channel port number plus one (1024 - 49150, default = 5246).
-     */
     public readonly wirelessControllerPort!: pulumi.Output<number>;
 
     /**
@@ -1038,6 +298,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["adminConcurrent"] = state ? state.adminConcurrent : undefined;
             resourceInputs["adminConsoleTimeout"] = state ? state.adminConsoleTimeout : undefined;
             resourceInputs["adminForticloudSsoLogin"] = state ? state.adminForticloudSsoLogin : undefined;
+            resourceInputs["adminHost"] = state ? state.adminHost : undefined;
             resourceInputs["adminHstsMaxAge"] = state ? state.adminHstsMaxAge : undefined;
             resourceInputs["adminHttpsPkiRequired"] = state ? state.adminHttpsPkiRequired : undefined;
             resourceInputs["adminHttpsRedirect"] = state ? state.adminHttpsRedirect : undefined;
@@ -1068,6 +329,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["authCert"] = state ? state.authCert : undefined;
             resourceInputs["authHttpPort"] = state ? state.authHttpPort : undefined;
             resourceInputs["authHttpsPort"] = state ? state.authHttpsPort : undefined;
+            resourceInputs["authIkeSamlPort"] = state ? state.authIkeSamlPort : undefined;
             resourceInputs["authKeepalive"] = state ? state.authKeepalive : undefined;
             resourceInputs["authSessionLimit"] = state ? state.authSessionLimit : undefined;
             resourceInputs["autoAuthExtensionDevice"] = state ? state.autoAuthExtensionDevice : undefined;
@@ -1098,6 +360,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["dhParams"] = state ? state.dhParams : undefined;
             resourceInputs["dnsproxyWorkerCount"] = state ? state.dnsproxyWorkerCount : undefined;
             resourceInputs["dst"] = state ? state.dst : undefined;
+            resourceInputs["earlyTcpNpuSession"] = state ? state.earlyTcpNpuSession : undefined;
             resourceInputs["editVdomPrompt"] = state ? state.editVdomPrompt : undefined;
             resourceInputs["endpointControlFdsAccess"] = state ? state.endpointControlFdsAccess : undefined;
             resourceInputs["endpointControlPortalPort"] = state ? state.endpointControlPortalPort : undefined;
@@ -1111,11 +374,13 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["fortiextender"] = state ? state.fortiextender : undefined;
             resourceInputs["fortiextenderDataPort"] = state ? state.fortiextenderDataPort : undefined;
             resourceInputs["fortiextenderDiscoveryLockdown"] = state ? state.fortiextenderDiscoveryLockdown : undefined;
+            resourceInputs["fortiextenderProvisionOnAuthorization"] = state ? state.fortiextenderProvisionOnAuthorization : undefined;
             resourceInputs["fortiextenderVlanMode"] = state ? state.fortiextenderVlanMode : undefined;
             resourceInputs["fortiipamIntegration"] = state ? state.fortiipamIntegration : undefined;
             resourceInputs["fortiservicePort"] = state ? state.fortiservicePort : undefined;
             resourceInputs["fortitokenCloud"] = state ? state.fortitokenCloud : undefined;
             resourceInputs["guiAllowDefaultHostname"] = state ? state.guiAllowDefaultHostname : undefined;
+            resourceInputs["guiAppDetectionSdwan"] = state ? state.guiAppDetectionSdwan : undefined;
             resourceInputs["guiCdnUsage"] = state ? state.guiCdnUsage : undefined;
             resourceInputs["guiCertificates"] = state ? state.guiCertificates : undefined;
             resourceInputs["guiCustomLanguage"] = state ? state.guiCustomLanguage : undefined;
@@ -1128,6 +393,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["guiFirmwareUpgradeWarning"] = state ? state.guiFirmwareUpgradeWarning : undefined;
             resourceInputs["guiForticareRegistrationSetupWarning"] = state ? state.guiForticareRegistrationSetupWarning : undefined;
             resourceInputs["guiFortigateCloudSandbox"] = state ? state.guiFortigateCloudSandbox : undefined;
+            resourceInputs["guiFortiguardResourceFetch"] = state ? state.guiFortiguardResourceFetch : undefined;
             resourceInputs["guiFortisandboxCloud"] = state ? state.guiFortisandboxCloud : undefined;
             resourceInputs["guiIpv6"] = state ? state.guiIpv6 : undefined;
             resourceInputs["guiLinesPerPage"] = state ? state.guiLinesPerPage : undefined;
@@ -1136,6 +402,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["guiRestApiCache"] = state ? state.guiRestApiCache : undefined;
             resourceInputs["guiTheme"] = state ? state.guiTheme : undefined;
             resourceInputs["guiWirelessOpensecurity"] = state ? state.guiWirelessOpensecurity : undefined;
+            resourceInputs["guiWorkflowManagement"] = state ? state.guiWorkflowManagement : undefined;
             resourceInputs["haAffinity"] = state ? state.haAffinity : undefined;
             resourceInputs["honorDf"] = state ? state.honorDf : undefined;
             resourceInputs["hostname"] = state ? state.hostname : undefined;
@@ -1148,9 +415,12 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["ipsecAsicOffload"] = state ? state.ipsecAsicOffload : undefined;
             resourceInputs["ipsecHaSeqjumpRate"] = state ? state.ipsecHaSeqjumpRate : undefined;
             resourceInputs["ipsecHmacOffload"] = state ? state.ipsecHmacOffload : undefined;
+            resourceInputs["ipsecRoundRobin"] = state ? state.ipsecRoundRobin : undefined;
             resourceInputs["ipsecSoftDecAsync"] = state ? state.ipsecSoftDecAsync : undefined;
             resourceInputs["ipv6AcceptDad"] = state ? state.ipv6AcceptDad : undefined;
             resourceInputs["ipv6AllowAnycastProbe"] = state ? state.ipv6AllowAnycastProbe : undefined;
+            resourceInputs["ipv6AllowLocalInSlientDrop"] = state ? state.ipv6AllowLocalInSlientDrop : undefined;
+            resourceInputs["ipv6AllowMulticastProbe"] = state ? state.ipv6AllowMulticastProbe : undefined;
             resourceInputs["ipv6AllowTrafficRedirect"] = state ? state.ipv6AllowTrafficRedirect : undefined;
             resourceInputs["irqTimeAccounting"] = state ? state.irqTimeAccounting : undefined;
             resourceInputs["language"] = state ? state.language : undefined;
@@ -1279,6 +549,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["adminConcurrent"] = args ? args.adminConcurrent : undefined;
             resourceInputs["adminConsoleTimeout"] = args ? args.adminConsoleTimeout : undefined;
             resourceInputs["adminForticloudSsoLogin"] = args ? args.adminForticloudSsoLogin : undefined;
+            resourceInputs["adminHost"] = args ? args.adminHost : undefined;
             resourceInputs["adminHstsMaxAge"] = args ? args.adminHstsMaxAge : undefined;
             resourceInputs["adminHttpsPkiRequired"] = args ? args.adminHttpsPkiRequired : undefined;
             resourceInputs["adminHttpsRedirect"] = args ? args.adminHttpsRedirect : undefined;
@@ -1309,6 +580,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["authCert"] = args ? args.authCert : undefined;
             resourceInputs["authHttpPort"] = args ? args.authHttpPort : undefined;
             resourceInputs["authHttpsPort"] = args ? args.authHttpsPort : undefined;
+            resourceInputs["authIkeSamlPort"] = args ? args.authIkeSamlPort : undefined;
             resourceInputs["authKeepalive"] = args ? args.authKeepalive : undefined;
             resourceInputs["authSessionLimit"] = args ? args.authSessionLimit : undefined;
             resourceInputs["autoAuthExtensionDevice"] = args ? args.autoAuthExtensionDevice : undefined;
@@ -1339,6 +611,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["dhParams"] = args ? args.dhParams : undefined;
             resourceInputs["dnsproxyWorkerCount"] = args ? args.dnsproxyWorkerCount : undefined;
             resourceInputs["dst"] = args ? args.dst : undefined;
+            resourceInputs["earlyTcpNpuSession"] = args ? args.earlyTcpNpuSession : undefined;
             resourceInputs["editVdomPrompt"] = args ? args.editVdomPrompt : undefined;
             resourceInputs["endpointControlFdsAccess"] = args ? args.endpointControlFdsAccess : undefined;
             resourceInputs["endpointControlPortalPort"] = args ? args.endpointControlPortalPort : undefined;
@@ -1352,11 +625,13 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["fortiextender"] = args ? args.fortiextender : undefined;
             resourceInputs["fortiextenderDataPort"] = args ? args.fortiextenderDataPort : undefined;
             resourceInputs["fortiextenderDiscoveryLockdown"] = args ? args.fortiextenderDiscoveryLockdown : undefined;
+            resourceInputs["fortiextenderProvisionOnAuthorization"] = args ? args.fortiextenderProvisionOnAuthorization : undefined;
             resourceInputs["fortiextenderVlanMode"] = args ? args.fortiextenderVlanMode : undefined;
             resourceInputs["fortiipamIntegration"] = args ? args.fortiipamIntegration : undefined;
             resourceInputs["fortiservicePort"] = args ? args.fortiservicePort : undefined;
             resourceInputs["fortitokenCloud"] = args ? args.fortitokenCloud : undefined;
             resourceInputs["guiAllowDefaultHostname"] = args ? args.guiAllowDefaultHostname : undefined;
+            resourceInputs["guiAppDetectionSdwan"] = args ? args.guiAppDetectionSdwan : undefined;
             resourceInputs["guiCdnUsage"] = args ? args.guiCdnUsage : undefined;
             resourceInputs["guiCertificates"] = args ? args.guiCertificates : undefined;
             resourceInputs["guiCustomLanguage"] = args ? args.guiCustomLanguage : undefined;
@@ -1369,6 +644,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["guiFirmwareUpgradeWarning"] = args ? args.guiFirmwareUpgradeWarning : undefined;
             resourceInputs["guiForticareRegistrationSetupWarning"] = args ? args.guiForticareRegistrationSetupWarning : undefined;
             resourceInputs["guiFortigateCloudSandbox"] = args ? args.guiFortigateCloudSandbox : undefined;
+            resourceInputs["guiFortiguardResourceFetch"] = args ? args.guiFortiguardResourceFetch : undefined;
             resourceInputs["guiFortisandboxCloud"] = args ? args.guiFortisandboxCloud : undefined;
             resourceInputs["guiIpv6"] = args ? args.guiIpv6 : undefined;
             resourceInputs["guiLinesPerPage"] = args ? args.guiLinesPerPage : undefined;
@@ -1377,6 +653,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["guiRestApiCache"] = args ? args.guiRestApiCache : undefined;
             resourceInputs["guiTheme"] = args ? args.guiTheme : undefined;
             resourceInputs["guiWirelessOpensecurity"] = args ? args.guiWirelessOpensecurity : undefined;
+            resourceInputs["guiWorkflowManagement"] = args ? args.guiWorkflowManagement : undefined;
             resourceInputs["haAffinity"] = args ? args.haAffinity : undefined;
             resourceInputs["honorDf"] = args ? args.honorDf : undefined;
             resourceInputs["hostname"] = args ? args.hostname : undefined;
@@ -1389,9 +666,12 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["ipsecAsicOffload"] = args ? args.ipsecAsicOffload : undefined;
             resourceInputs["ipsecHaSeqjumpRate"] = args ? args.ipsecHaSeqjumpRate : undefined;
             resourceInputs["ipsecHmacOffload"] = args ? args.ipsecHmacOffload : undefined;
+            resourceInputs["ipsecRoundRobin"] = args ? args.ipsecRoundRobin : undefined;
             resourceInputs["ipsecSoftDecAsync"] = args ? args.ipsecSoftDecAsync : undefined;
             resourceInputs["ipv6AcceptDad"] = args ? args.ipv6AcceptDad : undefined;
             resourceInputs["ipv6AllowAnycastProbe"] = args ? args.ipv6AllowAnycastProbe : undefined;
+            resourceInputs["ipv6AllowLocalInSlientDrop"] = args ? args.ipv6AllowLocalInSlientDrop : undefined;
+            resourceInputs["ipv6AllowMulticastProbe"] = args ? args.ipv6AllowMulticastProbe : undefined;
             resourceInputs["ipv6AllowTrafficRedirect"] = args ? args.ipv6AllowTrafficRedirect : undefined;
             resourceInputs["irqTimeAccounting"] = args ? args.irqTimeAccounting : undefined;
             resourceInputs["language"] = args ? args.language : undefined;
@@ -1525,961 +805,254 @@ export class SystemGlobal extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemGlobal resources.
  */
 export interface SystemGlobalState {
-    /**
-     * Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
-     */
     adminConcurrent?: pulumi.Input<string>;
-    /**
-     * Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
-     */
     adminConsoleTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
-     */
     adminForticloudSsoLogin?: pulumi.Input<string>;
-    /**
-     * HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
-     */
+    adminHost?: pulumi.Input<string>;
     adminHstsMaxAge?: pulumi.Input<number>;
-    /**
-     * Enable/disable admin login method. Enable to force administrators to provide a valid certificate to log in if PKI is enabled. Disable to allow administrators to log in with a certificate or password. Valid values: `enable`, `disable`.
-     */
     adminHttpsPkiRequired?: pulumi.Input<string>;
-    /**
-     * Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
-     */
     adminHttpsRedirect?: pulumi.Input<string>;
-    /**
-     * Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
-     */
     adminHttpsSslBannedCiphers?: pulumi.Input<string>;
-    /**
-     * Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-     */
     adminHttpsSslCiphersuites?: pulumi.Input<string>;
-    /**
-     * Allowed TLS versions for web administration.
-     */
     adminHttpsSslVersions?: pulumi.Input<string>;
-    /**
-     * Amount of time in seconds that an administrator account is locked out after reaching the admin-lockout-threshold for repeated failed login attempts.
-     */
     adminLockoutDuration?: pulumi.Input<number>;
-    /**
-     * Number of failed login attempts before an administrator account is locked out for the admin-lockout-duration.
-     */
     adminLockoutThreshold?: pulumi.Input<number>;
-    /**
-     * Maximum number of administrators who can be logged in at the same time (1 - 100, default = 100)
-     */
     adminLoginMax?: pulumi.Input<number>;
-    /**
-     * Enable/disable maintainer administrator login. When enabled, the maintainer account can be used to log in from the console after a hard reboot. The password is "bcpb" followed by the FortiGate unit serial number. You have limited time to complete this login. Valid values: `enable`, `disable`.
-     */
     adminMaintainer?: pulumi.Input<string>;
-    /**
-     * Administrative access port for HTTP. (1 - 65535, default = 80).
-     */
     adminPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable local admin authentication restriction when remote authenticator is up and running. (default = disable) Valid values: `enable`, `disable`.
-     */
     adminRestrictLocal?: pulumi.Input<string>;
-    /**
-     * Enable/disable using SCP to download the system configuration. You can use SCP as an alternative method for backing up the configuration. Valid values: `enable`, `disable`.
-     */
     adminScp?: pulumi.Input<string>;
-    /**
-     * Server certificate that the FortiGate uses for HTTPS administrative connections.
-     */
     adminServerCert?: pulumi.Input<string>;
-    /**
-     * Administrative access port for HTTPS. (1 - 65535, default = 443).
-     */
     adminSport?: pulumi.Input<number>;
-    /**
-     * Maximum time in seconds permitted between making an SSH connection to the FortiGate unit and authenticating (10 - 3600 sec (1 hour), default 120).
-     */
     adminSshGraceTime?: pulumi.Input<number>;
-    /**
-     * Enable/disable password authentication for SSH admin access. Valid values: `enable`, `disable`.
-     */
     adminSshPassword?: pulumi.Input<string>;
-    /**
-     * Administrative access port for SSH. (1 - 65535, default = 22).
-     */
     adminSshPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable SSH v1 compatibility. Valid values: `enable`, `disable`.
-     */
     adminSshV1?: pulumi.Input<string>;
-    /**
-     * Enable/disable TELNET service. Valid values: `enable`, `disable`.
-     */
     adminTelnet?: pulumi.Input<string>;
-    /**
-     * Administrative access port for TELNET. (1 - 65535, default = 23).
-     */
     adminTelnetPort?: pulumi.Input<number>;
-    /**
-     * Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
-     */
     admintimeout?: pulumi.Input<number>;
-    /**
-     * Alias for your FortiGate unit.
-     */
     alias?: pulumi.Input<string>;
-    /**
-     * Disable to allow traffic to be routed back on a different interface. Valid values: `enable`, `disable`.
-     */
     allowTrafficRedirect?: pulumi.Input<string>;
-    /**
-     * Level of checking for packet replay and TCP sequence checking. Valid values: `disable`, `loose`, `strict`.
-     */
     antiReplay?: pulumi.Input<string>;
-    /**
-     * Maximum number of dynamically learned MAC addresses that can be added to the ARP table (131072 - 2147483647, default = 131072).
-     */
     arpMaxEntry?: pulumi.Input<number>;
-    /**
-     * Enable/disable asymmetric route. Valid values: `enable`, `disable`.
-     */
     asymroute?: pulumi.Input<string>;
-    /**
-     * Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
-     */
     authCert?: pulumi.Input<string>;
-    /**
-     * User authentication HTTP port. (1 - 65535, default = 80).
-     */
     authHttpPort?: pulumi.Input<number>;
-    /**
-     * User authentication HTTPS port. (1 - 65535, default = 443).
-     */
     authHttpsPort?: pulumi.Input<number>;
-    /**
-     * Enable to prevent user authentication sessions from timing out when idle. Valid values: `enable`, `disable`.
-     */
+    authIkeSamlPort?: pulumi.Input<number>;
     authKeepalive?: pulumi.Input<string>;
-    /**
-     * Action to take when the number of allowed user authenticated sessions is reached. Valid values: `block-new`, `logout-inactive`.
-     */
     authSessionLimit?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatic authorization of dedicated Fortinet extension devices. Valid values: `enable`, `disable`.
-     */
     autoAuthExtensionDevice?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatic log partition check after ungraceful shutdown. Valid values: `enable`, `disable`.
-     */
     autorunLogFsck?: pulumi.Input<string>;
-    /**
-     * Affinity setting for AV scanning (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-     */
     avAffinity?: pulumi.Input<string>;
-    /**
-     * Set the action to take if the FortiGate is running low on memory or the proxy connection limit has been reached. Valid values: `pass`, `off`, `one-shot`.
-     */
     avFailopen?: pulumi.Input<string>;
-    /**
-     * When enabled and a proxy for a protocol runs out of room in its session table, that protocol goes into failopen mode and enacts the action specified by av-failopen. Valid values: `enable`, `disable`.
-     */
     avFailopenSession?: pulumi.Input<string>;
-    /**
-     * Enable/disable batch mode, allowing you to enter a series of CLI commands that will execute as a group once they are loaded. Valid values: `enable`, `disable`.
-     */
     batchCmdb?: pulumi.Input<string>;
-    /**
-     * Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
-     */
     blockSessionTimer?: pulumi.Input<number>;
-    /**
-     * Maximum number of bridge forwarding database (FDB) entries.
-     */
     brFdbMaxEntry?: pulumi.Input<number>;
-    /**
-     * Maximum number of certificates that can be traversed in a certificate chain.
-     */
     certChainMax?: pulumi.Input<number>;
-    /**
-     * Time-out for reverting to the last saved configuration.
-     */
     cfgRevertTimeout?: pulumi.Input<number>;
-    /**
-     * Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
-     */
     cfgSave?: pulumi.Input<string>;
-    /**
-     * Level of checking performed on protocol headers. Strict checking is more thorough but may affect performance. Loose checking is ok in most cases. Valid values: `loose`, `strict`.
-     */
     checkProtocolHeader?: pulumi.Input<string>;
-    /**
-     * Configure ICMP error message verification. You can either apply strict RST range checking or disable it. Valid values: `strict`, `disable`.
-     */
     checkResetRange?: pulumi.Input<string>;
-    /**
-     * Enable/disable CLI audit log. Valid values: `enable`, `disable`.
-     */
     cliAuditLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable all cloud communication. Valid values: `enable`, `disable`.
-     */
     cloudCommunication?: pulumi.Input<string>;
-    /**
-     * Enable/disable requiring administrators to have a client certificate to log into the GUI using HTTPS. Valid values: `enable`, `disable`.
-     */
     cltCertReq?: pulumi.Input<string>;
-    /**
-     * Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-     */
     cmdbsvrAffinity?: pulumi.Input<string>;
-    /**
-     * Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
-     */
     complianceCheck?: pulumi.Input<string>;
-    /**
-     * Time of day to run scheduled PCI DSS compliance checks.
-     */
     complianceCheckTime?: pulumi.Input<string>;
-    /**
-     * Threshold at which CPU usage is reported. (% of total CPU, default = 90).
-     */
     cpuUseThreshold?: pulumi.Input<number>;
-    /**
-     * Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
-     */
     csrCaAttribute?: pulumi.Input<string>;
-    /**
-     * Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
-     */
     dailyRestart?: pulumi.Input<string>;
-    /**
-     * Default service source port range. (default=1-65535)
-     */
     defaultServiceSourcePort?: pulumi.Input<string>;
-    /**
-     * Number of seconds to passively scan a device before performing an active scan. (20 - 3600 sec, (20 sec to 1 hour), default = 90).
-     */
     deviceIdentificationActiveScanDelay?: pulumi.Input<number>;
-    /**
-     * Time in seconds that a device must be idle to automatically log the device user out. (30 - 31536000 sec (30 sec to 1 year), default = 300).
-     */
     deviceIdleTimeout?: pulumi.Input<number>;
-    /**
-     * Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
-     */
     dhParams?: pulumi.Input<string>;
-    /**
-     * DNS proxy worker count.
-     */
     dnsproxyWorkerCount?: pulumi.Input<number>;
-    /**
-     * Enable/disable daylight saving time. Valid values: `enable`, `disable`.
-     */
     dst?: pulumi.Input<string>;
-    /**
-     * Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
-     */
+    earlyTcpNpuSession?: pulumi.Input<string>;
     editVdomPrompt?: pulumi.Input<string>;
-    /**
-     * Enable/disable access to the FortiGuard network for non-compliant endpoints. Valid values: `enable`, `disable`.
-     */
     endpointControlFdsAccess?: pulumi.Input<string>;
-    /**
-     * Endpoint control portal port (1 - 65535).
-     */
     endpointControlPortalPort?: pulumi.Input<number>;
-    /**
-     * Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
-     */
     extenderControllerReservedNetwork?: pulumi.Input<string>;
-    /**
-     * Fail-time for server lost.
-     */
     failtime?: pulumi.Input<number>;
-    /**
-     * Maximum disk buffer size to temporarily store logs destined for FortiAnalyzer. To be used in the event that FortiAnalyzer is unavailalble.
-     */
     fazDiskBufferSize?: pulumi.Input<number>;
-    /**
-     * Enable/disable sending IPS, Application Control, and AntiVirus data to FortiGuard. This data is used to improve FortiGuard services and is not shared with external parties and is protected by Fortinet's privacy policy. Valid values: `enable`, `disable`.
-     */
     fdsStatistics?: pulumi.Input<string>;
-    /**
-     * FortiGuard statistics collection period in minutes. (1 - 1440 min (1 min to 24 hours), default = 60).
-     */
     fdsStatisticsPeriod?: pulumi.Input<number>;
-    /**
-     * Local UDP port for Forward Error Correction (49152 - 65535).
-     */
     fecPort?: pulumi.Input<number>;
-    /**
-     * Type of alert to retrieve from FortiGuard. Valid values: `advisory`, `latest-threat`, `latest-virus`, `latest-attack`, `new-antivirus-db`, `new-attack-db`.
-     */
     fgdAlertSubscription?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiExtender. Valid values: `enable`, `disable`.
-     */
     fortiextender?: pulumi.Input<string>;
-    /**
-     * FortiExtender data port (1024 - 49150, default = 25246).
-     */
     fortiextenderDataPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
-     */
     fortiextenderDiscoveryLockdown?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiExtender VLAN mode. Valid values: `enable`, `disable`.
-     */
+    fortiextenderProvisionOnAuthorization?: pulumi.Input<string>;
     fortiextenderVlanMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
-     */
     fortiipamIntegration?: pulumi.Input<string>;
-    /**
-     * FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port.
-     */
     fortiservicePort?: pulumi.Input<number>;
-    /**
-     * Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
-     */
     fortitokenCloud?: pulumi.Input<string>;
-    /**
-     * Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
-     */
     guiAllowDefaultHostname?: pulumi.Input<string>;
-    /**
-     * Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
-     */
+    guiAppDetectionSdwan?: pulumi.Input<string>;
     guiCdnUsage?: pulumi.Input<string>;
-    /**
-     * Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. Valid values: `enable`, `disable`.
-     */
     guiCertificates?: pulumi.Input<string>;
-    /**
-     * Enable/disable custom languages in GUI. Valid values: `enable`, `disable`.
-     */
     guiCustomLanguage?: pulumi.Input<string>;
-    /**
-     * Default date format used throughout GUI. Valid values: `yyyy/MM/dd`, `dd/MM/yyyy`, `MM/dd/yyyy`, `yyyy-MM-dd`, `dd-MM-yyyy`, `MM-dd-yyyy`.
-     */
     guiDateFormat?: pulumi.Input<string>;
-    /**
-     * Source from which the FortiGate GUI uses to display date and time entries. Valid values: `system`, `browser`.
-     */
     guiDateTimeSource?: pulumi.Input<string>;
-    /**
-     * Add the latitude of the location of this FortiGate to position it on the Threat Map.
-     */
     guiDeviceLatitude?: pulumi.Input<string>;
-    /**
-     * Add the longitude of the location of this FortiGate to position it on the Threat Map.
-     */
     guiDeviceLongitude?: pulumi.Input<string>;
-    /**
-     * Enable/disable displaying the FortiGate's hostname on the GUI login page. Valid values: `enable`, `disable`.
-     */
     guiDisplayHostname?: pulumi.Input<string>;
-    /**
-     * Enable/disable the firmware upgrade warning on GUI setup wizard. Valid values: `enable`, `disable`.
-     */
     guiFirmwareUpgradeSetupWarning?: pulumi.Input<string>;
-    /**
-     * Enable/disable the firmware upgrade warning on the GUI. Valid values: `enable`, `disable`.
-     */
     guiFirmwareUpgradeWarning?: pulumi.Input<string>;
-    /**
-     * Enable/disable the FortiCare registration setup warning on the GUI. Valid values: `enable`, `disable`.
-     */
     guiForticareRegistrationSetupWarning?: pulumi.Input<string>;
-    /**
-     * Enable/disable displaying FortiGate Cloud Sandbox on the GUI. Valid values: `enable`, `disable`.
-     */
     guiFortigateCloudSandbox?: pulumi.Input<string>;
-    /**
-     * Enable/disable displaying FortiSandbox Cloud on the GUI. Valid values: `enable`, `disable`.
-     */
+    guiFortiguardResourceFetch?: pulumi.Input<string>;
     guiFortisandboxCloud?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPv6 settings on the GUI. Valid values: `enable`, `disable`.
-     */
     guiIpv6?: pulumi.Input<string>;
-    /**
-     * Number of lines to display per page for web administration.
-     */
     guiLinesPerPage?: pulumi.Input<number>;
-    /**
-     * Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
-     */
     guiLocalOut?: pulumi.Input<string>;
-    /**
-     * Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
-     */
     guiReplacementMessageGroups?: pulumi.Input<string>;
-    /**
-     * Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
-     */
     guiRestApiCache?: pulumi.Input<string>;
-    /**
-     * Color scheme for the administration GUI.
-     */
     guiTheme?: pulumi.Input<string>;
-    /**
-     * Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
-     */
     guiWirelessOpensecurity?: pulumi.Input<string>;
-    /**
-     * Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-     */
+    guiWorkflowManagement?: pulumi.Input<string>;
     haAffinity?: pulumi.Input<string>;
-    /**
-     * Enable/disable honoring of Don't-Fragment (DF) flag. Valid values: `enable`, `disable`.
-     */
     honorDf?: pulumi.Input<string>;
-    /**
-     * FortiGate unit's hostname. Most models will truncate names longer than 24 characters. Some models support hostnames up to 35 characters.
-     */
     hostname?: pulumi.Input<string>;
-    /**
-     * Maximum number of IGMP memberships (96 - 64000, default = 3200).
-     */
     igmpStateLimit?: pulumi.Input<number>;
-    /**
-     * Maximum number of IPsec tunnels to negotiate simultaneously.
-     */
     ikeEmbryonicLimit?: pulumi.Input<number>;
-    /**
-     * Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
-     */
     internetServiceDatabase?: pulumi.Input<string>;
-    /**
-     * Dead gateway detection interval.
-     */
     interval?: pulumi.Input<number>;
-    /**
-     * IP source port range used for traffic originating from the FortiGate unit.
-     */
     ipSrcPortRange?: pulumi.Input<string>;
-    /**
-     * Affinity setting for IPS (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx; allowed CPUs must be less than total number of IPS engine daemons).
-     */
     ipsAffinity?: pulumi.Input<string>;
-    /**
-     * Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
-     */
     ipsecAsicOffload?: pulumi.Input<string>;
-    /**
-     * ESP jump ahead rate (1G - 10G pps equivalent).
-     */
     ipsecHaSeqjumpRate?: pulumi.Input<number>;
-    /**
-     * Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
-     */
     ipsecHmacOffload?: pulumi.Input<string>;
-    /**
-     * Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
-     */
+    ipsecRoundRobin?: pulumi.Input<string>;
     ipsecSoftDecAsync?: pulumi.Input<string>;
-    /**
-     * Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
-     */
     ipv6AcceptDad?: pulumi.Input<number>;
-    /**
-     * Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
-     */
     ipv6AllowAnycastProbe?: pulumi.Input<string>;
-    /**
-     * Disable to prevent IPv6 traffic with same local ingress and egress interface from being forwarded without policy check. Valid values: `enable`, `disable`.
-     */
+    ipv6AllowLocalInSlientDrop?: pulumi.Input<string>;
+    ipv6AllowMulticastProbe?: pulumi.Input<string>;
     ipv6AllowTrafficRedirect?: pulumi.Input<string>;
-    /**
-     * Configure CPU IRQ time accounting mode. Valid values: `auto`, `force`.
-     */
     irqTimeAccounting?: pulumi.Input<string>;
-    /**
-     * GUI display language. Valid values: `english`, `french`, `spanish`, `portuguese`, `japanese`, `trach`, `simch`, `korean`.
-     */
     language?: pulumi.Input<string>;
-    /**
-     * Global timeout for connections with remote LDAP servers in milliseconds (1 - 300000, default 500).
-     */
     ldapconntimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable Link Layer Discovery Protocol (LLDP) reception. Valid values: `enable`, `disable`.
-     */
     lldpReception?: pulumi.Input<string>;
-    /**
-     * Enable/disable Link Layer Discovery Protocol (LLDP) transmission. Valid values: `enable`, `disable`.
-     */
     lldpTransmission?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging of SSL connection events. Valid values: `enable`, `disable`.
-     */
     logSslConnection?: pulumi.Input<string>;
-    /**
-     * Enable/disable insertion of address UUIDs to traffic logs. Valid values: `enable`, `disable`.
-     */
     logUuidAddress?: pulumi.Input<string>;
-    /**
-     * Enable/disable insertion of policy UUIDs to traffic logs. Valid values: `enable`, `disable`.
-     */
     logUuidPolicy?: pulumi.Input<string>;
-    /**
-     * Enable/disable login time recording. Valid values: `enable`, `disable`.
-     */
     loginTimestamp?: pulumi.Input<string>;
-    /**
-     * Enable/disable long VDOM name support. Valid values: `enable`, `disable`.
-     */
     longVdomName?: pulumi.Input<string>;
-    /**
-     * Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
-     */
     managementIp?: pulumi.Input<string>;
-    /**
-     * Overriding port for management connection (Overrides admin port).
-     */
     managementPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
-     */
     managementPortUseAdminSport?: pulumi.Input<string>;
-    /**
-     * Management virtual domain name.
-     */
     managementVdom?: pulumi.Input<string>;
-    /**
-     * Maximum DLP stat memory (0 - 4294967295).
-     */
     maxDlpstatMemory?: pulumi.Input<number>;
-    /**
-     * Maximum number of IP route cache entries (0 - 2147483647).
-     */
     maxRouteCacheSize?: pulumi.Input<number>;
-    /**
-     * Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-     */
     mcTtlNotchange?: pulumi.Input<string>;
-    /**
-     * Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
-     */
     memoryUseThresholdExtreme?: pulumi.Input<number>;
-    /**
-     * Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
-     */
     memoryUseThresholdGreen?: pulumi.Input<number>;
-    /**
-     * Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
-     */
     memoryUseThresholdRed?: pulumi.Input<number>;
-    /**
-     * Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
-     */
     miglogAffinity?: pulumi.Input<string>;
-    /**
-     * Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
-     */
     miglogdChildren?: pulumi.Input<number>;
-    /**
-     * Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
-     */
     multiFactorAuthentication?: pulumi.Input<string>;
-    /**
-     * Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
-     */
     multicastForward?: pulumi.Input<string>;
-    /**
-     * Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
-     */
     ndpMaxEntry?: pulumi.Input<number>;
-    /**
-     * Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
-     */
     perUserBal?: pulumi.Input<string>;
-    /**
-     * Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
-     */
     perUserBwl?: pulumi.Input<string>;
-    /**
-     * Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
-     */
     pmtuDiscovery?: pulumi.Input<string>;
-    /**
-     * Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
-     */
     policyAuthConcurrent?: pulumi.Input<number>;
-    /**
-     * Enable/disable displaying the administrator access disclaimer message after an administrator successfully logs in. Valid values: `disable`, `enable`.
-     */
     postLoginBanner?: pulumi.Input<string>;
-    /**
-     * Enable/disable displaying the administrator access disclaimer message on the login page before an administrator logs in. Valid values: `enable`, `disable`.
-     */
     preLoginBanner?: pulumi.Input<string>;
-    /**
-     * Enable/disable private data encryption using an AES 128-bit key. Valid values: `disable`, `enable`.
-     */
     privateDataEncryption?: pulumi.Input<string>;
-    /**
-     * Enable/disable authenticated users lifetime control.  This is a cap on the total time a proxy user can be authenticated for after which re-authentication will take place. Valid values: `enable`, `disable`.
-     */
     proxyAuthLifetime?: pulumi.Input<string>;
-    /**
-     * Lifetime timeout in minutes for authenticated users (5  - 65535 min, default=480 (8 hours)).
-     */
     proxyAuthLifetimeTimeout?: pulumi.Input<number>;
-    /**
-     * Authentication timeout in minutes for authenticated users (1 - 300 min, default = 10).
-     */
     proxyAuthTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
-     */
     proxyCertUseMgmtVdom?: pulumi.Input<string>;
-    /**
-     * Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
-     */
     proxyCipherHardwareAcceleration?: pulumi.Input<string>;
-    /**
-     * Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
-     */
     proxyHardwareAcceleration?: pulumi.Input<string>;
-    /**
-     * Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
-     */
     proxyKxpHardwareAcceleration?: pulumi.Input<string>;
-    /**
-     * Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
-     */
     proxyReAuthenticationMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
-     */
     proxyResourceMode?: pulumi.Input<string>;
-    /**
-     * Proxy worker count.
-     */
     proxyWorkerCount?: pulumi.Input<number>;
-    /**
-     * RADIUS service port number.
-     */
     radiusPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
-     */
     rebootUponConfigRestore?: pulumi.Input<string>;
-    /**
-     * Statistics refresh interval in GUI.
-     */
     refresh?: pulumi.Input<number>;
-    /**
-     * Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
-     */
     remoteauthtimeout?: pulumi.Input<number>;
-    /**
-     * Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
-     */
     resetSessionlessTcp?: pulumi.Input<string>;
-    /**
-     * Daily restart time (hh:mm).
-     */
     restartTime?: pulumi.Input<string>;
-    /**
-     * Enable/disable back-up of the latest configuration revision when an administrator logs out of the CLI or GUI. Valid values: `enable`, `disable`.
-     */
     revisionBackupOnLogout?: pulumi.Input<string>;
-    /**
-     * Enable/disable back-up of the latest configuration revision after the firmware is upgraded. Valid values: `enable`, `disable`.
-     */
     revisionImageAutoBackup?: pulumi.Input<string>;
-    /**
-     * Number of scanunits. The range and the default depend on the number of CPUs. Only available on FortiGate units with multiple CPUs.
-     */
     scanunitCount?: pulumi.Input<number>;
-    /**
-     * Enable/disable the submission of Security Rating results to FortiGuard. Valid values: `enable`, `disable`.
-     */
     securityRatingResultSubmission?: pulumi.Input<string>;
-    /**
-     * Enable/disable scheduled runs of Security Rating. Valid values: `enable`, `disable`.
-     */
     securityRatingRunOnSchedule?: pulumi.Input<string>;
-    /**
-     * Enable/disable sending of path maximum transmission unit (PMTU) - ICMP destination unreachable packet and to support PMTUD protocol on your network to reduce fragmentation of packets. Valid values: `enable`, `disable`.
-     */
     sendPmtuIcmp?: pulumi.Input<string>;
-    /**
-     * Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
-     */
     snatRouteChange?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPS detection of HIBUN format files when using Data Leak Protection. Valid values: `disable`, `enable`.
-     */
     specialFile23Support?: pulumi.Input<string>;
-    /**
-     * Enable/disable speed test server. Valid values: `enable`, `disable`.
-     */
     speedtestServer?: pulumi.Input<string>;
-    /**
-     * Split port(s) to multiple 10Gbps ports.
-     */
     splitPort?: pulumi.Input<string>;
-    /**
-     * Date within a month to run ssd trim.
-     */
     ssdTrimDate?: pulumi.Input<number>;
-    /**
-     * How often to run SSD Trim (default = weekly). SSD Trim prevents SSD drive data loss by finding and isolating errors. Valid values: `never`, `hourly`, `daily`, `weekly`, `monthly`.
-     */
     ssdTrimFreq?: pulumi.Input<string>;
-    /**
-     * Hour of the day on which to run SSD Trim (0 - 23, default = 1).
-     */
     ssdTrimHour?: pulumi.Input<number>;
-    /**
-     * Minute of the hour on which to run SSD Trim (0 - 59, 60 for random).
-     */
     ssdTrimMin?: pulumi.Input<number>;
-    /**
-     * Day of week to run SSD Trim. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-     */
     ssdTrimWeekday?: pulumi.Input<string>;
-    /**
-     * Enable/disable CBC cipher for SSH access. Valid values: `enable`, `disable`.
-     */
     sshCbcCipher?: pulumi.Input<string>;
-    /**
-     * Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
-     */
     sshEncAlgo?: pulumi.Input<string>;
-    /**
-     * Enable/disable HMAC-MD5 for SSH access. Valid values: `enable`, `disable`.
-     */
     sshHmacMd5?: pulumi.Input<string>;
-    /**
-     * Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
-     */
     sshKexAlgo?: pulumi.Input<string>;
-    /**
-     * Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
-     */
     sshKexSha1?: pulumi.Input<string>;
-    /**
-     * Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
-     */
     sshMacAlgo?: pulumi.Input<string>;
-    /**
-     * Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access. Valid values: `enable`, `disable`.
-     */
     sshMacWeak?: pulumi.Input<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default = TLSv1.2).
-     */
     sslMinProtoVersion?: pulumi.Input<string>;
-    /**
-     * Enable/disable static key ciphers in SSL/TLS connections (e.g. AES128-SHA, AES256-SHA, AES128-SHA256, AES256-SHA256). Valid values: `enable`, `disable`.
-     */
     sslStaticKeyCiphers?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL VPN hardware acceleration. Valid values: `enable`, `disable`.
-     */
     sslvpnCipherHardwareAcceleration?: pulumi.Input<string>;
-    /**
-     * Enable/disable verification of EMS serial number in SSL-VPN connection. Valid values: `enable`, `disable`.
-     */
     sslvpnEmsSnCheck?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL VPN KXP hardware acceleration. Valid values: `enable`, `disable`.
-     */
     sslvpnKxpHardwareAcceleration?: pulumi.Input<string>;
-    /**
-     * Maximum number of SSL VPN processes. Upper limit for this value is the number of CPUs and depends on the model.
-     */
     sslvpnMaxWorkerCount?: pulumi.Input<number>;
-    /**
-     * Enable/disable checking browser's plugin version by SSL VPN. Valid values: `enable`, `disable`.
-     */
     sslvpnPluginVersionCheck?: pulumi.Input<string>;
-    /**
-     * Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
-     */
     strictDirtySessionCheck?: pulumi.Input<string>;
-    /**
-     * Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
-     */
     strongCrypto?: pulumi.Input<string>;
-    /**
-     * Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
-     */
     switchController?: pulumi.Input<string>;
-    /**
-     * Enable reserved network subnet for controlled switches. This is available when the switch controller is enabled.
-     */
     switchControllerReservedNetwork?: pulumi.Input<string>;
-    /**
-     * Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
-     */
     sysPerfLogInterval?: pulumi.Input<number>;
-    /**
-     * Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
-     */
     tcpHalfcloseTimer?: pulumi.Input<number>;
-    /**
-     * Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
-     */
     tcpHalfopenTimer?: pulumi.Input<number>;
-    /**
-     * Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
-     */
     tcpOption?: pulumi.Input<string>;
-    /**
-     * Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
-     */
     tcpRstTimer?: pulumi.Input<number>;
-    /**
-     * Length of the TCP TIME-WAIT state in seconds.
-     */
     tcpTimewaitTimer?: pulumi.Input<number>;
-    /**
-     * Enable/disable TFTP. Valid values: `enable`, `disable`.
-     */
     tftp?: pulumi.Input<string>;
-    /**
-     * Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
-     */
     timezone?: pulumi.Input<string>;
-    /**
-     * Enable/disable skip policy check and allow multicast through. Valid values: `enable`, `disable`.
-     */
     tpMcSkipPolicy?: pulumi.Input<string>;
-    /**
-     * Choose Type of Service (ToS) or Differentiated Services Code Point (DSCP) for traffic prioritization in traffic shaping. Valid values: `tos`, `dscp`.
-     */
     trafficPriority?: pulumi.Input<string>;
-    /**
-     * Default system-wide level of priority for traffic prioritization. Valid values: `low`, `medium`, `high`.
-     */
     trafficPriorityLevel?: pulumi.Input<string>;
-    /**
-     * Email-based two-factor authentication session timeout (30 - 300 seconds (5 minutes), default = 60).
-     */
     twoFactorEmailExpiry?: pulumi.Input<number>;
-    /**
-     * FortiAuthenticator token authentication session timeout (10 - 3600 seconds (1 hour), default = 60).
-     */
     twoFactorFacExpiry?: pulumi.Input<number>;
-    /**
-     * FortiToken authentication session timeout (60 - 600 sec (10 minutes), default = 60).
-     */
     twoFactorFtkExpiry?: pulumi.Input<number>;
-    /**
-     * FortiToken Mobile session timeout (1 - 168 hours (7 days), default = 72).
-     */
     twoFactorFtmExpiry?: pulumi.Input<number>;
-    /**
-     * SMS-based two-factor authentication session timeout (30 - 300 sec, default = 60).
-     */
     twoFactorSmsExpiry?: pulumi.Input<number>;
-    /**
-     * UDP connection session timeout. This command can be useful in managing CPU and memory resources (1 - 86400 seconds (1 day), default = 60).
-     */
     udpIdleTimer?: pulumi.Input<number>;
-    /**
-     * URL filter CPU affinity.
-     */
     urlFilterAffinity?: pulumi.Input<string>;
-    /**
-     * URL filter daemon count.
-     */
     urlFilterCount?: pulumi.Input<number>;
-    /**
-     * Maximum number of devices allowed in user device store.
-     */
     userDeviceStoreMaxDevices?: pulumi.Input<number>;
-    /**
-     * Maximum unified memory allowed in user device store.
-     */
     userDeviceStoreMaxUnifiedMem?: pulumi.Input<number>;
-    /**
-     * Maximum number of users allowed in user device store.
-     */
     userDeviceStoreMaxUsers?: pulumi.Input<number>;
-    /**
-     * Certificate to use for https user authentication.
-     */
     userServerCert?: pulumi.Input<string>;
-    /**
-     * Enable/disable support for multiple virtual domains (VDOMs). Valid values: `enable`, `disable`.
-     */
     vdomAdmin?: pulumi.Input<string>;
-    /**
-     * Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
-     */
     vdomMode?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.
-     */
     vipArpRange?: pulumi.Input<string>;
-    /**
-     * Maximum number of virtual server processes to create. The maximum is the number of CPU cores. This is not available on single-core CPUs.
-     */
     virtualServerCount?: pulumi.Input<number>;
-    /**
-     * Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
-     */
     virtualServerHardwareAcceleration?: pulumi.Input<string>;
-    /**
-     * Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
-     */
     virtualSwitchVlan?: pulumi.Input<string>;
-    /**
-     * Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-     */
     wadAffinity?: pulumi.Input<string>;
-    /**
-     * Number of concurrent WAD-cache-service object-cache processes.
-     */
     wadCsvcCsCount?: pulumi.Input<number>;
-    /**
-     * Number of concurrent WAD-cache-service byte-cache processes.
-     */
     wadCsvcDbCount?: pulumi.Input<number>;
-    /**
-     * Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection.
-     */
     wadMemoryChangeGranularity?: pulumi.Input<number>;
-    /**
-     * Enable/disable dispatching traffic to WAD workers based on source affinity. Valid values: `disable`, `enable`.
-     */
     wadSourceAffinity?: pulumi.Input<string>;
-    /**
-     * Number of explicit proxy WAN optimization daemon (WAD) processes. By default WAN optimization, explicit proxy, and web caching is handled by all of the CPU cores in a FortiGate unit.
-     */
     wadWorkerCount?: pulumi.Input<number>;
-    /**
-     * CA certificate that verifies the WiFi certificate.
-     */
     wifiCaCertificate?: pulumi.Input<string>;
-    /**
-     * Certificate to use for WiFi authentication.
-     */
     wifiCertificate?: pulumi.Input<string>;
-    /**
-     * Enable/disable comparability with WiMAX 4G USB devices. Valid values: `enable`, `disable`.
-     */
     wimax4gUsb?: pulumi.Input<string>;
-    /**
-     * Enable/disable the wireless controller feature to use the FortiGate unit to manage FortiAPs. Valid values: `enable`, `disable`.
-     */
     wirelessController?: pulumi.Input<string>;
-    /**
-     * Port used for the control channel in wireless controller mode (wireless-mode is ac). The data channel port is the control channel port number plus one (1024 - 49150, default = 5246).
-     */
     wirelessControllerPort?: pulumi.Input<number>;
 }
 
@@ -2487,960 +1060,253 @@ export interface SystemGlobalState {
  * The set of arguments for constructing a SystemGlobal resource.
  */
 export interface SystemGlobalArgs {
-    /**
-     * Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
-     */
     adminConcurrent?: pulumi.Input<string>;
-    /**
-     * Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
-     */
     adminConsoleTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
-     */
     adminForticloudSsoLogin?: pulumi.Input<string>;
-    /**
-     * HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
-     */
+    adminHost?: pulumi.Input<string>;
     adminHstsMaxAge?: pulumi.Input<number>;
-    /**
-     * Enable/disable admin login method. Enable to force administrators to provide a valid certificate to log in if PKI is enabled. Disable to allow administrators to log in with a certificate or password. Valid values: `enable`, `disable`.
-     */
     adminHttpsPkiRequired?: pulumi.Input<string>;
-    /**
-     * Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
-     */
     adminHttpsRedirect?: pulumi.Input<string>;
-    /**
-     * Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
-     */
     adminHttpsSslBannedCiphers?: pulumi.Input<string>;
-    /**
-     * Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-     */
     adminHttpsSslCiphersuites?: pulumi.Input<string>;
-    /**
-     * Allowed TLS versions for web administration.
-     */
     adminHttpsSslVersions?: pulumi.Input<string>;
-    /**
-     * Amount of time in seconds that an administrator account is locked out after reaching the admin-lockout-threshold for repeated failed login attempts.
-     */
     adminLockoutDuration?: pulumi.Input<number>;
-    /**
-     * Number of failed login attempts before an administrator account is locked out for the admin-lockout-duration.
-     */
     adminLockoutThreshold?: pulumi.Input<number>;
-    /**
-     * Maximum number of administrators who can be logged in at the same time (1 - 100, default = 100)
-     */
     adminLoginMax?: pulumi.Input<number>;
-    /**
-     * Enable/disable maintainer administrator login. When enabled, the maintainer account can be used to log in from the console after a hard reboot. The password is "bcpb" followed by the FortiGate unit serial number. You have limited time to complete this login. Valid values: `enable`, `disable`.
-     */
     adminMaintainer?: pulumi.Input<string>;
-    /**
-     * Administrative access port for HTTP. (1 - 65535, default = 80).
-     */
     adminPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable local admin authentication restriction when remote authenticator is up and running. (default = disable) Valid values: `enable`, `disable`.
-     */
     adminRestrictLocal?: pulumi.Input<string>;
-    /**
-     * Enable/disable using SCP to download the system configuration. You can use SCP as an alternative method for backing up the configuration. Valid values: `enable`, `disable`.
-     */
     adminScp?: pulumi.Input<string>;
-    /**
-     * Server certificate that the FortiGate uses for HTTPS administrative connections.
-     */
     adminServerCert?: pulumi.Input<string>;
-    /**
-     * Administrative access port for HTTPS. (1 - 65535, default = 443).
-     */
     adminSport?: pulumi.Input<number>;
-    /**
-     * Maximum time in seconds permitted between making an SSH connection to the FortiGate unit and authenticating (10 - 3600 sec (1 hour), default 120).
-     */
     adminSshGraceTime?: pulumi.Input<number>;
-    /**
-     * Enable/disable password authentication for SSH admin access. Valid values: `enable`, `disable`.
-     */
     adminSshPassword?: pulumi.Input<string>;
-    /**
-     * Administrative access port for SSH. (1 - 65535, default = 22).
-     */
     adminSshPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable SSH v1 compatibility. Valid values: `enable`, `disable`.
-     */
     adminSshV1?: pulumi.Input<string>;
-    /**
-     * Enable/disable TELNET service. Valid values: `enable`, `disable`.
-     */
     adminTelnet?: pulumi.Input<string>;
-    /**
-     * Administrative access port for TELNET. (1 - 65535, default = 23).
-     */
     adminTelnetPort?: pulumi.Input<number>;
-    /**
-     * Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
-     */
     admintimeout?: pulumi.Input<number>;
-    /**
-     * Alias for your FortiGate unit.
-     */
     alias?: pulumi.Input<string>;
-    /**
-     * Disable to allow traffic to be routed back on a different interface. Valid values: `enable`, `disable`.
-     */
     allowTrafficRedirect?: pulumi.Input<string>;
-    /**
-     * Level of checking for packet replay and TCP sequence checking. Valid values: `disable`, `loose`, `strict`.
-     */
     antiReplay?: pulumi.Input<string>;
-    /**
-     * Maximum number of dynamically learned MAC addresses that can be added to the ARP table (131072 - 2147483647, default = 131072).
-     */
     arpMaxEntry?: pulumi.Input<number>;
-    /**
-     * Enable/disable asymmetric route. Valid values: `enable`, `disable`.
-     */
     asymroute?: pulumi.Input<string>;
-    /**
-     * Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
-     */
     authCert?: pulumi.Input<string>;
-    /**
-     * User authentication HTTP port. (1 - 65535, default = 80).
-     */
     authHttpPort?: pulumi.Input<number>;
-    /**
-     * User authentication HTTPS port. (1 - 65535, default = 443).
-     */
     authHttpsPort?: pulumi.Input<number>;
-    /**
-     * Enable to prevent user authentication sessions from timing out when idle. Valid values: `enable`, `disable`.
-     */
+    authIkeSamlPort?: pulumi.Input<number>;
     authKeepalive?: pulumi.Input<string>;
-    /**
-     * Action to take when the number of allowed user authenticated sessions is reached. Valid values: `block-new`, `logout-inactive`.
-     */
     authSessionLimit?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatic authorization of dedicated Fortinet extension devices. Valid values: `enable`, `disable`.
-     */
     autoAuthExtensionDevice?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatic log partition check after ungraceful shutdown. Valid values: `enable`, `disable`.
-     */
     autorunLogFsck?: pulumi.Input<string>;
-    /**
-     * Affinity setting for AV scanning (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-     */
     avAffinity?: pulumi.Input<string>;
-    /**
-     * Set the action to take if the FortiGate is running low on memory or the proxy connection limit has been reached. Valid values: `pass`, `off`, `one-shot`.
-     */
     avFailopen?: pulumi.Input<string>;
-    /**
-     * When enabled and a proxy for a protocol runs out of room in its session table, that protocol goes into failopen mode and enacts the action specified by av-failopen. Valid values: `enable`, `disable`.
-     */
     avFailopenSession?: pulumi.Input<string>;
-    /**
-     * Enable/disable batch mode, allowing you to enter a series of CLI commands that will execute as a group once they are loaded. Valid values: `enable`, `disable`.
-     */
     batchCmdb?: pulumi.Input<string>;
-    /**
-     * Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
-     */
     blockSessionTimer?: pulumi.Input<number>;
-    /**
-     * Maximum number of bridge forwarding database (FDB) entries.
-     */
     brFdbMaxEntry?: pulumi.Input<number>;
-    /**
-     * Maximum number of certificates that can be traversed in a certificate chain.
-     */
     certChainMax?: pulumi.Input<number>;
-    /**
-     * Time-out for reverting to the last saved configuration.
-     */
     cfgRevertTimeout?: pulumi.Input<number>;
-    /**
-     * Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
-     */
     cfgSave?: pulumi.Input<string>;
-    /**
-     * Level of checking performed on protocol headers. Strict checking is more thorough but may affect performance. Loose checking is ok in most cases. Valid values: `loose`, `strict`.
-     */
     checkProtocolHeader?: pulumi.Input<string>;
-    /**
-     * Configure ICMP error message verification. You can either apply strict RST range checking or disable it. Valid values: `strict`, `disable`.
-     */
     checkResetRange?: pulumi.Input<string>;
-    /**
-     * Enable/disable CLI audit log. Valid values: `enable`, `disable`.
-     */
     cliAuditLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable all cloud communication. Valid values: `enable`, `disable`.
-     */
     cloudCommunication?: pulumi.Input<string>;
-    /**
-     * Enable/disable requiring administrators to have a client certificate to log into the GUI using HTTPS. Valid values: `enable`, `disable`.
-     */
     cltCertReq?: pulumi.Input<string>;
-    /**
-     * Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-     */
     cmdbsvrAffinity?: pulumi.Input<string>;
-    /**
-     * Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
-     */
     complianceCheck?: pulumi.Input<string>;
-    /**
-     * Time of day to run scheduled PCI DSS compliance checks.
-     */
     complianceCheckTime?: pulumi.Input<string>;
-    /**
-     * Threshold at which CPU usage is reported. (% of total CPU, default = 90).
-     */
     cpuUseThreshold?: pulumi.Input<number>;
-    /**
-     * Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
-     */
     csrCaAttribute?: pulumi.Input<string>;
-    /**
-     * Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
-     */
     dailyRestart?: pulumi.Input<string>;
-    /**
-     * Default service source port range. (default=1-65535)
-     */
     defaultServiceSourcePort?: pulumi.Input<string>;
-    /**
-     * Number of seconds to passively scan a device before performing an active scan. (20 - 3600 sec, (20 sec to 1 hour), default = 90).
-     */
     deviceIdentificationActiveScanDelay?: pulumi.Input<number>;
-    /**
-     * Time in seconds that a device must be idle to automatically log the device user out. (30 - 31536000 sec (30 sec to 1 year), default = 300).
-     */
     deviceIdleTimeout?: pulumi.Input<number>;
-    /**
-     * Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
-     */
     dhParams?: pulumi.Input<string>;
-    /**
-     * DNS proxy worker count.
-     */
     dnsproxyWorkerCount?: pulumi.Input<number>;
-    /**
-     * Enable/disable daylight saving time. Valid values: `enable`, `disable`.
-     */
     dst?: pulumi.Input<string>;
-    /**
-     * Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
-     */
+    earlyTcpNpuSession?: pulumi.Input<string>;
     editVdomPrompt?: pulumi.Input<string>;
-    /**
-     * Enable/disable access to the FortiGuard network for non-compliant endpoints. Valid values: `enable`, `disable`.
-     */
     endpointControlFdsAccess?: pulumi.Input<string>;
-    /**
-     * Endpoint control portal port (1 - 65535).
-     */
     endpointControlPortalPort?: pulumi.Input<number>;
-    /**
-     * Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
-     */
     extenderControllerReservedNetwork?: pulumi.Input<string>;
-    /**
-     * Fail-time for server lost.
-     */
     failtime?: pulumi.Input<number>;
-    /**
-     * Maximum disk buffer size to temporarily store logs destined for FortiAnalyzer. To be used in the event that FortiAnalyzer is unavailalble.
-     */
     fazDiskBufferSize?: pulumi.Input<number>;
-    /**
-     * Enable/disable sending IPS, Application Control, and AntiVirus data to FortiGuard. This data is used to improve FortiGuard services and is not shared with external parties and is protected by Fortinet's privacy policy. Valid values: `enable`, `disable`.
-     */
     fdsStatistics?: pulumi.Input<string>;
-    /**
-     * FortiGuard statistics collection period in minutes. (1 - 1440 min (1 min to 24 hours), default = 60).
-     */
     fdsStatisticsPeriod?: pulumi.Input<number>;
-    /**
-     * Local UDP port for Forward Error Correction (49152 - 65535).
-     */
     fecPort?: pulumi.Input<number>;
-    /**
-     * Type of alert to retrieve from FortiGuard. Valid values: `advisory`, `latest-threat`, `latest-virus`, `latest-attack`, `new-antivirus-db`, `new-attack-db`.
-     */
     fgdAlertSubscription?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiExtender. Valid values: `enable`, `disable`.
-     */
     fortiextender?: pulumi.Input<string>;
-    /**
-     * FortiExtender data port (1024 - 49150, default = 25246).
-     */
     fortiextenderDataPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
-     */
     fortiextenderDiscoveryLockdown?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiExtender VLAN mode. Valid values: `enable`, `disable`.
-     */
+    fortiextenderProvisionOnAuthorization?: pulumi.Input<string>;
     fortiextenderVlanMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
-     */
     fortiipamIntegration?: pulumi.Input<string>;
-    /**
-     * FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port.
-     */
     fortiservicePort?: pulumi.Input<number>;
-    /**
-     * Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
-     */
     fortitokenCloud?: pulumi.Input<string>;
-    /**
-     * Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
-     */
     guiAllowDefaultHostname?: pulumi.Input<string>;
-    /**
-     * Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
-     */
+    guiAppDetectionSdwan?: pulumi.Input<string>;
     guiCdnUsage?: pulumi.Input<string>;
-    /**
-     * Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. Valid values: `enable`, `disable`.
-     */
     guiCertificates?: pulumi.Input<string>;
-    /**
-     * Enable/disable custom languages in GUI. Valid values: `enable`, `disable`.
-     */
     guiCustomLanguage?: pulumi.Input<string>;
-    /**
-     * Default date format used throughout GUI. Valid values: `yyyy/MM/dd`, `dd/MM/yyyy`, `MM/dd/yyyy`, `yyyy-MM-dd`, `dd-MM-yyyy`, `MM-dd-yyyy`.
-     */
     guiDateFormat?: pulumi.Input<string>;
-    /**
-     * Source from which the FortiGate GUI uses to display date and time entries. Valid values: `system`, `browser`.
-     */
     guiDateTimeSource?: pulumi.Input<string>;
-    /**
-     * Add the latitude of the location of this FortiGate to position it on the Threat Map.
-     */
     guiDeviceLatitude?: pulumi.Input<string>;
-    /**
-     * Add the longitude of the location of this FortiGate to position it on the Threat Map.
-     */
     guiDeviceLongitude?: pulumi.Input<string>;
-    /**
-     * Enable/disable displaying the FortiGate's hostname on the GUI login page. Valid values: `enable`, `disable`.
-     */
     guiDisplayHostname?: pulumi.Input<string>;
-    /**
-     * Enable/disable the firmware upgrade warning on GUI setup wizard. Valid values: `enable`, `disable`.
-     */
     guiFirmwareUpgradeSetupWarning?: pulumi.Input<string>;
-    /**
-     * Enable/disable the firmware upgrade warning on the GUI. Valid values: `enable`, `disable`.
-     */
     guiFirmwareUpgradeWarning?: pulumi.Input<string>;
-    /**
-     * Enable/disable the FortiCare registration setup warning on the GUI. Valid values: `enable`, `disable`.
-     */
     guiForticareRegistrationSetupWarning?: pulumi.Input<string>;
-    /**
-     * Enable/disable displaying FortiGate Cloud Sandbox on the GUI. Valid values: `enable`, `disable`.
-     */
     guiFortigateCloudSandbox?: pulumi.Input<string>;
-    /**
-     * Enable/disable displaying FortiSandbox Cloud on the GUI. Valid values: `enable`, `disable`.
-     */
+    guiFortiguardResourceFetch?: pulumi.Input<string>;
     guiFortisandboxCloud?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPv6 settings on the GUI. Valid values: `enable`, `disable`.
-     */
     guiIpv6?: pulumi.Input<string>;
-    /**
-     * Number of lines to display per page for web administration.
-     */
     guiLinesPerPage?: pulumi.Input<number>;
-    /**
-     * Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
-     */
     guiLocalOut?: pulumi.Input<string>;
-    /**
-     * Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
-     */
     guiReplacementMessageGroups?: pulumi.Input<string>;
-    /**
-     * Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
-     */
     guiRestApiCache?: pulumi.Input<string>;
-    /**
-     * Color scheme for the administration GUI.
-     */
     guiTheme?: pulumi.Input<string>;
-    /**
-     * Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
-     */
     guiWirelessOpensecurity?: pulumi.Input<string>;
-    /**
-     * Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-     */
+    guiWorkflowManagement?: pulumi.Input<string>;
     haAffinity?: pulumi.Input<string>;
-    /**
-     * Enable/disable honoring of Don't-Fragment (DF) flag. Valid values: `enable`, `disable`.
-     */
     honorDf?: pulumi.Input<string>;
-    /**
-     * FortiGate unit's hostname. Most models will truncate names longer than 24 characters. Some models support hostnames up to 35 characters.
-     */
     hostname?: pulumi.Input<string>;
-    /**
-     * Maximum number of IGMP memberships (96 - 64000, default = 3200).
-     */
     igmpStateLimit?: pulumi.Input<number>;
-    /**
-     * Maximum number of IPsec tunnels to negotiate simultaneously.
-     */
     ikeEmbryonicLimit?: pulumi.Input<number>;
-    /**
-     * Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
-     */
     internetServiceDatabase?: pulumi.Input<string>;
-    /**
-     * Dead gateway detection interval.
-     */
     interval?: pulumi.Input<number>;
-    /**
-     * IP source port range used for traffic originating from the FortiGate unit.
-     */
     ipSrcPortRange?: pulumi.Input<string>;
-    /**
-     * Affinity setting for IPS (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx; allowed CPUs must be less than total number of IPS engine daemons).
-     */
     ipsAffinity?: pulumi.Input<string>;
-    /**
-     * Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
-     */
     ipsecAsicOffload?: pulumi.Input<string>;
-    /**
-     * ESP jump ahead rate (1G - 10G pps equivalent).
-     */
     ipsecHaSeqjumpRate?: pulumi.Input<number>;
-    /**
-     * Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
-     */
     ipsecHmacOffload?: pulumi.Input<string>;
-    /**
-     * Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
-     */
+    ipsecRoundRobin?: pulumi.Input<string>;
     ipsecSoftDecAsync?: pulumi.Input<string>;
-    /**
-     * Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
-     */
     ipv6AcceptDad?: pulumi.Input<number>;
-    /**
-     * Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
-     */
     ipv6AllowAnycastProbe?: pulumi.Input<string>;
-    /**
-     * Disable to prevent IPv6 traffic with same local ingress and egress interface from being forwarded without policy check. Valid values: `enable`, `disable`.
-     */
+    ipv6AllowLocalInSlientDrop?: pulumi.Input<string>;
+    ipv6AllowMulticastProbe?: pulumi.Input<string>;
     ipv6AllowTrafficRedirect?: pulumi.Input<string>;
-    /**
-     * Configure CPU IRQ time accounting mode. Valid values: `auto`, `force`.
-     */
     irqTimeAccounting?: pulumi.Input<string>;
-    /**
-     * GUI display language. Valid values: `english`, `french`, `spanish`, `portuguese`, `japanese`, `trach`, `simch`, `korean`.
-     */
     language?: pulumi.Input<string>;
-    /**
-     * Global timeout for connections with remote LDAP servers in milliseconds (1 - 300000, default 500).
-     */
     ldapconntimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable Link Layer Discovery Protocol (LLDP) reception. Valid values: `enable`, `disable`.
-     */
     lldpReception?: pulumi.Input<string>;
-    /**
-     * Enable/disable Link Layer Discovery Protocol (LLDP) transmission. Valid values: `enable`, `disable`.
-     */
     lldpTransmission?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging of SSL connection events. Valid values: `enable`, `disable`.
-     */
     logSslConnection?: pulumi.Input<string>;
-    /**
-     * Enable/disable insertion of address UUIDs to traffic logs. Valid values: `enable`, `disable`.
-     */
     logUuidAddress?: pulumi.Input<string>;
-    /**
-     * Enable/disable insertion of policy UUIDs to traffic logs. Valid values: `enable`, `disable`.
-     */
     logUuidPolicy?: pulumi.Input<string>;
-    /**
-     * Enable/disable login time recording. Valid values: `enable`, `disable`.
-     */
     loginTimestamp?: pulumi.Input<string>;
-    /**
-     * Enable/disable long VDOM name support. Valid values: `enable`, `disable`.
-     */
     longVdomName?: pulumi.Input<string>;
-    /**
-     * Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
-     */
     managementIp?: pulumi.Input<string>;
-    /**
-     * Overriding port for management connection (Overrides admin port).
-     */
     managementPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
-     */
     managementPortUseAdminSport?: pulumi.Input<string>;
-    /**
-     * Management virtual domain name.
-     */
     managementVdom?: pulumi.Input<string>;
-    /**
-     * Maximum DLP stat memory (0 - 4294967295).
-     */
     maxDlpstatMemory?: pulumi.Input<number>;
-    /**
-     * Maximum number of IP route cache entries (0 - 2147483647).
-     */
     maxRouteCacheSize?: pulumi.Input<number>;
-    /**
-     * Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-     */
     mcTtlNotchange?: pulumi.Input<string>;
-    /**
-     * Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
-     */
     memoryUseThresholdExtreme?: pulumi.Input<number>;
-    /**
-     * Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
-     */
     memoryUseThresholdGreen?: pulumi.Input<number>;
-    /**
-     * Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
-     */
     memoryUseThresholdRed?: pulumi.Input<number>;
-    /**
-     * Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
-     */
     miglogAffinity?: pulumi.Input<string>;
-    /**
-     * Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
-     */
     miglogdChildren?: pulumi.Input<number>;
-    /**
-     * Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
-     */
     multiFactorAuthentication?: pulumi.Input<string>;
-    /**
-     * Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
-     */
     multicastForward?: pulumi.Input<string>;
-    /**
-     * Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
-     */
     ndpMaxEntry?: pulumi.Input<number>;
-    /**
-     * Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
-     */
     perUserBal?: pulumi.Input<string>;
-    /**
-     * Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
-     */
     perUserBwl?: pulumi.Input<string>;
-    /**
-     * Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
-     */
     pmtuDiscovery?: pulumi.Input<string>;
-    /**
-     * Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
-     */
     policyAuthConcurrent?: pulumi.Input<number>;
-    /**
-     * Enable/disable displaying the administrator access disclaimer message after an administrator successfully logs in. Valid values: `disable`, `enable`.
-     */
     postLoginBanner?: pulumi.Input<string>;
-    /**
-     * Enable/disable displaying the administrator access disclaimer message on the login page before an administrator logs in. Valid values: `enable`, `disable`.
-     */
     preLoginBanner?: pulumi.Input<string>;
-    /**
-     * Enable/disable private data encryption using an AES 128-bit key. Valid values: `disable`, `enable`.
-     */
     privateDataEncryption?: pulumi.Input<string>;
-    /**
-     * Enable/disable authenticated users lifetime control.  This is a cap on the total time a proxy user can be authenticated for after which re-authentication will take place. Valid values: `enable`, `disable`.
-     */
     proxyAuthLifetime?: pulumi.Input<string>;
-    /**
-     * Lifetime timeout in minutes for authenticated users (5  - 65535 min, default=480 (8 hours)).
-     */
     proxyAuthLifetimeTimeout?: pulumi.Input<number>;
-    /**
-     * Authentication timeout in minutes for authenticated users (1 - 300 min, default = 10).
-     */
     proxyAuthTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
-     */
     proxyCertUseMgmtVdom?: pulumi.Input<string>;
-    /**
-     * Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
-     */
     proxyCipherHardwareAcceleration?: pulumi.Input<string>;
-    /**
-     * Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
-     */
     proxyHardwareAcceleration?: pulumi.Input<string>;
-    /**
-     * Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
-     */
     proxyKxpHardwareAcceleration?: pulumi.Input<string>;
-    /**
-     * Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
-     */
     proxyReAuthenticationMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
-     */
     proxyResourceMode?: pulumi.Input<string>;
-    /**
-     * Proxy worker count.
-     */
     proxyWorkerCount?: pulumi.Input<number>;
-    /**
-     * RADIUS service port number.
-     */
     radiusPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
-     */
     rebootUponConfigRestore?: pulumi.Input<string>;
-    /**
-     * Statistics refresh interval in GUI.
-     */
     refresh?: pulumi.Input<number>;
-    /**
-     * Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
-     */
     remoteauthtimeout?: pulumi.Input<number>;
-    /**
-     * Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
-     */
     resetSessionlessTcp?: pulumi.Input<string>;
-    /**
-     * Daily restart time (hh:mm).
-     */
     restartTime?: pulumi.Input<string>;
-    /**
-     * Enable/disable back-up of the latest configuration revision when an administrator logs out of the CLI or GUI. Valid values: `enable`, `disable`.
-     */
     revisionBackupOnLogout?: pulumi.Input<string>;
-    /**
-     * Enable/disable back-up of the latest configuration revision after the firmware is upgraded. Valid values: `enable`, `disable`.
-     */
     revisionImageAutoBackup?: pulumi.Input<string>;
-    /**
-     * Number of scanunits. The range and the default depend on the number of CPUs. Only available on FortiGate units with multiple CPUs.
-     */
     scanunitCount?: pulumi.Input<number>;
-    /**
-     * Enable/disable the submission of Security Rating results to FortiGuard. Valid values: `enable`, `disable`.
-     */
     securityRatingResultSubmission?: pulumi.Input<string>;
-    /**
-     * Enable/disable scheduled runs of Security Rating. Valid values: `enable`, `disable`.
-     */
     securityRatingRunOnSchedule?: pulumi.Input<string>;
-    /**
-     * Enable/disable sending of path maximum transmission unit (PMTU) - ICMP destination unreachable packet and to support PMTUD protocol on your network to reduce fragmentation of packets. Valid values: `enable`, `disable`.
-     */
     sendPmtuIcmp?: pulumi.Input<string>;
-    /**
-     * Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
-     */
     snatRouteChange?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPS detection of HIBUN format files when using Data Leak Protection. Valid values: `disable`, `enable`.
-     */
     specialFile23Support?: pulumi.Input<string>;
-    /**
-     * Enable/disable speed test server. Valid values: `enable`, `disable`.
-     */
     speedtestServer?: pulumi.Input<string>;
-    /**
-     * Split port(s) to multiple 10Gbps ports.
-     */
     splitPort?: pulumi.Input<string>;
-    /**
-     * Date within a month to run ssd trim.
-     */
     ssdTrimDate?: pulumi.Input<number>;
-    /**
-     * How often to run SSD Trim (default = weekly). SSD Trim prevents SSD drive data loss by finding and isolating errors. Valid values: `never`, `hourly`, `daily`, `weekly`, `monthly`.
-     */
     ssdTrimFreq?: pulumi.Input<string>;
-    /**
-     * Hour of the day on which to run SSD Trim (0 - 23, default = 1).
-     */
     ssdTrimHour?: pulumi.Input<number>;
-    /**
-     * Minute of the hour on which to run SSD Trim (0 - 59, 60 for random).
-     */
     ssdTrimMin?: pulumi.Input<number>;
-    /**
-     * Day of week to run SSD Trim. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-     */
     ssdTrimWeekday?: pulumi.Input<string>;
-    /**
-     * Enable/disable CBC cipher for SSH access. Valid values: `enable`, `disable`.
-     */
     sshCbcCipher?: pulumi.Input<string>;
-    /**
-     * Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
-     */
     sshEncAlgo?: pulumi.Input<string>;
-    /**
-     * Enable/disable HMAC-MD5 for SSH access. Valid values: `enable`, `disable`.
-     */
     sshHmacMd5?: pulumi.Input<string>;
-    /**
-     * Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
-     */
     sshKexAlgo?: pulumi.Input<string>;
-    /**
-     * Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
-     */
     sshKexSha1?: pulumi.Input<string>;
-    /**
-     * Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
-     */
     sshMacAlgo?: pulumi.Input<string>;
-    /**
-     * Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access. Valid values: `enable`, `disable`.
-     */
     sshMacWeak?: pulumi.Input<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default = TLSv1.2).
-     */
     sslMinProtoVersion?: pulumi.Input<string>;
-    /**
-     * Enable/disable static key ciphers in SSL/TLS connections (e.g. AES128-SHA, AES256-SHA, AES128-SHA256, AES256-SHA256). Valid values: `enable`, `disable`.
-     */
     sslStaticKeyCiphers?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL VPN hardware acceleration. Valid values: `enable`, `disable`.
-     */
     sslvpnCipherHardwareAcceleration?: pulumi.Input<string>;
-    /**
-     * Enable/disable verification of EMS serial number in SSL-VPN connection. Valid values: `enable`, `disable`.
-     */
     sslvpnEmsSnCheck?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSL VPN KXP hardware acceleration. Valid values: `enable`, `disable`.
-     */
     sslvpnKxpHardwareAcceleration?: pulumi.Input<string>;
-    /**
-     * Maximum number of SSL VPN processes. Upper limit for this value is the number of CPUs and depends on the model.
-     */
     sslvpnMaxWorkerCount?: pulumi.Input<number>;
-    /**
-     * Enable/disable checking browser's plugin version by SSL VPN. Valid values: `enable`, `disable`.
-     */
     sslvpnPluginVersionCheck?: pulumi.Input<string>;
-    /**
-     * Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
-     */
     strictDirtySessionCheck?: pulumi.Input<string>;
-    /**
-     * Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
-     */
     strongCrypto?: pulumi.Input<string>;
-    /**
-     * Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
-     */
     switchController?: pulumi.Input<string>;
-    /**
-     * Enable reserved network subnet for controlled switches. This is available when the switch controller is enabled.
-     */
     switchControllerReservedNetwork?: pulumi.Input<string>;
-    /**
-     * Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
-     */
     sysPerfLogInterval?: pulumi.Input<number>;
-    /**
-     * Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
-     */
     tcpHalfcloseTimer?: pulumi.Input<number>;
-    /**
-     * Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
-     */
     tcpHalfopenTimer?: pulumi.Input<number>;
-    /**
-     * Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
-     */
     tcpOption?: pulumi.Input<string>;
-    /**
-     * Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
-     */
     tcpRstTimer?: pulumi.Input<number>;
-    /**
-     * Length of the TCP TIME-WAIT state in seconds.
-     */
     tcpTimewaitTimer?: pulumi.Input<number>;
-    /**
-     * Enable/disable TFTP. Valid values: `enable`, `disable`.
-     */
     tftp?: pulumi.Input<string>;
-    /**
-     * Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
-     */
     timezone?: pulumi.Input<string>;
-    /**
-     * Enable/disable skip policy check and allow multicast through. Valid values: `enable`, `disable`.
-     */
     tpMcSkipPolicy?: pulumi.Input<string>;
-    /**
-     * Choose Type of Service (ToS) or Differentiated Services Code Point (DSCP) for traffic prioritization in traffic shaping. Valid values: `tos`, `dscp`.
-     */
     trafficPriority?: pulumi.Input<string>;
-    /**
-     * Default system-wide level of priority for traffic prioritization. Valid values: `low`, `medium`, `high`.
-     */
     trafficPriorityLevel?: pulumi.Input<string>;
-    /**
-     * Email-based two-factor authentication session timeout (30 - 300 seconds (5 minutes), default = 60).
-     */
     twoFactorEmailExpiry?: pulumi.Input<number>;
-    /**
-     * FortiAuthenticator token authentication session timeout (10 - 3600 seconds (1 hour), default = 60).
-     */
     twoFactorFacExpiry?: pulumi.Input<number>;
-    /**
-     * FortiToken authentication session timeout (60 - 600 sec (10 minutes), default = 60).
-     */
     twoFactorFtkExpiry?: pulumi.Input<number>;
-    /**
-     * FortiToken Mobile session timeout (1 - 168 hours (7 days), default = 72).
-     */
     twoFactorFtmExpiry?: pulumi.Input<number>;
-    /**
-     * SMS-based two-factor authentication session timeout (30 - 300 sec, default = 60).
-     */
     twoFactorSmsExpiry?: pulumi.Input<number>;
-    /**
-     * UDP connection session timeout. This command can be useful in managing CPU and memory resources (1 - 86400 seconds (1 day), default = 60).
-     */
     udpIdleTimer?: pulumi.Input<number>;
-    /**
-     * URL filter CPU affinity.
-     */
     urlFilterAffinity?: pulumi.Input<string>;
-    /**
-     * URL filter daemon count.
-     */
     urlFilterCount?: pulumi.Input<number>;
-    /**
-     * Maximum number of devices allowed in user device store.
-     */
     userDeviceStoreMaxDevices?: pulumi.Input<number>;
-    /**
-     * Maximum unified memory allowed in user device store.
-     */
     userDeviceStoreMaxUnifiedMem?: pulumi.Input<number>;
-    /**
-     * Maximum number of users allowed in user device store.
-     */
     userDeviceStoreMaxUsers?: pulumi.Input<number>;
-    /**
-     * Certificate to use for https user authentication.
-     */
     userServerCert?: pulumi.Input<string>;
-    /**
-     * Enable/disable support for multiple virtual domains (VDOMs). Valid values: `enable`, `disable`.
-     */
     vdomAdmin?: pulumi.Input<string>;
-    /**
-     * Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
-     */
     vdomMode?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.
-     */
     vipArpRange?: pulumi.Input<string>;
-    /**
-     * Maximum number of virtual server processes to create. The maximum is the number of CPU cores. This is not available on single-core CPUs.
-     */
     virtualServerCount?: pulumi.Input<number>;
-    /**
-     * Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
-     */
     virtualServerHardwareAcceleration?: pulumi.Input<string>;
-    /**
-     * Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
-     */
     virtualSwitchVlan?: pulumi.Input<string>;
-    /**
-     * Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-     */
     wadAffinity?: pulumi.Input<string>;
-    /**
-     * Number of concurrent WAD-cache-service object-cache processes.
-     */
     wadCsvcCsCount?: pulumi.Input<number>;
-    /**
-     * Number of concurrent WAD-cache-service byte-cache processes.
-     */
     wadCsvcDbCount?: pulumi.Input<number>;
-    /**
-     * Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection.
-     */
     wadMemoryChangeGranularity?: pulumi.Input<number>;
-    /**
-     * Enable/disable dispatching traffic to WAD workers based on source affinity. Valid values: `disable`, `enable`.
-     */
     wadSourceAffinity?: pulumi.Input<string>;
-    /**
-     * Number of explicit proxy WAN optimization daemon (WAD) processes. By default WAN optimization, explicit proxy, and web caching is handled by all of the CPU cores in a FortiGate unit.
-     */
     wadWorkerCount?: pulumi.Input<number>;
-    /**
-     * CA certificate that verifies the WiFi certificate.
-     */
     wifiCaCertificate?: pulumi.Input<string>;
-    /**
-     * Certificate to use for WiFi authentication.
-     */
     wifiCertificate?: pulumi.Input<string>;
-    /**
-     * Enable/disable comparability with WiMAX 4G USB devices. Valid values: `enable`, `disable`.
-     */
     wimax4gUsb?: pulumi.Input<string>;
-    /**
-     * Enable/disable the wireless controller feature to use the FortiGate unit to manage FortiAPs. Valid values: `enable`, `disable`.
-     */
     wirelessController?: pulumi.Input<string>;
-    /**
-     * Port used for the control channel in wireless controller mode (wireless-mode is ac). The data channel port is the control channel port number plus one (1024 - 49150, default = 5246).
-     */
     wirelessControllerPort?: pulumi.Input<number>;
 }

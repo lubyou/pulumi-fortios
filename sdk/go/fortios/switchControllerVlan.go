@@ -10,54 +10,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure VLANs for switch controller. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Import
-//
-// SwitchController Vlan can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerVlan:SwitchControllerVlan labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerVlan:SwitchControllerVlan labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerVlan struct {
 	pulumi.CustomResourceState
 
-	// Authentication. Valid values: `radius`, `usergroup`.
-	Auth pulumi.StringOutput `pulumi:"auth"`
-	// Color of icon on the GUI.
-	Color pulumi.IntOutput `pulumi:"color"`
-	// Comment.
-	Comments pulumi.StringOutput `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// User group name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specify captive portal replacement message override group.
-	PortalMessageOverrideGroup pulumi.StringOutput `pulumi:"portalMessageOverrideGroup"`
-	// Individual message overrides. The structure of `portalMessageOverrides` block is documented below.
-	PortalMessageOverrides SwitchControllerVlanPortalMessageOverridesPtrOutput `pulumi:"portalMessageOverrides"`
-	// Authentication radius server.
-	RadiusServer pulumi.StringOutput `pulumi:"radiusServer"`
-	// Security. Valid values: `open`, `captive-portal`, `8021x`.
-	Security pulumi.StringOutput `pulumi:"security"`
-	// Selected user group. The structure of `selectedUsergroups` block is documented below.
-	SelectedUsergroups SwitchControllerVlanSelectedUsergroupArrayOutput `pulumi:"selectedUsergroups"`
-	// Authentication usergroup.
-	Usergroup pulumi.StringOutput `pulumi:"usergroup"`
-	// Virtual domain,
-	Vdom pulumi.StringOutput `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// VLAN ID.
-	Vlanid pulumi.IntOutput `pulumi:"vlanid"`
+	Auth                       pulumi.StringOutput                              `pulumi:"auth"`
+	Color                      pulumi.IntOutput                                 `pulumi:"color"`
+	Comments                   pulumi.StringOutput                              `pulumi:"comments"`
+	DynamicSortSubtable        pulumi.StringPtrOutput                           `pulumi:"dynamicSortSubtable"`
+	Name                       pulumi.StringOutput                              `pulumi:"name"`
+	PortalMessageOverrideGroup pulumi.StringOutput                              `pulumi:"portalMessageOverrideGroup"`
+	PortalMessageOverrides     SwitchControllerVlanPortalMessageOverridesOutput `pulumi:"portalMessageOverrides"`
+	RadiusServer               pulumi.StringOutput                              `pulumi:"radiusServer"`
+	Security                   pulumi.StringOutput                              `pulumi:"security"`
+	SelectedUsergroups         SwitchControllerVlanSelectedUsergroupArrayOutput `pulumi:"selectedUsergroups"`
+	Usergroup                  pulumi.StringOutput                              `pulumi:"usergroup"`
+	Vdom                       pulumi.StringOutput                              `pulumi:"vdom"`
+	Vdomparam                  pulumi.StringPtrOutput                           `pulumi:"vdomparam"`
+	Vlanid                     pulumi.IntOutput                                 `pulumi:"vlanid"`
 }
 
 // NewSwitchControllerVlan registers a new resource with the given unique name, arguments, and options.
@@ -90,65 +59,37 @@ func GetSwitchControllerVlan(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerVlan resources.
 type switchControllerVlanState struct {
-	// Authentication. Valid values: `radius`, `usergroup`.
-	Auth *string `pulumi:"auth"`
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// User group name.
-	Name *string `pulumi:"name"`
-	// Specify captive portal replacement message override group.
-	PortalMessageOverrideGroup *string `pulumi:"portalMessageOverrideGroup"`
-	// Individual message overrides. The structure of `portalMessageOverrides` block is documented below.
-	PortalMessageOverrides *SwitchControllerVlanPortalMessageOverrides `pulumi:"portalMessageOverrides"`
-	// Authentication radius server.
-	RadiusServer *string `pulumi:"radiusServer"`
-	// Security. Valid values: `open`, `captive-portal`, `8021x`.
-	Security *string `pulumi:"security"`
-	// Selected user group. The structure of `selectedUsergroups` block is documented below.
-	SelectedUsergroups []SwitchControllerVlanSelectedUsergroup `pulumi:"selectedUsergroups"`
-	// Authentication usergroup.
-	Usergroup *string `pulumi:"usergroup"`
-	// Virtual domain,
-	Vdom *string `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// VLAN ID.
-	Vlanid *int `pulumi:"vlanid"`
+	Auth                       *string                                     `pulumi:"auth"`
+	Color                      *int                                        `pulumi:"color"`
+	Comments                   *string                                     `pulumi:"comments"`
+	DynamicSortSubtable        *string                                     `pulumi:"dynamicSortSubtable"`
+	Name                       *string                                     `pulumi:"name"`
+	PortalMessageOverrideGroup *string                                     `pulumi:"portalMessageOverrideGroup"`
+	PortalMessageOverrides     *SwitchControllerVlanPortalMessageOverrides `pulumi:"portalMessageOverrides"`
+	RadiusServer               *string                                     `pulumi:"radiusServer"`
+	Security                   *string                                     `pulumi:"security"`
+	SelectedUsergroups         []SwitchControllerVlanSelectedUsergroup     `pulumi:"selectedUsergroups"`
+	Usergroup                  *string                                     `pulumi:"usergroup"`
+	Vdom                       *string                                     `pulumi:"vdom"`
+	Vdomparam                  *string                                     `pulumi:"vdomparam"`
+	Vlanid                     *int                                        `pulumi:"vlanid"`
 }
 
 type SwitchControllerVlanState struct {
-	// Authentication. Valid values: `radius`, `usergroup`.
-	Auth pulumi.StringPtrInput
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// User group name.
-	Name pulumi.StringPtrInput
-	// Specify captive portal replacement message override group.
+	Auth                       pulumi.StringPtrInput
+	Color                      pulumi.IntPtrInput
+	Comments                   pulumi.StringPtrInput
+	DynamicSortSubtable        pulumi.StringPtrInput
+	Name                       pulumi.StringPtrInput
 	PortalMessageOverrideGroup pulumi.StringPtrInput
-	// Individual message overrides. The structure of `portalMessageOverrides` block is documented below.
-	PortalMessageOverrides SwitchControllerVlanPortalMessageOverridesPtrInput
-	// Authentication radius server.
-	RadiusServer pulumi.StringPtrInput
-	// Security. Valid values: `open`, `captive-portal`, `8021x`.
-	Security pulumi.StringPtrInput
-	// Selected user group. The structure of `selectedUsergroups` block is documented below.
-	SelectedUsergroups SwitchControllerVlanSelectedUsergroupArrayInput
-	// Authentication usergroup.
-	Usergroup pulumi.StringPtrInput
-	// Virtual domain,
-	Vdom pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// VLAN ID.
-	Vlanid pulumi.IntPtrInput
+	PortalMessageOverrides     SwitchControllerVlanPortalMessageOverridesPtrInput
+	RadiusServer               pulumi.StringPtrInput
+	Security                   pulumi.StringPtrInput
+	SelectedUsergroups         SwitchControllerVlanSelectedUsergroupArrayInput
+	Usergroup                  pulumi.StringPtrInput
+	Vdom                       pulumi.StringPtrInput
+	Vdomparam                  pulumi.StringPtrInput
+	Vlanid                     pulumi.IntPtrInput
 }
 
 func (SwitchControllerVlanState) ElementType() reflect.Type {
@@ -156,66 +97,38 @@ func (SwitchControllerVlanState) ElementType() reflect.Type {
 }
 
 type switchControllerVlanArgs struct {
-	// Authentication. Valid values: `radius`, `usergroup`.
-	Auth *string `pulumi:"auth"`
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// User group name.
-	Name *string `pulumi:"name"`
-	// Specify captive portal replacement message override group.
-	PortalMessageOverrideGroup *string `pulumi:"portalMessageOverrideGroup"`
-	// Individual message overrides. The structure of `portalMessageOverrides` block is documented below.
-	PortalMessageOverrides *SwitchControllerVlanPortalMessageOverrides `pulumi:"portalMessageOverrides"`
-	// Authentication radius server.
-	RadiusServer *string `pulumi:"radiusServer"`
-	// Security. Valid values: `open`, `captive-portal`, `8021x`.
-	Security *string `pulumi:"security"`
-	// Selected user group. The structure of `selectedUsergroups` block is documented below.
-	SelectedUsergroups []SwitchControllerVlanSelectedUsergroup `pulumi:"selectedUsergroups"`
-	// Authentication usergroup.
-	Usergroup *string `pulumi:"usergroup"`
-	// Virtual domain,
-	Vdom *string `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// VLAN ID.
-	Vlanid *int `pulumi:"vlanid"`
+	Auth                       *string                                     `pulumi:"auth"`
+	Color                      *int                                        `pulumi:"color"`
+	Comments                   *string                                     `pulumi:"comments"`
+	DynamicSortSubtable        *string                                     `pulumi:"dynamicSortSubtable"`
+	Name                       *string                                     `pulumi:"name"`
+	PortalMessageOverrideGroup *string                                     `pulumi:"portalMessageOverrideGroup"`
+	PortalMessageOverrides     *SwitchControllerVlanPortalMessageOverrides `pulumi:"portalMessageOverrides"`
+	RadiusServer               *string                                     `pulumi:"radiusServer"`
+	Security                   *string                                     `pulumi:"security"`
+	SelectedUsergroups         []SwitchControllerVlanSelectedUsergroup     `pulumi:"selectedUsergroups"`
+	Usergroup                  *string                                     `pulumi:"usergroup"`
+	Vdom                       *string                                     `pulumi:"vdom"`
+	Vdomparam                  *string                                     `pulumi:"vdomparam"`
+	Vlanid                     *int                                        `pulumi:"vlanid"`
 }
 
 // The set of arguments for constructing a SwitchControllerVlan resource.
 type SwitchControllerVlanArgs struct {
-	// Authentication. Valid values: `radius`, `usergroup`.
-	Auth pulumi.StringPtrInput
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// User group name.
-	Name pulumi.StringPtrInput
-	// Specify captive portal replacement message override group.
+	Auth                       pulumi.StringPtrInput
+	Color                      pulumi.IntPtrInput
+	Comments                   pulumi.StringPtrInput
+	DynamicSortSubtable        pulumi.StringPtrInput
+	Name                       pulumi.StringPtrInput
 	PortalMessageOverrideGroup pulumi.StringPtrInput
-	// Individual message overrides. The structure of `portalMessageOverrides` block is documented below.
-	PortalMessageOverrides SwitchControllerVlanPortalMessageOverridesPtrInput
-	// Authentication radius server.
-	RadiusServer pulumi.StringPtrInput
-	// Security. Valid values: `open`, `captive-portal`, `8021x`.
-	Security pulumi.StringPtrInput
-	// Selected user group. The structure of `selectedUsergroups` block is documented below.
-	SelectedUsergroups SwitchControllerVlanSelectedUsergroupArrayInput
-	// Authentication usergroup.
-	Usergroup pulumi.StringPtrInput
-	// Virtual domain,
-	Vdom pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// VLAN ID.
-	Vlanid pulumi.IntPtrInput
+	PortalMessageOverrides     SwitchControllerVlanPortalMessageOverridesPtrInput
+	RadiusServer               pulumi.StringPtrInput
+	Security                   pulumi.StringPtrInput
+	SelectedUsergroups         SwitchControllerVlanSelectedUsergroupArrayInput
+	Usergroup                  pulumi.StringPtrInput
+	Vdom                       pulumi.StringPtrInput
+	Vdomparam                  pulumi.StringPtrInput
+	Vlanid                     pulumi.IntPtrInput
 }
 
 func (SwitchControllerVlanArgs) ElementType() reflect.Type {
@@ -244,7 +157,7 @@ func (i *SwitchControllerVlan) ToSwitchControllerVlanOutputWithContext(ctx conte
 // SwitchControllerVlanArrayInput is an input type that accepts SwitchControllerVlanArray and SwitchControllerVlanArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerVlanArrayInput` via:
 //
-//          SwitchControllerVlanArray{ SwitchControllerVlanArgs{...} }
+//	SwitchControllerVlanArray{ SwitchControllerVlanArgs{...} }
 type SwitchControllerVlanArrayInput interface {
 	pulumi.Input
 
@@ -269,7 +182,7 @@ func (i SwitchControllerVlanArray) ToSwitchControllerVlanArrayOutputWithContext(
 // SwitchControllerVlanMapInput is an input type that accepts SwitchControllerVlanMap and SwitchControllerVlanMapOutput values.
 // You can construct a concrete instance of `SwitchControllerVlanMapInput` via:
 //
-//          SwitchControllerVlanMap{ "key": SwitchControllerVlanArgs{...} }
+//	SwitchControllerVlanMap{ "key": SwitchControllerVlanArgs{...} }
 type SwitchControllerVlanMapInput interface {
 	pulumi.Input
 
@@ -303,6 +216,66 @@ func (o SwitchControllerVlanOutput) ToSwitchControllerVlanOutput() SwitchControl
 
 func (o SwitchControllerVlanOutput) ToSwitchControllerVlanOutputWithContext(ctx context.Context) SwitchControllerVlanOutput {
 	return o
+}
+
+func (o SwitchControllerVlanOutput) Auth() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVlan) pulumi.StringOutput { return v.Auth }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVlanOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerVlan) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerVlanOutput) Comments() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVlan) pulumi.StringOutput { return v.Comments }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVlanOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerVlan) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerVlanOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVlan) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVlanOutput) PortalMessageOverrideGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVlan) pulumi.StringOutput { return v.PortalMessageOverrideGroup }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVlanOutput) PortalMessageOverrides() SwitchControllerVlanPortalMessageOverridesOutput {
+	return o.ApplyT(func(v *SwitchControllerVlan) SwitchControllerVlanPortalMessageOverridesOutput {
+		return v.PortalMessageOverrides
+	}).(SwitchControllerVlanPortalMessageOverridesOutput)
+}
+
+func (o SwitchControllerVlanOutput) RadiusServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVlan) pulumi.StringOutput { return v.RadiusServer }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVlanOutput) Security() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVlan) pulumi.StringOutput { return v.Security }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVlanOutput) SelectedUsergroups() SwitchControllerVlanSelectedUsergroupArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerVlan) SwitchControllerVlanSelectedUsergroupArrayOutput {
+		return v.SelectedUsergroups
+	}).(SwitchControllerVlanSelectedUsergroupArrayOutput)
+}
+
+func (o SwitchControllerVlanOutput) Usergroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVlan) pulumi.StringOutput { return v.Usergroup }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVlanOutput) Vdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVlan) pulumi.StringOutput { return v.Vdom }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVlanOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerVlan) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerVlanOutput) Vlanid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerVlan) pulumi.IntOutput { return v.Vlanid }).(pulumi.IntOutput)
 }
 
 type SwitchControllerVlanArrayOutput struct{ *pulumi.OutputState }

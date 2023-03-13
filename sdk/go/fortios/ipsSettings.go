@@ -10,62 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPS VDOM parameter.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewIpsSettings(ctx, "trname", &fortios.IpsSettingsArgs{
-// 			IpsPacketQuota:      pulumi.Int(0),
-// 			PacketLogHistory:    pulumi.Int(1),
-// 			PacketLogMemory:     pulumi.Int(256),
-// 			PacketLogPostAttack: pulumi.Int(0),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Ips Settings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/ipsSettings:IpsSettings labelname IpsSettings
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/ipsSettings:IpsSettings labelname IpsSettings
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type IpsSettings struct {
 	pulumi.CustomResourceState
 
-	// Maximum amount of disk space in MB for logged packets when logging to disk. Range depends on disk size.
-	IpsPacketQuota pulumi.IntOutput `pulumi:"ipsPacketQuota"`
-	// Number of packets to capture before and including the one in which the IPS signature is detected (1 - 255).
-	PacketLogHistory pulumi.IntOutput `pulumi:"packetLogHistory"`
-	// Maximum memory can be used by packet log (64 - 8192 kB).
-	PacketLogMemory pulumi.IntOutput `pulumi:"packetLogMemory"`
-	// Number of packets to log after the IPS signature is detected (0 - 255).
-	PacketLogPostAttack pulumi.IntOutput `pulumi:"packetLogPostAttack"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	IpsPacketQuota      pulumi.IntOutput       `pulumi:"ipsPacketQuota"`
+	PacketLogHistory    pulumi.IntOutput       `pulumi:"packetLogHistory"`
+	PacketLogMemory     pulumi.IntOutput       `pulumi:"packetLogMemory"`
+	PacketLogPostAttack pulumi.IntOutput       `pulumi:"packetLogPostAttack"`
+	Vdomparam           pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewIpsSettings registers a new resource with the given unique name, arguments, and options.
@@ -98,29 +50,19 @@ func GetIpsSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IpsSettings resources.
 type ipsSettingsState struct {
-	// Maximum amount of disk space in MB for logged packets when logging to disk. Range depends on disk size.
-	IpsPacketQuota *int `pulumi:"ipsPacketQuota"`
-	// Number of packets to capture before and including the one in which the IPS signature is detected (1 - 255).
-	PacketLogHistory *int `pulumi:"packetLogHistory"`
-	// Maximum memory can be used by packet log (64 - 8192 kB).
-	PacketLogMemory *int `pulumi:"packetLogMemory"`
-	// Number of packets to log after the IPS signature is detected (0 - 255).
-	PacketLogPostAttack *int `pulumi:"packetLogPostAttack"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	IpsPacketQuota      *int    `pulumi:"ipsPacketQuota"`
+	PacketLogHistory    *int    `pulumi:"packetLogHistory"`
+	PacketLogMemory     *int    `pulumi:"packetLogMemory"`
+	PacketLogPostAttack *int    `pulumi:"packetLogPostAttack"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 type IpsSettingsState struct {
-	// Maximum amount of disk space in MB for logged packets when logging to disk. Range depends on disk size.
-	IpsPacketQuota pulumi.IntPtrInput
-	// Number of packets to capture before and including the one in which the IPS signature is detected (1 - 255).
-	PacketLogHistory pulumi.IntPtrInput
-	// Maximum memory can be used by packet log (64 - 8192 kB).
-	PacketLogMemory pulumi.IntPtrInput
-	// Number of packets to log after the IPS signature is detected (0 - 255).
+	IpsPacketQuota      pulumi.IntPtrInput
+	PacketLogHistory    pulumi.IntPtrInput
+	PacketLogMemory     pulumi.IntPtrInput
 	PacketLogPostAttack pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (IpsSettingsState) ElementType() reflect.Type {
@@ -128,30 +70,20 @@ func (IpsSettingsState) ElementType() reflect.Type {
 }
 
 type ipsSettingsArgs struct {
-	// Maximum amount of disk space in MB for logged packets when logging to disk. Range depends on disk size.
-	IpsPacketQuota *int `pulumi:"ipsPacketQuota"`
-	// Number of packets to capture before and including the one in which the IPS signature is detected (1 - 255).
-	PacketLogHistory *int `pulumi:"packetLogHistory"`
-	// Maximum memory can be used by packet log (64 - 8192 kB).
-	PacketLogMemory *int `pulumi:"packetLogMemory"`
-	// Number of packets to log after the IPS signature is detected (0 - 255).
-	PacketLogPostAttack *int `pulumi:"packetLogPostAttack"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	IpsPacketQuota      *int    `pulumi:"ipsPacketQuota"`
+	PacketLogHistory    *int    `pulumi:"packetLogHistory"`
+	PacketLogMemory     *int    `pulumi:"packetLogMemory"`
+	PacketLogPostAttack *int    `pulumi:"packetLogPostAttack"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a IpsSettings resource.
 type IpsSettingsArgs struct {
-	// Maximum amount of disk space in MB for logged packets when logging to disk. Range depends on disk size.
-	IpsPacketQuota pulumi.IntPtrInput
-	// Number of packets to capture before and including the one in which the IPS signature is detected (1 - 255).
-	PacketLogHistory pulumi.IntPtrInput
-	// Maximum memory can be used by packet log (64 - 8192 kB).
-	PacketLogMemory pulumi.IntPtrInput
-	// Number of packets to log after the IPS signature is detected (0 - 255).
+	IpsPacketQuota      pulumi.IntPtrInput
+	PacketLogHistory    pulumi.IntPtrInput
+	PacketLogMemory     pulumi.IntPtrInput
 	PacketLogPostAttack pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (IpsSettingsArgs) ElementType() reflect.Type {
@@ -180,7 +112,7 @@ func (i *IpsSettings) ToIpsSettingsOutputWithContext(ctx context.Context) IpsSet
 // IpsSettingsArrayInput is an input type that accepts IpsSettingsArray and IpsSettingsArrayOutput values.
 // You can construct a concrete instance of `IpsSettingsArrayInput` via:
 //
-//          IpsSettingsArray{ IpsSettingsArgs{...} }
+//	IpsSettingsArray{ IpsSettingsArgs{...} }
 type IpsSettingsArrayInput interface {
 	pulumi.Input
 
@@ -205,7 +137,7 @@ func (i IpsSettingsArray) ToIpsSettingsArrayOutputWithContext(ctx context.Contex
 // IpsSettingsMapInput is an input type that accepts IpsSettingsMap and IpsSettingsMapOutput values.
 // You can construct a concrete instance of `IpsSettingsMapInput` via:
 //
-//          IpsSettingsMap{ "key": IpsSettingsArgs{...} }
+//	IpsSettingsMap{ "key": IpsSettingsArgs{...} }
 type IpsSettingsMapInput interface {
 	pulumi.Input
 
@@ -239,6 +171,26 @@ func (o IpsSettingsOutput) ToIpsSettingsOutput() IpsSettingsOutput {
 
 func (o IpsSettingsOutput) ToIpsSettingsOutputWithContext(ctx context.Context) IpsSettingsOutput {
 	return o
+}
+
+func (o IpsSettingsOutput) IpsPacketQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsSettings) pulumi.IntOutput { return v.IpsPacketQuota }).(pulumi.IntOutput)
+}
+
+func (o IpsSettingsOutput) PacketLogHistory() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsSettings) pulumi.IntOutput { return v.PacketLogHistory }).(pulumi.IntOutput)
+}
+
+func (o IpsSettingsOutput) PacketLogMemory() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsSettings) pulumi.IntOutput { return v.PacketLogMemory }).(pulumi.IntOutput)
+}
+
+func (o IpsSettingsOutput) PacketLogPostAttack() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsSettings) pulumi.IntOutput { return v.PacketLogPostAttack }).(pulumi.IntOutput)
+}
+
+func (o IpsSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type IpsSettingsArrayOutput struct{ *pulumi.OutputState }

@@ -7,123 +7,24 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Extender controller configuration.
-//
-// > The resource applies to FortiOS Version >= 6.4.2. For FortiOS Version < 6.4.2, see `ExtenderControllerExtender`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewExtenderControllerExtender1(ctx, "trname", &fortios.ExtenderControllerExtender1Args{
-// 			Authorized: pulumi.String("disable"),
-// 			ControllerReport: &ExtenderControllerExtender1ControllerReportArgs{
-// 				Interval:        pulumi.Int(300),
-// 				SignalThreshold: pulumi.Int(10),
-// 				Status:          pulumi.String("disable"),
-// 			},
-// 			ExtName: pulumi.String("2932"),
-// 			Fosid:   pulumi.String("FX201E5919004031"),
-// 			Modem1: &ExtenderControllerExtender1Modem1Args{
-// 				AutoSwitch: &ExtenderControllerExtender1Modem1AutoSwitchArgs{
-// 					Dataplan:            pulumi.String("disable"),
-// 					Disconnect:          pulumi.String("disable"),
-// 					DisconnectPeriod:    pulumi.Int(600),
-// 					DisconnectThreshold: pulumi.Int(3),
-// 					Signal:              pulumi.String("disable"),
-// 					SwitchBack:          pulumi.String("timer"),
-// 					SwitchBackTime:      pulumi.String("00:01"),
-// 					SwitchBackTimer:     pulumi.Int(86400),
-// 				},
-// 				ConnStatus:    pulumi.Int(0),
-// 				DefaultSim:    pulumi.String("sim2"),
-// 				Gps:           pulumi.String("enable"),
-// 				RedundantIntf: pulumi.String("s1"),
-// 				RedundantMode: pulumi.String("enable"),
-// 				Sim1Pin:       pulumi.String("disable"),
-// 				Sim1PinCode:   pulumi.String("testpincode"),
-// 				Sim2Pin:       pulumi.String("disable"),
-// 			},
-// 			Modem2: &ExtenderControllerExtender1Modem2Args{
-// 				AutoSwitch: &ExtenderControllerExtender1Modem2AutoSwitchArgs{
-// 					Dataplan:            pulumi.String("disable"),
-// 					Disconnect:          pulumi.String("disable"),
-// 					DisconnectPeriod:    pulumi.Int(600),
-// 					DisconnectThreshold: pulumi.Int(3),
-// 					Signal:              pulumi.String("disable"),
-// 					SwitchBackTime:      pulumi.String("00:01"),
-// 					SwitchBackTimer:     pulumi.Int(86400),
-// 				},
-// 				ConnStatus:    pulumi.Int(0),
-// 				DefaultSim:    pulumi.String("sim1"),
-// 				Gps:           pulumi.String("enable"),
-// 				RedundantMode: pulumi.String("disable"),
-// 				Sim1Pin:       pulumi.String("disable"),
-// 				Sim2Pin:       pulumi.String("disable"),
-// 			},
-// 			Vdom: pulumi.Int(0),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// ExtenderController Extender1 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/extenderControllerExtender1:ExtenderControllerExtender1 labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/extenderControllerExtender1:ExtenderControllerExtender1 labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type ExtenderControllerExtender1 struct {
 	pulumi.CustomResourceState
 
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-	Authorized pulumi.StringOutput `pulumi:"authorized"`
-	// FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
-	ControllerReport ExtenderControllerExtender1ControllerReportPtrOutput `pulumi:"controllerReport"`
-	// Description.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// FortiExtender name.
-	ExtName pulumi.StringOutput `pulumi:"extName"`
-	// FortiExtender serial number.
-	Fosid pulumi.StringOutput `pulumi:"fosid"`
-	// FortiExtender login password.
-	LoginPassword pulumi.StringPtrOutput `pulumi:"loginPassword"`
-	// Configuration options for modem 1. The structure of `modem1` block is documented below.
-	Modem1 ExtenderControllerExtender1Modem1PtrOutput `pulumi:"modem1"`
-	// Configuration options for modem 2. The structure of `modem2` block is documented below.
-	Modem2 ExtenderControllerExtender1Modem2PtrOutput `pulumi:"modem2"`
-	// FortiExtender entry name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// VDOM
-	Vdom pulumi.IntOutput `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Authorized       pulumi.StringOutput                               `pulumi:"authorized"`
+	ControllerReport ExtenderControllerExtender1ControllerReportOutput `pulumi:"controllerReport"`
+	Description      pulumi.StringOutput                               `pulumi:"description"`
+	ExtName          pulumi.StringOutput                               `pulumi:"extName"`
+	Fosid            pulumi.StringOutput                               `pulumi:"fosid"`
+	LoginPassword    pulumi.StringPtrOutput                            `pulumi:"loginPassword"`
+	Modem1           ExtenderControllerExtender1Modem1Output           `pulumi:"modem1"`
+	Modem2           ExtenderControllerExtender1Modem2Output           `pulumi:"modem2"`
+	Name             pulumi.StringOutput                               `pulumi:"name"`
+	Vdom             pulumi.IntOutput                                  `pulumi:"vdom"`
+	Vdomparam        pulumi.StringPtrOutput                            `pulumi:"vdomparam"`
 }
 
 // NewExtenderControllerExtender1 registers a new resource with the given unique name, arguments, and options.
@@ -136,6 +37,13 @@ func NewExtenderControllerExtender1(ctx *pulumi.Context,
 	if args.Authorized == nil {
 		return nil, errors.New("invalid value for required argument 'Authorized'")
 	}
+	if args.LoginPassword != nil {
+		args.LoginPassword = pulumi.ToSecret(args.LoginPassword).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"loginPassword",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource ExtenderControllerExtender1
 	err := ctx.RegisterResource("fortios:index/extenderControllerExtender1:ExtenderControllerExtender1", name, args, &resource, opts...)
@@ -159,53 +67,31 @@ func GetExtenderControllerExtender1(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ExtenderControllerExtender1 resources.
 type extenderControllerExtender1State struct {
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-	Authorized *string `pulumi:"authorized"`
-	// FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
+	Authorized       *string                                      `pulumi:"authorized"`
 	ControllerReport *ExtenderControllerExtender1ControllerReport `pulumi:"controllerReport"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// FortiExtender name.
-	ExtName *string `pulumi:"extName"`
-	// FortiExtender serial number.
-	Fosid *string `pulumi:"fosid"`
-	// FortiExtender login password.
-	LoginPassword *string `pulumi:"loginPassword"`
-	// Configuration options for modem 1. The structure of `modem1` block is documented below.
-	Modem1 *ExtenderControllerExtender1Modem1 `pulumi:"modem1"`
-	// Configuration options for modem 2. The structure of `modem2` block is documented below.
-	Modem2 *ExtenderControllerExtender1Modem2 `pulumi:"modem2"`
-	// FortiExtender entry name.
-	Name *string `pulumi:"name"`
-	// VDOM
-	Vdom *int `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Description      *string                                      `pulumi:"description"`
+	ExtName          *string                                      `pulumi:"extName"`
+	Fosid            *string                                      `pulumi:"fosid"`
+	LoginPassword    *string                                      `pulumi:"loginPassword"`
+	Modem1           *ExtenderControllerExtender1Modem1           `pulumi:"modem1"`
+	Modem2           *ExtenderControllerExtender1Modem2           `pulumi:"modem2"`
+	Name             *string                                      `pulumi:"name"`
+	Vdom             *int                                         `pulumi:"vdom"`
+	Vdomparam        *string                                      `pulumi:"vdomparam"`
 }
 
 type ExtenderControllerExtender1State struct {
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-	Authorized pulumi.StringPtrInput
-	// FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
+	Authorized       pulumi.StringPtrInput
 	ControllerReport ExtenderControllerExtender1ControllerReportPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// FortiExtender name.
-	ExtName pulumi.StringPtrInput
-	// FortiExtender serial number.
-	Fosid pulumi.StringPtrInput
-	// FortiExtender login password.
-	LoginPassword pulumi.StringPtrInput
-	// Configuration options for modem 1. The structure of `modem1` block is documented below.
-	Modem1 ExtenderControllerExtender1Modem1PtrInput
-	// Configuration options for modem 2. The structure of `modem2` block is documented below.
-	Modem2 ExtenderControllerExtender1Modem2PtrInput
-	// FortiExtender entry name.
-	Name pulumi.StringPtrInput
-	// VDOM
-	Vdom pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Description      pulumi.StringPtrInput
+	ExtName          pulumi.StringPtrInput
+	Fosid            pulumi.StringPtrInput
+	LoginPassword    pulumi.StringPtrInput
+	Modem1           ExtenderControllerExtender1Modem1PtrInput
+	Modem2           ExtenderControllerExtender1Modem2PtrInput
+	Name             pulumi.StringPtrInput
+	Vdom             pulumi.IntPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (ExtenderControllerExtender1State) ElementType() reflect.Type {
@@ -213,54 +99,32 @@ func (ExtenderControllerExtender1State) ElementType() reflect.Type {
 }
 
 type extenderControllerExtender1Args struct {
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-	Authorized string `pulumi:"authorized"`
-	// FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
+	Authorized       string                                       `pulumi:"authorized"`
 	ControllerReport *ExtenderControllerExtender1ControllerReport `pulumi:"controllerReport"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// FortiExtender name.
-	ExtName *string `pulumi:"extName"`
-	// FortiExtender serial number.
-	Fosid *string `pulumi:"fosid"`
-	// FortiExtender login password.
-	LoginPassword *string `pulumi:"loginPassword"`
-	// Configuration options for modem 1. The structure of `modem1` block is documented below.
-	Modem1 *ExtenderControllerExtender1Modem1 `pulumi:"modem1"`
-	// Configuration options for modem 2. The structure of `modem2` block is documented below.
-	Modem2 *ExtenderControllerExtender1Modem2 `pulumi:"modem2"`
-	// FortiExtender entry name.
-	Name *string `pulumi:"name"`
-	// VDOM
-	Vdom *int `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Description      *string                                      `pulumi:"description"`
+	ExtName          *string                                      `pulumi:"extName"`
+	Fosid            *string                                      `pulumi:"fosid"`
+	LoginPassword    *string                                      `pulumi:"loginPassword"`
+	Modem1           *ExtenderControllerExtender1Modem1           `pulumi:"modem1"`
+	Modem2           *ExtenderControllerExtender1Modem2           `pulumi:"modem2"`
+	Name             *string                                      `pulumi:"name"`
+	Vdom             *int                                         `pulumi:"vdom"`
+	Vdomparam        *string                                      `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a ExtenderControllerExtender1 resource.
 type ExtenderControllerExtender1Args struct {
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-	Authorized pulumi.StringInput
-	// FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
+	Authorized       pulumi.StringInput
 	ControllerReport ExtenderControllerExtender1ControllerReportPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// FortiExtender name.
-	ExtName pulumi.StringPtrInput
-	// FortiExtender serial number.
-	Fosid pulumi.StringPtrInput
-	// FortiExtender login password.
-	LoginPassword pulumi.StringPtrInput
-	// Configuration options for modem 1. The structure of `modem1` block is documented below.
-	Modem1 ExtenderControllerExtender1Modem1PtrInput
-	// Configuration options for modem 2. The structure of `modem2` block is documented below.
-	Modem2 ExtenderControllerExtender1Modem2PtrInput
-	// FortiExtender entry name.
-	Name pulumi.StringPtrInput
-	// VDOM
-	Vdom pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Description      pulumi.StringPtrInput
+	ExtName          pulumi.StringPtrInput
+	Fosid            pulumi.StringPtrInput
+	LoginPassword    pulumi.StringPtrInput
+	Modem1           ExtenderControllerExtender1Modem1PtrInput
+	Modem2           ExtenderControllerExtender1Modem2PtrInput
+	Name             pulumi.StringPtrInput
+	Vdom             pulumi.IntPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (ExtenderControllerExtender1Args) ElementType() reflect.Type {
@@ -289,7 +153,7 @@ func (i *ExtenderControllerExtender1) ToExtenderControllerExtender1OutputWithCon
 // ExtenderControllerExtender1ArrayInput is an input type that accepts ExtenderControllerExtender1Array and ExtenderControllerExtender1ArrayOutput values.
 // You can construct a concrete instance of `ExtenderControllerExtender1ArrayInput` via:
 //
-//          ExtenderControllerExtender1Array{ ExtenderControllerExtender1Args{...} }
+//	ExtenderControllerExtender1Array{ ExtenderControllerExtender1Args{...} }
 type ExtenderControllerExtender1ArrayInput interface {
 	pulumi.Input
 
@@ -314,7 +178,7 @@ func (i ExtenderControllerExtender1Array) ToExtenderControllerExtender1ArrayOutp
 // ExtenderControllerExtender1MapInput is an input type that accepts ExtenderControllerExtender1Map and ExtenderControllerExtender1MapOutput values.
 // You can construct a concrete instance of `ExtenderControllerExtender1MapInput` via:
 //
-//          ExtenderControllerExtender1Map{ "key": ExtenderControllerExtender1Args{...} }
+//	ExtenderControllerExtender1Map{ "key": ExtenderControllerExtender1Args{...} }
 type ExtenderControllerExtender1MapInput interface {
 	pulumi.Input
 
@@ -348,6 +212,52 @@ func (o ExtenderControllerExtender1Output) ToExtenderControllerExtender1Output()
 
 func (o ExtenderControllerExtender1Output) ToExtenderControllerExtender1OutputWithContext(ctx context.Context) ExtenderControllerExtender1Output {
 	return o
+}
+
+func (o ExtenderControllerExtender1Output) Authorized() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender1) pulumi.StringOutput { return v.Authorized }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtender1Output) ControllerReport() ExtenderControllerExtender1ControllerReportOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender1) ExtenderControllerExtender1ControllerReportOutput {
+		return v.ControllerReport
+	}).(ExtenderControllerExtender1ControllerReportOutput)
+}
+
+func (o ExtenderControllerExtender1Output) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender1) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtender1Output) ExtName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender1) pulumi.StringOutput { return v.ExtName }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtender1Output) Fosid() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender1) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtender1Output) LoginPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender1) pulumi.StringPtrOutput { return v.LoginPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderControllerExtender1Output) Modem1() ExtenderControllerExtender1Modem1Output {
+	return o.ApplyT(func(v *ExtenderControllerExtender1) ExtenderControllerExtender1Modem1Output { return v.Modem1 }).(ExtenderControllerExtender1Modem1Output)
+}
+
+func (o ExtenderControllerExtender1Output) Modem2() ExtenderControllerExtender1Modem2Output {
+	return o.ApplyT(func(v *ExtenderControllerExtender1) ExtenderControllerExtender1Modem2Output { return v.Modem2 }).(ExtenderControllerExtender1Modem2Output)
+}
+
+func (o ExtenderControllerExtender1Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender1) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtender1Output) Vdom() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender1) pulumi.IntOutput { return v.Vdom }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerExtender1Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender1) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type ExtenderControllerExtender1ArrayOutput struct{ *pulumi.OutputState }

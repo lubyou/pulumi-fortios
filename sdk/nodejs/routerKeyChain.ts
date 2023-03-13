@@ -2,43 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure key-chain.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.RouterKeyChain("trname", {
- *     keys: [{
- *         acceptLifetime: "04:00:00 01 01 2008 04:00:00 01 01 2022",
- *         keyString: "ewiwn3i23232s212",
- *         sendLifetime: "04:00:00 01 01 2008 04:00:00 01 01 2022",
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * Router KeyChain can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerKeyChain:RouterKeyChain labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerKeyChain:RouterKeyChain labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterKeyChain extends pulumi.CustomResource {
     /**
      * Get an existing RouterKeyChain resource's state with the given name, ID, and optional extra
@@ -67,21 +34,9 @@ export class RouterKeyChain extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterKeyChain.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Configuration method to edit key settings. The structure of `key` block is documented below.
-     */
     public readonly keys!: pulumi.Output<outputs.RouterKeyChainKey[] | undefined>;
-    /**
-     * Key-chain name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -117,21 +72,9 @@ export class RouterKeyChain extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterKeyChain resources.
  */
 export interface RouterKeyChainState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Configuration method to edit key settings. The structure of `key` block is documented below.
-     */
     keys?: pulumi.Input<pulumi.Input<inputs.RouterKeyChainKey>[]>;
-    /**
-     * Key-chain name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -139,20 +82,8 @@ export interface RouterKeyChainState {
  * The set of arguments for constructing a RouterKeyChain resource.
  */
 export interface RouterKeyChainArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Configuration method to edit key settings. The structure of `key` block is documented below.
-     */
     keys?: pulumi.Input<pulumi.Input<inputs.RouterKeyChainKey>[]>;
-    /**
-     * Key-chain name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

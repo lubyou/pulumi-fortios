@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure custom application signatures.
- *
- * ## Import
- *
- * Application Custom can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/applicationCustom:ApplicationCustom labelname {{tag}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/applicationCustom:ApplicationCustom labelname {{tag}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class ApplicationCustom extends pulumi.CustomResource {
     /**
      * Get an existing ApplicationCustom resource's state with the given name, ID, and optional extra
@@ -51,49 +32,16 @@ export class ApplicationCustom extends pulumi.CustomResource {
         return obj['__pulumiType'] === ApplicationCustom.__pulumiType;
     }
 
-    /**
-     * Custom application signature behavior.
-     */
     public readonly behavior!: pulumi.Output<string>;
-    /**
-     * Custom application category ID (use ? to view available options).
-     */
     public readonly category!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string>;
-    /**
-     * Custom application category ID (use ? to view available options).
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Name of this custom application signature.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Custom application signature protocol.
-     */
     public readonly protocol!: pulumi.Output<string>;
-    /**
-     * The text that makes up the actual custom application signature.
-     */
     public readonly signature!: pulumi.Output<string>;
-    /**
-     * Signature tag.
-     */
     public readonly tag!: pulumi.Output<string>;
-    /**
-     * Custom application signature technology.
-     */
     public readonly technology!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Custom application signature vendor.
-     */
     public readonly vendor!: pulumi.Output<string>;
 
     /**
@@ -146,49 +94,16 @@ export class ApplicationCustom extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ApplicationCustom resources.
  */
 export interface ApplicationCustomState {
-    /**
-     * Custom application signature behavior.
-     */
     behavior?: pulumi.Input<string>;
-    /**
-     * Custom application category ID (use ? to view available options).
-     */
     category?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Custom application category ID (use ? to view available options).
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Name of this custom application signature.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Custom application signature protocol.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * The text that makes up the actual custom application signature.
-     */
     signature?: pulumi.Input<string>;
-    /**
-     * Signature tag.
-     */
     tag?: pulumi.Input<string>;
-    /**
-     * Custom application signature technology.
-     */
     technology?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Custom application signature vendor.
-     */
     vendor?: pulumi.Input<string>;
 }
 
@@ -196,48 +111,15 @@ export interface ApplicationCustomState {
  * The set of arguments for constructing a ApplicationCustom resource.
  */
 export interface ApplicationCustomArgs {
-    /**
-     * Custom application signature behavior.
-     */
     behavior?: pulumi.Input<string>;
-    /**
-     * Custom application category ID (use ? to view available options).
-     */
     category: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Custom application category ID (use ? to view available options).
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Name of this custom application signature.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Custom application signature protocol.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * The text that makes up the actual custom application signature.
-     */
     signature?: pulumi.Input<string>;
-    /**
-     * Signature tag.
-     */
     tag?: pulumi.Input<string>;
-    /**
-     * Custom application signature technology.
-     */
     technology?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Custom application signature vendor.
-     */
     vendor?: pulumi.Input<string>;
 }

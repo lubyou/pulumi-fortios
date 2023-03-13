@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure WAN optimization peers.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WanoptPeer("trname", {
- *     ip: "1.1.1.1",
- *     peerHostId: "1",
- * });
- * ```
- *
- * ## Import
- *
- * Wanopt Peer can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wanoptPeer:WanoptPeer labelname {{peer_host_id}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wanoptPeer:WanoptPeer labelname {{peer_host_id}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WanoptPeer extends pulumi.CustomResource {
     /**
      * Get an existing WanoptPeer resource's state with the given name, ID, and optional extra
@@ -63,17 +32,8 @@ export class WanoptPeer extends pulumi.CustomResource {
         return obj['__pulumiType'] === WanoptPeer.__pulumiType;
     }
 
-    /**
-     * Peer IP address.
-     */
     public readonly ip!: pulumi.Output<string>;
-    /**
-     * Peer host ID.
-     */
     public readonly peerHostId!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -107,17 +67,8 @@ export class WanoptPeer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WanoptPeer resources.
  */
 export interface WanoptPeerState {
-    /**
-     * Peer IP address.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Peer host ID.
-     */
     peerHostId?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -125,16 +76,7 @@ export interface WanoptPeerState {
  * The set of arguments for constructing a WanoptPeer resource.
  */
 export interface WanoptPeerArgs {
-    /**
-     * Peer IP address.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Peer host ID.
-     */
     peerHostId?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

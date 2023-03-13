@@ -10,72 +10,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure object tagging.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemObjectTagging(ctx, "trname", &fortios.SystemObjectTaggingArgs{
-// 			Address:   pulumi.String("disable"),
-// 			Category:  pulumi.String("s1"),
-// 			Color:     pulumi.Int(0),
-// 			Device:    pulumi.String("mandatory"),
-// 			Interface: pulumi.String("disable"),
-// 			Multiple:  pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System ObjectTagging can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemObjectTagging:SystemObjectTagging labelname {{category}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemObjectTagging:SystemObjectTagging labelname {{category}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemObjectTagging struct {
 	pulumi.CustomResourceState
 
-	// Address. Valid values: `disable`, `mandatory`, `optional`.
-	Address pulumi.StringOutput `pulumi:"address"`
-	// Tag Category.
-	Category pulumi.StringOutput `pulumi:"category"`
-	// Color of icon on the GUI.
-	Color pulumi.IntOutput `pulumi:"color"`
-	// Device. Valid values: `disable`, `mandatory`, `optional`.
-	Device pulumi.StringOutput `pulumi:"device"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Interface. Valid values: `disable`, `mandatory`, `optional`.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Allow multiple tag selection. Valid values: `enable`, `disable`.
-	Multiple pulumi.StringOutput `pulumi:"multiple"`
-	// Tags. The structure of `tags` block is documented below.
-	Tags SystemObjectTaggingTagArrayOutput `pulumi:"tags"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Address             pulumi.StringOutput               `pulumi:"address"`
+	Category            pulumi.StringOutput               `pulumi:"category"`
+	Color               pulumi.IntOutput                  `pulumi:"color"`
+	Device              pulumi.StringOutput               `pulumi:"device"`
+	DynamicSortSubtable pulumi.StringPtrOutput            `pulumi:"dynamicSortSubtable"`
+	Interface           pulumi.StringOutput               `pulumi:"interface"`
+	Multiple            pulumi.StringOutput               `pulumi:"multiple"`
+	Tags                SystemObjectTaggingTagArrayOutput `pulumi:"tags"`
+	Vdomparam           pulumi.StringPtrOutput            `pulumi:"vdomparam"`
 }
 
 // NewSystemObjectTagging registers a new resource with the given unique name, arguments, and options.
@@ -108,45 +54,27 @@ func GetSystemObjectTagging(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemObjectTagging resources.
 type systemObjectTaggingState struct {
-	// Address. Valid values: `disable`, `mandatory`, `optional`.
-	Address *string `pulumi:"address"`
-	// Tag Category.
-	Category *string `pulumi:"category"`
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Device. Valid values: `disable`, `mandatory`, `optional`.
-	Device *string `pulumi:"device"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Interface. Valid values: `disable`, `mandatory`, `optional`.
-	Interface *string `pulumi:"interface"`
-	// Allow multiple tag selection. Valid values: `enable`, `disable`.
-	Multiple *string `pulumi:"multiple"`
-	// Tags. The structure of `tags` block is documented below.
-	Tags []SystemObjectTaggingTag `pulumi:"tags"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Address             *string                  `pulumi:"address"`
+	Category            *string                  `pulumi:"category"`
+	Color               *int                     `pulumi:"color"`
+	Device              *string                  `pulumi:"device"`
+	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
+	Interface           *string                  `pulumi:"interface"`
+	Multiple            *string                  `pulumi:"multiple"`
+	Tags                []SystemObjectTaggingTag `pulumi:"tags"`
+	Vdomparam           *string                  `pulumi:"vdomparam"`
 }
 
 type SystemObjectTaggingState struct {
-	// Address. Valid values: `disable`, `mandatory`, `optional`.
-	Address pulumi.StringPtrInput
-	// Tag Category.
-	Category pulumi.StringPtrInput
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Device. Valid values: `disable`, `mandatory`, `optional`.
-	Device pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Address             pulumi.StringPtrInput
+	Category            pulumi.StringPtrInput
+	Color               pulumi.IntPtrInput
+	Device              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Interface. Valid values: `disable`, `mandatory`, `optional`.
-	Interface pulumi.StringPtrInput
-	// Allow multiple tag selection. Valid values: `enable`, `disable`.
-	Multiple pulumi.StringPtrInput
-	// Tags. The structure of `tags` block is documented below.
-	Tags SystemObjectTaggingTagArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interface           pulumi.StringPtrInput
+	Multiple            pulumi.StringPtrInput
+	Tags                SystemObjectTaggingTagArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemObjectTaggingState) ElementType() reflect.Type {
@@ -154,46 +82,28 @@ func (SystemObjectTaggingState) ElementType() reflect.Type {
 }
 
 type systemObjectTaggingArgs struct {
-	// Address. Valid values: `disable`, `mandatory`, `optional`.
-	Address *string `pulumi:"address"`
-	// Tag Category.
-	Category *string `pulumi:"category"`
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Device. Valid values: `disable`, `mandatory`, `optional`.
-	Device *string `pulumi:"device"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Interface. Valid values: `disable`, `mandatory`, `optional`.
-	Interface *string `pulumi:"interface"`
-	// Allow multiple tag selection. Valid values: `enable`, `disable`.
-	Multiple *string `pulumi:"multiple"`
-	// Tags. The structure of `tags` block is documented below.
-	Tags []SystemObjectTaggingTag `pulumi:"tags"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Address             *string                  `pulumi:"address"`
+	Category            *string                  `pulumi:"category"`
+	Color               *int                     `pulumi:"color"`
+	Device              *string                  `pulumi:"device"`
+	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
+	Interface           *string                  `pulumi:"interface"`
+	Multiple            *string                  `pulumi:"multiple"`
+	Tags                []SystemObjectTaggingTag `pulumi:"tags"`
+	Vdomparam           *string                  `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemObjectTagging resource.
 type SystemObjectTaggingArgs struct {
-	// Address. Valid values: `disable`, `mandatory`, `optional`.
-	Address pulumi.StringPtrInput
-	// Tag Category.
-	Category pulumi.StringPtrInput
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Device. Valid values: `disable`, `mandatory`, `optional`.
-	Device pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Address             pulumi.StringPtrInput
+	Category            pulumi.StringPtrInput
+	Color               pulumi.IntPtrInput
+	Device              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Interface. Valid values: `disable`, `mandatory`, `optional`.
-	Interface pulumi.StringPtrInput
-	// Allow multiple tag selection. Valid values: `enable`, `disable`.
-	Multiple pulumi.StringPtrInput
-	// Tags. The structure of `tags` block is documented below.
-	Tags SystemObjectTaggingTagArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interface           pulumi.StringPtrInput
+	Multiple            pulumi.StringPtrInput
+	Tags                SystemObjectTaggingTagArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemObjectTaggingArgs) ElementType() reflect.Type {
@@ -222,7 +132,7 @@ func (i *SystemObjectTagging) ToSystemObjectTaggingOutputWithContext(ctx context
 // SystemObjectTaggingArrayInput is an input type that accepts SystemObjectTaggingArray and SystemObjectTaggingArrayOutput values.
 // You can construct a concrete instance of `SystemObjectTaggingArrayInput` via:
 //
-//          SystemObjectTaggingArray{ SystemObjectTaggingArgs{...} }
+//	SystemObjectTaggingArray{ SystemObjectTaggingArgs{...} }
 type SystemObjectTaggingArrayInput interface {
 	pulumi.Input
 
@@ -247,7 +157,7 @@ func (i SystemObjectTaggingArray) ToSystemObjectTaggingArrayOutputWithContext(ct
 // SystemObjectTaggingMapInput is an input type that accepts SystemObjectTaggingMap and SystemObjectTaggingMapOutput values.
 // You can construct a concrete instance of `SystemObjectTaggingMapInput` via:
 //
-//          SystemObjectTaggingMap{ "key": SystemObjectTaggingArgs{...} }
+//	SystemObjectTaggingMap{ "key": SystemObjectTaggingArgs{...} }
 type SystemObjectTaggingMapInput interface {
 	pulumi.Input
 
@@ -281,6 +191,42 @@ func (o SystemObjectTaggingOutput) ToSystemObjectTaggingOutput() SystemObjectTag
 
 func (o SystemObjectTaggingOutput) ToSystemObjectTaggingOutputWithContext(ctx context.Context) SystemObjectTaggingOutput {
 	return o
+}
+
+func (o SystemObjectTaggingOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemObjectTagging) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
+}
+
+func (o SystemObjectTaggingOutput) Category() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemObjectTagging) pulumi.StringOutput { return v.Category }).(pulumi.StringOutput)
+}
+
+func (o SystemObjectTaggingOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemObjectTagging) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o SystemObjectTaggingOutput) Device() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemObjectTagging) pulumi.StringOutput { return v.Device }).(pulumi.StringOutput)
+}
+
+func (o SystemObjectTaggingOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemObjectTagging) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemObjectTaggingOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemObjectTagging) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemObjectTaggingOutput) Multiple() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemObjectTagging) pulumi.StringOutput { return v.Multiple }).(pulumi.StringOutput)
+}
+
+func (o SystemObjectTaggingOutput) Tags() SystemObjectTaggingTagArrayOutput {
+	return o.ApplyT(func(v *SystemObjectTagging) SystemObjectTaggingTagArrayOutput { return v.Tags }).(SystemObjectTaggingTagArrayOutput)
+}
+
+func (o SystemObjectTaggingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemObjectTagging) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemObjectTaggingArrayOutput struct{ *pulumi.OutputState }

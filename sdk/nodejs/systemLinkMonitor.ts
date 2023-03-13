@@ -2,60 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure Link Health Monitor.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemLinkMonitor("trname", {
- *     addrMode: "ipv4",
- *     failtime: 5,
- *     gatewayIp: "2.2.2.2",
- *     gatewayIp6: "::",
- *     haPriority: 1,
- *     httpAgent: "Chrome/ Safari/",
- *     httpGet: "/",
- *     interval: 1,
- *     packetSize: 64,
- *     port: 80,
- *     protocol: "ping",
- *     recoverytime: 5,
- *     securityMode: "none",
- *     servers: [{
- *         address: "3.3.3.3",
- *     }],
- *     sourceIp: "0.0.0.0",
- *     sourceIp6: "::",
- *     srcintf: "port4",
- *     status: "enable",
- *     updateCascadeInterface: "enable",
- *     updateStaticRoute: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * System LinkMonitor can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemLinkMonitor:SystemLinkMonitor labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemLinkMonitor:SystemLinkMonitor labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemLinkMonitor extends pulumi.CustomResource {
     /**
      * Get an existing SystemLinkMonitor resource's state with the given name, ID, and optional extra
@@ -84,145 +34,41 @@ export class SystemLinkMonitor extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemLinkMonitor.__pulumiType;
     }
 
-    /**
-     * Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-     */
     public readonly addrMode!: pulumi.Output<string>;
-    /**
-     * Traffic class ID.
-     */
     public readonly classId!: pulumi.Output<number>;
-    /**
-     * Differentiated services code point (DSCP) in the IP header of the probe packet.
-     */
     public readonly diffservcode!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Threshold weight to trigger link failure alert.
-     */
     public readonly failWeight!: pulumi.Output<number>;
-    /**
-     * Number of retry attempts before the server is considered down (1 - 10, default = 5)
-     */
     public readonly failtime!: pulumi.Output<number>;
-    /**
-     * Gateway IP address used to probe the server.
-     */
     public readonly gatewayIp!: pulumi.Output<string>;
-    /**
-     * Gateway IPv6 address used to probe the server.
-     */
     public readonly gatewayIp6!: pulumi.Output<string>;
-    /**
-     * HA election priority (1 - 50).
-     */
     public readonly haPriority!: pulumi.Output<number>;
-    /**
-     * String in the http-agent field in the HTTP header.
-     */
     public readonly httpAgent!: pulumi.Output<string>;
-    /**
-     * If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string.
-     */
     public readonly httpGet!: pulumi.Output<string>;
-    /**
-     * String that you expect to see in the HTTP-GET requests of the traffic to be monitored.
-     */
     public readonly httpMatch!: pulumi.Output<string>;
-    /**
-     * Detection interval (1 - 3600 sec, default = 5).
-     */
     public readonly interval!: pulumi.Output<number>;
-    /**
-     * Link monitor name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Packet size of a twamp test session,
-     */
     public readonly packetSize!: pulumi.Output<number>;
-    /**
-     * Twamp controller password in authentication mode
-     */
     public readonly password!: pulumi.Output<string | undefined>;
-    /**
-     * Port number of the traffic to be used to monitor the server.
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
-     */
     public readonly probeCount!: pulumi.Output<number>;
-    /**
-     * Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
-     */
     public readonly probeTimeout!: pulumi.Output<number>;
-    /**
-     * Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
-     */
     public readonly protocol!: pulumi.Output<string>;
-    /**
-     * Number of successful responses received before server is considered recovered (1 - 10, default = 5).
-     */
     public readonly recoverytime!: pulumi.Output<number>;
-    /**
-     * Subnet to monitor. The structure of `route` block is documented below.
-     */
     public readonly routes!: pulumi.Output<outputs.SystemLinkMonitorRoute[] | undefined>;
-    /**
-     * Twamp controller security mode. Valid values: `none`, `authentication`.
-     */
     public readonly securityMode!: pulumi.Output<string>;
-    /**
-     * Mode of server configuration. Valid values: `default`, `individual`.
-     */
     public readonly serverConfig!: pulumi.Output<string>;
-    /**
-     * Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
-     */
     public readonly serverLists!: pulumi.Output<outputs.SystemLinkMonitorServerList[] | undefined>;
-    /**
-     * IP address of the server(s) to be monitored. The structure of `server` block is documented below.
-     */
+    public readonly serverType!: pulumi.Output<string>;
     public readonly servers!: pulumi.Output<outputs.SystemLinkMonitorServer[]>;
-    /**
-     * Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
-     */
     public readonly serviceDetection!: pulumi.Output<string>;
-    /**
-     * Source IP address used in packet to the server.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Source IPv6 address used in packet to the server.
-     */
     public readonly sourceIp6!: pulumi.Output<string>;
-    /**
-     * Interface that receives the traffic to be monitored.
-     */
     public readonly srcintf!: pulumi.Output<string>;
-    /**
-     * Enable/disable this link monitor. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Enable/disable update cascade interface. Valid values: `enable`, `disable`.
-     */
     public readonly updateCascadeInterface!: pulumi.Output<string>;
-    /**
-     * Enable/disable updating the policy route. Valid values: `enable`, `disable`.
-     */
     public readonly updatePolicyRoute!: pulumi.Output<string>;
-    /**
-     * Enable/disable updating the static route. Valid values: `enable`, `disable`.
-     */
     public readonly updateStaticRoute!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -263,6 +109,7 @@ export class SystemLinkMonitor extends pulumi.CustomResource {
             resourceInputs["securityMode"] = state ? state.securityMode : undefined;
             resourceInputs["serverConfig"] = state ? state.serverConfig : undefined;
             resourceInputs["serverLists"] = state ? state.serverLists : undefined;
+            resourceInputs["serverType"] = state ? state.serverType : undefined;
             resourceInputs["servers"] = state ? state.servers : undefined;
             resourceInputs["serviceDetection"] = state ? state.serviceDetection : undefined;
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
@@ -293,7 +140,7 @@ export class SystemLinkMonitor extends pulumi.CustomResource {
             resourceInputs["interval"] = args ? args.interval : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["packetSize"] = args ? args.packetSize : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
             resourceInputs["probeCount"] = args ? args.probeCount : undefined;
             resourceInputs["probeTimeout"] = args ? args.probeTimeout : undefined;
@@ -303,6 +150,7 @@ export class SystemLinkMonitor extends pulumi.CustomResource {
             resourceInputs["securityMode"] = args ? args.securityMode : undefined;
             resourceInputs["serverConfig"] = args ? args.serverConfig : undefined;
             resourceInputs["serverLists"] = args ? args.serverLists : undefined;
+            resourceInputs["serverType"] = args ? args.serverType : undefined;
             resourceInputs["servers"] = args ? args.servers : undefined;
             resourceInputs["serviceDetection"] = args ? args.serviceDetection : undefined;
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
@@ -315,6 +163,8 @@ export class SystemLinkMonitor extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemLinkMonitor.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -323,145 +173,41 @@ export class SystemLinkMonitor extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemLinkMonitor resources.
  */
 export interface SystemLinkMonitorState {
-    /**
-     * Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-     */
     addrMode?: pulumi.Input<string>;
-    /**
-     * Traffic class ID.
-     */
     classId?: pulumi.Input<number>;
-    /**
-     * Differentiated services code point (DSCP) in the IP header of the probe packet.
-     */
     diffservcode?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Threshold weight to trigger link failure alert.
-     */
     failWeight?: pulumi.Input<number>;
-    /**
-     * Number of retry attempts before the server is considered down (1 - 10, default = 5)
-     */
     failtime?: pulumi.Input<number>;
-    /**
-     * Gateway IP address used to probe the server.
-     */
     gatewayIp?: pulumi.Input<string>;
-    /**
-     * Gateway IPv6 address used to probe the server.
-     */
     gatewayIp6?: pulumi.Input<string>;
-    /**
-     * HA election priority (1 - 50).
-     */
     haPriority?: pulumi.Input<number>;
-    /**
-     * String in the http-agent field in the HTTP header.
-     */
     httpAgent?: pulumi.Input<string>;
-    /**
-     * If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string.
-     */
     httpGet?: pulumi.Input<string>;
-    /**
-     * String that you expect to see in the HTTP-GET requests of the traffic to be monitored.
-     */
     httpMatch?: pulumi.Input<string>;
-    /**
-     * Detection interval (1 - 3600 sec, default = 5).
-     */
     interval?: pulumi.Input<number>;
-    /**
-     * Link monitor name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Packet size of a twamp test session,
-     */
     packetSize?: pulumi.Input<number>;
-    /**
-     * Twamp controller password in authentication mode
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Port number of the traffic to be used to monitor the server.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
-     */
     probeCount?: pulumi.Input<number>;
-    /**
-     * Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
-     */
     probeTimeout?: pulumi.Input<number>;
-    /**
-     * Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * Number of successful responses received before server is considered recovered (1 - 10, default = 5).
-     */
     recoverytime?: pulumi.Input<number>;
-    /**
-     * Subnet to monitor. The structure of `route` block is documented below.
-     */
     routes?: pulumi.Input<pulumi.Input<inputs.SystemLinkMonitorRoute>[]>;
-    /**
-     * Twamp controller security mode. Valid values: `none`, `authentication`.
-     */
     securityMode?: pulumi.Input<string>;
-    /**
-     * Mode of server configuration. Valid values: `default`, `individual`.
-     */
     serverConfig?: pulumi.Input<string>;
-    /**
-     * Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
-     */
     serverLists?: pulumi.Input<pulumi.Input<inputs.SystemLinkMonitorServerList>[]>;
-    /**
-     * IP address of the server(s) to be monitored. The structure of `server` block is documented below.
-     */
+    serverType?: pulumi.Input<string>;
     servers?: pulumi.Input<pulumi.Input<inputs.SystemLinkMonitorServer>[]>;
-    /**
-     * Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
-     */
     serviceDetection?: pulumi.Input<string>;
-    /**
-     * Source IP address used in packet to the server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Source IPv6 address used in packet to the server.
-     */
     sourceIp6?: pulumi.Input<string>;
-    /**
-     * Interface that receives the traffic to be monitored.
-     */
     srcintf?: pulumi.Input<string>;
-    /**
-     * Enable/disable this link monitor. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Enable/disable update cascade interface. Valid values: `enable`, `disable`.
-     */
     updateCascadeInterface?: pulumi.Input<string>;
-    /**
-     * Enable/disable updating the policy route. Valid values: `enable`, `disable`.
-     */
     updatePolicyRoute?: pulumi.Input<string>;
-    /**
-     * Enable/disable updating the static route. Valid values: `enable`, `disable`.
-     */
     updateStaticRoute?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -469,144 +215,40 @@ export interface SystemLinkMonitorState {
  * The set of arguments for constructing a SystemLinkMonitor resource.
  */
 export interface SystemLinkMonitorArgs {
-    /**
-     * Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-     */
     addrMode?: pulumi.Input<string>;
-    /**
-     * Traffic class ID.
-     */
     classId?: pulumi.Input<number>;
-    /**
-     * Differentiated services code point (DSCP) in the IP header of the probe packet.
-     */
     diffservcode?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Threshold weight to trigger link failure alert.
-     */
     failWeight?: pulumi.Input<number>;
-    /**
-     * Number of retry attempts before the server is considered down (1 - 10, default = 5)
-     */
     failtime?: pulumi.Input<number>;
-    /**
-     * Gateway IP address used to probe the server.
-     */
     gatewayIp?: pulumi.Input<string>;
-    /**
-     * Gateway IPv6 address used to probe the server.
-     */
     gatewayIp6?: pulumi.Input<string>;
-    /**
-     * HA election priority (1 - 50).
-     */
     haPriority?: pulumi.Input<number>;
-    /**
-     * String in the http-agent field in the HTTP header.
-     */
     httpAgent?: pulumi.Input<string>;
-    /**
-     * If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string.
-     */
     httpGet?: pulumi.Input<string>;
-    /**
-     * String that you expect to see in the HTTP-GET requests of the traffic to be monitored.
-     */
     httpMatch?: pulumi.Input<string>;
-    /**
-     * Detection interval (1 - 3600 sec, default = 5).
-     */
     interval?: pulumi.Input<number>;
-    /**
-     * Link monitor name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Packet size of a twamp test session,
-     */
     packetSize?: pulumi.Input<number>;
-    /**
-     * Twamp controller password in authentication mode
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Port number of the traffic to be used to monitor the server.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
-     */
     probeCount?: pulumi.Input<number>;
-    /**
-     * Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
-     */
     probeTimeout?: pulumi.Input<number>;
-    /**
-     * Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * Number of successful responses received before server is considered recovered (1 - 10, default = 5).
-     */
     recoverytime?: pulumi.Input<number>;
-    /**
-     * Subnet to monitor. The structure of `route` block is documented below.
-     */
     routes?: pulumi.Input<pulumi.Input<inputs.SystemLinkMonitorRoute>[]>;
-    /**
-     * Twamp controller security mode. Valid values: `none`, `authentication`.
-     */
     securityMode?: pulumi.Input<string>;
-    /**
-     * Mode of server configuration. Valid values: `default`, `individual`.
-     */
     serverConfig?: pulumi.Input<string>;
-    /**
-     * Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
-     */
     serverLists?: pulumi.Input<pulumi.Input<inputs.SystemLinkMonitorServerList>[]>;
-    /**
-     * IP address of the server(s) to be monitored. The structure of `server` block is documented below.
-     */
+    serverType?: pulumi.Input<string>;
     servers: pulumi.Input<pulumi.Input<inputs.SystemLinkMonitorServer>[]>;
-    /**
-     * Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
-     */
     serviceDetection?: pulumi.Input<string>;
-    /**
-     * Source IP address used in packet to the server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Source IPv6 address used in packet to the server.
-     */
     sourceIp6?: pulumi.Input<string>;
-    /**
-     * Interface that receives the traffic to be monitored.
-     */
     srcintf?: pulumi.Input<string>;
-    /**
-     * Enable/disable this link monitor. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Enable/disable update cascade interface. Valid values: `enable`, `disable`.
-     */
     updateCascadeInterface?: pulumi.Input<string>;
-    /**
-     * Enable/disable updating the policy route. Valid values: `enable`, `disable`.
-     */
     updatePolicyRoute?: pulumi.Input<string>;
-    /**
-     * Enable/disable updating the static route. Valid values: `enable`, `disable`.
-     */
     updateStaticRoute?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

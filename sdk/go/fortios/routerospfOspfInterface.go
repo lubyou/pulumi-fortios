@@ -10,82 +10,36 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// OSPF interface configuration.
-//
-// > The provider supports the definition of Ospf-Interface in Router Ospf `RouterOspf`, and also allows the definition of separate Ospf-Interface resources `RouterospfOspfInterface`, but do not use a `RouterOspf` with in-line Ospf-Interface in conjunction with any `RouterospfOspfInterface` resources, otherwise conflicts and overwrite will occur.
-//
-// ## Import
-//
-// Routerospf OspfInterface can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerospfOspfInterface:RouterospfOspfInterface labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerospfOspfInterface:RouterospfOspfInterface labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterospfOspfInterface struct {
 	pulumi.CustomResourceState
 
-	// Authentication type.
-	Authentication pulumi.StringOutput `pulumi:"authentication"`
-	// Authentication key.
-	AuthenticationKey pulumi.StringPtrOutput `pulumi:"authenticationKey"`
-	// Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-	Bfd pulumi.StringOutput `pulumi:"bfd"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost pulumi.IntOutput `pulumi:"cost"`
-	// Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
-	DatabaseFilterOut pulumi.StringOutput `pulumi:"databaseFilterOut"`
-	// Dead interval.
-	DeadInterval pulumi.IntOutput `pulumi:"deadInterval"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Hello interval.
-	HelloInterval pulumi.IntOutput `pulumi:"helloInterval"`
-	// Number of hello packets within dead interval.
-	HelloMultiplier pulumi.IntOutput `pulumi:"helloMultiplier"`
-	// Configuration interface name.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// IP address.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// Message-digest key-chain name.
-	Keychain pulumi.StringOutput `pulumi:"keychain"`
-	// MD5 key.
-	Md5Key pulumi.StringOutput `pulumi:"md5Key"`
-	// Authentication MD5 key-chain name.
-	Md5Keychain pulumi.StringOutput `pulumi:"md5Keychain"`
-	// MD5 key. The structure of `md5Keys` block is documented below.
-	Md5Keys RouterospfOspfInterfaceMd5KeyArrayOutput `pulumi:"md5Keys"`
-	// MTU for database description packets.
-	Mtu pulumi.IntOutput `pulumi:"mtu"`
-	// Enable/disable ignore MTU. Valid values: `enable`, `disable`.
-	MtuIgnore pulumi.StringOutput `pulumi:"mtuIgnore"`
-	// Interface entry name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Network type. Valid values: `broadcast`, `non-broadcast`, `point-to-point`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-	NetworkType pulumi.StringOutput `pulumi:"networkType"`
-	// Prefix length.
-	PrefixLength pulumi.IntOutput `pulumi:"prefixLength"`
-	// Priority.
-	Priority pulumi.IntOutput `pulumi:"priority"`
-	// Graceful restart neighbor resynchronization timeout.
-	ResyncTimeout pulumi.IntOutput `pulumi:"resyncTimeout"`
-	// Retransmit interval.
-	RetransmitInterval pulumi.IntOutput `pulumi:"retransmitInterval"`
-	// Enable/disable status. Valid values: `disable`, `enable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Transmit delay.
-	TransmitDelay pulumi.IntOutput `pulumi:"transmitDelay"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Authentication      pulumi.StringOutput                      `pulumi:"authentication"`
+	AuthenticationKey   pulumi.StringPtrOutput                   `pulumi:"authenticationKey"`
+	Bfd                 pulumi.StringOutput                      `pulumi:"bfd"`
+	Comments            pulumi.StringPtrOutput                   `pulumi:"comments"`
+	Cost                pulumi.IntOutput                         `pulumi:"cost"`
+	DatabaseFilterOut   pulumi.StringOutput                      `pulumi:"databaseFilterOut"`
+	DeadInterval        pulumi.IntOutput                         `pulumi:"deadInterval"`
+	DynamicSortSubtable pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
+	HelloInterval       pulumi.IntOutput                         `pulumi:"helloInterval"`
+	HelloMultiplier     pulumi.IntOutput                         `pulumi:"helloMultiplier"`
+	Interface           pulumi.StringOutput                      `pulumi:"interface"`
+	Ip                  pulumi.StringOutput                      `pulumi:"ip"`
+	Keychain            pulumi.StringOutput                      `pulumi:"keychain"`
+	Md5Key              pulumi.StringOutput                      `pulumi:"md5Key"`
+	Md5Keychain         pulumi.StringOutput                      `pulumi:"md5Keychain"`
+	Md5Keys             RouterospfOspfInterfaceMd5KeyArrayOutput `pulumi:"md5Keys"`
+	Mtu                 pulumi.IntOutput                         `pulumi:"mtu"`
+	MtuIgnore           pulumi.StringOutput                      `pulumi:"mtuIgnore"`
+	Name                pulumi.StringOutput                      `pulumi:"name"`
+	NetworkType         pulumi.StringOutput                      `pulumi:"networkType"`
+	PrefixLength        pulumi.IntOutput                         `pulumi:"prefixLength"`
+	Priority            pulumi.IntOutput                         `pulumi:"priority"`
+	ResyncTimeout       pulumi.IntOutput                         `pulumi:"resyncTimeout"`
+	RetransmitInterval  pulumi.IntOutput                         `pulumi:"retransmitInterval"`
+	Status              pulumi.StringOutput                      `pulumi:"status"`
+	TransmitDelay       pulumi.IntOutput                         `pulumi:"transmitDelay"`
+	Vdomparam           pulumi.StringPtrOutput                   `pulumi:"vdomparam"`
 }
 
 // NewRouterospfOspfInterface registers a new resource with the given unique name, arguments, and options.
@@ -118,117 +72,63 @@ func GetRouterospfOspfInterface(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterospfOspfInterface resources.
 type routerospfOspfInterfaceState struct {
-	// Authentication type.
-	Authentication *string `pulumi:"authentication"`
-	// Authentication key.
-	AuthenticationKey *string `pulumi:"authenticationKey"`
-	// Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-	Bfd *string `pulumi:"bfd"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost *int `pulumi:"cost"`
-	// Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
-	DatabaseFilterOut *string `pulumi:"databaseFilterOut"`
-	// Dead interval.
-	DeadInterval *int `pulumi:"deadInterval"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Hello interval.
-	HelloInterval *int `pulumi:"helloInterval"`
-	// Number of hello packets within dead interval.
-	HelloMultiplier *int `pulumi:"helloMultiplier"`
-	// Configuration interface name.
-	Interface *string `pulumi:"interface"`
-	// IP address.
-	Ip *string `pulumi:"ip"`
-	// Message-digest key-chain name.
-	Keychain *string `pulumi:"keychain"`
-	// MD5 key.
-	Md5Key *string `pulumi:"md5Key"`
-	// Authentication MD5 key-chain name.
-	Md5Keychain *string `pulumi:"md5Keychain"`
-	// MD5 key. The structure of `md5Keys` block is documented below.
-	Md5Keys []RouterospfOspfInterfaceMd5Key `pulumi:"md5Keys"`
-	// MTU for database description packets.
-	Mtu *int `pulumi:"mtu"`
-	// Enable/disable ignore MTU. Valid values: `enable`, `disable`.
-	MtuIgnore *string `pulumi:"mtuIgnore"`
-	// Interface entry name.
-	Name *string `pulumi:"name"`
-	// Network type. Valid values: `broadcast`, `non-broadcast`, `point-to-point`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-	NetworkType *string `pulumi:"networkType"`
-	// Prefix length.
-	PrefixLength *int `pulumi:"prefixLength"`
-	// Priority.
-	Priority *int `pulumi:"priority"`
-	// Graceful restart neighbor resynchronization timeout.
-	ResyncTimeout *int `pulumi:"resyncTimeout"`
-	// Retransmit interval.
-	RetransmitInterval *int `pulumi:"retransmitInterval"`
-	// Enable/disable status. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Transmit delay.
-	TransmitDelay *int `pulumi:"transmitDelay"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Authentication      *string                         `pulumi:"authentication"`
+	AuthenticationKey   *string                         `pulumi:"authenticationKey"`
+	Bfd                 *string                         `pulumi:"bfd"`
+	Comments            *string                         `pulumi:"comments"`
+	Cost                *int                            `pulumi:"cost"`
+	DatabaseFilterOut   *string                         `pulumi:"databaseFilterOut"`
+	DeadInterval        *int                            `pulumi:"deadInterval"`
+	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	HelloInterval       *int                            `pulumi:"helloInterval"`
+	HelloMultiplier     *int                            `pulumi:"helloMultiplier"`
+	Interface           *string                         `pulumi:"interface"`
+	Ip                  *string                         `pulumi:"ip"`
+	Keychain            *string                         `pulumi:"keychain"`
+	Md5Key              *string                         `pulumi:"md5Key"`
+	Md5Keychain         *string                         `pulumi:"md5Keychain"`
+	Md5Keys             []RouterospfOspfInterfaceMd5Key `pulumi:"md5Keys"`
+	Mtu                 *int                            `pulumi:"mtu"`
+	MtuIgnore           *string                         `pulumi:"mtuIgnore"`
+	Name                *string                         `pulumi:"name"`
+	NetworkType         *string                         `pulumi:"networkType"`
+	PrefixLength        *int                            `pulumi:"prefixLength"`
+	Priority            *int                            `pulumi:"priority"`
+	ResyncTimeout       *int                            `pulumi:"resyncTimeout"`
+	RetransmitInterval  *int                            `pulumi:"retransmitInterval"`
+	Status              *string                         `pulumi:"status"`
+	TransmitDelay       *int                            `pulumi:"transmitDelay"`
+	Vdomparam           *string                         `pulumi:"vdomparam"`
 }
 
 type RouterospfOspfInterfaceState struct {
-	// Authentication type.
-	Authentication pulumi.StringPtrInput
-	// Authentication key.
-	AuthenticationKey pulumi.StringPtrInput
-	// Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-	Bfd pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost pulumi.IntPtrInput
-	// Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
-	DatabaseFilterOut pulumi.StringPtrInput
-	// Dead interval.
-	DeadInterval pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Authentication      pulumi.StringPtrInput
+	AuthenticationKey   pulumi.StringPtrInput
+	Bfd                 pulumi.StringPtrInput
+	Comments            pulumi.StringPtrInput
+	Cost                pulumi.IntPtrInput
+	DatabaseFilterOut   pulumi.StringPtrInput
+	DeadInterval        pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Hello interval.
-	HelloInterval pulumi.IntPtrInput
-	// Number of hello packets within dead interval.
-	HelloMultiplier pulumi.IntPtrInput
-	// Configuration interface name.
-	Interface pulumi.StringPtrInput
-	// IP address.
-	Ip pulumi.StringPtrInput
-	// Message-digest key-chain name.
-	Keychain pulumi.StringPtrInput
-	// MD5 key.
-	Md5Key pulumi.StringPtrInput
-	// Authentication MD5 key-chain name.
-	Md5Keychain pulumi.StringPtrInput
-	// MD5 key. The structure of `md5Keys` block is documented below.
-	Md5Keys RouterospfOspfInterfaceMd5KeyArrayInput
-	// MTU for database description packets.
-	Mtu pulumi.IntPtrInput
-	// Enable/disable ignore MTU. Valid values: `enable`, `disable`.
-	MtuIgnore pulumi.StringPtrInput
-	// Interface entry name.
-	Name pulumi.StringPtrInput
-	// Network type. Valid values: `broadcast`, `non-broadcast`, `point-to-point`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-	NetworkType pulumi.StringPtrInput
-	// Prefix length.
-	PrefixLength pulumi.IntPtrInput
-	// Priority.
-	Priority pulumi.IntPtrInput
-	// Graceful restart neighbor resynchronization timeout.
-	ResyncTimeout pulumi.IntPtrInput
-	// Retransmit interval.
-	RetransmitInterval pulumi.IntPtrInput
-	// Enable/disable status. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Transmit delay.
-	TransmitDelay pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HelloInterval       pulumi.IntPtrInput
+	HelloMultiplier     pulumi.IntPtrInput
+	Interface           pulumi.StringPtrInput
+	Ip                  pulumi.StringPtrInput
+	Keychain            pulumi.StringPtrInput
+	Md5Key              pulumi.StringPtrInput
+	Md5Keychain         pulumi.StringPtrInput
+	Md5Keys             RouterospfOspfInterfaceMd5KeyArrayInput
+	Mtu                 pulumi.IntPtrInput
+	MtuIgnore           pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	NetworkType         pulumi.StringPtrInput
+	PrefixLength        pulumi.IntPtrInput
+	Priority            pulumi.IntPtrInput
+	ResyncTimeout       pulumi.IntPtrInput
+	RetransmitInterval  pulumi.IntPtrInput
+	Status              pulumi.StringPtrInput
+	TransmitDelay       pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterospfOspfInterfaceState) ElementType() reflect.Type {
@@ -236,118 +136,64 @@ func (RouterospfOspfInterfaceState) ElementType() reflect.Type {
 }
 
 type routerospfOspfInterfaceArgs struct {
-	// Authentication type.
-	Authentication *string `pulumi:"authentication"`
-	// Authentication key.
-	AuthenticationKey *string `pulumi:"authenticationKey"`
-	// Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-	Bfd *string `pulumi:"bfd"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost *int `pulumi:"cost"`
-	// Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
-	DatabaseFilterOut *string `pulumi:"databaseFilterOut"`
-	// Dead interval.
-	DeadInterval *int `pulumi:"deadInterval"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Hello interval.
-	HelloInterval *int `pulumi:"helloInterval"`
-	// Number of hello packets within dead interval.
-	HelloMultiplier *int `pulumi:"helloMultiplier"`
-	// Configuration interface name.
-	Interface *string `pulumi:"interface"`
-	// IP address.
-	Ip *string `pulumi:"ip"`
-	// Message-digest key-chain name.
-	Keychain *string `pulumi:"keychain"`
-	// MD5 key.
-	Md5Key *string `pulumi:"md5Key"`
-	// Authentication MD5 key-chain name.
-	Md5Keychain *string `pulumi:"md5Keychain"`
-	// MD5 key. The structure of `md5Keys` block is documented below.
-	Md5Keys []RouterospfOspfInterfaceMd5Key `pulumi:"md5Keys"`
-	// MTU for database description packets.
-	Mtu *int `pulumi:"mtu"`
-	// Enable/disable ignore MTU. Valid values: `enable`, `disable`.
-	MtuIgnore *string `pulumi:"mtuIgnore"`
-	// Interface entry name.
-	Name *string `pulumi:"name"`
-	// Network type. Valid values: `broadcast`, `non-broadcast`, `point-to-point`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-	NetworkType *string `pulumi:"networkType"`
-	// Prefix length.
-	PrefixLength *int `pulumi:"prefixLength"`
-	// Priority.
-	Priority *int `pulumi:"priority"`
-	// Graceful restart neighbor resynchronization timeout.
-	ResyncTimeout *int `pulumi:"resyncTimeout"`
-	// Retransmit interval.
-	RetransmitInterval *int `pulumi:"retransmitInterval"`
-	// Enable/disable status. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Transmit delay.
-	TransmitDelay *int `pulumi:"transmitDelay"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Authentication      *string                         `pulumi:"authentication"`
+	AuthenticationKey   *string                         `pulumi:"authenticationKey"`
+	Bfd                 *string                         `pulumi:"bfd"`
+	Comments            *string                         `pulumi:"comments"`
+	Cost                *int                            `pulumi:"cost"`
+	DatabaseFilterOut   *string                         `pulumi:"databaseFilterOut"`
+	DeadInterval        *int                            `pulumi:"deadInterval"`
+	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	HelloInterval       *int                            `pulumi:"helloInterval"`
+	HelloMultiplier     *int                            `pulumi:"helloMultiplier"`
+	Interface           *string                         `pulumi:"interface"`
+	Ip                  *string                         `pulumi:"ip"`
+	Keychain            *string                         `pulumi:"keychain"`
+	Md5Key              *string                         `pulumi:"md5Key"`
+	Md5Keychain         *string                         `pulumi:"md5Keychain"`
+	Md5Keys             []RouterospfOspfInterfaceMd5Key `pulumi:"md5Keys"`
+	Mtu                 *int                            `pulumi:"mtu"`
+	MtuIgnore           *string                         `pulumi:"mtuIgnore"`
+	Name                *string                         `pulumi:"name"`
+	NetworkType         *string                         `pulumi:"networkType"`
+	PrefixLength        *int                            `pulumi:"prefixLength"`
+	Priority            *int                            `pulumi:"priority"`
+	ResyncTimeout       *int                            `pulumi:"resyncTimeout"`
+	RetransmitInterval  *int                            `pulumi:"retransmitInterval"`
+	Status              *string                         `pulumi:"status"`
+	TransmitDelay       *int                            `pulumi:"transmitDelay"`
+	Vdomparam           *string                         `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterospfOspfInterface resource.
 type RouterospfOspfInterfaceArgs struct {
-	// Authentication type.
-	Authentication pulumi.StringPtrInput
-	// Authentication key.
-	AuthenticationKey pulumi.StringPtrInput
-	// Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
-	Bfd pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost pulumi.IntPtrInput
-	// Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
-	DatabaseFilterOut pulumi.StringPtrInput
-	// Dead interval.
-	DeadInterval pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Authentication      pulumi.StringPtrInput
+	AuthenticationKey   pulumi.StringPtrInput
+	Bfd                 pulumi.StringPtrInput
+	Comments            pulumi.StringPtrInput
+	Cost                pulumi.IntPtrInput
+	DatabaseFilterOut   pulumi.StringPtrInput
+	DeadInterval        pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Hello interval.
-	HelloInterval pulumi.IntPtrInput
-	// Number of hello packets within dead interval.
-	HelloMultiplier pulumi.IntPtrInput
-	// Configuration interface name.
-	Interface pulumi.StringPtrInput
-	// IP address.
-	Ip pulumi.StringPtrInput
-	// Message-digest key-chain name.
-	Keychain pulumi.StringPtrInput
-	// MD5 key.
-	Md5Key pulumi.StringPtrInput
-	// Authentication MD5 key-chain name.
-	Md5Keychain pulumi.StringPtrInput
-	// MD5 key. The structure of `md5Keys` block is documented below.
-	Md5Keys RouterospfOspfInterfaceMd5KeyArrayInput
-	// MTU for database description packets.
-	Mtu pulumi.IntPtrInput
-	// Enable/disable ignore MTU. Valid values: `enable`, `disable`.
-	MtuIgnore pulumi.StringPtrInput
-	// Interface entry name.
-	Name pulumi.StringPtrInput
-	// Network type. Valid values: `broadcast`, `non-broadcast`, `point-to-point`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-	NetworkType pulumi.StringPtrInput
-	// Prefix length.
-	PrefixLength pulumi.IntPtrInput
-	// Priority.
-	Priority pulumi.IntPtrInput
-	// Graceful restart neighbor resynchronization timeout.
-	ResyncTimeout pulumi.IntPtrInput
-	// Retransmit interval.
-	RetransmitInterval pulumi.IntPtrInput
-	// Enable/disable status. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Transmit delay.
-	TransmitDelay pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HelloInterval       pulumi.IntPtrInput
+	HelloMultiplier     pulumi.IntPtrInput
+	Interface           pulumi.StringPtrInput
+	Ip                  pulumi.StringPtrInput
+	Keychain            pulumi.StringPtrInput
+	Md5Key              pulumi.StringPtrInput
+	Md5Keychain         pulumi.StringPtrInput
+	Md5Keys             RouterospfOspfInterfaceMd5KeyArrayInput
+	Mtu                 pulumi.IntPtrInput
+	MtuIgnore           pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	NetworkType         pulumi.StringPtrInput
+	PrefixLength        pulumi.IntPtrInput
+	Priority            pulumi.IntPtrInput
+	ResyncTimeout       pulumi.IntPtrInput
+	RetransmitInterval  pulumi.IntPtrInput
+	Status              pulumi.StringPtrInput
+	TransmitDelay       pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterospfOspfInterfaceArgs) ElementType() reflect.Type {
@@ -376,7 +222,7 @@ func (i *RouterospfOspfInterface) ToRouterospfOspfInterfaceOutputWithContext(ctx
 // RouterospfOspfInterfaceArrayInput is an input type that accepts RouterospfOspfInterfaceArray and RouterospfOspfInterfaceArrayOutput values.
 // You can construct a concrete instance of `RouterospfOspfInterfaceArrayInput` via:
 //
-//          RouterospfOspfInterfaceArray{ RouterospfOspfInterfaceArgs{...} }
+//	RouterospfOspfInterfaceArray{ RouterospfOspfInterfaceArgs{...} }
 type RouterospfOspfInterfaceArrayInput interface {
 	pulumi.Input
 
@@ -401,7 +247,7 @@ func (i RouterospfOspfInterfaceArray) ToRouterospfOspfInterfaceArrayOutputWithCo
 // RouterospfOspfInterfaceMapInput is an input type that accepts RouterospfOspfInterfaceMap and RouterospfOspfInterfaceMapOutput values.
 // You can construct a concrete instance of `RouterospfOspfInterfaceMapInput` via:
 //
-//          RouterospfOspfInterfaceMap{ "key": RouterospfOspfInterfaceArgs{...} }
+//	RouterospfOspfInterfaceMap{ "key": RouterospfOspfInterfaceArgs{...} }
 type RouterospfOspfInterfaceMapInput interface {
 	pulumi.Input
 
@@ -435,6 +281,114 @@ func (o RouterospfOspfInterfaceOutput) ToRouterospfOspfInterfaceOutput() Routero
 
 func (o RouterospfOspfInterfaceOutput) ToRouterospfOspfInterfaceOutputWithContext(ctx context.Context) RouterospfOspfInterfaceOutput {
 	return o
+}
+
+func (o RouterospfOspfInterfaceOutput) Authentication() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringOutput { return v.Authentication }).(pulumi.StringOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) AuthenticationKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringPtrOutput { return v.AuthenticationKey }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) Bfd() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringOutput { return v.Bfd }).(pulumi.StringOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) Cost() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.IntOutput { return v.Cost }).(pulumi.IntOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) DatabaseFilterOut() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringOutput { return v.DatabaseFilterOut }).(pulumi.StringOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) DeadInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.IntOutput { return v.DeadInterval }).(pulumi.IntOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) HelloInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.IntOutput { return v.HelloInterval }).(pulumi.IntOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) HelloMultiplier() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.IntOutput { return v.HelloMultiplier }).(pulumi.IntOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) Keychain() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringOutput { return v.Keychain }).(pulumi.StringOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) Md5Key() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringOutput { return v.Md5Key }).(pulumi.StringOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) Md5Keychain() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringOutput { return v.Md5Keychain }).(pulumi.StringOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) Md5Keys() RouterospfOspfInterfaceMd5KeyArrayOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) RouterospfOspfInterfaceMd5KeyArrayOutput { return v.Md5Keys }).(RouterospfOspfInterfaceMd5KeyArrayOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) Mtu() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.IntOutput { return v.Mtu }).(pulumi.IntOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) MtuIgnore() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringOutput { return v.MtuIgnore }).(pulumi.StringOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) NetworkType() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringOutput { return v.NetworkType }).(pulumi.StringOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) PrefixLength() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.IntOutput { return v.PrefixLength }).(pulumi.IntOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) ResyncTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.IntOutput { return v.ResyncTimeout }).(pulumi.IntOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) RetransmitInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.IntOutput { return v.RetransmitInterval }).(pulumi.IntOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) TransmitDelay() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.IntOutput { return v.TransmitDelay }).(pulumi.IntOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterospfOspfInterfaceArrayOutput struct{ *pulumi.OutputState }

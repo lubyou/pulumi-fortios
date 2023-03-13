@@ -7,87 +7,25 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// SSL proxy settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallSslSetting(ctx, "trname", &fortios.FirewallSslSettingArgs{
-// 			AbbreviateHandshake:    pulumi.String("enable"),
-// 			CertCacheCapacity:      pulumi.Int(200),
-// 			CertCacheTimeout:       pulumi.Int(10),
-// 			KxpQueueThreshold:      pulumi.Int(16),
-// 			NoMatchingCipherAction: pulumi.String("bypass"),
-// 			ProxyConnectTimeout:    pulumi.Int(30),
-// 			SessionCacheCapacity:   pulumi.Int(500),
-// 			SessionCacheTimeout:    pulumi.Int(20),
-// 			SslDhBits:              pulumi.String("2048"),
-// 			SslQueueThreshold:      pulumi.Int(32),
-// 			SslSendEmptyFrags:      pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// FirewallSsl Setting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSslSetting:FirewallSslSetting labelname FirewallSslSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSslSetting:FirewallSslSetting labelname FirewallSslSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallSslSetting struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable use of SSL abbreviated handshake. Valid values: `enable`, `disable`.
-	AbbreviateHandshake pulumi.StringOutput `pulumi:"abbreviateHandshake"`
-	// Maximum capacity of the host certificate cache (0 - 500, default = 200).
-	CertCacheCapacity pulumi.IntOutput `pulumi:"certCacheCapacity"`
-	// Time limit to keep certificate cache (1 - 120 min, default = 10).
-	CertCacheTimeout pulumi.IntOutput `pulumi:"certCacheTimeout"`
-	// Maximum length of the CP KXP queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 16).
-	KxpQueueThreshold pulumi.IntOutput `pulumi:"kxpQueueThreshold"`
-	// Bypass or drop the connection when no matching cipher is found. Valid values: `bypass`, `drop`.
-	NoMatchingCipherAction pulumi.StringOutput `pulumi:"noMatchingCipherAction"`
-	// Time limit to make an internal connection to the appropriate proxy process (1 - 60 sec, default = 30).
-	ProxyConnectTimeout pulumi.IntOutput `pulumi:"proxyConnectTimeout"`
-	// Capacity of the SSL session cache (--Obsolete--) (1 - 1000, default = 500).
-	SessionCacheCapacity pulumi.IntOutput `pulumi:"sessionCacheCapacity"`
-	// Time limit to keep SSL session state (1 - 60 min, default = 20).
-	SessionCacheTimeout pulumi.IntOutput `pulumi:"sessionCacheTimeout"`
-	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-	SslDhBits pulumi.StringOutput `pulumi:"sslDhBits"`
-	// Maximum length of the CP SSL queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 32).
-	SslQueueThreshold pulumi.IntOutput `pulumi:"sslQueueThreshold"`
-	// Enable/disable sending empty fragments to avoid attack on CBC IV (for SSL 3.0 and TLS 1.0 only). Valid values: `enable`, `disable`.
-	SslSendEmptyFrags pulumi.StringOutput `pulumi:"sslSendEmptyFrags"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AbbreviateHandshake    pulumi.StringOutput    `pulumi:"abbreviateHandshake"`
+	CertCacheCapacity      pulumi.IntOutput       `pulumi:"certCacheCapacity"`
+	CertCacheTimeout       pulumi.IntOutput       `pulumi:"certCacheTimeout"`
+	KxpQueueThreshold      pulumi.IntOutput       `pulumi:"kxpQueueThreshold"`
+	NoMatchingCipherAction pulumi.StringOutput    `pulumi:"noMatchingCipherAction"`
+	ProxyConnectTimeout    pulumi.IntOutput       `pulumi:"proxyConnectTimeout"`
+	SessionCacheCapacity   pulumi.IntOutput       `pulumi:"sessionCacheCapacity"`
+	SessionCacheTimeout    pulumi.IntOutput       `pulumi:"sessionCacheTimeout"`
+	SslDhBits              pulumi.StringOutput    `pulumi:"sslDhBits"`
+	SslQueueThreshold      pulumi.IntOutput       `pulumi:"sslQueueThreshold"`
+	SslSendEmptyFrags      pulumi.StringOutput    `pulumi:"sslSendEmptyFrags"`
+	Vdomparam              pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallSslSetting registers a new resource with the given unique name, arguments, and options.
@@ -144,57 +82,33 @@ func GetFirewallSslSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallSslSetting resources.
 type firewallSslSettingState struct {
-	// Enable/disable use of SSL abbreviated handshake. Valid values: `enable`, `disable`.
-	AbbreviateHandshake *string `pulumi:"abbreviateHandshake"`
-	// Maximum capacity of the host certificate cache (0 - 500, default = 200).
-	CertCacheCapacity *int `pulumi:"certCacheCapacity"`
-	// Time limit to keep certificate cache (1 - 120 min, default = 10).
-	CertCacheTimeout *int `pulumi:"certCacheTimeout"`
-	// Maximum length of the CP KXP queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 16).
-	KxpQueueThreshold *int `pulumi:"kxpQueueThreshold"`
-	// Bypass or drop the connection when no matching cipher is found. Valid values: `bypass`, `drop`.
+	AbbreviateHandshake    *string `pulumi:"abbreviateHandshake"`
+	CertCacheCapacity      *int    `pulumi:"certCacheCapacity"`
+	CertCacheTimeout       *int    `pulumi:"certCacheTimeout"`
+	KxpQueueThreshold      *int    `pulumi:"kxpQueueThreshold"`
 	NoMatchingCipherAction *string `pulumi:"noMatchingCipherAction"`
-	// Time limit to make an internal connection to the appropriate proxy process (1 - 60 sec, default = 30).
-	ProxyConnectTimeout *int `pulumi:"proxyConnectTimeout"`
-	// Capacity of the SSL session cache (--Obsolete--) (1 - 1000, default = 500).
-	SessionCacheCapacity *int `pulumi:"sessionCacheCapacity"`
-	// Time limit to keep SSL session state (1 - 60 min, default = 20).
-	SessionCacheTimeout *int `pulumi:"sessionCacheTimeout"`
-	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-	SslDhBits *string `pulumi:"sslDhBits"`
-	// Maximum length of the CP SSL queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 32).
-	SslQueueThreshold *int `pulumi:"sslQueueThreshold"`
-	// Enable/disable sending empty fragments to avoid attack on CBC IV (for SSL 3.0 and TLS 1.0 only). Valid values: `enable`, `disable`.
-	SslSendEmptyFrags *string `pulumi:"sslSendEmptyFrags"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ProxyConnectTimeout    *int    `pulumi:"proxyConnectTimeout"`
+	SessionCacheCapacity   *int    `pulumi:"sessionCacheCapacity"`
+	SessionCacheTimeout    *int    `pulumi:"sessionCacheTimeout"`
+	SslDhBits              *string `pulumi:"sslDhBits"`
+	SslQueueThreshold      *int    `pulumi:"sslQueueThreshold"`
+	SslSendEmptyFrags      *string `pulumi:"sslSendEmptyFrags"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 type FirewallSslSettingState struct {
-	// Enable/disable use of SSL abbreviated handshake. Valid values: `enable`, `disable`.
-	AbbreviateHandshake pulumi.StringPtrInput
-	// Maximum capacity of the host certificate cache (0 - 500, default = 200).
-	CertCacheCapacity pulumi.IntPtrInput
-	// Time limit to keep certificate cache (1 - 120 min, default = 10).
-	CertCacheTimeout pulumi.IntPtrInput
-	// Maximum length of the CP KXP queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 16).
-	KxpQueueThreshold pulumi.IntPtrInput
-	// Bypass or drop the connection when no matching cipher is found. Valid values: `bypass`, `drop`.
+	AbbreviateHandshake    pulumi.StringPtrInput
+	CertCacheCapacity      pulumi.IntPtrInput
+	CertCacheTimeout       pulumi.IntPtrInput
+	KxpQueueThreshold      pulumi.IntPtrInput
 	NoMatchingCipherAction pulumi.StringPtrInput
-	// Time limit to make an internal connection to the appropriate proxy process (1 - 60 sec, default = 30).
-	ProxyConnectTimeout pulumi.IntPtrInput
-	// Capacity of the SSL session cache (--Obsolete--) (1 - 1000, default = 500).
-	SessionCacheCapacity pulumi.IntPtrInput
-	// Time limit to keep SSL session state (1 - 60 min, default = 20).
-	SessionCacheTimeout pulumi.IntPtrInput
-	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-	SslDhBits pulumi.StringPtrInput
-	// Maximum length of the CP SSL queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 32).
-	SslQueueThreshold pulumi.IntPtrInput
-	// Enable/disable sending empty fragments to avoid attack on CBC IV (for SSL 3.0 and TLS 1.0 only). Valid values: `enable`, `disable`.
-	SslSendEmptyFrags pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ProxyConnectTimeout    pulumi.IntPtrInput
+	SessionCacheCapacity   pulumi.IntPtrInput
+	SessionCacheTimeout    pulumi.IntPtrInput
+	SslDhBits              pulumi.StringPtrInput
+	SslQueueThreshold      pulumi.IntPtrInput
+	SslSendEmptyFrags      pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (FirewallSslSettingState) ElementType() reflect.Type {
@@ -202,58 +116,34 @@ func (FirewallSslSettingState) ElementType() reflect.Type {
 }
 
 type firewallSslSettingArgs struct {
-	// Enable/disable use of SSL abbreviated handshake. Valid values: `enable`, `disable`.
-	AbbreviateHandshake *string `pulumi:"abbreviateHandshake"`
-	// Maximum capacity of the host certificate cache (0 - 500, default = 200).
-	CertCacheCapacity int `pulumi:"certCacheCapacity"`
-	// Time limit to keep certificate cache (1 - 120 min, default = 10).
-	CertCacheTimeout int `pulumi:"certCacheTimeout"`
-	// Maximum length of the CP KXP queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 16).
-	KxpQueueThreshold *int `pulumi:"kxpQueueThreshold"`
-	// Bypass or drop the connection when no matching cipher is found. Valid values: `bypass`, `drop`.
-	NoMatchingCipherAction string `pulumi:"noMatchingCipherAction"`
-	// Time limit to make an internal connection to the appropriate proxy process (1 - 60 sec, default = 30).
-	ProxyConnectTimeout int `pulumi:"proxyConnectTimeout"`
-	// Capacity of the SSL session cache (--Obsolete--) (1 - 1000, default = 500).
-	SessionCacheCapacity int `pulumi:"sessionCacheCapacity"`
-	// Time limit to keep SSL session state (1 - 60 min, default = 20).
-	SessionCacheTimeout int `pulumi:"sessionCacheTimeout"`
-	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-	SslDhBits string `pulumi:"sslDhBits"`
-	// Maximum length of the CP SSL queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 32).
-	SslQueueThreshold *int `pulumi:"sslQueueThreshold"`
-	// Enable/disable sending empty fragments to avoid attack on CBC IV (for SSL 3.0 and TLS 1.0 only). Valid values: `enable`, `disable`.
-	SslSendEmptyFrags string `pulumi:"sslSendEmptyFrags"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AbbreviateHandshake    *string `pulumi:"abbreviateHandshake"`
+	CertCacheCapacity      int     `pulumi:"certCacheCapacity"`
+	CertCacheTimeout       int     `pulumi:"certCacheTimeout"`
+	KxpQueueThreshold      *int    `pulumi:"kxpQueueThreshold"`
+	NoMatchingCipherAction string  `pulumi:"noMatchingCipherAction"`
+	ProxyConnectTimeout    int     `pulumi:"proxyConnectTimeout"`
+	SessionCacheCapacity   int     `pulumi:"sessionCacheCapacity"`
+	SessionCacheTimeout    int     `pulumi:"sessionCacheTimeout"`
+	SslDhBits              string  `pulumi:"sslDhBits"`
+	SslQueueThreshold      *int    `pulumi:"sslQueueThreshold"`
+	SslSendEmptyFrags      string  `pulumi:"sslSendEmptyFrags"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallSslSetting resource.
 type FirewallSslSettingArgs struct {
-	// Enable/disable use of SSL abbreviated handshake. Valid values: `enable`, `disable`.
-	AbbreviateHandshake pulumi.StringPtrInput
-	// Maximum capacity of the host certificate cache (0 - 500, default = 200).
-	CertCacheCapacity pulumi.IntInput
-	// Time limit to keep certificate cache (1 - 120 min, default = 10).
-	CertCacheTimeout pulumi.IntInput
-	// Maximum length of the CP KXP queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 16).
-	KxpQueueThreshold pulumi.IntPtrInput
-	// Bypass or drop the connection when no matching cipher is found. Valid values: `bypass`, `drop`.
+	AbbreviateHandshake    pulumi.StringPtrInput
+	CertCacheCapacity      pulumi.IntInput
+	CertCacheTimeout       pulumi.IntInput
+	KxpQueueThreshold      pulumi.IntPtrInput
 	NoMatchingCipherAction pulumi.StringInput
-	// Time limit to make an internal connection to the appropriate proxy process (1 - 60 sec, default = 30).
-	ProxyConnectTimeout pulumi.IntInput
-	// Capacity of the SSL session cache (--Obsolete--) (1 - 1000, default = 500).
-	SessionCacheCapacity pulumi.IntInput
-	// Time limit to keep SSL session state (1 - 60 min, default = 20).
-	SessionCacheTimeout pulumi.IntInput
-	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-	SslDhBits pulumi.StringInput
-	// Maximum length of the CP SSL queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 32).
-	SslQueueThreshold pulumi.IntPtrInput
-	// Enable/disable sending empty fragments to avoid attack on CBC IV (for SSL 3.0 and TLS 1.0 only). Valid values: `enable`, `disable`.
-	SslSendEmptyFrags pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ProxyConnectTimeout    pulumi.IntInput
+	SessionCacheCapacity   pulumi.IntInput
+	SessionCacheTimeout    pulumi.IntInput
+	SslDhBits              pulumi.StringInput
+	SslQueueThreshold      pulumi.IntPtrInput
+	SslSendEmptyFrags      pulumi.StringInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (FirewallSslSettingArgs) ElementType() reflect.Type {
@@ -282,7 +172,7 @@ func (i *FirewallSslSetting) ToFirewallSslSettingOutputWithContext(ctx context.C
 // FirewallSslSettingArrayInput is an input type that accepts FirewallSslSettingArray and FirewallSslSettingArrayOutput values.
 // You can construct a concrete instance of `FirewallSslSettingArrayInput` via:
 //
-//          FirewallSslSettingArray{ FirewallSslSettingArgs{...} }
+//	FirewallSslSettingArray{ FirewallSslSettingArgs{...} }
 type FirewallSslSettingArrayInput interface {
 	pulumi.Input
 
@@ -307,7 +197,7 @@ func (i FirewallSslSettingArray) ToFirewallSslSettingArrayOutputWithContext(ctx 
 // FirewallSslSettingMapInput is an input type that accepts FirewallSslSettingMap and FirewallSslSettingMapOutput values.
 // You can construct a concrete instance of `FirewallSslSettingMapInput` via:
 //
-//          FirewallSslSettingMap{ "key": FirewallSslSettingArgs{...} }
+//	FirewallSslSettingMap{ "key": FirewallSslSettingArgs{...} }
 type FirewallSslSettingMapInput interface {
 	pulumi.Input
 
@@ -341,6 +231,54 @@ func (o FirewallSslSettingOutput) ToFirewallSslSettingOutput() FirewallSslSettin
 
 func (o FirewallSslSettingOutput) ToFirewallSslSettingOutputWithContext(ctx context.Context) FirewallSslSettingOutput {
 	return o
+}
+
+func (o FirewallSslSettingOutput) AbbreviateHandshake() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSetting) pulumi.StringOutput { return v.AbbreviateHandshake }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSettingOutput) CertCacheCapacity() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallSslSetting) pulumi.IntOutput { return v.CertCacheCapacity }).(pulumi.IntOutput)
+}
+
+func (o FirewallSslSettingOutput) CertCacheTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallSslSetting) pulumi.IntOutput { return v.CertCacheTimeout }).(pulumi.IntOutput)
+}
+
+func (o FirewallSslSettingOutput) KxpQueueThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallSslSetting) pulumi.IntOutput { return v.KxpQueueThreshold }).(pulumi.IntOutput)
+}
+
+func (o FirewallSslSettingOutput) NoMatchingCipherAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSetting) pulumi.StringOutput { return v.NoMatchingCipherAction }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSettingOutput) ProxyConnectTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallSslSetting) pulumi.IntOutput { return v.ProxyConnectTimeout }).(pulumi.IntOutput)
+}
+
+func (o FirewallSslSettingOutput) SessionCacheCapacity() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallSslSetting) pulumi.IntOutput { return v.SessionCacheCapacity }).(pulumi.IntOutput)
+}
+
+func (o FirewallSslSettingOutput) SessionCacheTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallSslSetting) pulumi.IntOutput { return v.SessionCacheTimeout }).(pulumi.IntOutput)
+}
+
+func (o FirewallSslSettingOutput) SslDhBits() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSetting) pulumi.StringOutput { return v.SslDhBits }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSettingOutput) SslQueueThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallSslSetting) pulumi.IntOutput { return v.SslQueueThreshold }).(pulumi.IntOutput)
+}
+
+func (o FirewallSslSettingOutput) SslSendEmptyFrags() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSslSetting) pulumi.StringOutput { return v.SslSendEmptyFrags }).(pulumi.StringOutput)
+}
+
+func (o FirewallSslSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSslSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallSslSettingArrayOutput struct{ *pulumi.OutputState }

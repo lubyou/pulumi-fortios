@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system dscpbasedpriority
 func LookupSystemDscpBasedPriority(ctx *pulumi.Context, args *LookupSystemDscpBasedPriorityArgs, opts ...pulumi.InvokeOption) (*LookupSystemDscpBasedPriorityResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemDscpBasedPriorityResult
@@ -23,21 +22,16 @@ func LookupSystemDscpBasedPriority(ctx *pulumi.Context, args *LookupSystemDscpBa
 
 // A collection of arguments for invoking GetSystemDscpBasedPriority.
 type LookupSystemDscpBasedPriorityArgs struct {
-	// Specify the fosid of the desired system dscpbasedpriority.
-	Fosid int `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     int     `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemDscpBasedPriority.
 type LookupSystemDscpBasedPriorityResult struct {
-	// DSCP(DiffServ) DS value (0 - 63).
-	Ds int `pulumi:"ds"`
-	// Item ID.
+	Ds    int `pulumi:"ds"`
 	Fosid int `pulumi:"fosid"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// DSCP based priority level.
+	Id        string  `pulumi:"id"`
 	Priority  string  `pulumi:"priority"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -57,9 +51,7 @@ func LookupSystemDscpBasedPriorityOutput(ctx *pulumi.Context, args LookupSystemD
 
 // A collection of arguments for invoking GetSystemDscpBasedPriority.
 type LookupSystemDscpBasedPriorityOutputArgs struct {
-	// Specify the fosid of the desired system dscpbasedpriority.
-	Fosid pulumi.IntInput `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntInput       `pulumi:"fosid"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -82,12 +74,10 @@ func (o LookupSystemDscpBasedPriorityResultOutput) ToLookupSystemDscpBasedPriori
 	return o
 }
 
-// DSCP(DiffServ) DS value (0 - 63).
 func (o LookupSystemDscpBasedPriorityResultOutput) Ds() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemDscpBasedPriorityResult) int { return v.Ds }).(pulumi.IntOutput)
 }
 
-// Item ID.
 func (o LookupSystemDscpBasedPriorityResultOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemDscpBasedPriorityResult) int { return v.Fosid }).(pulumi.IntOutput)
 }
@@ -97,7 +87,6 @@ func (o LookupSystemDscpBasedPriorityResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDscpBasedPriorityResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// DSCP based priority level.
 func (o LookupSystemDscpBasedPriorityResultOutput) Priority() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDscpBasedPriorityResult) string { return v.Priority }).(pulumi.StringOutput)
 }

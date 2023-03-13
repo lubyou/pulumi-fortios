@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure/list NAC devices learned on the managed FortiSwitch ports which matches NAC policy. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,7.0.0`.
- *
- * ## Import
- *
- * SwitchController NacDevice can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerNacDevice:SwitchControllerNacDevice labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerNacDevice:SwitchControllerNacDevice labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerNacDevice extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerNacDevice resource's state with the given name, ID, and optional extra
@@ -51,49 +32,16 @@ export class SwitchControllerNacDevice extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerNacDevice.__pulumiType;
     }
 
-    /**
-     * Description for the learned NAC device.
-     */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * Device ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Managed FortiSwitch port where NAC device is last learned.
-     */
     public readonly lastKnownPort!: pulumi.Output<string>;
-    /**
-     * Managed FortiSwitch where NAC device is last learned.
-     */
     public readonly lastKnownSwitch!: pulumi.Output<string>;
-    /**
-     * Device last seen.
-     */
     public readonly lastSeen!: pulumi.Output<number>;
-    /**
-     * MAC address of the learned NAC device.
-     */
     public readonly mac!: pulumi.Output<string>;
-    /**
-     * MAC policy to be applied on this learned NAC device.
-     */
     public readonly macPolicy!: pulumi.Output<string>;
-    /**
-     * Matched NAC policy for the learned NAC device.
-     */
     public readonly matchedNacPolicy!: pulumi.Output<string>;
-    /**
-     * Port policy to be applied on this learned NAC device.
-     */
     public readonly portPolicy!: pulumi.Output<string>;
-    /**
-     * Status of the learned NAC device. Set enable to authorize the NAC device. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -143,49 +91,16 @@ export class SwitchControllerNacDevice extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerNacDevice resources.
  */
 export interface SwitchControllerNacDeviceState {
-    /**
-     * Description for the learned NAC device.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Device ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Managed FortiSwitch port where NAC device is last learned.
-     */
     lastKnownPort?: pulumi.Input<string>;
-    /**
-     * Managed FortiSwitch where NAC device is last learned.
-     */
     lastKnownSwitch?: pulumi.Input<string>;
-    /**
-     * Device last seen.
-     */
     lastSeen?: pulumi.Input<number>;
-    /**
-     * MAC address of the learned NAC device.
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * MAC policy to be applied on this learned NAC device.
-     */
     macPolicy?: pulumi.Input<string>;
-    /**
-     * Matched NAC policy for the learned NAC device.
-     */
     matchedNacPolicy?: pulumi.Input<string>;
-    /**
-     * Port policy to be applied on this learned NAC device.
-     */
     portPolicy?: pulumi.Input<string>;
-    /**
-     * Status of the learned NAC device. Set enable to authorize the NAC device. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -193,48 +108,15 @@ export interface SwitchControllerNacDeviceState {
  * The set of arguments for constructing a SwitchControllerNacDevice resource.
  */
 export interface SwitchControllerNacDeviceArgs {
-    /**
-     * Description for the learned NAC device.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Device ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Managed FortiSwitch port where NAC device is last learned.
-     */
     lastKnownPort?: pulumi.Input<string>;
-    /**
-     * Managed FortiSwitch where NAC device is last learned.
-     */
     lastKnownSwitch?: pulumi.Input<string>;
-    /**
-     * Device last seen.
-     */
     lastSeen?: pulumi.Input<number>;
-    /**
-     * MAC address of the learned NAC device.
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * MAC policy to be applied on this learned NAC device.
-     */
     macPolicy?: pulumi.Input<string>;
-    /**
-     * Matched NAC policy for the learned NAC device.
-     */
     matchedNacPolicy?: pulumi.Input<string>;
-    /**
-     * Port policy to be applied on this learned NAC device.
-     */
     portPolicy?: pulumi.Input<string>;
-    /**
-     * Status of the learned NAC device. Set enable to authorize the NAC device. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -4,41 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv6 extension header filter.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallIpv6EhFilter("trname", {
- *     auth: "disable",
- *     destOpt: "disable",
- *     fragment: "disable",
- *     hopOpt: "disable",
- *     noNext: "disable",
- *     routing: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall Ipv6EhFilter can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallIpv6EhFilter:FirewallIpv6EhFilter labelname FirewallIpv6EhFilter
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallIpv6EhFilter:FirewallIpv6EhFilter labelname FirewallIpv6EhFilter
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallIpv6EhFilter extends pulumi.CustomResource {
     /**
      * Get an existing FirewallIpv6EhFilter resource's state with the given name, ID, and optional extra
@@ -67,41 +32,14 @@ export class FirewallIpv6EhFilter extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallIpv6EhFilter.__pulumiType;
     }
 
-    /**
-     * Enable/disable blocking packets with the Authentication header (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly auth!: pulumi.Output<string>;
-    /**
-     * Enable/disable blocking packets with Destination Options headers (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly destOpt!: pulumi.Output<string>;
-    /**
-     * Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly fragment!: pulumi.Output<string>;
-    /**
-     * Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
-     */
     public readonly hdoptType!: pulumi.Output<number>;
-    /**
-     * Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly hopOpt!: pulumi.Output<string>;
-    /**
-     * Enable/disable blocking packets with the No Next header (default = disable) Valid values: `enable`, `disable`.
-     */
     public readonly noNext!: pulumi.Output<string>;
-    /**
-     * Enable/disable blocking packets with Routing headers (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly routing!: pulumi.Output<string>;
-    /**
-     * Block specific Routing header types (max. 7 types, each between 0 and 255, default =  0).
-     */
     public readonly routingType!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -147,41 +85,14 @@ export class FirewallIpv6EhFilter extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallIpv6EhFilter resources.
  */
 export interface FirewallIpv6EhFilterState {
-    /**
-     * Enable/disable blocking packets with the Authentication header (default = disable). Valid values: `enable`, `disable`.
-     */
     auth?: pulumi.Input<string>;
-    /**
-     * Enable/disable blocking packets with Destination Options headers (default = disable). Valid values: `enable`, `disable`.
-     */
     destOpt?: pulumi.Input<string>;
-    /**
-     * Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
-     */
     fragment?: pulumi.Input<string>;
-    /**
-     * Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
-     */
     hdoptType?: pulumi.Input<number>;
-    /**
-     * Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
-     */
     hopOpt?: pulumi.Input<string>;
-    /**
-     * Enable/disable blocking packets with the No Next header (default = disable) Valid values: `enable`, `disable`.
-     */
     noNext?: pulumi.Input<string>;
-    /**
-     * Enable/disable blocking packets with Routing headers (default = enable). Valid values: `enable`, `disable`.
-     */
     routing?: pulumi.Input<string>;
-    /**
-     * Block specific Routing header types (max. 7 types, each between 0 and 255, default =  0).
-     */
     routingType?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -189,40 +100,13 @@ export interface FirewallIpv6EhFilterState {
  * The set of arguments for constructing a FirewallIpv6EhFilter resource.
  */
 export interface FirewallIpv6EhFilterArgs {
-    /**
-     * Enable/disable blocking packets with the Authentication header (default = disable). Valid values: `enable`, `disable`.
-     */
     auth?: pulumi.Input<string>;
-    /**
-     * Enable/disable blocking packets with Destination Options headers (default = disable). Valid values: `enable`, `disable`.
-     */
     destOpt?: pulumi.Input<string>;
-    /**
-     * Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
-     */
     fragment?: pulumi.Input<string>;
-    /**
-     * Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
-     */
     hdoptType?: pulumi.Input<number>;
-    /**
-     * Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
-     */
     hopOpt?: pulumi.Input<string>;
-    /**
-     * Enable/disable blocking packets with the No Next header (default = disable) Valid values: `enable`, `disable`.
-     */
     noNext?: pulumi.Input<string>;
-    /**
-     * Enable/disable blocking packets with Routing headers (default = enable). Valid values: `enable`, `disable`.
-     */
     routing?: pulumi.Input<string>;
-    /**
-     * Block specific Routing header types (max. 7 types, each between 0 and 255, default =  0).
-     */
     routingType?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

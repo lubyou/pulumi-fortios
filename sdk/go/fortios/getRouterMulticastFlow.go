@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios router multicastflow
 func LookupRouterMulticastFlow(ctx *pulumi.Context, args *LookupRouterMulticastFlowArgs, opts ...pulumi.InvokeOption) (*LookupRouterMulticastFlowResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterMulticastFlowResult
@@ -23,21 +22,16 @@ func LookupRouterMulticastFlow(ctx *pulumi.Context, args *LookupRouterMulticastF
 
 // A collection of arguments for invoking GetRouterMulticastFlow.
 type LookupRouterMulticastFlowArgs struct {
-	// Specify the name of the desired router multicastflow.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetRouterMulticastFlow.
 type LookupRouterMulticastFlowResult struct {
-	// Comment.
-	Comments string `pulumi:"comments"`
-	// Multicast-flow entries. The structure of `flows` block is documented below.
-	Flows []GetRouterMulticastFlowFlow `pulumi:"flows"`
+	Comments string                       `pulumi:"comments"`
+	Flows    []GetRouterMulticastFlowFlow `pulumi:"flows"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Name.
+	Id        string  `pulumi:"id"`
 	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -57,9 +51,7 @@ func LookupRouterMulticastFlowOutput(ctx *pulumi.Context, args LookupRouterMulti
 
 // A collection of arguments for invoking GetRouterMulticastFlow.
 type LookupRouterMulticastFlowOutputArgs struct {
-	// Specify the name of the desired router multicastflow.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -82,12 +74,10 @@ func (o LookupRouterMulticastFlowResultOutput) ToLookupRouterMulticastFlowResult
 	return o
 }
 
-// Comment.
 func (o LookupRouterMulticastFlowResultOutput) Comments() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterMulticastFlowResult) string { return v.Comments }).(pulumi.StringOutput)
 }
 
-// Multicast-flow entries. The structure of `flows` block is documented below.
 func (o LookupRouterMulticastFlowResultOutput) Flows() GetRouterMulticastFlowFlowArrayOutput {
 	return o.ApplyT(func(v LookupRouterMulticastFlowResult) []GetRouterMulticastFlowFlow { return v.Flows }).(GetRouterMulticastFlowFlowArrayOutput)
 }
@@ -97,7 +87,6 @@ func (o LookupRouterMulticastFlowResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterMulticastFlowResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Name.
 func (o LookupRouterMulticastFlowResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterMulticastFlowResult) string { return v.Name }).(pulumi.StringOutput)
 }

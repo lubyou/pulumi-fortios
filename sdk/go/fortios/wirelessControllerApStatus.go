@@ -10,35 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure access point status (rogue | accepted | suppressed).
-//
-// ## Import
-//
-// WirelessController ApStatus can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerApStatus:WirelessControllerApStatus labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerApStatus:WirelessControllerApStatus labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerApStatus struct {
 	pulumi.CustomResourceState
 
-	// Access Point's (AP's) BSSID.
-	Bssid pulumi.StringOutput `pulumi:"bssid"`
-	// AP ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Access Point's (AP's) SSID.
-	Ssid pulumi.StringOutput `pulumi:"ssid"`
-	// Access Point's (AP's) status: rogue, accepted, or supressed. Valid values: `rogue`, `accepted`, `suppressed`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Bssid     pulumi.StringOutput    `pulumi:"bssid"`
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Ssid      pulumi.StringOutput    `pulumi:"ssid"`
+	Status    pulumi.StringOutput    `pulumi:"status"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -72,28 +50,18 @@ func GetWirelessControllerApStatus(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerApStatus resources.
 type wirelessControllerApStatusState struct {
-	// Access Point's (AP's) BSSID.
-	Bssid *string `pulumi:"bssid"`
-	// AP ID.
-	Fosid *int `pulumi:"fosid"`
-	// Access Point's (AP's) SSID.
-	Ssid *string `pulumi:"ssid"`
-	// Access Point's (AP's) status: rogue, accepted, or supressed. Valid values: `rogue`, `accepted`, `suppressed`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Bssid     *string `pulumi:"bssid"`
+	Fosid     *int    `pulumi:"fosid"`
+	Ssid      *string `pulumi:"ssid"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type WirelessControllerApStatusState struct {
-	// Access Point's (AP's) BSSID.
-	Bssid pulumi.StringPtrInput
-	// AP ID.
-	Fosid pulumi.IntPtrInput
-	// Access Point's (AP's) SSID.
-	Ssid pulumi.StringPtrInput
-	// Access Point's (AP's) status: rogue, accepted, or supressed. Valid values: `rogue`, `accepted`, `suppressed`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Bssid     pulumi.StringPtrInput
+	Fosid     pulumi.IntPtrInput
+	Ssid      pulumi.StringPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -102,29 +70,19 @@ func (WirelessControllerApStatusState) ElementType() reflect.Type {
 }
 
 type wirelessControllerApStatusArgs struct {
-	// Access Point's (AP's) BSSID.
-	Bssid *string `pulumi:"bssid"`
-	// AP ID.
-	Fosid *int `pulumi:"fosid"`
-	// Access Point's (AP's) SSID.
-	Ssid *string `pulumi:"ssid"`
-	// Access Point's (AP's) status: rogue, accepted, or supressed. Valid values: `rogue`, `accepted`, `suppressed`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Bssid     *string `pulumi:"bssid"`
+	Fosid     *int    `pulumi:"fosid"`
+	Ssid      *string `pulumi:"ssid"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerApStatus resource.
 type WirelessControllerApStatusArgs struct {
-	// Access Point's (AP's) BSSID.
-	Bssid pulumi.StringPtrInput
-	// AP ID.
-	Fosid pulumi.IntPtrInput
-	// Access Point's (AP's) SSID.
-	Ssid pulumi.StringPtrInput
-	// Access Point's (AP's) status: rogue, accepted, or supressed. Valid values: `rogue`, `accepted`, `suppressed`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Bssid     pulumi.StringPtrInput
+	Fosid     pulumi.IntPtrInput
+	Ssid      pulumi.StringPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -154,7 +112,7 @@ func (i *WirelessControllerApStatus) ToWirelessControllerApStatusOutputWithConte
 // WirelessControllerApStatusArrayInput is an input type that accepts WirelessControllerApStatusArray and WirelessControllerApStatusArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerApStatusArrayInput` via:
 //
-//          WirelessControllerApStatusArray{ WirelessControllerApStatusArgs{...} }
+//	WirelessControllerApStatusArray{ WirelessControllerApStatusArgs{...} }
 type WirelessControllerApStatusArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i WirelessControllerApStatusArray) ToWirelessControllerApStatusArrayOutput
 // WirelessControllerApStatusMapInput is an input type that accepts WirelessControllerApStatusMap and WirelessControllerApStatusMapOutput values.
 // You can construct a concrete instance of `WirelessControllerApStatusMapInput` via:
 //
-//          WirelessControllerApStatusMap{ "key": WirelessControllerApStatusArgs{...} }
+//	WirelessControllerApStatusMap{ "key": WirelessControllerApStatusArgs{...} }
 type WirelessControllerApStatusMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o WirelessControllerApStatusOutput) ToWirelessControllerApStatusOutput() W
 
 func (o WirelessControllerApStatusOutput) ToWirelessControllerApStatusOutputWithContext(ctx context.Context) WirelessControllerApStatusOutput {
 	return o
+}
+
+func (o WirelessControllerApStatusOutput) Bssid() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerApStatus) pulumi.StringOutput { return v.Bssid }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerApStatusOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerApStatus) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerApStatusOutput) Ssid() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerApStatus) pulumi.StringOutput { return v.Ssid }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerApStatusOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerApStatus) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerApStatusOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerApStatus) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerApStatusArrayOutput struct{ *pulumi.OutputState }

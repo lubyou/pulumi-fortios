@@ -10,78 +10,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure NAC policy matching pattern to identify matching NAC devices. Applies to FortiOS Version `>= 6.4.0`.
-//
-// ## Import
-//
-// User NacPolicy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userNacPolicy:UserNacPolicy labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userNacPolicy:UserNacPolicy labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserNacPolicy struct {
 	pulumi.CustomResourceState
 
-	// Category of NAC policy.
-	Category pulumi.StringOutput `pulumi:"category"`
-	// Description for the NAC policy matching pattern.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// NAC policy matching EMS tag.
-	EmsTag pulumi.StringOutput `pulumi:"emsTag"`
-	// NAC policy matching family.
-	Family pulumi.StringOutput `pulumi:"family"`
-	// Dynamic firewall address to associate MAC which match this policy.
-	FirewallAddress pulumi.StringOutput `pulumi:"firewallAddress"`
-	// NAC policy matching host.
-	Host pulumi.StringOutput `pulumi:"host"`
-	// NAC policy matching hardware vendor.
-	HwVendor pulumi.StringOutput `pulumi:"hwVendor"`
-	// NAC policy matching hardware version.
-	HwVersion pulumi.StringOutput `pulumi:"hwVersion"`
-	// NAC policy matching MAC address.
-	Mac pulumi.StringOutput `pulumi:"mac"`
-	// Managed FortiSwitch group name from available options.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// NAC policy matching operating system.
-	Os pulumi.StringOutput `pulumi:"os"`
-	// NAC policy matching source.
-	Src pulumi.StringOutput `pulumi:"src"`
-	// SSID policy to be applied on the matched NAC policy.
-	SsidPolicy pulumi.StringOutput `pulumi:"ssidPolicy"`
-	// Enable/disable NAC policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// NAC policy matching software version.
-	SwVersion pulumi.StringOutput `pulumi:"swVersion"`
-	// NAC device auto authorization when discovered and nac-policy matched. Valid values: `global`, `disable`, `enable`.
-	SwitchAutoAuth pulumi.StringOutput `pulumi:"switchAutoAuth"`
-	// FortiLink interface for which this NAC policy belongs to.
-	SwitchFortilink pulumi.StringOutput `pulumi:"switchFortilink"`
-	// List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
-	SwitchGroups UserNacPolicySwitchGroupArrayOutput `pulumi:"switchGroups"`
-	// switch-mac-policy to be applied on the matched NAC policy.
-	SwitchMacPolicy pulumi.StringOutput `pulumi:"switchMacPolicy"`
-	// switch-port-policy to be applied on the matched NAC policy.
-	SwitchPortPolicy pulumi.StringOutput `pulumi:"switchPortPolicy"`
-	// List of managed FortiSwitches on which NAC policy can be applied. The structure of `switchScope` block is documented below.
-	SwitchScopes UserNacPolicySwitchScopeArrayOutput `pulumi:"switchScopes"`
-	// NAC policy matching type.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// NAC policy matching user.
-	User pulumi.StringOutput `pulumi:"user"`
-	// NAC policy matching user group.
-	UserGroup pulumi.StringOutput `pulumi:"userGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Category            pulumi.StringOutput                 `pulumi:"category"`
+	Description         pulumi.StringOutput                 `pulumi:"description"`
+	DynamicSortSubtable pulumi.StringPtrOutput              `pulumi:"dynamicSortSubtable"`
+	EmsTag              pulumi.StringOutput                 `pulumi:"emsTag"`
+	Family              pulumi.StringOutput                 `pulumi:"family"`
+	FirewallAddress     pulumi.StringOutput                 `pulumi:"firewallAddress"`
+	Host                pulumi.StringOutput                 `pulumi:"host"`
+	HwVendor            pulumi.StringOutput                 `pulumi:"hwVendor"`
+	HwVersion           pulumi.StringOutput                 `pulumi:"hwVersion"`
+	Mac                 pulumi.StringOutput                 `pulumi:"mac"`
+	Name                pulumi.StringOutput                 `pulumi:"name"`
+	Os                  pulumi.StringOutput                 `pulumi:"os"`
+	Src                 pulumi.StringOutput                 `pulumi:"src"`
+	SsidPolicy          pulumi.StringOutput                 `pulumi:"ssidPolicy"`
+	Status              pulumi.StringOutput                 `pulumi:"status"`
+	SwVersion           pulumi.StringOutput                 `pulumi:"swVersion"`
+	SwitchAutoAuth      pulumi.StringOutput                 `pulumi:"switchAutoAuth"`
+	SwitchFortilink     pulumi.StringOutput                 `pulumi:"switchFortilink"`
+	SwitchGroups        UserNacPolicySwitchGroupArrayOutput `pulumi:"switchGroups"`
+	SwitchMacPolicy     pulumi.StringOutput                 `pulumi:"switchMacPolicy"`
+	SwitchPortPolicy    pulumi.StringOutput                 `pulumi:"switchPortPolicy"`
+	SwitchScopes        UserNacPolicySwitchScopeArrayOutput `pulumi:"switchScopes"`
+	Type                pulumi.StringOutput                 `pulumi:"type"`
+	User                pulumi.StringOutput                 `pulumi:"user"`
+	UserGroup           pulumi.StringOutput                 `pulumi:"userGroup"`
+	Vdomparam           pulumi.StringPtrOutput              `pulumi:"vdomparam"`
 }
 
 // NewUserNacPolicy registers a new resource with the given unique name, arguments, and options.
@@ -114,113 +71,61 @@ func GetUserNacPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserNacPolicy resources.
 type userNacPolicyState struct {
-	// Category of NAC policy.
-	Category *string `pulumi:"category"`
-	// Description for the NAC policy matching pattern.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// NAC policy matching EMS tag.
-	EmsTag *string `pulumi:"emsTag"`
-	// NAC policy matching family.
-	Family *string `pulumi:"family"`
-	// Dynamic firewall address to associate MAC which match this policy.
-	FirewallAddress *string `pulumi:"firewallAddress"`
-	// NAC policy matching host.
-	Host *string `pulumi:"host"`
-	// NAC policy matching hardware vendor.
-	HwVendor *string `pulumi:"hwVendor"`
-	// NAC policy matching hardware version.
-	HwVersion *string `pulumi:"hwVersion"`
-	// NAC policy matching MAC address.
-	Mac *string `pulumi:"mac"`
-	// Managed FortiSwitch group name from available options.
-	Name *string `pulumi:"name"`
-	// NAC policy matching operating system.
-	Os *string `pulumi:"os"`
-	// NAC policy matching source.
-	Src *string `pulumi:"src"`
-	// SSID policy to be applied on the matched NAC policy.
-	SsidPolicy *string `pulumi:"ssidPolicy"`
-	// Enable/disable NAC policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// NAC policy matching software version.
-	SwVersion *string `pulumi:"swVersion"`
-	// NAC device auto authorization when discovered and nac-policy matched. Valid values: `global`, `disable`, `enable`.
-	SwitchAutoAuth *string `pulumi:"switchAutoAuth"`
-	// FortiLink interface for which this NAC policy belongs to.
-	SwitchFortilink *string `pulumi:"switchFortilink"`
-	// List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
-	SwitchGroups []UserNacPolicySwitchGroup `pulumi:"switchGroups"`
-	// switch-mac-policy to be applied on the matched NAC policy.
-	SwitchMacPolicy *string `pulumi:"switchMacPolicy"`
-	// switch-port-policy to be applied on the matched NAC policy.
-	SwitchPortPolicy *string `pulumi:"switchPortPolicy"`
-	// List of managed FortiSwitches on which NAC policy can be applied. The structure of `switchScope` block is documented below.
-	SwitchScopes []UserNacPolicySwitchScope `pulumi:"switchScopes"`
-	// NAC policy matching type.
-	Type *string `pulumi:"type"`
-	// NAC policy matching user.
-	User *string `pulumi:"user"`
-	// NAC policy matching user group.
-	UserGroup *string `pulumi:"userGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Category            *string                    `pulumi:"category"`
+	Description         *string                    `pulumi:"description"`
+	DynamicSortSubtable *string                    `pulumi:"dynamicSortSubtable"`
+	EmsTag              *string                    `pulumi:"emsTag"`
+	Family              *string                    `pulumi:"family"`
+	FirewallAddress     *string                    `pulumi:"firewallAddress"`
+	Host                *string                    `pulumi:"host"`
+	HwVendor            *string                    `pulumi:"hwVendor"`
+	HwVersion           *string                    `pulumi:"hwVersion"`
+	Mac                 *string                    `pulumi:"mac"`
+	Name                *string                    `pulumi:"name"`
+	Os                  *string                    `pulumi:"os"`
+	Src                 *string                    `pulumi:"src"`
+	SsidPolicy          *string                    `pulumi:"ssidPolicy"`
+	Status              *string                    `pulumi:"status"`
+	SwVersion           *string                    `pulumi:"swVersion"`
+	SwitchAutoAuth      *string                    `pulumi:"switchAutoAuth"`
+	SwitchFortilink     *string                    `pulumi:"switchFortilink"`
+	SwitchGroups        []UserNacPolicySwitchGroup `pulumi:"switchGroups"`
+	SwitchMacPolicy     *string                    `pulumi:"switchMacPolicy"`
+	SwitchPortPolicy    *string                    `pulumi:"switchPortPolicy"`
+	SwitchScopes        []UserNacPolicySwitchScope `pulumi:"switchScopes"`
+	Type                *string                    `pulumi:"type"`
+	User                *string                    `pulumi:"user"`
+	UserGroup           *string                    `pulumi:"userGroup"`
+	Vdomparam           *string                    `pulumi:"vdomparam"`
 }
 
 type UserNacPolicyState struct {
-	// Category of NAC policy.
-	Category pulumi.StringPtrInput
-	// Description for the NAC policy matching pattern.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Category            pulumi.StringPtrInput
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// NAC policy matching EMS tag.
-	EmsTag pulumi.StringPtrInput
-	// NAC policy matching family.
-	Family pulumi.StringPtrInput
-	// Dynamic firewall address to associate MAC which match this policy.
-	FirewallAddress pulumi.StringPtrInput
-	// NAC policy matching host.
-	Host pulumi.StringPtrInput
-	// NAC policy matching hardware vendor.
-	HwVendor pulumi.StringPtrInput
-	// NAC policy matching hardware version.
-	HwVersion pulumi.StringPtrInput
-	// NAC policy matching MAC address.
-	Mac pulumi.StringPtrInput
-	// Managed FortiSwitch group name from available options.
-	Name pulumi.StringPtrInput
-	// NAC policy matching operating system.
-	Os pulumi.StringPtrInput
-	// NAC policy matching source.
-	Src pulumi.StringPtrInput
-	// SSID policy to be applied on the matched NAC policy.
-	SsidPolicy pulumi.StringPtrInput
-	// Enable/disable NAC policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// NAC policy matching software version.
-	SwVersion pulumi.StringPtrInput
-	// NAC device auto authorization when discovered and nac-policy matched. Valid values: `global`, `disable`, `enable`.
-	SwitchAutoAuth pulumi.StringPtrInput
-	// FortiLink interface for which this NAC policy belongs to.
-	SwitchFortilink pulumi.StringPtrInput
-	// List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
-	SwitchGroups UserNacPolicySwitchGroupArrayInput
-	// switch-mac-policy to be applied on the matched NAC policy.
-	SwitchMacPolicy pulumi.StringPtrInput
-	// switch-port-policy to be applied on the matched NAC policy.
-	SwitchPortPolicy pulumi.StringPtrInput
-	// List of managed FortiSwitches on which NAC policy can be applied. The structure of `switchScope` block is documented below.
-	SwitchScopes UserNacPolicySwitchScopeArrayInput
-	// NAC policy matching type.
-	Type pulumi.StringPtrInput
-	// NAC policy matching user.
-	User pulumi.StringPtrInput
-	// NAC policy matching user group.
-	UserGroup pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	EmsTag              pulumi.StringPtrInput
+	Family              pulumi.StringPtrInput
+	FirewallAddress     pulumi.StringPtrInput
+	Host                pulumi.StringPtrInput
+	HwVendor            pulumi.StringPtrInput
+	HwVersion           pulumi.StringPtrInput
+	Mac                 pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Os                  pulumi.StringPtrInput
+	Src                 pulumi.StringPtrInput
+	SsidPolicy          pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	SwVersion           pulumi.StringPtrInput
+	SwitchAutoAuth      pulumi.StringPtrInput
+	SwitchFortilink     pulumi.StringPtrInput
+	SwitchGroups        UserNacPolicySwitchGroupArrayInput
+	SwitchMacPolicy     pulumi.StringPtrInput
+	SwitchPortPolicy    pulumi.StringPtrInput
+	SwitchScopes        UserNacPolicySwitchScopeArrayInput
+	Type                pulumi.StringPtrInput
+	User                pulumi.StringPtrInput
+	UserGroup           pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserNacPolicyState) ElementType() reflect.Type {
@@ -228,114 +133,62 @@ func (UserNacPolicyState) ElementType() reflect.Type {
 }
 
 type userNacPolicyArgs struct {
-	// Category of NAC policy.
-	Category *string `pulumi:"category"`
-	// Description for the NAC policy matching pattern.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// NAC policy matching EMS tag.
-	EmsTag *string `pulumi:"emsTag"`
-	// NAC policy matching family.
-	Family *string `pulumi:"family"`
-	// Dynamic firewall address to associate MAC which match this policy.
-	FirewallAddress *string `pulumi:"firewallAddress"`
-	// NAC policy matching host.
-	Host *string `pulumi:"host"`
-	// NAC policy matching hardware vendor.
-	HwVendor *string `pulumi:"hwVendor"`
-	// NAC policy matching hardware version.
-	HwVersion *string `pulumi:"hwVersion"`
-	// NAC policy matching MAC address.
-	Mac *string `pulumi:"mac"`
-	// Managed FortiSwitch group name from available options.
-	Name *string `pulumi:"name"`
-	// NAC policy matching operating system.
-	Os *string `pulumi:"os"`
-	// NAC policy matching source.
-	Src *string `pulumi:"src"`
-	// SSID policy to be applied on the matched NAC policy.
-	SsidPolicy *string `pulumi:"ssidPolicy"`
-	// Enable/disable NAC policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// NAC policy matching software version.
-	SwVersion *string `pulumi:"swVersion"`
-	// NAC device auto authorization when discovered and nac-policy matched. Valid values: `global`, `disable`, `enable`.
-	SwitchAutoAuth *string `pulumi:"switchAutoAuth"`
-	// FortiLink interface for which this NAC policy belongs to.
-	SwitchFortilink *string `pulumi:"switchFortilink"`
-	// List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
-	SwitchGroups []UserNacPolicySwitchGroup `pulumi:"switchGroups"`
-	// switch-mac-policy to be applied on the matched NAC policy.
-	SwitchMacPolicy *string `pulumi:"switchMacPolicy"`
-	// switch-port-policy to be applied on the matched NAC policy.
-	SwitchPortPolicy *string `pulumi:"switchPortPolicy"`
-	// List of managed FortiSwitches on which NAC policy can be applied. The structure of `switchScope` block is documented below.
-	SwitchScopes []UserNacPolicySwitchScope `pulumi:"switchScopes"`
-	// NAC policy matching type.
-	Type *string `pulumi:"type"`
-	// NAC policy matching user.
-	User *string `pulumi:"user"`
-	// NAC policy matching user group.
-	UserGroup *string `pulumi:"userGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Category            *string                    `pulumi:"category"`
+	Description         *string                    `pulumi:"description"`
+	DynamicSortSubtable *string                    `pulumi:"dynamicSortSubtable"`
+	EmsTag              *string                    `pulumi:"emsTag"`
+	Family              *string                    `pulumi:"family"`
+	FirewallAddress     *string                    `pulumi:"firewallAddress"`
+	Host                *string                    `pulumi:"host"`
+	HwVendor            *string                    `pulumi:"hwVendor"`
+	HwVersion           *string                    `pulumi:"hwVersion"`
+	Mac                 *string                    `pulumi:"mac"`
+	Name                *string                    `pulumi:"name"`
+	Os                  *string                    `pulumi:"os"`
+	Src                 *string                    `pulumi:"src"`
+	SsidPolicy          *string                    `pulumi:"ssidPolicy"`
+	Status              *string                    `pulumi:"status"`
+	SwVersion           *string                    `pulumi:"swVersion"`
+	SwitchAutoAuth      *string                    `pulumi:"switchAutoAuth"`
+	SwitchFortilink     *string                    `pulumi:"switchFortilink"`
+	SwitchGroups        []UserNacPolicySwitchGroup `pulumi:"switchGroups"`
+	SwitchMacPolicy     *string                    `pulumi:"switchMacPolicy"`
+	SwitchPortPolicy    *string                    `pulumi:"switchPortPolicy"`
+	SwitchScopes        []UserNacPolicySwitchScope `pulumi:"switchScopes"`
+	Type                *string                    `pulumi:"type"`
+	User                *string                    `pulumi:"user"`
+	UserGroup           *string                    `pulumi:"userGroup"`
+	Vdomparam           *string                    `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserNacPolicy resource.
 type UserNacPolicyArgs struct {
-	// Category of NAC policy.
-	Category pulumi.StringPtrInput
-	// Description for the NAC policy matching pattern.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Category            pulumi.StringPtrInput
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// NAC policy matching EMS tag.
-	EmsTag pulumi.StringPtrInput
-	// NAC policy matching family.
-	Family pulumi.StringPtrInput
-	// Dynamic firewall address to associate MAC which match this policy.
-	FirewallAddress pulumi.StringPtrInput
-	// NAC policy matching host.
-	Host pulumi.StringPtrInput
-	// NAC policy matching hardware vendor.
-	HwVendor pulumi.StringPtrInput
-	// NAC policy matching hardware version.
-	HwVersion pulumi.StringPtrInput
-	// NAC policy matching MAC address.
-	Mac pulumi.StringPtrInput
-	// Managed FortiSwitch group name from available options.
-	Name pulumi.StringPtrInput
-	// NAC policy matching operating system.
-	Os pulumi.StringPtrInput
-	// NAC policy matching source.
-	Src pulumi.StringPtrInput
-	// SSID policy to be applied on the matched NAC policy.
-	SsidPolicy pulumi.StringPtrInput
-	// Enable/disable NAC policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// NAC policy matching software version.
-	SwVersion pulumi.StringPtrInput
-	// NAC device auto authorization when discovered and nac-policy matched. Valid values: `global`, `disable`, `enable`.
-	SwitchAutoAuth pulumi.StringPtrInput
-	// FortiLink interface for which this NAC policy belongs to.
-	SwitchFortilink pulumi.StringPtrInput
-	// List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
-	SwitchGroups UserNacPolicySwitchGroupArrayInput
-	// switch-mac-policy to be applied on the matched NAC policy.
-	SwitchMacPolicy pulumi.StringPtrInput
-	// switch-port-policy to be applied on the matched NAC policy.
-	SwitchPortPolicy pulumi.StringPtrInput
-	// List of managed FortiSwitches on which NAC policy can be applied. The structure of `switchScope` block is documented below.
-	SwitchScopes UserNacPolicySwitchScopeArrayInput
-	// NAC policy matching type.
-	Type pulumi.StringPtrInput
-	// NAC policy matching user.
-	User pulumi.StringPtrInput
-	// NAC policy matching user group.
-	UserGroup pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	EmsTag              pulumi.StringPtrInput
+	Family              pulumi.StringPtrInput
+	FirewallAddress     pulumi.StringPtrInput
+	Host                pulumi.StringPtrInput
+	HwVendor            pulumi.StringPtrInput
+	HwVersion           pulumi.StringPtrInput
+	Mac                 pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Os                  pulumi.StringPtrInput
+	Src                 pulumi.StringPtrInput
+	SsidPolicy          pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	SwVersion           pulumi.StringPtrInput
+	SwitchAutoAuth      pulumi.StringPtrInput
+	SwitchFortilink     pulumi.StringPtrInput
+	SwitchGroups        UserNacPolicySwitchGroupArrayInput
+	SwitchMacPolicy     pulumi.StringPtrInput
+	SwitchPortPolicy    pulumi.StringPtrInput
+	SwitchScopes        UserNacPolicySwitchScopeArrayInput
+	Type                pulumi.StringPtrInput
+	User                pulumi.StringPtrInput
+	UserGroup           pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserNacPolicyArgs) ElementType() reflect.Type {
@@ -364,7 +217,7 @@ func (i *UserNacPolicy) ToUserNacPolicyOutputWithContext(ctx context.Context) Us
 // UserNacPolicyArrayInput is an input type that accepts UserNacPolicyArray and UserNacPolicyArrayOutput values.
 // You can construct a concrete instance of `UserNacPolicyArrayInput` via:
 //
-//          UserNacPolicyArray{ UserNacPolicyArgs{...} }
+//	UserNacPolicyArray{ UserNacPolicyArgs{...} }
 type UserNacPolicyArrayInput interface {
 	pulumi.Input
 
@@ -389,7 +242,7 @@ func (i UserNacPolicyArray) ToUserNacPolicyArrayOutputWithContext(ctx context.Co
 // UserNacPolicyMapInput is an input type that accepts UserNacPolicyMap and UserNacPolicyMapOutput values.
 // You can construct a concrete instance of `UserNacPolicyMapInput` via:
 //
-//          UserNacPolicyMap{ "key": UserNacPolicyArgs{...} }
+//	UserNacPolicyMap{ "key": UserNacPolicyArgs{...} }
 type UserNacPolicyMapInput interface {
 	pulumi.Input
 
@@ -423,6 +276,110 @@ func (o UserNacPolicyOutput) ToUserNacPolicyOutput() UserNacPolicyOutput {
 
 func (o UserNacPolicyOutput) ToUserNacPolicyOutputWithContext(ctx context.Context) UserNacPolicyOutput {
 	return o
+}
+
+func (o UserNacPolicyOutput) Category() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.Category }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserNacPolicyOutput) EmsTag() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.EmsTag }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) Family() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.Family }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) FirewallAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.FirewallAddress }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.Host }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) HwVendor() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.HwVendor }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) HwVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.HwVersion }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) Mac() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.Mac }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) Os() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.Os }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) Src() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.Src }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) SsidPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.SsidPolicy }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) SwVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.SwVersion }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) SwitchAutoAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.SwitchAutoAuth }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) SwitchFortilink() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.SwitchFortilink }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) SwitchGroups() UserNacPolicySwitchGroupArrayOutput {
+	return o.ApplyT(func(v *UserNacPolicy) UserNacPolicySwitchGroupArrayOutput { return v.SwitchGroups }).(UserNacPolicySwitchGroupArrayOutput)
+}
+
+func (o UserNacPolicyOutput) SwitchMacPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.SwitchMacPolicy }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) SwitchPortPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.SwitchPortPolicy }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) SwitchScopes() UserNacPolicySwitchScopeArrayOutput {
+	return o.ApplyT(func(v *UserNacPolicy) UserNacPolicySwitchScopeArrayOutput { return v.SwitchScopes }).(UserNacPolicySwitchScopeArrayOutput)
+}
+
+func (o UserNacPolicyOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.User }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) UserGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.UserGroup }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserNacPolicyArrayOutput struct{ *pulumi.OutputState }

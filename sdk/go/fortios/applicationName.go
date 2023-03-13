@@ -7,62 +7,29 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure application signatures.
-//
-// ## Import
-//
-// Application Name can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/applicationName:ApplicationName labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/applicationName:ApplicationName labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type ApplicationName struct {
 	pulumi.CustomResourceState
 
-	// Application behavior.
-	Behavior pulumi.StringOutput `pulumi:"behavior"`
-	// Application category ID.
-	Category pulumi.IntOutput `pulumi:"category"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Application ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Meta data. The structure of `metadata` block is documented below.
-	Metadatas ApplicationNameMetadataArrayOutput `pulumi:"metadatas"`
-	// Parameter name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Application parameter name.
-	Parameter pulumi.StringOutput `pulumi:"parameter"`
-	// Application parameters. The structure of `parameters` block is documented below.
-	Parameters ApplicationNameParameterArrayOutput `pulumi:"parameters"`
-	// Application popularity.
-	Popularity pulumi.IntOutput `pulumi:"popularity"`
-	// Application protocol.
-	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// Application risk.
-	Risk pulumi.IntOutput `pulumi:"risk"`
-	// Application sub-category ID.
-	SubCategory pulumi.IntOutput `pulumi:"subCategory"`
-	// Application technology.
-	Technology pulumi.StringOutput `pulumi:"technology"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Application vendor.
-	Vendor pulumi.StringOutput `pulumi:"vendor"`
-	// Application weight.
-	Weight pulumi.IntOutput `pulumi:"weight"`
+	Behavior            pulumi.StringOutput                 `pulumi:"behavior"`
+	Category            pulumi.IntOutput                    `pulumi:"category"`
+	DynamicSortSubtable pulumi.StringPtrOutput              `pulumi:"dynamicSortSubtable"`
+	Fosid               pulumi.IntOutput                    `pulumi:"fosid"`
+	Metadatas           ApplicationNameMetadataArrayOutput  `pulumi:"metadatas"`
+	Name                pulumi.StringOutput                 `pulumi:"name"`
+	Parameter           pulumi.StringOutput                 `pulumi:"parameter"`
+	Parameters          ApplicationNameParameterArrayOutput `pulumi:"parameters"`
+	Popularity          pulumi.IntOutput                    `pulumi:"popularity"`
+	Protocol            pulumi.StringOutput                 `pulumi:"protocol"`
+	Risk                pulumi.IntOutput                    `pulumi:"risk"`
+	SubCategory         pulumi.IntOutput                    `pulumi:"subCategory"`
+	Technology          pulumi.StringOutput                 `pulumi:"technology"`
+	Vdomparam           pulumi.StringPtrOutput              `pulumi:"vdomparam"`
+	Vendor              pulumi.StringOutput                 `pulumi:"vendor"`
+	Weight              pulumi.IntOutput                    `pulumi:"weight"`
 }
 
 // NewApplicationName registers a new resource with the given unique name, arguments, and options.
@@ -98,73 +65,41 @@ func GetApplicationName(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ApplicationName resources.
 type applicationNameState struct {
-	// Application behavior.
-	Behavior *string `pulumi:"behavior"`
-	// Application category ID.
-	Category *int `pulumi:"category"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Application ID.
-	Fosid *int `pulumi:"fosid"`
-	// Meta data. The structure of `metadata` block is documented below.
-	Metadatas []ApplicationNameMetadata `pulumi:"metadatas"`
-	// Parameter name.
-	Name *string `pulumi:"name"`
-	// Application parameter name.
-	Parameter *string `pulumi:"parameter"`
-	// Application parameters. The structure of `parameters` block is documented below.
-	Parameters []ApplicationNameParameter `pulumi:"parameters"`
-	// Application popularity.
-	Popularity *int `pulumi:"popularity"`
-	// Application protocol.
-	Protocol *string `pulumi:"protocol"`
-	// Application risk.
-	Risk *int `pulumi:"risk"`
-	// Application sub-category ID.
-	SubCategory *int `pulumi:"subCategory"`
-	// Application technology.
-	Technology *string `pulumi:"technology"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Application vendor.
-	Vendor *string `pulumi:"vendor"`
-	// Application weight.
-	Weight *int `pulumi:"weight"`
+	Behavior            *string                    `pulumi:"behavior"`
+	Category            *int                       `pulumi:"category"`
+	DynamicSortSubtable *string                    `pulumi:"dynamicSortSubtable"`
+	Fosid               *int                       `pulumi:"fosid"`
+	Metadatas           []ApplicationNameMetadata  `pulumi:"metadatas"`
+	Name                *string                    `pulumi:"name"`
+	Parameter           *string                    `pulumi:"parameter"`
+	Parameters          []ApplicationNameParameter `pulumi:"parameters"`
+	Popularity          *int                       `pulumi:"popularity"`
+	Protocol            *string                    `pulumi:"protocol"`
+	Risk                *int                       `pulumi:"risk"`
+	SubCategory         *int                       `pulumi:"subCategory"`
+	Technology          *string                    `pulumi:"technology"`
+	Vdomparam           *string                    `pulumi:"vdomparam"`
+	Vendor              *string                    `pulumi:"vendor"`
+	Weight              *int                       `pulumi:"weight"`
 }
 
 type ApplicationNameState struct {
-	// Application behavior.
-	Behavior pulumi.StringPtrInput
-	// Application category ID.
-	Category pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Behavior            pulumi.StringPtrInput
+	Category            pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Application ID.
-	Fosid pulumi.IntPtrInput
-	// Meta data. The structure of `metadata` block is documented below.
-	Metadatas ApplicationNameMetadataArrayInput
-	// Parameter name.
-	Name pulumi.StringPtrInput
-	// Application parameter name.
-	Parameter pulumi.StringPtrInput
-	// Application parameters. The structure of `parameters` block is documented below.
-	Parameters ApplicationNameParameterArrayInput
-	// Application popularity.
-	Popularity pulumi.IntPtrInput
-	// Application protocol.
-	Protocol pulumi.StringPtrInput
-	// Application risk.
-	Risk pulumi.IntPtrInput
-	// Application sub-category ID.
-	SubCategory pulumi.IntPtrInput
-	// Application technology.
-	Technology pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Application vendor.
-	Vendor pulumi.StringPtrInput
-	// Application weight.
-	Weight pulumi.IntPtrInput
+	Fosid               pulumi.IntPtrInput
+	Metadatas           ApplicationNameMetadataArrayInput
+	Name                pulumi.StringPtrInput
+	Parameter           pulumi.StringPtrInput
+	Parameters          ApplicationNameParameterArrayInput
+	Popularity          pulumi.IntPtrInput
+	Protocol            pulumi.StringPtrInput
+	Risk                pulumi.IntPtrInput
+	SubCategory         pulumi.IntPtrInput
+	Technology          pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Vendor              pulumi.StringPtrInput
+	Weight              pulumi.IntPtrInput
 }
 
 func (ApplicationNameState) ElementType() reflect.Type {
@@ -172,74 +107,42 @@ func (ApplicationNameState) ElementType() reflect.Type {
 }
 
 type applicationNameArgs struct {
-	// Application behavior.
-	Behavior *string `pulumi:"behavior"`
-	// Application category ID.
-	Category int `pulumi:"category"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Application ID.
-	Fosid *int `pulumi:"fosid"`
-	// Meta data. The structure of `metadata` block is documented below.
-	Metadatas []ApplicationNameMetadata `pulumi:"metadatas"`
-	// Parameter name.
-	Name *string `pulumi:"name"`
-	// Application parameter name.
-	Parameter *string `pulumi:"parameter"`
-	// Application parameters. The structure of `parameters` block is documented below.
-	Parameters []ApplicationNameParameter `pulumi:"parameters"`
-	// Application popularity.
-	Popularity *int `pulumi:"popularity"`
-	// Application protocol.
-	Protocol *string `pulumi:"protocol"`
-	// Application risk.
-	Risk *int `pulumi:"risk"`
-	// Application sub-category ID.
-	SubCategory *int `pulumi:"subCategory"`
-	// Application technology.
-	Technology *string `pulumi:"technology"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Application vendor.
-	Vendor *string `pulumi:"vendor"`
-	// Application weight.
-	Weight *int `pulumi:"weight"`
+	Behavior            *string                    `pulumi:"behavior"`
+	Category            int                        `pulumi:"category"`
+	DynamicSortSubtable *string                    `pulumi:"dynamicSortSubtable"`
+	Fosid               *int                       `pulumi:"fosid"`
+	Metadatas           []ApplicationNameMetadata  `pulumi:"metadatas"`
+	Name                *string                    `pulumi:"name"`
+	Parameter           *string                    `pulumi:"parameter"`
+	Parameters          []ApplicationNameParameter `pulumi:"parameters"`
+	Popularity          *int                       `pulumi:"popularity"`
+	Protocol            *string                    `pulumi:"protocol"`
+	Risk                *int                       `pulumi:"risk"`
+	SubCategory         *int                       `pulumi:"subCategory"`
+	Technology          *string                    `pulumi:"technology"`
+	Vdomparam           *string                    `pulumi:"vdomparam"`
+	Vendor              *string                    `pulumi:"vendor"`
+	Weight              *int                       `pulumi:"weight"`
 }
 
 // The set of arguments for constructing a ApplicationName resource.
 type ApplicationNameArgs struct {
-	// Application behavior.
-	Behavior pulumi.StringPtrInput
-	// Application category ID.
-	Category pulumi.IntInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Behavior            pulumi.StringPtrInput
+	Category            pulumi.IntInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Application ID.
-	Fosid pulumi.IntPtrInput
-	// Meta data. The structure of `metadata` block is documented below.
-	Metadatas ApplicationNameMetadataArrayInput
-	// Parameter name.
-	Name pulumi.StringPtrInput
-	// Application parameter name.
-	Parameter pulumi.StringPtrInput
-	// Application parameters. The structure of `parameters` block is documented below.
-	Parameters ApplicationNameParameterArrayInput
-	// Application popularity.
-	Popularity pulumi.IntPtrInput
-	// Application protocol.
-	Protocol pulumi.StringPtrInput
-	// Application risk.
-	Risk pulumi.IntPtrInput
-	// Application sub-category ID.
-	SubCategory pulumi.IntPtrInput
-	// Application technology.
-	Technology pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Application vendor.
-	Vendor pulumi.StringPtrInput
-	// Application weight.
-	Weight pulumi.IntPtrInput
+	Fosid               pulumi.IntPtrInput
+	Metadatas           ApplicationNameMetadataArrayInput
+	Name                pulumi.StringPtrInput
+	Parameter           pulumi.StringPtrInput
+	Parameters          ApplicationNameParameterArrayInput
+	Popularity          pulumi.IntPtrInput
+	Protocol            pulumi.StringPtrInput
+	Risk                pulumi.IntPtrInput
+	SubCategory         pulumi.IntPtrInput
+	Technology          pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Vendor              pulumi.StringPtrInput
+	Weight              pulumi.IntPtrInput
 }
 
 func (ApplicationNameArgs) ElementType() reflect.Type {
@@ -268,7 +171,7 @@ func (i *ApplicationName) ToApplicationNameOutputWithContext(ctx context.Context
 // ApplicationNameArrayInput is an input type that accepts ApplicationNameArray and ApplicationNameArrayOutput values.
 // You can construct a concrete instance of `ApplicationNameArrayInput` via:
 //
-//          ApplicationNameArray{ ApplicationNameArgs{...} }
+//	ApplicationNameArray{ ApplicationNameArgs{...} }
 type ApplicationNameArrayInput interface {
 	pulumi.Input
 
@@ -293,7 +196,7 @@ func (i ApplicationNameArray) ToApplicationNameArrayOutputWithContext(ctx contex
 // ApplicationNameMapInput is an input type that accepts ApplicationNameMap and ApplicationNameMapOutput values.
 // You can construct a concrete instance of `ApplicationNameMapInput` via:
 //
-//          ApplicationNameMap{ "key": ApplicationNameArgs{...} }
+//	ApplicationNameMap{ "key": ApplicationNameArgs{...} }
 type ApplicationNameMapInput interface {
 	pulumi.Input
 
@@ -327,6 +230,70 @@ func (o ApplicationNameOutput) ToApplicationNameOutput() ApplicationNameOutput {
 
 func (o ApplicationNameOutput) ToApplicationNameOutputWithContext(ctx context.Context) ApplicationNameOutput {
 	return o
+}
+
+func (o ApplicationNameOutput) Behavior() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationName) pulumi.StringOutput { return v.Behavior }).(pulumi.StringOutput)
+}
+
+func (o ApplicationNameOutput) Category() pulumi.IntOutput {
+	return o.ApplyT(func(v *ApplicationName) pulumi.IntOutput { return v.Category }).(pulumi.IntOutput)
+}
+
+func (o ApplicationNameOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationName) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o ApplicationNameOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *ApplicationName) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o ApplicationNameOutput) Metadatas() ApplicationNameMetadataArrayOutput {
+	return o.ApplyT(func(v *ApplicationName) ApplicationNameMetadataArrayOutput { return v.Metadatas }).(ApplicationNameMetadataArrayOutput)
+}
+
+func (o ApplicationNameOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationName) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ApplicationNameOutput) Parameter() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationName) pulumi.StringOutput { return v.Parameter }).(pulumi.StringOutput)
+}
+
+func (o ApplicationNameOutput) Parameters() ApplicationNameParameterArrayOutput {
+	return o.ApplyT(func(v *ApplicationName) ApplicationNameParameterArrayOutput { return v.Parameters }).(ApplicationNameParameterArrayOutput)
+}
+
+func (o ApplicationNameOutput) Popularity() pulumi.IntOutput {
+	return o.ApplyT(func(v *ApplicationName) pulumi.IntOutput { return v.Popularity }).(pulumi.IntOutput)
+}
+
+func (o ApplicationNameOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationName) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o ApplicationNameOutput) Risk() pulumi.IntOutput {
+	return o.ApplyT(func(v *ApplicationName) pulumi.IntOutput { return v.Risk }).(pulumi.IntOutput)
+}
+
+func (o ApplicationNameOutput) SubCategory() pulumi.IntOutput {
+	return o.ApplyT(func(v *ApplicationName) pulumi.IntOutput { return v.SubCategory }).(pulumi.IntOutput)
+}
+
+func (o ApplicationNameOutput) Technology() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationName) pulumi.StringOutput { return v.Technology }).(pulumi.StringOutput)
+}
+
+func (o ApplicationNameOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationName) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o ApplicationNameOutput) Vendor() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationName) pulumi.StringOutput { return v.Vendor }).(pulumi.StringOutput)
+}
+
+func (o ApplicationNameOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v *ApplicationName) pulumi.IntOutput { return v.Weight }).(pulumi.IntOutput)
 }
 
 type ApplicationNameArrayOutput struct{ *pulumi.OutputState }

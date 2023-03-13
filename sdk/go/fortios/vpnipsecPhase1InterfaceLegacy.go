@@ -7,58 +7,32 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to use phase1-interface to define a phase 1 definition for a route-based (interface mode) IPsec VPN tunnel that generates authentication and encryption keys automatically.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `VpnIpsecPhase1Interface`, we recommend that you use the new resource.
-//
-// ## Example Usage
-//
-// VPNIPsecPhase1InterfaceLegacy needs to be set with fortios_vpn_ipsec_phase2interface. See section fortios_vpn_ipsec_phase2interface.
 type VPNIPsecPhase1InterfaceLegacy struct {
 	pulumi.CustomResourceState
 
-	// Authentication method.
-	Authmethod pulumi.StringOutput `pulumi:"authmethod"`
-	// Authentication method (remote side).
-	AuthmethodRemote pulumi.StringOutput `pulumi:"authmethodRemote"`
-	// Names of signed personal certificates.
-	Certificates pulumi.StringArrayOutput `pulumi:"certificates"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Local physical, aggregate, or VLAN outgoing interface.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// IPv4 subnets that should not be sent over the IPsec tunnel.
-	Ipv4SplitExclude pulumi.StringOutput `pulumi:"ipv4SplitExclude"`
-	// IPv4 split-include subnets.
-	Ipv4SplitInclude pulumi.StringOutput `pulumi:"ipv4SplitInclude"`
-	// Enable/disable configuration method.
-	ModeCfg pulumi.StringOutput `pulumi:"modeCfg"`
-	// IPsec remote gateway name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Accept this peer certificate.
-	Peer pulumi.StringOutput `pulumi:"peer"`
-	// Accept this peer certificate group.
-	Peergrp pulumi.StringOutput `pulumi:"peergrp"`
-	// Accept this peer identity.
-	Peerid pulumi.StringOutput `pulumi:"peerid"`
-	// Accept this peer type.
-	Peertype pulumi.StringOutput `pulumi:"peertype"`
-	// Phase1 proposal.
-	Proposal pulumi.StringOutput `pulumi:"proposal"`
-	// Pre-shared secret for PSK authentication.
-	Psksecret pulumi.StringOutput `pulumi:"psksecret"`
-	// IPv4 address of the remote gateway's external interface.
-	RemoteGw pulumi.StringOutput `pulumi:"remoteGw"`
-	// Split-include services.
-	SplitIncludeService pulumi.StringOutput `pulumi:"splitIncludeService"`
-	// Remote gateway type.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// GUI VPN Wizard Type.
-	WizardType pulumi.StringOutput `pulumi:"wizardType"`
+	Authmethod          pulumi.StringOutput      `pulumi:"authmethod"`
+	AuthmethodRemote    pulumi.StringOutput      `pulumi:"authmethodRemote"`
+	Certificates        pulumi.StringArrayOutput `pulumi:"certificates"`
+	Comments            pulumi.StringPtrOutput   `pulumi:"comments"`
+	Interface           pulumi.StringOutput      `pulumi:"interface"`
+	Ipv4SplitExclude    pulumi.StringOutput      `pulumi:"ipv4SplitExclude"`
+	Ipv4SplitInclude    pulumi.StringOutput      `pulumi:"ipv4SplitInclude"`
+	ModeCfg             pulumi.StringOutput      `pulumi:"modeCfg"`
+	Name                pulumi.StringOutput      `pulumi:"name"`
+	Peer                pulumi.StringOutput      `pulumi:"peer"`
+	Peergrp             pulumi.StringOutput      `pulumi:"peergrp"`
+	Peerid              pulumi.StringOutput      `pulumi:"peerid"`
+	Peertype            pulumi.StringOutput      `pulumi:"peertype"`
+	Proposal            pulumi.StringOutput      `pulumi:"proposal"`
+	Psksecret           pulumi.StringOutput      `pulumi:"psksecret"`
+	RemoteGw            pulumi.StringOutput      `pulumi:"remoteGw"`
+	SplitIncludeService pulumi.StringOutput      `pulumi:"splitIncludeService"`
+	Type                pulumi.StringOutput      `pulumi:"type"`
+	WizardType          pulumi.StringOutput      `pulumi:"wizardType"`
 }
 
 // NewVPNIPsecPhase1InterfaceLegacy registers a new resource with the given unique name, arguments, and options.
@@ -103,85 +77,47 @@ func GetVPNIPsecPhase1InterfaceLegacy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VPNIPsecPhase1InterfaceLegacy resources.
 type vpnipsecPhase1InterfaceLegacyState struct {
-	// Authentication method.
-	Authmethod *string `pulumi:"authmethod"`
-	// Authentication method (remote side).
-	AuthmethodRemote *string `pulumi:"authmethodRemote"`
-	// Names of signed personal certificates.
-	Certificates []string `pulumi:"certificates"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Local physical, aggregate, or VLAN outgoing interface.
-	Interface *string `pulumi:"interface"`
-	// IPv4 subnets that should not be sent over the IPsec tunnel.
-	Ipv4SplitExclude *string `pulumi:"ipv4SplitExclude"`
-	// IPv4 split-include subnets.
-	Ipv4SplitInclude *string `pulumi:"ipv4SplitInclude"`
-	// Enable/disable configuration method.
-	ModeCfg *string `pulumi:"modeCfg"`
-	// IPsec remote gateway name.
-	Name *string `pulumi:"name"`
-	// Accept this peer certificate.
-	Peer *string `pulumi:"peer"`
-	// Accept this peer certificate group.
-	Peergrp *string `pulumi:"peergrp"`
-	// Accept this peer identity.
-	Peerid *string `pulumi:"peerid"`
-	// Accept this peer type.
-	Peertype *string `pulumi:"peertype"`
-	// Phase1 proposal.
-	Proposal *string `pulumi:"proposal"`
-	// Pre-shared secret for PSK authentication.
-	Psksecret *string `pulumi:"psksecret"`
-	// IPv4 address of the remote gateway's external interface.
-	RemoteGw *string `pulumi:"remoteGw"`
-	// Split-include services.
-	SplitIncludeService *string `pulumi:"splitIncludeService"`
-	// Remote gateway type.
-	Type *string `pulumi:"type"`
-	// GUI VPN Wizard Type.
-	WizardType *string `pulumi:"wizardType"`
+	Authmethod          *string  `pulumi:"authmethod"`
+	AuthmethodRemote    *string  `pulumi:"authmethodRemote"`
+	Certificates        []string `pulumi:"certificates"`
+	Comments            *string  `pulumi:"comments"`
+	Interface           *string  `pulumi:"interface"`
+	Ipv4SplitExclude    *string  `pulumi:"ipv4SplitExclude"`
+	Ipv4SplitInclude    *string  `pulumi:"ipv4SplitInclude"`
+	ModeCfg             *string  `pulumi:"modeCfg"`
+	Name                *string  `pulumi:"name"`
+	Peer                *string  `pulumi:"peer"`
+	Peergrp             *string  `pulumi:"peergrp"`
+	Peerid              *string  `pulumi:"peerid"`
+	Peertype            *string  `pulumi:"peertype"`
+	Proposal            *string  `pulumi:"proposal"`
+	Psksecret           *string  `pulumi:"psksecret"`
+	RemoteGw            *string  `pulumi:"remoteGw"`
+	SplitIncludeService *string  `pulumi:"splitIncludeService"`
+	Type                *string  `pulumi:"type"`
+	WizardType          *string  `pulumi:"wizardType"`
 }
 
 type VPNIPsecPhase1InterfaceLegacyState struct {
-	// Authentication method.
-	Authmethod pulumi.StringPtrInput
-	// Authentication method (remote side).
-	AuthmethodRemote pulumi.StringPtrInput
-	// Names of signed personal certificates.
-	Certificates pulumi.StringArrayInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Local physical, aggregate, or VLAN outgoing interface.
-	Interface pulumi.StringPtrInput
-	// IPv4 subnets that should not be sent over the IPsec tunnel.
-	Ipv4SplitExclude pulumi.StringPtrInput
-	// IPv4 split-include subnets.
-	Ipv4SplitInclude pulumi.StringPtrInput
-	// Enable/disable configuration method.
-	ModeCfg pulumi.StringPtrInput
-	// IPsec remote gateway name.
-	Name pulumi.StringPtrInput
-	// Accept this peer certificate.
-	Peer pulumi.StringPtrInput
-	// Accept this peer certificate group.
-	Peergrp pulumi.StringPtrInput
-	// Accept this peer identity.
-	Peerid pulumi.StringPtrInput
-	// Accept this peer type.
-	Peertype pulumi.StringPtrInput
-	// Phase1 proposal.
-	Proposal pulumi.StringPtrInput
-	// Pre-shared secret for PSK authentication.
-	Psksecret pulumi.StringPtrInput
-	// IPv4 address of the remote gateway's external interface.
-	RemoteGw pulumi.StringPtrInput
-	// Split-include services.
+	Authmethod          pulumi.StringPtrInput
+	AuthmethodRemote    pulumi.StringPtrInput
+	Certificates        pulumi.StringArrayInput
+	Comments            pulumi.StringPtrInput
+	Interface           pulumi.StringPtrInput
+	Ipv4SplitExclude    pulumi.StringPtrInput
+	Ipv4SplitInclude    pulumi.StringPtrInput
+	ModeCfg             pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Peer                pulumi.StringPtrInput
+	Peergrp             pulumi.StringPtrInput
+	Peerid              pulumi.StringPtrInput
+	Peertype            pulumi.StringPtrInput
+	Proposal            pulumi.StringPtrInput
+	Psksecret           pulumi.StringPtrInput
+	RemoteGw            pulumi.StringPtrInput
 	SplitIncludeService pulumi.StringPtrInput
-	// Remote gateway type.
-	Type pulumi.StringPtrInput
-	// GUI VPN Wizard Type.
-	WizardType pulumi.StringPtrInput
+	Type                pulumi.StringPtrInput
+	WizardType          pulumi.StringPtrInput
 }
 
 func (VPNIPsecPhase1InterfaceLegacyState) ElementType() reflect.Type {
@@ -189,86 +125,48 @@ func (VPNIPsecPhase1InterfaceLegacyState) ElementType() reflect.Type {
 }
 
 type vpnipsecPhase1InterfaceLegacyArgs struct {
-	// Authentication method.
-	Authmethod *string `pulumi:"authmethod"`
-	// Authentication method (remote side).
-	AuthmethodRemote *string `pulumi:"authmethodRemote"`
-	// Names of signed personal certificates.
-	Certificates []string `pulumi:"certificates"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Local physical, aggregate, or VLAN outgoing interface.
-	Interface string `pulumi:"interface"`
-	// IPv4 subnets that should not be sent over the IPsec tunnel.
-	Ipv4SplitExclude *string `pulumi:"ipv4SplitExclude"`
-	// IPv4 split-include subnets.
-	Ipv4SplitInclude *string `pulumi:"ipv4SplitInclude"`
-	// Enable/disable configuration method.
-	ModeCfg *string `pulumi:"modeCfg"`
-	// IPsec remote gateway name.
-	Name *string `pulumi:"name"`
-	// Accept this peer certificate.
-	Peer *string `pulumi:"peer"`
-	// Accept this peer certificate group.
-	Peergrp *string `pulumi:"peergrp"`
-	// Accept this peer identity.
-	Peerid *string `pulumi:"peerid"`
-	// Accept this peer type.
-	Peertype *string `pulumi:"peertype"`
-	// Phase1 proposal.
-	Proposal *string `pulumi:"proposal"`
-	// Pre-shared secret for PSK authentication.
-	Psksecret string `pulumi:"psksecret"`
-	// IPv4 address of the remote gateway's external interface.
-	RemoteGw string `pulumi:"remoteGw"`
-	// Split-include services.
-	SplitIncludeService *string `pulumi:"splitIncludeService"`
-	// Remote gateway type.
-	Type string `pulumi:"type"`
-	// GUI VPN Wizard Type.
-	WizardType *string `pulumi:"wizardType"`
+	Authmethod          *string  `pulumi:"authmethod"`
+	AuthmethodRemote    *string  `pulumi:"authmethodRemote"`
+	Certificates        []string `pulumi:"certificates"`
+	Comments            *string  `pulumi:"comments"`
+	Interface           string   `pulumi:"interface"`
+	Ipv4SplitExclude    *string  `pulumi:"ipv4SplitExclude"`
+	Ipv4SplitInclude    *string  `pulumi:"ipv4SplitInclude"`
+	ModeCfg             *string  `pulumi:"modeCfg"`
+	Name                *string  `pulumi:"name"`
+	Peer                *string  `pulumi:"peer"`
+	Peergrp             *string  `pulumi:"peergrp"`
+	Peerid              *string  `pulumi:"peerid"`
+	Peertype            *string  `pulumi:"peertype"`
+	Proposal            *string  `pulumi:"proposal"`
+	Psksecret           string   `pulumi:"psksecret"`
+	RemoteGw            string   `pulumi:"remoteGw"`
+	SplitIncludeService *string  `pulumi:"splitIncludeService"`
+	Type                string   `pulumi:"type"`
+	WizardType          *string  `pulumi:"wizardType"`
 }
 
 // The set of arguments for constructing a VPNIPsecPhase1InterfaceLegacy resource.
 type VPNIPsecPhase1InterfaceLegacyArgs struct {
-	// Authentication method.
-	Authmethod pulumi.StringPtrInput
-	// Authentication method (remote side).
-	AuthmethodRemote pulumi.StringPtrInput
-	// Names of signed personal certificates.
-	Certificates pulumi.StringArrayInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Local physical, aggregate, or VLAN outgoing interface.
-	Interface pulumi.StringInput
-	// IPv4 subnets that should not be sent over the IPsec tunnel.
-	Ipv4SplitExclude pulumi.StringPtrInput
-	// IPv4 split-include subnets.
-	Ipv4SplitInclude pulumi.StringPtrInput
-	// Enable/disable configuration method.
-	ModeCfg pulumi.StringPtrInput
-	// IPsec remote gateway name.
-	Name pulumi.StringPtrInput
-	// Accept this peer certificate.
-	Peer pulumi.StringPtrInput
-	// Accept this peer certificate group.
-	Peergrp pulumi.StringPtrInput
-	// Accept this peer identity.
-	Peerid pulumi.StringPtrInput
-	// Accept this peer type.
-	Peertype pulumi.StringPtrInput
-	// Phase1 proposal.
-	Proposal pulumi.StringPtrInput
-	// Pre-shared secret for PSK authentication.
-	Psksecret pulumi.StringInput
-	// IPv4 address of the remote gateway's external interface.
-	RemoteGw pulumi.StringInput
-	// Split-include services.
+	Authmethod          pulumi.StringPtrInput
+	AuthmethodRemote    pulumi.StringPtrInput
+	Certificates        pulumi.StringArrayInput
+	Comments            pulumi.StringPtrInput
+	Interface           pulumi.StringInput
+	Ipv4SplitExclude    pulumi.StringPtrInput
+	Ipv4SplitInclude    pulumi.StringPtrInput
+	ModeCfg             pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Peer                pulumi.StringPtrInput
+	Peergrp             pulumi.StringPtrInput
+	Peerid              pulumi.StringPtrInput
+	Peertype            pulumi.StringPtrInput
+	Proposal            pulumi.StringPtrInput
+	Psksecret           pulumi.StringInput
+	RemoteGw            pulumi.StringInput
 	SplitIncludeService pulumi.StringPtrInput
-	// Remote gateway type.
-	Type pulumi.StringInput
-	// GUI VPN Wizard Type.
-	WizardType pulumi.StringPtrInput
+	Type                pulumi.StringInput
+	WizardType          pulumi.StringPtrInput
 }
 
 func (VPNIPsecPhase1InterfaceLegacyArgs) ElementType() reflect.Type {
@@ -297,7 +195,7 @@ func (i *VPNIPsecPhase1InterfaceLegacy) ToVPNIPsecPhase1InterfaceLegacyOutputWit
 // VPNIPsecPhase1InterfaceLegacyArrayInput is an input type that accepts VPNIPsecPhase1InterfaceLegacyArray and VPNIPsecPhase1InterfaceLegacyArrayOutput values.
 // You can construct a concrete instance of `VPNIPsecPhase1InterfaceLegacyArrayInput` via:
 //
-//          VPNIPsecPhase1InterfaceLegacyArray{ VPNIPsecPhase1InterfaceLegacyArgs{...} }
+//	VPNIPsecPhase1InterfaceLegacyArray{ VPNIPsecPhase1InterfaceLegacyArgs{...} }
 type VPNIPsecPhase1InterfaceLegacyArrayInput interface {
 	pulumi.Input
 
@@ -322,7 +220,7 @@ func (i VPNIPsecPhase1InterfaceLegacyArray) ToVPNIPsecPhase1InterfaceLegacyArray
 // VPNIPsecPhase1InterfaceLegacyMapInput is an input type that accepts VPNIPsecPhase1InterfaceLegacyMap and VPNIPsecPhase1InterfaceLegacyMapOutput values.
 // You can construct a concrete instance of `VPNIPsecPhase1InterfaceLegacyMapInput` via:
 //
-//          VPNIPsecPhase1InterfaceLegacyMap{ "key": VPNIPsecPhase1InterfaceLegacyArgs{...} }
+//	VPNIPsecPhase1InterfaceLegacyMap{ "key": VPNIPsecPhase1InterfaceLegacyArgs{...} }
 type VPNIPsecPhase1InterfaceLegacyMapInput interface {
 	pulumi.Input
 
@@ -356,6 +254,82 @@ func (o VPNIPsecPhase1InterfaceLegacyOutput) ToVPNIPsecPhase1InterfaceLegacyOutp
 
 func (o VPNIPsecPhase1InterfaceLegacyOutput) ToVPNIPsecPhase1InterfaceLegacyOutputWithContext(ctx context.Context) VPNIPsecPhase1InterfaceLegacyOutput {
 	return o
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) Authmethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.Authmethod }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) AuthmethodRemote() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.AuthmethodRemote }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) Certificates() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringArrayOutput { return v.Certificates }).(pulumi.StringArrayOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) Ipv4SplitExclude() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.Ipv4SplitExclude }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) Ipv4SplitInclude() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.Ipv4SplitInclude }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) ModeCfg() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.ModeCfg }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) Peer() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.Peer }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) Peergrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.Peergrp }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) Peerid() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.Peerid }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) Peertype() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.Peertype }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) Proposal() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.Proposal }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) Psksecret() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.Psksecret }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) RemoteGw() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.RemoteGw }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) SplitIncludeService() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.SplitIncludeService }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase1InterfaceLegacyOutput) WizardType() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase1InterfaceLegacy) pulumi.StringOutput { return v.WizardType }).(pulumi.StringOutput)
 }
 
 type VPNIPsecPhase1InterfaceLegacyArrayOutput struct{ *pulumi.OutputState }

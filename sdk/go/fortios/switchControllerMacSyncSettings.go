@@ -10,30 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure global MAC synchronization settings. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Import
-//
-// SwitchController MacSyncSettings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerMacSyncSettings:SwitchControllerMacSyncSettings labelname SwitchControllerMacSyncSettings
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerMacSyncSettings:SwitchControllerMacSyncSettings labelname SwitchControllerMacSyncSettings
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerMacSyncSettings struct {
 	pulumi.CustomResourceState
 
-	// Time interval between MAC synchronizations (30 - 1800 sec, default = 60, 0 = disable MAC synchronization).
-	MacSyncInterval pulumi.IntOutput `pulumi:"macSyncInterval"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	MacSyncInterval pulumi.IntOutput       `pulumi:"macSyncInterval"`
+	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerMacSyncSettings registers a new resource with the given unique name, arguments, and options.
@@ -66,17 +47,13 @@ func GetSwitchControllerMacSyncSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerMacSyncSettings resources.
 type switchControllerMacSyncSettingsState struct {
-	// Time interval between MAC synchronizations (30 - 1800 sec, default = 60, 0 = disable MAC synchronization).
-	MacSyncInterval *int `pulumi:"macSyncInterval"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	MacSyncInterval *int    `pulumi:"macSyncInterval"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerMacSyncSettingsState struct {
-	// Time interval between MAC synchronizations (30 - 1800 sec, default = 60, 0 = disable MAC synchronization).
 	MacSyncInterval pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (SwitchControllerMacSyncSettingsState) ElementType() reflect.Type {
@@ -84,18 +61,14 @@ func (SwitchControllerMacSyncSettingsState) ElementType() reflect.Type {
 }
 
 type switchControllerMacSyncSettingsArgs struct {
-	// Time interval between MAC synchronizations (30 - 1800 sec, default = 60, 0 = disable MAC synchronization).
-	MacSyncInterval *int `pulumi:"macSyncInterval"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	MacSyncInterval *int    `pulumi:"macSyncInterval"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerMacSyncSettings resource.
 type SwitchControllerMacSyncSettingsArgs struct {
-	// Time interval between MAC synchronizations (30 - 1800 sec, default = 60, 0 = disable MAC synchronization).
 	MacSyncInterval pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (SwitchControllerMacSyncSettingsArgs) ElementType() reflect.Type {
@@ -124,7 +97,7 @@ func (i *SwitchControllerMacSyncSettings) ToSwitchControllerMacSyncSettingsOutpu
 // SwitchControllerMacSyncSettingsArrayInput is an input type that accepts SwitchControllerMacSyncSettingsArray and SwitchControllerMacSyncSettingsArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerMacSyncSettingsArrayInput` via:
 //
-//          SwitchControllerMacSyncSettingsArray{ SwitchControllerMacSyncSettingsArgs{...} }
+//	SwitchControllerMacSyncSettingsArray{ SwitchControllerMacSyncSettingsArgs{...} }
 type SwitchControllerMacSyncSettingsArrayInput interface {
 	pulumi.Input
 
@@ -149,7 +122,7 @@ func (i SwitchControllerMacSyncSettingsArray) ToSwitchControllerMacSyncSettingsA
 // SwitchControllerMacSyncSettingsMapInput is an input type that accepts SwitchControllerMacSyncSettingsMap and SwitchControllerMacSyncSettingsMapOutput values.
 // You can construct a concrete instance of `SwitchControllerMacSyncSettingsMapInput` via:
 //
-//          SwitchControllerMacSyncSettingsMap{ "key": SwitchControllerMacSyncSettingsArgs{...} }
+//	SwitchControllerMacSyncSettingsMap{ "key": SwitchControllerMacSyncSettingsArgs{...} }
 type SwitchControllerMacSyncSettingsMapInput interface {
 	pulumi.Input
 
@@ -183,6 +156,14 @@ func (o SwitchControllerMacSyncSettingsOutput) ToSwitchControllerMacSyncSettings
 
 func (o SwitchControllerMacSyncSettingsOutput) ToSwitchControllerMacSyncSettingsOutputWithContext(ctx context.Context) SwitchControllerMacSyncSettingsOutput {
 	return o
+}
+
+func (o SwitchControllerMacSyncSettingsOutput) MacSyncInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerMacSyncSettings) pulumi.IntOutput { return v.MacSyncInterval }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerMacSyncSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerMacSyncSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerMacSyncSettingsArrayOutput struct{ *pulumi.OutputState }

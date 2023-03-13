@@ -7,75 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure DNS domain filters.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewDnsfilterDomainFilter(ctx, "trname", &fortios.DnsfilterDomainFilterArgs{
-// 			Entries: DnsfilterDomainFilterEntryArray{
-// 				&DnsfilterDomainFilterEntryArgs{
-// 					Action: pulumi.String("block"),
-// 					Domain: pulumi.String("bac.com"),
-// 					Id:     pulumi.Int(1),
-// 					Status: pulumi.String("enable"),
-// 					Type:   pulumi.String("simple"),
-// 				},
-// 			},
-// 			Fosid: pulumi.Int(1),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Dnsfilter DomainFilter can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/dnsfilterDomainFilter:DnsfilterDomainFilter labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/dnsfilterDomainFilter:DnsfilterDomainFilter labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type DnsfilterDomainFilter struct {
 	pulumi.CustomResourceState
 
-	// Optional comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// DNS domain filter entries. The structure of `entries` block is documented below.
-	Entries DnsfilterDomainFilterEntryArrayOutput `pulumi:"entries"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Name of table.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput                `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
+	Entries             DnsfilterDomainFilterEntryArrayOutput `pulumi:"entries"`
+	Fosid               pulumi.IntOutput                      `pulumi:"fosid"`
+	Name                pulumi.StringOutput                   `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                `pulumi:"vdomparam"`
 }
 
 // NewDnsfilterDomainFilter registers a new resource with the given unique name, arguments, and options.
@@ -111,33 +55,21 @@ func GetDnsfilterDomainFilter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DnsfilterDomainFilter resources.
 type dnsfilterDomainFilterState struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// DNS domain filter entries. The structure of `entries` block is documented below.
-	Entries []DnsfilterDomainFilterEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                      `pulumi:"comment"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	Entries             []DnsfilterDomainFilterEntry `pulumi:"entries"`
+	Fosid               *int                         `pulumi:"fosid"`
+	Name                *string                      `pulumi:"name"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 type DnsfilterDomainFilterState struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// DNS domain filter entries. The structure of `entries` block is documented below.
-	Entries DnsfilterDomainFilterEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             DnsfilterDomainFilterEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (DnsfilterDomainFilterState) ElementType() reflect.Type {
@@ -145,34 +77,22 @@ func (DnsfilterDomainFilterState) ElementType() reflect.Type {
 }
 
 type dnsfilterDomainFilterArgs struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// DNS domain filter entries. The structure of `entries` block is documented below.
-	Entries []DnsfilterDomainFilterEntry `pulumi:"entries"`
-	// ID.
-	Fosid int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                      `pulumi:"comment"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	Entries             []DnsfilterDomainFilterEntry `pulumi:"entries"`
+	Fosid               int                          `pulumi:"fosid"`
+	Name                *string                      `pulumi:"name"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a DnsfilterDomainFilter resource.
 type DnsfilterDomainFilterArgs struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// DNS domain filter entries. The structure of `entries` block is documented below.
-	Entries DnsfilterDomainFilterEntryArrayInput
-	// ID.
-	Fosid pulumi.IntInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             DnsfilterDomainFilterEntryArrayInput
+	Fosid               pulumi.IntInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (DnsfilterDomainFilterArgs) ElementType() reflect.Type {
@@ -201,7 +121,7 @@ func (i *DnsfilterDomainFilter) ToDnsfilterDomainFilterOutputWithContext(ctx con
 // DnsfilterDomainFilterArrayInput is an input type that accepts DnsfilterDomainFilterArray and DnsfilterDomainFilterArrayOutput values.
 // You can construct a concrete instance of `DnsfilterDomainFilterArrayInput` via:
 //
-//          DnsfilterDomainFilterArray{ DnsfilterDomainFilterArgs{...} }
+//	DnsfilterDomainFilterArray{ DnsfilterDomainFilterArgs{...} }
 type DnsfilterDomainFilterArrayInput interface {
 	pulumi.Input
 
@@ -226,7 +146,7 @@ func (i DnsfilterDomainFilterArray) ToDnsfilterDomainFilterArrayOutputWithContex
 // DnsfilterDomainFilterMapInput is an input type that accepts DnsfilterDomainFilterMap and DnsfilterDomainFilterMapOutput values.
 // You can construct a concrete instance of `DnsfilterDomainFilterMapInput` via:
 //
-//          DnsfilterDomainFilterMap{ "key": DnsfilterDomainFilterArgs{...} }
+//	DnsfilterDomainFilterMap{ "key": DnsfilterDomainFilterArgs{...} }
 type DnsfilterDomainFilterMapInput interface {
 	pulumi.Input
 
@@ -260,6 +180,30 @@ func (o DnsfilterDomainFilterOutput) ToDnsfilterDomainFilterOutput() DnsfilterDo
 
 func (o DnsfilterDomainFilterOutput) ToDnsfilterDomainFilterOutputWithContext(ctx context.Context) DnsfilterDomainFilterOutput {
 	return o
+}
+
+func (o DnsfilterDomainFilterOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DnsfilterDomainFilter) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o DnsfilterDomainFilterOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DnsfilterDomainFilter) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o DnsfilterDomainFilterOutput) Entries() DnsfilterDomainFilterEntryArrayOutput {
+	return o.ApplyT(func(v *DnsfilterDomainFilter) DnsfilterDomainFilterEntryArrayOutput { return v.Entries }).(DnsfilterDomainFilterEntryArrayOutput)
+}
+
+func (o DnsfilterDomainFilterOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *DnsfilterDomainFilter) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o DnsfilterDomainFilterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *DnsfilterDomainFilter) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o DnsfilterDomainFilterOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DnsfilterDomainFilter) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type DnsfilterDomainFilterArrayOutput struct{ *pulumi.OutputState }

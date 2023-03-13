@@ -4,40 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure external resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemExternalResource("trname", {
- *     category: 199,
- *     refreshRate: 5,
- *     resource: "https://tmpxxxxx.com",
- *     status: "enable",
- *     type: "category",
- * });
- * ```
- *
- * ## Import
- *
- * System ExternalResource can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemExternalResource:SystemExternalResource labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemExternalResource:SystemExternalResource labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemExternalResource extends pulumi.CustomResource {
     /**
      * Get an existing SystemExternalResource resource's state with the given name, ID, and optional extra
@@ -66,65 +32,21 @@ export class SystemExternalResource extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemExternalResource.__pulumiType;
     }
 
-    /**
-     * User resource category.
-     */
     public readonly category!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
-    /**
-     * External resource name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * HTTP basic authentication password.
-     */
     public readonly password!: pulumi.Output<string | undefined>;
-    /**
-     * Time interval to refresh external resource (1 - 43200 min, default = 5 min).
-     */
     public readonly refreshRate!: pulumi.Output<number>;
-    /**
-     * URI of external resource.
-     */
     public readonly resource!: pulumi.Output<string>;
-    /**
-     * Source IPv4 address used to communicate with server.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Enable/disable user resource. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * User resource type. Valid values: `category`, `address`, `domain`, `malware`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Override HTTP User-Agent header used when retrieving this external resource.
-     */
+    public readonly updateMethod!: pulumi.Output<string>;
     public readonly userAgent!: pulumi.Output<string>;
-    /**
-     * HTTP basic authentication user name.
-     */
     public readonly username!: pulumi.Output<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -151,6 +73,7 @@ export class SystemExternalResource extends pulumi.CustomResource {
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["updateMethod"] = state ? state.updateMethod : undefined;
             resourceInputs["userAgent"] = state ? state.userAgent : undefined;
             resourceInputs["username"] = state ? state.username : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
@@ -168,18 +91,21 @@ export class SystemExternalResource extends pulumi.CustomResource {
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["refreshRate"] = args ? args.refreshRate : undefined;
             resourceInputs["resource"] = args ? args.resource : undefined;
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["updateMethod"] = args ? args.updateMethod : undefined;
             resourceInputs["userAgent"] = args ? args.userAgent : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
             resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemExternalResource.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -188,65 +114,21 @@ export class SystemExternalResource extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemExternalResource resources.
  */
 export interface SystemExternalResourceState {
-    /**
-     * User resource category.
-     */
     category?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * External resource name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * HTTP basic authentication password.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Time interval to refresh external resource (1 - 43200 min, default = 5 min).
-     */
     refreshRate?: pulumi.Input<number>;
-    /**
-     * URI of external resource.
-     */
     resource?: pulumi.Input<string>;
-    /**
-     * Source IPv4 address used to communicate with server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable user resource. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * User resource type. Valid values: `category`, `address`, `domain`, `malware`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Override HTTP User-Agent header used when retrieving this external resource.
-     */
+    updateMethod?: pulumi.Input<string>;
     userAgent?: pulumi.Input<string>;
-    /**
-     * HTTP basic authentication user name.
-     */
     username?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -254,64 +136,20 @@ export interface SystemExternalResourceState {
  * The set of arguments for constructing a SystemExternalResource resource.
  */
 export interface SystemExternalResourceArgs {
-    /**
-     * User resource category.
-     */
     category?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * External resource name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * HTTP basic authentication password.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Time interval to refresh external resource (1 - 43200 min, default = 5 min).
-     */
     refreshRate: pulumi.Input<number>;
-    /**
-     * URI of external resource.
-     */
     resource: pulumi.Input<string>;
-    /**
-     * Source IPv4 address used to communicate with server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable user resource. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * User resource type. Valid values: `category`, `address`, `domain`, `malware`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Override HTTP User-Agent header used when retrieving this external resource.
-     */
+    updateMethod?: pulumi.Input<string>;
     userAgent?: pulumi.Input<string>;
-    /**
-     * HTTP basic authentication user name.
-     */
     username?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

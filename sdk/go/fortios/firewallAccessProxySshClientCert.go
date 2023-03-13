@@ -10,48 +10,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Access Proxy SSH client certificate. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// Firewall AccessProxySshClientCert can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAccessProxySshClientCert:FirewallAccessProxySshClientCert labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAccessProxySshClientCert:FirewallAccessProxySshClientCert labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallAccessProxySshClientCert struct {
 	pulumi.CustomResourceState
 
-	// Name of the SSH server public key authentication CA.
-	AuthCa pulumi.StringOutput `pulumi:"authCa"`
-	// Configure certificate extension for user certificate. The structure of `certExtension` block is documented below.
-	CertExtensions FirewallAccessProxySshClientCertCertExtensionArrayOutput `pulumi:"certExtensions"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Name of certificate extension.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable appending permit-agent-forwarding certificate extension. Valid values: `enable`, `disable`.
-	PermitAgentForwarding pulumi.StringOutput `pulumi:"permitAgentForwarding"`
-	// Enable/disable appending permit-port-forwarding certificate extension. Valid values: `enable`, `disable`.
-	PermitPortForwarding pulumi.StringOutput `pulumi:"permitPortForwarding"`
-	// Enable/disable appending permit-pty certificate extension. Valid values: `enable`, `disable`.
-	PermitPty pulumi.StringOutput `pulumi:"permitPty"`
-	// Enable/disable appending permit-user-rc certificate extension. Valid values: `enable`, `disable`.
-	PermitUserRc pulumi.StringOutput `pulumi:"permitUserRc"`
-	// Enable/disable appending permit-x11-forwarding certificate extension. Valid values: `enable`, `disable`.
-	PermitX11Forwarding pulumi.StringOutput `pulumi:"permitX11Forwarding"`
-	// Enable/disable appending source-address certificate critical option. This option ensure certificate only accepted from FortiGate source address. Valid values: `enable`, `disable`.
-	SourceAddress pulumi.StringOutput `pulumi:"sourceAddress"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AuthCa                pulumi.StringOutput                                      `pulumi:"authCa"`
+	CertExtensions        FirewallAccessProxySshClientCertCertExtensionArrayOutput `pulumi:"certExtensions"`
+	DynamicSortSubtable   pulumi.StringPtrOutput                                   `pulumi:"dynamicSortSubtable"`
+	Name                  pulumi.StringOutput                                      `pulumi:"name"`
+	PermitAgentForwarding pulumi.StringOutput                                      `pulumi:"permitAgentForwarding"`
+	PermitPortForwarding  pulumi.StringOutput                                      `pulumi:"permitPortForwarding"`
+	PermitPty             pulumi.StringOutput                                      `pulumi:"permitPty"`
+	PermitUserRc          pulumi.StringOutput                                      `pulumi:"permitUserRc"`
+	PermitX11Forwarding   pulumi.StringOutput                                      `pulumi:"permitX11Forwarding"`
+	SourceAddress         pulumi.StringOutput                                      `pulumi:"sourceAddress"`
+	Vdomparam             pulumi.StringPtrOutput                                   `pulumi:"vdomparam"`
 }
 
 // NewFirewallAccessProxySshClientCert registers a new resource with the given unique name, arguments, and options.
@@ -84,53 +56,31 @@ func GetFirewallAccessProxySshClientCert(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallAccessProxySshClientCert resources.
 type firewallAccessProxySshClientCertState struct {
-	// Name of the SSH server public key authentication CA.
-	AuthCa *string `pulumi:"authCa"`
-	// Configure certificate extension for user certificate. The structure of `certExtension` block is documented below.
-	CertExtensions []FirewallAccessProxySshClientCertCertExtension `pulumi:"certExtensions"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name of certificate extension.
-	Name *string `pulumi:"name"`
-	// Enable/disable appending permit-agent-forwarding certificate extension. Valid values: `enable`, `disable`.
-	PermitAgentForwarding *string `pulumi:"permitAgentForwarding"`
-	// Enable/disable appending permit-port-forwarding certificate extension. Valid values: `enable`, `disable`.
-	PermitPortForwarding *string `pulumi:"permitPortForwarding"`
-	// Enable/disable appending permit-pty certificate extension. Valid values: `enable`, `disable`.
-	PermitPty *string `pulumi:"permitPty"`
-	// Enable/disable appending permit-user-rc certificate extension. Valid values: `enable`, `disable`.
-	PermitUserRc *string `pulumi:"permitUserRc"`
-	// Enable/disable appending permit-x11-forwarding certificate extension. Valid values: `enable`, `disable`.
-	PermitX11Forwarding *string `pulumi:"permitX11Forwarding"`
-	// Enable/disable appending source-address certificate critical option. This option ensure certificate only accepted from FortiGate source address. Valid values: `enable`, `disable`.
-	SourceAddress *string `pulumi:"sourceAddress"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AuthCa                *string                                         `pulumi:"authCa"`
+	CertExtensions        []FirewallAccessProxySshClientCertCertExtension `pulumi:"certExtensions"`
+	DynamicSortSubtable   *string                                         `pulumi:"dynamicSortSubtable"`
+	Name                  *string                                         `pulumi:"name"`
+	PermitAgentForwarding *string                                         `pulumi:"permitAgentForwarding"`
+	PermitPortForwarding  *string                                         `pulumi:"permitPortForwarding"`
+	PermitPty             *string                                         `pulumi:"permitPty"`
+	PermitUserRc          *string                                         `pulumi:"permitUserRc"`
+	PermitX11Forwarding   *string                                         `pulumi:"permitX11Forwarding"`
+	SourceAddress         *string                                         `pulumi:"sourceAddress"`
+	Vdomparam             *string                                         `pulumi:"vdomparam"`
 }
 
 type FirewallAccessProxySshClientCertState struct {
-	// Name of the SSH server public key authentication CA.
-	AuthCa pulumi.StringPtrInput
-	// Configure certificate extension for user certificate. The structure of `certExtension` block is documented below.
-	CertExtensions FirewallAccessProxySshClientCertCertExtensionArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Name of certificate extension.
-	Name pulumi.StringPtrInput
-	// Enable/disable appending permit-agent-forwarding certificate extension. Valid values: `enable`, `disable`.
+	AuthCa                pulumi.StringPtrInput
+	CertExtensions        FirewallAccessProxySshClientCertCertExtensionArrayInput
+	DynamicSortSubtable   pulumi.StringPtrInput
+	Name                  pulumi.StringPtrInput
 	PermitAgentForwarding pulumi.StringPtrInput
-	// Enable/disable appending permit-port-forwarding certificate extension. Valid values: `enable`, `disable`.
-	PermitPortForwarding pulumi.StringPtrInput
-	// Enable/disable appending permit-pty certificate extension. Valid values: `enable`, `disable`.
-	PermitPty pulumi.StringPtrInput
-	// Enable/disable appending permit-user-rc certificate extension. Valid values: `enable`, `disable`.
-	PermitUserRc pulumi.StringPtrInput
-	// Enable/disable appending permit-x11-forwarding certificate extension. Valid values: `enable`, `disable`.
-	PermitX11Forwarding pulumi.StringPtrInput
-	// Enable/disable appending source-address certificate critical option. This option ensure certificate only accepted from FortiGate source address. Valid values: `enable`, `disable`.
-	SourceAddress pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	PermitPortForwarding  pulumi.StringPtrInput
+	PermitPty             pulumi.StringPtrInput
+	PermitUserRc          pulumi.StringPtrInput
+	PermitX11Forwarding   pulumi.StringPtrInput
+	SourceAddress         pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (FirewallAccessProxySshClientCertState) ElementType() reflect.Type {
@@ -138,54 +88,32 @@ func (FirewallAccessProxySshClientCertState) ElementType() reflect.Type {
 }
 
 type firewallAccessProxySshClientCertArgs struct {
-	// Name of the SSH server public key authentication CA.
-	AuthCa *string `pulumi:"authCa"`
-	// Configure certificate extension for user certificate. The structure of `certExtension` block is documented below.
-	CertExtensions []FirewallAccessProxySshClientCertCertExtension `pulumi:"certExtensions"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name of certificate extension.
-	Name *string `pulumi:"name"`
-	// Enable/disable appending permit-agent-forwarding certificate extension. Valid values: `enable`, `disable`.
-	PermitAgentForwarding *string `pulumi:"permitAgentForwarding"`
-	// Enable/disable appending permit-port-forwarding certificate extension. Valid values: `enable`, `disable`.
-	PermitPortForwarding *string `pulumi:"permitPortForwarding"`
-	// Enable/disable appending permit-pty certificate extension. Valid values: `enable`, `disable`.
-	PermitPty *string `pulumi:"permitPty"`
-	// Enable/disable appending permit-user-rc certificate extension. Valid values: `enable`, `disable`.
-	PermitUserRc *string `pulumi:"permitUserRc"`
-	// Enable/disable appending permit-x11-forwarding certificate extension. Valid values: `enable`, `disable`.
-	PermitX11Forwarding *string `pulumi:"permitX11Forwarding"`
-	// Enable/disable appending source-address certificate critical option. This option ensure certificate only accepted from FortiGate source address. Valid values: `enable`, `disable`.
-	SourceAddress *string `pulumi:"sourceAddress"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AuthCa                *string                                         `pulumi:"authCa"`
+	CertExtensions        []FirewallAccessProxySshClientCertCertExtension `pulumi:"certExtensions"`
+	DynamicSortSubtable   *string                                         `pulumi:"dynamicSortSubtable"`
+	Name                  *string                                         `pulumi:"name"`
+	PermitAgentForwarding *string                                         `pulumi:"permitAgentForwarding"`
+	PermitPortForwarding  *string                                         `pulumi:"permitPortForwarding"`
+	PermitPty             *string                                         `pulumi:"permitPty"`
+	PermitUserRc          *string                                         `pulumi:"permitUserRc"`
+	PermitX11Forwarding   *string                                         `pulumi:"permitX11Forwarding"`
+	SourceAddress         *string                                         `pulumi:"sourceAddress"`
+	Vdomparam             *string                                         `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallAccessProxySshClientCert resource.
 type FirewallAccessProxySshClientCertArgs struct {
-	// Name of the SSH server public key authentication CA.
-	AuthCa pulumi.StringPtrInput
-	// Configure certificate extension for user certificate. The structure of `certExtension` block is documented below.
-	CertExtensions FirewallAccessProxySshClientCertCertExtensionArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Name of certificate extension.
-	Name pulumi.StringPtrInput
-	// Enable/disable appending permit-agent-forwarding certificate extension. Valid values: `enable`, `disable`.
+	AuthCa                pulumi.StringPtrInput
+	CertExtensions        FirewallAccessProxySshClientCertCertExtensionArrayInput
+	DynamicSortSubtable   pulumi.StringPtrInput
+	Name                  pulumi.StringPtrInput
 	PermitAgentForwarding pulumi.StringPtrInput
-	// Enable/disable appending permit-port-forwarding certificate extension. Valid values: `enable`, `disable`.
-	PermitPortForwarding pulumi.StringPtrInput
-	// Enable/disable appending permit-pty certificate extension. Valid values: `enable`, `disable`.
-	PermitPty pulumi.StringPtrInput
-	// Enable/disable appending permit-user-rc certificate extension. Valid values: `enable`, `disable`.
-	PermitUserRc pulumi.StringPtrInput
-	// Enable/disable appending permit-x11-forwarding certificate extension. Valid values: `enable`, `disable`.
-	PermitX11Forwarding pulumi.StringPtrInput
-	// Enable/disable appending source-address certificate critical option. This option ensure certificate only accepted from FortiGate source address. Valid values: `enable`, `disable`.
-	SourceAddress pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	PermitPortForwarding  pulumi.StringPtrInput
+	PermitPty             pulumi.StringPtrInput
+	PermitUserRc          pulumi.StringPtrInput
+	PermitX11Forwarding   pulumi.StringPtrInput
+	SourceAddress         pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (FirewallAccessProxySshClientCertArgs) ElementType() reflect.Type {
@@ -214,7 +142,7 @@ func (i *FirewallAccessProxySshClientCert) ToFirewallAccessProxySshClientCertOut
 // FirewallAccessProxySshClientCertArrayInput is an input type that accepts FirewallAccessProxySshClientCertArray and FirewallAccessProxySshClientCertArrayOutput values.
 // You can construct a concrete instance of `FirewallAccessProxySshClientCertArrayInput` via:
 //
-//          FirewallAccessProxySshClientCertArray{ FirewallAccessProxySshClientCertArgs{...} }
+//	FirewallAccessProxySshClientCertArray{ FirewallAccessProxySshClientCertArgs{...} }
 type FirewallAccessProxySshClientCertArrayInput interface {
 	pulumi.Input
 
@@ -239,7 +167,7 @@ func (i FirewallAccessProxySshClientCertArray) ToFirewallAccessProxySshClientCer
 // FirewallAccessProxySshClientCertMapInput is an input type that accepts FirewallAccessProxySshClientCertMap and FirewallAccessProxySshClientCertMapOutput values.
 // You can construct a concrete instance of `FirewallAccessProxySshClientCertMapInput` via:
 //
-//          FirewallAccessProxySshClientCertMap{ "key": FirewallAccessProxySshClientCertArgs{...} }
+//	FirewallAccessProxySshClientCertMap{ "key": FirewallAccessProxySshClientCertArgs{...} }
 type FirewallAccessProxySshClientCertMapInput interface {
 	pulumi.Input
 
@@ -273,6 +201,52 @@ func (o FirewallAccessProxySshClientCertOutput) ToFirewallAccessProxySshClientCe
 
 func (o FirewallAccessProxySshClientCertOutput) ToFirewallAccessProxySshClientCertOutputWithContext(ctx context.Context) FirewallAccessProxySshClientCertOutput {
 	return o
+}
+
+func (o FirewallAccessProxySshClientCertOutput) AuthCa() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxySshClientCert) pulumi.StringOutput { return v.AuthCa }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxySshClientCertOutput) CertExtensions() FirewallAccessProxySshClientCertCertExtensionArrayOutput {
+	return o.ApplyT(func(v *FirewallAccessProxySshClientCert) FirewallAccessProxySshClientCertCertExtensionArrayOutput {
+		return v.CertExtensions
+	}).(FirewallAccessProxySshClientCertCertExtensionArrayOutput)
+}
+
+func (o FirewallAccessProxySshClientCertOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAccessProxySshClientCert) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAccessProxySshClientCertOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxySshClientCert) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxySshClientCertOutput) PermitAgentForwarding() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxySshClientCert) pulumi.StringOutput { return v.PermitAgentForwarding }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxySshClientCertOutput) PermitPortForwarding() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxySshClientCert) pulumi.StringOutput { return v.PermitPortForwarding }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxySshClientCertOutput) PermitPty() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxySshClientCert) pulumi.StringOutput { return v.PermitPty }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxySshClientCertOutput) PermitUserRc() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxySshClientCert) pulumi.StringOutput { return v.PermitUserRc }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxySshClientCertOutput) PermitX11Forwarding() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxySshClientCert) pulumi.StringOutput { return v.PermitX11Forwarding }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxySshClientCertOutput) SourceAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxySshClientCert) pulumi.StringOutput { return v.SourceAddress }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxySshClientCertOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAccessProxySshClientCert) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallAccessProxySshClientCertArrayOutput struct{ *pulumi.OutputState }

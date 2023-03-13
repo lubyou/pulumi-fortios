@@ -2,53 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure user authentication setting.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.UserSetting("trname", {
- *     authBlackoutTime: 0,
- *     authCert: "Fortinet_Factory",
- *     authHttpBasic: "disable",
- *     authInvalidMax: 5,
- *     authLockoutDuration: 0,
- *     authLockoutThreshold: 3,
- *     authOnDemand: "implicitly",
- *     authPortalTimeout: 3,
- *     authSecureHttp: "disable",
- *     authSrcMac: "enable",
- *     authSslAllowRenegotiation: "disable",
- *     authTimeout: 5,
- *     authTimeoutType: "idle-timeout",
- *     authType: "http https ftp telnet",
- *     radiusSesTimeoutAct: "hard-timeout",
- * });
- * ```
- *
- * ## Import
- *
- * User Setting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userSetting:UserSetting labelname UserSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userSetting:UserSetting labelname UserSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserSetting extends pulumi.CustomResource {
     /**
      * Get an existing UserSetting resource's state with the given name, ID, and optional extra
@@ -77,97 +34,28 @@ export class UserSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserSetting.__pulumiType;
     }
 
-    /**
-     * Time in seconds an IP address is denied access after failing to authenticate five times within one minute.
-     */
     public readonly authBlackoutTime!: pulumi.Output<number>;
-    /**
-     * HTTPS CA certificate for policy authentication.
-     */
     public readonly authCaCert!: pulumi.Output<string>;
-    /**
-     * HTTPS server certificate for policy authentication.
-     */
     public readonly authCert!: pulumi.Output<string>;
-    /**
-     * Enable/disable use of HTTP basic authentication for identity-based firewall policies. Valid values: `enable`, `disable`.
-     */
     public readonly authHttpBasic!: pulumi.Output<string>;
-    /**
-     * Maximum number of failed authentication attempts before the user is blocked.
-     */
     public readonly authInvalidMax!: pulumi.Output<number>;
-    /**
-     * Lockout period in seconds after too many login failures.
-     */
     public readonly authLockoutDuration!: pulumi.Output<number>;
-    /**
-     * Maximum number of failed login attempts before login lockout is triggered.
-     */
     public readonly authLockoutThreshold!: pulumi.Output<number>;
-    /**
-     * Always/implicitly trigger firewall authentication on demand. Valid values: `always`, `implicitly`.
-     */
     public readonly authOnDemand!: pulumi.Output<string>;
-    /**
-     * Time in minutes before captive portal user have to re-authenticate (1 - 30 min, default 3 min).
-     */
     public readonly authPortalTimeout!: pulumi.Output<number>;
-    /**
-     * Set up non-standard ports for authentication with HTTP, HTTPS, FTP, and TELNET. The structure of `authPorts` block is documented below.
-     */
     public readonly authPorts!: pulumi.Output<outputs.UserSettingAuthPort[] | undefined>;
-    /**
-     * Enable/disable redirecting HTTP user authentication to more secure HTTPS. Valid values: `enable`, `disable`.
-     */
     public readonly authSecureHttp!: pulumi.Output<string>;
-    /**
-     * Enable/disable source MAC for user identity. Valid values: `enable`, `disable`.
-     */
     public readonly authSrcMac!: pulumi.Output<string>;
-    /**
-     * Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
-     */
     public readonly authSslAllowRenegotiation!: pulumi.Output<string>;
-    /**
-     * Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
-     */
     public readonly authSslMaxProtoVersion!: pulumi.Output<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     public readonly authSslMinProtoVersion!: pulumi.Output<string>;
-    /**
-     * Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
-     */
     public readonly authSslSigalgs!: pulumi.Output<string>;
-    /**
-     * Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
-     */
     public readonly authTimeout!: pulumi.Output<number>;
-    /**
-     * Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
-     */
     public readonly authTimeoutType!: pulumi.Output<string>;
-    /**
-     * Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
-     */
     public readonly authType!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
-     */
     public readonly perPolicyDisclaimer!: pulumi.Output<string>;
-    /**
-     * Set the RADIUS session timeout to a hard timeout or to ignore RADIUS server session timeouts. Valid values: `hard-timeout`, `ignore-timeout`.
-     */
     public readonly radiusSesTimeoutAct!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -241,97 +129,28 @@ export class UserSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserSetting resources.
  */
 export interface UserSettingState {
-    /**
-     * Time in seconds an IP address is denied access after failing to authenticate five times within one minute.
-     */
     authBlackoutTime?: pulumi.Input<number>;
-    /**
-     * HTTPS CA certificate for policy authentication.
-     */
     authCaCert?: pulumi.Input<string>;
-    /**
-     * HTTPS server certificate for policy authentication.
-     */
     authCert?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of HTTP basic authentication for identity-based firewall policies. Valid values: `enable`, `disable`.
-     */
     authHttpBasic?: pulumi.Input<string>;
-    /**
-     * Maximum number of failed authentication attempts before the user is blocked.
-     */
     authInvalidMax?: pulumi.Input<number>;
-    /**
-     * Lockout period in seconds after too many login failures.
-     */
     authLockoutDuration?: pulumi.Input<number>;
-    /**
-     * Maximum number of failed login attempts before login lockout is triggered.
-     */
     authLockoutThreshold?: pulumi.Input<number>;
-    /**
-     * Always/implicitly trigger firewall authentication on demand. Valid values: `always`, `implicitly`.
-     */
     authOnDemand?: pulumi.Input<string>;
-    /**
-     * Time in minutes before captive portal user have to re-authenticate (1 - 30 min, default 3 min).
-     */
     authPortalTimeout?: pulumi.Input<number>;
-    /**
-     * Set up non-standard ports for authentication with HTTP, HTTPS, FTP, and TELNET. The structure of `authPorts` block is documented below.
-     */
     authPorts?: pulumi.Input<pulumi.Input<inputs.UserSettingAuthPort>[]>;
-    /**
-     * Enable/disable redirecting HTTP user authentication to more secure HTTPS. Valid values: `enable`, `disable`.
-     */
     authSecureHttp?: pulumi.Input<string>;
-    /**
-     * Enable/disable source MAC for user identity. Valid values: `enable`, `disable`.
-     */
     authSrcMac?: pulumi.Input<string>;
-    /**
-     * Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
-     */
     authSslAllowRenegotiation?: pulumi.Input<string>;
-    /**
-     * Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
-     */
     authSslMaxProtoVersion?: pulumi.Input<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     authSslMinProtoVersion?: pulumi.Input<string>;
-    /**
-     * Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
-     */
     authSslSigalgs?: pulumi.Input<string>;
-    /**
-     * Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
-     */
     authTimeout?: pulumi.Input<number>;
-    /**
-     * Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
-     */
     authTimeoutType?: pulumi.Input<string>;
-    /**
-     * Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
-     */
     authType?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
-     */
     perPolicyDisclaimer?: pulumi.Input<string>;
-    /**
-     * Set the RADIUS session timeout to a hard timeout or to ignore RADIUS server session timeouts. Valid values: `hard-timeout`, `ignore-timeout`.
-     */
     radiusSesTimeoutAct?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -339,96 +158,27 @@ export interface UserSettingState {
  * The set of arguments for constructing a UserSetting resource.
  */
 export interface UserSettingArgs {
-    /**
-     * Time in seconds an IP address is denied access after failing to authenticate five times within one minute.
-     */
     authBlackoutTime?: pulumi.Input<number>;
-    /**
-     * HTTPS CA certificate for policy authentication.
-     */
     authCaCert?: pulumi.Input<string>;
-    /**
-     * HTTPS server certificate for policy authentication.
-     */
     authCert?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of HTTP basic authentication for identity-based firewall policies. Valid values: `enable`, `disable`.
-     */
     authHttpBasic?: pulumi.Input<string>;
-    /**
-     * Maximum number of failed authentication attempts before the user is blocked.
-     */
     authInvalidMax?: pulumi.Input<number>;
-    /**
-     * Lockout period in seconds after too many login failures.
-     */
     authLockoutDuration?: pulumi.Input<number>;
-    /**
-     * Maximum number of failed login attempts before login lockout is triggered.
-     */
     authLockoutThreshold?: pulumi.Input<number>;
-    /**
-     * Always/implicitly trigger firewall authentication on demand. Valid values: `always`, `implicitly`.
-     */
     authOnDemand?: pulumi.Input<string>;
-    /**
-     * Time in minutes before captive portal user have to re-authenticate (1 - 30 min, default 3 min).
-     */
     authPortalTimeout?: pulumi.Input<number>;
-    /**
-     * Set up non-standard ports for authentication with HTTP, HTTPS, FTP, and TELNET. The structure of `authPorts` block is documented below.
-     */
     authPorts?: pulumi.Input<pulumi.Input<inputs.UserSettingAuthPort>[]>;
-    /**
-     * Enable/disable redirecting HTTP user authentication to more secure HTTPS. Valid values: `enable`, `disable`.
-     */
     authSecureHttp?: pulumi.Input<string>;
-    /**
-     * Enable/disable source MAC for user identity. Valid values: `enable`, `disable`.
-     */
     authSrcMac?: pulumi.Input<string>;
-    /**
-     * Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
-     */
     authSslAllowRenegotiation?: pulumi.Input<string>;
-    /**
-     * Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
-     */
     authSslMaxProtoVersion?: pulumi.Input<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     authSslMinProtoVersion?: pulumi.Input<string>;
-    /**
-     * Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
-     */
     authSslSigalgs?: pulumi.Input<string>;
-    /**
-     * Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
-     */
     authTimeout?: pulumi.Input<number>;
-    /**
-     * Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
-     */
     authTimeoutType?: pulumi.Input<string>;
-    /**
-     * Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
-     */
     authType?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
-     */
     perPolicyDisclaimer?: pulumi.Input<string>;
-    /**
-     * Set the RADIUS session timeout to a hard timeout or to ignore RADIUS server session timeouts. Valid values: `hard-timeout`, `ignore-timeout`.
-     */
     radiusSesTimeoutAct?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,57 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv4 prefix lists.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewRouterPrefixList(ctx, "trname", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Router PrefixList can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerPrefixList:RouterPrefixList labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerPrefixList:RouterPrefixList labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterPrefixList struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comments pulumi.StringOutput `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// IPv4 prefix list rule. The structure of `rule` block is documented below.
-	Rules RouterPrefixListRuleArrayOutput `pulumi:"rules"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comments            pulumi.StringOutput             `pulumi:"comments"`
+	DynamicSortSubtable pulumi.StringPtrOutput          `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput             `pulumi:"name"`
+	Rules               RouterPrefixListRuleArrayOutput `pulumi:"rules"`
+	Vdomparam           pulumi.StringPtrOutput          `pulumi:"vdomparam"`
 }
 
 // NewRouterPrefixList registers a new resource with the given unique name, arguments, and options.
@@ -93,29 +50,19 @@ func GetRouterPrefixList(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterPrefixList resources.
 type routerPrefixListState struct {
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// IPv4 prefix list rule. The structure of `rule` block is documented below.
-	Rules []RouterPrefixListRule `pulumi:"rules"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comments            *string                `pulumi:"comments"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	Name                *string                `pulumi:"name"`
+	Rules               []RouterPrefixListRule `pulumi:"rules"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 type RouterPrefixListState struct {
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// IPv4 prefix list rule. The structure of `rule` block is documented below.
-	Rules RouterPrefixListRuleArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Rules               RouterPrefixListRuleArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterPrefixListState) ElementType() reflect.Type {
@@ -123,30 +70,20 @@ func (RouterPrefixListState) ElementType() reflect.Type {
 }
 
 type routerPrefixListArgs struct {
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// IPv4 prefix list rule. The structure of `rule` block is documented below.
-	Rules []RouterPrefixListRule `pulumi:"rules"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comments            *string                `pulumi:"comments"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	Name                *string                `pulumi:"name"`
+	Rules               []RouterPrefixListRule `pulumi:"rules"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterPrefixList resource.
 type RouterPrefixListArgs struct {
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// IPv4 prefix list rule. The structure of `rule` block is documented below.
-	Rules RouterPrefixListRuleArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Rules               RouterPrefixListRuleArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterPrefixListArgs) ElementType() reflect.Type {
@@ -175,7 +112,7 @@ func (i *RouterPrefixList) ToRouterPrefixListOutputWithContext(ctx context.Conte
 // RouterPrefixListArrayInput is an input type that accepts RouterPrefixListArray and RouterPrefixListArrayOutput values.
 // You can construct a concrete instance of `RouterPrefixListArrayInput` via:
 //
-//          RouterPrefixListArray{ RouterPrefixListArgs{...} }
+//	RouterPrefixListArray{ RouterPrefixListArgs{...} }
 type RouterPrefixListArrayInput interface {
 	pulumi.Input
 
@@ -200,7 +137,7 @@ func (i RouterPrefixListArray) ToRouterPrefixListArrayOutputWithContext(ctx cont
 // RouterPrefixListMapInput is an input type that accepts RouterPrefixListMap and RouterPrefixListMapOutput values.
 // You can construct a concrete instance of `RouterPrefixListMapInput` via:
 //
-//          RouterPrefixListMap{ "key": RouterPrefixListArgs{...} }
+//	RouterPrefixListMap{ "key": RouterPrefixListArgs{...} }
 type RouterPrefixListMapInput interface {
 	pulumi.Input
 
@@ -234,6 +171,26 @@ func (o RouterPrefixListOutput) ToRouterPrefixListOutput() RouterPrefixListOutpu
 
 func (o RouterPrefixListOutput) ToRouterPrefixListOutputWithContext(ctx context.Context) RouterPrefixListOutput {
 	return o
+}
+
+func (o RouterPrefixListOutput) Comments() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPrefixList) pulumi.StringOutput { return v.Comments }).(pulumi.StringOutput)
+}
+
+func (o RouterPrefixListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterPrefixList) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterPrefixListOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPrefixList) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o RouterPrefixListOutput) Rules() RouterPrefixListRuleArrayOutput {
+	return o.ApplyT(func(v *RouterPrefixList) RouterPrefixListRuleArrayOutput { return v.Rules }).(RouterPrefixListRuleArrayOutput)
+}
+
+func (o RouterPrefixListOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterPrefixList) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterPrefixListArrayOutput struct{ *pulumi.OutputState }

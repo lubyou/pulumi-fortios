@@ -2,18 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios firewall addrgrp
- */
 export function getFirewallAddrgrp(args: GetFirewallAddrgrpArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallAddrgrpResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallAddrgrp:GetFirewallAddrgrp", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -24,13 +19,7 @@ export function getFirewallAddrgrp(args: GetFirewallAddrgrpArgs, opts?: pulumi.I
  * A collection of arguments for invoking GetFirewallAddrgrp.
  */
 export interface GetFirewallAddrgrpArgs {
-    /**
-     * Specify the name of the desired firewall addrgrp.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -38,79 +27,33 @@ export interface GetFirewallAddrgrpArgs {
  * A collection of values returned by GetFirewallAddrgrp.
  */
 export interface GetFirewallAddrgrpResult {
-    /**
-     * Enable/disable use of this group in the static route configuration.
-     */
     readonly allowRouting: string;
-    /**
-     * Tag category.
-     */
     readonly category: string;
-    /**
-     * Color of icon on the GUI.
-     */
     readonly color: number;
-    /**
-     * Comment.
-     */
     readonly comment: string;
-    /**
-     * Enable/disable address exclusion.
-     */
     readonly exclude: string;
-    /**
-     * Address exclusion member. The structure of `excludeMember` block is documented below.
-     */
     readonly excludeMembers: outputs.GetFirewallAddrgrpExcludeMember[];
-    /**
-     * Security Fabric global object setting.
-     */
     readonly fabricObject: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Address objects contained within the group. The structure of `member` block is documented below.
-     */
     readonly members: outputs.GetFirewallAddrgrpMember[];
-    /**
-     * Tag name.
-     */
     readonly name: string;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     readonly taggings: outputs.GetFirewallAddrgrpTagging[];
-    /**
-     * Address group type.
-     */
     readonly type: string;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     readonly uuid: string;
     readonly vdomparam?: string;
-    /**
-     * Enable/disable address visibility in the GUI.
-     */
     readonly visibility: string;
 }
-
 export function getFirewallAddrgrpOutput(args: GetFirewallAddrgrpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallAddrgrpResult> {
-    return pulumi.output(args).apply(a => getFirewallAddrgrp(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallAddrgrp(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetFirewallAddrgrp.
  */
 export interface GetFirewallAddrgrpOutputArgs {
-    /**
-     * Specify the name of the desired firewall addrgrp.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

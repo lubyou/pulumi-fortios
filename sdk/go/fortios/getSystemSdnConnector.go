@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system sdnconnector
 func LookupSystemSdnConnector(ctx *pulumi.Context, args *LookupSystemSdnConnectorArgs, opts ...pulumi.InvokeOption) (*LookupSystemSdnConnectorResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemSdnConnectorResult
@@ -23,121 +22,67 @@ func LookupSystemSdnConnector(ctx *pulumi.Context, args *LookupSystemSdnConnecto
 
 // A collection of arguments for invoking GetSystemSdnConnector.
 type LookupSystemSdnConnectorArgs struct {
-	// Specify the name of the desired system sdnconnector.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemSdnConnector.
 type LookupSystemSdnConnectorResult struct {
-	// AWS access key ID.
-	AccessKey string `pulumi:"accessKey"`
-	// IBM cloud API key or service ID API key.
-	ApiKey string `pulumi:"apiKey"`
-	// Azure server region.
-	AzureRegion string `pulumi:"azureRegion"`
-	// Azure client ID (application ID).
-	ClientId string `pulumi:"clientId"`
-	// Azure client secret (application key).
-	ClientSecret string `pulumi:"clientSecret"`
-	// Compartment ID.
-	CompartmentId string `pulumi:"compartmentId"`
-	// Compute generation for IBM cloud infrastructure.
-	ComputeGeneration int `pulumi:"computeGeneration"`
-	// Domain name.
-	Domain string `pulumi:"domain"`
-	// Configure AWS external account list. The structure of `externalAccountList` block is documented below.
+	AccessKey            string                                     `pulumi:"accessKey"`
+	ApiKey               string                                     `pulumi:"apiKey"`
+	AzureRegion          string                                     `pulumi:"azureRegion"`
+	ClientId             string                                     `pulumi:"clientId"`
+	ClientSecret         string                                     `pulumi:"clientSecret"`
+	CompartmentId        string                                     `pulumi:"compartmentId"`
+	ComputeGeneration    int                                        `pulumi:"computeGeneration"`
+	Domain               string                                     `pulumi:"domain"`
 	ExternalAccountLists []GetSystemSdnConnectorExternalAccountList `pulumi:"externalAccountLists"`
-	// Configure GCP external IP. The structure of `externalIp` block is documented below.
-	ExternalIps []GetSystemSdnConnectorExternalIp `pulumi:"externalIps"`
-	// Configure GCP forwarding rule. The structure of `forwardingRule` block is documented below.
-	ForwardingRules []GetSystemSdnConnectorForwardingRule `pulumi:"forwardingRules"`
-	// GCP project name.
-	GcpProject string `pulumi:"gcpProject"`
-	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
-	GcpProjectLists []GetSystemSdnConnectorGcpProjectList `pulumi:"gcpProjectLists"`
-	// Group name of computers.
-	GroupName string `pulumi:"groupName"`
-	// Enable/disable use for FortiGate HA service.
-	HaStatus string `pulumi:"haStatus"`
-	// IBM cloud region name.
-	IbmRegion string `pulumi:"ibmRegion"`
-	// IBM cloud compute generation 1 region name.
-	IbmRegionGen1 string `pulumi:"ibmRegionGen1"`
-	// IBM cloud compute generation 2 region name.
-	IbmRegionGen2 string `pulumi:"ibmRegionGen2"`
+	ExternalIps          []GetSystemSdnConnectorExternalIp          `pulumi:"externalIps"`
+	ForwardingRules      []GetSystemSdnConnectorForwardingRule      `pulumi:"forwardingRules"`
+	GcpProject           string                                     `pulumi:"gcpProject"`
+	GcpProjectLists      []GetSystemSdnConnectorGcpProjectList      `pulumi:"gcpProjectLists"`
+	GroupName            string                                     `pulumi:"groupName"`
+	HaStatus             string                                     `pulumi:"haStatus"`
+	IbmRegion            string                                     `pulumi:"ibmRegion"`
+	IbmRegionGen1        string                                     `pulumi:"ibmRegionGen1"`
+	IbmRegionGen2        string                                     `pulumi:"ibmRegionGen2"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Private key password.
-	KeyPasswd string `pulumi:"keyPasswd"`
-	// Azure Stack login endpoint.
-	LoginEndpoint string `pulumi:"loginEndpoint"`
-	// GCP zone name.
-	Name string `pulumi:"name"`
-	// Configure Azure network interface. The structure of `nic` block is documented below.
-	Nics []GetSystemSdnConnectorNic `pulumi:"nics"`
-	// OCI certificate.
-	OciCert string `pulumi:"ociCert"`
-	// OCI pubkey fingerprint.
-	OciFingerprint string `pulumi:"ociFingerprint"`
-	// OCI server region.
-	OciRegion string `pulumi:"ociRegion"`
-	// OCI region type.
-	OciRegionType string `pulumi:"ociRegionType"`
-	// Password of the remote SDN connector as login credentials.
-	Password string `pulumi:"password"`
-	// Private key of GCP service account.
-	PrivateKey string `pulumi:"privateKey"`
-	// AWS region name.
-	Region string `pulumi:"region"`
-	// Resource group of Azure route table.
-	ResourceGroup string `pulumi:"resourceGroup"`
-	// Azure Stack resource URL.
-	ResourceUrl string `pulumi:"resourceUrl"`
-	// Configure Azure route table. The structure of `routeTable` block is documented below.
-	RouteTables []GetSystemSdnConnectorRouteTable `pulumi:"routeTables"`
-	// Configure Azure route. The structure of `route` block is documented below.
-	Routes []GetSystemSdnConnectorRoute `pulumi:"routes"`
-	// AWS secret access key.
-	SecretKey string `pulumi:"secretKey"`
-	// Secret token of Kubernetes service account.
-	SecretToken string `pulumi:"secretToken"`
-	// Server address of the remote SDN connector.
-	Server string `pulumi:"server"`
-	// Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
-	ServerLists []GetSystemSdnConnectorServerList `pulumi:"serverLists"`
-	// Port number of the remote SDN connector.
-	ServerPort int `pulumi:"serverPort"`
-	// GCP service account email.
-	ServiceAccount string `pulumi:"serviceAccount"`
-	// Enable/disable connection to the remote SDN connector.
-	Status string `pulumi:"status"`
-	// Subscription ID of Azure route table.
-	SubscriptionId string `pulumi:"subscriptionId"`
-	// Tenant ID (directory ID).
-	TenantId string `pulumi:"tenantId"`
-	// Type of SDN connector.
-	Type string `pulumi:"type"`
-	// Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
-	UpdateInterval int `pulumi:"updateInterval"`
-	// Enable/disable using IAM role from metadata to call API.
-	UseMetadataIam string `pulumi:"useMetadataIam"`
-	// User ID.
-	UserId string `pulumi:"userId"`
-	// Username of the remote SDN connector as login credentials.
-	Username string `pulumi:"username"`
-	// vCenter server password for NSX quarantine.
-	VcenterPassword string `pulumi:"vcenterPassword"`
-	// vCenter server address for NSX quarantine.
-	VcenterServer string `pulumi:"vcenterServer"`
-	// vCenter server username for NSX quarantine.
-	VcenterUsername string  `pulumi:"vcenterUsername"`
-	Vdomparam       *string `pulumi:"vdomparam"`
-	// Enable/disable server certificate verification.
-	VerifyCertificate string `pulumi:"verifyCertificate"`
-	// AWS VPC ID.
-	VpcId string `pulumi:"vpcId"`
+	Id                string                            `pulumi:"id"`
+	KeyPasswd         string                            `pulumi:"keyPasswd"`
+	LoginEndpoint     string                            `pulumi:"loginEndpoint"`
+	Name              string                            `pulumi:"name"`
+	Nics              []GetSystemSdnConnectorNic        `pulumi:"nics"`
+	OciCert           string                            `pulumi:"ociCert"`
+	OciFingerprint    string                            `pulumi:"ociFingerprint"`
+	OciRegion         string                            `pulumi:"ociRegion"`
+	OciRegionType     string                            `pulumi:"ociRegionType"`
+	Password          string                            `pulumi:"password"`
+	PrivateKey        string                            `pulumi:"privateKey"`
+	Region            string                            `pulumi:"region"`
+	ResourceGroup     string                            `pulumi:"resourceGroup"`
+	ResourceUrl       string                            `pulumi:"resourceUrl"`
+	RouteTables       []GetSystemSdnConnectorRouteTable `pulumi:"routeTables"`
+	Routes            []GetSystemSdnConnectorRoute      `pulumi:"routes"`
+	SecretKey         string                            `pulumi:"secretKey"`
+	SecretToken       string                            `pulumi:"secretToken"`
+	Server            string                            `pulumi:"server"`
+	ServerLists       []GetSystemSdnConnectorServerList `pulumi:"serverLists"`
+	ServerPort        int                               `pulumi:"serverPort"`
+	ServiceAccount    string                            `pulumi:"serviceAccount"`
+	Status            string                            `pulumi:"status"`
+	SubscriptionId    string                            `pulumi:"subscriptionId"`
+	TenantId          string                            `pulumi:"tenantId"`
+	Type              string                            `pulumi:"type"`
+	UpdateInterval    int                               `pulumi:"updateInterval"`
+	UseMetadataIam    string                            `pulumi:"useMetadataIam"`
+	UserId            string                            `pulumi:"userId"`
+	Username          string                            `pulumi:"username"`
+	VcenterPassword   string                            `pulumi:"vcenterPassword"`
+	VcenterServer     string                            `pulumi:"vcenterServer"`
+	VcenterUsername   string                            `pulumi:"vcenterUsername"`
+	Vdomparam         *string                           `pulumi:"vdomparam"`
+	VerifyCertificate string                            `pulumi:"verifyCertificate"`
+	VpcId             string                            `pulumi:"vpcId"`
 }
 
 func LookupSystemSdnConnectorOutput(ctx *pulumi.Context, args LookupSystemSdnConnectorOutputArgs, opts ...pulumi.InvokeOption) LookupSystemSdnConnectorResultOutput {
@@ -155,9 +100,7 @@ func LookupSystemSdnConnectorOutput(ctx *pulumi.Context, args LookupSystemSdnCon
 
 // A collection of arguments for invoking GetSystemSdnConnector.
 type LookupSystemSdnConnectorOutputArgs struct {
-	// Specify the name of the desired system sdnconnector.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -180,94 +123,76 @@ func (o LookupSystemSdnConnectorResultOutput) ToLookupSystemSdnConnectorResultOu
 	return o
 }
 
-// AWS access key ID.
 func (o LookupSystemSdnConnectorResultOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
-// IBM cloud API key or service ID API key.
 func (o LookupSystemSdnConnectorResultOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
-// Azure server region.
 func (o LookupSystemSdnConnectorResultOutput) AzureRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.AzureRegion }).(pulumi.StringOutput)
 }
 
-// Azure client ID (application ID).
 func (o LookupSystemSdnConnectorResultOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.ClientId }).(pulumi.StringOutput)
 }
 
-// Azure client secret (application key).
 func (o LookupSystemSdnConnectorResultOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.ClientSecret }).(pulumi.StringOutput)
 }
 
-// Compartment ID.
 func (o LookupSystemSdnConnectorResultOutput) CompartmentId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.CompartmentId }).(pulumi.StringOutput)
 }
 
-// Compute generation for IBM cloud infrastructure.
 func (o LookupSystemSdnConnectorResultOutput) ComputeGeneration() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) int { return v.ComputeGeneration }).(pulumi.IntOutput)
 }
 
-// Domain name.
 func (o LookupSystemSdnConnectorResultOutput) Domain() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.Domain }).(pulumi.StringOutput)
 }
 
-// Configure AWS external account list. The structure of `externalAccountList` block is documented below.
 func (o LookupSystemSdnConnectorResultOutput) ExternalAccountLists() GetSystemSdnConnectorExternalAccountListArrayOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) []GetSystemSdnConnectorExternalAccountList {
 		return v.ExternalAccountLists
 	}).(GetSystemSdnConnectorExternalAccountListArrayOutput)
 }
 
-// Configure GCP external IP. The structure of `externalIp` block is documented below.
 func (o LookupSystemSdnConnectorResultOutput) ExternalIps() GetSystemSdnConnectorExternalIpArrayOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) []GetSystemSdnConnectorExternalIp { return v.ExternalIps }).(GetSystemSdnConnectorExternalIpArrayOutput)
 }
 
-// Configure GCP forwarding rule. The structure of `forwardingRule` block is documented below.
 func (o LookupSystemSdnConnectorResultOutput) ForwardingRules() GetSystemSdnConnectorForwardingRuleArrayOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) []GetSystemSdnConnectorForwardingRule { return v.ForwardingRules }).(GetSystemSdnConnectorForwardingRuleArrayOutput)
 }
 
-// GCP project name.
 func (o LookupSystemSdnConnectorResultOutput) GcpProject() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.GcpProject }).(pulumi.StringOutput)
 }
 
-// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
 func (o LookupSystemSdnConnectorResultOutput) GcpProjectLists() GetSystemSdnConnectorGcpProjectListArrayOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) []GetSystemSdnConnectorGcpProjectList { return v.GcpProjectLists }).(GetSystemSdnConnectorGcpProjectListArrayOutput)
 }
 
-// Group name of computers.
 func (o LookupSystemSdnConnectorResultOutput) GroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.GroupName }).(pulumi.StringOutput)
 }
 
-// Enable/disable use for FortiGate HA service.
 func (o LookupSystemSdnConnectorResultOutput) HaStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.HaStatus }).(pulumi.StringOutput)
 }
 
-// IBM cloud region name.
 func (o LookupSystemSdnConnectorResultOutput) IbmRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.IbmRegion }).(pulumi.StringOutput)
 }
 
-// IBM cloud compute generation 1 region name.
 func (o LookupSystemSdnConnectorResultOutput) IbmRegionGen1() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.IbmRegionGen1 }).(pulumi.StringOutput)
 }
 
-// IBM cloud compute generation 2 region name.
 func (o LookupSystemSdnConnectorResultOutput) IbmRegionGen2() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.IbmRegionGen2 }).(pulumi.StringOutput)
 }
@@ -277,162 +202,130 @@ func (o LookupSystemSdnConnectorResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Private key password.
 func (o LookupSystemSdnConnectorResultOutput) KeyPasswd() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.KeyPasswd }).(pulumi.StringOutput)
 }
 
-// Azure Stack login endpoint.
 func (o LookupSystemSdnConnectorResultOutput) LoginEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.LoginEndpoint }).(pulumi.StringOutput)
 }
 
-// GCP zone name.
 func (o LookupSystemSdnConnectorResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Configure Azure network interface. The structure of `nic` block is documented below.
 func (o LookupSystemSdnConnectorResultOutput) Nics() GetSystemSdnConnectorNicArrayOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) []GetSystemSdnConnectorNic { return v.Nics }).(GetSystemSdnConnectorNicArrayOutput)
 }
 
-// OCI certificate.
 func (o LookupSystemSdnConnectorResultOutput) OciCert() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.OciCert }).(pulumi.StringOutput)
 }
 
-// OCI pubkey fingerprint.
 func (o LookupSystemSdnConnectorResultOutput) OciFingerprint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.OciFingerprint }).(pulumi.StringOutput)
 }
 
-// OCI server region.
 func (o LookupSystemSdnConnectorResultOutput) OciRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.OciRegion }).(pulumi.StringOutput)
 }
 
-// OCI region type.
 func (o LookupSystemSdnConnectorResultOutput) OciRegionType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.OciRegionType }).(pulumi.StringOutput)
 }
 
-// Password of the remote SDN connector as login credentials.
 func (o LookupSystemSdnConnectorResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// Private key of GCP service account.
 func (o LookupSystemSdnConnectorResultOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
-// AWS region name.
 func (o LookupSystemSdnConnectorResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
-// Resource group of Azure route table.
 func (o LookupSystemSdnConnectorResultOutput) ResourceGroup() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.ResourceGroup }).(pulumi.StringOutput)
 }
 
-// Azure Stack resource URL.
 func (o LookupSystemSdnConnectorResultOutput) ResourceUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.ResourceUrl }).(pulumi.StringOutput)
 }
 
-// Configure Azure route table. The structure of `routeTable` block is documented below.
 func (o LookupSystemSdnConnectorResultOutput) RouteTables() GetSystemSdnConnectorRouteTableArrayOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) []GetSystemSdnConnectorRouteTable { return v.RouteTables }).(GetSystemSdnConnectorRouteTableArrayOutput)
 }
 
-// Configure Azure route. The structure of `route` block is documented below.
 func (o LookupSystemSdnConnectorResultOutput) Routes() GetSystemSdnConnectorRouteArrayOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) []GetSystemSdnConnectorRoute { return v.Routes }).(GetSystemSdnConnectorRouteArrayOutput)
 }
 
-// AWS secret access key.
 func (o LookupSystemSdnConnectorResultOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// Secret token of Kubernetes service account.
 func (o LookupSystemSdnConnectorResultOutput) SecretToken() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.SecretToken }).(pulumi.StringOutput)
 }
 
-// Server address of the remote SDN connector.
 func (o LookupSystemSdnConnectorResultOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.Server }).(pulumi.StringOutput)
 }
 
-// Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
 func (o LookupSystemSdnConnectorResultOutput) ServerLists() GetSystemSdnConnectorServerListArrayOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) []GetSystemSdnConnectorServerList { return v.ServerLists }).(GetSystemSdnConnectorServerListArrayOutput)
 }
 
-// Port number of the remote SDN connector.
 func (o LookupSystemSdnConnectorResultOutput) ServerPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) int { return v.ServerPort }).(pulumi.IntOutput)
 }
 
-// GCP service account email.
 func (o LookupSystemSdnConnectorResultOutput) ServiceAccount() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.ServiceAccount }).(pulumi.StringOutput)
 }
 
-// Enable/disable connection to the remote SDN connector.
 func (o LookupSystemSdnConnectorResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// Subscription ID of Azure route table.
 func (o LookupSystemSdnConnectorResultOutput) SubscriptionId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.SubscriptionId }).(pulumi.StringOutput)
 }
 
-// Tenant ID (directory ID).
 func (o LookupSystemSdnConnectorResultOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.TenantId }).(pulumi.StringOutput)
 }
 
-// Type of SDN connector.
 func (o LookupSystemSdnConnectorResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
-// Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
 func (o LookupSystemSdnConnectorResultOutput) UpdateInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) int { return v.UpdateInterval }).(pulumi.IntOutput)
 }
 
-// Enable/disable using IAM role from metadata to call API.
 func (o LookupSystemSdnConnectorResultOutput) UseMetadataIam() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.UseMetadataIam }).(pulumi.StringOutput)
 }
 
-// User ID.
 func (o LookupSystemSdnConnectorResultOutput) UserId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.UserId }).(pulumi.StringOutput)
 }
 
-// Username of the remote SDN connector as login credentials.
 func (o LookupSystemSdnConnectorResultOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.Username }).(pulumi.StringOutput)
 }
 
-// vCenter server password for NSX quarantine.
 func (o LookupSystemSdnConnectorResultOutput) VcenterPassword() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.VcenterPassword }).(pulumi.StringOutput)
 }
 
-// vCenter server address for NSX quarantine.
 func (o LookupSystemSdnConnectorResultOutput) VcenterServer() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.VcenterServer }).(pulumi.StringOutput)
 }
 
-// vCenter server username for NSX quarantine.
 func (o LookupSystemSdnConnectorResultOutput) VcenterUsername() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.VcenterUsername }).(pulumi.StringOutput)
 }
@@ -441,12 +334,10 @@ func (o LookupSystemSdnConnectorResultOutput) Vdomparam() pulumi.StringPtrOutput
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable server certificate verification.
 func (o LookupSystemSdnConnectorResultOutput) VerifyCertificate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.VerifyCertificate }).(pulumi.StringOutput)
 }
 
-// AWS VPC ID.
 func (o LookupSystemSdnConnectorResultOutput) VpcId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.VpcId }).(pulumi.StringOutput)
 }

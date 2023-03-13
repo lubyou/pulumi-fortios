@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure WiFi quality of service (QoS) profiles.
- *
- * ## Import
- *
- * WirelessController QosProfile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerQosProfile:WirelessControllerQosProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerQosProfile:WirelessControllerQosProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerQosProfile extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerQosProfile resource's state with the given name, ID, and optional extra
@@ -52,105 +34,30 @@ export class WirelessControllerQosProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerQosProfile.__pulumiType;
     }
 
-    /**
-     * Enable/disable WMM bandwidth admission control. Valid values: `enable`, `disable`.
-     */
     public readonly bandwidthAdmissionControl!: pulumi.Output<string>;
-    /**
-     * Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-     */
     public readonly bandwidthCapacity!: pulumi.Output<number>;
-    /**
-     * Enable/disable client rate burst. Valid values: `enable`, `disable`.
-     */
     public readonly burst!: pulumi.Output<string>;
-    /**
-     * Enable/disable WMM call admission control. Valid values: `enable`, `disable`.
-     */
     public readonly callAdmissionControl!: pulumi.Output<string>;
-    /**
-     * Maximum number of Voice over WLAN (VoWLAN) phones allowed (0 - 60, default = 10).
-     */
     public readonly callCapacity!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string>;
-    /**
-     * Maximum downlink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-     */
     public readonly downlink!: pulumi.Output<number>;
-    /**
-     * Maximum downlink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-     */
     public readonly downlinkSta!: pulumi.Output<number>;
-    /**
-     * DSCP mapping for best effort access (default = 0 24). The structure of `dscpWmmBe` block is documented below.
-     */
     public readonly dscpWmmBes!: pulumi.Output<outputs.WirelessControllerQosProfileDscpWmmBe[] | undefined>;
-    /**
-     * DSCP mapping for background access (default = 8 16). The structure of `dscpWmmBk` block is documented below.
-     */
     public readonly dscpWmmBks!: pulumi.Output<outputs.WirelessControllerQosProfileDscpWmmBk[] | undefined>;
-    /**
-     * Enable/disable Differentiated Services Code Point (DSCP) mapping. Valid values: `enable`, `disable`.
-     */
     public readonly dscpWmmMapping!: pulumi.Output<string>;
-    /**
-     * DSCP mapping for video access (default = 32 40). The structure of `dscpWmmVi` block is documented below.
-     */
     public readonly dscpWmmVis!: pulumi.Output<outputs.WirelessControllerQosProfileDscpWmmVi[] | undefined>;
-    /**
-     * DSCP mapping for voice access (default = 48 56). The structure of `dscpWmmVo` block is documented below.
-     */
     public readonly dscpWmmVos!: pulumi.Output<outputs.WirelessControllerQosProfileDscpWmmVo[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * WiFi QoS profile name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Maximum uplink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-     */
     public readonly uplink!: pulumi.Output<number>;
-    /**
-     * Maximum uplink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-     */
     public readonly uplinkSta!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable WiFi multi-media (WMM) control. Valid values: `enable`, `disable`.
-     */
     public readonly wmm!: pulumi.Output<string>;
-    /**
-     * DSCP marking for best effort access (default = 0).
-     */
     public readonly wmmBeDscp!: pulumi.Output<number>;
-    /**
-     * DSCP marking for background access (default = 8).
-     */
     public readonly wmmBkDscp!: pulumi.Output<number>;
-    /**
-     * Enable/disable WMM Differentiated Services Code Point (DSCP) marking. Valid values: `enable`, `disable`.
-     */
     public readonly wmmDscpMarking!: pulumi.Output<string>;
-    /**
-     * Enable/disable WMM Unscheduled Automatic Power Save Delivery (U-APSD) power save mode. Valid values: `enable`, `disable`.
-     */
     public readonly wmmUapsd!: pulumi.Output<string>;
-    /**
-     * DSCP marking for video access (default = 32).
-     */
     public readonly wmmViDscp!: pulumi.Output<number>;
-    /**
-     * DSCP marking for voice access (default = 48).
-     */
     public readonly wmmVoDscp!: pulumi.Output<number>;
 
     /**
@@ -228,105 +135,30 @@ export class WirelessControllerQosProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerQosProfile resources.
  */
 export interface WirelessControllerQosProfileState {
-    /**
-     * Enable/disable WMM bandwidth admission control. Valid values: `enable`, `disable`.
-     */
     bandwidthAdmissionControl?: pulumi.Input<string>;
-    /**
-     * Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-     */
     bandwidthCapacity?: pulumi.Input<number>;
-    /**
-     * Enable/disable client rate burst. Valid values: `enable`, `disable`.
-     */
     burst?: pulumi.Input<string>;
-    /**
-     * Enable/disable WMM call admission control. Valid values: `enable`, `disable`.
-     */
     callAdmissionControl?: pulumi.Input<string>;
-    /**
-     * Maximum number of Voice over WLAN (VoWLAN) phones allowed (0 - 60, default = 10).
-     */
     callCapacity?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Maximum downlink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-     */
     downlink?: pulumi.Input<number>;
-    /**
-     * Maximum downlink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-     */
     downlinkSta?: pulumi.Input<number>;
-    /**
-     * DSCP mapping for best effort access (default = 0 24). The structure of `dscpWmmBe` block is documented below.
-     */
     dscpWmmBes?: pulumi.Input<pulumi.Input<inputs.WirelessControllerQosProfileDscpWmmBe>[]>;
-    /**
-     * DSCP mapping for background access (default = 8 16). The structure of `dscpWmmBk` block is documented below.
-     */
     dscpWmmBks?: pulumi.Input<pulumi.Input<inputs.WirelessControllerQosProfileDscpWmmBk>[]>;
-    /**
-     * Enable/disable Differentiated Services Code Point (DSCP) mapping. Valid values: `enable`, `disable`.
-     */
     dscpWmmMapping?: pulumi.Input<string>;
-    /**
-     * DSCP mapping for video access (default = 32 40). The structure of `dscpWmmVi` block is documented below.
-     */
     dscpWmmVis?: pulumi.Input<pulumi.Input<inputs.WirelessControllerQosProfileDscpWmmVi>[]>;
-    /**
-     * DSCP mapping for voice access (default = 48 56). The structure of `dscpWmmVo` block is documented below.
-     */
     dscpWmmVos?: pulumi.Input<pulumi.Input<inputs.WirelessControllerQosProfileDscpWmmVo>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * WiFi QoS profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Maximum uplink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-     */
     uplink?: pulumi.Input<number>;
-    /**
-     * Maximum uplink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-     */
     uplinkSta?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable WiFi multi-media (WMM) control. Valid values: `enable`, `disable`.
-     */
     wmm?: pulumi.Input<string>;
-    /**
-     * DSCP marking for best effort access (default = 0).
-     */
     wmmBeDscp?: pulumi.Input<number>;
-    /**
-     * DSCP marking for background access (default = 8).
-     */
     wmmBkDscp?: pulumi.Input<number>;
-    /**
-     * Enable/disable WMM Differentiated Services Code Point (DSCP) marking. Valid values: `enable`, `disable`.
-     */
     wmmDscpMarking?: pulumi.Input<string>;
-    /**
-     * Enable/disable WMM Unscheduled Automatic Power Save Delivery (U-APSD) power save mode. Valid values: `enable`, `disable`.
-     */
     wmmUapsd?: pulumi.Input<string>;
-    /**
-     * DSCP marking for video access (default = 32).
-     */
     wmmViDscp?: pulumi.Input<number>;
-    /**
-     * DSCP marking for voice access (default = 48).
-     */
     wmmVoDscp?: pulumi.Input<number>;
 }
 
@@ -334,104 +166,29 @@ export interface WirelessControllerQosProfileState {
  * The set of arguments for constructing a WirelessControllerQosProfile resource.
  */
 export interface WirelessControllerQosProfileArgs {
-    /**
-     * Enable/disable WMM bandwidth admission control. Valid values: `enable`, `disable`.
-     */
     bandwidthAdmissionControl?: pulumi.Input<string>;
-    /**
-     * Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-     */
     bandwidthCapacity?: pulumi.Input<number>;
-    /**
-     * Enable/disable client rate burst. Valid values: `enable`, `disable`.
-     */
     burst?: pulumi.Input<string>;
-    /**
-     * Enable/disable WMM call admission control. Valid values: `enable`, `disable`.
-     */
     callAdmissionControl?: pulumi.Input<string>;
-    /**
-     * Maximum number of Voice over WLAN (VoWLAN) phones allowed (0 - 60, default = 10).
-     */
     callCapacity?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Maximum downlink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-     */
     downlink?: pulumi.Input<number>;
-    /**
-     * Maximum downlink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-     */
     downlinkSta?: pulumi.Input<number>;
-    /**
-     * DSCP mapping for best effort access (default = 0 24). The structure of `dscpWmmBe` block is documented below.
-     */
     dscpWmmBes?: pulumi.Input<pulumi.Input<inputs.WirelessControllerQosProfileDscpWmmBe>[]>;
-    /**
-     * DSCP mapping for background access (default = 8 16). The structure of `dscpWmmBk` block is documented below.
-     */
     dscpWmmBks?: pulumi.Input<pulumi.Input<inputs.WirelessControllerQosProfileDscpWmmBk>[]>;
-    /**
-     * Enable/disable Differentiated Services Code Point (DSCP) mapping. Valid values: `enable`, `disable`.
-     */
     dscpWmmMapping?: pulumi.Input<string>;
-    /**
-     * DSCP mapping for video access (default = 32 40). The structure of `dscpWmmVi` block is documented below.
-     */
     dscpWmmVis?: pulumi.Input<pulumi.Input<inputs.WirelessControllerQosProfileDscpWmmVi>[]>;
-    /**
-     * DSCP mapping for voice access (default = 48 56). The structure of `dscpWmmVo` block is documented below.
-     */
     dscpWmmVos?: pulumi.Input<pulumi.Input<inputs.WirelessControllerQosProfileDscpWmmVo>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * WiFi QoS profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Maximum uplink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
-     */
     uplink?: pulumi.Input<number>;
-    /**
-     * Maximum uplink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
-     */
     uplinkSta?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable WiFi multi-media (WMM) control. Valid values: `enable`, `disable`.
-     */
     wmm?: pulumi.Input<string>;
-    /**
-     * DSCP marking for best effort access (default = 0).
-     */
     wmmBeDscp?: pulumi.Input<number>;
-    /**
-     * DSCP marking for background access (default = 8).
-     */
     wmmBkDscp?: pulumi.Input<number>;
-    /**
-     * Enable/disable WMM Differentiated Services Code Point (DSCP) marking. Valid values: `enable`, `disable`.
-     */
     wmmDscpMarking?: pulumi.Input<string>;
-    /**
-     * Enable/disable WMM Unscheduled Automatic Power Save Delivery (U-APSD) power save mode. Valid values: `enable`, `disable`.
-     */
     wmmUapsd?: pulumi.Input<string>;
-    /**
-     * DSCP marking for video access (default = 32).
-     */
     wmmViDscp?: pulumi.Input<number>;
-    /**
-     * DSCP marking for voice access (default = 48).
-     */
     wmmVoDscp?: pulumi.Input<number>;
 }

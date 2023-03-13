@@ -10,75 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure NetFlow.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemNetflow(ctx, "trname", &fortios.SystemNetflowArgs{
-// 			ActiveFlowTimeout:   pulumi.Int(30),
-// 			CollectorIp:         pulumi.String("0.0.0.0"),
-// 			CollectorPort:       pulumi.Int(2055),
-// 			InactiveFlowTimeout: pulumi.Int(15),
-// 			SourceIp:            pulumi.String("0.0.0.0"),
-// 			TemplateTxCounter:   pulumi.Int(20),
-// 			TemplateTxTimeout:   pulumi.Int(30),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Netflow can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemNetflow:SystemNetflow labelname SystemNetflow
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemNetflow:SystemNetflow labelname SystemNetflow
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemNetflow struct {
 	pulumi.CustomResourceState
 
-	// Timeout to report active flows (1 - 60 min, default = 30).
-	ActiveFlowTimeout pulumi.IntOutput `pulumi:"activeFlowTimeout"`
-	// Collector IP.
-	CollectorIp pulumi.StringOutput `pulumi:"collectorIp"`
-	// NetFlow collector port number.
-	CollectorPort pulumi.IntOutput `pulumi:"collectorPort"`
-	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
-	InactiveFlowTimeout pulumi.IntOutput `pulumi:"inactiveFlowTimeout"`
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
-	// Source IP address for communication with the NetFlow agent.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Counter of flowset records before resending a template flowset record.
-	TemplateTxCounter pulumi.IntOutput `pulumi:"templateTxCounter"`
-	// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
-	TemplateTxTimeout pulumi.IntOutput `pulumi:"templateTxTimeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	ActiveFlowTimeout     pulumi.IntOutput       `pulumi:"activeFlowTimeout"`
+	CollectorIp           pulumi.StringOutput    `pulumi:"collectorIp"`
+	CollectorPort         pulumi.IntOutput       `pulumi:"collectorPort"`
+	InactiveFlowTimeout   pulumi.IntOutput       `pulumi:"inactiveFlowTimeout"`
+	Interface             pulumi.StringOutput    `pulumi:"interface"`
+	InterfaceSelectMethod pulumi.StringOutput    `pulumi:"interfaceSelectMethod"`
+	SourceIp              pulumi.StringOutput    `pulumi:"sourceIp"`
+	TemplateTxCounter     pulumi.IntOutput       `pulumi:"templateTxCounter"`
+	TemplateTxTimeout     pulumi.IntOutput       `pulumi:"templateTxTimeout"`
+	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemNetflow registers a new resource with the given unique name, arguments, and options.
@@ -111,49 +55,29 @@ func GetSystemNetflow(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemNetflow resources.
 type systemNetflowState struct {
-	// Timeout to report active flows (1 - 60 min, default = 30).
-	ActiveFlowTimeout *int `pulumi:"activeFlowTimeout"`
-	// Collector IP.
-	CollectorIp *string `pulumi:"collectorIp"`
-	// NetFlow collector port number.
-	CollectorPort *int `pulumi:"collectorPort"`
-	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
-	InactiveFlowTimeout *int `pulumi:"inactiveFlowTimeout"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	ActiveFlowTimeout     *int    `pulumi:"activeFlowTimeout"`
+	CollectorIp           *string `pulumi:"collectorIp"`
+	CollectorPort         *int    `pulumi:"collectorPort"`
+	InactiveFlowTimeout   *int    `pulumi:"inactiveFlowTimeout"`
+	Interface             *string `pulumi:"interface"`
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Source IP address for communication with the NetFlow agent.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Counter of flowset records before resending a template flowset record.
-	TemplateTxCounter *int `pulumi:"templateTxCounter"`
-	// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
-	TemplateTxTimeout *int `pulumi:"templateTxTimeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	TemplateTxCounter     *int    `pulumi:"templateTxCounter"`
+	TemplateTxTimeout     *int    `pulumi:"templateTxTimeout"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 type SystemNetflowState struct {
-	// Timeout to report active flows (1 - 60 min, default = 30).
-	ActiveFlowTimeout pulumi.IntPtrInput
-	// Collector IP.
-	CollectorIp pulumi.StringPtrInput
-	// NetFlow collector port number.
-	CollectorPort pulumi.IntPtrInput
-	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
-	InactiveFlowTimeout pulumi.IntPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	ActiveFlowTimeout     pulumi.IntPtrInput
+	CollectorIp           pulumi.StringPtrInput
+	CollectorPort         pulumi.IntPtrInput
+	InactiveFlowTimeout   pulumi.IntPtrInput
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// Source IP address for communication with the NetFlow agent.
-	SourceIp pulumi.StringPtrInput
-	// Counter of flowset records before resending a template flowset record.
-	TemplateTxCounter pulumi.IntPtrInput
-	// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
-	TemplateTxTimeout pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	TemplateTxCounter     pulumi.IntPtrInput
+	TemplateTxTimeout     pulumi.IntPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SystemNetflowState) ElementType() reflect.Type {
@@ -161,50 +85,30 @@ func (SystemNetflowState) ElementType() reflect.Type {
 }
 
 type systemNetflowArgs struct {
-	// Timeout to report active flows (1 - 60 min, default = 30).
-	ActiveFlowTimeout *int `pulumi:"activeFlowTimeout"`
-	// Collector IP.
-	CollectorIp *string `pulumi:"collectorIp"`
-	// NetFlow collector port number.
-	CollectorPort *int `pulumi:"collectorPort"`
-	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
-	InactiveFlowTimeout *int `pulumi:"inactiveFlowTimeout"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	ActiveFlowTimeout     *int    `pulumi:"activeFlowTimeout"`
+	CollectorIp           *string `pulumi:"collectorIp"`
+	CollectorPort         *int    `pulumi:"collectorPort"`
+	InactiveFlowTimeout   *int    `pulumi:"inactiveFlowTimeout"`
+	Interface             *string `pulumi:"interface"`
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Source IP address for communication with the NetFlow agent.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Counter of flowset records before resending a template flowset record.
-	TemplateTxCounter *int `pulumi:"templateTxCounter"`
-	// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
-	TemplateTxTimeout *int `pulumi:"templateTxTimeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	TemplateTxCounter     *int    `pulumi:"templateTxCounter"`
+	TemplateTxTimeout     *int    `pulumi:"templateTxTimeout"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemNetflow resource.
 type SystemNetflowArgs struct {
-	// Timeout to report active flows (1 - 60 min, default = 30).
-	ActiveFlowTimeout pulumi.IntPtrInput
-	// Collector IP.
-	CollectorIp pulumi.StringPtrInput
-	// NetFlow collector port number.
-	CollectorPort pulumi.IntPtrInput
-	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
-	InactiveFlowTimeout pulumi.IntPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	ActiveFlowTimeout     pulumi.IntPtrInput
+	CollectorIp           pulumi.StringPtrInput
+	CollectorPort         pulumi.IntPtrInput
+	InactiveFlowTimeout   pulumi.IntPtrInput
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// Source IP address for communication with the NetFlow agent.
-	SourceIp pulumi.StringPtrInput
-	// Counter of flowset records before resending a template flowset record.
-	TemplateTxCounter pulumi.IntPtrInput
-	// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
-	TemplateTxTimeout pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	TemplateTxCounter     pulumi.IntPtrInput
+	TemplateTxTimeout     pulumi.IntPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SystemNetflowArgs) ElementType() reflect.Type {
@@ -233,7 +137,7 @@ func (i *SystemNetflow) ToSystemNetflowOutputWithContext(ctx context.Context) Sy
 // SystemNetflowArrayInput is an input type that accepts SystemNetflowArray and SystemNetflowArrayOutput values.
 // You can construct a concrete instance of `SystemNetflowArrayInput` via:
 //
-//          SystemNetflowArray{ SystemNetflowArgs{...} }
+//	SystemNetflowArray{ SystemNetflowArgs{...} }
 type SystemNetflowArrayInput interface {
 	pulumi.Input
 
@@ -258,7 +162,7 @@ func (i SystemNetflowArray) ToSystemNetflowArrayOutputWithContext(ctx context.Co
 // SystemNetflowMapInput is an input type that accepts SystemNetflowMap and SystemNetflowMapOutput values.
 // You can construct a concrete instance of `SystemNetflowMapInput` via:
 //
-//          SystemNetflowMap{ "key": SystemNetflowArgs{...} }
+//	SystemNetflowMap{ "key": SystemNetflowArgs{...} }
 type SystemNetflowMapInput interface {
 	pulumi.Input
 
@@ -292,6 +196,46 @@ func (o SystemNetflowOutput) ToSystemNetflowOutput() SystemNetflowOutput {
 
 func (o SystemNetflowOutput) ToSystemNetflowOutputWithContext(ctx context.Context) SystemNetflowOutput {
 	return o
+}
+
+func (o SystemNetflowOutput) ActiveFlowTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemNetflow) pulumi.IntOutput { return v.ActiveFlowTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemNetflowOutput) CollectorIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemNetflow) pulumi.StringOutput { return v.CollectorIp }).(pulumi.StringOutput)
+}
+
+func (o SystemNetflowOutput) CollectorPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemNetflow) pulumi.IntOutput { return v.CollectorPort }).(pulumi.IntOutput)
+}
+
+func (o SystemNetflowOutput) InactiveFlowTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemNetflow) pulumi.IntOutput { return v.InactiveFlowTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemNetflowOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemNetflow) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemNetflowOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemNetflow) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o SystemNetflowOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemNetflow) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o SystemNetflowOutput) TemplateTxCounter() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemNetflow) pulumi.IntOutput { return v.TemplateTxCounter }).(pulumi.IntOutput)
+}
+
+func (o SystemNetflowOutput) TemplateTxTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemNetflow) pulumi.IntOutput { return v.TemplateTxTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemNetflowOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemNetflow) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemNetflowArrayOutput struct{ *pulumi.OutputState }

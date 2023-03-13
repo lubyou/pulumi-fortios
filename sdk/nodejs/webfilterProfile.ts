@@ -2,107 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure Web filter profiles.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WebfilterProfile("trname", {
- *     extendedLog: "disable",
- *     ftgdWf: {
- *         exemptQuota: "17",
- *         filters: [
- *             {
- *                 action: "warning",
- *                 category: 2,
- *                 id: 1,
- *                 log: "enable",
- *                 warnDuration: "5m",
- *                 warningDurationType: "timeout",
- *                 warningPrompt: "per-category",
- *             },
- *             {
- *                 action: "warning",
- *                 category: 7,
- *                 id: 2,
- *                 log: "enable",
- *                 warnDuration: "5m",
- *                 warningDurationType: "timeout",
- *                 warningPrompt: "per-category",
- *             },
- *         ],
- *         maxQuotaTimeout: 300,
- *         rateCrlUrls: "enable",
- *         rateCssUrls: "enable",
- *         rateImageUrls: "enable",
- *         rateJavascriptUrls: "enable",
- *     },
- *     httpsReplacemsg: "enable",
- *     inspectionMode: "flow-based",
- *     logAllUrl: "disable",
- *     override: {
- *         ovrdCookie: "deny",
- *         ovrdDur: "15m",
- *         ovrdDurMode: "constant",
- *         ovrdScope: "user",
- *         profileAttribute: "Login-LAT-Service",
- *         profileType: "list",
- *     },
- *     postAction: "normal",
- *     web: {
- *         blacklist: "disable",
- *         bwordTable: 0,
- *         bwordThreshold: 10,
- *         contentHeaderList: 0,
- *         logSearch: "disable",
- *         urlfilterTable: 0,
- *         youtubeRestrict: "none",
- *     },
- *     webContentLog: "enable",
- *     webExtendedAllActionLog: "disable",
- *     webFilterActivexLog: "enable",
- *     webFilterAppletLog: "enable",
- *     webFilterCommandBlockLog: "enable",
- *     webFilterCookieLog: "enable",
- *     webFilterCookieRemovalLog: "enable",
- *     webFilterJsLog: "enable",
- *     webFilterJscriptLog: "enable",
- *     webFilterRefererLog: "enable",
- *     webFilterUnknownLog: "enable",
- *     webFilterVbsLog: "enable",
- *     webFtgdErrLog: "enable",
- *     webFtgdQuotaUsage: "enable",
- *     webInvalidDomainLog: "enable",
- *     webUrlLog: "enable",
- *     wisp: "disable",
- *     wispAlgorithm: "auto-learning",
- *     youtubeChannelStatus: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * Webfilter Profile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/webfilterProfile:WebfilterProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/webfilterProfile:WebfilterProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WebfilterProfile extends pulumi.CustomResource {
     /**
      * Get an existing WebfilterProfile resource's state with the given name, ID, and optional extra
@@ -131,165 +34,45 @@ export class WebfilterProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebfilterProfile.__pulumiType;
     }
 
-    /**
-     * AntiPhishing profile. The structure of `antiphish` block is documented below.
-     */
-    public readonly antiphish!: pulumi.Output<outputs.WebfilterProfileAntiphish | undefined>;
-    /**
-     * Comment.
-     */
+    public readonly antiphish!: pulumi.Output<outputs.WebfilterProfileAntiphish>;
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable extended logging for web filtering. Valid values: `enable`, `disable`.
-     */
     public readonly extendedLog!: pulumi.Output<string>;
-    /**
-     * Flow/proxy feature set. Valid values: `flow`, `proxy`.
-     */
     public readonly featureSet!: pulumi.Output<string>;
-    /**
-     * File filter. The structure of `fileFilter` block is documented below.
-     */
-    public readonly fileFilter!: pulumi.Output<outputs.WebfilterProfileFileFilter | undefined>;
-    /**
-     * FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
-     */
-    public readonly ftgdWf!: pulumi.Output<outputs.WebfilterProfileFtgdWf | undefined>;
-    /**
-     * Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
-     */
+    public readonly fileFilter!: pulumi.Output<outputs.WebfilterProfileFileFilter>;
+    public readonly ftgdWf!: pulumi.Output<outputs.WebfilterProfileFtgdWf>;
     public readonly httpsReplacemsg!: pulumi.Output<string>;
-    /**
-     * Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
-     */
     public readonly inspectionMode!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging all URLs visited. Valid values: `enable`, `disable`.
-     */
     public readonly logAllUrl!: pulumi.Output<string>;
-    /**
-     * Server name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Options for FortiGuard Web Filter. Valid values: `error-allow`, `rate-server-ip`, `connect-request-bypass`, `ftgd-disable`.
-     */
     public readonly options!: pulumi.Output<string>;
-    /**
-     * Web Filter override settings. The structure of `override` block is documented below.
-     */
-    public readonly override!: pulumi.Output<outputs.WebfilterProfileOverride | undefined>;
-    /**
-     * Permitted override types. Valid values: `bannedword-override`, `urlfilter-override`, `fortiguard-wf-override`, `contenttype-check-override`.
-     */
+    public readonly override!: pulumi.Output<outputs.WebfilterProfileOverride>;
     public readonly ovrdPerm!: pulumi.Output<string>;
-    /**
-     * Action taken for HTTP POST traffic. Valid values: `normal`, `block`.
-     */
     public readonly postAction!: pulumi.Output<string>;
-    /**
-     * Replacement message group.
-     */
     public readonly replacemsgGroup!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Web content filtering settings. The structure of `web` block is documented below.
-     */
-    public readonly web!: pulumi.Output<outputs.WebfilterProfileWeb | undefined>;
-    /**
-     * Enable/disable logging of AntiPhishing checks. Valid values: `enable`, `disable`.
-     */
+    public readonly web!: pulumi.Output<outputs.WebfilterProfileWeb>;
     public readonly webAntiphishingLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging logging blocked web content. Valid values: `enable`, `disable`.
-     */
     public readonly webContentLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable extended any filter action logging for web filtering. Valid values: `enable`, `disable`.
-     */
     public readonly webExtendedAllActionLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging ActiveX. Valid values: `enable`, `disable`.
-     */
     public readonly webFilterActivexLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging Java applets. Valid values: `enable`, `disable`.
-     */
     public readonly webFilterAppletLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging blocked commands. Valid values: `enable`, `disable`.
-     */
     public readonly webFilterCommandBlockLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging cookie filtering. Valid values: `enable`, `disable`.
-     */
     public readonly webFilterCookieLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging blocked cookies. Valid values: `enable`, `disable`.
-     */
     public readonly webFilterCookieRemovalLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging Java scripts. Valid values: `enable`, `disable`.
-     */
     public readonly webFilterJsLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging JScripts. Valid values: `enable`, `disable`.
-     */
     public readonly webFilterJscriptLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging referrers. Valid values: `enable`, `disable`.
-     */
     public readonly webFilterRefererLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging unknown scripts. Valid values: `enable`, `disable`.
-     */
     public readonly webFilterUnknownLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
-     */
     public readonly webFilterVbsLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging rating errors. Valid values: `enable`, `disable`.
-     */
     public readonly webFtgdErrLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
-     */
     public readonly webFtgdQuotaUsage!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging invalid domain names. Valid values: `enable`, `disable`.
-     */
     public readonly webInvalidDomainLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging URL filtering. Valid values: `enable`, `disable`.
-     */
     public readonly webUrlLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable web proxy WISP. Valid values: `enable`, `disable`.
-     */
     public readonly wisp!: pulumi.Output<string>;
-    /**
-     * WISP server selection algorithm. Valid values: `primary-secondary`, `round-robin`, `auto-learning`.
-     */
     public readonly wispAlgorithm!: pulumi.Output<string>;
-    /**
-     * WISP servers. The structure of `wispServers` block is documented below.
-     */
     public readonly wispServers!: pulumi.Output<outputs.WebfilterProfileWispServer[] | undefined>;
-    /**
-     * YouTube channel filter. The structure of `youtubeChannelFilter` block is documented below.
-     */
     public readonly youtubeChannelFilters!: pulumi.Output<outputs.WebfilterProfileYoutubeChannelFilter[] | undefined>;
-    /**
-     * YouTube channel filter status.
-     */
     public readonly youtubeChannelStatus!: pulumi.Output<string>;
 
     /**
@@ -397,165 +180,45 @@ export class WebfilterProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WebfilterProfile resources.
  */
 export interface WebfilterProfileState {
-    /**
-     * AntiPhishing profile. The structure of `antiphish` block is documented below.
-     */
     antiphish?: pulumi.Input<inputs.WebfilterProfileAntiphish>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable extended logging for web filtering. Valid values: `enable`, `disable`.
-     */
     extendedLog?: pulumi.Input<string>;
-    /**
-     * Flow/proxy feature set. Valid values: `flow`, `proxy`.
-     */
     featureSet?: pulumi.Input<string>;
-    /**
-     * File filter. The structure of `fileFilter` block is documented below.
-     */
     fileFilter?: pulumi.Input<inputs.WebfilterProfileFileFilter>;
-    /**
-     * FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
-     */
     ftgdWf?: pulumi.Input<inputs.WebfilterProfileFtgdWf>;
-    /**
-     * Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
-     */
     httpsReplacemsg?: pulumi.Input<string>;
-    /**
-     * Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
-     */
     inspectionMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging all URLs visited. Valid values: `enable`, `disable`.
-     */
     logAllUrl?: pulumi.Input<string>;
-    /**
-     * Server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Options for FortiGuard Web Filter. Valid values: `error-allow`, `rate-server-ip`, `connect-request-bypass`, `ftgd-disable`.
-     */
     options?: pulumi.Input<string>;
-    /**
-     * Web Filter override settings. The structure of `override` block is documented below.
-     */
     override?: pulumi.Input<inputs.WebfilterProfileOverride>;
-    /**
-     * Permitted override types. Valid values: `bannedword-override`, `urlfilter-override`, `fortiguard-wf-override`, `contenttype-check-override`.
-     */
     ovrdPerm?: pulumi.Input<string>;
-    /**
-     * Action taken for HTTP POST traffic. Valid values: `normal`, `block`.
-     */
     postAction?: pulumi.Input<string>;
-    /**
-     * Replacement message group.
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Web content filtering settings. The structure of `web` block is documented below.
-     */
     web?: pulumi.Input<inputs.WebfilterProfileWeb>;
-    /**
-     * Enable/disable logging of AntiPhishing checks. Valid values: `enable`, `disable`.
-     */
     webAntiphishingLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging logging blocked web content. Valid values: `enable`, `disable`.
-     */
     webContentLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable extended any filter action logging for web filtering. Valid values: `enable`, `disable`.
-     */
     webExtendedAllActionLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging ActiveX. Valid values: `enable`, `disable`.
-     */
     webFilterActivexLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging Java applets. Valid values: `enable`, `disable`.
-     */
     webFilterAppletLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging blocked commands. Valid values: `enable`, `disable`.
-     */
     webFilterCommandBlockLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging cookie filtering. Valid values: `enable`, `disable`.
-     */
     webFilterCookieLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging blocked cookies. Valid values: `enable`, `disable`.
-     */
     webFilterCookieRemovalLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging Java scripts. Valid values: `enable`, `disable`.
-     */
     webFilterJsLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging JScripts. Valid values: `enable`, `disable`.
-     */
     webFilterJscriptLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging referrers. Valid values: `enable`, `disable`.
-     */
     webFilterRefererLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging unknown scripts. Valid values: `enable`, `disable`.
-     */
     webFilterUnknownLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
-     */
     webFilterVbsLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging rating errors. Valid values: `enable`, `disable`.
-     */
     webFtgdErrLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
-     */
     webFtgdQuotaUsage?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging invalid domain names. Valid values: `enable`, `disable`.
-     */
     webInvalidDomainLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging URL filtering. Valid values: `enable`, `disable`.
-     */
     webUrlLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable web proxy WISP. Valid values: `enable`, `disable`.
-     */
     wisp?: pulumi.Input<string>;
-    /**
-     * WISP server selection algorithm. Valid values: `primary-secondary`, `round-robin`, `auto-learning`.
-     */
     wispAlgorithm?: pulumi.Input<string>;
-    /**
-     * WISP servers. The structure of `wispServers` block is documented below.
-     */
     wispServers?: pulumi.Input<pulumi.Input<inputs.WebfilterProfileWispServer>[]>;
-    /**
-     * YouTube channel filter. The structure of `youtubeChannelFilter` block is documented below.
-     */
     youtubeChannelFilters?: pulumi.Input<pulumi.Input<inputs.WebfilterProfileYoutubeChannelFilter>[]>;
-    /**
-     * YouTube channel filter status.
-     */
     youtubeChannelStatus?: pulumi.Input<string>;
 }
 
@@ -563,164 +226,44 @@ export interface WebfilterProfileState {
  * The set of arguments for constructing a WebfilterProfile resource.
  */
 export interface WebfilterProfileArgs {
-    /**
-     * AntiPhishing profile. The structure of `antiphish` block is documented below.
-     */
     antiphish?: pulumi.Input<inputs.WebfilterProfileAntiphish>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable extended logging for web filtering. Valid values: `enable`, `disable`.
-     */
     extendedLog?: pulumi.Input<string>;
-    /**
-     * Flow/proxy feature set. Valid values: `flow`, `proxy`.
-     */
     featureSet?: pulumi.Input<string>;
-    /**
-     * File filter. The structure of `fileFilter` block is documented below.
-     */
     fileFilter?: pulumi.Input<inputs.WebfilterProfileFileFilter>;
-    /**
-     * FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
-     */
     ftgdWf?: pulumi.Input<inputs.WebfilterProfileFtgdWf>;
-    /**
-     * Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
-     */
     httpsReplacemsg?: pulumi.Input<string>;
-    /**
-     * Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
-     */
     inspectionMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging all URLs visited. Valid values: `enable`, `disable`.
-     */
     logAllUrl?: pulumi.Input<string>;
-    /**
-     * Server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Options for FortiGuard Web Filter. Valid values: `error-allow`, `rate-server-ip`, `connect-request-bypass`, `ftgd-disable`.
-     */
     options?: pulumi.Input<string>;
-    /**
-     * Web Filter override settings. The structure of `override` block is documented below.
-     */
     override?: pulumi.Input<inputs.WebfilterProfileOverride>;
-    /**
-     * Permitted override types. Valid values: `bannedword-override`, `urlfilter-override`, `fortiguard-wf-override`, `contenttype-check-override`.
-     */
     ovrdPerm?: pulumi.Input<string>;
-    /**
-     * Action taken for HTTP POST traffic. Valid values: `normal`, `block`.
-     */
     postAction?: pulumi.Input<string>;
-    /**
-     * Replacement message group.
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Web content filtering settings. The structure of `web` block is documented below.
-     */
     web?: pulumi.Input<inputs.WebfilterProfileWeb>;
-    /**
-     * Enable/disable logging of AntiPhishing checks. Valid values: `enable`, `disable`.
-     */
     webAntiphishingLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging logging blocked web content. Valid values: `enable`, `disable`.
-     */
     webContentLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable extended any filter action logging for web filtering. Valid values: `enable`, `disable`.
-     */
     webExtendedAllActionLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging ActiveX. Valid values: `enable`, `disable`.
-     */
     webFilterActivexLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging Java applets. Valid values: `enable`, `disable`.
-     */
     webFilterAppletLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging blocked commands. Valid values: `enable`, `disable`.
-     */
     webFilterCommandBlockLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging cookie filtering. Valid values: `enable`, `disable`.
-     */
     webFilterCookieLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging blocked cookies. Valid values: `enable`, `disable`.
-     */
     webFilterCookieRemovalLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging Java scripts. Valid values: `enable`, `disable`.
-     */
     webFilterJsLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging JScripts. Valid values: `enable`, `disable`.
-     */
     webFilterJscriptLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging referrers. Valid values: `enable`, `disable`.
-     */
     webFilterRefererLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging unknown scripts. Valid values: `enable`, `disable`.
-     */
     webFilterUnknownLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
-     */
     webFilterVbsLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging rating errors. Valid values: `enable`, `disable`.
-     */
     webFtgdErrLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
-     */
     webFtgdQuotaUsage?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging invalid domain names. Valid values: `enable`, `disable`.
-     */
     webInvalidDomainLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging URL filtering. Valid values: `enable`, `disable`.
-     */
     webUrlLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable web proxy WISP. Valid values: `enable`, `disable`.
-     */
     wisp?: pulumi.Input<string>;
-    /**
-     * WISP server selection algorithm. Valid values: `primary-secondary`, `round-robin`, `auto-learning`.
-     */
     wispAlgorithm?: pulumi.Input<string>;
-    /**
-     * WISP servers. The structure of `wispServers` block is documented below.
-     */
     wispServers?: pulumi.Input<pulumi.Input<inputs.WebfilterProfileWispServer>[]>;
-    /**
-     * YouTube channel filter. The structure of `youtubeChannelFilter` block is documented below.
-     */
     youtubeChannelFilters?: pulumi.Input<pulumi.Input<inputs.WebfilterProfileYoutubeChannelFilter>[]>;
-    /**
-     * YouTube channel filter status.
-     */
     youtubeChannelStatus?: pulumi.Input<string>;
 }

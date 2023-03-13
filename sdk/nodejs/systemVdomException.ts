@@ -2,42 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Global configuration objects that can be configured independently for all VDOMs or for the defined VDOM scope.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemVdomException("trname", {
- *     fosid: 1,
- *     object: "log.fortianalyzer.setting",
- *     oid: 7150,
- *     scope: "all",
- * });
- * ```
- *
- * ## Import
- *
- * System VdomException can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVdomException:SystemVdomException labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVdomException:SystemVdomException labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemVdomException extends pulumi.CustomResource {
     /**
      * Get an existing SystemVdomException resource's state with the given name, ID, and optional extra
@@ -66,33 +34,12 @@ export class SystemVdomException extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemVdomException.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Index <1-4096>.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Name of the configuration object that can be configured independently for all VDOMs.
-     */
     public readonly object!: pulumi.Output<string>;
-    /**
-     * Object ID.
-     */
     public readonly oid!: pulumi.Output<number>;
-    /**
-     * Determine whether the configuration object can be configured separately for all VDOMs or if some VDOMs share the same configuration. Valid values: `all`, `inclusive`, `exclusive`.
-     */
     public readonly scope!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Names of the VDOMs. The structure of `vdom` block is documented below.
-     */
     public readonly vdoms!: pulumi.Output<outputs.SystemVdomExceptionVdom[] | undefined>;
 
     /**
@@ -137,33 +84,12 @@ export class SystemVdomException extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemVdomException resources.
  */
 export interface SystemVdomExceptionState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Index <1-4096>.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Name of the configuration object that can be configured independently for all VDOMs.
-     */
     object?: pulumi.Input<string>;
-    /**
-     * Object ID.
-     */
     oid?: pulumi.Input<number>;
-    /**
-     * Determine whether the configuration object can be configured separately for all VDOMs or if some VDOMs share the same configuration. Valid values: `all`, `inclusive`, `exclusive`.
-     */
     scope?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Names of the VDOMs. The structure of `vdom` block is documented below.
-     */
     vdoms?: pulumi.Input<pulumi.Input<inputs.SystemVdomExceptionVdom>[]>;
 }
 
@@ -171,32 +97,11 @@ export interface SystemVdomExceptionState {
  * The set of arguments for constructing a SystemVdomException resource.
  */
 export interface SystemVdomExceptionArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Index <1-4096>.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Name of the configuration object that can be configured independently for all VDOMs.
-     */
     object: pulumi.Input<string>;
-    /**
-     * Object ID.
-     */
     oid?: pulumi.Input<number>;
-    /**
-     * Determine whether the configuration object can be configured separately for all VDOMs or if some VDOMs share the same configuration. Valid values: `all`, `inclusive`, `exclusive`.
-     */
     scope?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Names of the VDOMs. The structure of `vdom` block is documented below.
-     */
     vdoms?: pulumi.Input<pulumi.Input<inputs.SystemVdomExceptionVdom>[]>;
 }

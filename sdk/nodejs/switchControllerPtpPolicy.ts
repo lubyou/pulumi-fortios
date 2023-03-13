@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * PTP policy configuration. Applies to FortiOS Version `>= 6.4.2`.
- *
- * ## Import
- *
- * SwitchControllerPtp Policy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerPtpPolicy:SwitchControllerPtpPolicy labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerPtpPolicy:SwitchControllerPtpPolicy labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerPtpPolicy extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerPtpPolicy resource's state with the given name, ID, and optional extra
@@ -51,17 +32,8 @@ export class SwitchControllerPtpPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerPtpPolicy.__pulumiType;
     }
 
-    /**
-     * Policy name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable PTP policy. Valid values: `disable`, `enable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -95,17 +67,8 @@ export class SwitchControllerPtpPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerPtpPolicy resources.
  */
 export interface SwitchControllerPtpPolicyState {
-    /**
-     * Policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable PTP policy. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -113,16 +76,7 @@ export interface SwitchControllerPtpPolicyState {
  * The set of arguments for constructing a SwitchControllerPtpPolicy resource.
  */
 export interface SwitchControllerPtpPolicyArgs {
-    /**
-     * Policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable PTP policy. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

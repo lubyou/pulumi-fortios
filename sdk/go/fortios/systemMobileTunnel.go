@@ -7,99 +7,30 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Mobile tunnels, an implementation of Network Mobility (NEMO) extensions for Mobile IPv4 RFC5177.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemMobileTunnel(ctx, "trname", &fortios.SystemMobileTunnelArgs{
-// 			HashAlgorithm:    pulumi.String("hmac-md5"),
-// 			HomeAddress:      pulumi.String("0.0.0.0"),
-// 			HomeAgent:        pulumi.String("1.1.1.1"),
-// 			Lifetime:         pulumi.Int(65535),
-// 			NMhaeKey:         pulumi.String("'ENC M2wyM3DcnUhqgich7vsLk5oVuPAI9LTkcFNt0c3jI1ujC6w1XBot7gsRAf2S8X5dagfUnJGhZ5LrQxw21e4y8oXuCOLp8MmaRZbCkxYCAl1wm/wVY3aNzVk2+jE='"),
-// 			NMhaeKeyType:     pulumi.String("ascii"),
-// 			NMhaeSpi:         pulumi.Int(256),
-// 			RegInterval:      pulumi.Int(5),
-// 			RegRetry:         pulumi.Int(3),
-// 			RenewInterval:    pulumi.Int(60),
-// 			RoamingInterface: pulumi.String("port3"),
-// 			Status:           pulumi.String("disable"),
-// 			TunnelMode:       pulumi.String("gre"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System MobileTunnel can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemMobileTunnel:SystemMobileTunnel labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemMobileTunnel:SystemMobileTunnel labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemMobileTunnel struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
-	HashAlgorithm pulumi.StringOutput `pulumi:"hashAlgorithm"`
-	// Home IP address (Format: xxx.xxx.xxx.xxx).
-	HomeAddress pulumi.StringOutput `pulumi:"homeAddress"`
-	// IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
-	HomeAgent pulumi.StringOutput `pulumi:"homeAgent"`
-	// NMMO HA registration request lifetime (180 - 65535 sec, default = 65535).
-	Lifetime pulumi.IntOutput `pulumi:"lifetime"`
-	// NEMO authentication key.
-	NMhaeKey pulumi.StringOutput `pulumi:"nMhaeKey"`
-	// NEMO authentication key type (ascii or base64). Valid values: `ascii`, `base64`.
-	NMhaeKeyType pulumi.StringOutput `pulumi:"nMhaeKeyType"`
-	// NEMO authentication SPI (default: 256).
-	NMhaeSpi pulumi.IntOutput `pulumi:"nMhaeSpi"`
-	// Tunnel name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// NEMO network configuration. The structure of `network` block is documented below.
-	Networks SystemMobileTunnelNetworkArrayOutput `pulumi:"networks"`
-	// NMMO HA registration interval (5 - 300, default = 5).
-	RegInterval pulumi.IntOutput `pulumi:"regInterval"`
-	// Maximum number of NMMO HA registration retries (1 to 30, default = 3).
-	RegRetry pulumi.IntOutput `pulumi:"regRetry"`
-	// Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
-	RenewInterval pulumi.IntOutput `pulumi:"renewInterval"`
-	// Select the associated interface name from available options.
-	RoamingInterface pulumi.StringOutput `pulumi:"roamingInterface"`
-	// Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
-	TunnelMode pulumi.StringOutput `pulumi:"tunnelMode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	HashAlgorithm       pulumi.StringOutput                  `pulumi:"hashAlgorithm"`
+	HomeAddress         pulumi.StringOutput                  `pulumi:"homeAddress"`
+	HomeAgent           pulumi.StringOutput                  `pulumi:"homeAgent"`
+	Lifetime            pulumi.IntOutput                     `pulumi:"lifetime"`
+	NMhaeKey            pulumi.StringOutput                  `pulumi:"nMhaeKey"`
+	NMhaeKeyType        pulumi.StringOutput                  `pulumi:"nMhaeKeyType"`
+	NMhaeSpi            pulumi.IntOutput                     `pulumi:"nMhaeSpi"`
+	Name                pulumi.StringOutput                  `pulumi:"name"`
+	Networks            SystemMobileTunnelNetworkArrayOutput `pulumi:"networks"`
+	RegInterval         pulumi.IntOutput                     `pulumi:"regInterval"`
+	RegRetry            pulumi.IntOutput                     `pulumi:"regRetry"`
+	RenewInterval       pulumi.IntOutput                     `pulumi:"renewInterval"`
+	RoamingInterface    pulumi.StringOutput                  `pulumi:"roamingInterface"`
+	Status              pulumi.StringOutput                  `pulumi:"status"`
+	TunnelMode          pulumi.StringOutput                  `pulumi:"tunnelMode"`
+	Vdomparam           pulumi.StringPtrOutput               `pulumi:"vdomparam"`
 }
 
 // NewSystemMobileTunnel registers a new resource with the given unique name, arguments, and options.
@@ -139,6 +70,13 @@ func NewSystemMobileTunnel(ctx *pulumi.Context,
 	if args.TunnelMode == nil {
 		return nil, errors.New("invalid value for required argument 'TunnelMode'")
 	}
+	if args.NMhaeKey != nil {
+		args.NMhaeKey = pulumi.ToSecret(args.NMhaeKey).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"nMhaeKey",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemMobileTunnel
 	err := ctx.RegisterResource("fortios:index/systemMobileTunnel:SystemMobileTunnel", name, args, &resource, opts...)
@@ -162,77 +100,43 @@ func GetSystemMobileTunnel(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemMobileTunnel resources.
 type systemMobileTunnelState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
-	HashAlgorithm *string `pulumi:"hashAlgorithm"`
-	// Home IP address (Format: xxx.xxx.xxx.xxx).
-	HomeAddress *string `pulumi:"homeAddress"`
-	// IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
-	HomeAgent *string `pulumi:"homeAgent"`
-	// NMMO HA registration request lifetime (180 - 65535 sec, default = 65535).
-	Lifetime *int `pulumi:"lifetime"`
-	// NEMO authentication key.
-	NMhaeKey *string `pulumi:"nMhaeKey"`
-	// NEMO authentication key type (ascii or base64). Valid values: `ascii`, `base64`.
-	NMhaeKeyType *string `pulumi:"nMhaeKeyType"`
-	// NEMO authentication SPI (default: 256).
-	NMhaeSpi *int `pulumi:"nMhaeSpi"`
-	// Tunnel name.
-	Name *string `pulumi:"name"`
-	// NEMO network configuration. The structure of `network` block is documented below.
-	Networks []SystemMobileTunnelNetwork `pulumi:"networks"`
-	// NMMO HA registration interval (5 - 300, default = 5).
-	RegInterval *int `pulumi:"regInterval"`
-	// Maximum number of NMMO HA registration retries (1 to 30, default = 3).
-	RegRetry *int `pulumi:"regRetry"`
-	// Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
-	RenewInterval *int `pulumi:"renewInterval"`
-	// Select the associated interface name from available options.
-	RoamingInterface *string `pulumi:"roamingInterface"`
-	// Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
-	TunnelMode *string `pulumi:"tunnelMode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	HashAlgorithm       *string                     `pulumi:"hashAlgorithm"`
+	HomeAddress         *string                     `pulumi:"homeAddress"`
+	HomeAgent           *string                     `pulumi:"homeAgent"`
+	Lifetime            *int                        `pulumi:"lifetime"`
+	NMhaeKey            *string                     `pulumi:"nMhaeKey"`
+	NMhaeKeyType        *string                     `pulumi:"nMhaeKeyType"`
+	NMhaeSpi            *int                        `pulumi:"nMhaeSpi"`
+	Name                *string                     `pulumi:"name"`
+	Networks            []SystemMobileTunnelNetwork `pulumi:"networks"`
+	RegInterval         *int                        `pulumi:"regInterval"`
+	RegRetry            *int                        `pulumi:"regRetry"`
+	RenewInterval       *int                        `pulumi:"renewInterval"`
+	RoamingInterface    *string                     `pulumi:"roamingInterface"`
+	Status              *string                     `pulumi:"status"`
+	TunnelMode          *string                     `pulumi:"tunnelMode"`
+	Vdomparam           *string                     `pulumi:"vdomparam"`
 }
 
 type SystemMobileTunnelState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
-	HashAlgorithm pulumi.StringPtrInput
-	// Home IP address (Format: xxx.xxx.xxx.xxx).
-	HomeAddress pulumi.StringPtrInput
-	// IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
-	HomeAgent pulumi.StringPtrInput
-	// NMMO HA registration request lifetime (180 - 65535 sec, default = 65535).
-	Lifetime pulumi.IntPtrInput
-	// NEMO authentication key.
-	NMhaeKey pulumi.StringPtrInput
-	// NEMO authentication key type (ascii or base64). Valid values: `ascii`, `base64`.
-	NMhaeKeyType pulumi.StringPtrInput
-	// NEMO authentication SPI (default: 256).
-	NMhaeSpi pulumi.IntPtrInput
-	// Tunnel name.
-	Name pulumi.StringPtrInput
-	// NEMO network configuration. The structure of `network` block is documented below.
-	Networks SystemMobileTunnelNetworkArrayInput
-	// NMMO HA registration interval (5 - 300, default = 5).
-	RegInterval pulumi.IntPtrInput
-	// Maximum number of NMMO HA registration retries (1 to 30, default = 3).
-	RegRetry pulumi.IntPtrInput
-	// Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
-	RenewInterval pulumi.IntPtrInput
-	// Select the associated interface name from available options.
-	RoamingInterface pulumi.StringPtrInput
-	// Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
-	TunnelMode pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HashAlgorithm       pulumi.StringPtrInput
+	HomeAddress         pulumi.StringPtrInput
+	HomeAgent           pulumi.StringPtrInput
+	Lifetime            pulumi.IntPtrInput
+	NMhaeKey            pulumi.StringPtrInput
+	NMhaeKeyType        pulumi.StringPtrInput
+	NMhaeSpi            pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Networks            SystemMobileTunnelNetworkArrayInput
+	RegInterval         pulumi.IntPtrInput
+	RegRetry            pulumi.IntPtrInput
+	RenewInterval       pulumi.IntPtrInput
+	RoamingInterface    pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	TunnelMode          pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemMobileTunnelState) ElementType() reflect.Type {
@@ -240,78 +144,44 @@ func (SystemMobileTunnelState) ElementType() reflect.Type {
 }
 
 type systemMobileTunnelArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
-	HashAlgorithm string `pulumi:"hashAlgorithm"`
-	// Home IP address (Format: xxx.xxx.xxx.xxx).
-	HomeAddress *string `pulumi:"homeAddress"`
-	// IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
-	HomeAgent string `pulumi:"homeAgent"`
-	// NMMO HA registration request lifetime (180 - 65535 sec, default = 65535).
-	Lifetime int `pulumi:"lifetime"`
-	// NEMO authentication key.
-	NMhaeKey *string `pulumi:"nMhaeKey"`
-	// NEMO authentication key type (ascii or base64). Valid values: `ascii`, `base64`.
-	NMhaeKeyType string `pulumi:"nMhaeKeyType"`
-	// NEMO authentication SPI (default: 256).
-	NMhaeSpi int `pulumi:"nMhaeSpi"`
-	// Tunnel name.
-	Name *string `pulumi:"name"`
-	// NEMO network configuration. The structure of `network` block is documented below.
-	Networks []SystemMobileTunnelNetwork `pulumi:"networks"`
-	// NMMO HA registration interval (5 - 300, default = 5).
-	RegInterval int `pulumi:"regInterval"`
-	// Maximum number of NMMO HA registration retries (1 to 30, default = 3).
-	RegRetry int `pulumi:"regRetry"`
-	// Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
-	RenewInterval int `pulumi:"renewInterval"`
-	// Select the associated interface name from available options.
-	RoamingInterface string `pulumi:"roamingInterface"`
-	// Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
-	TunnelMode string `pulumi:"tunnelMode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	HashAlgorithm       string                      `pulumi:"hashAlgorithm"`
+	HomeAddress         *string                     `pulumi:"homeAddress"`
+	HomeAgent           string                      `pulumi:"homeAgent"`
+	Lifetime            int                         `pulumi:"lifetime"`
+	NMhaeKey            *string                     `pulumi:"nMhaeKey"`
+	NMhaeKeyType        string                      `pulumi:"nMhaeKeyType"`
+	NMhaeSpi            int                         `pulumi:"nMhaeSpi"`
+	Name                *string                     `pulumi:"name"`
+	Networks            []SystemMobileTunnelNetwork `pulumi:"networks"`
+	RegInterval         int                         `pulumi:"regInterval"`
+	RegRetry            int                         `pulumi:"regRetry"`
+	RenewInterval       int                         `pulumi:"renewInterval"`
+	RoamingInterface    string                      `pulumi:"roamingInterface"`
+	Status              *string                     `pulumi:"status"`
+	TunnelMode          string                      `pulumi:"tunnelMode"`
+	Vdomparam           *string                     `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemMobileTunnel resource.
 type SystemMobileTunnelArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
-	HashAlgorithm pulumi.StringInput
-	// Home IP address (Format: xxx.xxx.xxx.xxx).
-	HomeAddress pulumi.StringPtrInput
-	// IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
-	HomeAgent pulumi.StringInput
-	// NMMO HA registration request lifetime (180 - 65535 sec, default = 65535).
-	Lifetime pulumi.IntInput
-	// NEMO authentication key.
-	NMhaeKey pulumi.StringPtrInput
-	// NEMO authentication key type (ascii or base64). Valid values: `ascii`, `base64`.
-	NMhaeKeyType pulumi.StringInput
-	// NEMO authentication SPI (default: 256).
-	NMhaeSpi pulumi.IntInput
-	// Tunnel name.
-	Name pulumi.StringPtrInput
-	// NEMO network configuration. The structure of `network` block is documented below.
-	Networks SystemMobileTunnelNetworkArrayInput
-	// NMMO HA registration interval (5 - 300, default = 5).
-	RegInterval pulumi.IntInput
-	// Maximum number of NMMO HA registration retries (1 to 30, default = 3).
-	RegRetry pulumi.IntInput
-	// Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
-	RenewInterval pulumi.IntInput
-	// Select the associated interface name from available options.
-	RoamingInterface pulumi.StringInput
-	// Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
-	TunnelMode pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HashAlgorithm       pulumi.StringInput
+	HomeAddress         pulumi.StringPtrInput
+	HomeAgent           pulumi.StringInput
+	Lifetime            pulumi.IntInput
+	NMhaeKey            pulumi.StringPtrInput
+	NMhaeKeyType        pulumi.StringInput
+	NMhaeSpi            pulumi.IntInput
+	Name                pulumi.StringPtrInput
+	Networks            SystemMobileTunnelNetworkArrayInput
+	RegInterval         pulumi.IntInput
+	RegRetry            pulumi.IntInput
+	RenewInterval       pulumi.IntInput
+	RoamingInterface    pulumi.StringInput
+	Status              pulumi.StringPtrInput
+	TunnelMode          pulumi.StringInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemMobileTunnelArgs) ElementType() reflect.Type {
@@ -340,7 +210,7 @@ func (i *SystemMobileTunnel) ToSystemMobileTunnelOutputWithContext(ctx context.C
 // SystemMobileTunnelArrayInput is an input type that accepts SystemMobileTunnelArray and SystemMobileTunnelArrayOutput values.
 // You can construct a concrete instance of `SystemMobileTunnelArrayInput` via:
 //
-//          SystemMobileTunnelArray{ SystemMobileTunnelArgs{...} }
+//	SystemMobileTunnelArray{ SystemMobileTunnelArgs{...} }
 type SystemMobileTunnelArrayInput interface {
 	pulumi.Input
 
@@ -365,7 +235,7 @@ func (i SystemMobileTunnelArray) ToSystemMobileTunnelArrayOutputWithContext(ctx 
 // SystemMobileTunnelMapInput is an input type that accepts SystemMobileTunnelMap and SystemMobileTunnelMapOutput values.
 // You can construct a concrete instance of `SystemMobileTunnelMapInput` via:
 //
-//          SystemMobileTunnelMap{ "key": SystemMobileTunnelArgs{...} }
+//	SystemMobileTunnelMap{ "key": SystemMobileTunnelArgs{...} }
 type SystemMobileTunnelMapInput interface {
 	pulumi.Input
 
@@ -399,6 +269,74 @@ func (o SystemMobileTunnelOutput) ToSystemMobileTunnelOutput() SystemMobileTunne
 
 func (o SystemMobileTunnelOutput) ToSystemMobileTunnelOutputWithContext(ctx context.Context) SystemMobileTunnelOutput {
 	return o
+}
+
+func (o SystemMobileTunnelOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemMobileTunnelOutput) HashAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.StringOutput { return v.HashAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o SystemMobileTunnelOutput) HomeAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.StringOutput { return v.HomeAddress }).(pulumi.StringOutput)
+}
+
+func (o SystemMobileTunnelOutput) HomeAgent() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.StringOutput { return v.HomeAgent }).(pulumi.StringOutput)
+}
+
+func (o SystemMobileTunnelOutput) Lifetime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.IntOutput { return v.Lifetime }).(pulumi.IntOutput)
+}
+
+func (o SystemMobileTunnelOutput) NMhaeKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.StringOutput { return v.NMhaeKey }).(pulumi.StringOutput)
+}
+
+func (o SystemMobileTunnelOutput) NMhaeKeyType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.StringOutput { return v.NMhaeKeyType }).(pulumi.StringOutput)
+}
+
+func (o SystemMobileTunnelOutput) NMhaeSpi() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.IntOutput { return v.NMhaeSpi }).(pulumi.IntOutput)
+}
+
+func (o SystemMobileTunnelOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemMobileTunnelOutput) Networks() SystemMobileTunnelNetworkArrayOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) SystemMobileTunnelNetworkArrayOutput { return v.Networks }).(SystemMobileTunnelNetworkArrayOutput)
+}
+
+func (o SystemMobileTunnelOutput) RegInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.IntOutput { return v.RegInterval }).(pulumi.IntOutput)
+}
+
+func (o SystemMobileTunnelOutput) RegRetry() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.IntOutput { return v.RegRetry }).(pulumi.IntOutput)
+}
+
+func (o SystemMobileTunnelOutput) RenewInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.IntOutput { return v.RenewInterval }).(pulumi.IntOutput)
+}
+
+func (o SystemMobileTunnelOutput) RoamingInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.StringOutput { return v.RoamingInterface }).(pulumi.StringOutput)
+}
+
+func (o SystemMobileTunnelOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemMobileTunnelOutput) TunnelMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.StringOutput { return v.TunnelMode }).(pulumi.StringOutput)
+}
+
+func (o SystemMobileTunnelOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemMobileTunnelArrayOutput struct{ *pulumi.OutputState }

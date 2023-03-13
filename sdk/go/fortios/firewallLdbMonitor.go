@@ -7,86 +7,27 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure server load balancing health monitors.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallLdbMonitor(ctx, "trname", &fortios.FirewallLdbMonitorArgs{
-// 			HttpMaxRedirects: pulumi.Int(0),
-// 			Interval:         pulumi.Int(10),
-// 			Port:             pulumi.Int(0),
-// 			Retry:            pulumi.Int(3),
-// 			Timeout:          pulumi.Int(2),
-// 			Type:             pulumi.String("ping"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall LdbMonitor can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallLdbMonitor:FirewallLdbMonitor labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallLdbMonitor:FirewallLdbMonitor labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallLdbMonitor struct {
 	pulumi.CustomResourceState
 
-	// Response IP expected from DNS server.
-	DnsMatchIp pulumi.StringOutput `pulumi:"dnsMatchIp"`
-	// Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
-	DnsProtocol pulumi.StringOutput `pulumi:"dnsProtocol"`
-	// Fully qualified domain name to resolve for the DNS probe.
-	DnsRequestDomain pulumi.StringOutput `pulumi:"dnsRequestDomain"`
-	// URL used to send a GET request to check the health of an HTTP server.
-	HttpGet pulumi.StringOutput `pulumi:"httpGet"`
-	// String to match the value expected in response to an HTTP-GET request.
-	HttpMatch pulumi.StringOutput `pulumi:"httpMatch"`
-	// The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
-	HttpMaxRedirects pulumi.IntOutput `pulumi:"httpMaxRedirects"`
-	// Time between health checks (5 - 65635 sec, default = 10).
-	Interval pulumi.IntOutput `pulumi:"interval"`
-	// Monitor name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Number health check attempts before the server is considered down (1 - 255, default = 3).
-	Retry pulumi.IntOutput `pulumi:"retry"`
-	// Source IP for ldb-monitor.
-	SrcIp pulumi.StringOutput `pulumi:"srcIp"`
-	// Time to wait to receive response to a health check from a server. Reaching the timeout means the health check failed (1 - 255 sec, default = 2).
-	Timeout pulumi.IntOutput `pulumi:"timeout"`
-	// Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DnsMatchIp       pulumi.StringOutput    `pulumi:"dnsMatchIp"`
+	DnsProtocol      pulumi.StringOutput    `pulumi:"dnsProtocol"`
+	DnsRequestDomain pulumi.StringOutput    `pulumi:"dnsRequestDomain"`
+	HttpGet          pulumi.StringOutput    `pulumi:"httpGet"`
+	HttpMatch        pulumi.StringOutput    `pulumi:"httpMatch"`
+	HttpMaxRedirects pulumi.IntOutput       `pulumi:"httpMaxRedirects"`
+	Interval         pulumi.IntOutput       `pulumi:"interval"`
+	Name             pulumi.StringOutput    `pulumi:"name"`
+	Port             pulumi.IntOutput       `pulumi:"port"`
+	Retry            pulumi.IntOutput       `pulumi:"retry"`
+	SrcIp            pulumi.StringOutput    `pulumi:"srcIp"`
+	Timeout          pulumi.IntOutput       `pulumi:"timeout"`
+	Type             pulumi.StringOutput    `pulumi:"type"`
+	Vdomparam        pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallLdbMonitor registers a new resource with the given unique name, arguments, and options.
@@ -122,65 +63,37 @@ func GetFirewallLdbMonitor(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallLdbMonitor resources.
 type firewallLdbMonitorState struct {
-	// Response IP expected from DNS server.
-	DnsMatchIp *string `pulumi:"dnsMatchIp"`
-	// Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
-	DnsProtocol *string `pulumi:"dnsProtocol"`
-	// Fully qualified domain name to resolve for the DNS probe.
+	DnsMatchIp       *string `pulumi:"dnsMatchIp"`
+	DnsProtocol      *string `pulumi:"dnsProtocol"`
 	DnsRequestDomain *string `pulumi:"dnsRequestDomain"`
-	// URL used to send a GET request to check the health of an HTTP server.
-	HttpGet *string `pulumi:"httpGet"`
-	// String to match the value expected in response to an HTTP-GET request.
-	HttpMatch *string `pulumi:"httpMatch"`
-	// The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
-	HttpMaxRedirects *int `pulumi:"httpMaxRedirects"`
-	// Time between health checks (5 - 65635 sec, default = 10).
-	Interval *int `pulumi:"interval"`
-	// Monitor name.
-	Name *string `pulumi:"name"`
-	// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
-	Port *int `pulumi:"port"`
-	// Number health check attempts before the server is considered down (1 - 255, default = 3).
-	Retry *int `pulumi:"retry"`
-	// Source IP for ldb-monitor.
-	SrcIp *string `pulumi:"srcIp"`
-	// Time to wait to receive response to a health check from a server. Reaching the timeout means the health check failed (1 - 255 sec, default = 2).
-	Timeout *int `pulumi:"timeout"`
-	// Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	HttpGet          *string `pulumi:"httpGet"`
+	HttpMatch        *string `pulumi:"httpMatch"`
+	HttpMaxRedirects *int    `pulumi:"httpMaxRedirects"`
+	Interval         *int    `pulumi:"interval"`
+	Name             *string `pulumi:"name"`
+	Port             *int    `pulumi:"port"`
+	Retry            *int    `pulumi:"retry"`
+	SrcIp            *string `pulumi:"srcIp"`
+	Timeout          *int    `pulumi:"timeout"`
+	Type             *string `pulumi:"type"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 type FirewallLdbMonitorState struct {
-	// Response IP expected from DNS server.
-	DnsMatchIp pulumi.StringPtrInput
-	// Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
-	DnsProtocol pulumi.StringPtrInput
-	// Fully qualified domain name to resolve for the DNS probe.
+	DnsMatchIp       pulumi.StringPtrInput
+	DnsProtocol      pulumi.StringPtrInput
 	DnsRequestDomain pulumi.StringPtrInput
-	// URL used to send a GET request to check the health of an HTTP server.
-	HttpGet pulumi.StringPtrInput
-	// String to match the value expected in response to an HTTP-GET request.
-	HttpMatch pulumi.StringPtrInput
-	// The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
+	HttpGet          pulumi.StringPtrInput
+	HttpMatch        pulumi.StringPtrInput
 	HttpMaxRedirects pulumi.IntPtrInput
-	// Time between health checks (5 - 65635 sec, default = 10).
-	Interval pulumi.IntPtrInput
-	// Monitor name.
-	Name pulumi.StringPtrInput
-	// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
-	Port pulumi.IntPtrInput
-	// Number health check attempts before the server is considered down (1 - 255, default = 3).
-	Retry pulumi.IntPtrInput
-	// Source IP for ldb-monitor.
-	SrcIp pulumi.StringPtrInput
-	// Time to wait to receive response to a health check from a server. Reaching the timeout means the health check failed (1 - 255 sec, default = 2).
-	Timeout pulumi.IntPtrInput
-	// Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interval         pulumi.IntPtrInput
+	Name             pulumi.StringPtrInput
+	Port             pulumi.IntPtrInput
+	Retry            pulumi.IntPtrInput
+	SrcIp            pulumi.StringPtrInput
+	Timeout          pulumi.IntPtrInput
+	Type             pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (FirewallLdbMonitorState) ElementType() reflect.Type {
@@ -188,66 +101,38 @@ func (FirewallLdbMonitorState) ElementType() reflect.Type {
 }
 
 type firewallLdbMonitorArgs struct {
-	// Response IP expected from DNS server.
-	DnsMatchIp *string `pulumi:"dnsMatchIp"`
-	// Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
-	DnsProtocol *string `pulumi:"dnsProtocol"`
-	// Fully qualified domain name to resolve for the DNS probe.
+	DnsMatchIp       *string `pulumi:"dnsMatchIp"`
+	DnsProtocol      *string `pulumi:"dnsProtocol"`
 	DnsRequestDomain *string `pulumi:"dnsRequestDomain"`
-	// URL used to send a GET request to check the health of an HTTP server.
-	HttpGet *string `pulumi:"httpGet"`
-	// String to match the value expected in response to an HTTP-GET request.
-	HttpMatch *string `pulumi:"httpMatch"`
-	// The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
-	HttpMaxRedirects *int `pulumi:"httpMaxRedirects"`
-	// Time between health checks (5 - 65635 sec, default = 10).
-	Interval *int `pulumi:"interval"`
-	// Monitor name.
-	Name *string `pulumi:"name"`
-	// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
-	Port *int `pulumi:"port"`
-	// Number health check attempts before the server is considered down (1 - 255, default = 3).
-	Retry *int `pulumi:"retry"`
-	// Source IP for ldb-monitor.
-	SrcIp *string `pulumi:"srcIp"`
-	// Time to wait to receive response to a health check from a server. Reaching the timeout means the health check failed (1 - 255 sec, default = 2).
-	Timeout *int `pulumi:"timeout"`
-	// Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
-	Type string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	HttpGet          *string `pulumi:"httpGet"`
+	HttpMatch        *string `pulumi:"httpMatch"`
+	HttpMaxRedirects *int    `pulumi:"httpMaxRedirects"`
+	Interval         *int    `pulumi:"interval"`
+	Name             *string `pulumi:"name"`
+	Port             *int    `pulumi:"port"`
+	Retry            *int    `pulumi:"retry"`
+	SrcIp            *string `pulumi:"srcIp"`
+	Timeout          *int    `pulumi:"timeout"`
+	Type             string  `pulumi:"type"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallLdbMonitor resource.
 type FirewallLdbMonitorArgs struct {
-	// Response IP expected from DNS server.
-	DnsMatchIp pulumi.StringPtrInput
-	// Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
-	DnsProtocol pulumi.StringPtrInput
-	// Fully qualified domain name to resolve for the DNS probe.
+	DnsMatchIp       pulumi.StringPtrInput
+	DnsProtocol      pulumi.StringPtrInput
 	DnsRequestDomain pulumi.StringPtrInput
-	// URL used to send a GET request to check the health of an HTTP server.
-	HttpGet pulumi.StringPtrInput
-	// String to match the value expected in response to an HTTP-GET request.
-	HttpMatch pulumi.StringPtrInput
-	// The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
+	HttpGet          pulumi.StringPtrInput
+	HttpMatch        pulumi.StringPtrInput
 	HttpMaxRedirects pulumi.IntPtrInput
-	// Time between health checks (5 - 65635 sec, default = 10).
-	Interval pulumi.IntPtrInput
-	// Monitor name.
-	Name pulumi.StringPtrInput
-	// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
-	Port pulumi.IntPtrInput
-	// Number health check attempts before the server is considered down (1 - 255, default = 3).
-	Retry pulumi.IntPtrInput
-	// Source IP for ldb-monitor.
-	SrcIp pulumi.StringPtrInput
-	// Time to wait to receive response to a health check from a server. Reaching the timeout means the health check failed (1 - 255 sec, default = 2).
-	Timeout pulumi.IntPtrInput
-	// Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
-	Type pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interval         pulumi.IntPtrInput
+	Name             pulumi.StringPtrInput
+	Port             pulumi.IntPtrInput
+	Retry            pulumi.IntPtrInput
+	SrcIp            pulumi.StringPtrInput
+	Timeout          pulumi.IntPtrInput
+	Type             pulumi.StringInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (FirewallLdbMonitorArgs) ElementType() reflect.Type {
@@ -276,7 +161,7 @@ func (i *FirewallLdbMonitor) ToFirewallLdbMonitorOutputWithContext(ctx context.C
 // FirewallLdbMonitorArrayInput is an input type that accepts FirewallLdbMonitorArray and FirewallLdbMonitorArrayOutput values.
 // You can construct a concrete instance of `FirewallLdbMonitorArrayInput` via:
 //
-//          FirewallLdbMonitorArray{ FirewallLdbMonitorArgs{...} }
+//	FirewallLdbMonitorArray{ FirewallLdbMonitorArgs{...} }
 type FirewallLdbMonitorArrayInput interface {
 	pulumi.Input
 
@@ -301,7 +186,7 @@ func (i FirewallLdbMonitorArray) ToFirewallLdbMonitorArrayOutputWithContext(ctx 
 // FirewallLdbMonitorMapInput is an input type that accepts FirewallLdbMonitorMap and FirewallLdbMonitorMapOutput values.
 // You can construct a concrete instance of `FirewallLdbMonitorMapInput` via:
 //
-//          FirewallLdbMonitorMap{ "key": FirewallLdbMonitorArgs{...} }
+//	FirewallLdbMonitorMap{ "key": FirewallLdbMonitorArgs{...} }
 type FirewallLdbMonitorMapInput interface {
 	pulumi.Input
 
@@ -335,6 +220,62 @@ func (o FirewallLdbMonitorOutput) ToFirewallLdbMonitorOutput() FirewallLdbMonito
 
 func (o FirewallLdbMonitorOutput) ToFirewallLdbMonitorOutputWithContext(ctx context.Context) FirewallLdbMonitorOutput {
 	return o
+}
+
+func (o FirewallLdbMonitorOutput) DnsMatchIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLdbMonitor) pulumi.StringOutput { return v.DnsMatchIp }).(pulumi.StringOutput)
+}
+
+func (o FirewallLdbMonitorOutput) DnsProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLdbMonitor) pulumi.StringOutput { return v.DnsProtocol }).(pulumi.StringOutput)
+}
+
+func (o FirewallLdbMonitorOutput) DnsRequestDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLdbMonitor) pulumi.StringOutput { return v.DnsRequestDomain }).(pulumi.StringOutput)
+}
+
+func (o FirewallLdbMonitorOutput) HttpGet() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLdbMonitor) pulumi.StringOutput { return v.HttpGet }).(pulumi.StringOutput)
+}
+
+func (o FirewallLdbMonitorOutput) HttpMatch() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLdbMonitor) pulumi.StringOutput { return v.HttpMatch }).(pulumi.StringOutput)
+}
+
+func (o FirewallLdbMonitorOutput) HttpMaxRedirects() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallLdbMonitor) pulumi.IntOutput { return v.HttpMaxRedirects }).(pulumi.IntOutput)
+}
+
+func (o FirewallLdbMonitorOutput) Interval() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallLdbMonitor) pulumi.IntOutput { return v.Interval }).(pulumi.IntOutput)
+}
+
+func (o FirewallLdbMonitorOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLdbMonitor) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallLdbMonitorOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallLdbMonitor) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o FirewallLdbMonitorOutput) Retry() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallLdbMonitor) pulumi.IntOutput { return v.Retry }).(pulumi.IntOutput)
+}
+
+func (o FirewallLdbMonitorOutput) SrcIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLdbMonitor) pulumi.StringOutput { return v.SrcIp }).(pulumi.StringOutput)
+}
+
+func (o FirewallLdbMonitorOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallLdbMonitor) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
+}
+
+func (o FirewallLdbMonitorOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLdbMonitor) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o FirewallLdbMonitorOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallLdbMonitor) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallLdbMonitorArrayOutput struct{ *pulumi.OutputState }

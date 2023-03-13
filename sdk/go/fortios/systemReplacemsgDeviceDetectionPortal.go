@@ -7,39 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Replacement messages. Applies to FortiOS Version `<= 6.4.1`.
-//
-// ## Import
-//
-// SystemReplacemsg DeviceDetectionPortal can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemReplacemsgDeviceDetectionPortal:SystemReplacemsgDeviceDetectionPortal labelname {{msg_type}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemReplacemsgDeviceDetectionPortal:SystemReplacemsgDeviceDetectionPortal labelname {{msg_type}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemReplacemsgDeviceDetectionPortal struct {
 	pulumi.CustomResourceState
 
-	// Message string.
-	Buffer pulumi.StringPtrOutput `pulumi:"buffer"`
-	// Format flag.
-	Format pulumi.StringOutput `pulumi:"format"`
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header pulumi.StringOutput `pulumi:"header"`
-	// Message type.
-	MsgType pulumi.StringOutput `pulumi:"msgType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    pulumi.StringPtrOutput `pulumi:"buffer"`
+	Format    pulumi.StringOutput    `pulumi:"format"`
+	Header    pulumi.StringOutput    `pulumi:"header"`
+	MsgType   pulumi.StringOutput    `pulumi:"msgType"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -76,28 +54,18 @@ func GetSystemReplacemsgDeviceDetectionPortal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemReplacemsgDeviceDetectionPortal resources.
 type systemReplacemsgDeviceDetectionPortalState struct {
-	// Message string.
-	Buffer *string `pulumi:"buffer"`
-	// Format flag.
-	Format *string `pulumi:"format"`
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header *string `pulumi:"header"`
-	// Message type.
-	MsgType *string `pulumi:"msgType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    *string `pulumi:"buffer"`
+	Format    *string `pulumi:"format"`
+	Header    *string `pulumi:"header"`
+	MsgType   *string `pulumi:"msgType"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemReplacemsgDeviceDetectionPortalState struct {
-	// Message string.
-	Buffer pulumi.StringPtrInput
-	// Format flag.
-	Format pulumi.StringPtrInput
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header pulumi.StringPtrInput
-	// Message type.
-	MsgType pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    pulumi.StringPtrInput
+	Format    pulumi.StringPtrInput
+	Header    pulumi.StringPtrInput
+	MsgType   pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -106,29 +74,19 @@ func (SystemReplacemsgDeviceDetectionPortalState) ElementType() reflect.Type {
 }
 
 type systemReplacemsgDeviceDetectionPortalArgs struct {
-	// Message string.
-	Buffer *string `pulumi:"buffer"`
-	// Format flag.
-	Format *string `pulumi:"format"`
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header *string `pulumi:"header"`
-	// Message type.
-	MsgType string `pulumi:"msgType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    *string `pulumi:"buffer"`
+	Format    *string `pulumi:"format"`
+	Header    *string `pulumi:"header"`
+	MsgType   string  `pulumi:"msgType"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemReplacemsgDeviceDetectionPortal resource.
 type SystemReplacemsgDeviceDetectionPortalArgs struct {
-	// Message string.
-	Buffer pulumi.StringPtrInput
-	// Format flag.
-	Format pulumi.StringPtrInput
-	// Header flag. Valid values: `none`, `http`, `8bit`.
-	Header pulumi.StringPtrInput
-	// Message type.
-	MsgType pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Buffer    pulumi.StringPtrInput
+	Format    pulumi.StringPtrInput
+	Header    pulumi.StringPtrInput
+	MsgType   pulumi.StringInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -158,7 +116,7 @@ func (i *SystemReplacemsgDeviceDetectionPortal) ToSystemReplacemsgDeviceDetectio
 // SystemReplacemsgDeviceDetectionPortalArrayInput is an input type that accepts SystemReplacemsgDeviceDetectionPortalArray and SystemReplacemsgDeviceDetectionPortalArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgDeviceDetectionPortalArrayInput` via:
 //
-//          SystemReplacemsgDeviceDetectionPortalArray{ SystemReplacemsgDeviceDetectionPortalArgs{...} }
+//	SystemReplacemsgDeviceDetectionPortalArray{ SystemReplacemsgDeviceDetectionPortalArgs{...} }
 type SystemReplacemsgDeviceDetectionPortalArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +141,7 @@ func (i SystemReplacemsgDeviceDetectionPortalArray) ToSystemReplacemsgDeviceDete
 // SystemReplacemsgDeviceDetectionPortalMapInput is an input type that accepts SystemReplacemsgDeviceDetectionPortalMap and SystemReplacemsgDeviceDetectionPortalMapOutput values.
 // You can construct a concrete instance of `SystemReplacemsgDeviceDetectionPortalMapInput` via:
 //
-//          SystemReplacemsgDeviceDetectionPortalMap{ "key": SystemReplacemsgDeviceDetectionPortalArgs{...} }
+//	SystemReplacemsgDeviceDetectionPortalMap{ "key": SystemReplacemsgDeviceDetectionPortalArgs{...} }
 type SystemReplacemsgDeviceDetectionPortalMapInput interface {
 	pulumi.Input
 
@@ -217,6 +175,26 @@ func (o SystemReplacemsgDeviceDetectionPortalOutput) ToSystemReplacemsgDeviceDet
 
 func (o SystemReplacemsgDeviceDetectionPortalOutput) ToSystemReplacemsgDeviceDetectionPortalOutputWithContext(ctx context.Context) SystemReplacemsgDeviceDetectionPortalOutput {
 	return o
+}
+
+func (o SystemReplacemsgDeviceDetectionPortalOutput) Buffer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgDeviceDetectionPortal) pulumi.StringPtrOutput { return v.Buffer }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemReplacemsgDeviceDetectionPortalOutput) Format() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgDeviceDetectionPortal) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgDeviceDetectionPortalOutput) Header() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgDeviceDetectionPortal) pulumi.StringOutput { return v.Header }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgDeviceDetectionPortalOutput) MsgType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgDeviceDetectionPortal) pulumi.StringOutput { return v.MsgType }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgDeviceDetectionPortalOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgDeviceDetectionPortal) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemReplacemsgDeviceDetectionPortalArrayOutput struct{ *pulumi.OutputState }

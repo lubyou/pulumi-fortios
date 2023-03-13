@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPS URL filter DNS servers.
-//
-// ## Import
-//
-// System IpsUrlfilterDns can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemIpsUrlfilterDns:SystemIpsUrlfilterDns labelname {{address}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemIpsUrlfilterDns:SystemIpsUrlfilterDns labelname {{address}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemIpsUrlfilterDns struct {
 	pulumi.CustomResourceState
 
-	// DNS server IP address.
-	Address pulumi.StringOutput `pulumi:"address"`
-	// Enable/disable this server for IPv6 queries. Valid values: `enable`, `disable`.
-	Ipv6Capability pulumi.StringOutput `pulumi:"ipv6Capability"`
-	// Enable/disable using this DNS server for IPS URL filter DNS queries. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Address        pulumi.StringOutput    `pulumi:"address"`
+	Ipv6Capability pulumi.StringOutput    `pulumi:"ipv6Capability"`
+	Status         pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam      pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemIpsUrlfilterDns registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetSystemIpsUrlfilterDns(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemIpsUrlfilterDns resources.
 type systemIpsUrlfilterDnsState struct {
-	// DNS server IP address.
-	Address *string `pulumi:"address"`
-	// Enable/disable this server for IPv6 queries. Valid values: `enable`, `disable`.
+	Address        *string `pulumi:"address"`
 	Ipv6Capability *string `pulumi:"ipv6Capability"`
-	// Enable/disable using this DNS server for IPS URL filter DNS queries. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Status         *string `pulumi:"status"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 type SystemIpsUrlfilterDnsState struct {
-	// DNS server IP address.
-	Address pulumi.StringPtrInput
-	// Enable/disable this server for IPv6 queries. Valid values: `enable`, `disable`.
+	Address        pulumi.StringPtrInput
 	Ipv6Capability pulumi.StringPtrInput
-	// Enable/disable using this DNS server for IPS URL filter DNS queries. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Status         pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (SystemIpsUrlfilterDnsState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (SystemIpsUrlfilterDnsState) ElementType() reflect.Type {
 }
 
 type systemIpsUrlfilterDnsArgs struct {
-	// DNS server IP address.
-	Address *string `pulumi:"address"`
-	// Enable/disable this server for IPv6 queries. Valid values: `enable`, `disable`.
+	Address        *string `pulumi:"address"`
 	Ipv6Capability *string `pulumi:"ipv6Capability"`
-	// Enable/disable using this DNS server for IPS URL filter DNS queries. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Status         *string `pulumi:"status"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemIpsUrlfilterDns resource.
 type SystemIpsUrlfilterDnsArgs struct {
-	// DNS server IP address.
-	Address pulumi.StringPtrInput
-	// Enable/disable this server for IPv6 queries. Valid values: `enable`, `disable`.
+	Address        pulumi.StringPtrInput
 	Ipv6Capability pulumi.StringPtrInput
-	// Enable/disable using this DNS server for IPS URL filter DNS queries. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Status         pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (SystemIpsUrlfilterDnsArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *SystemIpsUrlfilterDns) ToSystemIpsUrlfilterDnsOutputWithContext(ctx con
 // SystemIpsUrlfilterDnsArrayInput is an input type that accepts SystemIpsUrlfilterDnsArray and SystemIpsUrlfilterDnsArrayOutput values.
 // You can construct a concrete instance of `SystemIpsUrlfilterDnsArrayInput` via:
 //
-//          SystemIpsUrlfilterDnsArray{ SystemIpsUrlfilterDnsArgs{...} }
+//	SystemIpsUrlfilterDnsArray{ SystemIpsUrlfilterDnsArgs{...} }
 type SystemIpsUrlfilterDnsArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i SystemIpsUrlfilterDnsArray) ToSystemIpsUrlfilterDnsArrayOutputWithContex
 // SystemIpsUrlfilterDnsMapInput is an input type that accepts SystemIpsUrlfilterDnsMap and SystemIpsUrlfilterDnsMapOutput values.
 // You can construct a concrete instance of `SystemIpsUrlfilterDnsMapInput` via:
 //
-//          SystemIpsUrlfilterDnsMap{ "key": SystemIpsUrlfilterDnsArgs{...} }
+//	SystemIpsUrlfilterDnsMap{ "key": SystemIpsUrlfilterDnsArgs{...} }
 type SystemIpsUrlfilterDnsMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o SystemIpsUrlfilterDnsOutput) ToSystemIpsUrlfilterDnsOutput() SystemIpsUr
 
 func (o SystemIpsUrlfilterDnsOutput) ToSystemIpsUrlfilterDnsOutputWithContext(ctx context.Context) SystemIpsUrlfilterDnsOutput {
 	return o
+}
+
+func (o SystemIpsUrlfilterDnsOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpsUrlfilterDns) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
+}
+
+func (o SystemIpsUrlfilterDnsOutput) Ipv6Capability() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpsUrlfilterDns) pulumi.StringOutput { return v.Ipv6Capability }).(pulumi.StringOutput)
+}
+
+func (o SystemIpsUrlfilterDnsOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpsUrlfilterDns) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemIpsUrlfilterDnsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemIpsUrlfilterDns) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemIpsUrlfilterDnsArrayOutput struct{ *pulumi.OutputState }

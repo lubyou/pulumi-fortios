@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure Internet Services Addition. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * Firewall InternetServiceAddition can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInternetServiceAddition:FirewallInternetServiceAddition labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInternetServiceAddition:FirewallInternetServiceAddition labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallInternetServiceAddition extends pulumi.CustomResource {
     /**
      * Get an existing FirewallInternetServiceAddition resource's state with the given name, ID, and optional extra
@@ -52,25 +34,10 @@ export class FirewallInternetServiceAddition extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallInternetServiceAddition.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Entries added to the Internet Service addition database. The structure of `entry` block is documented below.
-     */
     public readonly entries!: pulumi.Output<outputs.FirewallInternetServiceAdditionEntry[] | undefined>;
-    /**
-     * Internet Service ID in the Internet Service database.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -108,25 +75,10 @@ export class FirewallInternetServiceAddition extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallInternetServiceAddition resources.
  */
 export interface FirewallInternetServiceAdditionState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Entries added to the Internet Service addition database. The structure of `entry` block is documented below.
-     */
     entries?: pulumi.Input<pulumi.Input<inputs.FirewallInternetServiceAdditionEntry>[]>;
-    /**
-     * Internet Service ID in the Internet Service database.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -134,24 +86,9 @@ export interface FirewallInternetServiceAdditionState {
  * The set of arguments for constructing a FirewallInternetServiceAddition resource.
  */
 export interface FirewallInternetServiceAdditionArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Entries added to the Internet Service addition database. The structure of `entry` block is documented below.
-     */
     entries?: pulumi.Input<pulumi.Input<inputs.FirewallInternetServiceAdditionEntry>[]>;
-    /**
-     * Internet Service ID in the Internet Service database.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

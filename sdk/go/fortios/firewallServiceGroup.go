@@ -10,92 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure service groups.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trname1, err := fortios.NewFirewallServiceCustom(ctx, "trname1", &fortios.FirewallServiceCustomArgs{
-// 			AppServiceType:    pulumi.String("disable"),
-// 			Category:          pulumi.String("General"),
-// 			CheckResetRange:   pulumi.String("default"),
-// 			Color:             pulumi.Int(0),
-// 			Helper:            pulumi.String("auto"),
-// 			Iprange:           pulumi.String("0.0.0.0"),
-// 			Protocol:          pulumi.String("TCP/UDP/SCTP"),
-// 			ProtocolNumber:    pulumi.Int(6),
-// 			Proxy:             pulumi.String("disable"),
-// 			TcpHalfcloseTimer: pulumi.Int(0),
-// 			TcpHalfopenTimer:  pulumi.Int(0),
-// 			TcpPortrange:      pulumi.String("223-332"),
-// 			TcpTimewaitTimer:  pulumi.Int(0),
-// 			UdpIdleTimer:      pulumi.Int(0),
-// 			Visibility:        pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewFirewallServiceGroup(ctx, "trname", &fortios.FirewallServiceGroupArgs{
-// 			Color: pulumi.Int(0),
-// 			Proxy: pulumi.String("disable"),
-// 			Members: FirewallServiceGroupMemberArray{
-// 				&FirewallServiceGroupMemberArgs{
-// 					Name: trname1.Name,
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// FirewallService Group can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallServiceGroup:FirewallServiceGroup labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallServiceGroup:FirewallServiceGroup labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallServiceGroup struct {
 	pulumi.CustomResourceState
 
-	// Color of icon on the GUI.
-	Color pulumi.IntOutput `pulumi:"color"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
-	// Service objects contained within the group. The structure of `member` block is documented below.
-	Members FirewallServiceGroupMemberArrayOutput `pulumi:"members"`
-	// Address name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable web proxy service group. Valid values: `enable`, `disable`.
-	Proxy pulumi.StringOutput `pulumi:"proxy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Color               pulumi.IntOutput                      `pulumi:"color"`
+	Comment             pulumi.StringPtrOutput                `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
+	FabricObject        pulumi.StringOutput                   `pulumi:"fabricObject"`
+	Members             FirewallServiceGroupMemberArrayOutput `pulumi:"members"`
+	Name                pulumi.StringOutput                   `pulumi:"name"`
+	Proxy               pulumi.StringOutput                   `pulumi:"proxy"`
+	Vdomparam           pulumi.StringPtrOutput                `pulumi:"vdomparam"`
 }
 
 // NewFirewallServiceGroup registers a new resource with the given unique name, arguments, and options.
@@ -128,41 +53,25 @@ func GetFirewallServiceGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallServiceGroup resources.
 type firewallServiceGroupState struct {
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// Service objects contained within the group. The structure of `member` block is documented below.
-	Members []FirewallServiceGroupMember `pulumi:"members"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// Enable/disable web proxy service group. Valid values: `enable`, `disable`.
-	Proxy *string `pulumi:"proxy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Color               *int                         `pulumi:"color"`
+	Comment             *string                      `pulumi:"comment"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	FabricObject        *string                      `pulumi:"fabricObject"`
+	Members             []FirewallServiceGroupMember `pulumi:"members"`
+	Name                *string                      `pulumi:"name"`
+	Proxy               *string                      `pulumi:"proxy"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 type FirewallServiceGroupState struct {
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// Service objects contained within the group. The structure of `member` block is documented below.
-	Members FirewallServiceGroupMemberArrayInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// Enable/disable web proxy service group. Valid values: `enable`, `disable`.
-	Proxy pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FabricObject        pulumi.StringPtrInput
+	Members             FirewallServiceGroupMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Proxy               pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallServiceGroupState) ElementType() reflect.Type {
@@ -170,42 +79,26 @@ func (FirewallServiceGroupState) ElementType() reflect.Type {
 }
 
 type firewallServiceGroupArgs struct {
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// Service objects contained within the group. The structure of `member` block is documented below.
-	Members []FirewallServiceGroupMember `pulumi:"members"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// Enable/disable web proxy service group. Valid values: `enable`, `disable`.
-	Proxy *string `pulumi:"proxy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Color               *int                         `pulumi:"color"`
+	Comment             *string                      `pulumi:"comment"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	FabricObject        *string                      `pulumi:"fabricObject"`
+	Members             []FirewallServiceGroupMember `pulumi:"members"`
+	Name                *string                      `pulumi:"name"`
+	Proxy               *string                      `pulumi:"proxy"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallServiceGroup resource.
 type FirewallServiceGroupArgs struct {
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// Service objects contained within the group. The structure of `member` block is documented below.
-	Members FirewallServiceGroupMemberArrayInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// Enable/disable web proxy service group. Valid values: `enable`, `disable`.
-	Proxy pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FabricObject        pulumi.StringPtrInput
+	Members             FirewallServiceGroupMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Proxy               pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallServiceGroupArgs) ElementType() reflect.Type {
@@ -234,7 +127,7 @@ func (i *FirewallServiceGroup) ToFirewallServiceGroupOutputWithContext(ctx conte
 // FirewallServiceGroupArrayInput is an input type that accepts FirewallServiceGroupArray and FirewallServiceGroupArrayOutput values.
 // You can construct a concrete instance of `FirewallServiceGroupArrayInput` via:
 //
-//          FirewallServiceGroupArray{ FirewallServiceGroupArgs{...} }
+//	FirewallServiceGroupArray{ FirewallServiceGroupArgs{...} }
 type FirewallServiceGroupArrayInput interface {
 	pulumi.Input
 
@@ -259,7 +152,7 @@ func (i FirewallServiceGroupArray) ToFirewallServiceGroupArrayOutputWithContext(
 // FirewallServiceGroupMapInput is an input type that accepts FirewallServiceGroupMap and FirewallServiceGroupMapOutput values.
 // You can construct a concrete instance of `FirewallServiceGroupMapInput` via:
 //
-//          FirewallServiceGroupMap{ "key": FirewallServiceGroupArgs{...} }
+//	FirewallServiceGroupMap{ "key": FirewallServiceGroupArgs{...} }
 type FirewallServiceGroupMapInput interface {
 	pulumi.Input
 
@@ -293,6 +186,38 @@ func (o FirewallServiceGroupOutput) ToFirewallServiceGroupOutput() FirewallServi
 
 func (o FirewallServiceGroupOutput) ToFirewallServiceGroupOutputWithContext(ctx context.Context) FirewallServiceGroupOutput {
 	return o
+}
+
+func (o FirewallServiceGroupOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallServiceGroup) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o FirewallServiceGroupOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallServiceGroup) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallServiceGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallServiceGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallServiceGroupOutput) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceGroup) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceGroupOutput) Members() FirewallServiceGroupMemberArrayOutput {
+	return o.ApplyT(func(v *FirewallServiceGroup) FirewallServiceGroupMemberArrayOutput { return v.Members }).(FirewallServiceGroupMemberArrayOutput)
+}
+
+func (o FirewallServiceGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceGroupOutput) Proxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallServiceGroup) pulumi.StringOutput { return v.Proxy }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceGroupOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallServiceGroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallServiceGroupArrayOutput struct{ *pulumi.OutputState }

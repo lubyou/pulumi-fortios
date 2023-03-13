@@ -7,80 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure IPv4 IP address pools of FortiOS.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `FirewallIppool`, we recommend that you use the new resource.
-//
-// ## Example Usage
-// ### Overload Ippool
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallObjectIPPool(ctx, "s1", &fortios.FirewallObjectIPPoolArgs{
-// 			ArpReply: pulumi.String("enable"),
-// 			Comments: pulumi.String("fdsaf"),
-// 			Endip:    pulumi.String("22.0.0.0"),
-// 			Startip:  pulumi.String("11.0.0.0"),
-// 			Type:     pulumi.String("overload"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### One-To-One Ippool
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallObjectIPPool(ctx, "s2", &fortios.FirewallObjectIPPoolArgs{
-// 			ArpReply: pulumi.String("enable"),
-// 			Comments: pulumi.String("fdsaf"),
-// 			Endip:    pulumi.String("222.0.0.0"),
-// 			Startip:  pulumi.String("121.0.0.0"),
-// 			Type:     pulumi.String("one-to-one"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FirewallObjectIPPool struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable replying to ARP requests when an IP Pool is added to a policy.
-	ArpReply pulumi.StringOutput `pulumi:"arpReply"`
-	// Comment.
+	ArpReply pulumi.StringOutput    `pulumi:"arpReply"`
 	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-	Endip pulumi.StringOutput `pulumi:"endip"`
-	// IP pool name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-	Startip pulumi.StringOutput `pulumi:"startip"`
-	// IP pool type(Support overload and one-to-one).
-	Type pulumi.StringOutput `pulumi:"type"`
+	Endip    pulumi.StringOutput    `pulumi:"endip"`
+	Name     pulumi.StringOutput    `pulumi:"name"`
+	Startip  pulumi.StringOutput    `pulumi:"startip"`
+	Type     pulumi.StringOutput    `pulumi:"type"`
 }
 
 // NewFirewallObjectIPPool registers a new resource with the given unique name, arguments, and options.
@@ -122,33 +61,21 @@ func GetFirewallObjectIPPool(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallObjectIPPool resources.
 type firewallObjectIPPoolState struct {
-	// Enable/disable replying to ARP requests when an IP Pool is added to a policy.
 	ArpReply *string `pulumi:"arpReply"`
-	// Comment.
 	Comments *string `pulumi:"comments"`
-	// Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-	Endip *string `pulumi:"endip"`
-	// IP pool name.
-	Name *string `pulumi:"name"`
-	// First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-	Startip *string `pulumi:"startip"`
-	// IP pool type(Support overload and one-to-one).
-	Type *string `pulumi:"type"`
+	Endip    *string `pulumi:"endip"`
+	Name     *string `pulumi:"name"`
+	Startip  *string `pulumi:"startip"`
+	Type     *string `pulumi:"type"`
 }
 
 type FirewallObjectIPPoolState struct {
-	// Enable/disable replying to ARP requests when an IP Pool is added to a policy.
 	ArpReply pulumi.StringPtrInput
-	// Comment.
 	Comments pulumi.StringPtrInput
-	// Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-	Endip pulumi.StringPtrInput
-	// IP pool name.
-	Name pulumi.StringPtrInput
-	// First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-	Startip pulumi.StringPtrInput
-	// IP pool type(Support overload and one-to-one).
-	Type pulumi.StringPtrInput
+	Endip    pulumi.StringPtrInput
+	Name     pulumi.StringPtrInput
+	Startip  pulumi.StringPtrInput
+	Type     pulumi.StringPtrInput
 }
 
 func (FirewallObjectIPPoolState) ElementType() reflect.Type {
@@ -156,34 +83,22 @@ func (FirewallObjectIPPoolState) ElementType() reflect.Type {
 }
 
 type firewallObjectIPPoolArgs struct {
-	// Enable/disable replying to ARP requests when an IP Pool is added to a policy.
 	ArpReply *string `pulumi:"arpReply"`
-	// Comment.
 	Comments *string `pulumi:"comments"`
-	// Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-	Endip string `pulumi:"endip"`
-	// IP pool name.
-	Name *string `pulumi:"name"`
-	// First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-	Startip string `pulumi:"startip"`
-	// IP pool type(Support overload and one-to-one).
-	Type string `pulumi:"type"`
+	Endip    string  `pulumi:"endip"`
+	Name     *string `pulumi:"name"`
+	Startip  string  `pulumi:"startip"`
+	Type     string  `pulumi:"type"`
 }
 
 // The set of arguments for constructing a FirewallObjectIPPool resource.
 type FirewallObjectIPPoolArgs struct {
-	// Enable/disable replying to ARP requests when an IP Pool is added to a policy.
 	ArpReply pulumi.StringPtrInput
-	// Comment.
 	Comments pulumi.StringPtrInput
-	// Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-	Endip pulumi.StringInput
-	// IP pool name.
-	Name pulumi.StringPtrInput
-	// First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-	Startip pulumi.StringInput
-	// IP pool type(Support overload and one-to-one).
-	Type pulumi.StringInput
+	Endip    pulumi.StringInput
+	Name     pulumi.StringPtrInput
+	Startip  pulumi.StringInput
+	Type     pulumi.StringInput
 }
 
 func (FirewallObjectIPPoolArgs) ElementType() reflect.Type {
@@ -212,7 +127,7 @@ func (i *FirewallObjectIPPool) ToFirewallObjectIPPoolOutputWithContext(ctx conte
 // FirewallObjectIPPoolArrayInput is an input type that accepts FirewallObjectIPPoolArray and FirewallObjectIPPoolArrayOutput values.
 // You can construct a concrete instance of `FirewallObjectIPPoolArrayInput` via:
 //
-//          FirewallObjectIPPoolArray{ FirewallObjectIPPoolArgs{...} }
+//	FirewallObjectIPPoolArray{ FirewallObjectIPPoolArgs{...} }
 type FirewallObjectIPPoolArrayInput interface {
 	pulumi.Input
 
@@ -237,7 +152,7 @@ func (i FirewallObjectIPPoolArray) ToFirewallObjectIPPoolArrayOutputWithContext(
 // FirewallObjectIPPoolMapInput is an input type that accepts FirewallObjectIPPoolMap and FirewallObjectIPPoolMapOutput values.
 // You can construct a concrete instance of `FirewallObjectIPPoolMapInput` via:
 //
-//          FirewallObjectIPPoolMap{ "key": FirewallObjectIPPoolArgs{...} }
+//	FirewallObjectIPPoolMap{ "key": FirewallObjectIPPoolArgs{...} }
 type FirewallObjectIPPoolMapInput interface {
 	pulumi.Input
 
@@ -271,6 +186,30 @@ func (o FirewallObjectIPPoolOutput) ToFirewallObjectIPPoolOutput() FirewallObjec
 
 func (o FirewallObjectIPPoolOutput) ToFirewallObjectIPPoolOutputWithContext(ctx context.Context) FirewallObjectIPPoolOutput {
 	return o
+}
+
+func (o FirewallObjectIPPoolOutput) ArpReply() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectIPPool) pulumi.StringOutput { return v.ArpReply }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectIPPoolOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallObjectIPPool) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallObjectIPPoolOutput) Endip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectIPPool) pulumi.StringOutput { return v.Endip }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectIPPoolOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectIPPool) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectIPPoolOutput) Startip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectIPPool) pulumi.StringOutput { return v.Startip }).(pulumi.StringOutput)
+}
+
+func (o FirewallObjectIPPoolOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectIPPool) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 type FirewallObjectIPPoolArrayOutput struct{ *pulumi.OutputState }

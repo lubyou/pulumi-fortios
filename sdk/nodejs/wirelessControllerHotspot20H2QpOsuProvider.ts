@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure online sign up (OSU) provider list.
- *
- * ## Import
- *
- * WirelessControllerHotspot20 H2QpOsuProvider can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpOsuProvider:WirelessControllerHotspot20H2QpOsuProvider labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpOsuProvider:WirelessControllerHotspot20H2QpOsuProvider labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerHotspot20H2QpOsuProvider extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerHotspot20H2QpOsuProvider resource's state with the given name, ID, and optional extra
@@ -52,41 +34,14 @@ export class WirelessControllerHotspot20H2QpOsuProvider extends pulumi.CustomRes
         return obj['__pulumiType'] === WirelessControllerHotspot20H2QpOsuProvider.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * OSU provider friendly name.
-     */
     public readonly friendlyNames!: pulumi.Output<outputs.WirelessControllerHotspot20H2QpOsuProviderFriendlyName[] | undefined>;
-    /**
-     * OSU provider icon.
-     */
     public readonly icon!: pulumi.Output<string>;
-    /**
-     * OSU provider ID.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * OSU method list. Valid values: `oma-dm`, `soap-xml-spp`, `reserved`.
-     */
     public readonly osuMethod!: pulumi.Output<string>;
-    /**
-     * OSU NAI.
-     */
     public readonly osuNai!: pulumi.Output<string>;
-    /**
-     * Server URI.
-     */
     public readonly serverUri!: pulumi.Output<string>;
-    /**
-     * Service description.
-     */
     public readonly serviceDescriptions!: pulumi.Output<outputs.WirelessControllerHotspot20H2QpOsuProviderServiceDescription[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -132,41 +87,14 @@ export class WirelessControllerHotspot20H2QpOsuProvider extends pulumi.CustomRes
  * Input properties used for looking up and filtering WirelessControllerHotspot20H2QpOsuProvider resources.
  */
 export interface WirelessControllerHotspot20H2QpOsuProviderState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * OSU provider friendly name.
-     */
     friendlyNames?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20H2QpOsuProviderFriendlyName>[]>;
-    /**
-     * OSU provider icon.
-     */
     icon?: pulumi.Input<string>;
-    /**
-     * OSU provider ID.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * OSU method list. Valid values: `oma-dm`, `soap-xml-spp`, `reserved`.
-     */
     osuMethod?: pulumi.Input<string>;
-    /**
-     * OSU NAI.
-     */
     osuNai?: pulumi.Input<string>;
-    /**
-     * Server URI.
-     */
     serverUri?: pulumi.Input<string>;
-    /**
-     * Service description.
-     */
     serviceDescriptions?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20H2QpOsuProviderServiceDescription>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -174,40 +102,13 @@ export interface WirelessControllerHotspot20H2QpOsuProviderState {
  * The set of arguments for constructing a WirelessControllerHotspot20H2QpOsuProvider resource.
  */
 export interface WirelessControllerHotspot20H2QpOsuProviderArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * OSU provider friendly name.
-     */
     friendlyNames?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20H2QpOsuProviderFriendlyName>[]>;
-    /**
-     * OSU provider icon.
-     */
     icon?: pulumi.Input<string>;
-    /**
-     * OSU provider ID.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * OSU method list. Valid values: `oma-dm`, `soap-xml-spp`, `reserved`.
-     */
     osuMethod?: pulumi.Input<string>;
-    /**
-     * OSU NAI.
-     */
     osuNai?: pulumi.Input<string>;
-    /**
-     * Server URI.
-     */
     serverUri?: pulumi.Input<string>;
-    /**
-     * Service description.
-     */
     serviceDescriptions?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20H2QpOsuProviderServiceDescription>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

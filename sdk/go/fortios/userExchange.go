@@ -10,56 +10,24 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure MS Exchange server entries. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// User Exchange can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userExchange:UserExchange labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userExchange:UserExchange labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserExchange struct {
 	pulumi.CustomResourceState
 
-	// Authentication security level used for the RPC protocol layer. Valid values: `connect`, `call`, `packet`, `integrity`, `privacy`.
-	AuthLevel pulumi.StringOutput `pulumi:"authLevel"`
-	// Authentication security type used for the RPC protocol layer. Valid values: `spnego`, `ntlm`, `kerberos`.
-	AuthType pulumi.StringOutput `pulumi:"authType"`
-	// Enable/disable automatic discovery of KDC IP addresses. Valid values: `enable`, `disable`.
-	AutoDiscoverKdc pulumi.StringOutput `pulumi:"autoDiscoverKdc"`
-	// Connection protocol used to connect to MS Exchange service. Valid values: `rpc-over-tcp`, `rpc-over-http`, `rpc-over-https`.
-	ConnectProtocol pulumi.StringOutput `pulumi:"connectProtocol"`
-	// MS Exchange server fully qualified domain name.
-	DomainName pulumi.StringOutput `pulumi:"domainName"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
-	HttpAuthType pulumi.StringOutput `pulumi:"httpAuthType"`
-	// Server IPv4 address.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// KDC IPv4 addresses for Kerberos authentication. The structure of `kdcIp` block is documented below.
-	KdcIps UserExchangeKdcIpArrayOutput `pulumi:"kdcIps"`
-	// MS Exchange server entry name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Password for the specified username.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// MS Exchange server hostname.
-	ServerName pulumi.StringOutput `pulumi:"serverName"`
-	// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
-	// User name used to sign in to the server. Must have proper permissions for service.
-	Username pulumi.StringOutput `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AuthLevel           pulumi.StringOutput          `pulumi:"authLevel"`
+	AuthType            pulumi.StringOutput          `pulumi:"authType"`
+	AutoDiscoverKdc     pulumi.StringOutput          `pulumi:"autoDiscoverKdc"`
+	ConnectProtocol     pulumi.StringOutput          `pulumi:"connectProtocol"`
+	DomainName          pulumi.StringOutput          `pulumi:"domainName"`
+	DynamicSortSubtable pulumi.StringPtrOutput       `pulumi:"dynamicSortSubtable"`
+	HttpAuthType        pulumi.StringOutput          `pulumi:"httpAuthType"`
+	Ip                  pulumi.StringOutput          `pulumi:"ip"`
+	KdcIps              UserExchangeKdcIpArrayOutput `pulumi:"kdcIps"`
+	Name                pulumi.StringOutput          `pulumi:"name"`
+	Password            pulumi.StringPtrOutput       `pulumi:"password"`
+	ServerName          pulumi.StringOutput          `pulumi:"serverName"`
+	SslMinProtoVersion  pulumi.StringOutput          `pulumi:"sslMinProtoVersion"`
+	Username            pulumi.StringOutput          `pulumi:"username"`
+	Vdomparam           pulumi.StringPtrOutput       `pulumi:"vdomparam"`
 }
 
 // NewUserExchange registers a new resource with the given unique name, arguments, and options.
@@ -69,6 +37,13 @@ func NewUserExchange(ctx *pulumi.Context,
 		args = &UserExchangeArgs{}
 	}
 
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource UserExchange
 	err := ctx.RegisterResource("fortios:index/userExchange:UserExchange", name, args, &resource, opts...)
@@ -92,69 +67,39 @@ func GetUserExchange(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserExchange resources.
 type userExchangeState struct {
-	// Authentication security level used for the RPC protocol layer. Valid values: `connect`, `call`, `packet`, `integrity`, `privacy`.
-	AuthLevel *string `pulumi:"authLevel"`
-	// Authentication security type used for the RPC protocol layer. Valid values: `spnego`, `ntlm`, `kerberos`.
-	AuthType *string `pulumi:"authType"`
-	// Enable/disable automatic discovery of KDC IP addresses. Valid values: `enable`, `disable`.
-	AutoDiscoverKdc *string `pulumi:"autoDiscoverKdc"`
-	// Connection protocol used to connect to MS Exchange service. Valid values: `rpc-over-tcp`, `rpc-over-http`, `rpc-over-https`.
-	ConnectProtocol *string `pulumi:"connectProtocol"`
-	// MS Exchange server fully qualified domain name.
-	DomainName *string `pulumi:"domainName"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
-	HttpAuthType *string `pulumi:"httpAuthType"`
-	// Server IPv4 address.
-	Ip *string `pulumi:"ip"`
-	// KDC IPv4 addresses for Kerberos authentication. The structure of `kdcIp` block is documented below.
-	KdcIps []UserExchangeKdcIp `pulumi:"kdcIps"`
-	// MS Exchange server entry name.
-	Name *string `pulumi:"name"`
-	// Password for the specified username.
-	Password *string `pulumi:"password"`
-	// MS Exchange server hostname.
-	ServerName *string `pulumi:"serverName"`
-	// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
-	// User name used to sign in to the server. Must have proper permissions for service.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AuthLevel           *string             `pulumi:"authLevel"`
+	AuthType            *string             `pulumi:"authType"`
+	AutoDiscoverKdc     *string             `pulumi:"autoDiscoverKdc"`
+	ConnectProtocol     *string             `pulumi:"connectProtocol"`
+	DomainName          *string             `pulumi:"domainName"`
+	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	HttpAuthType        *string             `pulumi:"httpAuthType"`
+	Ip                  *string             `pulumi:"ip"`
+	KdcIps              []UserExchangeKdcIp `pulumi:"kdcIps"`
+	Name                *string             `pulumi:"name"`
+	Password            *string             `pulumi:"password"`
+	ServerName          *string             `pulumi:"serverName"`
+	SslMinProtoVersion  *string             `pulumi:"sslMinProtoVersion"`
+	Username            *string             `pulumi:"username"`
+	Vdomparam           *string             `pulumi:"vdomparam"`
 }
 
 type UserExchangeState struct {
-	// Authentication security level used for the RPC protocol layer. Valid values: `connect`, `call`, `packet`, `integrity`, `privacy`.
-	AuthLevel pulumi.StringPtrInput
-	// Authentication security type used for the RPC protocol layer. Valid values: `spnego`, `ntlm`, `kerberos`.
-	AuthType pulumi.StringPtrInput
-	// Enable/disable automatic discovery of KDC IP addresses. Valid values: `enable`, `disable`.
-	AutoDiscoverKdc pulumi.StringPtrInput
-	// Connection protocol used to connect to MS Exchange service. Valid values: `rpc-over-tcp`, `rpc-over-http`, `rpc-over-https`.
-	ConnectProtocol pulumi.StringPtrInput
-	// MS Exchange server fully qualified domain name.
-	DomainName pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AuthLevel           pulumi.StringPtrInput
+	AuthType            pulumi.StringPtrInput
+	AutoDiscoverKdc     pulumi.StringPtrInput
+	ConnectProtocol     pulumi.StringPtrInput
+	DomainName          pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
-	HttpAuthType pulumi.StringPtrInput
-	// Server IPv4 address.
-	Ip pulumi.StringPtrInput
-	// KDC IPv4 addresses for Kerberos authentication. The structure of `kdcIp` block is documented below.
-	KdcIps UserExchangeKdcIpArrayInput
-	// MS Exchange server entry name.
-	Name pulumi.StringPtrInput
-	// Password for the specified username.
-	Password pulumi.StringPtrInput
-	// MS Exchange server hostname.
-	ServerName pulumi.StringPtrInput
-	// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringPtrInput
-	// User name used to sign in to the server. Must have proper permissions for service.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HttpAuthType        pulumi.StringPtrInput
+	Ip                  pulumi.StringPtrInput
+	KdcIps              UserExchangeKdcIpArrayInput
+	Name                pulumi.StringPtrInput
+	Password            pulumi.StringPtrInput
+	ServerName          pulumi.StringPtrInput
+	SslMinProtoVersion  pulumi.StringPtrInput
+	Username            pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserExchangeState) ElementType() reflect.Type {
@@ -162,70 +107,40 @@ func (UserExchangeState) ElementType() reflect.Type {
 }
 
 type userExchangeArgs struct {
-	// Authentication security level used for the RPC protocol layer. Valid values: `connect`, `call`, `packet`, `integrity`, `privacy`.
-	AuthLevel *string `pulumi:"authLevel"`
-	// Authentication security type used for the RPC protocol layer. Valid values: `spnego`, `ntlm`, `kerberos`.
-	AuthType *string `pulumi:"authType"`
-	// Enable/disable automatic discovery of KDC IP addresses. Valid values: `enable`, `disable`.
-	AutoDiscoverKdc *string `pulumi:"autoDiscoverKdc"`
-	// Connection protocol used to connect to MS Exchange service. Valid values: `rpc-over-tcp`, `rpc-over-http`, `rpc-over-https`.
-	ConnectProtocol *string `pulumi:"connectProtocol"`
-	// MS Exchange server fully qualified domain name.
-	DomainName *string `pulumi:"domainName"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
-	HttpAuthType *string `pulumi:"httpAuthType"`
-	// Server IPv4 address.
-	Ip *string `pulumi:"ip"`
-	// KDC IPv4 addresses for Kerberos authentication. The structure of `kdcIp` block is documented below.
-	KdcIps []UserExchangeKdcIp `pulumi:"kdcIps"`
-	// MS Exchange server entry name.
-	Name *string `pulumi:"name"`
-	// Password for the specified username.
-	Password *string `pulumi:"password"`
-	// MS Exchange server hostname.
-	ServerName *string `pulumi:"serverName"`
-	// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
-	// User name used to sign in to the server. Must have proper permissions for service.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AuthLevel           *string             `pulumi:"authLevel"`
+	AuthType            *string             `pulumi:"authType"`
+	AutoDiscoverKdc     *string             `pulumi:"autoDiscoverKdc"`
+	ConnectProtocol     *string             `pulumi:"connectProtocol"`
+	DomainName          *string             `pulumi:"domainName"`
+	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	HttpAuthType        *string             `pulumi:"httpAuthType"`
+	Ip                  *string             `pulumi:"ip"`
+	KdcIps              []UserExchangeKdcIp `pulumi:"kdcIps"`
+	Name                *string             `pulumi:"name"`
+	Password            *string             `pulumi:"password"`
+	ServerName          *string             `pulumi:"serverName"`
+	SslMinProtoVersion  *string             `pulumi:"sslMinProtoVersion"`
+	Username            *string             `pulumi:"username"`
+	Vdomparam           *string             `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserExchange resource.
 type UserExchangeArgs struct {
-	// Authentication security level used for the RPC protocol layer. Valid values: `connect`, `call`, `packet`, `integrity`, `privacy`.
-	AuthLevel pulumi.StringPtrInput
-	// Authentication security type used for the RPC protocol layer. Valid values: `spnego`, `ntlm`, `kerberos`.
-	AuthType pulumi.StringPtrInput
-	// Enable/disable automatic discovery of KDC IP addresses. Valid values: `enable`, `disable`.
-	AutoDiscoverKdc pulumi.StringPtrInput
-	// Connection protocol used to connect to MS Exchange service. Valid values: `rpc-over-tcp`, `rpc-over-http`, `rpc-over-https`.
-	ConnectProtocol pulumi.StringPtrInput
-	// MS Exchange server fully qualified domain name.
-	DomainName pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AuthLevel           pulumi.StringPtrInput
+	AuthType            pulumi.StringPtrInput
+	AutoDiscoverKdc     pulumi.StringPtrInput
+	ConnectProtocol     pulumi.StringPtrInput
+	DomainName          pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
-	HttpAuthType pulumi.StringPtrInput
-	// Server IPv4 address.
-	Ip pulumi.StringPtrInput
-	// KDC IPv4 addresses for Kerberos authentication. The structure of `kdcIp` block is documented below.
-	KdcIps UserExchangeKdcIpArrayInput
-	// MS Exchange server entry name.
-	Name pulumi.StringPtrInput
-	// Password for the specified username.
-	Password pulumi.StringPtrInput
-	// MS Exchange server hostname.
-	ServerName pulumi.StringPtrInput
-	// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringPtrInput
-	// User name used to sign in to the server. Must have proper permissions for service.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HttpAuthType        pulumi.StringPtrInput
+	Ip                  pulumi.StringPtrInput
+	KdcIps              UserExchangeKdcIpArrayInput
+	Name                pulumi.StringPtrInput
+	Password            pulumi.StringPtrInput
+	ServerName          pulumi.StringPtrInput
+	SslMinProtoVersion  pulumi.StringPtrInput
+	Username            pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserExchangeArgs) ElementType() reflect.Type {
@@ -254,7 +169,7 @@ func (i *UserExchange) ToUserExchangeOutputWithContext(ctx context.Context) User
 // UserExchangeArrayInput is an input type that accepts UserExchangeArray and UserExchangeArrayOutput values.
 // You can construct a concrete instance of `UserExchangeArrayInput` via:
 //
-//          UserExchangeArray{ UserExchangeArgs{...} }
+//	UserExchangeArray{ UserExchangeArgs{...} }
 type UserExchangeArrayInput interface {
 	pulumi.Input
 
@@ -279,7 +194,7 @@ func (i UserExchangeArray) ToUserExchangeArrayOutputWithContext(ctx context.Cont
 // UserExchangeMapInput is an input type that accepts UserExchangeMap and UserExchangeMapOutput values.
 // You can construct a concrete instance of `UserExchangeMapInput` via:
 //
-//          UserExchangeMap{ "key": UserExchangeArgs{...} }
+//	UserExchangeMap{ "key": UserExchangeArgs{...} }
 type UserExchangeMapInput interface {
 	pulumi.Input
 
@@ -313,6 +228,66 @@ func (o UserExchangeOutput) ToUserExchangeOutput() UserExchangeOutput {
 
 func (o UserExchangeOutput) ToUserExchangeOutputWithContext(ctx context.Context) UserExchangeOutput {
 	return o
+}
+
+func (o UserExchangeOutput) AuthLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserExchange) pulumi.StringOutput { return v.AuthLevel }).(pulumi.StringOutput)
+}
+
+func (o UserExchangeOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserExchange) pulumi.StringOutput { return v.AuthType }).(pulumi.StringOutput)
+}
+
+func (o UserExchangeOutput) AutoDiscoverKdc() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserExchange) pulumi.StringOutput { return v.AutoDiscoverKdc }).(pulumi.StringOutput)
+}
+
+func (o UserExchangeOutput) ConnectProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserExchange) pulumi.StringOutput { return v.ConnectProtocol }).(pulumi.StringOutput)
+}
+
+func (o UserExchangeOutput) DomainName() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserExchange) pulumi.StringOutput { return v.DomainName }).(pulumi.StringOutput)
+}
+
+func (o UserExchangeOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserExchange) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserExchangeOutput) HttpAuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserExchange) pulumi.StringOutput { return v.HttpAuthType }).(pulumi.StringOutput)
+}
+
+func (o UserExchangeOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserExchange) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o UserExchangeOutput) KdcIps() UserExchangeKdcIpArrayOutput {
+	return o.ApplyT(func(v *UserExchange) UserExchangeKdcIpArrayOutput { return v.KdcIps }).(UserExchangeKdcIpArrayOutput)
+}
+
+func (o UserExchangeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserExchange) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserExchangeOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserExchange) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o UserExchangeOutput) ServerName() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserExchange) pulumi.StringOutput { return v.ServerName }).(pulumi.StringOutput)
+}
+
+func (o UserExchangeOutput) SslMinProtoVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserExchange) pulumi.StringOutput { return v.SslMinProtoVersion }).(pulumi.StringOutput)
+}
+
+func (o UserExchangeOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserExchange) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
+func (o UserExchangeOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserExchange) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserExchangeArrayOutput struct{ *pulumi.OutputState }

@@ -10,72 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FSSO groups.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trname1, err := fortios.NewUserFsso(ctx, "trname1", &fortios.UserFssoArgs{
-// 			Port:      pulumi.Int(32381),
-// 			Port2:     pulumi.Int(8000),
-// 			Port3:     pulumi.Int(8000),
-// 			Port4:     pulumi.Int(8000),
-// 			Port5:     pulumi.Int(8000),
-// 			Server:    pulumi.String("1.1.1.1"),
-// 			SourceIp:  pulumi.String("0.0.0.0"),
-// 			SourceIp6: pulumi.String("::"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewUserAdgrp(ctx, "trname", &fortios.UserAdgrpArgs{
-// 			ServerName: trname1.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// User Adgrp can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userAdgrp:UserAdgrp labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userAdgrp:UserAdgrp labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserAdgrp struct {
 	pulumi.CustomResourceState
 
-	// FSSO connector source.
-	ConnectorSource pulumi.StringOutput `pulumi:"connectorSource"`
-	// Group ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// FSSO agent name.
-	ServerName pulumi.StringOutput `pulumi:"serverName"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	ConnectorSource pulumi.StringOutput    `pulumi:"connectorSource"`
+	Fosid           pulumi.IntOutput       `pulumi:"fosid"`
+	Name            pulumi.StringOutput    `pulumi:"name"`
+	ServerName      pulumi.StringOutput    `pulumi:"serverName"`
+	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewUserAdgrp registers a new resource with the given unique name, arguments, and options.
@@ -108,29 +50,19 @@ func GetUserAdgrp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserAdgrp resources.
 type userAdgrpState struct {
-	// FSSO connector source.
 	ConnectorSource *string `pulumi:"connectorSource"`
-	// Group ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// FSSO agent name.
-	ServerName *string `pulumi:"serverName"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Fosid           *int    `pulumi:"fosid"`
+	Name            *string `pulumi:"name"`
+	ServerName      *string `pulumi:"serverName"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 type UserAdgrpState struct {
-	// FSSO connector source.
 	ConnectorSource pulumi.StringPtrInput
-	// Group ID.
-	Fosid pulumi.IntPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// FSSO agent name.
-	ServerName pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid           pulumi.IntPtrInput
+	Name            pulumi.StringPtrInput
+	ServerName      pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (UserAdgrpState) ElementType() reflect.Type {
@@ -138,30 +70,20 @@ func (UserAdgrpState) ElementType() reflect.Type {
 }
 
 type userAdgrpArgs struct {
-	// FSSO connector source.
 	ConnectorSource *string `pulumi:"connectorSource"`
-	// Group ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// FSSO agent name.
-	ServerName *string `pulumi:"serverName"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Fosid           *int    `pulumi:"fosid"`
+	Name            *string `pulumi:"name"`
+	ServerName      *string `pulumi:"serverName"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserAdgrp resource.
 type UserAdgrpArgs struct {
-	// FSSO connector source.
 	ConnectorSource pulumi.StringPtrInput
-	// Group ID.
-	Fosid pulumi.IntPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// FSSO agent name.
-	ServerName pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid           pulumi.IntPtrInput
+	Name            pulumi.StringPtrInput
+	ServerName      pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (UserAdgrpArgs) ElementType() reflect.Type {
@@ -190,7 +112,7 @@ func (i *UserAdgrp) ToUserAdgrpOutputWithContext(ctx context.Context) UserAdgrpO
 // UserAdgrpArrayInput is an input type that accepts UserAdgrpArray and UserAdgrpArrayOutput values.
 // You can construct a concrete instance of `UserAdgrpArrayInput` via:
 //
-//          UserAdgrpArray{ UserAdgrpArgs{...} }
+//	UserAdgrpArray{ UserAdgrpArgs{...} }
 type UserAdgrpArrayInput interface {
 	pulumi.Input
 
@@ -215,7 +137,7 @@ func (i UserAdgrpArray) ToUserAdgrpArrayOutputWithContext(ctx context.Context) U
 // UserAdgrpMapInput is an input type that accepts UserAdgrpMap and UserAdgrpMapOutput values.
 // You can construct a concrete instance of `UserAdgrpMapInput` via:
 //
-//          UserAdgrpMap{ "key": UserAdgrpArgs{...} }
+//	UserAdgrpMap{ "key": UserAdgrpArgs{...} }
 type UserAdgrpMapInput interface {
 	pulumi.Input
 
@@ -249,6 +171,26 @@ func (o UserAdgrpOutput) ToUserAdgrpOutput() UserAdgrpOutput {
 
 func (o UserAdgrpOutput) ToUserAdgrpOutputWithContext(ctx context.Context) UserAdgrpOutput {
 	return o
+}
+
+func (o UserAdgrpOutput) ConnectorSource() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserAdgrp) pulumi.StringOutput { return v.ConnectorSource }).(pulumi.StringOutput)
+}
+
+func (o UserAdgrpOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserAdgrp) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o UserAdgrpOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserAdgrp) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserAdgrpOutput) ServerName() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserAdgrp) pulumi.StringOutput { return v.ServerName }).(pulumi.StringOutput)
+}
+
+func (o UserAdgrpOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserAdgrp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserAdgrpArrayOutput struct{ *pulumi.OutputState }

@@ -10,210 +10,89 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure NGFW IPv4/IPv6 application policies. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallSecurityPolicy(ctx, "trname", &fortios.FirewallSecurityPolicyArgs{
-// 			Action: pulumi.String("accept"),
-// 			Dstaddrs: FirewallSecurityPolicyDstaddrArray{
-// 				&FirewallSecurityPolicyDstaddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			Dstintfs: FirewallSecurityPolicyDstintfArray{
-// 				&FirewallSecurityPolicyDstintfArgs{
-// 					Name: pulumi.String("port4"),
-// 				},
-// 			},
-// 			Logtraffic:             pulumi.String("utm"),
-// 			Policyid:               pulumi.Int(1),
-// 			ProfileProtocolOptions: pulumi.String("default"),
-// 			ProfileType:            pulumi.String("single"),
-// 			Schedule:               pulumi.String("always"),
-// 			Srcaddrs: FirewallSecurityPolicySrcaddrArray{
-// 				&FirewallSecurityPolicySrcaddrArgs{
-// 					Name: pulumi.String("all"),
-// 				},
-// 			},
-// 			Srcintfs: FirewallSecurityPolicySrcintfArray{
-// 				&FirewallSecurityPolicySrcintfArgs{
-// 					Name: pulumi.String("port2"),
-// 				},
-// 			},
-// 			Status: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall SecurityPolicy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSecurityPolicy:FirewallSecurityPolicy labelname {{policyid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSecurityPolicy:FirewallSecurityPolicy labelname {{policyid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallSecurityPolicy struct {
 	pulumi.CustomResourceState
 
-	// Policy action (accept/deny). Valid values: `accept`, `deny`.
-	Action pulumi.StringOutput `pulumi:"action"`
-	// Application category ID list. The structure of `appCategory` block is documented below.
-	AppCategories FirewallSecurityPolicyAppCategoryArrayOutput `pulumi:"appCategories"`
-	// Application group names. The structure of `appGroup` block is documented below.
-	AppGroups FirewallSecurityPolicyAppGroupArrayOutput `pulumi:"appGroups"`
-	// Name of an existing Application list.
-	ApplicationList pulumi.StringOutput `pulumi:"applicationList"`
-	// Application ID list. The structure of `application` block is documented below.
-	Applications FirewallSecurityPolicyApplicationArrayOutput `pulumi:"applications"`
-	// Name of an existing Antivirus profile.
-	AvProfile pulumi.StringOutput `pulumi:"avProfile"`
-	// Name of an existing CIFS profile.
-	CifsProfile pulumi.StringOutput `pulumi:"cifsProfile"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Name of an existing DLP sensor.
-	DlpSensor pulumi.StringOutput `pulumi:"dlpSensor"`
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile pulumi.StringOutput `pulumi:"dnsfilterProfile"`
-	// Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
-	Dstaddr4s FirewallSecurityPolicyDstaddr4ArrayOutput `pulumi:"dstaddr4s"`
-	// Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
-	Dstaddr6s FirewallSecurityPolicyDstaddr6ArrayOutput `pulumi:"dstaddr6s"`
-	// When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-	DstaddrNegate pulumi.StringOutput `pulumi:"dstaddrNegate"`
-	// Destination IPv4 address name and address group names. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallSecurityPolicyDstaddrArrayOutput `pulumi:"dstaddrs"`
-	// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
-	Dstintfs FirewallSecurityPolicyDstintfArrayOutput `pulumi:"dstintfs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Name of an existing email filter profile.
-	EmailfilterProfile pulumi.StringOutput `pulumi:"emailfilterProfile"`
-	// Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
-	EnforceDefaultAppPort pulumi.StringOutput `pulumi:"enforceDefaultAppPort"`
-	// Name of an existing file-filter profile.
-	FileFilterProfile pulumi.StringOutput `pulumi:"fileFilterProfile"`
-	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
-	FssoGroups FirewallSecurityPolicyFssoGroupArrayOutput `pulumi:"fssoGroups"`
-	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
-	Groups FirewallSecurityPolicyGroupArrayOutput `pulumi:"groups"`
-	// Name of an existing ICAP profile.
-	IcapProfile pulumi.StringOutput `pulumi:"icapProfile"`
-	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
-	InternetService pulumi.StringOutput `pulumi:"internetService"`
-	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
-	InternetServiceCustomGroups FirewallSecurityPolicyInternetServiceCustomGroupArrayOutput `pulumi:"internetServiceCustomGroups"`
-	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
-	InternetServiceCustoms FirewallSecurityPolicyInternetServiceCustomArrayOutput `pulumi:"internetServiceCustoms"`
-	// Internet Service group name. The structure of `internetServiceGroup` block is documented below.
-	InternetServiceGroups FirewallSecurityPolicyInternetServiceGroupArrayOutput `pulumi:"internetServiceGroups"`
-	// Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds FirewallSecurityPolicyInternetServiceIdArrayOutput `pulumi:"internetServiceIds"`
-	// Internet Service name. The structure of `internetServiceName` block is documented below.
-	InternetServiceNames FirewallSecurityPolicyInternetServiceNameArrayOutput `pulumi:"internetServiceNames"`
-	// When enabled internet-service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	InternetServiceNegate pulumi.StringOutput `pulumi:"internetServiceNegate"`
-	// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
-	InternetServiceSrc pulumi.StringOutput `pulumi:"internetServiceSrc"`
-	// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
-	InternetServiceSrcCustomGroups FirewallSecurityPolicyInternetServiceSrcCustomGroupArrayOutput `pulumi:"internetServiceSrcCustomGroups"`
-	// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
-	InternetServiceSrcCustoms FirewallSecurityPolicyInternetServiceSrcCustomArrayOutput `pulumi:"internetServiceSrcCustoms"`
-	// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
-	InternetServiceSrcGroups FirewallSecurityPolicyInternetServiceSrcGroupArrayOutput `pulumi:"internetServiceSrcGroups"`
-	// Internet Service source ID. The structure of `internetServiceSrcId` block is documented below.
-	InternetServiceSrcIds FirewallSecurityPolicyInternetServiceSrcIdArrayOutput `pulumi:"internetServiceSrcIds"`
-	// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
-	InternetServiceSrcNames FirewallSecurityPolicyInternetServiceSrcNameArrayOutput `pulumi:"internetServiceSrcNames"`
-	// When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	InternetServiceSrcNegate pulumi.StringOutput `pulumi:"internetServiceSrcNegate"`
-	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringOutput `pulumi:"ipsSensor"`
-	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
-	LearningMode pulumi.StringOutput `pulumi:"learningMode"`
-	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
-	Logtraffic pulumi.StringOutput `pulumi:"logtraffic"`
-	// Record logs when a session starts. Valid values: `enable`, `disable`.
-	LogtrafficStart pulumi.StringOutput `pulumi:"logtrafficStart"`
-	// Names of FSSO groups.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable NAT46. Valid values: `enable`, `disable`.
-	Nat46 pulumi.StringOutput `pulumi:"nat46"`
-	// Enable/disable NAT64. Valid values: `enable`, `disable`.
-	Nat64 pulumi.StringOutput `pulumi:"nat64"`
-	// Policy ID.
-	Policyid pulumi.IntOutput `pulumi:"policyid"`
-	// Name of profile group.
-	ProfileGroup pulumi.StringOutput `pulumi:"profileGroup"`
-	// Name of an existing Protocol options profile.
-	ProfileProtocolOptions pulumi.StringOutput `pulumi:"profileProtocolOptions"`
-	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-	ProfileType pulumi.StringOutput `pulumi:"profileType"`
-	// Schedule name.
-	Schedule pulumi.StringOutput `pulumi:"schedule"`
-	// Name of an existing SCTP filter profile.
-	SctpFilterProfile pulumi.StringOutput `pulumi:"sctpFilterProfile"`
-	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
-	SendDenyPacket pulumi.StringOutput `pulumi:"sendDenyPacket"`
-	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	ServiceNegate pulumi.StringOutput `pulumi:"serviceNegate"`
-	// Service and service group names. The structure of `service` block is documented below.
-	Services FirewallSecurityPolicyServiceArrayOutput `pulumi:"services"`
-	// Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
-	Srcaddr4s FirewallSecurityPolicySrcaddr4ArrayOutput `pulumi:"srcaddr4s"`
-	// Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
-	Srcaddr6s FirewallSecurityPolicySrcaddr6ArrayOutput `pulumi:"srcaddr6s"`
-	// When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-	SrcaddrNegate pulumi.StringOutput `pulumi:"srcaddrNegate"`
-	// Source IPv4 address name and address group names. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallSecurityPolicySrcaddrArrayOutput `pulumi:"srcaddrs"`
-	// Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-	Srcintfs FirewallSecurityPolicySrcintfArrayOutput `pulumi:"srcintfs"`
-	// Name of an existing SSH filter profile.
-	SshFilterProfile pulumi.StringOutput `pulumi:"sshFilterProfile"`
-	// Name of an existing SSL SSH profile.
-	SslSshProfile pulumi.StringOutput `pulumi:"sslSshProfile"`
-	// Enable or disable this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// URL category ID list. The structure of `urlCategory` block is documented below.
-	UrlCategories FirewallSecurityPolicyUrlCategoryArrayOutput `pulumi:"urlCategories"`
-	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
-	Users FirewallSecurityPolicyUserArrayOutput `pulumi:"users"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringOutput `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Name of an existing VideoFilter profile.
-	VideofilterProfile pulumi.StringOutput `pulumi:"videofilterProfile"`
-	// Name of an existing VoIP profile.
-	VoipProfile pulumi.StringOutput `pulumi:"voipProfile"`
-	// Name of an existing Web filter profile.
-	WebfilterProfile pulumi.StringOutput `pulumi:"webfilterProfile"`
+	Action                          pulumi.StringOutput                                             `pulumi:"action"`
+	AppCategories                   FirewallSecurityPolicyAppCategoryArrayOutput                    `pulumi:"appCategories"`
+	AppGroups                       FirewallSecurityPolicyAppGroupArrayOutput                       `pulumi:"appGroups"`
+	ApplicationList                 pulumi.StringOutput                                             `pulumi:"applicationList"`
+	Applications                    FirewallSecurityPolicyApplicationArrayOutput                    `pulumi:"applications"`
+	AvProfile                       pulumi.StringOutput                                             `pulumi:"avProfile"`
+	CifsProfile                     pulumi.StringOutput                                             `pulumi:"cifsProfile"`
+	Comments                        pulumi.StringPtrOutput                                          `pulumi:"comments"`
+	DlpProfile                      pulumi.StringOutput                                             `pulumi:"dlpProfile"`
+	DlpSensor                       pulumi.StringOutput                                             `pulumi:"dlpSensor"`
+	DnsfilterProfile                pulumi.StringOutput                                             `pulumi:"dnsfilterProfile"`
+	Dstaddr4s                       FirewallSecurityPolicyDstaddr4ArrayOutput                       `pulumi:"dstaddr4s"`
+	Dstaddr6s                       FirewallSecurityPolicyDstaddr6ArrayOutput                       `pulumi:"dstaddr6s"`
+	DstaddrNegate                   pulumi.StringOutput                                             `pulumi:"dstaddrNegate"`
+	Dstaddrs                        FirewallSecurityPolicyDstaddrArrayOutput                        `pulumi:"dstaddrs"`
+	Dstintfs                        FirewallSecurityPolicyDstintfArrayOutput                        `pulumi:"dstintfs"`
+	DynamicSortSubtable             pulumi.StringPtrOutput                                          `pulumi:"dynamicSortSubtable"`
+	EmailfilterProfile              pulumi.StringOutput                                             `pulumi:"emailfilterProfile"`
+	EnforceDefaultAppPort           pulumi.StringOutput                                             `pulumi:"enforceDefaultAppPort"`
+	FileFilterProfile               pulumi.StringOutput                                             `pulumi:"fileFilterProfile"`
+	FssoGroups                      FirewallSecurityPolicyFssoGroupArrayOutput                      `pulumi:"fssoGroups"`
+	Groups                          FirewallSecurityPolicyGroupArrayOutput                          `pulumi:"groups"`
+	IcapProfile                     pulumi.StringOutput                                             `pulumi:"icapProfile"`
+	InternetService                 pulumi.StringOutput                                             `pulumi:"internetService"`
+	InternetService6                pulumi.StringOutput                                             `pulumi:"internetService6"`
+	InternetService6CustomGroups    FirewallSecurityPolicyInternetService6CustomGroupArrayOutput    `pulumi:"internetService6CustomGroups"`
+	InternetService6Customs         FirewallSecurityPolicyInternetService6CustomArrayOutput         `pulumi:"internetService6Customs"`
+	InternetService6Groups          FirewallSecurityPolicyInternetService6GroupArrayOutput          `pulumi:"internetService6Groups"`
+	InternetService6Names           FirewallSecurityPolicyInternetService6NameArrayOutput           `pulumi:"internetService6Names"`
+	InternetService6Negate          pulumi.StringOutput                                             `pulumi:"internetService6Negate"`
+	InternetService6Src             pulumi.StringOutput                                             `pulumi:"internetService6Src"`
+	InternetService6SrcCustomGroups FirewallSecurityPolicyInternetService6SrcCustomGroupArrayOutput `pulumi:"internetService6SrcCustomGroups"`
+	InternetService6SrcCustoms      FirewallSecurityPolicyInternetService6SrcCustomArrayOutput      `pulumi:"internetService6SrcCustoms"`
+	InternetService6SrcGroups       FirewallSecurityPolicyInternetService6SrcGroupArrayOutput       `pulumi:"internetService6SrcGroups"`
+	InternetService6SrcNames        FirewallSecurityPolicyInternetService6SrcNameArrayOutput        `pulumi:"internetService6SrcNames"`
+	InternetService6SrcNegate       pulumi.StringOutput                                             `pulumi:"internetService6SrcNegate"`
+	InternetServiceCustomGroups     FirewallSecurityPolicyInternetServiceCustomGroupArrayOutput     `pulumi:"internetServiceCustomGroups"`
+	InternetServiceCustoms          FirewallSecurityPolicyInternetServiceCustomArrayOutput          `pulumi:"internetServiceCustoms"`
+	InternetServiceGroups           FirewallSecurityPolicyInternetServiceGroupArrayOutput           `pulumi:"internetServiceGroups"`
+	InternetServiceIds              FirewallSecurityPolicyInternetServiceIdArrayOutput              `pulumi:"internetServiceIds"`
+	InternetServiceNames            FirewallSecurityPolicyInternetServiceNameArrayOutput            `pulumi:"internetServiceNames"`
+	InternetServiceNegate           pulumi.StringOutput                                             `pulumi:"internetServiceNegate"`
+	InternetServiceSrc              pulumi.StringOutput                                             `pulumi:"internetServiceSrc"`
+	InternetServiceSrcCustomGroups  FirewallSecurityPolicyInternetServiceSrcCustomGroupArrayOutput  `pulumi:"internetServiceSrcCustomGroups"`
+	InternetServiceSrcCustoms       FirewallSecurityPolicyInternetServiceSrcCustomArrayOutput       `pulumi:"internetServiceSrcCustoms"`
+	InternetServiceSrcGroups        FirewallSecurityPolicyInternetServiceSrcGroupArrayOutput        `pulumi:"internetServiceSrcGroups"`
+	InternetServiceSrcIds           FirewallSecurityPolicyInternetServiceSrcIdArrayOutput           `pulumi:"internetServiceSrcIds"`
+	InternetServiceSrcNames         FirewallSecurityPolicyInternetServiceSrcNameArrayOutput         `pulumi:"internetServiceSrcNames"`
+	InternetServiceSrcNegate        pulumi.StringOutput                                             `pulumi:"internetServiceSrcNegate"`
+	IpsSensor                       pulumi.StringOutput                                             `pulumi:"ipsSensor"`
+	LearningMode                    pulumi.StringOutput                                             `pulumi:"learningMode"`
+	Logtraffic                      pulumi.StringOutput                                             `pulumi:"logtraffic"`
+	LogtrafficStart                 pulumi.StringOutput                                             `pulumi:"logtrafficStart"`
+	Name                            pulumi.StringOutput                                             `pulumi:"name"`
+	Nat46                           pulumi.StringOutput                                             `pulumi:"nat46"`
+	Nat64                           pulumi.StringOutput                                             `pulumi:"nat64"`
+	Policyid                        pulumi.IntOutput                                                `pulumi:"policyid"`
+	ProfileGroup                    pulumi.StringOutput                                             `pulumi:"profileGroup"`
+	ProfileProtocolOptions          pulumi.StringOutput                                             `pulumi:"profileProtocolOptions"`
+	ProfileType                     pulumi.StringOutput                                             `pulumi:"profileType"`
+	Schedule                        pulumi.StringOutput                                             `pulumi:"schedule"`
+	SctpFilterProfile               pulumi.StringOutput                                             `pulumi:"sctpFilterProfile"`
+	SendDenyPacket                  pulumi.StringOutput                                             `pulumi:"sendDenyPacket"`
+	ServiceNegate                   pulumi.StringOutput                                             `pulumi:"serviceNegate"`
+	Services                        FirewallSecurityPolicyServiceArrayOutput                        `pulumi:"services"`
+	Srcaddr4s                       FirewallSecurityPolicySrcaddr4ArrayOutput                       `pulumi:"srcaddr4s"`
+	Srcaddr6s                       FirewallSecurityPolicySrcaddr6ArrayOutput                       `pulumi:"srcaddr6s"`
+	SrcaddrNegate                   pulumi.StringOutput                                             `pulumi:"srcaddrNegate"`
+	Srcaddrs                        FirewallSecurityPolicySrcaddrArrayOutput                        `pulumi:"srcaddrs"`
+	Srcintfs                        FirewallSecurityPolicySrcintfArrayOutput                        `pulumi:"srcintfs"`
+	SshFilterProfile                pulumi.StringOutput                                             `pulumi:"sshFilterProfile"`
+	SslSshProfile                   pulumi.StringOutput                                             `pulumi:"sslSshProfile"`
+	Status                          pulumi.StringOutput                                             `pulumi:"status"`
+	UrlCategories                   FirewallSecurityPolicyUrlCategoryArrayOutput                    `pulumi:"urlCategories"`
+	Users                           FirewallSecurityPolicyUserArrayOutput                           `pulumi:"users"`
+	Uuid                            pulumi.StringOutput                                             `pulumi:"uuid"`
+	Vdomparam                       pulumi.StringPtrOutput                                          `pulumi:"vdomparam"`
+	VideofilterProfile              pulumi.StringOutput                                             `pulumi:"videofilterProfile"`
+	VoipProfile                     pulumi.StringOutput                                             `pulumi:"voipProfile"`
+	WebfilterProfile                pulumi.StringOutput                                             `pulumi:"webfilterProfile"`
 }
 
 // NewFirewallSecurityPolicy registers a new resource with the given unique name, arguments, and options.
@@ -246,277 +125,169 @@ func GetFirewallSecurityPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallSecurityPolicy resources.
 type firewallSecurityPolicyState struct {
-	// Policy action (accept/deny). Valid values: `accept`, `deny`.
-	Action *string `pulumi:"action"`
-	// Application category ID list. The structure of `appCategory` block is documented below.
-	AppCategories []FirewallSecurityPolicyAppCategory `pulumi:"appCategories"`
-	// Application group names. The structure of `appGroup` block is documented below.
-	AppGroups []FirewallSecurityPolicyAppGroup `pulumi:"appGroups"`
-	// Name of an existing Application list.
-	ApplicationList *string `pulumi:"applicationList"`
-	// Application ID list. The structure of `application` block is documented below.
-	Applications []FirewallSecurityPolicyApplication `pulumi:"applications"`
-	// Name of an existing Antivirus profile.
-	AvProfile *string `pulumi:"avProfile"`
-	// Name of an existing CIFS profile.
-	CifsProfile *string `pulumi:"cifsProfile"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Name of an existing DLP sensor.
-	DlpSensor *string `pulumi:"dlpSensor"`
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
-	// Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
-	Dstaddr4s []FirewallSecurityPolicyDstaddr4 `pulumi:"dstaddr4s"`
-	// Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
-	Dstaddr6s []FirewallSecurityPolicyDstaddr6 `pulumi:"dstaddr6s"`
-	// When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-	DstaddrNegate *string `pulumi:"dstaddrNegate"`
-	// Destination IPv4 address name and address group names. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallSecurityPolicyDstaddr `pulumi:"dstaddrs"`
-	// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
-	Dstintfs []FirewallSecurityPolicyDstintf `pulumi:"dstintfs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name of an existing email filter profile.
-	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
-	// Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
-	EnforceDefaultAppPort *string `pulumi:"enforceDefaultAppPort"`
-	// Name of an existing file-filter profile.
-	FileFilterProfile *string `pulumi:"fileFilterProfile"`
-	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
-	FssoGroups []FirewallSecurityPolicyFssoGroup `pulumi:"fssoGroups"`
-	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
-	Groups []FirewallSecurityPolicyGroup `pulumi:"groups"`
-	// Name of an existing ICAP profile.
-	IcapProfile *string `pulumi:"icapProfile"`
-	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
-	InternetService *string `pulumi:"internetService"`
-	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
-	InternetServiceCustomGroups []FirewallSecurityPolicyInternetServiceCustomGroup `pulumi:"internetServiceCustomGroups"`
-	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
-	InternetServiceCustoms []FirewallSecurityPolicyInternetServiceCustom `pulumi:"internetServiceCustoms"`
-	// Internet Service group name. The structure of `internetServiceGroup` block is documented below.
-	InternetServiceGroups []FirewallSecurityPolicyInternetServiceGroup `pulumi:"internetServiceGroups"`
-	// Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds []FirewallSecurityPolicyInternetServiceId `pulumi:"internetServiceIds"`
-	// Internet Service name. The structure of `internetServiceName` block is documented below.
-	InternetServiceNames []FirewallSecurityPolicyInternetServiceName `pulumi:"internetServiceNames"`
-	// When enabled internet-service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	InternetServiceNegate *string `pulumi:"internetServiceNegate"`
-	// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
-	InternetServiceSrc *string `pulumi:"internetServiceSrc"`
-	// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
-	InternetServiceSrcCustomGroups []FirewallSecurityPolicyInternetServiceSrcCustomGroup `pulumi:"internetServiceSrcCustomGroups"`
-	// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
-	InternetServiceSrcCustoms []FirewallSecurityPolicyInternetServiceSrcCustom `pulumi:"internetServiceSrcCustoms"`
-	// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
-	InternetServiceSrcGroups []FirewallSecurityPolicyInternetServiceSrcGroup `pulumi:"internetServiceSrcGroups"`
-	// Internet Service source ID. The structure of `internetServiceSrcId` block is documented below.
-	InternetServiceSrcIds []FirewallSecurityPolicyInternetServiceSrcId `pulumi:"internetServiceSrcIds"`
-	// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
-	InternetServiceSrcNames []FirewallSecurityPolicyInternetServiceSrcName `pulumi:"internetServiceSrcNames"`
-	// When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	InternetServiceSrcNegate *string `pulumi:"internetServiceSrcNegate"`
-	// Name of an existing IPS sensor.
-	IpsSensor *string `pulumi:"ipsSensor"`
-	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
-	LearningMode *string `pulumi:"learningMode"`
-	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
-	Logtraffic *string `pulumi:"logtraffic"`
-	// Record logs when a session starts. Valid values: `enable`, `disable`.
-	LogtrafficStart *string `pulumi:"logtrafficStart"`
-	// Names of FSSO groups.
-	Name *string `pulumi:"name"`
-	// Enable/disable NAT46. Valid values: `enable`, `disable`.
-	Nat46 *string `pulumi:"nat46"`
-	// Enable/disable NAT64. Valid values: `enable`, `disable`.
-	Nat64 *string `pulumi:"nat64"`
-	// Policy ID.
-	Policyid *int `pulumi:"policyid"`
-	// Name of profile group.
-	ProfileGroup *string `pulumi:"profileGroup"`
-	// Name of an existing Protocol options profile.
-	ProfileProtocolOptions *string `pulumi:"profileProtocolOptions"`
-	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-	ProfileType *string `pulumi:"profileType"`
-	// Schedule name.
-	Schedule *string `pulumi:"schedule"`
-	// Name of an existing SCTP filter profile.
-	SctpFilterProfile *string `pulumi:"sctpFilterProfile"`
-	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
-	SendDenyPacket *string `pulumi:"sendDenyPacket"`
-	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	ServiceNegate *string `pulumi:"serviceNegate"`
-	// Service and service group names. The structure of `service` block is documented below.
-	Services []FirewallSecurityPolicyService `pulumi:"services"`
-	// Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
-	Srcaddr4s []FirewallSecurityPolicySrcaddr4 `pulumi:"srcaddr4s"`
-	// Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
-	Srcaddr6s []FirewallSecurityPolicySrcaddr6 `pulumi:"srcaddr6s"`
-	// When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-	SrcaddrNegate *string `pulumi:"srcaddrNegate"`
-	// Source IPv4 address name and address group names. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallSecurityPolicySrcaddr `pulumi:"srcaddrs"`
-	// Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-	Srcintfs []FirewallSecurityPolicySrcintf `pulumi:"srcintfs"`
-	// Name of an existing SSH filter profile.
-	SshFilterProfile *string `pulumi:"sshFilterProfile"`
-	// Name of an existing SSL SSH profile.
-	SslSshProfile *string `pulumi:"sslSshProfile"`
-	// Enable or disable this policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// URL category ID list. The structure of `urlCategory` block is documented below.
-	UrlCategories []FirewallSecurityPolicyUrlCategory `pulumi:"urlCategories"`
-	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
-	Users []FirewallSecurityPolicyUser `pulumi:"users"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Name of an existing VideoFilter profile.
-	VideofilterProfile *string `pulumi:"videofilterProfile"`
-	// Name of an existing VoIP profile.
-	VoipProfile *string `pulumi:"voipProfile"`
-	// Name of an existing Web filter profile.
-	WebfilterProfile *string `pulumi:"webfilterProfile"`
+	Action                          *string                                                `pulumi:"action"`
+	AppCategories                   []FirewallSecurityPolicyAppCategory                    `pulumi:"appCategories"`
+	AppGroups                       []FirewallSecurityPolicyAppGroup                       `pulumi:"appGroups"`
+	ApplicationList                 *string                                                `pulumi:"applicationList"`
+	Applications                    []FirewallSecurityPolicyApplication                    `pulumi:"applications"`
+	AvProfile                       *string                                                `pulumi:"avProfile"`
+	CifsProfile                     *string                                                `pulumi:"cifsProfile"`
+	Comments                        *string                                                `pulumi:"comments"`
+	DlpProfile                      *string                                                `pulumi:"dlpProfile"`
+	DlpSensor                       *string                                                `pulumi:"dlpSensor"`
+	DnsfilterProfile                *string                                                `pulumi:"dnsfilterProfile"`
+	Dstaddr4s                       []FirewallSecurityPolicyDstaddr4                       `pulumi:"dstaddr4s"`
+	Dstaddr6s                       []FirewallSecurityPolicyDstaddr6                       `pulumi:"dstaddr6s"`
+	DstaddrNegate                   *string                                                `pulumi:"dstaddrNegate"`
+	Dstaddrs                        []FirewallSecurityPolicyDstaddr                        `pulumi:"dstaddrs"`
+	Dstintfs                        []FirewallSecurityPolicyDstintf                        `pulumi:"dstintfs"`
+	DynamicSortSubtable             *string                                                `pulumi:"dynamicSortSubtable"`
+	EmailfilterProfile              *string                                                `pulumi:"emailfilterProfile"`
+	EnforceDefaultAppPort           *string                                                `pulumi:"enforceDefaultAppPort"`
+	FileFilterProfile               *string                                                `pulumi:"fileFilterProfile"`
+	FssoGroups                      []FirewallSecurityPolicyFssoGroup                      `pulumi:"fssoGroups"`
+	Groups                          []FirewallSecurityPolicyGroup                          `pulumi:"groups"`
+	IcapProfile                     *string                                                `pulumi:"icapProfile"`
+	InternetService                 *string                                                `pulumi:"internetService"`
+	InternetService6                *string                                                `pulumi:"internetService6"`
+	InternetService6CustomGroups    []FirewallSecurityPolicyInternetService6CustomGroup    `pulumi:"internetService6CustomGroups"`
+	InternetService6Customs         []FirewallSecurityPolicyInternetService6Custom         `pulumi:"internetService6Customs"`
+	InternetService6Groups          []FirewallSecurityPolicyInternetService6Group          `pulumi:"internetService6Groups"`
+	InternetService6Names           []FirewallSecurityPolicyInternetService6Name           `pulumi:"internetService6Names"`
+	InternetService6Negate          *string                                                `pulumi:"internetService6Negate"`
+	InternetService6Src             *string                                                `pulumi:"internetService6Src"`
+	InternetService6SrcCustomGroups []FirewallSecurityPolicyInternetService6SrcCustomGroup `pulumi:"internetService6SrcCustomGroups"`
+	InternetService6SrcCustoms      []FirewallSecurityPolicyInternetService6SrcCustom      `pulumi:"internetService6SrcCustoms"`
+	InternetService6SrcGroups       []FirewallSecurityPolicyInternetService6SrcGroup       `pulumi:"internetService6SrcGroups"`
+	InternetService6SrcNames        []FirewallSecurityPolicyInternetService6SrcName        `pulumi:"internetService6SrcNames"`
+	InternetService6SrcNegate       *string                                                `pulumi:"internetService6SrcNegate"`
+	InternetServiceCustomGroups     []FirewallSecurityPolicyInternetServiceCustomGroup     `pulumi:"internetServiceCustomGroups"`
+	InternetServiceCustoms          []FirewallSecurityPolicyInternetServiceCustom          `pulumi:"internetServiceCustoms"`
+	InternetServiceGroups           []FirewallSecurityPolicyInternetServiceGroup           `pulumi:"internetServiceGroups"`
+	InternetServiceIds              []FirewallSecurityPolicyInternetServiceId              `pulumi:"internetServiceIds"`
+	InternetServiceNames            []FirewallSecurityPolicyInternetServiceName            `pulumi:"internetServiceNames"`
+	InternetServiceNegate           *string                                                `pulumi:"internetServiceNegate"`
+	InternetServiceSrc              *string                                                `pulumi:"internetServiceSrc"`
+	InternetServiceSrcCustomGroups  []FirewallSecurityPolicyInternetServiceSrcCustomGroup  `pulumi:"internetServiceSrcCustomGroups"`
+	InternetServiceSrcCustoms       []FirewallSecurityPolicyInternetServiceSrcCustom       `pulumi:"internetServiceSrcCustoms"`
+	InternetServiceSrcGroups        []FirewallSecurityPolicyInternetServiceSrcGroup        `pulumi:"internetServiceSrcGroups"`
+	InternetServiceSrcIds           []FirewallSecurityPolicyInternetServiceSrcId           `pulumi:"internetServiceSrcIds"`
+	InternetServiceSrcNames         []FirewallSecurityPolicyInternetServiceSrcName         `pulumi:"internetServiceSrcNames"`
+	InternetServiceSrcNegate        *string                                                `pulumi:"internetServiceSrcNegate"`
+	IpsSensor                       *string                                                `pulumi:"ipsSensor"`
+	LearningMode                    *string                                                `pulumi:"learningMode"`
+	Logtraffic                      *string                                                `pulumi:"logtraffic"`
+	LogtrafficStart                 *string                                                `pulumi:"logtrafficStart"`
+	Name                            *string                                                `pulumi:"name"`
+	Nat46                           *string                                                `pulumi:"nat46"`
+	Nat64                           *string                                                `pulumi:"nat64"`
+	Policyid                        *int                                                   `pulumi:"policyid"`
+	ProfileGroup                    *string                                                `pulumi:"profileGroup"`
+	ProfileProtocolOptions          *string                                                `pulumi:"profileProtocolOptions"`
+	ProfileType                     *string                                                `pulumi:"profileType"`
+	Schedule                        *string                                                `pulumi:"schedule"`
+	SctpFilterProfile               *string                                                `pulumi:"sctpFilterProfile"`
+	SendDenyPacket                  *string                                                `pulumi:"sendDenyPacket"`
+	ServiceNegate                   *string                                                `pulumi:"serviceNegate"`
+	Services                        []FirewallSecurityPolicyService                        `pulumi:"services"`
+	Srcaddr4s                       []FirewallSecurityPolicySrcaddr4                       `pulumi:"srcaddr4s"`
+	Srcaddr6s                       []FirewallSecurityPolicySrcaddr6                       `pulumi:"srcaddr6s"`
+	SrcaddrNegate                   *string                                                `pulumi:"srcaddrNegate"`
+	Srcaddrs                        []FirewallSecurityPolicySrcaddr                        `pulumi:"srcaddrs"`
+	Srcintfs                        []FirewallSecurityPolicySrcintf                        `pulumi:"srcintfs"`
+	SshFilterProfile                *string                                                `pulumi:"sshFilterProfile"`
+	SslSshProfile                   *string                                                `pulumi:"sslSshProfile"`
+	Status                          *string                                                `pulumi:"status"`
+	UrlCategories                   []FirewallSecurityPolicyUrlCategory                    `pulumi:"urlCategories"`
+	Users                           []FirewallSecurityPolicyUser                           `pulumi:"users"`
+	Uuid                            *string                                                `pulumi:"uuid"`
+	Vdomparam                       *string                                                `pulumi:"vdomparam"`
+	VideofilterProfile              *string                                                `pulumi:"videofilterProfile"`
+	VoipProfile                     *string                                                `pulumi:"voipProfile"`
+	WebfilterProfile                *string                                                `pulumi:"webfilterProfile"`
 }
 
 type FirewallSecurityPolicyState struct {
-	// Policy action (accept/deny). Valid values: `accept`, `deny`.
-	Action pulumi.StringPtrInput
-	// Application category ID list. The structure of `appCategory` block is documented below.
-	AppCategories FirewallSecurityPolicyAppCategoryArrayInput
-	// Application group names. The structure of `appGroup` block is documented below.
-	AppGroups FirewallSecurityPolicyAppGroupArrayInput
-	// Name of an existing Application list.
-	ApplicationList pulumi.StringPtrInput
-	// Application ID list. The structure of `application` block is documented below.
-	Applications FirewallSecurityPolicyApplicationArrayInput
-	// Name of an existing Antivirus profile.
-	AvProfile pulumi.StringPtrInput
-	// Name of an existing CIFS profile.
-	CifsProfile pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Name of an existing DLP sensor.
-	DlpSensor pulumi.StringPtrInput
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile pulumi.StringPtrInput
-	// Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
-	Dstaddr4s FirewallSecurityPolicyDstaddr4ArrayInput
-	// Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
-	Dstaddr6s FirewallSecurityPolicyDstaddr6ArrayInput
-	// When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-	DstaddrNegate pulumi.StringPtrInput
-	// Destination IPv4 address name and address group names. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallSecurityPolicyDstaddrArrayInput
-	// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
-	Dstintfs FirewallSecurityPolicyDstintfArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Name of an existing email filter profile.
-	EmailfilterProfile pulumi.StringPtrInput
-	// Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
-	EnforceDefaultAppPort pulumi.StringPtrInput
-	// Name of an existing file-filter profile.
-	FileFilterProfile pulumi.StringPtrInput
-	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
-	FssoGroups FirewallSecurityPolicyFssoGroupArrayInput
-	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
-	Groups FirewallSecurityPolicyGroupArrayInput
-	// Name of an existing ICAP profile.
-	IcapProfile pulumi.StringPtrInput
-	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
-	InternetService pulumi.StringPtrInput
-	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
-	InternetServiceCustomGroups FirewallSecurityPolicyInternetServiceCustomGroupArrayInput
-	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
-	InternetServiceCustoms FirewallSecurityPolicyInternetServiceCustomArrayInput
-	// Internet Service group name. The structure of `internetServiceGroup` block is documented below.
-	InternetServiceGroups FirewallSecurityPolicyInternetServiceGroupArrayInput
-	// Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds FirewallSecurityPolicyInternetServiceIdArrayInput
-	// Internet Service name. The structure of `internetServiceName` block is documented below.
-	InternetServiceNames FirewallSecurityPolicyInternetServiceNameArrayInput
-	// When enabled internet-service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	InternetServiceNegate pulumi.StringPtrInput
-	// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
-	InternetServiceSrc pulumi.StringPtrInput
-	// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
-	InternetServiceSrcCustomGroups FirewallSecurityPolicyInternetServiceSrcCustomGroupArrayInput
-	// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
-	InternetServiceSrcCustoms FirewallSecurityPolicyInternetServiceSrcCustomArrayInput
-	// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
-	InternetServiceSrcGroups FirewallSecurityPolicyInternetServiceSrcGroupArrayInput
-	// Internet Service source ID. The structure of `internetServiceSrcId` block is documented below.
-	InternetServiceSrcIds FirewallSecurityPolicyInternetServiceSrcIdArrayInput
-	// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
-	InternetServiceSrcNames FirewallSecurityPolicyInternetServiceSrcNameArrayInput
-	// When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	InternetServiceSrcNegate pulumi.StringPtrInput
-	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringPtrInput
-	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
-	LearningMode pulumi.StringPtrInput
-	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
-	Logtraffic pulumi.StringPtrInput
-	// Record logs when a session starts. Valid values: `enable`, `disable`.
-	LogtrafficStart pulumi.StringPtrInput
-	// Names of FSSO groups.
-	Name pulumi.StringPtrInput
-	// Enable/disable NAT46. Valid values: `enable`, `disable`.
-	Nat46 pulumi.StringPtrInput
-	// Enable/disable NAT64. Valid values: `enable`, `disable`.
-	Nat64 pulumi.StringPtrInput
-	// Policy ID.
-	Policyid pulumi.IntPtrInput
-	// Name of profile group.
-	ProfileGroup pulumi.StringPtrInput
-	// Name of an existing Protocol options profile.
-	ProfileProtocolOptions pulumi.StringPtrInput
-	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-	ProfileType pulumi.StringPtrInput
-	// Schedule name.
-	Schedule pulumi.StringPtrInput
-	// Name of an existing SCTP filter profile.
-	SctpFilterProfile pulumi.StringPtrInput
-	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
-	SendDenyPacket pulumi.StringPtrInput
-	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	ServiceNegate pulumi.StringPtrInput
-	// Service and service group names. The structure of `service` block is documented below.
-	Services FirewallSecurityPolicyServiceArrayInput
-	// Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
-	Srcaddr4s FirewallSecurityPolicySrcaddr4ArrayInput
-	// Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
-	Srcaddr6s FirewallSecurityPolicySrcaddr6ArrayInput
-	// When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-	SrcaddrNegate pulumi.StringPtrInput
-	// Source IPv4 address name and address group names. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallSecurityPolicySrcaddrArrayInput
-	// Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-	Srcintfs FirewallSecurityPolicySrcintfArrayInput
-	// Name of an existing SSH filter profile.
-	SshFilterProfile pulumi.StringPtrInput
-	// Name of an existing SSL SSH profile.
-	SslSshProfile pulumi.StringPtrInput
-	// Enable or disable this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// URL category ID list. The structure of `urlCategory` block is documented below.
-	UrlCategories FirewallSecurityPolicyUrlCategoryArrayInput
-	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
-	Users FirewallSecurityPolicyUserArrayInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Name of an existing VideoFilter profile.
-	VideofilterProfile pulumi.StringPtrInput
-	// Name of an existing VoIP profile.
-	VoipProfile pulumi.StringPtrInput
-	// Name of an existing Web filter profile.
-	WebfilterProfile pulumi.StringPtrInput
+	Action                          pulumi.StringPtrInput
+	AppCategories                   FirewallSecurityPolicyAppCategoryArrayInput
+	AppGroups                       FirewallSecurityPolicyAppGroupArrayInput
+	ApplicationList                 pulumi.StringPtrInput
+	Applications                    FirewallSecurityPolicyApplicationArrayInput
+	AvProfile                       pulumi.StringPtrInput
+	CifsProfile                     pulumi.StringPtrInput
+	Comments                        pulumi.StringPtrInput
+	DlpProfile                      pulumi.StringPtrInput
+	DlpSensor                       pulumi.StringPtrInput
+	DnsfilterProfile                pulumi.StringPtrInput
+	Dstaddr4s                       FirewallSecurityPolicyDstaddr4ArrayInput
+	Dstaddr6s                       FirewallSecurityPolicyDstaddr6ArrayInput
+	DstaddrNegate                   pulumi.StringPtrInput
+	Dstaddrs                        FirewallSecurityPolicyDstaddrArrayInput
+	Dstintfs                        FirewallSecurityPolicyDstintfArrayInput
+	DynamicSortSubtable             pulumi.StringPtrInput
+	EmailfilterProfile              pulumi.StringPtrInput
+	EnforceDefaultAppPort           pulumi.StringPtrInput
+	FileFilterProfile               pulumi.StringPtrInput
+	FssoGroups                      FirewallSecurityPolicyFssoGroupArrayInput
+	Groups                          FirewallSecurityPolicyGroupArrayInput
+	IcapProfile                     pulumi.StringPtrInput
+	InternetService                 pulumi.StringPtrInput
+	InternetService6                pulumi.StringPtrInput
+	InternetService6CustomGroups    FirewallSecurityPolicyInternetService6CustomGroupArrayInput
+	InternetService6Customs         FirewallSecurityPolicyInternetService6CustomArrayInput
+	InternetService6Groups          FirewallSecurityPolicyInternetService6GroupArrayInput
+	InternetService6Names           FirewallSecurityPolicyInternetService6NameArrayInput
+	InternetService6Negate          pulumi.StringPtrInput
+	InternetService6Src             pulumi.StringPtrInput
+	InternetService6SrcCustomGroups FirewallSecurityPolicyInternetService6SrcCustomGroupArrayInput
+	InternetService6SrcCustoms      FirewallSecurityPolicyInternetService6SrcCustomArrayInput
+	InternetService6SrcGroups       FirewallSecurityPolicyInternetService6SrcGroupArrayInput
+	InternetService6SrcNames        FirewallSecurityPolicyInternetService6SrcNameArrayInput
+	InternetService6SrcNegate       pulumi.StringPtrInput
+	InternetServiceCustomGroups     FirewallSecurityPolicyInternetServiceCustomGroupArrayInput
+	InternetServiceCustoms          FirewallSecurityPolicyInternetServiceCustomArrayInput
+	InternetServiceGroups           FirewallSecurityPolicyInternetServiceGroupArrayInput
+	InternetServiceIds              FirewallSecurityPolicyInternetServiceIdArrayInput
+	InternetServiceNames            FirewallSecurityPolicyInternetServiceNameArrayInput
+	InternetServiceNegate           pulumi.StringPtrInput
+	InternetServiceSrc              pulumi.StringPtrInput
+	InternetServiceSrcCustomGroups  FirewallSecurityPolicyInternetServiceSrcCustomGroupArrayInput
+	InternetServiceSrcCustoms       FirewallSecurityPolicyInternetServiceSrcCustomArrayInput
+	InternetServiceSrcGroups        FirewallSecurityPolicyInternetServiceSrcGroupArrayInput
+	InternetServiceSrcIds           FirewallSecurityPolicyInternetServiceSrcIdArrayInput
+	InternetServiceSrcNames         FirewallSecurityPolicyInternetServiceSrcNameArrayInput
+	InternetServiceSrcNegate        pulumi.StringPtrInput
+	IpsSensor                       pulumi.StringPtrInput
+	LearningMode                    pulumi.StringPtrInput
+	Logtraffic                      pulumi.StringPtrInput
+	LogtrafficStart                 pulumi.StringPtrInput
+	Name                            pulumi.StringPtrInput
+	Nat46                           pulumi.StringPtrInput
+	Nat64                           pulumi.StringPtrInput
+	Policyid                        pulumi.IntPtrInput
+	ProfileGroup                    pulumi.StringPtrInput
+	ProfileProtocolOptions          pulumi.StringPtrInput
+	ProfileType                     pulumi.StringPtrInput
+	Schedule                        pulumi.StringPtrInput
+	SctpFilterProfile               pulumi.StringPtrInput
+	SendDenyPacket                  pulumi.StringPtrInput
+	ServiceNegate                   pulumi.StringPtrInput
+	Services                        FirewallSecurityPolicyServiceArrayInput
+	Srcaddr4s                       FirewallSecurityPolicySrcaddr4ArrayInput
+	Srcaddr6s                       FirewallSecurityPolicySrcaddr6ArrayInput
+	SrcaddrNegate                   pulumi.StringPtrInput
+	Srcaddrs                        FirewallSecurityPolicySrcaddrArrayInput
+	Srcintfs                        FirewallSecurityPolicySrcintfArrayInput
+	SshFilterProfile                pulumi.StringPtrInput
+	SslSshProfile                   pulumi.StringPtrInput
+	Status                          pulumi.StringPtrInput
+	UrlCategories                   FirewallSecurityPolicyUrlCategoryArrayInput
+	Users                           FirewallSecurityPolicyUserArrayInput
+	Uuid                            pulumi.StringPtrInput
+	Vdomparam                       pulumi.StringPtrInput
+	VideofilterProfile              pulumi.StringPtrInput
+	VoipProfile                     pulumi.StringPtrInput
+	WebfilterProfile                pulumi.StringPtrInput
 }
 
 func (FirewallSecurityPolicyState) ElementType() reflect.Type {
@@ -524,278 +295,170 @@ func (FirewallSecurityPolicyState) ElementType() reflect.Type {
 }
 
 type firewallSecurityPolicyArgs struct {
-	// Policy action (accept/deny). Valid values: `accept`, `deny`.
-	Action *string `pulumi:"action"`
-	// Application category ID list. The structure of `appCategory` block is documented below.
-	AppCategories []FirewallSecurityPolicyAppCategory `pulumi:"appCategories"`
-	// Application group names. The structure of `appGroup` block is documented below.
-	AppGroups []FirewallSecurityPolicyAppGroup `pulumi:"appGroups"`
-	// Name of an existing Application list.
-	ApplicationList *string `pulumi:"applicationList"`
-	// Application ID list. The structure of `application` block is documented below.
-	Applications []FirewallSecurityPolicyApplication `pulumi:"applications"`
-	// Name of an existing Antivirus profile.
-	AvProfile *string `pulumi:"avProfile"`
-	// Name of an existing CIFS profile.
-	CifsProfile *string `pulumi:"cifsProfile"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Name of an existing DLP sensor.
-	DlpSensor *string `pulumi:"dlpSensor"`
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
-	// Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
-	Dstaddr4s []FirewallSecurityPolicyDstaddr4 `pulumi:"dstaddr4s"`
-	// Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
-	Dstaddr6s []FirewallSecurityPolicyDstaddr6 `pulumi:"dstaddr6s"`
-	// When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-	DstaddrNegate *string `pulumi:"dstaddrNegate"`
-	// Destination IPv4 address name and address group names. The structure of `dstaddr` block is documented below.
-	Dstaddrs []FirewallSecurityPolicyDstaddr `pulumi:"dstaddrs"`
-	// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
-	Dstintfs []FirewallSecurityPolicyDstintf `pulumi:"dstintfs"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name of an existing email filter profile.
-	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
-	// Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
-	EnforceDefaultAppPort *string `pulumi:"enforceDefaultAppPort"`
-	// Name of an existing file-filter profile.
-	FileFilterProfile *string `pulumi:"fileFilterProfile"`
-	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
-	FssoGroups []FirewallSecurityPolicyFssoGroup `pulumi:"fssoGroups"`
-	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
-	Groups []FirewallSecurityPolicyGroup `pulumi:"groups"`
-	// Name of an existing ICAP profile.
-	IcapProfile *string `pulumi:"icapProfile"`
-	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
-	InternetService *string `pulumi:"internetService"`
-	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
-	InternetServiceCustomGroups []FirewallSecurityPolicyInternetServiceCustomGroup `pulumi:"internetServiceCustomGroups"`
-	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
-	InternetServiceCustoms []FirewallSecurityPolicyInternetServiceCustom `pulumi:"internetServiceCustoms"`
-	// Internet Service group name. The structure of `internetServiceGroup` block is documented below.
-	InternetServiceGroups []FirewallSecurityPolicyInternetServiceGroup `pulumi:"internetServiceGroups"`
-	// Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds []FirewallSecurityPolicyInternetServiceId `pulumi:"internetServiceIds"`
-	// Internet Service name. The structure of `internetServiceName` block is documented below.
-	InternetServiceNames []FirewallSecurityPolicyInternetServiceName `pulumi:"internetServiceNames"`
-	// When enabled internet-service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	InternetServiceNegate *string `pulumi:"internetServiceNegate"`
-	// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
-	InternetServiceSrc *string `pulumi:"internetServiceSrc"`
-	// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
-	InternetServiceSrcCustomGroups []FirewallSecurityPolicyInternetServiceSrcCustomGroup `pulumi:"internetServiceSrcCustomGroups"`
-	// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
-	InternetServiceSrcCustoms []FirewallSecurityPolicyInternetServiceSrcCustom `pulumi:"internetServiceSrcCustoms"`
-	// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
-	InternetServiceSrcGroups []FirewallSecurityPolicyInternetServiceSrcGroup `pulumi:"internetServiceSrcGroups"`
-	// Internet Service source ID. The structure of `internetServiceSrcId` block is documented below.
-	InternetServiceSrcIds []FirewallSecurityPolicyInternetServiceSrcId `pulumi:"internetServiceSrcIds"`
-	// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
-	InternetServiceSrcNames []FirewallSecurityPolicyInternetServiceSrcName `pulumi:"internetServiceSrcNames"`
-	// When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	InternetServiceSrcNegate *string `pulumi:"internetServiceSrcNegate"`
-	// Name of an existing IPS sensor.
-	IpsSensor *string `pulumi:"ipsSensor"`
-	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
-	LearningMode *string `pulumi:"learningMode"`
-	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
-	Logtraffic *string `pulumi:"logtraffic"`
-	// Record logs when a session starts. Valid values: `enable`, `disable`.
-	LogtrafficStart *string `pulumi:"logtrafficStart"`
-	// Names of FSSO groups.
-	Name *string `pulumi:"name"`
-	// Enable/disable NAT46. Valid values: `enable`, `disable`.
-	Nat46 *string `pulumi:"nat46"`
-	// Enable/disable NAT64. Valid values: `enable`, `disable`.
-	Nat64 *string `pulumi:"nat64"`
-	// Policy ID.
-	Policyid *int `pulumi:"policyid"`
-	// Name of profile group.
-	ProfileGroup *string `pulumi:"profileGroup"`
-	// Name of an existing Protocol options profile.
-	ProfileProtocolOptions *string `pulumi:"profileProtocolOptions"`
-	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-	ProfileType *string `pulumi:"profileType"`
-	// Schedule name.
-	Schedule *string `pulumi:"schedule"`
-	// Name of an existing SCTP filter profile.
-	SctpFilterProfile *string `pulumi:"sctpFilterProfile"`
-	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
-	SendDenyPacket *string `pulumi:"sendDenyPacket"`
-	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	ServiceNegate *string `pulumi:"serviceNegate"`
-	// Service and service group names. The structure of `service` block is documented below.
-	Services []FirewallSecurityPolicyService `pulumi:"services"`
-	// Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
-	Srcaddr4s []FirewallSecurityPolicySrcaddr4 `pulumi:"srcaddr4s"`
-	// Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
-	Srcaddr6s []FirewallSecurityPolicySrcaddr6 `pulumi:"srcaddr6s"`
-	// When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-	SrcaddrNegate *string `pulumi:"srcaddrNegate"`
-	// Source IPv4 address name and address group names. The structure of `srcaddr` block is documented below.
-	Srcaddrs []FirewallSecurityPolicySrcaddr `pulumi:"srcaddrs"`
-	// Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-	Srcintfs []FirewallSecurityPolicySrcintf `pulumi:"srcintfs"`
-	// Name of an existing SSH filter profile.
-	SshFilterProfile *string `pulumi:"sshFilterProfile"`
-	// Name of an existing SSL SSH profile.
-	SslSshProfile *string `pulumi:"sslSshProfile"`
-	// Enable or disable this policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// URL category ID list. The structure of `urlCategory` block is documented below.
-	UrlCategories []FirewallSecurityPolicyUrlCategory `pulumi:"urlCategories"`
-	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
-	Users []FirewallSecurityPolicyUser `pulumi:"users"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Name of an existing VideoFilter profile.
-	VideofilterProfile *string `pulumi:"videofilterProfile"`
-	// Name of an existing VoIP profile.
-	VoipProfile *string `pulumi:"voipProfile"`
-	// Name of an existing Web filter profile.
-	WebfilterProfile *string `pulumi:"webfilterProfile"`
+	Action                          *string                                                `pulumi:"action"`
+	AppCategories                   []FirewallSecurityPolicyAppCategory                    `pulumi:"appCategories"`
+	AppGroups                       []FirewallSecurityPolicyAppGroup                       `pulumi:"appGroups"`
+	ApplicationList                 *string                                                `pulumi:"applicationList"`
+	Applications                    []FirewallSecurityPolicyApplication                    `pulumi:"applications"`
+	AvProfile                       *string                                                `pulumi:"avProfile"`
+	CifsProfile                     *string                                                `pulumi:"cifsProfile"`
+	Comments                        *string                                                `pulumi:"comments"`
+	DlpProfile                      *string                                                `pulumi:"dlpProfile"`
+	DlpSensor                       *string                                                `pulumi:"dlpSensor"`
+	DnsfilterProfile                *string                                                `pulumi:"dnsfilterProfile"`
+	Dstaddr4s                       []FirewallSecurityPolicyDstaddr4                       `pulumi:"dstaddr4s"`
+	Dstaddr6s                       []FirewallSecurityPolicyDstaddr6                       `pulumi:"dstaddr6s"`
+	DstaddrNegate                   *string                                                `pulumi:"dstaddrNegate"`
+	Dstaddrs                        []FirewallSecurityPolicyDstaddr                        `pulumi:"dstaddrs"`
+	Dstintfs                        []FirewallSecurityPolicyDstintf                        `pulumi:"dstintfs"`
+	DynamicSortSubtable             *string                                                `pulumi:"dynamicSortSubtable"`
+	EmailfilterProfile              *string                                                `pulumi:"emailfilterProfile"`
+	EnforceDefaultAppPort           *string                                                `pulumi:"enforceDefaultAppPort"`
+	FileFilterProfile               *string                                                `pulumi:"fileFilterProfile"`
+	FssoGroups                      []FirewallSecurityPolicyFssoGroup                      `pulumi:"fssoGroups"`
+	Groups                          []FirewallSecurityPolicyGroup                          `pulumi:"groups"`
+	IcapProfile                     *string                                                `pulumi:"icapProfile"`
+	InternetService                 *string                                                `pulumi:"internetService"`
+	InternetService6                *string                                                `pulumi:"internetService6"`
+	InternetService6CustomGroups    []FirewallSecurityPolicyInternetService6CustomGroup    `pulumi:"internetService6CustomGroups"`
+	InternetService6Customs         []FirewallSecurityPolicyInternetService6Custom         `pulumi:"internetService6Customs"`
+	InternetService6Groups          []FirewallSecurityPolicyInternetService6Group          `pulumi:"internetService6Groups"`
+	InternetService6Names           []FirewallSecurityPolicyInternetService6Name           `pulumi:"internetService6Names"`
+	InternetService6Negate          *string                                                `pulumi:"internetService6Negate"`
+	InternetService6Src             *string                                                `pulumi:"internetService6Src"`
+	InternetService6SrcCustomGroups []FirewallSecurityPolicyInternetService6SrcCustomGroup `pulumi:"internetService6SrcCustomGroups"`
+	InternetService6SrcCustoms      []FirewallSecurityPolicyInternetService6SrcCustom      `pulumi:"internetService6SrcCustoms"`
+	InternetService6SrcGroups       []FirewallSecurityPolicyInternetService6SrcGroup       `pulumi:"internetService6SrcGroups"`
+	InternetService6SrcNames        []FirewallSecurityPolicyInternetService6SrcName        `pulumi:"internetService6SrcNames"`
+	InternetService6SrcNegate       *string                                                `pulumi:"internetService6SrcNegate"`
+	InternetServiceCustomGroups     []FirewallSecurityPolicyInternetServiceCustomGroup     `pulumi:"internetServiceCustomGroups"`
+	InternetServiceCustoms          []FirewallSecurityPolicyInternetServiceCustom          `pulumi:"internetServiceCustoms"`
+	InternetServiceGroups           []FirewallSecurityPolicyInternetServiceGroup           `pulumi:"internetServiceGroups"`
+	InternetServiceIds              []FirewallSecurityPolicyInternetServiceId              `pulumi:"internetServiceIds"`
+	InternetServiceNames            []FirewallSecurityPolicyInternetServiceName            `pulumi:"internetServiceNames"`
+	InternetServiceNegate           *string                                                `pulumi:"internetServiceNegate"`
+	InternetServiceSrc              *string                                                `pulumi:"internetServiceSrc"`
+	InternetServiceSrcCustomGroups  []FirewallSecurityPolicyInternetServiceSrcCustomGroup  `pulumi:"internetServiceSrcCustomGroups"`
+	InternetServiceSrcCustoms       []FirewallSecurityPolicyInternetServiceSrcCustom       `pulumi:"internetServiceSrcCustoms"`
+	InternetServiceSrcGroups        []FirewallSecurityPolicyInternetServiceSrcGroup        `pulumi:"internetServiceSrcGroups"`
+	InternetServiceSrcIds           []FirewallSecurityPolicyInternetServiceSrcId           `pulumi:"internetServiceSrcIds"`
+	InternetServiceSrcNames         []FirewallSecurityPolicyInternetServiceSrcName         `pulumi:"internetServiceSrcNames"`
+	InternetServiceSrcNegate        *string                                                `pulumi:"internetServiceSrcNegate"`
+	IpsSensor                       *string                                                `pulumi:"ipsSensor"`
+	LearningMode                    *string                                                `pulumi:"learningMode"`
+	Logtraffic                      *string                                                `pulumi:"logtraffic"`
+	LogtrafficStart                 *string                                                `pulumi:"logtrafficStart"`
+	Name                            *string                                                `pulumi:"name"`
+	Nat46                           *string                                                `pulumi:"nat46"`
+	Nat64                           *string                                                `pulumi:"nat64"`
+	Policyid                        *int                                                   `pulumi:"policyid"`
+	ProfileGroup                    *string                                                `pulumi:"profileGroup"`
+	ProfileProtocolOptions          *string                                                `pulumi:"profileProtocolOptions"`
+	ProfileType                     *string                                                `pulumi:"profileType"`
+	Schedule                        *string                                                `pulumi:"schedule"`
+	SctpFilterProfile               *string                                                `pulumi:"sctpFilterProfile"`
+	SendDenyPacket                  *string                                                `pulumi:"sendDenyPacket"`
+	ServiceNegate                   *string                                                `pulumi:"serviceNegate"`
+	Services                        []FirewallSecurityPolicyService                        `pulumi:"services"`
+	Srcaddr4s                       []FirewallSecurityPolicySrcaddr4                       `pulumi:"srcaddr4s"`
+	Srcaddr6s                       []FirewallSecurityPolicySrcaddr6                       `pulumi:"srcaddr6s"`
+	SrcaddrNegate                   *string                                                `pulumi:"srcaddrNegate"`
+	Srcaddrs                        []FirewallSecurityPolicySrcaddr                        `pulumi:"srcaddrs"`
+	Srcintfs                        []FirewallSecurityPolicySrcintf                        `pulumi:"srcintfs"`
+	SshFilterProfile                *string                                                `pulumi:"sshFilterProfile"`
+	SslSshProfile                   *string                                                `pulumi:"sslSshProfile"`
+	Status                          *string                                                `pulumi:"status"`
+	UrlCategories                   []FirewallSecurityPolicyUrlCategory                    `pulumi:"urlCategories"`
+	Users                           []FirewallSecurityPolicyUser                           `pulumi:"users"`
+	Uuid                            *string                                                `pulumi:"uuid"`
+	Vdomparam                       *string                                                `pulumi:"vdomparam"`
+	VideofilterProfile              *string                                                `pulumi:"videofilterProfile"`
+	VoipProfile                     *string                                                `pulumi:"voipProfile"`
+	WebfilterProfile                *string                                                `pulumi:"webfilterProfile"`
 }
 
 // The set of arguments for constructing a FirewallSecurityPolicy resource.
 type FirewallSecurityPolicyArgs struct {
-	// Policy action (accept/deny). Valid values: `accept`, `deny`.
-	Action pulumi.StringPtrInput
-	// Application category ID list. The structure of `appCategory` block is documented below.
-	AppCategories FirewallSecurityPolicyAppCategoryArrayInput
-	// Application group names. The structure of `appGroup` block is documented below.
-	AppGroups FirewallSecurityPolicyAppGroupArrayInput
-	// Name of an existing Application list.
-	ApplicationList pulumi.StringPtrInput
-	// Application ID list. The structure of `application` block is documented below.
-	Applications FirewallSecurityPolicyApplicationArrayInput
-	// Name of an existing Antivirus profile.
-	AvProfile pulumi.StringPtrInput
-	// Name of an existing CIFS profile.
-	CifsProfile pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Name of an existing DLP sensor.
-	DlpSensor pulumi.StringPtrInput
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile pulumi.StringPtrInput
-	// Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
-	Dstaddr4s FirewallSecurityPolicyDstaddr4ArrayInput
-	// Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
-	Dstaddr6s FirewallSecurityPolicyDstaddr6ArrayInput
-	// When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
-	DstaddrNegate pulumi.StringPtrInput
-	// Destination IPv4 address name and address group names. The structure of `dstaddr` block is documented below.
-	Dstaddrs FirewallSecurityPolicyDstaddrArrayInput
-	// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
-	Dstintfs FirewallSecurityPolicyDstintfArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Name of an existing email filter profile.
-	EmailfilterProfile pulumi.StringPtrInput
-	// Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
-	EnforceDefaultAppPort pulumi.StringPtrInput
-	// Name of an existing file-filter profile.
-	FileFilterProfile pulumi.StringPtrInput
-	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
-	FssoGroups FirewallSecurityPolicyFssoGroupArrayInput
-	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
-	Groups FirewallSecurityPolicyGroupArrayInput
-	// Name of an existing ICAP profile.
-	IcapProfile pulumi.StringPtrInput
-	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
-	InternetService pulumi.StringPtrInput
-	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
-	InternetServiceCustomGroups FirewallSecurityPolicyInternetServiceCustomGroupArrayInput
-	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
-	InternetServiceCustoms FirewallSecurityPolicyInternetServiceCustomArrayInput
-	// Internet Service group name. The structure of `internetServiceGroup` block is documented below.
-	InternetServiceGroups FirewallSecurityPolicyInternetServiceGroupArrayInput
-	// Internet Service ID. The structure of `internetServiceId` block is documented below.
-	InternetServiceIds FirewallSecurityPolicyInternetServiceIdArrayInput
-	// Internet Service name. The structure of `internetServiceName` block is documented below.
-	InternetServiceNames FirewallSecurityPolicyInternetServiceNameArrayInput
-	// When enabled internet-service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	InternetServiceNegate pulumi.StringPtrInput
-	// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
-	InternetServiceSrc pulumi.StringPtrInput
-	// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
-	InternetServiceSrcCustomGroups FirewallSecurityPolicyInternetServiceSrcCustomGroupArrayInput
-	// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
-	InternetServiceSrcCustoms FirewallSecurityPolicyInternetServiceSrcCustomArrayInput
-	// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
-	InternetServiceSrcGroups FirewallSecurityPolicyInternetServiceSrcGroupArrayInput
-	// Internet Service source ID. The structure of `internetServiceSrcId` block is documented below.
-	InternetServiceSrcIds FirewallSecurityPolicyInternetServiceSrcIdArrayInput
-	// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
-	InternetServiceSrcNames FirewallSecurityPolicyInternetServiceSrcNameArrayInput
-	// When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	InternetServiceSrcNegate pulumi.StringPtrInput
-	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringPtrInput
-	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
-	LearningMode pulumi.StringPtrInput
-	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
-	Logtraffic pulumi.StringPtrInput
-	// Record logs when a session starts. Valid values: `enable`, `disable`.
-	LogtrafficStart pulumi.StringPtrInput
-	// Names of FSSO groups.
-	Name pulumi.StringPtrInput
-	// Enable/disable NAT46. Valid values: `enable`, `disable`.
-	Nat46 pulumi.StringPtrInput
-	// Enable/disable NAT64. Valid values: `enable`, `disable`.
-	Nat64 pulumi.StringPtrInput
-	// Policy ID.
-	Policyid pulumi.IntPtrInput
-	// Name of profile group.
-	ProfileGroup pulumi.StringPtrInput
-	// Name of an existing Protocol options profile.
-	ProfileProtocolOptions pulumi.StringPtrInput
-	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-	ProfileType pulumi.StringPtrInput
-	// Schedule name.
-	Schedule pulumi.StringPtrInput
-	// Name of an existing SCTP filter profile.
-	SctpFilterProfile pulumi.StringPtrInput
-	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
-	SendDenyPacket pulumi.StringPtrInput
-	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
-	ServiceNegate pulumi.StringPtrInput
-	// Service and service group names. The structure of `service` block is documented below.
-	Services FirewallSecurityPolicyServiceArrayInput
-	// Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
-	Srcaddr4s FirewallSecurityPolicySrcaddr4ArrayInput
-	// Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
-	Srcaddr6s FirewallSecurityPolicySrcaddr6ArrayInput
-	// When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
-	SrcaddrNegate pulumi.StringPtrInput
-	// Source IPv4 address name and address group names. The structure of `srcaddr` block is documented below.
-	Srcaddrs FirewallSecurityPolicySrcaddrArrayInput
-	// Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-	Srcintfs FirewallSecurityPolicySrcintfArrayInput
-	// Name of an existing SSH filter profile.
-	SshFilterProfile pulumi.StringPtrInput
-	// Name of an existing SSL SSH profile.
-	SslSshProfile pulumi.StringPtrInput
-	// Enable or disable this policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// URL category ID list. The structure of `urlCategory` block is documented below.
-	UrlCategories FirewallSecurityPolicyUrlCategoryArrayInput
-	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
-	Users FirewallSecurityPolicyUserArrayInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Name of an existing VideoFilter profile.
-	VideofilterProfile pulumi.StringPtrInput
-	// Name of an existing VoIP profile.
-	VoipProfile pulumi.StringPtrInput
-	// Name of an existing Web filter profile.
-	WebfilterProfile pulumi.StringPtrInput
+	Action                          pulumi.StringPtrInput
+	AppCategories                   FirewallSecurityPolicyAppCategoryArrayInput
+	AppGroups                       FirewallSecurityPolicyAppGroupArrayInput
+	ApplicationList                 pulumi.StringPtrInput
+	Applications                    FirewallSecurityPolicyApplicationArrayInput
+	AvProfile                       pulumi.StringPtrInput
+	CifsProfile                     pulumi.StringPtrInput
+	Comments                        pulumi.StringPtrInput
+	DlpProfile                      pulumi.StringPtrInput
+	DlpSensor                       pulumi.StringPtrInput
+	DnsfilterProfile                pulumi.StringPtrInput
+	Dstaddr4s                       FirewallSecurityPolicyDstaddr4ArrayInput
+	Dstaddr6s                       FirewallSecurityPolicyDstaddr6ArrayInput
+	DstaddrNegate                   pulumi.StringPtrInput
+	Dstaddrs                        FirewallSecurityPolicyDstaddrArrayInput
+	Dstintfs                        FirewallSecurityPolicyDstintfArrayInput
+	DynamicSortSubtable             pulumi.StringPtrInput
+	EmailfilterProfile              pulumi.StringPtrInput
+	EnforceDefaultAppPort           pulumi.StringPtrInput
+	FileFilterProfile               pulumi.StringPtrInput
+	FssoGroups                      FirewallSecurityPolicyFssoGroupArrayInput
+	Groups                          FirewallSecurityPolicyGroupArrayInput
+	IcapProfile                     pulumi.StringPtrInput
+	InternetService                 pulumi.StringPtrInput
+	InternetService6                pulumi.StringPtrInput
+	InternetService6CustomGroups    FirewallSecurityPolicyInternetService6CustomGroupArrayInput
+	InternetService6Customs         FirewallSecurityPolicyInternetService6CustomArrayInput
+	InternetService6Groups          FirewallSecurityPolicyInternetService6GroupArrayInput
+	InternetService6Names           FirewallSecurityPolicyInternetService6NameArrayInput
+	InternetService6Negate          pulumi.StringPtrInput
+	InternetService6Src             pulumi.StringPtrInput
+	InternetService6SrcCustomGroups FirewallSecurityPolicyInternetService6SrcCustomGroupArrayInput
+	InternetService6SrcCustoms      FirewallSecurityPolicyInternetService6SrcCustomArrayInput
+	InternetService6SrcGroups       FirewallSecurityPolicyInternetService6SrcGroupArrayInput
+	InternetService6SrcNames        FirewallSecurityPolicyInternetService6SrcNameArrayInput
+	InternetService6SrcNegate       pulumi.StringPtrInput
+	InternetServiceCustomGroups     FirewallSecurityPolicyInternetServiceCustomGroupArrayInput
+	InternetServiceCustoms          FirewallSecurityPolicyInternetServiceCustomArrayInput
+	InternetServiceGroups           FirewallSecurityPolicyInternetServiceGroupArrayInput
+	InternetServiceIds              FirewallSecurityPolicyInternetServiceIdArrayInput
+	InternetServiceNames            FirewallSecurityPolicyInternetServiceNameArrayInput
+	InternetServiceNegate           pulumi.StringPtrInput
+	InternetServiceSrc              pulumi.StringPtrInput
+	InternetServiceSrcCustomGroups  FirewallSecurityPolicyInternetServiceSrcCustomGroupArrayInput
+	InternetServiceSrcCustoms       FirewallSecurityPolicyInternetServiceSrcCustomArrayInput
+	InternetServiceSrcGroups        FirewallSecurityPolicyInternetServiceSrcGroupArrayInput
+	InternetServiceSrcIds           FirewallSecurityPolicyInternetServiceSrcIdArrayInput
+	InternetServiceSrcNames         FirewallSecurityPolicyInternetServiceSrcNameArrayInput
+	InternetServiceSrcNegate        pulumi.StringPtrInput
+	IpsSensor                       pulumi.StringPtrInput
+	LearningMode                    pulumi.StringPtrInput
+	Logtraffic                      pulumi.StringPtrInput
+	LogtrafficStart                 pulumi.StringPtrInput
+	Name                            pulumi.StringPtrInput
+	Nat46                           pulumi.StringPtrInput
+	Nat64                           pulumi.StringPtrInput
+	Policyid                        pulumi.IntPtrInput
+	ProfileGroup                    pulumi.StringPtrInput
+	ProfileProtocolOptions          pulumi.StringPtrInput
+	ProfileType                     pulumi.StringPtrInput
+	Schedule                        pulumi.StringPtrInput
+	SctpFilterProfile               pulumi.StringPtrInput
+	SendDenyPacket                  pulumi.StringPtrInput
+	ServiceNegate                   pulumi.StringPtrInput
+	Services                        FirewallSecurityPolicyServiceArrayInput
+	Srcaddr4s                       FirewallSecurityPolicySrcaddr4ArrayInput
+	Srcaddr6s                       FirewallSecurityPolicySrcaddr6ArrayInput
+	SrcaddrNegate                   pulumi.StringPtrInput
+	Srcaddrs                        FirewallSecurityPolicySrcaddrArrayInput
+	Srcintfs                        FirewallSecurityPolicySrcintfArrayInput
+	SshFilterProfile                pulumi.StringPtrInput
+	SslSshProfile                   pulumi.StringPtrInput
+	Status                          pulumi.StringPtrInput
+	UrlCategories                   FirewallSecurityPolicyUrlCategoryArrayInput
+	Users                           FirewallSecurityPolicyUserArrayInput
+	Uuid                            pulumi.StringPtrInput
+	Vdomparam                       pulumi.StringPtrInput
+	VideofilterProfile              pulumi.StringPtrInput
+	VoipProfile                     pulumi.StringPtrInput
+	WebfilterProfile                pulumi.StringPtrInput
 }
 
 func (FirewallSecurityPolicyArgs) ElementType() reflect.Type {
@@ -824,7 +487,7 @@ func (i *FirewallSecurityPolicy) ToFirewallSecurityPolicyOutputWithContext(ctx c
 // FirewallSecurityPolicyArrayInput is an input type that accepts FirewallSecurityPolicyArray and FirewallSecurityPolicyArrayOutput values.
 // You can construct a concrete instance of `FirewallSecurityPolicyArrayInput` via:
 //
-//          FirewallSecurityPolicyArray{ FirewallSecurityPolicyArgs{...} }
+//	FirewallSecurityPolicyArray{ FirewallSecurityPolicyArgs{...} }
 type FirewallSecurityPolicyArrayInput interface {
 	pulumi.Input
 
@@ -849,7 +512,7 @@ func (i FirewallSecurityPolicyArray) ToFirewallSecurityPolicyArrayOutputWithCont
 // FirewallSecurityPolicyMapInput is an input type that accepts FirewallSecurityPolicyMap and FirewallSecurityPolicyMapOutput values.
 // You can construct a concrete instance of `FirewallSecurityPolicyMapInput` via:
 //
-//          FirewallSecurityPolicyMap{ "key": FirewallSecurityPolicyArgs{...} }
+//	FirewallSecurityPolicyMap{ "key": FirewallSecurityPolicyArgs{...} }
 type FirewallSecurityPolicyMapInput interface {
 	pulumi.Input
 
@@ -883,6 +546,362 @@ func (o FirewallSecurityPolicyOutput) ToFirewallSecurityPolicyOutput() FirewallS
 
 func (o FirewallSecurityPolicyOutput) ToFirewallSecurityPolicyOutputWithContext(ctx context.Context) FirewallSecurityPolicyOutput {
 	return o
+}
+
+func (o FirewallSecurityPolicyOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) AppCategories() FirewallSecurityPolicyAppCategoryArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyAppCategoryArrayOutput { return v.AppCategories }).(FirewallSecurityPolicyAppCategoryArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) AppGroups() FirewallSecurityPolicyAppGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyAppGroupArrayOutput { return v.AppGroups }).(FirewallSecurityPolicyAppGroupArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) ApplicationList() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.ApplicationList }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Applications() FirewallSecurityPolicyApplicationArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyApplicationArrayOutput { return v.Applications }).(FirewallSecurityPolicyApplicationArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) AvProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.AvProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) CifsProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.CifsProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) DlpProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.DlpProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) DlpSensor() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.DlpSensor }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) DnsfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.DnsfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Dstaddr4s() FirewallSecurityPolicyDstaddr4ArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyDstaddr4ArrayOutput { return v.Dstaddr4s }).(FirewallSecurityPolicyDstaddr4ArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Dstaddr6s() FirewallSecurityPolicyDstaddr6ArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyDstaddr6ArrayOutput { return v.Dstaddr6s }).(FirewallSecurityPolicyDstaddr6ArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) DstaddrNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.DstaddrNegate }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Dstaddrs() FirewallSecurityPolicyDstaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyDstaddrArrayOutput { return v.Dstaddrs }).(FirewallSecurityPolicyDstaddrArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Dstintfs() FirewallSecurityPolicyDstintfArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyDstintfArrayOutput { return v.Dstintfs }).(FirewallSecurityPolicyDstintfArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) EmailfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.EmailfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) EnforceDefaultAppPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.EnforceDefaultAppPort }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) FileFilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.FileFilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) FssoGroups() FirewallSecurityPolicyFssoGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyFssoGroupArrayOutput { return v.FssoGroups }).(FirewallSecurityPolicyFssoGroupArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Groups() FirewallSecurityPolicyGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyGroupArrayOutput { return v.Groups }).(FirewallSecurityPolicyGroupArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) IcapProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.IcapProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetService() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.InternetService }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetService6() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.InternetService6 }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetService6CustomGroups() FirewallSecurityPolicyInternetService6CustomGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetService6CustomGroupArrayOutput {
+		return v.InternetService6CustomGroups
+	}).(FirewallSecurityPolicyInternetService6CustomGroupArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetService6Customs() FirewallSecurityPolicyInternetService6CustomArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetService6CustomArrayOutput {
+		return v.InternetService6Customs
+	}).(FirewallSecurityPolicyInternetService6CustomArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetService6Groups() FirewallSecurityPolicyInternetService6GroupArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetService6GroupArrayOutput {
+		return v.InternetService6Groups
+	}).(FirewallSecurityPolicyInternetService6GroupArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetService6Names() FirewallSecurityPolicyInternetService6NameArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetService6NameArrayOutput {
+		return v.InternetService6Names
+	}).(FirewallSecurityPolicyInternetService6NameArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetService6Negate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.InternetService6Negate }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetService6Src() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.InternetService6Src }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetService6SrcCustomGroups() FirewallSecurityPolicyInternetService6SrcCustomGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetService6SrcCustomGroupArrayOutput {
+		return v.InternetService6SrcCustomGroups
+	}).(FirewallSecurityPolicyInternetService6SrcCustomGroupArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetService6SrcCustoms() FirewallSecurityPolicyInternetService6SrcCustomArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetService6SrcCustomArrayOutput {
+		return v.InternetService6SrcCustoms
+	}).(FirewallSecurityPolicyInternetService6SrcCustomArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetService6SrcGroups() FirewallSecurityPolicyInternetService6SrcGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetService6SrcGroupArrayOutput {
+		return v.InternetService6SrcGroups
+	}).(FirewallSecurityPolicyInternetService6SrcGroupArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetService6SrcNames() FirewallSecurityPolicyInternetService6SrcNameArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetService6SrcNameArrayOutput {
+		return v.InternetService6SrcNames
+	}).(FirewallSecurityPolicyInternetService6SrcNameArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetService6SrcNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.InternetService6SrcNegate }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetServiceCustomGroups() FirewallSecurityPolicyInternetServiceCustomGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetServiceCustomGroupArrayOutput {
+		return v.InternetServiceCustomGroups
+	}).(FirewallSecurityPolicyInternetServiceCustomGroupArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetServiceCustoms() FirewallSecurityPolicyInternetServiceCustomArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetServiceCustomArrayOutput {
+		return v.InternetServiceCustoms
+	}).(FirewallSecurityPolicyInternetServiceCustomArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetServiceGroups() FirewallSecurityPolicyInternetServiceGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetServiceGroupArrayOutput {
+		return v.InternetServiceGroups
+	}).(FirewallSecurityPolicyInternetServiceGroupArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetServiceIds() FirewallSecurityPolicyInternetServiceIdArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetServiceIdArrayOutput {
+		return v.InternetServiceIds
+	}).(FirewallSecurityPolicyInternetServiceIdArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetServiceNames() FirewallSecurityPolicyInternetServiceNameArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetServiceNameArrayOutput {
+		return v.InternetServiceNames
+	}).(FirewallSecurityPolicyInternetServiceNameArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetServiceNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.InternetServiceNegate }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetServiceSrc() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.InternetServiceSrc }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetServiceSrcCustomGroups() FirewallSecurityPolicyInternetServiceSrcCustomGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetServiceSrcCustomGroupArrayOutput {
+		return v.InternetServiceSrcCustomGroups
+	}).(FirewallSecurityPolicyInternetServiceSrcCustomGroupArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetServiceSrcCustoms() FirewallSecurityPolicyInternetServiceSrcCustomArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetServiceSrcCustomArrayOutput {
+		return v.InternetServiceSrcCustoms
+	}).(FirewallSecurityPolicyInternetServiceSrcCustomArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetServiceSrcGroups() FirewallSecurityPolicyInternetServiceSrcGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetServiceSrcGroupArrayOutput {
+		return v.InternetServiceSrcGroups
+	}).(FirewallSecurityPolicyInternetServiceSrcGroupArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetServiceSrcIds() FirewallSecurityPolicyInternetServiceSrcIdArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetServiceSrcIdArrayOutput {
+		return v.InternetServiceSrcIds
+	}).(FirewallSecurityPolicyInternetServiceSrcIdArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetServiceSrcNames() FirewallSecurityPolicyInternetServiceSrcNameArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyInternetServiceSrcNameArrayOutput {
+		return v.InternetServiceSrcNames
+	}).(FirewallSecurityPolicyInternetServiceSrcNameArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) InternetServiceSrcNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.InternetServiceSrcNegate }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) IpsSensor() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.IpsSensor }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) LearningMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.LearningMode }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Logtraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.Logtraffic }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) LogtrafficStart() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.LogtrafficStart }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Nat46() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.Nat46 }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Nat64() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.Nat64 }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Policyid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.IntOutput { return v.Policyid }).(pulumi.IntOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) ProfileGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.ProfileGroup }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) ProfileProtocolOptions() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.ProfileProtocolOptions }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) ProfileType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.ProfileType }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.Schedule }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) SctpFilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.SctpFilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) SendDenyPacket() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.SendDenyPacket }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) ServiceNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.ServiceNegate }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Services() FirewallSecurityPolicyServiceArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyServiceArrayOutput { return v.Services }).(FirewallSecurityPolicyServiceArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Srcaddr4s() FirewallSecurityPolicySrcaddr4ArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicySrcaddr4ArrayOutput { return v.Srcaddr4s }).(FirewallSecurityPolicySrcaddr4ArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Srcaddr6s() FirewallSecurityPolicySrcaddr6ArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicySrcaddr6ArrayOutput { return v.Srcaddr6s }).(FirewallSecurityPolicySrcaddr6ArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) SrcaddrNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.SrcaddrNegate }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Srcaddrs() FirewallSecurityPolicySrcaddrArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicySrcaddrArrayOutput { return v.Srcaddrs }).(FirewallSecurityPolicySrcaddrArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Srcintfs() FirewallSecurityPolicySrcintfArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicySrcintfArrayOutput { return v.Srcintfs }).(FirewallSecurityPolicySrcintfArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) SshFilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.SshFilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) SslSshProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.SslSshProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) UrlCategories() FirewallSecurityPolicyUrlCategoryArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyUrlCategoryArrayOutput { return v.UrlCategories }).(FirewallSecurityPolicyUrlCategoryArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Users() FirewallSecurityPolicyUserArrayOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyUserArrayOutput { return v.Users }).(FirewallSecurityPolicyUserArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) VideofilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.VideofilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) VoipProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.VoipProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) WebfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.WebfilterProfile }).(pulumi.StringOutput)
 }
 
 type FirewallSecurityPolicyArrayOutput struct{ *pulumi.OutputState }

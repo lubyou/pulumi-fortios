@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure SCTP filter profiles. Applies to FortiOS Version `>= 7.0.1`.
- *
- * ## Import
- *
- * SctpFilter Profile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/sctpFilterProfile:SctpFilterProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/sctpFilterProfile:SctpFilterProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SctpFilterProfile extends pulumi.CustomResource {
     /**
      * Get an existing SctpFilterProfile resource's state with the given name, ID, and optional extra
@@ -52,25 +34,10 @@ export class SctpFilterProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === SctpFilterProfile.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Profile name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * PPID filters list. The structure of `ppidFilters` block is documented below.
-     */
     public readonly ppidFilters!: pulumi.Output<outputs.SctpFilterProfilePpidFilter[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -108,25 +75,10 @@ export class SctpFilterProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SctpFilterProfile resources.
  */
 export interface SctpFilterProfileState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * PPID filters list. The structure of `ppidFilters` block is documented below.
-     */
     ppidFilters?: pulumi.Input<pulumi.Input<inputs.SctpFilterProfilePpidFilter>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -134,24 +86,9 @@ export interface SctpFilterProfileState {
  * The set of arguments for constructing a SctpFilterProfile resource.
  */
 export interface SctpFilterProfileArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * PPID filters list. The structure of `ppidFilters` block is documented below.
-     */
     ppidFilters?: pulumi.Input<pulumi.Input<inputs.SctpFilterProfilePpidFilter>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -4,30 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Local keys and certificates.
- *
- * By design considerations, the feature is using the fortios.JSONGenericAPI resource as documented below.
- *
- * ## Example
- *
- * ### Delete Certificate:
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname1 = new fortios.SystemAutoScript("trname1", {
- *     interval: 1,
- *     outputSize: 10,
- *     repeat: 1,
- *     script: `config vpn certificate local
- * delete testcer
- * end
- * `,
- *     start: "auto",
- * });
- * ```
- */
 export class CertificateLocal extends pulumi.CustomResource {
     /**
      * Get an existing CertificateLocal resource's state with the given name, ID, and optional extra
@@ -79,6 +55,7 @@ export class CertificateLocal extends pulumi.CustomResource {
     public readonly nameEncoding!: pulumi.Output<string>;
     public readonly password!: pulumi.Output<string | undefined>;
     public readonly privateKey!: pulumi.Output<string>;
+    public readonly privateKeyRetain!: pulumi.Output<string>;
     public readonly range!: pulumi.Output<string>;
     public readonly scepPassword!: pulumi.Output<string | undefined>;
     public readonly scepUrl!: pulumi.Output<string>;
@@ -123,6 +100,7 @@ export class CertificateLocal extends pulumi.CustomResource {
             resourceInputs["nameEncoding"] = state ? state.nameEncoding : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["privateKeyRetain"] = state ? state.privateKeyRetain : undefined;
             resourceInputs["range"] = state ? state.range : undefined;
             resourceInputs["scepPassword"] = state ? state.scepPassword : undefined;
             resourceInputs["scepUrl"] = state ? state.scepUrl : undefined;
@@ -156,10 +134,11 @@ export class CertificateLocal extends pulumi.CustomResource {
             resourceInputs["lastUpdated"] = args ? args.lastUpdated : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nameEncoding"] = args ? args.nameEncoding : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
-            resourceInputs["privateKey"] = args ? args.privateKey : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
+            resourceInputs["privateKeyRetain"] = args ? args.privateKeyRetain : undefined;
             resourceInputs["range"] = args ? args.range : undefined;
-            resourceInputs["scepPassword"] = args ? args.scepPassword : undefined;
+            resourceInputs["scepPassword"] = args?.scepPassword ? pulumi.secret(args.scepPassword) : undefined;
             resourceInputs["scepUrl"] = args ? args.scepUrl : undefined;
             resourceInputs["source"] = args ? args.source : undefined;
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
@@ -167,6 +146,8 @@ export class CertificateLocal extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password", "privateKey", "scepPassword"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(CertificateLocal.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -198,6 +179,7 @@ export interface CertificateLocalState {
     nameEncoding?: pulumi.Input<string>;
     password?: pulumi.Input<string>;
     privateKey?: pulumi.Input<string>;
+    privateKeyRetain?: pulumi.Input<string>;
     range?: pulumi.Input<string>;
     scepPassword?: pulumi.Input<string>;
     scepUrl?: pulumi.Input<string>;
@@ -234,6 +216,7 @@ export interface CertificateLocalArgs {
     nameEncoding?: pulumi.Input<string>;
     password?: pulumi.Input<string>;
     privateKey: pulumi.Input<string>;
+    privateKeyRetain?: pulumi.Input<string>;
     range?: pulumi.Input<string>;
     scepPassword?: pulumi.Input<string>;
     scepUrl?: pulumi.Input<string>;

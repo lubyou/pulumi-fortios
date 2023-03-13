@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system smsserver
 func LookupSystemSmsServer(ctx *pulumi.Context, args *LookupSystemSmsServerArgs, opts ...pulumi.InvokeOption) (*LookupSystemSmsServerResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemSmsServerResult
@@ -23,21 +22,17 @@ func LookupSystemSmsServer(ctx *pulumi.Context, args *LookupSystemSmsServerArgs,
 
 // A collection of arguments for invoking GetSystemSmsServer.
 type LookupSystemSmsServerArgs struct {
-	// Specify the name of the desired system smsserver.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemSmsServer.
 type LookupSystemSmsServerResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Email-to-SMS server domain name.
-	MailServer string `pulumi:"mailServer"`
-	// Name of SMS server.
-	Name      string  `pulumi:"name"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id         string  `pulumi:"id"`
+	MailServer string  `pulumi:"mailServer"`
+	Name       string  `pulumi:"name"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 func LookupSystemSmsServerOutput(ctx *pulumi.Context, args LookupSystemSmsServerOutputArgs, opts ...pulumi.InvokeOption) LookupSystemSmsServerResultOutput {
@@ -55,9 +50,7 @@ func LookupSystemSmsServerOutput(ctx *pulumi.Context, args LookupSystemSmsServer
 
 // A collection of arguments for invoking GetSystemSmsServer.
 type LookupSystemSmsServerOutputArgs struct {
-	// Specify the name of the desired system smsserver.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -85,12 +78,10 @@ func (o LookupSystemSmsServerResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSmsServerResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Email-to-SMS server domain name.
 func (o LookupSystemSmsServerResultOutput) MailServer() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSmsServerResult) string { return v.MailServer }).(pulumi.StringOutput)
 }
 
-// Name of SMS server.
 func (o LookupSystemSmsServerResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSmsServerResult) string { return v.Name }).(pulumi.StringOutput)
 }

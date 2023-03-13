@@ -10,40 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports modifying system admin setting for FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerSystemAdmin(ctx, "test1", &fortios.FortimanagerSystemAdminArgs{
-// 			HttpPort:    pulumi.Int(80),
-// 			HttpsPort:   pulumi.Int(443),
-// 			IdleTimeout: pulumi.Int(20),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerSystemAdmin struct {
 	pulumi.CustomResourceState
 
-	// Http port.
-	HttpPort pulumi.IntPtrOutput `pulumi:"httpPort"`
-	// Https port.
-	HttpsPort pulumi.IntPtrOutput `pulumi:"httpsPort"`
-	// Idle Timeout(1-480 minute).
+	HttpPort    pulumi.IntPtrOutput `pulumi:"httpPort"`
+	HttpsPort   pulumi.IntPtrOutput `pulumi:"httpsPort"`
 	IdleTimeout pulumi.IntPtrOutput `pulumi:"idleTimeout"`
 }
 
@@ -77,20 +48,14 @@ func GetFortimanagerSystemAdmin(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerSystemAdmin resources.
 type fortimanagerSystemAdminState struct {
-	// Http port.
-	HttpPort *int `pulumi:"httpPort"`
-	// Https port.
-	HttpsPort *int `pulumi:"httpsPort"`
-	// Idle Timeout(1-480 minute).
+	HttpPort    *int `pulumi:"httpPort"`
+	HttpsPort   *int `pulumi:"httpsPort"`
 	IdleTimeout *int `pulumi:"idleTimeout"`
 }
 
 type FortimanagerSystemAdminState struct {
-	// Http port.
-	HttpPort pulumi.IntPtrInput
-	// Https port.
-	HttpsPort pulumi.IntPtrInput
-	// Idle Timeout(1-480 minute).
+	HttpPort    pulumi.IntPtrInput
+	HttpsPort   pulumi.IntPtrInput
 	IdleTimeout pulumi.IntPtrInput
 }
 
@@ -99,21 +64,15 @@ func (FortimanagerSystemAdminState) ElementType() reflect.Type {
 }
 
 type fortimanagerSystemAdminArgs struct {
-	// Http port.
-	HttpPort *int `pulumi:"httpPort"`
-	// Https port.
-	HttpsPort *int `pulumi:"httpsPort"`
-	// Idle Timeout(1-480 minute).
+	HttpPort    *int `pulumi:"httpPort"`
+	HttpsPort   *int `pulumi:"httpsPort"`
 	IdleTimeout *int `pulumi:"idleTimeout"`
 }
 
 // The set of arguments for constructing a FortimanagerSystemAdmin resource.
 type FortimanagerSystemAdminArgs struct {
-	// Http port.
-	HttpPort pulumi.IntPtrInput
-	// Https port.
-	HttpsPort pulumi.IntPtrInput
-	// Idle Timeout(1-480 minute).
+	HttpPort    pulumi.IntPtrInput
+	HttpsPort   pulumi.IntPtrInput
 	IdleTimeout pulumi.IntPtrInput
 }
 
@@ -143,7 +102,7 @@ func (i *FortimanagerSystemAdmin) ToFortimanagerSystemAdminOutputWithContext(ctx
 // FortimanagerSystemAdminArrayInput is an input type that accepts FortimanagerSystemAdminArray and FortimanagerSystemAdminArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemAdminArrayInput` via:
 //
-//          FortimanagerSystemAdminArray{ FortimanagerSystemAdminArgs{...} }
+//	FortimanagerSystemAdminArray{ FortimanagerSystemAdminArgs{...} }
 type FortimanagerSystemAdminArrayInput interface {
 	pulumi.Input
 
@@ -168,7 +127,7 @@ func (i FortimanagerSystemAdminArray) ToFortimanagerSystemAdminArrayOutputWithCo
 // FortimanagerSystemAdminMapInput is an input type that accepts FortimanagerSystemAdminMap and FortimanagerSystemAdminMapOutput values.
 // You can construct a concrete instance of `FortimanagerSystemAdminMapInput` via:
 //
-//          FortimanagerSystemAdminMap{ "key": FortimanagerSystemAdminArgs{...} }
+//	FortimanagerSystemAdminMap{ "key": FortimanagerSystemAdminArgs{...} }
 type FortimanagerSystemAdminMapInput interface {
 	pulumi.Input
 
@@ -202,6 +161,18 @@ func (o FortimanagerSystemAdminOutput) ToFortimanagerSystemAdminOutput() Fortima
 
 func (o FortimanagerSystemAdminOutput) ToFortimanagerSystemAdminOutputWithContext(ctx context.Context) FortimanagerSystemAdminOutput {
 	return o
+}
+
+func (o FortimanagerSystemAdminOutput) HttpPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdmin) pulumi.IntPtrOutput { return v.HttpPort }).(pulumi.IntPtrOutput)
+}
+
+func (o FortimanagerSystemAdminOutput) HttpsPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdmin) pulumi.IntPtrOutput { return v.HttpsPort }).(pulumi.IntPtrOutput)
+}
+
+func (o FortimanagerSystemAdminOutput) IdleTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemAdmin) pulumi.IntPtrOutput { return v.IdleTimeout }).(pulumi.IntPtrOutput)
 }
 
 type FortimanagerSystemAdminArrayOutput struct{ *pulumi.OutputState }

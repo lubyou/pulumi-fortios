@@ -2,46 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv4 addresses.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallAddress("trname", {
- *     allowRouting: "disable",
- *     associatedInterface: "port2",
- *     color: 3,
- *     endIp: "255.255.255.0",
- *     startIp: "22.1.1.0",
- *     subnet: "22.1.1.0 255.255.255.0",
- *     type: "ipmask",
- *     visibility: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall Address can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAddress:FirewallAddress labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAddress:FirewallAddress labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallAddress extends pulumi.CustomResource {
     /**
      * Get an existing FirewallAddress resource's state with the given name, ID, and optional extra
@@ -70,178 +34,49 @@ export class FirewallAddress extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallAddress.__pulumiType;
     }
 
-    /**
-     * Enable/disable use of this address in the static route configuration. Valid values: `enable`, `disable`.
-     */
     public readonly allowRouting!: pulumi.Output<string>;
-    /**
-     * Network interface associated with address.
-     */
-    public readonly associatedInterface!: pulumi.Output<string>;
-    /**
-     * Defines the minimal TTL of individual IP addresses in FQDN cache measured in seconds.
-     */
-    public readonly cacheTtl!: pulumi.Output<number>;
-    /**
-     * SPT (System Posture Token) value. Valid values: `unknown`, `healthy`, `quarantine`, `checkup`, `transient`, `infected`.
-     */
+    public readonly associatedInterface!: pulumi.Output<string | undefined>;
+    public readonly cacheTtl!: pulumi.Output<number | undefined>;
     public readonly clearpassSpt!: pulumi.Output<string>;
-    /**
-     * Color of icon on the GUI.
-     */
-    public readonly color!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
+    public readonly color!: pulumi.Output<number | undefined>;
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * IP addresses associated to a specific country.
-     */
-    public readonly country!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
+    public readonly country!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Final IP address (inclusive) in the range for the address.
-     */
     public readonly endIp!: pulumi.Output<string>;
-    /**
-     * Last MAC address in the range.
-     */
     public readonly endMac!: pulumi.Output<string>;
-    /**
-     * Endpoint group name.
-     */
-    public readonly epgName!: pulumi.Output<string>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
+    public readonly epgName!: pulumi.Output<string | undefined>;
     public readonly fabricObject!: pulumi.Output<string>;
-    /**
-     * Match criteria filter.
-     */
     public readonly filter!: pulumi.Output<string | undefined>;
-    /**
-     * Fully Qualified Domain Name address.
-     */
-    public readonly fqdn!: pulumi.Output<string>;
-    /**
-     * FSSO group(s). The structure of `fssoGroup` block is documented below.
-     */
+    public readonly fqdn!: pulumi.Output<string | undefined>;
     public readonly fssoGroups!: pulumi.Output<outputs.FirewallAddressFssoGroup[] | undefined>;
-    /**
-     * Name of interface whose IP address is to be used.
-     */
-    public readonly interface!: pulumi.Output<string>;
-    /**
-     * IP address list. The structure of `list` block is documented below.
-     */
-    public readonly lists!: pulumi.Output<outputs.FirewallAddressList[] | undefined>;
-    /**
-     * MAC address ranges <start>[-<end>] separated by space.
-     */
+    public readonly interface!: pulumi.Output<string | undefined>;
+    public readonly lists!: pulumi.Output<outputs.FirewallAddressList[]>;
     public readonly macaddrs!: pulumi.Output<outputs.FirewallAddressMacaddr[] | undefined>;
-    /**
-     * Tag name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
-     */
     public readonly nodeIpOnly!: pulumi.Output<string>;
-    /**
-     * Object ID for NSX.
-     */
     public readonly objId!: pulumi.Output<string | undefined>;
-    /**
-     * Tag of dynamic address object.
-     */
-    public readonly objTag!: pulumi.Output<string>;
-    /**
-     * Object type. Valid values: `ip`, `mac`.
-     */
+    public readonly objTag!: pulumi.Output<string | undefined>;
     public readonly objType!: pulumi.Output<string>;
-    /**
-     * Organization domain name (Syntax: organization/domain).
-     */
-    public readonly organization!: pulumi.Output<string>;
-    /**
-     * Policy group name.
-     */
-    public readonly policyGroup!: pulumi.Output<string>;
-    /**
-     * SDN.
-     */
-    public readonly sdn!: pulumi.Output<string>;
-    /**
-     * Type of addresses to collect. Valid values: `private`, `public`, `all`.
-     */
+    public readonly organization!: pulumi.Output<string | undefined>;
+    public readonly policyGroup!: pulumi.Output<string | undefined>;
+    public readonly sdn!: pulumi.Output<string | undefined>;
     public readonly sdnAddrType!: pulumi.Output<string>;
-    /**
-     * SDN Tag.
-     */
-    public readonly sdnTag!: pulumi.Output<string>;
-    /**
-     * First IP address (inclusive) in the range for the address.
-     */
+    public readonly sdnTag!: pulumi.Output<string | undefined>;
     public readonly startIp!: pulumi.Output<string>;
-    /**
-     * First MAC address in the range.
-     */
     public readonly startMac!: pulumi.Output<string>;
-    /**
-     * Sub-type of address.
-     */
     public readonly subType!: pulumi.Output<string>;
-    /**
-     * IP address and subnet mask of address.
-     */
     public readonly subnet!: pulumi.Output<string>;
-    /**
-     * Subnet name.
-     */
-    public readonly subnetName!: pulumi.Output<string>;
-    /**
-     * Tag detection level of dynamic address object.
-     */
-    public readonly tagDetectionLevel!: pulumi.Output<string>;
-    /**
-     * Tag type of dynamic address object.
-     */
-    public readonly tagType!: pulumi.Output<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
+    public readonly subnetName!: pulumi.Output<string | undefined>;
+    public readonly tagDetectionLevel!: pulumi.Output<string | undefined>;
+    public readonly tagType!: pulumi.Output<string | undefined>;
     public readonly taggings!: pulumi.Output<outputs.FirewallAddressTagging[] | undefined>;
-    /**
-     * Tenant.
-     */
-    public readonly tenant!: pulumi.Output<string>;
-    /**
-     * Type of address.
-     */
+    public readonly tenant!: pulumi.Output<string | undefined>;
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable address visibility in the GUI. Valid values: `enable`, `disable`.
-     */
-    public readonly visibility!: pulumi.Output<string>;
-    /**
-     * IP address and wildcard netmask.
-     */
+    public readonly visibility!: pulumi.Output<string | undefined>;
     public readonly wildcard!: pulumi.Output<string>;
-    /**
-     * Fully Qualified Domain Name with wildcard characters.
-     */
-    public readonly wildcardFqdn!: pulumi.Output<string>;
+    public readonly wildcardFqdn!: pulumi.Output<string | undefined>;
 
     /**
      * Create a FirewallAddress resource with the given unique name, arguments, and options.
@@ -354,177 +189,48 @@ export class FirewallAddress extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallAddress resources.
  */
 export interface FirewallAddressState {
-    /**
-     * Enable/disable use of this address in the static route configuration. Valid values: `enable`, `disable`.
-     */
     allowRouting?: pulumi.Input<string>;
-    /**
-     * Network interface associated with address.
-     */
     associatedInterface?: pulumi.Input<string>;
-    /**
-     * Defines the minimal TTL of individual IP addresses in FQDN cache measured in seconds.
-     */
     cacheTtl?: pulumi.Input<number>;
-    /**
-     * SPT (System Posture Token) value. Valid values: `unknown`, `healthy`, `quarantine`, `checkup`, `transient`, `infected`.
-     */
     clearpassSpt?: pulumi.Input<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * IP addresses associated to a specific country.
-     */
     country?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Final IP address (inclusive) in the range for the address.
-     */
     endIp?: pulumi.Input<string>;
-    /**
-     * Last MAC address in the range.
-     */
     endMac?: pulumi.Input<string>;
-    /**
-     * Endpoint group name.
-     */
     epgName?: pulumi.Input<string>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     fabricObject?: pulumi.Input<string>;
-    /**
-     * Match criteria filter.
-     */
     filter?: pulumi.Input<string>;
-    /**
-     * Fully Qualified Domain Name address.
-     */
     fqdn?: pulumi.Input<string>;
-    /**
-     * FSSO group(s). The structure of `fssoGroup` block is documented below.
-     */
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.FirewallAddressFssoGroup>[]>;
-    /**
-     * Name of interface whose IP address is to be used.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * IP address list. The structure of `list` block is documented below.
-     */
     lists?: pulumi.Input<pulumi.Input<inputs.FirewallAddressList>[]>;
-    /**
-     * MAC address ranges <start>[-<end>] separated by space.
-     */
     macaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallAddressMacaddr>[]>;
-    /**
-     * Tag name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
-     */
     nodeIpOnly?: pulumi.Input<string>;
-    /**
-     * Object ID for NSX.
-     */
     objId?: pulumi.Input<string>;
-    /**
-     * Tag of dynamic address object.
-     */
     objTag?: pulumi.Input<string>;
-    /**
-     * Object type. Valid values: `ip`, `mac`.
-     */
     objType?: pulumi.Input<string>;
-    /**
-     * Organization domain name (Syntax: organization/domain).
-     */
     organization?: pulumi.Input<string>;
-    /**
-     * Policy group name.
-     */
     policyGroup?: pulumi.Input<string>;
-    /**
-     * SDN.
-     */
     sdn?: pulumi.Input<string>;
-    /**
-     * Type of addresses to collect. Valid values: `private`, `public`, `all`.
-     */
     sdnAddrType?: pulumi.Input<string>;
-    /**
-     * SDN Tag.
-     */
     sdnTag?: pulumi.Input<string>;
-    /**
-     * First IP address (inclusive) in the range for the address.
-     */
     startIp?: pulumi.Input<string>;
-    /**
-     * First MAC address in the range.
-     */
     startMac?: pulumi.Input<string>;
-    /**
-     * Sub-type of address.
-     */
     subType?: pulumi.Input<string>;
-    /**
-     * IP address and subnet mask of address.
-     */
     subnet?: pulumi.Input<string>;
-    /**
-     * Subnet name.
-     */
     subnetName?: pulumi.Input<string>;
-    /**
-     * Tag detection level of dynamic address object.
-     */
     tagDetectionLevel?: pulumi.Input<string>;
-    /**
-     * Tag type of dynamic address object.
-     */
     tagType?: pulumi.Input<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallAddressTagging>[]>;
-    /**
-     * Tenant.
-     */
     tenant?: pulumi.Input<string>;
-    /**
-     * Type of address.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable address visibility in the GUI. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
-    /**
-     * IP address and wildcard netmask.
-     */
     wildcard?: pulumi.Input<string>;
-    /**
-     * Fully Qualified Domain Name with wildcard characters.
-     */
     wildcardFqdn?: pulumi.Input<string>;
 }
 
@@ -532,176 +238,47 @@ export interface FirewallAddressState {
  * The set of arguments for constructing a FirewallAddress resource.
  */
 export interface FirewallAddressArgs {
-    /**
-     * Enable/disable use of this address in the static route configuration. Valid values: `enable`, `disable`.
-     */
     allowRouting?: pulumi.Input<string>;
-    /**
-     * Network interface associated with address.
-     */
     associatedInterface?: pulumi.Input<string>;
-    /**
-     * Defines the minimal TTL of individual IP addresses in FQDN cache measured in seconds.
-     */
     cacheTtl?: pulumi.Input<number>;
-    /**
-     * SPT (System Posture Token) value. Valid values: `unknown`, `healthy`, `quarantine`, `checkup`, `transient`, `infected`.
-     */
     clearpassSpt?: pulumi.Input<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * IP addresses associated to a specific country.
-     */
     country?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Final IP address (inclusive) in the range for the address.
-     */
     endIp?: pulumi.Input<string>;
-    /**
-     * Last MAC address in the range.
-     */
     endMac?: pulumi.Input<string>;
-    /**
-     * Endpoint group name.
-     */
     epgName?: pulumi.Input<string>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     fabricObject?: pulumi.Input<string>;
-    /**
-     * Match criteria filter.
-     */
     filter?: pulumi.Input<string>;
-    /**
-     * Fully Qualified Domain Name address.
-     */
     fqdn?: pulumi.Input<string>;
-    /**
-     * FSSO group(s). The structure of `fssoGroup` block is documented below.
-     */
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.FirewallAddressFssoGroup>[]>;
-    /**
-     * Name of interface whose IP address is to be used.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * IP address list. The structure of `list` block is documented below.
-     */
     lists?: pulumi.Input<pulumi.Input<inputs.FirewallAddressList>[]>;
-    /**
-     * MAC address ranges <start>[-<end>] separated by space.
-     */
     macaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallAddressMacaddr>[]>;
-    /**
-     * Tag name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
-     */
     nodeIpOnly?: pulumi.Input<string>;
-    /**
-     * Object ID for NSX.
-     */
     objId?: pulumi.Input<string>;
-    /**
-     * Tag of dynamic address object.
-     */
     objTag?: pulumi.Input<string>;
-    /**
-     * Object type. Valid values: `ip`, `mac`.
-     */
     objType?: pulumi.Input<string>;
-    /**
-     * Organization domain name (Syntax: organization/domain).
-     */
     organization?: pulumi.Input<string>;
-    /**
-     * Policy group name.
-     */
     policyGroup?: pulumi.Input<string>;
-    /**
-     * SDN.
-     */
     sdn?: pulumi.Input<string>;
-    /**
-     * Type of addresses to collect. Valid values: `private`, `public`, `all`.
-     */
     sdnAddrType?: pulumi.Input<string>;
-    /**
-     * SDN Tag.
-     */
     sdnTag?: pulumi.Input<string>;
-    /**
-     * First IP address (inclusive) in the range for the address.
-     */
     startIp?: pulumi.Input<string>;
-    /**
-     * First MAC address in the range.
-     */
     startMac?: pulumi.Input<string>;
-    /**
-     * Sub-type of address.
-     */
     subType?: pulumi.Input<string>;
-    /**
-     * IP address and subnet mask of address.
-     */
     subnet?: pulumi.Input<string>;
-    /**
-     * Subnet name.
-     */
     subnetName?: pulumi.Input<string>;
-    /**
-     * Tag detection level of dynamic address object.
-     */
     tagDetectionLevel?: pulumi.Input<string>;
-    /**
-     * Tag type of dynamic address object.
-     */
     tagType?: pulumi.Input<string>;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallAddressTagging>[]>;
-    /**
-     * Tenant.
-     */
     tenant?: pulumi.Input<string>;
-    /**
-     * Type of address.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable address visibility in the GUI. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
-    /**
-     * IP address and wildcard netmask.
-     */
     wildcard?: pulumi.Input<string>;
-    /**
-     * Fully Qualified Domain Name with wildcard characters.
-     */
     wildcardFqdn?: pulumi.Input<string>;
 }

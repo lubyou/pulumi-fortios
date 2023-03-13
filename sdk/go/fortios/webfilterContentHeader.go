@@ -7,65 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure content types used by Web filter.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWebfilterContentHeader(ctx, "trname", &fortios.WebfilterContentHeaderArgs{
-// 			Fosid: pulumi.Int(1),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Webfilter ContentHeader can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterContentHeader:WebfilterContentHeader labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterContentHeader:WebfilterContentHeader labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebfilterContentHeader struct {
 	pulumi.CustomResourceState
 
-	// Optional comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Configure content types used by web filter. The structure of `entries` block is documented below.
-	Entries WebfilterContentHeaderEntryArrayOutput `pulumi:"entries"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Name of table.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput                 `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	Entries             WebfilterContentHeaderEntryArrayOutput `pulumi:"entries"`
+	Fosid               pulumi.IntOutput                       `pulumi:"fosid"`
+	Name                pulumi.StringOutput                    `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                 `pulumi:"vdomparam"`
 }
 
 // NewWebfilterContentHeader registers a new resource with the given unique name, arguments, and options.
@@ -101,33 +55,21 @@ func GetWebfilterContentHeader(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebfilterContentHeader resources.
 type webfilterContentHeaderState struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configure content types used by web filter. The structure of `entries` block is documented below.
-	Entries []WebfilterContentHeaderEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                       `pulumi:"comment"`
+	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	Entries             []WebfilterContentHeaderEntry `pulumi:"entries"`
+	Fosid               *int                          `pulumi:"fosid"`
+	Name                *string                       `pulumi:"name"`
+	Vdomparam           *string                       `pulumi:"vdomparam"`
 }
 
 type WebfilterContentHeaderState struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Configure content types used by web filter. The structure of `entries` block is documented below.
-	Entries WebfilterContentHeaderEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             WebfilterContentHeaderEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WebfilterContentHeaderState) ElementType() reflect.Type {
@@ -135,34 +77,22 @@ func (WebfilterContentHeaderState) ElementType() reflect.Type {
 }
 
 type webfilterContentHeaderArgs struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configure content types used by web filter. The structure of `entries` block is documented below.
-	Entries []WebfilterContentHeaderEntry `pulumi:"entries"`
-	// ID.
-	Fosid int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                       `pulumi:"comment"`
+	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	Entries             []WebfilterContentHeaderEntry `pulumi:"entries"`
+	Fosid               int                           `pulumi:"fosid"`
+	Name                *string                       `pulumi:"name"`
+	Vdomparam           *string                       `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebfilterContentHeader resource.
 type WebfilterContentHeaderArgs struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Configure content types used by web filter. The structure of `entries` block is documented below.
-	Entries WebfilterContentHeaderEntryArrayInput
-	// ID.
-	Fosid pulumi.IntInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             WebfilterContentHeaderEntryArrayInput
+	Fosid               pulumi.IntInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WebfilterContentHeaderArgs) ElementType() reflect.Type {
@@ -191,7 +121,7 @@ func (i *WebfilterContentHeader) ToWebfilterContentHeaderOutputWithContext(ctx c
 // WebfilterContentHeaderArrayInput is an input type that accepts WebfilterContentHeaderArray and WebfilterContentHeaderArrayOutput values.
 // You can construct a concrete instance of `WebfilterContentHeaderArrayInput` via:
 //
-//          WebfilterContentHeaderArray{ WebfilterContentHeaderArgs{...} }
+//	WebfilterContentHeaderArray{ WebfilterContentHeaderArgs{...} }
 type WebfilterContentHeaderArrayInput interface {
 	pulumi.Input
 
@@ -216,7 +146,7 @@ func (i WebfilterContentHeaderArray) ToWebfilterContentHeaderArrayOutputWithCont
 // WebfilterContentHeaderMapInput is an input type that accepts WebfilterContentHeaderMap and WebfilterContentHeaderMapOutput values.
 // You can construct a concrete instance of `WebfilterContentHeaderMapInput` via:
 //
-//          WebfilterContentHeaderMap{ "key": WebfilterContentHeaderArgs{...} }
+//	WebfilterContentHeaderMap{ "key": WebfilterContentHeaderArgs{...} }
 type WebfilterContentHeaderMapInput interface {
 	pulumi.Input
 
@@ -250,6 +180,30 @@ func (o WebfilterContentHeaderOutput) ToWebfilterContentHeaderOutput() Webfilter
 
 func (o WebfilterContentHeaderOutput) ToWebfilterContentHeaderOutputWithContext(ctx context.Context) WebfilterContentHeaderOutput {
 	return o
+}
+
+func (o WebfilterContentHeaderOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterContentHeader) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o WebfilterContentHeaderOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterContentHeader) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WebfilterContentHeaderOutput) Entries() WebfilterContentHeaderEntryArrayOutput {
+	return o.ApplyT(func(v *WebfilterContentHeader) WebfilterContentHeaderEntryArrayOutput { return v.Entries }).(WebfilterContentHeaderEntryArrayOutput)
+}
+
+func (o WebfilterContentHeaderOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterContentHeader) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o WebfilterContentHeaderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterContentHeader) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WebfilterContentHeaderOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterContentHeader) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebfilterContentHeaderArrayOutput struct{ *pulumi.OutputState }

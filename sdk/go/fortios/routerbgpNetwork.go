@@ -7,44 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// BGP network table.
-//
-// > The provider supports the definition of Network in Router Bgp `RouterBgp`, and also allows the definition of separate Network resources `RouterbgpNetwork`, but do not use a `RouterBgp` with in-line Network in conjunction with any `RouterbgpNetwork` resources, otherwise conflicts and overwrite will occur.
-//
-// ## Import
-//
-// Routerbgp Network can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerbgpNetwork:RouterbgpNetwork labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerbgpNetwork:RouterbgpNetwork labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterbgpNetwork struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable route as backdoor. Valid values: `enable`, `disable`.
-	Backdoor pulumi.StringOutput `pulumi:"backdoor"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
-	NetworkImportCheck pulumi.StringOutput `pulumi:"networkImportCheck"`
-	// Network prefix.
-	Prefix pulumi.StringOutput `pulumi:"prefix"`
-	// Route map to modify generated route.
-	RouteMap pulumi.StringOutput `pulumi:"routeMap"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Backdoor           pulumi.StringOutput    `pulumi:"backdoor"`
+	Fosid              pulumi.IntOutput       `pulumi:"fosid"`
+	NetworkImportCheck pulumi.StringOutput    `pulumi:"networkImportCheck"`
+	Prefix             pulumi.StringOutput    `pulumi:"prefix"`
+	RouteMap           pulumi.StringOutput    `pulumi:"routeMap"`
+	Vdomparam          pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewRouterbgpNetwork registers a new resource with the given unique name, arguments, and options.
@@ -80,33 +55,21 @@ func GetRouterbgpNetwork(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterbgpNetwork resources.
 type routerbgpNetworkState struct {
-	// Enable/disable route as backdoor. Valid values: `enable`, `disable`.
-	Backdoor *string `pulumi:"backdoor"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+	Backdoor           *string `pulumi:"backdoor"`
+	Fosid              *int    `pulumi:"fosid"`
 	NetworkImportCheck *string `pulumi:"networkImportCheck"`
-	// Network prefix.
-	Prefix *string `pulumi:"prefix"`
-	// Route map to modify generated route.
-	RouteMap *string `pulumi:"routeMap"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Prefix             *string `pulumi:"prefix"`
+	RouteMap           *string `pulumi:"routeMap"`
+	Vdomparam          *string `pulumi:"vdomparam"`
 }
 
 type RouterbgpNetworkState struct {
-	// Enable/disable route as backdoor. Valid values: `enable`, `disable`.
-	Backdoor pulumi.StringPtrInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+	Backdoor           pulumi.StringPtrInput
+	Fosid              pulumi.IntPtrInput
 	NetworkImportCheck pulumi.StringPtrInput
-	// Network prefix.
-	Prefix pulumi.StringPtrInput
-	// Route map to modify generated route.
-	RouteMap pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Prefix             pulumi.StringPtrInput
+	RouteMap           pulumi.StringPtrInput
+	Vdomparam          pulumi.StringPtrInput
 }
 
 func (RouterbgpNetworkState) ElementType() reflect.Type {
@@ -114,34 +77,22 @@ func (RouterbgpNetworkState) ElementType() reflect.Type {
 }
 
 type routerbgpNetworkArgs struct {
-	// Enable/disable route as backdoor. Valid values: `enable`, `disable`.
-	Backdoor *string `pulumi:"backdoor"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+	Backdoor           *string `pulumi:"backdoor"`
+	Fosid              *int    `pulumi:"fosid"`
 	NetworkImportCheck *string `pulumi:"networkImportCheck"`
-	// Network prefix.
-	Prefix string `pulumi:"prefix"`
-	// Route map to modify generated route.
-	RouteMap *string `pulumi:"routeMap"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Prefix             string  `pulumi:"prefix"`
+	RouteMap           *string `pulumi:"routeMap"`
+	Vdomparam          *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterbgpNetwork resource.
 type RouterbgpNetworkArgs struct {
-	// Enable/disable route as backdoor. Valid values: `enable`, `disable`.
-	Backdoor pulumi.StringPtrInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+	Backdoor           pulumi.StringPtrInput
+	Fosid              pulumi.IntPtrInput
 	NetworkImportCheck pulumi.StringPtrInput
-	// Network prefix.
-	Prefix pulumi.StringInput
-	// Route map to modify generated route.
-	RouteMap pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Prefix             pulumi.StringInput
+	RouteMap           pulumi.StringPtrInput
+	Vdomparam          pulumi.StringPtrInput
 }
 
 func (RouterbgpNetworkArgs) ElementType() reflect.Type {
@@ -170,7 +121,7 @@ func (i *RouterbgpNetwork) ToRouterbgpNetworkOutputWithContext(ctx context.Conte
 // RouterbgpNetworkArrayInput is an input type that accepts RouterbgpNetworkArray and RouterbgpNetworkArrayOutput values.
 // You can construct a concrete instance of `RouterbgpNetworkArrayInput` via:
 //
-//          RouterbgpNetworkArray{ RouterbgpNetworkArgs{...} }
+//	RouterbgpNetworkArray{ RouterbgpNetworkArgs{...} }
 type RouterbgpNetworkArrayInput interface {
 	pulumi.Input
 
@@ -195,7 +146,7 @@ func (i RouterbgpNetworkArray) ToRouterbgpNetworkArrayOutputWithContext(ctx cont
 // RouterbgpNetworkMapInput is an input type that accepts RouterbgpNetworkMap and RouterbgpNetworkMapOutput values.
 // You can construct a concrete instance of `RouterbgpNetworkMapInput` via:
 //
-//          RouterbgpNetworkMap{ "key": RouterbgpNetworkArgs{...} }
+//	RouterbgpNetworkMap{ "key": RouterbgpNetworkArgs{...} }
 type RouterbgpNetworkMapInput interface {
 	pulumi.Input
 
@@ -229,6 +180,30 @@ func (o RouterbgpNetworkOutput) ToRouterbgpNetworkOutput() RouterbgpNetworkOutpu
 
 func (o RouterbgpNetworkOutput) ToRouterbgpNetworkOutputWithContext(ctx context.Context) RouterbgpNetworkOutput {
 	return o
+}
+
+func (o RouterbgpNetworkOutput) Backdoor() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNetwork) pulumi.StringOutput { return v.Backdoor }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNetworkOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNetwork) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNetworkOutput) NetworkImportCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNetwork) pulumi.StringOutput { return v.NetworkImportCheck }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNetworkOutput) Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNetwork) pulumi.StringOutput { return v.Prefix }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNetworkOutput) RouteMap() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNetwork) pulumi.StringOutput { return v.RouteMap }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNetworkOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterbgpNetwork) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterbgpNetworkArrayOutput struct{ *pulumi.OutputState }

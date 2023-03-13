@@ -10,37 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `FirewallPolicy`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		sample1, err := fortios.GetFirewallPolicyList(ctx, nil, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("output1", sample1)
-// 		sample2, err := fortios.GetFirewallPolicyList(ctx, &GetFirewallPolicyListArgs{
-// 			Filter: pulumi.StringRef("schedule==always&action==accept,action==deny"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("sample2Output", sample2.Policyidlists)
-// 		return nil
-// 	})
-// }
-// ```
 func GetFirewallPolicyList(ctx *pulumi.Context, args *GetFirewallPolicyListArgs, opts ...pulumi.InvokeOption) (*GetFirewallPolicyListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallPolicyListResult
@@ -53,8 +22,7 @@ func GetFirewallPolicyList(ctx *pulumi.Context, args *GetFirewallPolicyListArgs,
 
 // A collection of arguments for invoking GetFirewallPolicyList.
 type GetFirewallPolicyListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -62,8 +30,7 @@ type GetFirewallPolicyListArgs struct {
 type GetFirewallPolicyListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `FirewallPolicy`.
+	Id            string  `pulumi:"id"`
 	Policyidlists []int   `pulumi:"policyidlists"`
 	Vdomparam     *string `pulumi:"vdomparam"`
 }
@@ -83,8 +50,7 @@ func GetFirewallPolicyListOutput(ctx *pulumi.Context, args GetFirewallPolicyList
 
 // A collection of arguments for invoking GetFirewallPolicyList.
 type GetFirewallPolicyListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -116,7 +82,6 @@ func (o GetFirewallPolicyListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFirewallPolicyListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `FirewallPolicy`.
 func (o GetFirewallPolicyListResultOutput) Policyidlists() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v GetFirewallPolicyListResult) []int { return v.Policyidlists }).(pulumi.IntArrayOutput)
 }

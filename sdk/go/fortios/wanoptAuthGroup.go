@@ -7,69 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure WAN optimization authentication groups.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWanoptAuthGroup(ctx, "trname", &fortios.WanoptAuthGroupArgs{
-// 			AuthMethod: pulumi.String("cert"),
-// 			Cert:       pulumi.String("Fortinet_CA_SSL"),
-// 			PeerAccept: pulumi.String("any"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Wanopt AuthGroup can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wanoptAuthGroup:WanoptAuthGroup labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wanoptAuthGroup:WanoptAuthGroup labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WanoptAuthGroup struct {
 	pulumi.CustomResourceState
 
-	// Select certificate or pre-shared key authentication for this authentication group. Valid values: `cert`, `psk`.
-	AuthMethod pulumi.StringOutput `pulumi:"authMethod"`
-	// Name of certificate to identify this peer.
-	Cert pulumi.StringOutput `pulumi:"cert"`
-	// Auth-group name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// If peer-accept is set to one, select the name of one peer to add to this authentication group. The peer must have added with the wanopt peer command.
-	Peer pulumi.StringOutput `pulumi:"peer"`
-	// Determine if this auth group accepts, any peer, a list of defined peers, or just one peer. Valid values: `any`, `defined`, `one`.
-	PeerAccept pulumi.StringOutput `pulumi:"peerAccept"`
-	// Pre-shared key used by the peers in this authentication group.
-	Psk pulumi.StringPtrOutput `pulumi:"psk"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AuthMethod pulumi.StringOutput    `pulumi:"authMethod"`
+	Cert       pulumi.StringOutput    `pulumi:"cert"`
+	Name       pulumi.StringOutput    `pulumi:"name"`
+	Peer       pulumi.StringOutput    `pulumi:"peer"`
+	PeerAccept pulumi.StringOutput    `pulumi:"peerAccept"`
+	Psk        pulumi.StringPtrOutput `pulumi:"psk"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWanoptAuthGroup registers a new resource with the given unique name, arguments, and options.
@@ -82,6 +33,13 @@ func NewWanoptAuthGroup(ctx *pulumi.Context,
 	if args.Cert == nil {
 		return nil, errors.New("invalid value for required argument 'Cert'")
 	}
+	if args.Psk != nil {
+		args.Psk = pulumi.ToSecret(args.Psk).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"psk",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource WanoptAuthGroup
 	err := ctx.RegisterResource("fortios:index/wanoptAuthGroup:WanoptAuthGroup", name, args, &resource, opts...)
@@ -105,37 +63,23 @@ func GetWanoptAuthGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WanoptAuthGroup resources.
 type wanoptAuthGroupState struct {
-	// Select certificate or pre-shared key authentication for this authentication group. Valid values: `cert`, `psk`.
 	AuthMethod *string `pulumi:"authMethod"`
-	// Name of certificate to identify this peer.
-	Cert *string `pulumi:"cert"`
-	// Auth-group name.
-	Name *string `pulumi:"name"`
-	// If peer-accept is set to one, select the name of one peer to add to this authentication group. The peer must have added with the wanopt peer command.
-	Peer *string `pulumi:"peer"`
-	// Determine if this auth group accepts, any peer, a list of defined peers, or just one peer. Valid values: `any`, `defined`, `one`.
+	Cert       *string `pulumi:"cert"`
+	Name       *string `pulumi:"name"`
+	Peer       *string `pulumi:"peer"`
 	PeerAccept *string `pulumi:"peerAccept"`
-	// Pre-shared key used by the peers in this authentication group.
-	Psk *string `pulumi:"psk"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Psk        *string `pulumi:"psk"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type WanoptAuthGroupState struct {
-	// Select certificate or pre-shared key authentication for this authentication group. Valid values: `cert`, `psk`.
 	AuthMethod pulumi.StringPtrInput
-	// Name of certificate to identify this peer.
-	Cert pulumi.StringPtrInput
-	// Auth-group name.
-	Name pulumi.StringPtrInput
-	// If peer-accept is set to one, select the name of one peer to add to this authentication group. The peer must have added with the wanopt peer command.
-	Peer pulumi.StringPtrInput
-	// Determine if this auth group accepts, any peer, a list of defined peers, or just one peer. Valid values: `any`, `defined`, `one`.
+	Cert       pulumi.StringPtrInput
+	Name       pulumi.StringPtrInput
+	Peer       pulumi.StringPtrInput
 	PeerAccept pulumi.StringPtrInput
-	// Pre-shared key used by the peers in this authentication group.
-	Psk pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Psk        pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (WanoptAuthGroupState) ElementType() reflect.Type {
@@ -143,38 +87,24 @@ func (WanoptAuthGroupState) ElementType() reflect.Type {
 }
 
 type wanoptAuthGroupArgs struct {
-	// Select certificate or pre-shared key authentication for this authentication group. Valid values: `cert`, `psk`.
 	AuthMethod *string `pulumi:"authMethod"`
-	// Name of certificate to identify this peer.
-	Cert string `pulumi:"cert"`
-	// Auth-group name.
-	Name *string `pulumi:"name"`
-	// If peer-accept is set to one, select the name of one peer to add to this authentication group. The peer must have added with the wanopt peer command.
-	Peer *string `pulumi:"peer"`
-	// Determine if this auth group accepts, any peer, a list of defined peers, or just one peer. Valid values: `any`, `defined`, `one`.
+	Cert       string  `pulumi:"cert"`
+	Name       *string `pulumi:"name"`
+	Peer       *string `pulumi:"peer"`
 	PeerAccept *string `pulumi:"peerAccept"`
-	// Pre-shared key used by the peers in this authentication group.
-	Psk *string `pulumi:"psk"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Psk        *string `pulumi:"psk"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WanoptAuthGroup resource.
 type WanoptAuthGroupArgs struct {
-	// Select certificate or pre-shared key authentication for this authentication group. Valid values: `cert`, `psk`.
 	AuthMethod pulumi.StringPtrInput
-	// Name of certificate to identify this peer.
-	Cert pulumi.StringInput
-	// Auth-group name.
-	Name pulumi.StringPtrInput
-	// If peer-accept is set to one, select the name of one peer to add to this authentication group. The peer must have added with the wanopt peer command.
-	Peer pulumi.StringPtrInput
-	// Determine if this auth group accepts, any peer, a list of defined peers, or just one peer. Valid values: `any`, `defined`, `one`.
+	Cert       pulumi.StringInput
+	Name       pulumi.StringPtrInput
+	Peer       pulumi.StringPtrInput
 	PeerAccept pulumi.StringPtrInput
-	// Pre-shared key used by the peers in this authentication group.
-	Psk pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Psk        pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (WanoptAuthGroupArgs) ElementType() reflect.Type {
@@ -203,7 +133,7 @@ func (i *WanoptAuthGroup) ToWanoptAuthGroupOutputWithContext(ctx context.Context
 // WanoptAuthGroupArrayInput is an input type that accepts WanoptAuthGroupArray and WanoptAuthGroupArrayOutput values.
 // You can construct a concrete instance of `WanoptAuthGroupArrayInput` via:
 //
-//          WanoptAuthGroupArray{ WanoptAuthGroupArgs{...} }
+//	WanoptAuthGroupArray{ WanoptAuthGroupArgs{...} }
 type WanoptAuthGroupArrayInput interface {
 	pulumi.Input
 
@@ -228,7 +158,7 @@ func (i WanoptAuthGroupArray) ToWanoptAuthGroupArrayOutputWithContext(ctx contex
 // WanoptAuthGroupMapInput is an input type that accepts WanoptAuthGroupMap and WanoptAuthGroupMapOutput values.
 // You can construct a concrete instance of `WanoptAuthGroupMapInput` via:
 //
-//          WanoptAuthGroupMap{ "key": WanoptAuthGroupArgs{...} }
+//	WanoptAuthGroupMap{ "key": WanoptAuthGroupArgs{...} }
 type WanoptAuthGroupMapInput interface {
 	pulumi.Input
 
@@ -262,6 +192,34 @@ func (o WanoptAuthGroupOutput) ToWanoptAuthGroupOutput() WanoptAuthGroupOutput {
 
 func (o WanoptAuthGroupOutput) ToWanoptAuthGroupOutputWithContext(ctx context.Context) WanoptAuthGroupOutput {
 	return o
+}
+
+func (o WanoptAuthGroupOutput) AuthMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptAuthGroup) pulumi.StringOutput { return v.AuthMethod }).(pulumi.StringOutput)
+}
+
+func (o WanoptAuthGroupOutput) Cert() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptAuthGroup) pulumi.StringOutput { return v.Cert }).(pulumi.StringOutput)
+}
+
+func (o WanoptAuthGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptAuthGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WanoptAuthGroupOutput) Peer() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptAuthGroup) pulumi.StringOutput { return v.Peer }).(pulumi.StringOutput)
+}
+
+func (o WanoptAuthGroupOutput) PeerAccept() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptAuthGroup) pulumi.StringOutput { return v.PeerAccept }).(pulumi.StringOutput)
+}
+
+func (o WanoptAuthGroupOutput) Psk() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WanoptAuthGroup) pulumi.StringPtrOutput { return v.Psk }).(pulumi.StringPtrOutput)
+}
+
+func (o WanoptAuthGroupOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WanoptAuthGroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WanoptAuthGroupArrayOutput struct{ *pulumi.OutputState }

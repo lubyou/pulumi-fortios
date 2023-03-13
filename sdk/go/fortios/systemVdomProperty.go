@@ -10,70 +10,31 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure VDOM property.
-//
-// ## Import
-//
-// System VdomProperty can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVdomProperty:SystemVdomProperty labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVdomProperty:SystemVdomProperty labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemVdomProperty struct {
 	pulumi.CustomResourceState
 
-	// Maximum guaranteed number of firewall custom services.
-	CustomService pulumi.StringOutput `pulumi:"customService"`
-	// Description.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// Maximum guaranteed number of dial-up tunnels.
-	DialupTunnel pulumi.StringOutput `pulumi:"dialupTunnel"`
-	// Maximum guaranteed number of firewall addresses (IPv4, IPv6, multicast).
-	FirewallAddress pulumi.StringOutput `pulumi:"firewallAddress"`
-	// Maximum guaranteed number of firewall address groups (IPv4, IPv6).
-	FirewallAddrgrp pulumi.StringOutput `pulumi:"firewallAddrgrp"`
-	// Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-	FirewallPolicy pulumi.StringOutput `pulumi:"firewallPolicy"`
-	// Maximum guaranteed number of VPN IPsec phase 1 tunnels.
-	IpsecPhase1 pulumi.StringOutput `pulumi:"ipsecPhase1"`
-	// Maximum guaranteed number of VPN IPsec phase1 interface tunnels.
-	IpsecPhase1Interface pulumi.StringOutput `pulumi:"ipsecPhase1Interface"`
-	// Maximum guaranteed number of VPN IPsec phase 2 tunnels.
-	IpsecPhase2 pulumi.StringOutput `pulumi:"ipsecPhase2"`
-	// Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
-	IpsecPhase2Interface pulumi.StringOutput `pulumi:"ipsecPhase2Interface"`
-	// Log disk quota in MB (range depends on how much disk space is available).
-	LogDiskQuota pulumi.StringOutput `pulumi:"logDiskQuota"`
-	// VDOM name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Maximum guaranteed number of firewall one-time schedules.
-	OnetimeSchedule pulumi.StringOutput `pulumi:"onetimeSchedule"`
-	// Maximum guaranteed number of concurrent proxy users.
-	Proxy pulumi.StringOutput `pulumi:"proxy"`
-	// Maximum guaranteed number of firewall recurring schedules.
-	RecurringSchedule pulumi.StringOutput `pulumi:"recurringSchedule"`
-	// Maximum guaranteed number of firewall service groups.
-	ServiceGroup pulumi.StringOutput `pulumi:"serviceGroup"`
-	// Maximum guaranteed number of sessions.
-	Session pulumi.StringOutput `pulumi:"session"`
-	// Permanent SNMP Index of the virtual domain (0 - 4294967295).
-	SnmpIndex pulumi.IntOutput `pulumi:"snmpIndex"`
-	// Maximum guaranteed number of SSL-VPNs.
-	Sslvpn pulumi.StringOutput `pulumi:"sslvpn"`
-	// Maximum guaranteed number of local users.
-	User pulumi.StringOutput `pulumi:"user"`
-	// Maximum guaranteed number of user groups.
-	UserGroup pulumi.StringOutput `pulumi:"userGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	CustomService        pulumi.StringOutput    `pulumi:"customService"`
+	Description          pulumi.StringOutput    `pulumi:"description"`
+	DialupTunnel         pulumi.StringOutput    `pulumi:"dialupTunnel"`
+	FirewallAddress      pulumi.StringOutput    `pulumi:"firewallAddress"`
+	FirewallAddrgrp      pulumi.StringOutput    `pulumi:"firewallAddrgrp"`
+	FirewallPolicy       pulumi.StringOutput    `pulumi:"firewallPolicy"`
+	IpsecPhase1          pulumi.StringOutput    `pulumi:"ipsecPhase1"`
+	IpsecPhase1Interface pulumi.StringOutput    `pulumi:"ipsecPhase1Interface"`
+	IpsecPhase2          pulumi.StringOutput    `pulumi:"ipsecPhase2"`
+	IpsecPhase2Interface pulumi.StringOutput    `pulumi:"ipsecPhase2Interface"`
+	LogDiskQuota         pulumi.StringOutput    `pulumi:"logDiskQuota"`
+	Name                 pulumi.StringOutput    `pulumi:"name"`
+	OnetimeSchedule      pulumi.StringOutput    `pulumi:"onetimeSchedule"`
+	Proxy                pulumi.StringOutput    `pulumi:"proxy"`
+	RecurringSchedule    pulumi.StringOutput    `pulumi:"recurringSchedule"`
+	ServiceGroup         pulumi.StringOutput    `pulumi:"serviceGroup"`
+	Session              pulumi.StringOutput    `pulumi:"session"`
+	SnmpIndex            pulumi.IntOutput       `pulumi:"snmpIndex"`
+	Sslvpn               pulumi.StringOutput    `pulumi:"sslvpn"`
+	User                 pulumi.StringOutput    `pulumi:"user"`
+	UserGroup            pulumi.StringOutput    `pulumi:"userGroup"`
+	Vdomparam            pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemVdomProperty registers a new resource with the given unique name, arguments, and options.
@@ -106,97 +67,53 @@ func GetSystemVdomProperty(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemVdomProperty resources.
 type systemVdomPropertyState struct {
-	// Maximum guaranteed number of firewall custom services.
-	CustomService *string `pulumi:"customService"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// Maximum guaranteed number of dial-up tunnels.
-	DialupTunnel *string `pulumi:"dialupTunnel"`
-	// Maximum guaranteed number of firewall addresses (IPv4, IPv6, multicast).
-	FirewallAddress *string `pulumi:"firewallAddress"`
-	// Maximum guaranteed number of firewall address groups (IPv4, IPv6).
-	FirewallAddrgrp *string `pulumi:"firewallAddrgrp"`
-	// Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-	FirewallPolicy *string `pulumi:"firewallPolicy"`
-	// Maximum guaranteed number of VPN IPsec phase 1 tunnels.
-	IpsecPhase1 *string `pulumi:"ipsecPhase1"`
-	// Maximum guaranteed number of VPN IPsec phase1 interface tunnels.
+	CustomService        *string `pulumi:"customService"`
+	Description          *string `pulumi:"description"`
+	DialupTunnel         *string `pulumi:"dialupTunnel"`
+	FirewallAddress      *string `pulumi:"firewallAddress"`
+	FirewallAddrgrp      *string `pulumi:"firewallAddrgrp"`
+	FirewallPolicy       *string `pulumi:"firewallPolicy"`
+	IpsecPhase1          *string `pulumi:"ipsecPhase1"`
 	IpsecPhase1Interface *string `pulumi:"ipsecPhase1Interface"`
-	// Maximum guaranteed number of VPN IPsec phase 2 tunnels.
-	IpsecPhase2 *string `pulumi:"ipsecPhase2"`
-	// Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
+	IpsecPhase2          *string `pulumi:"ipsecPhase2"`
 	IpsecPhase2Interface *string `pulumi:"ipsecPhase2Interface"`
-	// Log disk quota in MB (range depends on how much disk space is available).
-	LogDiskQuota *string `pulumi:"logDiskQuota"`
-	// VDOM name.
-	Name *string `pulumi:"name"`
-	// Maximum guaranteed number of firewall one-time schedules.
-	OnetimeSchedule *string `pulumi:"onetimeSchedule"`
-	// Maximum guaranteed number of concurrent proxy users.
-	Proxy *string `pulumi:"proxy"`
-	// Maximum guaranteed number of firewall recurring schedules.
-	RecurringSchedule *string `pulumi:"recurringSchedule"`
-	// Maximum guaranteed number of firewall service groups.
-	ServiceGroup *string `pulumi:"serviceGroup"`
-	// Maximum guaranteed number of sessions.
-	Session *string `pulumi:"session"`
-	// Permanent SNMP Index of the virtual domain (0 - 4294967295).
-	SnmpIndex *int `pulumi:"snmpIndex"`
-	// Maximum guaranteed number of SSL-VPNs.
-	Sslvpn *string `pulumi:"sslvpn"`
-	// Maximum guaranteed number of local users.
-	User *string `pulumi:"user"`
-	// Maximum guaranteed number of user groups.
-	UserGroup *string `pulumi:"userGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	LogDiskQuota         *string `pulumi:"logDiskQuota"`
+	Name                 *string `pulumi:"name"`
+	OnetimeSchedule      *string `pulumi:"onetimeSchedule"`
+	Proxy                *string `pulumi:"proxy"`
+	RecurringSchedule    *string `pulumi:"recurringSchedule"`
+	ServiceGroup         *string `pulumi:"serviceGroup"`
+	Session              *string `pulumi:"session"`
+	SnmpIndex            *int    `pulumi:"snmpIndex"`
+	Sslvpn               *string `pulumi:"sslvpn"`
+	User                 *string `pulumi:"user"`
+	UserGroup            *string `pulumi:"userGroup"`
+	Vdomparam            *string `pulumi:"vdomparam"`
 }
 
 type SystemVdomPropertyState struct {
-	// Maximum guaranteed number of firewall custom services.
-	CustomService pulumi.StringPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// Maximum guaranteed number of dial-up tunnels.
-	DialupTunnel pulumi.StringPtrInput
-	// Maximum guaranteed number of firewall addresses (IPv4, IPv6, multicast).
-	FirewallAddress pulumi.StringPtrInput
-	// Maximum guaranteed number of firewall address groups (IPv4, IPv6).
-	FirewallAddrgrp pulumi.StringPtrInput
-	// Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-	FirewallPolicy pulumi.StringPtrInput
-	// Maximum guaranteed number of VPN IPsec phase 1 tunnels.
-	IpsecPhase1 pulumi.StringPtrInput
-	// Maximum guaranteed number of VPN IPsec phase1 interface tunnels.
+	CustomService        pulumi.StringPtrInput
+	Description          pulumi.StringPtrInput
+	DialupTunnel         pulumi.StringPtrInput
+	FirewallAddress      pulumi.StringPtrInput
+	FirewallAddrgrp      pulumi.StringPtrInput
+	FirewallPolicy       pulumi.StringPtrInput
+	IpsecPhase1          pulumi.StringPtrInput
 	IpsecPhase1Interface pulumi.StringPtrInput
-	// Maximum guaranteed number of VPN IPsec phase 2 tunnels.
-	IpsecPhase2 pulumi.StringPtrInput
-	// Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
+	IpsecPhase2          pulumi.StringPtrInput
 	IpsecPhase2Interface pulumi.StringPtrInput
-	// Log disk quota in MB (range depends on how much disk space is available).
-	LogDiskQuota pulumi.StringPtrInput
-	// VDOM name.
-	Name pulumi.StringPtrInput
-	// Maximum guaranteed number of firewall one-time schedules.
-	OnetimeSchedule pulumi.StringPtrInput
-	// Maximum guaranteed number of concurrent proxy users.
-	Proxy pulumi.StringPtrInput
-	// Maximum guaranteed number of firewall recurring schedules.
-	RecurringSchedule pulumi.StringPtrInput
-	// Maximum guaranteed number of firewall service groups.
-	ServiceGroup pulumi.StringPtrInput
-	// Maximum guaranteed number of sessions.
-	Session pulumi.StringPtrInput
-	// Permanent SNMP Index of the virtual domain (0 - 4294967295).
-	SnmpIndex pulumi.IntPtrInput
-	// Maximum guaranteed number of SSL-VPNs.
-	Sslvpn pulumi.StringPtrInput
-	// Maximum guaranteed number of local users.
-	User pulumi.StringPtrInput
-	// Maximum guaranteed number of user groups.
-	UserGroup pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	LogDiskQuota         pulumi.StringPtrInput
+	Name                 pulumi.StringPtrInput
+	OnetimeSchedule      pulumi.StringPtrInput
+	Proxy                pulumi.StringPtrInput
+	RecurringSchedule    pulumi.StringPtrInput
+	ServiceGroup         pulumi.StringPtrInput
+	Session              pulumi.StringPtrInput
+	SnmpIndex            pulumi.IntPtrInput
+	Sslvpn               pulumi.StringPtrInput
+	User                 pulumi.StringPtrInput
+	UserGroup            pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
 }
 
 func (SystemVdomPropertyState) ElementType() reflect.Type {
@@ -204,98 +121,54 @@ func (SystemVdomPropertyState) ElementType() reflect.Type {
 }
 
 type systemVdomPropertyArgs struct {
-	// Maximum guaranteed number of firewall custom services.
-	CustomService *string `pulumi:"customService"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// Maximum guaranteed number of dial-up tunnels.
-	DialupTunnel *string `pulumi:"dialupTunnel"`
-	// Maximum guaranteed number of firewall addresses (IPv4, IPv6, multicast).
-	FirewallAddress *string `pulumi:"firewallAddress"`
-	// Maximum guaranteed number of firewall address groups (IPv4, IPv6).
-	FirewallAddrgrp *string `pulumi:"firewallAddrgrp"`
-	// Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-	FirewallPolicy *string `pulumi:"firewallPolicy"`
-	// Maximum guaranteed number of VPN IPsec phase 1 tunnels.
-	IpsecPhase1 *string `pulumi:"ipsecPhase1"`
-	// Maximum guaranteed number of VPN IPsec phase1 interface tunnels.
+	CustomService        *string `pulumi:"customService"`
+	Description          *string `pulumi:"description"`
+	DialupTunnel         *string `pulumi:"dialupTunnel"`
+	FirewallAddress      *string `pulumi:"firewallAddress"`
+	FirewallAddrgrp      *string `pulumi:"firewallAddrgrp"`
+	FirewallPolicy       *string `pulumi:"firewallPolicy"`
+	IpsecPhase1          *string `pulumi:"ipsecPhase1"`
 	IpsecPhase1Interface *string `pulumi:"ipsecPhase1Interface"`
-	// Maximum guaranteed number of VPN IPsec phase 2 tunnels.
-	IpsecPhase2 *string `pulumi:"ipsecPhase2"`
-	// Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
+	IpsecPhase2          *string `pulumi:"ipsecPhase2"`
 	IpsecPhase2Interface *string `pulumi:"ipsecPhase2Interface"`
-	// Log disk quota in MB (range depends on how much disk space is available).
-	LogDiskQuota *string `pulumi:"logDiskQuota"`
-	// VDOM name.
-	Name *string `pulumi:"name"`
-	// Maximum guaranteed number of firewall one-time schedules.
-	OnetimeSchedule *string `pulumi:"onetimeSchedule"`
-	// Maximum guaranteed number of concurrent proxy users.
-	Proxy *string `pulumi:"proxy"`
-	// Maximum guaranteed number of firewall recurring schedules.
-	RecurringSchedule *string `pulumi:"recurringSchedule"`
-	// Maximum guaranteed number of firewall service groups.
-	ServiceGroup *string `pulumi:"serviceGroup"`
-	// Maximum guaranteed number of sessions.
-	Session *string `pulumi:"session"`
-	// Permanent SNMP Index of the virtual domain (0 - 4294967295).
-	SnmpIndex *int `pulumi:"snmpIndex"`
-	// Maximum guaranteed number of SSL-VPNs.
-	Sslvpn *string `pulumi:"sslvpn"`
-	// Maximum guaranteed number of local users.
-	User *string `pulumi:"user"`
-	// Maximum guaranteed number of user groups.
-	UserGroup *string `pulumi:"userGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	LogDiskQuota         *string `pulumi:"logDiskQuota"`
+	Name                 *string `pulumi:"name"`
+	OnetimeSchedule      *string `pulumi:"onetimeSchedule"`
+	Proxy                *string `pulumi:"proxy"`
+	RecurringSchedule    *string `pulumi:"recurringSchedule"`
+	ServiceGroup         *string `pulumi:"serviceGroup"`
+	Session              *string `pulumi:"session"`
+	SnmpIndex            *int    `pulumi:"snmpIndex"`
+	Sslvpn               *string `pulumi:"sslvpn"`
+	User                 *string `pulumi:"user"`
+	UserGroup            *string `pulumi:"userGroup"`
+	Vdomparam            *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemVdomProperty resource.
 type SystemVdomPropertyArgs struct {
-	// Maximum guaranteed number of firewall custom services.
-	CustomService pulumi.StringPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// Maximum guaranteed number of dial-up tunnels.
-	DialupTunnel pulumi.StringPtrInput
-	// Maximum guaranteed number of firewall addresses (IPv4, IPv6, multicast).
-	FirewallAddress pulumi.StringPtrInput
-	// Maximum guaranteed number of firewall address groups (IPv4, IPv6).
-	FirewallAddrgrp pulumi.StringPtrInput
-	// Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-	FirewallPolicy pulumi.StringPtrInput
-	// Maximum guaranteed number of VPN IPsec phase 1 tunnels.
-	IpsecPhase1 pulumi.StringPtrInput
-	// Maximum guaranteed number of VPN IPsec phase1 interface tunnels.
+	CustomService        pulumi.StringPtrInput
+	Description          pulumi.StringPtrInput
+	DialupTunnel         pulumi.StringPtrInput
+	FirewallAddress      pulumi.StringPtrInput
+	FirewallAddrgrp      pulumi.StringPtrInput
+	FirewallPolicy       pulumi.StringPtrInput
+	IpsecPhase1          pulumi.StringPtrInput
 	IpsecPhase1Interface pulumi.StringPtrInput
-	// Maximum guaranteed number of VPN IPsec phase 2 tunnels.
-	IpsecPhase2 pulumi.StringPtrInput
-	// Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
+	IpsecPhase2          pulumi.StringPtrInput
 	IpsecPhase2Interface pulumi.StringPtrInput
-	// Log disk quota in MB (range depends on how much disk space is available).
-	LogDiskQuota pulumi.StringPtrInput
-	// VDOM name.
-	Name pulumi.StringPtrInput
-	// Maximum guaranteed number of firewall one-time schedules.
-	OnetimeSchedule pulumi.StringPtrInput
-	// Maximum guaranteed number of concurrent proxy users.
-	Proxy pulumi.StringPtrInput
-	// Maximum guaranteed number of firewall recurring schedules.
-	RecurringSchedule pulumi.StringPtrInput
-	// Maximum guaranteed number of firewall service groups.
-	ServiceGroup pulumi.StringPtrInput
-	// Maximum guaranteed number of sessions.
-	Session pulumi.StringPtrInput
-	// Permanent SNMP Index of the virtual domain (0 - 4294967295).
-	SnmpIndex pulumi.IntPtrInput
-	// Maximum guaranteed number of SSL-VPNs.
-	Sslvpn pulumi.StringPtrInput
-	// Maximum guaranteed number of local users.
-	User pulumi.StringPtrInput
-	// Maximum guaranteed number of user groups.
-	UserGroup pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	LogDiskQuota         pulumi.StringPtrInput
+	Name                 pulumi.StringPtrInput
+	OnetimeSchedule      pulumi.StringPtrInput
+	Proxy                pulumi.StringPtrInput
+	RecurringSchedule    pulumi.StringPtrInput
+	ServiceGroup         pulumi.StringPtrInput
+	Session              pulumi.StringPtrInput
+	SnmpIndex            pulumi.IntPtrInput
+	Sslvpn               pulumi.StringPtrInput
+	User                 pulumi.StringPtrInput
+	UserGroup            pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
 }
 
 func (SystemVdomPropertyArgs) ElementType() reflect.Type {
@@ -324,7 +197,7 @@ func (i *SystemVdomProperty) ToSystemVdomPropertyOutputWithContext(ctx context.C
 // SystemVdomPropertyArrayInput is an input type that accepts SystemVdomPropertyArray and SystemVdomPropertyArrayOutput values.
 // You can construct a concrete instance of `SystemVdomPropertyArrayInput` via:
 //
-//          SystemVdomPropertyArray{ SystemVdomPropertyArgs{...} }
+//	SystemVdomPropertyArray{ SystemVdomPropertyArgs{...} }
 type SystemVdomPropertyArrayInput interface {
 	pulumi.Input
 
@@ -349,7 +222,7 @@ func (i SystemVdomPropertyArray) ToSystemVdomPropertyArrayOutputWithContext(ctx 
 // SystemVdomPropertyMapInput is an input type that accepts SystemVdomPropertyMap and SystemVdomPropertyMapOutput values.
 // You can construct a concrete instance of `SystemVdomPropertyMapInput` via:
 //
-//          SystemVdomPropertyMap{ "key": SystemVdomPropertyArgs{...} }
+//	SystemVdomPropertyMap{ "key": SystemVdomPropertyArgs{...} }
 type SystemVdomPropertyMapInput interface {
 	pulumi.Input
 
@@ -383,6 +256,94 @@ func (o SystemVdomPropertyOutput) ToSystemVdomPropertyOutput() SystemVdomPropert
 
 func (o SystemVdomPropertyOutput) ToSystemVdomPropertyOutputWithContext(ctx context.Context) SystemVdomPropertyOutput {
 	return o
+}
+
+func (o SystemVdomPropertyOutput) CustomService() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.CustomService }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) DialupTunnel() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.DialupTunnel }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) FirewallAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.FirewallAddress }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) FirewallAddrgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.FirewallAddrgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) FirewallPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.FirewallPolicy }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) IpsecPhase1() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.IpsecPhase1 }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) IpsecPhase1Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.IpsecPhase1Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) IpsecPhase2() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.IpsecPhase2 }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) IpsecPhase2Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.IpsecPhase2Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) LogDiskQuota() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.LogDiskQuota }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) OnetimeSchedule() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.OnetimeSchedule }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) Proxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.Proxy }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) RecurringSchedule() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.RecurringSchedule }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) ServiceGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.ServiceGroup }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) Session() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.Session }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) SnmpIndex() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.IntOutput { return v.SnmpIndex }).(pulumi.IntOutput)
+}
+
+func (o SystemVdomPropertyOutput) Sslvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.Sslvpn }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.User }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) UserGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringOutput { return v.UserGroup }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomPropertyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVdomProperty) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemVdomPropertyArrayOutput struct{ *pulumi.OutputState }

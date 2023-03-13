@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure logical storage.
- *
- * ## Import
- *
- * System Storage can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemStorage:SystemStorage labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemStorage:SystemStorage labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemStorage extends pulumi.CustomResource {
     /**
      * Get an existing SystemStorage resource's state with the given name, ID, and optional extra
@@ -51,45 +32,15 @@ export class SystemStorage extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemStorage.__pulumiType;
     }
 
-    /**
-     * Partition device.
-     */
     public readonly device!: pulumi.Output<string>;
-    /**
-     * The physical status of current media. Valid values: `enable`, `disable`, `fail`.
-     */
     public readonly mediaStatus!: pulumi.Output<string>;
-    /**
-     * Storage name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Set storage order.
-     */
     public readonly order!: pulumi.Output<number>;
-    /**
-     * Label of underlying partition.
-     */
     public readonly partition!: pulumi.Output<string>;
-    /**
-     * Partition size.
-     */
     public readonly size!: pulumi.Output<number>;
-    /**
-     * Enable/disable storage. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Use hard disk for logging or WAN Optimization (default = log).
-     */
     public readonly usage!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * WAN Optimization mode (default = mix). Valid values: `mix`, `wanopt`, `webcache`.
-     */
     public readonly wanoptMode!: pulumi.Output<string>;
 
     /**
@@ -137,45 +88,15 @@ export class SystemStorage extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemStorage resources.
  */
 export interface SystemStorageState {
-    /**
-     * Partition device.
-     */
     device?: pulumi.Input<string>;
-    /**
-     * The physical status of current media. Valid values: `enable`, `disable`, `fail`.
-     */
     mediaStatus?: pulumi.Input<string>;
-    /**
-     * Storage name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Set storage order.
-     */
     order?: pulumi.Input<number>;
-    /**
-     * Label of underlying partition.
-     */
     partition?: pulumi.Input<string>;
-    /**
-     * Partition size.
-     */
     size?: pulumi.Input<number>;
-    /**
-     * Enable/disable storage. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Use hard disk for logging or WAN Optimization (default = log).
-     */
     usage?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * WAN Optimization mode (default = mix). Valid values: `mix`, `wanopt`, `webcache`.
-     */
     wanoptMode?: pulumi.Input<string>;
 }
 
@@ -183,44 +104,14 @@ export interface SystemStorageState {
  * The set of arguments for constructing a SystemStorage resource.
  */
 export interface SystemStorageArgs {
-    /**
-     * Partition device.
-     */
     device?: pulumi.Input<string>;
-    /**
-     * The physical status of current media. Valid values: `enable`, `disable`, `fail`.
-     */
     mediaStatus?: pulumi.Input<string>;
-    /**
-     * Storage name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Set storage order.
-     */
     order?: pulumi.Input<number>;
-    /**
-     * Label of underlying partition.
-     */
     partition?: pulumi.Input<string>;
-    /**
-     * Partition size.
-     */
     size?: pulumi.Input<number>;
-    /**
-     * Enable/disable storage. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Use hard disk for logging or WAN Optimization (default = log).
-     */
     usage?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * WAN Optimization mode (default = mix). Valid values: `mix`, `wanopt`, `webcache`.
-     */
     wanoptMode?: pulumi.Input<string>;
 }

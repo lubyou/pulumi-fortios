@@ -10,197 +10,84 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure SSL VPN.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewVpnSslSettings(ctx, "trname", &fortios.VpnSslSettingsArgs{
-// 			LoginAttemptLimit: pulumi.Int(2),
-// 			LoginBlockTime:    pulumi.Int(60),
-// 			LoginTimeout:      pulumi.Int(30),
-// 			Port:              pulumi.Int(443),
-// 			Servercert:        pulumi.String("self-sign"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// VpnSsl Settings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnSslSettings:VpnSslSettings labelname VpnSslSettings
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnSslSettings:VpnSslSettings labelname VpnSslSettings
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnSslSettings struct {
 	pulumi.CustomResourceState
 
-	// Force the SSL-VPN security level. High allows only high. Medium allows medium and high. Low allows any. Valid values: `high`, `medium`, `default`, `low`.
-	Algorithm pulumi.StringOutput `pulumi:"algorithm"`
-	// Enable/disable checking of source IP for authentication session. Valid values: `enable`, `disable`.
-	AuthSessionCheckSourceIp pulumi.StringOutput `pulumi:"authSessionCheckSourceIp"`
-	// SSL-VPN authentication timeout (1 - 259200 sec (3 days), 0 for no timeout).
-	AuthTimeout pulumi.IntOutput `pulumi:"authTimeout"`
-	// Authentication rule for SSL VPN. The structure of `authenticationRule` block is documented below.
-	AuthenticationRules VpnSslSettingsAuthenticationRuleArrayOutput `pulumi:"authenticationRules"`
-	// Enable to auto-create static routes for the SSL-VPN tunnel IP addresses. Valid values: `enable`, `disable`.
-	AutoTunnelStaticRoute pulumi.StringOutput `pulumi:"autoTunnelStaticRoute"`
-	// Select one or more cipher technologies that cannot be used in SSL-VPN negotiations.
-	BannedCipher pulumi.StringOutput `pulumi:"bannedCipher"`
-	// Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
-	CheckReferer pulumi.StringOutput `pulumi:"checkReferer"`
-	// Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-	Ciphersuite pulumi.StringOutput `pulumi:"ciphersuite"`
-	// Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
-	ClientSigalgs pulumi.StringOutput `pulumi:"clientSigalgs"`
-	// Default SSL VPN portal.
-	DefaultPortal pulumi.StringOutput `pulumi:"defaultPortal"`
-	// Compression level (0~9).
-	DeflateCompressionLevel pulumi.IntOutput `pulumi:"deflateCompressionLevel"`
-	// Minimum amount of data that triggers compression (200 - 65535 bytes).
-	DeflateMinDataSize pulumi.IntOutput `pulumi:"deflateMinDataSize"`
-	// DNS server 1.
-	DnsServer1 pulumi.StringOutput `pulumi:"dnsServer1"`
-	// DNS server 2.
-	DnsServer2 pulumi.StringOutput `pulumi:"dnsServer2"`
-	// DNS suffix used for SSL-VPN clients.
-	DnsSuffix pulumi.StringPtrOutput `pulumi:"dnsSuffix"`
-	// SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
-	DtlsHelloTimeout pulumi.IntOutput `pulumi:"dtlsHelloTimeout"`
-	// DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-	DtlsMaxProtoVer pulumi.StringOutput `pulumi:"dtlsMaxProtoVer"`
-	// DTLS minimum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-	DtlsMinProtoVer pulumi.StringOutput `pulumi:"dtlsMinProtoVer"`
-	// Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
-	DtlsTunnel pulumi.StringOutput `pulumi:"dtlsTunnel"`
-	// Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
-	DualStackMode pulumi.StringOutput `pulumi:"dualStackMode"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
-	Encode2fSequence pulumi.StringOutput `pulumi:"encode2fSequence"`
-	// Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
-	EncryptAndStorePassword pulumi.StringOutput `pulumi:"encryptAndStorePassword"`
-	// Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
-	ForceTwoFactorAuth pulumi.StringOutput `pulumi:"forceTwoFactorAuth"`
-	// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXForwardedFor pulumi.StringOutput `pulumi:"headerXForwardedFor"`
-	// Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
-	HstsIncludeSubdomains pulumi.StringOutput `pulumi:"hstsIncludeSubdomains"`
-	// Enable to allow HTTP compression over SSL-VPN tunnels. Valid values: `enable`, `disable`.
-	HttpCompression pulumi.StringOutput `pulumi:"httpCompression"`
-	// Enable/disable SSL-VPN support for HttpOnly cookies. Valid values: `enable`, `disable`.
-	HttpOnlyCookie pulumi.StringOutput `pulumi:"httpOnlyCookie"`
-	// SSL-VPN session is disconnected if an HTTP request body is not received within this time (1 - 60 sec, default = 20).
-	HttpRequestBodyTimeout pulumi.IntOutput `pulumi:"httpRequestBodyTimeout"`
-	// SSL-VPN session is disconnected if an HTTP request header is not received within this time (1 - 60 sec, default = 20).
-	HttpRequestHeaderTimeout pulumi.IntOutput `pulumi:"httpRequestHeaderTimeout"`
-	// Enable/disable redirect of port 80 to SSL-VPN port. Valid values: `enable`, `disable`.
-	HttpsRedirect pulumi.StringOutput `pulumi:"httpsRedirect"`
-	// SSL VPN disconnects if idle for specified time in seconds.
-	IdleTimeout pulumi.IntOutput `pulumi:"idleTimeout"`
-	// IPv6 DNS server 1.
-	Ipv6DnsServer1 pulumi.StringOutput `pulumi:"ipv6DnsServer1"`
-	// IPv6 DNS server 2.
-	Ipv6DnsServer2 pulumi.StringOutput `pulumi:"ipv6DnsServer2"`
-	// IPv6 WINS server 1.
-	Ipv6WinsServer1 pulumi.StringOutput `pulumi:"ipv6WinsServer1"`
-	// IPv6 WINS server 2.
-	Ipv6WinsServer2 pulumi.StringOutput `pulumi:"ipv6WinsServer2"`
-	// SSL VPN maximum login attempt times before block (0 - 10, default = 2, 0 = no limit).
-	LoginAttemptLimit pulumi.IntOutput `pulumi:"loginAttemptLimit"`
-	// Time for which a user is blocked from logging in after too many failed login attempts (0 - 86400 sec, default = 60).
-	LoginBlockTime pulumi.IntOutput `pulumi:"loginBlockTime"`
-	// SSLVPN maximum login timeout (10 - 180 sec, default = 30).
-	LoginTimeout pulumi.IntOutput `pulumi:"loginTimeout"`
-	// SSL-VPN access port (1 - 65535).
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Enable means that if SSL-VPN connections are allowed on an interface admin GUI connections are blocked on that interface. Valid values: `enable`, `disable`.
-	PortPrecedence pulumi.StringOutput `pulumi:"portPrecedence"`
-	// Enable to require client certificates for all SSL-VPN users. Valid values: `enable`, `disable`.
-	Reqclientcert pulumi.StringOutput `pulumi:"reqclientcert"`
-	// Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
-	RouteSourceInterface pulumi.StringOutput `pulumi:"routeSourceInterface"`
-	// SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
-	SamlRedirectPort pulumi.IntOutput `pulumi:"samlRedirectPort"`
-	// Name of the server certificate to be used for SSL-VPNs.
-	Servercert pulumi.StringOutput `pulumi:"servercert"`
-	// Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
-	SourceAddress6Negate pulumi.StringOutput `pulumi:"sourceAddress6Negate"`
-	// IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
-	SourceAddress6s VpnSslSettingsSourceAddress6ArrayOutput `pulumi:"sourceAddress6s"`
-	// Enable/disable negated source address match. Valid values: `enable`, `disable`.
-	SourceAddressNegate pulumi.StringOutput `pulumi:"sourceAddressNegate"`
-	// Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
-	SourceAddresses VpnSslSettingsSourceAddressArrayOutput `pulumi:"sourceAddresses"`
-	// SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
-	SourceInterfaces VpnSslSettingsSourceInterfaceArrayOutput `pulumi:"sourceInterfaces"`
-	// Enable to allow client renegotiation by the server if the tunnel goes down. Valid values: `disable`, `enable`.
-	SslClientRenegotiation pulumi.StringOutput `pulumi:"sslClientRenegotiation"`
-	// Enable/disable insertion of empty fragment. Valid values: `enable`, `disable`.
-	SslInsertEmptyFragment pulumi.StringOutput `pulumi:"sslInsertEmptyFragment"`
-	// SSL maximum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-	SslMaxProtoVer pulumi.StringOutput `pulumi:"sslMaxProtoVer"`
-	// SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-	SslMinProtoVer pulumi.StringOutput `pulumi:"sslMinProtoVer"`
-	// Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
-	Tlsv10 pulumi.StringOutput `pulumi:"tlsv10"`
-	// Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
-	Tlsv11 pulumi.StringOutput `pulumi:"tlsv11"`
-	// Enable/disable TLSv1.2. Valid values: `enable`, `disable`.
-	Tlsv12 pulumi.StringOutput `pulumi:"tlsv12"`
-	// Enable/disable TLSv1.3. Valid values: `enable`, `disable`.
-	Tlsv13 pulumi.StringOutput `pulumi:"tlsv13"`
-	// Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
-	TransformBackwardSlashes pulumi.StringOutput `pulumi:"transformBackwardSlashes"`
-	// Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
-	TunnelAddrAssignedMethod pulumi.StringOutput `pulumi:"tunnelAddrAssignedMethod"`
-	// Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
-	TunnelConnectWithoutReauth pulumi.StringOutput `pulumi:"tunnelConnectWithoutReauth"`
-	// Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpPools` block is documented below.
-	TunnelIpPools VpnSslSettingsTunnelIpPoolArrayOutput `pulumi:"tunnelIpPools"`
-	// Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpv6Pools` block is documented below.
-	TunnelIpv6Pools VpnSslSettingsTunnelIpv6PoolArrayOutput `pulumi:"tunnelIpv6Pools"`
-	// Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
-	TunnelUserSessionTimeout pulumi.IntOutput `pulumi:"tunnelUserSessionTimeout"`
-	// Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
-	UnsafeLegacyRenegotiation pulumi.StringOutput `pulumi:"unsafeLegacyRenegotiation"`
-	// Enable to obscure the host name of the URL of the web browser display. Valid values: `enable`, `disable`.
-	UrlObscuration pulumi.StringOutput `pulumi:"urlObscuration"`
-	// Name of user peer.
-	UserPeer pulumi.StringOutput `pulumi:"userPeer"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// WINS server 1.
-	WinsServer1 pulumi.StringOutput `pulumi:"winsServer1"`
-	// WINS server 2.
-	WinsServer2 pulumi.StringOutput `pulumi:"winsServer2"`
-	// Add HTTP X-Content-Type-Options header. Valid values: `enable`, `disable`.
-	XContentTypeOptions pulumi.StringOutput `pulumi:"xContentTypeOptions"`
+	Algorithm                  pulumi.StringOutput                         `pulumi:"algorithm"`
+	AuthSessionCheckSourceIp   pulumi.StringOutput                         `pulumi:"authSessionCheckSourceIp"`
+	AuthTimeout                pulumi.IntOutput                            `pulumi:"authTimeout"`
+	AuthenticationRules        VpnSslSettingsAuthenticationRuleArrayOutput `pulumi:"authenticationRules"`
+	AutoTunnelStaticRoute      pulumi.StringOutput                         `pulumi:"autoTunnelStaticRoute"`
+	BannedCipher               pulumi.StringOutput                         `pulumi:"bannedCipher"`
+	BrowserLanguageDetection   pulumi.StringOutput                         `pulumi:"browserLanguageDetection"`
+	CheckReferer               pulumi.StringOutput                         `pulumi:"checkReferer"`
+	Ciphersuite                pulumi.StringOutput                         `pulumi:"ciphersuite"`
+	ClientSigalgs              pulumi.StringOutput                         `pulumi:"clientSigalgs"`
+	DefaultPortal              pulumi.StringOutput                         `pulumi:"defaultPortal"`
+	DeflateCompressionLevel    pulumi.IntOutput                            `pulumi:"deflateCompressionLevel"`
+	DeflateMinDataSize         pulumi.IntOutput                            `pulumi:"deflateMinDataSize"`
+	DnsServer1                 pulumi.StringOutput                         `pulumi:"dnsServer1"`
+	DnsServer2                 pulumi.StringOutput                         `pulumi:"dnsServer2"`
+	DnsSuffix                  pulumi.StringPtrOutput                      `pulumi:"dnsSuffix"`
+	DtlsHelloTimeout           pulumi.IntOutput                            `pulumi:"dtlsHelloTimeout"`
+	DtlsMaxProtoVer            pulumi.StringOutput                         `pulumi:"dtlsMaxProtoVer"`
+	DtlsMinProtoVer            pulumi.StringOutput                         `pulumi:"dtlsMinProtoVer"`
+	DtlsTunnel                 pulumi.StringOutput                         `pulumi:"dtlsTunnel"`
+	DualStackMode              pulumi.StringOutput                         `pulumi:"dualStackMode"`
+	DynamicSortSubtable        pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
+	Encode2fSequence           pulumi.StringOutput                         `pulumi:"encode2fSequence"`
+	EncryptAndStorePassword    pulumi.StringOutput                         `pulumi:"encryptAndStorePassword"`
+	ForceTwoFactorAuth         pulumi.StringOutput                         `pulumi:"forceTwoFactorAuth"`
+	HeaderXForwardedFor        pulumi.StringOutput                         `pulumi:"headerXForwardedFor"`
+	HstsIncludeSubdomains      pulumi.StringOutput                         `pulumi:"hstsIncludeSubdomains"`
+	HttpCompression            pulumi.StringOutput                         `pulumi:"httpCompression"`
+	HttpOnlyCookie             pulumi.StringOutput                         `pulumi:"httpOnlyCookie"`
+	HttpRequestBodyTimeout     pulumi.IntOutput                            `pulumi:"httpRequestBodyTimeout"`
+	HttpRequestHeaderTimeout   pulumi.IntOutput                            `pulumi:"httpRequestHeaderTimeout"`
+	HttpsRedirect              pulumi.StringOutput                         `pulumi:"httpsRedirect"`
+	IdleTimeout                pulumi.IntOutput                            `pulumi:"idleTimeout"`
+	Ipv6DnsServer1             pulumi.StringOutput                         `pulumi:"ipv6DnsServer1"`
+	Ipv6DnsServer2             pulumi.StringOutput                         `pulumi:"ipv6DnsServer2"`
+	Ipv6WinsServer1            pulumi.StringOutput                         `pulumi:"ipv6WinsServer1"`
+	Ipv6WinsServer2            pulumi.StringOutput                         `pulumi:"ipv6WinsServer2"`
+	LoginAttemptLimit          pulumi.IntOutput                            `pulumi:"loginAttemptLimit"`
+	LoginBlockTime             pulumi.IntOutput                            `pulumi:"loginBlockTime"`
+	LoginTimeout               pulumi.IntOutput                            `pulumi:"loginTimeout"`
+	Port                       pulumi.IntOutput                            `pulumi:"port"`
+	PortPrecedence             pulumi.StringOutput                         `pulumi:"portPrecedence"`
+	Reqclientcert              pulumi.StringOutput                         `pulumi:"reqclientcert"`
+	RouteSourceInterface       pulumi.StringOutput                         `pulumi:"routeSourceInterface"`
+	SamlRedirectPort           pulumi.IntOutput                            `pulumi:"samlRedirectPort"`
+	Servercert                 pulumi.StringOutput                         `pulumi:"servercert"`
+	SourceAddress6Negate       pulumi.StringOutput                         `pulumi:"sourceAddress6Negate"`
+	SourceAddress6s            VpnSslSettingsSourceAddress6ArrayOutput     `pulumi:"sourceAddress6s"`
+	SourceAddressNegate        pulumi.StringOutput                         `pulumi:"sourceAddressNegate"`
+	SourceAddresses            VpnSslSettingsSourceAddressArrayOutput      `pulumi:"sourceAddresses"`
+	SourceInterfaces           VpnSslSettingsSourceInterfaceArrayOutput    `pulumi:"sourceInterfaces"`
+	SslClientRenegotiation     pulumi.StringOutput                         `pulumi:"sslClientRenegotiation"`
+	SslInsertEmptyFragment     pulumi.StringOutput                         `pulumi:"sslInsertEmptyFragment"`
+	SslMaxProtoVer             pulumi.StringOutput                         `pulumi:"sslMaxProtoVer"`
+	SslMinProtoVer             pulumi.StringOutput                         `pulumi:"sslMinProtoVer"`
+	Status                     pulumi.StringOutput                         `pulumi:"status"`
+	Tlsv10                     pulumi.StringOutput                         `pulumi:"tlsv10"`
+	Tlsv11                     pulumi.StringOutput                         `pulumi:"tlsv11"`
+	Tlsv12                     pulumi.StringOutput                         `pulumi:"tlsv12"`
+	Tlsv13                     pulumi.StringOutput                         `pulumi:"tlsv13"`
+	TransformBackwardSlashes   pulumi.StringOutput                         `pulumi:"transformBackwardSlashes"`
+	TunnelAddrAssignedMethod   pulumi.StringOutput                         `pulumi:"tunnelAddrAssignedMethod"`
+	TunnelConnectWithoutReauth pulumi.StringOutput                         `pulumi:"tunnelConnectWithoutReauth"`
+	TunnelIpPools              VpnSslSettingsTunnelIpPoolArrayOutput       `pulumi:"tunnelIpPools"`
+	TunnelIpv6Pools            VpnSslSettingsTunnelIpv6PoolArrayOutput     `pulumi:"tunnelIpv6Pools"`
+	TunnelUserSessionTimeout   pulumi.IntOutput                            `pulumi:"tunnelUserSessionTimeout"`
+	UnsafeLegacyRenegotiation  pulumi.StringOutput                         `pulumi:"unsafeLegacyRenegotiation"`
+	UrlObscuration             pulumi.StringOutput                         `pulumi:"urlObscuration"`
+	UserPeer                   pulumi.StringOutput                         `pulumi:"userPeer"`
+	Vdomparam                  pulumi.StringPtrOutput                      `pulumi:"vdomparam"`
+	WebModeSnat                pulumi.StringOutput                         `pulumi:"webModeSnat"`
+	WinsServer1                pulumi.StringOutput                         `pulumi:"winsServer1"`
+	WinsServer2                pulumi.StringOutput                         `pulumi:"winsServer2"`
+	XContentTypeOptions        pulumi.StringOutput                         `pulumi:"xContentTypeOptions"`
+	ZtnaTrustedClient          pulumi.StringOutput                         `pulumi:"ztnaTrustedClient"`
 }
 
 // NewVpnSslSettings registers a new resource with the given unique name, arguments, and options.
@@ -233,297 +120,159 @@ func GetVpnSslSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnSslSettings resources.
 type vpnSslSettingsState struct {
-	// Force the SSL-VPN security level. High allows only high. Medium allows medium and high. Low allows any. Valid values: `high`, `medium`, `default`, `low`.
-	Algorithm *string `pulumi:"algorithm"`
-	// Enable/disable checking of source IP for authentication session. Valid values: `enable`, `disable`.
-	AuthSessionCheckSourceIp *string `pulumi:"authSessionCheckSourceIp"`
-	// SSL-VPN authentication timeout (1 - 259200 sec (3 days), 0 for no timeout).
-	AuthTimeout *int `pulumi:"authTimeout"`
-	// Authentication rule for SSL VPN. The structure of `authenticationRule` block is documented below.
-	AuthenticationRules []VpnSslSettingsAuthenticationRule `pulumi:"authenticationRules"`
-	// Enable to auto-create static routes for the SSL-VPN tunnel IP addresses. Valid values: `enable`, `disable`.
-	AutoTunnelStaticRoute *string `pulumi:"autoTunnelStaticRoute"`
-	// Select one or more cipher technologies that cannot be used in SSL-VPN negotiations.
-	BannedCipher *string `pulumi:"bannedCipher"`
-	// Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
-	CheckReferer *string `pulumi:"checkReferer"`
-	// Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-	Ciphersuite *string `pulumi:"ciphersuite"`
-	// Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
-	ClientSigalgs *string `pulumi:"clientSigalgs"`
-	// Default SSL VPN portal.
-	DefaultPortal *string `pulumi:"defaultPortal"`
-	// Compression level (0~9).
-	DeflateCompressionLevel *int `pulumi:"deflateCompressionLevel"`
-	// Minimum amount of data that triggers compression (200 - 65535 bytes).
-	DeflateMinDataSize *int `pulumi:"deflateMinDataSize"`
-	// DNS server 1.
-	DnsServer1 *string `pulumi:"dnsServer1"`
-	// DNS server 2.
-	DnsServer2 *string `pulumi:"dnsServer2"`
-	// DNS suffix used for SSL-VPN clients.
-	DnsSuffix *string `pulumi:"dnsSuffix"`
-	// SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
-	DtlsHelloTimeout *int `pulumi:"dtlsHelloTimeout"`
-	// DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-	DtlsMaxProtoVer *string `pulumi:"dtlsMaxProtoVer"`
-	// DTLS minimum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-	DtlsMinProtoVer *string `pulumi:"dtlsMinProtoVer"`
-	// Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
-	DtlsTunnel *string `pulumi:"dtlsTunnel"`
-	// Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
-	DualStackMode *string `pulumi:"dualStackMode"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
-	Encode2fSequence *string `pulumi:"encode2fSequence"`
-	// Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
-	EncryptAndStorePassword *string `pulumi:"encryptAndStorePassword"`
-	// Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
-	ForceTwoFactorAuth *string `pulumi:"forceTwoFactorAuth"`
-	// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXForwardedFor *string `pulumi:"headerXForwardedFor"`
-	// Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
-	HstsIncludeSubdomains *string `pulumi:"hstsIncludeSubdomains"`
-	// Enable to allow HTTP compression over SSL-VPN tunnels. Valid values: `enable`, `disable`.
-	HttpCompression *string `pulumi:"httpCompression"`
-	// Enable/disable SSL-VPN support for HttpOnly cookies. Valid values: `enable`, `disable`.
-	HttpOnlyCookie *string `pulumi:"httpOnlyCookie"`
-	// SSL-VPN session is disconnected if an HTTP request body is not received within this time (1 - 60 sec, default = 20).
-	HttpRequestBodyTimeout *int `pulumi:"httpRequestBodyTimeout"`
-	// SSL-VPN session is disconnected if an HTTP request header is not received within this time (1 - 60 sec, default = 20).
-	HttpRequestHeaderTimeout *int `pulumi:"httpRequestHeaderTimeout"`
-	// Enable/disable redirect of port 80 to SSL-VPN port. Valid values: `enable`, `disable`.
-	HttpsRedirect *string `pulumi:"httpsRedirect"`
-	// SSL VPN disconnects if idle for specified time in seconds.
-	IdleTimeout *int `pulumi:"idleTimeout"`
-	// IPv6 DNS server 1.
-	Ipv6DnsServer1 *string `pulumi:"ipv6DnsServer1"`
-	// IPv6 DNS server 2.
-	Ipv6DnsServer2 *string `pulumi:"ipv6DnsServer2"`
-	// IPv6 WINS server 1.
-	Ipv6WinsServer1 *string `pulumi:"ipv6WinsServer1"`
-	// IPv6 WINS server 2.
-	Ipv6WinsServer2 *string `pulumi:"ipv6WinsServer2"`
-	// SSL VPN maximum login attempt times before block (0 - 10, default = 2, 0 = no limit).
-	LoginAttemptLimit *int `pulumi:"loginAttemptLimit"`
-	// Time for which a user is blocked from logging in after too many failed login attempts (0 - 86400 sec, default = 60).
-	LoginBlockTime *int `pulumi:"loginBlockTime"`
-	// SSLVPN maximum login timeout (10 - 180 sec, default = 30).
-	LoginTimeout *int `pulumi:"loginTimeout"`
-	// SSL-VPN access port (1 - 65535).
-	Port *int `pulumi:"port"`
-	// Enable means that if SSL-VPN connections are allowed on an interface admin GUI connections are blocked on that interface. Valid values: `enable`, `disable`.
-	PortPrecedence *string `pulumi:"portPrecedence"`
-	// Enable to require client certificates for all SSL-VPN users. Valid values: `enable`, `disable`.
-	Reqclientcert *string `pulumi:"reqclientcert"`
-	// Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
-	RouteSourceInterface *string `pulumi:"routeSourceInterface"`
-	// SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
-	SamlRedirectPort *int `pulumi:"samlRedirectPort"`
-	// Name of the server certificate to be used for SSL-VPNs.
-	Servercert *string `pulumi:"servercert"`
-	// Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
-	SourceAddress6Negate *string `pulumi:"sourceAddress6Negate"`
-	// IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
-	SourceAddress6s []VpnSslSettingsSourceAddress6 `pulumi:"sourceAddress6s"`
-	// Enable/disable negated source address match. Valid values: `enable`, `disable`.
-	SourceAddressNegate *string `pulumi:"sourceAddressNegate"`
-	// Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
-	SourceAddresses []VpnSslSettingsSourceAddress `pulumi:"sourceAddresses"`
-	// SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
-	SourceInterfaces []VpnSslSettingsSourceInterface `pulumi:"sourceInterfaces"`
-	// Enable to allow client renegotiation by the server if the tunnel goes down. Valid values: `disable`, `enable`.
-	SslClientRenegotiation *string `pulumi:"sslClientRenegotiation"`
-	// Enable/disable insertion of empty fragment. Valid values: `enable`, `disable`.
-	SslInsertEmptyFragment *string `pulumi:"sslInsertEmptyFragment"`
-	// SSL maximum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-	SslMaxProtoVer *string `pulumi:"sslMaxProtoVer"`
-	// SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-	SslMinProtoVer *string `pulumi:"sslMinProtoVer"`
-	// Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
-	Tlsv10 *string `pulumi:"tlsv10"`
-	// Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
-	Tlsv11 *string `pulumi:"tlsv11"`
-	// Enable/disable TLSv1.2. Valid values: `enable`, `disable`.
-	Tlsv12 *string `pulumi:"tlsv12"`
-	// Enable/disable TLSv1.3. Valid values: `enable`, `disable`.
-	Tlsv13 *string `pulumi:"tlsv13"`
-	// Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
-	TransformBackwardSlashes *string `pulumi:"transformBackwardSlashes"`
-	// Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
-	TunnelAddrAssignedMethod *string `pulumi:"tunnelAddrAssignedMethod"`
-	// Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
-	TunnelConnectWithoutReauth *string `pulumi:"tunnelConnectWithoutReauth"`
-	// Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpPools` block is documented below.
-	TunnelIpPools []VpnSslSettingsTunnelIpPool `pulumi:"tunnelIpPools"`
-	// Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpv6Pools` block is documented below.
-	TunnelIpv6Pools []VpnSslSettingsTunnelIpv6Pool `pulumi:"tunnelIpv6Pools"`
-	// Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
-	TunnelUserSessionTimeout *int `pulumi:"tunnelUserSessionTimeout"`
-	// Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
-	UnsafeLegacyRenegotiation *string `pulumi:"unsafeLegacyRenegotiation"`
-	// Enable to obscure the host name of the URL of the web browser display. Valid values: `enable`, `disable`.
-	UrlObscuration *string `pulumi:"urlObscuration"`
-	// Name of user peer.
-	UserPeer *string `pulumi:"userPeer"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// WINS server 1.
-	WinsServer1 *string `pulumi:"winsServer1"`
-	// WINS server 2.
-	WinsServer2 *string `pulumi:"winsServer2"`
-	// Add HTTP X-Content-Type-Options header. Valid values: `enable`, `disable`.
-	XContentTypeOptions *string `pulumi:"xContentTypeOptions"`
+	Algorithm                  *string                            `pulumi:"algorithm"`
+	AuthSessionCheckSourceIp   *string                            `pulumi:"authSessionCheckSourceIp"`
+	AuthTimeout                *int                               `pulumi:"authTimeout"`
+	AuthenticationRules        []VpnSslSettingsAuthenticationRule `pulumi:"authenticationRules"`
+	AutoTunnelStaticRoute      *string                            `pulumi:"autoTunnelStaticRoute"`
+	BannedCipher               *string                            `pulumi:"bannedCipher"`
+	BrowserLanguageDetection   *string                            `pulumi:"browserLanguageDetection"`
+	CheckReferer               *string                            `pulumi:"checkReferer"`
+	Ciphersuite                *string                            `pulumi:"ciphersuite"`
+	ClientSigalgs              *string                            `pulumi:"clientSigalgs"`
+	DefaultPortal              *string                            `pulumi:"defaultPortal"`
+	DeflateCompressionLevel    *int                               `pulumi:"deflateCompressionLevel"`
+	DeflateMinDataSize         *int                               `pulumi:"deflateMinDataSize"`
+	DnsServer1                 *string                            `pulumi:"dnsServer1"`
+	DnsServer2                 *string                            `pulumi:"dnsServer2"`
+	DnsSuffix                  *string                            `pulumi:"dnsSuffix"`
+	DtlsHelloTimeout           *int                               `pulumi:"dtlsHelloTimeout"`
+	DtlsMaxProtoVer            *string                            `pulumi:"dtlsMaxProtoVer"`
+	DtlsMinProtoVer            *string                            `pulumi:"dtlsMinProtoVer"`
+	DtlsTunnel                 *string                            `pulumi:"dtlsTunnel"`
+	DualStackMode              *string                            `pulumi:"dualStackMode"`
+	DynamicSortSubtable        *string                            `pulumi:"dynamicSortSubtable"`
+	Encode2fSequence           *string                            `pulumi:"encode2fSequence"`
+	EncryptAndStorePassword    *string                            `pulumi:"encryptAndStorePassword"`
+	ForceTwoFactorAuth         *string                            `pulumi:"forceTwoFactorAuth"`
+	HeaderXForwardedFor        *string                            `pulumi:"headerXForwardedFor"`
+	HstsIncludeSubdomains      *string                            `pulumi:"hstsIncludeSubdomains"`
+	HttpCompression            *string                            `pulumi:"httpCompression"`
+	HttpOnlyCookie             *string                            `pulumi:"httpOnlyCookie"`
+	HttpRequestBodyTimeout     *int                               `pulumi:"httpRequestBodyTimeout"`
+	HttpRequestHeaderTimeout   *int                               `pulumi:"httpRequestHeaderTimeout"`
+	HttpsRedirect              *string                            `pulumi:"httpsRedirect"`
+	IdleTimeout                *int                               `pulumi:"idleTimeout"`
+	Ipv6DnsServer1             *string                            `pulumi:"ipv6DnsServer1"`
+	Ipv6DnsServer2             *string                            `pulumi:"ipv6DnsServer2"`
+	Ipv6WinsServer1            *string                            `pulumi:"ipv6WinsServer1"`
+	Ipv6WinsServer2            *string                            `pulumi:"ipv6WinsServer2"`
+	LoginAttemptLimit          *int                               `pulumi:"loginAttemptLimit"`
+	LoginBlockTime             *int                               `pulumi:"loginBlockTime"`
+	LoginTimeout               *int                               `pulumi:"loginTimeout"`
+	Port                       *int                               `pulumi:"port"`
+	PortPrecedence             *string                            `pulumi:"portPrecedence"`
+	Reqclientcert              *string                            `pulumi:"reqclientcert"`
+	RouteSourceInterface       *string                            `pulumi:"routeSourceInterface"`
+	SamlRedirectPort           *int                               `pulumi:"samlRedirectPort"`
+	Servercert                 *string                            `pulumi:"servercert"`
+	SourceAddress6Negate       *string                            `pulumi:"sourceAddress6Negate"`
+	SourceAddress6s            []VpnSslSettingsSourceAddress6     `pulumi:"sourceAddress6s"`
+	SourceAddressNegate        *string                            `pulumi:"sourceAddressNegate"`
+	SourceAddresses            []VpnSslSettingsSourceAddress      `pulumi:"sourceAddresses"`
+	SourceInterfaces           []VpnSslSettingsSourceInterface    `pulumi:"sourceInterfaces"`
+	SslClientRenegotiation     *string                            `pulumi:"sslClientRenegotiation"`
+	SslInsertEmptyFragment     *string                            `pulumi:"sslInsertEmptyFragment"`
+	SslMaxProtoVer             *string                            `pulumi:"sslMaxProtoVer"`
+	SslMinProtoVer             *string                            `pulumi:"sslMinProtoVer"`
+	Status                     *string                            `pulumi:"status"`
+	Tlsv10                     *string                            `pulumi:"tlsv10"`
+	Tlsv11                     *string                            `pulumi:"tlsv11"`
+	Tlsv12                     *string                            `pulumi:"tlsv12"`
+	Tlsv13                     *string                            `pulumi:"tlsv13"`
+	TransformBackwardSlashes   *string                            `pulumi:"transformBackwardSlashes"`
+	TunnelAddrAssignedMethod   *string                            `pulumi:"tunnelAddrAssignedMethod"`
+	TunnelConnectWithoutReauth *string                            `pulumi:"tunnelConnectWithoutReauth"`
+	TunnelIpPools              []VpnSslSettingsTunnelIpPool       `pulumi:"tunnelIpPools"`
+	TunnelIpv6Pools            []VpnSslSettingsTunnelIpv6Pool     `pulumi:"tunnelIpv6Pools"`
+	TunnelUserSessionTimeout   *int                               `pulumi:"tunnelUserSessionTimeout"`
+	UnsafeLegacyRenegotiation  *string                            `pulumi:"unsafeLegacyRenegotiation"`
+	UrlObscuration             *string                            `pulumi:"urlObscuration"`
+	UserPeer                   *string                            `pulumi:"userPeer"`
+	Vdomparam                  *string                            `pulumi:"vdomparam"`
+	WebModeSnat                *string                            `pulumi:"webModeSnat"`
+	WinsServer1                *string                            `pulumi:"winsServer1"`
+	WinsServer2                *string                            `pulumi:"winsServer2"`
+	XContentTypeOptions        *string                            `pulumi:"xContentTypeOptions"`
+	ZtnaTrustedClient          *string                            `pulumi:"ztnaTrustedClient"`
 }
 
 type VpnSslSettingsState struct {
-	// Force the SSL-VPN security level. High allows only high. Medium allows medium and high. Low allows any. Valid values: `high`, `medium`, `default`, `low`.
-	Algorithm pulumi.StringPtrInput
-	// Enable/disable checking of source IP for authentication session. Valid values: `enable`, `disable`.
-	AuthSessionCheckSourceIp pulumi.StringPtrInput
-	// SSL-VPN authentication timeout (1 - 259200 sec (3 days), 0 for no timeout).
-	AuthTimeout pulumi.IntPtrInput
-	// Authentication rule for SSL VPN. The structure of `authenticationRule` block is documented below.
-	AuthenticationRules VpnSslSettingsAuthenticationRuleArrayInput
-	// Enable to auto-create static routes for the SSL-VPN tunnel IP addresses. Valid values: `enable`, `disable`.
-	AutoTunnelStaticRoute pulumi.StringPtrInput
-	// Select one or more cipher technologies that cannot be used in SSL-VPN negotiations.
-	BannedCipher pulumi.StringPtrInput
-	// Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
-	CheckReferer pulumi.StringPtrInput
-	// Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-	Ciphersuite pulumi.StringPtrInput
-	// Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
-	ClientSigalgs pulumi.StringPtrInput
-	// Default SSL VPN portal.
-	DefaultPortal pulumi.StringPtrInput
-	// Compression level (0~9).
-	DeflateCompressionLevel pulumi.IntPtrInput
-	// Minimum amount of data that triggers compression (200 - 65535 bytes).
-	DeflateMinDataSize pulumi.IntPtrInput
-	// DNS server 1.
-	DnsServer1 pulumi.StringPtrInput
-	// DNS server 2.
-	DnsServer2 pulumi.StringPtrInput
-	// DNS suffix used for SSL-VPN clients.
-	DnsSuffix pulumi.StringPtrInput
-	// SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
-	DtlsHelloTimeout pulumi.IntPtrInput
-	// DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-	DtlsMaxProtoVer pulumi.StringPtrInput
-	// DTLS minimum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-	DtlsMinProtoVer pulumi.StringPtrInput
-	// Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
-	DtlsTunnel pulumi.StringPtrInput
-	// Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
-	DualStackMode pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
-	Encode2fSequence pulumi.StringPtrInput
-	// Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
-	EncryptAndStorePassword pulumi.StringPtrInput
-	// Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
-	ForceTwoFactorAuth pulumi.StringPtrInput
-	// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXForwardedFor pulumi.StringPtrInput
-	// Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
-	HstsIncludeSubdomains pulumi.StringPtrInput
-	// Enable to allow HTTP compression over SSL-VPN tunnels. Valid values: `enable`, `disable`.
-	HttpCompression pulumi.StringPtrInput
-	// Enable/disable SSL-VPN support for HttpOnly cookies. Valid values: `enable`, `disable`.
-	HttpOnlyCookie pulumi.StringPtrInput
-	// SSL-VPN session is disconnected if an HTTP request body is not received within this time (1 - 60 sec, default = 20).
-	HttpRequestBodyTimeout pulumi.IntPtrInput
-	// SSL-VPN session is disconnected if an HTTP request header is not received within this time (1 - 60 sec, default = 20).
-	HttpRequestHeaderTimeout pulumi.IntPtrInput
-	// Enable/disable redirect of port 80 to SSL-VPN port. Valid values: `enable`, `disable`.
-	HttpsRedirect pulumi.StringPtrInput
-	// SSL VPN disconnects if idle for specified time in seconds.
-	IdleTimeout pulumi.IntPtrInput
-	// IPv6 DNS server 1.
-	Ipv6DnsServer1 pulumi.StringPtrInput
-	// IPv6 DNS server 2.
-	Ipv6DnsServer2 pulumi.StringPtrInput
-	// IPv6 WINS server 1.
-	Ipv6WinsServer1 pulumi.StringPtrInput
-	// IPv6 WINS server 2.
-	Ipv6WinsServer2 pulumi.StringPtrInput
-	// SSL VPN maximum login attempt times before block (0 - 10, default = 2, 0 = no limit).
-	LoginAttemptLimit pulumi.IntPtrInput
-	// Time for which a user is blocked from logging in after too many failed login attempts (0 - 86400 sec, default = 60).
-	LoginBlockTime pulumi.IntPtrInput
-	// SSLVPN maximum login timeout (10 - 180 sec, default = 30).
-	LoginTimeout pulumi.IntPtrInput
-	// SSL-VPN access port (1 - 65535).
-	Port pulumi.IntPtrInput
-	// Enable means that if SSL-VPN connections are allowed on an interface admin GUI connections are blocked on that interface. Valid values: `enable`, `disable`.
-	PortPrecedence pulumi.StringPtrInput
-	// Enable to require client certificates for all SSL-VPN users. Valid values: `enable`, `disable`.
-	Reqclientcert pulumi.StringPtrInput
-	// Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
-	RouteSourceInterface pulumi.StringPtrInput
-	// SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
-	SamlRedirectPort pulumi.IntPtrInput
-	// Name of the server certificate to be used for SSL-VPNs.
-	Servercert pulumi.StringPtrInput
-	// Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
-	SourceAddress6Negate pulumi.StringPtrInput
-	// IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
-	SourceAddress6s VpnSslSettingsSourceAddress6ArrayInput
-	// Enable/disable negated source address match. Valid values: `enable`, `disable`.
-	SourceAddressNegate pulumi.StringPtrInput
-	// Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
-	SourceAddresses VpnSslSettingsSourceAddressArrayInput
-	// SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
-	SourceInterfaces VpnSslSettingsSourceInterfaceArrayInput
-	// Enable to allow client renegotiation by the server if the tunnel goes down. Valid values: `disable`, `enable`.
-	SslClientRenegotiation pulumi.StringPtrInput
-	// Enable/disable insertion of empty fragment. Valid values: `enable`, `disable`.
-	SslInsertEmptyFragment pulumi.StringPtrInput
-	// SSL maximum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-	SslMaxProtoVer pulumi.StringPtrInput
-	// SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-	SslMinProtoVer pulumi.StringPtrInput
-	// Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
-	Tlsv10 pulumi.StringPtrInput
-	// Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
-	Tlsv11 pulumi.StringPtrInput
-	// Enable/disable TLSv1.2. Valid values: `enable`, `disable`.
-	Tlsv12 pulumi.StringPtrInput
-	// Enable/disable TLSv1.3. Valid values: `enable`, `disable`.
-	Tlsv13 pulumi.StringPtrInput
-	// Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
-	TransformBackwardSlashes pulumi.StringPtrInput
-	// Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
-	TunnelAddrAssignedMethod pulumi.StringPtrInput
-	// Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
+	Algorithm                  pulumi.StringPtrInput
+	AuthSessionCheckSourceIp   pulumi.StringPtrInput
+	AuthTimeout                pulumi.IntPtrInput
+	AuthenticationRules        VpnSslSettingsAuthenticationRuleArrayInput
+	AutoTunnelStaticRoute      pulumi.StringPtrInput
+	BannedCipher               pulumi.StringPtrInput
+	BrowserLanguageDetection   pulumi.StringPtrInput
+	CheckReferer               pulumi.StringPtrInput
+	Ciphersuite                pulumi.StringPtrInput
+	ClientSigalgs              pulumi.StringPtrInput
+	DefaultPortal              pulumi.StringPtrInput
+	DeflateCompressionLevel    pulumi.IntPtrInput
+	DeflateMinDataSize         pulumi.IntPtrInput
+	DnsServer1                 pulumi.StringPtrInput
+	DnsServer2                 pulumi.StringPtrInput
+	DnsSuffix                  pulumi.StringPtrInput
+	DtlsHelloTimeout           pulumi.IntPtrInput
+	DtlsMaxProtoVer            pulumi.StringPtrInput
+	DtlsMinProtoVer            pulumi.StringPtrInput
+	DtlsTunnel                 pulumi.StringPtrInput
+	DualStackMode              pulumi.StringPtrInput
+	DynamicSortSubtable        pulumi.StringPtrInput
+	Encode2fSequence           pulumi.StringPtrInput
+	EncryptAndStorePassword    pulumi.StringPtrInput
+	ForceTwoFactorAuth         pulumi.StringPtrInput
+	HeaderXForwardedFor        pulumi.StringPtrInput
+	HstsIncludeSubdomains      pulumi.StringPtrInput
+	HttpCompression            pulumi.StringPtrInput
+	HttpOnlyCookie             pulumi.StringPtrInput
+	HttpRequestBodyTimeout     pulumi.IntPtrInput
+	HttpRequestHeaderTimeout   pulumi.IntPtrInput
+	HttpsRedirect              pulumi.StringPtrInput
+	IdleTimeout                pulumi.IntPtrInput
+	Ipv6DnsServer1             pulumi.StringPtrInput
+	Ipv6DnsServer2             pulumi.StringPtrInput
+	Ipv6WinsServer1            pulumi.StringPtrInput
+	Ipv6WinsServer2            pulumi.StringPtrInput
+	LoginAttemptLimit          pulumi.IntPtrInput
+	LoginBlockTime             pulumi.IntPtrInput
+	LoginTimeout               pulumi.IntPtrInput
+	Port                       pulumi.IntPtrInput
+	PortPrecedence             pulumi.StringPtrInput
+	Reqclientcert              pulumi.StringPtrInput
+	RouteSourceInterface       pulumi.StringPtrInput
+	SamlRedirectPort           pulumi.IntPtrInput
+	Servercert                 pulumi.StringPtrInput
+	SourceAddress6Negate       pulumi.StringPtrInput
+	SourceAddress6s            VpnSslSettingsSourceAddress6ArrayInput
+	SourceAddressNegate        pulumi.StringPtrInput
+	SourceAddresses            VpnSslSettingsSourceAddressArrayInput
+	SourceInterfaces           VpnSslSettingsSourceInterfaceArrayInput
+	SslClientRenegotiation     pulumi.StringPtrInput
+	SslInsertEmptyFragment     pulumi.StringPtrInput
+	SslMaxProtoVer             pulumi.StringPtrInput
+	SslMinProtoVer             pulumi.StringPtrInput
+	Status                     pulumi.StringPtrInput
+	Tlsv10                     pulumi.StringPtrInput
+	Tlsv11                     pulumi.StringPtrInput
+	Tlsv12                     pulumi.StringPtrInput
+	Tlsv13                     pulumi.StringPtrInput
+	TransformBackwardSlashes   pulumi.StringPtrInput
+	TunnelAddrAssignedMethod   pulumi.StringPtrInput
 	TunnelConnectWithoutReauth pulumi.StringPtrInput
-	// Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpPools` block is documented below.
-	TunnelIpPools VpnSslSettingsTunnelIpPoolArrayInput
-	// Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpv6Pools` block is documented below.
-	TunnelIpv6Pools VpnSslSettingsTunnelIpv6PoolArrayInput
-	// Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
-	TunnelUserSessionTimeout pulumi.IntPtrInput
-	// Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
-	UnsafeLegacyRenegotiation pulumi.StringPtrInput
-	// Enable to obscure the host name of the URL of the web browser display. Valid values: `enable`, `disable`.
-	UrlObscuration pulumi.StringPtrInput
-	// Name of user peer.
-	UserPeer pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// WINS server 1.
-	WinsServer1 pulumi.StringPtrInput
-	// WINS server 2.
-	WinsServer2 pulumi.StringPtrInput
-	// Add HTTP X-Content-Type-Options header. Valid values: `enable`, `disable`.
-	XContentTypeOptions pulumi.StringPtrInput
+	TunnelIpPools              VpnSslSettingsTunnelIpPoolArrayInput
+	TunnelIpv6Pools            VpnSslSettingsTunnelIpv6PoolArrayInput
+	TunnelUserSessionTimeout   pulumi.IntPtrInput
+	UnsafeLegacyRenegotiation  pulumi.StringPtrInput
+	UrlObscuration             pulumi.StringPtrInput
+	UserPeer                   pulumi.StringPtrInput
+	Vdomparam                  pulumi.StringPtrInput
+	WebModeSnat                pulumi.StringPtrInput
+	WinsServer1                pulumi.StringPtrInput
+	WinsServer2                pulumi.StringPtrInput
+	XContentTypeOptions        pulumi.StringPtrInput
+	ZtnaTrustedClient          pulumi.StringPtrInput
 }
 
 func (VpnSslSettingsState) ElementType() reflect.Type {
@@ -531,298 +280,160 @@ func (VpnSslSettingsState) ElementType() reflect.Type {
 }
 
 type vpnSslSettingsArgs struct {
-	// Force the SSL-VPN security level. High allows only high. Medium allows medium and high. Low allows any. Valid values: `high`, `medium`, `default`, `low`.
-	Algorithm *string `pulumi:"algorithm"`
-	// Enable/disable checking of source IP for authentication session. Valid values: `enable`, `disable`.
-	AuthSessionCheckSourceIp *string `pulumi:"authSessionCheckSourceIp"`
-	// SSL-VPN authentication timeout (1 - 259200 sec (3 days), 0 for no timeout).
-	AuthTimeout *int `pulumi:"authTimeout"`
-	// Authentication rule for SSL VPN. The structure of `authenticationRule` block is documented below.
-	AuthenticationRules []VpnSslSettingsAuthenticationRule `pulumi:"authenticationRules"`
-	// Enable to auto-create static routes for the SSL-VPN tunnel IP addresses. Valid values: `enable`, `disable`.
-	AutoTunnelStaticRoute *string `pulumi:"autoTunnelStaticRoute"`
-	// Select one or more cipher technologies that cannot be used in SSL-VPN negotiations.
-	BannedCipher *string `pulumi:"bannedCipher"`
-	// Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
-	CheckReferer *string `pulumi:"checkReferer"`
-	// Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-	Ciphersuite *string `pulumi:"ciphersuite"`
-	// Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
-	ClientSigalgs *string `pulumi:"clientSigalgs"`
-	// Default SSL VPN portal.
-	DefaultPortal *string `pulumi:"defaultPortal"`
-	// Compression level (0~9).
-	DeflateCompressionLevel *int `pulumi:"deflateCompressionLevel"`
-	// Minimum amount of data that triggers compression (200 - 65535 bytes).
-	DeflateMinDataSize *int `pulumi:"deflateMinDataSize"`
-	// DNS server 1.
-	DnsServer1 *string `pulumi:"dnsServer1"`
-	// DNS server 2.
-	DnsServer2 *string `pulumi:"dnsServer2"`
-	// DNS suffix used for SSL-VPN clients.
-	DnsSuffix *string `pulumi:"dnsSuffix"`
-	// SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
-	DtlsHelloTimeout *int `pulumi:"dtlsHelloTimeout"`
-	// DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-	DtlsMaxProtoVer *string `pulumi:"dtlsMaxProtoVer"`
-	// DTLS minimum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-	DtlsMinProtoVer *string `pulumi:"dtlsMinProtoVer"`
-	// Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
-	DtlsTunnel *string `pulumi:"dtlsTunnel"`
-	// Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
-	DualStackMode *string `pulumi:"dualStackMode"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
-	Encode2fSequence *string `pulumi:"encode2fSequence"`
-	// Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
-	EncryptAndStorePassword *string `pulumi:"encryptAndStorePassword"`
-	// Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
-	ForceTwoFactorAuth *string `pulumi:"forceTwoFactorAuth"`
-	// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXForwardedFor *string `pulumi:"headerXForwardedFor"`
-	// Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
-	HstsIncludeSubdomains *string `pulumi:"hstsIncludeSubdomains"`
-	// Enable to allow HTTP compression over SSL-VPN tunnels. Valid values: `enable`, `disable`.
-	HttpCompression *string `pulumi:"httpCompression"`
-	// Enable/disable SSL-VPN support for HttpOnly cookies. Valid values: `enable`, `disable`.
-	HttpOnlyCookie *string `pulumi:"httpOnlyCookie"`
-	// SSL-VPN session is disconnected if an HTTP request body is not received within this time (1 - 60 sec, default = 20).
-	HttpRequestBodyTimeout *int `pulumi:"httpRequestBodyTimeout"`
-	// SSL-VPN session is disconnected if an HTTP request header is not received within this time (1 - 60 sec, default = 20).
-	HttpRequestHeaderTimeout *int `pulumi:"httpRequestHeaderTimeout"`
-	// Enable/disable redirect of port 80 to SSL-VPN port. Valid values: `enable`, `disable`.
-	HttpsRedirect *string `pulumi:"httpsRedirect"`
-	// SSL VPN disconnects if idle for specified time in seconds.
-	IdleTimeout *int `pulumi:"idleTimeout"`
-	// IPv6 DNS server 1.
-	Ipv6DnsServer1 *string `pulumi:"ipv6DnsServer1"`
-	// IPv6 DNS server 2.
-	Ipv6DnsServer2 *string `pulumi:"ipv6DnsServer2"`
-	// IPv6 WINS server 1.
-	Ipv6WinsServer1 *string `pulumi:"ipv6WinsServer1"`
-	// IPv6 WINS server 2.
-	Ipv6WinsServer2 *string `pulumi:"ipv6WinsServer2"`
-	// SSL VPN maximum login attempt times before block (0 - 10, default = 2, 0 = no limit).
-	LoginAttemptLimit *int `pulumi:"loginAttemptLimit"`
-	// Time for which a user is blocked from logging in after too many failed login attempts (0 - 86400 sec, default = 60).
-	LoginBlockTime *int `pulumi:"loginBlockTime"`
-	// SSLVPN maximum login timeout (10 - 180 sec, default = 30).
-	LoginTimeout *int `pulumi:"loginTimeout"`
-	// SSL-VPN access port (1 - 65535).
-	Port *int `pulumi:"port"`
-	// Enable means that if SSL-VPN connections are allowed on an interface admin GUI connections are blocked on that interface. Valid values: `enable`, `disable`.
-	PortPrecedence *string `pulumi:"portPrecedence"`
-	// Enable to require client certificates for all SSL-VPN users. Valid values: `enable`, `disable`.
-	Reqclientcert *string `pulumi:"reqclientcert"`
-	// Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
-	RouteSourceInterface *string `pulumi:"routeSourceInterface"`
-	// SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
-	SamlRedirectPort *int `pulumi:"samlRedirectPort"`
-	// Name of the server certificate to be used for SSL-VPNs.
-	Servercert *string `pulumi:"servercert"`
-	// Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
-	SourceAddress6Negate *string `pulumi:"sourceAddress6Negate"`
-	// IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
-	SourceAddress6s []VpnSslSettingsSourceAddress6 `pulumi:"sourceAddress6s"`
-	// Enable/disable negated source address match. Valid values: `enable`, `disable`.
-	SourceAddressNegate *string `pulumi:"sourceAddressNegate"`
-	// Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
-	SourceAddresses []VpnSslSettingsSourceAddress `pulumi:"sourceAddresses"`
-	// SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
-	SourceInterfaces []VpnSslSettingsSourceInterface `pulumi:"sourceInterfaces"`
-	// Enable to allow client renegotiation by the server if the tunnel goes down. Valid values: `disable`, `enable`.
-	SslClientRenegotiation *string `pulumi:"sslClientRenegotiation"`
-	// Enable/disable insertion of empty fragment. Valid values: `enable`, `disable`.
-	SslInsertEmptyFragment *string `pulumi:"sslInsertEmptyFragment"`
-	// SSL maximum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-	SslMaxProtoVer *string `pulumi:"sslMaxProtoVer"`
-	// SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-	SslMinProtoVer *string `pulumi:"sslMinProtoVer"`
-	// Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
-	Tlsv10 *string `pulumi:"tlsv10"`
-	// Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
-	Tlsv11 *string `pulumi:"tlsv11"`
-	// Enable/disable TLSv1.2. Valid values: `enable`, `disable`.
-	Tlsv12 *string `pulumi:"tlsv12"`
-	// Enable/disable TLSv1.3. Valid values: `enable`, `disable`.
-	Tlsv13 *string `pulumi:"tlsv13"`
-	// Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
-	TransformBackwardSlashes *string `pulumi:"transformBackwardSlashes"`
-	// Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
-	TunnelAddrAssignedMethod *string `pulumi:"tunnelAddrAssignedMethod"`
-	// Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
-	TunnelConnectWithoutReauth *string `pulumi:"tunnelConnectWithoutReauth"`
-	// Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpPools` block is documented below.
-	TunnelIpPools []VpnSslSettingsTunnelIpPool `pulumi:"tunnelIpPools"`
-	// Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpv6Pools` block is documented below.
-	TunnelIpv6Pools []VpnSslSettingsTunnelIpv6Pool `pulumi:"tunnelIpv6Pools"`
-	// Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
-	TunnelUserSessionTimeout *int `pulumi:"tunnelUserSessionTimeout"`
-	// Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
-	UnsafeLegacyRenegotiation *string `pulumi:"unsafeLegacyRenegotiation"`
-	// Enable to obscure the host name of the URL of the web browser display. Valid values: `enable`, `disable`.
-	UrlObscuration *string `pulumi:"urlObscuration"`
-	// Name of user peer.
-	UserPeer *string `pulumi:"userPeer"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// WINS server 1.
-	WinsServer1 *string `pulumi:"winsServer1"`
-	// WINS server 2.
-	WinsServer2 *string `pulumi:"winsServer2"`
-	// Add HTTP X-Content-Type-Options header. Valid values: `enable`, `disable`.
-	XContentTypeOptions *string `pulumi:"xContentTypeOptions"`
+	Algorithm                  *string                            `pulumi:"algorithm"`
+	AuthSessionCheckSourceIp   *string                            `pulumi:"authSessionCheckSourceIp"`
+	AuthTimeout                *int                               `pulumi:"authTimeout"`
+	AuthenticationRules        []VpnSslSettingsAuthenticationRule `pulumi:"authenticationRules"`
+	AutoTunnelStaticRoute      *string                            `pulumi:"autoTunnelStaticRoute"`
+	BannedCipher               *string                            `pulumi:"bannedCipher"`
+	BrowserLanguageDetection   *string                            `pulumi:"browserLanguageDetection"`
+	CheckReferer               *string                            `pulumi:"checkReferer"`
+	Ciphersuite                *string                            `pulumi:"ciphersuite"`
+	ClientSigalgs              *string                            `pulumi:"clientSigalgs"`
+	DefaultPortal              *string                            `pulumi:"defaultPortal"`
+	DeflateCompressionLevel    *int                               `pulumi:"deflateCompressionLevel"`
+	DeflateMinDataSize         *int                               `pulumi:"deflateMinDataSize"`
+	DnsServer1                 *string                            `pulumi:"dnsServer1"`
+	DnsServer2                 *string                            `pulumi:"dnsServer2"`
+	DnsSuffix                  *string                            `pulumi:"dnsSuffix"`
+	DtlsHelloTimeout           *int                               `pulumi:"dtlsHelloTimeout"`
+	DtlsMaxProtoVer            *string                            `pulumi:"dtlsMaxProtoVer"`
+	DtlsMinProtoVer            *string                            `pulumi:"dtlsMinProtoVer"`
+	DtlsTunnel                 *string                            `pulumi:"dtlsTunnel"`
+	DualStackMode              *string                            `pulumi:"dualStackMode"`
+	DynamicSortSubtable        *string                            `pulumi:"dynamicSortSubtable"`
+	Encode2fSequence           *string                            `pulumi:"encode2fSequence"`
+	EncryptAndStorePassword    *string                            `pulumi:"encryptAndStorePassword"`
+	ForceTwoFactorAuth         *string                            `pulumi:"forceTwoFactorAuth"`
+	HeaderXForwardedFor        *string                            `pulumi:"headerXForwardedFor"`
+	HstsIncludeSubdomains      *string                            `pulumi:"hstsIncludeSubdomains"`
+	HttpCompression            *string                            `pulumi:"httpCompression"`
+	HttpOnlyCookie             *string                            `pulumi:"httpOnlyCookie"`
+	HttpRequestBodyTimeout     *int                               `pulumi:"httpRequestBodyTimeout"`
+	HttpRequestHeaderTimeout   *int                               `pulumi:"httpRequestHeaderTimeout"`
+	HttpsRedirect              *string                            `pulumi:"httpsRedirect"`
+	IdleTimeout                *int                               `pulumi:"idleTimeout"`
+	Ipv6DnsServer1             *string                            `pulumi:"ipv6DnsServer1"`
+	Ipv6DnsServer2             *string                            `pulumi:"ipv6DnsServer2"`
+	Ipv6WinsServer1            *string                            `pulumi:"ipv6WinsServer1"`
+	Ipv6WinsServer2            *string                            `pulumi:"ipv6WinsServer2"`
+	LoginAttemptLimit          *int                               `pulumi:"loginAttemptLimit"`
+	LoginBlockTime             *int                               `pulumi:"loginBlockTime"`
+	LoginTimeout               *int                               `pulumi:"loginTimeout"`
+	Port                       *int                               `pulumi:"port"`
+	PortPrecedence             *string                            `pulumi:"portPrecedence"`
+	Reqclientcert              *string                            `pulumi:"reqclientcert"`
+	RouteSourceInterface       *string                            `pulumi:"routeSourceInterface"`
+	SamlRedirectPort           *int                               `pulumi:"samlRedirectPort"`
+	Servercert                 *string                            `pulumi:"servercert"`
+	SourceAddress6Negate       *string                            `pulumi:"sourceAddress6Negate"`
+	SourceAddress6s            []VpnSslSettingsSourceAddress6     `pulumi:"sourceAddress6s"`
+	SourceAddressNegate        *string                            `pulumi:"sourceAddressNegate"`
+	SourceAddresses            []VpnSslSettingsSourceAddress      `pulumi:"sourceAddresses"`
+	SourceInterfaces           []VpnSslSettingsSourceInterface    `pulumi:"sourceInterfaces"`
+	SslClientRenegotiation     *string                            `pulumi:"sslClientRenegotiation"`
+	SslInsertEmptyFragment     *string                            `pulumi:"sslInsertEmptyFragment"`
+	SslMaxProtoVer             *string                            `pulumi:"sslMaxProtoVer"`
+	SslMinProtoVer             *string                            `pulumi:"sslMinProtoVer"`
+	Status                     *string                            `pulumi:"status"`
+	Tlsv10                     *string                            `pulumi:"tlsv10"`
+	Tlsv11                     *string                            `pulumi:"tlsv11"`
+	Tlsv12                     *string                            `pulumi:"tlsv12"`
+	Tlsv13                     *string                            `pulumi:"tlsv13"`
+	TransformBackwardSlashes   *string                            `pulumi:"transformBackwardSlashes"`
+	TunnelAddrAssignedMethod   *string                            `pulumi:"tunnelAddrAssignedMethod"`
+	TunnelConnectWithoutReauth *string                            `pulumi:"tunnelConnectWithoutReauth"`
+	TunnelIpPools              []VpnSslSettingsTunnelIpPool       `pulumi:"tunnelIpPools"`
+	TunnelIpv6Pools            []VpnSslSettingsTunnelIpv6Pool     `pulumi:"tunnelIpv6Pools"`
+	TunnelUserSessionTimeout   *int                               `pulumi:"tunnelUserSessionTimeout"`
+	UnsafeLegacyRenegotiation  *string                            `pulumi:"unsafeLegacyRenegotiation"`
+	UrlObscuration             *string                            `pulumi:"urlObscuration"`
+	UserPeer                   *string                            `pulumi:"userPeer"`
+	Vdomparam                  *string                            `pulumi:"vdomparam"`
+	WebModeSnat                *string                            `pulumi:"webModeSnat"`
+	WinsServer1                *string                            `pulumi:"winsServer1"`
+	WinsServer2                *string                            `pulumi:"winsServer2"`
+	XContentTypeOptions        *string                            `pulumi:"xContentTypeOptions"`
+	ZtnaTrustedClient          *string                            `pulumi:"ztnaTrustedClient"`
 }
 
 // The set of arguments for constructing a VpnSslSettings resource.
 type VpnSslSettingsArgs struct {
-	// Force the SSL-VPN security level. High allows only high. Medium allows medium and high. Low allows any. Valid values: `high`, `medium`, `default`, `low`.
-	Algorithm pulumi.StringPtrInput
-	// Enable/disable checking of source IP for authentication session. Valid values: `enable`, `disable`.
-	AuthSessionCheckSourceIp pulumi.StringPtrInput
-	// SSL-VPN authentication timeout (1 - 259200 sec (3 days), 0 for no timeout).
-	AuthTimeout pulumi.IntPtrInput
-	// Authentication rule for SSL VPN. The structure of `authenticationRule` block is documented below.
-	AuthenticationRules VpnSslSettingsAuthenticationRuleArrayInput
-	// Enable to auto-create static routes for the SSL-VPN tunnel IP addresses. Valid values: `enable`, `disable`.
-	AutoTunnelStaticRoute pulumi.StringPtrInput
-	// Select one or more cipher technologies that cannot be used in SSL-VPN negotiations.
-	BannedCipher pulumi.StringPtrInput
-	// Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
-	CheckReferer pulumi.StringPtrInput
-	// Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
-	Ciphersuite pulumi.StringPtrInput
-	// Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
-	ClientSigalgs pulumi.StringPtrInput
-	// Default SSL VPN portal.
-	DefaultPortal pulumi.StringPtrInput
-	// Compression level (0~9).
-	DeflateCompressionLevel pulumi.IntPtrInput
-	// Minimum amount of data that triggers compression (200 - 65535 bytes).
-	DeflateMinDataSize pulumi.IntPtrInput
-	// DNS server 1.
-	DnsServer1 pulumi.StringPtrInput
-	// DNS server 2.
-	DnsServer2 pulumi.StringPtrInput
-	// DNS suffix used for SSL-VPN clients.
-	DnsSuffix pulumi.StringPtrInput
-	// SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
-	DtlsHelloTimeout pulumi.IntPtrInput
-	// DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-	DtlsMaxProtoVer pulumi.StringPtrInput
-	// DTLS minimum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
-	DtlsMinProtoVer pulumi.StringPtrInput
-	// Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
-	DtlsTunnel pulumi.StringPtrInput
-	// Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
-	DualStackMode pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
-	Encode2fSequence pulumi.StringPtrInput
-	// Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
-	EncryptAndStorePassword pulumi.StringPtrInput
-	// Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
-	ForceTwoFactorAuth pulumi.StringPtrInput
-	// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
-	HeaderXForwardedFor pulumi.StringPtrInput
-	// Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
-	HstsIncludeSubdomains pulumi.StringPtrInput
-	// Enable to allow HTTP compression over SSL-VPN tunnels. Valid values: `enable`, `disable`.
-	HttpCompression pulumi.StringPtrInput
-	// Enable/disable SSL-VPN support for HttpOnly cookies. Valid values: `enable`, `disable`.
-	HttpOnlyCookie pulumi.StringPtrInput
-	// SSL-VPN session is disconnected if an HTTP request body is not received within this time (1 - 60 sec, default = 20).
-	HttpRequestBodyTimeout pulumi.IntPtrInput
-	// SSL-VPN session is disconnected if an HTTP request header is not received within this time (1 - 60 sec, default = 20).
-	HttpRequestHeaderTimeout pulumi.IntPtrInput
-	// Enable/disable redirect of port 80 to SSL-VPN port. Valid values: `enable`, `disable`.
-	HttpsRedirect pulumi.StringPtrInput
-	// SSL VPN disconnects if idle for specified time in seconds.
-	IdleTimeout pulumi.IntPtrInput
-	// IPv6 DNS server 1.
-	Ipv6DnsServer1 pulumi.StringPtrInput
-	// IPv6 DNS server 2.
-	Ipv6DnsServer2 pulumi.StringPtrInput
-	// IPv6 WINS server 1.
-	Ipv6WinsServer1 pulumi.StringPtrInput
-	// IPv6 WINS server 2.
-	Ipv6WinsServer2 pulumi.StringPtrInput
-	// SSL VPN maximum login attempt times before block (0 - 10, default = 2, 0 = no limit).
-	LoginAttemptLimit pulumi.IntPtrInput
-	// Time for which a user is blocked from logging in after too many failed login attempts (0 - 86400 sec, default = 60).
-	LoginBlockTime pulumi.IntPtrInput
-	// SSLVPN maximum login timeout (10 - 180 sec, default = 30).
-	LoginTimeout pulumi.IntPtrInput
-	// SSL-VPN access port (1 - 65535).
-	Port pulumi.IntPtrInput
-	// Enable means that if SSL-VPN connections are allowed on an interface admin GUI connections are blocked on that interface. Valid values: `enable`, `disable`.
-	PortPrecedence pulumi.StringPtrInput
-	// Enable to require client certificates for all SSL-VPN users. Valid values: `enable`, `disable`.
-	Reqclientcert pulumi.StringPtrInput
-	// Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
-	RouteSourceInterface pulumi.StringPtrInput
-	// SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
-	SamlRedirectPort pulumi.IntPtrInput
-	// Name of the server certificate to be used for SSL-VPNs.
-	Servercert pulumi.StringPtrInput
-	// Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
-	SourceAddress6Negate pulumi.StringPtrInput
-	// IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
-	SourceAddress6s VpnSslSettingsSourceAddress6ArrayInput
-	// Enable/disable negated source address match. Valid values: `enable`, `disable`.
-	SourceAddressNegate pulumi.StringPtrInput
-	// Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
-	SourceAddresses VpnSslSettingsSourceAddressArrayInput
-	// SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
-	SourceInterfaces VpnSslSettingsSourceInterfaceArrayInput
-	// Enable to allow client renegotiation by the server if the tunnel goes down. Valid values: `disable`, `enable`.
-	SslClientRenegotiation pulumi.StringPtrInput
-	// Enable/disable insertion of empty fragment. Valid values: `enable`, `disable`.
-	SslInsertEmptyFragment pulumi.StringPtrInput
-	// SSL maximum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-	SslMaxProtoVer pulumi.StringPtrInput
-	// SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
-	SslMinProtoVer pulumi.StringPtrInput
-	// Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
-	Tlsv10 pulumi.StringPtrInput
-	// Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
-	Tlsv11 pulumi.StringPtrInput
-	// Enable/disable TLSv1.2. Valid values: `enable`, `disable`.
-	Tlsv12 pulumi.StringPtrInput
-	// Enable/disable TLSv1.3. Valid values: `enable`, `disable`.
-	Tlsv13 pulumi.StringPtrInput
-	// Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
-	TransformBackwardSlashes pulumi.StringPtrInput
-	// Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
-	TunnelAddrAssignedMethod pulumi.StringPtrInput
-	// Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
+	Algorithm                  pulumi.StringPtrInput
+	AuthSessionCheckSourceIp   pulumi.StringPtrInput
+	AuthTimeout                pulumi.IntPtrInput
+	AuthenticationRules        VpnSslSettingsAuthenticationRuleArrayInput
+	AutoTunnelStaticRoute      pulumi.StringPtrInput
+	BannedCipher               pulumi.StringPtrInput
+	BrowserLanguageDetection   pulumi.StringPtrInput
+	CheckReferer               pulumi.StringPtrInput
+	Ciphersuite                pulumi.StringPtrInput
+	ClientSigalgs              pulumi.StringPtrInput
+	DefaultPortal              pulumi.StringPtrInput
+	DeflateCompressionLevel    pulumi.IntPtrInput
+	DeflateMinDataSize         pulumi.IntPtrInput
+	DnsServer1                 pulumi.StringPtrInput
+	DnsServer2                 pulumi.StringPtrInput
+	DnsSuffix                  pulumi.StringPtrInput
+	DtlsHelloTimeout           pulumi.IntPtrInput
+	DtlsMaxProtoVer            pulumi.StringPtrInput
+	DtlsMinProtoVer            pulumi.StringPtrInput
+	DtlsTunnel                 pulumi.StringPtrInput
+	DualStackMode              pulumi.StringPtrInput
+	DynamicSortSubtable        pulumi.StringPtrInput
+	Encode2fSequence           pulumi.StringPtrInput
+	EncryptAndStorePassword    pulumi.StringPtrInput
+	ForceTwoFactorAuth         pulumi.StringPtrInput
+	HeaderXForwardedFor        pulumi.StringPtrInput
+	HstsIncludeSubdomains      pulumi.StringPtrInput
+	HttpCompression            pulumi.StringPtrInput
+	HttpOnlyCookie             pulumi.StringPtrInput
+	HttpRequestBodyTimeout     pulumi.IntPtrInput
+	HttpRequestHeaderTimeout   pulumi.IntPtrInput
+	HttpsRedirect              pulumi.StringPtrInput
+	IdleTimeout                pulumi.IntPtrInput
+	Ipv6DnsServer1             pulumi.StringPtrInput
+	Ipv6DnsServer2             pulumi.StringPtrInput
+	Ipv6WinsServer1            pulumi.StringPtrInput
+	Ipv6WinsServer2            pulumi.StringPtrInput
+	LoginAttemptLimit          pulumi.IntPtrInput
+	LoginBlockTime             pulumi.IntPtrInput
+	LoginTimeout               pulumi.IntPtrInput
+	Port                       pulumi.IntPtrInput
+	PortPrecedence             pulumi.StringPtrInput
+	Reqclientcert              pulumi.StringPtrInput
+	RouteSourceInterface       pulumi.StringPtrInput
+	SamlRedirectPort           pulumi.IntPtrInput
+	Servercert                 pulumi.StringPtrInput
+	SourceAddress6Negate       pulumi.StringPtrInput
+	SourceAddress6s            VpnSslSettingsSourceAddress6ArrayInput
+	SourceAddressNegate        pulumi.StringPtrInput
+	SourceAddresses            VpnSslSettingsSourceAddressArrayInput
+	SourceInterfaces           VpnSslSettingsSourceInterfaceArrayInput
+	SslClientRenegotiation     pulumi.StringPtrInput
+	SslInsertEmptyFragment     pulumi.StringPtrInput
+	SslMaxProtoVer             pulumi.StringPtrInput
+	SslMinProtoVer             pulumi.StringPtrInput
+	Status                     pulumi.StringPtrInput
+	Tlsv10                     pulumi.StringPtrInput
+	Tlsv11                     pulumi.StringPtrInput
+	Tlsv12                     pulumi.StringPtrInput
+	Tlsv13                     pulumi.StringPtrInput
+	TransformBackwardSlashes   pulumi.StringPtrInput
+	TunnelAddrAssignedMethod   pulumi.StringPtrInput
 	TunnelConnectWithoutReauth pulumi.StringPtrInput
-	// Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpPools` block is documented below.
-	TunnelIpPools VpnSslSettingsTunnelIpPoolArrayInput
-	// Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpv6Pools` block is documented below.
-	TunnelIpv6Pools VpnSslSettingsTunnelIpv6PoolArrayInput
-	// Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
-	TunnelUserSessionTimeout pulumi.IntPtrInput
-	// Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
-	UnsafeLegacyRenegotiation pulumi.StringPtrInput
-	// Enable to obscure the host name of the URL of the web browser display. Valid values: `enable`, `disable`.
-	UrlObscuration pulumi.StringPtrInput
-	// Name of user peer.
-	UserPeer pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// WINS server 1.
-	WinsServer1 pulumi.StringPtrInput
-	// WINS server 2.
-	WinsServer2 pulumi.StringPtrInput
-	// Add HTTP X-Content-Type-Options header. Valid values: `enable`, `disable`.
-	XContentTypeOptions pulumi.StringPtrInput
+	TunnelIpPools              VpnSslSettingsTunnelIpPoolArrayInput
+	TunnelIpv6Pools            VpnSslSettingsTunnelIpv6PoolArrayInput
+	TunnelUserSessionTimeout   pulumi.IntPtrInput
+	UnsafeLegacyRenegotiation  pulumi.StringPtrInput
+	UrlObscuration             pulumi.StringPtrInput
+	UserPeer                   pulumi.StringPtrInput
+	Vdomparam                  pulumi.StringPtrInput
+	WebModeSnat                pulumi.StringPtrInput
+	WinsServer1                pulumi.StringPtrInput
+	WinsServer2                pulumi.StringPtrInput
+	XContentTypeOptions        pulumi.StringPtrInput
+	ZtnaTrustedClient          pulumi.StringPtrInput
 }
 
 func (VpnSslSettingsArgs) ElementType() reflect.Type {
@@ -851,7 +462,7 @@ func (i *VpnSslSettings) ToVpnSslSettingsOutputWithContext(ctx context.Context) 
 // VpnSslSettingsArrayInput is an input type that accepts VpnSslSettingsArray and VpnSslSettingsArrayOutput values.
 // You can construct a concrete instance of `VpnSslSettingsArrayInput` via:
 //
-//          VpnSslSettingsArray{ VpnSslSettingsArgs{...} }
+//	VpnSslSettingsArray{ VpnSslSettingsArgs{...} }
 type VpnSslSettingsArrayInput interface {
 	pulumi.Input
 
@@ -876,7 +487,7 @@ func (i VpnSslSettingsArray) ToVpnSslSettingsArrayOutputWithContext(ctx context.
 // VpnSslSettingsMapInput is an input type that accepts VpnSslSettingsMap and VpnSslSettingsMapOutput values.
 // You can construct a concrete instance of `VpnSslSettingsMapInput` via:
 //
-//          VpnSslSettingsMap{ "key": VpnSslSettingsArgs{...} }
+//	VpnSslSettingsMap{ "key": VpnSslSettingsArgs{...} }
 type VpnSslSettingsMapInput interface {
 	pulumi.Input
 
@@ -910,6 +521,306 @@ func (o VpnSslSettingsOutput) ToVpnSslSettingsOutput() VpnSslSettingsOutput {
 
 func (o VpnSslSettingsOutput) ToVpnSslSettingsOutputWithContext(ctx context.Context) VpnSslSettingsOutput {
 	return o
+}
+
+func (o VpnSslSettingsOutput) Algorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.Algorithm }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) AuthSessionCheckSourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.AuthSessionCheckSourceIp }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) AuthTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.AuthTimeout }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) AuthenticationRules() VpnSslSettingsAuthenticationRuleArrayOutput {
+	return o.ApplyT(func(v *VpnSslSettings) VpnSslSettingsAuthenticationRuleArrayOutput { return v.AuthenticationRules }).(VpnSslSettingsAuthenticationRuleArrayOutput)
+}
+
+func (o VpnSslSettingsOutput) AutoTunnelStaticRoute() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.AutoTunnelStaticRoute }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) BannedCipher() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.BannedCipher }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) BrowserLanguageDetection() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.BrowserLanguageDetection }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) CheckReferer() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.CheckReferer }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) Ciphersuite() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.Ciphersuite }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) ClientSigalgs() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.ClientSigalgs }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) DefaultPortal() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.DefaultPortal }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) DeflateCompressionLevel() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.DeflateCompressionLevel }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) DeflateMinDataSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.DeflateMinDataSize }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) DnsServer1() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.DnsServer1 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) DnsServer2() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.DnsServer2 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) DnsSuffix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringPtrOutput { return v.DnsSuffix }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslSettingsOutput) DtlsHelloTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.DtlsHelloTimeout }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) DtlsMaxProtoVer() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.DtlsMaxProtoVer }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) DtlsMinProtoVer() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.DtlsMinProtoVer }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) DtlsTunnel() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.DtlsTunnel }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) DualStackMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.DualStackMode }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslSettingsOutput) Encode2fSequence() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.Encode2fSequence }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) EncryptAndStorePassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.EncryptAndStorePassword }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) ForceTwoFactorAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.ForceTwoFactorAuth }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) HeaderXForwardedFor() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.HeaderXForwardedFor }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) HstsIncludeSubdomains() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.HstsIncludeSubdomains }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) HttpCompression() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.HttpCompression }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) HttpOnlyCookie() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.HttpOnlyCookie }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) HttpRequestBodyTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.HttpRequestBodyTimeout }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) HttpRequestHeaderTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.HttpRequestHeaderTimeout }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) HttpsRedirect() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.HttpsRedirect }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) IdleTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.IdleTimeout }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) Ipv6DnsServer1() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.Ipv6DnsServer1 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) Ipv6DnsServer2() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.Ipv6DnsServer2 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) Ipv6WinsServer1() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.Ipv6WinsServer1 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) Ipv6WinsServer2() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.Ipv6WinsServer2 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) LoginAttemptLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.LoginAttemptLimit }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) LoginBlockTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.LoginBlockTime }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) LoginTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.LoginTimeout }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) PortPrecedence() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.PortPrecedence }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) Reqclientcert() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.Reqclientcert }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) RouteSourceInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.RouteSourceInterface }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) SamlRedirectPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.SamlRedirectPort }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) Servercert() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.Servercert }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) SourceAddress6Negate() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.SourceAddress6Negate }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) SourceAddress6s() VpnSslSettingsSourceAddress6ArrayOutput {
+	return o.ApplyT(func(v *VpnSslSettings) VpnSslSettingsSourceAddress6ArrayOutput { return v.SourceAddress6s }).(VpnSslSettingsSourceAddress6ArrayOutput)
+}
+
+func (o VpnSslSettingsOutput) SourceAddressNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.SourceAddressNegate }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) SourceAddresses() VpnSslSettingsSourceAddressArrayOutput {
+	return o.ApplyT(func(v *VpnSslSettings) VpnSslSettingsSourceAddressArrayOutput { return v.SourceAddresses }).(VpnSslSettingsSourceAddressArrayOutput)
+}
+
+func (o VpnSslSettingsOutput) SourceInterfaces() VpnSslSettingsSourceInterfaceArrayOutput {
+	return o.ApplyT(func(v *VpnSslSettings) VpnSslSettingsSourceInterfaceArrayOutput { return v.SourceInterfaces }).(VpnSslSettingsSourceInterfaceArrayOutput)
+}
+
+func (o VpnSslSettingsOutput) SslClientRenegotiation() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.SslClientRenegotiation }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) SslInsertEmptyFragment() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.SslInsertEmptyFragment }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) SslMaxProtoVer() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.SslMaxProtoVer }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) SslMinProtoVer() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.SslMinProtoVer }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) Tlsv10() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.Tlsv10 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) Tlsv11() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.Tlsv11 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) Tlsv12() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.Tlsv12 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) Tlsv13() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.Tlsv13 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) TransformBackwardSlashes() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.TransformBackwardSlashes }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) TunnelAddrAssignedMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.TunnelAddrAssignedMethod }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) TunnelConnectWithoutReauth() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.TunnelConnectWithoutReauth }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) TunnelIpPools() VpnSslSettingsTunnelIpPoolArrayOutput {
+	return o.ApplyT(func(v *VpnSslSettings) VpnSslSettingsTunnelIpPoolArrayOutput { return v.TunnelIpPools }).(VpnSslSettingsTunnelIpPoolArrayOutput)
+}
+
+func (o VpnSslSettingsOutput) TunnelIpv6Pools() VpnSslSettingsTunnelIpv6PoolArrayOutput {
+	return o.ApplyT(func(v *VpnSslSettings) VpnSslSettingsTunnelIpv6PoolArrayOutput { return v.TunnelIpv6Pools }).(VpnSslSettingsTunnelIpv6PoolArrayOutput)
+}
+
+func (o VpnSslSettingsOutput) TunnelUserSessionTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.TunnelUserSessionTimeout }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) UnsafeLegacyRenegotiation() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.UnsafeLegacyRenegotiation }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) UrlObscuration() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.UrlObscuration }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) UserPeer() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.UserPeer }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslSettingsOutput) WebModeSnat() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.WebModeSnat }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) WinsServer1() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.WinsServer1 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) WinsServer2() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.WinsServer2 }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) XContentTypeOptions() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.XContentTypeOptions }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) ZtnaTrustedClient() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.ZtnaTrustedClient }).(pulumi.StringOutput)
 }
 
 type VpnSslSettingsArrayOutput struct{ *pulumi.OutputState }

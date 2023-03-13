@@ -10,38 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Spanning Tree Protocol (STP). Applies to FortiOS Version `>= 7.0.4`.
-//
-// ## Import
-//
-// System Stp can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemStp:SystemStp labelname SystemStp
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemStp:SystemStp labelname SystemStp
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemStp struct {
 	pulumi.CustomResourceState
 
-	// Forward delay (4 - 30 sec, default = 15).
-	ForwardDelay pulumi.IntOutput `pulumi:"forwardDelay"`
-	// Hello time (1 - 10 sec, default = 2).
-	HelloTime pulumi.IntOutput `pulumi:"helloTime"`
-	// Maximum packet age (6 - 40 sec, default = 20).
-	MaxAge pulumi.IntOutput `pulumi:"maxAge"`
-	// Maximum number of hops (1 - 40, default = 20).
-	MaxHops pulumi.IntOutput `pulumi:"maxHops"`
-	// STP switch priority; the lower the number the higher the priority (select from 0, 4096, 8192, 12288, 16384, 20480, 24576, 28672, 32768, 36864, 40960, 45056, 49152, 53248, and 57344). Valid values: `0`, `4096`, `8192`, `12288`, `16384`, `20480`, `24576`, `28672`, `32768`, `36864`, `40960`, `45056`, `49152`, `53248`, `57344`.
-	SwitchPriority pulumi.StringOutput `pulumi:"switchPriority"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	ForwardDelay   pulumi.IntOutput       `pulumi:"forwardDelay"`
+	HelloTime      pulumi.IntOutput       `pulumi:"helloTime"`
+	MaxAge         pulumi.IntOutput       `pulumi:"maxAge"`
+	MaxHops        pulumi.IntOutput       `pulumi:"maxHops"`
+	SwitchPriority pulumi.StringOutput    `pulumi:"switchPriority"`
+	Vdomparam      pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemStp registers a new resource with the given unique name, arguments, and options.
@@ -74,33 +51,21 @@ func GetSystemStp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemStp resources.
 type systemStpState struct {
-	// Forward delay (4 - 30 sec, default = 15).
-	ForwardDelay *int `pulumi:"forwardDelay"`
-	// Hello time (1 - 10 sec, default = 2).
-	HelloTime *int `pulumi:"helloTime"`
-	// Maximum packet age (6 - 40 sec, default = 20).
-	MaxAge *int `pulumi:"maxAge"`
-	// Maximum number of hops (1 - 40, default = 20).
-	MaxHops *int `pulumi:"maxHops"`
-	// STP switch priority; the lower the number the higher the priority (select from 0, 4096, 8192, 12288, 16384, 20480, 24576, 28672, 32768, 36864, 40960, 45056, 49152, 53248, and 57344). Valid values: `0`, `4096`, `8192`, `12288`, `16384`, `20480`, `24576`, `28672`, `32768`, `36864`, `40960`, `45056`, `49152`, `53248`, `57344`.
+	ForwardDelay   *int    `pulumi:"forwardDelay"`
+	HelloTime      *int    `pulumi:"helloTime"`
+	MaxAge         *int    `pulumi:"maxAge"`
+	MaxHops        *int    `pulumi:"maxHops"`
 	SwitchPriority *string `pulumi:"switchPriority"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 type SystemStpState struct {
-	// Forward delay (4 - 30 sec, default = 15).
-	ForwardDelay pulumi.IntPtrInput
-	// Hello time (1 - 10 sec, default = 2).
-	HelloTime pulumi.IntPtrInput
-	// Maximum packet age (6 - 40 sec, default = 20).
-	MaxAge pulumi.IntPtrInput
-	// Maximum number of hops (1 - 40, default = 20).
-	MaxHops pulumi.IntPtrInput
-	// STP switch priority; the lower the number the higher the priority (select from 0, 4096, 8192, 12288, 16384, 20480, 24576, 28672, 32768, 36864, 40960, 45056, 49152, 53248, and 57344). Valid values: `0`, `4096`, `8192`, `12288`, `16384`, `20480`, `24576`, `28672`, `32768`, `36864`, `40960`, `45056`, `49152`, `53248`, `57344`.
+	ForwardDelay   pulumi.IntPtrInput
+	HelloTime      pulumi.IntPtrInput
+	MaxAge         pulumi.IntPtrInput
+	MaxHops        pulumi.IntPtrInput
 	SwitchPriority pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (SystemStpState) ElementType() reflect.Type {
@@ -108,34 +73,22 @@ func (SystemStpState) ElementType() reflect.Type {
 }
 
 type systemStpArgs struct {
-	// Forward delay (4 - 30 sec, default = 15).
-	ForwardDelay *int `pulumi:"forwardDelay"`
-	// Hello time (1 - 10 sec, default = 2).
-	HelloTime *int `pulumi:"helloTime"`
-	// Maximum packet age (6 - 40 sec, default = 20).
-	MaxAge *int `pulumi:"maxAge"`
-	// Maximum number of hops (1 - 40, default = 20).
-	MaxHops *int `pulumi:"maxHops"`
-	// STP switch priority; the lower the number the higher the priority (select from 0, 4096, 8192, 12288, 16384, 20480, 24576, 28672, 32768, 36864, 40960, 45056, 49152, 53248, and 57344). Valid values: `0`, `4096`, `8192`, `12288`, `16384`, `20480`, `24576`, `28672`, `32768`, `36864`, `40960`, `45056`, `49152`, `53248`, `57344`.
+	ForwardDelay   *int    `pulumi:"forwardDelay"`
+	HelloTime      *int    `pulumi:"helloTime"`
+	MaxAge         *int    `pulumi:"maxAge"`
+	MaxHops        *int    `pulumi:"maxHops"`
 	SwitchPriority *string `pulumi:"switchPriority"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemStp resource.
 type SystemStpArgs struct {
-	// Forward delay (4 - 30 sec, default = 15).
-	ForwardDelay pulumi.IntPtrInput
-	// Hello time (1 - 10 sec, default = 2).
-	HelloTime pulumi.IntPtrInput
-	// Maximum packet age (6 - 40 sec, default = 20).
-	MaxAge pulumi.IntPtrInput
-	// Maximum number of hops (1 - 40, default = 20).
-	MaxHops pulumi.IntPtrInput
-	// STP switch priority; the lower the number the higher the priority (select from 0, 4096, 8192, 12288, 16384, 20480, 24576, 28672, 32768, 36864, 40960, 45056, 49152, 53248, and 57344). Valid values: `0`, `4096`, `8192`, `12288`, `16384`, `20480`, `24576`, `28672`, `32768`, `36864`, `40960`, `45056`, `49152`, `53248`, `57344`.
+	ForwardDelay   pulumi.IntPtrInput
+	HelloTime      pulumi.IntPtrInput
+	MaxAge         pulumi.IntPtrInput
+	MaxHops        pulumi.IntPtrInput
 	SwitchPriority pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (SystemStpArgs) ElementType() reflect.Type {
@@ -164,7 +117,7 @@ func (i *SystemStp) ToSystemStpOutputWithContext(ctx context.Context) SystemStpO
 // SystemStpArrayInput is an input type that accepts SystemStpArray and SystemStpArrayOutput values.
 // You can construct a concrete instance of `SystemStpArrayInput` via:
 //
-//          SystemStpArray{ SystemStpArgs{...} }
+//	SystemStpArray{ SystemStpArgs{...} }
 type SystemStpArrayInput interface {
 	pulumi.Input
 
@@ -189,7 +142,7 @@ func (i SystemStpArray) ToSystemStpArrayOutputWithContext(ctx context.Context) S
 // SystemStpMapInput is an input type that accepts SystemStpMap and SystemStpMapOutput values.
 // You can construct a concrete instance of `SystemStpMapInput` via:
 //
-//          SystemStpMap{ "key": SystemStpArgs{...} }
+//	SystemStpMap{ "key": SystemStpArgs{...} }
 type SystemStpMapInput interface {
 	pulumi.Input
 
@@ -223,6 +176,30 @@ func (o SystemStpOutput) ToSystemStpOutput() SystemStpOutput {
 
 func (o SystemStpOutput) ToSystemStpOutputWithContext(ctx context.Context) SystemStpOutput {
 	return o
+}
+
+func (o SystemStpOutput) ForwardDelay() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemStp) pulumi.IntOutput { return v.ForwardDelay }).(pulumi.IntOutput)
+}
+
+func (o SystemStpOutput) HelloTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemStp) pulumi.IntOutput { return v.HelloTime }).(pulumi.IntOutput)
+}
+
+func (o SystemStpOutput) MaxAge() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemStp) pulumi.IntOutput { return v.MaxAge }).(pulumi.IntOutput)
+}
+
+func (o SystemStpOutput) MaxHops() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemStp) pulumi.IntOutput { return v.MaxHops }).(pulumi.IntOutput)
+}
+
+func (o SystemStpOutput) SwitchPriority() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemStp) pulumi.StringOutput { return v.SwitchPriority }).(pulumi.StringOutput)
+}
+
+func (o SystemStpOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemStp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemStpArrayOutput struct{ *pulumi.OutputState }

@@ -7,138 +7,50 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure sniffer.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallSniffer(ctx, "trname", &fortios.FirewallSnifferArgs{
-// 			ApplicationListStatus:   pulumi.String("disable"),
-// 			AvProfileStatus:         pulumi.String("disable"),
-// 			DlpSensorStatus:         pulumi.String("disable"),
-// 			Dsri:                    pulumi.String("disable"),
-// 			Fosid:                   pulumi.Int(1),
-// 			Interface:               pulumi.String("port4"),
-// 			IpsDosStatus:            pulumi.String("disable"),
-// 			IpsSensorStatus:         pulumi.String("disable"),
-// 			Ipv6:                    pulumi.String("disable"),
-// 			Logtraffic:              pulumi.String("utm"),
-// 			MaxPacketCount:          pulumi.Int(4000),
-// 			NonIp:                   pulumi.String("enable"),
-// 			ScanBotnetConnections:   pulumi.String("disable"),
-// 			SpamfilterProfileStatus: pulumi.String("disable"),
-// 			Status:                  pulumi.String("enable"),
-// 			WebfilterProfileStatus:  pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall Sniffer can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSniffer:FirewallSniffer labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSniffer:FirewallSniffer labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallSniffer struct {
 	pulumi.CustomResourceState
 
-	// Configuration method to edit Denial of Service (DoS) anomaly settings. The structure of `anomaly` block is documented below.
-	Anomalies FirewallSnifferAnomalyArrayOutput `pulumi:"anomalies"`
-	// Name of an existing application list.
-	ApplicationList pulumi.StringOutput `pulumi:"applicationList"`
-	// Enable/disable application control profile. Valid values: `enable`, `disable`.
-	ApplicationListStatus pulumi.StringOutput `pulumi:"applicationListStatus"`
-	// Name of an existing antivirus profile.
-	AvProfile pulumi.StringOutput `pulumi:"avProfile"`
-	// Enable/disable antivirus profile. Valid values: `enable`, `disable`.
-	AvProfileStatus pulumi.StringOutput `pulumi:"avProfileStatus"`
-	// Name of an existing DLP sensor.
-	DlpSensor pulumi.StringOutput `pulumi:"dlpSensor"`
-	// Enable/disable DLP sensor. Valid values: `enable`, `disable`.
-	DlpSensorStatus pulumi.StringOutput `pulumi:"dlpSensorStatus"`
-	// Enable/disable DSRI. Valid values: `enable`, `disable`.
-	Dsri pulumi.StringOutput `pulumi:"dsri"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Name of an existing email filter profile.
-	EmailfilterProfile pulumi.StringOutput `pulumi:"emailfilterProfile"`
-	// Enable/disable emailfilter. Valid values: `enable`, `disable`.
-	EmailfilterProfileStatus pulumi.StringOutput `pulumi:"emailfilterProfileStatus"`
-	// Name of an existing file-filter profile.
-	FileFilterProfile pulumi.StringOutput `pulumi:"fileFilterProfile"`
-	// Enable/disable file filter. Valid values: `enable`, `disable`.
-	FileFilterProfileStatus pulumi.StringOutput `pulumi:"fileFilterProfileStatus"`
-	// Sniffer ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
-	Host pulumi.StringOutput `pulumi:"host"`
-	// Interface name that traffic sniffing will take place on.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Enable/disable IP threat feed. Valid values: `enable`, `disable`.
-	IpThreatfeedStatus pulumi.StringOutput `pulumi:"ipThreatfeedStatus"`
-	// Name of an existing IP threat feed. The structure of `ipThreatfeed` block is documented below.
-	IpThreatfeeds FirewallSnifferIpThreatfeedArrayOutput `pulumi:"ipThreatfeeds"`
-	// Enable/disable IPS DoS anomaly detection. Valid values: `enable`, `disable`.
-	IpsDosStatus pulumi.StringOutput `pulumi:"ipsDosStatus"`
-	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringOutput `pulumi:"ipsSensor"`
-	// Enable/disable IPS sensor. Valid values: `enable`, `disable`.
-	IpsSensorStatus pulumi.StringOutput `pulumi:"ipsSensorStatus"`
-	// Enable/disable sniffing IPv6 packets. Valid values: `enable`, `disable`.
-	Ipv6 pulumi.StringOutput `pulumi:"ipv6"`
-	// Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
-	Logtraffic pulumi.StringOutput `pulumi:"logtraffic"`
-	// Maximum packet count (1 - 1000000, default = 10000).
-	MaxPacketCount pulumi.IntOutput `pulumi:"maxPacketCount"`
-	// Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
-	NonIp pulumi.StringOutput `pulumi:"nonIp"`
-	// Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200).
-	Port pulumi.StringOutput `pulumi:"port"`
-	// Integer value for the protocol type as defined by IANA (0 - 255).
-	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// Enable/disable scanning of connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
-	ScanBotnetConnections pulumi.StringOutput `pulumi:"scanBotnetConnections"`
-	// Name of an existing spam filter profile.
-	SpamfilterProfile pulumi.StringOutput `pulumi:"spamfilterProfile"`
-	// Enable/disable spam filter. Valid values: `enable`, `disable`.
-	SpamfilterProfileStatus pulumi.StringOutput `pulumi:"spamfilterProfileStatus"`
-	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// List of VLANs to sniff.
-	Vlan pulumi.StringOutput `pulumi:"vlan"`
-	// Name of an existing web filter profile.
-	WebfilterProfile pulumi.StringOutput `pulumi:"webfilterProfile"`
-	// Enable/disable web filter profile. Valid values: `enable`, `disable`.
-	WebfilterProfileStatus pulumi.StringOutput `pulumi:"webfilterProfileStatus"`
+	Anomalies                FirewallSnifferAnomalyArrayOutput      `pulumi:"anomalies"`
+	ApplicationList          pulumi.StringOutput                    `pulumi:"applicationList"`
+	ApplicationListStatus    pulumi.StringOutput                    `pulumi:"applicationListStatus"`
+	AvProfile                pulumi.StringOutput                    `pulumi:"avProfile"`
+	AvProfileStatus          pulumi.StringOutput                    `pulumi:"avProfileStatus"`
+	DlpProfile               pulumi.StringOutput                    `pulumi:"dlpProfile"`
+	DlpProfileStatus         pulumi.StringOutput                    `pulumi:"dlpProfileStatus"`
+	DlpSensor                pulumi.StringOutput                    `pulumi:"dlpSensor"`
+	DlpSensorStatus          pulumi.StringOutput                    `pulumi:"dlpSensorStatus"`
+	Dsri                     pulumi.StringOutput                    `pulumi:"dsri"`
+	DynamicSortSubtable      pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	EmailfilterProfile       pulumi.StringOutput                    `pulumi:"emailfilterProfile"`
+	EmailfilterProfileStatus pulumi.StringOutput                    `pulumi:"emailfilterProfileStatus"`
+	FileFilterProfile        pulumi.StringOutput                    `pulumi:"fileFilterProfile"`
+	FileFilterProfileStatus  pulumi.StringOutput                    `pulumi:"fileFilterProfileStatus"`
+	Fosid                    pulumi.IntOutput                       `pulumi:"fosid"`
+	Host                     pulumi.StringOutput                    `pulumi:"host"`
+	Interface                pulumi.StringOutput                    `pulumi:"interface"`
+	IpThreatfeedStatus       pulumi.StringOutput                    `pulumi:"ipThreatfeedStatus"`
+	IpThreatfeeds            FirewallSnifferIpThreatfeedArrayOutput `pulumi:"ipThreatfeeds"`
+	IpsDosStatus             pulumi.StringOutput                    `pulumi:"ipsDosStatus"`
+	IpsSensor                pulumi.StringOutput                    `pulumi:"ipsSensor"`
+	IpsSensorStatus          pulumi.StringOutput                    `pulumi:"ipsSensorStatus"`
+	Ipv6                     pulumi.StringOutput                    `pulumi:"ipv6"`
+	Logtraffic               pulumi.StringOutput                    `pulumi:"logtraffic"`
+	MaxPacketCount           pulumi.IntOutput                       `pulumi:"maxPacketCount"`
+	NonIp                    pulumi.StringOutput                    `pulumi:"nonIp"`
+	Port                     pulumi.StringOutput                    `pulumi:"port"`
+	Protocol                 pulumi.StringOutput                    `pulumi:"protocol"`
+	ScanBotnetConnections    pulumi.StringOutput                    `pulumi:"scanBotnetConnections"`
+	SpamfilterProfile        pulumi.StringOutput                    `pulumi:"spamfilterProfile"`
+	SpamfilterProfileStatus  pulumi.StringOutput                    `pulumi:"spamfilterProfileStatus"`
+	Status                   pulumi.StringOutput                    `pulumi:"status"`
+	Vdomparam                pulumi.StringPtrOutput                 `pulumi:"vdomparam"`
+	Vlan                     pulumi.StringOutput                    `pulumi:"vlan"`
+	WebfilterProfile         pulumi.StringOutput                    `pulumi:"webfilterProfile"`
+	WebfilterProfileStatus   pulumi.StringOutput                    `pulumi:"webfilterProfileStatus"`
 }
 
 // NewFirewallSniffer registers a new resource with the given unique name, arguments, and options.
@@ -174,149 +86,83 @@ func GetFirewallSniffer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallSniffer resources.
 type firewallSnifferState struct {
-	// Configuration method to edit Denial of Service (DoS) anomaly settings. The structure of `anomaly` block is documented below.
-	Anomalies []FirewallSnifferAnomaly `pulumi:"anomalies"`
-	// Name of an existing application list.
-	ApplicationList *string `pulumi:"applicationList"`
-	// Enable/disable application control profile. Valid values: `enable`, `disable`.
-	ApplicationListStatus *string `pulumi:"applicationListStatus"`
-	// Name of an existing antivirus profile.
-	AvProfile *string `pulumi:"avProfile"`
-	// Enable/disable antivirus profile. Valid values: `enable`, `disable`.
-	AvProfileStatus *string `pulumi:"avProfileStatus"`
-	// Name of an existing DLP sensor.
-	DlpSensor *string `pulumi:"dlpSensor"`
-	// Enable/disable DLP sensor. Valid values: `enable`, `disable`.
-	DlpSensorStatus *string `pulumi:"dlpSensorStatus"`
-	// Enable/disable DSRI. Valid values: `enable`, `disable`.
-	Dsri *string `pulumi:"dsri"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name of an existing email filter profile.
-	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
-	// Enable/disable emailfilter. Valid values: `enable`, `disable`.
-	EmailfilterProfileStatus *string `pulumi:"emailfilterProfileStatus"`
-	// Name of an existing file-filter profile.
-	FileFilterProfile *string `pulumi:"fileFilterProfile"`
-	// Enable/disable file filter. Valid values: `enable`, `disable`.
-	FileFilterProfileStatus *string `pulumi:"fileFilterProfileStatus"`
-	// Sniffer ID.
-	Fosid *int `pulumi:"fosid"`
-	// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
-	Host *string `pulumi:"host"`
-	// Interface name that traffic sniffing will take place on.
-	Interface *string `pulumi:"interface"`
-	// Enable/disable IP threat feed. Valid values: `enable`, `disable`.
-	IpThreatfeedStatus *string `pulumi:"ipThreatfeedStatus"`
-	// Name of an existing IP threat feed. The structure of `ipThreatfeed` block is documented below.
-	IpThreatfeeds []FirewallSnifferIpThreatfeed `pulumi:"ipThreatfeeds"`
-	// Enable/disable IPS DoS anomaly detection. Valid values: `enable`, `disable`.
-	IpsDosStatus *string `pulumi:"ipsDosStatus"`
-	// Name of an existing IPS sensor.
-	IpsSensor *string `pulumi:"ipsSensor"`
-	// Enable/disable IPS sensor. Valid values: `enable`, `disable`.
-	IpsSensorStatus *string `pulumi:"ipsSensorStatus"`
-	// Enable/disable sniffing IPv6 packets. Valid values: `enable`, `disable`.
-	Ipv6 *string `pulumi:"ipv6"`
-	// Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
-	Logtraffic *string `pulumi:"logtraffic"`
-	// Maximum packet count (1 - 1000000, default = 10000).
-	MaxPacketCount *int `pulumi:"maxPacketCount"`
-	// Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
-	NonIp *string `pulumi:"nonIp"`
-	// Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200).
-	Port *string `pulumi:"port"`
-	// Integer value for the protocol type as defined by IANA (0 - 255).
-	Protocol *string `pulumi:"protocol"`
-	// Enable/disable scanning of connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
-	ScanBotnetConnections *string `pulumi:"scanBotnetConnections"`
-	// Name of an existing spam filter profile.
-	SpamfilterProfile *string `pulumi:"spamfilterProfile"`
-	// Enable/disable spam filter. Valid values: `enable`, `disable`.
-	SpamfilterProfileStatus *string `pulumi:"spamfilterProfileStatus"`
-	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// List of VLANs to sniff.
-	Vlan *string `pulumi:"vlan"`
-	// Name of an existing web filter profile.
-	WebfilterProfile *string `pulumi:"webfilterProfile"`
-	// Enable/disable web filter profile. Valid values: `enable`, `disable`.
-	WebfilterProfileStatus *string `pulumi:"webfilterProfileStatus"`
+	Anomalies                []FirewallSnifferAnomaly      `pulumi:"anomalies"`
+	ApplicationList          *string                       `pulumi:"applicationList"`
+	ApplicationListStatus    *string                       `pulumi:"applicationListStatus"`
+	AvProfile                *string                       `pulumi:"avProfile"`
+	AvProfileStatus          *string                       `pulumi:"avProfileStatus"`
+	DlpProfile               *string                       `pulumi:"dlpProfile"`
+	DlpProfileStatus         *string                       `pulumi:"dlpProfileStatus"`
+	DlpSensor                *string                       `pulumi:"dlpSensor"`
+	DlpSensorStatus          *string                       `pulumi:"dlpSensorStatus"`
+	Dsri                     *string                       `pulumi:"dsri"`
+	DynamicSortSubtable      *string                       `pulumi:"dynamicSortSubtable"`
+	EmailfilterProfile       *string                       `pulumi:"emailfilterProfile"`
+	EmailfilterProfileStatus *string                       `pulumi:"emailfilterProfileStatus"`
+	FileFilterProfile        *string                       `pulumi:"fileFilterProfile"`
+	FileFilterProfileStatus  *string                       `pulumi:"fileFilterProfileStatus"`
+	Fosid                    *int                          `pulumi:"fosid"`
+	Host                     *string                       `pulumi:"host"`
+	Interface                *string                       `pulumi:"interface"`
+	IpThreatfeedStatus       *string                       `pulumi:"ipThreatfeedStatus"`
+	IpThreatfeeds            []FirewallSnifferIpThreatfeed `pulumi:"ipThreatfeeds"`
+	IpsDosStatus             *string                       `pulumi:"ipsDosStatus"`
+	IpsSensor                *string                       `pulumi:"ipsSensor"`
+	IpsSensorStatus          *string                       `pulumi:"ipsSensorStatus"`
+	Ipv6                     *string                       `pulumi:"ipv6"`
+	Logtraffic               *string                       `pulumi:"logtraffic"`
+	MaxPacketCount           *int                          `pulumi:"maxPacketCount"`
+	NonIp                    *string                       `pulumi:"nonIp"`
+	Port                     *string                       `pulumi:"port"`
+	Protocol                 *string                       `pulumi:"protocol"`
+	ScanBotnetConnections    *string                       `pulumi:"scanBotnetConnections"`
+	SpamfilterProfile        *string                       `pulumi:"spamfilterProfile"`
+	SpamfilterProfileStatus  *string                       `pulumi:"spamfilterProfileStatus"`
+	Status                   *string                       `pulumi:"status"`
+	Vdomparam                *string                       `pulumi:"vdomparam"`
+	Vlan                     *string                       `pulumi:"vlan"`
+	WebfilterProfile         *string                       `pulumi:"webfilterProfile"`
+	WebfilterProfileStatus   *string                       `pulumi:"webfilterProfileStatus"`
 }
 
 type FirewallSnifferState struct {
-	// Configuration method to edit Denial of Service (DoS) anomaly settings. The structure of `anomaly` block is documented below.
-	Anomalies FirewallSnifferAnomalyArrayInput
-	// Name of an existing application list.
-	ApplicationList pulumi.StringPtrInput
-	// Enable/disable application control profile. Valid values: `enable`, `disable`.
-	ApplicationListStatus pulumi.StringPtrInput
-	// Name of an existing antivirus profile.
-	AvProfile pulumi.StringPtrInput
-	// Enable/disable antivirus profile. Valid values: `enable`, `disable`.
-	AvProfileStatus pulumi.StringPtrInput
-	// Name of an existing DLP sensor.
-	DlpSensor pulumi.StringPtrInput
-	// Enable/disable DLP sensor. Valid values: `enable`, `disable`.
-	DlpSensorStatus pulumi.StringPtrInput
-	// Enable/disable DSRI. Valid values: `enable`, `disable`.
-	Dsri pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Name of an existing email filter profile.
-	EmailfilterProfile pulumi.StringPtrInput
-	// Enable/disable emailfilter. Valid values: `enable`, `disable`.
+	Anomalies                FirewallSnifferAnomalyArrayInput
+	ApplicationList          pulumi.StringPtrInput
+	ApplicationListStatus    pulumi.StringPtrInput
+	AvProfile                pulumi.StringPtrInput
+	AvProfileStatus          pulumi.StringPtrInput
+	DlpProfile               pulumi.StringPtrInput
+	DlpProfileStatus         pulumi.StringPtrInput
+	DlpSensor                pulumi.StringPtrInput
+	DlpSensorStatus          pulumi.StringPtrInput
+	Dsri                     pulumi.StringPtrInput
+	DynamicSortSubtable      pulumi.StringPtrInput
+	EmailfilterProfile       pulumi.StringPtrInput
 	EmailfilterProfileStatus pulumi.StringPtrInput
-	// Name of an existing file-filter profile.
-	FileFilterProfile pulumi.StringPtrInput
-	// Enable/disable file filter. Valid values: `enable`, `disable`.
-	FileFilterProfileStatus pulumi.StringPtrInput
-	// Sniffer ID.
-	Fosid pulumi.IntPtrInput
-	// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
-	Host pulumi.StringPtrInput
-	// Interface name that traffic sniffing will take place on.
-	Interface pulumi.StringPtrInput
-	// Enable/disable IP threat feed. Valid values: `enable`, `disable`.
-	IpThreatfeedStatus pulumi.StringPtrInput
-	// Name of an existing IP threat feed. The structure of `ipThreatfeed` block is documented below.
-	IpThreatfeeds FirewallSnifferIpThreatfeedArrayInput
-	// Enable/disable IPS DoS anomaly detection. Valid values: `enable`, `disable`.
-	IpsDosStatus pulumi.StringPtrInput
-	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringPtrInput
-	// Enable/disable IPS sensor. Valid values: `enable`, `disable`.
-	IpsSensorStatus pulumi.StringPtrInput
-	// Enable/disable sniffing IPv6 packets. Valid values: `enable`, `disable`.
-	Ipv6 pulumi.StringPtrInput
-	// Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
-	Logtraffic pulumi.StringPtrInput
-	// Maximum packet count (1 - 1000000, default = 10000).
-	MaxPacketCount pulumi.IntPtrInput
-	// Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
-	NonIp pulumi.StringPtrInput
-	// Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200).
-	Port pulumi.StringPtrInput
-	// Integer value for the protocol type as defined by IANA (0 - 255).
-	Protocol pulumi.StringPtrInput
-	// Enable/disable scanning of connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
-	ScanBotnetConnections pulumi.StringPtrInput
-	// Name of an existing spam filter profile.
-	SpamfilterProfile pulumi.StringPtrInput
-	// Enable/disable spam filter. Valid values: `enable`, `disable`.
-	SpamfilterProfileStatus pulumi.StringPtrInput
-	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// List of VLANs to sniff.
-	Vlan pulumi.StringPtrInput
-	// Name of an existing web filter profile.
-	WebfilterProfile pulumi.StringPtrInput
-	// Enable/disable web filter profile. Valid values: `enable`, `disable`.
-	WebfilterProfileStatus pulumi.StringPtrInput
+	FileFilterProfile        pulumi.StringPtrInput
+	FileFilterProfileStatus  pulumi.StringPtrInput
+	Fosid                    pulumi.IntPtrInput
+	Host                     pulumi.StringPtrInput
+	Interface                pulumi.StringPtrInput
+	IpThreatfeedStatus       pulumi.StringPtrInput
+	IpThreatfeeds            FirewallSnifferIpThreatfeedArrayInput
+	IpsDosStatus             pulumi.StringPtrInput
+	IpsSensor                pulumi.StringPtrInput
+	IpsSensorStatus          pulumi.StringPtrInput
+	Ipv6                     pulumi.StringPtrInput
+	Logtraffic               pulumi.StringPtrInput
+	MaxPacketCount           pulumi.IntPtrInput
+	NonIp                    pulumi.StringPtrInput
+	Port                     pulumi.StringPtrInput
+	Protocol                 pulumi.StringPtrInput
+	ScanBotnetConnections    pulumi.StringPtrInput
+	SpamfilterProfile        pulumi.StringPtrInput
+	SpamfilterProfileStatus  pulumi.StringPtrInput
+	Status                   pulumi.StringPtrInput
+	Vdomparam                pulumi.StringPtrInput
+	Vlan                     pulumi.StringPtrInput
+	WebfilterProfile         pulumi.StringPtrInput
+	WebfilterProfileStatus   pulumi.StringPtrInput
 }
 
 func (FirewallSnifferState) ElementType() reflect.Type {
@@ -324,150 +170,84 @@ func (FirewallSnifferState) ElementType() reflect.Type {
 }
 
 type firewallSnifferArgs struct {
-	// Configuration method to edit Denial of Service (DoS) anomaly settings. The structure of `anomaly` block is documented below.
-	Anomalies []FirewallSnifferAnomaly `pulumi:"anomalies"`
-	// Name of an existing application list.
-	ApplicationList *string `pulumi:"applicationList"`
-	// Enable/disable application control profile. Valid values: `enable`, `disable`.
-	ApplicationListStatus *string `pulumi:"applicationListStatus"`
-	// Name of an existing antivirus profile.
-	AvProfile *string `pulumi:"avProfile"`
-	// Enable/disable antivirus profile. Valid values: `enable`, `disable`.
-	AvProfileStatus *string `pulumi:"avProfileStatus"`
-	// Name of an existing DLP sensor.
-	DlpSensor *string `pulumi:"dlpSensor"`
-	// Enable/disable DLP sensor. Valid values: `enable`, `disable`.
-	DlpSensorStatus *string `pulumi:"dlpSensorStatus"`
-	// Enable/disable DSRI. Valid values: `enable`, `disable`.
-	Dsri *string `pulumi:"dsri"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name of an existing email filter profile.
-	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
-	// Enable/disable emailfilter. Valid values: `enable`, `disable`.
-	EmailfilterProfileStatus *string `pulumi:"emailfilterProfileStatus"`
-	// Name of an existing file-filter profile.
-	FileFilterProfile *string `pulumi:"fileFilterProfile"`
-	// Enable/disable file filter. Valid values: `enable`, `disable`.
-	FileFilterProfileStatus *string `pulumi:"fileFilterProfileStatus"`
-	// Sniffer ID.
-	Fosid *int `pulumi:"fosid"`
-	// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
-	Host *string `pulumi:"host"`
-	// Interface name that traffic sniffing will take place on.
-	Interface string `pulumi:"interface"`
-	// Enable/disable IP threat feed. Valid values: `enable`, `disable`.
-	IpThreatfeedStatus *string `pulumi:"ipThreatfeedStatus"`
-	// Name of an existing IP threat feed. The structure of `ipThreatfeed` block is documented below.
-	IpThreatfeeds []FirewallSnifferIpThreatfeed `pulumi:"ipThreatfeeds"`
-	// Enable/disable IPS DoS anomaly detection. Valid values: `enable`, `disable`.
-	IpsDosStatus *string `pulumi:"ipsDosStatus"`
-	// Name of an existing IPS sensor.
-	IpsSensor *string `pulumi:"ipsSensor"`
-	// Enable/disable IPS sensor. Valid values: `enable`, `disable`.
-	IpsSensorStatus *string `pulumi:"ipsSensorStatus"`
-	// Enable/disable sniffing IPv6 packets. Valid values: `enable`, `disable`.
-	Ipv6 *string `pulumi:"ipv6"`
-	// Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
-	Logtraffic *string `pulumi:"logtraffic"`
-	// Maximum packet count (1 - 1000000, default = 10000).
-	MaxPacketCount *int `pulumi:"maxPacketCount"`
-	// Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
-	NonIp *string `pulumi:"nonIp"`
-	// Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200).
-	Port *string `pulumi:"port"`
-	// Integer value for the protocol type as defined by IANA (0 - 255).
-	Protocol *string `pulumi:"protocol"`
-	// Enable/disable scanning of connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
-	ScanBotnetConnections *string `pulumi:"scanBotnetConnections"`
-	// Name of an existing spam filter profile.
-	SpamfilterProfile *string `pulumi:"spamfilterProfile"`
-	// Enable/disable spam filter. Valid values: `enable`, `disable`.
-	SpamfilterProfileStatus *string `pulumi:"spamfilterProfileStatus"`
-	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// List of VLANs to sniff.
-	Vlan *string `pulumi:"vlan"`
-	// Name of an existing web filter profile.
-	WebfilterProfile *string `pulumi:"webfilterProfile"`
-	// Enable/disable web filter profile. Valid values: `enable`, `disable`.
-	WebfilterProfileStatus *string `pulumi:"webfilterProfileStatus"`
+	Anomalies                []FirewallSnifferAnomaly      `pulumi:"anomalies"`
+	ApplicationList          *string                       `pulumi:"applicationList"`
+	ApplicationListStatus    *string                       `pulumi:"applicationListStatus"`
+	AvProfile                *string                       `pulumi:"avProfile"`
+	AvProfileStatus          *string                       `pulumi:"avProfileStatus"`
+	DlpProfile               *string                       `pulumi:"dlpProfile"`
+	DlpProfileStatus         *string                       `pulumi:"dlpProfileStatus"`
+	DlpSensor                *string                       `pulumi:"dlpSensor"`
+	DlpSensorStatus          *string                       `pulumi:"dlpSensorStatus"`
+	Dsri                     *string                       `pulumi:"dsri"`
+	DynamicSortSubtable      *string                       `pulumi:"dynamicSortSubtable"`
+	EmailfilterProfile       *string                       `pulumi:"emailfilterProfile"`
+	EmailfilterProfileStatus *string                       `pulumi:"emailfilterProfileStatus"`
+	FileFilterProfile        *string                       `pulumi:"fileFilterProfile"`
+	FileFilterProfileStatus  *string                       `pulumi:"fileFilterProfileStatus"`
+	Fosid                    *int                          `pulumi:"fosid"`
+	Host                     *string                       `pulumi:"host"`
+	Interface                string                        `pulumi:"interface"`
+	IpThreatfeedStatus       *string                       `pulumi:"ipThreatfeedStatus"`
+	IpThreatfeeds            []FirewallSnifferIpThreatfeed `pulumi:"ipThreatfeeds"`
+	IpsDosStatus             *string                       `pulumi:"ipsDosStatus"`
+	IpsSensor                *string                       `pulumi:"ipsSensor"`
+	IpsSensorStatus          *string                       `pulumi:"ipsSensorStatus"`
+	Ipv6                     *string                       `pulumi:"ipv6"`
+	Logtraffic               *string                       `pulumi:"logtraffic"`
+	MaxPacketCount           *int                          `pulumi:"maxPacketCount"`
+	NonIp                    *string                       `pulumi:"nonIp"`
+	Port                     *string                       `pulumi:"port"`
+	Protocol                 *string                       `pulumi:"protocol"`
+	ScanBotnetConnections    *string                       `pulumi:"scanBotnetConnections"`
+	SpamfilterProfile        *string                       `pulumi:"spamfilterProfile"`
+	SpamfilterProfileStatus  *string                       `pulumi:"spamfilterProfileStatus"`
+	Status                   *string                       `pulumi:"status"`
+	Vdomparam                *string                       `pulumi:"vdomparam"`
+	Vlan                     *string                       `pulumi:"vlan"`
+	WebfilterProfile         *string                       `pulumi:"webfilterProfile"`
+	WebfilterProfileStatus   *string                       `pulumi:"webfilterProfileStatus"`
 }
 
 // The set of arguments for constructing a FirewallSniffer resource.
 type FirewallSnifferArgs struct {
-	// Configuration method to edit Denial of Service (DoS) anomaly settings. The structure of `anomaly` block is documented below.
-	Anomalies FirewallSnifferAnomalyArrayInput
-	// Name of an existing application list.
-	ApplicationList pulumi.StringPtrInput
-	// Enable/disable application control profile. Valid values: `enable`, `disable`.
-	ApplicationListStatus pulumi.StringPtrInput
-	// Name of an existing antivirus profile.
-	AvProfile pulumi.StringPtrInput
-	// Enable/disable antivirus profile. Valid values: `enable`, `disable`.
-	AvProfileStatus pulumi.StringPtrInput
-	// Name of an existing DLP sensor.
-	DlpSensor pulumi.StringPtrInput
-	// Enable/disable DLP sensor. Valid values: `enable`, `disable`.
-	DlpSensorStatus pulumi.StringPtrInput
-	// Enable/disable DSRI. Valid values: `enable`, `disable`.
-	Dsri pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Name of an existing email filter profile.
-	EmailfilterProfile pulumi.StringPtrInput
-	// Enable/disable emailfilter. Valid values: `enable`, `disable`.
+	Anomalies                FirewallSnifferAnomalyArrayInput
+	ApplicationList          pulumi.StringPtrInput
+	ApplicationListStatus    pulumi.StringPtrInput
+	AvProfile                pulumi.StringPtrInput
+	AvProfileStatus          pulumi.StringPtrInput
+	DlpProfile               pulumi.StringPtrInput
+	DlpProfileStatus         pulumi.StringPtrInput
+	DlpSensor                pulumi.StringPtrInput
+	DlpSensorStatus          pulumi.StringPtrInput
+	Dsri                     pulumi.StringPtrInput
+	DynamicSortSubtable      pulumi.StringPtrInput
+	EmailfilterProfile       pulumi.StringPtrInput
 	EmailfilterProfileStatus pulumi.StringPtrInput
-	// Name of an existing file-filter profile.
-	FileFilterProfile pulumi.StringPtrInput
-	// Enable/disable file filter. Valid values: `enable`, `disable`.
-	FileFilterProfileStatus pulumi.StringPtrInput
-	// Sniffer ID.
-	Fosid pulumi.IntPtrInput
-	// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
-	Host pulumi.StringPtrInput
-	// Interface name that traffic sniffing will take place on.
-	Interface pulumi.StringInput
-	// Enable/disable IP threat feed. Valid values: `enable`, `disable`.
-	IpThreatfeedStatus pulumi.StringPtrInput
-	// Name of an existing IP threat feed. The structure of `ipThreatfeed` block is documented below.
-	IpThreatfeeds FirewallSnifferIpThreatfeedArrayInput
-	// Enable/disable IPS DoS anomaly detection. Valid values: `enable`, `disable`.
-	IpsDosStatus pulumi.StringPtrInput
-	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringPtrInput
-	// Enable/disable IPS sensor. Valid values: `enable`, `disable`.
-	IpsSensorStatus pulumi.StringPtrInput
-	// Enable/disable sniffing IPv6 packets. Valid values: `enable`, `disable`.
-	Ipv6 pulumi.StringPtrInput
-	// Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
-	Logtraffic pulumi.StringPtrInput
-	// Maximum packet count (1 - 1000000, default = 10000).
-	MaxPacketCount pulumi.IntPtrInput
-	// Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
-	NonIp pulumi.StringPtrInput
-	// Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200).
-	Port pulumi.StringPtrInput
-	// Integer value for the protocol type as defined by IANA (0 - 255).
-	Protocol pulumi.StringPtrInput
-	// Enable/disable scanning of connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
-	ScanBotnetConnections pulumi.StringPtrInput
-	// Name of an existing spam filter profile.
-	SpamfilterProfile pulumi.StringPtrInput
-	// Enable/disable spam filter. Valid values: `enable`, `disable`.
-	SpamfilterProfileStatus pulumi.StringPtrInput
-	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// List of VLANs to sniff.
-	Vlan pulumi.StringPtrInput
-	// Name of an existing web filter profile.
-	WebfilterProfile pulumi.StringPtrInput
-	// Enable/disable web filter profile. Valid values: `enable`, `disable`.
-	WebfilterProfileStatus pulumi.StringPtrInput
+	FileFilterProfile        pulumi.StringPtrInput
+	FileFilterProfileStatus  pulumi.StringPtrInput
+	Fosid                    pulumi.IntPtrInput
+	Host                     pulumi.StringPtrInput
+	Interface                pulumi.StringInput
+	IpThreatfeedStatus       pulumi.StringPtrInput
+	IpThreatfeeds            FirewallSnifferIpThreatfeedArrayInput
+	IpsDosStatus             pulumi.StringPtrInput
+	IpsSensor                pulumi.StringPtrInput
+	IpsSensorStatus          pulumi.StringPtrInput
+	Ipv6                     pulumi.StringPtrInput
+	Logtraffic               pulumi.StringPtrInput
+	MaxPacketCount           pulumi.IntPtrInput
+	NonIp                    pulumi.StringPtrInput
+	Port                     pulumi.StringPtrInput
+	Protocol                 pulumi.StringPtrInput
+	ScanBotnetConnections    pulumi.StringPtrInput
+	SpamfilterProfile        pulumi.StringPtrInput
+	SpamfilterProfileStatus  pulumi.StringPtrInput
+	Status                   pulumi.StringPtrInput
+	Vdomparam                pulumi.StringPtrInput
+	Vlan                     pulumi.StringPtrInput
+	WebfilterProfile         pulumi.StringPtrInput
+	WebfilterProfileStatus   pulumi.StringPtrInput
 }
 
 func (FirewallSnifferArgs) ElementType() reflect.Type {
@@ -496,7 +276,7 @@ func (i *FirewallSniffer) ToFirewallSnifferOutputWithContext(ctx context.Context
 // FirewallSnifferArrayInput is an input type that accepts FirewallSnifferArray and FirewallSnifferArrayOutput values.
 // You can construct a concrete instance of `FirewallSnifferArrayInput` via:
 //
-//          FirewallSnifferArray{ FirewallSnifferArgs{...} }
+//	FirewallSnifferArray{ FirewallSnifferArgs{...} }
 type FirewallSnifferArrayInput interface {
 	pulumi.Input
 
@@ -521,7 +301,7 @@ func (i FirewallSnifferArray) ToFirewallSnifferArrayOutputWithContext(ctx contex
 // FirewallSnifferMapInput is an input type that accepts FirewallSnifferMap and FirewallSnifferMapOutput values.
 // You can construct a concrete instance of `FirewallSnifferMapInput` via:
 //
-//          FirewallSnifferMap{ "key": FirewallSnifferArgs{...} }
+//	FirewallSnifferMap{ "key": FirewallSnifferArgs{...} }
 type FirewallSnifferMapInput interface {
 	pulumi.Input
 
@@ -555,6 +335,154 @@ func (o FirewallSnifferOutput) ToFirewallSnifferOutput() FirewallSnifferOutput {
 
 func (o FirewallSnifferOutput) ToFirewallSnifferOutputWithContext(ctx context.Context) FirewallSnifferOutput {
 	return o
+}
+
+func (o FirewallSnifferOutput) Anomalies() FirewallSnifferAnomalyArrayOutput {
+	return o.ApplyT(func(v *FirewallSniffer) FirewallSnifferAnomalyArrayOutput { return v.Anomalies }).(FirewallSnifferAnomalyArrayOutput)
+}
+
+func (o FirewallSnifferOutput) ApplicationList() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.ApplicationList }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) ApplicationListStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.ApplicationListStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) AvProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.AvProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) AvProfileStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.AvProfileStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) DlpProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.DlpProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) DlpProfileStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.DlpProfileStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) DlpSensor() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.DlpSensor }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) DlpSensorStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.DlpSensorStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) Dsri() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.Dsri }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSnifferOutput) EmailfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.EmailfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) EmailfilterProfileStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.EmailfilterProfileStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) FileFilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.FileFilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) FileFilterProfileStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.FileFilterProfileStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallSnifferOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.Host }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) IpThreatfeedStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.IpThreatfeedStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) IpThreatfeeds() FirewallSnifferIpThreatfeedArrayOutput {
+	return o.ApplyT(func(v *FirewallSniffer) FirewallSnifferIpThreatfeedArrayOutput { return v.IpThreatfeeds }).(FirewallSnifferIpThreatfeedArrayOutput)
+}
+
+func (o FirewallSnifferOutput) IpsDosStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.IpsDosStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) IpsSensor() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.IpsSensor }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) IpsSensorStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.IpsSensorStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) Ipv6() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.Ipv6 }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) Logtraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.Logtraffic }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) MaxPacketCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.IntOutput { return v.MaxPacketCount }).(pulumi.IntOutput)
+}
+
+func (o FirewallSnifferOutput) NonIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.NonIp }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) Port() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.Port }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) ScanBotnetConnections() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.ScanBotnetConnections }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) SpamfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.SpamfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) SpamfilterProfileStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.SpamfilterProfileStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallSnifferOutput) Vlan() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.Vlan }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) WebfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.WebfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallSnifferOutput) WebfilterProfileStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringOutput { return v.WebfilterProfileStatus }).(pulumi.StringOutput)
 }
 
 type FirewallSnifferArrayOutput struct{ *pulumi.OutputState }

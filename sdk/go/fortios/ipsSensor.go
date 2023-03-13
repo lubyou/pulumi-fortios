@@ -10,48 +10,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPS sensor.
-//
-// ## Import
-//
-// Ips Sensor can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/ipsSensor:IpsSensor labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/ipsSensor:IpsSensor labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type IpsSensor struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable malicious URL blocking. Valid values: `disable`, `enable`.
-	BlockMaliciousUrl pulumi.StringOutput `pulumi:"blockMaliciousUrl"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// IPS sensor filter. The structure of `entries` block is documented below.
-	Entries IpsSensorEntryArrayOutput `pulumi:"entries"`
-	// Enable/disable extended logging. Valid values: `enable`, `disable`.
-	ExtendedLog pulumi.StringOutput `pulumi:"extendedLog"`
-	// IPS sensor filter. The structure of `filter` block is documented below.
-	Filters IpsSensorFilterArrayOutput `pulumi:"filters"`
-	// Filter name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// IPS override rule. The structure of `override` block is documented below.
-	Overrides IpsSensorOverrideArrayOutput `pulumi:"overrides"`
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringOutput `pulumi:"replacemsgGroup"`
-	// Block or monitor connections to Botnet servers, or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
-	ScanBotnetConnections pulumi.StringOutput `pulumi:"scanBotnetConnections"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	BlockMaliciousUrl     pulumi.StringOutput          `pulumi:"blockMaliciousUrl"`
+	Comment               pulumi.StringPtrOutput       `pulumi:"comment"`
+	DynamicSortSubtable   pulumi.StringPtrOutput       `pulumi:"dynamicSortSubtable"`
+	Entries               IpsSensorEntryArrayOutput    `pulumi:"entries"`
+	ExtendedLog           pulumi.StringOutput          `pulumi:"extendedLog"`
+	Filters               IpsSensorFilterArrayOutput   `pulumi:"filters"`
+	Name                  pulumi.StringOutput          `pulumi:"name"`
+	Overrides             IpsSensorOverrideArrayOutput `pulumi:"overrides"`
+	ReplacemsgGroup       pulumi.StringOutput          `pulumi:"replacemsgGroup"`
+	ScanBotnetConnections pulumi.StringOutput          `pulumi:"scanBotnetConnections"`
+	Vdomparam             pulumi.StringPtrOutput       `pulumi:"vdomparam"`
 }
 
 // NewIpsSensor registers a new resource with the given unique name, arguments, and options.
@@ -84,53 +56,31 @@ func GetIpsSensor(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IpsSensor resources.
 type ipsSensorState struct {
-	// Enable/disable malicious URL blocking. Valid values: `disable`, `enable`.
-	BlockMaliciousUrl *string `pulumi:"blockMaliciousUrl"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// IPS sensor filter. The structure of `entries` block is documented below.
-	Entries []IpsSensorEntry `pulumi:"entries"`
-	// Enable/disable extended logging. Valid values: `enable`, `disable`.
-	ExtendedLog *string `pulumi:"extendedLog"`
-	// IPS sensor filter. The structure of `filter` block is documented below.
-	Filters []IpsSensorFilter `pulumi:"filters"`
-	// Filter name.
-	Name *string `pulumi:"name"`
-	// IPS override rule. The structure of `override` block is documented below.
-	Overrides []IpsSensorOverride `pulumi:"overrides"`
-	// Replacement message group.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Block or monitor connections to Botnet servers, or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
-	ScanBotnetConnections *string `pulumi:"scanBotnetConnections"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	BlockMaliciousUrl     *string             `pulumi:"blockMaliciousUrl"`
+	Comment               *string             `pulumi:"comment"`
+	DynamicSortSubtable   *string             `pulumi:"dynamicSortSubtable"`
+	Entries               []IpsSensorEntry    `pulumi:"entries"`
+	ExtendedLog           *string             `pulumi:"extendedLog"`
+	Filters               []IpsSensorFilter   `pulumi:"filters"`
+	Name                  *string             `pulumi:"name"`
+	Overrides             []IpsSensorOverride `pulumi:"overrides"`
+	ReplacemsgGroup       *string             `pulumi:"replacemsgGroup"`
+	ScanBotnetConnections *string             `pulumi:"scanBotnetConnections"`
+	Vdomparam             *string             `pulumi:"vdomparam"`
 }
 
 type IpsSensorState struct {
-	// Enable/disable malicious URL blocking. Valid values: `disable`, `enable`.
-	BlockMaliciousUrl pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// IPS sensor filter. The structure of `entries` block is documented below.
-	Entries IpsSensorEntryArrayInput
-	// Enable/disable extended logging. Valid values: `enable`, `disable`.
-	ExtendedLog pulumi.StringPtrInput
-	// IPS sensor filter. The structure of `filter` block is documented below.
-	Filters IpsSensorFilterArrayInput
-	// Filter name.
-	Name pulumi.StringPtrInput
-	// IPS override rule. The structure of `override` block is documented below.
-	Overrides IpsSensorOverrideArrayInput
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// Block or monitor connections to Botnet servers, or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
+	BlockMaliciousUrl     pulumi.StringPtrInput
+	Comment               pulumi.StringPtrInput
+	DynamicSortSubtable   pulumi.StringPtrInput
+	Entries               IpsSensorEntryArrayInput
+	ExtendedLog           pulumi.StringPtrInput
+	Filters               IpsSensorFilterArrayInput
+	Name                  pulumi.StringPtrInput
+	Overrides             IpsSensorOverrideArrayInput
+	ReplacemsgGroup       pulumi.StringPtrInput
 	ScanBotnetConnections pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (IpsSensorState) ElementType() reflect.Type {
@@ -138,54 +88,32 @@ func (IpsSensorState) ElementType() reflect.Type {
 }
 
 type ipsSensorArgs struct {
-	// Enable/disable malicious URL blocking. Valid values: `disable`, `enable`.
-	BlockMaliciousUrl *string `pulumi:"blockMaliciousUrl"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// IPS sensor filter. The structure of `entries` block is documented below.
-	Entries []IpsSensorEntry `pulumi:"entries"`
-	// Enable/disable extended logging. Valid values: `enable`, `disable`.
-	ExtendedLog *string `pulumi:"extendedLog"`
-	// IPS sensor filter. The structure of `filter` block is documented below.
-	Filters []IpsSensorFilter `pulumi:"filters"`
-	// Filter name.
-	Name *string `pulumi:"name"`
-	// IPS override rule. The structure of `override` block is documented below.
-	Overrides []IpsSensorOverride `pulumi:"overrides"`
-	// Replacement message group.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Block or monitor connections to Botnet servers, or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
-	ScanBotnetConnections *string `pulumi:"scanBotnetConnections"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	BlockMaliciousUrl     *string             `pulumi:"blockMaliciousUrl"`
+	Comment               *string             `pulumi:"comment"`
+	DynamicSortSubtable   *string             `pulumi:"dynamicSortSubtable"`
+	Entries               []IpsSensorEntry    `pulumi:"entries"`
+	ExtendedLog           *string             `pulumi:"extendedLog"`
+	Filters               []IpsSensorFilter   `pulumi:"filters"`
+	Name                  *string             `pulumi:"name"`
+	Overrides             []IpsSensorOverride `pulumi:"overrides"`
+	ReplacemsgGroup       *string             `pulumi:"replacemsgGroup"`
+	ScanBotnetConnections *string             `pulumi:"scanBotnetConnections"`
+	Vdomparam             *string             `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a IpsSensor resource.
 type IpsSensorArgs struct {
-	// Enable/disable malicious URL blocking. Valid values: `disable`, `enable`.
-	BlockMaliciousUrl pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// IPS sensor filter. The structure of `entries` block is documented below.
-	Entries IpsSensorEntryArrayInput
-	// Enable/disable extended logging. Valid values: `enable`, `disable`.
-	ExtendedLog pulumi.StringPtrInput
-	// IPS sensor filter. The structure of `filter` block is documented below.
-	Filters IpsSensorFilterArrayInput
-	// Filter name.
-	Name pulumi.StringPtrInput
-	// IPS override rule. The structure of `override` block is documented below.
-	Overrides IpsSensorOverrideArrayInput
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// Block or monitor connections to Botnet servers, or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
+	BlockMaliciousUrl     pulumi.StringPtrInput
+	Comment               pulumi.StringPtrInput
+	DynamicSortSubtable   pulumi.StringPtrInput
+	Entries               IpsSensorEntryArrayInput
+	ExtendedLog           pulumi.StringPtrInput
+	Filters               IpsSensorFilterArrayInput
+	Name                  pulumi.StringPtrInput
+	Overrides             IpsSensorOverrideArrayInput
+	ReplacemsgGroup       pulumi.StringPtrInput
 	ScanBotnetConnections pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (IpsSensorArgs) ElementType() reflect.Type {
@@ -214,7 +142,7 @@ func (i *IpsSensor) ToIpsSensorOutputWithContext(ctx context.Context) IpsSensorO
 // IpsSensorArrayInput is an input type that accepts IpsSensorArray and IpsSensorArrayOutput values.
 // You can construct a concrete instance of `IpsSensorArrayInput` via:
 //
-//          IpsSensorArray{ IpsSensorArgs{...} }
+//	IpsSensorArray{ IpsSensorArgs{...} }
 type IpsSensorArrayInput interface {
 	pulumi.Input
 
@@ -239,7 +167,7 @@ func (i IpsSensorArray) ToIpsSensorArrayOutputWithContext(ctx context.Context) I
 // IpsSensorMapInput is an input type that accepts IpsSensorMap and IpsSensorMapOutput values.
 // You can construct a concrete instance of `IpsSensorMapInput` via:
 //
-//          IpsSensorMap{ "key": IpsSensorArgs{...} }
+//	IpsSensorMap{ "key": IpsSensorArgs{...} }
 type IpsSensorMapInput interface {
 	pulumi.Input
 
@@ -273,6 +201,50 @@ func (o IpsSensorOutput) ToIpsSensorOutput() IpsSensorOutput {
 
 func (o IpsSensorOutput) ToIpsSensorOutputWithContext(ctx context.Context) IpsSensorOutput {
 	return o
+}
+
+func (o IpsSensorOutput) BlockMaliciousUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsSensor) pulumi.StringOutput { return v.BlockMaliciousUrl }).(pulumi.StringOutput)
+}
+
+func (o IpsSensorOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsSensor) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o IpsSensorOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsSensor) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o IpsSensorOutput) Entries() IpsSensorEntryArrayOutput {
+	return o.ApplyT(func(v *IpsSensor) IpsSensorEntryArrayOutput { return v.Entries }).(IpsSensorEntryArrayOutput)
+}
+
+func (o IpsSensorOutput) ExtendedLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsSensor) pulumi.StringOutput { return v.ExtendedLog }).(pulumi.StringOutput)
+}
+
+func (o IpsSensorOutput) Filters() IpsSensorFilterArrayOutput {
+	return o.ApplyT(func(v *IpsSensor) IpsSensorFilterArrayOutput { return v.Filters }).(IpsSensorFilterArrayOutput)
+}
+
+func (o IpsSensorOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsSensor) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o IpsSensorOutput) Overrides() IpsSensorOverrideArrayOutput {
+	return o.ApplyT(func(v *IpsSensor) IpsSensorOverrideArrayOutput { return v.Overrides }).(IpsSensorOverrideArrayOutput)
+}
+
+func (o IpsSensorOutput) ReplacemsgGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsSensor) pulumi.StringOutput { return v.ReplacemsgGroup }).(pulumi.StringOutput)
+}
+
+func (o IpsSensorOutput) ScanBotnetConnections() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsSensor) pulumi.StringOutput { return v.ScanBotnetConnections }).(pulumi.StringOutput)
+}
+
+func (o IpsSensorOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsSensor) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type IpsSensorArrayOutput struct{ *pulumi.OutputState }

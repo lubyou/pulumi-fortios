@@ -4,50 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure wireless controller global settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WirelessControllerGlobal("trname", {
- *     apLogServer: "disable",
- *     apLogServerIp: "0.0.0.0",
- *     apLogServerPort: 0,
- *     controlMessageOffload: "ebp-frame aeroscout-tag ap-list sta-list sta-cap-list stats aeroscout-mu",
- *     dataEthernetIi: "disable",
- *     discoveryMcAddr: "224.0.1.140",
- *     fiappEthType: 5252,
- *     imageDownload: "enable",
- *     ipsecBaseIp: "169.254.0.1",
- *     linkAggregation: "disable",
- *     maxClients: 0,
- *     maxRetransmit: 3,
- *     meshEthType: 8755,
- *     rogueScanMacAdjacency: 7,
- *     wtpShare: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * WirelessController Global can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerGlobal:WirelessControllerGlobal labelname WirelessControllerGlobal
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerGlobal:WirelessControllerGlobal labelname WirelessControllerGlobal
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerGlobal extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerGlobal resource's state with the given name, ID, and optional extra
@@ -76,85 +32,25 @@ export class WirelessControllerGlobal extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerGlobal.__pulumiType;
     }
 
-    /**
-     * Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly apLogServer!: pulumi.Output<string>;
-    /**
-     * IP address that APs or FortiAPs send log messages to.
-     */
     public readonly apLogServerIp!: pulumi.Output<string>;
-    /**
-     * Port that APs or FortiAPs send log messages to.
-     */
     public readonly apLogServerPort!: pulumi.Output<number>;
-    /**
-     * Configure CAPWAP control message data channel offload.
-     */
     public readonly controlMessageOffload!: pulumi.Output<string>;
-    /**
-     * Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly dataEthernetIi!: pulumi.Output<string>;
-    /**
-     * Multicast IP address for AP discovery (default = 244.0.1.140).
-     */
     public readonly discoveryMcAddr!: pulumi.Output<string>;
-    /**
-     * Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
-     */
     public readonly fiappEthType!: pulumi.Output<number>;
-    /**
-     * Enable/disable WTP image download at join time. Valid values: `enable`, `disable`.
-     */
     public readonly imageDownload!: pulumi.Output<string>;
-    /**
-     * Base IP address for IPsec VPN tunnels between the access points and the wireless controller (default = 169.254.0.1).
-     */
     public readonly ipsecBaseIp!: pulumi.Output<string>;
-    /**
-     * Enable/disable calculating the CAPWAP transmit hash to load balance sessions to link aggregation nodes (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly linkAggregation!: pulumi.Output<string>;
-    /**
-     * Description of the location of the wireless controller.
-     */
     public readonly location!: pulumi.Output<string>;
-    /**
-     * Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
-     */
     public readonly maxClients!: pulumi.Output<number>;
-    /**
-     * Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
-     */
     public readonly maxRetransmit!: pulumi.Output<number>;
-    /**
-     * Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
-     */
     public readonly meshEthType!: pulumi.Output<number>;
-    /**
-     * Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
-     */
     public readonly nacInterval!: pulumi.Output<number>;
-    /**
-     * Name of the wireless controller.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
-     */
     public readonly rogueScanMacAdjacency!: pulumi.Output<number>;
-    /**
-     * Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
-     */
     public readonly tunnelMode!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
-     */
     public readonly wtpShare!: pulumi.Output<string>;
 
     /**
@@ -222,85 +118,25 @@ export class WirelessControllerGlobal extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerGlobal resources.
  */
 export interface WirelessControllerGlobalState {
-    /**
-     * Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
-     */
     apLogServer?: pulumi.Input<string>;
-    /**
-     * IP address that APs or FortiAPs send log messages to.
-     */
     apLogServerIp?: pulumi.Input<string>;
-    /**
-     * Port that APs or FortiAPs send log messages to.
-     */
     apLogServerPort?: pulumi.Input<number>;
-    /**
-     * Configure CAPWAP control message data channel offload.
-     */
     controlMessageOffload?: pulumi.Input<string>;
-    /**
-     * Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
-     */
     dataEthernetIi?: pulumi.Input<string>;
-    /**
-     * Multicast IP address for AP discovery (default = 244.0.1.140).
-     */
     discoveryMcAddr?: pulumi.Input<string>;
-    /**
-     * Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
-     */
     fiappEthType?: pulumi.Input<number>;
-    /**
-     * Enable/disable WTP image download at join time. Valid values: `enable`, `disable`.
-     */
     imageDownload?: pulumi.Input<string>;
-    /**
-     * Base IP address for IPsec VPN tunnels between the access points and the wireless controller (default = 169.254.0.1).
-     */
     ipsecBaseIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable calculating the CAPWAP transmit hash to load balance sessions to link aggregation nodes (default = disable). Valid values: `enable`, `disable`.
-     */
     linkAggregation?: pulumi.Input<string>;
-    /**
-     * Description of the location of the wireless controller.
-     */
     location?: pulumi.Input<string>;
-    /**
-     * Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
-     */
     maxClients?: pulumi.Input<number>;
-    /**
-     * Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
-     */
     maxRetransmit?: pulumi.Input<number>;
-    /**
-     * Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
-     */
     meshEthType?: pulumi.Input<number>;
-    /**
-     * Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
-     */
     nacInterval?: pulumi.Input<number>;
-    /**
-     * Name of the wireless controller.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
-     */
     rogueScanMacAdjacency?: pulumi.Input<number>;
-    /**
-     * Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
-     */
     tunnelMode?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
-     */
     wtpShare?: pulumi.Input<string>;
 }
 
@@ -308,84 +144,24 @@ export interface WirelessControllerGlobalState {
  * The set of arguments for constructing a WirelessControllerGlobal resource.
  */
 export interface WirelessControllerGlobalArgs {
-    /**
-     * Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
-     */
     apLogServer?: pulumi.Input<string>;
-    /**
-     * IP address that APs or FortiAPs send log messages to.
-     */
     apLogServerIp?: pulumi.Input<string>;
-    /**
-     * Port that APs or FortiAPs send log messages to.
-     */
     apLogServerPort?: pulumi.Input<number>;
-    /**
-     * Configure CAPWAP control message data channel offload.
-     */
     controlMessageOffload?: pulumi.Input<string>;
-    /**
-     * Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
-     */
     dataEthernetIi?: pulumi.Input<string>;
-    /**
-     * Multicast IP address for AP discovery (default = 244.0.1.140).
-     */
     discoveryMcAddr?: pulumi.Input<string>;
-    /**
-     * Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
-     */
     fiappEthType?: pulumi.Input<number>;
-    /**
-     * Enable/disable WTP image download at join time. Valid values: `enable`, `disable`.
-     */
     imageDownload?: pulumi.Input<string>;
-    /**
-     * Base IP address for IPsec VPN tunnels between the access points and the wireless controller (default = 169.254.0.1).
-     */
     ipsecBaseIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable calculating the CAPWAP transmit hash to load balance sessions to link aggregation nodes (default = disable). Valid values: `enable`, `disable`.
-     */
     linkAggregation?: pulumi.Input<string>;
-    /**
-     * Description of the location of the wireless controller.
-     */
     location?: pulumi.Input<string>;
-    /**
-     * Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
-     */
     maxClients?: pulumi.Input<number>;
-    /**
-     * Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
-     */
     maxRetransmit?: pulumi.Input<number>;
-    /**
-     * Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
-     */
     meshEthType?: pulumi.Input<number>;
-    /**
-     * Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
-     */
     nacInterval?: pulumi.Input<number>;
-    /**
-     * Name of the wireless controller.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
-     */
     rogueScanMacAdjacency?: pulumi.Input<number>;
-    /**
-     * Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
-     */
     tunnelMode?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
-     */
     wtpShare?: pulumi.Input<string>;
 }

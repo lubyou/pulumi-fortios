@@ -2,44 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch QoS IP precedence/DSCP.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchControllerQosIpDscpMap("trname", {
- *     description: "DEIW",
- *     maps: [{
- *         cosQueue: 3,
- *         diffserv: "CS0 CS1 AF11",
- *         name: "1",
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * SwitchControllerQos IpDscpMap can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerQosIpDscpMap:SwitchControllerQosIpDscpMap labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerQosIpDscpMap:SwitchControllerQosIpDscpMap labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerQosIpDscpMap extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerQosIpDscpMap resource's state with the given name, ID, and optional extra
@@ -68,25 +34,10 @@ export class SwitchControllerQosIpDscpMap extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerQosIpDscpMap.__pulumiType;
     }
 
-    /**
-     * Description of the ip-dscp map name.
-     */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Maps between IP-DSCP value to COS queue. The structure of `map` block is documented below.
-     */
     public readonly maps!: pulumi.Output<outputs.SwitchControllerQosIpDscpMapMap[] | undefined>;
-    /**
-     * Dscp mapping entry name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -124,25 +75,10 @@ export class SwitchControllerQosIpDscpMap extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerQosIpDscpMap resources.
  */
 export interface SwitchControllerQosIpDscpMapState {
-    /**
-     * Description of the ip-dscp map name.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Maps between IP-DSCP value to COS queue. The structure of `map` block is documented below.
-     */
     maps?: pulumi.Input<pulumi.Input<inputs.SwitchControllerQosIpDscpMapMap>[]>;
-    /**
-     * Dscp mapping entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -150,24 +86,9 @@ export interface SwitchControllerQosIpDscpMapState {
  * The set of arguments for constructing a SwitchControllerQosIpDscpMap resource.
  */
 export interface SwitchControllerQosIpDscpMapArgs {
-    /**
-     * Description of the ip-dscp map name.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Maps between IP-DSCP value to COS queue. The structure of `map` block is documented below.
-     */
     maps?: pulumi.Input<pulumi.Input<inputs.SwitchControllerQosIpDscpMapMap>[]>;
-    /**
-     * Dscp mapping entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

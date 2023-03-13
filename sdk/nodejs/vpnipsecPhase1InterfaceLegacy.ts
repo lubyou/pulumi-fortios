@@ -4,15 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to use phase1-interface to define a phase 1 definition for a route-based (interface mode) IPsec VPN tunnel that generates authentication and encryption keys automatically.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.VpnIpsecPhase1Interface`, we recommend that you use the new resource.
- *
- * ## Example Usage
- *
- * fortios.VPNIPsecPhase1InterfaceLegacy needs to be set with fortios_vpn_ipsec_phase2interface. See section fortios_vpn_ipsec_phase2interface.
- */
 export class VPNIPsecPhase1InterfaceLegacy extends pulumi.CustomResource {
     /**
      * Get an existing VPNIPsecPhase1InterfaceLegacy resource's state with the given name, ID, and optional extra
@@ -41,81 +32,24 @@ export class VPNIPsecPhase1InterfaceLegacy extends pulumi.CustomResource {
         return obj['__pulumiType'] === VPNIPsecPhase1InterfaceLegacy.__pulumiType;
     }
 
-    /**
-     * Authentication method.
-     */
     public readonly authmethod!: pulumi.Output<string>;
-    /**
-     * Authentication method (remote side).
-     */
     public readonly authmethodRemote!: pulumi.Output<string>;
-    /**
-     * Names of signed personal certificates.
-     */
     public readonly certificates!: pulumi.Output<string[]>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Local physical, aggregate, or VLAN outgoing interface.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * IPv4 subnets that should not be sent over the IPsec tunnel.
-     */
     public readonly ipv4SplitExclude!: pulumi.Output<string>;
-    /**
-     * IPv4 split-include subnets.
-     */
     public readonly ipv4SplitInclude!: pulumi.Output<string>;
-    /**
-     * Enable/disable configuration method.
-     */
     public readonly modeCfg!: pulumi.Output<string>;
-    /**
-     * IPsec remote gateway name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Accept this peer certificate.
-     */
     public readonly peer!: pulumi.Output<string>;
-    /**
-     * Accept this peer certificate group.
-     */
     public readonly peergrp!: pulumi.Output<string>;
-    /**
-     * Accept this peer identity.
-     */
     public readonly peerid!: pulumi.Output<string>;
-    /**
-     * Accept this peer type.
-     */
     public readonly peertype!: pulumi.Output<string>;
-    /**
-     * Phase1 proposal.
-     */
     public readonly proposal!: pulumi.Output<string>;
-    /**
-     * Pre-shared secret for PSK authentication.
-     */
     public readonly psksecret!: pulumi.Output<string>;
-    /**
-     * IPv4 address of the remote gateway's external interface.
-     */
     public readonly remoteGw!: pulumi.Output<string>;
-    /**
-     * Split-include services.
-     */
     public readonly splitIncludeService!: pulumi.Output<string>;
-    /**
-     * Remote gateway type.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * GUI VPN Wizard Type.
-     */
     public readonly wizardType!: pulumi.Output<string>;
 
     /**
@@ -193,81 +127,24 @@ export class VPNIPsecPhase1InterfaceLegacy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VPNIPsecPhase1InterfaceLegacy resources.
  */
 export interface VPNIPsecPhase1InterfaceLegacyState {
-    /**
-     * Authentication method.
-     */
     authmethod?: pulumi.Input<string>;
-    /**
-     * Authentication method (remote side).
-     */
     authmethodRemote?: pulumi.Input<string>;
-    /**
-     * Names of signed personal certificates.
-     */
     certificates?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Local physical, aggregate, or VLAN outgoing interface.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * IPv4 subnets that should not be sent over the IPsec tunnel.
-     */
     ipv4SplitExclude?: pulumi.Input<string>;
-    /**
-     * IPv4 split-include subnets.
-     */
     ipv4SplitInclude?: pulumi.Input<string>;
-    /**
-     * Enable/disable configuration method.
-     */
     modeCfg?: pulumi.Input<string>;
-    /**
-     * IPsec remote gateway name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Accept this peer certificate.
-     */
     peer?: pulumi.Input<string>;
-    /**
-     * Accept this peer certificate group.
-     */
     peergrp?: pulumi.Input<string>;
-    /**
-     * Accept this peer identity.
-     */
     peerid?: pulumi.Input<string>;
-    /**
-     * Accept this peer type.
-     */
     peertype?: pulumi.Input<string>;
-    /**
-     * Phase1 proposal.
-     */
     proposal?: pulumi.Input<string>;
-    /**
-     * Pre-shared secret for PSK authentication.
-     */
     psksecret?: pulumi.Input<string>;
-    /**
-     * IPv4 address of the remote gateway's external interface.
-     */
     remoteGw?: pulumi.Input<string>;
-    /**
-     * Split-include services.
-     */
     splitIncludeService?: pulumi.Input<string>;
-    /**
-     * Remote gateway type.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * GUI VPN Wizard Type.
-     */
     wizardType?: pulumi.Input<string>;
 }
 
@@ -275,80 +152,23 @@ export interface VPNIPsecPhase1InterfaceLegacyState {
  * The set of arguments for constructing a VPNIPsecPhase1InterfaceLegacy resource.
  */
 export interface VPNIPsecPhase1InterfaceLegacyArgs {
-    /**
-     * Authentication method.
-     */
     authmethod?: pulumi.Input<string>;
-    /**
-     * Authentication method (remote side).
-     */
     authmethodRemote?: pulumi.Input<string>;
-    /**
-     * Names of signed personal certificates.
-     */
     certificates?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Local physical, aggregate, or VLAN outgoing interface.
-     */
     interface: pulumi.Input<string>;
-    /**
-     * IPv4 subnets that should not be sent over the IPsec tunnel.
-     */
     ipv4SplitExclude?: pulumi.Input<string>;
-    /**
-     * IPv4 split-include subnets.
-     */
     ipv4SplitInclude?: pulumi.Input<string>;
-    /**
-     * Enable/disable configuration method.
-     */
     modeCfg?: pulumi.Input<string>;
-    /**
-     * IPsec remote gateway name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Accept this peer certificate.
-     */
     peer?: pulumi.Input<string>;
-    /**
-     * Accept this peer certificate group.
-     */
     peergrp?: pulumi.Input<string>;
-    /**
-     * Accept this peer identity.
-     */
     peerid?: pulumi.Input<string>;
-    /**
-     * Accept this peer type.
-     */
     peertype?: pulumi.Input<string>;
-    /**
-     * Phase1 proposal.
-     */
     proposal?: pulumi.Input<string>;
-    /**
-     * Pre-shared secret for PSK authentication.
-     */
     psksecret: pulumi.Input<string>;
-    /**
-     * IPv4 address of the remote gateway's external interface.
-     */
     remoteGw: pulumi.Input<string>;
-    /**
-     * Split-include services.
-     */
     splitIncludeService?: pulumi.Input<string>;
-    /**
-     * Remote gateway type.
-     */
     type: pulumi.Input<string>;
-    /**
-     * GUI VPN Wizard Type.
-     */
     wizardType?: pulumi.Input<string>;
 }

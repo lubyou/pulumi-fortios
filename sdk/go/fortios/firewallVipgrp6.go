@@ -7,127 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 virtual IP groups.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trname1, err := fortios.NewFirewallVip6(ctx, "trname1", &fortios.FirewallVip6Args{
-// 			ArpReply:                     pulumi.String("enable"),
-// 			Color:                        pulumi.Int(0),
-// 			Extip:                        pulumi.String("2001:1:1:2::100"),
-// 			Extport:                      pulumi.String("0-65535"),
-// 			Fosid:                        pulumi.Int(0),
-// 			HttpCookieAge:                pulumi.Int(60),
-// 			HttpCookieDomainFromHost:     pulumi.String("disable"),
-// 			HttpCookieGeneration:         pulumi.Int(0),
-// 			HttpCookieShare:              pulumi.String("same-ip"),
-// 			HttpIpHeader:                 pulumi.String("disable"),
-// 			HttpMultiplex:                pulumi.String("disable"),
-// 			HttpsCookieSecure:            pulumi.String("disable"),
-// 			LdbMethod:                    pulumi.String("static"),
-// 			Mappedip:                     pulumi.String("2001:1:1:2::200"),
-// 			Mappedport:                   pulumi.String("0-65535"),
-// 			MaxEmbryonicConnections:      pulumi.Int(1000),
-// 			OutlookWebAccess:             pulumi.String("disable"),
-// 			Persistence:                  pulumi.String("none"),
-// 			Portforward:                  pulumi.String("disable"),
-// 			Protocol:                     pulumi.String("tcp"),
-// 			SslAlgorithm:                 pulumi.String("high"),
-// 			SslClientFallback:            pulumi.String("enable"),
-// 			SslClientRenegotiation:       pulumi.String("secure"),
-// 			SslClientSessionStateMax:     pulumi.Int(1000),
-// 			SslClientSessionStateTimeout: pulumi.Int(30),
-// 			SslClientSessionStateType:    pulumi.String("both"),
-// 			SslDhBits:                    pulumi.String("2048"),
-// 			SslHpkp:                      pulumi.String("disable"),
-// 			SslHpkpAge:                   pulumi.Int(5184000),
-// 			SslHpkpIncludeSubdomains:     pulumi.String("disable"),
-// 			SslHsts:                      pulumi.String("disable"),
-// 			SslHstsAge:                   pulumi.Int(5184000),
-// 			SslHstsIncludeSubdomains:     pulumi.String("disable"),
-// 			SslHttpLocationConversion:    pulumi.String("disable"),
-// 			SslHttpMatchHost:             pulumi.String("enable"),
-// 			SslMaxVersion:                pulumi.String("tls-1.2"),
-// 			SslMinVersion:                pulumi.String("tls-1.1"),
-// 			SslMode:                      pulumi.String("half"),
-// 			SslPfs:                       pulumi.String("require"),
-// 			SslSendEmptyFrags:            pulumi.String("enable"),
-// 			SslServerAlgorithm:           pulumi.String("client"),
-// 			SslServerMaxVersion:          pulumi.String("client"),
-// 			SslServerMinVersion:          pulumi.String("client"),
-// 			SslServerSessionStateMax:     pulumi.Int(100),
-// 			SslServerSessionStateTimeout: pulumi.Int(60),
-// 			SslServerSessionStateType:    pulumi.String("both"),
-// 			Type:                         pulumi.String("static-nat"),
-// 			WeblogicServer:               pulumi.String("disable"),
-// 			WebsphereServer:              pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewFirewallVipgrp6(ctx, "trname", &fortios.FirewallVipgrp6Args{
-// 			Color: pulumi.Int(0),
-// 			Members: FirewallVipgrp6MemberArray{
-// 				&FirewallVipgrp6MemberArgs{
-// 					Name: trname1.Name,
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall Vipgrp6 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallVipgrp6:FirewallVipgrp6 labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallVipgrp6:FirewallVipgrp6 labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallVipgrp6 struct {
 	pulumi.CustomResourceState
 
-	// Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-	Color pulumi.IntOutput `pulumi:"color"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Member VIP objects of the group (Separate multiple objects with a space). The structure of `member` block is documented below.
-	Members FirewallVipgrp6MemberArrayOutput `pulumi:"members"`
-	// IPv6 VIP name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringOutput `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Color               pulumi.IntOutput                 `pulumi:"color"`
+	Comments            pulumi.StringPtrOutput           `pulumi:"comments"`
+	DynamicSortSubtable pulumi.StringPtrOutput           `pulumi:"dynamicSortSubtable"`
+	Members             FirewallVipgrp6MemberArrayOutput `pulumi:"members"`
+	Name                pulumi.StringOutput              `pulumi:"name"`
+	Uuid                pulumi.StringOutput              `pulumi:"uuid"`
+	Vdomparam           pulumi.StringPtrOutput           `pulumi:"vdomparam"`
 }
 
 // NewFirewallVipgrp6 registers a new resource with the given unique name, arguments, and options.
@@ -163,37 +56,23 @@ func GetFirewallVipgrp6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallVipgrp6 resources.
 type firewallVipgrp6State struct {
-	// Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Member VIP objects of the group (Separate multiple objects with a space). The structure of `member` block is documented below.
-	Members []FirewallVipgrp6Member `pulumi:"members"`
-	// IPv6 VIP name.
-	Name *string `pulumi:"name"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Color               *int                    `pulumi:"color"`
+	Comments            *string                 `pulumi:"comments"`
+	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
+	Members             []FirewallVipgrp6Member `pulumi:"members"`
+	Name                *string                 `pulumi:"name"`
+	Uuid                *string                 `pulumi:"uuid"`
+	Vdomparam           *string                 `pulumi:"vdomparam"`
 }
 
 type FirewallVipgrp6State struct {
-	// Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
+	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Member VIP objects of the group (Separate multiple objects with a space). The structure of `member` block is documented below.
-	Members FirewallVipgrp6MemberArrayInput
-	// IPv6 VIP name.
-	Name pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Members             FirewallVipgrp6MemberArrayInput
+	Name                pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallVipgrp6State) ElementType() reflect.Type {
@@ -201,38 +80,24 @@ func (FirewallVipgrp6State) ElementType() reflect.Type {
 }
 
 type firewallVipgrp6Args struct {
-	// Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Member VIP objects of the group (Separate multiple objects with a space). The structure of `member` block is documented below.
-	Members []FirewallVipgrp6Member `pulumi:"members"`
-	// IPv6 VIP name.
-	Name *string `pulumi:"name"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Color               *int                    `pulumi:"color"`
+	Comments            *string                 `pulumi:"comments"`
+	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
+	Members             []FirewallVipgrp6Member `pulumi:"members"`
+	Name                *string                 `pulumi:"name"`
+	Uuid                *string                 `pulumi:"uuid"`
+	Vdomparam           *string                 `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallVipgrp6 resource.
 type FirewallVipgrp6Args struct {
-	// Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
+	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Member VIP objects of the group (Separate multiple objects with a space). The structure of `member` block is documented below.
-	Members FirewallVipgrp6MemberArrayInput
-	// IPv6 VIP name.
-	Name pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Members             FirewallVipgrp6MemberArrayInput
+	Name                pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallVipgrp6Args) ElementType() reflect.Type {
@@ -261,7 +126,7 @@ func (i *FirewallVipgrp6) ToFirewallVipgrp6OutputWithContext(ctx context.Context
 // FirewallVipgrp6ArrayInput is an input type that accepts FirewallVipgrp6Array and FirewallVipgrp6ArrayOutput values.
 // You can construct a concrete instance of `FirewallVipgrp6ArrayInput` via:
 //
-//          FirewallVipgrp6Array{ FirewallVipgrp6Args{...} }
+//	FirewallVipgrp6Array{ FirewallVipgrp6Args{...} }
 type FirewallVipgrp6ArrayInput interface {
 	pulumi.Input
 
@@ -286,7 +151,7 @@ func (i FirewallVipgrp6Array) ToFirewallVipgrp6ArrayOutputWithContext(ctx contex
 // FirewallVipgrp6MapInput is an input type that accepts FirewallVipgrp6Map and FirewallVipgrp6MapOutput values.
 // You can construct a concrete instance of `FirewallVipgrp6MapInput` via:
 //
-//          FirewallVipgrp6Map{ "key": FirewallVipgrp6Args{...} }
+//	FirewallVipgrp6Map{ "key": FirewallVipgrp6Args{...} }
 type FirewallVipgrp6MapInput interface {
 	pulumi.Input
 
@@ -320,6 +185,34 @@ func (o FirewallVipgrp6Output) ToFirewallVipgrp6Output() FirewallVipgrp6Output {
 
 func (o FirewallVipgrp6Output) ToFirewallVipgrp6OutputWithContext(ctx context.Context) FirewallVipgrp6Output {
 	return o
+}
+
+func (o FirewallVipgrp6Output) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVipgrp6) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o FirewallVipgrp6Output) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallVipgrp6) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallVipgrp6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallVipgrp6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallVipgrp6Output) Members() FirewallVipgrp6MemberArrayOutput {
+	return o.ApplyT(func(v *FirewallVipgrp6) FirewallVipgrp6MemberArrayOutput { return v.Members }).(FirewallVipgrp6MemberArrayOutput)
+}
+
+func (o FirewallVipgrp6Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVipgrp6) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallVipgrp6Output) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVipgrp6) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o FirewallVipgrp6Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallVipgrp6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallVipgrp6ArrayOutput struct{ *pulumi.OutputState }

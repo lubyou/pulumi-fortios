@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch SNMP trap threshold values globally. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * SwitchController SnmpTrapThreshold can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSnmpTrapThreshold:SwitchControllerSnmpTrapThreshold labelname SwitchControllerSnmpTrapThreshold
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSnmpTrapThreshold:SwitchControllerSnmpTrapThreshold labelname SwitchControllerSnmpTrapThreshold
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerSnmpTrapThreshold extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerSnmpTrapThreshold resource's state with the given name, ID, and optional extra
@@ -51,21 +32,9 @@ export class SwitchControllerSnmpTrapThreshold extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerSnmpTrapThreshold.__pulumiType;
     }
 
-    /**
-     * CPU usage when trap is sent.
-     */
     public readonly trapHighCpuThreshold!: pulumi.Output<number>;
-    /**
-     * Log disk usage when trap is sent.
-     */
     public readonly trapLogFullThreshold!: pulumi.Output<number>;
-    /**
-     * Memory usage when trap is sent.
-     */
     public readonly trapLowMemoryThreshold!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -101,21 +70,9 @@ export class SwitchControllerSnmpTrapThreshold extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerSnmpTrapThreshold resources.
  */
 export interface SwitchControllerSnmpTrapThresholdState {
-    /**
-     * CPU usage when trap is sent.
-     */
     trapHighCpuThreshold?: pulumi.Input<number>;
-    /**
-     * Log disk usage when trap is sent.
-     */
     trapLogFullThreshold?: pulumi.Input<number>;
-    /**
-     * Memory usage when trap is sent.
-     */
     trapLowMemoryThreshold?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -123,20 +80,8 @@ export interface SwitchControllerSnmpTrapThresholdState {
  * The set of arguments for constructing a SwitchControllerSnmpTrapThreshold resource.
  */
 export interface SwitchControllerSnmpTrapThresholdArgs {
-    /**
-     * CPU usage when trap is sent.
-     */
     trapHighCpuThreshold?: pulumi.Input<number>;
-    /**
-     * Log disk usage when trap is sent.
-     */
     trapLogFullThreshold?: pulumi.Input<number>;
-    /**
-     * Memory usage when trap is sent.
-     */
     trapLowMemoryThreshold?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

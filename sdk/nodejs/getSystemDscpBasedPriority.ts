@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios system dscpbasedpriority
- */
 export function getSystemDscpBasedPriority(args: GetSystemDscpBasedPriorityArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemDscpBasedPriorityResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemDscpBasedPriority:GetSystemDscpBasedPriority", {
         "fosid": args.fosid,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getSystemDscpBasedPriority(args: GetSystemDscpBasedPriorityArgs,
  * A collection of arguments for invoking GetSystemDscpBasedPriority.
  */
 export interface GetSystemDscpBasedPriorityArgs {
-    /**
-     * Specify the fosid of the desired system dscpbasedpriority.
-     */
     fosid: number;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,39 +25,23 @@ export interface GetSystemDscpBasedPriorityArgs {
  * A collection of values returned by GetSystemDscpBasedPriority.
  */
 export interface GetSystemDscpBasedPriorityResult {
-    /**
-     * DSCP(DiffServ) DS value (0 - 63).
-     */
     readonly ds: number;
-    /**
-     * Item ID.
-     */
     readonly fosid: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * DSCP based priority level.
-     */
     readonly priority: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemDscpBasedPriorityOutput(args: GetSystemDscpBasedPriorityOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemDscpBasedPriorityResult> {
-    return pulumi.output(args).apply(a => getSystemDscpBasedPriority(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemDscpBasedPriority(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemDscpBasedPriority.
  */
 export interface GetSystemDscpBasedPriorityOutputArgs {
-    /**
-     * Specify the fosid of the desired system dscpbasedpriority.
-     */
     fosid: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

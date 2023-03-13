@@ -10,42 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Registered FortiClient list. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Import
-//
-// EndpointControl RegisteredForticlient can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/endpointControlRegisteredForticlient:EndpointControlRegisteredForticlient labelname {{uid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/endpointControlRegisteredForticlient:EndpointControlRegisteredForticlient labelname {{uid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type EndpointControlRegisteredForticlient struct {
 	pulumi.CustomResourceState
 
-	// FortiClient registration flag.
-	Flag pulumi.IntOutput `pulumi:"flag"`
-	// Endpoint IP address.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// Endpoint MAC address.
-	Mac pulumi.StringOutput `pulumi:"mac"`
-	// Registering FortiGate SN.
-	RegFortigate pulumi.StringOutput `pulumi:"regFortigate"`
-	// FortiClient registration status.
-	Status pulumi.IntOutput `pulumi:"status"`
-	// FortiClient UID.
-	Uid pulumi.StringOutput `pulumi:"uid"`
-	// Registering vdom.
-	Vdom pulumi.StringOutput `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Flag         pulumi.IntOutput       `pulumi:"flag"`
+	Ip           pulumi.StringOutput    `pulumi:"ip"`
+	Mac          pulumi.StringOutput    `pulumi:"mac"`
+	RegFortigate pulumi.StringOutput    `pulumi:"regFortigate"`
+	Status       pulumi.IntOutput       `pulumi:"status"`
+	Uid          pulumi.StringOutput    `pulumi:"uid"`
+	Vdom         pulumi.StringOutput    `pulumi:"vdom"`
+	Vdomparam    pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewEndpointControlRegisteredForticlient registers a new resource with the given unique name, arguments, and options.
@@ -78,41 +53,25 @@ func GetEndpointControlRegisteredForticlient(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EndpointControlRegisteredForticlient resources.
 type endpointControlRegisteredForticlientState struct {
-	// FortiClient registration flag.
-	Flag *int `pulumi:"flag"`
-	// Endpoint IP address.
-	Ip *string `pulumi:"ip"`
-	// Endpoint MAC address.
-	Mac *string `pulumi:"mac"`
-	// Registering FortiGate SN.
+	Flag         *int    `pulumi:"flag"`
+	Ip           *string `pulumi:"ip"`
+	Mac          *string `pulumi:"mac"`
 	RegFortigate *string `pulumi:"regFortigate"`
-	// FortiClient registration status.
-	Status *int `pulumi:"status"`
-	// FortiClient UID.
-	Uid *string `pulumi:"uid"`
-	// Registering vdom.
-	Vdom *string `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Status       *int    `pulumi:"status"`
+	Uid          *string `pulumi:"uid"`
+	Vdom         *string `pulumi:"vdom"`
+	Vdomparam    *string `pulumi:"vdomparam"`
 }
 
 type EndpointControlRegisteredForticlientState struct {
-	// FortiClient registration flag.
-	Flag pulumi.IntPtrInput
-	// Endpoint IP address.
-	Ip pulumi.StringPtrInput
-	// Endpoint MAC address.
-	Mac pulumi.StringPtrInput
-	// Registering FortiGate SN.
+	Flag         pulumi.IntPtrInput
+	Ip           pulumi.StringPtrInput
+	Mac          pulumi.StringPtrInput
 	RegFortigate pulumi.StringPtrInput
-	// FortiClient registration status.
-	Status pulumi.IntPtrInput
-	// FortiClient UID.
-	Uid pulumi.StringPtrInput
-	// Registering vdom.
-	Vdom pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Status       pulumi.IntPtrInput
+	Uid          pulumi.StringPtrInput
+	Vdom         pulumi.StringPtrInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (EndpointControlRegisteredForticlientState) ElementType() reflect.Type {
@@ -120,42 +79,26 @@ func (EndpointControlRegisteredForticlientState) ElementType() reflect.Type {
 }
 
 type endpointControlRegisteredForticlientArgs struct {
-	// FortiClient registration flag.
-	Flag *int `pulumi:"flag"`
-	// Endpoint IP address.
-	Ip *string `pulumi:"ip"`
-	// Endpoint MAC address.
-	Mac *string `pulumi:"mac"`
-	// Registering FortiGate SN.
+	Flag         *int    `pulumi:"flag"`
+	Ip           *string `pulumi:"ip"`
+	Mac          *string `pulumi:"mac"`
 	RegFortigate *string `pulumi:"regFortigate"`
-	// FortiClient registration status.
-	Status *int `pulumi:"status"`
-	// FortiClient UID.
-	Uid *string `pulumi:"uid"`
-	// Registering vdom.
-	Vdom *string `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Status       *int    `pulumi:"status"`
+	Uid          *string `pulumi:"uid"`
+	Vdom         *string `pulumi:"vdom"`
+	Vdomparam    *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a EndpointControlRegisteredForticlient resource.
 type EndpointControlRegisteredForticlientArgs struct {
-	// FortiClient registration flag.
-	Flag pulumi.IntPtrInput
-	// Endpoint IP address.
-	Ip pulumi.StringPtrInput
-	// Endpoint MAC address.
-	Mac pulumi.StringPtrInput
-	// Registering FortiGate SN.
+	Flag         pulumi.IntPtrInput
+	Ip           pulumi.StringPtrInput
+	Mac          pulumi.StringPtrInput
 	RegFortigate pulumi.StringPtrInput
-	// FortiClient registration status.
-	Status pulumi.IntPtrInput
-	// FortiClient UID.
-	Uid pulumi.StringPtrInput
-	// Registering vdom.
-	Vdom pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Status       pulumi.IntPtrInput
+	Uid          pulumi.StringPtrInput
+	Vdom         pulumi.StringPtrInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (EndpointControlRegisteredForticlientArgs) ElementType() reflect.Type {
@@ -184,7 +127,7 @@ func (i *EndpointControlRegisteredForticlient) ToEndpointControlRegisteredFortic
 // EndpointControlRegisteredForticlientArrayInput is an input type that accepts EndpointControlRegisteredForticlientArray and EndpointControlRegisteredForticlientArrayOutput values.
 // You can construct a concrete instance of `EndpointControlRegisteredForticlientArrayInput` via:
 //
-//          EndpointControlRegisteredForticlientArray{ EndpointControlRegisteredForticlientArgs{...} }
+//	EndpointControlRegisteredForticlientArray{ EndpointControlRegisteredForticlientArgs{...} }
 type EndpointControlRegisteredForticlientArrayInput interface {
 	pulumi.Input
 
@@ -209,7 +152,7 @@ func (i EndpointControlRegisteredForticlientArray) ToEndpointControlRegisteredFo
 // EndpointControlRegisteredForticlientMapInput is an input type that accepts EndpointControlRegisteredForticlientMap and EndpointControlRegisteredForticlientMapOutput values.
 // You can construct a concrete instance of `EndpointControlRegisteredForticlientMapInput` via:
 //
-//          EndpointControlRegisteredForticlientMap{ "key": EndpointControlRegisteredForticlientArgs{...} }
+//	EndpointControlRegisteredForticlientMap{ "key": EndpointControlRegisteredForticlientArgs{...} }
 type EndpointControlRegisteredForticlientMapInput interface {
 	pulumi.Input
 
@@ -243,6 +186,38 @@ func (o EndpointControlRegisteredForticlientOutput) ToEndpointControlRegisteredF
 
 func (o EndpointControlRegisteredForticlientOutput) ToEndpointControlRegisteredForticlientOutputWithContext(ctx context.Context) EndpointControlRegisteredForticlientOutput {
 	return o
+}
+
+func (o EndpointControlRegisteredForticlientOutput) Flag() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlRegisteredForticlient) pulumi.IntOutput { return v.Flag }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlRegisteredForticlientOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlRegisteredForticlient) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlRegisteredForticlientOutput) Mac() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlRegisteredForticlient) pulumi.StringOutput { return v.Mac }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlRegisteredForticlientOutput) RegFortigate() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlRegisteredForticlient) pulumi.StringOutput { return v.RegFortigate }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlRegisteredForticlientOutput) Status() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlRegisteredForticlient) pulumi.IntOutput { return v.Status }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlRegisteredForticlientOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlRegisteredForticlient) pulumi.StringOutput { return v.Uid }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlRegisteredForticlientOutput) Vdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlRegisteredForticlient) pulumi.StringOutput { return v.Vdom }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlRegisteredForticlientOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EndpointControlRegisteredForticlient) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type EndpointControlRegisteredForticlientArrayOutput struct{ *pulumi.OutputState }

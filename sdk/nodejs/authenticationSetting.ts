@@ -2,44 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure authentication setting.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.AuthenticationSetting("trname", {
- *     authHttps: "enable",
- *     captivePortalIp: "0.0.0.0",
- *     captivePortalIp6: "::",
- *     captivePortalPort: 7830,
- *     captivePortalSslPort: 7831,
- *     captivePortalType: "fqdn",
- * });
- * ```
- *
- * ## Import
- *
- * Authentication Setting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/authenticationSetting:AuthenticationSetting labelname AuthenticationSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/authenticationSetting:AuthenticationSetting labelname AuthenticationSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class AuthenticationSetting extends pulumi.CustomResource {
     /**
      * Get an existing AuthenticationSetting resource's state with the given name, ID, and optional extra
@@ -68,77 +34,28 @@ export class AuthenticationSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === AuthenticationSetting.__pulumiType;
     }
 
-    /**
-     * Active authentication method (scheme name).
-     */
     public readonly activeAuthScheme!: pulumi.Output<string>;
-    /**
-     * Enable/disable redirecting HTTP user authentication to HTTPS. Valid values: `enable`, `disable`.
-     */
     public readonly authHttps!: pulumi.Output<string>;
-    /**
-     * Captive portal host name.
-     */
     public readonly captivePortal!: pulumi.Output<string>;
-    /**
-     * IPv6 captive portal host name.
-     */
     public readonly captivePortal6!: pulumi.Output<string>;
-    /**
-     * Captive portal IP address.
-     */
     public readonly captivePortalIp!: pulumi.Output<string>;
-    /**
-     * Captive portal IPv6 address.
-     */
     public readonly captivePortalIp6!: pulumi.Output<string>;
-    /**
-     * Captive portal port number (1 - 65535, default = 7830).
-     */
     public readonly captivePortalPort!: pulumi.Output<number>;
-    /**
-     * Captive portal SSL port number (1 - 65535, default = 7831).
-     */
     public readonly captivePortalSslPort!: pulumi.Output<number>;
-    /**
-     * Captive portal type. Valid values: `fqdn`, `ip`.
-     */
     public readonly captivePortalType!: pulumi.Output<string>;
-    /**
-     * Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
-     */
     public readonly certAuth!: pulumi.Output<string>;
-    /**
-     * Certificate captive portal host name.
-     */
     public readonly certCaptivePortal!: pulumi.Output<string>;
-    /**
-     * Certificate captive portal IP address.
-     */
     public readonly certCaptivePortalIp!: pulumi.Output<string>;
-    /**
-     * Certificate captive portal port number (1 - 65535, default = 7832).
-     */
     public readonly certCaptivePortalPort!: pulumi.Output<number>;
-    /**
-     * Address range for the IP based device query. The structure of `devRange` block is documented below.
-     */
+    public readonly cookieMaxAge!: pulumi.Output<number>;
+    public readonly cookieRefreshDiv!: pulumi.Output<number>;
     public readonly devRanges!: pulumi.Output<outputs.AuthenticationSettingDevRange[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Single-Sign-On authentication method (scheme name).
-     */
+    public readonly ipAuthCookie!: pulumi.Output<string>;
+    public readonly persistentCookie!: pulumi.Output<string>;
     public readonly ssoAuthScheme!: pulumi.Output<string>;
-    /**
-     * CA certificate used for client certificate verification. The structure of `userCertCa` block is documented below.
-     */
+    public readonly updateTime!: pulumi.Output<string>;
     public readonly userCertCas!: pulumi.Output<outputs.AuthenticationSettingUserCertCa[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -167,9 +84,14 @@ export class AuthenticationSetting extends pulumi.CustomResource {
             resourceInputs["certCaptivePortal"] = state ? state.certCaptivePortal : undefined;
             resourceInputs["certCaptivePortalIp"] = state ? state.certCaptivePortalIp : undefined;
             resourceInputs["certCaptivePortalPort"] = state ? state.certCaptivePortalPort : undefined;
+            resourceInputs["cookieMaxAge"] = state ? state.cookieMaxAge : undefined;
+            resourceInputs["cookieRefreshDiv"] = state ? state.cookieRefreshDiv : undefined;
             resourceInputs["devRanges"] = state ? state.devRanges : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["ipAuthCookie"] = state ? state.ipAuthCookie : undefined;
+            resourceInputs["persistentCookie"] = state ? state.persistentCookie : undefined;
             resourceInputs["ssoAuthScheme"] = state ? state.ssoAuthScheme : undefined;
+            resourceInputs["updateTime"] = state ? state.updateTime : undefined;
             resourceInputs["userCertCas"] = state ? state.userCertCas : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -187,9 +109,14 @@ export class AuthenticationSetting extends pulumi.CustomResource {
             resourceInputs["certCaptivePortal"] = args ? args.certCaptivePortal : undefined;
             resourceInputs["certCaptivePortalIp"] = args ? args.certCaptivePortalIp : undefined;
             resourceInputs["certCaptivePortalPort"] = args ? args.certCaptivePortalPort : undefined;
+            resourceInputs["cookieMaxAge"] = args ? args.cookieMaxAge : undefined;
+            resourceInputs["cookieRefreshDiv"] = args ? args.cookieRefreshDiv : undefined;
             resourceInputs["devRanges"] = args ? args.devRanges : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["ipAuthCookie"] = args ? args.ipAuthCookie : undefined;
+            resourceInputs["persistentCookie"] = args ? args.persistentCookie : undefined;
             resourceInputs["ssoAuthScheme"] = args ? args.ssoAuthScheme : undefined;
+            resourceInputs["updateTime"] = args ? args.updateTime : undefined;
             resourceInputs["userCertCas"] = args ? args.userCertCas : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -202,77 +129,28 @@ export class AuthenticationSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AuthenticationSetting resources.
  */
 export interface AuthenticationSettingState {
-    /**
-     * Active authentication method (scheme name).
-     */
     activeAuthScheme?: pulumi.Input<string>;
-    /**
-     * Enable/disable redirecting HTTP user authentication to HTTPS. Valid values: `enable`, `disable`.
-     */
     authHttps?: pulumi.Input<string>;
-    /**
-     * Captive portal host name.
-     */
     captivePortal?: pulumi.Input<string>;
-    /**
-     * IPv6 captive portal host name.
-     */
     captivePortal6?: pulumi.Input<string>;
-    /**
-     * Captive portal IP address.
-     */
     captivePortalIp?: pulumi.Input<string>;
-    /**
-     * Captive portal IPv6 address.
-     */
     captivePortalIp6?: pulumi.Input<string>;
-    /**
-     * Captive portal port number (1 - 65535, default = 7830).
-     */
     captivePortalPort?: pulumi.Input<number>;
-    /**
-     * Captive portal SSL port number (1 - 65535, default = 7831).
-     */
     captivePortalSslPort?: pulumi.Input<number>;
-    /**
-     * Captive portal type. Valid values: `fqdn`, `ip`.
-     */
     captivePortalType?: pulumi.Input<string>;
-    /**
-     * Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
-     */
     certAuth?: pulumi.Input<string>;
-    /**
-     * Certificate captive portal host name.
-     */
     certCaptivePortal?: pulumi.Input<string>;
-    /**
-     * Certificate captive portal IP address.
-     */
     certCaptivePortalIp?: pulumi.Input<string>;
-    /**
-     * Certificate captive portal port number (1 - 65535, default = 7832).
-     */
     certCaptivePortalPort?: pulumi.Input<number>;
-    /**
-     * Address range for the IP based device query. The structure of `devRange` block is documented below.
-     */
+    cookieMaxAge?: pulumi.Input<number>;
+    cookieRefreshDiv?: pulumi.Input<number>;
     devRanges?: pulumi.Input<pulumi.Input<inputs.AuthenticationSettingDevRange>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Single-Sign-On authentication method (scheme name).
-     */
+    ipAuthCookie?: pulumi.Input<string>;
+    persistentCookie?: pulumi.Input<string>;
     ssoAuthScheme?: pulumi.Input<string>;
-    /**
-     * CA certificate used for client certificate verification. The structure of `userCertCa` block is documented below.
-     */
+    updateTime?: pulumi.Input<string>;
     userCertCas?: pulumi.Input<pulumi.Input<inputs.AuthenticationSettingUserCertCa>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -280,76 +158,27 @@ export interface AuthenticationSettingState {
  * The set of arguments for constructing a AuthenticationSetting resource.
  */
 export interface AuthenticationSettingArgs {
-    /**
-     * Active authentication method (scheme name).
-     */
     activeAuthScheme?: pulumi.Input<string>;
-    /**
-     * Enable/disable redirecting HTTP user authentication to HTTPS. Valid values: `enable`, `disable`.
-     */
     authHttps?: pulumi.Input<string>;
-    /**
-     * Captive portal host name.
-     */
     captivePortal?: pulumi.Input<string>;
-    /**
-     * IPv6 captive portal host name.
-     */
     captivePortal6?: pulumi.Input<string>;
-    /**
-     * Captive portal IP address.
-     */
     captivePortalIp?: pulumi.Input<string>;
-    /**
-     * Captive portal IPv6 address.
-     */
     captivePortalIp6?: pulumi.Input<string>;
-    /**
-     * Captive portal port number (1 - 65535, default = 7830).
-     */
     captivePortalPort?: pulumi.Input<number>;
-    /**
-     * Captive portal SSL port number (1 - 65535, default = 7831).
-     */
     captivePortalSslPort?: pulumi.Input<number>;
-    /**
-     * Captive portal type. Valid values: `fqdn`, `ip`.
-     */
     captivePortalType?: pulumi.Input<string>;
-    /**
-     * Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
-     */
     certAuth?: pulumi.Input<string>;
-    /**
-     * Certificate captive portal host name.
-     */
     certCaptivePortal?: pulumi.Input<string>;
-    /**
-     * Certificate captive portal IP address.
-     */
     certCaptivePortalIp?: pulumi.Input<string>;
-    /**
-     * Certificate captive portal port number (1 - 65535, default = 7832).
-     */
     certCaptivePortalPort?: pulumi.Input<number>;
-    /**
-     * Address range for the IP based device query. The structure of `devRange` block is documented below.
-     */
+    cookieMaxAge?: pulumi.Input<number>;
+    cookieRefreshDiv?: pulumi.Input<number>;
     devRanges?: pulumi.Input<pulumi.Input<inputs.AuthenticationSettingDevRange>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Single-Sign-On authentication method (scheme name).
-     */
+    ipAuthCookie?: pulumi.Input<string>;
+    persistentCookie?: pulumi.Input<string>;
     ssoAuthScheme?: pulumi.Input<string>;
-    /**
-     * CA certificate used for client certificate verification. The structure of `userCertCa` block is documented below.
-     */
+    updateTime?: pulumi.Input<string>;
     userCertCas?: pulumi.Input<pulumi.Input<inputs.AuthenticationSettingUserCertCa>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

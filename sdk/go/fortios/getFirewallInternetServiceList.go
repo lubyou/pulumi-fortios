@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `FirewallInternetService`.
 func LookupFirewallInternetServiceList(ctx *pulumi.Context, args *LookupFirewallInternetServiceListArgs, opts ...pulumi.InvokeOption) (*LookupFirewallInternetServiceListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallInternetServiceListResult
@@ -23,16 +22,14 @@ func LookupFirewallInternetServiceList(ctx *pulumi.Context, args *LookupFirewall
 
 // A collection of arguments for invoking GetFirewallInternetServiceList.
 type LookupFirewallInternetServiceListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallInternetServiceList.
 type LookupFirewallInternetServiceListResult struct {
-	Filter *string `pulumi:"filter"`
-	// A list of the `FirewallInternetService`.
-	Fosidlists []int `pulumi:"fosidlists"`
+	Filter     *string `pulumi:"filter"`
+	Fosidlists []int   `pulumi:"fosidlists"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -53,8 +50,7 @@ func LookupFirewallInternetServiceListOutput(ctx *pulumi.Context, args LookupFir
 
 // A collection of arguments for invoking GetFirewallInternetServiceList.
 type LookupFirewallInternetServiceListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -81,7 +77,6 @@ func (o LookupFirewallInternetServiceListResultOutput) Filter() pulumi.StringPtr
 	return o.ApplyT(func(v LookupFirewallInternetServiceListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
 }
 
-// A list of the `FirewallInternetService`.
 func (o LookupFirewallInternetServiceListResultOutput) Fosidlists() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceListResult) []int { return v.Fosidlists }).(pulumi.IntArrayOutput)
 }

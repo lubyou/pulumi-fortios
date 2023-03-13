@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure Fortinet Single Sign On (FSSO) server.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemFssoPolling("trname", {
- *     authentication: "disable",
- *     listeningPort: 8000,
- *     status: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * System FssoPolling can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemFssoPolling:SystemFssoPolling labelname SystemFssoPolling
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemFssoPolling:SystemFssoPolling labelname SystemFssoPolling
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemFssoPolling extends pulumi.CustomResource {
     /**
      * Get an existing SystemFssoPolling resource's state with the given name, ID, and optional extra
@@ -64,25 +32,10 @@ export class SystemFssoPolling extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemFssoPolling.__pulumiType;
     }
 
-    /**
-     * Password to connect to FSSO Agent.
-     */
     public readonly authPassword!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable FSSO Agent Authentication. Valid values: `enable`, `disable`.
-     */
     public readonly authentication!: pulumi.Output<string>;
-    /**
-     * Listening port to accept clients (1 - 65535).
-     */
     public readonly listeningPort!: pulumi.Output<number>;
-    /**
-     * Enable/disable FSSO Polling Mode. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -105,13 +58,15 @@ export class SystemFssoPolling extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemFssoPollingArgs | undefined;
-            resourceInputs["authPassword"] = args ? args.authPassword : undefined;
+            resourceInputs["authPassword"] = args?.authPassword ? pulumi.secret(args.authPassword) : undefined;
             resourceInputs["authentication"] = args ? args.authentication : undefined;
             resourceInputs["listeningPort"] = args ? args.listeningPort : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["authPassword"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemFssoPolling.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -120,25 +75,10 @@ export class SystemFssoPolling extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemFssoPolling resources.
  */
 export interface SystemFssoPollingState {
-    /**
-     * Password to connect to FSSO Agent.
-     */
     authPassword?: pulumi.Input<string>;
-    /**
-     * Enable/disable FSSO Agent Authentication. Valid values: `enable`, `disable`.
-     */
     authentication?: pulumi.Input<string>;
-    /**
-     * Listening port to accept clients (1 - 65535).
-     */
     listeningPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable FSSO Polling Mode. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -146,24 +86,9 @@ export interface SystemFssoPollingState {
  * The set of arguments for constructing a SystemFssoPolling resource.
  */
 export interface SystemFssoPollingArgs {
-    /**
-     * Password to connect to FSSO Agent.
-     */
     authPassword?: pulumi.Input<string>;
-    /**
-     * Enable/disable FSSO Agent Authentication. Valid values: `enable`, `disable`.
-     */
     authentication?: pulumi.Input<string>;
-    /**
-     * Listening port to accept clients (1 - 65535).
-     */
     listeningPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable FSSO Polling Mode. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

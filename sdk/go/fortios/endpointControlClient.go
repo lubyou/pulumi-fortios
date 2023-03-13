@@ -10,39 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure endpoint control client lists. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Import
-//
-// EndpointControl Client can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/endpointControlClient:EndpointControlClient labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/endpointControlClient:EndpointControlClient labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type EndpointControlClient struct {
 	pulumi.CustomResourceState
 
-	// Endpoint client AD logon groups.
-	AdGroups pulumi.StringPtrOutput `pulumi:"adGroups"`
-	// Endpoint client ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Endpoint FortiClient UID.
-	FtclUid pulumi.StringOutput `pulumi:"ftclUid"`
-	// Endpoint client information.
-	Info pulumi.StringOutput `pulumi:"info"`
-	// Endpoint client IP address.
-	SrcIp pulumi.StringOutput `pulumi:"srcIp"`
-	// Endpoint client MAC address.
-	SrcMac pulumi.StringOutput `pulumi:"srcMac"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	AdGroups  pulumi.StringPtrOutput `pulumi:"adGroups"`
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	FtclUid   pulumi.StringOutput    `pulumi:"ftclUid"`
+	Info      pulumi.StringOutput    `pulumi:"info"`
+	SrcIp     pulumi.StringOutput    `pulumi:"srcIp"`
+	SrcMac    pulumi.StringOutput    `pulumi:"srcMac"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -76,36 +52,22 @@ func GetEndpointControlClient(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EndpointControlClient resources.
 type endpointControlClientState struct {
-	// Endpoint client AD logon groups.
-	AdGroups *string `pulumi:"adGroups"`
-	// Endpoint client ID.
-	Fosid *int `pulumi:"fosid"`
-	// Endpoint FortiClient UID.
-	FtclUid *string `pulumi:"ftclUid"`
-	// Endpoint client information.
-	Info *string `pulumi:"info"`
-	// Endpoint client IP address.
-	SrcIp *string `pulumi:"srcIp"`
-	// Endpoint client MAC address.
-	SrcMac *string `pulumi:"srcMac"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	AdGroups  *string `pulumi:"adGroups"`
+	Fosid     *int    `pulumi:"fosid"`
+	FtclUid   *string `pulumi:"ftclUid"`
+	Info      *string `pulumi:"info"`
+	SrcIp     *string `pulumi:"srcIp"`
+	SrcMac    *string `pulumi:"srcMac"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type EndpointControlClientState struct {
-	// Endpoint client AD logon groups.
-	AdGroups pulumi.StringPtrInput
-	// Endpoint client ID.
-	Fosid pulumi.IntPtrInput
-	// Endpoint FortiClient UID.
-	FtclUid pulumi.StringPtrInput
-	// Endpoint client information.
-	Info pulumi.StringPtrInput
-	// Endpoint client IP address.
-	SrcIp pulumi.StringPtrInput
-	// Endpoint client MAC address.
-	SrcMac pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	AdGroups  pulumi.StringPtrInput
+	Fosid     pulumi.IntPtrInput
+	FtclUid   pulumi.StringPtrInput
+	Info      pulumi.StringPtrInput
+	SrcIp     pulumi.StringPtrInput
+	SrcMac    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -114,37 +76,23 @@ func (EndpointControlClientState) ElementType() reflect.Type {
 }
 
 type endpointControlClientArgs struct {
-	// Endpoint client AD logon groups.
-	AdGroups *string `pulumi:"adGroups"`
-	// Endpoint client ID.
-	Fosid *int `pulumi:"fosid"`
-	// Endpoint FortiClient UID.
-	FtclUid *string `pulumi:"ftclUid"`
-	// Endpoint client information.
-	Info *string `pulumi:"info"`
-	// Endpoint client IP address.
-	SrcIp *string `pulumi:"srcIp"`
-	// Endpoint client MAC address.
-	SrcMac *string `pulumi:"srcMac"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	AdGroups  *string `pulumi:"adGroups"`
+	Fosid     *int    `pulumi:"fosid"`
+	FtclUid   *string `pulumi:"ftclUid"`
+	Info      *string `pulumi:"info"`
+	SrcIp     *string `pulumi:"srcIp"`
+	SrcMac    *string `pulumi:"srcMac"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a EndpointControlClient resource.
 type EndpointControlClientArgs struct {
-	// Endpoint client AD logon groups.
-	AdGroups pulumi.StringPtrInput
-	// Endpoint client ID.
-	Fosid pulumi.IntPtrInput
-	// Endpoint FortiClient UID.
-	FtclUid pulumi.StringPtrInput
-	// Endpoint client information.
-	Info pulumi.StringPtrInput
-	// Endpoint client IP address.
-	SrcIp pulumi.StringPtrInput
-	// Endpoint client MAC address.
-	SrcMac pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	AdGroups  pulumi.StringPtrInput
+	Fosid     pulumi.IntPtrInput
+	FtclUid   pulumi.StringPtrInput
+	Info      pulumi.StringPtrInput
+	SrcIp     pulumi.StringPtrInput
+	SrcMac    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -174,7 +122,7 @@ func (i *EndpointControlClient) ToEndpointControlClientOutputWithContext(ctx con
 // EndpointControlClientArrayInput is an input type that accepts EndpointControlClientArray and EndpointControlClientArrayOutput values.
 // You can construct a concrete instance of `EndpointControlClientArrayInput` via:
 //
-//          EndpointControlClientArray{ EndpointControlClientArgs{...} }
+//	EndpointControlClientArray{ EndpointControlClientArgs{...} }
 type EndpointControlClientArrayInput interface {
 	pulumi.Input
 
@@ -199,7 +147,7 @@ func (i EndpointControlClientArray) ToEndpointControlClientArrayOutputWithContex
 // EndpointControlClientMapInput is an input type that accepts EndpointControlClientMap and EndpointControlClientMapOutput values.
 // You can construct a concrete instance of `EndpointControlClientMapInput` via:
 //
-//          EndpointControlClientMap{ "key": EndpointControlClientArgs{...} }
+//	EndpointControlClientMap{ "key": EndpointControlClientArgs{...} }
 type EndpointControlClientMapInput interface {
 	pulumi.Input
 
@@ -233,6 +181,34 @@ func (o EndpointControlClientOutput) ToEndpointControlClientOutput() EndpointCon
 
 func (o EndpointControlClientOutput) ToEndpointControlClientOutputWithContext(ctx context.Context) EndpointControlClientOutput {
 	return o
+}
+
+func (o EndpointControlClientOutput) AdGroups() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EndpointControlClient) pulumi.StringPtrOutput { return v.AdGroups }).(pulumi.StringPtrOutput)
+}
+
+func (o EndpointControlClientOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlClient) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlClientOutput) FtclUid() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlClient) pulumi.StringOutput { return v.FtclUid }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlClientOutput) Info() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlClient) pulumi.StringOutput { return v.Info }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlClientOutput) SrcIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlClient) pulumi.StringOutput { return v.SrcIp }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlClientOutput) SrcMac() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlClient) pulumi.StringOutput { return v.SrcMac }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlClientOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EndpointControlClient) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type EndpointControlClientArrayOutput struct{ *pulumi.OutputState }

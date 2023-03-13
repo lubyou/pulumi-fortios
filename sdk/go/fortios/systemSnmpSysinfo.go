@@ -10,72 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// SNMP system info configuration.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemSnmpSysinfo(ctx, "trname", &fortios.SystemSnmpSysinfoArgs{
-// 			Status:                 pulumi.String("disable"),
-// 			TrapHighCpuThreshold:   pulumi.Int(80),
-// 			TrapLogFullThreshold:   pulumi.Int(90),
-// 			TrapLowMemoryThreshold: pulumi.Int(80),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SystemSnmp Sysinfo can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSnmpSysinfo:SystemSnmpSysinfo labelname SystemSnmpSysinfo
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSnmpSysinfo:SystemSnmpSysinfo labelname SystemSnmpSysinfo
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemSnmpSysinfo struct {
 	pulumi.CustomResourceState
 
-	// Contact information.
-	ContactInfo pulumi.StringPtrOutput `pulumi:"contactInfo"`
-	// System description.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Local SNMP engineID string (maximum 24 characters).
-	EngineId pulumi.StringOutput `pulumi:"engineId"`
-	// Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
-	EngineIdType pulumi.StringOutput `pulumi:"engineIdType"`
-	// System location.
-	Location pulumi.StringPtrOutput `pulumi:"location"`
-	// Enable/disable SNMP. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// CPU usage when trap is sent.
-	TrapHighCpuThreshold pulumi.IntOutput `pulumi:"trapHighCpuThreshold"`
-	// Log disk usage when trap is sent.
-	TrapLogFullThreshold pulumi.IntOutput `pulumi:"trapLogFullThreshold"`
-	// Memory usage when trap is sent.
-	TrapLowMemoryThreshold pulumi.IntOutput `pulumi:"trapLowMemoryThreshold"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	ContactInfo            pulumi.StringPtrOutput `pulumi:"contactInfo"`
+	Description            pulumi.StringPtrOutput `pulumi:"description"`
+	EngineId               pulumi.StringOutput    `pulumi:"engineId"`
+	EngineIdType           pulumi.StringOutput    `pulumi:"engineIdType"`
+	Location               pulumi.StringPtrOutput `pulumi:"location"`
+	Status                 pulumi.StringOutput    `pulumi:"status"`
+	TrapHighCpuThreshold   pulumi.IntOutput       `pulumi:"trapHighCpuThreshold"`
+	TrapLogFullThreshold   pulumi.IntOutput       `pulumi:"trapLogFullThreshold"`
+	TrapLowMemoryThreshold pulumi.IntOutput       `pulumi:"trapLowMemoryThreshold"`
+	Vdomparam              pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemSnmpSysinfo registers a new resource with the given unique name, arguments, and options.
@@ -108,49 +55,29 @@ func GetSystemSnmpSysinfo(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSnmpSysinfo resources.
 type systemSnmpSysinfoState struct {
-	// Contact information.
-	ContactInfo *string `pulumi:"contactInfo"`
-	// System description.
-	Description *string `pulumi:"description"`
-	// Local SNMP engineID string (maximum 24 characters).
-	EngineId *string `pulumi:"engineId"`
-	// Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
-	EngineIdType *string `pulumi:"engineIdType"`
-	// System location.
-	Location *string `pulumi:"location"`
-	// Enable/disable SNMP. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// CPU usage when trap is sent.
-	TrapHighCpuThreshold *int `pulumi:"trapHighCpuThreshold"`
-	// Log disk usage when trap is sent.
-	TrapLogFullThreshold *int `pulumi:"trapLogFullThreshold"`
-	// Memory usage when trap is sent.
-	TrapLowMemoryThreshold *int `pulumi:"trapLowMemoryThreshold"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ContactInfo            *string `pulumi:"contactInfo"`
+	Description            *string `pulumi:"description"`
+	EngineId               *string `pulumi:"engineId"`
+	EngineIdType           *string `pulumi:"engineIdType"`
+	Location               *string `pulumi:"location"`
+	Status                 *string `pulumi:"status"`
+	TrapHighCpuThreshold   *int    `pulumi:"trapHighCpuThreshold"`
+	TrapLogFullThreshold   *int    `pulumi:"trapLogFullThreshold"`
+	TrapLowMemoryThreshold *int    `pulumi:"trapLowMemoryThreshold"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 type SystemSnmpSysinfoState struct {
-	// Contact information.
-	ContactInfo pulumi.StringPtrInput
-	// System description.
-	Description pulumi.StringPtrInput
-	// Local SNMP engineID string (maximum 24 characters).
-	EngineId pulumi.StringPtrInput
-	// Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
-	EngineIdType pulumi.StringPtrInput
-	// System location.
-	Location pulumi.StringPtrInput
-	// Enable/disable SNMP. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// CPU usage when trap is sent.
-	TrapHighCpuThreshold pulumi.IntPtrInput
-	// Log disk usage when trap is sent.
-	TrapLogFullThreshold pulumi.IntPtrInput
-	// Memory usage when trap is sent.
+	ContactInfo            pulumi.StringPtrInput
+	Description            pulumi.StringPtrInput
+	EngineId               pulumi.StringPtrInput
+	EngineIdType           pulumi.StringPtrInput
+	Location               pulumi.StringPtrInput
+	Status                 pulumi.StringPtrInput
+	TrapHighCpuThreshold   pulumi.IntPtrInput
+	TrapLogFullThreshold   pulumi.IntPtrInput
 	TrapLowMemoryThreshold pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SystemSnmpSysinfoState) ElementType() reflect.Type {
@@ -158,50 +85,30 @@ func (SystemSnmpSysinfoState) ElementType() reflect.Type {
 }
 
 type systemSnmpSysinfoArgs struct {
-	// Contact information.
-	ContactInfo *string `pulumi:"contactInfo"`
-	// System description.
-	Description *string `pulumi:"description"`
-	// Local SNMP engineID string (maximum 24 characters).
-	EngineId *string `pulumi:"engineId"`
-	// Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
-	EngineIdType *string `pulumi:"engineIdType"`
-	// System location.
-	Location *string `pulumi:"location"`
-	// Enable/disable SNMP. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// CPU usage when trap is sent.
-	TrapHighCpuThreshold *int `pulumi:"trapHighCpuThreshold"`
-	// Log disk usage when trap is sent.
-	TrapLogFullThreshold *int `pulumi:"trapLogFullThreshold"`
-	// Memory usage when trap is sent.
-	TrapLowMemoryThreshold *int `pulumi:"trapLowMemoryThreshold"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ContactInfo            *string `pulumi:"contactInfo"`
+	Description            *string `pulumi:"description"`
+	EngineId               *string `pulumi:"engineId"`
+	EngineIdType           *string `pulumi:"engineIdType"`
+	Location               *string `pulumi:"location"`
+	Status                 *string `pulumi:"status"`
+	TrapHighCpuThreshold   *int    `pulumi:"trapHighCpuThreshold"`
+	TrapLogFullThreshold   *int    `pulumi:"trapLogFullThreshold"`
+	TrapLowMemoryThreshold *int    `pulumi:"trapLowMemoryThreshold"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemSnmpSysinfo resource.
 type SystemSnmpSysinfoArgs struct {
-	// Contact information.
-	ContactInfo pulumi.StringPtrInput
-	// System description.
-	Description pulumi.StringPtrInput
-	// Local SNMP engineID string (maximum 24 characters).
-	EngineId pulumi.StringPtrInput
-	// Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
-	EngineIdType pulumi.StringPtrInput
-	// System location.
-	Location pulumi.StringPtrInput
-	// Enable/disable SNMP. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// CPU usage when trap is sent.
-	TrapHighCpuThreshold pulumi.IntPtrInput
-	// Log disk usage when trap is sent.
-	TrapLogFullThreshold pulumi.IntPtrInput
-	// Memory usage when trap is sent.
+	ContactInfo            pulumi.StringPtrInput
+	Description            pulumi.StringPtrInput
+	EngineId               pulumi.StringPtrInput
+	EngineIdType           pulumi.StringPtrInput
+	Location               pulumi.StringPtrInput
+	Status                 pulumi.StringPtrInput
+	TrapHighCpuThreshold   pulumi.IntPtrInput
+	TrapLogFullThreshold   pulumi.IntPtrInput
 	TrapLowMemoryThreshold pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SystemSnmpSysinfoArgs) ElementType() reflect.Type {
@@ -230,7 +137,7 @@ func (i *SystemSnmpSysinfo) ToSystemSnmpSysinfoOutputWithContext(ctx context.Con
 // SystemSnmpSysinfoArrayInput is an input type that accepts SystemSnmpSysinfoArray and SystemSnmpSysinfoArrayOutput values.
 // You can construct a concrete instance of `SystemSnmpSysinfoArrayInput` via:
 //
-//          SystemSnmpSysinfoArray{ SystemSnmpSysinfoArgs{...} }
+//	SystemSnmpSysinfoArray{ SystemSnmpSysinfoArgs{...} }
 type SystemSnmpSysinfoArrayInput interface {
 	pulumi.Input
 
@@ -255,7 +162,7 @@ func (i SystemSnmpSysinfoArray) ToSystemSnmpSysinfoArrayOutputWithContext(ctx co
 // SystemSnmpSysinfoMapInput is an input type that accepts SystemSnmpSysinfoMap and SystemSnmpSysinfoMapOutput values.
 // You can construct a concrete instance of `SystemSnmpSysinfoMapInput` via:
 //
-//          SystemSnmpSysinfoMap{ "key": SystemSnmpSysinfoArgs{...} }
+//	SystemSnmpSysinfoMap{ "key": SystemSnmpSysinfoArgs{...} }
 type SystemSnmpSysinfoMapInput interface {
 	pulumi.Input
 
@@ -289,6 +196,46 @@ func (o SystemSnmpSysinfoOutput) ToSystemSnmpSysinfoOutput() SystemSnmpSysinfoOu
 
 func (o SystemSnmpSysinfoOutput) ToSystemSnmpSysinfoOutputWithContext(ctx context.Context) SystemSnmpSysinfoOutput {
 	return o
+}
+
+func (o SystemSnmpSysinfoOutput) ContactInfo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSnmpSysinfo) pulumi.StringPtrOutput { return v.ContactInfo }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSnmpSysinfoOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSnmpSysinfo) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSnmpSysinfoOutput) EngineId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSnmpSysinfo) pulumi.StringOutput { return v.EngineId }).(pulumi.StringOutput)
+}
+
+func (o SystemSnmpSysinfoOutput) EngineIdType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSnmpSysinfo) pulumi.StringOutput { return v.EngineIdType }).(pulumi.StringOutput)
+}
+
+func (o SystemSnmpSysinfoOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSnmpSysinfo) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSnmpSysinfoOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSnmpSysinfo) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemSnmpSysinfoOutput) TrapHighCpuThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSnmpSysinfo) pulumi.IntOutput { return v.TrapHighCpuThreshold }).(pulumi.IntOutput)
+}
+
+func (o SystemSnmpSysinfoOutput) TrapLogFullThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSnmpSysinfo) pulumi.IntOutput { return v.TrapLogFullThreshold }).(pulumi.IntOutput)
+}
+
+func (o SystemSnmpSysinfoOutput) TrapLowMemoryThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSnmpSysinfo) pulumi.IntOutput { return v.TrapLowMemoryThreshold }).(pulumi.IntOutput)
+}
+
+func (o SystemSnmpSysinfoOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSnmpSysinfo) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemSnmpSysinfoArrayOutput struct{ *pulumi.OutputState }

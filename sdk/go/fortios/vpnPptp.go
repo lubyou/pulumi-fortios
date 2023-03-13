@@ -7,71 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure PPTP.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewVpnPptp(ctx, "trname", &fortios.VpnPptpArgs{
-// 			Eip:     pulumi.String("1.1.1.22"),
-// 			IpMode:  pulumi.String("range"),
-// 			LocalIp: pulumi.String("0.0.0.0"),
-// 			Sip:     pulumi.String("1.1.1.1"),
-// 			Status:  pulumi.String("enable"),
-// 			Usrgrp:  pulumi.String("Guest-group"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Vpn Pptp can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnPptp:VpnPptp labelname VpnPptp
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnPptp:VpnPptp labelname VpnPptp
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnPptp struct {
 	pulumi.CustomResourceState
 
-	// End IP.
-	Eip pulumi.StringOutput `pulumi:"eip"`
-	// IP assignment mode for PPTP client. Valid values: `range`, `usrgrp`.
-	IpMode pulumi.StringOutput `pulumi:"ipMode"`
-	// Local IP to be used for peer's remote IP.
-	LocalIp pulumi.StringOutput `pulumi:"localIp"`
-	// Start IP.
-	Sip pulumi.StringOutput `pulumi:"sip"`
-	// Enable/disable FortiGate as a PPTP gateway. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// User group.
-	Usrgrp pulumi.StringOutput `pulumi:"usrgrp"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Eip       pulumi.StringOutput    `pulumi:"eip"`
+	IpMode    pulumi.StringOutput    `pulumi:"ipMode"`
+	LocalIp   pulumi.StringOutput    `pulumi:"localIp"`
+	Sip       pulumi.StringOutput    `pulumi:"sip"`
+	Status    pulumi.StringOutput    `pulumi:"status"`
+	Usrgrp    pulumi.StringOutput    `pulumi:"usrgrp"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -108,36 +56,22 @@ func GetVpnPptp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnPptp resources.
 type vpnPptpState struct {
-	// End IP.
-	Eip *string `pulumi:"eip"`
-	// IP assignment mode for PPTP client. Valid values: `range`, `usrgrp`.
-	IpMode *string `pulumi:"ipMode"`
-	// Local IP to be used for peer's remote IP.
-	LocalIp *string `pulumi:"localIp"`
-	// Start IP.
-	Sip *string `pulumi:"sip"`
-	// Enable/disable FortiGate as a PPTP gateway. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// User group.
-	Usrgrp *string `pulumi:"usrgrp"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Eip       *string `pulumi:"eip"`
+	IpMode    *string `pulumi:"ipMode"`
+	LocalIp   *string `pulumi:"localIp"`
+	Sip       *string `pulumi:"sip"`
+	Status    *string `pulumi:"status"`
+	Usrgrp    *string `pulumi:"usrgrp"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type VpnPptpState struct {
-	// End IP.
-	Eip pulumi.StringPtrInput
-	// IP assignment mode for PPTP client. Valid values: `range`, `usrgrp`.
-	IpMode pulumi.StringPtrInput
-	// Local IP to be used for peer's remote IP.
-	LocalIp pulumi.StringPtrInput
-	// Start IP.
-	Sip pulumi.StringPtrInput
-	// Enable/disable FortiGate as a PPTP gateway. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// User group.
-	Usrgrp pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Eip       pulumi.StringPtrInput
+	IpMode    pulumi.StringPtrInput
+	LocalIp   pulumi.StringPtrInput
+	Sip       pulumi.StringPtrInput
+	Status    pulumi.StringPtrInput
+	Usrgrp    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -146,37 +80,23 @@ func (VpnPptpState) ElementType() reflect.Type {
 }
 
 type vpnPptpArgs struct {
-	// End IP.
-	Eip *string `pulumi:"eip"`
-	// IP assignment mode for PPTP client. Valid values: `range`, `usrgrp`.
-	IpMode *string `pulumi:"ipMode"`
-	// Local IP to be used for peer's remote IP.
-	LocalIp *string `pulumi:"localIp"`
-	// Start IP.
-	Sip *string `pulumi:"sip"`
-	// Enable/disable FortiGate as a PPTP gateway. Valid values: `enable`, `disable`.
-	Status string `pulumi:"status"`
-	// User group.
-	Usrgrp *string `pulumi:"usrgrp"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Eip       *string `pulumi:"eip"`
+	IpMode    *string `pulumi:"ipMode"`
+	LocalIp   *string `pulumi:"localIp"`
+	Sip       *string `pulumi:"sip"`
+	Status    string  `pulumi:"status"`
+	Usrgrp    *string `pulumi:"usrgrp"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VpnPptp resource.
 type VpnPptpArgs struct {
-	// End IP.
-	Eip pulumi.StringPtrInput
-	// IP assignment mode for PPTP client. Valid values: `range`, `usrgrp`.
-	IpMode pulumi.StringPtrInput
-	// Local IP to be used for peer's remote IP.
-	LocalIp pulumi.StringPtrInput
-	// Start IP.
-	Sip pulumi.StringPtrInput
-	// Enable/disable FortiGate as a PPTP gateway. Valid values: `enable`, `disable`.
-	Status pulumi.StringInput
-	// User group.
-	Usrgrp pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Eip       pulumi.StringPtrInput
+	IpMode    pulumi.StringPtrInput
+	LocalIp   pulumi.StringPtrInput
+	Sip       pulumi.StringPtrInput
+	Status    pulumi.StringInput
+	Usrgrp    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -206,7 +126,7 @@ func (i *VpnPptp) ToVpnPptpOutputWithContext(ctx context.Context) VpnPptpOutput 
 // VpnPptpArrayInput is an input type that accepts VpnPptpArray and VpnPptpArrayOutput values.
 // You can construct a concrete instance of `VpnPptpArrayInput` via:
 //
-//          VpnPptpArray{ VpnPptpArgs{...} }
+//	VpnPptpArray{ VpnPptpArgs{...} }
 type VpnPptpArrayInput interface {
 	pulumi.Input
 
@@ -231,7 +151,7 @@ func (i VpnPptpArray) ToVpnPptpArrayOutputWithContext(ctx context.Context) VpnPp
 // VpnPptpMapInput is an input type that accepts VpnPptpMap and VpnPptpMapOutput values.
 // You can construct a concrete instance of `VpnPptpMapInput` via:
 //
-//          VpnPptpMap{ "key": VpnPptpArgs{...} }
+//	VpnPptpMap{ "key": VpnPptpArgs{...} }
 type VpnPptpMapInput interface {
 	pulumi.Input
 
@@ -265,6 +185,34 @@ func (o VpnPptpOutput) ToVpnPptpOutput() VpnPptpOutput {
 
 func (o VpnPptpOutput) ToVpnPptpOutputWithContext(ctx context.Context) VpnPptpOutput {
 	return o
+}
+
+func (o VpnPptpOutput) Eip() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnPptp) pulumi.StringOutput { return v.Eip }).(pulumi.StringOutput)
+}
+
+func (o VpnPptpOutput) IpMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnPptp) pulumi.StringOutput { return v.IpMode }).(pulumi.StringOutput)
+}
+
+func (o VpnPptpOutput) LocalIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnPptp) pulumi.StringOutput { return v.LocalIp }).(pulumi.StringOutput)
+}
+
+func (o VpnPptpOutput) Sip() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnPptp) pulumi.StringOutput { return v.Sip }).(pulumi.StringOutput)
+}
+
+func (o VpnPptpOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnPptp) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o VpnPptpOutput) Usrgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnPptp) pulumi.StringOutput { return v.Usrgrp }).(pulumi.StringOutput)
+}
+
+func (o VpnPptpOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnPptp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type VpnPptpArrayOutput struct{ *pulumi.OutputState }

@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure the client with its MAC address. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * WirelessController Address can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerAddress:WirelessControllerAddress labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerAddress:WirelessControllerAddress labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerAddress extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerAddress resource's state with the given name, ID, and optional extra
@@ -51,21 +32,9 @@ export class WirelessControllerAddress extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerAddress.__pulumiType;
     }
 
-    /**
-     * ID.
-     */
     public readonly fosid!: pulumi.Output<string>;
-    /**
-     * MAC address.
-     */
     public readonly mac!: pulumi.Output<string>;
-    /**
-     * Allow or block the client with this MAC address. Valid values: `allow`, `deny`.
-     */
     public readonly policy!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -101,21 +70,9 @@ export class WirelessControllerAddress extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerAddress resources.
  */
 export interface WirelessControllerAddressState {
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<string>;
-    /**
-     * MAC address.
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * Allow or block the client with this MAC address. Valid values: `allow`, `deny`.
-     */
     policy?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -123,20 +80,8 @@ export interface WirelessControllerAddressState {
  * The set of arguments for constructing a WirelessControllerAddress resource.
  */
 export interface WirelessControllerAddressArgs {
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<string>;
-    /**
-     * MAC address.
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * Allow or block the client with this MAC address. Valid values: `allow`, `deny`.
-     */
     policy?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

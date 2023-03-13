@@ -2,18 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios systemlldp networkpolicy
- */
 export function getSystemLldpNetworkPolicy(args: GetSystemLldpNetworkPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemLldpNetworkPolicyResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemLldpNetworkPolicy:GetSystemLldpNetworkPolicy", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -24,13 +19,7 @@ export function getSystemLldpNetworkPolicy(args: GetSystemLldpNetworkPolicyArgs,
  * A collection of arguments for invoking GetSystemLldpNetworkPolicy.
  */
 export interface GetSystemLldpNetworkPolicyArgs {
-    /**
-     * Specify the name of the desired systemlldp networkpolicy.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -38,67 +27,30 @@ export interface GetSystemLldpNetworkPolicyArgs {
  * A collection of values returned by GetSystemLldpNetworkPolicy.
  */
 export interface GetSystemLldpNetworkPolicyResult {
-    /**
-     * Comment.
-     */
     readonly comment: string;
-    /**
-     * Guest. The structure of `guest` block is documented below.
-     */
-    readonly guest: outputs.GetSystemLldpNetworkPolicyGuest;
-    /**
-     * Guest Voice Signaling. The structure of `guestVoiceSignaling` block is documented below.
-     */
-    readonly guestVoiceSignaling: outputs.GetSystemLldpNetworkPolicyGuestVoiceSignaling;
+    readonly guestVoiceSignalings: outputs.GetSystemLldpNetworkPolicyGuestVoiceSignaling[];
+    readonly guests: outputs.GetSystemLldpNetworkPolicyGuest[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * LLDP network policy name.
-     */
     readonly name: string;
-    /**
-     * Softphone. The structure of `softphone` block is documented below.
-     */
-    readonly softphone: outputs.GetSystemLldpNetworkPolicySoftphone;
-    /**
-     * Streaming Video. The structure of `streamingVideo` block is documented below.
-     */
-    readonly streamingVideo: outputs.GetSystemLldpNetworkPolicyStreamingVideo;
+    readonly softphones: outputs.GetSystemLldpNetworkPolicySoftphone[];
+    readonly streamingVideos: outputs.GetSystemLldpNetworkPolicyStreamingVideo[];
     readonly vdomparam?: string;
-    /**
-     * Video Conferencing. The structure of `videoConferencing` block is documented below.
-     */
-    readonly videoConferencing: outputs.GetSystemLldpNetworkPolicyVideoConferencing;
-    /**
-     * Video Signaling. The structure of `videoSignaling` block is documented below.
-     */
-    readonly videoSignaling: outputs.GetSystemLldpNetworkPolicyVideoSignaling;
-    /**
-     * Voice. The structure of `voice` block is documented below.
-     */
-    readonly voice: outputs.GetSystemLldpNetworkPolicyVoice;
-    /**
-     * Voice signaling. The structure of `voiceSignaling` block is documented below.
-     */
-    readonly voiceSignaling: outputs.GetSystemLldpNetworkPolicyVoiceSignaling;
+    readonly videoConferencings: outputs.GetSystemLldpNetworkPolicyVideoConferencing[];
+    readonly videoSignalings: outputs.GetSystemLldpNetworkPolicyVideoSignaling[];
+    readonly voiceSignalings: outputs.GetSystemLldpNetworkPolicyVoiceSignaling[];
+    readonly voices: outputs.GetSystemLldpNetworkPolicyVoice[];
 }
-
 export function getSystemLldpNetworkPolicyOutput(args: GetSystemLldpNetworkPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemLldpNetworkPolicyResult> {
-    return pulumi.output(args).apply(a => getSystemLldpNetworkPolicy(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemLldpNetworkPolicy(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemLldpNetworkPolicy.
  */
 export interface GetSystemLldpNetworkPolicyOutputArgs {
-    /**
-     * Specify the name of the desired systemlldp networkpolicy.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios system netflow
 func LookupSystemNetflow(ctx *pulumi.Context, args *LookupSystemNetflowArgs, opts ...pulumi.InvokeOption) (*LookupSystemNetflowResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemNetflowResult
@@ -23,33 +22,23 @@ func LookupSystemNetflow(ctx *pulumi.Context, args *LookupSystemNetflowArgs, opt
 
 // A collection of arguments for invoking GetSystemNetflow.
 type LookupSystemNetflowArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemNetflow.
 type LookupSystemNetflowResult struct {
-	// Timeout to report active flows (1 - 60 min, default = 30).
-	ActiveFlowTimeout int `pulumi:"activeFlowTimeout"`
-	// Collector IP.
-	CollectorIp string `pulumi:"collectorIp"`
-	// NetFlow collector port number.
-	CollectorPort int `pulumi:"collectorPort"`
+	ActiveFlowTimeout int    `pulumi:"activeFlowTimeout"`
+	CollectorIp       string `pulumi:"collectorIp"`
+	CollectorPort     int    `pulumi:"collectorPort"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
-	InactiveFlowTimeout int `pulumi:"inactiveFlowTimeout"`
-	// Specify outgoing interface to reach server.
-	Interface string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server.
-	InterfaceSelectMethod string `pulumi:"interfaceSelectMethod"`
-	// Source IP address for communication with the NetFlow agent.
-	SourceIp string `pulumi:"sourceIp"`
-	// Counter of flowset records before resending a template flowset record.
-	TemplateTxCounter int `pulumi:"templateTxCounter"`
-	// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
-	TemplateTxTimeout int     `pulumi:"templateTxTimeout"`
-	Vdomparam         *string `pulumi:"vdomparam"`
+	Id                    string  `pulumi:"id"`
+	InactiveFlowTimeout   int     `pulumi:"inactiveFlowTimeout"`
+	Interface             string  `pulumi:"interface"`
+	InterfaceSelectMethod string  `pulumi:"interfaceSelectMethod"`
+	SourceIp              string  `pulumi:"sourceIp"`
+	TemplateTxCounter     int     `pulumi:"templateTxCounter"`
+	TemplateTxTimeout     int     `pulumi:"templateTxTimeout"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 func LookupSystemNetflowOutput(ctx *pulumi.Context, args LookupSystemNetflowOutputArgs, opts ...pulumi.InvokeOption) LookupSystemNetflowResultOutput {
@@ -67,7 +56,6 @@ func LookupSystemNetflowOutput(ctx *pulumi.Context, args LookupSystemNetflowOutp
 
 // A collection of arguments for invoking GetSystemNetflow.
 type LookupSystemNetflowOutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -90,17 +78,14 @@ func (o LookupSystemNetflowResultOutput) ToLookupSystemNetflowResultOutputWithCo
 	return o
 }
 
-// Timeout to report active flows (1 - 60 min, default = 30).
 func (o LookupSystemNetflowResultOutput) ActiveFlowTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemNetflowResult) int { return v.ActiveFlowTimeout }).(pulumi.IntOutput)
 }
 
-// Collector IP.
 func (o LookupSystemNetflowResultOutput) CollectorIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemNetflowResult) string { return v.CollectorIp }).(pulumi.StringOutput)
 }
 
-// NetFlow collector port number.
 func (o LookupSystemNetflowResultOutput) CollectorPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemNetflowResult) int { return v.CollectorPort }).(pulumi.IntOutput)
 }
@@ -110,32 +95,26 @@ func (o LookupSystemNetflowResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemNetflowResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
 func (o LookupSystemNetflowResultOutput) InactiveFlowTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemNetflowResult) int { return v.InactiveFlowTimeout }).(pulumi.IntOutput)
 }
 
-// Specify outgoing interface to reach server.
 func (o LookupSystemNetflowResultOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemNetflowResult) string { return v.Interface }).(pulumi.StringOutput)
 }
 
-// Specify how to select outgoing interface to reach server.
 func (o LookupSystemNetflowResultOutput) InterfaceSelectMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemNetflowResult) string { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
 }
 
-// Source IP address for communication with the NetFlow agent.
 func (o LookupSystemNetflowResultOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemNetflowResult) string { return v.SourceIp }).(pulumi.StringOutput)
 }
 
-// Counter of flowset records before resending a template flowset record.
 func (o LookupSystemNetflowResultOutput) TemplateTxCounter() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemNetflowResult) int { return v.TemplateTxCounter }).(pulumi.IntOutput)
 }
 
-// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
 func (o LookupSystemNetflowResultOutput) TemplateTxTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemNetflowResult) int { return v.TemplateTxTimeout }).(pulumi.IntOutput)
 }

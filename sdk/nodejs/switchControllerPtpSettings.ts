@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Global PTP settings. Applies to FortiOS Version `>= 6.4.2`.
- *
- * ## Import
- *
- * SwitchControllerPtp Settings can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerPtpSettings:SwitchControllerPtpSettings labelname SwitchControllerPtpSettings
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerPtpSettings:SwitchControllerPtpSettings labelname SwitchControllerPtpSettings
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerPtpSettings extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerPtpSettings resource's state with the given name, ID, and optional extra
@@ -51,13 +32,7 @@ export class SwitchControllerPtpSettings extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerPtpSettings.__pulumiType;
     }
 
-    /**
-     * Enable/disable PTP mode. Valid values: `disable`, `transparent-e2e`, `transparent-p2p`.
-     */
     public readonly mode!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -89,13 +64,7 @@ export class SwitchControllerPtpSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerPtpSettings resources.
  */
 export interface SwitchControllerPtpSettingsState {
-    /**
-     * Enable/disable PTP mode. Valid values: `disable`, `transparent-e2e`, `transparent-p2p`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -103,12 +72,6 @@ export interface SwitchControllerPtpSettingsState {
  * The set of arguments for constructing a SwitchControllerPtpSettings resource.
  */
 export interface SwitchControllerPtpSettingsArgs {
-    /**
-     * Enable/disable PTP mode. Valid values: `disable`, `transparent-e2e`, `transparent-p2p`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

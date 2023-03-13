@@ -2,54 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv6 address templates.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallAddress6Template("trname", {
- *     ip6: "2001:db8:0:b::/64",
- *     subnetSegments: [
- *         {
- *             bits: 4,
- *             exclusive: "disable",
- *             id: 1,
- *             name: "country",
- *         },
- *         {
- *             bits: 4,
- *             exclusive: "disable",
- *             id: 2,
- *             name: "state",
- *         },
- *     ],
- *     subnetSegmentCount: 2,
- * });
- * ```
- *
- * ## Import
- *
- * Firewall Address6Template can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAddress6Template:FirewallAddress6Template labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAddress6Template:FirewallAddress6Template labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallAddress6Template extends pulumi.CustomResource {
     /**
      * Get an existing FirewallAddress6Template resource's state with the given name, ID, and optional extra
@@ -78,33 +34,12 @@ export class FirewallAddress6Template extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallAddress6Template.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     public readonly fabricObject!: pulumi.Output<string>;
-    /**
-     * IPv6 address prefix.
-     */
     public readonly ip6!: pulumi.Output<string>;
-    /**
-     * Subnet segment value name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Number of IPv6 subnet segments.
-     */
     public readonly subnetSegmentCount!: pulumi.Output<number>;
-    /**
-     * IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-     */
     public readonly subnetSegments!: pulumi.Output<outputs.FirewallAddress6TemplateSubnetSegment[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -152,33 +87,12 @@ export class FirewallAddress6Template extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallAddress6Template resources.
  */
 export interface FirewallAddress6TemplateState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     fabricObject?: pulumi.Input<string>;
-    /**
-     * IPv6 address prefix.
-     */
     ip6?: pulumi.Input<string>;
-    /**
-     * Subnet segment value name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Number of IPv6 subnet segments.
-     */
     subnetSegmentCount?: pulumi.Input<number>;
-    /**
-     * IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-     */
     subnetSegments?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6TemplateSubnetSegment>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -186,32 +100,11 @@ export interface FirewallAddress6TemplateState {
  * The set of arguments for constructing a FirewallAddress6Template resource.
  */
 export interface FirewallAddress6TemplateArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     fabricObject?: pulumi.Input<string>;
-    /**
-     * IPv6 address prefix.
-     */
     ip6: pulumi.Input<string>;
-    /**
-     * Subnet segment value name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Number of IPv6 subnet segments.
-     */
     subnetSegmentCount: pulumi.Input<number>;
-    /**
-     * IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-     */
     subnetSegments?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6TemplateSubnetSegment>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * 3G MODEM custom. Applies to FortiOS Version `>= 7.0.4`.
- *
- * ## Import
- *
- * System3GModem Custom can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/system3GModemCustom:System3GModemCustom labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/system3GModemCustom:System3GModemCustom labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class System3GModemCustom extends pulumi.CustomResource {
     /**
      * Get an existing System3GModemCustom resource's state with the given name, ID, and optional extra
@@ -51,41 +32,14 @@ export class System3GModemCustom extends pulumi.CustomResource {
         return obj['__pulumiType'] === System3GModemCustom.__pulumiType;
     }
 
-    /**
-     * USB interface class in hexadecimal format (00-ff).
-     */
     public readonly classId!: pulumi.Output<string>;
-    /**
-     * ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Init string in hexadecimal format (even length).
-     */
     public readonly initString!: pulumi.Output<string>;
-    /**
-     * MODEM model name.
-     */
     public readonly model!: pulumi.Output<string>;
-    /**
-     * USB modeswitch arguments. e.g: '-v 1410 -p 9030 -V 1410 -P 9032 -u 3'
-     */
     public readonly modeswitchString!: pulumi.Output<string>;
-    /**
-     * USB product ID in hexadecimal format (0000-ffff).
-     */
     public readonly productId!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * MODEM vendor name.
-     */
     public readonly vendor!: pulumi.Output<string>;
-    /**
-     * USB vendor ID in hexadecimal format (0000-ffff).
-     */
     public readonly vendorId!: pulumi.Output<string>;
 
     /**
@@ -131,41 +85,14 @@ export class System3GModemCustom extends pulumi.CustomResource {
  * Input properties used for looking up and filtering System3GModemCustom resources.
  */
 export interface System3GModemCustomState {
-    /**
-     * USB interface class in hexadecimal format (00-ff).
-     */
     classId?: pulumi.Input<string>;
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Init string in hexadecimal format (even length).
-     */
     initString?: pulumi.Input<string>;
-    /**
-     * MODEM model name.
-     */
     model?: pulumi.Input<string>;
-    /**
-     * USB modeswitch arguments. e.g: '-v 1410 -p 9030 -V 1410 -P 9032 -u 3'
-     */
     modeswitchString?: pulumi.Input<string>;
-    /**
-     * USB product ID in hexadecimal format (0000-ffff).
-     */
     productId?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * MODEM vendor name.
-     */
     vendor?: pulumi.Input<string>;
-    /**
-     * USB vendor ID in hexadecimal format (0000-ffff).
-     */
     vendorId?: pulumi.Input<string>;
 }
 
@@ -173,40 +100,13 @@ export interface System3GModemCustomState {
  * The set of arguments for constructing a System3GModemCustom resource.
  */
 export interface System3GModemCustomArgs {
-    /**
-     * USB interface class in hexadecimal format (00-ff).
-     */
     classId?: pulumi.Input<string>;
-    /**
-     * ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Init string in hexadecimal format (even length).
-     */
     initString?: pulumi.Input<string>;
-    /**
-     * MODEM model name.
-     */
     model?: pulumi.Input<string>;
-    /**
-     * USB modeswitch arguments. e.g: '-v 1410 -p 9030 -V 1410 -P 9032 -u 3'
-     */
     modeswitchString?: pulumi.Input<string>;
-    /**
-     * USB product ID in hexadecimal format (0000-ffff).
-     */
     productId?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * MODEM vendor name.
-     */
     vendor?: pulumi.Input<string>;
-    /**
-     * USB vendor ID in hexadecimal format (0000-ffff).
-     */
     vendorId?: pulumi.Input<string>;
 }

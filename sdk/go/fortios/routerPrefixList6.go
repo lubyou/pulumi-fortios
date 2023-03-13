@@ -10,57 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 prefix lists.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewRouterPrefixList6(ctx, "trname", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Router PrefixList6 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerPrefixList6:RouterPrefixList6 labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerPrefixList6:RouterPrefixList6 labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterPrefixList6 struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comments pulumi.StringOutput `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// IPv6 prefix list rule. The structure of `rule` block is documented below.
-	Rules RouterPrefixList6RuleArrayOutput `pulumi:"rules"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comments            pulumi.StringOutput              `pulumi:"comments"`
+	DynamicSortSubtable pulumi.StringPtrOutput           `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput              `pulumi:"name"`
+	Rules               RouterPrefixList6RuleArrayOutput `pulumi:"rules"`
+	Vdomparam           pulumi.StringPtrOutput           `pulumi:"vdomparam"`
 }
 
 // NewRouterPrefixList6 registers a new resource with the given unique name, arguments, and options.
@@ -93,29 +50,19 @@ func GetRouterPrefixList6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterPrefixList6 resources.
 type routerPrefixList6State struct {
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// IPv6 prefix list rule. The structure of `rule` block is documented below.
-	Rules []RouterPrefixList6Rule `pulumi:"rules"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comments            *string                 `pulumi:"comments"`
+	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
+	Name                *string                 `pulumi:"name"`
+	Rules               []RouterPrefixList6Rule `pulumi:"rules"`
+	Vdomparam           *string                 `pulumi:"vdomparam"`
 }
 
 type RouterPrefixList6State struct {
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// IPv6 prefix list rule. The structure of `rule` block is documented below.
-	Rules RouterPrefixList6RuleArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Rules               RouterPrefixList6RuleArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterPrefixList6State) ElementType() reflect.Type {
@@ -123,30 +70,20 @@ func (RouterPrefixList6State) ElementType() reflect.Type {
 }
 
 type routerPrefixList6Args struct {
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// IPv6 prefix list rule. The structure of `rule` block is documented below.
-	Rules []RouterPrefixList6Rule `pulumi:"rules"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comments            *string                 `pulumi:"comments"`
+	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
+	Name                *string                 `pulumi:"name"`
+	Rules               []RouterPrefixList6Rule `pulumi:"rules"`
+	Vdomparam           *string                 `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterPrefixList6 resource.
 type RouterPrefixList6Args struct {
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// IPv6 prefix list rule. The structure of `rule` block is documented below.
-	Rules RouterPrefixList6RuleArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Rules               RouterPrefixList6RuleArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterPrefixList6Args) ElementType() reflect.Type {
@@ -175,7 +112,7 @@ func (i *RouterPrefixList6) ToRouterPrefixList6OutputWithContext(ctx context.Con
 // RouterPrefixList6ArrayInput is an input type that accepts RouterPrefixList6Array and RouterPrefixList6ArrayOutput values.
 // You can construct a concrete instance of `RouterPrefixList6ArrayInput` via:
 //
-//          RouterPrefixList6Array{ RouterPrefixList6Args{...} }
+//	RouterPrefixList6Array{ RouterPrefixList6Args{...} }
 type RouterPrefixList6ArrayInput interface {
 	pulumi.Input
 
@@ -200,7 +137,7 @@ func (i RouterPrefixList6Array) ToRouterPrefixList6ArrayOutputWithContext(ctx co
 // RouterPrefixList6MapInput is an input type that accepts RouterPrefixList6Map and RouterPrefixList6MapOutput values.
 // You can construct a concrete instance of `RouterPrefixList6MapInput` via:
 //
-//          RouterPrefixList6Map{ "key": RouterPrefixList6Args{...} }
+//	RouterPrefixList6Map{ "key": RouterPrefixList6Args{...} }
 type RouterPrefixList6MapInput interface {
 	pulumi.Input
 
@@ -234,6 +171,26 @@ func (o RouterPrefixList6Output) ToRouterPrefixList6Output() RouterPrefixList6Ou
 
 func (o RouterPrefixList6Output) ToRouterPrefixList6OutputWithContext(ctx context.Context) RouterPrefixList6Output {
 	return o
+}
+
+func (o RouterPrefixList6Output) Comments() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPrefixList6) pulumi.StringOutput { return v.Comments }).(pulumi.StringOutput)
+}
+
+func (o RouterPrefixList6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterPrefixList6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterPrefixList6Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterPrefixList6) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o RouterPrefixList6Output) Rules() RouterPrefixList6RuleArrayOutput {
+	return o.ApplyT(func(v *RouterPrefixList6) RouterPrefixList6RuleArrayOutput { return v.Rules }).(RouterPrefixList6RuleArrayOutput)
+}
+
+func (o RouterPrefixList6Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterPrefixList6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterPrefixList6ArrayOutput struct{ *pulumi.OutputState }

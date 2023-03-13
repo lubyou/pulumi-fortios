@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios router keychain
 func LookupRouterKeyChain(ctx *pulumi.Context, args *LookupRouterKeyChainArgs, opts ...pulumi.InvokeOption) (*LookupRouterKeyChainResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterKeyChainResult
@@ -23,21 +22,17 @@ func LookupRouterKeyChain(ctx *pulumi.Context, args *LookupRouterKeyChainArgs, o
 
 // A collection of arguments for invoking GetRouterKeyChain.
 type LookupRouterKeyChainArgs struct {
-	// Specify the name of the desired router keychain.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetRouterKeyChain.
 type LookupRouterKeyChainResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Configuration method to edit key settings. The structure of `key` block is documented below.
-	Keys []GetRouterKeyChainKey `pulumi:"keys"`
-	// Key-chain name.
-	Name      string  `pulumi:"name"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id        string                 `pulumi:"id"`
+	Keys      []GetRouterKeyChainKey `pulumi:"keys"`
+	Name      string                 `pulumi:"name"`
+	Vdomparam *string                `pulumi:"vdomparam"`
 }
 
 func LookupRouterKeyChainOutput(ctx *pulumi.Context, args LookupRouterKeyChainOutputArgs, opts ...pulumi.InvokeOption) LookupRouterKeyChainResultOutput {
@@ -55,9 +50,7 @@ func LookupRouterKeyChainOutput(ctx *pulumi.Context, args LookupRouterKeyChainOu
 
 // A collection of arguments for invoking GetRouterKeyChain.
 type LookupRouterKeyChainOutputArgs struct {
-	// Specify the name of the desired router keychain.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -85,12 +78,10 @@ func (o LookupRouterKeyChainResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterKeyChainResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Configuration method to edit key settings. The structure of `key` block is documented below.
 func (o LookupRouterKeyChainResultOutput) Keys() GetRouterKeyChainKeyArrayOutput {
 	return o.ApplyT(func(v LookupRouterKeyChainResult) []GetRouterKeyChainKey { return v.Keys }).(GetRouterKeyChainKeyArrayOutput)
 }
 
-// Key-chain name.
 func (o LookupRouterKeyChainResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterKeyChainResult) string { return v.Name }).(pulumi.StringOutput)
 }

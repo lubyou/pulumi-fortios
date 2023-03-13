@@ -4,34 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure alias command.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemAlias("trname", {});
- * ```
- *
- * ## Import
- *
- * System Alias can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAlias:SystemAlias labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAlias:SystemAlias labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemAlias extends pulumi.CustomResource {
     /**
      * Get an existing SystemAlias resource's state with the given name, ID, and optional extra
@@ -60,17 +32,8 @@ export class SystemAlias extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAlias.__pulumiType;
     }
 
-    /**
-     * Command list to execute.
-     */
     public readonly command!: pulumi.Output<string | undefined>;
-    /**
-     * Alias command name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -104,17 +67,8 @@ export class SystemAlias extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAlias resources.
  */
 export interface SystemAliasState {
-    /**
-     * Command list to execute.
-     */
     command?: pulumi.Input<string>;
-    /**
-     * Alias command name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -122,16 +76,7 @@ export interface SystemAliasState {
  * The set of arguments for constructing a SystemAlias resource.
  */
 export interface SystemAliasArgs {
-    /**
-     * Command list to execute.
-     */
     command?: pulumi.Input<string>;
-    /**
-     * Alias command name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

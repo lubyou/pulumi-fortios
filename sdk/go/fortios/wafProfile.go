@@ -10,72 +10,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Web application firewall configuration.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWafProfile(ctx, "trname", &fortios.WafProfileArgs{
-// 			ExtendedLog: pulumi.String("disable"),
-// 			External:    pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Waf Profile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wafProfile:WafProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wafProfile:WafProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WafProfile struct {
 	pulumi.CustomResourceState
 
-	// Black address list and white address list. The structure of `addressList` block is documented below.
-	AddressList WafProfileAddressListPtrOutput `pulumi:"addressList"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// WAF HTTP protocol restrictions. The structure of `constraint` block is documented below.
-	Constraint WafProfileConstraintPtrOutput `pulumi:"constraint"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable extended logging. Valid values: `enable`, `disable`.
-	ExtendedLog pulumi.StringOutput `pulumi:"extendedLog"`
-	// Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
-	External pulumi.StringOutput `pulumi:"external"`
-	// Enable/disable HTTP method check. Valid values: `enable`, `disable`.
-	Method WafProfileMethodPtrOutput `pulumi:"method"`
-	// Address name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// WAF signatures. The structure of `signature` block is documented below.
-	Signature WafProfileSignaturePtrOutput `pulumi:"signature"`
-	// URL access list The structure of `urlAccess` block is documented below.
-	UrlAccesses WafProfileUrlAccessArrayOutput `pulumi:"urlAccesses"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AddressList         WafProfileAddressListOutput    `pulumi:"addressList"`
+	Comment             pulumi.StringPtrOutput         `pulumi:"comment"`
+	Constraint          WafProfileConstraintOutput     `pulumi:"constraint"`
+	DynamicSortSubtable pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
+	ExtendedLog         pulumi.StringOutput            `pulumi:"extendedLog"`
+	External            pulumi.StringOutput            `pulumi:"external"`
+	Method              WafProfileMethodOutput         `pulumi:"method"`
+	Name                pulumi.StringOutput            `pulumi:"name"`
+	Signature           WafProfileSignatureOutput      `pulumi:"signature"`
+	UrlAccesses         WafProfileUrlAccessArrayOutput `pulumi:"urlAccesses"`
+	Vdomparam           pulumi.StringPtrOutput         `pulumi:"vdomparam"`
 }
 
 // NewWafProfile registers a new resource with the given unique name, arguments, and options.
@@ -108,53 +56,31 @@ func GetWafProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WafProfile resources.
 type wafProfileState struct {
-	// Black address list and white address list. The structure of `addressList` block is documented below.
-	AddressList *WafProfileAddressList `pulumi:"addressList"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// WAF HTTP protocol restrictions. The structure of `constraint` block is documented below.
-	Constraint *WafProfileConstraint `pulumi:"constraint"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable extended logging. Valid values: `enable`, `disable`.
-	ExtendedLog *string `pulumi:"extendedLog"`
-	// Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
-	External *string `pulumi:"external"`
-	// Enable/disable HTTP method check. Valid values: `enable`, `disable`.
-	Method *WafProfileMethod `pulumi:"method"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// WAF signatures. The structure of `signature` block is documented below.
-	Signature *WafProfileSignature `pulumi:"signature"`
-	// URL access list The structure of `urlAccess` block is documented below.
-	UrlAccesses []WafProfileUrlAccess `pulumi:"urlAccesses"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AddressList         *WafProfileAddressList `pulumi:"addressList"`
+	Comment             *string                `pulumi:"comment"`
+	Constraint          *WafProfileConstraint  `pulumi:"constraint"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	ExtendedLog         *string                `pulumi:"extendedLog"`
+	External            *string                `pulumi:"external"`
+	Method              *WafProfileMethod      `pulumi:"method"`
+	Name                *string                `pulumi:"name"`
+	Signature           *WafProfileSignature   `pulumi:"signature"`
+	UrlAccesses         []WafProfileUrlAccess  `pulumi:"urlAccesses"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 type WafProfileState struct {
-	// Black address list and white address list. The structure of `addressList` block is documented below.
-	AddressList WafProfileAddressListPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// WAF HTTP protocol restrictions. The structure of `constraint` block is documented below.
-	Constraint WafProfileConstraintPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AddressList         WafProfileAddressListPtrInput
+	Comment             pulumi.StringPtrInput
+	Constraint          WafProfileConstraintPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable extended logging. Valid values: `enable`, `disable`.
-	ExtendedLog pulumi.StringPtrInput
-	// Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
-	External pulumi.StringPtrInput
-	// Enable/disable HTTP method check. Valid values: `enable`, `disable`.
-	Method WafProfileMethodPtrInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// WAF signatures. The structure of `signature` block is documented below.
-	Signature WafProfileSignaturePtrInput
-	// URL access list The structure of `urlAccess` block is documented below.
-	UrlAccesses WafProfileUrlAccessArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ExtendedLog         pulumi.StringPtrInput
+	External            pulumi.StringPtrInput
+	Method              WafProfileMethodPtrInput
+	Name                pulumi.StringPtrInput
+	Signature           WafProfileSignaturePtrInput
+	UrlAccesses         WafProfileUrlAccessArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WafProfileState) ElementType() reflect.Type {
@@ -162,54 +88,32 @@ func (WafProfileState) ElementType() reflect.Type {
 }
 
 type wafProfileArgs struct {
-	// Black address list and white address list. The structure of `addressList` block is documented below.
-	AddressList *WafProfileAddressList `pulumi:"addressList"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// WAF HTTP protocol restrictions. The structure of `constraint` block is documented below.
-	Constraint *WafProfileConstraint `pulumi:"constraint"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable extended logging. Valid values: `enable`, `disable`.
-	ExtendedLog *string `pulumi:"extendedLog"`
-	// Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
-	External *string `pulumi:"external"`
-	// Enable/disable HTTP method check. Valid values: `enable`, `disable`.
-	Method *WafProfileMethod `pulumi:"method"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// WAF signatures. The structure of `signature` block is documented below.
-	Signature *WafProfileSignature `pulumi:"signature"`
-	// URL access list The structure of `urlAccess` block is documented below.
-	UrlAccesses []WafProfileUrlAccess `pulumi:"urlAccesses"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AddressList         *WafProfileAddressList `pulumi:"addressList"`
+	Comment             *string                `pulumi:"comment"`
+	Constraint          *WafProfileConstraint  `pulumi:"constraint"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	ExtendedLog         *string                `pulumi:"extendedLog"`
+	External            *string                `pulumi:"external"`
+	Method              *WafProfileMethod      `pulumi:"method"`
+	Name                *string                `pulumi:"name"`
+	Signature           *WafProfileSignature   `pulumi:"signature"`
+	UrlAccesses         []WafProfileUrlAccess  `pulumi:"urlAccesses"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WafProfile resource.
 type WafProfileArgs struct {
-	// Black address list and white address list. The structure of `addressList` block is documented below.
-	AddressList WafProfileAddressListPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// WAF HTTP protocol restrictions. The structure of `constraint` block is documented below.
-	Constraint WafProfileConstraintPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AddressList         WafProfileAddressListPtrInput
+	Comment             pulumi.StringPtrInput
+	Constraint          WafProfileConstraintPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable extended logging. Valid values: `enable`, `disable`.
-	ExtendedLog pulumi.StringPtrInput
-	// Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
-	External pulumi.StringPtrInput
-	// Enable/disable HTTP method check. Valid values: `enable`, `disable`.
-	Method WafProfileMethodPtrInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// WAF signatures. The structure of `signature` block is documented below.
-	Signature WafProfileSignaturePtrInput
-	// URL access list The structure of `urlAccess` block is documented below.
-	UrlAccesses WafProfileUrlAccessArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ExtendedLog         pulumi.StringPtrInput
+	External            pulumi.StringPtrInput
+	Method              WafProfileMethodPtrInput
+	Name                pulumi.StringPtrInput
+	Signature           WafProfileSignaturePtrInput
+	UrlAccesses         WafProfileUrlAccessArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WafProfileArgs) ElementType() reflect.Type {
@@ -238,7 +142,7 @@ func (i *WafProfile) ToWafProfileOutputWithContext(ctx context.Context) WafProfi
 // WafProfileArrayInput is an input type that accepts WafProfileArray and WafProfileArrayOutput values.
 // You can construct a concrete instance of `WafProfileArrayInput` via:
 //
-//          WafProfileArray{ WafProfileArgs{...} }
+//	WafProfileArray{ WafProfileArgs{...} }
 type WafProfileArrayInput interface {
 	pulumi.Input
 
@@ -263,7 +167,7 @@ func (i WafProfileArray) ToWafProfileArrayOutputWithContext(ctx context.Context)
 // WafProfileMapInput is an input type that accepts WafProfileMap and WafProfileMapOutput values.
 // You can construct a concrete instance of `WafProfileMapInput` via:
 //
-//          WafProfileMap{ "key": WafProfileArgs{...} }
+//	WafProfileMap{ "key": WafProfileArgs{...} }
 type WafProfileMapInput interface {
 	pulumi.Input
 
@@ -297,6 +201,50 @@ func (o WafProfileOutput) ToWafProfileOutput() WafProfileOutput {
 
 func (o WafProfileOutput) ToWafProfileOutputWithContext(ctx context.Context) WafProfileOutput {
 	return o
+}
+
+func (o WafProfileOutput) AddressList() WafProfileAddressListOutput {
+	return o.ApplyT(func(v *WafProfile) WafProfileAddressListOutput { return v.AddressList }).(WafProfileAddressListOutput)
+}
+
+func (o WafProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WafProfile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o WafProfileOutput) Constraint() WafProfileConstraintOutput {
+	return o.ApplyT(func(v *WafProfile) WafProfileConstraintOutput { return v.Constraint }).(WafProfileConstraintOutput)
+}
+
+func (o WafProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WafProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WafProfileOutput) ExtendedLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *WafProfile) pulumi.StringOutput { return v.ExtendedLog }).(pulumi.StringOutput)
+}
+
+func (o WafProfileOutput) External() pulumi.StringOutput {
+	return o.ApplyT(func(v *WafProfile) pulumi.StringOutput { return v.External }).(pulumi.StringOutput)
+}
+
+func (o WafProfileOutput) Method() WafProfileMethodOutput {
+	return o.ApplyT(func(v *WafProfile) WafProfileMethodOutput { return v.Method }).(WafProfileMethodOutput)
+}
+
+func (o WafProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WafProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WafProfileOutput) Signature() WafProfileSignatureOutput {
+	return o.ApplyT(func(v *WafProfile) WafProfileSignatureOutput { return v.Signature }).(WafProfileSignatureOutput)
+}
+
+func (o WafProfileOutput) UrlAccesses() WafProfileUrlAccessArrayOutput {
+	return o.ApplyT(func(v *WafProfile) WafProfileUrlAccessArrayOutput { return v.UrlAccesses }).(WafProfileUrlAccessArrayOutput)
+}
+
+func (o WafProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WafProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WafProfileArrayOutput struct{ *pulumi.OutputState }

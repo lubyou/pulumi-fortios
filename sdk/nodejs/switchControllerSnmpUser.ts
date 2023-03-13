@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch SNMP v3 users globally. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * SwitchController SnmpUser can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSnmpUser:SwitchControllerSnmpUser labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerSnmpUser:SwitchControllerSnmpUser labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerSnmpUser extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerSnmpUser resource's state with the given name, ID, and optional extra
@@ -51,41 +32,14 @@ export class SwitchControllerSnmpUser extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerSnmpUser.__pulumiType;
     }
 
-    /**
-     * Authentication protocol.
-     */
     public readonly authProto!: pulumi.Output<string>;
-    /**
-     * Password for authentication protocol.
-     */
     public readonly authPwd!: pulumi.Output<string | undefined>;
-    /**
-     * SNMP user name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Privacy (encryption) protocol.
-     */
     public readonly privProto!: pulumi.Output<string>;
-    /**
-     * Password for privacy (encryption) protocol.
-     */
     public readonly privPwd!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable SNMP queries for this user. Valid values: `disable`, `enable`.
-     */
     public readonly queries!: pulumi.Output<string>;
-    /**
-     * SNMPv3 query port (default = 161).
-     */
     public readonly queryPort!: pulumi.Output<number>;
-    /**
-     * Security level for message authentication and encryption. Valid values: `no-auth-no-priv`, `auth-no-priv`, `auth-priv`.
-     */
     public readonly securityLevel!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -113,16 +67,18 @@ export class SwitchControllerSnmpUser extends pulumi.CustomResource {
         } else {
             const args = argsOrState as SwitchControllerSnmpUserArgs | undefined;
             resourceInputs["authProto"] = args ? args.authProto : undefined;
-            resourceInputs["authPwd"] = args ? args.authPwd : undefined;
+            resourceInputs["authPwd"] = args?.authPwd ? pulumi.secret(args.authPwd) : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["privProto"] = args ? args.privProto : undefined;
-            resourceInputs["privPwd"] = args ? args.privPwd : undefined;
+            resourceInputs["privPwd"] = args?.privPwd ? pulumi.secret(args.privPwd) : undefined;
             resourceInputs["queries"] = args ? args.queries : undefined;
             resourceInputs["queryPort"] = args ? args.queryPort : undefined;
             resourceInputs["securityLevel"] = args ? args.securityLevel : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["authPwd", "privPwd"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SwitchControllerSnmpUser.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -131,41 +87,14 @@ export class SwitchControllerSnmpUser extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerSnmpUser resources.
  */
 export interface SwitchControllerSnmpUserState {
-    /**
-     * Authentication protocol.
-     */
     authProto?: pulumi.Input<string>;
-    /**
-     * Password for authentication protocol.
-     */
     authPwd?: pulumi.Input<string>;
-    /**
-     * SNMP user name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Privacy (encryption) protocol.
-     */
     privProto?: pulumi.Input<string>;
-    /**
-     * Password for privacy (encryption) protocol.
-     */
     privPwd?: pulumi.Input<string>;
-    /**
-     * Enable/disable SNMP queries for this user. Valid values: `disable`, `enable`.
-     */
     queries?: pulumi.Input<string>;
-    /**
-     * SNMPv3 query port (default = 161).
-     */
     queryPort?: pulumi.Input<number>;
-    /**
-     * Security level for message authentication and encryption. Valid values: `no-auth-no-priv`, `auth-no-priv`, `auth-priv`.
-     */
     securityLevel?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -173,40 +102,13 @@ export interface SwitchControllerSnmpUserState {
  * The set of arguments for constructing a SwitchControllerSnmpUser resource.
  */
 export interface SwitchControllerSnmpUserArgs {
-    /**
-     * Authentication protocol.
-     */
     authProto?: pulumi.Input<string>;
-    /**
-     * Password for authentication protocol.
-     */
     authPwd?: pulumi.Input<string>;
-    /**
-     * SNMP user name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Privacy (encryption) protocol.
-     */
     privProto?: pulumi.Input<string>;
-    /**
-     * Password for privacy (encryption) protocol.
-     */
     privPwd?: pulumi.Input<string>;
-    /**
-     * Enable/disable SNMP queries for this user. Valid values: `disable`, `enable`.
-     */
     queries?: pulumi.Input<string>;
-    /**
-     * SNMPv3 query port (default = 161).
-     */
     queryPort?: pulumi.Input<number>;
-    /**
-     * Security level for message authentication and encryption. Valid values: `no-auth-no-priv`, `auth-no-priv`, `auth-priv`.
-     */
     securityLevel?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

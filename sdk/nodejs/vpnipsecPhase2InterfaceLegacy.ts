@@ -4,143 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to use phase2-interface to add or edit a phase 2 configuration on a route-based (interface mode) IPsec tunnel.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.VpnIpsecPhase2Interface`, we recommend that you use the new resource.
- *
- * ## Example Usage
- * ### Site To Site/Pre-Shared Key
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.VPNIPsecPhase1InterfaceLegacy("test1", {
- *     authmethod: "psk",
- *     authmethodRemote: "",
- *     comments: "VPN 001Test P1",
- *     interface: "port2",
- *     modeCfg: "disable",
- *     peertype: "any",
- *     proposal: "aes128-sha256 aes256-sha256 aes128-sha1 aes256-sha1",
- *     psksecret: "testscecret112233445566778899",
- *     remoteGw: "1.2.2.2",
- *     type: "static",
- *     wizardType: "static-fortigate",
- * });
- * const test2 = new fortios.VPNIPsecPhase2InterfaceLegacy("test2", {
- *     comments: "VPN 001Test P2",
- *     dstAddrType: "name",
- *     dstName: "HQ-toBranch_remote",
- *     phase1name: test1.name,
- *     proposal: "aes128-sha1 aes256-sha1 aes128-sha256 aes256-sha256 aes128gcm aes256gcm chacha20poly1305",
- *     srcAddrType: "name",
- *     srcName: "HQ-toBranch_local",
- * });
- * ```
- * ### Site To Site/Signature
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.VPNIPsecPhase1InterfaceLegacy("test1", {
- *     certificates: ["Fortinet_SSL_ECDSA384"],
- *     comments: "VPN 001Test P1",
- *     interface: "port2",
- *     peer: "2b_peer",
- *     peergrp: "",
- *     peerid: "",
- *     peertype: "peer",
- *     proposal: "aes128-sha256 aes256-sha256 aes128-sha1 aes256-sha1",
- *     psksecret: "testscecret112233445566778899",
- *     remoteGw: "1.2.2.2",
- *     type: "static",
- *     wizardType: "static-fortigate",
- * });
- * const test2 = new fortios.VPNIPsecPhase2InterfaceLegacy("test2", {
- *     comments: "VPN 001Test P2",
- *     dstAddrType: "subnet",
- *     dstSubnet: "2.2.2.2/24",
- *     phase1name: test1.name,
- *     proposal: "aes128-sha1 aes256-sha1 aes128-sha256 aes256-sha256 aes128gcm aes256gcm chacha20poly1305",
- *     srcAddrType: "range",
- *     srcEndIp: "1.1.1.1",
- *     srcStartIp: "1.1.1.0",
- * });
- * ```
- * ### Remote Access/Pre-Shared Key
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.VPNIPsecPhase1InterfaceLegacy("test1", {
- *     comments: "VPN 001Test P1",
- *     interface: "port2",
- *     ipv4SplitExclude: "",
- *     ipv4SplitInclude: "d_split",
- *     peertype: "any",
- *     proposal: "aes128-sha256 aes256-sha256 aes128-sha1 aes256-sha1",
- *     psksecret: "testscecret112233445566778899",
- *     remoteGw: "0.0.0.0",
- *     splitIncludeService: "",
- *     type: "dynamic",
- *     wizardType: "dialup-forticlient",
- * });
- * const test2 = new fortios.VPNIPsecPhase2InterfaceLegacy("test2", {
- *     comments: "VPN 001Test P2",
- *     dstAddrType: "subnet",
- *     dstEndIp: "0.0.0.0",
- *     dstStartIp: "0.0.0.0",
- *     dstSubnet: "0.0.0.0 0.0.0.0",
- *     phase1name: test1.name,
- *     proposal: "aes128-sha1 aes256-sha1 aes128-sha256 aes256-sha256 aes128gcm aes256gcm chacha20poly1305",
- *     srcAddrType: "subnet",
- *     srcEndIp: "0.0.0.0",
- *     srcStartIp: "0.0.0.0",
- *     srcSubnet: "0.0.0.0 0.0.0.0",
- * });
- * ```
- * ### Remote Access/Signature
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.VPNIPsecPhase1InterfaceLegacy("test1", {
- *     certificates: ["Fortinet_SSL_ECDSA384"],
- *     comments: "VPN 001Test P1",
- *     interface: "port2",
- *     ipv4SplitExclude: "",
- *     ipv4SplitInclude: "d_split",
- *     peer: "2b_peer",
- *     peergrp: "",
- *     peerid: "",
- *     peertype: "any",
- *     proposal: "aes128-sha256 aes256-sha256 aes128-sha1 aes256-sha1",
- *     psksecret: "testscecret112233445566778899",
- *     remoteGw: "1.2.2.2",
- *     splitIncludeService: "",
- *     type: "dynamic",
- *     wizardType: "dialup-forticlient",
- * });
- * const test2 = new fortios.VPNIPsecPhase2InterfaceLegacy("test2", {
- *     comments: "VPN 001Test P2",
- *     dstAddrType: "subnet",
- *     dstEndIp: "0.0.0.0",
- *     dstStartIp: "0.0.0.0",
- *     dstSubnet: "0.0.0.0 0.0.0.0",
- *     phase1name: test1.name,
- *     proposal: "aes128-sha1 aes256-sha1 aes128-sha256 aes256-sha256 aes128gcm aes256gcm chacha20poly1305",
- *     srcAddrType: "subnet",
- *     srcEndIp: "0.0.0.0",
- *     srcStartIp: "0.0.0.0",
- *     srcSubnet: "0.0.0.0 0.0.0.0",
- * });
- * ```
- */
 export class VPNIPsecPhase2InterfaceLegacy extends pulumi.CustomResource {
     /**
      * Get an existing VPNIPsecPhase2InterfaceLegacy resource's state with the given name, ID, and optional extra
@@ -169,61 +32,19 @@ export class VPNIPsecPhase2InterfaceLegacy extends pulumi.CustomResource {
         return obj['__pulumiType'] === VPNIPsecPhase2InterfaceLegacy.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Local proxy ID type.
-     */
     public readonly dstAddrType!: pulumi.Output<string>;
-    /**
-     * Remote proxy ID IPv4 end.
-     */
     public readonly dstEndIp!: pulumi.Output<string>;
-    /**
-     * Remote proxy ID name.
-     */
     public readonly dstName!: pulumi.Output<string>;
-    /**
-     * Remote proxy ID IPv4 start.
-     */
     public readonly dstStartIp!: pulumi.Output<string>;
-    /**
-     * Remote proxy ID IPv4 subnet.
-     */
     public readonly dstSubnet!: pulumi.Output<string>;
-    /**
-     * IPsec tunnel name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Phase 1 determines the options required for phase 2.
-     */
     public readonly phase1name!: pulumi.Output<string>;
-    /**
-     * Phase2 proposal.
-     */
     public readonly proposal!: pulumi.Output<string>;
-    /**
-     * Local proxy ID type.
-     */
     public readonly srcAddrType!: pulumi.Output<string>;
-    /**
-     * Local proxy ID end.
-     */
     public readonly srcEndIp!: pulumi.Output<string>;
-    /**
-     * Local proxy ID name.
-     */
     public readonly srcName!: pulumi.Output<string>;
-    /**
-     * Local proxy ID start.
-     */
     public readonly srcStartIp!: pulumi.Output<string>;
-    /**
-     * Local proxy ID subnet.
-     */
     public readonly srcSubnet!: pulumi.Output<string>;
 
     /**
@@ -282,61 +103,19 @@ export class VPNIPsecPhase2InterfaceLegacy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VPNIPsecPhase2InterfaceLegacy resources.
  */
 export interface VPNIPsecPhase2InterfaceLegacyState {
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Local proxy ID type.
-     */
     dstAddrType?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv4 end.
-     */
     dstEndIp?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID name.
-     */
     dstName?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv4 start.
-     */
     dstStartIp?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv4 subnet.
-     */
     dstSubnet?: pulumi.Input<string>;
-    /**
-     * IPsec tunnel name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Phase 1 determines the options required for phase 2.
-     */
     phase1name?: pulumi.Input<string>;
-    /**
-     * Phase2 proposal.
-     */
     proposal?: pulumi.Input<string>;
-    /**
-     * Local proxy ID type.
-     */
     srcAddrType?: pulumi.Input<string>;
-    /**
-     * Local proxy ID end.
-     */
     srcEndIp?: pulumi.Input<string>;
-    /**
-     * Local proxy ID name.
-     */
     srcName?: pulumi.Input<string>;
-    /**
-     * Local proxy ID start.
-     */
     srcStartIp?: pulumi.Input<string>;
-    /**
-     * Local proxy ID subnet.
-     */
     srcSubnet?: pulumi.Input<string>;
 }
 
@@ -344,60 +123,18 @@ export interface VPNIPsecPhase2InterfaceLegacyState {
  * The set of arguments for constructing a VPNIPsecPhase2InterfaceLegacy resource.
  */
 export interface VPNIPsecPhase2InterfaceLegacyArgs {
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Local proxy ID type.
-     */
     dstAddrType?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv4 end.
-     */
     dstEndIp?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID name.
-     */
     dstName?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv4 start.
-     */
     dstStartIp?: pulumi.Input<string>;
-    /**
-     * Remote proxy ID IPv4 subnet.
-     */
     dstSubnet?: pulumi.Input<string>;
-    /**
-     * IPsec tunnel name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Phase 1 determines the options required for phase 2.
-     */
     phase1name: pulumi.Input<string>;
-    /**
-     * Phase2 proposal.
-     */
     proposal?: pulumi.Input<string>;
-    /**
-     * Local proxy ID type.
-     */
     srcAddrType?: pulumi.Input<string>;
-    /**
-     * Local proxy ID end.
-     */
     srcEndIp?: pulumi.Input<string>;
-    /**
-     * Local proxy ID name.
-     */
     srcName?: pulumi.Input<string>;
-    /**
-     * Local proxy ID start.
-     */
     srcStartIp?: pulumi.Input<string>;
-    /**
-     * Local proxy ID subnet.
-     */
     srcSubnet?: pulumi.Input<string>;
 }

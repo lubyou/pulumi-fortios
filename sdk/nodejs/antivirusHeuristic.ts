@@ -4,36 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure global heuristic options. Applies to FortiOS Version `<= 7.0.0`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.AntivirusHeuristic("trname", {
- *     mode: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * Antivirus Heuristic can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/antivirusHeuristic:AntivirusHeuristic labelname AntivirusHeuristic
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/antivirusHeuristic:AntivirusHeuristic labelname AntivirusHeuristic
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class AntivirusHeuristic extends pulumi.CustomResource {
     /**
      * Get an existing AntivirusHeuristic resource's state with the given name, ID, and optional extra
@@ -62,13 +32,7 @@ export class AntivirusHeuristic extends pulumi.CustomResource {
         return obj['__pulumiType'] === AntivirusHeuristic.__pulumiType;
     }
 
-    /**
-     * Enable/disable heuristics and determine how the system behaves if heuristics detects a problem. Valid values: `pass`, `block`, `disable`.
-     */
     public readonly mode!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -100,13 +64,7 @@ export class AntivirusHeuristic extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AntivirusHeuristic resources.
  */
 export interface AntivirusHeuristicState {
-    /**
-     * Enable/disable heuristics and determine how the system behaves if heuristics detects a problem. Valid values: `pass`, `block`, `disable`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -114,12 +72,6 @@ export interface AntivirusHeuristicState {
  * The set of arguments for constructing a AntivirusHeuristic resource.
  */
 export interface AntivirusHeuristicArgs {
-    /**
-     * Enable/disable heuristics and determine how the system behaves if heuristics detects a problem. Valid values: `pass`, `block`, `disable`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

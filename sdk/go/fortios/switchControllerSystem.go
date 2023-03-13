@@ -10,48 +10,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure system-wide switch controller settings.
-//
-// ## Import
-//
-// SwitchController System can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSystem:SwitchControllerSystem labelname SwitchControllerSystem
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSystem:SwitchControllerSystem labelname SwitchControllerSystem
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerSystem struct {
 	pulumi.CustomResourceState
 
-	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
-	DataSyncInterval pulumi.IntOutput `pulumi:"dataSyncInterval"`
-	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
-	DynamicPeriodicInterval pulumi.IntOutput `pulumi:"dynamicPeriodicInterval"`
-	// MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
-	IotHoldoff pulumi.IntOutput `pulumi:"iotHoldoff"`
-	// MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
-	IotMacIdle pulumi.IntOutput `pulumi:"iotMacIdle"`
-	// IoT scan interval (2 - 4294967295 mins, default = 60 mins, 0 = disable).
-	IotScanInterval pulumi.IntOutput `pulumi:"iotScanInterval"`
-	// MAC entry's confidence value. Value is re-queried when below this value (default = 1, 0 = disable).
-	IotWeightThreshold pulumi.IntOutput `pulumi:"iotWeightThreshold"`
-	// Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
-	NacPeriodicInterval pulumi.IntOutput `pulumi:"nacPeriodicInterval"`
-	// Maximum number of parallel processes (1 - 300, default = 1).
-	ParallelProcess pulumi.IntOutput `pulumi:"parallelProcess"`
-	// Enable/disable parallel process override. Valid values: `disable`, `enable`.
-	ParallelProcessOverride pulumi.StringOutput `pulumi:"parallelProcessOverride"`
-	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
-	TunnelMode pulumi.StringOutput `pulumi:"tunnelMode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DataSyncInterval        pulumi.IntOutput       `pulumi:"dataSyncInterval"`
+	DynamicPeriodicInterval pulumi.IntOutput       `pulumi:"dynamicPeriodicInterval"`
+	IotHoldoff              pulumi.IntOutput       `pulumi:"iotHoldoff"`
+	IotMacIdle              pulumi.IntOutput       `pulumi:"iotMacIdle"`
+	IotScanInterval         pulumi.IntOutput       `pulumi:"iotScanInterval"`
+	IotWeightThreshold      pulumi.IntOutput       `pulumi:"iotWeightThreshold"`
+	NacPeriodicInterval     pulumi.IntOutput       `pulumi:"nacPeriodicInterval"`
+	ParallelProcess         pulumi.IntOutput       `pulumi:"parallelProcess"`
+	ParallelProcessOverride pulumi.StringOutput    `pulumi:"parallelProcessOverride"`
+	TunnelMode              pulumi.StringOutput    `pulumi:"tunnelMode"`
+	Vdomparam               pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerSystem registers a new resource with the given unique name, arguments, and options.
@@ -84,53 +56,31 @@ func GetSwitchControllerSystem(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerSystem resources.
 type switchControllerSystemState struct {
-	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
-	DataSyncInterval *int `pulumi:"dataSyncInterval"`
-	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
-	DynamicPeriodicInterval *int `pulumi:"dynamicPeriodicInterval"`
-	// MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
-	IotHoldoff *int `pulumi:"iotHoldoff"`
-	// MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
-	IotMacIdle *int `pulumi:"iotMacIdle"`
-	// IoT scan interval (2 - 4294967295 mins, default = 60 mins, 0 = disable).
-	IotScanInterval *int `pulumi:"iotScanInterval"`
-	// MAC entry's confidence value. Value is re-queried when below this value (default = 1, 0 = disable).
-	IotWeightThreshold *int `pulumi:"iotWeightThreshold"`
-	// Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
-	NacPeriodicInterval *int `pulumi:"nacPeriodicInterval"`
-	// Maximum number of parallel processes (1 - 300, default = 1).
-	ParallelProcess *int `pulumi:"parallelProcess"`
-	// Enable/disable parallel process override. Valid values: `disable`, `enable`.
+	DataSyncInterval        *int    `pulumi:"dataSyncInterval"`
+	DynamicPeriodicInterval *int    `pulumi:"dynamicPeriodicInterval"`
+	IotHoldoff              *int    `pulumi:"iotHoldoff"`
+	IotMacIdle              *int    `pulumi:"iotMacIdle"`
+	IotScanInterval         *int    `pulumi:"iotScanInterval"`
+	IotWeightThreshold      *int    `pulumi:"iotWeightThreshold"`
+	NacPeriodicInterval     *int    `pulumi:"nacPeriodicInterval"`
+	ParallelProcess         *int    `pulumi:"parallelProcess"`
 	ParallelProcessOverride *string `pulumi:"parallelProcessOverride"`
-	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
-	TunnelMode *string `pulumi:"tunnelMode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	TunnelMode              *string `pulumi:"tunnelMode"`
+	Vdomparam               *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerSystemState struct {
-	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
-	DataSyncInterval pulumi.IntPtrInput
-	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+	DataSyncInterval        pulumi.IntPtrInput
 	DynamicPeriodicInterval pulumi.IntPtrInput
-	// MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
-	IotHoldoff pulumi.IntPtrInput
-	// MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
-	IotMacIdle pulumi.IntPtrInput
-	// IoT scan interval (2 - 4294967295 mins, default = 60 mins, 0 = disable).
-	IotScanInterval pulumi.IntPtrInput
-	// MAC entry's confidence value. Value is re-queried when below this value (default = 1, 0 = disable).
-	IotWeightThreshold pulumi.IntPtrInput
-	// Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
-	NacPeriodicInterval pulumi.IntPtrInput
-	// Maximum number of parallel processes (1 - 300, default = 1).
-	ParallelProcess pulumi.IntPtrInput
-	// Enable/disable parallel process override. Valid values: `disable`, `enable`.
+	IotHoldoff              pulumi.IntPtrInput
+	IotMacIdle              pulumi.IntPtrInput
+	IotScanInterval         pulumi.IntPtrInput
+	IotWeightThreshold      pulumi.IntPtrInput
+	NacPeriodicInterval     pulumi.IntPtrInput
+	ParallelProcess         pulumi.IntPtrInput
 	ParallelProcessOverride pulumi.StringPtrInput
-	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
-	TunnelMode pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	TunnelMode              pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (SwitchControllerSystemState) ElementType() reflect.Type {
@@ -138,54 +88,32 @@ func (SwitchControllerSystemState) ElementType() reflect.Type {
 }
 
 type switchControllerSystemArgs struct {
-	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
-	DataSyncInterval *int `pulumi:"dataSyncInterval"`
-	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
-	DynamicPeriodicInterval *int `pulumi:"dynamicPeriodicInterval"`
-	// MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
-	IotHoldoff *int `pulumi:"iotHoldoff"`
-	// MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
-	IotMacIdle *int `pulumi:"iotMacIdle"`
-	// IoT scan interval (2 - 4294967295 mins, default = 60 mins, 0 = disable).
-	IotScanInterval *int `pulumi:"iotScanInterval"`
-	// MAC entry's confidence value. Value is re-queried when below this value (default = 1, 0 = disable).
-	IotWeightThreshold *int `pulumi:"iotWeightThreshold"`
-	// Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
-	NacPeriodicInterval *int `pulumi:"nacPeriodicInterval"`
-	// Maximum number of parallel processes (1 - 300, default = 1).
-	ParallelProcess *int `pulumi:"parallelProcess"`
-	// Enable/disable parallel process override. Valid values: `disable`, `enable`.
+	DataSyncInterval        *int    `pulumi:"dataSyncInterval"`
+	DynamicPeriodicInterval *int    `pulumi:"dynamicPeriodicInterval"`
+	IotHoldoff              *int    `pulumi:"iotHoldoff"`
+	IotMacIdle              *int    `pulumi:"iotMacIdle"`
+	IotScanInterval         *int    `pulumi:"iotScanInterval"`
+	IotWeightThreshold      *int    `pulumi:"iotWeightThreshold"`
+	NacPeriodicInterval     *int    `pulumi:"nacPeriodicInterval"`
+	ParallelProcess         *int    `pulumi:"parallelProcess"`
 	ParallelProcessOverride *string `pulumi:"parallelProcessOverride"`
-	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
-	TunnelMode *string `pulumi:"tunnelMode"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	TunnelMode              *string `pulumi:"tunnelMode"`
+	Vdomparam               *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerSystem resource.
 type SwitchControllerSystemArgs struct {
-	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
-	DataSyncInterval pulumi.IntPtrInput
-	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+	DataSyncInterval        pulumi.IntPtrInput
 	DynamicPeriodicInterval pulumi.IntPtrInput
-	// MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
-	IotHoldoff pulumi.IntPtrInput
-	// MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
-	IotMacIdle pulumi.IntPtrInput
-	// IoT scan interval (2 - 4294967295 mins, default = 60 mins, 0 = disable).
-	IotScanInterval pulumi.IntPtrInput
-	// MAC entry's confidence value. Value is re-queried when below this value (default = 1, 0 = disable).
-	IotWeightThreshold pulumi.IntPtrInput
-	// Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
-	NacPeriodicInterval pulumi.IntPtrInput
-	// Maximum number of parallel processes (1 - 300, default = 1).
-	ParallelProcess pulumi.IntPtrInput
-	// Enable/disable parallel process override. Valid values: `disable`, `enable`.
+	IotHoldoff              pulumi.IntPtrInput
+	IotMacIdle              pulumi.IntPtrInput
+	IotScanInterval         pulumi.IntPtrInput
+	IotWeightThreshold      pulumi.IntPtrInput
+	NacPeriodicInterval     pulumi.IntPtrInput
+	ParallelProcess         pulumi.IntPtrInput
 	ParallelProcessOverride pulumi.StringPtrInput
-	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
-	TunnelMode pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	TunnelMode              pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (SwitchControllerSystemArgs) ElementType() reflect.Type {
@@ -214,7 +142,7 @@ func (i *SwitchControllerSystem) ToSwitchControllerSystemOutputWithContext(ctx c
 // SwitchControllerSystemArrayInput is an input type that accepts SwitchControllerSystemArray and SwitchControllerSystemArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSystemArrayInput` via:
 //
-//          SwitchControllerSystemArray{ SwitchControllerSystemArgs{...} }
+//	SwitchControllerSystemArray{ SwitchControllerSystemArgs{...} }
 type SwitchControllerSystemArrayInput interface {
 	pulumi.Input
 
@@ -239,7 +167,7 @@ func (i SwitchControllerSystemArray) ToSwitchControllerSystemArrayOutputWithCont
 // SwitchControllerSystemMapInput is an input type that accepts SwitchControllerSystemMap and SwitchControllerSystemMapOutput values.
 // You can construct a concrete instance of `SwitchControllerSystemMapInput` via:
 //
-//          SwitchControllerSystemMap{ "key": SwitchControllerSystemArgs{...} }
+//	SwitchControllerSystemMap{ "key": SwitchControllerSystemArgs{...} }
 type SwitchControllerSystemMapInput interface {
 	pulumi.Input
 
@@ -273,6 +201,50 @@ func (o SwitchControllerSystemOutput) ToSwitchControllerSystemOutput() SwitchCon
 
 func (o SwitchControllerSystemOutput) ToSwitchControllerSystemOutputWithContext(ctx context.Context) SwitchControllerSystemOutput {
 	return o
+}
+
+func (o SwitchControllerSystemOutput) DataSyncInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSystem) pulumi.IntOutput { return v.DataSyncInterval }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSystemOutput) DynamicPeriodicInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSystem) pulumi.IntOutput { return v.DynamicPeriodicInterval }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSystemOutput) IotHoldoff() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSystem) pulumi.IntOutput { return v.IotHoldoff }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSystemOutput) IotMacIdle() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSystem) pulumi.IntOutput { return v.IotMacIdle }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSystemOutput) IotScanInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSystem) pulumi.IntOutput { return v.IotScanInterval }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSystemOutput) IotWeightThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSystem) pulumi.IntOutput { return v.IotWeightThreshold }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSystemOutput) NacPeriodicInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSystem) pulumi.IntOutput { return v.NacPeriodicInterval }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSystemOutput) ParallelProcess() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSystem) pulumi.IntOutput { return v.ParallelProcess }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSystemOutput) ParallelProcessOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSystem) pulumi.StringOutput { return v.ParallelProcessOverride }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSystemOutput) TunnelMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSystem) pulumi.StringOutput { return v.TunnelMode }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSystemOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSystem) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerSystemArrayOutput struct{ *pulumi.OutputState }

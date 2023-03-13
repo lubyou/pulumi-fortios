@@ -7,210 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiClient policy realm.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trname4, err := fortios.NewVpnIpsecPhase1Interface(ctx, "trname4", &fortios.VpnIpsecPhase1InterfaceArgs{
-// 			AcctVerify:             pulumi.String("disable"),
-// 			AddGwRoute:             pulumi.String("disable"),
-// 			AddRoute:               pulumi.String("enable"),
-// 			AssignIp:               pulumi.String("enable"),
-// 			AssignIpFrom:           pulumi.String("range"),
-// 			Authmethod:             pulumi.String("psk"),
-// 			Authusrgrp:             pulumi.String("Guest-group"),
-// 			AutoDiscoveryForwarder: pulumi.String("disable"),
-// 			AutoDiscoveryPsk:       pulumi.String("disable"),
-// 			AutoDiscoveryReceiver:  pulumi.String("disable"),
-// 			AutoDiscoverySender:    pulumi.String("disable"),
-// 			AutoNegotiate:          pulumi.String("enable"),
-// 			CertIdValidation:       pulumi.String("enable"),
-// 			ChildlessIke:           pulumi.String("disable"),
-// 			ClientAutoNegotiate:    pulumi.String("disable"),
-// 			ClientKeepAlive:        pulumi.String("disable"),
-// 			Comments:               pulumi.String("VPN: Dialup_IPsec (Created by VPN wizard)"),
-// 			DefaultGw:              pulumi.String("0.0.0.0"),
-// 			DefaultGwPriority:      pulumi.Int(0),
-// 			Dhgrp:                  pulumi.String("14 5"),
-// 			DigitalSignatureAuth:   pulumi.String("disable"),
-// 			Distance:               pulumi.Int(15),
-// 			DnsMode:                pulumi.String("auto"),
-// 			Dpd:                    pulumi.String("on-idle"),
-// 			DpdRetrycount:          pulumi.Int(3),
-// 			DpdRetryinterval:       pulumi.String("60"),
-// 			Eap:                    pulumi.String("disable"),
-// 			EapIdentity:            pulumi.String("use-id-payload"),
-// 			EncapLocalGw4:          pulumi.String("0.0.0.0"),
-// 			EncapLocalGw6:          pulumi.String("::"),
-// 			EncapRemoteGw4:         pulumi.String("0.0.0.0"),
-// 			EncapRemoteGw6:         pulumi.String("::"),
-// 			Encapsulation:          pulumi.String("none"),
-// 			EncapsulationAddress:   pulumi.String("ike"),
-// 			EnforceUniqueId:        pulumi.String("disable"),
-// 			ExchangeInterfaceIp:    pulumi.String("disable"),
-// 			ExchangeIpAddr4:        pulumi.String("0.0.0.0"),
-// 			ExchangeIpAddr6:        pulumi.String("::"),
-// 			ForticlientEnforcement: pulumi.String("disable"),
-// 			Fragmentation:          pulumi.String("enable"),
-// 			FragmentationMtu:       pulumi.Int(1200),
-// 			GroupAuthentication:    pulumi.String("disable"),
-// 			HaSyncEspSeqno:         pulumi.String("enable"),
-// 			IdleTimeout:            pulumi.String("disable"),
-// 			IdleTimeoutinterval:    pulumi.Int(15),
-// 			IkeVersion:             pulumi.String("1"),
-// 			IncludeLocalLan:        pulumi.String("disable"),
-// 			Interface:              pulumi.String("port4"),
-// 			IpVersion:              pulumi.String("4"),
-// 			Ipv4DnsServer1:         pulumi.String("0.0.0.0"),
-// 			Ipv4DnsServer2:         pulumi.String("0.0.0.0"),
-// 			Ipv4DnsServer3:         pulumi.String("0.0.0.0"),
-// 			Ipv4EndIp:              pulumi.String("10.10.10.10"),
-// 			Ipv4Netmask:            pulumi.String("255.255.255.192"),
-// 			Ipv4SplitInclude:       pulumi.String("FIREWALL_AUTH_PORTAL_ADDRESS"),
-// 			Ipv4StartIp:            pulumi.String("10.10.10.1"),
-// 			Ipv4WinsServer1:        pulumi.String("0.0.0.0"),
-// 			Ipv4WinsServer2:        pulumi.String("0.0.0.0"),
-// 			Ipv6DnsServer1:         pulumi.String("::"),
-// 			Ipv6DnsServer2:         pulumi.String("::"),
-// 			Ipv6DnsServer3:         pulumi.String("::"),
-// 			Ipv6EndIp:              pulumi.String("::"),
-// 			Ipv6Prefix:             pulumi.Int(128),
-// 			Ipv6StartIp:            pulumi.String("::"),
-// 			Keepalive:              pulumi.Int(10),
-// 			Keylife:                pulumi.Int(86400),
-// 			LocalGw:                pulumi.String("0.0.0.0"),
-// 			LocalGw6:               pulumi.String("::"),
-// 			LocalidType:            pulumi.String("auto"),
-// 			MeshSelectorType:       pulumi.String("disable"),
-// 			Mode:                   pulumi.String("aggressive"),
-// 			ModeCfg:                pulumi.String("enable"),
-// 			MonitorHoldDownDelay:   pulumi.Int(0),
-// 			MonitorHoldDownTime:    pulumi.String("00:00"),
-// 			MonitorHoldDownType:    pulumi.String("immediate"),
-// 			MonitorHoldDownWeekday: pulumi.String("sunday"),
-// 			Nattraversal:           pulumi.String("enable"),
-// 			NegotiateTimeout:       pulumi.Int(30),
-// 			NetDevice:              pulumi.String("enable"),
-// 			PassiveMode:            pulumi.String("disable"),
-// 			Peertype:               pulumi.String("any"),
-// 			Psksecret:              pulumi.String("NCIEW32930293203932"),
-// 			Ppk:                    pulumi.String("disable"),
-// 			Priority:               pulumi.Int(0),
-// 			Proposal:               pulumi.String("aes128-sha256 aes256-sha256 aes128-sha1 aes256-sha1"),
-// 			Reauth:                 pulumi.String("disable"),
-// 			Rekey:                  pulumi.String("enable"),
-// 			RemoteGw:               pulumi.String("0.0.0.0"),
-// 			RemoteGw6:              pulumi.String("::"),
-// 			RsaSignatureFormat:     pulumi.String("pkcs1"),
-// 			SavePassword:           pulumi.String("enable"),
-// 			SendCertChain:          pulumi.String("enable"),
-// 			SignatureHashAlg:       pulumi.String("sha2-512 sha2-384 sha2-256 sha1"),
-// 			SuiteB:                 pulumi.String("disable"),
-// 			TunnelSearch:           pulumi.String("selectors"),
-// 			Type:                   pulumi.String("dynamic"),
-// 			UnitySupport:           pulumi.String("enable"),
-// 			WizardType:             pulumi.String("dialup-forticlient"),
-// 			Xauthtype:              pulumi.String("auto"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		trname3, err := fortios.NewVpnIpsecPhase2Interface(ctx, "trname3", &fortios.VpnIpsecPhase2InterfaceArgs{
-// 			AddRoute:               pulumi.String("phase1"),
-// 			AutoDiscoveryForwarder: pulumi.String("phase1"),
-// 			AutoDiscoverySender:    pulumi.String("phase1"),
-// 			AutoNegotiate:          pulumi.String("disable"),
-// 			DhcpIpsec:              pulumi.String("disable"),
-// 			Dhgrp:                  pulumi.String("14 5"),
-// 			DstAddrType:            pulumi.String("subnet"),
-// 			DstEndIp:               pulumi.String("0.0.0.0"),
-// 			DstEndIp6:              pulumi.String("::"),
-// 			DstPort:                pulumi.Int(0),
-// 			DstStartIp:             pulumi.String("0.0.0.0"),
-// 			DstStartIp6:            pulumi.String("::"),
-// 			DstSubnet:              pulumi.String("0.0.0.0 0.0.0.0"),
-// 			DstSubnet6:             pulumi.String("::/0"),
-// 			Encapsulation:          pulumi.String("tunnel-mode"),
-// 			Keepalive:              pulumi.String("disable"),
-// 			KeylifeType:            pulumi.String("seconds"),
-// 			Keylifekbs:             pulumi.Int(5120),
-// 			Keylifeseconds:         pulumi.Int(43200),
-// 			L2tp:                   pulumi.String("disable"),
-// 			Pfs:                    pulumi.String("enable"),
-// 			Phase1name:             trname4.Name,
-// 			Proposal:               pulumi.String("aes128-sha1 aes256-sha1 aes128-sha256 aes256-sha256 aes128gcm aes256gcm chacha20poly1305"),
-// 			Protocol:               pulumi.Int(0),
-// 			Replay:                 pulumi.String("enable"),
-// 			RouteOverlap:           pulumi.String("use-new"),
-// 			SingleSource:           pulumi.String("disable"),
-// 			SrcAddrType:            pulumi.String("subnet"),
-// 			SrcEndIp:               pulumi.String("0.0.0.0"),
-// 			SrcEndIp6:              pulumi.String("::"),
-// 			SrcPort:                pulumi.Int(0),
-// 			SrcStartIp:             pulumi.String("0.0.0.0"),
-// 			SrcStartIp6:            pulumi.String("::"),
-// 			SrcSubnet:              pulumi.String("0.0.0.0 0.0.0.0"),
-// 			SrcSubnet6:             pulumi.String("::/0"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewVpnIpsecForticlient(ctx, "trname", &fortios.VpnIpsecForticlientArgs{
-// 			Phase2name:    trname3.Name,
-// 			Realm:         pulumi.String("1"),
-// 			Status:        pulumi.String("enable"),
-// 			Usergroupname: pulumi.String("Guest-group"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// VpnIpsec Forticlient can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnIpsecForticlient:VpnIpsecForticlient labelname {{realm}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnIpsecForticlient:VpnIpsecForticlient labelname {{realm}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnIpsecForticlient struct {
 	pulumi.CustomResourceState
 
-	// Phase 2 tunnel name that you defined in the FortiClient dialup configuration.
-	Phase2name pulumi.StringOutput `pulumi:"phase2name"`
-	// FortiClient realm name.
-	Realm pulumi.StringOutput `pulumi:"realm"`
-	// Enable/disable this FortiClient configuration. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// User group name for FortiClient users.
-	Usergroupname pulumi.StringOutput `pulumi:"usergroupname"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Phase2name    pulumi.StringOutput    `pulumi:"phase2name"`
+	Realm         pulumi.StringOutput    `pulumi:"realm"`
+	Status        pulumi.StringOutput    `pulumi:"status"`
+	Usergroupname pulumi.StringOutput    `pulumi:"usergroupname"`
+	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewVpnIpsecForticlient registers a new resource with the given unique name, arguments, and options.
@@ -249,29 +57,19 @@ func GetVpnIpsecForticlient(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnIpsecForticlient resources.
 type vpnIpsecForticlientState struct {
-	// Phase 2 tunnel name that you defined in the FortiClient dialup configuration.
-	Phase2name *string `pulumi:"phase2name"`
-	// FortiClient realm name.
-	Realm *string `pulumi:"realm"`
-	// Enable/disable this FortiClient configuration. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// User group name for FortiClient users.
+	Phase2name    *string `pulumi:"phase2name"`
+	Realm         *string `pulumi:"realm"`
+	Status        *string `pulumi:"status"`
 	Usergroupname *string `pulumi:"usergroupname"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 type VpnIpsecForticlientState struct {
-	// Phase 2 tunnel name that you defined in the FortiClient dialup configuration.
-	Phase2name pulumi.StringPtrInput
-	// FortiClient realm name.
-	Realm pulumi.StringPtrInput
-	// Enable/disable this FortiClient configuration. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// User group name for FortiClient users.
+	Phase2name    pulumi.StringPtrInput
+	Realm         pulumi.StringPtrInput
+	Status        pulumi.StringPtrInput
 	Usergroupname pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (VpnIpsecForticlientState) ElementType() reflect.Type {
@@ -279,30 +77,20 @@ func (VpnIpsecForticlientState) ElementType() reflect.Type {
 }
 
 type vpnIpsecForticlientArgs struct {
-	// Phase 2 tunnel name that you defined in the FortiClient dialup configuration.
-	Phase2name string `pulumi:"phase2name"`
-	// FortiClient realm name.
-	Realm *string `pulumi:"realm"`
-	// Enable/disable this FortiClient configuration. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// User group name for FortiClient users.
-	Usergroupname string `pulumi:"usergroupname"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Phase2name    string  `pulumi:"phase2name"`
+	Realm         *string `pulumi:"realm"`
+	Status        *string `pulumi:"status"`
+	Usergroupname string  `pulumi:"usergroupname"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VpnIpsecForticlient resource.
 type VpnIpsecForticlientArgs struct {
-	// Phase 2 tunnel name that you defined in the FortiClient dialup configuration.
-	Phase2name pulumi.StringInput
-	// FortiClient realm name.
-	Realm pulumi.StringPtrInput
-	// Enable/disable this FortiClient configuration. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// User group name for FortiClient users.
+	Phase2name    pulumi.StringInput
+	Realm         pulumi.StringPtrInput
+	Status        pulumi.StringPtrInput
 	Usergroupname pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (VpnIpsecForticlientArgs) ElementType() reflect.Type {
@@ -331,7 +119,7 @@ func (i *VpnIpsecForticlient) ToVpnIpsecForticlientOutputWithContext(ctx context
 // VpnIpsecForticlientArrayInput is an input type that accepts VpnIpsecForticlientArray and VpnIpsecForticlientArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecForticlientArrayInput` via:
 //
-//          VpnIpsecForticlientArray{ VpnIpsecForticlientArgs{...} }
+//	VpnIpsecForticlientArray{ VpnIpsecForticlientArgs{...} }
 type VpnIpsecForticlientArrayInput interface {
 	pulumi.Input
 
@@ -356,7 +144,7 @@ func (i VpnIpsecForticlientArray) ToVpnIpsecForticlientArrayOutputWithContext(ct
 // VpnIpsecForticlientMapInput is an input type that accepts VpnIpsecForticlientMap and VpnIpsecForticlientMapOutput values.
 // You can construct a concrete instance of `VpnIpsecForticlientMapInput` via:
 //
-//          VpnIpsecForticlientMap{ "key": VpnIpsecForticlientArgs{...} }
+//	VpnIpsecForticlientMap{ "key": VpnIpsecForticlientArgs{...} }
 type VpnIpsecForticlientMapInput interface {
 	pulumi.Input
 
@@ -390,6 +178,26 @@ func (o VpnIpsecForticlientOutput) ToVpnIpsecForticlientOutput() VpnIpsecForticl
 
 func (o VpnIpsecForticlientOutput) ToVpnIpsecForticlientOutputWithContext(ctx context.Context) VpnIpsecForticlientOutput {
 	return o
+}
+
+func (o VpnIpsecForticlientOutput) Phase2name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecForticlient) pulumi.StringOutput { return v.Phase2name }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecForticlientOutput) Realm() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecForticlient) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecForticlientOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecForticlient) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecForticlientOutput) Usergroupname() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecForticlient) pulumi.StringOutput { return v.Usergroupname }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecForticlientOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnIpsecForticlient) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type VpnIpsecForticlientArrayOutput struct{ *pulumi.OutputState }

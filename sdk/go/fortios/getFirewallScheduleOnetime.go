@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewallschedule onetime
 func LookupFirewallScheduleOnetime(ctx *pulumi.Context, args *LookupFirewallScheduleOnetimeArgs, opts ...pulumi.InvokeOption) (*LookupFirewallScheduleOnetimeResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallScheduleOnetimeResult
@@ -23,27 +22,19 @@ func LookupFirewallScheduleOnetime(ctx *pulumi.Context, args *LookupFirewallSche
 
 // A collection of arguments for invoking GetFirewallScheduleOnetime.
 type LookupFirewallScheduleOnetimeArgs struct {
-	// Specify the name of the desired firewallschedule onetime.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallScheduleOnetime.
 type LookupFirewallScheduleOnetimeResult struct {
-	// Color of icon on the GUI.
-	Color int `pulumi:"color"`
-	// Schedule end date and time, format hh:mm yyyy/mm/dd.
-	End string `pulumi:"end"`
-	// Write an event log message this many days before the schedule expires.
-	ExpirationDays int `pulumi:"expirationDays"`
-	// Security Fabric global object setting.
-	FabricObject string `pulumi:"fabricObject"`
+	Color          int    `pulumi:"color"`
+	End            string `pulumi:"end"`
+	ExpirationDays int    `pulumi:"expirationDays"`
+	FabricObject   string `pulumi:"fabricObject"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Onetime schedule name.
-	Name string `pulumi:"name"`
-	// Schedule start date and time, format hh:mm yyyy/mm/dd.
+	Id        string  `pulumi:"id"`
+	Name      string  `pulumi:"name"`
 	Start     string  `pulumi:"start"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -63,9 +54,7 @@ func LookupFirewallScheduleOnetimeOutput(ctx *pulumi.Context, args LookupFirewal
 
 // A collection of arguments for invoking GetFirewallScheduleOnetime.
 type LookupFirewallScheduleOnetimeOutputArgs struct {
-	// Specify the name of the desired firewallschedule onetime.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -88,22 +77,18 @@ func (o LookupFirewallScheduleOnetimeResultOutput) ToLookupFirewallScheduleOneti
 	return o
 }
 
-// Color of icon on the GUI.
 func (o LookupFirewallScheduleOnetimeResultOutput) Color() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallScheduleOnetimeResult) int { return v.Color }).(pulumi.IntOutput)
 }
 
-// Schedule end date and time, format hh:mm yyyy/mm/dd.
 func (o LookupFirewallScheduleOnetimeResultOutput) End() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallScheduleOnetimeResult) string { return v.End }).(pulumi.StringOutput)
 }
 
-// Write an event log message this many days before the schedule expires.
 func (o LookupFirewallScheduleOnetimeResultOutput) ExpirationDays() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallScheduleOnetimeResult) int { return v.ExpirationDays }).(pulumi.IntOutput)
 }
 
-// Security Fabric global object setting.
 func (o LookupFirewallScheduleOnetimeResultOutput) FabricObject() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallScheduleOnetimeResult) string { return v.FabricObject }).(pulumi.StringOutput)
 }
@@ -113,12 +98,10 @@ func (o LookupFirewallScheduleOnetimeResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallScheduleOnetimeResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Onetime schedule name.
 func (o LookupFirewallScheduleOnetimeResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallScheduleOnetimeResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Schedule start date and time, format hh:mm yyyy/mm/dd.
 func (o LookupFirewallScheduleOnetimeResultOutput) Start() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallScheduleOnetimeResult) string { return v.Start }).(pulumi.StringOutput)
 }

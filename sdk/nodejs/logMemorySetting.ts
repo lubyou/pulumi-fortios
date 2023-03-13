@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Settings for memory buffer.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.LogMemorySetting("trname", {
- *     diskfull: "overwrite",
- *     status: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * LogMemory Setting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/logMemorySetting:LogMemorySetting labelname LogMemorySetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/logMemorySetting:LogMemorySetting labelname LogMemorySetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class LogMemorySetting extends pulumi.CustomResource {
     /**
      * Get an existing LogMemorySetting resource's state with the given name, ID, and optional extra
@@ -63,17 +32,8 @@ export class LogMemorySetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogMemorySetting.__pulumiType;
     }
 
-    /**
-     * Action to take when memory is full. Valid values: `overwrite`.
-     */
     public readonly diskfull!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging to the FortiGate's memory. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -107,17 +67,8 @@ export class LogMemorySetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogMemorySetting resources.
  */
 export interface LogMemorySettingState {
-    /**
-     * Action to take when memory is full. Valid values: `overwrite`.
-     */
     diskfull?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging to the FortiGate's memory. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -125,16 +76,7 @@ export interface LogMemorySettingState {
  * The set of arguments for constructing a LogMemorySetting resource.
  */
 export interface LogMemorySettingArgs {
-    /**
-     * Action to take when memory is full. Valid values: `overwrite`.
-     */
     diskfull?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging to the FortiGate's memory. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

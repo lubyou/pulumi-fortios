@@ -2,63 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IS-IS.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.RouterIsis("trname", {
- *     adjacencyCheck: "disable",
- *     adjacencyCheck6: "disable",
- *     advPassiveOnly: "disable",
- *     advPassiveOnly6: "disable",
- *     authModeL1: "password",
- *     authModeL2: "password",
- *     authSendonlyL1: "disable",
- *     authSendonlyL2: "disable",
- *     defaultOriginate: "disable",
- *     defaultOriginate6: "disable",
- *     dynamicHostname: "disable",
- *     ignoreLspErrors: "disable",
- *     isType: "level-1-2",
- *     lspGenIntervalL1: 30,
- *     lspGenIntervalL2: 30,
- *     lspRefreshInterval: 900,
- *     maxLspLifetime: 1200,
- *     metricStyle: "narrow",
- *     overloadBit: "disable",
- *     redistribute6L1: "disable",
- *     redistribute6L2: "disable",
- *     redistributeL1: "disable",
- *     redistributeL2: "disable",
- *     spfIntervalExpL1: "500 50000",
- *     spfIntervalExpL2: "500 50000",
- * });
- * ```
- *
- * ## Import
- *
- * Router Isis can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerIsis:RouterIsis labelname RouterIsis
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerIsis:RouterIsis labelname RouterIsis
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterIsis extends pulumi.CustomResource {
     /**
      * Get an existing RouterIsis resource's state with the given name, ID, and optional extra
@@ -87,177 +34,48 @@ export class RouterIsis extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterIsis.__pulumiType;
     }
 
-    /**
-     * Enable/disable adjacency check. Valid values: `enable`, `disable`.
-     */
     public readonly adjacencyCheck!: pulumi.Output<string>;
-    /**
-     * Enable/disable IPv6 adjacency check. Valid values: `enable`, `disable`.
-     */
     public readonly adjacencyCheck6!: pulumi.Output<string>;
-    /**
-     * Enable/disable IS-IS advertisement of passive interfaces only. Valid values: `enable`, `disable`.
-     */
     public readonly advPassiveOnly!: pulumi.Output<string>;
-    /**
-     * Enable/disable IPv6 IS-IS advertisement of passive interfaces only. Valid values: `enable`, `disable`.
-     */
     public readonly advPassiveOnly6!: pulumi.Output<string>;
-    /**
-     * Authentication key-chain for level 1 PDUs.
-     */
     public readonly authKeychainL1!: pulumi.Output<string>;
-    /**
-     * Authentication key-chain for level 2 PDUs.
-     */
     public readonly authKeychainL2!: pulumi.Output<string>;
-    /**
-     * Level 1 authentication mode. Valid values: `md5`, `password`.
-     */
     public readonly authModeL1!: pulumi.Output<string>;
-    /**
-     * Level 2 authentication mode. Valid values: `md5`, `password`.
-     */
     public readonly authModeL2!: pulumi.Output<string>;
-    /**
-     * Authentication password for level 1 PDUs.
-     */
     public readonly authPasswordL1!: pulumi.Output<string | undefined>;
-    /**
-     * Authentication password for level 2 PDUs.
-     */
     public readonly authPasswordL2!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable level 1 authentication send-only. Valid values: `enable`, `disable`.
-     */
     public readonly authSendonlyL1!: pulumi.Output<string>;
-    /**
-     * Enable/disable level 2 authentication send-only. Valid values: `enable`, `disable`.
-     */
     public readonly authSendonlyL2!: pulumi.Output<string>;
-    /**
-     * Enable/disable distribution of default route information. Valid values: `enable`, `disable`.
-     */
     public readonly defaultOriginate!: pulumi.Output<string>;
-    /**
-     * Enable/disable distribution of default IPv6 route information. Valid values: `enable`, `disable`.
-     */
     public readonly defaultOriginate6!: pulumi.Output<string>;
-    /**
-     * Enable/disable dynamic hostname. Valid values: `enable`, `disable`.
-     */
     public readonly dynamicHostname!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable ignoring of LSP errors with bad checksums. Valid values: `enable`, `disable`.
-     */
     public readonly ignoreLspErrors!: pulumi.Output<string>;
-    /**
-     * IS type. Valid values: `level-1-2`, `level-1`, `level-2-only`.
-     */
     public readonly isType!: pulumi.Output<string>;
-    /**
-     * IS-IS interface configuration. The structure of `isisInterface` block is documented below.
-     */
     public readonly isisInterfaces!: pulumi.Output<outputs.RouterIsisIsisInterface[] | undefined>;
-    /**
-     * IS-IS net configuration. The structure of `isisNet` block is documented below.
-     */
     public readonly isisNets!: pulumi.Output<outputs.RouterIsisIsisNet[] | undefined>;
-    /**
-     * Minimum interval for level 1 LSP regenerating.
-     */
     public readonly lspGenIntervalL1!: pulumi.Output<number>;
-    /**
-     * Minimum interval for level 2 LSP regenerating.
-     */
     public readonly lspGenIntervalL2!: pulumi.Output<number>;
-    /**
-     * LSP refresh time in seconds.
-     */
     public readonly lspRefreshInterval!: pulumi.Output<number>;
-    /**
-     * Maximum LSP lifetime in seconds.
-     */
     public readonly maxLspLifetime!: pulumi.Output<number>;
-    /**
-     * Use old-style (ISO 10589) or new-style packet formats Valid values: `narrow`, `wide`, `transition`, `narrow-transition`, `narrow-transition-l1`, `narrow-transition-l2`, `wide-l1`, `wide-l2`, `wide-transition`, `wide-transition-l1`, `wide-transition-l2`, `transition-l1`, `transition-l2`.
-     */
     public readonly metricStyle!: pulumi.Output<string>;
-    /**
-     * Enable/disable signal other routers not to use us in SPF. Valid values: `enable`, `disable`.
-     */
     public readonly overloadBit!: pulumi.Output<string>;
-    /**
-     * Overload-bit only temporarily after reboot.
-     */
     public readonly overloadBitOnStartup!: pulumi.Output<number>;
-    /**
-     * Suppress overload-bit for the specific prefixes. Valid values: `external`, `interlevel`.
-     */
     public readonly overloadBitSuppress!: pulumi.Output<string>;
-    /**
-     * Enable/disable redistribution of level 1 IPv6 routes into level 2. Valid values: `enable`, `disable`.
-     */
     public readonly redistribute6L1!: pulumi.Output<string>;
-    /**
-     * Access-list for IPv6 route redistribution from l1 to l2.
-     */
     public readonly redistribute6L1List!: pulumi.Output<string>;
-    /**
-     * Enable/disable redistribution of level 2 IPv6 routes into level 1. Valid values: `enable`, `disable`.
-     */
     public readonly redistribute6L2!: pulumi.Output<string>;
-    /**
-     * Access-list for IPv6 route redistribution from l2 to l1.
-     */
     public readonly redistribute6L2List!: pulumi.Output<string>;
-    /**
-     * IS-IS IPv6 redistribution for routing protocols. The structure of `redistribute6` block is documented below.
-     */
     public readonly redistribute6s!: pulumi.Output<outputs.RouterIsisRedistribute6[] | undefined>;
-    /**
-     * Enable/disable redistribution of level 1 routes into level 2. Valid values: `enable`, `disable`.
-     */
     public readonly redistributeL1!: pulumi.Output<string>;
-    /**
-     * Access-list for route redistribution from l1 to l2.
-     */
     public readonly redistributeL1List!: pulumi.Output<string>;
-    /**
-     * Enable/disable redistribution of level 2 routes into level 1. Valid values: `enable`, `disable`.
-     */
     public readonly redistributeL2!: pulumi.Output<string>;
-    /**
-     * Access-list for route redistribution from l2 to l1.
-     */
     public readonly redistributeL2List!: pulumi.Output<string>;
-    /**
-     * IS-IS redistribute protocols. The structure of `redistribute` block is documented below.
-     */
     public readonly redistributes!: pulumi.Output<outputs.RouterIsisRedistribute[] | undefined>;
-    /**
-     * Level 1 SPF calculation delay.
-     */
     public readonly spfIntervalExpL1!: pulumi.Output<string>;
-    /**
-     * Level 2 SPF calculation delay.
-     */
     public readonly spfIntervalExpL2!: pulumi.Output<string>;
-    /**
-     * IS-IS IPv6 summary address. The structure of `summaryAddress6` block is documented below.
-     */
     public readonly summaryAddress6s!: pulumi.Output<outputs.RouterIsisSummaryAddress6[] | undefined>;
-    /**
-     * IS-IS summary addresses. The structure of `summaryAddress` block is documented below.
-     */
     public readonly summaryAddresses!: pulumi.Output<outputs.RouterIsisSummaryAddress[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -326,8 +144,8 @@ export class RouterIsis extends pulumi.CustomResource {
             resourceInputs["authKeychainL2"] = args ? args.authKeychainL2 : undefined;
             resourceInputs["authModeL1"] = args ? args.authModeL1 : undefined;
             resourceInputs["authModeL2"] = args ? args.authModeL2 : undefined;
-            resourceInputs["authPasswordL1"] = args ? args.authPasswordL1 : undefined;
-            resourceInputs["authPasswordL2"] = args ? args.authPasswordL2 : undefined;
+            resourceInputs["authPasswordL1"] = args?.authPasswordL1 ? pulumi.secret(args.authPasswordL1) : undefined;
+            resourceInputs["authPasswordL2"] = args?.authPasswordL2 ? pulumi.secret(args.authPasswordL2) : undefined;
             resourceInputs["authSendonlyL1"] = args ? args.authSendonlyL1 : undefined;
             resourceInputs["authSendonlyL2"] = args ? args.authSendonlyL2 : undefined;
             resourceInputs["defaultOriginate"] = args ? args.defaultOriginate : undefined;
@@ -363,6 +181,8 @@ export class RouterIsis extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["authPasswordL1", "authPasswordL2"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(RouterIsis.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -371,177 +191,48 @@ export class RouterIsis extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterIsis resources.
  */
 export interface RouterIsisState {
-    /**
-     * Enable/disable adjacency check. Valid values: `enable`, `disable`.
-     */
     adjacencyCheck?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPv6 adjacency check. Valid values: `enable`, `disable`.
-     */
     adjacencyCheck6?: pulumi.Input<string>;
-    /**
-     * Enable/disable IS-IS advertisement of passive interfaces only. Valid values: `enable`, `disable`.
-     */
     advPassiveOnly?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPv6 IS-IS advertisement of passive interfaces only. Valid values: `enable`, `disable`.
-     */
     advPassiveOnly6?: pulumi.Input<string>;
-    /**
-     * Authentication key-chain for level 1 PDUs.
-     */
     authKeychainL1?: pulumi.Input<string>;
-    /**
-     * Authentication key-chain for level 2 PDUs.
-     */
     authKeychainL2?: pulumi.Input<string>;
-    /**
-     * Level 1 authentication mode. Valid values: `md5`, `password`.
-     */
     authModeL1?: pulumi.Input<string>;
-    /**
-     * Level 2 authentication mode. Valid values: `md5`, `password`.
-     */
     authModeL2?: pulumi.Input<string>;
-    /**
-     * Authentication password for level 1 PDUs.
-     */
     authPasswordL1?: pulumi.Input<string>;
-    /**
-     * Authentication password for level 2 PDUs.
-     */
     authPasswordL2?: pulumi.Input<string>;
-    /**
-     * Enable/disable level 1 authentication send-only. Valid values: `enable`, `disable`.
-     */
     authSendonlyL1?: pulumi.Input<string>;
-    /**
-     * Enable/disable level 2 authentication send-only. Valid values: `enable`, `disable`.
-     */
     authSendonlyL2?: pulumi.Input<string>;
-    /**
-     * Enable/disable distribution of default route information. Valid values: `enable`, `disable`.
-     */
     defaultOriginate?: pulumi.Input<string>;
-    /**
-     * Enable/disable distribution of default IPv6 route information. Valid values: `enable`, `disable`.
-     */
     defaultOriginate6?: pulumi.Input<string>;
-    /**
-     * Enable/disable dynamic hostname. Valid values: `enable`, `disable`.
-     */
     dynamicHostname?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable ignoring of LSP errors with bad checksums. Valid values: `enable`, `disable`.
-     */
     ignoreLspErrors?: pulumi.Input<string>;
-    /**
-     * IS type. Valid values: `level-1-2`, `level-1`, `level-2-only`.
-     */
     isType?: pulumi.Input<string>;
-    /**
-     * IS-IS interface configuration. The structure of `isisInterface` block is documented below.
-     */
     isisInterfaces?: pulumi.Input<pulumi.Input<inputs.RouterIsisIsisInterface>[]>;
-    /**
-     * IS-IS net configuration. The structure of `isisNet` block is documented below.
-     */
     isisNets?: pulumi.Input<pulumi.Input<inputs.RouterIsisIsisNet>[]>;
-    /**
-     * Minimum interval for level 1 LSP regenerating.
-     */
     lspGenIntervalL1?: pulumi.Input<number>;
-    /**
-     * Minimum interval for level 2 LSP regenerating.
-     */
     lspGenIntervalL2?: pulumi.Input<number>;
-    /**
-     * LSP refresh time in seconds.
-     */
     lspRefreshInterval?: pulumi.Input<number>;
-    /**
-     * Maximum LSP lifetime in seconds.
-     */
     maxLspLifetime?: pulumi.Input<number>;
-    /**
-     * Use old-style (ISO 10589) or new-style packet formats Valid values: `narrow`, `wide`, `transition`, `narrow-transition`, `narrow-transition-l1`, `narrow-transition-l2`, `wide-l1`, `wide-l2`, `wide-transition`, `wide-transition-l1`, `wide-transition-l2`, `transition-l1`, `transition-l2`.
-     */
     metricStyle?: pulumi.Input<string>;
-    /**
-     * Enable/disable signal other routers not to use us in SPF. Valid values: `enable`, `disable`.
-     */
     overloadBit?: pulumi.Input<string>;
-    /**
-     * Overload-bit only temporarily after reboot.
-     */
     overloadBitOnStartup?: pulumi.Input<number>;
-    /**
-     * Suppress overload-bit for the specific prefixes. Valid values: `external`, `interlevel`.
-     */
     overloadBitSuppress?: pulumi.Input<string>;
-    /**
-     * Enable/disable redistribution of level 1 IPv6 routes into level 2. Valid values: `enable`, `disable`.
-     */
     redistribute6L1?: pulumi.Input<string>;
-    /**
-     * Access-list for IPv6 route redistribution from l1 to l2.
-     */
     redistribute6L1List?: pulumi.Input<string>;
-    /**
-     * Enable/disable redistribution of level 2 IPv6 routes into level 1. Valid values: `enable`, `disable`.
-     */
     redistribute6L2?: pulumi.Input<string>;
-    /**
-     * Access-list for IPv6 route redistribution from l2 to l1.
-     */
     redistribute6L2List?: pulumi.Input<string>;
-    /**
-     * IS-IS IPv6 redistribution for routing protocols. The structure of `redistribute6` block is documented below.
-     */
     redistribute6s?: pulumi.Input<pulumi.Input<inputs.RouterIsisRedistribute6>[]>;
-    /**
-     * Enable/disable redistribution of level 1 routes into level 2. Valid values: `enable`, `disable`.
-     */
     redistributeL1?: pulumi.Input<string>;
-    /**
-     * Access-list for route redistribution from l1 to l2.
-     */
     redistributeL1List?: pulumi.Input<string>;
-    /**
-     * Enable/disable redistribution of level 2 routes into level 1. Valid values: `enable`, `disable`.
-     */
     redistributeL2?: pulumi.Input<string>;
-    /**
-     * Access-list for route redistribution from l2 to l1.
-     */
     redistributeL2List?: pulumi.Input<string>;
-    /**
-     * IS-IS redistribute protocols. The structure of `redistribute` block is documented below.
-     */
     redistributes?: pulumi.Input<pulumi.Input<inputs.RouterIsisRedistribute>[]>;
-    /**
-     * Level 1 SPF calculation delay.
-     */
     spfIntervalExpL1?: pulumi.Input<string>;
-    /**
-     * Level 2 SPF calculation delay.
-     */
     spfIntervalExpL2?: pulumi.Input<string>;
-    /**
-     * IS-IS IPv6 summary address. The structure of `summaryAddress6` block is documented below.
-     */
     summaryAddress6s?: pulumi.Input<pulumi.Input<inputs.RouterIsisSummaryAddress6>[]>;
-    /**
-     * IS-IS summary addresses. The structure of `summaryAddress` block is documented below.
-     */
     summaryAddresses?: pulumi.Input<pulumi.Input<inputs.RouterIsisSummaryAddress>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -549,176 +240,47 @@ export interface RouterIsisState {
  * The set of arguments for constructing a RouterIsis resource.
  */
 export interface RouterIsisArgs {
-    /**
-     * Enable/disable adjacency check. Valid values: `enable`, `disable`.
-     */
     adjacencyCheck?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPv6 adjacency check. Valid values: `enable`, `disable`.
-     */
     adjacencyCheck6?: pulumi.Input<string>;
-    /**
-     * Enable/disable IS-IS advertisement of passive interfaces only. Valid values: `enable`, `disable`.
-     */
     advPassiveOnly?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPv6 IS-IS advertisement of passive interfaces only. Valid values: `enable`, `disable`.
-     */
     advPassiveOnly6?: pulumi.Input<string>;
-    /**
-     * Authentication key-chain for level 1 PDUs.
-     */
     authKeychainL1?: pulumi.Input<string>;
-    /**
-     * Authentication key-chain for level 2 PDUs.
-     */
     authKeychainL2?: pulumi.Input<string>;
-    /**
-     * Level 1 authentication mode. Valid values: `md5`, `password`.
-     */
     authModeL1?: pulumi.Input<string>;
-    /**
-     * Level 2 authentication mode. Valid values: `md5`, `password`.
-     */
     authModeL2?: pulumi.Input<string>;
-    /**
-     * Authentication password for level 1 PDUs.
-     */
     authPasswordL1?: pulumi.Input<string>;
-    /**
-     * Authentication password for level 2 PDUs.
-     */
     authPasswordL2?: pulumi.Input<string>;
-    /**
-     * Enable/disable level 1 authentication send-only. Valid values: `enable`, `disable`.
-     */
     authSendonlyL1?: pulumi.Input<string>;
-    /**
-     * Enable/disable level 2 authentication send-only. Valid values: `enable`, `disable`.
-     */
     authSendonlyL2?: pulumi.Input<string>;
-    /**
-     * Enable/disable distribution of default route information. Valid values: `enable`, `disable`.
-     */
     defaultOriginate?: pulumi.Input<string>;
-    /**
-     * Enable/disable distribution of default IPv6 route information. Valid values: `enable`, `disable`.
-     */
     defaultOriginate6?: pulumi.Input<string>;
-    /**
-     * Enable/disable dynamic hostname. Valid values: `enable`, `disable`.
-     */
     dynamicHostname?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable ignoring of LSP errors with bad checksums. Valid values: `enable`, `disable`.
-     */
     ignoreLspErrors?: pulumi.Input<string>;
-    /**
-     * IS type. Valid values: `level-1-2`, `level-1`, `level-2-only`.
-     */
     isType?: pulumi.Input<string>;
-    /**
-     * IS-IS interface configuration. The structure of `isisInterface` block is documented below.
-     */
     isisInterfaces?: pulumi.Input<pulumi.Input<inputs.RouterIsisIsisInterface>[]>;
-    /**
-     * IS-IS net configuration. The structure of `isisNet` block is documented below.
-     */
     isisNets?: pulumi.Input<pulumi.Input<inputs.RouterIsisIsisNet>[]>;
-    /**
-     * Minimum interval for level 1 LSP regenerating.
-     */
     lspGenIntervalL1?: pulumi.Input<number>;
-    /**
-     * Minimum interval for level 2 LSP regenerating.
-     */
     lspGenIntervalL2?: pulumi.Input<number>;
-    /**
-     * LSP refresh time in seconds.
-     */
     lspRefreshInterval?: pulumi.Input<number>;
-    /**
-     * Maximum LSP lifetime in seconds.
-     */
     maxLspLifetime?: pulumi.Input<number>;
-    /**
-     * Use old-style (ISO 10589) or new-style packet formats Valid values: `narrow`, `wide`, `transition`, `narrow-transition`, `narrow-transition-l1`, `narrow-transition-l2`, `wide-l1`, `wide-l2`, `wide-transition`, `wide-transition-l1`, `wide-transition-l2`, `transition-l1`, `transition-l2`.
-     */
     metricStyle?: pulumi.Input<string>;
-    /**
-     * Enable/disable signal other routers not to use us in SPF. Valid values: `enable`, `disable`.
-     */
     overloadBit?: pulumi.Input<string>;
-    /**
-     * Overload-bit only temporarily after reboot.
-     */
     overloadBitOnStartup?: pulumi.Input<number>;
-    /**
-     * Suppress overload-bit for the specific prefixes. Valid values: `external`, `interlevel`.
-     */
     overloadBitSuppress?: pulumi.Input<string>;
-    /**
-     * Enable/disable redistribution of level 1 IPv6 routes into level 2. Valid values: `enable`, `disable`.
-     */
     redistribute6L1?: pulumi.Input<string>;
-    /**
-     * Access-list for IPv6 route redistribution from l1 to l2.
-     */
     redistribute6L1List?: pulumi.Input<string>;
-    /**
-     * Enable/disable redistribution of level 2 IPv6 routes into level 1. Valid values: `enable`, `disable`.
-     */
     redistribute6L2?: pulumi.Input<string>;
-    /**
-     * Access-list for IPv6 route redistribution from l2 to l1.
-     */
     redistribute6L2List?: pulumi.Input<string>;
-    /**
-     * IS-IS IPv6 redistribution for routing protocols. The structure of `redistribute6` block is documented below.
-     */
     redistribute6s?: pulumi.Input<pulumi.Input<inputs.RouterIsisRedistribute6>[]>;
-    /**
-     * Enable/disable redistribution of level 1 routes into level 2. Valid values: `enable`, `disable`.
-     */
     redistributeL1?: pulumi.Input<string>;
-    /**
-     * Access-list for route redistribution from l1 to l2.
-     */
     redistributeL1List?: pulumi.Input<string>;
-    /**
-     * Enable/disable redistribution of level 2 routes into level 1. Valid values: `enable`, `disable`.
-     */
     redistributeL2?: pulumi.Input<string>;
-    /**
-     * Access-list for route redistribution from l2 to l1.
-     */
     redistributeL2List?: pulumi.Input<string>;
-    /**
-     * IS-IS redistribute protocols. The structure of `redistribute` block is documented below.
-     */
     redistributes?: pulumi.Input<pulumi.Input<inputs.RouterIsisRedistribute>[]>;
-    /**
-     * Level 1 SPF calculation delay.
-     */
     spfIntervalExpL1?: pulumi.Input<string>;
-    /**
-     * Level 2 SPF calculation delay.
-     */
     spfIntervalExpL2?: pulumi.Input<string>;
-    /**
-     * IS-IS IPv6 summary address. The structure of `summaryAddress6` block is documented below.
-     */
     summaryAddress6s?: pulumi.Input<pulumi.Input<inputs.RouterIsisSummaryAddress6>[]>;
-    /**
-     * IS-IS summary addresses. The structure of `summaryAddress` block is documented below.
-     */
     summaryAddresses?: pulumi.Input<pulumi.Input<inputs.RouterIsisSummaryAddress>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -4,28 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure logging to remote Syslog logging servers.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.LogSyslogdSetting`, we recommend that you use the new resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test2 = new fortios.LogSyslogSetting("test2", {
- *     facility: "local7",
- *     format: "csv",
- *     mode: "udp",
- *     port: "514",
- *     server: "2.2.2.2",
- *     sourceIp: "10.2.2.199",
- *     status: "enable",
- * });
- * ```
- */
 export class LogSyslogSetting extends pulumi.CustomResource {
     /**
      * Get an existing LogSyslogSetting resource's state with the given name, ID, and optional extra
@@ -54,33 +32,12 @@ export class LogSyslogSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogSyslogSetting.__pulumiType;
     }
 
-    /**
-     * Remote syslog facility.
-     */
     public readonly facility!: pulumi.Output<string>;
-    /**
-     * Log format.
-     */
     public readonly format!: pulumi.Output<string>;
-    /**
-     * Remote syslog logging over UDP/Reliable TCP.
-     */
     public readonly mode!: pulumi.Output<string>;
-    /**
-     * Server listen port.
-     */
     public readonly port!: pulumi.Output<string>;
-    /**
-     * Address of remote syslog server.
-     */
     public readonly server!: pulumi.Output<string>;
-    /**
-     * Source IP address of syslog.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Enable/disable remote syslog logging.
-     */
     public readonly status!: pulumi.Output<string>;
 
     /**
@@ -125,33 +82,12 @@ export class LogSyslogSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogSyslogSetting resources.
  */
 export interface LogSyslogSettingState {
-    /**
-     * Remote syslog facility.
-     */
     facility?: pulumi.Input<string>;
-    /**
-     * Log format.
-     */
     format?: pulumi.Input<string>;
-    /**
-     * Remote syslog logging over UDP/Reliable TCP.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Server listen port.
-     */
     port?: pulumi.Input<string>;
-    /**
-     * Address of remote syslog server.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Source IP address of syslog.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable remote syslog logging.
-     */
     status?: pulumi.Input<string>;
 }
 
@@ -159,32 +95,11 @@ export interface LogSyslogSettingState {
  * The set of arguments for constructing a LogSyslogSetting resource.
  */
 export interface LogSyslogSettingArgs {
-    /**
-     * Remote syslog facility.
-     */
     facility?: pulumi.Input<string>;
-    /**
-     * Log format.
-     */
     format?: pulumi.Input<string>;
-    /**
-     * Remote syslog logging over UDP/Reliable TCP.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Server listen port.
-     */
     port?: pulumi.Input<string>;
-    /**
-     * Address of remote syslog server.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Source IP address of syslog.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable remote syslog logging.
-     */
     status: pulumi.Input<string>;
 }

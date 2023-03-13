@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewall DoSpolicy
 func LookupFirewallDosPolicy(ctx *pulumi.Context, args *LookupFirewallDosPolicyArgs, opts ...pulumi.InvokeOption) (*LookupFirewallDosPolicyResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallDosPolicyResult
@@ -23,35 +22,24 @@ func LookupFirewallDosPolicy(ctx *pulumi.Context, args *LookupFirewallDosPolicyA
 
 // A collection of arguments for invoking GetFirewallDosPolicy.
 type LookupFirewallDosPolicyArgs struct {
-	// Specify the policyid of the desired firewall DoSpolicy.
-	Policyid int `pulumi:"policyid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Policyid  int     `pulumi:"policyid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallDosPolicy.
 type LookupFirewallDosPolicyResult struct {
-	// Anomaly name. The structure of `anomaly` block is documented below.
 	Anomalies []GetFirewallDosPolicyAnomaly `pulumi:"anomalies"`
-	// Comment.
-	Comments string `pulumi:"comments"`
-	// Destination address name from available addresses. The structure of `dstaddr` block is documented below.
-	Dstaddrs []GetFirewallDosPolicyDstaddr `pulumi:"dstaddrs"`
+	Comments  string                        `pulumi:"comments"`
+	Dstaddrs  []GetFirewallDosPolicyDstaddr `pulumi:"dstaddrs"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Incoming interface name from available interfaces.
-	Interface string `pulumi:"interface"`
-	// Anomaly name.
-	Name string `pulumi:"name"`
-	// Policy ID.
-	Policyid int `pulumi:"policyid"`
-	// Service object from available options. The structure of `service` block is documented below.
-	Services []GetFirewallDosPolicyService `pulumi:"services"`
-	// Source address name from available addresses. The structure of `srcaddr` block is documented below.
-	Srcaddrs []GetFirewallDosPolicySrcaddr `pulumi:"srcaddrs"`
-	// Enable/disable this anomaly.
-	Status    string  `pulumi:"status"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id        string                        `pulumi:"id"`
+	Interface string                        `pulumi:"interface"`
+	Name      string                        `pulumi:"name"`
+	Policyid  int                           `pulumi:"policyid"`
+	Services  []GetFirewallDosPolicyService `pulumi:"services"`
+	Srcaddrs  []GetFirewallDosPolicySrcaddr `pulumi:"srcaddrs"`
+	Status    string                        `pulumi:"status"`
+	Vdomparam *string                       `pulumi:"vdomparam"`
 }
 
 func LookupFirewallDosPolicyOutput(ctx *pulumi.Context, args LookupFirewallDosPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallDosPolicyResultOutput {
@@ -69,9 +57,7 @@ func LookupFirewallDosPolicyOutput(ctx *pulumi.Context, args LookupFirewallDosPo
 
 // A collection of arguments for invoking GetFirewallDosPolicy.
 type LookupFirewallDosPolicyOutputArgs struct {
-	// Specify the policyid of the desired firewall DoSpolicy.
-	Policyid pulumi.IntInput `pulumi:"policyid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Policyid  pulumi.IntInput       `pulumi:"policyid"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -94,17 +80,14 @@ func (o LookupFirewallDosPolicyResultOutput) ToLookupFirewallDosPolicyResultOutp
 	return o
 }
 
-// Anomaly name. The structure of `anomaly` block is documented below.
 func (o LookupFirewallDosPolicyResultOutput) Anomalies() GetFirewallDosPolicyAnomalyArrayOutput {
 	return o.ApplyT(func(v LookupFirewallDosPolicyResult) []GetFirewallDosPolicyAnomaly { return v.Anomalies }).(GetFirewallDosPolicyAnomalyArrayOutput)
 }
 
-// Comment.
 func (o LookupFirewallDosPolicyResultOutput) Comments() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallDosPolicyResult) string { return v.Comments }).(pulumi.StringOutput)
 }
 
-// Destination address name from available addresses. The structure of `dstaddr` block is documented below.
 func (o LookupFirewallDosPolicyResultOutput) Dstaddrs() GetFirewallDosPolicyDstaddrArrayOutput {
 	return o.ApplyT(func(v LookupFirewallDosPolicyResult) []GetFirewallDosPolicyDstaddr { return v.Dstaddrs }).(GetFirewallDosPolicyDstaddrArrayOutput)
 }
@@ -114,32 +97,26 @@ func (o LookupFirewallDosPolicyResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallDosPolicyResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Incoming interface name from available interfaces.
 func (o LookupFirewallDosPolicyResultOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallDosPolicyResult) string { return v.Interface }).(pulumi.StringOutput)
 }
 
-// Anomaly name.
 func (o LookupFirewallDosPolicyResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallDosPolicyResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Policy ID.
 func (o LookupFirewallDosPolicyResultOutput) Policyid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallDosPolicyResult) int { return v.Policyid }).(pulumi.IntOutput)
 }
 
-// Service object from available options. The structure of `service` block is documented below.
 func (o LookupFirewallDosPolicyResultOutput) Services() GetFirewallDosPolicyServiceArrayOutput {
 	return o.ApplyT(func(v LookupFirewallDosPolicyResult) []GetFirewallDosPolicyService { return v.Services }).(GetFirewallDosPolicyServiceArrayOutput)
 }
 
-// Source address name from available addresses. The structure of `srcaddr` block is documented below.
 func (o LookupFirewallDosPolicyResultOutput) Srcaddrs() GetFirewallDosPolicySrcaddrArrayOutput {
 	return o.ApplyT(func(v LookupFirewallDosPolicyResult) []GetFirewallDosPolicySrcaddr { return v.Srcaddrs }).(GetFirewallDosPolicySrcaddrArrayOutput)
 }
 
-// Enable/disable this anomaly.
 func (o LookupFirewallDosPolicyResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallDosPolicyResult) string { return v.Status }).(pulumi.StringOutput)
 }

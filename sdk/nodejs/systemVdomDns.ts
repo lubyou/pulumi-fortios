@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure DNS servers for a non-management VDOM.
- *
- * ## Import
- *
- * System VdomDns can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVdomDns:SystemVdomDns labelname SystemVdomDns
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVdomDns:SystemVdomDns labelname SystemVdomDns
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemVdomDns extends pulumi.CustomResource {
     /**
      * Get an existing SystemVdomDns resource's state with the given name, ID, and optional extra
@@ -52,73 +34,22 @@ export class SystemVdomDns extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemVdomDns.__pulumiType;
     }
 
-    /**
-     * Alternate primary DNS server. (This is not used as a failover DNS server.)
-     */
     public readonly altPrimary!: pulumi.Output<string>;
-    /**
-     * Alternate secondary DNS server. (This is not used as a failover DNS server.)
-     */
     public readonly altSecondary!: pulumi.Output<string>;
-    /**
-     * Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
-     */
     public readonly dnsOverTls!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
-    /**
-     * Primary IPv6 DNS server IP address for the VDOM.
-     */
     public readonly ip6Primary!: pulumi.Output<string>;
-    /**
-     * Secondary IPv6 DNS server IP address for the VDOM.
-     */
     public readonly ip6Secondary!: pulumi.Output<string>;
-    /**
-     * Primary DNS server IP address for the VDOM.
-     */
     public readonly primary!: pulumi.Output<string>;
-    /**
-     * DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
-     */
     public readonly protocol!: pulumi.Output<string>;
-    /**
-     * Secondary DNS server IP address for the VDOM.
-     */
     public readonly secondary!: pulumi.Output<string>;
-    /**
-     * DNS server host name list. The structure of `serverHostname` block is documented below.
-     */
     public readonly serverHostnames!: pulumi.Output<outputs.SystemVdomDnsServerHostname[] | undefined>;
-    /**
-     * Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
-     */
     public readonly serverSelectMethod!: pulumi.Output<string>;
-    /**
-     * Source IP for communications with the DNS server.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Name of local certificate for SSL connections.
-     */
     public readonly sslCertificate!: pulumi.Output<string>;
-    /**
-     * Enable/disable configuring DNS servers for the current VDOM. Valid values: `enable`, `disable`.
-     */
     public readonly vdomDns!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -180,73 +111,22 @@ export class SystemVdomDns extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemVdomDns resources.
  */
 export interface SystemVdomDnsState {
-    /**
-     * Alternate primary DNS server. (This is not used as a failover DNS server.)
-     */
     altPrimary?: pulumi.Input<string>;
-    /**
-     * Alternate secondary DNS server. (This is not used as a failover DNS server.)
-     */
     altSecondary?: pulumi.Input<string>;
-    /**
-     * Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
-     */
     dnsOverTls?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Primary IPv6 DNS server IP address for the VDOM.
-     */
     ip6Primary?: pulumi.Input<string>;
-    /**
-     * Secondary IPv6 DNS server IP address for the VDOM.
-     */
     ip6Secondary?: pulumi.Input<string>;
-    /**
-     * Primary DNS server IP address for the VDOM.
-     */
     primary?: pulumi.Input<string>;
-    /**
-     * DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * Secondary DNS server IP address for the VDOM.
-     */
     secondary?: pulumi.Input<string>;
-    /**
-     * DNS server host name list. The structure of `serverHostname` block is documented below.
-     */
     serverHostnames?: pulumi.Input<pulumi.Input<inputs.SystemVdomDnsServerHostname>[]>;
-    /**
-     * Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
-     */
     serverSelectMethod?: pulumi.Input<string>;
-    /**
-     * Source IP for communications with the DNS server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Name of local certificate for SSL connections.
-     */
     sslCertificate?: pulumi.Input<string>;
-    /**
-     * Enable/disable configuring DNS servers for the current VDOM. Valid values: `enable`, `disable`.
-     */
     vdomDns?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -254,72 +134,21 @@ export interface SystemVdomDnsState {
  * The set of arguments for constructing a SystemVdomDns resource.
  */
 export interface SystemVdomDnsArgs {
-    /**
-     * Alternate primary DNS server. (This is not used as a failover DNS server.)
-     */
     altPrimary?: pulumi.Input<string>;
-    /**
-     * Alternate secondary DNS server. (This is not used as a failover DNS server.)
-     */
     altSecondary?: pulumi.Input<string>;
-    /**
-     * Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
-     */
     dnsOverTls?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Primary IPv6 DNS server IP address for the VDOM.
-     */
     ip6Primary?: pulumi.Input<string>;
-    /**
-     * Secondary IPv6 DNS server IP address for the VDOM.
-     */
     ip6Secondary?: pulumi.Input<string>;
-    /**
-     * Primary DNS server IP address for the VDOM.
-     */
     primary?: pulumi.Input<string>;
-    /**
-     * DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * Secondary DNS server IP address for the VDOM.
-     */
     secondary?: pulumi.Input<string>;
-    /**
-     * DNS server host name list. The structure of `serverHostname` block is documented below.
-     */
     serverHostnames?: pulumi.Input<pulumi.Input<inputs.SystemVdomDnsServerHostname>[]>;
-    /**
-     * Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
-     */
     serverSelectMethod?: pulumi.Input<string>;
-    /**
-     * Source IP for communications with the DNS server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Name of local certificate for SSL connections.
-     */
     sslCertificate?: pulumi.Input<string>;
-    /**
-     * Enable/disable configuring DNS servers for the current VDOM. Valid values: `enable`, `disable`.
-     */
     vdomDns?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

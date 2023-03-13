@@ -4,36 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Settings for WebTrends.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.LogWebtrendsSetting("trname", {
- *     status: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * LogWebtrends Setting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/logWebtrendsSetting:LogWebtrendsSetting labelname LogWebtrendsSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/logWebtrendsSetting:LogWebtrendsSetting labelname LogWebtrendsSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class LogWebtrendsSetting extends pulumi.CustomResource {
     /**
      * Get an existing LogWebtrendsSetting resource's state with the given name, ID, and optional extra
@@ -62,17 +32,8 @@ export class LogWebtrendsSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogWebtrendsSetting.__pulumiType;
     }
 
-    /**
-     * Address of the remote WebTrends server.
-     */
     public readonly server!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging to WebTrends. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -106,17 +67,8 @@ export class LogWebtrendsSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogWebtrendsSetting resources.
  */
 export interface LogWebtrendsSettingState {
-    /**
-     * Address of the remote WebTrends server.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging to WebTrends. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -124,16 +76,7 @@ export interface LogWebtrendsSettingState {
  * The set of arguments for constructing a LogWebtrendsSetting resource.
  */
 export interface LogWebtrendsSettingArgs {
-    /**
-     * Address of the remote WebTrends server.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging to WebTrends. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

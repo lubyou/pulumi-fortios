@@ -7,61 +7,16 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure custom log fields.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogCustomField(ctx, "trname", &fortios.LogCustomFieldArgs{
-// 			Fosid: pulumi.String("1"),
-// 			Value: pulumi.String("logteststr"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Log CustomField can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logCustomField:LogCustomField labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logCustomField:LogCustomField labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogCustomField struct {
 	pulumi.CustomResourceState
 
-	// field ID <string>.
-	Fosid pulumi.StringOutput `pulumi:"fosid"`
-	// Field name (max: 15 characters).
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Field value (max: 15 characters).
-	Value pulumi.StringOutput `pulumi:"value"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.StringOutput    `pulumi:"fosid"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
+	Value     pulumi.StringOutput    `pulumi:"value"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -98,24 +53,16 @@ func GetLogCustomField(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogCustomField resources.
 type logCustomFieldState struct {
-	// field ID <string>.
-	Fosid *string `pulumi:"fosid"`
-	// Field name (max: 15 characters).
-	Name *string `pulumi:"name"`
-	// Field value (max: 15 characters).
-	Value *string `pulumi:"value"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *string `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
+	Value     *string `pulumi:"value"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type LogCustomFieldState struct {
-	// field ID <string>.
-	Fosid pulumi.StringPtrInput
-	// Field name (max: 15 characters).
-	Name pulumi.StringPtrInput
-	// Field value (max: 15 characters).
-	Value pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
+	Value     pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -124,25 +71,17 @@ func (LogCustomFieldState) ElementType() reflect.Type {
 }
 
 type logCustomFieldArgs struct {
-	// field ID <string>.
-	Fosid *string `pulumi:"fosid"`
-	// Field name (max: 15 characters).
-	Name *string `pulumi:"name"`
-	// Field value (max: 15 characters).
-	Value string `pulumi:"value"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *string `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
+	Value     string  `pulumi:"value"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogCustomField resource.
 type LogCustomFieldArgs struct {
-	// field ID <string>.
-	Fosid pulumi.StringPtrInput
-	// Field name (max: 15 characters).
-	Name pulumi.StringPtrInput
-	// Field value (max: 15 characters).
-	Value pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
+	Value     pulumi.StringInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -172,7 +111,7 @@ func (i *LogCustomField) ToLogCustomFieldOutputWithContext(ctx context.Context) 
 // LogCustomFieldArrayInput is an input type that accepts LogCustomFieldArray and LogCustomFieldArrayOutput values.
 // You can construct a concrete instance of `LogCustomFieldArrayInput` via:
 //
-//          LogCustomFieldArray{ LogCustomFieldArgs{...} }
+//	LogCustomFieldArray{ LogCustomFieldArgs{...} }
 type LogCustomFieldArrayInput interface {
 	pulumi.Input
 
@@ -197,7 +136,7 @@ func (i LogCustomFieldArray) ToLogCustomFieldArrayOutputWithContext(ctx context.
 // LogCustomFieldMapInput is an input type that accepts LogCustomFieldMap and LogCustomFieldMapOutput values.
 // You can construct a concrete instance of `LogCustomFieldMapInput` via:
 //
-//          LogCustomFieldMap{ "key": LogCustomFieldArgs{...} }
+//	LogCustomFieldMap{ "key": LogCustomFieldArgs{...} }
 type LogCustomFieldMapInput interface {
 	pulumi.Input
 
@@ -231,6 +170,22 @@ func (o LogCustomFieldOutput) ToLogCustomFieldOutput() LogCustomFieldOutput {
 
 func (o LogCustomFieldOutput) ToLogCustomFieldOutputWithContext(ctx context.Context) LogCustomFieldOutput {
 	return o
+}
+
+func (o LogCustomFieldOutput) Fosid() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogCustomField) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
+}
+
+func (o LogCustomFieldOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogCustomField) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LogCustomFieldOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogCustomField) pulumi.StringOutput { return v.Value }).(pulumi.StringOutput)
+}
+
+func (o LogCustomFieldOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogCustomField) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type LogCustomFieldArrayOutput struct{ *pulumi.OutputState }

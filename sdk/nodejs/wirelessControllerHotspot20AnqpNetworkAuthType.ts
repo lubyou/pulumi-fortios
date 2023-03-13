@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure network authentication type.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WirelessControllerHotspot20AnqpNetworkAuthType("trname", {
- *     authType: "acceptance-of-terms",
- *     url: "www.example.com",
- * });
- * ```
- *
- * ## Import
- *
- * WirelessControllerHotspot20 AnqpNetworkAuthType can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20AnqpNetworkAuthType:WirelessControllerHotspot20AnqpNetworkAuthType labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20AnqpNetworkAuthType:WirelessControllerHotspot20AnqpNetworkAuthType labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerHotspot20AnqpNetworkAuthType extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerHotspot20AnqpNetworkAuthType resource's state with the given name, ID, and optional extra
@@ -63,21 +32,9 @@ export class WirelessControllerHotspot20AnqpNetworkAuthType extends pulumi.Custo
         return obj['__pulumiType'] === WirelessControllerHotspot20AnqpNetworkAuthType.__pulumiType;
     }
 
-    /**
-     * Network authentication type. Valid values: `acceptance-of-terms`, `online-enrollment`, `http-redirection`, `dns-redirection`.
-     */
     public readonly authType!: pulumi.Output<string>;
-    /**
-     * Authentication type name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Redirect URL.
-     */
     public readonly url!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -113,21 +70,9 @@ export class WirelessControllerHotspot20AnqpNetworkAuthType extends pulumi.Custo
  * Input properties used for looking up and filtering WirelessControllerHotspot20AnqpNetworkAuthType resources.
  */
 export interface WirelessControllerHotspot20AnqpNetworkAuthTypeState {
-    /**
-     * Network authentication type. Valid values: `acceptance-of-terms`, `online-enrollment`, `http-redirection`, `dns-redirection`.
-     */
     authType?: pulumi.Input<string>;
-    /**
-     * Authentication type name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Redirect URL.
-     */
     url?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -135,20 +80,8 @@ export interface WirelessControllerHotspot20AnqpNetworkAuthTypeState {
  * The set of arguments for constructing a WirelessControllerHotspot20AnqpNetworkAuthType resource.
  */
 export interface WirelessControllerHotspot20AnqpNetworkAuthTypeArgs {
-    /**
-     * Network authentication type. Valid values: `acceptance-of-terms`, `online-enrollment`, `http-redirection`, `dns-redirection`.
-     */
     authType?: pulumi.Input<string>;
-    /**
-     * Authentication type name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Redirect URL.
-     */
     url?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

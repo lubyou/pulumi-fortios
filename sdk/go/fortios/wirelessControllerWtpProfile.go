@@ -10,122 +10,57 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure WTP profiles or FortiAP profiles that define radio settings for manageable FortiAP platforms.
-//
-// ## Import
-//
-// WirelessController WtpProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerWtpProfile:WirelessControllerWtpProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerWtpProfile:WirelessControllerWtpProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerWtpProfile struct {
 	pulumi.CustomResourceState
 
-	// Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space.
-	Allowaccess pulumi.StringOutput `pulumi:"allowaccess"`
-	// Country in which this WTP, FortiAP or AP will operate (default = NA, automatically use the country configured for the current VDOM).
-	ApCountry pulumi.StringOutput `pulumi:"apCountry"`
-	// Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-	ApHandoff pulumi.StringOutput `pulumi:"apHandoff"`
-	// AP local configuration profile name.
-	ApcfgProfile pulumi.StringOutput `pulumi:"apcfgProfile"`
-	// Bluetooth Low Energy profile name.
-	BleProfile pulumi.StringOutput `pulumi:"bleProfile"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
-	ConsoleLogin pulumi.StringOutput `pulumi:"consoleLogin"`
-	// Enable/disable CAPWAP control message data channel offload.
-	ControlMessageOffload pulumi.StringOutput `pulumi:"controlMessageOffload"`
-	// List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `denyMacList` block is documented below.
-	DenyMacLists WirelessControllerWtpProfileDenyMacListArrayOutput `pulumi:"denyMacLists"`
-	// Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
-	DtlsInKernel pulumi.StringOutput `pulumi:"dtlsInKernel"`
-	// WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
-	DtlsPolicy pulumi.StringOutput `pulumi:"dtlsPolicy"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
-	EnergyEfficientEthernet pulumi.StringOutput `pulumi:"energyEfficientEthernet"`
-	// ESL SES-imagotag dongle configuration. The structure of `eslSesDongle` block is documented below.
-	EslSesDongle WirelessControllerWtpProfileEslSesDonglePtrOutput `pulumi:"eslSesDongle"`
-	// Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
-	ExtInfoEnable pulumi.StringOutput `pulumi:"extInfoEnable"`
-	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
-	FrequencyHandoff pulumi.StringOutput `pulumi:"frequencyHandoff"`
-	// Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
-	HandoffRoaming pulumi.StringOutput `pulumi:"handoffRoaming"`
-	// Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
-	HandoffRssi pulumi.IntOutput `pulumi:"handoffRssi"`
-	// Threshold value for AP handoff.
-	HandoffStaThresh pulumi.IntOutput `pulumi:"handoffStaThresh"`
-	// Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
-	IndoorOutdoorDeployment pulumi.StringOutput `pulumi:"indoorOutdoorDeployment"`
-	// Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
-	IpFragmentPreventing pulumi.StringOutput `pulumi:"ipFragmentPreventing"`
-	// WTP LAN port mapping. The structure of `lan` block is documented below.
-	Lan WirelessControllerWtpProfileLanPtrOutput `pulumi:"lan"`
-	// Set various location based service (LBS) options. The structure of `lbs` block is documented below.
-	Lbs WirelessControllerWtpProfileLbsPtrOutput `pulumi:"lbs"`
-	// Recurring firewall schedules for illuminating LEDs on the FortiAP. If led-state is enabled, LEDs will be visible when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `ledSchedules` block is documented below.
-	LedSchedules WirelessControllerWtpProfileLedScheduleArrayOutput `pulumi:"ledSchedules"`
-	// Enable/disable use of LEDs on WTP (default = disable). Valid values: `enable`, `disable`.
-	LedState pulumi.StringOutput `pulumi:"ledState"`
-	// Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
-	Lldp pulumi.StringOutput `pulumi:"lldp"`
-	// Set the managed WTP, FortiAP, or AP's administrator password.
-	LoginPasswd pulumi.StringPtrOutput `pulumi:"loginPasswd"`
-	// Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-	LoginPasswdChange pulumi.StringOutput `pulumi:"loginPasswdChange"`
-	// Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
-	MaxClients pulumi.IntOutput `pulumi:"maxClients"`
-	// Virtual Access Point (VAP) name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// WTP, FortiAP, or AP platform. The structure of `platform` block is documented below.
-	Platform WirelessControllerWtpProfilePlatformPtrOutput `pulumi:"platform"`
-	// Set the WTP, FortiAP, or AP's PoE mode.
-	PoeMode pulumi.StringOutput `pulumi:"poeMode"`
-	// Configuration options for radio 1. The structure of `radio1` block is documented below.
-	Radio1 WirelessControllerWtpProfileRadio1PtrOutput `pulumi:"radio1"`
-	// Configuration options for radio 2. The structure of `radio2` block is documented below.
-	Radio2 WirelessControllerWtpProfileRadio2PtrOutput `pulumi:"radio2"`
-	// Configuration options for radio 3. The structure of `radio3` block is documented below.
-	Radio3 WirelessControllerWtpProfileRadio3PtrOutput `pulumi:"radio3"`
-	// Configuration options for radio 4. The structure of `radio4` block is documented below.
-	Radio4 WirelessControllerWtpProfileRadio4PtrOutput `pulumi:"radio4"`
-	// Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
-	SplitTunnelingAclLocalApSubnet pulumi.StringOutput `pulumi:"splitTunnelingAclLocalApSubnet"`
-	// Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
-	SplitTunnelingAclPath pulumi.StringOutput `pulumi:"splitTunnelingAclPath"`
-	// Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
-	SplitTunnelingAcls WirelessControllerWtpProfileSplitTunnelingAclArrayOutput `pulumi:"splitTunnelingAcls"`
-	// System log server configuration profile name.
-	SyslogProfile pulumi.StringOutput `pulumi:"syslogProfile"`
-	// Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
-	TunMtuDownlink pulumi.IntOutput `pulumi:"tunMtuDownlink"`
-	// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
-	TunMtuUplink pulumi.IntOutput `pulumi:"tunMtuUplink"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
-	WanPortAuth pulumi.StringOutput `pulumi:"wanPortAuth"`
-	// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
-	WanPortAuthMethods pulumi.StringOutput `pulumi:"wanPortAuthMethods"`
-	// Set WAN port 802.1x supplicant password.
-	WanPortAuthPassword pulumi.StringPtrOutput `pulumi:"wanPortAuthPassword"`
-	// Set WAN port 802.1x supplicant user name.
-	WanPortAuthUsrname pulumi.StringOutput `pulumi:"wanPortAuthUsrname"`
-	// Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
-	WanPortMode pulumi.StringOutput `pulumi:"wanPortMode"`
+	Allowaccess                    pulumi.StringOutput                                      `pulumi:"allowaccess"`
+	ApCountry                      pulumi.StringOutput                                      `pulumi:"apCountry"`
+	ApHandoff                      pulumi.StringOutput                                      `pulumi:"apHandoff"`
+	ApcfgProfile                   pulumi.StringOutput                                      `pulumi:"apcfgProfile"`
+	BleProfile                     pulumi.StringOutput                                      `pulumi:"bleProfile"`
+	Comment                        pulumi.StringPtrOutput                                   `pulumi:"comment"`
+	ConsoleLogin                   pulumi.StringOutput                                      `pulumi:"consoleLogin"`
+	ControlMessageOffload          pulumi.StringOutput                                      `pulumi:"controlMessageOffload"`
+	DenyMacLists                   WirelessControllerWtpProfileDenyMacListArrayOutput       `pulumi:"denyMacLists"`
+	DtlsInKernel                   pulumi.StringOutput                                      `pulumi:"dtlsInKernel"`
+	DtlsPolicy                     pulumi.StringOutput                                      `pulumi:"dtlsPolicy"`
+	DynamicSortSubtable            pulumi.StringPtrOutput                                   `pulumi:"dynamicSortSubtable"`
+	EnergyEfficientEthernet        pulumi.StringOutput                                      `pulumi:"energyEfficientEthernet"`
+	EslSesDongle                   WirelessControllerWtpProfileEslSesDongleOutput           `pulumi:"eslSesDongle"`
+	ExtInfoEnable                  pulumi.StringOutput                                      `pulumi:"extInfoEnable"`
+	FrequencyHandoff               pulumi.StringOutput                                      `pulumi:"frequencyHandoff"`
+	HandoffRoaming                 pulumi.StringOutput                                      `pulumi:"handoffRoaming"`
+	HandoffRssi                    pulumi.IntOutput                                         `pulumi:"handoffRssi"`
+	HandoffStaThresh               pulumi.IntOutput                                         `pulumi:"handoffStaThresh"`
+	IndoorOutdoorDeployment        pulumi.StringOutput                                      `pulumi:"indoorOutdoorDeployment"`
+	IpFragmentPreventing           pulumi.StringOutput                                      `pulumi:"ipFragmentPreventing"`
+	Lan                            WirelessControllerWtpProfileLanOutput                    `pulumi:"lan"`
+	Lbs                            WirelessControllerWtpProfileLbsOutput                    `pulumi:"lbs"`
+	LedSchedules                   WirelessControllerWtpProfileLedScheduleArrayOutput       `pulumi:"ledSchedules"`
+	LedState                       pulumi.StringOutput                                      `pulumi:"ledState"`
+	Lldp                           pulumi.StringOutput                                      `pulumi:"lldp"`
+	LoginPasswd                    pulumi.StringPtrOutput                                   `pulumi:"loginPasswd"`
+	LoginPasswdChange              pulumi.StringOutput                                      `pulumi:"loginPasswdChange"`
+	MaxClients                     pulumi.IntOutput                                         `pulumi:"maxClients"`
+	Name                           pulumi.StringOutput                                      `pulumi:"name"`
+	Platform                       WirelessControllerWtpProfilePlatformOutput               `pulumi:"platform"`
+	PoeMode                        pulumi.StringOutput                                      `pulumi:"poeMode"`
+	Radio1                         WirelessControllerWtpProfileRadio1Output                 `pulumi:"radio1"`
+	Radio2                         WirelessControllerWtpProfileRadio2Output                 `pulumi:"radio2"`
+	Radio3                         WirelessControllerWtpProfileRadio3Output                 `pulumi:"radio3"`
+	Radio4                         WirelessControllerWtpProfileRadio4Output                 `pulumi:"radio4"`
+	SplitTunnelingAclLocalApSubnet pulumi.StringOutput                                      `pulumi:"splitTunnelingAclLocalApSubnet"`
+	SplitTunnelingAclPath          pulumi.StringOutput                                      `pulumi:"splitTunnelingAclPath"`
+	SplitTunnelingAcls             WirelessControllerWtpProfileSplitTunnelingAclArrayOutput `pulumi:"splitTunnelingAcls"`
+	SyslogProfile                  pulumi.StringOutput                                      `pulumi:"syslogProfile"`
+	TunMtuDownlink                 pulumi.IntOutput                                         `pulumi:"tunMtuDownlink"`
+	TunMtuUplink                   pulumi.IntOutput                                         `pulumi:"tunMtuUplink"`
+	Vdomparam                      pulumi.StringPtrOutput                                   `pulumi:"vdomparam"`
+	WanPortAuth                    pulumi.StringOutput                                      `pulumi:"wanPortAuth"`
+	WanPortAuthMethods             pulumi.StringOutput                                      `pulumi:"wanPortAuthMethods"`
+	WanPortAuthPassword            pulumi.StringPtrOutput                                   `pulumi:"wanPortAuthPassword"`
+	WanPortAuthUsrname             pulumi.StringOutput                                      `pulumi:"wanPortAuthUsrname"`
+	WanPortMode                    pulumi.StringOutput                                      `pulumi:"wanPortMode"`
 }
 
 // NewWirelessControllerWtpProfile registers a new resource with the given unique name, arguments, and options.
@@ -135,6 +70,13 @@ func NewWirelessControllerWtpProfile(ctx *pulumi.Context,
 		args = &WirelessControllerWtpProfileArgs{}
 	}
 
+	if args.LoginPasswd != nil {
+		args.LoginPasswd = pulumi.ToSecret(args.LoginPasswd).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"loginPasswd",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerWtpProfile
 	err := ctx.RegisterResource("fortios:index/wirelessControllerWtpProfile:WirelessControllerWtpProfile", name, args, &resource, opts...)
@@ -158,201 +100,105 @@ func GetWirelessControllerWtpProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerWtpProfile resources.
 type wirelessControllerWtpProfileState struct {
-	// Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space.
-	Allowaccess *string `pulumi:"allowaccess"`
-	// Country in which this WTP, FortiAP or AP will operate (default = NA, automatically use the country configured for the current VDOM).
-	ApCountry *string `pulumi:"apCountry"`
-	// Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-	ApHandoff *string `pulumi:"apHandoff"`
-	// AP local configuration profile name.
-	ApcfgProfile *string `pulumi:"apcfgProfile"`
-	// Bluetooth Low Energy profile name.
-	BleProfile *string `pulumi:"bleProfile"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
-	ConsoleLogin *string `pulumi:"consoleLogin"`
-	// Enable/disable CAPWAP control message data channel offload.
-	ControlMessageOffload *string `pulumi:"controlMessageOffload"`
-	// List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `denyMacList` block is documented below.
-	DenyMacLists []WirelessControllerWtpProfileDenyMacList `pulumi:"denyMacLists"`
-	// Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
-	DtlsInKernel *string `pulumi:"dtlsInKernel"`
-	// WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
-	DtlsPolicy *string `pulumi:"dtlsPolicy"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
-	EnergyEfficientEthernet *string `pulumi:"energyEfficientEthernet"`
-	// ESL SES-imagotag dongle configuration. The structure of `eslSesDongle` block is documented below.
-	EslSesDongle *WirelessControllerWtpProfileEslSesDongle `pulumi:"eslSesDongle"`
-	// Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
-	ExtInfoEnable *string `pulumi:"extInfoEnable"`
-	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
-	FrequencyHandoff *string `pulumi:"frequencyHandoff"`
-	// Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
-	HandoffRoaming *string `pulumi:"handoffRoaming"`
-	// Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
-	HandoffRssi *int `pulumi:"handoffRssi"`
-	// Threshold value for AP handoff.
-	HandoffStaThresh *int `pulumi:"handoffStaThresh"`
-	// Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
-	IndoorOutdoorDeployment *string `pulumi:"indoorOutdoorDeployment"`
-	// Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
-	IpFragmentPreventing *string `pulumi:"ipFragmentPreventing"`
-	// WTP LAN port mapping. The structure of `lan` block is documented below.
-	Lan *WirelessControllerWtpProfileLan `pulumi:"lan"`
-	// Set various location based service (LBS) options. The structure of `lbs` block is documented below.
-	Lbs *WirelessControllerWtpProfileLbs `pulumi:"lbs"`
-	// Recurring firewall schedules for illuminating LEDs on the FortiAP. If led-state is enabled, LEDs will be visible when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `ledSchedules` block is documented below.
-	LedSchedules []WirelessControllerWtpProfileLedSchedule `pulumi:"ledSchedules"`
-	// Enable/disable use of LEDs on WTP (default = disable). Valid values: `enable`, `disable`.
-	LedState *string `pulumi:"ledState"`
-	// Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
-	Lldp *string `pulumi:"lldp"`
-	// Set the managed WTP, FortiAP, or AP's administrator password.
-	LoginPasswd *string `pulumi:"loginPasswd"`
-	// Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-	LoginPasswdChange *string `pulumi:"loginPasswdChange"`
-	// Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
-	MaxClients *int `pulumi:"maxClients"`
-	// Virtual Access Point (VAP) name.
-	Name *string `pulumi:"name"`
-	// WTP, FortiAP, or AP platform. The structure of `platform` block is documented below.
-	Platform *WirelessControllerWtpProfilePlatform `pulumi:"platform"`
-	// Set the WTP, FortiAP, or AP's PoE mode.
-	PoeMode *string `pulumi:"poeMode"`
-	// Configuration options for radio 1. The structure of `radio1` block is documented below.
-	Radio1 *WirelessControllerWtpProfileRadio1 `pulumi:"radio1"`
-	// Configuration options for radio 2. The structure of `radio2` block is documented below.
-	Radio2 *WirelessControllerWtpProfileRadio2 `pulumi:"radio2"`
-	// Configuration options for radio 3. The structure of `radio3` block is documented below.
-	Radio3 *WirelessControllerWtpProfileRadio3 `pulumi:"radio3"`
-	// Configuration options for radio 4. The structure of `radio4` block is documented below.
-	Radio4 *WirelessControllerWtpProfileRadio4 `pulumi:"radio4"`
-	// Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
-	SplitTunnelingAclLocalApSubnet *string `pulumi:"splitTunnelingAclLocalApSubnet"`
-	// Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
-	SplitTunnelingAclPath *string `pulumi:"splitTunnelingAclPath"`
-	// Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
-	SplitTunnelingAcls []WirelessControllerWtpProfileSplitTunnelingAcl `pulumi:"splitTunnelingAcls"`
-	// System log server configuration profile name.
-	SyslogProfile *string `pulumi:"syslogProfile"`
-	// Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
-	TunMtuDownlink *int `pulumi:"tunMtuDownlink"`
-	// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
-	TunMtuUplink *int `pulumi:"tunMtuUplink"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
-	WanPortAuth *string `pulumi:"wanPortAuth"`
-	// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
-	WanPortAuthMethods *string `pulumi:"wanPortAuthMethods"`
-	// Set WAN port 802.1x supplicant password.
-	WanPortAuthPassword *string `pulumi:"wanPortAuthPassword"`
-	// Set WAN port 802.1x supplicant user name.
-	WanPortAuthUsrname *string `pulumi:"wanPortAuthUsrname"`
-	// Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
-	WanPortMode *string `pulumi:"wanPortMode"`
+	Allowaccess                    *string                                         `pulumi:"allowaccess"`
+	ApCountry                      *string                                         `pulumi:"apCountry"`
+	ApHandoff                      *string                                         `pulumi:"apHandoff"`
+	ApcfgProfile                   *string                                         `pulumi:"apcfgProfile"`
+	BleProfile                     *string                                         `pulumi:"bleProfile"`
+	Comment                        *string                                         `pulumi:"comment"`
+	ConsoleLogin                   *string                                         `pulumi:"consoleLogin"`
+	ControlMessageOffload          *string                                         `pulumi:"controlMessageOffload"`
+	DenyMacLists                   []WirelessControllerWtpProfileDenyMacList       `pulumi:"denyMacLists"`
+	DtlsInKernel                   *string                                         `pulumi:"dtlsInKernel"`
+	DtlsPolicy                     *string                                         `pulumi:"dtlsPolicy"`
+	DynamicSortSubtable            *string                                         `pulumi:"dynamicSortSubtable"`
+	EnergyEfficientEthernet        *string                                         `pulumi:"energyEfficientEthernet"`
+	EslSesDongle                   *WirelessControllerWtpProfileEslSesDongle       `pulumi:"eslSesDongle"`
+	ExtInfoEnable                  *string                                         `pulumi:"extInfoEnable"`
+	FrequencyHandoff               *string                                         `pulumi:"frequencyHandoff"`
+	HandoffRoaming                 *string                                         `pulumi:"handoffRoaming"`
+	HandoffRssi                    *int                                            `pulumi:"handoffRssi"`
+	HandoffStaThresh               *int                                            `pulumi:"handoffStaThresh"`
+	IndoorOutdoorDeployment        *string                                         `pulumi:"indoorOutdoorDeployment"`
+	IpFragmentPreventing           *string                                         `pulumi:"ipFragmentPreventing"`
+	Lan                            *WirelessControllerWtpProfileLan                `pulumi:"lan"`
+	Lbs                            *WirelessControllerWtpProfileLbs                `pulumi:"lbs"`
+	LedSchedules                   []WirelessControllerWtpProfileLedSchedule       `pulumi:"ledSchedules"`
+	LedState                       *string                                         `pulumi:"ledState"`
+	Lldp                           *string                                         `pulumi:"lldp"`
+	LoginPasswd                    *string                                         `pulumi:"loginPasswd"`
+	LoginPasswdChange              *string                                         `pulumi:"loginPasswdChange"`
+	MaxClients                     *int                                            `pulumi:"maxClients"`
+	Name                           *string                                         `pulumi:"name"`
+	Platform                       *WirelessControllerWtpProfilePlatform           `pulumi:"platform"`
+	PoeMode                        *string                                         `pulumi:"poeMode"`
+	Radio1                         *WirelessControllerWtpProfileRadio1             `pulumi:"radio1"`
+	Radio2                         *WirelessControllerWtpProfileRadio2             `pulumi:"radio2"`
+	Radio3                         *WirelessControllerWtpProfileRadio3             `pulumi:"radio3"`
+	Radio4                         *WirelessControllerWtpProfileRadio4             `pulumi:"radio4"`
+	SplitTunnelingAclLocalApSubnet *string                                         `pulumi:"splitTunnelingAclLocalApSubnet"`
+	SplitTunnelingAclPath          *string                                         `pulumi:"splitTunnelingAclPath"`
+	SplitTunnelingAcls             []WirelessControllerWtpProfileSplitTunnelingAcl `pulumi:"splitTunnelingAcls"`
+	SyslogProfile                  *string                                         `pulumi:"syslogProfile"`
+	TunMtuDownlink                 *int                                            `pulumi:"tunMtuDownlink"`
+	TunMtuUplink                   *int                                            `pulumi:"tunMtuUplink"`
+	Vdomparam                      *string                                         `pulumi:"vdomparam"`
+	WanPortAuth                    *string                                         `pulumi:"wanPortAuth"`
+	WanPortAuthMethods             *string                                         `pulumi:"wanPortAuthMethods"`
+	WanPortAuthPassword            *string                                         `pulumi:"wanPortAuthPassword"`
+	WanPortAuthUsrname             *string                                         `pulumi:"wanPortAuthUsrname"`
+	WanPortMode                    *string                                         `pulumi:"wanPortMode"`
 }
 
 type WirelessControllerWtpProfileState struct {
-	// Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space.
-	Allowaccess pulumi.StringPtrInput
-	// Country in which this WTP, FortiAP or AP will operate (default = NA, automatically use the country configured for the current VDOM).
-	ApCountry pulumi.StringPtrInput
-	// Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-	ApHandoff pulumi.StringPtrInput
-	// AP local configuration profile name.
-	ApcfgProfile pulumi.StringPtrInput
-	// Bluetooth Low Energy profile name.
-	BleProfile pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
-	ConsoleLogin pulumi.StringPtrInput
-	// Enable/disable CAPWAP control message data channel offload.
-	ControlMessageOffload pulumi.StringPtrInput
-	// List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `denyMacList` block is documented below.
-	DenyMacLists WirelessControllerWtpProfileDenyMacListArrayInput
-	// Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
-	DtlsInKernel pulumi.StringPtrInput
-	// WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
-	DtlsPolicy pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
-	EnergyEfficientEthernet pulumi.StringPtrInput
-	// ESL SES-imagotag dongle configuration. The structure of `eslSesDongle` block is documented below.
-	EslSesDongle WirelessControllerWtpProfileEslSesDonglePtrInput
-	// Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
-	ExtInfoEnable pulumi.StringPtrInput
-	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
-	FrequencyHandoff pulumi.StringPtrInput
-	// Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
-	HandoffRoaming pulumi.StringPtrInput
-	// Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
-	HandoffRssi pulumi.IntPtrInput
-	// Threshold value for AP handoff.
-	HandoffStaThresh pulumi.IntPtrInput
-	// Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
-	IndoorOutdoorDeployment pulumi.StringPtrInput
-	// Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
-	IpFragmentPreventing pulumi.StringPtrInput
-	// WTP LAN port mapping. The structure of `lan` block is documented below.
-	Lan WirelessControllerWtpProfileLanPtrInput
-	// Set various location based service (LBS) options. The structure of `lbs` block is documented below.
-	Lbs WirelessControllerWtpProfileLbsPtrInput
-	// Recurring firewall schedules for illuminating LEDs on the FortiAP. If led-state is enabled, LEDs will be visible when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `ledSchedules` block is documented below.
-	LedSchedules WirelessControllerWtpProfileLedScheduleArrayInput
-	// Enable/disable use of LEDs on WTP (default = disable). Valid values: `enable`, `disable`.
-	LedState pulumi.StringPtrInput
-	// Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
-	Lldp pulumi.StringPtrInput
-	// Set the managed WTP, FortiAP, or AP's administrator password.
-	LoginPasswd pulumi.StringPtrInput
-	// Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-	LoginPasswdChange pulumi.StringPtrInput
-	// Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
-	MaxClients pulumi.IntPtrInput
-	// Virtual Access Point (VAP) name.
-	Name pulumi.StringPtrInput
-	// WTP, FortiAP, or AP platform. The structure of `platform` block is documented below.
-	Platform WirelessControllerWtpProfilePlatformPtrInput
-	// Set the WTP, FortiAP, or AP's PoE mode.
-	PoeMode pulumi.StringPtrInput
-	// Configuration options for radio 1. The structure of `radio1` block is documented below.
-	Radio1 WirelessControllerWtpProfileRadio1PtrInput
-	// Configuration options for radio 2. The structure of `radio2` block is documented below.
-	Radio2 WirelessControllerWtpProfileRadio2PtrInput
-	// Configuration options for radio 3. The structure of `radio3` block is documented below.
-	Radio3 WirelessControllerWtpProfileRadio3PtrInput
-	// Configuration options for radio 4. The structure of `radio4` block is documented below.
-	Radio4 WirelessControllerWtpProfileRadio4PtrInput
-	// Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
+	Allowaccess                    pulumi.StringPtrInput
+	ApCountry                      pulumi.StringPtrInput
+	ApHandoff                      pulumi.StringPtrInput
+	ApcfgProfile                   pulumi.StringPtrInput
+	BleProfile                     pulumi.StringPtrInput
+	Comment                        pulumi.StringPtrInput
+	ConsoleLogin                   pulumi.StringPtrInput
+	ControlMessageOffload          pulumi.StringPtrInput
+	DenyMacLists                   WirelessControllerWtpProfileDenyMacListArrayInput
+	DtlsInKernel                   pulumi.StringPtrInput
+	DtlsPolicy                     pulumi.StringPtrInput
+	DynamicSortSubtable            pulumi.StringPtrInput
+	EnergyEfficientEthernet        pulumi.StringPtrInput
+	EslSesDongle                   WirelessControllerWtpProfileEslSesDonglePtrInput
+	ExtInfoEnable                  pulumi.StringPtrInput
+	FrequencyHandoff               pulumi.StringPtrInput
+	HandoffRoaming                 pulumi.StringPtrInput
+	HandoffRssi                    pulumi.IntPtrInput
+	HandoffStaThresh               pulumi.IntPtrInput
+	IndoorOutdoorDeployment        pulumi.StringPtrInput
+	IpFragmentPreventing           pulumi.StringPtrInput
+	Lan                            WirelessControllerWtpProfileLanPtrInput
+	Lbs                            WirelessControllerWtpProfileLbsPtrInput
+	LedSchedules                   WirelessControllerWtpProfileLedScheduleArrayInput
+	LedState                       pulumi.StringPtrInput
+	Lldp                           pulumi.StringPtrInput
+	LoginPasswd                    pulumi.StringPtrInput
+	LoginPasswdChange              pulumi.StringPtrInput
+	MaxClients                     pulumi.IntPtrInput
+	Name                           pulumi.StringPtrInput
+	Platform                       WirelessControllerWtpProfilePlatformPtrInput
+	PoeMode                        pulumi.StringPtrInput
+	Radio1                         WirelessControllerWtpProfileRadio1PtrInput
+	Radio2                         WirelessControllerWtpProfileRadio2PtrInput
+	Radio3                         WirelessControllerWtpProfileRadio3PtrInput
+	Radio4                         WirelessControllerWtpProfileRadio4PtrInput
 	SplitTunnelingAclLocalApSubnet pulumi.StringPtrInput
-	// Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
-	SplitTunnelingAclPath pulumi.StringPtrInput
-	// Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
-	SplitTunnelingAcls WirelessControllerWtpProfileSplitTunnelingAclArrayInput
-	// System log server configuration profile name.
-	SyslogProfile pulumi.StringPtrInput
-	// Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
-	TunMtuDownlink pulumi.IntPtrInput
-	// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
-	TunMtuUplink pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
-	WanPortAuth pulumi.StringPtrInput
-	// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
-	WanPortAuthMethods pulumi.StringPtrInput
-	// Set WAN port 802.1x supplicant password.
-	WanPortAuthPassword pulumi.StringPtrInput
-	// Set WAN port 802.1x supplicant user name.
-	WanPortAuthUsrname pulumi.StringPtrInput
-	// Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
-	WanPortMode pulumi.StringPtrInput
+	SplitTunnelingAclPath          pulumi.StringPtrInput
+	SplitTunnelingAcls             WirelessControllerWtpProfileSplitTunnelingAclArrayInput
+	SyslogProfile                  pulumi.StringPtrInput
+	TunMtuDownlink                 pulumi.IntPtrInput
+	TunMtuUplink                   pulumi.IntPtrInput
+	Vdomparam                      pulumi.StringPtrInput
+	WanPortAuth                    pulumi.StringPtrInput
+	WanPortAuthMethods             pulumi.StringPtrInput
+	WanPortAuthPassword            pulumi.StringPtrInput
+	WanPortAuthUsrname             pulumi.StringPtrInput
+	WanPortMode                    pulumi.StringPtrInput
 }
 
 func (WirelessControllerWtpProfileState) ElementType() reflect.Type {
@@ -360,202 +206,106 @@ func (WirelessControllerWtpProfileState) ElementType() reflect.Type {
 }
 
 type wirelessControllerWtpProfileArgs struct {
-	// Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space.
-	Allowaccess *string `pulumi:"allowaccess"`
-	// Country in which this WTP, FortiAP or AP will operate (default = NA, automatically use the country configured for the current VDOM).
-	ApCountry *string `pulumi:"apCountry"`
-	// Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-	ApHandoff *string `pulumi:"apHandoff"`
-	// AP local configuration profile name.
-	ApcfgProfile *string `pulumi:"apcfgProfile"`
-	// Bluetooth Low Energy profile name.
-	BleProfile *string `pulumi:"bleProfile"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
-	ConsoleLogin *string `pulumi:"consoleLogin"`
-	// Enable/disable CAPWAP control message data channel offload.
-	ControlMessageOffload *string `pulumi:"controlMessageOffload"`
-	// List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `denyMacList` block is documented below.
-	DenyMacLists []WirelessControllerWtpProfileDenyMacList `pulumi:"denyMacLists"`
-	// Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
-	DtlsInKernel *string `pulumi:"dtlsInKernel"`
-	// WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
-	DtlsPolicy *string `pulumi:"dtlsPolicy"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
-	EnergyEfficientEthernet *string `pulumi:"energyEfficientEthernet"`
-	// ESL SES-imagotag dongle configuration. The structure of `eslSesDongle` block is documented below.
-	EslSesDongle *WirelessControllerWtpProfileEslSesDongle `pulumi:"eslSesDongle"`
-	// Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
-	ExtInfoEnable *string `pulumi:"extInfoEnable"`
-	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
-	FrequencyHandoff *string `pulumi:"frequencyHandoff"`
-	// Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
-	HandoffRoaming *string `pulumi:"handoffRoaming"`
-	// Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
-	HandoffRssi *int `pulumi:"handoffRssi"`
-	// Threshold value for AP handoff.
-	HandoffStaThresh *int `pulumi:"handoffStaThresh"`
-	// Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
-	IndoorOutdoorDeployment *string `pulumi:"indoorOutdoorDeployment"`
-	// Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
-	IpFragmentPreventing *string `pulumi:"ipFragmentPreventing"`
-	// WTP LAN port mapping. The structure of `lan` block is documented below.
-	Lan *WirelessControllerWtpProfileLan `pulumi:"lan"`
-	// Set various location based service (LBS) options. The structure of `lbs` block is documented below.
-	Lbs *WirelessControllerWtpProfileLbs `pulumi:"lbs"`
-	// Recurring firewall schedules for illuminating LEDs on the FortiAP. If led-state is enabled, LEDs will be visible when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `ledSchedules` block is documented below.
-	LedSchedules []WirelessControllerWtpProfileLedSchedule `pulumi:"ledSchedules"`
-	// Enable/disable use of LEDs on WTP (default = disable). Valid values: `enable`, `disable`.
-	LedState *string `pulumi:"ledState"`
-	// Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
-	Lldp *string `pulumi:"lldp"`
-	// Set the managed WTP, FortiAP, or AP's administrator password.
-	LoginPasswd *string `pulumi:"loginPasswd"`
-	// Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-	LoginPasswdChange *string `pulumi:"loginPasswdChange"`
-	// Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
-	MaxClients *int `pulumi:"maxClients"`
-	// Virtual Access Point (VAP) name.
-	Name *string `pulumi:"name"`
-	// WTP, FortiAP, or AP platform. The structure of `platform` block is documented below.
-	Platform *WirelessControllerWtpProfilePlatform `pulumi:"platform"`
-	// Set the WTP, FortiAP, or AP's PoE mode.
-	PoeMode *string `pulumi:"poeMode"`
-	// Configuration options for radio 1. The structure of `radio1` block is documented below.
-	Radio1 *WirelessControllerWtpProfileRadio1 `pulumi:"radio1"`
-	// Configuration options for radio 2. The structure of `radio2` block is documented below.
-	Radio2 *WirelessControllerWtpProfileRadio2 `pulumi:"radio2"`
-	// Configuration options for radio 3. The structure of `radio3` block is documented below.
-	Radio3 *WirelessControllerWtpProfileRadio3 `pulumi:"radio3"`
-	// Configuration options for radio 4. The structure of `radio4` block is documented below.
-	Radio4 *WirelessControllerWtpProfileRadio4 `pulumi:"radio4"`
-	// Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
-	SplitTunnelingAclLocalApSubnet *string `pulumi:"splitTunnelingAclLocalApSubnet"`
-	// Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
-	SplitTunnelingAclPath *string `pulumi:"splitTunnelingAclPath"`
-	// Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
-	SplitTunnelingAcls []WirelessControllerWtpProfileSplitTunnelingAcl `pulumi:"splitTunnelingAcls"`
-	// System log server configuration profile name.
-	SyslogProfile *string `pulumi:"syslogProfile"`
-	// Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
-	TunMtuDownlink *int `pulumi:"tunMtuDownlink"`
-	// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
-	TunMtuUplink *int `pulumi:"tunMtuUplink"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
-	WanPortAuth *string `pulumi:"wanPortAuth"`
-	// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
-	WanPortAuthMethods *string `pulumi:"wanPortAuthMethods"`
-	// Set WAN port 802.1x supplicant password.
-	WanPortAuthPassword *string `pulumi:"wanPortAuthPassword"`
-	// Set WAN port 802.1x supplicant user name.
-	WanPortAuthUsrname *string `pulumi:"wanPortAuthUsrname"`
-	// Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
-	WanPortMode *string `pulumi:"wanPortMode"`
+	Allowaccess                    *string                                         `pulumi:"allowaccess"`
+	ApCountry                      *string                                         `pulumi:"apCountry"`
+	ApHandoff                      *string                                         `pulumi:"apHandoff"`
+	ApcfgProfile                   *string                                         `pulumi:"apcfgProfile"`
+	BleProfile                     *string                                         `pulumi:"bleProfile"`
+	Comment                        *string                                         `pulumi:"comment"`
+	ConsoleLogin                   *string                                         `pulumi:"consoleLogin"`
+	ControlMessageOffload          *string                                         `pulumi:"controlMessageOffload"`
+	DenyMacLists                   []WirelessControllerWtpProfileDenyMacList       `pulumi:"denyMacLists"`
+	DtlsInKernel                   *string                                         `pulumi:"dtlsInKernel"`
+	DtlsPolicy                     *string                                         `pulumi:"dtlsPolicy"`
+	DynamicSortSubtable            *string                                         `pulumi:"dynamicSortSubtable"`
+	EnergyEfficientEthernet        *string                                         `pulumi:"energyEfficientEthernet"`
+	EslSesDongle                   *WirelessControllerWtpProfileEslSesDongle       `pulumi:"eslSesDongle"`
+	ExtInfoEnable                  *string                                         `pulumi:"extInfoEnable"`
+	FrequencyHandoff               *string                                         `pulumi:"frequencyHandoff"`
+	HandoffRoaming                 *string                                         `pulumi:"handoffRoaming"`
+	HandoffRssi                    *int                                            `pulumi:"handoffRssi"`
+	HandoffStaThresh               *int                                            `pulumi:"handoffStaThresh"`
+	IndoorOutdoorDeployment        *string                                         `pulumi:"indoorOutdoorDeployment"`
+	IpFragmentPreventing           *string                                         `pulumi:"ipFragmentPreventing"`
+	Lan                            *WirelessControllerWtpProfileLan                `pulumi:"lan"`
+	Lbs                            *WirelessControllerWtpProfileLbs                `pulumi:"lbs"`
+	LedSchedules                   []WirelessControllerWtpProfileLedSchedule       `pulumi:"ledSchedules"`
+	LedState                       *string                                         `pulumi:"ledState"`
+	Lldp                           *string                                         `pulumi:"lldp"`
+	LoginPasswd                    *string                                         `pulumi:"loginPasswd"`
+	LoginPasswdChange              *string                                         `pulumi:"loginPasswdChange"`
+	MaxClients                     *int                                            `pulumi:"maxClients"`
+	Name                           *string                                         `pulumi:"name"`
+	Platform                       *WirelessControllerWtpProfilePlatform           `pulumi:"platform"`
+	PoeMode                        *string                                         `pulumi:"poeMode"`
+	Radio1                         *WirelessControllerWtpProfileRadio1             `pulumi:"radio1"`
+	Radio2                         *WirelessControllerWtpProfileRadio2             `pulumi:"radio2"`
+	Radio3                         *WirelessControllerWtpProfileRadio3             `pulumi:"radio3"`
+	Radio4                         *WirelessControllerWtpProfileRadio4             `pulumi:"radio4"`
+	SplitTunnelingAclLocalApSubnet *string                                         `pulumi:"splitTunnelingAclLocalApSubnet"`
+	SplitTunnelingAclPath          *string                                         `pulumi:"splitTunnelingAclPath"`
+	SplitTunnelingAcls             []WirelessControllerWtpProfileSplitTunnelingAcl `pulumi:"splitTunnelingAcls"`
+	SyslogProfile                  *string                                         `pulumi:"syslogProfile"`
+	TunMtuDownlink                 *int                                            `pulumi:"tunMtuDownlink"`
+	TunMtuUplink                   *int                                            `pulumi:"tunMtuUplink"`
+	Vdomparam                      *string                                         `pulumi:"vdomparam"`
+	WanPortAuth                    *string                                         `pulumi:"wanPortAuth"`
+	WanPortAuthMethods             *string                                         `pulumi:"wanPortAuthMethods"`
+	WanPortAuthPassword            *string                                         `pulumi:"wanPortAuthPassword"`
+	WanPortAuthUsrname             *string                                         `pulumi:"wanPortAuthUsrname"`
+	WanPortMode                    *string                                         `pulumi:"wanPortMode"`
 }
 
 // The set of arguments for constructing a WirelessControllerWtpProfile resource.
 type WirelessControllerWtpProfileArgs struct {
-	// Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space.
-	Allowaccess pulumi.StringPtrInput
-	// Country in which this WTP, FortiAP or AP will operate (default = NA, automatically use the country configured for the current VDOM).
-	ApCountry pulumi.StringPtrInput
-	// Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-	ApHandoff pulumi.StringPtrInput
-	// AP local configuration profile name.
-	ApcfgProfile pulumi.StringPtrInput
-	// Bluetooth Low Energy profile name.
-	BleProfile pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
-	ConsoleLogin pulumi.StringPtrInput
-	// Enable/disable CAPWAP control message data channel offload.
-	ControlMessageOffload pulumi.StringPtrInput
-	// List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `denyMacList` block is documented below.
-	DenyMacLists WirelessControllerWtpProfileDenyMacListArrayInput
-	// Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
-	DtlsInKernel pulumi.StringPtrInput
-	// WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
-	DtlsPolicy pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
-	EnergyEfficientEthernet pulumi.StringPtrInput
-	// ESL SES-imagotag dongle configuration. The structure of `eslSesDongle` block is documented below.
-	EslSesDongle WirelessControllerWtpProfileEslSesDonglePtrInput
-	// Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
-	ExtInfoEnable pulumi.StringPtrInput
-	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
-	FrequencyHandoff pulumi.StringPtrInput
-	// Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
-	HandoffRoaming pulumi.StringPtrInput
-	// Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
-	HandoffRssi pulumi.IntPtrInput
-	// Threshold value for AP handoff.
-	HandoffStaThresh pulumi.IntPtrInput
-	// Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
-	IndoorOutdoorDeployment pulumi.StringPtrInput
-	// Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
-	IpFragmentPreventing pulumi.StringPtrInput
-	// WTP LAN port mapping. The structure of `lan` block is documented below.
-	Lan WirelessControllerWtpProfileLanPtrInput
-	// Set various location based service (LBS) options. The structure of `lbs` block is documented below.
-	Lbs WirelessControllerWtpProfileLbsPtrInput
-	// Recurring firewall schedules for illuminating LEDs on the FortiAP. If led-state is enabled, LEDs will be visible when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `ledSchedules` block is documented below.
-	LedSchedules WirelessControllerWtpProfileLedScheduleArrayInput
-	// Enable/disable use of LEDs on WTP (default = disable). Valid values: `enable`, `disable`.
-	LedState pulumi.StringPtrInput
-	// Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
-	Lldp pulumi.StringPtrInput
-	// Set the managed WTP, FortiAP, or AP's administrator password.
-	LoginPasswd pulumi.StringPtrInput
-	// Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-	LoginPasswdChange pulumi.StringPtrInput
-	// Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
-	MaxClients pulumi.IntPtrInput
-	// Virtual Access Point (VAP) name.
-	Name pulumi.StringPtrInput
-	// WTP, FortiAP, or AP platform. The structure of `platform` block is documented below.
-	Platform WirelessControllerWtpProfilePlatformPtrInput
-	// Set the WTP, FortiAP, or AP's PoE mode.
-	PoeMode pulumi.StringPtrInput
-	// Configuration options for radio 1. The structure of `radio1` block is documented below.
-	Radio1 WirelessControllerWtpProfileRadio1PtrInput
-	// Configuration options for radio 2. The structure of `radio2` block is documented below.
-	Radio2 WirelessControllerWtpProfileRadio2PtrInput
-	// Configuration options for radio 3. The structure of `radio3` block is documented below.
-	Radio3 WirelessControllerWtpProfileRadio3PtrInput
-	// Configuration options for radio 4. The structure of `radio4` block is documented below.
-	Radio4 WirelessControllerWtpProfileRadio4PtrInput
-	// Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
+	Allowaccess                    pulumi.StringPtrInput
+	ApCountry                      pulumi.StringPtrInput
+	ApHandoff                      pulumi.StringPtrInput
+	ApcfgProfile                   pulumi.StringPtrInput
+	BleProfile                     pulumi.StringPtrInput
+	Comment                        pulumi.StringPtrInput
+	ConsoleLogin                   pulumi.StringPtrInput
+	ControlMessageOffload          pulumi.StringPtrInput
+	DenyMacLists                   WirelessControllerWtpProfileDenyMacListArrayInput
+	DtlsInKernel                   pulumi.StringPtrInput
+	DtlsPolicy                     pulumi.StringPtrInput
+	DynamicSortSubtable            pulumi.StringPtrInput
+	EnergyEfficientEthernet        pulumi.StringPtrInput
+	EslSesDongle                   WirelessControllerWtpProfileEslSesDonglePtrInput
+	ExtInfoEnable                  pulumi.StringPtrInput
+	FrequencyHandoff               pulumi.StringPtrInput
+	HandoffRoaming                 pulumi.StringPtrInput
+	HandoffRssi                    pulumi.IntPtrInput
+	HandoffStaThresh               pulumi.IntPtrInput
+	IndoorOutdoorDeployment        pulumi.StringPtrInput
+	IpFragmentPreventing           pulumi.StringPtrInput
+	Lan                            WirelessControllerWtpProfileLanPtrInput
+	Lbs                            WirelessControllerWtpProfileLbsPtrInput
+	LedSchedules                   WirelessControllerWtpProfileLedScheduleArrayInput
+	LedState                       pulumi.StringPtrInput
+	Lldp                           pulumi.StringPtrInput
+	LoginPasswd                    pulumi.StringPtrInput
+	LoginPasswdChange              pulumi.StringPtrInput
+	MaxClients                     pulumi.IntPtrInput
+	Name                           pulumi.StringPtrInput
+	Platform                       WirelessControllerWtpProfilePlatformPtrInput
+	PoeMode                        pulumi.StringPtrInput
+	Radio1                         WirelessControllerWtpProfileRadio1PtrInput
+	Radio2                         WirelessControllerWtpProfileRadio2PtrInput
+	Radio3                         WirelessControllerWtpProfileRadio3PtrInput
+	Radio4                         WirelessControllerWtpProfileRadio4PtrInput
 	SplitTunnelingAclLocalApSubnet pulumi.StringPtrInput
-	// Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
-	SplitTunnelingAclPath pulumi.StringPtrInput
-	// Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
-	SplitTunnelingAcls WirelessControllerWtpProfileSplitTunnelingAclArrayInput
-	// System log server configuration profile name.
-	SyslogProfile pulumi.StringPtrInput
-	// Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
-	TunMtuDownlink pulumi.IntPtrInput
-	// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
-	TunMtuUplink pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
-	WanPortAuth pulumi.StringPtrInput
-	// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
-	WanPortAuthMethods pulumi.StringPtrInput
-	// Set WAN port 802.1x supplicant password.
-	WanPortAuthPassword pulumi.StringPtrInput
-	// Set WAN port 802.1x supplicant user name.
-	WanPortAuthUsrname pulumi.StringPtrInput
-	// Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
-	WanPortMode pulumi.StringPtrInput
+	SplitTunnelingAclPath          pulumi.StringPtrInput
+	SplitTunnelingAcls             WirelessControllerWtpProfileSplitTunnelingAclArrayInput
+	SyslogProfile                  pulumi.StringPtrInput
+	TunMtuDownlink                 pulumi.IntPtrInput
+	TunMtuUplink                   pulumi.IntPtrInput
+	Vdomparam                      pulumi.StringPtrInput
+	WanPortAuth                    pulumi.StringPtrInput
+	WanPortAuthMethods             pulumi.StringPtrInput
+	WanPortAuthPassword            pulumi.StringPtrInput
+	WanPortAuthUsrname             pulumi.StringPtrInput
+	WanPortMode                    pulumi.StringPtrInput
 }
 
 func (WirelessControllerWtpProfileArgs) ElementType() reflect.Type {
@@ -584,7 +334,7 @@ func (i *WirelessControllerWtpProfile) ToWirelessControllerWtpProfileOutputWithC
 // WirelessControllerWtpProfileArrayInput is an input type that accepts WirelessControllerWtpProfileArray and WirelessControllerWtpProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpProfileArrayInput` via:
 //
-//          WirelessControllerWtpProfileArray{ WirelessControllerWtpProfileArgs{...} }
+//	WirelessControllerWtpProfileArray{ WirelessControllerWtpProfileArgs{...} }
 type WirelessControllerWtpProfileArrayInput interface {
 	pulumi.Input
 
@@ -609,7 +359,7 @@ func (i WirelessControllerWtpProfileArray) ToWirelessControllerWtpProfileArrayOu
 // WirelessControllerWtpProfileMapInput is an input type that accepts WirelessControllerWtpProfileMap and WirelessControllerWtpProfileMapOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpProfileMapInput` via:
 //
-//          WirelessControllerWtpProfileMap{ "key": WirelessControllerWtpProfileArgs{...} }
+//	WirelessControllerWtpProfileMap{ "key": WirelessControllerWtpProfileArgs{...} }
 type WirelessControllerWtpProfileMapInput interface {
 	pulumi.Input
 
@@ -643,6 +393,206 @@ func (o WirelessControllerWtpProfileOutput) ToWirelessControllerWtpProfileOutput
 
 func (o WirelessControllerWtpProfileOutput) ToWirelessControllerWtpProfileOutputWithContext(ctx context.Context) WirelessControllerWtpProfileOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileOutput) Allowaccess() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.Allowaccess }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) ApCountry() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.ApCountry }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) ApHandoff() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.ApHandoff }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) ApcfgProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.ApcfgProfile }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) BleProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.BleProfile }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) ConsoleLogin() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.ConsoleLogin }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) ControlMessageOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.ControlMessageOffload }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) DenyMacLists() WirelessControllerWtpProfileDenyMacListArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) WirelessControllerWtpProfileDenyMacListArrayOutput {
+		return v.DenyMacLists
+	}).(WirelessControllerWtpProfileDenyMacListArrayOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) DtlsInKernel() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.DtlsInKernel }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) DtlsPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.DtlsPolicy }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) EnergyEfficientEthernet() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.EnergyEfficientEthernet }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) EslSesDongle() WirelessControllerWtpProfileEslSesDongleOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) WirelessControllerWtpProfileEslSesDongleOutput {
+		return v.EslSesDongle
+	}).(WirelessControllerWtpProfileEslSesDongleOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) ExtInfoEnable() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.ExtInfoEnable }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) FrequencyHandoff() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.FrequencyHandoff }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) HandoffRoaming() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.HandoffRoaming }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) HandoffRssi() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.IntOutput { return v.HandoffRssi }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) HandoffStaThresh() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.IntOutput { return v.HandoffStaThresh }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) IndoorOutdoorDeployment() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.IndoorOutdoorDeployment }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) IpFragmentPreventing() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.IpFragmentPreventing }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) Lan() WirelessControllerWtpProfileLanOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) WirelessControllerWtpProfileLanOutput { return v.Lan }).(WirelessControllerWtpProfileLanOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) Lbs() WirelessControllerWtpProfileLbsOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) WirelessControllerWtpProfileLbsOutput { return v.Lbs }).(WirelessControllerWtpProfileLbsOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) LedSchedules() WirelessControllerWtpProfileLedScheduleArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) WirelessControllerWtpProfileLedScheduleArrayOutput {
+		return v.LedSchedules
+	}).(WirelessControllerWtpProfileLedScheduleArrayOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) LedState() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.LedState }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) Lldp() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.Lldp }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) LoginPasswd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringPtrOutput { return v.LoginPasswd }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) LoginPasswdChange() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.LoginPasswdChange }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) MaxClients() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.IntOutput { return v.MaxClients }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) Platform() WirelessControllerWtpProfilePlatformOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) WirelessControllerWtpProfilePlatformOutput { return v.Platform }).(WirelessControllerWtpProfilePlatformOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) PoeMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.PoeMode }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) Radio1() WirelessControllerWtpProfileRadio1Output {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) WirelessControllerWtpProfileRadio1Output { return v.Radio1 }).(WirelessControllerWtpProfileRadio1Output)
+}
+
+func (o WirelessControllerWtpProfileOutput) Radio2() WirelessControllerWtpProfileRadio2Output {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) WirelessControllerWtpProfileRadio2Output { return v.Radio2 }).(WirelessControllerWtpProfileRadio2Output)
+}
+
+func (o WirelessControllerWtpProfileOutput) Radio3() WirelessControllerWtpProfileRadio3Output {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) WirelessControllerWtpProfileRadio3Output { return v.Radio3 }).(WirelessControllerWtpProfileRadio3Output)
+}
+
+func (o WirelessControllerWtpProfileOutput) Radio4() WirelessControllerWtpProfileRadio4Output {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) WirelessControllerWtpProfileRadio4Output { return v.Radio4 }).(WirelessControllerWtpProfileRadio4Output)
+}
+
+func (o WirelessControllerWtpProfileOutput) SplitTunnelingAclLocalApSubnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.SplitTunnelingAclLocalApSubnet }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) SplitTunnelingAclPath() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.SplitTunnelingAclPath }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) SplitTunnelingAcls() WirelessControllerWtpProfileSplitTunnelingAclArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) WirelessControllerWtpProfileSplitTunnelingAclArrayOutput {
+		return v.SplitTunnelingAcls
+	}).(WirelessControllerWtpProfileSplitTunnelingAclArrayOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) SyslogProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.SyslogProfile }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) TunMtuDownlink() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.IntOutput { return v.TunMtuDownlink }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) TunMtuUplink() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.IntOutput { return v.TunMtuUplink }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) WanPortAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.WanPortAuth }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) WanPortAuthMethods() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.WanPortAuthMethods }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) WanPortAuthPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringPtrOutput { return v.WanPortAuthPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) WanPortAuthUsrname() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.WanPortAuthUsrname }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) WanPortMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.WanPortMode }).(pulumi.StringOutput)
 }
 
 type WirelessControllerWtpProfileArrayOutput struct{ *pulumi.OutputState }

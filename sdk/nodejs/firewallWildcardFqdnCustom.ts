@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Config global/VDOM Wildcard FQDN address.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallWildcardFqdnCustom("trname", {
- *     color: 0,
- *     visibility: "enable",
- *     wildcardFqdn: "*.go.google.com",
- * });
- * ```
- *
- * ## Import
- *
- * FirewallWildcardFqdn Custom can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallWildcardFqdnCustom:FirewallWildcardFqdnCustom labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallWildcardFqdnCustom:FirewallWildcardFqdnCustom labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallWildcardFqdnCustom extends pulumi.CustomResource {
     /**
      * Get an existing FirewallWildcardFqdnCustom resource's state with the given name, ID, and optional extra
@@ -64,33 +32,12 @@ export class FirewallWildcardFqdnCustom extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallWildcardFqdnCustom.__pulumiType;
     }
 
-    /**
-     * GUI icon color.
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Address name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable address visibility. Valid values: `enable`, `disable`.
-     */
     public readonly visibility!: pulumi.Output<string>;
-    /**
-     * Wildcard FQDN.
-     */
     public readonly wildcardFqdn!: pulumi.Output<string>;
 
     /**
@@ -132,33 +79,12 @@ export class FirewallWildcardFqdnCustom extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallWildcardFqdnCustom resources.
  */
 export interface FirewallWildcardFqdnCustomState {
-    /**
-     * GUI icon color.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable address visibility. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
-    /**
-     * Wildcard FQDN.
-     */
     wildcardFqdn?: pulumi.Input<string>;
 }
 
@@ -166,32 +92,11 @@ export interface FirewallWildcardFqdnCustomState {
  * The set of arguments for constructing a FirewallWildcardFqdnCustom resource.
  */
 export interface FirewallWildcardFqdnCustomArgs {
-    /**
-     * GUI icon color.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable address visibility. Valid values: `enable`, `disable`.
-     */
     visibility?: pulumi.Input<string>;
-    /**
-     * Wildcard FQDN.
-     */
     wildcardFqdn?: pulumi.Input<string>;
 }

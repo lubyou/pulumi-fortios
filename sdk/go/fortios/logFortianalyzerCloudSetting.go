@@ -10,74 +10,33 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Global FortiAnalyzer Cloud settings. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// LogFortianalyzerCloud Setting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logFortianalyzerCloudSetting:LogFortianalyzerCloudSetting labelname LogFortianalyzerCloudSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logFortianalyzerCloudSetting:LogFortianalyzerCloudSetting labelname LogFortianalyzerCloudSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogFortianalyzerCloudSetting struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
-	AccessConfig pulumi.StringOutput `pulumi:"accessConfig"`
-	// Certificate used to communicate with FortiAnalyzer.
-	Certificate pulumi.StringOutput `pulumi:"certificate"`
-	// Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
-	CertificateVerification pulumi.StringOutput `pulumi:"certificateVerification"`
-	// FortiAnalyzer connection time-out in seconds (for status and log buffer).
-	ConnTimeout pulumi.IntOutput `pulumi:"connTimeout"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
-	EncAlgorithm pulumi.StringOutput `pulumi:"encAlgorithm"`
-	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
-	HmacAlgorithm pulumi.StringOutput `pulumi:"hmacAlgorithm"`
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
-	// Enable/disable IPS packet archive logging. Valid values: `enable`, `disable`.
-	IpsArchive pulumi.StringOutput `pulumi:"ipsArchive"`
-	// FortiAnalyzer maximum log rate in MBps (0 = unlimited).
-	MaxLogRate pulumi.IntOutput `pulumi:"maxLogRate"`
-	// Time between FortiAnalyzer connection retries in seconds (for status and log buffer).
-	MonitorFailureRetryPeriod pulumi.IntOutput `pulumi:"monitorFailureRetryPeriod"`
-	// Time between OFTP keepalives in seconds (for status and log buffer).
-	MonitorKeepalivePeriod pulumi.IntOutput `pulumi:"monitorKeepalivePeriod"`
-	// Preshared-key used for auto-authorization on FortiAnalyzer.
-	PresharedKey pulumi.StringOutput `pulumi:"presharedKey"`
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority pulumi.StringOutput `pulumi:"priority"`
-	// Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
-	Serials LogFortianalyzerCloudSettingSerialArrayOutput `pulumi:"serials"`
-	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
-	// Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Day of week (month) to upload logs.
-	UploadDay pulumi.StringOutput `pulumi:"uploadDay"`
-	// Frequency to upload log files to FortiAnalyzer. Valid values: `daily`, `weekly`, `monthly`.
-	UploadInterval pulumi.StringOutput `pulumi:"uploadInterval"`
-	// Enable/disable logging to hard disk and then uploading to FortiAnalyzer. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-	UploadOption pulumi.StringOutput `pulumi:"uploadOption"`
-	// Time to upload logs (hh:mm).
-	UploadTime pulumi.StringOutput `pulumi:"uploadTime"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AccessConfig              pulumi.StringOutput                           `pulumi:"accessConfig"`
+	Certificate               pulumi.StringOutput                           `pulumi:"certificate"`
+	CertificateVerification   pulumi.StringOutput                           `pulumi:"certificateVerification"`
+	ConnTimeout               pulumi.IntOutput                              `pulumi:"connTimeout"`
+	DynamicSortSubtable       pulumi.StringPtrOutput                        `pulumi:"dynamicSortSubtable"`
+	EncAlgorithm              pulumi.StringOutput                           `pulumi:"encAlgorithm"`
+	HmacAlgorithm             pulumi.StringOutput                           `pulumi:"hmacAlgorithm"`
+	Interface                 pulumi.StringOutput                           `pulumi:"interface"`
+	InterfaceSelectMethod     pulumi.StringOutput                           `pulumi:"interfaceSelectMethod"`
+	IpsArchive                pulumi.StringOutput                           `pulumi:"ipsArchive"`
+	MaxLogRate                pulumi.IntOutput                              `pulumi:"maxLogRate"`
+	MonitorFailureRetryPeriod pulumi.IntOutput                              `pulumi:"monitorFailureRetryPeriod"`
+	MonitorKeepalivePeriod    pulumi.IntOutput                              `pulumi:"monitorKeepalivePeriod"`
+	PresharedKey              pulumi.StringOutput                           `pulumi:"presharedKey"`
+	Priority                  pulumi.StringOutput                           `pulumi:"priority"`
+	Serials                   LogFortianalyzerCloudSettingSerialArrayOutput `pulumi:"serials"`
+	SourceIp                  pulumi.StringOutput                           `pulumi:"sourceIp"`
+	SslMinProtoVersion        pulumi.StringOutput                           `pulumi:"sslMinProtoVersion"`
+	Status                    pulumi.StringOutput                           `pulumi:"status"`
+	UploadDay                 pulumi.StringOutput                           `pulumi:"uploadDay"`
+	UploadInterval            pulumi.StringOutput                           `pulumi:"uploadInterval"`
+	UploadOption              pulumi.StringOutput                           `pulumi:"uploadOption"`
+	UploadTime                pulumi.StringOutput                           `pulumi:"uploadTime"`
+	Vdomparam                 pulumi.StringPtrOutput                        `pulumi:"vdomparam"`
 }
 
 // NewLogFortianalyzerCloudSetting registers a new resource with the given unique name, arguments, and options.
@@ -110,105 +69,57 @@ func GetLogFortianalyzerCloudSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogFortianalyzerCloudSetting resources.
 type logFortianalyzerCloudSettingState struct {
-	// Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
-	AccessConfig *string `pulumi:"accessConfig"`
-	// Certificate used to communicate with FortiAnalyzer.
-	Certificate *string `pulumi:"certificate"`
-	// Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
-	CertificateVerification *string `pulumi:"certificateVerification"`
-	// FortiAnalyzer connection time-out in seconds (for status and log buffer).
-	ConnTimeout *int `pulumi:"connTimeout"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
-	EncAlgorithm *string `pulumi:"encAlgorithm"`
-	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
-	HmacAlgorithm *string `pulumi:"hmacAlgorithm"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Enable/disable IPS packet archive logging. Valid values: `enable`, `disable`.
-	IpsArchive *string `pulumi:"ipsArchive"`
-	// FortiAnalyzer maximum log rate in MBps (0 = unlimited).
-	MaxLogRate *int `pulumi:"maxLogRate"`
-	// Time between FortiAnalyzer connection retries in seconds (for status and log buffer).
-	MonitorFailureRetryPeriod *int `pulumi:"monitorFailureRetryPeriod"`
-	// Time between OFTP keepalives in seconds (for status and log buffer).
-	MonitorKeepalivePeriod *int `pulumi:"monitorKeepalivePeriod"`
-	// Preshared-key used for auto-authorization on FortiAnalyzer.
-	PresharedKey *string `pulumi:"presharedKey"`
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority *string `pulumi:"priority"`
-	// Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
-	Serials []LogFortianalyzerCloudSettingSerial `pulumi:"serials"`
-	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
-	// Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Day of week (month) to upload logs.
-	UploadDay *string `pulumi:"uploadDay"`
-	// Frequency to upload log files to FortiAnalyzer. Valid values: `daily`, `weekly`, `monthly`.
-	UploadInterval *string `pulumi:"uploadInterval"`
-	// Enable/disable logging to hard disk and then uploading to FortiAnalyzer. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-	UploadOption *string `pulumi:"uploadOption"`
-	// Time to upload logs (hh:mm).
-	UploadTime *string `pulumi:"uploadTime"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AccessConfig              *string                              `pulumi:"accessConfig"`
+	Certificate               *string                              `pulumi:"certificate"`
+	CertificateVerification   *string                              `pulumi:"certificateVerification"`
+	ConnTimeout               *int                                 `pulumi:"connTimeout"`
+	DynamicSortSubtable       *string                              `pulumi:"dynamicSortSubtable"`
+	EncAlgorithm              *string                              `pulumi:"encAlgorithm"`
+	HmacAlgorithm             *string                              `pulumi:"hmacAlgorithm"`
+	Interface                 *string                              `pulumi:"interface"`
+	InterfaceSelectMethod     *string                              `pulumi:"interfaceSelectMethod"`
+	IpsArchive                *string                              `pulumi:"ipsArchive"`
+	MaxLogRate                *int                                 `pulumi:"maxLogRate"`
+	MonitorFailureRetryPeriod *int                                 `pulumi:"monitorFailureRetryPeriod"`
+	MonitorKeepalivePeriod    *int                                 `pulumi:"monitorKeepalivePeriod"`
+	PresharedKey              *string                              `pulumi:"presharedKey"`
+	Priority                  *string                              `pulumi:"priority"`
+	Serials                   []LogFortianalyzerCloudSettingSerial `pulumi:"serials"`
+	SourceIp                  *string                              `pulumi:"sourceIp"`
+	SslMinProtoVersion        *string                              `pulumi:"sslMinProtoVersion"`
+	Status                    *string                              `pulumi:"status"`
+	UploadDay                 *string                              `pulumi:"uploadDay"`
+	UploadInterval            *string                              `pulumi:"uploadInterval"`
+	UploadOption              *string                              `pulumi:"uploadOption"`
+	UploadTime                *string                              `pulumi:"uploadTime"`
+	Vdomparam                 *string                              `pulumi:"vdomparam"`
 }
 
 type LogFortianalyzerCloudSettingState struct {
-	// Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
-	AccessConfig pulumi.StringPtrInput
-	// Certificate used to communicate with FortiAnalyzer.
-	Certificate pulumi.StringPtrInput
-	// Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
-	CertificateVerification pulumi.StringPtrInput
-	// FortiAnalyzer connection time-out in seconds (for status and log buffer).
-	ConnTimeout pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
-	EncAlgorithm pulumi.StringPtrInput
-	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
-	HmacAlgorithm pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringPtrInput
-	// Enable/disable IPS packet archive logging. Valid values: `enable`, `disable`.
-	IpsArchive pulumi.StringPtrInput
-	// FortiAnalyzer maximum log rate in MBps (0 = unlimited).
-	MaxLogRate pulumi.IntPtrInput
-	// Time between FortiAnalyzer connection retries in seconds (for status and log buffer).
+	AccessConfig              pulumi.StringPtrInput
+	Certificate               pulumi.StringPtrInput
+	CertificateVerification   pulumi.StringPtrInput
+	ConnTimeout               pulumi.IntPtrInput
+	DynamicSortSubtable       pulumi.StringPtrInput
+	EncAlgorithm              pulumi.StringPtrInput
+	HmacAlgorithm             pulumi.StringPtrInput
+	Interface                 pulumi.StringPtrInput
+	InterfaceSelectMethod     pulumi.StringPtrInput
+	IpsArchive                pulumi.StringPtrInput
+	MaxLogRate                pulumi.IntPtrInput
 	MonitorFailureRetryPeriod pulumi.IntPtrInput
-	// Time between OFTP keepalives in seconds (for status and log buffer).
-	MonitorKeepalivePeriod pulumi.IntPtrInput
-	// Preshared-key used for auto-authorization on FortiAnalyzer.
-	PresharedKey pulumi.StringPtrInput
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority pulumi.StringPtrInput
-	// Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
-	Serials LogFortianalyzerCloudSettingSerialArrayInput
-	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
-	SourceIp pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringPtrInput
-	// Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Day of week (month) to upload logs.
-	UploadDay pulumi.StringPtrInput
-	// Frequency to upload log files to FortiAnalyzer. Valid values: `daily`, `weekly`, `monthly`.
-	UploadInterval pulumi.StringPtrInput
-	// Enable/disable logging to hard disk and then uploading to FortiAnalyzer. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-	UploadOption pulumi.StringPtrInput
-	// Time to upload logs (hh:mm).
-	UploadTime pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MonitorKeepalivePeriod    pulumi.IntPtrInput
+	PresharedKey              pulumi.StringPtrInput
+	Priority                  pulumi.StringPtrInput
+	Serials                   LogFortianalyzerCloudSettingSerialArrayInput
+	SourceIp                  pulumi.StringPtrInput
+	SslMinProtoVersion        pulumi.StringPtrInput
+	Status                    pulumi.StringPtrInput
+	UploadDay                 pulumi.StringPtrInput
+	UploadInterval            pulumi.StringPtrInput
+	UploadOption              pulumi.StringPtrInput
+	UploadTime                pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
 }
 
 func (LogFortianalyzerCloudSettingState) ElementType() reflect.Type {
@@ -216,106 +127,58 @@ func (LogFortianalyzerCloudSettingState) ElementType() reflect.Type {
 }
 
 type logFortianalyzerCloudSettingArgs struct {
-	// Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
-	AccessConfig *string `pulumi:"accessConfig"`
-	// Certificate used to communicate with FortiAnalyzer.
-	Certificate *string `pulumi:"certificate"`
-	// Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
-	CertificateVerification *string `pulumi:"certificateVerification"`
-	// FortiAnalyzer connection time-out in seconds (for status and log buffer).
-	ConnTimeout *int `pulumi:"connTimeout"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
-	EncAlgorithm *string `pulumi:"encAlgorithm"`
-	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
-	HmacAlgorithm *string `pulumi:"hmacAlgorithm"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Enable/disable IPS packet archive logging. Valid values: `enable`, `disable`.
-	IpsArchive *string `pulumi:"ipsArchive"`
-	// FortiAnalyzer maximum log rate in MBps (0 = unlimited).
-	MaxLogRate *int `pulumi:"maxLogRate"`
-	// Time between FortiAnalyzer connection retries in seconds (for status and log buffer).
-	MonitorFailureRetryPeriod *int `pulumi:"monitorFailureRetryPeriod"`
-	// Time between OFTP keepalives in seconds (for status and log buffer).
-	MonitorKeepalivePeriod *int `pulumi:"monitorKeepalivePeriod"`
-	// Preshared-key used for auto-authorization on FortiAnalyzer.
-	PresharedKey *string `pulumi:"presharedKey"`
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority *string `pulumi:"priority"`
-	// Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
-	Serials []LogFortianalyzerCloudSettingSerial `pulumi:"serials"`
-	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
-	// Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Day of week (month) to upload logs.
-	UploadDay *string `pulumi:"uploadDay"`
-	// Frequency to upload log files to FortiAnalyzer. Valid values: `daily`, `weekly`, `monthly`.
-	UploadInterval *string `pulumi:"uploadInterval"`
-	// Enable/disable logging to hard disk and then uploading to FortiAnalyzer. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-	UploadOption *string `pulumi:"uploadOption"`
-	// Time to upload logs (hh:mm).
-	UploadTime *string `pulumi:"uploadTime"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AccessConfig              *string                              `pulumi:"accessConfig"`
+	Certificate               *string                              `pulumi:"certificate"`
+	CertificateVerification   *string                              `pulumi:"certificateVerification"`
+	ConnTimeout               *int                                 `pulumi:"connTimeout"`
+	DynamicSortSubtable       *string                              `pulumi:"dynamicSortSubtable"`
+	EncAlgorithm              *string                              `pulumi:"encAlgorithm"`
+	HmacAlgorithm             *string                              `pulumi:"hmacAlgorithm"`
+	Interface                 *string                              `pulumi:"interface"`
+	InterfaceSelectMethod     *string                              `pulumi:"interfaceSelectMethod"`
+	IpsArchive                *string                              `pulumi:"ipsArchive"`
+	MaxLogRate                *int                                 `pulumi:"maxLogRate"`
+	MonitorFailureRetryPeriod *int                                 `pulumi:"monitorFailureRetryPeriod"`
+	MonitorKeepalivePeriod    *int                                 `pulumi:"monitorKeepalivePeriod"`
+	PresharedKey              *string                              `pulumi:"presharedKey"`
+	Priority                  *string                              `pulumi:"priority"`
+	Serials                   []LogFortianalyzerCloudSettingSerial `pulumi:"serials"`
+	SourceIp                  *string                              `pulumi:"sourceIp"`
+	SslMinProtoVersion        *string                              `pulumi:"sslMinProtoVersion"`
+	Status                    *string                              `pulumi:"status"`
+	UploadDay                 *string                              `pulumi:"uploadDay"`
+	UploadInterval            *string                              `pulumi:"uploadInterval"`
+	UploadOption              *string                              `pulumi:"uploadOption"`
+	UploadTime                *string                              `pulumi:"uploadTime"`
+	Vdomparam                 *string                              `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogFortianalyzerCloudSetting resource.
 type LogFortianalyzerCloudSettingArgs struct {
-	// Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
-	AccessConfig pulumi.StringPtrInput
-	// Certificate used to communicate with FortiAnalyzer.
-	Certificate pulumi.StringPtrInput
-	// Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
-	CertificateVerification pulumi.StringPtrInput
-	// FortiAnalyzer connection time-out in seconds (for status and log buffer).
-	ConnTimeout pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
-	EncAlgorithm pulumi.StringPtrInput
-	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
-	HmacAlgorithm pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringPtrInput
-	// Enable/disable IPS packet archive logging. Valid values: `enable`, `disable`.
-	IpsArchive pulumi.StringPtrInput
-	// FortiAnalyzer maximum log rate in MBps (0 = unlimited).
-	MaxLogRate pulumi.IntPtrInput
-	// Time between FortiAnalyzer connection retries in seconds (for status and log buffer).
+	AccessConfig              pulumi.StringPtrInput
+	Certificate               pulumi.StringPtrInput
+	CertificateVerification   pulumi.StringPtrInput
+	ConnTimeout               pulumi.IntPtrInput
+	DynamicSortSubtable       pulumi.StringPtrInput
+	EncAlgorithm              pulumi.StringPtrInput
+	HmacAlgorithm             pulumi.StringPtrInput
+	Interface                 pulumi.StringPtrInput
+	InterfaceSelectMethod     pulumi.StringPtrInput
+	IpsArchive                pulumi.StringPtrInput
+	MaxLogRate                pulumi.IntPtrInput
 	MonitorFailureRetryPeriod pulumi.IntPtrInput
-	// Time between OFTP keepalives in seconds (for status and log buffer).
-	MonitorKeepalivePeriod pulumi.IntPtrInput
-	// Preshared-key used for auto-authorization on FortiAnalyzer.
-	PresharedKey pulumi.StringPtrInput
-	// Set log transmission priority. Valid values: `default`, `low`.
-	Priority pulumi.StringPtrInput
-	// Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
-	Serials LogFortianalyzerCloudSettingSerialArrayInput
-	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
-	SourceIp pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringPtrInput
-	// Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Day of week (month) to upload logs.
-	UploadDay pulumi.StringPtrInput
-	// Frequency to upload log files to FortiAnalyzer. Valid values: `daily`, `weekly`, `monthly`.
-	UploadInterval pulumi.StringPtrInput
-	// Enable/disable logging to hard disk and then uploading to FortiAnalyzer. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-	UploadOption pulumi.StringPtrInput
-	// Time to upload logs (hh:mm).
-	UploadTime pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MonitorKeepalivePeriod    pulumi.IntPtrInput
+	PresharedKey              pulumi.StringPtrInput
+	Priority                  pulumi.StringPtrInput
+	Serials                   LogFortianalyzerCloudSettingSerialArrayInput
+	SourceIp                  pulumi.StringPtrInput
+	SslMinProtoVersion        pulumi.StringPtrInput
+	Status                    pulumi.StringPtrInput
+	UploadDay                 pulumi.StringPtrInput
+	UploadInterval            pulumi.StringPtrInput
+	UploadOption              pulumi.StringPtrInput
+	UploadTime                pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
 }
 
 func (LogFortianalyzerCloudSettingArgs) ElementType() reflect.Type {
@@ -344,7 +207,7 @@ func (i *LogFortianalyzerCloudSetting) ToLogFortianalyzerCloudSettingOutputWithC
 // LogFortianalyzerCloudSettingArrayInput is an input type that accepts LogFortianalyzerCloudSettingArray and LogFortianalyzerCloudSettingArrayOutput values.
 // You can construct a concrete instance of `LogFortianalyzerCloudSettingArrayInput` via:
 //
-//          LogFortianalyzerCloudSettingArray{ LogFortianalyzerCloudSettingArgs{...} }
+//	LogFortianalyzerCloudSettingArray{ LogFortianalyzerCloudSettingArgs{...} }
 type LogFortianalyzerCloudSettingArrayInput interface {
 	pulumi.Input
 
@@ -369,7 +232,7 @@ func (i LogFortianalyzerCloudSettingArray) ToLogFortianalyzerCloudSettingArrayOu
 // LogFortianalyzerCloudSettingMapInput is an input type that accepts LogFortianalyzerCloudSettingMap and LogFortianalyzerCloudSettingMapOutput values.
 // You can construct a concrete instance of `LogFortianalyzerCloudSettingMapInput` via:
 //
-//          LogFortianalyzerCloudSettingMap{ "key": LogFortianalyzerCloudSettingArgs{...} }
+//	LogFortianalyzerCloudSettingMap{ "key": LogFortianalyzerCloudSettingArgs{...} }
 type LogFortianalyzerCloudSettingMapInput interface {
 	pulumi.Input
 
@@ -403,6 +266,102 @@ func (o LogFortianalyzerCloudSettingOutput) ToLogFortianalyzerCloudSettingOutput
 
 func (o LogFortianalyzerCloudSettingOutput) ToLogFortianalyzerCloudSettingOutputWithContext(ctx context.Context) LogFortianalyzerCloudSettingOutput {
 	return o
+}
+
+func (o LogFortianalyzerCloudSettingOutput) AccessConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.AccessConfig }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) Certificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) CertificateVerification() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.CertificateVerification }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) ConnTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.IntOutput { return v.ConnTimeout }).(pulumi.IntOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) EncAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.EncAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) HmacAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.HmacAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) IpsArchive() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.IpsArchive }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) MaxLogRate() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.IntOutput { return v.MaxLogRate }).(pulumi.IntOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) MonitorFailureRetryPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.IntOutput { return v.MonitorFailureRetryPeriod }).(pulumi.IntOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) MonitorKeepalivePeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.IntOutput { return v.MonitorKeepalivePeriod }).(pulumi.IntOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) PresharedKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.PresharedKey }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) Priority() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.Priority }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) Serials() LogFortianalyzerCloudSettingSerialArrayOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) LogFortianalyzerCloudSettingSerialArrayOutput { return v.Serials }).(LogFortianalyzerCloudSettingSerialArrayOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) SslMinProtoVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.SslMinProtoVersion }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) UploadDay() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.UploadDay }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) UploadInterval() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.UploadInterval }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) UploadOption() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.UploadOption }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) UploadTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.UploadTime }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type LogFortianalyzerCloudSettingArrayOutput struct{ *pulumi.OutputState }

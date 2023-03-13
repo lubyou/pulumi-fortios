@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiAP regions (for floor plans and maps).
- *
- * ## Import
- *
- * WirelessController Region can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerRegion:WirelessControllerRegion labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerRegion:WirelessControllerRegion labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerRegion extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerRegion resource's state with the given name, ID, and optional extra
@@ -51,29 +32,11 @@ export class WirelessControllerRegion extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerRegion.__pulumiType;
     }
 
-    /**
-     * Comments.
-     */
     public readonly comments!: pulumi.Output<string>;
-    /**
-     * Region image grayscale. Valid values: `enable`, `disable`.
-     */
     public readonly grayscale!: pulumi.Output<string>;
-    /**
-     * FortiAP region image type (png|jpeg|gif). Valid values: `png`, `jpeg`, `gif`.
-     */
     public readonly imageType!: pulumi.Output<string>;
-    /**
-     * FortiAP region name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Region image opacity (0 - 100).
-     */
     public readonly opacity!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -113,29 +76,11 @@ export class WirelessControllerRegion extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerRegion resources.
  */
 export interface WirelessControllerRegionState {
-    /**
-     * Comments.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Region image grayscale. Valid values: `enable`, `disable`.
-     */
     grayscale?: pulumi.Input<string>;
-    /**
-     * FortiAP region image type (png|jpeg|gif). Valid values: `png`, `jpeg`, `gif`.
-     */
     imageType?: pulumi.Input<string>;
-    /**
-     * FortiAP region name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Region image opacity (0 - 100).
-     */
     opacity?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -143,28 +88,10 @@ export interface WirelessControllerRegionState {
  * The set of arguments for constructing a WirelessControllerRegion resource.
  */
 export interface WirelessControllerRegionArgs {
-    /**
-     * Comments.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Region image grayscale. Valid values: `enable`, `disable`.
-     */
     grayscale?: pulumi.Input<string>;
-    /**
-     * FortiAP region image type (png|jpeg|gif). Valid values: `png`, `jpeg`, `gif`.
-     */
     imageType?: pulumi.Input<string>;
-    /**
-     * FortiAP region name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Region image opacity (0 - 100).
-     */
     opacity?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

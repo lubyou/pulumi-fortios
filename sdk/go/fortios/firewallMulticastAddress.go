@@ -10,78 +10,21 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure multicast addresses.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallMulticastAddress(ctx, "trname", &fortios.FirewallMulticastAddressArgs{
-// 			Color:      pulumi.Int(0),
-// 			EndIp:      pulumi.String("224.0.0.22"),
-// 			StartIp:    pulumi.String("224.0.0.11"),
-// 			Subnet:     pulumi.String("224.0.0.11 224.0.0.22"),
-// 			Type:       pulumi.String("multicastrange"),
-// 			Visibility: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall MulticastAddress can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallMulticastAddress:FirewallMulticastAddress labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallMulticastAddress:FirewallMulticastAddress labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallMulticastAddress struct {
 	pulumi.CustomResourceState
 
-	// Interface associated with the address object. When setting up a policy, only addresses associated with this interface are available.
-	AssociatedInterface pulumi.StringOutput `pulumi:"associatedInterface"`
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-	Color pulumi.IntOutput `pulumi:"color"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Final IPv4 address (inclusive) in the range for the address.
-	EndIp pulumi.StringOutput `pulumi:"endIp"`
-	// Tag name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// First IPv4 address (inclusive) in the range for the address.
-	StartIp pulumi.StringOutput `pulumi:"startIp"`
-	// Broadcast address and subnet.
-	Subnet pulumi.StringOutput `pulumi:"subnet"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings FirewallMulticastAddressTaggingArrayOutput `pulumi:"taggings"`
-	// Type of address object: multicast IP address range or broadcast IP/mask to be treated as a multicast address. Valid values: `multicastrange`, `broadcastmask`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable visibility of the multicast address on the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringOutput `pulumi:"visibility"`
+	AssociatedInterface pulumi.StringOutput                        `pulumi:"associatedInterface"`
+	Color               pulumi.IntOutput                           `pulumi:"color"`
+	Comment             pulumi.StringPtrOutput                     `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
+	EndIp               pulumi.StringOutput                        `pulumi:"endIp"`
+	Name                pulumi.StringOutput                        `pulumi:"name"`
+	StartIp             pulumi.StringOutput                        `pulumi:"startIp"`
+	Subnet              pulumi.StringOutput                        `pulumi:"subnet"`
+	Taggings            FirewallMulticastAddressTaggingArrayOutput `pulumi:"taggings"`
+	Type                pulumi.StringOutput                        `pulumi:"type"`
+	Vdomparam           pulumi.StringPtrOutput                     `pulumi:"vdomparam"`
+	Visibility          pulumi.StringOutput                        `pulumi:"visibility"`
 }
 
 // NewFirewallMulticastAddress registers a new resource with the given unique name, arguments, and options.
@@ -114,57 +57,33 @@ func GetFirewallMulticastAddress(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallMulticastAddress resources.
 type firewallMulticastAddressState struct {
-	// Interface associated with the address object. When setting up a policy, only addresses associated with this interface are available.
-	AssociatedInterface *string `pulumi:"associatedInterface"`
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Final IPv4 address (inclusive) in the range for the address.
-	EndIp *string `pulumi:"endIp"`
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// First IPv4 address (inclusive) in the range for the address.
-	StartIp *string `pulumi:"startIp"`
-	// Broadcast address and subnet.
-	Subnet *string `pulumi:"subnet"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []FirewallMulticastAddressTagging `pulumi:"taggings"`
-	// Type of address object: multicast IP address range or broadcast IP/mask to be treated as a multicast address. Valid values: `multicastrange`, `broadcastmask`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable visibility of the multicast address on the GUI. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
+	AssociatedInterface *string                           `pulumi:"associatedInterface"`
+	Color               *int                              `pulumi:"color"`
+	Comment             *string                           `pulumi:"comment"`
+	DynamicSortSubtable *string                           `pulumi:"dynamicSortSubtable"`
+	EndIp               *string                           `pulumi:"endIp"`
+	Name                *string                           `pulumi:"name"`
+	StartIp             *string                           `pulumi:"startIp"`
+	Subnet              *string                           `pulumi:"subnet"`
+	Taggings            []FirewallMulticastAddressTagging `pulumi:"taggings"`
+	Type                *string                           `pulumi:"type"`
+	Vdomparam           *string                           `pulumi:"vdomparam"`
+	Visibility          *string                           `pulumi:"visibility"`
 }
 
 type FirewallMulticastAddressState struct {
-	// Interface associated with the address object. When setting up a policy, only addresses associated with this interface are available.
 	AssociatedInterface pulumi.StringPtrInput
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Final IPv4 address (inclusive) in the range for the address.
-	EndIp pulumi.StringPtrInput
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// First IPv4 address (inclusive) in the range for the address.
-	StartIp pulumi.StringPtrInput
-	// Broadcast address and subnet.
-	Subnet pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings FirewallMulticastAddressTaggingArrayInput
-	// Type of address object: multicast IP address range or broadcast IP/mask to be treated as a multicast address. Valid values: `multicastrange`, `broadcastmask`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable visibility of the multicast address on the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
+	EndIp               pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	StartIp             pulumi.StringPtrInput
+	Subnet              pulumi.StringPtrInput
+	Taggings            FirewallMulticastAddressTaggingArrayInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
 }
 
 func (FirewallMulticastAddressState) ElementType() reflect.Type {
@@ -172,58 +91,34 @@ func (FirewallMulticastAddressState) ElementType() reflect.Type {
 }
 
 type firewallMulticastAddressArgs struct {
-	// Interface associated with the address object. When setting up a policy, only addresses associated with this interface are available.
-	AssociatedInterface *string `pulumi:"associatedInterface"`
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Final IPv4 address (inclusive) in the range for the address.
-	EndIp *string `pulumi:"endIp"`
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// First IPv4 address (inclusive) in the range for the address.
-	StartIp *string `pulumi:"startIp"`
-	// Broadcast address and subnet.
-	Subnet *string `pulumi:"subnet"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []FirewallMulticastAddressTagging `pulumi:"taggings"`
-	// Type of address object: multicast IP address range or broadcast IP/mask to be treated as a multicast address. Valid values: `multicastrange`, `broadcastmask`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable visibility of the multicast address on the GUI. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
+	AssociatedInterface *string                           `pulumi:"associatedInterface"`
+	Color               *int                              `pulumi:"color"`
+	Comment             *string                           `pulumi:"comment"`
+	DynamicSortSubtable *string                           `pulumi:"dynamicSortSubtable"`
+	EndIp               *string                           `pulumi:"endIp"`
+	Name                *string                           `pulumi:"name"`
+	StartIp             *string                           `pulumi:"startIp"`
+	Subnet              *string                           `pulumi:"subnet"`
+	Taggings            []FirewallMulticastAddressTagging `pulumi:"taggings"`
+	Type                *string                           `pulumi:"type"`
+	Vdomparam           *string                           `pulumi:"vdomparam"`
+	Visibility          *string                           `pulumi:"visibility"`
 }
 
 // The set of arguments for constructing a FirewallMulticastAddress resource.
 type FirewallMulticastAddressArgs struct {
-	// Interface associated with the address object. When setting up a policy, only addresses associated with this interface are available.
 	AssociatedInterface pulumi.StringPtrInput
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Final IPv4 address (inclusive) in the range for the address.
-	EndIp pulumi.StringPtrInput
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// First IPv4 address (inclusive) in the range for the address.
-	StartIp pulumi.StringPtrInput
-	// Broadcast address and subnet.
-	Subnet pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings FirewallMulticastAddressTaggingArrayInput
-	// Type of address object: multicast IP address range or broadcast IP/mask to be treated as a multicast address. Valid values: `multicastrange`, `broadcastmask`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable visibility of the multicast address on the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
+	EndIp               pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	StartIp             pulumi.StringPtrInput
+	Subnet              pulumi.StringPtrInput
+	Taggings            FirewallMulticastAddressTaggingArrayInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
 }
 
 func (FirewallMulticastAddressArgs) ElementType() reflect.Type {
@@ -252,7 +147,7 @@ func (i *FirewallMulticastAddress) ToFirewallMulticastAddressOutputWithContext(c
 // FirewallMulticastAddressArrayInput is an input type that accepts FirewallMulticastAddressArray and FirewallMulticastAddressArrayOutput values.
 // You can construct a concrete instance of `FirewallMulticastAddressArrayInput` via:
 //
-//          FirewallMulticastAddressArray{ FirewallMulticastAddressArgs{...} }
+//	FirewallMulticastAddressArray{ FirewallMulticastAddressArgs{...} }
 type FirewallMulticastAddressArrayInput interface {
 	pulumi.Input
 
@@ -277,7 +172,7 @@ func (i FirewallMulticastAddressArray) ToFirewallMulticastAddressArrayOutputWith
 // FirewallMulticastAddressMapInput is an input type that accepts FirewallMulticastAddressMap and FirewallMulticastAddressMapOutput values.
 // You can construct a concrete instance of `FirewallMulticastAddressMapInput` via:
 //
-//          FirewallMulticastAddressMap{ "key": FirewallMulticastAddressArgs{...} }
+//	FirewallMulticastAddressMap{ "key": FirewallMulticastAddressArgs{...} }
 type FirewallMulticastAddressMapInput interface {
 	pulumi.Input
 
@@ -311,6 +206,54 @@ func (o FirewallMulticastAddressOutput) ToFirewallMulticastAddressOutput() Firew
 
 func (o FirewallMulticastAddressOutput) ToFirewallMulticastAddressOutputWithContext(ctx context.Context) FirewallMulticastAddressOutput {
 	return o
+}
+
+func (o FirewallMulticastAddressOutput) AssociatedInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress) pulumi.StringOutput { return v.AssociatedInterface }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastAddressOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o FirewallMulticastAddressOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallMulticastAddressOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallMulticastAddressOutput) EndIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress) pulumi.StringOutput { return v.EndIp }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastAddressOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastAddressOutput) StartIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress) pulumi.StringOutput { return v.StartIp }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastAddressOutput) Subnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress) pulumi.StringOutput { return v.Subnet }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastAddressOutput) Taggings() FirewallMulticastAddressTaggingArrayOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress) FirewallMulticastAddressTaggingArrayOutput { return v.Taggings }).(FirewallMulticastAddressTaggingArrayOutput)
+}
+
+func (o FirewallMulticastAddressOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastAddressOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallMulticastAddressOutput) Visibility() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress) pulumi.StringOutput { return v.Visibility }).(pulumi.StringOutput)
 }
 
 type FirewallMulticastAddressArrayOutput struct{ *pulumi.OutputState }

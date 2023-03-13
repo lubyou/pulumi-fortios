@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `FirewallAddress6Template`.
 func GetFirewallAddress6TemplateList(ctx *pulumi.Context, args *GetFirewallAddress6TemplateListArgs, opts ...pulumi.InvokeOption) (*GetFirewallAddress6TemplateListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallAddress6TemplateListResult
@@ -23,8 +22,7 @@ func GetFirewallAddress6TemplateList(ctx *pulumi.Context, args *GetFirewallAddre
 
 // A collection of arguments for invoking GetFirewallAddress6TemplateList.
 type GetFirewallAddress6TemplateListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetFirewallAddress6TemplateListArgs struct {
 type GetFirewallAddress6TemplateListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `FirewallAddress6Template`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetFirewallAddress6TemplateListOutput(ctx *pulumi.Context, args GetFirewall
 
 // A collection of arguments for invoking GetFirewallAddress6TemplateList.
 type GetFirewallAddress6TemplateListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetFirewallAddress6TemplateListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFirewallAddress6TemplateListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `FirewallAddress6Template`.
 func (o GetFirewallAddress6TemplateListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetFirewallAddress6TemplateListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

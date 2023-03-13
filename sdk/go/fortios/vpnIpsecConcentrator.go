@@ -10,61 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Concentrator configuration.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewVpnIpsecConcentrator(ctx, "trname", &fortios.VpnIpsecConcentratorArgs{
-// 			SrcCheck: pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// VpnIpsec Concentrator can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnIpsecConcentrator:VpnIpsecConcentrator labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnIpsecConcentrator:VpnIpsecConcentrator labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnIpsecConcentrator struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Concentrator ID. (1-65535)
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
-	Members VpnIpsecConcentratorMemberArrayOutput `pulumi:"members"`
-	// Member name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable to check source address of phase 2 selector. Disable to check only the destination selector. Valid values: `disable`, `enable`.
-	SrcCheck pulumi.StringOutput `pulumi:"srcCheck"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
+	Fosid               pulumi.IntOutput                      `pulumi:"fosid"`
+	Members             VpnIpsecConcentratorMemberArrayOutput `pulumi:"members"`
+	Name                pulumi.StringOutput                   `pulumi:"name"`
+	SrcCheck            pulumi.StringOutput                   `pulumi:"srcCheck"`
+	Vdomparam           pulumi.StringPtrOutput                `pulumi:"vdomparam"`
 }
 
 // NewVpnIpsecConcentrator registers a new resource with the given unique name, arguments, and options.
@@ -97,33 +51,21 @@ func GetVpnIpsecConcentrator(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnIpsecConcentrator resources.
 type vpnIpsecConcentratorState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Concentrator ID. (1-65535)
-	Fosid *int `pulumi:"fosid"`
-	// Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
-	Members []VpnIpsecConcentratorMember `pulumi:"members"`
-	// Member name.
-	Name *string `pulumi:"name"`
-	// Enable to check source address of phase 2 selector. Disable to check only the destination selector. Valid values: `disable`, `enable`.
-	SrcCheck *string `pulumi:"srcCheck"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	Fosid               *int                         `pulumi:"fosid"`
+	Members             []VpnIpsecConcentratorMember `pulumi:"members"`
+	Name                *string                      `pulumi:"name"`
+	SrcCheck            *string                      `pulumi:"srcCheck"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 type VpnIpsecConcentratorState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Concentrator ID. (1-65535)
-	Fosid pulumi.IntPtrInput
-	// Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
-	Members VpnIpsecConcentratorMemberArrayInput
-	// Member name.
-	Name pulumi.StringPtrInput
-	// Enable to check source address of phase 2 selector. Disable to check only the destination selector. Valid values: `disable`, `enable`.
-	SrcCheck pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	Members             VpnIpsecConcentratorMemberArrayInput
+	Name                pulumi.StringPtrInput
+	SrcCheck            pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (VpnIpsecConcentratorState) ElementType() reflect.Type {
@@ -131,34 +73,22 @@ func (VpnIpsecConcentratorState) ElementType() reflect.Type {
 }
 
 type vpnIpsecConcentratorArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Concentrator ID. (1-65535)
-	Fosid *int `pulumi:"fosid"`
-	// Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
-	Members []VpnIpsecConcentratorMember `pulumi:"members"`
-	// Member name.
-	Name *string `pulumi:"name"`
-	// Enable to check source address of phase 2 selector. Disable to check only the destination selector. Valid values: `disable`, `enable`.
-	SrcCheck *string `pulumi:"srcCheck"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	Fosid               *int                         `pulumi:"fosid"`
+	Members             []VpnIpsecConcentratorMember `pulumi:"members"`
+	Name                *string                      `pulumi:"name"`
+	SrcCheck            *string                      `pulumi:"srcCheck"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VpnIpsecConcentrator resource.
 type VpnIpsecConcentratorArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Concentrator ID. (1-65535)
-	Fosid pulumi.IntPtrInput
-	// Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
-	Members VpnIpsecConcentratorMemberArrayInput
-	// Member name.
-	Name pulumi.StringPtrInput
-	// Enable to check source address of phase 2 selector. Disable to check only the destination selector. Valid values: `disable`, `enable`.
-	SrcCheck pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	Members             VpnIpsecConcentratorMemberArrayInput
+	Name                pulumi.StringPtrInput
+	SrcCheck            pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (VpnIpsecConcentratorArgs) ElementType() reflect.Type {
@@ -187,7 +117,7 @@ func (i *VpnIpsecConcentrator) ToVpnIpsecConcentratorOutputWithContext(ctx conte
 // VpnIpsecConcentratorArrayInput is an input type that accepts VpnIpsecConcentratorArray and VpnIpsecConcentratorArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecConcentratorArrayInput` via:
 //
-//          VpnIpsecConcentratorArray{ VpnIpsecConcentratorArgs{...} }
+//	VpnIpsecConcentratorArray{ VpnIpsecConcentratorArgs{...} }
 type VpnIpsecConcentratorArrayInput interface {
 	pulumi.Input
 
@@ -212,7 +142,7 @@ func (i VpnIpsecConcentratorArray) ToVpnIpsecConcentratorArrayOutputWithContext(
 // VpnIpsecConcentratorMapInput is an input type that accepts VpnIpsecConcentratorMap and VpnIpsecConcentratorMapOutput values.
 // You can construct a concrete instance of `VpnIpsecConcentratorMapInput` via:
 //
-//          VpnIpsecConcentratorMap{ "key": VpnIpsecConcentratorArgs{...} }
+//	VpnIpsecConcentratorMap{ "key": VpnIpsecConcentratorArgs{...} }
 type VpnIpsecConcentratorMapInput interface {
 	pulumi.Input
 
@@ -246,6 +176,30 @@ func (o VpnIpsecConcentratorOutput) ToVpnIpsecConcentratorOutput() VpnIpsecConce
 
 func (o VpnIpsecConcentratorOutput) ToVpnIpsecConcentratorOutputWithContext(ctx context.Context) VpnIpsecConcentratorOutput {
 	return o
+}
+
+func (o VpnIpsecConcentratorOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnIpsecConcentrator) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnIpsecConcentratorOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnIpsecConcentrator) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o VpnIpsecConcentratorOutput) Members() VpnIpsecConcentratorMemberArrayOutput {
+	return o.ApplyT(func(v *VpnIpsecConcentrator) VpnIpsecConcentratorMemberArrayOutput { return v.Members }).(VpnIpsecConcentratorMemberArrayOutput)
+}
+
+func (o VpnIpsecConcentratorOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecConcentrator) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecConcentratorOutput) SrcCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecConcentrator) pulumi.StringOutput { return v.SrcCheck }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecConcentratorOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnIpsecConcentrator) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type VpnIpsecConcentratorArrayOutput struct{ *pulumi.OutputState }

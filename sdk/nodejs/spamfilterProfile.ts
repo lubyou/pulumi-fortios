@@ -2,83 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure AntiSpam profiles. Applies to FortiOS Version `<= 6.2.0`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SpamfilterProfile("trname", {
- *     comment: "terraform test",
- *     external: "disable",
- *     flowBased: "disable",
- *     gmail: {
- *         log: "disable",
- *     },
- *     imap: {
- *         action: "tag",
- *         log: "disable",
- *         tagMsg: "Spam",
- *         tagType: "subject spaminfo",
- *     },
- *     mapi: {
- *         action: "discard",
- *         log: "disable",
- *     },
- *     msnHotmail: {
- *         log: "disable",
- *     },
- *     pop3: {
- *         action: "tag",
- *         log: "disable",
- *         tagMsg: "Spam",
- *         tagType: "subject spaminfo",
- *     },
- *     smtp: {
- *         action: "discard",
- *         hdrip: "disable",
- *         localOverride: "disable",
- *         log: "disable",
- *         tagMsg: "Spam",
- *         tagType: "subject spaminfo",
- *     },
- *     spamBwlTable: 0,
- *     spamBwordTable: 0,
- *     spamBwordThreshold: 10,
- *     spamFiltering: "disable",
- *     spamIptrustTable: 0,
- *     spamLog: "enable",
- *     spamLogFortiguardResponse: "disable",
- *     spamMheaderTable: 0,
- *     spamRblTable: 0,
- *     yahooMail: {
- *         log: "disable",
- *     },
- * });
- * ```
- *
- * ## Import
- *
- * Spamfilter Profile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/spamfilterProfile:SpamfilterProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/spamfilterProfile:SpamfilterProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SpamfilterProfile extends pulumi.CustomResource {
     /**
      * Get an existing SpamfilterProfile resource's state with the given name, ID, and optional extra
@@ -107,98 +34,29 @@ export class SpamfilterProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === SpamfilterProfile.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable external Email inspection. Valid values: `enable`, `disable`.
-     */
     public readonly external!: pulumi.Output<string>;
-    /**
-     * Enable/disable flow-based spam filtering. Valid values: `enable`, `disable`.
-     */
     public readonly flowBased!: pulumi.Output<string>;
-    /**
-     * Gmail. The structure of `gmail` block is documented below.
-     */
-    public readonly gmail!: pulumi.Output<outputs.SpamfilterProfileGmail | undefined>;
-    /**
-     * IMAP. The structure of `imap` block is documented below.
-     */
-    public readonly imap!: pulumi.Output<outputs.SpamfilterProfileImap | undefined>;
-    /**
-     * MAPI. The structure of `mapi` block is documented below.
-     */
-    public readonly mapi!: pulumi.Output<outputs.SpamfilterProfileMapi | undefined>;
-    /**
-     * MSN Hotmail. The structure of `msnHotmail` block is documented below.
-     */
-    public readonly msnHotmail!: pulumi.Output<outputs.SpamfilterProfileMsnHotmail | undefined>;
-    /**
-     * Profile name.
-     */
+    public readonly gmail!: pulumi.Output<outputs.SpamfilterProfileGmail>;
+    public readonly imap!: pulumi.Output<outputs.SpamfilterProfileImap>;
+    public readonly mapi!: pulumi.Output<outputs.SpamfilterProfileMapi>;
+    public readonly msnHotmail!: pulumi.Output<outputs.SpamfilterProfileMsnHotmail>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Options. Valid values: `bannedword`, `spambwl`, `spamfsip`, `spamfssubmit`, `spamfschksum`, `spamfsurl`, `spamhelodns`, `spamraddrdns`, `spamrbl`, `spamhdrcheck`, `spamfsphish`.
-     */
     public readonly options!: pulumi.Output<string>;
-    /**
-     * POP3. The structure of `pop3` block is documented below.
-     */
-    public readonly pop3!: pulumi.Output<outputs.SpamfilterProfilePop3 | undefined>;
-    /**
-     * Replacement message group.
-     */
+    public readonly pop3!: pulumi.Output<outputs.SpamfilterProfilePop3>;
     public readonly replacemsgGroup!: pulumi.Output<string>;
-    /**
-     * SMTP. The structure of `smtp` block is documented below.
-     */
-    public readonly smtp!: pulumi.Output<outputs.SpamfilterProfileSmtp | undefined>;
-    /**
-     * Anti-spam black/white list table ID.
-     */
+    public readonly smtp!: pulumi.Output<outputs.SpamfilterProfileSmtp>;
     public readonly spamBwlTable!: pulumi.Output<number>;
-    /**
-     * Anti-spam banned word table ID.
-     */
     public readonly spamBwordTable!: pulumi.Output<number>;
-    /**
-     * Spam banned word threshold.
-     */
     public readonly spamBwordThreshold!: pulumi.Output<number>;
-    /**
-     * Enable/disable spam filtering. Valid values: `enable`, `disable`.
-     */
     public readonly spamFiltering!: pulumi.Output<string>;
-    /**
-     * Anti-spam IP trust table ID.
-     */
     public readonly spamIptrustTable!: pulumi.Output<number>;
-    /**
-     * Enable/disable spam logging for email filtering. Valid values: `disable`, `enable`.
-     */
     public readonly spamLog!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging FortiGuard spam response. Valid values: `disable`, `enable`.
-     */
     public readonly spamLogFortiguardResponse!: pulumi.Output<string>;
-    /**
-     * Anti-spam MIME header table ID.
-     */
     public readonly spamMheaderTable!: pulumi.Output<number>;
-    /**
-     * Anti-spam DNSBL table ID.
-     */
     public readonly spamRblTable!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Yahoo! Mail. The structure of `yahooMail` block is documented below.
-     */
-    public readonly yahooMail!: pulumi.Output<outputs.SpamfilterProfileYahooMail | undefined>;
+    public readonly yahooMail!: pulumi.Output<outputs.SpamfilterProfileYahooMail>;
 
     /**
      * Create a SpamfilterProfile resource with the given unique name, arguments, and options.
@@ -271,97 +129,28 @@ export class SpamfilterProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SpamfilterProfile resources.
  */
 export interface SpamfilterProfileState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable/disable external Email inspection. Valid values: `enable`, `disable`.
-     */
     external?: pulumi.Input<string>;
-    /**
-     * Enable/disable flow-based spam filtering. Valid values: `enable`, `disable`.
-     */
     flowBased?: pulumi.Input<string>;
-    /**
-     * Gmail. The structure of `gmail` block is documented below.
-     */
     gmail?: pulumi.Input<inputs.SpamfilterProfileGmail>;
-    /**
-     * IMAP. The structure of `imap` block is documented below.
-     */
     imap?: pulumi.Input<inputs.SpamfilterProfileImap>;
-    /**
-     * MAPI. The structure of `mapi` block is documented below.
-     */
     mapi?: pulumi.Input<inputs.SpamfilterProfileMapi>;
-    /**
-     * MSN Hotmail. The structure of `msnHotmail` block is documented below.
-     */
     msnHotmail?: pulumi.Input<inputs.SpamfilterProfileMsnHotmail>;
-    /**
-     * Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Options. Valid values: `bannedword`, `spambwl`, `spamfsip`, `spamfssubmit`, `spamfschksum`, `spamfsurl`, `spamhelodns`, `spamraddrdns`, `spamrbl`, `spamhdrcheck`, `spamfsphish`.
-     */
     options?: pulumi.Input<string>;
-    /**
-     * POP3. The structure of `pop3` block is documented below.
-     */
     pop3?: pulumi.Input<inputs.SpamfilterProfilePop3>;
-    /**
-     * Replacement message group.
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * SMTP. The structure of `smtp` block is documented below.
-     */
     smtp?: pulumi.Input<inputs.SpamfilterProfileSmtp>;
-    /**
-     * Anti-spam black/white list table ID.
-     */
     spamBwlTable?: pulumi.Input<number>;
-    /**
-     * Anti-spam banned word table ID.
-     */
     spamBwordTable?: pulumi.Input<number>;
-    /**
-     * Spam banned word threshold.
-     */
     spamBwordThreshold?: pulumi.Input<number>;
-    /**
-     * Enable/disable spam filtering. Valid values: `enable`, `disable`.
-     */
     spamFiltering?: pulumi.Input<string>;
-    /**
-     * Anti-spam IP trust table ID.
-     */
     spamIptrustTable?: pulumi.Input<number>;
-    /**
-     * Enable/disable spam logging for email filtering. Valid values: `disable`, `enable`.
-     */
     spamLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging FortiGuard spam response. Valid values: `disable`, `enable`.
-     */
     spamLogFortiguardResponse?: pulumi.Input<string>;
-    /**
-     * Anti-spam MIME header table ID.
-     */
     spamMheaderTable?: pulumi.Input<number>;
-    /**
-     * Anti-spam DNSBL table ID.
-     */
     spamRblTable?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Yahoo! Mail. The structure of `yahooMail` block is documented below.
-     */
     yahooMail?: pulumi.Input<inputs.SpamfilterProfileYahooMail>;
 }
 
@@ -369,96 +158,27 @@ export interface SpamfilterProfileState {
  * The set of arguments for constructing a SpamfilterProfile resource.
  */
 export interface SpamfilterProfileArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable/disable external Email inspection. Valid values: `enable`, `disable`.
-     */
     external?: pulumi.Input<string>;
-    /**
-     * Enable/disable flow-based spam filtering. Valid values: `enable`, `disable`.
-     */
     flowBased?: pulumi.Input<string>;
-    /**
-     * Gmail. The structure of `gmail` block is documented below.
-     */
     gmail?: pulumi.Input<inputs.SpamfilterProfileGmail>;
-    /**
-     * IMAP. The structure of `imap` block is documented below.
-     */
     imap?: pulumi.Input<inputs.SpamfilterProfileImap>;
-    /**
-     * MAPI. The structure of `mapi` block is documented below.
-     */
     mapi?: pulumi.Input<inputs.SpamfilterProfileMapi>;
-    /**
-     * MSN Hotmail. The structure of `msnHotmail` block is documented below.
-     */
     msnHotmail?: pulumi.Input<inputs.SpamfilterProfileMsnHotmail>;
-    /**
-     * Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Options. Valid values: `bannedword`, `spambwl`, `spamfsip`, `spamfssubmit`, `spamfschksum`, `spamfsurl`, `spamhelodns`, `spamraddrdns`, `spamrbl`, `spamhdrcheck`, `spamfsphish`.
-     */
     options?: pulumi.Input<string>;
-    /**
-     * POP3. The structure of `pop3` block is documented below.
-     */
     pop3?: pulumi.Input<inputs.SpamfilterProfilePop3>;
-    /**
-     * Replacement message group.
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * SMTP. The structure of `smtp` block is documented below.
-     */
     smtp?: pulumi.Input<inputs.SpamfilterProfileSmtp>;
-    /**
-     * Anti-spam black/white list table ID.
-     */
     spamBwlTable?: pulumi.Input<number>;
-    /**
-     * Anti-spam banned word table ID.
-     */
     spamBwordTable?: pulumi.Input<number>;
-    /**
-     * Spam banned word threshold.
-     */
     spamBwordThreshold?: pulumi.Input<number>;
-    /**
-     * Enable/disable spam filtering. Valid values: `enable`, `disable`.
-     */
     spamFiltering?: pulumi.Input<string>;
-    /**
-     * Anti-spam IP trust table ID.
-     */
     spamIptrustTable?: pulumi.Input<number>;
-    /**
-     * Enable/disable spam logging for email filtering. Valid values: `disable`, `enable`.
-     */
     spamLog?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging FortiGuard spam response. Valid values: `disable`, `enable`.
-     */
     spamLogFortiguardResponse?: pulumi.Input<string>;
-    /**
-     * Anti-spam MIME header table ID.
-     */
     spamMheaderTable?: pulumi.Input<number>;
-    /**
-     * Anti-spam DNSBL table ID.
-     */
     spamRblTable?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Yahoo! Mail. The structure of `yahooMail` block is documented below.
-     */
     yahooMail?: pulumi.Input<inputs.SpamfilterProfileYahooMail>;
 }

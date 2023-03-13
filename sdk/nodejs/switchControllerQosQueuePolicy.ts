@@ -2,40 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch QoS egress queue policy.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchControllerQosQueuePolicy("trname", {
- *     rateBy: "kbps",
- *     schedule: "round-robin",
- * });
- * ```
- *
- * ## Import
- *
- * SwitchControllerQos QueuePolicy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerQosQueuePolicy:SwitchControllerQosQueuePolicy labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerQosQueuePolicy:SwitchControllerQosQueuePolicy labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerQosQueuePolicy extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerQosQueuePolicy resource's state with the given name, ID, and optional extra
@@ -64,29 +34,11 @@ export class SwitchControllerQosQueuePolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerQosQueuePolicy.__pulumiType;
     }
 
-    /**
-     * COS queue configuration. The structure of `cosQueue` block is documented below.
-     */
     public readonly cosQueues!: pulumi.Output<outputs.SwitchControllerQosQueuePolicyCosQueue[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Cos queue ID.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * COS queue rate by kbps or percent. Valid values: `kbps`, `percent`.
-     */
     public readonly rateBy!: pulumi.Output<string>;
-    /**
-     * COS queue scheduling. Valid values: `strict`, `round-robin`, `weighted`.
-     */
     public readonly schedule!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -132,29 +84,11 @@ export class SwitchControllerQosQueuePolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerQosQueuePolicy resources.
  */
 export interface SwitchControllerQosQueuePolicyState {
-    /**
-     * COS queue configuration. The structure of `cosQueue` block is documented below.
-     */
     cosQueues?: pulumi.Input<pulumi.Input<inputs.SwitchControllerQosQueuePolicyCosQueue>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Cos queue ID.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * COS queue rate by kbps or percent. Valid values: `kbps`, `percent`.
-     */
     rateBy?: pulumi.Input<string>;
-    /**
-     * COS queue scheduling. Valid values: `strict`, `round-robin`, `weighted`.
-     */
     schedule?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -162,28 +96,10 @@ export interface SwitchControllerQosQueuePolicyState {
  * The set of arguments for constructing a SwitchControllerQosQueuePolicy resource.
  */
 export interface SwitchControllerQosQueuePolicyArgs {
-    /**
-     * COS queue configuration. The structure of `cosQueue` block is documented below.
-     */
     cosQueues?: pulumi.Input<pulumi.Input<inputs.SwitchControllerQosQueuePolicyCosQueue>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Cos queue ID.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * COS queue rate by kbps or percent. Valid values: `kbps`, `percent`.
-     */
     rateBy: pulumi.Input<string>;
-    /**
-     * COS queue scheduling. Valid values: `strict`, `round-robin`, `weighted`.
-     */
     schedule: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

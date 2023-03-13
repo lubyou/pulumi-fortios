@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure user password policy.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.UserPasswordPolicy("trname", {
- *     expireDays: 22,
- *     warnDays: 13,
- * });
- * ```
- *
- * ## Import
- *
- * User PasswordPolicy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userPasswordPolicy:UserPasswordPolicy labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userPasswordPolicy:UserPasswordPolicy labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserPasswordPolicy extends pulumi.CustomResource {
     /**
      * Get an existing UserPasswordPolicy resource's state with the given name, ID, and optional extra
@@ -63,25 +32,10 @@ export class UserPasswordPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserPasswordPolicy.__pulumiType;
     }
 
-    /**
-     * Time in days before the user's password expires.
-     */
     public readonly expireDays!: pulumi.Output<number>;
-    /**
-     * Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
-     */
     public readonly expiredPasswordRenewal!: pulumi.Output<string>;
-    /**
-     * Password policy name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Time in days before a password expiration warning message is displayed to the user upon login.
-     */
     public readonly warnDays!: pulumi.Output<number>;
 
     /**
@@ -119,25 +73,10 @@ export class UserPasswordPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserPasswordPolicy resources.
  */
 export interface UserPasswordPolicyState {
-    /**
-     * Time in days before the user's password expires.
-     */
     expireDays?: pulumi.Input<number>;
-    /**
-     * Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
-     */
     expiredPasswordRenewal?: pulumi.Input<string>;
-    /**
-     * Password policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Time in days before a password expiration warning message is displayed to the user upon login.
-     */
     warnDays?: pulumi.Input<number>;
 }
 
@@ -145,24 +84,9 @@ export interface UserPasswordPolicyState {
  * The set of arguments for constructing a UserPasswordPolicy resource.
  */
 export interface UserPasswordPolicyArgs {
-    /**
-     * Time in days before the user's password expires.
-     */
     expireDays?: pulumi.Input<number>;
-    /**
-     * Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
-     */
     expiredPasswordRenewal?: pulumi.Input<string>;
-    /**
-     * Password policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Time in days before a password expiration warning message is displayed to the user upon login.
-     */
     warnDays?: pulumi.Input<number>;
 }

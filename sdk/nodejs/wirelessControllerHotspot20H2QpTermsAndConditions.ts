@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure terms and conditions. Applies to FortiOS Version `>= 7.0.2`.
- *
- * ## Import
- *
- * WirelessControllerHotspot20 H2QpTermsAndConditions can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpTermsAndConditions:WirelessControllerHotspot20H2QpTermsAndConditions labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpTermsAndConditions:WirelessControllerHotspot20H2QpTermsAndConditions labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerHotspot20H2QpTermsAndConditions extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerHotspot20H2QpTermsAndConditions resource's state with the given name, ID, and optional extra
@@ -51,25 +32,10 @@ export class WirelessControllerHotspot20H2QpTermsAndConditions extends pulumi.Cu
         return obj['__pulumiType'] === WirelessControllerHotspot20H2QpTermsAndConditions.__pulumiType;
     }
 
-    /**
-     * Filename.
-     */
     public readonly filename!: pulumi.Output<string>;
-    /**
-     * Terms and Conditions ID.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Timestamp.
-     */
     public readonly timestamp!: pulumi.Output<number>;
-    /**
-     * URL.
-     */
     public readonly url!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -107,25 +73,10 @@ export class WirelessControllerHotspot20H2QpTermsAndConditions extends pulumi.Cu
  * Input properties used for looking up and filtering WirelessControllerHotspot20H2QpTermsAndConditions resources.
  */
 export interface WirelessControllerHotspot20H2QpTermsAndConditionsState {
-    /**
-     * Filename.
-     */
     filename?: pulumi.Input<string>;
-    /**
-     * Terms and Conditions ID.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Timestamp.
-     */
     timestamp?: pulumi.Input<number>;
-    /**
-     * URL.
-     */
     url?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -133,24 +84,9 @@ export interface WirelessControllerHotspot20H2QpTermsAndConditionsState {
  * The set of arguments for constructing a WirelessControllerHotspot20H2QpTermsAndConditions resource.
  */
 export interface WirelessControllerHotspot20H2QpTermsAndConditionsArgs {
-    /**
-     * Filename.
-     */
     filename?: pulumi.Input<string>;
-    /**
-     * Terms and Conditions ID.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Timestamp.
-     */
     timestamp?: pulumi.Input<number>;
-    /**
-     * URL.
-     */
     url?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

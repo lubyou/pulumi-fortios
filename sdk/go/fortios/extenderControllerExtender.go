@@ -7,183 +7,68 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Extender controller configuration.
-//
-// > The resource applies to FortiOS Version < 6.4.2. For FortiOS Version >= 6.4.2, see `ExtenderControllerExtender1`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewExtenderControllerExtender(ctx, "trname", &fortios.ExtenderControllerExtenderArgs{
-// 			Admin:             pulumi.String("disable"),
-// 			BillingStartDay:   pulumi.Int(1),
-// 			ConnStatus:        pulumi.Int(0),
-// 			DialMode:          pulumi.String("always-connect"),
-// 			DialStatus:        pulumi.Int(0),
-// 			ExtName:           pulumi.String("332"),
-// 			Fosid:             pulumi.String("1"),
-// 			InitiatedUpdate:   pulumi.String("disable"),
-// 			Mode:              pulumi.String("standalone"),
-// 			ModemType:         pulumi.String("gsm/lte"),
-// 			MultiMode:         pulumi.String("auto"),
-// 			PppAuthProtocol:   pulumi.String("auto"),
-// 			PppEchoRequest:    pulumi.String("disable"),
-// 			QuotaLimitMb:      pulumi.Int(0),
-// 			Redial:            pulumi.String("none"),
-// 			Roaming:           pulumi.String("disable"),
-// 			Role:              pulumi.String("primary"),
-// 			Vdom:              pulumi.Int(0),
-// 			WimaxAuthProtocol: pulumi.String("tls"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// ExtenderController Extender can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/extenderControllerExtender:ExtenderControllerExtender labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/extenderControllerExtender:ExtenderControllerExtender labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type ExtenderControllerExtender struct {
 	pulumi.CustomResourceState
 
-	// AAA shared secret.
-	AaaSharedSecret pulumi.StringPtrOutput `pulumi:"aaaSharedSecret"`
-	// Access point name(APN).
-	AccessPointName pulumi.StringOutput `pulumi:"accessPointName"`
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
-	Admin pulumi.StringOutput `pulumi:"admin"`
-	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-	Allowaccess pulumi.StringOutput `pulumi:"allowaccess"`
-	// Initialization AT commands specific to the MODEM.
-	AtDialScript pulumi.StringOutput `pulumi:"atDialScript"`
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-	Authorized pulumi.StringOutput `pulumi:"authorized"`
-	// FortiExtender LAN extension bandwidth limit (Mbps).
-	BandwidthLimit pulumi.IntOutput `pulumi:"bandwidthLimit"`
-	// Billing start day.
-	BillingStartDay pulumi.IntOutput `pulumi:"billingStartDay"`
-	// CDMA AAA SPI.
-	CdmaAaaSpi pulumi.StringOutput `pulumi:"cdmaAaaSpi"`
-	// CDMA HA SPI.
-	CdmaHaSpi pulumi.StringOutput `pulumi:"cdmaHaSpi"`
-	// NAI for CDMA MODEMS.
-	CdmaNai pulumi.StringOutput `pulumi:"cdmaNai"`
-	// Connection status.
-	ConnStatus pulumi.IntOutput `pulumi:"connStatus"`
-	// FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
-	ControllerReport ExtenderControllerExtenderControllerReportPtrOutput `pulumi:"controllerReport"`
-	// Description.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// device-id
-	DeviceId pulumi.IntOutput `pulumi:"deviceId"`
-	// Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
-	DialMode pulumi.StringOutput `pulumi:"dialMode"`
-	// Dial status.
-	DialStatus pulumi.IntOutput `pulumi:"dialStatus"`
-	// Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-	EnforceBandwidth pulumi.StringOutput `pulumi:"enforceBandwidth"`
-	// FortiExtender name.
-	ExtName pulumi.StringOutput `pulumi:"extName"`
-	// Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
-	ExtensionType pulumi.StringOutput `pulumi:"extensionType"`
-	// FortiExtender serial number.
-	Fosid pulumi.StringOutput `pulumi:"fosid"`
-	// HA shared secret.
-	HaSharedSecret pulumi.StringPtrOutput `pulumi:"haSharedSecret"`
-	// FortiExtender interface name.
-	Ifname pulumi.StringOutput `pulumi:"ifname"`
-	// Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
-	InitiatedUpdate pulumi.StringOutput `pulumi:"initiatedUpdate"`
-	// FortiExtender login password.
-	LoginPassword pulumi.StringPtrOutput `pulumi:"loginPassword"`
-	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-	LoginPasswordChange pulumi.StringOutput `pulumi:"loginPasswordChange"`
-	// FortiExtender mode. Valid values: `standalone`, `redundant`.
-	Mode pulumi.StringOutput `pulumi:"mode"`
-	// Configuration options for modem 1. The structure of `modem1` block is documented below.
-	Modem1 ExtenderControllerExtenderModem1PtrOutput `pulumi:"modem1"`
-	// Configuration options for modem 2. The structure of `modem2` block is documented below.
-	Modem2 ExtenderControllerExtenderModem2PtrOutput `pulumi:"modem2"`
-	// MODEM password.
-	ModemPasswd pulumi.StringPtrOutput `pulumi:"modemPasswd"`
-	// MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
-	ModemType pulumi.StringOutput `pulumi:"modemType"`
-	// MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
-	MultiMode pulumi.StringOutput `pulumi:"multiMode"`
-	// FortiExtender entry name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
-	OverrideAllowaccess pulumi.StringOutput `pulumi:"overrideAllowaccess"`
-	// Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
-	OverrideEnforceBandwidth pulumi.StringOutput `pulumi:"overrideEnforceBandwidth"`
-	// Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
-	OverrideLoginPasswordChange pulumi.StringOutput `pulumi:"overrideLoginPasswordChange"`
-	// PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
-	PppAuthProtocol pulumi.StringOutput `pulumi:"pppAuthProtocol"`
-	// Enable/disable PPP echo request. Valid values: `enable`, `disable`.
-	PppEchoRequest pulumi.StringOutput `pulumi:"pppEchoRequest"`
-	// PPP password.
-	PppPassword pulumi.StringPtrOutput `pulumi:"pppPassword"`
-	// PPP username.
-	PppUsername pulumi.StringOutput `pulumi:"pppUsername"`
-	// Primary HA.
-	PrimaryHa pulumi.StringOutput `pulumi:"primaryHa"`
-	// FortiExtender profile configuration.
-	Profile pulumi.StringOutput `pulumi:"profile"`
-	// Monthly quota limit (MB).
-	QuotaLimitMb pulumi.IntOutput `pulumi:"quotaLimitMb"`
-	// Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-	Redial pulumi.StringOutput `pulumi:"redial"`
-	// Redundant interface.
-	RedundantIntf pulumi.StringOutput `pulumi:"redundantIntf"`
-	// Enable/disable MODEM roaming. Valid values: `enable`, `disable`.
-	Roaming pulumi.StringOutput `pulumi:"roaming"`
-	// FortiExtender work role(Primary, Secondary, None). Valid values: `none`, `primary`, `secondary`.
-	Role pulumi.StringOutput `pulumi:"role"`
-	// Secondary HA.
-	SecondaryHa pulumi.StringOutput `pulumi:"secondaryHa"`
-	// SIM PIN.
-	SimPin pulumi.StringPtrOutput `pulumi:"simPin"`
-	// VDOM
-	Vdom pulumi.IntOutput `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
-	WanExtension ExtenderControllerExtenderWanExtensionPtrOutput `pulumi:"wanExtension"`
-	// WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
-	WimaxAuthProtocol pulumi.StringOutput `pulumi:"wimaxAuthProtocol"`
-	// WiMax carrier.
-	WimaxCarrier pulumi.StringOutput `pulumi:"wimaxCarrier"`
-	// WiMax realm.
-	WimaxRealm pulumi.StringOutput `pulumi:"wimaxRealm"`
+	AaaSharedSecret             pulumi.StringPtrOutput                           `pulumi:"aaaSharedSecret"`
+	AccessPointName             pulumi.StringOutput                              `pulumi:"accessPointName"`
+	Admin                       pulumi.StringOutput                              `pulumi:"admin"`
+	Allowaccess                 pulumi.StringOutput                              `pulumi:"allowaccess"`
+	AtDialScript                pulumi.StringOutput                              `pulumi:"atDialScript"`
+	Authorized                  pulumi.StringOutput                              `pulumi:"authorized"`
+	BandwidthLimit              pulumi.IntOutput                                 `pulumi:"bandwidthLimit"`
+	BillingStartDay             pulumi.IntOutput                                 `pulumi:"billingStartDay"`
+	CdmaAaaSpi                  pulumi.StringOutput                              `pulumi:"cdmaAaaSpi"`
+	CdmaHaSpi                   pulumi.StringOutput                              `pulumi:"cdmaHaSpi"`
+	CdmaNai                     pulumi.StringOutput                              `pulumi:"cdmaNai"`
+	ConnStatus                  pulumi.IntOutput                                 `pulumi:"connStatus"`
+	ControllerReport            ExtenderControllerExtenderControllerReportOutput `pulumi:"controllerReport"`
+	Description                 pulumi.StringOutput                              `pulumi:"description"`
+	DeviceId                    pulumi.IntOutput                                 `pulumi:"deviceId"`
+	DialMode                    pulumi.StringOutput                              `pulumi:"dialMode"`
+	DialStatus                  pulumi.IntOutput                                 `pulumi:"dialStatus"`
+	EnforceBandwidth            pulumi.StringOutput                              `pulumi:"enforceBandwidth"`
+	ExtName                     pulumi.StringOutput                              `pulumi:"extName"`
+	ExtensionType               pulumi.StringOutput                              `pulumi:"extensionType"`
+	Fosid                       pulumi.StringOutput                              `pulumi:"fosid"`
+	HaSharedSecret              pulumi.StringPtrOutput                           `pulumi:"haSharedSecret"`
+	Ifname                      pulumi.StringOutput                              `pulumi:"ifname"`
+	InitiatedUpdate             pulumi.StringOutput                              `pulumi:"initiatedUpdate"`
+	LoginPassword               pulumi.StringPtrOutput                           `pulumi:"loginPassword"`
+	LoginPasswordChange         pulumi.StringOutput                              `pulumi:"loginPasswordChange"`
+	Mode                        pulumi.StringOutput                              `pulumi:"mode"`
+	Modem1                      ExtenderControllerExtenderModem1Output           `pulumi:"modem1"`
+	Modem2                      ExtenderControllerExtenderModem2Output           `pulumi:"modem2"`
+	ModemPasswd                 pulumi.StringPtrOutput                           `pulumi:"modemPasswd"`
+	ModemType                   pulumi.StringOutput                              `pulumi:"modemType"`
+	MultiMode                   pulumi.StringOutput                              `pulumi:"multiMode"`
+	Name                        pulumi.StringOutput                              `pulumi:"name"`
+	OverrideAllowaccess         pulumi.StringOutput                              `pulumi:"overrideAllowaccess"`
+	OverrideEnforceBandwidth    pulumi.StringOutput                              `pulumi:"overrideEnforceBandwidth"`
+	OverrideLoginPasswordChange pulumi.StringOutput                              `pulumi:"overrideLoginPasswordChange"`
+	PppAuthProtocol             pulumi.StringOutput                              `pulumi:"pppAuthProtocol"`
+	PppEchoRequest              pulumi.StringOutput                              `pulumi:"pppEchoRequest"`
+	PppPassword                 pulumi.StringPtrOutput                           `pulumi:"pppPassword"`
+	PppUsername                 pulumi.StringOutput                              `pulumi:"pppUsername"`
+	PrimaryHa                   pulumi.StringOutput                              `pulumi:"primaryHa"`
+	Profile                     pulumi.StringOutput                              `pulumi:"profile"`
+	QuotaLimitMb                pulumi.IntOutput                                 `pulumi:"quotaLimitMb"`
+	Redial                      pulumi.StringOutput                              `pulumi:"redial"`
+	RedundantIntf               pulumi.StringOutput                              `pulumi:"redundantIntf"`
+	Roaming                     pulumi.StringOutput                              `pulumi:"roaming"`
+	Role                        pulumi.StringOutput                              `pulumi:"role"`
+	SecondaryHa                 pulumi.StringOutput                              `pulumi:"secondaryHa"`
+	SimPin                      pulumi.StringPtrOutput                           `pulumi:"simPin"`
+	Vdom                        pulumi.IntOutput                                 `pulumi:"vdom"`
+	Vdomparam                   pulumi.StringPtrOutput                           `pulumi:"vdomparam"`
+	WanExtension                ExtenderControllerExtenderWanExtensionOutput     `pulumi:"wanExtension"`
+	WimaxAuthProtocol           pulumi.StringOutput                              `pulumi:"wimaxAuthProtocol"`
+	WimaxCarrier                pulumi.StringOutput                              `pulumi:"wimaxCarrier"`
+	WimaxRealm                  pulumi.StringOutput                              `pulumi:"wimaxRealm"`
 }
 
 // NewExtenderControllerExtender registers a new resource with the given unique name, arguments, and options.
@@ -202,6 +87,29 @@ func NewExtenderControllerExtender(ctx *pulumi.Context,
 	if args.Role == nil {
 		return nil, errors.New("invalid value for required argument 'Role'")
 	}
+	if args.AaaSharedSecret != nil {
+		args.AaaSharedSecret = pulumi.ToSecret(args.AaaSharedSecret).(pulumi.StringPtrInput)
+	}
+	if args.HaSharedSecret != nil {
+		args.HaSharedSecret = pulumi.ToSecret(args.HaSharedSecret).(pulumi.StringPtrInput)
+	}
+	if args.ModemPasswd != nil {
+		args.ModemPasswd = pulumi.ToSecret(args.ModemPasswd).(pulumi.StringPtrInput)
+	}
+	if args.PppPassword != nil {
+		args.PppPassword = pulumi.ToSecret(args.PppPassword).(pulumi.StringPtrInput)
+	}
+	if args.SimPin != nil {
+		args.SimPin = pulumi.ToSecret(args.SimPin).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"aaaSharedSecret",
+		"haSharedSecret",
+		"modemPasswd",
+		"pppPassword",
+		"simPin",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource ExtenderControllerExtender
 	err := ctx.RegisterResource("fortios:index/extenderControllerExtender:ExtenderControllerExtender", name, args, &resource, opts...)
@@ -225,229 +133,119 @@ func GetExtenderControllerExtender(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ExtenderControllerExtender resources.
 type extenderControllerExtenderState struct {
-	// AAA shared secret.
-	AaaSharedSecret *string `pulumi:"aaaSharedSecret"`
-	// Access point name(APN).
-	AccessPointName *string `pulumi:"accessPointName"`
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
-	Admin *string `pulumi:"admin"`
-	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-	Allowaccess *string `pulumi:"allowaccess"`
-	// Initialization AT commands specific to the MODEM.
-	AtDialScript *string `pulumi:"atDialScript"`
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-	Authorized *string `pulumi:"authorized"`
-	// FortiExtender LAN extension bandwidth limit (Mbps).
-	BandwidthLimit *int `pulumi:"bandwidthLimit"`
-	// Billing start day.
-	BillingStartDay *int `pulumi:"billingStartDay"`
-	// CDMA AAA SPI.
-	CdmaAaaSpi *string `pulumi:"cdmaAaaSpi"`
-	// CDMA HA SPI.
-	CdmaHaSpi *string `pulumi:"cdmaHaSpi"`
-	// NAI for CDMA MODEMS.
-	CdmaNai *string `pulumi:"cdmaNai"`
-	// Connection status.
-	ConnStatus *int `pulumi:"connStatus"`
-	// FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
-	ControllerReport *ExtenderControllerExtenderControllerReport `pulumi:"controllerReport"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// device-id
-	DeviceId *int `pulumi:"deviceId"`
-	// Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
-	DialMode *string `pulumi:"dialMode"`
-	// Dial status.
-	DialStatus *int `pulumi:"dialStatus"`
-	// Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-	EnforceBandwidth *string `pulumi:"enforceBandwidth"`
-	// FortiExtender name.
-	ExtName *string `pulumi:"extName"`
-	// Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
-	ExtensionType *string `pulumi:"extensionType"`
-	// FortiExtender serial number.
-	Fosid *string `pulumi:"fosid"`
-	// HA shared secret.
-	HaSharedSecret *string `pulumi:"haSharedSecret"`
-	// FortiExtender interface name.
-	Ifname *string `pulumi:"ifname"`
-	// Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
-	InitiatedUpdate *string `pulumi:"initiatedUpdate"`
-	// FortiExtender login password.
-	LoginPassword *string `pulumi:"loginPassword"`
-	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-	LoginPasswordChange *string `pulumi:"loginPasswordChange"`
-	// FortiExtender mode. Valid values: `standalone`, `redundant`.
-	Mode *string `pulumi:"mode"`
-	// Configuration options for modem 1. The structure of `modem1` block is documented below.
-	Modem1 *ExtenderControllerExtenderModem1 `pulumi:"modem1"`
-	// Configuration options for modem 2. The structure of `modem2` block is documented below.
-	Modem2 *ExtenderControllerExtenderModem2 `pulumi:"modem2"`
-	// MODEM password.
-	ModemPasswd *string `pulumi:"modemPasswd"`
-	// MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
-	ModemType *string `pulumi:"modemType"`
-	// MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
-	MultiMode *string `pulumi:"multiMode"`
-	// FortiExtender entry name.
-	Name *string `pulumi:"name"`
-	// Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
-	OverrideAllowaccess *string `pulumi:"overrideAllowaccess"`
-	// Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
-	OverrideEnforceBandwidth *string `pulumi:"overrideEnforceBandwidth"`
-	// Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
-	OverrideLoginPasswordChange *string `pulumi:"overrideLoginPasswordChange"`
-	// PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
-	PppAuthProtocol *string `pulumi:"pppAuthProtocol"`
-	// Enable/disable PPP echo request. Valid values: `enable`, `disable`.
-	PppEchoRequest *string `pulumi:"pppEchoRequest"`
-	// PPP password.
-	PppPassword *string `pulumi:"pppPassword"`
-	// PPP username.
-	PppUsername *string `pulumi:"pppUsername"`
-	// Primary HA.
-	PrimaryHa *string `pulumi:"primaryHa"`
-	// FortiExtender profile configuration.
-	Profile *string `pulumi:"profile"`
-	// Monthly quota limit (MB).
-	QuotaLimitMb *int `pulumi:"quotaLimitMb"`
-	// Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-	Redial *string `pulumi:"redial"`
-	// Redundant interface.
-	RedundantIntf *string `pulumi:"redundantIntf"`
-	// Enable/disable MODEM roaming. Valid values: `enable`, `disable`.
-	Roaming *string `pulumi:"roaming"`
-	// FortiExtender work role(Primary, Secondary, None). Valid values: `none`, `primary`, `secondary`.
-	Role *string `pulumi:"role"`
-	// Secondary HA.
-	SecondaryHa *string `pulumi:"secondaryHa"`
-	// SIM PIN.
-	SimPin *string `pulumi:"simPin"`
-	// VDOM
-	Vdom *int `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
-	WanExtension *ExtenderControllerExtenderWanExtension `pulumi:"wanExtension"`
-	// WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
-	WimaxAuthProtocol *string `pulumi:"wimaxAuthProtocol"`
-	// WiMax carrier.
-	WimaxCarrier *string `pulumi:"wimaxCarrier"`
-	// WiMax realm.
-	WimaxRealm *string `pulumi:"wimaxRealm"`
+	AaaSharedSecret             *string                                     `pulumi:"aaaSharedSecret"`
+	AccessPointName             *string                                     `pulumi:"accessPointName"`
+	Admin                       *string                                     `pulumi:"admin"`
+	Allowaccess                 *string                                     `pulumi:"allowaccess"`
+	AtDialScript                *string                                     `pulumi:"atDialScript"`
+	Authorized                  *string                                     `pulumi:"authorized"`
+	BandwidthLimit              *int                                        `pulumi:"bandwidthLimit"`
+	BillingStartDay             *int                                        `pulumi:"billingStartDay"`
+	CdmaAaaSpi                  *string                                     `pulumi:"cdmaAaaSpi"`
+	CdmaHaSpi                   *string                                     `pulumi:"cdmaHaSpi"`
+	CdmaNai                     *string                                     `pulumi:"cdmaNai"`
+	ConnStatus                  *int                                        `pulumi:"connStatus"`
+	ControllerReport            *ExtenderControllerExtenderControllerReport `pulumi:"controllerReport"`
+	Description                 *string                                     `pulumi:"description"`
+	DeviceId                    *int                                        `pulumi:"deviceId"`
+	DialMode                    *string                                     `pulumi:"dialMode"`
+	DialStatus                  *int                                        `pulumi:"dialStatus"`
+	EnforceBandwidth            *string                                     `pulumi:"enforceBandwidth"`
+	ExtName                     *string                                     `pulumi:"extName"`
+	ExtensionType               *string                                     `pulumi:"extensionType"`
+	Fosid                       *string                                     `pulumi:"fosid"`
+	HaSharedSecret              *string                                     `pulumi:"haSharedSecret"`
+	Ifname                      *string                                     `pulumi:"ifname"`
+	InitiatedUpdate             *string                                     `pulumi:"initiatedUpdate"`
+	LoginPassword               *string                                     `pulumi:"loginPassword"`
+	LoginPasswordChange         *string                                     `pulumi:"loginPasswordChange"`
+	Mode                        *string                                     `pulumi:"mode"`
+	Modem1                      *ExtenderControllerExtenderModem1           `pulumi:"modem1"`
+	Modem2                      *ExtenderControllerExtenderModem2           `pulumi:"modem2"`
+	ModemPasswd                 *string                                     `pulumi:"modemPasswd"`
+	ModemType                   *string                                     `pulumi:"modemType"`
+	MultiMode                   *string                                     `pulumi:"multiMode"`
+	Name                        *string                                     `pulumi:"name"`
+	OverrideAllowaccess         *string                                     `pulumi:"overrideAllowaccess"`
+	OverrideEnforceBandwidth    *string                                     `pulumi:"overrideEnforceBandwidth"`
+	OverrideLoginPasswordChange *string                                     `pulumi:"overrideLoginPasswordChange"`
+	PppAuthProtocol             *string                                     `pulumi:"pppAuthProtocol"`
+	PppEchoRequest              *string                                     `pulumi:"pppEchoRequest"`
+	PppPassword                 *string                                     `pulumi:"pppPassword"`
+	PppUsername                 *string                                     `pulumi:"pppUsername"`
+	PrimaryHa                   *string                                     `pulumi:"primaryHa"`
+	Profile                     *string                                     `pulumi:"profile"`
+	QuotaLimitMb                *int                                        `pulumi:"quotaLimitMb"`
+	Redial                      *string                                     `pulumi:"redial"`
+	RedundantIntf               *string                                     `pulumi:"redundantIntf"`
+	Roaming                     *string                                     `pulumi:"roaming"`
+	Role                        *string                                     `pulumi:"role"`
+	SecondaryHa                 *string                                     `pulumi:"secondaryHa"`
+	SimPin                      *string                                     `pulumi:"simPin"`
+	Vdom                        *int                                        `pulumi:"vdom"`
+	Vdomparam                   *string                                     `pulumi:"vdomparam"`
+	WanExtension                *ExtenderControllerExtenderWanExtension     `pulumi:"wanExtension"`
+	WimaxAuthProtocol           *string                                     `pulumi:"wimaxAuthProtocol"`
+	WimaxCarrier                *string                                     `pulumi:"wimaxCarrier"`
+	WimaxRealm                  *string                                     `pulumi:"wimaxRealm"`
 }
 
 type ExtenderControllerExtenderState struct {
-	// AAA shared secret.
-	AaaSharedSecret pulumi.StringPtrInput
-	// Access point name(APN).
-	AccessPointName pulumi.StringPtrInput
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
-	Admin pulumi.StringPtrInput
-	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-	Allowaccess pulumi.StringPtrInput
-	// Initialization AT commands specific to the MODEM.
-	AtDialScript pulumi.StringPtrInput
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-	Authorized pulumi.StringPtrInput
-	// FortiExtender LAN extension bandwidth limit (Mbps).
-	BandwidthLimit pulumi.IntPtrInput
-	// Billing start day.
-	BillingStartDay pulumi.IntPtrInput
-	// CDMA AAA SPI.
-	CdmaAaaSpi pulumi.StringPtrInput
-	// CDMA HA SPI.
-	CdmaHaSpi pulumi.StringPtrInput
-	// NAI for CDMA MODEMS.
-	CdmaNai pulumi.StringPtrInput
-	// Connection status.
-	ConnStatus pulumi.IntPtrInput
-	// FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
-	ControllerReport ExtenderControllerExtenderControllerReportPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// device-id
-	DeviceId pulumi.IntPtrInput
-	// Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
-	DialMode pulumi.StringPtrInput
-	// Dial status.
-	DialStatus pulumi.IntPtrInput
-	// Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-	EnforceBandwidth pulumi.StringPtrInput
-	// FortiExtender name.
-	ExtName pulumi.StringPtrInput
-	// Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
-	ExtensionType pulumi.StringPtrInput
-	// FortiExtender serial number.
-	Fosid pulumi.StringPtrInput
-	// HA shared secret.
-	HaSharedSecret pulumi.StringPtrInput
-	// FortiExtender interface name.
-	Ifname pulumi.StringPtrInput
-	// Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
-	InitiatedUpdate pulumi.StringPtrInput
-	// FortiExtender login password.
-	LoginPassword pulumi.StringPtrInput
-	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-	LoginPasswordChange pulumi.StringPtrInput
-	// FortiExtender mode. Valid values: `standalone`, `redundant`.
-	Mode pulumi.StringPtrInput
-	// Configuration options for modem 1. The structure of `modem1` block is documented below.
-	Modem1 ExtenderControllerExtenderModem1PtrInput
-	// Configuration options for modem 2. The structure of `modem2` block is documented below.
-	Modem2 ExtenderControllerExtenderModem2PtrInput
-	// MODEM password.
-	ModemPasswd pulumi.StringPtrInput
-	// MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
-	ModemType pulumi.StringPtrInput
-	// MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
-	MultiMode pulumi.StringPtrInput
-	// FortiExtender entry name.
-	Name pulumi.StringPtrInput
-	// Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
-	OverrideAllowaccess pulumi.StringPtrInput
-	// Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
-	OverrideEnforceBandwidth pulumi.StringPtrInput
-	// Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
+	AaaSharedSecret             pulumi.StringPtrInput
+	AccessPointName             pulumi.StringPtrInput
+	Admin                       pulumi.StringPtrInput
+	Allowaccess                 pulumi.StringPtrInput
+	AtDialScript                pulumi.StringPtrInput
+	Authorized                  pulumi.StringPtrInput
+	BandwidthLimit              pulumi.IntPtrInput
+	BillingStartDay             pulumi.IntPtrInput
+	CdmaAaaSpi                  pulumi.StringPtrInput
+	CdmaHaSpi                   pulumi.StringPtrInput
+	CdmaNai                     pulumi.StringPtrInput
+	ConnStatus                  pulumi.IntPtrInput
+	ControllerReport            ExtenderControllerExtenderControllerReportPtrInput
+	Description                 pulumi.StringPtrInput
+	DeviceId                    pulumi.IntPtrInput
+	DialMode                    pulumi.StringPtrInput
+	DialStatus                  pulumi.IntPtrInput
+	EnforceBandwidth            pulumi.StringPtrInput
+	ExtName                     pulumi.StringPtrInput
+	ExtensionType               pulumi.StringPtrInput
+	Fosid                       pulumi.StringPtrInput
+	HaSharedSecret              pulumi.StringPtrInput
+	Ifname                      pulumi.StringPtrInput
+	InitiatedUpdate             pulumi.StringPtrInput
+	LoginPassword               pulumi.StringPtrInput
+	LoginPasswordChange         pulumi.StringPtrInput
+	Mode                        pulumi.StringPtrInput
+	Modem1                      ExtenderControllerExtenderModem1PtrInput
+	Modem2                      ExtenderControllerExtenderModem2PtrInput
+	ModemPasswd                 pulumi.StringPtrInput
+	ModemType                   pulumi.StringPtrInput
+	MultiMode                   pulumi.StringPtrInput
+	Name                        pulumi.StringPtrInput
+	OverrideAllowaccess         pulumi.StringPtrInput
+	OverrideEnforceBandwidth    pulumi.StringPtrInput
 	OverrideLoginPasswordChange pulumi.StringPtrInput
-	// PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
-	PppAuthProtocol pulumi.StringPtrInput
-	// Enable/disable PPP echo request. Valid values: `enable`, `disable`.
-	PppEchoRequest pulumi.StringPtrInput
-	// PPP password.
-	PppPassword pulumi.StringPtrInput
-	// PPP username.
-	PppUsername pulumi.StringPtrInput
-	// Primary HA.
-	PrimaryHa pulumi.StringPtrInput
-	// FortiExtender profile configuration.
-	Profile pulumi.StringPtrInput
-	// Monthly quota limit (MB).
-	QuotaLimitMb pulumi.IntPtrInput
-	// Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-	Redial pulumi.StringPtrInput
-	// Redundant interface.
-	RedundantIntf pulumi.StringPtrInput
-	// Enable/disable MODEM roaming. Valid values: `enable`, `disable`.
-	Roaming pulumi.StringPtrInput
-	// FortiExtender work role(Primary, Secondary, None). Valid values: `none`, `primary`, `secondary`.
-	Role pulumi.StringPtrInput
-	// Secondary HA.
-	SecondaryHa pulumi.StringPtrInput
-	// SIM PIN.
-	SimPin pulumi.StringPtrInput
-	// VDOM
-	Vdom pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
-	WanExtension ExtenderControllerExtenderWanExtensionPtrInput
-	// WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
-	WimaxAuthProtocol pulumi.StringPtrInput
-	// WiMax carrier.
-	WimaxCarrier pulumi.StringPtrInput
-	// WiMax realm.
-	WimaxRealm pulumi.StringPtrInput
+	PppAuthProtocol             pulumi.StringPtrInput
+	PppEchoRequest              pulumi.StringPtrInput
+	PppPassword                 pulumi.StringPtrInput
+	PppUsername                 pulumi.StringPtrInput
+	PrimaryHa                   pulumi.StringPtrInput
+	Profile                     pulumi.StringPtrInput
+	QuotaLimitMb                pulumi.IntPtrInput
+	Redial                      pulumi.StringPtrInput
+	RedundantIntf               pulumi.StringPtrInput
+	Roaming                     pulumi.StringPtrInput
+	Role                        pulumi.StringPtrInput
+	SecondaryHa                 pulumi.StringPtrInput
+	SimPin                      pulumi.StringPtrInput
+	Vdom                        pulumi.IntPtrInput
+	Vdomparam                   pulumi.StringPtrInput
+	WanExtension                ExtenderControllerExtenderWanExtensionPtrInput
+	WimaxAuthProtocol           pulumi.StringPtrInput
+	WimaxCarrier                pulumi.StringPtrInput
+	WimaxRealm                  pulumi.StringPtrInput
 }
 
 func (ExtenderControllerExtenderState) ElementType() reflect.Type {
@@ -455,230 +253,120 @@ func (ExtenderControllerExtenderState) ElementType() reflect.Type {
 }
 
 type extenderControllerExtenderArgs struct {
-	// AAA shared secret.
-	AaaSharedSecret *string `pulumi:"aaaSharedSecret"`
-	// Access point name(APN).
-	AccessPointName *string `pulumi:"accessPointName"`
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
-	Admin string `pulumi:"admin"`
-	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-	Allowaccess *string `pulumi:"allowaccess"`
-	// Initialization AT commands specific to the MODEM.
-	AtDialScript *string `pulumi:"atDialScript"`
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-	Authorized *string `pulumi:"authorized"`
-	// FortiExtender LAN extension bandwidth limit (Mbps).
-	BandwidthLimit *int `pulumi:"bandwidthLimit"`
-	// Billing start day.
-	BillingStartDay *int `pulumi:"billingStartDay"`
-	// CDMA AAA SPI.
-	CdmaAaaSpi *string `pulumi:"cdmaAaaSpi"`
-	// CDMA HA SPI.
-	CdmaHaSpi *string `pulumi:"cdmaHaSpi"`
-	// NAI for CDMA MODEMS.
-	CdmaNai *string `pulumi:"cdmaNai"`
-	// Connection status.
-	ConnStatus *int `pulumi:"connStatus"`
-	// FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
-	ControllerReport *ExtenderControllerExtenderControllerReport `pulumi:"controllerReport"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// device-id
-	DeviceId *int `pulumi:"deviceId"`
-	// Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
-	DialMode *string `pulumi:"dialMode"`
-	// Dial status.
-	DialStatus *int `pulumi:"dialStatus"`
-	// Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-	EnforceBandwidth *string `pulumi:"enforceBandwidth"`
-	// FortiExtender name.
-	ExtName *string `pulumi:"extName"`
-	// Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
-	ExtensionType *string `pulumi:"extensionType"`
-	// FortiExtender serial number.
-	Fosid string `pulumi:"fosid"`
-	// HA shared secret.
-	HaSharedSecret *string `pulumi:"haSharedSecret"`
-	// FortiExtender interface name.
-	Ifname *string `pulumi:"ifname"`
-	// Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
-	InitiatedUpdate *string `pulumi:"initiatedUpdate"`
-	// FortiExtender login password.
-	LoginPassword *string `pulumi:"loginPassword"`
-	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-	LoginPasswordChange *string `pulumi:"loginPasswordChange"`
-	// FortiExtender mode. Valid values: `standalone`, `redundant`.
-	Mode *string `pulumi:"mode"`
-	// Configuration options for modem 1. The structure of `modem1` block is documented below.
-	Modem1 *ExtenderControllerExtenderModem1 `pulumi:"modem1"`
-	// Configuration options for modem 2. The structure of `modem2` block is documented below.
-	Modem2 *ExtenderControllerExtenderModem2 `pulumi:"modem2"`
-	// MODEM password.
-	ModemPasswd *string `pulumi:"modemPasswd"`
-	// MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
-	ModemType *string `pulumi:"modemType"`
-	// MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
-	MultiMode *string `pulumi:"multiMode"`
-	// FortiExtender entry name.
-	Name *string `pulumi:"name"`
-	// Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
-	OverrideAllowaccess *string `pulumi:"overrideAllowaccess"`
-	// Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
-	OverrideEnforceBandwidth *string `pulumi:"overrideEnforceBandwidth"`
-	// Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
-	OverrideLoginPasswordChange *string `pulumi:"overrideLoginPasswordChange"`
-	// PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
-	PppAuthProtocol *string `pulumi:"pppAuthProtocol"`
-	// Enable/disable PPP echo request. Valid values: `enable`, `disable`.
-	PppEchoRequest *string `pulumi:"pppEchoRequest"`
-	// PPP password.
-	PppPassword *string `pulumi:"pppPassword"`
-	// PPP username.
-	PppUsername *string `pulumi:"pppUsername"`
-	// Primary HA.
-	PrimaryHa *string `pulumi:"primaryHa"`
-	// FortiExtender profile configuration.
-	Profile *string `pulumi:"profile"`
-	// Monthly quota limit (MB).
-	QuotaLimitMb *int `pulumi:"quotaLimitMb"`
-	// Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-	Redial *string `pulumi:"redial"`
-	// Redundant interface.
-	RedundantIntf *string `pulumi:"redundantIntf"`
-	// Enable/disable MODEM roaming. Valid values: `enable`, `disable`.
-	Roaming *string `pulumi:"roaming"`
-	// FortiExtender work role(Primary, Secondary, None). Valid values: `none`, `primary`, `secondary`.
-	Role string `pulumi:"role"`
-	// Secondary HA.
-	SecondaryHa *string `pulumi:"secondaryHa"`
-	// SIM PIN.
-	SimPin *string `pulumi:"simPin"`
-	// VDOM
-	Vdom *int `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
-	WanExtension *ExtenderControllerExtenderWanExtension `pulumi:"wanExtension"`
-	// WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
-	WimaxAuthProtocol *string `pulumi:"wimaxAuthProtocol"`
-	// WiMax carrier.
-	WimaxCarrier *string `pulumi:"wimaxCarrier"`
-	// WiMax realm.
-	WimaxRealm *string `pulumi:"wimaxRealm"`
+	AaaSharedSecret             *string                                     `pulumi:"aaaSharedSecret"`
+	AccessPointName             *string                                     `pulumi:"accessPointName"`
+	Admin                       string                                      `pulumi:"admin"`
+	Allowaccess                 *string                                     `pulumi:"allowaccess"`
+	AtDialScript                *string                                     `pulumi:"atDialScript"`
+	Authorized                  *string                                     `pulumi:"authorized"`
+	BandwidthLimit              *int                                        `pulumi:"bandwidthLimit"`
+	BillingStartDay             *int                                        `pulumi:"billingStartDay"`
+	CdmaAaaSpi                  *string                                     `pulumi:"cdmaAaaSpi"`
+	CdmaHaSpi                   *string                                     `pulumi:"cdmaHaSpi"`
+	CdmaNai                     *string                                     `pulumi:"cdmaNai"`
+	ConnStatus                  *int                                        `pulumi:"connStatus"`
+	ControllerReport            *ExtenderControllerExtenderControllerReport `pulumi:"controllerReport"`
+	Description                 *string                                     `pulumi:"description"`
+	DeviceId                    *int                                        `pulumi:"deviceId"`
+	DialMode                    *string                                     `pulumi:"dialMode"`
+	DialStatus                  *int                                        `pulumi:"dialStatus"`
+	EnforceBandwidth            *string                                     `pulumi:"enforceBandwidth"`
+	ExtName                     *string                                     `pulumi:"extName"`
+	ExtensionType               *string                                     `pulumi:"extensionType"`
+	Fosid                       string                                      `pulumi:"fosid"`
+	HaSharedSecret              *string                                     `pulumi:"haSharedSecret"`
+	Ifname                      *string                                     `pulumi:"ifname"`
+	InitiatedUpdate             *string                                     `pulumi:"initiatedUpdate"`
+	LoginPassword               *string                                     `pulumi:"loginPassword"`
+	LoginPasswordChange         *string                                     `pulumi:"loginPasswordChange"`
+	Mode                        *string                                     `pulumi:"mode"`
+	Modem1                      *ExtenderControllerExtenderModem1           `pulumi:"modem1"`
+	Modem2                      *ExtenderControllerExtenderModem2           `pulumi:"modem2"`
+	ModemPasswd                 *string                                     `pulumi:"modemPasswd"`
+	ModemType                   *string                                     `pulumi:"modemType"`
+	MultiMode                   *string                                     `pulumi:"multiMode"`
+	Name                        *string                                     `pulumi:"name"`
+	OverrideAllowaccess         *string                                     `pulumi:"overrideAllowaccess"`
+	OverrideEnforceBandwidth    *string                                     `pulumi:"overrideEnforceBandwidth"`
+	OverrideLoginPasswordChange *string                                     `pulumi:"overrideLoginPasswordChange"`
+	PppAuthProtocol             *string                                     `pulumi:"pppAuthProtocol"`
+	PppEchoRequest              *string                                     `pulumi:"pppEchoRequest"`
+	PppPassword                 *string                                     `pulumi:"pppPassword"`
+	PppUsername                 *string                                     `pulumi:"pppUsername"`
+	PrimaryHa                   *string                                     `pulumi:"primaryHa"`
+	Profile                     *string                                     `pulumi:"profile"`
+	QuotaLimitMb                *int                                        `pulumi:"quotaLimitMb"`
+	Redial                      *string                                     `pulumi:"redial"`
+	RedundantIntf               *string                                     `pulumi:"redundantIntf"`
+	Roaming                     *string                                     `pulumi:"roaming"`
+	Role                        string                                      `pulumi:"role"`
+	SecondaryHa                 *string                                     `pulumi:"secondaryHa"`
+	SimPin                      *string                                     `pulumi:"simPin"`
+	Vdom                        *int                                        `pulumi:"vdom"`
+	Vdomparam                   *string                                     `pulumi:"vdomparam"`
+	WanExtension                *ExtenderControllerExtenderWanExtension     `pulumi:"wanExtension"`
+	WimaxAuthProtocol           *string                                     `pulumi:"wimaxAuthProtocol"`
+	WimaxCarrier                *string                                     `pulumi:"wimaxCarrier"`
+	WimaxRealm                  *string                                     `pulumi:"wimaxRealm"`
 }
 
 // The set of arguments for constructing a ExtenderControllerExtender resource.
 type ExtenderControllerExtenderArgs struct {
-	// AAA shared secret.
-	AaaSharedSecret pulumi.StringPtrInput
-	// Access point name(APN).
-	AccessPointName pulumi.StringPtrInput
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
-	Admin pulumi.StringInput
-	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-	Allowaccess pulumi.StringPtrInput
-	// Initialization AT commands specific to the MODEM.
-	AtDialScript pulumi.StringPtrInput
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-	Authorized pulumi.StringPtrInput
-	// FortiExtender LAN extension bandwidth limit (Mbps).
-	BandwidthLimit pulumi.IntPtrInput
-	// Billing start day.
-	BillingStartDay pulumi.IntPtrInput
-	// CDMA AAA SPI.
-	CdmaAaaSpi pulumi.StringPtrInput
-	// CDMA HA SPI.
-	CdmaHaSpi pulumi.StringPtrInput
-	// NAI for CDMA MODEMS.
-	CdmaNai pulumi.StringPtrInput
-	// Connection status.
-	ConnStatus pulumi.IntPtrInput
-	// FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
-	ControllerReport ExtenderControllerExtenderControllerReportPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// device-id
-	DeviceId pulumi.IntPtrInput
-	// Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
-	DialMode pulumi.StringPtrInput
-	// Dial status.
-	DialStatus pulumi.IntPtrInput
-	// Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
-	EnforceBandwidth pulumi.StringPtrInput
-	// FortiExtender name.
-	ExtName pulumi.StringPtrInput
-	// Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
-	ExtensionType pulumi.StringPtrInput
-	// FortiExtender serial number.
-	Fosid pulumi.StringInput
-	// HA shared secret.
-	HaSharedSecret pulumi.StringPtrInput
-	// FortiExtender interface name.
-	Ifname pulumi.StringPtrInput
-	// Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
-	InitiatedUpdate pulumi.StringPtrInput
-	// FortiExtender login password.
-	LoginPassword pulumi.StringPtrInput
-	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-	LoginPasswordChange pulumi.StringPtrInput
-	// FortiExtender mode. Valid values: `standalone`, `redundant`.
-	Mode pulumi.StringPtrInput
-	// Configuration options for modem 1. The structure of `modem1` block is documented below.
-	Modem1 ExtenderControllerExtenderModem1PtrInput
-	// Configuration options for modem 2. The structure of `modem2` block is documented below.
-	Modem2 ExtenderControllerExtenderModem2PtrInput
-	// MODEM password.
-	ModemPasswd pulumi.StringPtrInput
-	// MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
-	ModemType pulumi.StringPtrInput
-	// MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
-	MultiMode pulumi.StringPtrInput
-	// FortiExtender entry name.
-	Name pulumi.StringPtrInput
-	// Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
-	OverrideAllowaccess pulumi.StringPtrInput
-	// Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
-	OverrideEnforceBandwidth pulumi.StringPtrInput
-	// Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
+	AaaSharedSecret             pulumi.StringPtrInput
+	AccessPointName             pulumi.StringPtrInput
+	Admin                       pulumi.StringInput
+	Allowaccess                 pulumi.StringPtrInput
+	AtDialScript                pulumi.StringPtrInput
+	Authorized                  pulumi.StringPtrInput
+	BandwidthLimit              pulumi.IntPtrInput
+	BillingStartDay             pulumi.IntPtrInput
+	CdmaAaaSpi                  pulumi.StringPtrInput
+	CdmaHaSpi                   pulumi.StringPtrInput
+	CdmaNai                     pulumi.StringPtrInput
+	ConnStatus                  pulumi.IntPtrInput
+	ControllerReport            ExtenderControllerExtenderControllerReportPtrInput
+	Description                 pulumi.StringPtrInput
+	DeviceId                    pulumi.IntPtrInput
+	DialMode                    pulumi.StringPtrInput
+	DialStatus                  pulumi.IntPtrInput
+	EnforceBandwidth            pulumi.StringPtrInput
+	ExtName                     pulumi.StringPtrInput
+	ExtensionType               pulumi.StringPtrInput
+	Fosid                       pulumi.StringInput
+	HaSharedSecret              pulumi.StringPtrInput
+	Ifname                      pulumi.StringPtrInput
+	InitiatedUpdate             pulumi.StringPtrInput
+	LoginPassword               pulumi.StringPtrInput
+	LoginPasswordChange         pulumi.StringPtrInput
+	Mode                        pulumi.StringPtrInput
+	Modem1                      ExtenderControllerExtenderModem1PtrInput
+	Modem2                      ExtenderControllerExtenderModem2PtrInput
+	ModemPasswd                 pulumi.StringPtrInput
+	ModemType                   pulumi.StringPtrInput
+	MultiMode                   pulumi.StringPtrInput
+	Name                        pulumi.StringPtrInput
+	OverrideAllowaccess         pulumi.StringPtrInput
+	OverrideEnforceBandwidth    pulumi.StringPtrInput
 	OverrideLoginPasswordChange pulumi.StringPtrInput
-	// PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
-	PppAuthProtocol pulumi.StringPtrInput
-	// Enable/disable PPP echo request. Valid values: `enable`, `disable`.
-	PppEchoRequest pulumi.StringPtrInput
-	// PPP password.
-	PppPassword pulumi.StringPtrInput
-	// PPP username.
-	PppUsername pulumi.StringPtrInput
-	// Primary HA.
-	PrimaryHa pulumi.StringPtrInput
-	// FortiExtender profile configuration.
-	Profile pulumi.StringPtrInput
-	// Monthly quota limit (MB).
-	QuotaLimitMb pulumi.IntPtrInput
-	// Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
-	Redial pulumi.StringPtrInput
-	// Redundant interface.
-	RedundantIntf pulumi.StringPtrInput
-	// Enable/disable MODEM roaming. Valid values: `enable`, `disable`.
-	Roaming pulumi.StringPtrInput
-	// FortiExtender work role(Primary, Secondary, None). Valid values: `none`, `primary`, `secondary`.
-	Role pulumi.StringInput
-	// Secondary HA.
-	SecondaryHa pulumi.StringPtrInput
-	// SIM PIN.
-	SimPin pulumi.StringPtrInput
-	// VDOM
-	Vdom pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
-	WanExtension ExtenderControllerExtenderWanExtensionPtrInput
-	// WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
-	WimaxAuthProtocol pulumi.StringPtrInput
-	// WiMax carrier.
-	WimaxCarrier pulumi.StringPtrInput
-	// WiMax realm.
-	WimaxRealm pulumi.StringPtrInput
+	PppAuthProtocol             pulumi.StringPtrInput
+	PppEchoRequest              pulumi.StringPtrInput
+	PppPassword                 pulumi.StringPtrInput
+	PppUsername                 pulumi.StringPtrInput
+	PrimaryHa                   pulumi.StringPtrInput
+	Profile                     pulumi.StringPtrInput
+	QuotaLimitMb                pulumi.IntPtrInput
+	Redial                      pulumi.StringPtrInput
+	RedundantIntf               pulumi.StringPtrInput
+	Roaming                     pulumi.StringPtrInput
+	Role                        pulumi.StringInput
+	SecondaryHa                 pulumi.StringPtrInput
+	SimPin                      pulumi.StringPtrInput
+	Vdom                        pulumi.IntPtrInput
+	Vdomparam                   pulumi.StringPtrInput
+	WanExtension                ExtenderControllerExtenderWanExtensionPtrInput
+	WimaxAuthProtocol           pulumi.StringPtrInput
+	WimaxCarrier                pulumi.StringPtrInput
+	WimaxRealm                  pulumi.StringPtrInput
 }
 
 func (ExtenderControllerExtenderArgs) ElementType() reflect.Type {
@@ -707,7 +395,7 @@ func (i *ExtenderControllerExtender) ToExtenderControllerExtenderOutputWithConte
 // ExtenderControllerExtenderArrayInput is an input type that accepts ExtenderControllerExtenderArray and ExtenderControllerExtenderArrayOutput values.
 // You can construct a concrete instance of `ExtenderControllerExtenderArrayInput` via:
 //
-//          ExtenderControllerExtenderArray{ ExtenderControllerExtenderArgs{...} }
+//	ExtenderControllerExtenderArray{ ExtenderControllerExtenderArgs{...} }
 type ExtenderControllerExtenderArrayInput interface {
 	pulumi.Input
 
@@ -732,7 +420,7 @@ func (i ExtenderControllerExtenderArray) ToExtenderControllerExtenderArrayOutput
 // ExtenderControllerExtenderMapInput is an input type that accepts ExtenderControllerExtenderMap and ExtenderControllerExtenderMapOutput values.
 // You can construct a concrete instance of `ExtenderControllerExtenderMapInput` via:
 //
-//          ExtenderControllerExtenderMap{ "key": ExtenderControllerExtenderArgs{...} }
+//	ExtenderControllerExtenderMap{ "key": ExtenderControllerExtenderArgs{...} }
 type ExtenderControllerExtenderMapInput interface {
 	pulumi.Input
 
@@ -766,6 +454,230 @@ func (o ExtenderControllerExtenderOutput) ToExtenderControllerExtenderOutput() E
 
 func (o ExtenderControllerExtenderOutput) ToExtenderControllerExtenderOutputWithContext(ctx context.Context) ExtenderControllerExtenderOutput {
 	return o
+}
+
+func (o ExtenderControllerExtenderOutput) AaaSharedSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringPtrOutput { return v.AaaSharedSecret }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) AccessPointName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.AccessPointName }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) Admin() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.Admin }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) Allowaccess() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.Allowaccess }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) AtDialScript() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.AtDialScript }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) Authorized() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.Authorized }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) BandwidthLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.IntOutput { return v.BandwidthLimit }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) BillingStartDay() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.IntOutput { return v.BillingStartDay }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) CdmaAaaSpi() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.CdmaAaaSpi }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) CdmaHaSpi() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.CdmaHaSpi }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) CdmaNai() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.CdmaNai }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) ConnStatus() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.IntOutput { return v.ConnStatus }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) ControllerReport() ExtenderControllerExtenderControllerReportOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) ExtenderControllerExtenderControllerReportOutput {
+		return v.ControllerReport
+	}).(ExtenderControllerExtenderControllerReportOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) DeviceId() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.IntOutput { return v.DeviceId }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) DialMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.DialMode }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) DialStatus() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.IntOutput { return v.DialStatus }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) EnforceBandwidth() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.EnforceBandwidth }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) ExtName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.ExtName }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) ExtensionType() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.ExtensionType }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) Fosid() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) HaSharedSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringPtrOutput { return v.HaSharedSecret }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) Ifname() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.Ifname }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) InitiatedUpdate() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.InitiatedUpdate }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) LoginPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringPtrOutput { return v.LoginPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) LoginPasswordChange() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.LoginPasswordChange }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) Modem1() ExtenderControllerExtenderModem1Output {
+	return o.ApplyT(func(v *ExtenderControllerExtender) ExtenderControllerExtenderModem1Output { return v.Modem1 }).(ExtenderControllerExtenderModem1Output)
+}
+
+func (o ExtenderControllerExtenderOutput) Modem2() ExtenderControllerExtenderModem2Output {
+	return o.ApplyT(func(v *ExtenderControllerExtender) ExtenderControllerExtenderModem2Output { return v.Modem2 }).(ExtenderControllerExtenderModem2Output)
+}
+
+func (o ExtenderControllerExtenderOutput) ModemPasswd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringPtrOutput { return v.ModemPasswd }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) ModemType() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.ModemType }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) MultiMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.MultiMode }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) OverrideAllowaccess() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.OverrideAllowaccess }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) OverrideEnforceBandwidth() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.OverrideEnforceBandwidth }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) OverrideLoginPasswordChange() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.OverrideLoginPasswordChange }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) PppAuthProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.PppAuthProtocol }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) PppEchoRequest() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.PppEchoRequest }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) PppPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringPtrOutput { return v.PppPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) PppUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.PppUsername }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) PrimaryHa() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.PrimaryHa }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) Profile() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.Profile }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) QuotaLimitMb() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.IntOutput { return v.QuotaLimitMb }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) Redial() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.Redial }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) RedundantIntf() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.RedundantIntf }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) Roaming() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.Roaming }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) SecondaryHa() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.SecondaryHa }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) SimPin() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringPtrOutput { return v.SimPin }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) Vdom() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.IntOutput { return v.Vdom }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) WanExtension() ExtenderControllerExtenderWanExtensionOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) ExtenderControllerExtenderWanExtensionOutput {
+		return v.WanExtension
+	}).(ExtenderControllerExtenderWanExtensionOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) WimaxAuthProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.WimaxAuthProtocol }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) WimaxCarrier() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.WimaxCarrier }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) WimaxRealm() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.WimaxRealm }).(pulumi.StringOutput)
 }
 
 type ExtenderControllerExtenderArrayOutput struct{ *pulumi.OutputState }

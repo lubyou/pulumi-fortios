@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure virtual domain.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemVdom("trname", {
- *     shortName: "testvdom",
- *     temporary: 0,
- * });
- * ```
- *
- * ## Import
- *
- * System Vdom can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVdom:SystemVdom labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVdom:SystemVdom labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemVdom extends pulumi.CustomResource {
     /**
      * Get an existing SystemVdom resource's state with the given name, ID, and optional extra
@@ -63,29 +32,11 @@ export class SystemVdom extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemVdom.__pulumiType;
     }
 
-    /**
-     * Flag.
-     */
     public readonly flag!: pulumi.Output<number>;
-    /**
-     * VDOM name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * VDOM short name.
-     */
     public readonly shortName!: pulumi.Output<string>;
-    /**
-     * Temporary.
-     */
     public readonly temporary!: pulumi.Output<number>;
-    /**
-     * Virtual cluster ID (0 - 4294967295).
-     */
     public readonly vclusterId!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -125,29 +76,11 @@ export class SystemVdom extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemVdom resources.
  */
 export interface SystemVdomState {
-    /**
-     * Flag.
-     */
     flag?: pulumi.Input<number>;
-    /**
-     * VDOM name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * VDOM short name.
-     */
     shortName?: pulumi.Input<string>;
-    /**
-     * Temporary.
-     */
     temporary?: pulumi.Input<number>;
-    /**
-     * Virtual cluster ID (0 - 4294967295).
-     */
     vclusterId?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -155,28 +88,10 @@ export interface SystemVdomState {
  * The set of arguments for constructing a SystemVdom resource.
  */
 export interface SystemVdomArgs {
-    /**
-     * Flag.
-     */
     flag?: pulumi.Input<number>;
-    /**
-     * VDOM name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * VDOM short name.
-     */
     shortName?: pulumi.Input<string>;
-    /**
-     * Temporary.
-     */
     temporary?: pulumi.Input<number>;
-    /**
-     * Virtual cluster ID (0 - 4294967295).
-     */
     vclusterId?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

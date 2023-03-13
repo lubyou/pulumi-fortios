@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure WTP groups.
- *
- * ## Import
- *
- * WirelessController WtpGroup can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerWtpGroup:WirelessControllerWtpGroup labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerWtpGroup:WirelessControllerWtpGroup labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerWtpGroup extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerWtpGroup resource's state with the given name, ID, and optional extra
@@ -52,25 +34,10 @@ export class WirelessControllerWtpGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerWtpGroup.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * WTP group name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * FortiAP models to define the WTP group platform type.
-     */
     public readonly platformType!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * WTP list. The structure of `wtps` block is documented below.
-     */
     public readonly wtps!: pulumi.Output<outputs.WirelessControllerWtpGroupWtp[] | undefined>;
 
     /**
@@ -108,25 +75,10 @@ export class WirelessControllerWtpGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerWtpGroup resources.
  */
 export interface WirelessControllerWtpGroupState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * WTP group name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * FortiAP models to define the WTP group platform type.
-     */
     platformType?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * WTP list. The structure of `wtps` block is documented below.
-     */
     wtps?: pulumi.Input<pulumi.Input<inputs.WirelessControllerWtpGroupWtp>[]>;
 }
 
@@ -134,24 +86,9 @@ export interface WirelessControllerWtpGroupState {
  * The set of arguments for constructing a WirelessControllerWtpGroup resource.
  */
 export interface WirelessControllerWtpGroupArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * WTP group name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * FortiAP models to define the WTP group platform type.
-     */
     platformType?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * WTP list. The structure of `wtps` block is documented below.
-     */
     wtps?: pulumi.Input<pulumi.Input<inputs.WirelessControllerWtpGroupWtp>[]>;
 }

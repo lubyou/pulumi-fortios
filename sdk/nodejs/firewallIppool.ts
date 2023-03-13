@@ -4,45 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv4 IP pools.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallIppool("trname", {
- *     arpReply: "enable",
- *     blockSize: 128,
- *     endip: "1.0.0.20",
- *     numBlocksPerUser: 8,
- *     pbaTimeout: 30,
- *     permitAnyHost: "disable",
- *     sourceEndip: "0.0.0.0",
- *     sourceStartip: "0.0.0.0",
- *     startip: "1.0.0.0",
- *     type: "overload",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall Ippool can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallIppool:FirewallIppool labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallIppool:FirewallIppool labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallIppool extends pulumi.CustomResource {
     /**
      * Get an existing FirewallIppool resource's state with the given name, ID, and optional extra
@@ -71,85 +32,25 @@ export class FirewallIppool extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallIppool.__pulumiType;
     }
 
-    /**
-     * Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-     */
     public readonly addNat64Route!: pulumi.Output<string>;
-    /**
-     * Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
-     */
     public readonly arpIntf!: pulumi.Output<string>;
-    /**
-     * Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
-     */
     public readonly arpReply!: pulumi.Output<string>;
-    /**
-     * Associated interface name.
-     */
     public readonly associatedInterface!: pulumi.Output<string>;
-    /**
-     * Number of addresses in a block (64 to 4096, default = 128).
-     */
     public readonly blockSize!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-     */
     public readonly endip!: pulumi.Output<string>;
-    /**
-     * Final port number (inclusive) in the range for the address pool (Default: 65533).
-     */
     public readonly endport!: pulumi.Output<number>;
-    /**
-     * IP pool name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable NAT64. Valid values: `disable`, `enable`.
-     */
     public readonly nat64!: pulumi.Output<string>;
-    /**
-     * Number of addresses blocks that can be used by a user (1 to 128, default = 8).
-     */
     public readonly numBlocksPerUser!: pulumi.Output<number>;
-    /**
-     * Port block allocation timeout (seconds).
-     */
     public readonly pbaTimeout!: pulumi.Output<number>;
-    /**
-     * Enable/disable full cone NAT. Valid values: `disable`, `enable`.
-     */
     public readonly permitAnyHost!: pulumi.Output<string>;
-    /**
-     * Number of port for each user (32 to 60416, default = 0, auto).
-     */
     public readonly portPerUser!: pulumi.Output<number>;
-    /**
-     * Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-     */
     public readonly sourceEndip!: pulumi.Output<string>;
-    /**
-     * First IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-     */
     public readonly sourceStartip!: pulumi.Output<string>;
-    /**
-     * First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-     */
     public readonly startip!: pulumi.Output<string>;
-    /**
-     * First port number (inclusive) in the range for the address pool (Default: 5117).
-     */
     public readonly startport!: pulumi.Output<number>;
-    /**
-     * IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -223,85 +124,25 @@ export class FirewallIppool extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallIppool resources.
  */
 export interface FirewallIppoolState {
-    /**
-     * Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-     */
     addNat64Route?: pulumi.Input<string>;
-    /**
-     * Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
-     */
     arpIntf?: pulumi.Input<string>;
-    /**
-     * Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
-     */
     arpReply?: pulumi.Input<string>;
-    /**
-     * Associated interface name.
-     */
     associatedInterface?: pulumi.Input<string>;
-    /**
-     * Number of addresses in a block (64 to 4096, default = 128).
-     */
     blockSize?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-     */
     endip?: pulumi.Input<string>;
-    /**
-     * Final port number (inclusive) in the range for the address pool (Default: 65533).
-     */
     endport?: pulumi.Input<number>;
-    /**
-     * IP pool name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAT64. Valid values: `disable`, `enable`.
-     */
     nat64?: pulumi.Input<string>;
-    /**
-     * Number of addresses blocks that can be used by a user (1 to 128, default = 8).
-     */
     numBlocksPerUser?: pulumi.Input<number>;
-    /**
-     * Port block allocation timeout (seconds).
-     */
     pbaTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable full cone NAT. Valid values: `disable`, `enable`.
-     */
     permitAnyHost?: pulumi.Input<string>;
-    /**
-     * Number of port for each user (32 to 60416, default = 0, auto).
-     */
     portPerUser?: pulumi.Input<number>;
-    /**
-     * Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-     */
     sourceEndip?: pulumi.Input<string>;
-    /**
-     * First IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-     */
     sourceStartip?: pulumi.Input<string>;
-    /**
-     * First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-     */
     startip?: pulumi.Input<string>;
-    /**
-     * First port number (inclusive) in the range for the address pool (Default: 5117).
-     */
     startport?: pulumi.Input<number>;
-    /**
-     * IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -309,84 +150,24 @@ export interface FirewallIppoolState {
  * The set of arguments for constructing a FirewallIppool resource.
  */
 export interface FirewallIppoolArgs {
-    /**
-     * Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-     */
     addNat64Route?: pulumi.Input<string>;
-    /**
-     * Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
-     */
     arpIntf?: pulumi.Input<string>;
-    /**
-     * Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
-     */
     arpReply?: pulumi.Input<string>;
-    /**
-     * Associated interface name.
-     */
     associatedInterface?: pulumi.Input<string>;
-    /**
-     * Number of addresses in a block (64 to 4096, default = 128).
-     */
     blockSize?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-     */
     endip: pulumi.Input<string>;
-    /**
-     * Final port number (inclusive) in the range for the address pool (Default: 65533).
-     */
     endport?: pulumi.Input<number>;
-    /**
-     * IP pool name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAT64. Valid values: `disable`, `enable`.
-     */
     nat64?: pulumi.Input<string>;
-    /**
-     * Number of addresses blocks that can be used by a user (1 to 128, default = 8).
-     */
     numBlocksPerUser?: pulumi.Input<number>;
-    /**
-     * Port block allocation timeout (seconds).
-     */
     pbaTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable full cone NAT. Valid values: `disable`, `enable`.
-     */
     permitAnyHost?: pulumi.Input<string>;
-    /**
-     * Number of port for each user (32 to 60416, default = 0, auto).
-     */
     portPerUser?: pulumi.Input<number>;
-    /**
-     * Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-     */
     sourceEndip?: pulumi.Input<string>;
-    /**
-     * First IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-     */
     sourceStartip?: pulumi.Input<string>;
-    /**
-     * First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
-     */
     startip: pulumi.Input<string>;
-    /**
-     * First port number (inclusive) in the range for the address pool (Default: 5117).
-     */
     startport?: pulumi.Input<number>;
-    /**
-     * IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

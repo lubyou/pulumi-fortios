@@ -10,91 +10,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports Create/Read/Update/Delete firewall object service for FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerFirewallObjectService(ctx, "test1", &fortios.FortimanagerFirewallObjectServiceArgs{
-// 			Category: pulumi.String("Email"),
-// 			Comment:  pulumi.String("test obj service"),
-// 			Iprange:  pulumi.String("1.1.1.1"),
-// 			Protocol: pulumi.String("TCP/UDP/SCTP"),
-// 			SctpPortranges: pulumi.StringArray{
-// 				pulumi.String("100-200:150-250"),
-// 			},
-// 			TcpPortranges: pulumi.StringArray{
-// 				pulumi.String("100-200:150-250"),
-// 			},
-// 			UdpPortranges: pulumi.StringArray{
-// 				pulumi.String("100-200:150-250"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewFortimanagerFirewallObjectService(ctx, "test2", &fortios.FortimanagerFirewallObjectServiceArgs{
-// 			Category: pulumi.String("Web Access"),
-// 			Comment:  pulumi.String("test obj service"),
-// 			IcmpCode: pulumi.Int(3),
-// 			IcmpType: pulumi.Int(2),
-// 			Protocol: pulumi.String("ICMP"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewFortimanagerFirewallObjectService(ctx, "test3", &fortios.FortimanagerFirewallObjectServiceArgs{
-// 			Category:       pulumi.String("File Access"),
-// 			Comment:        pulumi.String("test obj service"),
-// 			Protocol:       pulumi.String("IP"),
-// 			ProtocolNumber: pulumi.Int(4),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerFirewallObjectService struct {
 	pulumi.CustomResourceState
 
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrOutput `pulumi:"adom"`
-	// Service category. Enum: ["", "File Access", "Authentication", "Email", "General", "Network Services", "Remote Access", "Tunneling", "VoIP, Messaging & Other Applications", "Web Access", "Web Proxy"]
-	Category pulumi.StringPtrOutput `pulumi:"category"`
-	// Comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Fully qualified domain name.
-	Fqdn pulumi.StringPtrOutput `pulumi:"fqdn"`
-	// ICMP Code.
-	IcmpCode pulumi.IntPtrOutput `pulumi:"icmpCode"`
-	// ICMP Type.
-	IcmpType pulumi.IntPtrOutput `pulumi:"icmpType"`
-	// Start and end of the IP range associated with service. Ip or Ip range(eg: 1.1.1.1-1.1.1.100).
-	Iprange pulumi.StringPtrOutput `pulumi:"iprange"`
-	// Custom service name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Protocol type. Enum: ["TCP/UDP/SCTP", "ICMP", "ICMP6", "IP"]
-	Protocol pulumi.StringPtrOutput `pulumi:"protocol"`
-	// IP protocol number.
-	ProtocolNumber pulumi.IntPtrOutput    `pulumi:"protocolNumber"`
-	Proxy          pulumi.StringPtrOutput `pulumi:"proxy"`
-	// SCTP port ranges. e.g: ["dst-port-range:src-port-range"]
+	Adom           pulumi.StringPtrOutput   `pulumi:"adom"`
+	Category       pulumi.StringPtrOutput   `pulumi:"category"`
+	Comment        pulumi.StringPtrOutput   `pulumi:"comment"`
+	Fqdn           pulumi.StringPtrOutput   `pulumi:"fqdn"`
+	IcmpCode       pulumi.IntPtrOutput      `pulumi:"icmpCode"`
+	IcmpType       pulumi.IntPtrOutput      `pulumi:"icmpType"`
+	Iprange        pulumi.StringPtrOutput   `pulumi:"iprange"`
+	Name           pulumi.StringOutput      `pulumi:"name"`
+	Protocol       pulumi.StringPtrOutput   `pulumi:"protocol"`
+	ProtocolNumber pulumi.IntPtrOutput      `pulumi:"protocolNumber"`
+	Proxy          pulumi.StringPtrOutput   `pulumi:"proxy"`
 	SctpPortranges pulumi.StringArrayOutput `pulumi:"sctpPortranges"`
-	// TCP port ranges. e.g: ["dst-port-range:src-port-range"]
-	TcpPortranges pulumi.StringArrayOutput `pulumi:"tcpPortranges"`
-	// UDP port ranges. e.g: ["dst-port-range:src-port-range"]
-	UdpPortranges pulumi.StringArrayOutput `pulumi:"udpPortranges"`
+	TcpPortranges  pulumi.StringArrayOutput `pulumi:"tcpPortranges"`
+	UdpPortranges  pulumi.StringArrayOutput `pulumi:"udpPortranges"`
 }
 
 // NewFortimanagerFirewallObjectService registers a new resource with the given unique name, arguments, and options.
@@ -127,63 +59,37 @@ func GetFortimanagerFirewallObjectService(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerFirewallObjectService resources.
 type fortimanagerFirewallObjectServiceState struct {
-	// ADOM name. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// Service category. Enum: ["", "File Access", "Authentication", "Email", "General", "Network Services", "Remote Access", "Tunneling", "VoIP, Messaging & Other Applications", "Web Access", "Web Proxy"]
-	Category *string `pulumi:"category"`
-	// Comments.
-	Comment *string `pulumi:"comment"`
-	// Fully qualified domain name.
-	Fqdn *string `pulumi:"fqdn"`
-	// ICMP Code.
-	IcmpCode *int `pulumi:"icmpCode"`
-	// ICMP Type.
-	IcmpType *int `pulumi:"icmpType"`
-	// Start and end of the IP range associated with service. Ip or Ip range(eg: 1.1.1.1-1.1.1.100).
-	Iprange *string `pulumi:"iprange"`
-	// Custom service name.
-	Name *string `pulumi:"name"`
-	// Protocol type. Enum: ["TCP/UDP/SCTP", "ICMP", "ICMP6", "IP"]
-	Protocol *string `pulumi:"protocol"`
-	// IP protocol number.
-	ProtocolNumber *int    `pulumi:"protocolNumber"`
-	Proxy          *string `pulumi:"proxy"`
-	// SCTP port ranges. e.g: ["dst-port-range:src-port-range"]
+	Adom           *string  `pulumi:"adom"`
+	Category       *string  `pulumi:"category"`
+	Comment        *string  `pulumi:"comment"`
+	Fqdn           *string  `pulumi:"fqdn"`
+	IcmpCode       *int     `pulumi:"icmpCode"`
+	IcmpType       *int     `pulumi:"icmpType"`
+	Iprange        *string  `pulumi:"iprange"`
+	Name           *string  `pulumi:"name"`
+	Protocol       *string  `pulumi:"protocol"`
+	ProtocolNumber *int     `pulumi:"protocolNumber"`
+	Proxy          *string  `pulumi:"proxy"`
 	SctpPortranges []string `pulumi:"sctpPortranges"`
-	// TCP port ranges. e.g: ["dst-port-range:src-port-range"]
-	TcpPortranges []string `pulumi:"tcpPortranges"`
-	// UDP port ranges. e.g: ["dst-port-range:src-port-range"]
-	UdpPortranges []string `pulumi:"udpPortranges"`
+	TcpPortranges  []string `pulumi:"tcpPortranges"`
+	UdpPortranges  []string `pulumi:"udpPortranges"`
 }
 
 type FortimanagerFirewallObjectServiceState struct {
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// Service category. Enum: ["", "File Access", "Authentication", "Email", "General", "Network Services", "Remote Access", "Tunneling", "VoIP, Messaging & Other Applications", "Web Access", "Web Proxy"]
-	Category pulumi.StringPtrInput
-	// Comments.
-	Comment pulumi.StringPtrInput
-	// Fully qualified domain name.
-	Fqdn pulumi.StringPtrInput
-	// ICMP Code.
-	IcmpCode pulumi.IntPtrInput
-	// ICMP Type.
-	IcmpType pulumi.IntPtrInput
-	// Start and end of the IP range associated with service. Ip or Ip range(eg: 1.1.1.1-1.1.1.100).
-	Iprange pulumi.StringPtrInput
-	// Custom service name.
-	Name pulumi.StringPtrInput
-	// Protocol type. Enum: ["TCP/UDP/SCTP", "ICMP", "ICMP6", "IP"]
-	Protocol pulumi.StringPtrInput
-	// IP protocol number.
+	Adom           pulumi.StringPtrInput
+	Category       pulumi.StringPtrInput
+	Comment        pulumi.StringPtrInput
+	Fqdn           pulumi.StringPtrInput
+	IcmpCode       pulumi.IntPtrInput
+	IcmpType       pulumi.IntPtrInput
+	Iprange        pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	Protocol       pulumi.StringPtrInput
 	ProtocolNumber pulumi.IntPtrInput
 	Proxy          pulumi.StringPtrInput
-	// SCTP port ranges. e.g: ["dst-port-range:src-port-range"]
 	SctpPortranges pulumi.StringArrayInput
-	// TCP port ranges. e.g: ["dst-port-range:src-port-range"]
-	TcpPortranges pulumi.StringArrayInput
-	// UDP port ranges. e.g: ["dst-port-range:src-port-range"]
-	UdpPortranges pulumi.StringArrayInput
+	TcpPortranges  pulumi.StringArrayInput
+	UdpPortranges  pulumi.StringArrayInput
 }
 
 func (FortimanagerFirewallObjectServiceState) ElementType() reflect.Type {
@@ -191,64 +97,38 @@ func (FortimanagerFirewallObjectServiceState) ElementType() reflect.Type {
 }
 
 type fortimanagerFirewallObjectServiceArgs struct {
-	// ADOM name. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// Service category. Enum: ["", "File Access", "Authentication", "Email", "General", "Network Services", "Remote Access", "Tunneling", "VoIP, Messaging & Other Applications", "Web Access", "Web Proxy"]
-	Category *string `pulumi:"category"`
-	// Comments.
-	Comment *string `pulumi:"comment"`
-	// Fully qualified domain name.
-	Fqdn *string `pulumi:"fqdn"`
-	// ICMP Code.
-	IcmpCode *int `pulumi:"icmpCode"`
-	// ICMP Type.
-	IcmpType *int `pulumi:"icmpType"`
-	// Start and end of the IP range associated with service. Ip or Ip range(eg: 1.1.1.1-1.1.1.100).
-	Iprange *string `pulumi:"iprange"`
-	// Custom service name.
-	Name *string `pulumi:"name"`
-	// Protocol type. Enum: ["TCP/UDP/SCTP", "ICMP", "ICMP6", "IP"]
-	Protocol *string `pulumi:"protocol"`
-	// IP protocol number.
-	ProtocolNumber *int    `pulumi:"protocolNumber"`
-	Proxy          *string `pulumi:"proxy"`
-	// SCTP port ranges. e.g: ["dst-port-range:src-port-range"]
+	Adom           *string  `pulumi:"adom"`
+	Category       *string  `pulumi:"category"`
+	Comment        *string  `pulumi:"comment"`
+	Fqdn           *string  `pulumi:"fqdn"`
+	IcmpCode       *int     `pulumi:"icmpCode"`
+	IcmpType       *int     `pulumi:"icmpType"`
+	Iprange        *string  `pulumi:"iprange"`
+	Name           *string  `pulumi:"name"`
+	Protocol       *string  `pulumi:"protocol"`
+	ProtocolNumber *int     `pulumi:"protocolNumber"`
+	Proxy          *string  `pulumi:"proxy"`
 	SctpPortranges []string `pulumi:"sctpPortranges"`
-	// TCP port ranges. e.g: ["dst-port-range:src-port-range"]
-	TcpPortranges []string `pulumi:"tcpPortranges"`
-	// UDP port ranges. e.g: ["dst-port-range:src-port-range"]
-	UdpPortranges []string `pulumi:"udpPortranges"`
+	TcpPortranges  []string `pulumi:"tcpPortranges"`
+	UdpPortranges  []string `pulumi:"udpPortranges"`
 }
 
 // The set of arguments for constructing a FortimanagerFirewallObjectService resource.
 type FortimanagerFirewallObjectServiceArgs struct {
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// Service category. Enum: ["", "File Access", "Authentication", "Email", "General", "Network Services", "Remote Access", "Tunneling", "VoIP, Messaging & Other Applications", "Web Access", "Web Proxy"]
-	Category pulumi.StringPtrInput
-	// Comments.
-	Comment pulumi.StringPtrInput
-	// Fully qualified domain name.
-	Fqdn pulumi.StringPtrInput
-	// ICMP Code.
-	IcmpCode pulumi.IntPtrInput
-	// ICMP Type.
-	IcmpType pulumi.IntPtrInput
-	// Start and end of the IP range associated with service. Ip or Ip range(eg: 1.1.1.1-1.1.1.100).
-	Iprange pulumi.StringPtrInput
-	// Custom service name.
-	Name pulumi.StringPtrInput
-	// Protocol type. Enum: ["TCP/UDP/SCTP", "ICMP", "ICMP6", "IP"]
-	Protocol pulumi.StringPtrInput
-	// IP protocol number.
+	Adom           pulumi.StringPtrInput
+	Category       pulumi.StringPtrInput
+	Comment        pulumi.StringPtrInput
+	Fqdn           pulumi.StringPtrInput
+	IcmpCode       pulumi.IntPtrInput
+	IcmpType       pulumi.IntPtrInput
+	Iprange        pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	Protocol       pulumi.StringPtrInput
 	ProtocolNumber pulumi.IntPtrInput
 	Proxy          pulumi.StringPtrInput
-	// SCTP port ranges. e.g: ["dst-port-range:src-port-range"]
 	SctpPortranges pulumi.StringArrayInput
-	// TCP port ranges. e.g: ["dst-port-range:src-port-range"]
-	TcpPortranges pulumi.StringArrayInput
-	// UDP port ranges. e.g: ["dst-port-range:src-port-range"]
-	UdpPortranges pulumi.StringArrayInput
+	TcpPortranges  pulumi.StringArrayInput
+	UdpPortranges  pulumi.StringArrayInput
 }
 
 func (FortimanagerFirewallObjectServiceArgs) ElementType() reflect.Type {
@@ -277,7 +157,7 @@ func (i *FortimanagerFirewallObjectService) ToFortimanagerFirewallObjectServiceO
 // FortimanagerFirewallObjectServiceArrayInput is an input type that accepts FortimanagerFirewallObjectServiceArray and FortimanagerFirewallObjectServiceArrayOutput values.
 // You can construct a concrete instance of `FortimanagerFirewallObjectServiceArrayInput` via:
 //
-//          FortimanagerFirewallObjectServiceArray{ FortimanagerFirewallObjectServiceArgs{...} }
+//	FortimanagerFirewallObjectServiceArray{ FortimanagerFirewallObjectServiceArgs{...} }
 type FortimanagerFirewallObjectServiceArrayInput interface {
 	pulumi.Input
 
@@ -302,7 +182,7 @@ func (i FortimanagerFirewallObjectServiceArray) ToFortimanagerFirewallObjectServ
 // FortimanagerFirewallObjectServiceMapInput is an input type that accepts FortimanagerFirewallObjectServiceMap and FortimanagerFirewallObjectServiceMapOutput values.
 // You can construct a concrete instance of `FortimanagerFirewallObjectServiceMapInput` via:
 //
-//          FortimanagerFirewallObjectServiceMap{ "key": FortimanagerFirewallObjectServiceArgs{...} }
+//	FortimanagerFirewallObjectServiceMap{ "key": FortimanagerFirewallObjectServiceArgs{...} }
 type FortimanagerFirewallObjectServiceMapInput interface {
 	pulumi.Input
 
@@ -336,6 +216,62 @@ func (o FortimanagerFirewallObjectServiceOutput) ToFortimanagerFirewallObjectSer
 
 func (o FortimanagerFirewallObjectServiceOutput) ToFortimanagerFirewallObjectServiceOutputWithContext(ctx context.Context) FortimanagerFirewallObjectServiceOutput {
 	return o
+}
+
+func (o FortimanagerFirewallObjectServiceOutput) Adom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectService) pulumi.StringPtrOutput { return v.Adom }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectServiceOutput) Category() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectService) pulumi.StringPtrOutput { return v.Category }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectServiceOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectService) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectServiceOutput) Fqdn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectService) pulumi.StringPtrOutput { return v.Fqdn }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectServiceOutput) IcmpCode() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectService) pulumi.IntPtrOutput { return v.IcmpCode }).(pulumi.IntPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectServiceOutput) IcmpType() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectService) pulumi.IntPtrOutput { return v.IcmpType }).(pulumi.IntPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectServiceOutput) Iprange() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectService) pulumi.StringPtrOutput { return v.Iprange }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectServiceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectService) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerFirewallObjectServiceOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectService) pulumi.StringPtrOutput { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectServiceOutput) ProtocolNumber() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectService) pulumi.IntPtrOutput { return v.ProtocolNumber }).(pulumi.IntPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectServiceOutput) Proxy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectService) pulumi.StringPtrOutput { return v.Proxy }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectServiceOutput) SctpPortranges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectService) pulumi.StringArrayOutput { return v.SctpPortranges }).(pulumi.StringArrayOutput)
+}
+
+func (o FortimanagerFirewallObjectServiceOutput) TcpPortranges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectService) pulumi.StringArrayOutput { return v.TcpPortranges }).(pulumi.StringArrayOutput)
+}
+
+func (o FortimanagerFirewallObjectServiceOutput) UdpPortranges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectService) pulumi.StringArrayOutput { return v.UdpPortranges }).(pulumi.StringArrayOutput)
 }
 
 type FortimanagerFirewallObjectServiceArrayOutput struct{ *pulumi.OutputState }

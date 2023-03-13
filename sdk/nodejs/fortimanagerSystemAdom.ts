@@ -4,28 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports Create/Read/Update/Delete system adom for FortiManager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerSystemAdom("test1", {
- *     actionWhenConflictsOccurDuringPolicyCheck: "Continue",
- *     autoPushPolicyPackagesWhenDeviceBackOnline: "Enable",
- *     centralManagementFortiap: true,
- *     centralManagementSdwan: false,
- *     centralManagementVpn: false,
- *     mode: "Normal",
- *     performPolicyCheckBeforeEveryInstall: true,
- *     status: 1,
- *     type: "FortiCarrier",
- * });
- * ```
- */
 export class FortimanagerSystemAdom extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerSystemAdom resource's state with the given name, ID, and optional extra
@@ -54,45 +32,15 @@ export class FortimanagerSystemAdom extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerSystemAdom.__pulumiType;
     }
 
-    /**
-     * True or False.
-     */
     public readonly actionWhenConflictsOccurDuringPolicyCheck!: pulumi.Output<string | undefined>;
-    /**
-     * True or False.
-     */
     public readonly autoPushPolicyPackagesWhenDeviceBackOnline!: pulumi.Output<string | undefined>;
-    /**
-     * True or False.
-     */
     public readonly centralManagementFortiap!: pulumi.Output<boolean | undefined>;
-    /**
-     * True or False.
-     */
     public readonly centralManagementSdwan!: pulumi.Output<boolean | undefined>;
-    /**
-     * True or False.
-     */
     public readonly centralManagementVpn!: pulumi.Output<boolean | undefined>;
-    /**
-     * Adom mode: Normal or Backup.
-     */
     public readonly mode!: pulumi.Output<string | undefined>;
-    /**
-     * Administrative Domain name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * True or False.
-     */
     public readonly performPolicyCheckBeforeEveryInstall!: pulumi.Output<boolean | undefined>;
-    /**
-     * Adom status. 0 means off and 1 means on.
-     */
     public readonly status!: pulumi.Output<number | undefined>;
-    /**
-     * Domain type, Enum: ["FortiGate", "FortiCarrier], default is "FortiCarrier".
-     */
     public readonly type!: pulumi.Output<string | undefined>;
 
     /**
@@ -140,45 +88,15 @@ export class FortimanagerSystemAdom extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerSystemAdom resources.
  */
 export interface FortimanagerSystemAdomState {
-    /**
-     * True or False.
-     */
     actionWhenConflictsOccurDuringPolicyCheck?: pulumi.Input<string>;
-    /**
-     * True or False.
-     */
     autoPushPolicyPackagesWhenDeviceBackOnline?: pulumi.Input<string>;
-    /**
-     * True or False.
-     */
     centralManagementFortiap?: pulumi.Input<boolean>;
-    /**
-     * True or False.
-     */
     centralManagementSdwan?: pulumi.Input<boolean>;
-    /**
-     * True or False.
-     */
     centralManagementVpn?: pulumi.Input<boolean>;
-    /**
-     * Adom mode: Normal or Backup.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Administrative Domain name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * True or False.
-     */
     performPolicyCheckBeforeEveryInstall?: pulumi.Input<boolean>;
-    /**
-     * Adom status. 0 means off and 1 means on.
-     */
     status?: pulumi.Input<number>;
-    /**
-     * Domain type, Enum: ["FortiGate", "FortiCarrier], default is "FortiCarrier".
-     */
     type?: pulumi.Input<string>;
 }
 
@@ -186,44 +104,14 @@ export interface FortimanagerSystemAdomState {
  * The set of arguments for constructing a FortimanagerSystemAdom resource.
  */
 export interface FortimanagerSystemAdomArgs {
-    /**
-     * True or False.
-     */
     actionWhenConflictsOccurDuringPolicyCheck?: pulumi.Input<string>;
-    /**
-     * True or False.
-     */
     autoPushPolicyPackagesWhenDeviceBackOnline?: pulumi.Input<string>;
-    /**
-     * True or False.
-     */
     centralManagementFortiap?: pulumi.Input<boolean>;
-    /**
-     * True or False.
-     */
     centralManagementSdwan?: pulumi.Input<boolean>;
-    /**
-     * True or False.
-     */
     centralManagementVpn?: pulumi.Input<boolean>;
-    /**
-     * Adom mode: Normal or Backup.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Administrative Domain name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * True or False.
-     */
     performPolicyCheckBeforeEveryInstall?: pulumi.Input<boolean>;
-    /**
-     * Adom status. 0 means off and 1 means on.
-     */
     status?: pulumi.Input<number>;
-    /**
-     * Domain type, Enum: ["FortiGate", "FortiCarrier], default is "FortiCarrier".
-     */
     type?: pulumi.Input<string>;
 }

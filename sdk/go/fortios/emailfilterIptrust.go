@@ -10,38 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure AntiSpam IP trust. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// Emailfilter Iptrust can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/emailfilterIptrust:EmailfilterIptrust labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/emailfilterIptrust:EmailfilterIptrust labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type EmailfilterIptrust struct {
 	pulumi.CustomResourceState
 
-	// Optional comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Spam filter trusted IP addresses. The structure of `entries` block is documented below.
-	Entries EmailfilterIptrustEntryArrayOutput `pulumi:"entries"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Name of table.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput             `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
+	Entries             EmailfilterIptrustEntryArrayOutput `pulumi:"entries"`
+	Fosid               pulumi.IntOutput                   `pulumi:"fosid"`
+	Name                pulumi.StringOutput                `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput             `pulumi:"vdomparam"`
 }
 
 // NewEmailfilterIptrust registers a new resource with the given unique name, arguments, and options.
@@ -74,33 +51,21 @@ func GetEmailfilterIptrust(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EmailfilterIptrust resources.
 type emailfilterIptrustState struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Spam filter trusted IP addresses. The structure of `entries` block is documented below.
-	Entries []EmailfilterIptrustEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                   `pulumi:"comment"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Entries             []EmailfilterIptrustEntry `pulumi:"entries"`
+	Fosid               *int                      `pulumi:"fosid"`
+	Name                *string                   `pulumi:"name"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
 
 type EmailfilterIptrustState struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Spam filter trusted IP addresses. The structure of `entries` block is documented below.
-	Entries EmailfilterIptrustEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             EmailfilterIptrustEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (EmailfilterIptrustState) ElementType() reflect.Type {
@@ -108,34 +73,22 @@ func (EmailfilterIptrustState) ElementType() reflect.Type {
 }
 
 type emailfilterIptrustArgs struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Spam filter trusted IP addresses. The structure of `entries` block is documented below.
-	Entries []EmailfilterIptrustEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                   `pulumi:"comment"`
+	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	Entries             []EmailfilterIptrustEntry `pulumi:"entries"`
+	Fosid               *int                      `pulumi:"fosid"`
+	Name                *string                   `pulumi:"name"`
+	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a EmailfilterIptrust resource.
 type EmailfilterIptrustArgs struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Spam filter trusted IP addresses. The structure of `entries` block is documented below.
-	Entries EmailfilterIptrustEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             EmailfilterIptrustEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (EmailfilterIptrustArgs) ElementType() reflect.Type {
@@ -164,7 +117,7 @@ func (i *EmailfilterIptrust) ToEmailfilterIptrustOutputWithContext(ctx context.C
 // EmailfilterIptrustArrayInput is an input type that accepts EmailfilterIptrustArray and EmailfilterIptrustArrayOutput values.
 // You can construct a concrete instance of `EmailfilterIptrustArrayInput` via:
 //
-//          EmailfilterIptrustArray{ EmailfilterIptrustArgs{...} }
+//	EmailfilterIptrustArray{ EmailfilterIptrustArgs{...} }
 type EmailfilterIptrustArrayInput interface {
 	pulumi.Input
 
@@ -189,7 +142,7 @@ func (i EmailfilterIptrustArray) ToEmailfilterIptrustArrayOutputWithContext(ctx 
 // EmailfilterIptrustMapInput is an input type that accepts EmailfilterIptrustMap and EmailfilterIptrustMapOutput values.
 // You can construct a concrete instance of `EmailfilterIptrustMapInput` via:
 //
-//          EmailfilterIptrustMap{ "key": EmailfilterIptrustArgs{...} }
+//	EmailfilterIptrustMap{ "key": EmailfilterIptrustArgs{...} }
 type EmailfilterIptrustMapInput interface {
 	pulumi.Input
 
@@ -223,6 +176,30 @@ func (o EmailfilterIptrustOutput) ToEmailfilterIptrustOutput() EmailfilterIptrus
 
 func (o EmailfilterIptrustOutput) ToEmailfilterIptrustOutputWithContext(ctx context.Context) EmailfilterIptrustOutput {
 	return o
+}
+
+func (o EmailfilterIptrustOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterIptrust) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o EmailfilterIptrustOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterIptrust) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o EmailfilterIptrustOutput) Entries() EmailfilterIptrustEntryArrayOutput {
+	return o.ApplyT(func(v *EmailfilterIptrust) EmailfilterIptrustEntryArrayOutput { return v.Entries }).(EmailfilterIptrustEntryArrayOutput)
+}
+
+func (o EmailfilterIptrustOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *EmailfilterIptrust) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o EmailfilterIptrustOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *EmailfilterIptrust) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o EmailfilterIptrustOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterIptrust) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type EmailfilterIptrustArrayOutput struct{ *pulumi.OutputState }

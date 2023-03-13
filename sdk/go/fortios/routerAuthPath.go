@@ -7,61 +7,16 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure authentication based routing.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewRouterAuthPath(ctx, "trname", &fortios.RouterAuthPathArgs{
-// 			Device:  pulumi.String("port3"),
-// 			Gateway: pulumi.String("1.1.1.1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Router AuthPath can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerAuthPath:RouterAuthPath labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerAuthPath:RouterAuthPath labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterAuthPath struct {
 	pulumi.CustomResourceState
 
-	// Outgoing interface.
-	Device pulumi.StringOutput `pulumi:"device"`
-	// Gateway IP address.
-	Gateway pulumi.StringOutput `pulumi:"gateway"`
-	// Name of the entry.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Device    pulumi.StringOutput    `pulumi:"device"`
+	Gateway   pulumi.StringOutput    `pulumi:"gateway"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -98,24 +53,16 @@ func GetRouterAuthPath(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterAuthPath resources.
 type routerAuthPathState struct {
-	// Outgoing interface.
-	Device *string `pulumi:"device"`
-	// Gateway IP address.
-	Gateway *string `pulumi:"gateway"`
-	// Name of the entry.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Device    *string `pulumi:"device"`
+	Gateway   *string `pulumi:"gateway"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type RouterAuthPathState struct {
-	// Outgoing interface.
-	Device pulumi.StringPtrInput
-	// Gateway IP address.
-	Gateway pulumi.StringPtrInput
-	// Name of the entry.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Device    pulumi.StringPtrInput
+	Gateway   pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -124,25 +71,17 @@ func (RouterAuthPathState) ElementType() reflect.Type {
 }
 
 type routerAuthPathArgs struct {
-	// Outgoing interface.
-	Device string `pulumi:"device"`
-	// Gateway IP address.
-	Gateway *string `pulumi:"gateway"`
-	// Name of the entry.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Device    string  `pulumi:"device"`
+	Gateway   *string `pulumi:"gateway"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterAuthPath resource.
 type RouterAuthPathArgs struct {
-	// Outgoing interface.
-	Device pulumi.StringInput
-	// Gateway IP address.
-	Gateway pulumi.StringPtrInput
-	// Name of the entry.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Device    pulumi.StringInput
+	Gateway   pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -172,7 +111,7 @@ func (i *RouterAuthPath) ToRouterAuthPathOutputWithContext(ctx context.Context) 
 // RouterAuthPathArrayInput is an input type that accepts RouterAuthPathArray and RouterAuthPathArrayOutput values.
 // You can construct a concrete instance of `RouterAuthPathArrayInput` via:
 //
-//          RouterAuthPathArray{ RouterAuthPathArgs{...} }
+//	RouterAuthPathArray{ RouterAuthPathArgs{...} }
 type RouterAuthPathArrayInput interface {
 	pulumi.Input
 
@@ -197,7 +136,7 @@ func (i RouterAuthPathArray) ToRouterAuthPathArrayOutputWithContext(ctx context.
 // RouterAuthPathMapInput is an input type that accepts RouterAuthPathMap and RouterAuthPathMapOutput values.
 // You can construct a concrete instance of `RouterAuthPathMapInput` via:
 //
-//          RouterAuthPathMap{ "key": RouterAuthPathArgs{...} }
+//	RouterAuthPathMap{ "key": RouterAuthPathArgs{...} }
 type RouterAuthPathMapInput interface {
 	pulumi.Input
 
@@ -231,6 +170,22 @@ func (o RouterAuthPathOutput) ToRouterAuthPathOutput() RouterAuthPathOutput {
 
 func (o RouterAuthPathOutput) ToRouterAuthPathOutputWithContext(ctx context.Context) RouterAuthPathOutput {
 	return o
+}
+
+func (o RouterAuthPathOutput) Device() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterAuthPath) pulumi.StringOutput { return v.Device }).(pulumi.StringOutput)
+}
+
+func (o RouterAuthPathOutput) Gateway() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterAuthPath) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
+}
+
+func (o RouterAuthPathOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterAuthPath) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o RouterAuthPathOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterAuthPath) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterAuthPathArrayOutput struct{ *pulumi.OutputState }

@@ -10,60 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure DNS servers.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemDnsServer(ctx, "trname", &fortios.SystemDnsServerArgs{
-// 			DnsfilterProfile: pulumi.String("default"),
-// 			Mode:             pulumi.String("forward-only"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System DnsServer can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDnsServer:SystemDnsServer labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDnsServer:SystemDnsServer labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemDnsServer struct {
 	pulumi.CustomResourceState
 
-	// DNS filter profile.
-	DnsfilterProfile pulumi.StringOutput `pulumi:"dnsfilterProfile"`
-	// DNS over HTTPS. Valid values: `enable`, `disable`.
-	Doh pulumi.StringOutput `pulumi:"doh"`
-	// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
-	Mode pulumi.StringOutput `pulumi:"mode"`
-	// DNS server name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DnsfilterProfile pulumi.StringOutput    `pulumi:"dnsfilterProfile"`
+	Doh              pulumi.StringOutput    `pulumi:"doh"`
+	Mode             pulumi.StringOutput    `pulumi:"mode"`
+	Name             pulumi.StringOutput    `pulumi:"name"`
+	Vdomparam        pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemDnsServer registers a new resource with the given unique name, arguments, and options.
@@ -96,29 +50,19 @@ func GetSystemDnsServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemDnsServer resources.
 type systemDnsServerState struct {
-	// DNS filter profile.
 	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
-	// DNS over HTTPS. Valid values: `enable`, `disable`.
-	Doh *string `pulumi:"doh"`
-	// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
-	Mode *string `pulumi:"mode"`
-	// DNS server name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Doh              *string `pulumi:"doh"`
+	Mode             *string `pulumi:"mode"`
+	Name             *string `pulumi:"name"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 type SystemDnsServerState struct {
-	// DNS filter profile.
 	DnsfilterProfile pulumi.StringPtrInput
-	// DNS over HTTPS. Valid values: `enable`, `disable`.
-	Doh pulumi.StringPtrInput
-	// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
-	Mode pulumi.StringPtrInput
-	// DNS server name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Doh              pulumi.StringPtrInput
+	Mode             pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (SystemDnsServerState) ElementType() reflect.Type {
@@ -126,30 +70,20 @@ func (SystemDnsServerState) ElementType() reflect.Type {
 }
 
 type systemDnsServerArgs struct {
-	// DNS filter profile.
 	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
-	// DNS over HTTPS. Valid values: `enable`, `disable`.
-	Doh *string `pulumi:"doh"`
-	// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
-	Mode *string `pulumi:"mode"`
-	// DNS server name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Doh              *string `pulumi:"doh"`
+	Mode             *string `pulumi:"mode"`
+	Name             *string `pulumi:"name"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemDnsServer resource.
 type SystemDnsServerArgs struct {
-	// DNS filter profile.
 	DnsfilterProfile pulumi.StringPtrInput
-	// DNS over HTTPS. Valid values: `enable`, `disable`.
-	Doh pulumi.StringPtrInput
-	// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
-	Mode pulumi.StringPtrInput
-	// DNS server name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Doh              pulumi.StringPtrInput
+	Mode             pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (SystemDnsServerArgs) ElementType() reflect.Type {
@@ -178,7 +112,7 @@ func (i *SystemDnsServer) ToSystemDnsServerOutputWithContext(ctx context.Context
 // SystemDnsServerArrayInput is an input type that accepts SystemDnsServerArray and SystemDnsServerArrayOutput values.
 // You can construct a concrete instance of `SystemDnsServerArrayInput` via:
 //
-//          SystemDnsServerArray{ SystemDnsServerArgs{...} }
+//	SystemDnsServerArray{ SystemDnsServerArgs{...} }
 type SystemDnsServerArrayInput interface {
 	pulumi.Input
 
@@ -203,7 +137,7 @@ func (i SystemDnsServerArray) ToSystemDnsServerArrayOutputWithContext(ctx contex
 // SystemDnsServerMapInput is an input type that accepts SystemDnsServerMap and SystemDnsServerMapOutput values.
 // You can construct a concrete instance of `SystemDnsServerMapInput` via:
 //
-//          SystemDnsServerMap{ "key": SystemDnsServerArgs{...} }
+//	SystemDnsServerMap{ "key": SystemDnsServerArgs{...} }
 type SystemDnsServerMapInput interface {
 	pulumi.Input
 
@@ -237,6 +171,26 @@ func (o SystemDnsServerOutput) ToSystemDnsServerOutput() SystemDnsServerOutput {
 
 func (o SystemDnsServerOutput) ToSystemDnsServerOutputWithContext(ctx context.Context) SystemDnsServerOutput {
 	return o
+}
+
+func (o SystemDnsServerOutput) DnsfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsServer) pulumi.StringOutput { return v.DnsfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsServerOutput) Doh() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsServer) pulumi.StringOutput { return v.Doh }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsServerOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsServer) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsServerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsServer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsServerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDnsServer) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemDnsServerArrayOutput struct{ *pulumi.OutputState }

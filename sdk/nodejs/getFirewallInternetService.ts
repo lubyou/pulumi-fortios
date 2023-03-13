@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios firewall internetservice
- */
 export function getFirewallInternetService(args: GetFirewallInternetServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallInternetServiceResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallInternetService:GetFirewallInternetService", {
         "fosid": args.fosid,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getFirewallInternetService(args: GetFirewallInternetServiceArgs,
  * A collection of arguments for invoking GetFirewallInternetService.
  */
 export interface GetFirewallInternetServiceArgs {
-    /**
-     * Specify the fosid of the desired firewall internetservice.
-     */
     fosid: number;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,75 +25,34 @@ export interface GetFirewallInternetServiceArgs {
  * A collection of values returned by GetFirewallInternetService.
  */
 export interface GetFirewallInternetServiceResult {
-    /**
-     * Database name this Internet Service belongs to.
-     */
     readonly database: string;
-    /**
-     * How this service may be used in a firewall policy (source, destination or both).
-     */
     readonly direction: string;
-    /**
-     * Extra number of IP ranges.
-     */
+    readonly extraIp6RangeNumber: number;
     readonly extraIpRangeNumber: number;
-    /**
-     * Internet Service ID.
-     */
     readonly fosid: number;
-    /**
-     * Icon ID of Internet Service.
-     */
     readonly iconId: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Total number of IP addresses.
-     */
+    readonly ip6RangeNumber: number;
     readonly ipNumber: number;
-    /**
-     * Total number of IP ranges.
-     */
     readonly ipRangeNumber: number;
-    /**
-     * Internet Service name.
-     */
     readonly name: string;
-    /**
-     * Indicates whether the Internet Service can be used.
-     */
     readonly obsolete: number;
-    /**
-     * Reputation level of the Internet Service.
-     */
     readonly reputation: number;
-    /**
-     * Singular level of the Internet Service.
-     */
     readonly singularity: number;
-    /**
-     * Second Level Domain.
-     */
     readonly sldId: number;
     readonly vdomparam?: string;
 }
-
 export function getFirewallInternetServiceOutput(args: GetFirewallInternetServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallInternetServiceResult> {
-    return pulumi.output(args).apply(a => getFirewallInternetService(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallInternetService(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetFirewallInternetService.
  */
 export interface GetFirewallInternetServiceOutputArgs {
-    /**
-     * Specify the fosid of the desired firewall internetservice.
-     */
     fosid: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,73 +10,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch spanning tree protocol (STP).
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchControllerStpSettings(ctx, "trname", &fortios.SwitchControllerStpSettingsArgs{
-// 			ForwardTime:  pulumi.Int(15),
-// 			HelloTime:    pulumi.Int(2),
-// 			MaxAge:       pulumi.Int(20),
-// 			MaxHops:      pulumi.Int(20),
-// 			PendingTimer: pulumi.Int(4),
-// 			Revision:     pulumi.Int(0),
-// 			Status:       pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchController StpSettings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerStpSettings:SwitchControllerStpSettings labelname SwitchControllerStpSettings
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerStpSettings:SwitchControllerStpSettings labelname SwitchControllerStpSettings
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerStpSettings struct {
 	pulumi.CustomResourceState
 
-	// Period of time a port is in listening and learning state (4 - 30 sec, default = 15).
-	ForwardTime pulumi.IntOutput `pulumi:"forwardTime"`
-	// Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
-	HelloTime pulumi.IntOutput `pulumi:"helloTime"`
-	// Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
-	MaxAge pulumi.IntOutput `pulumi:"maxAge"`
-	// Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
-	MaxHops pulumi.IntOutput `pulumi:"maxHops"`
-	// Name of global STP settings configuration.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Pending time (1 - 15 sec, default = 4).
-	PendingTimer pulumi.IntOutput `pulumi:"pendingTimer"`
-	// STP revision number (0 - 65535).
-	Revision pulumi.IntOutput `pulumi:"revision"`
-	// Enable/disable STP. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	ForwardTime  pulumi.IntOutput       `pulumi:"forwardTime"`
+	HelloTime    pulumi.IntOutput       `pulumi:"helloTime"`
+	MaxAge       pulumi.IntOutput       `pulumi:"maxAge"`
+	MaxHops      pulumi.IntOutput       `pulumi:"maxHops"`
+	Name         pulumi.StringOutput    `pulumi:"name"`
+	PendingTimer pulumi.IntOutput       `pulumi:"pendingTimer"`
+	Revision     pulumi.IntOutput       `pulumi:"revision"`
+	Status       pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam    pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerStpSettings registers a new resource with the given unique name, arguments, and options.
@@ -109,45 +54,27 @@ func GetSwitchControllerStpSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerStpSettings resources.
 type switchControllerStpSettingsState struct {
-	// Period of time a port is in listening and learning state (4 - 30 sec, default = 15).
-	ForwardTime *int `pulumi:"forwardTime"`
-	// Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
-	HelloTime *int `pulumi:"helloTime"`
-	// Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
-	MaxAge *int `pulumi:"maxAge"`
-	// Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
-	MaxHops *int `pulumi:"maxHops"`
-	// Name of global STP settings configuration.
-	Name *string `pulumi:"name"`
-	// Pending time (1 - 15 sec, default = 4).
-	PendingTimer *int `pulumi:"pendingTimer"`
-	// STP revision number (0 - 65535).
-	Revision *int `pulumi:"revision"`
-	// Enable/disable STP. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ForwardTime  *int    `pulumi:"forwardTime"`
+	HelloTime    *int    `pulumi:"helloTime"`
+	MaxAge       *int    `pulumi:"maxAge"`
+	MaxHops      *int    `pulumi:"maxHops"`
+	Name         *string `pulumi:"name"`
+	PendingTimer *int    `pulumi:"pendingTimer"`
+	Revision     *int    `pulumi:"revision"`
+	Status       *string `pulumi:"status"`
+	Vdomparam    *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerStpSettingsState struct {
-	// Period of time a port is in listening and learning state (4 - 30 sec, default = 15).
-	ForwardTime pulumi.IntPtrInput
-	// Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
-	HelloTime pulumi.IntPtrInput
-	// Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
-	MaxAge pulumi.IntPtrInput
-	// Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
-	MaxHops pulumi.IntPtrInput
-	// Name of global STP settings configuration.
-	Name pulumi.StringPtrInput
-	// Pending time (1 - 15 sec, default = 4).
+	ForwardTime  pulumi.IntPtrInput
+	HelloTime    pulumi.IntPtrInput
+	MaxAge       pulumi.IntPtrInput
+	MaxHops      pulumi.IntPtrInput
+	Name         pulumi.StringPtrInput
 	PendingTimer pulumi.IntPtrInput
-	// STP revision number (0 - 65535).
-	Revision pulumi.IntPtrInput
-	// Enable/disable STP. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Revision     pulumi.IntPtrInput
+	Status       pulumi.StringPtrInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (SwitchControllerStpSettingsState) ElementType() reflect.Type {
@@ -155,46 +82,28 @@ func (SwitchControllerStpSettingsState) ElementType() reflect.Type {
 }
 
 type switchControllerStpSettingsArgs struct {
-	// Period of time a port is in listening and learning state (4 - 30 sec, default = 15).
-	ForwardTime *int `pulumi:"forwardTime"`
-	// Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
-	HelloTime *int `pulumi:"helloTime"`
-	// Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
-	MaxAge *int `pulumi:"maxAge"`
-	// Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
-	MaxHops *int `pulumi:"maxHops"`
-	// Name of global STP settings configuration.
-	Name *string `pulumi:"name"`
-	// Pending time (1 - 15 sec, default = 4).
-	PendingTimer *int `pulumi:"pendingTimer"`
-	// STP revision number (0 - 65535).
-	Revision *int `pulumi:"revision"`
-	// Enable/disable STP. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ForwardTime  *int    `pulumi:"forwardTime"`
+	HelloTime    *int    `pulumi:"helloTime"`
+	MaxAge       *int    `pulumi:"maxAge"`
+	MaxHops      *int    `pulumi:"maxHops"`
+	Name         *string `pulumi:"name"`
+	PendingTimer *int    `pulumi:"pendingTimer"`
+	Revision     *int    `pulumi:"revision"`
+	Status       *string `pulumi:"status"`
+	Vdomparam    *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerStpSettings resource.
 type SwitchControllerStpSettingsArgs struct {
-	// Period of time a port is in listening and learning state (4 - 30 sec, default = 15).
-	ForwardTime pulumi.IntPtrInput
-	// Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
-	HelloTime pulumi.IntPtrInput
-	// Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
-	MaxAge pulumi.IntPtrInput
-	// Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
-	MaxHops pulumi.IntPtrInput
-	// Name of global STP settings configuration.
-	Name pulumi.StringPtrInput
-	// Pending time (1 - 15 sec, default = 4).
+	ForwardTime  pulumi.IntPtrInput
+	HelloTime    pulumi.IntPtrInput
+	MaxAge       pulumi.IntPtrInput
+	MaxHops      pulumi.IntPtrInput
+	Name         pulumi.StringPtrInput
 	PendingTimer pulumi.IntPtrInput
-	// STP revision number (0 - 65535).
-	Revision pulumi.IntPtrInput
-	// Enable/disable STP. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Revision     pulumi.IntPtrInput
+	Status       pulumi.StringPtrInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (SwitchControllerStpSettingsArgs) ElementType() reflect.Type {
@@ -223,7 +132,7 @@ func (i *SwitchControllerStpSettings) ToSwitchControllerStpSettingsOutputWithCon
 // SwitchControllerStpSettingsArrayInput is an input type that accepts SwitchControllerStpSettingsArray and SwitchControllerStpSettingsArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerStpSettingsArrayInput` via:
 //
-//          SwitchControllerStpSettingsArray{ SwitchControllerStpSettingsArgs{...} }
+//	SwitchControllerStpSettingsArray{ SwitchControllerStpSettingsArgs{...} }
 type SwitchControllerStpSettingsArrayInput interface {
 	pulumi.Input
 
@@ -248,7 +157,7 @@ func (i SwitchControllerStpSettingsArray) ToSwitchControllerStpSettingsArrayOutp
 // SwitchControllerStpSettingsMapInput is an input type that accepts SwitchControllerStpSettingsMap and SwitchControllerStpSettingsMapOutput values.
 // You can construct a concrete instance of `SwitchControllerStpSettingsMapInput` via:
 //
-//          SwitchControllerStpSettingsMap{ "key": SwitchControllerStpSettingsArgs{...} }
+//	SwitchControllerStpSettingsMap{ "key": SwitchControllerStpSettingsArgs{...} }
 type SwitchControllerStpSettingsMapInput interface {
 	pulumi.Input
 
@@ -282,6 +191,42 @@ func (o SwitchControllerStpSettingsOutput) ToSwitchControllerStpSettingsOutput()
 
 func (o SwitchControllerStpSettingsOutput) ToSwitchControllerStpSettingsOutputWithContext(ctx context.Context) SwitchControllerStpSettingsOutput {
 	return o
+}
+
+func (o SwitchControllerStpSettingsOutput) ForwardTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerStpSettings) pulumi.IntOutput { return v.ForwardTime }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerStpSettingsOutput) HelloTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerStpSettings) pulumi.IntOutput { return v.HelloTime }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerStpSettingsOutput) MaxAge() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerStpSettings) pulumi.IntOutput { return v.MaxAge }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerStpSettingsOutput) MaxHops() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerStpSettings) pulumi.IntOutput { return v.MaxHops }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerStpSettingsOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerStpSettings) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerStpSettingsOutput) PendingTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerStpSettings) pulumi.IntOutput { return v.PendingTimer }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerStpSettingsOutput) Revision() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerStpSettings) pulumi.IntOutput { return v.Revision }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerStpSettingsOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerStpSettings) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerStpSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerStpSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerStpSettingsArrayOutput struct{ *pulumi.OutputState }

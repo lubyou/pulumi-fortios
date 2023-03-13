@@ -10,64 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure key-chain.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewRouterKeyChain(ctx, "trname", &fortios.RouterKeyChainArgs{
-// 			Keys: RouterKeyChainKeyArray{
-// 				&RouterKeyChainKeyArgs{
-// 					AcceptLifetime: pulumi.String("04:00:00 01 01 2008 04:00:00 01 01 2022"),
-// 					KeyString:      pulumi.String("ewiwn3i23232s212"),
-// 					SendLifetime:   pulumi.String("04:00:00 01 01 2008 04:00:00 01 01 2022"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Router KeyChain can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerKeyChain:RouterKeyChain labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerKeyChain:RouterKeyChain labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterKeyChain struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Configuration method to edit key settings. The structure of `key` block is documented below.
-	Keys RouterKeyChainKeyArrayOutput `pulumi:"keys"`
-	// Key-chain name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput       `pulumi:"dynamicSortSubtable"`
+	Keys                RouterKeyChainKeyArrayOutput `pulumi:"keys"`
+	Name                pulumi.StringOutput          `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput       `pulumi:"vdomparam"`
 }
 
 // NewRouterKeyChain registers a new resource with the given unique name, arguments, and options.
@@ -100,25 +49,17 @@ func GetRouterKeyChain(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterKeyChain resources.
 type routerKeyChainState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configuration method to edit key settings. The structure of `key` block is documented below.
-	Keys []RouterKeyChainKey `pulumi:"keys"`
-	// Key-chain name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	Keys                []RouterKeyChainKey `pulumi:"keys"`
+	Name                *string             `pulumi:"name"`
+	Vdomparam           *string             `pulumi:"vdomparam"`
 }
 
 type RouterKeyChainState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Configuration method to edit key settings. The structure of `key` block is documented below.
-	Keys RouterKeyChainKeyArrayInput
-	// Key-chain name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Keys                RouterKeyChainKeyArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterKeyChainState) ElementType() reflect.Type {
@@ -126,26 +67,18 @@ func (RouterKeyChainState) ElementType() reflect.Type {
 }
 
 type routerKeyChainArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configuration method to edit key settings. The structure of `key` block is documented below.
-	Keys []RouterKeyChainKey `pulumi:"keys"`
-	// Key-chain name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	Keys                []RouterKeyChainKey `pulumi:"keys"`
+	Name                *string             `pulumi:"name"`
+	Vdomparam           *string             `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterKeyChain resource.
 type RouterKeyChainArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Configuration method to edit key settings. The structure of `key` block is documented below.
-	Keys RouterKeyChainKeyArrayInput
-	// Key-chain name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Keys                RouterKeyChainKeyArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterKeyChainArgs) ElementType() reflect.Type {
@@ -174,7 +107,7 @@ func (i *RouterKeyChain) ToRouterKeyChainOutputWithContext(ctx context.Context) 
 // RouterKeyChainArrayInput is an input type that accepts RouterKeyChainArray and RouterKeyChainArrayOutput values.
 // You can construct a concrete instance of `RouterKeyChainArrayInput` via:
 //
-//          RouterKeyChainArray{ RouterKeyChainArgs{...} }
+//	RouterKeyChainArray{ RouterKeyChainArgs{...} }
 type RouterKeyChainArrayInput interface {
 	pulumi.Input
 
@@ -199,7 +132,7 @@ func (i RouterKeyChainArray) ToRouterKeyChainArrayOutputWithContext(ctx context.
 // RouterKeyChainMapInput is an input type that accepts RouterKeyChainMap and RouterKeyChainMapOutput values.
 // You can construct a concrete instance of `RouterKeyChainMapInput` via:
 //
-//          RouterKeyChainMap{ "key": RouterKeyChainArgs{...} }
+//	RouterKeyChainMap{ "key": RouterKeyChainArgs{...} }
 type RouterKeyChainMapInput interface {
 	pulumi.Input
 
@@ -233,6 +166,22 @@ func (o RouterKeyChainOutput) ToRouterKeyChainOutput() RouterKeyChainOutput {
 
 func (o RouterKeyChainOutput) ToRouterKeyChainOutputWithContext(ctx context.Context) RouterKeyChainOutput {
 	return o
+}
+
+func (o RouterKeyChainOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterKeyChain) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterKeyChainOutput) Keys() RouterKeyChainKeyArrayOutput {
+	return o.ApplyT(func(v *RouterKeyChain) RouterKeyChainKeyArrayOutput { return v.Keys }).(RouterKeyChainKeyArrayOutput)
+}
+
+func (o RouterKeyChainOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterKeyChain) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o RouterKeyChainOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterKeyChain) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterKeyChainArrayOutput struct{ *pulumi.OutputState }

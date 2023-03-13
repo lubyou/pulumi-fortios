@@ -4,44 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * SSH proxy settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallSshSetting("trname", {
- *     caname: "Fortinet_SSH_CA",
- *     hostTrustedChecking: "enable",
- *     hostkeyDsa1024: "Fortinet_SSH_DSA1024",
- *     hostkeyEcdsa256: "Fortinet_SSH_ECDSA256",
- *     hostkeyEcdsa384: "Fortinet_SSH_ECDSA384",
- *     hostkeyEcdsa521: "Fortinet_SSH_ECDSA521",
- *     hostkeyEd25519: "Fortinet_SSH_ED25519",
- *     hostkeyRsa2048: "Fortinet_SSH_RSA2048",
- *     untrustedCaname: "Fortinet_SSH_CA_Untrusted",
- * });
- * ```
- *
- * ## Import
- *
- * FirewallSsh Setting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallSshSetting:FirewallSshSetting labelname FirewallSshSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallSshSetting:FirewallSshSetting labelname FirewallSshSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallSshSetting extends pulumi.CustomResource {
     /**
      * Get an existing FirewallSshSetting resource's state with the given name, ID, and optional extra
@@ -70,45 +32,15 @@ export class FirewallSshSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallSshSetting.__pulumiType;
     }
 
-    /**
-     * CA certificate used by SSH Inspection.
-     */
     public readonly caname!: pulumi.Output<string>;
-    /**
-     * Enable/disable host trusted checking. Valid values: `enable`, `disable`.
-     */
     public readonly hostTrustedChecking!: pulumi.Output<string>;
-    /**
-     * DSA certificate used by SSH proxy.
-     */
     public readonly hostkeyDsa1024!: pulumi.Output<string>;
-    /**
-     * ECDSA nid256 certificate used by SSH proxy.
-     */
     public readonly hostkeyEcdsa256!: pulumi.Output<string>;
-    /**
-     * ECDSA nid384 certificate used by SSH proxy.
-     */
     public readonly hostkeyEcdsa384!: pulumi.Output<string>;
-    /**
-     * ECDSA nid384 certificate used by SSH proxy.
-     */
     public readonly hostkeyEcdsa521!: pulumi.Output<string>;
-    /**
-     * ED25519 hostkey used by SSH proxy.
-     */
     public readonly hostkeyEd25519!: pulumi.Output<string>;
-    /**
-     * RSA certificate used by SSH proxy.
-     */
     public readonly hostkeyRsa2048!: pulumi.Output<string>;
-    /**
-     * Untrusted CA certificate used by SSH Inspection.
-     */
     public readonly untrustedCaname!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -156,45 +88,15 @@ export class FirewallSshSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallSshSetting resources.
  */
 export interface FirewallSshSettingState {
-    /**
-     * CA certificate used by SSH Inspection.
-     */
     caname?: pulumi.Input<string>;
-    /**
-     * Enable/disable host trusted checking. Valid values: `enable`, `disable`.
-     */
     hostTrustedChecking?: pulumi.Input<string>;
-    /**
-     * DSA certificate used by SSH proxy.
-     */
     hostkeyDsa1024?: pulumi.Input<string>;
-    /**
-     * ECDSA nid256 certificate used by SSH proxy.
-     */
     hostkeyEcdsa256?: pulumi.Input<string>;
-    /**
-     * ECDSA nid384 certificate used by SSH proxy.
-     */
     hostkeyEcdsa384?: pulumi.Input<string>;
-    /**
-     * ECDSA nid384 certificate used by SSH proxy.
-     */
     hostkeyEcdsa521?: pulumi.Input<string>;
-    /**
-     * ED25519 hostkey used by SSH proxy.
-     */
     hostkeyEd25519?: pulumi.Input<string>;
-    /**
-     * RSA certificate used by SSH proxy.
-     */
     hostkeyRsa2048?: pulumi.Input<string>;
-    /**
-     * Untrusted CA certificate used by SSH Inspection.
-     */
     untrustedCaname?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -202,44 +104,14 @@ export interface FirewallSshSettingState {
  * The set of arguments for constructing a FirewallSshSetting resource.
  */
 export interface FirewallSshSettingArgs {
-    /**
-     * CA certificate used by SSH Inspection.
-     */
     caname?: pulumi.Input<string>;
-    /**
-     * Enable/disable host trusted checking. Valid values: `enable`, `disable`.
-     */
     hostTrustedChecking?: pulumi.Input<string>;
-    /**
-     * DSA certificate used by SSH proxy.
-     */
     hostkeyDsa1024?: pulumi.Input<string>;
-    /**
-     * ECDSA nid256 certificate used by SSH proxy.
-     */
     hostkeyEcdsa256?: pulumi.Input<string>;
-    /**
-     * ECDSA nid384 certificate used by SSH proxy.
-     */
     hostkeyEcdsa384?: pulumi.Input<string>;
-    /**
-     * ECDSA nid384 certificate used by SSH proxy.
-     */
     hostkeyEcdsa521?: pulumi.Input<string>;
-    /**
-     * ED25519 hostkey used by SSH proxy.
-     */
     hostkeyEd25519?: pulumi.Input<string>;
-    /**
-     * RSA certificate used by SSH proxy.
-     */
     hostkeyRsa2048?: pulumi.Input<string>;
-    /**
-     * Untrusted CA certificate used by SSH Inspection.
-     */
     untrustedCaname?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

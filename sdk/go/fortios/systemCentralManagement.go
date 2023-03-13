@@ -10,122 +10,32 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure central management.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemCentralManagement(ctx, "trname1", &fortios.SystemCentralManagementArgs{
-// 			AllowMonitor:               pulumi.String("enable"),
-// 			AllowPushConfiguration:     pulumi.String("enable"),
-// 			AllowPushFirmware:          pulumi.String("enable"),
-// 			AllowRemoteFirmwareUpgrade: pulumi.String("enable"),
-// 			EncAlgorithm:               pulumi.String("high"),
-// 			Fmg:                        pulumi.String("0.0.0.0"),
-// 			FmgSourceIp6:               pulumi.String("::"),
-// 			IncludeDefaultServers:      pulumi.String("enable"),
-// 			Mode:                       pulumi.String("normal"),
-// 			ScheduleConfigRestore:      pulumi.String("enable"),
-// 			ScheduleScriptRestore:      pulumi.String("enable"),
-// 			Type:                       pulumi.String("fortimanager"),
-// 			Vdom:                       pulumi.String("root"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewSystemCentralManagement(ctx, "trname2", &fortios.SystemCentralManagementArgs{
-// 			AllowMonitor:               pulumi.String("enable"),
-// 			AllowPushConfiguration:     pulumi.String("enable"),
-// 			AllowPushFirmware:          pulumi.String("enable"),
-// 			AllowRemoteFirmwareUpgrade: pulumi.String("enable"),
-// 			EncAlgorithm:               pulumi.String("high"),
-// 			Fmg:                        pulumi.String("\"192.168.52.177\""),
-// 			IncludeDefaultServers:      pulumi.String("enable"),
-// 			Mode:                       pulumi.String("normal"),
-// 			Type:                       pulumi.String("fortimanager"),
-// 			Vdom:                       pulumi.String("root"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System CentralManagement can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemCentralManagement:SystemCentralManagement labelname SystemCentralManagement
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemCentralManagement:SystemCentralManagement labelname SystemCentralManagement
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemCentralManagement struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable allowing the central management server to remotely monitor this FortiGate Valid values: `enable`, `disable`.
-	AllowMonitor pulumi.StringOutput `pulumi:"allowMonitor"`
-	// Enable/disable allowing the central management server to push configuration changes to this FortiGate. Valid values: `enable`, `disable`.
-	AllowPushConfiguration pulumi.StringOutput `pulumi:"allowPushConfiguration"`
-	// Enable/disable allowing the central management server to push firmware updates to this FortiGate. Valid values: `enable`, `disable`.
-	AllowPushFirmware pulumi.StringOutput `pulumi:"allowPushFirmware"`
-	// Enable/disable remotely upgrading the firmware on this FortiGate from the central management server. Valid values: `enable`, `disable`.
-	AllowRemoteFirmwareUpgrade pulumi.StringOutput `pulumi:"allowRemoteFirmwareUpgrade"`
-	// CA certificate to be used by FGFM protocol.
-	CaCert pulumi.StringOutput `pulumi:"caCert"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Encryption strength for communications between the FortiGate and central management. Valid values: `default`, `high`, `low`.
-	EncAlgorithm pulumi.StringOutput `pulumi:"encAlgorithm"`
-	// IP address or FQDN of the FortiManager.
-	Fmg pulumi.StringOutput `pulumi:"fmg"`
-	// IPv4 source address that this FortiGate uses when communicating with FortiManager.
-	FmgSourceIp pulumi.StringOutput `pulumi:"fmgSourceIp"`
-	// IPv6 source address that this FortiGate uses when communicating with FortiManager.
-	FmgSourceIp6 pulumi.StringOutput `pulumi:"fmgSourceIp6"`
-	// Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
-	FmgUpdatePort pulumi.StringOutput `pulumi:"fmgUpdatePort"`
-	// Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
-	IncludeDefaultServers pulumi.StringOutput `pulumi:"includeDefaultServers"`
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
-	// Certificate to be used by FGFM protocol.
-	LocalCert pulumi.StringOutput `pulumi:"localCert"`
-	// Central management mode. Valid values: `normal`, `backup`.
-	Mode pulumi.StringOutput `pulumi:"mode"`
-	// Enable/disable allowing the central management server to restore the configuration of this FortiGate. Valid values: `enable`, `disable`.
-	ScheduleConfigRestore pulumi.StringOutput `pulumi:"scheduleConfigRestore"`
-	// Enable/disable allowing the central management server to restore the scripts stored on this FortiGate. Valid values: `enable`, `disable`.
-	ScheduleScriptRestore pulumi.StringOutput `pulumi:"scheduleScriptRestore"`
-	// Serial number.
-	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
-	// Additional severs that the FortiGate can use for updates (for AV, IPS, updates) and ratings (for web filter and antispam ratings) servers. The structure of `serverList` block is documented below.
-	ServerLists SystemCentralManagementServerListArrayOutput `pulumi:"serverLists"`
-	// Central management type. Valid values: `fortimanager`, `fortiguard`, `none`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Virtual domain (VDOM) name to use when communicating with FortiManager.
-	Vdom pulumi.StringOutput `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AllowMonitor               pulumi.StringOutput                          `pulumi:"allowMonitor"`
+	AllowPushConfiguration     pulumi.StringOutput                          `pulumi:"allowPushConfiguration"`
+	AllowPushFirmware          pulumi.StringOutput                          `pulumi:"allowPushFirmware"`
+	AllowRemoteFirmwareUpgrade pulumi.StringOutput                          `pulumi:"allowRemoteFirmwareUpgrade"`
+	CaCert                     pulumi.StringOutput                          `pulumi:"caCert"`
+	DynamicSortSubtable        pulumi.StringPtrOutput                       `pulumi:"dynamicSortSubtable"`
+	EncAlgorithm               pulumi.StringOutput                          `pulumi:"encAlgorithm"`
+	Fmg                        pulumi.StringOutput                          `pulumi:"fmg"`
+	FmgSourceIp                pulumi.StringOutput                          `pulumi:"fmgSourceIp"`
+	FmgSourceIp6               pulumi.StringOutput                          `pulumi:"fmgSourceIp6"`
+	FmgUpdatePort              pulumi.StringOutput                          `pulumi:"fmgUpdatePort"`
+	IncludeDefaultServers      pulumi.StringOutput                          `pulumi:"includeDefaultServers"`
+	Interface                  pulumi.StringOutput                          `pulumi:"interface"`
+	InterfaceSelectMethod      pulumi.StringOutput                          `pulumi:"interfaceSelectMethod"`
+	LocalCert                  pulumi.StringOutput                          `pulumi:"localCert"`
+	Mode                       pulumi.StringOutput                          `pulumi:"mode"`
+	ScheduleConfigRestore      pulumi.StringOutput                          `pulumi:"scheduleConfigRestore"`
+	ScheduleScriptRestore      pulumi.StringOutput                          `pulumi:"scheduleScriptRestore"`
+	SerialNumber               pulumi.StringOutput                          `pulumi:"serialNumber"`
+	ServerLists                SystemCentralManagementServerListArrayOutput `pulumi:"serverLists"`
+	Type                       pulumi.StringOutput                          `pulumi:"type"`
+	Vdom                       pulumi.StringOutput                          `pulumi:"vdom"`
+	Vdomparam                  pulumi.StringPtrOutput                       `pulumi:"vdomparam"`
 }
 
 // NewSystemCentralManagement registers a new resource with the given unique name, arguments, and options.
@@ -158,101 +68,55 @@ func GetSystemCentralManagement(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemCentralManagement resources.
 type systemCentralManagementState struct {
-	// Enable/disable allowing the central management server to remotely monitor this FortiGate Valid values: `enable`, `disable`.
-	AllowMonitor *string `pulumi:"allowMonitor"`
-	// Enable/disable allowing the central management server to push configuration changes to this FortiGate. Valid values: `enable`, `disable`.
-	AllowPushConfiguration *string `pulumi:"allowPushConfiguration"`
-	// Enable/disable allowing the central management server to push firmware updates to this FortiGate. Valid values: `enable`, `disable`.
-	AllowPushFirmware *string `pulumi:"allowPushFirmware"`
-	// Enable/disable remotely upgrading the firmware on this FortiGate from the central management server. Valid values: `enable`, `disable`.
-	AllowRemoteFirmwareUpgrade *string `pulumi:"allowRemoteFirmwareUpgrade"`
-	// CA certificate to be used by FGFM protocol.
-	CaCert *string `pulumi:"caCert"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Encryption strength for communications between the FortiGate and central management. Valid values: `default`, `high`, `low`.
-	EncAlgorithm *string `pulumi:"encAlgorithm"`
-	// IP address or FQDN of the FortiManager.
-	Fmg *string `pulumi:"fmg"`
-	// IPv4 source address that this FortiGate uses when communicating with FortiManager.
-	FmgSourceIp *string `pulumi:"fmgSourceIp"`
-	// IPv6 source address that this FortiGate uses when communicating with FortiManager.
-	FmgSourceIp6 *string `pulumi:"fmgSourceIp6"`
-	// Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
-	FmgUpdatePort *string `pulumi:"fmgUpdatePort"`
-	// Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
-	IncludeDefaultServers *string `pulumi:"includeDefaultServers"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Certificate to be used by FGFM protocol.
-	LocalCert *string `pulumi:"localCert"`
-	// Central management mode. Valid values: `normal`, `backup`.
-	Mode *string `pulumi:"mode"`
-	// Enable/disable allowing the central management server to restore the configuration of this FortiGate. Valid values: `enable`, `disable`.
-	ScheduleConfigRestore *string `pulumi:"scheduleConfigRestore"`
-	// Enable/disable allowing the central management server to restore the scripts stored on this FortiGate. Valid values: `enable`, `disable`.
-	ScheduleScriptRestore *string `pulumi:"scheduleScriptRestore"`
-	// Serial number.
-	SerialNumber *string `pulumi:"serialNumber"`
-	// Additional severs that the FortiGate can use for updates (for AV, IPS, updates) and ratings (for web filter and antispam ratings) servers. The structure of `serverList` block is documented below.
-	ServerLists []SystemCentralManagementServerList `pulumi:"serverLists"`
-	// Central management type. Valid values: `fortimanager`, `fortiguard`, `none`.
-	Type *string `pulumi:"type"`
-	// Virtual domain (VDOM) name to use when communicating with FortiManager.
-	Vdom *string `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AllowMonitor               *string                             `pulumi:"allowMonitor"`
+	AllowPushConfiguration     *string                             `pulumi:"allowPushConfiguration"`
+	AllowPushFirmware          *string                             `pulumi:"allowPushFirmware"`
+	AllowRemoteFirmwareUpgrade *string                             `pulumi:"allowRemoteFirmwareUpgrade"`
+	CaCert                     *string                             `pulumi:"caCert"`
+	DynamicSortSubtable        *string                             `pulumi:"dynamicSortSubtable"`
+	EncAlgorithm               *string                             `pulumi:"encAlgorithm"`
+	Fmg                        *string                             `pulumi:"fmg"`
+	FmgSourceIp                *string                             `pulumi:"fmgSourceIp"`
+	FmgSourceIp6               *string                             `pulumi:"fmgSourceIp6"`
+	FmgUpdatePort              *string                             `pulumi:"fmgUpdatePort"`
+	IncludeDefaultServers      *string                             `pulumi:"includeDefaultServers"`
+	Interface                  *string                             `pulumi:"interface"`
+	InterfaceSelectMethod      *string                             `pulumi:"interfaceSelectMethod"`
+	LocalCert                  *string                             `pulumi:"localCert"`
+	Mode                       *string                             `pulumi:"mode"`
+	ScheduleConfigRestore      *string                             `pulumi:"scheduleConfigRestore"`
+	ScheduleScriptRestore      *string                             `pulumi:"scheduleScriptRestore"`
+	SerialNumber               *string                             `pulumi:"serialNumber"`
+	ServerLists                []SystemCentralManagementServerList `pulumi:"serverLists"`
+	Type                       *string                             `pulumi:"type"`
+	Vdom                       *string                             `pulumi:"vdom"`
+	Vdomparam                  *string                             `pulumi:"vdomparam"`
 }
 
 type SystemCentralManagementState struct {
-	// Enable/disable allowing the central management server to remotely monitor this FortiGate Valid values: `enable`, `disable`.
-	AllowMonitor pulumi.StringPtrInput
-	// Enable/disable allowing the central management server to push configuration changes to this FortiGate. Valid values: `enable`, `disable`.
-	AllowPushConfiguration pulumi.StringPtrInput
-	// Enable/disable allowing the central management server to push firmware updates to this FortiGate. Valid values: `enable`, `disable`.
-	AllowPushFirmware pulumi.StringPtrInput
-	// Enable/disable remotely upgrading the firmware on this FortiGate from the central management server. Valid values: `enable`, `disable`.
+	AllowMonitor               pulumi.StringPtrInput
+	AllowPushConfiguration     pulumi.StringPtrInput
+	AllowPushFirmware          pulumi.StringPtrInput
 	AllowRemoteFirmwareUpgrade pulumi.StringPtrInput
-	// CA certificate to be used by FGFM protocol.
-	CaCert pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Encryption strength for communications between the FortiGate and central management. Valid values: `default`, `high`, `low`.
-	EncAlgorithm pulumi.StringPtrInput
-	// IP address or FQDN of the FortiManager.
-	Fmg pulumi.StringPtrInput
-	// IPv4 source address that this FortiGate uses when communicating with FortiManager.
-	FmgSourceIp pulumi.StringPtrInput
-	// IPv6 source address that this FortiGate uses when communicating with FortiManager.
-	FmgSourceIp6 pulumi.StringPtrInput
-	// Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
-	FmgUpdatePort pulumi.StringPtrInput
-	// Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
-	IncludeDefaultServers pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringPtrInput
-	// Certificate to be used by FGFM protocol.
-	LocalCert pulumi.StringPtrInput
-	// Central management mode. Valid values: `normal`, `backup`.
-	Mode pulumi.StringPtrInput
-	// Enable/disable allowing the central management server to restore the configuration of this FortiGate. Valid values: `enable`, `disable`.
-	ScheduleConfigRestore pulumi.StringPtrInput
-	// Enable/disable allowing the central management server to restore the scripts stored on this FortiGate. Valid values: `enable`, `disable`.
-	ScheduleScriptRestore pulumi.StringPtrInput
-	// Serial number.
-	SerialNumber pulumi.StringPtrInput
-	// Additional severs that the FortiGate can use for updates (for AV, IPS, updates) and ratings (for web filter and antispam ratings) servers. The structure of `serverList` block is documented below.
-	ServerLists SystemCentralManagementServerListArrayInput
-	// Central management type. Valid values: `fortimanager`, `fortiguard`, `none`.
-	Type pulumi.StringPtrInput
-	// Virtual domain (VDOM) name to use when communicating with FortiManager.
-	Vdom pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	CaCert                     pulumi.StringPtrInput
+	DynamicSortSubtable        pulumi.StringPtrInput
+	EncAlgorithm               pulumi.StringPtrInput
+	Fmg                        pulumi.StringPtrInput
+	FmgSourceIp                pulumi.StringPtrInput
+	FmgSourceIp6               pulumi.StringPtrInput
+	FmgUpdatePort              pulumi.StringPtrInput
+	IncludeDefaultServers      pulumi.StringPtrInput
+	Interface                  pulumi.StringPtrInput
+	InterfaceSelectMethod      pulumi.StringPtrInput
+	LocalCert                  pulumi.StringPtrInput
+	Mode                       pulumi.StringPtrInput
+	ScheduleConfigRestore      pulumi.StringPtrInput
+	ScheduleScriptRestore      pulumi.StringPtrInput
+	SerialNumber               pulumi.StringPtrInput
+	ServerLists                SystemCentralManagementServerListArrayInput
+	Type                       pulumi.StringPtrInput
+	Vdom                       pulumi.StringPtrInput
+	Vdomparam                  pulumi.StringPtrInput
 }
 
 func (SystemCentralManagementState) ElementType() reflect.Type {
@@ -260,102 +124,56 @@ func (SystemCentralManagementState) ElementType() reflect.Type {
 }
 
 type systemCentralManagementArgs struct {
-	// Enable/disable allowing the central management server to remotely monitor this FortiGate Valid values: `enable`, `disable`.
-	AllowMonitor *string `pulumi:"allowMonitor"`
-	// Enable/disable allowing the central management server to push configuration changes to this FortiGate. Valid values: `enable`, `disable`.
-	AllowPushConfiguration *string `pulumi:"allowPushConfiguration"`
-	// Enable/disable allowing the central management server to push firmware updates to this FortiGate. Valid values: `enable`, `disable`.
-	AllowPushFirmware *string `pulumi:"allowPushFirmware"`
-	// Enable/disable remotely upgrading the firmware on this FortiGate from the central management server. Valid values: `enable`, `disable`.
-	AllowRemoteFirmwareUpgrade *string `pulumi:"allowRemoteFirmwareUpgrade"`
-	// CA certificate to be used by FGFM protocol.
-	CaCert *string `pulumi:"caCert"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Encryption strength for communications between the FortiGate and central management. Valid values: `default`, `high`, `low`.
-	EncAlgorithm *string `pulumi:"encAlgorithm"`
-	// IP address or FQDN of the FortiManager.
-	Fmg *string `pulumi:"fmg"`
-	// IPv4 source address that this FortiGate uses when communicating with FortiManager.
-	FmgSourceIp *string `pulumi:"fmgSourceIp"`
-	// IPv6 source address that this FortiGate uses when communicating with FortiManager.
-	FmgSourceIp6 *string `pulumi:"fmgSourceIp6"`
-	// Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
-	FmgUpdatePort *string `pulumi:"fmgUpdatePort"`
-	// Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
-	IncludeDefaultServers *string `pulumi:"includeDefaultServers"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Certificate to be used by FGFM protocol.
-	LocalCert *string `pulumi:"localCert"`
-	// Central management mode. Valid values: `normal`, `backup`.
-	Mode *string `pulumi:"mode"`
-	// Enable/disable allowing the central management server to restore the configuration of this FortiGate. Valid values: `enable`, `disable`.
-	ScheduleConfigRestore *string `pulumi:"scheduleConfigRestore"`
-	// Enable/disable allowing the central management server to restore the scripts stored on this FortiGate. Valid values: `enable`, `disable`.
-	ScheduleScriptRestore *string `pulumi:"scheduleScriptRestore"`
-	// Serial number.
-	SerialNumber *string `pulumi:"serialNumber"`
-	// Additional severs that the FortiGate can use for updates (for AV, IPS, updates) and ratings (for web filter and antispam ratings) servers. The structure of `serverList` block is documented below.
-	ServerLists []SystemCentralManagementServerList `pulumi:"serverLists"`
-	// Central management type. Valid values: `fortimanager`, `fortiguard`, `none`.
-	Type *string `pulumi:"type"`
-	// Virtual domain (VDOM) name to use when communicating with FortiManager.
-	Vdom *string `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AllowMonitor               *string                             `pulumi:"allowMonitor"`
+	AllowPushConfiguration     *string                             `pulumi:"allowPushConfiguration"`
+	AllowPushFirmware          *string                             `pulumi:"allowPushFirmware"`
+	AllowRemoteFirmwareUpgrade *string                             `pulumi:"allowRemoteFirmwareUpgrade"`
+	CaCert                     *string                             `pulumi:"caCert"`
+	DynamicSortSubtable        *string                             `pulumi:"dynamicSortSubtable"`
+	EncAlgorithm               *string                             `pulumi:"encAlgorithm"`
+	Fmg                        *string                             `pulumi:"fmg"`
+	FmgSourceIp                *string                             `pulumi:"fmgSourceIp"`
+	FmgSourceIp6               *string                             `pulumi:"fmgSourceIp6"`
+	FmgUpdatePort              *string                             `pulumi:"fmgUpdatePort"`
+	IncludeDefaultServers      *string                             `pulumi:"includeDefaultServers"`
+	Interface                  *string                             `pulumi:"interface"`
+	InterfaceSelectMethod      *string                             `pulumi:"interfaceSelectMethod"`
+	LocalCert                  *string                             `pulumi:"localCert"`
+	Mode                       *string                             `pulumi:"mode"`
+	ScheduleConfigRestore      *string                             `pulumi:"scheduleConfigRestore"`
+	ScheduleScriptRestore      *string                             `pulumi:"scheduleScriptRestore"`
+	SerialNumber               *string                             `pulumi:"serialNumber"`
+	ServerLists                []SystemCentralManagementServerList `pulumi:"serverLists"`
+	Type                       *string                             `pulumi:"type"`
+	Vdom                       *string                             `pulumi:"vdom"`
+	Vdomparam                  *string                             `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemCentralManagement resource.
 type SystemCentralManagementArgs struct {
-	// Enable/disable allowing the central management server to remotely monitor this FortiGate Valid values: `enable`, `disable`.
-	AllowMonitor pulumi.StringPtrInput
-	// Enable/disable allowing the central management server to push configuration changes to this FortiGate. Valid values: `enable`, `disable`.
-	AllowPushConfiguration pulumi.StringPtrInput
-	// Enable/disable allowing the central management server to push firmware updates to this FortiGate. Valid values: `enable`, `disable`.
-	AllowPushFirmware pulumi.StringPtrInput
-	// Enable/disable remotely upgrading the firmware on this FortiGate from the central management server. Valid values: `enable`, `disable`.
+	AllowMonitor               pulumi.StringPtrInput
+	AllowPushConfiguration     pulumi.StringPtrInput
+	AllowPushFirmware          pulumi.StringPtrInput
 	AllowRemoteFirmwareUpgrade pulumi.StringPtrInput
-	// CA certificate to be used by FGFM protocol.
-	CaCert pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Encryption strength for communications between the FortiGate and central management. Valid values: `default`, `high`, `low`.
-	EncAlgorithm pulumi.StringPtrInput
-	// IP address or FQDN of the FortiManager.
-	Fmg pulumi.StringPtrInput
-	// IPv4 source address that this FortiGate uses when communicating with FortiManager.
-	FmgSourceIp pulumi.StringPtrInput
-	// IPv6 source address that this FortiGate uses when communicating with FortiManager.
-	FmgSourceIp6 pulumi.StringPtrInput
-	// Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
-	FmgUpdatePort pulumi.StringPtrInput
-	// Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
-	IncludeDefaultServers pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringPtrInput
-	// Certificate to be used by FGFM protocol.
-	LocalCert pulumi.StringPtrInput
-	// Central management mode. Valid values: `normal`, `backup`.
-	Mode pulumi.StringPtrInput
-	// Enable/disable allowing the central management server to restore the configuration of this FortiGate. Valid values: `enable`, `disable`.
-	ScheduleConfigRestore pulumi.StringPtrInput
-	// Enable/disable allowing the central management server to restore the scripts stored on this FortiGate. Valid values: `enable`, `disable`.
-	ScheduleScriptRestore pulumi.StringPtrInput
-	// Serial number.
-	SerialNumber pulumi.StringPtrInput
-	// Additional severs that the FortiGate can use for updates (for AV, IPS, updates) and ratings (for web filter and antispam ratings) servers. The structure of `serverList` block is documented below.
-	ServerLists SystemCentralManagementServerListArrayInput
-	// Central management type. Valid values: `fortimanager`, `fortiguard`, `none`.
-	Type pulumi.StringPtrInput
-	// Virtual domain (VDOM) name to use when communicating with FortiManager.
-	Vdom pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	CaCert                     pulumi.StringPtrInput
+	DynamicSortSubtable        pulumi.StringPtrInput
+	EncAlgorithm               pulumi.StringPtrInput
+	Fmg                        pulumi.StringPtrInput
+	FmgSourceIp                pulumi.StringPtrInput
+	FmgSourceIp6               pulumi.StringPtrInput
+	FmgUpdatePort              pulumi.StringPtrInput
+	IncludeDefaultServers      pulumi.StringPtrInput
+	Interface                  pulumi.StringPtrInput
+	InterfaceSelectMethod      pulumi.StringPtrInput
+	LocalCert                  pulumi.StringPtrInput
+	Mode                       pulumi.StringPtrInput
+	ScheduleConfigRestore      pulumi.StringPtrInput
+	ScheduleScriptRestore      pulumi.StringPtrInput
+	SerialNumber               pulumi.StringPtrInput
+	ServerLists                SystemCentralManagementServerListArrayInput
+	Type                       pulumi.StringPtrInput
+	Vdom                       pulumi.StringPtrInput
+	Vdomparam                  pulumi.StringPtrInput
 }
 
 func (SystemCentralManagementArgs) ElementType() reflect.Type {
@@ -384,7 +202,7 @@ func (i *SystemCentralManagement) ToSystemCentralManagementOutputWithContext(ctx
 // SystemCentralManagementArrayInput is an input type that accepts SystemCentralManagementArray and SystemCentralManagementArrayOutput values.
 // You can construct a concrete instance of `SystemCentralManagementArrayInput` via:
 //
-//          SystemCentralManagementArray{ SystemCentralManagementArgs{...} }
+//	SystemCentralManagementArray{ SystemCentralManagementArgs{...} }
 type SystemCentralManagementArrayInput interface {
 	pulumi.Input
 
@@ -409,7 +227,7 @@ func (i SystemCentralManagementArray) ToSystemCentralManagementArrayOutputWithCo
 // SystemCentralManagementMapInput is an input type that accepts SystemCentralManagementMap and SystemCentralManagementMapOutput values.
 // You can construct a concrete instance of `SystemCentralManagementMapInput` via:
 //
-//          SystemCentralManagementMap{ "key": SystemCentralManagementArgs{...} }
+//	SystemCentralManagementMap{ "key": SystemCentralManagementArgs{...} }
 type SystemCentralManagementMapInput interface {
 	pulumi.Input
 
@@ -443,6 +261,98 @@ func (o SystemCentralManagementOutput) ToSystemCentralManagementOutput() SystemC
 
 func (o SystemCentralManagementOutput) ToSystemCentralManagementOutputWithContext(ctx context.Context) SystemCentralManagementOutput {
 	return o
+}
+
+func (o SystemCentralManagementOutput) AllowMonitor() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.AllowMonitor }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) AllowPushConfiguration() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.AllowPushConfiguration }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) AllowPushFirmware() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.AllowPushFirmware }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) AllowRemoteFirmwareUpgrade() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.AllowRemoteFirmwareUpgrade }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) CaCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.CaCert }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemCentralManagementOutput) EncAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.EncAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) Fmg() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.Fmg }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) FmgSourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.FmgSourceIp }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) FmgSourceIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.FmgSourceIp6 }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) FmgUpdatePort() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.FmgUpdatePort }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) IncludeDefaultServers() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.IncludeDefaultServers }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) LocalCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.LocalCert }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) ScheduleConfigRestore() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.ScheduleConfigRestore }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) ScheduleScriptRestore() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.ScheduleScriptRestore }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) SerialNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) ServerLists() SystemCentralManagementServerListArrayOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) SystemCentralManagementServerListArrayOutput { return v.ServerLists }).(SystemCentralManagementServerListArrayOutput)
+}
+
+func (o SystemCentralManagementOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) Vdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.Vdom }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemCentralManagementArrayOutput struct{ *pulumi.OutputState }

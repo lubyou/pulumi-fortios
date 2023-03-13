@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Names of VLANs that use captive portal authentication. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Import
-//
-// SwitchControllerSecurityPolicy CaptivePortal can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSecurityPolicyCaptivePortal:SwitchControllerSecurityPolicyCaptivePortal labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSecurityPolicyCaptivePortal:SwitchControllerSecurityPolicyCaptivePortal labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerSecurityPolicyCaptivePortal struct {
 	pulumi.CustomResourceState
 
-	// Policy name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Policy type. Valid values: `captive-portal`.
-	PolicyType pulumi.StringOutput `pulumi:"policyType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Names of VLANs that use captive portal authentication.
-	Vlan pulumi.StringOutput `pulumi:"vlan"`
+	Name       pulumi.StringOutput    `pulumi:"name"`
+	PolicyType pulumi.StringOutput    `pulumi:"policyType"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vlan       pulumi.StringOutput    `pulumi:"vlan"`
 }
 
 // NewSwitchControllerSecurityPolicyCaptivePortal registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetSwitchControllerSecurityPolicyCaptivePortal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerSecurityPolicyCaptivePortal resources.
 type switchControllerSecurityPolicyCaptivePortalState struct {
-	// Policy name.
-	Name *string `pulumi:"name"`
-	// Policy type. Valid values: `captive-portal`.
+	Name       *string `pulumi:"name"`
 	PolicyType *string `pulumi:"policyType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Names of VLANs that use captive portal authentication.
-	Vlan *string `pulumi:"vlan"`
+	Vdomparam  *string `pulumi:"vdomparam"`
+	Vlan       *string `pulumi:"vlan"`
 }
 
 type SwitchControllerSecurityPolicyCaptivePortalState struct {
-	// Policy name.
-	Name pulumi.StringPtrInput
-	// Policy type. Valid values: `captive-portal`.
+	Name       pulumi.StringPtrInput
 	PolicyType pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Names of VLANs that use captive portal authentication.
-	Vlan pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
+	Vlan       pulumi.StringPtrInput
 }
 
 func (SwitchControllerSecurityPolicyCaptivePortalState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (SwitchControllerSecurityPolicyCaptivePortalState) ElementType() reflect.Ty
 }
 
 type switchControllerSecurityPolicyCaptivePortalArgs struct {
-	// Policy name.
-	Name *string `pulumi:"name"`
-	// Policy type. Valid values: `captive-portal`.
+	Name       *string `pulumi:"name"`
 	PolicyType *string `pulumi:"policyType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Names of VLANs that use captive portal authentication.
-	Vlan *string `pulumi:"vlan"`
+	Vdomparam  *string `pulumi:"vdomparam"`
+	Vlan       *string `pulumi:"vlan"`
 }
 
 // The set of arguments for constructing a SwitchControllerSecurityPolicyCaptivePortal resource.
 type SwitchControllerSecurityPolicyCaptivePortalArgs struct {
-	// Policy name.
-	Name pulumi.StringPtrInput
-	// Policy type. Valid values: `captive-portal`.
+	Name       pulumi.StringPtrInput
 	PolicyType pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Names of VLANs that use captive portal authentication.
-	Vlan pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
+	Vlan       pulumi.StringPtrInput
 }
 
 func (SwitchControllerSecurityPolicyCaptivePortalArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *SwitchControllerSecurityPolicyCaptivePortal) ToSwitchControllerSecurity
 // SwitchControllerSecurityPolicyCaptivePortalArrayInput is an input type that accepts SwitchControllerSecurityPolicyCaptivePortalArray and SwitchControllerSecurityPolicyCaptivePortalArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSecurityPolicyCaptivePortalArrayInput` via:
 //
-//          SwitchControllerSecurityPolicyCaptivePortalArray{ SwitchControllerSecurityPolicyCaptivePortalArgs{...} }
+//	SwitchControllerSecurityPolicyCaptivePortalArray{ SwitchControllerSecurityPolicyCaptivePortalArgs{...} }
 type SwitchControllerSecurityPolicyCaptivePortalArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i SwitchControllerSecurityPolicyCaptivePortalArray) ToSwitchControllerSecu
 // SwitchControllerSecurityPolicyCaptivePortalMapInput is an input type that accepts SwitchControllerSecurityPolicyCaptivePortalMap and SwitchControllerSecurityPolicyCaptivePortalMapOutput values.
 // You can construct a concrete instance of `SwitchControllerSecurityPolicyCaptivePortalMapInput` via:
 //
-//          SwitchControllerSecurityPolicyCaptivePortalMap{ "key": SwitchControllerSecurityPolicyCaptivePortalArgs{...} }
+//	SwitchControllerSecurityPolicyCaptivePortalMap{ "key": SwitchControllerSecurityPolicyCaptivePortalArgs{...} }
 type SwitchControllerSecurityPolicyCaptivePortalMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o SwitchControllerSecurityPolicyCaptivePortalOutput) ToSwitchControllerSec
 
 func (o SwitchControllerSecurityPolicyCaptivePortalOutput) ToSwitchControllerSecurityPolicyCaptivePortalOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyCaptivePortalOutput {
 	return o
+}
+
+func (o SwitchControllerSecurityPolicyCaptivePortalOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSecurityPolicyCaptivePortal) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSecurityPolicyCaptivePortalOutput) PolicyType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSecurityPolicyCaptivePortal) pulumi.StringOutput { return v.PolicyType }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSecurityPolicyCaptivePortalOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSecurityPolicyCaptivePortal) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerSecurityPolicyCaptivePortalOutput) Vlan() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSecurityPolicyCaptivePortal) pulumi.StringOutput { return v.Vlan }).(pulumi.StringOutput)
 }
 
 type SwitchControllerSecurityPolicyCaptivePortalArrayOutput struct{ *pulumi.OutputState }

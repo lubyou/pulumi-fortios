@@ -2,53 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure Authentication Schemes.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
- *
- * const trname3 = new fortios.UserFsso("trname3", {
- *     port: 8000,
- *     port2: 8000,
- *     port3: 8000,
- *     port4: 8000,
- *     port5: 8000,
- *     server: "1.1.1.1",
- *     sourceIp: "0.0.0.0",
- *     sourceIp6: "::",
- * });
- * const trname = new fortios.AuthenticationScheme("trname", {
- *     fssoAgentForNtlm: trname3.name,
- *     fssoGuest: "disable",
- *     method: "ntlm",
- *     negotiateNtlm: "enable",
- *     requireTfa: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * Authentication Scheme can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/authenticationScheme:AuthenticationScheme labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/authenticationScheme:AuthenticationScheme labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class AuthenticationScheme extends pulumi.CustomResource {
     /**
      * Get an existing AuthenticationScheme resource's state with the given name, ID, and optional extra
@@ -77,65 +34,20 @@ export class AuthenticationScheme extends pulumi.CustomResource {
         return obj['__pulumiType'] === AuthenticationScheme.__pulumiType;
     }
 
-    /**
-     * Domain controller setting.
-     */
     public readonly domainController!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * FSSO agent to use for NTLM authentication.
-     */
     public readonly fssoAgentForNtlm!: pulumi.Output<string>;
-    /**
-     * Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly fssoGuest!: pulumi.Output<string>;
-    /**
-     * Kerberos keytab setting.
-     */
     public readonly kerberosKeytab!: pulumi.Output<string>;
-    /**
-     * Authentication methods (default = basic).
-     */
     public readonly method!: pulumi.Output<string>;
-    /**
-     * Authentication server name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable negotiate authentication for NTLM (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly negotiateNtlm!: pulumi.Output<string>;
-    /**
-     * Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly requireTfa!: pulumi.Output<string>;
-    /**
-     * SAML configuration.
-     */
     public readonly samlServer!: pulumi.Output<string>;
-    /**
-     * SAML authentication timeout in seconds.
-     */
     public readonly samlTimeout!: pulumi.Output<number>;
-    /**
-     * SSH CA name.
-     */
     public readonly sshCa!: pulumi.Output<string>;
-    /**
-     * Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly userCert!: pulumi.Output<string>;
-    /**
-     * Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
-     */
     public readonly userDatabases!: pulumi.Output<outputs.AuthenticationSchemeUserDatabase[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -196,65 +108,20 @@ export class AuthenticationScheme extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AuthenticationScheme resources.
  */
 export interface AuthenticationSchemeState {
-    /**
-     * Domain controller setting.
-     */
     domainController?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * FSSO agent to use for NTLM authentication.
-     */
     fssoAgentForNtlm?: pulumi.Input<string>;
-    /**
-     * Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
-     */
     fssoGuest?: pulumi.Input<string>;
-    /**
-     * Kerberos keytab setting.
-     */
     kerberosKeytab?: pulumi.Input<string>;
-    /**
-     * Authentication methods (default = basic).
-     */
     method?: pulumi.Input<string>;
-    /**
-     * Authentication server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable negotiate authentication for NTLM (default = disable). Valid values: `enable`, `disable`.
-     */
     negotiateNtlm?: pulumi.Input<string>;
-    /**
-     * Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
-     */
     requireTfa?: pulumi.Input<string>;
-    /**
-     * SAML configuration.
-     */
     samlServer?: pulumi.Input<string>;
-    /**
-     * SAML authentication timeout in seconds.
-     */
     samlTimeout?: pulumi.Input<number>;
-    /**
-     * SSH CA name.
-     */
     sshCa?: pulumi.Input<string>;
-    /**
-     * Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
-     */
     userCert?: pulumi.Input<string>;
-    /**
-     * Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
-     */
     userDatabases?: pulumi.Input<pulumi.Input<inputs.AuthenticationSchemeUserDatabase>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -262,64 +129,19 @@ export interface AuthenticationSchemeState {
  * The set of arguments for constructing a AuthenticationScheme resource.
  */
 export interface AuthenticationSchemeArgs {
-    /**
-     * Domain controller setting.
-     */
     domainController?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * FSSO agent to use for NTLM authentication.
-     */
     fssoAgentForNtlm?: pulumi.Input<string>;
-    /**
-     * Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
-     */
     fssoGuest?: pulumi.Input<string>;
-    /**
-     * Kerberos keytab setting.
-     */
     kerberosKeytab?: pulumi.Input<string>;
-    /**
-     * Authentication methods (default = basic).
-     */
     method: pulumi.Input<string>;
-    /**
-     * Authentication server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable negotiate authentication for NTLM (default = disable). Valid values: `enable`, `disable`.
-     */
     negotiateNtlm?: pulumi.Input<string>;
-    /**
-     * Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
-     */
     requireTfa?: pulumi.Input<string>;
-    /**
-     * SAML configuration.
-     */
     samlServer?: pulumi.Input<string>;
-    /**
-     * SAML authentication timeout in seconds.
-     */
     samlTimeout?: pulumi.Input<number>;
-    /**
-     * SSH CA name.
-     */
     sshCa?: pulumi.Input<string>;
-    /**
-     * Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
-     */
     userCert?: pulumi.Input<string>;
-    /**
-     * Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
-     */
     userDatabases?: pulumi.Input<pulumi.Input<inputs.AuthenticationSchemeUserDatabase>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

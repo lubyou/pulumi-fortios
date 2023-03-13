@@ -10,66 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// SSL-VPN host check software.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewVpnSslWebHostCheckSoftware(ctx, "trname", &fortios.VpnSslWebHostCheckSoftwareArgs{
-// 			OsType: pulumi.String("windows"),
-// 			Type:   pulumi.String("fw"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// VpnSslWeb HostCheckSoftware can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnSslWebHostCheckSoftware:VpnSslWebHostCheckSoftware labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnSslWebHostCheckSoftware:VpnSslWebHostCheckSoftware labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnSslWebHostCheckSoftware struct {
 	pulumi.CustomResourceState
 
-	// Check item list. The structure of `checkItemList` block is documented below.
-	CheckItemLists VpnSslWebHostCheckSoftwareCheckItemListArrayOutput `pulumi:"checkItemLists"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Globally unique ID.
-	Guid pulumi.StringOutput `pulumi:"guid"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// OS type. Valid values: `windows`, `macos`.
-	OsType pulumi.StringOutput `pulumi:"osType"`
-	// Type. Valid values: `file`, `registry`, `process`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Version.
-	Version pulumi.StringOutput `pulumi:"version"`
+	CheckItemLists      VpnSslWebHostCheckSoftwareCheckItemListArrayOutput `pulumi:"checkItemLists"`
+	DynamicSortSubtable pulumi.StringPtrOutput                             `pulumi:"dynamicSortSubtable"`
+	Guid                pulumi.StringOutput                                `pulumi:"guid"`
+	Name                pulumi.StringOutput                                `pulumi:"name"`
+	OsType              pulumi.StringOutput                                `pulumi:"osType"`
+	Type                pulumi.StringOutput                                `pulumi:"type"`
+	Vdomparam           pulumi.StringPtrOutput                             `pulumi:"vdomparam"`
+	Version             pulumi.StringOutput                                `pulumi:"version"`
 }
 
 // NewVpnSslWebHostCheckSoftware registers a new resource with the given unique name, arguments, and options.
@@ -102,41 +53,25 @@ func GetVpnSslWebHostCheckSoftware(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnSslWebHostCheckSoftware resources.
 type vpnSslWebHostCheckSoftwareState struct {
-	// Check item list. The structure of `checkItemList` block is documented below.
-	CheckItemLists []VpnSslWebHostCheckSoftwareCheckItemList `pulumi:"checkItemLists"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Globally unique ID.
-	Guid *string `pulumi:"guid"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// OS type. Valid values: `windows`, `macos`.
-	OsType *string `pulumi:"osType"`
-	// Type. Valid values: `file`, `registry`, `process`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Version.
-	Version *string `pulumi:"version"`
+	CheckItemLists      []VpnSslWebHostCheckSoftwareCheckItemList `pulumi:"checkItemLists"`
+	DynamicSortSubtable *string                                   `pulumi:"dynamicSortSubtable"`
+	Guid                *string                                   `pulumi:"guid"`
+	Name                *string                                   `pulumi:"name"`
+	OsType              *string                                   `pulumi:"osType"`
+	Type                *string                                   `pulumi:"type"`
+	Vdomparam           *string                                   `pulumi:"vdomparam"`
+	Version             *string                                   `pulumi:"version"`
 }
 
 type VpnSslWebHostCheckSoftwareState struct {
-	// Check item list. The structure of `checkItemList` block is documented below.
-	CheckItemLists VpnSslWebHostCheckSoftwareCheckItemListArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	CheckItemLists      VpnSslWebHostCheckSoftwareCheckItemListArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Globally unique ID.
-	Guid pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// OS type. Valid values: `windows`, `macos`.
-	OsType pulumi.StringPtrInput
-	// Type. Valid values: `file`, `registry`, `process`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Version.
-	Version pulumi.StringPtrInput
+	Guid                pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	OsType              pulumi.StringPtrInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Version             pulumi.StringPtrInput
 }
 
 func (VpnSslWebHostCheckSoftwareState) ElementType() reflect.Type {
@@ -144,42 +79,26 @@ func (VpnSslWebHostCheckSoftwareState) ElementType() reflect.Type {
 }
 
 type vpnSslWebHostCheckSoftwareArgs struct {
-	// Check item list. The structure of `checkItemList` block is documented below.
-	CheckItemLists []VpnSslWebHostCheckSoftwareCheckItemList `pulumi:"checkItemLists"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Globally unique ID.
-	Guid *string `pulumi:"guid"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// OS type. Valid values: `windows`, `macos`.
-	OsType *string `pulumi:"osType"`
-	// Type. Valid values: `file`, `registry`, `process`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Version.
-	Version *string `pulumi:"version"`
+	CheckItemLists      []VpnSslWebHostCheckSoftwareCheckItemList `pulumi:"checkItemLists"`
+	DynamicSortSubtable *string                                   `pulumi:"dynamicSortSubtable"`
+	Guid                *string                                   `pulumi:"guid"`
+	Name                *string                                   `pulumi:"name"`
+	OsType              *string                                   `pulumi:"osType"`
+	Type                *string                                   `pulumi:"type"`
+	Vdomparam           *string                                   `pulumi:"vdomparam"`
+	Version             *string                                   `pulumi:"version"`
 }
 
 // The set of arguments for constructing a VpnSslWebHostCheckSoftware resource.
 type VpnSslWebHostCheckSoftwareArgs struct {
-	// Check item list. The structure of `checkItemList` block is documented below.
-	CheckItemLists VpnSslWebHostCheckSoftwareCheckItemListArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	CheckItemLists      VpnSslWebHostCheckSoftwareCheckItemListArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Globally unique ID.
-	Guid pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// OS type. Valid values: `windows`, `macos`.
-	OsType pulumi.StringPtrInput
-	// Type. Valid values: `file`, `registry`, `process`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Version.
-	Version pulumi.StringPtrInput
+	Guid                pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	OsType              pulumi.StringPtrInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Version             pulumi.StringPtrInput
 }
 
 func (VpnSslWebHostCheckSoftwareArgs) ElementType() reflect.Type {
@@ -208,7 +127,7 @@ func (i *VpnSslWebHostCheckSoftware) ToVpnSslWebHostCheckSoftwareOutputWithConte
 // VpnSslWebHostCheckSoftwareArrayInput is an input type that accepts VpnSslWebHostCheckSoftwareArray and VpnSslWebHostCheckSoftwareArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebHostCheckSoftwareArrayInput` via:
 //
-//          VpnSslWebHostCheckSoftwareArray{ VpnSslWebHostCheckSoftwareArgs{...} }
+//	VpnSslWebHostCheckSoftwareArray{ VpnSslWebHostCheckSoftwareArgs{...} }
 type VpnSslWebHostCheckSoftwareArrayInput interface {
 	pulumi.Input
 
@@ -233,7 +152,7 @@ func (i VpnSslWebHostCheckSoftwareArray) ToVpnSslWebHostCheckSoftwareArrayOutput
 // VpnSslWebHostCheckSoftwareMapInput is an input type that accepts VpnSslWebHostCheckSoftwareMap and VpnSslWebHostCheckSoftwareMapOutput values.
 // You can construct a concrete instance of `VpnSslWebHostCheckSoftwareMapInput` via:
 //
-//          VpnSslWebHostCheckSoftwareMap{ "key": VpnSslWebHostCheckSoftwareArgs{...} }
+//	VpnSslWebHostCheckSoftwareMap{ "key": VpnSslWebHostCheckSoftwareArgs{...} }
 type VpnSslWebHostCheckSoftwareMapInput interface {
 	pulumi.Input
 
@@ -267,6 +186,40 @@ func (o VpnSslWebHostCheckSoftwareOutput) ToVpnSslWebHostCheckSoftwareOutput() V
 
 func (o VpnSslWebHostCheckSoftwareOutput) ToVpnSslWebHostCheckSoftwareOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareOutput {
 	return o
+}
+
+func (o VpnSslWebHostCheckSoftwareOutput) CheckItemLists() VpnSslWebHostCheckSoftwareCheckItemListArrayOutput {
+	return o.ApplyT(func(v *VpnSslWebHostCheckSoftware) VpnSslWebHostCheckSoftwareCheckItemListArrayOutput {
+		return v.CheckItemLists
+	}).(VpnSslWebHostCheckSoftwareCheckItemListArrayOutput)
+}
+
+func (o VpnSslWebHostCheckSoftwareOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebHostCheckSoftware) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebHostCheckSoftwareOutput) Guid() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebHostCheckSoftware) pulumi.StringOutput { return v.Guid }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebHostCheckSoftwareOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebHostCheckSoftware) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebHostCheckSoftwareOutput) OsType() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebHostCheckSoftware) pulumi.StringOutput { return v.OsType }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebHostCheckSoftwareOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebHostCheckSoftware) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebHostCheckSoftwareOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebHostCheckSoftware) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebHostCheckSoftwareOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebHostCheckSoftware) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }
 
 type VpnSslWebHostCheckSoftwareArrayOutput struct{ *pulumi.OutputState }

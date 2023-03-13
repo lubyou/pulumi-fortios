@@ -10,42 +10,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure YouTube channel filter. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// Videofilter YoutubeChannelFilter can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/videofilterYoutubeChannelFilter:VideofilterYoutubeChannelFilter labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/videofilterYoutubeChannelFilter:VideofilterYoutubeChannelFilter labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VideofilterYoutubeChannelFilter struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// YouTube channel filter default action. Valid values: `allow`, `monitor`, `block`.
-	DefaultAction pulumi.StringOutput `pulumi:"defaultAction"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// YouTube filter entries. The structure of `entries` block is documented below.
-	Entries VideofilterYoutubeChannelFilterEntryArrayOutput `pulumi:"entries"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Eanble/disable logging. Valid values: `enable`, `disable`.
-	Log pulumi.StringOutput `pulumi:"log"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput                          `pulumi:"comment"`
+	DefaultAction       pulumi.StringOutput                             `pulumi:"defaultAction"`
+	DynamicSortSubtable pulumi.StringPtrOutput                          `pulumi:"dynamicSortSubtable"`
+	Entries             VideofilterYoutubeChannelFilterEntryArrayOutput `pulumi:"entries"`
+	Fosid               pulumi.IntOutput                                `pulumi:"fosid"`
+	Log                 pulumi.StringOutput                             `pulumi:"log"`
+	Name                pulumi.StringOutput                             `pulumi:"name"`
+	OverrideCategory    pulumi.StringOutput                             `pulumi:"overrideCategory"`
+	Vdomparam           pulumi.StringPtrOutput                          `pulumi:"vdomparam"`
 }
 
 // NewVideofilterYoutubeChannelFilter registers a new resource with the given unique name, arguments, and options.
@@ -78,41 +54,27 @@ func GetVideofilterYoutubeChannelFilter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VideofilterYoutubeChannelFilter resources.
 type videofilterYoutubeChannelFilterState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// YouTube channel filter default action. Valid values: `allow`, `monitor`, `block`.
-	DefaultAction *string `pulumi:"defaultAction"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// YouTube filter entries. The structure of `entries` block is documented below.
-	Entries []VideofilterYoutubeChannelFilterEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Eanble/disable logging. Valid values: `enable`, `disable`.
-	Log *string `pulumi:"log"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                                `pulumi:"comment"`
+	DefaultAction       *string                                `pulumi:"defaultAction"`
+	DynamicSortSubtable *string                                `pulumi:"dynamicSortSubtable"`
+	Entries             []VideofilterYoutubeChannelFilterEntry `pulumi:"entries"`
+	Fosid               *int                                   `pulumi:"fosid"`
+	Log                 *string                                `pulumi:"log"`
+	Name                *string                                `pulumi:"name"`
+	OverrideCategory    *string                                `pulumi:"overrideCategory"`
+	Vdomparam           *string                                `pulumi:"vdomparam"`
 }
 
 type VideofilterYoutubeChannelFilterState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// YouTube channel filter default action. Valid values: `allow`, `monitor`, `block`.
-	DefaultAction pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
+	DefaultAction       pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// YouTube filter entries. The structure of `entries` block is documented below.
-	Entries VideofilterYoutubeChannelFilterEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Eanble/disable logging. Valid values: `enable`, `disable`.
-	Log pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             VideofilterYoutubeChannelFilterEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Log                 pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	OverrideCategory    pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (VideofilterYoutubeChannelFilterState) ElementType() reflect.Type {
@@ -120,42 +82,28 @@ func (VideofilterYoutubeChannelFilterState) ElementType() reflect.Type {
 }
 
 type videofilterYoutubeChannelFilterArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// YouTube channel filter default action. Valid values: `allow`, `monitor`, `block`.
-	DefaultAction *string `pulumi:"defaultAction"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// YouTube filter entries. The structure of `entries` block is documented below.
-	Entries []VideofilterYoutubeChannelFilterEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Eanble/disable logging. Valid values: `enable`, `disable`.
-	Log *string `pulumi:"log"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                                `pulumi:"comment"`
+	DefaultAction       *string                                `pulumi:"defaultAction"`
+	DynamicSortSubtable *string                                `pulumi:"dynamicSortSubtable"`
+	Entries             []VideofilterYoutubeChannelFilterEntry `pulumi:"entries"`
+	Fosid               *int                                   `pulumi:"fosid"`
+	Log                 *string                                `pulumi:"log"`
+	Name                *string                                `pulumi:"name"`
+	OverrideCategory    *string                                `pulumi:"overrideCategory"`
+	Vdomparam           *string                                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VideofilterYoutubeChannelFilter resource.
 type VideofilterYoutubeChannelFilterArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// YouTube channel filter default action. Valid values: `allow`, `monitor`, `block`.
-	DefaultAction pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
+	DefaultAction       pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// YouTube filter entries. The structure of `entries` block is documented below.
-	Entries VideofilterYoutubeChannelFilterEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Eanble/disable logging. Valid values: `enable`, `disable`.
-	Log pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             VideofilterYoutubeChannelFilterEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Log                 pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	OverrideCategory    pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (VideofilterYoutubeChannelFilterArgs) ElementType() reflect.Type {
@@ -184,7 +132,7 @@ func (i *VideofilterYoutubeChannelFilter) ToVideofilterYoutubeChannelFilterOutpu
 // VideofilterYoutubeChannelFilterArrayInput is an input type that accepts VideofilterYoutubeChannelFilterArray and VideofilterYoutubeChannelFilterArrayOutput values.
 // You can construct a concrete instance of `VideofilterYoutubeChannelFilterArrayInput` via:
 //
-//          VideofilterYoutubeChannelFilterArray{ VideofilterYoutubeChannelFilterArgs{...} }
+//	VideofilterYoutubeChannelFilterArray{ VideofilterYoutubeChannelFilterArgs{...} }
 type VideofilterYoutubeChannelFilterArrayInput interface {
 	pulumi.Input
 
@@ -209,7 +157,7 @@ func (i VideofilterYoutubeChannelFilterArray) ToVideofilterYoutubeChannelFilterA
 // VideofilterYoutubeChannelFilterMapInput is an input type that accepts VideofilterYoutubeChannelFilterMap and VideofilterYoutubeChannelFilterMapOutput values.
 // You can construct a concrete instance of `VideofilterYoutubeChannelFilterMapInput` via:
 //
-//          VideofilterYoutubeChannelFilterMap{ "key": VideofilterYoutubeChannelFilterArgs{...} }
+//	VideofilterYoutubeChannelFilterMap{ "key": VideofilterYoutubeChannelFilterArgs{...} }
 type VideofilterYoutubeChannelFilterMapInput interface {
 	pulumi.Input
 
@@ -243,6 +191,44 @@ func (o VideofilterYoutubeChannelFilterOutput) ToVideofilterYoutubeChannelFilter
 
 func (o VideofilterYoutubeChannelFilterOutput) ToVideofilterYoutubeChannelFilterOutputWithContext(ctx context.Context) VideofilterYoutubeChannelFilterOutput {
 	return o
+}
+
+func (o VideofilterYoutubeChannelFilterOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VideofilterYoutubeChannelFilter) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o VideofilterYoutubeChannelFilterOutput) DefaultAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *VideofilterYoutubeChannelFilter) pulumi.StringOutput { return v.DefaultAction }).(pulumi.StringOutput)
+}
+
+func (o VideofilterYoutubeChannelFilterOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VideofilterYoutubeChannelFilter) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o VideofilterYoutubeChannelFilterOutput) Entries() VideofilterYoutubeChannelFilterEntryArrayOutput {
+	return o.ApplyT(func(v *VideofilterYoutubeChannelFilter) VideofilterYoutubeChannelFilterEntryArrayOutput {
+		return v.Entries
+	}).(VideofilterYoutubeChannelFilterEntryArrayOutput)
+}
+
+func (o VideofilterYoutubeChannelFilterOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *VideofilterYoutubeChannelFilter) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o VideofilterYoutubeChannelFilterOutput) Log() pulumi.StringOutput {
+	return o.ApplyT(func(v *VideofilterYoutubeChannelFilter) pulumi.StringOutput { return v.Log }).(pulumi.StringOutput)
+}
+
+func (o VideofilterYoutubeChannelFilterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VideofilterYoutubeChannelFilter) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VideofilterYoutubeChannelFilterOutput) OverrideCategory() pulumi.StringOutput {
+	return o.ApplyT(func(v *VideofilterYoutubeChannelFilter) pulumi.StringOutput { return v.OverrideCategory }).(pulumi.StringOutput)
+}
+
+func (o VideofilterYoutubeChannelFilterOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VideofilterYoutubeChannelFilter) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type VideofilterYoutubeChannelFilterArrayOutput struct{ *pulumi.OutputState }

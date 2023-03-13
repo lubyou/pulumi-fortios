@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemSnmpCommunity`.
 func GetSystemSnmpCommunityList(ctx *pulumi.Context, args *GetSystemSnmpCommunityListArgs, opts ...pulumi.InvokeOption) (*GetSystemSnmpCommunityListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemSnmpCommunityListResult
@@ -23,16 +22,14 @@ func GetSystemSnmpCommunityList(ctx *pulumi.Context, args *GetSystemSnmpCommunit
 
 // A collection of arguments for invoking GetSystemSnmpCommunityList.
 type GetSystemSnmpCommunityListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemSnmpCommunityList.
 type GetSystemSnmpCommunityListResult struct {
-	Filter *string `pulumi:"filter"`
-	// A list of the `SystemSnmpCommunity`.
-	Fosidlists []int `pulumi:"fosidlists"`
+	Filter     *string `pulumi:"filter"`
+	Fosidlists []int   `pulumi:"fosidlists"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -53,8 +50,7 @@ func GetSystemSnmpCommunityListOutput(ctx *pulumi.Context, args GetSystemSnmpCom
 
 // A collection of arguments for invoking GetSystemSnmpCommunityList.
 type GetSystemSnmpCommunityListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -81,7 +77,6 @@ func (o GetSystemSnmpCommunityListResultOutput) Filter() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v GetSystemSnmpCommunityListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
 }
 
-// A list of the `SystemSnmpCommunity`.
 func (o GetSystemSnmpCommunityListResultOutput) Fosidlists() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v GetSystemSnmpCommunityListResult) []int { return v.Fosidlists }).(pulumi.IntArrayOutput)
 }

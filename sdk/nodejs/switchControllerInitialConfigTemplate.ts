@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure template for auto-generated VLANs. Applies to FortiOS Version `>= 6.4.0`.
- *
- * ## Import
- *
- * SwitchControllerInitialConfig Template can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerInitialConfigTemplate:SwitchControllerInitialConfigTemplate labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerInitialConfigTemplate:SwitchControllerInitialConfigTemplate labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerInitialConfigTemplate extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerInitialConfigTemplate resource's state with the given name, ID, and optional extra
@@ -51,33 +32,12 @@ export class SwitchControllerInitialConfigTemplate extends pulumi.CustomResource
         return obj['__pulumiType'] === SwitchControllerInitialConfigTemplate.__pulumiType;
     }
 
-    /**
-     * Permitted types of management access to this interface. Valid values: `ping`, `https`, `ssh`, `snmp`, `http`, `telnet`, `fgfm`, `radius-acct`, `probe-response`, `fabric`, `ftm`.
-     */
     public readonly allowaccess!: pulumi.Output<string>;
-    /**
-     * Automatically allocate interface address and subnet block. Valid values: `enable`, `disable`.
-     */
     public readonly autoIp!: pulumi.Output<string>;
-    /**
-     * Enable/disable a DHCP server on this interface. Valid values: `enable`, `disable`.
-     */
     public readonly dhcpServer!: pulumi.Output<string>;
-    /**
-     * Interface IPv4 address and subnet mask.
-     */
     public readonly ip!: pulumi.Output<string>;
-    /**
-     * Initial config template name
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Unique VLAN ID.
-     */
     public readonly vlanid!: pulumi.Output<number>;
 
     /**
@@ -119,33 +79,12 @@ export class SwitchControllerInitialConfigTemplate extends pulumi.CustomResource
  * Input properties used for looking up and filtering SwitchControllerInitialConfigTemplate resources.
  */
 export interface SwitchControllerInitialConfigTemplateState {
-    /**
-     * Permitted types of management access to this interface. Valid values: `ping`, `https`, `ssh`, `snmp`, `http`, `telnet`, `fgfm`, `radius-acct`, `probe-response`, `fabric`, `ftm`.
-     */
     allowaccess?: pulumi.Input<string>;
-    /**
-     * Automatically allocate interface address and subnet block. Valid values: `enable`, `disable`.
-     */
     autoIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable a DHCP server on this interface. Valid values: `enable`, `disable`.
-     */
     dhcpServer?: pulumi.Input<string>;
-    /**
-     * Interface IPv4 address and subnet mask.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Initial config template name
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Unique VLAN ID.
-     */
     vlanid?: pulumi.Input<number>;
 }
 
@@ -153,32 +92,11 @@ export interface SwitchControllerInitialConfigTemplateState {
  * The set of arguments for constructing a SwitchControllerInitialConfigTemplate resource.
  */
 export interface SwitchControllerInitialConfigTemplateArgs {
-    /**
-     * Permitted types of management access to this interface. Valid values: `ping`, `https`, `ssh`, `snmp`, `http`, `telnet`, `fgfm`, `radius-acct`, `probe-response`, `fabric`, `ftm`.
-     */
     allowaccess?: pulumi.Input<string>;
-    /**
-     * Automatically allocate interface address and subnet block. Valid values: `enable`, `disable`.
-     */
     autoIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable a DHCP server on this interface. Valid values: `enable`, `disable`.
-     */
     dhcpServer?: pulumi.Input<string>;
-    /**
-     * Interface IPv4 address and subnet mask.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Initial config template name
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Unique VLAN ID.
-     */
     vlanid?: pulumi.Input<number>;
 }

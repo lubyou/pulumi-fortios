@@ -2,18 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios firewall multicastaddress
- */
 export function getFirewallMulticastAddress(args: GetFirewallMulticastAddressArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallMulticastAddressResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallMulticastAddress:GetFirewallMulticastAddress", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -24,13 +19,7 @@ export function getFirewallMulticastAddress(args: GetFirewallMulticastAddressArg
  * A collection of arguments for invoking GetFirewallMulticastAddress.
  */
 export interface GetFirewallMulticastAddressArgs {
-    /**
-     * Specify the name of the desired firewall multicastaddress.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -38,67 +27,30 @@ export interface GetFirewallMulticastAddressArgs {
  * A collection of values returned by GetFirewallMulticastAddress.
  */
 export interface GetFirewallMulticastAddressResult {
-    /**
-     * Interface associated with the address object. When setting up a policy, only addresses associated with this interface are available.
-     */
     readonly associatedInterface: string;
-    /**
-     * Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-     */
     readonly color: number;
-    /**
-     * Comment.
-     */
     readonly comment: string;
-    /**
-     * Final IPv4 address (inclusive) in the range for the address.
-     */
     readonly endIp: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Tag name.
-     */
     readonly name: string;
-    /**
-     * First IPv4 address (inclusive) in the range for the address.
-     */
     readonly startIp: string;
-    /**
-     * Broadcast address and subnet.
-     */
     readonly subnet: string;
-    /**
-     * Config object tagging. The structure of `tagging` block is documented below.
-     */
     readonly taggings: outputs.GetFirewallMulticastAddressTagging[];
-    /**
-     * Type of address object: multicast IP address range or broadcast IP/mask to be treated as a multicast address.
-     */
     readonly type: string;
     readonly vdomparam?: string;
-    /**
-     * Enable/disable visibility of the multicast address on the GUI.
-     */
     readonly visibility: string;
 }
-
 export function getFirewallMulticastAddressOutput(args: GetFirewallMulticastAddressOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallMulticastAddressResult> {
-    return pulumi.output(args).apply(a => getFirewallMulticastAddress(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallMulticastAddress(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetFirewallMulticastAddress.
  */
 export interface GetFirewallMulticastAddressOutputArgs {
-    /**
-     * Specify the name of the desired firewall multicastaddress.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiGuard Web Filter local categories.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WebfilterFtgdLocalCat("trname", {
- *     desc: "s1",
- *     fosid: 188,
- *     status: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Webfilter FtgdLocalCat can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/webfilterFtgdLocalCat:WebfilterFtgdLocalCat labelname {{desc}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/webfilterFtgdLocalCat:WebfilterFtgdLocalCat labelname {{desc}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WebfilterFtgdLocalCat extends pulumi.CustomResource {
     /**
      * Get an existing WebfilterFtgdLocalCat resource's state with the given name, ID, and optional extra
@@ -64,21 +32,9 @@ export class WebfilterFtgdLocalCat extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebfilterFtgdLocalCat.__pulumiType;
     }
 
-    /**
-     * Local category description.
-     */
     public readonly desc!: pulumi.Output<string>;
-    /**
-     * Local category ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Enable/disable the local category. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -114,21 +70,9 @@ export class WebfilterFtgdLocalCat extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WebfilterFtgdLocalCat resources.
  */
 export interface WebfilterFtgdLocalCatState {
-    /**
-     * Local category description.
-     */
     desc?: pulumi.Input<string>;
-    /**
-     * Local category ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Enable/disable the local category. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -136,20 +80,8 @@ export interface WebfilterFtgdLocalCatState {
  * The set of arguments for constructing a WebfilterFtgdLocalCat resource.
  */
 export interface WebfilterFtgdLocalCatArgs {
-    /**
-     * Local category description.
-     */
     desc?: pulumi.Input<string>;
-    /**
-     * Local category ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Enable/disable the local category. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

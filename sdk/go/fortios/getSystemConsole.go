@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios system console
 func LookupSystemConsole(ctx *pulumi.Context, args *LookupSystemConsoleArgs, opts ...pulumi.InvokeOption) (*LookupSystemConsoleResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemConsoleResult
@@ -23,23 +22,17 @@ func LookupSystemConsole(ctx *pulumi.Context, args *LookupSystemConsoleArgs, opt
 
 // A collection of arguments for invoking GetSystemConsole.
 type LookupSystemConsoleArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemConsole.
 type LookupSystemConsoleResult struct {
-	// Console baud rate.
-	Baudrate string `pulumi:"baudrate"`
-	// Enable/disable access for FortiExplorer.
+	Baudrate      string `pulumi:"baudrate"`
 	Fortiexplorer string `pulumi:"fortiexplorer"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Enable/disable serial console and FortiExplorer.
-	Login string `pulumi:"login"`
-	// Console mode.
-	Mode string `pulumi:"mode"`
-	// Console output mode.
+	Id        string  `pulumi:"id"`
+	Login     string  `pulumi:"login"`
+	Mode      string  `pulumi:"mode"`
 	Output    string  `pulumi:"output"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -59,7 +52,6 @@ func LookupSystemConsoleOutput(ctx *pulumi.Context, args LookupSystemConsoleOutp
 
 // A collection of arguments for invoking GetSystemConsole.
 type LookupSystemConsoleOutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -82,12 +74,10 @@ func (o LookupSystemConsoleResultOutput) ToLookupSystemConsoleResultOutputWithCo
 	return o
 }
 
-// Console baud rate.
 func (o LookupSystemConsoleResultOutput) Baudrate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemConsoleResult) string { return v.Baudrate }).(pulumi.StringOutput)
 }
 
-// Enable/disable access for FortiExplorer.
 func (o LookupSystemConsoleResultOutput) Fortiexplorer() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemConsoleResult) string { return v.Fortiexplorer }).(pulumi.StringOutput)
 }
@@ -97,17 +87,14 @@ func (o LookupSystemConsoleResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemConsoleResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Enable/disable serial console and FortiExplorer.
 func (o LookupSystemConsoleResultOutput) Login() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemConsoleResult) string { return v.Login }).(pulumi.StringOutput)
 }
 
-// Console mode.
 func (o LookupSystemConsoleResultOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemConsoleResult) string { return v.Mode }).(pulumi.StringOutput)
 }
 
-// Console output mode.
 func (o LookupSystemConsoleResultOutput) Output() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemConsoleResult) string { return v.Output }).(pulumi.StringOutput)
 }

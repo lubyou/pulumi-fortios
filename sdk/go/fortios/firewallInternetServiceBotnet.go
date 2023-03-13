@@ -10,31 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Show Internet Service botnet. Applies to FortiOS Version `>= 6.4.0`.
-//
-// ## Import
-//
-// Firewall InternetServiceBotnet can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceBotnet:FirewallInternetServiceBotnet labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceBotnet:FirewallInternetServiceBotnet labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallInternetServiceBotnet struct {
 	pulumi.CustomResourceState
 
-	// Internet Service Botnet ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Internet Service Botnet name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -68,20 +48,14 @@ func GetFirewallInternetServiceBotnet(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallInternetServiceBotnet resources.
 type firewallInternetServiceBotnetState struct {
-	// Internet Service Botnet ID.
-	Fosid *int `pulumi:"fosid"`
-	// Internet Service Botnet name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type FirewallInternetServiceBotnetState struct {
-	// Internet Service Botnet ID.
-	Fosid pulumi.IntPtrInput
-	// Internet Service Botnet name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -90,21 +64,15 @@ func (FirewallInternetServiceBotnetState) ElementType() reflect.Type {
 }
 
 type firewallInternetServiceBotnetArgs struct {
-	// Internet Service Botnet ID.
-	Fosid *int `pulumi:"fosid"`
-	// Internet Service Botnet name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallInternetServiceBotnet resource.
 type FirewallInternetServiceBotnetArgs struct {
-	// Internet Service Botnet ID.
-	Fosid pulumi.IntPtrInput
-	// Internet Service Botnet name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -134,7 +102,7 @@ func (i *FirewallInternetServiceBotnet) ToFirewallInternetServiceBotnetOutputWit
 // FirewallInternetServiceBotnetArrayInput is an input type that accepts FirewallInternetServiceBotnetArray and FirewallInternetServiceBotnetArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceBotnetArrayInput` via:
 //
-//          FirewallInternetServiceBotnetArray{ FirewallInternetServiceBotnetArgs{...} }
+//	FirewallInternetServiceBotnetArray{ FirewallInternetServiceBotnetArgs{...} }
 type FirewallInternetServiceBotnetArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i FirewallInternetServiceBotnetArray) ToFirewallInternetServiceBotnetArray
 // FirewallInternetServiceBotnetMapInput is an input type that accepts FirewallInternetServiceBotnetMap and FirewallInternetServiceBotnetMapOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceBotnetMapInput` via:
 //
-//          FirewallInternetServiceBotnetMap{ "key": FirewallInternetServiceBotnetArgs{...} }
+//	FirewallInternetServiceBotnetMap{ "key": FirewallInternetServiceBotnetArgs{...} }
 type FirewallInternetServiceBotnetMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o FirewallInternetServiceBotnetOutput) ToFirewallInternetServiceBotnetOutp
 
 func (o FirewallInternetServiceBotnetOutput) ToFirewallInternetServiceBotnetOutputWithContext(ctx context.Context) FirewallInternetServiceBotnetOutput {
 	return o
+}
+
+func (o FirewallInternetServiceBotnetOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceBotnet) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceBotnetOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceBotnet) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallInternetServiceBotnetOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceBotnet) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallInternetServiceBotnetArrayOutput struct{ *pulumi.OutputState }

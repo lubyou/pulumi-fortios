@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports Create/Delete system syslog server for FortiManager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerSystemSyslogServer("test1", {
- *     ip: "1.1.1.1",
- *     port: 99,
- * });
- * ```
- */
 export class FortimanagerSystemSyslogServer extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerSystemSyslogServer resource's state with the given name, ID, and optional extra
@@ -47,17 +32,8 @@ export class FortimanagerSystemSyslogServer extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerSystemSyslogServer.__pulumiType;
     }
 
-    /**
-     * Ipaddress of the syslog server.
-     */
     public readonly ip!: pulumi.Output<string | undefined>;
-    /**
-     * Syslog server name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Port of the syslog server.
-     */
     public readonly port!: pulumi.Output<number | undefined>;
 
     /**
@@ -91,17 +67,8 @@ export class FortimanagerSystemSyslogServer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerSystemSyslogServer resources.
  */
 export interface FortimanagerSystemSyslogServerState {
-    /**
-     * Ipaddress of the syslog server.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Syslog server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Port of the syslog server.
-     */
     port?: pulumi.Input<number>;
 }
 
@@ -109,16 +76,7 @@ export interface FortimanagerSystemSyslogServerState {
  * The set of arguments for constructing a FortimanagerSystemSyslogServer resource.
  */
 export interface FortimanagerSystemSyslogServerArgs {
-    /**
-     * Ipaddress of the syslog server.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Syslog server name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Port of the syslog server.
-     */
     port?: pulumi.Input<number>;
 }

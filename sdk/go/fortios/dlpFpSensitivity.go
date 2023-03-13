@@ -10,50 +10,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Create self-explanatory DLP sensitivity levels to be used when setting sensitivity under config fp-doc-source. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewDlpFpSensitivity(ctx, "trname", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Dlp FpSensitivity can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/dlpFpSensitivity:DlpFpSensitivity labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/dlpFpSensitivity:DlpFpSensitivity labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type DlpFpSensitivity struct {
 	pulumi.CustomResourceState
 
-	// DLP Sensitivity Levels.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -87,16 +47,12 @@ func GetDlpFpSensitivity(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DlpFpSensitivity resources.
 type dlpFpSensitivityState struct {
-	// DLP Sensitivity Levels.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type DlpFpSensitivityState struct {
-	// DLP Sensitivity Levels.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -105,17 +61,13 @@ func (DlpFpSensitivityState) ElementType() reflect.Type {
 }
 
 type dlpFpSensitivityArgs struct {
-	// DLP Sensitivity Levels.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a DlpFpSensitivity resource.
 type DlpFpSensitivityArgs struct {
-	// DLP Sensitivity Levels.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -145,7 +97,7 @@ func (i *DlpFpSensitivity) ToDlpFpSensitivityOutputWithContext(ctx context.Conte
 // DlpFpSensitivityArrayInput is an input type that accepts DlpFpSensitivityArray and DlpFpSensitivityArrayOutput values.
 // You can construct a concrete instance of `DlpFpSensitivityArrayInput` via:
 //
-//          DlpFpSensitivityArray{ DlpFpSensitivityArgs{...} }
+//	DlpFpSensitivityArray{ DlpFpSensitivityArgs{...} }
 type DlpFpSensitivityArrayInput interface {
 	pulumi.Input
 
@@ -170,7 +122,7 @@ func (i DlpFpSensitivityArray) ToDlpFpSensitivityArrayOutputWithContext(ctx cont
 // DlpFpSensitivityMapInput is an input type that accepts DlpFpSensitivityMap and DlpFpSensitivityMapOutput values.
 // You can construct a concrete instance of `DlpFpSensitivityMapInput` via:
 //
-//          DlpFpSensitivityMap{ "key": DlpFpSensitivityArgs{...} }
+//	DlpFpSensitivityMap{ "key": DlpFpSensitivityArgs{...} }
 type DlpFpSensitivityMapInput interface {
 	pulumi.Input
 
@@ -204,6 +156,14 @@ func (o DlpFpSensitivityOutput) ToDlpFpSensitivityOutput() DlpFpSensitivityOutpu
 
 func (o DlpFpSensitivityOutput) ToDlpFpSensitivityOutputWithContext(ctx context.Context) DlpFpSensitivityOutput {
 	return o
+}
+
+func (o DlpFpSensitivityOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFpSensitivity) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o DlpFpSensitivityOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DlpFpSensitivity) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type DlpFpSensitivityArrayOutput struct{ *pulumi.OutputState }

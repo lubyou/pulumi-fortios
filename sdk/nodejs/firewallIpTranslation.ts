@@ -4,40 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure firewall IP-translation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallIpTranslation("trname", {
- *     endip: "2.2.2.2",
- *     mapStartip: "0.0.0.0",
- *     startip: "1.1.1.1",
- *     transid: 1,
- *     type: "SCTP",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall IpTranslation can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallIpTranslation:FirewallIpTranslation labelname {{transid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallIpTranslation:FirewallIpTranslation labelname {{transid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallIpTranslation extends pulumi.CustomResource {
     /**
      * Get an existing FirewallIpTranslation resource's state with the given name, ID, and optional extra
@@ -66,29 +32,11 @@ export class FirewallIpTranslation extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallIpTranslation.__pulumiType;
     }
 
-    /**
-     * Final IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-     */
     public readonly endip!: pulumi.Output<string>;
-    /**
-     * Address to be used as the starting point for translation in the range (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-     */
     public readonly mapStartip!: pulumi.Output<string>;
-    /**
-     * First IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-     */
     public readonly startip!: pulumi.Output<string>;
-    /**
-     * IP translation ID.
-     */
     public readonly transid!: pulumi.Output<number>;
-    /**
-     * IP translation type (option: SCTP). Valid values: `SCTP`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -137,29 +85,11 @@ export class FirewallIpTranslation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallIpTranslation resources.
  */
 export interface FirewallIpTranslationState {
-    /**
-     * Final IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-     */
     endip?: pulumi.Input<string>;
-    /**
-     * Address to be used as the starting point for translation in the range (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-     */
     mapStartip?: pulumi.Input<string>;
-    /**
-     * First IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-     */
     startip?: pulumi.Input<string>;
-    /**
-     * IP translation ID.
-     */
     transid?: pulumi.Input<number>;
-    /**
-     * IP translation type (option: SCTP). Valid values: `SCTP`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -167,28 +97,10 @@ export interface FirewallIpTranslationState {
  * The set of arguments for constructing a FirewallIpTranslation resource.
  */
 export interface FirewallIpTranslationArgs {
-    /**
-     * Final IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-     */
     endip: pulumi.Input<string>;
-    /**
-     * Address to be used as the starting point for translation in the range (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-     */
     mapStartip: pulumi.Input<string>;
-    /**
-     * First IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-     */
     startip: pulumi.Input<string>;
-    /**
-     * IP translation ID.
-     */
     transid?: pulumi.Input<number>;
-    /**
-     * IP translation type (option: SCTP). Valid values: `SCTP`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

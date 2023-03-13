@@ -2,25 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Resource to sort firewall security policies by policyid or policy name, in ascending or descending order.
- *
- * ## Example Usage
- * ### Example1
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
- *
- * const test = new fortios.FirewallSecurityPolicySort("test", {
- *     sortby: "policyid",
- *     sortdirection: "descending",
- * });
- * export const policylistAfterApply = test.statePolicyLists;
- * ```
- */
 export class FirewallSecurityPolicySort extends pulumi.CustomResource {
     /**
      * Get an existing FirewallSecurityPolicySort resource's state with the given name, ID, and optional extra
@@ -49,21 +34,9 @@ export class FirewallSecurityPolicySort extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallSecurityPolicySort.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * The argument is optional, if it is set, when the value changes, the resource will be re-created. It is usually used when new policies are added, or old policies are deleted, or when the policy name is changed when `sortby` is set to `name`, see Example2.
-     */
     public readonly forceRecreate!: pulumi.Output<string | undefined>;
-    /**
-     * Sort security policies by the value, it currently supports "policyid" and "name".
-     */
     public readonly sortby!: pulumi.Output<string>;
-    /**
-     * Sort dirction, supports "ascending" and "descending".
-     */
     public readonly sortdirection!: pulumi.Output<string>;
     public /*out*/ readonly statePolicyLists!: pulumi.Output<outputs.FirewallSecurityPolicySortStatePolicyList[]>;
     public readonly status!: pulumi.Output<string | undefined>;
@@ -114,21 +87,9 @@ export class FirewallSecurityPolicySort extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallSecurityPolicySort resources.
  */
 export interface FirewallSecurityPolicySortState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * The argument is optional, if it is set, when the value changes, the resource will be re-created. It is usually used when new policies are added, or old policies are deleted, or when the policy name is changed when `sortby` is set to `name`, see Example2.
-     */
     forceRecreate?: pulumi.Input<string>;
-    /**
-     * Sort security policies by the value, it currently supports "policyid" and "name".
-     */
     sortby?: pulumi.Input<string>;
-    /**
-     * Sort dirction, supports "ascending" and "descending".
-     */
     sortdirection?: pulumi.Input<string>;
     statePolicyLists?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySortStatePolicyList>[]>;
     status?: pulumi.Input<string>;
@@ -139,21 +100,9 @@ export interface FirewallSecurityPolicySortState {
  * The set of arguments for constructing a FirewallSecurityPolicySort resource.
  */
 export interface FirewallSecurityPolicySortArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * The argument is optional, if it is set, when the value changes, the resource will be re-created. It is usually used when new policies are added, or old policies are deleted, or when the policy name is changed when `sortby` is set to `name`, see Example2.
-     */
     forceRecreate?: pulumi.Input<string>;
-    /**
-     * Sort security policies by the value, it currently supports "policyid" and "name".
-     */
     sortby: pulumi.Input<string>;
-    /**
-     * Sort dirction, supports "ascending" and "descending".
-     */
     sortdirection: pulumi.Input<string>;
     status?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

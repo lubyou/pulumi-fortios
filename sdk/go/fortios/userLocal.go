@@ -7,140 +7,41 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure local users.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"fmt"
-//
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trname3, err := fortios.NewUserLdap(ctx, "trname3", &fortios.UserLdapArgs{
-// 			AccountKeyFilter:      pulumi.String(fmt.Sprintf("%v%v%v", "(&(userPrincipalName=", "%", "s)(!(UserAccountControl:1.2.840.113556.1.4.803:=2)))")),
-// 			AccountKeyProcessing:  pulumi.String("same"),
-// 			Cnid:                  pulumi.String("cn"),
-// 			Dn:                    pulumi.String("EIWNCIEW"),
-// 			GroupMemberCheck:      pulumi.String("user-attr"),
-// 			GroupObjectFilter:     pulumi.String("(&(objectcategory=group)(member=*))"),
-// 			MemberAttr:            pulumi.String("memberOf"),
-// 			PasswordExpiryWarning: pulumi.String("disable"),
-// 			PasswordRenewal:       pulumi.String("disable"),
-// 			Port:                  pulumi.Int(389),
-// 			Secure:                pulumi.String("disable"),
-// 			Server:                pulumi.String("1.1.1.1"),
-// 			ServerIdentityCheck:   pulumi.String("disable"),
-// 			SourceIp:              pulumi.String("0.0.0.0"),
-// 			SslMinProtoVersion:    pulumi.String("default"),
-// 			Type:                  pulumi.String("simple"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewUserLocal(ctx, "trname", &fortios.UserLocalArgs{
-// 			AuthConcurrentOverride: pulumi.String("disable"),
-// 			AuthConcurrentValue:    pulumi.Int(0),
-// 			Authtimeout:            pulumi.Int(0),
-// 			LdapServer:             trname3.Name,
-// 			PasswdTime:             pulumi.String("0000-00-00 00:00:00"),
-// 			SmsServer:              pulumi.String("fortiguard"),
-// 			Status:                 pulumi.String("enable"),
-// 			TwoFactor:              pulumi.String("disable"),
-// 			Type:                   pulumi.String("ldap"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// User Local can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userLocal:UserLocal labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userLocal:UserLocal labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserLocal struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable overriding the policy-auth-concurrent under config system global. Valid values: `enable`, `disable`.
-	AuthConcurrentOverride pulumi.StringOutput `pulumi:"authConcurrentOverride"`
-	// Maximum number of concurrent logins permitted from the same user.
-	AuthConcurrentValue pulumi.IntOutput `pulumi:"authConcurrentValue"`
-	// Time in minutes before the authentication timeout for a user is reached.
-	Authtimeout pulumi.IntOutput `pulumi:"authtimeout"`
-	// Two-factor recipient's email address.
-	EmailTo pulumi.StringOutput `pulumi:"emailTo"`
-	// Two-factor recipient's FortiToken serial number.
-	Fortitoken pulumi.StringOutput `pulumi:"fortitoken"`
-	// User ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Name of LDAP server with which the user must authenticate.
-	LdapServer pulumi.StringOutput `pulumi:"ldapServer"`
-	// User name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// User's password.
-	Passwd pulumi.StringPtrOutput `pulumi:"passwd"`
-	// Password policy to apply to this user, as defined in config user password-policy.
-	PasswdPolicy pulumi.StringOutput `pulumi:"passwdPolicy"`
-	// Time of the last password update.
-	PasswdTime pulumi.StringOutput `pulumi:"passwdTime"`
-	// IKEv2 Postquantum Preshared Key Identity.
-	PpkIdentity pulumi.StringOutput `pulumi:"ppkIdentity"`
-	// IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
-	PpkSecret pulumi.StringPtrOutput `pulumi:"ppkSecret"`
-	// Name of RADIUS server with which the user must authenticate.
-	RadiusServer pulumi.StringOutput `pulumi:"radiusServer"`
-	// Two-factor recipient's SMS server.
-	SmsCustomServer pulumi.StringOutput `pulumi:"smsCustomServer"`
-	// Two-factor recipient's mobile phone number.
-	SmsPhone pulumi.StringOutput `pulumi:"smsPhone"`
-	// Send SMS through FortiGuard or other external server. Valid values: `fortiguard`, `custom`.
-	SmsServer pulumi.StringOutput `pulumi:"smsServer"`
-	// Enable/disable allowing the local user to authenticate with the FortiGate unit. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Name of TACACS+ server with which the user must authenticate.
-	TacacsServer pulumi.StringOutput `pulumi:"tacacsServer"`
-	// Enable/disable two-factor authentication.
-	TwoFactor pulumi.StringOutput `pulumi:"twoFactor"`
-	// Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
-	TwoFactorAuthentication pulumi.StringOutput `pulumi:"twoFactorAuthentication"`
-	// Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
-	TwoFactorNotification pulumi.StringOutput `pulumi:"twoFactorNotification"`
-	// Authentication method. Valid values: `password`, `radius`, `tacacs+`, `ldap`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `enable`, `disable`.
-	UsernameCaseInsensitivity pulumi.StringOutput `pulumi:"usernameCaseInsensitivity"`
-	// Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
-	UsernameCaseSensitivity pulumi.StringOutput `pulumi:"usernameCaseSensitivity"`
-	// Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
-	UsernameSensitivity pulumi.StringOutput `pulumi:"usernameSensitivity"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
-	Workstation pulumi.StringOutput `pulumi:"workstation"`
+	AuthConcurrentOverride    pulumi.StringOutput    `pulumi:"authConcurrentOverride"`
+	AuthConcurrentValue       pulumi.IntOutput       `pulumi:"authConcurrentValue"`
+	Authtimeout               pulumi.IntOutput       `pulumi:"authtimeout"`
+	EmailTo                   pulumi.StringOutput    `pulumi:"emailTo"`
+	Fortitoken                pulumi.StringOutput    `pulumi:"fortitoken"`
+	Fosid                     pulumi.IntOutput       `pulumi:"fosid"`
+	LdapServer                pulumi.StringOutput    `pulumi:"ldapServer"`
+	Name                      pulumi.StringOutput    `pulumi:"name"`
+	Passwd                    pulumi.StringPtrOutput `pulumi:"passwd"`
+	PasswdPolicy              pulumi.StringOutput    `pulumi:"passwdPolicy"`
+	PasswdTime                pulumi.StringOutput    `pulumi:"passwdTime"`
+	PpkIdentity               pulumi.StringOutput    `pulumi:"ppkIdentity"`
+	PpkSecret                 pulumi.StringPtrOutput `pulumi:"ppkSecret"`
+	RadiusServer              pulumi.StringOutput    `pulumi:"radiusServer"`
+	SmsCustomServer           pulumi.StringOutput    `pulumi:"smsCustomServer"`
+	SmsPhone                  pulumi.StringOutput    `pulumi:"smsPhone"`
+	SmsServer                 pulumi.StringOutput    `pulumi:"smsServer"`
+	Status                    pulumi.StringOutput    `pulumi:"status"`
+	TacacsServer              pulumi.StringOutput    `pulumi:"tacacsServer"`
+	TwoFactor                 pulumi.StringOutput    `pulumi:"twoFactor"`
+	TwoFactorAuthentication   pulumi.StringOutput    `pulumi:"twoFactorAuthentication"`
+	TwoFactorNotification     pulumi.StringOutput    `pulumi:"twoFactorNotification"`
+	Type                      pulumi.StringOutput    `pulumi:"type"`
+	UsernameCaseInsensitivity pulumi.StringOutput    `pulumi:"usernameCaseInsensitivity"`
+	UsernameCaseSensitivity   pulumi.StringOutput    `pulumi:"usernameCaseSensitivity"`
+	UsernameSensitivity       pulumi.StringOutput    `pulumi:"usernameSensitivity"`
+	Vdomparam                 pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Workstation               pulumi.StringOutput    `pulumi:"workstation"`
 }
 
 // NewUserLocal registers a new resource with the given unique name, arguments, and options.
@@ -156,6 +57,17 @@ func NewUserLocal(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	if args.Passwd != nil {
+		args.Passwd = pulumi.ToSecret(args.Passwd).(pulumi.StringPtrInput)
+	}
+	if args.PpkSecret != nil {
+		args.PpkSecret = pulumi.ToSecret(args.PpkSecret).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"passwd",
+		"ppkSecret",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource UserLocal
 	err := ctx.RegisterResource("fortios:index/userLocal:UserLocal", name, args, &resource, opts...)
@@ -179,121 +91,65 @@ func GetUserLocal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserLocal resources.
 type userLocalState struct {
-	// Enable/disable overriding the policy-auth-concurrent under config system global. Valid values: `enable`, `disable`.
-	AuthConcurrentOverride *string `pulumi:"authConcurrentOverride"`
-	// Maximum number of concurrent logins permitted from the same user.
-	AuthConcurrentValue *int `pulumi:"authConcurrentValue"`
-	// Time in minutes before the authentication timeout for a user is reached.
-	Authtimeout *int `pulumi:"authtimeout"`
-	// Two-factor recipient's email address.
-	EmailTo *string `pulumi:"emailTo"`
-	// Two-factor recipient's FortiToken serial number.
-	Fortitoken *string `pulumi:"fortitoken"`
-	// User ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name of LDAP server with which the user must authenticate.
-	LdapServer *string `pulumi:"ldapServer"`
-	// User name.
-	Name *string `pulumi:"name"`
-	// User's password.
-	Passwd *string `pulumi:"passwd"`
-	// Password policy to apply to this user, as defined in config user password-policy.
-	PasswdPolicy *string `pulumi:"passwdPolicy"`
-	// Time of the last password update.
-	PasswdTime *string `pulumi:"passwdTime"`
-	// IKEv2 Postquantum Preshared Key Identity.
-	PpkIdentity *string `pulumi:"ppkIdentity"`
-	// IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
-	PpkSecret *string `pulumi:"ppkSecret"`
-	// Name of RADIUS server with which the user must authenticate.
-	RadiusServer *string `pulumi:"radiusServer"`
-	// Two-factor recipient's SMS server.
-	SmsCustomServer *string `pulumi:"smsCustomServer"`
-	// Two-factor recipient's mobile phone number.
-	SmsPhone *string `pulumi:"smsPhone"`
-	// Send SMS through FortiGuard or other external server. Valid values: `fortiguard`, `custom`.
-	SmsServer *string `pulumi:"smsServer"`
-	// Enable/disable allowing the local user to authenticate with the FortiGate unit. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Name of TACACS+ server with which the user must authenticate.
-	TacacsServer *string `pulumi:"tacacsServer"`
-	// Enable/disable two-factor authentication.
-	TwoFactor *string `pulumi:"twoFactor"`
-	// Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
-	TwoFactorAuthentication *string `pulumi:"twoFactorAuthentication"`
-	// Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
-	TwoFactorNotification *string `pulumi:"twoFactorNotification"`
-	// Authentication method. Valid values: `password`, `radius`, `tacacs+`, `ldap`.
-	Type *string `pulumi:"type"`
-	// Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `enable`, `disable`.
+	AuthConcurrentOverride    *string `pulumi:"authConcurrentOverride"`
+	AuthConcurrentValue       *int    `pulumi:"authConcurrentValue"`
+	Authtimeout               *int    `pulumi:"authtimeout"`
+	EmailTo                   *string `pulumi:"emailTo"`
+	Fortitoken                *string `pulumi:"fortitoken"`
+	Fosid                     *int    `pulumi:"fosid"`
+	LdapServer                *string `pulumi:"ldapServer"`
+	Name                      *string `pulumi:"name"`
+	Passwd                    *string `pulumi:"passwd"`
+	PasswdPolicy              *string `pulumi:"passwdPolicy"`
+	PasswdTime                *string `pulumi:"passwdTime"`
+	PpkIdentity               *string `pulumi:"ppkIdentity"`
+	PpkSecret                 *string `pulumi:"ppkSecret"`
+	RadiusServer              *string `pulumi:"radiusServer"`
+	SmsCustomServer           *string `pulumi:"smsCustomServer"`
+	SmsPhone                  *string `pulumi:"smsPhone"`
+	SmsServer                 *string `pulumi:"smsServer"`
+	Status                    *string `pulumi:"status"`
+	TacacsServer              *string `pulumi:"tacacsServer"`
+	TwoFactor                 *string `pulumi:"twoFactor"`
+	TwoFactorAuthentication   *string `pulumi:"twoFactorAuthentication"`
+	TwoFactorNotification     *string `pulumi:"twoFactorNotification"`
+	Type                      *string `pulumi:"type"`
 	UsernameCaseInsensitivity *string `pulumi:"usernameCaseInsensitivity"`
-	// Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
-	UsernameCaseSensitivity *string `pulumi:"usernameCaseSensitivity"`
-	// Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
-	UsernameSensitivity *string `pulumi:"usernameSensitivity"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
-	Workstation *string `pulumi:"workstation"`
+	UsernameCaseSensitivity   *string `pulumi:"usernameCaseSensitivity"`
+	UsernameSensitivity       *string `pulumi:"usernameSensitivity"`
+	Vdomparam                 *string `pulumi:"vdomparam"`
+	Workstation               *string `pulumi:"workstation"`
 }
 
 type UserLocalState struct {
-	// Enable/disable overriding the policy-auth-concurrent under config system global. Valid values: `enable`, `disable`.
-	AuthConcurrentOverride pulumi.StringPtrInput
-	// Maximum number of concurrent logins permitted from the same user.
-	AuthConcurrentValue pulumi.IntPtrInput
-	// Time in minutes before the authentication timeout for a user is reached.
-	Authtimeout pulumi.IntPtrInput
-	// Two-factor recipient's email address.
-	EmailTo pulumi.StringPtrInput
-	// Two-factor recipient's FortiToken serial number.
-	Fortitoken pulumi.StringPtrInput
-	// User ID.
-	Fosid pulumi.IntPtrInput
-	// Name of LDAP server with which the user must authenticate.
-	LdapServer pulumi.StringPtrInput
-	// User name.
-	Name pulumi.StringPtrInput
-	// User's password.
-	Passwd pulumi.StringPtrInput
-	// Password policy to apply to this user, as defined in config user password-policy.
-	PasswdPolicy pulumi.StringPtrInput
-	// Time of the last password update.
-	PasswdTime pulumi.StringPtrInput
-	// IKEv2 Postquantum Preshared Key Identity.
-	PpkIdentity pulumi.StringPtrInput
-	// IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
-	PpkSecret pulumi.StringPtrInput
-	// Name of RADIUS server with which the user must authenticate.
-	RadiusServer pulumi.StringPtrInput
-	// Two-factor recipient's SMS server.
-	SmsCustomServer pulumi.StringPtrInput
-	// Two-factor recipient's mobile phone number.
-	SmsPhone pulumi.StringPtrInput
-	// Send SMS through FortiGuard or other external server. Valid values: `fortiguard`, `custom`.
-	SmsServer pulumi.StringPtrInput
-	// Enable/disable allowing the local user to authenticate with the FortiGate unit. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Name of TACACS+ server with which the user must authenticate.
-	TacacsServer pulumi.StringPtrInput
-	// Enable/disable two-factor authentication.
-	TwoFactor pulumi.StringPtrInput
-	// Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
-	TwoFactorAuthentication pulumi.StringPtrInput
-	// Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
-	TwoFactorNotification pulumi.StringPtrInput
-	// Authentication method. Valid values: `password`, `radius`, `tacacs+`, `ldap`.
-	Type pulumi.StringPtrInput
-	// Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `enable`, `disable`.
+	AuthConcurrentOverride    pulumi.StringPtrInput
+	AuthConcurrentValue       pulumi.IntPtrInput
+	Authtimeout               pulumi.IntPtrInput
+	EmailTo                   pulumi.StringPtrInput
+	Fortitoken                pulumi.StringPtrInput
+	Fosid                     pulumi.IntPtrInput
+	LdapServer                pulumi.StringPtrInput
+	Name                      pulumi.StringPtrInput
+	Passwd                    pulumi.StringPtrInput
+	PasswdPolicy              pulumi.StringPtrInput
+	PasswdTime                pulumi.StringPtrInput
+	PpkIdentity               pulumi.StringPtrInput
+	PpkSecret                 pulumi.StringPtrInput
+	RadiusServer              pulumi.StringPtrInput
+	SmsCustomServer           pulumi.StringPtrInput
+	SmsPhone                  pulumi.StringPtrInput
+	SmsServer                 pulumi.StringPtrInput
+	Status                    pulumi.StringPtrInput
+	TacacsServer              pulumi.StringPtrInput
+	TwoFactor                 pulumi.StringPtrInput
+	TwoFactorAuthentication   pulumi.StringPtrInput
+	TwoFactorNotification     pulumi.StringPtrInput
+	Type                      pulumi.StringPtrInput
 	UsernameCaseInsensitivity pulumi.StringPtrInput
-	// Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
-	UsernameCaseSensitivity pulumi.StringPtrInput
-	// Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
-	UsernameSensitivity pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
-	Workstation pulumi.StringPtrInput
+	UsernameCaseSensitivity   pulumi.StringPtrInput
+	UsernameSensitivity       pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
+	Workstation               pulumi.StringPtrInput
 }
 
 func (UserLocalState) ElementType() reflect.Type {
@@ -301,122 +157,66 @@ func (UserLocalState) ElementType() reflect.Type {
 }
 
 type userLocalArgs struct {
-	// Enable/disable overriding the policy-auth-concurrent under config system global. Valid values: `enable`, `disable`.
-	AuthConcurrentOverride *string `pulumi:"authConcurrentOverride"`
-	// Maximum number of concurrent logins permitted from the same user.
-	AuthConcurrentValue *int `pulumi:"authConcurrentValue"`
-	// Time in minutes before the authentication timeout for a user is reached.
-	Authtimeout *int `pulumi:"authtimeout"`
-	// Two-factor recipient's email address.
-	EmailTo *string `pulumi:"emailTo"`
-	// Two-factor recipient's FortiToken serial number.
-	Fortitoken *string `pulumi:"fortitoken"`
-	// User ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name of LDAP server with which the user must authenticate.
-	LdapServer *string `pulumi:"ldapServer"`
-	// User name.
-	Name *string `pulumi:"name"`
-	// User's password.
-	Passwd *string `pulumi:"passwd"`
-	// Password policy to apply to this user, as defined in config user password-policy.
-	PasswdPolicy *string `pulumi:"passwdPolicy"`
-	// Time of the last password update.
-	PasswdTime *string `pulumi:"passwdTime"`
-	// IKEv2 Postquantum Preshared Key Identity.
-	PpkIdentity *string `pulumi:"ppkIdentity"`
-	// IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
-	PpkSecret *string `pulumi:"ppkSecret"`
-	// Name of RADIUS server with which the user must authenticate.
-	RadiusServer *string `pulumi:"radiusServer"`
-	// Two-factor recipient's SMS server.
-	SmsCustomServer *string `pulumi:"smsCustomServer"`
-	// Two-factor recipient's mobile phone number.
-	SmsPhone *string `pulumi:"smsPhone"`
-	// Send SMS through FortiGuard or other external server. Valid values: `fortiguard`, `custom`.
-	SmsServer *string `pulumi:"smsServer"`
-	// Enable/disable allowing the local user to authenticate with the FortiGate unit. Valid values: `enable`, `disable`.
-	Status string `pulumi:"status"`
-	// Name of TACACS+ server with which the user must authenticate.
-	TacacsServer *string `pulumi:"tacacsServer"`
-	// Enable/disable two-factor authentication.
-	TwoFactor *string `pulumi:"twoFactor"`
-	// Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
-	TwoFactorAuthentication *string `pulumi:"twoFactorAuthentication"`
-	// Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
-	TwoFactorNotification *string `pulumi:"twoFactorNotification"`
-	// Authentication method. Valid values: `password`, `radius`, `tacacs+`, `ldap`.
-	Type string `pulumi:"type"`
-	// Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `enable`, `disable`.
+	AuthConcurrentOverride    *string `pulumi:"authConcurrentOverride"`
+	AuthConcurrentValue       *int    `pulumi:"authConcurrentValue"`
+	Authtimeout               *int    `pulumi:"authtimeout"`
+	EmailTo                   *string `pulumi:"emailTo"`
+	Fortitoken                *string `pulumi:"fortitoken"`
+	Fosid                     *int    `pulumi:"fosid"`
+	LdapServer                *string `pulumi:"ldapServer"`
+	Name                      *string `pulumi:"name"`
+	Passwd                    *string `pulumi:"passwd"`
+	PasswdPolicy              *string `pulumi:"passwdPolicy"`
+	PasswdTime                *string `pulumi:"passwdTime"`
+	PpkIdentity               *string `pulumi:"ppkIdentity"`
+	PpkSecret                 *string `pulumi:"ppkSecret"`
+	RadiusServer              *string `pulumi:"radiusServer"`
+	SmsCustomServer           *string `pulumi:"smsCustomServer"`
+	SmsPhone                  *string `pulumi:"smsPhone"`
+	SmsServer                 *string `pulumi:"smsServer"`
+	Status                    string  `pulumi:"status"`
+	TacacsServer              *string `pulumi:"tacacsServer"`
+	TwoFactor                 *string `pulumi:"twoFactor"`
+	TwoFactorAuthentication   *string `pulumi:"twoFactorAuthentication"`
+	TwoFactorNotification     *string `pulumi:"twoFactorNotification"`
+	Type                      string  `pulumi:"type"`
 	UsernameCaseInsensitivity *string `pulumi:"usernameCaseInsensitivity"`
-	// Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
-	UsernameCaseSensitivity *string `pulumi:"usernameCaseSensitivity"`
-	// Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
-	UsernameSensitivity *string `pulumi:"usernameSensitivity"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
-	Workstation *string `pulumi:"workstation"`
+	UsernameCaseSensitivity   *string `pulumi:"usernameCaseSensitivity"`
+	UsernameSensitivity       *string `pulumi:"usernameSensitivity"`
+	Vdomparam                 *string `pulumi:"vdomparam"`
+	Workstation               *string `pulumi:"workstation"`
 }
 
 // The set of arguments for constructing a UserLocal resource.
 type UserLocalArgs struct {
-	// Enable/disable overriding the policy-auth-concurrent under config system global. Valid values: `enable`, `disable`.
-	AuthConcurrentOverride pulumi.StringPtrInput
-	// Maximum number of concurrent logins permitted from the same user.
-	AuthConcurrentValue pulumi.IntPtrInput
-	// Time in minutes before the authentication timeout for a user is reached.
-	Authtimeout pulumi.IntPtrInput
-	// Two-factor recipient's email address.
-	EmailTo pulumi.StringPtrInput
-	// Two-factor recipient's FortiToken serial number.
-	Fortitoken pulumi.StringPtrInput
-	// User ID.
-	Fosid pulumi.IntPtrInput
-	// Name of LDAP server with which the user must authenticate.
-	LdapServer pulumi.StringPtrInput
-	// User name.
-	Name pulumi.StringPtrInput
-	// User's password.
-	Passwd pulumi.StringPtrInput
-	// Password policy to apply to this user, as defined in config user password-policy.
-	PasswdPolicy pulumi.StringPtrInput
-	// Time of the last password update.
-	PasswdTime pulumi.StringPtrInput
-	// IKEv2 Postquantum Preshared Key Identity.
-	PpkIdentity pulumi.StringPtrInput
-	// IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
-	PpkSecret pulumi.StringPtrInput
-	// Name of RADIUS server with which the user must authenticate.
-	RadiusServer pulumi.StringPtrInput
-	// Two-factor recipient's SMS server.
-	SmsCustomServer pulumi.StringPtrInput
-	// Two-factor recipient's mobile phone number.
-	SmsPhone pulumi.StringPtrInput
-	// Send SMS through FortiGuard or other external server. Valid values: `fortiguard`, `custom`.
-	SmsServer pulumi.StringPtrInput
-	// Enable/disable allowing the local user to authenticate with the FortiGate unit. Valid values: `enable`, `disable`.
-	Status pulumi.StringInput
-	// Name of TACACS+ server with which the user must authenticate.
-	TacacsServer pulumi.StringPtrInput
-	// Enable/disable two-factor authentication.
-	TwoFactor pulumi.StringPtrInput
-	// Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
-	TwoFactorAuthentication pulumi.StringPtrInput
-	// Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
-	TwoFactorNotification pulumi.StringPtrInput
-	// Authentication method. Valid values: `password`, `radius`, `tacacs+`, `ldap`.
-	Type pulumi.StringInput
-	// Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `enable`, `disable`.
+	AuthConcurrentOverride    pulumi.StringPtrInput
+	AuthConcurrentValue       pulumi.IntPtrInput
+	Authtimeout               pulumi.IntPtrInput
+	EmailTo                   pulumi.StringPtrInput
+	Fortitoken                pulumi.StringPtrInput
+	Fosid                     pulumi.IntPtrInput
+	LdapServer                pulumi.StringPtrInput
+	Name                      pulumi.StringPtrInput
+	Passwd                    pulumi.StringPtrInput
+	PasswdPolicy              pulumi.StringPtrInput
+	PasswdTime                pulumi.StringPtrInput
+	PpkIdentity               pulumi.StringPtrInput
+	PpkSecret                 pulumi.StringPtrInput
+	RadiusServer              pulumi.StringPtrInput
+	SmsCustomServer           pulumi.StringPtrInput
+	SmsPhone                  pulumi.StringPtrInput
+	SmsServer                 pulumi.StringPtrInput
+	Status                    pulumi.StringInput
+	TacacsServer              pulumi.StringPtrInput
+	TwoFactor                 pulumi.StringPtrInput
+	TwoFactorAuthentication   pulumi.StringPtrInput
+	TwoFactorNotification     pulumi.StringPtrInput
+	Type                      pulumi.StringInput
 	UsernameCaseInsensitivity pulumi.StringPtrInput
-	// Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
-	UsernameCaseSensitivity pulumi.StringPtrInput
-	// Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
-	UsernameSensitivity pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
-	Workstation pulumi.StringPtrInput
+	UsernameCaseSensitivity   pulumi.StringPtrInput
+	UsernameSensitivity       pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
+	Workstation               pulumi.StringPtrInput
 }
 
 func (UserLocalArgs) ElementType() reflect.Type {
@@ -445,7 +245,7 @@ func (i *UserLocal) ToUserLocalOutputWithContext(ctx context.Context) UserLocalO
 // UserLocalArrayInput is an input type that accepts UserLocalArray and UserLocalArrayOutput values.
 // You can construct a concrete instance of `UserLocalArrayInput` via:
 //
-//          UserLocalArray{ UserLocalArgs{...} }
+//	UserLocalArray{ UserLocalArgs{...} }
 type UserLocalArrayInput interface {
 	pulumi.Input
 
@@ -470,7 +270,7 @@ func (i UserLocalArray) ToUserLocalArrayOutputWithContext(ctx context.Context) U
 // UserLocalMapInput is an input type that accepts UserLocalMap and UserLocalMapOutput values.
 // You can construct a concrete instance of `UserLocalMapInput` via:
 //
-//          UserLocalMap{ "key": UserLocalArgs{...} }
+//	UserLocalMap{ "key": UserLocalArgs{...} }
 type UserLocalMapInput interface {
 	pulumi.Input
 
@@ -504,6 +304,118 @@ func (o UserLocalOutput) ToUserLocalOutput() UserLocalOutput {
 
 func (o UserLocalOutput) ToUserLocalOutputWithContext(ctx context.Context) UserLocalOutput {
 	return o
+}
+
+func (o UserLocalOutput) AuthConcurrentOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.AuthConcurrentOverride }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) AuthConcurrentValue() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.IntOutput { return v.AuthConcurrentValue }).(pulumi.IntOutput)
+}
+
+func (o UserLocalOutput) Authtimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.IntOutput { return v.Authtimeout }).(pulumi.IntOutput)
+}
+
+func (o UserLocalOutput) EmailTo() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.EmailTo }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) Fortitoken() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.Fortitoken }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o UserLocalOutput) LdapServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.LdapServer }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) Passwd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringPtrOutput { return v.Passwd }).(pulumi.StringPtrOutput)
+}
+
+func (o UserLocalOutput) PasswdPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.PasswdPolicy }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) PasswdTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.PasswdTime }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) PpkIdentity() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.PpkIdentity }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) PpkSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringPtrOutput { return v.PpkSecret }).(pulumi.StringPtrOutput)
+}
+
+func (o UserLocalOutput) RadiusServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.RadiusServer }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) SmsCustomServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.SmsCustomServer }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) SmsPhone() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.SmsPhone }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) SmsServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.SmsServer }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) TacacsServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.TacacsServer }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) TwoFactor() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.TwoFactor }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) TwoFactorAuthentication() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.TwoFactorAuthentication }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) TwoFactorNotification() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.TwoFactorNotification }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) UsernameCaseInsensitivity() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.UsernameCaseInsensitivity }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) UsernameCaseSensitivity() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.UsernameCaseSensitivity }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) UsernameSensitivity() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.UsernameSensitivity }).(pulumi.StringOutput)
+}
+
+func (o UserLocalOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o UserLocalOutput) Workstation() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLocal) pulumi.StringOutput { return v.Workstation }).(pulumi.StringOutput)
 }
 
 type UserLocalArrayOutput struct{ *pulumi.OutputState }

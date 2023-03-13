@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure venue URL. Applies to FortiOS Version `>= 7.0.2`.
-//
-// ## Import
-//
-// WirelessControllerHotspot20 AnqpVenueUrl can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20AnqpVenueUrl:WirelessControllerHotspot20AnqpVenueUrl labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20AnqpVenueUrl:WirelessControllerHotspot20AnqpVenueUrl labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerHotspot20AnqpVenueUrl struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Name of venue url.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// URL list. The structure of `valueList` block is documented below.
-	ValueLists WirelessControllerHotspot20AnqpVenueUrlValueListArrayOutput `pulumi:"valueLists"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                                      `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                                         `pulumi:"name"`
+	ValueLists          WirelessControllerHotspot20AnqpVenueUrlValueListArrayOutput `pulumi:"valueLists"`
+	Vdomparam           pulumi.StringPtrOutput                                      `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerHotspot20AnqpVenueUrl registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetWirelessControllerHotspot20AnqpVenueUrl(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerHotspot20AnqpVenueUrl resources.
 type wirelessControllerHotspot20AnqpVenueUrlState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name of venue url.
-	Name *string `pulumi:"name"`
-	// URL list. The structure of `valueList` block is documented below.
-	ValueLists []WirelessControllerHotspot20AnqpVenueUrlValueList `pulumi:"valueLists"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                            `pulumi:"dynamicSortSubtable"`
+	Name                *string                                            `pulumi:"name"`
+	ValueLists          []WirelessControllerHotspot20AnqpVenueUrlValueList `pulumi:"valueLists"`
+	Vdomparam           *string                                            `pulumi:"vdomparam"`
 }
 
 type WirelessControllerHotspot20AnqpVenueUrlState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Name of venue url.
-	Name pulumi.StringPtrInput
-	// URL list. The structure of `valueList` block is documented below.
-	ValueLists WirelessControllerHotspot20AnqpVenueUrlValueListArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	ValueLists          WirelessControllerHotspot20AnqpVenueUrlValueListArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20AnqpVenueUrlState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (WirelessControllerHotspot20AnqpVenueUrlState) ElementType() reflect.Type {
 }
 
 type wirelessControllerHotspot20AnqpVenueUrlArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name of venue url.
-	Name *string `pulumi:"name"`
-	// URL list. The structure of `valueList` block is documented below.
-	ValueLists []WirelessControllerHotspot20AnqpVenueUrlValueList `pulumi:"valueLists"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                            `pulumi:"dynamicSortSubtable"`
+	Name                *string                                            `pulumi:"name"`
+	ValueLists          []WirelessControllerHotspot20AnqpVenueUrlValueList `pulumi:"valueLists"`
+	Vdomparam           *string                                            `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerHotspot20AnqpVenueUrl resource.
 type WirelessControllerHotspot20AnqpVenueUrlArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Name of venue url.
-	Name pulumi.StringPtrInput
-	// URL list. The structure of `valueList` block is documented below.
-	ValueLists WirelessControllerHotspot20AnqpVenueUrlValueListArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	ValueLists          WirelessControllerHotspot20AnqpVenueUrlValueListArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20AnqpVenueUrlArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *WirelessControllerHotspot20AnqpVenueUrl) ToWirelessControllerHotspot20A
 // WirelessControllerHotspot20AnqpVenueUrlArrayInput is an input type that accepts WirelessControllerHotspot20AnqpVenueUrlArray and WirelessControllerHotspot20AnqpVenueUrlArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpVenueUrlArrayInput` via:
 //
-//          WirelessControllerHotspot20AnqpVenueUrlArray{ WirelessControllerHotspot20AnqpVenueUrlArgs{...} }
+//	WirelessControllerHotspot20AnqpVenueUrlArray{ WirelessControllerHotspot20AnqpVenueUrlArgs{...} }
 type WirelessControllerHotspot20AnqpVenueUrlArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i WirelessControllerHotspot20AnqpVenueUrlArray) ToWirelessControllerHotspo
 // WirelessControllerHotspot20AnqpVenueUrlMapInput is an input type that accepts WirelessControllerHotspot20AnqpVenueUrlMap and WirelessControllerHotspot20AnqpVenueUrlMapOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpVenueUrlMapInput` via:
 //
-//          WirelessControllerHotspot20AnqpVenueUrlMap{ "key": WirelessControllerHotspot20AnqpVenueUrlArgs{...} }
+//	WirelessControllerHotspot20AnqpVenueUrlMap{ "key": WirelessControllerHotspot20AnqpVenueUrlArgs{...} }
 type WirelessControllerHotspot20AnqpVenueUrlMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,24 @@ func (o WirelessControllerHotspot20AnqpVenueUrlOutput) ToWirelessControllerHotsp
 
 func (o WirelessControllerHotspot20AnqpVenueUrlOutput) ToWirelessControllerHotspot20AnqpVenueUrlOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpVenueUrlOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpVenueUrlOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpVenueUrl) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20AnqpVenueUrlOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpVenueUrl) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20AnqpVenueUrlOutput) ValueLists() WirelessControllerHotspot20AnqpVenueUrlValueListArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpVenueUrl) WirelessControllerHotspot20AnqpVenueUrlValueListArrayOutput {
+		return v.ValueLists
+	}).(WirelessControllerHotspot20AnqpVenueUrlValueListArrayOutput)
+}
+
+func (o WirelessControllerHotspot20AnqpVenueUrlOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpVenueUrl) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerHotspot20AnqpVenueUrlArrayOutput struct{ *pulumi.OutputState }

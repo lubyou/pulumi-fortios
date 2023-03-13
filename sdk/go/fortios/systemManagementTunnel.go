@@ -10,70 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Management tunnel configuration.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemManagementTunnel(ctx, "trname", &fortios.SystemManagementTunnelArgs{
-// 			AllowCollectStatistics: pulumi.String("enable"),
-// 			AllowConfigRestore:     pulumi.String("enable"),
-// 			AllowPushConfiguration: pulumi.String("enable"),
-// 			AllowPushFirmware:      pulumi.String("enable"),
-// 			AuthorizedManagerOnly:  pulumi.String("enable"),
-// 			Status:                 pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System ManagementTunnel can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemManagementTunnel:SystemManagementTunnel labelname SystemManagementTunnel
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemManagementTunnel:SystemManagementTunnel labelname SystemManagementTunnel
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemManagementTunnel struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable collection of run time statistics. Valid values: `enable`, `disable`.
-	AllowCollectStatistics pulumi.StringOutput `pulumi:"allowCollectStatistics"`
-	// Enable/disable allow config restore. Valid values: `enable`, `disable`.
-	AllowConfigRestore pulumi.StringOutput `pulumi:"allowConfigRestore"`
-	// Enable/disable push configuration. Valid values: `enable`, `disable`.
-	AllowPushConfiguration pulumi.StringOutput `pulumi:"allowPushConfiguration"`
-	// Enable/disable push firmware. Valid values: `enable`, `disable`.
-	AllowPushFirmware pulumi.StringOutput `pulumi:"allowPushFirmware"`
-	// Enable/disable restriction of authorized manager only. Valid values: `enable`, `disable`.
-	AuthorizedManagerOnly pulumi.StringOutput `pulumi:"authorizedManagerOnly"`
-	// Serial number.
-	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
-	// Enable/disable FGFM tunnel. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AllowCollectStatistics pulumi.StringOutput    `pulumi:"allowCollectStatistics"`
+	AllowConfigRestore     pulumi.StringOutput    `pulumi:"allowConfigRestore"`
+	AllowPushConfiguration pulumi.StringOutput    `pulumi:"allowPushConfiguration"`
+	AllowPushFirmware      pulumi.StringOutput    `pulumi:"allowPushFirmware"`
+	AuthorizedManagerOnly  pulumi.StringOutput    `pulumi:"authorizedManagerOnly"`
+	SerialNumber           pulumi.StringOutput    `pulumi:"serialNumber"`
+	Status                 pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam              pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemManagementTunnel registers a new resource with the given unique name, arguments, and options.
@@ -106,41 +53,25 @@ func GetSystemManagementTunnel(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemManagementTunnel resources.
 type systemManagementTunnelState struct {
-	// Enable/disable collection of run time statistics. Valid values: `enable`, `disable`.
 	AllowCollectStatistics *string `pulumi:"allowCollectStatistics"`
-	// Enable/disable allow config restore. Valid values: `enable`, `disable`.
-	AllowConfigRestore *string `pulumi:"allowConfigRestore"`
-	// Enable/disable push configuration. Valid values: `enable`, `disable`.
+	AllowConfigRestore     *string `pulumi:"allowConfigRestore"`
 	AllowPushConfiguration *string `pulumi:"allowPushConfiguration"`
-	// Enable/disable push firmware. Valid values: `enable`, `disable`.
-	AllowPushFirmware *string `pulumi:"allowPushFirmware"`
-	// Enable/disable restriction of authorized manager only. Valid values: `enable`, `disable`.
-	AuthorizedManagerOnly *string `pulumi:"authorizedManagerOnly"`
-	// Serial number.
-	SerialNumber *string `pulumi:"serialNumber"`
-	// Enable/disable FGFM tunnel. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AllowPushFirmware      *string `pulumi:"allowPushFirmware"`
+	AuthorizedManagerOnly  *string `pulumi:"authorizedManagerOnly"`
+	SerialNumber           *string `pulumi:"serialNumber"`
+	Status                 *string `pulumi:"status"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 type SystemManagementTunnelState struct {
-	// Enable/disable collection of run time statistics. Valid values: `enable`, `disable`.
 	AllowCollectStatistics pulumi.StringPtrInput
-	// Enable/disable allow config restore. Valid values: `enable`, `disable`.
-	AllowConfigRestore pulumi.StringPtrInput
-	// Enable/disable push configuration. Valid values: `enable`, `disable`.
+	AllowConfigRestore     pulumi.StringPtrInput
 	AllowPushConfiguration pulumi.StringPtrInput
-	// Enable/disable push firmware. Valid values: `enable`, `disable`.
-	AllowPushFirmware pulumi.StringPtrInput
-	// Enable/disable restriction of authorized manager only. Valid values: `enable`, `disable`.
-	AuthorizedManagerOnly pulumi.StringPtrInput
-	// Serial number.
-	SerialNumber pulumi.StringPtrInput
-	// Enable/disable FGFM tunnel. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	AllowPushFirmware      pulumi.StringPtrInput
+	AuthorizedManagerOnly  pulumi.StringPtrInput
+	SerialNumber           pulumi.StringPtrInput
+	Status                 pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SystemManagementTunnelState) ElementType() reflect.Type {
@@ -148,42 +79,26 @@ func (SystemManagementTunnelState) ElementType() reflect.Type {
 }
 
 type systemManagementTunnelArgs struct {
-	// Enable/disable collection of run time statistics. Valid values: `enable`, `disable`.
 	AllowCollectStatistics *string `pulumi:"allowCollectStatistics"`
-	// Enable/disable allow config restore. Valid values: `enable`, `disable`.
-	AllowConfigRestore *string `pulumi:"allowConfigRestore"`
-	// Enable/disable push configuration. Valid values: `enable`, `disable`.
+	AllowConfigRestore     *string `pulumi:"allowConfigRestore"`
 	AllowPushConfiguration *string `pulumi:"allowPushConfiguration"`
-	// Enable/disable push firmware. Valid values: `enable`, `disable`.
-	AllowPushFirmware *string `pulumi:"allowPushFirmware"`
-	// Enable/disable restriction of authorized manager only. Valid values: `enable`, `disable`.
-	AuthorizedManagerOnly *string `pulumi:"authorizedManagerOnly"`
-	// Serial number.
-	SerialNumber *string `pulumi:"serialNumber"`
-	// Enable/disable FGFM tunnel. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AllowPushFirmware      *string `pulumi:"allowPushFirmware"`
+	AuthorizedManagerOnly  *string `pulumi:"authorizedManagerOnly"`
+	SerialNumber           *string `pulumi:"serialNumber"`
+	Status                 *string `pulumi:"status"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemManagementTunnel resource.
 type SystemManagementTunnelArgs struct {
-	// Enable/disable collection of run time statistics. Valid values: `enable`, `disable`.
 	AllowCollectStatistics pulumi.StringPtrInput
-	// Enable/disable allow config restore. Valid values: `enable`, `disable`.
-	AllowConfigRestore pulumi.StringPtrInput
-	// Enable/disable push configuration. Valid values: `enable`, `disable`.
+	AllowConfigRestore     pulumi.StringPtrInput
 	AllowPushConfiguration pulumi.StringPtrInput
-	// Enable/disable push firmware. Valid values: `enable`, `disable`.
-	AllowPushFirmware pulumi.StringPtrInput
-	// Enable/disable restriction of authorized manager only. Valid values: `enable`, `disable`.
-	AuthorizedManagerOnly pulumi.StringPtrInput
-	// Serial number.
-	SerialNumber pulumi.StringPtrInput
-	// Enable/disable FGFM tunnel. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	AllowPushFirmware      pulumi.StringPtrInput
+	AuthorizedManagerOnly  pulumi.StringPtrInput
+	SerialNumber           pulumi.StringPtrInput
+	Status                 pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SystemManagementTunnelArgs) ElementType() reflect.Type {
@@ -212,7 +127,7 @@ func (i *SystemManagementTunnel) ToSystemManagementTunnelOutputWithContext(ctx c
 // SystemManagementTunnelArrayInput is an input type that accepts SystemManagementTunnelArray and SystemManagementTunnelArrayOutput values.
 // You can construct a concrete instance of `SystemManagementTunnelArrayInput` via:
 //
-//          SystemManagementTunnelArray{ SystemManagementTunnelArgs{...} }
+//	SystemManagementTunnelArray{ SystemManagementTunnelArgs{...} }
 type SystemManagementTunnelArrayInput interface {
 	pulumi.Input
 
@@ -237,7 +152,7 @@ func (i SystemManagementTunnelArray) ToSystemManagementTunnelArrayOutputWithCont
 // SystemManagementTunnelMapInput is an input type that accepts SystemManagementTunnelMap and SystemManagementTunnelMapOutput values.
 // You can construct a concrete instance of `SystemManagementTunnelMapInput` via:
 //
-//          SystemManagementTunnelMap{ "key": SystemManagementTunnelArgs{...} }
+//	SystemManagementTunnelMap{ "key": SystemManagementTunnelArgs{...} }
 type SystemManagementTunnelMapInput interface {
 	pulumi.Input
 
@@ -271,6 +186,38 @@ func (o SystemManagementTunnelOutput) ToSystemManagementTunnelOutput() SystemMan
 
 func (o SystemManagementTunnelOutput) ToSystemManagementTunnelOutputWithContext(ctx context.Context) SystemManagementTunnelOutput {
 	return o
+}
+
+func (o SystemManagementTunnelOutput) AllowCollectStatistics() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemManagementTunnel) pulumi.StringOutput { return v.AllowCollectStatistics }).(pulumi.StringOutput)
+}
+
+func (o SystemManagementTunnelOutput) AllowConfigRestore() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemManagementTunnel) pulumi.StringOutput { return v.AllowConfigRestore }).(pulumi.StringOutput)
+}
+
+func (o SystemManagementTunnelOutput) AllowPushConfiguration() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemManagementTunnel) pulumi.StringOutput { return v.AllowPushConfiguration }).(pulumi.StringOutput)
+}
+
+func (o SystemManagementTunnelOutput) AllowPushFirmware() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemManagementTunnel) pulumi.StringOutput { return v.AllowPushFirmware }).(pulumi.StringOutput)
+}
+
+func (o SystemManagementTunnelOutput) AuthorizedManagerOnly() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemManagementTunnel) pulumi.StringOutput { return v.AuthorizedManagerOnly }).(pulumi.StringOutput)
+}
+
+func (o SystemManagementTunnelOutput) SerialNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemManagementTunnel) pulumi.StringOutput { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
+func (o SystemManagementTunnelOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemManagementTunnel) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemManagementTunnelOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemManagementTunnel) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemManagementTunnelArrayOutput struct{ *pulumi.OutputState }

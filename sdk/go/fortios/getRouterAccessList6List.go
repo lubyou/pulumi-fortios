@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `RouterAccessList6`.
 func GetRouterAccessList6List(ctx *pulumi.Context, args *GetRouterAccessList6ListArgs, opts ...pulumi.InvokeOption) (*GetRouterAccessList6ListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetRouterAccessList6ListResult
@@ -23,8 +22,7 @@ func GetRouterAccessList6List(ctx *pulumi.Context, args *GetRouterAccessList6Lis
 
 // A collection of arguments for invoking GetRouterAccessList6List.
 type GetRouterAccessList6ListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetRouterAccessList6ListArgs struct {
 type GetRouterAccessList6ListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `RouterAccessList6`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetRouterAccessList6ListOutput(ctx *pulumi.Context, args GetRouterAccessLis
 
 // A collection of arguments for invoking GetRouterAccessList6List.
 type GetRouterAccessList6ListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetRouterAccessList6ListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRouterAccessList6ListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `RouterAccessList6`.
 func (o GetRouterAccessList6ListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRouterAccessList6ListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

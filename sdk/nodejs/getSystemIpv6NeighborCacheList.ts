@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.SystemIpv6NeighborCache`.
- */
 export function getSystemIpv6NeighborCacheList(args?: GetSystemIpv6NeighborCacheListArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemIpv6NeighborCacheListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemIpv6NeighborCacheList:GetSystemIpv6NeighborCacheList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getSystemIpv6NeighborCacheList(args?: GetSystemIpv6NeighborCache
  */
 export interface GetSystemIpv6NeighborCacheListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -36,9 +27,6 @@ export interface GetSystemIpv6NeighborCacheListArgs {
  */
 export interface GetSystemIpv6NeighborCacheListResult {
     readonly filter?: string;
-    /**
-     * A list of the `fortios.SystemIpv6NeighborCache`.
-     */
     readonly fosidlists: number[];
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -46,9 +34,8 @@ export interface GetSystemIpv6NeighborCacheListResult {
     readonly id: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemIpv6NeighborCacheListOutput(args?: GetSystemIpv6NeighborCacheListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemIpv6NeighborCacheListResult> {
-    return pulumi.output(args).apply(a => getSystemIpv6NeighborCacheList(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemIpv6NeighborCacheList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getSystemIpv6NeighborCacheListOutput(args?: GetSystemIpv6Neighbo
  */
 export interface GetSystemIpv6NeighborCacheListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

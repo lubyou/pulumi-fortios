@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemSitTunnel`.
 func GetSystemSitTunnelList(ctx *pulumi.Context, args *GetSystemSitTunnelListArgs, opts ...pulumi.InvokeOption) (*GetSystemSitTunnelListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemSitTunnelListResult
@@ -23,8 +22,7 @@ func GetSystemSitTunnelList(ctx *pulumi.Context, args *GetSystemSitTunnelListArg
 
 // A collection of arguments for invoking GetSystemSitTunnelList.
 type GetSystemSitTunnelListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetSystemSitTunnelListArgs struct {
 type GetSystemSitTunnelListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `SystemSitTunnel`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetSystemSitTunnelListOutput(ctx *pulumi.Context, args GetSystemSitTunnelLi
 
 // A collection of arguments for invoking GetSystemSitTunnelList.
 type GetSystemSitTunnelListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetSystemSitTunnelListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSystemSitTunnelListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `SystemSitTunnel`.
 func (o GetSystemSitTunnelListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSystemSitTunnelListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

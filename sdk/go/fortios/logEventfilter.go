@@ -10,95 +10,27 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure log event filters.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogEventfilter(ctx, "trname", &fortios.LogEventfilterArgs{
-// 			ComplianceCheck:  pulumi.String("enable"),
-// 			Endpoint:         pulumi.String("enable"),
-// 			Event:            pulumi.String("enable"),
-// 			Ha:               pulumi.String("enable"),
-// 			Router:           pulumi.String("enable"),
-// 			SecurityRating:   pulumi.String("enable"),
-// 			System:           pulumi.String("enable"),
-// 			User:             pulumi.String("enable"),
-// 			Vpn:              pulumi.String("enable"),
-// 			WanOpt:           pulumi.String("enable"),
-// 			WirelessActivity: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Log Eventfilter can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logEventfilter:LogEventfilter labelname LogEventfilter
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logEventfilter:LogEventfilter labelname LogEventfilter
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogEventfilter struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable CIFS logging. Valid values: `enable`, `disable`.
-	Cifs pulumi.StringOutput `pulumi:"cifs"`
-	// Enable/disable PCI DSS compliance check logging. Valid values: `enable`, `disable`.
-	ComplianceCheck pulumi.StringOutput `pulumi:"complianceCheck"`
-	// Enable/disable SDN connector logging. Valid values: `enable`, `disable`.
-	Connector pulumi.StringOutput `pulumi:"connector"`
-	// Enable/disable endpoint event logging. Valid values: `enable`, `disable`.
-	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
-	// Enable/disable event logging. Valid values: `enable`, `disable`.
-	Event pulumi.StringOutput `pulumi:"event"`
-	// Enable/disable FortiExtender logging. Valid values: `enable`, `disable`.
-	Fortiextender pulumi.StringOutput `pulumi:"fortiextender"`
-	// Enable/disable ha event logging. Valid values: `enable`, `disable`.
-	Ha pulumi.StringOutput `pulumi:"ha"`
-	// Enable/disable REST API logging. Valid values: `enable`, `disable`.
-	RestApi pulumi.StringOutput `pulumi:"restApi"`
-	// Enable/disable router event logging. Valid values: `enable`, `disable`.
-	Router pulumi.StringOutput `pulumi:"router"`
-	// Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
-	Sdwan pulumi.StringOutput `pulumi:"sdwan"`
-	// Enable/disable Security Rating result logging. Valid values: `enable`, `disable`.
-	SecurityRating pulumi.StringOutput `pulumi:"securityRating"`
-	// Enable/disable Switch-Controller logging. Valid values: `enable`, `disable`.
-	SwitchController pulumi.StringOutput `pulumi:"switchController"`
-	// Enable/disable system event logging. Valid values: `enable`, `disable`.
-	System pulumi.StringOutput `pulumi:"system"`
-	// Enable/disable user authentication event logging. Valid values: `enable`, `disable`.
-	User pulumi.StringOutput `pulumi:"user"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable VPN event logging. Valid values: `enable`, `disable`.
-	Vpn pulumi.StringOutput `pulumi:"vpn"`
-	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-	WanOpt pulumi.StringOutput `pulumi:"wanOpt"`
-	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
-	WirelessActivity pulumi.StringOutput `pulumi:"wirelessActivity"`
+	Cifs             pulumi.StringOutput    `pulumi:"cifs"`
+	ComplianceCheck  pulumi.StringOutput    `pulumi:"complianceCheck"`
+	Connector        pulumi.StringOutput    `pulumi:"connector"`
+	Endpoint         pulumi.StringOutput    `pulumi:"endpoint"`
+	Event            pulumi.StringOutput    `pulumi:"event"`
+	Fortiextender    pulumi.StringOutput    `pulumi:"fortiextender"`
+	Ha               pulumi.StringOutput    `pulumi:"ha"`
+	RestApi          pulumi.StringOutput    `pulumi:"restApi"`
+	Router           pulumi.StringOutput    `pulumi:"router"`
+	Sdwan            pulumi.StringOutput    `pulumi:"sdwan"`
+	SecurityRating   pulumi.StringOutput    `pulumi:"securityRating"`
+	SwitchController pulumi.StringOutput    `pulumi:"switchController"`
+	System           pulumi.StringOutput    `pulumi:"system"`
+	User             pulumi.StringOutput    `pulumi:"user"`
+	Vdomparam        pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vpn              pulumi.StringOutput    `pulumi:"vpn"`
+	WanOpt           pulumi.StringOutput    `pulumi:"wanOpt"`
+	WirelessActivity pulumi.StringOutput    `pulumi:"wirelessActivity"`
 }
 
 // NewLogEventfilter registers a new resource with the given unique name, arguments, and options.
@@ -131,80 +63,44 @@ func GetLogEventfilter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogEventfilter resources.
 type logEventfilterState struct {
-	// Enable/disable CIFS logging. Valid values: `enable`, `disable`.
-	Cifs *string `pulumi:"cifs"`
-	// Enable/disable PCI DSS compliance check logging. Valid values: `enable`, `disable`.
-	ComplianceCheck *string `pulumi:"complianceCheck"`
-	// Enable/disable SDN connector logging. Valid values: `enable`, `disable`.
-	Connector *string `pulumi:"connector"`
-	// Enable/disable endpoint event logging. Valid values: `enable`, `disable`.
-	Endpoint *string `pulumi:"endpoint"`
-	// Enable/disable event logging. Valid values: `enable`, `disable`.
-	Event *string `pulumi:"event"`
-	// Enable/disable FortiExtender logging. Valid values: `enable`, `disable`.
-	Fortiextender *string `pulumi:"fortiextender"`
-	// Enable/disable ha event logging. Valid values: `enable`, `disable`.
-	Ha *string `pulumi:"ha"`
-	// Enable/disable REST API logging. Valid values: `enable`, `disable`.
-	RestApi *string `pulumi:"restApi"`
-	// Enable/disable router event logging. Valid values: `enable`, `disable`.
-	Router *string `pulumi:"router"`
-	// Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
-	Sdwan *string `pulumi:"sdwan"`
-	// Enable/disable Security Rating result logging. Valid values: `enable`, `disable`.
-	SecurityRating *string `pulumi:"securityRating"`
-	// Enable/disable Switch-Controller logging. Valid values: `enable`, `disable`.
+	Cifs             *string `pulumi:"cifs"`
+	ComplianceCheck  *string `pulumi:"complianceCheck"`
+	Connector        *string `pulumi:"connector"`
+	Endpoint         *string `pulumi:"endpoint"`
+	Event            *string `pulumi:"event"`
+	Fortiextender    *string `pulumi:"fortiextender"`
+	Ha               *string `pulumi:"ha"`
+	RestApi          *string `pulumi:"restApi"`
+	Router           *string `pulumi:"router"`
+	Sdwan            *string `pulumi:"sdwan"`
+	SecurityRating   *string `pulumi:"securityRating"`
 	SwitchController *string `pulumi:"switchController"`
-	// Enable/disable system event logging. Valid values: `enable`, `disable`.
-	System *string `pulumi:"system"`
-	// Enable/disable user authentication event logging. Valid values: `enable`, `disable`.
-	User *string `pulumi:"user"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable VPN event logging. Valid values: `enable`, `disable`.
-	Vpn *string `pulumi:"vpn"`
-	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-	WanOpt *string `pulumi:"wanOpt"`
-	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
+	System           *string `pulumi:"system"`
+	User             *string `pulumi:"user"`
+	Vdomparam        *string `pulumi:"vdomparam"`
+	Vpn              *string `pulumi:"vpn"`
+	WanOpt           *string `pulumi:"wanOpt"`
 	WirelessActivity *string `pulumi:"wirelessActivity"`
 }
 
 type LogEventfilterState struct {
-	// Enable/disable CIFS logging. Valid values: `enable`, `disable`.
-	Cifs pulumi.StringPtrInput
-	// Enable/disable PCI DSS compliance check logging. Valid values: `enable`, `disable`.
-	ComplianceCheck pulumi.StringPtrInput
-	// Enable/disable SDN connector logging. Valid values: `enable`, `disable`.
-	Connector pulumi.StringPtrInput
-	// Enable/disable endpoint event logging. Valid values: `enable`, `disable`.
-	Endpoint pulumi.StringPtrInput
-	// Enable/disable event logging. Valid values: `enable`, `disable`.
-	Event pulumi.StringPtrInput
-	// Enable/disable FortiExtender logging. Valid values: `enable`, `disable`.
-	Fortiextender pulumi.StringPtrInput
-	// Enable/disable ha event logging. Valid values: `enable`, `disable`.
-	Ha pulumi.StringPtrInput
-	// Enable/disable REST API logging. Valid values: `enable`, `disable`.
-	RestApi pulumi.StringPtrInput
-	// Enable/disable router event logging. Valid values: `enable`, `disable`.
-	Router pulumi.StringPtrInput
-	// Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
-	Sdwan pulumi.StringPtrInput
-	// Enable/disable Security Rating result logging. Valid values: `enable`, `disable`.
-	SecurityRating pulumi.StringPtrInput
-	// Enable/disable Switch-Controller logging. Valid values: `enable`, `disable`.
+	Cifs             pulumi.StringPtrInput
+	ComplianceCheck  pulumi.StringPtrInput
+	Connector        pulumi.StringPtrInput
+	Endpoint         pulumi.StringPtrInput
+	Event            pulumi.StringPtrInput
+	Fortiextender    pulumi.StringPtrInput
+	Ha               pulumi.StringPtrInput
+	RestApi          pulumi.StringPtrInput
+	Router           pulumi.StringPtrInput
+	Sdwan            pulumi.StringPtrInput
+	SecurityRating   pulumi.StringPtrInput
 	SwitchController pulumi.StringPtrInput
-	// Enable/disable system event logging. Valid values: `enable`, `disable`.
-	System pulumi.StringPtrInput
-	// Enable/disable user authentication event logging. Valid values: `enable`, `disable`.
-	User pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable VPN event logging. Valid values: `enable`, `disable`.
-	Vpn pulumi.StringPtrInput
-	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-	WanOpt pulumi.StringPtrInput
-	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
+	System           pulumi.StringPtrInput
+	User             pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
+	Vpn              pulumi.StringPtrInput
+	WanOpt           pulumi.StringPtrInput
 	WirelessActivity pulumi.StringPtrInput
 }
 
@@ -213,81 +109,45 @@ func (LogEventfilterState) ElementType() reflect.Type {
 }
 
 type logEventfilterArgs struct {
-	// Enable/disable CIFS logging. Valid values: `enable`, `disable`.
-	Cifs *string `pulumi:"cifs"`
-	// Enable/disable PCI DSS compliance check logging. Valid values: `enable`, `disable`.
-	ComplianceCheck *string `pulumi:"complianceCheck"`
-	// Enable/disable SDN connector logging. Valid values: `enable`, `disable`.
-	Connector *string `pulumi:"connector"`
-	// Enable/disable endpoint event logging. Valid values: `enable`, `disable`.
-	Endpoint *string `pulumi:"endpoint"`
-	// Enable/disable event logging. Valid values: `enable`, `disable`.
-	Event *string `pulumi:"event"`
-	// Enable/disable FortiExtender logging. Valid values: `enable`, `disable`.
-	Fortiextender *string `pulumi:"fortiextender"`
-	// Enable/disable ha event logging. Valid values: `enable`, `disable`.
-	Ha *string `pulumi:"ha"`
-	// Enable/disable REST API logging. Valid values: `enable`, `disable`.
-	RestApi *string `pulumi:"restApi"`
-	// Enable/disable router event logging. Valid values: `enable`, `disable`.
-	Router *string `pulumi:"router"`
-	// Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
-	Sdwan *string `pulumi:"sdwan"`
-	// Enable/disable Security Rating result logging. Valid values: `enable`, `disable`.
-	SecurityRating *string `pulumi:"securityRating"`
-	// Enable/disable Switch-Controller logging. Valid values: `enable`, `disable`.
+	Cifs             *string `pulumi:"cifs"`
+	ComplianceCheck  *string `pulumi:"complianceCheck"`
+	Connector        *string `pulumi:"connector"`
+	Endpoint         *string `pulumi:"endpoint"`
+	Event            *string `pulumi:"event"`
+	Fortiextender    *string `pulumi:"fortiextender"`
+	Ha               *string `pulumi:"ha"`
+	RestApi          *string `pulumi:"restApi"`
+	Router           *string `pulumi:"router"`
+	Sdwan            *string `pulumi:"sdwan"`
+	SecurityRating   *string `pulumi:"securityRating"`
 	SwitchController *string `pulumi:"switchController"`
-	// Enable/disable system event logging. Valid values: `enable`, `disable`.
-	System *string `pulumi:"system"`
-	// Enable/disable user authentication event logging. Valid values: `enable`, `disable`.
-	User *string `pulumi:"user"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable VPN event logging. Valid values: `enable`, `disable`.
-	Vpn *string `pulumi:"vpn"`
-	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-	WanOpt *string `pulumi:"wanOpt"`
-	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
+	System           *string `pulumi:"system"`
+	User             *string `pulumi:"user"`
+	Vdomparam        *string `pulumi:"vdomparam"`
+	Vpn              *string `pulumi:"vpn"`
+	WanOpt           *string `pulumi:"wanOpt"`
 	WirelessActivity *string `pulumi:"wirelessActivity"`
 }
 
 // The set of arguments for constructing a LogEventfilter resource.
 type LogEventfilterArgs struct {
-	// Enable/disable CIFS logging. Valid values: `enable`, `disable`.
-	Cifs pulumi.StringPtrInput
-	// Enable/disable PCI DSS compliance check logging. Valid values: `enable`, `disable`.
-	ComplianceCheck pulumi.StringPtrInput
-	// Enable/disable SDN connector logging. Valid values: `enable`, `disable`.
-	Connector pulumi.StringPtrInput
-	// Enable/disable endpoint event logging. Valid values: `enable`, `disable`.
-	Endpoint pulumi.StringPtrInput
-	// Enable/disable event logging. Valid values: `enable`, `disable`.
-	Event pulumi.StringPtrInput
-	// Enable/disable FortiExtender logging. Valid values: `enable`, `disable`.
-	Fortiextender pulumi.StringPtrInput
-	// Enable/disable ha event logging. Valid values: `enable`, `disable`.
-	Ha pulumi.StringPtrInput
-	// Enable/disable REST API logging. Valid values: `enable`, `disable`.
-	RestApi pulumi.StringPtrInput
-	// Enable/disable router event logging. Valid values: `enable`, `disable`.
-	Router pulumi.StringPtrInput
-	// Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
-	Sdwan pulumi.StringPtrInput
-	// Enable/disable Security Rating result logging. Valid values: `enable`, `disable`.
-	SecurityRating pulumi.StringPtrInput
-	// Enable/disable Switch-Controller logging. Valid values: `enable`, `disable`.
+	Cifs             pulumi.StringPtrInput
+	ComplianceCheck  pulumi.StringPtrInput
+	Connector        pulumi.StringPtrInput
+	Endpoint         pulumi.StringPtrInput
+	Event            pulumi.StringPtrInput
+	Fortiextender    pulumi.StringPtrInput
+	Ha               pulumi.StringPtrInput
+	RestApi          pulumi.StringPtrInput
+	Router           pulumi.StringPtrInput
+	Sdwan            pulumi.StringPtrInput
+	SecurityRating   pulumi.StringPtrInput
 	SwitchController pulumi.StringPtrInput
-	// Enable/disable system event logging. Valid values: `enable`, `disable`.
-	System pulumi.StringPtrInput
-	// Enable/disable user authentication event logging. Valid values: `enable`, `disable`.
-	User pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable VPN event logging. Valid values: `enable`, `disable`.
-	Vpn pulumi.StringPtrInput
-	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-	WanOpt pulumi.StringPtrInput
-	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
+	System           pulumi.StringPtrInput
+	User             pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
+	Vpn              pulumi.StringPtrInput
+	WanOpt           pulumi.StringPtrInput
 	WirelessActivity pulumi.StringPtrInput
 }
 
@@ -317,7 +177,7 @@ func (i *LogEventfilter) ToLogEventfilterOutputWithContext(ctx context.Context) 
 // LogEventfilterArrayInput is an input type that accepts LogEventfilterArray and LogEventfilterArrayOutput values.
 // You can construct a concrete instance of `LogEventfilterArrayInput` via:
 //
-//          LogEventfilterArray{ LogEventfilterArgs{...} }
+//	LogEventfilterArray{ LogEventfilterArgs{...} }
 type LogEventfilterArrayInput interface {
 	pulumi.Input
 
@@ -342,7 +202,7 @@ func (i LogEventfilterArray) ToLogEventfilterArrayOutputWithContext(ctx context.
 // LogEventfilterMapInput is an input type that accepts LogEventfilterMap and LogEventfilterMapOutput values.
 // You can construct a concrete instance of `LogEventfilterMapInput` via:
 //
-//          LogEventfilterMap{ "key": LogEventfilterArgs{...} }
+//	LogEventfilterMap{ "key": LogEventfilterArgs{...} }
 type LogEventfilterMapInput interface {
 	pulumi.Input
 
@@ -376,6 +236,78 @@ func (o LogEventfilterOutput) ToLogEventfilterOutput() LogEventfilterOutput {
 
 func (o LogEventfilterOutput) ToLogEventfilterOutputWithContext(ctx context.Context) LogEventfilterOutput {
 	return o
+}
+
+func (o LogEventfilterOutput) Cifs() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.Cifs }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) ComplianceCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.ComplianceCheck }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) Connector() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.Connector }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) Event() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.Event }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) Fortiextender() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.Fortiextender }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) Ha() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.Ha }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) RestApi() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.RestApi }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) Router() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.Router }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) Sdwan() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.Sdwan }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) SecurityRating() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.SecurityRating }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) SwitchController() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.SwitchController }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) System() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.System }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.User }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o LogEventfilterOutput) Vpn() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.Vpn }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) WanOpt() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.WanOpt }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) WirelessActivity() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.WirelessActivity }).(pulumi.StringOutput)
 }
 
 type LogEventfilterArrayOutput struct{ *pulumi.OutputState }

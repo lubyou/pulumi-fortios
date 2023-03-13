@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPS URL filter DNS servers.
- *
- * ## Import
- *
- * System IpsUrlfilterDns can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemIpsUrlfilterDns:SystemIpsUrlfilterDns labelname {{address}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemIpsUrlfilterDns:SystemIpsUrlfilterDns labelname {{address}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemIpsUrlfilterDns extends pulumi.CustomResource {
     /**
      * Get an existing SystemIpsUrlfilterDns resource's state with the given name, ID, and optional extra
@@ -51,21 +32,9 @@ export class SystemIpsUrlfilterDns extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemIpsUrlfilterDns.__pulumiType;
     }
 
-    /**
-     * DNS server IP address.
-     */
     public readonly address!: pulumi.Output<string>;
-    /**
-     * Enable/disable this server for IPv6 queries. Valid values: `enable`, `disable`.
-     */
     public readonly ipv6Capability!: pulumi.Output<string>;
-    /**
-     * Enable/disable using this DNS server for IPS URL filter DNS queries. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -101,21 +70,9 @@ export class SystemIpsUrlfilterDns extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemIpsUrlfilterDns resources.
  */
 export interface SystemIpsUrlfilterDnsState {
-    /**
-     * DNS server IP address.
-     */
     address?: pulumi.Input<string>;
-    /**
-     * Enable/disable this server for IPv6 queries. Valid values: `enable`, `disable`.
-     */
     ipv6Capability?: pulumi.Input<string>;
-    /**
-     * Enable/disable using this DNS server for IPS URL filter DNS queries. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -123,20 +80,8 @@ export interface SystemIpsUrlfilterDnsState {
  * The set of arguments for constructing a SystemIpsUrlfilterDns resource.
  */
 export interface SystemIpsUrlfilterDnsArgs {
-    /**
-     * DNS server IP address.
-     */
     address?: pulumi.Input<string>;
-    /**
-     * Enable/disable this server for IPv6 queries. Valid values: `enable`, `disable`.
-     */
     ipv6Capability?: pulumi.Input<string>;
-    /**
-     * Enable/disable using this DNS server for IPS URL filter DNS queries. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

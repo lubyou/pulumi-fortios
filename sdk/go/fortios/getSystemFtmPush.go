@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios system ftmpush
 func LookupSystemFtmPush(ctx *pulumi.Context, args *LookupSystemFtmPushArgs, opts ...pulumi.InvokeOption) (*LookupSystemFtmPushResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemFtmPushResult
@@ -23,25 +22,19 @@ func LookupSystemFtmPush(ctx *pulumi.Context, args *LookupSystemFtmPushArgs, opt
 
 // A collection of arguments for invoking GetSystemFtmPush.
 type LookupSystemFtmPushArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemFtmPush.
 type LookupSystemFtmPushResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// IPv4 address or domain name of FortiToken Mobile push services server.
-	Server string `pulumi:"server"`
-	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
-	ServerCert string `pulumi:"serverCert"`
-	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
-	ServerIp string `pulumi:"serverIp"`
-	// Port to communicate with FortiToken Mobile push services server (1 - 65535, default = 4433).
-	ServerPort int `pulumi:"serverPort"`
-	// Enable/disable the use of FortiToken Mobile push services.
-	Status    string  `pulumi:"status"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id         string  `pulumi:"id"`
+	Server     string  `pulumi:"server"`
+	ServerCert string  `pulumi:"serverCert"`
+	ServerIp   string  `pulumi:"serverIp"`
+	ServerPort int     `pulumi:"serverPort"`
+	Status     string  `pulumi:"status"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 func LookupSystemFtmPushOutput(ctx *pulumi.Context, args LookupSystemFtmPushOutputArgs, opts ...pulumi.InvokeOption) LookupSystemFtmPushResultOutput {
@@ -59,7 +52,6 @@ func LookupSystemFtmPushOutput(ctx *pulumi.Context, args LookupSystemFtmPushOutp
 
 // A collection of arguments for invoking GetSystemFtmPush.
 type LookupSystemFtmPushOutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -87,27 +79,22 @@ func (o LookupSystemFtmPushResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFtmPushResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// IPv4 address or domain name of FortiToken Mobile push services server.
 func (o LookupSystemFtmPushResultOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFtmPushResult) string { return v.Server }).(pulumi.StringOutput)
 }
 
-// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
 func (o LookupSystemFtmPushResultOutput) ServerCert() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFtmPushResult) string { return v.ServerCert }).(pulumi.StringOutput)
 }
 
-// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
 func (o LookupSystemFtmPushResultOutput) ServerIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFtmPushResult) string { return v.ServerIp }).(pulumi.StringOutput)
 }
 
-// Port to communicate with FortiToken Mobile push services server (1 - 65535, default = 4433).
 func (o LookupSystemFtmPushResultOutput) ServerPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemFtmPushResult) int { return v.ServerPort }).(pulumi.IntOutput)
 }
 
-// Enable/disable the use of FortiToken Mobile push services.
 func (o LookupSystemFtmPushResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFtmPushResult) string { return v.Status }).(pulumi.StringOutput)
 }

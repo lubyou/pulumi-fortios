@@ -2,17 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios systemsnmp user
- */
 export function getSystemSnmpUser(args: GetSystemSnmpUserArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemSnmpUserResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemSnmpUser:GetSystemSnmpUser", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -23,13 +19,7 @@ export function getSystemSnmpUser(args: GetSystemSnmpUserArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking GetSystemSnmpUser.
  */
 export interface GetSystemSnmpUserArgs {
-    /**
-     * Specify the name of the desired systemsnmp user.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,99 +27,40 @@ export interface GetSystemSnmpUserArgs {
  * A collection of values returned by GetSystemSnmpUser.
  */
 export interface GetSystemSnmpUserResult {
-    /**
-     * Authentication protocol.
-     */
     readonly authProto: string;
-    /**
-     * Password for authentication protocol.
-     */
     readonly authPwd: string;
-    /**
-     * SNMP notifications (traps) to send.
-     */
     readonly events: string;
-    /**
-     * Enable/disable direct management of HA cluster members.
-     */
     readonly haDirect: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * SNMP user name.
-     */
+    readonly mibView: string;
     readonly name: string;
-    /**
-     * SNMP managers to send notifications (traps) to.
-     */
     readonly notifyHosts: string;
-    /**
-     * IPv6 SNMP managers to send notifications (traps) to.
-     */
     readonly notifyHosts6: string;
-    /**
-     * Privacy (encryption) protocol.
-     */
     readonly privProto: string;
-    /**
-     * Password for privacy (encryption) protocol.
-     */
     readonly privPwd: string;
-    /**
-     * Enable/disable SNMP queries for this user.
-     */
     readonly queries: string;
-    /**
-     * SNMPv3 query port (default = 161).
-     */
     readonly queryPort: number;
-    /**
-     * Security level for message authentication and encryption.
-     */
     readonly securityLevel: string;
-    /**
-     * Source IP for SNMP trap.
-     */
     readonly sourceIp: string;
-    /**
-     * Source IPv6 for SNMP trap.
-     */
     readonly sourceIpv6: string;
-    /**
-     * Enable/disable this SNMP user.
-     */
     readonly status: string;
-    /**
-     * SNMPv3 local trap port (default = 162).
-     */
     readonly trapLport: number;
-    /**
-     * SNMPv3 trap remote port (default = 162).
-     */
     readonly trapRport: number;
-    /**
-     * Enable/disable traps for this SNMP user.
-     */
     readonly trapStatus: string;
     readonly vdomparam?: string;
+    readonly vdoms: outputs.GetSystemSnmpUserVdom[];
 }
-
 export function getSystemSnmpUserOutput(args: GetSystemSnmpUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemSnmpUserResult> {
-    return pulumi.output(args).apply(a => getSystemSnmpUser(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemSnmpUser(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemSnmpUser.
  */
 export interface GetSystemSnmpUserOutputArgs {
-    /**
-     * Specify the name of the desired systemsnmp user.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,34 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure ACME client. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// System Acme can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAcme:SystemAcme labelname SystemAcme
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAcme:SystemAcme labelname SystemAcme
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemAcme struct {
 	pulumi.CustomResourceState
 
-	// ACME accounts list. The structure of `accounts` block is documented below.
-	Accounts SystemAcmeAccountArrayOutput `pulumi:"accounts"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Interface(s) on which the ACME client will listen for challenges. The structure of `interface` block is documented below.
-	Interfaces SystemAcmeInterfaceArrayOutput `pulumi:"interfaces"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Accounts            SystemAcmeAccountArrayOutput   `pulumi:"accounts"`
+	DynamicSortSubtable pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
+	Interfaces          SystemAcmeInterfaceArrayOutput `pulumi:"interfaces"`
+	SourceIp            pulumi.StringOutput            `pulumi:"sourceIp"`
+	SourceIp6           pulumi.StringOutput            `pulumi:"sourceIp6"`
+	Vdomparam           pulumi.StringPtrOutput         `pulumi:"vdomparam"`
 }
 
 // NewSystemAcme registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +51,21 @@ func GetSystemAcme(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAcme resources.
 type systemAcmeState struct {
-	// ACME accounts list. The structure of `accounts` block is documented below.
-	Accounts []SystemAcmeAccount `pulumi:"accounts"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Interface(s) on which the ACME client will listen for challenges. The structure of `interface` block is documented below.
-	Interfaces []SystemAcmeInterface `pulumi:"interfaces"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Accounts            []SystemAcmeAccount   `pulumi:"accounts"`
+	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	Interfaces          []SystemAcmeInterface `pulumi:"interfaces"`
+	SourceIp            *string               `pulumi:"sourceIp"`
+	SourceIp6           *string               `pulumi:"sourceIp6"`
+	Vdomparam           *string               `pulumi:"vdomparam"`
 }
 
 type SystemAcmeState struct {
-	// ACME accounts list. The structure of `accounts` block is documented below.
-	Accounts SystemAcmeAccountArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Accounts            SystemAcmeAccountArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Interface(s) on which the ACME client will listen for challenges. The structure of `interface` block is documented below.
-	Interfaces SystemAcmeInterfaceArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interfaces          SystemAcmeInterfaceArrayInput
+	SourceIp            pulumi.StringPtrInput
+	SourceIp6           pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemAcmeState) ElementType() reflect.Type {
@@ -96,26 +73,22 @@ func (SystemAcmeState) ElementType() reflect.Type {
 }
 
 type systemAcmeArgs struct {
-	// ACME accounts list. The structure of `accounts` block is documented below.
-	Accounts []SystemAcmeAccount `pulumi:"accounts"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Interface(s) on which the ACME client will listen for challenges. The structure of `interface` block is documented below.
-	Interfaces []SystemAcmeInterface `pulumi:"interfaces"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Accounts            []SystemAcmeAccount   `pulumi:"accounts"`
+	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	Interfaces          []SystemAcmeInterface `pulumi:"interfaces"`
+	SourceIp            *string               `pulumi:"sourceIp"`
+	SourceIp6           *string               `pulumi:"sourceIp6"`
+	Vdomparam           *string               `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemAcme resource.
 type SystemAcmeArgs struct {
-	// ACME accounts list. The structure of `accounts` block is documented below.
-	Accounts SystemAcmeAccountArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Accounts            SystemAcmeAccountArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Interface(s) on which the ACME client will listen for challenges. The structure of `interface` block is documented below.
-	Interfaces SystemAcmeInterfaceArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Interfaces          SystemAcmeInterfaceArrayInput
+	SourceIp            pulumi.StringPtrInput
+	SourceIp6           pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemAcmeArgs) ElementType() reflect.Type {
@@ -144,7 +117,7 @@ func (i *SystemAcme) ToSystemAcmeOutputWithContext(ctx context.Context) SystemAc
 // SystemAcmeArrayInput is an input type that accepts SystemAcmeArray and SystemAcmeArrayOutput values.
 // You can construct a concrete instance of `SystemAcmeArrayInput` via:
 //
-//          SystemAcmeArray{ SystemAcmeArgs{...} }
+//	SystemAcmeArray{ SystemAcmeArgs{...} }
 type SystemAcmeArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +142,7 @@ func (i SystemAcmeArray) ToSystemAcmeArrayOutputWithContext(ctx context.Context)
 // SystemAcmeMapInput is an input type that accepts SystemAcmeMap and SystemAcmeMapOutput values.
 // You can construct a concrete instance of `SystemAcmeMapInput` via:
 //
-//          SystemAcmeMap{ "key": SystemAcmeArgs{...} }
+//	SystemAcmeMap{ "key": SystemAcmeArgs{...} }
 type SystemAcmeMapInput interface {
 	pulumi.Input
 
@@ -203,6 +176,30 @@ func (o SystemAcmeOutput) ToSystemAcmeOutput() SystemAcmeOutput {
 
 func (o SystemAcmeOutput) ToSystemAcmeOutputWithContext(ctx context.Context) SystemAcmeOutput {
 	return o
+}
+
+func (o SystemAcmeOutput) Accounts() SystemAcmeAccountArrayOutput {
+	return o.ApplyT(func(v *SystemAcme) SystemAcmeAccountArrayOutput { return v.Accounts }).(SystemAcmeAccountArrayOutput)
+}
+
+func (o SystemAcmeOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAcme) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAcmeOutput) Interfaces() SystemAcmeInterfaceArrayOutput {
+	return o.ApplyT(func(v *SystemAcme) SystemAcmeInterfaceArrayOutput { return v.Interfaces }).(SystemAcmeInterfaceArrayOutput)
+}
+
+func (o SystemAcmeOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAcme) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o SystemAcmeOutput) SourceIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAcme) pulumi.StringOutput { return v.SourceIp6 }).(pulumi.StringOutput)
+}
+
+func (o SystemAcmeOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAcme) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemAcmeArrayOutput struct{ *pulumi.OutputState }

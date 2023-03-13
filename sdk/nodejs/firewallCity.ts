@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Define city table. Applies to FortiOS Version `>= 6.4.0`.
- *
- * ## Import
- *
- * Firewall City can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallCity:FirewallCity labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallCity:FirewallCity labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallCity extends pulumi.CustomResource {
     /**
      * Get an existing FirewallCity resource's state with the given name, ID, and optional extra
@@ -51,17 +32,8 @@ export class FirewallCity extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallCity.__pulumiType;
     }
 
-    /**
-     * City ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * City name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -95,17 +67,8 @@ export class FirewallCity extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallCity resources.
  */
 export interface FirewallCityState {
-    /**
-     * City ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * City name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -113,16 +76,7 @@ export interface FirewallCityState {
  * The set of arguments for constructing a FirewallCity resource.
  */
 export interface FirewallCityArgs {
-    /**
-     * City ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * City name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -4,46 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure log event filters.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.LogEventfilter("trname", {
- *     complianceCheck: "enable",
- *     endpoint: "enable",
- *     event: "enable",
- *     ha: "enable",
- *     router: "enable",
- *     securityRating: "enable",
- *     system: "enable",
- *     user: "enable",
- *     vpn: "enable",
- *     wanOpt: "enable",
- *     wirelessActivity: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * Log Eventfilter can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/logEventfilter:LogEventfilter labelname LogEventfilter
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/logEventfilter:LogEventfilter labelname LogEventfilter
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class LogEventfilter extends pulumi.CustomResource {
     /**
      * Get an existing LogEventfilter resource's state with the given name, ID, and optional extra
@@ -72,77 +32,23 @@ export class LogEventfilter extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogEventfilter.__pulumiType;
     }
 
-    /**
-     * Enable/disable CIFS logging. Valid values: `enable`, `disable`.
-     */
     public readonly cifs!: pulumi.Output<string>;
-    /**
-     * Enable/disable PCI DSS compliance check logging. Valid values: `enable`, `disable`.
-     */
     public readonly complianceCheck!: pulumi.Output<string>;
-    /**
-     * Enable/disable SDN connector logging. Valid values: `enable`, `disable`.
-     */
     public readonly connector!: pulumi.Output<string>;
-    /**
-     * Enable/disable endpoint event logging. Valid values: `enable`, `disable`.
-     */
     public readonly endpoint!: pulumi.Output<string>;
-    /**
-     * Enable/disable event logging. Valid values: `enable`, `disable`.
-     */
     public readonly event!: pulumi.Output<string>;
-    /**
-     * Enable/disable FortiExtender logging. Valid values: `enable`, `disable`.
-     */
     public readonly fortiextender!: pulumi.Output<string>;
-    /**
-     * Enable/disable ha event logging. Valid values: `enable`, `disable`.
-     */
     public readonly ha!: pulumi.Output<string>;
-    /**
-     * Enable/disable REST API logging. Valid values: `enable`, `disable`.
-     */
     public readonly restApi!: pulumi.Output<string>;
-    /**
-     * Enable/disable router event logging. Valid values: `enable`, `disable`.
-     */
     public readonly router!: pulumi.Output<string>;
-    /**
-     * Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
-     */
     public readonly sdwan!: pulumi.Output<string>;
-    /**
-     * Enable/disable Security Rating result logging. Valid values: `enable`, `disable`.
-     */
     public readonly securityRating!: pulumi.Output<string>;
-    /**
-     * Enable/disable Switch-Controller logging. Valid values: `enable`, `disable`.
-     */
     public readonly switchController!: pulumi.Output<string>;
-    /**
-     * Enable/disable system event logging. Valid values: `enable`, `disable`.
-     */
     public readonly system!: pulumi.Output<string>;
-    /**
-     * Enable/disable user authentication event logging. Valid values: `enable`, `disable`.
-     */
     public readonly user!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable VPN event logging. Valid values: `enable`, `disable`.
-     */
     public readonly vpn!: pulumi.Output<string>;
-    /**
-     * Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-     */
     public readonly wanOpt!: pulumi.Output<string>;
-    /**
-     * Enable/disable wireless event logging. Valid values: `enable`, `disable`.
-     */
     public readonly wirelessActivity!: pulumi.Output<string>;
 
     /**
@@ -206,77 +112,23 @@ export class LogEventfilter extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogEventfilter resources.
  */
 export interface LogEventfilterState {
-    /**
-     * Enable/disable CIFS logging. Valid values: `enable`, `disable`.
-     */
     cifs?: pulumi.Input<string>;
-    /**
-     * Enable/disable PCI DSS compliance check logging. Valid values: `enable`, `disable`.
-     */
     complianceCheck?: pulumi.Input<string>;
-    /**
-     * Enable/disable SDN connector logging. Valid values: `enable`, `disable`.
-     */
     connector?: pulumi.Input<string>;
-    /**
-     * Enable/disable endpoint event logging. Valid values: `enable`, `disable`.
-     */
     endpoint?: pulumi.Input<string>;
-    /**
-     * Enable/disable event logging. Valid values: `enable`, `disable`.
-     */
     event?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiExtender logging. Valid values: `enable`, `disable`.
-     */
     fortiextender?: pulumi.Input<string>;
-    /**
-     * Enable/disable ha event logging. Valid values: `enable`, `disable`.
-     */
     ha?: pulumi.Input<string>;
-    /**
-     * Enable/disable REST API logging. Valid values: `enable`, `disable`.
-     */
     restApi?: pulumi.Input<string>;
-    /**
-     * Enable/disable router event logging. Valid values: `enable`, `disable`.
-     */
     router?: pulumi.Input<string>;
-    /**
-     * Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
-     */
     sdwan?: pulumi.Input<string>;
-    /**
-     * Enable/disable Security Rating result logging. Valid values: `enable`, `disable`.
-     */
     securityRating?: pulumi.Input<string>;
-    /**
-     * Enable/disable Switch-Controller logging. Valid values: `enable`, `disable`.
-     */
     switchController?: pulumi.Input<string>;
-    /**
-     * Enable/disable system event logging. Valid values: `enable`, `disable`.
-     */
     system?: pulumi.Input<string>;
-    /**
-     * Enable/disable user authentication event logging. Valid values: `enable`, `disable`.
-     */
     user?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable VPN event logging. Valid values: `enable`, `disable`.
-     */
     vpn?: pulumi.Input<string>;
-    /**
-     * Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-     */
     wanOpt?: pulumi.Input<string>;
-    /**
-     * Enable/disable wireless event logging. Valid values: `enable`, `disable`.
-     */
     wirelessActivity?: pulumi.Input<string>;
 }
 
@@ -284,76 +136,22 @@ export interface LogEventfilterState {
  * The set of arguments for constructing a LogEventfilter resource.
  */
 export interface LogEventfilterArgs {
-    /**
-     * Enable/disable CIFS logging. Valid values: `enable`, `disable`.
-     */
     cifs?: pulumi.Input<string>;
-    /**
-     * Enable/disable PCI DSS compliance check logging. Valid values: `enable`, `disable`.
-     */
     complianceCheck?: pulumi.Input<string>;
-    /**
-     * Enable/disable SDN connector logging. Valid values: `enable`, `disable`.
-     */
     connector?: pulumi.Input<string>;
-    /**
-     * Enable/disable endpoint event logging. Valid values: `enable`, `disable`.
-     */
     endpoint?: pulumi.Input<string>;
-    /**
-     * Enable/disable event logging. Valid values: `enable`, `disable`.
-     */
     event?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiExtender logging. Valid values: `enable`, `disable`.
-     */
     fortiextender?: pulumi.Input<string>;
-    /**
-     * Enable/disable ha event logging. Valid values: `enable`, `disable`.
-     */
     ha?: pulumi.Input<string>;
-    /**
-     * Enable/disable REST API logging. Valid values: `enable`, `disable`.
-     */
     restApi?: pulumi.Input<string>;
-    /**
-     * Enable/disable router event logging. Valid values: `enable`, `disable`.
-     */
     router?: pulumi.Input<string>;
-    /**
-     * Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
-     */
     sdwan?: pulumi.Input<string>;
-    /**
-     * Enable/disable Security Rating result logging. Valid values: `enable`, `disable`.
-     */
     securityRating?: pulumi.Input<string>;
-    /**
-     * Enable/disable Switch-Controller logging. Valid values: `enable`, `disable`.
-     */
     switchController?: pulumi.Input<string>;
-    /**
-     * Enable/disable system event logging. Valid values: `enable`, `disable`.
-     */
     system?: pulumi.Input<string>;
-    /**
-     * Enable/disable user authentication event logging. Valid values: `enable`, `disable`.
-     */
     user?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable VPN event logging. Valid values: `enable`, `disable`.
-     */
     vpn?: pulumi.Input<string>;
-    /**
-     * Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
-     */
     wanOpt?: pulumi.Input<string>;
-    /**
-     * Enable/disable wireless event logging. Valid values: `enable`, `disable`.
-     */
     wirelessActivity?: pulumi.Input<string>;
 }

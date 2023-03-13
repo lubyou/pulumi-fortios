@@ -10,40 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Define internet service names. Applies to FortiOS Version `>= 6.4.0`.
-//
-// ## Import
-//
-// Firewall InternetServiceName can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceName:FirewallInternetServiceName labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceName:FirewallInternetServiceName labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallInternetServiceName struct {
 	pulumi.CustomResourceState
 
-	// City ID.
-	CityId pulumi.IntOutput `pulumi:"cityId"`
-	// Country or Area ID.
-	CountryId pulumi.IntOutput `pulumi:"countryId"`
-	// Internet Service ID.
-	InternetServiceId pulumi.IntOutput `pulumi:"internetServiceId"`
-	// Internet Service name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Region ID.
-	RegionId pulumi.IntOutput `pulumi:"regionId"`
-	// Internet Service name type. Valid values: `default`, `location`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	CityId            pulumi.IntOutput       `pulumi:"cityId"`
+	CountryId         pulumi.IntOutput       `pulumi:"countryId"`
+	InternetServiceId pulumi.IntOutput       `pulumi:"internetServiceId"`
+	Name              pulumi.StringOutput    `pulumi:"name"`
+	RegionId          pulumi.IntOutput       `pulumi:"regionId"`
+	Type              pulumi.StringOutput    `pulumi:"type"`
+	Vdomparam         pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallInternetServiceName registers a new resource with the given unique name, arguments, and options.
@@ -76,37 +52,23 @@ func GetFirewallInternetServiceName(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallInternetServiceName resources.
 type firewallInternetServiceNameState struct {
-	// City ID.
-	CityId *int `pulumi:"cityId"`
-	// Country or Area ID.
-	CountryId *int `pulumi:"countryId"`
-	// Internet Service ID.
-	InternetServiceId *int `pulumi:"internetServiceId"`
-	// Internet Service name.
-	Name *string `pulumi:"name"`
-	// Region ID.
-	RegionId *int `pulumi:"regionId"`
-	// Internet Service name type. Valid values: `default`, `location`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	CityId            *int    `pulumi:"cityId"`
+	CountryId         *int    `pulumi:"countryId"`
+	InternetServiceId *int    `pulumi:"internetServiceId"`
+	Name              *string `pulumi:"name"`
+	RegionId          *int    `pulumi:"regionId"`
+	Type              *string `pulumi:"type"`
+	Vdomparam         *string `pulumi:"vdomparam"`
 }
 
 type FirewallInternetServiceNameState struct {
-	// City ID.
-	CityId pulumi.IntPtrInput
-	// Country or Area ID.
-	CountryId pulumi.IntPtrInput
-	// Internet Service ID.
+	CityId            pulumi.IntPtrInput
+	CountryId         pulumi.IntPtrInput
 	InternetServiceId pulumi.IntPtrInput
-	// Internet Service name.
-	Name pulumi.StringPtrInput
-	// Region ID.
-	RegionId pulumi.IntPtrInput
-	// Internet Service name type. Valid values: `default`, `location`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name              pulumi.StringPtrInput
+	RegionId          pulumi.IntPtrInput
+	Type              pulumi.StringPtrInput
+	Vdomparam         pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceNameState) ElementType() reflect.Type {
@@ -114,38 +76,24 @@ func (FirewallInternetServiceNameState) ElementType() reflect.Type {
 }
 
 type firewallInternetServiceNameArgs struct {
-	// City ID.
-	CityId *int `pulumi:"cityId"`
-	// Country or Area ID.
-	CountryId *int `pulumi:"countryId"`
-	// Internet Service ID.
-	InternetServiceId *int `pulumi:"internetServiceId"`
-	// Internet Service name.
-	Name *string `pulumi:"name"`
-	// Region ID.
-	RegionId *int `pulumi:"regionId"`
-	// Internet Service name type. Valid values: `default`, `location`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	CityId            *int    `pulumi:"cityId"`
+	CountryId         *int    `pulumi:"countryId"`
+	InternetServiceId *int    `pulumi:"internetServiceId"`
+	Name              *string `pulumi:"name"`
+	RegionId          *int    `pulumi:"regionId"`
+	Type              *string `pulumi:"type"`
+	Vdomparam         *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallInternetServiceName resource.
 type FirewallInternetServiceNameArgs struct {
-	// City ID.
-	CityId pulumi.IntPtrInput
-	// Country or Area ID.
-	CountryId pulumi.IntPtrInput
-	// Internet Service ID.
+	CityId            pulumi.IntPtrInput
+	CountryId         pulumi.IntPtrInput
 	InternetServiceId pulumi.IntPtrInput
-	// Internet Service name.
-	Name pulumi.StringPtrInput
-	// Region ID.
-	RegionId pulumi.IntPtrInput
-	// Internet Service name type. Valid values: `default`, `location`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name              pulumi.StringPtrInput
+	RegionId          pulumi.IntPtrInput
+	Type              pulumi.StringPtrInput
+	Vdomparam         pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceNameArgs) ElementType() reflect.Type {
@@ -174,7 +122,7 @@ func (i *FirewallInternetServiceName) ToFirewallInternetServiceNameOutputWithCon
 // FirewallInternetServiceNameArrayInput is an input type that accepts FirewallInternetServiceNameArray and FirewallInternetServiceNameArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceNameArrayInput` via:
 //
-//          FirewallInternetServiceNameArray{ FirewallInternetServiceNameArgs{...} }
+//	FirewallInternetServiceNameArray{ FirewallInternetServiceNameArgs{...} }
 type FirewallInternetServiceNameArrayInput interface {
 	pulumi.Input
 
@@ -199,7 +147,7 @@ func (i FirewallInternetServiceNameArray) ToFirewallInternetServiceNameArrayOutp
 // FirewallInternetServiceNameMapInput is an input type that accepts FirewallInternetServiceNameMap and FirewallInternetServiceNameMapOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceNameMapInput` via:
 //
-//          FirewallInternetServiceNameMap{ "key": FirewallInternetServiceNameArgs{...} }
+//	FirewallInternetServiceNameMap{ "key": FirewallInternetServiceNameArgs{...} }
 type FirewallInternetServiceNameMapInput interface {
 	pulumi.Input
 
@@ -233,6 +181,34 @@ func (o FirewallInternetServiceNameOutput) ToFirewallInternetServiceNameOutput()
 
 func (o FirewallInternetServiceNameOutput) ToFirewallInternetServiceNameOutputWithContext(ctx context.Context) FirewallInternetServiceNameOutput {
 	return o
+}
+
+func (o FirewallInternetServiceNameOutput) CityId() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceName) pulumi.IntOutput { return v.CityId }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceNameOutput) CountryId() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceName) pulumi.IntOutput { return v.CountryId }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceNameOutput) InternetServiceId() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceName) pulumi.IntOutput { return v.InternetServiceId }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceNameOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceName) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallInternetServiceNameOutput) RegionId() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceName) pulumi.IntOutput { return v.RegionId }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceNameOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceName) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o FirewallInternetServiceNameOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceName) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallInternetServiceNameArrayOutput struct{ *pulumi.OutputState }

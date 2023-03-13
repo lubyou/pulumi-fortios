@@ -10,55 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure 3GPP public land mobile network (PLMN).
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWirelessControllerHotspot20Anqp3GppCellular(ctx, "trname", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// WirelessControllerHotspot20 Anqp3GppCellular can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20Anqp3GppCellular:WirelessControllerHotspot20Anqp3GppCellular labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20Anqp3GppCellular:WirelessControllerHotspot20Anqp3GppCellular labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerHotspot20Anqp3GppCellular struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Mobile Country Code and Mobile Network Code configuration. The structure of `mccMncList` block is documented below.
-	MccMncLists WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutput `pulumi:"mccMncLists"`
-	// 3GPP PLMN name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                                           `pulumi:"dynamicSortSubtable"`
+	MccMncLists         WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutput `pulumi:"mccMncLists"`
+	Name                pulumi.StringOutput                                              `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                                           `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerHotspot20Anqp3GppCellular registers a new resource with the given unique name, arguments, and options.
@@ -91,25 +49,17 @@ func GetWirelessControllerHotspot20Anqp3GppCellular(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerHotspot20Anqp3GppCellular resources.
 type wirelessControllerHotspot20Anqp3GppCellularState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Mobile Country Code and Mobile Network Code configuration. The structure of `mccMncList` block is documented below.
-	MccMncLists []WirelessControllerHotspot20Anqp3GppCellularMccMncList `pulumi:"mccMncLists"`
-	// 3GPP PLMN name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                                 `pulumi:"dynamicSortSubtable"`
+	MccMncLists         []WirelessControllerHotspot20Anqp3GppCellularMccMncList `pulumi:"mccMncLists"`
+	Name                *string                                                 `pulumi:"name"`
+	Vdomparam           *string                                                 `pulumi:"vdomparam"`
 }
 
 type WirelessControllerHotspot20Anqp3GppCellularState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Mobile Country Code and Mobile Network Code configuration. The structure of `mccMncList` block is documented below.
-	MccMncLists WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayInput
-	// 3GPP PLMN name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MccMncLists         WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20Anqp3GppCellularState) ElementType() reflect.Type {
@@ -117,26 +67,18 @@ func (WirelessControllerHotspot20Anqp3GppCellularState) ElementType() reflect.Ty
 }
 
 type wirelessControllerHotspot20Anqp3GppCellularArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Mobile Country Code and Mobile Network Code configuration. The structure of `mccMncList` block is documented below.
-	MccMncLists []WirelessControllerHotspot20Anqp3GppCellularMccMncList `pulumi:"mccMncLists"`
-	// 3GPP PLMN name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                                 `pulumi:"dynamicSortSubtable"`
+	MccMncLists         []WirelessControllerHotspot20Anqp3GppCellularMccMncList `pulumi:"mccMncLists"`
+	Name                *string                                                 `pulumi:"name"`
+	Vdomparam           *string                                                 `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerHotspot20Anqp3GppCellular resource.
 type WirelessControllerHotspot20Anqp3GppCellularArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Mobile Country Code and Mobile Network Code configuration. The structure of `mccMncList` block is documented below.
-	MccMncLists WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayInput
-	// 3GPP PLMN name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MccMncLists         WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20Anqp3GppCellularArgs) ElementType() reflect.Type {
@@ -165,7 +107,7 @@ func (i *WirelessControllerHotspot20Anqp3GppCellular) ToWirelessControllerHotspo
 // WirelessControllerHotspot20Anqp3GppCellularArrayInput is an input type that accepts WirelessControllerHotspot20Anqp3GppCellularArray and WirelessControllerHotspot20Anqp3GppCellularArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20Anqp3GppCellularArrayInput` via:
 //
-//          WirelessControllerHotspot20Anqp3GppCellularArray{ WirelessControllerHotspot20Anqp3GppCellularArgs{...} }
+//	WirelessControllerHotspot20Anqp3GppCellularArray{ WirelessControllerHotspot20Anqp3GppCellularArgs{...} }
 type WirelessControllerHotspot20Anqp3GppCellularArrayInput interface {
 	pulumi.Input
 
@@ -190,7 +132,7 @@ func (i WirelessControllerHotspot20Anqp3GppCellularArray) ToWirelessControllerHo
 // WirelessControllerHotspot20Anqp3GppCellularMapInput is an input type that accepts WirelessControllerHotspot20Anqp3GppCellularMap and WirelessControllerHotspot20Anqp3GppCellularMapOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20Anqp3GppCellularMapInput` via:
 //
-//          WirelessControllerHotspot20Anqp3GppCellularMap{ "key": WirelessControllerHotspot20Anqp3GppCellularArgs{...} }
+//	WirelessControllerHotspot20Anqp3GppCellularMap{ "key": WirelessControllerHotspot20Anqp3GppCellularArgs{...} }
 type WirelessControllerHotspot20Anqp3GppCellularMapInput interface {
 	pulumi.Input
 
@@ -224,6 +166,26 @@ func (o WirelessControllerHotspot20Anqp3GppCellularOutput) ToWirelessControllerH
 
 func (o WirelessControllerHotspot20Anqp3GppCellularOutput) ToWirelessControllerHotspot20Anqp3GppCellularOutputWithContext(ctx context.Context) WirelessControllerHotspot20Anqp3GppCellularOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20Anqp3GppCellularOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20Anqp3GppCellular) pulumi.StringPtrOutput {
+		return v.DynamicSortSubtable
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20Anqp3GppCellularOutput) MccMncLists() WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20Anqp3GppCellular) WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutput {
+		return v.MccMncLists
+	}).(WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutput)
+}
+
+func (o WirelessControllerHotspot20Anqp3GppCellularOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20Anqp3GppCellular) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20Anqp3GppCellularOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20Anqp3GppCellular) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerHotspot20Anqp3GppCellularArrayOutput struct{ *pulumi.OutputState }

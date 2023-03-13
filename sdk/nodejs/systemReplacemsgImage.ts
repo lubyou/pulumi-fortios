@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure replacement message images.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemReplacemsgImage("trname", {
- *     imageBase64: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEWAAABFgAVshLGQAAAAMSURBVBhXY/j//z8ABf4C/qc1gYQAAAAASUVORK5CYII=",
- *     imageType: "png",
- * });
- * ```
- *
- * ## Import
- *
- * System ReplacemsgImage can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemReplacemsgImage:SystemReplacemsgImage labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemReplacemsgImage:SystemReplacemsgImage labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemReplacemsgImage extends pulumi.CustomResource {
     /**
      * Get an existing SystemReplacemsgImage resource's state with the given name, ID, and optional extra
@@ -63,21 +32,9 @@ export class SystemReplacemsgImage extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemReplacemsgImage.__pulumiType;
     }
 
-    /**
-     * Image data.
-     */
     public readonly imageBase64!: pulumi.Output<string | undefined>;
-    /**
-     * Image type. Valid values: `gif`, `jpg`, `tiff`, `png`.
-     */
     public readonly imageType!: pulumi.Output<string>;
-    /**
-     * Image name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -113,21 +70,9 @@ export class SystemReplacemsgImage extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemReplacemsgImage resources.
  */
 export interface SystemReplacemsgImageState {
-    /**
-     * Image data.
-     */
     imageBase64?: pulumi.Input<string>;
-    /**
-     * Image type. Valid values: `gif`, `jpg`, `tiff`, `png`.
-     */
     imageType?: pulumi.Input<string>;
-    /**
-     * Image name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -135,20 +80,8 @@ export interface SystemReplacemsgImageState {
  * The set of arguments for constructing a SystemReplacemsgImage resource.
  */
 export interface SystemReplacemsgImageArgs {
-    /**
-     * Image data.
-     */
     imageBase64?: pulumi.Input<string>;
-    /**
-     * Image type. Valid values: `gif`, `jpg`, `tiff`, `png`.
-     */
     imageType?: pulumi.Input<string>;
-    /**
-     * Image name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,56 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports updating system network interface for FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerSystemNetworkInterface(ctx, "test1", &fortios.FortimanagerSystemNetworkInterfaceArgs{
-// 			AllowAccesses: pulumi.StringArray{
-// 				pulumi.String("ping"),
-// 				pulumi.String("ssh"),
-// 				pulumi.String("https"),
-// 				pulumi.String("http"),
-// 			},
-// 			Description: pulumi.String(""),
-// 			Ip:          pulumi.String("1.1.1.3 255.255.255.0"),
-// 			ServiceAccesses: pulumi.StringArray{
-// 				pulumi.String("webfilter"),
-// 				pulumi.String("fgtupdates"),
-// 			},
-// 			Status: pulumi.String("up"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerSystemNetworkInterface struct {
 	pulumi.CustomResourceState
 
-	// Allow managerment access to interface, Enum: ["ping", "https", "ssh", "snmp", "telnet", "http", "web"]
-	AllowAccesses pulumi.StringArrayOutput `pulumi:"allowAccesses"`
-	// Description.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Interface Ipaddress.
-	Ip pulumi.StringPtrOutput `pulumi:"ip"`
-	// Interface port.
+	AllowAccesses   pulumi.StringArrayOutput `pulumi:"allowAccesses"`
+	Description     pulumi.StringPtrOutput   `pulumi:"description"`
+	Ip              pulumi.StringPtrOutput   `pulumi:"ip"`
 	Name            pulumi.StringOutput      `pulumi:"name"`
 	ServiceAccesses pulumi.StringArrayOutput `pulumi:"serviceAccesses"`
-	// Interface status, Enum: ["down", "up"]
-	Status pulumi.StringPtrOutput `pulumi:"status"`
+	Status          pulumi.StringPtrOutput   `pulumi:"status"`
 }
 
 // NewFortimanagerSystemNetworkInterface registers a new resource with the given unique name, arguments, and options.
@@ -92,31 +51,21 @@ func GetFortimanagerSystemNetworkInterface(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerSystemNetworkInterface resources.
 type fortimanagerSystemNetworkInterfaceState struct {
-	// Allow managerment access to interface, Enum: ["ping", "https", "ssh", "snmp", "telnet", "http", "web"]
-	AllowAccesses []string `pulumi:"allowAccesses"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// Interface Ipaddress.
-	Ip *string `pulumi:"ip"`
-	// Interface port.
+	AllowAccesses   []string `pulumi:"allowAccesses"`
+	Description     *string  `pulumi:"description"`
+	Ip              *string  `pulumi:"ip"`
 	Name            *string  `pulumi:"name"`
 	ServiceAccesses []string `pulumi:"serviceAccesses"`
-	// Interface status, Enum: ["down", "up"]
-	Status *string `pulumi:"status"`
+	Status          *string  `pulumi:"status"`
 }
 
 type FortimanagerSystemNetworkInterfaceState struct {
-	// Allow managerment access to interface, Enum: ["ping", "https", "ssh", "snmp", "telnet", "http", "web"]
-	AllowAccesses pulumi.StringArrayInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// Interface Ipaddress.
-	Ip pulumi.StringPtrInput
-	// Interface port.
+	AllowAccesses   pulumi.StringArrayInput
+	Description     pulumi.StringPtrInput
+	Ip              pulumi.StringPtrInput
 	Name            pulumi.StringPtrInput
 	ServiceAccesses pulumi.StringArrayInput
-	// Interface status, Enum: ["down", "up"]
-	Status pulumi.StringPtrInput
+	Status          pulumi.StringPtrInput
 }
 
 func (FortimanagerSystemNetworkInterfaceState) ElementType() reflect.Type {
@@ -124,32 +73,22 @@ func (FortimanagerSystemNetworkInterfaceState) ElementType() reflect.Type {
 }
 
 type fortimanagerSystemNetworkInterfaceArgs struct {
-	// Allow managerment access to interface, Enum: ["ping", "https", "ssh", "snmp", "telnet", "http", "web"]
-	AllowAccesses []string `pulumi:"allowAccesses"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// Interface Ipaddress.
-	Ip *string `pulumi:"ip"`
-	// Interface port.
+	AllowAccesses   []string `pulumi:"allowAccesses"`
+	Description     *string  `pulumi:"description"`
+	Ip              *string  `pulumi:"ip"`
 	Name            *string  `pulumi:"name"`
 	ServiceAccesses []string `pulumi:"serviceAccesses"`
-	// Interface status, Enum: ["down", "up"]
-	Status *string `pulumi:"status"`
+	Status          *string  `pulumi:"status"`
 }
 
 // The set of arguments for constructing a FortimanagerSystemNetworkInterface resource.
 type FortimanagerSystemNetworkInterfaceArgs struct {
-	// Allow managerment access to interface, Enum: ["ping", "https", "ssh", "snmp", "telnet", "http", "web"]
-	AllowAccesses pulumi.StringArrayInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// Interface Ipaddress.
-	Ip pulumi.StringPtrInput
-	// Interface port.
+	AllowAccesses   pulumi.StringArrayInput
+	Description     pulumi.StringPtrInput
+	Ip              pulumi.StringPtrInput
 	Name            pulumi.StringPtrInput
 	ServiceAccesses pulumi.StringArrayInput
-	// Interface status, Enum: ["down", "up"]
-	Status pulumi.StringPtrInput
+	Status          pulumi.StringPtrInput
 }
 
 func (FortimanagerSystemNetworkInterfaceArgs) ElementType() reflect.Type {
@@ -178,7 +117,7 @@ func (i *FortimanagerSystemNetworkInterface) ToFortimanagerSystemNetworkInterfac
 // FortimanagerSystemNetworkInterfaceArrayInput is an input type that accepts FortimanagerSystemNetworkInterfaceArray and FortimanagerSystemNetworkInterfaceArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemNetworkInterfaceArrayInput` via:
 //
-//          FortimanagerSystemNetworkInterfaceArray{ FortimanagerSystemNetworkInterfaceArgs{...} }
+//	FortimanagerSystemNetworkInterfaceArray{ FortimanagerSystemNetworkInterfaceArgs{...} }
 type FortimanagerSystemNetworkInterfaceArrayInput interface {
 	pulumi.Input
 
@@ -203,7 +142,7 @@ func (i FortimanagerSystemNetworkInterfaceArray) ToFortimanagerSystemNetworkInte
 // FortimanagerSystemNetworkInterfaceMapInput is an input type that accepts FortimanagerSystemNetworkInterfaceMap and FortimanagerSystemNetworkInterfaceMapOutput values.
 // You can construct a concrete instance of `FortimanagerSystemNetworkInterfaceMapInput` via:
 //
-//          FortimanagerSystemNetworkInterfaceMap{ "key": FortimanagerSystemNetworkInterfaceArgs{...} }
+//	FortimanagerSystemNetworkInterfaceMap{ "key": FortimanagerSystemNetworkInterfaceArgs{...} }
 type FortimanagerSystemNetworkInterfaceMapInput interface {
 	pulumi.Input
 
@@ -237,6 +176,30 @@ func (o FortimanagerSystemNetworkInterfaceOutput) ToFortimanagerSystemNetworkInt
 
 func (o FortimanagerSystemNetworkInterfaceOutput) ToFortimanagerSystemNetworkInterfaceOutputWithContext(ctx context.Context) FortimanagerSystemNetworkInterfaceOutput {
 	return o
+}
+
+func (o FortimanagerSystemNetworkInterfaceOutput) AllowAccesses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FortimanagerSystemNetworkInterface) pulumi.StringArrayOutput { return v.AllowAccesses }).(pulumi.StringArrayOutput)
+}
+
+func (o FortimanagerSystemNetworkInterfaceOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemNetworkInterface) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemNetworkInterfaceOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemNetworkInterface) pulumi.StringPtrOutput { return v.Ip }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemNetworkInterfaceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerSystemNetworkInterface) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerSystemNetworkInterfaceOutput) ServiceAccesses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FortimanagerSystemNetworkInterface) pulumi.StringArrayOutput { return v.ServiceAccesses }).(pulumi.StringArrayOutput)
+}
+
+func (o FortimanagerSystemNetworkInterfaceOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemNetworkInterface) pulumi.StringPtrOutput { return v.Status }).(pulumi.StringPtrOutput)
 }
 
 type FortimanagerSystemNetworkInterfaceArrayOutput struct{ *pulumi.OutputState }

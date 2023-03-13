@@ -10,38 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch SNMP system information globally. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// SwitchController SnmpSysinfo can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSnmpSysinfo:SwitchControllerSnmpSysinfo labelname SwitchControllerSnmpSysinfo
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSnmpSysinfo:SwitchControllerSnmpSysinfo labelname SwitchControllerSnmpSysinfo
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerSnmpSysinfo struct {
 	pulumi.CustomResourceState
 
-	// Contact information.
-	ContactInfo pulumi.StringOutput `pulumi:"contactInfo"`
-	// System description.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// Local SNMP engine ID string (max 24 char).
-	EngineId pulumi.StringOutput `pulumi:"engineId"`
-	// System location.
-	Location pulumi.StringOutput `pulumi:"location"`
-	// Enable/disable SNMP. Valid values: `disable`, `enable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	ContactInfo pulumi.StringOutput    `pulumi:"contactInfo"`
+	Description pulumi.StringOutput    `pulumi:"description"`
+	EngineId    pulumi.StringOutput    `pulumi:"engineId"`
+	Location    pulumi.StringOutput    `pulumi:"location"`
+	Status      pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam   pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerSnmpSysinfo registers a new resource with the given unique name, arguments, and options.
@@ -74,33 +51,21 @@ func GetSwitchControllerSnmpSysinfo(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerSnmpSysinfo resources.
 type switchControllerSnmpSysinfoState struct {
-	// Contact information.
 	ContactInfo *string `pulumi:"contactInfo"`
-	// System description.
 	Description *string `pulumi:"description"`
-	// Local SNMP engine ID string (max 24 char).
-	EngineId *string `pulumi:"engineId"`
-	// System location.
-	Location *string `pulumi:"location"`
-	// Enable/disable SNMP. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	EngineId    *string `pulumi:"engineId"`
+	Location    *string `pulumi:"location"`
+	Status      *string `pulumi:"status"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerSnmpSysinfoState struct {
-	// Contact information.
 	ContactInfo pulumi.StringPtrInput
-	// System description.
 	Description pulumi.StringPtrInput
-	// Local SNMP engine ID string (max 24 char).
-	EngineId pulumi.StringPtrInput
-	// System location.
-	Location pulumi.StringPtrInput
-	// Enable/disable SNMP. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	EngineId    pulumi.StringPtrInput
+	Location    pulumi.StringPtrInput
+	Status      pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (SwitchControllerSnmpSysinfoState) ElementType() reflect.Type {
@@ -108,34 +73,22 @@ func (SwitchControllerSnmpSysinfoState) ElementType() reflect.Type {
 }
 
 type switchControllerSnmpSysinfoArgs struct {
-	// Contact information.
 	ContactInfo *string `pulumi:"contactInfo"`
-	// System description.
 	Description *string `pulumi:"description"`
-	// Local SNMP engine ID string (max 24 char).
-	EngineId *string `pulumi:"engineId"`
-	// System location.
-	Location *string `pulumi:"location"`
-	// Enable/disable SNMP. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	EngineId    *string `pulumi:"engineId"`
+	Location    *string `pulumi:"location"`
+	Status      *string `pulumi:"status"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerSnmpSysinfo resource.
 type SwitchControllerSnmpSysinfoArgs struct {
-	// Contact information.
 	ContactInfo pulumi.StringPtrInput
-	// System description.
 	Description pulumi.StringPtrInput
-	// Local SNMP engine ID string (max 24 char).
-	EngineId pulumi.StringPtrInput
-	// System location.
-	Location pulumi.StringPtrInput
-	// Enable/disable SNMP. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	EngineId    pulumi.StringPtrInput
+	Location    pulumi.StringPtrInput
+	Status      pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (SwitchControllerSnmpSysinfoArgs) ElementType() reflect.Type {
@@ -164,7 +117,7 @@ func (i *SwitchControllerSnmpSysinfo) ToSwitchControllerSnmpSysinfoOutputWithCon
 // SwitchControllerSnmpSysinfoArrayInput is an input type that accepts SwitchControllerSnmpSysinfoArray and SwitchControllerSnmpSysinfoArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSnmpSysinfoArrayInput` via:
 //
-//          SwitchControllerSnmpSysinfoArray{ SwitchControllerSnmpSysinfoArgs{...} }
+//	SwitchControllerSnmpSysinfoArray{ SwitchControllerSnmpSysinfoArgs{...} }
 type SwitchControllerSnmpSysinfoArrayInput interface {
 	pulumi.Input
 
@@ -189,7 +142,7 @@ func (i SwitchControllerSnmpSysinfoArray) ToSwitchControllerSnmpSysinfoArrayOutp
 // SwitchControllerSnmpSysinfoMapInput is an input type that accepts SwitchControllerSnmpSysinfoMap and SwitchControllerSnmpSysinfoMapOutput values.
 // You can construct a concrete instance of `SwitchControllerSnmpSysinfoMapInput` via:
 //
-//          SwitchControllerSnmpSysinfoMap{ "key": SwitchControllerSnmpSysinfoArgs{...} }
+//	SwitchControllerSnmpSysinfoMap{ "key": SwitchControllerSnmpSysinfoArgs{...} }
 type SwitchControllerSnmpSysinfoMapInput interface {
 	pulumi.Input
 
@@ -223,6 +176,30 @@ func (o SwitchControllerSnmpSysinfoOutput) ToSwitchControllerSnmpSysinfoOutput()
 
 func (o SwitchControllerSnmpSysinfoOutput) ToSwitchControllerSnmpSysinfoOutputWithContext(ctx context.Context) SwitchControllerSnmpSysinfoOutput {
 	return o
+}
+
+func (o SwitchControllerSnmpSysinfoOutput) ContactInfo() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpSysinfo) pulumi.StringOutput { return v.ContactInfo }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpSysinfoOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpSysinfo) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpSysinfoOutput) EngineId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpSysinfo) pulumi.StringOutput { return v.EngineId }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpSysinfoOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpSysinfo) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpSysinfoOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpSysinfo) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpSysinfoOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpSysinfo) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerSnmpSysinfoArrayOutput struct{ *pulumi.OutputState }

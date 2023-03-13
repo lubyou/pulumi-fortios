@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios system resourcelimits
- */
 export function getSystemResourceLimits(args?: GetSystemResourceLimitsArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemResourceLimitsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemResourceLimits:GetSystemResourceLimits", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getSystemResourceLimits(args?: GetSystemResourceLimitsArgs, opts
  * A collection of arguments for invoking GetSystemResourceLimits.
  */
 export interface GetSystemResourceLimitsArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -33,95 +24,37 @@ export interface GetSystemResourceLimitsArgs {
  * A collection of values returned by GetSystemResourceLimits.
  */
 export interface GetSystemResourceLimitsResult {
-    /**
-     * Maximum number of firewall custom services.
-     */
     readonly customService: number;
-    /**
-     * Maximum number of dial-up tunnels.
-     */
     readonly dialupTunnel: number;
-    /**
-     * Maximum number of firewall addresses (IPv4, IPv6, multicast).
-     */
     readonly firewallAddress: number;
-    /**
-     * Maximum number of firewall address groups (IPv4, IPv6).
-     */
     readonly firewallAddrgrp: number;
-    /**
-     * Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
-     */
     readonly firewallPolicy: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Maximum number of VPN IPsec phase1 tunnels.
-     */
     readonly ipsecPhase1: number;
-    /**
-     * Maximum number of VPN IPsec phase1 interface tunnels.
-     */
     readonly ipsecPhase1Interface: number;
-    /**
-     * Maximum number of VPN IPsec phase2 tunnels.
-     */
     readonly ipsecPhase2: number;
-    /**
-     * Maximum number of VPN IPsec phase2 interface tunnels.
-     */
     readonly ipsecPhase2Interface: number;
-    /**
-     * Log disk quota in MB.
-     */
     readonly logDiskQuota: number;
-    /**
-     * Maximum number of firewall one-time schedules.
-     */
     readonly onetimeSchedule: number;
-    /**
-     * Maximum number of concurrent proxy users.
-     */
     readonly proxy: number;
-    /**
-     * Maximum number of firewall recurring schedules.
-     */
     readonly recurringSchedule: number;
-    /**
-     * Maximum number of firewall service groups.
-     */
     readonly serviceGroup: number;
-    /**
-     * Maximum number of sessions.
-     */
     readonly session: number;
-    /**
-     * Maximum number of SSL-VPN.
-     */
     readonly sslvpn: number;
-    /**
-     * Maximum number of local users.
-     */
     readonly user: number;
-    /**
-     * Maximum number of user groups.
-     */
     readonly userGroup: number;
     readonly vdomparam?: string;
 }
-
 export function getSystemResourceLimitsOutput(args?: GetSystemResourceLimitsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemResourceLimitsResult> {
-    return pulumi.output(args).apply(a => getSystemResourceLimits(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemResourceLimits(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemResourceLimits.
  */
 export interface GetSystemResourceLimitsOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

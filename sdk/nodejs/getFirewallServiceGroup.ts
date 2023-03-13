@@ -2,18 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios firewallservice group
- */
 export function getFirewallServiceGroup(args: GetFirewallServiceGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallServiceGroupResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallServiceGroup:GetFirewallServiceGroup", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -24,13 +19,7 @@ export function getFirewallServiceGroup(args: GetFirewallServiceGroupArgs, opts?
  * A collection of arguments for invoking GetFirewallServiceGroup.
  */
 export interface GetFirewallServiceGroupArgs {
-    /**
-     * Specify the name of the desired firewallservice group.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -38,51 +27,26 @@ export interface GetFirewallServiceGroupArgs {
  * A collection of values returned by GetFirewallServiceGroup.
  */
 export interface GetFirewallServiceGroupResult {
-    /**
-     * Color of icon on the GUI.
-     */
     readonly color: number;
-    /**
-     * Comment.
-     */
     readonly comment: string;
-    /**
-     * Security Fabric global object setting.
-     */
     readonly fabricObject: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Service objects contained within the group. The structure of `member` block is documented below.
-     */
     readonly members: outputs.GetFirewallServiceGroupMember[];
-    /**
-     * Address name.
-     */
     readonly name: string;
-    /**
-     * Enable/disable web proxy service group.
-     */
     readonly proxy: string;
     readonly vdomparam?: string;
 }
-
 export function getFirewallServiceGroupOutput(args: GetFirewallServiceGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallServiceGroupResult> {
-    return pulumi.output(args).apply(a => getFirewallServiceGroup(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallServiceGroup(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetFirewallServiceGroup.
  */
 export interface GetFirewallServiceGroupOutputArgs {
-    /**
-     * Specify the name of the desired firewallservice group.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

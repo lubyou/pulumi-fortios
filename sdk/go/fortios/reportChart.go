@@ -7,115 +7,38 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Report chart widget configuration. Applies to FortiOS Version `<= 7.0.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewReportChart(ctx, "trname", &fortios.ReportChartArgs{
-// 			Category:       pulumi.String("misc"),
-// 			Comments:       pulumi.String("test report chart"),
-// 			Dataset:        pulumi.String("s1"),
-// 			Dimension:      pulumi.String("3D"),
-// 			Favorite:       pulumi.String("no"),
-// 			GraphType:      pulumi.String("none"),
-// 			Legend:         pulumi.String("enable"),
-// 			LegendFontSize: pulumi.Int(0),
-// 			Period:         pulumi.String("last24h"),
-// 			Policy:         pulumi.Int(0),
-// 			Style:          pulumi.String("auto"),
-// 			TitleFontSize:  pulumi.Int(0),
-// 			Type:           pulumi.String("graph"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Report Chart can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/reportChart:ReportChart labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/reportChart:ReportChart labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type ReportChart struct {
 	pulumi.CustomResourceState
 
-	// Chart background.
-	Background pulumi.StringOutput `pulumi:"background"`
-	// Category. Valid values: `misc`, `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `dlp`, `app-ctrl`, `vulnerability`.
-	Category pulumi.StringOutput `pulumi:"category"`
-	// Category series of pie chart. The structure of `categorySeries` block is documented below.
-	CategorySeries ReportChartCategorySeriesPtrOutput `pulumi:"categorySeries"`
-	// Color palette (system will pick color automatically by default).
-	ColorPalette pulumi.StringOutput `pulumi:"colorPalette"`
-	// Table column definition. The structure of `column` block is documented below.
-	Columns ReportChartColumnArrayOutput `pulumi:"columns"`
-	// Comment.
-	Comments pulumi.StringOutput `pulumi:"comments"`
-	// Bind dataset to chart.
-	Dataset pulumi.StringOutput `pulumi:"dataset"`
-	// Dimension. Valid values: `2D`, `3D`.
-	Dimension pulumi.StringOutput `pulumi:"dimension"`
-	// Drill down charts. The structure of `drillDownCharts` block is documented below.
-	DrillDownCharts ReportChartDrillDownChartArrayOutput `pulumi:"drillDownCharts"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Favorite. Valid values: `no`, `yes`.
-	Favorite pulumi.StringOutput `pulumi:"favorite"`
-	// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
-	GraphType pulumi.StringOutput `pulumi:"graphType"`
-	// Enable/Disable Legend area. Valid values: `enable`, `disable`.
-	Legend pulumi.StringOutput `pulumi:"legend"`
-	// Font size of legend area.
-	LegendFontSize pulumi.IntOutput `pulumi:"legendFontSize"`
-	// Chart Widget Name
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Time period. Valid values: `last24h`, `last7d`.
-	Period pulumi.StringOutput `pulumi:"period"`
-	// Used by monitor policy.
-	Policy pulumi.IntOutput `pulumi:"policy"`
-	// Style. Valid values: `auto`, `manual`.
-	Style pulumi.StringOutput `pulumi:"style"`
-	// Chart title.
-	Title pulumi.StringOutput `pulumi:"title"`
-	// Font size of chart title.
-	TitleFontSize pulumi.IntOutput `pulumi:"titleFontSize"`
-	// Chart type. Valid values: `graph`, `table`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Value series of pie chart. The structure of `valueSeries` block is documented below.
-	ValueSeries ReportChartValueSeriesPtrOutput `pulumi:"valueSeries"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// X-series of chart. The structure of `xSeries` block is documented below.
-	XSeries ReportChartXSeriesPtrOutput `pulumi:"xSeries"`
-	// Y-series of chart. The structure of `ySeries` block is documented below.
-	YSeries ReportChartYSeriesPtrOutput `pulumi:"ySeries"`
+	Background          pulumi.StringOutput                  `pulumi:"background"`
+	Category            pulumi.StringOutput                  `pulumi:"category"`
+	CategorySeries      ReportChartCategorySeriesOutput      `pulumi:"categorySeries"`
+	ColorPalette        pulumi.StringOutput                  `pulumi:"colorPalette"`
+	Columns             ReportChartColumnArrayOutput         `pulumi:"columns"`
+	Comments            pulumi.StringOutput                  `pulumi:"comments"`
+	Dataset             pulumi.StringOutput                  `pulumi:"dataset"`
+	Dimension           pulumi.StringOutput                  `pulumi:"dimension"`
+	DrillDownCharts     ReportChartDrillDownChartArrayOutput `pulumi:"drillDownCharts"`
+	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	Favorite            pulumi.StringOutput                  `pulumi:"favorite"`
+	GraphType           pulumi.StringOutput                  `pulumi:"graphType"`
+	Legend              pulumi.StringOutput                  `pulumi:"legend"`
+	LegendFontSize      pulumi.IntOutput                     `pulumi:"legendFontSize"`
+	Name                pulumi.StringOutput                  `pulumi:"name"`
+	Period              pulumi.StringOutput                  `pulumi:"period"`
+	Policy              pulumi.IntOutput                     `pulumi:"policy"`
+	Style               pulumi.StringOutput                  `pulumi:"style"`
+	Title               pulumi.StringOutput                  `pulumi:"title"`
+	TitleFontSize       pulumi.IntOutput                     `pulumi:"titleFontSize"`
+	Type                pulumi.StringOutput                  `pulumi:"type"`
+	ValueSeries         ReportChartValueSeriesOutput         `pulumi:"valueSeries"`
+	Vdomparam           pulumi.StringPtrOutput               `pulumi:"vdomparam"`
+	XSeries             ReportChartXSeriesOutput             `pulumi:"xSeries"`
+	YSeries             ReportChartYSeriesOutput             `pulumi:"ySeries"`
 }
 
 // NewReportChart registers a new resource with the given unique name, arguments, and options.
@@ -154,109 +77,59 @@ func GetReportChart(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ReportChart resources.
 type reportChartState struct {
-	// Chart background.
-	Background *string `pulumi:"background"`
-	// Category. Valid values: `misc`, `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `dlp`, `app-ctrl`, `vulnerability`.
-	Category *string `pulumi:"category"`
-	// Category series of pie chart. The structure of `categorySeries` block is documented below.
-	CategorySeries *ReportChartCategorySeries `pulumi:"categorySeries"`
-	// Color palette (system will pick color automatically by default).
-	ColorPalette *string `pulumi:"colorPalette"`
-	// Table column definition. The structure of `column` block is documented below.
-	Columns []ReportChartColumn `pulumi:"columns"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Bind dataset to chart.
-	Dataset *string `pulumi:"dataset"`
-	// Dimension. Valid values: `2D`, `3D`.
-	Dimension *string `pulumi:"dimension"`
-	// Drill down charts. The structure of `drillDownCharts` block is documented below.
-	DrillDownCharts []ReportChartDrillDownChart `pulumi:"drillDownCharts"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Favorite. Valid values: `no`, `yes`.
-	Favorite *string `pulumi:"favorite"`
-	// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
-	GraphType *string `pulumi:"graphType"`
-	// Enable/Disable Legend area. Valid values: `enable`, `disable`.
-	Legend *string `pulumi:"legend"`
-	// Font size of legend area.
-	LegendFontSize *int `pulumi:"legendFontSize"`
-	// Chart Widget Name
-	Name *string `pulumi:"name"`
-	// Time period. Valid values: `last24h`, `last7d`.
-	Period *string `pulumi:"period"`
-	// Used by monitor policy.
-	Policy *int `pulumi:"policy"`
-	// Style. Valid values: `auto`, `manual`.
-	Style *string `pulumi:"style"`
-	// Chart title.
-	Title *string `pulumi:"title"`
-	// Font size of chart title.
-	TitleFontSize *int `pulumi:"titleFontSize"`
-	// Chart type. Valid values: `graph`, `table`.
-	Type *string `pulumi:"type"`
-	// Value series of pie chart. The structure of `valueSeries` block is documented below.
-	ValueSeries *ReportChartValueSeries `pulumi:"valueSeries"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// X-series of chart. The structure of `xSeries` block is documented below.
-	XSeries *ReportChartXSeries `pulumi:"xSeries"`
-	// Y-series of chart. The structure of `ySeries` block is documented below.
-	YSeries *ReportChartYSeries `pulumi:"ySeries"`
+	Background          *string                     `pulumi:"background"`
+	Category            *string                     `pulumi:"category"`
+	CategorySeries      *ReportChartCategorySeries  `pulumi:"categorySeries"`
+	ColorPalette        *string                     `pulumi:"colorPalette"`
+	Columns             []ReportChartColumn         `pulumi:"columns"`
+	Comments            *string                     `pulumi:"comments"`
+	Dataset             *string                     `pulumi:"dataset"`
+	Dimension           *string                     `pulumi:"dimension"`
+	DrillDownCharts     []ReportChartDrillDownChart `pulumi:"drillDownCharts"`
+	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	Favorite            *string                     `pulumi:"favorite"`
+	GraphType           *string                     `pulumi:"graphType"`
+	Legend              *string                     `pulumi:"legend"`
+	LegendFontSize      *int                        `pulumi:"legendFontSize"`
+	Name                *string                     `pulumi:"name"`
+	Period              *string                     `pulumi:"period"`
+	Policy              *int                        `pulumi:"policy"`
+	Style               *string                     `pulumi:"style"`
+	Title               *string                     `pulumi:"title"`
+	TitleFontSize       *int                        `pulumi:"titleFontSize"`
+	Type                *string                     `pulumi:"type"`
+	ValueSeries         *ReportChartValueSeries     `pulumi:"valueSeries"`
+	Vdomparam           *string                     `pulumi:"vdomparam"`
+	XSeries             *ReportChartXSeries         `pulumi:"xSeries"`
+	YSeries             *ReportChartYSeries         `pulumi:"ySeries"`
 }
 
 type ReportChartState struct {
-	// Chart background.
-	Background pulumi.StringPtrInput
-	// Category. Valid values: `misc`, `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `dlp`, `app-ctrl`, `vulnerability`.
-	Category pulumi.StringPtrInput
-	// Category series of pie chart. The structure of `categorySeries` block is documented below.
-	CategorySeries ReportChartCategorySeriesPtrInput
-	// Color palette (system will pick color automatically by default).
-	ColorPalette pulumi.StringPtrInput
-	// Table column definition. The structure of `column` block is documented below.
-	Columns ReportChartColumnArrayInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Bind dataset to chart.
-	Dataset pulumi.StringPtrInput
-	// Dimension. Valid values: `2D`, `3D`.
-	Dimension pulumi.StringPtrInput
-	// Drill down charts. The structure of `drillDownCharts` block is documented below.
-	DrillDownCharts ReportChartDrillDownChartArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Background          pulumi.StringPtrInput
+	Category            pulumi.StringPtrInput
+	CategorySeries      ReportChartCategorySeriesPtrInput
+	ColorPalette        pulumi.StringPtrInput
+	Columns             ReportChartColumnArrayInput
+	Comments            pulumi.StringPtrInput
+	Dataset             pulumi.StringPtrInput
+	Dimension           pulumi.StringPtrInput
+	DrillDownCharts     ReportChartDrillDownChartArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Favorite. Valid values: `no`, `yes`.
-	Favorite pulumi.StringPtrInput
-	// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
-	GraphType pulumi.StringPtrInput
-	// Enable/Disable Legend area. Valid values: `enable`, `disable`.
-	Legend pulumi.StringPtrInput
-	// Font size of legend area.
-	LegendFontSize pulumi.IntPtrInput
-	// Chart Widget Name
-	Name pulumi.StringPtrInput
-	// Time period. Valid values: `last24h`, `last7d`.
-	Period pulumi.StringPtrInput
-	// Used by monitor policy.
-	Policy pulumi.IntPtrInput
-	// Style. Valid values: `auto`, `manual`.
-	Style pulumi.StringPtrInput
-	// Chart title.
-	Title pulumi.StringPtrInput
-	// Font size of chart title.
-	TitleFontSize pulumi.IntPtrInput
-	// Chart type. Valid values: `graph`, `table`.
-	Type pulumi.StringPtrInput
-	// Value series of pie chart. The structure of `valueSeries` block is documented below.
-	ValueSeries ReportChartValueSeriesPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// X-series of chart. The structure of `xSeries` block is documented below.
-	XSeries ReportChartXSeriesPtrInput
-	// Y-series of chart. The structure of `ySeries` block is documented below.
-	YSeries ReportChartYSeriesPtrInput
+	Favorite            pulumi.StringPtrInput
+	GraphType           pulumi.StringPtrInput
+	Legend              pulumi.StringPtrInput
+	LegendFontSize      pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Period              pulumi.StringPtrInput
+	Policy              pulumi.IntPtrInput
+	Style               pulumi.StringPtrInput
+	Title               pulumi.StringPtrInput
+	TitleFontSize       pulumi.IntPtrInput
+	Type                pulumi.StringPtrInput
+	ValueSeries         ReportChartValueSeriesPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	XSeries             ReportChartXSeriesPtrInput
+	YSeries             ReportChartYSeriesPtrInput
 }
 
 func (ReportChartState) ElementType() reflect.Type {
@@ -264,110 +137,60 @@ func (ReportChartState) ElementType() reflect.Type {
 }
 
 type reportChartArgs struct {
-	// Chart background.
-	Background *string `pulumi:"background"`
-	// Category. Valid values: `misc`, `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `dlp`, `app-ctrl`, `vulnerability`.
-	Category *string `pulumi:"category"`
-	// Category series of pie chart. The structure of `categorySeries` block is documented below.
-	CategorySeries *ReportChartCategorySeries `pulumi:"categorySeries"`
-	// Color palette (system will pick color automatically by default).
-	ColorPalette *string `pulumi:"colorPalette"`
-	// Table column definition. The structure of `column` block is documented below.
-	Columns []ReportChartColumn `pulumi:"columns"`
-	// Comment.
-	Comments string `pulumi:"comments"`
-	// Bind dataset to chart.
-	Dataset string `pulumi:"dataset"`
-	// Dimension. Valid values: `2D`, `3D`.
-	Dimension *string `pulumi:"dimension"`
-	// Drill down charts. The structure of `drillDownCharts` block is documented below.
-	DrillDownCharts []ReportChartDrillDownChart `pulumi:"drillDownCharts"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Favorite. Valid values: `no`, `yes`.
-	Favorite *string `pulumi:"favorite"`
-	// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
-	GraphType *string `pulumi:"graphType"`
-	// Enable/Disable Legend area. Valid values: `enable`, `disable`.
-	Legend *string `pulumi:"legend"`
-	// Font size of legend area.
-	LegendFontSize *int `pulumi:"legendFontSize"`
-	// Chart Widget Name
-	Name *string `pulumi:"name"`
-	// Time period. Valid values: `last24h`, `last7d`.
-	Period *string `pulumi:"period"`
-	// Used by monitor policy.
-	Policy *int `pulumi:"policy"`
-	// Style. Valid values: `auto`, `manual`.
-	Style *string `pulumi:"style"`
-	// Chart title.
-	Title *string `pulumi:"title"`
-	// Font size of chart title.
-	TitleFontSize *int `pulumi:"titleFontSize"`
-	// Chart type. Valid values: `graph`, `table`.
-	Type *string `pulumi:"type"`
-	// Value series of pie chart. The structure of `valueSeries` block is documented below.
-	ValueSeries *ReportChartValueSeries `pulumi:"valueSeries"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// X-series of chart. The structure of `xSeries` block is documented below.
-	XSeries *ReportChartXSeries `pulumi:"xSeries"`
-	// Y-series of chart. The structure of `ySeries` block is documented below.
-	YSeries *ReportChartYSeries `pulumi:"ySeries"`
+	Background          *string                     `pulumi:"background"`
+	Category            *string                     `pulumi:"category"`
+	CategorySeries      *ReportChartCategorySeries  `pulumi:"categorySeries"`
+	ColorPalette        *string                     `pulumi:"colorPalette"`
+	Columns             []ReportChartColumn         `pulumi:"columns"`
+	Comments            string                      `pulumi:"comments"`
+	Dataset             string                      `pulumi:"dataset"`
+	Dimension           *string                     `pulumi:"dimension"`
+	DrillDownCharts     []ReportChartDrillDownChart `pulumi:"drillDownCharts"`
+	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	Favorite            *string                     `pulumi:"favorite"`
+	GraphType           *string                     `pulumi:"graphType"`
+	Legend              *string                     `pulumi:"legend"`
+	LegendFontSize      *int                        `pulumi:"legendFontSize"`
+	Name                *string                     `pulumi:"name"`
+	Period              *string                     `pulumi:"period"`
+	Policy              *int                        `pulumi:"policy"`
+	Style               *string                     `pulumi:"style"`
+	Title               *string                     `pulumi:"title"`
+	TitleFontSize       *int                        `pulumi:"titleFontSize"`
+	Type                *string                     `pulumi:"type"`
+	ValueSeries         *ReportChartValueSeries     `pulumi:"valueSeries"`
+	Vdomparam           *string                     `pulumi:"vdomparam"`
+	XSeries             *ReportChartXSeries         `pulumi:"xSeries"`
+	YSeries             *ReportChartYSeries         `pulumi:"ySeries"`
 }
 
 // The set of arguments for constructing a ReportChart resource.
 type ReportChartArgs struct {
-	// Chart background.
-	Background pulumi.StringPtrInput
-	// Category. Valid values: `misc`, `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `dlp`, `app-ctrl`, `vulnerability`.
-	Category pulumi.StringPtrInput
-	// Category series of pie chart. The structure of `categorySeries` block is documented below.
-	CategorySeries ReportChartCategorySeriesPtrInput
-	// Color palette (system will pick color automatically by default).
-	ColorPalette pulumi.StringPtrInput
-	// Table column definition. The structure of `column` block is documented below.
-	Columns ReportChartColumnArrayInput
-	// Comment.
-	Comments pulumi.StringInput
-	// Bind dataset to chart.
-	Dataset pulumi.StringInput
-	// Dimension. Valid values: `2D`, `3D`.
-	Dimension pulumi.StringPtrInput
-	// Drill down charts. The structure of `drillDownCharts` block is documented below.
-	DrillDownCharts ReportChartDrillDownChartArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Background          pulumi.StringPtrInput
+	Category            pulumi.StringPtrInput
+	CategorySeries      ReportChartCategorySeriesPtrInput
+	ColorPalette        pulumi.StringPtrInput
+	Columns             ReportChartColumnArrayInput
+	Comments            pulumi.StringInput
+	Dataset             pulumi.StringInput
+	Dimension           pulumi.StringPtrInput
+	DrillDownCharts     ReportChartDrillDownChartArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Favorite. Valid values: `no`, `yes`.
-	Favorite pulumi.StringPtrInput
-	// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
-	GraphType pulumi.StringPtrInput
-	// Enable/Disable Legend area. Valid values: `enable`, `disable`.
-	Legend pulumi.StringPtrInput
-	// Font size of legend area.
-	LegendFontSize pulumi.IntPtrInput
-	// Chart Widget Name
-	Name pulumi.StringPtrInput
-	// Time period. Valid values: `last24h`, `last7d`.
-	Period pulumi.StringPtrInput
-	// Used by monitor policy.
-	Policy pulumi.IntPtrInput
-	// Style. Valid values: `auto`, `manual`.
-	Style pulumi.StringPtrInput
-	// Chart title.
-	Title pulumi.StringPtrInput
-	// Font size of chart title.
-	TitleFontSize pulumi.IntPtrInput
-	// Chart type. Valid values: `graph`, `table`.
-	Type pulumi.StringPtrInput
-	// Value series of pie chart. The structure of `valueSeries` block is documented below.
-	ValueSeries ReportChartValueSeriesPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// X-series of chart. The structure of `xSeries` block is documented below.
-	XSeries ReportChartXSeriesPtrInput
-	// Y-series of chart. The structure of `ySeries` block is documented below.
-	YSeries ReportChartYSeriesPtrInput
+	Favorite            pulumi.StringPtrInput
+	GraphType           pulumi.StringPtrInput
+	Legend              pulumi.StringPtrInput
+	LegendFontSize      pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Period              pulumi.StringPtrInput
+	Policy              pulumi.IntPtrInput
+	Style               pulumi.StringPtrInput
+	Title               pulumi.StringPtrInput
+	TitleFontSize       pulumi.IntPtrInput
+	Type                pulumi.StringPtrInput
+	ValueSeries         ReportChartValueSeriesPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	XSeries             ReportChartXSeriesPtrInput
+	YSeries             ReportChartYSeriesPtrInput
 }
 
 func (ReportChartArgs) ElementType() reflect.Type {
@@ -396,7 +219,7 @@ func (i *ReportChart) ToReportChartOutputWithContext(ctx context.Context) Report
 // ReportChartArrayInput is an input type that accepts ReportChartArray and ReportChartArrayOutput values.
 // You can construct a concrete instance of `ReportChartArrayInput` via:
 //
-//          ReportChartArray{ ReportChartArgs{...} }
+//	ReportChartArray{ ReportChartArgs{...} }
 type ReportChartArrayInput interface {
 	pulumi.Input
 
@@ -421,7 +244,7 @@ func (i ReportChartArray) ToReportChartArrayOutputWithContext(ctx context.Contex
 // ReportChartMapInput is an input type that accepts ReportChartMap and ReportChartMapOutput values.
 // You can construct a concrete instance of `ReportChartMapInput` via:
 //
-//          ReportChartMap{ "key": ReportChartArgs{...} }
+//	ReportChartMap{ "key": ReportChartArgs{...} }
 type ReportChartMapInput interface {
 	pulumi.Input
 
@@ -455,6 +278,106 @@ func (o ReportChartOutput) ToReportChartOutput() ReportChartOutput {
 
 func (o ReportChartOutput) ToReportChartOutputWithContext(ctx context.Context) ReportChartOutput {
 	return o
+}
+
+func (o ReportChartOutput) Background() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringOutput { return v.Background }).(pulumi.StringOutput)
+}
+
+func (o ReportChartOutput) Category() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringOutput { return v.Category }).(pulumi.StringOutput)
+}
+
+func (o ReportChartOutput) CategorySeries() ReportChartCategorySeriesOutput {
+	return o.ApplyT(func(v *ReportChart) ReportChartCategorySeriesOutput { return v.CategorySeries }).(ReportChartCategorySeriesOutput)
+}
+
+func (o ReportChartOutput) ColorPalette() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringOutput { return v.ColorPalette }).(pulumi.StringOutput)
+}
+
+func (o ReportChartOutput) Columns() ReportChartColumnArrayOutput {
+	return o.ApplyT(func(v *ReportChart) ReportChartColumnArrayOutput { return v.Columns }).(ReportChartColumnArrayOutput)
+}
+
+func (o ReportChartOutput) Comments() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringOutput { return v.Comments }).(pulumi.StringOutput)
+}
+
+func (o ReportChartOutput) Dataset() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringOutput { return v.Dataset }).(pulumi.StringOutput)
+}
+
+func (o ReportChartOutput) Dimension() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringOutput { return v.Dimension }).(pulumi.StringOutput)
+}
+
+func (o ReportChartOutput) DrillDownCharts() ReportChartDrillDownChartArrayOutput {
+	return o.ApplyT(func(v *ReportChart) ReportChartDrillDownChartArrayOutput { return v.DrillDownCharts }).(ReportChartDrillDownChartArrayOutput)
+}
+
+func (o ReportChartOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o ReportChartOutput) Favorite() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringOutput { return v.Favorite }).(pulumi.StringOutput)
+}
+
+func (o ReportChartOutput) GraphType() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringOutput { return v.GraphType }).(pulumi.StringOutput)
+}
+
+func (o ReportChartOutput) Legend() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringOutput { return v.Legend }).(pulumi.StringOutput)
+}
+
+func (o ReportChartOutput) LegendFontSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.IntOutput { return v.LegendFontSize }).(pulumi.IntOutput)
+}
+
+func (o ReportChartOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ReportChartOutput) Period() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringOutput { return v.Period }).(pulumi.StringOutput)
+}
+
+func (o ReportChartOutput) Policy() pulumi.IntOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.IntOutput { return v.Policy }).(pulumi.IntOutput)
+}
+
+func (o ReportChartOutput) Style() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringOutput { return v.Style }).(pulumi.StringOutput)
+}
+
+func (o ReportChartOutput) Title() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringOutput { return v.Title }).(pulumi.StringOutput)
+}
+
+func (o ReportChartOutput) TitleFontSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.IntOutput { return v.TitleFontSize }).(pulumi.IntOutput)
+}
+
+func (o ReportChartOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o ReportChartOutput) ValueSeries() ReportChartValueSeriesOutput {
+	return o.ApplyT(func(v *ReportChart) ReportChartValueSeriesOutput { return v.ValueSeries }).(ReportChartValueSeriesOutput)
+}
+
+func (o ReportChartOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o ReportChartOutput) XSeries() ReportChartXSeriesOutput {
+	return o.ApplyT(func(v *ReportChart) ReportChartXSeriesOutput { return v.XSeries }).(ReportChartXSeriesOutput)
+}
+
+func (o ReportChartOutput) YSeries() ReportChartYSeriesOutput {
+	return o.ApplyT(func(v *ReportChart) ReportChartYSeriesOutput { return v.YSeries }).(ReportChartYSeriesOutput)
 }
 
 type ReportChartArrayOutput struct{ *pulumi.OutputState }

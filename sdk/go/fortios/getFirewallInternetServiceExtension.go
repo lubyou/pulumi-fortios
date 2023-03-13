@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewall internetserviceextension
 func LookupFirewallInternetServiceExtension(ctx *pulumi.Context, args *LookupFirewallInternetServiceExtensionArgs, opts ...pulumi.InvokeOption) (*LookupFirewallInternetServiceExtensionResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallInternetServiceExtensionResult
@@ -23,22 +22,16 @@ func LookupFirewallInternetServiceExtension(ctx *pulumi.Context, args *LookupFir
 
 // A collection of arguments for invoking GetFirewallInternetServiceExtension.
 type LookupFirewallInternetServiceExtensionArgs struct {
-	// Specify the fosid of the desired firewall internetserviceextension.
-	Fosid int `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     int     `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallInternetServiceExtension.
 type LookupFirewallInternetServiceExtensionResult struct {
-	// Comment.
-	Comment string `pulumi:"comment"`
-	// Disable entries in the Internet Service database. The structure of `disableEntry` block is documented below.
+	Comment        string                                            `pulumi:"comment"`
 	DisableEntries []GetFirewallInternetServiceExtensionDisableEntry `pulumi:"disableEntries"`
-	// Entries added to the Internet Service extension database. The structure of `entry` block is documented below.
-	Entries []GetFirewallInternetServiceExtensionEntry `pulumi:"entries"`
-	// Internet Service ID in the Internet Service database.
-	Fosid int `pulumi:"fosid"`
+	Entries        []GetFirewallInternetServiceExtensionEntry        `pulumi:"entries"`
+	Fosid          int                                               `pulumi:"fosid"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -59,9 +52,7 @@ func LookupFirewallInternetServiceExtensionOutput(ctx *pulumi.Context, args Look
 
 // A collection of arguments for invoking GetFirewallInternetServiceExtension.
 type LookupFirewallInternetServiceExtensionOutputArgs struct {
-	// Specify the fosid of the desired firewall internetserviceextension.
-	Fosid pulumi.IntInput `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntInput       `pulumi:"fosid"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -84,26 +75,22 @@ func (o LookupFirewallInternetServiceExtensionResultOutput) ToLookupFirewallInte
 	return o
 }
 
-// Comment.
 func (o LookupFirewallInternetServiceExtensionResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceExtensionResult) string { return v.Comment }).(pulumi.StringOutput)
 }
 
-// Disable entries in the Internet Service database. The structure of `disableEntry` block is documented below.
 func (o LookupFirewallInternetServiceExtensionResultOutput) DisableEntries() GetFirewallInternetServiceExtensionDisableEntryArrayOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceExtensionResult) []GetFirewallInternetServiceExtensionDisableEntry {
 		return v.DisableEntries
 	}).(GetFirewallInternetServiceExtensionDisableEntryArrayOutput)
 }
 
-// Entries added to the Internet Service extension database. The structure of `entry` block is documented below.
 func (o LookupFirewallInternetServiceExtensionResultOutput) Entries() GetFirewallInternetServiceExtensionEntryArrayOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceExtensionResult) []GetFirewallInternetServiceExtensionEntry {
 		return v.Entries
 	}).(GetFirewallInternetServiceExtensionEntryArrayOutput)
 }
 
-// Internet Service ID in the Internet Service database.
 func (o LookupFirewallInternetServiceExtensionResultOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceExtensionResult) int { return v.Fosid }).(pulumi.IntOutput)
 }

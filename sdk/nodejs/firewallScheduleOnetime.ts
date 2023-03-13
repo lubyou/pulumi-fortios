@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Onetime schedule configuration.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallScheduleOnetime("trname", {
- *     color: 0,
- *     end: "00:00 2020/12/12",
- *     expirationDays: 2,
- *     start: "00:00 2010/12/12",
- * });
- * ```
- *
- * ## Import
- *
- * FirewallSchedule Onetime can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallScheduleOnetime:FirewallScheduleOnetime labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallScheduleOnetime:FirewallScheduleOnetime labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallScheduleOnetime extends pulumi.CustomResource {
     /**
      * Get an existing FirewallScheduleOnetime resource's state with the given name, ID, and optional extra
@@ -65,33 +32,12 @@ export class FirewallScheduleOnetime extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallScheduleOnetime.__pulumiType;
     }
 
-    /**
-     * Color of icon on the GUI.
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * Schedule end date and time, format hh:mm yyyy/mm/dd.
-     */
     public readonly end!: pulumi.Output<string>;
-    /**
-     * Write an event log message this many days before the schedule expires.
-     */
     public readonly expirationDays!: pulumi.Output<number>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     public readonly fabricObject!: pulumi.Output<string>;
-    /**
-     * Onetime schedule name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Schedule start date and time, format hh:mm yyyy/mm/dd.
-     */
     public readonly start!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -139,33 +85,12 @@ export class FirewallScheduleOnetime extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallScheduleOnetime resources.
  */
 export interface FirewallScheduleOnetimeState {
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Schedule end date and time, format hh:mm yyyy/mm/dd.
-     */
     end?: pulumi.Input<string>;
-    /**
-     * Write an event log message this many days before the schedule expires.
-     */
     expirationDays?: pulumi.Input<number>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     fabricObject?: pulumi.Input<string>;
-    /**
-     * Onetime schedule name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Schedule start date and time, format hh:mm yyyy/mm/dd.
-     */
     start?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -173,32 +98,11 @@ export interface FirewallScheduleOnetimeState {
  * The set of arguments for constructing a FirewallScheduleOnetime resource.
  */
 export interface FirewallScheduleOnetimeArgs {
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Schedule end date and time, format hh:mm yyyy/mm/dd.
-     */
     end: pulumi.Input<string>;
-    /**
-     * Write an event log message this many days before the schedule expires.
-     */
     expirationDays?: pulumi.Input<number>;
-    /**
-     * Security Fabric global object setting. Valid values: `enable`, `disable`.
-     */
     fabricObject?: pulumi.Input<string>;
-    /**
-     * Onetime schedule name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Schedule start date and time, format hh:mm yyyy/mm/dd.
-     */
     start: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

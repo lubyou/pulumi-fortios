@@ -10,113 +10,40 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure ICAP profiles.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"fmt"
-//
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewIcapProfile(ctx, "trname", &fortios.IcapProfileArgs{
-// 			IcapHeaders: IcapProfileIcapHeaderArray{
-// 				&IcapProfileIcapHeaderArgs{
-// 					Base64Encoding: pulumi.String("disable"),
-// 					Content:        pulumi.String(fmt.Sprintf("%v%v", "$", "user")),
-// 					Name:           pulumi.String("X-Authenticated-User"),
-// 				},
-// 			},
-// 			Methods:                pulumi.String("delete get head options post put trace other"),
-// 			Request:                pulumi.String("disable"),
-// 			RequestFailure:         pulumi.String("error"),
-// 			Response:               pulumi.String("disable"),
-// 			ResponseFailure:        pulumi.String("error"),
-// 			ResponseReqHdr:         pulumi.String("disable"),
-// 			StreamingContentBypass: pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Icap Profile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/icapProfile:IcapProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/icapProfile:IcapProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type IcapProfile struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
-	ChunkEncap pulumi.StringOutput `pulumi:"chunkEncap"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable ICAP extension features. Valid values: `scan-progress`.
-	ExtensionFeature pulumi.StringOutput `pulumi:"extensionFeature"`
-	// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
-	IcapBlockLog pulumi.StringOutput `pulumi:"icapBlockLog"`
-	// Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
-	IcapHeaders IcapProfileIcapHeaderArrayOutput `pulumi:"icapHeaders"`
-	// The allowed HTTP methods that will be sent to ICAP server for further processing. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `other`.
-	Methods pulumi.StringOutput `pulumi:"methods"`
-	// Address name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable preview of data to ICAP server. Valid values: `disable`, `enable`.
-	Preview pulumi.StringOutput `pulumi:"preview"`
-	// Preview data length to be sent to ICAP server.
-	PreviewDataLength pulumi.IntOutput `pulumi:"previewDataLength"`
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringOutput `pulumi:"replacemsgGroup"`
-	// Enable/disable whether an HTTP request is passed to an ICAP server. Valid values: `disable`, `enable`.
-	Request pulumi.StringOutput `pulumi:"request"`
-	// Action to take if the ICAP server cannot be contacted when processing an HTTP request. Valid values: `error`, `bypass`.
-	RequestFailure pulumi.StringOutput `pulumi:"requestFailure"`
-	// Path component of the ICAP URI that identifies the HTTP request processing service.
-	RequestPath pulumi.StringOutput `pulumi:"requestPath"`
-	// ICAP server to use for an HTTP request.
-	RequestServer pulumi.StringOutput `pulumi:"requestServer"`
-	// Default action to ICAP response modification (respmod) processing. Valid values: `forward`, `bypass`.
-	RespmodDefaultAction pulumi.StringOutput `pulumi:"respmodDefaultAction"`
-	// ICAP response mode forward rules. The structure of `respmodForwardRules` block is documented below.
-	RespmodForwardRules IcapProfileRespmodForwardRuleArrayOutput `pulumi:"respmodForwardRules"`
-	// Enable/disable whether an HTTP response is passed to an ICAP server. Valid values: `disable`, `enable`.
-	Response pulumi.StringOutput `pulumi:"response"`
-	// Action to take if the ICAP server cannot be contacted when processing an HTTP response. Valid values: `error`, `bypass`.
-	ResponseFailure pulumi.StringOutput `pulumi:"responseFailure"`
-	// Path component of the ICAP URI that identifies the HTTP response processing service.
-	ResponsePath pulumi.StringOutput `pulumi:"responsePath"`
-	// Enable/disable addition of req-hdr for ICAP response modification (respmod) processing. Valid values: `disable`, `enable`.
-	ResponseReqHdr pulumi.StringOutput `pulumi:"responseReqHdr"`
-	// ICAP server to use for an HTTP response.
-	ResponseServer pulumi.StringOutput `pulumi:"responseServer"`
-	// Scan progress interval value.
-	ScanProgressInterval pulumi.IntOutput `pulumi:"scanProgressInterval"`
-	// Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
-	StreamingContentBypass pulumi.StringOutput `pulumi:"streamingContentBypass"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	ChunkEncap             pulumi.StringOutput                      `pulumi:"chunkEncap"`
+	DynamicSortSubtable    pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
+	ExtensionFeature       pulumi.StringOutput                      `pulumi:"extensionFeature"`
+	FileTransfer           pulumi.StringOutput                      `pulumi:"fileTransfer"`
+	FileTransferFailure    pulumi.StringOutput                      `pulumi:"fileTransferFailure"`
+	FileTransferPath       pulumi.StringOutput                      `pulumi:"fileTransferPath"`
+	FileTransferServer     pulumi.StringOutput                      `pulumi:"fileTransferServer"`
+	IcapBlockLog           pulumi.StringOutput                      `pulumi:"icapBlockLog"`
+	IcapHeaders            IcapProfileIcapHeaderArrayOutput         `pulumi:"icapHeaders"`
+	Methods                pulumi.StringOutput                      `pulumi:"methods"`
+	N204Response           pulumi.StringOutput                      `pulumi:"n204Response"`
+	N204SizeLimit          pulumi.IntOutput                         `pulumi:"n204SizeLimit"`
+	Name                   pulumi.StringOutput                      `pulumi:"name"`
+	Preview                pulumi.StringOutput                      `pulumi:"preview"`
+	PreviewDataLength      pulumi.IntOutput                         `pulumi:"previewDataLength"`
+	ReplacemsgGroup        pulumi.StringOutput                      `pulumi:"replacemsgGroup"`
+	Request                pulumi.StringOutput                      `pulumi:"request"`
+	RequestFailure         pulumi.StringOutput                      `pulumi:"requestFailure"`
+	RequestPath            pulumi.StringOutput                      `pulumi:"requestPath"`
+	RequestServer          pulumi.StringOutput                      `pulumi:"requestServer"`
+	RespmodDefaultAction   pulumi.StringOutput                      `pulumi:"respmodDefaultAction"`
+	RespmodForwardRules    IcapProfileRespmodForwardRuleArrayOutput `pulumi:"respmodForwardRules"`
+	Response               pulumi.StringOutput                      `pulumi:"response"`
+	ResponseFailure        pulumi.StringOutput                      `pulumi:"responseFailure"`
+	ResponsePath           pulumi.StringOutput                      `pulumi:"responsePath"`
+	ResponseReqHdr         pulumi.StringOutput                      `pulumi:"responseReqHdr"`
+	ResponseServer         pulumi.StringOutput                      `pulumi:"responseServer"`
+	ScanProgressInterval   pulumi.IntOutput                         `pulumi:"scanProgressInterval"`
+	StreamingContentBypass pulumi.StringOutput                      `pulumi:"streamingContentBypass"`
+	Timeout                pulumi.IntOutput                         `pulumi:"timeout"`
+	Vdomparam              pulumi.StringPtrOutput                   `pulumi:"vdomparam"`
 }
 
 // NewIcapProfile registers a new resource with the given unique name, arguments, and options.
@@ -149,105 +76,71 @@ func GetIcapProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IcapProfile resources.
 type icapProfileState struct {
-	// Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
-	ChunkEncap *string `pulumi:"chunkEncap"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable ICAP extension features. Valid values: `scan-progress`.
-	ExtensionFeature *string `pulumi:"extensionFeature"`
-	// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
-	IcapBlockLog *string `pulumi:"icapBlockLog"`
-	// Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
-	IcapHeaders []IcapProfileIcapHeader `pulumi:"icapHeaders"`
-	// The allowed HTTP methods that will be sent to ICAP server for further processing. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `other`.
-	Methods *string `pulumi:"methods"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// Enable/disable preview of data to ICAP server. Valid values: `disable`, `enable`.
-	Preview *string `pulumi:"preview"`
-	// Preview data length to be sent to ICAP server.
-	PreviewDataLength *int `pulumi:"previewDataLength"`
-	// Replacement message group.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Enable/disable whether an HTTP request is passed to an ICAP server. Valid values: `disable`, `enable`.
-	Request *string `pulumi:"request"`
-	// Action to take if the ICAP server cannot be contacted when processing an HTTP request. Valid values: `error`, `bypass`.
-	RequestFailure *string `pulumi:"requestFailure"`
-	// Path component of the ICAP URI that identifies the HTTP request processing service.
-	RequestPath *string `pulumi:"requestPath"`
-	// ICAP server to use for an HTTP request.
-	RequestServer *string `pulumi:"requestServer"`
-	// Default action to ICAP response modification (respmod) processing. Valid values: `forward`, `bypass`.
-	RespmodDefaultAction *string `pulumi:"respmodDefaultAction"`
-	// ICAP response mode forward rules. The structure of `respmodForwardRules` block is documented below.
-	RespmodForwardRules []IcapProfileRespmodForwardRule `pulumi:"respmodForwardRules"`
-	// Enable/disable whether an HTTP response is passed to an ICAP server. Valid values: `disable`, `enable`.
-	Response *string `pulumi:"response"`
-	// Action to take if the ICAP server cannot be contacted when processing an HTTP response. Valid values: `error`, `bypass`.
-	ResponseFailure *string `pulumi:"responseFailure"`
-	// Path component of the ICAP URI that identifies the HTTP response processing service.
-	ResponsePath *string `pulumi:"responsePath"`
-	// Enable/disable addition of req-hdr for ICAP response modification (respmod) processing. Valid values: `disable`, `enable`.
-	ResponseReqHdr *string `pulumi:"responseReqHdr"`
-	// ICAP server to use for an HTTP response.
-	ResponseServer *string `pulumi:"responseServer"`
-	// Scan progress interval value.
-	ScanProgressInterval *int `pulumi:"scanProgressInterval"`
-	// Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
-	StreamingContentBypass *string `pulumi:"streamingContentBypass"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ChunkEncap             *string                         `pulumi:"chunkEncap"`
+	DynamicSortSubtable    *string                         `pulumi:"dynamicSortSubtable"`
+	ExtensionFeature       *string                         `pulumi:"extensionFeature"`
+	FileTransfer           *string                         `pulumi:"fileTransfer"`
+	FileTransferFailure    *string                         `pulumi:"fileTransferFailure"`
+	FileTransferPath       *string                         `pulumi:"fileTransferPath"`
+	FileTransferServer     *string                         `pulumi:"fileTransferServer"`
+	IcapBlockLog           *string                         `pulumi:"icapBlockLog"`
+	IcapHeaders            []IcapProfileIcapHeader         `pulumi:"icapHeaders"`
+	Methods                *string                         `pulumi:"methods"`
+	N204Response           *string                         `pulumi:"n204Response"`
+	N204SizeLimit          *int                            `pulumi:"n204SizeLimit"`
+	Name                   *string                         `pulumi:"name"`
+	Preview                *string                         `pulumi:"preview"`
+	PreviewDataLength      *int                            `pulumi:"previewDataLength"`
+	ReplacemsgGroup        *string                         `pulumi:"replacemsgGroup"`
+	Request                *string                         `pulumi:"request"`
+	RequestFailure         *string                         `pulumi:"requestFailure"`
+	RequestPath            *string                         `pulumi:"requestPath"`
+	RequestServer          *string                         `pulumi:"requestServer"`
+	RespmodDefaultAction   *string                         `pulumi:"respmodDefaultAction"`
+	RespmodForwardRules    []IcapProfileRespmodForwardRule `pulumi:"respmodForwardRules"`
+	Response               *string                         `pulumi:"response"`
+	ResponseFailure        *string                         `pulumi:"responseFailure"`
+	ResponsePath           *string                         `pulumi:"responsePath"`
+	ResponseReqHdr         *string                         `pulumi:"responseReqHdr"`
+	ResponseServer         *string                         `pulumi:"responseServer"`
+	ScanProgressInterval   *int                            `pulumi:"scanProgressInterval"`
+	StreamingContentBypass *string                         `pulumi:"streamingContentBypass"`
+	Timeout                *int                            `pulumi:"timeout"`
+	Vdomparam              *string                         `pulumi:"vdomparam"`
 }
 
 type IcapProfileState struct {
-	// Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
-	ChunkEncap pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable ICAP extension features. Valid values: `scan-progress`.
-	ExtensionFeature pulumi.StringPtrInput
-	// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
-	IcapBlockLog pulumi.StringPtrInput
-	// Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
-	IcapHeaders IcapProfileIcapHeaderArrayInput
-	// The allowed HTTP methods that will be sent to ICAP server for further processing. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `other`.
-	Methods pulumi.StringPtrInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// Enable/disable preview of data to ICAP server. Valid values: `disable`, `enable`.
-	Preview pulumi.StringPtrInput
-	// Preview data length to be sent to ICAP server.
-	PreviewDataLength pulumi.IntPtrInput
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// Enable/disable whether an HTTP request is passed to an ICAP server. Valid values: `disable`, `enable`.
-	Request pulumi.StringPtrInput
-	// Action to take if the ICAP server cannot be contacted when processing an HTTP request. Valid values: `error`, `bypass`.
-	RequestFailure pulumi.StringPtrInput
-	// Path component of the ICAP URI that identifies the HTTP request processing service.
-	RequestPath pulumi.StringPtrInput
-	// ICAP server to use for an HTTP request.
-	RequestServer pulumi.StringPtrInput
-	// Default action to ICAP response modification (respmod) processing. Valid values: `forward`, `bypass`.
-	RespmodDefaultAction pulumi.StringPtrInput
-	// ICAP response mode forward rules. The structure of `respmodForwardRules` block is documented below.
-	RespmodForwardRules IcapProfileRespmodForwardRuleArrayInput
-	// Enable/disable whether an HTTP response is passed to an ICAP server. Valid values: `disable`, `enable`.
-	Response pulumi.StringPtrInput
-	// Action to take if the ICAP server cannot be contacted when processing an HTTP response. Valid values: `error`, `bypass`.
-	ResponseFailure pulumi.StringPtrInput
-	// Path component of the ICAP URI that identifies the HTTP response processing service.
-	ResponsePath pulumi.StringPtrInput
-	// Enable/disable addition of req-hdr for ICAP response modification (respmod) processing. Valid values: `disable`, `enable`.
-	ResponseReqHdr pulumi.StringPtrInput
-	// ICAP server to use for an HTTP response.
-	ResponseServer pulumi.StringPtrInput
-	// Scan progress interval value.
-	ScanProgressInterval pulumi.IntPtrInput
-	// Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
+	ChunkEncap             pulumi.StringPtrInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	ExtensionFeature       pulumi.StringPtrInput
+	FileTransfer           pulumi.StringPtrInput
+	FileTransferFailure    pulumi.StringPtrInput
+	FileTransferPath       pulumi.StringPtrInput
+	FileTransferServer     pulumi.StringPtrInput
+	IcapBlockLog           pulumi.StringPtrInput
+	IcapHeaders            IcapProfileIcapHeaderArrayInput
+	Methods                pulumi.StringPtrInput
+	N204Response           pulumi.StringPtrInput
+	N204SizeLimit          pulumi.IntPtrInput
+	Name                   pulumi.StringPtrInput
+	Preview                pulumi.StringPtrInput
+	PreviewDataLength      pulumi.IntPtrInput
+	ReplacemsgGroup        pulumi.StringPtrInput
+	Request                pulumi.StringPtrInput
+	RequestFailure         pulumi.StringPtrInput
+	RequestPath            pulumi.StringPtrInput
+	RequestServer          pulumi.StringPtrInput
+	RespmodDefaultAction   pulumi.StringPtrInput
+	RespmodForwardRules    IcapProfileRespmodForwardRuleArrayInput
+	Response               pulumi.StringPtrInput
+	ResponseFailure        pulumi.StringPtrInput
+	ResponsePath           pulumi.StringPtrInput
+	ResponseReqHdr         pulumi.StringPtrInput
+	ResponseServer         pulumi.StringPtrInput
+	ScanProgressInterval   pulumi.IntPtrInput
 	StreamingContentBypass pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Timeout                pulumi.IntPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (IcapProfileState) ElementType() reflect.Type {
@@ -255,106 +148,72 @@ func (IcapProfileState) ElementType() reflect.Type {
 }
 
 type icapProfileArgs struct {
-	// Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
-	ChunkEncap *string `pulumi:"chunkEncap"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable ICAP extension features. Valid values: `scan-progress`.
-	ExtensionFeature *string `pulumi:"extensionFeature"`
-	// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
-	IcapBlockLog *string `pulumi:"icapBlockLog"`
-	// Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
-	IcapHeaders []IcapProfileIcapHeader `pulumi:"icapHeaders"`
-	// The allowed HTTP methods that will be sent to ICAP server for further processing. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `other`.
-	Methods *string `pulumi:"methods"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// Enable/disable preview of data to ICAP server. Valid values: `disable`, `enable`.
-	Preview *string `pulumi:"preview"`
-	// Preview data length to be sent to ICAP server.
-	PreviewDataLength *int `pulumi:"previewDataLength"`
-	// Replacement message group.
-	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Enable/disable whether an HTTP request is passed to an ICAP server. Valid values: `disable`, `enable`.
-	Request *string `pulumi:"request"`
-	// Action to take if the ICAP server cannot be contacted when processing an HTTP request. Valid values: `error`, `bypass`.
-	RequestFailure *string `pulumi:"requestFailure"`
-	// Path component of the ICAP URI that identifies the HTTP request processing service.
-	RequestPath *string `pulumi:"requestPath"`
-	// ICAP server to use for an HTTP request.
-	RequestServer *string `pulumi:"requestServer"`
-	// Default action to ICAP response modification (respmod) processing. Valid values: `forward`, `bypass`.
-	RespmodDefaultAction *string `pulumi:"respmodDefaultAction"`
-	// ICAP response mode forward rules. The structure of `respmodForwardRules` block is documented below.
-	RespmodForwardRules []IcapProfileRespmodForwardRule `pulumi:"respmodForwardRules"`
-	// Enable/disable whether an HTTP response is passed to an ICAP server. Valid values: `disable`, `enable`.
-	Response *string `pulumi:"response"`
-	// Action to take if the ICAP server cannot be contacted when processing an HTTP response. Valid values: `error`, `bypass`.
-	ResponseFailure *string `pulumi:"responseFailure"`
-	// Path component of the ICAP URI that identifies the HTTP response processing service.
-	ResponsePath *string `pulumi:"responsePath"`
-	// Enable/disable addition of req-hdr for ICAP response modification (respmod) processing. Valid values: `disable`, `enable`.
-	ResponseReqHdr *string `pulumi:"responseReqHdr"`
-	// ICAP server to use for an HTTP response.
-	ResponseServer *string `pulumi:"responseServer"`
-	// Scan progress interval value.
-	ScanProgressInterval *int `pulumi:"scanProgressInterval"`
-	// Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
-	StreamingContentBypass *string `pulumi:"streamingContentBypass"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ChunkEncap             *string                         `pulumi:"chunkEncap"`
+	DynamicSortSubtable    *string                         `pulumi:"dynamicSortSubtable"`
+	ExtensionFeature       *string                         `pulumi:"extensionFeature"`
+	FileTransfer           *string                         `pulumi:"fileTransfer"`
+	FileTransferFailure    *string                         `pulumi:"fileTransferFailure"`
+	FileTransferPath       *string                         `pulumi:"fileTransferPath"`
+	FileTransferServer     *string                         `pulumi:"fileTransferServer"`
+	IcapBlockLog           *string                         `pulumi:"icapBlockLog"`
+	IcapHeaders            []IcapProfileIcapHeader         `pulumi:"icapHeaders"`
+	Methods                *string                         `pulumi:"methods"`
+	N204Response           *string                         `pulumi:"n204Response"`
+	N204SizeLimit          *int                            `pulumi:"n204SizeLimit"`
+	Name                   *string                         `pulumi:"name"`
+	Preview                *string                         `pulumi:"preview"`
+	PreviewDataLength      *int                            `pulumi:"previewDataLength"`
+	ReplacemsgGroup        *string                         `pulumi:"replacemsgGroup"`
+	Request                *string                         `pulumi:"request"`
+	RequestFailure         *string                         `pulumi:"requestFailure"`
+	RequestPath            *string                         `pulumi:"requestPath"`
+	RequestServer          *string                         `pulumi:"requestServer"`
+	RespmodDefaultAction   *string                         `pulumi:"respmodDefaultAction"`
+	RespmodForwardRules    []IcapProfileRespmodForwardRule `pulumi:"respmodForwardRules"`
+	Response               *string                         `pulumi:"response"`
+	ResponseFailure        *string                         `pulumi:"responseFailure"`
+	ResponsePath           *string                         `pulumi:"responsePath"`
+	ResponseReqHdr         *string                         `pulumi:"responseReqHdr"`
+	ResponseServer         *string                         `pulumi:"responseServer"`
+	ScanProgressInterval   *int                            `pulumi:"scanProgressInterval"`
+	StreamingContentBypass *string                         `pulumi:"streamingContentBypass"`
+	Timeout                *int                            `pulumi:"timeout"`
+	Vdomparam              *string                         `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a IcapProfile resource.
 type IcapProfileArgs struct {
-	// Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
-	ChunkEncap pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable ICAP extension features. Valid values: `scan-progress`.
-	ExtensionFeature pulumi.StringPtrInput
-	// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
-	IcapBlockLog pulumi.StringPtrInput
-	// Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
-	IcapHeaders IcapProfileIcapHeaderArrayInput
-	// The allowed HTTP methods that will be sent to ICAP server for further processing. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `other`.
-	Methods pulumi.StringPtrInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// Enable/disable preview of data to ICAP server. Valid values: `disable`, `enable`.
-	Preview pulumi.StringPtrInput
-	// Preview data length to be sent to ICAP server.
-	PreviewDataLength pulumi.IntPtrInput
-	// Replacement message group.
-	ReplacemsgGroup pulumi.StringPtrInput
-	// Enable/disable whether an HTTP request is passed to an ICAP server. Valid values: `disable`, `enable`.
-	Request pulumi.StringPtrInput
-	// Action to take if the ICAP server cannot be contacted when processing an HTTP request. Valid values: `error`, `bypass`.
-	RequestFailure pulumi.StringPtrInput
-	// Path component of the ICAP URI that identifies the HTTP request processing service.
-	RequestPath pulumi.StringPtrInput
-	// ICAP server to use for an HTTP request.
-	RequestServer pulumi.StringPtrInput
-	// Default action to ICAP response modification (respmod) processing. Valid values: `forward`, `bypass`.
-	RespmodDefaultAction pulumi.StringPtrInput
-	// ICAP response mode forward rules. The structure of `respmodForwardRules` block is documented below.
-	RespmodForwardRules IcapProfileRespmodForwardRuleArrayInput
-	// Enable/disable whether an HTTP response is passed to an ICAP server. Valid values: `disable`, `enable`.
-	Response pulumi.StringPtrInput
-	// Action to take if the ICAP server cannot be contacted when processing an HTTP response. Valid values: `error`, `bypass`.
-	ResponseFailure pulumi.StringPtrInput
-	// Path component of the ICAP URI that identifies the HTTP response processing service.
-	ResponsePath pulumi.StringPtrInput
-	// Enable/disable addition of req-hdr for ICAP response modification (respmod) processing. Valid values: `disable`, `enable`.
-	ResponseReqHdr pulumi.StringPtrInput
-	// ICAP server to use for an HTTP response.
-	ResponseServer pulumi.StringPtrInput
-	// Scan progress interval value.
-	ScanProgressInterval pulumi.IntPtrInput
-	// Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
+	ChunkEncap             pulumi.StringPtrInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	ExtensionFeature       pulumi.StringPtrInput
+	FileTransfer           pulumi.StringPtrInput
+	FileTransferFailure    pulumi.StringPtrInput
+	FileTransferPath       pulumi.StringPtrInput
+	FileTransferServer     pulumi.StringPtrInput
+	IcapBlockLog           pulumi.StringPtrInput
+	IcapHeaders            IcapProfileIcapHeaderArrayInput
+	Methods                pulumi.StringPtrInput
+	N204Response           pulumi.StringPtrInput
+	N204SizeLimit          pulumi.IntPtrInput
+	Name                   pulumi.StringPtrInput
+	Preview                pulumi.StringPtrInput
+	PreviewDataLength      pulumi.IntPtrInput
+	ReplacemsgGroup        pulumi.StringPtrInput
+	Request                pulumi.StringPtrInput
+	RequestFailure         pulumi.StringPtrInput
+	RequestPath            pulumi.StringPtrInput
+	RequestServer          pulumi.StringPtrInput
+	RespmodDefaultAction   pulumi.StringPtrInput
+	RespmodForwardRules    IcapProfileRespmodForwardRuleArrayInput
+	Response               pulumi.StringPtrInput
+	ResponseFailure        pulumi.StringPtrInput
+	ResponsePath           pulumi.StringPtrInput
+	ResponseReqHdr         pulumi.StringPtrInput
+	ResponseServer         pulumi.StringPtrInput
+	ScanProgressInterval   pulumi.IntPtrInput
 	StreamingContentBypass pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Timeout                pulumi.IntPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (IcapProfileArgs) ElementType() reflect.Type {
@@ -383,7 +242,7 @@ func (i *IcapProfile) ToIcapProfileOutputWithContext(ctx context.Context) IcapPr
 // IcapProfileArrayInput is an input type that accepts IcapProfileArray and IcapProfileArrayOutput values.
 // You can construct a concrete instance of `IcapProfileArrayInput` via:
 //
-//          IcapProfileArray{ IcapProfileArgs{...} }
+//	IcapProfileArray{ IcapProfileArgs{...} }
 type IcapProfileArrayInput interface {
 	pulumi.Input
 
@@ -408,7 +267,7 @@ func (i IcapProfileArray) ToIcapProfileArrayOutputWithContext(ctx context.Contex
 // IcapProfileMapInput is an input type that accepts IcapProfileMap and IcapProfileMapOutput values.
 // You can construct a concrete instance of `IcapProfileMapInput` via:
 //
-//          IcapProfileMap{ "key": IcapProfileArgs{...} }
+//	IcapProfileMap{ "key": IcapProfileArgs{...} }
 type IcapProfileMapInput interface {
 	pulumi.Input
 
@@ -442,6 +301,130 @@ func (o IcapProfileOutput) ToIcapProfileOutput() IcapProfileOutput {
 
 func (o IcapProfileOutput) ToIcapProfileOutputWithContext(ctx context.Context) IcapProfileOutput {
 	return o
+}
+
+func (o IcapProfileOutput) ChunkEncap() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.ChunkEncap }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o IcapProfileOutput) ExtensionFeature() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.ExtensionFeature }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) FileTransfer() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.FileTransfer }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) FileTransferFailure() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.FileTransferFailure }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) FileTransferPath() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.FileTransferPath }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) FileTransferServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.FileTransferServer }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) IcapBlockLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.IcapBlockLog }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) IcapHeaders() IcapProfileIcapHeaderArrayOutput {
+	return o.ApplyT(func(v *IcapProfile) IcapProfileIcapHeaderArrayOutput { return v.IcapHeaders }).(IcapProfileIcapHeaderArrayOutput)
+}
+
+func (o IcapProfileOutput) Methods() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.Methods }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) N204Response() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.N204Response }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) N204SizeLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.IntOutput { return v.N204SizeLimit }).(pulumi.IntOutput)
+}
+
+func (o IcapProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) Preview() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.Preview }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) PreviewDataLength() pulumi.IntOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.IntOutput { return v.PreviewDataLength }).(pulumi.IntOutput)
+}
+
+func (o IcapProfileOutput) ReplacemsgGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.ReplacemsgGroup }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) Request() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.Request }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) RequestFailure() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.RequestFailure }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) RequestPath() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.RequestPath }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) RequestServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.RequestServer }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) RespmodDefaultAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.RespmodDefaultAction }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) RespmodForwardRules() IcapProfileRespmodForwardRuleArrayOutput {
+	return o.ApplyT(func(v *IcapProfile) IcapProfileRespmodForwardRuleArrayOutput { return v.RespmodForwardRules }).(IcapProfileRespmodForwardRuleArrayOutput)
+}
+
+func (o IcapProfileOutput) Response() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.Response }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) ResponseFailure() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.ResponseFailure }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) ResponsePath() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.ResponsePath }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) ResponseReqHdr() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.ResponseReqHdr }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) ResponseServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.ResponseServer }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) ScanProgressInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.IntOutput { return v.ScanProgressInterval }).(pulumi.IntOutput)
+}
+
+func (o IcapProfileOutput) StreamingContentBypass() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.StreamingContentBypass }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
+}
+
+func (o IcapProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type IcapProfileArrayOutput struct{ *pulumi.OutputState }

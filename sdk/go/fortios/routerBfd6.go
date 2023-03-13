@@ -10,32 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 BFD.
-//
-// ## Import
-//
-// Router Bfd6 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerBfd6:RouterBfd6 labelname RouterBfd6
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerBfd6:RouterBfd6 labelname RouterBfd6
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterBfd6 struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Configure neighbor of IPv6 BFD. The structure of `neighbor` block is documented below.
-	Neighbors RouterBfd6NeighborArrayOutput `pulumi:"neighbors"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
+	MultihopTemplates   RouterBfd6MultihopTemplateArrayOutput `pulumi:"multihopTemplates"`
+	Neighbors           RouterBfd6NeighborArrayOutput         `pulumi:"neighbors"`
+	Vdomparam           pulumi.StringPtrOutput                `pulumi:"vdomparam"`
 }
 
 // NewRouterBfd6 registers a new resource with the given unique name, arguments, and options.
@@ -68,21 +49,17 @@ func GetRouterBfd6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterBfd6 resources.
 type routerBfd6State struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configure neighbor of IPv6 BFD. The structure of `neighbor` block is documented below.
-	Neighbors []RouterBfd6Neighbor `pulumi:"neighbors"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	MultihopTemplates   []RouterBfd6MultihopTemplate `pulumi:"multihopTemplates"`
+	Neighbors           []RouterBfd6Neighbor         `pulumi:"neighbors"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 type RouterBfd6State struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Configure neighbor of IPv6 BFD. The structure of `neighbor` block is documented below.
-	Neighbors RouterBfd6NeighborArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MultihopTemplates   RouterBfd6MultihopTemplateArrayInput
+	Neighbors           RouterBfd6NeighborArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterBfd6State) ElementType() reflect.Type {
@@ -90,22 +67,18 @@ func (RouterBfd6State) ElementType() reflect.Type {
 }
 
 type routerBfd6Args struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Configure neighbor of IPv6 BFD. The structure of `neighbor` block is documented below.
-	Neighbors []RouterBfd6Neighbor `pulumi:"neighbors"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	MultihopTemplates   []RouterBfd6MultihopTemplate `pulumi:"multihopTemplates"`
+	Neighbors           []RouterBfd6Neighbor         `pulumi:"neighbors"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterBfd6 resource.
 type RouterBfd6Args struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Configure neighbor of IPv6 BFD. The structure of `neighbor` block is documented below.
-	Neighbors RouterBfd6NeighborArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	MultihopTemplates   RouterBfd6MultihopTemplateArrayInput
+	Neighbors           RouterBfd6NeighborArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterBfd6Args) ElementType() reflect.Type {
@@ -134,7 +107,7 @@ func (i *RouterBfd6) ToRouterBfd6OutputWithContext(ctx context.Context) RouterBf
 // RouterBfd6ArrayInput is an input type that accepts RouterBfd6Array and RouterBfd6ArrayOutput values.
 // You can construct a concrete instance of `RouterBfd6ArrayInput` via:
 //
-//          RouterBfd6Array{ RouterBfd6Args{...} }
+//	RouterBfd6Array{ RouterBfd6Args{...} }
 type RouterBfd6ArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +132,7 @@ func (i RouterBfd6Array) ToRouterBfd6ArrayOutputWithContext(ctx context.Context)
 // RouterBfd6MapInput is an input type that accepts RouterBfd6Map and RouterBfd6MapOutput values.
 // You can construct a concrete instance of `RouterBfd6MapInput` via:
 //
-//          RouterBfd6Map{ "key": RouterBfd6Args{...} }
+//	RouterBfd6Map{ "key": RouterBfd6Args{...} }
 type RouterBfd6MapInput interface {
 	pulumi.Input
 
@@ -193,6 +166,22 @@ func (o RouterBfd6Output) ToRouterBfd6Output() RouterBfd6Output {
 
 func (o RouterBfd6Output) ToRouterBfd6OutputWithContext(ctx context.Context) RouterBfd6Output {
 	return o
+}
+
+func (o RouterBfd6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterBfd6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterBfd6Output) MultihopTemplates() RouterBfd6MultihopTemplateArrayOutput {
+	return o.ApplyT(func(v *RouterBfd6) RouterBfd6MultihopTemplateArrayOutput { return v.MultihopTemplates }).(RouterBfd6MultihopTemplateArrayOutput)
+}
+
+func (o RouterBfd6Output) Neighbors() RouterBfd6NeighborArrayOutput {
+	return o.ApplyT(func(v *RouterBfd6) RouterBfd6NeighborArrayOutput { return v.Neighbors }).(RouterBfd6NeighborArrayOutput)
+}
+
+func (o RouterBfd6Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterBfd6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterBfd6ArrayOutput struct{ *pulumi.OutputState }

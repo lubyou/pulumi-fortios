@@ -7,50 +7,23 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Web proxy address group configuration.
-//
-// ## Import
-//
-// Firewall ProxyAddrgrp can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallProxyAddrgrp:FirewallProxyAddrgrp labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallProxyAddrgrp:FirewallProxyAddrgrp labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallProxyAddrgrp struct {
 	pulumi.CustomResourceState
 
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-	Color pulumi.IntOutput `pulumi:"color"`
-	// Optional comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Members of address group. The structure of `member` block is documented below.
-	Members FirewallProxyAddrgrpMemberArrayOutput `pulumi:"members"`
-	// Tag name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings FirewallProxyAddrgrpTaggingArrayOutput `pulumi:"taggings"`
-	// Source or destination address group type. Valid values: `src`, `dst`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringOutput `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable visibility of the object in the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringOutput `pulumi:"visibility"`
+	Color               pulumi.IntOutput                       `pulumi:"color"`
+	Comment             pulumi.StringPtrOutput                 `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	Members             FirewallProxyAddrgrpMemberArrayOutput  `pulumi:"members"`
+	Name                pulumi.StringOutput                    `pulumi:"name"`
+	Taggings            FirewallProxyAddrgrpTaggingArrayOutput `pulumi:"taggings"`
+	Type                pulumi.StringOutput                    `pulumi:"type"`
+	Uuid                pulumi.StringOutput                    `pulumi:"uuid"`
+	Vdomparam           pulumi.StringPtrOutput                 `pulumi:"vdomparam"`
+	Visibility          pulumi.StringOutput                    `pulumi:"visibility"`
 }
 
 // NewFirewallProxyAddrgrp registers a new resource with the given unique name, arguments, and options.
@@ -86,49 +59,29 @@ func GetFirewallProxyAddrgrp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallProxyAddrgrp resources.
 type firewallProxyAddrgrpState struct {
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-	Color *int `pulumi:"color"`
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Members of address group. The structure of `member` block is documented below.
-	Members []FirewallProxyAddrgrpMember `pulumi:"members"`
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []FirewallProxyAddrgrpTagging `pulumi:"taggings"`
-	// Source or destination address group type. Valid values: `src`, `dst`.
-	Type *string `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable visibility of the object in the GUI. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
+	Color               *int                          `pulumi:"color"`
+	Comment             *string                       `pulumi:"comment"`
+	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	Members             []FirewallProxyAddrgrpMember  `pulumi:"members"`
+	Name                *string                       `pulumi:"name"`
+	Taggings            []FirewallProxyAddrgrpTagging `pulumi:"taggings"`
+	Type                *string                       `pulumi:"type"`
+	Uuid                *string                       `pulumi:"uuid"`
+	Vdomparam           *string                       `pulumi:"vdomparam"`
+	Visibility          *string                       `pulumi:"visibility"`
 }
 
 type FirewallProxyAddrgrpState struct {
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-	Color pulumi.IntPtrInput
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Members of address group. The structure of `member` block is documented below.
-	Members FirewallProxyAddrgrpMemberArrayInput
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings FirewallProxyAddrgrpTaggingArrayInput
-	// Source or destination address group type. Valid values: `src`, `dst`.
-	Type pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable visibility of the object in the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
+	Members             FirewallProxyAddrgrpMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Taggings            FirewallProxyAddrgrpTaggingArrayInput
+	Type                pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
 }
 
 func (FirewallProxyAddrgrpState) ElementType() reflect.Type {
@@ -136,50 +89,30 @@ func (FirewallProxyAddrgrpState) ElementType() reflect.Type {
 }
 
 type firewallProxyAddrgrpArgs struct {
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-	Color *int `pulumi:"color"`
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Members of address group. The structure of `member` block is documented below.
-	Members []FirewallProxyAddrgrpMember `pulumi:"members"`
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []FirewallProxyAddrgrpTagging `pulumi:"taggings"`
-	// Source or destination address group type. Valid values: `src`, `dst`.
-	Type *string `pulumi:"type"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid *string `pulumi:"uuid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable visibility of the object in the GUI. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
+	Color               *int                          `pulumi:"color"`
+	Comment             *string                       `pulumi:"comment"`
+	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	Members             []FirewallProxyAddrgrpMember  `pulumi:"members"`
+	Name                *string                       `pulumi:"name"`
+	Taggings            []FirewallProxyAddrgrpTagging `pulumi:"taggings"`
+	Type                *string                       `pulumi:"type"`
+	Uuid                *string                       `pulumi:"uuid"`
+	Vdomparam           *string                       `pulumi:"vdomparam"`
+	Visibility          *string                       `pulumi:"visibility"`
 }
 
 // The set of arguments for constructing a FirewallProxyAddrgrp resource.
 type FirewallProxyAddrgrpArgs struct {
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-	Color pulumi.IntPtrInput
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Members of address group. The structure of `member` block is documented below.
-	Members FirewallProxyAddrgrpMemberArrayInput
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings FirewallProxyAddrgrpTaggingArrayInput
-	// Source or destination address group type. Valid values: `src`, `dst`.
-	Type pulumi.StringPtrInput
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable visibility of the object in the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
+	Members             FirewallProxyAddrgrpMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Taggings            FirewallProxyAddrgrpTaggingArrayInput
+	Type                pulumi.StringPtrInput
+	Uuid                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
 }
 
 func (FirewallProxyAddrgrpArgs) ElementType() reflect.Type {
@@ -208,7 +141,7 @@ func (i *FirewallProxyAddrgrp) ToFirewallProxyAddrgrpOutputWithContext(ctx conte
 // FirewallProxyAddrgrpArrayInput is an input type that accepts FirewallProxyAddrgrpArray and FirewallProxyAddrgrpArrayOutput values.
 // You can construct a concrete instance of `FirewallProxyAddrgrpArrayInput` via:
 //
-//          FirewallProxyAddrgrpArray{ FirewallProxyAddrgrpArgs{...} }
+//	FirewallProxyAddrgrpArray{ FirewallProxyAddrgrpArgs{...} }
 type FirewallProxyAddrgrpArrayInput interface {
 	pulumi.Input
 
@@ -233,7 +166,7 @@ func (i FirewallProxyAddrgrpArray) ToFirewallProxyAddrgrpArrayOutputWithContext(
 // FirewallProxyAddrgrpMapInput is an input type that accepts FirewallProxyAddrgrpMap and FirewallProxyAddrgrpMapOutput values.
 // You can construct a concrete instance of `FirewallProxyAddrgrpMapInput` via:
 //
-//          FirewallProxyAddrgrpMap{ "key": FirewallProxyAddrgrpArgs{...} }
+//	FirewallProxyAddrgrpMap{ "key": FirewallProxyAddrgrpArgs{...} }
 type FirewallProxyAddrgrpMapInput interface {
 	pulumi.Input
 
@@ -267,6 +200,46 @@ func (o FirewallProxyAddrgrpOutput) ToFirewallProxyAddrgrpOutput() FirewallProxy
 
 func (o FirewallProxyAddrgrpOutput) ToFirewallProxyAddrgrpOutputWithContext(ctx context.Context) FirewallProxyAddrgrpOutput {
 	return o
+}
+
+func (o FirewallProxyAddrgrpOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallProxyAddrgrp) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o FirewallProxyAddrgrpOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProxyAddrgrp) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallProxyAddrgrpOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProxyAddrgrp) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallProxyAddrgrpOutput) Members() FirewallProxyAddrgrpMemberArrayOutput {
+	return o.ApplyT(func(v *FirewallProxyAddrgrp) FirewallProxyAddrgrpMemberArrayOutput { return v.Members }).(FirewallProxyAddrgrpMemberArrayOutput)
+}
+
+func (o FirewallProxyAddrgrpOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxyAddrgrp) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallProxyAddrgrpOutput) Taggings() FirewallProxyAddrgrpTaggingArrayOutput {
+	return o.ApplyT(func(v *FirewallProxyAddrgrp) FirewallProxyAddrgrpTaggingArrayOutput { return v.Taggings }).(FirewallProxyAddrgrpTaggingArrayOutput)
+}
+
+func (o FirewallProxyAddrgrpOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxyAddrgrp) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o FirewallProxyAddrgrpOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxyAddrgrp) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o FirewallProxyAddrgrpOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProxyAddrgrp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallProxyAddrgrpOutput) Visibility() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxyAddrgrp) pulumi.StringOutput { return v.Visibility }).(pulumi.StringOutput)
 }
 
 type FirewallProxyAddrgrpArrayOutput struct{ *pulumi.OutputState }

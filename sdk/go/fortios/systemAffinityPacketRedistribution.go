@@ -7,40 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure packet redistribution.
-//
-// ## Import
-//
-// System AffinityPacketRedistribution can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAffinityPacketRedistribution:SystemAffinityPacketRedistribution labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAffinityPacketRedistribution:SystemAffinityPacketRedistribution labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemAffinityPacketRedistribution struct {
 	pulumi.CustomResourceState
 
-	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
-	AffinityCpumask pulumi.StringOutput `pulumi:"affinityCpumask"`
-	// ID of the packet redistribution setting.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Physical interface name on which to perform packet redistribution.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
-	Rxqid pulumi.IntOutput `pulumi:"rxqid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AffinityCpumask pulumi.StringOutput    `pulumi:"affinityCpumask"`
+	Fosid           pulumi.IntOutput       `pulumi:"fosid"`
+	Interface       pulumi.StringOutput    `pulumi:"interface"`
+	Rxqid           pulumi.IntOutput       `pulumi:"rxqid"`
+	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemAffinityPacketRedistribution registers a new resource with the given unique name, arguments, and options.
@@ -85,29 +63,19 @@ func GetSystemAffinityPacketRedistribution(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAffinityPacketRedistribution resources.
 type systemAffinityPacketRedistributionState struct {
-	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask *string `pulumi:"affinityCpumask"`
-	// ID of the packet redistribution setting.
-	Fosid *int `pulumi:"fosid"`
-	// Physical interface name on which to perform packet redistribution.
-	Interface *string `pulumi:"interface"`
-	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
-	Rxqid *int `pulumi:"rxqid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Fosid           *int    `pulumi:"fosid"`
+	Interface       *string `pulumi:"interface"`
+	Rxqid           *int    `pulumi:"rxqid"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 type SystemAffinityPacketRedistributionState struct {
-	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask pulumi.StringPtrInput
-	// ID of the packet redistribution setting.
-	Fosid pulumi.IntPtrInput
-	// Physical interface name on which to perform packet redistribution.
-	Interface pulumi.StringPtrInput
-	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
-	Rxqid pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid           pulumi.IntPtrInput
+	Interface       pulumi.StringPtrInput
+	Rxqid           pulumi.IntPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (SystemAffinityPacketRedistributionState) ElementType() reflect.Type {
@@ -115,30 +83,20 @@ func (SystemAffinityPacketRedistributionState) ElementType() reflect.Type {
 }
 
 type systemAffinityPacketRedistributionArgs struct {
-	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
-	AffinityCpumask string `pulumi:"affinityCpumask"`
-	// ID of the packet redistribution setting.
-	Fosid int `pulumi:"fosid"`
-	// Physical interface name on which to perform packet redistribution.
-	Interface string `pulumi:"interface"`
-	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
-	Rxqid int `pulumi:"rxqid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AffinityCpumask string  `pulumi:"affinityCpumask"`
+	Fosid           int     `pulumi:"fosid"`
+	Interface       string  `pulumi:"interface"`
+	Rxqid           int     `pulumi:"rxqid"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemAffinityPacketRedistribution resource.
 type SystemAffinityPacketRedistributionArgs struct {
-	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask pulumi.StringInput
-	// ID of the packet redistribution setting.
-	Fosid pulumi.IntInput
-	// Physical interface name on which to perform packet redistribution.
-	Interface pulumi.StringInput
-	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
-	Rxqid pulumi.IntInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid           pulumi.IntInput
+	Interface       pulumi.StringInput
+	Rxqid           pulumi.IntInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (SystemAffinityPacketRedistributionArgs) ElementType() reflect.Type {
@@ -167,7 +125,7 @@ func (i *SystemAffinityPacketRedistribution) ToSystemAffinityPacketRedistributio
 // SystemAffinityPacketRedistributionArrayInput is an input type that accepts SystemAffinityPacketRedistributionArray and SystemAffinityPacketRedistributionArrayOutput values.
 // You can construct a concrete instance of `SystemAffinityPacketRedistributionArrayInput` via:
 //
-//          SystemAffinityPacketRedistributionArray{ SystemAffinityPacketRedistributionArgs{...} }
+//	SystemAffinityPacketRedistributionArray{ SystemAffinityPacketRedistributionArgs{...} }
 type SystemAffinityPacketRedistributionArrayInput interface {
 	pulumi.Input
 
@@ -192,7 +150,7 @@ func (i SystemAffinityPacketRedistributionArray) ToSystemAffinityPacketRedistrib
 // SystemAffinityPacketRedistributionMapInput is an input type that accepts SystemAffinityPacketRedistributionMap and SystemAffinityPacketRedistributionMapOutput values.
 // You can construct a concrete instance of `SystemAffinityPacketRedistributionMapInput` via:
 //
-//          SystemAffinityPacketRedistributionMap{ "key": SystemAffinityPacketRedistributionArgs{...} }
+//	SystemAffinityPacketRedistributionMap{ "key": SystemAffinityPacketRedistributionArgs{...} }
 type SystemAffinityPacketRedistributionMapInput interface {
 	pulumi.Input
 
@@ -226,6 +184,26 @@ func (o SystemAffinityPacketRedistributionOutput) ToSystemAffinityPacketRedistri
 
 func (o SystemAffinityPacketRedistributionOutput) ToSystemAffinityPacketRedistributionOutputWithContext(ctx context.Context) SystemAffinityPacketRedistributionOutput {
 	return o
+}
+
+func (o SystemAffinityPacketRedistributionOutput) AffinityCpumask() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAffinityPacketRedistribution) pulumi.StringOutput { return v.AffinityCpumask }).(pulumi.StringOutput)
+}
+
+func (o SystemAffinityPacketRedistributionOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAffinityPacketRedistribution) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SystemAffinityPacketRedistributionOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAffinityPacketRedistribution) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemAffinityPacketRedistributionOutput) Rxqid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAffinityPacketRedistribution) pulumi.IntOutput { return v.Rxqid }).(pulumi.IntOutput)
+}
+
+func (o SystemAffinityPacketRedistributionOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAffinityPacketRedistribution) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemAffinityPacketRedistributionArrayOutput struct{ *pulumi.OutputState }

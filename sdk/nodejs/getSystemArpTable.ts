@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios system arptable
- */
 export function getSystemArpTable(args: GetSystemArpTableArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemArpTableResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemArpTable:GetSystemArpTable", {
         "fosid": args.fosid,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getSystemArpTable(args: GetSystemArpTableArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking GetSystemArpTable.
  */
 export interface GetSystemArpTableArgs {
-    /**
-     * Specify the fosid of the desired system arptable.
-     */
     fosid: number;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,43 +25,24 @@ export interface GetSystemArpTableArgs {
  * A collection of values returned by GetSystemArpTable.
  */
 export interface GetSystemArpTableResult {
-    /**
-     * Unique integer ID of the entry.
-     */
     readonly fosid: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Interface name.
-     */
     readonly interface: string;
-    /**
-     * IP address.
-     */
     readonly ip: string;
-    /**
-     * MAC address.
-     */
     readonly mac: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemArpTableOutput(args: GetSystemArpTableOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemArpTableResult> {
-    return pulumi.output(args).apply(a => getSystemArpTable(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemArpTable(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemArpTable.
  */
 export interface GetSystemArpTableOutputArgs {
-    /**
-     * Specify the fosid of the desired system arptable.
-     */
     fosid: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

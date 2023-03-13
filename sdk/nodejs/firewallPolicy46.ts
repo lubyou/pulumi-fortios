@@ -2,72 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv4 to IPv6 policies. Applies to FortiOS Version `<= 7.0.0`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
- *
- * const trnameFirewallVip46 = new fortios.FirewallVip46("trnameFirewallVip46", {
- *     arpReply: "enable",
- *     color: 0,
- *     extip: "10.1.100.55",
- *     extport: "0-65535",
- *     fosid: 0,
- *     ldbMethod: "static",
- *     mappedip: "2000:172:16:200::55",
- *     mappedport: "0-65535",
- *     portforward: "disable",
- *     protocol: "tcp",
- *     type: "static-nat",
- * });
- * const trnameFirewallPolicy46 = new fortios.FirewallPolicy46("trnameFirewallPolicy46", {
- *     action: "deny",
- *     dstintf: "port3",
- *     fixedport: "disable",
- *     ippool: "disable",
- *     logtraffic: "disable",
- *     permitAnyHost: "disable",
- *     policyid: 2,
- *     schedule: "always",
- *     srcintf: "port2",
- *     status: "enable",
- *     tcpMssReceiver: 0,
- *     tcpMssSender: 0,
- *     dstaddrs: [{
- *         name: trnameFirewallVip46.name,
- *     }],
- *     services: [{
- *         name: "ALL",
- *     }],
- *     srcaddrs: [{
- *         name: "FIREWALL_AUTH_PORTAL_ADDRESS",
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * Firewall Policy46 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallPolicy46:FirewallPolicy46 labelname {{policyid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallPolicy46:FirewallPolicy46 labelname {{policyid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallPolicy46 extends pulumi.CustomResource {
     /**
      * Get an existing FirewallPolicy46 resource's state with the given name, ID, and optional extra
@@ -96,105 +34,30 @@ export class FirewallPolicy46 extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallPolicy46.__pulumiType;
     }
 
-    /**
-     * Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-     */
     public readonly action!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Destination address objects. The structure of `dstaddr` block is documented below.
-     */
     public readonly dstaddrs!: pulumi.Output<outputs.FirewallPolicy46Dstaddr[]>;
-    /**
-     * Destination interface name.
-     */
     public readonly dstintf!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
-     */
     public readonly fixedport!: pulumi.Output<string>;
-    /**
-     * Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
-     */
     public readonly ippool!: pulumi.Output<string>;
-    /**
-     * Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
-     */
     public readonly logtraffic!: pulumi.Output<string>;
-    /**
-     * Record logs when a session starts and ends. Valid values: `enable`, `disable`.
-     */
     public readonly logtrafficStart!: pulumi.Output<string>;
-    /**
-     * IP pool name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Per IP traffic shaper.
-     */
     public readonly perIpShaper!: pulumi.Output<string>;
-    /**
-     * Enable/disable allowing any host. Valid values: `enable`, `disable`.
-     */
     public readonly permitAnyHost!: pulumi.Output<string>;
-    /**
-     * Policy ID.
-     */
     public readonly policyid!: pulumi.Output<number>;
-    /**
-     * IP Pool names. The structure of `poolname` block is documented below.
-     */
     public readonly poolnames!: pulumi.Output<outputs.FirewallPolicy46Poolname[] | undefined>;
-    /**
-     * Schedule name.
-     */
     public readonly schedule!: pulumi.Output<string>;
-    /**
-     * Service name. The structure of `service` block is documented below.
-     */
     public readonly services!: pulumi.Output<outputs.FirewallPolicy46Service[] | undefined>;
-    /**
-     * Source address objects. The structure of `srcaddr` block is documented below.
-     */
     public readonly srcaddrs!: pulumi.Output<outputs.FirewallPolicy46Srcaddr[]>;
-    /**
-     * Source interface name.
-     */
     public readonly srcintf!: pulumi.Output<string>;
-    /**
-     * Enable/disable this policy. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * TCP Maximum Segment Size value of receiver (0 - 65535, default = 0)
-     */
     public readonly tcpMssReceiver!: pulumi.Output<number>;
-    /**
-     * TCP Maximum Segment Size value of sender (0 - 65535, default = 0).
-     */
     public readonly tcpMssSender!: pulumi.Output<number>;
-    /**
-     * Traffic shaper.
-     */
     public readonly trafficShaper!: pulumi.Output<string>;
-    /**
-     * Reverse traffic shaper.
-     */
     public readonly trafficShaperReverse!: pulumi.Output<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -287,105 +150,30 @@ export class FirewallPolicy46 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallPolicy46 resources.
  */
 export interface FirewallPolicy46State {
-    /**
-     * Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-     */
     action?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Destination address objects. The structure of `dstaddr` block is documented below.
-     */
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallPolicy46Dstaddr>[]>;
-    /**
-     * Destination interface name.
-     */
     dstintf?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
-     */
     fixedport?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
-     */
     ippool?: pulumi.Input<string>;
-    /**
-     * Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
-     */
     logtraffic?: pulumi.Input<string>;
-    /**
-     * Record logs when a session starts and ends. Valid values: `enable`, `disable`.
-     */
     logtrafficStart?: pulumi.Input<string>;
-    /**
-     * IP pool name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Per IP traffic shaper.
-     */
     perIpShaper?: pulumi.Input<string>;
-    /**
-     * Enable/disable allowing any host. Valid values: `enable`, `disable`.
-     */
     permitAnyHost?: pulumi.Input<string>;
-    /**
-     * Policy ID.
-     */
     policyid?: pulumi.Input<number>;
-    /**
-     * IP Pool names. The structure of `poolname` block is documented below.
-     */
     poolnames?: pulumi.Input<pulumi.Input<inputs.FirewallPolicy46Poolname>[]>;
-    /**
-     * Schedule name.
-     */
     schedule?: pulumi.Input<string>;
-    /**
-     * Service name. The structure of `service` block is documented below.
-     */
     services?: pulumi.Input<pulumi.Input<inputs.FirewallPolicy46Service>[]>;
-    /**
-     * Source address objects. The structure of `srcaddr` block is documented below.
-     */
     srcaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallPolicy46Srcaddr>[]>;
-    /**
-     * Source interface name.
-     */
     srcintf?: pulumi.Input<string>;
-    /**
-     * Enable/disable this policy. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * TCP Maximum Segment Size value of receiver (0 - 65535, default = 0)
-     */
     tcpMssReceiver?: pulumi.Input<number>;
-    /**
-     * TCP Maximum Segment Size value of sender (0 - 65535, default = 0).
-     */
     tcpMssSender?: pulumi.Input<number>;
-    /**
-     * Traffic shaper.
-     */
     trafficShaper?: pulumi.Input<string>;
-    /**
-     * Reverse traffic shaper.
-     */
     trafficShaperReverse?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -393,104 +181,29 @@ export interface FirewallPolicy46State {
  * The set of arguments for constructing a FirewallPolicy46 resource.
  */
 export interface FirewallPolicy46Args {
-    /**
-     * Accept or deny traffic matching the policy. Valid values: `accept`, `deny`.
-     */
     action?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Destination address objects. The structure of `dstaddr` block is documented below.
-     */
     dstaddrs: pulumi.Input<pulumi.Input<inputs.FirewallPolicy46Dstaddr>[]>;
-    /**
-     * Destination interface name.
-     */
     dstintf: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
-     */
     fixedport?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
-     */
     ippool?: pulumi.Input<string>;
-    /**
-     * Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
-     */
     logtraffic?: pulumi.Input<string>;
-    /**
-     * Record logs when a session starts and ends. Valid values: `enable`, `disable`.
-     */
     logtrafficStart?: pulumi.Input<string>;
-    /**
-     * IP pool name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Per IP traffic shaper.
-     */
     perIpShaper?: pulumi.Input<string>;
-    /**
-     * Enable/disable allowing any host. Valid values: `enable`, `disable`.
-     */
     permitAnyHost?: pulumi.Input<string>;
-    /**
-     * Policy ID.
-     */
     policyid?: pulumi.Input<number>;
-    /**
-     * IP Pool names. The structure of `poolname` block is documented below.
-     */
     poolnames?: pulumi.Input<pulumi.Input<inputs.FirewallPolicy46Poolname>[]>;
-    /**
-     * Schedule name.
-     */
     schedule: pulumi.Input<string>;
-    /**
-     * Service name. The structure of `service` block is documented below.
-     */
     services?: pulumi.Input<pulumi.Input<inputs.FirewallPolicy46Service>[]>;
-    /**
-     * Source address objects. The structure of `srcaddr` block is documented below.
-     */
     srcaddrs: pulumi.Input<pulumi.Input<inputs.FirewallPolicy46Srcaddr>[]>;
-    /**
-     * Source interface name.
-     */
     srcintf: pulumi.Input<string>;
-    /**
-     * Enable/disable this policy. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * TCP Maximum Segment Size value of receiver (0 - 65535, default = 0)
-     */
     tcpMssReceiver?: pulumi.Input<number>;
-    /**
-     * TCP Maximum Segment Size value of sender (0 - 65535, default = 0).
-     */
     tcpMssSender?: pulumi.Input<number>;
-    /**
-     * Traffic shaper.
-     */
     trafficShaper?: pulumi.Input<string>;
-    /**
-     * Reverse traffic shaper.
-     */
     trafficShaperReverse?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

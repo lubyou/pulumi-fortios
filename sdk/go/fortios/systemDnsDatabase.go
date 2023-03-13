@@ -7,109 +7,31 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure DNS databases.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemDnsDatabase(ctx, "trname", &fortios.SystemDnsDatabaseArgs{
-// 			Authoritative: pulumi.String("enable"),
-// 			Contact:       pulumi.String("hostmaster"),
-// 			DnsEntries: SystemDnsDatabaseDnsEntryArray{
-// 				&SystemDnsDatabaseDnsEntryArgs{
-// 					Hostname: pulumi.String("sghsgh.com"),
-// 					Ttl:      pulumi.Int(3),
-// 					Type:     pulumi.String("MX"),
-// 				},
-// 			},
-// 			Domain:      pulumi.String("s.com"),
-// 			Forwarder:   pulumi.String("\"9.9.9.9\" \"3.3.3.3\" "),
-// 			IpMaster:    pulumi.String("0.0.0.0"),
-// 			PrimaryName: pulumi.String("dns"),
-// 			SourceIp:    pulumi.String("0.0.0.0"),
-// 			Status:      pulumi.String("enable"),
-// 			Ttl:         pulumi.Int(86400),
-// 			Type:        pulumi.String("master"),
-// 			View:        pulumi.String("shadow"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System DnsDatabase can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDnsDatabase:SystemDnsDatabase labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDnsDatabase:SystemDnsDatabase labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemDnsDatabase struct {
 	pulumi.CustomResourceState
 
-	// DNS zone transfer IP address list.
-	AllowTransfer pulumi.StringOutput `pulumi:"allowTransfer"`
-	// Enable/disable authoritative zone. Valid values: `enable`, `disable`.
-	Authoritative pulumi.StringOutput `pulumi:"authoritative"`
-	// Email address of the administrator for this zone.
-	// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-	// When using a simple username, the domain of the email will be this zone.
-	Contact pulumi.StringOutput `pulumi:"contact"`
-	// DNS entry. The structure of `dnsEntry` block is documented below.
-	DnsEntries SystemDnsDatabaseDnsEntryArrayOutput `pulumi:"dnsEntries"`
-	// Domain name.
-	Domain pulumi.StringOutput `pulumi:"domain"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// DNS zone forwarder IP address list.
-	Forwarder pulumi.StringOutput `pulumi:"forwarder"`
-	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
-	IpMaster pulumi.StringOutput `pulumi:"ipMaster"`
-	// IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
-	IpPrimary pulumi.StringOutput `pulumi:"ipPrimary"`
-	// Zone name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Domain name of the default DNS server for this zone.
-	PrimaryName pulumi.StringOutput `pulumi:"primaryName"`
-	// Maximum number of resource records (10 - 65536, 0 means infinite).
-	RrMax pulumi.IntOutput `pulumi:"rrMax"`
-	// Source IP for forwarding to DNS server.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Enable/disable resource record status. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Time-to-live for this entry (0 to 2147483647 sec, default = 0).
-	Ttl pulumi.IntOutput `pulumi:"ttl"`
-	// Resource record type. Valid values: `A`, `NS`, `CNAME`, `MX`, `AAAA`, `PTR`, `PTR_V6`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Zone view (public to serve public clients, shadow to serve internal clients). Valid values: `shadow`, `public`.
-	View pulumi.StringOutput `pulumi:"view"`
+	AllowTransfer       pulumi.StringOutput                  `pulumi:"allowTransfer"`
+	Authoritative       pulumi.StringOutput                  `pulumi:"authoritative"`
+	Contact             pulumi.StringOutput                  `pulumi:"contact"`
+	DnsEntries          SystemDnsDatabaseDnsEntryArrayOutput `pulumi:"dnsEntries"`
+	Domain              pulumi.StringOutput                  `pulumi:"domain"`
+	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	Forwarder           pulumi.StringOutput                  `pulumi:"forwarder"`
+	IpMaster            pulumi.StringOutput                  `pulumi:"ipMaster"`
+	IpPrimary           pulumi.StringOutput                  `pulumi:"ipPrimary"`
+	Name                pulumi.StringOutput                  `pulumi:"name"`
+	PrimaryName         pulumi.StringOutput                  `pulumi:"primaryName"`
+	RrMax               pulumi.IntOutput                     `pulumi:"rrMax"`
+	SourceIp            pulumi.StringOutput                  `pulumi:"sourceIp"`
+	Status              pulumi.StringOutput                  `pulumi:"status"`
+	Ttl                 pulumi.IntOutput                     `pulumi:"ttl"`
+	Type                pulumi.StringOutput                  `pulumi:"type"`
+	Vdomparam           pulumi.StringPtrOutput               `pulumi:"vdomparam"`
+	View                pulumi.StringOutput                  `pulumi:"view"`
 }
 
 // NewSystemDnsDatabase registers a new resource with the given unique name, arguments, and options.
@@ -157,85 +79,45 @@ func GetSystemDnsDatabase(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemDnsDatabase resources.
 type systemDnsDatabaseState struct {
-	// DNS zone transfer IP address list.
-	AllowTransfer *string `pulumi:"allowTransfer"`
-	// Enable/disable authoritative zone. Valid values: `enable`, `disable`.
-	Authoritative *string `pulumi:"authoritative"`
-	// Email address of the administrator for this zone.
-	// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-	// When using a simple username, the domain of the email will be this zone.
-	Contact *string `pulumi:"contact"`
-	// DNS entry. The structure of `dnsEntry` block is documented below.
-	DnsEntries []SystemDnsDatabaseDnsEntry `pulumi:"dnsEntries"`
-	// Domain name.
-	Domain *string `pulumi:"domain"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// DNS zone forwarder IP address list.
-	Forwarder *string `pulumi:"forwarder"`
-	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
-	IpMaster *string `pulumi:"ipMaster"`
-	// IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
-	IpPrimary *string `pulumi:"ipPrimary"`
-	// Zone name.
-	Name *string `pulumi:"name"`
-	// Domain name of the default DNS server for this zone.
-	PrimaryName *string `pulumi:"primaryName"`
-	// Maximum number of resource records (10 - 65536, 0 means infinite).
-	RrMax *int `pulumi:"rrMax"`
-	// Source IP for forwarding to DNS server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable resource record status. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Time-to-live for this entry (0 to 2147483647 sec, default = 0).
-	Ttl *int `pulumi:"ttl"`
-	// Resource record type. Valid values: `A`, `NS`, `CNAME`, `MX`, `AAAA`, `PTR`, `PTR_V6`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Zone view (public to serve public clients, shadow to serve internal clients). Valid values: `shadow`, `public`.
-	View *string `pulumi:"view"`
+	AllowTransfer       *string                     `pulumi:"allowTransfer"`
+	Authoritative       *string                     `pulumi:"authoritative"`
+	Contact             *string                     `pulumi:"contact"`
+	DnsEntries          []SystemDnsDatabaseDnsEntry `pulumi:"dnsEntries"`
+	Domain              *string                     `pulumi:"domain"`
+	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	Forwarder           *string                     `pulumi:"forwarder"`
+	IpMaster            *string                     `pulumi:"ipMaster"`
+	IpPrimary           *string                     `pulumi:"ipPrimary"`
+	Name                *string                     `pulumi:"name"`
+	PrimaryName         *string                     `pulumi:"primaryName"`
+	RrMax               *int                        `pulumi:"rrMax"`
+	SourceIp            *string                     `pulumi:"sourceIp"`
+	Status              *string                     `pulumi:"status"`
+	Ttl                 *int                        `pulumi:"ttl"`
+	Type                *string                     `pulumi:"type"`
+	Vdomparam           *string                     `pulumi:"vdomparam"`
+	View                *string                     `pulumi:"view"`
 }
 
 type SystemDnsDatabaseState struct {
-	// DNS zone transfer IP address list.
-	AllowTransfer pulumi.StringPtrInput
-	// Enable/disable authoritative zone. Valid values: `enable`, `disable`.
-	Authoritative pulumi.StringPtrInput
-	// Email address of the administrator for this zone.
-	// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-	// When using a simple username, the domain of the email will be this zone.
-	Contact pulumi.StringPtrInput
-	// DNS entry. The structure of `dnsEntry` block is documented below.
-	DnsEntries SystemDnsDatabaseDnsEntryArrayInput
-	// Domain name.
-	Domain pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AllowTransfer       pulumi.StringPtrInput
+	Authoritative       pulumi.StringPtrInput
+	Contact             pulumi.StringPtrInput
+	DnsEntries          SystemDnsDatabaseDnsEntryArrayInput
+	Domain              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// DNS zone forwarder IP address list.
-	Forwarder pulumi.StringPtrInput
-	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
-	IpMaster pulumi.StringPtrInput
-	// IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
-	IpPrimary pulumi.StringPtrInput
-	// Zone name.
-	Name pulumi.StringPtrInput
-	// Domain name of the default DNS server for this zone.
-	PrimaryName pulumi.StringPtrInput
-	// Maximum number of resource records (10 - 65536, 0 means infinite).
-	RrMax pulumi.IntPtrInput
-	// Source IP for forwarding to DNS server.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable resource record status. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Time-to-live for this entry (0 to 2147483647 sec, default = 0).
-	Ttl pulumi.IntPtrInput
-	// Resource record type. Valid values: `A`, `NS`, `CNAME`, `MX`, `AAAA`, `PTR`, `PTR_V6`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Zone view (public to serve public clients, shadow to serve internal clients). Valid values: `shadow`, `public`.
-	View pulumi.StringPtrInput
+	Forwarder           pulumi.StringPtrInput
+	IpMaster            pulumi.StringPtrInput
+	IpPrimary           pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	PrimaryName         pulumi.StringPtrInput
+	RrMax               pulumi.IntPtrInput
+	SourceIp            pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	Ttl                 pulumi.IntPtrInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	View                pulumi.StringPtrInput
 }
 
 func (SystemDnsDatabaseState) ElementType() reflect.Type {
@@ -243,86 +125,46 @@ func (SystemDnsDatabaseState) ElementType() reflect.Type {
 }
 
 type systemDnsDatabaseArgs struct {
-	// DNS zone transfer IP address list.
-	AllowTransfer *string `pulumi:"allowTransfer"`
-	// Enable/disable authoritative zone. Valid values: `enable`, `disable`.
-	Authoritative string `pulumi:"authoritative"`
-	// Email address of the administrator for this zone.
-	// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-	// When using a simple username, the domain of the email will be this zone.
-	Contact *string `pulumi:"contact"`
-	// DNS entry. The structure of `dnsEntry` block is documented below.
-	DnsEntries []SystemDnsDatabaseDnsEntry `pulumi:"dnsEntries"`
-	// Domain name.
-	Domain string `pulumi:"domain"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// DNS zone forwarder IP address list.
-	Forwarder *string `pulumi:"forwarder"`
-	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
-	IpMaster *string `pulumi:"ipMaster"`
-	// IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
-	IpPrimary *string `pulumi:"ipPrimary"`
-	// Zone name.
-	Name *string `pulumi:"name"`
-	// Domain name of the default DNS server for this zone.
-	PrimaryName *string `pulumi:"primaryName"`
-	// Maximum number of resource records (10 - 65536, 0 means infinite).
-	RrMax *int `pulumi:"rrMax"`
-	// Source IP for forwarding to DNS server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable resource record status. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Time-to-live for this entry (0 to 2147483647 sec, default = 0).
-	Ttl int `pulumi:"ttl"`
-	// Resource record type. Valid values: `A`, `NS`, `CNAME`, `MX`, `AAAA`, `PTR`, `PTR_V6`.
-	Type string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Zone view (public to serve public clients, shadow to serve internal clients). Valid values: `shadow`, `public`.
-	View string `pulumi:"view"`
+	AllowTransfer       *string                     `pulumi:"allowTransfer"`
+	Authoritative       string                      `pulumi:"authoritative"`
+	Contact             *string                     `pulumi:"contact"`
+	DnsEntries          []SystemDnsDatabaseDnsEntry `pulumi:"dnsEntries"`
+	Domain              string                      `pulumi:"domain"`
+	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	Forwarder           *string                     `pulumi:"forwarder"`
+	IpMaster            *string                     `pulumi:"ipMaster"`
+	IpPrimary           *string                     `pulumi:"ipPrimary"`
+	Name                *string                     `pulumi:"name"`
+	PrimaryName         *string                     `pulumi:"primaryName"`
+	RrMax               *int                        `pulumi:"rrMax"`
+	SourceIp            *string                     `pulumi:"sourceIp"`
+	Status              *string                     `pulumi:"status"`
+	Ttl                 int                         `pulumi:"ttl"`
+	Type                string                      `pulumi:"type"`
+	Vdomparam           *string                     `pulumi:"vdomparam"`
+	View                string                      `pulumi:"view"`
 }
 
 // The set of arguments for constructing a SystemDnsDatabase resource.
 type SystemDnsDatabaseArgs struct {
-	// DNS zone transfer IP address list.
-	AllowTransfer pulumi.StringPtrInput
-	// Enable/disable authoritative zone. Valid values: `enable`, `disable`.
-	Authoritative pulumi.StringInput
-	// Email address of the administrator for this zone.
-	// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-	// When using a simple username, the domain of the email will be this zone.
-	Contact pulumi.StringPtrInput
-	// DNS entry. The structure of `dnsEntry` block is documented below.
-	DnsEntries SystemDnsDatabaseDnsEntryArrayInput
-	// Domain name.
-	Domain pulumi.StringInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AllowTransfer       pulumi.StringPtrInput
+	Authoritative       pulumi.StringInput
+	Contact             pulumi.StringPtrInput
+	DnsEntries          SystemDnsDatabaseDnsEntryArrayInput
+	Domain              pulumi.StringInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// DNS zone forwarder IP address list.
-	Forwarder pulumi.StringPtrInput
-	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
-	IpMaster pulumi.StringPtrInput
-	// IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
-	IpPrimary pulumi.StringPtrInput
-	// Zone name.
-	Name pulumi.StringPtrInput
-	// Domain name of the default DNS server for this zone.
-	PrimaryName pulumi.StringPtrInput
-	// Maximum number of resource records (10 - 65536, 0 means infinite).
-	RrMax pulumi.IntPtrInput
-	// Source IP for forwarding to DNS server.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable resource record status. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Time-to-live for this entry (0 to 2147483647 sec, default = 0).
-	Ttl pulumi.IntInput
-	// Resource record type. Valid values: `A`, `NS`, `CNAME`, `MX`, `AAAA`, `PTR`, `PTR_V6`.
-	Type pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Zone view (public to serve public clients, shadow to serve internal clients). Valid values: `shadow`, `public`.
-	View pulumi.StringInput
+	Forwarder           pulumi.StringPtrInput
+	IpMaster            pulumi.StringPtrInput
+	IpPrimary           pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	PrimaryName         pulumi.StringPtrInput
+	RrMax               pulumi.IntPtrInput
+	SourceIp            pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	Ttl                 pulumi.IntInput
+	Type                pulumi.StringInput
+	Vdomparam           pulumi.StringPtrInput
+	View                pulumi.StringInput
 }
 
 func (SystemDnsDatabaseArgs) ElementType() reflect.Type {
@@ -351,7 +193,7 @@ func (i *SystemDnsDatabase) ToSystemDnsDatabaseOutputWithContext(ctx context.Con
 // SystemDnsDatabaseArrayInput is an input type that accepts SystemDnsDatabaseArray and SystemDnsDatabaseArrayOutput values.
 // You can construct a concrete instance of `SystemDnsDatabaseArrayInput` via:
 //
-//          SystemDnsDatabaseArray{ SystemDnsDatabaseArgs{...} }
+//	SystemDnsDatabaseArray{ SystemDnsDatabaseArgs{...} }
 type SystemDnsDatabaseArrayInput interface {
 	pulumi.Input
 
@@ -376,7 +218,7 @@ func (i SystemDnsDatabaseArray) ToSystemDnsDatabaseArrayOutputWithContext(ctx co
 // SystemDnsDatabaseMapInput is an input type that accepts SystemDnsDatabaseMap and SystemDnsDatabaseMapOutput values.
 // You can construct a concrete instance of `SystemDnsDatabaseMapInput` via:
 //
-//          SystemDnsDatabaseMap{ "key": SystemDnsDatabaseArgs{...} }
+//	SystemDnsDatabaseMap{ "key": SystemDnsDatabaseArgs{...} }
 type SystemDnsDatabaseMapInput interface {
 	pulumi.Input
 
@@ -410,6 +252,78 @@ func (o SystemDnsDatabaseOutput) ToSystemDnsDatabaseOutput() SystemDnsDatabaseOu
 
 func (o SystemDnsDatabaseOutput) ToSystemDnsDatabaseOutputWithContext(ctx context.Context) SystemDnsDatabaseOutput {
 	return o
+}
+
+func (o SystemDnsDatabaseOutput) AllowTransfer() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.AllowTransfer }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsDatabaseOutput) Authoritative() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.Authoritative }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsDatabaseOutput) Contact() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.Contact }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsDatabaseOutput) DnsEntries() SystemDnsDatabaseDnsEntryArrayOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) SystemDnsDatabaseDnsEntryArrayOutput { return v.DnsEntries }).(SystemDnsDatabaseDnsEntryArrayOutput)
+}
+
+func (o SystemDnsDatabaseOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.Domain }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsDatabaseOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemDnsDatabaseOutput) Forwarder() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.Forwarder }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsDatabaseOutput) IpMaster() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.IpMaster }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsDatabaseOutput) IpPrimary() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.IpPrimary }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsDatabaseOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsDatabaseOutput) PrimaryName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.PrimaryName }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsDatabaseOutput) RrMax() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.IntOutput { return v.RrMax }).(pulumi.IntOutput)
+}
+
+func (o SystemDnsDatabaseOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsDatabaseOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsDatabaseOutput) Ttl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.IntOutput { return v.Ttl }).(pulumi.IntOutput)
+}
+
+func (o SystemDnsDatabaseOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsDatabaseOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemDnsDatabaseOutput) View() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.View }).(pulumi.StringOutput)
 }
 
 type SystemDnsDatabaseArrayOutput struct{ *pulumi.OutputState }

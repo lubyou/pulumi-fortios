@@ -10,76 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure WAN metrics.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWirelessControllerHotspot20H2QpWanMetric(ctx, "trname", &fortios.WirelessControllerHotspot20H2QpWanMetricArgs{
-// 			DownlinkLoad:            pulumi.Int(0),
-// 			DownlinkSpeed:           pulumi.Int(2400),
-// 			LinkAtCapacity:          pulumi.String("disable"),
-// 			LinkStatus:              pulumi.String("up"),
-// 			LoadMeasurementDuration: pulumi.Int(0),
-// 			SymmetricWanLink:        pulumi.String("symmetric"),
-// 			UplinkLoad:              pulumi.Int(0),
-// 			UplinkSpeed:             pulumi.Int(2400),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// WirelessControllerHotspot20 H2QpWanMetric can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpWanMetric:WirelessControllerHotspot20H2QpWanMetric labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpWanMetric:WirelessControllerHotspot20H2QpWanMetric labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerHotspot20H2QpWanMetric struct {
 	pulumi.CustomResourceState
 
-	// Downlink load.
-	DownlinkLoad pulumi.IntOutput `pulumi:"downlinkLoad"`
-	// Downlink speed (in kilobits/s).
-	DownlinkSpeed pulumi.IntOutput `pulumi:"downlinkSpeed"`
-	// Link at capacity. Valid values: `enable`, `disable`.
-	LinkAtCapacity pulumi.StringOutput `pulumi:"linkAtCapacity"`
-	// Link status. Valid values: `up`, `down`, `in-test`.
-	LinkStatus pulumi.StringOutput `pulumi:"linkStatus"`
-	// Load measurement duration (in tenths of a second).
-	LoadMeasurementDuration pulumi.IntOutput `pulumi:"loadMeasurementDuration"`
-	// WAN metric name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// WAN link symmetry. Valid values: `symmetric`, `asymmetric`.
-	SymmetricWanLink pulumi.StringOutput `pulumi:"symmetricWanLink"`
-	// Uplink load.
-	UplinkLoad pulumi.IntOutput `pulumi:"uplinkLoad"`
-	// Uplink speed (in kilobits/s).
-	UplinkSpeed pulumi.IntOutput `pulumi:"uplinkSpeed"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DownlinkLoad            pulumi.IntOutput       `pulumi:"downlinkLoad"`
+	DownlinkSpeed           pulumi.IntOutput       `pulumi:"downlinkSpeed"`
+	LinkAtCapacity          pulumi.StringOutput    `pulumi:"linkAtCapacity"`
+	LinkStatus              pulumi.StringOutput    `pulumi:"linkStatus"`
+	LoadMeasurementDuration pulumi.IntOutput       `pulumi:"loadMeasurementDuration"`
+	Name                    pulumi.StringOutput    `pulumi:"name"`
+	SymmetricWanLink        pulumi.StringOutput    `pulumi:"symmetricWanLink"`
+	UplinkLoad              pulumi.IntOutput       `pulumi:"uplinkLoad"`
+	UplinkSpeed             pulumi.IntOutput       `pulumi:"uplinkSpeed"`
+	Vdomparam               pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerHotspot20H2QpWanMetric registers a new resource with the given unique name, arguments, and options.
@@ -112,49 +55,29 @@ func GetWirelessControllerHotspot20H2QpWanMetric(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerHotspot20H2QpWanMetric resources.
 type wirelessControllerHotspot20H2QpWanMetricState struct {
-	// Downlink load.
-	DownlinkLoad *int `pulumi:"downlinkLoad"`
-	// Downlink speed (in kilobits/s).
-	DownlinkSpeed *int `pulumi:"downlinkSpeed"`
-	// Link at capacity. Valid values: `enable`, `disable`.
-	LinkAtCapacity *string `pulumi:"linkAtCapacity"`
-	// Link status. Valid values: `up`, `down`, `in-test`.
-	LinkStatus *string `pulumi:"linkStatus"`
-	// Load measurement duration (in tenths of a second).
-	LoadMeasurementDuration *int `pulumi:"loadMeasurementDuration"`
-	// WAN metric name.
-	Name *string `pulumi:"name"`
-	// WAN link symmetry. Valid values: `symmetric`, `asymmetric`.
-	SymmetricWanLink *string `pulumi:"symmetricWanLink"`
-	// Uplink load.
-	UplinkLoad *int `pulumi:"uplinkLoad"`
-	// Uplink speed (in kilobits/s).
-	UplinkSpeed *int `pulumi:"uplinkSpeed"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DownlinkLoad            *int    `pulumi:"downlinkLoad"`
+	DownlinkSpeed           *int    `pulumi:"downlinkSpeed"`
+	LinkAtCapacity          *string `pulumi:"linkAtCapacity"`
+	LinkStatus              *string `pulumi:"linkStatus"`
+	LoadMeasurementDuration *int    `pulumi:"loadMeasurementDuration"`
+	Name                    *string `pulumi:"name"`
+	SymmetricWanLink        *string `pulumi:"symmetricWanLink"`
+	UplinkLoad              *int    `pulumi:"uplinkLoad"`
+	UplinkSpeed             *int    `pulumi:"uplinkSpeed"`
+	Vdomparam               *string `pulumi:"vdomparam"`
 }
 
 type WirelessControllerHotspot20H2QpWanMetricState struct {
-	// Downlink load.
-	DownlinkLoad pulumi.IntPtrInput
-	// Downlink speed (in kilobits/s).
-	DownlinkSpeed pulumi.IntPtrInput
-	// Link at capacity. Valid values: `enable`, `disable`.
-	LinkAtCapacity pulumi.StringPtrInput
-	// Link status. Valid values: `up`, `down`, `in-test`.
-	LinkStatus pulumi.StringPtrInput
-	// Load measurement duration (in tenths of a second).
+	DownlinkLoad            pulumi.IntPtrInput
+	DownlinkSpeed           pulumi.IntPtrInput
+	LinkAtCapacity          pulumi.StringPtrInput
+	LinkStatus              pulumi.StringPtrInput
 	LoadMeasurementDuration pulumi.IntPtrInput
-	// WAN metric name.
-	Name pulumi.StringPtrInput
-	// WAN link symmetry. Valid values: `symmetric`, `asymmetric`.
-	SymmetricWanLink pulumi.StringPtrInput
-	// Uplink load.
-	UplinkLoad pulumi.IntPtrInput
-	// Uplink speed (in kilobits/s).
-	UplinkSpeed pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	SymmetricWanLink        pulumi.StringPtrInput
+	UplinkLoad              pulumi.IntPtrInput
+	UplinkSpeed             pulumi.IntPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20H2QpWanMetricState) ElementType() reflect.Type {
@@ -162,50 +85,30 @@ func (WirelessControllerHotspot20H2QpWanMetricState) ElementType() reflect.Type 
 }
 
 type wirelessControllerHotspot20H2QpWanMetricArgs struct {
-	// Downlink load.
-	DownlinkLoad *int `pulumi:"downlinkLoad"`
-	// Downlink speed (in kilobits/s).
-	DownlinkSpeed *int `pulumi:"downlinkSpeed"`
-	// Link at capacity. Valid values: `enable`, `disable`.
-	LinkAtCapacity *string `pulumi:"linkAtCapacity"`
-	// Link status. Valid values: `up`, `down`, `in-test`.
-	LinkStatus *string `pulumi:"linkStatus"`
-	// Load measurement duration (in tenths of a second).
-	LoadMeasurementDuration *int `pulumi:"loadMeasurementDuration"`
-	// WAN metric name.
-	Name *string `pulumi:"name"`
-	// WAN link symmetry. Valid values: `symmetric`, `asymmetric`.
-	SymmetricWanLink *string `pulumi:"symmetricWanLink"`
-	// Uplink load.
-	UplinkLoad *int `pulumi:"uplinkLoad"`
-	// Uplink speed (in kilobits/s).
-	UplinkSpeed *int `pulumi:"uplinkSpeed"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DownlinkLoad            *int    `pulumi:"downlinkLoad"`
+	DownlinkSpeed           *int    `pulumi:"downlinkSpeed"`
+	LinkAtCapacity          *string `pulumi:"linkAtCapacity"`
+	LinkStatus              *string `pulumi:"linkStatus"`
+	LoadMeasurementDuration *int    `pulumi:"loadMeasurementDuration"`
+	Name                    *string `pulumi:"name"`
+	SymmetricWanLink        *string `pulumi:"symmetricWanLink"`
+	UplinkLoad              *int    `pulumi:"uplinkLoad"`
+	UplinkSpeed             *int    `pulumi:"uplinkSpeed"`
+	Vdomparam               *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerHotspot20H2QpWanMetric resource.
 type WirelessControllerHotspot20H2QpWanMetricArgs struct {
-	// Downlink load.
-	DownlinkLoad pulumi.IntPtrInput
-	// Downlink speed (in kilobits/s).
-	DownlinkSpeed pulumi.IntPtrInput
-	// Link at capacity. Valid values: `enable`, `disable`.
-	LinkAtCapacity pulumi.StringPtrInput
-	// Link status. Valid values: `up`, `down`, `in-test`.
-	LinkStatus pulumi.StringPtrInput
-	// Load measurement duration (in tenths of a second).
+	DownlinkLoad            pulumi.IntPtrInput
+	DownlinkSpeed           pulumi.IntPtrInput
+	LinkAtCapacity          pulumi.StringPtrInput
+	LinkStatus              pulumi.StringPtrInput
 	LoadMeasurementDuration pulumi.IntPtrInput
-	// WAN metric name.
-	Name pulumi.StringPtrInput
-	// WAN link symmetry. Valid values: `symmetric`, `asymmetric`.
-	SymmetricWanLink pulumi.StringPtrInput
-	// Uplink load.
-	UplinkLoad pulumi.IntPtrInput
-	// Uplink speed (in kilobits/s).
-	UplinkSpeed pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	SymmetricWanLink        pulumi.StringPtrInput
+	UplinkLoad              pulumi.IntPtrInput
+	UplinkSpeed             pulumi.IntPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20H2QpWanMetricArgs) ElementType() reflect.Type {
@@ -234,7 +137,7 @@ func (i *WirelessControllerHotspot20H2QpWanMetric) ToWirelessControllerHotspot20
 // WirelessControllerHotspot20H2QpWanMetricArrayInput is an input type that accepts WirelessControllerHotspot20H2QpWanMetricArray and WirelessControllerHotspot20H2QpWanMetricArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpWanMetricArrayInput` via:
 //
-//          WirelessControllerHotspot20H2QpWanMetricArray{ WirelessControllerHotspot20H2QpWanMetricArgs{...} }
+//	WirelessControllerHotspot20H2QpWanMetricArray{ WirelessControllerHotspot20H2QpWanMetricArgs{...} }
 type WirelessControllerHotspot20H2QpWanMetricArrayInput interface {
 	pulumi.Input
 
@@ -259,7 +162,7 @@ func (i WirelessControllerHotspot20H2QpWanMetricArray) ToWirelessControllerHotsp
 // WirelessControllerHotspot20H2QpWanMetricMapInput is an input type that accepts WirelessControllerHotspot20H2QpWanMetricMap and WirelessControllerHotspot20H2QpWanMetricMapOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpWanMetricMapInput` via:
 //
-//          WirelessControllerHotspot20H2QpWanMetricMap{ "key": WirelessControllerHotspot20H2QpWanMetricArgs{...} }
+//	WirelessControllerHotspot20H2QpWanMetricMap{ "key": WirelessControllerHotspot20H2QpWanMetricArgs{...} }
 type WirelessControllerHotspot20H2QpWanMetricMapInput interface {
 	pulumi.Input
 
@@ -293,6 +196,46 @@ func (o WirelessControllerHotspot20H2QpWanMetricOutput) ToWirelessControllerHots
 
 func (o WirelessControllerHotspot20H2QpWanMetricOutput) ToWirelessControllerHotspot20H2QpWanMetricOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpWanMetricOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpWanMetricOutput) DownlinkLoad() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpWanMetric) pulumi.IntOutput { return v.DownlinkLoad }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpWanMetricOutput) DownlinkSpeed() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpWanMetric) pulumi.IntOutput { return v.DownlinkSpeed }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpWanMetricOutput) LinkAtCapacity() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpWanMetric) pulumi.StringOutput { return v.LinkAtCapacity }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpWanMetricOutput) LinkStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpWanMetric) pulumi.StringOutput { return v.LinkStatus }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpWanMetricOutput) LoadMeasurementDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpWanMetric) pulumi.IntOutput { return v.LoadMeasurementDuration }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpWanMetricOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpWanMetric) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpWanMetricOutput) SymmetricWanLink() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpWanMetric) pulumi.StringOutput { return v.SymmetricWanLink }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpWanMetricOutput) UplinkLoad() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpWanMetric) pulumi.IntOutput { return v.UplinkLoad }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpWanMetricOutput) UplinkSpeed() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpWanMetric) pulumi.IntOutput { return v.UplinkSpeed }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpWanMetricOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpWanMetric) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerHotspot20H2QpWanMetricArrayOutput struct{ *pulumi.OutputState }

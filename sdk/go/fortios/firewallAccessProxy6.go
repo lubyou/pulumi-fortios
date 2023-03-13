@@ -10,50 +10,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 access proxy. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// Firewall AccessProxy6 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAccessProxy6:FirewallAccessProxy6 labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAccessProxy6:FirewallAccessProxy6 labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallAccessProxy6 struct {
 	pulumi.CustomResourceState
 
-	// Set IPv6 API Gateway. The structure of `apiGateway6` block is documented below.
-	ApiGateway6s FirewallAccessProxy6ApiGateway6ArrayOutput `pulumi:"apiGateway6s"`
-	// Set IPv4 API Gateway. The structure of `apiGateway` block is documented below.
-	ApiGateways FirewallAccessProxy6ApiGatewayArrayOutput `pulumi:"apiGateways"`
-	// Enable/disable authentication portal. Valid values: `disable`, `enable`.
-	AuthPortal pulumi.StringOutput `pulumi:"authPortal"`
-	// Virtual host for authentication portal.
-	AuthVirtualHost pulumi.StringOutput `pulumi:"authVirtualHost"`
-	// Enable/disable to request client certificate. Valid values: `disable`, `enable`.
-	ClientCert pulumi.StringOutput `pulumi:"clientCert"`
-	// Decrypted traffic mirror.
-	DecryptedTrafficMirror pulumi.StringOutput `pulumi:"decryptedTrafficMirror"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Action of an empty client certificate. Valid values: `accept`, `block`.
-	EmptyCertAction pulumi.StringOutput `pulumi:"emptyCertAction"`
-	// Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
-	LogBlockedTraffic pulumi.StringOutput `pulumi:"logBlockedTraffic"`
-	// Server host key name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Virtual IP name.
-	Vip pulumi.StringOutput `pulumi:"vip"`
+	AddVhostDomainToDnsdb  pulumi.StringOutput                        `pulumi:"addVhostDomainToDnsdb"`
+	ApiGateway6s           FirewallAccessProxy6ApiGateway6ArrayOutput `pulumi:"apiGateway6s"`
+	ApiGateways            FirewallAccessProxy6ApiGatewayArrayOutput  `pulumi:"apiGateways"`
+	AuthPortal             pulumi.StringOutput                        `pulumi:"authPortal"`
+	AuthVirtualHost        pulumi.StringOutput                        `pulumi:"authVirtualHost"`
+	ClientCert             pulumi.StringOutput                        `pulumi:"clientCert"`
+	DecryptedTrafficMirror pulumi.StringOutput                        `pulumi:"decryptedTrafficMirror"`
+	DynamicSortSubtable    pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
+	EmptyCertAction        pulumi.StringOutput                        `pulumi:"emptyCertAction"`
+	LogBlockedTraffic      pulumi.StringOutput                        `pulumi:"logBlockedTraffic"`
+	Name                   pulumi.StringOutput                        `pulumi:"name"`
+	UserAgentDetect        pulumi.StringOutput                        `pulumi:"userAgentDetect"`
+	Vdomparam              pulumi.StringPtrOutput                     `pulumi:"vdomparam"`
+	Vip                    pulumi.StringOutput                        `pulumi:"vip"`
 }
 
 // NewFirewallAccessProxy6 registers a new resource with the given unique name, arguments, and options.
@@ -86,57 +59,37 @@ func GetFirewallAccessProxy6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallAccessProxy6 resources.
 type firewallAccessProxy6State struct {
-	// Set IPv6 API Gateway. The structure of `apiGateway6` block is documented below.
-	ApiGateway6s []FirewallAccessProxy6ApiGateway6 `pulumi:"apiGateway6s"`
-	// Set IPv4 API Gateway. The structure of `apiGateway` block is documented below.
-	ApiGateways []FirewallAccessProxy6ApiGateway `pulumi:"apiGateways"`
-	// Enable/disable authentication portal. Valid values: `disable`, `enable`.
-	AuthPortal *string `pulumi:"authPortal"`
-	// Virtual host for authentication portal.
-	AuthVirtualHost *string `pulumi:"authVirtualHost"`
-	// Enable/disable to request client certificate. Valid values: `disable`, `enable`.
-	ClientCert *string `pulumi:"clientCert"`
-	// Decrypted traffic mirror.
-	DecryptedTrafficMirror *string `pulumi:"decryptedTrafficMirror"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Action of an empty client certificate. Valid values: `accept`, `block`.
-	EmptyCertAction *string `pulumi:"emptyCertAction"`
-	// Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
-	LogBlockedTraffic *string `pulumi:"logBlockedTraffic"`
-	// Server host key name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Virtual IP name.
-	Vip *string `pulumi:"vip"`
+	AddVhostDomainToDnsdb  *string                           `pulumi:"addVhostDomainToDnsdb"`
+	ApiGateway6s           []FirewallAccessProxy6ApiGateway6 `pulumi:"apiGateway6s"`
+	ApiGateways            []FirewallAccessProxy6ApiGateway  `pulumi:"apiGateways"`
+	AuthPortal             *string                           `pulumi:"authPortal"`
+	AuthVirtualHost        *string                           `pulumi:"authVirtualHost"`
+	ClientCert             *string                           `pulumi:"clientCert"`
+	DecryptedTrafficMirror *string                           `pulumi:"decryptedTrafficMirror"`
+	DynamicSortSubtable    *string                           `pulumi:"dynamicSortSubtable"`
+	EmptyCertAction        *string                           `pulumi:"emptyCertAction"`
+	LogBlockedTraffic      *string                           `pulumi:"logBlockedTraffic"`
+	Name                   *string                           `pulumi:"name"`
+	UserAgentDetect        *string                           `pulumi:"userAgentDetect"`
+	Vdomparam              *string                           `pulumi:"vdomparam"`
+	Vip                    *string                           `pulumi:"vip"`
 }
 
 type FirewallAccessProxy6State struct {
-	// Set IPv6 API Gateway. The structure of `apiGateway6` block is documented below.
-	ApiGateway6s FirewallAccessProxy6ApiGateway6ArrayInput
-	// Set IPv4 API Gateway. The structure of `apiGateway` block is documented below.
-	ApiGateways FirewallAccessProxy6ApiGatewayArrayInput
-	// Enable/disable authentication portal. Valid values: `disable`, `enable`.
-	AuthPortal pulumi.StringPtrInput
-	// Virtual host for authentication portal.
-	AuthVirtualHost pulumi.StringPtrInput
-	// Enable/disable to request client certificate. Valid values: `disable`, `enable`.
-	ClientCert pulumi.StringPtrInput
-	// Decrypted traffic mirror.
+	AddVhostDomainToDnsdb  pulumi.StringPtrInput
+	ApiGateway6s           FirewallAccessProxy6ApiGateway6ArrayInput
+	ApiGateways            FirewallAccessProxy6ApiGatewayArrayInput
+	AuthPortal             pulumi.StringPtrInput
+	AuthVirtualHost        pulumi.StringPtrInput
+	ClientCert             pulumi.StringPtrInput
 	DecryptedTrafficMirror pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Action of an empty client certificate. Valid values: `accept`, `block`.
-	EmptyCertAction pulumi.StringPtrInput
-	// Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
-	LogBlockedTraffic pulumi.StringPtrInput
-	// Server host key name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Virtual IP name.
-	Vip pulumi.StringPtrInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	EmptyCertAction        pulumi.StringPtrInput
+	LogBlockedTraffic      pulumi.StringPtrInput
+	Name                   pulumi.StringPtrInput
+	UserAgentDetect        pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
+	Vip                    pulumi.StringPtrInput
 }
 
 func (FirewallAccessProxy6State) ElementType() reflect.Type {
@@ -144,58 +97,38 @@ func (FirewallAccessProxy6State) ElementType() reflect.Type {
 }
 
 type firewallAccessProxy6Args struct {
-	// Set IPv6 API Gateway. The structure of `apiGateway6` block is documented below.
-	ApiGateway6s []FirewallAccessProxy6ApiGateway6 `pulumi:"apiGateway6s"`
-	// Set IPv4 API Gateway. The structure of `apiGateway` block is documented below.
-	ApiGateways []FirewallAccessProxy6ApiGateway `pulumi:"apiGateways"`
-	// Enable/disable authentication portal. Valid values: `disable`, `enable`.
-	AuthPortal *string `pulumi:"authPortal"`
-	// Virtual host for authentication portal.
-	AuthVirtualHost *string `pulumi:"authVirtualHost"`
-	// Enable/disable to request client certificate. Valid values: `disable`, `enable`.
-	ClientCert *string `pulumi:"clientCert"`
-	// Decrypted traffic mirror.
-	DecryptedTrafficMirror *string `pulumi:"decryptedTrafficMirror"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Action of an empty client certificate. Valid values: `accept`, `block`.
-	EmptyCertAction *string `pulumi:"emptyCertAction"`
-	// Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
-	LogBlockedTraffic *string `pulumi:"logBlockedTraffic"`
-	// Server host key name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Virtual IP name.
-	Vip *string `pulumi:"vip"`
+	AddVhostDomainToDnsdb  *string                           `pulumi:"addVhostDomainToDnsdb"`
+	ApiGateway6s           []FirewallAccessProxy6ApiGateway6 `pulumi:"apiGateway6s"`
+	ApiGateways            []FirewallAccessProxy6ApiGateway  `pulumi:"apiGateways"`
+	AuthPortal             *string                           `pulumi:"authPortal"`
+	AuthVirtualHost        *string                           `pulumi:"authVirtualHost"`
+	ClientCert             *string                           `pulumi:"clientCert"`
+	DecryptedTrafficMirror *string                           `pulumi:"decryptedTrafficMirror"`
+	DynamicSortSubtable    *string                           `pulumi:"dynamicSortSubtable"`
+	EmptyCertAction        *string                           `pulumi:"emptyCertAction"`
+	LogBlockedTraffic      *string                           `pulumi:"logBlockedTraffic"`
+	Name                   *string                           `pulumi:"name"`
+	UserAgentDetect        *string                           `pulumi:"userAgentDetect"`
+	Vdomparam              *string                           `pulumi:"vdomparam"`
+	Vip                    *string                           `pulumi:"vip"`
 }
 
 // The set of arguments for constructing a FirewallAccessProxy6 resource.
 type FirewallAccessProxy6Args struct {
-	// Set IPv6 API Gateway. The structure of `apiGateway6` block is documented below.
-	ApiGateway6s FirewallAccessProxy6ApiGateway6ArrayInput
-	// Set IPv4 API Gateway. The structure of `apiGateway` block is documented below.
-	ApiGateways FirewallAccessProxy6ApiGatewayArrayInput
-	// Enable/disable authentication portal. Valid values: `disable`, `enable`.
-	AuthPortal pulumi.StringPtrInput
-	// Virtual host for authentication portal.
-	AuthVirtualHost pulumi.StringPtrInput
-	// Enable/disable to request client certificate. Valid values: `disable`, `enable`.
-	ClientCert pulumi.StringPtrInput
-	// Decrypted traffic mirror.
+	AddVhostDomainToDnsdb  pulumi.StringPtrInput
+	ApiGateway6s           FirewallAccessProxy6ApiGateway6ArrayInput
+	ApiGateways            FirewallAccessProxy6ApiGatewayArrayInput
+	AuthPortal             pulumi.StringPtrInput
+	AuthVirtualHost        pulumi.StringPtrInput
+	ClientCert             pulumi.StringPtrInput
 	DecryptedTrafficMirror pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Action of an empty client certificate. Valid values: `accept`, `block`.
-	EmptyCertAction pulumi.StringPtrInput
-	// Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
-	LogBlockedTraffic pulumi.StringPtrInput
-	// Server host key name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Virtual IP name.
-	Vip pulumi.StringPtrInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	EmptyCertAction        pulumi.StringPtrInput
+	LogBlockedTraffic      pulumi.StringPtrInput
+	Name                   pulumi.StringPtrInput
+	UserAgentDetect        pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
+	Vip                    pulumi.StringPtrInput
 }
 
 func (FirewallAccessProxy6Args) ElementType() reflect.Type {
@@ -224,7 +157,7 @@ func (i *FirewallAccessProxy6) ToFirewallAccessProxy6OutputWithContext(ctx conte
 // FirewallAccessProxy6ArrayInput is an input type that accepts FirewallAccessProxy6Array and FirewallAccessProxy6ArrayOutput values.
 // You can construct a concrete instance of `FirewallAccessProxy6ArrayInput` via:
 //
-//          FirewallAccessProxy6Array{ FirewallAccessProxy6Args{...} }
+//	FirewallAccessProxy6Array{ FirewallAccessProxy6Args{...} }
 type FirewallAccessProxy6ArrayInput interface {
 	pulumi.Input
 
@@ -249,7 +182,7 @@ func (i FirewallAccessProxy6Array) ToFirewallAccessProxy6ArrayOutputWithContext(
 // FirewallAccessProxy6MapInput is an input type that accepts FirewallAccessProxy6Map and FirewallAccessProxy6MapOutput values.
 // You can construct a concrete instance of `FirewallAccessProxy6MapInput` via:
 //
-//          FirewallAccessProxy6Map{ "key": FirewallAccessProxy6Args{...} }
+//	FirewallAccessProxy6Map{ "key": FirewallAccessProxy6Args{...} }
 type FirewallAccessProxy6MapInput interface {
 	pulumi.Input
 
@@ -283,6 +216,62 @@ func (o FirewallAccessProxy6Output) ToFirewallAccessProxy6Output() FirewallAcces
 
 func (o FirewallAccessProxy6Output) ToFirewallAccessProxy6OutputWithContext(ctx context.Context) FirewallAccessProxy6Output {
 	return o
+}
+
+func (o FirewallAccessProxy6Output) AddVhostDomainToDnsdb() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxy6) pulumi.StringOutput { return v.AddVhostDomainToDnsdb }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxy6Output) ApiGateway6s() FirewallAccessProxy6ApiGateway6ArrayOutput {
+	return o.ApplyT(func(v *FirewallAccessProxy6) FirewallAccessProxy6ApiGateway6ArrayOutput { return v.ApiGateway6s }).(FirewallAccessProxy6ApiGateway6ArrayOutput)
+}
+
+func (o FirewallAccessProxy6Output) ApiGateways() FirewallAccessProxy6ApiGatewayArrayOutput {
+	return o.ApplyT(func(v *FirewallAccessProxy6) FirewallAccessProxy6ApiGatewayArrayOutput { return v.ApiGateways }).(FirewallAccessProxy6ApiGatewayArrayOutput)
+}
+
+func (o FirewallAccessProxy6Output) AuthPortal() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxy6) pulumi.StringOutput { return v.AuthPortal }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxy6Output) AuthVirtualHost() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxy6) pulumi.StringOutput { return v.AuthVirtualHost }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxy6Output) ClientCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxy6) pulumi.StringOutput { return v.ClientCert }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxy6Output) DecryptedTrafficMirror() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxy6) pulumi.StringOutput { return v.DecryptedTrafficMirror }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxy6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAccessProxy6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAccessProxy6Output) EmptyCertAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxy6) pulumi.StringOutput { return v.EmptyCertAction }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxy6Output) LogBlockedTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxy6) pulumi.StringOutput { return v.LogBlockedTraffic }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxy6Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxy6) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxy6Output) UserAgentDetect() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxy6) pulumi.StringOutput { return v.UserAgentDetect }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxy6Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAccessProxy6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAccessProxy6Output) Vip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxy6) pulumi.StringOutput { return v.Vip }).(pulumi.StringOutput)
 }
 
 type FirewallAccessProxy6ArrayOutput struct{ *pulumi.OutputState }

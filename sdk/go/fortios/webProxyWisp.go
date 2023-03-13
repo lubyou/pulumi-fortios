@@ -7,73 +7,21 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Wireless Internet service provider (WISP) servers.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWebProxyWisp(ctx, "trname", &fortios.WebProxyWispArgs{
-// 			MaxConnections: pulumi.Int(64),
-// 			OutgoingIp:     pulumi.String("0.0.0.0"),
-// 			ServerIp:       pulumi.String("1.1.1.1"),
-// 			ServerPort:     pulumi.Int(15868),
-// 			Timeout:        pulumi.Int(5),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// WebProxy Wisp can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webProxyWisp:WebProxyWisp labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webProxyWisp:WebProxyWisp labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebProxyWisp struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Maximum number of web proxy WISP connections (4 - 4096, default = 64).
-	MaxConnections pulumi.IntOutput `pulumi:"maxConnections"`
-	// Server name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// WISP outgoing IP address.
-	OutgoingIp pulumi.StringOutput `pulumi:"outgoingIp"`
-	// WISP server IP address.
-	ServerIp pulumi.StringOutput `pulumi:"serverIp"`
-	// WISP server port (1 - 65535, default = 15868).
-	ServerPort pulumi.IntOutput `pulumi:"serverPort"`
-	// Period of time before WISP requests time out (1 - 15 sec, default = 5).
-	Timeout pulumi.IntOutput `pulumi:"timeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment        pulumi.StringPtrOutput `pulumi:"comment"`
+	MaxConnections pulumi.IntOutput       `pulumi:"maxConnections"`
+	Name           pulumi.StringOutput    `pulumi:"name"`
+	OutgoingIp     pulumi.StringOutput    `pulumi:"outgoingIp"`
+	ServerIp       pulumi.StringOutput    `pulumi:"serverIp"`
+	ServerPort     pulumi.IntOutput       `pulumi:"serverPort"`
+	Timeout        pulumi.IntOutput       `pulumi:"timeout"`
+	Vdomparam      pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWebProxyWisp registers a new resource with the given unique name, arguments, and options.
@@ -112,41 +60,25 @@ func GetWebProxyWisp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebProxyWisp resources.
 type webProxyWispState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Maximum number of web proxy WISP connections (4 - 4096, default = 64).
-	MaxConnections *int `pulumi:"maxConnections"`
-	// Server name.
-	Name *string `pulumi:"name"`
-	// WISP outgoing IP address.
-	OutgoingIp *string `pulumi:"outgoingIp"`
-	// WISP server IP address.
-	ServerIp *string `pulumi:"serverIp"`
-	// WISP server port (1 - 65535, default = 15868).
-	ServerPort *int `pulumi:"serverPort"`
-	// Period of time before WISP requests time out (1 - 15 sec, default = 5).
-	Timeout *int `pulumi:"timeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment        *string `pulumi:"comment"`
+	MaxConnections *int    `pulumi:"maxConnections"`
+	Name           *string `pulumi:"name"`
+	OutgoingIp     *string `pulumi:"outgoingIp"`
+	ServerIp       *string `pulumi:"serverIp"`
+	ServerPort     *int    `pulumi:"serverPort"`
+	Timeout        *int    `pulumi:"timeout"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 type WebProxyWispState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Maximum number of web proxy WISP connections (4 - 4096, default = 64).
+	Comment        pulumi.StringPtrInput
 	MaxConnections pulumi.IntPtrInput
-	// Server name.
-	Name pulumi.StringPtrInput
-	// WISP outgoing IP address.
-	OutgoingIp pulumi.StringPtrInput
-	// WISP server IP address.
-	ServerIp pulumi.StringPtrInput
-	// WISP server port (1 - 65535, default = 15868).
-	ServerPort pulumi.IntPtrInput
-	// Period of time before WISP requests time out (1 - 15 sec, default = 5).
-	Timeout pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	OutgoingIp     pulumi.StringPtrInput
+	ServerIp       pulumi.StringPtrInput
+	ServerPort     pulumi.IntPtrInput
+	Timeout        pulumi.IntPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (WebProxyWispState) ElementType() reflect.Type {
@@ -154,42 +86,26 @@ func (WebProxyWispState) ElementType() reflect.Type {
 }
 
 type webProxyWispArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Maximum number of web proxy WISP connections (4 - 4096, default = 64).
-	MaxConnections *int `pulumi:"maxConnections"`
-	// Server name.
-	Name *string `pulumi:"name"`
-	// WISP outgoing IP address.
-	OutgoingIp *string `pulumi:"outgoingIp"`
-	// WISP server IP address.
-	ServerIp string `pulumi:"serverIp"`
-	// WISP server port (1 - 65535, default = 15868).
-	ServerPort int `pulumi:"serverPort"`
-	// Period of time before WISP requests time out (1 - 15 sec, default = 5).
-	Timeout *int `pulumi:"timeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment        *string `pulumi:"comment"`
+	MaxConnections *int    `pulumi:"maxConnections"`
+	Name           *string `pulumi:"name"`
+	OutgoingIp     *string `pulumi:"outgoingIp"`
+	ServerIp       string  `pulumi:"serverIp"`
+	ServerPort     int     `pulumi:"serverPort"`
+	Timeout        *int    `pulumi:"timeout"`
+	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebProxyWisp resource.
 type WebProxyWispArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Maximum number of web proxy WISP connections (4 - 4096, default = 64).
+	Comment        pulumi.StringPtrInput
 	MaxConnections pulumi.IntPtrInput
-	// Server name.
-	Name pulumi.StringPtrInput
-	// WISP outgoing IP address.
-	OutgoingIp pulumi.StringPtrInput
-	// WISP server IP address.
-	ServerIp pulumi.StringInput
-	// WISP server port (1 - 65535, default = 15868).
-	ServerPort pulumi.IntInput
-	// Period of time before WISP requests time out (1 - 15 sec, default = 5).
-	Timeout pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	OutgoingIp     pulumi.StringPtrInput
+	ServerIp       pulumi.StringInput
+	ServerPort     pulumi.IntInput
+	Timeout        pulumi.IntPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (WebProxyWispArgs) ElementType() reflect.Type {
@@ -218,7 +134,7 @@ func (i *WebProxyWisp) ToWebProxyWispOutputWithContext(ctx context.Context) WebP
 // WebProxyWispArrayInput is an input type that accepts WebProxyWispArray and WebProxyWispArrayOutput values.
 // You can construct a concrete instance of `WebProxyWispArrayInput` via:
 //
-//          WebProxyWispArray{ WebProxyWispArgs{...} }
+//	WebProxyWispArray{ WebProxyWispArgs{...} }
 type WebProxyWispArrayInput interface {
 	pulumi.Input
 
@@ -243,7 +159,7 @@ func (i WebProxyWispArray) ToWebProxyWispArrayOutputWithContext(ctx context.Cont
 // WebProxyWispMapInput is an input type that accepts WebProxyWispMap and WebProxyWispMapOutput values.
 // You can construct a concrete instance of `WebProxyWispMapInput` via:
 //
-//          WebProxyWispMap{ "key": WebProxyWispArgs{...} }
+//	WebProxyWispMap{ "key": WebProxyWispArgs{...} }
 type WebProxyWispMapInput interface {
 	pulumi.Input
 
@@ -277,6 +193,38 @@ func (o WebProxyWispOutput) ToWebProxyWispOutput() WebProxyWispOutput {
 
 func (o WebProxyWispOutput) ToWebProxyWispOutputWithContext(ctx context.Context) WebProxyWispOutput {
 	return o
+}
+
+func (o WebProxyWispOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyWisp) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o WebProxyWispOutput) MaxConnections() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebProxyWisp) pulumi.IntOutput { return v.MaxConnections }).(pulumi.IntOutput)
+}
+
+func (o WebProxyWispOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyWisp) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WebProxyWispOutput) OutgoingIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyWisp) pulumi.StringOutput { return v.OutgoingIp }).(pulumi.StringOutput)
+}
+
+func (o WebProxyWispOutput) ServerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyWisp) pulumi.StringOutput { return v.ServerIp }).(pulumi.StringOutput)
+}
+
+func (o WebProxyWispOutput) ServerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebProxyWisp) pulumi.IntOutput { return v.ServerPort }).(pulumi.IntOutput)
+}
+
+func (o WebProxyWispOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebProxyWisp) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
+}
+
+func (o WebProxyWispOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyWisp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebProxyWispArrayOutput struct{ *pulumi.OutputState }

@@ -10,46 +10,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure global DPDK options. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// Dpdk Global can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/dpdkGlobal:DpdkGlobal labelname DpdkGlobal
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/dpdkGlobal:DpdkGlobal labelname DpdkGlobal
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type DpdkGlobal struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
-	Elasticbuffer pulumi.StringOutput `pulumi:"elasticbuffer"`
-	// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
-	HugepagePercentage pulumi.IntOutput `pulumi:"hugepagePercentage"`
-	// Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
-	Interfaces DpdkGlobalInterfaceArrayOutput `pulumi:"interfaces"`
-	// Percentage of main memory allocated to DPDK packet buffer.
-	MbufpoolPercentage pulumi.IntOutput `pulumi:"mbufpoolPercentage"`
-	// Enable/disable multi-queue RX/TX support for all DPDK ports. Valid values: `disable`, `enable`.
-	Multiqueue pulumi.StringOutput `pulumi:"multiqueue"`
-	// Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
-	PerSessionAccounting pulumi.StringOutput `pulumi:"perSessionAccounting"`
-	// Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
-	SleepOnIdle pulumi.StringOutput `pulumi:"sleepOnIdle"`
-	// Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable  pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
+	Elasticbuffer        pulumi.StringOutput            `pulumi:"elasticbuffer"`
+	HugepagePercentage   pulumi.IntOutput               `pulumi:"hugepagePercentage"`
+	Interfaces           DpdkGlobalInterfaceArrayOutput `pulumi:"interfaces"`
+	IpsecOffload         pulumi.StringOutput            `pulumi:"ipsecOffload"`
+	MbufpoolPercentage   pulumi.IntOutput               `pulumi:"mbufpoolPercentage"`
+	Multiqueue           pulumi.StringOutput            `pulumi:"multiqueue"`
+	PerSessionAccounting pulumi.StringOutput            `pulumi:"perSessionAccounting"`
+	SleepOnIdle          pulumi.StringOutput            `pulumi:"sleepOnIdle"`
+	Status               pulumi.StringOutput            `pulumi:"status"`
+	Vdomparam            pulumi.StringPtrOutput         `pulumi:"vdomparam"`
 }
 
 // NewDpdkGlobal registers a new resource with the given unique name, arguments, and options.
@@ -82,49 +56,31 @@ func GetDpdkGlobal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DpdkGlobal resources.
 type dpdkGlobalState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
-	Elasticbuffer *string `pulumi:"elasticbuffer"`
-	// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
-	HugepagePercentage *int `pulumi:"hugepagePercentage"`
-	// Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
-	Interfaces []DpdkGlobalInterface `pulumi:"interfaces"`
-	// Percentage of main memory allocated to DPDK packet buffer.
-	MbufpoolPercentage *int `pulumi:"mbufpoolPercentage"`
-	// Enable/disable multi-queue RX/TX support for all DPDK ports. Valid values: `disable`, `enable`.
-	Multiqueue *string `pulumi:"multiqueue"`
-	// Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
-	PerSessionAccounting *string `pulumi:"perSessionAccounting"`
-	// Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
-	SleepOnIdle *string `pulumi:"sleepOnIdle"`
-	// Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable  *string               `pulumi:"dynamicSortSubtable"`
+	Elasticbuffer        *string               `pulumi:"elasticbuffer"`
+	HugepagePercentage   *int                  `pulumi:"hugepagePercentage"`
+	Interfaces           []DpdkGlobalInterface `pulumi:"interfaces"`
+	IpsecOffload         *string               `pulumi:"ipsecOffload"`
+	MbufpoolPercentage   *int                  `pulumi:"mbufpoolPercentage"`
+	Multiqueue           *string               `pulumi:"multiqueue"`
+	PerSessionAccounting *string               `pulumi:"perSessionAccounting"`
+	SleepOnIdle          *string               `pulumi:"sleepOnIdle"`
+	Status               *string               `pulumi:"status"`
+	Vdomparam            *string               `pulumi:"vdomparam"`
 }
 
 type DpdkGlobalState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
-	Elasticbuffer pulumi.StringPtrInput
-	// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
-	HugepagePercentage pulumi.IntPtrInput
-	// Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
-	Interfaces DpdkGlobalInterfaceArrayInput
-	// Percentage of main memory allocated to DPDK packet buffer.
-	MbufpoolPercentage pulumi.IntPtrInput
-	// Enable/disable multi-queue RX/TX support for all DPDK ports. Valid values: `disable`, `enable`.
-	Multiqueue pulumi.StringPtrInput
-	// Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
+	DynamicSortSubtable  pulumi.StringPtrInput
+	Elasticbuffer        pulumi.StringPtrInput
+	HugepagePercentage   pulumi.IntPtrInput
+	Interfaces           DpdkGlobalInterfaceArrayInput
+	IpsecOffload         pulumi.StringPtrInput
+	MbufpoolPercentage   pulumi.IntPtrInput
+	Multiqueue           pulumi.StringPtrInput
 	PerSessionAccounting pulumi.StringPtrInput
-	// Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
-	SleepOnIdle pulumi.StringPtrInput
-	// Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SleepOnIdle          pulumi.StringPtrInput
+	Status               pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
 }
 
 func (DpdkGlobalState) ElementType() reflect.Type {
@@ -132,50 +88,32 @@ func (DpdkGlobalState) ElementType() reflect.Type {
 }
 
 type dpdkGlobalArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
-	Elasticbuffer *string `pulumi:"elasticbuffer"`
-	// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
-	HugepagePercentage *int `pulumi:"hugepagePercentage"`
-	// Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
-	Interfaces []DpdkGlobalInterface `pulumi:"interfaces"`
-	// Percentage of main memory allocated to DPDK packet buffer.
-	MbufpoolPercentage *int `pulumi:"mbufpoolPercentage"`
-	// Enable/disable multi-queue RX/TX support for all DPDK ports. Valid values: `disable`, `enable`.
-	Multiqueue *string `pulumi:"multiqueue"`
-	// Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
-	PerSessionAccounting *string `pulumi:"perSessionAccounting"`
-	// Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
-	SleepOnIdle *string `pulumi:"sleepOnIdle"`
-	// Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable  *string               `pulumi:"dynamicSortSubtable"`
+	Elasticbuffer        *string               `pulumi:"elasticbuffer"`
+	HugepagePercentage   *int                  `pulumi:"hugepagePercentage"`
+	Interfaces           []DpdkGlobalInterface `pulumi:"interfaces"`
+	IpsecOffload         *string               `pulumi:"ipsecOffload"`
+	MbufpoolPercentage   *int                  `pulumi:"mbufpoolPercentage"`
+	Multiqueue           *string               `pulumi:"multiqueue"`
+	PerSessionAccounting *string               `pulumi:"perSessionAccounting"`
+	SleepOnIdle          *string               `pulumi:"sleepOnIdle"`
+	Status               *string               `pulumi:"status"`
+	Vdomparam            *string               `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a DpdkGlobal resource.
 type DpdkGlobalArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
-	Elasticbuffer pulumi.StringPtrInput
-	// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
-	HugepagePercentage pulumi.IntPtrInput
-	// Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
-	Interfaces DpdkGlobalInterfaceArrayInput
-	// Percentage of main memory allocated to DPDK packet buffer.
-	MbufpoolPercentage pulumi.IntPtrInput
-	// Enable/disable multi-queue RX/TX support for all DPDK ports. Valid values: `disable`, `enable`.
-	Multiqueue pulumi.StringPtrInput
-	// Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
+	DynamicSortSubtable  pulumi.StringPtrInput
+	Elasticbuffer        pulumi.StringPtrInput
+	HugepagePercentage   pulumi.IntPtrInput
+	Interfaces           DpdkGlobalInterfaceArrayInput
+	IpsecOffload         pulumi.StringPtrInput
+	MbufpoolPercentage   pulumi.IntPtrInput
+	Multiqueue           pulumi.StringPtrInput
 	PerSessionAccounting pulumi.StringPtrInput
-	// Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
-	SleepOnIdle pulumi.StringPtrInput
-	// Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SleepOnIdle          pulumi.StringPtrInput
+	Status               pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
 }
 
 func (DpdkGlobalArgs) ElementType() reflect.Type {
@@ -204,7 +142,7 @@ func (i *DpdkGlobal) ToDpdkGlobalOutputWithContext(ctx context.Context) DpdkGlob
 // DpdkGlobalArrayInput is an input type that accepts DpdkGlobalArray and DpdkGlobalArrayOutput values.
 // You can construct a concrete instance of `DpdkGlobalArrayInput` via:
 //
-//          DpdkGlobalArray{ DpdkGlobalArgs{...} }
+//	DpdkGlobalArray{ DpdkGlobalArgs{...} }
 type DpdkGlobalArrayInput interface {
 	pulumi.Input
 
@@ -229,7 +167,7 @@ func (i DpdkGlobalArray) ToDpdkGlobalArrayOutputWithContext(ctx context.Context)
 // DpdkGlobalMapInput is an input type that accepts DpdkGlobalMap and DpdkGlobalMapOutput values.
 // You can construct a concrete instance of `DpdkGlobalMapInput` via:
 //
-//          DpdkGlobalMap{ "key": DpdkGlobalArgs{...} }
+//	DpdkGlobalMap{ "key": DpdkGlobalArgs{...} }
 type DpdkGlobalMapInput interface {
 	pulumi.Input
 
@@ -263,6 +201,50 @@ func (o DpdkGlobalOutput) ToDpdkGlobalOutput() DpdkGlobalOutput {
 
 func (o DpdkGlobalOutput) ToDpdkGlobalOutputWithContext(ctx context.Context) DpdkGlobalOutput {
 	return o
+}
+
+func (o DpdkGlobalOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DpdkGlobal) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o DpdkGlobalOutput) Elasticbuffer() pulumi.StringOutput {
+	return o.ApplyT(func(v *DpdkGlobal) pulumi.StringOutput { return v.Elasticbuffer }).(pulumi.StringOutput)
+}
+
+func (o DpdkGlobalOutput) HugepagePercentage() pulumi.IntOutput {
+	return o.ApplyT(func(v *DpdkGlobal) pulumi.IntOutput { return v.HugepagePercentage }).(pulumi.IntOutput)
+}
+
+func (o DpdkGlobalOutput) Interfaces() DpdkGlobalInterfaceArrayOutput {
+	return o.ApplyT(func(v *DpdkGlobal) DpdkGlobalInterfaceArrayOutput { return v.Interfaces }).(DpdkGlobalInterfaceArrayOutput)
+}
+
+func (o DpdkGlobalOutput) IpsecOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v *DpdkGlobal) pulumi.StringOutput { return v.IpsecOffload }).(pulumi.StringOutput)
+}
+
+func (o DpdkGlobalOutput) MbufpoolPercentage() pulumi.IntOutput {
+	return o.ApplyT(func(v *DpdkGlobal) pulumi.IntOutput { return v.MbufpoolPercentage }).(pulumi.IntOutput)
+}
+
+func (o DpdkGlobalOutput) Multiqueue() pulumi.StringOutput {
+	return o.ApplyT(func(v *DpdkGlobal) pulumi.StringOutput { return v.Multiqueue }).(pulumi.StringOutput)
+}
+
+func (o DpdkGlobalOutput) PerSessionAccounting() pulumi.StringOutput {
+	return o.ApplyT(func(v *DpdkGlobal) pulumi.StringOutput { return v.PerSessionAccounting }).(pulumi.StringOutput)
+}
+
+func (o DpdkGlobalOutput) SleepOnIdle() pulumi.StringOutput {
+	return o.ApplyT(func(v *DpdkGlobal) pulumi.StringOutput { return v.SleepOnIdle }).(pulumi.StringOutput)
+}
+
+func (o DpdkGlobalOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *DpdkGlobal) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o DpdkGlobalOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DpdkGlobal) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type DpdkGlobalArrayOutput struct{ *pulumi.OutputState }

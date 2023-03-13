@@ -7,43 +7,16 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports installing devicemanager policy package from FortiManager to the related FortiGate
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerDVMInstallPolicyPackage(ctx, "test1", &fortios.FortimanagerDVMInstallPolicyPackageArgs{
-// 			PackageName: pulumi.String("test-pkg1"),
-// 			Timeout:     pulumi.Int(5),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerDVMInstallPolicyPackage struct {
 	pulumi.CustomResourceState
 
-	// Source ADOM name. default is 'root'
-	Adom pulumi.StringPtrOutput `pulumi:"adom"`
-	// The installation package name.
-	PackageName pulumi.StringOutput `pulumi:"packageName"`
-	// Timeout for installing the package to the target, default: 3 minutes.
+	Adom        pulumi.StringPtrOutput `pulumi:"adom"`
+	PackageName pulumi.StringOutput    `pulumi:"packageName"`
+	// Timeout for installing the package to the target, default: 3 minutes
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 }
 
@@ -80,20 +53,16 @@ func GetFortimanagerDVMInstallPolicyPackage(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerDVMInstallPolicyPackage resources.
 type fortimanagerDVMInstallPolicyPackageState struct {
-	// Source ADOM name. default is 'root'
-	Adom *string `pulumi:"adom"`
-	// The installation package name.
+	Adom        *string `pulumi:"adom"`
 	PackageName *string `pulumi:"packageName"`
-	// Timeout for installing the package to the target, default: 3 minutes.
+	// Timeout for installing the package to the target, default: 3 minutes
 	Timeout *int `pulumi:"timeout"`
 }
 
 type FortimanagerDVMInstallPolicyPackageState struct {
-	// Source ADOM name. default is 'root'
-	Adom pulumi.StringPtrInput
-	// The installation package name.
+	Adom        pulumi.StringPtrInput
 	PackageName pulumi.StringPtrInput
-	// Timeout for installing the package to the target, default: 3 minutes.
+	// Timeout for installing the package to the target, default: 3 minutes
 	Timeout pulumi.IntPtrInput
 }
 
@@ -102,21 +71,17 @@ func (FortimanagerDVMInstallPolicyPackageState) ElementType() reflect.Type {
 }
 
 type fortimanagerDVMInstallPolicyPackageArgs struct {
-	// Source ADOM name. default is 'root'
-	Adom *string `pulumi:"adom"`
-	// The installation package name.
-	PackageName string `pulumi:"packageName"`
-	// Timeout for installing the package to the target, default: 3 minutes.
+	Adom        *string `pulumi:"adom"`
+	PackageName string  `pulumi:"packageName"`
+	// Timeout for installing the package to the target, default: 3 minutes
 	Timeout *int `pulumi:"timeout"`
 }
 
 // The set of arguments for constructing a FortimanagerDVMInstallPolicyPackage resource.
 type FortimanagerDVMInstallPolicyPackageArgs struct {
-	// Source ADOM name. default is 'root'
-	Adom pulumi.StringPtrInput
-	// The installation package name.
+	Adom        pulumi.StringPtrInput
 	PackageName pulumi.StringInput
-	// Timeout for installing the package to the target, default: 3 minutes.
+	// Timeout for installing the package to the target, default: 3 minutes
 	Timeout pulumi.IntPtrInput
 }
 
@@ -146,7 +111,7 @@ func (i *FortimanagerDVMInstallPolicyPackage) ToFortimanagerDVMInstallPolicyPack
 // FortimanagerDVMInstallPolicyPackageArrayInput is an input type that accepts FortimanagerDVMInstallPolicyPackageArray and FortimanagerDVMInstallPolicyPackageArrayOutput values.
 // You can construct a concrete instance of `FortimanagerDVMInstallPolicyPackageArrayInput` via:
 //
-//          FortimanagerDVMInstallPolicyPackageArray{ FortimanagerDVMInstallPolicyPackageArgs{...} }
+//	FortimanagerDVMInstallPolicyPackageArray{ FortimanagerDVMInstallPolicyPackageArgs{...} }
 type FortimanagerDVMInstallPolicyPackageArrayInput interface {
 	pulumi.Input
 
@@ -171,7 +136,7 @@ func (i FortimanagerDVMInstallPolicyPackageArray) ToFortimanagerDVMInstallPolicy
 // FortimanagerDVMInstallPolicyPackageMapInput is an input type that accepts FortimanagerDVMInstallPolicyPackageMap and FortimanagerDVMInstallPolicyPackageMapOutput values.
 // You can construct a concrete instance of `FortimanagerDVMInstallPolicyPackageMapInput` via:
 //
-//          FortimanagerDVMInstallPolicyPackageMap{ "key": FortimanagerDVMInstallPolicyPackageArgs{...} }
+//	FortimanagerDVMInstallPolicyPackageMap{ "key": FortimanagerDVMInstallPolicyPackageArgs{...} }
 type FortimanagerDVMInstallPolicyPackageMapInput interface {
 	pulumi.Input
 
@@ -205,6 +170,19 @@ func (o FortimanagerDVMInstallPolicyPackageOutput) ToFortimanagerDVMInstallPolic
 
 func (o FortimanagerDVMInstallPolicyPackageOutput) ToFortimanagerDVMInstallPolicyPackageOutputWithContext(ctx context.Context) FortimanagerDVMInstallPolicyPackageOutput {
 	return o
+}
+
+func (o FortimanagerDVMInstallPolicyPackageOutput) Adom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerDVMInstallPolicyPackage) pulumi.StringPtrOutput { return v.Adom }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerDVMInstallPolicyPackageOutput) PackageName() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerDVMInstallPolicyPackage) pulumi.StringOutput { return v.PackageName }).(pulumi.StringOutput)
+}
+
+// Timeout for installing the package to the target, default: 3 minutes
+func (o FortimanagerDVMInstallPolicyPackageOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FortimanagerDVMInstallPolicyPackage) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
 type FortimanagerDVMInstallPolicyPackageArrayOutput struct{ *pulumi.OutputState }

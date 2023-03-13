@@ -2,39 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure geographical location mapping for IP address(es) to override mappings from FortiGuard.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemGeoipOverride("trname", {
- *     description: "TEST for country",
- * });
- * ```
- *
- * ## Import
- *
- * System GeoipOverride can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemGeoipOverride:SystemGeoipOverride labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemGeoipOverride:SystemGeoipOverride labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemGeoipOverride extends pulumi.CustomResource {
     /**
      * Get an existing SystemGeoipOverride resource's state with the given name, ID, and optional extra
@@ -63,33 +34,12 @@ export class SystemGeoipOverride extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemGeoipOverride.__pulumiType;
     }
 
-    /**
-     * Two character Country ID code.
-     */
     public readonly countryId!: pulumi.Output<string>;
-    /**
-     * Description.
-     */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Table of IPv6 ranges assigned to country. The structure of `ip6Range` block is documented below.
-     */
     public readonly ip6Ranges!: pulumi.Output<outputs.SystemGeoipOverrideIp6Range[] | undefined>;
-    /**
-     * Table of IP ranges assigned to country. The structure of `ipRange` block is documented below.
-     */
     public readonly ipRanges!: pulumi.Output<outputs.SystemGeoipOverrideIpRange[] | undefined>;
-    /**
-     * Location name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -131,33 +81,12 @@ export class SystemGeoipOverride extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemGeoipOverride resources.
  */
 export interface SystemGeoipOverrideState {
-    /**
-     * Two character Country ID code.
-     */
     countryId?: pulumi.Input<string>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Table of IPv6 ranges assigned to country. The structure of `ip6Range` block is documented below.
-     */
     ip6Ranges?: pulumi.Input<pulumi.Input<inputs.SystemGeoipOverrideIp6Range>[]>;
-    /**
-     * Table of IP ranges assigned to country. The structure of `ipRange` block is documented below.
-     */
     ipRanges?: pulumi.Input<pulumi.Input<inputs.SystemGeoipOverrideIpRange>[]>;
-    /**
-     * Location name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -165,32 +94,11 @@ export interface SystemGeoipOverrideState {
  * The set of arguments for constructing a SystemGeoipOverride resource.
  */
 export interface SystemGeoipOverrideArgs {
-    /**
-     * Two character Country ID code.
-     */
     countryId?: pulumi.Input<string>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Table of IPv6 ranges assigned to country. The structure of `ip6Range` block is documented below.
-     */
     ip6Ranges?: pulumi.Input<pulumi.Input<inputs.SystemGeoipOverrideIp6Range>[]>;
-    /**
-     * Table of IP ranges assigned to country. The structure of `ipRange` block is documented below.
-     */
     ipRanges?: pulumi.Input<pulumi.Input<inputs.SystemGeoipOverrideIpRange>[]>;
-    /**
-     * Location name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

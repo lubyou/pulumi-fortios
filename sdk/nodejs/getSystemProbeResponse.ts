@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios system proberesponse
- */
 export function getSystemProbeResponse(args?: GetSystemProbeResponseArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemProbeResponseResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemProbeResponse:GetSystemProbeResponse", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getSystemProbeResponse(args?: GetSystemProbeResponseArgs, opts?:
  * A collection of arguments for invoking GetSystemProbeResponse.
  */
 export interface GetSystemProbeResponseArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -33,51 +24,26 @@ export interface GetSystemProbeResponseArgs {
  * A collection of values returned by GetSystemProbeResponse.
  */
 export interface GetSystemProbeResponseResult {
-    /**
-     * Value to respond to the monitoring server.
-     */
     readonly httpProbeValue: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * SLA response mode.
-     */
     readonly mode: string;
-    /**
-     * Twamp respondor password in authentication mode
-     */
     readonly password: string;
-    /**
-     * Port number to response.
-     */
     readonly port: number;
-    /**
-     * Twamp respondor security mode.
-     */
     readonly securityMode: string;
-    /**
-     * An inactivity timer for a twamp test session.
-     */
     readonly timeout: number;
-    /**
-     * Mode for TWAMP packet TTL modification.
-     */
     readonly ttlMode: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemProbeResponseOutput(args?: GetSystemProbeResponseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemProbeResponseResult> {
-    return pulumi.output(args).apply(a => getSystemProbeResponse(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemProbeResponse(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemProbeResponse.
  */
 export interface GetSystemProbeResponseOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch IGMP snooping global settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchControllerIgmpSnooping("trname", {
- *     agingTime: 300,
- *     floodUnknownMulticast: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * SwitchController IgmpSnooping can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerIgmpSnooping:SwitchControllerIgmpSnooping labelname SwitchControllerIgmpSnooping
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerIgmpSnooping:SwitchControllerIgmpSnooping labelname SwitchControllerIgmpSnooping
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerIgmpSnooping extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerIgmpSnooping resource's state with the given name, ID, and optional extra
@@ -63,17 +32,9 @@ export class SwitchControllerIgmpSnooping extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerIgmpSnooping.__pulumiType;
     }
 
-    /**
-     * Maximum number of seconds to retain a multicast snooping entry for which no packets have been seen (15 - 3600 sec, default = 300).
-     */
     public readonly agingTime!: pulumi.Output<number>;
-    /**
-     * Enable/disable unknown multicast flooding. Valid values: `enable`, `disable`.
-     */
     public readonly floodUnknownMulticast!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    public readonly queryInterval!: pulumi.Output<number>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -91,11 +52,13 @@ export class SwitchControllerIgmpSnooping extends pulumi.CustomResource {
             const state = argsOrState as SwitchControllerIgmpSnoopingState | undefined;
             resourceInputs["agingTime"] = state ? state.agingTime : undefined;
             resourceInputs["floodUnknownMulticast"] = state ? state.floodUnknownMulticast : undefined;
+            resourceInputs["queryInterval"] = state ? state.queryInterval : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerIgmpSnoopingArgs | undefined;
             resourceInputs["agingTime"] = args ? args.agingTime : undefined;
             resourceInputs["floodUnknownMulticast"] = args ? args.floodUnknownMulticast : undefined;
+            resourceInputs["queryInterval"] = args ? args.queryInterval : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -107,17 +70,9 @@ export class SwitchControllerIgmpSnooping extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerIgmpSnooping resources.
  */
 export interface SwitchControllerIgmpSnoopingState {
-    /**
-     * Maximum number of seconds to retain a multicast snooping entry for which no packets have been seen (15 - 3600 sec, default = 300).
-     */
     agingTime?: pulumi.Input<number>;
-    /**
-     * Enable/disable unknown multicast flooding. Valid values: `enable`, `disable`.
-     */
     floodUnknownMulticast?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    queryInterval?: pulumi.Input<number>;
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -125,16 +80,8 @@ export interface SwitchControllerIgmpSnoopingState {
  * The set of arguments for constructing a SwitchControllerIgmpSnooping resource.
  */
 export interface SwitchControllerIgmpSnoopingArgs {
-    /**
-     * Maximum number of seconds to retain a multicast snooping entry for which no packets have been seen (15 - 3600 sec, default = 300).
-     */
     agingTime?: pulumi.Input<number>;
-    /**
-     * Enable/disable unknown multicast flooding. Valid values: `enable`, `disable`.
-     */
     floodUnknownMulticast?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    queryInterval?: pulumi.Input<number>;
     vdomparam?: pulumi.Input<string>;
 }

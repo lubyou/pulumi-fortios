@@ -10,76 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports Create/Read/Update/Delete firewall object address for FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerFirewallObjectAddress(ctx, "test1", &fortios.FortimanagerFirewallObjectAddressArgs{
-// 			AssociatedIntf: pulumi.String("any"),
-// 			Comment:        pulumi.String("test obj address"),
-// 			Fqdn:           pulumi.String("fqdn.google.com"),
-// 			Type:           pulumi.String("fqdn"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewFortimanagerFirewallObjectAddress(ctx, "test2", &fortios.FortimanagerFirewallObjectAddressArgs{
-// 			AllowRouting:   pulumi.String("disable"),
-// 			AssociatedIntf: pulumi.String("any"),
-// 			Comment:        pulumi.String("test obj address"),
-// 			Subnet:         pulumi.String("2.2.2.0 255.255.255.0"),
-// 			Type:           pulumi.String("ipmask"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewFortimanagerFirewallObjectAddress(ctx, "test3", &fortios.FortimanagerFirewallObjectAddressArgs{
-// 			AssociatedIntf: pulumi.String("any"),
-// 			Comment:        pulumi.String("test obj address"),
-// 			EndIp:          pulumi.String("2.2.2.100"),
-// 			StartIp:        pulumi.String("2.2.2.1"),
-// 			Type:           pulumi.String("iprange"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerFirewallObjectAddress struct {
 	pulumi.CustomResourceState
 
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrOutput `pulumi:"adom"`
-	// Enable/disable use of this address in the static route configuration. default is "disable".
-	AllowRouting pulumi.StringPtrOutput `pulumi:"allowRouting"`
-	// Network interface associated with address.
+	Adom           pulumi.StringPtrOutput `pulumi:"adom"`
+	AllowRouting   pulumi.StringPtrOutput `pulumi:"allowRouting"`
 	AssociatedIntf pulumi.StringPtrOutput `pulumi:"associatedIntf"`
-	// Comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Final IP address (inclusive) in the range for the address.
-	EndIp pulumi.StringPtrOutput `pulumi:"endIp"`
-	// Fully Qualified Domain Name address.
-	Fqdn pulumi.StringPtrOutput `pulumi:"fqdn"`
-	// Address name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// First IP address (inclusive) in the range for the address.
-	StartIp pulumi.StringPtrOutput `pulumi:"startIp"`
-	// IPv4 address/mask
-	Subnet pulumi.StringPtrOutput `pulumi:"subnet"`
-	// Type of address, Enum: ["ipmask", "iprange", "fqdn"].
-	Type pulumi.StringPtrOutput `pulumi:"type"`
+	Comment        pulumi.StringPtrOutput `pulumi:"comment"`
+	EndIp          pulumi.StringPtrOutput `pulumi:"endIp"`
+	Fqdn           pulumi.StringPtrOutput `pulumi:"fqdn"`
+	Name           pulumi.StringOutput    `pulumi:"name"`
+	StartIp        pulumi.StringPtrOutput `pulumi:"startIp"`
+	Subnet         pulumi.StringPtrOutput `pulumi:"subnet"`
+	Type           pulumi.StringPtrOutput `pulumi:"type"`
 }
 
 // NewFortimanagerFirewallObjectAddress registers a new resource with the given unique name, arguments, and options.
@@ -112,49 +55,29 @@ func GetFortimanagerFirewallObjectAddress(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerFirewallObjectAddress resources.
 type fortimanagerFirewallObjectAddressState struct {
-	// ADOM name. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// Enable/disable use of this address in the static route configuration. default is "disable".
-	AllowRouting *string `pulumi:"allowRouting"`
-	// Network interface associated with address.
+	Adom           *string `pulumi:"adom"`
+	AllowRouting   *string `pulumi:"allowRouting"`
 	AssociatedIntf *string `pulumi:"associatedIntf"`
-	// Comments.
-	Comment *string `pulumi:"comment"`
-	// Final IP address (inclusive) in the range for the address.
-	EndIp *string `pulumi:"endIp"`
-	// Fully Qualified Domain Name address.
-	Fqdn *string `pulumi:"fqdn"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// First IP address (inclusive) in the range for the address.
-	StartIp *string `pulumi:"startIp"`
-	// IPv4 address/mask
-	Subnet *string `pulumi:"subnet"`
-	// Type of address, Enum: ["ipmask", "iprange", "fqdn"].
-	Type *string `pulumi:"type"`
+	Comment        *string `pulumi:"comment"`
+	EndIp          *string `pulumi:"endIp"`
+	Fqdn           *string `pulumi:"fqdn"`
+	Name           *string `pulumi:"name"`
+	StartIp        *string `pulumi:"startIp"`
+	Subnet         *string `pulumi:"subnet"`
+	Type           *string `pulumi:"type"`
 }
 
 type FortimanagerFirewallObjectAddressState struct {
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// Enable/disable use of this address in the static route configuration. default is "disable".
-	AllowRouting pulumi.StringPtrInput
-	// Network interface associated with address.
+	Adom           pulumi.StringPtrInput
+	AllowRouting   pulumi.StringPtrInput
 	AssociatedIntf pulumi.StringPtrInput
-	// Comments.
-	Comment pulumi.StringPtrInput
-	// Final IP address (inclusive) in the range for the address.
-	EndIp pulumi.StringPtrInput
-	// Fully Qualified Domain Name address.
-	Fqdn pulumi.StringPtrInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// First IP address (inclusive) in the range for the address.
-	StartIp pulumi.StringPtrInput
-	// IPv4 address/mask
-	Subnet pulumi.StringPtrInput
-	// Type of address, Enum: ["ipmask", "iprange", "fqdn"].
-	Type pulumi.StringPtrInput
+	Comment        pulumi.StringPtrInput
+	EndIp          pulumi.StringPtrInput
+	Fqdn           pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	StartIp        pulumi.StringPtrInput
+	Subnet         pulumi.StringPtrInput
+	Type           pulumi.StringPtrInput
 }
 
 func (FortimanagerFirewallObjectAddressState) ElementType() reflect.Type {
@@ -162,50 +85,30 @@ func (FortimanagerFirewallObjectAddressState) ElementType() reflect.Type {
 }
 
 type fortimanagerFirewallObjectAddressArgs struct {
-	// ADOM name. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// Enable/disable use of this address in the static route configuration. default is "disable".
-	AllowRouting *string `pulumi:"allowRouting"`
-	// Network interface associated with address.
+	Adom           *string `pulumi:"adom"`
+	AllowRouting   *string `pulumi:"allowRouting"`
 	AssociatedIntf *string `pulumi:"associatedIntf"`
-	// Comments.
-	Comment *string `pulumi:"comment"`
-	// Final IP address (inclusive) in the range for the address.
-	EndIp *string `pulumi:"endIp"`
-	// Fully Qualified Domain Name address.
-	Fqdn *string `pulumi:"fqdn"`
-	// Address name.
-	Name *string `pulumi:"name"`
-	// First IP address (inclusive) in the range for the address.
-	StartIp *string `pulumi:"startIp"`
-	// IPv4 address/mask
-	Subnet *string `pulumi:"subnet"`
-	// Type of address, Enum: ["ipmask", "iprange", "fqdn"].
-	Type *string `pulumi:"type"`
+	Comment        *string `pulumi:"comment"`
+	EndIp          *string `pulumi:"endIp"`
+	Fqdn           *string `pulumi:"fqdn"`
+	Name           *string `pulumi:"name"`
+	StartIp        *string `pulumi:"startIp"`
+	Subnet         *string `pulumi:"subnet"`
+	Type           *string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a FortimanagerFirewallObjectAddress resource.
 type FortimanagerFirewallObjectAddressArgs struct {
-	// ADOM name. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// Enable/disable use of this address in the static route configuration. default is "disable".
-	AllowRouting pulumi.StringPtrInput
-	// Network interface associated with address.
+	Adom           pulumi.StringPtrInput
+	AllowRouting   pulumi.StringPtrInput
 	AssociatedIntf pulumi.StringPtrInput
-	// Comments.
-	Comment pulumi.StringPtrInput
-	// Final IP address (inclusive) in the range for the address.
-	EndIp pulumi.StringPtrInput
-	// Fully Qualified Domain Name address.
-	Fqdn pulumi.StringPtrInput
-	// Address name.
-	Name pulumi.StringPtrInput
-	// First IP address (inclusive) in the range for the address.
-	StartIp pulumi.StringPtrInput
-	// IPv4 address/mask
-	Subnet pulumi.StringPtrInput
-	// Type of address, Enum: ["ipmask", "iprange", "fqdn"].
-	Type pulumi.StringPtrInput
+	Comment        pulumi.StringPtrInput
+	EndIp          pulumi.StringPtrInput
+	Fqdn           pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	StartIp        pulumi.StringPtrInput
+	Subnet         pulumi.StringPtrInput
+	Type           pulumi.StringPtrInput
 }
 
 func (FortimanagerFirewallObjectAddressArgs) ElementType() reflect.Type {
@@ -234,7 +137,7 @@ func (i *FortimanagerFirewallObjectAddress) ToFortimanagerFirewallObjectAddressO
 // FortimanagerFirewallObjectAddressArrayInput is an input type that accepts FortimanagerFirewallObjectAddressArray and FortimanagerFirewallObjectAddressArrayOutput values.
 // You can construct a concrete instance of `FortimanagerFirewallObjectAddressArrayInput` via:
 //
-//          FortimanagerFirewallObjectAddressArray{ FortimanagerFirewallObjectAddressArgs{...} }
+//	FortimanagerFirewallObjectAddressArray{ FortimanagerFirewallObjectAddressArgs{...} }
 type FortimanagerFirewallObjectAddressArrayInput interface {
 	pulumi.Input
 
@@ -259,7 +162,7 @@ func (i FortimanagerFirewallObjectAddressArray) ToFortimanagerFirewallObjectAddr
 // FortimanagerFirewallObjectAddressMapInput is an input type that accepts FortimanagerFirewallObjectAddressMap and FortimanagerFirewallObjectAddressMapOutput values.
 // You can construct a concrete instance of `FortimanagerFirewallObjectAddressMapInput` via:
 //
-//          FortimanagerFirewallObjectAddressMap{ "key": FortimanagerFirewallObjectAddressArgs{...} }
+//	FortimanagerFirewallObjectAddressMap{ "key": FortimanagerFirewallObjectAddressArgs{...} }
 type FortimanagerFirewallObjectAddressMapInput interface {
 	pulumi.Input
 
@@ -293,6 +196,46 @@ func (o FortimanagerFirewallObjectAddressOutput) ToFortimanagerFirewallObjectAdd
 
 func (o FortimanagerFirewallObjectAddressOutput) ToFortimanagerFirewallObjectAddressOutputWithContext(ctx context.Context) FortimanagerFirewallObjectAddressOutput {
 	return o
+}
+
+func (o FortimanagerFirewallObjectAddressOutput) Adom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectAddress) pulumi.StringPtrOutput { return v.Adom }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectAddressOutput) AllowRouting() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectAddress) pulumi.StringPtrOutput { return v.AllowRouting }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectAddressOutput) AssociatedIntf() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectAddress) pulumi.StringPtrOutput { return v.AssociatedIntf }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectAddressOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectAddress) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectAddressOutput) EndIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectAddress) pulumi.StringPtrOutput { return v.EndIp }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectAddressOutput) Fqdn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectAddress) pulumi.StringPtrOutput { return v.Fqdn }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectAddressOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectAddress) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerFirewallObjectAddressOutput) StartIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectAddress) pulumi.StringPtrOutput { return v.StartIp }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectAddressOutput) Subnet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectAddress) pulumi.StringPtrOutput { return v.Subnet }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallObjectAddressOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallObjectAddress) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 type FortimanagerFirewallObjectAddressArrayOutput struct{ *pulumi.OutputState }

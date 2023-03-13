@@ -2,49 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv6 static routing tables.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.RouterStatic6("trname", {
- *     bfd: "disable",
- *     blackhole: "disable",
- *     device: "port3",
- *     devindex: 5,
- *     distance: 10,
- *     dst: "2001:db8::/32",
- *     gateway: "::",
- *     priority: 32,
- *     seqNum: 1,
- *     status: "enable",
- *     virtualWanLink: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * Router Static6 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerStatic6:RouterStatic6 labelname {{seq_num}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerStatic6:RouterStatic6 labelname {{seq_num}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterStatic6 extends pulumi.CustomResource {
     /**
      * Get an existing RouterStatic6 resource's state with the given name, ID, and optional extra
@@ -73,82 +34,27 @@ export class RouterStatic6 extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterStatic6.__pulumiType;
     }
 
-    /**
-     * Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `enable`, `disable`.
-     */
     public readonly bfd!: pulumi.Output<string>;
-    /**
-     * Enable/disable black hole. Valid values: `enable`, `disable`.
-     */
     public readonly blackhole!: pulumi.Output<string>;
-    /**
-     * Optional comments.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Gateway out interface or tunnel.
-     */
     public readonly device!: pulumi.Output<string>;
-    /**
-     * Device index (0 - 4294967295).
-     */
     public readonly devindex!: pulumi.Output<number>;
-    /**
-     * Administrative distance (1 - 255).
-     */
     public readonly distance!: pulumi.Output<number>;
-    /**
-     * Destination IPv6 prefix.
-     */
     public readonly dst!: pulumi.Output<string>;
-    /**
-     * Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
-     */
+    public readonly dstaddr!: pulumi.Output<string>;
     public readonly dynamicGateway!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * IPv6 address of the gateway.
-     */
     public readonly gateway!: pulumi.Output<string>;
-    /**
-     * Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
-     */
     public readonly linkMonitorExempt!: pulumi.Output<string>;
-    /**
-     * Administrative priority (0 - 4294967295).
-     */
     public readonly priority!: pulumi.Output<number>;
-    /**
-     * Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
-     */
     public readonly sdwan!: pulumi.Output<string>;
-    /**
-     * Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
-     */
     public readonly sdwanZones!: pulumi.Output<outputs.RouterStatic6SdwanZone[] | undefined>;
-    /**
-     * Sequence number.
-     */
     public readonly seqNum!: pulumi.Output<number>;
-    /**
-     * Enable/disable this static route. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
-     */
     public readonly virtualWanLink!: pulumi.Output<string>;
-    /**
-     * Virtual Routing Forwarding ID.
-     */
     public readonly vrf!: pulumi.Output<number>;
+    public readonly weight!: pulumi.Output<number>;
 
     /**
      * Create a RouterStatic6 resource with the given unique name, arguments, and options.
@@ -170,6 +76,7 @@ export class RouterStatic6 extends pulumi.CustomResource {
             resourceInputs["devindex"] = state ? state.devindex : undefined;
             resourceInputs["distance"] = state ? state.distance : undefined;
             resourceInputs["dst"] = state ? state.dst : undefined;
+            resourceInputs["dstaddr"] = state ? state.dstaddr : undefined;
             resourceInputs["dynamicGateway"] = state ? state.dynamicGateway : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["gateway"] = state ? state.gateway : undefined;
@@ -182,6 +89,7 @@ export class RouterStatic6 extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["virtualWanLink"] = state ? state.virtualWanLink : undefined;
             resourceInputs["vrf"] = state ? state.vrf : undefined;
+            resourceInputs["weight"] = state ? state.weight : undefined;
         } else {
             const args = argsOrState as RouterStatic6Args | undefined;
             if ((!args || args.device === undefined) && !opts.urn) {
@@ -194,6 +102,7 @@ export class RouterStatic6 extends pulumi.CustomResource {
             resourceInputs["devindex"] = args ? args.devindex : undefined;
             resourceInputs["distance"] = args ? args.distance : undefined;
             resourceInputs["dst"] = args ? args.dst : undefined;
+            resourceInputs["dstaddr"] = args ? args.dstaddr : undefined;
             resourceInputs["dynamicGateway"] = args ? args.dynamicGateway : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["gateway"] = args ? args.gateway : undefined;
@@ -206,6 +115,7 @@ export class RouterStatic6 extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["virtualWanLink"] = args ? args.virtualWanLink : undefined;
             resourceInputs["vrf"] = args ? args.vrf : undefined;
+            resourceInputs["weight"] = args ? args.weight : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RouterStatic6.__pulumiType, name, resourceInputs, opts);
@@ -216,162 +126,52 @@ export class RouterStatic6 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterStatic6 resources.
  */
 export interface RouterStatic6State {
-    /**
-     * Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `enable`, `disable`.
-     */
     bfd?: pulumi.Input<string>;
-    /**
-     * Enable/disable black hole. Valid values: `enable`, `disable`.
-     */
     blackhole?: pulumi.Input<string>;
-    /**
-     * Optional comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Gateway out interface or tunnel.
-     */
     device?: pulumi.Input<string>;
-    /**
-     * Device index (0 - 4294967295).
-     */
     devindex?: pulumi.Input<number>;
-    /**
-     * Administrative distance (1 - 255).
-     */
     distance?: pulumi.Input<number>;
-    /**
-     * Destination IPv6 prefix.
-     */
     dst?: pulumi.Input<string>;
-    /**
-     * Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
-     */
+    dstaddr?: pulumi.Input<string>;
     dynamicGateway?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * IPv6 address of the gateway.
-     */
     gateway?: pulumi.Input<string>;
-    /**
-     * Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
-     */
     linkMonitorExempt?: pulumi.Input<string>;
-    /**
-     * Administrative priority (0 - 4294967295).
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
-     */
     sdwan?: pulumi.Input<string>;
-    /**
-     * Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
-     */
     sdwanZones?: pulumi.Input<pulumi.Input<inputs.RouterStatic6SdwanZone>[]>;
-    /**
-     * Sequence number.
-     */
     seqNum?: pulumi.Input<number>;
-    /**
-     * Enable/disable this static route. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
-     */
     virtualWanLink?: pulumi.Input<string>;
-    /**
-     * Virtual Routing Forwarding ID.
-     */
     vrf?: pulumi.Input<number>;
+    weight?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a RouterStatic6 resource.
  */
 export interface RouterStatic6Args {
-    /**
-     * Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `enable`, `disable`.
-     */
     bfd?: pulumi.Input<string>;
-    /**
-     * Enable/disable black hole. Valid values: `enable`, `disable`.
-     */
     blackhole?: pulumi.Input<string>;
-    /**
-     * Optional comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Gateway out interface or tunnel.
-     */
     device: pulumi.Input<string>;
-    /**
-     * Device index (0 - 4294967295).
-     */
     devindex?: pulumi.Input<number>;
-    /**
-     * Administrative distance (1 - 255).
-     */
     distance?: pulumi.Input<number>;
-    /**
-     * Destination IPv6 prefix.
-     */
     dst?: pulumi.Input<string>;
-    /**
-     * Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
-     */
+    dstaddr?: pulumi.Input<string>;
     dynamicGateway?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * IPv6 address of the gateway.
-     */
     gateway?: pulumi.Input<string>;
-    /**
-     * Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
-     */
     linkMonitorExempt?: pulumi.Input<string>;
-    /**
-     * Administrative priority (0 - 4294967295).
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
-     */
     sdwan?: pulumi.Input<string>;
-    /**
-     * Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
-     */
     sdwanZones?: pulumi.Input<pulumi.Input<inputs.RouterStatic6SdwanZone>[]>;
-    /**
-     * Sequence number.
-     */
     seqNum?: pulumi.Input<number>;
-    /**
-     * Enable/disable this static route. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
-     */
     virtualWanLink?: pulumi.Input<string>;
-    /**
-     * Virtual Routing Forwarding ID.
-     */
     vrf?: pulumi.Input<number>;
+    weight?: pulumi.Input<number>;
 }

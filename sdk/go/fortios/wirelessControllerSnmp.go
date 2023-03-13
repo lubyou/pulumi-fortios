@@ -10,42 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure SNMP. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// WirelessController Snmp can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerSnmp:WirelessControllerSnmp labelname WirelessControllerSnmp
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerSnmp:WirelessControllerSnmp labelname WirelessControllerSnmp
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerSnmp struct {
 	pulumi.CustomResourceState
 
-	// SNMP Community Configuration. The structure of `community` block is documented below.
-	Communities WirelessControllerSnmpCommunityArrayOutput `pulumi:"communities"`
-	// Contact Information.
-	ContactInfo pulumi.StringOutput `pulumi:"contactInfo"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// AC SNMP engineId string (maximum 24 characters).
-	EngineId pulumi.StringOutput `pulumi:"engineId"`
-	// CPU usage when trap is sent.
-	TrapHighCpuThreshold pulumi.IntOutput `pulumi:"trapHighCpuThreshold"`
-	// Memory usage when trap is sent.
-	TrapHighMemThreshold pulumi.IntOutput `pulumi:"trapHighMemThreshold"`
-	// SNMP User Configuration. The structure of `user` block is documented below.
-	Users WirelessControllerSnmpUserArrayOutput `pulumi:"users"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Communities          WirelessControllerSnmpCommunityArrayOutput `pulumi:"communities"`
+	ContactInfo          pulumi.StringOutput                        `pulumi:"contactInfo"`
+	DynamicSortSubtable  pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
+	EngineId             pulumi.StringOutput                        `pulumi:"engineId"`
+	TrapHighCpuThreshold pulumi.IntOutput                           `pulumi:"trapHighCpuThreshold"`
+	TrapHighMemThreshold pulumi.IntOutput                           `pulumi:"trapHighMemThreshold"`
+	Users                WirelessControllerSnmpUserArrayOutput      `pulumi:"users"`
+	Vdomparam            pulumi.StringPtrOutput                     `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerSnmp registers a new resource with the given unique name, arguments, and options.
@@ -78,41 +53,25 @@ func GetWirelessControllerSnmp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerSnmp resources.
 type wirelessControllerSnmpState struct {
-	// SNMP Community Configuration. The structure of `community` block is documented below.
-	Communities []WirelessControllerSnmpCommunity `pulumi:"communities"`
-	// Contact Information.
-	ContactInfo *string `pulumi:"contactInfo"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// AC SNMP engineId string (maximum 24 characters).
-	EngineId *string `pulumi:"engineId"`
-	// CPU usage when trap is sent.
-	TrapHighCpuThreshold *int `pulumi:"trapHighCpuThreshold"`
-	// Memory usage when trap is sent.
-	TrapHighMemThreshold *int `pulumi:"trapHighMemThreshold"`
-	// SNMP User Configuration. The structure of `user` block is documented below.
-	Users []WirelessControllerSnmpUser `pulumi:"users"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Communities          []WirelessControllerSnmpCommunity `pulumi:"communities"`
+	ContactInfo          *string                           `pulumi:"contactInfo"`
+	DynamicSortSubtable  *string                           `pulumi:"dynamicSortSubtable"`
+	EngineId             *string                           `pulumi:"engineId"`
+	TrapHighCpuThreshold *int                              `pulumi:"trapHighCpuThreshold"`
+	TrapHighMemThreshold *int                              `pulumi:"trapHighMemThreshold"`
+	Users                []WirelessControllerSnmpUser      `pulumi:"users"`
+	Vdomparam            *string                           `pulumi:"vdomparam"`
 }
 
 type WirelessControllerSnmpState struct {
-	// SNMP Community Configuration. The structure of `community` block is documented below.
-	Communities WirelessControllerSnmpCommunityArrayInput
-	// Contact Information.
-	ContactInfo pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// AC SNMP engineId string (maximum 24 characters).
-	EngineId pulumi.StringPtrInput
-	// CPU usage when trap is sent.
+	Communities          WirelessControllerSnmpCommunityArrayInput
+	ContactInfo          pulumi.StringPtrInput
+	DynamicSortSubtable  pulumi.StringPtrInput
+	EngineId             pulumi.StringPtrInput
 	TrapHighCpuThreshold pulumi.IntPtrInput
-	// Memory usage when trap is sent.
 	TrapHighMemThreshold pulumi.IntPtrInput
-	// SNMP User Configuration. The structure of `user` block is documented below.
-	Users WirelessControllerSnmpUserArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Users                WirelessControllerSnmpUserArrayInput
+	Vdomparam            pulumi.StringPtrInput
 }
 
 func (WirelessControllerSnmpState) ElementType() reflect.Type {
@@ -120,42 +79,26 @@ func (WirelessControllerSnmpState) ElementType() reflect.Type {
 }
 
 type wirelessControllerSnmpArgs struct {
-	// SNMP Community Configuration. The structure of `community` block is documented below.
-	Communities []WirelessControllerSnmpCommunity `pulumi:"communities"`
-	// Contact Information.
-	ContactInfo *string `pulumi:"contactInfo"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// AC SNMP engineId string (maximum 24 characters).
-	EngineId *string `pulumi:"engineId"`
-	// CPU usage when trap is sent.
-	TrapHighCpuThreshold *int `pulumi:"trapHighCpuThreshold"`
-	// Memory usage when trap is sent.
-	TrapHighMemThreshold *int `pulumi:"trapHighMemThreshold"`
-	// SNMP User Configuration. The structure of `user` block is documented below.
-	Users []WirelessControllerSnmpUser `pulumi:"users"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Communities          []WirelessControllerSnmpCommunity `pulumi:"communities"`
+	ContactInfo          *string                           `pulumi:"contactInfo"`
+	DynamicSortSubtable  *string                           `pulumi:"dynamicSortSubtable"`
+	EngineId             *string                           `pulumi:"engineId"`
+	TrapHighCpuThreshold *int                              `pulumi:"trapHighCpuThreshold"`
+	TrapHighMemThreshold *int                              `pulumi:"trapHighMemThreshold"`
+	Users                []WirelessControllerSnmpUser      `pulumi:"users"`
+	Vdomparam            *string                           `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerSnmp resource.
 type WirelessControllerSnmpArgs struct {
-	// SNMP Community Configuration. The structure of `community` block is documented below.
-	Communities WirelessControllerSnmpCommunityArrayInput
-	// Contact Information.
-	ContactInfo pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// AC SNMP engineId string (maximum 24 characters).
-	EngineId pulumi.StringPtrInput
-	// CPU usage when trap is sent.
+	Communities          WirelessControllerSnmpCommunityArrayInput
+	ContactInfo          pulumi.StringPtrInput
+	DynamicSortSubtable  pulumi.StringPtrInput
+	EngineId             pulumi.StringPtrInput
 	TrapHighCpuThreshold pulumi.IntPtrInput
-	// Memory usage when trap is sent.
 	TrapHighMemThreshold pulumi.IntPtrInput
-	// SNMP User Configuration. The structure of `user` block is documented below.
-	Users WirelessControllerSnmpUserArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Users                WirelessControllerSnmpUserArrayInput
+	Vdomparam            pulumi.StringPtrInput
 }
 
 func (WirelessControllerSnmpArgs) ElementType() reflect.Type {
@@ -184,7 +127,7 @@ func (i *WirelessControllerSnmp) ToWirelessControllerSnmpOutputWithContext(ctx c
 // WirelessControllerSnmpArrayInput is an input type that accepts WirelessControllerSnmpArray and WirelessControllerSnmpArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerSnmpArrayInput` via:
 //
-//          WirelessControllerSnmpArray{ WirelessControllerSnmpArgs{...} }
+//	WirelessControllerSnmpArray{ WirelessControllerSnmpArgs{...} }
 type WirelessControllerSnmpArrayInput interface {
 	pulumi.Input
 
@@ -209,7 +152,7 @@ func (i WirelessControllerSnmpArray) ToWirelessControllerSnmpArrayOutputWithCont
 // WirelessControllerSnmpMapInput is an input type that accepts WirelessControllerSnmpMap and WirelessControllerSnmpMapOutput values.
 // You can construct a concrete instance of `WirelessControllerSnmpMapInput` via:
 //
-//          WirelessControllerSnmpMap{ "key": WirelessControllerSnmpArgs{...} }
+//	WirelessControllerSnmpMap{ "key": WirelessControllerSnmpArgs{...} }
 type WirelessControllerSnmpMapInput interface {
 	pulumi.Input
 
@@ -243,6 +186,38 @@ func (o WirelessControllerSnmpOutput) ToWirelessControllerSnmpOutput() WirelessC
 
 func (o WirelessControllerSnmpOutput) ToWirelessControllerSnmpOutputWithContext(ctx context.Context) WirelessControllerSnmpOutput {
 	return o
+}
+
+func (o WirelessControllerSnmpOutput) Communities() WirelessControllerSnmpCommunityArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerSnmp) WirelessControllerSnmpCommunityArrayOutput { return v.Communities }).(WirelessControllerSnmpCommunityArrayOutput)
+}
+
+func (o WirelessControllerSnmpOutput) ContactInfo() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerSnmp) pulumi.StringOutput { return v.ContactInfo }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerSnmpOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerSnmp) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerSnmpOutput) EngineId() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerSnmp) pulumi.StringOutput { return v.EngineId }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerSnmpOutput) TrapHighCpuThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerSnmp) pulumi.IntOutput { return v.TrapHighCpuThreshold }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerSnmpOutput) TrapHighMemThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerSnmp) pulumi.IntOutput { return v.TrapHighMemThreshold }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerSnmpOutput) Users() WirelessControllerSnmpUserArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerSnmp) WirelessControllerSnmpUserArrayOutput { return v.Users }).(WirelessControllerSnmpUserArrayOutput)
+}
+
+func (o WirelessControllerSnmpOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerSnmp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerSnmpArrayOutput struct{ *pulumi.OutputState }

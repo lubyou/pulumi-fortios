@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios systemautoupdate pushupdate
- */
 export function getSystemAutoupdatePushUpdate(args?: GetSystemAutoupdatePushUpdateArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemAutoupdatePushUpdateResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemAutoupdatePushUpdate:GetSystemAutoupdatePushUpdate", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getSystemAutoupdatePushUpdate(args?: GetSystemAutoupdatePushUpda
  * A collection of arguments for invoking GetSystemAutoupdatePushUpdate.
  */
 export interface GetSystemAutoupdatePushUpdateArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -33,39 +24,23 @@ export interface GetSystemAutoupdatePushUpdateArgs {
  * A collection of values returned by GetSystemAutoupdatePushUpdate.
  */
 export interface GetSystemAutoupdatePushUpdateResult {
-    /**
-     * Push update override server.
-     */
     readonly address: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Enable/disable push update override server.
-     */
     readonly override: string;
-    /**
-     * Push update override port. (Do not overlap with other service ports)
-     */
     readonly port: number;
-    /**
-     * Enable/disable push updates.
-     */
     readonly status: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemAutoupdatePushUpdateOutput(args?: GetSystemAutoupdatePushUpdateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemAutoupdatePushUpdateResult> {
-    return pulumi.output(args).apply(a => getSystemAutoupdatePushUpdate(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemAutoupdatePushUpdate(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemAutoupdatePushUpdate.
  */
 export interface GetSystemAutoupdatePushUpdateOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

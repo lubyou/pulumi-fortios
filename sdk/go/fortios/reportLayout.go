@@ -7,101 +7,32 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Report layout configuration.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewReportLayout(ctx, "trname", &fortios.ReportLayoutArgs{
-// 			CutoffOption: pulumi.String("run-time"),
-// 			CutoffTime:   pulumi.String("00:00"),
-// 			Day:          pulumi.String("sunday"),
-// 			EmailSend:    pulumi.String("disable"),
-// 			Format:       pulumi.String("pdf"),
-// 			MaxPdfReport: pulumi.Int(31),
-// 			Options:      pulumi.String("include-table-of-content view-chart-as-heading"),
-// 			ScheduleType: pulumi.String("daily"),
-// 			StyleTheme:   pulumi.String("default-report"),
-// 			Time:         pulumi.String("00:00"),
-// 			Title:        pulumi.String("FortiGate System Analysis Report"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Report Layout can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/reportLayout:ReportLayout labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/reportLayout:ReportLayout labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type ReportLayout struct {
 	pulumi.CustomResourceState
 
-	// Configure report body item. The structure of `bodyItem` block is documented below.
-	BodyItems ReportLayoutBodyItemArrayOutput `pulumi:"bodyItems"`
-	// Cutoff-option is either run-time or custom. Valid values: `run-time`, `custom`.
-	CutoffOption pulumi.StringOutput `pulumi:"cutoffOption"`
-	// Custom cutoff time to generate report [hh:mm].
-	CutoffTime pulumi.StringOutput `pulumi:"cutoffTime"`
-	// Schedule days of week to generate report. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	Day pulumi.StringOutput `pulumi:"day"`
-	// Description.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Email recipients for generated reports.
-	EmailRecipients pulumi.StringOutput `pulumi:"emailRecipients"`
-	// Enable/disable sending emails after reports are generated. Valid values: `enable`, `disable`.
-	EmailSend pulumi.StringOutput `pulumi:"emailSend"`
-	// Report format. Valid values: `pdf`.
-	Format pulumi.StringOutput `pulumi:"format"`
-	// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
-	MaxPdfReport pulumi.IntOutput `pulumi:"maxPdfReport"`
-	// Field name that match field of parameters defined in dataset.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Report page options. Valid values: `header-on-first-page`, `footer-on-first-page`.
-	Options pulumi.StringOutput `pulumi:"options"`
-	// Configure report page. The structure of `page` block is documented below.
-	Page ReportLayoutPagePtrOutput `pulumi:"page"`
-	// Report schedule type. Valid values: `demand`, `daily`, `weekly`.
-	ScheduleType pulumi.StringOutput `pulumi:"scheduleType"`
-	// Report style theme.
-	StyleTheme pulumi.StringOutput `pulumi:"styleTheme"`
-	// Report subtitle.
-	Subtitle pulumi.StringOutput `pulumi:"subtitle"`
-	// Schedule time to generate report [hh:mm].
-	Time pulumi.StringOutput `pulumi:"time"`
-	// Report section title.
-	Title pulumi.StringOutput `pulumi:"title"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	BodyItems           ReportLayoutBodyItemArrayOutput `pulumi:"bodyItems"`
+	CutoffOption        pulumi.StringOutput             `pulumi:"cutoffOption"`
+	CutoffTime          pulumi.StringOutput             `pulumi:"cutoffTime"`
+	Day                 pulumi.StringOutput             `pulumi:"day"`
+	Description         pulumi.StringOutput             `pulumi:"description"`
+	DynamicSortSubtable pulumi.StringPtrOutput          `pulumi:"dynamicSortSubtable"`
+	EmailRecipients     pulumi.StringOutput             `pulumi:"emailRecipients"`
+	EmailSend           pulumi.StringOutput             `pulumi:"emailSend"`
+	Format              pulumi.StringOutput             `pulumi:"format"`
+	MaxPdfReport        pulumi.IntOutput                `pulumi:"maxPdfReport"`
+	Name                pulumi.StringOutput             `pulumi:"name"`
+	Options             pulumi.StringOutput             `pulumi:"options"`
+	Page                ReportLayoutPageOutput          `pulumi:"page"`
+	ScheduleType        pulumi.StringOutput             `pulumi:"scheduleType"`
+	StyleTheme          pulumi.StringOutput             `pulumi:"styleTheme"`
+	Subtitle            pulumi.StringOutput             `pulumi:"subtitle"`
+	Time                pulumi.StringOutput             `pulumi:"time"`
+	Title               pulumi.StringOutput             `pulumi:"title"`
+	Vdomparam           pulumi.StringPtrOutput          `pulumi:"vdomparam"`
 }
 
 // NewReportLayout registers a new resource with the given unique name, arguments, and options.
@@ -137,85 +68,47 @@ func GetReportLayout(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ReportLayout resources.
 type reportLayoutState struct {
-	// Configure report body item. The structure of `bodyItem` block is documented below.
-	BodyItems []ReportLayoutBodyItem `pulumi:"bodyItems"`
-	// Cutoff-option is either run-time or custom. Valid values: `run-time`, `custom`.
-	CutoffOption *string `pulumi:"cutoffOption"`
-	// Custom cutoff time to generate report [hh:mm].
-	CutoffTime *string `pulumi:"cutoffTime"`
-	// Schedule days of week to generate report. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	Day *string `pulumi:"day"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Email recipients for generated reports.
-	EmailRecipients *string `pulumi:"emailRecipients"`
-	// Enable/disable sending emails after reports are generated. Valid values: `enable`, `disable`.
-	EmailSend *string `pulumi:"emailSend"`
-	// Report format. Valid values: `pdf`.
-	Format *string `pulumi:"format"`
-	// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
-	MaxPdfReport *int `pulumi:"maxPdfReport"`
-	// Field name that match field of parameters defined in dataset.
-	Name *string `pulumi:"name"`
-	// Report page options. Valid values: `header-on-first-page`, `footer-on-first-page`.
-	Options *string `pulumi:"options"`
-	// Configure report page. The structure of `page` block is documented below.
-	Page *ReportLayoutPage `pulumi:"page"`
-	// Report schedule type. Valid values: `demand`, `daily`, `weekly`.
-	ScheduleType *string `pulumi:"scheduleType"`
-	// Report style theme.
-	StyleTheme *string `pulumi:"styleTheme"`
-	// Report subtitle.
-	Subtitle *string `pulumi:"subtitle"`
-	// Schedule time to generate report [hh:mm].
-	Time *string `pulumi:"time"`
-	// Report section title.
-	Title *string `pulumi:"title"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	BodyItems           []ReportLayoutBodyItem `pulumi:"bodyItems"`
+	CutoffOption        *string                `pulumi:"cutoffOption"`
+	CutoffTime          *string                `pulumi:"cutoffTime"`
+	Day                 *string                `pulumi:"day"`
+	Description         *string                `pulumi:"description"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	EmailRecipients     *string                `pulumi:"emailRecipients"`
+	EmailSend           *string                `pulumi:"emailSend"`
+	Format              *string                `pulumi:"format"`
+	MaxPdfReport        *int                   `pulumi:"maxPdfReport"`
+	Name                *string                `pulumi:"name"`
+	Options             *string                `pulumi:"options"`
+	Page                *ReportLayoutPage      `pulumi:"page"`
+	ScheduleType        *string                `pulumi:"scheduleType"`
+	StyleTheme          *string                `pulumi:"styleTheme"`
+	Subtitle            *string                `pulumi:"subtitle"`
+	Time                *string                `pulumi:"time"`
+	Title               *string                `pulumi:"title"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 type ReportLayoutState struct {
-	// Configure report body item. The structure of `bodyItem` block is documented below.
-	BodyItems ReportLayoutBodyItemArrayInput
-	// Cutoff-option is either run-time or custom. Valid values: `run-time`, `custom`.
-	CutoffOption pulumi.StringPtrInput
-	// Custom cutoff time to generate report [hh:mm].
-	CutoffTime pulumi.StringPtrInput
-	// Schedule days of week to generate report. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	Day pulumi.StringPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	BodyItems           ReportLayoutBodyItemArrayInput
+	CutoffOption        pulumi.StringPtrInput
+	CutoffTime          pulumi.StringPtrInput
+	Day                 pulumi.StringPtrInput
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Email recipients for generated reports.
-	EmailRecipients pulumi.StringPtrInput
-	// Enable/disable sending emails after reports are generated. Valid values: `enable`, `disable`.
-	EmailSend pulumi.StringPtrInput
-	// Report format. Valid values: `pdf`.
-	Format pulumi.StringPtrInput
-	// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
-	MaxPdfReport pulumi.IntPtrInput
-	// Field name that match field of parameters defined in dataset.
-	Name pulumi.StringPtrInput
-	// Report page options. Valid values: `header-on-first-page`, `footer-on-first-page`.
-	Options pulumi.StringPtrInput
-	// Configure report page. The structure of `page` block is documented below.
-	Page ReportLayoutPagePtrInput
-	// Report schedule type. Valid values: `demand`, `daily`, `weekly`.
-	ScheduleType pulumi.StringPtrInput
-	// Report style theme.
-	StyleTheme pulumi.StringPtrInput
-	// Report subtitle.
-	Subtitle pulumi.StringPtrInput
-	// Schedule time to generate report [hh:mm].
-	Time pulumi.StringPtrInput
-	// Report section title.
-	Title pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	EmailRecipients     pulumi.StringPtrInput
+	EmailSend           pulumi.StringPtrInput
+	Format              pulumi.StringPtrInput
+	MaxPdfReport        pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Options             pulumi.StringPtrInput
+	Page                ReportLayoutPagePtrInput
+	ScheduleType        pulumi.StringPtrInput
+	StyleTheme          pulumi.StringPtrInput
+	Subtitle            pulumi.StringPtrInput
+	Time                pulumi.StringPtrInput
+	Title               pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (ReportLayoutState) ElementType() reflect.Type {
@@ -223,86 +116,48 @@ func (ReportLayoutState) ElementType() reflect.Type {
 }
 
 type reportLayoutArgs struct {
-	// Configure report body item. The structure of `bodyItem` block is documented below.
-	BodyItems []ReportLayoutBodyItem `pulumi:"bodyItems"`
-	// Cutoff-option is either run-time or custom. Valid values: `run-time`, `custom`.
-	CutoffOption *string `pulumi:"cutoffOption"`
-	// Custom cutoff time to generate report [hh:mm].
-	CutoffTime *string `pulumi:"cutoffTime"`
-	// Schedule days of week to generate report. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	Day *string `pulumi:"day"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Email recipients for generated reports.
-	EmailRecipients *string `pulumi:"emailRecipients"`
-	// Enable/disable sending emails after reports are generated. Valid values: `enable`, `disable`.
-	EmailSend *string `pulumi:"emailSend"`
-	// Report format. Valid values: `pdf`.
-	Format *string `pulumi:"format"`
-	// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
-	MaxPdfReport *int `pulumi:"maxPdfReport"`
-	// Field name that match field of parameters defined in dataset.
-	Name *string `pulumi:"name"`
-	// Report page options. Valid values: `header-on-first-page`, `footer-on-first-page`.
-	Options *string `pulumi:"options"`
-	// Configure report page. The structure of `page` block is documented below.
-	Page *ReportLayoutPage `pulumi:"page"`
-	// Report schedule type. Valid values: `demand`, `daily`, `weekly`.
-	ScheduleType *string `pulumi:"scheduleType"`
-	// Report style theme.
-	StyleTheme string `pulumi:"styleTheme"`
-	// Report subtitle.
-	Subtitle *string `pulumi:"subtitle"`
-	// Schedule time to generate report [hh:mm].
-	Time *string `pulumi:"time"`
-	// Report section title.
-	Title *string `pulumi:"title"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	BodyItems           []ReportLayoutBodyItem `pulumi:"bodyItems"`
+	CutoffOption        *string                `pulumi:"cutoffOption"`
+	CutoffTime          *string                `pulumi:"cutoffTime"`
+	Day                 *string                `pulumi:"day"`
+	Description         *string                `pulumi:"description"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	EmailRecipients     *string                `pulumi:"emailRecipients"`
+	EmailSend           *string                `pulumi:"emailSend"`
+	Format              *string                `pulumi:"format"`
+	MaxPdfReport        *int                   `pulumi:"maxPdfReport"`
+	Name                *string                `pulumi:"name"`
+	Options             *string                `pulumi:"options"`
+	Page                *ReportLayoutPage      `pulumi:"page"`
+	ScheduleType        *string                `pulumi:"scheduleType"`
+	StyleTheme          string                 `pulumi:"styleTheme"`
+	Subtitle            *string                `pulumi:"subtitle"`
+	Time                *string                `pulumi:"time"`
+	Title               *string                `pulumi:"title"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a ReportLayout resource.
 type ReportLayoutArgs struct {
-	// Configure report body item. The structure of `bodyItem` block is documented below.
-	BodyItems ReportLayoutBodyItemArrayInput
-	// Cutoff-option is either run-time or custom. Valid values: `run-time`, `custom`.
-	CutoffOption pulumi.StringPtrInput
-	// Custom cutoff time to generate report [hh:mm].
-	CutoffTime pulumi.StringPtrInput
-	// Schedule days of week to generate report. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	Day pulumi.StringPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	BodyItems           ReportLayoutBodyItemArrayInput
+	CutoffOption        pulumi.StringPtrInput
+	CutoffTime          pulumi.StringPtrInput
+	Day                 pulumi.StringPtrInput
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Email recipients for generated reports.
-	EmailRecipients pulumi.StringPtrInput
-	// Enable/disable sending emails after reports are generated. Valid values: `enable`, `disable`.
-	EmailSend pulumi.StringPtrInput
-	// Report format. Valid values: `pdf`.
-	Format pulumi.StringPtrInput
-	// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
-	MaxPdfReport pulumi.IntPtrInput
-	// Field name that match field of parameters defined in dataset.
-	Name pulumi.StringPtrInput
-	// Report page options. Valid values: `header-on-first-page`, `footer-on-first-page`.
-	Options pulumi.StringPtrInput
-	// Configure report page. The structure of `page` block is documented below.
-	Page ReportLayoutPagePtrInput
-	// Report schedule type. Valid values: `demand`, `daily`, `weekly`.
-	ScheduleType pulumi.StringPtrInput
-	// Report style theme.
-	StyleTheme pulumi.StringInput
-	// Report subtitle.
-	Subtitle pulumi.StringPtrInput
-	// Schedule time to generate report [hh:mm].
-	Time pulumi.StringPtrInput
-	// Report section title.
-	Title pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	EmailRecipients     pulumi.StringPtrInput
+	EmailSend           pulumi.StringPtrInput
+	Format              pulumi.StringPtrInput
+	MaxPdfReport        pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Options             pulumi.StringPtrInput
+	Page                ReportLayoutPagePtrInput
+	ScheduleType        pulumi.StringPtrInput
+	StyleTheme          pulumi.StringInput
+	Subtitle            pulumi.StringPtrInput
+	Time                pulumi.StringPtrInput
+	Title               pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (ReportLayoutArgs) ElementType() reflect.Type {
@@ -331,7 +186,7 @@ func (i *ReportLayout) ToReportLayoutOutputWithContext(ctx context.Context) Repo
 // ReportLayoutArrayInput is an input type that accepts ReportLayoutArray and ReportLayoutArrayOutput values.
 // You can construct a concrete instance of `ReportLayoutArrayInput` via:
 //
-//          ReportLayoutArray{ ReportLayoutArgs{...} }
+//	ReportLayoutArray{ ReportLayoutArgs{...} }
 type ReportLayoutArrayInput interface {
 	pulumi.Input
 
@@ -356,7 +211,7 @@ func (i ReportLayoutArray) ToReportLayoutArrayOutputWithContext(ctx context.Cont
 // ReportLayoutMapInput is an input type that accepts ReportLayoutMap and ReportLayoutMapOutput values.
 // You can construct a concrete instance of `ReportLayoutMapInput` via:
 //
-//          ReportLayoutMap{ "key": ReportLayoutArgs{...} }
+//	ReportLayoutMap{ "key": ReportLayoutArgs{...} }
 type ReportLayoutMapInput interface {
 	pulumi.Input
 
@@ -390,6 +245,82 @@ func (o ReportLayoutOutput) ToReportLayoutOutput() ReportLayoutOutput {
 
 func (o ReportLayoutOutput) ToReportLayoutOutputWithContext(ctx context.Context) ReportLayoutOutput {
 	return o
+}
+
+func (o ReportLayoutOutput) BodyItems() ReportLayoutBodyItemArrayOutput {
+	return o.ApplyT(func(v *ReportLayout) ReportLayoutBodyItemArrayOutput { return v.BodyItems }).(ReportLayoutBodyItemArrayOutput)
+}
+
+func (o ReportLayoutOutput) CutoffOption() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringOutput { return v.CutoffOption }).(pulumi.StringOutput)
+}
+
+func (o ReportLayoutOutput) CutoffTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringOutput { return v.CutoffTime }).(pulumi.StringOutput)
+}
+
+func (o ReportLayoutOutput) Day() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringOutput { return v.Day }).(pulumi.StringOutput)
+}
+
+func (o ReportLayoutOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o ReportLayoutOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o ReportLayoutOutput) EmailRecipients() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringOutput { return v.EmailRecipients }).(pulumi.StringOutput)
+}
+
+func (o ReportLayoutOutput) EmailSend() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringOutput { return v.EmailSend }).(pulumi.StringOutput)
+}
+
+func (o ReportLayoutOutput) Format() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
+}
+
+func (o ReportLayoutOutput) MaxPdfReport() pulumi.IntOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.IntOutput { return v.MaxPdfReport }).(pulumi.IntOutput)
+}
+
+func (o ReportLayoutOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ReportLayoutOutput) Options() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringOutput { return v.Options }).(pulumi.StringOutput)
+}
+
+func (o ReportLayoutOutput) Page() ReportLayoutPageOutput {
+	return o.ApplyT(func(v *ReportLayout) ReportLayoutPageOutput { return v.Page }).(ReportLayoutPageOutput)
+}
+
+func (o ReportLayoutOutput) ScheduleType() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringOutput { return v.ScheduleType }).(pulumi.StringOutput)
+}
+
+func (o ReportLayoutOutput) StyleTheme() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringOutput { return v.StyleTheme }).(pulumi.StringOutput)
+}
+
+func (o ReportLayoutOutput) Subtitle() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringOutput { return v.Subtitle }).(pulumi.StringOutput)
+}
+
+func (o ReportLayoutOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringOutput { return v.Time }).(pulumi.StringOutput)
+}
+
+func (o ReportLayoutOutput) Title() pulumi.StringOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringOutput { return v.Title }).(pulumi.StringOutput)
+}
+
+func (o ReportLayoutOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type ReportLayoutArrayOutput struct{ *pulumi.OutputState }

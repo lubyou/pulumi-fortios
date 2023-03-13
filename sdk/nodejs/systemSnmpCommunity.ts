@@ -2,51 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * SNMP community configuration.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemSnmpCommunity("trname", {
- *     events: "cpu-high mem-low log-full intf-ip vpn-tun-up vpn-tun-down ha-switch ha-hb-failure ips-signature ips-anomaly av-virus av-oversize av-pattern av-fragmented fm-if-change bgp-established bgp-backward-transition ha-member-up ha-member-down ent-conf-change av-conserve av-bypass av-oversize-passed av-oversize-blocked ips-pkg-update ips-fail-open faz-disconnect wc-ap-up wc-ap-down fswctl-session-up fswctl-session-down load-balance-real-server-down per-cpu-high",
- *     fosid: 1,
- *     queryV1Port: 161,
- *     queryV1Status: "enable",
- *     queryV2cPort: 161,
- *     queryV2cStatus: "enable",
- *     status: "enable",
- *     trapV1Lport: 162,
- *     trapV1Rport: 162,
- *     trapV1Status: "enable",
- *     trapV2cLport: 162,
- *     trapV2cRport: 162,
- *     trapV2cStatus: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * SystemSnmp Community can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSnmpCommunity:SystemSnmpCommunity labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSnmpCommunity:SystemSnmpCommunity labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemSnmpCommunity extends pulumi.CustomResource {
     /**
      * Get an existing SystemSnmpCommunity resource's state with the given name, ID, and optional extra
@@ -75,78 +34,26 @@ export class SystemSnmpCommunity extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemSnmpCommunity.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * SNMP trap events.
-     */
     public readonly events!: pulumi.Output<string>;
-    /**
-     * Community ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
-     */
     public readonly hosts!: pulumi.Output<outputs.SystemSnmpCommunityHost[] | undefined>;
-    /**
-     * Configure IPv6 SNMP managers. The structure of `hosts6` block is documented below.
-     */
     public readonly hosts6s!: pulumi.Output<outputs.SystemSnmpCommunityHosts6[] | undefined>;
-    /**
-     * Community name.
-     */
+    public readonly mibView!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * SNMP v1 query port (default = 161).
-     */
     public readonly queryV1Port!: pulumi.Output<number>;
-    /**
-     * Enable/disable SNMP v1 queries. Valid values: `enable`, `disable`.
-     */
     public readonly queryV1Status!: pulumi.Output<string>;
-    /**
-     * SNMP v2c query port (default = 161).
-     */
     public readonly queryV2cPort!: pulumi.Output<number>;
-    /**
-     * Enable/disable SNMP v2c queries. Valid values: `enable`, `disable`.
-     */
     public readonly queryV2cStatus!: pulumi.Output<string>;
-    /**
-     * Enable/disable this SNMP community. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * SNMP v1 trap local port (default = 162).
-     */
     public readonly trapV1Lport!: pulumi.Output<number>;
-    /**
-     * SNMP v1 trap remote port (default = 162).
-     */
     public readonly trapV1Rport!: pulumi.Output<number>;
-    /**
-     * Enable/disable SNMP v1 traps. Valid values: `enable`, `disable`.
-     */
     public readonly trapV1Status!: pulumi.Output<string>;
-    /**
-     * SNMP v2c trap local port (default = 162).
-     */
     public readonly trapV2cLport!: pulumi.Output<number>;
-    /**
-     * SNMP v2c trap remote port (default = 162).
-     */
     public readonly trapV2cRport!: pulumi.Output<number>;
-    /**
-     * Enable/disable SNMP v2c traps. Valid values: `enable`, `disable`.
-     */
     public readonly trapV2cStatus!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdoms!: pulumi.Output<outputs.SystemSnmpCommunityVdom[] | undefined>;
 
     /**
      * Create a SystemSnmpCommunity resource with the given unique name, arguments, and options.
@@ -166,6 +73,7 @@ export class SystemSnmpCommunity extends pulumi.CustomResource {
             resourceInputs["fosid"] = state ? state.fosid : undefined;
             resourceInputs["hosts"] = state ? state.hosts : undefined;
             resourceInputs["hosts6s"] = state ? state.hosts6s : undefined;
+            resourceInputs["mibView"] = state ? state.mibView : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["queryV1Port"] = state ? state.queryV1Port : undefined;
             resourceInputs["queryV1Status"] = state ? state.queryV1Status : undefined;
@@ -179,6 +87,7 @@ export class SystemSnmpCommunity extends pulumi.CustomResource {
             resourceInputs["trapV2cRport"] = state ? state.trapV2cRport : undefined;
             resourceInputs["trapV2cStatus"] = state ? state.trapV2cStatus : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vdoms"] = state ? state.vdoms : undefined;
         } else {
             const args = argsOrState as SystemSnmpCommunityArgs | undefined;
             if ((!args || args.fosid === undefined) && !opts.urn) {
@@ -189,6 +98,7 @@ export class SystemSnmpCommunity extends pulumi.CustomResource {
             resourceInputs["fosid"] = args ? args.fosid : undefined;
             resourceInputs["hosts"] = args ? args.hosts : undefined;
             resourceInputs["hosts6s"] = args ? args.hosts6s : undefined;
+            resourceInputs["mibView"] = args ? args.mibView : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["queryV1Port"] = args ? args.queryV1Port : undefined;
             resourceInputs["queryV1Status"] = args ? args.queryV1Status : undefined;
@@ -202,6 +112,7 @@ export class SystemSnmpCommunity extends pulumi.CustomResource {
             resourceInputs["trapV2cRport"] = args ? args.trapV2cRport : undefined;
             resourceInputs["trapV2cStatus"] = args ? args.trapV2cStatus : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vdoms"] = args ? args.vdoms : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SystemSnmpCommunity.__pulumiType, name, resourceInputs, opts);
@@ -212,154 +123,50 @@ export class SystemSnmpCommunity extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSnmpCommunity resources.
  */
 export interface SystemSnmpCommunityState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * SNMP trap events.
-     */
     events?: pulumi.Input<string>;
-    /**
-     * Community ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
-     */
     hosts?: pulumi.Input<pulumi.Input<inputs.SystemSnmpCommunityHost>[]>;
-    /**
-     * Configure IPv6 SNMP managers. The structure of `hosts6` block is documented below.
-     */
     hosts6s?: pulumi.Input<pulumi.Input<inputs.SystemSnmpCommunityHosts6>[]>;
-    /**
-     * Community name.
-     */
+    mibView?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
-    /**
-     * SNMP v1 query port (default = 161).
-     */
     queryV1Port?: pulumi.Input<number>;
-    /**
-     * Enable/disable SNMP v1 queries. Valid values: `enable`, `disable`.
-     */
     queryV1Status?: pulumi.Input<string>;
-    /**
-     * SNMP v2c query port (default = 161).
-     */
     queryV2cPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable SNMP v2c queries. Valid values: `enable`, `disable`.
-     */
     queryV2cStatus?: pulumi.Input<string>;
-    /**
-     * Enable/disable this SNMP community. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * SNMP v1 trap local port (default = 162).
-     */
     trapV1Lport?: pulumi.Input<number>;
-    /**
-     * SNMP v1 trap remote port (default = 162).
-     */
     trapV1Rport?: pulumi.Input<number>;
-    /**
-     * Enable/disable SNMP v1 traps. Valid values: `enable`, `disable`.
-     */
     trapV1Status?: pulumi.Input<string>;
-    /**
-     * SNMP v2c trap local port (default = 162).
-     */
     trapV2cLport?: pulumi.Input<number>;
-    /**
-     * SNMP v2c trap remote port (default = 162).
-     */
     trapV2cRport?: pulumi.Input<number>;
-    /**
-     * Enable/disable SNMP v2c traps. Valid values: `enable`, `disable`.
-     */
     trapV2cStatus?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
+    vdoms?: pulumi.Input<pulumi.Input<inputs.SystemSnmpCommunityVdom>[]>;
 }
 
 /**
  * The set of arguments for constructing a SystemSnmpCommunity resource.
  */
 export interface SystemSnmpCommunityArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * SNMP trap events.
-     */
     events?: pulumi.Input<string>;
-    /**
-     * Community ID.
-     */
     fosid: pulumi.Input<number>;
-    /**
-     * Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
-     */
     hosts?: pulumi.Input<pulumi.Input<inputs.SystemSnmpCommunityHost>[]>;
-    /**
-     * Configure IPv6 SNMP managers. The structure of `hosts6` block is documented below.
-     */
     hosts6s?: pulumi.Input<pulumi.Input<inputs.SystemSnmpCommunityHosts6>[]>;
-    /**
-     * Community name.
-     */
+    mibView?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
-    /**
-     * SNMP v1 query port (default = 161).
-     */
     queryV1Port?: pulumi.Input<number>;
-    /**
-     * Enable/disable SNMP v1 queries. Valid values: `enable`, `disable`.
-     */
     queryV1Status?: pulumi.Input<string>;
-    /**
-     * SNMP v2c query port (default = 161).
-     */
     queryV2cPort?: pulumi.Input<number>;
-    /**
-     * Enable/disable SNMP v2c queries. Valid values: `enable`, `disable`.
-     */
     queryV2cStatus?: pulumi.Input<string>;
-    /**
-     * Enable/disable this SNMP community. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * SNMP v1 trap local port (default = 162).
-     */
     trapV1Lport?: pulumi.Input<number>;
-    /**
-     * SNMP v1 trap remote port (default = 162).
-     */
     trapV1Rport?: pulumi.Input<number>;
-    /**
-     * Enable/disable SNMP v1 traps. Valid values: `enable`, `disable`.
-     */
     trapV1Status?: pulumi.Input<string>;
-    /**
-     * SNMP v2c trap local port (default = 162).
-     */
     trapV2cLport?: pulumi.Input<number>;
-    /**
-     * SNMP v2c trap remote port (default = 162).
-     */
     trapV2cRport?: pulumi.Input<number>;
-    /**
-     * Enable/disable SNMP v2c traps. Valid values: `enable`, `disable`.
-     */
     trapV2cStatus?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
+    vdoms?: pulumi.Input<pulumi.Input<inputs.SystemSnmpCommunityVdom>[]>;
 }

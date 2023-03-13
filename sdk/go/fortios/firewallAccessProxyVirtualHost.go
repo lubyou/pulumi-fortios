@@ -10,36 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Access Proxy virtual hosts. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// Firewall AccessProxyVirtualHost can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAccessProxyVirtualHost:FirewallAccessProxyVirtualHost labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAccessProxyVirtualHost:FirewallAccessProxyVirtualHost labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallAccessProxyVirtualHost struct {
 	pulumi.CustomResourceState
 
-	// The host name.
-	Host pulumi.StringOutput `pulumi:"host"`
-	// Type of host pattern. Valid values: `sub-string`, `wildcard`.
-	HostType pulumi.StringOutput `pulumi:"hostType"`
-	// Virtual host name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// SSL certificate for this host.
-	SslCertificate pulumi.StringOutput `pulumi:"sslCertificate"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Host            pulumi.StringOutput    `pulumi:"host"`
+	HostType        pulumi.StringOutput    `pulumi:"hostType"`
+	Name            pulumi.StringOutput    `pulumi:"name"`
+	ReplacemsgGroup pulumi.StringOutput    `pulumi:"replacemsgGroup"`
+	SslCertificate  pulumi.StringOutput    `pulumi:"sslCertificate"`
+	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallAccessProxyVirtualHost registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +51,21 @@ func GetFirewallAccessProxyVirtualHost(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallAccessProxyVirtualHost resources.
 type firewallAccessProxyVirtualHostState struct {
-	// The host name.
-	Host *string `pulumi:"host"`
-	// Type of host pattern. Valid values: `sub-string`, `wildcard`.
-	HostType *string `pulumi:"hostType"`
-	// Virtual host name.
-	Name *string `pulumi:"name"`
-	// SSL certificate for this host.
-	SslCertificate *string `pulumi:"sslCertificate"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Host            *string `pulumi:"host"`
+	HostType        *string `pulumi:"hostType"`
+	Name            *string `pulumi:"name"`
+	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
+	SslCertificate  *string `pulumi:"sslCertificate"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 type FirewallAccessProxyVirtualHostState struct {
-	// The host name.
-	Host pulumi.StringPtrInput
-	// Type of host pattern. Valid values: `sub-string`, `wildcard`.
-	HostType pulumi.StringPtrInput
-	// Virtual host name.
-	Name pulumi.StringPtrInput
-	// SSL certificate for this host.
-	SslCertificate pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Host            pulumi.StringPtrInput
+	HostType        pulumi.StringPtrInput
+	Name            pulumi.StringPtrInput
+	ReplacemsgGroup pulumi.StringPtrInput
+	SslCertificate  pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (FirewallAccessProxyVirtualHostState) ElementType() reflect.Type {
@@ -102,30 +73,22 @@ func (FirewallAccessProxyVirtualHostState) ElementType() reflect.Type {
 }
 
 type firewallAccessProxyVirtualHostArgs struct {
-	// The host name.
-	Host *string `pulumi:"host"`
-	// Type of host pattern. Valid values: `sub-string`, `wildcard`.
-	HostType *string `pulumi:"hostType"`
-	// Virtual host name.
-	Name *string `pulumi:"name"`
-	// SSL certificate for this host.
-	SslCertificate *string `pulumi:"sslCertificate"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Host            *string `pulumi:"host"`
+	HostType        *string `pulumi:"hostType"`
+	Name            *string `pulumi:"name"`
+	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
+	SslCertificate  *string `pulumi:"sslCertificate"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallAccessProxyVirtualHost resource.
 type FirewallAccessProxyVirtualHostArgs struct {
-	// The host name.
-	Host pulumi.StringPtrInput
-	// Type of host pattern. Valid values: `sub-string`, `wildcard`.
-	HostType pulumi.StringPtrInput
-	// Virtual host name.
-	Name pulumi.StringPtrInput
-	// SSL certificate for this host.
-	SslCertificate pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Host            pulumi.StringPtrInput
+	HostType        pulumi.StringPtrInput
+	Name            pulumi.StringPtrInput
+	ReplacemsgGroup pulumi.StringPtrInput
+	SslCertificate  pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (FirewallAccessProxyVirtualHostArgs) ElementType() reflect.Type {
@@ -154,7 +117,7 @@ func (i *FirewallAccessProxyVirtualHost) ToFirewallAccessProxyVirtualHostOutputW
 // FirewallAccessProxyVirtualHostArrayInput is an input type that accepts FirewallAccessProxyVirtualHostArray and FirewallAccessProxyVirtualHostArrayOutput values.
 // You can construct a concrete instance of `FirewallAccessProxyVirtualHostArrayInput` via:
 //
-//          FirewallAccessProxyVirtualHostArray{ FirewallAccessProxyVirtualHostArgs{...} }
+//	FirewallAccessProxyVirtualHostArray{ FirewallAccessProxyVirtualHostArgs{...} }
 type FirewallAccessProxyVirtualHostArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +142,7 @@ func (i FirewallAccessProxyVirtualHostArray) ToFirewallAccessProxyVirtualHostArr
 // FirewallAccessProxyVirtualHostMapInput is an input type that accepts FirewallAccessProxyVirtualHostMap and FirewallAccessProxyVirtualHostMapOutput values.
 // You can construct a concrete instance of `FirewallAccessProxyVirtualHostMapInput` via:
 //
-//          FirewallAccessProxyVirtualHostMap{ "key": FirewallAccessProxyVirtualHostArgs{...} }
+//	FirewallAccessProxyVirtualHostMap{ "key": FirewallAccessProxyVirtualHostArgs{...} }
 type FirewallAccessProxyVirtualHostMapInput interface {
 	pulumi.Input
 
@@ -213,6 +176,30 @@ func (o FirewallAccessProxyVirtualHostOutput) ToFirewallAccessProxyVirtualHostOu
 
 func (o FirewallAccessProxyVirtualHostOutput) ToFirewallAccessProxyVirtualHostOutputWithContext(ctx context.Context) FirewallAccessProxyVirtualHostOutput {
 	return o
+}
+
+func (o FirewallAccessProxyVirtualHostOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxyVirtualHost) pulumi.StringOutput { return v.Host }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxyVirtualHostOutput) HostType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxyVirtualHost) pulumi.StringOutput { return v.HostType }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxyVirtualHostOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxyVirtualHost) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxyVirtualHostOutput) ReplacemsgGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxyVirtualHost) pulumi.StringOutput { return v.ReplacemsgGroup }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxyVirtualHostOutput) SslCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAccessProxyVirtualHost) pulumi.StringOutput { return v.SslCertificate }).(pulumi.StringOutput)
+}
+
+func (o FirewallAccessProxyVirtualHostOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAccessProxyVirtualHost) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallAccessProxyVirtualHostArrayOutput struct{ *pulumi.OutputState }

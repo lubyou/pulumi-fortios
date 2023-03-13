@@ -10,58 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Type of Service (ToS) based priority table to set network traffic priorities.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemTosBasedPriority(ctx, "trname", &fortios.SystemTosBasedPriorityArgs{
-// 			Fosid:    pulumi.Int(1),
-// 			Priority: pulumi.String("low"),
-// 			Tos:      pulumi.Int(11),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System TosBasedPriority can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemTosBasedPriority:SystemTosBasedPriority labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemTosBasedPriority:SystemTosBasedPriority labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemTosBasedPriority struct {
 	pulumi.CustomResourceState
 
-	// Item ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// ToS based priority level to low, medium or high (these priorities match firewall traffic shaping priorities) (default = medium). Valid values: `low`, `medium`, `high`.
-	Priority pulumi.StringOutput `pulumi:"priority"`
-	// Value of the ToS byte in the IP datagram header (0-15, 8: minimize delay, 4: maximize throughput, 2: maximize reliability, 1: minimize monetary cost, and 0: default service).
-	Tos pulumi.IntOutput `pulumi:"tos"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Priority  pulumi.StringOutput    `pulumi:"priority"`
+	Tos       pulumi.IntOutput       `pulumi:"tos"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -95,24 +49,16 @@ func GetSystemTosBasedPriority(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemTosBasedPriority resources.
 type systemTosBasedPriorityState struct {
-	// Item ID.
-	Fosid *int `pulumi:"fosid"`
-	// ToS based priority level to low, medium or high (these priorities match firewall traffic shaping priorities) (default = medium). Valid values: `low`, `medium`, `high`.
-	Priority *string `pulumi:"priority"`
-	// Value of the ToS byte in the IP datagram header (0-15, 8: minimize delay, 4: maximize throughput, 2: maximize reliability, 1: minimize monetary cost, and 0: default service).
-	Tos *int `pulumi:"tos"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Priority  *string `pulumi:"priority"`
+	Tos       *int    `pulumi:"tos"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemTosBasedPriorityState struct {
-	// Item ID.
-	Fosid pulumi.IntPtrInput
-	// ToS based priority level to low, medium or high (these priorities match firewall traffic shaping priorities) (default = medium). Valid values: `low`, `medium`, `high`.
-	Priority pulumi.StringPtrInput
-	// Value of the ToS byte in the IP datagram header (0-15, 8: minimize delay, 4: maximize throughput, 2: maximize reliability, 1: minimize monetary cost, and 0: default service).
-	Tos pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Priority  pulumi.StringPtrInput
+	Tos       pulumi.IntPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -121,25 +67,17 @@ func (SystemTosBasedPriorityState) ElementType() reflect.Type {
 }
 
 type systemTosBasedPriorityArgs struct {
-	// Item ID.
-	Fosid *int `pulumi:"fosid"`
-	// ToS based priority level to low, medium or high (these priorities match firewall traffic shaping priorities) (default = medium). Valid values: `low`, `medium`, `high`.
-	Priority *string `pulumi:"priority"`
-	// Value of the ToS byte in the IP datagram header (0-15, 8: minimize delay, 4: maximize throughput, 2: maximize reliability, 1: minimize monetary cost, and 0: default service).
-	Tos *int `pulumi:"tos"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Priority  *string `pulumi:"priority"`
+	Tos       *int    `pulumi:"tos"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemTosBasedPriority resource.
 type SystemTosBasedPriorityArgs struct {
-	// Item ID.
-	Fosid pulumi.IntPtrInput
-	// ToS based priority level to low, medium or high (these priorities match firewall traffic shaping priorities) (default = medium). Valid values: `low`, `medium`, `high`.
-	Priority pulumi.StringPtrInput
-	// Value of the ToS byte in the IP datagram header (0-15, 8: minimize delay, 4: maximize throughput, 2: maximize reliability, 1: minimize monetary cost, and 0: default service).
-	Tos pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Priority  pulumi.StringPtrInput
+	Tos       pulumi.IntPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -169,7 +107,7 @@ func (i *SystemTosBasedPriority) ToSystemTosBasedPriorityOutputWithContext(ctx c
 // SystemTosBasedPriorityArrayInput is an input type that accepts SystemTosBasedPriorityArray and SystemTosBasedPriorityArrayOutput values.
 // You can construct a concrete instance of `SystemTosBasedPriorityArrayInput` via:
 //
-//          SystemTosBasedPriorityArray{ SystemTosBasedPriorityArgs{...} }
+//	SystemTosBasedPriorityArray{ SystemTosBasedPriorityArgs{...} }
 type SystemTosBasedPriorityArrayInput interface {
 	pulumi.Input
 
@@ -194,7 +132,7 @@ func (i SystemTosBasedPriorityArray) ToSystemTosBasedPriorityArrayOutputWithCont
 // SystemTosBasedPriorityMapInput is an input type that accepts SystemTosBasedPriorityMap and SystemTosBasedPriorityMapOutput values.
 // You can construct a concrete instance of `SystemTosBasedPriorityMapInput` via:
 //
-//          SystemTosBasedPriorityMap{ "key": SystemTosBasedPriorityArgs{...} }
+//	SystemTosBasedPriorityMap{ "key": SystemTosBasedPriorityArgs{...} }
 type SystemTosBasedPriorityMapInput interface {
 	pulumi.Input
 
@@ -228,6 +166,22 @@ func (o SystemTosBasedPriorityOutput) ToSystemTosBasedPriorityOutput() SystemTos
 
 func (o SystemTosBasedPriorityOutput) ToSystemTosBasedPriorityOutputWithContext(ctx context.Context) SystemTosBasedPriorityOutput {
 	return o
+}
+
+func (o SystemTosBasedPriorityOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemTosBasedPriority) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SystemTosBasedPriorityOutput) Priority() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemTosBasedPriority) pulumi.StringOutput { return v.Priority }).(pulumi.StringOutput)
+}
+
+func (o SystemTosBasedPriorityOutput) Tos() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemTosBasedPriority) pulumi.IntOutput { return v.Tos }).(pulumi.IntOutput)
+}
+
+func (o SystemTosBasedPriorityOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemTosBasedPriority) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemTosBasedPriorityArrayOutput struct{ *pulumi.OutputState }

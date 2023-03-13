@@ -10,106 +10,49 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure hotspot profile.
-//
-// ## Import
-//
-// WirelessControllerHotspot20 HsProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20HsProfile:WirelessControllerHotspot20HsProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20HsProfile:WirelessControllerHotspot20HsProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerHotspot20HsProfile struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable additional step required for access (ASRA). Valid values: `enable`, `disable`.
-	AccessNetworkAsra pulumi.StringOutput `pulumi:"accessNetworkAsra"`
-	// Enable/disable emergency services reachable (ESR). Valid values: `enable`, `disable`.
-	AccessNetworkEsr pulumi.StringOutput `pulumi:"accessNetworkEsr"`
-	// Enable/disable connectivity to the Internet. Valid values: `enable`, `disable`.
-	AccessNetworkInternet pulumi.StringOutput `pulumi:"accessNetworkInternet"`
-	// Access network type. Valid values: `private-network`, `private-network-with-guest-access`, `chargeable-public-network`, `free-public-network`, `personal-device-network`, `emergency-services-only-network`, `test-or-experimental`, `wildcard`.
-	AccessNetworkType pulumi.StringOutput `pulumi:"accessNetworkType"`
-	// Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
-	AccessNetworkUesa pulumi.StringOutput `pulumi:"accessNetworkUesa"`
-	// Advice of charge.
-	AdviceOfCharge pulumi.StringOutput `pulumi:"adviceOfCharge"`
-	// ANQP Domain ID (0-65535).
-	AnqpDomainId pulumi.IntOutput `pulumi:"anqpDomainId"`
-	// Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
-	BssTransition pulumi.StringOutput `pulumi:"bssTransition"`
-	// Connection capability name.
-	ConnCap pulumi.StringOutput `pulumi:"connCap"`
-	// Deauthentication request timeout (in seconds).
-	DeauthRequestTimeout pulumi.IntOutput `pulumi:"deauthRequestTimeout"`
-	// Enable/disable downstream group-addressed forwarding (DGAF). Valid values: `enable`, `disable`.
-	Dgaf pulumi.StringOutput `pulumi:"dgaf"`
-	// Domain name.
-	DomainName pulumi.StringOutput `pulumi:"domainName"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
-	GasComebackDelay pulumi.IntOutput `pulumi:"gasComebackDelay"`
-	// GAS fragmentation limit (512 - 4096, default = 1024).
-	GasFragmentationLimit pulumi.IntOutput `pulumi:"gasFragmentationLimit"`
-	// Homogeneous extended service set identifier (HESSID).
-	Hessid pulumi.StringOutput `pulumi:"hessid"`
-	// IP address type name.
-	IpAddrType pulumi.StringOutput `pulumi:"ipAddrType"`
-	// Enable/disable Layer 2 traffic inspection and filtering. Valid values: `enable`, `disable`.
-	L2tif pulumi.StringOutput `pulumi:"l2tif"`
-	// 3GPP PLMN name.
-	N3gppPlmn pulumi.StringOutput `pulumi:"n3gppPlmn"`
-	// NAI realm list name.
-	NaiRealm pulumi.StringOutput `pulumi:"naiRealm"`
-	// OSU provider name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Network authentication name.
-	NetworkAuth pulumi.StringOutput `pulumi:"networkAuth"`
-	// Operator friendly name.
-	OperFriendlyName pulumi.StringOutput `pulumi:"operFriendlyName"`
-	// Operator icon.
-	OperIcon pulumi.StringOutput `pulumi:"operIcon"`
-	// OSU Provider NAI.
-	OsuProviderNai pulumi.StringOutput `pulumi:"osuProviderNai"`
-	// Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
-	OsuProviders WirelessControllerHotspot20HsProfileOsuProviderArrayOutput `pulumi:"osuProviders"`
-	// Online sign up (OSU) SSID.
-	OsuSsid pulumi.StringOutput `pulumi:"osuSsid"`
-	// Enable/disable Pre-Association Message Exchange BSSID Independent (PAME-BI). Valid values: `disable`, `enable`.
-	PameBi pulumi.StringOutput `pulumi:"pameBi"`
-	// Enable/disable Proxy ARP. Valid values: `enable`, `disable`.
-	ProxyArp pulumi.StringOutput `pulumi:"proxyArp"`
-	// QoS MAP set ID.
-	QosMap pulumi.StringOutput `pulumi:"qosMap"`
-	// Hotspot 2.0 Release number (1, 2, 3, default = 2).
-	Release pulumi.IntOutput `pulumi:"release"`
-	// Roaming consortium list name.
-	RoamingConsortium pulumi.StringOutput `pulumi:"roamingConsortium"`
-	// Terms and conditions.
-	TermsAndConditions pulumi.StringOutput `pulumi:"termsAndConditions"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
-	VenueGroup pulumi.StringOutput `pulumi:"venueGroup"`
-	// Venue name.
-	VenueName pulumi.StringOutput `pulumi:"venueName"`
-	// Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
-	VenueType pulumi.StringOutput `pulumi:"venueType"`
-	// Venue name.
-	VenueUrl pulumi.StringOutput `pulumi:"venueUrl"`
-	// WAN metric name.
-	WanMetrics pulumi.StringOutput `pulumi:"wanMetrics"`
-	// Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
-	WnmSleepMode pulumi.StringOutput `pulumi:"wnmSleepMode"`
+	AccessNetworkAsra     pulumi.StringOutput                                        `pulumi:"accessNetworkAsra"`
+	AccessNetworkEsr      pulumi.StringOutput                                        `pulumi:"accessNetworkEsr"`
+	AccessNetworkInternet pulumi.StringOutput                                        `pulumi:"accessNetworkInternet"`
+	AccessNetworkType     pulumi.StringOutput                                        `pulumi:"accessNetworkType"`
+	AccessNetworkUesa     pulumi.StringOutput                                        `pulumi:"accessNetworkUesa"`
+	AdviceOfCharge        pulumi.StringOutput                                        `pulumi:"adviceOfCharge"`
+	AnqpDomainId          pulumi.IntOutput                                           `pulumi:"anqpDomainId"`
+	BssTransition         pulumi.StringOutput                                        `pulumi:"bssTransition"`
+	ConnCap               pulumi.StringOutput                                        `pulumi:"connCap"`
+	DeauthRequestTimeout  pulumi.IntOutput                                           `pulumi:"deauthRequestTimeout"`
+	Dgaf                  pulumi.StringOutput                                        `pulumi:"dgaf"`
+	DomainName            pulumi.StringOutput                                        `pulumi:"domainName"`
+	DynamicSortSubtable   pulumi.StringPtrOutput                                     `pulumi:"dynamicSortSubtable"`
+	GasComebackDelay      pulumi.IntOutput                                           `pulumi:"gasComebackDelay"`
+	GasFragmentationLimit pulumi.IntOutput                                           `pulumi:"gasFragmentationLimit"`
+	Hessid                pulumi.StringOutput                                        `pulumi:"hessid"`
+	IpAddrType            pulumi.StringOutput                                        `pulumi:"ipAddrType"`
+	L2tif                 pulumi.StringOutput                                        `pulumi:"l2tif"`
+	N3gppPlmn             pulumi.StringOutput                                        `pulumi:"n3gppPlmn"`
+	NaiRealm              pulumi.StringOutput                                        `pulumi:"naiRealm"`
+	Name                  pulumi.StringOutput                                        `pulumi:"name"`
+	NetworkAuth           pulumi.StringOutput                                        `pulumi:"networkAuth"`
+	OperFriendlyName      pulumi.StringOutput                                        `pulumi:"operFriendlyName"`
+	OperIcon              pulumi.StringOutput                                        `pulumi:"operIcon"`
+	OsuProviderNai        pulumi.StringOutput                                        `pulumi:"osuProviderNai"`
+	OsuProviders          WirelessControllerHotspot20HsProfileOsuProviderArrayOutput `pulumi:"osuProviders"`
+	OsuSsid               pulumi.StringOutput                                        `pulumi:"osuSsid"`
+	PameBi                pulumi.StringOutput                                        `pulumi:"pameBi"`
+	ProxyArp              pulumi.StringOutput                                        `pulumi:"proxyArp"`
+	QosMap                pulumi.StringOutput                                        `pulumi:"qosMap"`
+	Release               pulumi.IntOutput                                           `pulumi:"release"`
+	RoamingConsortium     pulumi.StringOutput                                        `pulumi:"roamingConsortium"`
+	TermsAndConditions    pulumi.StringOutput                                        `pulumi:"termsAndConditions"`
+	Vdomparam             pulumi.StringPtrOutput                                     `pulumi:"vdomparam"`
+	VenueGroup            pulumi.StringOutput                                        `pulumi:"venueGroup"`
+	VenueName             pulumi.StringOutput                                        `pulumi:"venueName"`
+	VenueType             pulumi.StringOutput                                        `pulumi:"venueType"`
+	VenueUrl              pulumi.StringOutput                                        `pulumi:"venueUrl"`
+	WanMetrics            pulumi.StringOutput                                        `pulumi:"wanMetrics"`
+	WnmSleepMode          pulumi.StringOutput                                        `pulumi:"wnmSleepMode"`
 }
 
 // NewWirelessControllerHotspot20HsProfile registers a new resource with the given unique name, arguments, and options.
@@ -142,169 +85,89 @@ func GetWirelessControllerHotspot20HsProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerHotspot20HsProfile resources.
 type wirelessControllerHotspot20HsProfileState struct {
-	// Enable/disable additional step required for access (ASRA). Valid values: `enable`, `disable`.
-	AccessNetworkAsra *string `pulumi:"accessNetworkAsra"`
-	// Enable/disable emergency services reachable (ESR). Valid values: `enable`, `disable`.
-	AccessNetworkEsr *string `pulumi:"accessNetworkEsr"`
-	// Enable/disable connectivity to the Internet. Valid values: `enable`, `disable`.
-	AccessNetworkInternet *string `pulumi:"accessNetworkInternet"`
-	// Access network type. Valid values: `private-network`, `private-network-with-guest-access`, `chargeable-public-network`, `free-public-network`, `personal-device-network`, `emergency-services-only-network`, `test-or-experimental`, `wildcard`.
-	AccessNetworkType *string `pulumi:"accessNetworkType"`
-	// Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
-	AccessNetworkUesa *string `pulumi:"accessNetworkUesa"`
-	// Advice of charge.
-	AdviceOfCharge *string `pulumi:"adviceOfCharge"`
-	// ANQP Domain ID (0-65535).
-	AnqpDomainId *int `pulumi:"anqpDomainId"`
-	// Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
-	BssTransition *string `pulumi:"bssTransition"`
-	// Connection capability name.
-	ConnCap *string `pulumi:"connCap"`
-	// Deauthentication request timeout (in seconds).
-	DeauthRequestTimeout *int `pulumi:"deauthRequestTimeout"`
-	// Enable/disable downstream group-addressed forwarding (DGAF). Valid values: `enable`, `disable`.
-	Dgaf *string `pulumi:"dgaf"`
-	// Domain name.
-	DomainName *string `pulumi:"domainName"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
-	GasComebackDelay *int `pulumi:"gasComebackDelay"`
-	// GAS fragmentation limit (512 - 4096, default = 1024).
-	GasFragmentationLimit *int `pulumi:"gasFragmentationLimit"`
-	// Homogeneous extended service set identifier (HESSID).
-	Hessid *string `pulumi:"hessid"`
-	// IP address type name.
-	IpAddrType *string `pulumi:"ipAddrType"`
-	// Enable/disable Layer 2 traffic inspection and filtering. Valid values: `enable`, `disable`.
-	L2tif *string `pulumi:"l2tif"`
-	// 3GPP PLMN name.
-	N3gppPlmn *string `pulumi:"n3gppPlmn"`
-	// NAI realm list name.
-	NaiRealm *string `pulumi:"naiRealm"`
-	// OSU provider name.
-	Name *string `pulumi:"name"`
-	// Network authentication name.
-	NetworkAuth *string `pulumi:"networkAuth"`
-	// Operator friendly name.
-	OperFriendlyName *string `pulumi:"operFriendlyName"`
-	// Operator icon.
-	OperIcon *string `pulumi:"operIcon"`
-	// OSU Provider NAI.
-	OsuProviderNai *string `pulumi:"osuProviderNai"`
-	// Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
-	OsuProviders []WirelessControllerHotspot20HsProfileOsuProvider `pulumi:"osuProviders"`
-	// Online sign up (OSU) SSID.
-	OsuSsid *string `pulumi:"osuSsid"`
-	// Enable/disable Pre-Association Message Exchange BSSID Independent (PAME-BI). Valid values: `disable`, `enable`.
-	PameBi *string `pulumi:"pameBi"`
-	// Enable/disable Proxy ARP. Valid values: `enable`, `disable`.
-	ProxyArp *string `pulumi:"proxyArp"`
-	// QoS MAP set ID.
-	QosMap *string `pulumi:"qosMap"`
-	// Hotspot 2.0 Release number (1, 2, 3, default = 2).
-	Release *int `pulumi:"release"`
-	// Roaming consortium list name.
-	RoamingConsortium *string `pulumi:"roamingConsortium"`
-	// Terms and conditions.
-	TermsAndConditions *string `pulumi:"termsAndConditions"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
-	VenueGroup *string `pulumi:"venueGroup"`
-	// Venue name.
-	VenueName *string `pulumi:"venueName"`
-	// Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
-	VenueType *string `pulumi:"venueType"`
-	// Venue name.
-	VenueUrl *string `pulumi:"venueUrl"`
-	// WAN metric name.
-	WanMetrics *string `pulumi:"wanMetrics"`
-	// Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
-	WnmSleepMode *string `pulumi:"wnmSleepMode"`
+	AccessNetworkAsra     *string                                           `pulumi:"accessNetworkAsra"`
+	AccessNetworkEsr      *string                                           `pulumi:"accessNetworkEsr"`
+	AccessNetworkInternet *string                                           `pulumi:"accessNetworkInternet"`
+	AccessNetworkType     *string                                           `pulumi:"accessNetworkType"`
+	AccessNetworkUesa     *string                                           `pulumi:"accessNetworkUesa"`
+	AdviceOfCharge        *string                                           `pulumi:"adviceOfCharge"`
+	AnqpDomainId          *int                                              `pulumi:"anqpDomainId"`
+	BssTransition         *string                                           `pulumi:"bssTransition"`
+	ConnCap               *string                                           `pulumi:"connCap"`
+	DeauthRequestTimeout  *int                                              `pulumi:"deauthRequestTimeout"`
+	Dgaf                  *string                                           `pulumi:"dgaf"`
+	DomainName            *string                                           `pulumi:"domainName"`
+	DynamicSortSubtable   *string                                           `pulumi:"dynamicSortSubtable"`
+	GasComebackDelay      *int                                              `pulumi:"gasComebackDelay"`
+	GasFragmentationLimit *int                                              `pulumi:"gasFragmentationLimit"`
+	Hessid                *string                                           `pulumi:"hessid"`
+	IpAddrType            *string                                           `pulumi:"ipAddrType"`
+	L2tif                 *string                                           `pulumi:"l2tif"`
+	N3gppPlmn             *string                                           `pulumi:"n3gppPlmn"`
+	NaiRealm              *string                                           `pulumi:"naiRealm"`
+	Name                  *string                                           `pulumi:"name"`
+	NetworkAuth           *string                                           `pulumi:"networkAuth"`
+	OperFriendlyName      *string                                           `pulumi:"operFriendlyName"`
+	OperIcon              *string                                           `pulumi:"operIcon"`
+	OsuProviderNai        *string                                           `pulumi:"osuProviderNai"`
+	OsuProviders          []WirelessControllerHotspot20HsProfileOsuProvider `pulumi:"osuProviders"`
+	OsuSsid               *string                                           `pulumi:"osuSsid"`
+	PameBi                *string                                           `pulumi:"pameBi"`
+	ProxyArp              *string                                           `pulumi:"proxyArp"`
+	QosMap                *string                                           `pulumi:"qosMap"`
+	Release               *int                                              `pulumi:"release"`
+	RoamingConsortium     *string                                           `pulumi:"roamingConsortium"`
+	TermsAndConditions    *string                                           `pulumi:"termsAndConditions"`
+	Vdomparam             *string                                           `pulumi:"vdomparam"`
+	VenueGroup            *string                                           `pulumi:"venueGroup"`
+	VenueName             *string                                           `pulumi:"venueName"`
+	VenueType             *string                                           `pulumi:"venueType"`
+	VenueUrl              *string                                           `pulumi:"venueUrl"`
+	WanMetrics            *string                                           `pulumi:"wanMetrics"`
+	WnmSleepMode          *string                                           `pulumi:"wnmSleepMode"`
 }
 
 type WirelessControllerHotspot20HsProfileState struct {
-	// Enable/disable additional step required for access (ASRA). Valid values: `enable`, `disable`.
-	AccessNetworkAsra pulumi.StringPtrInput
-	// Enable/disable emergency services reachable (ESR). Valid values: `enable`, `disable`.
-	AccessNetworkEsr pulumi.StringPtrInput
-	// Enable/disable connectivity to the Internet. Valid values: `enable`, `disable`.
+	AccessNetworkAsra     pulumi.StringPtrInput
+	AccessNetworkEsr      pulumi.StringPtrInput
 	AccessNetworkInternet pulumi.StringPtrInput
-	// Access network type. Valid values: `private-network`, `private-network-with-guest-access`, `chargeable-public-network`, `free-public-network`, `personal-device-network`, `emergency-services-only-network`, `test-or-experimental`, `wildcard`.
-	AccessNetworkType pulumi.StringPtrInput
-	// Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
-	AccessNetworkUesa pulumi.StringPtrInput
-	// Advice of charge.
-	AdviceOfCharge pulumi.StringPtrInput
-	// ANQP Domain ID (0-65535).
-	AnqpDomainId pulumi.IntPtrInput
-	// Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
-	BssTransition pulumi.StringPtrInput
-	// Connection capability name.
-	ConnCap pulumi.StringPtrInput
-	// Deauthentication request timeout (in seconds).
-	DeauthRequestTimeout pulumi.IntPtrInput
-	// Enable/disable downstream group-addressed forwarding (DGAF). Valid values: `enable`, `disable`.
-	Dgaf pulumi.StringPtrInput
-	// Domain name.
-	DomainName pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
-	GasComebackDelay pulumi.IntPtrInput
-	// GAS fragmentation limit (512 - 4096, default = 1024).
+	AccessNetworkType     pulumi.StringPtrInput
+	AccessNetworkUesa     pulumi.StringPtrInput
+	AdviceOfCharge        pulumi.StringPtrInput
+	AnqpDomainId          pulumi.IntPtrInput
+	BssTransition         pulumi.StringPtrInput
+	ConnCap               pulumi.StringPtrInput
+	DeauthRequestTimeout  pulumi.IntPtrInput
+	Dgaf                  pulumi.StringPtrInput
+	DomainName            pulumi.StringPtrInput
+	DynamicSortSubtable   pulumi.StringPtrInput
+	GasComebackDelay      pulumi.IntPtrInput
 	GasFragmentationLimit pulumi.IntPtrInput
-	// Homogeneous extended service set identifier (HESSID).
-	Hessid pulumi.StringPtrInput
-	// IP address type name.
-	IpAddrType pulumi.StringPtrInput
-	// Enable/disable Layer 2 traffic inspection and filtering. Valid values: `enable`, `disable`.
-	L2tif pulumi.StringPtrInput
-	// 3GPP PLMN name.
-	N3gppPlmn pulumi.StringPtrInput
-	// NAI realm list name.
-	NaiRealm pulumi.StringPtrInput
-	// OSU provider name.
-	Name pulumi.StringPtrInput
-	// Network authentication name.
-	NetworkAuth pulumi.StringPtrInput
-	// Operator friendly name.
-	OperFriendlyName pulumi.StringPtrInput
-	// Operator icon.
-	OperIcon pulumi.StringPtrInput
-	// OSU Provider NAI.
-	OsuProviderNai pulumi.StringPtrInput
-	// Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
-	OsuProviders WirelessControllerHotspot20HsProfileOsuProviderArrayInput
-	// Online sign up (OSU) SSID.
-	OsuSsid pulumi.StringPtrInput
-	// Enable/disable Pre-Association Message Exchange BSSID Independent (PAME-BI). Valid values: `disable`, `enable`.
-	PameBi pulumi.StringPtrInput
-	// Enable/disable Proxy ARP. Valid values: `enable`, `disable`.
-	ProxyArp pulumi.StringPtrInput
-	// QoS MAP set ID.
-	QosMap pulumi.StringPtrInput
-	// Hotspot 2.0 Release number (1, 2, 3, default = 2).
-	Release pulumi.IntPtrInput
-	// Roaming consortium list name.
-	RoamingConsortium pulumi.StringPtrInput
-	// Terms and conditions.
-	TermsAndConditions pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
-	VenueGroup pulumi.StringPtrInput
-	// Venue name.
-	VenueName pulumi.StringPtrInput
-	// Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
-	VenueType pulumi.StringPtrInput
-	// Venue name.
-	VenueUrl pulumi.StringPtrInput
-	// WAN metric name.
-	WanMetrics pulumi.StringPtrInput
-	// Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
-	WnmSleepMode pulumi.StringPtrInput
+	Hessid                pulumi.StringPtrInput
+	IpAddrType            pulumi.StringPtrInput
+	L2tif                 pulumi.StringPtrInput
+	N3gppPlmn             pulumi.StringPtrInput
+	NaiRealm              pulumi.StringPtrInput
+	Name                  pulumi.StringPtrInput
+	NetworkAuth           pulumi.StringPtrInput
+	OperFriendlyName      pulumi.StringPtrInput
+	OperIcon              pulumi.StringPtrInput
+	OsuProviderNai        pulumi.StringPtrInput
+	OsuProviders          WirelessControllerHotspot20HsProfileOsuProviderArrayInput
+	OsuSsid               pulumi.StringPtrInput
+	PameBi                pulumi.StringPtrInput
+	ProxyArp              pulumi.StringPtrInput
+	QosMap                pulumi.StringPtrInput
+	Release               pulumi.IntPtrInput
+	RoamingConsortium     pulumi.StringPtrInput
+	TermsAndConditions    pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
+	VenueGroup            pulumi.StringPtrInput
+	VenueName             pulumi.StringPtrInput
+	VenueType             pulumi.StringPtrInput
+	VenueUrl              pulumi.StringPtrInput
+	WanMetrics            pulumi.StringPtrInput
+	WnmSleepMode          pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20HsProfileState) ElementType() reflect.Type {
@@ -312,170 +175,90 @@ func (WirelessControllerHotspot20HsProfileState) ElementType() reflect.Type {
 }
 
 type wirelessControllerHotspot20HsProfileArgs struct {
-	// Enable/disable additional step required for access (ASRA). Valid values: `enable`, `disable`.
-	AccessNetworkAsra *string `pulumi:"accessNetworkAsra"`
-	// Enable/disable emergency services reachable (ESR). Valid values: `enable`, `disable`.
-	AccessNetworkEsr *string `pulumi:"accessNetworkEsr"`
-	// Enable/disable connectivity to the Internet. Valid values: `enable`, `disable`.
-	AccessNetworkInternet *string `pulumi:"accessNetworkInternet"`
-	// Access network type. Valid values: `private-network`, `private-network-with-guest-access`, `chargeable-public-network`, `free-public-network`, `personal-device-network`, `emergency-services-only-network`, `test-or-experimental`, `wildcard`.
-	AccessNetworkType *string `pulumi:"accessNetworkType"`
-	// Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
-	AccessNetworkUesa *string `pulumi:"accessNetworkUesa"`
-	// Advice of charge.
-	AdviceOfCharge *string `pulumi:"adviceOfCharge"`
-	// ANQP Domain ID (0-65535).
-	AnqpDomainId *int `pulumi:"anqpDomainId"`
-	// Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
-	BssTransition *string `pulumi:"bssTransition"`
-	// Connection capability name.
-	ConnCap *string `pulumi:"connCap"`
-	// Deauthentication request timeout (in seconds).
-	DeauthRequestTimeout *int `pulumi:"deauthRequestTimeout"`
-	// Enable/disable downstream group-addressed forwarding (DGAF). Valid values: `enable`, `disable`.
-	Dgaf *string `pulumi:"dgaf"`
-	// Domain name.
-	DomainName *string `pulumi:"domainName"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
-	GasComebackDelay *int `pulumi:"gasComebackDelay"`
-	// GAS fragmentation limit (512 - 4096, default = 1024).
-	GasFragmentationLimit *int `pulumi:"gasFragmentationLimit"`
-	// Homogeneous extended service set identifier (HESSID).
-	Hessid *string `pulumi:"hessid"`
-	// IP address type name.
-	IpAddrType *string `pulumi:"ipAddrType"`
-	// Enable/disable Layer 2 traffic inspection and filtering. Valid values: `enable`, `disable`.
-	L2tif *string `pulumi:"l2tif"`
-	// 3GPP PLMN name.
-	N3gppPlmn *string `pulumi:"n3gppPlmn"`
-	// NAI realm list name.
-	NaiRealm *string `pulumi:"naiRealm"`
-	// OSU provider name.
-	Name *string `pulumi:"name"`
-	// Network authentication name.
-	NetworkAuth *string `pulumi:"networkAuth"`
-	// Operator friendly name.
-	OperFriendlyName *string `pulumi:"operFriendlyName"`
-	// Operator icon.
-	OperIcon *string `pulumi:"operIcon"`
-	// OSU Provider NAI.
-	OsuProviderNai *string `pulumi:"osuProviderNai"`
-	// Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
-	OsuProviders []WirelessControllerHotspot20HsProfileOsuProvider `pulumi:"osuProviders"`
-	// Online sign up (OSU) SSID.
-	OsuSsid *string `pulumi:"osuSsid"`
-	// Enable/disable Pre-Association Message Exchange BSSID Independent (PAME-BI). Valid values: `disable`, `enable`.
-	PameBi *string `pulumi:"pameBi"`
-	// Enable/disable Proxy ARP. Valid values: `enable`, `disable`.
-	ProxyArp *string `pulumi:"proxyArp"`
-	// QoS MAP set ID.
-	QosMap *string `pulumi:"qosMap"`
-	// Hotspot 2.0 Release number (1, 2, 3, default = 2).
-	Release *int `pulumi:"release"`
-	// Roaming consortium list name.
-	RoamingConsortium *string `pulumi:"roamingConsortium"`
-	// Terms and conditions.
-	TermsAndConditions *string `pulumi:"termsAndConditions"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
-	VenueGroup *string `pulumi:"venueGroup"`
-	// Venue name.
-	VenueName *string `pulumi:"venueName"`
-	// Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
-	VenueType *string `pulumi:"venueType"`
-	// Venue name.
-	VenueUrl *string `pulumi:"venueUrl"`
-	// WAN metric name.
-	WanMetrics *string `pulumi:"wanMetrics"`
-	// Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
-	WnmSleepMode *string `pulumi:"wnmSleepMode"`
+	AccessNetworkAsra     *string                                           `pulumi:"accessNetworkAsra"`
+	AccessNetworkEsr      *string                                           `pulumi:"accessNetworkEsr"`
+	AccessNetworkInternet *string                                           `pulumi:"accessNetworkInternet"`
+	AccessNetworkType     *string                                           `pulumi:"accessNetworkType"`
+	AccessNetworkUesa     *string                                           `pulumi:"accessNetworkUesa"`
+	AdviceOfCharge        *string                                           `pulumi:"adviceOfCharge"`
+	AnqpDomainId          *int                                              `pulumi:"anqpDomainId"`
+	BssTransition         *string                                           `pulumi:"bssTransition"`
+	ConnCap               *string                                           `pulumi:"connCap"`
+	DeauthRequestTimeout  *int                                              `pulumi:"deauthRequestTimeout"`
+	Dgaf                  *string                                           `pulumi:"dgaf"`
+	DomainName            *string                                           `pulumi:"domainName"`
+	DynamicSortSubtable   *string                                           `pulumi:"dynamicSortSubtable"`
+	GasComebackDelay      *int                                              `pulumi:"gasComebackDelay"`
+	GasFragmentationLimit *int                                              `pulumi:"gasFragmentationLimit"`
+	Hessid                *string                                           `pulumi:"hessid"`
+	IpAddrType            *string                                           `pulumi:"ipAddrType"`
+	L2tif                 *string                                           `pulumi:"l2tif"`
+	N3gppPlmn             *string                                           `pulumi:"n3gppPlmn"`
+	NaiRealm              *string                                           `pulumi:"naiRealm"`
+	Name                  *string                                           `pulumi:"name"`
+	NetworkAuth           *string                                           `pulumi:"networkAuth"`
+	OperFriendlyName      *string                                           `pulumi:"operFriendlyName"`
+	OperIcon              *string                                           `pulumi:"operIcon"`
+	OsuProviderNai        *string                                           `pulumi:"osuProviderNai"`
+	OsuProviders          []WirelessControllerHotspot20HsProfileOsuProvider `pulumi:"osuProviders"`
+	OsuSsid               *string                                           `pulumi:"osuSsid"`
+	PameBi                *string                                           `pulumi:"pameBi"`
+	ProxyArp              *string                                           `pulumi:"proxyArp"`
+	QosMap                *string                                           `pulumi:"qosMap"`
+	Release               *int                                              `pulumi:"release"`
+	RoamingConsortium     *string                                           `pulumi:"roamingConsortium"`
+	TermsAndConditions    *string                                           `pulumi:"termsAndConditions"`
+	Vdomparam             *string                                           `pulumi:"vdomparam"`
+	VenueGroup            *string                                           `pulumi:"venueGroup"`
+	VenueName             *string                                           `pulumi:"venueName"`
+	VenueType             *string                                           `pulumi:"venueType"`
+	VenueUrl              *string                                           `pulumi:"venueUrl"`
+	WanMetrics            *string                                           `pulumi:"wanMetrics"`
+	WnmSleepMode          *string                                           `pulumi:"wnmSleepMode"`
 }
 
 // The set of arguments for constructing a WirelessControllerHotspot20HsProfile resource.
 type WirelessControllerHotspot20HsProfileArgs struct {
-	// Enable/disable additional step required for access (ASRA). Valid values: `enable`, `disable`.
-	AccessNetworkAsra pulumi.StringPtrInput
-	// Enable/disable emergency services reachable (ESR). Valid values: `enable`, `disable`.
-	AccessNetworkEsr pulumi.StringPtrInput
-	// Enable/disable connectivity to the Internet. Valid values: `enable`, `disable`.
+	AccessNetworkAsra     pulumi.StringPtrInput
+	AccessNetworkEsr      pulumi.StringPtrInput
 	AccessNetworkInternet pulumi.StringPtrInput
-	// Access network type. Valid values: `private-network`, `private-network-with-guest-access`, `chargeable-public-network`, `free-public-network`, `personal-device-network`, `emergency-services-only-network`, `test-or-experimental`, `wildcard`.
-	AccessNetworkType pulumi.StringPtrInput
-	// Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
-	AccessNetworkUesa pulumi.StringPtrInput
-	// Advice of charge.
-	AdviceOfCharge pulumi.StringPtrInput
-	// ANQP Domain ID (0-65535).
-	AnqpDomainId pulumi.IntPtrInput
-	// Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
-	BssTransition pulumi.StringPtrInput
-	// Connection capability name.
-	ConnCap pulumi.StringPtrInput
-	// Deauthentication request timeout (in seconds).
-	DeauthRequestTimeout pulumi.IntPtrInput
-	// Enable/disable downstream group-addressed forwarding (DGAF). Valid values: `enable`, `disable`.
-	Dgaf pulumi.StringPtrInput
-	// Domain name.
-	DomainName pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
-	GasComebackDelay pulumi.IntPtrInput
-	// GAS fragmentation limit (512 - 4096, default = 1024).
+	AccessNetworkType     pulumi.StringPtrInput
+	AccessNetworkUesa     pulumi.StringPtrInput
+	AdviceOfCharge        pulumi.StringPtrInput
+	AnqpDomainId          pulumi.IntPtrInput
+	BssTransition         pulumi.StringPtrInput
+	ConnCap               pulumi.StringPtrInput
+	DeauthRequestTimeout  pulumi.IntPtrInput
+	Dgaf                  pulumi.StringPtrInput
+	DomainName            pulumi.StringPtrInput
+	DynamicSortSubtable   pulumi.StringPtrInput
+	GasComebackDelay      pulumi.IntPtrInput
 	GasFragmentationLimit pulumi.IntPtrInput
-	// Homogeneous extended service set identifier (HESSID).
-	Hessid pulumi.StringPtrInput
-	// IP address type name.
-	IpAddrType pulumi.StringPtrInput
-	// Enable/disable Layer 2 traffic inspection and filtering. Valid values: `enable`, `disable`.
-	L2tif pulumi.StringPtrInput
-	// 3GPP PLMN name.
-	N3gppPlmn pulumi.StringPtrInput
-	// NAI realm list name.
-	NaiRealm pulumi.StringPtrInput
-	// OSU provider name.
-	Name pulumi.StringPtrInput
-	// Network authentication name.
-	NetworkAuth pulumi.StringPtrInput
-	// Operator friendly name.
-	OperFriendlyName pulumi.StringPtrInput
-	// Operator icon.
-	OperIcon pulumi.StringPtrInput
-	// OSU Provider NAI.
-	OsuProviderNai pulumi.StringPtrInput
-	// Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
-	OsuProviders WirelessControllerHotspot20HsProfileOsuProviderArrayInput
-	// Online sign up (OSU) SSID.
-	OsuSsid pulumi.StringPtrInput
-	// Enable/disable Pre-Association Message Exchange BSSID Independent (PAME-BI). Valid values: `disable`, `enable`.
-	PameBi pulumi.StringPtrInput
-	// Enable/disable Proxy ARP. Valid values: `enable`, `disable`.
-	ProxyArp pulumi.StringPtrInput
-	// QoS MAP set ID.
-	QosMap pulumi.StringPtrInput
-	// Hotspot 2.0 Release number (1, 2, 3, default = 2).
-	Release pulumi.IntPtrInput
-	// Roaming consortium list name.
-	RoamingConsortium pulumi.StringPtrInput
-	// Terms and conditions.
-	TermsAndConditions pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
-	VenueGroup pulumi.StringPtrInput
-	// Venue name.
-	VenueName pulumi.StringPtrInput
-	// Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
-	VenueType pulumi.StringPtrInput
-	// Venue name.
-	VenueUrl pulumi.StringPtrInput
-	// WAN metric name.
-	WanMetrics pulumi.StringPtrInput
-	// Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
-	WnmSleepMode pulumi.StringPtrInput
+	Hessid                pulumi.StringPtrInput
+	IpAddrType            pulumi.StringPtrInput
+	L2tif                 pulumi.StringPtrInput
+	N3gppPlmn             pulumi.StringPtrInput
+	NaiRealm              pulumi.StringPtrInput
+	Name                  pulumi.StringPtrInput
+	NetworkAuth           pulumi.StringPtrInput
+	OperFriendlyName      pulumi.StringPtrInput
+	OperIcon              pulumi.StringPtrInput
+	OsuProviderNai        pulumi.StringPtrInput
+	OsuProviders          WirelessControllerHotspot20HsProfileOsuProviderArrayInput
+	OsuSsid               pulumi.StringPtrInput
+	PameBi                pulumi.StringPtrInput
+	ProxyArp              pulumi.StringPtrInput
+	QosMap                pulumi.StringPtrInput
+	Release               pulumi.IntPtrInput
+	RoamingConsortium     pulumi.StringPtrInput
+	TermsAndConditions    pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
+	VenueGroup            pulumi.StringPtrInput
+	VenueName             pulumi.StringPtrInput
+	VenueType             pulumi.StringPtrInput
+	VenueUrl              pulumi.StringPtrInput
+	WanMetrics            pulumi.StringPtrInput
+	WnmSleepMode          pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20HsProfileArgs) ElementType() reflect.Type {
@@ -504,7 +287,7 @@ func (i *WirelessControllerHotspot20HsProfile) ToWirelessControllerHotspot20HsPr
 // WirelessControllerHotspot20HsProfileArrayInput is an input type that accepts WirelessControllerHotspot20HsProfileArray and WirelessControllerHotspot20HsProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20HsProfileArrayInput` via:
 //
-//          WirelessControllerHotspot20HsProfileArray{ WirelessControllerHotspot20HsProfileArgs{...} }
+//	WirelessControllerHotspot20HsProfileArray{ WirelessControllerHotspot20HsProfileArgs{...} }
 type WirelessControllerHotspot20HsProfileArrayInput interface {
 	pulumi.Input
 
@@ -529,7 +312,7 @@ func (i WirelessControllerHotspot20HsProfileArray) ToWirelessControllerHotspot20
 // WirelessControllerHotspot20HsProfileMapInput is an input type that accepts WirelessControllerHotspot20HsProfileMap and WirelessControllerHotspot20HsProfileMapOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20HsProfileMapInput` via:
 //
-//          WirelessControllerHotspot20HsProfileMap{ "key": WirelessControllerHotspot20HsProfileArgs{...} }
+//	WirelessControllerHotspot20HsProfileMap{ "key": WirelessControllerHotspot20HsProfileArgs{...} }
 type WirelessControllerHotspot20HsProfileMapInput interface {
 	pulumi.Input
 
@@ -563,6 +346,168 @@ func (o WirelessControllerHotspot20HsProfileOutput) ToWirelessControllerHotspot2
 
 func (o WirelessControllerHotspot20HsProfileOutput) ToWirelessControllerHotspot20HsProfileOutputWithContext(ctx context.Context) WirelessControllerHotspot20HsProfileOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) AccessNetworkAsra() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.AccessNetworkAsra }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) AccessNetworkEsr() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.AccessNetworkEsr }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) AccessNetworkInternet() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.AccessNetworkInternet }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) AccessNetworkType() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.AccessNetworkType }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) AccessNetworkUesa() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.AccessNetworkUesa }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) AdviceOfCharge() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.AdviceOfCharge }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) AnqpDomainId() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.IntOutput { return v.AnqpDomainId }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) BssTransition() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.BssTransition }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) ConnCap() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.ConnCap }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) DeauthRequestTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.IntOutput { return v.DeauthRequestTimeout }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) Dgaf() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.Dgaf }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) DomainName() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.DomainName }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) GasComebackDelay() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.IntOutput { return v.GasComebackDelay }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) GasFragmentationLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.IntOutput { return v.GasFragmentationLimit }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) Hessid() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.Hessid }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) IpAddrType() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.IpAddrType }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) L2tif() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.L2tif }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) N3gppPlmn() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.N3gppPlmn }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) NaiRealm() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.NaiRealm }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) NetworkAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.NetworkAuth }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) OperFriendlyName() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.OperFriendlyName }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) OperIcon() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.OperIcon }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) OsuProviderNai() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.OsuProviderNai }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) OsuProviders() WirelessControllerHotspot20HsProfileOsuProviderArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) WirelessControllerHotspot20HsProfileOsuProviderArrayOutput {
+		return v.OsuProviders
+	}).(WirelessControllerHotspot20HsProfileOsuProviderArrayOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) OsuSsid() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.OsuSsid }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) PameBi() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.PameBi }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) ProxyArp() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.ProxyArp }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) QosMap() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.QosMap }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) Release() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.IntOutput { return v.Release }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) RoamingConsortium() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.RoamingConsortium }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) TermsAndConditions() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.TermsAndConditions }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) VenueGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.VenueGroup }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) VenueName() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.VenueName }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) VenueType() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.VenueType }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) VenueUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.VenueUrl }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) WanMetrics() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.WanMetrics }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) WnmSleepMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringOutput { return v.WnmSleepMode }).(pulumi.StringOutput)
 }
 
 type WirelessControllerHotspot20HsProfileArrayOutput struct{ *pulumi.OutputState }

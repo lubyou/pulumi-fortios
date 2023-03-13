@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Automation stitches.
- *
- * ## Import
- *
- * System AutomationStitch can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutomationStitch:SystemAutomationStitch labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutomationStitch:SystemAutomationStitch labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemAutomationStitch extends pulumi.CustomResource {
     /**
      * Get an existing SystemAutomationStitch resource's state with the given name, ID, and optional extra
@@ -52,37 +34,14 @@ export class SystemAutomationStitch extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAutomationStitch.__pulumiType;
     }
 
-    /**
-     * Configure stitch actions. The structure of `actions` block is documented below.
-     */
+    public readonly action!: pulumi.Output<outputs.SystemAutomationStitchAction[] | undefined>;
     public readonly actions!: pulumi.Output<outputs.SystemAutomationStitchAction[] | undefined>;
-    /**
-     * Description.
-     */
     public readonly description!: pulumi.Output<string | undefined>;
-    /**
-     * Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
-     */
     public readonly destinations!: pulumi.Output<outputs.SystemAutomationStitchDestination[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Destination name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable this stitch. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Trigger name.
-     */
     public readonly trigger!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -98,6 +57,7 @@ export class SystemAutomationStitch extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemAutomationStitchState | undefined;
+            resourceInputs["action"] = state ? state.action : undefined;
             resourceInputs["actions"] = state ? state.actions : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["destinations"] = state ? state.destinations : undefined;
@@ -114,6 +74,7 @@ export class SystemAutomationStitch extends pulumi.CustomResource {
             if ((!args || args.trigger === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'trigger'");
             }
+            resourceInputs["action"] = args ? args.action : undefined;
             resourceInputs["actions"] = args ? args.actions : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["destinations"] = args ? args.destinations : undefined;
@@ -132,37 +93,14 @@ export class SystemAutomationStitch extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAutomationStitch resources.
  */
 export interface SystemAutomationStitchState {
-    /**
-     * Configure stitch actions. The structure of `actions` block is documented below.
-     */
+    action?: pulumi.Input<pulumi.Input<inputs.SystemAutomationStitchAction>[]>;
     actions?: pulumi.Input<pulumi.Input<inputs.SystemAutomationStitchAction>[]>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
-     */
     destinations?: pulumi.Input<pulumi.Input<inputs.SystemAutomationStitchDestination>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Destination name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable this stitch. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Trigger name.
-     */
     trigger?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -170,36 +108,13 @@ export interface SystemAutomationStitchState {
  * The set of arguments for constructing a SystemAutomationStitch resource.
  */
 export interface SystemAutomationStitchArgs {
-    /**
-     * Configure stitch actions. The structure of `actions` block is documented below.
-     */
+    action?: pulumi.Input<pulumi.Input<inputs.SystemAutomationStitchAction>[]>;
     actions?: pulumi.Input<pulumi.Input<inputs.SystemAutomationStitchAction>[]>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
-     */
     destinations?: pulumi.Input<pulumi.Input<inputs.SystemAutomationStitchDestination>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Destination name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable this stitch. Valid values: `enable`, `disable`.
-     */
     status: pulumi.Input<string>;
-    /**
-     * Trigger name.
-     */
     trigger: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

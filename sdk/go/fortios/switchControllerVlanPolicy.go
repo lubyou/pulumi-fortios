@@ -10,46 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure VLAN policy to be applied on the managed FortiSwitch ports through port-policy. Applies to FortiOS Version `>= 6.4.0`.
-//
-// ## Import
-//
-// SwitchController VlanPolicy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerVlanPolicy:SwitchControllerVlanPolicy labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerVlanPolicy:SwitchControllerVlanPolicy labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerVlanPolicy struct {
 	pulumi.CustomResourceState
 
-	// Allowed VLANs to be applied when using this VLAN policy. The structure of `allowedVlans` block is documented below.
-	AllowedVlans SwitchControllerVlanPolicyAllowedVlanArrayOutput `pulumi:"allowedVlans"`
-	// Enable/disable all defined VLANs when using this VLAN policy. Valid values: `enable`, `disable`.
-	AllowedVlansAll pulumi.StringOutput `pulumi:"allowedVlansAll"`
-	// Description for the VLAN policy.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// Discard mode to be applied when using this VLAN policy. Valid values: `none`, `all-untagged`, `all-tagged`.
-	DiscardMode pulumi.StringOutput `pulumi:"discardMode"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// FortiLink interface for which this VLAN policy belongs to.
-	Fortilink pulumi.StringOutput `pulumi:"fortilink"`
-	// VLAN policy name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Untagged VLANs to be applied when using this VLAN policy. The structure of `untaggedVlans` block is documented below.
-	UntaggedVlans SwitchControllerVlanPolicyUntaggedVlanArrayOutput `pulumi:"untaggedVlans"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Native VLAN to be applied when using this VLAN policy.
-	Vlan pulumi.StringOutput `pulumi:"vlan"`
+	AllowedVlans        SwitchControllerVlanPolicyAllowedVlanArrayOutput  `pulumi:"allowedVlans"`
+	AllowedVlansAll     pulumi.StringOutput                               `pulumi:"allowedVlansAll"`
+	Description         pulumi.StringOutput                               `pulumi:"description"`
+	DiscardMode         pulumi.StringOutput                               `pulumi:"discardMode"`
+	DynamicSortSubtable pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
+	Fortilink           pulumi.StringOutput                               `pulumi:"fortilink"`
+	Name                pulumi.StringOutput                               `pulumi:"name"`
+	UntaggedVlans       SwitchControllerVlanPolicyUntaggedVlanArrayOutput `pulumi:"untaggedVlans"`
+	Vdomparam           pulumi.StringPtrOutput                            `pulumi:"vdomparam"`
+	Vlan                pulumi.StringOutput                               `pulumi:"vlan"`
 }
 
 // NewSwitchControllerVlanPolicy registers a new resource with the given unique name, arguments, and options.
@@ -82,49 +55,29 @@ func GetSwitchControllerVlanPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerVlanPolicy resources.
 type switchControllerVlanPolicyState struct {
-	// Allowed VLANs to be applied when using this VLAN policy. The structure of `allowedVlans` block is documented below.
-	AllowedVlans []SwitchControllerVlanPolicyAllowedVlan `pulumi:"allowedVlans"`
-	// Enable/disable all defined VLANs when using this VLAN policy. Valid values: `enable`, `disable`.
-	AllowedVlansAll *string `pulumi:"allowedVlansAll"`
-	// Description for the VLAN policy.
-	Description *string `pulumi:"description"`
-	// Discard mode to be applied when using this VLAN policy. Valid values: `none`, `all-untagged`, `all-tagged`.
-	DiscardMode *string `pulumi:"discardMode"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// FortiLink interface for which this VLAN policy belongs to.
-	Fortilink *string `pulumi:"fortilink"`
-	// VLAN policy name.
-	Name *string `pulumi:"name"`
-	// Untagged VLANs to be applied when using this VLAN policy. The structure of `untaggedVlans` block is documented below.
-	UntaggedVlans []SwitchControllerVlanPolicyUntaggedVlan `pulumi:"untaggedVlans"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Native VLAN to be applied when using this VLAN policy.
-	Vlan *string `pulumi:"vlan"`
+	AllowedVlans        []SwitchControllerVlanPolicyAllowedVlan  `pulumi:"allowedVlans"`
+	AllowedVlansAll     *string                                  `pulumi:"allowedVlansAll"`
+	Description         *string                                  `pulumi:"description"`
+	DiscardMode         *string                                  `pulumi:"discardMode"`
+	DynamicSortSubtable *string                                  `pulumi:"dynamicSortSubtable"`
+	Fortilink           *string                                  `pulumi:"fortilink"`
+	Name                *string                                  `pulumi:"name"`
+	UntaggedVlans       []SwitchControllerVlanPolicyUntaggedVlan `pulumi:"untaggedVlans"`
+	Vdomparam           *string                                  `pulumi:"vdomparam"`
+	Vlan                *string                                  `pulumi:"vlan"`
 }
 
 type SwitchControllerVlanPolicyState struct {
-	// Allowed VLANs to be applied when using this VLAN policy. The structure of `allowedVlans` block is documented below.
-	AllowedVlans SwitchControllerVlanPolicyAllowedVlanArrayInput
-	// Enable/disable all defined VLANs when using this VLAN policy. Valid values: `enable`, `disable`.
-	AllowedVlansAll pulumi.StringPtrInput
-	// Description for the VLAN policy.
-	Description pulumi.StringPtrInput
-	// Discard mode to be applied when using this VLAN policy. Valid values: `none`, `all-untagged`, `all-tagged`.
-	DiscardMode pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AllowedVlans        SwitchControllerVlanPolicyAllowedVlanArrayInput
+	AllowedVlansAll     pulumi.StringPtrInput
+	Description         pulumi.StringPtrInput
+	DiscardMode         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// FortiLink interface for which this VLAN policy belongs to.
-	Fortilink pulumi.StringPtrInput
-	// VLAN policy name.
-	Name pulumi.StringPtrInput
-	// Untagged VLANs to be applied when using this VLAN policy. The structure of `untaggedVlans` block is documented below.
-	UntaggedVlans SwitchControllerVlanPolicyUntaggedVlanArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Native VLAN to be applied when using this VLAN policy.
-	Vlan pulumi.StringPtrInput
+	Fortilink           pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	UntaggedVlans       SwitchControllerVlanPolicyUntaggedVlanArrayInput
+	Vdomparam           pulumi.StringPtrInput
+	Vlan                pulumi.StringPtrInput
 }
 
 func (SwitchControllerVlanPolicyState) ElementType() reflect.Type {
@@ -132,50 +85,30 @@ func (SwitchControllerVlanPolicyState) ElementType() reflect.Type {
 }
 
 type switchControllerVlanPolicyArgs struct {
-	// Allowed VLANs to be applied when using this VLAN policy. The structure of `allowedVlans` block is documented below.
-	AllowedVlans []SwitchControllerVlanPolicyAllowedVlan `pulumi:"allowedVlans"`
-	// Enable/disable all defined VLANs when using this VLAN policy. Valid values: `enable`, `disable`.
-	AllowedVlansAll *string `pulumi:"allowedVlansAll"`
-	// Description for the VLAN policy.
-	Description *string `pulumi:"description"`
-	// Discard mode to be applied when using this VLAN policy. Valid values: `none`, `all-untagged`, `all-tagged`.
-	DiscardMode *string `pulumi:"discardMode"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// FortiLink interface for which this VLAN policy belongs to.
-	Fortilink *string `pulumi:"fortilink"`
-	// VLAN policy name.
-	Name *string `pulumi:"name"`
-	// Untagged VLANs to be applied when using this VLAN policy. The structure of `untaggedVlans` block is documented below.
-	UntaggedVlans []SwitchControllerVlanPolicyUntaggedVlan `pulumi:"untaggedVlans"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Native VLAN to be applied when using this VLAN policy.
-	Vlan *string `pulumi:"vlan"`
+	AllowedVlans        []SwitchControllerVlanPolicyAllowedVlan  `pulumi:"allowedVlans"`
+	AllowedVlansAll     *string                                  `pulumi:"allowedVlansAll"`
+	Description         *string                                  `pulumi:"description"`
+	DiscardMode         *string                                  `pulumi:"discardMode"`
+	DynamicSortSubtable *string                                  `pulumi:"dynamicSortSubtable"`
+	Fortilink           *string                                  `pulumi:"fortilink"`
+	Name                *string                                  `pulumi:"name"`
+	UntaggedVlans       []SwitchControllerVlanPolicyUntaggedVlan `pulumi:"untaggedVlans"`
+	Vdomparam           *string                                  `pulumi:"vdomparam"`
+	Vlan                *string                                  `pulumi:"vlan"`
 }
 
 // The set of arguments for constructing a SwitchControllerVlanPolicy resource.
 type SwitchControllerVlanPolicyArgs struct {
-	// Allowed VLANs to be applied when using this VLAN policy. The structure of `allowedVlans` block is documented below.
-	AllowedVlans SwitchControllerVlanPolicyAllowedVlanArrayInput
-	// Enable/disable all defined VLANs when using this VLAN policy. Valid values: `enable`, `disable`.
-	AllowedVlansAll pulumi.StringPtrInput
-	// Description for the VLAN policy.
-	Description pulumi.StringPtrInput
-	// Discard mode to be applied when using this VLAN policy. Valid values: `none`, `all-untagged`, `all-tagged`.
-	DiscardMode pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	AllowedVlans        SwitchControllerVlanPolicyAllowedVlanArrayInput
+	AllowedVlansAll     pulumi.StringPtrInput
+	Description         pulumi.StringPtrInput
+	DiscardMode         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// FortiLink interface for which this VLAN policy belongs to.
-	Fortilink pulumi.StringPtrInput
-	// VLAN policy name.
-	Name pulumi.StringPtrInput
-	// Untagged VLANs to be applied when using this VLAN policy. The structure of `untaggedVlans` block is documented below.
-	UntaggedVlans SwitchControllerVlanPolicyUntaggedVlanArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Native VLAN to be applied when using this VLAN policy.
-	Vlan pulumi.StringPtrInput
+	Fortilink           pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	UntaggedVlans       SwitchControllerVlanPolicyUntaggedVlanArrayInput
+	Vdomparam           pulumi.StringPtrInput
+	Vlan                pulumi.StringPtrInput
 }
 
 func (SwitchControllerVlanPolicyArgs) ElementType() reflect.Type {
@@ -204,7 +137,7 @@ func (i *SwitchControllerVlanPolicy) ToSwitchControllerVlanPolicyOutputWithConte
 // SwitchControllerVlanPolicyArrayInput is an input type that accepts SwitchControllerVlanPolicyArray and SwitchControllerVlanPolicyArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerVlanPolicyArrayInput` via:
 //
-//          SwitchControllerVlanPolicyArray{ SwitchControllerVlanPolicyArgs{...} }
+//	SwitchControllerVlanPolicyArray{ SwitchControllerVlanPolicyArgs{...} }
 type SwitchControllerVlanPolicyArrayInput interface {
 	pulumi.Input
 
@@ -229,7 +162,7 @@ func (i SwitchControllerVlanPolicyArray) ToSwitchControllerVlanPolicyArrayOutput
 // SwitchControllerVlanPolicyMapInput is an input type that accepts SwitchControllerVlanPolicyMap and SwitchControllerVlanPolicyMapOutput values.
 // You can construct a concrete instance of `SwitchControllerVlanPolicyMapInput` via:
 //
-//          SwitchControllerVlanPolicyMap{ "key": SwitchControllerVlanPolicyArgs{...} }
+//	SwitchControllerVlanPolicyMap{ "key": SwitchControllerVlanPolicyArgs{...} }
 type SwitchControllerVlanPolicyMapInput interface {
 	pulumi.Input
 
@@ -263,6 +196,50 @@ func (o SwitchControllerVlanPolicyOutput) ToSwitchControllerVlanPolicyOutput() S
 
 func (o SwitchControllerVlanPolicyOutput) ToSwitchControllerVlanPolicyOutputWithContext(ctx context.Context) SwitchControllerVlanPolicyOutput {
 	return o
+}
+
+func (o SwitchControllerVlanPolicyOutput) AllowedVlans() SwitchControllerVlanPolicyAllowedVlanArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerVlanPolicy) SwitchControllerVlanPolicyAllowedVlanArrayOutput {
+		return v.AllowedVlans
+	}).(SwitchControllerVlanPolicyAllowedVlanArrayOutput)
+}
+
+func (o SwitchControllerVlanPolicyOutput) AllowedVlansAll() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVlanPolicy) pulumi.StringOutput { return v.AllowedVlansAll }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVlanPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVlanPolicy) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVlanPolicyOutput) DiscardMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVlanPolicy) pulumi.StringOutput { return v.DiscardMode }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVlanPolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerVlanPolicy) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerVlanPolicyOutput) Fortilink() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVlanPolicy) pulumi.StringOutput { return v.Fortilink }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVlanPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVlanPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVlanPolicyOutput) UntaggedVlans() SwitchControllerVlanPolicyUntaggedVlanArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerVlanPolicy) SwitchControllerVlanPolicyUntaggedVlanArrayOutput {
+		return v.UntaggedVlans
+	}).(SwitchControllerVlanPolicyUntaggedVlanArrayOutput)
+}
+
+func (o SwitchControllerVlanPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerVlanPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerVlanPolicyOutput) Vlan() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVlanPolicy) pulumi.StringOutput { return v.Vlan }).(pulumi.StringOutput)
 }
 
 type SwitchControllerVlanPolicyArrayOutput struct{ *pulumi.OutputState }

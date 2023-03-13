@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios systemdhcp server
 func LookupSystemDhcpServer(ctx *pulumi.Context, args *LookupSystemDhcpServerArgs, opts ...pulumi.InvokeOption) (*LookupSystemDhcpServerResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemDhcpServerResult
@@ -23,117 +22,65 @@ func LookupSystemDhcpServer(ctx *pulumi.Context, args *LookupSystemDhcpServerArg
 
 // A collection of arguments for invoking GetSystemDhcpServer.
 type LookupSystemDhcpServerArgs struct {
-	// Specify the fosid of the desired systemdhcp server.
-	Fosid int `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     int     `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemDhcpServer.
 type LookupSystemDhcpServerResult struct {
-	// Enable/disable auto configuration.
-	AutoConfiguration string `pulumi:"autoConfiguration"`
-	// Enable/disable use of this DHCP server once this interface has been assigned an IP address from FortiIPAM.
-	AutoManagedStatus string `pulumi:"autoManagedStatus"`
-	// Time in seconds to wait after a conflicted IP address is removed from the DHCP range before it can be reused.
-	ConflictedIpTimeout int `pulumi:"conflictedIpTimeout"`
-	// DDNS authentication mode.
-	DdnsAuth string `pulumi:"ddnsAuth"`
-	// DDNS update key (base 64 encoding).
-	DdnsKey string `pulumi:"ddnsKey"`
-	// DDNS update key name.
-	DdnsKeyname string `pulumi:"ddnsKeyname"`
-	// DDNS server IP.
-	DdnsServerIp string `pulumi:"ddnsServerIp"`
-	// TTL.
-	DdnsTtl int `pulumi:"ddnsTtl"`
-	// Enable/disable DDNS update for DHCP.
-	DdnsUpdate string `pulumi:"ddnsUpdate"`
-	// Enable/disable DDNS update override for DHCP.
-	DdnsUpdateOverride string `pulumi:"ddnsUpdateOverride"`
-	// Zone of your domain name (ex. DDNS.com).
-	DdnsZone string `pulumi:"ddnsZone"`
-	// Default gateway IP address assigned by the DHCP server.
-	DefaultGateway string `pulumi:"defaultGateway"`
-	// Enable/disable populating of DHCP server settings from FortiIPAM.
-	DhcpSettingsFromFortiipam string `pulumi:"dhcpSettingsFromFortiipam"`
-	// DNS server 1.
-	DnsServer1 string `pulumi:"dnsServer1"`
-	// DNS server 2.
-	DnsServer2 string `pulumi:"dnsServer2"`
-	// DNS server 3.
-	DnsServer3 string `pulumi:"dnsServer3"`
-	// DNS server 4.
-	DnsServer4 string `pulumi:"dnsServer4"`
-	// Options for assigning DNS servers to DHCP clients.
-	DnsService string `pulumi:"dnsService"`
-	// Domain name suffix for the IP addresses that the DHCP server assigns to clients.
-	Domain string `pulumi:"domain"`
-	// Exclude one or more ranges of IP addresses from being assigned to clients. The structure of `excludeRange` block is documented below.
-	ExcludeRanges []GetSystemDhcpServerExcludeRange `pulumi:"excludeRanges"`
-	// Name of the boot file on the TFTP server.
-	Filename string `pulumi:"filename"`
-	// Enable/disable FortiClient-On-Net service for this DHCP server.
-	ForticlientOnNetStatus string `pulumi:"forticlientOnNetStatus"`
-	// ID.
-	Fosid int `pulumi:"fosid"`
+	AutoConfiguration         string                            `pulumi:"autoConfiguration"`
+	AutoManagedStatus         string                            `pulumi:"autoManagedStatus"`
+	ConflictedIpTimeout       int                               `pulumi:"conflictedIpTimeout"`
+	DdnsAuth                  string                            `pulumi:"ddnsAuth"`
+	DdnsKey                   string                            `pulumi:"ddnsKey"`
+	DdnsKeyname               string                            `pulumi:"ddnsKeyname"`
+	DdnsServerIp              string                            `pulumi:"ddnsServerIp"`
+	DdnsTtl                   int                               `pulumi:"ddnsTtl"`
+	DdnsUpdate                string                            `pulumi:"ddnsUpdate"`
+	DdnsUpdateOverride        string                            `pulumi:"ddnsUpdateOverride"`
+	DdnsZone                  string                            `pulumi:"ddnsZone"`
+	DefaultGateway            string                            `pulumi:"defaultGateway"`
+	DhcpSettingsFromFortiipam string                            `pulumi:"dhcpSettingsFromFortiipam"`
+	DnsServer1                string                            `pulumi:"dnsServer1"`
+	DnsServer2                string                            `pulumi:"dnsServer2"`
+	DnsServer3                string                            `pulumi:"dnsServer3"`
+	DnsServer4                string                            `pulumi:"dnsServer4"`
+	DnsService                string                            `pulumi:"dnsService"`
+	Domain                    string                            `pulumi:"domain"`
+	ExcludeRanges             []GetSystemDhcpServerExcludeRange `pulumi:"excludeRanges"`
+	Filename                  string                            `pulumi:"filename"`
+	ForticlientOnNetStatus    string                            `pulumi:"forticlientOnNetStatus"`
+	Fosid                     int                               `pulumi:"fosid"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// DHCP server can assign IP configurations to clients connected to this interface.
-	Interface string `pulumi:"interface"`
-	// Method used to assign client IP.
-	IpMode string `pulumi:"ipMode"`
-	// DHCP IP range configuration. The structure of `ipRange` block is documented below.
-	IpRanges []GetSystemDhcpServerIpRange `pulumi:"ipRanges"`
-	// DHCP over IPsec leases expire this many seconds after tunnel down (0 to disable forced-expiry).
-	IpsecLeaseHold int `pulumi:"ipsecLeaseHold"`
-	// Lease time in seconds, 0 means unlimited.
-	LeaseTime int `pulumi:"leaseTime"`
-	// MAC access control default action (allow or block assigning IP settings).
-	MacAclDefaultAction string `pulumi:"macAclDefaultAction"`
-	// Netmask assigned by the DHCP server.
-	Netmask string `pulumi:"netmask"`
-	// IP address of a server (for example, a TFTP sever) that DHCP clients can download a boot file from.
-	NextServer string `pulumi:"nextServer"`
-	// NTP server 1.
-	NtpServer1 string `pulumi:"ntpServer1"`
-	// NTP server 2.
-	NtpServer2 string `pulumi:"ntpServer2"`
-	// NTP server 3.
-	NtpServer3 string `pulumi:"ntpServer3"`
-	// Options for assigning Network Time Protocol (NTP) servers to DHCP clients.
-	NtpService string `pulumi:"ntpService"`
-	// DHCP options. The structure of `options` block is documented below.
-	Options []GetSystemDhcpServerOption `pulumi:"options"`
-	// Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reservedAddress` block is documented below.
-	ReservedAddresses []GetSystemDhcpServerReservedAddress `pulumi:"reservedAddresses"`
-	// DHCP server can be a normal DHCP server or an IPsec DHCP server.
-	ServerType string `pulumi:"serverType"`
-	// Enable/disable this DHCP configuration.
-	Status string `pulumi:"status"`
-	// TFTP server.
-	TftpServers []GetSystemDhcpServerTftpServer `pulumi:"tftpServers"`
-	// Select the time zone to be assigned to DHCP clients.
-	Timezone string `pulumi:"timezone"`
-	// Options for the DHCP server to set the client's time zone.
-	TimezoneOption string `pulumi:"timezoneOption"`
-	// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served.
-	VciMatch string `pulumi:"vciMatch"`
-	// VCI strings.
-	VciStrings []GetSystemDhcpServerVciString `pulumi:"vciStrings"`
-	Vdomparam  *string                        `pulumi:"vdomparam"`
-	// WiFi Access Controller 1 IP address (DHCP option 138, RFC 5417).
-	WifiAc1 string `pulumi:"wifiAc1"`
-	// WiFi Access Controller 2 IP address (DHCP option 138, RFC 5417).
-	WifiAc2 string `pulumi:"wifiAc2"`
-	// WiFi Access Controller 3 IP address (DHCP option 138, RFC 5417).
-	WifiAc3 string `pulumi:"wifiAc3"`
-	// Options for assigning WiFi Access Controllers to DHCP clients
-	WifiAcService string `pulumi:"wifiAcService"`
-	// WINS server 1.
-	WinsServer1 string `pulumi:"winsServer1"`
-	// WINS server 2.
-	WinsServer2 string `pulumi:"winsServer2"`
+	Id                  string                               `pulumi:"id"`
+	Interface           string                               `pulumi:"interface"`
+	IpMode              string                               `pulumi:"ipMode"`
+	IpRanges            []GetSystemDhcpServerIpRange         `pulumi:"ipRanges"`
+	IpsecLeaseHold      int                                  `pulumi:"ipsecLeaseHold"`
+	LeaseTime           int                                  `pulumi:"leaseTime"`
+	MacAclDefaultAction string                               `pulumi:"macAclDefaultAction"`
+	Netmask             string                               `pulumi:"netmask"`
+	NextServer          string                               `pulumi:"nextServer"`
+	NtpServer1          string                               `pulumi:"ntpServer1"`
+	NtpServer2          string                               `pulumi:"ntpServer2"`
+	NtpServer3          string                               `pulumi:"ntpServer3"`
+	NtpService          string                               `pulumi:"ntpService"`
+	Options             []GetSystemDhcpServerOption          `pulumi:"options"`
+	ReservedAddresses   []GetSystemDhcpServerReservedAddress `pulumi:"reservedAddresses"`
+	ServerType          string                               `pulumi:"serverType"`
+	Status              string                               `pulumi:"status"`
+	TftpServers         []GetSystemDhcpServerTftpServer      `pulumi:"tftpServers"`
+	Timezone            string                               `pulumi:"timezone"`
+	TimezoneOption      string                               `pulumi:"timezoneOption"`
+	VciMatch            string                               `pulumi:"vciMatch"`
+	VciStrings          []GetSystemDhcpServerVciString       `pulumi:"vciStrings"`
+	Vdomparam           *string                              `pulumi:"vdomparam"`
+	WifiAc1             string                               `pulumi:"wifiAc1"`
+	WifiAc2             string                               `pulumi:"wifiAc2"`
+	WifiAc3             string                               `pulumi:"wifiAc3"`
+	WifiAcService       string                               `pulumi:"wifiAcService"`
+	WinsServer1         string                               `pulumi:"winsServer1"`
+	WinsServer2         string                               `pulumi:"winsServer2"`
 }
 
 func LookupSystemDhcpServerOutput(ctx *pulumi.Context, args LookupSystemDhcpServerOutputArgs, opts ...pulumi.InvokeOption) LookupSystemDhcpServerResultOutput {
@@ -151,9 +98,7 @@ func LookupSystemDhcpServerOutput(ctx *pulumi.Context, args LookupSystemDhcpServ
 
 // A collection of arguments for invoking GetSystemDhcpServer.
 type LookupSystemDhcpServerOutputArgs struct {
-	// Specify the fosid of the desired systemdhcp server.
-	Fosid pulumi.IntInput `pulumi:"fosid"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntInput       `pulumi:"fosid"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -176,117 +121,94 @@ func (o LookupSystemDhcpServerResultOutput) ToLookupSystemDhcpServerResultOutput
 	return o
 }
 
-// Enable/disable auto configuration.
 func (o LookupSystemDhcpServerResultOutput) AutoConfiguration() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.AutoConfiguration }).(pulumi.StringOutput)
 }
 
-// Enable/disable use of this DHCP server once this interface has been assigned an IP address from FortiIPAM.
 func (o LookupSystemDhcpServerResultOutput) AutoManagedStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.AutoManagedStatus }).(pulumi.StringOutput)
 }
 
-// Time in seconds to wait after a conflicted IP address is removed from the DHCP range before it can be reused.
 func (o LookupSystemDhcpServerResultOutput) ConflictedIpTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) int { return v.ConflictedIpTimeout }).(pulumi.IntOutput)
 }
 
-// DDNS authentication mode.
 func (o LookupSystemDhcpServerResultOutput) DdnsAuth() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.DdnsAuth }).(pulumi.StringOutput)
 }
 
-// DDNS update key (base 64 encoding).
 func (o LookupSystemDhcpServerResultOutput) DdnsKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.DdnsKey }).(pulumi.StringOutput)
 }
 
-// DDNS update key name.
 func (o LookupSystemDhcpServerResultOutput) DdnsKeyname() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.DdnsKeyname }).(pulumi.StringOutput)
 }
 
-// DDNS server IP.
 func (o LookupSystemDhcpServerResultOutput) DdnsServerIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.DdnsServerIp }).(pulumi.StringOutput)
 }
 
-// TTL.
 func (o LookupSystemDhcpServerResultOutput) DdnsTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) int { return v.DdnsTtl }).(pulumi.IntOutput)
 }
 
-// Enable/disable DDNS update for DHCP.
 func (o LookupSystemDhcpServerResultOutput) DdnsUpdate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.DdnsUpdate }).(pulumi.StringOutput)
 }
 
-// Enable/disable DDNS update override for DHCP.
 func (o LookupSystemDhcpServerResultOutput) DdnsUpdateOverride() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.DdnsUpdateOverride }).(pulumi.StringOutput)
 }
 
-// Zone of your domain name (ex. DDNS.com).
 func (o LookupSystemDhcpServerResultOutput) DdnsZone() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.DdnsZone }).(pulumi.StringOutput)
 }
 
-// Default gateway IP address assigned by the DHCP server.
 func (o LookupSystemDhcpServerResultOutput) DefaultGateway() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.DefaultGateway }).(pulumi.StringOutput)
 }
 
-// Enable/disable populating of DHCP server settings from FortiIPAM.
 func (o LookupSystemDhcpServerResultOutput) DhcpSettingsFromFortiipam() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.DhcpSettingsFromFortiipam }).(pulumi.StringOutput)
 }
 
-// DNS server 1.
 func (o LookupSystemDhcpServerResultOutput) DnsServer1() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.DnsServer1 }).(pulumi.StringOutput)
 }
 
-// DNS server 2.
 func (o LookupSystemDhcpServerResultOutput) DnsServer2() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.DnsServer2 }).(pulumi.StringOutput)
 }
 
-// DNS server 3.
 func (o LookupSystemDhcpServerResultOutput) DnsServer3() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.DnsServer3 }).(pulumi.StringOutput)
 }
 
-// DNS server 4.
 func (o LookupSystemDhcpServerResultOutput) DnsServer4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.DnsServer4 }).(pulumi.StringOutput)
 }
 
-// Options for assigning DNS servers to DHCP clients.
 func (o LookupSystemDhcpServerResultOutput) DnsService() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.DnsService }).(pulumi.StringOutput)
 }
 
-// Domain name suffix for the IP addresses that the DHCP server assigns to clients.
 func (o LookupSystemDhcpServerResultOutput) Domain() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.Domain }).(pulumi.StringOutput)
 }
 
-// Exclude one or more ranges of IP addresses from being assigned to clients. The structure of `excludeRange` block is documented below.
 func (o LookupSystemDhcpServerResultOutput) ExcludeRanges() GetSystemDhcpServerExcludeRangeArrayOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) []GetSystemDhcpServerExcludeRange { return v.ExcludeRanges }).(GetSystemDhcpServerExcludeRangeArrayOutput)
 }
 
-// Name of the boot file on the TFTP server.
 func (o LookupSystemDhcpServerResultOutput) Filename() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.Filename }).(pulumi.StringOutput)
 }
 
-// Enable/disable FortiClient-On-Net service for this DHCP server.
 func (o LookupSystemDhcpServerResultOutput) ForticlientOnNetStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.ForticlientOnNetStatus }).(pulumi.StringOutput)
 }
 
-// ID.
 func (o LookupSystemDhcpServerResultOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) int { return v.Fosid }).(pulumi.IntOutput)
 }
@@ -296,107 +218,86 @@ func (o LookupSystemDhcpServerResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// DHCP server can assign IP configurations to clients connected to this interface.
 func (o LookupSystemDhcpServerResultOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.Interface }).(pulumi.StringOutput)
 }
 
-// Method used to assign client IP.
 func (o LookupSystemDhcpServerResultOutput) IpMode() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.IpMode }).(pulumi.StringOutput)
 }
 
-// DHCP IP range configuration. The structure of `ipRange` block is documented below.
 func (o LookupSystemDhcpServerResultOutput) IpRanges() GetSystemDhcpServerIpRangeArrayOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) []GetSystemDhcpServerIpRange { return v.IpRanges }).(GetSystemDhcpServerIpRangeArrayOutput)
 }
 
-// DHCP over IPsec leases expire this many seconds after tunnel down (0 to disable forced-expiry).
 func (o LookupSystemDhcpServerResultOutput) IpsecLeaseHold() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) int { return v.IpsecLeaseHold }).(pulumi.IntOutput)
 }
 
-// Lease time in seconds, 0 means unlimited.
 func (o LookupSystemDhcpServerResultOutput) LeaseTime() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) int { return v.LeaseTime }).(pulumi.IntOutput)
 }
 
-// MAC access control default action (allow or block assigning IP settings).
 func (o LookupSystemDhcpServerResultOutput) MacAclDefaultAction() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.MacAclDefaultAction }).(pulumi.StringOutput)
 }
 
-// Netmask assigned by the DHCP server.
 func (o LookupSystemDhcpServerResultOutput) Netmask() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.Netmask }).(pulumi.StringOutput)
 }
 
-// IP address of a server (for example, a TFTP sever) that DHCP clients can download a boot file from.
 func (o LookupSystemDhcpServerResultOutput) NextServer() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.NextServer }).(pulumi.StringOutput)
 }
 
-// NTP server 1.
 func (o LookupSystemDhcpServerResultOutput) NtpServer1() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.NtpServer1 }).(pulumi.StringOutput)
 }
 
-// NTP server 2.
 func (o LookupSystemDhcpServerResultOutput) NtpServer2() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.NtpServer2 }).(pulumi.StringOutput)
 }
 
-// NTP server 3.
 func (o LookupSystemDhcpServerResultOutput) NtpServer3() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.NtpServer3 }).(pulumi.StringOutput)
 }
 
-// Options for assigning Network Time Protocol (NTP) servers to DHCP clients.
 func (o LookupSystemDhcpServerResultOutput) NtpService() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.NtpService }).(pulumi.StringOutput)
 }
 
-// DHCP options. The structure of `options` block is documented below.
 func (o LookupSystemDhcpServerResultOutput) Options() GetSystemDhcpServerOptionArrayOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) []GetSystemDhcpServerOption { return v.Options }).(GetSystemDhcpServerOptionArrayOutput)
 }
 
-// Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reservedAddress` block is documented below.
 func (o LookupSystemDhcpServerResultOutput) ReservedAddresses() GetSystemDhcpServerReservedAddressArrayOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) []GetSystemDhcpServerReservedAddress { return v.ReservedAddresses }).(GetSystemDhcpServerReservedAddressArrayOutput)
 }
 
-// DHCP server can be a normal DHCP server or an IPsec DHCP server.
 func (o LookupSystemDhcpServerResultOutput) ServerType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.ServerType }).(pulumi.StringOutput)
 }
 
-// Enable/disable this DHCP configuration.
 func (o LookupSystemDhcpServerResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// TFTP server.
 func (o LookupSystemDhcpServerResultOutput) TftpServers() GetSystemDhcpServerTftpServerArrayOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) []GetSystemDhcpServerTftpServer { return v.TftpServers }).(GetSystemDhcpServerTftpServerArrayOutput)
 }
 
-// Select the time zone to be assigned to DHCP clients.
 func (o LookupSystemDhcpServerResultOutput) Timezone() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.Timezone }).(pulumi.StringOutput)
 }
 
-// Options for the DHCP server to set the client's time zone.
 func (o LookupSystemDhcpServerResultOutput) TimezoneOption() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.TimezoneOption }).(pulumi.StringOutput)
 }
 
-// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served.
 func (o LookupSystemDhcpServerResultOutput) VciMatch() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.VciMatch }).(pulumi.StringOutput)
 }
 
-// VCI strings.
 func (o LookupSystemDhcpServerResultOutput) VciStrings() GetSystemDhcpServerVciStringArrayOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) []GetSystemDhcpServerVciString { return v.VciStrings }).(GetSystemDhcpServerVciStringArrayOutput)
 }
@@ -405,32 +306,26 @@ func (o LookupSystemDhcpServerResultOutput) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-// WiFi Access Controller 1 IP address (DHCP option 138, RFC 5417).
 func (o LookupSystemDhcpServerResultOutput) WifiAc1() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.WifiAc1 }).(pulumi.StringOutput)
 }
 
-// WiFi Access Controller 2 IP address (DHCP option 138, RFC 5417).
 func (o LookupSystemDhcpServerResultOutput) WifiAc2() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.WifiAc2 }).(pulumi.StringOutput)
 }
 
-// WiFi Access Controller 3 IP address (DHCP option 138, RFC 5417).
 func (o LookupSystemDhcpServerResultOutput) WifiAc3() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.WifiAc3 }).(pulumi.StringOutput)
 }
 
-// Options for assigning WiFi Access Controllers to DHCP clients
 func (o LookupSystemDhcpServerResultOutput) WifiAcService() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.WifiAcService }).(pulumi.StringOutput)
 }
 
-// WINS server 1.
 func (o LookupSystemDhcpServerResultOutput) WinsServer1() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.WinsServer1 }).(pulumi.StringOutput)
 }
 
-// WINS server 2.
 func (o LookupSystemDhcpServerResultOutput) WinsServer2() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.WinsServer2 }).(pulumi.StringOutput)
 }

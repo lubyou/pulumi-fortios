@@ -10,77 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// SSH proxy settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallSshSetting(ctx, "trname", &fortios.FirewallSshSettingArgs{
-// 			Caname:              pulumi.String("Fortinet_SSH_CA"),
-// 			HostTrustedChecking: pulumi.String("enable"),
-// 			HostkeyDsa1024:      pulumi.String("Fortinet_SSH_DSA1024"),
-// 			HostkeyEcdsa256:     pulumi.String("Fortinet_SSH_ECDSA256"),
-// 			HostkeyEcdsa384:     pulumi.String("Fortinet_SSH_ECDSA384"),
-// 			HostkeyEcdsa521:     pulumi.String("Fortinet_SSH_ECDSA521"),
-// 			HostkeyEd25519:      pulumi.String("Fortinet_SSH_ED25519"),
-// 			HostkeyRsa2048:      pulumi.String("Fortinet_SSH_RSA2048"),
-// 			UntrustedCaname:     pulumi.String("Fortinet_SSH_CA_Untrusted"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// FirewallSsh Setting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSshSetting:FirewallSshSetting labelname FirewallSshSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallSshSetting:FirewallSshSetting labelname FirewallSshSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallSshSetting struct {
 	pulumi.CustomResourceState
 
-	// CA certificate used by SSH Inspection.
-	Caname pulumi.StringOutput `pulumi:"caname"`
-	// Enable/disable host trusted checking. Valid values: `enable`, `disable`.
-	HostTrustedChecking pulumi.StringOutput `pulumi:"hostTrustedChecking"`
-	// DSA certificate used by SSH proxy.
-	HostkeyDsa1024 pulumi.StringOutput `pulumi:"hostkeyDsa1024"`
-	// ECDSA nid256 certificate used by SSH proxy.
-	HostkeyEcdsa256 pulumi.StringOutput `pulumi:"hostkeyEcdsa256"`
-	// ECDSA nid384 certificate used by SSH proxy.
-	HostkeyEcdsa384 pulumi.StringOutput `pulumi:"hostkeyEcdsa384"`
-	// ECDSA nid384 certificate used by SSH proxy.
-	HostkeyEcdsa521 pulumi.StringOutput `pulumi:"hostkeyEcdsa521"`
-	// ED25519 hostkey used by SSH proxy.
-	HostkeyEd25519 pulumi.StringOutput `pulumi:"hostkeyEd25519"`
-	// RSA certificate used by SSH proxy.
-	HostkeyRsa2048 pulumi.StringOutput `pulumi:"hostkeyRsa2048"`
-	// Untrusted CA certificate used by SSH Inspection.
-	UntrustedCaname pulumi.StringOutput `pulumi:"untrustedCaname"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Caname              pulumi.StringOutput    `pulumi:"caname"`
+	HostTrustedChecking pulumi.StringOutput    `pulumi:"hostTrustedChecking"`
+	HostkeyDsa1024      pulumi.StringOutput    `pulumi:"hostkeyDsa1024"`
+	HostkeyEcdsa256     pulumi.StringOutput    `pulumi:"hostkeyEcdsa256"`
+	HostkeyEcdsa384     pulumi.StringOutput    `pulumi:"hostkeyEcdsa384"`
+	HostkeyEcdsa521     pulumi.StringOutput    `pulumi:"hostkeyEcdsa521"`
+	HostkeyEd25519      pulumi.StringOutput    `pulumi:"hostkeyEd25519"`
+	HostkeyRsa2048      pulumi.StringOutput    `pulumi:"hostkeyRsa2048"`
+	UntrustedCaname     pulumi.StringOutput    `pulumi:"untrustedCaname"`
+	Vdomparam           pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallSshSetting registers a new resource with the given unique name, arguments, and options.
@@ -113,49 +55,29 @@ func GetFirewallSshSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallSshSetting resources.
 type firewallSshSettingState struct {
-	// CA certificate used by SSH Inspection.
-	Caname *string `pulumi:"caname"`
-	// Enable/disable host trusted checking. Valid values: `enable`, `disable`.
+	Caname              *string `pulumi:"caname"`
 	HostTrustedChecking *string `pulumi:"hostTrustedChecking"`
-	// DSA certificate used by SSH proxy.
-	HostkeyDsa1024 *string `pulumi:"hostkeyDsa1024"`
-	// ECDSA nid256 certificate used by SSH proxy.
-	HostkeyEcdsa256 *string `pulumi:"hostkeyEcdsa256"`
-	// ECDSA nid384 certificate used by SSH proxy.
-	HostkeyEcdsa384 *string `pulumi:"hostkeyEcdsa384"`
-	// ECDSA nid384 certificate used by SSH proxy.
-	HostkeyEcdsa521 *string `pulumi:"hostkeyEcdsa521"`
-	// ED25519 hostkey used by SSH proxy.
-	HostkeyEd25519 *string `pulumi:"hostkeyEd25519"`
-	// RSA certificate used by SSH proxy.
-	HostkeyRsa2048 *string `pulumi:"hostkeyRsa2048"`
-	// Untrusted CA certificate used by SSH Inspection.
-	UntrustedCaname *string `pulumi:"untrustedCaname"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	HostkeyDsa1024      *string `pulumi:"hostkeyDsa1024"`
+	HostkeyEcdsa256     *string `pulumi:"hostkeyEcdsa256"`
+	HostkeyEcdsa384     *string `pulumi:"hostkeyEcdsa384"`
+	HostkeyEcdsa521     *string `pulumi:"hostkeyEcdsa521"`
+	HostkeyEd25519      *string `pulumi:"hostkeyEd25519"`
+	HostkeyRsa2048      *string `pulumi:"hostkeyRsa2048"`
+	UntrustedCaname     *string `pulumi:"untrustedCaname"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 type FirewallSshSettingState struct {
-	// CA certificate used by SSH Inspection.
-	Caname pulumi.StringPtrInput
-	// Enable/disable host trusted checking. Valid values: `enable`, `disable`.
+	Caname              pulumi.StringPtrInput
 	HostTrustedChecking pulumi.StringPtrInput
-	// DSA certificate used by SSH proxy.
-	HostkeyDsa1024 pulumi.StringPtrInput
-	// ECDSA nid256 certificate used by SSH proxy.
-	HostkeyEcdsa256 pulumi.StringPtrInput
-	// ECDSA nid384 certificate used by SSH proxy.
-	HostkeyEcdsa384 pulumi.StringPtrInput
-	// ECDSA nid384 certificate used by SSH proxy.
-	HostkeyEcdsa521 pulumi.StringPtrInput
-	// ED25519 hostkey used by SSH proxy.
-	HostkeyEd25519 pulumi.StringPtrInput
-	// RSA certificate used by SSH proxy.
-	HostkeyRsa2048 pulumi.StringPtrInput
-	// Untrusted CA certificate used by SSH Inspection.
-	UntrustedCaname pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HostkeyDsa1024      pulumi.StringPtrInput
+	HostkeyEcdsa256     pulumi.StringPtrInput
+	HostkeyEcdsa384     pulumi.StringPtrInput
+	HostkeyEcdsa521     pulumi.StringPtrInput
+	HostkeyEd25519      pulumi.StringPtrInput
+	HostkeyRsa2048      pulumi.StringPtrInput
+	UntrustedCaname     pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallSshSettingState) ElementType() reflect.Type {
@@ -163,50 +85,30 @@ func (FirewallSshSettingState) ElementType() reflect.Type {
 }
 
 type firewallSshSettingArgs struct {
-	// CA certificate used by SSH Inspection.
-	Caname *string `pulumi:"caname"`
-	// Enable/disable host trusted checking. Valid values: `enable`, `disable`.
+	Caname              *string `pulumi:"caname"`
 	HostTrustedChecking *string `pulumi:"hostTrustedChecking"`
-	// DSA certificate used by SSH proxy.
-	HostkeyDsa1024 *string `pulumi:"hostkeyDsa1024"`
-	// ECDSA nid256 certificate used by SSH proxy.
-	HostkeyEcdsa256 *string `pulumi:"hostkeyEcdsa256"`
-	// ECDSA nid384 certificate used by SSH proxy.
-	HostkeyEcdsa384 *string `pulumi:"hostkeyEcdsa384"`
-	// ECDSA nid384 certificate used by SSH proxy.
-	HostkeyEcdsa521 *string `pulumi:"hostkeyEcdsa521"`
-	// ED25519 hostkey used by SSH proxy.
-	HostkeyEd25519 *string `pulumi:"hostkeyEd25519"`
-	// RSA certificate used by SSH proxy.
-	HostkeyRsa2048 *string `pulumi:"hostkeyRsa2048"`
-	// Untrusted CA certificate used by SSH Inspection.
-	UntrustedCaname *string `pulumi:"untrustedCaname"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	HostkeyDsa1024      *string `pulumi:"hostkeyDsa1024"`
+	HostkeyEcdsa256     *string `pulumi:"hostkeyEcdsa256"`
+	HostkeyEcdsa384     *string `pulumi:"hostkeyEcdsa384"`
+	HostkeyEcdsa521     *string `pulumi:"hostkeyEcdsa521"`
+	HostkeyEd25519      *string `pulumi:"hostkeyEd25519"`
+	HostkeyRsa2048      *string `pulumi:"hostkeyRsa2048"`
+	UntrustedCaname     *string `pulumi:"untrustedCaname"`
+	Vdomparam           *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallSshSetting resource.
 type FirewallSshSettingArgs struct {
-	// CA certificate used by SSH Inspection.
-	Caname pulumi.StringPtrInput
-	// Enable/disable host trusted checking. Valid values: `enable`, `disable`.
+	Caname              pulumi.StringPtrInput
 	HostTrustedChecking pulumi.StringPtrInput
-	// DSA certificate used by SSH proxy.
-	HostkeyDsa1024 pulumi.StringPtrInput
-	// ECDSA nid256 certificate used by SSH proxy.
-	HostkeyEcdsa256 pulumi.StringPtrInput
-	// ECDSA nid384 certificate used by SSH proxy.
-	HostkeyEcdsa384 pulumi.StringPtrInput
-	// ECDSA nid384 certificate used by SSH proxy.
-	HostkeyEcdsa521 pulumi.StringPtrInput
-	// ED25519 hostkey used by SSH proxy.
-	HostkeyEd25519 pulumi.StringPtrInput
-	// RSA certificate used by SSH proxy.
-	HostkeyRsa2048 pulumi.StringPtrInput
-	// Untrusted CA certificate used by SSH Inspection.
-	UntrustedCaname pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HostkeyDsa1024      pulumi.StringPtrInput
+	HostkeyEcdsa256     pulumi.StringPtrInput
+	HostkeyEcdsa384     pulumi.StringPtrInput
+	HostkeyEcdsa521     pulumi.StringPtrInput
+	HostkeyEd25519      pulumi.StringPtrInput
+	HostkeyRsa2048      pulumi.StringPtrInput
+	UntrustedCaname     pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallSshSettingArgs) ElementType() reflect.Type {
@@ -235,7 +137,7 @@ func (i *FirewallSshSetting) ToFirewallSshSettingOutputWithContext(ctx context.C
 // FirewallSshSettingArrayInput is an input type that accepts FirewallSshSettingArray and FirewallSshSettingArrayOutput values.
 // You can construct a concrete instance of `FirewallSshSettingArrayInput` via:
 //
-//          FirewallSshSettingArray{ FirewallSshSettingArgs{...} }
+//	FirewallSshSettingArray{ FirewallSshSettingArgs{...} }
 type FirewallSshSettingArrayInput interface {
 	pulumi.Input
 
@@ -260,7 +162,7 @@ func (i FirewallSshSettingArray) ToFirewallSshSettingArrayOutputWithContext(ctx 
 // FirewallSshSettingMapInput is an input type that accepts FirewallSshSettingMap and FirewallSshSettingMapOutput values.
 // You can construct a concrete instance of `FirewallSshSettingMapInput` via:
 //
-//          FirewallSshSettingMap{ "key": FirewallSshSettingArgs{...} }
+//	FirewallSshSettingMap{ "key": FirewallSshSettingArgs{...} }
 type FirewallSshSettingMapInput interface {
 	pulumi.Input
 
@@ -294,6 +196,46 @@ func (o FirewallSshSettingOutput) ToFirewallSshSettingOutput() FirewallSshSettin
 
 func (o FirewallSshSettingOutput) ToFirewallSshSettingOutputWithContext(ctx context.Context) FirewallSshSettingOutput {
 	return o
+}
+
+func (o FirewallSshSettingOutput) Caname() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshSetting) pulumi.StringOutput { return v.Caname }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshSettingOutput) HostTrustedChecking() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshSetting) pulumi.StringOutput { return v.HostTrustedChecking }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshSettingOutput) HostkeyDsa1024() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshSetting) pulumi.StringOutput { return v.HostkeyDsa1024 }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshSettingOutput) HostkeyEcdsa256() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshSetting) pulumi.StringOutput { return v.HostkeyEcdsa256 }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshSettingOutput) HostkeyEcdsa384() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshSetting) pulumi.StringOutput { return v.HostkeyEcdsa384 }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshSettingOutput) HostkeyEcdsa521() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshSetting) pulumi.StringOutput { return v.HostkeyEcdsa521 }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshSettingOutput) HostkeyEd25519() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshSetting) pulumi.StringOutput { return v.HostkeyEd25519 }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshSettingOutput) HostkeyRsa2048() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshSetting) pulumi.StringOutput { return v.HostkeyRsa2048 }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshSettingOutput) UntrustedCaname() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSshSetting) pulumi.StringOutput { return v.UntrustedCaname }).(pulumi.StringOutput)
+}
+
+func (o FirewallSshSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSshSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallSshSettingArrayOutput struct{ *pulumi.OutputState }

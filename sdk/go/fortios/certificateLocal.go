@@ -7,43 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Local keys and certificates.
-//
-// By design considerations, the feature is using the JSONGenericAPI resource as documented below.
-//
-// ## Example
-//
-// ### Delete Certificate:
-// ```go
-// package main
-//
-// import (
-// 	"fmt"
-//
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAutoScript(ctx, "trname1", &fortios.SystemAutoScriptArgs{
-// 			Interval:   pulumi.Int(1),
-// 			OutputSize: pulumi.Int(10),
-// 			Repeat:     pulumi.Int(1),
-// 			Script:     pulumi.String(fmt.Sprintf("%v%v%v%v", "config vpn certificate local\n", "delete testcer\n", "end\n", "\n")),
-// 			Start:      pulumi.String("auto"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type CertificateLocal struct {
 	pulumi.CustomResourceState
 
@@ -70,6 +37,7 @@ type CertificateLocal struct {
 	NameEncoding              pulumi.StringOutput    `pulumi:"nameEncoding"`
 	Password                  pulumi.StringPtrOutput `pulumi:"password"`
 	PrivateKey                pulumi.StringOutput    `pulumi:"privateKey"`
+	PrivateKeyRetain          pulumi.StringOutput    `pulumi:"privateKeyRetain"`
 	Range                     pulumi.StringOutput    `pulumi:"range"`
 	ScepPassword              pulumi.StringPtrOutput `pulumi:"scepPassword"`
 	ScepUrl                   pulumi.StringOutput    `pulumi:"scepUrl"`
@@ -89,6 +57,21 @@ func NewCertificateLocal(ctx *pulumi.Context,
 	if args.PrivateKey == nil {
 		return nil, errors.New("invalid value for required argument 'PrivateKey'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	if args.PrivateKey != nil {
+		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringInput)
+	}
+	if args.ScepPassword != nil {
+		args.ScepPassword = pulumi.ToSecret(args.ScepPassword).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+		"privateKey",
+		"scepPassword",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource CertificateLocal
 	err := ctx.RegisterResource("fortios:index/certificateLocal:CertificateLocal", name, args, &resource, opts...)
@@ -135,6 +118,7 @@ type certificateLocalState struct {
 	NameEncoding              *string `pulumi:"nameEncoding"`
 	Password                  *string `pulumi:"password"`
 	PrivateKey                *string `pulumi:"privateKey"`
+	PrivateKeyRetain          *string `pulumi:"privateKeyRetain"`
 	Range                     *string `pulumi:"range"`
 	ScepPassword              *string `pulumi:"scepPassword"`
 	ScepUrl                   *string `pulumi:"scepUrl"`
@@ -168,6 +152,7 @@ type CertificateLocalState struct {
 	NameEncoding              pulumi.StringPtrInput
 	Password                  pulumi.StringPtrInput
 	PrivateKey                pulumi.StringPtrInput
+	PrivateKeyRetain          pulumi.StringPtrInput
 	Range                     pulumi.StringPtrInput
 	ScepPassword              pulumi.StringPtrInput
 	ScepUrl                   pulumi.StringPtrInput
@@ -205,6 +190,7 @@ type certificateLocalArgs struct {
 	NameEncoding              *string `pulumi:"nameEncoding"`
 	Password                  *string `pulumi:"password"`
 	PrivateKey                string  `pulumi:"privateKey"`
+	PrivateKeyRetain          *string `pulumi:"privateKeyRetain"`
 	Range                     *string `pulumi:"range"`
 	ScepPassword              *string `pulumi:"scepPassword"`
 	ScepUrl                   *string `pulumi:"scepUrl"`
@@ -239,6 +225,7 @@ type CertificateLocalArgs struct {
 	NameEncoding              pulumi.StringPtrInput
 	Password                  pulumi.StringPtrInput
 	PrivateKey                pulumi.StringInput
+	PrivateKeyRetain          pulumi.StringPtrInput
 	Range                     pulumi.StringPtrInput
 	ScepPassword              pulumi.StringPtrInput
 	ScepUrl                   pulumi.StringPtrInput
@@ -274,7 +261,7 @@ func (i *CertificateLocal) ToCertificateLocalOutputWithContext(ctx context.Conte
 // CertificateLocalArrayInput is an input type that accepts CertificateLocalArray and CertificateLocalArrayOutput values.
 // You can construct a concrete instance of `CertificateLocalArrayInput` via:
 //
-//          CertificateLocalArray{ CertificateLocalArgs{...} }
+//	CertificateLocalArray{ CertificateLocalArgs{...} }
 type CertificateLocalArrayInput interface {
 	pulumi.Input
 
@@ -299,7 +286,7 @@ func (i CertificateLocalArray) ToCertificateLocalArrayOutputWithContext(ctx cont
 // CertificateLocalMapInput is an input type that accepts CertificateLocalMap and CertificateLocalMapOutput values.
 // You can construct a concrete instance of `CertificateLocalMapInput` via:
 //
-//          CertificateLocalMap{ "key": CertificateLocalArgs{...} }
+//	CertificateLocalMap{ "key": CertificateLocalArgs{...} }
 type CertificateLocalMapInput interface {
 	pulumi.Input
 
@@ -333,6 +320,130 @@ func (o CertificateLocalOutput) ToCertificateLocalOutput() CertificateLocalOutpu
 
 func (o CertificateLocalOutput) ToCertificateLocalOutputWithContext(ctx context.Context) CertificateLocalOutput {
 	return o
+}
+
+func (o CertificateLocalOutput) AcmeCaUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.AcmeCaUrl }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) AcmeDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.AcmeDomain }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) AcmeEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.AcmeEmail }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) AcmeRenewWindow() pulumi.IntOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.IntOutput { return v.AcmeRenewWindow }).(pulumi.IntOutput)
+}
+
+func (o CertificateLocalOutput) AcmeRsaKeySize() pulumi.IntOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.IntOutput { return v.AcmeRsaKeySize }).(pulumi.IntOutput)
+}
+
+func (o CertificateLocalOutput) AutoRegenerateDays() pulumi.IntOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.IntOutput { return v.AutoRegenerateDays }).(pulumi.IntOutput)
+}
+
+func (o CertificateLocalOutput) AutoRegenerateDaysWarning() pulumi.IntOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.IntOutput { return v.AutoRegenerateDaysWarning }).(pulumi.IntOutput)
+}
+
+func (o CertificateLocalOutput) CaIdentifier() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.CaIdentifier }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) Certificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) CmpPath() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.CmpPath }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) CmpRegenerationMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.CmpRegenerationMethod }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) CmpServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.CmpServer }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) CmpServerCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.CmpServerCert }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) Comments() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.Comments }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) Csr() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.Csr }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) EnrollProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.EnrollProtocol }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) IkeLocalid() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.IkeLocalid }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) IkeLocalidType() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.IkeLocalidType }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) LastUpdated() pulumi.IntOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.IntOutput { return v.LastUpdated }).(pulumi.IntOutput)
+}
+
+func (o CertificateLocalOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) NameEncoding() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.NameEncoding }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o CertificateLocalOutput) PrivateKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) PrivateKeyRetain() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.PrivateKeyRetain }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) Range() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.Range }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) ScepPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringPtrOutput { return v.ScepPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o CertificateLocalOutput) ScepUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.ScepUrl }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.Source }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type CertificateLocalArrayOutput struct{ *pulumi.OutputState }

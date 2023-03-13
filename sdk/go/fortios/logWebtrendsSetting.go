@@ -10,54 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Settings for WebTrends.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogWebtrendsSetting(ctx, "trname", &fortios.LogWebtrendsSettingArgs{
-// 			Status: pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// LogWebtrends Setting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logWebtrendsSetting:LogWebtrendsSetting labelname LogWebtrendsSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logWebtrendsSetting:LogWebtrendsSetting labelname LogWebtrendsSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogWebtrendsSetting struct {
 	pulumi.CustomResourceState
 
-	// Address of the remote WebTrends server.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// Enable/disable logging to WebTrends. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Server    pulumi.StringOutput    `pulumi:"server"`
+	Status    pulumi.StringOutput    `pulumi:"status"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -91,20 +48,14 @@ func GetLogWebtrendsSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogWebtrendsSetting resources.
 type logWebtrendsSettingState struct {
-	// Address of the remote WebTrends server.
-	Server *string `pulumi:"server"`
-	// Enable/disable logging to WebTrends. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Server    *string `pulumi:"server"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type LogWebtrendsSettingState struct {
-	// Address of the remote WebTrends server.
-	Server pulumi.StringPtrInput
-	// Enable/disable logging to WebTrends. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Server    pulumi.StringPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -113,21 +64,15 @@ func (LogWebtrendsSettingState) ElementType() reflect.Type {
 }
 
 type logWebtrendsSettingArgs struct {
-	// Address of the remote WebTrends server.
-	Server *string `pulumi:"server"`
-	// Enable/disable logging to WebTrends. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Server    *string `pulumi:"server"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogWebtrendsSetting resource.
 type LogWebtrendsSettingArgs struct {
-	// Address of the remote WebTrends server.
-	Server pulumi.StringPtrInput
-	// Enable/disable logging to WebTrends. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Server    pulumi.StringPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -157,7 +102,7 @@ func (i *LogWebtrendsSetting) ToLogWebtrendsSettingOutputWithContext(ctx context
 // LogWebtrendsSettingArrayInput is an input type that accepts LogWebtrendsSettingArray and LogWebtrendsSettingArrayOutput values.
 // You can construct a concrete instance of `LogWebtrendsSettingArrayInput` via:
 //
-//          LogWebtrendsSettingArray{ LogWebtrendsSettingArgs{...} }
+//	LogWebtrendsSettingArray{ LogWebtrendsSettingArgs{...} }
 type LogWebtrendsSettingArrayInput interface {
 	pulumi.Input
 
@@ -182,7 +127,7 @@ func (i LogWebtrendsSettingArray) ToLogWebtrendsSettingArrayOutputWithContext(ct
 // LogWebtrendsSettingMapInput is an input type that accepts LogWebtrendsSettingMap and LogWebtrendsSettingMapOutput values.
 // You can construct a concrete instance of `LogWebtrendsSettingMapInput` via:
 //
-//          LogWebtrendsSettingMap{ "key": LogWebtrendsSettingArgs{...} }
+//	LogWebtrendsSettingMap{ "key": LogWebtrendsSettingArgs{...} }
 type LogWebtrendsSettingMapInput interface {
 	pulumi.Input
 
@@ -216,6 +161,18 @@ func (o LogWebtrendsSettingOutput) ToLogWebtrendsSettingOutput() LogWebtrendsSet
 
 func (o LogWebtrendsSettingOutput) ToLogWebtrendsSettingOutputWithContext(ctx context.Context) LogWebtrendsSettingOutput {
 	return o
+}
+
+func (o LogWebtrendsSettingOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogWebtrendsSetting) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o LogWebtrendsSettingOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogWebtrendsSetting) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LogWebtrendsSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogWebtrendsSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type LogWebtrendsSettingArrayOutput struct{ *pulumi.OutputState }

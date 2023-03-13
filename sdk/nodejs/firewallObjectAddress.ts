@@ -4,61 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure firewall addresses used in firewall policies of FortiOS.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.FirewallAddress`, we recommend that you use the new resource.
- *
- * ## Example Usage
- * ### Iprange Address
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const s1 = new fortios.FirewallObjectAddress("s1", {
- *     comment: "dd",
- *     endIp: "2.0.0.0",
- *     startIp: "1.0.0.0",
- *     type: "iprange",
- * });
- * ```
- * ### Geography Address
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const s2 = new fortios.FirewallObjectAddress("s2", {
- *     comment: "dd",
- *     country: "AO",
- *     type: "geography",
- * });
- * ```
- * ### Fqdn Address
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const s3 = new fortios.FirewallObjectAddress("s3", {
- *     associatedInterface: "port4",
- *     comment: "dd",
- *     fqdn: "baid.com",
- *     showInAddressList: "disable",
- *     staticRouteConfigure: "enable",
- *     type: "fqdn",
- * });
- * ```
- * ### Ipmask Address
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const s4 = new fortios.FirewallObjectAddress("s4", {
- *     comment: "dd",
- *     subnet: "0.0.0.0 0.0.0.0",
- *     type: "ipmask",
- * });
- * ```
- */
 export class FirewallObjectAddress extends pulumi.CustomResource {
     /**
      * Get an existing FirewallObjectAddress resource's state with the given name, ID, and optional extra
@@ -87,49 +32,16 @@ export class FirewallObjectAddress extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallObjectAddress.__pulumiType;
     }
 
-    /**
-     * Network interface associated with address.
-     */
     public readonly associatedInterface!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * IP addresses associated to a specific country.
-     */
     public readonly country!: pulumi.Output<string>;
-    /**
-     * Final IP address (inclusive) in the range for the address.
-     */
     public readonly endIp!: pulumi.Output<string>;
-    /**
-     * Fully Qualified Domain Name address.
-     */
     public readonly fqdn!: pulumi.Output<string>;
-    /**
-     * Address name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable address visibility in the GUI. default is "enable".
-     */
     public readonly showInAddressList!: pulumi.Output<string>;
-    /**
-     * First IP address (inclusive) in the range for the address.
-     */
     public readonly startIp!: pulumi.Output<string>;
-    /**
-     * Enable/disable use of this address in the static route configuration. default is "disable".
-     */
     public readonly staticRouteConfigure!: pulumi.Output<string>;
-    /**
-     * IP address and subnet mask of address.
-     */
     public readonly subnet!: pulumi.Output<string>;
-    /**
-     * Type of address(Support ipmask, iprange, fqdn and geography).
-     */
     public readonly type!: pulumi.Output<string>;
 
     /**
@@ -182,49 +94,16 @@ export class FirewallObjectAddress extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallObjectAddress resources.
  */
 export interface FirewallObjectAddressState {
-    /**
-     * Network interface associated with address.
-     */
     associatedInterface?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * IP addresses associated to a specific country.
-     */
     country?: pulumi.Input<string>;
-    /**
-     * Final IP address (inclusive) in the range for the address.
-     */
     endIp?: pulumi.Input<string>;
-    /**
-     * Fully Qualified Domain Name address.
-     */
     fqdn?: pulumi.Input<string>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable address visibility in the GUI. default is "enable".
-     */
     showInAddressList?: pulumi.Input<string>;
-    /**
-     * First IP address (inclusive) in the range for the address.
-     */
     startIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of this address in the static route configuration. default is "disable".
-     */
     staticRouteConfigure?: pulumi.Input<string>;
-    /**
-     * IP address and subnet mask of address.
-     */
     subnet?: pulumi.Input<string>;
-    /**
-     * Type of address(Support ipmask, iprange, fqdn and geography).
-     */
     type?: pulumi.Input<string>;
 }
 
@@ -232,48 +111,15 @@ export interface FirewallObjectAddressState {
  * The set of arguments for constructing a FirewallObjectAddress resource.
  */
 export interface FirewallObjectAddressArgs {
-    /**
-     * Network interface associated with address.
-     */
     associatedInterface?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * IP addresses associated to a specific country.
-     */
     country?: pulumi.Input<string>;
-    /**
-     * Final IP address (inclusive) in the range for the address.
-     */
     endIp?: pulumi.Input<string>;
-    /**
-     * Fully Qualified Domain Name address.
-     */
     fqdn?: pulumi.Input<string>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable address visibility in the GUI. default is "enable".
-     */
     showInAddressList?: pulumi.Input<string>;
-    /**
-     * First IP address (inclusive) in the range for the address.
-     */
     startIp?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of this address in the static route configuration. default is "disable".
-     */
     staticRouteConfigure?: pulumi.Input<string>;
-    /**
-     * IP address and subnet mask of address.
-     */
     subnet?: pulumi.Input<string>;
-    /**
-     * Type of address(Support ipmask, iprange, fqdn and geography).
-     */
     type: pulumi.Input<string>;
 }

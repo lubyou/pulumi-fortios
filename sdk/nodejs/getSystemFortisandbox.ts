@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios system fortisandbox
- */
 export function getSystemFortisandbox(args?: GetSystemFortisandboxArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemFortisandboxResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemFortisandbox:GetSystemFortisandbox", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getSystemFortisandbox(args?: GetSystemFortisandboxArgs, opts?: p
  * A collection of arguments for invoking GetSystemFortisandbox.
  */
 export interface GetSystemFortisandboxArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -33,59 +24,29 @@ export interface GetSystemFortisandboxArgs {
  * A collection of values returned by GetSystemFortisandbox.
  */
 export interface GetSystemFortisandboxResult {
-    /**
-     * Notifier email address.
-     */
     readonly email: string;
-    /**
-     * Configure the level of SSL protection for secure communication with FortiSandbox.
-     */
     readonly encAlgorithm: string;
-    /**
-     * Enable/disable FortiSandbox Cloud.
-     */
     readonly forticloud: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Specify outgoing interface to reach server.
-     */
+    readonly inlineScan: string;
     readonly interface: string;
-    /**
-     * Specify how to select outgoing interface to reach server.
-     */
     readonly interfaceSelectMethod: string;
-    /**
-     * IPv4 or IPv6 address of the remote FortiSandbox.
-     */
     readonly server: string;
-    /**
-     * Source IP address for communications to FortiSandbox.
-     */
     readonly sourceIp: string;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
-     */
     readonly sslMinProtoVersion: string;
-    /**
-     * Enable/disable FortiSandbox.
-     */
     readonly status: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemFortisandboxOutput(args?: GetSystemFortisandboxOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemFortisandboxResult> {
-    return pulumi.output(args).apply(a => getSystemFortisandbox(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemFortisandbox(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemFortisandbox.
  */
 export interface GetSystemFortisandboxOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

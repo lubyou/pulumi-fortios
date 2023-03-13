@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure ARP table.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemArpTable("trname", {
- *     fosid: 11,
- *     interface: "port2",
- *     ip: "1.1.1.1",
- *     mac: "08:00:27:1c:a3:8b",
- * });
- * ```
- *
- * ## Import
- *
- * System ArpTable can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemArpTable:SystemArpTable labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemArpTable:SystemArpTable labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemArpTable extends pulumi.CustomResource {
     /**
      * Get an existing SystemArpTable resource's state with the given name, ID, and optional extra
@@ -65,25 +32,10 @@ export class SystemArpTable extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemArpTable.__pulumiType;
     }
 
-    /**
-     * Unique integer ID of the entry.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Interface name.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * IP address.
-     */
     public readonly ip!: pulumi.Output<string>;
-    /**
-     * MAC address.
-     */
     public readonly mac!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -133,25 +85,10 @@ export class SystemArpTable extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemArpTable resources.
  */
 export interface SystemArpTableState {
-    /**
-     * Unique integer ID of the entry.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Interface name.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * IP address.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * MAC address.
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -159,24 +96,9 @@ export interface SystemArpTableState {
  * The set of arguments for constructing a SystemArpTable resource.
  */
 export interface SystemArpTableArgs {
-    /**
-     * Unique integer ID of the entry.
-     */
     fosid: pulumi.Input<number>;
-    /**
-     * Interface name.
-     */
     interface: pulumi.Input<string>;
-    /**
-     * IP address.
-     */
     ip: pulumi.Input<string>;
-    /**
-     * MAC address.
-     */
     mac: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

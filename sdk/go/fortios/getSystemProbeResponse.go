@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios system proberesponse
 func LookupSystemProbeResponse(ctx *pulumi.Context, args *LookupSystemProbeResponseArgs, opts ...pulumi.InvokeOption) (*LookupSystemProbeResponseResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemProbeResponseResult
@@ -23,29 +22,21 @@ func LookupSystemProbeResponse(ctx *pulumi.Context, args *LookupSystemProbeRespo
 
 // A collection of arguments for invoking GetSystemProbeResponse.
 type LookupSystemProbeResponseArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemProbeResponse.
 type LookupSystemProbeResponseResult struct {
-	// Value to respond to the monitoring server.
 	HttpProbeValue string `pulumi:"httpProbeValue"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// SLA response mode.
-	Mode string `pulumi:"mode"`
-	// Twamp respondor password in authentication mode
-	Password string `pulumi:"password"`
-	// Port number to response.
-	Port int `pulumi:"port"`
-	// Twamp respondor security mode.
-	SecurityMode string `pulumi:"securityMode"`
-	// An inactivity timer for a twamp test session.
-	Timeout int `pulumi:"timeout"`
-	// Mode for TWAMP packet TTL modification.
-	TtlMode   string  `pulumi:"ttlMode"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id           string  `pulumi:"id"`
+	Mode         string  `pulumi:"mode"`
+	Password     string  `pulumi:"password"`
+	Port         int     `pulumi:"port"`
+	SecurityMode string  `pulumi:"securityMode"`
+	Timeout      int     `pulumi:"timeout"`
+	TtlMode      string  `pulumi:"ttlMode"`
+	Vdomparam    *string `pulumi:"vdomparam"`
 }
 
 func LookupSystemProbeResponseOutput(ctx *pulumi.Context, args LookupSystemProbeResponseOutputArgs, opts ...pulumi.InvokeOption) LookupSystemProbeResponseResultOutput {
@@ -63,7 +54,6 @@ func LookupSystemProbeResponseOutput(ctx *pulumi.Context, args LookupSystemProbe
 
 // A collection of arguments for invoking GetSystemProbeResponse.
 type LookupSystemProbeResponseOutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +76,6 @@ func (o LookupSystemProbeResponseResultOutput) ToLookupSystemProbeResponseResult
 	return o
 }
 
-// Value to respond to the monitoring server.
 func (o LookupSystemProbeResponseResultOutput) HttpProbeValue() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemProbeResponseResult) string { return v.HttpProbeValue }).(pulumi.StringOutput)
 }
@@ -96,32 +85,26 @@ func (o LookupSystemProbeResponseResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemProbeResponseResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// SLA response mode.
 func (o LookupSystemProbeResponseResultOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemProbeResponseResult) string { return v.Mode }).(pulumi.StringOutput)
 }
 
-// Twamp respondor password in authentication mode
 func (o LookupSystemProbeResponseResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemProbeResponseResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// Port number to response.
 func (o LookupSystemProbeResponseResultOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemProbeResponseResult) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// Twamp respondor security mode.
 func (o LookupSystemProbeResponseResultOutput) SecurityMode() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemProbeResponseResult) string { return v.SecurityMode }).(pulumi.StringOutput)
 }
 
-// An inactivity timer for a twamp test session.
 func (o LookupSystemProbeResponseResultOutput) Timeout() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemProbeResponseResult) int { return v.Timeout }).(pulumi.IntOutput)
 }
 
-// Mode for TWAMP packet TTL modification.
 func (o LookupSystemProbeResponseResultOutput) TtlMode() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemProbeResponseResult) string { return v.TtlMode }).(pulumi.StringOutput)
 }

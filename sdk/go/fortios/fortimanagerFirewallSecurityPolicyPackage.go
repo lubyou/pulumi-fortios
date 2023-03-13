@@ -10,43 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports Create/Read/Update/Delete firewall security policypackage on FortiManager which could be installed to the FortiGate later
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerFirewallSecurityPolicyPackage(ctx, "test1", &fortios.FortimanagerFirewallSecurityPolicyPackageArgs{
-// 			Target: pulumi.String("FGVM64-test"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerFirewallSecurityPolicyPackage struct {
 	pulumi.CustomResourceState
 
-	// Source ADOM name. default is 'root'
-	Adom pulumi.StringPtrOutput `pulumi:"adom"`
-	// Inspection Mode. Enum:[flow, proxy]. default is 'flow'
+	Adom           pulumi.StringPtrOutput `pulumi:"adom"`
 	InspectionMode pulumi.StringPtrOutput `pulumi:"inspectionMode"`
-	// Security policy package name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// The installation target.
-	Target pulumi.StringPtrOutput `pulumi:"target"`
-	// Vdom of managed device. default is 'root'
-	Vdom pulumi.StringPtrOutput `pulumi:"vdom"`
+	Name           pulumi.StringOutput    `pulumi:"name"`
+	Target         pulumi.StringPtrOutput `pulumi:"target"`
+	Vdom           pulumi.StringPtrOutput `pulumi:"vdom"`
 }
 
 // NewFortimanagerFirewallSecurityPolicyPackage registers a new resource with the given unique name, arguments, and options.
@@ -79,29 +50,19 @@ func GetFortimanagerFirewallSecurityPolicyPackage(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerFirewallSecurityPolicyPackage resources.
 type fortimanagerFirewallSecurityPolicyPackageState struct {
-	// Source ADOM name. default is 'root'
-	Adom *string `pulumi:"adom"`
-	// Inspection Mode. Enum:[flow, proxy]. default is 'flow'
+	Adom           *string `pulumi:"adom"`
 	InspectionMode *string `pulumi:"inspectionMode"`
-	// Security policy package name.
-	Name *string `pulumi:"name"`
-	// The installation target.
-	Target *string `pulumi:"target"`
-	// Vdom of managed device. default is 'root'
-	Vdom *string `pulumi:"vdom"`
+	Name           *string `pulumi:"name"`
+	Target         *string `pulumi:"target"`
+	Vdom           *string `pulumi:"vdom"`
 }
 
 type FortimanagerFirewallSecurityPolicyPackageState struct {
-	// Source ADOM name. default is 'root'
-	Adom pulumi.StringPtrInput
-	// Inspection Mode. Enum:[flow, proxy]. default is 'flow'
+	Adom           pulumi.StringPtrInput
 	InspectionMode pulumi.StringPtrInput
-	// Security policy package name.
-	Name pulumi.StringPtrInput
-	// The installation target.
-	Target pulumi.StringPtrInput
-	// Vdom of managed device. default is 'root'
-	Vdom pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	Target         pulumi.StringPtrInput
+	Vdom           pulumi.StringPtrInput
 }
 
 func (FortimanagerFirewallSecurityPolicyPackageState) ElementType() reflect.Type {
@@ -109,30 +70,20 @@ func (FortimanagerFirewallSecurityPolicyPackageState) ElementType() reflect.Type
 }
 
 type fortimanagerFirewallSecurityPolicyPackageArgs struct {
-	// Source ADOM name. default is 'root'
-	Adom *string `pulumi:"adom"`
-	// Inspection Mode. Enum:[flow, proxy]. default is 'flow'
+	Adom           *string `pulumi:"adom"`
 	InspectionMode *string `pulumi:"inspectionMode"`
-	// Security policy package name.
-	Name *string `pulumi:"name"`
-	// The installation target.
-	Target *string `pulumi:"target"`
-	// Vdom of managed device. default is 'root'
-	Vdom *string `pulumi:"vdom"`
+	Name           *string `pulumi:"name"`
+	Target         *string `pulumi:"target"`
+	Vdom           *string `pulumi:"vdom"`
 }
 
 // The set of arguments for constructing a FortimanagerFirewallSecurityPolicyPackage resource.
 type FortimanagerFirewallSecurityPolicyPackageArgs struct {
-	// Source ADOM name. default is 'root'
-	Adom pulumi.StringPtrInput
-	// Inspection Mode. Enum:[flow, proxy]. default is 'flow'
+	Adom           pulumi.StringPtrInput
 	InspectionMode pulumi.StringPtrInput
-	// Security policy package name.
-	Name pulumi.StringPtrInput
-	// The installation target.
-	Target pulumi.StringPtrInput
-	// Vdom of managed device. default is 'root'
-	Vdom pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	Target         pulumi.StringPtrInput
+	Vdom           pulumi.StringPtrInput
 }
 
 func (FortimanagerFirewallSecurityPolicyPackageArgs) ElementType() reflect.Type {
@@ -161,7 +112,7 @@ func (i *FortimanagerFirewallSecurityPolicyPackage) ToFortimanagerFirewallSecuri
 // FortimanagerFirewallSecurityPolicyPackageArrayInput is an input type that accepts FortimanagerFirewallSecurityPolicyPackageArray and FortimanagerFirewallSecurityPolicyPackageArrayOutput values.
 // You can construct a concrete instance of `FortimanagerFirewallSecurityPolicyPackageArrayInput` via:
 //
-//          FortimanagerFirewallSecurityPolicyPackageArray{ FortimanagerFirewallSecurityPolicyPackageArgs{...} }
+//	FortimanagerFirewallSecurityPolicyPackageArray{ FortimanagerFirewallSecurityPolicyPackageArgs{...} }
 type FortimanagerFirewallSecurityPolicyPackageArrayInput interface {
 	pulumi.Input
 
@@ -186,7 +137,7 @@ func (i FortimanagerFirewallSecurityPolicyPackageArray) ToFortimanagerFirewallSe
 // FortimanagerFirewallSecurityPolicyPackageMapInput is an input type that accepts FortimanagerFirewallSecurityPolicyPackageMap and FortimanagerFirewallSecurityPolicyPackageMapOutput values.
 // You can construct a concrete instance of `FortimanagerFirewallSecurityPolicyPackageMapInput` via:
 //
-//          FortimanagerFirewallSecurityPolicyPackageMap{ "key": FortimanagerFirewallSecurityPolicyPackageArgs{...} }
+//	FortimanagerFirewallSecurityPolicyPackageMap{ "key": FortimanagerFirewallSecurityPolicyPackageArgs{...} }
 type FortimanagerFirewallSecurityPolicyPackageMapInput interface {
 	pulumi.Input
 
@@ -220,6 +171,26 @@ func (o FortimanagerFirewallSecurityPolicyPackageOutput) ToFortimanagerFirewallS
 
 func (o FortimanagerFirewallSecurityPolicyPackageOutput) ToFortimanagerFirewallSecurityPolicyPackageOutputWithContext(ctx context.Context) FortimanagerFirewallSecurityPolicyPackageOutput {
 	return o
+}
+
+func (o FortimanagerFirewallSecurityPolicyPackageOutput) Adom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallSecurityPolicyPackage) pulumi.StringPtrOutput { return v.Adom }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallSecurityPolicyPackageOutput) InspectionMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallSecurityPolicyPackage) pulumi.StringPtrOutput { return v.InspectionMode }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallSecurityPolicyPackageOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallSecurityPolicyPackage) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerFirewallSecurityPolicyPackageOutput) Target() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallSecurityPolicyPackage) pulumi.StringPtrOutput { return v.Target }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerFirewallSecurityPolicyPackageOutput) Vdom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerFirewallSecurityPolicyPackage) pulumi.StringPtrOutput { return v.Vdom }).(pulumi.StringPtrOutput)
 }
 
 type FortimanagerFirewallSecurityPolicyPackageArrayOutput struct{ *pulumi.OutputState }

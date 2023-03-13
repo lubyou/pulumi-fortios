@@ -10,29 +10,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPS rule setting.
-//
-// ## Import
-//
-// Ips RuleSettings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/ipsRuleSettings:IpsRuleSettings labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/ipsRuleSettings:IpsRuleSettings labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type IpsRuleSettings struct {
 	pulumi.CustomResourceState
 
-	// Rule ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -66,16 +47,12 @@ func GetIpsRuleSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IpsRuleSettings resources.
 type ipsRuleSettingsState struct {
-	// Rule ID.
-	Fosid *int `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type IpsRuleSettingsState struct {
-	// Rule ID.
-	Fosid pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -84,17 +61,13 @@ func (IpsRuleSettingsState) ElementType() reflect.Type {
 }
 
 type ipsRuleSettingsArgs struct {
-	// Rule ID.
-	Fosid *int `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a IpsRuleSettings resource.
 type IpsRuleSettingsArgs struct {
-	// Rule ID.
-	Fosid pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -124,7 +97,7 @@ func (i *IpsRuleSettings) ToIpsRuleSettingsOutputWithContext(ctx context.Context
 // IpsRuleSettingsArrayInput is an input type that accepts IpsRuleSettingsArray and IpsRuleSettingsArrayOutput values.
 // You can construct a concrete instance of `IpsRuleSettingsArrayInput` via:
 //
-//          IpsRuleSettingsArray{ IpsRuleSettingsArgs{...} }
+//	IpsRuleSettingsArray{ IpsRuleSettingsArgs{...} }
 type IpsRuleSettingsArrayInput interface {
 	pulumi.Input
 
@@ -149,7 +122,7 @@ func (i IpsRuleSettingsArray) ToIpsRuleSettingsArrayOutputWithContext(ctx contex
 // IpsRuleSettingsMapInput is an input type that accepts IpsRuleSettingsMap and IpsRuleSettingsMapOutput values.
 // You can construct a concrete instance of `IpsRuleSettingsMapInput` via:
 //
-//          IpsRuleSettingsMap{ "key": IpsRuleSettingsArgs{...} }
+//	IpsRuleSettingsMap{ "key": IpsRuleSettingsArgs{...} }
 type IpsRuleSettingsMapInput interface {
 	pulumi.Input
 
@@ -183,6 +156,14 @@ func (o IpsRuleSettingsOutput) ToIpsRuleSettingsOutput() IpsRuleSettingsOutput {
 
 func (o IpsRuleSettingsOutput) ToIpsRuleSettingsOutputWithContext(ctx context.Context) IpsRuleSettingsOutput {
 	return o
+}
+
+func (o IpsRuleSettingsOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsRuleSettings) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o IpsRuleSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsRuleSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type IpsRuleSettingsArrayOutput struct{ *pulumi.OutputState }

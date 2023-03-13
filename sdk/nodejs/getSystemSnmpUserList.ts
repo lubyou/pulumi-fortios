@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.SystemSnmpUser`.
- */
 export function getSystemSnmpUserList(args?: GetSystemSnmpUserListArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemSnmpUserListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemSnmpUserList:GetSystemSnmpUserList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getSystemSnmpUserList(args?: GetSystemSnmpUserListArgs, opts?: p
  */
 export interface GetSystemSnmpUserListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -40,15 +31,11 @@ export interface GetSystemSnmpUserListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.SystemSnmpUser`.
-     */
     readonly namelists: string[];
     readonly vdomparam?: string;
 }
-
 export function getSystemSnmpUserListOutput(args?: GetSystemSnmpUserListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemSnmpUserListResult> {
-    return pulumi.output(args).apply(a => getSystemSnmpUserList(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemSnmpUserList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getSystemSnmpUserListOutput(args?: GetSystemSnmpUserListOutputAr
  */
 export interface GetSystemSnmpUserListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

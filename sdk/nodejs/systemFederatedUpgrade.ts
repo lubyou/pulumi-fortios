@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Coordinate federated upgrades within the Security Fabric. Applies to FortiOS Version `>= 7.0.0`.
- *
- * ## Import
- *
- * System FederatedUpgrade can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemFederatedUpgrade:SystemFederatedUpgrade labelname SystemFederatedUpgrade
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemFederatedUpgrade:SystemFederatedUpgrade labelname SystemFederatedUpgrade
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemFederatedUpgrade extends pulumi.CustomResource {
     /**
      * Get an existing SystemFederatedUpgrade resource's state with the given name, ID, and optional extra
@@ -52,37 +34,13 @@ export class SystemFederatedUpgrade extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemFederatedUpgrade.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Serial number of the node to include.
-     */
     public readonly failureDevice!: pulumi.Output<string>;
-    /**
-     * Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
-     */
     public readonly failureReason!: pulumi.Output<string>;
-    /**
-     * The index of the next image to upgrade to.
-     */
     public readonly nextPathIndex!: pulumi.Output<number>;
-    /**
-     * Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
-     */
     public readonly nodeLists!: pulumi.Output<outputs.SystemFederatedUpgradeNodeList[] | undefined>;
-    /**
-     * Current status of the upgrade.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Unique identifier for this upgrade.
-     */
     public readonly upgradeId!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -126,37 +84,13 @@ export class SystemFederatedUpgrade extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemFederatedUpgrade resources.
  */
 export interface SystemFederatedUpgradeState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Serial number of the node to include.
-     */
     failureDevice?: pulumi.Input<string>;
-    /**
-     * Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
-     */
     failureReason?: pulumi.Input<string>;
-    /**
-     * The index of the next image to upgrade to.
-     */
     nextPathIndex?: pulumi.Input<number>;
-    /**
-     * Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
-     */
     nodeLists?: pulumi.Input<pulumi.Input<inputs.SystemFederatedUpgradeNodeList>[]>;
-    /**
-     * Current status of the upgrade.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Unique identifier for this upgrade.
-     */
     upgradeId?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -164,36 +98,12 @@ export interface SystemFederatedUpgradeState {
  * The set of arguments for constructing a SystemFederatedUpgrade resource.
  */
 export interface SystemFederatedUpgradeArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Serial number of the node to include.
-     */
     failureDevice?: pulumi.Input<string>;
-    /**
-     * Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
-     */
     failureReason?: pulumi.Input<string>;
-    /**
-     * The index of the next image to upgrade to.
-     */
     nextPathIndex?: pulumi.Input<number>;
-    /**
-     * Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
-     */
     nodeLists?: pulumi.Input<pulumi.Input<inputs.SystemFederatedUpgradeNodeList>[]>;
-    /**
-     * Current status of the upgrade.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Unique identifier for this upgrade.
-     */
     upgradeId?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,84 +10,39 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure explicit Web proxy settings.
-//
-// ## Import
-//
-// WebProxy Explicit can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webProxyExplicit:WebProxyExplicit labelname WebProxyExplicit
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webProxyExplicit:WebProxyExplicit labelname WebProxyExplicit
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebProxyExplicit struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
-	FtpIncomingPort pulumi.StringOutput `pulumi:"ftpIncomingPort"`
-	// Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
-	FtpOverHttp pulumi.StringOutput `pulumi:"ftpOverHttp"`
-	// Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
-	HttpIncomingPort pulumi.StringOutput `pulumi:"httpIncomingPort"`
-	// Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
-	HttpsIncomingPort pulumi.StringOutput `pulumi:"httpsIncomingPort"`
-	// Enable/disable sending the client a replacement message for HTTPS requests. Valid values: `enable`, `disable`.
-	HttpsReplacementMessage pulumi.StringOutput `pulumi:"httpsReplacementMessage"`
-	// Restrict the explicit HTTP proxy to only accept sessions from this IP address. An interface must have this IP address.
-	IncomingIp pulumi.StringOutput `pulumi:"incomingIp"`
-	// Restrict the explicit web proxy to only accept sessions from this IPv6 address. An interface must have this IPv6 address.
-	IncomingIp6 pulumi.StringOutput `pulumi:"incomingIp6"`
-	// Enable/disable allowing an IPv6 web proxy destination in policies and all IPv6 related entries in this command. Valid values: `enable`, `disable`.
-	Ipv6Status pulumi.StringOutput `pulumi:"ipv6Status"`
-	// Enable/disable displaying a replacement message when a server error is detected. Valid values: `enable`, `disable`.
-	MessageUponServerError pulumi.StringOutput `pulumi:"messageUponServerError"`
-	// Outgoing HTTP requests will have this IP address as their source address. An interface must have this IP address.
-	OutgoingIp pulumi.StringOutput `pulumi:"outgoingIp"`
-	// Outgoing HTTP requests will leave this IPv6. Multiple interfaces can be specified. Interfaces must have these IPv6 addresses.
-	OutgoingIp6 pulumi.StringOutput `pulumi:"outgoingIp6"`
-	// PAC file contents enclosed in quotes (maximum of 256K bytes).
-	PacFileData pulumi.StringOutput `pulumi:"pacFileData"`
-	// Pac file name.
-	PacFileName pulumi.StringOutput `pulumi:"pacFileName"`
-	// Port number that PAC traffic from client web browsers uses to connect to the explicit web proxy (0 - 65535, default = 0; use the same as HTTP).
-	PacFileServerPort pulumi.StringOutput `pulumi:"pacFileServerPort"`
-	// Enable/disable Proxy Auto-Configuration (PAC) for users of this explicit proxy profile. Valid values: `enable`, `disable`.
-	PacFileServerStatus pulumi.StringOutput `pulumi:"pacFileServerStatus"`
-	// PAC file access URL.
-	PacFileUrl pulumi.StringOutput `pulumi:"pacFileUrl"`
-	// PAC policies. The structure of `pacPolicy` block is documented below.
-	PacPolicies WebProxyExplicitPacPolicyArrayOutput `pulumi:"pacPolicies"`
-	// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
-	PrefDnsResult pulumi.StringOutput `pulumi:"prefDnsResult"`
-	// Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
-	Realm pulumi.StringOutput `pulumi:"realm"`
-	// Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
-	SecDefaultAction pulumi.StringOutput `pulumi:"secDefaultAction"`
-	// Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
-	Socks pulumi.StringOutput `pulumi:"socks"`
-	// Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
-	SocksIncomingPort pulumi.StringOutput `pulumi:"socksIncomingPort"`
-	// Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm pulumi.StringOutput `pulumi:"sslAlgorithm"`
-	// Enable/disable policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
-	StrictGuest pulumi.StringOutput `pulumi:"strictGuest"`
-	// Enable/disable logging timed-out authentication requests. Valid values: `enable`, `disable`.
-	TraceAuthNoRsp pulumi.StringOutput `pulumi:"traceAuthNoRsp"`
-	// Either reject unknown HTTP traffic as malformed or handle unknown HTTP traffic as best as the proxy server can.
-	UnknownHttpVersion pulumi.StringOutput `pulumi:"unknownHttpVersion"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable     pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	FtpIncomingPort         pulumi.StringOutput                  `pulumi:"ftpIncomingPort"`
+	FtpOverHttp             pulumi.StringOutput                  `pulumi:"ftpOverHttp"`
+	HttpIncomingPort        pulumi.StringOutput                  `pulumi:"httpIncomingPort"`
+	HttpsIncomingPort       pulumi.StringOutput                  `pulumi:"httpsIncomingPort"`
+	HttpsReplacementMessage pulumi.StringOutput                  `pulumi:"httpsReplacementMessage"`
+	IncomingIp              pulumi.StringOutput                  `pulumi:"incomingIp"`
+	IncomingIp6             pulumi.StringOutput                  `pulumi:"incomingIp6"`
+	Ipv6Status              pulumi.StringOutput                  `pulumi:"ipv6Status"`
+	MessageUponServerError  pulumi.StringOutput                  `pulumi:"messageUponServerError"`
+	OutgoingIp              pulumi.StringOutput                  `pulumi:"outgoingIp"`
+	OutgoingIp6             pulumi.StringOutput                  `pulumi:"outgoingIp6"`
+	PacFileData             pulumi.StringOutput                  `pulumi:"pacFileData"`
+	PacFileName             pulumi.StringOutput                  `pulumi:"pacFileName"`
+	PacFileServerPort       pulumi.StringOutput                  `pulumi:"pacFileServerPort"`
+	PacFileServerStatus     pulumi.StringOutput                  `pulumi:"pacFileServerStatus"`
+	PacFileThroughHttps     pulumi.StringOutput                  `pulumi:"pacFileThroughHttps"`
+	PacFileUrl              pulumi.StringOutput                  `pulumi:"pacFileUrl"`
+	PacPolicies             WebProxyExplicitPacPolicyArrayOutput `pulumi:"pacPolicies"`
+	PrefDnsResult           pulumi.StringOutput                  `pulumi:"prefDnsResult"`
+	Realm                   pulumi.StringOutput                  `pulumi:"realm"`
+	SecDefaultAction        pulumi.StringOutput                  `pulumi:"secDefaultAction"`
+	Socks                   pulumi.StringOutput                  `pulumi:"socks"`
+	SocksIncomingPort       pulumi.StringOutput                  `pulumi:"socksIncomingPort"`
+	SslAlgorithm            pulumi.StringOutput                  `pulumi:"sslAlgorithm"`
+	Status                  pulumi.StringOutput                  `pulumi:"status"`
+	StrictGuest             pulumi.StringOutput                  `pulumi:"strictGuest"`
+	TraceAuthNoRsp          pulumi.StringOutput                  `pulumi:"traceAuthNoRsp"`
+	UnknownHttpVersion      pulumi.StringOutput                  `pulumi:"unknownHttpVersion"`
+	Vdomparam               pulumi.StringPtrOutput               `pulumi:"vdomparam"`
 }
 
 // NewWebProxyExplicit registers a new resource with the given unique name, arguments, and options.
@@ -120,125 +75,69 @@ func GetWebProxyExplicit(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebProxyExplicit resources.
 type webProxyExplicitState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
-	FtpIncomingPort *string `pulumi:"ftpIncomingPort"`
-	// Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
-	FtpOverHttp *string `pulumi:"ftpOverHttp"`
-	// Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
-	HttpIncomingPort *string `pulumi:"httpIncomingPort"`
-	// Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
-	HttpsIncomingPort *string `pulumi:"httpsIncomingPort"`
-	// Enable/disable sending the client a replacement message for HTTPS requests. Valid values: `enable`, `disable`.
-	HttpsReplacementMessage *string `pulumi:"httpsReplacementMessage"`
-	// Restrict the explicit HTTP proxy to only accept sessions from this IP address. An interface must have this IP address.
-	IncomingIp *string `pulumi:"incomingIp"`
-	// Restrict the explicit web proxy to only accept sessions from this IPv6 address. An interface must have this IPv6 address.
-	IncomingIp6 *string `pulumi:"incomingIp6"`
-	// Enable/disable allowing an IPv6 web proxy destination in policies and all IPv6 related entries in this command. Valid values: `enable`, `disable`.
-	Ipv6Status *string `pulumi:"ipv6Status"`
-	// Enable/disable displaying a replacement message when a server error is detected. Valid values: `enable`, `disable`.
-	MessageUponServerError *string `pulumi:"messageUponServerError"`
-	// Outgoing HTTP requests will have this IP address as their source address. An interface must have this IP address.
-	OutgoingIp *string `pulumi:"outgoingIp"`
-	// Outgoing HTTP requests will leave this IPv6. Multiple interfaces can be specified. Interfaces must have these IPv6 addresses.
-	OutgoingIp6 *string `pulumi:"outgoingIp6"`
-	// PAC file contents enclosed in quotes (maximum of 256K bytes).
-	PacFileData *string `pulumi:"pacFileData"`
-	// Pac file name.
-	PacFileName *string `pulumi:"pacFileName"`
-	// Port number that PAC traffic from client web browsers uses to connect to the explicit web proxy (0 - 65535, default = 0; use the same as HTTP).
-	PacFileServerPort *string `pulumi:"pacFileServerPort"`
-	// Enable/disable Proxy Auto-Configuration (PAC) for users of this explicit proxy profile. Valid values: `enable`, `disable`.
-	PacFileServerStatus *string `pulumi:"pacFileServerStatus"`
-	// PAC file access URL.
-	PacFileUrl *string `pulumi:"pacFileUrl"`
-	// PAC policies. The structure of `pacPolicy` block is documented below.
-	PacPolicies []WebProxyExplicitPacPolicy `pulumi:"pacPolicies"`
-	// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
-	PrefDnsResult *string `pulumi:"prefDnsResult"`
-	// Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
-	Realm *string `pulumi:"realm"`
-	// Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
-	SecDefaultAction *string `pulumi:"secDefaultAction"`
-	// Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
-	Socks *string `pulumi:"socks"`
-	// Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
-	SocksIncomingPort *string `pulumi:"socksIncomingPort"`
-	// Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// Enable/disable policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
-	StrictGuest *string `pulumi:"strictGuest"`
-	// Enable/disable logging timed-out authentication requests. Valid values: `enable`, `disable`.
-	TraceAuthNoRsp *string `pulumi:"traceAuthNoRsp"`
-	// Either reject unknown HTTP traffic as malformed or handle unknown HTTP traffic as best as the proxy server can.
-	UnknownHttpVersion *string `pulumi:"unknownHttpVersion"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable     *string                     `pulumi:"dynamicSortSubtable"`
+	FtpIncomingPort         *string                     `pulumi:"ftpIncomingPort"`
+	FtpOverHttp             *string                     `pulumi:"ftpOverHttp"`
+	HttpIncomingPort        *string                     `pulumi:"httpIncomingPort"`
+	HttpsIncomingPort       *string                     `pulumi:"httpsIncomingPort"`
+	HttpsReplacementMessage *string                     `pulumi:"httpsReplacementMessage"`
+	IncomingIp              *string                     `pulumi:"incomingIp"`
+	IncomingIp6             *string                     `pulumi:"incomingIp6"`
+	Ipv6Status              *string                     `pulumi:"ipv6Status"`
+	MessageUponServerError  *string                     `pulumi:"messageUponServerError"`
+	OutgoingIp              *string                     `pulumi:"outgoingIp"`
+	OutgoingIp6             *string                     `pulumi:"outgoingIp6"`
+	PacFileData             *string                     `pulumi:"pacFileData"`
+	PacFileName             *string                     `pulumi:"pacFileName"`
+	PacFileServerPort       *string                     `pulumi:"pacFileServerPort"`
+	PacFileServerStatus     *string                     `pulumi:"pacFileServerStatus"`
+	PacFileThroughHttps     *string                     `pulumi:"pacFileThroughHttps"`
+	PacFileUrl              *string                     `pulumi:"pacFileUrl"`
+	PacPolicies             []WebProxyExplicitPacPolicy `pulumi:"pacPolicies"`
+	PrefDnsResult           *string                     `pulumi:"prefDnsResult"`
+	Realm                   *string                     `pulumi:"realm"`
+	SecDefaultAction        *string                     `pulumi:"secDefaultAction"`
+	Socks                   *string                     `pulumi:"socks"`
+	SocksIncomingPort       *string                     `pulumi:"socksIncomingPort"`
+	SslAlgorithm            *string                     `pulumi:"sslAlgorithm"`
+	Status                  *string                     `pulumi:"status"`
+	StrictGuest             *string                     `pulumi:"strictGuest"`
+	TraceAuthNoRsp          *string                     `pulumi:"traceAuthNoRsp"`
+	UnknownHttpVersion      *string                     `pulumi:"unknownHttpVersion"`
+	Vdomparam               *string                     `pulumi:"vdomparam"`
 }
 
 type WebProxyExplicitState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
-	FtpIncomingPort pulumi.StringPtrInput
-	// Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
-	FtpOverHttp pulumi.StringPtrInput
-	// Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
-	HttpIncomingPort pulumi.StringPtrInput
-	// Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
-	HttpsIncomingPort pulumi.StringPtrInput
-	// Enable/disable sending the client a replacement message for HTTPS requests. Valid values: `enable`, `disable`.
+	DynamicSortSubtable     pulumi.StringPtrInput
+	FtpIncomingPort         pulumi.StringPtrInput
+	FtpOverHttp             pulumi.StringPtrInput
+	HttpIncomingPort        pulumi.StringPtrInput
+	HttpsIncomingPort       pulumi.StringPtrInput
 	HttpsReplacementMessage pulumi.StringPtrInput
-	// Restrict the explicit HTTP proxy to only accept sessions from this IP address. An interface must have this IP address.
-	IncomingIp pulumi.StringPtrInput
-	// Restrict the explicit web proxy to only accept sessions from this IPv6 address. An interface must have this IPv6 address.
-	IncomingIp6 pulumi.StringPtrInput
-	// Enable/disable allowing an IPv6 web proxy destination in policies and all IPv6 related entries in this command. Valid values: `enable`, `disable`.
-	Ipv6Status pulumi.StringPtrInput
-	// Enable/disable displaying a replacement message when a server error is detected. Valid values: `enable`, `disable`.
-	MessageUponServerError pulumi.StringPtrInput
-	// Outgoing HTTP requests will have this IP address as their source address. An interface must have this IP address.
-	OutgoingIp pulumi.StringPtrInput
-	// Outgoing HTTP requests will leave this IPv6. Multiple interfaces can be specified. Interfaces must have these IPv6 addresses.
-	OutgoingIp6 pulumi.StringPtrInput
-	// PAC file contents enclosed in quotes (maximum of 256K bytes).
-	PacFileData pulumi.StringPtrInput
-	// Pac file name.
-	PacFileName pulumi.StringPtrInput
-	// Port number that PAC traffic from client web browsers uses to connect to the explicit web proxy (0 - 65535, default = 0; use the same as HTTP).
-	PacFileServerPort pulumi.StringPtrInput
-	// Enable/disable Proxy Auto-Configuration (PAC) for users of this explicit proxy profile. Valid values: `enable`, `disable`.
-	PacFileServerStatus pulumi.StringPtrInput
-	// PAC file access URL.
-	PacFileUrl pulumi.StringPtrInput
-	// PAC policies. The structure of `pacPolicy` block is documented below.
-	PacPolicies WebProxyExplicitPacPolicyArrayInput
-	// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
-	PrefDnsResult pulumi.StringPtrInput
-	// Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
-	Realm pulumi.StringPtrInput
-	// Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
-	SecDefaultAction pulumi.StringPtrInput
-	// Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
-	Socks pulumi.StringPtrInput
-	// Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
-	SocksIncomingPort pulumi.StringPtrInput
-	// Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm pulumi.StringPtrInput
-	// Enable/disable policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
-	StrictGuest pulumi.StringPtrInput
-	// Enable/disable logging timed-out authentication requests. Valid values: `enable`, `disable`.
-	TraceAuthNoRsp pulumi.StringPtrInput
-	// Either reject unknown HTTP traffic as malformed or handle unknown HTTP traffic as best as the proxy server can.
-	UnknownHttpVersion pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	IncomingIp              pulumi.StringPtrInput
+	IncomingIp6             pulumi.StringPtrInput
+	Ipv6Status              pulumi.StringPtrInput
+	MessageUponServerError  pulumi.StringPtrInput
+	OutgoingIp              pulumi.StringPtrInput
+	OutgoingIp6             pulumi.StringPtrInput
+	PacFileData             pulumi.StringPtrInput
+	PacFileName             pulumi.StringPtrInput
+	PacFileServerPort       pulumi.StringPtrInput
+	PacFileServerStatus     pulumi.StringPtrInput
+	PacFileThroughHttps     pulumi.StringPtrInput
+	PacFileUrl              pulumi.StringPtrInput
+	PacPolicies             WebProxyExplicitPacPolicyArrayInput
+	PrefDnsResult           pulumi.StringPtrInput
+	Realm                   pulumi.StringPtrInput
+	SecDefaultAction        pulumi.StringPtrInput
+	Socks                   pulumi.StringPtrInput
+	SocksIncomingPort       pulumi.StringPtrInput
+	SslAlgorithm            pulumi.StringPtrInput
+	Status                  pulumi.StringPtrInput
+	StrictGuest             pulumi.StringPtrInput
+	TraceAuthNoRsp          pulumi.StringPtrInput
+	UnknownHttpVersion      pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (WebProxyExplicitState) ElementType() reflect.Type {
@@ -246,126 +145,70 @@ func (WebProxyExplicitState) ElementType() reflect.Type {
 }
 
 type webProxyExplicitArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
-	FtpIncomingPort *string `pulumi:"ftpIncomingPort"`
-	// Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
-	FtpOverHttp *string `pulumi:"ftpOverHttp"`
-	// Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
-	HttpIncomingPort *string `pulumi:"httpIncomingPort"`
-	// Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
-	HttpsIncomingPort *string `pulumi:"httpsIncomingPort"`
-	// Enable/disable sending the client a replacement message for HTTPS requests. Valid values: `enable`, `disable`.
-	HttpsReplacementMessage *string `pulumi:"httpsReplacementMessage"`
-	// Restrict the explicit HTTP proxy to only accept sessions from this IP address. An interface must have this IP address.
-	IncomingIp *string `pulumi:"incomingIp"`
-	// Restrict the explicit web proxy to only accept sessions from this IPv6 address. An interface must have this IPv6 address.
-	IncomingIp6 *string `pulumi:"incomingIp6"`
-	// Enable/disable allowing an IPv6 web proxy destination in policies and all IPv6 related entries in this command. Valid values: `enable`, `disable`.
-	Ipv6Status *string `pulumi:"ipv6Status"`
-	// Enable/disable displaying a replacement message when a server error is detected. Valid values: `enable`, `disable`.
-	MessageUponServerError *string `pulumi:"messageUponServerError"`
-	// Outgoing HTTP requests will have this IP address as their source address. An interface must have this IP address.
-	OutgoingIp *string `pulumi:"outgoingIp"`
-	// Outgoing HTTP requests will leave this IPv6. Multiple interfaces can be specified. Interfaces must have these IPv6 addresses.
-	OutgoingIp6 *string `pulumi:"outgoingIp6"`
-	// PAC file contents enclosed in quotes (maximum of 256K bytes).
-	PacFileData *string `pulumi:"pacFileData"`
-	// Pac file name.
-	PacFileName *string `pulumi:"pacFileName"`
-	// Port number that PAC traffic from client web browsers uses to connect to the explicit web proxy (0 - 65535, default = 0; use the same as HTTP).
-	PacFileServerPort *string `pulumi:"pacFileServerPort"`
-	// Enable/disable Proxy Auto-Configuration (PAC) for users of this explicit proxy profile. Valid values: `enable`, `disable`.
-	PacFileServerStatus *string `pulumi:"pacFileServerStatus"`
-	// PAC file access URL.
-	PacFileUrl *string `pulumi:"pacFileUrl"`
-	// PAC policies. The structure of `pacPolicy` block is documented below.
-	PacPolicies []WebProxyExplicitPacPolicy `pulumi:"pacPolicies"`
-	// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
-	PrefDnsResult *string `pulumi:"prefDnsResult"`
-	// Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
-	Realm *string `pulumi:"realm"`
-	// Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
-	SecDefaultAction *string `pulumi:"secDefaultAction"`
-	// Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
-	Socks *string `pulumi:"socks"`
-	// Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
-	SocksIncomingPort *string `pulumi:"socksIncomingPort"`
-	// Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// Enable/disable policy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
-	StrictGuest *string `pulumi:"strictGuest"`
-	// Enable/disable logging timed-out authentication requests. Valid values: `enable`, `disable`.
-	TraceAuthNoRsp *string `pulumi:"traceAuthNoRsp"`
-	// Either reject unknown HTTP traffic as malformed or handle unknown HTTP traffic as best as the proxy server can.
-	UnknownHttpVersion *string `pulumi:"unknownHttpVersion"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable     *string                     `pulumi:"dynamicSortSubtable"`
+	FtpIncomingPort         *string                     `pulumi:"ftpIncomingPort"`
+	FtpOverHttp             *string                     `pulumi:"ftpOverHttp"`
+	HttpIncomingPort        *string                     `pulumi:"httpIncomingPort"`
+	HttpsIncomingPort       *string                     `pulumi:"httpsIncomingPort"`
+	HttpsReplacementMessage *string                     `pulumi:"httpsReplacementMessage"`
+	IncomingIp              *string                     `pulumi:"incomingIp"`
+	IncomingIp6             *string                     `pulumi:"incomingIp6"`
+	Ipv6Status              *string                     `pulumi:"ipv6Status"`
+	MessageUponServerError  *string                     `pulumi:"messageUponServerError"`
+	OutgoingIp              *string                     `pulumi:"outgoingIp"`
+	OutgoingIp6             *string                     `pulumi:"outgoingIp6"`
+	PacFileData             *string                     `pulumi:"pacFileData"`
+	PacFileName             *string                     `pulumi:"pacFileName"`
+	PacFileServerPort       *string                     `pulumi:"pacFileServerPort"`
+	PacFileServerStatus     *string                     `pulumi:"pacFileServerStatus"`
+	PacFileThroughHttps     *string                     `pulumi:"pacFileThroughHttps"`
+	PacFileUrl              *string                     `pulumi:"pacFileUrl"`
+	PacPolicies             []WebProxyExplicitPacPolicy `pulumi:"pacPolicies"`
+	PrefDnsResult           *string                     `pulumi:"prefDnsResult"`
+	Realm                   *string                     `pulumi:"realm"`
+	SecDefaultAction        *string                     `pulumi:"secDefaultAction"`
+	Socks                   *string                     `pulumi:"socks"`
+	SocksIncomingPort       *string                     `pulumi:"socksIncomingPort"`
+	SslAlgorithm            *string                     `pulumi:"sslAlgorithm"`
+	Status                  *string                     `pulumi:"status"`
+	StrictGuest             *string                     `pulumi:"strictGuest"`
+	TraceAuthNoRsp          *string                     `pulumi:"traceAuthNoRsp"`
+	UnknownHttpVersion      *string                     `pulumi:"unknownHttpVersion"`
+	Vdomparam               *string                     `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebProxyExplicit resource.
 type WebProxyExplicitArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
-	FtpIncomingPort pulumi.StringPtrInput
-	// Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
-	FtpOverHttp pulumi.StringPtrInput
-	// Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
-	HttpIncomingPort pulumi.StringPtrInput
-	// Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
-	HttpsIncomingPort pulumi.StringPtrInput
-	// Enable/disable sending the client a replacement message for HTTPS requests. Valid values: `enable`, `disable`.
+	DynamicSortSubtable     pulumi.StringPtrInput
+	FtpIncomingPort         pulumi.StringPtrInput
+	FtpOverHttp             pulumi.StringPtrInput
+	HttpIncomingPort        pulumi.StringPtrInput
+	HttpsIncomingPort       pulumi.StringPtrInput
 	HttpsReplacementMessage pulumi.StringPtrInput
-	// Restrict the explicit HTTP proxy to only accept sessions from this IP address. An interface must have this IP address.
-	IncomingIp pulumi.StringPtrInput
-	// Restrict the explicit web proxy to only accept sessions from this IPv6 address. An interface must have this IPv6 address.
-	IncomingIp6 pulumi.StringPtrInput
-	// Enable/disable allowing an IPv6 web proxy destination in policies and all IPv6 related entries in this command. Valid values: `enable`, `disable`.
-	Ipv6Status pulumi.StringPtrInput
-	// Enable/disable displaying a replacement message when a server error is detected. Valid values: `enable`, `disable`.
-	MessageUponServerError pulumi.StringPtrInput
-	// Outgoing HTTP requests will have this IP address as their source address. An interface must have this IP address.
-	OutgoingIp pulumi.StringPtrInput
-	// Outgoing HTTP requests will leave this IPv6. Multiple interfaces can be specified. Interfaces must have these IPv6 addresses.
-	OutgoingIp6 pulumi.StringPtrInput
-	// PAC file contents enclosed in quotes (maximum of 256K bytes).
-	PacFileData pulumi.StringPtrInput
-	// Pac file name.
-	PacFileName pulumi.StringPtrInput
-	// Port number that PAC traffic from client web browsers uses to connect to the explicit web proxy (0 - 65535, default = 0; use the same as HTTP).
-	PacFileServerPort pulumi.StringPtrInput
-	// Enable/disable Proxy Auto-Configuration (PAC) for users of this explicit proxy profile. Valid values: `enable`, `disable`.
-	PacFileServerStatus pulumi.StringPtrInput
-	// PAC file access URL.
-	PacFileUrl pulumi.StringPtrInput
-	// PAC policies. The structure of `pacPolicy` block is documented below.
-	PacPolicies WebProxyExplicitPacPolicyArrayInput
-	// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
-	PrefDnsResult pulumi.StringPtrInput
-	// Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
-	Realm pulumi.StringPtrInput
-	// Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
-	SecDefaultAction pulumi.StringPtrInput
-	// Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
-	Socks pulumi.StringPtrInput
-	// Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
-	SocksIncomingPort pulumi.StringPtrInput
-	// Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm pulumi.StringPtrInput
-	// Enable/disable policy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
-	StrictGuest pulumi.StringPtrInput
-	// Enable/disable logging timed-out authentication requests. Valid values: `enable`, `disable`.
-	TraceAuthNoRsp pulumi.StringPtrInput
-	// Either reject unknown HTTP traffic as malformed or handle unknown HTTP traffic as best as the proxy server can.
-	UnknownHttpVersion pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	IncomingIp              pulumi.StringPtrInput
+	IncomingIp6             pulumi.StringPtrInput
+	Ipv6Status              pulumi.StringPtrInput
+	MessageUponServerError  pulumi.StringPtrInput
+	OutgoingIp              pulumi.StringPtrInput
+	OutgoingIp6             pulumi.StringPtrInput
+	PacFileData             pulumi.StringPtrInput
+	PacFileName             pulumi.StringPtrInput
+	PacFileServerPort       pulumi.StringPtrInput
+	PacFileServerStatus     pulumi.StringPtrInput
+	PacFileThroughHttps     pulumi.StringPtrInput
+	PacFileUrl              pulumi.StringPtrInput
+	PacPolicies             WebProxyExplicitPacPolicyArrayInput
+	PrefDnsResult           pulumi.StringPtrInput
+	Realm                   pulumi.StringPtrInput
+	SecDefaultAction        pulumi.StringPtrInput
+	Socks                   pulumi.StringPtrInput
+	SocksIncomingPort       pulumi.StringPtrInput
+	SslAlgorithm            pulumi.StringPtrInput
+	Status                  pulumi.StringPtrInput
+	StrictGuest             pulumi.StringPtrInput
+	TraceAuthNoRsp          pulumi.StringPtrInput
+	UnknownHttpVersion      pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (WebProxyExplicitArgs) ElementType() reflect.Type {
@@ -394,7 +237,7 @@ func (i *WebProxyExplicit) ToWebProxyExplicitOutputWithContext(ctx context.Conte
 // WebProxyExplicitArrayInput is an input type that accepts WebProxyExplicitArray and WebProxyExplicitArrayOutput values.
 // You can construct a concrete instance of `WebProxyExplicitArrayInput` via:
 //
-//          WebProxyExplicitArray{ WebProxyExplicitArgs{...} }
+//	WebProxyExplicitArray{ WebProxyExplicitArgs{...} }
 type WebProxyExplicitArrayInput interface {
 	pulumi.Input
 
@@ -419,7 +262,7 @@ func (i WebProxyExplicitArray) ToWebProxyExplicitArrayOutputWithContext(ctx cont
 // WebProxyExplicitMapInput is an input type that accepts WebProxyExplicitMap and WebProxyExplicitMapOutput values.
 // You can construct a concrete instance of `WebProxyExplicitMapInput` via:
 //
-//          WebProxyExplicitMap{ "key": WebProxyExplicitArgs{...} }
+//	WebProxyExplicitMap{ "key": WebProxyExplicitArgs{...} }
 type WebProxyExplicitMapInput interface {
 	pulumi.Input
 
@@ -453,6 +296,126 @@ func (o WebProxyExplicitOutput) ToWebProxyExplicitOutput() WebProxyExplicitOutpu
 
 func (o WebProxyExplicitOutput) ToWebProxyExplicitOutputWithContext(ctx context.Context) WebProxyExplicitOutput {
 	return o
+}
+
+func (o WebProxyExplicitOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WebProxyExplicitOutput) FtpIncomingPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.FtpIncomingPort }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) FtpOverHttp() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.FtpOverHttp }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) HttpIncomingPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.HttpIncomingPort }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) HttpsIncomingPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.HttpsIncomingPort }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) HttpsReplacementMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.HttpsReplacementMessage }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) IncomingIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.IncomingIp }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) IncomingIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.IncomingIp6 }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) Ipv6Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.Ipv6Status }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) MessageUponServerError() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.MessageUponServerError }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) OutgoingIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.OutgoingIp }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) OutgoingIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.OutgoingIp6 }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) PacFileData() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.PacFileData }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) PacFileName() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.PacFileName }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) PacFileServerPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.PacFileServerPort }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) PacFileServerStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.PacFileServerStatus }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) PacFileThroughHttps() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.PacFileThroughHttps }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) PacFileUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.PacFileUrl }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) PacPolicies() WebProxyExplicitPacPolicyArrayOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) WebProxyExplicitPacPolicyArrayOutput { return v.PacPolicies }).(WebProxyExplicitPacPolicyArrayOutput)
+}
+
+func (o WebProxyExplicitOutput) PrefDnsResult() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.PrefDnsResult }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) Realm() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) SecDefaultAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.SecDefaultAction }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) Socks() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.Socks }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) SocksIncomingPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.SocksIncomingPort }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) SslAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.SslAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) StrictGuest() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.StrictGuest }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) TraceAuthNoRsp() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.TraceAuthNoRsp }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) UnknownHttpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.UnknownHttpVersion }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebProxyExplicitArrayOutput struct{ *pulumi.OutputState }

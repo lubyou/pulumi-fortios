@@ -7,97 +7,30 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure the PPPoE interfaces.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemPppoeInterface(ctx, "trname", &fortios.SystemPppoeInterfaceArgs{
-// 			AuthType:                 pulumi.String("auto"),
-// 			Device:                   pulumi.String("port3"),
-// 			DialOnDemand:             pulumi.String("disable"),
-// 			DiscRetryTimeout:         pulumi.Int(1),
-// 			IdleTimeout:              pulumi.Int(0),
-// 			Ipunnumbered:             pulumi.String("0.0.0.0"),
-// 			Ipv6:                     pulumi.String("disable"),
-// 			LcpEchoInterval:          pulumi.Int(5),
-// 			LcpMaxEchoFails:          pulumi.Int(3),
-// 			PadtRetryTimeout:         pulumi.Int(1),
-// 			PppoeUnnumberedNegotiate: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System PppoeInterface can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemPppoeInterface:SystemPppoeInterface labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemPppoeInterface:SystemPppoeInterface labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemPppoeInterface struct {
 	pulumi.CustomResourceState
 
-	// PPPoE AC name.
-	AcName pulumi.StringOutput `pulumi:"acName"`
-	// PPP authentication type to use. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
-	AuthType pulumi.StringOutput `pulumi:"authType"`
-	// Name for the physical interface.
-	Device pulumi.StringOutput `pulumi:"device"`
-	// Enable/disable dial on demand to dial the PPPoE interface when packets are routed to the PPPoE interface. Valid values: `enable`, `disable`.
-	DialOnDemand pulumi.StringOutput `pulumi:"dialOnDemand"`
-	// PPPoE discovery init timeout value in (0-4294967295 sec).
-	DiscRetryTimeout pulumi.IntOutput `pulumi:"discRetryTimeout"`
-	// PPPoE auto disconnect after idle timeout (0-4294967295 sec).
-	IdleTimeout pulumi.IntOutput `pulumi:"idleTimeout"`
-	// PPPoE unnumbered IP.
-	Ipunnumbered pulumi.StringOutput `pulumi:"ipunnumbered"`
-	// Enable/disable IPv6 Control Protocol (IPv6CP). Valid values: `enable`, `disable`.
-	Ipv6 pulumi.StringOutput `pulumi:"ipv6"`
-	// PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
-	LcpEchoInterval pulumi.IntOutput `pulumi:"lcpEchoInterval"`
-	// Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
-	LcpMaxEchoFails pulumi.IntOutput `pulumi:"lcpMaxEchoFails"`
-	// Name of the PPPoE interface.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// PPPoE terminate timeout value in (0-4294967295 sec).
-	PadtRetryTimeout pulumi.IntOutput `pulumi:"padtRetryTimeout"`
-	// Enter the password.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Enable/disable PPPoE unnumbered negotiation. Valid values: `enable`, `disable`.
-	PppoeUnnumberedNegotiate pulumi.StringOutput `pulumi:"pppoeUnnumberedNegotiate"`
-	// PPPoE service name.
-	ServiceName pulumi.StringOutput `pulumi:"serviceName"`
-	// User name.
-	Username pulumi.StringOutput `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AcName                   pulumi.StringOutput    `pulumi:"acName"`
+	AuthType                 pulumi.StringOutput    `pulumi:"authType"`
+	Device                   pulumi.StringOutput    `pulumi:"device"`
+	DialOnDemand             pulumi.StringOutput    `pulumi:"dialOnDemand"`
+	DiscRetryTimeout         pulumi.IntOutput       `pulumi:"discRetryTimeout"`
+	IdleTimeout              pulumi.IntOutput       `pulumi:"idleTimeout"`
+	Ipunnumbered             pulumi.StringOutput    `pulumi:"ipunnumbered"`
+	Ipv6                     pulumi.StringOutput    `pulumi:"ipv6"`
+	LcpEchoInterval          pulumi.IntOutput       `pulumi:"lcpEchoInterval"`
+	LcpMaxEchoFails          pulumi.IntOutput       `pulumi:"lcpMaxEchoFails"`
+	Name                     pulumi.StringOutput    `pulumi:"name"`
+	PadtRetryTimeout         pulumi.IntOutput       `pulumi:"padtRetryTimeout"`
+	Password                 pulumi.StringPtrOutput `pulumi:"password"`
+	PppoeUnnumberedNegotiate pulumi.StringOutput    `pulumi:"pppoeUnnumberedNegotiate"`
+	ServiceName              pulumi.StringOutput    `pulumi:"serviceName"`
+	Username                 pulumi.StringOutput    `pulumi:"username"`
+	Vdomparam                pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemPppoeInterface registers a new resource with the given unique name, arguments, and options.
@@ -110,6 +43,13 @@ func NewSystemPppoeInterface(ctx *pulumi.Context,
 	if args.Device == nil {
 		return nil, errors.New("invalid value for required argument 'Device'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemPppoeInterface
 	err := ctx.RegisterResource("fortios:index/systemPppoeInterface:SystemPppoeInterface", name, args, &resource, opts...)
@@ -133,77 +73,43 @@ func GetSystemPppoeInterface(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemPppoeInterface resources.
 type systemPppoeInterfaceState struct {
-	// PPPoE AC name.
-	AcName *string `pulumi:"acName"`
-	// PPP authentication type to use. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
-	AuthType *string `pulumi:"authType"`
-	// Name for the physical interface.
-	Device *string `pulumi:"device"`
-	// Enable/disable dial on demand to dial the PPPoE interface when packets are routed to the PPPoE interface. Valid values: `enable`, `disable`.
-	DialOnDemand *string `pulumi:"dialOnDemand"`
-	// PPPoE discovery init timeout value in (0-4294967295 sec).
-	DiscRetryTimeout *int `pulumi:"discRetryTimeout"`
-	// PPPoE auto disconnect after idle timeout (0-4294967295 sec).
-	IdleTimeout *int `pulumi:"idleTimeout"`
-	// PPPoE unnumbered IP.
-	Ipunnumbered *string `pulumi:"ipunnumbered"`
-	// Enable/disable IPv6 Control Protocol (IPv6CP). Valid values: `enable`, `disable`.
-	Ipv6 *string `pulumi:"ipv6"`
-	// PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
-	LcpEchoInterval *int `pulumi:"lcpEchoInterval"`
-	// Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
-	LcpMaxEchoFails *int `pulumi:"lcpMaxEchoFails"`
-	// Name of the PPPoE interface.
-	Name *string `pulumi:"name"`
-	// PPPoE terminate timeout value in (0-4294967295 sec).
-	PadtRetryTimeout *int `pulumi:"padtRetryTimeout"`
-	// Enter the password.
-	Password *string `pulumi:"password"`
-	// Enable/disable PPPoE unnumbered negotiation. Valid values: `enable`, `disable`.
+	AcName                   *string `pulumi:"acName"`
+	AuthType                 *string `pulumi:"authType"`
+	Device                   *string `pulumi:"device"`
+	DialOnDemand             *string `pulumi:"dialOnDemand"`
+	DiscRetryTimeout         *int    `pulumi:"discRetryTimeout"`
+	IdleTimeout              *int    `pulumi:"idleTimeout"`
+	Ipunnumbered             *string `pulumi:"ipunnumbered"`
+	Ipv6                     *string `pulumi:"ipv6"`
+	LcpEchoInterval          *int    `pulumi:"lcpEchoInterval"`
+	LcpMaxEchoFails          *int    `pulumi:"lcpMaxEchoFails"`
+	Name                     *string `pulumi:"name"`
+	PadtRetryTimeout         *int    `pulumi:"padtRetryTimeout"`
+	Password                 *string `pulumi:"password"`
 	PppoeUnnumberedNegotiate *string `pulumi:"pppoeUnnumberedNegotiate"`
-	// PPPoE service name.
-	ServiceName *string `pulumi:"serviceName"`
-	// User name.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ServiceName              *string `pulumi:"serviceName"`
+	Username                 *string `pulumi:"username"`
+	Vdomparam                *string `pulumi:"vdomparam"`
 }
 
 type SystemPppoeInterfaceState struct {
-	// PPPoE AC name.
-	AcName pulumi.StringPtrInput
-	// PPP authentication type to use. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
-	AuthType pulumi.StringPtrInput
-	// Name for the physical interface.
-	Device pulumi.StringPtrInput
-	// Enable/disable dial on demand to dial the PPPoE interface when packets are routed to the PPPoE interface. Valid values: `enable`, `disable`.
-	DialOnDemand pulumi.StringPtrInput
-	// PPPoE discovery init timeout value in (0-4294967295 sec).
-	DiscRetryTimeout pulumi.IntPtrInput
-	// PPPoE auto disconnect after idle timeout (0-4294967295 sec).
-	IdleTimeout pulumi.IntPtrInput
-	// PPPoE unnumbered IP.
-	Ipunnumbered pulumi.StringPtrInput
-	// Enable/disable IPv6 Control Protocol (IPv6CP). Valid values: `enable`, `disable`.
-	Ipv6 pulumi.StringPtrInput
-	// PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
-	LcpEchoInterval pulumi.IntPtrInput
-	// Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
-	LcpMaxEchoFails pulumi.IntPtrInput
-	// Name of the PPPoE interface.
-	Name pulumi.StringPtrInput
-	// PPPoE terminate timeout value in (0-4294967295 sec).
-	PadtRetryTimeout pulumi.IntPtrInput
-	// Enter the password.
-	Password pulumi.StringPtrInput
-	// Enable/disable PPPoE unnumbered negotiation. Valid values: `enable`, `disable`.
+	AcName                   pulumi.StringPtrInput
+	AuthType                 pulumi.StringPtrInput
+	Device                   pulumi.StringPtrInput
+	DialOnDemand             pulumi.StringPtrInput
+	DiscRetryTimeout         pulumi.IntPtrInput
+	IdleTimeout              pulumi.IntPtrInput
+	Ipunnumbered             pulumi.StringPtrInput
+	Ipv6                     pulumi.StringPtrInput
+	LcpEchoInterval          pulumi.IntPtrInput
+	LcpMaxEchoFails          pulumi.IntPtrInput
+	Name                     pulumi.StringPtrInput
+	PadtRetryTimeout         pulumi.IntPtrInput
+	Password                 pulumi.StringPtrInput
 	PppoeUnnumberedNegotiate pulumi.StringPtrInput
-	// PPPoE service name.
-	ServiceName pulumi.StringPtrInput
-	// User name.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ServiceName              pulumi.StringPtrInput
+	Username                 pulumi.StringPtrInput
+	Vdomparam                pulumi.StringPtrInput
 }
 
 func (SystemPppoeInterfaceState) ElementType() reflect.Type {
@@ -211,78 +117,44 @@ func (SystemPppoeInterfaceState) ElementType() reflect.Type {
 }
 
 type systemPppoeInterfaceArgs struct {
-	// PPPoE AC name.
-	AcName *string `pulumi:"acName"`
-	// PPP authentication type to use. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
-	AuthType *string `pulumi:"authType"`
-	// Name for the physical interface.
-	Device string `pulumi:"device"`
-	// Enable/disable dial on demand to dial the PPPoE interface when packets are routed to the PPPoE interface. Valid values: `enable`, `disable`.
-	DialOnDemand *string `pulumi:"dialOnDemand"`
-	// PPPoE discovery init timeout value in (0-4294967295 sec).
-	DiscRetryTimeout *int `pulumi:"discRetryTimeout"`
-	// PPPoE auto disconnect after idle timeout (0-4294967295 sec).
-	IdleTimeout *int `pulumi:"idleTimeout"`
-	// PPPoE unnumbered IP.
-	Ipunnumbered *string `pulumi:"ipunnumbered"`
-	// Enable/disable IPv6 Control Protocol (IPv6CP). Valid values: `enable`, `disable`.
-	Ipv6 *string `pulumi:"ipv6"`
-	// PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
-	LcpEchoInterval *int `pulumi:"lcpEchoInterval"`
-	// Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
-	LcpMaxEchoFails *int `pulumi:"lcpMaxEchoFails"`
-	// Name of the PPPoE interface.
-	Name *string `pulumi:"name"`
-	// PPPoE terminate timeout value in (0-4294967295 sec).
-	PadtRetryTimeout *int `pulumi:"padtRetryTimeout"`
-	// Enter the password.
-	Password *string `pulumi:"password"`
-	// Enable/disable PPPoE unnumbered negotiation. Valid values: `enable`, `disable`.
+	AcName                   *string `pulumi:"acName"`
+	AuthType                 *string `pulumi:"authType"`
+	Device                   string  `pulumi:"device"`
+	DialOnDemand             *string `pulumi:"dialOnDemand"`
+	DiscRetryTimeout         *int    `pulumi:"discRetryTimeout"`
+	IdleTimeout              *int    `pulumi:"idleTimeout"`
+	Ipunnumbered             *string `pulumi:"ipunnumbered"`
+	Ipv6                     *string `pulumi:"ipv6"`
+	LcpEchoInterval          *int    `pulumi:"lcpEchoInterval"`
+	LcpMaxEchoFails          *int    `pulumi:"lcpMaxEchoFails"`
+	Name                     *string `pulumi:"name"`
+	PadtRetryTimeout         *int    `pulumi:"padtRetryTimeout"`
+	Password                 *string `pulumi:"password"`
 	PppoeUnnumberedNegotiate *string `pulumi:"pppoeUnnumberedNegotiate"`
-	// PPPoE service name.
-	ServiceName *string `pulumi:"serviceName"`
-	// User name.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ServiceName              *string `pulumi:"serviceName"`
+	Username                 *string `pulumi:"username"`
+	Vdomparam                *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemPppoeInterface resource.
 type SystemPppoeInterfaceArgs struct {
-	// PPPoE AC name.
-	AcName pulumi.StringPtrInput
-	// PPP authentication type to use. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
-	AuthType pulumi.StringPtrInput
-	// Name for the physical interface.
-	Device pulumi.StringInput
-	// Enable/disable dial on demand to dial the PPPoE interface when packets are routed to the PPPoE interface. Valid values: `enable`, `disable`.
-	DialOnDemand pulumi.StringPtrInput
-	// PPPoE discovery init timeout value in (0-4294967295 sec).
-	DiscRetryTimeout pulumi.IntPtrInput
-	// PPPoE auto disconnect after idle timeout (0-4294967295 sec).
-	IdleTimeout pulumi.IntPtrInput
-	// PPPoE unnumbered IP.
-	Ipunnumbered pulumi.StringPtrInput
-	// Enable/disable IPv6 Control Protocol (IPv6CP). Valid values: `enable`, `disable`.
-	Ipv6 pulumi.StringPtrInput
-	// PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
-	LcpEchoInterval pulumi.IntPtrInput
-	// Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
-	LcpMaxEchoFails pulumi.IntPtrInput
-	// Name of the PPPoE interface.
-	Name pulumi.StringPtrInput
-	// PPPoE terminate timeout value in (0-4294967295 sec).
-	PadtRetryTimeout pulumi.IntPtrInput
-	// Enter the password.
-	Password pulumi.StringPtrInput
-	// Enable/disable PPPoE unnumbered negotiation. Valid values: `enable`, `disable`.
+	AcName                   pulumi.StringPtrInput
+	AuthType                 pulumi.StringPtrInput
+	Device                   pulumi.StringInput
+	DialOnDemand             pulumi.StringPtrInput
+	DiscRetryTimeout         pulumi.IntPtrInput
+	IdleTimeout              pulumi.IntPtrInput
+	Ipunnumbered             pulumi.StringPtrInput
+	Ipv6                     pulumi.StringPtrInput
+	LcpEchoInterval          pulumi.IntPtrInput
+	LcpMaxEchoFails          pulumi.IntPtrInput
+	Name                     pulumi.StringPtrInput
+	PadtRetryTimeout         pulumi.IntPtrInput
+	Password                 pulumi.StringPtrInput
 	PppoeUnnumberedNegotiate pulumi.StringPtrInput
-	// PPPoE service name.
-	ServiceName pulumi.StringPtrInput
-	// User name.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ServiceName              pulumi.StringPtrInput
+	Username                 pulumi.StringPtrInput
+	Vdomparam                pulumi.StringPtrInput
 }
 
 func (SystemPppoeInterfaceArgs) ElementType() reflect.Type {
@@ -311,7 +183,7 @@ func (i *SystemPppoeInterface) ToSystemPppoeInterfaceOutputWithContext(ctx conte
 // SystemPppoeInterfaceArrayInput is an input type that accepts SystemPppoeInterfaceArray and SystemPppoeInterfaceArrayOutput values.
 // You can construct a concrete instance of `SystemPppoeInterfaceArrayInput` via:
 //
-//          SystemPppoeInterfaceArray{ SystemPppoeInterfaceArgs{...} }
+//	SystemPppoeInterfaceArray{ SystemPppoeInterfaceArgs{...} }
 type SystemPppoeInterfaceArrayInput interface {
 	pulumi.Input
 
@@ -336,7 +208,7 @@ func (i SystemPppoeInterfaceArray) ToSystemPppoeInterfaceArrayOutputWithContext(
 // SystemPppoeInterfaceMapInput is an input type that accepts SystemPppoeInterfaceMap and SystemPppoeInterfaceMapOutput values.
 // You can construct a concrete instance of `SystemPppoeInterfaceMapInput` via:
 //
-//          SystemPppoeInterfaceMap{ "key": SystemPppoeInterfaceArgs{...} }
+//	SystemPppoeInterfaceMap{ "key": SystemPppoeInterfaceArgs{...} }
 type SystemPppoeInterfaceMapInput interface {
 	pulumi.Input
 
@@ -370,6 +242,74 @@ func (o SystemPppoeInterfaceOutput) ToSystemPppoeInterfaceOutput() SystemPppoeIn
 
 func (o SystemPppoeInterfaceOutput) ToSystemPppoeInterfaceOutputWithContext(ctx context.Context) SystemPppoeInterfaceOutput {
 	return o
+}
+
+func (o SystemPppoeInterfaceOutput) AcName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.StringOutput { return v.AcName }).(pulumi.StringOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.StringOutput { return v.AuthType }).(pulumi.StringOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) Device() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.StringOutput { return v.Device }).(pulumi.StringOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) DialOnDemand() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.StringOutput { return v.DialOnDemand }).(pulumi.StringOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) DiscRetryTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.IntOutput { return v.DiscRetryTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) IdleTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.IntOutput { return v.IdleTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) Ipunnumbered() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.StringOutput { return v.Ipunnumbered }).(pulumi.StringOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) Ipv6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.StringOutput { return v.Ipv6 }).(pulumi.StringOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) LcpEchoInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.IntOutput { return v.LcpEchoInterval }).(pulumi.IntOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) LcpMaxEchoFails() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.IntOutput { return v.LcpMaxEchoFails }).(pulumi.IntOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) PadtRetryTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.IntOutput { return v.PadtRetryTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) PppoeUnnumberedNegotiate() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.StringOutput { return v.PppoeUnnumberedNegotiate }).(pulumi.StringOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) ServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.StringOutput { return v.ServiceName }).(pulumi.StringOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
+func (o SystemPppoeInterfaceOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemPppoeInterface) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemPppoeInterfaceArrayOutput struct{ *pulumi.OutputState }

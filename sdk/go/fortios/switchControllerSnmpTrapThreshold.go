@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch SNMP trap threshold values globally. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// SwitchController SnmpTrapThreshold can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSnmpTrapThreshold:SwitchControllerSnmpTrapThreshold labelname SwitchControllerSnmpTrapThreshold
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSnmpTrapThreshold:SwitchControllerSnmpTrapThreshold labelname SwitchControllerSnmpTrapThreshold
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerSnmpTrapThreshold struct {
 	pulumi.CustomResourceState
 
-	// CPU usage when trap is sent.
-	TrapHighCpuThreshold pulumi.IntOutput `pulumi:"trapHighCpuThreshold"`
-	// Log disk usage when trap is sent.
-	TrapLogFullThreshold pulumi.IntOutput `pulumi:"trapLogFullThreshold"`
-	// Memory usage when trap is sent.
-	TrapLowMemoryThreshold pulumi.IntOutput `pulumi:"trapLowMemoryThreshold"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	TrapHighCpuThreshold   pulumi.IntOutput       `pulumi:"trapHighCpuThreshold"`
+	TrapLogFullThreshold   pulumi.IntOutput       `pulumi:"trapLogFullThreshold"`
+	TrapLowMemoryThreshold pulumi.IntOutput       `pulumi:"trapLowMemoryThreshold"`
+	Vdomparam              pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerSnmpTrapThreshold registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetSwitchControllerSnmpTrapThreshold(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerSnmpTrapThreshold resources.
 type switchControllerSnmpTrapThresholdState struct {
-	// CPU usage when trap is sent.
-	TrapHighCpuThreshold *int `pulumi:"trapHighCpuThreshold"`
-	// Log disk usage when trap is sent.
-	TrapLogFullThreshold *int `pulumi:"trapLogFullThreshold"`
-	// Memory usage when trap is sent.
-	TrapLowMemoryThreshold *int `pulumi:"trapLowMemoryThreshold"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	TrapHighCpuThreshold   *int    `pulumi:"trapHighCpuThreshold"`
+	TrapLogFullThreshold   *int    `pulumi:"trapLogFullThreshold"`
+	TrapLowMemoryThreshold *int    `pulumi:"trapLowMemoryThreshold"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerSnmpTrapThresholdState struct {
-	// CPU usage when trap is sent.
-	TrapHighCpuThreshold pulumi.IntPtrInput
-	// Log disk usage when trap is sent.
-	TrapLogFullThreshold pulumi.IntPtrInput
-	// Memory usage when trap is sent.
+	TrapHighCpuThreshold   pulumi.IntPtrInput
+	TrapLogFullThreshold   pulumi.IntPtrInput
 	TrapLowMemoryThreshold pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SwitchControllerSnmpTrapThresholdState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (SwitchControllerSnmpTrapThresholdState) ElementType() reflect.Type {
 }
 
 type switchControllerSnmpTrapThresholdArgs struct {
-	// CPU usage when trap is sent.
-	TrapHighCpuThreshold *int `pulumi:"trapHighCpuThreshold"`
-	// Log disk usage when trap is sent.
-	TrapLogFullThreshold *int `pulumi:"trapLogFullThreshold"`
-	// Memory usage when trap is sent.
-	TrapLowMemoryThreshold *int `pulumi:"trapLowMemoryThreshold"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	TrapHighCpuThreshold   *int    `pulumi:"trapHighCpuThreshold"`
+	TrapLogFullThreshold   *int    `pulumi:"trapLogFullThreshold"`
+	TrapLowMemoryThreshold *int    `pulumi:"trapLowMemoryThreshold"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerSnmpTrapThreshold resource.
 type SwitchControllerSnmpTrapThresholdArgs struct {
-	// CPU usage when trap is sent.
-	TrapHighCpuThreshold pulumi.IntPtrInput
-	// Log disk usage when trap is sent.
-	TrapLogFullThreshold pulumi.IntPtrInput
-	// Memory usage when trap is sent.
+	TrapHighCpuThreshold   pulumi.IntPtrInput
+	TrapLogFullThreshold   pulumi.IntPtrInput
 	TrapLowMemoryThreshold pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SwitchControllerSnmpTrapThresholdArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *SwitchControllerSnmpTrapThreshold) ToSwitchControllerSnmpTrapThresholdO
 // SwitchControllerSnmpTrapThresholdArrayInput is an input type that accepts SwitchControllerSnmpTrapThresholdArray and SwitchControllerSnmpTrapThresholdArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSnmpTrapThresholdArrayInput` via:
 //
-//          SwitchControllerSnmpTrapThresholdArray{ SwitchControllerSnmpTrapThresholdArgs{...} }
+//	SwitchControllerSnmpTrapThresholdArray{ SwitchControllerSnmpTrapThresholdArgs{...} }
 type SwitchControllerSnmpTrapThresholdArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i SwitchControllerSnmpTrapThresholdArray) ToSwitchControllerSnmpTrapThresh
 // SwitchControllerSnmpTrapThresholdMapInput is an input type that accepts SwitchControllerSnmpTrapThresholdMap and SwitchControllerSnmpTrapThresholdMapOutput values.
 // You can construct a concrete instance of `SwitchControllerSnmpTrapThresholdMapInput` via:
 //
-//          SwitchControllerSnmpTrapThresholdMap{ "key": SwitchControllerSnmpTrapThresholdArgs{...} }
+//	SwitchControllerSnmpTrapThresholdMap{ "key": SwitchControllerSnmpTrapThresholdArgs{...} }
 type SwitchControllerSnmpTrapThresholdMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o SwitchControllerSnmpTrapThresholdOutput) ToSwitchControllerSnmpTrapThres
 
 func (o SwitchControllerSnmpTrapThresholdOutput) ToSwitchControllerSnmpTrapThresholdOutputWithContext(ctx context.Context) SwitchControllerSnmpTrapThresholdOutput {
 	return o
+}
+
+func (o SwitchControllerSnmpTrapThresholdOutput) TrapHighCpuThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpTrapThreshold) pulumi.IntOutput { return v.TrapHighCpuThreshold }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSnmpTrapThresholdOutput) TrapLogFullThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpTrapThreshold) pulumi.IntOutput { return v.TrapLogFullThreshold }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSnmpTrapThresholdOutput) TrapLowMemoryThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpTrapThreshold) pulumi.IntOutput { return v.TrapLowMemoryThreshold }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSnmpTrapThresholdOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpTrapThreshold) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerSnmpTrapThresholdArrayOutput struct{ *pulumi.OutputState }

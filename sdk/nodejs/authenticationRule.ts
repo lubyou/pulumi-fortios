@@ -2,43 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure Authentication Rules.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.AuthenticationRule("trname", {
- *     ipBased: "enable",
- *     protocol: "ftp",
- *     status: "enable",
- *     transactionBased: "disable",
- *     webAuthCookie: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * Authentication Rule can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/authenticationRule:AuthenticationRule labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/authenticationRule:AuthenticationRule labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class AuthenticationRule extends pulumi.CustomResource {
     /**
      * Get an existing AuthenticationRule resource's state with the given name, ID, and optional extra
@@ -67,73 +34,22 @@ export class AuthenticationRule extends pulumi.CustomResource {
         return obj['__pulumiType'] === AuthenticationRule.__pulumiType;
     }
 
-    /**
-     * Select an active authentication method.
-     */
     public readonly activeAuthMethod!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
-     */
     public readonly dstaddr6s!: pulumi.Output<outputs.AuthenticationRuleDstaddr6[] | undefined>;
-    /**
-     * Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
-     */
     public readonly dstaddrs!: pulumi.Output<outputs.AuthenticationRuleDstaddr[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
-     */
     public readonly ipBased!: pulumi.Output<string>;
-    /**
-     * Address name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
-     */
     public readonly protocol!: pulumi.Output<string>;
-    /**
-     * Select an IPv6 source address. Required for web proxy authentication. The structure of `srcaddr6` block is documented below.
-     */
     public readonly srcaddr6s!: pulumi.Output<outputs.AuthenticationRuleSrcaddr6[] | undefined>;
-    /**
-     * Select an IPv4 source address from available options. Required for web proxy authentication. The structure of `srcaddr` block is documented below.
-     */
     public readonly srcaddrs!: pulumi.Output<outputs.AuthenticationRuleSrcaddr[] | undefined>;
-    /**
-     * Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-     */
     public readonly srcintfs!: pulumi.Output<outputs.AuthenticationRuleSrcintf[] | undefined>;
-    /**
-     * Select a single-sign on (SSO) authentication method.
-     */
     public readonly ssoAuthMethod!: pulumi.Output<string>;
-    /**
-     * Enable/disable this authentication rule. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Enable/disable transaction based authentication (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly transactionBased!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable Web authentication cookies (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly webAuthCookie!: pulumi.Output<string>;
-    /**
-     * Enable/disable web portal for proxy transparent policy (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly webPortal!: pulumi.Output<string>;
 
     /**
@@ -195,73 +111,22 @@ export class AuthenticationRule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AuthenticationRule resources.
  */
 export interface AuthenticationRuleState {
-    /**
-     * Select an active authentication method.
-     */
     activeAuthMethod?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
-     */
     dstaddr6s?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleDstaddr6>[]>;
-    /**
-     * Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
-     */
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleDstaddr>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
-     */
     ipBased?: pulumi.Input<string>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * Select an IPv6 source address. Required for web proxy authentication. The structure of `srcaddr6` block is documented below.
-     */
     srcaddr6s?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleSrcaddr6>[]>;
-    /**
-     * Select an IPv4 source address from available options. Required for web proxy authentication. The structure of `srcaddr` block is documented below.
-     */
     srcaddrs?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleSrcaddr>[]>;
-    /**
-     * Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-     */
     srcintfs?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleSrcintf>[]>;
-    /**
-     * Select a single-sign on (SSO) authentication method.
-     */
     ssoAuthMethod?: pulumi.Input<string>;
-    /**
-     * Enable/disable this authentication rule. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Enable/disable transaction based authentication (default = disable). Valid values: `enable`, `disable`.
-     */
     transactionBased?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable Web authentication cookies (default = disable). Valid values: `enable`, `disable`.
-     */
     webAuthCookie?: pulumi.Input<string>;
-    /**
-     * Enable/disable web portal for proxy transparent policy (default = enable). Valid values: `enable`, `disable`.
-     */
     webPortal?: pulumi.Input<string>;
 }
 
@@ -269,72 +134,21 @@ export interface AuthenticationRuleState {
  * The set of arguments for constructing a AuthenticationRule resource.
  */
 export interface AuthenticationRuleArgs {
-    /**
-     * Select an active authentication method.
-     */
     activeAuthMethod?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
-     */
     dstaddr6s?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleDstaddr6>[]>;
-    /**
-     * Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
-     */
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleDstaddr>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
-     */
     ipBased?: pulumi.Input<string>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * Select an IPv6 source address. Required for web proxy authentication. The structure of `srcaddr6` block is documented below.
-     */
     srcaddr6s?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleSrcaddr6>[]>;
-    /**
-     * Select an IPv4 source address from available options. Required for web proxy authentication. The structure of `srcaddr` block is documented below.
-     */
     srcaddrs?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleSrcaddr>[]>;
-    /**
-     * Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-     */
     srcintfs?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleSrcintf>[]>;
-    /**
-     * Select a single-sign on (SSO) authentication method.
-     */
     ssoAuthMethod?: pulumi.Input<string>;
-    /**
-     * Enable/disable this authentication rule. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Enable/disable transaction based authentication (default = disable). Valid values: `enable`, `disable`.
-     */
     transactionBased?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable Web authentication cookies (default = disable). Valid values: `enable`, `disable`.
-     */
     webAuthCookie?: pulumi.Input<string>;
-    /**
-     * Enable/disable web portal for proxy transparent policy (default = enable). Valid values: `enable`, `disable`.
-     */
     webPortal?: pulumi.Input<string>;
 }

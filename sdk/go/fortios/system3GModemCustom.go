@@ -10,44 +10,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// 3G MODEM custom. Applies to FortiOS Version `>= 7.0.4`.
-//
-// ## Import
-//
-// System3GModem Custom can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/system3GModemCustom:System3GModemCustom labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/system3GModemCustom:System3GModemCustom labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type System3GModemCustom struct {
 	pulumi.CustomResourceState
 
-	// USB interface class in hexadecimal format (00-ff).
-	ClassId pulumi.StringOutput `pulumi:"classId"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Init string in hexadecimal format (even length).
-	InitString pulumi.StringOutput `pulumi:"initString"`
-	// MODEM model name.
-	Model pulumi.StringOutput `pulumi:"model"`
-	// USB modeswitch arguments. e.g: '-v 1410 -p 9030 -V 1410 -P 9032 -u 3'
-	ModeswitchString pulumi.StringOutput `pulumi:"modeswitchString"`
-	// USB product ID in hexadecimal format (0000-ffff).
-	ProductId pulumi.StringOutput `pulumi:"productId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// MODEM vendor name.
-	Vendor pulumi.StringOutput `pulumi:"vendor"`
-	// USB vendor ID in hexadecimal format (0000-ffff).
-	VendorId pulumi.StringOutput `pulumi:"vendorId"`
+	ClassId          pulumi.StringOutput    `pulumi:"classId"`
+	Fosid            pulumi.IntOutput       `pulumi:"fosid"`
+	InitString       pulumi.StringOutput    `pulumi:"initString"`
+	Model            pulumi.StringOutput    `pulumi:"model"`
+	ModeswitchString pulumi.StringOutput    `pulumi:"modeswitchString"`
+	ProductId        pulumi.StringOutput    `pulumi:"productId"`
+	Vdomparam        pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vendor           pulumi.StringOutput    `pulumi:"vendor"`
+	VendorId         pulumi.StringOutput    `pulumi:"vendorId"`
 }
 
 // NewSystem3GModemCustom registers a new resource with the given unique name, arguments, and options.
@@ -80,45 +54,27 @@ func GetSystem3GModemCustom(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering System3GModemCustom resources.
 type system3GModemCustomState struct {
-	// USB interface class in hexadecimal format (00-ff).
-	ClassId *string `pulumi:"classId"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Init string in hexadecimal format (even length).
-	InitString *string `pulumi:"initString"`
-	// MODEM model name.
-	Model *string `pulumi:"model"`
-	// USB modeswitch arguments. e.g: '-v 1410 -p 9030 -V 1410 -P 9032 -u 3'
+	ClassId          *string `pulumi:"classId"`
+	Fosid            *int    `pulumi:"fosid"`
+	InitString       *string `pulumi:"initString"`
+	Model            *string `pulumi:"model"`
 	ModeswitchString *string `pulumi:"modeswitchString"`
-	// USB product ID in hexadecimal format (0000-ffff).
-	ProductId *string `pulumi:"productId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// MODEM vendor name.
-	Vendor *string `pulumi:"vendor"`
-	// USB vendor ID in hexadecimal format (0000-ffff).
-	VendorId *string `pulumi:"vendorId"`
+	ProductId        *string `pulumi:"productId"`
+	Vdomparam        *string `pulumi:"vdomparam"`
+	Vendor           *string `pulumi:"vendor"`
+	VendorId         *string `pulumi:"vendorId"`
 }
 
 type System3GModemCustomState struct {
-	// USB interface class in hexadecimal format (00-ff).
-	ClassId pulumi.StringPtrInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Init string in hexadecimal format (even length).
-	InitString pulumi.StringPtrInput
-	// MODEM model name.
-	Model pulumi.StringPtrInput
-	// USB modeswitch arguments. e.g: '-v 1410 -p 9030 -V 1410 -P 9032 -u 3'
+	ClassId          pulumi.StringPtrInput
+	Fosid            pulumi.IntPtrInput
+	InitString       pulumi.StringPtrInput
+	Model            pulumi.StringPtrInput
 	ModeswitchString pulumi.StringPtrInput
-	// USB product ID in hexadecimal format (0000-ffff).
-	ProductId pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// MODEM vendor name.
-	Vendor pulumi.StringPtrInput
-	// USB vendor ID in hexadecimal format (0000-ffff).
-	VendorId pulumi.StringPtrInput
+	ProductId        pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
+	Vendor           pulumi.StringPtrInput
+	VendorId         pulumi.StringPtrInput
 }
 
 func (System3GModemCustomState) ElementType() reflect.Type {
@@ -126,46 +82,28 @@ func (System3GModemCustomState) ElementType() reflect.Type {
 }
 
 type system3GModemCustomArgs struct {
-	// USB interface class in hexadecimal format (00-ff).
-	ClassId *string `pulumi:"classId"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Init string in hexadecimal format (even length).
-	InitString *string `pulumi:"initString"`
-	// MODEM model name.
-	Model *string `pulumi:"model"`
-	// USB modeswitch arguments. e.g: '-v 1410 -p 9030 -V 1410 -P 9032 -u 3'
+	ClassId          *string `pulumi:"classId"`
+	Fosid            *int    `pulumi:"fosid"`
+	InitString       *string `pulumi:"initString"`
+	Model            *string `pulumi:"model"`
 	ModeswitchString *string `pulumi:"modeswitchString"`
-	// USB product ID in hexadecimal format (0000-ffff).
-	ProductId *string `pulumi:"productId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// MODEM vendor name.
-	Vendor *string `pulumi:"vendor"`
-	// USB vendor ID in hexadecimal format (0000-ffff).
-	VendorId *string `pulumi:"vendorId"`
+	ProductId        *string `pulumi:"productId"`
+	Vdomparam        *string `pulumi:"vdomparam"`
+	Vendor           *string `pulumi:"vendor"`
+	VendorId         *string `pulumi:"vendorId"`
 }
 
 // The set of arguments for constructing a System3GModemCustom resource.
 type System3GModemCustomArgs struct {
-	// USB interface class in hexadecimal format (00-ff).
-	ClassId pulumi.StringPtrInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Init string in hexadecimal format (even length).
-	InitString pulumi.StringPtrInput
-	// MODEM model name.
-	Model pulumi.StringPtrInput
-	// USB modeswitch arguments. e.g: '-v 1410 -p 9030 -V 1410 -P 9032 -u 3'
+	ClassId          pulumi.StringPtrInput
+	Fosid            pulumi.IntPtrInput
+	InitString       pulumi.StringPtrInput
+	Model            pulumi.StringPtrInput
 	ModeswitchString pulumi.StringPtrInput
-	// USB product ID in hexadecimal format (0000-ffff).
-	ProductId pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// MODEM vendor name.
-	Vendor pulumi.StringPtrInput
-	// USB vendor ID in hexadecimal format (0000-ffff).
-	VendorId pulumi.StringPtrInput
+	ProductId        pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
+	Vendor           pulumi.StringPtrInput
+	VendorId         pulumi.StringPtrInput
 }
 
 func (System3GModemCustomArgs) ElementType() reflect.Type {
@@ -194,7 +132,7 @@ func (i *System3GModemCustom) ToSystem3GModemCustomOutputWithContext(ctx context
 // System3GModemCustomArrayInput is an input type that accepts System3GModemCustomArray and System3GModemCustomArrayOutput values.
 // You can construct a concrete instance of `System3GModemCustomArrayInput` via:
 //
-//          System3GModemCustomArray{ System3GModemCustomArgs{...} }
+//	System3GModemCustomArray{ System3GModemCustomArgs{...} }
 type System3GModemCustomArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +157,7 @@ func (i System3GModemCustomArray) ToSystem3GModemCustomArrayOutputWithContext(ct
 // System3GModemCustomMapInput is an input type that accepts System3GModemCustomMap and System3GModemCustomMapOutput values.
 // You can construct a concrete instance of `System3GModemCustomMapInput` via:
 //
-//          System3GModemCustomMap{ "key": System3GModemCustomArgs{...} }
+//	System3GModemCustomMap{ "key": System3GModemCustomArgs{...} }
 type System3GModemCustomMapInput interface {
 	pulumi.Input
 
@@ -253,6 +191,42 @@ func (o System3GModemCustomOutput) ToSystem3GModemCustomOutput() System3GModemCu
 
 func (o System3GModemCustomOutput) ToSystem3GModemCustomOutputWithContext(ctx context.Context) System3GModemCustomOutput {
 	return o
+}
+
+func (o System3GModemCustomOutput) ClassId() pulumi.StringOutput {
+	return o.ApplyT(func(v *System3GModemCustom) pulumi.StringOutput { return v.ClassId }).(pulumi.StringOutput)
+}
+
+func (o System3GModemCustomOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *System3GModemCustom) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o System3GModemCustomOutput) InitString() pulumi.StringOutput {
+	return o.ApplyT(func(v *System3GModemCustom) pulumi.StringOutput { return v.InitString }).(pulumi.StringOutput)
+}
+
+func (o System3GModemCustomOutput) Model() pulumi.StringOutput {
+	return o.ApplyT(func(v *System3GModemCustom) pulumi.StringOutput { return v.Model }).(pulumi.StringOutput)
+}
+
+func (o System3GModemCustomOutput) ModeswitchString() pulumi.StringOutput {
+	return o.ApplyT(func(v *System3GModemCustom) pulumi.StringOutput { return v.ModeswitchString }).(pulumi.StringOutput)
+}
+
+func (o System3GModemCustomOutput) ProductId() pulumi.StringOutput {
+	return o.ApplyT(func(v *System3GModemCustom) pulumi.StringOutput { return v.ProductId }).(pulumi.StringOutput)
+}
+
+func (o System3GModemCustomOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *System3GModemCustom) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o System3GModemCustomOutput) Vendor() pulumi.StringOutput {
+	return o.ApplyT(func(v *System3GModemCustom) pulumi.StringOutput { return v.Vendor }).(pulumi.StringOutput)
+}
+
+func (o System3GModemCustomOutput) VendorId() pulumi.StringOutput {
+	return o.ApplyT(func(v *System3GModemCustom) pulumi.StringOutput { return v.VendorId }).(pulumi.StringOutput)
 }
 
 type System3GModemCustomArrayOutput struct{ *pulumi.OutputState }

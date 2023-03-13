@@ -7,85 +7,25 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiGuard Web Filter administrative overrides.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWebfilterOverride(ctx, "trname", &fortios.WebfilterOverrideArgs{
-// 			Expires:    pulumi.String("2021/03/16 19:18:25"),
-// 			Fosid:      pulumi.Int(1),
-// 			Ip:         pulumi.String("69.101.119.0"),
-// 			Ip6:        pulumi.String("4565:7700::"),
-// 			NewProfile: pulumi.String("monitor-all"),
-// 			OldProfile: pulumi.String("default"),
-// 			Scope:      pulumi.String("user"),
-// 			Status:     pulumi.String("disable"),
-// 			User:       pulumi.String("Eew"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Webfilter Override can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterOverride:WebfilterOverride labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterOverride:WebfilterOverride labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebfilterOverride struct {
 	pulumi.CustomResourceState
 
-	// Override expiration date and time, from 5 minutes to 365 from now (format: yyyy/mm/dd hh:mm:ss).
-	Expires pulumi.StringOutput `pulumi:"expires"`
-	// Override rule ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Initiating user of override (read-only setting).
-	Initiator pulumi.StringOutput `pulumi:"initiator"`
-	// IPv4 address which the override applies.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// IPv6 address which the override applies.
-	Ip6 pulumi.StringOutput `pulumi:"ip6"`
-	// Name of the new web filter profile used by the override.
-	NewProfile pulumi.StringOutput `pulumi:"newProfile"`
-	// Name of the web filter profile which the override applies.
-	OldProfile pulumi.StringOutput `pulumi:"oldProfile"`
-	// Override either the specific user, user group, IPv4 address, or IPv6 address. Valid values: `user`, `user-group`, `ip`, `ip6`.
-	Scope pulumi.StringOutput `pulumi:"scope"`
-	// Enable/disable override rule. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Name of the user which the override applies.
-	User pulumi.StringOutput `pulumi:"user"`
-	// Specify the user group for which the override applies.
-	UserGroup pulumi.StringOutput `pulumi:"userGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Expires    pulumi.StringOutput    `pulumi:"expires"`
+	Fosid      pulumi.IntOutput       `pulumi:"fosid"`
+	Initiator  pulumi.StringOutput    `pulumi:"initiator"`
+	Ip         pulumi.StringOutput    `pulumi:"ip"`
+	Ip6        pulumi.StringOutput    `pulumi:"ip6"`
+	NewProfile pulumi.StringOutput    `pulumi:"newProfile"`
+	OldProfile pulumi.StringOutput    `pulumi:"oldProfile"`
+	Scope      pulumi.StringOutput    `pulumi:"scope"`
+	Status     pulumi.StringOutput    `pulumi:"status"`
+	User       pulumi.StringOutput    `pulumi:"user"`
+	UserGroup  pulumi.StringOutput    `pulumi:"userGroup"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWebfilterOverride registers a new resource with the given unique name, arguments, and options.
@@ -130,57 +70,33 @@ func GetWebfilterOverride(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebfilterOverride resources.
 type webfilterOverrideState struct {
-	// Override expiration date and time, from 5 minutes to 365 from now (format: yyyy/mm/dd hh:mm:ss).
-	Expires *string `pulumi:"expires"`
-	// Override rule ID.
-	Fosid *int `pulumi:"fosid"`
-	// Initiating user of override (read-only setting).
-	Initiator *string `pulumi:"initiator"`
-	// IPv4 address which the override applies.
-	Ip *string `pulumi:"ip"`
-	// IPv6 address which the override applies.
-	Ip6 *string `pulumi:"ip6"`
-	// Name of the new web filter profile used by the override.
+	Expires    *string `pulumi:"expires"`
+	Fosid      *int    `pulumi:"fosid"`
+	Initiator  *string `pulumi:"initiator"`
+	Ip         *string `pulumi:"ip"`
+	Ip6        *string `pulumi:"ip6"`
 	NewProfile *string `pulumi:"newProfile"`
-	// Name of the web filter profile which the override applies.
 	OldProfile *string `pulumi:"oldProfile"`
-	// Override either the specific user, user group, IPv4 address, or IPv6 address. Valid values: `user`, `user-group`, `ip`, `ip6`.
-	Scope *string `pulumi:"scope"`
-	// Enable/disable override rule. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Name of the user which the override applies.
-	User *string `pulumi:"user"`
-	// Specify the user group for which the override applies.
-	UserGroup *string `pulumi:"userGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Scope      *string `pulumi:"scope"`
+	Status     *string `pulumi:"status"`
+	User       *string `pulumi:"user"`
+	UserGroup  *string `pulumi:"userGroup"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type WebfilterOverrideState struct {
-	// Override expiration date and time, from 5 minutes to 365 from now (format: yyyy/mm/dd hh:mm:ss).
-	Expires pulumi.StringPtrInput
-	// Override rule ID.
-	Fosid pulumi.IntPtrInput
-	// Initiating user of override (read-only setting).
-	Initiator pulumi.StringPtrInput
-	// IPv4 address which the override applies.
-	Ip pulumi.StringPtrInput
-	// IPv6 address which the override applies.
-	Ip6 pulumi.StringPtrInput
-	// Name of the new web filter profile used by the override.
+	Expires    pulumi.StringPtrInput
+	Fosid      pulumi.IntPtrInput
+	Initiator  pulumi.StringPtrInput
+	Ip         pulumi.StringPtrInput
+	Ip6        pulumi.StringPtrInput
 	NewProfile pulumi.StringPtrInput
-	// Name of the web filter profile which the override applies.
 	OldProfile pulumi.StringPtrInput
-	// Override either the specific user, user group, IPv4 address, or IPv6 address. Valid values: `user`, `user-group`, `ip`, `ip6`.
-	Scope pulumi.StringPtrInput
-	// Enable/disable override rule. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Name of the user which the override applies.
-	User pulumi.StringPtrInput
-	// Specify the user group for which the override applies.
-	UserGroup pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Scope      pulumi.StringPtrInput
+	Status     pulumi.StringPtrInput
+	User       pulumi.StringPtrInput
+	UserGroup  pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (WebfilterOverrideState) ElementType() reflect.Type {
@@ -188,58 +104,34 @@ func (WebfilterOverrideState) ElementType() reflect.Type {
 }
 
 type webfilterOverrideArgs struct {
-	// Override expiration date and time, from 5 minutes to 365 from now (format: yyyy/mm/dd hh:mm:ss).
-	Expires string `pulumi:"expires"`
-	// Override rule ID.
-	Fosid *int `pulumi:"fosid"`
-	// Initiating user of override (read-only setting).
-	Initiator *string `pulumi:"initiator"`
-	// IPv4 address which the override applies.
-	Ip *string `pulumi:"ip"`
-	// IPv6 address which the override applies.
-	Ip6 *string `pulumi:"ip6"`
-	// Name of the new web filter profile used by the override.
-	NewProfile string `pulumi:"newProfile"`
-	// Name of the web filter profile which the override applies.
-	OldProfile string `pulumi:"oldProfile"`
-	// Override either the specific user, user group, IPv4 address, or IPv6 address. Valid values: `user`, `user-group`, `ip`, `ip6`.
-	Scope *string `pulumi:"scope"`
-	// Enable/disable override rule. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Name of the user which the override applies.
-	User string `pulumi:"user"`
-	// Specify the user group for which the override applies.
-	UserGroup *string `pulumi:"userGroup"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Expires    string  `pulumi:"expires"`
+	Fosid      *int    `pulumi:"fosid"`
+	Initiator  *string `pulumi:"initiator"`
+	Ip         *string `pulumi:"ip"`
+	Ip6        *string `pulumi:"ip6"`
+	NewProfile string  `pulumi:"newProfile"`
+	OldProfile string  `pulumi:"oldProfile"`
+	Scope      *string `pulumi:"scope"`
+	Status     *string `pulumi:"status"`
+	User       string  `pulumi:"user"`
+	UserGroup  *string `pulumi:"userGroup"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebfilterOverride resource.
 type WebfilterOverrideArgs struct {
-	// Override expiration date and time, from 5 minutes to 365 from now (format: yyyy/mm/dd hh:mm:ss).
-	Expires pulumi.StringInput
-	// Override rule ID.
-	Fosid pulumi.IntPtrInput
-	// Initiating user of override (read-only setting).
-	Initiator pulumi.StringPtrInput
-	// IPv4 address which the override applies.
-	Ip pulumi.StringPtrInput
-	// IPv6 address which the override applies.
-	Ip6 pulumi.StringPtrInput
-	// Name of the new web filter profile used by the override.
+	Expires    pulumi.StringInput
+	Fosid      pulumi.IntPtrInput
+	Initiator  pulumi.StringPtrInput
+	Ip         pulumi.StringPtrInput
+	Ip6        pulumi.StringPtrInput
 	NewProfile pulumi.StringInput
-	// Name of the web filter profile which the override applies.
 	OldProfile pulumi.StringInput
-	// Override either the specific user, user group, IPv4 address, or IPv6 address. Valid values: `user`, `user-group`, `ip`, `ip6`.
-	Scope pulumi.StringPtrInput
-	// Enable/disable override rule. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Name of the user which the override applies.
-	User pulumi.StringInput
-	// Specify the user group for which the override applies.
-	UserGroup pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Scope      pulumi.StringPtrInput
+	Status     pulumi.StringPtrInput
+	User       pulumi.StringInput
+	UserGroup  pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (WebfilterOverrideArgs) ElementType() reflect.Type {
@@ -268,7 +160,7 @@ func (i *WebfilterOverride) ToWebfilterOverrideOutputWithContext(ctx context.Con
 // WebfilterOverrideArrayInput is an input type that accepts WebfilterOverrideArray and WebfilterOverrideArrayOutput values.
 // You can construct a concrete instance of `WebfilterOverrideArrayInput` via:
 //
-//          WebfilterOverrideArray{ WebfilterOverrideArgs{...} }
+//	WebfilterOverrideArray{ WebfilterOverrideArgs{...} }
 type WebfilterOverrideArrayInput interface {
 	pulumi.Input
 
@@ -293,7 +185,7 @@ func (i WebfilterOverrideArray) ToWebfilterOverrideArrayOutputWithContext(ctx co
 // WebfilterOverrideMapInput is an input type that accepts WebfilterOverrideMap and WebfilterOverrideMapOutput values.
 // You can construct a concrete instance of `WebfilterOverrideMapInput` via:
 //
-//          WebfilterOverrideMap{ "key": WebfilterOverrideArgs{...} }
+//	WebfilterOverrideMap{ "key": WebfilterOverrideArgs{...} }
 type WebfilterOverrideMapInput interface {
 	pulumi.Input
 
@@ -327,6 +219,54 @@ func (o WebfilterOverrideOutput) ToWebfilterOverrideOutput() WebfilterOverrideOu
 
 func (o WebfilterOverrideOutput) ToWebfilterOverrideOutputWithContext(ctx context.Context) WebfilterOverrideOutput {
 	return o
+}
+
+func (o WebfilterOverrideOutput) Expires() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterOverride) pulumi.StringOutput { return v.Expires }).(pulumi.StringOutput)
+}
+
+func (o WebfilterOverrideOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterOverride) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o WebfilterOverrideOutput) Initiator() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterOverride) pulumi.StringOutput { return v.Initiator }).(pulumi.StringOutput)
+}
+
+func (o WebfilterOverrideOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterOverride) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o WebfilterOverrideOutput) Ip6() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterOverride) pulumi.StringOutput { return v.Ip6 }).(pulumi.StringOutput)
+}
+
+func (o WebfilterOverrideOutput) NewProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterOverride) pulumi.StringOutput { return v.NewProfile }).(pulumi.StringOutput)
+}
+
+func (o WebfilterOverrideOutput) OldProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterOverride) pulumi.StringOutput { return v.OldProfile }).(pulumi.StringOutput)
+}
+
+func (o WebfilterOverrideOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterOverride) pulumi.StringOutput { return v.Scope }).(pulumi.StringOutput)
+}
+
+func (o WebfilterOverrideOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterOverride) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o WebfilterOverrideOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterOverride) pulumi.StringOutput { return v.User }).(pulumi.StringOutput)
+}
+
+func (o WebfilterOverrideOutput) UserGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterOverride) pulumi.StringOutput { return v.UserGroup }).(pulumi.StringOutput)
+}
+
+func (o WebfilterOverrideOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterOverride) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebfilterOverrideArrayOutput struct{ *pulumi.OutputState }

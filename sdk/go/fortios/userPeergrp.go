@@ -10,72 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure peer groups.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trname2, err := fortios.NewUserPeer(ctx, "trname2", &fortios.UserPeerArgs{
-// 			Ca:                pulumi.String("EC-ACC"),
-// 			CnType:            pulumi.String("string"),
-// 			LdapMode:          pulumi.String("password"),
-// 			MandatoryCaVerify: pulumi.String("enable"),
-// 			TwoFactor:         pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewUserPeergrp(ctx, "trname", &fortios.UserPeergrpArgs{
-// 			Members: UserPeergrpMemberArray{
-// 				&UserPeergrpMemberArgs{
-// 					Name: trname2.Name,
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// User Peergrp can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userPeergrp:UserPeergrp labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userPeergrp:UserPeergrp labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserPeergrp struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Peer group members. The structure of `member` block is documented below.
-	Members UserPeergrpMemberArrayOutput `pulumi:"members"`
-	// Peer group member name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput       `pulumi:"dynamicSortSubtable"`
+	Members             UserPeergrpMemberArrayOutput `pulumi:"members"`
+	Name                pulumi.StringOutput          `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput       `pulumi:"vdomparam"`
 }
 
 // NewUserPeergrp registers a new resource with the given unique name, arguments, and options.
@@ -108,25 +49,17 @@ func GetUserPeergrp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserPeergrp resources.
 type userPeergrpState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Peer group members. The structure of `member` block is documented below.
-	Members []UserPeergrpMember `pulumi:"members"`
-	// Peer group member name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	Members             []UserPeergrpMember `pulumi:"members"`
+	Name                *string             `pulumi:"name"`
+	Vdomparam           *string             `pulumi:"vdomparam"`
 }
 
 type UserPeergrpState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Peer group members. The structure of `member` block is documented below.
-	Members UserPeergrpMemberArrayInput
-	// Peer group member name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Members             UserPeergrpMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserPeergrpState) ElementType() reflect.Type {
@@ -134,26 +67,18 @@ func (UserPeergrpState) ElementType() reflect.Type {
 }
 
 type userPeergrpArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Peer group members. The structure of `member` block is documented below.
-	Members []UserPeergrpMember `pulumi:"members"`
-	// Peer group member name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	Members             []UserPeergrpMember `pulumi:"members"`
+	Name                *string             `pulumi:"name"`
+	Vdomparam           *string             `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserPeergrp resource.
 type UserPeergrpArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Peer group members. The structure of `member` block is documented below.
-	Members UserPeergrpMemberArrayInput
-	// Peer group member name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Members             UserPeergrpMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserPeergrpArgs) ElementType() reflect.Type {
@@ -182,7 +107,7 @@ func (i *UserPeergrp) ToUserPeergrpOutputWithContext(ctx context.Context) UserPe
 // UserPeergrpArrayInput is an input type that accepts UserPeergrpArray and UserPeergrpArrayOutput values.
 // You can construct a concrete instance of `UserPeergrpArrayInput` via:
 //
-//          UserPeergrpArray{ UserPeergrpArgs{...} }
+//	UserPeergrpArray{ UserPeergrpArgs{...} }
 type UserPeergrpArrayInput interface {
 	pulumi.Input
 
@@ -207,7 +132,7 @@ func (i UserPeergrpArray) ToUserPeergrpArrayOutputWithContext(ctx context.Contex
 // UserPeergrpMapInput is an input type that accepts UserPeergrpMap and UserPeergrpMapOutput values.
 // You can construct a concrete instance of `UserPeergrpMapInput` via:
 //
-//          UserPeergrpMap{ "key": UserPeergrpArgs{...} }
+//	UserPeergrpMap{ "key": UserPeergrpArgs{...} }
 type UserPeergrpMapInput interface {
 	pulumi.Input
 
@@ -241,6 +166,22 @@ func (o UserPeergrpOutput) ToUserPeergrpOutput() UserPeergrpOutput {
 
 func (o UserPeergrpOutput) ToUserPeergrpOutputWithContext(ctx context.Context) UserPeergrpOutput {
 	return o
+}
+
+func (o UserPeergrpOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserPeergrp) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserPeergrpOutput) Members() UserPeergrpMemberArrayOutput {
+	return o.ApplyT(func(v *UserPeergrp) UserPeergrpMemberArrayOutput { return v.Members }).(UserPeergrpMemberArrayOutput)
+}
+
+func (o UserPeergrpOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPeergrp) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserPeergrpOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserPeergrp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserPeergrpArrayOutput struct{ *pulumi.OutputState }

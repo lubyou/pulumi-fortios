@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure global 802.1X settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchController8021XSettings("trname", {
- *     linkDownAuth: "set-unauth",
- *     maxReauthAttempt: 3,
- *     reauthPeriod: 12,
- * });
- * ```
- *
- * ## Import
- *
- * SwitchController 8021XSettings can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchController8021XSettings:SwitchController8021XSettings labelname SwitchController8021XSettings
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchController8021XSettings:SwitchController8021XSettings labelname SwitchController8021XSettings
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchController8021XSettings extends pulumi.CustomResource {
     /**
      * Get an existing SwitchController8021XSettings resource's state with the given name, ID, and optional extra
@@ -64,25 +32,11 @@ export class SwitchController8021XSettings extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchController8021XSettings.__pulumiType;
     }
 
-    /**
-     * Interface-reauthentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-     */
     public readonly linkDownAuth!: pulumi.Output<string>;
-    /**
-     * Maximum number of authentication attempts (0 - 15, default = 3).
-     */
+    public readonly mabReauth!: pulumi.Output<string>;
     public readonly maxReauthAttempt!: pulumi.Output<number>;
-    /**
-     * Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
-     */
     public readonly reauthPeriod!: pulumi.Output<number>;
-    /**
-     * 802.1X Tx period (seconds, default=30).
-     */
     public readonly txPeriod!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -99,6 +53,7 @@ export class SwitchController8021XSettings extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SwitchController8021XSettingsState | undefined;
             resourceInputs["linkDownAuth"] = state ? state.linkDownAuth : undefined;
+            resourceInputs["mabReauth"] = state ? state.mabReauth : undefined;
             resourceInputs["maxReauthAttempt"] = state ? state.maxReauthAttempt : undefined;
             resourceInputs["reauthPeriod"] = state ? state.reauthPeriod : undefined;
             resourceInputs["txPeriod"] = state ? state.txPeriod : undefined;
@@ -106,6 +61,7 @@ export class SwitchController8021XSettings extends pulumi.CustomResource {
         } else {
             const args = argsOrState as SwitchController8021XSettingsArgs | undefined;
             resourceInputs["linkDownAuth"] = args ? args.linkDownAuth : undefined;
+            resourceInputs["mabReauth"] = args ? args.mabReauth : undefined;
             resourceInputs["maxReauthAttempt"] = args ? args.maxReauthAttempt : undefined;
             resourceInputs["reauthPeriod"] = args ? args.reauthPeriod : undefined;
             resourceInputs["txPeriod"] = args ? args.txPeriod : undefined;
@@ -120,25 +76,11 @@ export class SwitchController8021XSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchController8021XSettings resources.
  */
 export interface SwitchController8021XSettingsState {
-    /**
-     * Interface-reauthentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-     */
     linkDownAuth?: pulumi.Input<string>;
-    /**
-     * Maximum number of authentication attempts (0 - 15, default = 3).
-     */
+    mabReauth?: pulumi.Input<string>;
     maxReauthAttempt?: pulumi.Input<number>;
-    /**
-     * Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
-     */
     reauthPeriod?: pulumi.Input<number>;
-    /**
-     * 802.1X Tx period (seconds, default=30).
-     */
     txPeriod?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -146,24 +88,10 @@ export interface SwitchController8021XSettingsState {
  * The set of arguments for constructing a SwitchController8021XSettings resource.
  */
 export interface SwitchController8021XSettingsArgs {
-    /**
-     * Interface-reauthentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-     */
     linkDownAuth?: pulumi.Input<string>;
-    /**
-     * Maximum number of authentication attempts (0 - 15, default = 3).
-     */
+    mabReauth?: pulumi.Input<string>;
     maxReauthAttempt?: pulumi.Input<number>;
-    /**
-     * Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
-     */
     reauthPeriod?: pulumi.Input<number>;
-    /**
-     * 802.1X Tx period (seconds, default=30).
-     */
     txPeriod?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

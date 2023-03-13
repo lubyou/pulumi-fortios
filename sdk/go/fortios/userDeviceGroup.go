@@ -10,75 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure device groups. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trnames12, err := fortios.NewUserDevice(ctx, "trnames12", &fortios.UserDeviceArgs{
-// 			Alias:    pulumi.String("user_devices2"),
-// 			Category: pulumi.String("amazon-device"),
-// 			Mac:      pulumi.String("08:00:20:0a:1c:1d"),
-// 			Type:     pulumi.String("unknown"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewUserDeviceGroup(ctx, "trname", &fortios.UserDeviceGroupArgs{
-// 			Members: UserDeviceGroupMemberArray{
-// 				&UserDeviceGroupMemberArgs{
-// 					Name: trnames12.Alias,
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// User DeviceGroup can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userDeviceGroup:UserDeviceGroup labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userDeviceGroup:UserDeviceGroup labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserDeviceGroup struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Device group member. The structure of `member` block is documented below.
-	Members UserDeviceGroupMemberArrayOutput `pulumi:"members"`
-	// Tag name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings UserDeviceGroupTaggingArrayOutput `pulumi:"taggings"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput            `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput            `pulumi:"dynamicSortSubtable"`
+	Members             UserDeviceGroupMemberArrayOutput  `pulumi:"members"`
+	Name                pulumi.StringOutput               `pulumi:"name"`
+	Taggings            UserDeviceGroupTaggingArrayOutput `pulumi:"taggings"`
+	Vdomparam           pulumi.StringPtrOutput            `pulumi:"vdomparam"`
 }
 
 // NewUserDeviceGroup registers a new resource with the given unique name, arguments, and options.
@@ -111,33 +51,21 @@ func GetUserDeviceGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserDeviceGroup resources.
 type userDeviceGroupState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Device group member. The structure of `member` block is documented below.
-	Members []UserDeviceGroupMember `pulumi:"members"`
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []UserDeviceGroupTagging `pulumi:"taggings"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                  `pulumi:"comment"`
+	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
+	Members             []UserDeviceGroupMember  `pulumi:"members"`
+	Name                *string                  `pulumi:"name"`
+	Taggings            []UserDeviceGroupTagging `pulumi:"taggings"`
+	Vdomparam           *string                  `pulumi:"vdomparam"`
 }
 
 type UserDeviceGroupState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Device group member. The structure of `member` block is documented below.
-	Members UserDeviceGroupMemberArrayInput
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings UserDeviceGroupTaggingArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Members             UserDeviceGroupMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Taggings            UserDeviceGroupTaggingArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserDeviceGroupState) ElementType() reflect.Type {
@@ -145,34 +73,22 @@ func (UserDeviceGroupState) ElementType() reflect.Type {
 }
 
 type userDeviceGroupArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Device group member. The structure of `member` block is documented below.
-	Members []UserDeviceGroupMember `pulumi:"members"`
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []UserDeviceGroupTagging `pulumi:"taggings"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                  `pulumi:"comment"`
+	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
+	Members             []UserDeviceGroupMember  `pulumi:"members"`
+	Name                *string                  `pulumi:"name"`
+	Taggings            []UserDeviceGroupTagging `pulumi:"taggings"`
+	Vdomparam           *string                  `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserDeviceGroup resource.
 type UserDeviceGroupArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Device group member. The structure of `member` block is documented below.
-	Members UserDeviceGroupMemberArrayInput
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings UserDeviceGroupTaggingArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Members             UserDeviceGroupMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Taggings            UserDeviceGroupTaggingArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserDeviceGroupArgs) ElementType() reflect.Type {
@@ -201,7 +117,7 @@ func (i *UserDeviceGroup) ToUserDeviceGroupOutputWithContext(ctx context.Context
 // UserDeviceGroupArrayInput is an input type that accepts UserDeviceGroupArray and UserDeviceGroupArrayOutput values.
 // You can construct a concrete instance of `UserDeviceGroupArrayInput` via:
 //
-//          UserDeviceGroupArray{ UserDeviceGroupArgs{...} }
+//	UserDeviceGroupArray{ UserDeviceGroupArgs{...} }
 type UserDeviceGroupArrayInput interface {
 	pulumi.Input
 
@@ -226,7 +142,7 @@ func (i UserDeviceGroupArray) ToUserDeviceGroupArrayOutputWithContext(ctx contex
 // UserDeviceGroupMapInput is an input type that accepts UserDeviceGroupMap and UserDeviceGroupMapOutput values.
 // You can construct a concrete instance of `UserDeviceGroupMapInput` via:
 //
-//          UserDeviceGroupMap{ "key": UserDeviceGroupArgs{...} }
+//	UserDeviceGroupMap{ "key": UserDeviceGroupArgs{...} }
 type UserDeviceGroupMapInput interface {
 	pulumi.Input
 
@@ -260,6 +176,30 @@ func (o UserDeviceGroupOutput) ToUserDeviceGroupOutput() UserDeviceGroupOutput {
 
 func (o UserDeviceGroupOutput) ToUserDeviceGroupOutputWithContext(ctx context.Context) UserDeviceGroupOutput {
 	return o
+}
+
+func (o UserDeviceGroupOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserDeviceGroup) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserDeviceGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceGroupOutput) Members() UserDeviceGroupMemberArrayOutput {
+	return o.ApplyT(func(v *UserDeviceGroup) UserDeviceGroupMemberArrayOutput { return v.Members }).(UserDeviceGroupMemberArrayOutput)
+}
+
+func (o UserDeviceGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserDeviceGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserDeviceGroupOutput) Taggings() UserDeviceGroupTaggingArrayOutput {
+	return o.ApplyT(func(v *UserDeviceGroup) UserDeviceGroupTaggingArrayOutput { return v.Taggings }).(UserDeviceGroupTaggingArrayOutput)
+}
+
+func (o UserDeviceGroupOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserDeviceGroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserDeviceGroupArrayOutput struct{ *pulumi.OutputState }

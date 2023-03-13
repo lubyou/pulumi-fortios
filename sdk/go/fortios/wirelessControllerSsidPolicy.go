@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure WiFi SSID policies. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// WirelessController SsidPolicy can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerSsidPolicy:WirelessControllerSsidPolicy labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerSsidPolicy:WirelessControllerSsidPolicy labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerSsidPolicy struct {
 	pulumi.CustomResourceState
 
-	// Description.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// VLAN interface name.
-	Vlan pulumi.StringOutput `pulumi:"vlan"`
+	Name        pulumi.StringOutput    `pulumi:"name"`
+	Vdomparam   pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vlan        pulumi.StringOutput    `pulumi:"vlan"`
 }
 
 // NewWirelessControllerSsidPolicy registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetWirelessControllerSsidPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerSsidPolicy resources.
 type wirelessControllerSsidPolicyState struct {
-	// Description.
 	Description *string `pulumi:"description"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// VLAN interface name.
-	Vlan *string `pulumi:"vlan"`
+	Name        *string `pulumi:"name"`
+	Vdomparam   *string `pulumi:"vdomparam"`
+	Vlan        *string `pulumi:"vlan"`
 }
 
 type WirelessControllerSsidPolicyState struct {
-	// Description.
 	Description pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// VLAN interface name.
-	Vlan pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
+	Vlan        pulumi.StringPtrInput
 }
 
 func (WirelessControllerSsidPolicyState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (WirelessControllerSsidPolicyState) ElementType() reflect.Type {
 }
 
 type wirelessControllerSsidPolicyArgs struct {
-	// Description.
 	Description *string `pulumi:"description"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// VLAN interface name.
-	Vlan *string `pulumi:"vlan"`
+	Name        *string `pulumi:"name"`
+	Vdomparam   *string `pulumi:"vdomparam"`
+	Vlan        *string `pulumi:"vlan"`
 }
 
 // The set of arguments for constructing a WirelessControllerSsidPolicy resource.
 type WirelessControllerSsidPolicyArgs struct {
-	// Description.
 	Description pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// VLAN interface name.
-	Vlan pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
+	Vlan        pulumi.StringPtrInput
 }
 
 func (WirelessControllerSsidPolicyArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *WirelessControllerSsidPolicy) ToWirelessControllerSsidPolicyOutputWithC
 // WirelessControllerSsidPolicyArrayInput is an input type that accepts WirelessControllerSsidPolicyArray and WirelessControllerSsidPolicyArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerSsidPolicyArrayInput` via:
 //
-//          WirelessControllerSsidPolicyArray{ WirelessControllerSsidPolicyArgs{...} }
+//	WirelessControllerSsidPolicyArray{ WirelessControllerSsidPolicyArgs{...} }
 type WirelessControllerSsidPolicyArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i WirelessControllerSsidPolicyArray) ToWirelessControllerSsidPolicyArrayOu
 // WirelessControllerSsidPolicyMapInput is an input type that accepts WirelessControllerSsidPolicyMap and WirelessControllerSsidPolicyMapOutput values.
 // You can construct a concrete instance of `WirelessControllerSsidPolicyMapInput` via:
 //
-//          WirelessControllerSsidPolicyMap{ "key": WirelessControllerSsidPolicyArgs{...} }
+//	WirelessControllerSsidPolicyMap{ "key": WirelessControllerSsidPolicyArgs{...} }
 type WirelessControllerSsidPolicyMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o WirelessControllerSsidPolicyOutput) ToWirelessControllerSsidPolicyOutput
 
 func (o WirelessControllerSsidPolicyOutput) ToWirelessControllerSsidPolicyOutputWithContext(ctx context.Context) WirelessControllerSsidPolicyOutput {
 	return o
+}
+
+func (o WirelessControllerSsidPolicyOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerSsidPolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerSsidPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerSsidPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerSsidPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerSsidPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerSsidPolicyOutput) Vlan() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerSsidPolicy) pulumi.StringOutput { return v.Vlan }).(pulumi.StringOutput)
 }
 
 type WirelessControllerSsidPolicyArrayOutput struct{ *pulumi.OutputState }

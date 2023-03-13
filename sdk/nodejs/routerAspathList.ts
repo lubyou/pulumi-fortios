@@ -2,42 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure Autonomous System (AS) path lists.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.RouterAspathList("trname", {
- *     rules: [{
- *         action: "deny",
- *         regexp: "/d+/n",
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * Router AspathList can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerAspathList:RouterAspathList labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerAspathList:RouterAspathList labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterAspathList extends pulumi.CustomResource {
     /**
      * Get an existing RouterAspathList resource's state with the given name, ID, and optional extra
@@ -66,21 +34,9 @@ export class RouterAspathList extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterAspathList.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * AS path list name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * AS path list rule. The structure of `rule` block is documented below.
-     */
     public readonly rules!: pulumi.Output<outputs.RouterAspathListRule[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -116,21 +72,9 @@ export class RouterAspathList extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterAspathList resources.
  */
 export interface RouterAspathListState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * AS path list name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * AS path list rule. The structure of `rule` block is documented below.
-     */
     rules?: pulumi.Input<pulumi.Input<inputs.RouterAspathListRule>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -138,20 +82,8 @@ export interface RouterAspathListState {
  * The set of arguments for constructing a RouterAspathList resource.
  */
 export interface RouterAspathListArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * AS path list name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * AS path list rule. The structure of `rule` block is documented below.
-     */
     rules?: pulumi.Input<pulumi.Input<inputs.RouterAspathListRule>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

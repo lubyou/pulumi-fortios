@@ -7,65 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure update schedule.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAutoupdateSchedule(ctx, "trname", &fortios.SystemAutoupdateScheduleArgs{
-// 			Day:       pulumi.String("Monday"),
-// 			Frequency: pulumi.String("every"),
-// 			Status:    pulumi.String("enable"),
-// 			Time:      pulumi.String("02:60"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SystemAutoupdate Schedule can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutoupdateSchedule:SystemAutoupdateSchedule labelname SystemAutoupdateSchedule
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutoupdateSchedule:SystemAutoupdateSchedule labelname SystemAutoupdateSchedule
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemAutoupdateSchedule struct {
 	pulumi.CustomResourceState
 
-	// Update day. Valid values: `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`.
-	Day pulumi.StringOutput `pulumi:"day"`
-	// Update frequency.
-	Frequency pulumi.StringOutput `pulumi:"frequency"`
-	// Enable/disable scheduled updates. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Update time.
-	Time pulumi.StringOutput `pulumi:"time"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Day       pulumi.StringOutput    `pulumi:"day"`
+	Frequency pulumi.StringOutput    `pulumi:"frequency"`
+	Status    pulumi.StringOutput    `pulumi:"status"`
+	Time      pulumi.StringOutput    `pulumi:"time"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -108,28 +60,18 @@ func GetSystemAutoupdateSchedule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAutoupdateSchedule resources.
 type systemAutoupdateScheduleState struct {
-	// Update day. Valid values: `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`.
-	Day *string `pulumi:"day"`
-	// Update frequency.
+	Day       *string `pulumi:"day"`
 	Frequency *string `pulumi:"frequency"`
-	// Enable/disable scheduled updates. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Update time.
-	Time *string `pulumi:"time"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    *string `pulumi:"status"`
+	Time      *string `pulumi:"time"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemAutoupdateScheduleState struct {
-	// Update day. Valid values: `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`.
-	Day pulumi.StringPtrInput
-	// Update frequency.
+	Day       pulumi.StringPtrInput
 	Frequency pulumi.StringPtrInput
-	// Enable/disable scheduled updates. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Update time.
-	Time pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    pulumi.StringPtrInput
+	Time      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -138,29 +80,19 @@ func (SystemAutoupdateScheduleState) ElementType() reflect.Type {
 }
 
 type systemAutoupdateScheduleArgs struct {
-	// Update day. Valid values: `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`.
-	Day *string `pulumi:"day"`
-	// Update frequency.
-	Frequency string `pulumi:"frequency"`
-	// Enable/disable scheduled updates. Valid values: `enable`, `disable`.
-	Status string `pulumi:"status"`
-	// Update time.
-	Time string `pulumi:"time"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Day       *string `pulumi:"day"`
+	Frequency string  `pulumi:"frequency"`
+	Status    string  `pulumi:"status"`
+	Time      string  `pulumi:"time"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemAutoupdateSchedule resource.
 type SystemAutoupdateScheduleArgs struct {
-	// Update day. Valid values: `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`.
-	Day pulumi.StringPtrInput
-	// Update frequency.
+	Day       pulumi.StringPtrInput
 	Frequency pulumi.StringInput
-	// Enable/disable scheduled updates. Valid values: `enable`, `disable`.
-	Status pulumi.StringInput
-	// Update time.
-	Time pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Status    pulumi.StringInput
+	Time      pulumi.StringInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -190,7 +122,7 @@ func (i *SystemAutoupdateSchedule) ToSystemAutoupdateScheduleOutputWithContext(c
 // SystemAutoupdateScheduleArrayInput is an input type that accepts SystemAutoupdateScheduleArray and SystemAutoupdateScheduleArrayOutput values.
 // You can construct a concrete instance of `SystemAutoupdateScheduleArrayInput` via:
 //
-//          SystemAutoupdateScheduleArray{ SystemAutoupdateScheduleArgs{...} }
+//	SystemAutoupdateScheduleArray{ SystemAutoupdateScheduleArgs{...} }
 type SystemAutoupdateScheduleArrayInput interface {
 	pulumi.Input
 
@@ -215,7 +147,7 @@ func (i SystemAutoupdateScheduleArray) ToSystemAutoupdateScheduleArrayOutputWith
 // SystemAutoupdateScheduleMapInput is an input type that accepts SystemAutoupdateScheduleMap and SystemAutoupdateScheduleMapOutput values.
 // You can construct a concrete instance of `SystemAutoupdateScheduleMapInput` via:
 //
-//          SystemAutoupdateScheduleMap{ "key": SystemAutoupdateScheduleArgs{...} }
+//	SystemAutoupdateScheduleMap{ "key": SystemAutoupdateScheduleArgs{...} }
 type SystemAutoupdateScheduleMapInput interface {
 	pulumi.Input
 
@@ -249,6 +181,26 @@ func (o SystemAutoupdateScheduleOutput) ToSystemAutoupdateScheduleOutput() Syste
 
 func (o SystemAutoupdateScheduleOutput) ToSystemAutoupdateScheduleOutputWithContext(ctx context.Context) SystemAutoupdateScheduleOutput {
 	return o
+}
+
+func (o SystemAutoupdateScheduleOutput) Day() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoupdateSchedule) pulumi.StringOutput { return v.Day }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoupdateScheduleOutput) Frequency() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoupdateSchedule) pulumi.StringOutput { return v.Frequency }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoupdateScheduleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoupdateSchedule) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoupdateScheduleOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoupdateSchedule) pulumi.StringOutput { return v.Time }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoupdateScheduleOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutoupdateSchedule) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemAutoupdateScheduleArrayOutput struct{ *pulumi.OutputState }

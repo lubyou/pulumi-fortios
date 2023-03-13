@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Internet Service owner. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * Firewall InternetServiceOwner can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInternetServiceOwner:FirewallInternetServiceOwner labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInternetServiceOwner:FirewallInternetServiceOwner labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallInternetServiceOwner extends pulumi.CustomResource {
     /**
      * Get an existing FirewallInternetServiceOwner resource's state with the given name, ID, and optional extra
@@ -51,17 +32,8 @@ export class FirewallInternetServiceOwner extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallInternetServiceOwner.__pulumiType;
     }
 
-    /**
-     * Internet Service owner ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Internet Service owner name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -95,17 +67,8 @@ export class FirewallInternetServiceOwner extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallInternetServiceOwner resources.
  */
 export interface FirewallInternetServiceOwnerState {
-    /**
-     * Internet Service owner ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Internet Service owner name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -113,16 +76,7 @@ export interface FirewallInternetServiceOwnerState {
  * The set of arguments for constructing a FirewallInternetServiceOwner resource.
  */
 export interface FirewallInternetServiceOwnerArgs {
-    /**
-     * Internet Service owner ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Internet Service owner name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

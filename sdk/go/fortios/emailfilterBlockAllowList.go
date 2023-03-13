@@ -10,38 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure anti-spam block/allow list. Applies to FortiOS Version `>= 7.0.0`.
-//
-// ## Import
-//
-// Emailfilter BlockAllowList can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/emailfilterBlockAllowList:EmailfilterBlockAllowList labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/emailfilterBlockAllowList:EmailfilterBlockAllowList labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type EmailfilterBlockAllowList struct {
 	pulumi.CustomResourceState
 
-	// Optional comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Anti-spam block/allow entries. The structure of `entries` block is documented below.
-	Entries EmailfilterBlockAllowListEntryArrayOutput `pulumi:"entries"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Name of table.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput                    `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                    `pulumi:"dynamicSortSubtable"`
+	Entries             EmailfilterBlockAllowListEntryArrayOutput `pulumi:"entries"`
+	Fosid               pulumi.IntOutput                          `pulumi:"fosid"`
+	Name                pulumi.StringOutput                       `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                    `pulumi:"vdomparam"`
 }
 
 // NewEmailfilterBlockAllowList registers a new resource with the given unique name, arguments, and options.
@@ -74,33 +51,21 @@ func GetEmailfilterBlockAllowList(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EmailfilterBlockAllowList resources.
 type emailfilterBlockAllowListState struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Anti-spam block/allow entries. The structure of `entries` block is documented below.
-	Entries []EmailfilterBlockAllowListEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                          `pulumi:"comment"`
+	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
+	Entries             []EmailfilterBlockAllowListEntry `pulumi:"entries"`
+	Fosid               *int                             `pulumi:"fosid"`
+	Name                *string                          `pulumi:"name"`
+	Vdomparam           *string                          `pulumi:"vdomparam"`
 }
 
 type EmailfilterBlockAllowListState struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Anti-spam block/allow entries. The structure of `entries` block is documented below.
-	Entries EmailfilterBlockAllowListEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             EmailfilterBlockAllowListEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (EmailfilterBlockAllowListState) ElementType() reflect.Type {
@@ -108,34 +73,22 @@ func (EmailfilterBlockAllowListState) ElementType() reflect.Type {
 }
 
 type emailfilterBlockAllowListArgs struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Anti-spam block/allow entries. The structure of `entries` block is documented below.
-	Entries []EmailfilterBlockAllowListEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                          `pulumi:"comment"`
+	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
+	Entries             []EmailfilterBlockAllowListEntry `pulumi:"entries"`
+	Fosid               *int                             `pulumi:"fosid"`
+	Name                *string                          `pulumi:"name"`
+	Vdomparam           *string                          `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a EmailfilterBlockAllowList resource.
 type EmailfilterBlockAllowListArgs struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Anti-spam block/allow entries. The structure of `entries` block is documented below.
-	Entries EmailfilterBlockAllowListEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             EmailfilterBlockAllowListEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (EmailfilterBlockAllowListArgs) ElementType() reflect.Type {
@@ -164,7 +117,7 @@ func (i *EmailfilterBlockAllowList) ToEmailfilterBlockAllowListOutputWithContext
 // EmailfilterBlockAllowListArrayInput is an input type that accepts EmailfilterBlockAllowListArray and EmailfilterBlockAllowListArrayOutput values.
 // You can construct a concrete instance of `EmailfilterBlockAllowListArrayInput` via:
 //
-//          EmailfilterBlockAllowListArray{ EmailfilterBlockAllowListArgs{...} }
+//	EmailfilterBlockAllowListArray{ EmailfilterBlockAllowListArgs{...} }
 type EmailfilterBlockAllowListArrayInput interface {
 	pulumi.Input
 
@@ -189,7 +142,7 @@ func (i EmailfilterBlockAllowListArray) ToEmailfilterBlockAllowListArrayOutputWi
 // EmailfilterBlockAllowListMapInput is an input type that accepts EmailfilterBlockAllowListMap and EmailfilterBlockAllowListMapOutput values.
 // You can construct a concrete instance of `EmailfilterBlockAllowListMapInput` via:
 //
-//          EmailfilterBlockAllowListMap{ "key": EmailfilterBlockAllowListArgs{...} }
+//	EmailfilterBlockAllowListMap{ "key": EmailfilterBlockAllowListArgs{...} }
 type EmailfilterBlockAllowListMapInput interface {
 	pulumi.Input
 
@@ -223,6 +176,30 @@ func (o EmailfilterBlockAllowListOutput) ToEmailfilterBlockAllowListOutput() Ema
 
 func (o EmailfilterBlockAllowListOutput) ToEmailfilterBlockAllowListOutputWithContext(ctx context.Context) EmailfilterBlockAllowListOutput {
 	return o
+}
+
+func (o EmailfilterBlockAllowListOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterBlockAllowList) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o EmailfilterBlockAllowListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterBlockAllowList) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o EmailfilterBlockAllowListOutput) Entries() EmailfilterBlockAllowListEntryArrayOutput {
+	return o.ApplyT(func(v *EmailfilterBlockAllowList) EmailfilterBlockAllowListEntryArrayOutput { return v.Entries }).(EmailfilterBlockAllowListEntryArrayOutput)
+}
+
+func (o EmailfilterBlockAllowListOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *EmailfilterBlockAllowList) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o EmailfilterBlockAllowListOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *EmailfilterBlockAllowList) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o EmailfilterBlockAllowListOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterBlockAllowList) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type EmailfilterBlockAllowListArrayOutput struct{ *pulumi.OutputState }

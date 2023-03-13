@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios systemautoupdate schedule
- */
 export function getSystemAutoupdateSchedule(args?: GetSystemAutoupdateScheduleArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemAutoupdateScheduleResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemAutoupdateSchedule:GetSystemAutoupdateSchedule", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -23,9 +17,6 @@ export function getSystemAutoupdateSchedule(args?: GetSystemAutoupdateScheduleAr
  * A collection of arguments for invoking GetSystemAutoupdateSchedule.
  */
 export interface GetSystemAutoupdateScheduleArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -33,39 +24,23 @@ export interface GetSystemAutoupdateScheduleArgs {
  * A collection of values returned by GetSystemAutoupdateSchedule.
  */
 export interface GetSystemAutoupdateScheduleResult {
-    /**
-     * Update day.
-     */
     readonly day: string;
-    /**
-     * Update frequency.
-     */
     readonly frequency: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Enable/disable scheduled updates.
-     */
     readonly status: string;
-    /**
-     * Update time.
-     */
     readonly time: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemAutoupdateScheduleOutput(args?: GetSystemAutoupdateScheduleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemAutoupdateScheduleResult> {
-    return pulumi.output(args).apply(a => getSystemAutoupdateSchedule(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemAutoupdateSchedule(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemAutoupdateSchedule.
  */
 export interface GetSystemAutoupdateScheduleOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

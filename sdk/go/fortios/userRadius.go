@@ -10,164 +10,58 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure RADIUS server entries.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewUserRadius(ctx, "trname", &fortios.UserRadiusArgs{
-// 			AcctAllServers:            pulumi.String("disable"),
-// 			AllUsergroup:              pulumi.String("disable"),
-// 			AuthType:                  pulumi.String("auto"),
-// 			H3cCompatibility:          pulumi.String("disable"),
-// 			NasIp:                     pulumi.String("0.0.0.0"),
-// 			PasswordEncoding:          pulumi.String("auto"),
-// 			PasswordRenewal:           pulumi.String("disable"),
-// 			RadiusCoa:                 pulumi.String("disable"),
-// 			RadiusPort:                pulumi.Int(0),
-// 			Rsso:                      pulumi.String("disable"),
-// 			RssoContextTimeout:        pulumi.Int(28800),
-// 			RssoEndpointAttribute:     pulumi.String("Calling-Station-Id"),
-// 			RssoEpOneIpOnly:           pulumi.String("disable"),
-// 			RssoFlushIpSession:        pulumi.String("disable"),
-// 			RssoLogFlags:              pulumi.String("protocol-error profile-missing accounting-stop-missed accounting-event endpoint-block radiusd-other"),
-// 			RssoLogPeriod:             pulumi.Int(0),
-// 			RssoRadiusResponse:        pulumi.String("disable"),
-// 			RssoRadiusServerPort:      pulumi.Int(1813),
-// 			RssoValidateRequestSecret: pulumi.String("disable"),
-// 			Secret:                    pulumi.String("FDaaewjkeiw32"),
-// 			Server:                    pulumi.String("1.1.1.1"),
-// 			SsoAttribute:              pulumi.String("Class"),
-// 			SsoAttributeValueOverride: pulumi.String("enable"),
-// 			Timeout:                   pulumi.Int(5),
-// 			UseManagementVdom:         pulumi.String("disable"),
-// 			UsernameCaseSensitive:     pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// User Radius can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userRadius:UserRadius labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userRadius:UserRadius labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserRadius struct {
 	pulumi.CustomResourceState
 
-	// Additional accounting servers. The structure of `accountingServer` block is documented below.
-	AccountingServers UserRadiusAccountingServerArrayOutput `pulumi:"accountingServers"`
-	// Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
-	AcctAllServers pulumi.StringOutput `pulumi:"acctAllServers"`
-	// Time in seconds between each accounting interim update message.
-	AcctInterimInterval pulumi.IntOutput `pulumi:"acctInterimInterval"`
-	// Enable/disable automatically including this RADIUS server in all user groups. Valid values: `disable`, `enable`.
-	AllUsergroup pulumi.StringOutput `pulumi:"allUsergroup"`
-	// Authentication methods/protocols permitted for this RADIUS server. Valid values: `auto`, `msChapV2`, `msChap`, `chap`, `pap`.
-	AuthType pulumi.StringOutput `pulumi:"authType"`
-	// Class attribute name(s). The structure of `class` block is documented below.
-	Classes UserRadiusClassArrayOutput `pulumi:"classes"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
-	GroupOverrideAttrType pulumi.StringOutput `pulumi:"groupOverrideAttrType"`
-	// Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
-	H3cCompatibility pulumi.StringOutput `pulumi:"h3cCompatibility"`
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
-	// Class name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
-	NasIp pulumi.StringOutput `pulumi:"nasIp"`
-	// Password encoding. Valid values: `auto`, `ISO-8859-1`.
-	PasswordEncoding pulumi.StringOutput `pulumi:"passwordEncoding"`
-	// Enable/disable password renewal. Valid values: `enable`, `disable`.
-	PasswordRenewal pulumi.StringOutput `pulumi:"passwordRenewal"`
-	// Enable to allow a mechanism to change the attributes of an authentication, authorization, and accounting session after it is authenticated. Valid values: `enable`, `disable`.
-	RadiusCoa pulumi.StringOutput `pulumi:"radiusCoa"`
-	// RADIUS service port number.
-	RadiusPort pulumi.IntOutput `pulumi:"radiusPort"`
-	// Enable/disable RADIUS based single sign on feature. Valid values: `enable`, `disable`.
-	Rsso pulumi.StringOutput `pulumi:"rsso"`
-	// Time in seconds before the logged out user is removed from the "user context list" of logged on users.
-	RssoContextTimeout pulumi.IntOutput `pulumi:"rssoContextTimeout"`
-	// RADIUS attributes used to extract the user end point identifer from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-	RssoEndpointAttribute pulumi.StringOutput `pulumi:"rssoEndpointAttribute"`
-	// RADIUS attributes used to block a user. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-	RssoEndpointBlockAttribute pulumi.StringOutput `pulumi:"rssoEndpointBlockAttribute"`
-	// Enable/disable the replacement of old IP addresses with new ones for the same endpoint on RADIUS accounting Start messages. Valid values: `enable`, `disable`.
-	RssoEpOneIpOnly pulumi.StringOutput `pulumi:"rssoEpOneIpOnly"`
-	// Enable/disable flushing user IP sessions on RADIUS accounting Stop messages. Valid values: `enable`, `disable`.
-	RssoFlushIpSession pulumi.StringOutput `pulumi:"rssoFlushIpSession"`
-	// Events to log. Valid values: `protocol-error`, `profile-missing`, `accounting-stop-missed`, `accounting-event`, `endpoint-block`, `radiusd-other`, `none`.
-	RssoLogFlags pulumi.StringOutput `pulumi:"rssoLogFlags"`
-	// Time interval in seconds that group event log messages will be generated for dynamic profile events.
-	RssoLogPeriod pulumi.IntOutput `pulumi:"rssoLogPeriod"`
-	// Enable/disable sending RADIUS response packets after receiving Start and Stop records. Valid values: `enable`, `disable`.
-	RssoRadiusResponse pulumi.StringOutput `pulumi:"rssoRadiusResponse"`
-	// UDP port to listen on for RADIUS Start and Stop records.
-	RssoRadiusServerPort pulumi.IntOutput `pulumi:"rssoRadiusServerPort"`
-	// RADIUS secret used by the RADIUS accounting server.
-	RssoSecret pulumi.StringPtrOutput `pulumi:"rssoSecret"`
-	// Enable/disable validating the RADIUS request shared secret in the Start or End record. Valid values: `enable`, `disable`.
-	RssoValidateRequestSecret pulumi.StringOutput `pulumi:"rssoValidateRequestSecret"`
-	// Secret key to access the secondary server.
-	SecondarySecret pulumi.StringPtrOutput `pulumi:"secondarySecret"`
-	// {<name_str|ip_str>} secondary RADIUS CN domain name or IP.
-	SecondaryServer pulumi.StringOutput `pulumi:"secondaryServer"`
-	// Secret key.
-	Secret pulumi.StringPtrOutput `pulumi:"secret"`
-	// {<name_str|ip_str>} Server CN domain name or IP.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// Source IP address for communications to the RADIUS server.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-	SsoAttribute pulumi.StringOutput `pulumi:"ssoAttribute"`
-	// Key prefix for SSO group value in the SSO attribute.
-	SsoAttributeKey pulumi.StringOutput `pulumi:"ssoAttributeKey"`
-	// Enable/disable override old attribute value with new value for the same endpoint. Valid values: `enable`, `disable`.
-	SsoAttributeValueOverride pulumi.StringOutput `pulumi:"ssoAttributeValueOverride"`
-	// Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
-	SwitchControllerAcctFastFramedipDetect pulumi.IntOutput `pulumi:"switchControllerAcctFastFramedipDetect"`
-	// RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
-	SwitchControllerServiceType pulumi.StringOutput `pulumi:"switchControllerServiceType"`
-	// Secret key to access the tertiary server.
-	TertiarySecret pulumi.StringPtrOutput `pulumi:"tertiarySecret"`
-	// {<name_str|ip_str>} tertiary RADIUS CN domain name or IP.
-	TertiaryServer pulumi.StringOutput `pulumi:"tertiaryServer"`
-	// Time in seconds between re-sending authentication requests.
-	Timeout pulumi.IntOutput `pulumi:"timeout"`
-	// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
-	UseManagementVdom pulumi.StringOutput `pulumi:"useManagementVdom"`
-	// Enable/disable case sensitive user names. Valid values: `enable`, `disable`.
-	UsernameCaseSensitive pulumi.StringOutput `pulumi:"usernameCaseSensitive"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AccountingServers                      UserRadiusAccountingServerArrayOutput `pulumi:"accountingServers"`
+	AcctAllServers                         pulumi.StringOutput                   `pulumi:"acctAllServers"`
+	AcctInterimInterval                    pulumi.IntOutput                      `pulumi:"acctInterimInterval"`
+	AllUsergroup                           pulumi.StringOutput                   `pulumi:"allUsergroup"`
+	AuthType                               pulumi.StringOutput                   `pulumi:"authType"`
+	Classes                                UserRadiusClassArrayOutput            `pulumi:"classes"`
+	Delimiter                              pulumi.StringOutput                   `pulumi:"delimiter"`
+	DynamicSortSubtable                    pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
+	GroupOverrideAttrType                  pulumi.StringOutput                   `pulumi:"groupOverrideAttrType"`
+	H3cCompatibility                       pulumi.StringOutput                   `pulumi:"h3cCompatibility"`
+	Interface                              pulumi.StringOutput                   `pulumi:"interface"`
+	InterfaceSelectMethod                  pulumi.StringOutput                   `pulumi:"interfaceSelectMethod"`
+	MacCase                                pulumi.StringOutput                   `pulumi:"macCase"`
+	MacPasswordDelimiter                   pulumi.StringOutput                   `pulumi:"macPasswordDelimiter"`
+	MacUsernameDelimiter                   pulumi.StringOutput                   `pulumi:"macUsernameDelimiter"`
+	Name                                   pulumi.StringOutput                   `pulumi:"name"`
+	NasIp                                  pulumi.StringOutput                   `pulumi:"nasIp"`
+	PasswordEncoding                       pulumi.StringOutput                   `pulumi:"passwordEncoding"`
+	PasswordRenewal                        pulumi.StringOutput                   `pulumi:"passwordRenewal"`
+	RadiusCoa                              pulumi.StringOutput                   `pulumi:"radiusCoa"`
+	RadiusPort                             pulumi.IntOutput                      `pulumi:"radiusPort"`
+	Rsso                                   pulumi.StringOutput                   `pulumi:"rsso"`
+	RssoContextTimeout                     pulumi.IntOutput                      `pulumi:"rssoContextTimeout"`
+	RssoEndpointAttribute                  pulumi.StringOutput                   `pulumi:"rssoEndpointAttribute"`
+	RssoEndpointBlockAttribute             pulumi.StringOutput                   `pulumi:"rssoEndpointBlockAttribute"`
+	RssoEpOneIpOnly                        pulumi.StringOutput                   `pulumi:"rssoEpOneIpOnly"`
+	RssoFlushIpSession                     pulumi.StringOutput                   `pulumi:"rssoFlushIpSession"`
+	RssoLogFlags                           pulumi.StringOutput                   `pulumi:"rssoLogFlags"`
+	RssoLogPeriod                          pulumi.IntOutput                      `pulumi:"rssoLogPeriod"`
+	RssoRadiusResponse                     pulumi.StringOutput                   `pulumi:"rssoRadiusResponse"`
+	RssoRadiusServerPort                   pulumi.IntOutput                      `pulumi:"rssoRadiusServerPort"`
+	RssoSecret                             pulumi.StringPtrOutput                `pulumi:"rssoSecret"`
+	RssoValidateRequestSecret              pulumi.StringOutput                   `pulumi:"rssoValidateRequestSecret"`
+	SecondarySecret                        pulumi.StringPtrOutput                `pulumi:"secondarySecret"`
+	SecondaryServer                        pulumi.StringOutput                   `pulumi:"secondaryServer"`
+	Secret                                 pulumi.StringPtrOutput                `pulumi:"secret"`
+	Server                                 pulumi.StringOutput                   `pulumi:"server"`
+	SourceIp                               pulumi.StringOutput                   `pulumi:"sourceIp"`
+	SsoAttribute                           pulumi.StringOutput                   `pulumi:"ssoAttribute"`
+	SsoAttributeKey                        pulumi.StringOutput                   `pulumi:"ssoAttributeKey"`
+	SsoAttributeValueOverride              pulumi.StringOutput                   `pulumi:"ssoAttributeValueOverride"`
+	SwitchControllerAcctFastFramedipDetect pulumi.IntOutput                      `pulumi:"switchControllerAcctFastFramedipDetect"`
+	SwitchControllerServiceType            pulumi.StringOutput                   `pulumi:"switchControllerServiceType"`
+	TertiarySecret                         pulumi.StringPtrOutput                `pulumi:"tertiarySecret"`
+	TertiaryServer                         pulumi.StringOutput                   `pulumi:"tertiaryServer"`
+	Timeout                                pulumi.IntOutput                      `pulumi:"timeout"`
+	UseManagementVdom                      pulumi.StringOutput                   `pulumi:"useManagementVdom"`
+	UsernameCaseSensitive                  pulumi.StringOutput                   `pulumi:"usernameCaseSensitive"`
+	Vdomparam                              pulumi.StringPtrOutput                `pulumi:"vdomparam"`
 }
 
 // NewUserRadius registers a new resource with the given unique name, arguments, and options.
@@ -177,6 +71,29 @@ func NewUserRadius(ctx *pulumi.Context,
 		args = &UserRadiusArgs{}
 	}
 
+	if args.RssoSecret != nil {
+		args.RssoSecret = pulumi.ToSecret(args.RssoSecret).(pulumi.StringPtrInput)
+	}
+	if args.SecondarySecret != nil {
+		args.SecondarySecret = pulumi.ToSecret(args.SecondarySecret).(pulumi.StringPtrInput)
+	}
+	if args.Secret != nil {
+		args.Secret = pulumi.ToSecret(args.Secret).(pulumi.StringPtrInput)
+	}
+	if args.SsoAttributeKey != nil {
+		args.SsoAttributeKey = pulumi.ToSecret(args.SsoAttributeKey).(pulumi.StringPtrInput)
+	}
+	if args.TertiarySecret != nil {
+		args.TertiarySecret = pulumi.ToSecret(args.TertiarySecret).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"rssoSecret",
+		"secondarySecret",
+		"secret",
+		"ssoAttributeKey",
+		"tertiarySecret",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource UserRadius
 	err := ctx.RegisterResource("fortios:index/userRadius:UserRadius", name, args, &resource, opts...)
@@ -200,189 +117,107 @@ func GetUserRadius(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserRadius resources.
 type userRadiusState struct {
-	// Additional accounting servers. The structure of `accountingServer` block is documented below.
-	AccountingServers []UserRadiusAccountingServer `pulumi:"accountingServers"`
-	// Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
-	AcctAllServers *string `pulumi:"acctAllServers"`
-	// Time in seconds between each accounting interim update message.
-	AcctInterimInterval *int `pulumi:"acctInterimInterval"`
-	// Enable/disable automatically including this RADIUS server in all user groups. Valid values: `disable`, `enable`.
-	AllUsergroup *string `pulumi:"allUsergroup"`
-	// Authentication methods/protocols permitted for this RADIUS server. Valid values: `auto`, `msChapV2`, `msChap`, `chap`, `pap`.
-	AuthType *string `pulumi:"authType"`
-	// Class attribute name(s). The structure of `class` block is documented below.
-	Classes []UserRadiusClass `pulumi:"classes"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
-	GroupOverrideAttrType *string `pulumi:"groupOverrideAttrType"`
-	// Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
-	H3cCompatibility *string `pulumi:"h3cCompatibility"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Class name.
-	Name *string `pulumi:"name"`
-	// IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
-	NasIp *string `pulumi:"nasIp"`
-	// Password encoding. Valid values: `auto`, `ISO-8859-1`.
-	PasswordEncoding *string `pulumi:"passwordEncoding"`
-	// Enable/disable password renewal. Valid values: `enable`, `disable`.
-	PasswordRenewal *string `pulumi:"passwordRenewal"`
-	// Enable to allow a mechanism to change the attributes of an authentication, authorization, and accounting session after it is authenticated. Valid values: `enable`, `disable`.
-	RadiusCoa *string `pulumi:"radiusCoa"`
-	// RADIUS service port number.
-	RadiusPort *int `pulumi:"radiusPort"`
-	// Enable/disable RADIUS based single sign on feature. Valid values: `enable`, `disable`.
-	Rsso *string `pulumi:"rsso"`
-	// Time in seconds before the logged out user is removed from the "user context list" of logged on users.
-	RssoContextTimeout *int `pulumi:"rssoContextTimeout"`
-	// RADIUS attributes used to extract the user end point identifer from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-	RssoEndpointAttribute *string `pulumi:"rssoEndpointAttribute"`
-	// RADIUS attributes used to block a user. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-	RssoEndpointBlockAttribute *string `pulumi:"rssoEndpointBlockAttribute"`
-	// Enable/disable the replacement of old IP addresses with new ones for the same endpoint on RADIUS accounting Start messages. Valid values: `enable`, `disable`.
-	RssoEpOneIpOnly *string `pulumi:"rssoEpOneIpOnly"`
-	// Enable/disable flushing user IP sessions on RADIUS accounting Stop messages. Valid values: `enable`, `disable`.
-	RssoFlushIpSession *string `pulumi:"rssoFlushIpSession"`
-	// Events to log. Valid values: `protocol-error`, `profile-missing`, `accounting-stop-missed`, `accounting-event`, `endpoint-block`, `radiusd-other`, `none`.
-	RssoLogFlags *string `pulumi:"rssoLogFlags"`
-	// Time interval in seconds that group event log messages will be generated for dynamic profile events.
-	RssoLogPeriod *int `pulumi:"rssoLogPeriod"`
-	// Enable/disable sending RADIUS response packets after receiving Start and Stop records. Valid values: `enable`, `disable`.
-	RssoRadiusResponse *string `pulumi:"rssoRadiusResponse"`
-	// UDP port to listen on for RADIUS Start and Stop records.
-	RssoRadiusServerPort *int `pulumi:"rssoRadiusServerPort"`
-	// RADIUS secret used by the RADIUS accounting server.
-	RssoSecret *string `pulumi:"rssoSecret"`
-	// Enable/disable validating the RADIUS request shared secret in the Start or End record. Valid values: `enable`, `disable`.
-	RssoValidateRequestSecret *string `pulumi:"rssoValidateRequestSecret"`
-	// Secret key to access the secondary server.
-	SecondarySecret *string `pulumi:"secondarySecret"`
-	// {<name_str|ip_str>} secondary RADIUS CN domain name or IP.
-	SecondaryServer *string `pulumi:"secondaryServer"`
-	// Secret key.
-	Secret *string `pulumi:"secret"`
-	// {<name_str|ip_str>} Server CN domain name or IP.
-	Server *string `pulumi:"server"`
-	// Source IP address for communications to the RADIUS server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-	SsoAttribute *string `pulumi:"ssoAttribute"`
-	// Key prefix for SSO group value in the SSO attribute.
-	SsoAttributeKey *string `pulumi:"ssoAttributeKey"`
-	// Enable/disable override old attribute value with new value for the same endpoint. Valid values: `enable`, `disable`.
-	SsoAttributeValueOverride *string `pulumi:"ssoAttributeValueOverride"`
-	// Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
-	SwitchControllerAcctFastFramedipDetect *int `pulumi:"switchControllerAcctFastFramedipDetect"`
-	// RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
-	SwitchControllerServiceType *string `pulumi:"switchControllerServiceType"`
-	// Secret key to access the tertiary server.
-	TertiarySecret *string `pulumi:"tertiarySecret"`
-	// {<name_str|ip_str>} tertiary RADIUS CN domain name or IP.
-	TertiaryServer *string `pulumi:"tertiaryServer"`
-	// Time in seconds between re-sending authentication requests.
-	Timeout *int `pulumi:"timeout"`
-	// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
-	UseManagementVdom *string `pulumi:"useManagementVdom"`
-	// Enable/disable case sensitive user names. Valid values: `enable`, `disable`.
-	UsernameCaseSensitive *string `pulumi:"usernameCaseSensitive"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AccountingServers                      []UserRadiusAccountingServer `pulumi:"accountingServers"`
+	AcctAllServers                         *string                      `pulumi:"acctAllServers"`
+	AcctInterimInterval                    *int                         `pulumi:"acctInterimInterval"`
+	AllUsergroup                           *string                      `pulumi:"allUsergroup"`
+	AuthType                               *string                      `pulumi:"authType"`
+	Classes                                []UserRadiusClass            `pulumi:"classes"`
+	Delimiter                              *string                      `pulumi:"delimiter"`
+	DynamicSortSubtable                    *string                      `pulumi:"dynamicSortSubtable"`
+	GroupOverrideAttrType                  *string                      `pulumi:"groupOverrideAttrType"`
+	H3cCompatibility                       *string                      `pulumi:"h3cCompatibility"`
+	Interface                              *string                      `pulumi:"interface"`
+	InterfaceSelectMethod                  *string                      `pulumi:"interfaceSelectMethod"`
+	MacCase                                *string                      `pulumi:"macCase"`
+	MacPasswordDelimiter                   *string                      `pulumi:"macPasswordDelimiter"`
+	MacUsernameDelimiter                   *string                      `pulumi:"macUsernameDelimiter"`
+	Name                                   *string                      `pulumi:"name"`
+	NasIp                                  *string                      `pulumi:"nasIp"`
+	PasswordEncoding                       *string                      `pulumi:"passwordEncoding"`
+	PasswordRenewal                        *string                      `pulumi:"passwordRenewal"`
+	RadiusCoa                              *string                      `pulumi:"radiusCoa"`
+	RadiusPort                             *int                         `pulumi:"radiusPort"`
+	Rsso                                   *string                      `pulumi:"rsso"`
+	RssoContextTimeout                     *int                         `pulumi:"rssoContextTimeout"`
+	RssoEndpointAttribute                  *string                      `pulumi:"rssoEndpointAttribute"`
+	RssoEndpointBlockAttribute             *string                      `pulumi:"rssoEndpointBlockAttribute"`
+	RssoEpOneIpOnly                        *string                      `pulumi:"rssoEpOneIpOnly"`
+	RssoFlushIpSession                     *string                      `pulumi:"rssoFlushIpSession"`
+	RssoLogFlags                           *string                      `pulumi:"rssoLogFlags"`
+	RssoLogPeriod                          *int                         `pulumi:"rssoLogPeriod"`
+	RssoRadiusResponse                     *string                      `pulumi:"rssoRadiusResponse"`
+	RssoRadiusServerPort                   *int                         `pulumi:"rssoRadiusServerPort"`
+	RssoSecret                             *string                      `pulumi:"rssoSecret"`
+	RssoValidateRequestSecret              *string                      `pulumi:"rssoValidateRequestSecret"`
+	SecondarySecret                        *string                      `pulumi:"secondarySecret"`
+	SecondaryServer                        *string                      `pulumi:"secondaryServer"`
+	Secret                                 *string                      `pulumi:"secret"`
+	Server                                 *string                      `pulumi:"server"`
+	SourceIp                               *string                      `pulumi:"sourceIp"`
+	SsoAttribute                           *string                      `pulumi:"ssoAttribute"`
+	SsoAttributeKey                        *string                      `pulumi:"ssoAttributeKey"`
+	SsoAttributeValueOverride              *string                      `pulumi:"ssoAttributeValueOverride"`
+	SwitchControllerAcctFastFramedipDetect *int                         `pulumi:"switchControllerAcctFastFramedipDetect"`
+	SwitchControllerServiceType            *string                      `pulumi:"switchControllerServiceType"`
+	TertiarySecret                         *string                      `pulumi:"tertiarySecret"`
+	TertiaryServer                         *string                      `pulumi:"tertiaryServer"`
+	Timeout                                *int                         `pulumi:"timeout"`
+	UseManagementVdom                      *string                      `pulumi:"useManagementVdom"`
+	UsernameCaseSensitive                  *string                      `pulumi:"usernameCaseSensitive"`
+	Vdomparam                              *string                      `pulumi:"vdomparam"`
 }
 
 type UserRadiusState struct {
-	// Additional accounting servers. The structure of `accountingServer` block is documented below.
-	AccountingServers UserRadiusAccountingServerArrayInput
-	// Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
-	AcctAllServers pulumi.StringPtrInput
-	// Time in seconds between each accounting interim update message.
-	AcctInterimInterval pulumi.IntPtrInput
-	// Enable/disable automatically including this RADIUS server in all user groups. Valid values: `disable`, `enable`.
-	AllUsergroup pulumi.StringPtrInput
-	// Authentication methods/protocols permitted for this RADIUS server. Valid values: `auto`, `msChapV2`, `msChap`, `chap`, `pap`.
-	AuthType pulumi.StringPtrInput
-	// Class attribute name(s). The structure of `class` block is documented below.
-	Classes UserRadiusClassArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
-	GroupOverrideAttrType pulumi.StringPtrInput
-	// Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
-	H3cCompatibility pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringPtrInput
-	// Class name.
-	Name pulumi.StringPtrInput
-	// IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
-	NasIp pulumi.StringPtrInput
-	// Password encoding. Valid values: `auto`, `ISO-8859-1`.
-	PasswordEncoding pulumi.StringPtrInput
-	// Enable/disable password renewal. Valid values: `enable`, `disable`.
-	PasswordRenewal pulumi.StringPtrInput
-	// Enable to allow a mechanism to change the attributes of an authentication, authorization, and accounting session after it is authenticated. Valid values: `enable`, `disable`.
-	RadiusCoa pulumi.StringPtrInput
-	// RADIUS service port number.
-	RadiusPort pulumi.IntPtrInput
-	// Enable/disable RADIUS based single sign on feature. Valid values: `enable`, `disable`.
-	Rsso pulumi.StringPtrInput
-	// Time in seconds before the logged out user is removed from the "user context list" of logged on users.
-	RssoContextTimeout pulumi.IntPtrInput
-	// RADIUS attributes used to extract the user end point identifer from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-	RssoEndpointAttribute pulumi.StringPtrInput
-	// RADIUS attributes used to block a user. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-	RssoEndpointBlockAttribute pulumi.StringPtrInput
-	// Enable/disable the replacement of old IP addresses with new ones for the same endpoint on RADIUS accounting Start messages. Valid values: `enable`, `disable`.
-	RssoEpOneIpOnly pulumi.StringPtrInput
-	// Enable/disable flushing user IP sessions on RADIUS accounting Stop messages. Valid values: `enable`, `disable`.
-	RssoFlushIpSession pulumi.StringPtrInput
-	// Events to log. Valid values: `protocol-error`, `profile-missing`, `accounting-stop-missed`, `accounting-event`, `endpoint-block`, `radiusd-other`, `none`.
-	RssoLogFlags pulumi.StringPtrInput
-	// Time interval in seconds that group event log messages will be generated for dynamic profile events.
-	RssoLogPeriod pulumi.IntPtrInput
-	// Enable/disable sending RADIUS response packets after receiving Start and Stop records. Valid values: `enable`, `disable`.
-	RssoRadiusResponse pulumi.StringPtrInput
-	// UDP port to listen on for RADIUS Start and Stop records.
-	RssoRadiusServerPort pulumi.IntPtrInput
-	// RADIUS secret used by the RADIUS accounting server.
-	RssoSecret pulumi.StringPtrInput
-	// Enable/disable validating the RADIUS request shared secret in the Start or End record. Valid values: `enable`, `disable`.
-	RssoValidateRequestSecret pulumi.StringPtrInput
-	// Secret key to access the secondary server.
-	SecondarySecret pulumi.StringPtrInput
-	// {<name_str|ip_str>} secondary RADIUS CN domain name or IP.
-	SecondaryServer pulumi.StringPtrInput
-	// Secret key.
-	Secret pulumi.StringPtrInput
-	// {<name_str|ip_str>} Server CN domain name or IP.
-	Server pulumi.StringPtrInput
-	// Source IP address for communications to the RADIUS server.
-	SourceIp pulumi.StringPtrInput
-	// RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-	SsoAttribute pulumi.StringPtrInput
-	// Key prefix for SSO group value in the SSO attribute.
-	SsoAttributeKey pulumi.StringPtrInput
-	// Enable/disable override old attribute value with new value for the same endpoint. Valid values: `enable`, `disable`.
-	SsoAttributeValueOverride pulumi.StringPtrInput
-	// Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
+	AccountingServers                      UserRadiusAccountingServerArrayInput
+	AcctAllServers                         pulumi.StringPtrInput
+	AcctInterimInterval                    pulumi.IntPtrInput
+	AllUsergroup                           pulumi.StringPtrInput
+	AuthType                               pulumi.StringPtrInput
+	Classes                                UserRadiusClassArrayInput
+	Delimiter                              pulumi.StringPtrInput
+	DynamicSortSubtable                    pulumi.StringPtrInput
+	GroupOverrideAttrType                  pulumi.StringPtrInput
+	H3cCompatibility                       pulumi.StringPtrInput
+	Interface                              pulumi.StringPtrInput
+	InterfaceSelectMethod                  pulumi.StringPtrInput
+	MacCase                                pulumi.StringPtrInput
+	MacPasswordDelimiter                   pulumi.StringPtrInput
+	MacUsernameDelimiter                   pulumi.StringPtrInput
+	Name                                   pulumi.StringPtrInput
+	NasIp                                  pulumi.StringPtrInput
+	PasswordEncoding                       pulumi.StringPtrInput
+	PasswordRenewal                        pulumi.StringPtrInput
+	RadiusCoa                              pulumi.StringPtrInput
+	RadiusPort                             pulumi.IntPtrInput
+	Rsso                                   pulumi.StringPtrInput
+	RssoContextTimeout                     pulumi.IntPtrInput
+	RssoEndpointAttribute                  pulumi.StringPtrInput
+	RssoEndpointBlockAttribute             pulumi.StringPtrInput
+	RssoEpOneIpOnly                        pulumi.StringPtrInput
+	RssoFlushIpSession                     pulumi.StringPtrInput
+	RssoLogFlags                           pulumi.StringPtrInput
+	RssoLogPeriod                          pulumi.IntPtrInput
+	RssoRadiusResponse                     pulumi.StringPtrInput
+	RssoRadiusServerPort                   pulumi.IntPtrInput
+	RssoSecret                             pulumi.StringPtrInput
+	RssoValidateRequestSecret              pulumi.StringPtrInput
+	SecondarySecret                        pulumi.StringPtrInput
+	SecondaryServer                        pulumi.StringPtrInput
+	Secret                                 pulumi.StringPtrInput
+	Server                                 pulumi.StringPtrInput
+	SourceIp                               pulumi.StringPtrInput
+	SsoAttribute                           pulumi.StringPtrInput
+	SsoAttributeKey                        pulumi.StringPtrInput
+	SsoAttributeValueOverride              pulumi.StringPtrInput
 	SwitchControllerAcctFastFramedipDetect pulumi.IntPtrInput
-	// RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
-	SwitchControllerServiceType pulumi.StringPtrInput
-	// Secret key to access the tertiary server.
-	TertiarySecret pulumi.StringPtrInput
-	// {<name_str|ip_str>} tertiary RADIUS CN domain name or IP.
-	TertiaryServer pulumi.StringPtrInput
-	// Time in seconds between re-sending authentication requests.
-	Timeout pulumi.IntPtrInput
-	// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
-	UseManagementVdom pulumi.StringPtrInput
-	// Enable/disable case sensitive user names. Valid values: `enable`, `disable`.
-	UsernameCaseSensitive pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SwitchControllerServiceType            pulumi.StringPtrInput
+	TertiarySecret                         pulumi.StringPtrInput
+	TertiaryServer                         pulumi.StringPtrInput
+	Timeout                                pulumi.IntPtrInput
+	UseManagementVdom                      pulumi.StringPtrInput
+	UsernameCaseSensitive                  pulumi.StringPtrInput
+	Vdomparam                              pulumi.StringPtrInput
 }
 
 func (UserRadiusState) ElementType() reflect.Type {
@@ -390,190 +225,108 @@ func (UserRadiusState) ElementType() reflect.Type {
 }
 
 type userRadiusArgs struct {
-	// Additional accounting servers. The structure of `accountingServer` block is documented below.
-	AccountingServers []UserRadiusAccountingServer `pulumi:"accountingServers"`
-	// Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
-	AcctAllServers *string `pulumi:"acctAllServers"`
-	// Time in seconds between each accounting interim update message.
-	AcctInterimInterval *int `pulumi:"acctInterimInterval"`
-	// Enable/disable automatically including this RADIUS server in all user groups. Valid values: `disable`, `enable`.
-	AllUsergroup *string `pulumi:"allUsergroup"`
-	// Authentication methods/protocols permitted for this RADIUS server. Valid values: `auto`, `msChapV2`, `msChap`, `chap`, `pap`.
-	AuthType *string `pulumi:"authType"`
-	// Class attribute name(s). The structure of `class` block is documented below.
-	Classes []UserRadiusClass `pulumi:"classes"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
-	GroupOverrideAttrType *string `pulumi:"groupOverrideAttrType"`
-	// Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
-	H3cCompatibility *string `pulumi:"h3cCompatibility"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Class name.
-	Name *string `pulumi:"name"`
-	// IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
-	NasIp *string `pulumi:"nasIp"`
-	// Password encoding. Valid values: `auto`, `ISO-8859-1`.
-	PasswordEncoding *string `pulumi:"passwordEncoding"`
-	// Enable/disable password renewal. Valid values: `enable`, `disable`.
-	PasswordRenewal *string `pulumi:"passwordRenewal"`
-	// Enable to allow a mechanism to change the attributes of an authentication, authorization, and accounting session after it is authenticated. Valid values: `enable`, `disable`.
-	RadiusCoa *string `pulumi:"radiusCoa"`
-	// RADIUS service port number.
-	RadiusPort *int `pulumi:"radiusPort"`
-	// Enable/disable RADIUS based single sign on feature. Valid values: `enable`, `disable`.
-	Rsso *string `pulumi:"rsso"`
-	// Time in seconds before the logged out user is removed from the "user context list" of logged on users.
-	RssoContextTimeout *int `pulumi:"rssoContextTimeout"`
-	// RADIUS attributes used to extract the user end point identifer from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-	RssoEndpointAttribute *string `pulumi:"rssoEndpointAttribute"`
-	// RADIUS attributes used to block a user. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-	RssoEndpointBlockAttribute *string `pulumi:"rssoEndpointBlockAttribute"`
-	// Enable/disable the replacement of old IP addresses with new ones for the same endpoint on RADIUS accounting Start messages. Valid values: `enable`, `disable`.
-	RssoEpOneIpOnly *string `pulumi:"rssoEpOneIpOnly"`
-	// Enable/disable flushing user IP sessions on RADIUS accounting Stop messages. Valid values: `enable`, `disable`.
-	RssoFlushIpSession *string `pulumi:"rssoFlushIpSession"`
-	// Events to log. Valid values: `protocol-error`, `profile-missing`, `accounting-stop-missed`, `accounting-event`, `endpoint-block`, `radiusd-other`, `none`.
-	RssoLogFlags *string `pulumi:"rssoLogFlags"`
-	// Time interval in seconds that group event log messages will be generated for dynamic profile events.
-	RssoLogPeriod *int `pulumi:"rssoLogPeriod"`
-	// Enable/disable sending RADIUS response packets after receiving Start and Stop records. Valid values: `enable`, `disable`.
-	RssoRadiusResponse *string `pulumi:"rssoRadiusResponse"`
-	// UDP port to listen on for RADIUS Start and Stop records.
-	RssoRadiusServerPort *int `pulumi:"rssoRadiusServerPort"`
-	// RADIUS secret used by the RADIUS accounting server.
-	RssoSecret *string `pulumi:"rssoSecret"`
-	// Enable/disable validating the RADIUS request shared secret in the Start or End record. Valid values: `enable`, `disable`.
-	RssoValidateRequestSecret *string `pulumi:"rssoValidateRequestSecret"`
-	// Secret key to access the secondary server.
-	SecondarySecret *string `pulumi:"secondarySecret"`
-	// {<name_str|ip_str>} secondary RADIUS CN domain name or IP.
-	SecondaryServer *string `pulumi:"secondaryServer"`
-	// Secret key.
-	Secret *string `pulumi:"secret"`
-	// {<name_str|ip_str>} Server CN domain name or IP.
-	Server *string `pulumi:"server"`
-	// Source IP address for communications to the RADIUS server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-	SsoAttribute *string `pulumi:"ssoAttribute"`
-	// Key prefix for SSO group value in the SSO attribute.
-	SsoAttributeKey *string `pulumi:"ssoAttributeKey"`
-	// Enable/disable override old attribute value with new value for the same endpoint. Valid values: `enable`, `disable`.
-	SsoAttributeValueOverride *string `pulumi:"ssoAttributeValueOverride"`
-	// Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
-	SwitchControllerAcctFastFramedipDetect *int `pulumi:"switchControllerAcctFastFramedipDetect"`
-	// RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
-	SwitchControllerServiceType *string `pulumi:"switchControllerServiceType"`
-	// Secret key to access the tertiary server.
-	TertiarySecret *string `pulumi:"tertiarySecret"`
-	// {<name_str|ip_str>} tertiary RADIUS CN domain name or IP.
-	TertiaryServer *string `pulumi:"tertiaryServer"`
-	// Time in seconds between re-sending authentication requests.
-	Timeout *int `pulumi:"timeout"`
-	// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
-	UseManagementVdom *string `pulumi:"useManagementVdom"`
-	// Enable/disable case sensitive user names. Valid values: `enable`, `disable`.
-	UsernameCaseSensitive *string `pulumi:"usernameCaseSensitive"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AccountingServers                      []UserRadiusAccountingServer `pulumi:"accountingServers"`
+	AcctAllServers                         *string                      `pulumi:"acctAllServers"`
+	AcctInterimInterval                    *int                         `pulumi:"acctInterimInterval"`
+	AllUsergroup                           *string                      `pulumi:"allUsergroup"`
+	AuthType                               *string                      `pulumi:"authType"`
+	Classes                                []UserRadiusClass            `pulumi:"classes"`
+	Delimiter                              *string                      `pulumi:"delimiter"`
+	DynamicSortSubtable                    *string                      `pulumi:"dynamicSortSubtable"`
+	GroupOverrideAttrType                  *string                      `pulumi:"groupOverrideAttrType"`
+	H3cCompatibility                       *string                      `pulumi:"h3cCompatibility"`
+	Interface                              *string                      `pulumi:"interface"`
+	InterfaceSelectMethod                  *string                      `pulumi:"interfaceSelectMethod"`
+	MacCase                                *string                      `pulumi:"macCase"`
+	MacPasswordDelimiter                   *string                      `pulumi:"macPasswordDelimiter"`
+	MacUsernameDelimiter                   *string                      `pulumi:"macUsernameDelimiter"`
+	Name                                   *string                      `pulumi:"name"`
+	NasIp                                  *string                      `pulumi:"nasIp"`
+	PasswordEncoding                       *string                      `pulumi:"passwordEncoding"`
+	PasswordRenewal                        *string                      `pulumi:"passwordRenewal"`
+	RadiusCoa                              *string                      `pulumi:"radiusCoa"`
+	RadiusPort                             *int                         `pulumi:"radiusPort"`
+	Rsso                                   *string                      `pulumi:"rsso"`
+	RssoContextTimeout                     *int                         `pulumi:"rssoContextTimeout"`
+	RssoEndpointAttribute                  *string                      `pulumi:"rssoEndpointAttribute"`
+	RssoEndpointBlockAttribute             *string                      `pulumi:"rssoEndpointBlockAttribute"`
+	RssoEpOneIpOnly                        *string                      `pulumi:"rssoEpOneIpOnly"`
+	RssoFlushIpSession                     *string                      `pulumi:"rssoFlushIpSession"`
+	RssoLogFlags                           *string                      `pulumi:"rssoLogFlags"`
+	RssoLogPeriod                          *int                         `pulumi:"rssoLogPeriod"`
+	RssoRadiusResponse                     *string                      `pulumi:"rssoRadiusResponse"`
+	RssoRadiusServerPort                   *int                         `pulumi:"rssoRadiusServerPort"`
+	RssoSecret                             *string                      `pulumi:"rssoSecret"`
+	RssoValidateRequestSecret              *string                      `pulumi:"rssoValidateRequestSecret"`
+	SecondarySecret                        *string                      `pulumi:"secondarySecret"`
+	SecondaryServer                        *string                      `pulumi:"secondaryServer"`
+	Secret                                 *string                      `pulumi:"secret"`
+	Server                                 *string                      `pulumi:"server"`
+	SourceIp                               *string                      `pulumi:"sourceIp"`
+	SsoAttribute                           *string                      `pulumi:"ssoAttribute"`
+	SsoAttributeKey                        *string                      `pulumi:"ssoAttributeKey"`
+	SsoAttributeValueOverride              *string                      `pulumi:"ssoAttributeValueOverride"`
+	SwitchControllerAcctFastFramedipDetect *int                         `pulumi:"switchControllerAcctFastFramedipDetect"`
+	SwitchControllerServiceType            *string                      `pulumi:"switchControllerServiceType"`
+	TertiarySecret                         *string                      `pulumi:"tertiarySecret"`
+	TertiaryServer                         *string                      `pulumi:"tertiaryServer"`
+	Timeout                                *int                         `pulumi:"timeout"`
+	UseManagementVdom                      *string                      `pulumi:"useManagementVdom"`
+	UsernameCaseSensitive                  *string                      `pulumi:"usernameCaseSensitive"`
+	Vdomparam                              *string                      `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserRadius resource.
 type UserRadiusArgs struct {
-	// Additional accounting servers. The structure of `accountingServer` block is documented below.
-	AccountingServers UserRadiusAccountingServerArrayInput
-	// Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
-	AcctAllServers pulumi.StringPtrInput
-	// Time in seconds between each accounting interim update message.
-	AcctInterimInterval pulumi.IntPtrInput
-	// Enable/disable automatically including this RADIUS server in all user groups. Valid values: `disable`, `enable`.
-	AllUsergroup pulumi.StringPtrInput
-	// Authentication methods/protocols permitted for this RADIUS server. Valid values: `auto`, `msChapV2`, `msChap`, `chap`, `pap`.
-	AuthType pulumi.StringPtrInput
-	// Class attribute name(s). The structure of `class` block is documented below.
-	Classes UserRadiusClassArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
-	GroupOverrideAttrType pulumi.StringPtrInput
-	// Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
-	H3cCompatibility pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringPtrInput
-	// Class name.
-	Name pulumi.StringPtrInput
-	// IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
-	NasIp pulumi.StringPtrInput
-	// Password encoding. Valid values: `auto`, `ISO-8859-1`.
-	PasswordEncoding pulumi.StringPtrInput
-	// Enable/disable password renewal. Valid values: `enable`, `disable`.
-	PasswordRenewal pulumi.StringPtrInput
-	// Enable to allow a mechanism to change the attributes of an authentication, authorization, and accounting session after it is authenticated. Valid values: `enable`, `disable`.
-	RadiusCoa pulumi.StringPtrInput
-	// RADIUS service port number.
-	RadiusPort pulumi.IntPtrInput
-	// Enable/disable RADIUS based single sign on feature. Valid values: `enable`, `disable`.
-	Rsso pulumi.StringPtrInput
-	// Time in seconds before the logged out user is removed from the "user context list" of logged on users.
-	RssoContextTimeout pulumi.IntPtrInput
-	// RADIUS attributes used to extract the user end point identifer from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-	RssoEndpointAttribute pulumi.StringPtrInput
-	// RADIUS attributes used to block a user. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-	RssoEndpointBlockAttribute pulumi.StringPtrInput
-	// Enable/disable the replacement of old IP addresses with new ones for the same endpoint on RADIUS accounting Start messages. Valid values: `enable`, `disable`.
-	RssoEpOneIpOnly pulumi.StringPtrInput
-	// Enable/disable flushing user IP sessions on RADIUS accounting Stop messages. Valid values: `enable`, `disable`.
-	RssoFlushIpSession pulumi.StringPtrInput
-	// Events to log. Valid values: `protocol-error`, `profile-missing`, `accounting-stop-missed`, `accounting-event`, `endpoint-block`, `radiusd-other`, `none`.
-	RssoLogFlags pulumi.StringPtrInput
-	// Time interval in seconds that group event log messages will be generated for dynamic profile events.
-	RssoLogPeriod pulumi.IntPtrInput
-	// Enable/disable sending RADIUS response packets after receiving Start and Stop records. Valid values: `enable`, `disable`.
-	RssoRadiusResponse pulumi.StringPtrInput
-	// UDP port to listen on for RADIUS Start and Stop records.
-	RssoRadiusServerPort pulumi.IntPtrInput
-	// RADIUS secret used by the RADIUS accounting server.
-	RssoSecret pulumi.StringPtrInput
-	// Enable/disable validating the RADIUS request shared secret in the Start or End record. Valid values: `enable`, `disable`.
-	RssoValidateRequestSecret pulumi.StringPtrInput
-	// Secret key to access the secondary server.
-	SecondarySecret pulumi.StringPtrInput
-	// {<name_str|ip_str>} secondary RADIUS CN domain name or IP.
-	SecondaryServer pulumi.StringPtrInput
-	// Secret key.
-	Secret pulumi.StringPtrInput
-	// {<name_str|ip_str>} Server CN domain name or IP.
-	Server pulumi.StringPtrInput
-	// Source IP address for communications to the RADIUS server.
-	SourceIp pulumi.StringPtrInput
-	// RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-	SsoAttribute pulumi.StringPtrInput
-	// Key prefix for SSO group value in the SSO attribute.
-	SsoAttributeKey pulumi.StringPtrInput
-	// Enable/disable override old attribute value with new value for the same endpoint. Valid values: `enable`, `disable`.
-	SsoAttributeValueOverride pulumi.StringPtrInput
-	// Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
+	AccountingServers                      UserRadiusAccountingServerArrayInput
+	AcctAllServers                         pulumi.StringPtrInput
+	AcctInterimInterval                    pulumi.IntPtrInput
+	AllUsergroup                           pulumi.StringPtrInput
+	AuthType                               pulumi.StringPtrInput
+	Classes                                UserRadiusClassArrayInput
+	Delimiter                              pulumi.StringPtrInput
+	DynamicSortSubtable                    pulumi.StringPtrInput
+	GroupOverrideAttrType                  pulumi.StringPtrInput
+	H3cCompatibility                       pulumi.StringPtrInput
+	Interface                              pulumi.StringPtrInput
+	InterfaceSelectMethod                  pulumi.StringPtrInput
+	MacCase                                pulumi.StringPtrInput
+	MacPasswordDelimiter                   pulumi.StringPtrInput
+	MacUsernameDelimiter                   pulumi.StringPtrInput
+	Name                                   pulumi.StringPtrInput
+	NasIp                                  pulumi.StringPtrInput
+	PasswordEncoding                       pulumi.StringPtrInput
+	PasswordRenewal                        pulumi.StringPtrInput
+	RadiusCoa                              pulumi.StringPtrInput
+	RadiusPort                             pulumi.IntPtrInput
+	Rsso                                   pulumi.StringPtrInput
+	RssoContextTimeout                     pulumi.IntPtrInput
+	RssoEndpointAttribute                  pulumi.StringPtrInput
+	RssoEndpointBlockAttribute             pulumi.StringPtrInput
+	RssoEpOneIpOnly                        pulumi.StringPtrInput
+	RssoFlushIpSession                     pulumi.StringPtrInput
+	RssoLogFlags                           pulumi.StringPtrInput
+	RssoLogPeriod                          pulumi.IntPtrInput
+	RssoRadiusResponse                     pulumi.StringPtrInput
+	RssoRadiusServerPort                   pulumi.IntPtrInput
+	RssoSecret                             pulumi.StringPtrInput
+	RssoValidateRequestSecret              pulumi.StringPtrInput
+	SecondarySecret                        pulumi.StringPtrInput
+	SecondaryServer                        pulumi.StringPtrInput
+	Secret                                 pulumi.StringPtrInput
+	Server                                 pulumi.StringPtrInput
+	SourceIp                               pulumi.StringPtrInput
+	SsoAttribute                           pulumi.StringPtrInput
+	SsoAttributeKey                        pulumi.StringPtrInput
+	SsoAttributeValueOverride              pulumi.StringPtrInput
 	SwitchControllerAcctFastFramedipDetect pulumi.IntPtrInput
-	// RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
-	SwitchControllerServiceType pulumi.StringPtrInput
-	// Secret key to access the tertiary server.
-	TertiarySecret pulumi.StringPtrInput
-	// {<name_str|ip_str>} tertiary RADIUS CN domain name or IP.
-	TertiaryServer pulumi.StringPtrInput
-	// Time in seconds between re-sending authentication requests.
-	Timeout pulumi.IntPtrInput
-	// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
-	UseManagementVdom pulumi.StringPtrInput
-	// Enable/disable case sensitive user names. Valid values: `enable`, `disable`.
-	UsernameCaseSensitive pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SwitchControllerServiceType            pulumi.StringPtrInput
+	TertiarySecret                         pulumi.StringPtrInput
+	TertiaryServer                         pulumi.StringPtrInput
+	Timeout                                pulumi.IntPtrInput
+	UseManagementVdom                      pulumi.StringPtrInput
+	UsernameCaseSensitive                  pulumi.StringPtrInput
+	Vdomparam                              pulumi.StringPtrInput
 }
 
 func (UserRadiusArgs) ElementType() reflect.Type {
@@ -602,7 +355,7 @@ func (i *UserRadius) ToUserRadiusOutputWithContext(ctx context.Context) UserRadi
 // UserRadiusArrayInput is an input type that accepts UserRadiusArray and UserRadiusArrayOutput values.
 // You can construct a concrete instance of `UserRadiusArrayInput` via:
 //
-//          UserRadiusArray{ UserRadiusArgs{...} }
+//	UserRadiusArray{ UserRadiusArgs{...} }
 type UserRadiusArrayInput interface {
 	pulumi.Input
 
@@ -627,7 +380,7 @@ func (i UserRadiusArray) ToUserRadiusArrayOutputWithContext(ctx context.Context)
 // UserRadiusMapInput is an input type that accepts UserRadiusMap and UserRadiusMapOutput values.
 // You can construct a concrete instance of `UserRadiusMapInput` via:
 //
-//          UserRadiusMap{ "key": UserRadiusArgs{...} }
+//	UserRadiusMap{ "key": UserRadiusArgs{...} }
 type UserRadiusMapInput interface {
 	pulumi.Input
 
@@ -661,6 +414,202 @@ func (o UserRadiusOutput) ToUserRadiusOutput() UserRadiusOutput {
 
 func (o UserRadiusOutput) ToUserRadiusOutputWithContext(ctx context.Context) UserRadiusOutput {
 	return o
+}
+
+func (o UserRadiusOutput) AccountingServers() UserRadiusAccountingServerArrayOutput {
+	return o.ApplyT(func(v *UserRadius) UserRadiusAccountingServerArrayOutput { return v.AccountingServers }).(UserRadiusAccountingServerArrayOutput)
+}
+
+func (o UserRadiusOutput) AcctAllServers() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.AcctAllServers }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) AcctInterimInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.IntOutput { return v.AcctInterimInterval }).(pulumi.IntOutput)
+}
+
+func (o UserRadiusOutput) AllUsergroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.AllUsergroup }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.AuthType }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) Classes() UserRadiusClassArrayOutput {
+	return o.ApplyT(func(v *UserRadius) UserRadiusClassArrayOutput { return v.Classes }).(UserRadiusClassArrayOutput)
+}
+
+func (o UserRadiusOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserRadiusOutput) GroupOverrideAttrType() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.GroupOverrideAttrType }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) H3cCompatibility() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.H3cCompatibility }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) MacCase() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.MacCase }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) MacPasswordDelimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.MacPasswordDelimiter }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) MacUsernameDelimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.MacUsernameDelimiter }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) NasIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.NasIp }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) PasswordEncoding() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.PasswordEncoding }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) PasswordRenewal() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.PasswordRenewal }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) RadiusCoa() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.RadiusCoa }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) RadiusPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.IntOutput { return v.RadiusPort }).(pulumi.IntOutput)
+}
+
+func (o UserRadiusOutput) Rsso() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.Rsso }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) RssoContextTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.IntOutput { return v.RssoContextTimeout }).(pulumi.IntOutput)
+}
+
+func (o UserRadiusOutput) RssoEndpointAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.RssoEndpointAttribute }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) RssoEndpointBlockAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.RssoEndpointBlockAttribute }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) RssoEpOneIpOnly() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.RssoEpOneIpOnly }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) RssoFlushIpSession() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.RssoFlushIpSession }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) RssoLogFlags() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.RssoLogFlags }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) RssoLogPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.IntOutput { return v.RssoLogPeriod }).(pulumi.IntOutput)
+}
+
+func (o UserRadiusOutput) RssoRadiusResponse() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.RssoRadiusResponse }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) RssoRadiusServerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.IntOutput { return v.RssoRadiusServerPort }).(pulumi.IntOutput)
+}
+
+func (o UserRadiusOutput) RssoSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringPtrOutput { return v.RssoSecret }).(pulumi.StringPtrOutput)
+}
+
+func (o UserRadiusOutput) RssoValidateRequestSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.RssoValidateRequestSecret }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) SecondarySecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringPtrOutput { return v.SecondarySecret }).(pulumi.StringPtrOutput)
+}
+
+func (o UserRadiusOutput) SecondaryServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.SecondaryServer }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) Secret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringPtrOutput { return v.Secret }).(pulumi.StringPtrOutput)
+}
+
+func (o UserRadiusOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) SsoAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.SsoAttribute }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) SsoAttributeKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.SsoAttributeKey }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) SsoAttributeValueOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.SsoAttributeValueOverride }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) SwitchControllerAcctFastFramedipDetect() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.IntOutput { return v.SwitchControllerAcctFastFramedipDetect }).(pulumi.IntOutput)
+}
+
+func (o UserRadiusOutput) SwitchControllerServiceType() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.SwitchControllerServiceType }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) TertiarySecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringPtrOutput { return v.TertiarySecret }).(pulumi.StringPtrOutput)
+}
+
+func (o UserRadiusOutput) TertiaryServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.TertiaryServer }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
+}
+
+func (o UserRadiusOutput) UseManagementVdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.UseManagementVdom }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) UsernameCaseSensitive() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.UsernameCaseSensitive }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserRadiusArrayOutput struct{ *pulumi.OutputState }

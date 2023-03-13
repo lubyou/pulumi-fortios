@@ -10,42 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Define known domain controller servers. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1`.
-//
-// ## Import
-//
-// Cifs DomainController can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/cifsDomainController:CifsDomainController labelname {{server_name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/cifsDomainController:CifsDomainController labelname {{server_name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type CifsDomainController struct {
 	pulumi.CustomResourceState
 
-	// Fully qualified domain name (FQDN). E.g. 'EXAMPLE.COM'.
-	DomainName pulumi.StringOutput `pulumi:"domainName"`
-	// IPv4 server address.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// IPv6 server address.
-	Ip6 pulumi.StringOutput `pulumi:"ip6"`
-	// Password for specified username.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Port number of service. Port number 0 indicates automatic discovery.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Name of the server to connect to.
-	ServerName pulumi.StringOutput `pulumi:"serverName"`
-	// User name to sign in with. Must have proper permissions for service.
-	Username pulumi.StringOutput `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DomainName pulumi.StringOutput    `pulumi:"domainName"`
+	Ip         pulumi.StringOutput    `pulumi:"ip"`
+	Ip6        pulumi.StringOutput    `pulumi:"ip6"`
+	Password   pulumi.StringPtrOutput `pulumi:"password"`
+	Port       pulumi.IntOutput       `pulumi:"port"`
+	ServerName pulumi.StringOutput    `pulumi:"serverName"`
+	Username   pulumi.StringOutput    `pulumi:"username"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewCifsDomainController registers a new resource with the given unique name, arguments, and options.
@@ -55,6 +30,13 @@ func NewCifsDomainController(ctx *pulumi.Context,
 		args = &CifsDomainControllerArgs{}
 	}
 
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource CifsDomainController
 	err := ctx.RegisterResource("fortios:index/cifsDomainController:CifsDomainController", name, args, &resource, opts...)
@@ -78,41 +60,25 @@ func GetCifsDomainController(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CifsDomainController resources.
 type cifsDomainControllerState struct {
-	// Fully qualified domain name (FQDN). E.g. 'EXAMPLE.COM'.
 	DomainName *string `pulumi:"domainName"`
-	// IPv4 server address.
-	Ip *string `pulumi:"ip"`
-	// IPv6 server address.
-	Ip6 *string `pulumi:"ip6"`
-	// Password for specified username.
-	Password *string `pulumi:"password"`
-	// Port number of service. Port number 0 indicates automatic discovery.
-	Port *int `pulumi:"port"`
-	// Name of the server to connect to.
+	Ip         *string `pulumi:"ip"`
+	Ip6        *string `pulumi:"ip6"`
+	Password   *string `pulumi:"password"`
+	Port       *int    `pulumi:"port"`
 	ServerName *string `pulumi:"serverName"`
-	// User name to sign in with. Must have proper permissions for service.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Username   *string `pulumi:"username"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type CifsDomainControllerState struct {
-	// Fully qualified domain name (FQDN). E.g. 'EXAMPLE.COM'.
 	DomainName pulumi.StringPtrInput
-	// IPv4 server address.
-	Ip pulumi.StringPtrInput
-	// IPv6 server address.
-	Ip6 pulumi.StringPtrInput
-	// Password for specified username.
-	Password pulumi.StringPtrInput
-	// Port number of service. Port number 0 indicates automatic discovery.
-	Port pulumi.IntPtrInput
-	// Name of the server to connect to.
+	Ip         pulumi.StringPtrInput
+	Ip6        pulumi.StringPtrInput
+	Password   pulumi.StringPtrInput
+	Port       pulumi.IntPtrInput
 	ServerName pulumi.StringPtrInput
-	// User name to sign in with. Must have proper permissions for service.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Username   pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (CifsDomainControllerState) ElementType() reflect.Type {
@@ -120,42 +86,26 @@ func (CifsDomainControllerState) ElementType() reflect.Type {
 }
 
 type cifsDomainControllerArgs struct {
-	// Fully qualified domain name (FQDN). E.g. 'EXAMPLE.COM'.
 	DomainName *string `pulumi:"domainName"`
-	// IPv4 server address.
-	Ip *string `pulumi:"ip"`
-	// IPv6 server address.
-	Ip6 *string `pulumi:"ip6"`
-	// Password for specified username.
-	Password *string `pulumi:"password"`
-	// Port number of service. Port number 0 indicates automatic discovery.
-	Port *int `pulumi:"port"`
-	// Name of the server to connect to.
+	Ip         *string `pulumi:"ip"`
+	Ip6        *string `pulumi:"ip6"`
+	Password   *string `pulumi:"password"`
+	Port       *int    `pulumi:"port"`
 	ServerName *string `pulumi:"serverName"`
-	// User name to sign in with. Must have proper permissions for service.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Username   *string `pulumi:"username"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a CifsDomainController resource.
 type CifsDomainControllerArgs struct {
-	// Fully qualified domain name (FQDN). E.g. 'EXAMPLE.COM'.
 	DomainName pulumi.StringPtrInput
-	// IPv4 server address.
-	Ip pulumi.StringPtrInput
-	// IPv6 server address.
-	Ip6 pulumi.StringPtrInput
-	// Password for specified username.
-	Password pulumi.StringPtrInput
-	// Port number of service. Port number 0 indicates automatic discovery.
-	Port pulumi.IntPtrInput
-	// Name of the server to connect to.
+	Ip         pulumi.StringPtrInput
+	Ip6        pulumi.StringPtrInput
+	Password   pulumi.StringPtrInput
+	Port       pulumi.IntPtrInput
 	ServerName pulumi.StringPtrInput
-	// User name to sign in with. Must have proper permissions for service.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Username   pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (CifsDomainControllerArgs) ElementType() reflect.Type {
@@ -184,7 +134,7 @@ func (i *CifsDomainController) ToCifsDomainControllerOutputWithContext(ctx conte
 // CifsDomainControllerArrayInput is an input type that accepts CifsDomainControllerArray and CifsDomainControllerArrayOutput values.
 // You can construct a concrete instance of `CifsDomainControllerArrayInput` via:
 //
-//          CifsDomainControllerArray{ CifsDomainControllerArgs{...} }
+//	CifsDomainControllerArray{ CifsDomainControllerArgs{...} }
 type CifsDomainControllerArrayInput interface {
 	pulumi.Input
 
@@ -209,7 +159,7 @@ func (i CifsDomainControllerArray) ToCifsDomainControllerArrayOutputWithContext(
 // CifsDomainControllerMapInput is an input type that accepts CifsDomainControllerMap and CifsDomainControllerMapOutput values.
 // You can construct a concrete instance of `CifsDomainControllerMapInput` via:
 //
-//          CifsDomainControllerMap{ "key": CifsDomainControllerArgs{...} }
+//	CifsDomainControllerMap{ "key": CifsDomainControllerArgs{...} }
 type CifsDomainControllerMapInput interface {
 	pulumi.Input
 
@@ -243,6 +193,38 @@ func (o CifsDomainControllerOutput) ToCifsDomainControllerOutput() CifsDomainCon
 
 func (o CifsDomainControllerOutput) ToCifsDomainControllerOutputWithContext(ctx context.Context) CifsDomainControllerOutput {
 	return o
+}
+
+func (o CifsDomainControllerOutput) DomainName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CifsDomainController) pulumi.StringOutput { return v.DomainName }).(pulumi.StringOutput)
+}
+
+func (o CifsDomainControllerOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *CifsDomainController) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o CifsDomainControllerOutput) Ip6() pulumi.StringOutput {
+	return o.ApplyT(func(v *CifsDomainController) pulumi.StringOutput { return v.Ip6 }).(pulumi.StringOutput)
+}
+
+func (o CifsDomainControllerOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CifsDomainController) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o CifsDomainControllerOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *CifsDomainController) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o CifsDomainControllerOutput) ServerName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CifsDomainController) pulumi.StringOutput { return v.ServerName }).(pulumi.StringOutput)
+}
+
+func (o CifsDomainControllerOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *CifsDomainController) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
+func (o CifsDomainControllerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CifsDomainController) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type CifsDomainControllerArrayOutput struct{ *pulumi.OutputState }

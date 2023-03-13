@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewall internetservicecustom
 func LookupFirewallInternetServiceCustom(ctx *pulumi.Context, args *LookupFirewallInternetServiceCustomArgs, opts ...pulumi.InvokeOption) (*LookupFirewallInternetServiceCustomResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallInternetServiceCustomResult
@@ -23,23 +22,17 @@ func LookupFirewallInternetServiceCustom(ctx *pulumi.Context, args *LookupFirewa
 
 // A collection of arguments for invoking GetFirewallInternetServiceCustom.
 type LookupFirewallInternetServiceCustomArgs struct {
-	// Specify the name of the desired firewall internetservicecustom.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallInternetServiceCustom.
 type LookupFirewallInternetServiceCustomResult struct {
-	// Comment.
-	Comment string `pulumi:"comment"`
-	// Entries added to the Internet Service database and custom database. The structure of `entry` block is documented below.
+	Comment string                                  `pulumi:"comment"`
 	Entries []GetFirewallInternetServiceCustomEntry `pulumi:"entries"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Select the destination address or address group object from available options.
-	Name string `pulumi:"name"`
-	// Reputation level of the custom Internet Service.
+	Id         string  `pulumi:"id"`
+	Name       string  `pulumi:"name"`
 	Reputation int     `pulumi:"reputation"`
 	Vdomparam  *string `pulumi:"vdomparam"`
 }
@@ -59,9 +52,7 @@ func LookupFirewallInternetServiceCustomOutput(ctx *pulumi.Context, args LookupF
 
 // A collection of arguments for invoking GetFirewallInternetServiceCustom.
 type LookupFirewallInternetServiceCustomOutputArgs struct {
-	// Specify the name of the desired firewall internetservicecustom.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -84,12 +75,10 @@ func (o LookupFirewallInternetServiceCustomResultOutput) ToLookupFirewallInterne
 	return o
 }
 
-// Comment.
 func (o LookupFirewallInternetServiceCustomResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceCustomResult) string { return v.Comment }).(pulumi.StringOutput)
 }
 
-// Entries added to the Internet Service database and custom database. The structure of `entry` block is documented below.
 func (o LookupFirewallInternetServiceCustomResultOutput) Entries() GetFirewallInternetServiceCustomEntryArrayOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceCustomResult) []GetFirewallInternetServiceCustomEntry {
 		return v.Entries
@@ -101,12 +90,10 @@ func (o LookupFirewallInternetServiceCustomResultOutput) Id() pulumi.StringOutpu
 	return o.ApplyT(func(v LookupFirewallInternetServiceCustomResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Select the destination address or address group object from available options.
 func (o LookupFirewallInternetServiceCustomResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceCustomResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Reputation level of the custom Internet Service.
 func (o LookupFirewallInternetServiceCustomResultOutput) Reputation() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceCustomResult) int { return v.Reputation }).(pulumi.IntOutput)
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system vxlan
 func LookupSystemVxlan(ctx *pulumi.Context, args *LookupSystemVxlanArgs, opts ...pulumi.InvokeOption) (*LookupSystemVxlanResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemVxlanResult
@@ -23,33 +22,23 @@ func LookupSystemVxlan(ctx *pulumi.Context, args *LookupSystemVxlanArgs, opts ..
 
 // A collection of arguments for invoking GetSystemVxlan.
 type LookupSystemVxlanArgs struct {
-	// Specify the name of the desired system vxlan.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemVxlan.
 type LookupSystemVxlanResult struct {
-	// VXLAN destination port (1 - 65535, default = 4789).
 	Dstport int `pulumi:"dstport"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Outgoing interface for VXLAN encapsulated traffic.
-	Interface string `pulumi:"interface"`
-	// IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast.
-	IpVersion string `pulumi:"ipVersion"`
-	// VXLAN multicast TTL (1-255, default = 0).
-	MulticastTtl int `pulumi:"multicastTtl"`
-	// VXLAN device or interface name. Must be a unique interface name.
-	Name string `pulumi:"name"`
-	// IPv6 IP address of the VXLAN interface on the device at the remote end of the VXLAN. The structure of `remoteIp6` block is documented below.
-	RemoteIp6s []GetSystemVxlanRemoteIp6 `pulumi:"remoteIp6s"`
-	// IPv4 address of the VXLAN interface on the device at the remote end of the VXLAN. The structure of `remoteIp` block is documented below.
-	RemoteIps []GetSystemVxlanRemoteIp `pulumi:"remoteIps"`
-	Vdomparam *string                  `pulumi:"vdomparam"`
-	// VXLAN network ID.
-	Vni int `pulumi:"vni"`
+	Id           string                    `pulumi:"id"`
+	Interface    string                    `pulumi:"interface"`
+	IpVersion    string                    `pulumi:"ipVersion"`
+	MulticastTtl int                       `pulumi:"multicastTtl"`
+	Name         string                    `pulumi:"name"`
+	RemoteIp6s   []GetSystemVxlanRemoteIp6 `pulumi:"remoteIp6s"`
+	RemoteIps    []GetSystemVxlanRemoteIp  `pulumi:"remoteIps"`
+	Vdomparam    *string                   `pulumi:"vdomparam"`
+	Vni          int                       `pulumi:"vni"`
 }
 
 func LookupSystemVxlanOutput(ctx *pulumi.Context, args LookupSystemVxlanOutputArgs, opts ...pulumi.InvokeOption) LookupSystemVxlanResultOutput {
@@ -67,9 +56,7 @@ func LookupSystemVxlanOutput(ctx *pulumi.Context, args LookupSystemVxlanOutputAr
 
 // A collection of arguments for invoking GetSystemVxlan.
 type LookupSystemVxlanOutputArgs struct {
-	// Specify the name of the desired system vxlan.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -92,7 +79,6 @@ func (o LookupSystemVxlanResultOutput) ToLookupSystemVxlanResultOutputWithContex
 	return o
 }
 
-// VXLAN destination port (1 - 65535, default = 4789).
 func (o LookupSystemVxlanResultOutput) Dstport() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemVxlanResult) int { return v.Dstport }).(pulumi.IntOutput)
 }
@@ -102,32 +88,26 @@ func (o LookupSystemVxlanResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemVxlanResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Outgoing interface for VXLAN encapsulated traffic.
 func (o LookupSystemVxlanResultOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemVxlanResult) string { return v.Interface }).(pulumi.StringOutput)
 }
 
-// IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast.
 func (o LookupSystemVxlanResultOutput) IpVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemVxlanResult) string { return v.IpVersion }).(pulumi.StringOutput)
 }
 
-// VXLAN multicast TTL (1-255, default = 0).
 func (o LookupSystemVxlanResultOutput) MulticastTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemVxlanResult) int { return v.MulticastTtl }).(pulumi.IntOutput)
 }
 
-// VXLAN device or interface name. Must be a unique interface name.
 func (o LookupSystemVxlanResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemVxlanResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// IPv6 IP address of the VXLAN interface on the device at the remote end of the VXLAN. The structure of `remoteIp6` block is documented below.
 func (o LookupSystemVxlanResultOutput) RemoteIp6s() GetSystemVxlanRemoteIp6ArrayOutput {
 	return o.ApplyT(func(v LookupSystemVxlanResult) []GetSystemVxlanRemoteIp6 { return v.RemoteIp6s }).(GetSystemVxlanRemoteIp6ArrayOutput)
 }
 
-// IPv4 address of the VXLAN interface on the device at the remote end of the VXLAN. The structure of `remoteIp` block is documented below.
 func (o LookupSystemVxlanResultOutput) RemoteIps() GetSystemVxlanRemoteIpArrayOutput {
 	return o.ApplyT(func(v LookupSystemVxlanResult) []GetSystemVxlanRemoteIp { return v.RemoteIps }).(GetSystemVxlanRemoteIpArrayOutput)
 }
@@ -136,7 +116,6 @@ func (o LookupSystemVxlanResultOutput) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSystemVxlanResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-// VXLAN network ID.
 func (o LookupSystemVxlanResultOutput) Vni() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemVxlanResult) int { return v.Vni }).(pulumi.IntOutput)
 }

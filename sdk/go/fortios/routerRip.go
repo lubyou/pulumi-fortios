@@ -10,120 +10,27 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure RIP.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewRouterRip(ctx, "trname", &fortios.RouterRipArgs{
-// 			DefaultInformationOriginate: pulumi.String("disable"),
-// 			DefaultMetric:               pulumi.Int(1),
-// 			GarbageTimer:                pulumi.Int(120),
-// 			MaxOutMetric:                pulumi.Int(0),
-// 			RecvBufferSize:              pulumi.Int(655360),
-// 			Redistributes: RouterRipRedistributeArray{
-// 				&RouterRipRedistributeArgs{
-// 					Metric: pulumi.Int(10),
-// 					Name:   pulumi.String("connected"),
-// 					Status: pulumi.String("disable"),
-// 				},
-// 				&RouterRipRedistributeArgs{
-// 					Metric: pulumi.Int(10),
-// 					Name:   pulumi.String("static"),
-// 					Status: pulumi.String("disable"),
-// 				},
-// 				&RouterRipRedistributeArgs{
-// 					Metric: pulumi.Int(10),
-// 					Name:   pulumi.String("ospf"),
-// 					Status: pulumi.String("disable"),
-// 				},
-// 				&RouterRipRedistributeArgs{
-// 					Metric: pulumi.Int(10),
-// 					Name:   pulumi.String("bgp"),
-// 					Status: pulumi.String("disable"),
-// 				},
-// 				&RouterRipRedistributeArgs{
-// 					Metric: pulumi.Int(10),
-// 					Name:   pulumi.String("isis"),
-// 					Status: pulumi.String("disable"),
-// 				},
-// 			},
-// 			TimeoutTimer: pulumi.Int(180),
-// 			UpdateTimer:  pulumi.Int(30),
-// 			Version:      pulumi.String("2"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Router Rip can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerRip:RouterRip labelname RouterRip
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerRip:RouterRip labelname RouterRip
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterRip struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable generation of default route. Valid values: `enable`, `disable`.
-	DefaultInformationOriginate pulumi.StringOutput `pulumi:"defaultInformationOriginate"`
-	// Default metric.
-	DefaultMetric pulumi.IntOutput `pulumi:"defaultMetric"`
-	// Distance (1 - 255).
-	Distances RouterRipDistanceArrayOutput `pulumi:"distances"`
-	// Distribute list. The structure of `distributeList` block is documented below.
-	DistributeLists RouterRipDistributeListArrayOutput `pulumi:"distributeLists"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Garbage timer in seconds.
-	GarbageTimer pulumi.IntOutput `pulumi:"garbageTimer"`
-	// Interface name.
-	Interfaces RouterRipInterfaceArrayOutput `pulumi:"interfaces"`
-	// Maximum metric allowed to output(0 means 'not set').
-	MaxOutMetric pulumi.IntOutput `pulumi:"maxOutMetric"`
-	// neighbor The structure of `neighbor` block is documented below.
-	Neighbors RouterRipNeighborArrayOutput `pulumi:"neighbors"`
-	// network The structure of `network` block is documented below.
-	Networks RouterRipNetworkArrayOutput `pulumi:"networks"`
-	// Offset list. The structure of `offsetList` block is documented below.
-	OffsetLists RouterRipOffsetListArrayOutput `pulumi:"offsetLists"`
-	// Passive interface configuration. The structure of `passiveInterface` block is documented below.
-	PassiveInterfaces RouterRipPassiveInterfaceArrayOutput `pulumi:"passiveInterfaces"`
-	// Receiving buffer size.
-	RecvBufferSize pulumi.IntOutput `pulumi:"recvBufferSize"`
-	// Redistribute configuration. The structure of `redistribute` block is documented below.
-	Redistributes RouterRipRedistributeArrayOutput `pulumi:"redistributes"`
-	// Timeout timer in seconds.
-	TimeoutTimer pulumi.IntOutput `pulumi:"timeoutTimer"`
-	// Update timer in seconds.
-	UpdateTimer pulumi.IntOutput `pulumi:"updateTimer"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// RIP version. Valid values: `1`, `2`.
-	Version pulumi.StringOutput `pulumi:"version"`
+	DefaultInformationOriginate pulumi.StringOutput                  `pulumi:"defaultInformationOriginate"`
+	DefaultMetric               pulumi.IntOutput                     `pulumi:"defaultMetric"`
+	Distances                   RouterRipDistanceArrayOutput         `pulumi:"distances"`
+	DistributeLists             RouterRipDistributeListArrayOutput   `pulumi:"distributeLists"`
+	DynamicSortSubtable         pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	GarbageTimer                pulumi.IntOutput                     `pulumi:"garbageTimer"`
+	Interfaces                  RouterRipInterfaceArrayOutput        `pulumi:"interfaces"`
+	MaxOutMetric                pulumi.IntOutput                     `pulumi:"maxOutMetric"`
+	Neighbors                   RouterRipNeighborArrayOutput         `pulumi:"neighbors"`
+	Networks                    RouterRipNetworkArrayOutput          `pulumi:"networks"`
+	OffsetLists                 RouterRipOffsetListArrayOutput       `pulumi:"offsetLists"`
+	PassiveInterfaces           RouterRipPassiveInterfaceArrayOutput `pulumi:"passiveInterfaces"`
+	RecvBufferSize              pulumi.IntOutput                     `pulumi:"recvBufferSize"`
+	Redistributes               RouterRipRedistributeArrayOutput     `pulumi:"redistributes"`
+	TimeoutTimer                pulumi.IntOutput                     `pulumi:"timeoutTimer"`
+	UpdateTimer                 pulumi.IntOutput                     `pulumi:"updateTimer"`
+	Vdomparam                   pulumi.StringPtrOutput               `pulumi:"vdomparam"`
+	Version                     pulumi.StringOutput                  `pulumi:"version"`
 }
 
 // NewRouterRip registers a new resource with the given unique name, arguments, and options.
@@ -156,81 +63,45 @@ func GetRouterRip(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterRip resources.
 type routerRipState struct {
-	// Enable/disable generation of default route. Valid values: `enable`, `disable`.
-	DefaultInformationOriginate *string `pulumi:"defaultInformationOriginate"`
-	// Default metric.
-	DefaultMetric *int `pulumi:"defaultMetric"`
-	// Distance (1 - 255).
-	Distances []RouterRipDistance `pulumi:"distances"`
-	// Distribute list. The structure of `distributeList` block is documented below.
-	DistributeLists []RouterRipDistributeList `pulumi:"distributeLists"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Garbage timer in seconds.
-	GarbageTimer *int `pulumi:"garbageTimer"`
-	// Interface name.
-	Interfaces []RouterRipInterface `pulumi:"interfaces"`
-	// Maximum metric allowed to output(0 means 'not set').
-	MaxOutMetric *int `pulumi:"maxOutMetric"`
-	// neighbor The structure of `neighbor` block is documented below.
-	Neighbors []RouterRipNeighbor `pulumi:"neighbors"`
-	// network The structure of `network` block is documented below.
-	Networks []RouterRipNetwork `pulumi:"networks"`
-	// Offset list. The structure of `offsetList` block is documented below.
-	OffsetLists []RouterRipOffsetList `pulumi:"offsetLists"`
-	// Passive interface configuration. The structure of `passiveInterface` block is documented below.
-	PassiveInterfaces []RouterRipPassiveInterface `pulumi:"passiveInterfaces"`
-	// Receiving buffer size.
-	RecvBufferSize *int `pulumi:"recvBufferSize"`
-	// Redistribute configuration. The structure of `redistribute` block is documented below.
-	Redistributes []RouterRipRedistribute `pulumi:"redistributes"`
-	// Timeout timer in seconds.
-	TimeoutTimer *int `pulumi:"timeoutTimer"`
-	// Update timer in seconds.
-	UpdateTimer *int `pulumi:"updateTimer"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// RIP version. Valid values: `1`, `2`.
-	Version *string `pulumi:"version"`
+	DefaultInformationOriginate *string                     `pulumi:"defaultInformationOriginate"`
+	DefaultMetric               *int                        `pulumi:"defaultMetric"`
+	Distances                   []RouterRipDistance         `pulumi:"distances"`
+	DistributeLists             []RouterRipDistributeList   `pulumi:"distributeLists"`
+	DynamicSortSubtable         *string                     `pulumi:"dynamicSortSubtable"`
+	GarbageTimer                *int                        `pulumi:"garbageTimer"`
+	Interfaces                  []RouterRipInterface        `pulumi:"interfaces"`
+	MaxOutMetric                *int                        `pulumi:"maxOutMetric"`
+	Neighbors                   []RouterRipNeighbor         `pulumi:"neighbors"`
+	Networks                    []RouterRipNetwork          `pulumi:"networks"`
+	OffsetLists                 []RouterRipOffsetList       `pulumi:"offsetLists"`
+	PassiveInterfaces           []RouterRipPassiveInterface `pulumi:"passiveInterfaces"`
+	RecvBufferSize              *int                        `pulumi:"recvBufferSize"`
+	Redistributes               []RouterRipRedistribute     `pulumi:"redistributes"`
+	TimeoutTimer                *int                        `pulumi:"timeoutTimer"`
+	UpdateTimer                 *int                        `pulumi:"updateTimer"`
+	Vdomparam                   *string                     `pulumi:"vdomparam"`
+	Version                     *string                     `pulumi:"version"`
 }
 
 type RouterRipState struct {
-	// Enable/disable generation of default route. Valid values: `enable`, `disable`.
 	DefaultInformationOriginate pulumi.StringPtrInput
-	// Default metric.
-	DefaultMetric pulumi.IntPtrInput
-	// Distance (1 - 255).
-	Distances RouterRipDistanceArrayInput
-	// Distribute list. The structure of `distributeList` block is documented below.
-	DistributeLists RouterRipDistributeListArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Garbage timer in seconds.
-	GarbageTimer pulumi.IntPtrInput
-	// Interface name.
-	Interfaces RouterRipInterfaceArrayInput
-	// Maximum metric allowed to output(0 means 'not set').
-	MaxOutMetric pulumi.IntPtrInput
-	// neighbor The structure of `neighbor` block is documented below.
-	Neighbors RouterRipNeighborArrayInput
-	// network The structure of `network` block is documented below.
-	Networks RouterRipNetworkArrayInput
-	// Offset list. The structure of `offsetList` block is documented below.
-	OffsetLists RouterRipOffsetListArrayInput
-	// Passive interface configuration. The structure of `passiveInterface` block is documented below.
-	PassiveInterfaces RouterRipPassiveInterfaceArrayInput
-	// Receiving buffer size.
-	RecvBufferSize pulumi.IntPtrInput
-	// Redistribute configuration. The structure of `redistribute` block is documented below.
-	Redistributes RouterRipRedistributeArrayInput
-	// Timeout timer in seconds.
-	TimeoutTimer pulumi.IntPtrInput
-	// Update timer in seconds.
-	UpdateTimer pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// RIP version. Valid values: `1`, `2`.
-	Version pulumi.StringPtrInput
+	DefaultMetric               pulumi.IntPtrInput
+	Distances                   RouterRipDistanceArrayInput
+	DistributeLists             RouterRipDistributeListArrayInput
+	DynamicSortSubtable         pulumi.StringPtrInput
+	GarbageTimer                pulumi.IntPtrInput
+	Interfaces                  RouterRipInterfaceArrayInput
+	MaxOutMetric                pulumi.IntPtrInput
+	Neighbors                   RouterRipNeighborArrayInput
+	Networks                    RouterRipNetworkArrayInput
+	OffsetLists                 RouterRipOffsetListArrayInput
+	PassiveInterfaces           RouterRipPassiveInterfaceArrayInput
+	RecvBufferSize              pulumi.IntPtrInput
+	Redistributes               RouterRipRedistributeArrayInput
+	TimeoutTimer                pulumi.IntPtrInput
+	UpdateTimer                 pulumi.IntPtrInput
+	Vdomparam                   pulumi.StringPtrInput
+	Version                     pulumi.StringPtrInput
 }
 
 func (RouterRipState) ElementType() reflect.Type {
@@ -238,82 +109,46 @@ func (RouterRipState) ElementType() reflect.Type {
 }
 
 type routerRipArgs struct {
-	// Enable/disable generation of default route. Valid values: `enable`, `disable`.
-	DefaultInformationOriginate *string `pulumi:"defaultInformationOriginate"`
-	// Default metric.
-	DefaultMetric *int `pulumi:"defaultMetric"`
-	// Distance (1 - 255).
-	Distances []RouterRipDistance `pulumi:"distances"`
-	// Distribute list. The structure of `distributeList` block is documented below.
-	DistributeLists []RouterRipDistributeList `pulumi:"distributeLists"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Garbage timer in seconds.
-	GarbageTimer *int `pulumi:"garbageTimer"`
-	// Interface name.
-	Interfaces []RouterRipInterface `pulumi:"interfaces"`
-	// Maximum metric allowed to output(0 means 'not set').
-	MaxOutMetric *int `pulumi:"maxOutMetric"`
-	// neighbor The structure of `neighbor` block is documented below.
-	Neighbors []RouterRipNeighbor `pulumi:"neighbors"`
-	// network The structure of `network` block is documented below.
-	Networks []RouterRipNetwork `pulumi:"networks"`
-	// Offset list. The structure of `offsetList` block is documented below.
-	OffsetLists []RouterRipOffsetList `pulumi:"offsetLists"`
-	// Passive interface configuration. The structure of `passiveInterface` block is documented below.
-	PassiveInterfaces []RouterRipPassiveInterface `pulumi:"passiveInterfaces"`
-	// Receiving buffer size.
-	RecvBufferSize *int `pulumi:"recvBufferSize"`
-	// Redistribute configuration. The structure of `redistribute` block is documented below.
-	Redistributes []RouterRipRedistribute `pulumi:"redistributes"`
-	// Timeout timer in seconds.
-	TimeoutTimer *int `pulumi:"timeoutTimer"`
-	// Update timer in seconds.
-	UpdateTimer *int `pulumi:"updateTimer"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// RIP version. Valid values: `1`, `2`.
-	Version *string `pulumi:"version"`
+	DefaultInformationOriginate *string                     `pulumi:"defaultInformationOriginate"`
+	DefaultMetric               *int                        `pulumi:"defaultMetric"`
+	Distances                   []RouterRipDistance         `pulumi:"distances"`
+	DistributeLists             []RouterRipDistributeList   `pulumi:"distributeLists"`
+	DynamicSortSubtable         *string                     `pulumi:"dynamicSortSubtable"`
+	GarbageTimer                *int                        `pulumi:"garbageTimer"`
+	Interfaces                  []RouterRipInterface        `pulumi:"interfaces"`
+	MaxOutMetric                *int                        `pulumi:"maxOutMetric"`
+	Neighbors                   []RouterRipNeighbor         `pulumi:"neighbors"`
+	Networks                    []RouterRipNetwork          `pulumi:"networks"`
+	OffsetLists                 []RouterRipOffsetList       `pulumi:"offsetLists"`
+	PassiveInterfaces           []RouterRipPassiveInterface `pulumi:"passiveInterfaces"`
+	RecvBufferSize              *int                        `pulumi:"recvBufferSize"`
+	Redistributes               []RouterRipRedistribute     `pulumi:"redistributes"`
+	TimeoutTimer                *int                        `pulumi:"timeoutTimer"`
+	UpdateTimer                 *int                        `pulumi:"updateTimer"`
+	Vdomparam                   *string                     `pulumi:"vdomparam"`
+	Version                     *string                     `pulumi:"version"`
 }
 
 // The set of arguments for constructing a RouterRip resource.
 type RouterRipArgs struct {
-	// Enable/disable generation of default route. Valid values: `enable`, `disable`.
 	DefaultInformationOriginate pulumi.StringPtrInput
-	// Default metric.
-	DefaultMetric pulumi.IntPtrInput
-	// Distance (1 - 255).
-	Distances RouterRipDistanceArrayInput
-	// Distribute list. The structure of `distributeList` block is documented below.
-	DistributeLists RouterRipDistributeListArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Garbage timer in seconds.
-	GarbageTimer pulumi.IntPtrInput
-	// Interface name.
-	Interfaces RouterRipInterfaceArrayInput
-	// Maximum metric allowed to output(0 means 'not set').
-	MaxOutMetric pulumi.IntPtrInput
-	// neighbor The structure of `neighbor` block is documented below.
-	Neighbors RouterRipNeighborArrayInput
-	// network The structure of `network` block is documented below.
-	Networks RouterRipNetworkArrayInput
-	// Offset list. The structure of `offsetList` block is documented below.
-	OffsetLists RouterRipOffsetListArrayInput
-	// Passive interface configuration. The structure of `passiveInterface` block is documented below.
-	PassiveInterfaces RouterRipPassiveInterfaceArrayInput
-	// Receiving buffer size.
-	RecvBufferSize pulumi.IntPtrInput
-	// Redistribute configuration. The structure of `redistribute` block is documented below.
-	Redistributes RouterRipRedistributeArrayInput
-	// Timeout timer in seconds.
-	TimeoutTimer pulumi.IntPtrInput
-	// Update timer in seconds.
-	UpdateTimer pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// RIP version. Valid values: `1`, `2`.
-	Version pulumi.StringPtrInput
+	DefaultMetric               pulumi.IntPtrInput
+	Distances                   RouterRipDistanceArrayInput
+	DistributeLists             RouterRipDistributeListArrayInput
+	DynamicSortSubtable         pulumi.StringPtrInput
+	GarbageTimer                pulumi.IntPtrInput
+	Interfaces                  RouterRipInterfaceArrayInput
+	MaxOutMetric                pulumi.IntPtrInput
+	Neighbors                   RouterRipNeighborArrayInput
+	Networks                    RouterRipNetworkArrayInput
+	OffsetLists                 RouterRipOffsetListArrayInput
+	PassiveInterfaces           RouterRipPassiveInterfaceArrayInput
+	RecvBufferSize              pulumi.IntPtrInput
+	Redistributes               RouterRipRedistributeArrayInput
+	TimeoutTimer                pulumi.IntPtrInput
+	UpdateTimer                 pulumi.IntPtrInput
+	Vdomparam                   pulumi.StringPtrInput
+	Version                     pulumi.StringPtrInput
 }
 
 func (RouterRipArgs) ElementType() reflect.Type {
@@ -342,7 +177,7 @@ func (i *RouterRip) ToRouterRipOutputWithContext(ctx context.Context) RouterRipO
 // RouterRipArrayInput is an input type that accepts RouterRipArray and RouterRipArrayOutput values.
 // You can construct a concrete instance of `RouterRipArrayInput` via:
 //
-//          RouterRipArray{ RouterRipArgs{...} }
+//	RouterRipArray{ RouterRipArgs{...} }
 type RouterRipArrayInput interface {
 	pulumi.Input
 
@@ -367,7 +202,7 @@ func (i RouterRipArray) ToRouterRipArrayOutputWithContext(ctx context.Context) R
 // RouterRipMapInput is an input type that accepts RouterRipMap and RouterRipMapOutput values.
 // You can construct a concrete instance of `RouterRipMapInput` via:
 //
-//          RouterRipMap{ "key": RouterRipArgs{...} }
+//	RouterRipMap{ "key": RouterRipArgs{...} }
 type RouterRipMapInput interface {
 	pulumi.Input
 
@@ -401,6 +236,78 @@ func (o RouterRipOutput) ToRouterRipOutput() RouterRipOutput {
 
 func (o RouterRipOutput) ToRouterRipOutputWithContext(ctx context.Context) RouterRipOutput {
 	return o
+}
+
+func (o RouterRipOutput) DefaultInformationOriginate() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterRip) pulumi.StringOutput { return v.DefaultInformationOriginate }).(pulumi.StringOutput)
+}
+
+func (o RouterRipOutput) DefaultMetric() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterRip) pulumi.IntOutput { return v.DefaultMetric }).(pulumi.IntOutput)
+}
+
+func (o RouterRipOutput) Distances() RouterRipDistanceArrayOutput {
+	return o.ApplyT(func(v *RouterRip) RouterRipDistanceArrayOutput { return v.Distances }).(RouterRipDistanceArrayOutput)
+}
+
+func (o RouterRipOutput) DistributeLists() RouterRipDistributeListArrayOutput {
+	return o.ApplyT(func(v *RouterRip) RouterRipDistributeListArrayOutput { return v.DistributeLists }).(RouterRipDistributeListArrayOutput)
+}
+
+func (o RouterRipOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterRip) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterRipOutput) GarbageTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterRip) pulumi.IntOutput { return v.GarbageTimer }).(pulumi.IntOutput)
+}
+
+func (o RouterRipOutput) Interfaces() RouterRipInterfaceArrayOutput {
+	return o.ApplyT(func(v *RouterRip) RouterRipInterfaceArrayOutput { return v.Interfaces }).(RouterRipInterfaceArrayOutput)
+}
+
+func (o RouterRipOutput) MaxOutMetric() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterRip) pulumi.IntOutput { return v.MaxOutMetric }).(pulumi.IntOutput)
+}
+
+func (o RouterRipOutput) Neighbors() RouterRipNeighborArrayOutput {
+	return o.ApplyT(func(v *RouterRip) RouterRipNeighborArrayOutput { return v.Neighbors }).(RouterRipNeighborArrayOutput)
+}
+
+func (o RouterRipOutput) Networks() RouterRipNetworkArrayOutput {
+	return o.ApplyT(func(v *RouterRip) RouterRipNetworkArrayOutput { return v.Networks }).(RouterRipNetworkArrayOutput)
+}
+
+func (o RouterRipOutput) OffsetLists() RouterRipOffsetListArrayOutput {
+	return o.ApplyT(func(v *RouterRip) RouterRipOffsetListArrayOutput { return v.OffsetLists }).(RouterRipOffsetListArrayOutput)
+}
+
+func (o RouterRipOutput) PassiveInterfaces() RouterRipPassiveInterfaceArrayOutput {
+	return o.ApplyT(func(v *RouterRip) RouterRipPassiveInterfaceArrayOutput { return v.PassiveInterfaces }).(RouterRipPassiveInterfaceArrayOutput)
+}
+
+func (o RouterRipOutput) RecvBufferSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterRip) pulumi.IntOutput { return v.RecvBufferSize }).(pulumi.IntOutput)
+}
+
+func (o RouterRipOutput) Redistributes() RouterRipRedistributeArrayOutput {
+	return o.ApplyT(func(v *RouterRip) RouterRipRedistributeArrayOutput { return v.Redistributes }).(RouterRipRedistributeArrayOutput)
+}
+
+func (o RouterRipOutput) TimeoutTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterRip) pulumi.IntOutput { return v.TimeoutTimer }).(pulumi.IntOutput)
+}
+
+func (o RouterRipOutput) UpdateTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterRip) pulumi.IntOutput { return v.UpdateTimer }).(pulumi.IntOutput)
+}
+
+func (o RouterRipOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterRip) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterRipOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterRip) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }
 
 type RouterRipArrayOutput struct{ *pulumi.OutputState }

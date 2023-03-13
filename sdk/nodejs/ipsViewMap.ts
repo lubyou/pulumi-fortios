@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * configure ips view-map Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * Ips ViewMap can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/ipsViewMap:IpsViewMap labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/ipsViewMap:IpsViewMap labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class IpsViewMap extends pulumi.CustomResource {
     /**
      * Get an existing IpsViewMap resource's state with the given name, ID, and optional extra
@@ -51,29 +32,11 @@ export class IpsViewMap extends pulumi.CustomResource {
         return obj['__pulumiType'] === IpsViewMap.__pulumiType;
     }
 
-    /**
-     * View ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * ID-based policy ID.
-     */
     public readonly idPolicyId!: pulumi.Output<number>;
-    /**
-     * Policy ID.
-     */
     public readonly policyId!: pulumi.Output<number>;
-    /**
-     * VDOM ID.
-     */
     public readonly vdomId!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Policy.
-     */
     public readonly which!: pulumi.Output<string>;
 
     /**
@@ -113,29 +76,11 @@ export class IpsViewMap extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IpsViewMap resources.
  */
 export interface IpsViewMapState {
-    /**
-     * View ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * ID-based policy ID.
-     */
     idPolicyId?: pulumi.Input<number>;
-    /**
-     * Policy ID.
-     */
     policyId?: pulumi.Input<number>;
-    /**
-     * VDOM ID.
-     */
     vdomId?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Policy.
-     */
     which?: pulumi.Input<string>;
 }
 
@@ -143,28 +88,10 @@ export interface IpsViewMapState {
  * The set of arguments for constructing a IpsViewMap resource.
  */
 export interface IpsViewMapArgs {
-    /**
-     * View ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * ID-based policy ID.
-     */
     idPolicyId?: pulumi.Input<number>;
-    /**
-     * Policy ID.
-     */
     policyId?: pulumi.Input<number>;
-    /**
-     * VDOM ID.
-     */
     vdomId?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Policy.
-     */
     which?: pulumi.Input<string>;
 }

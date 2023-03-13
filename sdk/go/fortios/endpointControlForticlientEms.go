@@ -7,52 +7,24 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiClient Enterprise Management Server (EMS) entries. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Import
-//
-// EndpointControl ForticlientEms can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/endpointControlForticlientEms:EndpointControlForticlientEms labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/endpointControlForticlientEms:EndpointControlForticlientEms labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type EndpointControlForticlientEms struct {
 	pulumi.CustomResourceState
 
-	// Firewall address name.
-	Address pulumi.StringOutput `pulumi:"address"`
-	// FortiClient EMS admin password.
+	Address       pulumi.StringOutput    `pulumi:"address"`
 	AdminPassword pulumi.StringPtrOutput `pulumi:"adminPassword"`
-	// FortiClient EMS admin type. Valid values: `Windows`, `LDAP`.
-	AdminType pulumi.StringOutput `pulumi:"adminType"`
-	// FortiClient EMS admin username.
-	AdminUsername pulumi.StringOutput `pulumi:"adminUsername"`
-	// FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
-	HttpsPort pulumi.IntOutput `pulumi:"httpsPort"`
-	// FortiClient EMS telemetry listen port number. (1 - 65535, default: 8013).
-	ListenPort pulumi.IntOutput `pulumi:"listenPort"`
-	// FortiClient Enterprise Management Server (EMS) name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// FortiClient EMS REST API authentication. Valid values: `disable`, `userpass`.
-	RestApiAuth pulumi.StringOutput `pulumi:"restApiAuth"`
-	// FortiClient EMS Serial Number.
-	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
-	// FortiClient EMS telemetry upload port number. (1 - 65535, default: 8014).
-	UploadPort pulumi.IntOutput `pulumi:"uploadPort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AdminType     pulumi.StringOutput    `pulumi:"adminType"`
+	AdminUsername pulumi.StringOutput    `pulumi:"adminUsername"`
+	HttpsPort     pulumi.IntOutput       `pulumi:"httpsPort"`
+	ListenPort    pulumi.IntOutput       `pulumi:"listenPort"`
+	Name          pulumi.StringOutput    `pulumi:"name"`
+	RestApiAuth   pulumi.StringOutput    `pulumi:"restApiAuth"`
+	SerialNumber  pulumi.StringOutput    `pulumi:"serialNumber"`
+	UploadPort    pulumi.IntOutput       `pulumi:"uploadPort"`
+	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewEndpointControlForticlientEms registers a new resource with the given unique name, arguments, and options.
@@ -71,6 +43,13 @@ func NewEndpointControlForticlientEms(ctx *pulumi.Context,
 	if args.SerialNumber == nil {
 		return nil, errors.New("invalid value for required argument 'SerialNumber'")
 	}
+	if args.AdminPassword != nil {
+		args.AdminPassword = pulumi.ToSecret(args.AdminPassword).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"adminPassword",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource EndpointControlForticlientEms
 	err := ctx.RegisterResource("fortios:index/endpointControlForticlientEms:EndpointControlForticlientEms", name, args, &resource, opts...)
@@ -94,53 +73,31 @@ func GetEndpointControlForticlientEms(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EndpointControlForticlientEms resources.
 type endpointControlForticlientEmsState struct {
-	// Firewall address name.
-	Address *string `pulumi:"address"`
-	// FortiClient EMS admin password.
+	Address       *string `pulumi:"address"`
 	AdminPassword *string `pulumi:"adminPassword"`
-	// FortiClient EMS admin type. Valid values: `Windows`, `LDAP`.
-	AdminType *string `pulumi:"adminType"`
-	// FortiClient EMS admin username.
+	AdminType     *string `pulumi:"adminType"`
 	AdminUsername *string `pulumi:"adminUsername"`
-	// FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
-	HttpsPort *int `pulumi:"httpsPort"`
-	// FortiClient EMS telemetry listen port number. (1 - 65535, default: 8013).
-	ListenPort *int `pulumi:"listenPort"`
-	// FortiClient Enterprise Management Server (EMS) name.
-	Name *string `pulumi:"name"`
-	// FortiClient EMS REST API authentication. Valid values: `disable`, `userpass`.
-	RestApiAuth *string `pulumi:"restApiAuth"`
-	// FortiClient EMS Serial Number.
-	SerialNumber *string `pulumi:"serialNumber"`
-	// FortiClient EMS telemetry upload port number. (1 - 65535, default: 8014).
-	UploadPort *int `pulumi:"uploadPort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	HttpsPort     *int    `pulumi:"httpsPort"`
+	ListenPort    *int    `pulumi:"listenPort"`
+	Name          *string `pulumi:"name"`
+	RestApiAuth   *string `pulumi:"restApiAuth"`
+	SerialNumber  *string `pulumi:"serialNumber"`
+	UploadPort    *int    `pulumi:"uploadPort"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 type EndpointControlForticlientEmsState struct {
-	// Firewall address name.
-	Address pulumi.StringPtrInput
-	// FortiClient EMS admin password.
+	Address       pulumi.StringPtrInput
 	AdminPassword pulumi.StringPtrInput
-	// FortiClient EMS admin type. Valid values: `Windows`, `LDAP`.
-	AdminType pulumi.StringPtrInput
-	// FortiClient EMS admin username.
+	AdminType     pulumi.StringPtrInput
 	AdminUsername pulumi.StringPtrInput
-	// FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
-	HttpsPort pulumi.IntPtrInput
-	// FortiClient EMS telemetry listen port number. (1 - 65535, default: 8013).
-	ListenPort pulumi.IntPtrInput
-	// FortiClient Enterprise Management Server (EMS) name.
-	Name pulumi.StringPtrInput
-	// FortiClient EMS REST API authentication. Valid values: `disable`, `userpass`.
-	RestApiAuth pulumi.StringPtrInput
-	// FortiClient EMS Serial Number.
-	SerialNumber pulumi.StringPtrInput
-	// FortiClient EMS telemetry upload port number. (1 - 65535, default: 8014).
-	UploadPort pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HttpsPort     pulumi.IntPtrInput
+	ListenPort    pulumi.IntPtrInput
+	Name          pulumi.StringPtrInput
+	RestApiAuth   pulumi.StringPtrInput
+	SerialNumber  pulumi.StringPtrInput
+	UploadPort    pulumi.IntPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (EndpointControlForticlientEmsState) ElementType() reflect.Type {
@@ -148,54 +105,32 @@ func (EndpointControlForticlientEmsState) ElementType() reflect.Type {
 }
 
 type endpointControlForticlientEmsArgs struct {
-	// Firewall address name.
-	Address string `pulumi:"address"`
-	// FortiClient EMS admin password.
+	Address       string  `pulumi:"address"`
 	AdminPassword *string `pulumi:"adminPassword"`
-	// FortiClient EMS admin type. Valid values: `Windows`, `LDAP`.
-	AdminType *string `pulumi:"adminType"`
-	// FortiClient EMS admin username.
-	AdminUsername string `pulumi:"adminUsername"`
-	// FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
-	HttpsPort *int `pulumi:"httpsPort"`
-	// FortiClient EMS telemetry listen port number. (1 - 65535, default: 8013).
-	ListenPort *int `pulumi:"listenPort"`
-	// FortiClient Enterprise Management Server (EMS) name.
-	Name *string `pulumi:"name"`
-	// FortiClient EMS REST API authentication. Valid values: `disable`, `userpass`.
-	RestApiAuth *string `pulumi:"restApiAuth"`
-	// FortiClient EMS Serial Number.
-	SerialNumber string `pulumi:"serialNumber"`
-	// FortiClient EMS telemetry upload port number. (1 - 65535, default: 8014).
-	UploadPort *int `pulumi:"uploadPort"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AdminType     *string `pulumi:"adminType"`
+	AdminUsername string  `pulumi:"adminUsername"`
+	HttpsPort     *int    `pulumi:"httpsPort"`
+	ListenPort    *int    `pulumi:"listenPort"`
+	Name          *string `pulumi:"name"`
+	RestApiAuth   *string `pulumi:"restApiAuth"`
+	SerialNumber  string  `pulumi:"serialNumber"`
+	UploadPort    *int    `pulumi:"uploadPort"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a EndpointControlForticlientEms resource.
 type EndpointControlForticlientEmsArgs struct {
-	// Firewall address name.
-	Address pulumi.StringInput
-	// FortiClient EMS admin password.
+	Address       pulumi.StringInput
 	AdminPassword pulumi.StringPtrInput
-	// FortiClient EMS admin type. Valid values: `Windows`, `LDAP`.
-	AdminType pulumi.StringPtrInput
-	// FortiClient EMS admin username.
+	AdminType     pulumi.StringPtrInput
 	AdminUsername pulumi.StringInput
-	// FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
-	HttpsPort pulumi.IntPtrInput
-	// FortiClient EMS telemetry listen port number. (1 - 65535, default: 8013).
-	ListenPort pulumi.IntPtrInput
-	// FortiClient Enterprise Management Server (EMS) name.
-	Name pulumi.StringPtrInput
-	// FortiClient EMS REST API authentication. Valid values: `disable`, `userpass`.
-	RestApiAuth pulumi.StringPtrInput
-	// FortiClient EMS Serial Number.
-	SerialNumber pulumi.StringInput
-	// FortiClient EMS telemetry upload port number. (1 - 65535, default: 8014).
-	UploadPort pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	HttpsPort     pulumi.IntPtrInput
+	ListenPort    pulumi.IntPtrInput
+	Name          pulumi.StringPtrInput
+	RestApiAuth   pulumi.StringPtrInput
+	SerialNumber  pulumi.StringInput
+	UploadPort    pulumi.IntPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (EndpointControlForticlientEmsArgs) ElementType() reflect.Type {
@@ -224,7 +159,7 @@ func (i *EndpointControlForticlientEms) ToEndpointControlForticlientEmsOutputWit
 // EndpointControlForticlientEmsArrayInput is an input type that accepts EndpointControlForticlientEmsArray and EndpointControlForticlientEmsArrayOutput values.
 // You can construct a concrete instance of `EndpointControlForticlientEmsArrayInput` via:
 //
-//          EndpointControlForticlientEmsArray{ EndpointControlForticlientEmsArgs{...} }
+//	EndpointControlForticlientEmsArray{ EndpointControlForticlientEmsArgs{...} }
 type EndpointControlForticlientEmsArrayInput interface {
 	pulumi.Input
 
@@ -249,7 +184,7 @@ func (i EndpointControlForticlientEmsArray) ToEndpointControlForticlientEmsArray
 // EndpointControlForticlientEmsMapInput is an input type that accepts EndpointControlForticlientEmsMap and EndpointControlForticlientEmsMapOutput values.
 // You can construct a concrete instance of `EndpointControlForticlientEmsMapInput` via:
 //
-//          EndpointControlForticlientEmsMap{ "key": EndpointControlForticlientEmsArgs{...} }
+//	EndpointControlForticlientEmsMap{ "key": EndpointControlForticlientEmsArgs{...} }
 type EndpointControlForticlientEmsMapInput interface {
 	pulumi.Input
 
@@ -283,6 +218,50 @@ func (o EndpointControlForticlientEmsOutput) ToEndpointControlForticlientEmsOutp
 
 func (o EndpointControlForticlientEmsOutput) ToEndpointControlForticlientEmsOutputWithContext(ctx context.Context) EndpointControlForticlientEmsOutput {
 	return o
+}
+
+func (o EndpointControlForticlientEmsOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlForticlientEms) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlForticlientEmsOutput) AdminPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EndpointControlForticlientEms) pulumi.StringPtrOutput { return v.AdminPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o EndpointControlForticlientEmsOutput) AdminType() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlForticlientEms) pulumi.StringOutput { return v.AdminType }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlForticlientEmsOutput) AdminUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlForticlientEms) pulumi.StringOutput { return v.AdminUsername }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlForticlientEmsOutput) HttpsPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlForticlientEms) pulumi.IntOutput { return v.HttpsPort }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlForticlientEmsOutput) ListenPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlForticlientEms) pulumi.IntOutput { return v.ListenPort }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlForticlientEmsOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlForticlientEms) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlForticlientEmsOutput) RestApiAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlForticlientEms) pulumi.StringOutput { return v.RestApiAuth }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlForticlientEmsOutput) SerialNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlForticlientEms) pulumi.StringOutput { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlForticlientEmsOutput) UploadPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlForticlientEms) pulumi.IntOutput { return v.UploadPort }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlForticlientEmsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EndpointControlForticlientEms) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type EndpointControlForticlientEmsArrayOutput struct{ *pulumi.OutputState }

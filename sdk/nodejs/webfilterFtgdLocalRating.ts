@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure local FortiGuard Web Filter local ratings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WebfilterFtgdLocalRating("trname", {
- *     rating: "1",
- *     status: "enable",
- *     url: "sgala.com",
- * });
- * ```
- *
- * ## Import
- *
- * Webfilter FtgdLocalRating can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/webfilterFtgdLocalRating:WebfilterFtgdLocalRating labelname {{url}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/webfilterFtgdLocalRating:WebfilterFtgdLocalRating labelname {{url}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WebfilterFtgdLocalRating extends pulumi.CustomResource {
     /**
      * Get an existing WebfilterFtgdLocalRating resource's state with the given name, ID, and optional extra
@@ -64,25 +32,10 @@ export class WebfilterFtgdLocalRating extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebfilterFtgdLocalRating.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Local rating.
-     */
     public readonly rating!: pulumi.Output<string>;
-    /**
-     * Enable/disable local rating. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * URL to rate locally.
-     */
     public readonly url!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -123,25 +76,10 @@ export class WebfilterFtgdLocalRating extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WebfilterFtgdLocalRating resources.
  */
 export interface WebfilterFtgdLocalRatingState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Local rating.
-     */
     rating?: pulumi.Input<string>;
-    /**
-     * Enable/disable local rating. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * URL to rate locally.
-     */
     url?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -149,24 +87,9 @@ export interface WebfilterFtgdLocalRatingState {
  * The set of arguments for constructing a WebfilterFtgdLocalRating resource.
  */
 export interface WebfilterFtgdLocalRatingArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Local rating.
-     */
     rating: pulumi.Input<string>;
-    /**
-     * Enable/disable local rating. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * URL to rate locally.
-     */
     url?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

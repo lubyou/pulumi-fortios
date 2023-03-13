@@ -4,40 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch traffic policy.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchControllerTrafficPolicy("trname", {
- *     guaranteedBandwidth: 0,
- *     guaranteedBurst: 0,
- *     maximumBurst: 0,
- *     policerStatus: "enable",
- *     type: "ingress",
- * });
- * ```
- *
- * ## Import
- *
- * SwitchController TrafficPolicy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerTrafficPolicy:SwitchControllerTrafficPolicy labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerTrafficPolicy:SwitchControllerTrafficPolicy labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerTrafficPolicy extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerTrafficPolicy resource's state with the given name, ID, and optional extra
@@ -66,49 +32,16 @@ export class SwitchControllerTrafficPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerTrafficPolicy.__pulumiType;
     }
 
-    /**
-     * COS queue(0 - 7), or unset to disable.
-     */
     public readonly cos!: pulumi.Output<number>;
-    /**
-     * COS queue(0 - 7), or unset to disable.
-     */
     public readonly cosQueue!: pulumi.Output<number>;
-    /**
-     * Description of the traffic policy.
-     */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * FSW Policer id
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Guaranteed bandwidth in kbps (max value = 524287000).
-     */
     public readonly guaranteedBandwidth!: pulumi.Output<number>;
-    /**
-     * Guaranteed burst size in bytes (max value = 4294967295).
-     */
     public readonly guaranteedBurst!: pulumi.Output<number>;
-    /**
-     * Maximum burst size in bytes (max value = 4294967295).
-     */
     public readonly maximumBurst!: pulumi.Output<number>;
-    /**
-     * Traffic policy name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable policer config on the traffic policy. Valid values: `enable`, `disable`.
-     */
     public readonly policerStatus!: pulumi.Output<string>;
-    /**
-     * Configure type of policy(ingress/egress). Valid values: `ingress`, `egress`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -158,49 +91,16 @@ export class SwitchControllerTrafficPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerTrafficPolicy resources.
  */
 export interface SwitchControllerTrafficPolicyState {
-    /**
-     * COS queue(0 - 7), or unset to disable.
-     */
     cos?: pulumi.Input<number>;
-    /**
-     * COS queue(0 - 7), or unset to disable.
-     */
     cosQueue?: pulumi.Input<number>;
-    /**
-     * Description of the traffic policy.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * FSW Policer id
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Guaranteed bandwidth in kbps (max value = 524287000).
-     */
     guaranteedBandwidth?: pulumi.Input<number>;
-    /**
-     * Guaranteed burst size in bytes (max value = 4294967295).
-     */
     guaranteedBurst?: pulumi.Input<number>;
-    /**
-     * Maximum burst size in bytes (max value = 4294967295).
-     */
     maximumBurst?: pulumi.Input<number>;
-    /**
-     * Traffic policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable policer config on the traffic policy. Valid values: `enable`, `disable`.
-     */
     policerStatus?: pulumi.Input<string>;
-    /**
-     * Configure type of policy(ingress/egress). Valid values: `ingress`, `egress`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -208,48 +108,15 @@ export interface SwitchControllerTrafficPolicyState {
  * The set of arguments for constructing a SwitchControllerTrafficPolicy resource.
  */
 export interface SwitchControllerTrafficPolicyArgs {
-    /**
-     * COS queue(0 - 7), or unset to disable.
-     */
     cos?: pulumi.Input<number>;
-    /**
-     * COS queue(0 - 7), or unset to disable.
-     */
     cosQueue?: pulumi.Input<number>;
-    /**
-     * Description of the traffic policy.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * FSW Policer id
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Guaranteed bandwidth in kbps (max value = 524287000).
-     */
     guaranteedBandwidth?: pulumi.Input<number>;
-    /**
-     * Guaranteed burst size in bytes (max value = 4294967295).
-     */
     guaranteedBurst?: pulumi.Input<number>;
-    /**
-     * Maximum burst size in bytes (max value = 4294967295).
-     */
     maximumBurst?: pulumi.Input<number>;
-    /**
-     * Traffic policy name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable policer config on the traffic policy. Valid values: `enable`, `disable`.
-     */
     policerStatus?: pulumi.Input<string>;
-    /**
-     * Configure type of policy(ingress/egress). Valid values: `ingress`, `egress`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

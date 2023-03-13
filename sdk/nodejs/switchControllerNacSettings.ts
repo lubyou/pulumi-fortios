@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,7.0.0`.
- *
- * ## Import
- *
- * SwitchController NacSettings can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerNacSettings:SwitchControllerNacSettings labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerNacSettings:SwitchControllerNacSettings labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerNacSettings extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerNacSettings resource's state with the given name, ID, and optional extra
@@ -51,37 +32,13 @@ export class SwitchControllerNacSettings extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerNacSettings.__pulumiType;
     }
 
-    /**
-     * Enable/disable NAC device auto authorization when discovered and nac-policy matched. Valid values: `disable`, `enable`.
-     */
     public readonly autoAuth!: pulumi.Output<string>;
-    /**
-     * Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-     */
     public readonly bounceNacPort!: pulumi.Output<string>;
-    /**
-     * Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
-     */
     public readonly inactiveTimer!: pulumi.Output<number>;
-    /**
-     * Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
-     */
     public readonly linkDownFlush!: pulumi.Output<string>;
-    /**
-     * Set NAC mode to be used on the FortiSwitch ports. Valid values: `local`, `global`.
-     */
     public readonly mode!: pulumi.Output<string>;
-    /**
-     * NAC settings name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Default NAC Onboarding VLAN when NAC devices are discovered.
-     */
     public readonly onboardingVlan!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -125,37 +82,13 @@ export class SwitchControllerNacSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerNacSettings resources.
  */
 export interface SwitchControllerNacSettingsState {
-    /**
-     * Enable/disable NAC device auto authorization when discovered and nac-policy matched. Valid values: `disable`, `enable`.
-     */
     autoAuth?: pulumi.Input<string>;
-    /**
-     * Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-     */
     bounceNacPort?: pulumi.Input<string>;
-    /**
-     * Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
-     */
     inactiveTimer?: pulumi.Input<number>;
-    /**
-     * Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
-     */
     linkDownFlush?: pulumi.Input<string>;
-    /**
-     * Set NAC mode to be used on the FortiSwitch ports. Valid values: `local`, `global`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * NAC settings name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Default NAC Onboarding VLAN when NAC devices are discovered.
-     */
     onboardingVlan?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -163,36 +96,12 @@ export interface SwitchControllerNacSettingsState {
  * The set of arguments for constructing a SwitchControllerNacSettings resource.
  */
 export interface SwitchControllerNacSettingsArgs {
-    /**
-     * Enable/disable NAC device auto authorization when discovered and nac-policy matched. Valid values: `disable`, `enable`.
-     */
     autoAuth?: pulumi.Input<string>;
-    /**
-     * Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-     */
     bounceNacPort?: pulumi.Input<string>;
-    /**
-     * Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
-     */
     inactiveTimer?: pulumi.Input<number>;
-    /**
-     * Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
-     */
     linkDownFlush?: pulumi.Input<string>;
-    /**
-     * Set NAC mode to be used on the FortiSwitch ports. Valid values: `local`, `global`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * NAC settings name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Default NAC Onboarding VLAN when NAC devices are discovered.
-     */
     onboardingVlan?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

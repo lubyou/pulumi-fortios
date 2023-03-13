@@ -10,56 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure WAN optimization peers.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWanoptPeer(ctx, "trname", &fortios.WanoptPeerArgs{
-// 			Ip:         pulumi.String("1.1.1.1"),
-// 			PeerHostId: pulumi.String("1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Wanopt Peer can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wanoptPeer:WanoptPeer labelname {{peer_host_id}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wanoptPeer:WanoptPeer labelname {{peer_host_id}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WanoptPeer struct {
 	pulumi.CustomResourceState
 
-	// Peer IP address.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// Peer host ID.
-	PeerHostId pulumi.StringOutput `pulumi:"peerHostId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Ip         pulumi.StringOutput    `pulumi:"ip"`
+	PeerHostId pulumi.StringOutput    `pulumi:"peerHostId"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWanoptPeer registers a new resource with the given unique name, arguments, and options.
@@ -92,21 +48,15 @@ func GetWanoptPeer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WanoptPeer resources.
 type wanoptPeerState struct {
-	// Peer IP address.
-	Ip *string `pulumi:"ip"`
-	// Peer host ID.
+	Ip         *string `pulumi:"ip"`
 	PeerHostId *string `pulumi:"peerHostId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type WanoptPeerState struct {
-	// Peer IP address.
-	Ip pulumi.StringPtrInput
-	// Peer host ID.
+	Ip         pulumi.StringPtrInput
 	PeerHostId pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (WanoptPeerState) ElementType() reflect.Type {
@@ -114,22 +64,16 @@ func (WanoptPeerState) ElementType() reflect.Type {
 }
 
 type wanoptPeerArgs struct {
-	// Peer IP address.
-	Ip *string `pulumi:"ip"`
-	// Peer host ID.
+	Ip         *string `pulumi:"ip"`
 	PeerHostId *string `pulumi:"peerHostId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WanoptPeer resource.
 type WanoptPeerArgs struct {
-	// Peer IP address.
-	Ip pulumi.StringPtrInput
-	// Peer host ID.
+	Ip         pulumi.StringPtrInput
 	PeerHostId pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (WanoptPeerArgs) ElementType() reflect.Type {
@@ -158,7 +102,7 @@ func (i *WanoptPeer) ToWanoptPeerOutputWithContext(ctx context.Context) WanoptPe
 // WanoptPeerArrayInput is an input type that accepts WanoptPeerArray and WanoptPeerArrayOutput values.
 // You can construct a concrete instance of `WanoptPeerArrayInput` via:
 //
-//          WanoptPeerArray{ WanoptPeerArgs{...} }
+//	WanoptPeerArray{ WanoptPeerArgs{...} }
 type WanoptPeerArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +127,7 @@ func (i WanoptPeerArray) ToWanoptPeerArrayOutputWithContext(ctx context.Context)
 // WanoptPeerMapInput is an input type that accepts WanoptPeerMap and WanoptPeerMapOutput values.
 // You can construct a concrete instance of `WanoptPeerMapInput` via:
 //
-//          WanoptPeerMap{ "key": WanoptPeerArgs{...} }
+//	WanoptPeerMap{ "key": WanoptPeerArgs{...} }
 type WanoptPeerMapInput interface {
 	pulumi.Input
 
@@ -217,6 +161,18 @@ func (o WanoptPeerOutput) ToWanoptPeerOutput() WanoptPeerOutput {
 
 func (o WanoptPeerOutput) ToWanoptPeerOutputWithContext(ctx context.Context) WanoptPeerOutput {
 	return o
+}
+
+func (o WanoptPeerOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptPeer) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o WanoptPeerOutput) PeerHostId() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptPeer) pulumi.StringOutput { return v.PeerHostId }).(pulumi.StringOutput)
+}
+
+func (o WanoptPeerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WanoptPeer) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WanoptPeerArrayOutput struct{ *pulumi.OutputState }

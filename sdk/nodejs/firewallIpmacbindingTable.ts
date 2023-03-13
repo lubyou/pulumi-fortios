@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure IP to MAC address pairs in the IP/MAC binding table.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallIpmacbindingTable("trname", {
- *     ip: "1.1.1.1",
- *     mac: "00:01:6c:06:a6:29",
- *     seqNum: 1,
- *     status: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * FirewallIpmacbinding Table can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallIpmacbindingTable:FirewallIpmacbindingTable labelname {{seq_num}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallIpmacbindingTable:FirewallIpmacbindingTable labelname {{seq_num}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallIpmacbindingTable extends pulumi.CustomResource {
     /**
      * Get an existing FirewallIpmacbindingTable resource's state with the given name, ID, and optional extra
@@ -65,29 +32,11 @@ export class FirewallIpmacbindingTable extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallIpmacbindingTable.__pulumiType;
     }
 
-    /**
-     * IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
-     */
     public readonly ip!: pulumi.Output<string>;
-    /**
-     * MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
-     */
     public readonly mac!: pulumi.Output<string>;
-    /**
-     * Name of the pair (optional, default = no name).
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Entry number.
-     */
     public readonly seqNum!: pulumi.Output<number>;
-    /**
-     * Enable/disable this IP-mac binding pair. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -130,29 +79,11 @@ export class FirewallIpmacbindingTable extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallIpmacbindingTable resources.
  */
 export interface FirewallIpmacbindingTableState {
-    /**
-     * IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * Name of the pair (optional, default = no name).
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Entry number.
-     */
     seqNum?: pulumi.Input<number>;
-    /**
-     * Enable/disable this IP-mac binding pair. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -160,28 +91,10 @@ export interface FirewallIpmacbindingTableState {
  * The set of arguments for constructing a FirewallIpmacbindingTable resource.
  */
 export interface FirewallIpmacbindingTableArgs {
-    /**
-     * IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
-     */
     ip: pulumi.Input<string>;
-    /**
-     * MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * Name of the pair (optional, default = no name).
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Entry number.
-     */
     seqNum?: pulumi.Input<number>;
-    /**
-     * Enable/disable this IP-mac binding pair. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

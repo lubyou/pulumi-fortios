@@ -10,32 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemInterface`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.GetSystemInterfaceList(ctx, &GetSystemInterfaceListArgs{
-// 			Filter: pulumi.StringRef("name!=port1"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("output1", data.Fortios_system_interfacelist.Sample2.Namelist)
-// 		return nil
-// 	})
-// }
-// ```
 func GetSystemInterfaceList(ctx *pulumi.Context, args *GetSystemInterfaceListArgs, opts ...pulumi.InvokeOption) (*GetSystemInterfaceListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemInterfaceListResult
@@ -48,8 +22,7 @@ func GetSystemInterfaceList(ctx *pulumi.Context, args *GetSystemInterfaceListArg
 
 // A collection of arguments for invoking GetSystemInterfaceList.
 type GetSystemInterfaceListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -57,8 +30,7 @@ type GetSystemInterfaceListArgs struct {
 type GetSystemInterfaceListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `SystemInterface`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -78,8 +50,7 @@ func GetSystemInterfaceListOutput(ctx *pulumi.Context, args GetSystemInterfaceLi
 
 // A collection of arguments for invoking GetSystemInterfaceList.
 type GetSystemInterfaceListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -111,7 +82,6 @@ func (o GetSystemInterfaceListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSystemInterfaceListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `SystemInterface`.
 func (o GetSystemInterfaceListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSystemInterfaceListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

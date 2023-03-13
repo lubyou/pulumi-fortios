@@ -2,116 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure BGP.
- *
- * > The provider supports the definition of Neighbor in Router Bgp `fortios.RouterBgp`, and also allows the definition of separate Neighbor resources `fortios.RouterbgpNeighbor`, but do not use a `fortios.RouterBgp` with in-line Neighbor in conjunction with any `fortios.RouterbgpNeighbor` resources, otherwise conflicts and overwrite will occur.
- *
- * > The provider supports the definition of Network in Router Bgp `fortios.RouterBgp`, and also allows the definition of separate Network resources `fortios.RouterbgpNetwork`, but do not use a `fortios.RouterBgp` with in-line Network in conjunction with any `fortios.RouterbgpNetwork` resources, otherwise conflicts and overwrite will occur.
- *
- * > The provider supports the definition of Network6 in Router Bgp `fortios.RouterBgp`, and also allows the definition of separate Network6 resources `fortios.RouterbgpNetwork6`, but do not use a `fortios.RouterBgp` with in-line Network6 in conjunction with any `fortios.RouterbgpNetwork6` resources, otherwise conflicts and overwrite will occur.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.RouterBgp("trname", {
- *     additionalPathSelect: 2,
- *     additionalPathSelect6: 2,
- *     alwaysCompareMed: "disable",
- *     as: 0,
- *     clientToClientReflection: "enable",
- *     clusterId: "0.0.0.0",
- *     dampening: "disable",
- *     dampeningMaxSuppressTime: 60,
- *     dampeningReachabilityHalfLife: 15,
- *     dampeningReuse: 750,
- *     dampeningSuppress: 2000,
- *     dampeningUnreachabilityHalfLife: 15,
- *     defaultLocalPreference: 100,
- *     deterministicMed: "disable",
- *     distanceExternal: 20,
- *     distanceInternal: 200,
- *     distanceLocal: 200,
- *     gracefulRestartTime: 120,
- *     gracefulStalepathTime: 360,
- *     gracefulUpdateDelay: 120,
- *     holdtimeTimer: 180,
- *     ibgpMultipath: "disable",
- *     ignoreOptionalCapability: "enable",
- *     keepaliveTimer: 60,
- *     logNeighbourChanges: "enable",
- *     networkImportCheck: "enable",
- *     redistributes: [
- *         {
- *             name: "connected",
- *             status: "disable",
- *         },
- *         {
- *             name: "rip",
- *             status: "disable",
- *         },
- *         {
- *             name: "ospf",
- *             status: "disable",
- *         },
- *         {
- *             name: "static",
- *             status: "disable",
- *         },
- *         {
- *             name: "isis",
- *             status: "disable",
- *         },
- *     ],
- *     redistribute6s: [
- *         {
- *             name: "connected",
- *             status: "disable",
- *         },
- *         {
- *             name: "rip",
- *             status: "disable",
- *         },
- *         {
- *             name: "ospf",
- *             status: "disable",
- *         },
- *         {
- *             name: "static",
- *             status: "disable",
- *         },
- *         {
- *             name: "isis",
- *             status: "disable",
- *         },
- *     ],
- *     scanTime: 60,
- *     synchronization: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * Router Bgp can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerBgp:RouterBgp labelname RouterBgp
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerBgp:RouterBgp labelname RouterBgp
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterBgp extends pulumi.CustomResource {
     /**
      * Get an existing RouterBgp resource's state with the given name, ID, and optional extra
@@ -140,254 +34,73 @@ export class RouterBgp extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterBgp.__pulumiType;
     }
 
-    /**
-     * Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-     */
     public readonly additionalPath!: pulumi.Output<string>;
-    /**
-     * Enable/disable IPv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-     */
     public readonly additionalPath6!: pulumi.Output<string>;
-    /**
-     * Number of additional paths to be selected for each IPv4 NLRI.
-     */
     public readonly additionalPathSelect!: pulumi.Output<number>;
-    /**
-     * Number of additional paths to be selected for each IPv6 NLRI.
-     */
     public readonly additionalPathSelect6!: pulumi.Output<number>;
-    /**
-     * Administrative distance modifications. The structure of `adminDistance` block is documented below.
-     */
+    public readonly additionalPathSelectVpnv4!: pulumi.Output<number>;
+    public readonly additionalPathVpnv4!: pulumi.Output<string>;
     public readonly adminDistances!: pulumi.Output<outputs.RouterBgpAdminDistance[] | undefined>;
-    /**
-     * BGP IPv6 aggregate address table. The structure of `aggregateAddress6` block is documented below.
-     */
     public readonly aggregateAddress6s!: pulumi.Output<outputs.RouterBgpAggregateAddress6[] | undefined>;
-    /**
-     * BGP aggregate address table. The structure of `aggregateAddress` block is documented below.
-     */
     public readonly aggregateAddresses!: pulumi.Output<outputs.RouterBgpAggregateAddress[] | undefined>;
-    /**
-     * Enable/disable always compare MED. Valid values: `enable`, `disable`.
-     */
     public readonly alwaysCompareMed!: pulumi.Output<string>;
-    /**
-     * Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
-     */
     public readonly as!: pulumi.Output<number>;
-    /**
-     * Enable/disable ignore AS path. Valid values: `enable`, `disable`.
-     */
     public readonly bestpathAsPathIgnore!: pulumi.Output<string>;
-    /**
-     * Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
-     */
     public readonly bestpathCmpConfedAspath!: pulumi.Output<string>;
-    /**
-     * Enable/disable compare router ID for identical EBGP paths. Valid values: `enable`, `disable`.
-     */
     public readonly bestpathCmpRouterid!: pulumi.Output<string>;
-    /**
-     * Enable/disable compare MED among confederation paths. Valid values: `enable`, `disable`.
-     */
     public readonly bestpathMedConfed!: pulumi.Output<string>;
-    /**
-     * Enable/disable treat missing MED as least preferred. Valid values: `enable`, `disable`.
-     */
     public readonly bestpathMedMissingAsWorst!: pulumi.Output<string>;
-    /**
-     * Enable/disable client-to-client route reflection. Valid values: `enable`, `disable`.
-     */
     public readonly clientToClientReflection!: pulumi.Output<string>;
-    /**
-     * Route reflector cluster ID.
-     */
     public readonly clusterId!: pulumi.Output<string>;
-    /**
-     * Confederation identifier.
-     */
     public readonly confederationIdentifier!: pulumi.Output<number>;
-    /**
-     * Confederation peers. The structure of `confederationPeers` block is documented below.
-     */
     public readonly confederationPeers!: pulumi.Output<outputs.RouterBgpConfederationPeer[] | undefined>;
-    /**
-     * Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
-     */
     public readonly dampening!: pulumi.Output<string>;
-    /**
-     * Maximum minutes a route can be suppressed.
-     */
     public readonly dampeningMaxSuppressTime!: pulumi.Output<number>;
-    /**
-     * Reachability half-life time for penalty (min).
-     */
     public readonly dampeningReachabilityHalfLife!: pulumi.Output<number>;
-    /**
-     * Threshold to reuse routes.
-     */
     public readonly dampeningReuse!: pulumi.Output<number>;
-    /**
-     * Criteria for dampening.
-     */
     public readonly dampeningRouteMap!: pulumi.Output<string>;
-    /**
-     * Threshold to suppress routes.
-     */
     public readonly dampeningSuppress!: pulumi.Output<number>;
-    /**
-     * Unreachability half-life time for penalty (min).
-     */
     public readonly dampeningUnreachabilityHalfLife!: pulumi.Output<number>;
-    /**
-     * Default local preference.
-     */
     public readonly defaultLocalPreference!: pulumi.Output<number>;
-    /**
-     * Enable/disable enforce deterministic comparison of MED. Valid values: `enable`, `disable`.
-     */
     public readonly deterministicMed!: pulumi.Output<string>;
-    /**
-     * Distance for routes external to the AS.
-     */
     public readonly distanceExternal!: pulumi.Output<number>;
-    /**
-     * Distance for routes internal to the AS.
-     */
     public readonly distanceInternal!: pulumi.Output<number>;
-    /**
-     * Distance for routes local to the AS.
-     */
     public readonly distanceLocal!: pulumi.Output<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable EBGP multi-path. Valid values: `enable`, `disable`.
-     */
     public readonly ebgpMultipath!: pulumi.Output<string>;
-    /**
-     * Enable/disable enforce first AS for EBGP routes. Valid values: `enable`, `disable`.
-     */
     public readonly enforceFirstAs!: pulumi.Output<string>;
-    /**
-     * Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
-     */
     public readonly fastExternalFailover!: pulumi.Output<string>;
-    /**
-     * Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
-     */
     public readonly gracefulEndOnTimer!: pulumi.Output<string>;
-    /**
-     * Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
-     */
     public readonly gracefulRestart!: pulumi.Output<string>;
-    /**
-     * Time needed for neighbors to restart (sec).
-     */
     public readonly gracefulRestartTime!: pulumi.Output<number>;
-    /**
-     * Time to hold stale paths of restarting neighbor (sec).
-     */
     public readonly gracefulStalepathTime!: pulumi.Output<number>;
-    /**
-     * Route advertisement/selection delay after restart (sec).
-     */
     public readonly gracefulUpdateDelay!: pulumi.Output<number>;
-    /**
-     * Interval (sec) before peer considered dead.
-     */
     public readonly holdtimeTimer!: pulumi.Output<number>;
-    /**
-     * Enable/disable IBGP multi-path. Valid values: `enable`, `disable`.
-     */
     public readonly ibgpMultipath!: pulumi.Output<string>;
-    /**
-     * Don't send unknown optional capability notification message Valid values: `enable`, `disable`.
-     */
     public readonly ignoreOptionalCapability!: pulumi.Output<string>;
-    /**
-     * Frequency to send keep alive requests.
-     */
     public readonly keepaliveTimer!: pulumi.Output<number>;
-    /**
-     * Enable logging of BGP neighbour's changes Valid values: `enable`, `disable`.
-     */
     public readonly logNeighbourChanges!: pulumi.Output<string>;
-    /**
-     * Enable/disable use of recursive distance to select multipath. Valid values: `enable`, `disable`.
-     */
     public readonly multipathRecursiveDistance!: pulumi.Output<string>;
-    /**
-     * Neighbor group name.
-     */
     public readonly neighborGroups!: pulumi.Output<outputs.RouterBgpNeighborGroup[] | undefined>;
-    /**
-     * BGP IPv6 neighbor range table. The structure of `neighborRange6` block is documented below.
-     */
     public readonly neighborRange6s!: pulumi.Output<outputs.RouterBgpNeighborRange6[] | undefined>;
-    /**
-     * BGP neighbor range table. The structure of `neighborRange` block is documented below.
-     */
     public readonly neighborRanges!: pulumi.Output<outputs.RouterBgpNeighborRange[] | undefined>;
-    /**
-     * BGP neighbor table. The structure of `neighbor` block is documented below.
-     */
     public readonly neighbors!: pulumi.Output<outputs.RouterBgpNeighbor[] | undefined>;
-    /**
-     * BGP IPv6 network table. The structure of `network6` block is documented below.
-     */
     public readonly network6s!: pulumi.Output<outputs.RouterBgpNetwork6[] | undefined>;
-    /**
-     * Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
-     */
     public readonly networkImportCheck!: pulumi.Output<string>;
-    /**
-     * BGP network table. The structure of `network` block is documented below.
-     */
     public readonly networks!: pulumi.Output<outputs.RouterBgpNetwork[] | undefined>;
-    /**
-     * Enable/disable recursive resolution of next-hop using BGP route. Valid values: `enable`, `disable`.
-     */
+    public readonly recursiveInheritPriority!: pulumi.Output<string>;
     public readonly recursiveNextHop!: pulumi.Output<string>;
-    /**
-     * BGP IPv6 redistribute table. The structure of `redistribute6` block is documented below.
-     */
     public readonly redistribute6s!: pulumi.Output<outputs.RouterBgpRedistribute6[] | undefined>;
-    /**
-     * BGP IPv4 redistribute table. The structure of `redistribute` block is documented below.
-     */
     public readonly redistributes!: pulumi.Output<outputs.RouterBgpRedistribute[] | undefined>;
-    /**
-     * Router ID.
-     */
     public readonly routerId!: pulumi.Output<string>;
-    /**
-     * Background scanner interval (sec), 0 to disable it.
-     */
     public readonly scanTime!: pulumi.Output<number>;
-    /**
-     * Enable/disable only advertise routes from iBGP if routes present in an IGP. Valid values: `enable`, `disable`.
-     */
     public readonly synchronization!: pulumi.Output<string>;
-    /**
-     * Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
-     */
     public readonly tagResolveMode!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * BGP IPv6 VRF leaking table. The structure of `vrfLeak6` block is documented below.
-     */
+    public readonly vrf6s!: pulumi.Output<outputs.RouterBgpVrf6[] | undefined>;
     public readonly vrfLeak6s!: pulumi.Output<outputs.RouterBgpVrfLeak6[] | undefined>;
-    /**
-     * BGP VRF leaking table. The structure of `vrfLeak` block is documented below.
-     */
     public readonly vrfLeaks!: pulumi.Output<outputs.RouterBgpVrfLeak[] | undefined>;
+    public readonly vrves!: pulumi.Output<outputs.RouterBgpVrf[] | undefined>;
 
     /**
      * Create a RouterBgp resource with the given unique name, arguments, and options.
@@ -406,6 +119,8 @@ export class RouterBgp extends pulumi.CustomResource {
             resourceInputs["additionalPath6"] = state ? state.additionalPath6 : undefined;
             resourceInputs["additionalPathSelect"] = state ? state.additionalPathSelect : undefined;
             resourceInputs["additionalPathSelect6"] = state ? state.additionalPathSelect6 : undefined;
+            resourceInputs["additionalPathSelectVpnv4"] = state ? state.additionalPathSelectVpnv4 : undefined;
+            resourceInputs["additionalPathVpnv4"] = state ? state.additionalPathVpnv4 : undefined;
             resourceInputs["adminDistances"] = state ? state.adminDistances : undefined;
             resourceInputs["aggregateAddress6s"] = state ? state.aggregateAddress6s : undefined;
             resourceInputs["aggregateAddresses"] = state ? state.aggregateAddresses : undefined;
@@ -454,6 +169,7 @@ export class RouterBgp extends pulumi.CustomResource {
             resourceInputs["network6s"] = state ? state.network6s : undefined;
             resourceInputs["networkImportCheck"] = state ? state.networkImportCheck : undefined;
             resourceInputs["networks"] = state ? state.networks : undefined;
+            resourceInputs["recursiveInheritPriority"] = state ? state.recursiveInheritPriority : undefined;
             resourceInputs["recursiveNextHop"] = state ? state.recursiveNextHop : undefined;
             resourceInputs["redistribute6s"] = state ? state.redistribute6s : undefined;
             resourceInputs["redistributes"] = state ? state.redistributes : undefined;
@@ -462,8 +178,10 @@ export class RouterBgp extends pulumi.CustomResource {
             resourceInputs["synchronization"] = state ? state.synchronization : undefined;
             resourceInputs["tagResolveMode"] = state ? state.tagResolveMode : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vrf6s"] = state ? state.vrf6s : undefined;
             resourceInputs["vrfLeak6s"] = state ? state.vrfLeak6s : undefined;
             resourceInputs["vrfLeaks"] = state ? state.vrfLeaks : undefined;
+            resourceInputs["vrves"] = state ? state.vrves : undefined;
         } else {
             const args = argsOrState as RouterBgpArgs | undefined;
             if ((!args || args.as === undefined) && !opts.urn) {
@@ -473,6 +191,8 @@ export class RouterBgp extends pulumi.CustomResource {
             resourceInputs["additionalPath6"] = args ? args.additionalPath6 : undefined;
             resourceInputs["additionalPathSelect"] = args ? args.additionalPathSelect : undefined;
             resourceInputs["additionalPathSelect6"] = args ? args.additionalPathSelect6 : undefined;
+            resourceInputs["additionalPathSelectVpnv4"] = args ? args.additionalPathSelectVpnv4 : undefined;
+            resourceInputs["additionalPathVpnv4"] = args ? args.additionalPathVpnv4 : undefined;
             resourceInputs["adminDistances"] = args ? args.adminDistances : undefined;
             resourceInputs["aggregateAddress6s"] = args ? args.aggregateAddress6s : undefined;
             resourceInputs["aggregateAddresses"] = args ? args.aggregateAddresses : undefined;
@@ -521,6 +241,7 @@ export class RouterBgp extends pulumi.CustomResource {
             resourceInputs["network6s"] = args ? args.network6s : undefined;
             resourceInputs["networkImportCheck"] = args ? args.networkImportCheck : undefined;
             resourceInputs["networks"] = args ? args.networks : undefined;
+            resourceInputs["recursiveInheritPriority"] = args ? args.recursiveInheritPriority : undefined;
             resourceInputs["recursiveNextHop"] = args ? args.recursiveNextHop : undefined;
             resourceInputs["redistribute6s"] = args ? args.redistribute6s : undefined;
             resourceInputs["redistributes"] = args ? args.redistributes : undefined;
@@ -529,8 +250,10 @@ export class RouterBgp extends pulumi.CustomResource {
             resourceInputs["synchronization"] = args ? args.synchronization : undefined;
             resourceInputs["tagResolveMode"] = args ? args.tagResolveMode : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vrf6s"] = args ? args.vrf6s : undefined;
             resourceInputs["vrfLeak6s"] = args ? args.vrfLeak6s : undefined;
             resourceInputs["vrfLeaks"] = args ? args.vrfLeaks : undefined;
+            resourceInputs["vrves"] = args ? args.vrves : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RouterBgp.__pulumiType, name, resourceInputs, opts);
@@ -541,506 +264,144 @@ export class RouterBgp extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterBgp resources.
  */
 export interface RouterBgpState {
-    /**
-     * Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-     */
     additionalPath?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-     */
     additionalPath6?: pulumi.Input<string>;
-    /**
-     * Number of additional paths to be selected for each IPv4 NLRI.
-     */
     additionalPathSelect?: pulumi.Input<number>;
-    /**
-     * Number of additional paths to be selected for each IPv6 NLRI.
-     */
     additionalPathSelect6?: pulumi.Input<number>;
-    /**
-     * Administrative distance modifications. The structure of `adminDistance` block is documented below.
-     */
+    additionalPathSelectVpnv4?: pulumi.Input<number>;
+    additionalPathVpnv4?: pulumi.Input<string>;
     adminDistances?: pulumi.Input<pulumi.Input<inputs.RouterBgpAdminDistance>[]>;
-    /**
-     * BGP IPv6 aggregate address table. The structure of `aggregateAddress6` block is documented below.
-     */
     aggregateAddress6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpAggregateAddress6>[]>;
-    /**
-     * BGP aggregate address table. The structure of `aggregateAddress` block is documented below.
-     */
     aggregateAddresses?: pulumi.Input<pulumi.Input<inputs.RouterBgpAggregateAddress>[]>;
-    /**
-     * Enable/disable always compare MED. Valid values: `enable`, `disable`.
-     */
     alwaysCompareMed?: pulumi.Input<string>;
-    /**
-     * Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
-     */
     as?: pulumi.Input<number>;
-    /**
-     * Enable/disable ignore AS path. Valid values: `enable`, `disable`.
-     */
     bestpathAsPathIgnore?: pulumi.Input<string>;
-    /**
-     * Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
-     */
     bestpathCmpConfedAspath?: pulumi.Input<string>;
-    /**
-     * Enable/disable compare router ID for identical EBGP paths. Valid values: `enable`, `disable`.
-     */
     bestpathCmpRouterid?: pulumi.Input<string>;
-    /**
-     * Enable/disable compare MED among confederation paths. Valid values: `enable`, `disable`.
-     */
     bestpathMedConfed?: pulumi.Input<string>;
-    /**
-     * Enable/disable treat missing MED as least preferred. Valid values: `enable`, `disable`.
-     */
     bestpathMedMissingAsWorst?: pulumi.Input<string>;
-    /**
-     * Enable/disable client-to-client route reflection. Valid values: `enable`, `disable`.
-     */
     clientToClientReflection?: pulumi.Input<string>;
-    /**
-     * Route reflector cluster ID.
-     */
     clusterId?: pulumi.Input<string>;
-    /**
-     * Confederation identifier.
-     */
     confederationIdentifier?: pulumi.Input<number>;
-    /**
-     * Confederation peers. The structure of `confederationPeers` block is documented below.
-     */
     confederationPeers?: pulumi.Input<pulumi.Input<inputs.RouterBgpConfederationPeer>[]>;
-    /**
-     * Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
-     */
     dampening?: pulumi.Input<string>;
-    /**
-     * Maximum minutes a route can be suppressed.
-     */
     dampeningMaxSuppressTime?: pulumi.Input<number>;
-    /**
-     * Reachability half-life time for penalty (min).
-     */
     dampeningReachabilityHalfLife?: pulumi.Input<number>;
-    /**
-     * Threshold to reuse routes.
-     */
     dampeningReuse?: pulumi.Input<number>;
-    /**
-     * Criteria for dampening.
-     */
     dampeningRouteMap?: pulumi.Input<string>;
-    /**
-     * Threshold to suppress routes.
-     */
     dampeningSuppress?: pulumi.Input<number>;
-    /**
-     * Unreachability half-life time for penalty (min).
-     */
     dampeningUnreachabilityHalfLife?: pulumi.Input<number>;
-    /**
-     * Default local preference.
-     */
     defaultLocalPreference?: pulumi.Input<number>;
-    /**
-     * Enable/disable enforce deterministic comparison of MED. Valid values: `enable`, `disable`.
-     */
     deterministicMed?: pulumi.Input<string>;
-    /**
-     * Distance for routes external to the AS.
-     */
     distanceExternal?: pulumi.Input<number>;
-    /**
-     * Distance for routes internal to the AS.
-     */
     distanceInternal?: pulumi.Input<number>;
-    /**
-     * Distance for routes local to the AS.
-     */
     distanceLocal?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable EBGP multi-path. Valid values: `enable`, `disable`.
-     */
     ebgpMultipath?: pulumi.Input<string>;
-    /**
-     * Enable/disable enforce first AS for EBGP routes. Valid values: `enable`, `disable`.
-     */
     enforceFirstAs?: pulumi.Input<string>;
-    /**
-     * Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
-     */
     fastExternalFailover?: pulumi.Input<string>;
-    /**
-     * Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
-     */
     gracefulEndOnTimer?: pulumi.Input<string>;
-    /**
-     * Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
-     */
     gracefulRestart?: pulumi.Input<string>;
-    /**
-     * Time needed for neighbors to restart (sec).
-     */
     gracefulRestartTime?: pulumi.Input<number>;
-    /**
-     * Time to hold stale paths of restarting neighbor (sec).
-     */
     gracefulStalepathTime?: pulumi.Input<number>;
-    /**
-     * Route advertisement/selection delay after restart (sec).
-     */
     gracefulUpdateDelay?: pulumi.Input<number>;
-    /**
-     * Interval (sec) before peer considered dead.
-     */
     holdtimeTimer?: pulumi.Input<number>;
-    /**
-     * Enable/disable IBGP multi-path. Valid values: `enable`, `disable`.
-     */
     ibgpMultipath?: pulumi.Input<string>;
-    /**
-     * Don't send unknown optional capability notification message Valid values: `enable`, `disable`.
-     */
     ignoreOptionalCapability?: pulumi.Input<string>;
-    /**
-     * Frequency to send keep alive requests.
-     */
     keepaliveTimer?: pulumi.Input<number>;
-    /**
-     * Enable logging of BGP neighbour's changes Valid values: `enable`, `disable`.
-     */
     logNeighbourChanges?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of recursive distance to select multipath. Valid values: `enable`, `disable`.
-     */
     multipathRecursiveDistance?: pulumi.Input<string>;
-    /**
-     * Neighbor group name.
-     */
     neighborGroups?: pulumi.Input<pulumi.Input<inputs.RouterBgpNeighborGroup>[]>;
-    /**
-     * BGP IPv6 neighbor range table. The structure of `neighborRange6` block is documented below.
-     */
     neighborRange6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpNeighborRange6>[]>;
-    /**
-     * BGP neighbor range table. The structure of `neighborRange` block is documented below.
-     */
     neighborRanges?: pulumi.Input<pulumi.Input<inputs.RouterBgpNeighborRange>[]>;
-    /**
-     * BGP neighbor table. The structure of `neighbor` block is documented below.
-     */
     neighbors?: pulumi.Input<pulumi.Input<inputs.RouterBgpNeighbor>[]>;
-    /**
-     * BGP IPv6 network table. The structure of `network6` block is documented below.
-     */
     network6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpNetwork6>[]>;
-    /**
-     * Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
-     */
     networkImportCheck?: pulumi.Input<string>;
-    /**
-     * BGP network table. The structure of `network` block is documented below.
-     */
     networks?: pulumi.Input<pulumi.Input<inputs.RouterBgpNetwork>[]>;
-    /**
-     * Enable/disable recursive resolution of next-hop using BGP route. Valid values: `enable`, `disable`.
-     */
+    recursiveInheritPriority?: pulumi.Input<string>;
     recursiveNextHop?: pulumi.Input<string>;
-    /**
-     * BGP IPv6 redistribute table. The structure of `redistribute6` block is documented below.
-     */
     redistribute6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpRedistribute6>[]>;
-    /**
-     * BGP IPv4 redistribute table. The structure of `redistribute` block is documented below.
-     */
     redistributes?: pulumi.Input<pulumi.Input<inputs.RouterBgpRedistribute>[]>;
-    /**
-     * Router ID.
-     */
     routerId?: pulumi.Input<string>;
-    /**
-     * Background scanner interval (sec), 0 to disable it.
-     */
     scanTime?: pulumi.Input<number>;
-    /**
-     * Enable/disable only advertise routes from iBGP if routes present in an IGP. Valid values: `enable`, `disable`.
-     */
     synchronization?: pulumi.Input<string>;
-    /**
-     * Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
-     */
     tagResolveMode?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * BGP IPv6 VRF leaking table. The structure of `vrfLeak6` block is documented below.
-     */
+    vrf6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpVrf6>[]>;
     vrfLeak6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpVrfLeak6>[]>;
-    /**
-     * BGP VRF leaking table. The structure of `vrfLeak` block is documented below.
-     */
     vrfLeaks?: pulumi.Input<pulumi.Input<inputs.RouterBgpVrfLeak>[]>;
+    vrves?: pulumi.Input<pulumi.Input<inputs.RouterBgpVrf>[]>;
 }
 
 /**
  * The set of arguments for constructing a RouterBgp resource.
  */
 export interface RouterBgpArgs {
-    /**
-     * Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-     */
     additionalPath?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-     */
     additionalPath6?: pulumi.Input<string>;
-    /**
-     * Number of additional paths to be selected for each IPv4 NLRI.
-     */
     additionalPathSelect?: pulumi.Input<number>;
-    /**
-     * Number of additional paths to be selected for each IPv6 NLRI.
-     */
     additionalPathSelect6?: pulumi.Input<number>;
-    /**
-     * Administrative distance modifications. The structure of `adminDistance` block is documented below.
-     */
+    additionalPathSelectVpnv4?: pulumi.Input<number>;
+    additionalPathVpnv4?: pulumi.Input<string>;
     adminDistances?: pulumi.Input<pulumi.Input<inputs.RouterBgpAdminDistance>[]>;
-    /**
-     * BGP IPv6 aggregate address table. The structure of `aggregateAddress6` block is documented below.
-     */
     aggregateAddress6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpAggregateAddress6>[]>;
-    /**
-     * BGP aggregate address table. The structure of `aggregateAddress` block is documented below.
-     */
     aggregateAddresses?: pulumi.Input<pulumi.Input<inputs.RouterBgpAggregateAddress>[]>;
-    /**
-     * Enable/disable always compare MED. Valid values: `enable`, `disable`.
-     */
     alwaysCompareMed?: pulumi.Input<string>;
-    /**
-     * Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
-     */
     as: pulumi.Input<number>;
-    /**
-     * Enable/disable ignore AS path. Valid values: `enable`, `disable`.
-     */
     bestpathAsPathIgnore?: pulumi.Input<string>;
-    /**
-     * Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
-     */
     bestpathCmpConfedAspath?: pulumi.Input<string>;
-    /**
-     * Enable/disable compare router ID for identical EBGP paths. Valid values: `enable`, `disable`.
-     */
     bestpathCmpRouterid?: pulumi.Input<string>;
-    /**
-     * Enable/disable compare MED among confederation paths. Valid values: `enable`, `disable`.
-     */
     bestpathMedConfed?: pulumi.Input<string>;
-    /**
-     * Enable/disable treat missing MED as least preferred. Valid values: `enable`, `disable`.
-     */
     bestpathMedMissingAsWorst?: pulumi.Input<string>;
-    /**
-     * Enable/disable client-to-client route reflection. Valid values: `enable`, `disable`.
-     */
     clientToClientReflection?: pulumi.Input<string>;
-    /**
-     * Route reflector cluster ID.
-     */
     clusterId?: pulumi.Input<string>;
-    /**
-     * Confederation identifier.
-     */
     confederationIdentifier?: pulumi.Input<number>;
-    /**
-     * Confederation peers. The structure of `confederationPeers` block is documented below.
-     */
     confederationPeers?: pulumi.Input<pulumi.Input<inputs.RouterBgpConfederationPeer>[]>;
-    /**
-     * Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
-     */
     dampening?: pulumi.Input<string>;
-    /**
-     * Maximum minutes a route can be suppressed.
-     */
     dampeningMaxSuppressTime?: pulumi.Input<number>;
-    /**
-     * Reachability half-life time for penalty (min).
-     */
     dampeningReachabilityHalfLife?: pulumi.Input<number>;
-    /**
-     * Threshold to reuse routes.
-     */
     dampeningReuse?: pulumi.Input<number>;
-    /**
-     * Criteria for dampening.
-     */
     dampeningRouteMap?: pulumi.Input<string>;
-    /**
-     * Threshold to suppress routes.
-     */
     dampeningSuppress?: pulumi.Input<number>;
-    /**
-     * Unreachability half-life time for penalty (min).
-     */
     dampeningUnreachabilityHalfLife?: pulumi.Input<number>;
-    /**
-     * Default local preference.
-     */
     defaultLocalPreference?: pulumi.Input<number>;
-    /**
-     * Enable/disable enforce deterministic comparison of MED. Valid values: `enable`, `disable`.
-     */
     deterministicMed?: pulumi.Input<string>;
-    /**
-     * Distance for routes external to the AS.
-     */
     distanceExternal?: pulumi.Input<number>;
-    /**
-     * Distance for routes internal to the AS.
-     */
     distanceInternal?: pulumi.Input<number>;
-    /**
-     * Distance for routes local to the AS.
-     */
     distanceLocal?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable EBGP multi-path. Valid values: `enable`, `disable`.
-     */
     ebgpMultipath?: pulumi.Input<string>;
-    /**
-     * Enable/disable enforce first AS for EBGP routes. Valid values: `enable`, `disable`.
-     */
     enforceFirstAs?: pulumi.Input<string>;
-    /**
-     * Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
-     */
     fastExternalFailover?: pulumi.Input<string>;
-    /**
-     * Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
-     */
     gracefulEndOnTimer?: pulumi.Input<string>;
-    /**
-     * Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
-     */
     gracefulRestart?: pulumi.Input<string>;
-    /**
-     * Time needed for neighbors to restart (sec).
-     */
     gracefulRestartTime?: pulumi.Input<number>;
-    /**
-     * Time to hold stale paths of restarting neighbor (sec).
-     */
     gracefulStalepathTime?: pulumi.Input<number>;
-    /**
-     * Route advertisement/selection delay after restart (sec).
-     */
     gracefulUpdateDelay?: pulumi.Input<number>;
-    /**
-     * Interval (sec) before peer considered dead.
-     */
     holdtimeTimer?: pulumi.Input<number>;
-    /**
-     * Enable/disable IBGP multi-path. Valid values: `enable`, `disable`.
-     */
     ibgpMultipath?: pulumi.Input<string>;
-    /**
-     * Don't send unknown optional capability notification message Valid values: `enable`, `disable`.
-     */
     ignoreOptionalCapability?: pulumi.Input<string>;
-    /**
-     * Frequency to send keep alive requests.
-     */
     keepaliveTimer?: pulumi.Input<number>;
-    /**
-     * Enable logging of BGP neighbour's changes Valid values: `enable`, `disable`.
-     */
     logNeighbourChanges?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of recursive distance to select multipath. Valid values: `enable`, `disable`.
-     */
     multipathRecursiveDistance?: pulumi.Input<string>;
-    /**
-     * Neighbor group name.
-     */
     neighborGroups?: pulumi.Input<pulumi.Input<inputs.RouterBgpNeighborGroup>[]>;
-    /**
-     * BGP IPv6 neighbor range table. The structure of `neighborRange6` block is documented below.
-     */
     neighborRange6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpNeighborRange6>[]>;
-    /**
-     * BGP neighbor range table. The structure of `neighborRange` block is documented below.
-     */
     neighborRanges?: pulumi.Input<pulumi.Input<inputs.RouterBgpNeighborRange>[]>;
-    /**
-     * BGP neighbor table. The structure of `neighbor` block is documented below.
-     */
     neighbors?: pulumi.Input<pulumi.Input<inputs.RouterBgpNeighbor>[]>;
-    /**
-     * BGP IPv6 network table. The structure of `network6` block is documented below.
-     */
     network6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpNetwork6>[]>;
-    /**
-     * Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
-     */
     networkImportCheck?: pulumi.Input<string>;
-    /**
-     * BGP network table. The structure of `network` block is documented below.
-     */
     networks?: pulumi.Input<pulumi.Input<inputs.RouterBgpNetwork>[]>;
-    /**
-     * Enable/disable recursive resolution of next-hop using BGP route. Valid values: `enable`, `disable`.
-     */
+    recursiveInheritPriority?: pulumi.Input<string>;
     recursiveNextHop?: pulumi.Input<string>;
-    /**
-     * BGP IPv6 redistribute table. The structure of `redistribute6` block is documented below.
-     */
     redistribute6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpRedistribute6>[]>;
-    /**
-     * BGP IPv4 redistribute table. The structure of `redistribute` block is documented below.
-     */
     redistributes?: pulumi.Input<pulumi.Input<inputs.RouterBgpRedistribute>[]>;
-    /**
-     * Router ID.
-     */
     routerId?: pulumi.Input<string>;
-    /**
-     * Background scanner interval (sec), 0 to disable it.
-     */
     scanTime?: pulumi.Input<number>;
-    /**
-     * Enable/disable only advertise routes from iBGP if routes present in an IGP. Valid values: `enable`, `disable`.
-     */
     synchronization?: pulumi.Input<string>;
-    /**
-     * Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
-     */
     tagResolveMode?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * BGP IPv6 VRF leaking table. The structure of `vrfLeak6` block is documented below.
-     */
+    vrf6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpVrf6>[]>;
     vrfLeak6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpVrfLeak6>[]>;
-    /**
-     * BGP VRF leaking table. The structure of `vrfLeak` block is documented below.
-     */
     vrfLeaks?: pulumi.Input<pulumi.Input<inputs.RouterBgpVrfLeak>[]>;
+    vrves?: pulumi.Input<pulumi.Input<inputs.RouterBgpVrf>[]>;
 }

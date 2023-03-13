@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure device categories. Applies to FortiOS Version `<= 6.2.0`.
- *
- * ## Import
- *
- * User DeviceCategory can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userDeviceCategory:UserDeviceCategory labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userDeviceCategory:UserDeviceCategory labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserDeviceCategory extends pulumi.CustomResource {
     /**
      * Get an existing UserDeviceCategory resource's state with the given name, ID, and optional extra
@@ -51,21 +32,9 @@ export class UserDeviceCategory extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserDeviceCategory.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Device category description.
-     */
     public readonly desc!: pulumi.Output<string | undefined>;
-    /**
-     * Device category name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -101,21 +70,9 @@ export class UserDeviceCategory extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserDeviceCategory resources.
  */
 export interface UserDeviceCategoryState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Device category description.
-     */
     desc?: pulumi.Input<string>;
-    /**
-     * Device category name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -123,20 +80,8 @@ export interface UserDeviceCategoryState {
  * The set of arguments for constructing a UserDeviceCategory resource.
  */
 export interface UserDeviceCategoryArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Device category description.
-     */
     desc?: pulumi.Input<string>;
-    /**
-     * Device category name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

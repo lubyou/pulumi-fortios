@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPS decoder.
-//
-// ## Import
-//
-// Ips Decoder can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/ipsDecoder:IpsDecoder labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/ipsDecoder:IpsDecoder labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type IpsDecoder struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Parameter name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// IPS group parameters. The structure of `parameter` block is documented below.
-	Parameters IpsDecoderParameterArrayOutput `pulumi:"parameters"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput            `pulumi:"name"`
+	Parameters          IpsDecoderParameterArrayOutput `pulumi:"parameters"`
+	Vdomparam           pulumi.StringPtrOutput         `pulumi:"vdomparam"`
 }
 
 // NewIpsDecoder registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetIpsDecoder(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IpsDecoder resources.
 type ipsDecoderState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Parameter name.
-	Name *string `pulumi:"name"`
-	// IPS group parameters. The structure of `parameter` block is documented below.
-	Parameters []IpsDecoderParameter `pulumi:"parameters"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	Name                *string               `pulumi:"name"`
+	Parameters          []IpsDecoderParameter `pulumi:"parameters"`
+	Vdomparam           *string               `pulumi:"vdomparam"`
 }
 
 type IpsDecoderState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Parameter name.
-	Name pulumi.StringPtrInput
-	// IPS group parameters. The structure of `parameter` block is documented below.
-	Parameters IpsDecoderParameterArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Parameters          IpsDecoderParameterArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (IpsDecoderState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (IpsDecoderState) ElementType() reflect.Type {
 }
 
 type ipsDecoderArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Parameter name.
-	Name *string `pulumi:"name"`
-	// IPS group parameters. The structure of `parameter` block is documented below.
-	Parameters []IpsDecoderParameter `pulumi:"parameters"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	Name                *string               `pulumi:"name"`
+	Parameters          []IpsDecoderParameter `pulumi:"parameters"`
+	Vdomparam           *string               `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a IpsDecoder resource.
 type IpsDecoderArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Parameter name.
-	Name pulumi.StringPtrInput
-	// IPS group parameters. The structure of `parameter` block is documented below.
-	Parameters IpsDecoderParameterArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Parameters          IpsDecoderParameterArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (IpsDecoderArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *IpsDecoder) ToIpsDecoderOutputWithContext(ctx context.Context) IpsDecod
 // IpsDecoderArrayInput is an input type that accepts IpsDecoderArray and IpsDecoderArrayOutput values.
 // You can construct a concrete instance of `IpsDecoderArrayInput` via:
 //
-//          IpsDecoderArray{ IpsDecoderArgs{...} }
+//	IpsDecoderArray{ IpsDecoderArgs{...} }
 type IpsDecoderArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i IpsDecoderArray) ToIpsDecoderArrayOutputWithContext(ctx context.Context)
 // IpsDecoderMapInput is an input type that accepts IpsDecoderMap and IpsDecoderMapOutput values.
 // You can construct a concrete instance of `IpsDecoderMapInput` via:
 //
-//          IpsDecoderMap{ "key": IpsDecoderArgs{...} }
+//	IpsDecoderMap{ "key": IpsDecoderArgs{...} }
 type IpsDecoderMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o IpsDecoderOutput) ToIpsDecoderOutput() IpsDecoderOutput {
 
 func (o IpsDecoderOutput) ToIpsDecoderOutputWithContext(ctx context.Context) IpsDecoderOutput {
 	return o
+}
+
+func (o IpsDecoderOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsDecoder) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o IpsDecoderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsDecoder) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o IpsDecoderOutput) Parameters() IpsDecoderParameterArrayOutput {
+	return o.ApplyT(func(v *IpsDecoder) IpsDecoderParameterArrayOutput { return v.Parameters }).(IpsDecoderParameterArrayOutput)
+}
+
+func (o IpsDecoderOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsDecoder) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type IpsDecoderArrayOutput struct{ *pulumi.OutputState }

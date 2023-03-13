@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.FirewallConsolidatedPolicy`.
- */
 export function getFirewallConsolidatedPolicyList(args?: GetFirewallConsolidatedPolicyListArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallConsolidatedPolicyListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallConsolidatedPolicyList:GetFirewallConsolidatedPolicyList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getFirewallConsolidatedPolicyList(args?: GetFirewallConsolidated
  */
 export interface GetFirewallConsolidatedPolicyListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -40,15 +31,11 @@ export interface GetFirewallConsolidatedPolicyListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.FirewallConsolidatedPolicy`.
-     */
     readonly policyidlists: number[];
     readonly vdomparam?: string;
 }
-
 export function getFirewallConsolidatedPolicyListOutput(args?: GetFirewallConsolidatedPolicyListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallConsolidatedPolicyListResult> {
-    return pulumi.output(args).apply(a => getFirewallConsolidatedPolicyList(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallConsolidatedPolicyList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getFirewallConsolidatedPolicyListOutput(args?: GetFirewallConsol
  */
 export interface GetFirewallConsolidatedPolicyListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.FirewallInternetServiceDefinition`.
- */
 export function getFirewallInternetServiceDefinitionList(args?: GetFirewallInternetServiceDefinitionListArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallInternetServiceDefinitionListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallInternetServiceDefinitionList:GetFirewallInternetServiceDefinitionList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getFirewallInternetServiceDefinitionList(args?: GetFirewallInter
  */
 export interface GetFirewallInternetServiceDefinitionListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -36,9 +27,6 @@ export interface GetFirewallInternetServiceDefinitionListArgs {
  */
 export interface GetFirewallInternetServiceDefinitionListResult {
     readonly filter?: string;
-    /**
-     * A list of the `fortios.FirewallInternetServiceDefinition`.
-     */
     readonly fosidlists: number[];
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -46,9 +34,8 @@ export interface GetFirewallInternetServiceDefinitionListResult {
     readonly id: string;
     readonly vdomparam?: string;
 }
-
 export function getFirewallInternetServiceDefinitionListOutput(args?: GetFirewallInternetServiceDefinitionListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallInternetServiceDefinitionListResult> {
-    return pulumi.output(args).apply(a => getFirewallInternetServiceDefinitionList(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallInternetServiceDefinitionList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getFirewallInternetServiceDefinitionListOutput(args?: GetFirewal
  */
 export interface GetFirewallInternetServiceDefinitionListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

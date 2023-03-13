@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios system nat64
 func LookupSystemNat64(ctx *pulumi.Context, args *LookupSystemNat64Args, opts ...pulumi.InvokeOption) (*LookupSystemNat64Result, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemNat64Result
@@ -23,29 +22,21 @@ func LookupSystemNat64(ctx *pulumi.Context, args *LookupSystemNat64Args, opts ..
 
 // A collection of arguments for invoking GetSystemNat64.
 type LookupSystemNat64Args struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemNat64.
 type LookupSystemNat64Result struct {
-	// Enable/disable AAAA record synthesis (default = enable).
 	AlwaysSynthesizeAaaaRecord string `pulumi:"alwaysSynthesizeAaaaRecord"`
-	// Enable/disable IPv6 fragment header generation.
 	GenerateIpv6FragmentHeader string `pulumi:"generateIpv6FragmentHeader"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Enable/disable mandatory IPv4 packet forwarding in nat46.
-	Nat46ForceIpv4PacketForwarding string `pulumi:"nat46ForceIpv4PacketForwarding"`
-	// NAT64 prefix.
-	Nat64Prefix string `pulumi:"nat64Prefix"`
-	// Enable/disable secondary NAT64 prefix.
-	SecondaryPrefixStatus string `pulumi:"secondaryPrefixStatus"`
-	// Secondary NAT64 prefix. The structure of `secondaryPrefix` block is documented below.
-	SecondaryPrefixes []GetSystemNat64SecondaryPrefix `pulumi:"secondaryPrefixes"`
-	// Enable/disable NAT64 (default = disable).
-	Status    string  `pulumi:"status"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id                             string                          `pulumi:"id"`
+	Nat46ForceIpv4PacketForwarding string                          `pulumi:"nat46ForceIpv4PacketForwarding"`
+	Nat64Prefix                    string                          `pulumi:"nat64Prefix"`
+	SecondaryPrefixStatus          string                          `pulumi:"secondaryPrefixStatus"`
+	SecondaryPrefixes              []GetSystemNat64SecondaryPrefix `pulumi:"secondaryPrefixes"`
+	Status                         string                          `pulumi:"status"`
+	Vdomparam                      *string                         `pulumi:"vdomparam"`
 }
 
 func LookupSystemNat64Output(ctx *pulumi.Context, args LookupSystemNat64OutputArgs, opts ...pulumi.InvokeOption) LookupSystemNat64ResultOutput {
@@ -63,7 +54,6 @@ func LookupSystemNat64Output(ctx *pulumi.Context, args LookupSystemNat64OutputAr
 
 // A collection of arguments for invoking GetSystemNat64.
 type LookupSystemNat64OutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,12 +76,10 @@ func (o LookupSystemNat64ResultOutput) ToLookupSystemNat64ResultOutputWithContex
 	return o
 }
 
-// Enable/disable AAAA record synthesis (default = enable).
 func (o LookupSystemNat64ResultOutput) AlwaysSynthesizeAaaaRecord() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemNat64Result) string { return v.AlwaysSynthesizeAaaaRecord }).(pulumi.StringOutput)
 }
 
-// Enable/disable IPv6 fragment header generation.
 func (o LookupSystemNat64ResultOutput) GenerateIpv6FragmentHeader() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemNat64Result) string { return v.GenerateIpv6FragmentHeader }).(pulumi.StringOutput)
 }
@@ -101,27 +89,22 @@ func (o LookupSystemNat64ResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemNat64Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Enable/disable mandatory IPv4 packet forwarding in nat46.
 func (o LookupSystemNat64ResultOutput) Nat46ForceIpv4PacketForwarding() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemNat64Result) string { return v.Nat46ForceIpv4PacketForwarding }).(pulumi.StringOutput)
 }
 
-// NAT64 prefix.
 func (o LookupSystemNat64ResultOutput) Nat64Prefix() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemNat64Result) string { return v.Nat64Prefix }).(pulumi.StringOutput)
 }
 
-// Enable/disable secondary NAT64 prefix.
 func (o LookupSystemNat64ResultOutput) SecondaryPrefixStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemNat64Result) string { return v.SecondaryPrefixStatus }).(pulumi.StringOutput)
 }
 
-// Secondary NAT64 prefix. The structure of `secondaryPrefix` block is documented below.
 func (o LookupSystemNat64ResultOutput) SecondaryPrefixes() GetSystemNat64SecondaryPrefixArrayOutput {
 	return o.ApplyT(func(v LookupSystemNat64Result) []GetSystemNat64SecondaryPrefix { return v.SecondaryPrefixes }).(GetSystemNat64SecondaryPrefixArrayOutput)
 }
 
-// Enable/disable NAT64 (default = disable).
 func (o LookupSystemNat64ResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemNat64Result) string { return v.Status }).(pulumi.StringOutput)
 }

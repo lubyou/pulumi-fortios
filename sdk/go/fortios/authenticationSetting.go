@@ -10,90 +10,32 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure authentication setting.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewAuthenticationSetting(ctx, "trname", &fortios.AuthenticationSettingArgs{
-// 			AuthHttps:            pulumi.String("enable"),
-// 			CaptivePortalIp:      pulumi.String("0.0.0.0"),
-// 			CaptivePortalIp6:     pulumi.String("::"),
-// 			CaptivePortalPort:    pulumi.Int(7830),
-// 			CaptivePortalSslPort: pulumi.Int(7831),
-// 			CaptivePortalType:    pulumi.String("fqdn"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Authentication Setting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/authenticationSetting:AuthenticationSetting labelname AuthenticationSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/authenticationSetting:AuthenticationSetting labelname AuthenticationSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type AuthenticationSetting struct {
 	pulumi.CustomResourceState
 
-	// Active authentication method (scheme name).
-	ActiveAuthScheme pulumi.StringOutput `pulumi:"activeAuthScheme"`
-	// Enable/disable redirecting HTTP user authentication to HTTPS. Valid values: `enable`, `disable`.
-	AuthHttps pulumi.StringOutput `pulumi:"authHttps"`
-	// Captive portal host name.
-	CaptivePortal pulumi.StringOutput `pulumi:"captivePortal"`
-	// IPv6 captive portal host name.
-	CaptivePortal6 pulumi.StringOutput `pulumi:"captivePortal6"`
-	// Captive portal IP address.
-	CaptivePortalIp pulumi.StringOutput `pulumi:"captivePortalIp"`
-	// Captive portal IPv6 address.
-	CaptivePortalIp6 pulumi.StringOutput `pulumi:"captivePortalIp6"`
-	// Captive portal port number (1 - 65535, default = 7830).
-	CaptivePortalPort pulumi.IntOutput `pulumi:"captivePortalPort"`
-	// Captive portal SSL port number (1 - 65535, default = 7831).
-	CaptivePortalSslPort pulumi.IntOutput `pulumi:"captivePortalSslPort"`
-	// Captive portal type. Valid values: `fqdn`, `ip`.
-	CaptivePortalType pulumi.StringOutput `pulumi:"captivePortalType"`
-	// Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
-	CertAuth pulumi.StringOutput `pulumi:"certAuth"`
-	// Certificate captive portal host name.
-	CertCaptivePortal pulumi.StringOutput `pulumi:"certCaptivePortal"`
-	// Certificate captive portal IP address.
-	CertCaptivePortalIp pulumi.StringOutput `pulumi:"certCaptivePortalIp"`
-	// Certificate captive portal port number (1 - 65535, default = 7832).
-	CertCaptivePortalPort pulumi.IntOutput `pulumi:"certCaptivePortalPort"`
-	// Address range for the IP based device query. The structure of `devRange` block is documented below.
-	DevRanges AuthenticationSettingDevRangeArrayOutput `pulumi:"devRanges"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Single-Sign-On authentication method (scheme name).
-	SsoAuthScheme pulumi.StringOutput `pulumi:"ssoAuthScheme"`
-	// CA certificate used for client certificate verification. The structure of `userCertCa` block is documented below.
-	UserCertCas AuthenticationSettingUserCertCaArrayOutput `pulumi:"userCertCas"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	ActiveAuthScheme      pulumi.StringOutput                        `pulumi:"activeAuthScheme"`
+	AuthHttps             pulumi.StringOutput                        `pulumi:"authHttps"`
+	CaptivePortal         pulumi.StringOutput                        `pulumi:"captivePortal"`
+	CaptivePortal6        pulumi.StringOutput                        `pulumi:"captivePortal6"`
+	CaptivePortalIp       pulumi.StringOutput                        `pulumi:"captivePortalIp"`
+	CaptivePortalIp6      pulumi.StringOutput                        `pulumi:"captivePortalIp6"`
+	CaptivePortalPort     pulumi.IntOutput                           `pulumi:"captivePortalPort"`
+	CaptivePortalSslPort  pulumi.IntOutput                           `pulumi:"captivePortalSslPort"`
+	CaptivePortalType     pulumi.StringOutput                        `pulumi:"captivePortalType"`
+	CertAuth              pulumi.StringOutput                        `pulumi:"certAuth"`
+	CertCaptivePortal     pulumi.StringOutput                        `pulumi:"certCaptivePortal"`
+	CertCaptivePortalIp   pulumi.StringOutput                        `pulumi:"certCaptivePortalIp"`
+	CertCaptivePortalPort pulumi.IntOutput                           `pulumi:"certCaptivePortalPort"`
+	CookieMaxAge          pulumi.IntOutput                           `pulumi:"cookieMaxAge"`
+	CookieRefreshDiv      pulumi.IntOutput                           `pulumi:"cookieRefreshDiv"`
+	DevRanges             AuthenticationSettingDevRangeArrayOutput   `pulumi:"devRanges"`
+	DynamicSortSubtable   pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
+	IpAuthCookie          pulumi.StringOutput                        `pulumi:"ipAuthCookie"`
+	PersistentCookie      pulumi.StringOutput                        `pulumi:"persistentCookie"`
+	SsoAuthScheme         pulumi.StringOutput                        `pulumi:"ssoAuthScheme"`
+	UpdateTime            pulumi.StringOutput                        `pulumi:"updateTime"`
+	UserCertCas           AuthenticationSettingUserCertCaArrayOutput `pulumi:"userCertCas"`
+	Vdomparam             pulumi.StringPtrOutput                     `pulumi:"vdomparam"`
 }
 
 // NewAuthenticationSetting registers a new resource with the given unique name, arguments, and options.
@@ -126,81 +68,55 @@ func GetAuthenticationSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AuthenticationSetting resources.
 type authenticationSettingState struct {
-	// Active authentication method (scheme name).
-	ActiveAuthScheme *string `pulumi:"activeAuthScheme"`
-	// Enable/disable redirecting HTTP user authentication to HTTPS. Valid values: `enable`, `disable`.
-	AuthHttps *string `pulumi:"authHttps"`
-	// Captive portal host name.
-	CaptivePortal *string `pulumi:"captivePortal"`
-	// IPv6 captive portal host name.
-	CaptivePortal6 *string `pulumi:"captivePortal6"`
-	// Captive portal IP address.
-	CaptivePortalIp *string `pulumi:"captivePortalIp"`
-	// Captive portal IPv6 address.
-	CaptivePortalIp6 *string `pulumi:"captivePortalIp6"`
-	// Captive portal port number (1 - 65535, default = 7830).
-	CaptivePortalPort *int `pulumi:"captivePortalPort"`
-	// Captive portal SSL port number (1 - 65535, default = 7831).
-	CaptivePortalSslPort *int `pulumi:"captivePortalSslPort"`
-	// Captive portal type. Valid values: `fqdn`, `ip`.
-	CaptivePortalType *string `pulumi:"captivePortalType"`
-	// Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
-	CertAuth *string `pulumi:"certAuth"`
-	// Certificate captive portal host name.
-	CertCaptivePortal *string `pulumi:"certCaptivePortal"`
-	// Certificate captive portal IP address.
-	CertCaptivePortalIp *string `pulumi:"certCaptivePortalIp"`
-	// Certificate captive portal port number (1 - 65535, default = 7832).
-	CertCaptivePortalPort *int `pulumi:"certCaptivePortalPort"`
-	// Address range for the IP based device query. The structure of `devRange` block is documented below.
-	DevRanges []AuthenticationSettingDevRange `pulumi:"devRanges"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Single-Sign-On authentication method (scheme name).
-	SsoAuthScheme *string `pulumi:"ssoAuthScheme"`
-	// CA certificate used for client certificate verification. The structure of `userCertCa` block is documented below.
-	UserCertCas []AuthenticationSettingUserCertCa `pulumi:"userCertCas"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ActiveAuthScheme      *string                           `pulumi:"activeAuthScheme"`
+	AuthHttps             *string                           `pulumi:"authHttps"`
+	CaptivePortal         *string                           `pulumi:"captivePortal"`
+	CaptivePortal6        *string                           `pulumi:"captivePortal6"`
+	CaptivePortalIp       *string                           `pulumi:"captivePortalIp"`
+	CaptivePortalIp6      *string                           `pulumi:"captivePortalIp6"`
+	CaptivePortalPort     *int                              `pulumi:"captivePortalPort"`
+	CaptivePortalSslPort  *int                              `pulumi:"captivePortalSslPort"`
+	CaptivePortalType     *string                           `pulumi:"captivePortalType"`
+	CertAuth              *string                           `pulumi:"certAuth"`
+	CertCaptivePortal     *string                           `pulumi:"certCaptivePortal"`
+	CertCaptivePortalIp   *string                           `pulumi:"certCaptivePortalIp"`
+	CertCaptivePortalPort *int                              `pulumi:"certCaptivePortalPort"`
+	CookieMaxAge          *int                              `pulumi:"cookieMaxAge"`
+	CookieRefreshDiv      *int                              `pulumi:"cookieRefreshDiv"`
+	DevRanges             []AuthenticationSettingDevRange   `pulumi:"devRanges"`
+	DynamicSortSubtable   *string                           `pulumi:"dynamicSortSubtable"`
+	IpAuthCookie          *string                           `pulumi:"ipAuthCookie"`
+	PersistentCookie      *string                           `pulumi:"persistentCookie"`
+	SsoAuthScheme         *string                           `pulumi:"ssoAuthScheme"`
+	UpdateTime            *string                           `pulumi:"updateTime"`
+	UserCertCas           []AuthenticationSettingUserCertCa `pulumi:"userCertCas"`
+	Vdomparam             *string                           `pulumi:"vdomparam"`
 }
 
 type AuthenticationSettingState struct {
-	// Active authentication method (scheme name).
-	ActiveAuthScheme pulumi.StringPtrInput
-	// Enable/disable redirecting HTTP user authentication to HTTPS. Valid values: `enable`, `disable`.
-	AuthHttps pulumi.StringPtrInput
-	// Captive portal host name.
-	CaptivePortal pulumi.StringPtrInput
-	// IPv6 captive portal host name.
-	CaptivePortal6 pulumi.StringPtrInput
-	// Captive portal IP address.
-	CaptivePortalIp pulumi.StringPtrInput
-	// Captive portal IPv6 address.
-	CaptivePortalIp6 pulumi.StringPtrInput
-	// Captive portal port number (1 - 65535, default = 7830).
-	CaptivePortalPort pulumi.IntPtrInput
-	// Captive portal SSL port number (1 - 65535, default = 7831).
-	CaptivePortalSslPort pulumi.IntPtrInput
-	// Captive portal type. Valid values: `fqdn`, `ip`.
-	CaptivePortalType pulumi.StringPtrInput
-	// Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
-	CertAuth pulumi.StringPtrInput
-	// Certificate captive portal host name.
-	CertCaptivePortal pulumi.StringPtrInput
-	// Certificate captive portal IP address.
-	CertCaptivePortalIp pulumi.StringPtrInput
-	// Certificate captive portal port number (1 - 65535, default = 7832).
+	ActiveAuthScheme      pulumi.StringPtrInput
+	AuthHttps             pulumi.StringPtrInput
+	CaptivePortal         pulumi.StringPtrInput
+	CaptivePortal6        pulumi.StringPtrInput
+	CaptivePortalIp       pulumi.StringPtrInput
+	CaptivePortalIp6      pulumi.StringPtrInput
+	CaptivePortalPort     pulumi.IntPtrInput
+	CaptivePortalSslPort  pulumi.IntPtrInput
+	CaptivePortalType     pulumi.StringPtrInput
+	CertAuth              pulumi.StringPtrInput
+	CertCaptivePortal     pulumi.StringPtrInput
+	CertCaptivePortalIp   pulumi.StringPtrInput
 	CertCaptivePortalPort pulumi.IntPtrInput
-	// Address range for the IP based device query. The structure of `devRange` block is documented below.
-	DevRanges AuthenticationSettingDevRangeArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Single-Sign-On authentication method (scheme name).
-	SsoAuthScheme pulumi.StringPtrInput
-	// CA certificate used for client certificate verification. The structure of `userCertCa` block is documented below.
-	UserCertCas AuthenticationSettingUserCertCaArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	CookieMaxAge          pulumi.IntPtrInput
+	CookieRefreshDiv      pulumi.IntPtrInput
+	DevRanges             AuthenticationSettingDevRangeArrayInput
+	DynamicSortSubtable   pulumi.StringPtrInput
+	IpAuthCookie          pulumi.StringPtrInput
+	PersistentCookie      pulumi.StringPtrInput
+	SsoAuthScheme         pulumi.StringPtrInput
+	UpdateTime            pulumi.StringPtrInput
+	UserCertCas           AuthenticationSettingUserCertCaArrayInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (AuthenticationSettingState) ElementType() reflect.Type {
@@ -208,82 +124,56 @@ func (AuthenticationSettingState) ElementType() reflect.Type {
 }
 
 type authenticationSettingArgs struct {
-	// Active authentication method (scheme name).
-	ActiveAuthScheme *string `pulumi:"activeAuthScheme"`
-	// Enable/disable redirecting HTTP user authentication to HTTPS. Valid values: `enable`, `disable`.
-	AuthHttps *string `pulumi:"authHttps"`
-	// Captive portal host name.
-	CaptivePortal *string `pulumi:"captivePortal"`
-	// IPv6 captive portal host name.
-	CaptivePortal6 *string `pulumi:"captivePortal6"`
-	// Captive portal IP address.
-	CaptivePortalIp *string `pulumi:"captivePortalIp"`
-	// Captive portal IPv6 address.
-	CaptivePortalIp6 *string `pulumi:"captivePortalIp6"`
-	// Captive portal port number (1 - 65535, default = 7830).
-	CaptivePortalPort *int `pulumi:"captivePortalPort"`
-	// Captive portal SSL port number (1 - 65535, default = 7831).
-	CaptivePortalSslPort *int `pulumi:"captivePortalSslPort"`
-	// Captive portal type. Valid values: `fqdn`, `ip`.
-	CaptivePortalType *string `pulumi:"captivePortalType"`
-	// Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
-	CertAuth *string `pulumi:"certAuth"`
-	// Certificate captive portal host name.
-	CertCaptivePortal *string `pulumi:"certCaptivePortal"`
-	// Certificate captive portal IP address.
-	CertCaptivePortalIp *string `pulumi:"certCaptivePortalIp"`
-	// Certificate captive portal port number (1 - 65535, default = 7832).
-	CertCaptivePortalPort *int `pulumi:"certCaptivePortalPort"`
-	// Address range for the IP based device query. The structure of `devRange` block is documented below.
-	DevRanges []AuthenticationSettingDevRange `pulumi:"devRanges"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Single-Sign-On authentication method (scheme name).
-	SsoAuthScheme *string `pulumi:"ssoAuthScheme"`
-	// CA certificate used for client certificate verification. The structure of `userCertCa` block is documented below.
-	UserCertCas []AuthenticationSettingUserCertCa `pulumi:"userCertCas"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ActiveAuthScheme      *string                           `pulumi:"activeAuthScheme"`
+	AuthHttps             *string                           `pulumi:"authHttps"`
+	CaptivePortal         *string                           `pulumi:"captivePortal"`
+	CaptivePortal6        *string                           `pulumi:"captivePortal6"`
+	CaptivePortalIp       *string                           `pulumi:"captivePortalIp"`
+	CaptivePortalIp6      *string                           `pulumi:"captivePortalIp6"`
+	CaptivePortalPort     *int                              `pulumi:"captivePortalPort"`
+	CaptivePortalSslPort  *int                              `pulumi:"captivePortalSslPort"`
+	CaptivePortalType     *string                           `pulumi:"captivePortalType"`
+	CertAuth              *string                           `pulumi:"certAuth"`
+	CertCaptivePortal     *string                           `pulumi:"certCaptivePortal"`
+	CertCaptivePortalIp   *string                           `pulumi:"certCaptivePortalIp"`
+	CertCaptivePortalPort *int                              `pulumi:"certCaptivePortalPort"`
+	CookieMaxAge          *int                              `pulumi:"cookieMaxAge"`
+	CookieRefreshDiv      *int                              `pulumi:"cookieRefreshDiv"`
+	DevRanges             []AuthenticationSettingDevRange   `pulumi:"devRanges"`
+	DynamicSortSubtable   *string                           `pulumi:"dynamicSortSubtable"`
+	IpAuthCookie          *string                           `pulumi:"ipAuthCookie"`
+	PersistentCookie      *string                           `pulumi:"persistentCookie"`
+	SsoAuthScheme         *string                           `pulumi:"ssoAuthScheme"`
+	UpdateTime            *string                           `pulumi:"updateTime"`
+	UserCertCas           []AuthenticationSettingUserCertCa `pulumi:"userCertCas"`
+	Vdomparam             *string                           `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a AuthenticationSetting resource.
 type AuthenticationSettingArgs struct {
-	// Active authentication method (scheme name).
-	ActiveAuthScheme pulumi.StringPtrInput
-	// Enable/disable redirecting HTTP user authentication to HTTPS. Valid values: `enable`, `disable`.
-	AuthHttps pulumi.StringPtrInput
-	// Captive portal host name.
-	CaptivePortal pulumi.StringPtrInput
-	// IPv6 captive portal host name.
-	CaptivePortal6 pulumi.StringPtrInput
-	// Captive portal IP address.
-	CaptivePortalIp pulumi.StringPtrInput
-	// Captive portal IPv6 address.
-	CaptivePortalIp6 pulumi.StringPtrInput
-	// Captive portal port number (1 - 65535, default = 7830).
-	CaptivePortalPort pulumi.IntPtrInput
-	// Captive portal SSL port number (1 - 65535, default = 7831).
-	CaptivePortalSslPort pulumi.IntPtrInput
-	// Captive portal type. Valid values: `fqdn`, `ip`.
-	CaptivePortalType pulumi.StringPtrInput
-	// Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
-	CertAuth pulumi.StringPtrInput
-	// Certificate captive portal host name.
-	CertCaptivePortal pulumi.StringPtrInput
-	// Certificate captive portal IP address.
-	CertCaptivePortalIp pulumi.StringPtrInput
-	// Certificate captive portal port number (1 - 65535, default = 7832).
+	ActiveAuthScheme      pulumi.StringPtrInput
+	AuthHttps             pulumi.StringPtrInput
+	CaptivePortal         pulumi.StringPtrInput
+	CaptivePortal6        pulumi.StringPtrInput
+	CaptivePortalIp       pulumi.StringPtrInput
+	CaptivePortalIp6      pulumi.StringPtrInput
+	CaptivePortalPort     pulumi.IntPtrInput
+	CaptivePortalSslPort  pulumi.IntPtrInput
+	CaptivePortalType     pulumi.StringPtrInput
+	CertAuth              pulumi.StringPtrInput
+	CertCaptivePortal     pulumi.StringPtrInput
+	CertCaptivePortalIp   pulumi.StringPtrInput
 	CertCaptivePortalPort pulumi.IntPtrInput
-	// Address range for the IP based device query. The structure of `devRange` block is documented below.
-	DevRanges AuthenticationSettingDevRangeArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Single-Sign-On authentication method (scheme name).
-	SsoAuthScheme pulumi.StringPtrInput
-	// CA certificate used for client certificate verification. The structure of `userCertCa` block is documented below.
-	UserCertCas AuthenticationSettingUserCertCaArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	CookieMaxAge          pulumi.IntPtrInput
+	CookieRefreshDiv      pulumi.IntPtrInput
+	DevRanges             AuthenticationSettingDevRangeArrayInput
+	DynamicSortSubtable   pulumi.StringPtrInput
+	IpAuthCookie          pulumi.StringPtrInput
+	PersistentCookie      pulumi.StringPtrInput
+	SsoAuthScheme         pulumi.StringPtrInput
+	UpdateTime            pulumi.StringPtrInput
+	UserCertCas           AuthenticationSettingUserCertCaArrayInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (AuthenticationSettingArgs) ElementType() reflect.Type {
@@ -312,7 +202,7 @@ func (i *AuthenticationSetting) ToAuthenticationSettingOutputWithContext(ctx con
 // AuthenticationSettingArrayInput is an input type that accepts AuthenticationSettingArray and AuthenticationSettingArrayOutput values.
 // You can construct a concrete instance of `AuthenticationSettingArrayInput` via:
 //
-//          AuthenticationSettingArray{ AuthenticationSettingArgs{...} }
+//	AuthenticationSettingArray{ AuthenticationSettingArgs{...} }
 type AuthenticationSettingArrayInput interface {
 	pulumi.Input
 
@@ -337,7 +227,7 @@ func (i AuthenticationSettingArray) ToAuthenticationSettingArrayOutputWithContex
 // AuthenticationSettingMapInput is an input type that accepts AuthenticationSettingMap and AuthenticationSettingMapOutput values.
 // You can construct a concrete instance of `AuthenticationSettingMapInput` via:
 //
-//          AuthenticationSettingMap{ "key": AuthenticationSettingArgs{...} }
+//	AuthenticationSettingMap{ "key": AuthenticationSettingArgs{...} }
 type AuthenticationSettingMapInput interface {
 	pulumi.Input
 
@@ -371,6 +261,98 @@ func (o AuthenticationSettingOutput) ToAuthenticationSettingOutput() Authenticat
 
 func (o AuthenticationSettingOutput) ToAuthenticationSettingOutputWithContext(ctx context.Context) AuthenticationSettingOutput {
 	return o
+}
+
+func (o AuthenticationSettingOutput) ActiveAuthScheme() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringOutput { return v.ActiveAuthScheme }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSettingOutput) AuthHttps() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringOutput { return v.AuthHttps }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSettingOutput) CaptivePortal() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringOutput { return v.CaptivePortal }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSettingOutput) CaptivePortal6() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringOutput { return v.CaptivePortal6 }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSettingOutput) CaptivePortalIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringOutput { return v.CaptivePortalIp }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSettingOutput) CaptivePortalIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringOutput { return v.CaptivePortalIp6 }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSettingOutput) CaptivePortalPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.IntOutput { return v.CaptivePortalPort }).(pulumi.IntOutput)
+}
+
+func (o AuthenticationSettingOutput) CaptivePortalSslPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.IntOutput { return v.CaptivePortalSslPort }).(pulumi.IntOutput)
+}
+
+func (o AuthenticationSettingOutput) CaptivePortalType() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringOutput { return v.CaptivePortalType }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSettingOutput) CertAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringOutput { return v.CertAuth }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSettingOutput) CertCaptivePortal() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringOutput { return v.CertCaptivePortal }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSettingOutput) CertCaptivePortalIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringOutput { return v.CertCaptivePortalIp }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSettingOutput) CertCaptivePortalPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.IntOutput { return v.CertCaptivePortalPort }).(pulumi.IntOutput)
+}
+
+func (o AuthenticationSettingOutput) CookieMaxAge() pulumi.IntOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.IntOutput { return v.CookieMaxAge }).(pulumi.IntOutput)
+}
+
+func (o AuthenticationSettingOutput) CookieRefreshDiv() pulumi.IntOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.IntOutput { return v.CookieRefreshDiv }).(pulumi.IntOutput)
+}
+
+func (o AuthenticationSettingOutput) DevRanges() AuthenticationSettingDevRangeArrayOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) AuthenticationSettingDevRangeArrayOutput { return v.DevRanges }).(AuthenticationSettingDevRangeArrayOutput)
+}
+
+func (o AuthenticationSettingOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthenticationSettingOutput) IpAuthCookie() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringOutput { return v.IpAuthCookie }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSettingOutput) PersistentCookie() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringOutput { return v.PersistentCookie }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSettingOutput) SsoAuthScheme() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringOutput { return v.SsoAuthScheme }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSettingOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringOutput { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSettingOutput) UserCertCas() AuthenticationSettingUserCertCaArrayOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) AuthenticationSettingUserCertCaArrayOutput { return v.UserCertCas }).(AuthenticationSettingUserCertCaArrayOutput)
+}
+
+func (o AuthenticationSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type AuthenticationSettingArrayOutput struct{ *pulumi.OutputState }

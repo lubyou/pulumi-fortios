@@ -10,33 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure device categories. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Import
-//
-// User DeviceCategory can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userDeviceCategory:UserDeviceCategory labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userDeviceCategory:UserDeviceCategory labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserDeviceCategory struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Device category description.
-	Desc pulumi.StringPtrOutput `pulumi:"desc"`
-	// Device category name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comment   pulumi.StringPtrOutput `pulumi:"comment"`
+	Desc      pulumi.StringPtrOutput `pulumi:"desc"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -70,24 +49,16 @@ func GetUserDeviceCategory(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserDeviceCategory resources.
 type userDeviceCategoryState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Device category description.
-	Desc *string `pulumi:"desc"`
-	// Device category name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comment   *string `pulumi:"comment"`
+	Desc      *string `pulumi:"desc"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type UserDeviceCategoryState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Device category description.
-	Desc pulumi.StringPtrInput
-	// Device category name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comment   pulumi.StringPtrInput
+	Desc      pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -96,25 +67,17 @@ func (UserDeviceCategoryState) ElementType() reflect.Type {
 }
 
 type userDeviceCategoryArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Device category description.
-	Desc *string `pulumi:"desc"`
-	// Device category name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comment   *string `pulumi:"comment"`
+	Desc      *string `pulumi:"desc"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserDeviceCategory resource.
 type UserDeviceCategoryArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Device category description.
-	Desc pulumi.StringPtrInput
-	// Device category name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Comment   pulumi.StringPtrInput
+	Desc      pulumi.StringPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -144,7 +107,7 @@ func (i *UserDeviceCategory) ToUserDeviceCategoryOutputWithContext(ctx context.C
 // UserDeviceCategoryArrayInput is an input type that accepts UserDeviceCategoryArray and UserDeviceCategoryArrayOutput values.
 // You can construct a concrete instance of `UserDeviceCategoryArrayInput` via:
 //
-//          UserDeviceCategoryArray{ UserDeviceCategoryArgs{...} }
+//	UserDeviceCategoryArray{ UserDeviceCategoryArgs{...} }
 type UserDeviceCategoryArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i UserDeviceCategoryArray) ToUserDeviceCategoryArrayOutputWithContext(ctx 
 // UserDeviceCategoryMapInput is an input type that accepts UserDeviceCategoryMap and UserDeviceCategoryMapOutput values.
 // You can construct a concrete instance of `UserDeviceCategoryMapInput` via:
 //
-//          UserDeviceCategoryMap{ "key": UserDeviceCategoryArgs{...} }
+//	UserDeviceCategoryMap{ "key": UserDeviceCategoryArgs{...} }
 type UserDeviceCategoryMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,22 @@ func (o UserDeviceCategoryOutput) ToUserDeviceCategoryOutput() UserDeviceCategor
 
 func (o UserDeviceCategoryOutput) ToUserDeviceCategoryOutputWithContext(ctx context.Context) UserDeviceCategoryOutput {
 	return o
+}
+
+func (o UserDeviceCategoryOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserDeviceCategory) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceCategoryOutput) Desc() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserDeviceCategory) pulumi.StringPtrOutput { return v.Desc }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceCategoryOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserDeviceCategory) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserDeviceCategoryOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserDeviceCategory) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserDeviceCategoryArrayOutput struct{ *pulumi.OutputState }

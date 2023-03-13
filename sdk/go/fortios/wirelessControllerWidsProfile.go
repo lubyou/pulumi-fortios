@@ -10,132 +10,62 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure wireless intrusion detection system (WIDS) profiles.
-//
-// ## Import
-//
-// WirelessController WidsProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerWidsProfile:WirelessControllerWidsProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerWidsProfile:WirelessControllerWidsProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerWidsProfile struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable on-wire rogue AP auto-suppression (default = disable). Valid values: `enable`, `disable`.
-	ApAutoSuppress pulumi.StringOutput `pulumi:"apAutoSuppress"`
-	// Optionally turn off scanning for one or more days of the week. Separate the days with a space. By default, no days are set. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	ApBgscanDisableDay pulumi.StringOutput `pulumi:"apBgscanDisableDay"`
-	// End time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-	ApBgscanDisableEnd pulumi.StringOutput `pulumi:"apBgscanDisableEnd"`
-	// Firewall schedules for turning off FortiAP radio background scan. Background scan will be disabled when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `apBgscanDisableSchedules` block is documented below.
+	ApAutoSuppress           pulumi.StringOutput                                             `pulumi:"apAutoSuppress"`
+	ApBgscanDisableDay       pulumi.StringOutput                                             `pulumi:"apBgscanDisableDay"`
+	ApBgscanDisableEnd       pulumi.StringOutput                                             `pulumi:"apBgscanDisableEnd"`
 	ApBgscanDisableSchedules WirelessControllerWidsProfileApBgscanDisableScheduleArrayOutput `pulumi:"apBgscanDisableSchedules"`
-	// Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-	ApBgscanDisableStart pulumi.StringOutput `pulumi:"apBgscanDisableStart"`
-	// Listening time on a scanning channel (10 - 1000 msec, default = 20).
-	ApBgscanDuration pulumi.IntOutput `pulumi:"apBgscanDuration"`
-	// Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
-	ApBgscanIdle pulumi.IntOutput `pulumi:"apBgscanIdle"`
-	// Period of time between scanning two channels (1 - 600 sec, default = 1).
-	ApBgscanIntv pulumi.IntOutput `pulumi:"apBgscanIntv"`
-	// Period of time between background scans (60 - 3600 sec, default = 600).
-	ApBgscanPeriod pulumi.IntOutput `pulumi:"apBgscanPeriod"`
-	// Period of time between background scan reports (15 - 600 sec, default = 30).
-	ApBgscanReportIntv pulumi.IntOutput `pulumi:"apBgscanReportIntv"`
-	// Period of time between foreground scan reports (15 - 600 sec, default = 15).
-	ApFgscanReportIntv pulumi.IntOutput `pulumi:"apFgscanReportIntv"`
-	// Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
-	ApScan pulumi.StringOutput `pulumi:"apScan"`
-	// Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
-	ApScanPassive pulumi.StringOutput `pulumi:"apScanPassive"`
-	// Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
-	ApScanThreshold pulumi.StringOutput `pulumi:"apScanThreshold"`
-	// Enable/disable asleap attack detection (default = disable). Valid values: `enable`, `disable`.
-	AsleapAttack pulumi.StringOutput `pulumi:"asleapAttack"`
-	// The threshold value for association frame flooding.
-	AssocFloodThresh pulumi.IntOutput `pulumi:"assocFloodThresh"`
-	// Number of seconds after which a station is considered not connected.
-	AssocFloodTime pulumi.IntOutput `pulumi:"assocFloodTime"`
-	// Enable/disable association frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-	AssocFrameFlood pulumi.StringOutput `pulumi:"assocFrameFlood"`
-	// The threshold value for authentication frame flooding.
-	AuthFloodThresh pulumi.IntOutput `pulumi:"authFloodThresh"`
-	// Number of seconds after which a station is considered not connected.
-	AuthFloodTime pulumi.IntOutput `pulumi:"authFloodTime"`
-	// Enable/disable authentication frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-	AuthFrameFlood pulumi.StringOutput `pulumi:"authFrameFlood"`
-	// Comment.
-	Comment pulumi.StringOutput `pulumi:"comment"`
-	// Enable/disable broadcasting de-authentication detection (default = disable). Valid values: `enable`, `disable`.
-	DeauthBroadcast pulumi.StringOutput `pulumi:"deauthBroadcast"`
-	// Threshold value per second to deauth unknown src for DoS attack (0: no limit).
-	DeauthUnknownSrcThresh pulumi.IntOutput `pulumi:"deauthUnknownSrcThresh"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable EAPOL-Failure flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolFailFlood pulumi.StringOutput `pulumi:"eapolFailFlood"`
-	// The detection interval for EAPOL-Failure flooding (1 - 3600 sec).
-	EapolFailIntv pulumi.IntOutput `pulumi:"eapolFailIntv"`
-	// The threshold value for EAPOL-Failure flooding in specified interval.
-	EapolFailThresh pulumi.IntOutput `pulumi:"eapolFailThresh"`
-	// Enable/disable EAPOL-Logoff flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolLogoffFlood pulumi.StringOutput `pulumi:"eapolLogoffFlood"`
-	// The detection interval for EAPOL-Logoff flooding (1 - 3600 sec).
-	EapolLogoffIntv pulumi.IntOutput `pulumi:"eapolLogoffIntv"`
-	// The threshold value for EAPOL-Logoff flooding in specified interval.
-	EapolLogoffThresh pulumi.IntOutput `pulumi:"eapolLogoffThresh"`
-	// Enable/disable premature EAPOL-Failure flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolPreFailFlood pulumi.StringOutput `pulumi:"eapolPreFailFlood"`
-	// The detection interval for premature EAPOL-Failure flooding (1 - 3600 sec).
-	EapolPreFailIntv pulumi.IntOutput `pulumi:"eapolPreFailIntv"`
-	// The threshold value for premature EAPOL-Failure flooding in specified interval.
-	EapolPreFailThresh pulumi.IntOutput `pulumi:"eapolPreFailThresh"`
-	// Enable/disable premature EAPOL-Success flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolPreSuccFlood pulumi.StringOutput `pulumi:"eapolPreSuccFlood"`
-	// The detection interval for premature EAPOL-Success flooding (1 - 3600 sec).
-	EapolPreSuccIntv pulumi.IntOutput `pulumi:"eapolPreSuccIntv"`
-	// The threshold value for premature EAPOL-Success flooding in specified interval.
-	EapolPreSuccThresh pulumi.IntOutput `pulumi:"eapolPreSuccThresh"`
-	// Enable/disable EAPOL-Start flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolStartFlood pulumi.StringOutput `pulumi:"eapolStartFlood"`
-	// The detection interval for EAPOL-Start flooding (1 - 3600 sec).
-	EapolStartIntv pulumi.IntOutput `pulumi:"eapolStartIntv"`
-	// The threshold value for EAPOL-Start flooding in specified interval.
-	EapolStartThresh pulumi.IntOutput `pulumi:"eapolStartThresh"`
-	// Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolSuccFlood pulumi.StringOutput `pulumi:"eapolSuccFlood"`
-	// The detection interval for EAPOL-Success flooding (1 - 3600 sec).
-	EapolSuccIntv pulumi.IntOutput `pulumi:"eapolSuccIntv"`
-	// The threshold value for EAPOL-Success flooding in specified interval.
-	EapolSuccThresh pulumi.IntOutput `pulumi:"eapolSuccThresh"`
-	// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
-	InvalidMacOui pulumi.StringOutput `pulumi:"invalidMacOui"`
-	// Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
-	LongDurationAttack pulumi.StringOutput `pulumi:"longDurationAttack"`
-	// Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
-	LongDurationThresh pulumi.IntOutput `pulumi:"longDurationThresh"`
-	// Schedule name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
-	NullSsidProbeResp pulumi.StringOutput `pulumi:"nullSsidProbeResp"`
-	// Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
-	SensorMode pulumi.StringOutput `pulumi:"sensorMode"`
-	// Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
-	SpoofedDeauth pulumi.StringOutput `pulumi:"spoofedDeauth"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
-	WeakWepIv pulumi.StringOutput `pulumi:"weakWepIv"`
-	// Enable/disable wireless bridge detection (default = disable). Valid values: `enable`, `disable`.
-	WirelessBridge pulumi.StringOutput `pulumi:"wirelessBridge"`
+	ApBgscanDisableStart     pulumi.StringOutput                                             `pulumi:"apBgscanDisableStart"`
+	ApBgscanDuration         pulumi.IntOutput                                                `pulumi:"apBgscanDuration"`
+	ApBgscanIdle             pulumi.IntOutput                                                `pulumi:"apBgscanIdle"`
+	ApBgscanIntv             pulumi.IntOutput                                                `pulumi:"apBgscanIntv"`
+	ApBgscanPeriod           pulumi.IntOutput                                                `pulumi:"apBgscanPeriod"`
+	ApBgscanReportIntv       pulumi.IntOutput                                                `pulumi:"apBgscanReportIntv"`
+	ApFgscanReportIntv       pulumi.IntOutput                                                `pulumi:"apFgscanReportIntv"`
+	ApScan                   pulumi.StringOutput                                             `pulumi:"apScan"`
+	ApScanPassive            pulumi.StringOutput                                             `pulumi:"apScanPassive"`
+	ApScanThreshold          pulumi.StringOutput                                             `pulumi:"apScanThreshold"`
+	AsleapAttack             pulumi.StringOutput                                             `pulumi:"asleapAttack"`
+	AssocFloodThresh         pulumi.IntOutput                                                `pulumi:"assocFloodThresh"`
+	AssocFloodTime           pulumi.IntOutput                                                `pulumi:"assocFloodTime"`
+	AssocFrameFlood          pulumi.StringOutput                                             `pulumi:"assocFrameFlood"`
+	AuthFloodThresh          pulumi.IntOutput                                                `pulumi:"authFloodThresh"`
+	AuthFloodTime            pulumi.IntOutput                                                `pulumi:"authFloodTime"`
+	AuthFrameFlood           pulumi.StringOutput                                             `pulumi:"authFrameFlood"`
+	Comment                  pulumi.StringOutput                                             `pulumi:"comment"`
+	DeauthBroadcast          pulumi.StringOutput                                             `pulumi:"deauthBroadcast"`
+	DeauthUnknownSrcThresh   pulumi.IntOutput                                                `pulumi:"deauthUnknownSrcThresh"`
+	DynamicSortSubtable      pulumi.StringPtrOutput                                          `pulumi:"dynamicSortSubtable"`
+	EapolFailFlood           pulumi.StringOutput                                             `pulumi:"eapolFailFlood"`
+	EapolFailIntv            pulumi.IntOutput                                                `pulumi:"eapolFailIntv"`
+	EapolFailThresh          pulumi.IntOutput                                                `pulumi:"eapolFailThresh"`
+	EapolLogoffFlood         pulumi.StringOutput                                             `pulumi:"eapolLogoffFlood"`
+	EapolLogoffIntv          pulumi.IntOutput                                                `pulumi:"eapolLogoffIntv"`
+	EapolLogoffThresh        pulumi.IntOutput                                                `pulumi:"eapolLogoffThresh"`
+	EapolPreFailFlood        pulumi.StringOutput                                             `pulumi:"eapolPreFailFlood"`
+	EapolPreFailIntv         pulumi.IntOutput                                                `pulumi:"eapolPreFailIntv"`
+	EapolPreFailThresh       pulumi.IntOutput                                                `pulumi:"eapolPreFailThresh"`
+	EapolPreSuccFlood        pulumi.StringOutput                                             `pulumi:"eapolPreSuccFlood"`
+	EapolPreSuccIntv         pulumi.IntOutput                                                `pulumi:"eapolPreSuccIntv"`
+	EapolPreSuccThresh       pulumi.IntOutput                                                `pulumi:"eapolPreSuccThresh"`
+	EapolStartFlood          pulumi.StringOutput                                             `pulumi:"eapolStartFlood"`
+	EapolStartIntv           pulumi.IntOutput                                                `pulumi:"eapolStartIntv"`
+	EapolStartThresh         pulumi.IntOutput                                                `pulumi:"eapolStartThresh"`
+	EapolSuccFlood           pulumi.StringOutput                                             `pulumi:"eapolSuccFlood"`
+	EapolSuccIntv            pulumi.IntOutput                                                `pulumi:"eapolSuccIntv"`
+	EapolSuccThresh          pulumi.IntOutput                                                `pulumi:"eapolSuccThresh"`
+	InvalidMacOui            pulumi.StringOutput                                             `pulumi:"invalidMacOui"`
+	LongDurationAttack       pulumi.StringOutput                                             `pulumi:"longDurationAttack"`
+	LongDurationThresh       pulumi.IntOutput                                                `pulumi:"longDurationThresh"`
+	Name                     pulumi.StringOutput                                             `pulumi:"name"`
+	NullSsidProbeResp        pulumi.StringOutput                                             `pulumi:"nullSsidProbeResp"`
+	SensorMode               pulumi.StringOutput                                             `pulumi:"sensorMode"`
+	SpoofedDeauth            pulumi.StringOutput                                             `pulumi:"spoofedDeauth"`
+	Vdomparam                pulumi.StringPtrOutput                                          `pulumi:"vdomparam"`
+	WeakWepIv                pulumi.StringOutput                                             `pulumi:"weakWepIv"`
+	WirelessBridge           pulumi.StringOutput                                             `pulumi:"wirelessBridge"`
 }
 
 // NewWirelessControllerWidsProfile registers a new resource with the given unique name, arguments, and options.
@@ -168,221 +98,115 @@ func GetWirelessControllerWidsProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerWidsProfile resources.
 type wirelessControllerWidsProfileState struct {
-	// Enable/disable on-wire rogue AP auto-suppression (default = disable). Valid values: `enable`, `disable`.
-	ApAutoSuppress *string `pulumi:"apAutoSuppress"`
-	// Optionally turn off scanning for one or more days of the week. Separate the days with a space. By default, no days are set. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	ApBgscanDisableDay *string `pulumi:"apBgscanDisableDay"`
-	// End time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-	ApBgscanDisableEnd *string `pulumi:"apBgscanDisableEnd"`
-	// Firewall schedules for turning off FortiAP radio background scan. Background scan will be disabled when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `apBgscanDisableSchedules` block is documented below.
+	ApAutoSuppress           *string                                                `pulumi:"apAutoSuppress"`
+	ApBgscanDisableDay       *string                                                `pulumi:"apBgscanDisableDay"`
+	ApBgscanDisableEnd       *string                                                `pulumi:"apBgscanDisableEnd"`
 	ApBgscanDisableSchedules []WirelessControllerWidsProfileApBgscanDisableSchedule `pulumi:"apBgscanDisableSchedules"`
-	// Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-	ApBgscanDisableStart *string `pulumi:"apBgscanDisableStart"`
-	// Listening time on a scanning channel (10 - 1000 msec, default = 20).
-	ApBgscanDuration *int `pulumi:"apBgscanDuration"`
-	// Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
-	ApBgscanIdle *int `pulumi:"apBgscanIdle"`
-	// Period of time between scanning two channels (1 - 600 sec, default = 1).
-	ApBgscanIntv *int `pulumi:"apBgscanIntv"`
-	// Period of time between background scans (60 - 3600 sec, default = 600).
-	ApBgscanPeriod *int `pulumi:"apBgscanPeriod"`
-	// Period of time between background scan reports (15 - 600 sec, default = 30).
-	ApBgscanReportIntv *int `pulumi:"apBgscanReportIntv"`
-	// Period of time between foreground scan reports (15 - 600 sec, default = 15).
-	ApFgscanReportIntv *int `pulumi:"apFgscanReportIntv"`
-	// Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
-	ApScan *string `pulumi:"apScan"`
-	// Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
-	ApScanPassive *string `pulumi:"apScanPassive"`
-	// Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
-	ApScanThreshold *string `pulumi:"apScanThreshold"`
-	// Enable/disable asleap attack detection (default = disable). Valid values: `enable`, `disable`.
-	AsleapAttack *string `pulumi:"asleapAttack"`
-	// The threshold value for association frame flooding.
-	AssocFloodThresh *int `pulumi:"assocFloodThresh"`
-	// Number of seconds after which a station is considered not connected.
-	AssocFloodTime *int `pulumi:"assocFloodTime"`
-	// Enable/disable association frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-	AssocFrameFlood *string `pulumi:"assocFrameFlood"`
-	// The threshold value for authentication frame flooding.
-	AuthFloodThresh *int `pulumi:"authFloodThresh"`
-	// Number of seconds after which a station is considered not connected.
-	AuthFloodTime *int `pulumi:"authFloodTime"`
-	// Enable/disable authentication frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-	AuthFrameFlood *string `pulumi:"authFrameFlood"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Enable/disable broadcasting de-authentication detection (default = disable). Valid values: `enable`, `disable`.
-	DeauthBroadcast *string `pulumi:"deauthBroadcast"`
-	// Threshold value per second to deauth unknown src for DoS attack (0: no limit).
-	DeauthUnknownSrcThresh *int `pulumi:"deauthUnknownSrcThresh"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable EAPOL-Failure flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolFailFlood *string `pulumi:"eapolFailFlood"`
-	// The detection interval for EAPOL-Failure flooding (1 - 3600 sec).
-	EapolFailIntv *int `pulumi:"eapolFailIntv"`
-	// The threshold value for EAPOL-Failure flooding in specified interval.
-	EapolFailThresh *int `pulumi:"eapolFailThresh"`
-	// Enable/disable EAPOL-Logoff flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolLogoffFlood *string `pulumi:"eapolLogoffFlood"`
-	// The detection interval for EAPOL-Logoff flooding (1 - 3600 sec).
-	EapolLogoffIntv *int `pulumi:"eapolLogoffIntv"`
-	// The threshold value for EAPOL-Logoff flooding in specified interval.
-	EapolLogoffThresh *int `pulumi:"eapolLogoffThresh"`
-	// Enable/disable premature EAPOL-Failure flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolPreFailFlood *string `pulumi:"eapolPreFailFlood"`
-	// The detection interval for premature EAPOL-Failure flooding (1 - 3600 sec).
-	EapolPreFailIntv *int `pulumi:"eapolPreFailIntv"`
-	// The threshold value for premature EAPOL-Failure flooding in specified interval.
-	EapolPreFailThresh *int `pulumi:"eapolPreFailThresh"`
-	// Enable/disable premature EAPOL-Success flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolPreSuccFlood *string `pulumi:"eapolPreSuccFlood"`
-	// The detection interval for premature EAPOL-Success flooding (1 - 3600 sec).
-	EapolPreSuccIntv *int `pulumi:"eapolPreSuccIntv"`
-	// The threshold value for premature EAPOL-Success flooding in specified interval.
-	EapolPreSuccThresh *int `pulumi:"eapolPreSuccThresh"`
-	// Enable/disable EAPOL-Start flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolStartFlood *string `pulumi:"eapolStartFlood"`
-	// The detection interval for EAPOL-Start flooding (1 - 3600 sec).
-	EapolStartIntv *int `pulumi:"eapolStartIntv"`
-	// The threshold value for EAPOL-Start flooding in specified interval.
-	EapolStartThresh *int `pulumi:"eapolStartThresh"`
-	// Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolSuccFlood *string `pulumi:"eapolSuccFlood"`
-	// The detection interval for EAPOL-Success flooding (1 - 3600 sec).
-	EapolSuccIntv *int `pulumi:"eapolSuccIntv"`
-	// The threshold value for EAPOL-Success flooding in specified interval.
-	EapolSuccThresh *int `pulumi:"eapolSuccThresh"`
-	// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
-	InvalidMacOui *string `pulumi:"invalidMacOui"`
-	// Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
-	LongDurationAttack *string `pulumi:"longDurationAttack"`
-	// Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
-	LongDurationThresh *int `pulumi:"longDurationThresh"`
-	// Schedule name.
-	Name *string `pulumi:"name"`
-	// Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
-	NullSsidProbeResp *string `pulumi:"nullSsidProbeResp"`
-	// Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
-	SensorMode *string `pulumi:"sensorMode"`
-	// Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
-	SpoofedDeauth *string `pulumi:"spoofedDeauth"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
-	WeakWepIv *string `pulumi:"weakWepIv"`
-	// Enable/disable wireless bridge detection (default = disable). Valid values: `enable`, `disable`.
-	WirelessBridge *string `pulumi:"wirelessBridge"`
+	ApBgscanDisableStart     *string                                                `pulumi:"apBgscanDisableStart"`
+	ApBgscanDuration         *int                                                   `pulumi:"apBgscanDuration"`
+	ApBgscanIdle             *int                                                   `pulumi:"apBgscanIdle"`
+	ApBgscanIntv             *int                                                   `pulumi:"apBgscanIntv"`
+	ApBgscanPeriod           *int                                                   `pulumi:"apBgscanPeriod"`
+	ApBgscanReportIntv       *int                                                   `pulumi:"apBgscanReportIntv"`
+	ApFgscanReportIntv       *int                                                   `pulumi:"apFgscanReportIntv"`
+	ApScan                   *string                                                `pulumi:"apScan"`
+	ApScanPassive            *string                                                `pulumi:"apScanPassive"`
+	ApScanThreshold          *string                                                `pulumi:"apScanThreshold"`
+	AsleapAttack             *string                                                `pulumi:"asleapAttack"`
+	AssocFloodThresh         *int                                                   `pulumi:"assocFloodThresh"`
+	AssocFloodTime           *int                                                   `pulumi:"assocFloodTime"`
+	AssocFrameFlood          *string                                                `pulumi:"assocFrameFlood"`
+	AuthFloodThresh          *int                                                   `pulumi:"authFloodThresh"`
+	AuthFloodTime            *int                                                   `pulumi:"authFloodTime"`
+	AuthFrameFlood           *string                                                `pulumi:"authFrameFlood"`
+	Comment                  *string                                                `pulumi:"comment"`
+	DeauthBroadcast          *string                                                `pulumi:"deauthBroadcast"`
+	DeauthUnknownSrcThresh   *int                                                   `pulumi:"deauthUnknownSrcThresh"`
+	DynamicSortSubtable      *string                                                `pulumi:"dynamicSortSubtable"`
+	EapolFailFlood           *string                                                `pulumi:"eapolFailFlood"`
+	EapolFailIntv            *int                                                   `pulumi:"eapolFailIntv"`
+	EapolFailThresh          *int                                                   `pulumi:"eapolFailThresh"`
+	EapolLogoffFlood         *string                                                `pulumi:"eapolLogoffFlood"`
+	EapolLogoffIntv          *int                                                   `pulumi:"eapolLogoffIntv"`
+	EapolLogoffThresh        *int                                                   `pulumi:"eapolLogoffThresh"`
+	EapolPreFailFlood        *string                                                `pulumi:"eapolPreFailFlood"`
+	EapolPreFailIntv         *int                                                   `pulumi:"eapolPreFailIntv"`
+	EapolPreFailThresh       *int                                                   `pulumi:"eapolPreFailThresh"`
+	EapolPreSuccFlood        *string                                                `pulumi:"eapolPreSuccFlood"`
+	EapolPreSuccIntv         *int                                                   `pulumi:"eapolPreSuccIntv"`
+	EapolPreSuccThresh       *int                                                   `pulumi:"eapolPreSuccThresh"`
+	EapolStartFlood          *string                                                `pulumi:"eapolStartFlood"`
+	EapolStartIntv           *int                                                   `pulumi:"eapolStartIntv"`
+	EapolStartThresh         *int                                                   `pulumi:"eapolStartThresh"`
+	EapolSuccFlood           *string                                                `pulumi:"eapolSuccFlood"`
+	EapolSuccIntv            *int                                                   `pulumi:"eapolSuccIntv"`
+	EapolSuccThresh          *int                                                   `pulumi:"eapolSuccThresh"`
+	InvalidMacOui            *string                                                `pulumi:"invalidMacOui"`
+	LongDurationAttack       *string                                                `pulumi:"longDurationAttack"`
+	LongDurationThresh       *int                                                   `pulumi:"longDurationThresh"`
+	Name                     *string                                                `pulumi:"name"`
+	NullSsidProbeResp        *string                                                `pulumi:"nullSsidProbeResp"`
+	SensorMode               *string                                                `pulumi:"sensorMode"`
+	SpoofedDeauth            *string                                                `pulumi:"spoofedDeauth"`
+	Vdomparam                *string                                                `pulumi:"vdomparam"`
+	WeakWepIv                *string                                                `pulumi:"weakWepIv"`
+	WirelessBridge           *string                                                `pulumi:"wirelessBridge"`
 }
 
 type WirelessControllerWidsProfileState struct {
-	// Enable/disable on-wire rogue AP auto-suppression (default = disable). Valid values: `enable`, `disable`.
-	ApAutoSuppress pulumi.StringPtrInput
-	// Optionally turn off scanning for one or more days of the week. Separate the days with a space. By default, no days are set. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	ApBgscanDisableDay pulumi.StringPtrInput
-	// End time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-	ApBgscanDisableEnd pulumi.StringPtrInput
-	// Firewall schedules for turning off FortiAP radio background scan. Background scan will be disabled when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `apBgscanDisableSchedules` block is documented below.
+	ApAutoSuppress           pulumi.StringPtrInput
+	ApBgscanDisableDay       pulumi.StringPtrInput
+	ApBgscanDisableEnd       pulumi.StringPtrInput
 	ApBgscanDisableSchedules WirelessControllerWidsProfileApBgscanDisableScheduleArrayInput
-	// Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-	ApBgscanDisableStart pulumi.StringPtrInput
-	// Listening time on a scanning channel (10 - 1000 msec, default = 20).
-	ApBgscanDuration pulumi.IntPtrInput
-	// Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
-	ApBgscanIdle pulumi.IntPtrInput
-	// Period of time between scanning two channels (1 - 600 sec, default = 1).
-	ApBgscanIntv pulumi.IntPtrInput
-	// Period of time between background scans (60 - 3600 sec, default = 600).
-	ApBgscanPeriod pulumi.IntPtrInput
-	// Period of time between background scan reports (15 - 600 sec, default = 30).
-	ApBgscanReportIntv pulumi.IntPtrInput
-	// Period of time between foreground scan reports (15 - 600 sec, default = 15).
-	ApFgscanReportIntv pulumi.IntPtrInput
-	// Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
-	ApScan pulumi.StringPtrInput
-	// Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
-	ApScanPassive pulumi.StringPtrInput
-	// Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
-	ApScanThreshold pulumi.StringPtrInput
-	// Enable/disable asleap attack detection (default = disable). Valid values: `enable`, `disable`.
-	AsleapAttack pulumi.StringPtrInput
-	// The threshold value for association frame flooding.
-	AssocFloodThresh pulumi.IntPtrInput
-	// Number of seconds after which a station is considered not connected.
-	AssocFloodTime pulumi.IntPtrInput
-	// Enable/disable association frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-	AssocFrameFlood pulumi.StringPtrInput
-	// The threshold value for authentication frame flooding.
-	AuthFloodThresh pulumi.IntPtrInput
-	// Number of seconds after which a station is considered not connected.
-	AuthFloodTime pulumi.IntPtrInput
-	// Enable/disable authentication frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-	AuthFrameFlood pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Enable/disable broadcasting de-authentication detection (default = disable). Valid values: `enable`, `disable`.
-	DeauthBroadcast pulumi.StringPtrInput
-	// Threshold value per second to deauth unknown src for DoS attack (0: no limit).
-	DeauthUnknownSrcThresh pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable EAPOL-Failure flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolFailFlood pulumi.StringPtrInput
-	// The detection interval for EAPOL-Failure flooding (1 - 3600 sec).
-	EapolFailIntv pulumi.IntPtrInput
-	// The threshold value for EAPOL-Failure flooding in specified interval.
-	EapolFailThresh pulumi.IntPtrInput
-	// Enable/disable EAPOL-Logoff flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolLogoffFlood pulumi.StringPtrInput
-	// The detection interval for EAPOL-Logoff flooding (1 - 3600 sec).
-	EapolLogoffIntv pulumi.IntPtrInput
-	// The threshold value for EAPOL-Logoff flooding in specified interval.
-	EapolLogoffThresh pulumi.IntPtrInput
-	// Enable/disable premature EAPOL-Failure flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolPreFailFlood pulumi.StringPtrInput
-	// The detection interval for premature EAPOL-Failure flooding (1 - 3600 sec).
-	EapolPreFailIntv pulumi.IntPtrInput
-	// The threshold value for premature EAPOL-Failure flooding in specified interval.
-	EapolPreFailThresh pulumi.IntPtrInput
-	// Enable/disable premature EAPOL-Success flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolPreSuccFlood pulumi.StringPtrInput
-	// The detection interval for premature EAPOL-Success flooding (1 - 3600 sec).
-	EapolPreSuccIntv pulumi.IntPtrInput
-	// The threshold value for premature EAPOL-Success flooding in specified interval.
-	EapolPreSuccThresh pulumi.IntPtrInput
-	// Enable/disable EAPOL-Start flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolStartFlood pulumi.StringPtrInput
-	// The detection interval for EAPOL-Start flooding (1 - 3600 sec).
-	EapolStartIntv pulumi.IntPtrInput
-	// The threshold value for EAPOL-Start flooding in specified interval.
-	EapolStartThresh pulumi.IntPtrInput
-	// Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolSuccFlood pulumi.StringPtrInput
-	// The detection interval for EAPOL-Success flooding (1 - 3600 sec).
-	EapolSuccIntv pulumi.IntPtrInput
-	// The threshold value for EAPOL-Success flooding in specified interval.
-	EapolSuccThresh pulumi.IntPtrInput
-	// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
-	InvalidMacOui pulumi.StringPtrInput
-	// Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
-	LongDurationAttack pulumi.StringPtrInput
-	// Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
-	LongDurationThresh pulumi.IntPtrInput
-	// Schedule name.
-	Name pulumi.StringPtrInput
-	// Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
-	NullSsidProbeResp pulumi.StringPtrInput
-	// Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
-	SensorMode pulumi.StringPtrInput
-	// Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
-	SpoofedDeauth pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
-	WeakWepIv pulumi.StringPtrInput
-	// Enable/disable wireless bridge detection (default = disable). Valid values: `enable`, `disable`.
-	WirelessBridge pulumi.StringPtrInput
+	ApBgscanDisableStart     pulumi.StringPtrInput
+	ApBgscanDuration         pulumi.IntPtrInput
+	ApBgscanIdle             pulumi.IntPtrInput
+	ApBgscanIntv             pulumi.IntPtrInput
+	ApBgscanPeriod           pulumi.IntPtrInput
+	ApBgscanReportIntv       pulumi.IntPtrInput
+	ApFgscanReportIntv       pulumi.IntPtrInput
+	ApScan                   pulumi.StringPtrInput
+	ApScanPassive            pulumi.StringPtrInput
+	ApScanThreshold          pulumi.StringPtrInput
+	AsleapAttack             pulumi.StringPtrInput
+	AssocFloodThresh         pulumi.IntPtrInput
+	AssocFloodTime           pulumi.IntPtrInput
+	AssocFrameFlood          pulumi.StringPtrInput
+	AuthFloodThresh          pulumi.IntPtrInput
+	AuthFloodTime            pulumi.IntPtrInput
+	AuthFrameFlood           pulumi.StringPtrInput
+	Comment                  pulumi.StringPtrInput
+	DeauthBroadcast          pulumi.StringPtrInput
+	DeauthUnknownSrcThresh   pulumi.IntPtrInput
+	DynamicSortSubtable      pulumi.StringPtrInput
+	EapolFailFlood           pulumi.StringPtrInput
+	EapolFailIntv            pulumi.IntPtrInput
+	EapolFailThresh          pulumi.IntPtrInput
+	EapolLogoffFlood         pulumi.StringPtrInput
+	EapolLogoffIntv          pulumi.IntPtrInput
+	EapolLogoffThresh        pulumi.IntPtrInput
+	EapolPreFailFlood        pulumi.StringPtrInput
+	EapolPreFailIntv         pulumi.IntPtrInput
+	EapolPreFailThresh       pulumi.IntPtrInput
+	EapolPreSuccFlood        pulumi.StringPtrInput
+	EapolPreSuccIntv         pulumi.IntPtrInput
+	EapolPreSuccThresh       pulumi.IntPtrInput
+	EapolStartFlood          pulumi.StringPtrInput
+	EapolStartIntv           pulumi.IntPtrInput
+	EapolStartThresh         pulumi.IntPtrInput
+	EapolSuccFlood           pulumi.StringPtrInput
+	EapolSuccIntv            pulumi.IntPtrInput
+	EapolSuccThresh          pulumi.IntPtrInput
+	InvalidMacOui            pulumi.StringPtrInput
+	LongDurationAttack       pulumi.StringPtrInput
+	LongDurationThresh       pulumi.IntPtrInput
+	Name                     pulumi.StringPtrInput
+	NullSsidProbeResp        pulumi.StringPtrInput
+	SensorMode               pulumi.StringPtrInput
+	SpoofedDeauth            pulumi.StringPtrInput
+	Vdomparam                pulumi.StringPtrInput
+	WeakWepIv                pulumi.StringPtrInput
+	WirelessBridge           pulumi.StringPtrInput
 }
 
 func (WirelessControllerWidsProfileState) ElementType() reflect.Type {
@@ -390,222 +214,116 @@ func (WirelessControllerWidsProfileState) ElementType() reflect.Type {
 }
 
 type wirelessControllerWidsProfileArgs struct {
-	// Enable/disable on-wire rogue AP auto-suppression (default = disable). Valid values: `enable`, `disable`.
-	ApAutoSuppress *string `pulumi:"apAutoSuppress"`
-	// Optionally turn off scanning for one or more days of the week. Separate the days with a space. By default, no days are set. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	ApBgscanDisableDay *string `pulumi:"apBgscanDisableDay"`
-	// End time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-	ApBgscanDisableEnd *string `pulumi:"apBgscanDisableEnd"`
-	// Firewall schedules for turning off FortiAP radio background scan. Background scan will be disabled when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `apBgscanDisableSchedules` block is documented below.
+	ApAutoSuppress           *string                                                `pulumi:"apAutoSuppress"`
+	ApBgscanDisableDay       *string                                                `pulumi:"apBgscanDisableDay"`
+	ApBgscanDisableEnd       *string                                                `pulumi:"apBgscanDisableEnd"`
 	ApBgscanDisableSchedules []WirelessControllerWidsProfileApBgscanDisableSchedule `pulumi:"apBgscanDisableSchedules"`
-	// Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-	ApBgscanDisableStart *string `pulumi:"apBgscanDisableStart"`
-	// Listening time on a scanning channel (10 - 1000 msec, default = 20).
-	ApBgscanDuration *int `pulumi:"apBgscanDuration"`
-	// Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
-	ApBgscanIdle *int `pulumi:"apBgscanIdle"`
-	// Period of time between scanning two channels (1 - 600 sec, default = 1).
-	ApBgscanIntv *int `pulumi:"apBgscanIntv"`
-	// Period of time between background scans (60 - 3600 sec, default = 600).
-	ApBgscanPeriod *int `pulumi:"apBgscanPeriod"`
-	// Period of time between background scan reports (15 - 600 sec, default = 30).
-	ApBgscanReportIntv *int `pulumi:"apBgscanReportIntv"`
-	// Period of time between foreground scan reports (15 - 600 sec, default = 15).
-	ApFgscanReportIntv *int `pulumi:"apFgscanReportIntv"`
-	// Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
-	ApScan *string `pulumi:"apScan"`
-	// Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
-	ApScanPassive *string `pulumi:"apScanPassive"`
-	// Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
-	ApScanThreshold *string `pulumi:"apScanThreshold"`
-	// Enable/disable asleap attack detection (default = disable). Valid values: `enable`, `disable`.
-	AsleapAttack *string `pulumi:"asleapAttack"`
-	// The threshold value for association frame flooding.
-	AssocFloodThresh *int `pulumi:"assocFloodThresh"`
-	// Number of seconds after which a station is considered not connected.
-	AssocFloodTime *int `pulumi:"assocFloodTime"`
-	// Enable/disable association frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-	AssocFrameFlood *string `pulumi:"assocFrameFlood"`
-	// The threshold value for authentication frame flooding.
-	AuthFloodThresh *int `pulumi:"authFloodThresh"`
-	// Number of seconds after which a station is considered not connected.
-	AuthFloodTime *int `pulumi:"authFloodTime"`
-	// Enable/disable authentication frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-	AuthFrameFlood *string `pulumi:"authFrameFlood"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Enable/disable broadcasting de-authentication detection (default = disable). Valid values: `enable`, `disable`.
-	DeauthBroadcast *string `pulumi:"deauthBroadcast"`
-	// Threshold value per second to deauth unknown src for DoS attack (0: no limit).
-	DeauthUnknownSrcThresh *int `pulumi:"deauthUnknownSrcThresh"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable EAPOL-Failure flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolFailFlood *string `pulumi:"eapolFailFlood"`
-	// The detection interval for EAPOL-Failure flooding (1 - 3600 sec).
-	EapolFailIntv *int `pulumi:"eapolFailIntv"`
-	// The threshold value for EAPOL-Failure flooding in specified interval.
-	EapolFailThresh *int `pulumi:"eapolFailThresh"`
-	// Enable/disable EAPOL-Logoff flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolLogoffFlood *string `pulumi:"eapolLogoffFlood"`
-	// The detection interval for EAPOL-Logoff flooding (1 - 3600 sec).
-	EapolLogoffIntv *int `pulumi:"eapolLogoffIntv"`
-	// The threshold value for EAPOL-Logoff flooding in specified interval.
-	EapolLogoffThresh *int `pulumi:"eapolLogoffThresh"`
-	// Enable/disable premature EAPOL-Failure flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolPreFailFlood *string `pulumi:"eapolPreFailFlood"`
-	// The detection interval for premature EAPOL-Failure flooding (1 - 3600 sec).
-	EapolPreFailIntv *int `pulumi:"eapolPreFailIntv"`
-	// The threshold value for premature EAPOL-Failure flooding in specified interval.
-	EapolPreFailThresh *int `pulumi:"eapolPreFailThresh"`
-	// Enable/disable premature EAPOL-Success flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolPreSuccFlood *string `pulumi:"eapolPreSuccFlood"`
-	// The detection interval for premature EAPOL-Success flooding (1 - 3600 sec).
-	EapolPreSuccIntv *int `pulumi:"eapolPreSuccIntv"`
-	// The threshold value for premature EAPOL-Success flooding in specified interval.
-	EapolPreSuccThresh *int `pulumi:"eapolPreSuccThresh"`
-	// Enable/disable EAPOL-Start flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolStartFlood *string `pulumi:"eapolStartFlood"`
-	// The detection interval for EAPOL-Start flooding (1 - 3600 sec).
-	EapolStartIntv *int `pulumi:"eapolStartIntv"`
-	// The threshold value for EAPOL-Start flooding in specified interval.
-	EapolStartThresh *int `pulumi:"eapolStartThresh"`
-	// Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolSuccFlood *string `pulumi:"eapolSuccFlood"`
-	// The detection interval for EAPOL-Success flooding (1 - 3600 sec).
-	EapolSuccIntv *int `pulumi:"eapolSuccIntv"`
-	// The threshold value for EAPOL-Success flooding in specified interval.
-	EapolSuccThresh *int `pulumi:"eapolSuccThresh"`
-	// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
-	InvalidMacOui *string `pulumi:"invalidMacOui"`
-	// Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
-	LongDurationAttack *string `pulumi:"longDurationAttack"`
-	// Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
-	LongDurationThresh *int `pulumi:"longDurationThresh"`
-	// Schedule name.
-	Name *string `pulumi:"name"`
-	// Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
-	NullSsidProbeResp *string `pulumi:"nullSsidProbeResp"`
-	// Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
-	SensorMode *string `pulumi:"sensorMode"`
-	// Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
-	SpoofedDeauth *string `pulumi:"spoofedDeauth"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
-	WeakWepIv *string `pulumi:"weakWepIv"`
-	// Enable/disable wireless bridge detection (default = disable). Valid values: `enable`, `disable`.
-	WirelessBridge *string `pulumi:"wirelessBridge"`
+	ApBgscanDisableStart     *string                                                `pulumi:"apBgscanDisableStart"`
+	ApBgscanDuration         *int                                                   `pulumi:"apBgscanDuration"`
+	ApBgscanIdle             *int                                                   `pulumi:"apBgscanIdle"`
+	ApBgscanIntv             *int                                                   `pulumi:"apBgscanIntv"`
+	ApBgscanPeriod           *int                                                   `pulumi:"apBgscanPeriod"`
+	ApBgscanReportIntv       *int                                                   `pulumi:"apBgscanReportIntv"`
+	ApFgscanReportIntv       *int                                                   `pulumi:"apFgscanReportIntv"`
+	ApScan                   *string                                                `pulumi:"apScan"`
+	ApScanPassive            *string                                                `pulumi:"apScanPassive"`
+	ApScanThreshold          *string                                                `pulumi:"apScanThreshold"`
+	AsleapAttack             *string                                                `pulumi:"asleapAttack"`
+	AssocFloodThresh         *int                                                   `pulumi:"assocFloodThresh"`
+	AssocFloodTime           *int                                                   `pulumi:"assocFloodTime"`
+	AssocFrameFlood          *string                                                `pulumi:"assocFrameFlood"`
+	AuthFloodThresh          *int                                                   `pulumi:"authFloodThresh"`
+	AuthFloodTime            *int                                                   `pulumi:"authFloodTime"`
+	AuthFrameFlood           *string                                                `pulumi:"authFrameFlood"`
+	Comment                  *string                                                `pulumi:"comment"`
+	DeauthBroadcast          *string                                                `pulumi:"deauthBroadcast"`
+	DeauthUnknownSrcThresh   *int                                                   `pulumi:"deauthUnknownSrcThresh"`
+	DynamicSortSubtable      *string                                                `pulumi:"dynamicSortSubtable"`
+	EapolFailFlood           *string                                                `pulumi:"eapolFailFlood"`
+	EapolFailIntv            *int                                                   `pulumi:"eapolFailIntv"`
+	EapolFailThresh          *int                                                   `pulumi:"eapolFailThresh"`
+	EapolLogoffFlood         *string                                                `pulumi:"eapolLogoffFlood"`
+	EapolLogoffIntv          *int                                                   `pulumi:"eapolLogoffIntv"`
+	EapolLogoffThresh        *int                                                   `pulumi:"eapolLogoffThresh"`
+	EapolPreFailFlood        *string                                                `pulumi:"eapolPreFailFlood"`
+	EapolPreFailIntv         *int                                                   `pulumi:"eapolPreFailIntv"`
+	EapolPreFailThresh       *int                                                   `pulumi:"eapolPreFailThresh"`
+	EapolPreSuccFlood        *string                                                `pulumi:"eapolPreSuccFlood"`
+	EapolPreSuccIntv         *int                                                   `pulumi:"eapolPreSuccIntv"`
+	EapolPreSuccThresh       *int                                                   `pulumi:"eapolPreSuccThresh"`
+	EapolStartFlood          *string                                                `pulumi:"eapolStartFlood"`
+	EapolStartIntv           *int                                                   `pulumi:"eapolStartIntv"`
+	EapolStartThresh         *int                                                   `pulumi:"eapolStartThresh"`
+	EapolSuccFlood           *string                                                `pulumi:"eapolSuccFlood"`
+	EapolSuccIntv            *int                                                   `pulumi:"eapolSuccIntv"`
+	EapolSuccThresh          *int                                                   `pulumi:"eapolSuccThresh"`
+	InvalidMacOui            *string                                                `pulumi:"invalidMacOui"`
+	LongDurationAttack       *string                                                `pulumi:"longDurationAttack"`
+	LongDurationThresh       *int                                                   `pulumi:"longDurationThresh"`
+	Name                     *string                                                `pulumi:"name"`
+	NullSsidProbeResp        *string                                                `pulumi:"nullSsidProbeResp"`
+	SensorMode               *string                                                `pulumi:"sensorMode"`
+	SpoofedDeauth            *string                                                `pulumi:"spoofedDeauth"`
+	Vdomparam                *string                                                `pulumi:"vdomparam"`
+	WeakWepIv                *string                                                `pulumi:"weakWepIv"`
+	WirelessBridge           *string                                                `pulumi:"wirelessBridge"`
 }
 
 // The set of arguments for constructing a WirelessControllerWidsProfile resource.
 type WirelessControllerWidsProfileArgs struct {
-	// Enable/disable on-wire rogue AP auto-suppression (default = disable). Valid values: `enable`, `disable`.
-	ApAutoSuppress pulumi.StringPtrInput
-	// Optionally turn off scanning for one or more days of the week. Separate the days with a space. By default, no days are set. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	ApBgscanDisableDay pulumi.StringPtrInput
-	// End time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-	ApBgscanDisableEnd pulumi.StringPtrInput
-	// Firewall schedules for turning off FortiAP radio background scan. Background scan will be disabled when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `apBgscanDisableSchedules` block is documented below.
+	ApAutoSuppress           pulumi.StringPtrInput
+	ApBgscanDisableDay       pulumi.StringPtrInput
+	ApBgscanDisableEnd       pulumi.StringPtrInput
 	ApBgscanDisableSchedules WirelessControllerWidsProfileApBgscanDisableScheduleArrayInput
-	// Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-	ApBgscanDisableStart pulumi.StringPtrInput
-	// Listening time on a scanning channel (10 - 1000 msec, default = 20).
-	ApBgscanDuration pulumi.IntPtrInput
-	// Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
-	ApBgscanIdle pulumi.IntPtrInput
-	// Period of time between scanning two channels (1 - 600 sec, default = 1).
-	ApBgscanIntv pulumi.IntPtrInput
-	// Period of time between background scans (60 - 3600 sec, default = 600).
-	ApBgscanPeriod pulumi.IntPtrInput
-	// Period of time between background scan reports (15 - 600 sec, default = 30).
-	ApBgscanReportIntv pulumi.IntPtrInput
-	// Period of time between foreground scan reports (15 - 600 sec, default = 15).
-	ApFgscanReportIntv pulumi.IntPtrInput
-	// Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
-	ApScan pulumi.StringPtrInput
-	// Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
-	ApScanPassive pulumi.StringPtrInput
-	// Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
-	ApScanThreshold pulumi.StringPtrInput
-	// Enable/disable asleap attack detection (default = disable). Valid values: `enable`, `disable`.
-	AsleapAttack pulumi.StringPtrInput
-	// The threshold value for association frame flooding.
-	AssocFloodThresh pulumi.IntPtrInput
-	// Number of seconds after which a station is considered not connected.
-	AssocFloodTime pulumi.IntPtrInput
-	// Enable/disable association frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-	AssocFrameFlood pulumi.StringPtrInput
-	// The threshold value for authentication frame flooding.
-	AuthFloodThresh pulumi.IntPtrInput
-	// Number of seconds after which a station is considered not connected.
-	AuthFloodTime pulumi.IntPtrInput
-	// Enable/disable authentication frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-	AuthFrameFlood pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Enable/disable broadcasting de-authentication detection (default = disable). Valid values: `enable`, `disable`.
-	DeauthBroadcast pulumi.StringPtrInput
-	// Threshold value per second to deauth unknown src for DoS attack (0: no limit).
-	DeauthUnknownSrcThresh pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable EAPOL-Failure flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolFailFlood pulumi.StringPtrInput
-	// The detection interval for EAPOL-Failure flooding (1 - 3600 sec).
-	EapolFailIntv pulumi.IntPtrInput
-	// The threshold value for EAPOL-Failure flooding in specified interval.
-	EapolFailThresh pulumi.IntPtrInput
-	// Enable/disable EAPOL-Logoff flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolLogoffFlood pulumi.StringPtrInput
-	// The detection interval for EAPOL-Logoff flooding (1 - 3600 sec).
-	EapolLogoffIntv pulumi.IntPtrInput
-	// The threshold value for EAPOL-Logoff flooding in specified interval.
-	EapolLogoffThresh pulumi.IntPtrInput
-	// Enable/disable premature EAPOL-Failure flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolPreFailFlood pulumi.StringPtrInput
-	// The detection interval for premature EAPOL-Failure flooding (1 - 3600 sec).
-	EapolPreFailIntv pulumi.IntPtrInput
-	// The threshold value for premature EAPOL-Failure flooding in specified interval.
-	EapolPreFailThresh pulumi.IntPtrInput
-	// Enable/disable premature EAPOL-Success flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolPreSuccFlood pulumi.StringPtrInput
-	// The detection interval for premature EAPOL-Success flooding (1 - 3600 sec).
-	EapolPreSuccIntv pulumi.IntPtrInput
-	// The threshold value for premature EAPOL-Success flooding in specified interval.
-	EapolPreSuccThresh pulumi.IntPtrInput
-	// Enable/disable EAPOL-Start flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolStartFlood pulumi.StringPtrInput
-	// The detection interval for EAPOL-Start flooding (1 - 3600 sec).
-	EapolStartIntv pulumi.IntPtrInput
-	// The threshold value for EAPOL-Start flooding in specified interval.
-	EapolStartThresh pulumi.IntPtrInput
-	// Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-	EapolSuccFlood pulumi.StringPtrInput
-	// The detection interval for EAPOL-Success flooding (1 - 3600 sec).
-	EapolSuccIntv pulumi.IntPtrInput
-	// The threshold value for EAPOL-Success flooding in specified interval.
-	EapolSuccThresh pulumi.IntPtrInput
-	// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
-	InvalidMacOui pulumi.StringPtrInput
-	// Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
-	LongDurationAttack pulumi.StringPtrInput
-	// Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
-	LongDurationThresh pulumi.IntPtrInput
-	// Schedule name.
-	Name pulumi.StringPtrInput
-	// Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
-	NullSsidProbeResp pulumi.StringPtrInput
-	// Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
-	SensorMode pulumi.StringPtrInput
-	// Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
-	SpoofedDeauth pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
-	WeakWepIv pulumi.StringPtrInput
-	// Enable/disable wireless bridge detection (default = disable). Valid values: `enable`, `disable`.
-	WirelessBridge pulumi.StringPtrInput
+	ApBgscanDisableStart     pulumi.StringPtrInput
+	ApBgscanDuration         pulumi.IntPtrInput
+	ApBgscanIdle             pulumi.IntPtrInput
+	ApBgscanIntv             pulumi.IntPtrInput
+	ApBgscanPeriod           pulumi.IntPtrInput
+	ApBgscanReportIntv       pulumi.IntPtrInput
+	ApFgscanReportIntv       pulumi.IntPtrInput
+	ApScan                   pulumi.StringPtrInput
+	ApScanPassive            pulumi.StringPtrInput
+	ApScanThreshold          pulumi.StringPtrInput
+	AsleapAttack             pulumi.StringPtrInput
+	AssocFloodThresh         pulumi.IntPtrInput
+	AssocFloodTime           pulumi.IntPtrInput
+	AssocFrameFlood          pulumi.StringPtrInput
+	AuthFloodThresh          pulumi.IntPtrInput
+	AuthFloodTime            pulumi.IntPtrInput
+	AuthFrameFlood           pulumi.StringPtrInput
+	Comment                  pulumi.StringPtrInput
+	DeauthBroadcast          pulumi.StringPtrInput
+	DeauthUnknownSrcThresh   pulumi.IntPtrInput
+	DynamicSortSubtable      pulumi.StringPtrInput
+	EapolFailFlood           pulumi.StringPtrInput
+	EapolFailIntv            pulumi.IntPtrInput
+	EapolFailThresh          pulumi.IntPtrInput
+	EapolLogoffFlood         pulumi.StringPtrInput
+	EapolLogoffIntv          pulumi.IntPtrInput
+	EapolLogoffThresh        pulumi.IntPtrInput
+	EapolPreFailFlood        pulumi.StringPtrInput
+	EapolPreFailIntv         pulumi.IntPtrInput
+	EapolPreFailThresh       pulumi.IntPtrInput
+	EapolPreSuccFlood        pulumi.StringPtrInput
+	EapolPreSuccIntv         pulumi.IntPtrInput
+	EapolPreSuccThresh       pulumi.IntPtrInput
+	EapolStartFlood          pulumi.StringPtrInput
+	EapolStartIntv           pulumi.IntPtrInput
+	EapolStartThresh         pulumi.IntPtrInput
+	EapolSuccFlood           pulumi.StringPtrInput
+	EapolSuccIntv            pulumi.IntPtrInput
+	EapolSuccThresh          pulumi.IntPtrInput
+	InvalidMacOui            pulumi.StringPtrInput
+	LongDurationAttack       pulumi.StringPtrInput
+	LongDurationThresh       pulumi.IntPtrInput
+	Name                     pulumi.StringPtrInput
+	NullSsidProbeResp        pulumi.StringPtrInput
+	SensorMode               pulumi.StringPtrInput
+	SpoofedDeauth            pulumi.StringPtrInput
+	Vdomparam                pulumi.StringPtrInput
+	WeakWepIv                pulumi.StringPtrInput
+	WirelessBridge           pulumi.StringPtrInput
 }
 
 func (WirelessControllerWidsProfileArgs) ElementType() reflect.Type {
@@ -634,7 +352,7 @@ func (i *WirelessControllerWidsProfile) ToWirelessControllerWidsProfileOutputWit
 // WirelessControllerWidsProfileArrayInput is an input type that accepts WirelessControllerWidsProfileArray and WirelessControllerWidsProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWidsProfileArrayInput` via:
 //
-//          WirelessControllerWidsProfileArray{ WirelessControllerWidsProfileArgs{...} }
+//	WirelessControllerWidsProfileArray{ WirelessControllerWidsProfileArgs{...} }
 type WirelessControllerWidsProfileArrayInput interface {
 	pulumi.Input
 
@@ -659,7 +377,7 @@ func (i WirelessControllerWidsProfileArray) ToWirelessControllerWidsProfileArray
 // WirelessControllerWidsProfileMapInput is an input type that accepts WirelessControllerWidsProfileMap and WirelessControllerWidsProfileMapOutput values.
 // You can construct a concrete instance of `WirelessControllerWidsProfileMapInput` via:
 //
-//          WirelessControllerWidsProfileMap{ "key": WirelessControllerWidsProfileArgs{...} }
+//	WirelessControllerWidsProfileMap{ "key": WirelessControllerWidsProfileArgs{...} }
 type WirelessControllerWidsProfileMapInput interface {
 	pulumi.Input
 
@@ -693,6 +411,220 @@ func (o WirelessControllerWidsProfileOutput) ToWirelessControllerWidsProfileOutp
 
 func (o WirelessControllerWidsProfileOutput) ToWirelessControllerWidsProfileOutputWithContext(ctx context.Context) WirelessControllerWidsProfileOutput {
 	return o
+}
+
+func (o WirelessControllerWidsProfileOutput) ApAutoSuppress() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.ApAutoSuppress }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) ApBgscanDisableDay() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.ApBgscanDisableDay }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) ApBgscanDisableEnd() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.ApBgscanDisableEnd }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) ApBgscanDisableSchedules() WirelessControllerWidsProfileApBgscanDisableScheduleArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) WirelessControllerWidsProfileApBgscanDisableScheduleArrayOutput {
+		return v.ApBgscanDisableSchedules
+	}).(WirelessControllerWidsProfileApBgscanDisableScheduleArrayOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) ApBgscanDisableStart() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.ApBgscanDisableStart }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) ApBgscanDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.ApBgscanDuration }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) ApBgscanIdle() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.ApBgscanIdle }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) ApBgscanIntv() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.ApBgscanIntv }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) ApBgscanPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.ApBgscanPeriod }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) ApBgscanReportIntv() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.ApBgscanReportIntv }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) ApFgscanReportIntv() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.ApFgscanReportIntv }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) ApScan() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.ApScan }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) ApScanPassive() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.ApScanPassive }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) ApScanThreshold() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.ApScanThreshold }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) AsleapAttack() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.AsleapAttack }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) AssocFloodThresh() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.AssocFloodThresh }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) AssocFloodTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.AssocFloodTime }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) AssocFrameFlood() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.AssocFrameFlood }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) AuthFloodThresh() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.AuthFloodThresh }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) AuthFloodTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.AuthFloodTime }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) AuthFrameFlood() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.AuthFrameFlood }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.Comment }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) DeauthBroadcast() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.DeauthBroadcast }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) DeauthUnknownSrcThresh() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.DeauthUnknownSrcThresh }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolFailFlood() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.EapolFailFlood }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolFailIntv() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.EapolFailIntv }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolFailThresh() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.EapolFailThresh }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolLogoffFlood() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.EapolLogoffFlood }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolLogoffIntv() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.EapolLogoffIntv }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolLogoffThresh() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.EapolLogoffThresh }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolPreFailFlood() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.EapolPreFailFlood }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolPreFailIntv() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.EapolPreFailIntv }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolPreFailThresh() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.EapolPreFailThresh }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolPreSuccFlood() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.EapolPreSuccFlood }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolPreSuccIntv() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.EapolPreSuccIntv }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolPreSuccThresh() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.EapolPreSuccThresh }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolStartFlood() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.EapolStartFlood }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolStartIntv() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.EapolStartIntv }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolStartThresh() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.EapolStartThresh }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolSuccFlood() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.EapolSuccFlood }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolSuccIntv() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.EapolSuccIntv }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) EapolSuccThresh() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.EapolSuccThresh }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) InvalidMacOui() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.InvalidMacOui }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) LongDurationAttack() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.LongDurationAttack }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) LongDurationThresh() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.LongDurationThresh }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) NullSsidProbeResp() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.NullSsidProbeResp }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) SensorMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.SensorMode }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) SpoofedDeauth() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.SpoofedDeauth }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) WeakWepIv() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.WeakWepIv }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) WirelessBridge() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.WirelessBridge }).(pulumi.StringOutput)
 }
 
 type WirelessControllerWidsProfileArrayOutput struct{ *pulumi.OutputState }

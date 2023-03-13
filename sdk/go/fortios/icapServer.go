@@ -10,71 +10,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure ICAP servers.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewIcapServer(ctx, "trname", &fortios.IcapServerArgs{
-// 			Ip6Address:     pulumi.String("::"),
-// 			IpAddress:      pulumi.String("1.1.1.1"),
-// 			IpVersion:      pulumi.String("4"),
-// 			MaxConnections: pulumi.Int(100),
-// 			Port:           pulumi.Int(22),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Icap Server can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/icapServer:IcapServer labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/icapServer:IcapServer labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type IcapServer struct {
 	pulumi.CustomResourceState
 
-	// IPv6 address of the ICAP server.
-	Ip6Address pulumi.StringOutput `pulumi:"ip6Address"`
-	// IPv4 address of the ICAP server.
-	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
-	// IP version. Valid values: `4`, `6`.
-	IpVersion pulumi.StringOutput `pulumi:"ipVersion"`
-	// Maximum number of concurrent connections to ICAP server.
-	MaxConnections pulumi.IntOutput `pulumi:"maxConnections"`
-	// Server name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// ICAP server port.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Enable/disable secure connection to ICAP server. Valid values: `enable`, `disable`.
-	Secure pulumi.StringOutput `pulumi:"secure"`
-	// CA certificate name.
-	SslCert pulumi.StringOutput `pulumi:"sslCert"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AddrType           pulumi.StringOutput    `pulumi:"addrType"`
+	Fqdn               pulumi.StringOutput    `pulumi:"fqdn"`
+	Healthcheck        pulumi.StringOutput    `pulumi:"healthcheck"`
+	HealthcheckService pulumi.StringOutput    `pulumi:"healthcheckService"`
+	Ip6Address         pulumi.StringOutput    `pulumi:"ip6Address"`
+	IpAddress          pulumi.StringOutput    `pulumi:"ipAddress"`
+	IpVersion          pulumi.StringOutput    `pulumi:"ipVersion"`
+	MaxConnections     pulumi.IntOutput       `pulumi:"maxConnections"`
+	Name               pulumi.StringOutput    `pulumi:"name"`
+	Port               pulumi.IntOutput       `pulumi:"port"`
+	Secure             pulumi.StringOutput    `pulumi:"secure"`
+	SslCert            pulumi.StringOutput    `pulumi:"sslCert"`
+	Vdomparam          pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewIcapServer registers a new resource with the given unique name, arguments, and options.
@@ -107,45 +58,35 @@ func GetIcapServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IcapServer resources.
 type icapServerState struct {
-	// IPv6 address of the ICAP server.
-	Ip6Address *string `pulumi:"ip6Address"`
-	// IPv4 address of the ICAP server.
-	IpAddress *string `pulumi:"ipAddress"`
-	// IP version. Valid values: `4`, `6`.
-	IpVersion *string `pulumi:"ipVersion"`
-	// Maximum number of concurrent connections to ICAP server.
-	MaxConnections *int `pulumi:"maxConnections"`
-	// Server name.
-	Name *string `pulumi:"name"`
-	// ICAP server port.
-	Port *int `pulumi:"port"`
-	// Enable/disable secure connection to ICAP server. Valid values: `enable`, `disable`.
-	Secure *string `pulumi:"secure"`
-	// CA certificate name.
-	SslCert *string `pulumi:"sslCert"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AddrType           *string `pulumi:"addrType"`
+	Fqdn               *string `pulumi:"fqdn"`
+	Healthcheck        *string `pulumi:"healthcheck"`
+	HealthcheckService *string `pulumi:"healthcheckService"`
+	Ip6Address         *string `pulumi:"ip6Address"`
+	IpAddress          *string `pulumi:"ipAddress"`
+	IpVersion          *string `pulumi:"ipVersion"`
+	MaxConnections     *int    `pulumi:"maxConnections"`
+	Name               *string `pulumi:"name"`
+	Port               *int    `pulumi:"port"`
+	Secure             *string `pulumi:"secure"`
+	SslCert            *string `pulumi:"sslCert"`
+	Vdomparam          *string `pulumi:"vdomparam"`
 }
 
 type IcapServerState struct {
-	// IPv6 address of the ICAP server.
-	Ip6Address pulumi.StringPtrInput
-	// IPv4 address of the ICAP server.
-	IpAddress pulumi.StringPtrInput
-	// IP version. Valid values: `4`, `6`.
-	IpVersion pulumi.StringPtrInput
-	// Maximum number of concurrent connections to ICAP server.
-	MaxConnections pulumi.IntPtrInput
-	// Server name.
-	Name pulumi.StringPtrInput
-	// ICAP server port.
-	Port pulumi.IntPtrInput
-	// Enable/disable secure connection to ICAP server. Valid values: `enable`, `disable`.
-	Secure pulumi.StringPtrInput
-	// CA certificate name.
-	SslCert pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	AddrType           pulumi.StringPtrInput
+	Fqdn               pulumi.StringPtrInput
+	Healthcheck        pulumi.StringPtrInput
+	HealthcheckService pulumi.StringPtrInput
+	Ip6Address         pulumi.StringPtrInput
+	IpAddress          pulumi.StringPtrInput
+	IpVersion          pulumi.StringPtrInput
+	MaxConnections     pulumi.IntPtrInput
+	Name               pulumi.StringPtrInput
+	Port               pulumi.IntPtrInput
+	Secure             pulumi.StringPtrInput
+	SslCert            pulumi.StringPtrInput
+	Vdomparam          pulumi.StringPtrInput
 }
 
 func (IcapServerState) ElementType() reflect.Type {
@@ -153,46 +94,36 @@ func (IcapServerState) ElementType() reflect.Type {
 }
 
 type icapServerArgs struct {
-	// IPv6 address of the ICAP server.
-	Ip6Address *string `pulumi:"ip6Address"`
-	// IPv4 address of the ICAP server.
-	IpAddress *string `pulumi:"ipAddress"`
-	// IP version. Valid values: `4`, `6`.
-	IpVersion *string `pulumi:"ipVersion"`
-	// Maximum number of concurrent connections to ICAP server.
-	MaxConnections *int `pulumi:"maxConnections"`
-	// Server name.
-	Name *string `pulumi:"name"`
-	// ICAP server port.
-	Port *int `pulumi:"port"`
-	// Enable/disable secure connection to ICAP server. Valid values: `enable`, `disable`.
-	Secure *string `pulumi:"secure"`
-	// CA certificate name.
-	SslCert *string `pulumi:"sslCert"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AddrType           *string `pulumi:"addrType"`
+	Fqdn               *string `pulumi:"fqdn"`
+	Healthcheck        *string `pulumi:"healthcheck"`
+	HealthcheckService *string `pulumi:"healthcheckService"`
+	Ip6Address         *string `pulumi:"ip6Address"`
+	IpAddress          *string `pulumi:"ipAddress"`
+	IpVersion          *string `pulumi:"ipVersion"`
+	MaxConnections     *int    `pulumi:"maxConnections"`
+	Name               *string `pulumi:"name"`
+	Port               *int    `pulumi:"port"`
+	Secure             *string `pulumi:"secure"`
+	SslCert            *string `pulumi:"sslCert"`
+	Vdomparam          *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a IcapServer resource.
 type IcapServerArgs struct {
-	// IPv6 address of the ICAP server.
-	Ip6Address pulumi.StringPtrInput
-	// IPv4 address of the ICAP server.
-	IpAddress pulumi.StringPtrInput
-	// IP version. Valid values: `4`, `6`.
-	IpVersion pulumi.StringPtrInput
-	// Maximum number of concurrent connections to ICAP server.
-	MaxConnections pulumi.IntPtrInput
-	// Server name.
-	Name pulumi.StringPtrInput
-	// ICAP server port.
-	Port pulumi.IntPtrInput
-	// Enable/disable secure connection to ICAP server. Valid values: `enable`, `disable`.
-	Secure pulumi.StringPtrInput
-	// CA certificate name.
-	SslCert pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	AddrType           pulumi.StringPtrInput
+	Fqdn               pulumi.StringPtrInput
+	Healthcheck        pulumi.StringPtrInput
+	HealthcheckService pulumi.StringPtrInput
+	Ip6Address         pulumi.StringPtrInput
+	IpAddress          pulumi.StringPtrInput
+	IpVersion          pulumi.StringPtrInput
+	MaxConnections     pulumi.IntPtrInput
+	Name               pulumi.StringPtrInput
+	Port               pulumi.IntPtrInput
+	Secure             pulumi.StringPtrInput
+	SslCert            pulumi.StringPtrInput
+	Vdomparam          pulumi.StringPtrInput
 }
 
 func (IcapServerArgs) ElementType() reflect.Type {
@@ -221,7 +152,7 @@ func (i *IcapServer) ToIcapServerOutputWithContext(ctx context.Context) IcapServ
 // IcapServerArrayInput is an input type that accepts IcapServerArray and IcapServerArrayOutput values.
 // You can construct a concrete instance of `IcapServerArrayInput` via:
 //
-//          IcapServerArray{ IcapServerArgs{...} }
+//	IcapServerArray{ IcapServerArgs{...} }
 type IcapServerArrayInput interface {
 	pulumi.Input
 
@@ -246,7 +177,7 @@ func (i IcapServerArray) ToIcapServerArrayOutputWithContext(ctx context.Context)
 // IcapServerMapInput is an input type that accepts IcapServerMap and IcapServerMapOutput values.
 // You can construct a concrete instance of `IcapServerMapInput` via:
 //
-//          IcapServerMap{ "key": IcapServerArgs{...} }
+//	IcapServerMap{ "key": IcapServerArgs{...} }
 type IcapServerMapInput interface {
 	pulumi.Input
 
@@ -280,6 +211,58 @@ func (o IcapServerOutput) ToIcapServerOutput() IcapServerOutput {
 
 func (o IcapServerOutput) ToIcapServerOutputWithContext(ctx context.Context) IcapServerOutput {
 	return o
+}
+
+func (o IcapServerOutput) AddrType() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapServer) pulumi.StringOutput { return v.AddrType }).(pulumi.StringOutput)
+}
+
+func (o IcapServerOutput) Fqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapServer) pulumi.StringOutput { return v.Fqdn }).(pulumi.StringOutput)
+}
+
+func (o IcapServerOutput) Healthcheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapServer) pulumi.StringOutput { return v.Healthcheck }).(pulumi.StringOutput)
+}
+
+func (o IcapServerOutput) HealthcheckService() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapServer) pulumi.StringOutput { return v.HealthcheckService }).(pulumi.StringOutput)
+}
+
+func (o IcapServerOutput) Ip6Address() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapServer) pulumi.StringOutput { return v.Ip6Address }).(pulumi.StringOutput)
+}
+
+func (o IcapServerOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapServer) pulumi.StringOutput { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+func (o IcapServerOutput) IpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapServer) pulumi.StringOutput { return v.IpVersion }).(pulumi.StringOutput)
+}
+
+func (o IcapServerOutput) MaxConnections() pulumi.IntOutput {
+	return o.ApplyT(func(v *IcapServer) pulumi.IntOutput { return v.MaxConnections }).(pulumi.IntOutput)
+}
+
+func (o IcapServerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapServer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o IcapServerOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *IcapServer) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o IcapServerOutput) Secure() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapServer) pulumi.StringOutput { return v.Secure }).(pulumi.StringOutput)
+}
+
+func (o IcapServerOutput) SslCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *IcapServer) pulumi.StringOutput { return v.SslCert }).(pulumi.StringOutput)
+}
+
+func (o IcapServerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IcapServer) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type IcapServerArrayOutput struct{ *pulumi.OutputState }

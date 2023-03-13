@@ -2,18 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios firewall DoSpolicy
- */
 export function getFirewallDosPolicy(args: GetFirewallDosPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallDosPolicyResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallDosPolicy:GetFirewallDosPolicy", {
         "policyid": args.policyid,
         "vdomparam": args.vdomparam,
@@ -24,13 +19,7 @@ export function getFirewallDosPolicy(args: GetFirewallDosPolicyArgs, opts?: pulu
  * A collection of arguments for invoking GetFirewallDosPolicy.
  */
 export interface GetFirewallDosPolicyArgs {
-    /**
-     * Specify the policyid of the desired firewall DoSpolicy.
-     */
     policyid: number;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -38,63 +27,29 @@ export interface GetFirewallDosPolicyArgs {
  * A collection of values returned by GetFirewallDosPolicy.
  */
 export interface GetFirewallDosPolicyResult {
-    /**
-     * Anomaly name. The structure of `anomaly` block is documented below.
-     */
     readonly anomalies: outputs.GetFirewallDosPolicyAnomaly[];
-    /**
-     * Comment.
-     */
     readonly comments: string;
-    /**
-     * Destination address name from available addresses. The structure of `dstaddr` block is documented below.
-     */
     readonly dstaddrs: outputs.GetFirewallDosPolicyDstaddr[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Incoming interface name from available interfaces.
-     */
     readonly interface: string;
-    /**
-     * Anomaly name.
-     */
     readonly name: string;
-    /**
-     * Policy ID.
-     */
     readonly policyid: number;
-    /**
-     * Service object from available options. The structure of `service` block is documented below.
-     */
     readonly services: outputs.GetFirewallDosPolicyService[];
-    /**
-     * Source address name from available addresses. The structure of `srcaddr` block is documented below.
-     */
     readonly srcaddrs: outputs.GetFirewallDosPolicySrcaddr[];
-    /**
-     * Enable/disable this anomaly.
-     */
     readonly status: string;
     readonly vdomparam?: string;
 }
-
 export function getFirewallDosPolicyOutput(args: GetFirewallDosPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallDosPolicyResult> {
-    return pulumi.output(args).apply(a => getFirewallDosPolicy(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallDosPolicy(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetFirewallDosPolicy.
  */
 export interface GetFirewallDosPolicyOutputArgs {
-    /**
-     * Specify the policyid of the desired firewall DoSpolicy.
-     */
     policyid: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

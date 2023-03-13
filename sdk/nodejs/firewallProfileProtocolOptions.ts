@@ -2,130 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure protocol options.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallProfileProtocolOptions("trname", {
- *     dns: {
- *         ports: 53,
- *         status: "enable",
- *     },
- *     ftp: {
- *         comfortAmount: 1,
- *         comfortInterval: 10,
- *         inspectAll: "disable",
- *         options: "splice",
- *         oversizeLimit: 10,
- *         ports: 21,
- *         scanBzip2: "enable",
- *         status: "enable",
- *         uncompressedNestLimit: 12,
- *         uncompressedOversizeLimit: 10,
- *     },
- *     http: {
- *         blockPageStatusCode: 403,
- *         comfortAmount: 1,
- *         comfortInterval: 10,
- *         fortinetBar: "disable",
- *         fortinetBarPort: 8011,
- *         httpPolicy: "disable",
- *         inspectAll: "disable",
- *         oversizeLimit: 10,
- *         ports: 80,
- *         rangeBlock: "disable",
- *         retryCount: 0,
- *         scanBzip2: "enable",
- *         status: "enable",
- *         streamingContentBypass: "enable",
- *         stripXForwardedFor: "disable",
- *         switchingProtocols: "bypass",
- *         uncompressedNestLimit: 12,
- *         uncompressedOversizeLimit: 10,
- *     },
- *     imap: {
- *         inspectAll: "disable",
- *         options: "fragmail",
- *         oversizeLimit: 10,
- *         ports: 143,
- *         scanBzip2: "enable",
- *         status: "enable",
- *         uncompressedNestLimit: 12,
- *         uncompressedOversizeLimit: 10,
- *     },
- *     mailSignature: {
- *         status: "disable",
- *     },
- *     mapi: {
- *         options: "fragmail",
- *         oversizeLimit: 10,
- *         ports: 135,
- *         scanBzip2: "enable",
- *         status: "enable",
- *         uncompressedNestLimit: 12,
- *         uncompressedOversizeLimit: 10,
- *     },
- *     nntp: {
- *         inspectAll: "disable",
- *         options: "splice",
- *         oversizeLimit: 10,
- *         ports: 119,
- *         scanBzip2: "enable",
- *         status: "enable",
- *         uncompressedNestLimit: 12,
- *         uncompressedOversizeLimit: 10,
- *     },
- *     oversizeLog: "disable",
- *     pop3: {
- *         inspectAll: "disable",
- *         options: "fragmail",
- *         oversizeLimit: 10,
- *         ports: 110,
- *         scanBzip2: "enable",
- *         status: "enable",
- *         uncompressedNestLimit: 12,
- *         uncompressedOversizeLimit: 10,
- *     },
- *     rpcOverHttp: "disable",
- *     smtp: {
- *         inspectAll: "disable",
- *         options: "fragmail splice",
- *         oversizeLimit: 10,
- *         ports: 25,
- *         scanBzip2: "enable",
- *         serverBusy: "disable",
- *         status: "enable",
- *         uncompressedNestLimit: 12,
- *         uncompressedOversizeLimit: 10,
- *     },
- *     switchingProtocolsLog: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall ProfileProtocolOptions can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallProfileProtocolOptions:FirewallProfileProtocolOptions labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallProfileProtocolOptions:FirewallProfileProtocolOptions labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallProfileProtocolOptions extends pulumi.CustomResource {
     /**
      * Get an existing FirewallProfileProtocolOptions resource's state with the given name, ID, and optional extra
@@ -154,81 +34,24 @@ export class FirewallProfileProtocolOptions extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallProfileProtocolOptions.__pulumiType;
     }
 
-    /**
-     * Configure CIFS protocol options. The structure of `cifs` block is documented below.
-     */
-    public readonly cifs!: pulumi.Output<outputs.FirewallProfileProtocolOptionsCifs | undefined>;
-    /**
-     * Optional comments.
-     */
+    public readonly cifs!: pulumi.Output<outputs.FirewallProfileProtocolOptionsCifs>;
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Configure DNS protocol options. The structure of `dns` block is documented below.
-     */
-    public readonly dns!: pulumi.Output<outputs.FirewallProfileProtocolOptionsDns | undefined>;
-    /**
-     * Flow/proxy feature set. Valid values: `flow`, `proxy`.
-     */
+    public readonly dns!: pulumi.Output<outputs.FirewallProfileProtocolOptionsDns>;
     public readonly featureSet!: pulumi.Output<string>;
-    /**
-     * Configure FTP protocol options. The structure of `ftp` block is documented below.
-     */
-    public readonly ftp!: pulumi.Output<outputs.FirewallProfileProtocolOptionsFtp | undefined>;
-    /**
-     * Configure HTTP protocol options. The structure of `http` block is documented below.
-     */
-    public readonly http!: pulumi.Output<outputs.FirewallProfileProtocolOptionsHttp | undefined>;
-    /**
-     * Configure IMAP protocol options. The structure of `imap` block is documented below.
-     */
-    public readonly imap!: pulumi.Output<outputs.FirewallProfileProtocolOptionsImap | undefined>;
-    /**
-     * Configure Mail signature. The structure of `mailSignature` block is documented below.
-     */
-    public readonly mailSignature!: pulumi.Output<outputs.FirewallProfileProtocolOptionsMailSignature | undefined>;
-    /**
-     * Configure MAPI protocol options. The structure of `mapi` block is documented below.
-     */
-    public readonly mapi!: pulumi.Output<outputs.FirewallProfileProtocolOptionsMapi | undefined>;
-    /**
-     * Name.
-     */
+    public readonly ftp!: pulumi.Output<outputs.FirewallProfileProtocolOptionsFtp>;
+    public readonly http!: pulumi.Output<outputs.FirewallProfileProtocolOptionsHttp>;
+    public readonly imap!: pulumi.Output<outputs.FirewallProfileProtocolOptionsImap>;
+    public readonly mailSignature!: pulumi.Output<outputs.FirewallProfileProtocolOptionsMailSignature>;
+    public readonly mapi!: pulumi.Output<outputs.FirewallProfileProtocolOptionsMapi>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Configure NNTP protocol options. The structure of `nntp` block is documented below.
-     */
-    public readonly nntp!: pulumi.Output<outputs.FirewallProfileProtocolOptionsNntp | undefined>;
-    /**
-     * Enable/disable logging for antivirus oversize file blocking. Valid values: `disable`, `enable`.
-     */
+    public readonly nntp!: pulumi.Output<outputs.FirewallProfileProtocolOptionsNntp>;
     public readonly oversizeLog!: pulumi.Output<string>;
-    /**
-     * Configure POP3 protocol options. The structure of `pop3` block is documented below.
-     */
-    public readonly pop3!: pulumi.Output<outputs.FirewallProfileProtocolOptionsPop3 | undefined>;
-    /**
-     * Name of the replacement message group to be used
-     */
+    public readonly pop3!: pulumi.Output<outputs.FirewallProfileProtocolOptionsPop3>;
     public readonly replacemsgGroup!: pulumi.Output<string>;
-    /**
-     * Enable/disable inspection of RPC over HTTP. Valid values: `enable`, `disable`.
-     */
     public readonly rpcOverHttp!: pulumi.Output<string>;
-    /**
-     * Configure SMTP protocol options. The structure of `smtp` block is documented below.
-     */
-    public readonly smtp!: pulumi.Output<outputs.FirewallProfileProtocolOptionsSmtp | undefined>;
-    /**
-     * Configure SFTP and SCP protocol options. The structure of `ssh` block is documented below.
-     */
-    public readonly ssh!: pulumi.Output<outputs.FirewallProfileProtocolOptionsSsh | undefined>;
-    /**
-     * Enable/disable logging for HTTP/HTTPS switching protocols. Valid values: `disable`, `enable`.
-     */
+    public readonly smtp!: pulumi.Output<outputs.FirewallProfileProtocolOptionsSmtp>;
+    public readonly ssh!: pulumi.Output<outputs.FirewallProfileProtocolOptionsSsh>;
     public readonly switchingProtocolsLog!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -294,81 +117,24 @@ export class FirewallProfileProtocolOptions extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallProfileProtocolOptions resources.
  */
 export interface FirewallProfileProtocolOptionsState {
-    /**
-     * Configure CIFS protocol options. The structure of `cifs` block is documented below.
-     */
     cifs?: pulumi.Input<inputs.FirewallProfileProtocolOptionsCifs>;
-    /**
-     * Optional comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Configure DNS protocol options. The structure of `dns` block is documented below.
-     */
     dns?: pulumi.Input<inputs.FirewallProfileProtocolOptionsDns>;
-    /**
-     * Flow/proxy feature set. Valid values: `flow`, `proxy`.
-     */
     featureSet?: pulumi.Input<string>;
-    /**
-     * Configure FTP protocol options. The structure of `ftp` block is documented below.
-     */
     ftp?: pulumi.Input<inputs.FirewallProfileProtocolOptionsFtp>;
-    /**
-     * Configure HTTP protocol options. The structure of `http` block is documented below.
-     */
     http?: pulumi.Input<inputs.FirewallProfileProtocolOptionsHttp>;
-    /**
-     * Configure IMAP protocol options. The structure of `imap` block is documented below.
-     */
     imap?: pulumi.Input<inputs.FirewallProfileProtocolOptionsImap>;
-    /**
-     * Configure Mail signature. The structure of `mailSignature` block is documented below.
-     */
     mailSignature?: pulumi.Input<inputs.FirewallProfileProtocolOptionsMailSignature>;
-    /**
-     * Configure MAPI protocol options. The structure of `mapi` block is documented below.
-     */
     mapi?: pulumi.Input<inputs.FirewallProfileProtocolOptionsMapi>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Configure NNTP protocol options. The structure of `nntp` block is documented below.
-     */
     nntp?: pulumi.Input<inputs.FirewallProfileProtocolOptionsNntp>;
-    /**
-     * Enable/disable logging for antivirus oversize file blocking. Valid values: `disable`, `enable`.
-     */
     oversizeLog?: pulumi.Input<string>;
-    /**
-     * Configure POP3 protocol options. The structure of `pop3` block is documented below.
-     */
     pop3?: pulumi.Input<inputs.FirewallProfileProtocolOptionsPop3>;
-    /**
-     * Name of the replacement message group to be used
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * Enable/disable inspection of RPC over HTTP. Valid values: `enable`, `disable`.
-     */
     rpcOverHttp?: pulumi.Input<string>;
-    /**
-     * Configure SMTP protocol options. The structure of `smtp` block is documented below.
-     */
     smtp?: pulumi.Input<inputs.FirewallProfileProtocolOptionsSmtp>;
-    /**
-     * Configure SFTP and SCP protocol options. The structure of `ssh` block is documented below.
-     */
     ssh?: pulumi.Input<inputs.FirewallProfileProtocolOptionsSsh>;
-    /**
-     * Enable/disable logging for HTTP/HTTPS switching protocols. Valid values: `disable`, `enable`.
-     */
     switchingProtocolsLog?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -376,80 +142,23 @@ export interface FirewallProfileProtocolOptionsState {
  * The set of arguments for constructing a FirewallProfileProtocolOptions resource.
  */
 export interface FirewallProfileProtocolOptionsArgs {
-    /**
-     * Configure CIFS protocol options. The structure of `cifs` block is documented below.
-     */
     cifs?: pulumi.Input<inputs.FirewallProfileProtocolOptionsCifs>;
-    /**
-     * Optional comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Configure DNS protocol options. The structure of `dns` block is documented below.
-     */
     dns?: pulumi.Input<inputs.FirewallProfileProtocolOptionsDns>;
-    /**
-     * Flow/proxy feature set. Valid values: `flow`, `proxy`.
-     */
     featureSet?: pulumi.Input<string>;
-    /**
-     * Configure FTP protocol options. The structure of `ftp` block is documented below.
-     */
     ftp?: pulumi.Input<inputs.FirewallProfileProtocolOptionsFtp>;
-    /**
-     * Configure HTTP protocol options. The structure of `http` block is documented below.
-     */
     http?: pulumi.Input<inputs.FirewallProfileProtocolOptionsHttp>;
-    /**
-     * Configure IMAP protocol options. The structure of `imap` block is documented below.
-     */
     imap?: pulumi.Input<inputs.FirewallProfileProtocolOptionsImap>;
-    /**
-     * Configure Mail signature. The structure of `mailSignature` block is documented below.
-     */
     mailSignature?: pulumi.Input<inputs.FirewallProfileProtocolOptionsMailSignature>;
-    /**
-     * Configure MAPI protocol options. The structure of `mapi` block is documented below.
-     */
     mapi?: pulumi.Input<inputs.FirewallProfileProtocolOptionsMapi>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Configure NNTP protocol options. The structure of `nntp` block is documented below.
-     */
     nntp?: pulumi.Input<inputs.FirewallProfileProtocolOptionsNntp>;
-    /**
-     * Enable/disable logging for antivirus oversize file blocking. Valid values: `disable`, `enable`.
-     */
     oversizeLog?: pulumi.Input<string>;
-    /**
-     * Configure POP3 protocol options. The structure of `pop3` block is documented below.
-     */
     pop3?: pulumi.Input<inputs.FirewallProfileProtocolOptionsPop3>;
-    /**
-     * Name of the replacement message group to be used
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * Enable/disable inspection of RPC over HTTP. Valid values: `enable`, `disable`.
-     */
     rpcOverHttp?: pulumi.Input<string>;
-    /**
-     * Configure SMTP protocol options. The structure of `smtp` block is documented below.
-     */
     smtp?: pulumi.Input<inputs.FirewallProfileProtocolOptionsSmtp>;
-    /**
-     * Configure SFTP and SCP protocol options. The structure of `ssh` block is documented below.
-     */
     ssh?: pulumi.Input<inputs.FirewallProfileProtocolOptionsSsh>;
-    /**
-     * Enable/disable logging for HTTP/HTTPS switching protocols. Valid values: `disable`, `enable`.
-     */
     switchingProtocolsLog?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

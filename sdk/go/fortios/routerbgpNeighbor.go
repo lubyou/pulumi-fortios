@@ -7,220 +7,129 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// BGP neighbor table.
-//
-// > The provider supports the definition of Neighbor in Router Bgp `RouterBgp`, and also allows the definition of separate Neighbor resources `RouterbgpNeighbor`, but do not use a `RouterBgp` with in-line Neighbor in conjunction with any `RouterbgpNeighbor` resources, otherwise conflicts and overwrite will occur.
-//
-// ## Import
-//
-// Routerbgp Neighbor can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerbgpNeighbor:RouterbgpNeighbor labelname {{ip}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerbgpNeighbor:RouterbgpNeighbor labelname {{ip}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterbgpNeighbor struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable address family IPv4 for this neighbor. Valid values: `enable`, `disable`.
-	Activate pulumi.StringOutput `pulumi:"activate"`
-	// Enable/disable address family IPv6 for this neighbor. Valid values: `enable`, `disable`.
-	Activate6 pulumi.StringOutput `pulumi:"activate6"`
-	// Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-	AdditionalPath pulumi.StringOutput `pulumi:"additionalPath"`
-	// Enable/disable IPv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-	AdditionalPath6 pulumi.StringOutput `pulumi:"additionalPath6"`
-	// Number of IPv4 additional paths that can be advertised to this neighbor.
-	AdvAdditionalPath pulumi.IntOutput `pulumi:"advAdditionalPath"`
-	// Number of IPv6 additional paths that can be advertised to this neighbor.
-	AdvAdditionalPath6 pulumi.IntOutput `pulumi:"advAdditionalPath6"`
-	// Minimum interval (sec) between sending updates.
-	AdvertisementInterval pulumi.IntOutput `pulumi:"advertisementInterval"`
-	// IPv4 The maximum number of occurrence of my AS number allowed.
-	AllowasIn pulumi.IntOutput `pulumi:"allowasIn"`
-	// IPv6 The maximum number of occurrence of my AS number allowed.
-	AllowasIn6 pulumi.IntOutput `pulumi:"allowasIn6"`
-	// Enable/disable IPv4 Enable to allow my AS in AS path. Valid values: `enable`, `disable`.
-	AllowasInEnable pulumi.StringOutput `pulumi:"allowasInEnable"`
-	// Enable/disable IPv6 Enable to allow my AS in AS path. Valid values: `enable`, `disable`.
-	AllowasInEnable6 pulumi.StringOutput `pulumi:"allowasInEnable6"`
-	// Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
-	AsOverride pulumi.StringOutput `pulumi:"asOverride"`
-	// Enable/disable replace peer AS with own AS for IPv6. Valid values: `enable`, `disable`.
-	AsOverride6 pulumi.StringOutput `pulumi:"asOverride6"`
-	// IPv4 List of attributes that should be unchanged. Valid values: `as-path`, `med`, `next-hop`.
-	AttributeUnchanged pulumi.StringOutput `pulumi:"attributeUnchanged"`
-	// IPv6 List of attributes that should be unchanged. Valid values: `as-path`, `med`, `next-hop`.
-	AttributeUnchanged6 pulumi.StringOutput `pulumi:"attributeUnchanged6"`
-	// Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
-	Bfd pulumi.StringOutput `pulumi:"bfd"`
-	// Enable/disable advertise default IPv4 route to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityDefaultOriginate pulumi.StringOutput `pulumi:"capabilityDefaultOriginate"`
-	// Enable/disable advertise default IPv6 route to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityDefaultOriginate6 pulumi.StringOutput `pulumi:"capabilityDefaultOriginate6"`
-	// Enable/disable advertise dynamic capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityDynamic pulumi.StringOutput `pulumi:"capabilityDynamic"`
-	// Enable/disable advertise IPv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityGracefulRestart pulumi.StringOutput `pulumi:"capabilityGracefulRestart"`
-	// Enable/disable advertise IPv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityGracefulRestart6 pulumi.StringOutput `pulumi:"capabilityGracefulRestart6"`
-	// Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
-	CapabilityOrf pulumi.StringOutput `pulumi:"capabilityOrf"`
-	// Accept/Send IPv6 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
-	CapabilityOrf6 pulumi.StringOutput `pulumi:"capabilityOrf6"`
-	// Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityRouteRefresh pulumi.StringOutput `pulumi:"capabilityRouteRefresh"`
-	// IPv6 conditional advertisement. The structure of `conditionalAdvertise6` block is documented below.
-	ConditionalAdvertise6s RouterbgpNeighborConditionalAdvertise6ArrayOutput `pulumi:"conditionalAdvertise6s"`
-	// Conditional advertisement. The structure of `conditionalAdvertise` block is documented below.
-	ConditionalAdvertises RouterbgpNeighborConditionalAdvertiseArrayOutput `pulumi:"conditionalAdvertises"`
-	// Interval (sec) for connect timer.
-	ConnectTimer pulumi.IntOutput `pulumi:"connectTimer"`
-	// Route map to specify criteria to originate IPv4 default.
-	DefaultOriginateRoutemap pulumi.StringOutput `pulumi:"defaultOriginateRoutemap"`
-	// Route map to specify criteria to originate IPv6 default.
-	DefaultOriginateRoutemap6 pulumi.StringOutput `pulumi:"defaultOriginateRoutemap6"`
-	// Description.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// Filter for IPv4 updates from this neighbor.
-	DistributeListIn pulumi.StringOutput `pulumi:"distributeListIn"`
-	// Filter for IPv6 updates from this neighbor.
-	DistributeListIn6 pulumi.StringOutput `pulumi:"distributeListIn6"`
-	// Filter for IPv4 updates to this neighbor.
-	DistributeListOut pulumi.StringOutput `pulumi:"distributeListOut"`
-	// Filter for IPv6 updates to this neighbor.
-	DistributeListOut6 pulumi.StringOutput `pulumi:"distributeListOut6"`
-	// Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
-	DontCapabilityNegotiate pulumi.StringOutput `pulumi:"dontCapabilityNegotiate"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable allow multi-hop EBGP neighbors. Valid values: `enable`, `disable`.
-	EbgpEnforceMultihop pulumi.StringOutput `pulumi:"ebgpEnforceMultihop"`
-	// EBGP multihop TTL for this peer.
-	EbgpMultihopTtl pulumi.IntOutput `pulumi:"ebgpMultihopTtl"`
-	// BGP filter for IPv4 inbound routes.
-	FilterListIn pulumi.StringOutput `pulumi:"filterListIn"`
-	// BGP filter for IPv6 inbound routes.
-	FilterListIn6 pulumi.StringOutput `pulumi:"filterListIn6"`
-	// BGP filter for IPv4 outbound routes.
-	FilterListOut pulumi.StringOutput `pulumi:"filterListOut"`
-	// BGP filter for IPv6 outbound routes.
-	FilterListOut6 pulumi.StringOutput `pulumi:"filterListOut6"`
-	// Interval (sec) before peer considered dead.
-	HoldtimeTimer pulumi.IntOutput `pulumi:"holdtimeTimer"`
-	// Interface
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// IP/IPv6 address of neighbor.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// Keep alive timer interval (sec).
-	KeepAliveTimer pulumi.IntOutput `pulumi:"keepAliveTimer"`
-	// Enable/disable failover upon link down. Valid values: `enable`, `disable`.
-	LinkDownFailover pulumi.StringOutput `pulumi:"linkDownFailover"`
-	// Local AS number of neighbor.
-	LocalAs pulumi.IntOutput `pulumi:"localAs"`
-	// Do not prepend local-as to incoming updates. Valid values: `enable`, `disable`.
-	LocalAsNoPrepend pulumi.StringOutput `pulumi:"localAsNoPrepend"`
-	// Replace real AS with local-as in outgoing updates. Valid values: `enable`, `disable`.
-	LocalAsReplaceAs pulumi.StringOutput `pulumi:"localAsReplaceAs"`
-	// Maximum number of IPv4 prefixes to accept from this peer.
-	MaximumPrefix pulumi.IntOutput `pulumi:"maximumPrefix"`
-	// Maximum number of IPv6 prefixes to accept from this peer.
-	MaximumPrefix6 pulumi.IntOutput `pulumi:"maximumPrefix6"`
-	// Maximum IPv4 prefix threshold value (1 - 100 percent).
-	MaximumPrefixThreshold pulumi.IntOutput `pulumi:"maximumPrefixThreshold"`
-	// Maximum IPv6 prefix threshold value (1 - 100 percent).
-	MaximumPrefixThreshold6 pulumi.IntOutput `pulumi:"maximumPrefixThreshold6"`
-	// Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
-	MaximumPrefixWarningOnly pulumi.StringOutput `pulumi:"maximumPrefixWarningOnly"`
-	// Enable/disable IPv6 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
-	MaximumPrefixWarningOnly6 pulumi.StringOutput `pulumi:"maximumPrefixWarningOnly6"`
-	// Enable/disable IPv4 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
-	NextHopSelf pulumi.StringOutput `pulumi:"nextHopSelf"`
-	// Enable/disable IPv6 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
-	NextHopSelf6 pulumi.StringOutput `pulumi:"nextHopSelf6"`
-	// Enable/disable setting nexthop's address to interface's IPv4 address for route-reflector routes. Valid values: `enable`, `disable`.
-	NextHopSelfRr pulumi.StringOutput `pulumi:"nextHopSelfRr"`
-	// Enable/disable setting nexthop's address to interface's IPv6 address for route-reflector routes. Valid values: `enable`, `disable`.
-	NextHopSelfRr6 pulumi.StringOutput `pulumi:"nextHopSelfRr6"`
-	// Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
-	OverrideCapability pulumi.StringOutput `pulumi:"overrideCapability"`
-	// Enable/disable sending of open messages to this neighbor. Valid values: `enable`, `disable`.
-	Passive pulumi.StringOutput `pulumi:"passive"`
-	// Password used in MD5 authentication.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// IPv4 Inbound filter for updates from this neighbor.
-	PrefixListIn pulumi.StringOutput `pulumi:"prefixListIn"`
-	// IPv6 Inbound filter for updates from this neighbor.
-	PrefixListIn6 pulumi.StringOutput `pulumi:"prefixListIn6"`
-	// IPv4 Outbound filter for updates to this neighbor.
-	PrefixListOut pulumi.StringOutput `pulumi:"prefixListOut"`
-	// IPv6 Outbound filter for updates to this neighbor.
-	PrefixListOut6 pulumi.StringOutput `pulumi:"prefixListOut6"`
-	// AS number of neighbor.
-	RemoteAs pulumi.IntOutput `pulumi:"remoteAs"`
-	// Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
-	RemovePrivateAs pulumi.StringOutput `pulumi:"removePrivateAs"`
-	// Enable/disable remove private AS number from IPv6 outbound updates. Valid values: `enable`, `disable`.
-	RemovePrivateAs6 pulumi.StringOutput `pulumi:"removePrivateAs6"`
-	// Graceful restart delay time (sec, 0 = global default).
-	RestartTime pulumi.IntOutput `pulumi:"restartTime"`
-	// Time to retain stale routes.
-	RetainStaleTime pulumi.IntOutput `pulumi:"retainStaleTime"`
-	// IPv4 Inbound route map filter.
-	RouteMapIn pulumi.StringOutput `pulumi:"routeMapIn"`
-	// IPv6 Inbound route map filter.
-	RouteMapIn6 pulumi.StringOutput `pulumi:"routeMapIn6"`
-	// IPv4 Outbound route map filter.
-	RouteMapOut pulumi.StringOutput `pulumi:"routeMapOut"`
-	// IPv6 Outbound route map filter.
-	RouteMapOut6 pulumi.StringOutput `pulumi:"routeMapOut6"`
-	// IPv6 outbound route map filter if the peer is preferred.
-	RouteMapOut6Preferable pulumi.StringOutput `pulumi:"routeMapOut6Preferable"`
-	// IPv4 outbound route map filter if the peer is preferred.
-	RouteMapOutPreferable pulumi.StringOutput `pulumi:"routeMapOutPreferable"`
-	// Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
-	RouteReflectorClient pulumi.StringOutput `pulumi:"routeReflectorClient"`
-	// Enable/disable IPv6 AS route reflector client. Valid values: `enable`, `disable`.
-	RouteReflectorClient6 pulumi.StringOutput `pulumi:"routeReflectorClient6"`
-	// Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
-	RouteServerClient pulumi.StringOutput `pulumi:"routeServerClient"`
-	// Enable/disable IPv6 AS route server client. Valid values: `enable`, `disable`.
-	RouteServerClient6 pulumi.StringOutput `pulumi:"routeServerClient6"`
-	// IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
-	SendCommunity pulumi.StringOutput `pulumi:"sendCommunity"`
-	// IPv6 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
-	SendCommunity6 pulumi.StringOutput `pulumi:"sendCommunity6"`
-	// Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
-	Shutdown pulumi.StringOutput `pulumi:"shutdown"`
-	// Enable/disable allow IPv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
-	SoftReconfiguration pulumi.StringOutput `pulumi:"softReconfiguration"`
-	// Enable/disable allow IPv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
-	SoftReconfiguration6 pulumi.StringOutput `pulumi:"softReconfiguration6"`
-	// Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
-	StaleRoute pulumi.StringOutput `pulumi:"staleRoute"`
-	// Enable/disable strict capability matching. Valid values: `enable`, `disable`.
-	StrictCapabilityMatch pulumi.StringOutput `pulumi:"strictCapabilityMatch"`
-	// IPv4 Route map to selectively unsuppress suppressed routes.
-	UnsuppressMap pulumi.StringOutput `pulumi:"unsuppressMap"`
-	// IPv6 Route map to selectively unsuppress suppressed routes.
-	UnsuppressMap6 pulumi.StringOutput `pulumi:"unsuppressMap6"`
-	// Interface to use as source IP/IPv6 address of TCP connections.
-	UpdateSource pulumi.StringOutput `pulumi:"updateSource"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Neighbor weight.
-	Weight pulumi.IntOutput `pulumi:"weight"`
+	Activate                       pulumi.StringOutput                               `pulumi:"activate"`
+	Activate6                      pulumi.StringOutput                               `pulumi:"activate6"`
+	ActivateVpnv4                  pulumi.StringOutput                               `pulumi:"activateVpnv4"`
+	AdditionalPath                 pulumi.StringOutput                               `pulumi:"additionalPath"`
+	AdditionalPath6                pulumi.StringOutput                               `pulumi:"additionalPath6"`
+	AdditionalPathVpnv4            pulumi.StringOutput                               `pulumi:"additionalPathVpnv4"`
+	AdvAdditionalPath              pulumi.IntOutput                                  `pulumi:"advAdditionalPath"`
+	AdvAdditionalPath6             pulumi.IntOutput                                  `pulumi:"advAdditionalPath6"`
+	AdvAdditionalPathVpnv4         pulumi.IntOutput                                  `pulumi:"advAdditionalPathVpnv4"`
+	AdvertisementInterval          pulumi.IntOutput                                  `pulumi:"advertisementInterval"`
+	AllowasIn                      pulumi.IntOutput                                  `pulumi:"allowasIn"`
+	AllowasIn6                     pulumi.IntOutput                                  `pulumi:"allowasIn6"`
+	AllowasInEnable                pulumi.StringOutput                               `pulumi:"allowasInEnable"`
+	AllowasInEnable6               pulumi.StringOutput                               `pulumi:"allowasInEnable6"`
+	AllowasInVpnv4                 pulumi.IntOutput                                  `pulumi:"allowasInVpnv4"`
+	AsOverride                     pulumi.StringOutput                               `pulumi:"asOverride"`
+	AsOverride6                    pulumi.StringOutput                               `pulumi:"asOverride6"`
+	AttributeUnchanged             pulumi.StringOutput                               `pulumi:"attributeUnchanged"`
+	AttributeUnchanged6            pulumi.StringOutput                               `pulumi:"attributeUnchanged6"`
+	AttributeUnchangedVpnv4        pulumi.StringOutput                               `pulumi:"attributeUnchangedVpnv4"`
+	Bfd                            pulumi.StringOutput                               `pulumi:"bfd"`
+	CapabilityDefaultOriginate     pulumi.StringOutput                               `pulumi:"capabilityDefaultOriginate"`
+	CapabilityDefaultOriginate6    pulumi.StringOutput                               `pulumi:"capabilityDefaultOriginate6"`
+	CapabilityDynamic              pulumi.StringOutput                               `pulumi:"capabilityDynamic"`
+	CapabilityGracefulRestart      pulumi.StringOutput                               `pulumi:"capabilityGracefulRestart"`
+	CapabilityGracefulRestart6     pulumi.StringOutput                               `pulumi:"capabilityGracefulRestart6"`
+	CapabilityGracefulRestartVpnv4 pulumi.StringOutput                               `pulumi:"capabilityGracefulRestartVpnv4"`
+	CapabilityOrf                  pulumi.StringOutput                               `pulumi:"capabilityOrf"`
+	CapabilityOrf6                 pulumi.StringOutput                               `pulumi:"capabilityOrf6"`
+	CapabilityRouteRefresh         pulumi.StringOutput                               `pulumi:"capabilityRouteRefresh"`
+	ConditionalAdvertise6s         RouterbgpNeighborConditionalAdvertise6ArrayOutput `pulumi:"conditionalAdvertise6s"`
+	ConditionalAdvertises          RouterbgpNeighborConditionalAdvertiseArrayOutput  `pulumi:"conditionalAdvertises"`
+	ConnectTimer                   pulumi.IntOutput                                  `pulumi:"connectTimer"`
+	DefaultOriginateRoutemap       pulumi.StringOutput                               `pulumi:"defaultOriginateRoutemap"`
+	DefaultOriginateRoutemap6      pulumi.StringOutput                               `pulumi:"defaultOriginateRoutemap6"`
+	Description                    pulumi.StringOutput                               `pulumi:"description"`
+	DistributeListIn               pulumi.StringOutput                               `pulumi:"distributeListIn"`
+	DistributeListIn6              pulumi.StringOutput                               `pulumi:"distributeListIn6"`
+	DistributeListInVpnv4          pulumi.StringOutput                               `pulumi:"distributeListInVpnv4"`
+	DistributeListOut              pulumi.StringOutput                               `pulumi:"distributeListOut"`
+	DistributeListOut6             pulumi.StringOutput                               `pulumi:"distributeListOut6"`
+	DistributeListOutVpnv4         pulumi.StringOutput                               `pulumi:"distributeListOutVpnv4"`
+	DontCapabilityNegotiate        pulumi.StringOutput                               `pulumi:"dontCapabilityNegotiate"`
+	DynamicSortSubtable            pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
+	EbgpEnforceMultihop            pulumi.StringOutput                               `pulumi:"ebgpEnforceMultihop"`
+	EbgpMultihopTtl                pulumi.IntOutput                                  `pulumi:"ebgpMultihopTtl"`
+	FilterListIn                   pulumi.StringOutput                               `pulumi:"filterListIn"`
+	FilterListIn6                  pulumi.StringOutput                               `pulumi:"filterListIn6"`
+	FilterListOut                  pulumi.StringOutput                               `pulumi:"filterListOut"`
+	FilterListOut6                 pulumi.StringOutput                               `pulumi:"filterListOut6"`
+	HoldtimeTimer                  pulumi.IntOutput                                  `pulumi:"holdtimeTimer"`
+	Interface                      pulumi.StringOutput                               `pulumi:"interface"`
+	Ip                             pulumi.StringOutput                               `pulumi:"ip"`
+	KeepAliveTimer                 pulumi.IntOutput                                  `pulumi:"keepAliveTimer"`
+	LinkDownFailover               pulumi.StringOutput                               `pulumi:"linkDownFailover"`
+	LocalAs                        pulumi.IntOutput                                  `pulumi:"localAs"`
+	LocalAsNoPrepend               pulumi.StringOutput                               `pulumi:"localAsNoPrepend"`
+	LocalAsReplaceAs               pulumi.StringOutput                               `pulumi:"localAsReplaceAs"`
+	MaximumPrefix                  pulumi.IntOutput                                  `pulumi:"maximumPrefix"`
+	MaximumPrefix6                 pulumi.IntOutput                                  `pulumi:"maximumPrefix6"`
+	MaximumPrefixThreshold         pulumi.IntOutput                                  `pulumi:"maximumPrefixThreshold"`
+	MaximumPrefixThreshold6        pulumi.IntOutput                                  `pulumi:"maximumPrefixThreshold6"`
+	MaximumPrefixThresholdVpnv4    pulumi.IntOutput                                  `pulumi:"maximumPrefixThresholdVpnv4"`
+	MaximumPrefixVpnv4             pulumi.IntOutput                                  `pulumi:"maximumPrefixVpnv4"`
+	MaximumPrefixWarningOnly       pulumi.StringOutput                               `pulumi:"maximumPrefixWarningOnly"`
+	MaximumPrefixWarningOnly6      pulumi.StringOutput                               `pulumi:"maximumPrefixWarningOnly6"`
+	MaximumPrefixWarningOnlyVpnv4  pulumi.StringOutput                               `pulumi:"maximumPrefixWarningOnlyVpnv4"`
+	NextHopSelf                    pulumi.StringOutput                               `pulumi:"nextHopSelf"`
+	NextHopSelf6                   pulumi.StringOutput                               `pulumi:"nextHopSelf6"`
+	NextHopSelfRr                  pulumi.StringOutput                               `pulumi:"nextHopSelfRr"`
+	NextHopSelfRr6                 pulumi.StringOutput                               `pulumi:"nextHopSelfRr6"`
+	NextHopSelfVpnv4               pulumi.StringOutput                               `pulumi:"nextHopSelfVpnv4"`
+	OverrideCapability             pulumi.StringOutput                               `pulumi:"overrideCapability"`
+	Passive                        pulumi.StringOutput                               `pulumi:"passive"`
+	Password                       pulumi.StringPtrOutput                            `pulumi:"password"`
+	PrefixListIn                   pulumi.StringOutput                               `pulumi:"prefixListIn"`
+	PrefixListIn6                  pulumi.StringOutput                               `pulumi:"prefixListIn6"`
+	PrefixListInVpnv4              pulumi.StringOutput                               `pulumi:"prefixListInVpnv4"`
+	PrefixListOut                  pulumi.StringOutput                               `pulumi:"prefixListOut"`
+	PrefixListOut6                 pulumi.StringOutput                               `pulumi:"prefixListOut6"`
+	PrefixListOutVpnv4             pulumi.StringOutput                               `pulumi:"prefixListOutVpnv4"`
+	RemoteAs                       pulumi.IntOutput                                  `pulumi:"remoteAs"`
+	RemovePrivateAs                pulumi.StringOutput                               `pulumi:"removePrivateAs"`
+	RemovePrivateAs6               pulumi.StringOutput                               `pulumi:"removePrivateAs6"`
+	RemovePrivateAsVpnv4           pulumi.StringOutput                               `pulumi:"removePrivateAsVpnv4"`
+	RestartTime                    pulumi.IntOutput                                  `pulumi:"restartTime"`
+	RetainStaleTime                pulumi.IntOutput                                  `pulumi:"retainStaleTime"`
+	RouteMapIn                     pulumi.StringOutput                               `pulumi:"routeMapIn"`
+	RouteMapIn6                    pulumi.StringOutput                               `pulumi:"routeMapIn6"`
+	RouteMapInVpnv4                pulumi.StringOutput                               `pulumi:"routeMapInVpnv4"`
+	RouteMapOut                    pulumi.StringOutput                               `pulumi:"routeMapOut"`
+	RouteMapOut6                   pulumi.StringOutput                               `pulumi:"routeMapOut6"`
+	RouteMapOut6Preferable         pulumi.StringOutput                               `pulumi:"routeMapOut6Preferable"`
+	RouteMapOutPreferable          pulumi.StringOutput                               `pulumi:"routeMapOutPreferable"`
+	RouteMapOutVpnv4               pulumi.StringOutput                               `pulumi:"routeMapOutVpnv4"`
+	RouteMapOutVpnv4Preferable     pulumi.StringOutput                               `pulumi:"routeMapOutVpnv4Preferable"`
+	RouteReflectorClient           pulumi.StringOutput                               `pulumi:"routeReflectorClient"`
+	RouteReflectorClient6          pulumi.StringOutput                               `pulumi:"routeReflectorClient6"`
+	RouteReflectorClientVpnv4      pulumi.StringOutput                               `pulumi:"routeReflectorClientVpnv4"`
+	RouteServerClient              pulumi.StringOutput                               `pulumi:"routeServerClient"`
+	RouteServerClient6             pulumi.StringOutput                               `pulumi:"routeServerClient6"`
+	RouteServerClientVpnv4         pulumi.StringOutput                               `pulumi:"routeServerClientVpnv4"`
+	SendCommunity                  pulumi.StringOutput                               `pulumi:"sendCommunity"`
+	SendCommunity6                 pulumi.StringOutput                               `pulumi:"sendCommunity6"`
+	SendCommunityVpnv4             pulumi.StringOutput                               `pulumi:"sendCommunityVpnv4"`
+	Shutdown                       pulumi.StringOutput                               `pulumi:"shutdown"`
+	SoftReconfiguration            pulumi.StringOutput                               `pulumi:"softReconfiguration"`
+	SoftReconfiguration6           pulumi.StringOutput                               `pulumi:"softReconfiguration6"`
+	SoftReconfigurationVpnv4       pulumi.StringOutput                               `pulumi:"softReconfigurationVpnv4"`
+	StaleRoute                     pulumi.StringOutput                               `pulumi:"staleRoute"`
+	StrictCapabilityMatch          pulumi.StringOutput                               `pulumi:"strictCapabilityMatch"`
+	UnsuppressMap                  pulumi.StringOutput                               `pulumi:"unsuppressMap"`
+	UnsuppressMap6                 pulumi.StringOutput                               `pulumi:"unsuppressMap6"`
+	UpdateSource                   pulumi.StringOutput                               `pulumi:"updateSource"`
+	Vdomparam                      pulumi.StringPtrOutput                            `pulumi:"vdomparam"`
+	Weight                         pulumi.IntOutput                                  `pulumi:"weight"`
 }
 
 // NewRouterbgpNeighbor registers a new resource with the given unique name, arguments, and options.
@@ -233,6 +142,13 @@ func NewRouterbgpNeighbor(ctx *pulumi.Context,
 	if args.Ip == nil {
 		return nil, errors.New("invalid value for required argument 'Ip'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterbgpNeighbor
 	err := ctx.RegisterResource("fortios:index/routerbgpNeighbor:RouterbgpNeighbor", name, args, &resource, opts...)
@@ -256,385 +172,241 @@ func GetRouterbgpNeighbor(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterbgpNeighbor resources.
 type routerbgpNeighborState struct {
-	// Enable/disable address family IPv4 for this neighbor. Valid values: `enable`, `disable`.
-	Activate *string `pulumi:"activate"`
-	// Enable/disable address family IPv6 for this neighbor. Valid values: `enable`, `disable`.
-	Activate6 *string `pulumi:"activate6"`
-	// Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-	AdditionalPath *string `pulumi:"additionalPath"`
-	// Enable/disable IPv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-	AdditionalPath6 *string `pulumi:"additionalPath6"`
-	// Number of IPv4 additional paths that can be advertised to this neighbor.
-	AdvAdditionalPath *int `pulumi:"advAdditionalPath"`
-	// Number of IPv6 additional paths that can be advertised to this neighbor.
-	AdvAdditionalPath6 *int `pulumi:"advAdditionalPath6"`
-	// Minimum interval (sec) between sending updates.
-	AdvertisementInterval *int `pulumi:"advertisementInterval"`
-	// IPv4 The maximum number of occurrence of my AS number allowed.
-	AllowasIn *int `pulumi:"allowasIn"`
-	// IPv6 The maximum number of occurrence of my AS number allowed.
-	AllowasIn6 *int `pulumi:"allowasIn6"`
-	// Enable/disable IPv4 Enable to allow my AS in AS path. Valid values: `enable`, `disable`.
-	AllowasInEnable *string `pulumi:"allowasInEnable"`
-	// Enable/disable IPv6 Enable to allow my AS in AS path. Valid values: `enable`, `disable`.
-	AllowasInEnable6 *string `pulumi:"allowasInEnable6"`
-	// Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
-	AsOverride *string `pulumi:"asOverride"`
-	// Enable/disable replace peer AS with own AS for IPv6. Valid values: `enable`, `disable`.
-	AsOverride6 *string `pulumi:"asOverride6"`
-	// IPv4 List of attributes that should be unchanged. Valid values: `as-path`, `med`, `next-hop`.
-	AttributeUnchanged *string `pulumi:"attributeUnchanged"`
-	// IPv6 List of attributes that should be unchanged. Valid values: `as-path`, `med`, `next-hop`.
-	AttributeUnchanged6 *string `pulumi:"attributeUnchanged6"`
-	// Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
-	Bfd *string `pulumi:"bfd"`
-	// Enable/disable advertise default IPv4 route to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityDefaultOriginate *string `pulumi:"capabilityDefaultOriginate"`
-	// Enable/disable advertise default IPv6 route to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityDefaultOriginate6 *string `pulumi:"capabilityDefaultOriginate6"`
-	// Enable/disable advertise dynamic capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityDynamic *string `pulumi:"capabilityDynamic"`
-	// Enable/disable advertise IPv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityGracefulRestart *string `pulumi:"capabilityGracefulRestart"`
-	// Enable/disable advertise IPv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityGracefulRestart6 *string `pulumi:"capabilityGracefulRestart6"`
-	// Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
-	CapabilityOrf *string `pulumi:"capabilityOrf"`
-	// Accept/Send IPv6 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
-	CapabilityOrf6 *string `pulumi:"capabilityOrf6"`
-	// Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityRouteRefresh *string `pulumi:"capabilityRouteRefresh"`
-	// IPv6 conditional advertisement. The structure of `conditionalAdvertise6` block is documented below.
-	ConditionalAdvertise6s []RouterbgpNeighborConditionalAdvertise6 `pulumi:"conditionalAdvertise6s"`
-	// Conditional advertisement. The structure of `conditionalAdvertise` block is documented below.
-	ConditionalAdvertises []RouterbgpNeighborConditionalAdvertise `pulumi:"conditionalAdvertises"`
-	// Interval (sec) for connect timer.
-	ConnectTimer *int `pulumi:"connectTimer"`
-	// Route map to specify criteria to originate IPv4 default.
-	DefaultOriginateRoutemap *string `pulumi:"defaultOriginateRoutemap"`
-	// Route map to specify criteria to originate IPv6 default.
-	DefaultOriginateRoutemap6 *string `pulumi:"defaultOriginateRoutemap6"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// Filter for IPv4 updates from this neighbor.
-	DistributeListIn *string `pulumi:"distributeListIn"`
-	// Filter for IPv6 updates from this neighbor.
-	DistributeListIn6 *string `pulumi:"distributeListIn6"`
-	// Filter for IPv4 updates to this neighbor.
-	DistributeListOut *string `pulumi:"distributeListOut"`
-	// Filter for IPv6 updates to this neighbor.
-	DistributeListOut6 *string `pulumi:"distributeListOut6"`
-	// Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
-	DontCapabilityNegotiate *string `pulumi:"dontCapabilityNegotiate"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable allow multi-hop EBGP neighbors. Valid values: `enable`, `disable`.
-	EbgpEnforceMultihop *string `pulumi:"ebgpEnforceMultihop"`
-	// EBGP multihop TTL for this peer.
-	EbgpMultihopTtl *int `pulumi:"ebgpMultihopTtl"`
-	// BGP filter for IPv4 inbound routes.
-	FilterListIn *string `pulumi:"filterListIn"`
-	// BGP filter for IPv6 inbound routes.
-	FilterListIn6 *string `pulumi:"filterListIn6"`
-	// BGP filter for IPv4 outbound routes.
-	FilterListOut *string `pulumi:"filterListOut"`
-	// BGP filter for IPv6 outbound routes.
-	FilterListOut6 *string `pulumi:"filterListOut6"`
-	// Interval (sec) before peer considered dead.
-	HoldtimeTimer *int `pulumi:"holdtimeTimer"`
-	// Interface
-	Interface *string `pulumi:"interface"`
-	// IP/IPv6 address of neighbor.
-	Ip *string `pulumi:"ip"`
-	// Keep alive timer interval (sec).
-	KeepAliveTimer *int `pulumi:"keepAliveTimer"`
-	// Enable/disable failover upon link down. Valid values: `enable`, `disable`.
-	LinkDownFailover *string `pulumi:"linkDownFailover"`
-	// Local AS number of neighbor.
-	LocalAs *int `pulumi:"localAs"`
-	// Do not prepend local-as to incoming updates. Valid values: `enable`, `disable`.
-	LocalAsNoPrepend *string `pulumi:"localAsNoPrepend"`
-	// Replace real AS with local-as in outgoing updates. Valid values: `enable`, `disable`.
-	LocalAsReplaceAs *string `pulumi:"localAsReplaceAs"`
-	// Maximum number of IPv4 prefixes to accept from this peer.
-	MaximumPrefix *int `pulumi:"maximumPrefix"`
-	// Maximum number of IPv6 prefixes to accept from this peer.
-	MaximumPrefix6 *int `pulumi:"maximumPrefix6"`
-	// Maximum IPv4 prefix threshold value (1 - 100 percent).
-	MaximumPrefixThreshold *int `pulumi:"maximumPrefixThreshold"`
-	// Maximum IPv6 prefix threshold value (1 - 100 percent).
-	MaximumPrefixThreshold6 *int `pulumi:"maximumPrefixThreshold6"`
-	// Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
-	MaximumPrefixWarningOnly *string `pulumi:"maximumPrefixWarningOnly"`
-	// Enable/disable IPv6 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
-	MaximumPrefixWarningOnly6 *string `pulumi:"maximumPrefixWarningOnly6"`
-	// Enable/disable IPv4 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
-	NextHopSelf *string `pulumi:"nextHopSelf"`
-	// Enable/disable IPv6 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
-	NextHopSelf6 *string `pulumi:"nextHopSelf6"`
-	// Enable/disable setting nexthop's address to interface's IPv4 address for route-reflector routes. Valid values: `enable`, `disable`.
-	NextHopSelfRr *string `pulumi:"nextHopSelfRr"`
-	// Enable/disable setting nexthop's address to interface's IPv6 address for route-reflector routes. Valid values: `enable`, `disable`.
-	NextHopSelfRr6 *string `pulumi:"nextHopSelfRr6"`
-	// Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
-	OverrideCapability *string `pulumi:"overrideCapability"`
-	// Enable/disable sending of open messages to this neighbor. Valid values: `enable`, `disable`.
-	Passive *string `pulumi:"passive"`
-	// Password used in MD5 authentication.
-	Password *string `pulumi:"password"`
-	// IPv4 Inbound filter for updates from this neighbor.
-	PrefixListIn *string `pulumi:"prefixListIn"`
-	// IPv6 Inbound filter for updates from this neighbor.
-	PrefixListIn6 *string `pulumi:"prefixListIn6"`
-	// IPv4 Outbound filter for updates to this neighbor.
-	PrefixListOut *string `pulumi:"prefixListOut"`
-	// IPv6 Outbound filter for updates to this neighbor.
-	PrefixListOut6 *string `pulumi:"prefixListOut6"`
-	// AS number of neighbor.
-	RemoteAs *int `pulumi:"remoteAs"`
-	// Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
-	RemovePrivateAs *string `pulumi:"removePrivateAs"`
-	// Enable/disable remove private AS number from IPv6 outbound updates. Valid values: `enable`, `disable`.
-	RemovePrivateAs6 *string `pulumi:"removePrivateAs6"`
-	// Graceful restart delay time (sec, 0 = global default).
-	RestartTime *int `pulumi:"restartTime"`
-	// Time to retain stale routes.
-	RetainStaleTime *int `pulumi:"retainStaleTime"`
-	// IPv4 Inbound route map filter.
-	RouteMapIn *string `pulumi:"routeMapIn"`
-	// IPv6 Inbound route map filter.
-	RouteMapIn6 *string `pulumi:"routeMapIn6"`
-	// IPv4 Outbound route map filter.
-	RouteMapOut *string `pulumi:"routeMapOut"`
-	// IPv6 Outbound route map filter.
-	RouteMapOut6 *string `pulumi:"routeMapOut6"`
-	// IPv6 outbound route map filter if the peer is preferred.
-	RouteMapOut6Preferable *string `pulumi:"routeMapOut6Preferable"`
-	// IPv4 outbound route map filter if the peer is preferred.
-	RouteMapOutPreferable *string `pulumi:"routeMapOutPreferable"`
-	// Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
-	RouteReflectorClient *string `pulumi:"routeReflectorClient"`
-	// Enable/disable IPv6 AS route reflector client. Valid values: `enable`, `disable`.
-	RouteReflectorClient6 *string `pulumi:"routeReflectorClient6"`
-	// Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
-	RouteServerClient *string `pulumi:"routeServerClient"`
-	// Enable/disable IPv6 AS route server client. Valid values: `enable`, `disable`.
-	RouteServerClient6 *string `pulumi:"routeServerClient6"`
-	// IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
-	SendCommunity *string `pulumi:"sendCommunity"`
-	// IPv6 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
-	SendCommunity6 *string `pulumi:"sendCommunity6"`
-	// Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
-	Shutdown *string `pulumi:"shutdown"`
-	// Enable/disable allow IPv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
-	SoftReconfiguration *string `pulumi:"softReconfiguration"`
-	// Enable/disable allow IPv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
-	SoftReconfiguration6 *string `pulumi:"softReconfiguration6"`
-	// Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
-	StaleRoute *string `pulumi:"staleRoute"`
-	// Enable/disable strict capability matching. Valid values: `enable`, `disable`.
-	StrictCapabilityMatch *string `pulumi:"strictCapabilityMatch"`
-	// IPv4 Route map to selectively unsuppress suppressed routes.
-	UnsuppressMap *string `pulumi:"unsuppressMap"`
-	// IPv6 Route map to selectively unsuppress suppressed routes.
-	UnsuppressMap6 *string `pulumi:"unsuppressMap6"`
-	// Interface to use as source IP/IPv6 address of TCP connections.
-	UpdateSource *string `pulumi:"updateSource"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Neighbor weight.
-	Weight *int `pulumi:"weight"`
+	Activate                       *string                                  `pulumi:"activate"`
+	Activate6                      *string                                  `pulumi:"activate6"`
+	ActivateVpnv4                  *string                                  `pulumi:"activateVpnv4"`
+	AdditionalPath                 *string                                  `pulumi:"additionalPath"`
+	AdditionalPath6                *string                                  `pulumi:"additionalPath6"`
+	AdditionalPathVpnv4            *string                                  `pulumi:"additionalPathVpnv4"`
+	AdvAdditionalPath              *int                                     `pulumi:"advAdditionalPath"`
+	AdvAdditionalPath6             *int                                     `pulumi:"advAdditionalPath6"`
+	AdvAdditionalPathVpnv4         *int                                     `pulumi:"advAdditionalPathVpnv4"`
+	AdvertisementInterval          *int                                     `pulumi:"advertisementInterval"`
+	AllowasIn                      *int                                     `pulumi:"allowasIn"`
+	AllowasIn6                     *int                                     `pulumi:"allowasIn6"`
+	AllowasInEnable                *string                                  `pulumi:"allowasInEnable"`
+	AllowasInEnable6               *string                                  `pulumi:"allowasInEnable6"`
+	AllowasInVpnv4                 *int                                     `pulumi:"allowasInVpnv4"`
+	AsOverride                     *string                                  `pulumi:"asOverride"`
+	AsOverride6                    *string                                  `pulumi:"asOverride6"`
+	AttributeUnchanged             *string                                  `pulumi:"attributeUnchanged"`
+	AttributeUnchanged6            *string                                  `pulumi:"attributeUnchanged6"`
+	AttributeUnchangedVpnv4        *string                                  `pulumi:"attributeUnchangedVpnv4"`
+	Bfd                            *string                                  `pulumi:"bfd"`
+	CapabilityDefaultOriginate     *string                                  `pulumi:"capabilityDefaultOriginate"`
+	CapabilityDefaultOriginate6    *string                                  `pulumi:"capabilityDefaultOriginate6"`
+	CapabilityDynamic              *string                                  `pulumi:"capabilityDynamic"`
+	CapabilityGracefulRestart      *string                                  `pulumi:"capabilityGracefulRestart"`
+	CapabilityGracefulRestart6     *string                                  `pulumi:"capabilityGracefulRestart6"`
+	CapabilityGracefulRestartVpnv4 *string                                  `pulumi:"capabilityGracefulRestartVpnv4"`
+	CapabilityOrf                  *string                                  `pulumi:"capabilityOrf"`
+	CapabilityOrf6                 *string                                  `pulumi:"capabilityOrf6"`
+	CapabilityRouteRefresh         *string                                  `pulumi:"capabilityRouteRefresh"`
+	ConditionalAdvertise6s         []RouterbgpNeighborConditionalAdvertise6 `pulumi:"conditionalAdvertise6s"`
+	ConditionalAdvertises          []RouterbgpNeighborConditionalAdvertise  `pulumi:"conditionalAdvertises"`
+	ConnectTimer                   *int                                     `pulumi:"connectTimer"`
+	DefaultOriginateRoutemap       *string                                  `pulumi:"defaultOriginateRoutemap"`
+	DefaultOriginateRoutemap6      *string                                  `pulumi:"defaultOriginateRoutemap6"`
+	Description                    *string                                  `pulumi:"description"`
+	DistributeListIn               *string                                  `pulumi:"distributeListIn"`
+	DistributeListIn6              *string                                  `pulumi:"distributeListIn6"`
+	DistributeListInVpnv4          *string                                  `pulumi:"distributeListInVpnv4"`
+	DistributeListOut              *string                                  `pulumi:"distributeListOut"`
+	DistributeListOut6             *string                                  `pulumi:"distributeListOut6"`
+	DistributeListOutVpnv4         *string                                  `pulumi:"distributeListOutVpnv4"`
+	DontCapabilityNegotiate        *string                                  `pulumi:"dontCapabilityNegotiate"`
+	DynamicSortSubtable            *string                                  `pulumi:"dynamicSortSubtable"`
+	EbgpEnforceMultihop            *string                                  `pulumi:"ebgpEnforceMultihop"`
+	EbgpMultihopTtl                *int                                     `pulumi:"ebgpMultihopTtl"`
+	FilterListIn                   *string                                  `pulumi:"filterListIn"`
+	FilterListIn6                  *string                                  `pulumi:"filterListIn6"`
+	FilterListOut                  *string                                  `pulumi:"filterListOut"`
+	FilterListOut6                 *string                                  `pulumi:"filterListOut6"`
+	HoldtimeTimer                  *int                                     `pulumi:"holdtimeTimer"`
+	Interface                      *string                                  `pulumi:"interface"`
+	Ip                             *string                                  `pulumi:"ip"`
+	KeepAliveTimer                 *int                                     `pulumi:"keepAliveTimer"`
+	LinkDownFailover               *string                                  `pulumi:"linkDownFailover"`
+	LocalAs                        *int                                     `pulumi:"localAs"`
+	LocalAsNoPrepend               *string                                  `pulumi:"localAsNoPrepend"`
+	LocalAsReplaceAs               *string                                  `pulumi:"localAsReplaceAs"`
+	MaximumPrefix                  *int                                     `pulumi:"maximumPrefix"`
+	MaximumPrefix6                 *int                                     `pulumi:"maximumPrefix6"`
+	MaximumPrefixThreshold         *int                                     `pulumi:"maximumPrefixThreshold"`
+	MaximumPrefixThreshold6        *int                                     `pulumi:"maximumPrefixThreshold6"`
+	MaximumPrefixThresholdVpnv4    *int                                     `pulumi:"maximumPrefixThresholdVpnv4"`
+	MaximumPrefixVpnv4             *int                                     `pulumi:"maximumPrefixVpnv4"`
+	MaximumPrefixWarningOnly       *string                                  `pulumi:"maximumPrefixWarningOnly"`
+	MaximumPrefixWarningOnly6      *string                                  `pulumi:"maximumPrefixWarningOnly6"`
+	MaximumPrefixWarningOnlyVpnv4  *string                                  `pulumi:"maximumPrefixWarningOnlyVpnv4"`
+	NextHopSelf                    *string                                  `pulumi:"nextHopSelf"`
+	NextHopSelf6                   *string                                  `pulumi:"nextHopSelf6"`
+	NextHopSelfRr                  *string                                  `pulumi:"nextHopSelfRr"`
+	NextHopSelfRr6                 *string                                  `pulumi:"nextHopSelfRr6"`
+	NextHopSelfVpnv4               *string                                  `pulumi:"nextHopSelfVpnv4"`
+	OverrideCapability             *string                                  `pulumi:"overrideCapability"`
+	Passive                        *string                                  `pulumi:"passive"`
+	Password                       *string                                  `pulumi:"password"`
+	PrefixListIn                   *string                                  `pulumi:"prefixListIn"`
+	PrefixListIn6                  *string                                  `pulumi:"prefixListIn6"`
+	PrefixListInVpnv4              *string                                  `pulumi:"prefixListInVpnv4"`
+	PrefixListOut                  *string                                  `pulumi:"prefixListOut"`
+	PrefixListOut6                 *string                                  `pulumi:"prefixListOut6"`
+	PrefixListOutVpnv4             *string                                  `pulumi:"prefixListOutVpnv4"`
+	RemoteAs                       *int                                     `pulumi:"remoteAs"`
+	RemovePrivateAs                *string                                  `pulumi:"removePrivateAs"`
+	RemovePrivateAs6               *string                                  `pulumi:"removePrivateAs6"`
+	RemovePrivateAsVpnv4           *string                                  `pulumi:"removePrivateAsVpnv4"`
+	RestartTime                    *int                                     `pulumi:"restartTime"`
+	RetainStaleTime                *int                                     `pulumi:"retainStaleTime"`
+	RouteMapIn                     *string                                  `pulumi:"routeMapIn"`
+	RouteMapIn6                    *string                                  `pulumi:"routeMapIn6"`
+	RouteMapInVpnv4                *string                                  `pulumi:"routeMapInVpnv4"`
+	RouteMapOut                    *string                                  `pulumi:"routeMapOut"`
+	RouteMapOut6                   *string                                  `pulumi:"routeMapOut6"`
+	RouteMapOut6Preferable         *string                                  `pulumi:"routeMapOut6Preferable"`
+	RouteMapOutPreferable          *string                                  `pulumi:"routeMapOutPreferable"`
+	RouteMapOutVpnv4               *string                                  `pulumi:"routeMapOutVpnv4"`
+	RouteMapOutVpnv4Preferable     *string                                  `pulumi:"routeMapOutVpnv4Preferable"`
+	RouteReflectorClient           *string                                  `pulumi:"routeReflectorClient"`
+	RouteReflectorClient6          *string                                  `pulumi:"routeReflectorClient6"`
+	RouteReflectorClientVpnv4      *string                                  `pulumi:"routeReflectorClientVpnv4"`
+	RouteServerClient              *string                                  `pulumi:"routeServerClient"`
+	RouteServerClient6             *string                                  `pulumi:"routeServerClient6"`
+	RouteServerClientVpnv4         *string                                  `pulumi:"routeServerClientVpnv4"`
+	SendCommunity                  *string                                  `pulumi:"sendCommunity"`
+	SendCommunity6                 *string                                  `pulumi:"sendCommunity6"`
+	SendCommunityVpnv4             *string                                  `pulumi:"sendCommunityVpnv4"`
+	Shutdown                       *string                                  `pulumi:"shutdown"`
+	SoftReconfiguration            *string                                  `pulumi:"softReconfiguration"`
+	SoftReconfiguration6           *string                                  `pulumi:"softReconfiguration6"`
+	SoftReconfigurationVpnv4       *string                                  `pulumi:"softReconfigurationVpnv4"`
+	StaleRoute                     *string                                  `pulumi:"staleRoute"`
+	StrictCapabilityMatch          *string                                  `pulumi:"strictCapabilityMatch"`
+	UnsuppressMap                  *string                                  `pulumi:"unsuppressMap"`
+	UnsuppressMap6                 *string                                  `pulumi:"unsuppressMap6"`
+	UpdateSource                   *string                                  `pulumi:"updateSource"`
+	Vdomparam                      *string                                  `pulumi:"vdomparam"`
+	Weight                         *int                                     `pulumi:"weight"`
 }
 
 type RouterbgpNeighborState struct {
-	// Enable/disable address family IPv4 for this neighbor. Valid values: `enable`, `disable`.
-	Activate pulumi.StringPtrInput
-	// Enable/disable address family IPv6 for this neighbor. Valid values: `enable`, `disable`.
-	Activate6 pulumi.StringPtrInput
-	// Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-	AdditionalPath pulumi.StringPtrInput
-	// Enable/disable IPv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-	AdditionalPath6 pulumi.StringPtrInput
-	// Number of IPv4 additional paths that can be advertised to this neighbor.
-	AdvAdditionalPath pulumi.IntPtrInput
-	// Number of IPv6 additional paths that can be advertised to this neighbor.
-	AdvAdditionalPath6 pulumi.IntPtrInput
-	// Minimum interval (sec) between sending updates.
-	AdvertisementInterval pulumi.IntPtrInput
-	// IPv4 The maximum number of occurrence of my AS number allowed.
-	AllowasIn pulumi.IntPtrInput
-	// IPv6 The maximum number of occurrence of my AS number allowed.
-	AllowasIn6 pulumi.IntPtrInput
-	// Enable/disable IPv4 Enable to allow my AS in AS path. Valid values: `enable`, `disable`.
-	AllowasInEnable pulumi.StringPtrInput
-	// Enable/disable IPv6 Enable to allow my AS in AS path. Valid values: `enable`, `disable`.
-	AllowasInEnable6 pulumi.StringPtrInput
-	// Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
-	AsOverride pulumi.StringPtrInput
-	// Enable/disable replace peer AS with own AS for IPv6. Valid values: `enable`, `disable`.
-	AsOverride6 pulumi.StringPtrInput
-	// IPv4 List of attributes that should be unchanged. Valid values: `as-path`, `med`, `next-hop`.
-	AttributeUnchanged pulumi.StringPtrInput
-	// IPv6 List of attributes that should be unchanged. Valid values: `as-path`, `med`, `next-hop`.
-	AttributeUnchanged6 pulumi.StringPtrInput
-	// Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
-	Bfd pulumi.StringPtrInput
-	// Enable/disable advertise default IPv4 route to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityDefaultOriginate pulumi.StringPtrInput
-	// Enable/disable advertise default IPv6 route to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityDefaultOriginate6 pulumi.StringPtrInput
-	// Enable/disable advertise dynamic capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityDynamic pulumi.StringPtrInput
-	// Enable/disable advertise IPv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityGracefulRestart pulumi.StringPtrInput
-	// Enable/disable advertise IPv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityGracefulRestart6 pulumi.StringPtrInput
-	// Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
-	CapabilityOrf pulumi.StringPtrInput
-	// Accept/Send IPv6 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
-	CapabilityOrf6 pulumi.StringPtrInput
-	// Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityRouteRefresh pulumi.StringPtrInput
-	// IPv6 conditional advertisement. The structure of `conditionalAdvertise6` block is documented below.
-	ConditionalAdvertise6s RouterbgpNeighborConditionalAdvertise6ArrayInput
-	// Conditional advertisement. The structure of `conditionalAdvertise` block is documented below.
-	ConditionalAdvertises RouterbgpNeighborConditionalAdvertiseArrayInput
-	// Interval (sec) for connect timer.
-	ConnectTimer pulumi.IntPtrInput
-	// Route map to specify criteria to originate IPv4 default.
-	DefaultOriginateRoutemap pulumi.StringPtrInput
-	// Route map to specify criteria to originate IPv6 default.
-	DefaultOriginateRoutemap6 pulumi.StringPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// Filter for IPv4 updates from this neighbor.
-	DistributeListIn pulumi.StringPtrInput
-	// Filter for IPv6 updates from this neighbor.
-	DistributeListIn6 pulumi.StringPtrInput
-	// Filter for IPv4 updates to this neighbor.
-	DistributeListOut pulumi.StringPtrInput
-	// Filter for IPv6 updates to this neighbor.
-	DistributeListOut6 pulumi.StringPtrInput
-	// Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
-	DontCapabilityNegotiate pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable allow multi-hop EBGP neighbors. Valid values: `enable`, `disable`.
-	EbgpEnforceMultihop pulumi.StringPtrInput
-	// EBGP multihop TTL for this peer.
-	EbgpMultihopTtl pulumi.IntPtrInput
-	// BGP filter for IPv4 inbound routes.
-	FilterListIn pulumi.StringPtrInput
-	// BGP filter for IPv6 inbound routes.
-	FilterListIn6 pulumi.StringPtrInput
-	// BGP filter for IPv4 outbound routes.
-	FilterListOut pulumi.StringPtrInput
-	// BGP filter for IPv6 outbound routes.
-	FilterListOut6 pulumi.StringPtrInput
-	// Interval (sec) before peer considered dead.
-	HoldtimeTimer pulumi.IntPtrInput
-	// Interface
-	Interface pulumi.StringPtrInput
-	// IP/IPv6 address of neighbor.
-	Ip pulumi.StringPtrInput
-	// Keep alive timer interval (sec).
-	KeepAliveTimer pulumi.IntPtrInput
-	// Enable/disable failover upon link down. Valid values: `enable`, `disable`.
-	LinkDownFailover pulumi.StringPtrInput
-	// Local AS number of neighbor.
-	LocalAs pulumi.IntPtrInput
-	// Do not prepend local-as to incoming updates. Valid values: `enable`, `disable`.
-	LocalAsNoPrepend pulumi.StringPtrInput
-	// Replace real AS with local-as in outgoing updates. Valid values: `enable`, `disable`.
-	LocalAsReplaceAs pulumi.StringPtrInput
-	// Maximum number of IPv4 prefixes to accept from this peer.
-	MaximumPrefix pulumi.IntPtrInput
-	// Maximum number of IPv6 prefixes to accept from this peer.
-	MaximumPrefix6 pulumi.IntPtrInput
-	// Maximum IPv4 prefix threshold value (1 - 100 percent).
-	MaximumPrefixThreshold pulumi.IntPtrInput
-	// Maximum IPv6 prefix threshold value (1 - 100 percent).
-	MaximumPrefixThreshold6 pulumi.IntPtrInput
-	// Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
-	MaximumPrefixWarningOnly pulumi.StringPtrInput
-	// Enable/disable IPv6 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
-	MaximumPrefixWarningOnly6 pulumi.StringPtrInput
-	// Enable/disable IPv4 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
-	NextHopSelf pulumi.StringPtrInput
-	// Enable/disable IPv6 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
-	NextHopSelf6 pulumi.StringPtrInput
-	// Enable/disable setting nexthop's address to interface's IPv4 address for route-reflector routes. Valid values: `enable`, `disable`.
-	NextHopSelfRr pulumi.StringPtrInput
-	// Enable/disable setting nexthop's address to interface's IPv6 address for route-reflector routes. Valid values: `enable`, `disable`.
-	NextHopSelfRr6 pulumi.StringPtrInput
-	// Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
-	OverrideCapability pulumi.StringPtrInput
-	// Enable/disable sending of open messages to this neighbor. Valid values: `enable`, `disable`.
-	Passive pulumi.StringPtrInput
-	// Password used in MD5 authentication.
-	Password pulumi.StringPtrInput
-	// IPv4 Inbound filter for updates from this neighbor.
-	PrefixListIn pulumi.StringPtrInput
-	// IPv6 Inbound filter for updates from this neighbor.
-	PrefixListIn6 pulumi.StringPtrInput
-	// IPv4 Outbound filter for updates to this neighbor.
-	PrefixListOut pulumi.StringPtrInput
-	// IPv6 Outbound filter for updates to this neighbor.
-	PrefixListOut6 pulumi.StringPtrInput
-	// AS number of neighbor.
-	RemoteAs pulumi.IntPtrInput
-	// Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
-	RemovePrivateAs pulumi.StringPtrInput
-	// Enable/disable remove private AS number from IPv6 outbound updates. Valid values: `enable`, `disable`.
-	RemovePrivateAs6 pulumi.StringPtrInput
-	// Graceful restart delay time (sec, 0 = global default).
-	RestartTime pulumi.IntPtrInput
-	// Time to retain stale routes.
-	RetainStaleTime pulumi.IntPtrInput
-	// IPv4 Inbound route map filter.
-	RouteMapIn pulumi.StringPtrInput
-	// IPv6 Inbound route map filter.
-	RouteMapIn6 pulumi.StringPtrInput
-	// IPv4 Outbound route map filter.
-	RouteMapOut pulumi.StringPtrInput
-	// IPv6 Outbound route map filter.
-	RouteMapOut6 pulumi.StringPtrInput
-	// IPv6 outbound route map filter if the peer is preferred.
-	RouteMapOut6Preferable pulumi.StringPtrInput
-	// IPv4 outbound route map filter if the peer is preferred.
-	RouteMapOutPreferable pulumi.StringPtrInput
-	// Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
-	RouteReflectorClient pulumi.StringPtrInput
-	// Enable/disable IPv6 AS route reflector client. Valid values: `enable`, `disable`.
-	RouteReflectorClient6 pulumi.StringPtrInput
-	// Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
-	RouteServerClient pulumi.StringPtrInput
-	// Enable/disable IPv6 AS route server client. Valid values: `enable`, `disable`.
-	RouteServerClient6 pulumi.StringPtrInput
-	// IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
-	SendCommunity pulumi.StringPtrInput
-	// IPv6 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
-	SendCommunity6 pulumi.StringPtrInput
-	// Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
-	Shutdown pulumi.StringPtrInput
-	// Enable/disable allow IPv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
-	SoftReconfiguration pulumi.StringPtrInput
-	// Enable/disable allow IPv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
-	SoftReconfiguration6 pulumi.StringPtrInput
-	// Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
-	StaleRoute pulumi.StringPtrInput
-	// Enable/disable strict capability matching. Valid values: `enable`, `disable`.
-	StrictCapabilityMatch pulumi.StringPtrInput
-	// IPv4 Route map to selectively unsuppress suppressed routes.
-	UnsuppressMap pulumi.StringPtrInput
-	// IPv6 Route map to selectively unsuppress suppressed routes.
-	UnsuppressMap6 pulumi.StringPtrInput
-	// Interface to use as source IP/IPv6 address of TCP connections.
-	UpdateSource pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Neighbor weight.
-	Weight pulumi.IntPtrInput
+	Activate                       pulumi.StringPtrInput
+	Activate6                      pulumi.StringPtrInput
+	ActivateVpnv4                  pulumi.StringPtrInput
+	AdditionalPath                 pulumi.StringPtrInput
+	AdditionalPath6                pulumi.StringPtrInput
+	AdditionalPathVpnv4            pulumi.StringPtrInput
+	AdvAdditionalPath              pulumi.IntPtrInput
+	AdvAdditionalPath6             pulumi.IntPtrInput
+	AdvAdditionalPathVpnv4         pulumi.IntPtrInput
+	AdvertisementInterval          pulumi.IntPtrInput
+	AllowasIn                      pulumi.IntPtrInput
+	AllowasIn6                     pulumi.IntPtrInput
+	AllowasInEnable                pulumi.StringPtrInput
+	AllowasInEnable6               pulumi.StringPtrInput
+	AllowasInVpnv4                 pulumi.IntPtrInput
+	AsOverride                     pulumi.StringPtrInput
+	AsOverride6                    pulumi.StringPtrInput
+	AttributeUnchanged             pulumi.StringPtrInput
+	AttributeUnchanged6            pulumi.StringPtrInput
+	AttributeUnchangedVpnv4        pulumi.StringPtrInput
+	Bfd                            pulumi.StringPtrInput
+	CapabilityDefaultOriginate     pulumi.StringPtrInput
+	CapabilityDefaultOriginate6    pulumi.StringPtrInput
+	CapabilityDynamic              pulumi.StringPtrInput
+	CapabilityGracefulRestart      pulumi.StringPtrInput
+	CapabilityGracefulRestart6     pulumi.StringPtrInput
+	CapabilityGracefulRestartVpnv4 pulumi.StringPtrInput
+	CapabilityOrf                  pulumi.StringPtrInput
+	CapabilityOrf6                 pulumi.StringPtrInput
+	CapabilityRouteRefresh         pulumi.StringPtrInput
+	ConditionalAdvertise6s         RouterbgpNeighborConditionalAdvertise6ArrayInput
+	ConditionalAdvertises          RouterbgpNeighborConditionalAdvertiseArrayInput
+	ConnectTimer                   pulumi.IntPtrInput
+	DefaultOriginateRoutemap       pulumi.StringPtrInput
+	DefaultOriginateRoutemap6      pulumi.StringPtrInput
+	Description                    pulumi.StringPtrInput
+	DistributeListIn               pulumi.StringPtrInput
+	DistributeListIn6              pulumi.StringPtrInput
+	DistributeListInVpnv4          pulumi.StringPtrInput
+	DistributeListOut              pulumi.StringPtrInput
+	DistributeListOut6             pulumi.StringPtrInput
+	DistributeListOutVpnv4         pulumi.StringPtrInput
+	DontCapabilityNegotiate        pulumi.StringPtrInput
+	DynamicSortSubtable            pulumi.StringPtrInput
+	EbgpEnforceMultihop            pulumi.StringPtrInput
+	EbgpMultihopTtl                pulumi.IntPtrInput
+	FilterListIn                   pulumi.StringPtrInput
+	FilterListIn6                  pulumi.StringPtrInput
+	FilterListOut                  pulumi.StringPtrInput
+	FilterListOut6                 pulumi.StringPtrInput
+	HoldtimeTimer                  pulumi.IntPtrInput
+	Interface                      pulumi.StringPtrInput
+	Ip                             pulumi.StringPtrInput
+	KeepAliveTimer                 pulumi.IntPtrInput
+	LinkDownFailover               pulumi.StringPtrInput
+	LocalAs                        pulumi.IntPtrInput
+	LocalAsNoPrepend               pulumi.StringPtrInput
+	LocalAsReplaceAs               pulumi.StringPtrInput
+	MaximumPrefix                  pulumi.IntPtrInput
+	MaximumPrefix6                 pulumi.IntPtrInput
+	MaximumPrefixThreshold         pulumi.IntPtrInput
+	MaximumPrefixThreshold6        pulumi.IntPtrInput
+	MaximumPrefixThresholdVpnv4    pulumi.IntPtrInput
+	MaximumPrefixVpnv4             pulumi.IntPtrInput
+	MaximumPrefixWarningOnly       pulumi.StringPtrInput
+	MaximumPrefixWarningOnly6      pulumi.StringPtrInput
+	MaximumPrefixWarningOnlyVpnv4  pulumi.StringPtrInput
+	NextHopSelf                    pulumi.StringPtrInput
+	NextHopSelf6                   pulumi.StringPtrInput
+	NextHopSelfRr                  pulumi.StringPtrInput
+	NextHopSelfRr6                 pulumi.StringPtrInput
+	NextHopSelfVpnv4               pulumi.StringPtrInput
+	OverrideCapability             pulumi.StringPtrInput
+	Passive                        pulumi.StringPtrInput
+	Password                       pulumi.StringPtrInput
+	PrefixListIn                   pulumi.StringPtrInput
+	PrefixListIn6                  pulumi.StringPtrInput
+	PrefixListInVpnv4              pulumi.StringPtrInput
+	PrefixListOut                  pulumi.StringPtrInput
+	PrefixListOut6                 pulumi.StringPtrInput
+	PrefixListOutVpnv4             pulumi.StringPtrInput
+	RemoteAs                       pulumi.IntPtrInput
+	RemovePrivateAs                pulumi.StringPtrInput
+	RemovePrivateAs6               pulumi.StringPtrInput
+	RemovePrivateAsVpnv4           pulumi.StringPtrInput
+	RestartTime                    pulumi.IntPtrInput
+	RetainStaleTime                pulumi.IntPtrInput
+	RouteMapIn                     pulumi.StringPtrInput
+	RouteMapIn6                    pulumi.StringPtrInput
+	RouteMapInVpnv4                pulumi.StringPtrInput
+	RouteMapOut                    pulumi.StringPtrInput
+	RouteMapOut6                   pulumi.StringPtrInput
+	RouteMapOut6Preferable         pulumi.StringPtrInput
+	RouteMapOutPreferable          pulumi.StringPtrInput
+	RouteMapOutVpnv4               pulumi.StringPtrInput
+	RouteMapOutVpnv4Preferable     pulumi.StringPtrInput
+	RouteReflectorClient           pulumi.StringPtrInput
+	RouteReflectorClient6          pulumi.StringPtrInput
+	RouteReflectorClientVpnv4      pulumi.StringPtrInput
+	RouteServerClient              pulumi.StringPtrInput
+	RouteServerClient6             pulumi.StringPtrInput
+	RouteServerClientVpnv4         pulumi.StringPtrInput
+	SendCommunity                  pulumi.StringPtrInput
+	SendCommunity6                 pulumi.StringPtrInput
+	SendCommunityVpnv4             pulumi.StringPtrInput
+	Shutdown                       pulumi.StringPtrInput
+	SoftReconfiguration            pulumi.StringPtrInput
+	SoftReconfiguration6           pulumi.StringPtrInput
+	SoftReconfigurationVpnv4       pulumi.StringPtrInput
+	StaleRoute                     pulumi.StringPtrInput
+	StrictCapabilityMatch          pulumi.StringPtrInput
+	UnsuppressMap                  pulumi.StringPtrInput
+	UnsuppressMap6                 pulumi.StringPtrInput
+	UpdateSource                   pulumi.StringPtrInput
+	Vdomparam                      pulumi.StringPtrInput
+	Weight                         pulumi.IntPtrInput
 }
 
 func (RouterbgpNeighborState) ElementType() reflect.Type {
@@ -642,386 +414,242 @@ func (RouterbgpNeighborState) ElementType() reflect.Type {
 }
 
 type routerbgpNeighborArgs struct {
-	// Enable/disable address family IPv4 for this neighbor. Valid values: `enable`, `disable`.
-	Activate *string `pulumi:"activate"`
-	// Enable/disable address family IPv6 for this neighbor. Valid values: `enable`, `disable`.
-	Activate6 *string `pulumi:"activate6"`
-	// Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-	AdditionalPath *string `pulumi:"additionalPath"`
-	// Enable/disable IPv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-	AdditionalPath6 *string `pulumi:"additionalPath6"`
-	// Number of IPv4 additional paths that can be advertised to this neighbor.
-	AdvAdditionalPath *int `pulumi:"advAdditionalPath"`
-	// Number of IPv6 additional paths that can be advertised to this neighbor.
-	AdvAdditionalPath6 *int `pulumi:"advAdditionalPath6"`
-	// Minimum interval (sec) between sending updates.
-	AdvertisementInterval *int `pulumi:"advertisementInterval"`
-	// IPv4 The maximum number of occurrence of my AS number allowed.
-	AllowasIn *int `pulumi:"allowasIn"`
-	// IPv6 The maximum number of occurrence of my AS number allowed.
-	AllowasIn6 *int `pulumi:"allowasIn6"`
-	// Enable/disable IPv4 Enable to allow my AS in AS path. Valid values: `enable`, `disable`.
-	AllowasInEnable *string `pulumi:"allowasInEnable"`
-	// Enable/disable IPv6 Enable to allow my AS in AS path. Valid values: `enable`, `disable`.
-	AllowasInEnable6 *string `pulumi:"allowasInEnable6"`
-	// Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
-	AsOverride *string `pulumi:"asOverride"`
-	// Enable/disable replace peer AS with own AS for IPv6. Valid values: `enable`, `disable`.
-	AsOverride6 *string `pulumi:"asOverride6"`
-	// IPv4 List of attributes that should be unchanged. Valid values: `as-path`, `med`, `next-hop`.
-	AttributeUnchanged *string `pulumi:"attributeUnchanged"`
-	// IPv6 List of attributes that should be unchanged. Valid values: `as-path`, `med`, `next-hop`.
-	AttributeUnchanged6 *string `pulumi:"attributeUnchanged6"`
-	// Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
-	Bfd *string `pulumi:"bfd"`
-	// Enable/disable advertise default IPv4 route to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityDefaultOriginate *string `pulumi:"capabilityDefaultOriginate"`
-	// Enable/disable advertise default IPv6 route to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityDefaultOriginate6 *string `pulumi:"capabilityDefaultOriginate6"`
-	// Enable/disable advertise dynamic capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityDynamic *string `pulumi:"capabilityDynamic"`
-	// Enable/disable advertise IPv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityGracefulRestart *string `pulumi:"capabilityGracefulRestart"`
-	// Enable/disable advertise IPv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityGracefulRestart6 *string `pulumi:"capabilityGracefulRestart6"`
-	// Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
-	CapabilityOrf *string `pulumi:"capabilityOrf"`
-	// Accept/Send IPv6 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
-	CapabilityOrf6 *string `pulumi:"capabilityOrf6"`
-	// Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityRouteRefresh *string `pulumi:"capabilityRouteRefresh"`
-	// IPv6 conditional advertisement. The structure of `conditionalAdvertise6` block is documented below.
-	ConditionalAdvertise6s []RouterbgpNeighborConditionalAdvertise6 `pulumi:"conditionalAdvertise6s"`
-	// Conditional advertisement. The structure of `conditionalAdvertise` block is documented below.
-	ConditionalAdvertises []RouterbgpNeighborConditionalAdvertise `pulumi:"conditionalAdvertises"`
-	// Interval (sec) for connect timer.
-	ConnectTimer *int `pulumi:"connectTimer"`
-	// Route map to specify criteria to originate IPv4 default.
-	DefaultOriginateRoutemap *string `pulumi:"defaultOriginateRoutemap"`
-	// Route map to specify criteria to originate IPv6 default.
-	DefaultOriginateRoutemap6 *string `pulumi:"defaultOriginateRoutemap6"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// Filter for IPv4 updates from this neighbor.
-	DistributeListIn *string `pulumi:"distributeListIn"`
-	// Filter for IPv6 updates from this neighbor.
-	DistributeListIn6 *string `pulumi:"distributeListIn6"`
-	// Filter for IPv4 updates to this neighbor.
-	DistributeListOut *string `pulumi:"distributeListOut"`
-	// Filter for IPv6 updates to this neighbor.
-	DistributeListOut6 *string `pulumi:"distributeListOut6"`
-	// Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
-	DontCapabilityNegotiate *string `pulumi:"dontCapabilityNegotiate"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable allow multi-hop EBGP neighbors. Valid values: `enable`, `disable`.
-	EbgpEnforceMultihop *string `pulumi:"ebgpEnforceMultihop"`
-	// EBGP multihop TTL for this peer.
-	EbgpMultihopTtl *int `pulumi:"ebgpMultihopTtl"`
-	// BGP filter for IPv4 inbound routes.
-	FilterListIn *string `pulumi:"filterListIn"`
-	// BGP filter for IPv6 inbound routes.
-	FilterListIn6 *string `pulumi:"filterListIn6"`
-	// BGP filter for IPv4 outbound routes.
-	FilterListOut *string `pulumi:"filterListOut"`
-	// BGP filter for IPv6 outbound routes.
-	FilterListOut6 *string `pulumi:"filterListOut6"`
-	// Interval (sec) before peer considered dead.
-	HoldtimeTimer *int `pulumi:"holdtimeTimer"`
-	// Interface
-	Interface *string `pulumi:"interface"`
-	// IP/IPv6 address of neighbor.
-	Ip string `pulumi:"ip"`
-	// Keep alive timer interval (sec).
-	KeepAliveTimer *int `pulumi:"keepAliveTimer"`
-	// Enable/disable failover upon link down. Valid values: `enable`, `disable`.
-	LinkDownFailover *string `pulumi:"linkDownFailover"`
-	// Local AS number of neighbor.
-	LocalAs *int `pulumi:"localAs"`
-	// Do not prepend local-as to incoming updates. Valid values: `enable`, `disable`.
-	LocalAsNoPrepend *string `pulumi:"localAsNoPrepend"`
-	// Replace real AS with local-as in outgoing updates. Valid values: `enable`, `disable`.
-	LocalAsReplaceAs *string `pulumi:"localAsReplaceAs"`
-	// Maximum number of IPv4 prefixes to accept from this peer.
-	MaximumPrefix *int `pulumi:"maximumPrefix"`
-	// Maximum number of IPv6 prefixes to accept from this peer.
-	MaximumPrefix6 *int `pulumi:"maximumPrefix6"`
-	// Maximum IPv4 prefix threshold value (1 - 100 percent).
-	MaximumPrefixThreshold *int `pulumi:"maximumPrefixThreshold"`
-	// Maximum IPv6 prefix threshold value (1 - 100 percent).
-	MaximumPrefixThreshold6 *int `pulumi:"maximumPrefixThreshold6"`
-	// Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
-	MaximumPrefixWarningOnly *string `pulumi:"maximumPrefixWarningOnly"`
-	// Enable/disable IPv6 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
-	MaximumPrefixWarningOnly6 *string `pulumi:"maximumPrefixWarningOnly6"`
-	// Enable/disable IPv4 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
-	NextHopSelf *string `pulumi:"nextHopSelf"`
-	// Enable/disable IPv6 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
-	NextHopSelf6 *string `pulumi:"nextHopSelf6"`
-	// Enable/disable setting nexthop's address to interface's IPv4 address for route-reflector routes. Valid values: `enable`, `disable`.
-	NextHopSelfRr *string `pulumi:"nextHopSelfRr"`
-	// Enable/disable setting nexthop's address to interface's IPv6 address for route-reflector routes. Valid values: `enable`, `disable`.
-	NextHopSelfRr6 *string `pulumi:"nextHopSelfRr6"`
-	// Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
-	OverrideCapability *string `pulumi:"overrideCapability"`
-	// Enable/disable sending of open messages to this neighbor. Valid values: `enable`, `disable`.
-	Passive *string `pulumi:"passive"`
-	// Password used in MD5 authentication.
-	Password *string `pulumi:"password"`
-	// IPv4 Inbound filter for updates from this neighbor.
-	PrefixListIn *string `pulumi:"prefixListIn"`
-	// IPv6 Inbound filter for updates from this neighbor.
-	PrefixListIn6 *string `pulumi:"prefixListIn6"`
-	// IPv4 Outbound filter for updates to this neighbor.
-	PrefixListOut *string `pulumi:"prefixListOut"`
-	// IPv6 Outbound filter for updates to this neighbor.
-	PrefixListOut6 *string `pulumi:"prefixListOut6"`
-	// AS number of neighbor.
-	RemoteAs *int `pulumi:"remoteAs"`
-	// Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
-	RemovePrivateAs *string `pulumi:"removePrivateAs"`
-	// Enable/disable remove private AS number from IPv6 outbound updates. Valid values: `enable`, `disable`.
-	RemovePrivateAs6 *string `pulumi:"removePrivateAs6"`
-	// Graceful restart delay time (sec, 0 = global default).
-	RestartTime *int `pulumi:"restartTime"`
-	// Time to retain stale routes.
-	RetainStaleTime *int `pulumi:"retainStaleTime"`
-	// IPv4 Inbound route map filter.
-	RouteMapIn *string `pulumi:"routeMapIn"`
-	// IPv6 Inbound route map filter.
-	RouteMapIn6 *string `pulumi:"routeMapIn6"`
-	// IPv4 Outbound route map filter.
-	RouteMapOut *string `pulumi:"routeMapOut"`
-	// IPv6 Outbound route map filter.
-	RouteMapOut6 *string `pulumi:"routeMapOut6"`
-	// IPv6 outbound route map filter if the peer is preferred.
-	RouteMapOut6Preferable *string `pulumi:"routeMapOut6Preferable"`
-	// IPv4 outbound route map filter if the peer is preferred.
-	RouteMapOutPreferable *string `pulumi:"routeMapOutPreferable"`
-	// Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
-	RouteReflectorClient *string `pulumi:"routeReflectorClient"`
-	// Enable/disable IPv6 AS route reflector client. Valid values: `enable`, `disable`.
-	RouteReflectorClient6 *string `pulumi:"routeReflectorClient6"`
-	// Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
-	RouteServerClient *string `pulumi:"routeServerClient"`
-	// Enable/disable IPv6 AS route server client. Valid values: `enable`, `disable`.
-	RouteServerClient6 *string `pulumi:"routeServerClient6"`
-	// IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
-	SendCommunity *string `pulumi:"sendCommunity"`
-	// IPv6 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
-	SendCommunity6 *string `pulumi:"sendCommunity6"`
-	// Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
-	Shutdown *string `pulumi:"shutdown"`
-	// Enable/disable allow IPv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
-	SoftReconfiguration *string `pulumi:"softReconfiguration"`
-	// Enable/disable allow IPv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
-	SoftReconfiguration6 *string `pulumi:"softReconfiguration6"`
-	// Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
-	StaleRoute *string `pulumi:"staleRoute"`
-	// Enable/disable strict capability matching. Valid values: `enable`, `disable`.
-	StrictCapabilityMatch *string `pulumi:"strictCapabilityMatch"`
-	// IPv4 Route map to selectively unsuppress suppressed routes.
-	UnsuppressMap *string `pulumi:"unsuppressMap"`
-	// IPv6 Route map to selectively unsuppress suppressed routes.
-	UnsuppressMap6 *string `pulumi:"unsuppressMap6"`
-	// Interface to use as source IP/IPv6 address of TCP connections.
-	UpdateSource *string `pulumi:"updateSource"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Neighbor weight.
-	Weight *int `pulumi:"weight"`
+	Activate                       *string                                  `pulumi:"activate"`
+	Activate6                      *string                                  `pulumi:"activate6"`
+	ActivateVpnv4                  *string                                  `pulumi:"activateVpnv4"`
+	AdditionalPath                 *string                                  `pulumi:"additionalPath"`
+	AdditionalPath6                *string                                  `pulumi:"additionalPath6"`
+	AdditionalPathVpnv4            *string                                  `pulumi:"additionalPathVpnv4"`
+	AdvAdditionalPath              *int                                     `pulumi:"advAdditionalPath"`
+	AdvAdditionalPath6             *int                                     `pulumi:"advAdditionalPath6"`
+	AdvAdditionalPathVpnv4         *int                                     `pulumi:"advAdditionalPathVpnv4"`
+	AdvertisementInterval          *int                                     `pulumi:"advertisementInterval"`
+	AllowasIn                      *int                                     `pulumi:"allowasIn"`
+	AllowasIn6                     *int                                     `pulumi:"allowasIn6"`
+	AllowasInEnable                *string                                  `pulumi:"allowasInEnable"`
+	AllowasInEnable6               *string                                  `pulumi:"allowasInEnable6"`
+	AllowasInVpnv4                 *int                                     `pulumi:"allowasInVpnv4"`
+	AsOverride                     *string                                  `pulumi:"asOverride"`
+	AsOverride6                    *string                                  `pulumi:"asOverride6"`
+	AttributeUnchanged             *string                                  `pulumi:"attributeUnchanged"`
+	AttributeUnchanged6            *string                                  `pulumi:"attributeUnchanged6"`
+	AttributeUnchangedVpnv4        *string                                  `pulumi:"attributeUnchangedVpnv4"`
+	Bfd                            *string                                  `pulumi:"bfd"`
+	CapabilityDefaultOriginate     *string                                  `pulumi:"capabilityDefaultOriginate"`
+	CapabilityDefaultOriginate6    *string                                  `pulumi:"capabilityDefaultOriginate6"`
+	CapabilityDynamic              *string                                  `pulumi:"capabilityDynamic"`
+	CapabilityGracefulRestart      *string                                  `pulumi:"capabilityGracefulRestart"`
+	CapabilityGracefulRestart6     *string                                  `pulumi:"capabilityGracefulRestart6"`
+	CapabilityGracefulRestartVpnv4 *string                                  `pulumi:"capabilityGracefulRestartVpnv4"`
+	CapabilityOrf                  *string                                  `pulumi:"capabilityOrf"`
+	CapabilityOrf6                 *string                                  `pulumi:"capabilityOrf6"`
+	CapabilityRouteRefresh         *string                                  `pulumi:"capabilityRouteRefresh"`
+	ConditionalAdvertise6s         []RouterbgpNeighborConditionalAdvertise6 `pulumi:"conditionalAdvertise6s"`
+	ConditionalAdvertises          []RouterbgpNeighborConditionalAdvertise  `pulumi:"conditionalAdvertises"`
+	ConnectTimer                   *int                                     `pulumi:"connectTimer"`
+	DefaultOriginateRoutemap       *string                                  `pulumi:"defaultOriginateRoutemap"`
+	DefaultOriginateRoutemap6      *string                                  `pulumi:"defaultOriginateRoutemap6"`
+	Description                    *string                                  `pulumi:"description"`
+	DistributeListIn               *string                                  `pulumi:"distributeListIn"`
+	DistributeListIn6              *string                                  `pulumi:"distributeListIn6"`
+	DistributeListInVpnv4          *string                                  `pulumi:"distributeListInVpnv4"`
+	DistributeListOut              *string                                  `pulumi:"distributeListOut"`
+	DistributeListOut6             *string                                  `pulumi:"distributeListOut6"`
+	DistributeListOutVpnv4         *string                                  `pulumi:"distributeListOutVpnv4"`
+	DontCapabilityNegotiate        *string                                  `pulumi:"dontCapabilityNegotiate"`
+	DynamicSortSubtable            *string                                  `pulumi:"dynamicSortSubtable"`
+	EbgpEnforceMultihop            *string                                  `pulumi:"ebgpEnforceMultihop"`
+	EbgpMultihopTtl                *int                                     `pulumi:"ebgpMultihopTtl"`
+	FilterListIn                   *string                                  `pulumi:"filterListIn"`
+	FilterListIn6                  *string                                  `pulumi:"filterListIn6"`
+	FilterListOut                  *string                                  `pulumi:"filterListOut"`
+	FilterListOut6                 *string                                  `pulumi:"filterListOut6"`
+	HoldtimeTimer                  *int                                     `pulumi:"holdtimeTimer"`
+	Interface                      *string                                  `pulumi:"interface"`
+	Ip                             string                                   `pulumi:"ip"`
+	KeepAliveTimer                 *int                                     `pulumi:"keepAliveTimer"`
+	LinkDownFailover               *string                                  `pulumi:"linkDownFailover"`
+	LocalAs                        *int                                     `pulumi:"localAs"`
+	LocalAsNoPrepend               *string                                  `pulumi:"localAsNoPrepend"`
+	LocalAsReplaceAs               *string                                  `pulumi:"localAsReplaceAs"`
+	MaximumPrefix                  *int                                     `pulumi:"maximumPrefix"`
+	MaximumPrefix6                 *int                                     `pulumi:"maximumPrefix6"`
+	MaximumPrefixThreshold         *int                                     `pulumi:"maximumPrefixThreshold"`
+	MaximumPrefixThreshold6        *int                                     `pulumi:"maximumPrefixThreshold6"`
+	MaximumPrefixThresholdVpnv4    *int                                     `pulumi:"maximumPrefixThresholdVpnv4"`
+	MaximumPrefixVpnv4             *int                                     `pulumi:"maximumPrefixVpnv4"`
+	MaximumPrefixWarningOnly       *string                                  `pulumi:"maximumPrefixWarningOnly"`
+	MaximumPrefixWarningOnly6      *string                                  `pulumi:"maximumPrefixWarningOnly6"`
+	MaximumPrefixWarningOnlyVpnv4  *string                                  `pulumi:"maximumPrefixWarningOnlyVpnv4"`
+	NextHopSelf                    *string                                  `pulumi:"nextHopSelf"`
+	NextHopSelf6                   *string                                  `pulumi:"nextHopSelf6"`
+	NextHopSelfRr                  *string                                  `pulumi:"nextHopSelfRr"`
+	NextHopSelfRr6                 *string                                  `pulumi:"nextHopSelfRr6"`
+	NextHopSelfVpnv4               *string                                  `pulumi:"nextHopSelfVpnv4"`
+	OverrideCapability             *string                                  `pulumi:"overrideCapability"`
+	Passive                        *string                                  `pulumi:"passive"`
+	Password                       *string                                  `pulumi:"password"`
+	PrefixListIn                   *string                                  `pulumi:"prefixListIn"`
+	PrefixListIn6                  *string                                  `pulumi:"prefixListIn6"`
+	PrefixListInVpnv4              *string                                  `pulumi:"prefixListInVpnv4"`
+	PrefixListOut                  *string                                  `pulumi:"prefixListOut"`
+	PrefixListOut6                 *string                                  `pulumi:"prefixListOut6"`
+	PrefixListOutVpnv4             *string                                  `pulumi:"prefixListOutVpnv4"`
+	RemoteAs                       *int                                     `pulumi:"remoteAs"`
+	RemovePrivateAs                *string                                  `pulumi:"removePrivateAs"`
+	RemovePrivateAs6               *string                                  `pulumi:"removePrivateAs6"`
+	RemovePrivateAsVpnv4           *string                                  `pulumi:"removePrivateAsVpnv4"`
+	RestartTime                    *int                                     `pulumi:"restartTime"`
+	RetainStaleTime                *int                                     `pulumi:"retainStaleTime"`
+	RouteMapIn                     *string                                  `pulumi:"routeMapIn"`
+	RouteMapIn6                    *string                                  `pulumi:"routeMapIn6"`
+	RouteMapInVpnv4                *string                                  `pulumi:"routeMapInVpnv4"`
+	RouteMapOut                    *string                                  `pulumi:"routeMapOut"`
+	RouteMapOut6                   *string                                  `pulumi:"routeMapOut6"`
+	RouteMapOut6Preferable         *string                                  `pulumi:"routeMapOut6Preferable"`
+	RouteMapOutPreferable          *string                                  `pulumi:"routeMapOutPreferable"`
+	RouteMapOutVpnv4               *string                                  `pulumi:"routeMapOutVpnv4"`
+	RouteMapOutVpnv4Preferable     *string                                  `pulumi:"routeMapOutVpnv4Preferable"`
+	RouteReflectorClient           *string                                  `pulumi:"routeReflectorClient"`
+	RouteReflectorClient6          *string                                  `pulumi:"routeReflectorClient6"`
+	RouteReflectorClientVpnv4      *string                                  `pulumi:"routeReflectorClientVpnv4"`
+	RouteServerClient              *string                                  `pulumi:"routeServerClient"`
+	RouteServerClient6             *string                                  `pulumi:"routeServerClient6"`
+	RouteServerClientVpnv4         *string                                  `pulumi:"routeServerClientVpnv4"`
+	SendCommunity                  *string                                  `pulumi:"sendCommunity"`
+	SendCommunity6                 *string                                  `pulumi:"sendCommunity6"`
+	SendCommunityVpnv4             *string                                  `pulumi:"sendCommunityVpnv4"`
+	Shutdown                       *string                                  `pulumi:"shutdown"`
+	SoftReconfiguration            *string                                  `pulumi:"softReconfiguration"`
+	SoftReconfiguration6           *string                                  `pulumi:"softReconfiguration6"`
+	SoftReconfigurationVpnv4       *string                                  `pulumi:"softReconfigurationVpnv4"`
+	StaleRoute                     *string                                  `pulumi:"staleRoute"`
+	StrictCapabilityMatch          *string                                  `pulumi:"strictCapabilityMatch"`
+	UnsuppressMap                  *string                                  `pulumi:"unsuppressMap"`
+	UnsuppressMap6                 *string                                  `pulumi:"unsuppressMap6"`
+	UpdateSource                   *string                                  `pulumi:"updateSource"`
+	Vdomparam                      *string                                  `pulumi:"vdomparam"`
+	Weight                         *int                                     `pulumi:"weight"`
 }
 
 // The set of arguments for constructing a RouterbgpNeighbor resource.
 type RouterbgpNeighborArgs struct {
-	// Enable/disable address family IPv4 for this neighbor. Valid values: `enable`, `disable`.
-	Activate pulumi.StringPtrInput
-	// Enable/disable address family IPv6 for this neighbor. Valid values: `enable`, `disable`.
-	Activate6 pulumi.StringPtrInput
-	// Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-	AdditionalPath pulumi.StringPtrInput
-	// Enable/disable IPv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
-	AdditionalPath6 pulumi.StringPtrInput
-	// Number of IPv4 additional paths that can be advertised to this neighbor.
-	AdvAdditionalPath pulumi.IntPtrInput
-	// Number of IPv6 additional paths that can be advertised to this neighbor.
-	AdvAdditionalPath6 pulumi.IntPtrInput
-	// Minimum interval (sec) between sending updates.
-	AdvertisementInterval pulumi.IntPtrInput
-	// IPv4 The maximum number of occurrence of my AS number allowed.
-	AllowasIn pulumi.IntPtrInput
-	// IPv6 The maximum number of occurrence of my AS number allowed.
-	AllowasIn6 pulumi.IntPtrInput
-	// Enable/disable IPv4 Enable to allow my AS in AS path. Valid values: `enable`, `disable`.
-	AllowasInEnable pulumi.StringPtrInput
-	// Enable/disable IPv6 Enable to allow my AS in AS path. Valid values: `enable`, `disable`.
-	AllowasInEnable6 pulumi.StringPtrInput
-	// Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
-	AsOverride pulumi.StringPtrInput
-	// Enable/disable replace peer AS with own AS for IPv6. Valid values: `enable`, `disable`.
-	AsOverride6 pulumi.StringPtrInput
-	// IPv4 List of attributes that should be unchanged. Valid values: `as-path`, `med`, `next-hop`.
-	AttributeUnchanged pulumi.StringPtrInput
-	// IPv6 List of attributes that should be unchanged. Valid values: `as-path`, `med`, `next-hop`.
-	AttributeUnchanged6 pulumi.StringPtrInput
-	// Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
-	Bfd pulumi.StringPtrInput
-	// Enable/disable advertise default IPv4 route to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityDefaultOriginate pulumi.StringPtrInput
-	// Enable/disable advertise default IPv6 route to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityDefaultOriginate6 pulumi.StringPtrInput
-	// Enable/disable advertise dynamic capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityDynamic pulumi.StringPtrInput
-	// Enable/disable advertise IPv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityGracefulRestart pulumi.StringPtrInput
-	// Enable/disable advertise IPv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityGracefulRestart6 pulumi.StringPtrInput
-	// Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
-	CapabilityOrf pulumi.StringPtrInput
-	// Accept/Send IPv6 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
-	CapabilityOrf6 pulumi.StringPtrInput
-	// Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
-	CapabilityRouteRefresh pulumi.StringPtrInput
-	// IPv6 conditional advertisement. The structure of `conditionalAdvertise6` block is documented below.
-	ConditionalAdvertise6s RouterbgpNeighborConditionalAdvertise6ArrayInput
-	// Conditional advertisement. The structure of `conditionalAdvertise` block is documented below.
-	ConditionalAdvertises RouterbgpNeighborConditionalAdvertiseArrayInput
-	// Interval (sec) for connect timer.
-	ConnectTimer pulumi.IntPtrInput
-	// Route map to specify criteria to originate IPv4 default.
-	DefaultOriginateRoutemap pulumi.StringPtrInput
-	// Route map to specify criteria to originate IPv6 default.
-	DefaultOriginateRoutemap6 pulumi.StringPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// Filter for IPv4 updates from this neighbor.
-	DistributeListIn pulumi.StringPtrInput
-	// Filter for IPv6 updates from this neighbor.
-	DistributeListIn6 pulumi.StringPtrInput
-	// Filter for IPv4 updates to this neighbor.
-	DistributeListOut pulumi.StringPtrInput
-	// Filter for IPv6 updates to this neighbor.
-	DistributeListOut6 pulumi.StringPtrInput
-	// Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
-	DontCapabilityNegotiate pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable allow multi-hop EBGP neighbors. Valid values: `enable`, `disable`.
-	EbgpEnforceMultihop pulumi.StringPtrInput
-	// EBGP multihop TTL for this peer.
-	EbgpMultihopTtl pulumi.IntPtrInput
-	// BGP filter for IPv4 inbound routes.
-	FilterListIn pulumi.StringPtrInput
-	// BGP filter for IPv6 inbound routes.
-	FilterListIn6 pulumi.StringPtrInput
-	// BGP filter for IPv4 outbound routes.
-	FilterListOut pulumi.StringPtrInput
-	// BGP filter for IPv6 outbound routes.
-	FilterListOut6 pulumi.StringPtrInput
-	// Interval (sec) before peer considered dead.
-	HoldtimeTimer pulumi.IntPtrInput
-	// Interface
-	Interface pulumi.StringPtrInput
-	// IP/IPv6 address of neighbor.
-	Ip pulumi.StringInput
-	// Keep alive timer interval (sec).
-	KeepAliveTimer pulumi.IntPtrInput
-	// Enable/disable failover upon link down. Valid values: `enable`, `disable`.
-	LinkDownFailover pulumi.StringPtrInput
-	// Local AS number of neighbor.
-	LocalAs pulumi.IntPtrInput
-	// Do not prepend local-as to incoming updates. Valid values: `enable`, `disable`.
-	LocalAsNoPrepend pulumi.StringPtrInput
-	// Replace real AS with local-as in outgoing updates. Valid values: `enable`, `disable`.
-	LocalAsReplaceAs pulumi.StringPtrInput
-	// Maximum number of IPv4 prefixes to accept from this peer.
-	MaximumPrefix pulumi.IntPtrInput
-	// Maximum number of IPv6 prefixes to accept from this peer.
-	MaximumPrefix6 pulumi.IntPtrInput
-	// Maximum IPv4 prefix threshold value (1 - 100 percent).
-	MaximumPrefixThreshold pulumi.IntPtrInput
-	// Maximum IPv6 prefix threshold value (1 - 100 percent).
-	MaximumPrefixThreshold6 pulumi.IntPtrInput
-	// Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
-	MaximumPrefixWarningOnly pulumi.StringPtrInput
-	// Enable/disable IPv6 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
-	MaximumPrefixWarningOnly6 pulumi.StringPtrInput
-	// Enable/disable IPv4 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
-	NextHopSelf pulumi.StringPtrInput
-	// Enable/disable IPv6 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
-	NextHopSelf6 pulumi.StringPtrInput
-	// Enable/disable setting nexthop's address to interface's IPv4 address for route-reflector routes. Valid values: `enable`, `disable`.
-	NextHopSelfRr pulumi.StringPtrInput
-	// Enable/disable setting nexthop's address to interface's IPv6 address for route-reflector routes. Valid values: `enable`, `disable`.
-	NextHopSelfRr6 pulumi.StringPtrInput
-	// Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
-	OverrideCapability pulumi.StringPtrInput
-	// Enable/disable sending of open messages to this neighbor. Valid values: `enable`, `disable`.
-	Passive pulumi.StringPtrInput
-	// Password used in MD5 authentication.
-	Password pulumi.StringPtrInput
-	// IPv4 Inbound filter for updates from this neighbor.
-	PrefixListIn pulumi.StringPtrInput
-	// IPv6 Inbound filter for updates from this neighbor.
-	PrefixListIn6 pulumi.StringPtrInput
-	// IPv4 Outbound filter for updates to this neighbor.
-	PrefixListOut pulumi.StringPtrInput
-	// IPv6 Outbound filter for updates to this neighbor.
-	PrefixListOut6 pulumi.StringPtrInput
-	// AS number of neighbor.
-	RemoteAs pulumi.IntPtrInput
-	// Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
-	RemovePrivateAs pulumi.StringPtrInput
-	// Enable/disable remove private AS number from IPv6 outbound updates. Valid values: `enable`, `disable`.
-	RemovePrivateAs6 pulumi.StringPtrInput
-	// Graceful restart delay time (sec, 0 = global default).
-	RestartTime pulumi.IntPtrInput
-	// Time to retain stale routes.
-	RetainStaleTime pulumi.IntPtrInput
-	// IPv4 Inbound route map filter.
-	RouteMapIn pulumi.StringPtrInput
-	// IPv6 Inbound route map filter.
-	RouteMapIn6 pulumi.StringPtrInput
-	// IPv4 Outbound route map filter.
-	RouteMapOut pulumi.StringPtrInput
-	// IPv6 Outbound route map filter.
-	RouteMapOut6 pulumi.StringPtrInput
-	// IPv6 outbound route map filter if the peer is preferred.
-	RouteMapOut6Preferable pulumi.StringPtrInput
-	// IPv4 outbound route map filter if the peer is preferred.
-	RouteMapOutPreferable pulumi.StringPtrInput
-	// Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
-	RouteReflectorClient pulumi.StringPtrInput
-	// Enable/disable IPv6 AS route reflector client. Valid values: `enable`, `disable`.
-	RouteReflectorClient6 pulumi.StringPtrInput
-	// Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
-	RouteServerClient pulumi.StringPtrInput
-	// Enable/disable IPv6 AS route server client. Valid values: `enable`, `disable`.
-	RouteServerClient6 pulumi.StringPtrInput
-	// IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
-	SendCommunity pulumi.StringPtrInput
-	// IPv6 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
-	SendCommunity6 pulumi.StringPtrInput
-	// Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
-	Shutdown pulumi.StringPtrInput
-	// Enable/disable allow IPv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
-	SoftReconfiguration pulumi.StringPtrInput
-	// Enable/disable allow IPv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
-	SoftReconfiguration6 pulumi.StringPtrInput
-	// Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
-	StaleRoute pulumi.StringPtrInput
-	// Enable/disable strict capability matching. Valid values: `enable`, `disable`.
-	StrictCapabilityMatch pulumi.StringPtrInput
-	// IPv4 Route map to selectively unsuppress suppressed routes.
-	UnsuppressMap pulumi.StringPtrInput
-	// IPv6 Route map to selectively unsuppress suppressed routes.
-	UnsuppressMap6 pulumi.StringPtrInput
-	// Interface to use as source IP/IPv6 address of TCP connections.
-	UpdateSource pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Neighbor weight.
-	Weight pulumi.IntPtrInput
+	Activate                       pulumi.StringPtrInput
+	Activate6                      pulumi.StringPtrInput
+	ActivateVpnv4                  pulumi.StringPtrInput
+	AdditionalPath                 pulumi.StringPtrInput
+	AdditionalPath6                pulumi.StringPtrInput
+	AdditionalPathVpnv4            pulumi.StringPtrInput
+	AdvAdditionalPath              pulumi.IntPtrInput
+	AdvAdditionalPath6             pulumi.IntPtrInput
+	AdvAdditionalPathVpnv4         pulumi.IntPtrInput
+	AdvertisementInterval          pulumi.IntPtrInput
+	AllowasIn                      pulumi.IntPtrInput
+	AllowasIn6                     pulumi.IntPtrInput
+	AllowasInEnable                pulumi.StringPtrInput
+	AllowasInEnable6               pulumi.StringPtrInput
+	AllowasInVpnv4                 pulumi.IntPtrInput
+	AsOverride                     pulumi.StringPtrInput
+	AsOverride6                    pulumi.StringPtrInput
+	AttributeUnchanged             pulumi.StringPtrInput
+	AttributeUnchanged6            pulumi.StringPtrInput
+	AttributeUnchangedVpnv4        pulumi.StringPtrInput
+	Bfd                            pulumi.StringPtrInput
+	CapabilityDefaultOriginate     pulumi.StringPtrInput
+	CapabilityDefaultOriginate6    pulumi.StringPtrInput
+	CapabilityDynamic              pulumi.StringPtrInput
+	CapabilityGracefulRestart      pulumi.StringPtrInput
+	CapabilityGracefulRestart6     pulumi.StringPtrInput
+	CapabilityGracefulRestartVpnv4 pulumi.StringPtrInput
+	CapabilityOrf                  pulumi.StringPtrInput
+	CapabilityOrf6                 pulumi.StringPtrInput
+	CapabilityRouteRefresh         pulumi.StringPtrInput
+	ConditionalAdvertise6s         RouterbgpNeighborConditionalAdvertise6ArrayInput
+	ConditionalAdvertises          RouterbgpNeighborConditionalAdvertiseArrayInput
+	ConnectTimer                   pulumi.IntPtrInput
+	DefaultOriginateRoutemap       pulumi.StringPtrInput
+	DefaultOriginateRoutemap6      pulumi.StringPtrInput
+	Description                    pulumi.StringPtrInput
+	DistributeListIn               pulumi.StringPtrInput
+	DistributeListIn6              pulumi.StringPtrInput
+	DistributeListInVpnv4          pulumi.StringPtrInput
+	DistributeListOut              pulumi.StringPtrInput
+	DistributeListOut6             pulumi.StringPtrInput
+	DistributeListOutVpnv4         pulumi.StringPtrInput
+	DontCapabilityNegotiate        pulumi.StringPtrInput
+	DynamicSortSubtable            pulumi.StringPtrInput
+	EbgpEnforceMultihop            pulumi.StringPtrInput
+	EbgpMultihopTtl                pulumi.IntPtrInput
+	FilterListIn                   pulumi.StringPtrInput
+	FilterListIn6                  pulumi.StringPtrInput
+	FilterListOut                  pulumi.StringPtrInput
+	FilterListOut6                 pulumi.StringPtrInput
+	HoldtimeTimer                  pulumi.IntPtrInput
+	Interface                      pulumi.StringPtrInput
+	Ip                             pulumi.StringInput
+	KeepAliveTimer                 pulumi.IntPtrInput
+	LinkDownFailover               pulumi.StringPtrInput
+	LocalAs                        pulumi.IntPtrInput
+	LocalAsNoPrepend               pulumi.StringPtrInput
+	LocalAsReplaceAs               pulumi.StringPtrInput
+	MaximumPrefix                  pulumi.IntPtrInput
+	MaximumPrefix6                 pulumi.IntPtrInput
+	MaximumPrefixThreshold         pulumi.IntPtrInput
+	MaximumPrefixThreshold6        pulumi.IntPtrInput
+	MaximumPrefixThresholdVpnv4    pulumi.IntPtrInput
+	MaximumPrefixVpnv4             pulumi.IntPtrInput
+	MaximumPrefixWarningOnly       pulumi.StringPtrInput
+	MaximumPrefixWarningOnly6      pulumi.StringPtrInput
+	MaximumPrefixWarningOnlyVpnv4  pulumi.StringPtrInput
+	NextHopSelf                    pulumi.StringPtrInput
+	NextHopSelf6                   pulumi.StringPtrInput
+	NextHopSelfRr                  pulumi.StringPtrInput
+	NextHopSelfRr6                 pulumi.StringPtrInput
+	NextHopSelfVpnv4               pulumi.StringPtrInput
+	OverrideCapability             pulumi.StringPtrInput
+	Passive                        pulumi.StringPtrInput
+	Password                       pulumi.StringPtrInput
+	PrefixListIn                   pulumi.StringPtrInput
+	PrefixListIn6                  pulumi.StringPtrInput
+	PrefixListInVpnv4              pulumi.StringPtrInput
+	PrefixListOut                  pulumi.StringPtrInput
+	PrefixListOut6                 pulumi.StringPtrInput
+	PrefixListOutVpnv4             pulumi.StringPtrInput
+	RemoteAs                       pulumi.IntPtrInput
+	RemovePrivateAs                pulumi.StringPtrInput
+	RemovePrivateAs6               pulumi.StringPtrInput
+	RemovePrivateAsVpnv4           pulumi.StringPtrInput
+	RestartTime                    pulumi.IntPtrInput
+	RetainStaleTime                pulumi.IntPtrInput
+	RouteMapIn                     pulumi.StringPtrInput
+	RouteMapIn6                    pulumi.StringPtrInput
+	RouteMapInVpnv4                pulumi.StringPtrInput
+	RouteMapOut                    pulumi.StringPtrInput
+	RouteMapOut6                   pulumi.StringPtrInput
+	RouteMapOut6Preferable         pulumi.StringPtrInput
+	RouteMapOutPreferable          pulumi.StringPtrInput
+	RouteMapOutVpnv4               pulumi.StringPtrInput
+	RouteMapOutVpnv4Preferable     pulumi.StringPtrInput
+	RouteReflectorClient           pulumi.StringPtrInput
+	RouteReflectorClient6          pulumi.StringPtrInput
+	RouteReflectorClientVpnv4      pulumi.StringPtrInput
+	RouteServerClient              pulumi.StringPtrInput
+	RouteServerClient6             pulumi.StringPtrInput
+	RouteServerClientVpnv4         pulumi.StringPtrInput
+	SendCommunity                  pulumi.StringPtrInput
+	SendCommunity6                 pulumi.StringPtrInput
+	SendCommunityVpnv4             pulumi.StringPtrInput
+	Shutdown                       pulumi.StringPtrInput
+	SoftReconfiguration            pulumi.StringPtrInput
+	SoftReconfiguration6           pulumi.StringPtrInput
+	SoftReconfigurationVpnv4       pulumi.StringPtrInput
+	StaleRoute                     pulumi.StringPtrInput
+	StrictCapabilityMatch          pulumi.StringPtrInput
+	UnsuppressMap                  pulumi.StringPtrInput
+	UnsuppressMap6                 pulumi.StringPtrInput
+	UpdateSource                   pulumi.StringPtrInput
+	Vdomparam                      pulumi.StringPtrInput
+	Weight                         pulumi.IntPtrInput
 }
 
 func (RouterbgpNeighborArgs) ElementType() reflect.Type {
@@ -1050,7 +678,7 @@ func (i *RouterbgpNeighbor) ToRouterbgpNeighborOutputWithContext(ctx context.Con
 // RouterbgpNeighborArrayInput is an input type that accepts RouterbgpNeighborArray and RouterbgpNeighborArrayOutput values.
 // You can construct a concrete instance of `RouterbgpNeighborArrayInput` via:
 //
-//          RouterbgpNeighborArray{ RouterbgpNeighborArgs{...} }
+//	RouterbgpNeighborArray{ RouterbgpNeighborArgs{...} }
 type RouterbgpNeighborArrayInput interface {
 	pulumi.Input
 
@@ -1075,7 +703,7 @@ func (i RouterbgpNeighborArray) ToRouterbgpNeighborArrayOutputWithContext(ctx co
 // RouterbgpNeighborMapInput is an input type that accepts RouterbgpNeighborMap and RouterbgpNeighborMapOutput values.
 // You can construct a concrete instance of `RouterbgpNeighborMapInput` via:
 //
-//          RouterbgpNeighborMap{ "key": RouterbgpNeighborArgs{...} }
+//	RouterbgpNeighborMap{ "key": RouterbgpNeighborArgs{...} }
 type RouterbgpNeighborMapInput interface {
 	pulumi.Input
 
@@ -1109,6 +737,474 @@ func (o RouterbgpNeighborOutput) ToRouterbgpNeighborOutput() RouterbgpNeighborOu
 
 func (o RouterbgpNeighborOutput) ToRouterbgpNeighborOutputWithContext(ctx context.Context) RouterbgpNeighborOutput {
 	return o
+}
+
+func (o RouterbgpNeighborOutput) Activate() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.Activate }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) Activate6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.Activate6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) ActivateVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.ActivateVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) AdditionalPath() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.AdditionalPath }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) AdditionalPath6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.AdditionalPath6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) AdditionalPathVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.AdditionalPathVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) AdvAdditionalPath() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.AdvAdditionalPath }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) AdvAdditionalPath6() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.AdvAdditionalPath6 }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) AdvAdditionalPathVpnv4() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.AdvAdditionalPathVpnv4 }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) AdvertisementInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.AdvertisementInterval }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) AllowasIn() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.AllowasIn }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) AllowasIn6() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.AllowasIn6 }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) AllowasInEnable() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.AllowasInEnable }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) AllowasInEnable6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.AllowasInEnable6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) AllowasInVpnv4() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.AllowasInVpnv4 }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) AsOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.AsOverride }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) AsOverride6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.AsOverride6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) AttributeUnchanged() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.AttributeUnchanged }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) AttributeUnchanged6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.AttributeUnchanged6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) AttributeUnchangedVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.AttributeUnchangedVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) Bfd() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.Bfd }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) CapabilityDefaultOriginate() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.CapabilityDefaultOriginate }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) CapabilityDefaultOriginate6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.CapabilityDefaultOriginate6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) CapabilityDynamic() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.CapabilityDynamic }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) CapabilityGracefulRestart() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.CapabilityGracefulRestart }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) CapabilityGracefulRestart6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.CapabilityGracefulRestart6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) CapabilityGracefulRestartVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.CapabilityGracefulRestartVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) CapabilityOrf() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.CapabilityOrf }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) CapabilityOrf6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.CapabilityOrf6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) CapabilityRouteRefresh() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.CapabilityRouteRefresh }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) ConditionalAdvertise6s() RouterbgpNeighborConditionalAdvertise6ArrayOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) RouterbgpNeighborConditionalAdvertise6ArrayOutput {
+		return v.ConditionalAdvertise6s
+	}).(RouterbgpNeighborConditionalAdvertise6ArrayOutput)
+}
+
+func (o RouterbgpNeighborOutput) ConditionalAdvertises() RouterbgpNeighborConditionalAdvertiseArrayOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) RouterbgpNeighborConditionalAdvertiseArrayOutput {
+		return v.ConditionalAdvertises
+	}).(RouterbgpNeighborConditionalAdvertiseArrayOutput)
+}
+
+func (o RouterbgpNeighborOutput) ConnectTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.ConnectTimer }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) DefaultOriginateRoutemap() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.DefaultOriginateRoutemap }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) DefaultOriginateRoutemap6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.DefaultOriginateRoutemap6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) DistributeListIn() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.DistributeListIn }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) DistributeListIn6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.DistributeListIn6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) DistributeListInVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.DistributeListInVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) DistributeListOut() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.DistributeListOut }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) DistributeListOut6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.DistributeListOut6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) DistributeListOutVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.DistributeListOutVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) DontCapabilityNegotiate() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.DontCapabilityNegotiate }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterbgpNeighborOutput) EbgpEnforceMultihop() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.EbgpEnforceMultihop }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) EbgpMultihopTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.EbgpMultihopTtl }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) FilterListIn() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.FilterListIn }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) FilterListIn6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.FilterListIn6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) FilterListOut() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.FilterListOut }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) FilterListOut6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.FilterListOut6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) HoldtimeTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.HoldtimeTimer }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) KeepAliveTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.KeepAliveTimer }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) LinkDownFailover() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.LinkDownFailover }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) LocalAs() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.LocalAs }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) LocalAsNoPrepend() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.LocalAsNoPrepend }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) LocalAsReplaceAs() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.LocalAsReplaceAs }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) MaximumPrefix() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.MaximumPrefix }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) MaximumPrefix6() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.MaximumPrefix6 }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) MaximumPrefixThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.MaximumPrefixThreshold }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) MaximumPrefixThreshold6() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.MaximumPrefixThreshold6 }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) MaximumPrefixThresholdVpnv4() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.MaximumPrefixThresholdVpnv4 }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) MaximumPrefixVpnv4() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.MaximumPrefixVpnv4 }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) MaximumPrefixWarningOnly() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.MaximumPrefixWarningOnly }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) MaximumPrefixWarningOnly6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.MaximumPrefixWarningOnly6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) MaximumPrefixWarningOnlyVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.MaximumPrefixWarningOnlyVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) NextHopSelf() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.NextHopSelf }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) NextHopSelf6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.NextHopSelf6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) NextHopSelfRr() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.NextHopSelfRr }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) NextHopSelfRr6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.NextHopSelfRr6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) NextHopSelfVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.NextHopSelfVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) OverrideCapability() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.OverrideCapability }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) Passive() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.Passive }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterbgpNeighborOutput) PrefixListIn() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.PrefixListIn }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) PrefixListIn6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.PrefixListIn6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) PrefixListInVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.PrefixListInVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) PrefixListOut() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.PrefixListOut }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) PrefixListOut6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.PrefixListOut6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) PrefixListOutVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.PrefixListOutVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RemoteAs() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.RemoteAs }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) RemovePrivateAs() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RemovePrivateAs }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RemovePrivateAs6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RemovePrivateAs6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RemovePrivateAsVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RemovePrivateAsVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RestartTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.RestartTime }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) RetainStaleTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.RetainStaleTime }).(pulumi.IntOutput)
+}
+
+func (o RouterbgpNeighborOutput) RouteMapIn() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RouteMapIn }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RouteMapIn6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RouteMapIn6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RouteMapInVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RouteMapInVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RouteMapOut() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RouteMapOut }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RouteMapOut6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RouteMapOut6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RouteMapOut6Preferable() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RouteMapOut6Preferable }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RouteMapOutPreferable() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RouteMapOutPreferable }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RouteMapOutVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RouteMapOutVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RouteMapOutVpnv4Preferable() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RouteMapOutVpnv4Preferable }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RouteReflectorClient() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RouteReflectorClient }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RouteReflectorClient6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RouteReflectorClient6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RouteReflectorClientVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RouteReflectorClientVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RouteServerClient() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RouteServerClient }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RouteServerClient6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RouteServerClient6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) RouteServerClientVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.RouteServerClientVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) SendCommunity() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.SendCommunity }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) SendCommunity6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.SendCommunity6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) SendCommunityVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.SendCommunityVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) Shutdown() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.Shutdown }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) SoftReconfiguration() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.SoftReconfiguration }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) SoftReconfiguration6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.SoftReconfiguration6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) SoftReconfigurationVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.SoftReconfigurationVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) StaleRoute() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.StaleRoute }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) StrictCapabilityMatch() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.StrictCapabilityMatch }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) UnsuppressMap() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.UnsuppressMap }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) UnsuppressMap6() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.UnsuppressMap6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) UpdateSource() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.UpdateSource }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterbgpNeighborOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.IntOutput { return v.Weight }).(pulumi.IntOutput)
 }
 
 type RouterbgpNeighborArrayOutput struct{ *pulumi.OutputState }

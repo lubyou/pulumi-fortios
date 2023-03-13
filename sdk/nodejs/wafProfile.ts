@@ -2,40 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Web application firewall configuration.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WafProfile("trname", {
- *     extendedLog: "disable",
- *     external: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * Waf Profile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wafProfile:WafProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wafProfile:WafProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WafProfile extends pulumi.CustomResource {
     /**
      * Get an existing WafProfile resource's state with the given name, ID, and optional extra
@@ -64,49 +34,16 @@ export class WafProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === WafProfile.__pulumiType;
     }
 
-    /**
-     * Black address list and white address list. The structure of `addressList` block is documented below.
-     */
-    public readonly addressList!: pulumi.Output<outputs.WafProfileAddressList | undefined>;
-    /**
-     * Comment.
-     */
+    public readonly addressList!: pulumi.Output<outputs.WafProfileAddressList>;
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * WAF HTTP protocol restrictions. The structure of `constraint` block is documented below.
-     */
-    public readonly constraint!: pulumi.Output<outputs.WafProfileConstraint | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
+    public readonly constraint!: pulumi.Output<outputs.WafProfileConstraint>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable extended logging. Valid values: `enable`, `disable`.
-     */
     public readonly extendedLog!: pulumi.Output<string>;
-    /**
-     * Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
-     */
     public readonly external!: pulumi.Output<string>;
-    /**
-     * Enable/disable HTTP method check. Valid values: `enable`, `disable`.
-     */
-    public readonly method!: pulumi.Output<outputs.WafProfileMethod | undefined>;
-    /**
-     * Address name.
-     */
+    public readonly method!: pulumi.Output<outputs.WafProfileMethod>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * WAF signatures. The structure of `signature` block is documented below.
-     */
-    public readonly signature!: pulumi.Output<outputs.WafProfileSignature | undefined>;
-    /**
-     * URL access list The structure of `urlAccess` block is documented below.
-     */
+    public readonly signature!: pulumi.Output<outputs.WafProfileSignature>;
     public readonly urlAccesses!: pulumi.Output<outputs.WafProfileUrlAccess[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -156,49 +93,16 @@ export class WafProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WafProfile resources.
  */
 export interface WafProfileState {
-    /**
-     * Black address list and white address list. The structure of `addressList` block is documented below.
-     */
     addressList?: pulumi.Input<inputs.WafProfileAddressList>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * WAF HTTP protocol restrictions. The structure of `constraint` block is documented below.
-     */
     constraint?: pulumi.Input<inputs.WafProfileConstraint>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable extended logging. Valid values: `enable`, `disable`.
-     */
     extendedLog?: pulumi.Input<string>;
-    /**
-     * Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
-     */
     external?: pulumi.Input<string>;
-    /**
-     * Enable/disable HTTP method check. Valid values: `enable`, `disable`.
-     */
     method?: pulumi.Input<inputs.WafProfileMethod>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * WAF signatures. The structure of `signature` block is documented below.
-     */
     signature?: pulumi.Input<inputs.WafProfileSignature>;
-    /**
-     * URL access list The structure of `urlAccess` block is documented below.
-     */
     urlAccesses?: pulumi.Input<pulumi.Input<inputs.WafProfileUrlAccess>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -206,48 +110,15 @@ export interface WafProfileState {
  * The set of arguments for constructing a WafProfile resource.
  */
 export interface WafProfileArgs {
-    /**
-     * Black address list and white address list. The structure of `addressList` block is documented below.
-     */
     addressList?: pulumi.Input<inputs.WafProfileAddressList>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * WAF HTTP protocol restrictions. The structure of `constraint` block is documented below.
-     */
     constraint?: pulumi.Input<inputs.WafProfileConstraint>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable extended logging. Valid values: `enable`, `disable`.
-     */
     extendedLog?: pulumi.Input<string>;
-    /**
-     * Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
-     */
     external?: pulumi.Input<string>;
-    /**
-     * Enable/disable HTTP method check. Valid values: `enable`, `disable`.
-     */
     method?: pulumi.Input<inputs.WafProfileMethod>;
-    /**
-     * Address name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * WAF signatures. The structure of `signature` block is documented below.
-     */
     signature?: pulumi.Input<inputs.WafProfileSignature>;
-    /**
-     * URL access list The structure of `urlAccess` block is documented below.
-     */
     urlAccesses?: pulumi.Input<pulumi.Input<inputs.WafProfileUrlAccess>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

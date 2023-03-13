@@ -7,142 +7,52 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure LDAP server entries.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"fmt"
-//
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewUserLdap(ctx, "trname", &fortios.UserLdapArgs{
-// 			AccountKeyFilter:      pulumi.String(fmt.Sprintf("%v%v%v", "(&(userPrincipalName=", "%", "s)(!(UserAccountControl:1.2.840.113556.1.4.803:=2)))")),
-// 			AccountKeyProcessing:  pulumi.String("same"),
-// 			Cnid:                  pulumi.String("cn"),
-// 			Dn:                    pulumi.String("EIWNCIEW"),
-// 			GroupMemberCheck:      pulumi.String("user-attr"),
-// 			GroupObjectFilter:     pulumi.String("(&(objectcategory=group)(member=*))"),
-// 			MemberAttr:            pulumi.String("memberOf"),
-// 			PasswordExpiryWarning: pulumi.String("disable"),
-// 			PasswordRenewal:       pulumi.String("disable"),
-// 			Port:                  pulumi.Int(389),
-// 			Secure:                pulumi.String("disable"),
-// 			Server:                pulumi.String("1.1.1.1"),
-// 			ServerIdentityCheck:   pulumi.String("disable"),
-// 			SourceIp:              pulumi.String("0.0.0.0"),
-// 			SslMinProtoVersion:    pulumi.String("default"),
-// 			Type:                  pulumi.String("simple"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// User Ldap can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userLdap:UserLdap labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userLdap:UserLdap labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserLdap struct {
 	pulumi.CustomResourceState
 
-	// Account key filter, using the UPN as the search filter.
-	AccountKeyFilter pulumi.StringOutput `pulumi:"accountKeyFilter"`
-	// Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
-	AccountKeyProcessing pulumi.StringOutput `pulumi:"accountKeyProcessing"`
-	// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
-	Antiphish pulumi.StringOutput `pulumi:"antiphish"`
-	// CA certificate name.
-	CaCert pulumi.StringOutput `pulumi:"caCert"`
-	// Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
-	Cnid pulumi.StringOutput `pulumi:"cnid"`
-	// Distinguished name used to look up entries on the LDAP server.
-	Dn pulumi.StringOutput `pulumi:"dn"`
-	// Filter used for group matching.
-	GroupFilter pulumi.StringOutput `pulumi:"groupFilter"`
-	// Group member checking methods. Valid values: `user-attr`, `group-object`, `posix-group-object`.
-	GroupMemberCheck pulumi.StringOutput `pulumi:"groupMemberCheck"`
-	// Filter used for group searching.
-	GroupObjectFilter pulumi.StringOutput `pulumi:"groupObjectFilter"`
-	// Search base used for group searching.
-	GroupSearchBase pulumi.StringOutput `pulumi:"groupSearchBase"`
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
-	// Name of attribute from which to get group membership.
-	MemberAttr pulumi.StringOutput `pulumi:"memberAttr"`
-	// LDAP server entry name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable obtaining of user information. Valid values: `enable`, `disable`.
-	ObtainUserInfo pulumi.StringOutput `pulumi:"obtainUserInfo"`
-	// Password for initial binding.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Name of attribute to get password hash.
-	PasswordAttr pulumi.StringOutput `pulumi:"passwordAttr"`
-	// Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
-	PasswordExpiryWarning pulumi.StringOutput `pulumi:"passwordExpiryWarning"`
-	// Enable/disable online password renewal. Valid values: `enable`, `disable`.
-	PasswordRenewal pulumi.StringOutput `pulumi:"passwordRenewal"`
-	// Port to be used for communication with the LDAP server (default = 389).
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Search type. Valid values: `recursive`.
-	SearchType pulumi.StringOutput `pulumi:"searchType"`
-	// Secondary LDAP server CN domain name or IP.
-	SecondaryServer pulumi.StringOutput `pulumi:"secondaryServer"`
-	// Port to be used for authentication. Valid values: `disable`, `starttls`, `ldaps`.
-	Secure pulumi.StringOutput `pulumi:"secure"`
-	// LDAP server CN domain name or IP.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
-	ServerIdentityCheck pulumi.StringOutput `pulumi:"serverIdentityCheck"`
-	// Source IP for communications to LDAP server.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Source port to be used for communication with the LDAP server.
-	SourcePort pulumi.IntOutput `pulumi:"sourcePort"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
-	// Tertiary LDAP server CN domain name or IP.
-	TertiaryServer pulumi.StringOutput `pulumi:"tertiaryServer"`
-	// Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
-	TwoFactor pulumi.StringOutput `pulumi:"twoFactor"`
-	// Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
-	TwoFactorAuthentication pulumi.StringOutput `pulumi:"twoFactorAuthentication"`
-	// Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
-	TwoFactorNotification pulumi.StringOutput `pulumi:"twoFactorNotification"`
-	// Authentication type for LDAP searches. Valid values: `simple`, `anonymous`, `regular`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// MS Exchange server from which to fetch user information.
-	UserInfoExchangeServer pulumi.StringOutput `pulumi:"userInfoExchangeServer"`
-	// Username (full DN) for initial binding.
-	Username pulumi.StringOutput `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AccountKeyFilter        pulumi.StringOutput    `pulumi:"accountKeyFilter"`
+	AccountKeyProcessing    pulumi.StringOutput    `pulumi:"accountKeyProcessing"`
+	Antiphish               pulumi.StringOutput    `pulumi:"antiphish"`
+	CaCert                  pulumi.StringOutput    `pulumi:"caCert"`
+	ClientCert              pulumi.StringOutput    `pulumi:"clientCert"`
+	ClientCertAuth          pulumi.StringOutput    `pulumi:"clientCertAuth"`
+	Cnid                    pulumi.StringOutput    `pulumi:"cnid"`
+	Dn                      pulumi.StringOutput    `pulumi:"dn"`
+	GroupFilter             pulumi.StringOutput    `pulumi:"groupFilter"`
+	GroupMemberCheck        pulumi.StringOutput    `pulumi:"groupMemberCheck"`
+	GroupObjectFilter       pulumi.StringOutput    `pulumi:"groupObjectFilter"`
+	GroupSearchBase         pulumi.StringOutput    `pulumi:"groupSearchBase"`
+	Interface               pulumi.StringOutput    `pulumi:"interface"`
+	InterfaceSelectMethod   pulumi.StringOutput    `pulumi:"interfaceSelectMethod"`
+	MemberAttr              pulumi.StringOutput    `pulumi:"memberAttr"`
+	Name                    pulumi.StringOutput    `pulumi:"name"`
+	ObtainUserInfo          pulumi.StringOutput    `pulumi:"obtainUserInfo"`
+	Password                pulumi.StringPtrOutput `pulumi:"password"`
+	PasswordAttr            pulumi.StringOutput    `pulumi:"passwordAttr"`
+	PasswordExpiryWarning   pulumi.StringOutput    `pulumi:"passwordExpiryWarning"`
+	PasswordRenewal         pulumi.StringOutput    `pulumi:"passwordRenewal"`
+	Port                    pulumi.IntOutput       `pulumi:"port"`
+	SearchType              pulumi.StringOutput    `pulumi:"searchType"`
+	SecondaryServer         pulumi.StringOutput    `pulumi:"secondaryServer"`
+	Secure                  pulumi.StringOutput    `pulumi:"secure"`
+	Server                  pulumi.StringOutput    `pulumi:"server"`
+	ServerIdentityCheck     pulumi.StringOutput    `pulumi:"serverIdentityCheck"`
+	SourceIp                pulumi.StringOutput    `pulumi:"sourceIp"`
+	SourcePort              pulumi.IntOutput       `pulumi:"sourcePort"`
+	SslMinProtoVersion      pulumi.StringOutput    `pulumi:"sslMinProtoVersion"`
+	TertiaryServer          pulumi.StringOutput    `pulumi:"tertiaryServer"`
+	TwoFactor               pulumi.StringOutput    `pulumi:"twoFactor"`
+	TwoFactorAuthentication pulumi.StringOutput    `pulumi:"twoFactorAuthentication"`
+	TwoFactorFilter         pulumi.StringOutput    `pulumi:"twoFactorFilter"`
+	TwoFactorNotification   pulumi.StringOutput    `pulumi:"twoFactorNotification"`
+	Type                    pulumi.StringOutput    `pulumi:"type"`
+	UserInfoExchangeServer  pulumi.StringOutput    `pulumi:"userInfoExchangeServer"`
+	Username                pulumi.StringOutput    `pulumi:"username"`
+	Vdomparam               pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewUserLdap registers a new resource with the given unique name, arguments, and options.
@@ -158,6 +68,13 @@ func NewUserLdap(ctx *pulumi.Context,
 	if args.Server == nil {
 		return nil, errors.New("invalid value for required argument 'Server'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource UserLdap
 	err := ctx.RegisterResource("fortios:index/userLdap:UserLdap", name, args, &resource, opts...)
@@ -181,153 +98,87 @@ func GetUserLdap(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserLdap resources.
 type userLdapState struct {
-	// Account key filter, using the UPN as the search filter.
-	AccountKeyFilter *string `pulumi:"accountKeyFilter"`
-	// Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
-	AccountKeyProcessing *string `pulumi:"accountKeyProcessing"`
-	// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
-	Antiphish *string `pulumi:"antiphish"`
-	// CA certificate name.
-	CaCert *string `pulumi:"caCert"`
-	// Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
-	Cnid *string `pulumi:"cnid"`
-	// Distinguished name used to look up entries on the LDAP server.
-	Dn *string `pulumi:"dn"`
-	// Filter used for group matching.
-	GroupFilter *string `pulumi:"groupFilter"`
-	// Group member checking methods. Valid values: `user-attr`, `group-object`, `posix-group-object`.
-	GroupMemberCheck *string `pulumi:"groupMemberCheck"`
-	// Filter used for group searching.
-	GroupObjectFilter *string `pulumi:"groupObjectFilter"`
-	// Search base used for group searching.
-	GroupSearchBase *string `pulumi:"groupSearchBase"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Name of attribute from which to get group membership.
-	MemberAttr *string `pulumi:"memberAttr"`
-	// LDAP server entry name.
-	Name *string `pulumi:"name"`
-	// Enable/disable obtaining of user information. Valid values: `enable`, `disable`.
-	ObtainUserInfo *string `pulumi:"obtainUserInfo"`
-	// Password for initial binding.
-	Password *string `pulumi:"password"`
-	// Name of attribute to get password hash.
-	PasswordAttr *string `pulumi:"passwordAttr"`
-	// Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
-	PasswordExpiryWarning *string `pulumi:"passwordExpiryWarning"`
-	// Enable/disable online password renewal. Valid values: `enable`, `disable`.
-	PasswordRenewal *string `pulumi:"passwordRenewal"`
-	// Port to be used for communication with the LDAP server (default = 389).
-	Port *int `pulumi:"port"`
-	// Search type. Valid values: `recursive`.
-	SearchType *string `pulumi:"searchType"`
-	// Secondary LDAP server CN domain name or IP.
-	SecondaryServer *string `pulumi:"secondaryServer"`
-	// Port to be used for authentication. Valid values: `disable`, `starttls`, `ldaps`.
-	Secure *string `pulumi:"secure"`
-	// LDAP server CN domain name or IP.
-	Server *string `pulumi:"server"`
-	// Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
-	ServerIdentityCheck *string `pulumi:"serverIdentityCheck"`
-	// Source IP for communications to LDAP server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Source port to be used for communication with the LDAP server.
-	SourcePort *int `pulumi:"sourcePort"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
-	// Tertiary LDAP server CN domain name or IP.
-	TertiaryServer *string `pulumi:"tertiaryServer"`
-	// Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
-	TwoFactor *string `pulumi:"twoFactor"`
-	// Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
+	AccountKeyFilter        *string `pulumi:"accountKeyFilter"`
+	AccountKeyProcessing    *string `pulumi:"accountKeyProcessing"`
+	Antiphish               *string `pulumi:"antiphish"`
+	CaCert                  *string `pulumi:"caCert"`
+	ClientCert              *string `pulumi:"clientCert"`
+	ClientCertAuth          *string `pulumi:"clientCertAuth"`
+	Cnid                    *string `pulumi:"cnid"`
+	Dn                      *string `pulumi:"dn"`
+	GroupFilter             *string `pulumi:"groupFilter"`
+	GroupMemberCheck        *string `pulumi:"groupMemberCheck"`
+	GroupObjectFilter       *string `pulumi:"groupObjectFilter"`
+	GroupSearchBase         *string `pulumi:"groupSearchBase"`
+	Interface               *string `pulumi:"interface"`
+	InterfaceSelectMethod   *string `pulumi:"interfaceSelectMethod"`
+	MemberAttr              *string `pulumi:"memberAttr"`
+	Name                    *string `pulumi:"name"`
+	ObtainUserInfo          *string `pulumi:"obtainUserInfo"`
+	Password                *string `pulumi:"password"`
+	PasswordAttr            *string `pulumi:"passwordAttr"`
+	PasswordExpiryWarning   *string `pulumi:"passwordExpiryWarning"`
+	PasswordRenewal         *string `pulumi:"passwordRenewal"`
+	Port                    *int    `pulumi:"port"`
+	SearchType              *string `pulumi:"searchType"`
+	SecondaryServer         *string `pulumi:"secondaryServer"`
+	Secure                  *string `pulumi:"secure"`
+	Server                  *string `pulumi:"server"`
+	ServerIdentityCheck     *string `pulumi:"serverIdentityCheck"`
+	SourceIp                *string `pulumi:"sourceIp"`
+	SourcePort              *int    `pulumi:"sourcePort"`
+	SslMinProtoVersion      *string `pulumi:"sslMinProtoVersion"`
+	TertiaryServer          *string `pulumi:"tertiaryServer"`
+	TwoFactor               *string `pulumi:"twoFactor"`
 	TwoFactorAuthentication *string `pulumi:"twoFactorAuthentication"`
-	// Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
-	TwoFactorNotification *string `pulumi:"twoFactorNotification"`
-	// Authentication type for LDAP searches. Valid values: `simple`, `anonymous`, `regular`.
-	Type *string `pulumi:"type"`
-	// MS Exchange server from which to fetch user information.
-	UserInfoExchangeServer *string `pulumi:"userInfoExchangeServer"`
-	// Username (full DN) for initial binding.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	TwoFactorFilter         *string `pulumi:"twoFactorFilter"`
+	TwoFactorNotification   *string `pulumi:"twoFactorNotification"`
+	Type                    *string `pulumi:"type"`
+	UserInfoExchangeServer  *string `pulumi:"userInfoExchangeServer"`
+	Username                *string `pulumi:"username"`
+	Vdomparam               *string `pulumi:"vdomparam"`
 }
 
 type UserLdapState struct {
-	// Account key filter, using the UPN as the search filter.
-	AccountKeyFilter pulumi.StringPtrInput
-	// Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
-	AccountKeyProcessing pulumi.StringPtrInput
-	// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
-	Antiphish pulumi.StringPtrInput
-	// CA certificate name.
-	CaCert pulumi.StringPtrInput
-	// Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
-	Cnid pulumi.StringPtrInput
-	// Distinguished name used to look up entries on the LDAP server.
-	Dn pulumi.StringPtrInput
-	// Filter used for group matching.
-	GroupFilter pulumi.StringPtrInput
-	// Group member checking methods. Valid values: `user-attr`, `group-object`, `posix-group-object`.
-	GroupMemberCheck pulumi.StringPtrInput
-	// Filter used for group searching.
-	GroupObjectFilter pulumi.StringPtrInput
-	// Search base used for group searching.
-	GroupSearchBase pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringPtrInput
-	// Name of attribute from which to get group membership.
-	MemberAttr pulumi.StringPtrInput
-	// LDAP server entry name.
-	Name pulumi.StringPtrInput
-	// Enable/disable obtaining of user information. Valid values: `enable`, `disable`.
-	ObtainUserInfo pulumi.StringPtrInput
-	// Password for initial binding.
-	Password pulumi.StringPtrInput
-	// Name of attribute to get password hash.
-	PasswordAttr pulumi.StringPtrInput
-	// Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
-	PasswordExpiryWarning pulumi.StringPtrInput
-	// Enable/disable online password renewal. Valid values: `enable`, `disable`.
-	PasswordRenewal pulumi.StringPtrInput
-	// Port to be used for communication with the LDAP server (default = 389).
-	Port pulumi.IntPtrInput
-	// Search type. Valid values: `recursive`.
-	SearchType pulumi.StringPtrInput
-	// Secondary LDAP server CN domain name or IP.
-	SecondaryServer pulumi.StringPtrInput
-	// Port to be used for authentication. Valid values: `disable`, `starttls`, `ldaps`.
-	Secure pulumi.StringPtrInput
-	// LDAP server CN domain name or IP.
-	Server pulumi.StringPtrInput
-	// Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
-	ServerIdentityCheck pulumi.StringPtrInput
-	// Source IP for communications to LDAP server.
-	SourceIp pulumi.StringPtrInput
-	// Source port to be used for communication with the LDAP server.
-	SourcePort pulumi.IntPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringPtrInput
-	// Tertiary LDAP server CN domain name or IP.
-	TertiaryServer pulumi.StringPtrInput
-	// Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
-	TwoFactor pulumi.StringPtrInput
-	// Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
+	AccountKeyFilter        pulumi.StringPtrInput
+	AccountKeyProcessing    pulumi.StringPtrInput
+	Antiphish               pulumi.StringPtrInput
+	CaCert                  pulumi.StringPtrInput
+	ClientCert              pulumi.StringPtrInput
+	ClientCertAuth          pulumi.StringPtrInput
+	Cnid                    pulumi.StringPtrInput
+	Dn                      pulumi.StringPtrInput
+	GroupFilter             pulumi.StringPtrInput
+	GroupMemberCheck        pulumi.StringPtrInput
+	GroupObjectFilter       pulumi.StringPtrInput
+	GroupSearchBase         pulumi.StringPtrInput
+	Interface               pulumi.StringPtrInput
+	InterfaceSelectMethod   pulumi.StringPtrInput
+	MemberAttr              pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	ObtainUserInfo          pulumi.StringPtrInput
+	Password                pulumi.StringPtrInput
+	PasswordAttr            pulumi.StringPtrInput
+	PasswordExpiryWarning   pulumi.StringPtrInput
+	PasswordRenewal         pulumi.StringPtrInput
+	Port                    pulumi.IntPtrInput
+	SearchType              pulumi.StringPtrInput
+	SecondaryServer         pulumi.StringPtrInput
+	Secure                  pulumi.StringPtrInput
+	Server                  pulumi.StringPtrInput
+	ServerIdentityCheck     pulumi.StringPtrInput
+	SourceIp                pulumi.StringPtrInput
+	SourcePort              pulumi.IntPtrInput
+	SslMinProtoVersion      pulumi.StringPtrInput
+	TertiaryServer          pulumi.StringPtrInput
+	TwoFactor               pulumi.StringPtrInput
 	TwoFactorAuthentication pulumi.StringPtrInput
-	// Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
-	TwoFactorNotification pulumi.StringPtrInput
-	// Authentication type for LDAP searches. Valid values: `simple`, `anonymous`, `regular`.
-	Type pulumi.StringPtrInput
-	// MS Exchange server from which to fetch user information.
-	UserInfoExchangeServer pulumi.StringPtrInput
-	// Username (full DN) for initial binding.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	TwoFactorFilter         pulumi.StringPtrInput
+	TwoFactorNotification   pulumi.StringPtrInput
+	Type                    pulumi.StringPtrInput
+	UserInfoExchangeServer  pulumi.StringPtrInput
+	Username                pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (UserLdapState) ElementType() reflect.Type {
@@ -335,154 +186,88 @@ func (UserLdapState) ElementType() reflect.Type {
 }
 
 type userLdapArgs struct {
-	// Account key filter, using the UPN as the search filter.
-	AccountKeyFilter *string `pulumi:"accountKeyFilter"`
-	// Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
-	AccountKeyProcessing *string `pulumi:"accountKeyProcessing"`
-	// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
-	Antiphish *string `pulumi:"antiphish"`
-	// CA certificate name.
-	CaCert *string `pulumi:"caCert"`
-	// Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
-	Cnid *string `pulumi:"cnid"`
-	// Distinguished name used to look up entries on the LDAP server.
-	Dn string `pulumi:"dn"`
-	// Filter used for group matching.
-	GroupFilter *string `pulumi:"groupFilter"`
-	// Group member checking methods. Valid values: `user-attr`, `group-object`, `posix-group-object`.
-	GroupMemberCheck *string `pulumi:"groupMemberCheck"`
-	// Filter used for group searching.
-	GroupObjectFilter *string `pulumi:"groupObjectFilter"`
-	// Search base used for group searching.
-	GroupSearchBase *string `pulumi:"groupSearchBase"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Name of attribute from which to get group membership.
-	MemberAttr *string `pulumi:"memberAttr"`
-	// LDAP server entry name.
-	Name *string `pulumi:"name"`
-	// Enable/disable obtaining of user information. Valid values: `enable`, `disable`.
-	ObtainUserInfo *string `pulumi:"obtainUserInfo"`
-	// Password for initial binding.
-	Password *string `pulumi:"password"`
-	// Name of attribute to get password hash.
-	PasswordAttr *string `pulumi:"passwordAttr"`
-	// Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
-	PasswordExpiryWarning *string `pulumi:"passwordExpiryWarning"`
-	// Enable/disable online password renewal. Valid values: `enable`, `disable`.
-	PasswordRenewal *string `pulumi:"passwordRenewal"`
-	// Port to be used for communication with the LDAP server (default = 389).
-	Port *int `pulumi:"port"`
-	// Search type. Valid values: `recursive`.
-	SearchType *string `pulumi:"searchType"`
-	// Secondary LDAP server CN domain name or IP.
-	SecondaryServer *string `pulumi:"secondaryServer"`
-	// Port to be used for authentication. Valid values: `disable`, `starttls`, `ldaps`.
-	Secure *string `pulumi:"secure"`
-	// LDAP server CN domain name or IP.
-	Server string `pulumi:"server"`
-	// Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
-	ServerIdentityCheck *string `pulumi:"serverIdentityCheck"`
-	// Source IP for communications to LDAP server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Source port to be used for communication with the LDAP server.
-	SourcePort *int `pulumi:"sourcePort"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
-	// Tertiary LDAP server CN domain name or IP.
-	TertiaryServer *string `pulumi:"tertiaryServer"`
-	// Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
-	TwoFactor *string `pulumi:"twoFactor"`
-	// Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
+	AccountKeyFilter        *string `pulumi:"accountKeyFilter"`
+	AccountKeyProcessing    *string `pulumi:"accountKeyProcessing"`
+	Antiphish               *string `pulumi:"antiphish"`
+	CaCert                  *string `pulumi:"caCert"`
+	ClientCert              *string `pulumi:"clientCert"`
+	ClientCertAuth          *string `pulumi:"clientCertAuth"`
+	Cnid                    *string `pulumi:"cnid"`
+	Dn                      string  `pulumi:"dn"`
+	GroupFilter             *string `pulumi:"groupFilter"`
+	GroupMemberCheck        *string `pulumi:"groupMemberCheck"`
+	GroupObjectFilter       *string `pulumi:"groupObjectFilter"`
+	GroupSearchBase         *string `pulumi:"groupSearchBase"`
+	Interface               *string `pulumi:"interface"`
+	InterfaceSelectMethod   *string `pulumi:"interfaceSelectMethod"`
+	MemberAttr              *string `pulumi:"memberAttr"`
+	Name                    *string `pulumi:"name"`
+	ObtainUserInfo          *string `pulumi:"obtainUserInfo"`
+	Password                *string `pulumi:"password"`
+	PasswordAttr            *string `pulumi:"passwordAttr"`
+	PasswordExpiryWarning   *string `pulumi:"passwordExpiryWarning"`
+	PasswordRenewal         *string `pulumi:"passwordRenewal"`
+	Port                    *int    `pulumi:"port"`
+	SearchType              *string `pulumi:"searchType"`
+	SecondaryServer         *string `pulumi:"secondaryServer"`
+	Secure                  *string `pulumi:"secure"`
+	Server                  string  `pulumi:"server"`
+	ServerIdentityCheck     *string `pulumi:"serverIdentityCheck"`
+	SourceIp                *string `pulumi:"sourceIp"`
+	SourcePort              *int    `pulumi:"sourcePort"`
+	SslMinProtoVersion      *string `pulumi:"sslMinProtoVersion"`
+	TertiaryServer          *string `pulumi:"tertiaryServer"`
+	TwoFactor               *string `pulumi:"twoFactor"`
 	TwoFactorAuthentication *string `pulumi:"twoFactorAuthentication"`
-	// Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
-	TwoFactorNotification *string `pulumi:"twoFactorNotification"`
-	// Authentication type for LDAP searches. Valid values: `simple`, `anonymous`, `regular`.
-	Type *string `pulumi:"type"`
-	// MS Exchange server from which to fetch user information.
-	UserInfoExchangeServer *string `pulumi:"userInfoExchangeServer"`
-	// Username (full DN) for initial binding.
-	Username *string `pulumi:"username"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	TwoFactorFilter         *string `pulumi:"twoFactorFilter"`
+	TwoFactorNotification   *string `pulumi:"twoFactorNotification"`
+	Type                    *string `pulumi:"type"`
+	UserInfoExchangeServer  *string `pulumi:"userInfoExchangeServer"`
+	Username                *string `pulumi:"username"`
+	Vdomparam               *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserLdap resource.
 type UserLdapArgs struct {
-	// Account key filter, using the UPN as the search filter.
-	AccountKeyFilter pulumi.StringPtrInput
-	// Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
-	AccountKeyProcessing pulumi.StringPtrInput
-	// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
-	Antiphish pulumi.StringPtrInput
-	// CA certificate name.
-	CaCert pulumi.StringPtrInput
-	// Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
-	Cnid pulumi.StringPtrInput
-	// Distinguished name used to look up entries on the LDAP server.
-	Dn pulumi.StringInput
-	// Filter used for group matching.
-	GroupFilter pulumi.StringPtrInput
-	// Group member checking methods. Valid values: `user-attr`, `group-object`, `posix-group-object`.
-	GroupMemberCheck pulumi.StringPtrInput
-	// Filter used for group searching.
-	GroupObjectFilter pulumi.StringPtrInput
-	// Search base used for group searching.
-	GroupSearchBase pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringPtrInput
-	// Name of attribute from which to get group membership.
-	MemberAttr pulumi.StringPtrInput
-	// LDAP server entry name.
-	Name pulumi.StringPtrInput
-	// Enable/disable obtaining of user information. Valid values: `enable`, `disable`.
-	ObtainUserInfo pulumi.StringPtrInput
-	// Password for initial binding.
-	Password pulumi.StringPtrInput
-	// Name of attribute to get password hash.
-	PasswordAttr pulumi.StringPtrInput
-	// Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
-	PasswordExpiryWarning pulumi.StringPtrInput
-	// Enable/disable online password renewal. Valid values: `enable`, `disable`.
-	PasswordRenewal pulumi.StringPtrInput
-	// Port to be used for communication with the LDAP server (default = 389).
-	Port pulumi.IntPtrInput
-	// Search type. Valid values: `recursive`.
-	SearchType pulumi.StringPtrInput
-	// Secondary LDAP server CN domain name or IP.
-	SecondaryServer pulumi.StringPtrInput
-	// Port to be used for authentication. Valid values: `disable`, `starttls`, `ldaps`.
-	Secure pulumi.StringPtrInput
-	// LDAP server CN domain name or IP.
-	Server pulumi.StringInput
-	// Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
-	ServerIdentityCheck pulumi.StringPtrInput
-	// Source IP for communications to LDAP server.
-	SourceIp pulumi.StringPtrInput
-	// Source port to be used for communication with the LDAP server.
-	SourcePort pulumi.IntPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringPtrInput
-	// Tertiary LDAP server CN domain name or IP.
-	TertiaryServer pulumi.StringPtrInput
-	// Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
-	TwoFactor pulumi.StringPtrInput
-	// Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
+	AccountKeyFilter        pulumi.StringPtrInput
+	AccountKeyProcessing    pulumi.StringPtrInput
+	Antiphish               pulumi.StringPtrInput
+	CaCert                  pulumi.StringPtrInput
+	ClientCert              pulumi.StringPtrInput
+	ClientCertAuth          pulumi.StringPtrInput
+	Cnid                    pulumi.StringPtrInput
+	Dn                      pulumi.StringInput
+	GroupFilter             pulumi.StringPtrInput
+	GroupMemberCheck        pulumi.StringPtrInput
+	GroupObjectFilter       pulumi.StringPtrInput
+	GroupSearchBase         pulumi.StringPtrInput
+	Interface               pulumi.StringPtrInput
+	InterfaceSelectMethod   pulumi.StringPtrInput
+	MemberAttr              pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	ObtainUserInfo          pulumi.StringPtrInput
+	Password                pulumi.StringPtrInput
+	PasswordAttr            pulumi.StringPtrInput
+	PasswordExpiryWarning   pulumi.StringPtrInput
+	PasswordRenewal         pulumi.StringPtrInput
+	Port                    pulumi.IntPtrInput
+	SearchType              pulumi.StringPtrInput
+	SecondaryServer         pulumi.StringPtrInput
+	Secure                  pulumi.StringPtrInput
+	Server                  pulumi.StringInput
+	ServerIdentityCheck     pulumi.StringPtrInput
+	SourceIp                pulumi.StringPtrInput
+	SourcePort              pulumi.IntPtrInput
+	SslMinProtoVersion      pulumi.StringPtrInput
+	TertiaryServer          pulumi.StringPtrInput
+	TwoFactor               pulumi.StringPtrInput
 	TwoFactorAuthentication pulumi.StringPtrInput
-	// Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
-	TwoFactorNotification pulumi.StringPtrInput
-	// Authentication type for LDAP searches. Valid values: `simple`, `anonymous`, `regular`.
-	Type pulumi.StringPtrInput
-	// MS Exchange server from which to fetch user information.
-	UserInfoExchangeServer pulumi.StringPtrInput
-	// Username (full DN) for initial binding.
-	Username pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	TwoFactorFilter         pulumi.StringPtrInput
+	TwoFactorNotification   pulumi.StringPtrInput
+	Type                    pulumi.StringPtrInput
+	UserInfoExchangeServer  pulumi.StringPtrInput
+	Username                pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (UserLdapArgs) ElementType() reflect.Type {
@@ -511,7 +296,7 @@ func (i *UserLdap) ToUserLdapOutputWithContext(ctx context.Context) UserLdapOutp
 // UserLdapArrayInput is an input type that accepts UserLdapArray and UserLdapArrayOutput values.
 // You can construct a concrete instance of `UserLdapArrayInput` via:
 //
-//          UserLdapArray{ UserLdapArgs{...} }
+//	UserLdapArray{ UserLdapArgs{...} }
 type UserLdapArrayInput interface {
 	pulumi.Input
 
@@ -536,7 +321,7 @@ func (i UserLdapArray) ToUserLdapArrayOutputWithContext(ctx context.Context) Use
 // UserLdapMapInput is an input type that accepts UserLdapMap and UserLdapMapOutput values.
 // You can construct a concrete instance of `UserLdapMapInput` via:
 //
-//          UserLdapMap{ "key": UserLdapArgs{...} }
+//	UserLdapMap{ "key": UserLdapArgs{...} }
 type UserLdapMapInput interface {
 	pulumi.Input
 
@@ -570,6 +355,162 @@ func (o UserLdapOutput) ToUserLdapOutput() UserLdapOutput {
 
 func (o UserLdapOutput) ToUserLdapOutputWithContext(ctx context.Context) UserLdapOutput {
 	return o
+}
+
+func (o UserLdapOutput) AccountKeyFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.AccountKeyFilter }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) AccountKeyProcessing() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.AccountKeyProcessing }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) Antiphish() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.Antiphish }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) CaCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.CaCert }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) ClientCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.ClientCert }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) ClientCertAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.ClientCertAuth }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) Cnid() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.Cnid }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) Dn() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.Dn }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) GroupFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.GroupFilter }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) GroupMemberCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.GroupMemberCheck }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) GroupObjectFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.GroupObjectFilter }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) GroupSearchBase() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.GroupSearchBase }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) MemberAttr() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.MemberAttr }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) ObtainUserInfo() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.ObtainUserInfo }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o UserLdapOutput) PasswordAttr() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.PasswordAttr }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) PasswordExpiryWarning() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.PasswordExpiryWarning }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) PasswordRenewal() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.PasswordRenewal }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o UserLdapOutput) SearchType() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.SearchType }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) SecondaryServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.SecondaryServer }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) Secure() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.Secure }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) ServerIdentityCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.ServerIdentityCheck }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) SourcePort() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.IntOutput { return v.SourcePort }).(pulumi.IntOutput)
+}
+
+func (o UserLdapOutput) SslMinProtoVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.SslMinProtoVersion }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) TertiaryServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.TertiaryServer }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) TwoFactor() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.TwoFactor }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) TwoFactorAuthentication() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.TwoFactorAuthentication }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) TwoFactorFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.TwoFactorFilter }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) TwoFactorNotification() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.TwoFactorNotification }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) UserInfoExchangeServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.UserInfoExchangeServer }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserLdapArrayOutput struct{ *pulumi.OutputState }

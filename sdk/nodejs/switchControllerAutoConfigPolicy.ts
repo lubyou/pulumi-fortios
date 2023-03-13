@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch Auto-Config QoS policy.
- *
- * ## Import
- *
- * SwitchControllerAutoConfig Policy can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerAutoConfigPolicy:SwitchControllerAutoConfigPolicy labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerAutoConfigPolicy:SwitchControllerAutoConfigPolicy labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerAutoConfigPolicy extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerAutoConfigPolicy resource's state with the given name, ID, and optional extra
@@ -51,33 +32,12 @@ export class SwitchControllerAutoConfigPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerAutoConfigPolicy.__pulumiType;
     }
 
-    /**
-     * Enable/disable IGMP flood report. Valid values: `enable`, `disable`.
-     */
     public readonly igmpFloodReport!: pulumi.Output<string>;
-    /**
-     * Enable/disable IGMP flood traffic. Valid values: `enable`, `disable`.
-     */
     public readonly igmpFloodTraffic!: pulumi.Output<string>;
-    /**
-     * Auto-Config QoS policy name
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable PoE status. Valid values: `enable`, `disable`.
-     */
     public readonly poeStatus!: pulumi.Output<string>;
-    /**
-     * Auto-Config QoS policy.
-     */
     public readonly qosPolicy!: pulumi.Output<string>;
-    /**
-     * Auto-Config storm control policy.
-     */
     public readonly stormControlPolicy!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -119,33 +79,12 @@ export class SwitchControllerAutoConfigPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerAutoConfigPolicy resources.
  */
 export interface SwitchControllerAutoConfigPolicyState {
-    /**
-     * Enable/disable IGMP flood report. Valid values: `enable`, `disable`.
-     */
     igmpFloodReport?: pulumi.Input<string>;
-    /**
-     * Enable/disable IGMP flood traffic. Valid values: `enable`, `disable`.
-     */
     igmpFloodTraffic?: pulumi.Input<string>;
-    /**
-     * Auto-Config QoS policy name
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable PoE status. Valid values: `enable`, `disable`.
-     */
     poeStatus?: pulumi.Input<string>;
-    /**
-     * Auto-Config QoS policy.
-     */
     qosPolicy?: pulumi.Input<string>;
-    /**
-     * Auto-Config storm control policy.
-     */
     stormControlPolicy?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -153,32 +92,11 @@ export interface SwitchControllerAutoConfigPolicyState {
  * The set of arguments for constructing a SwitchControllerAutoConfigPolicy resource.
  */
 export interface SwitchControllerAutoConfigPolicyArgs {
-    /**
-     * Enable/disable IGMP flood report. Valid values: `enable`, `disable`.
-     */
     igmpFloodReport?: pulumi.Input<string>;
-    /**
-     * Enable/disable IGMP flood traffic. Valid values: `enable`, `disable`.
-     */
     igmpFloodTraffic?: pulumi.Input<string>;
-    /**
-     * Auto-Config QoS policy name
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable PoE status. Valid values: `enable`, `disable`.
-     */
     poeStatus?: pulumi.Input<string>;
-    /**
-     * Auto-Config QoS policy.
-     */
     qosPolicy?: pulumi.Input<string>;
-    /**
-     * Auto-Config storm control policy.
-     */
     stormControlPolicy?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

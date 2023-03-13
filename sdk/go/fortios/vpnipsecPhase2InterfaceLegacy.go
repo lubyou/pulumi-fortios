@@ -7,240 +7,27 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to use phase2-interface to add or edit a phase 2 configuration on a route-based (interface mode) IPsec tunnel.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `VpnIpsecPhase2Interface`, we recommend that you use the new resource.
-//
-// ## Example Usage
-// ### Site To Site/Pre-Shared Key
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test1, err := fortios.NewVPNIPsecPhase1InterfaceLegacy(ctx, "test1", &fortios.VPNIPsecPhase1InterfaceLegacyArgs{
-// 			Authmethod:       pulumi.String("psk"),
-// 			AuthmethodRemote: pulumi.String(""),
-// 			Comments:         pulumi.String("VPN 001Test P1"),
-// 			Interface:        pulumi.String("port2"),
-// 			ModeCfg:          pulumi.String("disable"),
-// 			Peertype:         pulumi.String("any"),
-// 			Proposal:         pulumi.String("aes128-sha256 aes256-sha256 aes128-sha1 aes256-sha1"),
-// 			Psksecret:        pulumi.String("testscecret112233445566778899"),
-// 			RemoteGw:         pulumi.String("1.2.2.2"),
-// 			Type:             pulumi.String("static"),
-// 			WizardType:       pulumi.String("static-fortigate"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewVPNIPsecPhase2InterfaceLegacy(ctx, "test2", &fortios.VPNIPsecPhase2InterfaceLegacyArgs{
-// 			Comments:    pulumi.String("VPN 001Test P2"),
-// 			DstAddrType: pulumi.String("name"),
-// 			DstName:     pulumi.String("HQ-toBranch_remote"),
-// 			Phase1name:  test1.Name,
-// 			Proposal:    pulumi.String("aes128-sha1 aes256-sha1 aes128-sha256 aes256-sha256 aes128gcm aes256gcm chacha20poly1305"),
-// 			SrcAddrType: pulumi.String("name"),
-// 			SrcName:     pulumi.String("HQ-toBranch_local"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Site To Site/Signature
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test1, err := fortios.NewVPNIPsecPhase1InterfaceLegacy(ctx, "test1", &fortios.VPNIPsecPhase1InterfaceLegacyArgs{
-// 			Certificates: pulumi.StringArray{
-// 				pulumi.String("Fortinet_SSL_ECDSA384"),
-// 			},
-// 			Comments:   pulumi.String("VPN 001Test P1"),
-// 			Interface:  pulumi.String("port2"),
-// 			Peer:       pulumi.String("2b_peer"),
-// 			Peergrp:    pulumi.String(""),
-// 			Peerid:     pulumi.String(""),
-// 			Peertype:   pulumi.String("peer"),
-// 			Proposal:   pulumi.String("aes128-sha256 aes256-sha256 aes128-sha1 aes256-sha1"),
-// 			Psksecret:  pulumi.String("testscecret112233445566778899"),
-// 			RemoteGw:   pulumi.String("1.2.2.2"),
-// 			Type:       pulumi.String("static"),
-// 			WizardType: pulumi.String("static-fortigate"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewVPNIPsecPhase2InterfaceLegacy(ctx, "test2", &fortios.VPNIPsecPhase2InterfaceLegacyArgs{
-// 			Comments:    pulumi.String("VPN 001Test P2"),
-// 			DstAddrType: pulumi.String("subnet"),
-// 			DstSubnet:   pulumi.String("2.2.2.2/24"),
-// 			Phase1name:  test1.Name,
-// 			Proposal:    pulumi.String("aes128-sha1 aes256-sha1 aes128-sha256 aes256-sha256 aes128gcm aes256gcm chacha20poly1305"),
-// 			SrcAddrType: pulumi.String("range"),
-// 			SrcEndIp:    pulumi.String("1.1.1.1"),
-// 			SrcStartIp:  pulumi.String("1.1.1.0"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Remote Access/Pre-Shared Key
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test1, err := fortios.NewVPNIPsecPhase1InterfaceLegacy(ctx, "test1", &fortios.VPNIPsecPhase1InterfaceLegacyArgs{
-// 			Comments:            pulumi.String("VPN 001Test P1"),
-// 			Interface:           pulumi.String("port2"),
-// 			Ipv4SplitExclude:    pulumi.String(""),
-// 			Ipv4SplitInclude:    pulumi.String("d_split"),
-// 			Peertype:            pulumi.String("any"),
-// 			Proposal:            pulumi.String("aes128-sha256 aes256-sha256 aes128-sha1 aes256-sha1"),
-// 			Psksecret:           pulumi.String("testscecret112233445566778899"),
-// 			RemoteGw:            pulumi.String("0.0.0.0"),
-// 			SplitIncludeService: pulumi.String(""),
-// 			Type:                pulumi.String("dynamic"),
-// 			WizardType:          pulumi.String("dialup-forticlient"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewVPNIPsecPhase2InterfaceLegacy(ctx, "test2", &fortios.VPNIPsecPhase2InterfaceLegacyArgs{
-// 			Comments:    pulumi.String("VPN 001Test P2"),
-// 			DstAddrType: pulumi.String("subnet"),
-// 			DstEndIp:    pulumi.String("0.0.0.0"),
-// 			DstStartIp:  pulumi.String("0.0.0.0"),
-// 			DstSubnet:   pulumi.String("0.0.0.0 0.0.0.0"),
-// 			Phase1name:  test1.Name,
-// 			Proposal:    pulumi.String("aes128-sha1 aes256-sha1 aes128-sha256 aes256-sha256 aes128gcm aes256gcm chacha20poly1305"),
-// 			SrcAddrType: pulumi.String("subnet"),
-// 			SrcEndIp:    pulumi.String("0.0.0.0"),
-// 			SrcStartIp:  pulumi.String("0.0.0.0"),
-// 			SrcSubnet:   pulumi.String("0.0.0.0 0.0.0.0"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Remote Access/Signature
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test1, err := fortios.NewVPNIPsecPhase1InterfaceLegacy(ctx, "test1", &fortios.VPNIPsecPhase1InterfaceLegacyArgs{
-// 			Certificates: pulumi.StringArray{
-// 				pulumi.String("Fortinet_SSL_ECDSA384"),
-// 			},
-// 			Comments:            pulumi.String("VPN 001Test P1"),
-// 			Interface:           pulumi.String("port2"),
-// 			Ipv4SplitExclude:    pulumi.String(""),
-// 			Ipv4SplitInclude:    pulumi.String("d_split"),
-// 			Peer:                pulumi.String("2b_peer"),
-// 			Peergrp:             pulumi.String(""),
-// 			Peerid:              pulumi.String(""),
-// 			Peertype:            pulumi.String("any"),
-// 			Proposal:            pulumi.String("aes128-sha256 aes256-sha256 aes128-sha1 aes256-sha1"),
-// 			Psksecret:           pulumi.String("testscecret112233445566778899"),
-// 			RemoteGw:            pulumi.String("1.2.2.2"),
-// 			SplitIncludeService: pulumi.String(""),
-// 			Type:                pulumi.String("dynamic"),
-// 			WizardType:          pulumi.String("dialup-forticlient"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewVPNIPsecPhase2InterfaceLegacy(ctx, "test2", &fortios.VPNIPsecPhase2InterfaceLegacyArgs{
-// 			Comments:    pulumi.String("VPN 001Test P2"),
-// 			DstAddrType: pulumi.String("subnet"),
-// 			DstEndIp:    pulumi.String("0.0.0.0"),
-// 			DstStartIp:  pulumi.String("0.0.0.0"),
-// 			DstSubnet:   pulumi.String("0.0.0.0 0.0.0.0"),
-// 			Phase1name:  test1.Name,
-// 			Proposal:    pulumi.String("aes128-sha1 aes256-sha1 aes128-sha256 aes256-sha256 aes128gcm aes256gcm chacha20poly1305"),
-// 			SrcAddrType: pulumi.String("subnet"),
-// 			SrcEndIp:    pulumi.String("0.0.0.0"),
-// 			SrcStartIp:  pulumi.String("0.0.0.0"),
-// 			SrcSubnet:   pulumi.String("0.0.0.0 0.0.0.0"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type VPNIPsecPhase2InterfaceLegacy struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Local proxy ID type.
-	DstAddrType pulumi.StringOutput `pulumi:"dstAddrType"`
-	// Remote proxy ID IPv4 end.
-	DstEndIp pulumi.StringOutput `pulumi:"dstEndIp"`
-	// Remote proxy ID name.
-	DstName pulumi.StringOutput `pulumi:"dstName"`
-	// Remote proxy ID IPv4 start.
-	DstStartIp pulumi.StringOutput `pulumi:"dstStartIp"`
-	// Remote proxy ID IPv4 subnet.
-	DstSubnet pulumi.StringOutput `pulumi:"dstSubnet"`
-	// IPsec tunnel name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Phase 1 determines the options required for phase 2.
-	Phase1name pulumi.StringOutput `pulumi:"phase1name"`
-	// Phase2 proposal.
-	Proposal pulumi.StringOutput `pulumi:"proposal"`
-	// Local proxy ID type.
-	SrcAddrType pulumi.StringOutput `pulumi:"srcAddrType"`
-	// Local proxy ID end.
-	SrcEndIp pulumi.StringOutput `pulumi:"srcEndIp"`
-	// Local proxy ID name.
-	SrcName pulumi.StringOutput `pulumi:"srcName"`
-	// Local proxy ID start.
-	SrcStartIp pulumi.StringOutput `pulumi:"srcStartIp"`
-	// Local proxy ID subnet.
-	SrcSubnet pulumi.StringOutput `pulumi:"srcSubnet"`
+	Comments    pulumi.StringPtrOutput `pulumi:"comments"`
+	DstAddrType pulumi.StringOutput    `pulumi:"dstAddrType"`
+	DstEndIp    pulumi.StringOutput    `pulumi:"dstEndIp"`
+	DstName     pulumi.StringOutput    `pulumi:"dstName"`
+	DstStartIp  pulumi.StringOutput    `pulumi:"dstStartIp"`
+	DstSubnet   pulumi.StringOutput    `pulumi:"dstSubnet"`
+	Name        pulumi.StringOutput    `pulumi:"name"`
+	Phase1name  pulumi.StringOutput    `pulumi:"phase1name"`
+	Proposal    pulumi.StringOutput    `pulumi:"proposal"`
+	SrcAddrType pulumi.StringOutput    `pulumi:"srcAddrType"`
+	SrcEndIp    pulumi.StringOutput    `pulumi:"srcEndIp"`
+	SrcName     pulumi.StringOutput    `pulumi:"srcName"`
+	SrcStartIp  pulumi.StringOutput    `pulumi:"srcStartIp"`
+	SrcSubnet   pulumi.StringOutput    `pulumi:"srcSubnet"`
 }
 
 // NewVPNIPsecPhase2InterfaceLegacy registers a new resource with the given unique name, arguments, and options.
@@ -276,65 +63,37 @@ func GetVPNIPsecPhase2InterfaceLegacy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VPNIPsecPhase2InterfaceLegacy resources.
 type vpnipsecPhase2InterfaceLegacyState struct {
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Local proxy ID type.
+	Comments    *string `pulumi:"comments"`
 	DstAddrType *string `pulumi:"dstAddrType"`
-	// Remote proxy ID IPv4 end.
-	DstEndIp *string `pulumi:"dstEndIp"`
-	// Remote proxy ID name.
-	DstName *string `pulumi:"dstName"`
-	// Remote proxy ID IPv4 start.
-	DstStartIp *string `pulumi:"dstStartIp"`
-	// Remote proxy ID IPv4 subnet.
-	DstSubnet *string `pulumi:"dstSubnet"`
-	// IPsec tunnel name.
-	Name *string `pulumi:"name"`
-	// Phase 1 determines the options required for phase 2.
-	Phase1name *string `pulumi:"phase1name"`
-	// Phase2 proposal.
-	Proposal *string `pulumi:"proposal"`
-	// Local proxy ID type.
+	DstEndIp    *string `pulumi:"dstEndIp"`
+	DstName     *string `pulumi:"dstName"`
+	DstStartIp  *string `pulumi:"dstStartIp"`
+	DstSubnet   *string `pulumi:"dstSubnet"`
+	Name        *string `pulumi:"name"`
+	Phase1name  *string `pulumi:"phase1name"`
+	Proposal    *string `pulumi:"proposal"`
 	SrcAddrType *string `pulumi:"srcAddrType"`
-	// Local proxy ID end.
-	SrcEndIp *string `pulumi:"srcEndIp"`
-	// Local proxy ID name.
-	SrcName *string `pulumi:"srcName"`
-	// Local proxy ID start.
-	SrcStartIp *string `pulumi:"srcStartIp"`
-	// Local proxy ID subnet.
-	SrcSubnet *string `pulumi:"srcSubnet"`
+	SrcEndIp    *string `pulumi:"srcEndIp"`
+	SrcName     *string `pulumi:"srcName"`
+	SrcStartIp  *string `pulumi:"srcStartIp"`
+	SrcSubnet   *string `pulumi:"srcSubnet"`
 }
 
 type VPNIPsecPhase2InterfaceLegacyState struct {
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Local proxy ID type.
+	Comments    pulumi.StringPtrInput
 	DstAddrType pulumi.StringPtrInput
-	// Remote proxy ID IPv4 end.
-	DstEndIp pulumi.StringPtrInput
-	// Remote proxy ID name.
-	DstName pulumi.StringPtrInput
-	// Remote proxy ID IPv4 start.
-	DstStartIp pulumi.StringPtrInput
-	// Remote proxy ID IPv4 subnet.
-	DstSubnet pulumi.StringPtrInput
-	// IPsec tunnel name.
-	Name pulumi.StringPtrInput
-	// Phase 1 determines the options required for phase 2.
-	Phase1name pulumi.StringPtrInput
-	// Phase2 proposal.
-	Proposal pulumi.StringPtrInput
-	// Local proxy ID type.
+	DstEndIp    pulumi.StringPtrInput
+	DstName     pulumi.StringPtrInput
+	DstStartIp  pulumi.StringPtrInput
+	DstSubnet   pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Phase1name  pulumi.StringPtrInput
+	Proposal    pulumi.StringPtrInput
 	SrcAddrType pulumi.StringPtrInput
-	// Local proxy ID end.
-	SrcEndIp pulumi.StringPtrInput
-	// Local proxy ID name.
-	SrcName pulumi.StringPtrInput
-	// Local proxy ID start.
-	SrcStartIp pulumi.StringPtrInput
-	// Local proxy ID subnet.
-	SrcSubnet pulumi.StringPtrInput
+	SrcEndIp    pulumi.StringPtrInput
+	SrcName     pulumi.StringPtrInput
+	SrcStartIp  pulumi.StringPtrInput
+	SrcSubnet   pulumi.StringPtrInput
 }
 
 func (VPNIPsecPhase2InterfaceLegacyState) ElementType() reflect.Type {
@@ -342,66 +101,38 @@ func (VPNIPsecPhase2InterfaceLegacyState) ElementType() reflect.Type {
 }
 
 type vpnipsecPhase2InterfaceLegacyArgs struct {
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Local proxy ID type.
+	Comments    *string `pulumi:"comments"`
 	DstAddrType *string `pulumi:"dstAddrType"`
-	// Remote proxy ID IPv4 end.
-	DstEndIp *string `pulumi:"dstEndIp"`
-	// Remote proxy ID name.
-	DstName *string `pulumi:"dstName"`
-	// Remote proxy ID IPv4 start.
-	DstStartIp *string `pulumi:"dstStartIp"`
-	// Remote proxy ID IPv4 subnet.
-	DstSubnet *string `pulumi:"dstSubnet"`
-	// IPsec tunnel name.
-	Name *string `pulumi:"name"`
-	// Phase 1 determines the options required for phase 2.
-	Phase1name string `pulumi:"phase1name"`
-	// Phase2 proposal.
-	Proposal *string `pulumi:"proposal"`
-	// Local proxy ID type.
+	DstEndIp    *string `pulumi:"dstEndIp"`
+	DstName     *string `pulumi:"dstName"`
+	DstStartIp  *string `pulumi:"dstStartIp"`
+	DstSubnet   *string `pulumi:"dstSubnet"`
+	Name        *string `pulumi:"name"`
+	Phase1name  string  `pulumi:"phase1name"`
+	Proposal    *string `pulumi:"proposal"`
 	SrcAddrType *string `pulumi:"srcAddrType"`
-	// Local proxy ID end.
-	SrcEndIp *string `pulumi:"srcEndIp"`
-	// Local proxy ID name.
-	SrcName *string `pulumi:"srcName"`
-	// Local proxy ID start.
-	SrcStartIp *string `pulumi:"srcStartIp"`
-	// Local proxy ID subnet.
-	SrcSubnet *string `pulumi:"srcSubnet"`
+	SrcEndIp    *string `pulumi:"srcEndIp"`
+	SrcName     *string `pulumi:"srcName"`
+	SrcStartIp  *string `pulumi:"srcStartIp"`
+	SrcSubnet   *string `pulumi:"srcSubnet"`
 }
 
 // The set of arguments for constructing a VPNIPsecPhase2InterfaceLegacy resource.
 type VPNIPsecPhase2InterfaceLegacyArgs struct {
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Local proxy ID type.
+	Comments    pulumi.StringPtrInput
 	DstAddrType pulumi.StringPtrInput
-	// Remote proxy ID IPv4 end.
-	DstEndIp pulumi.StringPtrInput
-	// Remote proxy ID name.
-	DstName pulumi.StringPtrInput
-	// Remote proxy ID IPv4 start.
-	DstStartIp pulumi.StringPtrInput
-	// Remote proxy ID IPv4 subnet.
-	DstSubnet pulumi.StringPtrInput
-	// IPsec tunnel name.
-	Name pulumi.StringPtrInput
-	// Phase 1 determines the options required for phase 2.
-	Phase1name pulumi.StringInput
-	// Phase2 proposal.
-	Proposal pulumi.StringPtrInput
-	// Local proxy ID type.
+	DstEndIp    pulumi.StringPtrInput
+	DstName     pulumi.StringPtrInput
+	DstStartIp  pulumi.StringPtrInput
+	DstSubnet   pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Phase1name  pulumi.StringInput
+	Proposal    pulumi.StringPtrInput
 	SrcAddrType pulumi.StringPtrInput
-	// Local proxy ID end.
-	SrcEndIp pulumi.StringPtrInput
-	// Local proxy ID name.
-	SrcName pulumi.StringPtrInput
-	// Local proxy ID start.
-	SrcStartIp pulumi.StringPtrInput
-	// Local proxy ID subnet.
-	SrcSubnet pulumi.StringPtrInput
+	SrcEndIp    pulumi.StringPtrInput
+	SrcName     pulumi.StringPtrInput
+	SrcStartIp  pulumi.StringPtrInput
+	SrcSubnet   pulumi.StringPtrInput
 }
 
 func (VPNIPsecPhase2InterfaceLegacyArgs) ElementType() reflect.Type {
@@ -430,7 +161,7 @@ func (i *VPNIPsecPhase2InterfaceLegacy) ToVPNIPsecPhase2InterfaceLegacyOutputWit
 // VPNIPsecPhase2InterfaceLegacyArrayInput is an input type that accepts VPNIPsecPhase2InterfaceLegacyArray and VPNIPsecPhase2InterfaceLegacyArrayOutput values.
 // You can construct a concrete instance of `VPNIPsecPhase2InterfaceLegacyArrayInput` via:
 //
-//          VPNIPsecPhase2InterfaceLegacyArray{ VPNIPsecPhase2InterfaceLegacyArgs{...} }
+//	VPNIPsecPhase2InterfaceLegacyArray{ VPNIPsecPhase2InterfaceLegacyArgs{...} }
 type VPNIPsecPhase2InterfaceLegacyArrayInput interface {
 	pulumi.Input
 
@@ -455,7 +186,7 @@ func (i VPNIPsecPhase2InterfaceLegacyArray) ToVPNIPsecPhase2InterfaceLegacyArray
 // VPNIPsecPhase2InterfaceLegacyMapInput is an input type that accepts VPNIPsecPhase2InterfaceLegacyMap and VPNIPsecPhase2InterfaceLegacyMapOutput values.
 // You can construct a concrete instance of `VPNIPsecPhase2InterfaceLegacyMapInput` via:
 //
-//          VPNIPsecPhase2InterfaceLegacyMap{ "key": VPNIPsecPhase2InterfaceLegacyArgs{...} }
+//	VPNIPsecPhase2InterfaceLegacyMap{ "key": VPNIPsecPhase2InterfaceLegacyArgs{...} }
 type VPNIPsecPhase2InterfaceLegacyMapInput interface {
 	pulumi.Input
 
@@ -489,6 +220,62 @@ func (o VPNIPsecPhase2InterfaceLegacyOutput) ToVPNIPsecPhase2InterfaceLegacyOutp
 
 func (o VPNIPsecPhase2InterfaceLegacyOutput) ToVPNIPsecPhase2InterfaceLegacyOutputWithContext(ctx context.Context) VPNIPsecPhase2InterfaceLegacyOutput {
 	return o
+}
+
+func (o VPNIPsecPhase2InterfaceLegacyOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase2InterfaceLegacy) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o VPNIPsecPhase2InterfaceLegacyOutput) DstAddrType() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase2InterfaceLegacy) pulumi.StringOutput { return v.DstAddrType }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase2InterfaceLegacyOutput) DstEndIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase2InterfaceLegacy) pulumi.StringOutput { return v.DstEndIp }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase2InterfaceLegacyOutput) DstName() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase2InterfaceLegacy) pulumi.StringOutput { return v.DstName }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase2InterfaceLegacyOutput) DstStartIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase2InterfaceLegacy) pulumi.StringOutput { return v.DstStartIp }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase2InterfaceLegacyOutput) DstSubnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase2InterfaceLegacy) pulumi.StringOutput { return v.DstSubnet }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase2InterfaceLegacyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase2InterfaceLegacy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase2InterfaceLegacyOutput) Phase1name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase2InterfaceLegacy) pulumi.StringOutput { return v.Phase1name }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase2InterfaceLegacyOutput) Proposal() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase2InterfaceLegacy) pulumi.StringOutput { return v.Proposal }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase2InterfaceLegacyOutput) SrcAddrType() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase2InterfaceLegacy) pulumi.StringOutput { return v.SrcAddrType }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase2InterfaceLegacyOutput) SrcEndIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase2InterfaceLegacy) pulumi.StringOutput { return v.SrcEndIp }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase2InterfaceLegacyOutput) SrcName() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase2InterfaceLegacy) pulumi.StringOutput { return v.SrcName }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase2InterfaceLegacyOutput) SrcStartIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase2InterfaceLegacy) pulumi.StringOutput { return v.SrcStartIp }).(pulumi.StringOutput)
+}
+
+func (o VPNIPsecPhase2InterfaceLegacyOutput) SrcSubnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *VPNIPsecPhase2InterfaceLegacy) pulumi.StringOutput { return v.SrcSubnet }).(pulumi.StringOutput)
 }
 
 type VPNIPsecPhase2InterfaceLegacyArrayOutput struct{ *pulumi.OutputState }

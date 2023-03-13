@@ -10,144 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure access profiles for system administrators.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAccprofile(ctx, "test12", &fortios.SystemAccprofileArgs{
-// 			Admintimeout:         pulumi.Int(10),
-// 			AdmintimeoutOverride: pulumi.String("disable"),
-// 			Authgrp:              pulumi.String("read-write"),
-// 			Ftviewgrp:            pulumi.String("read-write"),
-// 			Fwgrp:                pulumi.String("custom"),
-// 			FwgrpPermission: &SystemAccprofileFwgrpPermissionArgs{
-// 				Address:  pulumi.String("read-write"),
-// 				Policy:   pulumi.String("read-write"),
-// 				Schedule: pulumi.String("none"),
-// 				Service:  pulumi.String("none"),
-// 			},
-// 			Loggrp: pulumi.String("read-write"),
-// 			LoggrpPermission: &SystemAccprofileLoggrpPermissionArgs{
-// 				Config:       pulumi.String("none"),
-// 				DataAccess:   pulumi.String("none"),
-// 				ReportAccess: pulumi.String("none"),
-// 				ThreatWeight: pulumi.String("none"),
-// 			},
-// 			Netgrp: pulumi.String("read-write"),
-// 			NetgrpPermission: &SystemAccprofileNetgrpPermissionArgs{
-// 				Cfg:           pulumi.String("none"),
-// 				PacketCapture: pulumi.String("none"),
-// 				RouteCfg:      pulumi.String("none"),
-// 			},
-// 			Scope:     pulumi.String("vdom"),
-// 			Secfabgrp: pulumi.String("read-write"),
-// 			Sysgrp:    pulumi.String("read-write"),
-// 			SysgrpPermission: &SystemAccprofileSysgrpPermissionArgs{
-// 				Admin: pulumi.String("none"),
-// 				Cfg:   pulumi.String("none"),
-// 				Mnt:   pulumi.String("none"),
-// 				Upd:   pulumi.String("none"),
-// 			},
-// 			Utmgrp: pulumi.String("custom"),
-// 			UtmgrpPermission: &SystemAccprofileUtmgrpPermissionArgs{
-// 				Antivirus:          pulumi.String("read-write"),
-// 				ApplicationControl: pulumi.String("none"),
-// 				DataLossPrevention: pulumi.String("none"),
-// 				Dnsfilter:          pulumi.String("none"),
-// 				EndpointControl:    pulumi.String("none"),
-// 				Icap:               pulumi.String("none"),
-// 				Ips:                pulumi.String("read-write"),
-// 				Voip:               pulumi.String("none"),
-// 				Waf:                pulumi.String("none"),
-// 				Webfilter:          pulumi.String("none"),
-// 			},
-// 			Vpngrp:    pulumi.String("read-write"),
-// 			Wanoptgrp: pulumi.String("read-write"),
-// 			Wifi:      pulumi.String("read-write"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Accprofile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAccprofile:SystemAccprofile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAccprofile:SystemAccprofile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemAccprofile struct {
 	pulumi.CustomResourceState
 
-	// Administrator timeout for this access profile (0 - 480 min, default = 10, 0 means never timeout).
-	Admintimeout pulumi.IntOutput `pulumi:"admintimeout"`
-	// Enable/disable overriding the global administrator idle timeout. Valid values: `enable`, `disable`.
-	AdmintimeoutOverride pulumi.StringOutput `pulumi:"admintimeoutOverride"`
-	// Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
-	Authgrp pulumi.StringOutput `pulumi:"authgrp"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// FortiView. Valid values: `none`, `read`, `read-write`.
-	Ftviewgrp pulumi.StringOutput `pulumi:"ftviewgrp"`
-	// Administrator access to the Firewall configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-	Fwgrp pulumi.StringOutput `pulumi:"fwgrp"`
-	// Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
-	FwgrpPermission SystemAccprofileFwgrpPermissionPtrOutput `pulumi:"fwgrpPermission"`
-	// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
-	Loggrp pulumi.StringOutput `pulumi:"loggrp"`
-	// Custom Log & Report permission. The structure of `loggrpPermission` block is documented below.
-	LoggrpPermission SystemAccprofileLoggrpPermissionPtrOutput `pulumi:"loggrpPermission"`
-	// Profile name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Network Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-	Netgrp pulumi.StringOutput `pulumi:"netgrp"`
-	// Custom network permission. The structure of `netgrpPermission` block is documented below.
-	NetgrpPermission SystemAccprofileNetgrpPermissionPtrOutput `pulumi:"netgrpPermission"`
-	// Scope of admin access: global or specific VDOM(s). Valid values: `vdom`, `global`.
-	Scope pulumi.StringOutput `pulumi:"scope"`
-	// Security Fabric. Valid values: `none`, `read`, `read-write`.
-	Secfabgrp pulumi.StringOutput `pulumi:"secfabgrp"`
-	// System Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-	Sysgrp pulumi.StringOutput `pulumi:"sysgrp"`
-	// Custom system permission. The structure of `sysgrpPermission` block is documented below.
-	SysgrpPermission SystemAccprofileSysgrpPermissionPtrOutput `pulumi:"sysgrpPermission"`
-	// Enable/disable permission to run system diagnostic commands. Valid values: `enable`, `disable`.
-	SystemDiagnostics pulumi.StringOutput `pulumi:"systemDiagnostics"`
-	// Administrator access to Security Profiles. Valid values: `none`, `read`, `read-write`, `custom`.
-	Utmgrp pulumi.StringOutput `pulumi:"utmgrp"`
-	// Custom Security Profile permissions. The structure of `utmgrpPermission` block is documented below.
-	UtmgrpPermission SystemAccprofileUtmgrpPermissionPtrOutput `pulumi:"utmgrpPermission"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Administrator access to IPsec, SSL, PPTP, and L2TP VPN. Valid values: `none`, `read`, `read-write`.
-	Vpngrp pulumi.StringOutput `pulumi:"vpngrp"`
-	// Administrator access to WAN Opt & Cache. Valid values: `none`, `read`, `read-write`.
-	Wanoptgrp pulumi.StringOutput `pulumi:"wanoptgrp"`
-	// Administrator access to the WiFi controller and Switch controller. Valid values: `none`, `read`, `read-write`.
-	Wifi pulumi.StringOutput `pulumi:"wifi"`
+	Admintimeout         pulumi.IntOutput                       `pulumi:"admintimeout"`
+	AdmintimeoutOverride pulumi.StringOutput                    `pulumi:"admintimeoutOverride"`
+	Authgrp              pulumi.StringOutput                    `pulumi:"authgrp"`
+	Comments             pulumi.StringPtrOutput                 `pulumi:"comments"`
+	Ftviewgrp            pulumi.StringOutput                    `pulumi:"ftviewgrp"`
+	Fwgrp                pulumi.StringOutput                    `pulumi:"fwgrp"`
+	FwgrpPermission      SystemAccprofileFwgrpPermissionOutput  `pulumi:"fwgrpPermission"`
+	Loggrp               pulumi.StringOutput                    `pulumi:"loggrp"`
+	LoggrpPermission     SystemAccprofileLoggrpPermissionOutput `pulumi:"loggrpPermission"`
+	Name                 pulumi.StringOutput                    `pulumi:"name"`
+	Netgrp               pulumi.StringOutput                    `pulumi:"netgrp"`
+	NetgrpPermission     SystemAccprofileNetgrpPermissionOutput `pulumi:"netgrpPermission"`
+	Scope                pulumi.StringOutput                    `pulumi:"scope"`
+	Secfabgrp            pulumi.StringOutput                    `pulumi:"secfabgrp"`
+	Sysgrp               pulumi.StringOutput                    `pulumi:"sysgrp"`
+	SysgrpPermission     SystemAccprofileSysgrpPermissionOutput `pulumi:"sysgrpPermission"`
+	SystemDiagnostics    pulumi.StringOutput                    `pulumi:"systemDiagnostics"`
+	SystemExecuteSsh     pulumi.StringOutput                    `pulumi:"systemExecuteSsh"`
+	SystemExecuteTelnet  pulumi.StringOutput                    `pulumi:"systemExecuteTelnet"`
+	Utmgrp               pulumi.StringOutput                    `pulumi:"utmgrp"`
+	UtmgrpPermission     SystemAccprofileUtmgrpPermissionOutput `pulumi:"utmgrpPermission"`
+	Vdomparam            pulumi.StringPtrOutput                 `pulumi:"vdomparam"`
+	Vpngrp               pulumi.StringOutput                    `pulumi:"vpngrp"`
+	Wanoptgrp            pulumi.StringOutput                    `pulumi:"wanoptgrp"`
+	Wifi                 pulumi.StringOutput                    `pulumi:"wifi"`
 }
 
 // NewSystemAccprofile registers a new resource with the given unique name, arguments, and options.
@@ -180,101 +70,59 @@ func GetSystemAccprofile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAccprofile resources.
 type systemAccprofileState struct {
-	// Administrator timeout for this access profile (0 - 480 min, default = 10, 0 means never timeout).
-	Admintimeout *int `pulumi:"admintimeout"`
-	// Enable/disable overriding the global administrator idle timeout. Valid values: `enable`, `disable`.
-	AdmintimeoutOverride *string `pulumi:"admintimeoutOverride"`
-	// Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
-	Authgrp *string `pulumi:"authgrp"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// FortiView. Valid values: `none`, `read`, `read-write`.
-	Ftviewgrp *string `pulumi:"ftviewgrp"`
-	// Administrator access to the Firewall configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-	Fwgrp *string `pulumi:"fwgrp"`
-	// Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
-	FwgrpPermission *SystemAccprofileFwgrpPermission `pulumi:"fwgrpPermission"`
-	// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
-	Loggrp *string `pulumi:"loggrp"`
-	// Custom Log & Report permission. The structure of `loggrpPermission` block is documented below.
-	LoggrpPermission *SystemAccprofileLoggrpPermission `pulumi:"loggrpPermission"`
-	// Profile name.
-	Name *string `pulumi:"name"`
-	// Network Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-	Netgrp *string `pulumi:"netgrp"`
-	// Custom network permission. The structure of `netgrpPermission` block is documented below.
-	NetgrpPermission *SystemAccprofileNetgrpPermission `pulumi:"netgrpPermission"`
-	// Scope of admin access: global or specific VDOM(s). Valid values: `vdom`, `global`.
-	Scope *string `pulumi:"scope"`
-	// Security Fabric. Valid values: `none`, `read`, `read-write`.
-	Secfabgrp *string `pulumi:"secfabgrp"`
-	// System Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-	Sysgrp *string `pulumi:"sysgrp"`
-	// Custom system permission. The structure of `sysgrpPermission` block is documented below.
-	SysgrpPermission *SystemAccprofileSysgrpPermission `pulumi:"sysgrpPermission"`
-	// Enable/disable permission to run system diagnostic commands. Valid values: `enable`, `disable`.
-	SystemDiagnostics *string `pulumi:"systemDiagnostics"`
-	// Administrator access to Security Profiles. Valid values: `none`, `read`, `read-write`, `custom`.
-	Utmgrp *string `pulumi:"utmgrp"`
-	// Custom Security Profile permissions. The structure of `utmgrpPermission` block is documented below.
-	UtmgrpPermission *SystemAccprofileUtmgrpPermission `pulumi:"utmgrpPermission"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Administrator access to IPsec, SSL, PPTP, and L2TP VPN. Valid values: `none`, `read`, `read-write`.
-	Vpngrp *string `pulumi:"vpngrp"`
-	// Administrator access to WAN Opt & Cache. Valid values: `none`, `read`, `read-write`.
-	Wanoptgrp *string `pulumi:"wanoptgrp"`
-	// Administrator access to the WiFi controller and Switch controller. Valid values: `none`, `read`, `read-write`.
-	Wifi *string `pulumi:"wifi"`
+	Admintimeout         *int                              `pulumi:"admintimeout"`
+	AdmintimeoutOverride *string                           `pulumi:"admintimeoutOverride"`
+	Authgrp              *string                           `pulumi:"authgrp"`
+	Comments             *string                           `pulumi:"comments"`
+	Ftviewgrp            *string                           `pulumi:"ftviewgrp"`
+	Fwgrp                *string                           `pulumi:"fwgrp"`
+	FwgrpPermission      *SystemAccprofileFwgrpPermission  `pulumi:"fwgrpPermission"`
+	Loggrp               *string                           `pulumi:"loggrp"`
+	LoggrpPermission     *SystemAccprofileLoggrpPermission `pulumi:"loggrpPermission"`
+	Name                 *string                           `pulumi:"name"`
+	Netgrp               *string                           `pulumi:"netgrp"`
+	NetgrpPermission     *SystemAccprofileNetgrpPermission `pulumi:"netgrpPermission"`
+	Scope                *string                           `pulumi:"scope"`
+	Secfabgrp            *string                           `pulumi:"secfabgrp"`
+	Sysgrp               *string                           `pulumi:"sysgrp"`
+	SysgrpPermission     *SystemAccprofileSysgrpPermission `pulumi:"sysgrpPermission"`
+	SystemDiagnostics    *string                           `pulumi:"systemDiagnostics"`
+	SystemExecuteSsh     *string                           `pulumi:"systemExecuteSsh"`
+	SystemExecuteTelnet  *string                           `pulumi:"systemExecuteTelnet"`
+	Utmgrp               *string                           `pulumi:"utmgrp"`
+	UtmgrpPermission     *SystemAccprofileUtmgrpPermission `pulumi:"utmgrpPermission"`
+	Vdomparam            *string                           `pulumi:"vdomparam"`
+	Vpngrp               *string                           `pulumi:"vpngrp"`
+	Wanoptgrp            *string                           `pulumi:"wanoptgrp"`
+	Wifi                 *string                           `pulumi:"wifi"`
 }
 
 type SystemAccprofileState struct {
-	// Administrator timeout for this access profile (0 - 480 min, default = 10, 0 means never timeout).
-	Admintimeout pulumi.IntPtrInput
-	// Enable/disable overriding the global administrator idle timeout. Valid values: `enable`, `disable`.
+	Admintimeout         pulumi.IntPtrInput
 	AdmintimeoutOverride pulumi.StringPtrInput
-	// Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
-	Authgrp pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// FortiView. Valid values: `none`, `read`, `read-write`.
-	Ftviewgrp pulumi.StringPtrInput
-	// Administrator access to the Firewall configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-	Fwgrp pulumi.StringPtrInput
-	// Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
-	FwgrpPermission SystemAccprofileFwgrpPermissionPtrInput
-	// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
-	Loggrp pulumi.StringPtrInput
-	// Custom Log & Report permission. The structure of `loggrpPermission` block is documented below.
-	LoggrpPermission SystemAccprofileLoggrpPermissionPtrInput
-	// Profile name.
-	Name pulumi.StringPtrInput
-	// Network Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-	Netgrp pulumi.StringPtrInput
-	// Custom network permission. The structure of `netgrpPermission` block is documented below.
-	NetgrpPermission SystemAccprofileNetgrpPermissionPtrInput
-	// Scope of admin access: global or specific VDOM(s). Valid values: `vdom`, `global`.
-	Scope pulumi.StringPtrInput
-	// Security Fabric. Valid values: `none`, `read`, `read-write`.
-	Secfabgrp pulumi.StringPtrInput
-	// System Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-	Sysgrp pulumi.StringPtrInput
-	// Custom system permission. The structure of `sysgrpPermission` block is documented below.
-	SysgrpPermission SystemAccprofileSysgrpPermissionPtrInput
-	// Enable/disable permission to run system diagnostic commands. Valid values: `enable`, `disable`.
-	SystemDiagnostics pulumi.StringPtrInput
-	// Administrator access to Security Profiles. Valid values: `none`, `read`, `read-write`, `custom`.
-	Utmgrp pulumi.StringPtrInput
-	// Custom Security Profile permissions. The structure of `utmgrpPermission` block is documented below.
-	UtmgrpPermission SystemAccprofileUtmgrpPermissionPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Administrator access to IPsec, SSL, PPTP, and L2TP VPN. Valid values: `none`, `read`, `read-write`.
-	Vpngrp pulumi.StringPtrInput
-	// Administrator access to WAN Opt & Cache. Valid values: `none`, `read`, `read-write`.
-	Wanoptgrp pulumi.StringPtrInput
-	// Administrator access to the WiFi controller and Switch controller. Valid values: `none`, `read`, `read-write`.
-	Wifi pulumi.StringPtrInput
+	Authgrp              pulumi.StringPtrInput
+	Comments             pulumi.StringPtrInput
+	Ftviewgrp            pulumi.StringPtrInput
+	Fwgrp                pulumi.StringPtrInput
+	FwgrpPermission      SystemAccprofileFwgrpPermissionPtrInput
+	Loggrp               pulumi.StringPtrInput
+	LoggrpPermission     SystemAccprofileLoggrpPermissionPtrInput
+	Name                 pulumi.StringPtrInput
+	Netgrp               pulumi.StringPtrInput
+	NetgrpPermission     SystemAccprofileNetgrpPermissionPtrInput
+	Scope                pulumi.StringPtrInput
+	Secfabgrp            pulumi.StringPtrInput
+	Sysgrp               pulumi.StringPtrInput
+	SysgrpPermission     SystemAccprofileSysgrpPermissionPtrInput
+	SystemDiagnostics    pulumi.StringPtrInput
+	SystemExecuteSsh     pulumi.StringPtrInput
+	SystemExecuteTelnet  pulumi.StringPtrInput
+	Utmgrp               pulumi.StringPtrInput
+	UtmgrpPermission     SystemAccprofileUtmgrpPermissionPtrInput
+	Vdomparam            pulumi.StringPtrInput
+	Vpngrp               pulumi.StringPtrInput
+	Wanoptgrp            pulumi.StringPtrInput
+	Wifi                 pulumi.StringPtrInput
 }
 
 func (SystemAccprofileState) ElementType() reflect.Type {
@@ -282,102 +130,60 @@ func (SystemAccprofileState) ElementType() reflect.Type {
 }
 
 type systemAccprofileArgs struct {
-	// Administrator timeout for this access profile (0 - 480 min, default = 10, 0 means never timeout).
-	Admintimeout *int `pulumi:"admintimeout"`
-	// Enable/disable overriding the global administrator idle timeout. Valid values: `enable`, `disable`.
-	AdmintimeoutOverride *string `pulumi:"admintimeoutOverride"`
-	// Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
-	Authgrp *string `pulumi:"authgrp"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// FortiView. Valid values: `none`, `read`, `read-write`.
-	Ftviewgrp *string `pulumi:"ftviewgrp"`
-	// Administrator access to the Firewall configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-	Fwgrp *string `pulumi:"fwgrp"`
-	// Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
-	FwgrpPermission *SystemAccprofileFwgrpPermission `pulumi:"fwgrpPermission"`
-	// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
-	Loggrp *string `pulumi:"loggrp"`
-	// Custom Log & Report permission. The structure of `loggrpPermission` block is documented below.
-	LoggrpPermission *SystemAccprofileLoggrpPermission `pulumi:"loggrpPermission"`
-	// Profile name.
-	Name *string `pulumi:"name"`
-	// Network Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-	Netgrp *string `pulumi:"netgrp"`
-	// Custom network permission. The structure of `netgrpPermission` block is documented below.
-	NetgrpPermission *SystemAccprofileNetgrpPermission `pulumi:"netgrpPermission"`
-	// Scope of admin access: global or specific VDOM(s). Valid values: `vdom`, `global`.
-	Scope *string `pulumi:"scope"`
-	// Security Fabric. Valid values: `none`, `read`, `read-write`.
-	Secfabgrp *string `pulumi:"secfabgrp"`
-	// System Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-	Sysgrp *string `pulumi:"sysgrp"`
-	// Custom system permission. The structure of `sysgrpPermission` block is documented below.
-	SysgrpPermission *SystemAccprofileSysgrpPermission `pulumi:"sysgrpPermission"`
-	// Enable/disable permission to run system diagnostic commands. Valid values: `enable`, `disable`.
-	SystemDiagnostics *string `pulumi:"systemDiagnostics"`
-	// Administrator access to Security Profiles. Valid values: `none`, `read`, `read-write`, `custom`.
-	Utmgrp *string `pulumi:"utmgrp"`
-	// Custom Security Profile permissions. The structure of `utmgrpPermission` block is documented below.
-	UtmgrpPermission *SystemAccprofileUtmgrpPermission `pulumi:"utmgrpPermission"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Administrator access to IPsec, SSL, PPTP, and L2TP VPN. Valid values: `none`, `read`, `read-write`.
-	Vpngrp *string `pulumi:"vpngrp"`
-	// Administrator access to WAN Opt & Cache. Valid values: `none`, `read`, `read-write`.
-	Wanoptgrp *string `pulumi:"wanoptgrp"`
-	// Administrator access to the WiFi controller and Switch controller. Valid values: `none`, `read`, `read-write`.
-	Wifi *string `pulumi:"wifi"`
+	Admintimeout         *int                              `pulumi:"admintimeout"`
+	AdmintimeoutOverride *string                           `pulumi:"admintimeoutOverride"`
+	Authgrp              *string                           `pulumi:"authgrp"`
+	Comments             *string                           `pulumi:"comments"`
+	Ftviewgrp            *string                           `pulumi:"ftviewgrp"`
+	Fwgrp                *string                           `pulumi:"fwgrp"`
+	FwgrpPermission      *SystemAccprofileFwgrpPermission  `pulumi:"fwgrpPermission"`
+	Loggrp               *string                           `pulumi:"loggrp"`
+	LoggrpPermission     *SystemAccprofileLoggrpPermission `pulumi:"loggrpPermission"`
+	Name                 *string                           `pulumi:"name"`
+	Netgrp               *string                           `pulumi:"netgrp"`
+	NetgrpPermission     *SystemAccprofileNetgrpPermission `pulumi:"netgrpPermission"`
+	Scope                *string                           `pulumi:"scope"`
+	Secfabgrp            *string                           `pulumi:"secfabgrp"`
+	Sysgrp               *string                           `pulumi:"sysgrp"`
+	SysgrpPermission     *SystemAccprofileSysgrpPermission `pulumi:"sysgrpPermission"`
+	SystemDiagnostics    *string                           `pulumi:"systemDiagnostics"`
+	SystemExecuteSsh     *string                           `pulumi:"systemExecuteSsh"`
+	SystemExecuteTelnet  *string                           `pulumi:"systemExecuteTelnet"`
+	Utmgrp               *string                           `pulumi:"utmgrp"`
+	UtmgrpPermission     *SystemAccprofileUtmgrpPermission `pulumi:"utmgrpPermission"`
+	Vdomparam            *string                           `pulumi:"vdomparam"`
+	Vpngrp               *string                           `pulumi:"vpngrp"`
+	Wanoptgrp            *string                           `pulumi:"wanoptgrp"`
+	Wifi                 *string                           `pulumi:"wifi"`
 }
 
 // The set of arguments for constructing a SystemAccprofile resource.
 type SystemAccprofileArgs struct {
-	// Administrator timeout for this access profile (0 - 480 min, default = 10, 0 means never timeout).
-	Admintimeout pulumi.IntPtrInput
-	// Enable/disable overriding the global administrator idle timeout. Valid values: `enable`, `disable`.
+	Admintimeout         pulumi.IntPtrInput
 	AdmintimeoutOverride pulumi.StringPtrInput
-	// Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
-	Authgrp pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// FortiView. Valid values: `none`, `read`, `read-write`.
-	Ftviewgrp pulumi.StringPtrInput
-	// Administrator access to the Firewall configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-	Fwgrp pulumi.StringPtrInput
-	// Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
-	FwgrpPermission SystemAccprofileFwgrpPermissionPtrInput
-	// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
-	Loggrp pulumi.StringPtrInput
-	// Custom Log & Report permission. The structure of `loggrpPermission` block is documented below.
-	LoggrpPermission SystemAccprofileLoggrpPermissionPtrInput
-	// Profile name.
-	Name pulumi.StringPtrInput
-	// Network Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-	Netgrp pulumi.StringPtrInput
-	// Custom network permission. The structure of `netgrpPermission` block is documented below.
-	NetgrpPermission SystemAccprofileNetgrpPermissionPtrInput
-	// Scope of admin access: global or specific VDOM(s). Valid values: `vdom`, `global`.
-	Scope pulumi.StringPtrInput
-	// Security Fabric. Valid values: `none`, `read`, `read-write`.
-	Secfabgrp pulumi.StringPtrInput
-	// System Configuration. Valid values: `none`, `read`, `read-write`, `custom`.
-	Sysgrp pulumi.StringPtrInput
-	// Custom system permission. The structure of `sysgrpPermission` block is documented below.
-	SysgrpPermission SystemAccprofileSysgrpPermissionPtrInput
-	// Enable/disable permission to run system diagnostic commands. Valid values: `enable`, `disable`.
-	SystemDiagnostics pulumi.StringPtrInput
-	// Administrator access to Security Profiles. Valid values: `none`, `read`, `read-write`, `custom`.
-	Utmgrp pulumi.StringPtrInput
-	// Custom Security Profile permissions. The structure of `utmgrpPermission` block is documented below.
-	UtmgrpPermission SystemAccprofileUtmgrpPermissionPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Administrator access to IPsec, SSL, PPTP, and L2TP VPN. Valid values: `none`, `read`, `read-write`.
-	Vpngrp pulumi.StringPtrInput
-	// Administrator access to WAN Opt & Cache. Valid values: `none`, `read`, `read-write`.
-	Wanoptgrp pulumi.StringPtrInput
-	// Administrator access to the WiFi controller and Switch controller. Valid values: `none`, `read`, `read-write`.
-	Wifi pulumi.StringPtrInput
+	Authgrp              pulumi.StringPtrInput
+	Comments             pulumi.StringPtrInput
+	Ftviewgrp            pulumi.StringPtrInput
+	Fwgrp                pulumi.StringPtrInput
+	FwgrpPermission      SystemAccprofileFwgrpPermissionPtrInput
+	Loggrp               pulumi.StringPtrInput
+	LoggrpPermission     SystemAccprofileLoggrpPermissionPtrInput
+	Name                 pulumi.StringPtrInput
+	Netgrp               pulumi.StringPtrInput
+	NetgrpPermission     SystemAccprofileNetgrpPermissionPtrInput
+	Scope                pulumi.StringPtrInput
+	Secfabgrp            pulumi.StringPtrInput
+	Sysgrp               pulumi.StringPtrInput
+	SysgrpPermission     SystemAccprofileSysgrpPermissionPtrInput
+	SystemDiagnostics    pulumi.StringPtrInput
+	SystemExecuteSsh     pulumi.StringPtrInput
+	SystemExecuteTelnet  pulumi.StringPtrInput
+	Utmgrp               pulumi.StringPtrInput
+	UtmgrpPermission     SystemAccprofileUtmgrpPermissionPtrInput
+	Vdomparam            pulumi.StringPtrInput
+	Vpngrp               pulumi.StringPtrInput
+	Wanoptgrp            pulumi.StringPtrInput
+	Wifi                 pulumi.StringPtrInput
 }
 
 func (SystemAccprofileArgs) ElementType() reflect.Type {
@@ -406,7 +212,7 @@ func (i *SystemAccprofile) ToSystemAccprofileOutputWithContext(ctx context.Conte
 // SystemAccprofileArrayInput is an input type that accepts SystemAccprofileArray and SystemAccprofileArrayOutput values.
 // You can construct a concrete instance of `SystemAccprofileArrayInput` via:
 //
-//          SystemAccprofileArray{ SystemAccprofileArgs{...} }
+//	SystemAccprofileArray{ SystemAccprofileArgs{...} }
 type SystemAccprofileArrayInput interface {
 	pulumi.Input
 
@@ -431,7 +237,7 @@ func (i SystemAccprofileArray) ToSystemAccprofileArrayOutputWithContext(ctx cont
 // SystemAccprofileMapInput is an input type that accepts SystemAccprofileMap and SystemAccprofileMapOutput values.
 // You can construct a concrete instance of `SystemAccprofileMapInput` via:
 //
-//          SystemAccprofileMap{ "key": SystemAccprofileArgs{...} }
+//	SystemAccprofileMap{ "key": SystemAccprofileArgs{...} }
 type SystemAccprofileMapInput interface {
 	pulumi.Input
 
@@ -465,6 +271,106 @@ func (o SystemAccprofileOutput) ToSystemAccprofileOutput() SystemAccprofileOutpu
 
 func (o SystemAccprofileOutput) ToSystemAccprofileOutputWithContext(ctx context.Context) SystemAccprofileOutput {
 	return o
+}
+
+func (o SystemAccprofileOutput) Admintimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.IntOutput { return v.Admintimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemAccprofileOutput) AdmintimeoutOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.AdmintimeoutOverride }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) Authgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.Authgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAccprofileOutput) Ftviewgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.Ftviewgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) Fwgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.Fwgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) FwgrpPermission() SystemAccprofileFwgrpPermissionOutput {
+	return o.ApplyT(func(v *SystemAccprofile) SystemAccprofileFwgrpPermissionOutput { return v.FwgrpPermission }).(SystemAccprofileFwgrpPermissionOutput)
+}
+
+func (o SystemAccprofileOutput) Loggrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.Loggrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) LoggrpPermission() SystemAccprofileLoggrpPermissionOutput {
+	return o.ApplyT(func(v *SystemAccprofile) SystemAccprofileLoggrpPermissionOutput { return v.LoggrpPermission }).(SystemAccprofileLoggrpPermissionOutput)
+}
+
+func (o SystemAccprofileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) Netgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.Netgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) NetgrpPermission() SystemAccprofileNetgrpPermissionOutput {
+	return o.ApplyT(func(v *SystemAccprofile) SystemAccprofileNetgrpPermissionOutput { return v.NetgrpPermission }).(SystemAccprofileNetgrpPermissionOutput)
+}
+
+func (o SystemAccprofileOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.Scope }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) Secfabgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.Secfabgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) Sysgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.Sysgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) SysgrpPermission() SystemAccprofileSysgrpPermissionOutput {
+	return o.ApplyT(func(v *SystemAccprofile) SystemAccprofileSysgrpPermissionOutput { return v.SysgrpPermission }).(SystemAccprofileSysgrpPermissionOutput)
+}
+
+func (o SystemAccprofileOutput) SystemDiagnostics() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.SystemDiagnostics }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) SystemExecuteSsh() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.SystemExecuteSsh }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) SystemExecuteTelnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.SystemExecuteTelnet }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) Utmgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.Utmgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) UtmgrpPermission() SystemAccprofileUtmgrpPermissionOutput {
+	return o.ApplyT(func(v *SystemAccprofile) SystemAccprofileUtmgrpPermissionOutput { return v.UtmgrpPermission }).(SystemAccprofileUtmgrpPermissionOutput)
+}
+
+func (o SystemAccprofileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAccprofileOutput) Vpngrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.Vpngrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) Wanoptgrp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.Wanoptgrp }).(pulumi.StringOutput)
+}
+
+func (o SystemAccprofileOutput) Wifi() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringOutput { return v.Wifi }).(pulumi.StringOutput)
 }
 
 type SystemAccprofileArrayOutput struct{ *pulumi.OutputState }

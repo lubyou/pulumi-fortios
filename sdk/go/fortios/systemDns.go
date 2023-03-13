@@ -7,108 +7,38 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure DNS.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemDns(ctx, "trname", &fortios.SystemDnsArgs{
-// 			CacheNotfoundResponses: pulumi.String("disable"),
-// 			DnsCacheLimit:          pulumi.Int(5000),
-// 			DnsCacheTtl:            pulumi.Int(1800),
-// 			Ip6Primary:             pulumi.String("::"),
-// 			Ip6Secondary:           pulumi.String("::"),
-// 			Primary:                pulumi.String("208.91.112.53"),
-// 			Retry:                  pulumi.Int(2),
-// 			Secondary:              pulumi.String("208.91.112.51"),
-// 			SourceIp:               pulumi.String("0.0.0.0"),
-// 			Timeout:                pulumi.Int(5),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Dns can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDns:SystemDns labelname SystemDns
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDns:SystemDns labelname SystemDns
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemDns struct {
 	pulumi.CustomResourceState
 
-	// Alternate primary DNS server. (This is not used as a failover DNS server.)
-	AltPrimary pulumi.StringOutput `pulumi:"altPrimary"`
-	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
-	AltSecondary pulumi.StringOutput `pulumi:"altSecondary"`
-	// Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
-	CacheNotfoundResponses pulumi.StringOutput `pulumi:"cacheNotfoundResponses"`
-	// Maximum number of records in the DNS cache.
-	DnsCacheLimit pulumi.IntOutput `pulumi:"dnsCacheLimit"`
-	// Duration in seconds that the DNS cache retains information.
-	DnsCacheTtl pulumi.IntOutput `pulumi:"dnsCacheTtl"`
-	// Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
-	DnsOverTls pulumi.StringOutput `pulumi:"dnsOverTls"`
-	// DNS search domain list separated by space (maximum 8 domains)
-	Domains SystemDnsDomainArrayOutput `pulumi:"domains"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
-	// Primary DNS server IPv6 address.
-	Ip6Primary pulumi.StringOutput `pulumi:"ip6Primary"`
-	// Secondary DNS server IPv6 address.
-	Ip6Secondary pulumi.StringOutput `pulumi:"ip6Secondary"`
-	// Local DNS log setting. Valid values: `disable`, `error`, `all`.
-	Log pulumi.StringOutput `pulumi:"log"`
-	// Primary DNS server IP address.
-	Primary pulumi.StringOutput `pulumi:"primary"`
-	// DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
-	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// Number of times to retry (0 - 5).
-	Retry pulumi.IntOutput `pulumi:"retry"`
-	// Secondary DNS server IP address.
-	Secondary pulumi.StringOutput `pulumi:"secondary"`
-	// DNS server host name list. The structure of `serverHostname` block is documented below.
-	ServerHostnames SystemDnsServerHostnameArrayOutput `pulumi:"serverHostnames"`
-	// Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
-	ServerSelectMethod pulumi.StringOutput `pulumi:"serverSelectMethod"`
-	// IP address used by the DNS server as its source IP.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Name of local certificate for SSL connections.
-	SslCertificate pulumi.StringOutput `pulumi:"sslCertificate"`
-	// DNS query timeout interval in seconds (1 - 10).
-	Timeout pulumi.IntOutput `pulumi:"timeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AltPrimary             pulumi.StringOutput                `pulumi:"altPrimary"`
+	AltSecondary           pulumi.StringOutput                `pulumi:"altSecondary"`
+	CacheNotfoundResponses pulumi.StringOutput                `pulumi:"cacheNotfoundResponses"`
+	DnsCacheLimit          pulumi.IntOutput                   `pulumi:"dnsCacheLimit"`
+	DnsCacheTtl            pulumi.IntOutput                   `pulumi:"dnsCacheTtl"`
+	DnsOverTls             pulumi.StringOutput                `pulumi:"dnsOverTls"`
+	Domains                SystemDnsDomainArrayOutput         `pulumi:"domains"`
+	DynamicSortSubtable    pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
+	FqdnCacheTtl           pulumi.IntOutput                   `pulumi:"fqdnCacheTtl"`
+	FqdnMinRefresh         pulumi.IntOutput                   `pulumi:"fqdnMinRefresh"`
+	Interface              pulumi.StringOutput                `pulumi:"interface"`
+	InterfaceSelectMethod  pulumi.StringOutput                `pulumi:"interfaceSelectMethod"`
+	Ip6Primary             pulumi.StringOutput                `pulumi:"ip6Primary"`
+	Ip6Secondary           pulumi.StringOutput                `pulumi:"ip6Secondary"`
+	Log                    pulumi.StringOutput                `pulumi:"log"`
+	Primary                pulumi.StringOutput                `pulumi:"primary"`
+	Protocol               pulumi.StringOutput                `pulumi:"protocol"`
+	Retry                  pulumi.IntOutput                   `pulumi:"retry"`
+	Secondary              pulumi.StringOutput                `pulumi:"secondary"`
+	ServerHostnames        SystemDnsServerHostnameArrayOutput `pulumi:"serverHostnames"`
+	ServerSelectMethod     pulumi.StringOutput                `pulumi:"serverSelectMethod"`
+	SourceIp               pulumi.StringOutput                `pulumi:"sourceIp"`
+	SslCertificate         pulumi.StringOutput                `pulumi:"sslCertificate"`
+	Timeout                pulumi.IntOutput                   `pulumi:"timeout"`
+	Vdomparam              pulumi.StringPtrOutput             `pulumi:"vdomparam"`
 }
 
 // NewSystemDns registers a new resource with the given unique name, arguments, and options.
@@ -144,101 +74,59 @@ func GetSystemDns(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemDns resources.
 type systemDnsState struct {
-	// Alternate primary DNS server. (This is not used as a failover DNS server.)
-	AltPrimary *string `pulumi:"altPrimary"`
-	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
-	AltSecondary *string `pulumi:"altSecondary"`
-	// Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
-	CacheNotfoundResponses *string `pulumi:"cacheNotfoundResponses"`
-	// Maximum number of records in the DNS cache.
-	DnsCacheLimit *int `pulumi:"dnsCacheLimit"`
-	// Duration in seconds that the DNS cache retains information.
-	DnsCacheTtl *int `pulumi:"dnsCacheTtl"`
-	// Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
-	DnsOverTls *string `pulumi:"dnsOverTls"`
-	// DNS search domain list separated by space (maximum 8 domains)
-	Domains []SystemDnsDomain `pulumi:"domains"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Primary DNS server IPv6 address.
-	Ip6Primary *string `pulumi:"ip6Primary"`
-	// Secondary DNS server IPv6 address.
-	Ip6Secondary *string `pulumi:"ip6Secondary"`
-	// Local DNS log setting. Valid values: `disable`, `error`, `all`.
-	Log *string `pulumi:"log"`
-	// Primary DNS server IP address.
-	Primary *string `pulumi:"primary"`
-	// DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
-	Protocol *string `pulumi:"protocol"`
-	// Number of times to retry (0 - 5).
-	Retry *int `pulumi:"retry"`
-	// Secondary DNS server IP address.
-	Secondary *string `pulumi:"secondary"`
-	// DNS server host name list. The structure of `serverHostname` block is documented below.
-	ServerHostnames []SystemDnsServerHostname `pulumi:"serverHostnames"`
-	// Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
-	ServerSelectMethod *string `pulumi:"serverSelectMethod"`
-	// IP address used by the DNS server as its source IP.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Name of local certificate for SSL connections.
-	SslCertificate *string `pulumi:"sslCertificate"`
-	// DNS query timeout interval in seconds (1 - 10).
-	Timeout *int `pulumi:"timeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AltPrimary             *string                   `pulumi:"altPrimary"`
+	AltSecondary           *string                   `pulumi:"altSecondary"`
+	CacheNotfoundResponses *string                   `pulumi:"cacheNotfoundResponses"`
+	DnsCacheLimit          *int                      `pulumi:"dnsCacheLimit"`
+	DnsCacheTtl            *int                      `pulumi:"dnsCacheTtl"`
+	DnsOverTls             *string                   `pulumi:"dnsOverTls"`
+	Domains                []SystemDnsDomain         `pulumi:"domains"`
+	DynamicSortSubtable    *string                   `pulumi:"dynamicSortSubtable"`
+	FqdnCacheTtl           *int                      `pulumi:"fqdnCacheTtl"`
+	FqdnMinRefresh         *int                      `pulumi:"fqdnMinRefresh"`
+	Interface              *string                   `pulumi:"interface"`
+	InterfaceSelectMethod  *string                   `pulumi:"interfaceSelectMethod"`
+	Ip6Primary             *string                   `pulumi:"ip6Primary"`
+	Ip6Secondary           *string                   `pulumi:"ip6Secondary"`
+	Log                    *string                   `pulumi:"log"`
+	Primary                *string                   `pulumi:"primary"`
+	Protocol               *string                   `pulumi:"protocol"`
+	Retry                  *int                      `pulumi:"retry"`
+	Secondary              *string                   `pulumi:"secondary"`
+	ServerHostnames        []SystemDnsServerHostname `pulumi:"serverHostnames"`
+	ServerSelectMethod     *string                   `pulumi:"serverSelectMethod"`
+	SourceIp               *string                   `pulumi:"sourceIp"`
+	SslCertificate         *string                   `pulumi:"sslCertificate"`
+	Timeout                *int                      `pulumi:"timeout"`
+	Vdomparam              *string                   `pulumi:"vdomparam"`
 }
 
 type SystemDnsState struct {
-	// Alternate primary DNS server. (This is not used as a failover DNS server.)
-	AltPrimary pulumi.StringPtrInput
-	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
-	AltSecondary pulumi.StringPtrInput
-	// Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
+	AltPrimary             pulumi.StringPtrInput
+	AltSecondary           pulumi.StringPtrInput
 	CacheNotfoundResponses pulumi.StringPtrInput
-	// Maximum number of records in the DNS cache.
-	DnsCacheLimit pulumi.IntPtrInput
-	// Duration in seconds that the DNS cache retains information.
-	DnsCacheTtl pulumi.IntPtrInput
-	// Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
-	DnsOverTls pulumi.StringPtrInput
-	// DNS search domain list separated by space (maximum 8 domains)
-	Domains SystemDnsDomainArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringPtrInput
-	// Primary DNS server IPv6 address.
-	Ip6Primary pulumi.StringPtrInput
-	// Secondary DNS server IPv6 address.
-	Ip6Secondary pulumi.StringPtrInput
-	// Local DNS log setting. Valid values: `disable`, `error`, `all`.
-	Log pulumi.StringPtrInput
-	// Primary DNS server IP address.
-	Primary pulumi.StringPtrInput
-	// DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
-	Protocol pulumi.StringPtrInput
-	// Number of times to retry (0 - 5).
-	Retry pulumi.IntPtrInput
-	// Secondary DNS server IP address.
-	Secondary pulumi.StringPtrInput
-	// DNS server host name list. The structure of `serverHostname` block is documented below.
-	ServerHostnames SystemDnsServerHostnameArrayInput
-	// Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
-	ServerSelectMethod pulumi.StringPtrInput
-	// IP address used by the DNS server as its source IP.
-	SourceIp pulumi.StringPtrInput
-	// Name of local certificate for SSL connections.
-	SslCertificate pulumi.StringPtrInput
-	// DNS query timeout interval in seconds (1 - 10).
-	Timeout pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	DnsCacheLimit          pulumi.IntPtrInput
+	DnsCacheTtl            pulumi.IntPtrInput
+	DnsOverTls             pulumi.StringPtrInput
+	Domains                SystemDnsDomainArrayInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	FqdnCacheTtl           pulumi.IntPtrInput
+	FqdnMinRefresh         pulumi.IntPtrInput
+	Interface              pulumi.StringPtrInput
+	InterfaceSelectMethod  pulumi.StringPtrInput
+	Ip6Primary             pulumi.StringPtrInput
+	Ip6Secondary           pulumi.StringPtrInput
+	Log                    pulumi.StringPtrInput
+	Primary                pulumi.StringPtrInput
+	Protocol               pulumi.StringPtrInput
+	Retry                  pulumi.IntPtrInput
+	Secondary              pulumi.StringPtrInput
+	ServerHostnames        SystemDnsServerHostnameArrayInput
+	ServerSelectMethod     pulumi.StringPtrInput
+	SourceIp               pulumi.StringPtrInput
+	SslCertificate         pulumi.StringPtrInput
+	Timeout                pulumi.IntPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SystemDnsState) ElementType() reflect.Type {
@@ -246,102 +134,60 @@ func (SystemDnsState) ElementType() reflect.Type {
 }
 
 type systemDnsArgs struct {
-	// Alternate primary DNS server. (This is not used as a failover DNS server.)
-	AltPrimary *string `pulumi:"altPrimary"`
-	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
-	AltSecondary *string `pulumi:"altSecondary"`
-	// Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
-	CacheNotfoundResponses *string `pulumi:"cacheNotfoundResponses"`
-	// Maximum number of records in the DNS cache.
-	DnsCacheLimit *int `pulumi:"dnsCacheLimit"`
-	// Duration in seconds that the DNS cache retains information.
-	DnsCacheTtl *int `pulumi:"dnsCacheTtl"`
-	// Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
-	DnsOverTls *string `pulumi:"dnsOverTls"`
-	// DNS search domain list separated by space (maximum 8 domains)
-	Domains []SystemDnsDomain `pulumi:"domains"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Primary DNS server IPv6 address.
-	Ip6Primary *string `pulumi:"ip6Primary"`
-	// Secondary DNS server IPv6 address.
-	Ip6Secondary *string `pulumi:"ip6Secondary"`
-	// Local DNS log setting. Valid values: `disable`, `error`, `all`.
-	Log *string `pulumi:"log"`
-	// Primary DNS server IP address.
-	Primary string `pulumi:"primary"`
-	// DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
-	Protocol *string `pulumi:"protocol"`
-	// Number of times to retry (0 - 5).
-	Retry *int `pulumi:"retry"`
-	// Secondary DNS server IP address.
-	Secondary *string `pulumi:"secondary"`
-	// DNS server host name list. The structure of `serverHostname` block is documented below.
-	ServerHostnames []SystemDnsServerHostname `pulumi:"serverHostnames"`
-	// Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
-	ServerSelectMethod *string `pulumi:"serverSelectMethod"`
-	// IP address used by the DNS server as its source IP.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Name of local certificate for SSL connections.
-	SslCertificate *string `pulumi:"sslCertificate"`
-	// DNS query timeout interval in seconds (1 - 10).
-	Timeout *int `pulumi:"timeout"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AltPrimary             *string                   `pulumi:"altPrimary"`
+	AltSecondary           *string                   `pulumi:"altSecondary"`
+	CacheNotfoundResponses *string                   `pulumi:"cacheNotfoundResponses"`
+	DnsCacheLimit          *int                      `pulumi:"dnsCacheLimit"`
+	DnsCacheTtl            *int                      `pulumi:"dnsCacheTtl"`
+	DnsOverTls             *string                   `pulumi:"dnsOverTls"`
+	Domains                []SystemDnsDomain         `pulumi:"domains"`
+	DynamicSortSubtable    *string                   `pulumi:"dynamicSortSubtable"`
+	FqdnCacheTtl           *int                      `pulumi:"fqdnCacheTtl"`
+	FqdnMinRefresh         *int                      `pulumi:"fqdnMinRefresh"`
+	Interface              *string                   `pulumi:"interface"`
+	InterfaceSelectMethod  *string                   `pulumi:"interfaceSelectMethod"`
+	Ip6Primary             *string                   `pulumi:"ip6Primary"`
+	Ip6Secondary           *string                   `pulumi:"ip6Secondary"`
+	Log                    *string                   `pulumi:"log"`
+	Primary                string                    `pulumi:"primary"`
+	Protocol               *string                   `pulumi:"protocol"`
+	Retry                  *int                      `pulumi:"retry"`
+	Secondary              *string                   `pulumi:"secondary"`
+	ServerHostnames        []SystemDnsServerHostname `pulumi:"serverHostnames"`
+	ServerSelectMethod     *string                   `pulumi:"serverSelectMethod"`
+	SourceIp               *string                   `pulumi:"sourceIp"`
+	SslCertificate         *string                   `pulumi:"sslCertificate"`
+	Timeout                *int                      `pulumi:"timeout"`
+	Vdomparam              *string                   `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemDns resource.
 type SystemDnsArgs struct {
-	// Alternate primary DNS server. (This is not used as a failover DNS server.)
-	AltPrimary pulumi.StringPtrInput
-	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
-	AltSecondary pulumi.StringPtrInput
-	// Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
+	AltPrimary             pulumi.StringPtrInput
+	AltSecondary           pulumi.StringPtrInput
 	CacheNotfoundResponses pulumi.StringPtrInput
-	// Maximum number of records in the DNS cache.
-	DnsCacheLimit pulumi.IntPtrInput
-	// Duration in seconds that the DNS cache retains information.
-	DnsCacheTtl pulumi.IntPtrInput
-	// Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
-	DnsOverTls pulumi.StringPtrInput
-	// DNS search domain list separated by space (maximum 8 domains)
-	Domains SystemDnsDomainArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringPtrInput
-	// Primary DNS server IPv6 address.
-	Ip6Primary pulumi.StringPtrInput
-	// Secondary DNS server IPv6 address.
-	Ip6Secondary pulumi.StringPtrInput
-	// Local DNS log setting. Valid values: `disable`, `error`, `all`.
-	Log pulumi.StringPtrInput
-	// Primary DNS server IP address.
-	Primary pulumi.StringInput
-	// DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
-	Protocol pulumi.StringPtrInput
-	// Number of times to retry (0 - 5).
-	Retry pulumi.IntPtrInput
-	// Secondary DNS server IP address.
-	Secondary pulumi.StringPtrInput
-	// DNS server host name list. The structure of `serverHostname` block is documented below.
-	ServerHostnames SystemDnsServerHostnameArrayInput
-	// Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
-	ServerSelectMethod pulumi.StringPtrInput
-	// IP address used by the DNS server as its source IP.
-	SourceIp pulumi.StringPtrInput
-	// Name of local certificate for SSL connections.
-	SslCertificate pulumi.StringPtrInput
-	// DNS query timeout interval in seconds (1 - 10).
-	Timeout pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	DnsCacheLimit          pulumi.IntPtrInput
+	DnsCacheTtl            pulumi.IntPtrInput
+	DnsOverTls             pulumi.StringPtrInput
+	Domains                SystemDnsDomainArrayInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	FqdnCacheTtl           pulumi.IntPtrInput
+	FqdnMinRefresh         pulumi.IntPtrInput
+	Interface              pulumi.StringPtrInput
+	InterfaceSelectMethod  pulumi.StringPtrInput
+	Ip6Primary             pulumi.StringPtrInput
+	Ip6Secondary           pulumi.StringPtrInput
+	Log                    pulumi.StringPtrInput
+	Primary                pulumi.StringInput
+	Protocol               pulumi.StringPtrInput
+	Retry                  pulumi.IntPtrInput
+	Secondary              pulumi.StringPtrInput
+	ServerHostnames        SystemDnsServerHostnameArrayInput
+	ServerSelectMethod     pulumi.StringPtrInput
+	SourceIp               pulumi.StringPtrInput
+	SslCertificate         pulumi.StringPtrInput
+	Timeout                pulumi.IntPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SystemDnsArgs) ElementType() reflect.Type {
@@ -370,7 +216,7 @@ func (i *SystemDns) ToSystemDnsOutputWithContext(ctx context.Context) SystemDnsO
 // SystemDnsArrayInput is an input type that accepts SystemDnsArray and SystemDnsArrayOutput values.
 // You can construct a concrete instance of `SystemDnsArrayInput` via:
 //
-//          SystemDnsArray{ SystemDnsArgs{...} }
+//	SystemDnsArray{ SystemDnsArgs{...} }
 type SystemDnsArrayInput interface {
 	pulumi.Input
 
@@ -395,7 +241,7 @@ func (i SystemDnsArray) ToSystemDnsArrayOutputWithContext(ctx context.Context) S
 // SystemDnsMapInput is an input type that accepts SystemDnsMap and SystemDnsMapOutput values.
 // You can construct a concrete instance of `SystemDnsMapInput` via:
 //
-//          SystemDnsMap{ "key": SystemDnsArgs{...} }
+//	SystemDnsMap{ "key": SystemDnsArgs{...} }
 type SystemDnsMapInput interface {
 	pulumi.Input
 
@@ -429,6 +275,106 @@ func (o SystemDnsOutput) ToSystemDnsOutput() SystemDnsOutput {
 
 func (o SystemDnsOutput) ToSystemDnsOutputWithContext(ctx context.Context) SystemDnsOutput {
 	return o
+}
+
+func (o SystemDnsOutput) AltPrimary() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringOutput { return v.AltPrimary }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsOutput) AltSecondary() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringOutput { return v.AltSecondary }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsOutput) CacheNotfoundResponses() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringOutput { return v.CacheNotfoundResponses }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsOutput) DnsCacheLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.IntOutput { return v.DnsCacheLimit }).(pulumi.IntOutput)
+}
+
+func (o SystemDnsOutput) DnsCacheTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.IntOutput { return v.DnsCacheTtl }).(pulumi.IntOutput)
+}
+
+func (o SystemDnsOutput) DnsOverTls() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringOutput { return v.DnsOverTls }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsOutput) Domains() SystemDnsDomainArrayOutput {
+	return o.ApplyT(func(v *SystemDns) SystemDnsDomainArrayOutput { return v.Domains }).(SystemDnsDomainArrayOutput)
+}
+
+func (o SystemDnsOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemDnsOutput) FqdnCacheTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.IntOutput { return v.FqdnCacheTtl }).(pulumi.IntOutput)
+}
+
+func (o SystemDnsOutput) FqdnMinRefresh() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.IntOutput { return v.FqdnMinRefresh }).(pulumi.IntOutput)
+}
+
+func (o SystemDnsOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsOutput) Ip6Primary() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringOutput { return v.Ip6Primary }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsOutput) Ip6Secondary() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringOutput { return v.Ip6Secondary }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsOutput) Log() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringOutput { return v.Log }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsOutput) Primary() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringOutput { return v.Primary }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsOutput) Retry() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.IntOutput { return v.Retry }).(pulumi.IntOutput)
+}
+
+func (o SystemDnsOutput) Secondary() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringOutput { return v.Secondary }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsOutput) ServerHostnames() SystemDnsServerHostnameArrayOutput {
+	return o.ApplyT(func(v *SystemDns) SystemDnsServerHostnameArrayOutput { return v.ServerHostnames }).(SystemDnsServerHostnameArrayOutput)
+}
+
+func (o SystemDnsOutput) ServerSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringOutput { return v.ServerSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsOutput) SslCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringOutput { return v.SslCertificate }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
+}
+
+func (o SystemDnsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemDnsArrayOutput struct{ *pulumi.OutputState }

@@ -7,68 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// POP3 server entry configuration.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewUserPop3(ctx, "trname", &fortios.UserPop3Args{
-// 			Port:               pulumi.Int(0),
-// 			Secure:             pulumi.String("pop3s"),
-// 			Server:             pulumi.String("1.1.1.1"),
-// 			SslMinProtoVersion: pulumi.String("default"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// User Pop3 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userPop3:UserPop3 labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userPop3:UserPop3 labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserPop3 struct {
 	pulumi.CustomResourceState
 
-	// POP3 server entry name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// POP3 service port number.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// SSL connection. Valid values: `none`, `starttls`, `pop3s`.
-	Secure pulumi.StringOutput `pulumi:"secure"`
-	// {<name_str|ip_str>} server domain name or IP.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Name               pulumi.StringOutput    `pulumi:"name"`
+	Port               pulumi.IntOutput       `pulumi:"port"`
+	Secure             pulumi.StringOutput    `pulumi:"secure"`
+	Server             pulumi.StringOutput    `pulumi:"server"`
+	SslMinProtoVersion pulumi.StringOutput    `pulumi:"sslMinProtoVersion"`
+	Vdomparam          pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewUserPop3 registers a new resource with the given unique name, arguments, and options.
@@ -104,33 +55,21 @@ func GetUserPop3(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserPop3 resources.
 type userPop3State struct {
-	// POP3 server entry name.
-	Name *string `pulumi:"name"`
-	// POP3 service port number.
-	Port *int `pulumi:"port"`
-	// SSL connection. Valid values: `none`, `starttls`, `pop3s`.
-	Secure *string `pulumi:"secure"`
-	// {<name_str|ip_str>} server domain name or IP.
-	Server *string `pulumi:"server"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	Name               *string `pulumi:"name"`
+	Port               *int    `pulumi:"port"`
+	Secure             *string `pulumi:"secure"`
+	Server             *string `pulumi:"server"`
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam          *string `pulumi:"vdomparam"`
 }
 
 type UserPop3State struct {
-	// POP3 server entry name.
-	Name pulumi.StringPtrInput
-	// POP3 service port number.
-	Port pulumi.IntPtrInput
-	// SSL connection. Valid values: `none`, `starttls`, `pop3s`.
-	Secure pulumi.StringPtrInput
-	// {<name_str|ip_str>} server domain name or IP.
-	Server pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	Name               pulumi.StringPtrInput
+	Port               pulumi.IntPtrInput
+	Secure             pulumi.StringPtrInput
+	Server             pulumi.StringPtrInput
 	SslMinProtoVersion pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam          pulumi.StringPtrInput
 }
 
 func (UserPop3State) ElementType() reflect.Type {
@@ -138,34 +77,22 @@ func (UserPop3State) ElementType() reflect.Type {
 }
 
 type userPop3Args struct {
-	// POP3 server entry name.
-	Name *string `pulumi:"name"`
-	// POP3 service port number.
-	Port *int `pulumi:"port"`
-	// SSL connection. Valid values: `none`, `starttls`, `pop3s`.
-	Secure *string `pulumi:"secure"`
-	// {<name_str|ip_str>} server domain name or IP.
-	Server string `pulumi:"server"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	Name               *string `pulumi:"name"`
+	Port               *int    `pulumi:"port"`
+	Secure             *string `pulumi:"secure"`
+	Server             string  `pulumi:"server"`
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam          *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserPop3 resource.
 type UserPop3Args struct {
-	// POP3 server entry name.
-	Name pulumi.StringPtrInput
-	// POP3 service port number.
-	Port pulumi.IntPtrInput
-	// SSL connection. Valid values: `none`, `starttls`, `pop3s`.
-	Secure pulumi.StringPtrInput
-	// {<name_str|ip_str>} server domain name or IP.
-	Server pulumi.StringInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	Name               pulumi.StringPtrInput
+	Port               pulumi.IntPtrInput
+	Secure             pulumi.StringPtrInput
+	Server             pulumi.StringInput
 	SslMinProtoVersion pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam          pulumi.StringPtrInput
 }
 
 func (UserPop3Args) ElementType() reflect.Type {
@@ -194,7 +121,7 @@ func (i *UserPop3) ToUserPop3OutputWithContext(ctx context.Context) UserPop3Outp
 // UserPop3ArrayInput is an input type that accepts UserPop3Array and UserPop3ArrayOutput values.
 // You can construct a concrete instance of `UserPop3ArrayInput` via:
 //
-//          UserPop3Array{ UserPop3Args{...} }
+//	UserPop3Array{ UserPop3Args{...} }
 type UserPop3ArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +146,7 @@ func (i UserPop3Array) ToUserPop3ArrayOutputWithContext(ctx context.Context) Use
 // UserPop3MapInput is an input type that accepts UserPop3Map and UserPop3MapOutput values.
 // You can construct a concrete instance of `UserPop3MapInput` via:
 //
-//          UserPop3Map{ "key": UserPop3Args{...} }
+//	UserPop3Map{ "key": UserPop3Args{...} }
 type UserPop3MapInput interface {
 	pulumi.Input
 
@@ -253,6 +180,30 @@ func (o UserPop3Output) ToUserPop3Output() UserPop3Output {
 
 func (o UserPop3Output) ToUserPop3OutputWithContext(ctx context.Context) UserPop3Output {
 	return o
+}
+
+func (o UserPop3Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPop3) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserPop3Output) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserPop3) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o UserPop3Output) Secure() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPop3) pulumi.StringOutput { return v.Secure }).(pulumi.StringOutput)
+}
+
+func (o UserPop3Output) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPop3) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o UserPop3Output) SslMinProtoVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPop3) pulumi.StringOutput { return v.SslMinProtoVersion }).(pulumi.StringOutput)
+}
+
+func (o UserPop3Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserPop3) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserPop3ArrayOutput struct{ *pulumi.OutputState }

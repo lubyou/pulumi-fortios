@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv6 neighbor cache table.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemIpv6NeighborCache("trname", {
- *     fosid: 1,
- *     interface: "port2",
- *     ipv6: "fe80::b11a:5ae3:198:ba1c",
- *     mac: "00:00:00:00:00:00",
- * });
- * ```
- *
- * ## Import
- *
- * System Ipv6NeighborCache can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemIpv6NeighborCache:SystemIpv6NeighborCache labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemIpv6NeighborCache:SystemIpv6NeighborCache labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemIpv6NeighborCache extends pulumi.CustomResource {
     /**
      * Get an existing SystemIpv6NeighborCache resource's state with the given name, ID, and optional extra
@@ -65,25 +32,10 @@ export class SystemIpv6NeighborCache extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemIpv6NeighborCache.__pulumiType;
     }
 
-    /**
-     * Unique integer ID of the entry.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Select the associated interface name from available options.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * IPv6 address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-     */
     public readonly ipv6!: pulumi.Output<string>;
-    /**
-     * MAC address (format: xx:xx:xx:xx:xx:xx).
-     */
     public readonly mac!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -133,25 +85,10 @@ export class SystemIpv6NeighborCache extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemIpv6NeighborCache resources.
  */
 export interface SystemIpv6NeighborCacheState {
-    /**
-     * Unique integer ID of the entry.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Select the associated interface name from available options.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * IPv6 address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-     */
     ipv6?: pulumi.Input<string>;
-    /**
-     * MAC address (format: xx:xx:xx:xx:xx:xx).
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -159,24 +96,9 @@ export interface SystemIpv6NeighborCacheState {
  * The set of arguments for constructing a SystemIpv6NeighborCache resource.
  */
 export interface SystemIpv6NeighborCacheArgs {
-    /**
-     * Unique integer ID of the entry.
-     */
     fosid: pulumi.Input<number>;
-    /**
-     * Select the associated interface name from available options.
-     */
     interface: pulumi.Input<string>;
-    /**
-     * IPv6 address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-     */
     ipv6: pulumi.Input<string>;
-    /**
-     * MAC address (format: xx:xx:xx:xx:xx:xx).
-     */
     mac: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

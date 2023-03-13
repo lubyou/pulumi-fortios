@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemReplacemsgGroup`.
 func GetSystemReplacemsgGroupList(ctx *pulumi.Context, args *GetSystemReplacemsgGroupListArgs, opts ...pulumi.InvokeOption) (*GetSystemReplacemsgGroupListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemReplacemsgGroupListResult
@@ -23,8 +22,7 @@ func GetSystemReplacemsgGroupList(ctx *pulumi.Context, args *GetSystemReplacemsg
 
 // A collection of arguments for invoking GetSystemReplacemsgGroupList.
 type GetSystemReplacemsgGroupListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetSystemReplacemsgGroupListArgs struct {
 type GetSystemReplacemsgGroupListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `SystemReplacemsgGroup`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetSystemReplacemsgGroupListOutput(ctx *pulumi.Context, args GetSystemRepla
 
 // A collection of arguments for invoking GetSystemReplacemsgGroupList.
 type GetSystemReplacemsgGroupListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetSystemReplacemsgGroupListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSystemReplacemsgGroupListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `SystemReplacemsgGroup`.
 func (o GetSystemReplacemsgGroupListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSystemReplacemsgGroupListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

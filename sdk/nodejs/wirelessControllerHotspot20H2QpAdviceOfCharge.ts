@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure advice of charge. Applies to FortiOS Version `>= 7.0.2`.
- *
- * ## Import
- *
- * WirelessControllerHotspot20 H2QpAdviceOfCharge can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpAdviceOfCharge:WirelessControllerHotspot20H2QpAdviceOfCharge labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpAdviceOfCharge:WirelessControllerHotspot20H2QpAdviceOfCharge labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerHotspot20H2QpAdviceOfCharge extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerHotspot20H2QpAdviceOfCharge resource's state with the given name, ID, and optional extra
@@ -52,21 +34,9 @@ export class WirelessControllerHotspot20H2QpAdviceOfCharge extends pulumi.Custom
         return obj['__pulumiType'] === WirelessControllerHotspot20H2QpAdviceOfCharge.__pulumiType;
     }
 
-    /**
-     * AOC list. The structure of `aocList` block is documented below.
-     */
     public readonly aocLists!: pulumi.Output<outputs.WirelessControllerHotspot20H2QpAdviceOfChargeAocList[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Plan name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -102,21 +72,9 @@ export class WirelessControllerHotspot20H2QpAdviceOfCharge extends pulumi.Custom
  * Input properties used for looking up and filtering WirelessControllerHotspot20H2QpAdviceOfCharge resources.
  */
 export interface WirelessControllerHotspot20H2QpAdviceOfChargeState {
-    /**
-     * AOC list. The structure of `aocList` block is documented below.
-     */
     aocLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20H2QpAdviceOfChargeAocList>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Plan name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -124,20 +82,8 @@ export interface WirelessControllerHotspot20H2QpAdviceOfChargeState {
  * The set of arguments for constructing a WirelessControllerHotspot20H2QpAdviceOfCharge resource.
  */
 export interface WirelessControllerHotspot20H2QpAdviceOfChargeArgs {
-    /**
-     * AOC list. The structure of `aocList` block is documented below.
-     */
     aocLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20H2QpAdviceOfChargeAocList>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Plan name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

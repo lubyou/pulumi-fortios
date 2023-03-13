@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure NPU attributes. Applies to FortiOS Version `>= 7.0.4`.
- *
- * ## Import
- *
- * System Npu can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemNpu:SystemNpu labelname SystemNpu
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemNpu:SystemNpu labelname SystemNpu
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemNpu extends pulumi.CustomResource {
     /**
      * Get an existing SystemNpu resource's state with the given name, ID, and optional extra
@@ -52,85 +34,25 @@ export class SystemNpu extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemNpu.__pulumiType;
     }
 
-    /**
-     * Enable/disable offloading managed FortiAP and FortiLink CAPWAP sessions. Valid values: `enable`, `disable`.
-     */
     public readonly capwapOffload!: pulumi.Output<string>;
-    /**
-     * Affinity setting for management deamons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-     */
     public readonly dedicatedManagementAffinity!: pulumi.Output<string>;
-    /**
-     * Enable to dedicate one CPU for GUI and CLI connections when NPs are busy. Valid values: `enable`, `disable`.
-     */
     public readonly dedicatedManagementCpu!: pulumi.Output<string>;
-    /**
-     * Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
-     */
     public readonly fastpath!: pulumi.Output<string>;
-    /**
-     * IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
-     */
     public readonly ipsecDecSubengineMask!: pulumi.Output<string>;
-    /**
-     * IPsec encryption subengine mask (0x1 - 0xff, default 0xff).
-     */
     public readonly ipsecEncSubengineMask!: pulumi.Output<string>;
-    /**
-     * Enable/disable IPsec inbound cache for anti-replay. Valid values: `enable`, `disable`.
-     */
     public readonly ipsecInboundCache!: pulumi.Output<string>;
-    /**
-     * Enable/disable NP6 IPsec MTU override. Valid values: `disable`, `enable`.
-     */
     public readonly ipsecMtuOverride!: pulumi.Output<string>;
-    /**
-     * Enable/disable IPSEC over vlink. Valid values: `enable`, `disable`.
-     */
     public readonly ipsecOverVlink!: pulumi.Output<string>;
-    /**
-     * Enable/disable traffic accounting for each multicast session through TAE counter. Valid values: `tpe-based`, `session-based`, `disable`.
-     */
     public readonly mcastSessionAccounting!: pulumi.Output<string>;
-    /**
-     * Enable/disable NP6 connection per second (CPS) optimization mode. Valid values: `enable`, `disable`.
-     */
     public readonly np6CpsOptimizationMode!: pulumi.Output<string>;
-    /**
-     * Configure NPU priority protocol. The structure of `priorityProtocol` block is documented below.
-     */
-    public readonly priorityProtocol!: pulumi.Output<outputs.SystemNpuPriorityProtocol | undefined>;
-    /**
-     * Enable/disable rdp offload. Valid values: `enable`, `disable`.
-     */
+    public readonly priorityProtocol!: pulumi.Output<outputs.SystemNpuPriorityProtocol>;
     public readonly rdpOffload!: pulumi.Output<string>;
-    /**
-     * Enable/disable offloading of denied sessions. Requires ses-denied-traffic to be set. Valid values: `disable`, `enable`.
-     */
     public readonly sessionDeniedOffload!: pulumi.Output<string>;
-    /**
-     * Enable/disable sse backpressure. Valid values: `enable`, `disable`.
-     */
     public readonly sseBackpressure!: pulumi.Output<string>;
-    /**
-     * Enable/disable stripping clear text padding. Valid values: `enable`, `disable`.
-     */
     public readonly stripClearTextPadding!: pulumi.Output<string>;
-    /**
-     * Enable/disable stripping ESP padding. Valid values: `enable`, `disable`.
-     */
     public readonly stripEspPadding!: pulumi.Output<string>;
-    /**
-     * Bandwidth from switch to NP. Valid values: `0G`, `2G`, `4G`, `5G`, `6G`.
-     */
     public readonly swNpBandwidth!: pulumi.Output<string>;
-    /**
-     * Enable/disable UDP-encapsulated ESP offload (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly uespOffload!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -198,85 +120,25 @@ export class SystemNpu extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemNpu resources.
  */
 export interface SystemNpuState {
-    /**
-     * Enable/disable offloading managed FortiAP and FortiLink CAPWAP sessions. Valid values: `enable`, `disable`.
-     */
     capwapOffload?: pulumi.Input<string>;
-    /**
-     * Affinity setting for management deamons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-     */
     dedicatedManagementAffinity?: pulumi.Input<string>;
-    /**
-     * Enable to dedicate one CPU for GUI and CLI connections when NPs are busy. Valid values: `enable`, `disable`.
-     */
     dedicatedManagementCpu?: pulumi.Input<string>;
-    /**
-     * Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
-     */
     fastpath?: pulumi.Input<string>;
-    /**
-     * IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
-     */
     ipsecDecSubengineMask?: pulumi.Input<string>;
-    /**
-     * IPsec encryption subengine mask (0x1 - 0xff, default 0xff).
-     */
     ipsecEncSubengineMask?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPsec inbound cache for anti-replay. Valid values: `enable`, `disable`.
-     */
     ipsecInboundCache?: pulumi.Input<string>;
-    /**
-     * Enable/disable NP6 IPsec MTU override. Valid values: `disable`, `enable`.
-     */
     ipsecMtuOverride?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPSEC over vlink. Valid values: `enable`, `disable`.
-     */
     ipsecOverVlink?: pulumi.Input<string>;
-    /**
-     * Enable/disable traffic accounting for each multicast session through TAE counter. Valid values: `tpe-based`, `session-based`, `disable`.
-     */
     mcastSessionAccounting?: pulumi.Input<string>;
-    /**
-     * Enable/disable NP6 connection per second (CPS) optimization mode. Valid values: `enable`, `disable`.
-     */
     np6CpsOptimizationMode?: pulumi.Input<string>;
-    /**
-     * Configure NPU priority protocol. The structure of `priorityProtocol` block is documented below.
-     */
     priorityProtocol?: pulumi.Input<inputs.SystemNpuPriorityProtocol>;
-    /**
-     * Enable/disable rdp offload. Valid values: `enable`, `disable`.
-     */
     rdpOffload?: pulumi.Input<string>;
-    /**
-     * Enable/disable offloading of denied sessions. Requires ses-denied-traffic to be set. Valid values: `disable`, `enable`.
-     */
     sessionDeniedOffload?: pulumi.Input<string>;
-    /**
-     * Enable/disable sse backpressure. Valid values: `enable`, `disable`.
-     */
     sseBackpressure?: pulumi.Input<string>;
-    /**
-     * Enable/disable stripping clear text padding. Valid values: `enable`, `disable`.
-     */
     stripClearTextPadding?: pulumi.Input<string>;
-    /**
-     * Enable/disable stripping ESP padding. Valid values: `enable`, `disable`.
-     */
     stripEspPadding?: pulumi.Input<string>;
-    /**
-     * Bandwidth from switch to NP. Valid values: `0G`, `2G`, `4G`, `5G`, `6G`.
-     */
     swNpBandwidth?: pulumi.Input<string>;
-    /**
-     * Enable/disable UDP-encapsulated ESP offload (default = disable). Valid values: `enable`, `disable`.
-     */
     uespOffload?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -284,84 +146,24 @@ export interface SystemNpuState {
  * The set of arguments for constructing a SystemNpu resource.
  */
 export interface SystemNpuArgs {
-    /**
-     * Enable/disable offloading managed FortiAP and FortiLink CAPWAP sessions. Valid values: `enable`, `disable`.
-     */
     capwapOffload?: pulumi.Input<string>;
-    /**
-     * Affinity setting for management deamons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
-     */
     dedicatedManagementAffinity?: pulumi.Input<string>;
-    /**
-     * Enable to dedicate one CPU for GUI and CLI connections when NPs are busy. Valid values: `enable`, `disable`.
-     */
     dedicatedManagementCpu?: pulumi.Input<string>;
-    /**
-     * Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
-     */
     fastpath?: pulumi.Input<string>;
-    /**
-     * IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
-     */
     ipsecDecSubengineMask?: pulumi.Input<string>;
-    /**
-     * IPsec encryption subengine mask (0x1 - 0xff, default 0xff).
-     */
     ipsecEncSubengineMask?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPsec inbound cache for anti-replay. Valid values: `enable`, `disable`.
-     */
     ipsecInboundCache?: pulumi.Input<string>;
-    /**
-     * Enable/disable NP6 IPsec MTU override. Valid values: `disable`, `enable`.
-     */
     ipsecMtuOverride?: pulumi.Input<string>;
-    /**
-     * Enable/disable IPSEC over vlink. Valid values: `enable`, `disable`.
-     */
     ipsecOverVlink?: pulumi.Input<string>;
-    /**
-     * Enable/disable traffic accounting for each multicast session through TAE counter. Valid values: `tpe-based`, `session-based`, `disable`.
-     */
     mcastSessionAccounting?: pulumi.Input<string>;
-    /**
-     * Enable/disable NP6 connection per second (CPS) optimization mode. Valid values: `enable`, `disable`.
-     */
     np6CpsOptimizationMode?: pulumi.Input<string>;
-    /**
-     * Configure NPU priority protocol. The structure of `priorityProtocol` block is documented below.
-     */
     priorityProtocol?: pulumi.Input<inputs.SystemNpuPriorityProtocol>;
-    /**
-     * Enable/disable rdp offload. Valid values: `enable`, `disable`.
-     */
     rdpOffload?: pulumi.Input<string>;
-    /**
-     * Enable/disable offloading of denied sessions. Requires ses-denied-traffic to be set. Valid values: `disable`, `enable`.
-     */
     sessionDeniedOffload?: pulumi.Input<string>;
-    /**
-     * Enable/disable sse backpressure. Valid values: `enable`, `disable`.
-     */
     sseBackpressure?: pulumi.Input<string>;
-    /**
-     * Enable/disable stripping clear text padding. Valid values: `enable`, `disable`.
-     */
     stripClearTextPadding?: pulumi.Input<string>;
-    /**
-     * Enable/disable stripping ESP padding. Valid values: `enable`, `disable`.
-     */
     stripEspPadding?: pulumi.Input<string>;
-    /**
-     * Bandwidth from switch to NP. Valid values: `0G`, `2G`, `4G`, `5G`, `6G`.
-     */
     swNpBandwidth?: pulumi.Input<string>;
-    /**
-     * Enable/disable UDP-encapsulated ESP offload (default = disable). Valid values: `enable`, `disable`.
-     */
     uespOffload?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

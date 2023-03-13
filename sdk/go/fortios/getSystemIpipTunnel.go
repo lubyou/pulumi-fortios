@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios system ipiptunnel
 func LookupSystemIpipTunnel(ctx *pulumi.Context, args *LookupSystemIpipTunnelArgs, opts ...pulumi.InvokeOption) (*LookupSystemIpipTunnelResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemIpipTunnelResult
@@ -23,27 +22,19 @@ func LookupSystemIpipTunnel(ctx *pulumi.Context, args *LookupSystemIpipTunnelArg
 
 // A collection of arguments for invoking GetSystemIpipTunnel.
 type LookupSystemIpipTunnelArgs struct {
-	// Specify the name of the desired system ipiptunnel.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemIpipTunnel.
 type LookupSystemIpipTunnelResult struct {
-	// Enable/disable tunnel ASIC offloading.
 	AutoAsicOffload string `pulumi:"autoAsicOffload"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Interface name that is associated with the incoming traffic from available options.
-	Interface string `pulumi:"interface"`
-	// IPv4 address for the local gateway.
-	LocalGw string `pulumi:"localGw"`
-	// IPIP Tunnel name.
-	Name string `pulumi:"name"`
-	// IPv4 address for the remote gateway.
-	RemoteGw string `pulumi:"remoteGw"`
-	// Enable/disable use of SD-WAN to reach remote gateway.
+	Id        string  `pulumi:"id"`
+	Interface string  `pulumi:"interface"`
+	LocalGw   string  `pulumi:"localGw"`
+	Name      string  `pulumi:"name"`
+	RemoteGw  string  `pulumi:"remoteGw"`
 	UseSdwan  string  `pulumi:"useSdwan"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -63,9 +54,7 @@ func LookupSystemIpipTunnelOutput(ctx *pulumi.Context, args LookupSystemIpipTunn
 
 // A collection of arguments for invoking GetSystemIpipTunnel.
 type LookupSystemIpipTunnelOutputArgs struct {
-	// Specify the name of the desired system ipiptunnel.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -88,7 +77,6 @@ func (o LookupSystemIpipTunnelResultOutput) ToLookupSystemIpipTunnelResultOutput
 	return o
 }
 
-// Enable/disable tunnel ASIC offloading.
 func (o LookupSystemIpipTunnelResultOutput) AutoAsicOffload() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemIpipTunnelResult) string { return v.AutoAsicOffload }).(pulumi.StringOutput)
 }
@@ -98,27 +86,22 @@ func (o LookupSystemIpipTunnelResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemIpipTunnelResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Interface name that is associated with the incoming traffic from available options.
 func (o LookupSystemIpipTunnelResultOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemIpipTunnelResult) string { return v.Interface }).(pulumi.StringOutput)
 }
 
-// IPv4 address for the local gateway.
 func (o LookupSystemIpipTunnelResultOutput) LocalGw() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemIpipTunnelResult) string { return v.LocalGw }).(pulumi.StringOutput)
 }
 
-// IPIP Tunnel name.
 func (o LookupSystemIpipTunnelResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemIpipTunnelResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// IPv4 address for the remote gateway.
 func (o LookupSystemIpipTunnelResultOutput) RemoteGw() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemIpipTunnelResult) string { return v.RemoteGw }).(pulumi.StringOutput)
 }
 
-// Enable/disable use of SD-WAN to reach remote gateway.
 func (o LookupSystemIpipTunnelResultOutput) UseSdwan() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemIpipTunnelResult) string { return v.UseSdwan }).(pulumi.StringOutput)
 }

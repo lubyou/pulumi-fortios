@@ -10,61 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure quarantine support.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewUserQuarantine(ctx, "trname", &fortios.UserQuarantineArgs{
-// 			Quarantine: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// User Quarantine can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userQuarantine:UserQuarantine labelname UserQuarantine
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userQuarantine:UserQuarantine labelname UserQuarantine
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserQuarantine struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Firewall address group which includes all quarantine MAC address.
-	FirewallGroups pulumi.StringOutput `pulumi:"firewallGroups"`
-	// Enable/disable quarantine. Valid values: `enable`, `disable`.
-	Quarantine pulumi.StringOutput `pulumi:"quarantine"`
-	// Quarantine entry to hold multiple MACs. The structure of `targets` block is documented below.
-	Targets UserQuarantineTargetArrayOutput `pulumi:"targets"`
-	// Traffic policy for quarantined MACs.
-	TrafficPolicy pulumi.StringOutput `pulumi:"trafficPolicy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput          `pulumi:"dynamicSortSubtable"`
+	FirewallGroups      pulumi.StringOutput             `pulumi:"firewallGroups"`
+	Quarantine          pulumi.StringOutput             `pulumi:"quarantine"`
+	Targets             UserQuarantineTargetArrayOutput `pulumi:"targets"`
+	TrafficPolicy       pulumi.StringOutput             `pulumi:"trafficPolicy"`
+	Vdomparam           pulumi.StringPtrOutput          `pulumi:"vdomparam"`
 }
 
 // NewUserQuarantine registers a new resource with the given unique name, arguments, and options.
@@ -97,33 +51,21 @@ func GetUserQuarantine(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserQuarantine resources.
 type userQuarantineState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Firewall address group which includes all quarantine MAC address.
-	FirewallGroups *string `pulumi:"firewallGroups"`
-	// Enable/disable quarantine. Valid values: `enable`, `disable`.
-	Quarantine *string `pulumi:"quarantine"`
-	// Quarantine entry to hold multiple MACs. The structure of `targets` block is documented below.
-	Targets []UserQuarantineTarget `pulumi:"targets"`
-	// Traffic policy for quarantined MACs.
-	TrafficPolicy *string `pulumi:"trafficPolicy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	FirewallGroups      *string                `pulumi:"firewallGroups"`
+	Quarantine          *string                `pulumi:"quarantine"`
+	Targets             []UserQuarantineTarget `pulumi:"targets"`
+	TrafficPolicy       *string                `pulumi:"trafficPolicy"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 type UserQuarantineState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Firewall address group which includes all quarantine MAC address.
-	FirewallGroups pulumi.StringPtrInput
-	// Enable/disable quarantine. Valid values: `enable`, `disable`.
-	Quarantine pulumi.StringPtrInput
-	// Quarantine entry to hold multiple MACs. The structure of `targets` block is documented below.
-	Targets UserQuarantineTargetArrayInput
-	// Traffic policy for quarantined MACs.
-	TrafficPolicy pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FirewallGroups      pulumi.StringPtrInput
+	Quarantine          pulumi.StringPtrInput
+	Targets             UserQuarantineTargetArrayInput
+	TrafficPolicy       pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserQuarantineState) ElementType() reflect.Type {
@@ -131,34 +73,22 @@ func (UserQuarantineState) ElementType() reflect.Type {
 }
 
 type userQuarantineArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Firewall address group which includes all quarantine MAC address.
-	FirewallGroups *string `pulumi:"firewallGroups"`
-	// Enable/disable quarantine. Valid values: `enable`, `disable`.
-	Quarantine *string `pulumi:"quarantine"`
-	// Quarantine entry to hold multiple MACs. The structure of `targets` block is documented below.
-	Targets []UserQuarantineTarget `pulumi:"targets"`
-	// Traffic policy for quarantined MACs.
-	TrafficPolicy *string `pulumi:"trafficPolicy"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	FirewallGroups      *string                `pulumi:"firewallGroups"`
+	Quarantine          *string                `pulumi:"quarantine"`
+	Targets             []UserQuarantineTarget `pulumi:"targets"`
+	TrafficPolicy       *string                `pulumi:"trafficPolicy"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserQuarantine resource.
 type UserQuarantineArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Firewall address group which includes all quarantine MAC address.
-	FirewallGroups pulumi.StringPtrInput
-	// Enable/disable quarantine. Valid values: `enable`, `disable`.
-	Quarantine pulumi.StringPtrInput
-	// Quarantine entry to hold multiple MACs. The structure of `targets` block is documented below.
-	Targets UserQuarantineTargetArrayInput
-	// Traffic policy for quarantined MACs.
-	TrafficPolicy pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FirewallGroups      pulumi.StringPtrInput
+	Quarantine          pulumi.StringPtrInput
+	Targets             UserQuarantineTargetArrayInput
+	TrafficPolicy       pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserQuarantineArgs) ElementType() reflect.Type {
@@ -187,7 +117,7 @@ func (i *UserQuarantine) ToUserQuarantineOutputWithContext(ctx context.Context) 
 // UserQuarantineArrayInput is an input type that accepts UserQuarantineArray and UserQuarantineArrayOutput values.
 // You can construct a concrete instance of `UserQuarantineArrayInput` via:
 //
-//          UserQuarantineArray{ UserQuarantineArgs{...} }
+//	UserQuarantineArray{ UserQuarantineArgs{...} }
 type UserQuarantineArrayInput interface {
 	pulumi.Input
 
@@ -212,7 +142,7 @@ func (i UserQuarantineArray) ToUserQuarantineArrayOutputWithContext(ctx context.
 // UserQuarantineMapInput is an input type that accepts UserQuarantineMap and UserQuarantineMapOutput values.
 // You can construct a concrete instance of `UserQuarantineMapInput` via:
 //
-//          UserQuarantineMap{ "key": UserQuarantineArgs{...} }
+//	UserQuarantineMap{ "key": UserQuarantineArgs{...} }
 type UserQuarantineMapInput interface {
 	pulumi.Input
 
@@ -246,6 +176,30 @@ func (o UserQuarantineOutput) ToUserQuarantineOutput() UserQuarantineOutput {
 
 func (o UserQuarantineOutput) ToUserQuarantineOutputWithContext(ctx context.Context) UserQuarantineOutput {
 	return o
+}
+
+func (o UserQuarantineOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserQuarantine) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserQuarantineOutput) FirewallGroups() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserQuarantine) pulumi.StringOutput { return v.FirewallGroups }).(pulumi.StringOutput)
+}
+
+func (o UserQuarantineOutput) Quarantine() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserQuarantine) pulumi.StringOutput { return v.Quarantine }).(pulumi.StringOutput)
+}
+
+func (o UserQuarantineOutput) Targets() UserQuarantineTargetArrayOutput {
+	return o.ApplyT(func(v *UserQuarantine) UserQuarantineTargetArrayOutput { return v.Targets }).(UserQuarantineTargetArrayOutput)
+}
+
+func (o UserQuarantineOutput) TrafficPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserQuarantine) pulumi.StringOutput { return v.TrafficPolicy }).(pulumi.StringOutput)
+}
+
+func (o UserQuarantineOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserQuarantine) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserQuarantineArrayOutput struct{ *pulumi.OutputState }

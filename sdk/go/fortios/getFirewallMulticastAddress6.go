@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewall multicastaddress6
 func LookupFirewallMulticastAddress6(ctx *pulumi.Context, args *LookupFirewallMulticastAddress6Args, opts ...pulumi.InvokeOption) (*LookupFirewallMulticastAddress6Result, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallMulticastAddress6Result
@@ -23,29 +22,21 @@ func LookupFirewallMulticastAddress6(ctx *pulumi.Context, args *LookupFirewallMu
 
 // A collection of arguments for invoking GetFirewallMulticastAddress6.
 type LookupFirewallMulticastAddress6Args struct {
-	// Specify the name of the desired firewall multicastaddress6.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallMulticastAddress6.
 type LookupFirewallMulticastAddress6Result struct {
-	// Color of icon on the GUI.
-	Color int `pulumi:"color"`
-	// Comment.
+	Color   int    `pulumi:"color"`
 	Comment string `pulumi:"comment"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-	Ip6 string `pulumi:"ip6"`
-	// Tag name.
-	Name string `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings  []GetFirewallMulticastAddress6Tagging `pulumi:"taggings"`
-	Vdomparam *string                               `pulumi:"vdomparam"`
-	// Enable/disable visibility of the IPv6 multicast address on the GUI.
-	Visibility string `pulumi:"visibility"`
+	Id         string                                `pulumi:"id"`
+	Ip6        string                                `pulumi:"ip6"`
+	Name       string                                `pulumi:"name"`
+	Taggings   []GetFirewallMulticastAddress6Tagging `pulumi:"taggings"`
+	Vdomparam  *string                               `pulumi:"vdomparam"`
+	Visibility string                                `pulumi:"visibility"`
 }
 
 func LookupFirewallMulticastAddress6Output(ctx *pulumi.Context, args LookupFirewallMulticastAddress6OutputArgs, opts ...pulumi.InvokeOption) LookupFirewallMulticastAddress6ResultOutput {
@@ -63,9 +54,7 @@ func LookupFirewallMulticastAddress6Output(ctx *pulumi.Context, args LookupFirew
 
 // A collection of arguments for invoking GetFirewallMulticastAddress6.
 type LookupFirewallMulticastAddress6OutputArgs struct {
-	// Specify the name of the desired firewall multicastaddress6.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -88,12 +77,10 @@ func (o LookupFirewallMulticastAddress6ResultOutput) ToLookupFirewallMulticastAd
 	return o
 }
 
-// Color of icon on the GUI.
 func (o LookupFirewallMulticastAddress6ResultOutput) Color() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddress6Result) int { return v.Color }).(pulumi.IntOutput)
 }
 
-// Comment.
 func (o LookupFirewallMulticastAddress6ResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddress6Result) string { return v.Comment }).(pulumi.StringOutput)
 }
@@ -103,17 +90,14 @@ func (o LookupFirewallMulticastAddress6ResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddress6Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
 func (o LookupFirewallMulticastAddress6ResultOutput) Ip6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddress6Result) string { return v.Ip6 }).(pulumi.StringOutput)
 }
 
-// Tag name.
 func (o LookupFirewallMulticastAddress6ResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddress6Result) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Config object tagging. The structure of `tagging` block is documented below.
 func (o LookupFirewallMulticastAddress6ResultOutput) Taggings() GetFirewallMulticastAddress6TaggingArrayOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddress6Result) []GetFirewallMulticastAddress6Tagging { return v.Taggings }).(GetFirewallMulticastAddress6TaggingArrayOutput)
 }
@@ -122,7 +106,6 @@ func (o LookupFirewallMulticastAddress6ResultOutput) Vdomparam() pulumi.StringPt
 	return o.ApplyT(func(v LookupFirewallMulticastAddress6Result) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable visibility of the IPv6 multicast address on the GUI.
 func (o LookupFirewallMulticastAddress6ResultOutput) Visibility() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallMulticastAddress6Result) string { return v.Visibility }).(pulumi.StringOutput)
 }

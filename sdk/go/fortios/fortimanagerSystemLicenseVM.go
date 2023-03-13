@@ -7,44 +7,16 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports uploading VM license to FortiGate through FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerSystemLicenseVM(ctx, "test1", &fortios.FortimanagerSystemLicenseVMArgs{
-// 			FileContent: pulumi.String("XXX"),
-// 			Target:      pulumi.String("fortigate-test"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerSystemLicenseVM struct {
 	pulumi.CustomResourceState
 
-	// ADOM that the target device belongs to. default is 'root'.
-	Adom pulumi.StringPtrOutput `pulumi:"adom"`
-	// The license file, it needs to be base64 encoded.
-	FileContent pulumi.StringOutput `pulumi:"fileContent"`
-	// Target name, which is managed by FortiManager.
-	Target pulumi.StringOutput `pulumi:"target"`
+	Adom        pulumi.StringPtrOutput `pulumi:"adom"`
+	FileContent pulumi.StringOutput    `pulumi:"fileContent"`
+	Target      pulumi.StringOutput    `pulumi:"target"`
 }
 
 // NewFortimanagerSystemLicenseVM registers a new resource with the given unique name, arguments, and options.
@@ -83,21 +55,15 @@ func GetFortimanagerSystemLicenseVM(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerSystemLicenseVM resources.
 type fortimanagerSystemLicenseVMState struct {
-	// ADOM that the target device belongs to. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// The license file, it needs to be base64 encoded.
+	Adom        *string `pulumi:"adom"`
 	FileContent *string `pulumi:"fileContent"`
-	// Target name, which is managed by FortiManager.
-	Target *string `pulumi:"target"`
+	Target      *string `pulumi:"target"`
 }
 
 type FortimanagerSystemLicenseVMState struct {
-	// ADOM that the target device belongs to. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// The license file, it needs to be base64 encoded.
+	Adom        pulumi.StringPtrInput
 	FileContent pulumi.StringPtrInput
-	// Target name, which is managed by FortiManager.
-	Target pulumi.StringPtrInput
+	Target      pulumi.StringPtrInput
 }
 
 func (FortimanagerSystemLicenseVMState) ElementType() reflect.Type {
@@ -105,22 +71,16 @@ func (FortimanagerSystemLicenseVMState) ElementType() reflect.Type {
 }
 
 type fortimanagerSystemLicenseVMArgs struct {
-	// ADOM that the target device belongs to. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// The license file, it needs to be base64 encoded.
-	FileContent string `pulumi:"fileContent"`
-	// Target name, which is managed by FortiManager.
-	Target string `pulumi:"target"`
+	Adom        *string `pulumi:"adom"`
+	FileContent string  `pulumi:"fileContent"`
+	Target      string  `pulumi:"target"`
 }
 
 // The set of arguments for constructing a FortimanagerSystemLicenseVM resource.
 type FortimanagerSystemLicenseVMArgs struct {
-	// ADOM that the target device belongs to. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// The license file, it needs to be base64 encoded.
+	Adom        pulumi.StringPtrInput
 	FileContent pulumi.StringInput
-	// Target name, which is managed by FortiManager.
-	Target pulumi.StringInput
+	Target      pulumi.StringInput
 }
 
 func (FortimanagerSystemLicenseVMArgs) ElementType() reflect.Type {
@@ -149,7 +109,7 @@ func (i *FortimanagerSystemLicenseVM) ToFortimanagerSystemLicenseVMOutputWithCon
 // FortimanagerSystemLicenseVMArrayInput is an input type that accepts FortimanagerSystemLicenseVMArray and FortimanagerSystemLicenseVMArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemLicenseVMArrayInput` via:
 //
-//          FortimanagerSystemLicenseVMArray{ FortimanagerSystemLicenseVMArgs{...} }
+//	FortimanagerSystemLicenseVMArray{ FortimanagerSystemLicenseVMArgs{...} }
 type FortimanagerSystemLicenseVMArrayInput interface {
 	pulumi.Input
 
@@ -174,7 +134,7 @@ func (i FortimanagerSystemLicenseVMArray) ToFortimanagerSystemLicenseVMArrayOutp
 // FortimanagerSystemLicenseVMMapInput is an input type that accepts FortimanagerSystemLicenseVMMap and FortimanagerSystemLicenseVMMapOutput values.
 // You can construct a concrete instance of `FortimanagerSystemLicenseVMMapInput` via:
 //
-//          FortimanagerSystemLicenseVMMap{ "key": FortimanagerSystemLicenseVMArgs{...} }
+//	FortimanagerSystemLicenseVMMap{ "key": FortimanagerSystemLicenseVMArgs{...} }
 type FortimanagerSystemLicenseVMMapInput interface {
 	pulumi.Input
 
@@ -208,6 +168,18 @@ func (o FortimanagerSystemLicenseVMOutput) ToFortimanagerSystemLicenseVMOutput()
 
 func (o FortimanagerSystemLicenseVMOutput) ToFortimanagerSystemLicenseVMOutputWithContext(ctx context.Context) FortimanagerSystemLicenseVMOutput {
 	return o
+}
+
+func (o FortimanagerSystemLicenseVMOutput) Adom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemLicenseVM) pulumi.StringPtrOutput { return v.Adom }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemLicenseVMOutput) FileContent() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerSystemLicenseVM) pulumi.StringOutput { return v.FileContent }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerSystemLicenseVMOutput) Target() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerSystemLicenseVM) pulumi.StringOutput { return v.Target }).(pulumi.StringOutput)
 }
 
 type FortimanagerSystemLicenseVMArrayOutput struct{ *pulumi.OutputState }

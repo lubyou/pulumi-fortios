@@ -4,26 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports Create/Read/Update/Delete firewall object ippool for FortiManager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerFirewallObjectIppool("test1", {
- *     arpIntf: "any",
- *     arpReply: "enable",
- *     associatedIntf: "any",
- *     comment: "test obj ippool",
- *     endip: "1.1.10.100",
- *     startip: "1.1.10.1",
- *     type: "one-to-one",
- * });
- * ```
- */
 export class FortimanagerFirewallObjectIppool extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerFirewallObjectIppool resource's state with the given name, ID, and optional extra
@@ -52,41 +32,14 @@ export class FortimanagerFirewallObjectIppool extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerFirewallObjectIppool.__pulumiType;
     }
 
-    /**
-     * ADOM name. default is 'root'.
-     */
     public readonly adom!: pulumi.Output<string | undefined>;
-    /**
-     * Select an interface that will reply to ARP requests.
-     */
     public readonly arpIntf!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable replying to ARP request, default is "enable".
-     */
     public readonly arpReply!: pulumi.Output<string | undefined>;
-    /**
-     * Associated interface name.
-     */
     public readonly associatedIntf!: pulumi.Output<string | undefined>;
-    /**
-     * Comments.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Final IPv4 address (inclusive) in the range for the address pool.
-     */
     public readonly endip!: pulumi.Output<string>;
-    /**
-     * Ippool name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * First IPv4 address (inclusive) in the range for the address pool.
-     */
     public readonly startip!: pulumi.Output<string>;
-    /**
-     * Ip pool type, Enum: ["overload", "one-to-one"].
-     */
     public readonly type!: pulumi.Output<string | undefined>;
 
     /**
@@ -138,41 +91,14 @@ export class FortimanagerFirewallObjectIppool extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerFirewallObjectIppool resources.
  */
 export interface FortimanagerFirewallObjectIppoolState {
-    /**
-     * ADOM name. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Select an interface that will reply to ARP requests.
-     */
     arpIntf?: pulumi.Input<string>;
-    /**
-     * Enable/disable replying to ARP request, default is "enable".
-     */
     arpReply?: pulumi.Input<string>;
-    /**
-     * Associated interface name.
-     */
     associatedIntf?: pulumi.Input<string>;
-    /**
-     * Comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Final IPv4 address (inclusive) in the range for the address pool.
-     */
     endip?: pulumi.Input<string>;
-    /**
-     * Ippool name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * First IPv4 address (inclusive) in the range for the address pool.
-     */
     startip?: pulumi.Input<string>;
-    /**
-     * Ip pool type, Enum: ["overload", "one-to-one"].
-     */
     type?: pulumi.Input<string>;
 }
 
@@ -180,40 +106,13 @@ export interface FortimanagerFirewallObjectIppoolState {
  * The set of arguments for constructing a FortimanagerFirewallObjectIppool resource.
  */
 export interface FortimanagerFirewallObjectIppoolArgs {
-    /**
-     * ADOM name. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * Select an interface that will reply to ARP requests.
-     */
     arpIntf?: pulumi.Input<string>;
-    /**
-     * Enable/disable replying to ARP request, default is "enable".
-     */
     arpReply?: pulumi.Input<string>;
-    /**
-     * Associated interface name.
-     */
     associatedIntf?: pulumi.Input<string>;
-    /**
-     * Comments.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Final IPv4 address (inclusive) in the range for the address pool.
-     */
     endip: pulumi.Input<string>;
-    /**
-     * Ippool name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * First IPv4 address (inclusive) in the range for the address pool.
-     */
     startip: pulumi.Input<string>;
-    /**
-     * Ip pool type, Enum: ["overload", "one-to-one"].
-     */
     type?: pulumi.Input<string>;
 }

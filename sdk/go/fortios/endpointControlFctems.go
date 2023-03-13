@@ -10,66 +10,37 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiClient Enterprise Management Server (EMS) entries. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// EndpointControl Fctems can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/endpointControlFctems:EndpointControlFctems labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/endpointControlFctems:EndpointControlFctems labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type EndpointControlFctems struct {
 	pulumi.CustomResourceState
 
-	// FortiClient EMS admin password.
-	AdminPassword pulumi.StringPtrOutput `pulumi:"adminPassword"`
-	// FortiClient EMS admin username.
-	AdminUsername pulumi.StringOutput `pulumi:"adminUsername"`
-	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
-	CallTimeout pulumi.IntOutput `pulumi:"callTimeout"`
-	// List of EMS capabilities.
-	Capabilities pulumi.StringOutput `pulumi:"capabilities"`
-	// FortiClient EMS certificate.
-	Certificate pulumi.StringOutput `pulumi:"certificate"`
-	// Cloud server type. Valid values: `production`, `alpha`, `beta`.
-	CloudServerType pulumi.StringOutput `pulumi:"cloudServerType"`
-	// Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
-	FortinetoneCloudAuthentication pulumi.StringOutput `pulumi:"fortinetoneCloudAuthentication"`
-	// FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
-	HttpsPort pulumi.IntOutput `pulumi:"httpsPort"`
-	// FortiClient Enterprise Management Server (EMS) name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
-	PreserveSslSession pulumi.StringOutput `pulumi:"preserveSslSession"`
-	// Enable/disable pulling avatars from EMS. Valid values: `enable`, `disable`.
-	PullAvatars pulumi.StringOutput `pulumi:"pullAvatars"`
-	// Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
-	PullMalwareHash pulumi.StringOutput `pulumi:"pullMalwareHash"`
-	// Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
-	PullSysinfo pulumi.StringOutput `pulumi:"pullSysinfo"`
-	// Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
-	PullTags pulumi.StringOutput `pulumi:"pullTags"`
-	// Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
-	PullVulnerabilities pulumi.StringOutput `pulumi:"pullVulnerabilities"`
-	// FortiClient EMS Serial Number.
-	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
-	// FortiClient EMS FQDN or IPv4 address.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// REST API call source IP.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
-	WebsocketOverride pulumi.StringOutput `pulumi:"websocketOverride"`
+	AdminPassword                  pulumi.StringPtrOutput `pulumi:"adminPassword"`
+	AdminUsername                  pulumi.StringOutput    `pulumi:"adminUsername"`
+	CallTimeout                    pulumi.IntOutput       `pulumi:"callTimeout"`
+	Capabilities                   pulumi.StringOutput    `pulumi:"capabilities"`
+	Certificate                    pulumi.StringOutput    `pulumi:"certificate"`
+	CloudServerType                pulumi.StringOutput    `pulumi:"cloudServerType"`
+	DirtyReason                    pulumi.StringOutput    `pulumi:"dirtyReason"`
+	EmsId                          pulumi.IntOutput       `pulumi:"emsId"`
+	FortinetoneCloudAuthentication pulumi.StringOutput    `pulumi:"fortinetoneCloudAuthentication"`
+	HttpsPort                      pulumi.IntOutput       `pulumi:"httpsPort"`
+	Interface                      pulumi.StringOutput    `pulumi:"interface"`
+	InterfaceSelectMethod          pulumi.StringOutput    `pulumi:"interfaceSelectMethod"`
+	Name                           pulumi.StringOutput    `pulumi:"name"`
+	OutOfSyncThreshold             pulumi.IntOutput       `pulumi:"outOfSyncThreshold"`
+	PreserveSslSession             pulumi.StringOutput    `pulumi:"preserveSslSession"`
+	PullAvatars                    pulumi.StringOutput    `pulumi:"pullAvatars"`
+	PullMalwareHash                pulumi.StringOutput    `pulumi:"pullMalwareHash"`
+	PullSysinfo                    pulumi.StringOutput    `pulumi:"pullSysinfo"`
+	PullTags                       pulumi.StringOutput    `pulumi:"pullTags"`
+	PullVulnerabilities            pulumi.StringOutput    `pulumi:"pullVulnerabilities"`
+	SerialNumber                   pulumi.StringOutput    `pulumi:"serialNumber"`
+	Server                         pulumi.StringOutput    `pulumi:"server"`
+	SourceIp                       pulumi.StringOutput    `pulumi:"sourceIp"`
+	Status                         pulumi.StringOutput    `pulumi:"status"`
+	StatusCheckInterval            pulumi.IntOutput       `pulumi:"statusCheckInterval"`
+	TenantId                       pulumi.StringOutput    `pulumi:"tenantId"`
+	Vdomparam                      pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	WebsocketOverride              pulumi.StringOutput    `pulumi:"websocketOverride"`
 }
 
 // NewEndpointControlFctems registers a new resource with the given unique name, arguments, and options.
@@ -79,6 +50,13 @@ func NewEndpointControlFctems(ctx *pulumi.Context,
 		args = &EndpointControlFctemsArgs{}
 	}
 
+	if args.AdminPassword != nil {
+		args.AdminPassword = pulumi.ToSecret(args.AdminPassword).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"adminPassword",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource EndpointControlFctems
 	err := ctx.RegisterResource("fortios:index/endpointControlFctems:EndpointControlFctems", name, args, &resource, opts...)
@@ -102,89 +80,65 @@ func GetEndpointControlFctems(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EndpointControlFctems resources.
 type endpointControlFctemsState struct {
-	// FortiClient EMS admin password.
-	AdminPassword *string `pulumi:"adminPassword"`
-	// FortiClient EMS admin username.
-	AdminUsername *string `pulumi:"adminUsername"`
-	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
-	CallTimeout *int `pulumi:"callTimeout"`
-	// List of EMS capabilities.
-	Capabilities *string `pulumi:"capabilities"`
-	// FortiClient EMS certificate.
-	Certificate *string `pulumi:"certificate"`
-	// Cloud server type. Valid values: `production`, `alpha`, `beta`.
-	CloudServerType *string `pulumi:"cloudServerType"`
-	// Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
+	AdminPassword                  *string `pulumi:"adminPassword"`
+	AdminUsername                  *string `pulumi:"adminUsername"`
+	CallTimeout                    *int    `pulumi:"callTimeout"`
+	Capabilities                   *string `pulumi:"capabilities"`
+	Certificate                    *string `pulumi:"certificate"`
+	CloudServerType                *string `pulumi:"cloudServerType"`
+	DirtyReason                    *string `pulumi:"dirtyReason"`
+	EmsId                          *int    `pulumi:"emsId"`
 	FortinetoneCloudAuthentication *string `pulumi:"fortinetoneCloudAuthentication"`
-	// FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
-	HttpsPort *int `pulumi:"httpsPort"`
-	// FortiClient Enterprise Management Server (EMS) name.
-	Name *string `pulumi:"name"`
-	// Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
-	PreserveSslSession *string `pulumi:"preserveSslSession"`
-	// Enable/disable pulling avatars from EMS. Valid values: `enable`, `disable`.
-	PullAvatars *string `pulumi:"pullAvatars"`
-	// Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
-	PullMalwareHash *string `pulumi:"pullMalwareHash"`
-	// Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
-	PullSysinfo *string `pulumi:"pullSysinfo"`
-	// Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
-	PullTags *string `pulumi:"pullTags"`
-	// Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
-	PullVulnerabilities *string `pulumi:"pullVulnerabilities"`
-	// FortiClient EMS Serial Number.
-	SerialNumber *string `pulumi:"serialNumber"`
-	// FortiClient EMS FQDN or IPv4 address.
-	Server *string `pulumi:"server"`
-	// REST API call source IP.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
-	WebsocketOverride *string `pulumi:"websocketOverride"`
+	HttpsPort                      *int    `pulumi:"httpsPort"`
+	Interface                      *string `pulumi:"interface"`
+	InterfaceSelectMethod          *string `pulumi:"interfaceSelectMethod"`
+	Name                           *string `pulumi:"name"`
+	OutOfSyncThreshold             *int    `pulumi:"outOfSyncThreshold"`
+	PreserveSslSession             *string `pulumi:"preserveSslSession"`
+	PullAvatars                    *string `pulumi:"pullAvatars"`
+	PullMalwareHash                *string `pulumi:"pullMalwareHash"`
+	PullSysinfo                    *string `pulumi:"pullSysinfo"`
+	PullTags                       *string `pulumi:"pullTags"`
+	PullVulnerabilities            *string `pulumi:"pullVulnerabilities"`
+	SerialNumber                   *string `pulumi:"serialNumber"`
+	Server                         *string `pulumi:"server"`
+	SourceIp                       *string `pulumi:"sourceIp"`
+	Status                         *string `pulumi:"status"`
+	StatusCheckInterval            *int    `pulumi:"statusCheckInterval"`
+	TenantId                       *string `pulumi:"tenantId"`
+	Vdomparam                      *string `pulumi:"vdomparam"`
+	WebsocketOverride              *string `pulumi:"websocketOverride"`
 }
 
 type EndpointControlFctemsState struct {
-	// FortiClient EMS admin password.
-	AdminPassword pulumi.StringPtrInput
-	// FortiClient EMS admin username.
-	AdminUsername pulumi.StringPtrInput
-	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
-	CallTimeout pulumi.IntPtrInput
-	// List of EMS capabilities.
-	Capabilities pulumi.StringPtrInput
-	// FortiClient EMS certificate.
-	Certificate pulumi.StringPtrInput
-	// Cloud server type. Valid values: `production`, `alpha`, `beta`.
-	CloudServerType pulumi.StringPtrInput
-	// Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
+	AdminPassword                  pulumi.StringPtrInput
+	AdminUsername                  pulumi.StringPtrInput
+	CallTimeout                    pulumi.IntPtrInput
+	Capabilities                   pulumi.StringPtrInput
+	Certificate                    pulumi.StringPtrInput
+	CloudServerType                pulumi.StringPtrInput
+	DirtyReason                    pulumi.StringPtrInput
+	EmsId                          pulumi.IntPtrInput
 	FortinetoneCloudAuthentication pulumi.StringPtrInput
-	// FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
-	HttpsPort pulumi.IntPtrInput
-	// FortiClient Enterprise Management Server (EMS) name.
-	Name pulumi.StringPtrInput
-	// Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
-	PreserveSslSession pulumi.StringPtrInput
-	// Enable/disable pulling avatars from EMS. Valid values: `enable`, `disable`.
-	PullAvatars pulumi.StringPtrInput
-	// Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
-	PullMalwareHash pulumi.StringPtrInput
-	// Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
-	PullSysinfo pulumi.StringPtrInput
-	// Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
-	PullTags pulumi.StringPtrInput
-	// Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
-	PullVulnerabilities pulumi.StringPtrInput
-	// FortiClient EMS Serial Number.
-	SerialNumber pulumi.StringPtrInput
-	// FortiClient EMS FQDN or IPv4 address.
-	Server pulumi.StringPtrInput
-	// REST API call source IP.
-	SourceIp pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
-	WebsocketOverride pulumi.StringPtrInput
+	HttpsPort                      pulumi.IntPtrInput
+	Interface                      pulumi.StringPtrInput
+	InterfaceSelectMethod          pulumi.StringPtrInput
+	Name                           pulumi.StringPtrInput
+	OutOfSyncThreshold             pulumi.IntPtrInput
+	PreserveSslSession             pulumi.StringPtrInput
+	PullAvatars                    pulumi.StringPtrInput
+	PullMalwareHash                pulumi.StringPtrInput
+	PullSysinfo                    pulumi.StringPtrInput
+	PullTags                       pulumi.StringPtrInput
+	PullVulnerabilities            pulumi.StringPtrInput
+	SerialNumber                   pulumi.StringPtrInput
+	Server                         pulumi.StringPtrInput
+	SourceIp                       pulumi.StringPtrInput
+	Status                         pulumi.StringPtrInput
+	StatusCheckInterval            pulumi.IntPtrInput
+	TenantId                       pulumi.StringPtrInput
+	Vdomparam                      pulumi.StringPtrInput
+	WebsocketOverride              pulumi.StringPtrInput
 }
 
 func (EndpointControlFctemsState) ElementType() reflect.Type {
@@ -192,90 +146,66 @@ func (EndpointControlFctemsState) ElementType() reflect.Type {
 }
 
 type endpointControlFctemsArgs struct {
-	// FortiClient EMS admin password.
-	AdminPassword *string `pulumi:"adminPassword"`
-	// FortiClient EMS admin username.
-	AdminUsername *string `pulumi:"adminUsername"`
-	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
-	CallTimeout *int `pulumi:"callTimeout"`
-	// List of EMS capabilities.
-	Capabilities *string `pulumi:"capabilities"`
-	// FortiClient EMS certificate.
-	Certificate *string `pulumi:"certificate"`
-	// Cloud server type. Valid values: `production`, `alpha`, `beta`.
-	CloudServerType *string `pulumi:"cloudServerType"`
-	// Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
+	AdminPassword                  *string `pulumi:"adminPassword"`
+	AdminUsername                  *string `pulumi:"adminUsername"`
+	CallTimeout                    *int    `pulumi:"callTimeout"`
+	Capabilities                   *string `pulumi:"capabilities"`
+	Certificate                    *string `pulumi:"certificate"`
+	CloudServerType                *string `pulumi:"cloudServerType"`
+	DirtyReason                    *string `pulumi:"dirtyReason"`
+	EmsId                          *int    `pulumi:"emsId"`
 	FortinetoneCloudAuthentication *string `pulumi:"fortinetoneCloudAuthentication"`
-	// FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
-	HttpsPort *int `pulumi:"httpsPort"`
-	// FortiClient Enterprise Management Server (EMS) name.
-	Name *string `pulumi:"name"`
-	// Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
-	PreserveSslSession *string `pulumi:"preserveSslSession"`
-	// Enable/disable pulling avatars from EMS. Valid values: `enable`, `disable`.
-	PullAvatars *string `pulumi:"pullAvatars"`
-	// Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
-	PullMalwareHash *string `pulumi:"pullMalwareHash"`
-	// Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
-	PullSysinfo *string `pulumi:"pullSysinfo"`
-	// Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
-	PullTags *string `pulumi:"pullTags"`
-	// Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
-	PullVulnerabilities *string `pulumi:"pullVulnerabilities"`
-	// FortiClient EMS Serial Number.
-	SerialNumber *string `pulumi:"serialNumber"`
-	// FortiClient EMS FQDN or IPv4 address.
-	Server *string `pulumi:"server"`
-	// REST API call source IP.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
-	WebsocketOverride *string `pulumi:"websocketOverride"`
+	HttpsPort                      *int    `pulumi:"httpsPort"`
+	Interface                      *string `pulumi:"interface"`
+	InterfaceSelectMethod          *string `pulumi:"interfaceSelectMethod"`
+	Name                           *string `pulumi:"name"`
+	OutOfSyncThreshold             *int    `pulumi:"outOfSyncThreshold"`
+	PreserveSslSession             *string `pulumi:"preserveSslSession"`
+	PullAvatars                    *string `pulumi:"pullAvatars"`
+	PullMalwareHash                *string `pulumi:"pullMalwareHash"`
+	PullSysinfo                    *string `pulumi:"pullSysinfo"`
+	PullTags                       *string `pulumi:"pullTags"`
+	PullVulnerabilities            *string `pulumi:"pullVulnerabilities"`
+	SerialNumber                   *string `pulumi:"serialNumber"`
+	Server                         *string `pulumi:"server"`
+	SourceIp                       *string `pulumi:"sourceIp"`
+	Status                         *string `pulumi:"status"`
+	StatusCheckInterval            *int    `pulumi:"statusCheckInterval"`
+	TenantId                       *string `pulumi:"tenantId"`
+	Vdomparam                      *string `pulumi:"vdomparam"`
+	WebsocketOverride              *string `pulumi:"websocketOverride"`
 }
 
 // The set of arguments for constructing a EndpointControlFctems resource.
 type EndpointControlFctemsArgs struct {
-	// FortiClient EMS admin password.
-	AdminPassword pulumi.StringPtrInput
-	// FortiClient EMS admin username.
-	AdminUsername pulumi.StringPtrInput
-	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
-	CallTimeout pulumi.IntPtrInput
-	// List of EMS capabilities.
-	Capabilities pulumi.StringPtrInput
-	// FortiClient EMS certificate.
-	Certificate pulumi.StringPtrInput
-	// Cloud server type. Valid values: `production`, `alpha`, `beta`.
-	CloudServerType pulumi.StringPtrInput
-	// Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
+	AdminPassword                  pulumi.StringPtrInput
+	AdminUsername                  pulumi.StringPtrInput
+	CallTimeout                    pulumi.IntPtrInput
+	Capabilities                   pulumi.StringPtrInput
+	Certificate                    pulumi.StringPtrInput
+	CloudServerType                pulumi.StringPtrInput
+	DirtyReason                    pulumi.StringPtrInput
+	EmsId                          pulumi.IntPtrInput
 	FortinetoneCloudAuthentication pulumi.StringPtrInput
-	// FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
-	HttpsPort pulumi.IntPtrInput
-	// FortiClient Enterprise Management Server (EMS) name.
-	Name pulumi.StringPtrInput
-	// Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
-	PreserveSslSession pulumi.StringPtrInput
-	// Enable/disable pulling avatars from EMS. Valid values: `enable`, `disable`.
-	PullAvatars pulumi.StringPtrInput
-	// Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
-	PullMalwareHash pulumi.StringPtrInput
-	// Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
-	PullSysinfo pulumi.StringPtrInput
-	// Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
-	PullTags pulumi.StringPtrInput
-	// Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
-	PullVulnerabilities pulumi.StringPtrInput
-	// FortiClient EMS Serial Number.
-	SerialNumber pulumi.StringPtrInput
-	// FortiClient EMS FQDN or IPv4 address.
-	Server pulumi.StringPtrInput
-	// REST API call source IP.
-	SourceIp pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
-	WebsocketOverride pulumi.StringPtrInput
+	HttpsPort                      pulumi.IntPtrInput
+	Interface                      pulumi.StringPtrInput
+	InterfaceSelectMethod          pulumi.StringPtrInput
+	Name                           pulumi.StringPtrInput
+	OutOfSyncThreshold             pulumi.IntPtrInput
+	PreserveSslSession             pulumi.StringPtrInput
+	PullAvatars                    pulumi.StringPtrInput
+	PullMalwareHash                pulumi.StringPtrInput
+	PullSysinfo                    pulumi.StringPtrInput
+	PullTags                       pulumi.StringPtrInput
+	PullVulnerabilities            pulumi.StringPtrInput
+	SerialNumber                   pulumi.StringPtrInput
+	Server                         pulumi.StringPtrInput
+	SourceIp                       pulumi.StringPtrInput
+	Status                         pulumi.StringPtrInput
+	StatusCheckInterval            pulumi.IntPtrInput
+	TenantId                       pulumi.StringPtrInput
+	Vdomparam                      pulumi.StringPtrInput
+	WebsocketOverride              pulumi.StringPtrInput
 }
 
 func (EndpointControlFctemsArgs) ElementType() reflect.Type {
@@ -304,7 +234,7 @@ func (i *EndpointControlFctems) ToEndpointControlFctemsOutputWithContext(ctx con
 // EndpointControlFctemsArrayInput is an input type that accepts EndpointControlFctemsArray and EndpointControlFctemsArrayOutput values.
 // You can construct a concrete instance of `EndpointControlFctemsArrayInput` via:
 //
-//          EndpointControlFctemsArray{ EndpointControlFctemsArgs{...} }
+//	EndpointControlFctemsArray{ EndpointControlFctemsArgs{...} }
 type EndpointControlFctemsArrayInput interface {
 	pulumi.Input
 
@@ -329,7 +259,7 @@ func (i EndpointControlFctemsArray) ToEndpointControlFctemsArrayOutputWithContex
 // EndpointControlFctemsMapInput is an input type that accepts EndpointControlFctemsMap and EndpointControlFctemsMapOutput values.
 // You can construct a concrete instance of `EndpointControlFctemsMapInput` via:
 //
-//          EndpointControlFctemsMap{ "key": EndpointControlFctemsArgs{...} }
+//	EndpointControlFctemsMap{ "key": EndpointControlFctemsArgs{...} }
 type EndpointControlFctemsMapInput interface {
 	pulumi.Input
 
@@ -363,6 +293,118 @@ func (o EndpointControlFctemsOutput) ToEndpointControlFctemsOutput() EndpointCon
 
 func (o EndpointControlFctemsOutput) ToEndpointControlFctemsOutputWithContext(ctx context.Context) EndpointControlFctemsOutput {
 	return o
+}
+
+func (o EndpointControlFctemsOutput) AdminPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringPtrOutput { return v.AdminPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o EndpointControlFctemsOutput) AdminUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.AdminUsername }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) CallTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.IntOutput { return v.CallTimeout }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlFctemsOutput) Capabilities() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.Capabilities }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) Certificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) CloudServerType() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.CloudServerType }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) DirtyReason() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.DirtyReason }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) EmsId() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.IntOutput { return v.EmsId }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlFctemsOutput) FortinetoneCloudAuthentication() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.FortinetoneCloudAuthentication }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) HttpsPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.IntOutput { return v.HttpsPort }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlFctemsOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) OutOfSyncThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.IntOutput { return v.OutOfSyncThreshold }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlFctemsOutput) PreserveSslSession() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.PreserveSslSession }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) PullAvatars() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.PullAvatars }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) PullMalwareHash() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.PullMalwareHash }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) PullSysinfo() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.PullSysinfo }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) PullTags() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.PullTags }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) PullVulnerabilities() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.PullVulnerabilities }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) SerialNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) StatusCheckInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.IntOutput { return v.StatusCheckInterval }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlFctemsOutput) TenantId() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.TenantId }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o EndpointControlFctemsOutput) WebsocketOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.WebsocketOverride }).(pulumi.StringOutput)
 }
 
 type EndpointControlFctemsArrayOutput struct{ *pulumi.OutputState }

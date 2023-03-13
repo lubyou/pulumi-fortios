@@ -10,32 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPS system settings. Applies to FortiOS Version `>= 6.4.2`.
-//
-// ## Import
-//
-// System Ips can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemIps:SystemIps labelname SystemIps
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemIps:SystemIps labelname SystemIps
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemIps struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable override of hold of triggering signatures that are specified by IDs regardless of hold. Valid values: `enable`, `disable`.
-	OverrideSignatureHoldById pulumi.StringOutput `pulumi:"overrideSignatureHoldById"`
-	// Time to hold and monitor IPS signatures. Format <#d##h> (day range: 0 - 7, hour range: 0 - 23, max hold time: 7d0h, default hold time: 0d0h).
-	SignatureHoldTime pulumi.StringOutput `pulumi:"signatureHoldTime"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	OverrideSignatureHoldById pulumi.StringOutput    `pulumi:"overrideSignatureHoldById"`
+	SignatureHoldTime         pulumi.StringOutput    `pulumi:"signatureHoldTime"`
+	Vdomparam                 pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemIps registers a new resource with the given unique name, arguments, and options.
@@ -68,21 +48,15 @@ func GetSystemIps(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemIps resources.
 type systemIpsState struct {
-	// Enable/disable override of hold of triggering signatures that are specified by IDs regardless of hold. Valid values: `enable`, `disable`.
 	OverrideSignatureHoldById *string `pulumi:"overrideSignatureHoldById"`
-	// Time to hold and monitor IPS signatures. Format <#d##h> (day range: 0 - 7, hour range: 0 - 23, max hold time: 7d0h, default hold time: 0d0h).
-	SignatureHoldTime *string `pulumi:"signatureHoldTime"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	SignatureHoldTime         *string `pulumi:"signatureHoldTime"`
+	Vdomparam                 *string `pulumi:"vdomparam"`
 }
 
 type SystemIpsState struct {
-	// Enable/disable override of hold of triggering signatures that are specified by IDs regardless of hold. Valid values: `enable`, `disable`.
 	OverrideSignatureHoldById pulumi.StringPtrInput
-	// Time to hold and monitor IPS signatures. Format <#d##h> (day range: 0 - 7, hour range: 0 - 23, max hold time: 7d0h, default hold time: 0d0h).
-	SignatureHoldTime pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SignatureHoldTime         pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
 }
 
 func (SystemIpsState) ElementType() reflect.Type {
@@ -90,22 +64,16 @@ func (SystemIpsState) ElementType() reflect.Type {
 }
 
 type systemIpsArgs struct {
-	// Enable/disable override of hold of triggering signatures that are specified by IDs regardless of hold. Valid values: `enable`, `disable`.
 	OverrideSignatureHoldById *string `pulumi:"overrideSignatureHoldById"`
-	// Time to hold and monitor IPS signatures. Format <#d##h> (day range: 0 - 7, hour range: 0 - 23, max hold time: 7d0h, default hold time: 0d0h).
-	SignatureHoldTime *string `pulumi:"signatureHoldTime"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	SignatureHoldTime         *string `pulumi:"signatureHoldTime"`
+	Vdomparam                 *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemIps resource.
 type SystemIpsArgs struct {
-	// Enable/disable override of hold of triggering signatures that are specified by IDs regardless of hold. Valid values: `enable`, `disable`.
 	OverrideSignatureHoldById pulumi.StringPtrInput
-	// Time to hold and monitor IPS signatures. Format <#d##h> (day range: 0 - 7, hour range: 0 - 23, max hold time: 7d0h, default hold time: 0d0h).
-	SignatureHoldTime pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SignatureHoldTime         pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
 }
 
 func (SystemIpsArgs) ElementType() reflect.Type {
@@ -134,7 +102,7 @@ func (i *SystemIps) ToSystemIpsOutputWithContext(ctx context.Context) SystemIpsO
 // SystemIpsArrayInput is an input type that accepts SystemIpsArray and SystemIpsArrayOutput values.
 // You can construct a concrete instance of `SystemIpsArrayInput` via:
 //
-//          SystemIpsArray{ SystemIpsArgs{...} }
+//	SystemIpsArray{ SystemIpsArgs{...} }
 type SystemIpsArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i SystemIpsArray) ToSystemIpsArrayOutputWithContext(ctx context.Context) S
 // SystemIpsMapInput is an input type that accepts SystemIpsMap and SystemIpsMapOutput values.
 // You can construct a concrete instance of `SystemIpsMapInput` via:
 //
-//          SystemIpsMap{ "key": SystemIpsArgs{...} }
+//	SystemIpsMap{ "key": SystemIpsArgs{...} }
 type SystemIpsMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o SystemIpsOutput) ToSystemIpsOutput() SystemIpsOutput {
 
 func (o SystemIpsOutput) ToSystemIpsOutputWithContext(ctx context.Context) SystemIpsOutput {
 	return o
+}
+
+func (o SystemIpsOutput) OverrideSignatureHoldById() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIps) pulumi.StringOutput { return v.OverrideSignatureHoldById }).(pulumi.StringOutput)
+}
+
+func (o SystemIpsOutput) SignatureHoldTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIps) pulumi.StringOutput { return v.SignatureHoldTime }).(pulumi.StringOutput)
+}
+
+func (o SystemIpsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemIps) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemIpsArrayOutput struct{ *pulumi.OutputState }

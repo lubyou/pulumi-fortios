@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.FirewallAddress6Template`.
- */
 export function getFirewallAddress6TemplateList(args?: GetFirewallAddress6TemplateListArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallAddress6TemplateListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallAddress6TemplateList:GetFirewallAddress6TemplateList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getFirewallAddress6TemplateList(args?: GetFirewallAddress6Templa
  */
 export interface GetFirewallAddress6TemplateListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -40,15 +31,11 @@ export interface GetFirewallAddress6TemplateListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.FirewallAddress6Template`.
-     */
     readonly namelists: string[];
     readonly vdomparam?: string;
 }
-
 export function getFirewallAddress6TemplateListOutput(args?: GetFirewallAddress6TemplateListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallAddress6TemplateListResult> {
-    return pulumi.output(args).apply(a => getFirewallAddress6TemplateList(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallAddress6TemplateList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getFirewallAddress6TemplateListOutput(args?: GetFirewallAddress6
  */
 export interface GetFirewallAddress6TemplateListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,100 +10,29 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPS global parameter.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewIpsGlobal(ctx, "trname", &fortios.IpsGlobalArgs{
-// 			AnomalyMode:        pulumi.String("continuous"),
-// 			Database:           pulumi.String("regular"),
-// 			DeepAppInspDbLimit: pulumi.Int(0),
-// 			DeepAppInspTimeout: pulumi.Int(0),
-// 			EngineCount:        pulumi.Int(0),
-// 			ExcludeSignatures:  pulumi.String("industrial"),
-// 			FailOpen:           pulumi.String("disable"),
-// 			IntelligentMode:    pulumi.String("enable"),
-// 			SessionLimitMode:   pulumi.String("heuristic"),
-// 			SocketSize:         pulumi.Int(0),
-// 			SyncSessionTtl:     pulumi.String("enable"),
-// 			TrafficSubmit:      pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Ips Global can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/ipsGlobal:IpsGlobal labelname IpsGlobal
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/ipsGlobal:IpsGlobal labelname IpsGlobal
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type IpsGlobal struct {
 	pulumi.CustomResourceState
 
-	// Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
-	AnomalyMode pulumi.StringOutput `pulumi:"anomalyMode"`
-	// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
-	CpAccelMode pulumi.StringOutput `pulumi:"cpAccelMode"`
-	// Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
-	Database pulumi.StringOutput `pulumi:"database"`
-	// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
-	DeepAppInspDbLimit pulumi.IntOutput `pulumi:"deepAppInspDbLimit"`
-	// Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
-	DeepAppInspTimeout pulumi.IntOutput `pulumi:"deepAppInspTimeout"`
-	// Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores.
-	EngineCount pulumi.IntOutput `pulumi:"engineCount"`
-	// Excluded signatures. Valid values: `none`, `industrial`.
-	ExcludeSignatures pulumi.StringOutput `pulumi:"excludeSignatures"`
-	// Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
-	FailOpen pulumi.StringOutput `pulumi:"failOpen"`
-	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
-	IntelligentMode pulumi.StringOutput `pulumi:"intelligentMode"`
-	// Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
-	IpsReserveCpu pulumi.StringOutput `pulumi:"ipsReserveCpu"`
-	// NGFW policy-mode app detection threshold.
-	NgfwMaxScanRange pulumi.IntOutput `pulumi:"ngfwMaxScanRange"`
-	// Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
-	NpAccelMode pulumi.StringOutput `pulumi:"npAccelMode"`
-	// Packet/pcap log queue depth per IPS engine.
-	PacketLogQueueDepth pulumi.IntOutput `pulumi:"packetLogQueueDepth"`
-	// Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
-	SessionLimitMode pulumi.StringOutput `pulumi:"sessionLimitMode"`
-	// Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
-	SkypeClientPublicIpaddr pulumi.StringPtrOutput `pulumi:"skypeClientPublicIpaddr"`
-	// IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
-	SocketSize pulumi.IntOutput `pulumi:"socketSize"`
-	// Enable/disable use of kernel session TTL for IPS sessions. Valid values: `enable`, `disable`.
-	SyncSessionTtl pulumi.StringOutput `pulumi:"syncSessionTtl"`
-	// TLS active probe configuration. The structure of `tlsActiveProbe` block is documented below.
-	TlsActiveProbe IpsGlobalTlsActiveProbePtrOutput `pulumi:"tlsActiveProbe"`
-	// Enable/disable submitting attack data found by this FortiGate to FortiGuard. Valid values: `enable`, `disable`.
-	TrafficSubmit pulumi.StringOutput `pulumi:"trafficSubmit"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AnomalyMode             pulumi.StringOutput           `pulumi:"anomalyMode"`
+	CpAccelMode             pulumi.StringOutput           `pulumi:"cpAccelMode"`
+	Database                pulumi.StringOutput           `pulumi:"database"`
+	DeepAppInspDbLimit      pulumi.IntOutput              `pulumi:"deepAppInspDbLimit"`
+	DeepAppInspTimeout      pulumi.IntOutput              `pulumi:"deepAppInspTimeout"`
+	EngineCount             pulumi.IntOutput              `pulumi:"engineCount"`
+	ExcludeSignatures       pulumi.StringOutput           `pulumi:"excludeSignatures"`
+	FailOpen                pulumi.StringOutput           `pulumi:"failOpen"`
+	IntelligentMode         pulumi.StringOutput           `pulumi:"intelligentMode"`
+	IpsReserveCpu           pulumi.StringOutput           `pulumi:"ipsReserveCpu"`
+	NgfwMaxScanRange        pulumi.IntOutput              `pulumi:"ngfwMaxScanRange"`
+	NpAccelMode             pulumi.StringOutput           `pulumi:"npAccelMode"`
+	PacketLogQueueDepth     pulumi.IntOutput              `pulumi:"packetLogQueueDepth"`
+	SessionLimitMode        pulumi.StringOutput           `pulumi:"sessionLimitMode"`
+	SkypeClientPublicIpaddr pulumi.StringPtrOutput        `pulumi:"skypeClientPublicIpaddr"`
+	SocketSize              pulumi.IntOutput              `pulumi:"socketSize"`
+	SyncSessionTtl          pulumi.StringOutput           `pulumi:"syncSessionTtl"`
+	TlsActiveProbe          IpsGlobalTlsActiveProbeOutput `pulumi:"tlsActiveProbe"`
+	TrafficSubmit           pulumi.StringOutput           `pulumi:"trafficSubmit"`
+	Vdomparam               pulumi.StringPtrOutput        `pulumi:"vdomparam"`
 }
 
 // NewIpsGlobal registers a new resource with the given unique name, arguments, and options.
@@ -136,89 +65,49 @@ func GetIpsGlobal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IpsGlobal resources.
 type ipsGlobalState struct {
-	// Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
-	AnomalyMode *string `pulumi:"anomalyMode"`
-	// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
-	CpAccelMode *string `pulumi:"cpAccelMode"`
-	// Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
-	Database *string `pulumi:"database"`
-	// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
-	DeepAppInspDbLimit *int `pulumi:"deepAppInspDbLimit"`
-	// Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
-	DeepAppInspTimeout *int `pulumi:"deepAppInspTimeout"`
-	// Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores.
-	EngineCount *int `pulumi:"engineCount"`
-	// Excluded signatures. Valid values: `none`, `industrial`.
-	ExcludeSignatures *string `pulumi:"excludeSignatures"`
-	// Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
-	FailOpen *string `pulumi:"failOpen"`
-	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
-	IntelligentMode *string `pulumi:"intelligentMode"`
-	// Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
-	IpsReserveCpu *string `pulumi:"ipsReserveCpu"`
-	// NGFW policy-mode app detection threshold.
-	NgfwMaxScanRange *int `pulumi:"ngfwMaxScanRange"`
-	// Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
-	NpAccelMode *string `pulumi:"npAccelMode"`
-	// Packet/pcap log queue depth per IPS engine.
-	PacketLogQueueDepth *int `pulumi:"packetLogQueueDepth"`
-	// Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
-	SessionLimitMode *string `pulumi:"sessionLimitMode"`
-	// Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
-	SkypeClientPublicIpaddr *string `pulumi:"skypeClientPublicIpaddr"`
-	// IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
-	SocketSize *int `pulumi:"socketSize"`
-	// Enable/disable use of kernel session TTL for IPS sessions. Valid values: `enable`, `disable`.
-	SyncSessionTtl *string `pulumi:"syncSessionTtl"`
-	// TLS active probe configuration. The structure of `tlsActiveProbe` block is documented below.
-	TlsActiveProbe *IpsGlobalTlsActiveProbe `pulumi:"tlsActiveProbe"`
-	// Enable/disable submitting attack data found by this FortiGate to FortiGuard. Valid values: `enable`, `disable`.
-	TrafficSubmit *string `pulumi:"trafficSubmit"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AnomalyMode             *string                  `pulumi:"anomalyMode"`
+	CpAccelMode             *string                  `pulumi:"cpAccelMode"`
+	Database                *string                  `pulumi:"database"`
+	DeepAppInspDbLimit      *int                     `pulumi:"deepAppInspDbLimit"`
+	DeepAppInspTimeout      *int                     `pulumi:"deepAppInspTimeout"`
+	EngineCount             *int                     `pulumi:"engineCount"`
+	ExcludeSignatures       *string                  `pulumi:"excludeSignatures"`
+	FailOpen                *string                  `pulumi:"failOpen"`
+	IntelligentMode         *string                  `pulumi:"intelligentMode"`
+	IpsReserveCpu           *string                  `pulumi:"ipsReserveCpu"`
+	NgfwMaxScanRange        *int                     `pulumi:"ngfwMaxScanRange"`
+	NpAccelMode             *string                  `pulumi:"npAccelMode"`
+	PacketLogQueueDepth     *int                     `pulumi:"packetLogQueueDepth"`
+	SessionLimitMode        *string                  `pulumi:"sessionLimitMode"`
+	SkypeClientPublicIpaddr *string                  `pulumi:"skypeClientPublicIpaddr"`
+	SocketSize              *int                     `pulumi:"socketSize"`
+	SyncSessionTtl          *string                  `pulumi:"syncSessionTtl"`
+	TlsActiveProbe          *IpsGlobalTlsActiveProbe `pulumi:"tlsActiveProbe"`
+	TrafficSubmit           *string                  `pulumi:"trafficSubmit"`
+	Vdomparam               *string                  `pulumi:"vdomparam"`
 }
 
 type IpsGlobalState struct {
-	// Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
-	AnomalyMode pulumi.StringPtrInput
-	// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
-	CpAccelMode pulumi.StringPtrInput
-	// Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
-	Database pulumi.StringPtrInput
-	// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
-	DeepAppInspDbLimit pulumi.IntPtrInput
-	// Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
-	DeepAppInspTimeout pulumi.IntPtrInput
-	// Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores.
-	EngineCount pulumi.IntPtrInput
-	// Excluded signatures. Valid values: `none`, `industrial`.
-	ExcludeSignatures pulumi.StringPtrInput
-	// Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
-	FailOpen pulumi.StringPtrInput
-	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
-	IntelligentMode pulumi.StringPtrInput
-	// Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
-	IpsReserveCpu pulumi.StringPtrInput
-	// NGFW policy-mode app detection threshold.
-	NgfwMaxScanRange pulumi.IntPtrInput
-	// Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
-	NpAccelMode pulumi.StringPtrInput
-	// Packet/pcap log queue depth per IPS engine.
-	PacketLogQueueDepth pulumi.IntPtrInput
-	// Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
-	SessionLimitMode pulumi.StringPtrInput
-	// Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
+	AnomalyMode             pulumi.StringPtrInput
+	CpAccelMode             pulumi.StringPtrInput
+	Database                pulumi.StringPtrInput
+	DeepAppInspDbLimit      pulumi.IntPtrInput
+	DeepAppInspTimeout      pulumi.IntPtrInput
+	EngineCount             pulumi.IntPtrInput
+	ExcludeSignatures       pulumi.StringPtrInput
+	FailOpen                pulumi.StringPtrInput
+	IntelligentMode         pulumi.StringPtrInput
+	IpsReserveCpu           pulumi.StringPtrInput
+	NgfwMaxScanRange        pulumi.IntPtrInput
+	NpAccelMode             pulumi.StringPtrInput
+	PacketLogQueueDepth     pulumi.IntPtrInput
+	SessionLimitMode        pulumi.StringPtrInput
 	SkypeClientPublicIpaddr pulumi.StringPtrInput
-	// IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
-	SocketSize pulumi.IntPtrInput
-	// Enable/disable use of kernel session TTL for IPS sessions. Valid values: `enable`, `disable`.
-	SyncSessionTtl pulumi.StringPtrInput
-	// TLS active probe configuration. The structure of `tlsActiveProbe` block is documented below.
-	TlsActiveProbe IpsGlobalTlsActiveProbePtrInput
-	// Enable/disable submitting attack data found by this FortiGate to FortiGuard. Valid values: `enable`, `disable`.
-	TrafficSubmit pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SocketSize              pulumi.IntPtrInput
+	SyncSessionTtl          pulumi.StringPtrInput
+	TlsActiveProbe          IpsGlobalTlsActiveProbePtrInput
+	TrafficSubmit           pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (IpsGlobalState) ElementType() reflect.Type {
@@ -226,90 +115,50 @@ func (IpsGlobalState) ElementType() reflect.Type {
 }
 
 type ipsGlobalArgs struct {
-	// Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
-	AnomalyMode *string `pulumi:"anomalyMode"`
-	// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
-	CpAccelMode *string `pulumi:"cpAccelMode"`
-	// Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
-	Database *string `pulumi:"database"`
-	// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
-	DeepAppInspDbLimit *int `pulumi:"deepAppInspDbLimit"`
-	// Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
-	DeepAppInspTimeout *int `pulumi:"deepAppInspTimeout"`
-	// Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores.
-	EngineCount *int `pulumi:"engineCount"`
-	// Excluded signatures. Valid values: `none`, `industrial`.
-	ExcludeSignatures *string `pulumi:"excludeSignatures"`
-	// Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
-	FailOpen *string `pulumi:"failOpen"`
-	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
-	IntelligentMode *string `pulumi:"intelligentMode"`
-	// Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
-	IpsReserveCpu *string `pulumi:"ipsReserveCpu"`
-	// NGFW policy-mode app detection threshold.
-	NgfwMaxScanRange *int `pulumi:"ngfwMaxScanRange"`
-	// Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
-	NpAccelMode *string `pulumi:"npAccelMode"`
-	// Packet/pcap log queue depth per IPS engine.
-	PacketLogQueueDepth *int `pulumi:"packetLogQueueDepth"`
-	// Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
-	SessionLimitMode *string `pulumi:"sessionLimitMode"`
-	// Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
-	SkypeClientPublicIpaddr *string `pulumi:"skypeClientPublicIpaddr"`
-	// IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
-	SocketSize *int `pulumi:"socketSize"`
-	// Enable/disable use of kernel session TTL for IPS sessions. Valid values: `enable`, `disable`.
-	SyncSessionTtl *string `pulumi:"syncSessionTtl"`
-	// TLS active probe configuration. The structure of `tlsActiveProbe` block is documented below.
-	TlsActiveProbe *IpsGlobalTlsActiveProbe `pulumi:"tlsActiveProbe"`
-	// Enable/disable submitting attack data found by this FortiGate to FortiGuard. Valid values: `enable`, `disable`.
-	TrafficSubmit *string `pulumi:"trafficSubmit"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AnomalyMode             *string                  `pulumi:"anomalyMode"`
+	CpAccelMode             *string                  `pulumi:"cpAccelMode"`
+	Database                *string                  `pulumi:"database"`
+	DeepAppInspDbLimit      *int                     `pulumi:"deepAppInspDbLimit"`
+	DeepAppInspTimeout      *int                     `pulumi:"deepAppInspTimeout"`
+	EngineCount             *int                     `pulumi:"engineCount"`
+	ExcludeSignatures       *string                  `pulumi:"excludeSignatures"`
+	FailOpen                *string                  `pulumi:"failOpen"`
+	IntelligentMode         *string                  `pulumi:"intelligentMode"`
+	IpsReserveCpu           *string                  `pulumi:"ipsReserveCpu"`
+	NgfwMaxScanRange        *int                     `pulumi:"ngfwMaxScanRange"`
+	NpAccelMode             *string                  `pulumi:"npAccelMode"`
+	PacketLogQueueDepth     *int                     `pulumi:"packetLogQueueDepth"`
+	SessionLimitMode        *string                  `pulumi:"sessionLimitMode"`
+	SkypeClientPublicIpaddr *string                  `pulumi:"skypeClientPublicIpaddr"`
+	SocketSize              *int                     `pulumi:"socketSize"`
+	SyncSessionTtl          *string                  `pulumi:"syncSessionTtl"`
+	TlsActiveProbe          *IpsGlobalTlsActiveProbe `pulumi:"tlsActiveProbe"`
+	TrafficSubmit           *string                  `pulumi:"trafficSubmit"`
+	Vdomparam               *string                  `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a IpsGlobal resource.
 type IpsGlobalArgs struct {
-	// Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
-	AnomalyMode pulumi.StringPtrInput
-	// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
-	CpAccelMode pulumi.StringPtrInput
-	// Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
-	Database pulumi.StringPtrInput
-	// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
-	DeepAppInspDbLimit pulumi.IntPtrInput
-	// Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
-	DeepAppInspTimeout pulumi.IntPtrInput
-	// Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores.
-	EngineCount pulumi.IntPtrInput
-	// Excluded signatures. Valid values: `none`, `industrial`.
-	ExcludeSignatures pulumi.StringPtrInput
-	// Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
-	FailOpen pulumi.StringPtrInput
-	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
-	IntelligentMode pulumi.StringPtrInput
-	// Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
-	IpsReserveCpu pulumi.StringPtrInput
-	// NGFW policy-mode app detection threshold.
-	NgfwMaxScanRange pulumi.IntPtrInput
-	// Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
-	NpAccelMode pulumi.StringPtrInput
-	// Packet/pcap log queue depth per IPS engine.
-	PacketLogQueueDepth pulumi.IntPtrInput
-	// Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
-	SessionLimitMode pulumi.StringPtrInput
-	// Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
+	AnomalyMode             pulumi.StringPtrInput
+	CpAccelMode             pulumi.StringPtrInput
+	Database                pulumi.StringPtrInput
+	DeepAppInspDbLimit      pulumi.IntPtrInput
+	DeepAppInspTimeout      pulumi.IntPtrInput
+	EngineCount             pulumi.IntPtrInput
+	ExcludeSignatures       pulumi.StringPtrInput
+	FailOpen                pulumi.StringPtrInput
+	IntelligentMode         pulumi.StringPtrInput
+	IpsReserveCpu           pulumi.StringPtrInput
+	NgfwMaxScanRange        pulumi.IntPtrInput
+	NpAccelMode             pulumi.StringPtrInput
+	PacketLogQueueDepth     pulumi.IntPtrInput
+	SessionLimitMode        pulumi.StringPtrInput
 	SkypeClientPublicIpaddr pulumi.StringPtrInput
-	// IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
-	SocketSize pulumi.IntPtrInput
-	// Enable/disable use of kernel session TTL for IPS sessions. Valid values: `enable`, `disable`.
-	SyncSessionTtl pulumi.StringPtrInput
-	// TLS active probe configuration. The structure of `tlsActiveProbe` block is documented below.
-	TlsActiveProbe IpsGlobalTlsActiveProbePtrInput
-	// Enable/disable submitting attack data found by this FortiGate to FortiGuard. Valid values: `enable`, `disable`.
-	TrafficSubmit pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SocketSize              pulumi.IntPtrInput
+	SyncSessionTtl          pulumi.StringPtrInput
+	TlsActiveProbe          IpsGlobalTlsActiveProbePtrInput
+	TrafficSubmit           pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (IpsGlobalArgs) ElementType() reflect.Type {
@@ -338,7 +187,7 @@ func (i *IpsGlobal) ToIpsGlobalOutputWithContext(ctx context.Context) IpsGlobalO
 // IpsGlobalArrayInput is an input type that accepts IpsGlobalArray and IpsGlobalArrayOutput values.
 // You can construct a concrete instance of `IpsGlobalArrayInput` via:
 //
-//          IpsGlobalArray{ IpsGlobalArgs{...} }
+//	IpsGlobalArray{ IpsGlobalArgs{...} }
 type IpsGlobalArrayInput interface {
 	pulumi.Input
 
@@ -363,7 +212,7 @@ func (i IpsGlobalArray) ToIpsGlobalArrayOutputWithContext(ctx context.Context) I
 // IpsGlobalMapInput is an input type that accepts IpsGlobalMap and IpsGlobalMapOutput values.
 // You can construct a concrete instance of `IpsGlobalMapInput` via:
 //
-//          IpsGlobalMap{ "key": IpsGlobalArgs{...} }
+//	IpsGlobalMap{ "key": IpsGlobalArgs{...} }
 type IpsGlobalMapInput interface {
 	pulumi.Input
 
@@ -397,6 +246,86 @@ func (o IpsGlobalOutput) ToIpsGlobalOutput() IpsGlobalOutput {
 
 func (o IpsGlobalOutput) ToIpsGlobalOutputWithContext(ctx context.Context) IpsGlobalOutput {
 	return o
+}
+
+func (o IpsGlobalOutput) AnomalyMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.StringOutput { return v.AnomalyMode }).(pulumi.StringOutput)
+}
+
+func (o IpsGlobalOutput) CpAccelMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.StringOutput { return v.CpAccelMode }).(pulumi.StringOutput)
+}
+
+func (o IpsGlobalOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.StringOutput { return v.Database }).(pulumi.StringOutput)
+}
+
+func (o IpsGlobalOutput) DeepAppInspDbLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.IntOutput { return v.DeepAppInspDbLimit }).(pulumi.IntOutput)
+}
+
+func (o IpsGlobalOutput) DeepAppInspTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.IntOutput { return v.DeepAppInspTimeout }).(pulumi.IntOutput)
+}
+
+func (o IpsGlobalOutput) EngineCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.IntOutput { return v.EngineCount }).(pulumi.IntOutput)
+}
+
+func (o IpsGlobalOutput) ExcludeSignatures() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.StringOutput { return v.ExcludeSignatures }).(pulumi.StringOutput)
+}
+
+func (o IpsGlobalOutput) FailOpen() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.StringOutput { return v.FailOpen }).(pulumi.StringOutput)
+}
+
+func (o IpsGlobalOutput) IntelligentMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.StringOutput { return v.IntelligentMode }).(pulumi.StringOutput)
+}
+
+func (o IpsGlobalOutput) IpsReserveCpu() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.StringOutput { return v.IpsReserveCpu }).(pulumi.StringOutput)
+}
+
+func (o IpsGlobalOutput) NgfwMaxScanRange() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.IntOutput { return v.NgfwMaxScanRange }).(pulumi.IntOutput)
+}
+
+func (o IpsGlobalOutput) NpAccelMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.StringOutput { return v.NpAccelMode }).(pulumi.StringOutput)
+}
+
+func (o IpsGlobalOutput) PacketLogQueueDepth() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.IntOutput { return v.PacketLogQueueDepth }).(pulumi.IntOutput)
+}
+
+func (o IpsGlobalOutput) SessionLimitMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.StringOutput { return v.SessionLimitMode }).(pulumi.StringOutput)
+}
+
+func (o IpsGlobalOutput) SkypeClientPublicIpaddr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.StringPtrOutput { return v.SkypeClientPublicIpaddr }).(pulumi.StringPtrOutput)
+}
+
+func (o IpsGlobalOutput) SocketSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.IntOutput { return v.SocketSize }).(pulumi.IntOutput)
+}
+
+func (o IpsGlobalOutput) SyncSessionTtl() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.StringOutput { return v.SyncSessionTtl }).(pulumi.StringOutput)
+}
+
+func (o IpsGlobalOutput) TlsActiveProbe() IpsGlobalTlsActiveProbeOutput {
+	return o.ApplyT(func(v *IpsGlobal) IpsGlobalTlsActiveProbeOutput { return v.TlsActiveProbe }).(IpsGlobalTlsActiveProbeOutput)
+}
+
+func (o IpsGlobalOutput) TrafficSubmit() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.StringOutput { return v.TrafficSubmit }).(pulumi.StringOutput)
+}
+
+func (o IpsGlobalOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type IpsGlobalArrayOutput struct{ *pulumi.OutputState }

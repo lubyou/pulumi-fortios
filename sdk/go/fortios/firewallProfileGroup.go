@@ -10,90 +10,30 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure profile groups.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallProfileGroup(ctx, "trname", &fortios.FirewallProfileGroupArgs{
-// 			ProfileProtocolOptions: pulumi.String("default"),
-// 			SslSshProfile:          pulumi.String("deep-inspection"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall ProfileGroup can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallProfileGroup:FirewallProfileGroup labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallProfileGroup:FirewallProfileGroup labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallProfileGroup struct {
 	pulumi.CustomResourceState
 
-	// Name of an existing Application list.
-	ApplicationList pulumi.StringOutput `pulumi:"applicationList"`
-	// Name of an existing Antivirus profile.
-	AvProfile pulumi.StringOutput `pulumi:"avProfile"`
-	// Name of an existing CIFS profile.
-	CifsProfile pulumi.StringOutput `pulumi:"cifsProfile"`
-	// Name of an existing DLP sensor.
-	DlpSensor pulumi.StringOutput `pulumi:"dlpSensor"`
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile pulumi.StringOutput `pulumi:"dnsfilterProfile"`
-	// Name of an existing email filter profile.
-	EmailfilterProfile pulumi.StringOutput `pulumi:"emailfilterProfile"`
-	// Name of an existing file-filter profile.
-	FileFilterProfile pulumi.StringOutput `pulumi:"fileFilterProfile"`
-	// Name of an existing ICAP profile.
-	IcapProfile pulumi.StringOutput `pulumi:"icapProfile"`
-	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringOutput `pulumi:"ipsSensor"`
-	// Profile group name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Name of an existing Protocol options profile.
-	ProfileProtocolOptions pulumi.StringOutput `pulumi:"profileProtocolOptions"`
-	// Name of an existing SCTP filter profile.
-	SctpFilterProfile pulumi.StringOutput `pulumi:"sctpFilterProfile"`
-	// Name of an existing Spam filter profile.
-	SpamfilterProfile pulumi.StringOutput `pulumi:"spamfilterProfile"`
-	// Name of an existing SSH filter profile.
-	SshFilterProfile pulumi.StringOutput `pulumi:"sshFilterProfile"`
-	// Name of an existing SSL SSH profile.
-	SslSshProfile pulumi.StringOutput `pulumi:"sslSshProfile"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Name of an existing VideoFilter profile.
-	VideofilterProfile pulumi.StringOutput `pulumi:"videofilterProfile"`
-	// Name of an existing VoIP profile.
-	VoipProfile pulumi.StringOutput `pulumi:"voipProfile"`
-	// Name of an existing Web application firewall profile.
-	WafProfile pulumi.StringOutput `pulumi:"wafProfile"`
-	// Name of an existing Web filter profile.
-	WebfilterProfile pulumi.StringOutput `pulumi:"webfilterProfile"`
+	ApplicationList        pulumi.StringOutput    `pulumi:"applicationList"`
+	AvProfile              pulumi.StringOutput    `pulumi:"avProfile"`
+	CifsProfile            pulumi.StringOutput    `pulumi:"cifsProfile"`
+	DlpProfile             pulumi.StringOutput    `pulumi:"dlpProfile"`
+	DlpSensor              pulumi.StringOutput    `pulumi:"dlpSensor"`
+	DnsfilterProfile       pulumi.StringOutput    `pulumi:"dnsfilterProfile"`
+	EmailfilterProfile     pulumi.StringOutput    `pulumi:"emailfilterProfile"`
+	FileFilterProfile      pulumi.StringOutput    `pulumi:"fileFilterProfile"`
+	IcapProfile            pulumi.StringOutput    `pulumi:"icapProfile"`
+	IpsSensor              pulumi.StringOutput    `pulumi:"ipsSensor"`
+	Name                   pulumi.StringOutput    `pulumi:"name"`
+	ProfileProtocolOptions pulumi.StringOutput    `pulumi:"profileProtocolOptions"`
+	SctpFilterProfile      pulumi.StringOutput    `pulumi:"sctpFilterProfile"`
+	SpamfilterProfile      pulumi.StringOutput    `pulumi:"spamfilterProfile"`
+	SshFilterProfile       pulumi.StringOutput    `pulumi:"sshFilterProfile"`
+	SslSshProfile          pulumi.StringOutput    `pulumi:"sslSshProfile"`
+	Vdomparam              pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	VideofilterProfile     pulumi.StringOutput    `pulumi:"videofilterProfile"`
+	VoipProfile            pulumi.StringOutput    `pulumi:"voipProfile"`
+	WafProfile             pulumi.StringOutput    `pulumi:"wafProfile"`
+	WebfilterProfile       pulumi.StringOutput    `pulumi:"webfilterProfile"`
 }
 
 // NewFirewallProfileGroup registers a new resource with the given unique name, arguments, and options.
@@ -126,89 +66,51 @@ func GetFirewallProfileGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallProfileGroup resources.
 type firewallProfileGroupState struct {
-	// Name of an existing Application list.
-	ApplicationList *string `pulumi:"applicationList"`
-	// Name of an existing Antivirus profile.
-	AvProfile *string `pulumi:"avProfile"`
-	// Name of an existing CIFS profile.
-	CifsProfile *string `pulumi:"cifsProfile"`
-	// Name of an existing DLP sensor.
-	DlpSensor *string `pulumi:"dlpSensor"`
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
-	// Name of an existing email filter profile.
-	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
-	// Name of an existing file-filter profile.
-	FileFilterProfile *string `pulumi:"fileFilterProfile"`
-	// Name of an existing ICAP profile.
-	IcapProfile *string `pulumi:"icapProfile"`
-	// Name of an existing IPS sensor.
-	IpsSensor *string `pulumi:"ipsSensor"`
-	// Profile group name.
-	Name *string `pulumi:"name"`
-	// Name of an existing Protocol options profile.
+	ApplicationList        *string `pulumi:"applicationList"`
+	AvProfile              *string `pulumi:"avProfile"`
+	CifsProfile            *string `pulumi:"cifsProfile"`
+	DlpProfile             *string `pulumi:"dlpProfile"`
+	DlpSensor              *string `pulumi:"dlpSensor"`
+	DnsfilterProfile       *string `pulumi:"dnsfilterProfile"`
+	EmailfilterProfile     *string `pulumi:"emailfilterProfile"`
+	FileFilterProfile      *string `pulumi:"fileFilterProfile"`
+	IcapProfile            *string `pulumi:"icapProfile"`
+	IpsSensor              *string `pulumi:"ipsSensor"`
+	Name                   *string `pulumi:"name"`
 	ProfileProtocolOptions *string `pulumi:"profileProtocolOptions"`
-	// Name of an existing SCTP filter profile.
-	SctpFilterProfile *string `pulumi:"sctpFilterProfile"`
-	// Name of an existing Spam filter profile.
-	SpamfilterProfile *string `pulumi:"spamfilterProfile"`
-	// Name of an existing SSH filter profile.
-	SshFilterProfile *string `pulumi:"sshFilterProfile"`
-	// Name of an existing SSL SSH profile.
-	SslSshProfile *string `pulumi:"sslSshProfile"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Name of an existing VideoFilter profile.
-	VideofilterProfile *string `pulumi:"videofilterProfile"`
-	// Name of an existing VoIP profile.
-	VoipProfile *string `pulumi:"voipProfile"`
-	// Name of an existing Web application firewall profile.
-	WafProfile *string `pulumi:"wafProfile"`
-	// Name of an existing Web filter profile.
-	WebfilterProfile *string `pulumi:"webfilterProfile"`
+	SctpFilterProfile      *string `pulumi:"sctpFilterProfile"`
+	SpamfilterProfile      *string `pulumi:"spamfilterProfile"`
+	SshFilterProfile       *string `pulumi:"sshFilterProfile"`
+	SslSshProfile          *string `pulumi:"sslSshProfile"`
+	Vdomparam              *string `pulumi:"vdomparam"`
+	VideofilterProfile     *string `pulumi:"videofilterProfile"`
+	VoipProfile            *string `pulumi:"voipProfile"`
+	WafProfile             *string `pulumi:"wafProfile"`
+	WebfilterProfile       *string `pulumi:"webfilterProfile"`
 }
 
 type FirewallProfileGroupState struct {
-	// Name of an existing Application list.
-	ApplicationList pulumi.StringPtrInput
-	// Name of an existing Antivirus profile.
-	AvProfile pulumi.StringPtrInput
-	// Name of an existing CIFS profile.
-	CifsProfile pulumi.StringPtrInput
-	// Name of an existing DLP sensor.
-	DlpSensor pulumi.StringPtrInput
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile pulumi.StringPtrInput
-	// Name of an existing email filter profile.
-	EmailfilterProfile pulumi.StringPtrInput
-	// Name of an existing file-filter profile.
-	FileFilterProfile pulumi.StringPtrInput
-	// Name of an existing ICAP profile.
-	IcapProfile pulumi.StringPtrInput
-	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringPtrInput
-	// Profile group name.
-	Name pulumi.StringPtrInput
-	// Name of an existing Protocol options profile.
+	ApplicationList        pulumi.StringPtrInput
+	AvProfile              pulumi.StringPtrInput
+	CifsProfile            pulumi.StringPtrInput
+	DlpProfile             pulumi.StringPtrInput
+	DlpSensor              pulumi.StringPtrInput
+	DnsfilterProfile       pulumi.StringPtrInput
+	EmailfilterProfile     pulumi.StringPtrInput
+	FileFilterProfile      pulumi.StringPtrInput
+	IcapProfile            pulumi.StringPtrInput
+	IpsSensor              pulumi.StringPtrInput
+	Name                   pulumi.StringPtrInput
 	ProfileProtocolOptions pulumi.StringPtrInput
-	// Name of an existing SCTP filter profile.
-	SctpFilterProfile pulumi.StringPtrInput
-	// Name of an existing Spam filter profile.
-	SpamfilterProfile pulumi.StringPtrInput
-	// Name of an existing SSH filter profile.
-	SshFilterProfile pulumi.StringPtrInput
-	// Name of an existing SSL SSH profile.
-	SslSshProfile pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Name of an existing VideoFilter profile.
-	VideofilterProfile pulumi.StringPtrInput
-	// Name of an existing VoIP profile.
-	VoipProfile pulumi.StringPtrInput
-	// Name of an existing Web application firewall profile.
-	WafProfile pulumi.StringPtrInput
-	// Name of an existing Web filter profile.
-	WebfilterProfile pulumi.StringPtrInput
+	SctpFilterProfile      pulumi.StringPtrInput
+	SpamfilterProfile      pulumi.StringPtrInput
+	SshFilterProfile       pulumi.StringPtrInput
+	SslSshProfile          pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
+	VideofilterProfile     pulumi.StringPtrInput
+	VoipProfile            pulumi.StringPtrInput
+	WafProfile             pulumi.StringPtrInput
+	WebfilterProfile       pulumi.StringPtrInput
 }
 
 func (FirewallProfileGroupState) ElementType() reflect.Type {
@@ -216,90 +118,52 @@ func (FirewallProfileGroupState) ElementType() reflect.Type {
 }
 
 type firewallProfileGroupArgs struct {
-	// Name of an existing Application list.
-	ApplicationList *string `pulumi:"applicationList"`
-	// Name of an existing Antivirus profile.
-	AvProfile *string `pulumi:"avProfile"`
-	// Name of an existing CIFS profile.
-	CifsProfile *string `pulumi:"cifsProfile"`
-	// Name of an existing DLP sensor.
-	DlpSensor *string `pulumi:"dlpSensor"`
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
-	// Name of an existing email filter profile.
-	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
-	// Name of an existing file-filter profile.
-	FileFilterProfile *string `pulumi:"fileFilterProfile"`
-	// Name of an existing ICAP profile.
-	IcapProfile *string `pulumi:"icapProfile"`
-	// Name of an existing IPS sensor.
-	IpsSensor *string `pulumi:"ipsSensor"`
-	// Profile group name.
-	Name *string `pulumi:"name"`
-	// Name of an existing Protocol options profile.
+	ApplicationList        *string `pulumi:"applicationList"`
+	AvProfile              *string `pulumi:"avProfile"`
+	CifsProfile            *string `pulumi:"cifsProfile"`
+	DlpProfile             *string `pulumi:"dlpProfile"`
+	DlpSensor              *string `pulumi:"dlpSensor"`
+	DnsfilterProfile       *string `pulumi:"dnsfilterProfile"`
+	EmailfilterProfile     *string `pulumi:"emailfilterProfile"`
+	FileFilterProfile      *string `pulumi:"fileFilterProfile"`
+	IcapProfile            *string `pulumi:"icapProfile"`
+	IpsSensor              *string `pulumi:"ipsSensor"`
+	Name                   *string `pulumi:"name"`
 	ProfileProtocolOptions *string `pulumi:"profileProtocolOptions"`
-	// Name of an existing SCTP filter profile.
-	SctpFilterProfile *string `pulumi:"sctpFilterProfile"`
-	// Name of an existing Spam filter profile.
-	SpamfilterProfile *string `pulumi:"spamfilterProfile"`
-	// Name of an existing SSH filter profile.
-	SshFilterProfile *string `pulumi:"sshFilterProfile"`
-	// Name of an existing SSL SSH profile.
-	SslSshProfile *string `pulumi:"sslSshProfile"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Name of an existing VideoFilter profile.
-	VideofilterProfile *string `pulumi:"videofilterProfile"`
-	// Name of an existing VoIP profile.
-	VoipProfile *string `pulumi:"voipProfile"`
-	// Name of an existing Web application firewall profile.
-	WafProfile *string `pulumi:"wafProfile"`
-	// Name of an existing Web filter profile.
-	WebfilterProfile *string `pulumi:"webfilterProfile"`
+	SctpFilterProfile      *string `pulumi:"sctpFilterProfile"`
+	SpamfilterProfile      *string `pulumi:"spamfilterProfile"`
+	SshFilterProfile       *string `pulumi:"sshFilterProfile"`
+	SslSshProfile          *string `pulumi:"sslSshProfile"`
+	Vdomparam              *string `pulumi:"vdomparam"`
+	VideofilterProfile     *string `pulumi:"videofilterProfile"`
+	VoipProfile            *string `pulumi:"voipProfile"`
+	WafProfile             *string `pulumi:"wafProfile"`
+	WebfilterProfile       *string `pulumi:"webfilterProfile"`
 }
 
 // The set of arguments for constructing a FirewallProfileGroup resource.
 type FirewallProfileGroupArgs struct {
-	// Name of an existing Application list.
-	ApplicationList pulumi.StringPtrInput
-	// Name of an existing Antivirus profile.
-	AvProfile pulumi.StringPtrInput
-	// Name of an existing CIFS profile.
-	CifsProfile pulumi.StringPtrInput
-	// Name of an existing DLP sensor.
-	DlpSensor pulumi.StringPtrInput
-	// Name of an existing DNS filter profile.
-	DnsfilterProfile pulumi.StringPtrInput
-	// Name of an existing email filter profile.
-	EmailfilterProfile pulumi.StringPtrInput
-	// Name of an existing file-filter profile.
-	FileFilterProfile pulumi.StringPtrInput
-	// Name of an existing ICAP profile.
-	IcapProfile pulumi.StringPtrInput
-	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringPtrInput
-	// Profile group name.
-	Name pulumi.StringPtrInput
-	// Name of an existing Protocol options profile.
+	ApplicationList        pulumi.StringPtrInput
+	AvProfile              pulumi.StringPtrInput
+	CifsProfile            pulumi.StringPtrInput
+	DlpProfile             pulumi.StringPtrInput
+	DlpSensor              pulumi.StringPtrInput
+	DnsfilterProfile       pulumi.StringPtrInput
+	EmailfilterProfile     pulumi.StringPtrInput
+	FileFilterProfile      pulumi.StringPtrInput
+	IcapProfile            pulumi.StringPtrInput
+	IpsSensor              pulumi.StringPtrInput
+	Name                   pulumi.StringPtrInput
 	ProfileProtocolOptions pulumi.StringPtrInput
-	// Name of an existing SCTP filter profile.
-	SctpFilterProfile pulumi.StringPtrInput
-	// Name of an existing Spam filter profile.
-	SpamfilterProfile pulumi.StringPtrInput
-	// Name of an existing SSH filter profile.
-	SshFilterProfile pulumi.StringPtrInput
-	// Name of an existing SSL SSH profile.
-	SslSshProfile pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Name of an existing VideoFilter profile.
-	VideofilterProfile pulumi.StringPtrInput
-	// Name of an existing VoIP profile.
-	VoipProfile pulumi.StringPtrInput
-	// Name of an existing Web application firewall profile.
-	WafProfile pulumi.StringPtrInput
-	// Name of an existing Web filter profile.
-	WebfilterProfile pulumi.StringPtrInput
+	SctpFilterProfile      pulumi.StringPtrInput
+	SpamfilterProfile      pulumi.StringPtrInput
+	SshFilterProfile       pulumi.StringPtrInput
+	SslSshProfile          pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
+	VideofilterProfile     pulumi.StringPtrInput
+	VoipProfile            pulumi.StringPtrInput
+	WafProfile             pulumi.StringPtrInput
+	WebfilterProfile       pulumi.StringPtrInput
 }
 
 func (FirewallProfileGroupArgs) ElementType() reflect.Type {
@@ -328,7 +192,7 @@ func (i *FirewallProfileGroup) ToFirewallProfileGroupOutputWithContext(ctx conte
 // FirewallProfileGroupArrayInput is an input type that accepts FirewallProfileGroupArray and FirewallProfileGroupArrayOutput values.
 // You can construct a concrete instance of `FirewallProfileGroupArrayInput` via:
 //
-//          FirewallProfileGroupArray{ FirewallProfileGroupArgs{...} }
+//	FirewallProfileGroupArray{ FirewallProfileGroupArgs{...} }
 type FirewallProfileGroupArrayInput interface {
 	pulumi.Input
 
@@ -353,7 +217,7 @@ func (i FirewallProfileGroupArray) ToFirewallProfileGroupArrayOutputWithContext(
 // FirewallProfileGroupMapInput is an input type that accepts FirewallProfileGroupMap and FirewallProfileGroupMapOutput values.
 // You can construct a concrete instance of `FirewallProfileGroupMapInput` via:
 //
-//          FirewallProfileGroupMap{ "key": FirewallProfileGroupArgs{...} }
+//	FirewallProfileGroupMap{ "key": FirewallProfileGroupArgs{...} }
 type FirewallProfileGroupMapInput interface {
 	pulumi.Input
 
@@ -387,6 +251,90 @@ func (o FirewallProfileGroupOutput) ToFirewallProfileGroupOutput() FirewallProfi
 
 func (o FirewallProfileGroupOutput) ToFirewallProfileGroupOutputWithContext(ctx context.Context) FirewallProfileGroupOutput {
 	return o
+}
+
+func (o FirewallProfileGroupOutput) ApplicationList() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.ApplicationList }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) AvProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.AvProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) CifsProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.CifsProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) DlpProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.DlpProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) DlpSensor() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.DlpSensor }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) DnsfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.DnsfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) EmailfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.EmailfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) FileFilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.FileFilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) IcapProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.IcapProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) IpsSensor() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.IpsSensor }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) ProfileProtocolOptions() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.ProfileProtocolOptions }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) SctpFilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.SctpFilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) SpamfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.SpamfilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) SshFilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.SshFilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) SslSshProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.SslSshProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallProfileGroupOutput) VideofilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.VideofilterProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) VoipProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.VoipProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) WafProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.WafProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) WebfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.WebfilterProfile }).(pulumi.StringOutput)
 }
 
 type FirewallProfileGroupArrayOutput struct{ *pulumi.OutputState }

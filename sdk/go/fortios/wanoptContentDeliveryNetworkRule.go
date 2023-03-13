@@ -10,87 +10,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure WAN optimization content delivery network rules.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWanoptContentDeliveryNetworkRule(ctx, "trname", &fortios.WanoptContentDeliveryNetworkRuleArgs{
-// 			Category: pulumi.String("vcache"),
-// 			HostDomainNameSuffixes: WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArray{
-// 				&WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArgs{
-// 					Name: pulumi.String("kaf.com"),
-// 				},
-// 			},
-// 			RequestCacheControl:  pulumi.String("disable"),
-// 			ResponseCacheControl: pulumi.String("disable"),
-// 			ResponseExpires:      pulumi.String("enable"),
-// 			Status:               pulumi.String("enable"),
-// 			TextResponseVcache:   pulumi.String("enable"),
-// 			Updateserver:         pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Wanopt ContentDeliveryNetworkRule can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wanoptContentDeliveryNetworkRule:WanoptContentDeliveryNetworkRule labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wanoptContentDeliveryNetworkRule:WanoptContentDeliveryNetworkRule labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WanoptContentDeliveryNetworkRule struct {
 	pulumi.CustomResourceState
 
-	// Content delivery network rule category. Valid values: `vcache`, `youtube`.
-	Category pulumi.StringOutput `pulumi:"category"`
-	// Comment about this CDN-rule.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Suffix portion of the fully qualified domain name (eg. fortinet.com in "www.fortinet.com"). The structure of `hostDomainNameSuffix` block is documented below.
+	Category               pulumi.StringOutput                                             `pulumi:"category"`
+	Comment                pulumi.StringPtrOutput                                          `pulumi:"comment"`
+	DynamicSortSubtable    pulumi.StringPtrOutput                                          `pulumi:"dynamicSortSubtable"`
 	HostDomainNameSuffixes WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayOutput `pulumi:"hostDomainNameSuffixes"`
-	// WAN optimization content delivery network rule name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable HTTP request cache control. Valid values: `enable`, `disable`.
-	RequestCacheControl pulumi.StringOutput `pulumi:"requestCacheControl"`
-	// Enable/disable HTTP response cache control. Valid values: `enable`, `disable`.
-	ResponseCacheControl pulumi.StringOutput `pulumi:"responseCacheControl"`
-	// Enable/disable HTTP response cache expires. Valid values: `enable`, `disable`.
-	ResponseExpires pulumi.StringOutput `pulumi:"responseExpires"`
-	// WAN optimization content delivery network rule entries. The structure of `rules` block is documented below.
-	Rules WanoptContentDeliveryNetworkRuleRuleArrayOutput `pulumi:"rules"`
-	// Enable/disable WAN optimization content delivery network rules. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Enable/disable caching of text responses. Valid values: `enable`, `disable`.
-	TextResponseVcache pulumi.StringOutput `pulumi:"textResponseVcache"`
-	// Enable/disable update server. Valid values: `enable`, `disable`.
-	Updateserver pulumi.StringOutput `pulumi:"updateserver"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Name                   pulumi.StringOutput                                             `pulumi:"name"`
+	RequestCacheControl    pulumi.StringOutput                                             `pulumi:"requestCacheControl"`
+	ResponseCacheControl   pulumi.StringOutput                                             `pulumi:"responseCacheControl"`
+	ResponseExpires        pulumi.StringOutput                                             `pulumi:"responseExpires"`
+	Rules                  WanoptContentDeliveryNetworkRuleRuleArrayOutput                 `pulumi:"rules"`
+	Status                 pulumi.StringOutput                                             `pulumi:"status"`
+	TextResponseVcache     pulumi.StringOutput                                             `pulumi:"textResponseVcache"`
+	Updateserver           pulumi.StringOutput                                             `pulumi:"updateserver"`
+	Vdomparam              pulumi.StringPtrOutput                                          `pulumi:"vdomparam"`
 }
 
 // NewWanoptContentDeliveryNetworkRule registers a new resource with the given unique name, arguments, and options.
@@ -123,61 +58,35 @@ func GetWanoptContentDeliveryNetworkRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WanoptContentDeliveryNetworkRule resources.
 type wanoptContentDeliveryNetworkRuleState struct {
-	// Content delivery network rule category. Valid values: `vcache`, `youtube`.
-	Category *string `pulumi:"category"`
-	// Comment about this CDN-rule.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Suffix portion of the fully qualified domain name (eg. fortinet.com in "www.fortinet.com"). The structure of `hostDomainNameSuffix` block is documented below.
+	Category               *string                                                `pulumi:"category"`
+	Comment                *string                                                `pulumi:"comment"`
+	DynamicSortSubtable    *string                                                `pulumi:"dynamicSortSubtable"`
 	HostDomainNameSuffixes []WanoptContentDeliveryNetworkRuleHostDomainNameSuffix `pulumi:"hostDomainNameSuffixes"`
-	// WAN optimization content delivery network rule name.
-	Name *string `pulumi:"name"`
-	// Enable/disable HTTP request cache control. Valid values: `enable`, `disable`.
-	RequestCacheControl *string `pulumi:"requestCacheControl"`
-	// Enable/disable HTTP response cache control. Valid values: `enable`, `disable`.
-	ResponseCacheControl *string `pulumi:"responseCacheControl"`
-	// Enable/disable HTTP response cache expires. Valid values: `enable`, `disable`.
-	ResponseExpires *string `pulumi:"responseExpires"`
-	// WAN optimization content delivery network rule entries. The structure of `rules` block is documented below.
-	Rules []WanoptContentDeliveryNetworkRuleRule `pulumi:"rules"`
-	// Enable/disable WAN optimization content delivery network rules. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Enable/disable caching of text responses. Valid values: `enable`, `disable`.
-	TextResponseVcache *string `pulumi:"textResponseVcache"`
-	// Enable/disable update server. Valid values: `enable`, `disable`.
-	Updateserver *string `pulumi:"updateserver"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name                   *string                                                `pulumi:"name"`
+	RequestCacheControl    *string                                                `pulumi:"requestCacheControl"`
+	ResponseCacheControl   *string                                                `pulumi:"responseCacheControl"`
+	ResponseExpires        *string                                                `pulumi:"responseExpires"`
+	Rules                  []WanoptContentDeliveryNetworkRuleRule                 `pulumi:"rules"`
+	Status                 *string                                                `pulumi:"status"`
+	TextResponseVcache     *string                                                `pulumi:"textResponseVcache"`
+	Updateserver           *string                                                `pulumi:"updateserver"`
+	Vdomparam              *string                                                `pulumi:"vdomparam"`
 }
 
 type WanoptContentDeliveryNetworkRuleState struct {
-	// Content delivery network rule category. Valid values: `vcache`, `youtube`.
-	Category pulumi.StringPtrInput
-	// Comment about this CDN-rule.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Suffix portion of the fully qualified domain name (eg. fortinet.com in "www.fortinet.com"). The structure of `hostDomainNameSuffix` block is documented below.
+	Category               pulumi.StringPtrInput
+	Comment                pulumi.StringPtrInput
+	DynamicSortSubtable    pulumi.StringPtrInput
 	HostDomainNameSuffixes WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayInput
-	// WAN optimization content delivery network rule name.
-	Name pulumi.StringPtrInput
-	// Enable/disable HTTP request cache control. Valid values: `enable`, `disable`.
-	RequestCacheControl pulumi.StringPtrInput
-	// Enable/disable HTTP response cache control. Valid values: `enable`, `disable`.
-	ResponseCacheControl pulumi.StringPtrInput
-	// Enable/disable HTTP response cache expires. Valid values: `enable`, `disable`.
-	ResponseExpires pulumi.StringPtrInput
-	// WAN optimization content delivery network rule entries. The structure of `rules` block is documented below.
-	Rules WanoptContentDeliveryNetworkRuleRuleArrayInput
-	// Enable/disable WAN optimization content delivery network rules. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Enable/disable caching of text responses. Valid values: `enable`, `disable`.
-	TextResponseVcache pulumi.StringPtrInput
-	// Enable/disable update server. Valid values: `enable`, `disable`.
-	Updateserver pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                   pulumi.StringPtrInput
+	RequestCacheControl    pulumi.StringPtrInput
+	ResponseCacheControl   pulumi.StringPtrInput
+	ResponseExpires        pulumi.StringPtrInput
+	Rules                  WanoptContentDeliveryNetworkRuleRuleArrayInput
+	Status                 pulumi.StringPtrInput
+	TextResponseVcache     pulumi.StringPtrInput
+	Updateserver           pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (WanoptContentDeliveryNetworkRuleState) ElementType() reflect.Type {
@@ -185,62 +94,36 @@ func (WanoptContentDeliveryNetworkRuleState) ElementType() reflect.Type {
 }
 
 type wanoptContentDeliveryNetworkRuleArgs struct {
-	// Content delivery network rule category. Valid values: `vcache`, `youtube`.
-	Category *string `pulumi:"category"`
-	// Comment about this CDN-rule.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Suffix portion of the fully qualified domain name (eg. fortinet.com in "www.fortinet.com"). The structure of `hostDomainNameSuffix` block is documented below.
+	Category               *string                                                `pulumi:"category"`
+	Comment                *string                                                `pulumi:"comment"`
+	DynamicSortSubtable    *string                                                `pulumi:"dynamicSortSubtable"`
 	HostDomainNameSuffixes []WanoptContentDeliveryNetworkRuleHostDomainNameSuffix `pulumi:"hostDomainNameSuffixes"`
-	// WAN optimization content delivery network rule name.
-	Name *string `pulumi:"name"`
-	// Enable/disable HTTP request cache control. Valid values: `enable`, `disable`.
-	RequestCacheControl *string `pulumi:"requestCacheControl"`
-	// Enable/disable HTTP response cache control. Valid values: `enable`, `disable`.
-	ResponseCacheControl *string `pulumi:"responseCacheControl"`
-	// Enable/disable HTTP response cache expires. Valid values: `enable`, `disable`.
-	ResponseExpires *string `pulumi:"responseExpires"`
-	// WAN optimization content delivery network rule entries. The structure of `rules` block is documented below.
-	Rules []WanoptContentDeliveryNetworkRuleRule `pulumi:"rules"`
-	// Enable/disable WAN optimization content delivery network rules. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Enable/disable caching of text responses. Valid values: `enable`, `disable`.
-	TextResponseVcache *string `pulumi:"textResponseVcache"`
-	// Enable/disable update server. Valid values: `enable`, `disable`.
-	Updateserver *string `pulumi:"updateserver"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name                   *string                                                `pulumi:"name"`
+	RequestCacheControl    *string                                                `pulumi:"requestCacheControl"`
+	ResponseCacheControl   *string                                                `pulumi:"responseCacheControl"`
+	ResponseExpires        *string                                                `pulumi:"responseExpires"`
+	Rules                  []WanoptContentDeliveryNetworkRuleRule                 `pulumi:"rules"`
+	Status                 *string                                                `pulumi:"status"`
+	TextResponseVcache     *string                                                `pulumi:"textResponseVcache"`
+	Updateserver           *string                                                `pulumi:"updateserver"`
+	Vdomparam              *string                                                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WanoptContentDeliveryNetworkRule resource.
 type WanoptContentDeliveryNetworkRuleArgs struct {
-	// Content delivery network rule category. Valid values: `vcache`, `youtube`.
-	Category pulumi.StringPtrInput
-	// Comment about this CDN-rule.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Suffix portion of the fully qualified domain name (eg. fortinet.com in "www.fortinet.com"). The structure of `hostDomainNameSuffix` block is documented below.
+	Category               pulumi.StringPtrInput
+	Comment                pulumi.StringPtrInput
+	DynamicSortSubtable    pulumi.StringPtrInput
 	HostDomainNameSuffixes WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayInput
-	// WAN optimization content delivery network rule name.
-	Name pulumi.StringPtrInput
-	// Enable/disable HTTP request cache control. Valid values: `enable`, `disable`.
-	RequestCacheControl pulumi.StringPtrInput
-	// Enable/disable HTTP response cache control. Valid values: `enable`, `disable`.
-	ResponseCacheControl pulumi.StringPtrInput
-	// Enable/disable HTTP response cache expires. Valid values: `enable`, `disable`.
-	ResponseExpires pulumi.StringPtrInput
-	// WAN optimization content delivery network rule entries. The structure of `rules` block is documented below.
-	Rules WanoptContentDeliveryNetworkRuleRuleArrayInput
-	// Enable/disable WAN optimization content delivery network rules. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Enable/disable caching of text responses. Valid values: `enable`, `disable`.
-	TextResponseVcache pulumi.StringPtrInput
-	// Enable/disable update server. Valid values: `enable`, `disable`.
-	Updateserver pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                   pulumi.StringPtrInput
+	RequestCacheControl    pulumi.StringPtrInput
+	ResponseCacheControl   pulumi.StringPtrInput
+	ResponseExpires        pulumi.StringPtrInput
+	Rules                  WanoptContentDeliveryNetworkRuleRuleArrayInput
+	Status                 pulumi.StringPtrInput
+	TextResponseVcache     pulumi.StringPtrInput
+	Updateserver           pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (WanoptContentDeliveryNetworkRuleArgs) ElementType() reflect.Type {
@@ -269,7 +152,7 @@ func (i *WanoptContentDeliveryNetworkRule) ToWanoptContentDeliveryNetworkRuleOut
 // WanoptContentDeliveryNetworkRuleArrayInput is an input type that accepts WanoptContentDeliveryNetworkRuleArray and WanoptContentDeliveryNetworkRuleArrayOutput values.
 // You can construct a concrete instance of `WanoptContentDeliveryNetworkRuleArrayInput` via:
 //
-//          WanoptContentDeliveryNetworkRuleArray{ WanoptContentDeliveryNetworkRuleArgs{...} }
+//	WanoptContentDeliveryNetworkRuleArray{ WanoptContentDeliveryNetworkRuleArgs{...} }
 type WanoptContentDeliveryNetworkRuleArrayInput interface {
 	pulumi.Input
 
@@ -294,7 +177,7 @@ func (i WanoptContentDeliveryNetworkRuleArray) ToWanoptContentDeliveryNetworkRul
 // WanoptContentDeliveryNetworkRuleMapInput is an input type that accepts WanoptContentDeliveryNetworkRuleMap and WanoptContentDeliveryNetworkRuleMapOutput values.
 // You can construct a concrete instance of `WanoptContentDeliveryNetworkRuleMapInput` via:
 //
-//          WanoptContentDeliveryNetworkRuleMap{ "key": WanoptContentDeliveryNetworkRuleArgs{...} }
+//	WanoptContentDeliveryNetworkRuleMap{ "key": WanoptContentDeliveryNetworkRuleArgs{...} }
 type WanoptContentDeliveryNetworkRuleMapInput interface {
 	pulumi.Input
 
@@ -328,6 +211,62 @@ func (o WanoptContentDeliveryNetworkRuleOutput) ToWanoptContentDeliveryNetworkRu
 
 func (o WanoptContentDeliveryNetworkRuleOutput) ToWanoptContentDeliveryNetworkRuleOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleOutput) Category() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptContentDeliveryNetworkRule) pulumi.StringOutput { return v.Category }).(pulumi.StringOutput)
+}
+
+func (o WanoptContentDeliveryNetworkRuleOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WanoptContentDeliveryNetworkRule) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o WanoptContentDeliveryNetworkRuleOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WanoptContentDeliveryNetworkRule) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WanoptContentDeliveryNetworkRuleOutput) HostDomainNameSuffixes() WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayOutput {
+	return o.ApplyT(func(v *WanoptContentDeliveryNetworkRule) WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayOutput {
+		return v.HostDomainNameSuffixes
+	}).(WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayOutput)
+}
+
+func (o WanoptContentDeliveryNetworkRuleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptContentDeliveryNetworkRule) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WanoptContentDeliveryNetworkRuleOutput) RequestCacheControl() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptContentDeliveryNetworkRule) pulumi.StringOutput { return v.RequestCacheControl }).(pulumi.StringOutput)
+}
+
+func (o WanoptContentDeliveryNetworkRuleOutput) ResponseCacheControl() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptContentDeliveryNetworkRule) pulumi.StringOutput { return v.ResponseCacheControl }).(pulumi.StringOutput)
+}
+
+func (o WanoptContentDeliveryNetworkRuleOutput) ResponseExpires() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptContentDeliveryNetworkRule) pulumi.StringOutput { return v.ResponseExpires }).(pulumi.StringOutput)
+}
+
+func (o WanoptContentDeliveryNetworkRuleOutput) Rules() WanoptContentDeliveryNetworkRuleRuleArrayOutput {
+	return o.ApplyT(func(v *WanoptContentDeliveryNetworkRule) WanoptContentDeliveryNetworkRuleRuleArrayOutput {
+		return v.Rules
+	}).(WanoptContentDeliveryNetworkRuleRuleArrayOutput)
+}
+
+func (o WanoptContentDeliveryNetworkRuleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptContentDeliveryNetworkRule) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o WanoptContentDeliveryNetworkRuleOutput) TextResponseVcache() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptContentDeliveryNetworkRule) pulumi.StringOutput { return v.TextResponseVcache }).(pulumi.StringOutput)
+}
+
+func (o WanoptContentDeliveryNetworkRuleOutput) Updateserver() pulumi.StringOutput {
+	return o.ApplyT(func(v *WanoptContentDeliveryNetworkRule) pulumi.StringOutput { return v.Updateserver }).(pulumi.StringOutput)
+}
+
+func (o WanoptContentDeliveryNetworkRuleOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WanoptContentDeliveryNetworkRule) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WanoptContentDeliveryNetworkRuleArrayOutput struct{ *pulumi.OutputState }

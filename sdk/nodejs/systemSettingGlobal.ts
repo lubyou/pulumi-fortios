@@ -32,29 +32,11 @@ export class SystemSettingGlobal extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemSettingGlobal.__pulumiType;
     }
 
-    /**
-     * Enable SCP over SSH
-     */
     public readonly adminScp!: pulumi.Output<string>;
-    /**
-     * Administrative access port for HTTPS.
-     */
     public readonly adminSport!: pulumi.Output<string>;
-    /**
-     * Administrative access port for SSH.
-     */
     public readonly adminSshPort!: pulumi.Output<string>;
-    /**
-     * Number of minutes before an idle administrator session time out.
-     */
     public readonly admintimeout!: pulumi.Output<string>;
-    /**
-     * FortiGate unit's hostname.
-     */
     public readonly hostname!: pulumi.Output<string>;
-    /**
-     * Number corresponding to your time zone from 00 to 86.
-     */
     public readonly timezone!: pulumi.Output<string>;
 
     /**
@@ -97,29 +79,11 @@ export class SystemSettingGlobal extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSettingGlobal resources.
  */
 export interface SystemSettingGlobalState {
-    /**
-     * Enable SCP over SSH
-     */
     adminScp?: pulumi.Input<string>;
-    /**
-     * Administrative access port for HTTPS.
-     */
     adminSport?: pulumi.Input<string>;
-    /**
-     * Administrative access port for SSH.
-     */
     adminSshPort?: pulumi.Input<string>;
-    /**
-     * Number of minutes before an idle administrator session time out.
-     */
     admintimeout?: pulumi.Input<string>;
-    /**
-     * FortiGate unit's hostname.
-     */
     hostname?: pulumi.Input<string>;
-    /**
-     * Number corresponding to your time zone from 00 to 86.
-     */
     timezone?: pulumi.Input<string>;
 }
 
@@ -127,28 +91,10 @@ export interface SystemSettingGlobalState {
  * The set of arguments for constructing a SystemSettingGlobal resource.
  */
 export interface SystemSettingGlobalArgs {
-    /**
-     * Enable SCP over SSH
-     */
     adminScp?: pulumi.Input<string>;
-    /**
-     * Administrative access port for HTTPS.
-     */
     adminSport?: pulumi.Input<string>;
-    /**
-     * Administrative access port for SSH.
-     */
     adminSshPort?: pulumi.Input<string>;
-    /**
-     * Number of minutes before an idle administrator session time out.
-     */
     admintimeout?: pulumi.Input<string>;
-    /**
-     * FortiGate unit's hostname.
-     */
     hostname: pulumi.Input<string>;
-    /**
-     * Number corresponding to your time zone from 00 to 86.
-     */
     timezone?: pulumi.Input<string>;
 }

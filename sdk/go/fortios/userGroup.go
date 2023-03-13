@@ -10,114 +10,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure user groups.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewUserGroup(ctx, "trname", &fortios.UserGroupArgs{
-// 			Company:     pulumi.String("optional"),
-// 			Email:       pulumi.String("enable"),
-// 			Expire:      pulumi.Int(14400),
-// 			ExpireType:  pulumi.String("immediately"),
-// 			GroupType:   pulumi.String("firewall"),
-// 			MaxAccounts: pulumi.Int(0),
-// 			Members: UserGroupMemberArray{
-// 				&UserGroupMemberArgs{
-// 					Name: pulumi.String("guest"),
-// 				},
-// 			},
-// 			MobilePhone:      pulumi.String("disable"),
-// 			MultipleGuestAdd: pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// User Group can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userGroup:UserGroup labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userGroup:UserGroup labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserGroup struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable overriding the global number of concurrent authentication sessions for this user group. Valid values: `enable`, `disable`.
-	AuthConcurrentOverride pulumi.StringOutput `pulumi:"authConcurrentOverride"`
-	// Maximum number of concurrent authenticated connections per user (0 - 100).
-	AuthConcurrentValue pulumi.IntOutput `pulumi:"authConcurrentValue"`
-	// Authentication timeout in minutes for this user group. 0 to use the global user setting auth-timeout.
-	Authtimeout pulumi.IntOutput `pulumi:"authtimeout"`
-	// Set the action for the company guest user field.
-	Company pulumi.StringOutput `pulumi:"company"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Email.
-	Email pulumi.StringOutput `pulumi:"email"`
-	// Time in seconds before guest user accounts expire. (1 - 31536000 sec)
-	Expire pulumi.IntOutput `pulumi:"expire"`
-	// Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
-	ExpireType pulumi.StringOutput `pulumi:"expireType"`
-	// Group ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
-	GroupType pulumi.StringOutput `pulumi:"groupType"`
-	// Guest User. The structure of `guest` block is documented below.
-	Guests UserGroupGuestArrayOutput `pulumi:"guests"`
-	// Realm attribute for MD5-digest authentication.
-	HttpDigestRealm pulumi.StringOutput `pulumi:"httpDigestRealm"`
-	// Group matches. The structure of `match` block is documented below.
-	Matches UserGroupMatchArrayOutput `pulumi:"matches"`
-	// Maximum number of guest accounts that can be created for this group (0 means unlimited).
-	MaxAccounts pulumi.IntOutput `pulumi:"maxAccounts"`
-	// Names of users, peers, LDAP severs, or RADIUS servers to add to the user group. The structure of `member` block is documented below.
-	Members UserGroupMemberArrayOutput `pulumi:"members"`
-	// Mobile phone.
-	MobilePhone pulumi.StringOutput `pulumi:"mobilePhone"`
-	// Enable/disable addition of multiple guests. Valid values: `disable`, `enable`.
-	MultipleGuestAdd pulumi.StringOutput `pulumi:"multipleGuestAdd"`
-	// Guest name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Guest password.
-	Password pulumi.StringOutput `pulumi:"password"`
-	// SMS server.
-	SmsCustomServer pulumi.StringOutput `pulumi:"smsCustomServer"`
-	// Send SMS through FortiGuard or other external server. Valid values: `fortiguard`, `custom`.
-	SmsServer pulumi.StringOutput `pulumi:"smsServer"`
-	// Set the action for the sponsor guest user field.
-	Sponsor pulumi.StringOutput `pulumi:"sponsor"`
-	// Name of the RADIUS user group that this local user group represents.
-	SsoAttributeValue pulumi.StringOutput `pulumi:"ssoAttributeValue"`
-	// Guest ID.
-	UserId pulumi.StringOutput `pulumi:"userId"`
-	// Enable/disable the guest user name entry. Valid values: `disable`, `enable`.
-	UserName pulumi.StringOutput `pulumi:"userName"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AuthConcurrentOverride pulumi.StringOutput        `pulumi:"authConcurrentOverride"`
+	AuthConcurrentValue    pulumi.IntOutput           `pulumi:"authConcurrentValue"`
+	Authtimeout            pulumi.IntOutput           `pulumi:"authtimeout"`
+	Company                pulumi.StringOutput        `pulumi:"company"`
+	DynamicSortSubtable    pulumi.StringPtrOutput     `pulumi:"dynamicSortSubtable"`
+	Email                  pulumi.StringOutput        `pulumi:"email"`
+	Expire                 pulumi.IntOutput           `pulumi:"expire"`
+	ExpireType             pulumi.StringOutput        `pulumi:"expireType"`
+	Fosid                  pulumi.IntOutput           `pulumi:"fosid"`
+	GroupType              pulumi.StringOutput        `pulumi:"groupType"`
+	Guests                 UserGroupGuestArrayOutput  `pulumi:"guests"`
+	HttpDigestRealm        pulumi.StringOutput        `pulumi:"httpDigestRealm"`
+	Matches                UserGroupMatchArrayOutput  `pulumi:"matches"`
+	MaxAccounts            pulumi.IntOutput           `pulumi:"maxAccounts"`
+	Members                UserGroupMemberArrayOutput `pulumi:"members"`
+	MobilePhone            pulumi.StringOutput        `pulumi:"mobilePhone"`
+	MultipleGuestAdd       pulumi.StringOutput        `pulumi:"multipleGuestAdd"`
+	Name                   pulumi.StringOutput        `pulumi:"name"`
+	Password               pulumi.StringOutput        `pulumi:"password"`
+	SmsCustomServer        pulumi.StringOutput        `pulumi:"smsCustomServer"`
+	SmsServer              pulumi.StringOutput        `pulumi:"smsServer"`
+	Sponsor                pulumi.StringOutput        `pulumi:"sponsor"`
+	SsoAttributeValue      pulumi.StringOutput        `pulumi:"ssoAttributeValue"`
+	UserId                 pulumi.StringOutput        `pulumi:"userId"`
+	UserName               pulumi.StringOutput        `pulumi:"userName"`
+	Vdomparam              pulumi.StringPtrOutput     `pulumi:"vdomparam"`
 }
 
 // NewUserGroup registers a new resource with the given unique name, arguments, and options.
@@ -150,113 +71,61 @@ func GetUserGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserGroup resources.
 type userGroupState struct {
-	// Enable/disable overriding the global number of concurrent authentication sessions for this user group. Valid values: `enable`, `disable`.
-	AuthConcurrentOverride *string `pulumi:"authConcurrentOverride"`
-	// Maximum number of concurrent authenticated connections per user (0 - 100).
-	AuthConcurrentValue *int `pulumi:"authConcurrentValue"`
-	// Authentication timeout in minutes for this user group. 0 to use the global user setting auth-timeout.
-	Authtimeout *int `pulumi:"authtimeout"`
-	// Set the action for the company guest user field.
-	Company *string `pulumi:"company"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Email.
-	Email *string `pulumi:"email"`
-	// Time in seconds before guest user accounts expire. (1 - 31536000 sec)
-	Expire *int `pulumi:"expire"`
-	// Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
-	ExpireType *string `pulumi:"expireType"`
-	// Group ID.
-	Fosid *int `pulumi:"fosid"`
-	// Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
-	GroupType *string `pulumi:"groupType"`
-	// Guest User. The structure of `guest` block is documented below.
-	Guests []UserGroupGuest `pulumi:"guests"`
-	// Realm attribute for MD5-digest authentication.
-	HttpDigestRealm *string `pulumi:"httpDigestRealm"`
-	// Group matches. The structure of `match` block is documented below.
-	Matches []UserGroupMatch `pulumi:"matches"`
-	// Maximum number of guest accounts that can be created for this group (0 means unlimited).
-	MaxAccounts *int `pulumi:"maxAccounts"`
-	// Names of users, peers, LDAP severs, or RADIUS servers to add to the user group. The structure of `member` block is documented below.
-	Members []UserGroupMember `pulumi:"members"`
-	// Mobile phone.
-	MobilePhone *string `pulumi:"mobilePhone"`
-	// Enable/disable addition of multiple guests. Valid values: `disable`, `enable`.
-	MultipleGuestAdd *string `pulumi:"multipleGuestAdd"`
-	// Guest name.
-	Name *string `pulumi:"name"`
-	// Guest password.
-	Password *string `pulumi:"password"`
-	// SMS server.
-	SmsCustomServer *string `pulumi:"smsCustomServer"`
-	// Send SMS through FortiGuard or other external server. Valid values: `fortiguard`, `custom`.
-	SmsServer *string `pulumi:"smsServer"`
-	// Set the action for the sponsor guest user field.
-	Sponsor *string `pulumi:"sponsor"`
-	// Name of the RADIUS user group that this local user group represents.
-	SsoAttributeValue *string `pulumi:"ssoAttributeValue"`
-	// Guest ID.
-	UserId *string `pulumi:"userId"`
-	// Enable/disable the guest user name entry. Valid values: `disable`, `enable`.
-	UserName *string `pulumi:"userName"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AuthConcurrentOverride *string           `pulumi:"authConcurrentOverride"`
+	AuthConcurrentValue    *int              `pulumi:"authConcurrentValue"`
+	Authtimeout            *int              `pulumi:"authtimeout"`
+	Company                *string           `pulumi:"company"`
+	DynamicSortSubtable    *string           `pulumi:"dynamicSortSubtable"`
+	Email                  *string           `pulumi:"email"`
+	Expire                 *int              `pulumi:"expire"`
+	ExpireType             *string           `pulumi:"expireType"`
+	Fosid                  *int              `pulumi:"fosid"`
+	GroupType              *string           `pulumi:"groupType"`
+	Guests                 []UserGroupGuest  `pulumi:"guests"`
+	HttpDigestRealm        *string           `pulumi:"httpDigestRealm"`
+	Matches                []UserGroupMatch  `pulumi:"matches"`
+	MaxAccounts            *int              `pulumi:"maxAccounts"`
+	Members                []UserGroupMember `pulumi:"members"`
+	MobilePhone            *string           `pulumi:"mobilePhone"`
+	MultipleGuestAdd       *string           `pulumi:"multipleGuestAdd"`
+	Name                   *string           `pulumi:"name"`
+	Password               *string           `pulumi:"password"`
+	SmsCustomServer        *string           `pulumi:"smsCustomServer"`
+	SmsServer              *string           `pulumi:"smsServer"`
+	Sponsor                *string           `pulumi:"sponsor"`
+	SsoAttributeValue      *string           `pulumi:"ssoAttributeValue"`
+	UserId                 *string           `pulumi:"userId"`
+	UserName               *string           `pulumi:"userName"`
+	Vdomparam              *string           `pulumi:"vdomparam"`
 }
 
 type UserGroupState struct {
-	// Enable/disable overriding the global number of concurrent authentication sessions for this user group. Valid values: `enable`, `disable`.
 	AuthConcurrentOverride pulumi.StringPtrInput
-	// Maximum number of concurrent authenticated connections per user (0 - 100).
-	AuthConcurrentValue pulumi.IntPtrInput
-	// Authentication timeout in minutes for this user group. 0 to use the global user setting auth-timeout.
-	Authtimeout pulumi.IntPtrInput
-	// Set the action for the company guest user field.
-	Company pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Email.
-	Email pulumi.StringPtrInput
-	// Time in seconds before guest user accounts expire. (1 - 31536000 sec)
-	Expire pulumi.IntPtrInput
-	// Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
-	ExpireType pulumi.StringPtrInput
-	// Group ID.
-	Fosid pulumi.IntPtrInput
-	// Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
-	GroupType pulumi.StringPtrInput
-	// Guest User. The structure of `guest` block is documented below.
-	Guests UserGroupGuestArrayInput
-	// Realm attribute for MD5-digest authentication.
-	HttpDigestRealm pulumi.StringPtrInput
-	// Group matches. The structure of `match` block is documented below.
-	Matches UserGroupMatchArrayInput
-	// Maximum number of guest accounts that can be created for this group (0 means unlimited).
-	MaxAccounts pulumi.IntPtrInput
-	// Names of users, peers, LDAP severs, or RADIUS servers to add to the user group. The structure of `member` block is documented below.
-	Members UserGroupMemberArrayInput
-	// Mobile phone.
-	MobilePhone pulumi.StringPtrInput
-	// Enable/disable addition of multiple guests. Valid values: `disable`, `enable`.
-	MultipleGuestAdd pulumi.StringPtrInput
-	// Guest name.
-	Name pulumi.StringPtrInput
-	// Guest password.
-	Password pulumi.StringPtrInput
-	// SMS server.
-	SmsCustomServer pulumi.StringPtrInput
-	// Send SMS through FortiGuard or other external server. Valid values: `fortiguard`, `custom`.
-	SmsServer pulumi.StringPtrInput
-	// Set the action for the sponsor guest user field.
-	Sponsor pulumi.StringPtrInput
-	// Name of the RADIUS user group that this local user group represents.
-	SsoAttributeValue pulumi.StringPtrInput
-	// Guest ID.
-	UserId pulumi.StringPtrInput
-	// Enable/disable the guest user name entry. Valid values: `disable`, `enable`.
-	UserName pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	AuthConcurrentValue    pulumi.IntPtrInput
+	Authtimeout            pulumi.IntPtrInput
+	Company                pulumi.StringPtrInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	Email                  pulumi.StringPtrInput
+	Expire                 pulumi.IntPtrInput
+	ExpireType             pulumi.StringPtrInput
+	Fosid                  pulumi.IntPtrInput
+	GroupType              pulumi.StringPtrInput
+	Guests                 UserGroupGuestArrayInput
+	HttpDigestRealm        pulumi.StringPtrInput
+	Matches                UserGroupMatchArrayInput
+	MaxAccounts            pulumi.IntPtrInput
+	Members                UserGroupMemberArrayInput
+	MobilePhone            pulumi.StringPtrInput
+	MultipleGuestAdd       pulumi.StringPtrInput
+	Name                   pulumi.StringPtrInput
+	Password               pulumi.StringPtrInput
+	SmsCustomServer        pulumi.StringPtrInput
+	SmsServer              pulumi.StringPtrInput
+	Sponsor                pulumi.StringPtrInput
+	SsoAttributeValue      pulumi.StringPtrInput
+	UserId                 pulumi.StringPtrInput
+	UserName               pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (UserGroupState) ElementType() reflect.Type {
@@ -264,114 +133,62 @@ func (UserGroupState) ElementType() reflect.Type {
 }
 
 type userGroupArgs struct {
-	// Enable/disable overriding the global number of concurrent authentication sessions for this user group. Valid values: `enable`, `disable`.
-	AuthConcurrentOverride *string `pulumi:"authConcurrentOverride"`
-	// Maximum number of concurrent authenticated connections per user (0 - 100).
-	AuthConcurrentValue *int `pulumi:"authConcurrentValue"`
-	// Authentication timeout in minutes for this user group. 0 to use the global user setting auth-timeout.
-	Authtimeout *int `pulumi:"authtimeout"`
-	// Set the action for the company guest user field.
-	Company *string `pulumi:"company"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Email.
-	Email *string `pulumi:"email"`
-	// Time in seconds before guest user accounts expire. (1 - 31536000 sec)
-	Expire *int `pulumi:"expire"`
-	// Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
-	ExpireType *string `pulumi:"expireType"`
-	// Group ID.
-	Fosid *int `pulumi:"fosid"`
-	// Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
-	GroupType *string `pulumi:"groupType"`
-	// Guest User. The structure of `guest` block is documented below.
-	Guests []UserGroupGuest `pulumi:"guests"`
-	// Realm attribute for MD5-digest authentication.
-	HttpDigestRealm *string `pulumi:"httpDigestRealm"`
-	// Group matches. The structure of `match` block is documented below.
-	Matches []UserGroupMatch `pulumi:"matches"`
-	// Maximum number of guest accounts that can be created for this group (0 means unlimited).
-	MaxAccounts *int `pulumi:"maxAccounts"`
-	// Names of users, peers, LDAP severs, or RADIUS servers to add to the user group. The structure of `member` block is documented below.
-	Members []UserGroupMember `pulumi:"members"`
-	// Mobile phone.
-	MobilePhone *string `pulumi:"mobilePhone"`
-	// Enable/disable addition of multiple guests. Valid values: `disable`, `enable`.
-	MultipleGuestAdd *string `pulumi:"multipleGuestAdd"`
-	// Guest name.
-	Name *string `pulumi:"name"`
-	// Guest password.
-	Password *string `pulumi:"password"`
-	// SMS server.
-	SmsCustomServer *string `pulumi:"smsCustomServer"`
-	// Send SMS through FortiGuard or other external server. Valid values: `fortiguard`, `custom`.
-	SmsServer *string `pulumi:"smsServer"`
-	// Set the action for the sponsor guest user field.
-	Sponsor *string `pulumi:"sponsor"`
-	// Name of the RADIUS user group that this local user group represents.
-	SsoAttributeValue *string `pulumi:"ssoAttributeValue"`
-	// Guest ID.
-	UserId *string `pulumi:"userId"`
-	// Enable/disable the guest user name entry. Valid values: `disable`, `enable`.
-	UserName *string `pulumi:"userName"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AuthConcurrentOverride *string           `pulumi:"authConcurrentOverride"`
+	AuthConcurrentValue    *int              `pulumi:"authConcurrentValue"`
+	Authtimeout            *int              `pulumi:"authtimeout"`
+	Company                *string           `pulumi:"company"`
+	DynamicSortSubtable    *string           `pulumi:"dynamicSortSubtable"`
+	Email                  *string           `pulumi:"email"`
+	Expire                 *int              `pulumi:"expire"`
+	ExpireType             *string           `pulumi:"expireType"`
+	Fosid                  *int              `pulumi:"fosid"`
+	GroupType              *string           `pulumi:"groupType"`
+	Guests                 []UserGroupGuest  `pulumi:"guests"`
+	HttpDigestRealm        *string           `pulumi:"httpDigestRealm"`
+	Matches                []UserGroupMatch  `pulumi:"matches"`
+	MaxAccounts            *int              `pulumi:"maxAccounts"`
+	Members                []UserGroupMember `pulumi:"members"`
+	MobilePhone            *string           `pulumi:"mobilePhone"`
+	MultipleGuestAdd       *string           `pulumi:"multipleGuestAdd"`
+	Name                   *string           `pulumi:"name"`
+	Password               *string           `pulumi:"password"`
+	SmsCustomServer        *string           `pulumi:"smsCustomServer"`
+	SmsServer              *string           `pulumi:"smsServer"`
+	Sponsor                *string           `pulumi:"sponsor"`
+	SsoAttributeValue      *string           `pulumi:"ssoAttributeValue"`
+	UserId                 *string           `pulumi:"userId"`
+	UserName               *string           `pulumi:"userName"`
+	Vdomparam              *string           `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserGroup resource.
 type UserGroupArgs struct {
-	// Enable/disable overriding the global number of concurrent authentication sessions for this user group. Valid values: `enable`, `disable`.
 	AuthConcurrentOverride pulumi.StringPtrInput
-	// Maximum number of concurrent authenticated connections per user (0 - 100).
-	AuthConcurrentValue pulumi.IntPtrInput
-	// Authentication timeout in minutes for this user group. 0 to use the global user setting auth-timeout.
-	Authtimeout pulumi.IntPtrInput
-	// Set the action for the company guest user field.
-	Company pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Email.
-	Email pulumi.StringPtrInput
-	// Time in seconds before guest user accounts expire. (1 - 31536000 sec)
-	Expire pulumi.IntPtrInput
-	// Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
-	ExpireType pulumi.StringPtrInput
-	// Group ID.
-	Fosid pulumi.IntPtrInput
-	// Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
-	GroupType pulumi.StringPtrInput
-	// Guest User. The structure of `guest` block is documented below.
-	Guests UserGroupGuestArrayInput
-	// Realm attribute for MD5-digest authentication.
-	HttpDigestRealm pulumi.StringPtrInput
-	// Group matches. The structure of `match` block is documented below.
-	Matches UserGroupMatchArrayInput
-	// Maximum number of guest accounts that can be created for this group (0 means unlimited).
-	MaxAccounts pulumi.IntPtrInput
-	// Names of users, peers, LDAP severs, or RADIUS servers to add to the user group. The structure of `member` block is documented below.
-	Members UserGroupMemberArrayInput
-	// Mobile phone.
-	MobilePhone pulumi.StringPtrInput
-	// Enable/disable addition of multiple guests. Valid values: `disable`, `enable`.
-	MultipleGuestAdd pulumi.StringPtrInput
-	// Guest name.
-	Name pulumi.StringPtrInput
-	// Guest password.
-	Password pulumi.StringPtrInput
-	// SMS server.
-	SmsCustomServer pulumi.StringPtrInput
-	// Send SMS through FortiGuard or other external server. Valid values: `fortiguard`, `custom`.
-	SmsServer pulumi.StringPtrInput
-	// Set the action for the sponsor guest user field.
-	Sponsor pulumi.StringPtrInput
-	// Name of the RADIUS user group that this local user group represents.
-	SsoAttributeValue pulumi.StringPtrInput
-	// Guest ID.
-	UserId pulumi.StringPtrInput
-	// Enable/disable the guest user name entry. Valid values: `disable`, `enable`.
-	UserName pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	AuthConcurrentValue    pulumi.IntPtrInput
+	Authtimeout            pulumi.IntPtrInput
+	Company                pulumi.StringPtrInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	Email                  pulumi.StringPtrInput
+	Expire                 pulumi.IntPtrInput
+	ExpireType             pulumi.StringPtrInput
+	Fosid                  pulumi.IntPtrInput
+	GroupType              pulumi.StringPtrInput
+	Guests                 UserGroupGuestArrayInput
+	HttpDigestRealm        pulumi.StringPtrInput
+	Matches                UserGroupMatchArrayInput
+	MaxAccounts            pulumi.IntPtrInput
+	Members                UserGroupMemberArrayInput
+	MobilePhone            pulumi.StringPtrInput
+	MultipleGuestAdd       pulumi.StringPtrInput
+	Name                   pulumi.StringPtrInput
+	Password               pulumi.StringPtrInput
+	SmsCustomServer        pulumi.StringPtrInput
+	SmsServer              pulumi.StringPtrInput
+	Sponsor                pulumi.StringPtrInput
+	SsoAttributeValue      pulumi.StringPtrInput
+	UserId                 pulumi.StringPtrInput
+	UserName               pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (UserGroupArgs) ElementType() reflect.Type {
@@ -400,7 +217,7 @@ func (i *UserGroup) ToUserGroupOutputWithContext(ctx context.Context) UserGroupO
 // UserGroupArrayInput is an input type that accepts UserGroupArray and UserGroupArrayOutput values.
 // You can construct a concrete instance of `UserGroupArrayInput` via:
 //
-//          UserGroupArray{ UserGroupArgs{...} }
+//	UserGroupArray{ UserGroupArgs{...} }
 type UserGroupArrayInput interface {
 	pulumi.Input
 
@@ -425,7 +242,7 @@ func (i UserGroupArray) ToUserGroupArrayOutputWithContext(ctx context.Context) U
 // UserGroupMapInput is an input type that accepts UserGroupMap and UserGroupMapOutput values.
 // You can construct a concrete instance of `UserGroupMapInput` via:
 //
-//          UserGroupMap{ "key": UserGroupArgs{...} }
+//	UserGroupMap{ "key": UserGroupArgs{...} }
 type UserGroupMapInput interface {
 	pulumi.Input
 
@@ -459,6 +276,110 @@ func (o UserGroupOutput) ToUserGroupOutput() UserGroupOutput {
 
 func (o UserGroupOutput) ToUserGroupOutputWithContext(ctx context.Context) UserGroupOutput {
 	return o
+}
+
+func (o UserGroupOutput) AuthConcurrentOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.AuthConcurrentOverride }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) AuthConcurrentValue() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.IntOutput { return v.AuthConcurrentValue }).(pulumi.IntOutput)
+}
+
+func (o UserGroupOutput) Authtimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.IntOutput { return v.Authtimeout }).(pulumi.IntOutput)
+}
+
+func (o UserGroupOutput) Company() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.Company }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserGroupOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.Email }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) Expire() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.IntOutput { return v.Expire }).(pulumi.IntOutput)
+}
+
+func (o UserGroupOutput) ExpireType() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.ExpireType }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o UserGroupOutput) GroupType() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.GroupType }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) Guests() UserGroupGuestArrayOutput {
+	return o.ApplyT(func(v *UserGroup) UserGroupGuestArrayOutput { return v.Guests }).(UserGroupGuestArrayOutput)
+}
+
+func (o UserGroupOutput) HttpDigestRealm() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.HttpDigestRealm }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) Matches() UserGroupMatchArrayOutput {
+	return o.ApplyT(func(v *UserGroup) UserGroupMatchArrayOutput { return v.Matches }).(UserGroupMatchArrayOutput)
+}
+
+func (o UserGroupOutput) MaxAccounts() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.IntOutput { return v.MaxAccounts }).(pulumi.IntOutput)
+}
+
+func (o UserGroupOutput) Members() UserGroupMemberArrayOutput {
+	return o.ApplyT(func(v *UserGroup) UserGroupMemberArrayOutput { return v.Members }).(UserGroupMemberArrayOutput)
+}
+
+func (o UserGroupOutput) MobilePhone() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.MobilePhone }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) MultipleGuestAdd() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.MultipleGuestAdd }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) SmsCustomServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.SmsCustomServer }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) SmsServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.SmsServer }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) Sponsor() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.Sponsor }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) SsoAttributeValue() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.SsoAttributeValue }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.UserId }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringOutput { return v.UserName }).(pulumi.StringOutput)
+}
+
+func (o UserGroupOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserGroupArrayOutput struct{ *pulumi.OutputState }

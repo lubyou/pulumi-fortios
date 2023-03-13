@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure initial template for auto-generated VLAN interfaces. Applies to FortiOS Version `>= 6.4.0`.
- *
- * ## Import
- *
- * SwitchControllerInitialConfig Vlans can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerInitialConfigVlans:SwitchControllerInitialConfigVlans labelname SwitchControllerInitialConfigVlans
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerInitialConfigVlans:SwitchControllerInitialConfigVlans labelname SwitchControllerInitialConfigVlans
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerInitialConfigVlans extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerInitialConfigVlans resource's state with the given name, ID, and optional extra
@@ -51,37 +32,13 @@ export class SwitchControllerInitialConfigVlans extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerInitialConfigVlans.__pulumiType;
     }
 
-    /**
-     * Default VLAN (native) assigned to all switch ports upon discovery.
-     */
     public readonly defaultVlan!: pulumi.Output<string>;
-    /**
-     * VLAN for NAC onboarding devices.
-     */
     public readonly nac!: pulumi.Output<string>;
-    /**
-     * VLAN for NAC segemnt primary interface.
-     */
     public readonly nacSegment!: pulumi.Output<string>;
-    /**
-     * VLAN for quarantined traffic.
-     */
     public readonly quarantine!: pulumi.Output<string>;
-    /**
-     * VLAN for RSPAN/ERSPAN mirrored traffic.
-     */
     public readonly rspan!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * VLAN dedicated for video devices.
-     */
     public readonly video!: pulumi.Output<string>;
-    /**
-     * VLAN dedicated for voice devices.
-     */
     public readonly voice!: pulumi.Output<string>;
 
     /**
@@ -125,37 +82,13 @@ export class SwitchControllerInitialConfigVlans extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerInitialConfigVlans resources.
  */
 export interface SwitchControllerInitialConfigVlansState {
-    /**
-     * Default VLAN (native) assigned to all switch ports upon discovery.
-     */
     defaultVlan?: pulumi.Input<string>;
-    /**
-     * VLAN for NAC onboarding devices.
-     */
     nac?: pulumi.Input<string>;
-    /**
-     * VLAN for NAC segemnt primary interface.
-     */
     nacSegment?: pulumi.Input<string>;
-    /**
-     * VLAN for quarantined traffic.
-     */
     quarantine?: pulumi.Input<string>;
-    /**
-     * VLAN for RSPAN/ERSPAN mirrored traffic.
-     */
     rspan?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * VLAN dedicated for video devices.
-     */
     video?: pulumi.Input<string>;
-    /**
-     * VLAN dedicated for voice devices.
-     */
     voice?: pulumi.Input<string>;
 }
 
@@ -163,36 +96,12 @@ export interface SwitchControllerInitialConfigVlansState {
  * The set of arguments for constructing a SwitchControllerInitialConfigVlans resource.
  */
 export interface SwitchControllerInitialConfigVlansArgs {
-    /**
-     * Default VLAN (native) assigned to all switch ports upon discovery.
-     */
     defaultVlan?: pulumi.Input<string>;
-    /**
-     * VLAN for NAC onboarding devices.
-     */
     nac?: pulumi.Input<string>;
-    /**
-     * VLAN for NAC segemnt primary interface.
-     */
     nacSegment?: pulumi.Input<string>;
-    /**
-     * VLAN for quarantined traffic.
-     */
     quarantine?: pulumi.Input<string>;
-    /**
-     * VLAN for RSPAN/ERSPAN mirrored traffic.
-     */
     rspan?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * VLAN dedicated for video devices.
-     */
     video?: pulumi.Input<string>;
-    /**
-     * VLAN dedicated for voice devices.
-     */
     voice?: pulumi.Input<string>;
 }

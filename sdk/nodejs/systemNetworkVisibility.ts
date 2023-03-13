@@ -4,41 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure network visibility settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemNetworkVisibility("trname", {
- *     destinationHostnameVisibility: "enable",
- *     destinationLocation: "enable",
- *     destinationVisibility: "enable",
- *     hostnameLimit: 5000,
- *     hostnameTtl: 86400,
- *     sourceLocation: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * System NetworkVisibility can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemNetworkVisibility:SystemNetworkVisibility labelname SystemNetworkVisibility
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemNetworkVisibility:SystemNetworkVisibility labelname SystemNetworkVisibility
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemNetworkVisibility extends pulumi.CustomResource {
     /**
      * Get an existing SystemNetworkVisibility resource's state with the given name, ID, and optional extra
@@ -67,33 +32,12 @@ export class SystemNetworkVisibility extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemNetworkVisibility.__pulumiType;
     }
 
-    /**
-     * Enable/disable logging of destination hostname visibility. Valid values: `disable`, `enable`.
-     */
     public readonly destinationHostnameVisibility!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging of destination geographical location visibility. Valid values: `disable`, `enable`.
-     */
     public readonly destinationLocation!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging of destination visibility. Valid values: `disable`, `enable`.
-     */
     public readonly destinationVisibility!: pulumi.Output<string>;
-    /**
-     * Limit of the number of hostname table entries (0 - 50000).
-     */
     public readonly hostnameLimit!: pulumi.Output<number>;
-    /**
-     * TTL of hostname table entries (60 - 86400).
-     */
     public readonly hostnameTtl!: pulumi.Output<number>;
-    /**
-     * Enable/disable logging of source geographical location visibility. Valid values: `disable`, `enable`.
-     */
     public readonly sourceLocation!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -135,33 +79,12 @@ export class SystemNetworkVisibility extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemNetworkVisibility resources.
  */
 export interface SystemNetworkVisibilityState {
-    /**
-     * Enable/disable logging of destination hostname visibility. Valid values: `disable`, `enable`.
-     */
     destinationHostnameVisibility?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging of destination geographical location visibility. Valid values: `disable`, `enable`.
-     */
     destinationLocation?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging of destination visibility. Valid values: `disable`, `enable`.
-     */
     destinationVisibility?: pulumi.Input<string>;
-    /**
-     * Limit of the number of hostname table entries (0 - 50000).
-     */
     hostnameLimit?: pulumi.Input<number>;
-    /**
-     * TTL of hostname table entries (60 - 86400).
-     */
     hostnameTtl?: pulumi.Input<number>;
-    /**
-     * Enable/disable logging of source geographical location visibility. Valid values: `disable`, `enable`.
-     */
     sourceLocation?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -169,32 +92,11 @@ export interface SystemNetworkVisibilityState {
  * The set of arguments for constructing a SystemNetworkVisibility resource.
  */
 export interface SystemNetworkVisibilityArgs {
-    /**
-     * Enable/disable logging of destination hostname visibility. Valid values: `disable`, `enable`.
-     */
     destinationHostnameVisibility?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging of destination geographical location visibility. Valid values: `disable`, `enable`.
-     */
     destinationLocation?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging of destination visibility. Valid values: `disable`, `enable`.
-     */
     destinationVisibility?: pulumi.Input<string>;
-    /**
-     * Limit of the number of hostname table entries (0 - 50000).
-     */
     hostnameLimit?: pulumi.Input<number>;
-    /**
-     * TTL of hostname table entries (60 - 86400).
-     */
     hostnameTtl?: pulumi.Input<number>;
-    /**
-     * Enable/disable logging of source geographical location visibility. Valid values: `disable`, `enable`.
-     */
     sourceLocation?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

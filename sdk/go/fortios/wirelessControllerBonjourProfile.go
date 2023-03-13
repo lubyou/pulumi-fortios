@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Bonjour profiles. Bonjour is Apple's zero configuration networking protocol. Bonjour profiles allow APs and FortiAPs to connnect to networks using Bonjour.
-//
-// ## Import
-//
-// WirelessController BonjourProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerBonjourProfile:WirelessControllerBonjourProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerBonjourProfile:WirelessControllerBonjourProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerBonjourProfile struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Bonjour profile name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Bonjour policy list. The structure of `policyList` block is documented below.
-	PolicyLists WirelessControllerBonjourProfilePolicyListArrayOutput `pulumi:"policyLists"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringOutput                                   `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                                `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                                   `pulumi:"name"`
+	PolicyLists         WirelessControllerBonjourProfilePolicyListArrayOutput `pulumi:"policyLists"`
+	Vdomparam           pulumi.StringPtrOutput                                `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerBonjourProfile registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetWirelessControllerBonjourProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerBonjourProfile resources.
 type wirelessControllerBonjourProfileState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Bonjour profile name.
-	Name *string `pulumi:"name"`
-	// Bonjour policy list. The structure of `policyList` block is documented below.
-	PolicyLists []WirelessControllerBonjourProfilePolicyList `pulumi:"policyLists"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                                      `pulumi:"comment"`
+	DynamicSortSubtable *string                                      `pulumi:"dynamicSortSubtable"`
+	Name                *string                                      `pulumi:"name"`
+	PolicyLists         []WirelessControllerBonjourProfilePolicyList `pulumi:"policyLists"`
+	Vdomparam           *string                                      `pulumi:"vdomparam"`
 }
 
 type WirelessControllerBonjourProfileState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Bonjour profile name.
-	Name pulumi.StringPtrInput
-	// Bonjour policy list. The structure of `policyList` block is documented below.
-	PolicyLists WirelessControllerBonjourProfilePolicyListArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	PolicyLists         WirelessControllerBonjourProfilePolicyListArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerBonjourProfileState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (WirelessControllerBonjourProfileState) ElementType() reflect.Type {
 }
 
 type wirelessControllerBonjourProfileArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Bonjour profile name.
-	Name *string `pulumi:"name"`
-	// Bonjour policy list. The structure of `policyList` block is documented below.
-	PolicyLists []WirelessControllerBonjourProfilePolicyList `pulumi:"policyLists"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                                      `pulumi:"comment"`
+	DynamicSortSubtable *string                                      `pulumi:"dynamicSortSubtable"`
+	Name                *string                                      `pulumi:"name"`
+	PolicyLists         []WirelessControllerBonjourProfilePolicyList `pulumi:"policyLists"`
+	Vdomparam           *string                                      `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerBonjourProfile resource.
 type WirelessControllerBonjourProfileArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Bonjour profile name.
-	Name pulumi.StringPtrInput
-	// Bonjour policy list. The structure of `policyList` block is documented below.
-	PolicyLists WirelessControllerBonjourProfilePolicyListArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	PolicyLists         WirelessControllerBonjourProfilePolicyListArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerBonjourProfileArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *WirelessControllerBonjourProfile) ToWirelessControllerBonjourProfileOut
 // WirelessControllerBonjourProfileArrayInput is an input type that accepts WirelessControllerBonjourProfileArray and WirelessControllerBonjourProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerBonjourProfileArrayInput` via:
 //
-//          WirelessControllerBonjourProfileArray{ WirelessControllerBonjourProfileArgs{...} }
+//	WirelessControllerBonjourProfileArray{ WirelessControllerBonjourProfileArgs{...} }
 type WirelessControllerBonjourProfileArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i WirelessControllerBonjourProfileArray) ToWirelessControllerBonjourProfil
 // WirelessControllerBonjourProfileMapInput is an input type that accepts WirelessControllerBonjourProfileMap and WirelessControllerBonjourProfileMapOutput values.
 // You can construct a concrete instance of `WirelessControllerBonjourProfileMapInput` via:
 //
-//          WirelessControllerBonjourProfileMap{ "key": WirelessControllerBonjourProfileArgs{...} }
+//	WirelessControllerBonjourProfileMap{ "key": WirelessControllerBonjourProfileArgs{...} }
 type WirelessControllerBonjourProfileMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,28 @@ func (o WirelessControllerBonjourProfileOutput) ToWirelessControllerBonjourProfi
 
 func (o WirelessControllerBonjourProfileOutput) ToWirelessControllerBonjourProfileOutputWithContext(ctx context.Context) WirelessControllerBonjourProfileOutput {
 	return o
+}
+
+func (o WirelessControllerBonjourProfileOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerBonjourProfile) pulumi.StringOutput { return v.Comment }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerBonjourProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerBonjourProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerBonjourProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerBonjourProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerBonjourProfileOutput) PolicyLists() WirelessControllerBonjourProfilePolicyListArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerBonjourProfile) WirelessControllerBonjourProfilePolicyListArrayOutput {
+		return v.PolicyLists
+	}).(WirelessControllerBonjourProfilePolicyListArrayOutput)
+}
+
+func (o WirelessControllerBonjourProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerBonjourProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerBonjourProfileArrayOutput struct{ *pulumi.OutputState }

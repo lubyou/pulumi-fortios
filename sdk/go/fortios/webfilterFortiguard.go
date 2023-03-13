@@ -10,85 +10,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiGuard Web Filter service.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWebfilterFortiguard(ctx, "trname", &fortios.WebfilterFortiguardArgs{
-// 			CacheMemPercent:       pulumi.Int(2),
-// 			CacheMode:             pulumi.String("ttl"),
-// 			CachePrefixMatch:      pulumi.String("enable"),
-// 			ClosePorts:            pulumi.String("disable"),
-// 			OvrdAuthHttps:         pulumi.String("enable"),
-// 			OvrdAuthPort:          pulumi.Int(8008),
-// 			OvrdAuthPortHttp:      pulumi.Int(8008),
-// 			OvrdAuthPortHttps:     pulumi.Int(8010),
-// 			OvrdAuthPortHttpsFlow: pulumi.Int(8015),
-// 			OvrdAuthPortWarning:   pulumi.Int(8020),
-// 			WarnAuthHttps:         pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Webfilter Fortiguard can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterFortiguard:WebfilterFortiguard labelname WebfilterFortiguard
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webfilterFortiguard:WebfilterFortiguard labelname WebfilterFortiguard
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebfilterFortiguard struct {
 	pulumi.CustomResourceState
 
-	// Maximum percentage of available memory allocated to caching (1 - 15%).
-	CacheMemPercent pulumi.IntOutput `pulumi:"cacheMemPercent"`
-	// Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
-	CacheMode pulumi.StringOutput `pulumi:"cacheMode"`
-	// Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
-	CachePrefixMatch pulumi.StringOutput `pulumi:"cachePrefixMatch"`
-	// Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
-	ClosePorts pulumi.StringOutput `pulumi:"closePorts"`
-	// Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
-	OvrdAuthHttps pulumi.StringOutput `pulumi:"ovrdAuthHttps"`
-	// Port to use for FortiGuard Web Filter override authentication.
-	OvrdAuthPort pulumi.IntOutput `pulumi:"ovrdAuthPort"`
-	// Port to use for FortiGuard Web Filter HTTP override authentication
-	OvrdAuthPortHttp pulumi.IntOutput `pulumi:"ovrdAuthPortHttp"`
-	// Port to use for FortiGuard Web Filter HTTPS override authentication in proxy mode.
-	OvrdAuthPortHttps pulumi.IntOutput `pulumi:"ovrdAuthPortHttps"`
-	// Port to use for FortiGuard Web Filter HTTPS override authentication in flow mode.
-	OvrdAuthPortHttpsFlow pulumi.IntOutput `pulumi:"ovrdAuthPortHttpsFlow"`
-	// Port to use for FortiGuard Web Filter Warning override authentication.
-	OvrdAuthPortWarning pulumi.IntOutput `pulumi:"ovrdAuthPortWarning"`
-	// Limit size of URL request packets sent to FortiGuard server (0 for default).
-	RequestPacketSizeLimit pulumi.IntOutput `pulumi:"requestPacketSizeLimit"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable use of HTTPS for warning and authentication. Valid values: `enable`, `disable`.
-	WarnAuthHttps pulumi.StringOutput `pulumi:"warnAuthHttps"`
+	CacheMemPercent        pulumi.IntOutput       `pulumi:"cacheMemPercent"`
+	CacheMode              pulumi.StringOutput    `pulumi:"cacheMode"`
+	CachePrefixMatch       pulumi.StringOutput    `pulumi:"cachePrefixMatch"`
+	ClosePorts             pulumi.StringOutput    `pulumi:"closePorts"`
+	OvrdAuthHttps          pulumi.StringOutput    `pulumi:"ovrdAuthHttps"`
+	OvrdAuthPort           pulumi.IntOutput       `pulumi:"ovrdAuthPort"`
+	OvrdAuthPortHttp       pulumi.IntOutput       `pulumi:"ovrdAuthPortHttp"`
+	OvrdAuthPortHttps      pulumi.IntOutput       `pulumi:"ovrdAuthPortHttps"`
+	OvrdAuthPortHttpsFlow  pulumi.IntOutput       `pulumi:"ovrdAuthPortHttpsFlow"`
+	OvrdAuthPortWarning    pulumi.IntOutput       `pulumi:"ovrdAuthPortWarning"`
+	RequestPacketSizeLimit pulumi.IntOutput       `pulumi:"requestPacketSizeLimit"`
+	Vdomparam              pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	WarnAuthHttps          pulumi.StringOutput    `pulumi:"warnAuthHttps"`
 }
 
 // NewWebfilterFortiguard registers a new resource with the given unique name, arguments, and options.
@@ -121,61 +58,35 @@ func GetWebfilterFortiguard(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebfilterFortiguard resources.
 type webfilterFortiguardState struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%).
-	CacheMemPercent *int `pulumi:"cacheMemPercent"`
-	// Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
-	CacheMode *string `pulumi:"cacheMode"`
-	// Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
-	CachePrefixMatch *string `pulumi:"cachePrefixMatch"`
-	// Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
-	ClosePorts *string `pulumi:"closePorts"`
-	// Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
-	OvrdAuthHttps *string `pulumi:"ovrdAuthHttps"`
-	// Port to use for FortiGuard Web Filter override authentication.
-	OvrdAuthPort *int `pulumi:"ovrdAuthPort"`
-	// Port to use for FortiGuard Web Filter HTTP override authentication
-	OvrdAuthPortHttp *int `pulumi:"ovrdAuthPortHttp"`
-	// Port to use for FortiGuard Web Filter HTTPS override authentication in proxy mode.
-	OvrdAuthPortHttps *int `pulumi:"ovrdAuthPortHttps"`
-	// Port to use for FortiGuard Web Filter HTTPS override authentication in flow mode.
-	OvrdAuthPortHttpsFlow *int `pulumi:"ovrdAuthPortHttpsFlow"`
-	// Port to use for FortiGuard Web Filter Warning override authentication.
-	OvrdAuthPortWarning *int `pulumi:"ovrdAuthPortWarning"`
-	// Limit size of URL request packets sent to FortiGuard server (0 for default).
-	RequestPacketSizeLimit *int `pulumi:"requestPacketSizeLimit"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable use of HTTPS for warning and authentication. Valid values: `enable`, `disable`.
-	WarnAuthHttps *string `pulumi:"warnAuthHttps"`
+	CacheMemPercent        *int    `pulumi:"cacheMemPercent"`
+	CacheMode              *string `pulumi:"cacheMode"`
+	CachePrefixMatch       *string `pulumi:"cachePrefixMatch"`
+	ClosePorts             *string `pulumi:"closePorts"`
+	OvrdAuthHttps          *string `pulumi:"ovrdAuthHttps"`
+	OvrdAuthPort           *int    `pulumi:"ovrdAuthPort"`
+	OvrdAuthPortHttp       *int    `pulumi:"ovrdAuthPortHttp"`
+	OvrdAuthPortHttps      *int    `pulumi:"ovrdAuthPortHttps"`
+	OvrdAuthPortHttpsFlow  *int    `pulumi:"ovrdAuthPortHttpsFlow"`
+	OvrdAuthPortWarning    *int    `pulumi:"ovrdAuthPortWarning"`
+	RequestPacketSizeLimit *int    `pulumi:"requestPacketSizeLimit"`
+	Vdomparam              *string `pulumi:"vdomparam"`
+	WarnAuthHttps          *string `pulumi:"warnAuthHttps"`
 }
 
 type WebfilterFortiguardState struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%).
-	CacheMemPercent pulumi.IntPtrInput
-	// Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
-	CacheMode pulumi.StringPtrInput
-	// Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
-	CachePrefixMatch pulumi.StringPtrInput
-	// Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
-	ClosePorts pulumi.StringPtrInput
-	// Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
-	OvrdAuthHttps pulumi.StringPtrInput
-	// Port to use for FortiGuard Web Filter override authentication.
-	OvrdAuthPort pulumi.IntPtrInput
-	// Port to use for FortiGuard Web Filter HTTP override authentication
-	OvrdAuthPortHttp pulumi.IntPtrInput
-	// Port to use for FortiGuard Web Filter HTTPS override authentication in proxy mode.
-	OvrdAuthPortHttps pulumi.IntPtrInput
-	// Port to use for FortiGuard Web Filter HTTPS override authentication in flow mode.
-	OvrdAuthPortHttpsFlow pulumi.IntPtrInput
-	// Port to use for FortiGuard Web Filter Warning override authentication.
-	OvrdAuthPortWarning pulumi.IntPtrInput
-	// Limit size of URL request packets sent to FortiGuard server (0 for default).
+	CacheMemPercent        pulumi.IntPtrInput
+	CacheMode              pulumi.StringPtrInput
+	CachePrefixMatch       pulumi.StringPtrInput
+	ClosePorts             pulumi.StringPtrInput
+	OvrdAuthHttps          pulumi.StringPtrInput
+	OvrdAuthPort           pulumi.IntPtrInput
+	OvrdAuthPortHttp       pulumi.IntPtrInput
+	OvrdAuthPortHttps      pulumi.IntPtrInput
+	OvrdAuthPortHttpsFlow  pulumi.IntPtrInput
+	OvrdAuthPortWarning    pulumi.IntPtrInput
 	RequestPacketSizeLimit pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable use of HTTPS for warning and authentication. Valid values: `enable`, `disable`.
-	WarnAuthHttps pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
+	WarnAuthHttps          pulumi.StringPtrInput
 }
 
 func (WebfilterFortiguardState) ElementType() reflect.Type {
@@ -183,62 +94,36 @@ func (WebfilterFortiguardState) ElementType() reflect.Type {
 }
 
 type webfilterFortiguardArgs struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%).
-	CacheMemPercent *int `pulumi:"cacheMemPercent"`
-	// Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
-	CacheMode *string `pulumi:"cacheMode"`
-	// Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
-	CachePrefixMatch *string `pulumi:"cachePrefixMatch"`
-	// Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
-	ClosePorts *string `pulumi:"closePorts"`
-	// Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
-	OvrdAuthHttps *string `pulumi:"ovrdAuthHttps"`
-	// Port to use for FortiGuard Web Filter override authentication.
-	OvrdAuthPort *int `pulumi:"ovrdAuthPort"`
-	// Port to use for FortiGuard Web Filter HTTP override authentication
-	OvrdAuthPortHttp *int `pulumi:"ovrdAuthPortHttp"`
-	// Port to use for FortiGuard Web Filter HTTPS override authentication in proxy mode.
-	OvrdAuthPortHttps *int `pulumi:"ovrdAuthPortHttps"`
-	// Port to use for FortiGuard Web Filter HTTPS override authentication in flow mode.
-	OvrdAuthPortHttpsFlow *int `pulumi:"ovrdAuthPortHttpsFlow"`
-	// Port to use for FortiGuard Web Filter Warning override authentication.
-	OvrdAuthPortWarning *int `pulumi:"ovrdAuthPortWarning"`
-	// Limit size of URL request packets sent to FortiGuard server (0 for default).
-	RequestPacketSizeLimit *int `pulumi:"requestPacketSizeLimit"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable use of HTTPS for warning and authentication. Valid values: `enable`, `disable`.
-	WarnAuthHttps *string `pulumi:"warnAuthHttps"`
+	CacheMemPercent        *int    `pulumi:"cacheMemPercent"`
+	CacheMode              *string `pulumi:"cacheMode"`
+	CachePrefixMatch       *string `pulumi:"cachePrefixMatch"`
+	ClosePorts             *string `pulumi:"closePorts"`
+	OvrdAuthHttps          *string `pulumi:"ovrdAuthHttps"`
+	OvrdAuthPort           *int    `pulumi:"ovrdAuthPort"`
+	OvrdAuthPortHttp       *int    `pulumi:"ovrdAuthPortHttp"`
+	OvrdAuthPortHttps      *int    `pulumi:"ovrdAuthPortHttps"`
+	OvrdAuthPortHttpsFlow  *int    `pulumi:"ovrdAuthPortHttpsFlow"`
+	OvrdAuthPortWarning    *int    `pulumi:"ovrdAuthPortWarning"`
+	RequestPacketSizeLimit *int    `pulumi:"requestPacketSizeLimit"`
+	Vdomparam              *string `pulumi:"vdomparam"`
+	WarnAuthHttps          *string `pulumi:"warnAuthHttps"`
 }
 
 // The set of arguments for constructing a WebfilterFortiguard resource.
 type WebfilterFortiguardArgs struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%).
-	CacheMemPercent pulumi.IntPtrInput
-	// Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
-	CacheMode pulumi.StringPtrInput
-	// Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
-	CachePrefixMatch pulumi.StringPtrInput
-	// Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
-	ClosePorts pulumi.StringPtrInput
-	// Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
-	OvrdAuthHttps pulumi.StringPtrInput
-	// Port to use for FortiGuard Web Filter override authentication.
-	OvrdAuthPort pulumi.IntPtrInput
-	// Port to use for FortiGuard Web Filter HTTP override authentication
-	OvrdAuthPortHttp pulumi.IntPtrInput
-	// Port to use for FortiGuard Web Filter HTTPS override authentication in proxy mode.
-	OvrdAuthPortHttps pulumi.IntPtrInput
-	// Port to use for FortiGuard Web Filter HTTPS override authentication in flow mode.
-	OvrdAuthPortHttpsFlow pulumi.IntPtrInput
-	// Port to use for FortiGuard Web Filter Warning override authentication.
-	OvrdAuthPortWarning pulumi.IntPtrInput
-	// Limit size of URL request packets sent to FortiGuard server (0 for default).
+	CacheMemPercent        pulumi.IntPtrInput
+	CacheMode              pulumi.StringPtrInput
+	CachePrefixMatch       pulumi.StringPtrInput
+	ClosePorts             pulumi.StringPtrInput
+	OvrdAuthHttps          pulumi.StringPtrInput
+	OvrdAuthPort           pulumi.IntPtrInput
+	OvrdAuthPortHttp       pulumi.IntPtrInput
+	OvrdAuthPortHttps      pulumi.IntPtrInput
+	OvrdAuthPortHttpsFlow  pulumi.IntPtrInput
+	OvrdAuthPortWarning    pulumi.IntPtrInput
 	RequestPacketSizeLimit pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable use of HTTPS for warning and authentication. Valid values: `enable`, `disable`.
-	WarnAuthHttps pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
+	WarnAuthHttps          pulumi.StringPtrInput
 }
 
 func (WebfilterFortiguardArgs) ElementType() reflect.Type {
@@ -267,7 +152,7 @@ func (i *WebfilterFortiguard) ToWebfilterFortiguardOutputWithContext(ctx context
 // WebfilterFortiguardArrayInput is an input type that accepts WebfilterFortiguardArray and WebfilterFortiguardArrayOutput values.
 // You can construct a concrete instance of `WebfilterFortiguardArrayInput` via:
 //
-//          WebfilterFortiguardArray{ WebfilterFortiguardArgs{...} }
+//	WebfilterFortiguardArray{ WebfilterFortiguardArgs{...} }
 type WebfilterFortiguardArrayInput interface {
 	pulumi.Input
 
@@ -292,7 +177,7 @@ func (i WebfilterFortiguardArray) ToWebfilterFortiguardArrayOutputWithContext(ct
 // WebfilterFortiguardMapInput is an input type that accepts WebfilterFortiguardMap and WebfilterFortiguardMapOutput values.
 // You can construct a concrete instance of `WebfilterFortiguardMapInput` via:
 //
-//          WebfilterFortiguardMap{ "key": WebfilterFortiguardArgs{...} }
+//	WebfilterFortiguardMap{ "key": WebfilterFortiguardArgs{...} }
 type WebfilterFortiguardMapInput interface {
 	pulumi.Input
 
@@ -326,6 +211,58 @@ func (o WebfilterFortiguardOutput) ToWebfilterFortiguardOutput() WebfilterFortig
 
 func (o WebfilterFortiguardOutput) ToWebfilterFortiguardOutputWithContext(ctx context.Context) WebfilterFortiguardOutput {
 	return o
+}
+
+func (o WebfilterFortiguardOutput) CacheMemPercent() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.IntOutput { return v.CacheMemPercent }).(pulumi.IntOutput)
+}
+
+func (o WebfilterFortiguardOutput) CacheMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.StringOutput { return v.CacheMode }).(pulumi.StringOutput)
+}
+
+func (o WebfilterFortiguardOutput) CachePrefixMatch() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.StringOutput { return v.CachePrefixMatch }).(pulumi.StringOutput)
+}
+
+func (o WebfilterFortiguardOutput) ClosePorts() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.StringOutput { return v.ClosePorts }).(pulumi.StringOutput)
+}
+
+func (o WebfilterFortiguardOutput) OvrdAuthHttps() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.StringOutput { return v.OvrdAuthHttps }).(pulumi.StringOutput)
+}
+
+func (o WebfilterFortiguardOutput) OvrdAuthPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.IntOutput { return v.OvrdAuthPort }).(pulumi.IntOutput)
+}
+
+func (o WebfilterFortiguardOutput) OvrdAuthPortHttp() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.IntOutput { return v.OvrdAuthPortHttp }).(pulumi.IntOutput)
+}
+
+func (o WebfilterFortiguardOutput) OvrdAuthPortHttps() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.IntOutput { return v.OvrdAuthPortHttps }).(pulumi.IntOutput)
+}
+
+func (o WebfilterFortiguardOutput) OvrdAuthPortHttpsFlow() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.IntOutput { return v.OvrdAuthPortHttpsFlow }).(pulumi.IntOutput)
+}
+
+func (o WebfilterFortiguardOutput) OvrdAuthPortWarning() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.IntOutput { return v.OvrdAuthPortWarning }).(pulumi.IntOutput)
+}
+
+func (o WebfilterFortiguardOutput) RequestPacketSizeLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.IntOutput { return v.RequestPacketSizeLimit }).(pulumi.IntOutput)
+}
+
+func (o WebfilterFortiguardOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o WebfilterFortiguardOutput) WarnAuthHttps() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.StringOutput { return v.WarnAuthHttps }).(pulumi.StringOutput)
 }
 
 type WebfilterFortiguardArrayOutput struct{ *pulumi.OutputState }

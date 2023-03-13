@@ -7,38 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to update VM license using uploaded file for FortiOS. Reboots immediately if successful.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemLicenseVM(ctx, "test2", &fortios.SystemLicenseVMArgs{
-// 			FileContent: pulumi.String("LS0tLS1CRUdJTiBGR1QgVk0gTElDRU5TRS0tLS0tDQpRQUFBQUxXaTdCVnVkV2x3QXJZcC92S2J2Yk5zME5YNWluUW9sVldmcFoxWldJQi9pL2g4c01oR0psWWc5Vkl1DQorSlBJRis1aFphMWwyNm9yNHdiEQE3RnJDeVZnQUFBQWhxWjliWHFLK1hGN2o3dnB3WTB6QXRTaTdOMVM1ZWNxDQpWYmRRREZyYklUdnRvUWNyRU1jV0ltQzFqWWs5dmVoeGlYTG1OV0MwN25BSitYTTJFNmh2b29DMjE1YUwxK2wrDQovUHl5M0VLVnNTNjJDT2hMZHc3UndXajB3V3RqMmZiWg0KLS0tLS1FTkQgRkdUIFZNIExJQ0VOU0UtLS0tLQ0K"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type SystemLicenseVM struct {
 	pulumi.CustomResourceState
 
-	// The license file, it needs to be base64 encoded, must not contain whitespace or other invalid base64 characters, and must be included in HTTP body.
 	FileContent pulumi.StringOutput `pulumi:"fileContent"`
 }
 
@@ -75,12 +50,10 @@ func GetSystemLicenseVM(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemLicenseVM resources.
 type systemLicenseVMState struct {
-	// The license file, it needs to be base64 encoded, must not contain whitespace or other invalid base64 characters, and must be included in HTTP body.
 	FileContent *string `pulumi:"fileContent"`
 }
 
 type SystemLicenseVMState struct {
-	// The license file, it needs to be base64 encoded, must not contain whitespace or other invalid base64 characters, and must be included in HTTP body.
 	FileContent pulumi.StringPtrInput
 }
 
@@ -89,13 +62,11 @@ func (SystemLicenseVMState) ElementType() reflect.Type {
 }
 
 type systemLicenseVMArgs struct {
-	// The license file, it needs to be base64 encoded, must not contain whitespace or other invalid base64 characters, and must be included in HTTP body.
 	FileContent string `pulumi:"fileContent"`
 }
 
 // The set of arguments for constructing a SystemLicenseVM resource.
 type SystemLicenseVMArgs struct {
-	// The license file, it needs to be base64 encoded, must not contain whitespace or other invalid base64 characters, and must be included in HTTP body.
 	FileContent pulumi.StringInput
 }
 
@@ -125,7 +96,7 @@ func (i *SystemLicenseVM) ToSystemLicenseVMOutputWithContext(ctx context.Context
 // SystemLicenseVMArrayInput is an input type that accepts SystemLicenseVMArray and SystemLicenseVMArrayOutput values.
 // You can construct a concrete instance of `SystemLicenseVMArrayInput` via:
 //
-//          SystemLicenseVMArray{ SystemLicenseVMArgs{...} }
+//	SystemLicenseVMArray{ SystemLicenseVMArgs{...} }
 type SystemLicenseVMArrayInput interface {
 	pulumi.Input
 
@@ -150,7 +121,7 @@ func (i SystemLicenseVMArray) ToSystemLicenseVMArrayOutputWithContext(ctx contex
 // SystemLicenseVMMapInput is an input type that accepts SystemLicenseVMMap and SystemLicenseVMMapOutput values.
 // You can construct a concrete instance of `SystemLicenseVMMapInput` via:
 //
-//          SystemLicenseVMMap{ "key": SystemLicenseVMArgs{...} }
+//	SystemLicenseVMMap{ "key": SystemLicenseVMArgs{...} }
 type SystemLicenseVMMapInput interface {
 	pulumi.Input
 
@@ -184,6 +155,10 @@ func (o SystemLicenseVMOutput) ToSystemLicenseVMOutput() SystemLicenseVMOutput {
 
 func (o SystemLicenseVMOutput) ToSystemLicenseVMOutputWithContext(ctx context.Context) SystemLicenseVMOutput {
 	return o
+}
+
+func (o SystemLicenseVMOutput) FileContent() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemLicenseVM) pulumi.StringOutput { return v.FileContent }).(pulumi.StringOutput)
 }
 
 type SystemLicenseVMArrayOutput struct{ *pulumi.OutputState }

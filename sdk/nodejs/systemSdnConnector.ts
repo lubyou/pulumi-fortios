@@ -2,48 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure connection to SDN Connector.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemSdnConnector("trname", {
- *     azureRegion: "global",
- *     haStatus: "disable",
- *     password: "deWdf321ds",
- *     server: "1.1.1.1",
- *     serverPort: 3,
- *     status: "disable",
- *     type: "aci",
- *     updateInterval: 60,
- *     useMetadataIam: "disable",
- *     username: "sg",
- * });
- * ```
- *
- * ## Import
- *
- * System SdnConnector can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSdnConnector:SystemSdnConnector labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSdnConnector:SystemSdnConnector labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemSdnConnector extends pulumi.CustomResource {
     /**
      * Get an existing SystemSdnConnector resource's state with the given name, ID, and optional extra
@@ -72,221 +34,59 @@ export class SystemSdnConnector extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemSdnConnector.__pulumiType;
     }
 
-    /**
-     * AWS access key ID.
-     */
     public readonly accessKey!: pulumi.Output<string>;
-    /**
-     * IBM cloud API key or service ID API key.
-     */
     public readonly apiKey!: pulumi.Output<string | undefined>;
-    /**
-     * Azure server region. Valid values: `global`, `china`, `germany`, `usgov`, `local`.
-     */
     public readonly azureRegion!: pulumi.Output<string>;
-    /**
-     * Azure client ID (application ID).
-     */
     public readonly clientId!: pulumi.Output<string>;
-    /**
-     * Azure client secret (application key).
-     */
     public readonly clientSecret!: pulumi.Output<string | undefined>;
-    /**
-     * Compartment ID.
-     */
     public readonly compartmentId!: pulumi.Output<string>;
-    /**
-     * Compute generation for IBM cloud infrastructure.
-     */
     public readonly computeGeneration!: pulumi.Output<number>;
-    /**
-     * Domain name.
-     */
     public readonly domain!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Configure AWS external account list. The structure of `externalAccountList` block is documented below.
-     */
     public readonly externalAccountLists!: pulumi.Output<outputs.SystemSdnConnectorExternalAccountList[] | undefined>;
-    /**
-     * Configure GCP external IP. The structure of `externalIp` block is documented below.
-     */
     public readonly externalIps!: pulumi.Output<outputs.SystemSdnConnectorExternalIp[] | undefined>;
-    /**
-     * Configure GCP forwarding rule. The structure of `forwardingRule` block is documented below.
-     */
     public readonly forwardingRules!: pulumi.Output<outputs.SystemSdnConnectorForwardingRule[] | undefined>;
-    /**
-     * GCP project name.
-     */
     public readonly gcpProject!: pulumi.Output<string>;
-    /**
-     * Configure GCP project list. The structure of `gcpProjectList` block is documented below.
-     */
     public readonly gcpProjectLists!: pulumi.Output<outputs.SystemSdnConnectorGcpProjectList[] | undefined>;
-    /**
-     * Group name of computers.
-     */
     public readonly groupName!: pulumi.Output<string>;
-    /**
-     * Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
-     */
     public readonly haStatus!: pulumi.Output<string>;
-    /**
-     * IBM cloud region name.
-     */
     public readonly ibmRegion!: pulumi.Output<string>;
-    /**
-     * IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
-     */
     public readonly ibmRegionGen1!: pulumi.Output<string>;
-    /**
-     * IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
-     */
     public readonly ibmRegionGen2!: pulumi.Output<string>;
-    /**
-     * Private key password.
-     */
     public readonly keyPasswd!: pulumi.Output<string | undefined>;
-    /**
-     * Azure Stack login endpoint.
-     */
     public readonly loginEndpoint!: pulumi.Output<string>;
-    /**
-     * GCP zone name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Configure Azure network interface. The structure of `nic` block is documented below.
-     */
     public readonly nics!: pulumi.Output<outputs.SystemSdnConnectorNic[] | undefined>;
-    /**
-     * OCI certificate.
-     */
     public readonly ociCert!: pulumi.Output<string>;
-    /**
-     * OCI pubkey fingerprint.
-     */
     public readonly ociFingerprint!: pulumi.Output<string>;
-    /**
-     * OCI server region.
-     */
     public readonly ociRegion!: pulumi.Output<string>;
-    /**
-     * OCI region type. Valid values: `commercial`, `government`.
-     */
     public readonly ociRegionType!: pulumi.Output<string>;
-    /**
-     * Password of the remote SDN connector as login credentials.
-     */
     public readonly password!: pulumi.Output<string>;
-    /**
-     * Private key of GCP service account.
-     */
     public readonly privateKey!: pulumi.Output<string>;
-    /**
-     * AWS region name.
-     */
     public readonly region!: pulumi.Output<string>;
-    /**
-     * Resource group of Azure route table.
-     */
     public readonly resourceGroup!: pulumi.Output<string>;
-    /**
-     * Azure Stack resource URL.
-     */
     public readonly resourceUrl!: pulumi.Output<string>;
-    /**
-     * Configure Azure route table. The structure of `routeTable` block is documented below.
-     */
     public readonly routeTables!: pulumi.Output<outputs.SystemSdnConnectorRouteTable[] | undefined>;
-    /**
-     * Configure Azure route. The structure of `route` block is documented below.
-     */
     public readonly routes!: pulumi.Output<outputs.SystemSdnConnectorRoute[] | undefined>;
-    /**
-     * AWS secret access key.
-     */
     public readonly secretKey!: pulumi.Output<string | undefined>;
-    /**
-     * Secret token of Kubernetes service account.
-     */
     public readonly secretToken!: pulumi.Output<string>;
-    /**
-     * Server address of the remote SDN connector.
-     */
     public readonly server!: pulumi.Output<string>;
-    /**
-     * Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
-     */
     public readonly serverLists!: pulumi.Output<outputs.SystemSdnConnectorServerList[] | undefined>;
-    /**
-     * Port number of the remote SDN connector.
-     */
     public readonly serverPort!: pulumi.Output<number>;
-    /**
-     * GCP service account email.
-     */
     public readonly serviceAccount!: pulumi.Output<string>;
-    /**
-     * Enable/disable connection to the remote SDN connector. Valid values: `disable`, `enable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Subscription ID of Azure route table.
-     */
     public readonly subscriptionId!: pulumi.Output<string>;
-    /**
-     * Tenant ID (directory ID).
-     */
     public readonly tenantId!: pulumi.Output<string>;
-    /**
-     * Type of SDN connector.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
-     */
     public readonly updateInterval!: pulumi.Output<number>;
-    /**
-     * Enable/disable using IAM role from metadata to call API. Valid values: `disable`, `enable`.
-     */
     public readonly useMetadataIam!: pulumi.Output<string>;
-    /**
-     * User ID.
-     */
     public readonly userId!: pulumi.Output<string>;
-    /**
-     * Username of the remote SDN connector as login credentials.
-     */
     public readonly username!: pulumi.Output<string>;
-    /**
-     * vCenter server password for NSX quarantine.
-     */
     public readonly vcenterPassword!: pulumi.Output<string | undefined>;
-    /**
-     * vCenter server address for NSX quarantine.
-     */
     public readonly vcenterServer!: pulumi.Output<string>;
-    /**
-     * vCenter server username for NSX quarantine.
-     */
     public readonly vcenterUsername!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable server certificate verification. Valid values: `disable`, `enable`.
-     */
     public readonly verifyCertificate!: pulumi.Output<string>;
-    /**
-     * AWS VPC ID.
-     */
     public readonly vpcId!: pulumi.Output<string>;
 
     /**
@@ -364,11 +164,11 @@ export class SystemSdnConnector extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["accessKey"] = args ? args.accessKey : undefined;
-            resourceInputs["apiKey"] = args ? args.apiKey : undefined;
+            resourceInputs["accessKey"] = args?.accessKey ? pulumi.secret(args.accessKey) : undefined;
+            resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
             resourceInputs["azureRegion"] = args ? args.azureRegion : undefined;
             resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientSecret"] = args ? args.clientSecret : undefined;
+            resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["compartmentId"] = args ? args.compartmentId : undefined;
             resourceInputs["computeGeneration"] = args ? args.computeGeneration : undefined;
             resourceInputs["domain"] = args ? args.domain : undefined;
@@ -383,7 +183,7 @@ export class SystemSdnConnector extends pulumi.CustomResource {
             resourceInputs["ibmRegion"] = args ? args.ibmRegion : undefined;
             resourceInputs["ibmRegionGen1"] = args ? args.ibmRegionGen1 : undefined;
             resourceInputs["ibmRegionGen2"] = args ? args.ibmRegionGen2 : undefined;
-            resourceInputs["keyPasswd"] = args ? args.keyPasswd : undefined;
+            resourceInputs["keyPasswd"] = args?.keyPasswd ? pulumi.secret(args.keyPasswd) : undefined;
             resourceInputs["loginEndpoint"] = args ? args.loginEndpoint : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nics"] = args ? args.nics : undefined;
@@ -391,15 +191,15 @@ export class SystemSdnConnector extends pulumi.CustomResource {
             resourceInputs["ociFingerprint"] = args ? args.ociFingerprint : undefined;
             resourceInputs["ociRegion"] = args ? args.ociRegion : undefined;
             resourceInputs["ociRegionType"] = args ? args.ociRegionType : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
-            resourceInputs["privateKey"] = args ? args.privateKey : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["resourceGroup"] = args ? args.resourceGroup : undefined;
             resourceInputs["resourceUrl"] = args ? args.resourceUrl : undefined;
             resourceInputs["routeTables"] = args ? args.routeTables : undefined;
             resourceInputs["routes"] = args ? args.routes : undefined;
-            resourceInputs["secretKey"] = args ? args.secretKey : undefined;
-            resourceInputs["secretToken"] = args ? args.secretToken : undefined;
+            resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
+            resourceInputs["secretToken"] = args?.secretToken ? pulumi.secret(args.secretToken) : undefined;
             resourceInputs["server"] = args ? args.server : undefined;
             resourceInputs["serverLists"] = args ? args.serverLists : undefined;
             resourceInputs["serverPort"] = args ? args.serverPort : undefined;
@@ -412,7 +212,7 @@ export class SystemSdnConnector extends pulumi.CustomResource {
             resourceInputs["useMetadataIam"] = args ? args.useMetadataIam : undefined;
             resourceInputs["userId"] = args ? args.userId : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
-            resourceInputs["vcenterPassword"] = args ? args.vcenterPassword : undefined;
+            resourceInputs["vcenterPassword"] = args?.vcenterPassword ? pulumi.secret(args.vcenterPassword) : undefined;
             resourceInputs["vcenterServer"] = args ? args.vcenterServer : undefined;
             resourceInputs["vcenterUsername"] = args ? args.vcenterUsername : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -420,6 +220,8 @@ export class SystemSdnConnector extends pulumi.CustomResource {
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["accessKey", "apiKey", "clientSecret", "keyPasswd", "password", "privateKey", "secretKey", "secretToken", "vcenterPassword"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemSdnConnector.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -428,221 +230,59 @@ export class SystemSdnConnector extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSdnConnector resources.
  */
 export interface SystemSdnConnectorState {
-    /**
-     * AWS access key ID.
-     */
     accessKey?: pulumi.Input<string>;
-    /**
-     * IBM cloud API key or service ID API key.
-     */
     apiKey?: pulumi.Input<string>;
-    /**
-     * Azure server region. Valid values: `global`, `china`, `germany`, `usgov`, `local`.
-     */
     azureRegion?: pulumi.Input<string>;
-    /**
-     * Azure client ID (application ID).
-     */
     clientId?: pulumi.Input<string>;
-    /**
-     * Azure client secret (application key).
-     */
     clientSecret?: pulumi.Input<string>;
-    /**
-     * Compartment ID.
-     */
     compartmentId?: pulumi.Input<string>;
-    /**
-     * Compute generation for IBM cloud infrastructure.
-     */
     computeGeneration?: pulumi.Input<number>;
-    /**
-     * Domain name.
-     */
     domain?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Configure AWS external account list. The structure of `externalAccountList` block is documented below.
-     */
     externalAccountLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorExternalAccountList>[]>;
-    /**
-     * Configure GCP external IP. The structure of `externalIp` block is documented below.
-     */
     externalIps?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorExternalIp>[]>;
-    /**
-     * Configure GCP forwarding rule. The structure of `forwardingRule` block is documented below.
-     */
     forwardingRules?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorForwardingRule>[]>;
-    /**
-     * GCP project name.
-     */
     gcpProject?: pulumi.Input<string>;
-    /**
-     * Configure GCP project list. The structure of `gcpProjectList` block is documented below.
-     */
     gcpProjectLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorGcpProjectList>[]>;
-    /**
-     * Group name of computers.
-     */
     groupName?: pulumi.Input<string>;
-    /**
-     * Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
-     */
     haStatus?: pulumi.Input<string>;
-    /**
-     * IBM cloud region name.
-     */
     ibmRegion?: pulumi.Input<string>;
-    /**
-     * IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
-     */
     ibmRegionGen1?: pulumi.Input<string>;
-    /**
-     * IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
-     */
     ibmRegionGen2?: pulumi.Input<string>;
-    /**
-     * Private key password.
-     */
     keyPasswd?: pulumi.Input<string>;
-    /**
-     * Azure Stack login endpoint.
-     */
     loginEndpoint?: pulumi.Input<string>;
-    /**
-     * GCP zone name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Configure Azure network interface. The structure of `nic` block is documented below.
-     */
     nics?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorNic>[]>;
-    /**
-     * OCI certificate.
-     */
     ociCert?: pulumi.Input<string>;
-    /**
-     * OCI pubkey fingerprint.
-     */
     ociFingerprint?: pulumi.Input<string>;
-    /**
-     * OCI server region.
-     */
     ociRegion?: pulumi.Input<string>;
-    /**
-     * OCI region type. Valid values: `commercial`, `government`.
-     */
     ociRegionType?: pulumi.Input<string>;
-    /**
-     * Password of the remote SDN connector as login credentials.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Private key of GCP service account.
-     */
     privateKey?: pulumi.Input<string>;
-    /**
-     * AWS region name.
-     */
     region?: pulumi.Input<string>;
-    /**
-     * Resource group of Azure route table.
-     */
     resourceGroup?: pulumi.Input<string>;
-    /**
-     * Azure Stack resource URL.
-     */
     resourceUrl?: pulumi.Input<string>;
-    /**
-     * Configure Azure route table. The structure of `routeTable` block is documented below.
-     */
     routeTables?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorRouteTable>[]>;
-    /**
-     * Configure Azure route. The structure of `route` block is documented below.
-     */
     routes?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorRoute>[]>;
-    /**
-     * AWS secret access key.
-     */
     secretKey?: pulumi.Input<string>;
-    /**
-     * Secret token of Kubernetes service account.
-     */
     secretToken?: pulumi.Input<string>;
-    /**
-     * Server address of the remote SDN connector.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
-     */
     serverLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorServerList>[]>;
-    /**
-     * Port number of the remote SDN connector.
-     */
     serverPort?: pulumi.Input<number>;
-    /**
-     * GCP service account email.
-     */
     serviceAccount?: pulumi.Input<string>;
-    /**
-     * Enable/disable connection to the remote SDN connector. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Subscription ID of Azure route table.
-     */
     subscriptionId?: pulumi.Input<string>;
-    /**
-     * Tenant ID (directory ID).
-     */
     tenantId?: pulumi.Input<string>;
-    /**
-     * Type of SDN connector.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
-     */
     updateInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable using IAM role from metadata to call API. Valid values: `disable`, `enable`.
-     */
     useMetadataIam?: pulumi.Input<string>;
-    /**
-     * User ID.
-     */
     userId?: pulumi.Input<string>;
-    /**
-     * Username of the remote SDN connector as login credentials.
-     */
     username?: pulumi.Input<string>;
-    /**
-     * vCenter server password for NSX quarantine.
-     */
     vcenterPassword?: pulumi.Input<string>;
-    /**
-     * vCenter server address for NSX quarantine.
-     */
     vcenterServer?: pulumi.Input<string>;
-    /**
-     * vCenter server username for NSX quarantine.
-     */
     vcenterUsername?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable server certificate verification. Valid values: `disable`, `enable`.
-     */
     verifyCertificate?: pulumi.Input<string>;
-    /**
-     * AWS VPC ID.
-     */
     vpcId?: pulumi.Input<string>;
 }
 
@@ -650,220 +290,58 @@ export interface SystemSdnConnectorState {
  * The set of arguments for constructing a SystemSdnConnector resource.
  */
 export interface SystemSdnConnectorArgs {
-    /**
-     * AWS access key ID.
-     */
     accessKey?: pulumi.Input<string>;
-    /**
-     * IBM cloud API key or service ID API key.
-     */
     apiKey?: pulumi.Input<string>;
-    /**
-     * Azure server region. Valid values: `global`, `china`, `germany`, `usgov`, `local`.
-     */
     azureRegion?: pulumi.Input<string>;
-    /**
-     * Azure client ID (application ID).
-     */
     clientId?: pulumi.Input<string>;
-    /**
-     * Azure client secret (application key).
-     */
     clientSecret?: pulumi.Input<string>;
-    /**
-     * Compartment ID.
-     */
     compartmentId?: pulumi.Input<string>;
-    /**
-     * Compute generation for IBM cloud infrastructure.
-     */
     computeGeneration?: pulumi.Input<number>;
-    /**
-     * Domain name.
-     */
     domain?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Configure AWS external account list. The structure of `externalAccountList` block is documented below.
-     */
     externalAccountLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorExternalAccountList>[]>;
-    /**
-     * Configure GCP external IP. The structure of `externalIp` block is documented below.
-     */
     externalIps?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorExternalIp>[]>;
-    /**
-     * Configure GCP forwarding rule. The structure of `forwardingRule` block is documented below.
-     */
     forwardingRules?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorForwardingRule>[]>;
-    /**
-     * GCP project name.
-     */
     gcpProject?: pulumi.Input<string>;
-    /**
-     * Configure GCP project list. The structure of `gcpProjectList` block is documented below.
-     */
     gcpProjectLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorGcpProjectList>[]>;
-    /**
-     * Group name of computers.
-     */
     groupName?: pulumi.Input<string>;
-    /**
-     * Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
-     */
     haStatus?: pulumi.Input<string>;
-    /**
-     * IBM cloud region name.
-     */
     ibmRegion?: pulumi.Input<string>;
-    /**
-     * IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
-     */
     ibmRegionGen1?: pulumi.Input<string>;
-    /**
-     * IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
-     */
     ibmRegionGen2?: pulumi.Input<string>;
-    /**
-     * Private key password.
-     */
     keyPasswd?: pulumi.Input<string>;
-    /**
-     * Azure Stack login endpoint.
-     */
     loginEndpoint?: pulumi.Input<string>;
-    /**
-     * GCP zone name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Configure Azure network interface. The structure of `nic` block is documented below.
-     */
     nics?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorNic>[]>;
-    /**
-     * OCI certificate.
-     */
     ociCert?: pulumi.Input<string>;
-    /**
-     * OCI pubkey fingerprint.
-     */
     ociFingerprint?: pulumi.Input<string>;
-    /**
-     * OCI server region.
-     */
     ociRegion?: pulumi.Input<string>;
-    /**
-     * OCI region type. Valid values: `commercial`, `government`.
-     */
     ociRegionType?: pulumi.Input<string>;
-    /**
-     * Password of the remote SDN connector as login credentials.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Private key of GCP service account.
-     */
     privateKey?: pulumi.Input<string>;
-    /**
-     * AWS region name.
-     */
     region?: pulumi.Input<string>;
-    /**
-     * Resource group of Azure route table.
-     */
     resourceGroup?: pulumi.Input<string>;
-    /**
-     * Azure Stack resource URL.
-     */
     resourceUrl?: pulumi.Input<string>;
-    /**
-     * Configure Azure route table. The structure of `routeTable` block is documented below.
-     */
     routeTables?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorRouteTable>[]>;
-    /**
-     * Configure Azure route. The structure of `route` block is documented below.
-     */
     routes?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorRoute>[]>;
-    /**
-     * AWS secret access key.
-     */
     secretKey?: pulumi.Input<string>;
-    /**
-     * Secret token of Kubernetes service account.
-     */
     secretToken?: pulumi.Input<string>;
-    /**
-     * Server address of the remote SDN connector.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
-     */
     serverLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorServerList>[]>;
-    /**
-     * Port number of the remote SDN connector.
-     */
     serverPort?: pulumi.Input<number>;
-    /**
-     * GCP service account email.
-     */
     serviceAccount?: pulumi.Input<string>;
-    /**
-     * Enable/disable connection to the remote SDN connector. Valid values: `disable`, `enable`.
-     */
     status: pulumi.Input<string>;
-    /**
-     * Subscription ID of Azure route table.
-     */
     subscriptionId?: pulumi.Input<string>;
-    /**
-     * Tenant ID (directory ID).
-     */
     tenantId?: pulumi.Input<string>;
-    /**
-     * Type of SDN connector.
-     */
     type: pulumi.Input<string>;
-    /**
-     * Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
-     */
     updateInterval?: pulumi.Input<number>;
-    /**
-     * Enable/disable using IAM role from metadata to call API. Valid values: `disable`, `enable`.
-     */
     useMetadataIam?: pulumi.Input<string>;
-    /**
-     * User ID.
-     */
     userId?: pulumi.Input<string>;
-    /**
-     * Username of the remote SDN connector as login credentials.
-     */
     username?: pulumi.Input<string>;
-    /**
-     * vCenter server password for NSX quarantine.
-     */
     vcenterPassword?: pulumi.Input<string>;
-    /**
-     * vCenter server address for NSX quarantine.
-     */
     vcenterServer?: pulumi.Input<string>;
-    /**
-     * vCenter server username for NSX quarantine.
-     */
     vcenterUsername?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable server certificate verification. Valid values: `disable`, `enable`.
-     */
     verifyCertificate?: pulumi.Input<string>;
-    /**
-     * AWS VPC ID.
-     */
     vpcId?: pulumi.Input<string>;
 }

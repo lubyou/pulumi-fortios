@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.FirewallInternetServiceCustomGroup`.
- */
 export function getFirewallInternetServiceCustomGroupList(args?: GetFirewallInternetServiceCustomGroupListArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallInternetServiceCustomGroupListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallInternetServiceCustomGroupList:GetFirewallInternetServiceCustomGroupList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getFirewallInternetServiceCustomGroupList(args?: GetFirewallInte
  */
 export interface GetFirewallInternetServiceCustomGroupListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -40,15 +31,11 @@ export interface GetFirewallInternetServiceCustomGroupListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.FirewallInternetServiceCustomGroup`.
-     */
     readonly namelists: string[];
     readonly vdomparam?: string;
 }
-
 export function getFirewallInternetServiceCustomGroupListOutput(args?: GetFirewallInternetServiceCustomGroupListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallInternetServiceCustomGroupListResult> {
-    return pulumi.output(args).apply(a => getFirewallInternetServiceCustomGroupList(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallInternetServiceCustomGroupList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getFirewallInternetServiceCustomGroupListOutput(args?: GetFirewa
  */
 export interface GetFirewallInternetServiceCustomGroupListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

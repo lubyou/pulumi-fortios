@@ -4,42 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure logging to FortiCloud.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.LogFortiguardSetting("trname", {
- *     encAlgorithm: "high",
- *     sourceIp: "0.0.0.0",
- *     sslMinProtoVersion: "default",
- *     status: "disable",
- *     uploadInterval: "daily",
- *     uploadOption: "5-minute",
- *     uploadTime: "00:00",
- * });
- * ```
- *
- * ## Import
- *
- * LogFortiguard Setting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/logFortiguardSetting:LogFortiguardSetting labelname LogFortiguardSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/logFortiguardSetting:LogFortiguardSetting labelname LogFortiguardSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class LogFortiguardSetting extends pulumi.CustomResource {
     /**
      * Get an existing LogFortiguardSetting resource's state with the given name, ID, and optional extra
@@ -68,65 +32,20 @@ export class LogFortiguardSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogFortiguardSetting.__pulumiType;
     }
 
-    /**
-     * Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-     */
     public readonly accessConfig!: pulumi.Output<string>;
-    /**
-     * FortiGate Cloud connection timeout in seconds.
-     */
     public readonly connTimeout!: pulumi.Output<number>;
-    /**
-     * Enable and set the SSL security level for for sending encrypted logs to FortiCloud. Valid values: `high-medium`, `high`, `low`.
-     */
     public readonly encAlgorithm!: pulumi.Output<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
-    /**
-     * FortiCloud maximum log rate in MBps (0 = unlimited).
-     */
     public readonly maxLogRate!: pulumi.Output<number>;
-    /**
-     * Set log transmission priority. Valid values: `default`, `low`.
-     */
     public readonly priority!: pulumi.Output<string>;
-    /**
-     * Source IP address used to connect FortiCloud.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     public readonly sslMinProtoVersion!: pulumi.Output<string>;
-    /**
-     * Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Day of week to roll logs.
-     */
     public readonly uploadDay!: pulumi.Output<string>;
-    /**
-     * Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
-     */
     public readonly uploadInterval!: pulumi.Output<string>;
-    /**
-     * Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-     */
     public readonly uploadOption!: pulumi.Output<string>;
-    /**
-     * Time of day to roll logs (hh:mm).
-     */
     public readonly uploadTime!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -184,65 +103,20 @@ export class LogFortiguardSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogFortiguardSetting resources.
  */
 export interface LogFortiguardSettingState {
-    /**
-     * Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-     */
     accessConfig?: pulumi.Input<string>;
-    /**
-     * FortiGate Cloud connection timeout in seconds.
-     */
     connTimeout?: pulumi.Input<number>;
-    /**
-     * Enable and set the SSL security level for for sending encrypted logs to FortiCloud. Valid values: `high-medium`, `high`, `low`.
-     */
     encAlgorithm?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * FortiCloud maximum log rate in MBps (0 = unlimited).
-     */
     maxLogRate?: pulumi.Input<number>;
-    /**
-     * Set log transmission priority. Valid values: `default`, `low`.
-     */
     priority?: pulumi.Input<string>;
-    /**
-     * Source IP address used to connect FortiCloud.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     sslMinProtoVersion?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Day of week to roll logs.
-     */
     uploadDay?: pulumi.Input<string>;
-    /**
-     * Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
-     */
     uploadInterval?: pulumi.Input<string>;
-    /**
-     * Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-     */
     uploadOption?: pulumi.Input<string>;
-    /**
-     * Time of day to roll logs (hh:mm).
-     */
     uploadTime?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -250,64 +124,19 @@ export interface LogFortiguardSettingState {
  * The set of arguments for constructing a LogFortiguardSetting resource.
  */
 export interface LogFortiguardSettingArgs {
-    /**
-     * Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
-     */
     accessConfig?: pulumi.Input<string>;
-    /**
-     * FortiGate Cloud connection timeout in seconds.
-     */
     connTimeout?: pulumi.Input<number>;
-    /**
-     * Enable and set the SSL security level for for sending encrypted logs to FortiCloud. Valid values: `high-medium`, `high`, `low`.
-     */
     encAlgorithm?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * FortiCloud maximum log rate in MBps (0 = unlimited).
-     */
     maxLogRate?: pulumi.Input<number>;
-    /**
-     * Set log transmission priority. Valid values: `default`, `low`.
-     */
     priority?: pulumi.Input<string>;
-    /**
-     * Source IP address used to connect FortiCloud.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
-     */
     sslMinProtoVersion?: pulumi.Input<string>;
-    /**
-     * Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Day of week to roll logs.
-     */
     uploadDay?: pulumi.Input<string>;
-    /**
-     * Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
-     */
     uploadInterval?: pulumi.Input<string>;
-    /**
-     * Configure how log messages are sent to FortiCloud. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
-     */
     uploadOption?: pulumi.Input<string>;
-    /**
-     * Time of day to roll logs (hh:mm).
-     */
     uploadTime?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

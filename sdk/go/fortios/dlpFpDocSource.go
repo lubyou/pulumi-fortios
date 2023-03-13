@@ -7,105 +7,32 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Create a DLP fingerprint database by allowing the FortiGate to access a file server containing files from which to create fingerprints.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewDlpFpDocSource(ctx, "trname", &fortios.DlpFpDocSourceArgs{
-// 			Date:               pulumi.Int(1),
-// 			FilePath:           pulumi.String("/"),
-// 			FilePattern:        pulumi.String("*"),
-// 			KeepModified:       pulumi.String("enable"),
-// 			Period:             pulumi.String("none"),
-// 			RemoveDeleted:      pulumi.String("enable"),
-// 			ScanOnCreation:     pulumi.String("enable"),
-// 			ScanSubdirectories: pulumi.String("enable"),
-// 			Server:             pulumi.String("1.1.1.1"),
-// 			ServerType:         pulumi.String("samba"),
-// 			TodHour:            pulumi.Int(1),
-// 			TodMin:             pulumi.Int(0),
-// 			Username:           pulumi.String("sgh"),
-// 			Vdom:               pulumi.String("mgmt"),
-// 			Weekday:            pulumi.String("sunday"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Dlp FpDocSource can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/dlpFpDocSource:DlpFpDocSource labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/dlpFpDocSource:DlpFpDocSource labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type DlpFpDocSource struct {
 	pulumi.CustomResourceState
 
-	// Day of the month on which to scan the server (1 - 31).
-	Date pulumi.IntOutput `pulumi:"date"`
-	// Path on the server to the fingerprint files (max 119 characters).
-	FilePath pulumi.StringOutput `pulumi:"filePath"`
-	// Files matching this pattern on the server are fingerprinted. Optionally use the * and ? wildcards.
-	FilePattern pulumi.StringOutput `pulumi:"filePattern"`
-	// Enable so that when a file is changed on the server the FortiGate keeps the old fingerprint and adds a new fingerprint to the database. Valid values: `enable`, `disable`.
-	KeepModified pulumi.StringOutput `pulumi:"keepModified"`
-	// Name of the DLP fingerprint database.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Password required to log into the file server.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Frequency for which the FortiGate checks the server for new or changed files. Valid values: `none`, `daily`, `weekly`, `monthly`.
-	Period pulumi.StringOutput `pulumi:"period"`
-	// Enable to keep the fingerprint database up to date when a file is deleted from the server. Valid values: `enable`, `disable`.
-	RemoveDeleted pulumi.StringOutput `pulumi:"removeDeleted"`
-	// Enable to keep the fingerprint database up to date when a file is added or changed on the server. Valid values: `enable`, `disable`.
-	ScanOnCreation pulumi.StringOutput `pulumi:"scanOnCreation"`
-	// Enable/disable scanning subdirectories to find files to create fingerprints from. Valid values: `enable`, `disable`.
-	ScanSubdirectories pulumi.StringOutput `pulumi:"scanSubdirectories"`
-	// Select a sensitivity or threat level for matches with this fingerprint database. Add sensitivities using fp-sensitivity.
-	Sensitivity pulumi.StringOutput `pulumi:"sensitivity"`
-	// IPv4 or IPv6 address of the server.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// Protocol used to communicate with the file server. Currently only Samba (SMB) servers are supported. Valid values: `samba`.
-	ServerType pulumi.StringOutput `pulumi:"serverType"`
-	// Hour of the day on which to scan the server (0 - 23, default = 1).
-	TodHour pulumi.IntOutput `pulumi:"todHour"`
-	// Minute of the hour on which to scan the server (0 - 59).
-	TodMin pulumi.IntOutput `pulumi:"todMin"`
-	// User name required to log into the file server.
-	Username pulumi.StringOutput `pulumi:"username"`
-	// Select the VDOM that can communicate with the file server. Valid values: `mgmt`, `current`.
-	Vdom pulumi.StringOutput `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Day of the week on which to scan the server. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	Weekday pulumi.StringOutput `pulumi:"weekday"`
+	Date               pulumi.IntOutput       `pulumi:"date"`
+	FilePath           pulumi.StringOutput    `pulumi:"filePath"`
+	FilePattern        pulumi.StringOutput    `pulumi:"filePattern"`
+	KeepModified       pulumi.StringOutput    `pulumi:"keepModified"`
+	Name               pulumi.StringOutput    `pulumi:"name"`
+	Password           pulumi.StringPtrOutput `pulumi:"password"`
+	Period             pulumi.StringOutput    `pulumi:"period"`
+	RemoveDeleted      pulumi.StringOutput    `pulumi:"removeDeleted"`
+	ScanOnCreation     pulumi.StringOutput    `pulumi:"scanOnCreation"`
+	ScanSubdirectories pulumi.StringOutput    `pulumi:"scanSubdirectories"`
+	Sensitivity        pulumi.StringOutput    `pulumi:"sensitivity"`
+	Server             pulumi.StringOutput    `pulumi:"server"`
+	ServerType         pulumi.StringOutput    `pulumi:"serverType"`
+	TodHour            pulumi.IntOutput       `pulumi:"todHour"`
+	TodMin             pulumi.IntOutput       `pulumi:"todMin"`
+	Username           pulumi.StringOutput    `pulumi:"username"`
+	Vdom               pulumi.StringOutput    `pulumi:"vdom"`
+	Vdomparam          pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Weekday            pulumi.StringOutput    `pulumi:"weekday"`
 }
 
 // NewDlpFpDocSource registers a new resource with the given unique name, arguments, and options.
@@ -124,6 +51,13 @@ func NewDlpFpDocSource(ctx *pulumi.Context,
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource DlpFpDocSource
 	err := ctx.RegisterResource("fortios:index/dlpFpDocSource:DlpFpDocSource", name, args, &resource, opts...)
@@ -147,85 +81,47 @@ func GetDlpFpDocSource(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DlpFpDocSource resources.
 type dlpFpDocSourceState struct {
-	// Day of the month on which to scan the server (1 - 31).
-	Date *int `pulumi:"date"`
-	// Path on the server to the fingerprint files (max 119 characters).
-	FilePath *string `pulumi:"filePath"`
-	// Files matching this pattern on the server are fingerprinted. Optionally use the * and ? wildcards.
-	FilePattern *string `pulumi:"filePattern"`
-	// Enable so that when a file is changed on the server the FortiGate keeps the old fingerprint and adds a new fingerprint to the database. Valid values: `enable`, `disable`.
-	KeepModified *string `pulumi:"keepModified"`
-	// Name of the DLP fingerprint database.
-	Name *string `pulumi:"name"`
-	// Password required to log into the file server.
-	Password *string `pulumi:"password"`
-	// Frequency for which the FortiGate checks the server for new or changed files. Valid values: `none`, `daily`, `weekly`, `monthly`.
-	Period *string `pulumi:"period"`
-	// Enable to keep the fingerprint database up to date when a file is deleted from the server. Valid values: `enable`, `disable`.
-	RemoveDeleted *string `pulumi:"removeDeleted"`
-	// Enable to keep the fingerprint database up to date when a file is added or changed on the server. Valid values: `enable`, `disable`.
-	ScanOnCreation *string `pulumi:"scanOnCreation"`
-	// Enable/disable scanning subdirectories to find files to create fingerprints from. Valid values: `enable`, `disable`.
+	Date               *int    `pulumi:"date"`
+	FilePath           *string `pulumi:"filePath"`
+	FilePattern        *string `pulumi:"filePattern"`
+	KeepModified       *string `pulumi:"keepModified"`
+	Name               *string `pulumi:"name"`
+	Password           *string `pulumi:"password"`
+	Period             *string `pulumi:"period"`
+	RemoveDeleted      *string `pulumi:"removeDeleted"`
+	ScanOnCreation     *string `pulumi:"scanOnCreation"`
 	ScanSubdirectories *string `pulumi:"scanSubdirectories"`
-	// Select a sensitivity or threat level for matches with this fingerprint database. Add sensitivities using fp-sensitivity.
-	Sensitivity *string `pulumi:"sensitivity"`
-	// IPv4 or IPv6 address of the server.
-	Server *string `pulumi:"server"`
-	// Protocol used to communicate with the file server. Currently only Samba (SMB) servers are supported. Valid values: `samba`.
-	ServerType *string `pulumi:"serverType"`
-	// Hour of the day on which to scan the server (0 - 23, default = 1).
-	TodHour *int `pulumi:"todHour"`
-	// Minute of the hour on which to scan the server (0 - 59).
-	TodMin *int `pulumi:"todMin"`
-	// User name required to log into the file server.
-	Username *string `pulumi:"username"`
-	// Select the VDOM that can communicate with the file server. Valid values: `mgmt`, `current`.
-	Vdom *string `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Day of the week on which to scan the server. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	Weekday *string `pulumi:"weekday"`
+	Sensitivity        *string `pulumi:"sensitivity"`
+	Server             *string `pulumi:"server"`
+	ServerType         *string `pulumi:"serverType"`
+	TodHour            *int    `pulumi:"todHour"`
+	TodMin             *int    `pulumi:"todMin"`
+	Username           *string `pulumi:"username"`
+	Vdom               *string `pulumi:"vdom"`
+	Vdomparam          *string `pulumi:"vdomparam"`
+	Weekday            *string `pulumi:"weekday"`
 }
 
 type DlpFpDocSourceState struct {
-	// Day of the month on which to scan the server (1 - 31).
-	Date pulumi.IntPtrInput
-	// Path on the server to the fingerprint files (max 119 characters).
-	FilePath pulumi.StringPtrInput
-	// Files matching this pattern on the server are fingerprinted. Optionally use the * and ? wildcards.
-	FilePattern pulumi.StringPtrInput
-	// Enable so that when a file is changed on the server the FortiGate keeps the old fingerprint and adds a new fingerprint to the database. Valid values: `enable`, `disable`.
-	KeepModified pulumi.StringPtrInput
-	// Name of the DLP fingerprint database.
-	Name pulumi.StringPtrInput
-	// Password required to log into the file server.
-	Password pulumi.StringPtrInput
-	// Frequency for which the FortiGate checks the server for new or changed files. Valid values: `none`, `daily`, `weekly`, `monthly`.
-	Period pulumi.StringPtrInput
-	// Enable to keep the fingerprint database up to date when a file is deleted from the server. Valid values: `enable`, `disable`.
-	RemoveDeleted pulumi.StringPtrInput
-	// Enable to keep the fingerprint database up to date when a file is added or changed on the server. Valid values: `enable`, `disable`.
-	ScanOnCreation pulumi.StringPtrInput
-	// Enable/disable scanning subdirectories to find files to create fingerprints from. Valid values: `enable`, `disable`.
+	Date               pulumi.IntPtrInput
+	FilePath           pulumi.StringPtrInput
+	FilePattern        pulumi.StringPtrInput
+	KeepModified       pulumi.StringPtrInput
+	Name               pulumi.StringPtrInput
+	Password           pulumi.StringPtrInput
+	Period             pulumi.StringPtrInput
+	RemoveDeleted      pulumi.StringPtrInput
+	ScanOnCreation     pulumi.StringPtrInput
 	ScanSubdirectories pulumi.StringPtrInput
-	// Select a sensitivity or threat level for matches with this fingerprint database. Add sensitivities using fp-sensitivity.
-	Sensitivity pulumi.StringPtrInput
-	// IPv4 or IPv6 address of the server.
-	Server pulumi.StringPtrInput
-	// Protocol used to communicate with the file server. Currently only Samba (SMB) servers are supported. Valid values: `samba`.
-	ServerType pulumi.StringPtrInput
-	// Hour of the day on which to scan the server (0 - 23, default = 1).
-	TodHour pulumi.IntPtrInput
-	// Minute of the hour on which to scan the server (0 - 59).
-	TodMin pulumi.IntPtrInput
-	// User name required to log into the file server.
-	Username pulumi.StringPtrInput
-	// Select the VDOM that can communicate with the file server. Valid values: `mgmt`, `current`.
-	Vdom pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Day of the week on which to scan the server. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	Weekday pulumi.StringPtrInput
+	Sensitivity        pulumi.StringPtrInput
+	Server             pulumi.StringPtrInput
+	ServerType         pulumi.StringPtrInput
+	TodHour            pulumi.IntPtrInput
+	TodMin             pulumi.IntPtrInput
+	Username           pulumi.StringPtrInput
+	Vdom               pulumi.StringPtrInput
+	Vdomparam          pulumi.StringPtrInput
+	Weekday            pulumi.StringPtrInput
 }
 
 func (DlpFpDocSourceState) ElementType() reflect.Type {
@@ -233,86 +129,48 @@ func (DlpFpDocSourceState) ElementType() reflect.Type {
 }
 
 type dlpFpDocSourceArgs struct {
-	// Day of the month on which to scan the server (1 - 31).
-	Date *int `pulumi:"date"`
-	// Path on the server to the fingerprint files (max 119 characters).
-	FilePath *string `pulumi:"filePath"`
-	// Files matching this pattern on the server are fingerprinted. Optionally use the * and ? wildcards.
-	FilePattern *string `pulumi:"filePattern"`
-	// Enable so that when a file is changed on the server the FortiGate keeps the old fingerprint and adds a new fingerprint to the database. Valid values: `enable`, `disable`.
-	KeepModified *string `pulumi:"keepModified"`
-	// Name of the DLP fingerprint database.
-	Name *string `pulumi:"name"`
-	// Password required to log into the file server.
-	Password *string `pulumi:"password"`
-	// Frequency for which the FortiGate checks the server for new or changed files. Valid values: `none`, `daily`, `weekly`, `monthly`.
-	Period *string `pulumi:"period"`
-	// Enable to keep the fingerprint database up to date when a file is deleted from the server. Valid values: `enable`, `disable`.
-	RemoveDeleted *string `pulumi:"removeDeleted"`
-	// Enable to keep the fingerprint database up to date when a file is added or changed on the server. Valid values: `enable`, `disable`.
-	ScanOnCreation *string `pulumi:"scanOnCreation"`
-	// Enable/disable scanning subdirectories to find files to create fingerprints from. Valid values: `enable`, `disable`.
+	Date               *int    `pulumi:"date"`
+	FilePath           *string `pulumi:"filePath"`
+	FilePattern        *string `pulumi:"filePattern"`
+	KeepModified       *string `pulumi:"keepModified"`
+	Name               *string `pulumi:"name"`
+	Password           *string `pulumi:"password"`
+	Period             *string `pulumi:"period"`
+	RemoveDeleted      *string `pulumi:"removeDeleted"`
+	ScanOnCreation     *string `pulumi:"scanOnCreation"`
 	ScanSubdirectories *string `pulumi:"scanSubdirectories"`
-	// Select a sensitivity or threat level for matches with this fingerprint database. Add sensitivities using fp-sensitivity.
-	Sensitivity *string `pulumi:"sensitivity"`
-	// IPv4 or IPv6 address of the server.
-	Server string `pulumi:"server"`
-	// Protocol used to communicate with the file server. Currently only Samba (SMB) servers are supported. Valid values: `samba`.
-	ServerType string `pulumi:"serverType"`
-	// Hour of the day on which to scan the server (0 - 23, default = 1).
-	TodHour *int `pulumi:"todHour"`
-	// Minute of the hour on which to scan the server (0 - 59).
-	TodMin *int `pulumi:"todMin"`
-	// User name required to log into the file server.
-	Username string `pulumi:"username"`
-	// Select the VDOM that can communicate with the file server. Valid values: `mgmt`, `current`.
-	Vdom *string `pulumi:"vdom"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Day of the week on which to scan the server. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	Weekday *string `pulumi:"weekday"`
+	Sensitivity        *string `pulumi:"sensitivity"`
+	Server             string  `pulumi:"server"`
+	ServerType         string  `pulumi:"serverType"`
+	TodHour            *int    `pulumi:"todHour"`
+	TodMin             *int    `pulumi:"todMin"`
+	Username           string  `pulumi:"username"`
+	Vdom               *string `pulumi:"vdom"`
+	Vdomparam          *string `pulumi:"vdomparam"`
+	Weekday            *string `pulumi:"weekday"`
 }
 
 // The set of arguments for constructing a DlpFpDocSource resource.
 type DlpFpDocSourceArgs struct {
-	// Day of the month on which to scan the server (1 - 31).
-	Date pulumi.IntPtrInput
-	// Path on the server to the fingerprint files (max 119 characters).
-	FilePath pulumi.StringPtrInput
-	// Files matching this pattern on the server are fingerprinted. Optionally use the * and ? wildcards.
-	FilePattern pulumi.StringPtrInput
-	// Enable so that when a file is changed on the server the FortiGate keeps the old fingerprint and adds a new fingerprint to the database. Valid values: `enable`, `disable`.
-	KeepModified pulumi.StringPtrInput
-	// Name of the DLP fingerprint database.
-	Name pulumi.StringPtrInput
-	// Password required to log into the file server.
-	Password pulumi.StringPtrInput
-	// Frequency for which the FortiGate checks the server for new or changed files. Valid values: `none`, `daily`, `weekly`, `monthly`.
-	Period pulumi.StringPtrInput
-	// Enable to keep the fingerprint database up to date when a file is deleted from the server. Valid values: `enable`, `disable`.
-	RemoveDeleted pulumi.StringPtrInput
-	// Enable to keep the fingerprint database up to date when a file is added or changed on the server. Valid values: `enable`, `disable`.
-	ScanOnCreation pulumi.StringPtrInput
-	// Enable/disable scanning subdirectories to find files to create fingerprints from. Valid values: `enable`, `disable`.
+	Date               pulumi.IntPtrInput
+	FilePath           pulumi.StringPtrInput
+	FilePattern        pulumi.StringPtrInput
+	KeepModified       pulumi.StringPtrInput
+	Name               pulumi.StringPtrInput
+	Password           pulumi.StringPtrInput
+	Period             pulumi.StringPtrInput
+	RemoveDeleted      pulumi.StringPtrInput
+	ScanOnCreation     pulumi.StringPtrInput
 	ScanSubdirectories pulumi.StringPtrInput
-	// Select a sensitivity or threat level for matches with this fingerprint database. Add sensitivities using fp-sensitivity.
-	Sensitivity pulumi.StringPtrInput
-	// IPv4 or IPv6 address of the server.
-	Server pulumi.StringInput
-	// Protocol used to communicate with the file server. Currently only Samba (SMB) servers are supported. Valid values: `samba`.
-	ServerType pulumi.StringInput
-	// Hour of the day on which to scan the server (0 - 23, default = 1).
-	TodHour pulumi.IntPtrInput
-	// Minute of the hour on which to scan the server (0 - 59).
-	TodMin pulumi.IntPtrInput
-	// User name required to log into the file server.
-	Username pulumi.StringInput
-	// Select the VDOM that can communicate with the file server. Valid values: `mgmt`, `current`.
-	Vdom pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Day of the week on which to scan the server. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-	Weekday pulumi.StringPtrInput
+	Sensitivity        pulumi.StringPtrInput
+	Server             pulumi.StringInput
+	ServerType         pulumi.StringInput
+	TodHour            pulumi.IntPtrInput
+	TodMin             pulumi.IntPtrInput
+	Username           pulumi.StringInput
+	Vdom               pulumi.StringPtrInput
+	Vdomparam          pulumi.StringPtrInput
+	Weekday            pulumi.StringPtrInput
 }
 
 func (DlpFpDocSourceArgs) ElementType() reflect.Type {
@@ -341,7 +199,7 @@ func (i *DlpFpDocSource) ToDlpFpDocSourceOutputWithContext(ctx context.Context) 
 // DlpFpDocSourceArrayInput is an input type that accepts DlpFpDocSourceArray and DlpFpDocSourceArrayOutput values.
 // You can construct a concrete instance of `DlpFpDocSourceArrayInput` via:
 //
-//          DlpFpDocSourceArray{ DlpFpDocSourceArgs{...} }
+//	DlpFpDocSourceArray{ DlpFpDocSourceArgs{...} }
 type DlpFpDocSourceArrayInput interface {
 	pulumi.Input
 
@@ -366,7 +224,7 @@ func (i DlpFpDocSourceArray) ToDlpFpDocSourceArrayOutputWithContext(ctx context.
 // DlpFpDocSourceMapInput is an input type that accepts DlpFpDocSourceMap and DlpFpDocSourceMapOutput values.
 // You can construct a concrete instance of `DlpFpDocSourceMapInput` via:
 //
-//          DlpFpDocSourceMap{ "key": DlpFpDocSourceArgs{...} }
+//	DlpFpDocSourceMap{ "key": DlpFpDocSourceArgs{...} }
 type DlpFpDocSourceMapInput interface {
 	pulumi.Input
 
@@ -400,6 +258,82 @@ func (o DlpFpDocSourceOutput) ToDlpFpDocSourceOutput() DlpFpDocSourceOutput {
 
 func (o DlpFpDocSourceOutput) ToDlpFpDocSourceOutputWithContext(ctx context.Context) DlpFpDocSourceOutput {
 	return o
+}
+
+func (o DlpFpDocSourceOutput) Date() pulumi.IntOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.IntOutput { return v.Date }).(pulumi.IntOutput)
+}
+
+func (o DlpFpDocSourceOutput) FilePath() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringOutput { return v.FilePath }).(pulumi.StringOutput)
+}
+
+func (o DlpFpDocSourceOutput) FilePattern() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringOutput { return v.FilePattern }).(pulumi.StringOutput)
+}
+
+func (o DlpFpDocSourceOutput) KeepModified() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringOutput { return v.KeepModified }).(pulumi.StringOutput)
+}
+
+func (o DlpFpDocSourceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o DlpFpDocSourceOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o DlpFpDocSourceOutput) Period() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringOutput { return v.Period }).(pulumi.StringOutput)
+}
+
+func (o DlpFpDocSourceOutput) RemoveDeleted() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringOutput { return v.RemoveDeleted }).(pulumi.StringOutput)
+}
+
+func (o DlpFpDocSourceOutput) ScanOnCreation() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringOutput { return v.ScanOnCreation }).(pulumi.StringOutput)
+}
+
+func (o DlpFpDocSourceOutput) ScanSubdirectories() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringOutput { return v.ScanSubdirectories }).(pulumi.StringOutput)
+}
+
+func (o DlpFpDocSourceOutput) Sensitivity() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringOutput { return v.Sensitivity }).(pulumi.StringOutput)
+}
+
+func (o DlpFpDocSourceOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o DlpFpDocSourceOutput) ServerType() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringOutput { return v.ServerType }).(pulumi.StringOutput)
+}
+
+func (o DlpFpDocSourceOutput) TodHour() pulumi.IntOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.IntOutput { return v.TodHour }).(pulumi.IntOutput)
+}
+
+func (o DlpFpDocSourceOutput) TodMin() pulumi.IntOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.IntOutput { return v.TodMin }).(pulumi.IntOutput)
+}
+
+func (o DlpFpDocSourceOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
+func (o DlpFpDocSourceOutput) Vdom() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringOutput { return v.Vdom }).(pulumi.StringOutput)
+}
+
+func (o DlpFpDocSourceOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o DlpFpDocSourceOutput) Weekday() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpFpDocSource) pulumi.StringOutput { return v.Weekday }).(pulumi.StringOutput)
 }
 
 type DlpFpDocSourceArrayOutput struct{ *pulumi.OutputState }

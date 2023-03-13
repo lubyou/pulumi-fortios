@@ -10,68 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// OCSP server configuration.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewVpnCertificateOcspServer(ctx, "trname", &fortios.VpnCertificateOcspServerArgs{
-// 			Cert:          pulumi.String("ACCVRAIZ1"),
-// 			SourceIp:      pulumi.String("0.0.0.0"),
-// 			UnavailAction: pulumi.String("revoke"),
-// 			Url:           pulumi.String("www.tetserv.com"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// VpnCertificate OcspServer can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnCertificateOcspServer:VpnCertificateOcspServer labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnCertificateOcspServer:VpnCertificateOcspServer labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnCertificateOcspServer struct {
 	pulumi.CustomResourceState
 
-	// OCSP server certificate.
-	Cert pulumi.StringOutput `pulumi:"cert"`
-	// OCSP server entry name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Secondary OCSP server certificate.
-	SecondaryCert pulumi.StringOutput `pulumi:"secondaryCert"`
-	// Secondary OCSP server URL.
-	SecondaryUrl pulumi.StringOutput `pulumi:"secondaryUrl"`
-	// Source IP address for communications to the OCSP server.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Action when server is unavailable (revoke the certificate or ignore the result of the check). Valid values: `revoke`, `ignore`.
-	UnavailAction pulumi.StringOutput `pulumi:"unavailAction"`
-	// OCSP server URL.
-	Url pulumi.StringOutput `pulumi:"url"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Cert          pulumi.StringOutput    `pulumi:"cert"`
+	Name          pulumi.StringOutput    `pulumi:"name"`
+	SecondaryCert pulumi.StringOutput    `pulumi:"secondaryCert"`
+	SecondaryUrl  pulumi.StringOutput    `pulumi:"secondaryUrl"`
+	SourceIp      pulumi.StringOutput    `pulumi:"sourceIp"`
+	UnavailAction pulumi.StringOutput    `pulumi:"unavailAction"`
+	Url           pulumi.StringOutput    `pulumi:"url"`
+	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewVpnCertificateOcspServer registers a new resource with the given unique name, arguments, and options.
@@ -104,41 +53,25 @@ func GetVpnCertificateOcspServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnCertificateOcspServer resources.
 type vpnCertificateOcspServerState struct {
-	// OCSP server certificate.
-	Cert *string `pulumi:"cert"`
-	// OCSP server entry name.
-	Name *string `pulumi:"name"`
-	// Secondary OCSP server certificate.
+	Cert          *string `pulumi:"cert"`
+	Name          *string `pulumi:"name"`
 	SecondaryCert *string `pulumi:"secondaryCert"`
-	// Secondary OCSP server URL.
-	SecondaryUrl *string `pulumi:"secondaryUrl"`
-	// Source IP address for communications to the OCSP server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Action when server is unavailable (revoke the certificate or ignore the result of the check). Valid values: `revoke`, `ignore`.
+	SecondaryUrl  *string `pulumi:"secondaryUrl"`
+	SourceIp      *string `pulumi:"sourceIp"`
 	UnavailAction *string `pulumi:"unavailAction"`
-	// OCSP server URL.
-	Url *string `pulumi:"url"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Url           *string `pulumi:"url"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 type VpnCertificateOcspServerState struct {
-	// OCSP server certificate.
-	Cert pulumi.StringPtrInput
-	// OCSP server entry name.
-	Name pulumi.StringPtrInput
-	// Secondary OCSP server certificate.
+	Cert          pulumi.StringPtrInput
+	Name          pulumi.StringPtrInput
 	SecondaryCert pulumi.StringPtrInput
-	// Secondary OCSP server URL.
-	SecondaryUrl pulumi.StringPtrInput
-	// Source IP address for communications to the OCSP server.
-	SourceIp pulumi.StringPtrInput
-	// Action when server is unavailable (revoke the certificate or ignore the result of the check). Valid values: `revoke`, `ignore`.
+	SecondaryUrl  pulumi.StringPtrInput
+	SourceIp      pulumi.StringPtrInput
 	UnavailAction pulumi.StringPtrInput
-	// OCSP server URL.
-	Url pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Url           pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (VpnCertificateOcspServerState) ElementType() reflect.Type {
@@ -146,42 +79,26 @@ func (VpnCertificateOcspServerState) ElementType() reflect.Type {
 }
 
 type vpnCertificateOcspServerArgs struct {
-	// OCSP server certificate.
-	Cert *string `pulumi:"cert"`
-	// OCSP server entry name.
-	Name *string `pulumi:"name"`
-	// Secondary OCSP server certificate.
+	Cert          *string `pulumi:"cert"`
+	Name          *string `pulumi:"name"`
 	SecondaryCert *string `pulumi:"secondaryCert"`
-	// Secondary OCSP server URL.
-	SecondaryUrl *string `pulumi:"secondaryUrl"`
-	// Source IP address for communications to the OCSP server.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Action when server is unavailable (revoke the certificate or ignore the result of the check). Valid values: `revoke`, `ignore`.
+	SecondaryUrl  *string `pulumi:"secondaryUrl"`
+	SourceIp      *string `pulumi:"sourceIp"`
 	UnavailAction *string `pulumi:"unavailAction"`
-	// OCSP server URL.
-	Url *string `pulumi:"url"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Url           *string `pulumi:"url"`
+	Vdomparam     *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VpnCertificateOcspServer resource.
 type VpnCertificateOcspServerArgs struct {
-	// OCSP server certificate.
-	Cert pulumi.StringPtrInput
-	// OCSP server entry name.
-	Name pulumi.StringPtrInput
-	// Secondary OCSP server certificate.
+	Cert          pulumi.StringPtrInput
+	Name          pulumi.StringPtrInput
 	SecondaryCert pulumi.StringPtrInput
-	// Secondary OCSP server URL.
-	SecondaryUrl pulumi.StringPtrInput
-	// Source IP address for communications to the OCSP server.
-	SourceIp pulumi.StringPtrInput
-	// Action when server is unavailable (revoke the certificate or ignore the result of the check). Valid values: `revoke`, `ignore`.
+	SecondaryUrl  pulumi.StringPtrInput
+	SourceIp      pulumi.StringPtrInput
 	UnavailAction pulumi.StringPtrInput
-	// OCSP server URL.
-	Url pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Url           pulumi.StringPtrInput
+	Vdomparam     pulumi.StringPtrInput
 }
 
 func (VpnCertificateOcspServerArgs) ElementType() reflect.Type {
@@ -210,7 +127,7 @@ func (i *VpnCertificateOcspServer) ToVpnCertificateOcspServerOutputWithContext(c
 // VpnCertificateOcspServerArrayInput is an input type that accepts VpnCertificateOcspServerArray and VpnCertificateOcspServerArrayOutput values.
 // You can construct a concrete instance of `VpnCertificateOcspServerArrayInput` via:
 //
-//          VpnCertificateOcspServerArray{ VpnCertificateOcspServerArgs{...} }
+//	VpnCertificateOcspServerArray{ VpnCertificateOcspServerArgs{...} }
 type VpnCertificateOcspServerArrayInput interface {
 	pulumi.Input
 
@@ -235,7 +152,7 @@ func (i VpnCertificateOcspServerArray) ToVpnCertificateOcspServerArrayOutputWith
 // VpnCertificateOcspServerMapInput is an input type that accepts VpnCertificateOcspServerMap and VpnCertificateOcspServerMapOutput values.
 // You can construct a concrete instance of `VpnCertificateOcspServerMapInput` via:
 //
-//          VpnCertificateOcspServerMap{ "key": VpnCertificateOcspServerArgs{...} }
+//	VpnCertificateOcspServerMap{ "key": VpnCertificateOcspServerArgs{...} }
 type VpnCertificateOcspServerMapInput interface {
 	pulumi.Input
 
@@ -269,6 +186,38 @@ func (o VpnCertificateOcspServerOutput) ToVpnCertificateOcspServerOutput() VpnCe
 
 func (o VpnCertificateOcspServerOutput) ToVpnCertificateOcspServerOutputWithContext(ctx context.Context) VpnCertificateOcspServerOutput {
 	return o
+}
+
+func (o VpnCertificateOcspServerOutput) Cert() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateOcspServer) pulumi.StringOutput { return v.Cert }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateOcspServerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateOcspServer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateOcspServerOutput) SecondaryCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateOcspServer) pulumi.StringOutput { return v.SecondaryCert }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateOcspServerOutput) SecondaryUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateOcspServer) pulumi.StringOutput { return v.SecondaryUrl }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateOcspServerOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateOcspServer) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateOcspServerOutput) UnavailAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateOcspServer) pulumi.StringOutput { return v.UnavailAction }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateOcspServerOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateOcspServer) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateOcspServerOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnCertificateOcspServer) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type VpnCertificateOcspServerArrayOutput struct{ *pulumi.OutputState }

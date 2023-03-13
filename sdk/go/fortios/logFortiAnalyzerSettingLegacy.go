@@ -7,59 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure configure logging to FortiAnalyzer log management devices.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `LogFortianalyzerSetting`, we recommend that you use the new resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogFortiAnalyzerSettingLegacy(ctx, "test1", &fortios.LogFortiAnalyzerSettingLegacyArgs{
-// 			EncAlgorithm:  pulumi.String("high-medium"),
-// 			HmacAlgorithm: pulumi.String("sha256"),
-// 			Reliable:      pulumi.String("enable"),
-// 			Server:        pulumi.String("10.2.2.99"),
-// 			SourceIp:      pulumi.String("10.2.2.99"),
-// 			Status:        pulumi.String("enable"),
-// 			UploadOption:  pulumi.String("realtime"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type LogFortiAnalyzerSettingLegacy struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable sending FortiAnalyzer log data with SSL encryption.
-	EncAlgorithm pulumi.StringOutput `pulumi:"encAlgorithm"`
-	// FortiAnalyzer IPsec tunnel HMAC algorithm.
+	EncAlgorithm  pulumi.StringOutput `pulumi:"encAlgorithm"`
 	HmacAlgorithm pulumi.StringOutput `pulumi:"hmacAlgorithm"`
-	// Enable/disable reliable logging to FortiAnalyzer.
-	Reliable pulumi.StringOutput `pulumi:"reliable"`
-	// The remote FortiAnalyzer.
-	Server pulumi.StringOutput `pulumi:"server"`
-	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Enable/disable logging to FortiAnalyzer.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Enable/disable logging to hard disk and then uploading to FortiAnalyzer.
-	UploadOption pulumi.StringOutput `pulumi:"uploadOption"`
+	Reliable      pulumi.StringOutput `pulumi:"reliable"`
+	Server        pulumi.StringOutput `pulumi:"server"`
+	SourceIp      pulumi.StringOutput `pulumi:"sourceIp"`
+	Status        pulumi.StringOutput `pulumi:"status"`
+	UploadOption  pulumi.StringOutput `pulumi:"uploadOption"`
 }
 
 // NewLogFortiAnalyzerSettingLegacy registers a new resource with the given unique name, arguments, and options.
@@ -95,37 +56,23 @@ func GetLogFortiAnalyzerSettingLegacy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogFortiAnalyzerSettingLegacy resources.
 type logFortiAnalyzerSettingLegacyState struct {
-	// Enable/disable sending FortiAnalyzer log data with SSL encryption.
-	EncAlgorithm *string `pulumi:"encAlgorithm"`
-	// FortiAnalyzer IPsec tunnel HMAC algorithm.
+	EncAlgorithm  *string `pulumi:"encAlgorithm"`
 	HmacAlgorithm *string `pulumi:"hmacAlgorithm"`
-	// Enable/disable reliable logging to FortiAnalyzer.
-	Reliable *string `pulumi:"reliable"`
-	// The remote FortiAnalyzer.
-	Server *string `pulumi:"server"`
-	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable logging to FortiAnalyzer.
-	Status *string `pulumi:"status"`
-	// Enable/disable logging to hard disk and then uploading to FortiAnalyzer.
-	UploadOption *string `pulumi:"uploadOption"`
+	Reliable      *string `pulumi:"reliable"`
+	Server        *string `pulumi:"server"`
+	SourceIp      *string `pulumi:"sourceIp"`
+	Status        *string `pulumi:"status"`
+	UploadOption  *string `pulumi:"uploadOption"`
 }
 
 type LogFortiAnalyzerSettingLegacyState struct {
-	// Enable/disable sending FortiAnalyzer log data with SSL encryption.
-	EncAlgorithm pulumi.StringPtrInput
-	// FortiAnalyzer IPsec tunnel HMAC algorithm.
+	EncAlgorithm  pulumi.StringPtrInput
 	HmacAlgorithm pulumi.StringPtrInput
-	// Enable/disable reliable logging to FortiAnalyzer.
-	Reliable pulumi.StringPtrInput
-	// The remote FortiAnalyzer.
-	Server pulumi.StringPtrInput
-	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable logging to FortiAnalyzer.
-	Status pulumi.StringPtrInput
-	// Enable/disable logging to hard disk and then uploading to FortiAnalyzer.
-	UploadOption pulumi.StringPtrInput
+	Reliable      pulumi.StringPtrInput
+	Server        pulumi.StringPtrInput
+	SourceIp      pulumi.StringPtrInput
+	Status        pulumi.StringPtrInput
+	UploadOption  pulumi.StringPtrInput
 }
 
 func (LogFortiAnalyzerSettingLegacyState) ElementType() reflect.Type {
@@ -133,38 +80,24 @@ func (LogFortiAnalyzerSettingLegacyState) ElementType() reflect.Type {
 }
 
 type logFortiAnalyzerSettingLegacyArgs struct {
-	// Enable/disable sending FortiAnalyzer log data with SSL encryption.
-	EncAlgorithm *string `pulumi:"encAlgorithm"`
-	// FortiAnalyzer IPsec tunnel HMAC algorithm.
+	EncAlgorithm  *string `pulumi:"encAlgorithm"`
 	HmacAlgorithm *string `pulumi:"hmacAlgorithm"`
-	// Enable/disable reliable logging to FortiAnalyzer.
-	Reliable *string `pulumi:"reliable"`
-	// The remote FortiAnalyzer.
-	Server *string `pulumi:"server"`
-	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable logging to FortiAnalyzer.
-	Status string `pulumi:"status"`
-	// Enable/disable logging to hard disk and then uploading to FortiAnalyzer.
-	UploadOption *string `pulumi:"uploadOption"`
+	Reliable      *string `pulumi:"reliable"`
+	Server        *string `pulumi:"server"`
+	SourceIp      *string `pulumi:"sourceIp"`
+	Status        string  `pulumi:"status"`
+	UploadOption  *string `pulumi:"uploadOption"`
 }
 
 // The set of arguments for constructing a LogFortiAnalyzerSettingLegacy resource.
 type LogFortiAnalyzerSettingLegacyArgs struct {
-	// Enable/disable sending FortiAnalyzer log data with SSL encryption.
-	EncAlgorithm pulumi.StringPtrInput
-	// FortiAnalyzer IPsec tunnel HMAC algorithm.
+	EncAlgorithm  pulumi.StringPtrInput
 	HmacAlgorithm pulumi.StringPtrInput
-	// Enable/disable reliable logging to FortiAnalyzer.
-	Reliable pulumi.StringPtrInput
-	// The remote FortiAnalyzer.
-	Server pulumi.StringPtrInput
-	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable logging to FortiAnalyzer.
-	Status pulumi.StringInput
-	// Enable/disable logging to hard disk and then uploading to FortiAnalyzer.
-	UploadOption pulumi.StringPtrInput
+	Reliable      pulumi.StringPtrInput
+	Server        pulumi.StringPtrInput
+	SourceIp      pulumi.StringPtrInput
+	Status        pulumi.StringInput
+	UploadOption  pulumi.StringPtrInput
 }
 
 func (LogFortiAnalyzerSettingLegacyArgs) ElementType() reflect.Type {
@@ -193,7 +126,7 @@ func (i *LogFortiAnalyzerSettingLegacy) ToLogFortiAnalyzerSettingLegacyOutputWit
 // LogFortiAnalyzerSettingLegacyArrayInput is an input type that accepts LogFortiAnalyzerSettingLegacyArray and LogFortiAnalyzerSettingLegacyArrayOutput values.
 // You can construct a concrete instance of `LogFortiAnalyzerSettingLegacyArrayInput` via:
 //
-//          LogFortiAnalyzerSettingLegacyArray{ LogFortiAnalyzerSettingLegacyArgs{...} }
+//	LogFortiAnalyzerSettingLegacyArray{ LogFortiAnalyzerSettingLegacyArgs{...} }
 type LogFortiAnalyzerSettingLegacyArrayInput interface {
 	pulumi.Input
 
@@ -218,7 +151,7 @@ func (i LogFortiAnalyzerSettingLegacyArray) ToLogFortiAnalyzerSettingLegacyArray
 // LogFortiAnalyzerSettingLegacyMapInput is an input type that accepts LogFortiAnalyzerSettingLegacyMap and LogFortiAnalyzerSettingLegacyMapOutput values.
 // You can construct a concrete instance of `LogFortiAnalyzerSettingLegacyMapInput` via:
 //
-//          LogFortiAnalyzerSettingLegacyMap{ "key": LogFortiAnalyzerSettingLegacyArgs{...} }
+//	LogFortiAnalyzerSettingLegacyMap{ "key": LogFortiAnalyzerSettingLegacyArgs{...} }
 type LogFortiAnalyzerSettingLegacyMapInput interface {
 	pulumi.Input
 
@@ -252,6 +185,34 @@ func (o LogFortiAnalyzerSettingLegacyOutput) ToLogFortiAnalyzerSettingLegacyOutp
 
 func (o LogFortiAnalyzerSettingLegacyOutput) ToLogFortiAnalyzerSettingLegacyOutputWithContext(ctx context.Context) LogFortiAnalyzerSettingLegacyOutput {
 	return o
+}
+
+func (o LogFortiAnalyzerSettingLegacyOutput) EncAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiAnalyzerSettingLegacy) pulumi.StringOutput { return v.EncAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o LogFortiAnalyzerSettingLegacyOutput) HmacAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiAnalyzerSettingLegacy) pulumi.StringOutput { return v.HmacAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o LogFortiAnalyzerSettingLegacyOutput) Reliable() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiAnalyzerSettingLegacy) pulumi.StringOutput { return v.Reliable }).(pulumi.StringOutput)
+}
+
+func (o LogFortiAnalyzerSettingLegacyOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiAnalyzerSettingLegacy) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o LogFortiAnalyzerSettingLegacyOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiAnalyzerSettingLegacy) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o LogFortiAnalyzerSettingLegacyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiAnalyzerSettingLegacy) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LogFortiAnalyzerSettingLegacyOutput) UploadOption() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortiAnalyzerSettingLegacy) pulumi.StringOutput { return v.UploadOption }).(pulumi.StringOutput)
 }
 
 type LogFortiAnalyzerSettingLegacyArrayOutput struct{ *pulumi.OutputState }

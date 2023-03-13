@@ -2,87 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure virtual IP for IPv6.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallVip6("trname", {
- *     arpReply: "enable",
- *     color: 0,
- *     extip: "2001:1:1:12::100",
- *     extport: "0-65535",
- *     fosid: 0,
- *     httpCookieAge: 60,
- *     httpCookieDomainFromHost: "disable",
- *     httpCookieGeneration: 0,
- *     httpCookieShare: "same-ip",
- *     httpIpHeader: "disable",
- *     httpMultiplex: "disable",
- *     httpsCookieSecure: "disable",
- *     ldbMethod: "static",
- *     mappedip: "2001:1:1:12::200",
- *     mappedport: "0-65535",
- *     maxEmbryonicConnections: 1000,
- *     outlookWebAccess: "disable",
- *     persistence: "none",
- *     portforward: "disable",
- *     protocol: "tcp",
- *     sslAlgorithm: "high",
- *     sslClientFallback: "enable",
- *     sslClientRenegotiation: "secure",
- *     sslClientSessionStateMax: 1000,
- *     sslClientSessionStateTimeout: 30,
- *     sslClientSessionStateType: "both",
- *     sslDhBits: "2048",
- *     sslHpkp: "disable",
- *     sslHpkpAge: 5184000,
- *     sslHpkpIncludeSubdomains: "disable",
- *     sslHsts: "disable",
- *     sslHstsAge: 5184000,
- *     sslHstsIncludeSubdomains: "disable",
- *     sslHttpLocationConversion: "disable",
- *     sslHttpMatchHost: "enable",
- *     sslMaxVersion: "tls-1.2",
- *     sslMinVersion: "tls-1.1",
- *     sslMode: "half",
- *     sslPfs: "require",
- *     sslSendEmptyFrags: "enable",
- *     sslServerAlgorithm: "client",
- *     sslServerMaxVersion: "client",
- *     sslServerMinVersion: "client",
- *     sslServerSessionStateMax: 100,
- *     sslServerSessionStateTimeout: 60,
- *     sslServerSessionStateType: "both",
- *     type: "static-nat",
- *     weblogicServer: "disable",
- *     websphereServer: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall Vip6 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallVip6:FirewallVip6 labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallVip6:FirewallVip6 labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallVip6 extends pulumi.CustomResource {
     /**
      * Get an existing FirewallVip6 resource's state with the given name, ID, and optional extra
@@ -111,313 +34,82 @@ export class FirewallVip6 extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallVip6.__pulumiType;
     }
 
-    /**
-     * Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-     */
     public readonly addNat64Route!: pulumi.Output<string>;
-    /**
-     * Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
-     */
     public readonly arpReply!: pulumi.Output<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     public readonly color!: pulumi.Output<number>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
-     */
     public readonly embeddedIpv4Address!: pulumi.Output<string>;
-    /**
-     * IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-     */
     public readonly extip!: pulumi.Output<string>;
-    /**
-     * Incoming port number range that you want to map to a port number range on the destination network.
-     */
     public readonly extport!: pulumi.Output<string>;
-    /**
-     * Custom defined ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
-     */
     public readonly httpCookieAge!: pulumi.Output<number>;
-    /**
-     * Domain that HTTP cookie persistence should apply to.
-     */
     public readonly httpCookieDomain!: pulumi.Output<string>;
-    /**
-     * Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-     */
     public readonly httpCookieDomainFromHost!: pulumi.Output<string>;
-    /**
-     * Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-     */
     public readonly httpCookieGeneration!: pulumi.Output<number>;
-    /**
-     * Limit HTTP cookie persistence to the specified path.
-     */
     public readonly httpCookiePath!: pulumi.Output<string>;
-    /**
-     * Control sharing of cookies across virtual servers. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-     */
     public readonly httpCookieShare!: pulumi.Output<string>;
-    /**
-     * For HTTP multiplexing, enable to add the original client IP address in the XForwarded-For HTTP header. Valid values: `enable`, `disable`.
-     */
     public readonly httpIpHeader!: pulumi.Output<string>;
-    /**
-     * For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
-     */
     public readonly httpIpHeaderName!: pulumi.Output<string>;
-    /**
-     * Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
-     */
     public readonly httpMultiplex!: pulumi.Output<string>;
-    /**
-     * Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
-     */
     public readonly httpRedirect!: pulumi.Output<string>;
-    /**
-     * Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-     */
     public readonly httpsCookieSecure!: pulumi.Output<string>;
-    /**
-     * Start-mapped-IPv4-address [-end mapped-IPv4-address].
-     */
     public readonly ipv4Mappedip!: pulumi.Output<string>;
-    /**
-     * IPv4 port number range on the destination network to which the external port number range is mapped.
-     */
     public readonly ipv4Mappedport!: pulumi.Output<string>;
-    /**
-     * Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
-     */
     public readonly ldbMethod!: pulumi.Output<string>;
-    /**
-     * Mapped IP address range in the format startIP-endIP.
-     */
     public readonly mappedip!: pulumi.Output<string>;
-    /**
-     * Port number range on the destination network to which the external port number range is mapped.
-     */
     public readonly mappedport!: pulumi.Output<string>;
-    /**
-     * Maximum number of incomplete connections.
-     */
     public readonly maxEmbryonicConnections!: pulumi.Output<number>;
-    /**
-     * Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
-     */
     public readonly monitors!: pulumi.Output<outputs.FirewallVip6Monitor[] | undefined>;
-    /**
-     * Health monitor name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable DNAT64. Valid values: `disable`, `enable`.
-     */
     public readonly nat64!: pulumi.Output<string>;
-    /**
-     * Enable/disable DNAT66. Valid values: `disable`, `enable`.
-     */
     public readonly nat66!: pulumi.Output<string>;
-    /**
-     * Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
-     */
     public readonly natSourceVip!: pulumi.Output<string>;
-    /**
-     * Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
-     */
     public readonly outlookWebAccess!: pulumi.Output<string>;
-    /**
-     * Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
-     */
     public readonly persistence!: pulumi.Output<string>;
-    /**
-     * Enable port forwarding. Valid values: `disable`, `enable`.
-     */
     public readonly portforward!: pulumi.Output<string>;
-    /**
-     * Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
-     */
     public readonly protocol!: pulumi.Output<string>;
-    /**
-     * Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
-     */
     public readonly realservers!: pulumi.Output<outputs.FirewallVip6Realserver[] | undefined>;
-    /**
-     * Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
-     */
     public readonly serverType!: pulumi.Output<string>;
-    /**
-     * Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
-     */
     public readonly srcFilters!: pulumi.Output<outputs.FirewallVip6SrcFilter[] | undefined>;
-    /**
-     * Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
-     */
     public readonly sslAcceptFfdheGroups!: pulumi.Output<string>;
-    /**
-     * Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
-     */
     public readonly sslAlgorithm!: pulumi.Output<string>;
-    /**
-     * The name of the SSL certificate to use for SSL acceleration.
-     */
     public readonly sslCertificate!: pulumi.Output<string>;
-    /**
-     * SSL/TLS cipher suites acceptable from a client, ordered by priority. The structure of `sslCipherSuites` block is documented below.
-     */
     public readonly sslCipherSuites!: pulumi.Output<outputs.FirewallVip6SslCipherSuite[] | undefined>;
-    /**
-     * Enable/disable support for preventing Downgrade Attacks on client connections (RFC 7507). Valid values: `disable`, `enable`.
-     */
     public readonly sslClientFallback!: pulumi.Output<string>;
-    /**
-     * Maximum length of data in MB before triggering a client rekey (0 = disable).
-     */
     public readonly sslClientRekeyCount!: pulumi.Output<number>;
-    /**
-     * Allow, deny, or require secure renegotiation of client sessions to comply with RFC 5746. Valid values: `allow`, `deny`, `secure`.
-     */
     public readonly sslClientRenegotiation!: pulumi.Output<string>;
-    /**
-     * Maximum number of client to FortiGate SSL session states to keep.
-     */
     public readonly sslClientSessionStateMax!: pulumi.Output<number>;
-    /**
-     * Number of minutes to keep client to FortiGate SSL session state.
-     */
     public readonly sslClientSessionStateTimeout!: pulumi.Output<number>;
-    /**
-     * How to expire SSL sessions for the segment of the SSL connection between the client and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-     */
     public readonly sslClientSessionStateType!: pulumi.Output<string>;
-    /**
-     * Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-     */
     public readonly sslDhBits!: pulumi.Output<string>;
-    /**
-     * Enable/disable including HPKP header in response. Valid values: `disable`, `enable`, `report-only`.
-     */
     public readonly sslHpkp!: pulumi.Output<string>;
-    /**
-     * Number of minutes the web browser should keep HPKP.
-     */
     public readonly sslHpkpAge!: pulumi.Output<number>;
-    /**
-     * Certificate to generate backup HPKP pin from.
-     */
     public readonly sslHpkpBackup!: pulumi.Output<string>;
-    /**
-     * Indicate that HPKP header applies to all subdomains. Valid values: `disable`, `enable`.
-     */
     public readonly sslHpkpIncludeSubdomains!: pulumi.Output<string>;
-    /**
-     * Certificate to generate primary HPKP pin from.
-     */
     public readonly sslHpkpPrimary!: pulumi.Output<string>;
-    /**
-     * URL to report HPKP violations to.
-     */
     public readonly sslHpkpReportUri!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable including HSTS header in response. Valid values: `disable`, `enable`.
-     */
     public readonly sslHsts!: pulumi.Output<string>;
-    /**
-     * Number of seconds the client should honour the HSTS setting.
-     */
     public readonly sslHstsAge!: pulumi.Output<number>;
-    /**
-     * Indicate that HSTS header applies to all subdomains. Valid values: `disable`, `enable`.
-     */
     public readonly sslHstsIncludeSubdomains!: pulumi.Output<string>;
-    /**
-     * Enable to replace HTTP with HTTPS in the reply's Location HTTP header field. Valid values: `enable`, `disable`.
-     */
     public readonly sslHttpLocationConversion!: pulumi.Output<string>;
-    /**
-     * Enable/disable HTTP host matching for location conversion. Valid values: `enable`, `disable`.
-     */
     public readonly sslHttpMatchHost!: pulumi.Output<string>;
-    /**
-     * Highest SSL/TLS version acceptable from a client.
-     */
     public readonly sslMaxVersion!: pulumi.Output<string>;
-    /**
-     * Lowest SSL/TLS version acceptable from a client.
-     */
     public readonly sslMinVersion!: pulumi.Output<string>;
-    /**
-     * Apply SSL offloading between the client and the FortiGate (half) or from the client to the FortiGate and from the FortiGate to the server (full). Valid values: `half`, `full`.
-     */
     public readonly sslMode!: pulumi.Output<string>;
-    /**
-     * Select the cipher suites that can be used for SSL perfect forward secrecy (PFS). Applies to both client and server sessions. Valid values: `require`, `deny`, `allow`.
-     */
     public readonly sslPfs!: pulumi.Output<string>;
-    /**
-     * Enable/disable sending empty fragments to avoid CBC IV attacks (SSL 3.0 & TLS 1.0 only). May need to be disabled for compatibility with older systems. Valid values: `enable`, `disable`.
-     */
     public readonly sslSendEmptyFrags!: pulumi.Output<string>;
-    /**
-     * Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`, `client`.
-     */
     public readonly sslServerAlgorithm!: pulumi.Output<string>;
-    /**
-     * SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslServerCipherSuites` block is documented below.
-     */
     public readonly sslServerCipherSuites!: pulumi.Output<outputs.FirewallVip6SslServerCipherSuite[] | undefined>;
-    /**
-     * Highest SSL/TLS version acceptable from a server. Use the client setting by default.
-     */
     public readonly sslServerMaxVersion!: pulumi.Output<string>;
-    /**
-     * Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
-     */
     public readonly sslServerMinVersion!: pulumi.Output<string>;
-    /**
-     * Maximum number of FortiGate to Server SSL session states to keep.
-     */
     public readonly sslServerSessionStateMax!: pulumi.Output<number>;
-    /**
-     * Number of minutes to keep FortiGate to Server SSL session state.
-     */
     public readonly sslServerSessionStateTimeout!: pulumi.Output<number>;
-    /**
-     * How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-     */
     public readonly sslServerSessionStateType!: pulumi.Output<string>;
-    /**
-     * Configure a static NAT or server load balance VIP.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     public readonly uuid!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
-     */
     public readonly weblogicServer!: pulumi.Output<string>;
-    /**
-     * Enable to add an HTTP header to indicate SSL offloading for a WebSphere server. Valid values: `disable`, `enable`.
-     */
     public readonly websphereServer!: pulumi.Output<string>;
 
     /**
@@ -605,313 +297,82 @@ export class FirewallVip6 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallVip6 resources.
  */
 export interface FirewallVip6State {
-    /**
-     * Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-     */
     addNat64Route?: pulumi.Input<string>;
-    /**
-     * Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
-     */
     arpReply?: pulumi.Input<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
-     */
     embeddedIpv4Address?: pulumi.Input<string>;
-    /**
-     * IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-     */
     extip?: pulumi.Input<string>;
-    /**
-     * Incoming port number range that you want to map to a port number range on the destination network.
-     */
     extport?: pulumi.Input<string>;
-    /**
-     * Custom defined ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
-     */
     httpCookieAge?: pulumi.Input<number>;
-    /**
-     * Domain that HTTP cookie persistence should apply to.
-     */
     httpCookieDomain?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-     */
     httpCookieDomainFromHost?: pulumi.Input<string>;
-    /**
-     * Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-     */
     httpCookieGeneration?: pulumi.Input<number>;
-    /**
-     * Limit HTTP cookie persistence to the specified path.
-     */
     httpCookiePath?: pulumi.Input<string>;
-    /**
-     * Control sharing of cookies across virtual servers. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-     */
     httpCookieShare?: pulumi.Input<string>;
-    /**
-     * For HTTP multiplexing, enable to add the original client IP address in the XForwarded-For HTTP header. Valid values: `enable`, `disable`.
-     */
     httpIpHeader?: pulumi.Input<string>;
-    /**
-     * For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
-     */
     httpIpHeaderName?: pulumi.Input<string>;
-    /**
-     * Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
-     */
     httpMultiplex?: pulumi.Input<string>;
-    /**
-     * Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
-     */
     httpRedirect?: pulumi.Input<string>;
-    /**
-     * Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-     */
     httpsCookieSecure?: pulumi.Input<string>;
-    /**
-     * Start-mapped-IPv4-address [-end mapped-IPv4-address].
-     */
     ipv4Mappedip?: pulumi.Input<string>;
-    /**
-     * IPv4 port number range on the destination network to which the external port number range is mapped.
-     */
     ipv4Mappedport?: pulumi.Input<string>;
-    /**
-     * Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
-     */
     ldbMethod?: pulumi.Input<string>;
-    /**
-     * Mapped IP address range in the format startIP-endIP.
-     */
     mappedip?: pulumi.Input<string>;
-    /**
-     * Port number range on the destination network to which the external port number range is mapped.
-     */
     mappedport?: pulumi.Input<string>;
-    /**
-     * Maximum number of incomplete connections.
-     */
     maxEmbryonicConnections?: pulumi.Input<number>;
-    /**
-     * Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
-     */
     monitors?: pulumi.Input<pulumi.Input<inputs.FirewallVip6Monitor>[]>;
-    /**
-     * Health monitor name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable DNAT64. Valid values: `disable`, `enable`.
-     */
     nat64?: pulumi.Input<string>;
-    /**
-     * Enable/disable DNAT66. Valid values: `disable`, `enable`.
-     */
     nat66?: pulumi.Input<string>;
-    /**
-     * Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
-     */
     natSourceVip?: pulumi.Input<string>;
-    /**
-     * Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
-     */
     outlookWebAccess?: pulumi.Input<string>;
-    /**
-     * Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
-     */
     persistence?: pulumi.Input<string>;
-    /**
-     * Enable port forwarding. Valid values: `disable`, `enable`.
-     */
     portforward?: pulumi.Input<string>;
-    /**
-     * Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
-     */
     realservers?: pulumi.Input<pulumi.Input<inputs.FirewallVip6Realserver>[]>;
-    /**
-     * Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
-     */
     serverType?: pulumi.Input<string>;
-    /**
-     * Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
-     */
     srcFilters?: pulumi.Input<pulumi.Input<inputs.FirewallVip6SrcFilter>[]>;
-    /**
-     * Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
-     */
     sslAcceptFfdheGroups?: pulumi.Input<string>;
-    /**
-     * Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
-     */
     sslAlgorithm?: pulumi.Input<string>;
-    /**
-     * The name of the SSL certificate to use for SSL acceleration.
-     */
     sslCertificate?: pulumi.Input<string>;
-    /**
-     * SSL/TLS cipher suites acceptable from a client, ordered by priority. The structure of `sslCipherSuites` block is documented below.
-     */
     sslCipherSuites?: pulumi.Input<pulumi.Input<inputs.FirewallVip6SslCipherSuite>[]>;
-    /**
-     * Enable/disable support for preventing Downgrade Attacks on client connections (RFC 7507). Valid values: `disable`, `enable`.
-     */
     sslClientFallback?: pulumi.Input<string>;
-    /**
-     * Maximum length of data in MB before triggering a client rekey (0 = disable).
-     */
     sslClientRekeyCount?: pulumi.Input<number>;
-    /**
-     * Allow, deny, or require secure renegotiation of client sessions to comply with RFC 5746. Valid values: `allow`, `deny`, `secure`.
-     */
     sslClientRenegotiation?: pulumi.Input<string>;
-    /**
-     * Maximum number of client to FortiGate SSL session states to keep.
-     */
     sslClientSessionStateMax?: pulumi.Input<number>;
-    /**
-     * Number of minutes to keep client to FortiGate SSL session state.
-     */
     sslClientSessionStateTimeout?: pulumi.Input<number>;
-    /**
-     * How to expire SSL sessions for the segment of the SSL connection between the client and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-     */
     sslClientSessionStateType?: pulumi.Input<string>;
-    /**
-     * Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-     */
     sslDhBits?: pulumi.Input<string>;
-    /**
-     * Enable/disable including HPKP header in response. Valid values: `disable`, `enable`, `report-only`.
-     */
     sslHpkp?: pulumi.Input<string>;
-    /**
-     * Number of minutes the web browser should keep HPKP.
-     */
     sslHpkpAge?: pulumi.Input<number>;
-    /**
-     * Certificate to generate backup HPKP pin from.
-     */
     sslHpkpBackup?: pulumi.Input<string>;
-    /**
-     * Indicate that HPKP header applies to all subdomains. Valid values: `disable`, `enable`.
-     */
     sslHpkpIncludeSubdomains?: pulumi.Input<string>;
-    /**
-     * Certificate to generate primary HPKP pin from.
-     */
     sslHpkpPrimary?: pulumi.Input<string>;
-    /**
-     * URL to report HPKP violations to.
-     */
     sslHpkpReportUri?: pulumi.Input<string>;
-    /**
-     * Enable/disable including HSTS header in response. Valid values: `disable`, `enable`.
-     */
     sslHsts?: pulumi.Input<string>;
-    /**
-     * Number of seconds the client should honour the HSTS setting.
-     */
     sslHstsAge?: pulumi.Input<number>;
-    /**
-     * Indicate that HSTS header applies to all subdomains. Valid values: `disable`, `enable`.
-     */
     sslHstsIncludeSubdomains?: pulumi.Input<string>;
-    /**
-     * Enable to replace HTTP with HTTPS in the reply's Location HTTP header field. Valid values: `enable`, `disable`.
-     */
     sslHttpLocationConversion?: pulumi.Input<string>;
-    /**
-     * Enable/disable HTTP host matching for location conversion. Valid values: `enable`, `disable`.
-     */
     sslHttpMatchHost?: pulumi.Input<string>;
-    /**
-     * Highest SSL/TLS version acceptable from a client.
-     */
     sslMaxVersion?: pulumi.Input<string>;
-    /**
-     * Lowest SSL/TLS version acceptable from a client.
-     */
     sslMinVersion?: pulumi.Input<string>;
-    /**
-     * Apply SSL offloading between the client and the FortiGate (half) or from the client to the FortiGate and from the FortiGate to the server (full). Valid values: `half`, `full`.
-     */
     sslMode?: pulumi.Input<string>;
-    /**
-     * Select the cipher suites that can be used for SSL perfect forward secrecy (PFS). Applies to both client and server sessions. Valid values: `require`, `deny`, `allow`.
-     */
     sslPfs?: pulumi.Input<string>;
-    /**
-     * Enable/disable sending empty fragments to avoid CBC IV attacks (SSL 3.0 & TLS 1.0 only). May need to be disabled for compatibility with older systems. Valid values: `enable`, `disable`.
-     */
     sslSendEmptyFrags?: pulumi.Input<string>;
-    /**
-     * Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`, `client`.
-     */
     sslServerAlgorithm?: pulumi.Input<string>;
-    /**
-     * SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslServerCipherSuites` block is documented below.
-     */
     sslServerCipherSuites?: pulumi.Input<pulumi.Input<inputs.FirewallVip6SslServerCipherSuite>[]>;
-    /**
-     * Highest SSL/TLS version acceptable from a server. Use the client setting by default.
-     */
     sslServerMaxVersion?: pulumi.Input<string>;
-    /**
-     * Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
-     */
     sslServerMinVersion?: pulumi.Input<string>;
-    /**
-     * Maximum number of FortiGate to Server SSL session states to keep.
-     */
     sslServerSessionStateMax?: pulumi.Input<number>;
-    /**
-     * Number of minutes to keep FortiGate to Server SSL session state.
-     */
     sslServerSessionStateTimeout?: pulumi.Input<number>;
-    /**
-     * How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-     */
     sslServerSessionStateType?: pulumi.Input<string>;
-    /**
-     * Configure a static NAT or server load balance VIP.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
-     */
     weblogicServer?: pulumi.Input<string>;
-    /**
-     * Enable to add an HTTP header to indicate SSL offloading for a WebSphere server. Valid values: `disable`, `enable`.
-     */
     websphereServer?: pulumi.Input<string>;
 }
 
@@ -919,312 +380,81 @@ export interface FirewallVip6State {
  * The set of arguments for constructing a FirewallVip6 resource.
  */
 export interface FirewallVip6Args {
-    /**
-     * Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
-     */
     addNat64Route?: pulumi.Input<string>;
-    /**
-     * Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
-     */
     arpReply?: pulumi.Input<string>;
-    /**
-     * Color of icon on the GUI.
-     */
     color?: pulumi.Input<number>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
-     */
     embeddedIpv4Address?: pulumi.Input<string>;
-    /**
-     * IP address or address range on the external interface that you want to map to an address or address range on the destination network.
-     */
     extip: pulumi.Input<string>;
-    /**
-     * Incoming port number range that you want to map to a port number range on the destination network.
-     */
     extport?: pulumi.Input<string>;
-    /**
-     * Custom defined ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
-     */
     httpCookieAge?: pulumi.Input<number>;
-    /**
-     * Domain that HTTP cookie persistence should apply to.
-     */
     httpCookieDomain?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-     */
     httpCookieDomainFromHost?: pulumi.Input<string>;
-    /**
-     * Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-     */
     httpCookieGeneration?: pulumi.Input<number>;
-    /**
-     * Limit HTTP cookie persistence to the specified path.
-     */
     httpCookiePath?: pulumi.Input<string>;
-    /**
-     * Control sharing of cookies across virtual servers. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-     */
     httpCookieShare?: pulumi.Input<string>;
-    /**
-     * For HTTP multiplexing, enable to add the original client IP address in the XForwarded-For HTTP header. Valid values: `enable`, `disable`.
-     */
     httpIpHeader?: pulumi.Input<string>;
-    /**
-     * For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
-     */
     httpIpHeaderName?: pulumi.Input<string>;
-    /**
-     * Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
-     */
     httpMultiplex?: pulumi.Input<string>;
-    /**
-     * Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
-     */
     httpRedirect?: pulumi.Input<string>;
-    /**
-     * Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-     */
     httpsCookieSecure?: pulumi.Input<string>;
-    /**
-     * Start-mapped-IPv4-address [-end mapped-IPv4-address].
-     */
     ipv4Mappedip?: pulumi.Input<string>;
-    /**
-     * IPv4 port number range on the destination network to which the external port number range is mapped.
-     */
     ipv4Mappedport?: pulumi.Input<string>;
-    /**
-     * Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
-     */
     ldbMethod?: pulumi.Input<string>;
-    /**
-     * Mapped IP address range in the format startIP-endIP.
-     */
     mappedip: pulumi.Input<string>;
-    /**
-     * Port number range on the destination network to which the external port number range is mapped.
-     */
     mappedport?: pulumi.Input<string>;
-    /**
-     * Maximum number of incomplete connections.
-     */
     maxEmbryonicConnections?: pulumi.Input<number>;
-    /**
-     * Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
-     */
     monitors?: pulumi.Input<pulumi.Input<inputs.FirewallVip6Monitor>[]>;
-    /**
-     * Health monitor name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable DNAT64. Valid values: `disable`, `enable`.
-     */
     nat64?: pulumi.Input<string>;
-    /**
-     * Enable/disable DNAT66. Valid values: `disable`, `enable`.
-     */
     nat66?: pulumi.Input<string>;
-    /**
-     * Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
-     */
     natSourceVip?: pulumi.Input<string>;
-    /**
-     * Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
-     */
     outlookWebAccess?: pulumi.Input<string>;
-    /**
-     * Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
-     */
     persistence?: pulumi.Input<string>;
-    /**
-     * Enable port forwarding. Valid values: `disable`, `enable`.
-     */
     portforward?: pulumi.Input<string>;
-    /**
-     * Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
-     */
     realservers?: pulumi.Input<pulumi.Input<inputs.FirewallVip6Realserver>[]>;
-    /**
-     * Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
-     */
     serverType?: pulumi.Input<string>;
-    /**
-     * Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
-     */
     srcFilters?: pulumi.Input<pulumi.Input<inputs.FirewallVip6SrcFilter>[]>;
-    /**
-     * Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
-     */
     sslAcceptFfdheGroups?: pulumi.Input<string>;
-    /**
-     * Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
-     */
     sslAlgorithm?: pulumi.Input<string>;
-    /**
-     * The name of the SSL certificate to use for SSL acceleration.
-     */
     sslCertificate?: pulumi.Input<string>;
-    /**
-     * SSL/TLS cipher suites acceptable from a client, ordered by priority. The structure of `sslCipherSuites` block is documented below.
-     */
     sslCipherSuites?: pulumi.Input<pulumi.Input<inputs.FirewallVip6SslCipherSuite>[]>;
-    /**
-     * Enable/disable support for preventing Downgrade Attacks on client connections (RFC 7507). Valid values: `disable`, `enable`.
-     */
     sslClientFallback?: pulumi.Input<string>;
-    /**
-     * Maximum length of data in MB before triggering a client rekey (0 = disable).
-     */
     sslClientRekeyCount?: pulumi.Input<number>;
-    /**
-     * Allow, deny, or require secure renegotiation of client sessions to comply with RFC 5746. Valid values: `allow`, `deny`, `secure`.
-     */
     sslClientRenegotiation?: pulumi.Input<string>;
-    /**
-     * Maximum number of client to FortiGate SSL session states to keep.
-     */
     sslClientSessionStateMax?: pulumi.Input<number>;
-    /**
-     * Number of minutes to keep client to FortiGate SSL session state.
-     */
     sslClientSessionStateTimeout?: pulumi.Input<number>;
-    /**
-     * How to expire SSL sessions for the segment of the SSL connection between the client and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-     */
     sslClientSessionStateType?: pulumi.Input<string>;
-    /**
-     * Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-     */
     sslDhBits?: pulumi.Input<string>;
-    /**
-     * Enable/disable including HPKP header in response. Valid values: `disable`, `enable`, `report-only`.
-     */
     sslHpkp?: pulumi.Input<string>;
-    /**
-     * Number of minutes the web browser should keep HPKP.
-     */
     sslHpkpAge?: pulumi.Input<number>;
-    /**
-     * Certificate to generate backup HPKP pin from.
-     */
     sslHpkpBackup?: pulumi.Input<string>;
-    /**
-     * Indicate that HPKP header applies to all subdomains. Valid values: `disable`, `enable`.
-     */
     sslHpkpIncludeSubdomains?: pulumi.Input<string>;
-    /**
-     * Certificate to generate primary HPKP pin from.
-     */
     sslHpkpPrimary?: pulumi.Input<string>;
-    /**
-     * URL to report HPKP violations to.
-     */
     sslHpkpReportUri?: pulumi.Input<string>;
-    /**
-     * Enable/disable including HSTS header in response. Valid values: `disable`, `enable`.
-     */
     sslHsts?: pulumi.Input<string>;
-    /**
-     * Number of seconds the client should honour the HSTS setting.
-     */
     sslHstsAge?: pulumi.Input<number>;
-    /**
-     * Indicate that HSTS header applies to all subdomains. Valid values: `disable`, `enable`.
-     */
     sslHstsIncludeSubdomains?: pulumi.Input<string>;
-    /**
-     * Enable to replace HTTP with HTTPS in the reply's Location HTTP header field. Valid values: `enable`, `disable`.
-     */
     sslHttpLocationConversion?: pulumi.Input<string>;
-    /**
-     * Enable/disable HTTP host matching for location conversion. Valid values: `enable`, `disable`.
-     */
     sslHttpMatchHost?: pulumi.Input<string>;
-    /**
-     * Highest SSL/TLS version acceptable from a client.
-     */
     sslMaxVersion?: pulumi.Input<string>;
-    /**
-     * Lowest SSL/TLS version acceptable from a client.
-     */
     sslMinVersion?: pulumi.Input<string>;
-    /**
-     * Apply SSL offloading between the client and the FortiGate (half) or from the client to the FortiGate and from the FortiGate to the server (full). Valid values: `half`, `full`.
-     */
     sslMode?: pulumi.Input<string>;
-    /**
-     * Select the cipher suites that can be used for SSL perfect forward secrecy (PFS). Applies to both client and server sessions. Valid values: `require`, `deny`, `allow`.
-     */
     sslPfs?: pulumi.Input<string>;
-    /**
-     * Enable/disable sending empty fragments to avoid CBC IV attacks (SSL 3.0 & TLS 1.0 only). May need to be disabled for compatibility with older systems. Valid values: `enable`, `disable`.
-     */
     sslSendEmptyFrags?: pulumi.Input<string>;
-    /**
-     * Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`, `client`.
-     */
     sslServerAlgorithm?: pulumi.Input<string>;
-    /**
-     * SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslServerCipherSuites` block is documented below.
-     */
     sslServerCipherSuites?: pulumi.Input<pulumi.Input<inputs.FirewallVip6SslServerCipherSuite>[]>;
-    /**
-     * Highest SSL/TLS version acceptable from a server. Use the client setting by default.
-     */
     sslServerMaxVersion?: pulumi.Input<string>;
-    /**
-     * Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
-     */
     sslServerMinVersion?: pulumi.Input<string>;
-    /**
-     * Maximum number of FortiGate to Server SSL session states to keep.
-     */
     sslServerSessionStateMax?: pulumi.Input<number>;
-    /**
-     * Number of minutes to keep FortiGate to Server SSL session state.
-     */
     sslServerSessionStateTimeout?: pulumi.Input<number>;
-    /**
-     * How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-     */
     sslServerSessionStateType?: pulumi.Input<string>;
-    /**
-     * Configure a static NAT or server load balance VIP.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-     */
     uuid?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
-     */
     weblogicServer?: pulumi.Input<string>;
-    /**
-     * Enable to add an HTTP header to indicate SSL offloading for a WebSphere server. Valid values: `disable`, `enable`.
-     */
     websphereServer?: pulumi.Input<string>;
 }

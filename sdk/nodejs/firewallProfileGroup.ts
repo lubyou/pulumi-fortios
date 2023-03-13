@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure profile groups.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallProfileGroup("trname", {
- *     profileProtocolOptions: "default",
- *     sslSshProfile: "deep-inspection",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall ProfileGroup can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallProfileGroup:FirewallProfileGroup labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallProfileGroup:FirewallProfileGroup labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallProfileGroup extends pulumi.CustomResource {
     /**
      * Get an existing FirewallProfileGroup resource's state with the given name, ID, and optional extra
@@ -63,85 +32,26 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallProfileGroup.__pulumiType;
     }
 
-    /**
-     * Name of an existing Application list.
-     */
     public readonly applicationList!: pulumi.Output<string>;
-    /**
-     * Name of an existing Antivirus profile.
-     */
     public readonly avProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing CIFS profile.
-     */
     public readonly cifsProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing DLP sensor.
-     */
+    public readonly dlpProfile!: pulumi.Output<string>;
     public readonly dlpSensor!: pulumi.Output<string>;
-    /**
-     * Name of an existing DNS filter profile.
-     */
     public readonly dnsfilterProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing email filter profile.
-     */
     public readonly emailfilterProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing file-filter profile.
-     */
     public readonly fileFilterProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing ICAP profile.
-     */
     public readonly icapProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing IPS sensor.
-     */
     public readonly ipsSensor!: pulumi.Output<string>;
-    /**
-     * Profile group name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Name of an existing Protocol options profile.
-     */
     public readonly profileProtocolOptions!: pulumi.Output<string>;
-    /**
-     * Name of an existing SCTP filter profile.
-     */
     public readonly sctpFilterProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing Spam filter profile.
-     */
     public readonly spamfilterProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing SSH filter profile.
-     */
     public readonly sshFilterProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing SSL SSH profile.
-     */
     public readonly sslSshProfile!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Name of an existing VideoFilter profile.
-     */
     public readonly videofilterProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing VoIP profile.
-     */
     public readonly voipProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing Web application firewall profile.
-     */
     public readonly wafProfile!: pulumi.Output<string>;
-    /**
-     * Name of an existing Web filter profile.
-     */
     public readonly webfilterProfile!: pulumi.Output<string>;
 
     /**
@@ -160,6 +70,7 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
             resourceInputs["applicationList"] = state ? state.applicationList : undefined;
             resourceInputs["avProfile"] = state ? state.avProfile : undefined;
             resourceInputs["cifsProfile"] = state ? state.cifsProfile : undefined;
+            resourceInputs["dlpProfile"] = state ? state.dlpProfile : undefined;
             resourceInputs["dlpSensor"] = state ? state.dlpSensor : undefined;
             resourceInputs["dnsfilterProfile"] = state ? state.dnsfilterProfile : undefined;
             resourceInputs["emailfilterProfile"] = state ? state.emailfilterProfile : undefined;
@@ -182,6 +93,7 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
             resourceInputs["applicationList"] = args ? args.applicationList : undefined;
             resourceInputs["avProfile"] = args ? args.avProfile : undefined;
             resourceInputs["cifsProfile"] = args ? args.cifsProfile : undefined;
+            resourceInputs["dlpProfile"] = args ? args.dlpProfile : undefined;
             resourceInputs["dlpSensor"] = args ? args.dlpSensor : undefined;
             resourceInputs["dnsfilterProfile"] = args ? args.dnsfilterProfile : undefined;
             resourceInputs["emailfilterProfile"] = args ? args.emailfilterProfile : undefined;
@@ -209,85 +121,26 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallProfileGroup resources.
  */
 export interface FirewallProfileGroupState {
-    /**
-     * Name of an existing Application list.
-     */
     applicationList?: pulumi.Input<string>;
-    /**
-     * Name of an existing Antivirus profile.
-     */
     avProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing CIFS profile.
-     */
     cifsProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing DLP sensor.
-     */
+    dlpProfile?: pulumi.Input<string>;
     dlpSensor?: pulumi.Input<string>;
-    /**
-     * Name of an existing DNS filter profile.
-     */
     dnsfilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing email filter profile.
-     */
     emailfilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing file-filter profile.
-     */
     fileFilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing ICAP profile.
-     */
     icapProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing IPS sensor.
-     */
     ipsSensor?: pulumi.Input<string>;
-    /**
-     * Profile group name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Name of an existing Protocol options profile.
-     */
     profileProtocolOptions?: pulumi.Input<string>;
-    /**
-     * Name of an existing SCTP filter profile.
-     */
     sctpFilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing Spam filter profile.
-     */
     spamfilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing SSH filter profile.
-     */
     sshFilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing SSL SSH profile.
-     */
     sslSshProfile?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Name of an existing VideoFilter profile.
-     */
     videofilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing VoIP profile.
-     */
     voipProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing Web application firewall profile.
-     */
     wafProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing Web filter profile.
-     */
     webfilterProfile?: pulumi.Input<string>;
 }
 
@@ -295,84 +148,25 @@ export interface FirewallProfileGroupState {
  * The set of arguments for constructing a FirewallProfileGroup resource.
  */
 export interface FirewallProfileGroupArgs {
-    /**
-     * Name of an existing Application list.
-     */
     applicationList?: pulumi.Input<string>;
-    /**
-     * Name of an existing Antivirus profile.
-     */
     avProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing CIFS profile.
-     */
     cifsProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing DLP sensor.
-     */
+    dlpProfile?: pulumi.Input<string>;
     dlpSensor?: pulumi.Input<string>;
-    /**
-     * Name of an existing DNS filter profile.
-     */
     dnsfilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing email filter profile.
-     */
     emailfilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing file-filter profile.
-     */
     fileFilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing ICAP profile.
-     */
     icapProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing IPS sensor.
-     */
     ipsSensor?: pulumi.Input<string>;
-    /**
-     * Profile group name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Name of an existing Protocol options profile.
-     */
     profileProtocolOptions?: pulumi.Input<string>;
-    /**
-     * Name of an existing SCTP filter profile.
-     */
     sctpFilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing Spam filter profile.
-     */
     spamfilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing SSH filter profile.
-     */
     sshFilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing SSL SSH profile.
-     */
     sslSshProfile?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Name of an existing VideoFilter profile.
-     */
     videofilterProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing VoIP profile.
-     */
     voipProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing Web application firewall profile.
-     */
     wafProfile?: pulumi.Input<string>;
-    /**
-     * Name of an existing Web filter profile.
-     */
     webfilterProfile?: pulumi.Input<string>;
 }

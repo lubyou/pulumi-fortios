@@ -10,64 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Designate logical storage for DLP fingerprint database.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewDlpSettings(ctx, "trname", &fortios.DlpSettingsArgs{
-// 			CacheMemPercent: pulumi.Int(2),
-// 			ChunkSize:       pulumi.Int(2800),
-// 			DbMode:          pulumi.String("stop-adding"),
-// 			Size:            pulumi.Int(16),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Dlp Settings can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/dlpSettings:DlpSettings labelname DlpSettings
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/dlpSettings:DlpSettings labelname DlpSettings
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type DlpSettings struct {
 	pulumi.CustomResourceState
 
-	// Maximum percentage of available memory allocated to caching (1 - 15%).
-	CacheMemPercent pulumi.IntOutput `pulumi:"cacheMemPercent"`
-	// Maximum fingerprint chunk size.  **Changing will flush the entire database**.
-	ChunkSize pulumi.IntOutput `pulumi:"chunkSize"`
-	// Behaviour when the maximum size is reached. Valid values: `stop-adding`, `remove-modified-then-oldest`, `remove-oldest`.
-	DbMode pulumi.StringOutput `pulumi:"dbMode"`
-	// Maximum total size of files within the storage (MB).
-	Size pulumi.IntOutput `pulumi:"size"`
-	// Storage device name.
-	StorageDevice pulumi.StringOutput `pulumi:"storageDevice"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	CacheMemPercent pulumi.IntOutput       `pulumi:"cacheMemPercent"`
+	ChunkSize       pulumi.IntOutput       `pulumi:"chunkSize"`
+	DbMode          pulumi.StringOutput    `pulumi:"dbMode"`
+	Size            pulumi.IntOutput       `pulumi:"size"`
+	StorageDevice   pulumi.StringOutput    `pulumi:"storageDevice"`
+	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewDlpSettings registers a new resource with the given unique name, arguments, and options.
@@ -100,33 +51,21 @@ func GetDlpSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DlpSettings resources.
 type dlpSettingsState struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%).
-	CacheMemPercent *int `pulumi:"cacheMemPercent"`
-	// Maximum fingerprint chunk size.  **Changing will flush the entire database**.
-	ChunkSize *int `pulumi:"chunkSize"`
-	// Behaviour when the maximum size is reached. Valid values: `stop-adding`, `remove-modified-then-oldest`, `remove-oldest`.
-	DbMode *string `pulumi:"dbMode"`
-	// Maximum total size of files within the storage (MB).
-	Size *int `pulumi:"size"`
-	// Storage device name.
-	StorageDevice *string `pulumi:"storageDevice"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	CacheMemPercent *int    `pulumi:"cacheMemPercent"`
+	ChunkSize       *int    `pulumi:"chunkSize"`
+	DbMode          *string `pulumi:"dbMode"`
+	Size            *int    `pulumi:"size"`
+	StorageDevice   *string `pulumi:"storageDevice"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 type DlpSettingsState struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%).
 	CacheMemPercent pulumi.IntPtrInput
-	// Maximum fingerprint chunk size.  **Changing will flush the entire database**.
-	ChunkSize pulumi.IntPtrInput
-	// Behaviour when the maximum size is reached. Valid values: `stop-adding`, `remove-modified-then-oldest`, `remove-oldest`.
-	DbMode pulumi.StringPtrInput
-	// Maximum total size of files within the storage (MB).
-	Size pulumi.IntPtrInput
-	// Storage device name.
-	StorageDevice pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ChunkSize       pulumi.IntPtrInput
+	DbMode          pulumi.StringPtrInput
+	Size            pulumi.IntPtrInput
+	StorageDevice   pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (DlpSettingsState) ElementType() reflect.Type {
@@ -134,34 +73,22 @@ func (DlpSettingsState) ElementType() reflect.Type {
 }
 
 type dlpSettingsArgs struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%).
-	CacheMemPercent *int `pulumi:"cacheMemPercent"`
-	// Maximum fingerprint chunk size.  **Changing will flush the entire database**.
-	ChunkSize *int `pulumi:"chunkSize"`
-	// Behaviour when the maximum size is reached. Valid values: `stop-adding`, `remove-modified-then-oldest`, `remove-oldest`.
-	DbMode *string `pulumi:"dbMode"`
-	// Maximum total size of files within the storage (MB).
-	Size *int `pulumi:"size"`
-	// Storage device name.
-	StorageDevice *string `pulumi:"storageDevice"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	CacheMemPercent *int    `pulumi:"cacheMemPercent"`
+	ChunkSize       *int    `pulumi:"chunkSize"`
+	DbMode          *string `pulumi:"dbMode"`
+	Size            *int    `pulumi:"size"`
+	StorageDevice   *string `pulumi:"storageDevice"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a DlpSettings resource.
 type DlpSettingsArgs struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%).
 	CacheMemPercent pulumi.IntPtrInput
-	// Maximum fingerprint chunk size.  **Changing will flush the entire database**.
-	ChunkSize pulumi.IntPtrInput
-	// Behaviour when the maximum size is reached. Valid values: `stop-adding`, `remove-modified-then-oldest`, `remove-oldest`.
-	DbMode pulumi.StringPtrInput
-	// Maximum total size of files within the storage (MB).
-	Size pulumi.IntPtrInput
-	// Storage device name.
-	StorageDevice pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ChunkSize       pulumi.IntPtrInput
+	DbMode          pulumi.StringPtrInput
+	Size            pulumi.IntPtrInput
+	StorageDevice   pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (DlpSettingsArgs) ElementType() reflect.Type {
@@ -190,7 +117,7 @@ func (i *DlpSettings) ToDlpSettingsOutputWithContext(ctx context.Context) DlpSet
 // DlpSettingsArrayInput is an input type that accepts DlpSettingsArray and DlpSettingsArrayOutput values.
 // You can construct a concrete instance of `DlpSettingsArrayInput` via:
 //
-//          DlpSettingsArray{ DlpSettingsArgs{...} }
+//	DlpSettingsArray{ DlpSettingsArgs{...} }
 type DlpSettingsArrayInput interface {
 	pulumi.Input
 
@@ -215,7 +142,7 @@ func (i DlpSettingsArray) ToDlpSettingsArrayOutputWithContext(ctx context.Contex
 // DlpSettingsMapInput is an input type that accepts DlpSettingsMap and DlpSettingsMapOutput values.
 // You can construct a concrete instance of `DlpSettingsMapInput` via:
 //
-//          DlpSettingsMap{ "key": DlpSettingsArgs{...} }
+//	DlpSettingsMap{ "key": DlpSettingsArgs{...} }
 type DlpSettingsMapInput interface {
 	pulumi.Input
 
@@ -249,6 +176,30 @@ func (o DlpSettingsOutput) ToDlpSettingsOutput() DlpSettingsOutput {
 
 func (o DlpSettingsOutput) ToDlpSettingsOutputWithContext(ctx context.Context) DlpSettingsOutput {
 	return o
+}
+
+func (o DlpSettingsOutput) CacheMemPercent() pulumi.IntOutput {
+	return o.ApplyT(func(v *DlpSettings) pulumi.IntOutput { return v.CacheMemPercent }).(pulumi.IntOutput)
+}
+
+func (o DlpSettingsOutput) ChunkSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *DlpSettings) pulumi.IntOutput { return v.ChunkSize }).(pulumi.IntOutput)
+}
+
+func (o DlpSettingsOutput) DbMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpSettings) pulumi.StringOutput { return v.DbMode }).(pulumi.StringOutput)
+}
+
+func (o DlpSettingsOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v *DlpSettings) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
+}
+
+func (o DlpSettingsOutput) StorageDevice() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpSettings) pulumi.StringOutput { return v.StorageDevice }).(pulumi.StringOutput)
+}
+
+func (o DlpSettingsOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DlpSettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type DlpSettingsArrayOutput struct{ *pulumi.OutputState }

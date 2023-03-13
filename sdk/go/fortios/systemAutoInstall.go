@@ -10,62 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure USB auto installation.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAutoInstall(ctx, "trname", &fortios.SystemAutoInstallArgs{
-// 			AutoInstallConfig: pulumi.String("enable"),
-// 			AutoInstallImage:  pulumi.String("enable"),
-// 			DefaultConfigFile: pulumi.String("fgt_system.conf"),
-// 			DefaultImageFile:  pulumi.String("image.out"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System AutoInstall can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutoInstall:SystemAutoInstall labelname SystemAutoInstall
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemAutoInstall:SystemAutoInstall labelname SystemAutoInstall
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemAutoInstall struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable auto install the config in USB disk. Valid values: `enable`, `disable`.
-	AutoInstallConfig pulumi.StringOutput `pulumi:"autoInstallConfig"`
-	// Enable/disable auto install the image in USB disk. Valid values: `enable`, `disable`.
-	AutoInstallImage pulumi.StringOutput `pulumi:"autoInstallImage"`
-	// Default config file name in USB disk.
-	DefaultConfigFile pulumi.StringOutput `pulumi:"defaultConfigFile"`
-	// Default image file name in USB disk.
-	DefaultImageFile pulumi.StringOutput `pulumi:"defaultImageFile"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AutoInstallConfig pulumi.StringOutput    `pulumi:"autoInstallConfig"`
+	AutoInstallImage  pulumi.StringOutput    `pulumi:"autoInstallImage"`
+	DefaultConfigFile pulumi.StringOutput    `pulumi:"defaultConfigFile"`
+	DefaultImageFile  pulumi.StringOutput    `pulumi:"defaultImageFile"`
+	Vdomparam         pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemAutoInstall registers a new resource with the given unique name, arguments, and options.
@@ -98,29 +50,19 @@ func GetSystemAutoInstall(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAutoInstall resources.
 type systemAutoInstallState struct {
-	// Enable/disable auto install the config in USB disk. Valid values: `enable`, `disable`.
 	AutoInstallConfig *string `pulumi:"autoInstallConfig"`
-	// Enable/disable auto install the image in USB disk. Valid values: `enable`, `disable`.
-	AutoInstallImage *string `pulumi:"autoInstallImage"`
-	// Default config file name in USB disk.
+	AutoInstallImage  *string `pulumi:"autoInstallImage"`
 	DefaultConfigFile *string `pulumi:"defaultConfigFile"`
-	// Default image file name in USB disk.
-	DefaultImageFile *string `pulumi:"defaultImageFile"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DefaultImageFile  *string `pulumi:"defaultImageFile"`
+	Vdomparam         *string `pulumi:"vdomparam"`
 }
 
 type SystemAutoInstallState struct {
-	// Enable/disable auto install the config in USB disk. Valid values: `enable`, `disable`.
 	AutoInstallConfig pulumi.StringPtrInput
-	// Enable/disable auto install the image in USB disk. Valid values: `enable`, `disable`.
-	AutoInstallImage pulumi.StringPtrInput
-	// Default config file name in USB disk.
+	AutoInstallImage  pulumi.StringPtrInput
 	DefaultConfigFile pulumi.StringPtrInput
-	// Default image file name in USB disk.
-	DefaultImageFile pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	DefaultImageFile  pulumi.StringPtrInput
+	Vdomparam         pulumi.StringPtrInput
 }
 
 func (SystemAutoInstallState) ElementType() reflect.Type {
@@ -128,30 +70,20 @@ func (SystemAutoInstallState) ElementType() reflect.Type {
 }
 
 type systemAutoInstallArgs struct {
-	// Enable/disable auto install the config in USB disk. Valid values: `enable`, `disable`.
 	AutoInstallConfig *string `pulumi:"autoInstallConfig"`
-	// Enable/disable auto install the image in USB disk. Valid values: `enable`, `disable`.
-	AutoInstallImage *string `pulumi:"autoInstallImage"`
-	// Default config file name in USB disk.
+	AutoInstallImage  *string `pulumi:"autoInstallImage"`
 	DefaultConfigFile *string `pulumi:"defaultConfigFile"`
-	// Default image file name in USB disk.
-	DefaultImageFile *string `pulumi:"defaultImageFile"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DefaultImageFile  *string `pulumi:"defaultImageFile"`
+	Vdomparam         *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemAutoInstall resource.
 type SystemAutoInstallArgs struct {
-	// Enable/disable auto install the config in USB disk. Valid values: `enable`, `disable`.
 	AutoInstallConfig pulumi.StringPtrInput
-	// Enable/disable auto install the image in USB disk. Valid values: `enable`, `disable`.
-	AutoInstallImage pulumi.StringPtrInput
-	// Default config file name in USB disk.
+	AutoInstallImage  pulumi.StringPtrInput
 	DefaultConfigFile pulumi.StringPtrInput
-	// Default image file name in USB disk.
-	DefaultImageFile pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	DefaultImageFile  pulumi.StringPtrInput
+	Vdomparam         pulumi.StringPtrInput
 }
 
 func (SystemAutoInstallArgs) ElementType() reflect.Type {
@@ -180,7 +112,7 @@ func (i *SystemAutoInstall) ToSystemAutoInstallOutputWithContext(ctx context.Con
 // SystemAutoInstallArrayInput is an input type that accepts SystemAutoInstallArray and SystemAutoInstallArrayOutput values.
 // You can construct a concrete instance of `SystemAutoInstallArrayInput` via:
 //
-//          SystemAutoInstallArray{ SystemAutoInstallArgs{...} }
+//	SystemAutoInstallArray{ SystemAutoInstallArgs{...} }
 type SystemAutoInstallArrayInput interface {
 	pulumi.Input
 
@@ -205,7 +137,7 @@ func (i SystemAutoInstallArray) ToSystemAutoInstallArrayOutputWithContext(ctx co
 // SystemAutoInstallMapInput is an input type that accepts SystemAutoInstallMap and SystemAutoInstallMapOutput values.
 // You can construct a concrete instance of `SystemAutoInstallMapInput` via:
 //
-//          SystemAutoInstallMap{ "key": SystemAutoInstallArgs{...} }
+//	SystemAutoInstallMap{ "key": SystemAutoInstallArgs{...} }
 type SystemAutoInstallMapInput interface {
 	pulumi.Input
 
@@ -239,6 +171,26 @@ func (o SystemAutoInstallOutput) ToSystemAutoInstallOutput() SystemAutoInstallOu
 
 func (o SystemAutoInstallOutput) ToSystemAutoInstallOutputWithContext(ctx context.Context) SystemAutoInstallOutput {
 	return o
+}
+
+func (o SystemAutoInstallOutput) AutoInstallConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoInstall) pulumi.StringOutput { return v.AutoInstallConfig }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoInstallOutput) AutoInstallImage() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoInstall) pulumi.StringOutput { return v.AutoInstallImage }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoInstallOutput) DefaultConfigFile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoInstall) pulumi.StringOutput { return v.DefaultConfigFile }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoInstallOutput) DefaultImageFile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutoInstall) pulumi.StringOutput { return v.DefaultImageFile }).(pulumi.StringOutput)
+}
+
+func (o SystemAutoInstallOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutoInstall) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemAutoInstallArrayOutput struct{ *pulumi.OutputState }

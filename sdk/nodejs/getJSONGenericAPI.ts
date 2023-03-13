@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a FortiAPI Generic Interface data source.
- */
 export function getJSONGenericAPI(args: GetJSONGenericAPIArgs, opts?: pulumi.InvokeOptions): Promise<GetJSONGenericAPIResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getJSONGenericAPI:GetJSONGenericAPI", {
         "path": args.path,
         "specialparams": args.specialparams,
@@ -24,13 +18,7 @@ export function getJSONGenericAPI(args: GetJSONGenericAPIArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking GetJSONGenericAPI.
  */
 export interface GetJSONGenericAPIArgs {
-    /**
-     * FortiAPI URL path.
-     */
     path: string;
-    /**
-     * URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path..
-     */
     specialparams?: string;
     vdomparam?: string;
 }
@@ -43,36 +31,20 @@ export interface GetJSONGenericAPIResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * FortiAPI URL path.
-     */
     readonly path: string;
-    /**
-     * FortiAPI returns results.
-     */
     readonly response: string;
-    /**
-     * URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path..
-     */
     readonly specialparams?: string;
     readonly vdomparam?: string;
 }
-
 export function getJSONGenericAPIOutput(args: GetJSONGenericAPIOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetJSONGenericAPIResult> {
-    return pulumi.output(args).apply(a => getJSONGenericAPI(a, opts))
+    return pulumi.output(args).apply((a: any) => getJSONGenericAPI(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetJSONGenericAPI.
  */
 export interface GetJSONGenericAPIOutputArgs {
-    /**
-     * FortiAPI URL path.
-     */
     path: pulumi.Input<string>;
-    /**
-     * URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path..
-     */
     specialparams?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

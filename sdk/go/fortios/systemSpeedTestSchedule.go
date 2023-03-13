@@ -10,54 +10,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Speed test schedule for each interface. Applies to FortiOS Version `>= 7.0.0`.
-//
-// ## Import
-//
-// System SpeedTestSchedule can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSpeedTestSchedule:SystemSpeedTestSchedule labelname {{interface}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemSpeedTestSchedule:SystemSpeedTestSchedule labelname {{interface}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemSpeedTestSchedule struct {
 	pulumi.CustomResourceState
 
-	// DSCP used for speed test.
-	Diffserv pulumi.StringOutput `pulumi:"diffserv"`
-	// Enable/disable dynamic server option. Valid values: `disable`, `enable`.
-	DynamicServer pulumi.StringOutput `pulumi:"dynamicServer"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Interface name.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Schedules for the interface. The structure of `schedules` block is documented below.
-	Schedules SystemSpeedTestScheduleScheduleArrayOutput `pulumi:"schedules"`
-	// Speed test server name.
-	ServerName pulumi.StringOutput `pulumi:"serverName"`
-	// Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
-	UpdateInbandwidth pulumi.StringOutput `pulumi:"updateInbandwidth"`
-	// Maximum downloading bandwidth (kbps) to be used in a speed test.
-	UpdateInbandwidthMaximum pulumi.IntOutput `pulumi:"updateInbandwidthMaximum"`
-	// Minimum downloading bandwidth (kbps) to be considered effective.
-	UpdateInbandwidthMinimum pulumi.IntOutput `pulumi:"updateInbandwidthMinimum"`
-	// Enable/disable bypassing interface's outbound bandwidth setting. Valid values: `disable`, `enable`.
-	UpdateOutbandwidth pulumi.StringOutput `pulumi:"updateOutbandwidth"`
-	// Maximum uploading bandwidth (kbps) to be used in a speed test.
-	UpdateOutbandwidthMaximum pulumi.IntOutput `pulumi:"updateOutbandwidthMaximum"`
-	// Minimum uploading bandwidth (kbps) to be considered effective.
-	UpdateOutbandwidthMinimum pulumi.IntOutput `pulumi:"updateOutbandwidthMinimum"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Diffserv                  pulumi.StringOutput                        `pulumi:"diffserv"`
+	DynamicServer             pulumi.StringOutput                        `pulumi:"dynamicServer"`
+	DynamicSortSubtable       pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
+	Interface                 pulumi.StringOutput                        `pulumi:"interface"`
+	Schedules                 SystemSpeedTestScheduleScheduleArrayOutput `pulumi:"schedules"`
+	ServerName                pulumi.StringOutput                        `pulumi:"serverName"`
+	Status                    pulumi.StringOutput                        `pulumi:"status"`
+	UpdateInbandwidth         pulumi.StringOutput                        `pulumi:"updateInbandwidth"`
+	UpdateInbandwidthMaximum  pulumi.IntOutput                           `pulumi:"updateInbandwidthMaximum"`
+	UpdateInbandwidthMinimum  pulumi.IntOutput                           `pulumi:"updateInbandwidthMinimum"`
+	UpdateOutbandwidth        pulumi.StringOutput                        `pulumi:"updateOutbandwidth"`
+	UpdateOutbandwidthMaximum pulumi.IntOutput                           `pulumi:"updateOutbandwidthMaximum"`
+	UpdateOutbandwidthMinimum pulumi.IntOutput                           `pulumi:"updateOutbandwidthMinimum"`
+	Vdomparam                 pulumi.StringPtrOutput                     `pulumi:"vdomparam"`
 }
 
 // NewSystemSpeedTestSchedule registers a new resource with the given unique name, arguments, and options.
@@ -90,65 +59,37 @@ func GetSystemSpeedTestSchedule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSpeedTestSchedule resources.
 type systemSpeedTestScheduleState struct {
-	// DSCP used for speed test.
-	Diffserv *string `pulumi:"diffserv"`
-	// Enable/disable dynamic server option. Valid values: `disable`, `enable`.
-	DynamicServer *string `pulumi:"dynamicServer"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Interface name.
-	Interface *string `pulumi:"interface"`
-	// Schedules for the interface. The structure of `schedules` block is documented below.
-	Schedules []SystemSpeedTestScheduleSchedule `pulumi:"schedules"`
-	// Speed test server name.
-	ServerName *string `pulumi:"serverName"`
-	// Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
-	UpdateInbandwidth *string `pulumi:"updateInbandwidth"`
-	// Maximum downloading bandwidth (kbps) to be used in a speed test.
-	UpdateInbandwidthMaximum *int `pulumi:"updateInbandwidthMaximum"`
-	// Minimum downloading bandwidth (kbps) to be considered effective.
-	UpdateInbandwidthMinimum *int `pulumi:"updateInbandwidthMinimum"`
-	// Enable/disable bypassing interface's outbound bandwidth setting. Valid values: `disable`, `enable`.
-	UpdateOutbandwidth *string `pulumi:"updateOutbandwidth"`
-	// Maximum uploading bandwidth (kbps) to be used in a speed test.
-	UpdateOutbandwidthMaximum *int `pulumi:"updateOutbandwidthMaximum"`
-	// Minimum uploading bandwidth (kbps) to be considered effective.
-	UpdateOutbandwidthMinimum *int `pulumi:"updateOutbandwidthMinimum"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Diffserv                  *string                           `pulumi:"diffserv"`
+	DynamicServer             *string                           `pulumi:"dynamicServer"`
+	DynamicSortSubtable       *string                           `pulumi:"dynamicSortSubtable"`
+	Interface                 *string                           `pulumi:"interface"`
+	Schedules                 []SystemSpeedTestScheduleSchedule `pulumi:"schedules"`
+	ServerName                *string                           `pulumi:"serverName"`
+	Status                    *string                           `pulumi:"status"`
+	UpdateInbandwidth         *string                           `pulumi:"updateInbandwidth"`
+	UpdateInbandwidthMaximum  *int                              `pulumi:"updateInbandwidthMaximum"`
+	UpdateInbandwidthMinimum  *int                              `pulumi:"updateInbandwidthMinimum"`
+	UpdateOutbandwidth        *string                           `pulumi:"updateOutbandwidth"`
+	UpdateOutbandwidthMaximum *int                              `pulumi:"updateOutbandwidthMaximum"`
+	UpdateOutbandwidthMinimum *int                              `pulumi:"updateOutbandwidthMinimum"`
+	Vdomparam                 *string                           `pulumi:"vdomparam"`
 }
 
 type SystemSpeedTestScheduleState struct {
-	// DSCP used for speed test.
-	Diffserv pulumi.StringPtrInput
-	// Enable/disable dynamic server option. Valid values: `disable`, `enable`.
-	DynamicServer pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Interface name.
-	Interface pulumi.StringPtrInput
-	// Schedules for the interface. The structure of `schedules` block is documented below.
-	Schedules SystemSpeedTestScheduleScheduleArrayInput
-	// Speed test server name.
-	ServerName pulumi.StringPtrInput
-	// Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
-	UpdateInbandwidth pulumi.StringPtrInput
-	// Maximum downloading bandwidth (kbps) to be used in a speed test.
-	UpdateInbandwidthMaximum pulumi.IntPtrInput
-	// Minimum downloading bandwidth (kbps) to be considered effective.
-	UpdateInbandwidthMinimum pulumi.IntPtrInput
-	// Enable/disable bypassing interface's outbound bandwidth setting. Valid values: `disable`, `enable`.
-	UpdateOutbandwidth pulumi.StringPtrInput
-	// Maximum uploading bandwidth (kbps) to be used in a speed test.
+	Diffserv                  pulumi.StringPtrInput
+	DynamicServer             pulumi.StringPtrInput
+	DynamicSortSubtable       pulumi.StringPtrInput
+	Interface                 pulumi.StringPtrInput
+	Schedules                 SystemSpeedTestScheduleScheduleArrayInput
+	ServerName                pulumi.StringPtrInput
+	Status                    pulumi.StringPtrInput
+	UpdateInbandwidth         pulumi.StringPtrInput
+	UpdateInbandwidthMaximum  pulumi.IntPtrInput
+	UpdateInbandwidthMinimum  pulumi.IntPtrInput
+	UpdateOutbandwidth        pulumi.StringPtrInput
 	UpdateOutbandwidthMaximum pulumi.IntPtrInput
-	// Minimum uploading bandwidth (kbps) to be considered effective.
 	UpdateOutbandwidthMinimum pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
 }
 
 func (SystemSpeedTestScheduleState) ElementType() reflect.Type {
@@ -156,66 +97,38 @@ func (SystemSpeedTestScheduleState) ElementType() reflect.Type {
 }
 
 type systemSpeedTestScheduleArgs struct {
-	// DSCP used for speed test.
-	Diffserv *string `pulumi:"diffserv"`
-	// Enable/disable dynamic server option. Valid values: `disable`, `enable`.
-	DynamicServer *string `pulumi:"dynamicServer"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Interface name.
-	Interface *string `pulumi:"interface"`
-	// Schedules for the interface. The structure of `schedules` block is documented below.
-	Schedules []SystemSpeedTestScheduleSchedule `pulumi:"schedules"`
-	// Speed test server name.
-	ServerName *string `pulumi:"serverName"`
-	// Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
-	UpdateInbandwidth *string `pulumi:"updateInbandwidth"`
-	// Maximum downloading bandwidth (kbps) to be used in a speed test.
-	UpdateInbandwidthMaximum *int `pulumi:"updateInbandwidthMaximum"`
-	// Minimum downloading bandwidth (kbps) to be considered effective.
-	UpdateInbandwidthMinimum *int `pulumi:"updateInbandwidthMinimum"`
-	// Enable/disable bypassing interface's outbound bandwidth setting. Valid values: `disable`, `enable`.
-	UpdateOutbandwidth *string `pulumi:"updateOutbandwidth"`
-	// Maximum uploading bandwidth (kbps) to be used in a speed test.
-	UpdateOutbandwidthMaximum *int `pulumi:"updateOutbandwidthMaximum"`
-	// Minimum uploading bandwidth (kbps) to be considered effective.
-	UpdateOutbandwidthMinimum *int `pulumi:"updateOutbandwidthMinimum"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Diffserv                  *string                           `pulumi:"diffserv"`
+	DynamicServer             *string                           `pulumi:"dynamicServer"`
+	DynamicSortSubtable       *string                           `pulumi:"dynamicSortSubtable"`
+	Interface                 *string                           `pulumi:"interface"`
+	Schedules                 []SystemSpeedTestScheduleSchedule `pulumi:"schedules"`
+	ServerName                *string                           `pulumi:"serverName"`
+	Status                    *string                           `pulumi:"status"`
+	UpdateInbandwidth         *string                           `pulumi:"updateInbandwidth"`
+	UpdateInbandwidthMaximum  *int                              `pulumi:"updateInbandwidthMaximum"`
+	UpdateInbandwidthMinimum  *int                              `pulumi:"updateInbandwidthMinimum"`
+	UpdateOutbandwidth        *string                           `pulumi:"updateOutbandwidth"`
+	UpdateOutbandwidthMaximum *int                              `pulumi:"updateOutbandwidthMaximum"`
+	UpdateOutbandwidthMinimum *int                              `pulumi:"updateOutbandwidthMinimum"`
+	Vdomparam                 *string                           `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemSpeedTestSchedule resource.
 type SystemSpeedTestScheduleArgs struct {
-	// DSCP used for speed test.
-	Diffserv pulumi.StringPtrInput
-	// Enable/disable dynamic server option. Valid values: `disable`, `enable`.
-	DynamicServer pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Interface name.
-	Interface pulumi.StringPtrInput
-	// Schedules for the interface. The structure of `schedules` block is documented below.
-	Schedules SystemSpeedTestScheduleScheduleArrayInput
-	// Speed test server name.
-	ServerName pulumi.StringPtrInput
-	// Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
-	UpdateInbandwidth pulumi.StringPtrInput
-	// Maximum downloading bandwidth (kbps) to be used in a speed test.
-	UpdateInbandwidthMaximum pulumi.IntPtrInput
-	// Minimum downloading bandwidth (kbps) to be considered effective.
-	UpdateInbandwidthMinimum pulumi.IntPtrInput
-	// Enable/disable bypassing interface's outbound bandwidth setting. Valid values: `disable`, `enable`.
-	UpdateOutbandwidth pulumi.StringPtrInput
-	// Maximum uploading bandwidth (kbps) to be used in a speed test.
+	Diffserv                  pulumi.StringPtrInput
+	DynamicServer             pulumi.StringPtrInput
+	DynamicSortSubtable       pulumi.StringPtrInput
+	Interface                 pulumi.StringPtrInput
+	Schedules                 SystemSpeedTestScheduleScheduleArrayInput
+	ServerName                pulumi.StringPtrInput
+	Status                    pulumi.StringPtrInput
+	UpdateInbandwidth         pulumi.StringPtrInput
+	UpdateInbandwidthMaximum  pulumi.IntPtrInput
+	UpdateInbandwidthMinimum  pulumi.IntPtrInput
+	UpdateOutbandwidth        pulumi.StringPtrInput
 	UpdateOutbandwidthMaximum pulumi.IntPtrInput
-	// Minimum uploading bandwidth (kbps) to be considered effective.
 	UpdateOutbandwidthMinimum pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam                 pulumi.StringPtrInput
 }
 
 func (SystemSpeedTestScheduleArgs) ElementType() reflect.Type {
@@ -244,7 +157,7 @@ func (i *SystemSpeedTestSchedule) ToSystemSpeedTestScheduleOutputWithContext(ctx
 // SystemSpeedTestScheduleArrayInput is an input type that accepts SystemSpeedTestScheduleArray and SystemSpeedTestScheduleArrayOutput values.
 // You can construct a concrete instance of `SystemSpeedTestScheduleArrayInput` via:
 //
-//          SystemSpeedTestScheduleArray{ SystemSpeedTestScheduleArgs{...} }
+//	SystemSpeedTestScheduleArray{ SystemSpeedTestScheduleArgs{...} }
 type SystemSpeedTestScheduleArrayInput interface {
 	pulumi.Input
 
@@ -269,7 +182,7 @@ func (i SystemSpeedTestScheduleArray) ToSystemSpeedTestScheduleArrayOutputWithCo
 // SystemSpeedTestScheduleMapInput is an input type that accepts SystemSpeedTestScheduleMap and SystemSpeedTestScheduleMapOutput values.
 // You can construct a concrete instance of `SystemSpeedTestScheduleMapInput` via:
 //
-//          SystemSpeedTestScheduleMap{ "key": SystemSpeedTestScheduleArgs{...} }
+//	SystemSpeedTestScheduleMap{ "key": SystemSpeedTestScheduleArgs{...} }
 type SystemSpeedTestScheduleMapInput interface {
 	pulumi.Input
 
@@ -303,6 +216,62 @@ func (o SystemSpeedTestScheduleOutput) ToSystemSpeedTestScheduleOutput() SystemS
 
 func (o SystemSpeedTestScheduleOutput) ToSystemSpeedTestScheduleOutputWithContext(ctx context.Context) SystemSpeedTestScheduleOutput {
 	return o
+}
+
+func (o SystemSpeedTestScheduleOutput) Diffserv() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.StringOutput { return v.Diffserv }).(pulumi.StringOutput)
+}
+
+func (o SystemSpeedTestScheduleOutput) DynamicServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.StringOutput { return v.DynamicServer }).(pulumi.StringOutput)
+}
+
+func (o SystemSpeedTestScheduleOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSpeedTestScheduleOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemSpeedTestScheduleOutput) Schedules() SystemSpeedTestScheduleScheduleArrayOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) SystemSpeedTestScheduleScheduleArrayOutput { return v.Schedules }).(SystemSpeedTestScheduleScheduleArrayOutput)
+}
+
+func (o SystemSpeedTestScheduleOutput) ServerName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.StringOutput { return v.ServerName }).(pulumi.StringOutput)
+}
+
+func (o SystemSpeedTestScheduleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemSpeedTestScheduleOutput) UpdateInbandwidth() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.StringOutput { return v.UpdateInbandwidth }).(pulumi.StringOutput)
+}
+
+func (o SystemSpeedTestScheduleOutput) UpdateInbandwidthMaximum() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.IntOutput { return v.UpdateInbandwidthMaximum }).(pulumi.IntOutput)
+}
+
+func (o SystemSpeedTestScheduleOutput) UpdateInbandwidthMinimum() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.IntOutput { return v.UpdateInbandwidthMinimum }).(pulumi.IntOutput)
+}
+
+func (o SystemSpeedTestScheduleOutput) UpdateOutbandwidth() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.StringOutput { return v.UpdateOutbandwidth }).(pulumi.StringOutput)
+}
+
+func (o SystemSpeedTestScheduleOutput) UpdateOutbandwidthMaximum() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.IntOutput { return v.UpdateOutbandwidthMaximum }).(pulumi.IntOutput)
+}
+
+func (o SystemSpeedTestScheduleOutput) UpdateOutbandwidthMinimum() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.IntOutput { return v.UpdateOutbandwidthMinimum }).(pulumi.IntOutput)
+}
+
+func (o SystemSpeedTestScheduleOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemSpeedTestScheduleArrayOutput struct{ *pulumi.OutputState }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `RouterPolicy`.
 func GetRouterPolicyList(ctx *pulumi.Context, args *GetRouterPolicyListArgs, opts ...pulumi.InvokeOption) (*GetRouterPolicyListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetRouterPolicyListResult
@@ -23,8 +22,7 @@ func GetRouterPolicyList(ctx *pulumi.Context, args *GetRouterPolicyListArgs, opt
 
 // A collection of arguments for invoking GetRouterPolicyList.
 type GetRouterPolicyListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetRouterPolicyListArgs struct {
 type GetRouterPolicyListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `RouterPolicy`.
+	Id          string  `pulumi:"id"`
 	SeqNumlists []int   `pulumi:"seqNumlists"`
 	Vdomparam   *string `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetRouterPolicyListOutput(ctx *pulumi.Context, args GetRouterPolicyListOutp
 
 // A collection of arguments for invoking GetRouterPolicyList.
 type GetRouterPolicyListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetRouterPolicyListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRouterPolicyListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `RouterPolicy`.
 func (o GetRouterPolicyListResultOutput) SeqNumlists() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v GetRouterPolicyListResult) []int { return v.SeqNumlists }).(pulumi.IntArrayOutput)
 }

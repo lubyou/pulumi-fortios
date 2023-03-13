@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure QoS map set.
-//
-// ## Import
-//
-// WirelessControllerHotspot20 QosMap can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20QosMap:WirelessControllerHotspot20QosMap labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerHotspot20QosMap:WirelessControllerHotspot20QosMap labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerHotspot20QosMap struct {
 	pulumi.CustomResourceState
 
-	// Differentiated Services Code Point (DSCP) exceptions. The structure of `dscpExcept` block is documented below.
-	DscpExcepts WirelessControllerHotspot20QosMapDscpExceptArrayOutput `pulumi:"dscpExcepts"`
-	// Differentiated Services Code Point (DSCP) ranges. The structure of `dscpRange` block is documented below.
-	DscpRanges WirelessControllerHotspot20QosMapDscpRangeArrayOutput `pulumi:"dscpRanges"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// QOS-MAP name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DscpExcepts         WirelessControllerHotspot20QosMapDscpExceptArrayOutput `pulumi:"dscpExcepts"`
+	DscpRanges          WirelessControllerHotspot20QosMapDscpRangeArrayOutput  `pulumi:"dscpRanges"`
+	DynamicSortSubtable pulumi.StringPtrOutput                                 `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                                    `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                                 `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerHotspot20QosMap registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetWirelessControllerHotspot20QosMap(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerHotspot20QosMap resources.
 type wirelessControllerHotspot20QosMapState struct {
-	// Differentiated Services Code Point (DSCP) exceptions. The structure of `dscpExcept` block is documented below.
-	DscpExcepts []WirelessControllerHotspot20QosMapDscpExcept `pulumi:"dscpExcepts"`
-	// Differentiated Services Code Point (DSCP) ranges. The structure of `dscpRange` block is documented below.
-	DscpRanges []WirelessControllerHotspot20QosMapDscpRange `pulumi:"dscpRanges"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// QOS-MAP name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DscpExcepts         []WirelessControllerHotspot20QosMapDscpExcept `pulumi:"dscpExcepts"`
+	DscpRanges          []WirelessControllerHotspot20QosMapDscpRange  `pulumi:"dscpRanges"`
+	DynamicSortSubtable *string                                       `pulumi:"dynamicSortSubtable"`
+	Name                *string                                       `pulumi:"name"`
+	Vdomparam           *string                                       `pulumi:"vdomparam"`
 }
 
 type WirelessControllerHotspot20QosMapState struct {
-	// Differentiated Services Code Point (DSCP) exceptions. The structure of `dscpExcept` block is documented below.
-	DscpExcepts WirelessControllerHotspot20QosMapDscpExceptArrayInput
-	// Differentiated Services Code Point (DSCP) ranges. The structure of `dscpRange` block is documented below.
-	DscpRanges WirelessControllerHotspot20QosMapDscpRangeArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DscpExcepts         WirelessControllerHotspot20QosMapDscpExceptArrayInput
+	DscpRanges          WirelessControllerHotspot20QosMapDscpRangeArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// QOS-MAP name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20QosMapState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (WirelessControllerHotspot20QosMapState) ElementType() reflect.Type {
 }
 
 type wirelessControllerHotspot20QosMapArgs struct {
-	// Differentiated Services Code Point (DSCP) exceptions. The structure of `dscpExcept` block is documented below.
-	DscpExcepts []WirelessControllerHotspot20QosMapDscpExcept `pulumi:"dscpExcepts"`
-	// Differentiated Services Code Point (DSCP) ranges. The structure of `dscpRange` block is documented below.
-	DscpRanges []WirelessControllerHotspot20QosMapDscpRange `pulumi:"dscpRanges"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// QOS-MAP name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DscpExcepts         []WirelessControllerHotspot20QosMapDscpExcept `pulumi:"dscpExcepts"`
+	DscpRanges          []WirelessControllerHotspot20QosMapDscpRange  `pulumi:"dscpRanges"`
+	DynamicSortSubtable *string                                       `pulumi:"dynamicSortSubtable"`
+	Name                *string                                       `pulumi:"name"`
+	Vdomparam           *string                                       `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerHotspot20QosMap resource.
 type WirelessControllerHotspot20QosMapArgs struct {
-	// Differentiated Services Code Point (DSCP) exceptions. The structure of `dscpExcept` block is documented below.
-	DscpExcepts WirelessControllerHotspot20QosMapDscpExceptArrayInput
-	// Differentiated Services Code Point (DSCP) ranges. The structure of `dscpRange` block is documented below.
-	DscpRanges WirelessControllerHotspot20QosMapDscpRangeArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DscpExcepts         WirelessControllerHotspot20QosMapDscpExceptArrayInput
+	DscpRanges          WirelessControllerHotspot20QosMapDscpRangeArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// QOS-MAP name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerHotspot20QosMapArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *WirelessControllerHotspot20QosMap) ToWirelessControllerHotspot20QosMapO
 // WirelessControllerHotspot20QosMapArrayInput is an input type that accepts WirelessControllerHotspot20QosMapArray and WirelessControllerHotspot20QosMapArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20QosMapArrayInput` via:
 //
-//          WirelessControllerHotspot20QosMapArray{ WirelessControllerHotspot20QosMapArgs{...} }
+//	WirelessControllerHotspot20QosMapArray{ WirelessControllerHotspot20QosMapArgs{...} }
 type WirelessControllerHotspot20QosMapArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i WirelessControllerHotspot20QosMapArray) ToWirelessControllerHotspot20Qos
 // WirelessControllerHotspot20QosMapMapInput is an input type that accepts WirelessControllerHotspot20QosMapMap and WirelessControllerHotspot20QosMapMapOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20QosMapMapInput` via:
 //
-//          WirelessControllerHotspot20QosMapMap{ "key": WirelessControllerHotspot20QosMapArgs{...} }
+//	WirelessControllerHotspot20QosMapMap{ "key": WirelessControllerHotspot20QosMapArgs{...} }
 type WirelessControllerHotspot20QosMapMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,30 @@ func (o WirelessControllerHotspot20QosMapOutput) ToWirelessControllerHotspot20Qo
 
 func (o WirelessControllerHotspot20QosMapOutput) ToWirelessControllerHotspot20QosMapOutputWithContext(ctx context.Context) WirelessControllerHotspot20QosMapOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20QosMapOutput) DscpExcepts() WirelessControllerHotspot20QosMapDscpExceptArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20QosMap) WirelessControllerHotspot20QosMapDscpExceptArrayOutput {
+		return v.DscpExcepts
+	}).(WirelessControllerHotspot20QosMapDscpExceptArrayOutput)
+}
+
+func (o WirelessControllerHotspot20QosMapOutput) DscpRanges() WirelessControllerHotspot20QosMapDscpRangeArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20QosMap) WirelessControllerHotspot20QosMapDscpRangeArrayOutput {
+		return v.DscpRanges
+	}).(WirelessControllerHotspot20QosMapDscpRangeArrayOutput)
+}
+
+func (o WirelessControllerHotspot20QosMapOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20QosMap) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20QosMapOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20QosMap) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerHotspot20QosMapOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20QosMap) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerHotspot20QosMapArrayOutput struct{ *pulumi.OutputState }

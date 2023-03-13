@@ -2,43 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure venue name duple.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WirelessControllerHotspot20AnqpVenueName("trname", {
- *     valueLists: [{
- *         index: 1,
- *         lang: "CN",
- *         value: "3",
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * WirelessControllerHotspot20 AnqpVenueName can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20AnqpVenueName:WirelessControllerHotspot20AnqpVenueName labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20AnqpVenueName:WirelessControllerHotspot20AnqpVenueName labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerHotspot20AnqpVenueName extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerHotspot20AnqpVenueName resource's state with the given name, ID, and optional extra
@@ -67,21 +34,9 @@ export class WirelessControllerHotspot20AnqpVenueName extends pulumi.CustomResou
         return obj['__pulumiType'] === WirelessControllerHotspot20AnqpVenueName.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Name of venue name duple.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Name list. The structure of `valueList` block is documented below.
-     */
     public readonly valueLists!: pulumi.Output<outputs.WirelessControllerHotspot20AnqpVenueNameValueList[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -117,21 +72,9 @@ export class WirelessControllerHotspot20AnqpVenueName extends pulumi.CustomResou
  * Input properties used for looking up and filtering WirelessControllerHotspot20AnqpVenueName resources.
  */
 export interface WirelessControllerHotspot20AnqpVenueNameState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Name of venue name duple.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Name list. The structure of `valueList` block is documented below.
-     */
     valueLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20AnqpVenueNameValueList>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -139,20 +82,8 @@ export interface WirelessControllerHotspot20AnqpVenueNameState {
  * The set of arguments for constructing a WirelessControllerHotspot20AnqpVenueName resource.
  */
 export interface WirelessControllerHotspot20AnqpVenueNameArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Name of venue name duple.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Name list. The structure of `valueList` block is documented below.
-     */
     valueLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20AnqpVenueNameValueList>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

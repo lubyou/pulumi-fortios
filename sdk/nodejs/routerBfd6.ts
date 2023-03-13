@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure IPv6 BFD.
- *
- * ## Import
- *
- * Router Bfd6 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerBfd6:RouterBfd6 labelname RouterBfd6
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerBfd6:RouterBfd6 labelname RouterBfd6
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterBfd6 extends pulumi.CustomResource {
     /**
      * Get an existing RouterBfd6 resource's state with the given name, ID, and optional extra
@@ -52,17 +34,9 @@ export class RouterBfd6 extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterBfd6.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Configure neighbor of IPv6 BFD. The structure of `neighbor` block is documented below.
-     */
+    public readonly multihopTemplates!: pulumi.Output<outputs.RouterBfd6MultihopTemplate[] | undefined>;
     public readonly neighbors!: pulumi.Output<outputs.RouterBfd6Neighbor[] | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -79,11 +53,13 @@ export class RouterBfd6 extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as RouterBfd6State | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["multihopTemplates"] = state ? state.multihopTemplates : undefined;
             resourceInputs["neighbors"] = state ? state.neighbors : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as RouterBfd6Args | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["multihopTemplates"] = args ? args.multihopTemplates : undefined;
             resourceInputs["neighbors"] = args ? args.neighbors : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -96,17 +72,9 @@ export class RouterBfd6 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterBfd6 resources.
  */
 export interface RouterBfd6State {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Configure neighbor of IPv6 BFD. The structure of `neighbor` block is documented below.
-     */
+    multihopTemplates?: pulumi.Input<pulumi.Input<inputs.RouterBfd6MultihopTemplate>[]>;
     neighbors?: pulumi.Input<pulumi.Input<inputs.RouterBfd6Neighbor>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -114,16 +82,8 @@ export interface RouterBfd6State {
  * The set of arguments for constructing a RouterBfd6 resource.
  */
 export interface RouterBfd6Args {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Configure neighbor of IPv6 BFD. The structure of `neighbor` block is documented below.
-     */
+    multihopTemplates?: pulumi.Input<pulumi.Input<inputs.RouterBfd6MultihopTemplate>[]>;
     neighbors?: pulumi.Input<pulumi.Input<inputs.RouterBfd6Neighbor>[]>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

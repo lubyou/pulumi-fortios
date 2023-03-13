@@ -10,40 +10,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiGate Session Life Support Protocol (FGSP) cluster attributes. Applies to FortiOS Version `>= 6.4.0`.
-//
-// ## Import
-//
-// System StandaloneCluster can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemStandaloneCluster:SystemStandaloneCluster labelname SystemStandaloneCluster
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemStandaloneCluster:SystemStandaloneCluster labelname SystemStandaloneCluster
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemStandaloneCluster struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
-	Encryption pulumi.StringOutput `pulumi:"encryption"`
-	// Cluster member ID (0 - 3).
-	GroupMemberId pulumi.IntOutput `pulumi:"groupMemberId"`
-	// Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
-	Layer2Connection pulumi.StringOutput `pulumi:"layer2Connection"`
-	// Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
-	Psksecret pulumi.StringPtrOutput `pulumi:"psksecret"`
-	// Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
-	SessionSyncDev pulumi.StringOutput `pulumi:"sessionSyncDev"`
-	// Cluster group ID (0 - 255). Must be the same for all members.
-	StandaloneGroupId pulumi.IntOutput `pulumi:"standaloneGroupId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	ClusterPeers        SystemStandaloneClusterClusterPeerArrayOutput `pulumi:"clusterPeers"`
+	DynamicSortSubtable pulumi.StringPtrOutput                        `pulumi:"dynamicSortSubtable"`
+	Encryption          pulumi.StringOutput                           `pulumi:"encryption"`
+	GroupMemberId       pulumi.IntOutput                              `pulumi:"groupMemberId"`
+	Layer2Connection    pulumi.StringOutput                           `pulumi:"layer2Connection"`
+	Psksecret           pulumi.StringPtrOutput                        `pulumi:"psksecret"`
+	SessionSyncDev      pulumi.StringOutput                           `pulumi:"sessionSyncDev"`
+	StandaloneGroupId   pulumi.IntOutput                              `pulumi:"standaloneGroupId"`
+	Vdomparam           pulumi.StringPtrOutput                        `pulumi:"vdomparam"`
 }
 
 // NewSystemStandaloneCluster registers a new resource with the given unique name, arguments, and options.
@@ -53,6 +31,13 @@ func NewSystemStandaloneCluster(ctx *pulumi.Context,
 		args = &SystemStandaloneClusterArgs{}
 	}
 
+	if args.Psksecret != nil {
+		args.Psksecret = pulumi.ToSecret(args.Psksecret).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"psksecret",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemStandaloneCluster
 	err := ctx.RegisterResource("fortios:index/systemStandaloneCluster:SystemStandaloneCluster", name, args, &resource, opts...)
@@ -76,37 +61,27 @@ func GetSystemStandaloneCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemStandaloneCluster resources.
 type systemStandaloneClusterState struct {
-	// Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
-	Encryption *string `pulumi:"encryption"`
-	// Cluster member ID (0 - 3).
-	GroupMemberId *int `pulumi:"groupMemberId"`
-	// Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
-	Layer2Connection *string `pulumi:"layer2Connection"`
-	// Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
-	Psksecret *string `pulumi:"psksecret"`
-	// Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
-	SessionSyncDev *string `pulumi:"sessionSyncDev"`
-	// Cluster group ID (0 - 255). Must be the same for all members.
-	StandaloneGroupId *int `pulumi:"standaloneGroupId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ClusterPeers        []SystemStandaloneClusterClusterPeer `pulumi:"clusterPeers"`
+	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
+	Encryption          *string                              `pulumi:"encryption"`
+	GroupMemberId       *int                                 `pulumi:"groupMemberId"`
+	Layer2Connection    *string                              `pulumi:"layer2Connection"`
+	Psksecret           *string                              `pulumi:"psksecret"`
+	SessionSyncDev      *string                              `pulumi:"sessionSyncDev"`
+	StandaloneGroupId   *int                                 `pulumi:"standaloneGroupId"`
+	Vdomparam           *string                              `pulumi:"vdomparam"`
 }
 
 type SystemStandaloneClusterState struct {
-	// Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
-	Encryption pulumi.StringPtrInput
-	// Cluster member ID (0 - 3).
-	GroupMemberId pulumi.IntPtrInput
-	// Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
-	Layer2Connection pulumi.StringPtrInput
-	// Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
-	Psksecret pulumi.StringPtrInput
-	// Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
-	SessionSyncDev pulumi.StringPtrInput
-	// Cluster group ID (0 - 255). Must be the same for all members.
-	StandaloneGroupId pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ClusterPeers        SystemStandaloneClusterClusterPeerArrayInput
+	DynamicSortSubtable pulumi.StringPtrInput
+	Encryption          pulumi.StringPtrInput
+	GroupMemberId       pulumi.IntPtrInput
+	Layer2Connection    pulumi.StringPtrInput
+	Psksecret           pulumi.StringPtrInput
+	SessionSyncDev      pulumi.StringPtrInput
+	StandaloneGroupId   pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemStandaloneClusterState) ElementType() reflect.Type {
@@ -114,38 +89,28 @@ func (SystemStandaloneClusterState) ElementType() reflect.Type {
 }
 
 type systemStandaloneClusterArgs struct {
-	// Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
-	Encryption *string `pulumi:"encryption"`
-	// Cluster member ID (0 - 3).
-	GroupMemberId *int `pulumi:"groupMemberId"`
-	// Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
-	Layer2Connection *string `pulumi:"layer2Connection"`
-	// Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
-	Psksecret *string `pulumi:"psksecret"`
-	// Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
-	SessionSyncDev *string `pulumi:"sessionSyncDev"`
-	// Cluster group ID (0 - 255). Must be the same for all members.
-	StandaloneGroupId *int `pulumi:"standaloneGroupId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ClusterPeers        []SystemStandaloneClusterClusterPeer `pulumi:"clusterPeers"`
+	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
+	Encryption          *string                              `pulumi:"encryption"`
+	GroupMemberId       *int                                 `pulumi:"groupMemberId"`
+	Layer2Connection    *string                              `pulumi:"layer2Connection"`
+	Psksecret           *string                              `pulumi:"psksecret"`
+	SessionSyncDev      *string                              `pulumi:"sessionSyncDev"`
+	StandaloneGroupId   *int                                 `pulumi:"standaloneGroupId"`
+	Vdomparam           *string                              `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemStandaloneCluster resource.
 type SystemStandaloneClusterArgs struct {
-	// Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
-	Encryption pulumi.StringPtrInput
-	// Cluster member ID (0 - 3).
-	GroupMemberId pulumi.IntPtrInput
-	// Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
-	Layer2Connection pulumi.StringPtrInput
-	// Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
-	Psksecret pulumi.StringPtrInput
-	// Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
-	SessionSyncDev pulumi.StringPtrInput
-	// Cluster group ID (0 - 255). Must be the same for all members.
-	StandaloneGroupId pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ClusterPeers        SystemStandaloneClusterClusterPeerArrayInput
+	DynamicSortSubtable pulumi.StringPtrInput
+	Encryption          pulumi.StringPtrInput
+	GroupMemberId       pulumi.IntPtrInput
+	Layer2Connection    pulumi.StringPtrInput
+	Psksecret           pulumi.StringPtrInput
+	SessionSyncDev      pulumi.StringPtrInput
+	StandaloneGroupId   pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemStandaloneClusterArgs) ElementType() reflect.Type {
@@ -174,7 +139,7 @@ func (i *SystemStandaloneCluster) ToSystemStandaloneClusterOutputWithContext(ctx
 // SystemStandaloneClusterArrayInput is an input type that accepts SystemStandaloneClusterArray and SystemStandaloneClusterArrayOutput values.
 // You can construct a concrete instance of `SystemStandaloneClusterArrayInput` via:
 //
-//          SystemStandaloneClusterArray{ SystemStandaloneClusterArgs{...} }
+//	SystemStandaloneClusterArray{ SystemStandaloneClusterArgs{...} }
 type SystemStandaloneClusterArrayInput interface {
 	pulumi.Input
 
@@ -199,7 +164,7 @@ func (i SystemStandaloneClusterArray) ToSystemStandaloneClusterArrayOutputWithCo
 // SystemStandaloneClusterMapInput is an input type that accepts SystemStandaloneClusterMap and SystemStandaloneClusterMapOutput values.
 // You can construct a concrete instance of `SystemStandaloneClusterMapInput` via:
 //
-//          SystemStandaloneClusterMap{ "key": SystemStandaloneClusterArgs{...} }
+//	SystemStandaloneClusterMap{ "key": SystemStandaloneClusterArgs{...} }
 type SystemStandaloneClusterMapInput interface {
 	pulumi.Input
 
@@ -233,6 +198,42 @@ func (o SystemStandaloneClusterOutput) ToSystemStandaloneClusterOutput() SystemS
 
 func (o SystemStandaloneClusterOutput) ToSystemStandaloneClusterOutputWithContext(ctx context.Context) SystemStandaloneClusterOutput {
 	return o
+}
+
+func (o SystemStandaloneClusterOutput) ClusterPeers() SystemStandaloneClusterClusterPeerArrayOutput {
+	return o.ApplyT(func(v *SystemStandaloneCluster) SystemStandaloneClusterClusterPeerArrayOutput { return v.ClusterPeers }).(SystemStandaloneClusterClusterPeerArrayOutput)
+}
+
+func (o SystemStandaloneClusterOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemStandaloneCluster) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemStandaloneClusterOutput) Encryption() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemStandaloneCluster) pulumi.StringOutput { return v.Encryption }).(pulumi.StringOutput)
+}
+
+func (o SystemStandaloneClusterOutput) GroupMemberId() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemStandaloneCluster) pulumi.IntOutput { return v.GroupMemberId }).(pulumi.IntOutput)
+}
+
+func (o SystemStandaloneClusterOutput) Layer2Connection() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemStandaloneCluster) pulumi.StringOutput { return v.Layer2Connection }).(pulumi.StringOutput)
+}
+
+func (o SystemStandaloneClusterOutput) Psksecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemStandaloneCluster) pulumi.StringPtrOutput { return v.Psksecret }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemStandaloneClusterOutput) SessionSyncDev() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemStandaloneCluster) pulumi.StringOutput { return v.SessionSyncDev }).(pulumi.StringOutput)
+}
+
+func (o SystemStandaloneClusterOutput) StandaloneGroupId() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemStandaloneCluster) pulumi.IntOutput { return v.StandaloneGroupId }).(pulumi.IntOutput)
+}
+
+func (o SystemStandaloneClusterOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemStandaloneCluster) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemStandaloneClusterArrayOutput struct{ *pulumi.OutputState }

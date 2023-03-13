@@ -4,54 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure firewall service of FortiOS.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.FirewallServiceCustom`, we recommend that you use the new resource.
- *
- * ## Example Usage
- * ### Fqdn Service
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const v11 = new fortios.FirewallObjectService("v11", {
- *     category: "General",
- *     comment: "comment",
- *     fqdn: "abc.com",
- *     protocol: "TCP/UDP/SCTP",
- * });
- * ```
- * ### Iprange Service
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const v13 = new fortios.FirewallObjectService("v13", {
- *     category: "General",
- *     comment: "comment",
- *     iprange: "1.1.1.1-2.2.2.2",
- *     protocol: "TCP/UDP/SCTP",
- *     sctpPortrange: "66-88",
- *     tcpPortrange: "22-33",
- *     udpPortrange: "44-55",
- * });
- * ```
- * ### ICMP Service
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const iCMP = new fortios.FirewallObjectService("ICMP", {
- *     category: "General",
- *     comment: "comment",
- *     icmpcode: "3",
- *     icmptype: "2",
- *     protocol: "ICMP",
- *     protocolNumber: "1",
- * });
- * ```
- */
 export class FirewallObjectService extends pulumi.CustomResource {
     /**
      * Get an existing FirewallObjectService resource's state with the given name, ID, and optional extra
@@ -80,57 +32,18 @@ export class FirewallObjectService extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallObjectService.__pulumiType;
     }
 
-    /**
-     * Service category.
-     */
     public readonly category!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Fully qualified domain name.
-     */
     public readonly fqdn!: pulumi.Output<string>;
-    /**
-     * ICMP code.
-     */
     public readonly icmpcode!: pulumi.Output<string>;
-    /**
-     * ICMP type.
-     */
     public readonly icmptype!: pulumi.Output<string>;
-    /**
-     * Start and end of the IP range associated with service.
-     */
     public readonly iprange!: pulumi.Output<string>;
-    /**
-     * Number of minutes before an idle administrator session time out.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Protocol type based on IANA numbers.
-     */
     public readonly protocol!: pulumi.Output<string>;
-    /**
-     * IP protocol number.
-     */
     public readonly protocolNumber!: pulumi.Output<string>;
-    /**
-     * Multiple SCTP port ranges.
-     */
     public readonly sctpPortrange!: pulumi.Output<string>;
-    /**
-     * Custom tcp session TTL.
-     */
     public readonly sessionTtl!: pulumi.Output<string>;
-    /**
-     * Multiple TCP port ranges.
-     */
     public readonly tcpPortrange!: pulumi.Output<string>;
-    /**
-     * Multiple UDP port ranges.
-     */
     public readonly udpPortrange!: pulumi.Output<string>;
 
     /**
@@ -190,57 +103,18 @@ export class FirewallObjectService extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallObjectService resources.
  */
 export interface FirewallObjectServiceState {
-    /**
-     * Service category.
-     */
     category?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Fully qualified domain name.
-     */
     fqdn?: pulumi.Input<string>;
-    /**
-     * ICMP code.
-     */
     icmpcode?: pulumi.Input<string>;
-    /**
-     * ICMP type.
-     */
     icmptype?: pulumi.Input<string>;
-    /**
-     * Start and end of the IP range associated with service.
-     */
     iprange?: pulumi.Input<string>;
-    /**
-     * Number of minutes before an idle administrator session time out.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Protocol type based on IANA numbers.
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * IP protocol number.
-     */
     protocolNumber?: pulumi.Input<string>;
-    /**
-     * Multiple SCTP port ranges.
-     */
     sctpPortrange?: pulumi.Input<string>;
-    /**
-     * Custom tcp session TTL.
-     */
     sessionTtl?: pulumi.Input<string>;
-    /**
-     * Multiple TCP port ranges.
-     */
     tcpPortrange?: pulumi.Input<string>;
-    /**
-     * Multiple UDP port ranges.
-     */
     udpPortrange?: pulumi.Input<string>;
 }
 
@@ -248,56 +122,17 @@ export interface FirewallObjectServiceState {
  * The set of arguments for constructing a FirewallObjectService resource.
  */
 export interface FirewallObjectServiceArgs {
-    /**
-     * Service category.
-     */
     category: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Fully qualified domain name.
-     */
     fqdn?: pulumi.Input<string>;
-    /**
-     * ICMP code.
-     */
     icmpcode?: pulumi.Input<string>;
-    /**
-     * ICMP type.
-     */
     icmptype?: pulumi.Input<string>;
-    /**
-     * Start and end of the IP range associated with service.
-     */
     iprange?: pulumi.Input<string>;
-    /**
-     * Number of minutes before an idle administrator session time out.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Protocol type based on IANA numbers.
-     */
     protocol: pulumi.Input<string>;
-    /**
-     * IP protocol number.
-     */
     protocolNumber?: pulumi.Input<string>;
-    /**
-     * Multiple SCTP port ranges.
-     */
     sctpPortrange?: pulumi.Input<string>;
-    /**
-     * Custom tcp session TTL.
-     */
     sessionTtl?: pulumi.Input<string>;
-    /**
-     * Multiple TCP port ranges.
-     */
     tcpPortrange?: pulumi.Input<string>;
-    /**
-     * Multiple UDP port ranges.
-     */
     udpPortrange?: pulumi.Input<string>;
 }

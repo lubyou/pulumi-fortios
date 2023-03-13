@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.FirewallPolicy46`.
- */
 export function getFirewallPolicy46List(args?: GetFirewallPolicy46ListArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallPolicy46ListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallPolicy46List:GetFirewallPolicy46List", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getFirewallPolicy46List(args?: GetFirewallPolicy46ListArgs, opts
  */
 export interface GetFirewallPolicy46ListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -40,15 +31,11 @@ export interface GetFirewallPolicy46ListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.FirewallPolicy46`.
-     */
     readonly policyidlists: number[];
     readonly vdomparam?: string;
 }
-
 export function getFirewallPolicy46ListOutput(args?: GetFirewallPolicy46ListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallPolicy46ListResult> {
-    return pulumi.output(args).apply(a => getFirewallPolicy46List(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallPolicy46List(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getFirewallPolicy46ListOutput(args?: GetFirewallPolicy46ListOutp
  */
 export interface GetFirewallPolicy46ListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

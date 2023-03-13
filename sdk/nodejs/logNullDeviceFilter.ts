@@ -2,49 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Filters for null device logging.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.LogNullDeviceFilter("trname", {
- *     anomaly: "enable",
- *     dns: "enable",
- *     filterType: "include",
- *     forwardTraffic: "enable",
- *     gtp: "enable",
- *     localTraffic: "enable",
- *     multicastTraffic: "enable",
- *     severity: "information",
- *     snifferTraffic: "enable",
- *     ssh: "enable",
- *     voip: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * LogNullDevice Filter can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/logNullDeviceFilter:LogNullDeviceFilter labelname LogNullDeviceFilter
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/logNullDeviceFilter:LogNullDeviceFilter labelname LogNullDeviceFilter
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class LogNullDeviceFilter extends pulumi.CustomResource {
     /**
      * Get an existing LogNullDeviceFilter resource's state with the given name, ID, and optional extra
@@ -73,77 +34,23 @@ export class LogNullDeviceFilter extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogNullDeviceFilter.__pulumiType;
     }
 
-    /**
-     * Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-     */
     public readonly anomaly!: pulumi.Output<string>;
-    /**
-     * Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-     */
     public readonly dns!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Free style filter string.
-     */
     public readonly filter!: pulumi.Output<string>;
-    /**
-     * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-     */
     public readonly filterType!: pulumi.Output<string>;
-    /**
-     * Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-     */
     public readonly forwardTraffic!: pulumi.Output<string>;
-    /**
-     * Free Style Filters The structure of `freeStyle` block is documented below.
-     */
     public readonly freeStyles!: pulumi.Output<outputs.LogNullDeviceFilterFreeStyle[] | undefined>;
-    /**
-     * Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-     */
     public readonly gtp!: pulumi.Output<string>;
-    /**
-     * Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-     */
     public readonly localTraffic!: pulumi.Output<string>;
-    /**
-     * Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-     */
     public readonly multicastTraffic!: pulumi.Output<string>;
-    /**
-     * Enable/disable netscan discovery event logging.
-     */
     public readonly netscanDiscovery!: pulumi.Output<string>;
-    /**
-     * Enable/disable netscan vulnerability event logging.
-     */
     public readonly netscanVulnerability!: pulumi.Output<string>;
-    /**
-     * Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     public readonly severity!: pulumi.Output<string>;
-    /**
-     * Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-     */
     public readonly snifferTraffic!: pulumi.Output<string>;
-    /**
-     * Enable/disable SSH logging. Valid values: `enable`, `disable`.
-     */
     public readonly ssh!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-     */
     public readonly voip!: pulumi.Output<string>;
-    /**
-     * Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-     */
     public readonly ztnaTraffic!: pulumi.Output<string>;
 
     /**
@@ -207,77 +114,23 @@ export class LogNullDeviceFilter extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogNullDeviceFilter resources.
  */
 export interface LogNullDeviceFilterState {
-    /**
-     * Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-     */
     anomaly?: pulumi.Input<string>;
-    /**
-     * Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-     */
     dns?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Free style filter string.
-     */
     filter?: pulumi.Input<string>;
-    /**
-     * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-     */
     filterType?: pulumi.Input<string>;
-    /**
-     * Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-     */
     forwardTraffic?: pulumi.Input<string>;
-    /**
-     * Free Style Filters The structure of `freeStyle` block is documented below.
-     */
     freeStyles?: pulumi.Input<pulumi.Input<inputs.LogNullDeviceFilterFreeStyle>[]>;
-    /**
-     * Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-     */
     gtp?: pulumi.Input<string>;
-    /**
-     * Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-     */
     localTraffic?: pulumi.Input<string>;
-    /**
-     * Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-     */
     multicastTraffic?: pulumi.Input<string>;
-    /**
-     * Enable/disable netscan discovery event logging.
-     */
     netscanDiscovery?: pulumi.Input<string>;
-    /**
-     * Enable/disable netscan vulnerability event logging.
-     */
     netscanVulnerability?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     severity?: pulumi.Input<string>;
-    /**
-     * Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-     */
     snifferTraffic?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSH logging. Valid values: `enable`, `disable`.
-     */
     ssh?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-     */
     voip?: pulumi.Input<string>;
-    /**
-     * Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-     */
     ztnaTraffic?: pulumi.Input<string>;
 }
 
@@ -285,76 +138,22 @@ export interface LogNullDeviceFilterState {
  * The set of arguments for constructing a LogNullDeviceFilter resource.
  */
 export interface LogNullDeviceFilterArgs {
-    /**
-     * Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-     */
     anomaly?: pulumi.Input<string>;
-    /**
-     * Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-     */
     dns?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Free style filter string.
-     */
     filter?: pulumi.Input<string>;
-    /**
-     * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-     */
     filterType?: pulumi.Input<string>;
-    /**
-     * Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-     */
     forwardTraffic?: pulumi.Input<string>;
-    /**
-     * Free Style Filters The structure of `freeStyle` block is documented below.
-     */
     freeStyles?: pulumi.Input<pulumi.Input<inputs.LogNullDeviceFilterFreeStyle>[]>;
-    /**
-     * Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-     */
     gtp?: pulumi.Input<string>;
-    /**
-     * Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-     */
     localTraffic?: pulumi.Input<string>;
-    /**
-     * Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-     */
     multicastTraffic?: pulumi.Input<string>;
-    /**
-     * Enable/disable netscan discovery event logging.
-     */
     netscanDiscovery?: pulumi.Input<string>;
-    /**
-     * Enable/disable netscan vulnerability event logging.
-     */
     netscanVulnerability?: pulumi.Input<string>;
-    /**
-     * Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-     */
     severity?: pulumi.Input<string>;
-    /**
-     * Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-     */
     snifferTraffic?: pulumi.Input<string>;
-    /**
-     * Enable/disable SSH logging. Valid values: `enable`, `disable`.
-     */
     ssh?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-     */
     voip?: pulumi.Input<string>;
-    /**
-     * Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-     */
     ztnaTraffic?: pulumi.Input<string>;
 }

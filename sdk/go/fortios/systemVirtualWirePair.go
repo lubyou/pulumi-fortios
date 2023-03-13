@@ -7,42 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure virtual wire pairs.
-//
-// ## Import
-//
-// System VirtualWirePair can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVirtualWirePair:SystemVirtualWirePair labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVirtualWirePair:SystemVirtualWirePair labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemVirtualWirePair struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Interfaces belong to the virtual-wire-pair. The structure of `member` block is documented below.
-	Members SystemVirtualWirePairMemberArrayOutput `pulumi:"members"`
-	// Virtual-wire-pair name. Must be a unique interface name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Set VLAN filters.
-	VlanFilter pulumi.StringOutput `pulumi:"vlanFilter"`
-	// Enable/disable wildcard VLAN. Valid values: `enable`, `disable`.
-	WildcardVlan pulumi.StringOutput `pulumi:"wildcardVlan"`
+	DynamicSortSubtable pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	Members             SystemVirtualWirePairMemberArrayOutput `pulumi:"members"`
+	Name                pulumi.StringOutput                    `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                 `pulumi:"vdomparam"`
+	VlanFilter          pulumi.StringOutput                    `pulumi:"vlanFilter"`
+	WildcardVlan        pulumi.StringOutput                    `pulumi:"wildcardVlan"`
 }
 
 // NewSystemVirtualWirePair registers a new resource with the given unique name, arguments, and options.
@@ -78,33 +55,21 @@ func GetSystemVirtualWirePair(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemVirtualWirePair resources.
 type systemVirtualWirePairState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Interfaces belong to the virtual-wire-pair. The structure of `member` block is documented below.
-	Members []SystemVirtualWirePairMember `pulumi:"members"`
-	// Virtual-wire-pair name. Must be a unique interface name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Set VLAN filters.
-	VlanFilter *string `pulumi:"vlanFilter"`
-	// Enable/disable wildcard VLAN. Valid values: `enable`, `disable`.
-	WildcardVlan *string `pulumi:"wildcardVlan"`
+	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	Members             []SystemVirtualWirePairMember `pulumi:"members"`
+	Name                *string                       `pulumi:"name"`
+	Vdomparam           *string                       `pulumi:"vdomparam"`
+	VlanFilter          *string                       `pulumi:"vlanFilter"`
+	WildcardVlan        *string                       `pulumi:"wildcardVlan"`
 }
 
 type SystemVirtualWirePairState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Interfaces belong to the virtual-wire-pair. The structure of `member` block is documented below.
-	Members SystemVirtualWirePairMemberArrayInput
-	// Virtual-wire-pair name. Must be a unique interface name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Set VLAN filters.
-	VlanFilter pulumi.StringPtrInput
-	// Enable/disable wildcard VLAN. Valid values: `enable`, `disable`.
-	WildcardVlan pulumi.StringPtrInput
+	Members             SystemVirtualWirePairMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	VlanFilter          pulumi.StringPtrInput
+	WildcardVlan        pulumi.StringPtrInput
 }
 
 func (SystemVirtualWirePairState) ElementType() reflect.Type {
@@ -112,34 +77,22 @@ func (SystemVirtualWirePairState) ElementType() reflect.Type {
 }
 
 type systemVirtualWirePairArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Interfaces belong to the virtual-wire-pair. The structure of `member` block is documented below.
-	Members []SystemVirtualWirePairMember `pulumi:"members"`
-	// Virtual-wire-pair name. Must be a unique interface name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Set VLAN filters.
-	VlanFilter *string `pulumi:"vlanFilter"`
-	// Enable/disable wildcard VLAN. Valid values: `enable`, `disable`.
-	WildcardVlan *string `pulumi:"wildcardVlan"`
+	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	Members             []SystemVirtualWirePairMember `pulumi:"members"`
+	Name                *string                       `pulumi:"name"`
+	Vdomparam           *string                       `pulumi:"vdomparam"`
+	VlanFilter          *string                       `pulumi:"vlanFilter"`
+	WildcardVlan        *string                       `pulumi:"wildcardVlan"`
 }
 
 // The set of arguments for constructing a SystemVirtualWirePair resource.
 type SystemVirtualWirePairArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Interfaces belong to the virtual-wire-pair. The structure of `member` block is documented below.
-	Members SystemVirtualWirePairMemberArrayInput
-	// Virtual-wire-pair name. Must be a unique interface name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Set VLAN filters.
-	VlanFilter pulumi.StringPtrInput
-	// Enable/disable wildcard VLAN. Valid values: `enable`, `disable`.
-	WildcardVlan pulumi.StringPtrInput
+	Members             SystemVirtualWirePairMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	VlanFilter          pulumi.StringPtrInput
+	WildcardVlan        pulumi.StringPtrInput
 }
 
 func (SystemVirtualWirePairArgs) ElementType() reflect.Type {
@@ -168,7 +121,7 @@ func (i *SystemVirtualWirePair) ToSystemVirtualWirePairOutputWithContext(ctx con
 // SystemVirtualWirePairArrayInput is an input type that accepts SystemVirtualWirePairArray and SystemVirtualWirePairArrayOutput values.
 // You can construct a concrete instance of `SystemVirtualWirePairArrayInput` via:
 //
-//          SystemVirtualWirePairArray{ SystemVirtualWirePairArgs{...} }
+//	SystemVirtualWirePairArray{ SystemVirtualWirePairArgs{...} }
 type SystemVirtualWirePairArrayInput interface {
 	pulumi.Input
 
@@ -193,7 +146,7 @@ func (i SystemVirtualWirePairArray) ToSystemVirtualWirePairArrayOutputWithContex
 // SystemVirtualWirePairMapInput is an input type that accepts SystemVirtualWirePairMap and SystemVirtualWirePairMapOutput values.
 // You can construct a concrete instance of `SystemVirtualWirePairMapInput` via:
 //
-//          SystemVirtualWirePairMap{ "key": SystemVirtualWirePairArgs{...} }
+//	SystemVirtualWirePairMap{ "key": SystemVirtualWirePairArgs{...} }
 type SystemVirtualWirePairMapInput interface {
 	pulumi.Input
 
@@ -227,6 +180,30 @@ func (o SystemVirtualWirePairOutput) ToSystemVirtualWirePairOutput() SystemVirtu
 
 func (o SystemVirtualWirePairOutput) ToSystemVirtualWirePairOutputWithContext(ctx context.Context) SystemVirtualWirePairOutput {
 	return o
+}
+
+func (o SystemVirtualWirePairOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVirtualWirePair) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemVirtualWirePairOutput) Members() SystemVirtualWirePairMemberArrayOutput {
+	return o.ApplyT(func(v *SystemVirtualWirePair) SystemVirtualWirePairMemberArrayOutput { return v.Members }).(SystemVirtualWirePairMemberArrayOutput)
+}
+
+func (o SystemVirtualWirePairOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVirtualWirePair) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemVirtualWirePairOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVirtualWirePair) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemVirtualWirePairOutput) VlanFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVirtualWirePair) pulumi.StringOutput { return v.VlanFilter }).(pulumi.StringOutput)
+}
+
+func (o SystemVirtualWirePairOutput) WildcardVlan() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVirtualWirePair) pulumi.StringOutput { return v.WildcardVlan }).(pulumi.StringOutput)
 }
 
 type SystemVirtualWirePairArrayOutput struct{ *pulumi.OutputState }

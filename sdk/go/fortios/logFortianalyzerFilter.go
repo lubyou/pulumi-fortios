@@ -10,98 +10,28 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Filters for FortiAnalyzer.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewLogFortianalyzerFilter(ctx, "trname", &fortios.LogFortianalyzerFilterArgs{
-// 			Anomaly:          pulumi.String("enable"),
-// 			DlpArchive:       pulumi.String("enable"),
-// 			Dns:              pulumi.String("enable"),
-// 			FilterType:       pulumi.String("include"),
-// 			ForwardTraffic:   pulumi.String("enable"),
-// 			Gtp:              pulumi.String("enable"),
-// 			LocalTraffic:     pulumi.String("enable"),
-// 			MulticastTraffic: pulumi.String("enable"),
-// 			Severity:         pulumi.String("information"),
-// 			SnifferTraffic:   pulumi.String("enable"),
-// 			Ssh:              pulumi.String("enable"),
-// 			Voip:             pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// LogFortianalyzer Filter can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/logFortianalyzerFilter:LogFortianalyzerFilter labelname LogFortianalyzerFilter
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/logFortianalyzerFilter:LogFortianalyzerFilter labelname LogFortianalyzerFilter
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type LogFortianalyzerFilter struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-	Anomaly pulumi.StringOutput `pulumi:"anomaly"`
-	// Enable/disable DLP archive logging. Valid values: `enable`, `disable`.
-	DlpArchive pulumi.StringOutput `pulumi:"dlpArchive"`
-	// Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-	Dns pulumi.StringOutput `pulumi:"dns"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Free style filter string.
-	Filter pulumi.StringOutput `pulumi:"filter"`
-	// Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-	FilterType pulumi.StringOutput `pulumi:"filterType"`
-	// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-	ForwardTraffic pulumi.StringOutput `pulumi:"forwardTraffic"`
-	// Free Style Filters The structure of `freeStyle` block is documented below.
-	FreeStyles LogFortianalyzerFilterFreeStyleArrayOutput `pulumi:"freeStyles"`
-	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-	Gtp pulumi.StringOutput `pulumi:"gtp"`
-	// Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-	LocalTraffic pulumi.StringOutput `pulumi:"localTraffic"`
-	// Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-	MulticastTraffic pulumi.StringOutput `pulumi:"multicastTraffic"`
-	// Enable/disable netscan discovery event logging.
-	NetscanDiscovery pulumi.StringOutput `pulumi:"netscanDiscovery"`
-	// Enable/disable netscan vulnerability event logging.
-	NetscanVulnerability pulumi.StringOutput `pulumi:"netscanVulnerability"`
-	// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity pulumi.StringOutput `pulumi:"severity"`
-	// Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-	SnifferTraffic pulumi.StringOutput `pulumi:"snifferTraffic"`
-	// Enable/disable SSH logging. Valid values: `enable`, `disable`.
-	Ssh pulumi.StringOutput `pulumi:"ssh"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-	Voip pulumi.StringOutput `pulumi:"voip"`
-	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-	ZtnaTraffic pulumi.StringOutput `pulumi:"ztnaTraffic"`
+	Anomaly              pulumi.StringOutput                        `pulumi:"anomaly"`
+	DlpArchive           pulumi.StringOutput                        `pulumi:"dlpArchive"`
+	Dns                  pulumi.StringOutput                        `pulumi:"dns"`
+	DynamicSortSubtable  pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
+	Filter               pulumi.StringOutput                        `pulumi:"filter"`
+	FilterType           pulumi.StringOutput                        `pulumi:"filterType"`
+	ForwardTraffic       pulumi.StringOutput                        `pulumi:"forwardTraffic"`
+	FreeStyles           LogFortianalyzerFilterFreeStyleArrayOutput `pulumi:"freeStyles"`
+	Gtp                  pulumi.StringOutput                        `pulumi:"gtp"`
+	LocalTraffic         pulumi.StringOutput                        `pulumi:"localTraffic"`
+	MulticastTraffic     pulumi.StringOutput                        `pulumi:"multicastTraffic"`
+	NetscanDiscovery     pulumi.StringOutput                        `pulumi:"netscanDiscovery"`
+	NetscanVulnerability pulumi.StringOutput                        `pulumi:"netscanVulnerability"`
+	Severity             pulumi.StringOutput                        `pulumi:"severity"`
+	SnifferTraffic       pulumi.StringOutput                        `pulumi:"snifferTraffic"`
+	Ssh                  pulumi.StringOutput                        `pulumi:"ssh"`
+	Vdomparam            pulumi.StringPtrOutput                     `pulumi:"vdomparam"`
+	Voip                 pulumi.StringOutput                        `pulumi:"voip"`
+	ZtnaTraffic          pulumi.StringOutput                        `pulumi:"ztnaTraffic"`
 }
 
 // NewLogFortianalyzerFilter registers a new resource with the given unique name, arguments, and options.
@@ -134,85 +64,47 @@ func GetLogFortianalyzerFilter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogFortianalyzerFilter resources.
 type logFortianalyzerFilterState struct {
-	// Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-	Anomaly *string `pulumi:"anomaly"`
-	// Enable/disable DLP archive logging. Valid values: `enable`, `disable`.
-	DlpArchive *string `pulumi:"dlpArchive"`
-	// Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-	Dns *string `pulumi:"dns"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Free style filter string.
-	Filter *string `pulumi:"filter"`
-	// Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-	FilterType *string `pulumi:"filterType"`
-	// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-	ForwardTraffic *string `pulumi:"forwardTraffic"`
-	// Free Style Filters The structure of `freeStyle` block is documented below.
-	FreeStyles []LogFortianalyzerFilterFreeStyle `pulumi:"freeStyles"`
-	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-	Gtp *string `pulumi:"gtp"`
-	// Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-	LocalTraffic *string `pulumi:"localTraffic"`
-	// Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-	MulticastTraffic *string `pulumi:"multicastTraffic"`
-	// Enable/disable netscan discovery event logging.
-	NetscanDiscovery *string `pulumi:"netscanDiscovery"`
-	// Enable/disable netscan vulnerability event logging.
-	NetscanVulnerability *string `pulumi:"netscanVulnerability"`
-	// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity *string `pulumi:"severity"`
-	// Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-	SnifferTraffic *string `pulumi:"snifferTraffic"`
-	// Enable/disable SSH logging. Valid values: `enable`, `disable`.
-	Ssh *string `pulumi:"ssh"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-	Voip *string `pulumi:"voip"`
-	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
+	Anomaly              *string                           `pulumi:"anomaly"`
+	DlpArchive           *string                           `pulumi:"dlpArchive"`
+	Dns                  *string                           `pulumi:"dns"`
+	DynamicSortSubtable  *string                           `pulumi:"dynamicSortSubtable"`
+	Filter               *string                           `pulumi:"filter"`
+	FilterType           *string                           `pulumi:"filterType"`
+	ForwardTraffic       *string                           `pulumi:"forwardTraffic"`
+	FreeStyles           []LogFortianalyzerFilterFreeStyle `pulumi:"freeStyles"`
+	Gtp                  *string                           `pulumi:"gtp"`
+	LocalTraffic         *string                           `pulumi:"localTraffic"`
+	MulticastTraffic     *string                           `pulumi:"multicastTraffic"`
+	NetscanDiscovery     *string                           `pulumi:"netscanDiscovery"`
+	NetscanVulnerability *string                           `pulumi:"netscanVulnerability"`
+	Severity             *string                           `pulumi:"severity"`
+	SnifferTraffic       *string                           `pulumi:"snifferTraffic"`
+	Ssh                  *string                           `pulumi:"ssh"`
+	Vdomparam            *string                           `pulumi:"vdomparam"`
+	Voip                 *string                           `pulumi:"voip"`
+	ZtnaTraffic          *string                           `pulumi:"ztnaTraffic"`
 }
 
 type LogFortianalyzerFilterState struct {
-	// Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-	Anomaly pulumi.StringPtrInput
-	// Enable/disable DLP archive logging. Valid values: `enable`, `disable`.
-	DlpArchive pulumi.StringPtrInput
-	// Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-	Dns pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Free style filter string.
-	Filter pulumi.StringPtrInput
-	// Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-	FilterType pulumi.StringPtrInput
-	// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-	ForwardTraffic pulumi.StringPtrInput
-	// Free Style Filters The structure of `freeStyle` block is documented below.
-	FreeStyles LogFortianalyzerFilterFreeStyleArrayInput
-	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-	Gtp pulumi.StringPtrInput
-	// Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-	LocalTraffic pulumi.StringPtrInput
-	// Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-	MulticastTraffic pulumi.StringPtrInput
-	// Enable/disable netscan discovery event logging.
-	NetscanDiscovery pulumi.StringPtrInput
-	// Enable/disable netscan vulnerability event logging.
+	Anomaly              pulumi.StringPtrInput
+	DlpArchive           pulumi.StringPtrInput
+	Dns                  pulumi.StringPtrInput
+	DynamicSortSubtable  pulumi.StringPtrInput
+	Filter               pulumi.StringPtrInput
+	FilterType           pulumi.StringPtrInput
+	ForwardTraffic       pulumi.StringPtrInput
+	FreeStyles           LogFortianalyzerFilterFreeStyleArrayInput
+	Gtp                  pulumi.StringPtrInput
+	LocalTraffic         pulumi.StringPtrInput
+	MulticastTraffic     pulumi.StringPtrInput
+	NetscanDiscovery     pulumi.StringPtrInput
 	NetscanVulnerability pulumi.StringPtrInput
-	// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity pulumi.StringPtrInput
-	// Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-	SnifferTraffic pulumi.StringPtrInput
-	// Enable/disable SSH logging. Valid values: `enable`, `disable`.
-	Ssh pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-	Voip pulumi.StringPtrInput
-	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-	ZtnaTraffic pulumi.StringPtrInput
+	Severity             pulumi.StringPtrInput
+	SnifferTraffic       pulumi.StringPtrInput
+	Ssh                  pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
+	Voip                 pulumi.StringPtrInput
+	ZtnaTraffic          pulumi.StringPtrInput
 }
 
 func (LogFortianalyzerFilterState) ElementType() reflect.Type {
@@ -220,86 +112,48 @@ func (LogFortianalyzerFilterState) ElementType() reflect.Type {
 }
 
 type logFortianalyzerFilterArgs struct {
-	// Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-	Anomaly *string `pulumi:"anomaly"`
-	// Enable/disable DLP archive logging. Valid values: `enable`, `disable`.
-	DlpArchive *string `pulumi:"dlpArchive"`
-	// Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-	Dns *string `pulumi:"dns"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Free style filter string.
-	Filter *string `pulumi:"filter"`
-	// Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-	FilterType *string `pulumi:"filterType"`
-	// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-	ForwardTraffic *string `pulumi:"forwardTraffic"`
-	// Free Style Filters The structure of `freeStyle` block is documented below.
-	FreeStyles []LogFortianalyzerFilterFreeStyle `pulumi:"freeStyles"`
-	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-	Gtp *string `pulumi:"gtp"`
-	// Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-	LocalTraffic *string `pulumi:"localTraffic"`
-	// Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-	MulticastTraffic *string `pulumi:"multicastTraffic"`
-	// Enable/disable netscan discovery event logging.
-	NetscanDiscovery *string `pulumi:"netscanDiscovery"`
-	// Enable/disable netscan vulnerability event logging.
-	NetscanVulnerability *string `pulumi:"netscanVulnerability"`
-	// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity *string `pulumi:"severity"`
-	// Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-	SnifferTraffic *string `pulumi:"snifferTraffic"`
-	// Enable/disable SSH logging. Valid values: `enable`, `disable`.
-	Ssh *string `pulumi:"ssh"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-	Voip *string `pulumi:"voip"`
-	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
+	Anomaly              *string                           `pulumi:"anomaly"`
+	DlpArchive           *string                           `pulumi:"dlpArchive"`
+	Dns                  *string                           `pulumi:"dns"`
+	DynamicSortSubtable  *string                           `pulumi:"dynamicSortSubtable"`
+	Filter               *string                           `pulumi:"filter"`
+	FilterType           *string                           `pulumi:"filterType"`
+	ForwardTraffic       *string                           `pulumi:"forwardTraffic"`
+	FreeStyles           []LogFortianalyzerFilterFreeStyle `pulumi:"freeStyles"`
+	Gtp                  *string                           `pulumi:"gtp"`
+	LocalTraffic         *string                           `pulumi:"localTraffic"`
+	MulticastTraffic     *string                           `pulumi:"multicastTraffic"`
+	NetscanDiscovery     *string                           `pulumi:"netscanDiscovery"`
+	NetscanVulnerability *string                           `pulumi:"netscanVulnerability"`
+	Severity             *string                           `pulumi:"severity"`
+	SnifferTraffic       *string                           `pulumi:"snifferTraffic"`
+	Ssh                  *string                           `pulumi:"ssh"`
+	Vdomparam            *string                           `pulumi:"vdomparam"`
+	Voip                 *string                           `pulumi:"voip"`
+	ZtnaTraffic          *string                           `pulumi:"ztnaTraffic"`
 }
 
 // The set of arguments for constructing a LogFortianalyzerFilter resource.
 type LogFortianalyzerFilterArgs struct {
-	// Enable/disable anomaly logging. Valid values: `enable`, `disable`.
-	Anomaly pulumi.StringPtrInput
-	// Enable/disable DLP archive logging. Valid values: `enable`, `disable`.
-	DlpArchive pulumi.StringPtrInput
-	// Enable/disable detailed DNS event logging. Valid values: `enable`, `disable`.
-	Dns pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Free style filter string.
-	Filter pulumi.StringPtrInput
-	// Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-	FilterType pulumi.StringPtrInput
-	// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
-	ForwardTraffic pulumi.StringPtrInput
-	// Free Style Filters The structure of `freeStyle` block is documented below.
-	FreeStyles LogFortianalyzerFilterFreeStyleArrayInput
-	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
-	Gtp pulumi.StringPtrInput
-	// Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
-	LocalTraffic pulumi.StringPtrInput
-	// Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
-	MulticastTraffic pulumi.StringPtrInput
-	// Enable/disable netscan discovery event logging.
-	NetscanDiscovery pulumi.StringPtrInput
-	// Enable/disable netscan vulnerability event logging.
+	Anomaly              pulumi.StringPtrInput
+	DlpArchive           pulumi.StringPtrInput
+	Dns                  pulumi.StringPtrInput
+	DynamicSortSubtable  pulumi.StringPtrInput
+	Filter               pulumi.StringPtrInput
+	FilterType           pulumi.StringPtrInput
+	ForwardTraffic       pulumi.StringPtrInput
+	FreeStyles           LogFortianalyzerFilterFreeStyleArrayInput
+	Gtp                  pulumi.StringPtrInput
+	LocalTraffic         pulumi.StringPtrInput
+	MulticastTraffic     pulumi.StringPtrInput
+	NetscanDiscovery     pulumi.StringPtrInput
 	NetscanVulnerability pulumi.StringPtrInput
-	// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity pulumi.StringPtrInput
-	// Enable/disable sniffer traffic logging. Valid values: `enable`, `disable`.
-	SnifferTraffic pulumi.StringPtrInput
-	// Enable/disable SSH logging. Valid values: `enable`, `disable`.
-	Ssh pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
-	Voip pulumi.StringPtrInput
-	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
-	ZtnaTraffic pulumi.StringPtrInput
+	Severity             pulumi.StringPtrInput
+	SnifferTraffic       pulumi.StringPtrInput
+	Ssh                  pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
+	Voip                 pulumi.StringPtrInput
+	ZtnaTraffic          pulumi.StringPtrInput
 }
 
 func (LogFortianalyzerFilterArgs) ElementType() reflect.Type {
@@ -328,7 +182,7 @@ func (i *LogFortianalyzerFilter) ToLogFortianalyzerFilterOutputWithContext(ctx c
 // LogFortianalyzerFilterArrayInput is an input type that accepts LogFortianalyzerFilterArray and LogFortianalyzerFilterArrayOutput values.
 // You can construct a concrete instance of `LogFortianalyzerFilterArrayInput` via:
 //
-//          LogFortianalyzerFilterArray{ LogFortianalyzerFilterArgs{...} }
+//	LogFortianalyzerFilterArray{ LogFortianalyzerFilterArgs{...} }
 type LogFortianalyzerFilterArrayInput interface {
 	pulumi.Input
 
@@ -353,7 +207,7 @@ func (i LogFortianalyzerFilterArray) ToLogFortianalyzerFilterArrayOutputWithCont
 // LogFortianalyzerFilterMapInput is an input type that accepts LogFortianalyzerFilterMap and LogFortianalyzerFilterMapOutput values.
 // You can construct a concrete instance of `LogFortianalyzerFilterMapInput` via:
 //
-//          LogFortianalyzerFilterMap{ "key": LogFortianalyzerFilterArgs{...} }
+//	LogFortianalyzerFilterMap{ "key": LogFortianalyzerFilterArgs{...} }
 type LogFortianalyzerFilterMapInput interface {
 	pulumi.Input
 
@@ -387,6 +241,82 @@ func (o LogFortianalyzerFilterOutput) ToLogFortianalyzerFilterOutput() LogFortia
 
 func (o LogFortianalyzerFilterOutput) ToLogFortianalyzerFilterOutputWithContext(ctx context.Context) LogFortianalyzerFilterOutput {
 	return o
+}
+
+func (o LogFortianalyzerFilterOutput) Anomaly() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.Anomaly }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) DlpArchive() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.DlpArchive }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) Dns() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.Dns }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) Filter() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.Filter }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) FilterType() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.FilterType }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) ForwardTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.ForwardTraffic }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) FreeStyles() LogFortianalyzerFilterFreeStyleArrayOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) LogFortianalyzerFilterFreeStyleArrayOutput { return v.FreeStyles }).(LogFortianalyzerFilterFreeStyleArrayOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) Gtp() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.Gtp }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) LocalTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.LocalTraffic }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) MulticastTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.MulticastTraffic }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) NetscanDiscovery() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.NetscanDiscovery }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) NetscanVulnerability() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.NetscanVulnerability }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) Severity() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.Severity }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) SnifferTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.SnifferTraffic }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) Ssh() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.Ssh }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) Voip() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.Voip }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) ZtnaTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringOutput { return v.ZtnaTraffic }).(pulumi.StringOutput)
 }
 
 type LogFortianalyzerFilterArrayOutput struct{ *pulumi.OutputState }

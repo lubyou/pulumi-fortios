@@ -4,46 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * SSL proxy settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallSslSetting("trname", {
- *     abbreviateHandshake: "enable",
- *     certCacheCapacity: 200,
- *     certCacheTimeout: 10,
- *     kxpQueueThreshold: 16,
- *     noMatchingCipherAction: "bypass",
- *     proxyConnectTimeout: 30,
- *     sessionCacheCapacity: 500,
- *     sessionCacheTimeout: 20,
- *     sslDhBits: "2048",
- *     sslQueueThreshold: 32,
- *     sslSendEmptyFrags: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * FirewallSsl Setting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallSslSetting:FirewallSslSetting labelname FirewallSslSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallSslSetting:FirewallSslSetting labelname FirewallSslSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallSslSetting extends pulumi.CustomResource {
     /**
      * Get an existing FirewallSslSetting resource's state with the given name, ID, and optional extra
@@ -72,53 +32,17 @@ export class FirewallSslSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallSslSetting.__pulumiType;
     }
 
-    /**
-     * Enable/disable use of SSL abbreviated handshake. Valid values: `enable`, `disable`.
-     */
     public readonly abbreviateHandshake!: pulumi.Output<string>;
-    /**
-     * Maximum capacity of the host certificate cache (0 - 500, default = 200).
-     */
     public readonly certCacheCapacity!: pulumi.Output<number>;
-    /**
-     * Time limit to keep certificate cache (1 - 120 min, default = 10).
-     */
     public readonly certCacheTimeout!: pulumi.Output<number>;
-    /**
-     * Maximum length of the CP KXP queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 16).
-     */
     public readonly kxpQueueThreshold!: pulumi.Output<number>;
-    /**
-     * Bypass or drop the connection when no matching cipher is found. Valid values: `bypass`, `drop`.
-     */
     public readonly noMatchingCipherAction!: pulumi.Output<string>;
-    /**
-     * Time limit to make an internal connection to the appropriate proxy process (1 - 60 sec, default = 30).
-     */
     public readonly proxyConnectTimeout!: pulumi.Output<number>;
-    /**
-     * Capacity of the SSL session cache (--Obsolete--) (1 - 1000, default = 500).
-     */
     public readonly sessionCacheCapacity!: pulumi.Output<number>;
-    /**
-     * Time limit to keep SSL session state (1 - 60 min, default = 20).
-     */
     public readonly sessionCacheTimeout!: pulumi.Output<number>;
-    /**
-     * Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-     */
     public readonly sslDhBits!: pulumi.Output<string>;
-    /**
-     * Maximum length of the CP SSL queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 32).
-     */
     public readonly sslQueueThreshold!: pulumi.Output<number>;
-    /**
-     * Enable/disable sending empty fragments to avoid attack on CBC IV (for SSL 3.0 and TLS 1.0 only). Valid values: `enable`, `disable`.
-     */
     public readonly sslSendEmptyFrags!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -194,53 +118,17 @@ export class FirewallSslSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallSslSetting resources.
  */
 export interface FirewallSslSettingState {
-    /**
-     * Enable/disable use of SSL abbreviated handshake. Valid values: `enable`, `disable`.
-     */
     abbreviateHandshake?: pulumi.Input<string>;
-    /**
-     * Maximum capacity of the host certificate cache (0 - 500, default = 200).
-     */
     certCacheCapacity?: pulumi.Input<number>;
-    /**
-     * Time limit to keep certificate cache (1 - 120 min, default = 10).
-     */
     certCacheTimeout?: pulumi.Input<number>;
-    /**
-     * Maximum length of the CP KXP queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 16).
-     */
     kxpQueueThreshold?: pulumi.Input<number>;
-    /**
-     * Bypass or drop the connection when no matching cipher is found. Valid values: `bypass`, `drop`.
-     */
     noMatchingCipherAction?: pulumi.Input<string>;
-    /**
-     * Time limit to make an internal connection to the appropriate proxy process (1 - 60 sec, default = 30).
-     */
     proxyConnectTimeout?: pulumi.Input<number>;
-    /**
-     * Capacity of the SSL session cache (--Obsolete--) (1 - 1000, default = 500).
-     */
     sessionCacheCapacity?: pulumi.Input<number>;
-    /**
-     * Time limit to keep SSL session state (1 - 60 min, default = 20).
-     */
     sessionCacheTimeout?: pulumi.Input<number>;
-    /**
-     * Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-     */
     sslDhBits?: pulumi.Input<string>;
-    /**
-     * Maximum length of the CP SSL queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 32).
-     */
     sslQueueThreshold?: pulumi.Input<number>;
-    /**
-     * Enable/disable sending empty fragments to avoid attack on CBC IV (for SSL 3.0 and TLS 1.0 only). Valid values: `enable`, `disable`.
-     */
     sslSendEmptyFrags?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -248,52 +136,16 @@ export interface FirewallSslSettingState {
  * The set of arguments for constructing a FirewallSslSetting resource.
  */
 export interface FirewallSslSettingArgs {
-    /**
-     * Enable/disable use of SSL abbreviated handshake. Valid values: `enable`, `disable`.
-     */
     abbreviateHandshake?: pulumi.Input<string>;
-    /**
-     * Maximum capacity of the host certificate cache (0 - 500, default = 200).
-     */
     certCacheCapacity: pulumi.Input<number>;
-    /**
-     * Time limit to keep certificate cache (1 - 120 min, default = 10).
-     */
     certCacheTimeout: pulumi.Input<number>;
-    /**
-     * Maximum length of the CP KXP queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 16).
-     */
     kxpQueueThreshold?: pulumi.Input<number>;
-    /**
-     * Bypass or drop the connection when no matching cipher is found. Valid values: `bypass`, `drop`.
-     */
     noMatchingCipherAction: pulumi.Input<string>;
-    /**
-     * Time limit to make an internal connection to the appropriate proxy process (1 - 60 sec, default = 30).
-     */
     proxyConnectTimeout: pulumi.Input<number>;
-    /**
-     * Capacity of the SSL session cache (--Obsolete--) (1 - 1000, default = 500).
-     */
     sessionCacheCapacity: pulumi.Input<number>;
-    /**
-     * Time limit to keep SSL session state (1 - 60 min, default = 20).
-     */
     sessionCacheTimeout: pulumi.Input<number>;
-    /**
-     * Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-     */
     sslDhBits: pulumi.Input<string>;
-    /**
-     * Maximum length of the CP SSL queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 32).
-     */
     sslQueueThreshold?: pulumi.Input<number>;
-    /**
-     * Enable/disable sending empty fragments to avoid attack on CBC IV (for SSL 3.0 and TLS 1.0 only). Valid values: `enable`, `disable`.
-     */
     sslSendEmptyFrags: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

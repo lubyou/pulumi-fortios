@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure DNS of FortiOS.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.SystemDns`, we recommend that you use the new resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.SystemSettingDNS("test1", {
- *     dnsOverTls: "disable",
- *     primary: "208.91.112.53",
- *     secondary: "208.91.112.22",
- * });
- * ```
- */
 export class SystemSettingDNS extends pulumi.CustomResource {
     /**
      * Get an existing SystemSettingDNS resource's state with the given name, ID, and optional extra
@@ -50,17 +32,8 @@ export class SystemSettingDNS extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemSettingDNS.__pulumiType;
     }
 
-    /**
-     * Enable/disable/enforce DNS over TLS(available since v6.2.0). Enum: [ disable, enable, enforce ]
-     */
     public readonly dnsOverTls!: pulumi.Output<string>;
-    /**
-     * Primary DNS server IP address.
-     */
     public readonly primary!: pulumi.Output<string>;
-    /**
-     * Secondary DNS server IP address.
-     */
     public readonly secondary!: pulumi.Output<string>;
 
     /**
@@ -94,17 +67,8 @@ export class SystemSettingDNS extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSettingDNS resources.
  */
 export interface SystemSettingDNSState {
-    /**
-     * Enable/disable/enforce DNS over TLS(available since v6.2.0). Enum: [ disable, enable, enforce ]
-     */
     dnsOverTls?: pulumi.Input<string>;
-    /**
-     * Primary DNS server IP address.
-     */
     primary?: pulumi.Input<string>;
-    /**
-     * Secondary DNS server IP address.
-     */
     secondary?: pulumi.Input<string>;
 }
 
@@ -112,16 +76,7 @@ export interface SystemSettingDNSState {
  * The set of arguments for constructing a SystemSettingDNS resource.
  */
 export interface SystemSettingDNSArgs {
-    /**
-     * Enable/disable/enforce DNS over TLS(available since v6.2.0). Enum: [ disable, enable, enforce ]
-     */
     dnsOverTls?: pulumi.Input<string>;
-    /**
-     * Primary DNS server IP address.
-     */
     primary?: pulumi.Input<string>;
-    /**
-     * Secondary DNS server IP address.
-     */
     secondary?: pulumi.Input<string>;
 }

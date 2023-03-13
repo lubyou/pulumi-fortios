@@ -7,71 +7,21 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 multicast address.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallMulticastAddress6(ctx, "trname", &fortios.FirewallMulticastAddress6Args{
-// 			Color:      pulumi.Int(0),
-// 			Ip6:        pulumi.String("ff02::1:ff0e:8c6c/128"),
-// 			Visibility: pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall MulticastAddress6 can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallMulticastAddress6:FirewallMulticastAddress6 labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallMulticastAddress6:FirewallMulticastAddress6 labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallMulticastAddress6 struct {
 	pulumi.CustomResourceState
 
-	// Color of icon on the GUI.
-	Color pulumi.IntOutput `pulumi:"color"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-	Ip6 pulumi.StringOutput `pulumi:"ip6"`
-	// Tag name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings FirewallMulticastAddress6TaggingArrayOutput `pulumi:"taggings"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Enable/disable visibility of the IPv6 multicast address on the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringOutput `pulumi:"visibility"`
+	Color               pulumi.IntOutput                            `pulumi:"color"`
+	Comment             pulumi.StringPtrOutput                      `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
+	Ip6                 pulumi.StringOutput                         `pulumi:"ip6"`
+	Name                pulumi.StringOutput                         `pulumi:"name"`
+	Taggings            FirewallMulticastAddress6TaggingArrayOutput `pulumi:"taggings"`
+	Vdomparam           pulumi.StringPtrOutput                      `pulumi:"vdomparam"`
+	Visibility          pulumi.StringOutput                         `pulumi:"visibility"`
 }
 
 // NewFirewallMulticastAddress6 registers a new resource with the given unique name, arguments, and options.
@@ -107,41 +57,25 @@ func GetFirewallMulticastAddress6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallMulticastAddress6 resources.
 type firewallMulticastAddress6State struct {
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-	Ip6 *string `pulumi:"ip6"`
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []FirewallMulticastAddress6Tagging `pulumi:"taggings"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable visibility of the IPv6 multicast address on the GUI. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
+	Color               *int                               `pulumi:"color"`
+	Comment             *string                            `pulumi:"comment"`
+	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	Ip6                 *string                            `pulumi:"ip6"`
+	Name                *string                            `pulumi:"name"`
+	Taggings            []FirewallMulticastAddress6Tagging `pulumi:"taggings"`
+	Vdomparam           *string                            `pulumi:"vdomparam"`
+	Visibility          *string                            `pulumi:"visibility"`
 }
 
 type FirewallMulticastAddress6State struct {
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-	Ip6 pulumi.StringPtrInput
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings FirewallMulticastAddress6TaggingArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable visibility of the IPv6 multicast address on the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
+	Ip6                 pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Taggings            FirewallMulticastAddress6TaggingArrayInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
 }
 
 func (FirewallMulticastAddress6State) ElementType() reflect.Type {
@@ -149,42 +83,26 @@ func (FirewallMulticastAddress6State) ElementType() reflect.Type {
 }
 
 type firewallMulticastAddress6Args struct {
-	// Color of icon on the GUI.
-	Color *int `pulumi:"color"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-	Ip6 string `pulumi:"ip6"`
-	// Tag name.
-	Name *string `pulumi:"name"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []FirewallMulticastAddress6Tagging `pulumi:"taggings"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable visibility of the IPv6 multicast address on the GUI. Valid values: `enable`, `disable`.
-	Visibility *string `pulumi:"visibility"`
+	Color               *int                               `pulumi:"color"`
+	Comment             *string                            `pulumi:"comment"`
+	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	Ip6                 string                             `pulumi:"ip6"`
+	Name                *string                            `pulumi:"name"`
+	Taggings            []FirewallMulticastAddress6Tagging `pulumi:"taggings"`
+	Vdomparam           *string                            `pulumi:"vdomparam"`
+	Visibility          *string                            `pulumi:"visibility"`
 }
 
 // The set of arguments for constructing a FirewallMulticastAddress6 resource.
 type FirewallMulticastAddress6Args struct {
-	// Color of icon on the GUI.
-	Color pulumi.IntPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Color               pulumi.IntPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-	Ip6 pulumi.StringInput
-	// Tag name.
-	Name pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings FirewallMulticastAddress6TaggingArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Enable/disable visibility of the IPv6 multicast address on the GUI. Valid values: `enable`, `disable`.
-	Visibility pulumi.StringPtrInput
+	Ip6                 pulumi.StringInput
+	Name                pulumi.StringPtrInput
+	Taggings            FirewallMulticastAddress6TaggingArrayInput
+	Vdomparam           pulumi.StringPtrInput
+	Visibility          pulumi.StringPtrInput
 }
 
 func (FirewallMulticastAddress6Args) ElementType() reflect.Type {
@@ -213,7 +131,7 @@ func (i *FirewallMulticastAddress6) ToFirewallMulticastAddress6OutputWithContext
 // FirewallMulticastAddress6ArrayInput is an input type that accepts FirewallMulticastAddress6Array and FirewallMulticastAddress6ArrayOutput values.
 // You can construct a concrete instance of `FirewallMulticastAddress6ArrayInput` via:
 //
-//          FirewallMulticastAddress6Array{ FirewallMulticastAddress6Args{...} }
+//	FirewallMulticastAddress6Array{ FirewallMulticastAddress6Args{...} }
 type FirewallMulticastAddress6ArrayInput interface {
 	pulumi.Input
 
@@ -238,7 +156,7 @@ func (i FirewallMulticastAddress6Array) ToFirewallMulticastAddress6ArrayOutputWi
 // FirewallMulticastAddress6MapInput is an input type that accepts FirewallMulticastAddress6Map and FirewallMulticastAddress6MapOutput values.
 // You can construct a concrete instance of `FirewallMulticastAddress6MapInput` via:
 //
-//          FirewallMulticastAddress6Map{ "key": FirewallMulticastAddress6Args{...} }
+//	FirewallMulticastAddress6Map{ "key": FirewallMulticastAddress6Args{...} }
 type FirewallMulticastAddress6MapInput interface {
 	pulumi.Input
 
@@ -272,6 +190,38 @@ func (o FirewallMulticastAddress6Output) ToFirewallMulticastAddress6Output() Fir
 
 func (o FirewallMulticastAddress6Output) ToFirewallMulticastAddress6OutputWithContext(ctx context.Context) FirewallMulticastAddress6Output {
 	return o
+}
+
+func (o FirewallMulticastAddress6Output) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress6) pulumi.IntOutput { return v.Color }).(pulumi.IntOutput)
+}
+
+func (o FirewallMulticastAddress6Output) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress6) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallMulticastAddress6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallMulticastAddress6Output) Ip6() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress6) pulumi.StringOutput { return v.Ip6 }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastAddress6Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress6) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastAddress6Output) Taggings() FirewallMulticastAddress6TaggingArrayOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress6) FirewallMulticastAddress6TaggingArrayOutput { return v.Taggings }).(FirewallMulticastAddress6TaggingArrayOutput)
+}
+
+func (o FirewallMulticastAddress6Output) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallMulticastAddress6Output) Visibility() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress6) pulumi.StringOutput { return v.Visibility }).(pulumi.StringOutput)
 }
 
 type FirewallMulticastAddress6ArrayOutput struct{ *pulumi.OutputState }

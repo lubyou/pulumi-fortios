@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios system ipv6tunnel
- */
 export function getSystemIpv6Tunnel(args: GetSystemIpv6TunnelArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemIpv6TunnelResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemIpv6Tunnel:GetSystemIpv6Tunnel", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getSystemIpv6Tunnel(args: GetSystemIpv6TunnelArgs, opts?: pulumi
  * A collection of arguments for invoking GetSystemIpv6Tunnel.
  */
 export interface GetSystemIpv6TunnelArgs {
-    /**
-     * Specify the name of the desired system ipv6tunnel.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,51 +25,26 @@ export interface GetSystemIpv6TunnelArgs {
  * A collection of values returned by GetSystemIpv6Tunnel.
  */
 export interface GetSystemIpv6TunnelResult {
-    /**
-     * Enable/disable tunnel ASIC offloading.
-     */
     readonly autoAsicOffload: string;
-    /**
-     * Remote IPv6 address of the tunnel.
-     */
     readonly destination: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Interface name.
-     */
     readonly interface: string;
-    /**
-     * IPv6 tunnel name.
-     */
     readonly name: string;
-    /**
-     * Local IPv6 address of the tunnel.
-     */
     readonly source: string;
-    /**
-     * Enable/disable use of SD-WAN to reach remote gateway.
-     */
     readonly useSdwan: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemIpv6TunnelOutput(args: GetSystemIpv6TunnelOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemIpv6TunnelResult> {
-    return pulumi.output(args).apply(a => getSystemIpv6Tunnel(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemIpv6Tunnel(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemIpv6Tunnel.
  */
 export interface GetSystemIpv6TunnelOutputArgs {
-    /**
-     * Specify the name of the desired system ipv6tunnel.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

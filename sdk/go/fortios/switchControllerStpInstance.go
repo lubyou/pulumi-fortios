@@ -10,34 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch multiple spanning tree protocol (MSTP) instances. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// SwitchController StpInstance can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerStpInstance:SwitchControllerStpInstance labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerStpInstance:SwitchControllerStpInstance labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerStpInstance struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Instance ID.
-	Fosid pulumi.StringOutput `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Configure VLAN range for STP instance. The structure of `vlanRange` block is documented below.
-	VlanRanges SwitchControllerStpInstanceVlanRangeArrayOutput `pulumi:"vlanRanges"`
+	DynamicSortSubtable pulumi.StringPtrOutput                          `pulumi:"dynamicSortSubtable"`
+	Fosid               pulumi.StringOutput                             `pulumi:"fosid"`
+	Vdomparam           pulumi.StringPtrOutput                          `pulumi:"vdomparam"`
+	VlanRanges          SwitchControllerStpInstanceVlanRangeArrayOutput `pulumi:"vlanRanges"`
 }
 
 // NewSwitchControllerStpInstance registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +49,17 @@ func GetSwitchControllerStpInstance(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerStpInstance resources.
 type switchControllerStpInstanceState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Instance ID.
-	Fosid *string `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Configure VLAN range for STP instance. The structure of `vlanRange` block is documented below.
-	VlanRanges []SwitchControllerStpInstanceVlanRange `pulumi:"vlanRanges"`
+	DynamicSortSubtable *string                                `pulumi:"dynamicSortSubtable"`
+	Fosid               *string                                `pulumi:"fosid"`
+	Vdomparam           *string                                `pulumi:"vdomparam"`
+	VlanRanges          []SwitchControllerStpInstanceVlanRange `pulumi:"vlanRanges"`
 }
 
 type SwitchControllerStpInstanceState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Instance ID.
-	Fosid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Configure VLAN range for STP instance. The structure of `vlanRange` block is documented below.
-	VlanRanges SwitchControllerStpInstanceVlanRangeArrayInput
+	Fosid               pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	VlanRanges          SwitchControllerStpInstanceVlanRangeArrayInput
 }
 
 func (SwitchControllerStpInstanceState) ElementType() reflect.Type {
@@ -96,26 +67,18 @@ func (SwitchControllerStpInstanceState) ElementType() reflect.Type {
 }
 
 type switchControllerStpInstanceArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Instance ID.
-	Fosid *string `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Configure VLAN range for STP instance. The structure of `vlanRange` block is documented below.
-	VlanRanges []SwitchControllerStpInstanceVlanRange `pulumi:"vlanRanges"`
+	DynamicSortSubtable *string                                `pulumi:"dynamicSortSubtable"`
+	Fosid               *string                                `pulumi:"fosid"`
+	Vdomparam           *string                                `pulumi:"vdomparam"`
+	VlanRanges          []SwitchControllerStpInstanceVlanRange `pulumi:"vlanRanges"`
 }
 
 // The set of arguments for constructing a SwitchControllerStpInstance resource.
 type SwitchControllerStpInstanceArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Instance ID.
-	Fosid pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Configure VLAN range for STP instance. The structure of `vlanRange` block is documented below.
-	VlanRanges SwitchControllerStpInstanceVlanRangeArrayInput
+	Fosid               pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
+	VlanRanges          SwitchControllerStpInstanceVlanRangeArrayInput
 }
 
 func (SwitchControllerStpInstanceArgs) ElementType() reflect.Type {
@@ -144,7 +107,7 @@ func (i *SwitchControllerStpInstance) ToSwitchControllerStpInstanceOutputWithCon
 // SwitchControllerStpInstanceArrayInput is an input type that accepts SwitchControllerStpInstanceArray and SwitchControllerStpInstanceArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerStpInstanceArrayInput` via:
 //
-//          SwitchControllerStpInstanceArray{ SwitchControllerStpInstanceArgs{...} }
+//	SwitchControllerStpInstanceArray{ SwitchControllerStpInstanceArgs{...} }
 type SwitchControllerStpInstanceArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +132,7 @@ func (i SwitchControllerStpInstanceArray) ToSwitchControllerStpInstanceArrayOutp
 // SwitchControllerStpInstanceMapInput is an input type that accepts SwitchControllerStpInstanceMap and SwitchControllerStpInstanceMapOutput values.
 // You can construct a concrete instance of `SwitchControllerStpInstanceMapInput` via:
 //
-//          SwitchControllerStpInstanceMap{ "key": SwitchControllerStpInstanceArgs{...} }
+//	SwitchControllerStpInstanceMap{ "key": SwitchControllerStpInstanceArgs{...} }
 type SwitchControllerStpInstanceMapInput interface {
 	pulumi.Input
 
@@ -203,6 +166,24 @@ func (o SwitchControllerStpInstanceOutput) ToSwitchControllerStpInstanceOutput()
 
 func (o SwitchControllerStpInstanceOutput) ToSwitchControllerStpInstanceOutputWithContext(ctx context.Context) SwitchControllerStpInstanceOutput {
 	return o
+}
+
+func (o SwitchControllerStpInstanceOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerStpInstance) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerStpInstanceOutput) Fosid() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerStpInstance) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerStpInstanceOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerStpInstance) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerStpInstanceOutput) VlanRanges() SwitchControllerStpInstanceVlanRangeArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerStpInstance) SwitchControllerStpInstanceVlanRangeArrayOutput {
+		return v.VlanRanges
+	}).(SwitchControllerStpInstanceVlanRangeArrayOutput)
 }
 
 type SwitchControllerStpInstanceArrayOutput struct{ *pulumi.OutputState }

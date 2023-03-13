@@ -10,58 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure DSCP based priority table.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemDscpBasedPriority(ctx, "trname", &fortios.SystemDscpBasedPriorityArgs{
-// 			Ds:       pulumi.Int(1),
-// 			Fosid:    pulumi.Int(1),
-// 			Priority: pulumi.String("low"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System DscpBasedPriority can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDscpBasedPriority:SystemDscpBasedPriority labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemDscpBasedPriority:SystemDscpBasedPriority labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemDscpBasedPriority struct {
 	pulumi.CustomResourceState
 
-	// DSCP(DiffServ) DS value (0 - 63).
-	Ds pulumi.IntOutput `pulumi:"ds"`
-	// Item ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// DSCP based priority level. Valid values: `low`, `medium`, `high`.
-	Priority pulumi.StringOutput `pulumi:"priority"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ds        pulumi.IntOutput       `pulumi:"ds"`
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Priority  pulumi.StringOutput    `pulumi:"priority"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -95,24 +49,16 @@ func GetSystemDscpBasedPriority(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemDscpBasedPriority resources.
 type systemDscpBasedPriorityState struct {
-	// DSCP(DiffServ) DS value (0 - 63).
-	Ds *int `pulumi:"ds"`
-	// Item ID.
-	Fosid *int `pulumi:"fosid"`
-	// DSCP based priority level. Valid values: `low`, `medium`, `high`.
-	Priority *string `pulumi:"priority"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ds        *int    `pulumi:"ds"`
+	Fosid     *int    `pulumi:"fosid"`
+	Priority  *string `pulumi:"priority"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemDscpBasedPriorityState struct {
-	// DSCP(DiffServ) DS value (0 - 63).
-	Ds pulumi.IntPtrInput
-	// Item ID.
-	Fosid pulumi.IntPtrInput
-	// DSCP based priority level. Valid values: `low`, `medium`, `high`.
-	Priority pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ds        pulumi.IntPtrInput
+	Fosid     pulumi.IntPtrInput
+	Priority  pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -121,25 +67,17 @@ func (SystemDscpBasedPriorityState) ElementType() reflect.Type {
 }
 
 type systemDscpBasedPriorityArgs struct {
-	// DSCP(DiffServ) DS value (0 - 63).
-	Ds *int `pulumi:"ds"`
-	// Item ID.
-	Fosid *int `pulumi:"fosid"`
-	// DSCP based priority level. Valid values: `low`, `medium`, `high`.
-	Priority *string `pulumi:"priority"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ds        *int    `pulumi:"ds"`
+	Fosid     *int    `pulumi:"fosid"`
+	Priority  *string `pulumi:"priority"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemDscpBasedPriority resource.
 type SystemDscpBasedPriorityArgs struct {
-	// DSCP(DiffServ) DS value (0 - 63).
-	Ds pulumi.IntPtrInput
-	// Item ID.
-	Fosid pulumi.IntPtrInput
-	// DSCP based priority level. Valid values: `low`, `medium`, `high`.
-	Priority pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Ds        pulumi.IntPtrInput
+	Fosid     pulumi.IntPtrInput
+	Priority  pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -169,7 +107,7 @@ func (i *SystemDscpBasedPriority) ToSystemDscpBasedPriorityOutputWithContext(ctx
 // SystemDscpBasedPriorityArrayInput is an input type that accepts SystemDscpBasedPriorityArray and SystemDscpBasedPriorityArrayOutput values.
 // You can construct a concrete instance of `SystemDscpBasedPriorityArrayInput` via:
 //
-//          SystemDscpBasedPriorityArray{ SystemDscpBasedPriorityArgs{...} }
+//	SystemDscpBasedPriorityArray{ SystemDscpBasedPriorityArgs{...} }
 type SystemDscpBasedPriorityArrayInput interface {
 	pulumi.Input
 
@@ -194,7 +132,7 @@ func (i SystemDscpBasedPriorityArray) ToSystemDscpBasedPriorityArrayOutputWithCo
 // SystemDscpBasedPriorityMapInput is an input type that accepts SystemDscpBasedPriorityMap and SystemDscpBasedPriorityMapOutput values.
 // You can construct a concrete instance of `SystemDscpBasedPriorityMapInput` via:
 //
-//          SystemDscpBasedPriorityMap{ "key": SystemDscpBasedPriorityArgs{...} }
+//	SystemDscpBasedPriorityMap{ "key": SystemDscpBasedPriorityArgs{...} }
 type SystemDscpBasedPriorityMapInput interface {
 	pulumi.Input
 
@@ -228,6 +166,22 @@ func (o SystemDscpBasedPriorityOutput) ToSystemDscpBasedPriorityOutput() SystemD
 
 func (o SystemDscpBasedPriorityOutput) ToSystemDscpBasedPriorityOutputWithContext(ctx context.Context) SystemDscpBasedPriorityOutput {
 	return o
+}
+
+func (o SystemDscpBasedPriorityOutput) Ds() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDscpBasedPriority) pulumi.IntOutput { return v.Ds }).(pulumi.IntOutput)
+}
+
+func (o SystemDscpBasedPriorityOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDscpBasedPriority) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SystemDscpBasedPriorityOutput) Priority() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDscpBasedPriority) pulumi.StringOutput { return v.Priority }).(pulumi.StringOutput)
+}
+
+func (o SystemDscpBasedPriorityOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDscpBasedPriority) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemDscpBasedPriorityArrayOutput struct{ *pulumi.OutputState }

@@ -7,83 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 address templates.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallAddress6Template(ctx, "trname", &fortios.FirewallAddress6TemplateArgs{
-// 			Ip6: pulumi.String("2001:db8:0:b::/64"),
-// 			SubnetSegments: FirewallAddress6TemplateSubnetSegmentArray{
-// 				&FirewallAddress6TemplateSubnetSegmentArgs{
-// 					Bits:      pulumi.Int(4),
-// 					Exclusive: pulumi.String("disable"),
-// 					Id:        pulumi.Int(1),
-// 					Name:      pulumi.String("country"),
-// 				},
-// 				&FirewallAddress6TemplateSubnetSegmentArgs{
-// 					Bits:      pulumi.Int(4),
-// 					Exclusive: pulumi.String("disable"),
-// 					Id:        pulumi.Int(2),
-// 					Name:      pulumi.String("state"),
-// 				},
-// 			},
-// 			SubnetSegmentCount: pulumi.Int(2),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall Address6Template can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAddress6Template:FirewallAddress6Template labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallAddress6Template:FirewallAddress6Template labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallAddress6Template struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
-	// IPv6 address prefix.
-	Ip6 pulumi.StringOutput `pulumi:"ip6"`
-	// Subnet segment value name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Number of IPv6 subnet segments.
-	SubnetSegmentCount pulumi.IntOutput `pulumi:"subnetSegmentCount"`
-	// IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-	SubnetSegments FirewallAddress6TemplateSubnetSegmentArrayOutput `pulumi:"subnetSegments"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                           `pulumi:"dynamicSortSubtable"`
+	FabricObject        pulumi.StringOutput                              `pulumi:"fabricObject"`
+	Ip6                 pulumi.StringOutput                              `pulumi:"ip6"`
+	Name                pulumi.StringOutput                              `pulumi:"name"`
+	SubnetSegmentCount  pulumi.IntOutput                                 `pulumi:"subnetSegmentCount"`
+	SubnetSegments      FirewallAddress6TemplateSubnetSegmentArrayOutput `pulumi:"subnetSegments"`
+	Vdomparam           pulumi.StringPtrOutput                           `pulumi:"vdomparam"`
 }
 
 // NewFirewallAddress6Template registers a new resource with the given unique name, arguments, and options.
@@ -122,37 +59,23 @@ func GetFirewallAddress6Template(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallAddress6Template resources.
 type firewallAddress6TemplateState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// IPv6 address prefix.
-	Ip6 *string `pulumi:"ip6"`
-	// Subnet segment value name.
-	Name *string `pulumi:"name"`
-	// Number of IPv6 subnet segments.
-	SubnetSegmentCount *int `pulumi:"subnetSegmentCount"`
-	// IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-	SubnetSegments []FirewallAddress6TemplateSubnetSegment `pulumi:"subnetSegments"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                 `pulumi:"dynamicSortSubtable"`
+	FabricObject        *string                                 `pulumi:"fabricObject"`
+	Ip6                 *string                                 `pulumi:"ip6"`
+	Name                *string                                 `pulumi:"name"`
+	SubnetSegmentCount  *int                                    `pulumi:"subnetSegmentCount"`
+	SubnetSegments      []FirewallAddress6TemplateSubnetSegment `pulumi:"subnetSegments"`
+	Vdomparam           *string                                 `pulumi:"vdomparam"`
 }
 
 type FirewallAddress6TemplateState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// IPv6 address prefix.
-	Ip6 pulumi.StringPtrInput
-	// Subnet segment value name.
-	Name pulumi.StringPtrInput
-	// Number of IPv6 subnet segments.
-	SubnetSegmentCount pulumi.IntPtrInput
-	// IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-	SubnetSegments FirewallAddress6TemplateSubnetSegmentArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FabricObject        pulumi.StringPtrInput
+	Ip6                 pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	SubnetSegmentCount  pulumi.IntPtrInput
+	SubnetSegments      FirewallAddress6TemplateSubnetSegmentArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallAddress6TemplateState) ElementType() reflect.Type {
@@ -160,38 +83,24 @@ func (FirewallAddress6TemplateState) ElementType() reflect.Type {
 }
 
 type firewallAddress6TemplateArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject *string `pulumi:"fabricObject"`
-	// IPv6 address prefix.
-	Ip6 string `pulumi:"ip6"`
-	// Subnet segment value name.
-	Name *string `pulumi:"name"`
-	// Number of IPv6 subnet segments.
-	SubnetSegmentCount int `pulumi:"subnetSegmentCount"`
-	// IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-	SubnetSegments []FirewallAddress6TemplateSubnetSegment `pulumi:"subnetSegments"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                                 `pulumi:"dynamicSortSubtable"`
+	FabricObject        *string                                 `pulumi:"fabricObject"`
+	Ip6                 string                                  `pulumi:"ip6"`
+	Name                *string                                 `pulumi:"name"`
+	SubnetSegmentCount  int                                     `pulumi:"subnetSegmentCount"`
+	SubnetSegments      []FirewallAddress6TemplateSubnetSegment `pulumi:"subnetSegments"`
+	Vdomparam           *string                                 `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallAddress6Template resource.
 type FirewallAddress6TemplateArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Security Fabric global object setting. Valid values: `enable`, `disable`.
-	FabricObject pulumi.StringPtrInput
-	// IPv6 address prefix.
-	Ip6 pulumi.StringInput
-	// Subnet segment value name.
-	Name pulumi.StringPtrInput
-	// Number of IPv6 subnet segments.
-	SubnetSegmentCount pulumi.IntInput
-	// IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
-	SubnetSegments FirewallAddress6TemplateSubnetSegmentArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FabricObject        pulumi.StringPtrInput
+	Ip6                 pulumi.StringInput
+	Name                pulumi.StringPtrInput
+	SubnetSegmentCount  pulumi.IntInput
+	SubnetSegments      FirewallAddress6TemplateSubnetSegmentArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallAddress6TemplateArgs) ElementType() reflect.Type {
@@ -220,7 +129,7 @@ func (i *FirewallAddress6Template) ToFirewallAddress6TemplateOutputWithContext(c
 // FirewallAddress6TemplateArrayInput is an input type that accepts FirewallAddress6TemplateArray and FirewallAddress6TemplateArrayOutput values.
 // You can construct a concrete instance of `FirewallAddress6TemplateArrayInput` via:
 //
-//          FirewallAddress6TemplateArray{ FirewallAddress6TemplateArgs{...} }
+//	FirewallAddress6TemplateArray{ FirewallAddress6TemplateArgs{...} }
 type FirewallAddress6TemplateArrayInput interface {
 	pulumi.Input
 
@@ -245,7 +154,7 @@ func (i FirewallAddress6TemplateArray) ToFirewallAddress6TemplateArrayOutputWith
 // FirewallAddress6TemplateMapInput is an input type that accepts FirewallAddress6TemplateMap and FirewallAddress6TemplateMapOutput values.
 // You can construct a concrete instance of `FirewallAddress6TemplateMapInput` via:
 //
-//          FirewallAddress6TemplateMap{ "key": FirewallAddress6TemplateArgs{...} }
+//	FirewallAddress6TemplateMap{ "key": FirewallAddress6TemplateArgs{...} }
 type FirewallAddress6TemplateMapInput interface {
 	pulumi.Input
 
@@ -279,6 +188,36 @@ func (o FirewallAddress6TemplateOutput) ToFirewallAddress6TemplateOutput() Firew
 
 func (o FirewallAddress6TemplateOutput) ToFirewallAddress6TemplateOutputWithContext(ctx context.Context) FirewallAddress6TemplateOutput {
 	return o
+}
+
+func (o FirewallAddress6TemplateOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress6Template) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddress6TemplateOutput) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6Template) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6TemplateOutput) Ip6() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6Template) pulumi.StringOutput { return v.Ip6 }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6TemplateOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddress6Template) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6TemplateOutput) SubnetSegmentCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallAddress6Template) pulumi.IntOutput { return v.SubnetSegmentCount }).(pulumi.IntOutput)
+}
+
+func (o FirewallAddress6TemplateOutput) SubnetSegments() FirewallAddress6TemplateSubnetSegmentArrayOutput {
+	return o.ApplyT(func(v *FirewallAddress6Template) FirewallAddress6TemplateSubnetSegmentArrayOutput {
+		return v.SubnetSegments
+	}).(FirewallAddress6TemplateSubnetSegmentArrayOutput)
+}
+
+func (o FirewallAddress6TemplateOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress6Template) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallAddress6TemplateArrayOutput struct{ *pulumi.OutputState }

@@ -7,74 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure AntiSpam DNSBL/ORBL. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSpamfilterDnsbl(ctx, "trname", &fortios.SpamfilterDnsblArgs{
-// 			Comment: pulumi.String("test"),
-// 			Entries: SpamfilterDnsblEntryArray{
-// 				&SpamfilterDnsblEntryArgs{
-// 					Action: pulumi.String("reject"),
-// 					Server: pulumi.String("1.1.1.1"),
-// 					Status: pulumi.String("enable"),
-// 				},
-// 			},
-// 			Fosid: pulumi.Int(1),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Spamfilter Dnsbl can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/spamfilterDnsbl:SpamfilterDnsbl labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/spamfilterDnsbl:SpamfilterDnsbl labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SpamfilterDnsbl struct {
 	pulumi.CustomResourceState
 
-	// Optional comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Spam filter DNSBL and ORBL server. The structure of `entries` block is documented below.
-	Entries SpamfilterDnsblEntryArrayOutput `pulumi:"entries"`
-	// ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Name of table.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput          `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput          `pulumi:"dynamicSortSubtable"`
+	Entries             SpamfilterDnsblEntryArrayOutput `pulumi:"entries"`
+	Fosid               pulumi.IntOutput                `pulumi:"fosid"`
+	Name                pulumi.StringOutput             `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput          `pulumi:"vdomparam"`
 }
 
 // NewSpamfilterDnsbl registers a new resource with the given unique name, arguments, and options.
@@ -110,33 +55,21 @@ func GetSpamfilterDnsbl(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SpamfilterDnsbl resources.
 type spamfilterDnsblState struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Spam filter DNSBL and ORBL server. The structure of `entries` block is documented below.
-	Entries []SpamfilterDnsblEntry `pulumi:"entries"`
-	// ID.
-	Fosid *int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                `pulumi:"comment"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	Entries             []SpamfilterDnsblEntry `pulumi:"entries"`
+	Fosid               *int                   `pulumi:"fosid"`
+	Name                *string                `pulumi:"name"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 type SpamfilterDnsblState struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Spam filter DNSBL and ORBL server. The structure of `entries` block is documented below.
-	Entries SpamfilterDnsblEntryArrayInput
-	// ID.
-	Fosid pulumi.IntPtrInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             SpamfilterDnsblEntryArrayInput
+	Fosid               pulumi.IntPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SpamfilterDnsblState) ElementType() reflect.Type {
@@ -144,34 +77,22 @@ func (SpamfilterDnsblState) ElementType() reflect.Type {
 }
 
 type spamfilterDnsblArgs struct {
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Spam filter DNSBL and ORBL server. The structure of `entries` block is documented below.
-	Entries []SpamfilterDnsblEntry `pulumi:"entries"`
-	// ID.
-	Fosid int `pulumi:"fosid"`
-	// Name of table.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                `pulumi:"comment"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	Entries             []SpamfilterDnsblEntry `pulumi:"entries"`
+	Fosid               int                    `pulumi:"fosid"`
+	Name                *string                `pulumi:"name"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SpamfilterDnsbl resource.
 type SpamfilterDnsblArgs struct {
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Spam filter DNSBL and ORBL server. The structure of `entries` block is documented below.
-	Entries SpamfilterDnsblEntryArrayInput
-	// ID.
-	Fosid pulumi.IntInput
-	// Name of table.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Entries             SpamfilterDnsblEntryArrayInput
+	Fosid               pulumi.IntInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SpamfilterDnsblArgs) ElementType() reflect.Type {
@@ -200,7 +121,7 @@ func (i *SpamfilterDnsbl) ToSpamfilterDnsblOutputWithContext(ctx context.Context
 // SpamfilterDnsblArrayInput is an input type that accepts SpamfilterDnsblArray and SpamfilterDnsblArrayOutput values.
 // You can construct a concrete instance of `SpamfilterDnsblArrayInput` via:
 //
-//          SpamfilterDnsblArray{ SpamfilterDnsblArgs{...} }
+//	SpamfilterDnsblArray{ SpamfilterDnsblArgs{...} }
 type SpamfilterDnsblArrayInput interface {
 	pulumi.Input
 
@@ -225,7 +146,7 @@ func (i SpamfilterDnsblArray) ToSpamfilterDnsblArrayOutputWithContext(ctx contex
 // SpamfilterDnsblMapInput is an input type that accepts SpamfilterDnsblMap and SpamfilterDnsblMapOutput values.
 // You can construct a concrete instance of `SpamfilterDnsblMapInput` via:
 //
-//          SpamfilterDnsblMap{ "key": SpamfilterDnsblArgs{...} }
+//	SpamfilterDnsblMap{ "key": SpamfilterDnsblArgs{...} }
 type SpamfilterDnsblMapInput interface {
 	pulumi.Input
 
@@ -259,6 +180,30 @@ func (o SpamfilterDnsblOutput) ToSpamfilterDnsblOutput() SpamfilterDnsblOutput {
 
 func (o SpamfilterDnsblOutput) ToSpamfilterDnsblOutputWithContext(ctx context.Context) SpamfilterDnsblOutput {
 	return o
+}
+
+func (o SpamfilterDnsblOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpamfilterDnsbl) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o SpamfilterDnsblOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpamfilterDnsbl) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SpamfilterDnsblOutput) Entries() SpamfilterDnsblEntryArrayOutput {
+	return o.ApplyT(func(v *SpamfilterDnsbl) SpamfilterDnsblEntryArrayOutput { return v.Entries }).(SpamfilterDnsblEntryArrayOutput)
+}
+
+func (o SpamfilterDnsblOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SpamfilterDnsbl) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SpamfilterDnsblOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SpamfilterDnsbl) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SpamfilterDnsblOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpamfilterDnsbl) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SpamfilterDnsblArrayOutput struct{ *pulumi.OutputState }

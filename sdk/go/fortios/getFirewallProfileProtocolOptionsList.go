@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `FirewallProfileProtocolOptions`.
 func GetFirewallProfileProtocolOptionsList(ctx *pulumi.Context, args *GetFirewallProfileProtocolOptionsListArgs, opts ...pulumi.InvokeOption) (*GetFirewallProfileProtocolOptionsListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallProfileProtocolOptionsListResult
@@ -23,8 +22,7 @@ func GetFirewallProfileProtocolOptionsList(ctx *pulumi.Context, args *GetFirewal
 
 // A collection of arguments for invoking GetFirewallProfileProtocolOptionsList.
 type GetFirewallProfileProtocolOptionsListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetFirewallProfileProtocolOptionsListArgs struct {
 type GetFirewallProfileProtocolOptionsListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `FirewallProfileProtocolOptions`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetFirewallProfileProtocolOptionsListOutput(ctx *pulumi.Context, args GetFi
 
 // A collection of arguments for invoking GetFirewallProfileProtocolOptionsList.
 type GetFirewallProfileProtocolOptionsListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetFirewallProfileProtocolOptionsListResultOutput) Id() pulumi.StringOut
 	return o.ApplyT(func(v GetFirewallProfileProtocolOptionsListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `FirewallProfileProtocolOptions`.
 func (o GetFirewallProfileProtocolOptionsListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetFirewallProfileProtocolOptionsListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

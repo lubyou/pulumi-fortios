@@ -10,95 +10,26 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPS rules.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewIpsRule(ctx, "trname", &fortios.IpsRuleArgs{
-// 			Action:      pulumi.String("block"),
-// 			Application: pulumi.String("All"),
-// 			Date:        pulumi.Int(1462435200),
-// 			Group:       pulumi.String("backdoor"),
-// 			Location:    pulumi.String("server"),
-// 			Log:         pulumi.String("enable"),
-// 			LogPacket:   pulumi.String("disable"),
-// 			Os:          pulumi.String("All"),
-// 			Rev:         pulumi.Int(6637),
-// 			RuleId:      pulumi.Int(40473),
-// 			Service:     pulumi.String("UDP, DNS"),
-// 			Severity:    pulumi.String("critical"),
-// 			Status:      pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Ips Rule can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/ipsRule:IpsRule labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/ipsRule:IpsRule labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type IpsRule struct {
 	pulumi.CustomResourceState
 
-	// Action. Valid values: `pass`, `block`.
-	Action pulumi.StringOutput `pulumi:"action"`
-	// Vulnerable applications.
-	Application pulumi.StringOutput `pulumi:"application"`
-	// Date.
-	Date pulumi.IntOutput `pulumi:"date"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Group.
-	Group pulumi.StringOutput `pulumi:"group"`
-	// Vulnerable location.
-	Location pulumi.StringOutput `pulumi:"location"`
-	// Enable/disable logging. Valid values: `disable`, `enable`.
-	Log pulumi.StringOutput `pulumi:"log"`
-	// Enable/disable packet logging. Valid values: `disable`, `enable`.
-	LogPacket pulumi.StringOutput `pulumi:"logPacket"`
-	// Meta data. The structure of `metadata` block is documented below.
-	Metadatas IpsRuleMetadataArrayOutput `pulumi:"metadatas"`
-	// Rule name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Vulnerable operation systems.
-	Os pulumi.StringOutput `pulumi:"os"`
-	// Revision.
-	Rev pulumi.IntOutput `pulumi:"rev"`
-	// Rule ID.
-	RuleId pulumi.IntOutput `pulumi:"ruleId"`
-	// Vulnerable service.
-	Service pulumi.StringOutput `pulumi:"service"`
-	// Severity.
-	Severity pulumi.StringOutput `pulumi:"severity"`
-	// Enable/disable status. Valid values: `disable`, `enable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Action              pulumi.StringOutput        `pulumi:"action"`
+	Application         pulumi.StringOutput        `pulumi:"application"`
+	Date                pulumi.IntOutput           `pulumi:"date"`
+	DynamicSortSubtable pulumi.StringPtrOutput     `pulumi:"dynamicSortSubtable"`
+	Group               pulumi.StringOutput        `pulumi:"group"`
+	Location            pulumi.StringOutput        `pulumi:"location"`
+	Log                 pulumi.StringOutput        `pulumi:"log"`
+	LogPacket           pulumi.StringOutput        `pulumi:"logPacket"`
+	Metadatas           IpsRuleMetadataArrayOutput `pulumi:"metadatas"`
+	Name                pulumi.StringOutput        `pulumi:"name"`
+	Os                  pulumi.StringOutput        `pulumi:"os"`
+	Rev                 pulumi.IntOutput           `pulumi:"rev"`
+	RuleId              pulumi.IntOutput           `pulumi:"ruleId"`
+	Service             pulumi.StringOutput        `pulumi:"service"`
+	Severity            pulumi.StringOutput        `pulumi:"severity"`
+	Status              pulumi.StringOutput        `pulumi:"status"`
+	Vdomparam           pulumi.StringPtrOutput     `pulumi:"vdomparam"`
 }
 
 // NewIpsRule registers a new resource with the given unique name, arguments, and options.
@@ -131,77 +62,43 @@ func GetIpsRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IpsRule resources.
 type ipsRuleState struct {
-	// Action. Valid values: `pass`, `block`.
-	Action *string `pulumi:"action"`
-	// Vulnerable applications.
-	Application *string `pulumi:"application"`
-	// Date.
-	Date *int `pulumi:"date"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Group.
-	Group *string `pulumi:"group"`
-	// Vulnerable location.
-	Location *string `pulumi:"location"`
-	// Enable/disable logging. Valid values: `disable`, `enable`.
-	Log *string `pulumi:"log"`
-	// Enable/disable packet logging. Valid values: `disable`, `enable`.
-	LogPacket *string `pulumi:"logPacket"`
-	// Meta data. The structure of `metadata` block is documented below.
-	Metadatas []IpsRuleMetadata `pulumi:"metadatas"`
-	// Rule name.
-	Name *string `pulumi:"name"`
-	// Vulnerable operation systems.
-	Os *string `pulumi:"os"`
-	// Revision.
-	Rev *int `pulumi:"rev"`
-	// Rule ID.
-	RuleId *int `pulumi:"ruleId"`
-	// Vulnerable service.
-	Service *string `pulumi:"service"`
-	// Severity.
-	Severity *string `pulumi:"severity"`
-	// Enable/disable status. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Action              *string           `pulumi:"action"`
+	Application         *string           `pulumi:"application"`
+	Date                *int              `pulumi:"date"`
+	DynamicSortSubtable *string           `pulumi:"dynamicSortSubtable"`
+	Group               *string           `pulumi:"group"`
+	Location            *string           `pulumi:"location"`
+	Log                 *string           `pulumi:"log"`
+	LogPacket           *string           `pulumi:"logPacket"`
+	Metadatas           []IpsRuleMetadata `pulumi:"metadatas"`
+	Name                *string           `pulumi:"name"`
+	Os                  *string           `pulumi:"os"`
+	Rev                 *int              `pulumi:"rev"`
+	RuleId              *int              `pulumi:"ruleId"`
+	Service             *string           `pulumi:"service"`
+	Severity            *string           `pulumi:"severity"`
+	Status              *string           `pulumi:"status"`
+	Vdomparam           *string           `pulumi:"vdomparam"`
 }
 
 type IpsRuleState struct {
-	// Action. Valid values: `pass`, `block`.
-	Action pulumi.StringPtrInput
-	// Vulnerable applications.
-	Application pulumi.StringPtrInput
-	// Date.
-	Date pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Action              pulumi.StringPtrInput
+	Application         pulumi.StringPtrInput
+	Date                pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Group.
-	Group pulumi.StringPtrInput
-	// Vulnerable location.
-	Location pulumi.StringPtrInput
-	// Enable/disable logging. Valid values: `disable`, `enable`.
-	Log pulumi.StringPtrInput
-	// Enable/disable packet logging. Valid values: `disable`, `enable`.
-	LogPacket pulumi.StringPtrInput
-	// Meta data. The structure of `metadata` block is documented below.
-	Metadatas IpsRuleMetadataArrayInput
-	// Rule name.
-	Name pulumi.StringPtrInput
-	// Vulnerable operation systems.
-	Os pulumi.StringPtrInput
-	// Revision.
-	Rev pulumi.IntPtrInput
-	// Rule ID.
-	RuleId pulumi.IntPtrInput
-	// Vulnerable service.
-	Service pulumi.StringPtrInput
-	// Severity.
-	Severity pulumi.StringPtrInput
-	// Enable/disable status. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Group               pulumi.StringPtrInput
+	Location            pulumi.StringPtrInput
+	Log                 pulumi.StringPtrInput
+	LogPacket           pulumi.StringPtrInput
+	Metadatas           IpsRuleMetadataArrayInput
+	Name                pulumi.StringPtrInput
+	Os                  pulumi.StringPtrInput
+	Rev                 pulumi.IntPtrInput
+	RuleId              pulumi.IntPtrInput
+	Service             pulumi.StringPtrInput
+	Severity            pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (IpsRuleState) ElementType() reflect.Type {
@@ -209,78 +106,44 @@ func (IpsRuleState) ElementType() reflect.Type {
 }
 
 type ipsRuleArgs struct {
-	// Action. Valid values: `pass`, `block`.
-	Action *string `pulumi:"action"`
-	// Vulnerable applications.
-	Application *string `pulumi:"application"`
-	// Date.
-	Date *int `pulumi:"date"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Group.
-	Group *string `pulumi:"group"`
-	// Vulnerable location.
-	Location *string `pulumi:"location"`
-	// Enable/disable logging. Valid values: `disable`, `enable`.
-	Log *string `pulumi:"log"`
-	// Enable/disable packet logging. Valid values: `disable`, `enable`.
-	LogPacket *string `pulumi:"logPacket"`
-	// Meta data. The structure of `metadata` block is documented below.
-	Metadatas []IpsRuleMetadata `pulumi:"metadatas"`
-	// Rule name.
-	Name *string `pulumi:"name"`
-	// Vulnerable operation systems.
-	Os *string `pulumi:"os"`
-	// Revision.
-	Rev *int `pulumi:"rev"`
-	// Rule ID.
-	RuleId *int `pulumi:"ruleId"`
-	// Vulnerable service.
-	Service *string `pulumi:"service"`
-	// Severity.
-	Severity *string `pulumi:"severity"`
-	// Enable/disable status. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Action              *string           `pulumi:"action"`
+	Application         *string           `pulumi:"application"`
+	Date                *int              `pulumi:"date"`
+	DynamicSortSubtable *string           `pulumi:"dynamicSortSubtable"`
+	Group               *string           `pulumi:"group"`
+	Location            *string           `pulumi:"location"`
+	Log                 *string           `pulumi:"log"`
+	LogPacket           *string           `pulumi:"logPacket"`
+	Metadatas           []IpsRuleMetadata `pulumi:"metadatas"`
+	Name                *string           `pulumi:"name"`
+	Os                  *string           `pulumi:"os"`
+	Rev                 *int              `pulumi:"rev"`
+	RuleId              *int              `pulumi:"ruleId"`
+	Service             *string           `pulumi:"service"`
+	Severity            *string           `pulumi:"severity"`
+	Status              *string           `pulumi:"status"`
+	Vdomparam           *string           `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a IpsRule resource.
 type IpsRuleArgs struct {
-	// Action. Valid values: `pass`, `block`.
-	Action pulumi.StringPtrInput
-	// Vulnerable applications.
-	Application pulumi.StringPtrInput
-	// Date.
-	Date pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Action              pulumi.StringPtrInput
+	Application         pulumi.StringPtrInput
+	Date                pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Group.
-	Group pulumi.StringPtrInput
-	// Vulnerable location.
-	Location pulumi.StringPtrInput
-	// Enable/disable logging. Valid values: `disable`, `enable`.
-	Log pulumi.StringPtrInput
-	// Enable/disable packet logging. Valid values: `disable`, `enable`.
-	LogPacket pulumi.StringPtrInput
-	// Meta data. The structure of `metadata` block is documented below.
-	Metadatas IpsRuleMetadataArrayInput
-	// Rule name.
-	Name pulumi.StringPtrInput
-	// Vulnerable operation systems.
-	Os pulumi.StringPtrInput
-	// Revision.
-	Rev pulumi.IntPtrInput
-	// Rule ID.
-	RuleId pulumi.IntPtrInput
-	// Vulnerable service.
-	Service pulumi.StringPtrInput
-	// Severity.
-	Severity pulumi.StringPtrInput
-	// Enable/disable status. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Group               pulumi.StringPtrInput
+	Location            pulumi.StringPtrInput
+	Log                 pulumi.StringPtrInput
+	LogPacket           pulumi.StringPtrInput
+	Metadatas           IpsRuleMetadataArrayInput
+	Name                pulumi.StringPtrInput
+	Os                  pulumi.StringPtrInput
+	Rev                 pulumi.IntPtrInput
+	RuleId              pulumi.IntPtrInput
+	Service             pulumi.StringPtrInput
+	Severity            pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (IpsRuleArgs) ElementType() reflect.Type {
@@ -309,7 +172,7 @@ func (i *IpsRule) ToIpsRuleOutputWithContext(ctx context.Context) IpsRuleOutput 
 // IpsRuleArrayInput is an input type that accepts IpsRuleArray and IpsRuleArrayOutput values.
 // You can construct a concrete instance of `IpsRuleArrayInput` via:
 //
-//          IpsRuleArray{ IpsRuleArgs{...} }
+//	IpsRuleArray{ IpsRuleArgs{...} }
 type IpsRuleArrayInput interface {
 	pulumi.Input
 
@@ -334,7 +197,7 @@ func (i IpsRuleArray) ToIpsRuleArrayOutputWithContext(ctx context.Context) IpsRu
 // IpsRuleMapInput is an input type that accepts IpsRuleMap and IpsRuleMapOutput values.
 // You can construct a concrete instance of `IpsRuleMapInput` via:
 //
-//          IpsRuleMap{ "key": IpsRuleArgs{...} }
+//	IpsRuleMap{ "key": IpsRuleArgs{...} }
 type IpsRuleMapInput interface {
 	pulumi.Input
 
@@ -368,6 +231,74 @@ func (o IpsRuleOutput) ToIpsRuleOutput() IpsRuleOutput {
 
 func (o IpsRuleOutput) ToIpsRuleOutputWithContext(ctx context.Context) IpsRuleOutput {
 	return o
+}
+
+func (o IpsRuleOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
+}
+
+func (o IpsRuleOutput) Application() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.StringOutput { return v.Application }).(pulumi.StringOutput)
+}
+
+func (o IpsRuleOutput) Date() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.IntOutput { return v.Date }).(pulumi.IntOutput)
+}
+
+func (o IpsRuleOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o IpsRuleOutput) Group() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.StringOutput { return v.Group }).(pulumi.StringOutput)
+}
+
+func (o IpsRuleOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
+}
+
+func (o IpsRuleOutput) Log() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.StringOutput { return v.Log }).(pulumi.StringOutput)
+}
+
+func (o IpsRuleOutput) LogPacket() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.StringOutput { return v.LogPacket }).(pulumi.StringOutput)
+}
+
+func (o IpsRuleOutput) Metadatas() IpsRuleMetadataArrayOutput {
+	return o.ApplyT(func(v *IpsRule) IpsRuleMetadataArrayOutput { return v.Metadatas }).(IpsRuleMetadataArrayOutput)
+}
+
+func (o IpsRuleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o IpsRuleOutput) Os() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.StringOutput { return v.Os }).(pulumi.StringOutput)
+}
+
+func (o IpsRuleOutput) Rev() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.IntOutput { return v.Rev }).(pulumi.IntOutput)
+}
+
+func (o IpsRuleOutput) RuleId() pulumi.IntOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.IntOutput { return v.RuleId }).(pulumi.IntOutput)
+}
+
+func (o IpsRuleOutput) Service() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.StringOutput { return v.Service }).(pulumi.StringOutput)
+}
+
+func (o IpsRuleOutput) Severity() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.StringOutput { return v.Severity }).(pulumi.StringOutput)
+}
+
+func (o IpsRuleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o IpsRuleOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type IpsRuleArrayOutput struct{ *pulumi.OutputState }

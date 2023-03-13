@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * OCSP server configuration.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.VpnCertificateOcspServer("trname", {
- *     cert: "ACCVRAIZ1",
- *     sourceIp: "0.0.0.0",
- *     unavailAction: "revoke",
- *     url: "www.tetserv.com",
- * });
- * ```
- *
- * ## Import
- *
- * VpnCertificate OcspServer can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnCertificateOcspServer:VpnCertificateOcspServer labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/vpnCertificateOcspServer:VpnCertificateOcspServer labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VpnCertificateOcspServer extends pulumi.CustomResource {
     /**
      * Get an existing VpnCertificateOcspServer resource's state with the given name, ID, and optional extra
@@ -65,37 +32,13 @@ export class VpnCertificateOcspServer extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpnCertificateOcspServer.__pulumiType;
     }
 
-    /**
-     * OCSP server certificate.
-     */
     public readonly cert!: pulumi.Output<string>;
-    /**
-     * OCSP server entry name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Secondary OCSP server certificate.
-     */
     public readonly secondaryCert!: pulumi.Output<string>;
-    /**
-     * Secondary OCSP server URL.
-     */
     public readonly secondaryUrl!: pulumi.Output<string>;
-    /**
-     * Source IP address for communications to the OCSP server.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Action when server is unavailable (revoke the certificate or ignore the result of the check). Valid values: `revoke`, `ignore`.
-     */
     public readonly unavailAction!: pulumi.Output<string>;
-    /**
-     * OCSP server URL.
-     */
     public readonly url!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -139,37 +82,13 @@ export class VpnCertificateOcspServer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnCertificateOcspServer resources.
  */
 export interface VpnCertificateOcspServerState {
-    /**
-     * OCSP server certificate.
-     */
     cert?: pulumi.Input<string>;
-    /**
-     * OCSP server entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Secondary OCSP server certificate.
-     */
     secondaryCert?: pulumi.Input<string>;
-    /**
-     * Secondary OCSP server URL.
-     */
     secondaryUrl?: pulumi.Input<string>;
-    /**
-     * Source IP address for communications to the OCSP server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Action when server is unavailable (revoke the certificate or ignore the result of the check). Valid values: `revoke`, `ignore`.
-     */
     unavailAction?: pulumi.Input<string>;
-    /**
-     * OCSP server URL.
-     */
     url?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -177,36 +96,12 @@ export interface VpnCertificateOcspServerState {
  * The set of arguments for constructing a VpnCertificateOcspServer resource.
  */
 export interface VpnCertificateOcspServerArgs {
-    /**
-     * OCSP server certificate.
-     */
     cert?: pulumi.Input<string>;
-    /**
-     * OCSP server entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Secondary OCSP server certificate.
-     */
     secondaryCert?: pulumi.Input<string>;
-    /**
-     * Secondary OCSP server URL.
-     */
     secondaryUrl?: pulumi.Input<string>;
-    /**
-     * Source IP address for communications to the OCSP server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Action when server is unavailable (revoke the certificate or ignore the result of the check). Valid values: `revoke`, `ignore`.
-     */
     unavailAction?: pulumi.Input<string>;
-    /**
-     * OCSP server URL.
-     */
     url?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,31 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Internet Service list. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// Firewall InternetServiceList can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceList:FirewallInternetServiceList labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceList:FirewallInternetServiceList labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallInternetServiceList struct {
 	pulumi.CustomResourceState
 
-	// Internet Service category ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Internet Service category name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -68,20 +48,14 @@ func GetFirewallInternetServiceList(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallInternetServiceList resources.
 type firewallInternetServiceListState struct {
-	// Internet Service category ID.
-	Fosid *int `pulumi:"fosid"`
-	// Internet Service category name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type FirewallInternetServiceListState struct {
-	// Internet Service category ID.
-	Fosid pulumi.IntPtrInput
-	// Internet Service category name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -90,21 +64,15 @@ func (FirewallInternetServiceListState) ElementType() reflect.Type {
 }
 
 type firewallInternetServiceListArgs struct {
-	// Internet Service category ID.
-	Fosid *int `pulumi:"fosid"`
-	// Internet Service category name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallInternetServiceList resource.
 type FirewallInternetServiceListArgs struct {
-	// Internet Service category ID.
-	Fosid pulumi.IntPtrInput
-	// Internet Service category name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -134,7 +102,7 @@ func (i *FirewallInternetServiceList) ToFirewallInternetServiceListOutputWithCon
 // FirewallInternetServiceListArrayInput is an input type that accepts FirewallInternetServiceListArray and FirewallInternetServiceListArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceListArrayInput` via:
 //
-//          FirewallInternetServiceListArray{ FirewallInternetServiceListArgs{...} }
+//	FirewallInternetServiceListArray{ FirewallInternetServiceListArgs{...} }
 type FirewallInternetServiceListArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i FirewallInternetServiceListArray) ToFirewallInternetServiceListArrayOutp
 // FirewallInternetServiceListMapInput is an input type that accepts FirewallInternetServiceListMap and FirewallInternetServiceListMapOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceListMapInput` via:
 //
-//          FirewallInternetServiceListMap{ "key": FirewallInternetServiceListArgs{...} }
+//	FirewallInternetServiceListMap{ "key": FirewallInternetServiceListArgs{...} }
 type FirewallInternetServiceListMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o FirewallInternetServiceListOutput) ToFirewallInternetServiceListOutput()
 
 func (o FirewallInternetServiceListOutput) ToFirewallInternetServiceListOutputWithContext(ctx context.Context) FirewallInternetServiceListOutput {
 	return o
+}
+
+func (o FirewallInternetServiceListOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceList) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceListOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceList) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallInternetServiceListOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceList) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallInternetServiceListArrayOutput struct{ *pulumi.OutputState }

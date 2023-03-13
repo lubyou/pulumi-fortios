@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.RouterMulticastFlow`.
- */
 export function getRouterMulticastFlowList(args?: GetRouterMulticastFlowListArgs, opts?: pulumi.InvokeOptions): Promise<GetRouterMulticastFlowListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getRouterMulticastFlowList:GetRouterMulticastFlowList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getRouterMulticastFlowList(args?: GetRouterMulticastFlowListArgs
  */
 export interface GetRouterMulticastFlowListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -40,15 +31,11 @@ export interface GetRouterMulticastFlowListResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of the `fortios.RouterMulticastFlow`.
-     */
     readonly namelists: string[];
     readonly vdomparam?: string;
 }
-
 export function getRouterMulticastFlowListOutput(args?: GetRouterMulticastFlowListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterMulticastFlowListResult> {
-    return pulumi.output(args).apply(a => getRouterMulticastFlowList(a, opts))
+    return pulumi.output(args).apply((a: any) => getRouterMulticastFlowList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getRouterMulticastFlowListOutput(args?: GetRouterMulticastFlowLi
  */
 export interface GetRouterMulticastFlowListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

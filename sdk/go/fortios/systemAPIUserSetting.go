@@ -7,64 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure API users of FortiOS. The API user of the token for this feature should have a super admin profile, It can be set in CLI while GUI does not allow.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `SystemApiUser`, we recommend that you use the new resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAPIUserSetting(ctx, "test2", &fortios.SystemAPIUserSettingArgs{
-// 			Accprofile: pulumi.String("restAPIprofile"),
-// 			Trusthosts: SystemAPIUserSettingTrusthostArray{
-// 				&SystemAPIUserSettingTrusthostArgs{
-// 					Ipv4Trusthost: pulumi.String("61.149.0.0 255.255.0.0"),
-// 					Type:          pulumi.String("ipv4-trusthost"),
-// 				},
-// 				&SystemAPIUserSettingTrusthostArgs{
-// 					Ipv4Trusthost: pulumi.String("22.22.0.0 255.255.0.0"),
-// 					Type:          pulumi.String("ipv4-trusthost"),
-// 				},
-// 			},
-// 			Vdoms: pulumi.StringArray{
-// 				pulumi.String("root"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type SystemAPIUserSetting struct {
 	pulumi.CustomResourceState
 
-	// Admin user access profile.
-	Accprofile pulumi.StringOutput `pulumi:"accprofile"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// User name.
+	Accprofile pulumi.StringOutput                      `pulumi:"accprofile"`
+	Comments   pulumi.StringPtrOutput                   `pulumi:"comments"`
 	Name       pulumi.StringOutput                      `pulumi:"name"`
 	Trusthosts SystemAPIUserSettingTrusthostArrayOutput `pulumi:"trusthosts"`
-	// Virtual domains.
-	// * `trusthost-Type` - (Required) Trusthost type.
-	// * `trusthost-ipv4_trusthost` - (Required) IPv4 trusted host address.
-	Vdoms pulumi.StringArrayOutput `pulumi:"vdoms"`
+	Vdoms      pulumi.StringArrayOutput                 `pulumi:"vdoms"`
 }
 
 // NewSystemAPIUserSetting registers a new resource with the given unique name, arguments, and options.
@@ -106,31 +60,19 @@ func GetSystemAPIUserSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAPIUserSetting resources.
 type systemAPIUserSettingState struct {
-	// Admin user access profile.
-	Accprofile *string `pulumi:"accprofile"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// User name.
+	Accprofile *string                         `pulumi:"accprofile"`
+	Comments   *string                         `pulumi:"comments"`
 	Name       *string                         `pulumi:"name"`
 	Trusthosts []SystemAPIUserSettingTrusthost `pulumi:"trusthosts"`
-	// Virtual domains.
-	// * `trusthost-Type` - (Required) Trusthost type.
-	// * `trusthost-ipv4_trusthost` - (Required) IPv4 trusted host address.
-	Vdoms []string `pulumi:"vdoms"`
+	Vdoms      []string                        `pulumi:"vdoms"`
 }
 
 type SystemAPIUserSettingState struct {
-	// Admin user access profile.
 	Accprofile pulumi.StringPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// User name.
+	Comments   pulumi.StringPtrInput
 	Name       pulumi.StringPtrInput
 	Trusthosts SystemAPIUserSettingTrusthostArrayInput
-	// Virtual domains.
-	// * `trusthost-Type` - (Required) Trusthost type.
-	// * `trusthost-ipv4_trusthost` - (Required) IPv4 trusted host address.
-	Vdoms pulumi.StringArrayInput
+	Vdoms      pulumi.StringArrayInput
 }
 
 func (SystemAPIUserSettingState) ElementType() reflect.Type {
@@ -138,32 +80,20 @@ func (SystemAPIUserSettingState) ElementType() reflect.Type {
 }
 
 type systemAPIUserSettingArgs struct {
-	// Admin user access profile.
-	Accprofile string `pulumi:"accprofile"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// User name.
+	Accprofile string                          `pulumi:"accprofile"`
+	Comments   *string                         `pulumi:"comments"`
 	Name       *string                         `pulumi:"name"`
 	Trusthosts []SystemAPIUserSettingTrusthost `pulumi:"trusthosts"`
-	// Virtual domains.
-	// * `trusthost-Type` - (Required) Trusthost type.
-	// * `trusthost-ipv4_trusthost` - (Required) IPv4 trusted host address.
-	Vdoms []string `pulumi:"vdoms"`
+	Vdoms      []string                        `pulumi:"vdoms"`
 }
 
 // The set of arguments for constructing a SystemAPIUserSetting resource.
 type SystemAPIUserSettingArgs struct {
-	// Admin user access profile.
 	Accprofile pulumi.StringInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// User name.
+	Comments   pulumi.StringPtrInput
 	Name       pulumi.StringPtrInput
 	Trusthosts SystemAPIUserSettingTrusthostArrayInput
-	// Virtual domains.
-	// * `trusthost-Type` - (Required) Trusthost type.
-	// * `trusthost-ipv4_trusthost` - (Required) IPv4 trusted host address.
-	Vdoms pulumi.StringArrayInput
+	Vdoms      pulumi.StringArrayInput
 }
 
 func (SystemAPIUserSettingArgs) ElementType() reflect.Type {
@@ -192,7 +122,7 @@ func (i *SystemAPIUserSetting) ToSystemAPIUserSettingOutputWithContext(ctx conte
 // SystemAPIUserSettingArrayInput is an input type that accepts SystemAPIUserSettingArray and SystemAPIUserSettingArrayOutput values.
 // You can construct a concrete instance of `SystemAPIUserSettingArrayInput` via:
 //
-//          SystemAPIUserSettingArray{ SystemAPIUserSettingArgs{...} }
+//	SystemAPIUserSettingArray{ SystemAPIUserSettingArgs{...} }
 type SystemAPIUserSettingArrayInput interface {
 	pulumi.Input
 
@@ -217,7 +147,7 @@ func (i SystemAPIUserSettingArray) ToSystemAPIUserSettingArrayOutputWithContext(
 // SystemAPIUserSettingMapInput is an input type that accepts SystemAPIUserSettingMap and SystemAPIUserSettingMapOutput values.
 // You can construct a concrete instance of `SystemAPIUserSettingMapInput` via:
 //
-//          SystemAPIUserSettingMap{ "key": SystemAPIUserSettingArgs{...} }
+//	SystemAPIUserSettingMap{ "key": SystemAPIUserSettingArgs{...} }
 type SystemAPIUserSettingMapInput interface {
 	pulumi.Input
 
@@ -251,6 +181,26 @@ func (o SystemAPIUserSettingOutput) ToSystemAPIUserSettingOutput() SystemAPIUser
 
 func (o SystemAPIUserSettingOutput) ToSystemAPIUserSettingOutputWithContext(ctx context.Context) SystemAPIUserSettingOutput {
 	return o
+}
+
+func (o SystemAPIUserSettingOutput) Accprofile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAPIUserSetting) pulumi.StringOutput { return v.Accprofile }).(pulumi.StringOutput)
+}
+
+func (o SystemAPIUserSettingOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAPIUserSetting) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAPIUserSettingOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAPIUserSetting) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemAPIUserSettingOutput) Trusthosts() SystemAPIUserSettingTrusthostArrayOutput {
+	return o.ApplyT(func(v *SystemAPIUserSetting) SystemAPIUserSettingTrusthostArrayOutput { return v.Trusthosts }).(SystemAPIUserSettingTrusthostArrayOutput)
+}
+
+func (o SystemAPIUserSettingOutput) Vdoms() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SystemAPIUserSetting) pulumi.StringArrayOutput { return v.Vdoms }).(pulumi.StringArrayOutput)
 }
 
 type SystemAPIUserSettingArrayOutput struct{ *pulumi.OutputState }

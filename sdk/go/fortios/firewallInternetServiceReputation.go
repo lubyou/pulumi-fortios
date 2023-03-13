@@ -10,32 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Show Internet Service reputation. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// Firewall InternetServiceReputation can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceReputation:FirewallInternetServiceReputation labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceReputation:FirewallInternetServiceReputation labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallInternetServiceReputation struct {
 	pulumi.CustomResourceState
 
-	// Description.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// Internet Service Reputation ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Description pulumi.StringOutput    `pulumi:"description"`
+	Fosid       pulumi.IntOutput       `pulumi:"fosid"`
+	Vdomparam   pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallInternetServiceReputation registers a new resource with the given unique name, arguments, and options.
@@ -68,21 +48,15 @@ func GetFirewallInternetServiceReputation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallInternetServiceReputation resources.
 type firewallInternetServiceReputationState struct {
-	// Description.
 	Description *string `pulumi:"description"`
-	// Internet Service Reputation ID.
-	Fosid *int `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Fosid       *int    `pulumi:"fosid"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 }
 
 type FirewallInternetServiceReputationState struct {
-	// Description.
 	Description pulumi.StringPtrInput
-	// Internet Service Reputation ID.
-	Fosid pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid       pulumi.IntPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceReputationState) ElementType() reflect.Type {
@@ -90,22 +64,16 @@ func (FirewallInternetServiceReputationState) ElementType() reflect.Type {
 }
 
 type firewallInternetServiceReputationArgs struct {
-	// Description.
 	Description *string `pulumi:"description"`
-	// Internet Service Reputation ID.
-	Fosid *int `pulumi:"fosid"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Fosid       *int    `pulumi:"fosid"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallInternetServiceReputation resource.
 type FirewallInternetServiceReputationArgs struct {
-	// Description.
 	Description pulumi.StringPtrInput
-	// Internet Service Reputation ID.
-	Fosid pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Fosid       pulumi.IntPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (FirewallInternetServiceReputationArgs) ElementType() reflect.Type {
@@ -134,7 +102,7 @@ func (i *FirewallInternetServiceReputation) ToFirewallInternetServiceReputationO
 // FirewallInternetServiceReputationArrayInput is an input type that accepts FirewallInternetServiceReputationArray and FirewallInternetServiceReputationArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceReputationArrayInput` via:
 //
-//          FirewallInternetServiceReputationArray{ FirewallInternetServiceReputationArgs{...} }
+//	FirewallInternetServiceReputationArray{ FirewallInternetServiceReputationArgs{...} }
 type FirewallInternetServiceReputationArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i FirewallInternetServiceReputationArray) ToFirewallInternetServiceReputat
 // FirewallInternetServiceReputationMapInput is an input type that accepts FirewallInternetServiceReputationMap and FirewallInternetServiceReputationMapOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceReputationMapInput` via:
 //
-//          FirewallInternetServiceReputationMap{ "key": FirewallInternetServiceReputationArgs{...} }
+//	FirewallInternetServiceReputationMap{ "key": FirewallInternetServiceReputationArgs{...} }
 type FirewallInternetServiceReputationMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o FirewallInternetServiceReputationOutput) ToFirewallInternetServiceReputa
 
 func (o FirewallInternetServiceReputationOutput) ToFirewallInternetServiceReputationOutputWithContext(ctx context.Context) FirewallInternetServiceReputationOutput {
 	return o
+}
+
+func (o FirewallInternetServiceReputationOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceReputation) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o FirewallInternetServiceReputationOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceReputation) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceReputationOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceReputation) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallInternetServiceReputationArrayOutput struct{ *pulumi.OutputState }

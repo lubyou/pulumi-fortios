@@ -10,73 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure SSL VPN user group bookmark.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewVpnSslWebUserGroupBookmark(ctx, "trname", &fortios.VpnSslWebUserGroupBookmarkArgs{
-// 			Bookmarks: VpnSslWebUserGroupBookmarkBookmarkArray{
-// 				&VpnSslWebUserGroupBookmarkBookmarkArgs{
-// 					Apptype:               pulumi.String("citrix"),
-// 					ListeningPort:         pulumi.Int(0),
-// 					Name:                  pulumi.String("b1"),
-// 					Port:                  pulumi.Int(0),
-// 					RemotePort:            pulumi.Int(0),
-// 					Security:              pulumi.String("rdp"),
-// 					ServerLayout:          pulumi.String("en-us-qwerty"),
-// 					ShowStatusWindow:      pulumi.String("disable"),
-// 					Sso:                   pulumi.String("disable"),
-// 					SsoCredential:         pulumi.String("sslvpn-login"),
-// 					SsoCredentialSentOnce: pulumi.String("disable"),
-// 					Url:                   pulumi.String("www.aaa.com"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// VpnSslWeb UserGroupBookmark can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnSslWebUserGroupBookmark:VpnSslWebUserGroupBookmark labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/vpnSslWebUserGroupBookmark:VpnSslWebUserGroupBookmark labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type VpnSslWebUserGroupBookmark struct {
 	pulumi.CustomResourceState
 
-	// Bookmark table. The structure of `bookmarks` block is documented below.
-	Bookmarks VpnSslWebUserGroupBookmarkBookmarkArrayOutput `pulumi:"bookmarks"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Bookmarks           VpnSslWebUserGroupBookmarkBookmarkArrayOutput `pulumi:"bookmarks"`
+	DynamicSortSubtable pulumi.StringPtrOutput                        `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                           `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                        `pulumi:"vdomparam"`
 }
 
 // NewVpnSslWebUserGroupBookmark registers a new resource with the given unique name, arguments, and options.
@@ -109,25 +49,17 @@ func GetVpnSslWebUserGroupBookmark(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnSslWebUserGroupBookmark resources.
 type vpnSslWebUserGroupBookmarkState struct {
-	// Bookmark table. The structure of `bookmarks` block is documented below.
-	Bookmarks []VpnSslWebUserGroupBookmarkBookmark `pulumi:"bookmarks"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Bookmarks           []VpnSslWebUserGroupBookmarkBookmark `pulumi:"bookmarks"`
+	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
+	Name                *string                              `pulumi:"name"`
+	Vdomparam           *string                              `pulumi:"vdomparam"`
 }
 
 type VpnSslWebUserGroupBookmarkState struct {
-	// Bookmark table. The structure of `bookmarks` block is documented below.
-	Bookmarks VpnSslWebUserGroupBookmarkBookmarkArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Bookmarks           VpnSslWebUserGroupBookmarkBookmarkArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (VpnSslWebUserGroupBookmarkState) ElementType() reflect.Type {
@@ -135,26 +67,18 @@ func (VpnSslWebUserGroupBookmarkState) ElementType() reflect.Type {
 }
 
 type vpnSslWebUserGroupBookmarkArgs struct {
-	// Bookmark table. The structure of `bookmarks` block is documented below.
-	Bookmarks []VpnSslWebUserGroupBookmarkBookmark `pulumi:"bookmarks"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Bookmarks           []VpnSslWebUserGroupBookmarkBookmark `pulumi:"bookmarks"`
+	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
+	Name                *string                              `pulumi:"name"`
+	Vdomparam           *string                              `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VpnSslWebUserGroupBookmark resource.
 type VpnSslWebUserGroupBookmarkArgs struct {
-	// Bookmark table. The structure of `bookmarks` block is documented below.
-	Bookmarks VpnSslWebUserGroupBookmarkBookmarkArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Bookmarks           VpnSslWebUserGroupBookmarkBookmarkArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (VpnSslWebUserGroupBookmarkArgs) ElementType() reflect.Type {
@@ -183,7 +107,7 @@ func (i *VpnSslWebUserGroupBookmark) ToVpnSslWebUserGroupBookmarkOutputWithConte
 // VpnSslWebUserGroupBookmarkArrayInput is an input type that accepts VpnSslWebUserGroupBookmarkArray and VpnSslWebUserGroupBookmarkArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebUserGroupBookmarkArrayInput` via:
 //
-//          VpnSslWebUserGroupBookmarkArray{ VpnSslWebUserGroupBookmarkArgs{...} }
+//	VpnSslWebUserGroupBookmarkArray{ VpnSslWebUserGroupBookmarkArgs{...} }
 type VpnSslWebUserGroupBookmarkArrayInput interface {
 	pulumi.Input
 
@@ -208,7 +132,7 @@ func (i VpnSslWebUserGroupBookmarkArray) ToVpnSslWebUserGroupBookmarkArrayOutput
 // VpnSslWebUserGroupBookmarkMapInput is an input type that accepts VpnSslWebUserGroupBookmarkMap and VpnSslWebUserGroupBookmarkMapOutput values.
 // You can construct a concrete instance of `VpnSslWebUserGroupBookmarkMapInput` via:
 //
-//          VpnSslWebUserGroupBookmarkMap{ "key": VpnSslWebUserGroupBookmarkArgs{...} }
+//	VpnSslWebUserGroupBookmarkMap{ "key": VpnSslWebUserGroupBookmarkArgs{...} }
 type VpnSslWebUserGroupBookmarkMapInput interface {
 	pulumi.Input
 
@@ -242,6 +166,22 @@ func (o VpnSslWebUserGroupBookmarkOutput) ToVpnSslWebUserGroupBookmarkOutput() V
 
 func (o VpnSslWebUserGroupBookmarkOutput) ToVpnSslWebUserGroupBookmarkOutputWithContext(ctx context.Context) VpnSslWebUserGroupBookmarkOutput {
 	return o
+}
+
+func (o VpnSslWebUserGroupBookmarkOutput) Bookmarks() VpnSslWebUserGroupBookmarkBookmarkArrayOutput {
+	return o.ApplyT(func(v *VpnSslWebUserGroupBookmark) VpnSslWebUserGroupBookmarkBookmarkArrayOutput { return v.Bookmarks }).(VpnSslWebUserGroupBookmarkBookmarkArrayOutput)
+}
+
+func (o VpnSslWebUserGroupBookmarkOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebUserGroupBookmark) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebUserGroupBookmarkOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebUserGroupBookmark) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebUserGroupBookmarkOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebUserGroupBookmark) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type VpnSslWebUserGroupBookmarkArrayOutput struct{ *pulumi.OutputState }

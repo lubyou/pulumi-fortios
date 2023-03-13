@@ -4,40 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Report setting configuration.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.ReportSetting("trname", {
- *     fortiview: "enable",
- *     pdfReport: "enable",
- *     reportSource: "forward-traffic",
- *     topN: 1000,
- *     webBrowsingThreshold: 3,
- * });
- * ```
- *
- * ## Import
- *
- * Report Setting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/reportSetting:ReportSetting labelname ReportSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/reportSetting:ReportSetting labelname ReportSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class ReportSetting extends pulumi.CustomResource {
     /**
      * Get an existing ReportSetting resource's state with the given name, ID, and optional extra
@@ -66,29 +32,11 @@ export class ReportSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === ReportSetting.__pulumiType;
     }
 
-    /**
-     * Enable/disable historical FortiView. Valid values: `enable`, `disable`.
-     */
     public readonly fortiview!: pulumi.Output<string>;
-    /**
-     * Enable/disable PDF report. Valid values: `enable`, `disable`.
-     */
     public readonly pdfReport!: pulumi.Output<string>;
-    /**
-     * Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
-     */
     public readonly reportSource!: pulumi.Output<string>;
-    /**
-     * Number of items to populate (100 - 4000).
-     */
     public readonly topN!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Web browsing time calculation threshold (3 - 15 min).
-     */
     public readonly webBrowsingThreshold!: pulumi.Output<number>;
 
     /**
@@ -128,29 +76,11 @@ export class ReportSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ReportSetting resources.
  */
 export interface ReportSettingState {
-    /**
-     * Enable/disable historical FortiView. Valid values: `enable`, `disable`.
-     */
     fortiview?: pulumi.Input<string>;
-    /**
-     * Enable/disable PDF report. Valid values: `enable`, `disable`.
-     */
     pdfReport?: pulumi.Input<string>;
-    /**
-     * Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
-     */
     reportSource?: pulumi.Input<string>;
-    /**
-     * Number of items to populate (100 - 4000).
-     */
     topN?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Web browsing time calculation threshold (3 - 15 min).
-     */
     webBrowsingThreshold?: pulumi.Input<number>;
 }
 
@@ -158,28 +88,10 @@ export interface ReportSettingState {
  * The set of arguments for constructing a ReportSetting resource.
  */
 export interface ReportSettingArgs {
-    /**
-     * Enable/disable historical FortiView. Valid values: `enable`, `disable`.
-     */
     fortiview?: pulumi.Input<string>;
-    /**
-     * Enable/disable PDF report. Valid values: `enable`, `disable`.
-     */
     pdfReport?: pulumi.Input<string>;
-    /**
-     * Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
-     */
     reportSource?: pulumi.Input<string>;
-    /**
-     * Number of items to populate (100 - 4000).
-     */
     topN?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Web browsing time calculation threshold (3 - 15 min).
-     */
     webBrowsingThreshold?: pulumi.Input<number>;
 }

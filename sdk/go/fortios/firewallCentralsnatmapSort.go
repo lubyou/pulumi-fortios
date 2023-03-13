@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -124,7 +124,7 @@ func (i *FirewallCentralsnatmapSort) ToFirewallCentralsnatmapSortOutputWithConte
 // FirewallCentralsnatmapSortArrayInput is an input type that accepts FirewallCentralsnatmapSortArray and FirewallCentralsnatmapSortArrayOutput values.
 // You can construct a concrete instance of `FirewallCentralsnatmapSortArrayInput` via:
 //
-//          FirewallCentralsnatmapSortArray{ FirewallCentralsnatmapSortArgs{...} }
+//	FirewallCentralsnatmapSortArray{ FirewallCentralsnatmapSortArgs{...} }
 type FirewallCentralsnatmapSortArrayInput interface {
 	pulumi.Input
 
@@ -149,7 +149,7 @@ func (i FirewallCentralsnatmapSortArray) ToFirewallCentralsnatmapSortArrayOutput
 // FirewallCentralsnatmapSortMapInput is an input type that accepts FirewallCentralsnatmapSortMap and FirewallCentralsnatmapSortMapOutput values.
 // You can construct a concrete instance of `FirewallCentralsnatmapSortMapInput` via:
 //
-//          FirewallCentralsnatmapSortMap{ "key": FirewallCentralsnatmapSortArgs{...} }
+//	FirewallCentralsnatmapSortMap{ "key": FirewallCentralsnatmapSortArgs{...} }
 type FirewallCentralsnatmapSortMapInput interface {
 	pulumi.Input
 
@@ -183,6 +183,30 @@ func (o FirewallCentralsnatmapSortOutput) ToFirewallCentralsnatmapSortOutput() F
 
 func (o FirewallCentralsnatmapSortOutput) ToFirewallCentralsnatmapSortOutputWithContext(ctx context.Context) FirewallCentralsnatmapSortOutput {
 	return o
+}
+
+func (o FirewallCentralsnatmapSortOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapSort) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallCentralsnatmapSortOutput) ForceRecreate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapSort) pulumi.StringPtrOutput { return v.ForceRecreate }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallCentralsnatmapSortOutput) Sortby() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapSort) pulumi.StringOutput { return v.Sortby }).(pulumi.StringOutput)
+}
+
+func (o FirewallCentralsnatmapSortOutput) Sortdirection() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapSort) pulumi.StringOutput { return v.Sortdirection }).(pulumi.StringOutput)
+}
+
+func (o FirewallCentralsnatmapSortOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapSort) pulumi.StringPtrOutput { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallCentralsnatmapSortOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapSort) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallCentralsnatmapSortArrayOutput struct{ *pulumi.OutputState }

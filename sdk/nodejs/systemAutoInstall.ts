@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure USB auto installation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemAutoInstall("trname", {
- *     autoInstallConfig: "enable",
- *     autoInstallImage: "enable",
- *     defaultConfigFile: "fgt_system.conf",
- *     defaultImageFile: "image.out",
- * });
- * ```
- *
- * ## Import
- *
- * System AutoInstall can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutoInstall:SystemAutoInstall labelname SystemAutoInstall
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutoInstall:SystemAutoInstall labelname SystemAutoInstall
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemAutoInstall extends pulumi.CustomResource {
     /**
      * Get an existing SystemAutoInstall resource's state with the given name, ID, and optional extra
@@ -65,25 +32,10 @@ export class SystemAutoInstall extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAutoInstall.__pulumiType;
     }
 
-    /**
-     * Enable/disable auto install the config in USB disk. Valid values: `enable`, `disable`.
-     */
     public readonly autoInstallConfig!: pulumi.Output<string>;
-    /**
-     * Enable/disable auto install the image in USB disk. Valid values: `enable`, `disable`.
-     */
     public readonly autoInstallImage!: pulumi.Output<string>;
-    /**
-     * Default config file name in USB disk.
-     */
     public readonly defaultConfigFile!: pulumi.Output<string>;
-    /**
-     * Default image file name in USB disk.
-     */
     public readonly defaultImageFile!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -121,25 +73,10 @@ export class SystemAutoInstall extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAutoInstall resources.
  */
 export interface SystemAutoInstallState {
-    /**
-     * Enable/disable auto install the config in USB disk. Valid values: `enable`, `disable`.
-     */
     autoInstallConfig?: pulumi.Input<string>;
-    /**
-     * Enable/disable auto install the image in USB disk. Valid values: `enable`, `disable`.
-     */
     autoInstallImage?: pulumi.Input<string>;
-    /**
-     * Default config file name in USB disk.
-     */
     defaultConfigFile?: pulumi.Input<string>;
-    /**
-     * Default image file name in USB disk.
-     */
     defaultImageFile?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -147,24 +84,9 @@ export interface SystemAutoInstallState {
  * The set of arguments for constructing a SystemAutoInstall resource.
  */
 export interface SystemAutoInstallArgs {
-    /**
-     * Enable/disable auto install the config in USB disk. Valid values: `enable`, `disable`.
-     */
     autoInstallConfig?: pulumi.Input<string>;
-    /**
-     * Enable/disable auto install the image in USB disk. Valid values: `enable`, `disable`.
-     */
     autoInstallImage?: pulumi.Input<string>;
-    /**
-     * Default config file name in USB disk.
-     */
     defaultConfigFile?: pulumi.Input<string>;
-    /**
-     * Default image file name in USB disk.
-     */
     defaultImageFile?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

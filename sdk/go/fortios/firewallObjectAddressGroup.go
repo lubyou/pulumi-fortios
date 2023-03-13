@@ -7,49 +7,16 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure firewall address group used in firewall policies of FortiOS.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `FirewallAddrgrp`, we recommend that you use the new resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallObjectAddressGroup(ctx, "s1", &fortios.FirewallObjectAddressGroupArgs{
-// 			Comment: pulumi.String("dfdsad"),
-// 			Members: pulumi.StringArray{
-// 				pulumi.String("google-play"),
-// 				pulumi.String("swscan.apple.com"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FirewallObjectAddressGroup struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Address objects contained within the group.
+	Comment pulumi.StringPtrOutput   `pulumi:"comment"`
 	Members pulumi.StringArrayOutput `pulumi:"members"`
-	// Address group name.
-	Name pulumi.StringOutput `pulumi:"name"`
+	Name    pulumi.StringOutput      `pulumi:"name"`
 }
 
 // NewFirewallObjectAddressGroup registers a new resource with the given unique name, arguments, and options.
@@ -85,21 +52,15 @@ func GetFirewallObjectAddressGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallObjectAddressGroup resources.
 type firewallObjectAddressGroupState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Address objects contained within the group.
+	Comment *string  `pulumi:"comment"`
 	Members []string `pulumi:"members"`
-	// Address group name.
-	Name *string `pulumi:"name"`
+	Name    *string  `pulumi:"name"`
 }
 
 type FirewallObjectAddressGroupState struct {
-	// Comment.
 	Comment pulumi.StringPtrInput
-	// Address objects contained within the group.
 	Members pulumi.StringArrayInput
-	// Address group name.
-	Name pulumi.StringPtrInput
+	Name    pulumi.StringPtrInput
 }
 
 func (FirewallObjectAddressGroupState) ElementType() reflect.Type {
@@ -107,22 +68,16 @@ func (FirewallObjectAddressGroupState) ElementType() reflect.Type {
 }
 
 type firewallObjectAddressGroupArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Address objects contained within the group.
+	Comment *string  `pulumi:"comment"`
 	Members []string `pulumi:"members"`
-	// Address group name.
-	Name *string `pulumi:"name"`
+	Name    *string  `pulumi:"name"`
 }
 
 // The set of arguments for constructing a FirewallObjectAddressGroup resource.
 type FirewallObjectAddressGroupArgs struct {
-	// Comment.
 	Comment pulumi.StringPtrInput
-	// Address objects contained within the group.
 	Members pulumi.StringArrayInput
-	// Address group name.
-	Name pulumi.StringPtrInput
+	Name    pulumi.StringPtrInput
 }
 
 func (FirewallObjectAddressGroupArgs) ElementType() reflect.Type {
@@ -151,7 +106,7 @@ func (i *FirewallObjectAddressGroup) ToFirewallObjectAddressGroupOutputWithConte
 // FirewallObjectAddressGroupArrayInput is an input type that accepts FirewallObjectAddressGroupArray and FirewallObjectAddressGroupArrayOutput values.
 // You can construct a concrete instance of `FirewallObjectAddressGroupArrayInput` via:
 //
-//          FirewallObjectAddressGroupArray{ FirewallObjectAddressGroupArgs{...} }
+//	FirewallObjectAddressGroupArray{ FirewallObjectAddressGroupArgs{...} }
 type FirewallObjectAddressGroupArrayInput interface {
 	pulumi.Input
 
@@ -176,7 +131,7 @@ func (i FirewallObjectAddressGroupArray) ToFirewallObjectAddressGroupArrayOutput
 // FirewallObjectAddressGroupMapInput is an input type that accepts FirewallObjectAddressGroupMap and FirewallObjectAddressGroupMapOutput values.
 // You can construct a concrete instance of `FirewallObjectAddressGroupMapInput` via:
 //
-//          FirewallObjectAddressGroupMap{ "key": FirewallObjectAddressGroupArgs{...} }
+//	FirewallObjectAddressGroupMap{ "key": FirewallObjectAddressGroupArgs{...} }
 type FirewallObjectAddressGroupMapInput interface {
 	pulumi.Input
 
@@ -210,6 +165,18 @@ func (o FirewallObjectAddressGroupOutput) ToFirewallObjectAddressGroupOutput() F
 
 func (o FirewallObjectAddressGroupOutput) ToFirewallObjectAddressGroupOutputWithContext(ctx context.Context) FirewallObjectAddressGroupOutput {
 	return o
+}
+
+func (o FirewallObjectAddressGroupOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallObjectAddressGroup) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallObjectAddressGroupOutput) Members() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallObjectAddressGroup) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
+}
+
+func (o FirewallObjectAddressGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallObjectAddressGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 type FirewallObjectAddressGroupArrayOutput struct{ *pulumi.OutputState }

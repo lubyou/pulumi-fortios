@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure VDOM links.
- *
- * ## Import
- *
- * System VdomLink can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVdomLink:SystemVdomLink labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemVdomLink:SystemVdomLink labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemVdomLink extends pulumi.CustomResource {
     /**
      * Get an existing SystemVdomLink resource's state with the given name, ID, and optional extra
@@ -51,21 +32,9 @@ export class SystemVdomLink extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemVdomLink.__pulumiType;
     }
 
-    /**
-     * VDOM link name (maximum = 8 characters).
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * VDOM link type: PPP or Ethernet. Valid values: `ppp`, `ethernet`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Virtual cluster. Valid values: `vcluster1`, `vcluster2`.
-     */
     public readonly vcluster!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -101,21 +70,9 @@ export class SystemVdomLink extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemVdomLink resources.
  */
 export interface SystemVdomLinkState {
-    /**
-     * VDOM link name (maximum = 8 characters).
-     */
     name?: pulumi.Input<string>;
-    /**
-     * VDOM link type: PPP or Ethernet. Valid values: `ppp`, `ethernet`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Virtual cluster. Valid values: `vcluster1`, `vcluster2`.
-     */
     vcluster?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -123,20 +80,8 @@ export interface SystemVdomLinkState {
  * The set of arguments for constructing a SystemVdomLink resource.
  */
 export interface SystemVdomLinkArgs {
-    /**
-     * VDOM link name (maximum = 8 characters).
-     */
     name?: pulumi.Input<string>;
-    /**
-     * VDOM link type: PPP or Ethernet. Valid values: `ppp`, `ethernet`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Virtual cluster. Valid values: `vcluster1`, `vcluster2`.
-     */
     vcluster?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

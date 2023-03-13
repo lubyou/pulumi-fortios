@@ -10,55 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure virtual pool.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchControllerVirtualPortPool(ctx, "trname", &fortios.SwitchControllerVirtualPortPoolArgs{
-// 			Description: pulumi.String("virtualport"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchController VirtualPortPool can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerVirtualPortPool:SwitchControllerVirtualPortPool labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerVirtualPortPool:SwitchControllerVirtualPortPool labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerVirtualPortPool struct {
 	pulumi.CustomResourceState
 
-	// Virtual switch pool description.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// Virtual switch pool name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Description pulumi.StringOutput    `pulumi:"description"`
+	Name        pulumi.StringOutput    `pulumi:"name"`
+	Vdomparam   pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerVirtualPortPool registers a new resource with the given unique name, arguments, and options.
@@ -91,21 +48,15 @@ func GetSwitchControllerVirtualPortPool(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerVirtualPortPool resources.
 type switchControllerVirtualPortPoolState struct {
-	// Virtual switch pool description.
 	Description *string `pulumi:"description"`
-	// Virtual switch pool name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name        *string `pulumi:"name"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerVirtualPortPoolState struct {
-	// Virtual switch pool description.
 	Description pulumi.StringPtrInput
-	// Virtual switch pool name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (SwitchControllerVirtualPortPoolState) ElementType() reflect.Type {
@@ -113,22 +64,16 @@ func (SwitchControllerVirtualPortPoolState) ElementType() reflect.Type {
 }
 
 type switchControllerVirtualPortPoolArgs struct {
-	// Virtual switch pool description.
 	Description *string `pulumi:"description"`
-	// Virtual switch pool name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Name        *string `pulumi:"name"`
+	Vdomparam   *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerVirtualPortPool resource.
 type SwitchControllerVirtualPortPoolArgs struct {
-	// Virtual switch pool description.
 	Description pulumi.StringPtrInput
-	// Virtual switch pool name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Vdomparam   pulumi.StringPtrInput
 }
 
 func (SwitchControllerVirtualPortPoolArgs) ElementType() reflect.Type {
@@ -157,7 +102,7 @@ func (i *SwitchControllerVirtualPortPool) ToSwitchControllerVirtualPortPoolOutpu
 // SwitchControllerVirtualPortPoolArrayInput is an input type that accepts SwitchControllerVirtualPortPoolArray and SwitchControllerVirtualPortPoolArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerVirtualPortPoolArrayInput` via:
 //
-//          SwitchControllerVirtualPortPoolArray{ SwitchControllerVirtualPortPoolArgs{...} }
+//	SwitchControllerVirtualPortPoolArray{ SwitchControllerVirtualPortPoolArgs{...} }
 type SwitchControllerVirtualPortPoolArrayInput interface {
 	pulumi.Input
 
@@ -182,7 +127,7 @@ func (i SwitchControllerVirtualPortPoolArray) ToSwitchControllerVirtualPortPoolA
 // SwitchControllerVirtualPortPoolMapInput is an input type that accepts SwitchControllerVirtualPortPoolMap and SwitchControllerVirtualPortPoolMapOutput values.
 // You can construct a concrete instance of `SwitchControllerVirtualPortPoolMapInput` via:
 //
-//          SwitchControllerVirtualPortPoolMap{ "key": SwitchControllerVirtualPortPoolArgs{...} }
+//	SwitchControllerVirtualPortPoolMap{ "key": SwitchControllerVirtualPortPoolArgs{...} }
 type SwitchControllerVirtualPortPoolMapInput interface {
 	pulumi.Input
 
@@ -216,6 +161,18 @@ func (o SwitchControllerVirtualPortPoolOutput) ToSwitchControllerVirtualPortPool
 
 func (o SwitchControllerVirtualPortPoolOutput) ToSwitchControllerVirtualPortPoolOutputWithContext(ctx context.Context) SwitchControllerVirtualPortPoolOutput {
 	return o
+}
+
+func (o SwitchControllerVirtualPortPoolOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVirtualPortPool) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVirtualPortPoolOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerVirtualPortPool) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVirtualPortPoolOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerVirtualPortPool) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerVirtualPortPoolArrayOutput struct{ *pulumi.OutputState }

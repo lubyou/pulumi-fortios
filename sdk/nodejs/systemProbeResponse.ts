@@ -4,41 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure system probe response.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemProbeResponse("trname", {
- *     httpProbeValue: "OK",
- *     mode: "none",
- *     port: 8008,
- *     securityMode: "none",
- *     timeout: 300,
- *     ttlMode: "retain",
- * });
- * ```
- *
- * ## Import
- *
- * System ProbeResponse can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemProbeResponse:SystemProbeResponse labelname SystemProbeResponse
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemProbeResponse:SystemProbeResponse labelname SystemProbeResponse
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemProbeResponse extends pulumi.CustomResource {
     /**
      * Get an existing SystemProbeResponse resource's state with the given name, ID, and optional extra
@@ -67,37 +32,13 @@ export class SystemProbeResponse extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemProbeResponse.__pulumiType;
     }
 
-    /**
-     * Value to respond to the monitoring server.
-     */
     public readonly httpProbeValue!: pulumi.Output<string>;
-    /**
-     * SLA response mode. Valid values: `none`, `http-probe`, `twamp`.
-     */
     public readonly mode!: pulumi.Output<string>;
-    /**
-     * Twamp respondor password in authentication mode
-     */
     public readonly password!: pulumi.Output<string | undefined>;
-    /**
-     * Port number to response.
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Twamp respondor security mode. Valid values: `none`, `authentication`.
-     */
     public readonly securityMode!: pulumi.Output<string>;
-    /**
-     * An inactivity timer for a twamp test session.
-     */
     public readonly timeout!: pulumi.Output<number>;
-    /**
-     * Mode for TWAMP packet TTL modification. Valid values: `reinit`, `decrease`, `retain`.
-     */
     public readonly ttlMode!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -125,7 +66,7 @@ export class SystemProbeResponse extends pulumi.CustomResource {
             const args = argsOrState as SystemProbeResponseArgs | undefined;
             resourceInputs["httpProbeValue"] = args ? args.httpProbeValue : undefined;
             resourceInputs["mode"] = args ? args.mode : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
             resourceInputs["securityMode"] = args ? args.securityMode : undefined;
             resourceInputs["timeout"] = args ? args.timeout : undefined;
@@ -133,6 +74,8 @@ export class SystemProbeResponse extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemProbeResponse.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -141,37 +84,13 @@ export class SystemProbeResponse extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemProbeResponse resources.
  */
 export interface SystemProbeResponseState {
-    /**
-     * Value to respond to the monitoring server.
-     */
     httpProbeValue?: pulumi.Input<string>;
-    /**
-     * SLA response mode. Valid values: `none`, `http-probe`, `twamp`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Twamp respondor password in authentication mode
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Port number to response.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Twamp respondor security mode. Valid values: `none`, `authentication`.
-     */
     securityMode?: pulumi.Input<string>;
-    /**
-     * An inactivity timer for a twamp test session.
-     */
     timeout?: pulumi.Input<number>;
-    /**
-     * Mode for TWAMP packet TTL modification. Valid values: `reinit`, `decrease`, `retain`.
-     */
     ttlMode?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -179,36 +98,12 @@ export interface SystemProbeResponseState {
  * The set of arguments for constructing a SystemProbeResponse resource.
  */
 export interface SystemProbeResponseArgs {
-    /**
-     * Value to respond to the monitoring server.
-     */
     httpProbeValue?: pulumi.Input<string>;
-    /**
-     * SLA response mode. Valid values: `none`, `http-probe`, `twamp`.
-     */
     mode?: pulumi.Input<string>;
-    /**
-     * Twamp respondor password in authentication mode
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Port number to response.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Twamp respondor security mode. Valid values: `none`, `authentication`.
-     */
     securityMode?: pulumi.Input<string>;
-    /**
-     * An inactivity timer for a twamp test session.
-     */
     timeout?: pulumi.Input<number>;
-    /**
-     * Mode for TWAMP packet TTL modification. Valid values: `reinit`, `decrease`, `retain`.
-     */
     ttlMode?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -2,42 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure firewall authentication portals.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallAuthPortal("trname", {
- *     groups: [{
- *         name: "Guest-group",
- *     }],
- *     portalAddr: "1.1.1.1",
- * });
- * ```
- *
- * ## Import
- *
- * Firewall AuthPortal can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAuthPortal:FirewallAuthPortal labelname FirewallAuthPortal
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallAuthPortal:FirewallAuthPortal labelname FirewallAuthPortal
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallAuthPortal extends pulumi.CustomResource {
     /**
      * Get an existing FirewallAuthPortal resource's state with the given name, ID, and optional extra
@@ -66,29 +34,11 @@ export class FirewallAuthPortal extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallAuthPortal.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
-     */
     public readonly groups!: pulumi.Output<outputs.FirewallAuthPortalGroup[] | undefined>;
-    /**
-     * Name of the identity-based route that applies to this portal.
-     */
     public readonly identityBasedRoute!: pulumi.Output<string>;
-    /**
-     * Address (or FQDN) of the authentication portal.
-     */
     public readonly portalAddr!: pulumi.Output<string>;
-    /**
-     * IPv6 address (or FQDN) of authentication portal.
-     */
     public readonly portalAddr6!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -128,29 +78,11 @@ export class FirewallAuthPortal extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallAuthPortal resources.
  */
 export interface FirewallAuthPortalState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
-     */
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallAuthPortalGroup>[]>;
-    /**
-     * Name of the identity-based route that applies to this portal.
-     */
     identityBasedRoute?: pulumi.Input<string>;
-    /**
-     * Address (or FQDN) of the authentication portal.
-     */
     portalAddr?: pulumi.Input<string>;
-    /**
-     * IPv6 address (or FQDN) of authentication portal.
-     */
     portalAddr6?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -158,28 +90,10 @@ export interface FirewallAuthPortalState {
  * The set of arguments for constructing a FirewallAuthPortal resource.
  */
 export interface FirewallAuthPortalArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
-     */
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallAuthPortalGroup>[]>;
-    /**
-     * Name of the identity-based route that applies to this portal.
-     */
     identityBasedRoute?: pulumi.Input<string>;
-    /**
-     * Address (or FQDN) of the authentication portal.
-     */
     portalAddr?: pulumi.Input<string>;
-    /**
-     * IPv6 address (or FQDN) of authentication portal.
-     */
     portalAddr6?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

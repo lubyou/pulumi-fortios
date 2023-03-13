@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewall proxyaddress
 func LookupFirewallProxyAddress(ctx *pulumi.Context, args *LookupFirewallProxyAddressArgs, opts ...pulumi.InvokeOption) (*LookupFirewallProxyAddressResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallProxyAddressResult
@@ -23,55 +22,35 @@ func LookupFirewallProxyAddress(ctx *pulumi.Context, args *LookupFirewallProxyAd
 
 // A collection of arguments for invoking GetFirewallProxyAddress.
 type LookupFirewallProxyAddressArgs struct {
-	// Specify the name of the desired firewall proxyaddress.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallProxyAddress.
 type LookupFirewallProxyAddressResult struct {
-	// Case sensitivity in pattern.
-	CaseSensitivity string `pulumi:"caseSensitivity"`
-	// Tag category.
-	Categories []GetFirewallProxyAddressCategory `pulumi:"categories"`
-	// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
-	Color int `pulumi:"color"`
-	// Optional comments.
-	Comment string `pulumi:"comment"`
-	// HTTP header regular expression.
-	Header string `pulumi:"header"`
-	// HTTP header group. The structure of `headerGroup` block is documented below.
-	HeaderGroups []GetFirewallProxyAddressHeaderGroup `pulumi:"headerGroups"`
-	// HTTP header.
-	HeaderName string `pulumi:"headerName"`
-	// Address object for the host.
-	Host string `pulumi:"host"`
-	// Host name as a regular expression.
-	HostRegex string `pulumi:"hostRegex"`
+	Applications    []GetFirewallProxyAddressApplication `pulumi:"applications"`
+	CaseSensitivity string                               `pulumi:"caseSensitivity"`
+	Categories      []GetFirewallProxyAddressCategory    `pulumi:"categories"`
+	Color           int                                  `pulumi:"color"`
+	Comment         string                               `pulumi:"comment"`
+	Header          string                               `pulumi:"header"`
+	HeaderGroups    []GetFirewallProxyAddressHeaderGroup `pulumi:"headerGroups"`
+	HeaderName      string                               `pulumi:"headerName"`
+	Host            string                               `pulumi:"host"`
+	HostRegex       string                               `pulumi:"hostRegex"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// HTTP request methods to be used.
-	Method string `pulumi:"method"`
-	// Tag name.
-	Name string `pulumi:"name"`
-	// URL path as a regular expression.
-	Path string `pulumi:"path"`
-	// Match the query part of the URL as a regular expression.
-	Query string `pulumi:"query"`
-	// Enable/disable use of referrer field in the HTTP header to match the address.
-	Referrer string `pulumi:"referrer"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []GetFirewallProxyAddressTagging `pulumi:"taggings"`
-	// Proxy address type.
-	Type string `pulumi:"type"`
-	// Names of browsers to be used as user agent.
-	Ua string `pulumi:"ua"`
-	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-	Uuid      string  `pulumi:"uuid"`
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Enable/disable visibility of the object in the GUI.
-	Visibility string `pulumi:"visibility"`
+	Id         string                           `pulumi:"id"`
+	Method     string                           `pulumi:"method"`
+	Name       string                           `pulumi:"name"`
+	Path       string                           `pulumi:"path"`
+	Query      string                           `pulumi:"query"`
+	Referrer   string                           `pulumi:"referrer"`
+	Taggings   []GetFirewallProxyAddressTagging `pulumi:"taggings"`
+	Type       string                           `pulumi:"type"`
+	Ua         string                           `pulumi:"ua"`
+	Uuid       string                           `pulumi:"uuid"`
+	Vdomparam  *string                          `pulumi:"vdomparam"`
+	Visibility string                           `pulumi:"visibility"`
 }
 
 func LookupFirewallProxyAddressOutput(ctx *pulumi.Context, args LookupFirewallProxyAddressOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallProxyAddressResultOutput {
@@ -89,9 +68,7 @@ func LookupFirewallProxyAddressOutput(ctx *pulumi.Context, args LookupFirewallPr
 
 // A collection of arguments for invoking GetFirewallProxyAddress.
 type LookupFirewallProxyAddressOutputArgs struct {
-	// Specify the name of the desired firewall proxyaddress.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -114,47 +91,42 @@ func (o LookupFirewallProxyAddressResultOutput) ToLookupFirewallProxyAddressResu
 	return o
 }
 
-// Case sensitivity in pattern.
+func (o LookupFirewallProxyAddressResultOutput) Applications() GetFirewallProxyAddressApplicationArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProxyAddressResult) []GetFirewallProxyAddressApplication { return v.Applications }).(GetFirewallProxyAddressApplicationArrayOutput)
+}
+
 func (o LookupFirewallProxyAddressResultOutput) CaseSensitivity() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.CaseSensitivity }).(pulumi.StringOutput)
 }
 
-// Tag category.
 func (o LookupFirewallProxyAddressResultOutput) Categories() GetFirewallProxyAddressCategoryArrayOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) []GetFirewallProxyAddressCategory { return v.Categories }).(GetFirewallProxyAddressCategoryArrayOutput)
 }
 
-// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
 func (o LookupFirewallProxyAddressResultOutput) Color() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) int { return v.Color }).(pulumi.IntOutput)
 }
 
-// Optional comments.
 func (o LookupFirewallProxyAddressResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.Comment }).(pulumi.StringOutput)
 }
 
-// HTTP header regular expression.
 func (o LookupFirewallProxyAddressResultOutput) Header() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.Header }).(pulumi.StringOutput)
 }
 
-// HTTP header group. The structure of `headerGroup` block is documented below.
 func (o LookupFirewallProxyAddressResultOutput) HeaderGroups() GetFirewallProxyAddressHeaderGroupArrayOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) []GetFirewallProxyAddressHeaderGroup { return v.HeaderGroups }).(GetFirewallProxyAddressHeaderGroupArrayOutput)
 }
 
-// HTTP header.
 func (o LookupFirewallProxyAddressResultOutput) HeaderName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.HeaderName }).(pulumi.StringOutput)
 }
 
-// Address object for the host.
 func (o LookupFirewallProxyAddressResultOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.Host }).(pulumi.StringOutput)
 }
 
-// Host name as a regular expression.
 func (o LookupFirewallProxyAddressResultOutput) HostRegex() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.HostRegex }).(pulumi.StringOutput)
 }
@@ -164,47 +136,38 @@ func (o LookupFirewallProxyAddressResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// HTTP request methods to be used.
 func (o LookupFirewallProxyAddressResultOutput) Method() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.Method }).(pulumi.StringOutput)
 }
 
-// Tag name.
 func (o LookupFirewallProxyAddressResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// URL path as a regular expression.
 func (o LookupFirewallProxyAddressResultOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.Path }).(pulumi.StringOutput)
 }
 
-// Match the query part of the URL as a regular expression.
 func (o LookupFirewallProxyAddressResultOutput) Query() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.Query }).(pulumi.StringOutput)
 }
 
-// Enable/disable use of referrer field in the HTTP header to match the address.
 func (o LookupFirewallProxyAddressResultOutput) Referrer() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.Referrer }).(pulumi.StringOutput)
 }
 
-// Config object tagging. The structure of `tagging` block is documented below.
 func (o LookupFirewallProxyAddressResultOutput) Taggings() GetFirewallProxyAddressTaggingArrayOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) []GetFirewallProxyAddressTagging { return v.Taggings }).(GetFirewallProxyAddressTaggingArrayOutput)
 }
 
-// Proxy address type.
 func (o LookupFirewallProxyAddressResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
-// Names of browsers to be used as user agent.
 func (o LookupFirewallProxyAddressResultOutput) Ua() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.Ua }).(pulumi.StringOutput)
 }
 
-// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 func (o LookupFirewallProxyAddressResultOutput) Uuid() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.Uuid }).(pulumi.StringOutput)
 }
@@ -213,7 +176,6 @@ func (o LookupFirewallProxyAddressResultOutput) Vdomparam() pulumi.StringPtrOutp
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable visibility of the object in the GUI.
 func (o LookupFirewallProxyAddressResultOutput) Visibility() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.Visibility }).(pulumi.StringOutput)
 }

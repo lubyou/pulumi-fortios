@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios system smsserver
- */
 export function getSystemSmsServer(args: GetSystemSmsServerArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemSmsServerResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemSmsServer:GetSystemSmsServer", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getSystemSmsServer(args: GetSystemSmsServerArgs, opts?: pulumi.I
  * A collection of arguments for invoking GetSystemSmsServer.
  */
 export interface GetSystemSmsServerArgs {
-    /**
-     * Specify the name of the desired system smsserver.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -41,31 +29,18 @@ export interface GetSystemSmsServerResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Email-to-SMS server domain name.
-     */
     readonly mailServer: string;
-    /**
-     * Name of SMS server.
-     */
     readonly name: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemSmsServerOutput(args: GetSystemSmsServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemSmsServerResult> {
-    return pulumi.output(args).apply(a => getSystemSmsServer(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemSmsServer(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemSmsServer.
  */
 export interface GetSystemSmsServerOutputArgs {
-    /**
-     * Specify the name of the desired system smsserver.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios systemlldp networkpolicy
 func LookupSystemLldpNetworkPolicy(ctx *pulumi.Context, args *LookupSystemLldpNetworkPolicyArgs, opts ...pulumi.InvokeOption) (*LookupSystemLldpNetworkPolicyResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemLldpNetworkPolicyResult
@@ -23,37 +22,25 @@ func LookupSystemLldpNetworkPolicy(ctx *pulumi.Context, args *LookupSystemLldpNe
 
 // A collection of arguments for invoking GetSystemLldpNetworkPolicy.
 type LookupSystemLldpNetworkPolicyArgs struct {
-	// Specify the name of the desired systemlldp networkpolicy.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemLldpNetworkPolicy.
 type LookupSystemLldpNetworkPolicyResult struct {
-	// Comment.
-	Comment string `pulumi:"comment"`
-	// Guest. The structure of `guest` block is documented below.
-	Guest GetSystemLldpNetworkPolicyGuest `pulumi:"guest"`
-	// Guest Voice Signaling. The structure of `guestVoiceSignaling` block is documented below.
-	GuestVoiceSignaling GetSystemLldpNetworkPolicyGuestVoiceSignaling `pulumi:"guestVoiceSignaling"`
+	Comment              string                                          `pulumi:"comment"`
+	GuestVoiceSignalings []GetSystemLldpNetworkPolicyGuestVoiceSignaling `pulumi:"guestVoiceSignalings"`
+	Guests               []GetSystemLldpNetworkPolicyGuest               `pulumi:"guests"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// LLDP network policy name.
-	Name string `pulumi:"name"`
-	// Softphone. The structure of `softphone` block is documented below.
-	Softphone GetSystemLldpNetworkPolicySoftphone `pulumi:"softphone"`
-	// Streaming Video. The structure of `streamingVideo` block is documented below.
-	StreamingVideo GetSystemLldpNetworkPolicyStreamingVideo `pulumi:"streamingVideo"`
-	Vdomparam      *string                                  `pulumi:"vdomparam"`
-	// Video Conferencing. The structure of `videoConferencing` block is documented below.
-	VideoConferencing GetSystemLldpNetworkPolicyVideoConferencing `pulumi:"videoConferencing"`
-	// Video Signaling. The structure of `videoSignaling` block is documented below.
-	VideoSignaling GetSystemLldpNetworkPolicyVideoSignaling `pulumi:"videoSignaling"`
-	// Voice. The structure of `voice` block is documented below.
-	Voice GetSystemLldpNetworkPolicyVoice `pulumi:"voice"`
-	// Voice signaling. The structure of `voiceSignaling` block is documented below.
-	VoiceSignaling GetSystemLldpNetworkPolicyVoiceSignaling `pulumi:"voiceSignaling"`
+	Id                 string                                        `pulumi:"id"`
+	Name               string                                        `pulumi:"name"`
+	Softphones         []GetSystemLldpNetworkPolicySoftphone         `pulumi:"softphones"`
+	StreamingVideos    []GetSystemLldpNetworkPolicyStreamingVideo    `pulumi:"streamingVideos"`
+	Vdomparam          *string                                       `pulumi:"vdomparam"`
+	VideoConferencings []GetSystemLldpNetworkPolicyVideoConferencing `pulumi:"videoConferencings"`
+	VideoSignalings    []GetSystemLldpNetworkPolicyVideoSignaling    `pulumi:"videoSignalings"`
+	VoiceSignalings    []GetSystemLldpNetworkPolicyVoiceSignaling    `pulumi:"voiceSignalings"`
+	Voices             []GetSystemLldpNetworkPolicyVoice             `pulumi:"voices"`
 }
 
 func LookupSystemLldpNetworkPolicyOutput(ctx *pulumi.Context, args LookupSystemLldpNetworkPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupSystemLldpNetworkPolicyResultOutput {
@@ -71,9 +58,7 @@ func LookupSystemLldpNetworkPolicyOutput(ctx *pulumi.Context, args LookupSystemL
 
 // A collection of arguments for invoking GetSystemLldpNetworkPolicy.
 type LookupSystemLldpNetworkPolicyOutputArgs struct {
-	// Specify the name of the desired systemlldp networkpolicy.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -96,21 +81,18 @@ func (o LookupSystemLldpNetworkPolicyResultOutput) ToLookupSystemLldpNetworkPoli
 	return o
 }
 
-// Comment.
 func (o LookupSystemLldpNetworkPolicyResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) string { return v.Comment }).(pulumi.StringOutput)
 }
 
-// Guest. The structure of `guest` block is documented below.
-func (o LookupSystemLldpNetworkPolicyResultOutput) Guest() GetSystemLldpNetworkPolicyGuestOutput {
-	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) GetSystemLldpNetworkPolicyGuest { return v.Guest }).(GetSystemLldpNetworkPolicyGuestOutput)
+func (o LookupSystemLldpNetworkPolicyResultOutput) GuestVoiceSignalings() GetSystemLldpNetworkPolicyGuestVoiceSignalingArrayOutput {
+	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) []GetSystemLldpNetworkPolicyGuestVoiceSignaling {
+		return v.GuestVoiceSignalings
+	}).(GetSystemLldpNetworkPolicyGuestVoiceSignalingArrayOutput)
 }
 
-// Guest Voice Signaling. The structure of `guestVoiceSignaling` block is documented below.
-func (o LookupSystemLldpNetworkPolicyResultOutput) GuestVoiceSignaling() GetSystemLldpNetworkPolicyGuestVoiceSignalingOutput {
-	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) GetSystemLldpNetworkPolicyGuestVoiceSignaling {
-		return v.GuestVoiceSignaling
-	}).(GetSystemLldpNetworkPolicyGuestVoiceSignalingOutput)
+func (o LookupSystemLldpNetworkPolicyResultOutput) Guests() GetSystemLldpNetworkPolicyGuestArrayOutput {
+	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) []GetSystemLldpNetworkPolicyGuest { return v.Guests }).(GetSystemLldpNetworkPolicyGuestArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
@@ -118,51 +100,44 @@ func (o LookupSystemLldpNetworkPolicyResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// LLDP network policy name.
 func (o LookupSystemLldpNetworkPolicyResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Softphone. The structure of `softphone` block is documented below.
-func (o LookupSystemLldpNetworkPolicyResultOutput) Softphone() GetSystemLldpNetworkPolicySoftphoneOutput {
-	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) GetSystemLldpNetworkPolicySoftphone { return v.Softphone }).(GetSystemLldpNetworkPolicySoftphoneOutput)
+func (o LookupSystemLldpNetworkPolicyResultOutput) Softphones() GetSystemLldpNetworkPolicySoftphoneArrayOutput {
+	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) []GetSystemLldpNetworkPolicySoftphone { return v.Softphones }).(GetSystemLldpNetworkPolicySoftphoneArrayOutput)
 }
 
-// Streaming Video. The structure of `streamingVideo` block is documented below.
-func (o LookupSystemLldpNetworkPolicyResultOutput) StreamingVideo() GetSystemLldpNetworkPolicyStreamingVideoOutput {
-	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) GetSystemLldpNetworkPolicyStreamingVideo {
-		return v.StreamingVideo
-	}).(GetSystemLldpNetworkPolicyStreamingVideoOutput)
+func (o LookupSystemLldpNetworkPolicyResultOutput) StreamingVideos() GetSystemLldpNetworkPolicyStreamingVideoArrayOutput {
+	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) []GetSystemLldpNetworkPolicyStreamingVideo {
+		return v.StreamingVideos
+	}).(GetSystemLldpNetworkPolicyStreamingVideoArrayOutput)
 }
 
 func (o LookupSystemLldpNetworkPolicyResultOutput) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-// Video Conferencing. The structure of `videoConferencing` block is documented below.
-func (o LookupSystemLldpNetworkPolicyResultOutput) VideoConferencing() GetSystemLldpNetworkPolicyVideoConferencingOutput {
-	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) GetSystemLldpNetworkPolicyVideoConferencing {
-		return v.VideoConferencing
-	}).(GetSystemLldpNetworkPolicyVideoConferencingOutput)
+func (o LookupSystemLldpNetworkPolicyResultOutput) VideoConferencings() GetSystemLldpNetworkPolicyVideoConferencingArrayOutput {
+	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) []GetSystemLldpNetworkPolicyVideoConferencing {
+		return v.VideoConferencings
+	}).(GetSystemLldpNetworkPolicyVideoConferencingArrayOutput)
 }
 
-// Video Signaling. The structure of `videoSignaling` block is documented below.
-func (o LookupSystemLldpNetworkPolicyResultOutput) VideoSignaling() GetSystemLldpNetworkPolicyVideoSignalingOutput {
-	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) GetSystemLldpNetworkPolicyVideoSignaling {
-		return v.VideoSignaling
-	}).(GetSystemLldpNetworkPolicyVideoSignalingOutput)
+func (o LookupSystemLldpNetworkPolicyResultOutput) VideoSignalings() GetSystemLldpNetworkPolicyVideoSignalingArrayOutput {
+	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) []GetSystemLldpNetworkPolicyVideoSignaling {
+		return v.VideoSignalings
+	}).(GetSystemLldpNetworkPolicyVideoSignalingArrayOutput)
 }
 
-// Voice. The structure of `voice` block is documented below.
-func (o LookupSystemLldpNetworkPolicyResultOutput) Voice() GetSystemLldpNetworkPolicyVoiceOutput {
-	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) GetSystemLldpNetworkPolicyVoice { return v.Voice }).(GetSystemLldpNetworkPolicyVoiceOutput)
+func (o LookupSystemLldpNetworkPolicyResultOutput) VoiceSignalings() GetSystemLldpNetworkPolicyVoiceSignalingArrayOutput {
+	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) []GetSystemLldpNetworkPolicyVoiceSignaling {
+		return v.VoiceSignalings
+	}).(GetSystemLldpNetworkPolicyVoiceSignalingArrayOutput)
 }
 
-// Voice signaling. The structure of `voiceSignaling` block is documented below.
-func (o LookupSystemLldpNetworkPolicyResultOutput) VoiceSignaling() GetSystemLldpNetworkPolicyVoiceSignalingOutput {
-	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) GetSystemLldpNetworkPolicyVoiceSignaling {
-		return v.VoiceSignaling
-	}).(GetSystemLldpNetworkPolicyVoiceSignalingOutput)
+func (o LookupSystemLldpNetworkPolicyResultOutput) Voices() GetSystemLldpNetworkPolicyVoiceArrayOutput {
+	return o.ApplyT(func(v LookupSystemLldpNetworkPolicyResult) []GetSystemLldpNetworkPolicyVoice { return v.Voices }).(GetSystemLldpNetworkPolicyVoiceArrayOutput)
 }
 
 func init() {

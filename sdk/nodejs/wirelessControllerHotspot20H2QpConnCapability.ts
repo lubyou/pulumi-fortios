@@ -4,46 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure connection capability.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WirelessControllerHotspot20H2QpConnCapability("trname", {
- *     espPort: "unknown",
- *     ftpPort: "unknown",
- *     httpPort: "unknown",
- *     icmpPort: "closed",
- *     ikev2Port: "unknown",
- *     ikev2XxPort: "unknown",
- *     pptpVpnPort: "unknown",
- *     sshPort: "unknown",
- *     tlsPort: "unknown",
- *     voipTcpPort: "unknown",
- *     voipUdpPort: "unknown",
- * });
- * ```
- *
- * ## Import
- *
- * WirelessControllerHotspot20 H2QpConnCapability can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpConnCapability:WirelessControllerHotspot20H2QpConnCapability labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20H2QpConnCapability:WirelessControllerHotspot20H2QpConnCapability labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerHotspot20H2QpConnCapability extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerHotspot20H2QpConnCapability resource's state with the given name, ID, and optional extra
@@ -72,57 +32,18 @@ export class WirelessControllerHotspot20H2QpConnCapability extends pulumi.Custom
         return obj['__pulumiType'] === WirelessControllerHotspot20H2QpConnCapability.__pulumiType;
     }
 
-    /**
-     * Set ESP port service (used by IPsec VPNs) status. Valid values: `closed`, `open`, `unknown`.
-     */
     public readonly espPort!: pulumi.Output<string>;
-    /**
-     * Set FTP port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     public readonly ftpPort!: pulumi.Output<string>;
-    /**
-     * Set HTTP port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     public readonly httpPort!: pulumi.Output<string>;
-    /**
-     * Set ICMP port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     public readonly icmpPort!: pulumi.Output<string>;
-    /**
-     * Set IKEv2 port service for IPsec VPN status. Valid values: `closed`, `open`, `unknown`.
-     */
     public readonly ikev2Port!: pulumi.Output<string>;
-    /**
-     * Set UDP port 4500 (which may be used by IKEv2 for IPsec VPN) service status. Valid values: `closed`, `open`, `unknown`.
-     */
     public readonly ikev2XxPort!: pulumi.Output<string>;
-    /**
-     * Connection capability name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Set Point to Point Tunneling Protocol (PPTP) VPN port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     public readonly pptpVpnPort!: pulumi.Output<string>;
-    /**
-     * Set SSH port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     public readonly sshPort!: pulumi.Output<string>;
-    /**
-     * Set TLS VPN (HTTPS) port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     public readonly tlsPort!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Set VoIP TCP port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     public readonly voipTcpPort!: pulumi.Output<string>;
-    /**
-     * Set VoIP UDP port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     public readonly voipUdpPort!: pulumi.Output<string>;
 
     /**
@@ -176,57 +97,18 @@ export class WirelessControllerHotspot20H2QpConnCapability extends pulumi.Custom
  * Input properties used for looking up and filtering WirelessControllerHotspot20H2QpConnCapability resources.
  */
 export interface WirelessControllerHotspot20H2QpConnCapabilityState {
-    /**
-     * Set ESP port service (used by IPsec VPNs) status. Valid values: `closed`, `open`, `unknown`.
-     */
     espPort?: pulumi.Input<string>;
-    /**
-     * Set FTP port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     ftpPort?: pulumi.Input<string>;
-    /**
-     * Set HTTP port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     httpPort?: pulumi.Input<string>;
-    /**
-     * Set ICMP port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     icmpPort?: pulumi.Input<string>;
-    /**
-     * Set IKEv2 port service for IPsec VPN status. Valid values: `closed`, `open`, `unknown`.
-     */
     ikev2Port?: pulumi.Input<string>;
-    /**
-     * Set UDP port 4500 (which may be used by IKEv2 for IPsec VPN) service status. Valid values: `closed`, `open`, `unknown`.
-     */
     ikev2XxPort?: pulumi.Input<string>;
-    /**
-     * Connection capability name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Set Point to Point Tunneling Protocol (PPTP) VPN port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     pptpVpnPort?: pulumi.Input<string>;
-    /**
-     * Set SSH port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     sshPort?: pulumi.Input<string>;
-    /**
-     * Set TLS VPN (HTTPS) port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     tlsPort?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Set VoIP TCP port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     voipTcpPort?: pulumi.Input<string>;
-    /**
-     * Set VoIP UDP port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     voipUdpPort?: pulumi.Input<string>;
 }
 
@@ -234,56 +116,17 @@ export interface WirelessControllerHotspot20H2QpConnCapabilityState {
  * The set of arguments for constructing a WirelessControllerHotspot20H2QpConnCapability resource.
  */
 export interface WirelessControllerHotspot20H2QpConnCapabilityArgs {
-    /**
-     * Set ESP port service (used by IPsec VPNs) status. Valid values: `closed`, `open`, `unknown`.
-     */
     espPort?: pulumi.Input<string>;
-    /**
-     * Set FTP port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     ftpPort?: pulumi.Input<string>;
-    /**
-     * Set HTTP port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     httpPort?: pulumi.Input<string>;
-    /**
-     * Set ICMP port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     icmpPort?: pulumi.Input<string>;
-    /**
-     * Set IKEv2 port service for IPsec VPN status. Valid values: `closed`, `open`, `unknown`.
-     */
     ikev2Port?: pulumi.Input<string>;
-    /**
-     * Set UDP port 4500 (which may be used by IKEv2 for IPsec VPN) service status. Valid values: `closed`, `open`, `unknown`.
-     */
     ikev2XxPort?: pulumi.Input<string>;
-    /**
-     * Connection capability name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Set Point to Point Tunneling Protocol (PPTP) VPN port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     pptpVpnPort?: pulumi.Input<string>;
-    /**
-     * Set SSH port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     sshPort?: pulumi.Input<string>;
-    /**
-     * Set TLS VPN (HTTPS) port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     tlsPort?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Set VoIP TCP port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     voipTcpPort?: pulumi.Input<string>;
-    /**
-     * Set VoIP UDP port service status. Valid values: `closed`, `open`, `unknown`.
-     */
     voipUdpPort?: pulumi.Input<string>;
 }

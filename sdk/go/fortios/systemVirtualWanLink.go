@@ -10,79 +10,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure redundant internet connections using SD-WAN (formerly virtual WAN link). Applies to FortiOS Version `<= 6.4.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemVirtualWanLink(ctx, "trname", &fortios.SystemVirtualWanLinkArgs{
-// 			FailDetect:      pulumi.String("disable"),
-// 			LoadBalanceMode: pulumi.String("source-ip-based"),
-// 			Status:          pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System VirtualWanLink can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVirtualWanLink:SystemVirtualWanLink labelname SystemVirtualWanLink
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVirtualWanLink:SystemVirtualWanLink labelname SystemVirtualWanLink
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemVirtualWanLink struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Physical interfaces that will be alerted. The structure of `failAlertInterfaces` block is documented below.
-	FailAlertInterfaces SystemVirtualWanLinkFailAlertInterfaceArrayOutput `pulumi:"failAlertInterfaces"`
-	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
-	FailDetect pulumi.StringOutput `pulumi:"failDetect"`
-	// Virtual WAN Link health-check.
-	HealthChecks SystemVirtualWanLinkHealthCheckArrayOutput `pulumi:"healthChecks"`
-	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
-	LoadBalanceMode pulumi.StringOutput `pulumi:"loadBalanceMode"`
-	// Member sequence number list. The structure of `members` block is documented below.
-	Members SystemVirtualWanLinkMemberArrayOutput `pulumi:"members"`
-	// Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).
-	NeighborHoldBootTime pulumi.IntOutput `pulumi:"neighborHoldBootTime"`
-	// Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: `enable`, `disable`.
-	NeighborHoldDown pulumi.StringOutput `pulumi:"neighborHoldDown"`
-	// Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
-	NeighborHoldDownTime pulumi.IntOutput `pulumi:"neighborHoldDownTime"`
-	// Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
-	Neighbors SystemVirtualWanLinkNeighborArrayOutput `pulumi:"neighbors"`
-	// Create SD-WAN rules or priority rules (also called services) to control how sessions are distributed to physical interfaces in the SD-WAN. The structure of `service` block is documented below.
-	Services SystemVirtualWanLinkServiceArrayOutput `pulumi:"services"`
-	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Configure SD-WAN zones. The structure of `zone` block is documented below.
-	Zones SystemVirtualWanLinkZoneArrayOutput `pulumi:"zones"`
+	DynamicSortSubtable  pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
+	FailAlertInterfaces  SystemVirtualWanLinkFailAlertInterfaceArrayOutput `pulumi:"failAlertInterfaces"`
+	FailDetect           pulumi.StringOutput                               `pulumi:"failDetect"`
+	HealthChecks         SystemVirtualWanLinkHealthCheckArrayOutput        `pulumi:"healthChecks"`
+	LoadBalanceMode      pulumi.StringOutput                               `pulumi:"loadBalanceMode"`
+	Members              SystemVirtualWanLinkMemberArrayOutput             `pulumi:"members"`
+	NeighborHoldBootTime pulumi.IntOutput                                  `pulumi:"neighborHoldBootTime"`
+	NeighborHoldDown     pulumi.StringOutput                               `pulumi:"neighborHoldDown"`
+	NeighborHoldDownTime pulumi.IntOutput                                  `pulumi:"neighborHoldDownTime"`
+	Neighbors            SystemVirtualWanLinkNeighborArrayOutput           `pulumi:"neighbors"`
+	Services             SystemVirtualWanLinkServiceArrayOutput            `pulumi:"services"`
+	Status               pulumi.StringOutput                               `pulumi:"status"`
+	Vdomparam            pulumi.StringPtrOutput                            `pulumi:"vdomparam"`
+	Zones                SystemVirtualWanLinkZoneArrayOutput               `pulumi:"zones"`
 }
 
 // NewSystemVirtualWanLink registers a new resource with the given unique name, arguments, and options.
@@ -115,65 +59,37 @@ func GetSystemVirtualWanLink(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemVirtualWanLink resources.
 type systemVirtualWanLinkState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Physical interfaces that will be alerted. The structure of `failAlertInterfaces` block is documented below.
-	FailAlertInterfaces []SystemVirtualWanLinkFailAlertInterface `pulumi:"failAlertInterfaces"`
-	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
-	FailDetect *string `pulumi:"failDetect"`
-	// Virtual WAN Link health-check.
-	HealthChecks []SystemVirtualWanLinkHealthCheck `pulumi:"healthChecks"`
-	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
-	LoadBalanceMode *string `pulumi:"loadBalanceMode"`
-	// Member sequence number list. The structure of `members` block is documented below.
-	Members []SystemVirtualWanLinkMember `pulumi:"members"`
-	// Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).
-	NeighborHoldBootTime *int `pulumi:"neighborHoldBootTime"`
-	// Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: `enable`, `disable`.
-	NeighborHoldDown *string `pulumi:"neighborHoldDown"`
-	// Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
-	NeighborHoldDownTime *int `pulumi:"neighborHoldDownTime"`
-	// Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
-	Neighbors []SystemVirtualWanLinkNeighbor `pulumi:"neighbors"`
-	// Create SD-WAN rules or priority rules (also called services) to control how sessions are distributed to physical interfaces in the SD-WAN. The structure of `service` block is documented below.
-	Services []SystemVirtualWanLinkService `pulumi:"services"`
-	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Configure SD-WAN zones. The structure of `zone` block is documented below.
-	Zones []SystemVirtualWanLinkZone `pulumi:"zones"`
+	DynamicSortSubtable  *string                                  `pulumi:"dynamicSortSubtable"`
+	FailAlertInterfaces  []SystemVirtualWanLinkFailAlertInterface `pulumi:"failAlertInterfaces"`
+	FailDetect           *string                                  `pulumi:"failDetect"`
+	HealthChecks         []SystemVirtualWanLinkHealthCheck        `pulumi:"healthChecks"`
+	LoadBalanceMode      *string                                  `pulumi:"loadBalanceMode"`
+	Members              []SystemVirtualWanLinkMember             `pulumi:"members"`
+	NeighborHoldBootTime *int                                     `pulumi:"neighborHoldBootTime"`
+	NeighborHoldDown     *string                                  `pulumi:"neighborHoldDown"`
+	NeighborHoldDownTime *int                                     `pulumi:"neighborHoldDownTime"`
+	Neighbors            []SystemVirtualWanLinkNeighbor           `pulumi:"neighbors"`
+	Services             []SystemVirtualWanLinkService            `pulumi:"services"`
+	Status               *string                                  `pulumi:"status"`
+	Vdomparam            *string                                  `pulumi:"vdomparam"`
+	Zones                []SystemVirtualWanLinkZone               `pulumi:"zones"`
 }
 
 type SystemVirtualWanLinkState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Physical interfaces that will be alerted. The structure of `failAlertInterfaces` block is documented below.
-	FailAlertInterfaces SystemVirtualWanLinkFailAlertInterfaceArrayInput
-	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
-	FailDetect pulumi.StringPtrInput
-	// Virtual WAN Link health-check.
-	HealthChecks SystemVirtualWanLinkHealthCheckArrayInput
-	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
-	LoadBalanceMode pulumi.StringPtrInput
-	// Member sequence number list. The structure of `members` block is documented below.
-	Members SystemVirtualWanLinkMemberArrayInput
-	// Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).
+	DynamicSortSubtable  pulumi.StringPtrInput
+	FailAlertInterfaces  SystemVirtualWanLinkFailAlertInterfaceArrayInput
+	FailDetect           pulumi.StringPtrInput
+	HealthChecks         SystemVirtualWanLinkHealthCheckArrayInput
+	LoadBalanceMode      pulumi.StringPtrInput
+	Members              SystemVirtualWanLinkMemberArrayInput
 	NeighborHoldBootTime pulumi.IntPtrInput
-	// Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: `enable`, `disable`.
-	NeighborHoldDown pulumi.StringPtrInput
-	// Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
+	NeighborHoldDown     pulumi.StringPtrInput
 	NeighborHoldDownTime pulumi.IntPtrInput
-	// Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
-	Neighbors SystemVirtualWanLinkNeighborArrayInput
-	// Create SD-WAN rules or priority rules (also called services) to control how sessions are distributed to physical interfaces in the SD-WAN. The structure of `service` block is documented below.
-	Services SystemVirtualWanLinkServiceArrayInput
-	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Configure SD-WAN zones. The structure of `zone` block is documented below.
-	Zones SystemVirtualWanLinkZoneArrayInput
+	Neighbors            SystemVirtualWanLinkNeighborArrayInput
+	Services             SystemVirtualWanLinkServiceArrayInput
+	Status               pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
+	Zones                SystemVirtualWanLinkZoneArrayInput
 }
 
 func (SystemVirtualWanLinkState) ElementType() reflect.Type {
@@ -181,66 +97,38 @@ func (SystemVirtualWanLinkState) ElementType() reflect.Type {
 }
 
 type systemVirtualWanLinkArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Physical interfaces that will be alerted. The structure of `failAlertInterfaces` block is documented below.
-	FailAlertInterfaces []SystemVirtualWanLinkFailAlertInterface `pulumi:"failAlertInterfaces"`
-	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
-	FailDetect *string `pulumi:"failDetect"`
-	// Virtual WAN Link health-check.
-	HealthChecks []SystemVirtualWanLinkHealthCheck `pulumi:"healthChecks"`
-	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
-	LoadBalanceMode *string `pulumi:"loadBalanceMode"`
-	// Member sequence number list. The structure of `members` block is documented below.
-	Members []SystemVirtualWanLinkMember `pulumi:"members"`
-	// Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).
-	NeighborHoldBootTime *int `pulumi:"neighborHoldBootTime"`
-	// Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: `enable`, `disable`.
-	NeighborHoldDown *string `pulumi:"neighborHoldDown"`
-	// Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
-	NeighborHoldDownTime *int `pulumi:"neighborHoldDownTime"`
-	// Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
-	Neighbors []SystemVirtualWanLinkNeighbor `pulumi:"neighbors"`
-	// Create SD-WAN rules or priority rules (also called services) to control how sessions are distributed to physical interfaces in the SD-WAN. The structure of `service` block is documented below.
-	Services []SystemVirtualWanLinkService `pulumi:"services"`
-	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Configure SD-WAN zones. The structure of `zone` block is documented below.
-	Zones []SystemVirtualWanLinkZone `pulumi:"zones"`
+	DynamicSortSubtable  *string                                  `pulumi:"dynamicSortSubtable"`
+	FailAlertInterfaces  []SystemVirtualWanLinkFailAlertInterface `pulumi:"failAlertInterfaces"`
+	FailDetect           *string                                  `pulumi:"failDetect"`
+	HealthChecks         []SystemVirtualWanLinkHealthCheck        `pulumi:"healthChecks"`
+	LoadBalanceMode      *string                                  `pulumi:"loadBalanceMode"`
+	Members              []SystemVirtualWanLinkMember             `pulumi:"members"`
+	NeighborHoldBootTime *int                                     `pulumi:"neighborHoldBootTime"`
+	NeighborHoldDown     *string                                  `pulumi:"neighborHoldDown"`
+	NeighborHoldDownTime *int                                     `pulumi:"neighborHoldDownTime"`
+	Neighbors            []SystemVirtualWanLinkNeighbor           `pulumi:"neighbors"`
+	Services             []SystemVirtualWanLinkService            `pulumi:"services"`
+	Status               *string                                  `pulumi:"status"`
+	Vdomparam            *string                                  `pulumi:"vdomparam"`
+	Zones                []SystemVirtualWanLinkZone               `pulumi:"zones"`
 }
 
 // The set of arguments for constructing a SystemVirtualWanLink resource.
 type SystemVirtualWanLinkArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Physical interfaces that will be alerted. The structure of `failAlertInterfaces` block is documented below.
-	FailAlertInterfaces SystemVirtualWanLinkFailAlertInterfaceArrayInput
-	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
-	FailDetect pulumi.StringPtrInput
-	// Virtual WAN Link health-check.
-	HealthChecks SystemVirtualWanLinkHealthCheckArrayInput
-	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
-	LoadBalanceMode pulumi.StringPtrInput
-	// Member sequence number list. The structure of `members` block is documented below.
-	Members SystemVirtualWanLinkMemberArrayInput
-	// Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).
+	DynamicSortSubtable  pulumi.StringPtrInput
+	FailAlertInterfaces  SystemVirtualWanLinkFailAlertInterfaceArrayInput
+	FailDetect           pulumi.StringPtrInput
+	HealthChecks         SystemVirtualWanLinkHealthCheckArrayInput
+	LoadBalanceMode      pulumi.StringPtrInput
+	Members              SystemVirtualWanLinkMemberArrayInput
 	NeighborHoldBootTime pulumi.IntPtrInput
-	// Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: `enable`, `disable`.
-	NeighborHoldDown pulumi.StringPtrInput
-	// Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
+	NeighborHoldDown     pulumi.StringPtrInput
 	NeighborHoldDownTime pulumi.IntPtrInput
-	// Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
-	Neighbors SystemVirtualWanLinkNeighborArrayInput
-	// Create SD-WAN rules or priority rules (also called services) to control how sessions are distributed to physical interfaces in the SD-WAN. The structure of `service` block is documented below.
-	Services SystemVirtualWanLinkServiceArrayInput
-	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Configure SD-WAN zones. The structure of `zone` block is documented below.
-	Zones SystemVirtualWanLinkZoneArrayInput
+	Neighbors            SystemVirtualWanLinkNeighborArrayInput
+	Services             SystemVirtualWanLinkServiceArrayInput
+	Status               pulumi.StringPtrInput
+	Vdomparam            pulumi.StringPtrInput
+	Zones                SystemVirtualWanLinkZoneArrayInput
 }
 
 func (SystemVirtualWanLinkArgs) ElementType() reflect.Type {
@@ -269,7 +157,7 @@ func (i *SystemVirtualWanLink) ToSystemVirtualWanLinkOutputWithContext(ctx conte
 // SystemVirtualWanLinkArrayInput is an input type that accepts SystemVirtualWanLinkArray and SystemVirtualWanLinkArrayOutput values.
 // You can construct a concrete instance of `SystemVirtualWanLinkArrayInput` via:
 //
-//          SystemVirtualWanLinkArray{ SystemVirtualWanLinkArgs{...} }
+//	SystemVirtualWanLinkArray{ SystemVirtualWanLinkArgs{...} }
 type SystemVirtualWanLinkArrayInput interface {
 	pulumi.Input
 
@@ -294,7 +182,7 @@ func (i SystemVirtualWanLinkArray) ToSystemVirtualWanLinkArrayOutputWithContext(
 // SystemVirtualWanLinkMapInput is an input type that accepts SystemVirtualWanLinkMap and SystemVirtualWanLinkMapOutput values.
 // You can construct a concrete instance of `SystemVirtualWanLinkMapInput` via:
 //
-//          SystemVirtualWanLinkMap{ "key": SystemVirtualWanLinkArgs{...} }
+//	SystemVirtualWanLinkMap{ "key": SystemVirtualWanLinkArgs{...} }
 type SystemVirtualWanLinkMapInput interface {
 	pulumi.Input
 
@@ -328,6 +216,64 @@ func (o SystemVirtualWanLinkOutput) ToSystemVirtualWanLinkOutput() SystemVirtual
 
 func (o SystemVirtualWanLinkOutput) ToSystemVirtualWanLinkOutputWithContext(ctx context.Context) SystemVirtualWanLinkOutput {
 	return o
+}
+
+func (o SystemVirtualWanLinkOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVirtualWanLink) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemVirtualWanLinkOutput) FailAlertInterfaces() SystemVirtualWanLinkFailAlertInterfaceArrayOutput {
+	return o.ApplyT(func(v *SystemVirtualWanLink) SystemVirtualWanLinkFailAlertInterfaceArrayOutput {
+		return v.FailAlertInterfaces
+	}).(SystemVirtualWanLinkFailAlertInterfaceArrayOutput)
+}
+
+func (o SystemVirtualWanLinkOutput) FailDetect() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVirtualWanLink) pulumi.StringOutput { return v.FailDetect }).(pulumi.StringOutput)
+}
+
+func (o SystemVirtualWanLinkOutput) HealthChecks() SystemVirtualWanLinkHealthCheckArrayOutput {
+	return o.ApplyT(func(v *SystemVirtualWanLink) SystemVirtualWanLinkHealthCheckArrayOutput { return v.HealthChecks }).(SystemVirtualWanLinkHealthCheckArrayOutput)
+}
+
+func (o SystemVirtualWanLinkOutput) LoadBalanceMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVirtualWanLink) pulumi.StringOutput { return v.LoadBalanceMode }).(pulumi.StringOutput)
+}
+
+func (o SystemVirtualWanLinkOutput) Members() SystemVirtualWanLinkMemberArrayOutput {
+	return o.ApplyT(func(v *SystemVirtualWanLink) SystemVirtualWanLinkMemberArrayOutput { return v.Members }).(SystemVirtualWanLinkMemberArrayOutput)
+}
+
+func (o SystemVirtualWanLinkOutput) NeighborHoldBootTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemVirtualWanLink) pulumi.IntOutput { return v.NeighborHoldBootTime }).(pulumi.IntOutput)
+}
+
+func (o SystemVirtualWanLinkOutput) NeighborHoldDown() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVirtualWanLink) pulumi.StringOutput { return v.NeighborHoldDown }).(pulumi.StringOutput)
+}
+
+func (o SystemVirtualWanLinkOutput) NeighborHoldDownTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemVirtualWanLink) pulumi.IntOutput { return v.NeighborHoldDownTime }).(pulumi.IntOutput)
+}
+
+func (o SystemVirtualWanLinkOutput) Neighbors() SystemVirtualWanLinkNeighborArrayOutput {
+	return o.ApplyT(func(v *SystemVirtualWanLink) SystemVirtualWanLinkNeighborArrayOutput { return v.Neighbors }).(SystemVirtualWanLinkNeighborArrayOutput)
+}
+
+func (o SystemVirtualWanLinkOutput) Services() SystemVirtualWanLinkServiceArrayOutput {
+	return o.ApplyT(func(v *SystemVirtualWanLink) SystemVirtualWanLinkServiceArrayOutput { return v.Services }).(SystemVirtualWanLinkServiceArrayOutput)
+}
+
+func (o SystemVirtualWanLinkOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVirtualWanLink) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemVirtualWanLinkOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVirtualWanLink) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemVirtualWanLinkOutput) Zones() SystemVirtualWanLinkZoneArrayOutput {
+	return o.ApplyT(func(v *SystemVirtualWanLink) SystemVirtualWanLinkZoneArrayOutput { return v.Zones }).(SystemVirtualWanLinkZoneArrayOutput)
 }
 
 type SystemVirtualWanLinkArrayOutput struct{ *pulumi.OutputState }

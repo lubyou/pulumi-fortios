@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure CAPWAP timers.
- *
- * ## Import
- *
- * WirelessController Timers can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerTimers:WirelessControllerTimers labelname WirelessControllerTimers
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerTimers:WirelessControllerTimers labelname WirelessControllerTimers
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerTimers extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerTimers resource's state with the given name, ID, and optional extra
@@ -52,77 +34,26 @@ export class WirelessControllerTimers extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerTimers.__pulumiType;
     }
 
-    /**
-     * Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
-     */
+    public readonly authTimeout!: pulumi.Output<number>;
     public readonly bleScanReportIntv!: pulumi.Output<number>;
-    /**
-     * Time after which a client is considered idle and times out (20 - 3600 sec, default = 300, 0 for no timeout).
-     */
+    public readonly clientIdleRehomeTimeout!: pulumi.Output<number>;
     public readonly clientIdleTimeout!: pulumi.Output<number>;
-    /**
-     * Weekday on which to run DARRP optimization. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-     */
     public readonly darrpDay!: pulumi.Output<string>;
-    /**
-     * Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 1800).
-     */
     public readonly darrpOptimize!: pulumi.Output<number>;
-    /**
-     * Time at which DARRP optimizations run (you can add up to 8 times). The structure of `darrpTime` block is documented below.
-     */
     public readonly darrpTimes!: pulumi.Output<outputs.WirelessControllerTimersDarrpTime[] | undefined>;
-    /**
-     * Time between discovery requests (2 - 180 sec, default = 5).
-     */
     public readonly discoveryInterval!: pulumi.Output<number>;
-    /**
-     * Dynamic radio mode assignment (DRMA) schedule interval in minutes (10 - 1440, default = 60).
-     */
     public readonly drmaInterval!: pulumi.Output<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Time between echo requests sent by the managed WTP, AP, or FortiAP (1 - 255 sec, default = 30).
-     */
     public readonly echoInterval!: pulumi.Output<number>;
-    /**
-     * Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
-     */
     public readonly fakeApLog!: pulumi.Output<number>;
-    /**
-     * Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
-     */
     public readonly ipsecIntfCleanup!: pulumi.Output<number>;
-    /**
-     * Time between running radio reports (1 - 255 sec, default = 15).
-     */
     public readonly radioStatsInterval!: pulumi.Output<number>;
-    /**
-     * Time between logging rogue AP messages if periodic rogue AP logging is configured (0 - 1440 min, default = 0).
-     */
+    public readonly rogueApCleanup!: pulumi.Output<number>;
     public readonly rogueApLog!: pulumi.Output<number>;
-    /**
-     * Time between running station capability reports (1 - 255 sec, default = 30).
-     */
     public readonly staCapabilityInterval!: pulumi.Output<number>;
-    /**
-     * Time between running client presence flushes to remove clients that are listed but no longer present (0 - 86400 sec, default = 1800).
-     */
     public readonly staLocateTimer!: pulumi.Output<number>;
-    /**
-     * Time between running client (station) reports (1 - 255 sec, default = 1).
-     */
     public readonly staStatsInterval!: pulumi.Output<number>;
-    /**
-     * Time between running Virtual Access Point (VAP) reports (1 - 255 sec, default = 15).
-     */
     public readonly vapStatsInterval!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -138,7 +69,9 @@ export class WirelessControllerTimers extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerTimersState | undefined;
+            resourceInputs["authTimeout"] = state ? state.authTimeout : undefined;
             resourceInputs["bleScanReportIntv"] = state ? state.bleScanReportIntv : undefined;
+            resourceInputs["clientIdleRehomeTimeout"] = state ? state.clientIdleRehomeTimeout : undefined;
             resourceInputs["clientIdleTimeout"] = state ? state.clientIdleTimeout : undefined;
             resourceInputs["darrpDay"] = state ? state.darrpDay : undefined;
             resourceInputs["darrpOptimize"] = state ? state.darrpOptimize : undefined;
@@ -150,6 +83,7 @@ export class WirelessControllerTimers extends pulumi.CustomResource {
             resourceInputs["fakeApLog"] = state ? state.fakeApLog : undefined;
             resourceInputs["ipsecIntfCleanup"] = state ? state.ipsecIntfCleanup : undefined;
             resourceInputs["radioStatsInterval"] = state ? state.radioStatsInterval : undefined;
+            resourceInputs["rogueApCleanup"] = state ? state.rogueApCleanup : undefined;
             resourceInputs["rogueApLog"] = state ? state.rogueApLog : undefined;
             resourceInputs["staCapabilityInterval"] = state ? state.staCapabilityInterval : undefined;
             resourceInputs["staLocateTimer"] = state ? state.staLocateTimer : undefined;
@@ -158,7 +92,9 @@ export class WirelessControllerTimers extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerTimersArgs | undefined;
+            resourceInputs["authTimeout"] = args ? args.authTimeout : undefined;
             resourceInputs["bleScanReportIntv"] = args ? args.bleScanReportIntv : undefined;
+            resourceInputs["clientIdleRehomeTimeout"] = args ? args.clientIdleRehomeTimeout : undefined;
             resourceInputs["clientIdleTimeout"] = args ? args.clientIdleTimeout : undefined;
             resourceInputs["darrpDay"] = args ? args.darrpDay : undefined;
             resourceInputs["darrpOptimize"] = args ? args.darrpOptimize : undefined;
@@ -170,6 +106,7 @@ export class WirelessControllerTimers extends pulumi.CustomResource {
             resourceInputs["fakeApLog"] = args ? args.fakeApLog : undefined;
             resourceInputs["ipsecIntfCleanup"] = args ? args.ipsecIntfCleanup : undefined;
             resourceInputs["radioStatsInterval"] = args ? args.radioStatsInterval : undefined;
+            resourceInputs["rogueApCleanup"] = args ? args.rogueApCleanup : undefined;
             resourceInputs["rogueApLog"] = args ? args.rogueApLog : undefined;
             resourceInputs["staCapabilityInterval"] = args ? args.staCapabilityInterval : undefined;
             resourceInputs["staLocateTimer"] = args ? args.staLocateTimer : undefined;
@@ -186,77 +123,26 @@ export class WirelessControllerTimers extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerTimers resources.
  */
 export interface WirelessControllerTimersState {
-    /**
-     * Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
-     */
+    authTimeout?: pulumi.Input<number>;
     bleScanReportIntv?: pulumi.Input<number>;
-    /**
-     * Time after which a client is considered idle and times out (20 - 3600 sec, default = 300, 0 for no timeout).
-     */
+    clientIdleRehomeTimeout?: pulumi.Input<number>;
     clientIdleTimeout?: pulumi.Input<number>;
-    /**
-     * Weekday on which to run DARRP optimization. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-     */
     darrpDay?: pulumi.Input<string>;
-    /**
-     * Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 1800).
-     */
     darrpOptimize?: pulumi.Input<number>;
-    /**
-     * Time at which DARRP optimizations run (you can add up to 8 times). The structure of `darrpTime` block is documented below.
-     */
     darrpTimes?: pulumi.Input<pulumi.Input<inputs.WirelessControllerTimersDarrpTime>[]>;
-    /**
-     * Time between discovery requests (2 - 180 sec, default = 5).
-     */
     discoveryInterval?: pulumi.Input<number>;
-    /**
-     * Dynamic radio mode assignment (DRMA) schedule interval in minutes (10 - 1440, default = 60).
-     */
     drmaInterval?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Time between echo requests sent by the managed WTP, AP, or FortiAP (1 - 255 sec, default = 30).
-     */
     echoInterval?: pulumi.Input<number>;
-    /**
-     * Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
-     */
     fakeApLog?: pulumi.Input<number>;
-    /**
-     * Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
-     */
     ipsecIntfCleanup?: pulumi.Input<number>;
-    /**
-     * Time between running radio reports (1 - 255 sec, default = 15).
-     */
     radioStatsInterval?: pulumi.Input<number>;
-    /**
-     * Time between logging rogue AP messages if periodic rogue AP logging is configured (0 - 1440 min, default = 0).
-     */
+    rogueApCleanup?: pulumi.Input<number>;
     rogueApLog?: pulumi.Input<number>;
-    /**
-     * Time between running station capability reports (1 - 255 sec, default = 30).
-     */
     staCapabilityInterval?: pulumi.Input<number>;
-    /**
-     * Time between running client presence flushes to remove clients that are listed but no longer present (0 - 86400 sec, default = 1800).
-     */
     staLocateTimer?: pulumi.Input<number>;
-    /**
-     * Time between running client (station) reports (1 - 255 sec, default = 1).
-     */
     staStatsInterval?: pulumi.Input<number>;
-    /**
-     * Time between running Virtual Access Point (VAP) reports (1 - 255 sec, default = 15).
-     */
     vapStatsInterval?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -264,76 +150,25 @@ export interface WirelessControllerTimersState {
  * The set of arguments for constructing a WirelessControllerTimers resource.
  */
 export interface WirelessControllerTimersArgs {
-    /**
-     * Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
-     */
+    authTimeout?: pulumi.Input<number>;
     bleScanReportIntv?: pulumi.Input<number>;
-    /**
-     * Time after which a client is considered idle and times out (20 - 3600 sec, default = 300, 0 for no timeout).
-     */
+    clientIdleRehomeTimeout?: pulumi.Input<number>;
     clientIdleTimeout?: pulumi.Input<number>;
-    /**
-     * Weekday on which to run DARRP optimization. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-     */
     darrpDay?: pulumi.Input<string>;
-    /**
-     * Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 1800).
-     */
     darrpOptimize?: pulumi.Input<number>;
-    /**
-     * Time at which DARRP optimizations run (you can add up to 8 times). The structure of `darrpTime` block is documented below.
-     */
     darrpTimes?: pulumi.Input<pulumi.Input<inputs.WirelessControllerTimersDarrpTime>[]>;
-    /**
-     * Time between discovery requests (2 - 180 sec, default = 5).
-     */
     discoveryInterval?: pulumi.Input<number>;
-    /**
-     * Dynamic radio mode assignment (DRMA) schedule interval in minutes (10 - 1440, default = 60).
-     */
     drmaInterval?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Time between echo requests sent by the managed WTP, AP, or FortiAP (1 - 255 sec, default = 30).
-     */
     echoInterval?: pulumi.Input<number>;
-    /**
-     * Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
-     */
     fakeApLog?: pulumi.Input<number>;
-    /**
-     * Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
-     */
     ipsecIntfCleanup?: pulumi.Input<number>;
-    /**
-     * Time between running radio reports (1 - 255 sec, default = 15).
-     */
     radioStatsInterval?: pulumi.Input<number>;
-    /**
-     * Time between logging rogue AP messages if periodic rogue AP logging is configured (0 - 1440 min, default = 0).
-     */
+    rogueApCleanup?: pulumi.Input<number>;
     rogueApLog?: pulumi.Input<number>;
-    /**
-     * Time between running station capability reports (1 - 255 sec, default = 30).
-     */
     staCapabilityInterval?: pulumi.Input<number>;
-    /**
-     * Time between running client presence flushes to remove clients that are listed but no longer present (0 - 86400 sec, default = 1800).
-     */
     staLocateTimer?: pulumi.Input<number>;
-    /**
-     * Time between running client (station) reports (1 - 255 sec, default = 1).
-     */
     staStatsInterval?: pulumi.Input<number>;
-    /**
-     * Time between running Virtual Access Point (VAP) reports (1 - 255 sec, default = 15).
-     */
     vapStatsInterval?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure additional port mappings for Internet Services. Applies to FortiOS Version `6.2.4,6.2.6,6.4.1,6.4.2,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4`.
- *
- * ## Import
- *
- * Firewall InternetServiceAppend can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInternetServiceAppend:FirewallInternetServiceAppend labelname FirewallInternetServiceAppend
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInternetServiceAppend:FirewallInternetServiceAppend labelname FirewallInternetServiceAppend
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallInternetServiceAppend extends pulumi.CustomResource {
     /**
      * Get an existing FirewallInternetServiceAppend resource's state with the given name, ID, and optional extra
@@ -51,17 +32,9 @@ export class FirewallInternetServiceAppend extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallInternetServiceAppend.__pulumiType;
     }
 
-    /**
-     * Appending TCP/UDP/SCTP destination port (1 to 65535).
-     */
+    public readonly addrMode!: pulumi.Output<string>;
     public readonly appendPort!: pulumi.Output<number>;
-    /**
-     * Matching TCP/UDP/SCTP destination port (1 to 65535).
-     */
     public readonly matchPort!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -77,11 +50,13 @@ export class FirewallInternetServiceAppend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallInternetServiceAppendState | undefined;
+            resourceInputs["addrMode"] = state ? state.addrMode : undefined;
             resourceInputs["appendPort"] = state ? state.appendPort : undefined;
             resourceInputs["matchPort"] = state ? state.matchPort : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallInternetServiceAppendArgs | undefined;
+            resourceInputs["addrMode"] = args ? args.addrMode : undefined;
             resourceInputs["appendPort"] = args ? args.appendPort : undefined;
             resourceInputs["matchPort"] = args ? args.matchPort : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -95,17 +70,9 @@ export class FirewallInternetServiceAppend extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallInternetServiceAppend resources.
  */
 export interface FirewallInternetServiceAppendState {
-    /**
-     * Appending TCP/UDP/SCTP destination port (1 to 65535).
-     */
+    addrMode?: pulumi.Input<string>;
     appendPort?: pulumi.Input<number>;
-    /**
-     * Matching TCP/UDP/SCTP destination port (1 to 65535).
-     */
     matchPort?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -113,16 +80,8 @@ export interface FirewallInternetServiceAppendState {
  * The set of arguments for constructing a FirewallInternetServiceAppend resource.
  */
 export interface FirewallInternetServiceAppendArgs {
-    /**
-     * Appending TCP/UDP/SCTP destination port (1 to 65535).
-     */
+    addrMode?: pulumi.Input<string>;
     appendPort?: pulumi.Input<number>;
-    /**
-     * Matching TCP/UDP/SCTP destination port (1 to 65535).
-     */
     matchPort?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -7,202 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure an aggregate of IPsec tunnels.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trname1VpnIpsecPhase1Interface, err := fortios.NewVpnIpsecPhase1Interface(ctx, "trname1VpnIpsecPhase1Interface", &fortios.VpnIpsecPhase1InterfaceArgs{
-// 			AcctVerify:             pulumi.String("disable"),
-// 			AddGwRoute:             pulumi.String("disable"),
-// 			AddRoute:               pulumi.String("enable"),
-// 			AssignIp:               pulumi.String("enable"),
-// 			AssignIpFrom:           pulumi.String("range"),
-// 			Authmethod:             pulumi.String("psk"),
-// 			AutoDiscoveryForwarder: pulumi.String("disable"),
-// 			AutoDiscoveryPsk:       pulumi.String("disable"),
-// 			AutoDiscoveryReceiver:  pulumi.String("disable"),
-// 			AutoDiscoverySender:    pulumi.String("disable"),
-// 			AutoNegotiate:          pulumi.String("enable"),
-// 			CertIdValidation:       pulumi.String("enable"),
-// 			ChildlessIke:           pulumi.String("disable"),
-// 			ClientAutoNegotiate:    pulumi.String("disable"),
-// 			ClientKeepAlive:        pulumi.String("disable"),
-// 			DefaultGw:              pulumi.String("0.0.0.0"),
-// 			DefaultGwPriority:      pulumi.Int(0),
-// 			Dhgrp:                  pulumi.String("14 5"),
-// 			DigitalSignatureAuth:   pulumi.String("disable"),
-// 			Distance:               pulumi.Int(15),
-// 			DnsMode:                pulumi.String("manual"),
-// 			Dpd:                    pulumi.String("on-demand"),
-// 			DpdRetrycount:          pulumi.Int(3),
-// 			DpdRetryinterval:       pulumi.String("20"),
-// 			Eap:                    pulumi.String("disable"),
-// 			EapIdentity:            pulumi.String("use-id-payload"),
-// 			EncapLocalGw4:          pulumi.String("0.0.0.0"),
-// 			EncapLocalGw6:          pulumi.String("::"),
-// 			EncapRemoteGw4:         pulumi.String("0.0.0.0"),
-// 			EncapRemoteGw6:         pulumi.String("::"),
-// 			Encapsulation:          pulumi.String("none"),
-// 			EncapsulationAddress:   pulumi.String("ike"),
-// 			EnforceUniqueId:        pulumi.String("disable"),
-// 			ExchangeInterfaceIp:    pulumi.String("disable"),
-// 			ExchangeIpAddr4:        pulumi.String("0.0.0.0"),
-// 			ExchangeIpAddr6:        pulumi.String("::"),
-// 			ForticlientEnforcement: pulumi.String("disable"),
-// 			Fragmentation:          pulumi.String("enable"),
-// 			FragmentationMtu:       pulumi.Int(1200),
-// 			GroupAuthentication:    pulumi.String("disable"),
-// 			HaSyncEspSeqno:         pulumi.String("enable"),
-// 			IdleTimeout:            pulumi.String("disable"),
-// 			IdleTimeoutinterval:    pulumi.Int(15),
-// 			IkeVersion:             pulumi.String("1"),
-// 			IncludeLocalLan:        pulumi.String("disable"),
-// 			Interface:              pulumi.String("port3"),
-// 			IpVersion:              pulumi.String("4"),
-// 			Ipv4DnsServer1:         pulumi.String("0.0.0.0"),
-// 			Ipv4DnsServer2:         pulumi.String("0.0.0.0"),
-// 			Ipv4DnsServer3:         pulumi.String("0.0.0.0"),
-// 			Ipv4EndIp:              pulumi.String("0.0.0.0"),
-// 			Ipv4Netmask:            pulumi.String("255.255.255.255"),
-// 			Ipv4StartIp:            pulumi.String("0.0.0.0"),
-// 			Ipv4WinsServer1:        pulumi.String("0.0.0.0"),
-// 			Ipv4WinsServer2:        pulumi.String("0.0.0.0"),
-// 			Ipv6DnsServer1:         pulumi.String("::"),
-// 			Ipv6DnsServer2:         pulumi.String("::"),
-// 			Ipv6DnsServer3:         pulumi.String("::"),
-// 			Ipv6EndIp:              pulumi.String("::"),
-// 			Ipv6Prefix:             pulumi.Int(128),
-// 			Ipv6StartIp:            pulumi.String("::"),
-// 			Keepalive:              pulumi.Int(10),
-// 			Keylife:                pulumi.Int(86400),
-// 			LocalGw:                pulumi.String("0.0.0.0"),
-// 			LocalGw6:               pulumi.String("::"),
-// 			LocalidType:            pulumi.String("auto"),
-// 			MeshSelectorType:       pulumi.String("disable"),
-// 			Mode:                   pulumi.String("main"),
-// 			ModeCfg:                pulumi.String("disable"),
-// 			MonitorHoldDownDelay:   pulumi.Int(0),
-// 			MonitorHoldDownTime:    pulumi.String("00:00"),
-// 			MonitorHoldDownType:    pulumi.String("immediate"),
-// 			MonitorHoldDownWeekday: pulumi.String("sunday"),
-// 			Nattraversal:           pulumi.String("enable"),
-// 			NegotiateTimeout:       pulumi.Int(30),
-// 			NetDevice:              pulumi.String("disable"),
-// 			PassiveMode:            pulumi.String("disable"),
-// 			Peertype:               pulumi.String("any"),
-// 			Ppk:                    pulumi.String("disable"),
-// 			Priority:               pulumi.Int(0),
-// 			Proposal:               pulumi.String("aes128-sha256 aes256-sha256 aes128-sha1 aes256-sha1"),
-// 			Psksecret:              pulumi.String("eweeeeeeeecee"),
-// 			Reauth:                 pulumi.String("disable"),
-// 			Rekey:                  pulumi.String("enable"),
-// 			RemoteGw:               pulumi.String("2.2.2.2"),
-// 			RemoteGw6:              pulumi.String("::"),
-// 			RsaSignatureFormat:     pulumi.String("pkcs1"),
-// 			SavePassword:           pulumi.String("disable"),
-// 			SendCertChain:          pulumi.String("enable"),
-// 			SignatureHashAlg:       pulumi.String("sha2-512 sha2-384 sha2-256 sha1"),
-// 			SuiteB:                 pulumi.String("disable"),
-// 			TunnelSearch:           pulumi.String("selectors"),
-// 			Type:                   pulumi.String("static"),
-// 			UnitySupport:           pulumi.String("enable"),
-// 			WizardType:             pulumi.String("custom"),
-// 			Xauthtype:              pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewVpnIpsecPhase2Interface(ctx, "trname1VpnIpsecPhase2Interface", &fortios.VpnIpsecPhase2InterfaceArgs{
-// 			AddRoute:               pulumi.String("phase1"),
-// 			AutoDiscoveryForwarder: pulumi.String("phase1"),
-// 			AutoDiscoverySender:    pulumi.String("phase1"),
-// 			AutoNegotiate:          pulumi.String("disable"),
-// 			DhcpIpsec:              pulumi.String("disable"),
-// 			Dhgrp:                  pulumi.String("14 5"),
-// 			DstAddrType:            pulumi.String("subnet"),
-// 			DstEndIp6:              pulumi.String("::"),
-// 			DstPort:                pulumi.Int(0),
-// 			DstSubnet:              pulumi.String("0.0.0.0 0.0.0.0"),
-// 			Encapsulation:          pulumi.String("tunnel-mode"),
-// 			Keepalive:              pulumi.String("disable"),
-// 			KeylifeType:            pulumi.String("seconds"),
-// 			Keylifekbs:             pulumi.Int(5120),
-// 			Keylifeseconds:         pulumi.Int(43200),
-// 			L2tp:                   pulumi.String("disable"),
-// 			Pfs:                    pulumi.String("enable"),
-// 			Phase1name:             trname1VpnIpsecPhase1Interface.Name,
-// 			Proposal:               pulumi.String("aes128-sha1 aes256-sha1 aes128-sha256 aes256-sha256 aes128gcm aes256gcm chacha20poly1305"),
-// 			Protocol:               pulumi.Int(0),
-// 			Replay:                 pulumi.String("enable"),
-// 			RouteOverlap:           pulumi.String("use-new"),
-// 			SingleSource:           pulumi.String("disable"),
-// 			SrcAddrType:            pulumi.String("subnet"),
-// 			SrcEndIp6:              pulumi.String("::"),
-// 			SrcPort:                pulumi.Int(0),
-// 			SrcSubnet:              pulumi.String("0.0.0.0 0.0.0.0"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewSystemIpsecAggregate(ctx, "trname", &fortios.SystemIpsecAggregateArgs{
-// 			Algorithm: pulumi.String("round-robin"),
-// 			Members: SystemIpsecAggregateMemberArray{
-// 				&SystemIpsecAggregateMemberArgs{
-// 					TunnelName: trname1VpnIpsecPhase1Interface.Name,
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System IpsecAggregate can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemIpsecAggregate:SystemIpsecAggregate labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemIpsecAggregate:SystemIpsecAggregate labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemIpsecAggregate struct {
 	pulumi.CustomResourceState
 
-	// Frame distribution algorithm.
-	Algorithm pulumi.StringOutput `pulumi:"algorithm"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Member tunnels of the aggregate. The structure of `member` block is documented below.
-	Members SystemIpsecAggregateMemberArrayOutput `pulumi:"members"`
-	// IPsec aggregate name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Algorithm           pulumi.StringOutput                   `pulumi:"algorithm"`
+	DynamicSortSubtable pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
+	Members             SystemIpsecAggregateMemberArrayOutput `pulumi:"members"`
+	Name                pulumi.StringOutput                   `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                `pulumi:"vdomparam"`
 }
 
 // NewSystemIpsecAggregate registers a new resource with the given unique name, arguments, and options.
@@ -238,29 +54,19 @@ func GetSystemIpsecAggregate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemIpsecAggregate resources.
 type systemIpsecAggregateState struct {
-	// Frame distribution algorithm.
-	Algorithm *string `pulumi:"algorithm"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Member tunnels of the aggregate. The structure of `member` block is documented below.
-	Members []SystemIpsecAggregateMember `pulumi:"members"`
-	// IPsec aggregate name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Algorithm           *string                      `pulumi:"algorithm"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	Members             []SystemIpsecAggregateMember `pulumi:"members"`
+	Name                *string                      `pulumi:"name"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 type SystemIpsecAggregateState struct {
-	// Frame distribution algorithm.
-	Algorithm pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Algorithm           pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Member tunnels of the aggregate. The structure of `member` block is documented below.
-	Members SystemIpsecAggregateMemberArrayInput
-	// IPsec aggregate name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Members             SystemIpsecAggregateMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemIpsecAggregateState) ElementType() reflect.Type {
@@ -268,30 +74,20 @@ func (SystemIpsecAggregateState) ElementType() reflect.Type {
 }
 
 type systemIpsecAggregateArgs struct {
-	// Frame distribution algorithm.
-	Algorithm *string `pulumi:"algorithm"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Member tunnels of the aggregate. The structure of `member` block is documented below.
-	Members []SystemIpsecAggregateMember `pulumi:"members"`
-	// IPsec aggregate name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Algorithm           *string                      `pulumi:"algorithm"`
+	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	Members             []SystemIpsecAggregateMember `pulumi:"members"`
+	Name                *string                      `pulumi:"name"`
+	Vdomparam           *string                      `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemIpsecAggregate resource.
 type SystemIpsecAggregateArgs struct {
-	// Frame distribution algorithm.
-	Algorithm pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Algorithm           pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Member tunnels of the aggregate. The structure of `member` block is documented below.
-	Members SystemIpsecAggregateMemberArrayInput
-	// IPsec aggregate name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Members             SystemIpsecAggregateMemberArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemIpsecAggregateArgs) ElementType() reflect.Type {
@@ -320,7 +116,7 @@ func (i *SystemIpsecAggregate) ToSystemIpsecAggregateOutputWithContext(ctx conte
 // SystemIpsecAggregateArrayInput is an input type that accepts SystemIpsecAggregateArray and SystemIpsecAggregateArrayOutput values.
 // You can construct a concrete instance of `SystemIpsecAggregateArrayInput` via:
 //
-//          SystemIpsecAggregateArray{ SystemIpsecAggregateArgs{...} }
+//	SystemIpsecAggregateArray{ SystemIpsecAggregateArgs{...} }
 type SystemIpsecAggregateArrayInput interface {
 	pulumi.Input
 
@@ -345,7 +141,7 @@ func (i SystemIpsecAggregateArray) ToSystemIpsecAggregateArrayOutputWithContext(
 // SystemIpsecAggregateMapInput is an input type that accepts SystemIpsecAggregateMap and SystemIpsecAggregateMapOutput values.
 // You can construct a concrete instance of `SystemIpsecAggregateMapInput` via:
 //
-//          SystemIpsecAggregateMap{ "key": SystemIpsecAggregateArgs{...} }
+//	SystemIpsecAggregateMap{ "key": SystemIpsecAggregateArgs{...} }
 type SystemIpsecAggregateMapInput interface {
 	pulumi.Input
 
@@ -379,6 +175,26 @@ func (o SystemIpsecAggregateOutput) ToSystemIpsecAggregateOutput() SystemIpsecAg
 
 func (o SystemIpsecAggregateOutput) ToSystemIpsecAggregateOutputWithContext(ctx context.Context) SystemIpsecAggregateOutput {
 	return o
+}
+
+func (o SystemIpsecAggregateOutput) Algorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpsecAggregate) pulumi.StringOutput { return v.Algorithm }).(pulumi.StringOutput)
+}
+
+func (o SystemIpsecAggregateOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemIpsecAggregate) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemIpsecAggregateOutput) Members() SystemIpsecAggregateMemberArrayOutput {
+	return o.ApplyT(func(v *SystemIpsecAggregate) SystemIpsecAggregateMemberArrayOutput { return v.Members }).(SystemIpsecAggregateMemberArrayOutput)
+}
+
+func (o SystemIpsecAggregateOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpsecAggregate) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemIpsecAggregateOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemIpsecAggregate) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemIpsecAggregateArrayOutput struct{ *pulumi.OutputState }

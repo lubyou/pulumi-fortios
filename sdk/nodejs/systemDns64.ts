@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure DNS64. Applies to FortiOS Version `>= 7.0.1`.
- *
- * ## Import
- *
- * System Dns64 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemDns64:SystemDns64 labelname SystemDns64
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemDns64:SystemDns64 labelname SystemDns64
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemDns64 extends pulumi.CustomResource {
     /**
      * Get an existing SystemDns64 resource's state with the given name, ID, and optional extra
@@ -51,21 +32,9 @@ export class SystemDns64 extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemDns64.__pulumiType;
     }
 
-    /**
-     * Enable/disable AAAA record synthesis (default = enable). Valid values: `enable`, `disable`.
-     */
     public readonly alwaysSynthesizeAaaaRecord!: pulumi.Output<string>;
-    /**
-     * DNS64 prefix must be ::/96 (default = 64:ff9b::/96).
-     */
     public readonly dns64Prefix!: pulumi.Output<string>;
-    /**
-     * Enable/disable DNS64 (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -101,21 +70,9 @@ export class SystemDns64 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemDns64 resources.
  */
 export interface SystemDns64State {
-    /**
-     * Enable/disable AAAA record synthesis (default = enable). Valid values: `enable`, `disable`.
-     */
     alwaysSynthesizeAaaaRecord?: pulumi.Input<string>;
-    /**
-     * DNS64 prefix must be ::/96 (default = 64:ff9b::/96).
-     */
     dns64Prefix?: pulumi.Input<string>;
-    /**
-     * Enable/disable DNS64 (default = disable). Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -123,20 +80,8 @@ export interface SystemDns64State {
  * The set of arguments for constructing a SystemDns64 resource.
  */
 export interface SystemDns64Args {
-    /**
-     * Enable/disable AAAA record synthesis (default = enable). Valid values: `enable`, `disable`.
-     */
     alwaysSynthesizeAaaaRecord?: pulumi.Input<string>;
-    /**
-     * DNS64 prefix must be ::/96 (default = 64:ff9b::/96).
-     */
     dns64Prefix?: pulumi.Input<string>;
-    /**
-     * Enable/disable DNS64 (default = disable). Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

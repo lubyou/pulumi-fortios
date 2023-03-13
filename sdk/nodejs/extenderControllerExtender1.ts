@@ -2,86 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Extender controller configuration.
- *
- * > The resource applies to FortiOS Version >= 6.4.2. For FortiOS Version < 6.4.2, see `fortios.ExtenderControllerExtender`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.ExtenderControllerExtender1("trname", {
- *     authorized: "disable",
- *     controllerReport: {
- *         interval: 300,
- *         signalThreshold: 10,
- *         status: "disable",
- *     },
- *     extName: "2932",
- *     fosid: "FX201E5919004031",
- *     modem1: {
- *         autoSwitch: {
- *             dataplan: "disable",
- *             disconnect: "disable",
- *             disconnectPeriod: 600,
- *             disconnectThreshold: 3,
- *             signal: "disable",
- *             switchBack: "timer",
- *             switchBackTime: "00:01",
- *             switchBackTimer: 86400,
- *         },
- *         connStatus: 0,
- *         defaultSim: "sim2",
- *         gps: "enable",
- *         redundantIntf: "s1",
- *         redundantMode: "enable",
- *         sim1Pin: "disable",
- *         sim1PinCode: "testpincode",
- *         sim2Pin: "disable",
- *     },
- *     modem2: {
- *         autoSwitch: {
- *             dataplan: "disable",
- *             disconnect: "disable",
- *             disconnectPeriod: 600,
- *             disconnectThreshold: 3,
- *             signal: "disable",
- *             switchBackTime: "00:01",
- *             switchBackTimer: 86400,
- *         },
- *         connStatus: 0,
- *         defaultSim: "sim1",
- *         gps: "enable",
- *         redundantMode: "disable",
- *         sim1Pin: "disable",
- *         sim2Pin: "disable",
- *     },
- *     vdom: 0,
- * });
- * ```
- *
- * ## Import
- *
- * ExtenderController Extender1 can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/extenderControllerExtender1:ExtenderControllerExtender1 labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/extenderControllerExtender1:ExtenderControllerExtender1 labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class ExtenderControllerExtender1 extends pulumi.CustomResource {
     /**
      * Get an existing ExtenderControllerExtender1 resource's state with the given name, ID, and optional extra
@@ -110,49 +34,16 @@ export class ExtenderControllerExtender1 extends pulumi.CustomResource {
         return obj['__pulumiType'] === ExtenderControllerExtender1.__pulumiType;
     }
 
-    /**
-     * FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-     */
     public readonly authorized!: pulumi.Output<string>;
-    /**
-     * FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
-     */
-    public readonly controllerReport!: pulumi.Output<outputs.ExtenderControllerExtender1ControllerReport | undefined>;
-    /**
-     * Description.
-     */
+    public readonly controllerReport!: pulumi.Output<outputs.ExtenderControllerExtender1ControllerReport>;
     public readonly description!: pulumi.Output<string>;
-    /**
-     * FortiExtender name.
-     */
     public readonly extName!: pulumi.Output<string>;
-    /**
-     * FortiExtender serial number.
-     */
     public readonly fosid!: pulumi.Output<string>;
-    /**
-     * FortiExtender login password.
-     */
     public readonly loginPassword!: pulumi.Output<string | undefined>;
-    /**
-     * Configuration options for modem 1. The structure of `modem1` block is documented below.
-     */
-    public readonly modem1!: pulumi.Output<outputs.ExtenderControllerExtender1Modem1 | undefined>;
-    /**
-     * Configuration options for modem 2. The structure of `modem2` block is documented below.
-     */
-    public readonly modem2!: pulumi.Output<outputs.ExtenderControllerExtender1Modem2 | undefined>;
-    /**
-     * FortiExtender entry name.
-     */
+    public readonly modem1!: pulumi.Output<outputs.ExtenderControllerExtender1Modem1>;
+    public readonly modem2!: pulumi.Output<outputs.ExtenderControllerExtender1Modem2>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * VDOM
-     */
     public readonly vdom!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -189,7 +80,7 @@ export class ExtenderControllerExtender1 extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["extName"] = args ? args.extName : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
-            resourceInputs["loginPassword"] = args ? args.loginPassword : undefined;
+            resourceInputs["loginPassword"] = args?.loginPassword ? pulumi.secret(args.loginPassword) : undefined;
             resourceInputs["modem1"] = args ? args.modem1 : undefined;
             resourceInputs["modem2"] = args ? args.modem2 : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -197,6 +88,8 @@ export class ExtenderControllerExtender1 extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["loginPassword"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(ExtenderControllerExtender1.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -205,49 +98,16 @@ export class ExtenderControllerExtender1 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ExtenderControllerExtender1 resources.
  */
 export interface ExtenderControllerExtender1State {
-    /**
-     * FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-     */
     authorized?: pulumi.Input<string>;
-    /**
-     * FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
-     */
     controllerReport?: pulumi.Input<inputs.ExtenderControllerExtender1ControllerReport>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * FortiExtender name.
-     */
     extName?: pulumi.Input<string>;
-    /**
-     * FortiExtender serial number.
-     */
     fosid?: pulumi.Input<string>;
-    /**
-     * FortiExtender login password.
-     */
     loginPassword?: pulumi.Input<string>;
-    /**
-     * Configuration options for modem 1. The structure of `modem1` block is documented below.
-     */
     modem1?: pulumi.Input<inputs.ExtenderControllerExtender1Modem1>;
-    /**
-     * Configuration options for modem 2. The structure of `modem2` block is documented below.
-     */
     modem2?: pulumi.Input<inputs.ExtenderControllerExtender1Modem2>;
-    /**
-     * FortiExtender entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * VDOM
-     */
     vdom?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -255,48 +115,15 @@ export interface ExtenderControllerExtender1State {
  * The set of arguments for constructing a ExtenderControllerExtender1 resource.
  */
 export interface ExtenderControllerExtender1Args {
-    /**
-     * FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
-     */
     authorized: pulumi.Input<string>;
-    /**
-     * FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
-     */
     controllerReport?: pulumi.Input<inputs.ExtenderControllerExtender1ControllerReport>;
-    /**
-     * Description.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * FortiExtender name.
-     */
     extName?: pulumi.Input<string>;
-    /**
-     * FortiExtender serial number.
-     */
     fosid?: pulumi.Input<string>;
-    /**
-     * FortiExtender login password.
-     */
     loginPassword?: pulumi.Input<string>;
-    /**
-     * Configuration options for modem 1. The structure of `modem1` block is documented below.
-     */
     modem1?: pulumi.Input<inputs.ExtenderControllerExtender1Modem1>;
-    /**
-     * Configuration options for modem 2. The structure of `modem2` block is documented below.
-     */
     modem2?: pulumi.Input<inputs.ExtenderControllerExtender1Modem2>;
-    /**
-     * FortiExtender entry name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * VDOM
-     */
     vdom?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

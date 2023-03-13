@@ -2,19 +2,14 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on fortios system centralmanagement
- */
 export function getSystemCentralManagement(args?: GetSystemCentralManagementArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemCentralManagementResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemCentralManagement:GetSystemCentralManagement", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -24,9 +19,6 @@ export function getSystemCentralManagement(args?: GetSystemCentralManagementArgs
  * A collection of arguments for invoking GetSystemCentralManagement.
  */
 export interface GetSystemCentralManagementArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -34,107 +26,40 @@ export interface GetSystemCentralManagementArgs {
  * A collection of values returned by GetSystemCentralManagement.
  */
 export interface GetSystemCentralManagementResult {
-    /**
-     * Enable/disable allowing the central management server to remotely monitor this FortiGate
-     */
     readonly allowMonitor: string;
-    /**
-     * Enable/disable allowing the central management server to push configuration changes to this FortiGate.
-     */
     readonly allowPushConfiguration: string;
-    /**
-     * Enable/disable allowing the central management server to push firmware updates to this FortiGate.
-     */
     readonly allowPushFirmware: string;
-    /**
-     * Enable/disable remotely upgrading the firmware on this FortiGate from the central management server.
-     */
     readonly allowRemoteFirmwareUpgrade: string;
-    /**
-     * CA certificate to be used by FGFM protocol.
-     */
     readonly caCert: string;
-    /**
-     * Encryption strength for communications between the FortiGate and central management.
-     */
     readonly encAlgorithm: string;
-    /**
-     * IP address or FQDN of the FortiManager.
-     */
     readonly fmg: string;
-    /**
-     * IPv4 source address that this FortiGate uses when communicating with FortiManager.
-     */
     readonly fmgSourceIp: string;
-    /**
-     * IPv6 source address that this FortiGate uses when communicating with FortiManager.
-     */
     readonly fmgSourceIp6: string;
-    /**
-     * Port used to communicate with FortiManager that is acting as a FortiGuard update server.
-     */
     readonly fmgUpdatePort: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Enable/disable inclusion of public FortiGuard servers in the override server list.
-     */
     readonly includeDefaultServers: string;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     readonly interface: string;
-    /**
-     * Specify how to select outgoing interface to reach server.
-     */
     readonly interfaceSelectMethod: string;
-    /**
-     * Certificate to be used by FGFM protocol.
-     */
     readonly localCert: string;
-    /**
-     * Central management mode.
-     */
     readonly mode: string;
-    /**
-     * Enable/disable allowing the central management server to restore the configuration of this FortiGate.
-     */
     readonly scheduleConfigRestore: string;
-    /**
-     * Enable/disable allowing the central management server to restore the scripts stored on this FortiGate.
-     */
     readonly scheduleScriptRestore: string;
-    /**
-     * Serial number.
-     */
     readonly serialNumber: string;
-    /**
-     * Additional severs that the FortiGate can use for updates (for AV, IPS, updates) and ratings (for web filter and antispam ratings) servers. The structure of `serverList` block is documented below.
-     */
     readonly serverLists: outputs.GetSystemCentralManagementServerList[];
-    /**
-     * Central management type.
-     */
     readonly type: string;
-    /**
-     * Virtual domain (VDOM) name to use when communicating with FortiManager.
-     */
     readonly vdom: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemCentralManagementOutput(args?: GetSystemCentralManagementOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemCentralManagementResult> {
-    return pulumi.output(args).apply(a => getSystemCentralManagement(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemCentralManagement(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetSystemCentralManagement.
  */
 export interface GetSystemCentralManagementOutputArgs {
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

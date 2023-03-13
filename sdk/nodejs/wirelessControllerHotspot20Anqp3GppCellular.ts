@@ -2,37 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure 3GPP public land mobile network (PLMN).
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WirelessControllerHotspot20Anqp3GppCellular("trname", {});
- * ```
- *
- * ## Import
- *
- * WirelessControllerHotspot20 Anqp3GppCellular can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20Anqp3GppCellular:WirelessControllerHotspot20Anqp3GppCellular labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20Anqp3GppCellular:WirelessControllerHotspot20Anqp3GppCellular labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerHotspot20Anqp3GppCellular extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerHotspot20Anqp3GppCellular resource's state with the given name, ID, and optional extra
@@ -61,21 +34,9 @@ export class WirelessControllerHotspot20Anqp3GppCellular extends pulumi.CustomRe
         return obj['__pulumiType'] === WirelessControllerHotspot20Anqp3GppCellular.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Mobile Country Code and Mobile Network Code configuration. The structure of `mccMncList` block is documented below.
-     */
     public readonly mccMncLists!: pulumi.Output<outputs.WirelessControllerHotspot20Anqp3GppCellularMccMncList[] | undefined>;
-    /**
-     * 3GPP PLMN name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -111,21 +72,9 @@ export class WirelessControllerHotspot20Anqp3GppCellular extends pulumi.CustomRe
  * Input properties used for looking up and filtering WirelessControllerHotspot20Anqp3GppCellular resources.
  */
 export interface WirelessControllerHotspot20Anqp3GppCellularState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Mobile Country Code and Mobile Network Code configuration. The structure of `mccMncList` block is documented below.
-     */
     mccMncLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20Anqp3GppCellularMccMncList>[]>;
-    /**
-     * 3GPP PLMN name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -133,20 +82,8 @@ export interface WirelessControllerHotspot20Anqp3GppCellularState {
  * The set of arguments for constructing a WirelessControllerHotspot20Anqp3GppCellular resource.
  */
 export interface WirelessControllerHotspot20Anqp3GppCellularArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Mobile Country Code and Mobile Network Code configuration. The structure of `mccMncList` block is documented below.
-     */
     mccMncLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20Anqp3GppCellularMccMncList>[]>;
-    /**
-     * 3GPP PLMN name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

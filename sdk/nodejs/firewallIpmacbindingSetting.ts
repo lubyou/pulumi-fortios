@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure IP to MAC binding settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.FirewallIpmacbindingSetting("trname", {
- *     bindthroughfw: "disable",
- *     bindtofw: "disable",
- *     undefinedhost: "block",
- * });
- * ```
- *
- * ## Import
- *
- * FirewallIpmacbinding Setting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallIpmacbindingSetting:FirewallIpmacbindingSetting labelname FirewallIpmacbindingSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallIpmacbindingSetting:FirewallIpmacbindingSetting labelname FirewallIpmacbindingSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallIpmacbindingSetting extends pulumi.CustomResource {
     /**
      * Get an existing FirewallIpmacbindingSetting resource's state with the given name, ID, and optional extra
@@ -64,21 +32,9 @@ export class FirewallIpmacbindingSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallIpmacbindingSetting.__pulumiType;
     }
 
-    /**
-     * Enable/disable use of IP/MAC binding to filter packets that would normally go through the firewall. Valid values: `enable`, `disable`.
-     */
     public readonly bindthroughfw!: pulumi.Output<string>;
-    /**
-     * Enable/disable use of IP/MAC binding to filter packets that would normally go to the firewall. Valid values: `enable`, `disable`.
-     */
     public readonly bindtofw!: pulumi.Output<string>;
-    /**
-     * Select action to take on packets with IP/MAC addresses not in the binding list (default = block). Valid values: `allow`, `block`.
-     */
     public readonly undefinedhost!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -114,21 +70,9 @@ export class FirewallIpmacbindingSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallIpmacbindingSetting resources.
  */
 export interface FirewallIpmacbindingSettingState {
-    /**
-     * Enable/disable use of IP/MAC binding to filter packets that would normally go through the firewall. Valid values: `enable`, `disable`.
-     */
     bindthroughfw?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of IP/MAC binding to filter packets that would normally go to the firewall. Valid values: `enable`, `disable`.
-     */
     bindtofw?: pulumi.Input<string>;
-    /**
-     * Select action to take on packets with IP/MAC addresses not in the binding list (default = block). Valid values: `allow`, `block`.
-     */
     undefinedhost?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -136,20 +80,8 @@ export interface FirewallIpmacbindingSettingState {
  * The set of arguments for constructing a FirewallIpmacbindingSetting resource.
  */
 export interface FirewallIpmacbindingSettingArgs {
-    /**
-     * Enable/disable use of IP/MAC binding to filter packets that would normally go through the firewall. Valid values: `enable`, `disable`.
-     */
     bindthroughfw?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of IP/MAC binding to filter packets that would normally go to the firewall. Valid values: `enable`, `disable`.
-     */
     bindtofw?: pulumi.Input<string>;
-    /**
-     * Select action to take on packets with IP/MAC addresses not in the binding list (default = block). Valid values: `allow`, `block`.
-     */
     undefinedhost?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

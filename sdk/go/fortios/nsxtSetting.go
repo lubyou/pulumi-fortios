@@ -10,31 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure NSX-T setting. Applies to FortiOS Version `>= 7.0.0`.
-//
-// ## Import
-//
-// Nsxt Setting can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/nsxtSetting:NsxtSetting labelname NsxtSetting
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/nsxtSetting:NsxtSetting labelname NsxtSetting
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type NsxtSetting struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable liveness detection packet forwarding. Valid values: `enable`, `disable`.
-	Liveness pulumi.StringOutput `pulumi:"liveness"`
-	// Service name.
-	Service pulumi.StringOutput `pulumi:"service"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Liveness  pulumi.StringOutput    `pulumi:"liveness"`
+	Service   pulumi.StringOutput    `pulumi:"service"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -68,20 +48,14 @@ func GetNsxtSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NsxtSetting resources.
 type nsxtSettingState struct {
-	// Enable/disable liveness detection packet forwarding. Valid values: `enable`, `disable`.
-	Liveness *string `pulumi:"liveness"`
-	// Service name.
-	Service *string `pulumi:"service"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Liveness  *string `pulumi:"liveness"`
+	Service   *string `pulumi:"service"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type NsxtSettingState struct {
-	// Enable/disable liveness detection packet forwarding. Valid values: `enable`, `disable`.
-	Liveness pulumi.StringPtrInput
-	// Service name.
-	Service pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Liveness  pulumi.StringPtrInput
+	Service   pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -90,21 +64,15 @@ func (NsxtSettingState) ElementType() reflect.Type {
 }
 
 type nsxtSettingArgs struct {
-	// Enable/disable liveness detection packet forwarding. Valid values: `enable`, `disable`.
-	Liveness *string `pulumi:"liveness"`
-	// Service name.
-	Service *string `pulumi:"service"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Liveness  *string `pulumi:"liveness"`
+	Service   *string `pulumi:"service"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a NsxtSetting resource.
 type NsxtSettingArgs struct {
-	// Enable/disable liveness detection packet forwarding. Valid values: `enable`, `disable`.
-	Liveness pulumi.StringPtrInput
-	// Service name.
-	Service pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Liveness  pulumi.StringPtrInput
+	Service   pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -134,7 +102,7 @@ func (i *NsxtSetting) ToNsxtSettingOutputWithContext(ctx context.Context) NsxtSe
 // NsxtSettingArrayInput is an input type that accepts NsxtSettingArray and NsxtSettingArrayOutput values.
 // You can construct a concrete instance of `NsxtSettingArrayInput` via:
 //
-//          NsxtSettingArray{ NsxtSettingArgs{...} }
+//	NsxtSettingArray{ NsxtSettingArgs{...} }
 type NsxtSettingArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i NsxtSettingArray) ToNsxtSettingArrayOutputWithContext(ctx context.Contex
 // NsxtSettingMapInput is an input type that accepts NsxtSettingMap and NsxtSettingMapOutput values.
 // You can construct a concrete instance of `NsxtSettingMapInput` via:
 //
-//          NsxtSettingMap{ "key": NsxtSettingArgs{...} }
+//	NsxtSettingMap{ "key": NsxtSettingArgs{...} }
 type NsxtSettingMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o NsxtSettingOutput) ToNsxtSettingOutput() NsxtSettingOutput {
 
 func (o NsxtSettingOutput) ToNsxtSettingOutputWithContext(ctx context.Context) NsxtSettingOutput {
 	return o
+}
+
+func (o NsxtSettingOutput) Liveness() pulumi.StringOutput {
+	return o.ApplyT(func(v *NsxtSetting) pulumi.StringOutput { return v.Liveness }).(pulumi.StringOutput)
+}
+
+func (o NsxtSettingOutput) Service() pulumi.StringOutput {
+	return o.ApplyT(func(v *NsxtSetting) pulumi.StringOutput { return v.Service }).(pulumi.StringOutput)
+}
+
+func (o NsxtSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NsxtSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type NsxtSettingArrayOutput struct{ *pulumi.OutputState }

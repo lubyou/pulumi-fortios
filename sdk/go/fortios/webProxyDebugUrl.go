@@ -7,65 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure debug URL addresses.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewWebProxyDebugUrl(ctx, "trname", &fortios.WebProxyDebugUrlArgs{
-// 			Exact:      pulumi.String("enable"),
-// 			Status:     pulumi.String("enable"),
-// 			UrlPattern: pulumi.String("/examples/servlet/*Servlet"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// WebProxy DebugUrl can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/webProxyDebugUrl:WebProxyDebugUrl labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/webProxyDebugUrl:WebProxyDebugUrl labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WebProxyDebugUrl struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable matching the exact path. Valid values: `enable`, `disable`.
-	Exact pulumi.StringOutput `pulumi:"exact"`
-	// Debug URL name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable/disable this URL exemption. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// URL exemption pattern.
-	UrlPattern pulumi.StringOutput `pulumi:"urlPattern"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Exact      pulumi.StringOutput    `pulumi:"exact"`
+	Name       pulumi.StringOutput    `pulumi:"name"`
+	Status     pulumi.StringOutput    `pulumi:"status"`
+	UrlPattern pulumi.StringOutput    `pulumi:"urlPattern"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewWebProxyDebugUrl registers a new resource with the given unique name, arguments, and options.
@@ -101,29 +54,19 @@ func GetWebProxyDebugUrl(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebProxyDebugUrl resources.
 type webProxyDebugUrlState struct {
-	// Enable/disable matching the exact path. Valid values: `enable`, `disable`.
-	Exact *string `pulumi:"exact"`
-	// Debug URL name.
-	Name *string `pulumi:"name"`
-	// Enable/disable this URL exemption. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// URL exemption pattern.
+	Exact      *string `pulumi:"exact"`
+	Name       *string `pulumi:"name"`
+	Status     *string `pulumi:"status"`
 	UrlPattern *string `pulumi:"urlPattern"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type WebProxyDebugUrlState struct {
-	// Enable/disable matching the exact path. Valid values: `enable`, `disable`.
-	Exact pulumi.StringPtrInput
-	// Debug URL name.
-	Name pulumi.StringPtrInput
-	// Enable/disable this URL exemption. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// URL exemption pattern.
+	Exact      pulumi.StringPtrInput
+	Name       pulumi.StringPtrInput
+	Status     pulumi.StringPtrInput
 	UrlPattern pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (WebProxyDebugUrlState) ElementType() reflect.Type {
@@ -131,30 +74,20 @@ func (WebProxyDebugUrlState) ElementType() reflect.Type {
 }
 
 type webProxyDebugUrlArgs struct {
-	// Enable/disable matching the exact path. Valid values: `enable`, `disable`.
-	Exact *string `pulumi:"exact"`
-	// Debug URL name.
-	Name *string `pulumi:"name"`
-	// Enable/disable this URL exemption. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// URL exemption pattern.
-	UrlPattern string `pulumi:"urlPattern"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Exact      *string `pulumi:"exact"`
+	Name       *string `pulumi:"name"`
+	Status     *string `pulumi:"status"`
+	UrlPattern string  `pulumi:"urlPattern"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebProxyDebugUrl resource.
 type WebProxyDebugUrlArgs struct {
-	// Enable/disable matching the exact path. Valid values: `enable`, `disable`.
-	Exact pulumi.StringPtrInput
-	// Debug URL name.
-	Name pulumi.StringPtrInput
-	// Enable/disable this URL exemption. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// URL exemption pattern.
+	Exact      pulumi.StringPtrInput
+	Name       pulumi.StringPtrInput
+	Status     pulumi.StringPtrInput
 	UrlPattern pulumi.StringInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (WebProxyDebugUrlArgs) ElementType() reflect.Type {
@@ -183,7 +116,7 @@ func (i *WebProxyDebugUrl) ToWebProxyDebugUrlOutputWithContext(ctx context.Conte
 // WebProxyDebugUrlArrayInput is an input type that accepts WebProxyDebugUrlArray and WebProxyDebugUrlArrayOutput values.
 // You can construct a concrete instance of `WebProxyDebugUrlArrayInput` via:
 //
-//          WebProxyDebugUrlArray{ WebProxyDebugUrlArgs{...} }
+//	WebProxyDebugUrlArray{ WebProxyDebugUrlArgs{...} }
 type WebProxyDebugUrlArrayInput interface {
 	pulumi.Input
 
@@ -208,7 +141,7 @@ func (i WebProxyDebugUrlArray) ToWebProxyDebugUrlArrayOutputWithContext(ctx cont
 // WebProxyDebugUrlMapInput is an input type that accepts WebProxyDebugUrlMap and WebProxyDebugUrlMapOutput values.
 // You can construct a concrete instance of `WebProxyDebugUrlMapInput` via:
 //
-//          WebProxyDebugUrlMap{ "key": WebProxyDebugUrlArgs{...} }
+//	WebProxyDebugUrlMap{ "key": WebProxyDebugUrlArgs{...} }
 type WebProxyDebugUrlMapInput interface {
 	pulumi.Input
 
@@ -242,6 +175,26 @@ func (o WebProxyDebugUrlOutput) ToWebProxyDebugUrlOutput() WebProxyDebugUrlOutpu
 
 func (o WebProxyDebugUrlOutput) ToWebProxyDebugUrlOutputWithContext(ctx context.Context) WebProxyDebugUrlOutput {
 	return o
+}
+
+func (o WebProxyDebugUrlOutput) Exact() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyDebugUrl) pulumi.StringOutput { return v.Exact }).(pulumi.StringOutput)
+}
+
+func (o WebProxyDebugUrlOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyDebugUrl) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WebProxyDebugUrlOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyDebugUrl) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o WebProxyDebugUrlOutput) UrlPattern() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyDebugUrl) pulumi.StringOutput { return v.UrlPattern }).(pulumi.StringOutput)
+}
+
+func (o WebProxyDebugUrlOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyDebugUrl) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WebProxyDebugUrlArrayOutput struct{ *pulumi.OutputState }

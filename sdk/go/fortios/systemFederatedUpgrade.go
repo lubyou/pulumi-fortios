@@ -10,42 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Coordinate federated upgrades within the Security Fabric. Applies to FortiOS Version `>= 7.0.0`.
-//
-// ## Import
-//
-// System FederatedUpgrade can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemFederatedUpgrade:SystemFederatedUpgrade labelname SystemFederatedUpgrade
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemFederatedUpgrade:SystemFederatedUpgrade labelname SystemFederatedUpgrade
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemFederatedUpgrade struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Serial number of the node to include.
-	FailureDevice pulumi.StringOutput `pulumi:"failureDevice"`
-	// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
-	FailureReason pulumi.StringOutput `pulumi:"failureReason"`
-	// The index of the next image to upgrade to.
-	NextPathIndex pulumi.IntOutput `pulumi:"nextPathIndex"`
-	// Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
-	NodeLists SystemFederatedUpgradeNodeListArrayOutput `pulumi:"nodeLists"`
-	// Current status of the upgrade.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Unique identifier for this upgrade.
-	UpgradeId pulumi.IntOutput `pulumi:"upgradeId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                    `pulumi:"dynamicSortSubtable"`
+	FailureDevice       pulumi.StringOutput                       `pulumi:"failureDevice"`
+	FailureReason       pulumi.StringOutput                       `pulumi:"failureReason"`
+	NextPathIndex       pulumi.IntOutput                          `pulumi:"nextPathIndex"`
+	NodeLists           SystemFederatedUpgradeNodeListArrayOutput `pulumi:"nodeLists"`
+	Status              pulumi.StringOutput                       `pulumi:"status"`
+	UpgradeId           pulumi.IntOutput                          `pulumi:"upgradeId"`
+	Vdomparam           pulumi.StringPtrOutput                    `pulumi:"vdomparam"`
 }
 
 // NewSystemFederatedUpgrade registers a new resource with the given unique name, arguments, and options.
@@ -78,41 +53,25 @@ func GetSystemFederatedUpgrade(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemFederatedUpgrade resources.
 type systemFederatedUpgradeState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Serial number of the node to include.
-	FailureDevice *string `pulumi:"failureDevice"`
-	// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
-	FailureReason *string `pulumi:"failureReason"`
-	// The index of the next image to upgrade to.
-	NextPathIndex *int `pulumi:"nextPathIndex"`
-	// Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
-	NodeLists []SystemFederatedUpgradeNodeList `pulumi:"nodeLists"`
-	// Current status of the upgrade.
-	Status *string `pulumi:"status"`
-	// Unique identifier for this upgrade.
-	UpgradeId *int `pulumi:"upgradeId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
+	FailureDevice       *string                          `pulumi:"failureDevice"`
+	FailureReason       *string                          `pulumi:"failureReason"`
+	NextPathIndex       *int                             `pulumi:"nextPathIndex"`
+	NodeLists           []SystemFederatedUpgradeNodeList `pulumi:"nodeLists"`
+	Status              *string                          `pulumi:"status"`
+	UpgradeId           *int                             `pulumi:"upgradeId"`
+	Vdomparam           *string                          `pulumi:"vdomparam"`
 }
 
 type SystemFederatedUpgradeState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Serial number of the node to include.
-	FailureDevice pulumi.StringPtrInput
-	// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
-	FailureReason pulumi.StringPtrInput
-	// The index of the next image to upgrade to.
-	NextPathIndex pulumi.IntPtrInput
-	// Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
-	NodeLists SystemFederatedUpgradeNodeListArrayInput
-	// Current status of the upgrade.
-	Status pulumi.StringPtrInput
-	// Unique identifier for this upgrade.
-	UpgradeId pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FailureDevice       pulumi.StringPtrInput
+	FailureReason       pulumi.StringPtrInput
+	NextPathIndex       pulumi.IntPtrInput
+	NodeLists           SystemFederatedUpgradeNodeListArrayInput
+	Status              pulumi.StringPtrInput
+	UpgradeId           pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemFederatedUpgradeState) ElementType() reflect.Type {
@@ -120,42 +79,26 @@ func (SystemFederatedUpgradeState) ElementType() reflect.Type {
 }
 
 type systemFederatedUpgradeArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Serial number of the node to include.
-	FailureDevice *string `pulumi:"failureDevice"`
-	// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
-	FailureReason *string `pulumi:"failureReason"`
-	// The index of the next image to upgrade to.
-	NextPathIndex *int `pulumi:"nextPathIndex"`
-	// Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
-	NodeLists []SystemFederatedUpgradeNodeList `pulumi:"nodeLists"`
-	// Current status of the upgrade.
-	Status *string `pulumi:"status"`
-	// Unique identifier for this upgrade.
-	UpgradeId *int `pulumi:"upgradeId"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
+	FailureDevice       *string                          `pulumi:"failureDevice"`
+	FailureReason       *string                          `pulumi:"failureReason"`
+	NextPathIndex       *int                             `pulumi:"nextPathIndex"`
+	NodeLists           []SystemFederatedUpgradeNodeList `pulumi:"nodeLists"`
+	Status              *string                          `pulumi:"status"`
+	UpgradeId           *int                             `pulumi:"upgradeId"`
+	Vdomparam           *string                          `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemFederatedUpgrade resource.
 type SystemFederatedUpgradeArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Serial number of the node to include.
-	FailureDevice pulumi.StringPtrInput
-	// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
-	FailureReason pulumi.StringPtrInput
-	// The index of the next image to upgrade to.
-	NextPathIndex pulumi.IntPtrInput
-	// Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
-	NodeLists SystemFederatedUpgradeNodeListArrayInput
-	// Current status of the upgrade.
-	Status pulumi.StringPtrInput
-	// Unique identifier for this upgrade.
-	UpgradeId pulumi.IntPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	FailureDevice       pulumi.StringPtrInput
+	FailureReason       pulumi.StringPtrInput
+	NextPathIndex       pulumi.IntPtrInput
+	NodeLists           SystemFederatedUpgradeNodeListArrayInput
+	Status              pulumi.StringPtrInput
+	UpgradeId           pulumi.IntPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemFederatedUpgradeArgs) ElementType() reflect.Type {
@@ -184,7 +127,7 @@ func (i *SystemFederatedUpgrade) ToSystemFederatedUpgradeOutputWithContext(ctx c
 // SystemFederatedUpgradeArrayInput is an input type that accepts SystemFederatedUpgradeArray and SystemFederatedUpgradeArrayOutput values.
 // You can construct a concrete instance of `SystemFederatedUpgradeArrayInput` via:
 //
-//          SystemFederatedUpgradeArray{ SystemFederatedUpgradeArgs{...} }
+//	SystemFederatedUpgradeArray{ SystemFederatedUpgradeArgs{...} }
 type SystemFederatedUpgradeArrayInput interface {
 	pulumi.Input
 
@@ -209,7 +152,7 @@ func (i SystemFederatedUpgradeArray) ToSystemFederatedUpgradeArrayOutputWithCont
 // SystemFederatedUpgradeMapInput is an input type that accepts SystemFederatedUpgradeMap and SystemFederatedUpgradeMapOutput values.
 // You can construct a concrete instance of `SystemFederatedUpgradeMapInput` via:
 //
-//          SystemFederatedUpgradeMap{ "key": SystemFederatedUpgradeArgs{...} }
+//	SystemFederatedUpgradeMap{ "key": SystemFederatedUpgradeArgs{...} }
 type SystemFederatedUpgradeMapInput interface {
 	pulumi.Input
 
@@ -243,6 +186,38 @@ func (o SystemFederatedUpgradeOutput) ToSystemFederatedUpgradeOutput() SystemFed
 
 func (o SystemFederatedUpgradeOutput) ToSystemFederatedUpgradeOutputWithContext(ctx context.Context) SystemFederatedUpgradeOutput {
 	return o
+}
+
+func (o SystemFederatedUpgradeOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemFederatedUpgrade) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemFederatedUpgradeOutput) FailureDevice() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFederatedUpgrade) pulumi.StringOutput { return v.FailureDevice }).(pulumi.StringOutput)
+}
+
+func (o SystemFederatedUpgradeOutput) FailureReason() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFederatedUpgrade) pulumi.StringOutput { return v.FailureReason }).(pulumi.StringOutput)
+}
+
+func (o SystemFederatedUpgradeOutput) NextPathIndex() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFederatedUpgrade) pulumi.IntOutput { return v.NextPathIndex }).(pulumi.IntOutput)
+}
+
+func (o SystemFederatedUpgradeOutput) NodeLists() SystemFederatedUpgradeNodeListArrayOutput {
+	return o.ApplyT(func(v *SystemFederatedUpgrade) SystemFederatedUpgradeNodeListArrayOutput { return v.NodeLists }).(SystemFederatedUpgradeNodeListArrayOutput)
+}
+
+func (o SystemFederatedUpgradeOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFederatedUpgrade) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemFederatedUpgradeOutput) UpgradeId() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFederatedUpgrade) pulumi.IntOutput { return v.UpgradeId }).(pulumi.IntOutput)
+}
+
+func (o SystemFederatedUpgradeOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemFederatedUpgrade) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemFederatedUpgradeArrayOutput struct{ *pulumi.OutputState }

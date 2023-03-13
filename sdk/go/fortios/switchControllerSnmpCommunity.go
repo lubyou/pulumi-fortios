@@ -10,60 +10,26 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch SNMP v1/v2c communities globally. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// SwitchController SnmpCommunity can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSnmpCommunity:SwitchControllerSnmpCommunity labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSnmpCommunity:SwitchControllerSnmpCommunity labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerSnmpCommunity struct {
 	pulumi.CustomResourceState
 
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// SNMP notifications (traps) to send. Valid values: `cpu-high`, `mem-low`, `log-full`, `intf-ip`, `ent-conf-change`.
-	Events pulumi.StringOutput `pulumi:"events"`
-	// SNMP community ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
-	Hosts SwitchControllerSnmpCommunityHostArrayOutput `pulumi:"hosts"`
-	// SNMP community name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// SNMP v1 query port (default = 161).
-	QueryV1Port pulumi.IntOutput `pulumi:"queryV1Port"`
-	// Enable/disable SNMP v1 queries. Valid values: `disable`, `enable`.
-	QueryV1Status pulumi.StringOutput `pulumi:"queryV1Status"`
-	// SNMP v2c query port (default = 161).
-	QueryV2cPort pulumi.IntOutput `pulumi:"queryV2cPort"`
-	// Enable/disable SNMP v2c queries. Valid values: `disable`, `enable`.
-	QueryV2cStatus pulumi.StringOutput `pulumi:"queryV2cStatus"`
-	// Enable/disable this SNMP community. Valid values: `disable`, `enable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// SNMP v2c trap local port (default = 162).
-	TrapV1Lport pulumi.IntOutput `pulumi:"trapV1Lport"`
-	// SNMP v2c trap remote port (default = 162).
-	TrapV1Rport pulumi.IntOutput `pulumi:"trapV1Rport"`
-	// Enable/disable SNMP v1 traps. Valid values: `disable`, `enable`.
-	TrapV1Status pulumi.StringOutput `pulumi:"trapV1Status"`
-	// SNMP v2c trap local port (default = 162).
-	TrapV2cLport pulumi.IntOutput `pulumi:"trapV2cLport"`
-	// SNMP v2c trap remote port (default = 162).
-	TrapV2cRport pulumi.IntOutput `pulumi:"trapV2cRport"`
-	// Enable/disable SNMP v2c traps. Valid values: `disable`, `enable`.
-	TrapV2cStatus pulumi.StringOutput `pulumi:"trapV2cStatus"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput                       `pulumi:"dynamicSortSubtable"`
+	Events              pulumi.StringOutput                          `pulumi:"events"`
+	Fosid               pulumi.IntOutput                             `pulumi:"fosid"`
+	Hosts               SwitchControllerSnmpCommunityHostArrayOutput `pulumi:"hosts"`
+	Name                pulumi.StringOutput                          `pulumi:"name"`
+	QueryV1Port         pulumi.IntOutput                             `pulumi:"queryV1Port"`
+	QueryV1Status       pulumi.StringOutput                          `pulumi:"queryV1Status"`
+	QueryV2cPort        pulumi.IntOutput                             `pulumi:"queryV2cPort"`
+	QueryV2cStatus      pulumi.StringOutput                          `pulumi:"queryV2cStatus"`
+	Status              pulumi.StringOutput                          `pulumi:"status"`
+	TrapV1Lport         pulumi.IntOutput                             `pulumi:"trapV1Lport"`
+	TrapV1Rport         pulumi.IntOutput                             `pulumi:"trapV1Rport"`
+	TrapV1Status        pulumi.StringOutput                          `pulumi:"trapV1Status"`
+	TrapV2cLport        pulumi.IntOutput                             `pulumi:"trapV2cLport"`
+	TrapV2cRport        pulumi.IntOutput                             `pulumi:"trapV2cRport"`
+	TrapV2cStatus       pulumi.StringOutput                          `pulumi:"trapV2cStatus"`
+	Vdomparam           pulumi.StringPtrOutput                       `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerSnmpCommunity registers a new resource with the given unique name, arguments, and options.
@@ -96,77 +62,43 @@ func GetSwitchControllerSnmpCommunity(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerSnmpCommunity resources.
 type switchControllerSnmpCommunityState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// SNMP notifications (traps) to send. Valid values: `cpu-high`, `mem-low`, `log-full`, `intf-ip`, `ent-conf-change`.
-	Events *string `pulumi:"events"`
-	// SNMP community ID.
-	Fosid *int `pulumi:"fosid"`
-	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
-	Hosts []SwitchControllerSnmpCommunityHost `pulumi:"hosts"`
-	// SNMP community name.
-	Name *string `pulumi:"name"`
-	// SNMP v1 query port (default = 161).
-	QueryV1Port *int `pulumi:"queryV1Port"`
-	// Enable/disable SNMP v1 queries. Valid values: `disable`, `enable`.
-	QueryV1Status *string `pulumi:"queryV1Status"`
-	// SNMP v2c query port (default = 161).
-	QueryV2cPort *int `pulumi:"queryV2cPort"`
-	// Enable/disable SNMP v2c queries. Valid values: `disable`, `enable`.
-	QueryV2cStatus *string `pulumi:"queryV2cStatus"`
-	// Enable/disable this SNMP community. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// SNMP v2c trap local port (default = 162).
-	TrapV1Lport *int `pulumi:"trapV1Lport"`
-	// SNMP v2c trap remote port (default = 162).
-	TrapV1Rport *int `pulumi:"trapV1Rport"`
-	// Enable/disable SNMP v1 traps. Valid values: `disable`, `enable`.
-	TrapV1Status *string `pulumi:"trapV1Status"`
-	// SNMP v2c trap local port (default = 162).
-	TrapV2cLport *int `pulumi:"trapV2cLport"`
-	// SNMP v2c trap remote port (default = 162).
-	TrapV2cRport *int `pulumi:"trapV2cRport"`
-	// Enable/disable SNMP v2c traps. Valid values: `disable`, `enable`.
-	TrapV2cStatus *string `pulumi:"trapV2cStatus"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
+	Events              *string                             `pulumi:"events"`
+	Fosid               *int                                `pulumi:"fosid"`
+	Hosts               []SwitchControllerSnmpCommunityHost `pulumi:"hosts"`
+	Name                *string                             `pulumi:"name"`
+	QueryV1Port         *int                                `pulumi:"queryV1Port"`
+	QueryV1Status       *string                             `pulumi:"queryV1Status"`
+	QueryV2cPort        *int                                `pulumi:"queryV2cPort"`
+	QueryV2cStatus      *string                             `pulumi:"queryV2cStatus"`
+	Status              *string                             `pulumi:"status"`
+	TrapV1Lport         *int                                `pulumi:"trapV1Lport"`
+	TrapV1Rport         *int                                `pulumi:"trapV1Rport"`
+	TrapV1Status        *string                             `pulumi:"trapV1Status"`
+	TrapV2cLport        *int                                `pulumi:"trapV2cLport"`
+	TrapV2cRport        *int                                `pulumi:"trapV2cRport"`
+	TrapV2cStatus       *string                             `pulumi:"trapV2cStatus"`
+	Vdomparam           *string                             `pulumi:"vdomparam"`
 }
 
 type SwitchControllerSnmpCommunityState struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// SNMP notifications (traps) to send. Valid values: `cpu-high`, `mem-low`, `log-full`, `intf-ip`, `ent-conf-change`.
-	Events pulumi.StringPtrInput
-	// SNMP community ID.
-	Fosid pulumi.IntPtrInput
-	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
-	Hosts SwitchControllerSnmpCommunityHostArrayInput
-	// SNMP community name.
-	Name pulumi.StringPtrInput
-	// SNMP v1 query port (default = 161).
-	QueryV1Port pulumi.IntPtrInput
-	// Enable/disable SNMP v1 queries. Valid values: `disable`, `enable`.
-	QueryV1Status pulumi.StringPtrInput
-	// SNMP v2c query port (default = 161).
-	QueryV2cPort pulumi.IntPtrInput
-	// Enable/disable SNMP v2c queries. Valid values: `disable`, `enable`.
-	QueryV2cStatus pulumi.StringPtrInput
-	// Enable/disable this SNMP community. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// SNMP v2c trap local port (default = 162).
-	TrapV1Lport pulumi.IntPtrInput
-	// SNMP v2c trap remote port (default = 162).
-	TrapV1Rport pulumi.IntPtrInput
-	// Enable/disable SNMP v1 traps. Valid values: `disable`, `enable`.
-	TrapV1Status pulumi.StringPtrInput
-	// SNMP v2c trap local port (default = 162).
-	TrapV2cLport pulumi.IntPtrInput
-	// SNMP v2c trap remote port (default = 162).
-	TrapV2cRport pulumi.IntPtrInput
-	// Enable/disable SNMP v2c traps. Valid values: `disable`, `enable`.
-	TrapV2cStatus pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Events              pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	Hosts               SwitchControllerSnmpCommunityHostArrayInput
+	Name                pulumi.StringPtrInput
+	QueryV1Port         pulumi.IntPtrInput
+	QueryV1Status       pulumi.StringPtrInput
+	QueryV2cPort        pulumi.IntPtrInput
+	QueryV2cStatus      pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	TrapV1Lport         pulumi.IntPtrInput
+	TrapV1Rport         pulumi.IntPtrInput
+	TrapV1Status        pulumi.StringPtrInput
+	TrapV2cLport        pulumi.IntPtrInput
+	TrapV2cRport        pulumi.IntPtrInput
+	TrapV2cStatus       pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerSnmpCommunityState) ElementType() reflect.Type {
@@ -174,78 +106,44 @@ func (SwitchControllerSnmpCommunityState) ElementType() reflect.Type {
 }
 
 type switchControllerSnmpCommunityArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// SNMP notifications (traps) to send. Valid values: `cpu-high`, `mem-low`, `log-full`, `intf-ip`, `ent-conf-change`.
-	Events *string `pulumi:"events"`
-	// SNMP community ID.
-	Fosid *int `pulumi:"fosid"`
-	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
-	Hosts []SwitchControllerSnmpCommunityHost `pulumi:"hosts"`
-	// SNMP community name.
-	Name *string `pulumi:"name"`
-	// SNMP v1 query port (default = 161).
-	QueryV1Port *int `pulumi:"queryV1Port"`
-	// Enable/disable SNMP v1 queries. Valid values: `disable`, `enable`.
-	QueryV1Status *string `pulumi:"queryV1Status"`
-	// SNMP v2c query port (default = 161).
-	QueryV2cPort *int `pulumi:"queryV2cPort"`
-	// Enable/disable SNMP v2c queries. Valid values: `disable`, `enable`.
-	QueryV2cStatus *string `pulumi:"queryV2cStatus"`
-	// Enable/disable this SNMP community. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// SNMP v2c trap local port (default = 162).
-	TrapV1Lport *int `pulumi:"trapV1Lport"`
-	// SNMP v2c trap remote port (default = 162).
-	TrapV1Rport *int `pulumi:"trapV1Rport"`
-	// Enable/disable SNMP v1 traps. Valid values: `disable`, `enable`.
-	TrapV1Status *string `pulumi:"trapV1Status"`
-	// SNMP v2c trap local port (default = 162).
-	TrapV2cLport *int `pulumi:"trapV2cLport"`
-	// SNMP v2c trap remote port (default = 162).
-	TrapV2cRport *int `pulumi:"trapV2cRport"`
-	// Enable/disable SNMP v2c traps. Valid values: `disable`, `enable`.
-	TrapV2cStatus *string `pulumi:"trapV2cStatus"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
+	Events              *string                             `pulumi:"events"`
+	Fosid               *int                                `pulumi:"fosid"`
+	Hosts               []SwitchControllerSnmpCommunityHost `pulumi:"hosts"`
+	Name                *string                             `pulumi:"name"`
+	QueryV1Port         *int                                `pulumi:"queryV1Port"`
+	QueryV1Status       *string                             `pulumi:"queryV1Status"`
+	QueryV2cPort        *int                                `pulumi:"queryV2cPort"`
+	QueryV2cStatus      *string                             `pulumi:"queryV2cStatus"`
+	Status              *string                             `pulumi:"status"`
+	TrapV1Lport         *int                                `pulumi:"trapV1Lport"`
+	TrapV1Rport         *int                                `pulumi:"trapV1Rport"`
+	TrapV1Status        *string                             `pulumi:"trapV1Status"`
+	TrapV2cLport        *int                                `pulumi:"trapV2cLport"`
+	TrapV2cRport        *int                                `pulumi:"trapV2cRport"`
+	TrapV2cStatus       *string                             `pulumi:"trapV2cStatus"`
+	Vdomparam           *string                             `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerSnmpCommunity resource.
 type SwitchControllerSnmpCommunityArgs struct {
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
-	// SNMP notifications (traps) to send. Valid values: `cpu-high`, `mem-low`, `log-full`, `intf-ip`, `ent-conf-change`.
-	Events pulumi.StringPtrInput
-	// SNMP community ID.
-	Fosid pulumi.IntPtrInput
-	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
-	Hosts SwitchControllerSnmpCommunityHostArrayInput
-	// SNMP community name.
-	Name pulumi.StringPtrInput
-	// SNMP v1 query port (default = 161).
-	QueryV1Port pulumi.IntPtrInput
-	// Enable/disable SNMP v1 queries. Valid values: `disable`, `enable`.
-	QueryV1Status pulumi.StringPtrInput
-	// SNMP v2c query port (default = 161).
-	QueryV2cPort pulumi.IntPtrInput
-	// Enable/disable SNMP v2c queries. Valid values: `disable`, `enable`.
-	QueryV2cStatus pulumi.StringPtrInput
-	// Enable/disable this SNMP community. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput
-	// SNMP v2c trap local port (default = 162).
-	TrapV1Lport pulumi.IntPtrInput
-	// SNMP v2c trap remote port (default = 162).
-	TrapV1Rport pulumi.IntPtrInput
-	// Enable/disable SNMP v1 traps. Valid values: `disable`, `enable`.
-	TrapV1Status pulumi.StringPtrInput
-	// SNMP v2c trap local port (default = 162).
-	TrapV2cLport pulumi.IntPtrInput
-	// SNMP v2c trap remote port (default = 162).
-	TrapV2cRport pulumi.IntPtrInput
-	// Enable/disable SNMP v2c traps. Valid values: `disable`, `enable`.
-	TrapV2cStatus pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Events              pulumi.StringPtrInput
+	Fosid               pulumi.IntPtrInput
+	Hosts               SwitchControllerSnmpCommunityHostArrayInput
+	Name                pulumi.StringPtrInput
+	QueryV1Port         pulumi.IntPtrInput
+	QueryV1Status       pulumi.StringPtrInput
+	QueryV2cPort        pulumi.IntPtrInput
+	QueryV2cStatus      pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	TrapV1Lport         pulumi.IntPtrInput
+	TrapV1Rport         pulumi.IntPtrInput
+	TrapV1Status        pulumi.StringPtrInput
+	TrapV2cLport        pulumi.IntPtrInput
+	TrapV2cRport        pulumi.IntPtrInput
+	TrapV2cStatus       pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerSnmpCommunityArgs) ElementType() reflect.Type {
@@ -274,7 +172,7 @@ func (i *SwitchControllerSnmpCommunity) ToSwitchControllerSnmpCommunityOutputWit
 // SwitchControllerSnmpCommunityArrayInput is an input type that accepts SwitchControllerSnmpCommunityArray and SwitchControllerSnmpCommunityArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSnmpCommunityArrayInput` via:
 //
-//          SwitchControllerSnmpCommunityArray{ SwitchControllerSnmpCommunityArgs{...} }
+//	SwitchControllerSnmpCommunityArray{ SwitchControllerSnmpCommunityArgs{...} }
 type SwitchControllerSnmpCommunityArrayInput interface {
 	pulumi.Input
 
@@ -299,7 +197,7 @@ func (i SwitchControllerSnmpCommunityArray) ToSwitchControllerSnmpCommunityArray
 // SwitchControllerSnmpCommunityMapInput is an input type that accepts SwitchControllerSnmpCommunityMap and SwitchControllerSnmpCommunityMapOutput values.
 // You can construct a concrete instance of `SwitchControllerSnmpCommunityMapInput` via:
 //
-//          SwitchControllerSnmpCommunityMap{ "key": SwitchControllerSnmpCommunityArgs{...} }
+//	SwitchControllerSnmpCommunityMap{ "key": SwitchControllerSnmpCommunityArgs{...} }
 type SwitchControllerSnmpCommunityMapInput interface {
 	pulumi.Input
 
@@ -333,6 +231,74 @@ func (o SwitchControllerSnmpCommunityOutput) ToSwitchControllerSnmpCommunityOutp
 
 func (o SwitchControllerSnmpCommunityOutput) ToSwitchControllerSnmpCommunityOutputWithContext(ctx context.Context) SwitchControllerSnmpCommunityOutput {
 	return o
+}
+
+func (o SwitchControllerSnmpCommunityOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) Events() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.StringOutput { return v.Events }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) Hosts() SwitchControllerSnmpCommunityHostArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) SwitchControllerSnmpCommunityHostArrayOutput { return v.Hosts }).(SwitchControllerSnmpCommunityHostArrayOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) QueryV1Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.IntOutput { return v.QueryV1Port }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) QueryV1Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.StringOutput { return v.QueryV1Status }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) QueryV2cPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.IntOutput { return v.QueryV2cPort }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) QueryV2cStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.StringOutput { return v.QueryV2cStatus }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) TrapV1Lport() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.IntOutput { return v.TrapV1Lport }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) TrapV1Rport() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.IntOutput { return v.TrapV1Rport }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) TrapV1Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.StringOutput { return v.TrapV1Status }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) TrapV2cLport() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.IntOutput { return v.TrapV2cLport }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) TrapV2cRport() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.IntOutput { return v.TrapV2cRport }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) TrapV2cStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.StringOutput { return v.TrapV2cStatus }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerSnmpCommunityArrayOutput struct{ *pulumi.OutputState }

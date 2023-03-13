@@ -10,46 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiToken.
-//
-// ## Import
-//
-// User Fortitoken can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userFortitoken:UserFortitoken labelname {{serial_number}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userFortitoken:UserFortitoken labelname {{serial_number}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserFortitoken struct {
 	pulumi.CustomResourceState
 
-	// Mobile token user activation-code.
-	ActivationCode pulumi.StringOutput `pulumi:"activationCode"`
-	// Mobile token user activation-code expire time.
-	ActivationExpire pulumi.IntOutput `pulumi:"activationExpire"`
-	// Comment.
-	Comments pulumi.StringPtrOutput `pulumi:"comments"`
-	// Mobile token license.
-	License pulumi.StringOutput `pulumi:"license"`
-	// Device Mobile Version.
-	OsVer pulumi.StringOutput `pulumi:"osVer"`
-	// Device Reg ID.
-	RegId pulumi.StringOutput `pulumi:"regId"`
-	// Token seed.
-	Seed pulumi.StringOutput `pulumi:"seed"`
-	// Serial number.
-	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
-	// Status Valid values: `active`, `lock`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	ActivationCode   pulumi.StringOutput    `pulumi:"activationCode"`
+	ActivationExpire pulumi.IntOutput       `pulumi:"activationExpire"`
+	Comments         pulumi.StringPtrOutput `pulumi:"comments"`
+	License          pulumi.StringOutput    `pulumi:"license"`
+	OsVer            pulumi.StringOutput    `pulumi:"osVer"`
+	RegId            pulumi.StringOutput    `pulumi:"regId"`
+	Seed             pulumi.StringOutput    `pulumi:"seed"`
+	SerialNumber     pulumi.StringOutput    `pulumi:"serialNumber"`
+	Status           pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam        pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewUserFortitoken registers a new resource with the given unique name, arguments, and options.
@@ -82,49 +55,29 @@ func GetUserFortitoken(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserFortitoken resources.
 type userFortitokenState struct {
-	// Mobile token user activation-code.
-	ActivationCode *string `pulumi:"activationCode"`
-	// Mobile token user activation-code expire time.
-	ActivationExpire *int `pulumi:"activationExpire"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Mobile token license.
-	License *string `pulumi:"license"`
-	// Device Mobile Version.
-	OsVer *string `pulumi:"osVer"`
-	// Device Reg ID.
-	RegId *string `pulumi:"regId"`
-	// Token seed.
-	Seed *string `pulumi:"seed"`
-	// Serial number.
-	SerialNumber *string `pulumi:"serialNumber"`
-	// Status Valid values: `active`, `lock`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ActivationCode   *string `pulumi:"activationCode"`
+	ActivationExpire *int    `pulumi:"activationExpire"`
+	Comments         *string `pulumi:"comments"`
+	License          *string `pulumi:"license"`
+	OsVer            *string `pulumi:"osVer"`
+	RegId            *string `pulumi:"regId"`
+	Seed             *string `pulumi:"seed"`
+	SerialNumber     *string `pulumi:"serialNumber"`
+	Status           *string `pulumi:"status"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 type UserFortitokenState struct {
-	// Mobile token user activation-code.
-	ActivationCode pulumi.StringPtrInput
-	// Mobile token user activation-code expire time.
+	ActivationCode   pulumi.StringPtrInput
 	ActivationExpire pulumi.IntPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Mobile token license.
-	License pulumi.StringPtrInput
-	// Device Mobile Version.
-	OsVer pulumi.StringPtrInput
-	// Device Reg ID.
-	RegId pulumi.StringPtrInput
-	// Token seed.
-	Seed pulumi.StringPtrInput
-	// Serial number.
-	SerialNumber pulumi.StringPtrInput
-	// Status Valid values: `active`, `lock`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Comments         pulumi.StringPtrInput
+	License          pulumi.StringPtrInput
+	OsVer            pulumi.StringPtrInput
+	RegId            pulumi.StringPtrInput
+	Seed             pulumi.StringPtrInput
+	SerialNumber     pulumi.StringPtrInput
+	Status           pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (UserFortitokenState) ElementType() reflect.Type {
@@ -132,50 +85,30 @@ func (UserFortitokenState) ElementType() reflect.Type {
 }
 
 type userFortitokenArgs struct {
-	// Mobile token user activation-code.
-	ActivationCode *string `pulumi:"activationCode"`
-	// Mobile token user activation-code expire time.
-	ActivationExpire *int `pulumi:"activationExpire"`
-	// Comment.
-	Comments *string `pulumi:"comments"`
-	// Mobile token license.
-	License *string `pulumi:"license"`
-	// Device Mobile Version.
-	OsVer *string `pulumi:"osVer"`
-	// Device Reg ID.
-	RegId *string `pulumi:"regId"`
-	// Token seed.
-	Seed *string `pulumi:"seed"`
-	// Serial number.
-	SerialNumber *string `pulumi:"serialNumber"`
-	// Status Valid values: `active`, `lock`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	ActivationCode   *string `pulumi:"activationCode"`
+	ActivationExpire *int    `pulumi:"activationExpire"`
+	Comments         *string `pulumi:"comments"`
+	License          *string `pulumi:"license"`
+	OsVer            *string `pulumi:"osVer"`
+	RegId            *string `pulumi:"regId"`
+	Seed             *string `pulumi:"seed"`
+	SerialNumber     *string `pulumi:"serialNumber"`
+	Status           *string `pulumi:"status"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserFortitoken resource.
 type UserFortitokenArgs struct {
-	// Mobile token user activation-code.
-	ActivationCode pulumi.StringPtrInput
-	// Mobile token user activation-code expire time.
+	ActivationCode   pulumi.StringPtrInput
 	ActivationExpire pulumi.IntPtrInput
-	// Comment.
-	Comments pulumi.StringPtrInput
-	// Mobile token license.
-	License pulumi.StringPtrInput
-	// Device Mobile Version.
-	OsVer pulumi.StringPtrInput
-	// Device Reg ID.
-	RegId pulumi.StringPtrInput
-	// Token seed.
-	Seed pulumi.StringPtrInput
-	// Serial number.
-	SerialNumber pulumi.StringPtrInput
-	// Status Valid values: `active`, `lock`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Comments         pulumi.StringPtrInput
+	License          pulumi.StringPtrInput
+	OsVer            pulumi.StringPtrInput
+	RegId            pulumi.StringPtrInput
+	Seed             pulumi.StringPtrInput
+	SerialNumber     pulumi.StringPtrInput
+	Status           pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (UserFortitokenArgs) ElementType() reflect.Type {
@@ -204,7 +137,7 @@ func (i *UserFortitoken) ToUserFortitokenOutputWithContext(ctx context.Context) 
 // UserFortitokenArrayInput is an input type that accepts UserFortitokenArray and UserFortitokenArrayOutput values.
 // You can construct a concrete instance of `UserFortitokenArrayInput` via:
 //
-//          UserFortitokenArray{ UserFortitokenArgs{...} }
+//	UserFortitokenArray{ UserFortitokenArgs{...} }
 type UserFortitokenArrayInput interface {
 	pulumi.Input
 
@@ -229,7 +162,7 @@ func (i UserFortitokenArray) ToUserFortitokenArrayOutputWithContext(ctx context.
 // UserFortitokenMapInput is an input type that accepts UserFortitokenMap and UserFortitokenMapOutput values.
 // You can construct a concrete instance of `UserFortitokenMapInput` via:
 //
-//          UserFortitokenMap{ "key": UserFortitokenArgs{...} }
+//	UserFortitokenMap{ "key": UserFortitokenArgs{...} }
 type UserFortitokenMapInput interface {
 	pulumi.Input
 
@@ -263,6 +196,46 @@ func (o UserFortitokenOutput) ToUserFortitokenOutput() UserFortitokenOutput {
 
 func (o UserFortitokenOutput) ToUserFortitokenOutputWithContext(ctx context.Context) UserFortitokenOutput {
 	return o
+}
+
+func (o UserFortitokenOutput) ActivationCode() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFortitoken) pulumi.StringOutput { return v.ActivationCode }).(pulumi.StringOutput)
+}
+
+func (o UserFortitokenOutput) ActivationExpire() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserFortitoken) pulumi.IntOutput { return v.ActivationExpire }).(pulumi.IntOutput)
+}
+
+func (o UserFortitokenOutput) Comments() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserFortitoken) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o UserFortitokenOutput) License() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFortitoken) pulumi.StringOutput { return v.License }).(pulumi.StringOutput)
+}
+
+func (o UserFortitokenOutput) OsVer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFortitoken) pulumi.StringOutput { return v.OsVer }).(pulumi.StringOutput)
+}
+
+func (o UserFortitokenOutput) RegId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFortitoken) pulumi.StringOutput { return v.RegId }).(pulumi.StringOutput)
+}
+
+func (o UserFortitokenOutput) Seed() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFortitoken) pulumi.StringOutput { return v.Seed }).(pulumi.StringOutput)
+}
+
+func (o UserFortitokenOutput) SerialNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFortitoken) pulumi.StringOutput { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
+func (o UserFortitokenOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFortitoken) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o UserFortitokenOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserFortitoken) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserFortitokenArrayOutput struct{ *pulumi.OutputState }

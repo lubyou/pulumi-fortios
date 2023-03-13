@@ -7,81 +7,23 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to configure static route of FortiOS.
-//
-// !> **Warning:** The resource will be deprecated and replaced by new resource `RouterStatic`, we recommend that you use the new resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewNetworkingRouteStatic(ctx, "subnet", &fortios.NetworkingRouteStaticArgs{
-// 			Blackhole: pulumi.String("disable"),
-// 			Comment:   pulumi.String("Terraform test"),
-// 			Device:    pulumi.String("port2"),
-// 			Distance:  pulumi.String("22"),
-// 			Dst:       pulumi.String("110.2.2.122/32"),
-// 			Gateway:   pulumi.String("2.2.2.2"),
-// 			Priority:  pulumi.String("3"),
-// 			Status:    pulumi.String("enable"),
-// 			Weight:    pulumi.String("3"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewNetworkingRouteStatic(ctx, "internetService", &fortios.NetworkingRouteStaticArgs{
-// 			Blackhole:       pulumi.String("disable"),
-// 			Comment:         pulumi.String("Terraform Test"),
-// 			Device:          pulumi.String("port2"),
-// 			Distance:        pulumi.String("22"),
-// 			Gateway:         pulumi.String("2.2.2.2"),
-// 			InternetService: pulumi.Int(5242881),
-// 			Priority:        pulumi.String("3"),
-// 			Status:          pulumi.String("enable"),
-// 			Weight:          pulumi.String("3"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type NetworkingRouteStatic struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable black hole.
-	Blackhole pulumi.StringOutput `pulumi:"blackhole"`
-	// Optional comments.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Gateway out interface or tunnel.
-	Device pulumi.StringOutput `pulumi:"device"`
-	// Administrative distance.
-	Distance pulumi.StringOutput `pulumi:"distance"`
-	// Destination IP and mask for this route.
-	Dst pulumi.StringOutput `pulumi:"dst"`
-	// Gateway IP for this route.
-	Gateway pulumi.StringOutput `pulumi:"gateway"`
-	// Application ID in the Internet service database.
-	InternetService pulumi.IntOutput `pulumi:"internetService"`
-	// Administrative priority.
-	Priority pulumi.StringOutput `pulumi:"priority"`
-	// Enable/disable this static route. default is "enable".
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Administrative weight.
-	Weight pulumi.StringOutput `pulumi:"weight"`
+	Blackhole       pulumi.StringOutput    `pulumi:"blackhole"`
+	Comment         pulumi.StringPtrOutput `pulumi:"comment"`
+	Device          pulumi.StringOutput    `pulumi:"device"`
+	Distance        pulumi.StringOutput    `pulumi:"distance"`
+	Dst             pulumi.StringOutput    `pulumi:"dst"`
+	Gateway         pulumi.StringOutput    `pulumi:"gateway"`
+	InternetService pulumi.IntOutput       `pulumi:"internetService"`
+	Priority        pulumi.StringOutput    `pulumi:"priority"`
+	Status          pulumi.StringOutput    `pulumi:"status"`
+	Weight          pulumi.StringOutput    `pulumi:"weight"`
 }
 
 // NewNetworkingRouteStatic registers a new resource with the given unique name, arguments, and options.
@@ -120,49 +62,29 @@ func GetNetworkingRouteStatic(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NetworkingRouteStatic resources.
 type networkingRouteStaticState struct {
-	// Enable/disable black hole.
-	Blackhole *string `pulumi:"blackhole"`
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// Gateway out interface or tunnel.
-	Device *string `pulumi:"device"`
-	// Administrative distance.
-	Distance *string `pulumi:"distance"`
-	// Destination IP and mask for this route.
-	Dst *string `pulumi:"dst"`
-	// Gateway IP for this route.
-	Gateway *string `pulumi:"gateway"`
-	// Application ID in the Internet service database.
-	InternetService *int `pulumi:"internetService"`
-	// Administrative priority.
-	Priority *string `pulumi:"priority"`
-	// Enable/disable this static route. default is "enable".
-	Status *string `pulumi:"status"`
-	// Administrative weight.
-	Weight *string `pulumi:"weight"`
+	Blackhole       *string `pulumi:"blackhole"`
+	Comment         *string `pulumi:"comment"`
+	Device          *string `pulumi:"device"`
+	Distance        *string `pulumi:"distance"`
+	Dst             *string `pulumi:"dst"`
+	Gateway         *string `pulumi:"gateway"`
+	InternetService *int    `pulumi:"internetService"`
+	Priority        *string `pulumi:"priority"`
+	Status          *string `pulumi:"status"`
+	Weight          *string `pulumi:"weight"`
 }
 
 type NetworkingRouteStaticState struct {
-	// Enable/disable black hole.
-	Blackhole pulumi.StringPtrInput
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// Gateway out interface or tunnel.
-	Device pulumi.StringPtrInput
-	// Administrative distance.
-	Distance pulumi.StringPtrInput
-	// Destination IP and mask for this route.
-	Dst pulumi.StringPtrInput
-	// Gateway IP for this route.
-	Gateway pulumi.StringPtrInput
-	// Application ID in the Internet service database.
+	Blackhole       pulumi.StringPtrInput
+	Comment         pulumi.StringPtrInput
+	Device          pulumi.StringPtrInput
+	Distance        pulumi.StringPtrInput
+	Dst             pulumi.StringPtrInput
+	Gateway         pulumi.StringPtrInput
 	InternetService pulumi.IntPtrInput
-	// Administrative priority.
-	Priority pulumi.StringPtrInput
-	// Enable/disable this static route. default is "enable".
-	Status pulumi.StringPtrInput
-	// Administrative weight.
-	Weight pulumi.StringPtrInput
+	Priority        pulumi.StringPtrInput
+	Status          pulumi.StringPtrInput
+	Weight          pulumi.StringPtrInput
 }
 
 func (NetworkingRouteStaticState) ElementType() reflect.Type {
@@ -170,50 +92,30 @@ func (NetworkingRouteStaticState) ElementType() reflect.Type {
 }
 
 type networkingRouteStaticArgs struct {
-	// Enable/disable black hole.
-	Blackhole *string `pulumi:"blackhole"`
-	// Optional comments.
-	Comment *string `pulumi:"comment"`
-	// Gateway out interface or tunnel.
-	Device string `pulumi:"device"`
-	// Administrative distance.
-	Distance *string `pulumi:"distance"`
-	// Destination IP and mask for this route.
-	Dst *string `pulumi:"dst"`
-	// Gateway IP for this route.
-	Gateway string `pulumi:"gateway"`
-	// Application ID in the Internet service database.
-	InternetService *int `pulumi:"internetService"`
-	// Administrative priority.
-	Priority *string `pulumi:"priority"`
-	// Enable/disable this static route. default is "enable".
-	Status *string `pulumi:"status"`
-	// Administrative weight.
-	Weight *string `pulumi:"weight"`
+	Blackhole       *string `pulumi:"blackhole"`
+	Comment         *string `pulumi:"comment"`
+	Device          string  `pulumi:"device"`
+	Distance        *string `pulumi:"distance"`
+	Dst             *string `pulumi:"dst"`
+	Gateway         string  `pulumi:"gateway"`
+	InternetService *int    `pulumi:"internetService"`
+	Priority        *string `pulumi:"priority"`
+	Status          *string `pulumi:"status"`
+	Weight          *string `pulumi:"weight"`
 }
 
 // The set of arguments for constructing a NetworkingRouteStatic resource.
 type NetworkingRouteStaticArgs struct {
-	// Enable/disable black hole.
-	Blackhole pulumi.StringPtrInput
-	// Optional comments.
-	Comment pulumi.StringPtrInput
-	// Gateway out interface or tunnel.
-	Device pulumi.StringInput
-	// Administrative distance.
-	Distance pulumi.StringPtrInput
-	// Destination IP and mask for this route.
-	Dst pulumi.StringPtrInput
-	// Gateway IP for this route.
-	Gateway pulumi.StringInput
-	// Application ID in the Internet service database.
+	Blackhole       pulumi.StringPtrInput
+	Comment         pulumi.StringPtrInput
+	Device          pulumi.StringInput
+	Distance        pulumi.StringPtrInput
+	Dst             pulumi.StringPtrInput
+	Gateway         pulumi.StringInput
 	InternetService pulumi.IntPtrInput
-	// Administrative priority.
-	Priority pulumi.StringPtrInput
-	// Enable/disable this static route. default is "enable".
-	Status pulumi.StringPtrInput
-	// Administrative weight.
-	Weight pulumi.StringPtrInput
+	Priority        pulumi.StringPtrInput
+	Status          pulumi.StringPtrInput
+	Weight          pulumi.StringPtrInput
 }
 
 func (NetworkingRouteStaticArgs) ElementType() reflect.Type {
@@ -242,7 +144,7 @@ func (i *NetworkingRouteStatic) ToNetworkingRouteStaticOutputWithContext(ctx con
 // NetworkingRouteStaticArrayInput is an input type that accepts NetworkingRouteStaticArray and NetworkingRouteStaticArrayOutput values.
 // You can construct a concrete instance of `NetworkingRouteStaticArrayInput` via:
 //
-//          NetworkingRouteStaticArray{ NetworkingRouteStaticArgs{...} }
+//	NetworkingRouteStaticArray{ NetworkingRouteStaticArgs{...} }
 type NetworkingRouteStaticArrayInput interface {
 	pulumi.Input
 
@@ -267,7 +169,7 @@ func (i NetworkingRouteStaticArray) ToNetworkingRouteStaticArrayOutputWithContex
 // NetworkingRouteStaticMapInput is an input type that accepts NetworkingRouteStaticMap and NetworkingRouteStaticMapOutput values.
 // You can construct a concrete instance of `NetworkingRouteStaticMapInput` via:
 //
-//          NetworkingRouteStaticMap{ "key": NetworkingRouteStaticArgs{...} }
+//	NetworkingRouteStaticMap{ "key": NetworkingRouteStaticArgs{...} }
 type NetworkingRouteStaticMapInput interface {
 	pulumi.Input
 
@@ -301,6 +203,46 @@ func (o NetworkingRouteStaticOutput) ToNetworkingRouteStaticOutput() NetworkingR
 
 func (o NetworkingRouteStaticOutput) ToNetworkingRouteStaticOutputWithContext(ctx context.Context) NetworkingRouteStaticOutput {
 	return o
+}
+
+func (o NetworkingRouteStaticOutput) Blackhole() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingRouteStatic) pulumi.StringOutput { return v.Blackhole }).(pulumi.StringOutput)
+}
+
+func (o NetworkingRouteStaticOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NetworkingRouteStatic) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o NetworkingRouteStaticOutput) Device() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingRouteStatic) pulumi.StringOutput { return v.Device }).(pulumi.StringOutput)
+}
+
+func (o NetworkingRouteStaticOutput) Distance() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingRouteStatic) pulumi.StringOutput { return v.Distance }).(pulumi.StringOutput)
+}
+
+func (o NetworkingRouteStaticOutput) Dst() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingRouteStatic) pulumi.StringOutput { return v.Dst }).(pulumi.StringOutput)
+}
+
+func (o NetworkingRouteStaticOutput) Gateway() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingRouteStatic) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
+}
+
+func (o NetworkingRouteStaticOutput) InternetService() pulumi.IntOutput {
+	return o.ApplyT(func(v *NetworkingRouteStatic) pulumi.IntOutput { return v.InternetService }).(pulumi.IntOutput)
+}
+
+func (o NetworkingRouteStaticOutput) Priority() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingRouteStatic) pulumi.StringOutput { return v.Priority }).(pulumi.StringOutput)
+}
+
+func (o NetworkingRouteStaticOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingRouteStatic) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o NetworkingRouteStaticOutput) Weight() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkingRouteStatic) pulumi.StringOutput { return v.Weight }).(pulumi.StringOutput)
 }
 
 type NetworkingRouteStaticArrayOutput struct{ *pulumi.OutputState }

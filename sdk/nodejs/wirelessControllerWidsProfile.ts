@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure wireless intrusion detection system (WIDS) profiles.
- *
- * ## Import
- *
- * WirelessController WidsProfile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerWidsProfile:WirelessControllerWidsProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerWidsProfile:WirelessControllerWidsProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerWidsProfile extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerWidsProfile resource's state with the given name, ID, and optional extra
@@ -52,217 +34,58 @@ export class WirelessControllerWidsProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerWidsProfile.__pulumiType;
     }
 
-    /**
-     * Enable/disable on-wire rogue AP auto-suppression (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly apAutoSuppress!: pulumi.Output<string>;
-    /**
-     * Optionally turn off scanning for one or more days of the week. Separate the days with a space. By default, no days are set. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-     */
     public readonly apBgscanDisableDay!: pulumi.Output<string>;
-    /**
-     * End time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-     */
     public readonly apBgscanDisableEnd!: pulumi.Output<string>;
-    /**
-     * Firewall schedules for turning off FortiAP radio background scan. Background scan will be disabled when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `apBgscanDisableSchedules` block is documented below.
-     */
     public readonly apBgscanDisableSchedules!: pulumi.Output<outputs.WirelessControllerWidsProfileApBgscanDisableSchedule[] | undefined>;
-    /**
-     * Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-     */
     public readonly apBgscanDisableStart!: pulumi.Output<string>;
-    /**
-     * Listening time on a scanning channel (10 - 1000 msec, default = 20).
-     */
     public readonly apBgscanDuration!: pulumi.Output<number>;
-    /**
-     * Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
-     */
     public readonly apBgscanIdle!: pulumi.Output<number>;
-    /**
-     * Period of time between scanning two channels (1 - 600 sec, default = 1).
-     */
     public readonly apBgscanIntv!: pulumi.Output<number>;
-    /**
-     * Period of time between background scans (60 - 3600 sec, default = 600).
-     */
     public readonly apBgscanPeriod!: pulumi.Output<number>;
-    /**
-     * Period of time between background scan reports (15 - 600 sec, default = 30).
-     */
     public readonly apBgscanReportIntv!: pulumi.Output<number>;
-    /**
-     * Period of time between foreground scan reports (15 - 600 sec, default = 15).
-     */
     public readonly apFgscanReportIntv!: pulumi.Output<number>;
-    /**
-     * Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
-     */
     public readonly apScan!: pulumi.Output<string>;
-    /**
-     * Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly apScanPassive!: pulumi.Output<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
-     */
     public readonly apScanThreshold!: pulumi.Output<string>;
-    /**
-     * Enable/disable asleap attack detection (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly asleapAttack!: pulumi.Output<string>;
-    /**
-     * The threshold value for association frame flooding.
-     */
     public readonly assocFloodThresh!: pulumi.Output<number>;
-    /**
-     * Number of seconds after which a station is considered not connected.
-     */
     public readonly assocFloodTime!: pulumi.Output<number>;
-    /**
-     * Enable/disable association frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly assocFrameFlood!: pulumi.Output<string>;
-    /**
-     * The threshold value for authentication frame flooding.
-     */
     public readonly authFloodThresh!: pulumi.Output<number>;
-    /**
-     * Number of seconds after which a station is considered not connected.
-     */
     public readonly authFloodTime!: pulumi.Output<number>;
-    /**
-     * Enable/disable authentication frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly authFrameFlood!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string>;
-    /**
-     * Enable/disable broadcasting de-authentication detection (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly deauthBroadcast!: pulumi.Output<string>;
-    /**
-     * Threshold value per second to deauth unknown src for DoS attack (0: no limit).
-     */
     public readonly deauthUnknownSrcThresh!: pulumi.Output<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable EAPOL-Failure flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly eapolFailFlood!: pulumi.Output<string>;
-    /**
-     * The detection interval for EAPOL-Failure flooding (1 - 3600 sec).
-     */
     public readonly eapolFailIntv!: pulumi.Output<number>;
-    /**
-     * The threshold value for EAPOL-Failure flooding in specified interval.
-     */
     public readonly eapolFailThresh!: pulumi.Output<number>;
-    /**
-     * Enable/disable EAPOL-Logoff flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly eapolLogoffFlood!: pulumi.Output<string>;
-    /**
-     * The detection interval for EAPOL-Logoff flooding (1 - 3600 sec).
-     */
     public readonly eapolLogoffIntv!: pulumi.Output<number>;
-    /**
-     * The threshold value for EAPOL-Logoff flooding in specified interval.
-     */
     public readonly eapolLogoffThresh!: pulumi.Output<number>;
-    /**
-     * Enable/disable premature EAPOL-Failure flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly eapolPreFailFlood!: pulumi.Output<string>;
-    /**
-     * The detection interval for premature EAPOL-Failure flooding (1 - 3600 sec).
-     */
     public readonly eapolPreFailIntv!: pulumi.Output<number>;
-    /**
-     * The threshold value for premature EAPOL-Failure flooding in specified interval.
-     */
     public readonly eapolPreFailThresh!: pulumi.Output<number>;
-    /**
-     * Enable/disable premature EAPOL-Success flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly eapolPreSuccFlood!: pulumi.Output<string>;
-    /**
-     * The detection interval for premature EAPOL-Success flooding (1 - 3600 sec).
-     */
     public readonly eapolPreSuccIntv!: pulumi.Output<number>;
-    /**
-     * The threshold value for premature EAPOL-Success flooding in specified interval.
-     */
     public readonly eapolPreSuccThresh!: pulumi.Output<number>;
-    /**
-     * Enable/disable EAPOL-Start flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly eapolStartFlood!: pulumi.Output<string>;
-    /**
-     * The detection interval for EAPOL-Start flooding (1 - 3600 sec).
-     */
     public readonly eapolStartIntv!: pulumi.Output<number>;
-    /**
-     * The threshold value for EAPOL-Start flooding in specified interval.
-     */
     public readonly eapolStartThresh!: pulumi.Output<number>;
-    /**
-     * Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly eapolSuccFlood!: pulumi.Output<string>;
-    /**
-     * The detection interval for EAPOL-Success flooding (1 - 3600 sec).
-     */
     public readonly eapolSuccIntv!: pulumi.Output<number>;
-    /**
-     * The threshold value for EAPOL-Success flooding in specified interval.
-     */
     public readonly eapolSuccThresh!: pulumi.Output<number>;
-    /**
-     * Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
-     */
     public readonly invalidMacOui!: pulumi.Output<string>;
-    /**
-     * Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly longDurationAttack!: pulumi.Output<string>;
-    /**
-     * Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
-     */
     public readonly longDurationThresh!: pulumi.Output<number>;
-    /**
-     * Schedule name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly nullSsidProbeResp!: pulumi.Output<string>;
-    /**
-     * Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
-     */
     public readonly sensorMode!: pulumi.Output<string>;
-    /**
-     * Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly spoofedDeauth!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly weakWepIv!: pulumi.Output<string>;
-    /**
-     * Enable/disable wireless bridge detection (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly wirelessBridge!: pulumi.Output<string>;
 
     /**
@@ -396,217 +219,58 @@ export class WirelessControllerWidsProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerWidsProfile resources.
  */
 export interface WirelessControllerWidsProfileState {
-    /**
-     * Enable/disable on-wire rogue AP auto-suppression (default = disable). Valid values: `enable`, `disable`.
-     */
     apAutoSuppress?: pulumi.Input<string>;
-    /**
-     * Optionally turn off scanning for one or more days of the week. Separate the days with a space. By default, no days are set. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-     */
     apBgscanDisableDay?: pulumi.Input<string>;
-    /**
-     * End time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-     */
     apBgscanDisableEnd?: pulumi.Input<string>;
-    /**
-     * Firewall schedules for turning off FortiAP radio background scan. Background scan will be disabled when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `apBgscanDisableSchedules` block is documented below.
-     */
     apBgscanDisableSchedules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerWidsProfileApBgscanDisableSchedule>[]>;
-    /**
-     * Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-     */
     apBgscanDisableStart?: pulumi.Input<string>;
-    /**
-     * Listening time on a scanning channel (10 - 1000 msec, default = 20).
-     */
     apBgscanDuration?: pulumi.Input<number>;
-    /**
-     * Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
-     */
     apBgscanIdle?: pulumi.Input<number>;
-    /**
-     * Period of time between scanning two channels (1 - 600 sec, default = 1).
-     */
     apBgscanIntv?: pulumi.Input<number>;
-    /**
-     * Period of time between background scans (60 - 3600 sec, default = 600).
-     */
     apBgscanPeriod?: pulumi.Input<number>;
-    /**
-     * Period of time between background scan reports (15 - 600 sec, default = 30).
-     */
     apBgscanReportIntv?: pulumi.Input<number>;
-    /**
-     * Period of time between foreground scan reports (15 - 600 sec, default = 15).
-     */
     apFgscanReportIntv?: pulumi.Input<number>;
-    /**
-     * Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
-     */
     apScan?: pulumi.Input<string>;
-    /**
-     * Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
-     */
     apScanPassive?: pulumi.Input<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
-     */
     apScanThreshold?: pulumi.Input<string>;
-    /**
-     * Enable/disable asleap attack detection (default = disable). Valid values: `enable`, `disable`.
-     */
     asleapAttack?: pulumi.Input<string>;
-    /**
-     * The threshold value for association frame flooding.
-     */
     assocFloodThresh?: pulumi.Input<number>;
-    /**
-     * Number of seconds after which a station is considered not connected.
-     */
     assocFloodTime?: pulumi.Input<number>;
-    /**
-     * Enable/disable association frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-     */
     assocFrameFlood?: pulumi.Input<string>;
-    /**
-     * The threshold value for authentication frame flooding.
-     */
     authFloodThresh?: pulumi.Input<number>;
-    /**
-     * Number of seconds after which a station is considered not connected.
-     */
     authFloodTime?: pulumi.Input<number>;
-    /**
-     * Enable/disable authentication frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-     */
     authFrameFlood?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable/disable broadcasting de-authentication detection (default = disable). Valid values: `enable`, `disable`.
-     */
     deauthBroadcast?: pulumi.Input<string>;
-    /**
-     * Threshold value per second to deauth unknown src for DoS attack (0: no limit).
-     */
     deauthUnknownSrcThresh?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable EAPOL-Failure flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     eapolFailFlood?: pulumi.Input<string>;
-    /**
-     * The detection interval for EAPOL-Failure flooding (1 - 3600 sec).
-     */
     eapolFailIntv?: pulumi.Input<number>;
-    /**
-     * The threshold value for EAPOL-Failure flooding in specified interval.
-     */
     eapolFailThresh?: pulumi.Input<number>;
-    /**
-     * Enable/disable EAPOL-Logoff flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     eapolLogoffFlood?: pulumi.Input<string>;
-    /**
-     * The detection interval for EAPOL-Logoff flooding (1 - 3600 sec).
-     */
     eapolLogoffIntv?: pulumi.Input<number>;
-    /**
-     * The threshold value for EAPOL-Logoff flooding in specified interval.
-     */
     eapolLogoffThresh?: pulumi.Input<number>;
-    /**
-     * Enable/disable premature EAPOL-Failure flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     eapolPreFailFlood?: pulumi.Input<string>;
-    /**
-     * The detection interval for premature EAPOL-Failure flooding (1 - 3600 sec).
-     */
     eapolPreFailIntv?: pulumi.Input<number>;
-    /**
-     * The threshold value for premature EAPOL-Failure flooding in specified interval.
-     */
     eapolPreFailThresh?: pulumi.Input<number>;
-    /**
-     * Enable/disable premature EAPOL-Success flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     eapolPreSuccFlood?: pulumi.Input<string>;
-    /**
-     * The detection interval for premature EAPOL-Success flooding (1 - 3600 sec).
-     */
     eapolPreSuccIntv?: pulumi.Input<number>;
-    /**
-     * The threshold value for premature EAPOL-Success flooding in specified interval.
-     */
     eapolPreSuccThresh?: pulumi.Input<number>;
-    /**
-     * Enable/disable EAPOL-Start flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     eapolStartFlood?: pulumi.Input<string>;
-    /**
-     * The detection interval for EAPOL-Start flooding (1 - 3600 sec).
-     */
     eapolStartIntv?: pulumi.Input<number>;
-    /**
-     * The threshold value for EAPOL-Start flooding in specified interval.
-     */
     eapolStartThresh?: pulumi.Input<number>;
-    /**
-     * Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     eapolSuccFlood?: pulumi.Input<string>;
-    /**
-     * The detection interval for EAPOL-Success flooding (1 - 3600 sec).
-     */
     eapolSuccIntv?: pulumi.Input<number>;
-    /**
-     * The threshold value for EAPOL-Success flooding in specified interval.
-     */
     eapolSuccThresh?: pulumi.Input<number>;
-    /**
-     * Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
-     */
     invalidMacOui?: pulumi.Input<string>;
-    /**
-     * Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
-     */
     longDurationAttack?: pulumi.Input<string>;
-    /**
-     * Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
-     */
     longDurationThresh?: pulumi.Input<number>;
-    /**
-     * Schedule name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
-     */
     nullSsidProbeResp?: pulumi.Input<string>;
-    /**
-     * Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
-     */
     sensorMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
-     */
     spoofedDeauth?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     weakWepIv?: pulumi.Input<string>;
-    /**
-     * Enable/disable wireless bridge detection (default = disable). Valid values: `enable`, `disable`.
-     */
     wirelessBridge?: pulumi.Input<string>;
 }
 
@@ -614,216 +278,57 @@ export interface WirelessControllerWidsProfileState {
  * The set of arguments for constructing a WirelessControllerWidsProfile resource.
  */
 export interface WirelessControllerWidsProfileArgs {
-    /**
-     * Enable/disable on-wire rogue AP auto-suppression (default = disable). Valid values: `enable`, `disable`.
-     */
     apAutoSuppress?: pulumi.Input<string>;
-    /**
-     * Optionally turn off scanning for one or more days of the week. Separate the days with a space. By default, no days are set. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-     */
     apBgscanDisableDay?: pulumi.Input<string>;
-    /**
-     * End time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-     */
     apBgscanDisableEnd?: pulumi.Input<string>;
-    /**
-     * Firewall schedules for turning off FortiAP radio background scan. Background scan will be disabled when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `apBgscanDisableSchedules` block is documented below.
-     */
     apBgscanDisableSchedules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerWidsProfileApBgscanDisableSchedule>[]>;
-    /**
-     * Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-     */
     apBgscanDisableStart?: pulumi.Input<string>;
-    /**
-     * Listening time on a scanning channel (10 - 1000 msec, default = 20).
-     */
     apBgscanDuration?: pulumi.Input<number>;
-    /**
-     * Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
-     */
     apBgscanIdle?: pulumi.Input<number>;
-    /**
-     * Period of time between scanning two channels (1 - 600 sec, default = 1).
-     */
     apBgscanIntv?: pulumi.Input<number>;
-    /**
-     * Period of time between background scans (60 - 3600 sec, default = 600).
-     */
     apBgscanPeriod?: pulumi.Input<number>;
-    /**
-     * Period of time between background scan reports (15 - 600 sec, default = 30).
-     */
     apBgscanReportIntv?: pulumi.Input<number>;
-    /**
-     * Period of time between foreground scan reports (15 - 600 sec, default = 15).
-     */
     apFgscanReportIntv?: pulumi.Input<number>;
-    /**
-     * Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
-     */
     apScan?: pulumi.Input<string>;
-    /**
-     * Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
-     */
     apScanPassive?: pulumi.Input<string>;
-    /**
-     * Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
-     */
     apScanThreshold?: pulumi.Input<string>;
-    /**
-     * Enable/disable asleap attack detection (default = disable). Valid values: `enable`, `disable`.
-     */
     asleapAttack?: pulumi.Input<string>;
-    /**
-     * The threshold value for association frame flooding.
-     */
     assocFloodThresh?: pulumi.Input<number>;
-    /**
-     * Number of seconds after which a station is considered not connected.
-     */
     assocFloodTime?: pulumi.Input<number>;
-    /**
-     * Enable/disable association frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-     */
     assocFrameFlood?: pulumi.Input<string>;
-    /**
-     * The threshold value for authentication frame flooding.
-     */
     authFloodThresh?: pulumi.Input<number>;
-    /**
-     * Number of seconds after which a station is considered not connected.
-     */
     authFloodTime?: pulumi.Input<number>;
-    /**
-     * Enable/disable authentication frame flooding detection (default = disable). Valid values: `enable`, `disable`.
-     */
     authFrameFlood?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable/disable broadcasting de-authentication detection (default = disable). Valid values: `enable`, `disable`.
-     */
     deauthBroadcast?: pulumi.Input<string>;
-    /**
-     * Threshold value per second to deauth unknown src for DoS attack (0: no limit).
-     */
     deauthUnknownSrcThresh?: pulumi.Input<number>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable EAPOL-Failure flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     eapolFailFlood?: pulumi.Input<string>;
-    /**
-     * The detection interval for EAPOL-Failure flooding (1 - 3600 sec).
-     */
     eapolFailIntv?: pulumi.Input<number>;
-    /**
-     * The threshold value for EAPOL-Failure flooding in specified interval.
-     */
     eapolFailThresh?: pulumi.Input<number>;
-    /**
-     * Enable/disable EAPOL-Logoff flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     eapolLogoffFlood?: pulumi.Input<string>;
-    /**
-     * The detection interval for EAPOL-Logoff flooding (1 - 3600 sec).
-     */
     eapolLogoffIntv?: pulumi.Input<number>;
-    /**
-     * The threshold value for EAPOL-Logoff flooding in specified interval.
-     */
     eapolLogoffThresh?: pulumi.Input<number>;
-    /**
-     * Enable/disable premature EAPOL-Failure flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     eapolPreFailFlood?: pulumi.Input<string>;
-    /**
-     * The detection interval for premature EAPOL-Failure flooding (1 - 3600 sec).
-     */
     eapolPreFailIntv?: pulumi.Input<number>;
-    /**
-     * The threshold value for premature EAPOL-Failure flooding in specified interval.
-     */
     eapolPreFailThresh?: pulumi.Input<number>;
-    /**
-     * Enable/disable premature EAPOL-Success flooding (to STA) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     eapolPreSuccFlood?: pulumi.Input<string>;
-    /**
-     * The detection interval for premature EAPOL-Success flooding (1 - 3600 sec).
-     */
     eapolPreSuccIntv?: pulumi.Input<number>;
-    /**
-     * The threshold value for premature EAPOL-Success flooding in specified interval.
-     */
     eapolPreSuccThresh?: pulumi.Input<number>;
-    /**
-     * Enable/disable EAPOL-Start flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     eapolStartFlood?: pulumi.Input<string>;
-    /**
-     * The detection interval for EAPOL-Start flooding (1 - 3600 sec).
-     */
     eapolStartIntv?: pulumi.Input<number>;
-    /**
-     * The threshold value for EAPOL-Start flooding in specified interval.
-     */
     eapolStartThresh?: pulumi.Input<number>;
-    /**
-     * Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     eapolSuccFlood?: pulumi.Input<string>;
-    /**
-     * The detection interval for EAPOL-Success flooding (1 - 3600 sec).
-     */
     eapolSuccIntv?: pulumi.Input<number>;
-    /**
-     * The threshold value for EAPOL-Success flooding in specified interval.
-     */
     eapolSuccThresh?: pulumi.Input<number>;
-    /**
-     * Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
-     */
     invalidMacOui?: pulumi.Input<string>;
-    /**
-     * Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
-     */
     longDurationAttack?: pulumi.Input<string>;
-    /**
-     * Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
-     */
     longDurationThresh?: pulumi.Input<number>;
-    /**
-     * Schedule name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
-     */
     nullSsidProbeResp?: pulumi.Input<string>;
-    /**
-     * Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
-     */
     sensorMode?: pulumi.Input<string>;
-    /**
-     * Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
-     */
     spoofedDeauth?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
-     */
     weakWepIv?: pulumi.Input<string>;
-    /**
-     * Enable/disable wireless bridge detection (default = disable). Valid values: `enable`, `disable`.
-     */
     wirelessBridge?: pulumi.Input<string>;
 }

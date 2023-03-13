@@ -10,63 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure geographical location mapping for IP address(es) to override mappings from FortiGuard.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemGeoipOverride(ctx, "trname", &fortios.SystemGeoipOverrideArgs{
-// 			Description: pulumi.String("TEST for country"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System GeoipOverride can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemGeoipOverride:SystemGeoipOverride labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemGeoipOverride:SystemGeoipOverride labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemGeoipOverride struct {
 	pulumi.CustomResourceState
 
-	// Two character Country ID code.
-	CountryId pulumi.StringOutput `pulumi:"countryId"`
-	// Description.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Table of IPv6 ranges assigned to country. The structure of `ip6Range` block is documented below.
-	Ip6Ranges SystemGeoipOverrideIp6RangeArrayOutput `pulumi:"ip6Ranges"`
-	// Table of IP ranges assigned to country. The structure of `ipRange` block is documented below.
-	IpRanges SystemGeoipOverrideIpRangeArrayOutput `pulumi:"ipRanges"`
-	// Location name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	CountryId           pulumi.StringOutput                    `pulumi:"countryId"`
+	Description         pulumi.StringOutput                    `pulumi:"description"`
+	DynamicSortSubtable pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	Ip6Ranges           SystemGeoipOverrideIp6RangeArrayOutput `pulumi:"ip6Ranges"`
+	IpRanges            SystemGeoipOverrideIpRangeArrayOutput  `pulumi:"ipRanges"`
+	Name                pulumi.StringOutput                    `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                 `pulumi:"vdomparam"`
 }
 
 // NewSystemGeoipOverride registers a new resource with the given unique name, arguments, and options.
@@ -99,37 +52,23 @@ func GetSystemGeoipOverride(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemGeoipOverride resources.
 type systemGeoipOverrideState struct {
-	// Two character Country ID code.
-	CountryId *string `pulumi:"countryId"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Table of IPv6 ranges assigned to country. The structure of `ip6Range` block is documented below.
-	Ip6Ranges []SystemGeoipOverrideIp6Range `pulumi:"ip6Ranges"`
-	// Table of IP ranges assigned to country. The structure of `ipRange` block is documented below.
-	IpRanges []SystemGeoipOverrideIpRange `pulumi:"ipRanges"`
-	// Location name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	CountryId           *string                       `pulumi:"countryId"`
+	Description         *string                       `pulumi:"description"`
+	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	Ip6Ranges           []SystemGeoipOverrideIp6Range `pulumi:"ip6Ranges"`
+	IpRanges            []SystemGeoipOverrideIpRange  `pulumi:"ipRanges"`
+	Name                *string                       `pulumi:"name"`
+	Vdomparam           *string                       `pulumi:"vdomparam"`
 }
 
 type SystemGeoipOverrideState struct {
-	// Two character Country ID code.
-	CountryId pulumi.StringPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	CountryId           pulumi.StringPtrInput
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Table of IPv6 ranges assigned to country. The structure of `ip6Range` block is documented below.
-	Ip6Ranges SystemGeoipOverrideIp6RangeArrayInput
-	// Table of IP ranges assigned to country. The structure of `ipRange` block is documented below.
-	IpRanges SystemGeoipOverrideIpRangeArrayInput
-	// Location name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Ip6Ranges           SystemGeoipOverrideIp6RangeArrayInput
+	IpRanges            SystemGeoipOverrideIpRangeArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemGeoipOverrideState) ElementType() reflect.Type {
@@ -137,38 +76,24 @@ func (SystemGeoipOverrideState) ElementType() reflect.Type {
 }
 
 type systemGeoipOverrideArgs struct {
-	// Two character Country ID code.
-	CountryId *string `pulumi:"countryId"`
-	// Description.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Table of IPv6 ranges assigned to country. The structure of `ip6Range` block is documented below.
-	Ip6Ranges []SystemGeoipOverrideIp6Range `pulumi:"ip6Ranges"`
-	// Table of IP ranges assigned to country. The structure of `ipRange` block is documented below.
-	IpRanges []SystemGeoipOverrideIpRange `pulumi:"ipRanges"`
-	// Location name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	CountryId           *string                       `pulumi:"countryId"`
+	Description         *string                       `pulumi:"description"`
+	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	Ip6Ranges           []SystemGeoipOverrideIp6Range `pulumi:"ip6Ranges"`
+	IpRanges            []SystemGeoipOverrideIpRange  `pulumi:"ipRanges"`
+	Name                *string                       `pulumi:"name"`
+	Vdomparam           *string                       `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemGeoipOverride resource.
 type SystemGeoipOverrideArgs struct {
-	// Two character Country ID code.
-	CountryId pulumi.StringPtrInput
-	// Description.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	CountryId           pulumi.StringPtrInput
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Table of IPv6 ranges assigned to country. The structure of `ip6Range` block is documented below.
-	Ip6Ranges SystemGeoipOverrideIp6RangeArrayInput
-	// Table of IP ranges assigned to country. The structure of `ipRange` block is documented below.
-	IpRanges SystemGeoipOverrideIpRangeArrayInput
-	// Location name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Ip6Ranges           SystemGeoipOverrideIp6RangeArrayInput
+	IpRanges            SystemGeoipOverrideIpRangeArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemGeoipOverrideArgs) ElementType() reflect.Type {
@@ -197,7 +122,7 @@ func (i *SystemGeoipOverride) ToSystemGeoipOverrideOutputWithContext(ctx context
 // SystemGeoipOverrideArrayInput is an input type that accepts SystemGeoipOverrideArray and SystemGeoipOverrideArrayOutput values.
 // You can construct a concrete instance of `SystemGeoipOverrideArrayInput` via:
 //
-//          SystemGeoipOverrideArray{ SystemGeoipOverrideArgs{...} }
+//	SystemGeoipOverrideArray{ SystemGeoipOverrideArgs{...} }
 type SystemGeoipOverrideArrayInput interface {
 	pulumi.Input
 
@@ -222,7 +147,7 @@ func (i SystemGeoipOverrideArray) ToSystemGeoipOverrideArrayOutputWithContext(ct
 // SystemGeoipOverrideMapInput is an input type that accepts SystemGeoipOverrideMap and SystemGeoipOverrideMapOutput values.
 // You can construct a concrete instance of `SystemGeoipOverrideMapInput` via:
 //
-//          SystemGeoipOverrideMap{ "key": SystemGeoipOverrideArgs{...} }
+//	SystemGeoipOverrideMap{ "key": SystemGeoipOverrideArgs{...} }
 type SystemGeoipOverrideMapInput interface {
 	pulumi.Input
 
@@ -256,6 +181,34 @@ func (o SystemGeoipOverrideOutput) ToSystemGeoipOverrideOutput() SystemGeoipOver
 
 func (o SystemGeoipOverrideOutput) ToSystemGeoipOverrideOutputWithContext(ctx context.Context) SystemGeoipOverrideOutput {
 	return o
+}
+
+func (o SystemGeoipOverrideOutput) CountryId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGeoipOverride) pulumi.StringOutput { return v.CountryId }).(pulumi.StringOutput)
+}
+
+func (o SystemGeoipOverrideOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGeoipOverride) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o SystemGeoipOverrideOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemGeoipOverride) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemGeoipOverrideOutput) Ip6Ranges() SystemGeoipOverrideIp6RangeArrayOutput {
+	return o.ApplyT(func(v *SystemGeoipOverride) SystemGeoipOverrideIp6RangeArrayOutput { return v.Ip6Ranges }).(SystemGeoipOverrideIp6RangeArrayOutput)
+}
+
+func (o SystemGeoipOverrideOutput) IpRanges() SystemGeoipOverrideIpRangeArrayOutput {
+	return o.ApplyT(func(v *SystemGeoipOverride) SystemGeoipOverrideIpRangeArrayOutput { return v.IpRanges }).(SystemGeoipOverrideIpRangeArrayOutput)
+}
+
+func (o SystemGeoipOverrideOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGeoipOverride) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemGeoipOverrideOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemGeoipOverride) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemGeoipOverrideArrayOutput struct{ *pulumi.OutputState }

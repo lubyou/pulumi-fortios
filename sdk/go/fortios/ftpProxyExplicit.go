@@ -10,71 +10,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure explicit FTP proxy settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFtpProxyExplicit(ctx, "trname", &fortios.FtpProxyExplicitArgs{
-// 			IncomingIp:       pulumi.String("0.0.0.0"),
-// 			SecDefaultAction: pulumi.String("deny"),
-// 			Status:           pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// FtpProxy Explicit can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/ftpProxyExplicit:FtpProxyExplicit labelname FtpProxyExplicit
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/ftpProxyExplicit:FtpProxyExplicit labelname FtpProxyExplicit
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FtpProxyExplicit struct {
 	pulumi.CustomResourceState
 
-	// Accept incoming FTP requests from this IP address. An interface must have this IP address.
-	IncomingIp pulumi.StringOutput `pulumi:"incomingIp"`
-	// Accept incoming FTP requests on one or more ports.
-	IncomingPort pulumi.StringOutput `pulumi:"incomingPort"`
-	// Outgoing FTP requests will leave from this IP address. An interface must have this IP address.
-	OutgoingIp pulumi.StringOutput `pulumi:"outgoingIp"`
-	// Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exists. Valid values: `accept`, `deny`.
-	SecDefaultAction pulumi.StringOutput `pulumi:"secDefaultAction"`
-	// Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
-	Ssl pulumi.StringOutput `pulumi:"ssl"`
-	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm pulumi.StringOutput `pulumi:"sslAlgorithm"`
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
-	SslCert pulumi.StringOutput `pulumi:"sslCert"`
-	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-	SslDhBits pulumi.StringOutput `pulumi:"sslDhBits"`
-	// Enable/disable the explicit FTP proxy. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	IncomingIp       pulumi.StringOutput    `pulumi:"incomingIp"`
+	IncomingPort     pulumi.StringOutput    `pulumi:"incomingPort"`
+	OutgoingIp       pulumi.StringOutput    `pulumi:"outgoingIp"`
+	SecDefaultAction pulumi.StringOutput    `pulumi:"secDefaultAction"`
+	Ssl              pulumi.StringOutput    `pulumi:"ssl"`
+	SslAlgorithm     pulumi.StringOutput    `pulumi:"sslAlgorithm"`
+	SslCert          pulumi.StringOutput    `pulumi:"sslCert"`
+	SslDhBits        pulumi.StringOutput    `pulumi:"sslDhBits"`
+	Status           pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam        pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFtpProxyExplicit registers a new resource with the given unique name, arguments, and options.
@@ -107,49 +55,29 @@ func GetFtpProxyExplicit(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FtpProxyExplicit resources.
 type ftpProxyExplicitState struct {
-	// Accept incoming FTP requests from this IP address. An interface must have this IP address.
-	IncomingIp *string `pulumi:"incomingIp"`
-	// Accept incoming FTP requests on one or more ports.
-	IncomingPort *string `pulumi:"incomingPort"`
-	// Outgoing FTP requests will leave from this IP address. An interface must have this IP address.
-	OutgoingIp *string `pulumi:"outgoingIp"`
-	// Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exists. Valid values: `accept`, `deny`.
+	IncomingIp       *string `pulumi:"incomingIp"`
+	IncomingPort     *string `pulumi:"incomingPort"`
+	OutgoingIp       *string `pulumi:"outgoingIp"`
 	SecDefaultAction *string `pulumi:"secDefaultAction"`
-	// Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
-	Ssl *string `pulumi:"ssl"`
-	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
-	SslCert *string `pulumi:"sslCert"`
-	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-	SslDhBits *string `pulumi:"sslDhBits"`
-	// Enable/disable the explicit FTP proxy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Ssl              *string `pulumi:"ssl"`
+	SslAlgorithm     *string `pulumi:"sslAlgorithm"`
+	SslCert          *string `pulumi:"sslCert"`
+	SslDhBits        *string `pulumi:"sslDhBits"`
+	Status           *string `pulumi:"status"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 type FtpProxyExplicitState struct {
-	// Accept incoming FTP requests from this IP address. An interface must have this IP address.
-	IncomingIp pulumi.StringPtrInput
-	// Accept incoming FTP requests on one or more ports.
-	IncomingPort pulumi.StringPtrInput
-	// Outgoing FTP requests will leave from this IP address. An interface must have this IP address.
-	OutgoingIp pulumi.StringPtrInput
-	// Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exists. Valid values: `accept`, `deny`.
+	IncomingIp       pulumi.StringPtrInput
+	IncomingPort     pulumi.StringPtrInput
+	OutgoingIp       pulumi.StringPtrInput
 	SecDefaultAction pulumi.StringPtrInput
-	// Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
-	Ssl pulumi.StringPtrInput
-	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm pulumi.StringPtrInput
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
-	SslCert pulumi.StringPtrInput
-	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-	SslDhBits pulumi.StringPtrInput
-	// Enable/disable the explicit FTP proxy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Ssl              pulumi.StringPtrInput
+	SslAlgorithm     pulumi.StringPtrInput
+	SslCert          pulumi.StringPtrInput
+	SslDhBits        pulumi.StringPtrInput
+	Status           pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (FtpProxyExplicitState) ElementType() reflect.Type {
@@ -157,50 +85,30 @@ func (FtpProxyExplicitState) ElementType() reflect.Type {
 }
 
 type ftpProxyExplicitArgs struct {
-	// Accept incoming FTP requests from this IP address. An interface must have this IP address.
-	IncomingIp *string `pulumi:"incomingIp"`
-	// Accept incoming FTP requests on one or more ports.
-	IncomingPort *string `pulumi:"incomingPort"`
-	// Outgoing FTP requests will leave from this IP address. An interface must have this IP address.
-	OutgoingIp *string `pulumi:"outgoingIp"`
-	// Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exists. Valid values: `accept`, `deny`.
+	IncomingIp       *string `pulumi:"incomingIp"`
+	IncomingPort     *string `pulumi:"incomingPort"`
+	OutgoingIp       *string `pulumi:"outgoingIp"`
 	SecDefaultAction *string `pulumi:"secDefaultAction"`
-	// Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
-	Ssl *string `pulumi:"ssl"`
-	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
-	SslCert *string `pulumi:"sslCert"`
-	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-	SslDhBits *string `pulumi:"sslDhBits"`
-	// Enable/disable the explicit FTP proxy. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Ssl              *string `pulumi:"ssl"`
+	SslAlgorithm     *string `pulumi:"sslAlgorithm"`
+	SslCert          *string `pulumi:"sslCert"`
+	SslDhBits        *string `pulumi:"sslDhBits"`
+	Status           *string `pulumi:"status"`
+	Vdomparam        *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FtpProxyExplicit resource.
 type FtpProxyExplicitArgs struct {
-	// Accept incoming FTP requests from this IP address. An interface must have this IP address.
-	IncomingIp pulumi.StringPtrInput
-	// Accept incoming FTP requests on one or more ports.
-	IncomingPort pulumi.StringPtrInput
-	// Outgoing FTP requests will leave from this IP address. An interface must have this IP address.
-	OutgoingIp pulumi.StringPtrInput
-	// Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exists. Valid values: `accept`, `deny`.
+	IncomingIp       pulumi.StringPtrInput
+	IncomingPort     pulumi.StringPtrInput
+	OutgoingIp       pulumi.StringPtrInput
 	SecDefaultAction pulumi.StringPtrInput
-	// Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
-	Ssl pulumi.StringPtrInput
-	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm pulumi.StringPtrInput
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
-	SslCert pulumi.StringPtrInput
-	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-	SslDhBits pulumi.StringPtrInput
-	// Enable/disable the explicit FTP proxy. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Ssl              pulumi.StringPtrInput
+	SslAlgorithm     pulumi.StringPtrInput
+	SslCert          pulumi.StringPtrInput
+	SslDhBits        pulumi.StringPtrInput
+	Status           pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (FtpProxyExplicitArgs) ElementType() reflect.Type {
@@ -229,7 +137,7 @@ func (i *FtpProxyExplicit) ToFtpProxyExplicitOutputWithContext(ctx context.Conte
 // FtpProxyExplicitArrayInput is an input type that accepts FtpProxyExplicitArray and FtpProxyExplicitArrayOutput values.
 // You can construct a concrete instance of `FtpProxyExplicitArrayInput` via:
 //
-//          FtpProxyExplicitArray{ FtpProxyExplicitArgs{...} }
+//	FtpProxyExplicitArray{ FtpProxyExplicitArgs{...} }
 type FtpProxyExplicitArrayInput interface {
 	pulumi.Input
 
@@ -254,7 +162,7 @@ func (i FtpProxyExplicitArray) ToFtpProxyExplicitArrayOutputWithContext(ctx cont
 // FtpProxyExplicitMapInput is an input type that accepts FtpProxyExplicitMap and FtpProxyExplicitMapOutput values.
 // You can construct a concrete instance of `FtpProxyExplicitMapInput` via:
 //
-//          FtpProxyExplicitMap{ "key": FtpProxyExplicitArgs{...} }
+//	FtpProxyExplicitMap{ "key": FtpProxyExplicitArgs{...} }
 type FtpProxyExplicitMapInput interface {
 	pulumi.Input
 
@@ -288,6 +196,46 @@ func (o FtpProxyExplicitOutput) ToFtpProxyExplicitOutput() FtpProxyExplicitOutpu
 
 func (o FtpProxyExplicitOutput) ToFtpProxyExplicitOutputWithContext(ctx context.Context) FtpProxyExplicitOutput {
 	return o
+}
+
+func (o FtpProxyExplicitOutput) IncomingIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FtpProxyExplicit) pulumi.StringOutput { return v.IncomingIp }).(pulumi.StringOutput)
+}
+
+func (o FtpProxyExplicitOutput) IncomingPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *FtpProxyExplicit) pulumi.StringOutput { return v.IncomingPort }).(pulumi.StringOutput)
+}
+
+func (o FtpProxyExplicitOutput) OutgoingIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *FtpProxyExplicit) pulumi.StringOutput { return v.OutgoingIp }).(pulumi.StringOutput)
+}
+
+func (o FtpProxyExplicitOutput) SecDefaultAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *FtpProxyExplicit) pulumi.StringOutput { return v.SecDefaultAction }).(pulumi.StringOutput)
+}
+
+func (o FtpProxyExplicitOutput) Ssl() pulumi.StringOutput {
+	return o.ApplyT(func(v *FtpProxyExplicit) pulumi.StringOutput { return v.Ssl }).(pulumi.StringOutput)
+}
+
+func (o FtpProxyExplicitOutput) SslAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *FtpProxyExplicit) pulumi.StringOutput { return v.SslAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o FtpProxyExplicitOutput) SslCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *FtpProxyExplicit) pulumi.StringOutput { return v.SslCert }).(pulumi.StringOutput)
+}
+
+func (o FtpProxyExplicitOutput) SslDhBits() pulumi.StringOutput {
+	return o.ApplyT(func(v *FtpProxyExplicit) pulumi.StringOutput { return v.SslDhBits }).(pulumi.StringOutput)
+}
+
+func (o FtpProxyExplicitOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FtpProxyExplicit) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o FtpProxyExplicitOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FtpProxyExplicit) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FtpProxyExplicitArrayOutput struct{ *pulumi.OutputState }

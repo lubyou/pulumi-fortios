@@ -4,15 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information on an fortios firewallschedule recurring
- */
 export function getFirewallScheduleRecurring(args: GetFirewallScheduleRecurringArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallScheduleRecurringResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getFirewallScheduleRecurring:GetFirewallScheduleRecurring", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -23,13 +17,7 @@ export function getFirewallScheduleRecurring(args: GetFirewallScheduleRecurringA
  * A collection of arguments for invoking GetFirewallScheduleRecurring.
  */
 export interface GetFirewallScheduleRecurringArgs {
-    /**
-     * Specify the name of the desired firewallschedule recurring.
-     */
     name: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -37,51 +25,26 @@ export interface GetFirewallScheduleRecurringArgs {
  * A collection of values returned by GetFirewallScheduleRecurring.
  */
 export interface GetFirewallScheduleRecurringResult {
-    /**
-     * Color of icon on the GUI.
-     */
     readonly color: number;
-    /**
-     * One or more days of the week on which the schedule is valid. Separate the names of the days with a space.
-     */
     readonly day: string;
-    /**
-     * Time of day to end the schedule, format hh:mm.
-     */
     readonly end: string;
-    /**
-     * Security Fabric global object setting.
-     */
     readonly fabricObject: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Recurring schedule name.
-     */
     readonly name: string;
-    /**
-     * Time of day to start the schedule, format hh:mm.
-     */
     readonly start: string;
     readonly vdomparam?: string;
 }
-
 export function getFirewallScheduleRecurringOutput(args: GetFirewallScheduleRecurringOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallScheduleRecurringResult> {
-    return pulumi.output(args).apply(a => getFirewallScheduleRecurring(a, opts))
+    return pulumi.output(args).apply((a: any) => getFirewallScheduleRecurring(a, opts))
 }
 
 /**
  * A collection of arguments for invoking GetFirewallScheduleRecurring.
  */
 export interface GetFirewallScheduleRecurringOutputArgs {
-    /**
-     * Specify the name of the desired firewallschedule recurring.
-     */
     name: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

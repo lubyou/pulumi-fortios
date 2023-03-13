@@ -4,43 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure Fortinet Single Sign On (FSSO) agents.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.UserFsso("trname", {
- *     port: 32381,
- *     port2: 8000,
- *     port3: 8000,
- *     port4: 8000,
- *     port5: 8000,
- *     server: "1.1.1.1",
- *     sourceIp: "0.0.0.0",
- *     sourceIp6: "::",
- * });
- * ```
- *
- * ## Import
- *
- * User Fsso can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/userFsso:UserFsso labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/userFsso:UserFsso labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class UserFsso extends pulumi.CustomResource {
     /**
      * Get an existing UserFsso resource's state with the given name, ID, and optional extra
@@ -69,133 +32,38 @@ export class UserFsso extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserFsso.__pulumiType;
     }
 
-    /**
-     * Interval in minutes within to fetch groups from FSSO server, or unset to disable.
-     */
     public readonly groupPollInterval!: pulumi.Output<number>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     public readonly interface!: pulumi.Output<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
-    /**
-     * Enable/disable automatic fetching of groups from LDAP server. Valid values: `enable`, `disable`.
-     */
     public readonly ldapPoll!: pulumi.Output<string>;
-    /**
-     * Filter used to fetch groups.
-     */
     public readonly ldapPollFilter!: pulumi.Output<string>;
-    /**
-     * Interval in minutes within to fetch groups from LDAP server.
-     */
     public readonly ldapPollInterval!: pulumi.Output<number>;
-    /**
-     * LDAP server to get group information.
-     */
     public readonly ldapServer!: pulumi.Output<string>;
-    /**
-     * Interval in minutes to keep logons after FSSO server down.
-     */
     public readonly logonTimeout!: pulumi.Output<number>;
-    /**
-     * Name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Password of the first FSSO collector agent.
-     */
     public readonly password!: pulumi.Output<string | undefined>;
-    /**
-     * Password of the second FSSO collector agent.
-     */
     public readonly password2!: pulumi.Output<string | undefined>;
-    /**
-     * Password of the third FSSO collector agent.
-     */
     public readonly password3!: pulumi.Output<string | undefined>;
-    /**
-     * Password of the fourth FSSO collector agent.
-     */
     public readonly password4!: pulumi.Output<string | undefined>;
-    /**
-     * Password of the fifth FSSO collector agent.
-     */
     public readonly password5!: pulumi.Output<string | undefined>;
-    /**
-     * Port of the first FSSO collector agent.
-     */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Port of the second FSSO collector agent.
-     */
     public readonly port2!: pulumi.Output<number>;
-    /**
-     * Port of the third FSSO collector agent.
-     */
     public readonly port3!: pulumi.Output<number>;
-    /**
-     * Port of the fourth FSSO collector agent.
-     */
     public readonly port4!: pulumi.Output<number>;
-    /**
-     * Port of the fifth FSSO collector agent.
-     */
     public readonly port5!: pulumi.Output<number>;
-    /**
-     * Domain name or IP address of the first FSSO collector agent.
-     */
     public readonly server!: pulumi.Output<string>;
-    /**
-     * Domain name or IP address of the second FSSO collector agent.
-     */
     public readonly server2!: pulumi.Output<string>;
-    /**
-     * Domain name or IP address of the third FSSO collector agent.
-     */
     public readonly server3!: pulumi.Output<string>;
-    /**
-     * Domain name or IP address of the fourth FSSO collector agent.
-     */
     public readonly server4!: pulumi.Output<string>;
-    /**
-     * Domain name or IP address of the fifth FSSO collector agent.
-     */
     public readonly server5!: pulumi.Output<string>;
-    /**
-     * Source IP for communications to FSSO agent.
-     */
+    public readonly sni!: pulumi.Output<string>;
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * IPv6 source for communications to FSSO agent.
-     */
     public readonly sourceIp6!: pulumi.Output<string>;
-    /**
-     * Enable/disable use of SSL. Valid values: `enable`, `disable`.
-     */
     public readonly ssl!: pulumi.Output<string>;
-    /**
-     * Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
-     */
     public readonly sslServerHostIpCheck!: pulumi.Output<string>;
-    /**
-     * Trusted server certificate or CA certificate.
-     */
     public readonly sslTrustedCert!: pulumi.Output<string>;
-    /**
-     * Server type.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * LDAP server to get user information.
-     */
     public readonly userInfoServer!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -235,6 +103,7 @@ export class UserFsso extends pulumi.CustomResource {
             resourceInputs["server3"] = state ? state.server3 : undefined;
             resourceInputs["server4"] = state ? state.server4 : undefined;
             resourceInputs["server5"] = state ? state.server5 : undefined;
+            resourceInputs["sni"] = state ? state.sni : undefined;
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
             resourceInputs["ssl"] = state ? state.ssl : undefined;
@@ -257,11 +126,11 @@ export class UserFsso extends pulumi.CustomResource {
             resourceInputs["ldapServer"] = args ? args.ldapServer : undefined;
             resourceInputs["logonTimeout"] = args ? args.logonTimeout : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
-            resourceInputs["password2"] = args ? args.password2 : undefined;
-            resourceInputs["password3"] = args ? args.password3 : undefined;
-            resourceInputs["password4"] = args ? args.password4 : undefined;
-            resourceInputs["password5"] = args ? args.password5 : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["password2"] = args?.password2 ? pulumi.secret(args.password2) : undefined;
+            resourceInputs["password3"] = args?.password3 ? pulumi.secret(args.password3) : undefined;
+            resourceInputs["password4"] = args?.password4 ? pulumi.secret(args.password4) : undefined;
+            resourceInputs["password5"] = args?.password5 ? pulumi.secret(args.password5) : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
             resourceInputs["port2"] = args ? args.port2 : undefined;
             resourceInputs["port3"] = args ? args.port3 : undefined;
@@ -272,6 +141,7 @@ export class UserFsso extends pulumi.CustomResource {
             resourceInputs["server3"] = args ? args.server3 : undefined;
             resourceInputs["server4"] = args ? args.server4 : undefined;
             resourceInputs["server5"] = args ? args.server5 : undefined;
+            resourceInputs["sni"] = args ? args.sni : undefined;
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
             resourceInputs["ssl"] = args ? args.ssl : undefined;
@@ -282,6 +152,8 @@ export class UserFsso extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password", "password2", "password3", "password4", "password5"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(UserFsso.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -290,133 +162,38 @@ export class UserFsso extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserFsso resources.
  */
 export interface UserFssoState {
-    /**
-     * Interval in minutes within to fetch groups from FSSO server, or unset to disable.
-     */
     groupPollInterval?: pulumi.Input<number>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatic fetching of groups from LDAP server. Valid values: `enable`, `disable`.
-     */
     ldapPoll?: pulumi.Input<string>;
-    /**
-     * Filter used to fetch groups.
-     */
     ldapPollFilter?: pulumi.Input<string>;
-    /**
-     * Interval in minutes within to fetch groups from LDAP server.
-     */
     ldapPollInterval?: pulumi.Input<number>;
-    /**
-     * LDAP server to get group information.
-     */
     ldapServer?: pulumi.Input<string>;
-    /**
-     * Interval in minutes to keep logons after FSSO server down.
-     */
     logonTimeout?: pulumi.Input<number>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Password of the first FSSO collector agent.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Password of the second FSSO collector agent.
-     */
     password2?: pulumi.Input<string>;
-    /**
-     * Password of the third FSSO collector agent.
-     */
     password3?: pulumi.Input<string>;
-    /**
-     * Password of the fourth FSSO collector agent.
-     */
     password4?: pulumi.Input<string>;
-    /**
-     * Password of the fifth FSSO collector agent.
-     */
     password5?: pulumi.Input<string>;
-    /**
-     * Port of the first FSSO collector agent.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Port of the second FSSO collector agent.
-     */
     port2?: pulumi.Input<number>;
-    /**
-     * Port of the third FSSO collector agent.
-     */
     port3?: pulumi.Input<number>;
-    /**
-     * Port of the fourth FSSO collector agent.
-     */
     port4?: pulumi.Input<number>;
-    /**
-     * Port of the fifth FSSO collector agent.
-     */
     port5?: pulumi.Input<number>;
-    /**
-     * Domain name or IP address of the first FSSO collector agent.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Domain name or IP address of the second FSSO collector agent.
-     */
     server2?: pulumi.Input<string>;
-    /**
-     * Domain name or IP address of the third FSSO collector agent.
-     */
     server3?: pulumi.Input<string>;
-    /**
-     * Domain name or IP address of the fourth FSSO collector agent.
-     */
     server4?: pulumi.Input<string>;
-    /**
-     * Domain name or IP address of the fifth FSSO collector agent.
-     */
     server5?: pulumi.Input<string>;
-    /**
-     * Source IP for communications to FSSO agent.
-     */
+    sni?: pulumi.Input<string>;
     sourceIp?: pulumi.Input<string>;
-    /**
-     * IPv6 source for communications to FSSO agent.
-     */
     sourceIp6?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of SSL. Valid values: `enable`, `disable`.
-     */
     ssl?: pulumi.Input<string>;
-    /**
-     * Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
-     */
     sslServerHostIpCheck?: pulumi.Input<string>;
-    /**
-     * Trusted server certificate or CA certificate.
-     */
     sslTrustedCert?: pulumi.Input<string>;
-    /**
-     * Server type.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * LDAP server to get user information.
-     */
     userInfoServer?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -424,132 +201,37 @@ export interface UserFssoState {
  * The set of arguments for constructing a UserFsso resource.
  */
 export interface UserFssoArgs {
-    /**
-     * Interval in minutes within to fetch groups from FSSO server, or unset to disable.
-     */
     groupPollInterval?: pulumi.Input<number>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interface?: pulumi.Input<string>;
-    /**
-     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-     */
     interfaceSelectMethod?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatic fetching of groups from LDAP server. Valid values: `enable`, `disable`.
-     */
     ldapPoll?: pulumi.Input<string>;
-    /**
-     * Filter used to fetch groups.
-     */
     ldapPollFilter?: pulumi.Input<string>;
-    /**
-     * Interval in minutes within to fetch groups from LDAP server.
-     */
     ldapPollInterval?: pulumi.Input<number>;
-    /**
-     * LDAP server to get group information.
-     */
     ldapServer?: pulumi.Input<string>;
-    /**
-     * Interval in minutes to keep logons after FSSO server down.
-     */
     logonTimeout?: pulumi.Input<number>;
-    /**
-     * Name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Password of the first FSSO collector agent.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Password of the second FSSO collector agent.
-     */
     password2?: pulumi.Input<string>;
-    /**
-     * Password of the third FSSO collector agent.
-     */
     password3?: pulumi.Input<string>;
-    /**
-     * Password of the fourth FSSO collector agent.
-     */
     password4?: pulumi.Input<string>;
-    /**
-     * Password of the fifth FSSO collector agent.
-     */
     password5?: pulumi.Input<string>;
-    /**
-     * Port of the first FSSO collector agent.
-     */
     port?: pulumi.Input<number>;
-    /**
-     * Port of the second FSSO collector agent.
-     */
     port2?: pulumi.Input<number>;
-    /**
-     * Port of the third FSSO collector agent.
-     */
     port3?: pulumi.Input<number>;
-    /**
-     * Port of the fourth FSSO collector agent.
-     */
     port4?: pulumi.Input<number>;
-    /**
-     * Port of the fifth FSSO collector agent.
-     */
     port5?: pulumi.Input<number>;
-    /**
-     * Domain name or IP address of the first FSSO collector agent.
-     */
     server: pulumi.Input<string>;
-    /**
-     * Domain name or IP address of the second FSSO collector agent.
-     */
     server2?: pulumi.Input<string>;
-    /**
-     * Domain name or IP address of the third FSSO collector agent.
-     */
     server3?: pulumi.Input<string>;
-    /**
-     * Domain name or IP address of the fourth FSSO collector agent.
-     */
     server4?: pulumi.Input<string>;
-    /**
-     * Domain name or IP address of the fifth FSSO collector agent.
-     */
     server5?: pulumi.Input<string>;
-    /**
-     * Source IP for communications to FSSO agent.
-     */
+    sni?: pulumi.Input<string>;
     sourceIp?: pulumi.Input<string>;
-    /**
-     * IPv6 source for communications to FSSO agent.
-     */
     sourceIp6?: pulumi.Input<string>;
-    /**
-     * Enable/disable use of SSL. Valid values: `enable`, `disable`.
-     */
     ssl?: pulumi.Input<string>;
-    /**
-     * Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
-     */
     sslServerHostIpCheck?: pulumi.Input<string>;
-    /**
-     * Trusted server certificate or CA certificate.
-     */
     sslTrustedCert?: pulumi.Input<string>;
-    /**
-     * Server type.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * LDAP server to get user information.
-     */
     userInfoServer?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios firewall internetservicecustomgroup
 func LookupFirewallInternetServiceCustomGroup(ctx *pulumi.Context, args *LookupFirewallInternetServiceCustomGroupArgs, opts ...pulumi.InvokeOption) (*LookupFirewallInternetServiceCustomGroupResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallInternetServiceCustomGroupResult
@@ -23,23 +22,18 @@ func LookupFirewallInternetServiceCustomGroup(ctx *pulumi.Context, args *LookupF
 
 // A collection of arguments for invoking GetFirewallInternetServiceCustomGroup.
 type LookupFirewallInternetServiceCustomGroupArgs struct {
-	// Specify the name of the desired firewall internetservicecustomgroup.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallInternetServiceCustomGroup.
 type LookupFirewallInternetServiceCustomGroupResult struct {
-	// Comment.
 	Comment string `pulumi:"comment"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Custom Internet Service group members. The structure of `member` block is documented below.
-	Members []GetFirewallInternetServiceCustomGroupMember `pulumi:"members"`
-	// Group member name.
-	Name      string  `pulumi:"name"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Id        string                                        `pulumi:"id"`
+	Members   []GetFirewallInternetServiceCustomGroupMember `pulumi:"members"`
+	Name      string                                        `pulumi:"name"`
+	Vdomparam *string                                       `pulumi:"vdomparam"`
 }
 
 func LookupFirewallInternetServiceCustomGroupOutput(ctx *pulumi.Context, args LookupFirewallInternetServiceCustomGroupOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallInternetServiceCustomGroupResultOutput {
@@ -57,9 +51,7 @@ func LookupFirewallInternetServiceCustomGroupOutput(ctx *pulumi.Context, args Lo
 
 // A collection of arguments for invoking GetFirewallInternetServiceCustomGroup.
 type LookupFirewallInternetServiceCustomGroupOutputArgs struct {
-	// Specify the name of the desired firewall internetservicecustomgroup.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -82,7 +74,6 @@ func (o LookupFirewallInternetServiceCustomGroupResultOutput) ToLookupFirewallIn
 	return o
 }
 
-// Comment.
 func (o LookupFirewallInternetServiceCustomGroupResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceCustomGroupResult) string { return v.Comment }).(pulumi.StringOutput)
 }
@@ -92,14 +83,12 @@ func (o LookupFirewallInternetServiceCustomGroupResultOutput) Id() pulumi.String
 	return o.ApplyT(func(v LookupFirewallInternetServiceCustomGroupResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Custom Internet Service group members. The structure of `member` block is documented below.
 func (o LookupFirewallInternetServiceCustomGroupResultOutput) Members() GetFirewallInternetServiceCustomGroupMemberArrayOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceCustomGroupResult) []GetFirewallInternetServiceCustomGroupMember {
 		return v.Members
 	}).(GetFirewallInternetServiceCustomGroupMemberArrayOutput)
 }
 
-// Group member name.
 func (o LookupFirewallInternetServiceCustomGroupResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallInternetServiceCustomGroupResult) string { return v.Name }).(pulumi.StringOutput)
 }

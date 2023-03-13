@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -124,7 +124,7 @@ func (i *FirewallProxypolicySort) ToFirewallProxypolicySortOutputWithContext(ctx
 // FirewallProxypolicySortArrayInput is an input type that accepts FirewallProxypolicySortArray and FirewallProxypolicySortArrayOutput values.
 // You can construct a concrete instance of `FirewallProxypolicySortArrayInput` via:
 //
-//          FirewallProxypolicySortArray{ FirewallProxypolicySortArgs{...} }
+//	FirewallProxypolicySortArray{ FirewallProxypolicySortArgs{...} }
 type FirewallProxypolicySortArrayInput interface {
 	pulumi.Input
 
@@ -149,7 +149,7 @@ func (i FirewallProxypolicySortArray) ToFirewallProxypolicySortArrayOutputWithCo
 // FirewallProxypolicySortMapInput is an input type that accepts FirewallProxypolicySortMap and FirewallProxypolicySortMapOutput values.
 // You can construct a concrete instance of `FirewallProxypolicySortMapInput` via:
 //
-//          FirewallProxypolicySortMap{ "key": FirewallProxypolicySortArgs{...} }
+//	FirewallProxypolicySortMap{ "key": FirewallProxypolicySortArgs{...} }
 type FirewallProxypolicySortMapInput interface {
 	pulumi.Input
 
@@ -183,6 +183,30 @@ func (o FirewallProxypolicySortOutput) ToFirewallProxypolicySortOutput() Firewal
 
 func (o FirewallProxypolicySortOutput) ToFirewallProxypolicySortOutputWithContext(ctx context.Context) FirewallProxypolicySortOutput {
 	return o
+}
+
+func (o FirewallProxypolicySortOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProxypolicySort) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallProxypolicySortOutput) ForceRecreate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProxypolicySort) pulumi.StringPtrOutput { return v.ForceRecreate }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallProxypolicySortOutput) Sortby() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxypolicySort) pulumi.StringOutput { return v.Sortby }).(pulumi.StringOutput)
+}
+
+func (o FirewallProxypolicySortOutput) Sortdirection() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxypolicySort) pulumi.StringOutput { return v.Sortdirection }).(pulumi.StringOutput)
+}
+
+func (o FirewallProxypolicySortOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProxypolicySort) pulumi.StringPtrOutput { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallProxypolicySortOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProxypolicySort) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallProxypolicySortArrayOutput struct{ *pulumi.OutputState }

@@ -7,69 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure firewall IP-translation.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallIpTranslation(ctx, "trname", &fortios.FirewallIpTranslationArgs{
-// 			Endip:      pulumi.String("2.2.2.2"),
-// 			MapStartip: pulumi.String("0.0.0.0"),
-// 			Startip:    pulumi.String("1.1.1.1"),
-// 			Transid:    pulumi.Int(1),
-// 			Type:       pulumi.String("SCTP"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall IpTranslation can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallIpTranslation:FirewallIpTranslation labelname {{transid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallIpTranslation:FirewallIpTranslation labelname {{transid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallIpTranslation struct {
 	pulumi.CustomResourceState
 
-	// Final IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-	Endip pulumi.StringOutput `pulumi:"endip"`
-	// Address to be used as the starting point for translation in the range (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-	MapStartip pulumi.StringOutput `pulumi:"mapStartip"`
-	// First IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-	Startip pulumi.StringOutput `pulumi:"startip"`
-	// IP translation ID.
-	Transid pulumi.IntOutput `pulumi:"transid"`
-	// IP translation type (option: SCTP). Valid values: `SCTP`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Endip      pulumi.StringOutput    `pulumi:"endip"`
+	MapStartip pulumi.StringOutput    `pulumi:"mapStartip"`
+	Startip    pulumi.StringOutput    `pulumi:"startip"`
+	Transid    pulumi.IntOutput       `pulumi:"transid"`
+	Type       pulumi.StringOutput    `pulumi:"type"`
+	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallIpTranslation registers a new resource with the given unique name, arguments, and options.
@@ -111,33 +61,21 @@ func GetFirewallIpTranslation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallIpTranslation resources.
 type firewallIpTranslationState struct {
-	// Final IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-	Endip *string `pulumi:"endip"`
-	// Address to be used as the starting point for translation in the range (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
+	Endip      *string `pulumi:"endip"`
 	MapStartip *string `pulumi:"mapStartip"`
-	// First IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-	Startip *string `pulumi:"startip"`
-	// IP translation ID.
-	Transid *int `pulumi:"transid"`
-	// IP translation type (option: SCTP). Valid values: `SCTP`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Startip    *string `pulumi:"startip"`
+	Transid    *int    `pulumi:"transid"`
+	Type       *string `pulumi:"type"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 type FirewallIpTranslationState struct {
-	// Final IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-	Endip pulumi.StringPtrInput
-	// Address to be used as the starting point for translation in the range (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
+	Endip      pulumi.StringPtrInput
 	MapStartip pulumi.StringPtrInput
-	// First IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-	Startip pulumi.StringPtrInput
-	// IP translation ID.
-	Transid pulumi.IntPtrInput
-	// IP translation type (option: SCTP). Valid values: `SCTP`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Startip    pulumi.StringPtrInput
+	Transid    pulumi.IntPtrInput
+	Type       pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (FirewallIpTranslationState) ElementType() reflect.Type {
@@ -145,34 +83,22 @@ func (FirewallIpTranslationState) ElementType() reflect.Type {
 }
 
 type firewallIpTranslationArgs struct {
-	// Final IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-	Endip string `pulumi:"endip"`
-	// Address to be used as the starting point for translation in the range (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-	MapStartip string `pulumi:"mapStartip"`
-	// First IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-	Startip string `pulumi:"startip"`
-	// IP translation ID.
-	Transid *int `pulumi:"transid"`
-	// IP translation type (option: SCTP). Valid values: `SCTP`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Endip      string  `pulumi:"endip"`
+	MapStartip string  `pulumi:"mapStartip"`
+	Startip    string  `pulumi:"startip"`
+	Transid    *int    `pulumi:"transid"`
+	Type       *string `pulumi:"type"`
+	Vdomparam  *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallIpTranslation resource.
 type FirewallIpTranslationArgs struct {
-	// Final IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-	Endip pulumi.StringInput
-	// Address to be used as the starting point for translation in the range (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
+	Endip      pulumi.StringInput
 	MapStartip pulumi.StringInput
-	// First IPv4 address (inclusive) in the range of the addresses to be translated (format xxx.xxx.xxx.xxx, default: 0.0.0.0).
-	Startip pulumi.StringInput
-	// IP translation ID.
-	Transid pulumi.IntPtrInput
-	// IP translation type (option: SCTP). Valid values: `SCTP`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Startip    pulumi.StringInput
+	Transid    pulumi.IntPtrInput
+	Type       pulumi.StringPtrInput
+	Vdomparam  pulumi.StringPtrInput
 }
 
 func (FirewallIpTranslationArgs) ElementType() reflect.Type {
@@ -201,7 +127,7 @@ func (i *FirewallIpTranslation) ToFirewallIpTranslationOutputWithContext(ctx con
 // FirewallIpTranslationArrayInput is an input type that accepts FirewallIpTranslationArray and FirewallIpTranslationArrayOutput values.
 // You can construct a concrete instance of `FirewallIpTranslationArrayInput` via:
 //
-//          FirewallIpTranslationArray{ FirewallIpTranslationArgs{...} }
+//	FirewallIpTranslationArray{ FirewallIpTranslationArgs{...} }
 type FirewallIpTranslationArrayInput interface {
 	pulumi.Input
 
@@ -226,7 +152,7 @@ func (i FirewallIpTranslationArray) ToFirewallIpTranslationArrayOutputWithContex
 // FirewallIpTranslationMapInput is an input type that accepts FirewallIpTranslationMap and FirewallIpTranslationMapOutput values.
 // You can construct a concrete instance of `FirewallIpTranslationMapInput` via:
 //
-//          FirewallIpTranslationMap{ "key": FirewallIpTranslationArgs{...} }
+//	FirewallIpTranslationMap{ "key": FirewallIpTranslationArgs{...} }
 type FirewallIpTranslationMapInput interface {
 	pulumi.Input
 
@@ -260,6 +186,30 @@ func (o FirewallIpTranslationOutput) ToFirewallIpTranslationOutput() FirewallIpT
 
 func (o FirewallIpTranslationOutput) ToFirewallIpTranslationOutputWithContext(ctx context.Context) FirewallIpTranslationOutput {
 	return o
+}
+
+func (o FirewallIpTranslationOutput) Endip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpTranslation) pulumi.StringOutput { return v.Endip }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpTranslationOutput) MapStartip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpTranslation) pulumi.StringOutput { return v.MapStartip }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpTranslationOutput) Startip() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpTranslation) pulumi.StringOutput { return v.Startip }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpTranslationOutput) Transid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallIpTranslation) pulumi.IntOutput { return v.Transid }).(pulumi.IntOutput)
+}
+
+func (o FirewallIpTranslationOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIpTranslation) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o FirewallIpTranslationOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallIpTranslation) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallIpTranslationArrayOutput struct{ *pulumi.OutputState }

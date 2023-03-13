@@ -10,55 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch logging (logs are transferred to and inserted into FortiGate event log).
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchControllerSwitchLog(ctx, "trname", &fortios.SwitchControllerSwitchLogArgs{
-// 			Severity: pulumi.String("critical"),
-// 			Status:   pulumi.String("enable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchController SwitchLog can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSwitchLog:SwitchControllerSwitchLog labelname SwitchControllerSwitchLog
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerSwitchLog:SwitchControllerSwitchLog labelname SwitchControllerSwitchLog
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerSwitchLog struct {
 	pulumi.CustomResourceState
 
-	// Severity of FortiSwitch logs that are added to the FortiGate event log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity pulumi.StringOutput `pulumi:"severity"`
-	// Enable/disable adding FortiSwitch logs to FortiGate event log. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Severity  pulumi.StringOutput    `pulumi:"severity"`
+	Status    pulumi.StringOutput    `pulumi:"status"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -92,20 +48,14 @@ func GetSwitchControllerSwitchLog(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerSwitchLog resources.
 type switchControllerSwitchLogState struct {
-	// Severity of FortiSwitch logs that are added to the FortiGate event log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity *string `pulumi:"severity"`
-	// Enable/disable adding FortiSwitch logs to FortiGate event log. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Severity  *string `pulumi:"severity"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SwitchControllerSwitchLogState struct {
-	// Severity of FortiSwitch logs that are added to the FortiGate event log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity pulumi.StringPtrInput
-	// Enable/disable adding FortiSwitch logs to FortiGate event log. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Severity  pulumi.StringPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -114,21 +64,15 @@ func (SwitchControllerSwitchLogState) ElementType() reflect.Type {
 }
 
 type switchControllerSwitchLogArgs struct {
-	// Severity of FortiSwitch logs that are added to the FortiGate event log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity *string `pulumi:"severity"`
-	// Enable/disable adding FortiSwitch logs to FortiGate event log. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Severity  *string `pulumi:"severity"`
+	Status    *string `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerSwitchLog resource.
 type SwitchControllerSwitchLogArgs struct {
-	// Severity of FortiSwitch logs that are added to the FortiGate event log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
-	Severity pulumi.StringPtrInput
-	// Enable/disable adding FortiSwitch logs to FortiGate event log. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Severity  pulumi.StringPtrInput
+	Status    pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -158,7 +102,7 @@ func (i *SwitchControllerSwitchLog) ToSwitchControllerSwitchLogOutputWithContext
 // SwitchControllerSwitchLogArrayInput is an input type that accepts SwitchControllerSwitchLogArray and SwitchControllerSwitchLogArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSwitchLogArrayInput` via:
 //
-//          SwitchControllerSwitchLogArray{ SwitchControllerSwitchLogArgs{...} }
+//	SwitchControllerSwitchLogArray{ SwitchControllerSwitchLogArgs{...} }
 type SwitchControllerSwitchLogArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +127,7 @@ func (i SwitchControllerSwitchLogArray) ToSwitchControllerSwitchLogArrayOutputWi
 // SwitchControllerSwitchLogMapInput is an input type that accepts SwitchControllerSwitchLogMap and SwitchControllerSwitchLogMapOutput values.
 // You can construct a concrete instance of `SwitchControllerSwitchLogMapInput` via:
 //
-//          SwitchControllerSwitchLogMap{ "key": SwitchControllerSwitchLogArgs{...} }
+//	SwitchControllerSwitchLogMap{ "key": SwitchControllerSwitchLogArgs{...} }
 type SwitchControllerSwitchLogMapInput interface {
 	pulumi.Input
 
@@ -217,6 +161,18 @@ func (o SwitchControllerSwitchLogOutput) ToSwitchControllerSwitchLogOutput() Swi
 
 func (o SwitchControllerSwitchLogOutput) ToSwitchControllerSwitchLogOutputWithContext(ctx context.Context) SwitchControllerSwitchLogOutput {
 	return o
+}
+
+func (o SwitchControllerSwitchLogOutput) Severity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchLog) pulumi.StringOutput { return v.Severity }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSwitchLogOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchLog) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSwitchLogOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchLog) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerSwitchLogArrayOutput struct{ *pulumi.OutputState }

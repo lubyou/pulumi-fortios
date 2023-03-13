@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure IPv4 IP address pools of FortiOS.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.FirewallIppool`, we recommend that you use the new resource.
- *
- * ## Example Usage
- * ### Overload Ippool
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const s1 = new fortios.FirewallObjectIPPool("s1", {
- *     arpReply: "enable",
- *     comments: "fdsaf",
- *     endip: "22.0.0.0",
- *     startip: "11.0.0.0",
- *     type: "overload",
- * });
- * ```
- * ### One-To-One Ippool
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const s2 = new fortios.FirewallObjectIPPool("s2", {
- *     arpReply: "enable",
- *     comments: "fdsaf",
- *     endip: "222.0.0.0",
- *     startip: "121.0.0.0",
- *     type: "one-to-one",
- * });
- * ```
- */
 export class FirewallObjectIPPool extends pulumi.CustomResource {
     /**
      * Get an existing FirewallObjectIPPool resource's state with the given name, ID, and optional extra
@@ -65,29 +32,11 @@ export class FirewallObjectIPPool extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallObjectIPPool.__pulumiType;
     }
 
-    /**
-     * Enable/disable replying to ARP requests when an IP Pool is added to a policy.
-     */
     public readonly arpReply!: pulumi.Output<string>;
-    /**
-     * Comment.
-     */
     public readonly comments!: pulumi.Output<string | undefined>;
-    /**
-     * Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-     */
     public readonly endip!: pulumi.Output<string>;
-    /**
-     * IP pool name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-     */
     public readonly startip!: pulumi.Output<string>;
-    /**
-     * IP pool type(Support overload and one-to-one).
-     */
     public readonly type!: pulumi.Output<string>;
 
     /**
@@ -136,29 +85,11 @@ export class FirewallObjectIPPool extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallObjectIPPool resources.
  */
 export interface FirewallObjectIPPoolState {
-    /**
-     * Enable/disable replying to ARP requests when an IP Pool is added to a policy.
-     */
     arpReply?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-     */
     endip?: pulumi.Input<string>;
-    /**
-     * IP pool name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-     */
     startip?: pulumi.Input<string>;
-    /**
-     * IP pool type(Support overload and one-to-one).
-     */
     type?: pulumi.Input<string>;
 }
 
@@ -166,28 +97,10 @@ export interface FirewallObjectIPPoolState {
  * The set of arguments for constructing a FirewallObjectIPPool resource.
  */
 export interface FirewallObjectIPPoolArgs {
-    /**
-     * Enable/disable replying to ARP requests when an IP Pool is added to a policy.
-     */
     arpReply?: pulumi.Input<string>;
-    /**
-     * Comment.
-     */
     comments?: pulumi.Input<string>;
-    /**
-     * Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-     */
     endip: pulumi.Input<string>;
-    /**
-     * IP pool name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx).
-     */
     startip: pulumi.Input<string>;
-    /**
-     * IP pool type(Support overload and one-to-one).
-     */
     type: pulumi.Input<string>;
 }

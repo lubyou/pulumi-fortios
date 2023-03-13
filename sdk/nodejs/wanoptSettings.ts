@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure WAN optimization settings.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WanoptSettings("trname", {
- *     autoDetectAlgorithm: "simple",
- *     hostId: "default-id",
- *     tunnelSslAlgorithm: "high",
- * });
- * ```
- *
- * ## Import
- *
- * Wanopt Settings can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wanoptSettings:WanoptSettings labelname WanoptSettings
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wanoptSettings:WanoptSettings labelname WanoptSettings
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WanoptSettings extends pulumi.CustomResource {
     /**
      * Get an existing WanoptSettings resource's state with the given name, ID, and optional extra
@@ -64,21 +32,10 @@ export class WanoptSettings extends pulumi.CustomResource {
         return obj['__pulumiType'] === WanoptSettings.__pulumiType;
     }
 
-    /**
-     * Auto detection algorithms used in tunnel negotiations. Valid values: `simple`, `diff-req-resp`.
-     */
     public readonly autoDetectAlgorithm!: pulumi.Output<string>;
-    /**
-     * Local host ID (must also be entered in the remote FortiGate's peer list).
-     */
     public readonly hostId!: pulumi.Output<string>;
-    /**
-     * Relative strength of encryption algorithms accepted during tunnel negotiation. Valid values: `high`, `medium`, `low`.
-     */
+    public readonly tunnelOptimization!: pulumi.Output<string>;
     public readonly tunnelSslAlgorithm!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -96,6 +53,7 @@ export class WanoptSettings extends pulumi.CustomResource {
             const state = argsOrState as WanoptSettingsState | undefined;
             resourceInputs["autoDetectAlgorithm"] = state ? state.autoDetectAlgorithm : undefined;
             resourceInputs["hostId"] = state ? state.hostId : undefined;
+            resourceInputs["tunnelOptimization"] = state ? state.tunnelOptimization : undefined;
             resourceInputs["tunnelSslAlgorithm"] = state ? state.tunnelSslAlgorithm : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -105,6 +63,7 @@ export class WanoptSettings extends pulumi.CustomResource {
             }
             resourceInputs["autoDetectAlgorithm"] = args ? args.autoDetectAlgorithm : undefined;
             resourceInputs["hostId"] = args ? args.hostId : undefined;
+            resourceInputs["tunnelOptimization"] = args ? args.tunnelOptimization : undefined;
             resourceInputs["tunnelSslAlgorithm"] = args ? args.tunnelSslAlgorithm : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -117,21 +76,10 @@ export class WanoptSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WanoptSettings resources.
  */
 export interface WanoptSettingsState {
-    /**
-     * Auto detection algorithms used in tunnel negotiations. Valid values: `simple`, `diff-req-resp`.
-     */
     autoDetectAlgorithm?: pulumi.Input<string>;
-    /**
-     * Local host ID (must also be entered in the remote FortiGate's peer list).
-     */
     hostId?: pulumi.Input<string>;
-    /**
-     * Relative strength of encryption algorithms accepted during tunnel negotiation. Valid values: `high`, `medium`, `low`.
-     */
+    tunnelOptimization?: pulumi.Input<string>;
     tunnelSslAlgorithm?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -139,20 +87,9 @@ export interface WanoptSettingsState {
  * The set of arguments for constructing a WanoptSettings resource.
  */
 export interface WanoptSettingsArgs {
-    /**
-     * Auto detection algorithms used in tunnel negotiations. Valid values: `simple`, `diff-req-resp`.
-     */
     autoDetectAlgorithm?: pulumi.Input<string>;
-    /**
-     * Local host ID (must also be entered in the remote FortiGate's peer list).
-     */
     hostId: pulumi.Input<string>;
-    /**
-     * Relative strength of encryption algorithms accepted during tunnel negotiation. Valid values: `high`, `medium`, `low`.
-     */
+    tunnelOptimization?: pulumi.Input<string>;
     tunnelSslAlgorithm?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

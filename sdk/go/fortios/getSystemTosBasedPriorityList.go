@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemTosBasedPriority`.
 func GetSystemTosBasedPriorityList(ctx *pulumi.Context, args *GetSystemTosBasedPriorityListArgs, opts ...pulumi.InvokeOption) (*GetSystemTosBasedPriorityListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemTosBasedPriorityListResult
@@ -23,16 +22,14 @@ func GetSystemTosBasedPriorityList(ctx *pulumi.Context, args *GetSystemTosBasedP
 
 // A collection of arguments for invoking GetSystemTosBasedPriorityList.
 type GetSystemTosBasedPriorityListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemTosBasedPriorityList.
 type GetSystemTosBasedPriorityListResult struct {
-	Filter *string `pulumi:"filter"`
-	// A list of the `SystemTosBasedPriority`.
-	Fosidlists []int `pulumi:"fosidlists"`
+	Filter     *string `pulumi:"filter"`
+	Fosidlists []int   `pulumi:"fosidlists"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -53,8 +50,7 @@ func GetSystemTosBasedPriorityListOutput(ctx *pulumi.Context, args GetSystemTosB
 
 // A collection of arguments for invoking GetSystemTosBasedPriorityList.
 type GetSystemTosBasedPriorityListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -81,7 +77,6 @@ func (o GetSystemTosBasedPriorityListResultOutput) Filter() pulumi.StringPtrOutp
 	return o.ApplyT(func(v GetSystemTosBasedPriorityListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
 }
 
-// A list of the `SystemTosBasedPriority`.
 func (o GetSystemTosBasedPriorityListResultOutput) Fosidlists() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v GetSystemTosBasedPriorityListResult) []int { return v.Fosidlists }).(pulumi.IntArrayOutput)
 }

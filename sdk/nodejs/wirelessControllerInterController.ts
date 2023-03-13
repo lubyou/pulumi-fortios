@@ -2,43 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure inter wireless controller operation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.WirelessControllerInterController("trname", {
- *     fastFailoverMax: 10,
- *     fastFailoverWait: 10,
- *     interControllerKey: "ENC XXXX",
- *     interControllerMode: "disable",
- *     interControllerPri: "primary",
- * });
- * ```
- *
- * ## Import
- *
- * WirelessController InterController can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerInterController:WirelessControllerInterController labelname WirelessControllerInterController
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerInterController:WirelessControllerInterController labelname WirelessControllerInterController
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerInterController extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerInterController resource's state with the given name, ID, and optional extra
@@ -67,37 +34,14 @@ export class WirelessControllerInterController extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerInterController.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Maximum number of retransmissions for fast failover HA messages between peer wireless controllers (3 - 64, default = 10).
-     */
     public readonly fastFailoverMax!: pulumi.Output<number>;
-    /**
-     * Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
-     */
     public readonly fastFailoverWait!: pulumi.Output<number>;
-    /**
-     * Secret key for inter-controller communications.
-     */
     public readonly interControllerKey!: pulumi.Output<string | undefined>;
-    /**
-     * Configure inter-controller mode (disable, l2-roaming, 1+1, default = disable). Valid values: `disable`, `l2-roaming`, `1+1`.
-     */
     public readonly interControllerMode!: pulumi.Output<string>;
-    /**
-     * Fast failover peer wireless controller list. The structure of `interControllerPeer` block is documented below.
-     */
     public readonly interControllerPeers!: pulumi.Output<outputs.WirelessControllerInterControllerInterControllerPeer[] | undefined>;
-    /**
-     * Configure inter-controller's priority (primary or secondary, default = primary). Valid values: `primary`, `secondary`.
-     */
     public readonly interControllerPri!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    public readonly l3Roaming!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -120,19 +64,23 @@ export class WirelessControllerInterController extends pulumi.CustomResource {
             resourceInputs["interControllerMode"] = state ? state.interControllerMode : undefined;
             resourceInputs["interControllerPeers"] = state ? state.interControllerPeers : undefined;
             resourceInputs["interControllerPri"] = state ? state.interControllerPri : undefined;
+            resourceInputs["l3Roaming"] = state ? state.l3Roaming : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerInterControllerArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fastFailoverMax"] = args ? args.fastFailoverMax : undefined;
             resourceInputs["fastFailoverWait"] = args ? args.fastFailoverWait : undefined;
-            resourceInputs["interControllerKey"] = args ? args.interControllerKey : undefined;
+            resourceInputs["interControllerKey"] = args?.interControllerKey ? pulumi.secret(args.interControllerKey) : undefined;
             resourceInputs["interControllerMode"] = args ? args.interControllerMode : undefined;
             resourceInputs["interControllerPeers"] = args ? args.interControllerPeers : undefined;
             resourceInputs["interControllerPri"] = args ? args.interControllerPri : undefined;
+            resourceInputs["l3Roaming"] = args ? args.l3Roaming : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["interControllerKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(WirelessControllerInterController.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -141,37 +89,14 @@ export class WirelessControllerInterController extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerInterController resources.
  */
 export interface WirelessControllerInterControllerState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Maximum number of retransmissions for fast failover HA messages between peer wireless controllers (3 - 64, default = 10).
-     */
     fastFailoverMax?: pulumi.Input<number>;
-    /**
-     * Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
-     */
     fastFailoverWait?: pulumi.Input<number>;
-    /**
-     * Secret key for inter-controller communications.
-     */
     interControllerKey?: pulumi.Input<string>;
-    /**
-     * Configure inter-controller mode (disable, l2-roaming, 1+1, default = disable). Valid values: `disable`, `l2-roaming`, `1+1`.
-     */
     interControllerMode?: pulumi.Input<string>;
-    /**
-     * Fast failover peer wireless controller list. The structure of `interControllerPeer` block is documented below.
-     */
     interControllerPeers?: pulumi.Input<pulumi.Input<inputs.WirelessControllerInterControllerInterControllerPeer>[]>;
-    /**
-     * Configure inter-controller's priority (primary or secondary, default = primary). Valid values: `primary`, `secondary`.
-     */
     interControllerPri?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    l3Roaming?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -179,36 +104,13 @@ export interface WirelessControllerInterControllerState {
  * The set of arguments for constructing a WirelessControllerInterController resource.
  */
 export interface WirelessControllerInterControllerArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Maximum number of retransmissions for fast failover HA messages between peer wireless controllers (3 - 64, default = 10).
-     */
     fastFailoverMax?: pulumi.Input<number>;
-    /**
-     * Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
-     */
     fastFailoverWait?: pulumi.Input<number>;
-    /**
-     * Secret key for inter-controller communications.
-     */
     interControllerKey?: pulumi.Input<string>;
-    /**
-     * Configure inter-controller mode (disable, l2-roaming, 1+1, default = disable). Valid values: `disable`, `l2-roaming`, `1+1`.
-     */
     interControllerMode?: pulumi.Input<string>;
-    /**
-     * Fast failover peer wireless controller list. The structure of `interControllerPeer` block is documented below.
-     */
     interControllerPeers?: pulumi.Input<pulumi.Input<inputs.WirelessControllerInterControllerInterControllerPeer>[]>;
-    /**
-     * Configure inter-controller's priority (primary or secondary, default = primary). Valid values: `primary`, `secondary`.
-     */
     interControllerPri?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    l3Roaming?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

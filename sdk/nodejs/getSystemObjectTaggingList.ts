@@ -4,16 +4,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a list of `fortios.SystemObjectTagging`.
- */
 export function getSystemObjectTaggingList(args?: GetSystemObjectTaggingListArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemObjectTaggingListResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fortios:index/getSystemObjectTaggingList:GetSystemObjectTaggingList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -25,9 +19,6 @@ export function getSystemObjectTaggingList(args?: GetSystemObjectTaggingListArgs
  */
 export interface GetSystemObjectTaggingListArgs {
     filter?: string;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: string;
 }
 
@@ -35,9 +26,6 @@ export interface GetSystemObjectTaggingListArgs {
  * A collection of values returned by GetSystemObjectTaggingList.
  */
 export interface GetSystemObjectTaggingListResult {
-    /**
-     * A list of the `fortios.SystemObjectTagging`.
-     */
     readonly categorylists: string[];
     readonly filter?: string;
     /**
@@ -46,9 +34,8 @@ export interface GetSystemObjectTaggingListResult {
     readonly id: string;
     readonly vdomparam?: string;
 }
-
 export function getSystemObjectTaggingListOutput(args?: GetSystemObjectTaggingListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemObjectTaggingListResult> {
-    return pulumi.output(args).apply(a => getSystemObjectTaggingList(a, opts))
+    return pulumi.output(args).apply((a: any) => getSystemObjectTaggingList(a, opts))
 }
 
 /**
@@ -56,8 +43,5 @@ export function getSystemObjectTaggingListOutput(args?: GetSystemObjectTaggingLi
  */
 export interface GetSystemObjectTaggingListOutputArgs {
     filter?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

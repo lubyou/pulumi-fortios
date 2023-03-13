@@ -10,31 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure names for shaping classes. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// Firewall TrafficClass can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallTrafficClass:FirewallTrafficClass labelname {{class_id}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallTrafficClass:FirewallTrafficClass labelname {{class_id}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallTrafficClass struct {
 	pulumi.CustomResourceState
 
-	// Class ID to be named.
-	ClassId pulumi.IntOutput `pulumi:"classId"`
-	// Define the name for this class-id.
-	ClassName pulumi.StringOutput `pulumi:"className"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	ClassId   pulumi.IntOutput       `pulumi:"classId"`
+	ClassName pulumi.StringOutput    `pulumi:"className"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -68,20 +48,14 @@ func GetFirewallTrafficClass(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallTrafficClass resources.
 type firewallTrafficClassState struct {
-	// Class ID to be named.
-	ClassId *int `pulumi:"classId"`
-	// Define the name for this class-id.
+	ClassId   *int    `pulumi:"classId"`
 	ClassName *string `pulumi:"className"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type FirewallTrafficClassState struct {
-	// Class ID to be named.
-	ClassId pulumi.IntPtrInput
-	// Define the name for this class-id.
+	ClassId   pulumi.IntPtrInput
 	ClassName pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -90,21 +64,15 @@ func (FirewallTrafficClassState) ElementType() reflect.Type {
 }
 
 type firewallTrafficClassArgs struct {
-	// Class ID to be named.
-	ClassId *int `pulumi:"classId"`
-	// Define the name for this class-id.
+	ClassId   *int    `pulumi:"classId"`
 	ClassName *string `pulumi:"className"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallTrafficClass resource.
 type FirewallTrafficClassArgs struct {
-	// Class ID to be named.
-	ClassId pulumi.IntPtrInput
-	// Define the name for this class-id.
+	ClassId   pulumi.IntPtrInput
 	ClassName pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -134,7 +102,7 @@ func (i *FirewallTrafficClass) ToFirewallTrafficClassOutputWithContext(ctx conte
 // FirewallTrafficClassArrayInput is an input type that accepts FirewallTrafficClassArray and FirewallTrafficClassArrayOutput values.
 // You can construct a concrete instance of `FirewallTrafficClassArrayInput` via:
 //
-//          FirewallTrafficClassArray{ FirewallTrafficClassArgs{...} }
+//	FirewallTrafficClassArray{ FirewallTrafficClassArgs{...} }
 type FirewallTrafficClassArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i FirewallTrafficClassArray) ToFirewallTrafficClassArrayOutputWithContext(
 // FirewallTrafficClassMapInput is an input type that accepts FirewallTrafficClassMap and FirewallTrafficClassMapOutput values.
 // You can construct a concrete instance of `FirewallTrafficClassMapInput` via:
 //
-//          FirewallTrafficClassMap{ "key": FirewallTrafficClassArgs{...} }
+//	FirewallTrafficClassMap{ "key": FirewallTrafficClassArgs{...} }
 type FirewallTrafficClassMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o FirewallTrafficClassOutput) ToFirewallTrafficClassOutput() FirewallTraff
 
 func (o FirewallTrafficClassOutput) ToFirewallTrafficClassOutputWithContext(ctx context.Context) FirewallTrafficClassOutput {
 	return o
+}
+
+func (o FirewallTrafficClassOutput) ClassId() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallTrafficClass) pulumi.IntOutput { return v.ClassId }).(pulumi.IntOutput)
+}
+
+func (o FirewallTrafficClassOutput) ClassName() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallTrafficClass) pulumi.StringOutput { return v.ClassName }).(pulumi.StringOutput)
+}
+
+func (o FirewallTrafficClassOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallTrafficClass) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallTrafficClassArrayOutput struct{ *pulumi.OutputState }

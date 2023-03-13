@@ -18,6 +18,7 @@ from .application_rule_settings import *
 from .authentication_rule import *
 from .authentication_scheme import *
 from .authentication_setting import *
+from .automation_setting import *
 from .certificate_ca import *
 from .certificate_crl import *
 from .certificate_local import *
@@ -25,9 +26,12 @@ from .certificate_remote import *
 from .cifs_domain_controller import *
 from .cifs_profile import *
 from .credential_store_domain_controller import *
+from .dlp_data_type import *
+from .dlp_dictionary import *
 from .dlp_filepattern import *
 from .dlp_fp_doc_source import *
 from .dlp_fp_sensitivity import *
+from .dlp_profile import *
 from .dlp_sensitivity import *
 from .dlp_sensor import *
 from .dlp_settings import *
@@ -55,6 +59,11 @@ from .extender_controller_dataplan import *
 from .extender_controller_extender import *
 from .extender_controller_extender1 import *
 from .extender_controller_extender_profile import *
+from .extension_controller_dataplan import *
+from .extension_controller_extender import *
+from .extension_controller_extender_profile import *
+from .extension_controller_fortigate import *
+from .extension_controller_fortigate_profile import *
 from .file_filter_profile import *
 from .firewall_access_proxy import *
 from .firewall_access_proxy6 import *
@@ -76,6 +85,7 @@ from .firewall_decrypted_traffic_mirror import *
 from .firewall_dnstranslation import *
 from .firewall_dos_policy import *
 from .firewall_dos_policy6 import *
+from .firewall_global import *
 from .firewall_identity_based_route import *
 from .firewall_interface_policy import *
 from .firewall_interface_policy6 import *
@@ -107,6 +117,7 @@ from .firewall_multicast_address import *
 from .firewall_multicast_address6 import *
 from .firewall_multicast_policy import *
 from .firewall_multicast_policy6 import *
+from .firewall_network_service_dynamic import *
 from .firewall_object_address import *
 from .firewall_object_address_group import *
 from .firewall_object_ip_pool import *
@@ -421,6 +432,7 @@ from .get_user_saml import *
 from .get_user_saml_list import *
 from .icap_profile import *
 from .icap_server import *
+from .icap_server_group import *
 from .ips_custom import *
 from .ips_decoder import *
 from .ips_global import *
@@ -636,6 +648,7 @@ from .system_fm import *
 from .system_fortiai import *
 from .system_fortiguard import *
 from .system_fortimanager import *
+from .system_fortindr import *
 from .system_fortisandbox import *
 from .system_fsso_polling import *
 from .system_ftm_push import *
@@ -714,6 +727,7 @@ from .system_sflow import *
 from .system_sit_tunnel import *
 from .system_sms_server import *
 from .system_snmp_community import *
+from .system_snmp_mib_view import *
 from .system_snmp_sysinfo import *
 from .system_snmp_user import *
 from .system_speed_test_schedule import *
@@ -994,6 +1008,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/automationSetting",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/automationSetting:AutomationSetting": "AutomationSetting"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/certificateCa",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -1050,6 +1072,22 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/dlpDataType",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/dlpDataType:DlpDataType": "DlpDataType"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/dlpDictionary",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/dlpDictionary:DlpDictionary": "DlpDictionary"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/dlpFilepattern",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -1070,6 +1108,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/dlpFpSensitivity:DlpFpSensitivity": "DlpFpSensitivity"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/dlpProfile",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/dlpProfile:DlpProfile": "DlpProfile"
   }
  },
  {
@@ -1290,6 +1336,46 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/extensionControllerDataplan",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/extensionControllerDataplan:ExtensionControllerDataplan": "ExtensionControllerDataplan"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/extensionControllerExtender",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/extensionControllerExtender:ExtensionControllerExtender": "ExtensionControllerExtender"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/extensionControllerExtenderProfile",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/extensionControllerExtenderProfile:ExtensionControllerExtenderProfile": "ExtensionControllerExtenderProfile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/extensionControllerFortigate",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/extensionControllerFortigate:ExtensionControllerFortigate": "ExtensionControllerFortigate"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/extensionControllerFortigateProfile",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/extensionControllerFortigateProfile:ExtensionControllerFortigateProfile": "ExtensionControllerFortigateProfile"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/fileFilterProfile",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -1454,6 +1540,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/firewallDosPolicy6:FirewallDosPolicy6": "FirewallDosPolicy6"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/firewallGlobal",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/firewallGlobal:FirewallGlobal": "FirewallGlobal"
   }
  },
  {
@@ -1702,6 +1796,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/firewallMulticastPolicy6:FirewallMulticastPolicy6": "FirewallMulticastPolicy6"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/firewallNetworkServiceDynamic",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/firewallNetworkServiceDynamic:FirewallNetworkServiceDynamic": "FirewallNetworkServiceDynamic"
   }
  },
  {
@@ -2366,6 +2468,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/icapServer:IcapServer": "IcapServer"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/icapServerGroup",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/icapServerGroup:IcapServerGroup": "IcapServerGroup"
   }
  },
  {
@@ -4082,6 +4192,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/systemFortindr",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemFortindr:SystemFortindr": "SystemFortindr"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/systemFortisandbox",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -4702,6 +4820,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/systemSnmpCommunity:SystemSnmpCommunity": "SystemSnmpCommunity"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/systemSnmpMibView",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemSnmpMibView:SystemSnmpMibView": "SystemSnmpMibView"
   }
  },
  {

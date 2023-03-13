@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemAutoScript`.
 func GetSystemAutoScriptList(ctx *pulumi.Context, args *GetSystemAutoScriptListArgs, opts ...pulumi.InvokeOption) (*GetSystemAutoScriptListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemAutoScriptListResult
@@ -23,8 +22,7 @@ func GetSystemAutoScriptList(ctx *pulumi.Context, args *GetSystemAutoScriptListA
 
 // A collection of arguments for invoking GetSystemAutoScriptList.
 type GetSystemAutoScriptListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetSystemAutoScriptListArgs struct {
 type GetSystemAutoScriptListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `SystemAutoScript`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetSystemAutoScriptListOutput(ctx *pulumi.Context, args GetSystemAutoScript
 
 // A collection of arguments for invoking GetSystemAutoScriptList.
 type GetSystemAutoScriptListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetSystemAutoScriptListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSystemAutoScriptListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `SystemAutoScript`.
 func (o GetSystemAutoScriptListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSystemAutoScriptListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

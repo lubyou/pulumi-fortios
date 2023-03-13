@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on an fortios router prefixlist6
 func LookupRouterPrefixList6(ctx *pulumi.Context, args *LookupRouterPrefixList6Args, opts ...pulumi.InvokeOption) (*LookupRouterPrefixList6Result, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterPrefixList6Result
@@ -23,21 +22,16 @@ func LookupRouterPrefixList6(ctx *pulumi.Context, args *LookupRouterPrefixList6A
 
 // A collection of arguments for invoking GetRouterPrefixList6.
 type LookupRouterPrefixList6Args struct {
-	// Specify the name of the desired router prefixlist6.
-	Name string `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetRouterPrefixList6.
 type LookupRouterPrefixList6Result struct {
-	// Comment.
 	Comments string `pulumi:"comments"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Name.
-	Name string `pulumi:"name"`
-	// IPv6 prefix list rule. The structure of `rule` block is documented below.
+	Id        string                     `pulumi:"id"`
+	Name      string                     `pulumi:"name"`
 	Rules     []GetRouterPrefixList6Rule `pulumi:"rules"`
 	Vdomparam *string                    `pulumi:"vdomparam"`
 }
@@ -57,9 +51,7 @@ func LookupRouterPrefixList6Output(ctx *pulumi.Context, args LookupRouterPrefixL
 
 // A collection of arguments for invoking GetRouterPrefixList6.
 type LookupRouterPrefixList6OutputArgs struct {
-	// Specify the name of the desired router prefixlist6.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Name      pulumi.StringInput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -82,7 +74,6 @@ func (o LookupRouterPrefixList6ResultOutput) ToLookupRouterPrefixList6ResultOutp
 	return o
 }
 
-// Comment.
 func (o LookupRouterPrefixList6ResultOutput) Comments() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterPrefixList6Result) string { return v.Comments }).(pulumi.StringOutput)
 }
@@ -92,12 +83,10 @@ func (o LookupRouterPrefixList6ResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterPrefixList6Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Name.
 func (o LookupRouterPrefixList6ResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterPrefixList6Result) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// IPv6 prefix list rule. The structure of `rule` block is documented below.
 func (o LookupRouterPrefixList6ResultOutput) Rules() GetRouterPrefixList6RuleArrayOutput {
 	return o.ApplyT(func(v LookupRouterPrefixList6Result) []GetRouterPrefixList6Rule { return v.Rules }).(GetRouterPrefixList6RuleArrayOutput)
 }

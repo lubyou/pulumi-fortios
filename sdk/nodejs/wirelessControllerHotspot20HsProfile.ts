@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure hotspot profile.
- *
- * ## Import
- *
- * WirelessControllerHotspot20 HsProfile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20HsProfile:WirelessControllerHotspot20HsProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerHotspot20HsProfile:WirelessControllerHotspot20HsProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerHotspot20HsProfile extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerHotspot20HsProfile resource's state with the given name, ID, and optional extra
@@ -52,165 +34,45 @@ export class WirelessControllerHotspot20HsProfile extends pulumi.CustomResource 
         return obj['__pulumiType'] === WirelessControllerHotspot20HsProfile.__pulumiType;
     }
 
-    /**
-     * Enable/disable additional step required for access (ASRA). Valid values: `enable`, `disable`.
-     */
     public readonly accessNetworkAsra!: pulumi.Output<string>;
-    /**
-     * Enable/disable emergency services reachable (ESR). Valid values: `enable`, `disable`.
-     */
     public readonly accessNetworkEsr!: pulumi.Output<string>;
-    /**
-     * Enable/disable connectivity to the Internet. Valid values: `enable`, `disable`.
-     */
     public readonly accessNetworkInternet!: pulumi.Output<string>;
-    /**
-     * Access network type. Valid values: `private-network`, `private-network-with-guest-access`, `chargeable-public-network`, `free-public-network`, `personal-device-network`, `emergency-services-only-network`, `test-or-experimental`, `wildcard`.
-     */
     public readonly accessNetworkType!: pulumi.Output<string>;
-    /**
-     * Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
-     */
     public readonly accessNetworkUesa!: pulumi.Output<string>;
-    /**
-     * Advice of charge.
-     */
     public readonly adviceOfCharge!: pulumi.Output<string>;
-    /**
-     * ANQP Domain ID (0-65535).
-     */
     public readonly anqpDomainId!: pulumi.Output<number>;
-    /**
-     * Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
-     */
     public readonly bssTransition!: pulumi.Output<string>;
-    /**
-     * Connection capability name.
-     */
     public readonly connCap!: pulumi.Output<string>;
-    /**
-     * Deauthentication request timeout (in seconds).
-     */
     public readonly deauthRequestTimeout!: pulumi.Output<number>;
-    /**
-     * Enable/disable downstream group-addressed forwarding (DGAF). Valid values: `enable`, `disable`.
-     */
     public readonly dgaf!: pulumi.Output<string>;
-    /**
-     * Domain name.
-     */
     public readonly domainName!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
-     */
     public readonly gasComebackDelay!: pulumi.Output<number>;
-    /**
-     * GAS fragmentation limit (512 - 4096, default = 1024).
-     */
     public readonly gasFragmentationLimit!: pulumi.Output<number>;
-    /**
-     * Homogeneous extended service set identifier (HESSID).
-     */
     public readonly hessid!: pulumi.Output<string>;
-    /**
-     * IP address type name.
-     */
     public readonly ipAddrType!: pulumi.Output<string>;
-    /**
-     * Enable/disable Layer 2 traffic inspection and filtering. Valid values: `enable`, `disable`.
-     */
     public readonly l2tif!: pulumi.Output<string>;
-    /**
-     * 3GPP PLMN name.
-     */
     public readonly n3gppPlmn!: pulumi.Output<string>;
-    /**
-     * NAI realm list name.
-     */
     public readonly naiRealm!: pulumi.Output<string>;
-    /**
-     * OSU provider name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Network authentication name.
-     */
     public readonly networkAuth!: pulumi.Output<string>;
-    /**
-     * Operator friendly name.
-     */
     public readonly operFriendlyName!: pulumi.Output<string>;
-    /**
-     * Operator icon.
-     */
     public readonly operIcon!: pulumi.Output<string>;
-    /**
-     * OSU Provider NAI.
-     */
     public readonly osuProviderNai!: pulumi.Output<string>;
-    /**
-     * Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
-     */
     public readonly osuProviders!: pulumi.Output<outputs.WirelessControllerHotspot20HsProfileOsuProvider[] | undefined>;
-    /**
-     * Online sign up (OSU) SSID.
-     */
     public readonly osuSsid!: pulumi.Output<string>;
-    /**
-     * Enable/disable Pre-Association Message Exchange BSSID Independent (PAME-BI). Valid values: `disable`, `enable`.
-     */
     public readonly pameBi!: pulumi.Output<string>;
-    /**
-     * Enable/disable Proxy ARP. Valid values: `enable`, `disable`.
-     */
     public readonly proxyArp!: pulumi.Output<string>;
-    /**
-     * QoS MAP set ID.
-     */
     public readonly qosMap!: pulumi.Output<string>;
-    /**
-     * Hotspot 2.0 Release number (1, 2, 3, default = 2).
-     */
     public readonly release!: pulumi.Output<number>;
-    /**
-     * Roaming consortium list name.
-     */
     public readonly roamingConsortium!: pulumi.Output<string>;
-    /**
-     * Terms and conditions.
-     */
     public readonly termsAndConditions!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
-     */
     public readonly venueGroup!: pulumi.Output<string>;
-    /**
-     * Venue name.
-     */
     public readonly venueName!: pulumi.Output<string>;
-    /**
-     * Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
-     */
     public readonly venueType!: pulumi.Output<string>;
-    /**
-     * Venue name.
-     */
     public readonly venueUrl!: pulumi.Output<string>;
-    /**
-     * WAN metric name.
-     */
     public readonly wanMetrics!: pulumi.Output<string>;
-    /**
-     * Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
-     */
     public readonly wnmSleepMode!: pulumi.Output<string>;
 
     /**
@@ -318,165 +180,45 @@ export class WirelessControllerHotspot20HsProfile extends pulumi.CustomResource 
  * Input properties used for looking up and filtering WirelessControllerHotspot20HsProfile resources.
  */
 export interface WirelessControllerHotspot20HsProfileState {
-    /**
-     * Enable/disable additional step required for access (ASRA). Valid values: `enable`, `disable`.
-     */
     accessNetworkAsra?: pulumi.Input<string>;
-    /**
-     * Enable/disable emergency services reachable (ESR). Valid values: `enable`, `disable`.
-     */
     accessNetworkEsr?: pulumi.Input<string>;
-    /**
-     * Enable/disable connectivity to the Internet. Valid values: `enable`, `disable`.
-     */
     accessNetworkInternet?: pulumi.Input<string>;
-    /**
-     * Access network type. Valid values: `private-network`, `private-network-with-guest-access`, `chargeable-public-network`, `free-public-network`, `personal-device-network`, `emergency-services-only-network`, `test-or-experimental`, `wildcard`.
-     */
     accessNetworkType?: pulumi.Input<string>;
-    /**
-     * Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
-     */
     accessNetworkUesa?: pulumi.Input<string>;
-    /**
-     * Advice of charge.
-     */
     adviceOfCharge?: pulumi.Input<string>;
-    /**
-     * ANQP Domain ID (0-65535).
-     */
     anqpDomainId?: pulumi.Input<number>;
-    /**
-     * Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
-     */
     bssTransition?: pulumi.Input<string>;
-    /**
-     * Connection capability name.
-     */
     connCap?: pulumi.Input<string>;
-    /**
-     * Deauthentication request timeout (in seconds).
-     */
     deauthRequestTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable downstream group-addressed forwarding (DGAF). Valid values: `enable`, `disable`.
-     */
     dgaf?: pulumi.Input<string>;
-    /**
-     * Domain name.
-     */
     domainName?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
-     */
     gasComebackDelay?: pulumi.Input<number>;
-    /**
-     * GAS fragmentation limit (512 - 4096, default = 1024).
-     */
     gasFragmentationLimit?: pulumi.Input<number>;
-    /**
-     * Homogeneous extended service set identifier (HESSID).
-     */
     hessid?: pulumi.Input<string>;
-    /**
-     * IP address type name.
-     */
     ipAddrType?: pulumi.Input<string>;
-    /**
-     * Enable/disable Layer 2 traffic inspection and filtering. Valid values: `enable`, `disable`.
-     */
     l2tif?: pulumi.Input<string>;
-    /**
-     * 3GPP PLMN name.
-     */
     n3gppPlmn?: pulumi.Input<string>;
-    /**
-     * NAI realm list name.
-     */
     naiRealm?: pulumi.Input<string>;
-    /**
-     * OSU provider name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Network authentication name.
-     */
     networkAuth?: pulumi.Input<string>;
-    /**
-     * Operator friendly name.
-     */
     operFriendlyName?: pulumi.Input<string>;
-    /**
-     * Operator icon.
-     */
     operIcon?: pulumi.Input<string>;
-    /**
-     * OSU Provider NAI.
-     */
     osuProviderNai?: pulumi.Input<string>;
-    /**
-     * Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
-     */
     osuProviders?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20HsProfileOsuProvider>[]>;
-    /**
-     * Online sign up (OSU) SSID.
-     */
     osuSsid?: pulumi.Input<string>;
-    /**
-     * Enable/disable Pre-Association Message Exchange BSSID Independent (PAME-BI). Valid values: `disable`, `enable`.
-     */
     pameBi?: pulumi.Input<string>;
-    /**
-     * Enable/disable Proxy ARP. Valid values: `enable`, `disable`.
-     */
     proxyArp?: pulumi.Input<string>;
-    /**
-     * QoS MAP set ID.
-     */
     qosMap?: pulumi.Input<string>;
-    /**
-     * Hotspot 2.0 Release number (1, 2, 3, default = 2).
-     */
     release?: pulumi.Input<number>;
-    /**
-     * Roaming consortium list name.
-     */
     roamingConsortium?: pulumi.Input<string>;
-    /**
-     * Terms and conditions.
-     */
     termsAndConditions?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
-     */
     venueGroup?: pulumi.Input<string>;
-    /**
-     * Venue name.
-     */
     venueName?: pulumi.Input<string>;
-    /**
-     * Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
-     */
     venueType?: pulumi.Input<string>;
-    /**
-     * Venue name.
-     */
     venueUrl?: pulumi.Input<string>;
-    /**
-     * WAN metric name.
-     */
     wanMetrics?: pulumi.Input<string>;
-    /**
-     * Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
-     */
     wnmSleepMode?: pulumi.Input<string>;
 }
 
@@ -484,164 +226,44 @@ export interface WirelessControllerHotspot20HsProfileState {
  * The set of arguments for constructing a WirelessControllerHotspot20HsProfile resource.
  */
 export interface WirelessControllerHotspot20HsProfileArgs {
-    /**
-     * Enable/disable additional step required for access (ASRA). Valid values: `enable`, `disable`.
-     */
     accessNetworkAsra?: pulumi.Input<string>;
-    /**
-     * Enable/disable emergency services reachable (ESR). Valid values: `enable`, `disable`.
-     */
     accessNetworkEsr?: pulumi.Input<string>;
-    /**
-     * Enable/disable connectivity to the Internet. Valid values: `enable`, `disable`.
-     */
     accessNetworkInternet?: pulumi.Input<string>;
-    /**
-     * Access network type. Valid values: `private-network`, `private-network-with-guest-access`, `chargeable-public-network`, `free-public-network`, `personal-device-network`, `emergency-services-only-network`, `test-or-experimental`, `wildcard`.
-     */
     accessNetworkType?: pulumi.Input<string>;
-    /**
-     * Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
-     */
     accessNetworkUesa?: pulumi.Input<string>;
-    /**
-     * Advice of charge.
-     */
     adviceOfCharge?: pulumi.Input<string>;
-    /**
-     * ANQP Domain ID (0-65535).
-     */
     anqpDomainId?: pulumi.Input<number>;
-    /**
-     * Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
-     */
     bssTransition?: pulumi.Input<string>;
-    /**
-     * Connection capability name.
-     */
     connCap?: pulumi.Input<string>;
-    /**
-     * Deauthentication request timeout (in seconds).
-     */
     deauthRequestTimeout?: pulumi.Input<number>;
-    /**
-     * Enable/disable downstream group-addressed forwarding (DGAF). Valid values: `enable`, `disable`.
-     */
     dgaf?: pulumi.Input<string>;
-    /**
-     * Domain name.
-     */
     domainName?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
-     */
     gasComebackDelay?: pulumi.Input<number>;
-    /**
-     * GAS fragmentation limit (512 - 4096, default = 1024).
-     */
     gasFragmentationLimit?: pulumi.Input<number>;
-    /**
-     * Homogeneous extended service set identifier (HESSID).
-     */
     hessid?: pulumi.Input<string>;
-    /**
-     * IP address type name.
-     */
     ipAddrType?: pulumi.Input<string>;
-    /**
-     * Enable/disable Layer 2 traffic inspection and filtering. Valid values: `enable`, `disable`.
-     */
     l2tif?: pulumi.Input<string>;
-    /**
-     * 3GPP PLMN name.
-     */
     n3gppPlmn?: pulumi.Input<string>;
-    /**
-     * NAI realm list name.
-     */
     naiRealm?: pulumi.Input<string>;
-    /**
-     * OSU provider name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Network authentication name.
-     */
     networkAuth?: pulumi.Input<string>;
-    /**
-     * Operator friendly name.
-     */
     operFriendlyName?: pulumi.Input<string>;
-    /**
-     * Operator icon.
-     */
     operIcon?: pulumi.Input<string>;
-    /**
-     * OSU Provider NAI.
-     */
     osuProviderNai?: pulumi.Input<string>;
-    /**
-     * Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
-     */
     osuProviders?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20HsProfileOsuProvider>[]>;
-    /**
-     * Online sign up (OSU) SSID.
-     */
     osuSsid?: pulumi.Input<string>;
-    /**
-     * Enable/disable Pre-Association Message Exchange BSSID Independent (PAME-BI). Valid values: `disable`, `enable`.
-     */
     pameBi?: pulumi.Input<string>;
-    /**
-     * Enable/disable Proxy ARP. Valid values: `enable`, `disable`.
-     */
     proxyArp?: pulumi.Input<string>;
-    /**
-     * QoS MAP set ID.
-     */
     qosMap?: pulumi.Input<string>;
-    /**
-     * Hotspot 2.0 Release number (1, 2, 3, default = 2).
-     */
     release?: pulumi.Input<number>;
-    /**
-     * Roaming consortium list name.
-     */
     roamingConsortium?: pulumi.Input<string>;
-    /**
-     * Terms and conditions.
-     */
     termsAndConditions?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
-     */
     venueGroup?: pulumi.Input<string>;
-    /**
-     * Venue name.
-     */
     venueName?: pulumi.Input<string>;
-    /**
-     * Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
-     */
     venueType?: pulumi.Input<string>;
-    /**
-     * Venue name.
-     */
     venueUrl?: pulumi.Input<string>;
-    /**
-     * WAN metric name.
-     */
     wanMetrics?: pulumi.Input<string>;
-    /**
-     * Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
-     */
     wnmSleepMode?: pulumi.Input<string>;
 }

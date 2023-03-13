@@ -10,67 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch QoS IP precedence/DSCP.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchControllerQosIpDscpMap(ctx, "trname", &fortios.SwitchControllerQosIpDscpMapArgs{
-// 			Description: pulumi.String("DEIW"),
-// 			Maps: SwitchControllerQosIpDscpMapMapArray{
-// 				&SwitchControllerQosIpDscpMapMapArgs{
-// 					CosQueue: pulumi.Int(3),
-// 					Diffserv: pulumi.String("CS0 CS1 AF11"),
-// 					Name:     pulumi.String("1"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchControllerQos IpDscpMap can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerQosIpDscpMap:SwitchControllerQosIpDscpMap labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerQosIpDscpMap:SwitchControllerQosIpDscpMap labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerQosIpDscpMap struct {
 	pulumi.CustomResourceState
 
-	// Description of the ip-dscp map name.
-	Description pulumi.StringOutput `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Maps between IP-DSCP value to COS queue. The structure of `map` block is documented below.
-	Maps SwitchControllerQosIpDscpMapMapArrayOutput `pulumi:"maps"`
-	// Dscp mapping entry name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Description         pulumi.StringOutput                            `pulumi:"description"`
+	DynamicSortSubtable pulumi.StringPtrOutput                         `pulumi:"dynamicSortSubtable"`
+	Maps                SwitchControllerQosIpDscpMapMapTypeArrayOutput `pulumi:"maps"`
+	Name                pulumi.StringOutput                            `pulumi:"name"`
+	Vdomparam           pulumi.StringPtrOutput                         `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerQosIpDscpMap registers a new resource with the given unique name, arguments, and options.
@@ -103,29 +50,19 @@ func GetSwitchControllerQosIpDscpMap(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerQosIpDscpMap resources.
 type switchControllerQosIpDscpMapState struct {
-	// Description of the ip-dscp map name.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Maps between IP-DSCP value to COS queue. The structure of `map` block is documented below.
-	Maps []SwitchControllerQosIpDscpMapMap `pulumi:"maps"`
-	// Dscp mapping entry name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Description         *string                               `pulumi:"description"`
+	DynamicSortSubtable *string                               `pulumi:"dynamicSortSubtable"`
+	Maps                []SwitchControllerQosIpDscpMapMapType `pulumi:"maps"`
+	Name                *string                               `pulumi:"name"`
+	Vdomparam           *string                               `pulumi:"vdomparam"`
 }
 
 type SwitchControllerQosIpDscpMapState struct {
-	// Description of the ip-dscp map name.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Maps between IP-DSCP value to COS queue. The structure of `map` block is documented below.
-	Maps SwitchControllerQosIpDscpMapMapArrayInput
-	// Dscp mapping entry name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Maps                SwitchControllerQosIpDscpMapMapTypeArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerQosIpDscpMapState) ElementType() reflect.Type {
@@ -133,30 +70,20 @@ func (SwitchControllerQosIpDscpMapState) ElementType() reflect.Type {
 }
 
 type switchControllerQosIpDscpMapArgs struct {
-	// Description of the ip-dscp map name.
-	Description *string `pulumi:"description"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Maps between IP-DSCP value to COS queue. The structure of `map` block is documented below.
-	Maps []SwitchControllerQosIpDscpMapMap `pulumi:"maps"`
-	// Dscp mapping entry name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Description         *string                               `pulumi:"description"`
+	DynamicSortSubtable *string                               `pulumi:"dynamicSortSubtable"`
+	Maps                []SwitchControllerQosIpDscpMapMapType `pulumi:"maps"`
+	Name                *string                               `pulumi:"name"`
+	Vdomparam           *string                               `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerQosIpDscpMap resource.
 type SwitchControllerQosIpDscpMapArgs struct {
-	// Description of the ip-dscp map name.
-	Description pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Maps between IP-DSCP value to COS queue. The structure of `map` block is documented below.
-	Maps SwitchControllerQosIpDscpMapMapArrayInput
-	// Dscp mapping entry name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Maps                SwitchControllerQosIpDscpMapMapTypeArrayInput
+	Name                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SwitchControllerQosIpDscpMapArgs) ElementType() reflect.Type {
@@ -185,7 +112,7 @@ func (i *SwitchControllerQosIpDscpMap) ToSwitchControllerQosIpDscpMapOutputWithC
 // SwitchControllerQosIpDscpMapArrayInput is an input type that accepts SwitchControllerQosIpDscpMapArray and SwitchControllerQosIpDscpMapArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerQosIpDscpMapArrayInput` via:
 //
-//          SwitchControllerQosIpDscpMapArray{ SwitchControllerQosIpDscpMapArgs{...} }
+//	SwitchControllerQosIpDscpMapArray{ SwitchControllerQosIpDscpMapArgs{...} }
 type SwitchControllerQosIpDscpMapArrayInput interface {
 	pulumi.Input
 
@@ -210,7 +137,7 @@ func (i SwitchControllerQosIpDscpMapArray) ToSwitchControllerQosIpDscpMapArrayOu
 // SwitchControllerQosIpDscpMapMapInput is an input type that accepts SwitchControllerQosIpDscpMapMap and SwitchControllerQosIpDscpMapMapOutput values.
 // You can construct a concrete instance of `SwitchControllerQosIpDscpMapMapInput` via:
 //
-//          SwitchControllerQosIpDscpMapMap{ "key": SwitchControllerQosIpDscpMapArgs{...} }
+//	SwitchControllerQosIpDscpMapMap{ "key": SwitchControllerQosIpDscpMapArgs{...} }
 type SwitchControllerQosIpDscpMapMapInput interface {
 	pulumi.Input
 
@@ -244,6 +171,26 @@ func (o SwitchControllerQosIpDscpMapOutput) ToSwitchControllerQosIpDscpMapOutput
 
 func (o SwitchControllerQosIpDscpMapOutput) ToSwitchControllerQosIpDscpMapOutputWithContext(ctx context.Context) SwitchControllerQosIpDscpMapOutput {
 	return o
+}
+
+func (o SwitchControllerQosIpDscpMapOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosIpDscpMap) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosIpDscpMapOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerQosIpDscpMap) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerQosIpDscpMapOutput) Maps() SwitchControllerQosIpDscpMapMapTypeArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerQosIpDscpMap) SwitchControllerQosIpDscpMapMapTypeArrayOutput { return v.Maps }).(SwitchControllerQosIpDscpMapMapTypeArrayOutput)
+}
+
+func (o SwitchControllerQosIpDscpMapOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerQosIpDscpMap) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerQosIpDscpMapOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerQosIpDscpMap) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SwitchControllerQosIpDscpMapArrayOutput struct{ *pulumi.OutputState }

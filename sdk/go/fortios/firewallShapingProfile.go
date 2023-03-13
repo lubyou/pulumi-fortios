@@ -7,78 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure shaping profiles.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFirewallShapingProfile(ctx, "trname", &fortios.FirewallShapingProfileArgs{
-// 			DefaultClassId: pulumi.Int(2),
-// 			ProfileName:    pulumi.String("shapingprofiles1"),
-// 			ShapingEntries: FirewallShapingProfileShapingEntryArray{
-// 				&FirewallShapingProfileShapingEntryArgs{
-// 					ClassId:                       pulumi.Int(2),
-// 					GuaranteedBandwidthPercentage: pulumi.Int(33),
-// 					Id:                            pulumi.Int(1),
-// 					MaximumBandwidthPercentage:    pulumi.Int(88),
-// 					Priority:                      pulumi.String("high"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Firewall ShapingProfile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallShapingProfile:FirewallShapingProfile labelname {{profile_name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallShapingProfile:FirewallShapingProfile labelname {{profile_name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallShapingProfile struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Default class ID to handle unclassified packets (including all local traffic).
-	DefaultClassId pulumi.IntOutput `pulumi:"defaultClassId"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Shaping profile name.
-	ProfileName pulumi.StringOutput `pulumi:"profileName"`
-	// Define shaping entries of this shaping profile. The structure of `shapingEntries` block is documented below.
-	ShapingEntries FirewallShapingProfileShapingEntryArrayOutput `pulumi:"shapingEntries"`
-	// Select shaping profile type: policing / queuing. Valid values: `policing`, `queuing`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput                        `pulumi:"comment"`
+	DefaultClassId      pulumi.IntOutput                              `pulumi:"defaultClassId"`
+	DynamicSortSubtable pulumi.StringPtrOutput                        `pulumi:"dynamicSortSubtable"`
+	ProfileName         pulumi.StringOutput                           `pulumi:"profileName"`
+	ShapingEntries      FirewallShapingProfileShapingEntryArrayOutput `pulumi:"shapingEntries"`
+	Type                pulumi.StringOutput                           `pulumi:"type"`
+	Vdomparam           pulumi.StringPtrOutput                        `pulumi:"vdomparam"`
 }
 
 // NewFirewallShapingProfile registers a new resource with the given unique name, arguments, and options.
@@ -117,37 +59,23 @@ func GetFirewallShapingProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallShapingProfile resources.
 type firewallShapingProfileState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Default class ID to handle unclassified packets (including all local traffic).
-	DefaultClassId *int `pulumi:"defaultClassId"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Shaping profile name.
-	ProfileName *string `pulumi:"profileName"`
-	// Define shaping entries of this shaping profile. The structure of `shapingEntries` block is documented below.
-	ShapingEntries []FirewallShapingProfileShapingEntry `pulumi:"shapingEntries"`
-	// Select shaping profile type: policing / queuing. Valid values: `policing`, `queuing`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                              `pulumi:"comment"`
+	DefaultClassId      *int                                 `pulumi:"defaultClassId"`
+	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
+	ProfileName         *string                              `pulumi:"profileName"`
+	ShapingEntries      []FirewallShapingProfileShapingEntry `pulumi:"shapingEntries"`
+	Type                *string                              `pulumi:"type"`
+	Vdomparam           *string                              `pulumi:"vdomparam"`
 }
 
 type FirewallShapingProfileState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Default class ID to handle unclassified packets (including all local traffic).
-	DefaultClassId pulumi.IntPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
+	DefaultClassId      pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Shaping profile name.
-	ProfileName pulumi.StringPtrInput
-	// Define shaping entries of this shaping profile. The structure of `shapingEntries` block is documented below.
-	ShapingEntries FirewallShapingProfileShapingEntryArrayInput
-	// Select shaping profile type: policing / queuing. Valid values: `policing`, `queuing`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ProfileName         pulumi.StringPtrInput
+	ShapingEntries      FirewallShapingProfileShapingEntryArrayInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallShapingProfileState) ElementType() reflect.Type {
@@ -155,38 +83,24 @@ func (FirewallShapingProfileState) ElementType() reflect.Type {
 }
 
 type firewallShapingProfileArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Default class ID to handle unclassified packets (including all local traffic).
-	DefaultClassId int `pulumi:"defaultClassId"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Shaping profile name.
-	ProfileName string `pulumi:"profileName"`
-	// Define shaping entries of this shaping profile. The structure of `shapingEntries` block is documented below.
-	ShapingEntries []FirewallShapingProfileShapingEntry `pulumi:"shapingEntries"`
-	// Select shaping profile type: policing / queuing. Valid values: `policing`, `queuing`.
-	Type *string `pulumi:"type"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                              `pulumi:"comment"`
+	DefaultClassId      int                                  `pulumi:"defaultClassId"`
+	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
+	ProfileName         string                               `pulumi:"profileName"`
+	ShapingEntries      []FirewallShapingProfileShapingEntry `pulumi:"shapingEntries"`
+	Type                *string                              `pulumi:"type"`
+	Vdomparam           *string                              `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallShapingProfile resource.
 type FirewallShapingProfileArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Default class ID to handle unclassified packets (including all local traffic).
-	DefaultClassId pulumi.IntInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
+	DefaultClassId      pulumi.IntInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Shaping profile name.
-	ProfileName pulumi.StringInput
-	// Define shaping entries of this shaping profile. The structure of `shapingEntries` block is documented below.
-	ShapingEntries FirewallShapingProfileShapingEntryArrayInput
-	// Select shaping profile type: policing / queuing. Valid values: `policing`, `queuing`.
-	Type pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	ProfileName         pulumi.StringInput
+	ShapingEntries      FirewallShapingProfileShapingEntryArrayInput
+	Type                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (FirewallShapingProfileArgs) ElementType() reflect.Type {
@@ -215,7 +129,7 @@ func (i *FirewallShapingProfile) ToFirewallShapingProfileOutputWithContext(ctx c
 // FirewallShapingProfileArrayInput is an input type that accepts FirewallShapingProfileArray and FirewallShapingProfileArrayOutput values.
 // You can construct a concrete instance of `FirewallShapingProfileArrayInput` via:
 //
-//          FirewallShapingProfileArray{ FirewallShapingProfileArgs{...} }
+//	FirewallShapingProfileArray{ FirewallShapingProfileArgs{...} }
 type FirewallShapingProfileArrayInput interface {
 	pulumi.Input
 
@@ -240,7 +154,7 @@ func (i FirewallShapingProfileArray) ToFirewallShapingProfileArrayOutputWithCont
 // FirewallShapingProfileMapInput is an input type that accepts FirewallShapingProfileMap and FirewallShapingProfileMapOutput values.
 // You can construct a concrete instance of `FirewallShapingProfileMapInput` via:
 //
-//          FirewallShapingProfileMap{ "key": FirewallShapingProfileArgs{...} }
+//	FirewallShapingProfileMap{ "key": FirewallShapingProfileArgs{...} }
 type FirewallShapingProfileMapInput interface {
 	pulumi.Input
 
@@ -274,6 +188,34 @@ func (o FirewallShapingProfileOutput) ToFirewallShapingProfileOutput() FirewallS
 
 func (o FirewallShapingProfileOutput) ToFirewallShapingProfileOutputWithContext(ctx context.Context) FirewallShapingProfileOutput {
 	return o
+}
+
+func (o FirewallShapingProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallShapingProfile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallShapingProfileOutput) DefaultClassId() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallShapingProfile) pulumi.IntOutput { return v.DefaultClassId }).(pulumi.IntOutput)
+}
+
+func (o FirewallShapingProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallShapingProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallShapingProfileOutput) ProfileName() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingProfile) pulumi.StringOutput { return v.ProfileName }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingProfileOutput) ShapingEntries() FirewallShapingProfileShapingEntryArrayOutput {
+	return o.ApplyT(func(v *FirewallShapingProfile) FirewallShapingProfileShapingEntryArrayOutput { return v.ShapingEntries }).(FirewallShapingProfileShapingEntryArrayOutput)
+}
+
+func (o FirewallShapingProfileOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingProfile) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallShapingProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallShapingProfileArrayOutput struct{ *pulumi.OutputState }

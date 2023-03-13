@@ -8,6 +8,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
 
+// CA Bundle file content
+func GetCabundlecontent(ctx *pulumi.Context) string {
+	return config.Get(ctx, "fortios:cabundlecontent")
+}
+
 // CA Bundle file
 func GetCabundlefile(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "fortios:cabundlefile")
@@ -78,6 +83,11 @@ func GetHostname(ctx *pulumi.Context) string {
 		return v
 	}
 	return getEnvOrDefault("", nil, "FORTIOS_ACCESS_HOSTNAME").(string)
+}
+
+// HTTP proxy address
+func GetHttpProxy(ctx *pulumi.Context) string {
+	return config.Get(ctx, "fortios:httpProxy")
 }
 func GetInsecure(ctx *pulumi.Context) bool {
 	v, err := config.TryBool(ctx, "fortios:insecure")

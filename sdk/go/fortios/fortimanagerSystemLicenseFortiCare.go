@@ -7,44 +7,16 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports uploading FortiCare registration code to FortiGate through FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerSystemLicenseFortiCare(ctx, "test1", &fortios.FortimanagerSystemLicenseFortiCareArgs{
-// 			RegistrationCode: pulumi.String("jn3t3Nw7qckQzt955Htkfj5hwQ6aaa"),
-// 			Target:           pulumi.String("fortigate-test"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerSystemLicenseFortiCare struct {
 	pulumi.CustomResourceState
 
-	// ADOM that the target device belongs to. default is 'root'.
-	Adom pulumi.StringPtrOutput `pulumi:"adom"`
-	// Registration code.
-	RegistrationCode pulumi.StringOutput `pulumi:"registrationCode"`
-	// Target name, which is managed by FortiManager.
-	Target pulumi.StringOutput `pulumi:"target"`
+	Adom             pulumi.StringPtrOutput `pulumi:"adom"`
+	RegistrationCode pulumi.StringOutput    `pulumi:"registrationCode"`
+	Target           pulumi.StringOutput    `pulumi:"target"`
 }
 
 // NewFortimanagerSystemLicenseFortiCare registers a new resource with the given unique name, arguments, and options.
@@ -83,21 +55,15 @@ func GetFortimanagerSystemLicenseFortiCare(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerSystemLicenseFortiCare resources.
 type fortimanagerSystemLicenseFortiCareState struct {
-	// ADOM that the target device belongs to. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// Registration code.
+	Adom             *string `pulumi:"adom"`
 	RegistrationCode *string `pulumi:"registrationCode"`
-	// Target name, which is managed by FortiManager.
-	Target *string `pulumi:"target"`
+	Target           *string `pulumi:"target"`
 }
 
 type FortimanagerSystemLicenseFortiCareState struct {
-	// ADOM that the target device belongs to. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// Registration code.
+	Adom             pulumi.StringPtrInput
 	RegistrationCode pulumi.StringPtrInput
-	// Target name, which is managed by FortiManager.
-	Target pulumi.StringPtrInput
+	Target           pulumi.StringPtrInput
 }
 
 func (FortimanagerSystemLicenseFortiCareState) ElementType() reflect.Type {
@@ -105,22 +71,16 @@ func (FortimanagerSystemLicenseFortiCareState) ElementType() reflect.Type {
 }
 
 type fortimanagerSystemLicenseFortiCareArgs struct {
-	// ADOM that the target device belongs to. default is 'root'.
-	Adom *string `pulumi:"adom"`
-	// Registration code.
-	RegistrationCode string `pulumi:"registrationCode"`
-	// Target name, which is managed by FortiManager.
-	Target string `pulumi:"target"`
+	Adom             *string `pulumi:"adom"`
+	RegistrationCode string  `pulumi:"registrationCode"`
+	Target           string  `pulumi:"target"`
 }
 
 // The set of arguments for constructing a FortimanagerSystemLicenseFortiCare resource.
 type FortimanagerSystemLicenseFortiCareArgs struct {
-	// ADOM that the target device belongs to. default is 'root'.
-	Adom pulumi.StringPtrInput
-	// Registration code.
+	Adom             pulumi.StringPtrInput
 	RegistrationCode pulumi.StringInput
-	// Target name, which is managed by FortiManager.
-	Target pulumi.StringInput
+	Target           pulumi.StringInput
 }
 
 func (FortimanagerSystemLicenseFortiCareArgs) ElementType() reflect.Type {
@@ -149,7 +109,7 @@ func (i *FortimanagerSystemLicenseFortiCare) ToFortimanagerSystemLicenseFortiCar
 // FortimanagerSystemLicenseFortiCareArrayInput is an input type that accepts FortimanagerSystemLicenseFortiCareArray and FortimanagerSystemLicenseFortiCareArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemLicenseFortiCareArrayInput` via:
 //
-//          FortimanagerSystemLicenseFortiCareArray{ FortimanagerSystemLicenseFortiCareArgs{...} }
+//	FortimanagerSystemLicenseFortiCareArray{ FortimanagerSystemLicenseFortiCareArgs{...} }
 type FortimanagerSystemLicenseFortiCareArrayInput interface {
 	pulumi.Input
 
@@ -174,7 +134,7 @@ func (i FortimanagerSystemLicenseFortiCareArray) ToFortimanagerSystemLicenseFort
 // FortimanagerSystemLicenseFortiCareMapInput is an input type that accepts FortimanagerSystemLicenseFortiCareMap and FortimanagerSystemLicenseFortiCareMapOutput values.
 // You can construct a concrete instance of `FortimanagerSystemLicenseFortiCareMapInput` via:
 //
-//          FortimanagerSystemLicenseFortiCareMap{ "key": FortimanagerSystemLicenseFortiCareArgs{...} }
+//	FortimanagerSystemLicenseFortiCareMap{ "key": FortimanagerSystemLicenseFortiCareArgs{...} }
 type FortimanagerSystemLicenseFortiCareMapInput interface {
 	pulumi.Input
 
@@ -208,6 +168,18 @@ func (o FortimanagerSystemLicenseFortiCareOutput) ToFortimanagerSystemLicenseFor
 
 func (o FortimanagerSystemLicenseFortiCareOutput) ToFortimanagerSystemLicenseFortiCareOutputWithContext(ctx context.Context) FortimanagerSystemLicenseFortiCareOutput {
 	return o
+}
+
+func (o FortimanagerSystemLicenseFortiCareOutput) Adom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerSystemLicenseFortiCare) pulumi.StringPtrOutput { return v.Adom }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerSystemLicenseFortiCareOutput) RegistrationCode() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerSystemLicenseFortiCare) pulumi.StringOutput { return v.RegistrationCode }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerSystemLicenseFortiCareOutput) Target() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerSystemLicenseFortiCare) pulumi.StringOutput { return v.Target }).(pulumi.StringOutput)
 }
 
 type FortimanagerSystemLicenseFortiCareArrayOutput struct{ *pulumi.OutputState }

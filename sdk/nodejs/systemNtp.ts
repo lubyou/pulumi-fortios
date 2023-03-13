@@ -2,44 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure system NTP information.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemNtp("trname", {
- *     ntpsync: "enable",
- *     serverMode: "disable",
- *     sourceIp: "0.0.0.0",
- *     sourceIp6: "::",
- *     syncinterval: 1,
- *     type: "fortiguard",
- * });
- * ```
- *
- * ## Import
- *
- * System Ntp can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemNtp:SystemNtp labelname SystemNtp
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemNtp:SystemNtp labelname SystemNtp
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemNtp extends pulumi.CustomResource {
     /**
      * Get an existing SystemNtp resource's state with the given name, ID, and optional extra
@@ -68,61 +34,19 @@ export class SystemNtp extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemNtp.__pulumiType;
     }
 
-    /**
-     * Enable/disable MD5/SHA1 authentication. Valid values: `enable`, `disable`.
-     */
     public readonly authentication!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     public readonly interfaces!: pulumi.Output<outputs.SystemNtpInterface[] | undefined>;
-    /**
-     * Key for MD5/SHA1 authentication.
-     */
     public readonly key!: pulumi.Output<string | undefined>;
-    /**
-     * Key ID for authentication.
-     */
     public readonly keyId!: pulumi.Output<number>;
-    /**
-     * Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
-     */
     public readonly keyType!: pulumi.Output<string>;
-    /**
-     * Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
-     */
     public readonly ntpservers!: pulumi.Output<outputs.SystemNtpNtpserver[] | undefined>;
-    /**
-     * Enable/disable setting the FortiGate system time by synchronizing with an NTP Server. Valid values: `enable`, `disable`.
-     */
     public readonly ntpsync!: pulumi.Output<string>;
-    /**
-     * Enable/disable FortiGate NTP Server Mode. Your FortiGate becomes an NTP server for other devices on your network. The FortiGate relays NTP requests to its configured NTP server. Valid values: `enable`, `disable`.
-     */
     public readonly serverMode!: pulumi.Output<string>;
-    /**
-     * Source IP address for communication to the NTP server.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * Source IPv6 address for communication to the NTP server.
-     */
     public readonly sourceIp6!: pulumi.Output<string>;
-    /**
-     * NTP synchronization interval (1 - 1440 min).
-     */
     public readonly syncinterval!: pulumi.Output<number>;
-    /**
-     * Use the FortiGuard NTP server or any other available NTP Server. Valid values: `fortiguard`, `custom`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -157,7 +81,7 @@ export class SystemNtp extends pulumi.CustomResource {
             resourceInputs["authentication"] = args ? args.authentication : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["interfaces"] = args ? args.interfaces : undefined;
-            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["key"] = args?.key ? pulumi.secret(args.key) : undefined;
             resourceInputs["keyId"] = args ? args.keyId : undefined;
             resourceInputs["keyType"] = args ? args.keyType : undefined;
             resourceInputs["ntpservers"] = args ? args.ntpservers : undefined;
@@ -170,6 +94,8 @@ export class SystemNtp extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["key"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemNtp.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -178,61 +104,19 @@ export class SystemNtp extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemNtp resources.
  */
 export interface SystemNtpState {
-    /**
-     * Enable/disable MD5/SHA1 authentication. Valid values: `enable`, `disable`.
-     */
     authentication?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interfaces?: pulumi.Input<pulumi.Input<inputs.SystemNtpInterface>[]>;
-    /**
-     * Key for MD5/SHA1 authentication.
-     */
     key?: pulumi.Input<string>;
-    /**
-     * Key ID for authentication.
-     */
     keyId?: pulumi.Input<number>;
-    /**
-     * Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
-     */
     keyType?: pulumi.Input<string>;
-    /**
-     * Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
-     */
     ntpservers?: pulumi.Input<pulumi.Input<inputs.SystemNtpNtpserver>[]>;
-    /**
-     * Enable/disable setting the FortiGate system time by synchronizing with an NTP Server. Valid values: `enable`, `disable`.
-     */
     ntpsync?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiGate NTP Server Mode. Your FortiGate becomes an NTP server for other devices on your network. The FortiGate relays NTP requests to its configured NTP server. Valid values: `enable`, `disable`.
-     */
     serverMode?: pulumi.Input<string>;
-    /**
-     * Source IP address for communication to the NTP server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Source IPv6 address for communication to the NTP server.
-     */
     sourceIp6?: pulumi.Input<string>;
-    /**
-     * NTP synchronization interval (1 - 1440 min).
-     */
     syncinterval?: pulumi.Input<number>;
-    /**
-     * Use the FortiGuard NTP server or any other available NTP Server. Valid values: `fortiguard`, `custom`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -240,60 +124,18 @@ export interface SystemNtpState {
  * The set of arguments for constructing a SystemNtp resource.
  */
 export interface SystemNtpArgs {
-    /**
-     * Enable/disable MD5/SHA1 authentication. Valid values: `enable`, `disable`.
-     */
     authentication?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Specify outgoing interface to reach server.
-     */
     interfaces?: pulumi.Input<pulumi.Input<inputs.SystemNtpInterface>[]>;
-    /**
-     * Key for MD5/SHA1 authentication.
-     */
     key?: pulumi.Input<string>;
-    /**
-     * Key ID for authentication.
-     */
     keyId?: pulumi.Input<number>;
-    /**
-     * Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
-     */
     keyType?: pulumi.Input<string>;
-    /**
-     * Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
-     */
     ntpservers?: pulumi.Input<pulumi.Input<inputs.SystemNtpNtpserver>[]>;
-    /**
-     * Enable/disable setting the FortiGate system time by synchronizing with an NTP Server. Valid values: `enable`, `disable`.
-     */
     ntpsync?: pulumi.Input<string>;
-    /**
-     * Enable/disable FortiGate NTP Server Mode. Your FortiGate becomes an NTP server for other devices on your network. The FortiGate relays NTP requests to its configured NTP server. Valid values: `enable`, `disable`.
-     */
     serverMode?: pulumi.Input<string>;
-    /**
-     * Source IP address for communication to the NTP server.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * Source IPv6 address for communication to the NTP server.
-     */
     sourceIp6?: pulumi.Input<string>;
-    /**
-     * NTP synchronization interval (1 - 1440 min).
-     */
     syncinterval?: pulumi.Input<number>;
-    /**
-     * Use the FortiGuard NTP server or any other available NTP Server. Valid values: `fortiguard`, `custom`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -4,27 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource to configure Network Time Protocol (NTP) servers of FortiOS.
- *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.SystemNtp`, we recommend that you use the new resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test2 = new fortios.SystemSettingNTP("test2", {
- *     ntpservers: [
- *         "1.1.1.1",
- *         "3.3.3.3",
- *     ],
- *     ntpsync: "disable",
- *     type: "custom",
- * });
- * ```
- */
 export class SystemSettingNTP extends pulumi.CustomResource {
     /**
      * Get an existing SystemSettingNTP resource's state with the given name, ID, and optional extra
@@ -53,17 +32,8 @@ export class SystemSettingNTP extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemSettingNTP.__pulumiType;
     }
 
-    /**
-     * Configure the FortiGate to connect to any available third-party NTP server.
-     */
     public readonly ntpservers!: pulumi.Output<string[]>;
-    /**
-     * Enable/disable setting the FortiGate system time by synchronizing with an NTP Server.
-     */
     public readonly ntpsync!: pulumi.Output<string>;
-    /**
-     * Use the FortiGuard NTP server or any other available NTP Server.
-     */
     public readonly type!: pulumi.Output<string>;
 
     /**
@@ -100,17 +70,8 @@ export class SystemSettingNTP extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSettingNTP resources.
  */
 export interface SystemSettingNTPState {
-    /**
-     * Configure the FortiGate to connect to any available third-party NTP server.
-     */
     ntpservers?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable/disable setting the FortiGate system time by synchronizing with an NTP Server.
-     */
     ntpsync?: pulumi.Input<string>;
-    /**
-     * Use the FortiGuard NTP server or any other available NTP Server.
-     */
     type?: pulumi.Input<string>;
 }
 
@@ -118,16 +79,7 @@ export interface SystemSettingNTPState {
  * The set of arguments for constructing a SystemSettingNTP resource.
  */
 export interface SystemSettingNTPArgs {
-    /**
-     * Configure the FortiGate to connect to any available third-party NTP server.
-     */
     ntpservers?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Enable/disable setting the FortiGate system time by synchronizing with an NTP Server.
-     */
     ntpsync?: pulumi.Input<string>;
-    /**
-     * Use the FortiGuard NTP server or any other available NTP Server.
-     */
     type: pulumi.Input<string>;
 }

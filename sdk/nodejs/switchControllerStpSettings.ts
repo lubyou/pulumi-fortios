@@ -4,42 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure FortiSwitch spanning tree protocol (STP).
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SwitchControllerStpSettings("trname", {
- *     forwardTime: 15,
- *     helloTime: 2,
- *     maxAge: 20,
- *     maxHops: 20,
- *     pendingTimer: 4,
- *     revision: 0,
- *     status: "enable",
- * });
- * ```
- *
- * ## Import
- *
- * SwitchController StpSettings can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerStpSettings:SwitchControllerStpSettings labelname SwitchControllerStpSettings
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/switchControllerStpSettings:SwitchControllerStpSettings labelname SwitchControllerStpSettings
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SwitchControllerStpSettings extends pulumi.CustomResource {
     /**
      * Get an existing SwitchControllerStpSettings resource's state with the given name, ID, and optional extra
@@ -68,41 +32,14 @@ export class SwitchControllerStpSettings extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerStpSettings.__pulumiType;
     }
 
-    /**
-     * Period of time a port is in listening and learning state (4 - 30 sec, default = 15).
-     */
     public readonly forwardTime!: pulumi.Output<number>;
-    /**
-     * Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
-     */
     public readonly helloTime!: pulumi.Output<number>;
-    /**
-     * Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
-     */
     public readonly maxAge!: pulumi.Output<number>;
-    /**
-     * Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
-     */
     public readonly maxHops!: pulumi.Output<number>;
-    /**
-     * Name of global STP settings configuration.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Pending time (1 - 15 sec, default = 4).
-     */
     public readonly pendingTimer!: pulumi.Output<number>;
-    /**
-     * STP revision number (0 - 65535).
-     */
     public readonly revision!: pulumi.Output<number>;
-    /**
-     * Enable/disable STP. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -148,41 +85,14 @@ export class SwitchControllerStpSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerStpSettings resources.
  */
 export interface SwitchControllerStpSettingsState {
-    /**
-     * Period of time a port is in listening and learning state (4 - 30 sec, default = 15).
-     */
     forwardTime?: pulumi.Input<number>;
-    /**
-     * Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
-     */
     helloTime?: pulumi.Input<number>;
-    /**
-     * Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
-     */
     maxAge?: pulumi.Input<number>;
-    /**
-     * Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
-     */
     maxHops?: pulumi.Input<number>;
-    /**
-     * Name of global STP settings configuration.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Pending time (1 - 15 sec, default = 4).
-     */
     pendingTimer?: pulumi.Input<number>;
-    /**
-     * STP revision number (0 - 65535).
-     */
     revision?: pulumi.Input<number>;
-    /**
-     * Enable/disable STP. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -190,40 +100,13 @@ export interface SwitchControllerStpSettingsState {
  * The set of arguments for constructing a SwitchControllerStpSettings resource.
  */
 export interface SwitchControllerStpSettingsArgs {
-    /**
-     * Period of time a port is in listening and learning state (4 - 30 sec, default = 15).
-     */
     forwardTime?: pulumi.Input<number>;
-    /**
-     * Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
-     */
     helloTime?: pulumi.Input<number>;
-    /**
-     * Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
-     */
     maxAge?: pulumi.Input<number>;
-    /**
-     * Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
-     */
     maxHops?: pulumi.Input<number>;
-    /**
-     * Name of global STP settings configuration.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Pending time (1 - 15 sec, default = 4).
-     */
     pendingTimer?: pulumi.Input<number>;
-    /**
-     * STP revision number (0 - 65535).
-     */
     revision?: pulumi.Input<number>;
-    /**
-     * Enable/disable STP. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `FirewallServiceGroup`.
 func GetFirewallServiceGroupList(ctx *pulumi.Context, args *GetFirewallServiceGroupListArgs, opts ...pulumi.InvokeOption) (*GetFirewallServiceGroupListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallServiceGroupListResult
@@ -23,8 +22,7 @@ func GetFirewallServiceGroupList(ctx *pulumi.Context, args *GetFirewallServiceGr
 
 // A collection of arguments for invoking GetFirewallServiceGroupList.
 type GetFirewallServiceGroupListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetFirewallServiceGroupListArgs struct {
 type GetFirewallServiceGroupListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `FirewallServiceGroup`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetFirewallServiceGroupListOutput(ctx *pulumi.Context, args GetFirewallServ
 
 // A collection of arguments for invoking GetFirewallServiceGroupList.
 type GetFirewallServiceGroupListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetFirewallServiceGroupListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFirewallServiceGroupListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `FirewallServiceGroup`.
 func (o GetFirewallServiceGroupListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetFirewallServiceGroupListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

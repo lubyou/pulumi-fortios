@@ -10,88 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure access lists.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewRouterAccessList(ctx, "trname", &fortios.RouterAccessListArgs{
-// 			Comments: pulumi.String("test accesslist"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ## Note
-//
-// The feature can only be correctly supported when FortiOS Version >= 6.2.4, for FortiOS Version < 6.2.4, please use the following resource configuration as an alternative.
-//
-// ### Example
-// ```go
-// package main
-//
-// import (
-// 	"fmt"
-//
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemAutoScript(ctx, "trname1", &fortios.SystemAutoScriptArgs{
-// 			Interval:   pulumi.Int(1),
-// 			OutputSize: pulumi.Int(10),
-// 			Repeat:     pulumi.Int(1),
-// 			Script:     pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v", "config router access-list\n", "edit \"static-redistribution\"\n", "config rule\n", "edit 10\n", "set prefix 10.0.0.0 255.255.255.0\n", "set action permit\n", "set exact-match enable\n", "end\n", "end\n", "\n")),
-// 			Start:      pulumi.String("auto"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Router AccessList can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/routerAccessList:RouterAccessList labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="true"
-//
-// ```sh
-//  $ pulumi import fortios:index/routerAccessList:RouterAccessList labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type RouterAccessList struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comments            pulumi.StringOutput    `pulumi:"comments"`
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Rule. The structure of `rule` block is documented below.
-	Rules     RouterAccessListRuleArrayOutput `pulumi:"rules"`
-	Vdomparam pulumi.StringPtrOutput          `pulumi:"vdomparam"`
+	Comments            pulumi.StringOutput             `pulumi:"comments"`
+	DynamicSortSubtable pulumi.StringPtrOutput          `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput             `pulumi:"name"`
+	Rules               RouterAccessListRuleArrayOutput `pulumi:"rules"`
+	Vdomparam           pulumi.StringPtrOutput          `pulumi:"vdomparam"`
 }
 
 // NewRouterAccessList registers a new resource with the given unique name, arguments, and options.
@@ -124,25 +50,19 @@ func GetRouterAccessList(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterAccessList resources.
 type routerAccessListState struct {
-	// Comment.
-	Comments            *string `pulumi:"comments"`
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Rule. The structure of `rule` block is documented below.
-	Rules     []RouterAccessListRule `pulumi:"rules"`
-	Vdomparam *string                `pulumi:"vdomparam"`
+	Comments            *string                `pulumi:"comments"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	Name                *string                `pulumi:"name"`
+	Rules               []RouterAccessListRule `pulumi:"rules"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 type RouterAccessListState struct {
-	// Comment.
 	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Rule. The structure of `rule` block is documented below.
-	Rules     RouterAccessListRuleArrayInput
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Rules               RouterAccessListRuleArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterAccessListState) ElementType() reflect.Type {
@@ -150,26 +70,20 @@ func (RouterAccessListState) ElementType() reflect.Type {
 }
 
 type routerAccessListArgs struct {
-	// Comment.
-	Comments            *string `pulumi:"comments"`
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Name.
-	Name *string `pulumi:"name"`
-	// Rule. The structure of `rule` block is documented below.
-	Rules     []RouterAccessListRule `pulumi:"rules"`
-	Vdomparam *string                `pulumi:"vdomparam"`
+	Comments            *string                `pulumi:"comments"`
+	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	Name                *string                `pulumi:"name"`
+	Rules               []RouterAccessListRule `pulumi:"rules"`
+	Vdomparam           *string                `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a RouterAccessList resource.
 type RouterAccessListArgs struct {
-	// Comment.
 	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Name.
-	Name pulumi.StringPtrInput
-	// Rule. The structure of `rule` block is documented below.
-	Rules     RouterAccessListRuleArrayInput
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Rules               RouterAccessListRuleArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (RouterAccessListArgs) ElementType() reflect.Type {
@@ -198,7 +112,7 @@ func (i *RouterAccessList) ToRouterAccessListOutputWithContext(ctx context.Conte
 // RouterAccessListArrayInput is an input type that accepts RouterAccessListArray and RouterAccessListArrayOutput values.
 // You can construct a concrete instance of `RouterAccessListArrayInput` via:
 //
-//          RouterAccessListArray{ RouterAccessListArgs{...} }
+//	RouterAccessListArray{ RouterAccessListArgs{...} }
 type RouterAccessListArrayInput interface {
 	pulumi.Input
 
@@ -223,7 +137,7 @@ func (i RouterAccessListArray) ToRouterAccessListArrayOutputWithContext(ctx cont
 // RouterAccessListMapInput is an input type that accepts RouterAccessListMap and RouterAccessListMapOutput values.
 // You can construct a concrete instance of `RouterAccessListMapInput` via:
 //
-//          RouterAccessListMap{ "key": RouterAccessListArgs{...} }
+//	RouterAccessListMap{ "key": RouterAccessListArgs{...} }
 type RouterAccessListMapInput interface {
 	pulumi.Input
 
@@ -257,6 +171,26 @@ func (o RouterAccessListOutput) ToRouterAccessListOutput() RouterAccessListOutpu
 
 func (o RouterAccessListOutput) ToRouterAccessListOutputWithContext(ctx context.Context) RouterAccessListOutput {
 	return o
+}
+
+func (o RouterAccessListOutput) Comments() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterAccessList) pulumi.StringOutput { return v.Comments }).(pulumi.StringOutput)
+}
+
+func (o RouterAccessListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterAccessList) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterAccessListOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterAccessList) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o RouterAccessListOutput) Rules() RouterAccessListRuleArrayOutput {
+	return o.ApplyT(func(v *RouterAccessList) RouterAccessListRuleArrayOutput { return v.Rules }).(RouterAccessListRuleArrayOutput)
+}
+
+func (o RouterAccessListOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterAccessList) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type RouterAccessListArrayOutput struct{ *pulumi.OutputState }

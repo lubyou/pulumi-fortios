@@ -10,66 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure sFlow per VDOM to add or change the IP address and UDP port that FortiGate sFlow agents in this VDOM use to send sFlow datagrams to an sFlow collector.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemVdomSflow(ctx, "trname", &fortios.SystemVdomSflowArgs{
-// 			CollectorIp:   pulumi.String("0.0.0.0"),
-// 			CollectorPort: pulumi.Int(6343),
-// 			SourceIp:      pulumi.String("0.0.0.0"),
-// 			VdomSflow:     pulumi.String("disable"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System VdomSflow can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVdomSflow:SystemVdomSflow labelname SystemVdomSflow
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVdomSflow:SystemVdomSflow labelname SystemVdomSflow
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemVdomSflow struct {
 	pulumi.CustomResourceState
 
-	// IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
-	CollectorIp pulumi.StringOutput `pulumi:"collectorIp"`
-	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
-	CollectorPort pulumi.IntOutput `pulumi:"collectorPort"`
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
-	// Source IP address for sFlow agent.
-	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Enable/disable the sFlow configuration for the current VDOM. Valid values: `enable`, `disable`.
-	VdomSflow pulumi.StringOutput `pulumi:"vdomSflow"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	CollectorIp           pulumi.StringOutput    `pulumi:"collectorIp"`
+	CollectorPort         pulumi.IntOutput       `pulumi:"collectorPort"`
+	Interface             pulumi.StringOutput    `pulumi:"interface"`
+	InterfaceSelectMethod pulumi.StringOutput    `pulumi:"interfaceSelectMethod"`
+	SourceIp              pulumi.StringOutput    `pulumi:"sourceIp"`
+	VdomSflow             pulumi.StringOutput    `pulumi:"vdomSflow"`
+	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemVdomSflow registers a new resource with the given unique name, arguments, and options.
@@ -102,37 +52,23 @@ func GetSystemVdomSflow(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemVdomSflow resources.
 type systemVdomSflowState struct {
-	// IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
-	CollectorIp *string `pulumi:"collectorIp"`
-	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
-	CollectorPort *int `pulumi:"collectorPort"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	CollectorIp           *string `pulumi:"collectorIp"`
+	CollectorPort         *int    `pulumi:"collectorPort"`
+	Interface             *string `pulumi:"interface"`
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Source IP address for sFlow agent.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable the sFlow configuration for the current VDOM. Valid values: `enable`, `disable`.
-	VdomSflow *string `pulumi:"vdomSflow"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	VdomSflow             *string `pulumi:"vdomSflow"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 type SystemVdomSflowState struct {
-	// IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
-	CollectorIp pulumi.StringPtrInput
-	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
-	CollectorPort pulumi.IntPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	CollectorIp           pulumi.StringPtrInput
+	CollectorPort         pulumi.IntPtrInput
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// Source IP address for sFlow agent.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable the sFlow configuration for the current VDOM. Valid values: `enable`, `disable`.
-	VdomSflow pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	VdomSflow             pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SystemVdomSflowState) ElementType() reflect.Type {
@@ -140,38 +76,24 @@ func (SystemVdomSflowState) ElementType() reflect.Type {
 }
 
 type systemVdomSflowArgs struct {
-	// IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
-	CollectorIp *string `pulumi:"collectorIp"`
-	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
-	CollectorPort *int `pulumi:"collectorPort"`
-	// Specify outgoing interface to reach server.
-	Interface *string `pulumi:"interface"`
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	CollectorIp           *string `pulumi:"collectorIp"`
+	CollectorPort         *int    `pulumi:"collectorPort"`
+	Interface             *string `pulumi:"interface"`
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
-	// Source IP address for sFlow agent.
-	SourceIp *string `pulumi:"sourceIp"`
-	// Enable/disable the sFlow configuration for the current VDOM. Valid values: `enable`, `disable`.
-	VdomSflow *string `pulumi:"vdomSflow"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	VdomSflow             *string `pulumi:"vdomSflow"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemVdomSflow resource.
 type SystemVdomSflowArgs struct {
-	// IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
-	CollectorIp pulumi.StringPtrInput
-	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
-	CollectorPort pulumi.IntPtrInput
-	// Specify outgoing interface to reach server.
-	Interface pulumi.StringPtrInput
-	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	CollectorIp           pulumi.StringPtrInput
+	CollectorPort         pulumi.IntPtrInput
+	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
-	// Source IP address for sFlow agent.
-	SourceIp pulumi.StringPtrInput
-	// Enable/disable the sFlow configuration for the current VDOM. Valid values: `enable`, `disable`.
-	VdomSflow pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	VdomSflow             pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (SystemVdomSflowArgs) ElementType() reflect.Type {
@@ -200,7 +122,7 @@ func (i *SystemVdomSflow) ToSystemVdomSflowOutputWithContext(ctx context.Context
 // SystemVdomSflowArrayInput is an input type that accepts SystemVdomSflowArray and SystemVdomSflowArrayOutput values.
 // You can construct a concrete instance of `SystemVdomSflowArrayInput` via:
 //
-//          SystemVdomSflowArray{ SystemVdomSflowArgs{...} }
+//	SystemVdomSflowArray{ SystemVdomSflowArgs{...} }
 type SystemVdomSflowArrayInput interface {
 	pulumi.Input
 
@@ -225,7 +147,7 @@ func (i SystemVdomSflowArray) ToSystemVdomSflowArrayOutputWithContext(ctx contex
 // SystemVdomSflowMapInput is an input type that accepts SystemVdomSflowMap and SystemVdomSflowMapOutput values.
 // You can construct a concrete instance of `SystemVdomSflowMapInput` via:
 //
-//          SystemVdomSflowMap{ "key": SystemVdomSflowArgs{...} }
+//	SystemVdomSflowMap{ "key": SystemVdomSflowArgs{...} }
 type SystemVdomSflowMapInput interface {
 	pulumi.Input
 
@@ -259,6 +181,34 @@ func (o SystemVdomSflowOutput) ToSystemVdomSflowOutput() SystemVdomSflowOutput {
 
 func (o SystemVdomSflowOutput) ToSystemVdomSflowOutputWithContext(ctx context.Context) SystemVdomSflowOutput {
 	return o
+}
+
+func (o SystemVdomSflowOutput) CollectorIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomSflow) pulumi.StringOutput { return v.CollectorIp }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomSflowOutput) CollectorPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemVdomSflow) pulumi.IntOutput { return v.CollectorPort }).(pulumi.IntOutput)
+}
+
+func (o SystemVdomSflowOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomSflow) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomSflowOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomSflow) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomSflowOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomSflow) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomSflowOutput) VdomSflow() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVdomSflow) pulumi.StringOutput { return v.VdomSflow }).(pulumi.StringOutput)
+}
+
+func (o SystemVdomSflowOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVdomSflow) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemVdomSflowArrayOutput struct{ *pulumi.OutputState }

@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure virtual Access Point (VAP) groups.
-//
-// ## Import
-//
-// WirelessController VapGroup can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerVapGroup:WirelessControllerVapGroup labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/wirelessControllerVapGroup:WirelessControllerVapGroup labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type WirelessControllerVapGroup struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// vap name
-	Name pulumi.StringOutput `pulumi:"name"`
-	// List of SSIDs to be included in the VAP group. The structure of `vaps` block is documented below.
-	Vaps WirelessControllerVapGroupVapArrayOutput `pulumi:"vaps"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput                   `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                      `pulumi:"name"`
+	Vaps                WirelessControllerVapGroupVapArrayOutput `pulumi:"vaps"`
+	Vdomparam           pulumi.StringPtrOutput                   `pulumi:"vdomparam"`
 }
 
 // NewWirelessControllerVapGroup registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetWirelessControllerVapGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerVapGroup resources.
 type wirelessControllerVapGroupState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// vap name
-	Name *string `pulumi:"name"`
-	// List of SSIDs to be included in the VAP group. The structure of `vaps` block is documented below.
-	Vaps []WirelessControllerVapGroupVap `pulumi:"vaps"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                         `pulumi:"comment"`
+	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	Name                *string                         `pulumi:"name"`
+	Vaps                []WirelessControllerVapGroupVap `pulumi:"vaps"`
+	Vdomparam           *string                         `pulumi:"vdomparam"`
 }
 
 type WirelessControllerVapGroupState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// vap name
-	Name pulumi.StringPtrInput
-	// List of SSIDs to be included in the VAP group. The structure of `vaps` block is documented below.
-	Vaps WirelessControllerVapGroupVapArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vaps                WirelessControllerVapGroupVapArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerVapGroupState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (WirelessControllerVapGroupState) ElementType() reflect.Type {
 }
 
 type wirelessControllerVapGroupArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// vap name
-	Name *string `pulumi:"name"`
-	// List of SSIDs to be included in the VAP group. The structure of `vaps` block is documented below.
-	Vaps []WirelessControllerVapGroupVap `pulumi:"vaps"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                         `pulumi:"comment"`
+	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	Name                *string                         `pulumi:"name"`
+	Vaps                []WirelessControllerVapGroupVap `pulumi:"vaps"`
+	Vdomparam           *string                         `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WirelessControllerVapGroup resource.
 type WirelessControllerVapGroupArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// vap name
-	Name pulumi.StringPtrInput
-	// List of SSIDs to be included in the VAP group. The structure of `vaps` block is documented below.
-	Vaps WirelessControllerVapGroupVapArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	Vaps                WirelessControllerVapGroupVapArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (WirelessControllerVapGroupArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *WirelessControllerVapGroup) ToWirelessControllerVapGroupOutputWithConte
 // WirelessControllerVapGroupArrayInput is an input type that accepts WirelessControllerVapGroupArray and WirelessControllerVapGroupArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerVapGroupArrayInput` via:
 //
-//          WirelessControllerVapGroupArray{ WirelessControllerVapGroupArgs{...} }
+//	WirelessControllerVapGroupArray{ WirelessControllerVapGroupArgs{...} }
 type WirelessControllerVapGroupArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i WirelessControllerVapGroupArray) ToWirelessControllerVapGroupArrayOutput
 // WirelessControllerVapGroupMapInput is an input type that accepts WirelessControllerVapGroupMap and WirelessControllerVapGroupMapOutput values.
 // You can construct a concrete instance of `WirelessControllerVapGroupMapInput` via:
 //
-//          WirelessControllerVapGroupMap{ "key": WirelessControllerVapGroupArgs{...} }
+//	WirelessControllerVapGroupMap{ "key": WirelessControllerVapGroupArgs{...} }
 type WirelessControllerVapGroupMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o WirelessControllerVapGroupOutput) ToWirelessControllerVapGroupOutput() W
 
 func (o WirelessControllerVapGroupOutput) ToWirelessControllerVapGroupOutputWithContext(ctx context.Context) WirelessControllerVapGroupOutput {
 	return o
+}
+
+func (o WirelessControllerVapGroupOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerVapGroup) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerVapGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerVapGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerVapGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerVapGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerVapGroupOutput) Vaps() WirelessControllerVapGroupVapArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerVapGroup) WirelessControllerVapGroupVapArrayOutput { return v.Vaps }).(WirelessControllerVapGroupVapArrayOutput)
+}
+
+func (o WirelessControllerVapGroupOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerVapGroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type WirelessControllerVapGroupArrayOutput struct{ *pulumi.OutputState }

@@ -10,46 +10,21 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure virtual network enabler tunnel. Applies to FortiOS Version `>= 6.4.1`.
-//
-// ## Import
-//
-// System VneTunnel can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVneTunnel:SystemVneTunnel labelname SystemVneTunnel
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemVneTunnel:SystemVneTunnel labelname SystemVneTunnel
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemVneTunnel struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
-	AutoAsicOffload pulumi.StringOutput `pulumi:"autoAsicOffload"`
-	// BMR hostname.
-	BmrHostname pulumi.StringPtrOutput `pulumi:"bmrHostname"`
-	// Border relay IPv6 address.
-	Br pulumi.StringOutput `pulumi:"br"`
-	// Interface name.
-	Interface pulumi.StringOutput `pulumi:"interface"`
-	// Tunnel IPv4 address and netmask.
-	Ipv4Address pulumi.StringOutput `pulumi:"ipv4Address"`
-	// VNE tunnel mode. Valid values: `map-e`, `fixed-ip`.
-	Mode pulumi.StringOutput `pulumi:"mode"`
-	// Name of local certificate for SSL connections.
-	SslCertificate pulumi.StringOutput `pulumi:"sslCertificate"`
-	// Enable/disable VNE tunnel. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// URL of provisioning server.
-	UpdateUrl pulumi.StringOutput `pulumi:"updateUrl"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AutoAsicOffload pulumi.StringOutput    `pulumi:"autoAsicOffload"`
+	BmrHostname     pulumi.StringPtrOutput `pulumi:"bmrHostname"`
+	Br              pulumi.StringOutput    `pulumi:"br"`
+	HttpPassword    pulumi.StringPtrOutput `pulumi:"httpPassword"`
+	HttpUsername    pulumi.StringOutput    `pulumi:"httpUsername"`
+	Interface       pulumi.StringOutput    `pulumi:"interface"`
+	Ipv4Address     pulumi.StringOutput    `pulumi:"ipv4Address"`
+	Mode            pulumi.StringOutput    `pulumi:"mode"`
+	SslCertificate  pulumi.StringOutput    `pulumi:"sslCertificate"`
+	Status          pulumi.StringOutput    `pulumi:"status"`
+	UpdateUrl       pulumi.StringOutput    `pulumi:"updateUrl"`
+	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemVneTunnel registers a new resource with the given unique name, arguments, and options.
@@ -59,6 +34,13 @@ func NewSystemVneTunnel(ctx *pulumi.Context,
 		args = &SystemVneTunnelArgs{}
 	}
 
+	if args.BmrHostname != nil {
+		args.BmrHostname = pulumi.ToSecret(args.BmrHostname).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"bmrHostname",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemVneTunnel
 	err := ctx.RegisterResource("fortios:index/systemVneTunnel:SystemVneTunnel", name, args, &resource, opts...)
@@ -82,49 +64,33 @@ func GetSystemVneTunnel(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemVneTunnel resources.
 type systemVneTunnelState struct {
-	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
 	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
-	// BMR hostname.
-	BmrHostname *string `pulumi:"bmrHostname"`
-	// Border relay IPv6 address.
-	Br *string `pulumi:"br"`
-	// Interface name.
-	Interface *string `pulumi:"interface"`
-	// Tunnel IPv4 address and netmask.
-	Ipv4Address *string `pulumi:"ipv4Address"`
-	// VNE tunnel mode. Valid values: `map-e`, `fixed-ip`.
-	Mode *string `pulumi:"mode"`
-	// Name of local certificate for SSL connections.
-	SslCertificate *string `pulumi:"sslCertificate"`
-	// Enable/disable VNE tunnel. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// URL of provisioning server.
-	UpdateUrl *string `pulumi:"updateUrl"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	BmrHostname     *string `pulumi:"bmrHostname"`
+	Br              *string `pulumi:"br"`
+	HttpPassword    *string `pulumi:"httpPassword"`
+	HttpUsername    *string `pulumi:"httpUsername"`
+	Interface       *string `pulumi:"interface"`
+	Ipv4Address     *string `pulumi:"ipv4Address"`
+	Mode            *string `pulumi:"mode"`
+	SslCertificate  *string `pulumi:"sslCertificate"`
+	Status          *string `pulumi:"status"`
+	UpdateUrl       *string `pulumi:"updateUrl"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 type SystemVneTunnelState struct {
-	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
 	AutoAsicOffload pulumi.StringPtrInput
-	// BMR hostname.
-	BmrHostname pulumi.StringPtrInput
-	// Border relay IPv6 address.
-	Br pulumi.StringPtrInput
-	// Interface name.
-	Interface pulumi.StringPtrInput
-	// Tunnel IPv4 address and netmask.
-	Ipv4Address pulumi.StringPtrInput
-	// VNE tunnel mode. Valid values: `map-e`, `fixed-ip`.
-	Mode pulumi.StringPtrInput
-	// Name of local certificate for SSL connections.
-	SslCertificate pulumi.StringPtrInput
-	// Enable/disable VNE tunnel. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// URL of provisioning server.
-	UpdateUrl pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	BmrHostname     pulumi.StringPtrInput
+	Br              pulumi.StringPtrInput
+	HttpPassword    pulumi.StringPtrInput
+	HttpUsername    pulumi.StringPtrInput
+	Interface       pulumi.StringPtrInput
+	Ipv4Address     pulumi.StringPtrInput
+	Mode            pulumi.StringPtrInput
+	SslCertificate  pulumi.StringPtrInput
+	Status          pulumi.StringPtrInput
+	UpdateUrl       pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (SystemVneTunnelState) ElementType() reflect.Type {
@@ -132,50 +98,34 @@ func (SystemVneTunnelState) ElementType() reflect.Type {
 }
 
 type systemVneTunnelArgs struct {
-	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
 	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
-	// BMR hostname.
-	BmrHostname *string `pulumi:"bmrHostname"`
-	// Border relay IPv6 address.
-	Br *string `pulumi:"br"`
-	// Interface name.
-	Interface *string `pulumi:"interface"`
-	// Tunnel IPv4 address and netmask.
-	Ipv4Address *string `pulumi:"ipv4Address"`
-	// VNE tunnel mode. Valid values: `map-e`, `fixed-ip`.
-	Mode *string `pulumi:"mode"`
-	// Name of local certificate for SSL connections.
-	SslCertificate *string `pulumi:"sslCertificate"`
-	// Enable/disable VNE tunnel. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// URL of provisioning server.
-	UpdateUrl *string `pulumi:"updateUrl"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	BmrHostname     *string `pulumi:"bmrHostname"`
+	Br              *string `pulumi:"br"`
+	HttpPassword    *string `pulumi:"httpPassword"`
+	HttpUsername    *string `pulumi:"httpUsername"`
+	Interface       *string `pulumi:"interface"`
+	Ipv4Address     *string `pulumi:"ipv4Address"`
+	Mode            *string `pulumi:"mode"`
+	SslCertificate  *string `pulumi:"sslCertificate"`
+	Status          *string `pulumi:"status"`
+	UpdateUrl       *string `pulumi:"updateUrl"`
+	Vdomparam       *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemVneTunnel resource.
 type SystemVneTunnelArgs struct {
-	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
 	AutoAsicOffload pulumi.StringPtrInput
-	// BMR hostname.
-	BmrHostname pulumi.StringPtrInput
-	// Border relay IPv6 address.
-	Br pulumi.StringPtrInput
-	// Interface name.
-	Interface pulumi.StringPtrInput
-	// Tunnel IPv4 address and netmask.
-	Ipv4Address pulumi.StringPtrInput
-	// VNE tunnel mode. Valid values: `map-e`, `fixed-ip`.
-	Mode pulumi.StringPtrInput
-	// Name of local certificate for SSL connections.
-	SslCertificate pulumi.StringPtrInput
-	// Enable/disable VNE tunnel. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// URL of provisioning server.
-	UpdateUrl pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	BmrHostname     pulumi.StringPtrInput
+	Br              pulumi.StringPtrInput
+	HttpPassword    pulumi.StringPtrInput
+	HttpUsername    pulumi.StringPtrInput
+	Interface       pulumi.StringPtrInput
+	Ipv4Address     pulumi.StringPtrInput
+	Mode            pulumi.StringPtrInput
+	SslCertificate  pulumi.StringPtrInput
+	Status          pulumi.StringPtrInput
+	UpdateUrl       pulumi.StringPtrInput
+	Vdomparam       pulumi.StringPtrInput
 }
 
 func (SystemVneTunnelArgs) ElementType() reflect.Type {
@@ -204,7 +154,7 @@ func (i *SystemVneTunnel) ToSystemVneTunnelOutputWithContext(ctx context.Context
 // SystemVneTunnelArrayInput is an input type that accepts SystemVneTunnelArray and SystemVneTunnelArrayOutput values.
 // You can construct a concrete instance of `SystemVneTunnelArrayInput` via:
 //
-//          SystemVneTunnelArray{ SystemVneTunnelArgs{...} }
+//	SystemVneTunnelArray{ SystemVneTunnelArgs{...} }
 type SystemVneTunnelArrayInput interface {
 	pulumi.Input
 
@@ -229,7 +179,7 @@ func (i SystemVneTunnelArray) ToSystemVneTunnelArrayOutputWithContext(ctx contex
 // SystemVneTunnelMapInput is an input type that accepts SystemVneTunnelMap and SystemVneTunnelMapOutput values.
 // You can construct a concrete instance of `SystemVneTunnelMapInput` via:
 //
-//          SystemVneTunnelMap{ "key": SystemVneTunnelArgs{...} }
+//	SystemVneTunnelMap{ "key": SystemVneTunnelArgs{...} }
 type SystemVneTunnelMapInput interface {
 	pulumi.Input
 
@@ -263,6 +213,54 @@ func (o SystemVneTunnelOutput) ToSystemVneTunnelOutput() SystemVneTunnelOutput {
 
 func (o SystemVneTunnelOutput) ToSystemVneTunnelOutputWithContext(ctx context.Context) SystemVneTunnelOutput {
 	return o
+}
+
+func (o SystemVneTunnelOutput) AutoAsicOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVneTunnel) pulumi.StringOutput { return v.AutoAsicOffload }).(pulumi.StringOutput)
+}
+
+func (o SystemVneTunnelOutput) BmrHostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVneTunnel) pulumi.StringPtrOutput { return v.BmrHostname }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemVneTunnelOutput) Br() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVneTunnel) pulumi.StringOutput { return v.Br }).(pulumi.StringOutput)
+}
+
+func (o SystemVneTunnelOutput) HttpPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVneTunnel) pulumi.StringPtrOutput { return v.HttpPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemVneTunnelOutput) HttpUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVneTunnel) pulumi.StringOutput { return v.HttpUsername }).(pulumi.StringOutput)
+}
+
+func (o SystemVneTunnelOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVneTunnel) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemVneTunnelOutput) Ipv4Address() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVneTunnel) pulumi.StringOutput { return v.Ipv4Address }).(pulumi.StringOutput)
+}
+
+func (o SystemVneTunnelOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVneTunnel) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o SystemVneTunnelOutput) SslCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVneTunnel) pulumi.StringOutput { return v.SslCertificate }).(pulumi.StringOutput)
+}
+
+func (o SystemVneTunnelOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVneTunnel) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemVneTunnelOutput) UpdateUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVneTunnel) pulumi.StringOutput { return v.UpdateUrl }).(pulumi.StringOutput)
+}
+
+func (o SystemVneTunnelOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVneTunnel) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemVneTunnelArrayOutput struct{ *pulumi.OutputState }

@@ -2,51 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure Mobile tunnels, an implementation of Network Mobility (NEMO) extensions for Mobile IPv4 RFC5177.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemMobileTunnel("trname", {
- *     hashAlgorithm: "hmac-md5",
- *     homeAddress: "0.0.0.0",
- *     homeAgent: "1.1.1.1",
- *     lifetime: 65535,
- *     nMhaeKey: "'ENC M2wyM3DcnUhqgich7vsLk5oVuPAI9LTkcFNt0c3jI1ujC6w1XBot7gsRAf2S8X5dagfUnJGhZ5LrQxw21e4y8oXuCOLp8MmaRZbCkxYCAl1wm/wVY3aNzVk2+jE='",
- *     nMhaeKeyType: "ascii",
- *     nMhaeSpi: 256,
- *     regInterval: 5,
- *     regRetry: 3,
- *     renewInterval: 60,
- *     roamingInterface: "port3",
- *     status: "disable",
- *     tunnelMode: "gre",
- * });
- * ```
- *
- * ## Import
- *
- * System MobileTunnel can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemMobileTunnel:SystemMobileTunnel labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemMobileTunnel:SystemMobileTunnel labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemMobileTunnel extends pulumi.CustomResource {
     /**
      * Get an existing SystemMobileTunnel resource's state with the given name, ID, and optional extra
@@ -75,73 +34,22 @@ export class SystemMobileTunnel extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemMobileTunnel.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
-     */
     public readonly hashAlgorithm!: pulumi.Output<string>;
-    /**
-     * Home IP address (Format: xxx.xxx.xxx.xxx).
-     */
     public readonly homeAddress!: pulumi.Output<string>;
-    /**
-     * IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
-     */
     public readonly homeAgent!: pulumi.Output<string>;
-    /**
-     * NMMO HA registration request lifetime (180 - 65535 sec, default = 65535).
-     */
     public readonly lifetime!: pulumi.Output<number>;
-    /**
-     * NEMO authentication key.
-     */
     public readonly nMhaeKey!: pulumi.Output<string>;
-    /**
-     * NEMO authentication key type (ascii or base64). Valid values: `ascii`, `base64`.
-     */
     public readonly nMhaeKeyType!: pulumi.Output<string>;
-    /**
-     * NEMO authentication SPI (default: 256).
-     */
     public readonly nMhaeSpi!: pulumi.Output<number>;
-    /**
-     * Tunnel name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * NEMO network configuration. The structure of `network` block is documented below.
-     */
     public readonly networks!: pulumi.Output<outputs.SystemMobileTunnelNetwork[] | undefined>;
-    /**
-     * NMMO HA registration interval (5 - 300, default = 5).
-     */
     public readonly regInterval!: pulumi.Output<number>;
-    /**
-     * Maximum number of NMMO HA registration retries (1 to 30, default = 3).
-     */
     public readonly regRetry!: pulumi.Output<number>;
-    /**
-     * Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
-     */
     public readonly renewInterval!: pulumi.Output<number>;
-    /**
-     * Select the associated interface name from available options.
-     */
     public readonly roamingInterface!: pulumi.Output<string>;
-    /**
-     * Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
-     */
     public readonly tunnelMode!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -211,7 +119,7 @@ export class SystemMobileTunnel extends pulumi.CustomResource {
             resourceInputs["homeAddress"] = args ? args.homeAddress : undefined;
             resourceInputs["homeAgent"] = args ? args.homeAgent : undefined;
             resourceInputs["lifetime"] = args ? args.lifetime : undefined;
-            resourceInputs["nMhaeKey"] = args ? args.nMhaeKey : undefined;
+            resourceInputs["nMhaeKey"] = args?.nMhaeKey ? pulumi.secret(args.nMhaeKey) : undefined;
             resourceInputs["nMhaeKeyType"] = args ? args.nMhaeKeyType : undefined;
             resourceInputs["nMhaeSpi"] = args ? args.nMhaeSpi : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -225,6 +133,8 @@ export class SystemMobileTunnel extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["nMhaeKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SystemMobileTunnel.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -233,73 +143,22 @@ export class SystemMobileTunnel extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemMobileTunnel resources.
  */
 export interface SystemMobileTunnelState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
-     */
     hashAlgorithm?: pulumi.Input<string>;
-    /**
-     * Home IP address (Format: xxx.xxx.xxx.xxx).
-     */
     homeAddress?: pulumi.Input<string>;
-    /**
-     * IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
-     */
     homeAgent?: pulumi.Input<string>;
-    /**
-     * NMMO HA registration request lifetime (180 - 65535 sec, default = 65535).
-     */
     lifetime?: pulumi.Input<number>;
-    /**
-     * NEMO authentication key.
-     */
     nMhaeKey?: pulumi.Input<string>;
-    /**
-     * NEMO authentication key type (ascii or base64). Valid values: `ascii`, `base64`.
-     */
     nMhaeKeyType?: pulumi.Input<string>;
-    /**
-     * NEMO authentication SPI (default: 256).
-     */
     nMhaeSpi?: pulumi.Input<number>;
-    /**
-     * Tunnel name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * NEMO network configuration. The structure of `network` block is documented below.
-     */
     networks?: pulumi.Input<pulumi.Input<inputs.SystemMobileTunnelNetwork>[]>;
-    /**
-     * NMMO HA registration interval (5 - 300, default = 5).
-     */
     regInterval?: pulumi.Input<number>;
-    /**
-     * Maximum number of NMMO HA registration retries (1 to 30, default = 3).
-     */
     regRetry?: pulumi.Input<number>;
-    /**
-     * Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
-     */
     renewInterval?: pulumi.Input<number>;
-    /**
-     * Select the associated interface name from available options.
-     */
     roamingInterface?: pulumi.Input<string>;
-    /**
-     * Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
-     */
     tunnelMode?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -307,72 +166,21 @@ export interface SystemMobileTunnelState {
  * The set of arguments for constructing a SystemMobileTunnel resource.
  */
 export interface SystemMobileTunnelArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
-     */
     hashAlgorithm: pulumi.Input<string>;
-    /**
-     * Home IP address (Format: xxx.xxx.xxx.xxx).
-     */
     homeAddress?: pulumi.Input<string>;
-    /**
-     * IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
-     */
     homeAgent: pulumi.Input<string>;
-    /**
-     * NMMO HA registration request lifetime (180 - 65535 sec, default = 65535).
-     */
     lifetime: pulumi.Input<number>;
-    /**
-     * NEMO authentication key.
-     */
     nMhaeKey?: pulumi.Input<string>;
-    /**
-     * NEMO authentication key type (ascii or base64). Valid values: `ascii`, `base64`.
-     */
     nMhaeKeyType: pulumi.Input<string>;
-    /**
-     * NEMO authentication SPI (default: 256).
-     */
     nMhaeSpi: pulumi.Input<number>;
-    /**
-     * Tunnel name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * NEMO network configuration. The structure of `network` block is documented below.
-     */
     networks?: pulumi.Input<pulumi.Input<inputs.SystemMobileTunnelNetwork>[]>;
-    /**
-     * NMMO HA registration interval (5 - 300, default = 5).
-     */
     regInterval: pulumi.Input<number>;
-    /**
-     * Maximum number of NMMO HA registration retries (1 to 30, default = 3).
-     */
     regRetry: pulumi.Input<number>;
-    /**
-     * Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
-     */
     renewInterval: pulumi.Input<number>;
-    /**
-     * Select the associated interface name from available options.
-     */
     roamingInterface: pulumi.Input<string>;
-    /**
-     * Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
-     */
     tunnelMode: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

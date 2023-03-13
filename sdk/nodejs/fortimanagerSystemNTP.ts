@@ -4,22 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports modifying system ntp setting for FortiManager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerSystemNTP("test1", {
- *     server: "ntp1.fortinet.com",
- *     status: "enable",
- *     syncInterval: 30,
- * });
- * ```
- */
 export class FortimanagerSystemNTP extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerSystemNTP resource's state with the given name, ID, and optional extra
@@ -48,17 +32,8 @@ export class FortimanagerSystemNTP extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerSystemNTP.__pulumiType;
     }
 
-    /**
-     * IP address/hostname of NTP Server.
-     */
     public readonly server!: pulumi.Output<string>;
-    /**
-     * Enable/disable NTP.
-     */
     public readonly status!: pulumi.Output<string | undefined>;
-    /**
-     * NTP sync interval (minute).
-     */
     public readonly syncInterval!: pulumi.Output<number | undefined>;
 
     /**
@@ -95,17 +70,8 @@ export class FortimanagerSystemNTP extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerSystemNTP resources.
  */
 export interface FortimanagerSystemNTPState {
-    /**
-     * IP address/hostname of NTP Server.
-     */
     server?: pulumi.Input<string>;
-    /**
-     * Enable/disable NTP.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * NTP sync interval (minute).
-     */
     syncInterval?: pulumi.Input<number>;
 }
 
@@ -113,16 +79,7 @@ export interface FortimanagerSystemNTPState {
  * The set of arguments for constructing a FortimanagerSystemNTP resource.
  */
 export interface FortimanagerSystemNTPArgs {
-    /**
-     * IP address/hostname of NTP Server.
-     */
     server: pulumi.Input<string>;
-    /**
-     * Enable/disable NTP.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * NTP sync interval (minute).
-     */
     syncInterval?: pulumi.Input<number>;
 }

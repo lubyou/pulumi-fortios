@@ -10,96 +10,30 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch global settings.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSwitchControllerGlobal(ctx, "trname", &fortios.SwitchControllerGlobalArgs{
-// 			AllowMultipleInterfaces: pulumi.String("disable"),
-// 			HttpsImagePush:          pulumi.String("disable"),
-// 			LogMacLimitViolations:   pulumi.String("disable"),
-// 			MacAgingInterval:        pulumi.Int(332),
-// 			MacRetentionPeriod:      pulumi.Int(24),
-// 			MacViolationTimer:       pulumi.Int(0),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// SwitchController Global can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerGlobal:SwitchControllerGlobal labelname SwitchControllerGlobal
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/switchControllerGlobal:SwitchControllerGlobal labelname SwitchControllerGlobal
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SwitchControllerGlobal struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable multiple FortiLink interfaces for redundant connections between a managed FortiSwitch and FortiGate. Valid values: `enable`, `disable`.
-	AllowMultipleInterfaces pulumi.StringOutput `pulumi:"allowMultipleInterfaces"`
-	// Enable/disable bouncing (administratively bring the link down, up) of a switch port where a quarantined device was seen last. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-	BounceQuarantinedLink pulumi.StringOutput `pulumi:"bounceQuarantinedLink"`
-	// List of custom commands to be pushed to all FortiSwitches in the VDOM. The structure of `customCommand` block is documented below.
-	CustomCommands SwitchControllerGlobalCustomCommandArrayOutput `pulumi:"customCommands"`
-	// Default VLAN for ports when added to the virtual-switch.
-	DefaultVirtualSwitchVlan pulumi.StringOutput `pulumi:"defaultVirtualSwitchVlan"`
-	// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
-	DhcpServerAccessList pulumi.StringOutput `pulumi:"dhcpServerAccessList"`
-	// Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
-	DisableDiscoveries SwitchControllerGlobalDisableDiscoveryArrayOutput `pulumi:"disableDiscoveries"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
-	FipsEnforce pulumi.StringOutput `pulumi:"fipsEnforce"`
-	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
-	FirmwareProvisionOnAuthorization pulumi.StringOutput `pulumi:"firmwareProvisionOnAuthorization"`
-	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
-	HttpsImagePush pulumi.StringOutput `pulumi:"httpsImagePush"`
-	// Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
-	LogMacLimitViolations pulumi.StringOutput `pulumi:"logMacLimitViolations"`
-	// Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
-	MacAgingInterval pulumi.IntOutput `pulumi:"macAgingInterval"`
-	// Enable/disable MAC address event logging. Valid values: `enable`, `disable`.
-	MacEventLogging pulumi.StringOutput `pulumi:"macEventLogging"`
-	// Time in hours after which an inactive MAC is removed from client DB.
-	MacRetentionPeriod pulumi.IntOutput `pulumi:"macRetentionPeriod"`
-	// Set timeout for Learning Limit Violations (0 = disabled).
-	MacViolationTimer pulumi.IntOutput `pulumi:"macViolationTimer"`
-	// Quarantine mode. Valid values: `by-vlan`, `by-redirect`.
-	QuarantineMode pulumi.StringOutput `pulumi:"quarantineMode"`
-	// Enable/disable DNS resolution of the FortiSwitch unit's IP address by use of its serial number. Valid values: `enable`, `disable`.
-	SnDnsResolution pulumi.StringOutput `pulumi:"snDnsResolution"`
-	// Control which sources update the device user list. Valid values: `mac-cache`, `lldp`, `dhcp-snooping`, `l2-db`, `l3-db`.
-	UpdateUserDevice pulumi.StringOutput `pulumi:"updateUserDevice"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
-	VlanAllMode pulumi.StringOutput `pulumi:"vlanAllMode"`
-	// FortiLink VLAN optimization. Valid values: `enable`, `disable`.
-	VlanOptimization pulumi.StringOutput `pulumi:"vlanOptimization"`
+	AllowMultipleInterfaces          pulumi.StringOutput                               `pulumi:"allowMultipleInterfaces"`
+	BounceQuarantinedLink            pulumi.StringOutput                               `pulumi:"bounceQuarantinedLink"`
+	CustomCommands                   SwitchControllerGlobalCustomCommandArrayOutput    `pulumi:"customCommands"`
+	DefaultVirtualSwitchVlan         pulumi.StringOutput                               `pulumi:"defaultVirtualSwitchVlan"`
+	DhcpServerAccessList             pulumi.StringOutput                               `pulumi:"dhcpServerAccessList"`
+	DisableDiscoveries               SwitchControllerGlobalDisableDiscoveryArrayOutput `pulumi:"disableDiscoveries"`
+	DynamicSortSubtable              pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
+	FipsEnforce                      pulumi.StringOutput                               `pulumi:"fipsEnforce"`
+	FirmwareProvisionOnAuthorization pulumi.StringOutput                               `pulumi:"firmwareProvisionOnAuthorization"`
+	HttpsImagePush                   pulumi.StringOutput                               `pulumi:"httpsImagePush"`
+	LogMacLimitViolations            pulumi.StringOutput                               `pulumi:"logMacLimitViolations"`
+	MacAgingInterval                 pulumi.IntOutput                                  `pulumi:"macAgingInterval"`
+	MacEventLogging                  pulumi.StringOutput                               `pulumi:"macEventLogging"`
+	MacRetentionPeriod               pulumi.IntOutput                                  `pulumi:"macRetentionPeriod"`
+	MacViolationTimer                pulumi.IntOutput                                  `pulumi:"macViolationTimer"`
+	QuarantineMode                   pulumi.StringOutput                               `pulumi:"quarantineMode"`
+	SnDnsResolution                  pulumi.StringOutput                               `pulumi:"snDnsResolution"`
+	UpdateUserDevice                 pulumi.StringOutput                               `pulumi:"updateUserDevice"`
+	Vdomparam                        pulumi.StringPtrOutput                            `pulumi:"vdomparam"`
+	VlanAllMode                      pulumi.StringOutput                               `pulumi:"vlanAllMode"`
+	VlanOptimization                 pulumi.StringOutput                               `pulumi:"vlanOptimization"`
 }
 
 // NewSwitchControllerGlobal registers a new resource with the given unique name, arguments, and options.
@@ -132,93 +66,51 @@ func GetSwitchControllerGlobal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerGlobal resources.
 type switchControllerGlobalState struct {
-	// Enable/disable multiple FortiLink interfaces for redundant connections between a managed FortiSwitch and FortiGate. Valid values: `enable`, `disable`.
-	AllowMultipleInterfaces *string `pulumi:"allowMultipleInterfaces"`
-	// Enable/disable bouncing (administratively bring the link down, up) of a switch port where a quarantined device was seen last. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-	BounceQuarantinedLink *string `pulumi:"bounceQuarantinedLink"`
-	// List of custom commands to be pushed to all FortiSwitches in the VDOM. The structure of `customCommand` block is documented below.
-	CustomCommands []SwitchControllerGlobalCustomCommand `pulumi:"customCommands"`
-	// Default VLAN for ports when added to the virtual-switch.
-	DefaultVirtualSwitchVlan *string `pulumi:"defaultVirtualSwitchVlan"`
-	// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
-	DhcpServerAccessList *string `pulumi:"dhcpServerAccessList"`
-	// Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
-	DisableDiscoveries []SwitchControllerGlobalDisableDiscovery `pulumi:"disableDiscoveries"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
-	FipsEnforce *string `pulumi:"fipsEnforce"`
-	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
-	FirmwareProvisionOnAuthorization *string `pulumi:"firmwareProvisionOnAuthorization"`
-	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
-	HttpsImagePush *string `pulumi:"httpsImagePush"`
-	// Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
-	LogMacLimitViolations *string `pulumi:"logMacLimitViolations"`
-	// Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
-	MacAgingInterval *int `pulumi:"macAgingInterval"`
-	// Enable/disable MAC address event logging. Valid values: `enable`, `disable`.
-	MacEventLogging *string `pulumi:"macEventLogging"`
-	// Time in hours after which an inactive MAC is removed from client DB.
-	MacRetentionPeriod *int `pulumi:"macRetentionPeriod"`
-	// Set timeout for Learning Limit Violations (0 = disabled).
-	MacViolationTimer *int `pulumi:"macViolationTimer"`
-	// Quarantine mode. Valid values: `by-vlan`, `by-redirect`.
-	QuarantineMode *string `pulumi:"quarantineMode"`
-	// Enable/disable DNS resolution of the FortiSwitch unit's IP address by use of its serial number. Valid values: `enable`, `disable`.
-	SnDnsResolution *string `pulumi:"snDnsResolution"`
-	// Control which sources update the device user list. Valid values: `mac-cache`, `lldp`, `dhcp-snooping`, `l2-db`, `l3-db`.
-	UpdateUserDevice *string `pulumi:"updateUserDevice"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
-	VlanAllMode *string `pulumi:"vlanAllMode"`
-	// FortiLink VLAN optimization. Valid values: `enable`, `disable`.
-	VlanOptimization *string `pulumi:"vlanOptimization"`
+	AllowMultipleInterfaces          *string                                  `pulumi:"allowMultipleInterfaces"`
+	BounceQuarantinedLink            *string                                  `pulumi:"bounceQuarantinedLink"`
+	CustomCommands                   []SwitchControllerGlobalCustomCommand    `pulumi:"customCommands"`
+	DefaultVirtualSwitchVlan         *string                                  `pulumi:"defaultVirtualSwitchVlan"`
+	DhcpServerAccessList             *string                                  `pulumi:"dhcpServerAccessList"`
+	DisableDiscoveries               []SwitchControllerGlobalDisableDiscovery `pulumi:"disableDiscoveries"`
+	DynamicSortSubtable              *string                                  `pulumi:"dynamicSortSubtable"`
+	FipsEnforce                      *string                                  `pulumi:"fipsEnforce"`
+	FirmwareProvisionOnAuthorization *string                                  `pulumi:"firmwareProvisionOnAuthorization"`
+	HttpsImagePush                   *string                                  `pulumi:"httpsImagePush"`
+	LogMacLimitViolations            *string                                  `pulumi:"logMacLimitViolations"`
+	MacAgingInterval                 *int                                     `pulumi:"macAgingInterval"`
+	MacEventLogging                  *string                                  `pulumi:"macEventLogging"`
+	MacRetentionPeriod               *int                                     `pulumi:"macRetentionPeriod"`
+	MacViolationTimer                *int                                     `pulumi:"macViolationTimer"`
+	QuarantineMode                   *string                                  `pulumi:"quarantineMode"`
+	SnDnsResolution                  *string                                  `pulumi:"snDnsResolution"`
+	UpdateUserDevice                 *string                                  `pulumi:"updateUserDevice"`
+	Vdomparam                        *string                                  `pulumi:"vdomparam"`
+	VlanAllMode                      *string                                  `pulumi:"vlanAllMode"`
+	VlanOptimization                 *string                                  `pulumi:"vlanOptimization"`
 }
 
 type SwitchControllerGlobalState struct {
-	// Enable/disable multiple FortiLink interfaces for redundant connections between a managed FortiSwitch and FortiGate. Valid values: `enable`, `disable`.
-	AllowMultipleInterfaces pulumi.StringPtrInput
-	// Enable/disable bouncing (administratively bring the link down, up) of a switch port where a quarantined device was seen last. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-	BounceQuarantinedLink pulumi.StringPtrInput
-	// List of custom commands to be pushed to all FortiSwitches in the VDOM. The structure of `customCommand` block is documented below.
-	CustomCommands SwitchControllerGlobalCustomCommandArrayInput
-	// Default VLAN for ports when added to the virtual-switch.
-	DefaultVirtualSwitchVlan pulumi.StringPtrInput
-	// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
-	DhcpServerAccessList pulumi.StringPtrInput
-	// Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
-	DisableDiscoveries SwitchControllerGlobalDisableDiscoveryArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
-	FipsEnforce pulumi.StringPtrInput
-	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+	AllowMultipleInterfaces          pulumi.StringPtrInput
+	BounceQuarantinedLink            pulumi.StringPtrInput
+	CustomCommands                   SwitchControllerGlobalCustomCommandArrayInput
+	DefaultVirtualSwitchVlan         pulumi.StringPtrInput
+	DhcpServerAccessList             pulumi.StringPtrInput
+	DisableDiscoveries               SwitchControllerGlobalDisableDiscoveryArrayInput
+	DynamicSortSubtable              pulumi.StringPtrInput
+	FipsEnforce                      pulumi.StringPtrInput
 	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
-	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
-	HttpsImagePush pulumi.StringPtrInput
-	// Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
-	LogMacLimitViolations pulumi.StringPtrInput
-	// Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
-	MacAgingInterval pulumi.IntPtrInput
-	// Enable/disable MAC address event logging. Valid values: `enable`, `disable`.
-	MacEventLogging pulumi.StringPtrInput
-	// Time in hours after which an inactive MAC is removed from client DB.
-	MacRetentionPeriod pulumi.IntPtrInput
-	// Set timeout for Learning Limit Violations (0 = disabled).
-	MacViolationTimer pulumi.IntPtrInput
-	// Quarantine mode. Valid values: `by-vlan`, `by-redirect`.
-	QuarantineMode pulumi.StringPtrInput
-	// Enable/disable DNS resolution of the FortiSwitch unit's IP address by use of its serial number. Valid values: `enable`, `disable`.
-	SnDnsResolution pulumi.StringPtrInput
-	// Control which sources update the device user list. Valid values: `mac-cache`, `lldp`, `dhcp-snooping`, `l2-db`, `l3-db`.
-	UpdateUserDevice pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
-	VlanAllMode pulumi.StringPtrInput
-	// FortiLink VLAN optimization. Valid values: `enable`, `disable`.
-	VlanOptimization pulumi.StringPtrInput
+	HttpsImagePush                   pulumi.StringPtrInput
+	LogMacLimitViolations            pulumi.StringPtrInput
+	MacAgingInterval                 pulumi.IntPtrInput
+	MacEventLogging                  pulumi.StringPtrInput
+	MacRetentionPeriod               pulumi.IntPtrInput
+	MacViolationTimer                pulumi.IntPtrInput
+	QuarantineMode                   pulumi.StringPtrInput
+	SnDnsResolution                  pulumi.StringPtrInput
+	UpdateUserDevice                 pulumi.StringPtrInput
+	Vdomparam                        pulumi.StringPtrInput
+	VlanAllMode                      pulumi.StringPtrInput
+	VlanOptimization                 pulumi.StringPtrInput
 }
 
 func (SwitchControllerGlobalState) ElementType() reflect.Type {
@@ -226,94 +118,52 @@ func (SwitchControllerGlobalState) ElementType() reflect.Type {
 }
 
 type switchControllerGlobalArgs struct {
-	// Enable/disable multiple FortiLink interfaces for redundant connections between a managed FortiSwitch and FortiGate. Valid values: `enable`, `disable`.
-	AllowMultipleInterfaces *string `pulumi:"allowMultipleInterfaces"`
-	// Enable/disable bouncing (administratively bring the link down, up) of a switch port where a quarantined device was seen last. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-	BounceQuarantinedLink *string `pulumi:"bounceQuarantinedLink"`
-	// List of custom commands to be pushed to all FortiSwitches in the VDOM. The structure of `customCommand` block is documented below.
-	CustomCommands []SwitchControllerGlobalCustomCommand `pulumi:"customCommands"`
-	// Default VLAN for ports when added to the virtual-switch.
-	DefaultVirtualSwitchVlan *string `pulumi:"defaultVirtualSwitchVlan"`
-	// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
-	DhcpServerAccessList *string `pulumi:"dhcpServerAccessList"`
-	// Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
-	DisableDiscoveries []SwitchControllerGlobalDisableDiscovery `pulumi:"disableDiscoveries"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
-	FipsEnforce *string `pulumi:"fipsEnforce"`
-	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
-	FirmwareProvisionOnAuthorization *string `pulumi:"firmwareProvisionOnAuthorization"`
-	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
-	HttpsImagePush *string `pulumi:"httpsImagePush"`
-	// Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
-	LogMacLimitViolations *string `pulumi:"logMacLimitViolations"`
-	// Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
-	MacAgingInterval *int `pulumi:"macAgingInterval"`
-	// Enable/disable MAC address event logging. Valid values: `enable`, `disable`.
-	MacEventLogging *string `pulumi:"macEventLogging"`
-	// Time in hours after which an inactive MAC is removed from client DB.
-	MacRetentionPeriod *int `pulumi:"macRetentionPeriod"`
-	// Set timeout for Learning Limit Violations (0 = disabled).
-	MacViolationTimer *int `pulumi:"macViolationTimer"`
-	// Quarantine mode. Valid values: `by-vlan`, `by-redirect`.
-	QuarantineMode *string `pulumi:"quarantineMode"`
-	// Enable/disable DNS resolution of the FortiSwitch unit's IP address by use of its serial number. Valid values: `enable`, `disable`.
-	SnDnsResolution *string `pulumi:"snDnsResolution"`
-	// Control which sources update the device user list. Valid values: `mac-cache`, `lldp`, `dhcp-snooping`, `l2-db`, `l3-db`.
-	UpdateUserDevice *string `pulumi:"updateUserDevice"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
-	VlanAllMode *string `pulumi:"vlanAllMode"`
-	// FortiLink VLAN optimization. Valid values: `enable`, `disable`.
-	VlanOptimization *string `pulumi:"vlanOptimization"`
+	AllowMultipleInterfaces          *string                                  `pulumi:"allowMultipleInterfaces"`
+	BounceQuarantinedLink            *string                                  `pulumi:"bounceQuarantinedLink"`
+	CustomCommands                   []SwitchControllerGlobalCustomCommand    `pulumi:"customCommands"`
+	DefaultVirtualSwitchVlan         *string                                  `pulumi:"defaultVirtualSwitchVlan"`
+	DhcpServerAccessList             *string                                  `pulumi:"dhcpServerAccessList"`
+	DisableDiscoveries               []SwitchControllerGlobalDisableDiscovery `pulumi:"disableDiscoveries"`
+	DynamicSortSubtable              *string                                  `pulumi:"dynamicSortSubtable"`
+	FipsEnforce                      *string                                  `pulumi:"fipsEnforce"`
+	FirmwareProvisionOnAuthorization *string                                  `pulumi:"firmwareProvisionOnAuthorization"`
+	HttpsImagePush                   *string                                  `pulumi:"httpsImagePush"`
+	LogMacLimitViolations            *string                                  `pulumi:"logMacLimitViolations"`
+	MacAgingInterval                 *int                                     `pulumi:"macAgingInterval"`
+	MacEventLogging                  *string                                  `pulumi:"macEventLogging"`
+	MacRetentionPeriod               *int                                     `pulumi:"macRetentionPeriod"`
+	MacViolationTimer                *int                                     `pulumi:"macViolationTimer"`
+	QuarantineMode                   *string                                  `pulumi:"quarantineMode"`
+	SnDnsResolution                  *string                                  `pulumi:"snDnsResolution"`
+	UpdateUserDevice                 *string                                  `pulumi:"updateUserDevice"`
+	Vdomparam                        *string                                  `pulumi:"vdomparam"`
+	VlanAllMode                      *string                                  `pulumi:"vlanAllMode"`
+	VlanOptimization                 *string                                  `pulumi:"vlanOptimization"`
 }
 
 // The set of arguments for constructing a SwitchControllerGlobal resource.
 type SwitchControllerGlobalArgs struct {
-	// Enable/disable multiple FortiLink interfaces for redundant connections between a managed FortiSwitch and FortiGate. Valid values: `enable`, `disable`.
-	AllowMultipleInterfaces pulumi.StringPtrInput
-	// Enable/disable bouncing (administratively bring the link down, up) of a switch port where a quarantined device was seen last. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-	BounceQuarantinedLink pulumi.StringPtrInput
-	// List of custom commands to be pushed to all FortiSwitches in the VDOM. The structure of `customCommand` block is documented below.
-	CustomCommands SwitchControllerGlobalCustomCommandArrayInput
-	// Default VLAN for ports when added to the virtual-switch.
-	DefaultVirtualSwitchVlan pulumi.StringPtrInput
-	// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
-	DhcpServerAccessList pulumi.StringPtrInput
-	// Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
-	DisableDiscoveries SwitchControllerGlobalDisableDiscoveryArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
-	FipsEnforce pulumi.StringPtrInput
-	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+	AllowMultipleInterfaces          pulumi.StringPtrInput
+	BounceQuarantinedLink            pulumi.StringPtrInput
+	CustomCommands                   SwitchControllerGlobalCustomCommandArrayInput
+	DefaultVirtualSwitchVlan         pulumi.StringPtrInput
+	DhcpServerAccessList             pulumi.StringPtrInput
+	DisableDiscoveries               SwitchControllerGlobalDisableDiscoveryArrayInput
+	DynamicSortSubtable              pulumi.StringPtrInput
+	FipsEnforce                      pulumi.StringPtrInput
 	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
-	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
-	HttpsImagePush pulumi.StringPtrInput
-	// Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
-	LogMacLimitViolations pulumi.StringPtrInput
-	// Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
-	MacAgingInterval pulumi.IntPtrInput
-	// Enable/disable MAC address event logging. Valid values: `enable`, `disable`.
-	MacEventLogging pulumi.StringPtrInput
-	// Time in hours after which an inactive MAC is removed from client DB.
-	MacRetentionPeriod pulumi.IntPtrInput
-	// Set timeout for Learning Limit Violations (0 = disabled).
-	MacViolationTimer pulumi.IntPtrInput
-	// Quarantine mode. Valid values: `by-vlan`, `by-redirect`.
-	QuarantineMode pulumi.StringPtrInput
-	// Enable/disable DNS resolution of the FortiSwitch unit's IP address by use of its serial number. Valid values: `enable`, `disable`.
-	SnDnsResolution pulumi.StringPtrInput
-	// Control which sources update the device user list. Valid values: `mac-cache`, `lldp`, `dhcp-snooping`, `l2-db`, `l3-db`.
-	UpdateUserDevice pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
-	VlanAllMode pulumi.StringPtrInput
-	// FortiLink VLAN optimization. Valid values: `enable`, `disable`.
-	VlanOptimization pulumi.StringPtrInput
+	HttpsImagePush                   pulumi.StringPtrInput
+	LogMacLimitViolations            pulumi.StringPtrInput
+	MacAgingInterval                 pulumi.IntPtrInput
+	MacEventLogging                  pulumi.StringPtrInput
+	MacRetentionPeriod               pulumi.IntPtrInput
+	MacViolationTimer                pulumi.IntPtrInput
+	QuarantineMode                   pulumi.StringPtrInput
+	SnDnsResolution                  pulumi.StringPtrInput
+	UpdateUserDevice                 pulumi.StringPtrInput
+	Vdomparam                        pulumi.StringPtrInput
+	VlanAllMode                      pulumi.StringPtrInput
+	VlanOptimization                 pulumi.StringPtrInput
 }
 
 func (SwitchControllerGlobalArgs) ElementType() reflect.Type {
@@ -342,7 +192,7 @@ func (i *SwitchControllerGlobal) ToSwitchControllerGlobalOutputWithContext(ctx c
 // SwitchControllerGlobalArrayInput is an input type that accepts SwitchControllerGlobalArray and SwitchControllerGlobalArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerGlobalArrayInput` via:
 //
-//          SwitchControllerGlobalArray{ SwitchControllerGlobalArgs{...} }
+//	SwitchControllerGlobalArray{ SwitchControllerGlobalArgs{...} }
 type SwitchControllerGlobalArrayInput interface {
 	pulumi.Input
 
@@ -367,7 +217,7 @@ func (i SwitchControllerGlobalArray) ToSwitchControllerGlobalArrayOutputWithCont
 // SwitchControllerGlobalMapInput is an input type that accepts SwitchControllerGlobalMap and SwitchControllerGlobalMapOutput values.
 // You can construct a concrete instance of `SwitchControllerGlobalMapInput` via:
 //
-//          SwitchControllerGlobalMap{ "key": SwitchControllerGlobalArgs{...} }
+//	SwitchControllerGlobalMap{ "key": SwitchControllerGlobalArgs{...} }
 type SwitchControllerGlobalMapInput interface {
 	pulumi.Input
 
@@ -401,6 +251,94 @@ func (o SwitchControllerGlobalOutput) ToSwitchControllerGlobalOutput() SwitchCon
 
 func (o SwitchControllerGlobalOutput) ToSwitchControllerGlobalOutputWithContext(ctx context.Context) SwitchControllerGlobalOutput {
 	return o
+}
+
+func (o SwitchControllerGlobalOutput) AllowMultipleInterfaces() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.AllowMultipleInterfaces }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) BounceQuarantinedLink() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.BounceQuarantinedLink }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) CustomCommands() SwitchControllerGlobalCustomCommandArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) SwitchControllerGlobalCustomCommandArrayOutput {
+		return v.CustomCommands
+	}).(SwitchControllerGlobalCustomCommandArrayOutput)
+}
+
+func (o SwitchControllerGlobalOutput) DefaultVirtualSwitchVlan() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.DefaultVirtualSwitchVlan }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) DhcpServerAccessList() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.DhcpServerAccessList }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) DisableDiscoveries() SwitchControllerGlobalDisableDiscoveryArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) SwitchControllerGlobalDisableDiscoveryArrayOutput {
+		return v.DisableDiscoveries
+	}).(SwitchControllerGlobalDisableDiscoveryArrayOutput)
+}
+
+func (o SwitchControllerGlobalOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerGlobalOutput) FipsEnforce() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.FipsEnforce }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) FirmwareProvisionOnAuthorization() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.FirmwareProvisionOnAuthorization }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) HttpsImagePush() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.HttpsImagePush }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) LogMacLimitViolations() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.LogMacLimitViolations }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) MacAgingInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.IntOutput { return v.MacAgingInterval }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerGlobalOutput) MacEventLogging() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.MacEventLogging }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) MacRetentionPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.IntOutput { return v.MacRetentionPeriod }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerGlobalOutput) MacViolationTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.IntOutput { return v.MacViolationTimer }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerGlobalOutput) QuarantineMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.QuarantineMode }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) SnDnsResolution() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.SnDnsResolution }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) UpdateUserDevice() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.UpdateUserDevice }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerGlobalOutput) VlanAllMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.VlanAllMode }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) VlanOptimization() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.VlanOptimization }).(pulumi.StringOutput)
 }
 
 type SwitchControllerGlobalArrayOutput struct{ *pulumi.OutputState }

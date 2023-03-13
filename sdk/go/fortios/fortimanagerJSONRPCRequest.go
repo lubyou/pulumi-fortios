@@ -7,57 +7,16 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports handling JSON RPC request for FortiManager.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"fmt"
-//
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewFortimanagerJSONRPCRequest(ctx, "test1", &fortios.FortimanagerJSONRPCRequestArgs{
-// 			JsonContent: pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v", "{\n", "  \"method\": \"add\",\n", "  \"params\": [\n", "    {\n", "      \"data\": [\n", "        {\n", "          \"action\": \"accept\",\n", "          \"dstaddr\": [\"all\"],\n", "          \"dstintf\": \"any\",\n", "          \"name\": \"policytest\",\n", "          \"schedule\": \"none\",\n", "          \"service\": \"ALL\",\n", "          \"srcaddr\": \"all\",\n", "          \"srcintf\": \"any\",\n", "          \"internet-service\": \"enable\",\n", "          \"internet-service-id\": \"Alibaba-Web\",\n", "          \"internet-service-src\": \"enable\",\n", "          \"internet-service-src-id\": \"Alibaba-Web\",\n", "          \"users\": \"guest\",\n", "          \"groups\": \"Guest-group\"\n", "        }\n", "      ],\n", "      \"url\": \"/pm/config/adom/root/pkg/default/firewall/policy\"\n", "    }\n", "  ]\n", "}\n", "\n")),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewFortimanagerJSONRPCRequest(ctx, "test2", &fortios.FortimanagerJSONRPCRequestArgs{
-// 			JsonContent: pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v", "{\n", "  \"method\": \"add\",\n", "  \"params\": [\n", "    {\n", "      \"data\": [\n", "        {\n", "          \"ip\": \"192.168.1.2\",\n", "          \"name\": \"logserver4\",\n", "          \"port\": \"514\"\n", "        }\n", "      ],\n", "      \"url\": \"/cli/global/system/syslog\"\n", "    }\n", "  ]\n", "}\n", "\n")),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fortios.NewFortimanagerJSONRPCRequest(ctx, "test3", &fortios.FortimanagerJSONRPCRequestArgs{
-// 			JsonContent: pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v", "{\n", "  \"method\": \"get\",\n", "  \"params\": [\n", "    {\n", "      \"url\": \"/cli/global/system/admin/user/APIUser\"\n", "    }\n", "  ]\n", "}\n", "\n")),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type FortimanagerJSONRPCRequest struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// JSON RPC request, which should contain 'method' and 'params' parameters.
-	JsonContent pulumi.StringOutput `pulumi:"jsonContent"`
-	// JSON RPC request response data.
-	Response pulumi.StringOutput `pulumi:"response"`
+	Comment     pulumi.StringPtrOutput `pulumi:"comment"`
+	JsonContent pulumi.StringOutput    `pulumi:"jsonContent"`
+	Response    pulumi.StringOutput    `pulumi:"response"`
 }
 
 // NewFortimanagerJSONRPCRequest registers a new resource with the given unique name, arguments, and options.
@@ -93,21 +52,15 @@ func GetFortimanagerJSONRPCRequest(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FortimanagerJSONRPCRequest resources.
 type fortimanagerJSONRPCRequestState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// JSON RPC request, which should contain 'method' and 'params' parameters.
+	Comment     *string `pulumi:"comment"`
 	JsonContent *string `pulumi:"jsonContent"`
-	// JSON RPC request response data.
-	Response *string `pulumi:"response"`
+	Response    *string `pulumi:"response"`
 }
 
 type FortimanagerJSONRPCRequestState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// JSON RPC request, which should contain 'method' and 'params' parameters.
+	Comment     pulumi.StringPtrInput
 	JsonContent pulumi.StringPtrInput
-	// JSON RPC request response data.
-	Response pulumi.StringPtrInput
+	Response    pulumi.StringPtrInput
 }
 
 func (FortimanagerJSONRPCRequestState) ElementType() reflect.Type {
@@ -115,17 +68,13 @@ func (FortimanagerJSONRPCRequestState) ElementType() reflect.Type {
 }
 
 type fortimanagerJSONRPCRequestArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// JSON RPC request, which should contain 'method' and 'params' parameters.
-	JsonContent string `pulumi:"jsonContent"`
+	Comment     *string `pulumi:"comment"`
+	JsonContent string  `pulumi:"jsonContent"`
 }
 
 // The set of arguments for constructing a FortimanagerJSONRPCRequest resource.
 type FortimanagerJSONRPCRequestArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// JSON RPC request, which should contain 'method' and 'params' parameters.
+	Comment     pulumi.StringPtrInput
 	JsonContent pulumi.StringInput
 }
 
@@ -155,7 +104,7 @@ func (i *FortimanagerJSONRPCRequest) ToFortimanagerJSONRPCRequestOutputWithConte
 // FortimanagerJSONRPCRequestArrayInput is an input type that accepts FortimanagerJSONRPCRequestArray and FortimanagerJSONRPCRequestArrayOutput values.
 // You can construct a concrete instance of `FortimanagerJSONRPCRequestArrayInput` via:
 //
-//          FortimanagerJSONRPCRequestArray{ FortimanagerJSONRPCRequestArgs{...} }
+//	FortimanagerJSONRPCRequestArray{ FortimanagerJSONRPCRequestArgs{...} }
 type FortimanagerJSONRPCRequestArrayInput interface {
 	pulumi.Input
 
@@ -180,7 +129,7 @@ func (i FortimanagerJSONRPCRequestArray) ToFortimanagerJSONRPCRequestArrayOutput
 // FortimanagerJSONRPCRequestMapInput is an input type that accepts FortimanagerJSONRPCRequestMap and FortimanagerJSONRPCRequestMapOutput values.
 // You can construct a concrete instance of `FortimanagerJSONRPCRequestMapInput` via:
 //
-//          FortimanagerJSONRPCRequestMap{ "key": FortimanagerJSONRPCRequestArgs{...} }
+//	FortimanagerJSONRPCRequestMap{ "key": FortimanagerJSONRPCRequestArgs{...} }
 type FortimanagerJSONRPCRequestMapInput interface {
 	pulumi.Input
 
@@ -214,6 +163,18 @@ func (o FortimanagerJSONRPCRequestOutput) ToFortimanagerJSONRPCRequestOutput() F
 
 func (o FortimanagerJSONRPCRequestOutput) ToFortimanagerJSONRPCRequestOutputWithContext(ctx context.Context) FortimanagerJSONRPCRequestOutput {
 	return o
+}
+
+func (o FortimanagerJSONRPCRequestOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FortimanagerJSONRPCRequest) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o FortimanagerJSONRPCRequestOutput) JsonContent() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerJSONRPCRequest) pulumi.StringOutput { return v.JsonContent }).(pulumi.StringOutput)
+}
+
+func (o FortimanagerJSONRPCRequestOutput) Response() pulumi.StringOutput {
+	return o.ApplyT(func(v *FortimanagerJSONRPCRequest) pulumi.StringOutput { return v.Response }).(pulumi.StringOutput)
 }
 
 type FortimanagerJSONRPCRequestArrayOutput struct{ *pulumi.OutputState }

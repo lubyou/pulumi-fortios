@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource supports uploading VM license to FortiGate through FortiManager.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const test1 = new fortios.FortimanagerSystemLicenseVM("test1", {
- *     fileContent: "XXX", // your license file content
- *     target: "fortigate-test",
- * });
- * ```
- */
 export class FortimanagerSystemLicenseVM extends pulumi.CustomResource {
     /**
      * Get an existing FortimanagerSystemLicenseVM resource's state with the given name, ID, and optional extra
@@ -47,17 +32,8 @@ export class FortimanagerSystemLicenseVM extends pulumi.CustomResource {
         return obj['__pulumiType'] === FortimanagerSystemLicenseVM.__pulumiType;
     }
 
-    /**
-     * ADOM that the target device belongs to. default is 'root'.
-     */
     public readonly adom!: pulumi.Output<string | undefined>;
-    /**
-     * The license file, it needs to be base64 encoded.
-     */
     public readonly fileContent!: pulumi.Output<string>;
-    /**
-     * Target name, which is managed by FortiManager.
-     */
     public readonly target!: pulumi.Output<string>;
 
     /**
@@ -97,17 +73,8 @@ export class FortimanagerSystemLicenseVM extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FortimanagerSystemLicenseVM resources.
  */
 export interface FortimanagerSystemLicenseVMState {
-    /**
-     * ADOM that the target device belongs to. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * The license file, it needs to be base64 encoded.
-     */
     fileContent?: pulumi.Input<string>;
-    /**
-     * Target name, which is managed by FortiManager.
-     */
     target?: pulumi.Input<string>;
 }
 
@@ -115,16 +82,7 @@ export interface FortimanagerSystemLicenseVMState {
  * The set of arguments for constructing a FortimanagerSystemLicenseVM resource.
  */
 export interface FortimanagerSystemLicenseVMArgs {
-    /**
-     * ADOM that the target device belongs to. default is 'root'.
-     */
     adom?: pulumi.Input<string>;
-    /**
-     * The license file, it needs to be base64 encoded.
-     */
     fileContent: pulumi.Input<string>;
-    /**
-     * Target name, which is managed by FortiManager.
-     */
     target: pulumi.Input<string>;
 }

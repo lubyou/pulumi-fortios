@@ -2,61 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure router multicast.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.RouterMulticast("trname", {
- *     multicastRouting: "disable",
- *     pimSmGlobal: {
- *         bsrAllowQuickRefresh: "disable",
- *         bsrCandidate: "disable",
- *         bsrHash: 10,
- *         bsrPriority: 0,
- *         ciscoCrpPrefix: "disable",
- *         ciscoIgnoreRpSetPriority: "disable",
- *         ciscoRegisterChecksum: "disable",
- *         joinPruneHoldtime: 210,
- *         messageInterval: 60,
- *         nullRegisterRetries: 1,
- *         registerRateLimit: 0,
- *         registerRpReachability: "enable",
- *         registerSource: "disable",
- *         registerSourceIp: "0.0.0.0",
- *         registerSupression: 60,
- *         rpRegisterKeepalive: 185,
- *         sptThreshold: "enable",
- *         ssm: "disable",
- *     },
- *     routeLimit: 2147483647,
- *     routeThreshold: 2147483647,
- * });
- * ```
- *
- * ## Import
- *
- * Router Multicast can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/routerMulticast:RouterMulticast labelname RouterMulticast
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/routerMulticast:RouterMulticast labelname RouterMulticast
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class RouterMulticast extends pulumi.CustomResource {
     /**
      * Get an existing RouterMulticast resource's state with the given name, ID, and optional extra
@@ -85,33 +34,12 @@ export class RouterMulticast extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouterMulticast.__pulumiType;
     }
 
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * PIM interfaces. The structure of `interface` block is documented below.
-     */
     public readonly interfaces!: pulumi.Output<outputs.RouterMulticastInterface[] | undefined>;
-    /**
-     * Enable/disable IP multicast routing. Valid values: `enable`, `disable`.
-     */
     public readonly multicastRouting!: pulumi.Output<string>;
-    /**
-     * PIM sparse-mode global settings. The structure of `pimSmGlobal` block is documented below.
-     */
-    public readonly pimSmGlobal!: pulumi.Output<outputs.RouterMulticastPimSmGlobal | undefined>;
-    /**
-     * Maximum number of multicast routes.
-     */
+    public readonly pimSmGlobal!: pulumi.Output<outputs.RouterMulticastPimSmGlobal>;
     public readonly routeLimit!: pulumi.Output<number>;
-    /**
-     * Generate warnings when the number of multicast routes exceeds this number, must not be greater than route-limit.
-     */
     public readonly routeThreshold!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -153,33 +81,12 @@ export class RouterMulticast extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouterMulticast resources.
  */
 export interface RouterMulticastState {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * PIM interfaces. The structure of `interface` block is documented below.
-     */
     interfaces?: pulumi.Input<pulumi.Input<inputs.RouterMulticastInterface>[]>;
-    /**
-     * Enable/disable IP multicast routing. Valid values: `enable`, `disable`.
-     */
     multicastRouting?: pulumi.Input<string>;
-    /**
-     * PIM sparse-mode global settings. The structure of `pimSmGlobal` block is documented below.
-     */
     pimSmGlobal?: pulumi.Input<inputs.RouterMulticastPimSmGlobal>;
-    /**
-     * Maximum number of multicast routes.
-     */
     routeLimit?: pulumi.Input<number>;
-    /**
-     * Generate warnings when the number of multicast routes exceeds this number, must not be greater than route-limit.
-     */
     routeThreshold?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -187,32 +94,11 @@ export interface RouterMulticastState {
  * The set of arguments for constructing a RouterMulticast resource.
  */
 export interface RouterMulticastArgs {
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * PIM interfaces. The structure of `interface` block is documented below.
-     */
     interfaces?: pulumi.Input<pulumi.Input<inputs.RouterMulticastInterface>[]>;
-    /**
-     * Enable/disable IP multicast routing. Valid values: `enable`, `disable`.
-     */
     multicastRouting?: pulumi.Input<string>;
-    /**
-     * PIM sparse-mode global settings. The structure of `pimSmGlobal` block is documented below.
-     */
     pimSmGlobal?: pulumi.Input<inputs.RouterMulticastPimSmGlobal>;
-    /**
-     * Maximum number of multicast routes.
-     */
     routeLimit?: pulumi.Input<number>;
-    /**
-     * Generate warnings when the number of multicast routes exceeds this number, must not be greater than route-limit.
-     */
     routeThreshold?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

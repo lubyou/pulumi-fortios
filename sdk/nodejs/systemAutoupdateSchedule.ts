@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Configure update schedule.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemAutoupdateSchedule("trname", {
- *     day: "Monday",
- *     frequency: "every",
- *     status: "enable",
- *     time: "02:60",
- * });
- * ```
- *
- * ## Import
- *
- * SystemAutoupdate Schedule can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutoupdateSchedule:SystemAutoupdateSchedule labelname SystemAutoupdateSchedule
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutoupdateSchedule:SystemAutoupdateSchedule labelname SystemAutoupdateSchedule
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemAutoupdateSchedule extends pulumi.CustomResource {
     /**
      * Get an existing SystemAutoupdateSchedule resource's state with the given name, ID, and optional extra
@@ -65,25 +32,10 @@ export class SystemAutoupdateSchedule extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAutoupdateSchedule.__pulumiType;
     }
 
-    /**
-     * Update day. Valid values: `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`.
-     */
     public readonly day!: pulumi.Output<string>;
-    /**
-     * Update frequency.
-     */
     public readonly frequency!: pulumi.Output<string>;
-    /**
-     * Enable/disable scheduled updates. Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Update time.
-     */
     public readonly time!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -130,25 +82,10 @@ export class SystemAutoupdateSchedule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAutoupdateSchedule resources.
  */
 export interface SystemAutoupdateScheduleState {
-    /**
-     * Update day. Valid values: `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`.
-     */
     day?: pulumi.Input<string>;
-    /**
-     * Update frequency.
-     */
     frequency?: pulumi.Input<string>;
-    /**
-     * Enable/disable scheduled updates. Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Update time.
-     */
     time?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -156,24 +93,9 @@ export interface SystemAutoupdateScheduleState {
  * The set of arguments for constructing a SystemAutoupdateSchedule resource.
  */
 export interface SystemAutoupdateScheduleArgs {
-    /**
-     * Update day. Valid values: `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`.
-     */
     day?: pulumi.Input<string>;
-    /**
-     * Update frequency.
-     */
     frequency: pulumi.Input<string>;
-    /**
-     * Enable/disable scheduled updates. Valid values: `enable`, `disable`.
-     */
     status: pulumi.Input<string>;
-    /**
-     * Update time.
-     */
     time: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

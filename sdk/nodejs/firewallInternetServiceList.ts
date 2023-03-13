@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Internet Service list. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Import
- *
- * Firewall InternetServiceList can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInternetServiceList:FirewallInternetServiceList labelname {{fosid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/firewallInternetServiceList:FirewallInternetServiceList labelname {{fosid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class FirewallInternetServiceList extends pulumi.CustomResource {
     /**
      * Get an existing FirewallInternetServiceList resource's state with the given name, ID, and optional extra
@@ -51,17 +32,8 @@ export class FirewallInternetServiceList extends pulumi.CustomResource {
         return obj['__pulumiType'] === FirewallInternetServiceList.__pulumiType;
     }
 
-    /**
-     * Internet Service category ID.
-     */
     public readonly fosid!: pulumi.Output<number>;
-    /**
-     * Internet Service category name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -95,17 +67,8 @@ export class FirewallInternetServiceList extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallInternetServiceList resources.
  */
 export interface FirewallInternetServiceListState {
-    /**
-     * Internet Service category ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Internet Service category name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -113,16 +76,7 @@ export interface FirewallInternetServiceListState {
  * The set of arguments for constructing a FirewallInternetServiceList resource.
  */
 export interface FirewallInternetServiceListArgs {
-    /**
-     * Internet Service category ID.
-     */
     fosid?: pulumi.Input<number>;
-    /**
-     * Internet Service category name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

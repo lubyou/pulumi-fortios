@@ -2,44 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Global settings for SAML authentication. Applies to FortiOS Version `>= 6.2.4`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemSaml("trname", {
- *     defaultLoginPage: "normal",
- *     defaultProfile: "admin_no_access",
- *     life: 30,
- *     role: "service-provider",
- *     status: "disable",
- *     tolerance: 5,
- * });
- * ```
- *
- * ## Import
- *
- * System Saml can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSaml:SystemSaml labelname SystemSaml
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemSaml:SystemSaml labelname SystemSaml
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemSaml extends pulumi.CustomResource {
     /**
      * Get an existing SystemSaml resource's state with the given name, ID, and optional extra
@@ -68,85 +34,25 @@ export class SystemSaml extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemSaml.__pulumiType;
     }
 
-    /**
-     * IdP Binding protocol. Valid values: `post`, `redirect`.
-     */
     public readonly bindingProtocol!: pulumi.Output<string>;
-    /**
-     * Certificate to sign SAML messages.
-     */
     public readonly cert!: pulumi.Output<string>;
-    /**
-     * Choose default login page. Valid values: `normal`, `sso`.
-     */
     public readonly defaultLoginPage!: pulumi.Output<string>;
-    /**
-     * Default profile for new SSO admin.
-     */
     public readonly defaultProfile!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * SP entity ID.
-     */
     public readonly entityId!: pulumi.Output<string>;
-    /**
-     * IDP certificate name.
-     */
     public readonly idpCert!: pulumi.Output<string>;
-    /**
-     * IDP entity ID.
-     */
     public readonly idpEntityId!: pulumi.Output<string>;
-    /**
-     * IDP single logout URL.
-     */
     public readonly idpSingleLogoutUrl!: pulumi.Output<string>;
-    /**
-     * IDP single sign-on URL.
-     */
     public readonly idpSingleSignOnUrl!: pulumi.Output<string>;
-    /**
-     * Length of the range of time when the assertion is valid (in minutes).
-     */
     public readonly life!: pulumi.Output<number>;
-    /**
-     * SP portal URL.
-     */
     public readonly portalUrl!: pulumi.Output<string>;
-    /**
-     * SAML role. Valid values: `identity-provider`, `service-provider`.
-     */
     public readonly role!: pulumi.Output<string>;
-    /**
-     * Server address.
-     */
     public readonly serverAddress!: pulumi.Output<string>;
-    /**
-     * Authorized service providers. The structure of `serviceProviders` block is documented below.
-     */
     public readonly serviceProviders!: pulumi.Output<outputs.SystemSamlServiceProvider[] | undefined>;
-    /**
-     * SP single logout URL.
-     */
     public readonly singleLogoutUrl!: pulumi.Output<string>;
-    /**
-     * SP single sign-on URL.
-     */
     public readonly singleSignOnUrl!: pulumi.Output<string>;
-    /**
-     * Enable/disable SAML authentication (default = disable). Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Tolerance to the range of time when the assertion is valid (in minutes).
-     */
     public readonly tolerance!: pulumi.Output<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -214,85 +120,25 @@ export class SystemSaml extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSaml resources.
  */
 export interface SystemSamlState {
-    /**
-     * IdP Binding protocol. Valid values: `post`, `redirect`.
-     */
     bindingProtocol?: pulumi.Input<string>;
-    /**
-     * Certificate to sign SAML messages.
-     */
     cert?: pulumi.Input<string>;
-    /**
-     * Choose default login page. Valid values: `normal`, `sso`.
-     */
     defaultLoginPage?: pulumi.Input<string>;
-    /**
-     * Default profile for new SSO admin.
-     */
     defaultProfile?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * SP entity ID.
-     */
     entityId?: pulumi.Input<string>;
-    /**
-     * IDP certificate name.
-     */
     idpCert?: pulumi.Input<string>;
-    /**
-     * IDP entity ID.
-     */
     idpEntityId?: pulumi.Input<string>;
-    /**
-     * IDP single logout URL.
-     */
     idpSingleLogoutUrl?: pulumi.Input<string>;
-    /**
-     * IDP single sign-on URL.
-     */
     idpSingleSignOnUrl?: pulumi.Input<string>;
-    /**
-     * Length of the range of time when the assertion is valid (in minutes).
-     */
     life?: pulumi.Input<number>;
-    /**
-     * SP portal URL.
-     */
     portalUrl?: pulumi.Input<string>;
-    /**
-     * SAML role. Valid values: `identity-provider`, `service-provider`.
-     */
     role?: pulumi.Input<string>;
-    /**
-     * Server address.
-     */
     serverAddress?: pulumi.Input<string>;
-    /**
-     * Authorized service providers. The structure of `serviceProviders` block is documented below.
-     */
     serviceProviders?: pulumi.Input<pulumi.Input<inputs.SystemSamlServiceProvider>[]>;
-    /**
-     * SP single logout URL.
-     */
     singleLogoutUrl?: pulumi.Input<string>;
-    /**
-     * SP single sign-on URL.
-     */
     singleSignOnUrl?: pulumi.Input<string>;
-    /**
-     * Enable/disable SAML authentication (default = disable). Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Tolerance to the range of time when the assertion is valid (in minutes).
-     */
     tolerance?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -300,84 +146,24 @@ export interface SystemSamlState {
  * The set of arguments for constructing a SystemSaml resource.
  */
 export interface SystemSamlArgs {
-    /**
-     * IdP Binding protocol. Valid values: `post`, `redirect`.
-     */
     bindingProtocol?: pulumi.Input<string>;
-    /**
-     * Certificate to sign SAML messages.
-     */
     cert?: pulumi.Input<string>;
-    /**
-     * Choose default login page. Valid values: `normal`, `sso`.
-     */
     defaultLoginPage?: pulumi.Input<string>;
-    /**
-     * Default profile for new SSO admin.
-     */
     defaultProfile?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * SP entity ID.
-     */
     entityId?: pulumi.Input<string>;
-    /**
-     * IDP certificate name.
-     */
     idpCert?: pulumi.Input<string>;
-    /**
-     * IDP entity ID.
-     */
     idpEntityId?: pulumi.Input<string>;
-    /**
-     * IDP single logout URL.
-     */
     idpSingleLogoutUrl?: pulumi.Input<string>;
-    /**
-     * IDP single sign-on URL.
-     */
     idpSingleSignOnUrl?: pulumi.Input<string>;
-    /**
-     * Length of the range of time when the assertion is valid (in minutes).
-     */
     life?: pulumi.Input<number>;
-    /**
-     * SP portal URL.
-     */
     portalUrl?: pulumi.Input<string>;
-    /**
-     * SAML role. Valid values: `identity-provider`, `service-provider`.
-     */
     role?: pulumi.Input<string>;
-    /**
-     * Server address.
-     */
     serverAddress?: pulumi.Input<string>;
-    /**
-     * Authorized service providers. The structure of `serviceProviders` block is documented below.
-     */
     serviceProviders?: pulumi.Input<pulumi.Input<inputs.SystemSamlServiceProvider>[]>;
-    /**
-     * SP single logout URL.
-     */
     singleLogoutUrl?: pulumi.Input<string>;
-    /**
-     * SP single sign-on URL.
-     */
     singleSignOnUrl?: pulumi.Input<string>;
-    /**
-     * Enable/disable SAML authentication (default = disable). Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Tolerance to the range of time when the assertion is valid (in minutes).
-     */
     tolerance?: pulumi.Input<number>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

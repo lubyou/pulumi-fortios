@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * VDOM wireless controller configuration.
- *
- * ## Import
- *
- * WirelessController Setting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerSetting:WirelessControllerSetting labelname WirelessControllerSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerSetting:WirelessControllerSetting labelname WirelessControllerSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerSetting extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerSetting resource's state with the given name, ID, and optional extra
@@ -52,69 +34,21 @@ export class WirelessControllerSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerSetting.__pulumiType;
     }
 
-    /**
-     * FortiCloud customer account ID.
-     */
     public readonly accountId!: pulumi.Output<string>;
-    /**
-     * Country or region in which the FortiGate is located. The country determines the 802.11 bands and channels that are available.
-     */
     public readonly country!: pulumi.Output<string>;
-    /**
-     * Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
-     */
     public readonly darrpOptimize!: pulumi.Output<number>;
-    /**
-     * Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
-     */
     public readonly darrpOptimizeSchedules!: pulumi.Output<outputs.WirelessControllerSettingDarrpOptimizeSchedule[] | undefined>;
-    /**
-     * Lower limit of creation time of device for identification in minutes (0 - 60, default = 5).
-     */
     public readonly deviceHoldoff!: pulumi.Output<number>;
-    /**
-     * Upper limit of idle time of device for identification in minutes (0 - 14400, default = 1440).
-     */
     public readonly deviceIdle!: pulumi.Output<number>;
-    /**
-     * Upper limit of confidence of device for identification (0 - 255, default = 1, 0 = disable).
-     */
     public readonly deviceWeight!: pulumi.Output<number>;
-    /**
-     * Enable/disable allowing Virtual Access Points (VAPs) to use the same SSID name in the same VDOM. Valid values: `enable`, `disable`.
-     */
     public readonly duplicateSsid!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Actions taken for detected fake SSID. Valid values: `log`, `suppress`.
-     */
     public readonly fakeSsidAction!: pulumi.Output<string>;
-    /**
-     * Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
-     */
     public readonly fapcCompatibility!: pulumi.Output<string>;
-    /**
-     * Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
-     */
     public readonly firmwareProvisionOnAuthorization!: pulumi.Output<string>;
-    /**
-     * Configure offending SSID. The structure of `offendingSsid` block is documented below.
-     */
     public readonly offendingSsids!: pulumi.Output<outputs.WirelessControllerSettingOffendingSsid[] | undefined>;
-    /**
-     * Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
-     */
     public readonly phishingSsidDetect!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable WFA compatibility. Valid values: `enable`, `disable`.
-     */
     public readonly wfaCompatibility!: pulumi.Output<string>;
 
     /**
@@ -174,69 +108,21 @@ export class WirelessControllerSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerSetting resources.
  */
 export interface WirelessControllerSettingState {
-    /**
-     * FortiCloud customer account ID.
-     */
     accountId?: pulumi.Input<string>;
-    /**
-     * Country or region in which the FortiGate is located. The country determines the 802.11 bands and channels that are available.
-     */
     country?: pulumi.Input<string>;
-    /**
-     * Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
-     */
     darrpOptimize?: pulumi.Input<number>;
-    /**
-     * Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
-     */
     darrpOptimizeSchedules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerSettingDarrpOptimizeSchedule>[]>;
-    /**
-     * Lower limit of creation time of device for identification in minutes (0 - 60, default = 5).
-     */
     deviceHoldoff?: pulumi.Input<number>;
-    /**
-     * Upper limit of idle time of device for identification in minutes (0 - 14400, default = 1440).
-     */
     deviceIdle?: pulumi.Input<number>;
-    /**
-     * Upper limit of confidence of device for identification (0 - 255, default = 1, 0 = disable).
-     */
     deviceWeight?: pulumi.Input<number>;
-    /**
-     * Enable/disable allowing Virtual Access Points (VAPs) to use the same SSID name in the same VDOM. Valid values: `enable`, `disable`.
-     */
     duplicateSsid?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Actions taken for detected fake SSID. Valid values: `log`, `suppress`.
-     */
     fakeSsidAction?: pulumi.Input<string>;
-    /**
-     * Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
-     */
     fapcCompatibility?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
-     */
     firmwareProvisionOnAuthorization?: pulumi.Input<string>;
-    /**
-     * Configure offending SSID. The structure of `offendingSsid` block is documented below.
-     */
     offendingSsids?: pulumi.Input<pulumi.Input<inputs.WirelessControllerSettingOffendingSsid>[]>;
-    /**
-     * Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
-     */
     phishingSsidDetect?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable WFA compatibility. Valid values: `enable`, `disable`.
-     */
     wfaCompatibility?: pulumi.Input<string>;
 }
 
@@ -244,68 +130,20 @@ export interface WirelessControllerSettingState {
  * The set of arguments for constructing a WirelessControllerSetting resource.
  */
 export interface WirelessControllerSettingArgs {
-    /**
-     * FortiCloud customer account ID.
-     */
     accountId?: pulumi.Input<string>;
-    /**
-     * Country or region in which the FortiGate is located. The country determines the 802.11 bands and channels that are available.
-     */
     country?: pulumi.Input<string>;
-    /**
-     * Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
-     */
     darrpOptimize?: pulumi.Input<number>;
-    /**
-     * Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
-     */
     darrpOptimizeSchedules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerSettingDarrpOptimizeSchedule>[]>;
-    /**
-     * Lower limit of creation time of device for identification in minutes (0 - 60, default = 5).
-     */
     deviceHoldoff?: pulumi.Input<number>;
-    /**
-     * Upper limit of idle time of device for identification in minutes (0 - 14400, default = 1440).
-     */
     deviceIdle?: pulumi.Input<number>;
-    /**
-     * Upper limit of confidence of device for identification (0 - 255, default = 1, 0 = disable).
-     */
     deviceWeight?: pulumi.Input<number>;
-    /**
-     * Enable/disable allowing Virtual Access Points (VAPs) to use the same SSID name in the same VDOM. Valid values: `enable`, `disable`.
-     */
     duplicateSsid?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Actions taken for detected fake SSID. Valid values: `log`, `suppress`.
-     */
     fakeSsidAction?: pulumi.Input<string>;
-    /**
-     * Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
-     */
     fapcCompatibility?: pulumi.Input<string>;
-    /**
-     * Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
-     */
     firmwareProvisionOnAuthorization?: pulumi.Input<string>;
-    /**
-     * Configure offending SSID. The structure of `offendingSsid` block is documented below.
-     */
     offendingSsids?: pulumi.Input<pulumi.Input<inputs.WirelessControllerSettingOffendingSsid>[]>;
-    /**
-     * Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
-     */
     phishingSsidDetect?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
-    /**
-     * Enable/disable WFA compatibility. Valid values: `enable`, `disable`.
-     */
     wfaCompatibility?: pulumi.Input<string>;
 }

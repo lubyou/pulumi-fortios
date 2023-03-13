@@ -4,36 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Settings for null device logging.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.LogNullDeviceSetting("trname", {
- *     status: "disable",
- * });
- * ```
- *
- * ## Import
- *
- * LogNullDevice Setting can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/logNullDeviceSetting:LogNullDeviceSetting labelname LogNullDeviceSetting
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/logNullDeviceSetting:LogNullDeviceSetting labelname LogNullDeviceSetting
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class LogNullDeviceSetting extends pulumi.CustomResource {
     /**
      * Get an existing LogNullDeviceSetting resource's state with the given name, ID, and optional extra
@@ -62,13 +32,7 @@ export class LogNullDeviceSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogNullDeviceSetting.__pulumiType;
     }
 
-    /**
-     * Enable/disable statistics collection for when no external logging destination, such as FortiAnalyzer, is present (data is not saved). Valid values: `enable`, `disable`.
-     */
     public readonly status!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -103,13 +67,7 @@ export class LogNullDeviceSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogNullDeviceSetting resources.
  */
 export interface LogNullDeviceSettingState {
-    /**
-     * Enable/disable statistics collection for when no external logging destination, such as FortiAnalyzer, is present (data is not saved). Valid values: `enable`, `disable`.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -117,12 +75,6 @@ export interface LogNullDeviceSettingState {
  * The set of arguments for constructing a LogNullDeviceSetting resource.
  */
 export interface LogNullDeviceSettingArgs {
-    /**
-     * Enable/disable statistics collection for when no external logging destination, such as FortiAnalyzer, is present (data is not saved). Valid values: `enable`, `disable`.
-     */
     status: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

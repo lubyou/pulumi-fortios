@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information on fortios system hamonitor
 func LookupSystemHaMonitor(ctx *pulumi.Context, args *LookupSystemHaMonitorArgs, opts ...pulumi.InvokeOption) (*LookupSystemHaMonitorResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemHaMonitorResult
@@ -23,21 +22,17 @@ func LookupSystemHaMonitor(ctx *pulumi.Context, args *LookupSystemHaMonitorArgs,
 
 // A collection of arguments for invoking GetSystemHaMonitor.
 type LookupSystemHaMonitorArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetSystemHaMonitor.
 type LookupSystemHaMonitorResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Enable/disable monitor VLAN interfaces.
-	MonitorVlan string  `pulumi:"monitorVlan"`
-	Vdomparam   *string `pulumi:"vdomparam"`
-	// Configure heartbeat interval (seconds).
-	VlanHbInterval int `pulumi:"vlanHbInterval"`
-	// VLAN lost heartbeat threshold (1 - 60).
-	VlanHbLostThreshold int `pulumi:"vlanHbLostThreshold"`
+	Id                  string  `pulumi:"id"`
+	MonitorVlan         string  `pulumi:"monitorVlan"`
+	Vdomparam           *string `pulumi:"vdomparam"`
+	VlanHbInterval      int     `pulumi:"vlanHbInterval"`
+	VlanHbLostThreshold int     `pulumi:"vlanHbLostThreshold"`
 }
 
 func LookupSystemHaMonitorOutput(ctx *pulumi.Context, args LookupSystemHaMonitorOutputArgs, opts ...pulumi.InvokeOption) LookupSystemHaMonitorResultOutput {
@@ -55,7 +50,6 @@ func LookupSystemHaMonitorOutput(ctx *pulumi.Context, args LookupSystemHaMonitor
 
 // A collection of arguments for invoking GetSystemHaMonitor.
 type LookupSystemHaMonitorOutputArgs struct {
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -83,7 +77,6 @@ func (o LookupSystemHaMonitorResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemHaMonitorResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Enable/disable monitor VLAN interfaces.
 func (o LookupSystemHaMonitorResultOutput) MonitorVlan() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemHaMonitorResult) string { return v.MonitorVlan }).(pulumi.StringOutput)
 }
@@ -92,12 +85,10 @@ func (o LookupSystemHaMonitorResultOutput) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSystemHaMonitorResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-// Configure heartbeat interval (seconds).
 func (o LookupSystemHaMonitorResultOutput) VlanHbInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemHaMonitorResult) int { return v.VlanHbInterval }).(pulumi.IntOutput)
 }
 
-// VLAN lost heartbeat threshold (1 - 60).
 func (o LookupSystemHaMonitorResultOutput) VlanHbLostThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemHaMonitorResult) int { return v.VlanHbLostThreshold }).(pulumi.IntOutput)
 }

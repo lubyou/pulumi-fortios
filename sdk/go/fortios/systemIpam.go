@@ -10,34 +10,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IP address management services. Applies to FortiOS Version `>= 7.0.2`.
-//
-// ## Import
-//
-// System Ipam can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemIpam:SystemIpam labelname SystemIpam
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemIpam:SystemIpam labelname SystemIpam
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemIpam struct {
 	pulumi.CustomResourceState
 
-	// Configure IPAM pool subnet, Class A - Class B subnet.
-	PoolSubnet pulumi.StringOutput `pulumi:"poolSubnet"`
-	// Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
-	ServerType pulumi.StringOutput `pulumi:"serverType"`
-	// Enable/disable IP address management services. Valid values: `enable`, `disable`.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	DynamicSortSubtable pulumi.StringPtrOutput    `pulumi:"dynamicSortSubtable"`
+	PoolSubnet          pulumi.StringOutput       `pulumi:"poolSubnet"`
+	Pools               SystemIpamPoolArrayOutput `pulumi:"pools"`
+	Rules               SystemIpamRuleArrayOutput `pulumi:"rules"`
+	ServerType          pulumi.StringOutput       `pulumi:"serverType"`
+	Status              pulumi.StringOutput       `pulumi:"status"`
+	Vdomparam           pulumi.StringPtrOutput    `pulumi:"vdomparam"`
 }
 
 // NewSystemIpam registers a new resource with the given unique name, arguments, and options.
@@ -70,25 +52,23 @@ func GetSystemIpam(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemIpam resources.
 type systemIpamState struct {
-	// Configure IPAM pool subnet, Class A - Class B subnet.
-	PoolSubnet *string `pulumi:"poolSubnet"`
-	// Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
-	ServerType *string `pulumi:"serverType"`
-	// Enable/disable IP address management services. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string          `pulumi:"dynamicSortSubtable"`
+	PoolSubnet          *string          `pulumi:"poolSubnet"`
+	Pools               []SystemIpamPool `pulumi:"pools"`
+	Rules               []SystemIpamRule `pulumi:"rules"`
+	ServerType          *string          `pulumi:"serverType"`
+	Status              *string          `pulumi:"status"`
+	Vdomparam           *string          `pulumi:"vdomparam"`
 }
 
 type SystemIpamState struct {
-	// Configure IPAM pool subnet, Class A - Class B subnet.
-	PoolSubnet pulumi.StringPtrInput
-	// Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
-	ServerType pulumi.StringPtrInput
-	// Enable/disable IP address management services. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	DynamicSortSubtable pulumi.StringPtrInput
+	PoolSubnet          pulumi.StringPtrInput
+	Pools               SystemIpamPoolArrayInput
+	Rules               SystemIpamRuleArrayInput
+	ServerType          pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemIpamState) ElementType() reflect.Type {
@@ -96,26 +76,24 @@ func (SystemIpamState) ElementType() reflect.Type {
 }
 
 type systemIpamArgs struct {
-	// Configure IPAM pool subnet, Class A - Class B subnet.
-	PoolSubnet *string `pulumi:"poolSubnet"`
-	// Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
-	ServerType *string `pulumi:"serverType"`
-	// Enable/disable IP address management services. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	DynamicSortSubtable *string          `pulumi:"dynamicSortSubtable"`
+	PoolSubnet          *string          `pulumi:"poolSubnet"`
+	Pools               []SystemIpamPool `pulumi:"pools"`
+	Rules               []SystemIpamRule `pulumi:"rules"`
+	ServerType          *string          `pulumi:"serverType"`
+	Status              *string          `pulumi:"status"`
+	Vdomparam           *string          `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemIpam resource.
 type SystemIpamArgs struct {
-	// Configure IPAM pool subnet, Class A - Class B subnet.
-	PoolSubnet pulumi.StringPtrInput
-	// Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
-	ServerType pulumi.StringPtrInput
-	// Enable/disable IP address management services. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	DynamicSortSubtable pulumi.StringPtrInput
+	PoolSubnet          pulumi.StringPtrInput
+	Pools               SystemIpamPoolArrayInput
+	Rules               SystemIpamRuleArrayInput
+	ServerType          pulumi.StringPtrInput
+	Status              pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SystemIpamArgs) ElementType() reflect.Type {
@@ -144,7 +122,7 @@ func (i *SystemIpam) ToSystemIpamOutputWithContext(ctx context.Context) SystemIp
 // SystemIpamArrayInput is an input type that accepts SystemIpamArray and SystemIpamArrayOutput values.
 // You can construct a concrete instance of `SystemIpamArrayInput` via:
 //
-//          SystemIpamArray{ SystemIpamArgs{...} }
+//	SystemIpamArray{ SystemIpamArgs{...} }
 type SystemIpamArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +147,7 @@ func (i SystemIpamArray) ToSystemIpamArrayOutputWithContext(ctx context.Context)
 // SystemIpamMapInput is an input type that accepts SystemIpamMap and SystemIpamMapOutput values.
 // You can construct a concrete instance of `SystemIpamMapInput` via:
 //
-//          SystemIpamMap{ "key": SystemIpamArgs{...} }
+//	SystemIpamMap{ "key": SystemIpamArgs{...} }
 type SystemIpamMapInput interface {
 	pulumi.Input
 
@@ -203,6 +181,34 @@ func (o SystemIpamOutput) ToSystemIpamOutput() SystemIpamOutput {
 
 func (o SystemIpamOutput) ToSystemIpamOutputWithContext(ctx context.Context) SystemIpamOutput {
 	return o
+}
+
+func (o SystemIpamOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemIpam) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemIpamOutput) PoolSubnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpam) pulumi.StringOutput { return v.PoolSubnet }).(pulumi.StringOutput)
+}
+
+func (o SystemIpamOutput) Pools() SystemIpamPoolArrayOutput {
+	return o.ApplyT(func(v *SystemIpam) SystemIpamPoolArrayOutput { return v.Pools }).(SystemIpamPoolArrayOutput)
+}
+
+func (o SystemIpamOutput) Rules() SystemIpamRuleArrayOutput {
+	return o.ApplyT(func(v *SystemIpam) SystemIpamRuleArrayOutput { return v.Rules }).(SystemIpamRuleArrayOutput)
+}
+
+func (o SystemIpamOutput) ServerType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpam) pulumi.StringOutput { return v.ServerType }).(pulumi.StringOutput)
+}
+
+func (o SystemIpamOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpam) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o SystemIpamOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemIpam) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemIpamArrayOutput struct{ *pulumi.OutputState }

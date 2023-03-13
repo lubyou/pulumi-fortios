@@ -2,28 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure AP local configuration profiles. Applies to FortiOS Version `>= 6.4.0`.
- *
- * ## Import
- *
- * WirelessController ApcfgProfile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerApcfgProfile:WirelessControllerApcfgProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/wirelessControllerApcfgProfile:WirelessControllerApcfgProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class WirelessControllerApcfgProfile extends pulumi.CustomResource {
     /**
      * Get an existing WirelessControllerApcfgProfile resource's state with the given name, ID, and optional extra
@@ -52,45 +34,15 @@ export class WirelessControllerApcfgProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerApcfgProfile.__pulumiType;
     }
 
-    /**
-     * IP address of the validation controller that AP must be able to join after applying AP local configuration.
-     */
     public readonly acIp!: pulumi.Output<string>;
-    /**
-     * Port of the validation controller that AP must be able to join after applying AP local configuration (1024 - 49150, default = 5246).
-     */
     public readonly acPort!: pulumi.Output<number>;
-    /**
-     * Maximum waiting time for the AP to join the validation controller after applying AP local configuration (3 - 30 min, default = 10).
-     */
     public readonly acTimer!: pulumi.Output<number>;
-    /**
-     * Validation controller type (default = default). Valid values: `default`, `specify`, `apcfg`.
-     */
     public readonly acType!: pulumi.Output<string>;
-    /**
-     * FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
-     */
     public readonly apFamily!: pulumi.Output<string>;
-    /**
-     * AP local configuration command list. The structure of `commandList` block is documented below.
-     */
     public readonly commandLists!: pulumi.Output<outputs.WirelessControllerApcfgProfileCommandList[] | undefined>;
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * AP local configuration command name.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -138,45 +90,15 @@ export class WirelessControllerApcfgProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerApcfgProfile resources.
  */
 export interface WirelessControllerApcfgProfileState {
-    /**
-     * IP address of the validation controller that AP must be able to join after applying AP local configuration.
-     */
     acIp?: pulumi.Input<string>;
-    /**
-     * Port of the validation controller that AP must be able to join after applying AP local configuration (1024 - 49150, default = 5246).
-     */
     acPort?: pulumi.Input<number>;
-    /**
-     * Maximum waiting time for the AP to join the validation controller after applying AP local configuration (3 - 30 min, default = 10).
-     */
     acTimer?: pulumi.Input<number>;
-    /**
-     * Validation controller type (default = default). Valid values: `default`, `specify`, `apcfg`.
-     */
     acType?: pulumi.Input<string>;
-    /**
-     * FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
-     */
     apFamily?: pulumi.Input<string>;
-    /**
-     * AP local configuration command list. The structure of `commandList` block is documented below.
-     */
     commandLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerApcfgProfileCommandList>[]>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * AP local configuration command name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -184,44 +106,14 @@ export interface WirelessControllerApcfgProfileState {
  * The set of arguments for constructing a WirelessControllerApcfgProfile resource.
  */
 export interface WirelessControllerApcfgProfileArgs {
-    /**
-     * IP address of the validation controller that AP must be able to join after applying AP local configuration.
-     */
     acIp?: pulumi.Input<string>;
-    /**
-     * Port of the validation controller that AP must be able to join after applying AP local configuration (1024 - 49150, default = 5246).
-     */
     acPort?: pulumi.Input<number>;
-    /**
-     * Maximum waiting time for the AP to join the validation controller after applying AP local configuration (3 - 30 min, default = 10).
-     */
     acTimer?: pulumi.Input<number>;
-    /**
-     * Validation controller type (default = default). Valid values: `default`, `specify`, `apcfg`.
-     */
     acType?: pulumi.Input<string>;
-    /**
-     * FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
-     */
     apFamily?: pulumi.Input<string>;
-    /**
-     * AP local configuration command list. The structure of `commandList` block is documented below.
-     */
     commandLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerApcfgProfileCommandList>[]>;
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * AP local configuration command name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

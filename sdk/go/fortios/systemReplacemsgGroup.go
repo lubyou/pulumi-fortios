@@ -7,102 +7,37 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure replacement message groups.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemReplacemsgGroup(ctx, "trname", &fortios.SystemReplacemsgGroupArgs{
-// 			Comment:   pulumi.String("sgh"),
-// 			GroupType: pulumi.String("utm"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System ReplacemsgGroup can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemReplacemsgGroup:SystemReplacemsgGroup labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemReplacemsgGroup:SystemReplacemsgGroup labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemReplacemsgGroup struct {
 	pulumi.CustomResourceState
 
-	// Replacement message table entries. The structure of `admin` block is documented below.
-	Admins SystemReplacemsgGroupAdminArrayOutput `pulumi:"admins"`
-	// Replacement message table entries. The structure of `alertmail` block is documented below.
-	Alertmails SystemReplacemsgGroupAlertmailArrayOutput `pulumi:"alertmails"`
-	// Replacement message table entries. The structure of `auth` block is documented below.
-	Auths SystemReplacemsgGroupAuthArrayOutput `pulumi:"auths"`
-	// Replacement message table entries. The structure of `automation` block is documented below.
-	Automations SystemReplacemsgGroupAutomationArrayOutput `pulumi:"automations"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Replacement message table entries. The structure of `customMessage` block is documented below.
-	CustomMessages SystemReplacemsgGroupCustomMessageArrayOutput `pulumi:"customMessages"`
-	// Replacement message table entries. The structure of `deviceDetectionPortal` block is documented below.
+	Admins                 SystemReplacemsgGroupAdminArrayOutput                 `pulumi:"admins"`
+	Alertmails             SystemReplacemsgGroupAlertmailArrayOutput             `pulumi:"alertmails"`
+	Auths                  SystemReplacemsgGroupAuthArrayOutput                  `pulumi:"auths"`
+	Automations            SystemReplacemsgGroupAutomationArrayOutput            `pulumi:"automations"`
+	Comment                pulumi.StringPtrOutput                                `pulumi:"comment"`
+	CustomMessages         SystemReplacemsgGroupCustomMessageArrayOutput         `pulumi:"customMessages"`
 	DeviceDetectionPortals SystemReplacemsgGroupDeviceDetectionPortalArrayOutput `pulumi:"deviceDetectionPortals"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Replacement message table entries. The structure of `ec` block is documented below.
-	Ecs SystemReplacemsgGroupEcArrayOutput `pulumi:"ecs"`
-	// Replacement message table entries. The structure of `fortiguardWf` block is documented below.
-	FortiguardWfs SystemReplacemsgGroupFortiguardWfArrayOutput `pulumi:"fortiguardWfs"`
-	// Replacement message table entries. The structure of `ftp` block is documented below.
-	Ftps SystemReplacemsgGroupFtpArrayOutput `pulumi:"ftps"`
-	// Group type.
-	GroupType pulumi.StringOutput `pulumi:"groupType"`
-	// Replacement message table entries. The structure of `http` block is documented below.
-	Https SystemReplacemsgGroupHttpArrayOutput `pulumi:"https"`
-	// Replacement message table entries. The structure of `icap` block is documented below.
-	Icaps SystemReplacemsgGroupIcapArrayOutput `pulumi:"icaps"`
-	// Replacement message table entries. The structure of `mail` block is documented below.
-	Mails SystemReplacemsgGroupMailArrayOutput `pulumi:"mails"`
-	// Replacement message table entries. The structure of `nacQuar` block is documented below.
-	NacQuars SystemReplacemsgGroupNacQuarArrayOutput `pulumi:"nacQuars"`
-	// Group name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Replacement message table entries. The structure of `nntp` block is documented below.
-	Nntps SystemReplacemsgGroupNntpArrayOutput `pulumi:"nntps"`
-	// Replacement message table entries. The structure of `spam` block is documented below.
-	Spams SystemReplacemsgGroupSpamArrayOutput `pulumi:"spams"`
-	// Replacement message table entries. The structure of `sslvpn` block is documented below.
-	Sslvpns SystemReplacemsgGroupSslvpnArrayOutput `pulumi:"sslvpns"`
-	// Replacement message table entries. The structure of `trafficQuota` block is documented below.
-	TrafficQuotas SystemReplacemsgGroupTrafficQuotaArrayOutput `pulumi:"trafficQuotas"`
-	// Replacement message table entries. The structure of `utm` block is documented below.
-	Utms SystemReplacemsgGroupUtmArrayOutput `pulumi:"utms"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Replacement message table entries. The structure of `webproxy` block is documented below.
-	Webproxies SystemReplacemsgGroupWebproxyArrayOutput `pulumi:"webproxies"`
+	DynamicSortSubtable    pulumi.StringPtrOutput                                `pulumi:"dynamicSortSubtable"`
+	Ecs                    SystemReplacemsgGroupEcArrayOutput                    `pulumi:"ecs"`
+	FortiguardWfs          SystemReplacemsgGroupFortiguardWfArrayOutput          `pulumi:"fortiguardWfs"`
+	Ftps                   SystemReplacemsgGroupFtpArrayOutput                   `pulumi:"ftps"`
+	GroupType              pulumi.StringOutput                                   `pulumi:"groupType"`
+	Https                  SystemReplacemsgGroupHttpArrayOutput                  `pulumi:"https"`
+	Icaps                  SystemReplacemsgGroupIcapArrayOutput                  `pulumi:"icaps"`
+	Mails                  SystemReplacemsgGroupMailArrayOutput                  `pulumi:"mails"`
+	NacQuars               SystemReplacemsgGroupNacQuarArrayOutput               `pulumi:"nacQuars"`
+	Name                   pulumi.StringOutput                                   `pulumi:"name"`
+	Nntps                  SystemReplacemsgGroupNntpArrayOutput                  `pulumi:"nntps"`
+	Spams                  SystemReplacemsgGroupSpamArrayOutput                  `pulumi:"spams"`
+	Sslvpns                SystemReplacemsgGroupSslvpnArrayOutput                `pulumi:"sslvpns"`
+	TrafficQuotas          SystemReplacemsgGroupTrafficQuotaArrayOutput          `pulumi:"trafficQuotas"`
+	Utms                   SystemReplacemsgGroupUtmArrayOutput                   `pulumi:"utms"`
+	Vdomparam              pulumi.StringPtrOutput                                `pulumi:"vdomparam"`
+	Webproxies             SystemReplacemsgGroupWebproxyArrayOutput              `pulumi:"webproxies"`
 }
 
 // NewSystemReplacemsgGroup registers a new resource with the given unique name, arguments, and options.
@@ -138,105 +73,57 @@ func GetSystemReplacemsgGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemReplacemsgGroup resources.
 type systemReplacemsgGroupState struct {
-	// Replacement message table entries. The structure of `admin` block is documented below.
-	Admins []SystemReplacemsgGroupAdmin `pulumi:"admins"`
-	// Replacement message table entries. The structure of `alertmail` block is documented below.
-	Alertmails []SystemReplacemsgGroupAlertmail `pulumi:"alertmails"`
-	// Replacement message table entries. The structure of `auth` block is documented below.
-	Auths []SystemReplacemsgGroupAuth `pulumi:"auths"`
-	// Replacement message table entries. The structure of `automation` block is documented below.
-	Automations []SystemReplacemsgGroupAutomation `pulumi:"automations"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Replacement message table entries. The structure of `customMessage` block is documented below.
-	CustomMessages []SystemReplacemsgGroupCustomMessage `pulumi:"customMessages"`
-	// Replacement message table entries. The structure of `deviceDetectionPortal` block is documented below.
+	Admins                 []SystemReplacemsgGroupAdmin                 `pulumi:"admins"`
+	Alertmails             []SystemReplacemsgGroupAlertmail             `pulumi:"alertmails"`
+	Auths                  []SystemReplacemsgGroupAuth                  `pulumi:"auths"`
+	Automations            []SystemReplacemsgGroupAutomation            `pulumi:"automations"`
+	Comment                *string                                      `pulumi:"comment"`
+	CustomMessages         []SystemReplacemsgGroupCustomMessage         `pulumi:"customMessages"`
 	DeviceDetectionPortals []SystemReplacemsgGroupDeviceDetectionPortal `pulumi:"deviceDetectionPortals"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Replacement message table entries. The structure of `ec` block is documented below.
-	Ecs []SystemReplacemsgGroupEc `pulumi:"ecs"`
-	// Replacement message table entries. The structure of `fortiguardWf` block is documented below.
-	FortiguardWfs []SystemReplacemsgGroupFortiguardWf `pulumi:"fortiguardWfs"`
-	// Replacement message table entries. The structure of `ftp` block is documented below.
-	Ftps []SystemReplacemsgGroupFtp `pulumi:"ftps"`
-	// Group type.
-	GroupType *string `pulumi:"groupType"`
-	// Replacement message table entries. The structure of `http` block is documented below.
-	Https []SystemReplacemsgGroupHttp `pulumi:"https"`
-	// Replacement message table entries. The structure of `icap` block is documented below.
-	Icaps []SystemReplacemsgGroupIcap `pulumi:"icaps"`
-	// Replacement message table entries. The structure of `mail` block is documented below.
-	Mails []SystemReplacemsgGroupMail `pulumi:"mails"`
-	// Replacement message table entries. The structure of `nacQuar` block is documented below.
-	NacQuars []SystemReplacemsgGroupNacQuar `pulumi:"nacQuars"`
-	// Group name.
-	Name *string `pulumi:"name"`
-	// Replacement message table entries. The structure of `nntp` block is documented below.
-	Nntps []SystemReplacemsgGroupNntp `pulumi:"nntps"`
-	// Replacement message table entries. The structure of `spam` block is documented below.
-	Spams []SystemReplacemsgGroupSpam `pulumi:"spams"`
-	// Replacement message table entries. The structure of `sslvpn` block is documented below.
-	Sslvpns []SystemReplacemsgGroupSslvpn `pulumi:"sslvpns"`
-	// Replacement message table entries. The structure of `trafficQuota` block is documented below.
-	TrafficQuotas []SystemReplacemsgGroupTrafficQuota `pulumi:"trafficQuotas"`
-	// Replacement message table entries. The structure of `utm` block is documented below.
-	Utms []SystemReplacemsgGroupUtm `pulumi:"utms"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Replacement message table entries. The structure of `webproxy` block is documented below.
-	Webproxies []SystemReplacemsgGroupWebproxy `pulumi:"webproxies"`
+	DynamicSortSubtable    *string                                      `pulumi:"dynamicSortSubtable"`
+	Ecs                    []SystemReplacemsgGroupEc                    `pulumi:"ecs"`
+	FortiguardWfs          []SystemReplacemsgGroupFortiguardWf          `pulumi:"fortiguardWfs"`
+	Ftps                   []SystemReplacemsgGroupFtp                   `pulumi:"ftps"`
+	GroupType              *string                                      `pulumi:"groupType"`
+	Https                  []SystemReplacemsgGroupHttp                  `pulumi:"https"`
+	Icaps                  []SystemReplacemsgGroupIcap                  `pulumi:"icaps"`
+	Mails                  []SystemReplacemsgGroupMail                  `pulumi:"mails"`
+	NacQuars               []SystemReplacemsgGroupNacQuar               `pulumi:"nacQuars"`
+	Name                   *string                                      `pulumi:"name"`
+	Nntps                  []SystemReplacemsgGroupNntp                  `pulumi:"nntps"`
+	Spams                  []SystemReplacemsgGroupSpam                  `pulumi:"spams"`
+	Sslvpns                []SystemReplacemsgGroupSslvpn                `pulumi:"sslvpns"`
+	TrafficQuotas          []SystemReplacemsgGroupTrafficQuota          `pulumi:"trafficQuotas"`
+	Utms                   []SystemReplacemsgGroupUtm                   `pulumi:"utms"`
+	Vdomparam              *string                                      `pulumi:"vdomparam"`
+	Webproxies             []SystemReplacemsgGroupWebproxy              `pulumi:"webproxies"`
 }
 
 type SystemReplacemsgGroupState struct {
-	// Replacement message table entries. The structure of `admin` block is documented below.
-	Admins SystemReplacemsgGroupAdminArrayInput
-	// Replacement message table entries. The structure of `alertmail` block is documented below.
-	Alertmails SystemReplacemsgGroupAlertmailArrayInput
-	// Replacement message table entries. The structure of `auth` block is documented below.
-	Auths SystemReplacemsgGroupAuthArrayInput
-	// Replacement message table entries. The structure of `automation` block is documented below.
-	Automations SystemReplacemsgGroupAutomationArrayInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Replacement message table entries. The structure of `customMessage` block is documented below.
-	CustomMessages SystemReplacemsgGroupCustomMessageArrayInput
-	// Replacement message table entries. The structure of `deviceDetectionPortal` block is documented below.
+	Admins                 SystemReplacemsgGroupAdminArrayInput
+	Alertmails             SystemReplacemsgGroupAlertmailArrayInput
+	Auths                  SystemReplacemsgGroupAuthArrayInput
+	Automations            SystemReplacemsgGroupAutomationArrayInput
+	Comment                pulumi.StringPtrInput
+	CustomMessages         SystemReplacemsgGroupCustomMessageArrayInput
 	DeviceDetectionPortals SystemReplacemsgGroupDeviceDetectionPortalArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Replacement message table entries. The structure of `ec` block is documented below.
-	Ecs SystemReplacemsgGroupEcArrayInput
-	// Replacement message table entries. The structure of `fortiguardWf` block is documented below.
-	FortiguardWfs SystemReplacemsgGroupFortiguardWfArrayInput
-	// Replacement message table entries. The structure of `ftp` block is documented below.
-	Ftps SystemReplacemsgGroupFtpArrayInput
-	// Group type.
-	GroupType pulumi.StringPtrInput
-	// Replacement message table entries. The structure of `http` block is documented below.
-	Https SystemReplacemsgGroupHttpArrayInput
-	// Replacement message table entries. The structure of `icap` block is documented below.
-	Icaps SystemReplacemsgGroupIcapArrayInput
-	// Replacement message table entries. The structure of `mail` block is documented below.
-	Mails SystemReplacemsgGroupMailArrayInput
-	// Replacement message table entries. The structure of `nacQuar` block is documented below.
-	NacQuars SystemReplacemsgGroupNacQuarArrayInput
-	// Group name.
-	Name pulumi.StringPtrInput
-	// Replacement message table entries. The structure of `nntp` block is documented below.
-	Nntps SystemReplacemsgGroupNntpArrayInput
-	// Replacement message table entries. The structure of `spam` block is documented below.
-	Spams SystemReplacemsgGroupSpamArrayInput
-	// Replacement message table entries. The structure of `sslvpn` block is documented below.
-	Sslvpns SystemReplacemsgGroupSslvpnArrayInput
-	// Replacement message table entries. The structure of `trafficQuota` block is documented below.
-	TrafficQuotas SystemReplacemsgGroupTrafficQuotaArrayInput
-	// Replacement message table entries. The structure of `utm` block is documented below.
-	Utms SystemReplacemsgGroupUtmArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Replacement message table entries. The structure of `webproxy` block is documented below.
-	Webproxies SystemReplacemsgGroupWebproxyArrayInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	Ecs                    SystemReplacemsgGroupEcArrayInput
+	FortiguardWfs          SystemReplacemsgGroupFortiguardWfArrayInput
+	Ftps                   SystemReplacemsgGroupFtpArrayInput
+	GroupType              pulumi.StringPtrInput
+	Https                  SystemReplacemsgGroupHttpArrayInput
+	Icaps                  SystemReplacemsgGroupIcapArrayInput
+	Mails                  SystemReplacemsgGroupMailArrayInput
+	NacQuars               SystemReplacemsgGroupNacQuarArrayInput
+	Name                   pulumi.StringPtrInput
+	Nntps                  SystemReplacemsgGroupNntpArrayInput
+	Spams                  SystemReplacemsgGroupSpamArrayInput
+	Sslvpns                SystemReplacemsgGroupSslvpnArrayInput
+	TrafficQuotas          SystemReplacemsgGroupTrafficQuotaArrayInput
+	Utms                   SystemReplacemsgGroupUtmArrayInput
+	Vdomparam              pulumi.StringPtrInput
+	Webproxies             SystemReplacemsgGroupWebproxyArrayInput
 }
 
 func (SystemReplacemsgGroupState) ElementType() reflect.Type {
@@ -244,106 +131,58 @@ func (SystemReplacemsgGroupState) ElementType() reflect.Type {
 }
 
 type systemReplacemsgGroupArgs struct {
-	// Replacement message table entries. The structure of `admin` block is documented below.
-	Admins []SystemReplacemsgGroupAdmin `pulumi:"admins"`
-	// Replacement message table entries. The structure of `alertmail` block is documented below.
-	Alertmails []SystemReplacemsgGroupAlertmail `pulumi:"alertmails"`
-	// Replacement message table entries. The structure of `auth` block is documented below.
-	Auths []SystemReplacemsgGroupAuth `pulumi:"auths"`
-	// Replacement message table entries. The structure of `automation` block is documented below.
-	Automations []SystemReplacemsgGroupAutomation `pulumi:"automations"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// Replacement message table entries. The structure of `customMessage` block is documented below.
-	CustomMessages []SystemReplacemsgGroupCustomMessage `pulumi:"customMessages"`
-	// Replacement message table entries. The structure of `deviceDetectionPortal` block is documented below.
+	Admins                 []SystemReplacemsgGroupAdmin                 `pulumi:"admins"`
+	Alertmails             []SystemReplacemsgGroupAlertmail             `pulumi:"alertmails"`
+	Auths                  []SystemReplacemsgGroupAuth                  `pulumi:"auths"`
+	Automations            []SystemReplacemsgGroupAutomation            `pulumi:"automations"`
+	Comment                *string                                      `pulumi:"comment"`
+	CustomMessages         []SystemReplacemsgGroupCustomMessage         `pulumi:"customMessages"`
 	DeviceDetectionPortals []SystemReplacemsgGroupDeviceDetectionPortal `pulumi:"deviceDetectionPortals"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Replacement message table entries. The structure of `ec` block is documented below.
-	Ecs []SystemReplacemsgGroupEc `pulumi:"ecs"`
-	// Replacement message table entries. The structure of `fortiguardWf` block is documented below.
-	FortiguardWfs []SystemReplacemsgGroupFortiguardWf `pulumi:"fortiguardWfs"`
-	// Replacement message table entries. The structure of `ftp` block is documented below.
-	Ftps []SystemReplacemsgGroupFtp `pulumi:"ftps"`
-	// Group type.
-	GroupType string `pulumi:"groupType"`
-	// Replacement message table entries. The structure of `http` block is documented below.
-	Https []SystemReplacemsgGroupHttp `pulumi:"https"`
-	// Replacement message table entries. The structure of `icap` block is documented below.
-	Icaps []SystemReplacemsgGroupIcap `pulumi:"icaps"`
-	// Replacement message table entries. The structure of `mail` block is documented below.
-	Mails []SystemReplacemsgGroupMail `pulumi:"mails"`
-	// Replacement message table entries. The structure of `nacQuar` block is documented below.
-	NacQuars []SystemReplacemsgGroupNacQuar `pulumi:"nacQuars"`
-	// Group name.
-	Name *string `pulumi:"name"`
-	// Replacement message table entries. The structure of `nntp` block is documented below.
-	Nntps []SystemReplacemsgGroupNntp `pulumi:"nntps"`
-	// Replacement message table entries. The structure of `spam` block is documented below.
-	Spams []SystemReplacemsgGroupSpam `pulumi:"spams"`
-	// Replacement message table entries. The structure of `sslvpn` block is documented below.
-	Sslvpns []SystemReplacemsgGroupSslvpn `pulumi:"sslvpns"`
-	// Replacement message table entries. The structure of `trafficQuota` block is documented below.
-	TrafficQuotas []SystemReplacemsgGroupTrafficQuota `pulumi:"trafficQuotas"`
-	// Replacement message table entries. The structure of `utm` block is documented below.
-	Utms []SystemReplacemsgGroupUtm `pulumi:"utms"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
-	// Replacement message table entries. The structure of `webproxy` block is documented below.
-	Webproxies []SystemReplacemsgGroupWebproxy `pulumi:"webproxies"`
+	DynamicSortSubtable    *string                                      `pulumi:"dynamicSortSubtable"`
+	Ecs                    []SystemReplacemsgGroupEc                    `pulumi:"ecs"`
+	FortiguardWfs          []SystemReplacemsgGroupFortiguardWf          `pulumi:"fortiguardWfs"`
+	Ftps                   []SystemReplacemsgGroupFtp                   `pulumi:"ftps"`
+	GroupType              string                                       `pulumi:"groupType"`
+	Https                  []SystemReplacemsgGroupHttp                  `pulumi:"https"`
+	Icaps                  []SystemReplacemsgGroupIcap                  `pulumi:"icaps"`
+	Mails                  []SystemReplacemsgGroupMail                  `pulumi:"mails"`
+	NacQuars               []SystemReplacemsgGroupNacQuar               `pulumi:"nacQuars"`
+	Name                   *string                                      `pulumi:"name"`
+	Nntps                  []SystemReplacemsgGroupNntp                  `pulumi:"nntps"`
+	Spams                  []SystemReplacemsgGroupSpam                  `pulumi:"spams"`
+	Sslvpns                []SystemReplacemsgGroupSslvpn                `pulumi:"sslvpns"`
+	TrafficQuotas          []SystemReplacemsgGroupTrafficQuota          `pulumi:"trafficQuotas"`
+	Utms                   []SystemReplacemsgGroupUtm                   `pulumi:"utms"`
+	Vdomparam              *string                                      `pulumi:"vdomparam"`
+	Webproxies             []SystemReplacemsgGroupWebproxy              `pulumi:"webproxies"`
 }
 
 // The set of arguments for constructing a SystemReplacemsgGroup resource.
 type SystemReplacemsgGroupArgs struct {
-	// Replacement message table entries. The structure of `admin` block is documented below.
-	Admins SystemReplacemsgGroupAdminArrayInput
-	// Replacement message table entries. The structure of `alertmail` block is documented below.
-	Alertmails SystemReplacemsgGroupAlertmailArrayInput
-	// Replacement message table entries. The structure of `auth` block is documented below.
-	Auths SystemReplacemsgGroupAuthArrayInput
-	// Replacement message table entries. The structure of `automation` block is documented below.
-	Automations SystemReplacemsgGroupAutomationArrayInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// Replacement message table entries. The structure of `customMessage` block is documented below.
-	CustomMessages SystemReplacemsgGroupCustomMessageArrayInput
-	// Replacement message table entries. The structure of `deviceDetectionPortal` block is documented below.
+	Admins                 SystemReplacemsgGroupAdminArrayInput
+	Alertmails             SystemReplacemsgGroupAlertmailArrayInput
+	Auths                  SystemReplacemsgGroupAuthArrayInput
+	Automations            SystemReplacemsgGroupAutomationArrayInput
+	Comment                pulumi.StringPtrInput
+	CustomMessages         SystemReplacemsgGroupCustomMessageArrayInput
 	DeviceDetectionPortals SystemReplacemsgGroupDeviceDetectionPortalArrayInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrInput
-	// Replacement message table entries. The structure of `ec` block is documented below.
-	Ecs SystemReplacemsgGroupEcArrayInput
-	// Replacement message table entries. The structure of `fortiguardWf` block is documented below.
-	FortiguardWfs SystemReplacemsgGroupFortiguardWfArrayInput
-	// Replacement message table entries. The structure of `ftp` block is documented below.
-	Ftps SystemReplacemsgGroupFtpArrayInput
-	// Group type.
-	GroupType pulumi.StringInput
-	// Replacement message table entries. The structure of `http` block is documented below.
-	Https SystemReplacemsgGroupHttpArrayInput
-	// Replacement message table entries. The structure of `icap` block is documented below.
-	Icaps SystemReplacemsgGroupIcapArrayInput
-	// Replacement message table entries. The structure of `mail` block is documented below.
-	Mails SystemReplacemsgGroupMailArrayInput
-	// Replacement message table entries. The structure of `nacQuar` block is documented below.
-	NacQuars SystemReplacemsgGroupNacQuarArrayInput
-	// Group name.
-	Name pulumi.StringPtrInput
-	// Replacement message table entries. The structure of `nntp` block is documented below.
-	Nntps SystemReplacemsgGroupNntpArrayInput
-	// Replacement message table entries. The structure of `spam` block is documented below.
-	Spams SystemReplacemsgGroupSpamArrayInput
-	// Replacement message table entries. The structure of `sslvpn` block is documented below.
-	Sslvpns SystemReplacemsgGroupSslvpnArrayInput
-	// Replacement message table entries. The structure of `trafficQuota` block is documented below.
-	TrafficQuotas SystemReplacemsgGroupTrafficQuotaArrayInput
-	// Replacement message table entries. The structure of `utm` block is documented below.
-	Utms SystemReplacemsgGroupUtmArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
-	// Replacement message table entries. The structure of `webproxy` block is documented below.
-	Webproxies SystemReplacemsgGroupWebproxyArrayInput
+	DynamicSortSubtable    pulumi.StringPtrInput
+	Ecs                    SystemReplacemsgGroupEcArrayInput
+	FortiguardWfs          SystemReplacemsgGroupFortiguardWfArrayInput
+	Ftps                   SystemReplacemsgGroupFtpArrayInput
+	GroupType              pulumi.StringInput
+	Https                  SystemReplacemsgGroupHttpArrayInput
+	Icaps                  SystemReplacemsgGroupIcapArrayInput
+	Mails                  SystemReplacemsgGroupMailArrayInput
+	NacQuars               SystemReplacemsgGroupNacQuarArrayInput
+	Name                   pulumi.StringPtrInput
+	Nntps                  SystemReplacemsgGroupNntpArrayInput
+	Spams                  SystemReplacemsgGroupSpamArrayInput
+	Sslvpns                SystemReplacemsgGroupSslvpnArrayInput
+	TrafficQuotas          SystemReplacemsgGroupTrafficQuotaArrayInput
+	Utms                   SystemReplacemsgGroupUtmArrayInput
+	Vdomparam              pulumi.StringPtrInput
+	Webproxies             SystemReplacemsgGroupWebproxyArrayInput
 }
 
 func (SystemReplacemsgGroupArgs) ElementType() reflect.Type {
@@ -372,7 +211,7 @@ func (i *SystemReplacemsgGroup) ToSystemReplacemsgGroupOutputWithContext(ctx con
 // SystemReplacemsgGroupArrayInput is an input type that accepts SystemReplacemsgGroupArray and SystemReplacemsgGroupArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgGroupArrayInput` via:
 //
-//          SystemReplacemsgGroupArray{ SystemReplacemsgGroupArgs{...} }
+//	SystemReplacemsgGroupArray{ SystemReplacemsgGroupArgs{...} }
 type SystemReplacemsgGroupArrayInput interface {
 	pulumi.Input
 
@@ -397,7 +236,7 @@ func (i SystemReplacemsgGroupArray) ToSystemReplacemsgGroupArrayOutputWithContex
 // SystemReplacemsgGroupMapInput is an input type that accepts SystemReplacemsgGroupMap and SystemReplacemsgGroupMapOutput values.
 // You can construct a concrete instance of `SystemReplacemsgGroupMapInput` via:
 //
-//          SystemReplacemsgGroupMap{ "key": SystemReplacemsgGroupArgs{...} }
+//	SystemReplacemsgGroupMap{ "key": SystemReplacemsgGroupArgs{...} }
 type SystemReplacemsgGroupMapInput interface {
 	pulumi.Input
 
@@ -431,6 +270,104 @@ func (o SystemReplacemsgGroupOutput) ToSystemReplacemsgGroupOutput() SystemRepla
 
 func (o SystemReplacemsgGroupOutput) ToSystemReplacemsgGroupOutputWithContext(ctx context.Context) SystemReplacemsgGroupOutput {
 	return o
+}
+
+func (o SystemReplacemsgGroupOutput) Admins() SystemReplacemsgGroupAdminArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupAdminArrayOutput { return v.Admins }).(SystemReplacemsgGroupAdminArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Alertmails() SystemReplacemsgGroupAlertmailArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupAlertmailArrayOutput { return v.Alertmails }).(SystemReplacemsgGroupAlertmailArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Auths() SystemReplacemsgGroupAuthArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupAuthArrayOutput { return v.Auths }).(SystemReplacemsgGroupAuthArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Automations() SystemReplacemsgGroupAutomationArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupAutomationArrayOutput { return v.Automations }).(SystemReplacemsgGroupAutomationArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) CustomMessages() SystemReplacemsgGroupCustomMessageArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupCustomMessageArrayOutput { return v.CustomMessages }).(SystemReplacemsgGroupCustomMessageArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) DeviceDetectionPortals() SystemReplacemsgGroupDeviceDetectionPortalArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupDeviceDetectionPortalArrayOutput {
+		return v.DeviceDetectionPortals
+	}).(SystemReplacemsgGroupDeviceDetectionPortalArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Ecs() SystemReplacemsgGroupEcArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupEcArrayOutput { return v.Ecs }).(SystemReplacemsgGroupEcArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) FortiguardWfs() SystemReplacemsgGroupFortiguardWfArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupFortiguardWfArrayOutput { return v.FortiguardWfs }).(SystemReplacemsgGroupFortiguardWfArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Ftps() SystemReplacemsgGroupFtpArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupFtpArrayOutput { return v.Ftps }).(SystemReplacemsgGroupFtpArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) GroupType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) pulumi.StringOutput { return v.GroupType }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Https() SystemReplacemsgGroupHttpArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupHttpArrayOutput { return v.Https }).(SystemReplacemsgGroupHttpArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Icaps() SystemReplacemsgGroupIcapArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupIcapArrayOutput { return v.Icaps }).(SystemReplacemsgGroupIcapArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Mails() SystemReplacemsgGroupMailArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupMailArrayOutput { return v.Mails }).(SystemReplacemsgGroupMailArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) NacQuars() SystemReplacemsgGroupNacQuarArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupNacQuarArrayOutput { return v.NacQuars }).(SystemReplacemsgGroupNacQuarArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Nntps() SystemReplacemsgGroupNntpArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupNntpArrayOutput { return v.Nntps }).(SystemReplacemsgGroupNntpArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Spams() SystemReplacemsgGroupSpamArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupSpamArrayOutput { return v.Spams }).(SystemReplacemsgGroupSpamArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Sslvpns() SystemReplacemsgGroupSslvpnArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupSslvpnArrayOutput { return v.Sslvpns }).(SystemReplacemsgGroupSslvpnArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) TrafficQuotas() SystemReplacemsgGroupTrafficQuotaArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupTrafficQuotaArrayOutput { return v.TrafficQuotas }).(SystemReplacemsgGroupTrafficQuotaArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Utms() SystemReplacemsgGroupUtmArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupUtmArrayOutput { return v.Utms }).(SystemReplacemsgGroupUtmArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) Webproxies() SystemReplacemsgGroupWebproxyArrayOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupWebproxyArrayOutput { return v.Webproxies }).(SystemReplacemsgGroupWebproxyArrayOutput)
 }
 
 type SystemReplacemsgGroupArrayOutput struct{ *pulumi.OutputState }

@@ -10,115 +10,33 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure WCCP.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewSystemWccp(ctx, "trname", &fortios.SystemWccpArgs{
-// 			AssignmentBucketFormat: pulumi.String("cisco-implementation"),
-// 			AssignmentDstaddrMask:  pulumi.String("0.0.0.0"),
-// 			AssignmentMethod:       pulumi.String("HASH"),
-// 			AssignmentSrcaddrMask:  pulumi.String("0.0.23.65"),
-// 			AssignmentWeight:       pulumi.Int(0),
-// 			Authentication:         pulumi.String("disable"),
-// 			CacheEngineMethod:      pulumi.String("GRE"),
-// 			CacheId:                pulumi.String("1.1.1.1"),
-// 			ForwardMethod:          pulumi.String("GRE"),
-// 			GroupAddress:           pulumi.String("0.0.0.0"),
-// 			PrimaryHash:            pulumi.String("dst-ip"),
-// 			Priority:               pulumi.Int(0),
-// 			Protocol:               pulumi.Int(0),
-// 			ReturnMethod:           pulumi.String("GRE"),
-// 			RouterId:               pulumi.String("1.1.1.1"),
-// 			RouterList:             pulumi.String("\"1.0.0.0\" "),
-// 			ServerType:             pulumi.String("forward"),
-// 			ServiceId:              pulumi.String("1"),
-// 			ServiceType:            pulumi.String("auto"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// System Wccp can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/systemWccp:SystemWccp labelname {{service_id}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/systemWccp:SystemWccp labelname {{service_id}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SystemWccp struct {
 	pulumi.CustomResourceState
 
-	// Assignment bucket format for the WCCP cache engine. Valid values: `wccp-v2`, `cisco-implementation`.
-	AssignmentBucketFormat pulumi.StringOutput `pulumi:"assignmentBucketFormat"`
-	// Assignment destination address mask.
-	AssignmentDstaddrMask pulumi.StringOutput `pulumi:"assignmentDstaddrMask"`
-	// Hash key assignment preference. Valid values: `HASH`, `MASK`, `any`.
-	AssignmentMethod pulumi.StringOutput `pulumi:"assignmentMethod"`
-	// Assignment source address mask.
-	AssignmentSrcaddrMask pulumi.StringOutput `pulumi:"assignmentSrcaddrMask"`
-	// Assignment of hash weight/ratio for the WCCP cache engine.
-	AssignmentWeight pulumi.IntOutput `pulumi:"assignmentWeight"`
-	// Enable/disable MD5 authentication. Valid values: `enable`, `disable`.
-	Authentication pulumi.StringOutput `pulumi:"authentication"`
-	// Method used to forward traffic to the routers or to return to the cache engine. Valid values: `GRE`, `L2`.
-	CacheEngineMethod pulumi.StringOutput `pulumi:"cacheEngineMethod"`
-	// IP address known to all routers. If the addresses are the same, use the default 0.0.0.0.
-	CacheId pulumi.StringOutput `pulumi:"cacheId"`
-	// Method used to forward traffic to the cache servers. Valid values: `GRE`, `L2`, `any`.
-	ForwardMethod pulumi.StringOutput `pulumi:"forwardMethod"`
-	// IP multicast address used by the cache routers. For the FortiGate to ignore multicast WCCP traffic, use the default 0.0.0.0.
-	GroupAddress pulumi.StringOutput `pulumi:"groupAddress"`
-	// Password for MD5 authentication.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Service ports.
-	Ports pulumi.StringOutput `pulumi:"ports"`
-	// Match method. Valid values: `source`, `destination`.
-	PortsDefined pulumi.StringOutput `pulumi:"portsDefined"`
-	// Hash method. Valid values: `src-ip`, `dst-ip`, `src-port`, `dst-port`.
-	PrimaryHash pulumi.StringOutput `pulumi:"primaryHash"`
-	// Service priority.
-	Priority pulumi.IntOutput `pulumi:"priority"`
-	// Service protocol.
-	Protocol pulumi.IntOutput `pulumi:"protocol"`
-	// Method used to decline a redirected packet and return it to the FortiGate. Valid values: `GRE`, `L2`, `any`.
-	ReturnMethod pulumi.StringOutput `pulumi:"returnMethod"`
-	// IP address known to all cache engines. If all cache engines connect to the same FortiGate interface, use the default 0.0.0.0.
-	RouterId pulumi.StringOutput `pulumi:"routerId"`
-	// IP addresses of one or more WCCP routers.
-	RouterList pulumi.StringOutput `pulumi:"routerList"`
-	// IP addresses and netmasks for up to four cache servers.
-	ServerList pulumi.StringOutput `pulumi:"serverList"`
-	// Cache server type. Valid values: `forward`, `proxy`.
-	ServerType pulumi.StringOutput `pulumi:"serverType"`
-	// Service ID.
-	ServiceId pulumi.StringOutput `pulumi:"serviceId"`
-	// WCCP service type used by the cache server for logical interception and redirection of traffic. Valid values: `auto`, `standard`, `dynamic`.
-	ServiceType pulumi.StringOutput `pulumi:"serviceType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AssignmentBucketFormat pulumi.StringOutput    `pulumi:"assignmentBucketFormat"`
+	AssignmentDstaddrMask  pulumi.StringOutput    `pulumi:"assignmentDstaddrMask"`
+	AssignmentMethod       pulumi.StringOutput    `pulumi:"assignmentMethod"`
+	AssignmentSrcaddrMask  pulumi.StringOutput    `pulumi:"assignmentSrcaddrMask"`
+	AssignmentWeight       pulumi.IntOutput       `pulumi:"assignmentWeight"`
+	Authentication         pulumi.StringOutput    `pulumi:"authentication"`
+	CacheEngineMethod      pulumi.StringOutput    `pulumi:"cacheEngineMethod"`
+	CacheId                pulumi.StringOutput    `pulumi:"cacheId"`
+	ForwardMethod          pulumi.StringOutput    `pulumi:"forwardMethod"`
+	GroupAddress           pulumi.StringOutput    `pulumi:"groupAddress"`
+	Password               pulumi.StringPtrOutput `pulumi:"password"`
+	Ports                  pulumi.StringOutput    `pulumi:"ports"`
+	PortsDefined           pulumi.StringOutput    `pulumi:"portsDefined"`
+	PrimaryHash            pulumi.StringOutput    `pulumi:"primaryHash"`
+	Priority               pulumi.IntOutput       `pulumi:"priority"`
+	Protocol               pulumi.IntOutput       `pulumi:"protocol"`
+	ReturnMethod           pulumi.StringOutput    `pulumi:"returnMethod"`
+	RouterId               pulumi.StringOutput    `pulumi:"routerId"`
+	RouterList             pulumi.StringOutput    `pulumi:"routerList"`
+	ServerList             pulumi.StringOutput    `pulumi:"serverList"`
+	ServerType             pulumi.StringOutput    `pulumi:"serverType"`
+	ServiceId              pulumi.StringOutput    `pulumi:"serviceId"`
+	ServiceType            pulumi.StringOutput    `pulumi:"serviceType"`
+	Vdomparam              pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemWccp registers a new resource with the given unique name, arguments, and options.
@@ -128,6 +46,13 @@ func NewSystemWccp(ctx *pulumi.Context,
 		args = &SystemWccpArgs{}
 	}
 
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemWccp
 	err := ctx.RegisterResource("fortios:index/systemWccp:SystemWccp", name, args, &resource, opts...)
@@ -151,105 +76,57 @@ func GetSystemWccp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemWccp resources.
 type systemWccpState struct {
-	// Assignment bucket format for the WCCP cache engine. Valid values: `wccp-v2`, `cisco-implementation`.
 	AssignmentBucketFormat *string `pulumi:"assignmentBucketFormat"`
-	// Assignment destination address mask.
-	AssignmentDstaddrMask *string `pulumi:"assignmentDstaddrMask"`
-	// Hash key assignment preference. Valid values: `HASH`, `MASK`, `any`.
-	AssignmentMethod *string `pulumi:"assignmentMethod"`
-	// Assignment source address mask.
-	AssignmentSrcaddrMask *string `pulumi:"assignmentSrcaddrMask"`
-	// Assignment of hash weight/ratio for the WCCP cache engine.
-	AssignmentWeight *int `pulumi:"assignmentWeight"`
-	// Enable/disable MD5 authentication. Valid values: `enable`, `disable`.
-	Authentication *string `pulumi:"authentication"`
-	// Method used to forward traffic to the routers or to return to the cache engine. Valid values: `GRE`, `L2`.
-	CacheEngineMethod *string `pulumi:"cacheEngineMethod"`
-	// IP address known to all routers. If the addresses are the same, use the default 0.0.0.0.
-	CacheId *string `pulumi:"cacheId"`
-	// Method used to forward traffic to the cache servers. Valid values: `GRE`, `L2`, `any`.
-	ForwardMethod *string `pulumi:"forwardMethod"`
-	// IP multicast address used by the cache routers. For the FortiGate to ignore multicast WCCP traffic, use the default 0.0.0.0.
-	GroupAddress *string `pulumi:"groupAddress"`
-	// Password for MD5 authentication.
-	Password *string `pulumi:"password"`
-	// Service ports.
-	Ports *string `pulumi:"ports"`
-	// Match method. Valid values: `source`, `destination`.
-	PortsDefined *string `pulumi:"portsDefined"`
-	// Hash method. Valid values: `src-ip`, `dst-ip`, `src-port`, `dst-port`.
-	PrimaryHash *string `pulumi:"primaryHash"`
-	// Service priority.
-	Priority *int `pulumi:"priority"`
-	// Service protocol.
-	Protocol *int `pulumi:"protocol"`
-	// Method used to decline a redirected packet and return it to the FortiGate. Valid values: `GRE`, `L2`, `any`.
-	ReturnMethod *string `pulumi:"returnMethod"`
-	// IP address known to all cache engines. If all cache engines connect to the same FortiGate interface, use the default 0.0.0.0.
-	RouterId *string `pulumi:"routerId"`
-	// IP addresses of one or more WCCP routers.
-	RouterList *string `pulumi:"routerList"`
-	// IP addresses and netmasks for up to four cache servers.
-	ServerList *string `pulumi:"serverList"`
-	// Cache server type. Valid values: `forward`, `proxy`.
-	ServerType *string `pulumi:"serverType"`
-	// Service ID.
-	ServiceId *string `pulumi:"serviceId"`
-	// WCCP service type used by the cache server for logical interception and redirection of traffic. Valid values: `auto`, `standard`, `dynamic`.
-	ServiceType *string `pulumi:"serviceType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AssignmentDstaddrMask  *string `pulumi:"assignmentDstaddrMask"`
+	AssignmentMethod       *string `pulumi:"assignmentMethod"`
+	AssignmentSrcaddrMask  *string `pulumi:"assignmentSrcaddrMask"`
+	AssignmentWeight       *int    `pulumi:"assignmentWeight"`
+	Authentication         *string `pulumi:"authentication"`
+	CacheEngineMethod      *string `pulumi:"cacheEngineMethod"`
+	CacheId                *string `pulumi:"cacheId"`
+	ForwardMethod          *string `pulumi:"forwardMethod"`
+	GroupAddress           *string `pulumi:"groupAddress"`
+	Password               *string `pulumi:"password"`
+	Ports                  *string `pulumi:"ports"`
+	PortsDefined           *string `pulumi:"portsDefined"`
+	PrimaryHash            *string `pulumi:"primaryHash"`
+	Priority               *int    `pulumi:"priority"`
+	Protocol               *int    `pulumi:"protocol"`
+	ReturnMethod           *string `pulumi:"returnMethod"`
+	RouterId               *string `pulumi:"routerId"`
+	RouterList             *string `pulumi:"routerList"`
+	ServerList             *string `pulumi:"serverList"`
+	ServerType             *string `pulumi:"serverType"`
+	ServiceId              *string `pulumi:"serviceId"`
+	ServiceType            *string `pulumi:"serviceType"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 type SystemWccpState struct {
-	// Assignment bucket format for the WCCP cache engine. Valid values: `wccp-v2`, `cisco-implementation`.
 	AssignmentBucketFormat pulumi.StringPtrInput
-	// Assignment destination address mask.
-	AssignmentDstaddrMask pulumi.StringPtrInput
-	// Hash key assignment preference. Valid values: `HASH`, `MASK`, `any`.
-	AssignmentMethod pulumi.StringPtrInput
-	// Assignment source address mask.
-	AssignmentSrcaddrMask pulumi.StringPtrInput
-	// Assignment of hash weight/ratio for the WCCP cache engine.
-	AssignmentWeight pulumi.IntPtrInput
-	// Enable/disable MD5 authentication. Valid values: `enable`, `disable`.
-	Authentication pulumi.StringPtrInput
-	// Method used to forward traffic to the routers or to return to the cache engine. Valid values: `GRE`, `L2`.
-	CacheEngineMethod pulumi.StringPtrInput
-	// IP address known to all routers. If the addresses are the same, use the default 0.0.0.0.
-	CacheId pulumi.StringPtrInput
-	// Method used to forward traffic to the cache servers. Valid values: `GRE`, `L2`, `any`.
-	ForwardMethod pulumi.StringPtrInput
-	// IP multicast address used by the cache routers. For the FortiGate to ignore multicast WCCP traffic, use the default 0.0.0.0.
-	GroupAddress pulumi.StringPtrInput
-	// Password for MD5 authentication.
-	Password pulumi.StringPtrInput
-	// Service ports.
-	Ports pulumi.StringPtrInput
-	// Match method. Valid values: `source`, `destination`.
-	PortsDefined pulumi.StringPtrInput
-	// Hash method. Valid values: `src-ip`, `dst-ip`, `src-port`, `dst-port`.
-	PrimaryHash pulumi.StringPtrInput
-	// Service priority.
-	Priority pulumi.IntPtrInput
-	// Service protocol.
-	Protocol pulumi.IntPtrInput
-	// Method used to decline a redirected packet and return it to the FortiGate. Valid values: `GRE`, `L2`, `any`.
-	ReturnMethod pulumi.StringPtrInput
-	// IP address known to all cache engines. If all cache engines connect to the same FortiGate interface, use the default 0.0.0.0.
-	RouterId pulumi.StringPtrInput
-	// IP addresses of one or more WCCP routers.
-	RouterList pulumi.StringPtrInput
-	// IP addresses and netmasks for up to four cache servers.
-	ServerList pulumi.StringPtrInput
-	// Cache server type. Valid values: `forward`, `proxy`.
-	ServerType pulumi.StringPtrInput
-	// Service ID.
-	ServiceId pulumi.StringPtrInput
-	// WCCP service type used by the cache server for logical interception and redirection of traffic. Valid values: `auto`, `standard`, `dynamic`.
-	ServiceType pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	AssignmentDstaddrMask  pulumi.StringPtrInput
+	AssignmentMethod       pulumi.StringPtrInput
+	AssignmentSrcaddrMask  pulumi.StringPtrInput
+	AssignmentWeight       pulumi.IntPtrInput
+	Authentication         pulumi.StringPtrInput
+	CacheEngineMethod      pulumi.StringPtrInput
+	CacheId                pulumi.StringPtrInput
+	ForwardMethod          pulumi.StringPtrInput
+	GroupAddress           pulumi.StringPtrInput
+	Password               pulumi.StringPtrInput
+	Ports                  pulumi.StringPtrInput
+	PortsDefined           pulumi.StringPtrInput
+	PrimaryHash            pulumi.StringPtrInput
+	Priority               pulumi.IntPtrInput
+	Protocol               pulumi.IntPtrInput
+	ReturnMethod           pulumi.StringPtrInput
+	RouterId               pulumi.StringPtrInput
+	RouterList             pulumi.StringPtrInput
+	ServerList             pulumi.StringPtrInput
+	ServerType             pulumi.StringPtrInput
+	ServiceId              pulumi.StringPtrInput
+	ServiceType            pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SystemWccpState) ElementType() reflect.Type {
@@ -257,106 +134,58 @@ func (SystemWccpState) ElementType() reflect.Type {
 }
 
 type systemWccpArgs struct {
-	// Assignment bucket format for the WCCP cache engine. Valid values: `wccp-v2`, `cisco-implementation`.
 	AssignmentBucketFormat *string `pulumi:"assignmentBucketFormat"`
-	// Assignment destination address mask.
-	AssignmentDstaddrMask *string `pulumi:"assignmentDstaddrMask"`
-	// Hash key assignment preference. Valid values: `HASH`, `MASK`, `any`.
-	AssignmentMethod *string `pulumi:"assignmentMethod"`
-	// Assignment source address mask.
-	AssignmentSrcaddrMask *string `pulumi:"assignmentSrcaddrMask"`
-	// Assignment of hash weight/ratio for the WCCP cache engine.
-	AssignmentWeight *int `pulumi:"assignmentWeight"`
-	// Enable/disable MD5 authentication. Valid values: `enable`, `disable`.
-	Authentication *string `pulumi:"authentication"`
-	// Method used to forward traffic to the routers or to return to the cache engine. Valid values: `GRE`, `L2`.
-	CacheEngineMethod *string `pulumi:"cacheEngineMethod"`
-	// IP address known to all routers. If the addresses are the same, use the default 0.0.0.0.
-	CacheId *string `pulumi:"cacheId"`
-	// Method used to forward traffic to the cache servers. Valid values: `GRE`, `L2`, `any`.
-	ForwardMethod *string `pulumi:"forwardMethod"`
-	// IP multicast address used by the cache routers. For the FortiGate to ignore multicast WCCP traffic, use the default 0.0.0.0.
-	GroupAddress *string `pulumi:"groupAddress"`
-	// Password for MD5 authentication.
-	Password *string `pulumi:"password"`
-	// Service ports.
-	Ports *string `pulumi:"ports"`
-	// Match method. Valid values: `source`, `destination`.
-	PortsDefined *string `pulumi:"portsDefined"`
-	// Hash method. Valid values: `src-ip`, `dst-ip`, `src-port`, `dst-port`.
-	PrimaryHash *string `pulumi:"primaryHash"`
-	// Service priority.
-	Priority *int `pulumi:"priority"`
-	// Service protocol.
-	Protocol *int `pulumi:"protocol"`
-	// Method used to decline a redirected packet and return it to the FortiGate. Valid values: `GRE`, `L2`, `any`.
-	ReturnMethod *string `pulumi:"returnMethod"`
-	// IP address known to all cache engines. If all cache engines connect to the same FortiGate interface, use the default 0.0.0.0.
-	RouterId *string `pulumi:"routerId"`
-	// IP addresses of one or more WCCP routers.
-	RouterList *string `pulumi:"routerList"`
-	// IP addresses and netmasks for up to four cache servers.
-	ServerList *string `pulumi:"serverList"`
-	// Cache server type. Valid values: `forward`, `proxy`.
-	ServerType *string `pulumi:"serverType"`
-	// Service ID.
-	ServiceId *string `pulumi:"serviceId"`
-	// WCCP service type used by the cache server for logical interception and redirection of traffic. Valid values: `auto`, `standard`, `dynamic`.
-	ServiceType *string `pulumi:"serviceType"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	AssignmentDstaddrMask  *string `pulumi:"assignmentDstaddrMask"`
+	AssignmentMethod       *string `pulumi:"assignmentMethod"`
+	AssignmentSrcaddrMask  *string `pulumi:"assignmentSrcaddrMask"`
+	AssignmentWeight       *int    `pulumi:"assignmentWeight"`
+	Authentication         *string `pulumi:"authentication"`
+	CacheEngineMethod      *string `pulumi:"cacheEngineMethod"`
+	CacheId                *string `pulumi:"cacheId"`
+	ForwardMethod          *string `pulumi:"forwardMethod"`
+	GroupAddress           *string `pulumi:"groupAddress"`
+	Password               *string `pulumi:"password"`
+	Ports                  *string `pulumi:"ports"`
+	PortsDefined           *string `pulumi:"portsDefined"`
+	PrimaryHash            *string `pulumi:"primaryHash"`
+	Priority               *int    `pulumi:"priority"`
+	Protocol               *int    `pulumi:"protocol"`
+	ReturnMethod           *string `pulumi:"returnMethod"`
+	RouterId               *string `pulumi:"routerId"`
+	RouterList             *string `pulumi:"routerList"`
+	ServerList             *string `pulumi:"serverList"`
+	ServerType             *string `pulumi:"serverType"`
+	ServiceId              *string `pulumi:"serviceId"`
+	ServiceType            *string `pulumi:"serviceType"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemWccp resource.
 type SystemWccpArgs struct {
-	// Assignment bucket format for the WCCP cache engine. Valid values: `wccp-v2`, `cisco-implementation`.
 	AssignmentBucketFormat pulumi.StringPtrInput
-	// Assignment destination address mask.
-	AssignmentDstaddrMask pulumi.StringPtrInput
-	// Hash key assignment preference. Valid values: `HASH`, `MASK`, `any`.
-	AssignmentMethod pulumi.StringPtrInput
-	// Assignment source address mask.
-	AssignmentSrcaddrMask pulumi.StringPtrInput
-	// Assignment of hash weight/ratio for the WCCP cache engine.
-	AssignmentWeight pulumi.IntPtrInput
-	// Enable/disable MD5 authentication. Valid values: `enable`, `disable`.
-	Authentication pulumi.StringPtrInput
-	// Method used to forward traffic to the routers or to return to the cache engine. Valid values: `GRE`, `L2`.
-	CacheEngineMethod pulumi.StringPtrInput
-	// IP address known to all routers. If the addresses are the same, use the default 0.0.0.0.
-	CacheId pulumi.StringPtrInput
-	// Method used to forward traffic to the cache servers. Valid values: `GRE`, `L2`, `any`.
-	ForwardMethod pulumi.StringPtrInput
-	// IP multicast address used by the cache routers. For the FortiGate to ignore multicast WCCP traffic, use the default 0.0.0.0.
-	GroupAddress pulumi.StringPtrInput
-	// Password for MD5 authentication.
-	Password pulumi.StringPtrInput
-	// Service ports.
-	Ports pulumi.StringPtrInput
-	// Match method. Valid values: `source`, `destination`.
-	PortsDefined pulumi.StringPtrInput
-	// Hash method. Valid values: `src-ip`, `dst-ip`, `src-port`, `dst-port`.
-	PrimaryHash pulumi.StringPtrInput
-	// Service priority.
-	Priority pulumi.IntPtrInput
-	// Service protocol.
-	Protocol pulumi.IntPtrInput
-	// Method used to decline a redirected packet and return it to the FortiGate. Valid values: `GRE`, `L2`, `any`.
-	ReturnMethod pulumi.StringPtrInput
-	// IP address known to all cache engines. If all cache engines connect to the same FortiGate interface, use the default 0.0.0.0.
-	RouterId pulumi.StringPtrInput
-	// IP addresses of one or more WCCP routers.
-	RouterList pulumi.StringPtrInput
-	// IP addresses and netmasks for up to four cache servers.
-	ServerList pulumi.StringPtrInput
-	// Cache server type. Valid values: `forward`, `proxy`.
-	ServerType pulumi.StringPtrInput
-	// Service ID.
-	ServiceId pulumi.StringPtrInput
-	// WCCP service type used by the cache server for logical interception and redirection of traffic. Valid values: `auto`, `standard`, `dynamic`.
-	ServiceType pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	AssignmentDstaddrMask  pulumi.StringPtrInput
+	AssignmentMethod       pulumi.StringPtrInput
+	AssignmentSrcaddrMask  pulumi.StringPtrInput
+	AssignmentWeight       pulumi.IntPtrInput
+	Authentication         pulumi.StringPtrInput
+	CacheEngineMethod      pulumi.StringPtrInput
+	CacheId                pulumi.StringPtrInput
+	ForwardMethod          pulumi.StringPtrInput
+	GroupAddress           pulumi.StringPtrInput
+	Password               pulumi.StringPtrInput
+	Ports                  pulumi.StringPtrInput
+	PortsDefined           pulumi.StringPtrInput
+	PrimaryHash            pulumi.StringPtrInput
+	Priority               pulumi.IntPtrInput
+	Protocol               pulumi.IntPtrInput
+	ReturnMethod           pulumi.StringPtrInput
+	RouterId               pulumi.StringPtrInput
+	RouterList             pulumi.StringPtrInput
+	ServerList             pulumi.StringPtrInput
+	ServerType             pulumi.StringPtrInput
+	ServiceId              pulumi.StringPtrInput
+	ServiceType            pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SystemWccpArgs) ElementType() reflect.Type {
@@ -385,7 +214,7 @@ func (i *SystemWccp) ToSystemWccpOutputWithContext(ctx context.Context) SystemWc
 // SystemWccpArrayInput is an input type that accepts SystemWccpArray and SystemWccpArrayOutput values.
 // You can construct a concrete instance of `SystemWccpArrayInput` via:
 //
-//          SystemWccpArray{ SystemWccpArgs{...} }
+//	SystemWccpArray{ SystemWccpArgs{...} }
 type SystemWccpArrayInput interface {
 	pulumi.Input
 
@@ -410,7 +239,7 @@ func (i SystemWccpArray) ToSystemWccpArrayOutputWithContext(ctx context.Context)
 // SystemWccpMapInput is an input type that accepts SystemWccpMap and SystemWccpMapOutput values.
 // You can construct a concrete instance of `SystemWccpMapInput` via:
 //
-//          SystemWccpMap{ "key": SystemWccpArgs{...} }
+//	SystemWccpMap{ "key": SystemWccpArgs{...} }
 type SystemWccpMapInput interface {
 	pulumi.Input
 
@@ -444,6 +273,102 @@ func (o SystemWccpOutput) ToSystemWccpOutput() SystemWccpOutput {
 
 func (o SystemWccpOutput) ToSystemWccpOutputWithContext(ctx context.Context) SystemWccpOutput {
 	return o
+}
+
+func (o SystemWccpOutput) AssignmentBucketFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.AssignmentBucketFormat }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) AssignmentDstaddrMask() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.AssignmentDstaddrMask }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) AssignmentMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.AssignmentMethod }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) AssignmentSrcaddrMask() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.AssignmentSrcaddrMask }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) AssignmentWeight() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.IntOutput { return v.AssignmentWeight }).(pulumi.IntOutput)
+}
+
+func (o SystemWccpOutput) Authentication() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.Authentication }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) CacheEngineMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.CacheEngineMethod }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) CacheId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.CacheId }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) ForwardMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.ForwardMethod }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) GroupAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.GroupAddress }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemWccpOutput) Ports() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.Ports }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) PortsDefined() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.PortsDefined }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) PrimaryHash() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.PrimaryHash }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
+}
+
+func (o SystemWccpOutput) Protocol() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.IntOutput { return v.Protocol }).(pulumi.IntOutput)
+}
+
+func (o SystemWccpOutput) ReturnMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.ReturnMethod }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) RouterId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.RouterId }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) RouterList() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.RouterList }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) ServerList() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.ServerList }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) ServerType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.ServerType }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.ServiceId }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) ServiceType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringOutput { return v.ServiceType }).(pulumi.StringOutput)
+}
+
+func (o SystemWccpOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemWccp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SystemWccpArrayOutput struct{ *pulumi.OutputState }

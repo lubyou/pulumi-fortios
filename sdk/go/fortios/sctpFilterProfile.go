@@ -10,36 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure SCTP filter profiles. Applies to FortiOS Version `>= 7.0.1`.
-//
-// ## Import
-//
-// SctpFilter Profile can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/sctpFilterProfile:SctpFilterProfile labelname {{name}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/sctpFilterProfile:SctpFilterProfile labelname {{name}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type SctpFilterProfile struct {
 	pulumi.CustomResourceState
 
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Profile name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// PPID filters list. The structure of `ppidFilters` block is documented below.
-	PpidFilters SctpFilterProfilePpidFilterArrayOutput `pulumi:"ppidFilters"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment             pulumi.StringPtrOutput                 `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	Name                pulumi.StringOutput                    `pulumi:"name"`
+	PpidFilters         SctpFilterProfilePpidFilterArrayOutput `pulumi:"ppidFilters"`
+	Vdomparam           pulumi.StringPtrOutput                 `pulumi:"vdomparam"`
 }
 
 // NewSctpFilterProfile registers a new resource with the given unique name, arguments, and options.
@@ -72,29 +50,19 @@ func GetSctpFilterProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SctpFilterProfile resources.
 type sctpFilterProfileState struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Profile name.
-	Name *string `pulumi:"name"`
-	// PPID filters list. The structure of `ppidFilters` block is documented below.
-	PpidFilters []SctpFilterProfilePpidFilter `pulumi:"ppidFilters"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                       `pulumi:"comment"`
+	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	Name                *string                       `pulumi:"name"`
+	PpidFilters         []SctpFilterProfilePpidFilter `pulumi:"ppidFilters"`
+	Vdomparam           *string                       `pulumi:"vdomparam"`
 }
 
 type SctpFilterProfileState struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Profile name.
-	Name pulumi.StringPtrInput
-	// PPID filters list. The structure of `ppidFilters` block is documented below.
-	PpidFilters SctpFilterProfilePpidFilterArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	PpidFilters         SctpFilterProfilePpidFilterArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SctpFilterProfileState) ElementType() reflect.Type {
@@ -102,30 +70,20 @@ func (SctpFilterProfileState) ElementType() reflect.Type {
 }
 
 type sctpFilterProfileArgs struct {
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Profile name.
-	Name *string `pulumi:"name"`
-	// PPID filters list. The structure of `ppidFilters` block is documented below.
-	PpidFilters []SctpFilterProfilePpidFilter `pulumi:"ppidFilters"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Comment             *string                       `pulumi:"comment"`
+	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	Name                *string                       `pulumi:"name"`
+	PpidFilters         []SctpFilterProfilePpidFilter `pulumi:"ppidFilters"`
+	Vdomparam           *string                       `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SctpFilterProfile resource.
 type SctpFilterProfileArgs struct {
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Profile name.
-	Name pulumi.StringPtrInput
-	// PPID filters list. The structure of `ppidFilters` block is documented below.
-	PpidFilters SctpFilterProfilePpidFilterArrayInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	PpidFilters         SctpFilterProfilePpidFilterArrayInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (SctpFilterProfileArgs) ElementType() reflect.Type {
@@ -154,7 +112,7 @@ func (i *SctpFilterProfile) ToSctpFilterProfileOutputWithContext(ctx context.Con
 // SctpFilterProfileArrayInput is an input type that accepts SctpFilterProfileArray and SctpFilterProfileArrayOutput values.
 // You can construct a concrete instance of `SctpFilterProfileArrayInput` via:
 //
-//          SctpFilterProfileArray{ SctpFilterProfileArgs{...} }
+//	SctpFilterProfileArray{ SctpFilterProfileArgs{...} }
 type SctpFilterProfileArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +137,7 @@ func (i SctpFilterProfileArray) ToSctpFilterProfileArrayOutputWithContext(ctx co
 // SctpFilterProfileMapInput is an input type that accepts SctpFilterProfileMap and SctpFilterProfileMapOutput values.
 // You can construct a concrete instance of `SctpFilterProfileMapInput` via:
 //
-//          SctpFilterProfileMap{ "key": SctpFilterProfileArgs{...} }
+//	SctpFilterProfileMap{ "key": SctpFilterProfileArgs{...} }
 type SctpFilterProfileMapInput interface {
 	pulumi.Input
 
@@ -213,6 +171,26 @@ func (o SctpFilterProfileOutput) ToSctpFilterProfileOutput() SctpFilterProfileOu
 
 func (o SctpFilterProfileOutput) ToSctpFilterProfileOutputWithContext(ctx context.Context) SctpFilterProfileOutput {
 	return o
+}
+
+func (o SctpFilterProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SctpFilterProfile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o SctpFilterProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SctpFilterProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SctpFilterProfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SctpFilterProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SctpFilterProfileOutput) PpidFilters() SctpFilterProfilePpidFilterArrayOutput {
+	return o.ApplyT(func(v *SctpFilterProfile) SctpFilterProfilePpidFilterArrayOutput { return v.PpidFilters }).(SctpFilterProfilePpidFilterArrayOutput)
+}
+
+func (o SctpFilterProfileOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SctpFilterProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type SctpFilterProfileArrayOutput struct{ *pulumi.OutputState }

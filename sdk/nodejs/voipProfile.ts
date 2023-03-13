@@ -2,95 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure VoIP profiles.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.VoipProfile("trname", {
- *     comment: "test",
- *     sccp: {
- *         blockMcast: "disable",
- *         logCallSummary: "disable",
- *         logViolations: "disable",
- *         maxCalls: 0,
- *         status: "enable",
- *         verifyHeader: "disable",
- *     },
- *     sip: {
- *         ackRate: 0,
- *         byeRate: 0,
- *         callKeepalive: 0,
- *         cancelRate: 0,
- *         contactFixup: "enable",
- *         hntRestrictSourceIp: "disable",
- *         hostedNatTraversal: "disable",
- *         infoRate: 0,
- *         inviteRate: 0,
- *         ipsRtp: "enable",
- *         logCallSummary: "enable",
- *         logViolations: "disable",
- *         maxBodyLength: 0,
- *         maxDialogs: 0,
- *         maxIdleDialogs: 0,
- *         maxLineLength: 998,
- *         messageRate: 0,
- *         natTrace: "enable",
- *         noSdpFixup: "disable",
- *         notifyRate: 0,
- *         openContactPinhole: "enable",
- *         openRecordRoutePinhole: "enable",
- *         openRegisterPinhole: "enable",
- *         openViaPinhole: "disable",
- *         optionsRate: 0,
- *         prackRate: 0,
- *         preserveOverride: "disable",
- *         provisionalInviteExpiryTime: 210,
- *         publishRate: 0,
- *         referRate: 0,
- *         registerContactTrace: "disable",
- *         registerRate: 0,
- *         rfc2543Branch: "disable",
- *         rtp: "enable",
- *         sslAlgorithm: "high",
- *         sslClientRenegotiation: "allow",
- *         sslMaxVersion: "tls-1.2",
- *         sslMinVersion: "tls-1.1",
- *         sslMode: "off",
- *         sslPfs: "allow",
- *         sslSendEmptyFrags: "enable",
- *         status: "enable",
- *         strictRegister: "enable",
- *         subscribeRate: 0,
- *         unknownHeader: "pass",
- *         updateRate: 0,
- *     },
- * });
- * ```
- *
- * ## Import
- *
- * Voip Profile can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/voipProfile:VoipProfile labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/voipProfile:VoipProfile labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class VoipProfile extends pulumi.CustomResource {
     /**
      * Get an existing VoipProfile resource's state with the given name, ID, and optional extra
@@ -119,33 +34,12 @@ export class VoipProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === VoipProfile.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
-     */
     public readonly featureSet!: pulumi.Output<string>;
-    /**
-     * MSRP. The structure of `msrp` block is documented below.
-     */
-    public readonly msrp!: pulumi.Output<outputs.VoipProfileMsrp | undefined>;
-    /**
-     * Profile name.
-     */
+    public readonly msrp!: pulumi.Output<outputs.VoipProfileMsrp>;
     public readonly name!: pulumi.Output<string>;
-    /**
-     * SCCP. The structure of `sccp` block is documented below.
-     */
-    public readonly sccp!: pulumi.Output<outputs.VoipProfileSccp | undefined>;
-    /**
-     * SIP. The structure of `sip` block is documented below.
-     */
-    public readonly sip!: pulumi.Output<outputs.VoipProfileSip | undefined>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
+    public readonly sccp!: pulumi.Output<outputs.VoipProfileSccp>;
+    public readonly sip!: pulumi.Output<outputs.VoipProfileSip>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -187,33 +81,12 @@ export class VoipProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VoipProfile resources.
  */
 export interface VoipProfileState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
-     */
     featureSet?: pulumi.Input<string>;
-    /**
-     * MSRP. The structure of `msrp` block is documented below.
-     */
     msrp?: pulumi.Input<inputs.VoipProfileMsrp>;
-    /**
-     * Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * SCCP. The structure of `sccp` block is documented below.
-     */
     sccp?: pulumi.Input<inputs.VoipProfileSccp>;
-    /**
-     * SIP. The structure of `sip` block is documented below.
-     */
     sip?: pulumi.Input<inputs.VoipProfileSip>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -221,32 +94,11 @@ export interface VoipProfileState {
  * The set of arguments for constructing a VoipProfile resource.
  */
 export interface VoipProfileArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
-     */
     featureSet?: pulumi.Input<string>;
-    /**
-     * MSRP. The structure of `msrp` block is documented below.
-     */
     msrp?: pulumi.Input<inputs.VoipProfileMsrp>;
-    /**
-     * Profile name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * SCCP. The structure of `sccp` block is documented below.
-     */
     sccp?: pulumi.Input<inputs.VoipProfileSccp>;
-    /**
-     * SIP. The structure of `sip` block is documented below.
-     */
     sip?: pulumi.Input<inputs.VoipProfileSip>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

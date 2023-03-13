@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Registered FortiClient list. Applies to FortiOS Version `<= 6.2.0`.
- *
- * ## Import
- *
- * EndpointControl RegisteredForticlient can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/endpointControlRegisteredForticlient:EndpointControlRegisteredForticlient labelname {{uid}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/endpointControlRegisteredForticlient:EndpointControlRegisteredForticlient labelname {{uid}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class EndpointControlRegisteredForticlient extends pulumi.CustomResource {
     /**
      * Get an existing EndpointControlRegisteredForticlient resource's state with the given name, ID, and optional extra
@@ -51,37 +32,13 @@ export class EndpointControlRegisteredForticlient extends pulumi.CustomResource 
         return obj['__pulumiType'] === EndpointControlRegisteredForticlient.__pulumiType;
     }
 
-    /**
-     * FortiClient registration flag.
-     */
     public readonly flag!: pulumi.Output<number>;
-    /**
-     * Endpoint IP address.
-     */
     public readonly ip!: pulumi.Output<string>;
-    /**
-     * Endpoint MAC address.
-     */
     public readonly mac!: pulumi.Output<string>;
-    /**
-     * Registering FortiGate SN.
-     */
     public readonly regFortigate!: pulumi.Output<string>;
-    /**
-     * FortiClient registration status.
-     */
     public readonly status!: pulumi.Output<number>;
-    /**
-     * FortiClient UID.
-     */
     public readonly uid!: pulumi.Output<string>;
-    /**
-     * Registering vdom.
-     */
     public readonly vdom!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -125,37 +82,13 @@ export class EndpointControlRegisteredForticlient extends pulumi.CustomResource 
  * Input properties used for looking up and filtering EndpointControlRegisteredForticlient resources.
  */
 export interface EndpointControlRegisteredForticlientState {
-    /**
-     * FortiClient registration flag.
-     */
     flag?: pulumi.Input<number>;
-    /**
-     * Endpoint IP address.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Endpoint MAC address.
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * Registering FortiGate SN.
-     */
     regFortigate?: pulumi.Input<string>;
-    /**
-     * FortiClient registration status.
-     */
     status?: pulumi.Input<number>;
-    /**
-     * FortiClient UID.
-     */
     uid?: pulumi.Input<string>;
-    /**
-     * Registering vdom.
-     */
     vdom?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -163,36 +96,12 @@ export interface EndpointControlRegisteredForticlientState {
  * The set of arguments for constructing a EndpointControlRegisteredForticlient resource.
  */
 export interface EndpointControlRegisteredForticlientArgs {
-    /**
-     * FortiClient registration flag.
-     */
     flag?: pulumi.Input<number>;
-    /**
-     * Endpoint IP address.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * Endpoint MAC address.
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * Registering FortiGate SN.
-     */
     regFortigate?: pulumi.Input<string>;
-    /**
-     * FortiClient registration status.
-     */
     status?: pulumi.Input<number>;
-    /**
-     * FortiClient UID.
-     */
     uid?: pulumi.Input<string>;
-    /**
-     * Registering vdom.
-     */
     vdom?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

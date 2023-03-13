@@ -10,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `SystemAlias`.
 func GetSystemAliasList(ctx *pulumi.Context, args *GetSystemAliasListArgs, opts ...pulumi.InvokeOption) (*GetSystemAliasListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemAliasListResult
@@ -23,8 +22,7 @@ func GetSystemAliasList(ctx *pulumi.Context, args *GetSystemAliasListArgs, opts 
 
 // A collection of arguments for invoking GetSystemAliasList.
 type GetSystemAliasListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -32,8 +30,7 @@ type GetSystemAliasListArgs struct {
 type GetSystemAliasListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `SystemAlias`.
+	Id        string   `pulumi:"id"`
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
 }
@@ -53,8 +50,7 @@ func GetSystemAliasListOutput(ctx *pulumi.Context, args GetSystemAliasListOutput
 
 // A collection of arguments for invoking GetSystemAliasList.
 type GetSystemAliasListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -86,7 +82,6 @@ func (o GetSystemAliasListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSystemAliasListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `SystemAlias`.
 func (o GetSystemAliasListResultOutput) Namelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSystemAliasListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
 }

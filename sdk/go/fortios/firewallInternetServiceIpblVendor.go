@@ -10,31 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// IP blacklist vendor. Applies to FortiOS Version `>= 6.2.4`.
-//
-// ## Import
-//
-// Firewall InternetServiceIpblVendor can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceIpblVendor:FirewallInternetServiceIpblVendor labelname {{fosid}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/firewallInternetServiceIpblVendor:FirewallInternetServiceIpblVendor labelname {{fosid}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type FirewallInternetServiceIpblVendor struct {
 	pulumi.CustomResourceState
 
-	// IP blacklist vendor ID.
-	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// IP blacklist vendor name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntOutput       `pulumi:"fosid"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -68,20 +48,14 @@ func GetFirewallInternetServiceIpblVendor(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallInternetServiceIpblVendor resources.
 type firewallInternetServiceIpblVendorState struct {
-	// IP blacklist vendor ID.
-	Fosid *int `pulumi:"fosid"`
-	// IP blacklist vendor name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type FirewallInternetServiceIpblVendorState struct {
-	// IP blacklist vendor ID.
-	Fosid pulumi.IntPtrInput
-	// IP blacklist vendor name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -90,21 +64,15 @@ func (FirewallInternetServiceIpblVendorState) ElementType() reflect.Type {
 }
 
 type firewallInternetServiceIpblVendorArgs struct {
-	// IP blacklist vendor ID.
-	Fosid *int `pulumi:"fosid"`
-	// IP blacklist vendor name.
-	Name *string `pulumi:"name"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     *int    `pulumi:"fosid"`
+	Name      *string `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallInternetServiceIpblVendor resource.
 type FirewallInternetServiceIpblVendorArgs struct {
-	// IP blacklist vendor ID.
-	Fosid pulumi.IntPtrInput
-	// IP blacklist vendor name.
-	Name pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Fosid     pulumi.IntPtrInput
+	Name      pulumi.StringPtrInput
 	Vdomparam pulumi.StringPtrInput
 }
 
@@ -134,7 +102,7 @@ func (i *FirewallInternetServiceIpblVendor) ToFirewallInternetServiceIpblVendorO
 // FirewallInternetServiceIpblVendorArrayInput is an input type that accepts FirewallInternetServiceIpblVendorArray and FirewallInternetServiceIpblVendorArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceIpblVendorArrayInput` via:
 //
-//          FirewallInternetServiceIpblVendorArray{ FirewallInternetServiceIpblVendorArgs{...} }
+//	FirewallInternetServiceIpblVendorArray{ FirewallInternetServiceIpblVendorArgs{...} }
 type FirewallInternetServiceIpblVendorArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +127,7 @@ func (i FirewallInternetServiceIpblVendorArray) ToFirewallInternetServiceIpblVen
 // FirewallInternetServiceIpblVendorMapInput is an input type that accepts FirewallInternetServiceIpblVendorMap and FirewallInternetServiceIpblVendorMapOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceIpblVendorMapInput` via:
 //
-//          FirewallInternetServiceIpblVendorMap{ "key": FirewallInternetServiceIpblVendorArgs{...} }
+//	FirewallInternetServiceIpblVendorMap{ "key": FirewallInternetServiceIpblVendorArgs{...} }
 type FirewallInternetServiceIpblVendorMapInput interface {
 	pulumi.Input
 
@@ -193,6 +161,18 @@ func (o FirewallInternetServiceIpblVendorOutput) ToFirewallInternetServiceIpblVe
 
 func (o FirewallInternetServiceIpblVendorOutput) ToFirewallInternetServiceIpblVendorOutputWithContext(ctx context.Context) FirewallInternetServiceIpblVendorOutput {
 	return o
+}
+
+func (o FirewallInternetServiceIpblVendorOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceIpblVendor) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceIpblVendorOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceIpblVendor) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o FirewallInternetServiceIpblVendorOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceIpblVendor) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type FirewallInternetServiceIpblVendorArrayOutput struct{ *pulumi.OutputState }

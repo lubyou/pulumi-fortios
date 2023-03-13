@@ -2,40 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Automation destinations.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.SystemAutomationDestination("trname", {
- *     haGroupId: 0,
- *     type: "fortigate",
- * });
- * ```
- *
- * ## Import
- *
- * System AutomationDestination can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutomationDestination:SystemAutomationDestination labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/systemAutomationDestination:SystemAutomationDestination labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class SystemAutomationDestination extends pulumi.CustomResource {
     /**
      * Get an existing SystemAutomationDestination resource's state with the given name, ID, and optional extra
@@ -64,29 +34,11 @@ export class SystemAutomationDestination extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemAutomationDestination.__pulumiType;
     }
 
-    /**
-     * Destinations. The structure of `destination` block is documented below.
-     */
     public readonly destinations!: pulumi.Output<outputs.SystemAutomationDestinationDestination[] | undefined>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Cluster group ID set for this destination (default = 0).
-     */
     public readonly haGroupId!: pulumi.Output<number>;
-    /**
-     * Destination.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Destination type. Valid values: `fortigate`, `ha-cluster`.
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -126,29 +78,11 @@ export class SystemAutomationDestination extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemAutomationDestination resources.
  */
 export interface SystemAutomationDestinationState {
-    /**
-     * Destinations. The structure of `destination` block is documented below.
-     */
     destinations?: pulumi.Input<pulumi.Input<inputs.SystemAutomationDestinationDestination>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Cluster group ID set for this destination (default = 0).
-     */
     haGroupId?: pulumi.Input<number>;
-    /**
-     * Destination.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Destination type. Valid values: `fortigate`, `ha-cluster`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -156,28 +90,10 @@ export interface SystemAutomationDestinationState {
  * The set of arguments for constructing a SystemAutomationDestination resource.
  */
 export interface SystemAutomationDestinationArgs {
-    /**
-     * Destinations. The structure of `destination` block is documented below.
-     */
     destinations?: pulumi.Input<pulumi.Input<inputs.SystemAutomationDestinationDestination>[]>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Cluster group ID set for this destination (default = 0).
-     */
     haGroupId?: pulumi.Input<number>;
-    /**
-     * Destination.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Destination type. Valid values: `fortigate`, `ha-cluster`.
-     */
     type?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

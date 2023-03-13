@@ -2,43 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Configure DLP sensors.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
- *
- * const trname = new fortios.DlpSensor("trname", {
- *     dlpLog: "enable",
- *     extendedLog: "disable",
- *     flowBased: "enable",
- *     nacQuarLog: "disable",
- *     summaryProto: "smtp pop3",
- * });
- * ```
- *
- * ## Import
- *
- * Dlp Sensor can be imported using any of these accepted formats
- *
- * ```sh
- *  $ pulumi import fortios:index/dlpSensor:DlpSensor labelname {{name}}
- * ```
- *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
- *
- * ```sh
- *  $ pulumi import fortios:index/dlpSensor:DlpSensor labelname {{name}}
- * ```
- *
- *  $ unset "FORTIOS_IMPORT_TABLE"
- */
 export class DlpSensor extends pulumi.CustomResource {
     /**
      * Get an existing DlpSensor resource's state with the given name, ID, and optional extra
@@ -67,61 +34,22 @@ export class DlpSensor extends pulumi.CustomResource {
         return obj['__pulumiType'] === DlpSensor.__pulumiType;
     }
 
-    /**
-     * Comment.
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable DLP logging. Valid values: `enable`, `disable`.
-     */
     public readonly dlpLog!: pulumi.Output<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
-    /**
-     * Enable/disable extended logging for data leak prevention. Valid values: `enable`, `disable`.
-     */
+    public readonly entries!: pulumi.Output<outputs.DlpSensorEntry[] | undefined>;
+    public readonly eval!: pulumi.Output<string>;
     public readonly extendedLog!: pulumi.Output<string>;
-    /**
-     * Flow/proxy feature set. Valid values: `flow`, `proxy`.
-     */
     public readonly featureSet!: pulumi.Output<string>;
-    /**
-     * Set up DLP filters for this sensor. The structure of `filter` block is documented below.
-     */
     public readonly filters!: pulumi.Output<outputs.DlpSensorFilter[] | undefined>;
-    /**
-     * Enable/disable flow-based DLP. Valid values: `enable`, `disable`.
-     */
     public readonly flowBased!: pulumi.Output<string>;
-    /**
-     * Protocols to always content archive.
-     */
     public readonly fullArchiveProto!: pulumi.Output<string>;
-    /**
-     * Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
-     */
+    public readonly matchType!: pulumi.Output<string>;
     public readonly nacQuarLog!: pulumi.Output<string>;
-    /**
-     * Select a DLP sensitivity.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Configure DLP options.
-     */
     public readonly options!: pulumi.Output<string>;
-    /**
-     * Replacement message group used by this DLP sensor.
-     */
     public readonly replacemsgGroup!: pulumi.Output<string>;
-    /**
-     * Protocols to always log summary.
-     */
     public readonly summaryProto!: pulumi.Output<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -140,11 +68,14 @@ export class DlpSensor extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dlpLog"] = state ? state.dlpLog : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["entries"] = state ? state.entries : undefined;
+            resourceInputs["eval"] = state ? state.eval : undefined;
             resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
             resourceInputs["featureSet"] = state ? state.featureSet : undefined;
             resourceInputs["filters"] = state ? state.filters : undefined;
             resourceInputs["flowBased"] = state ? state.flowBased : undefined;
             resourceInputs["fullArchiveProto"] = state ? state.fullArchiveProto : undefined;
+            resourceInputs["matchType"] = state ? state.matchType : undefined;
             resourceInputs["nacQuarLog"] = state ? state.nacQuarLog : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["options"] = state ? state.options : undefined;
@@ -156,11 +87,14 @@ export class DlpSensor extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dlpLog"] = args ? args.dlpLog : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["entries"] = args ? args.entries : undefined;
+            resourceInputs["eval"] = args ? args.eval : undefined;
             resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
             resourceInputs["featureSet"] = args ? args.featureSet : undefined;
             resourceInputs["filters"] = args ? args.filters : undefined;
             resourceInputs["flowBased"] = args ? args.flowBased : undefined;
             resourceInputs["fullArchiveProto"] = args ? args.fullArchiveProto : undefined;
+            resourceInputs["matchType"] = args ? args.matchType : undefined;
             resourceInputs["nacQuarLog"] = args ? args.nacQuarLog : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["options"] = args ? args.options : undefined;
@@ -177,61 +111,22 @@ export class DlpSensor extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DlpSensor resources.
  */
 export interface DlpSensorState {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable/disable DLP logging. Valid values: `enable`, `disable`.
-     */
     dlpLog?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable extended logging for data leak prevention. Valid values: `enable`, `disable`.
-     */
+    entries?: pulumi.Input<pulumi.Input<inputs.DlpSensorEntry>[]>;
+    eval?: pulumi.Input<string>;
     extendedLog?: pulumi.Input<string>;
-    /**
-     * Flow/proxy feature set. Valid values: `flow`, `proxy`.
-     */
     featureSet?: pulumi.Input<string>;
-    /**
-     * Set up DLP filters for this sensor. The structure of `filter` block is documented below.
-     */
     filters?: pulumi.Input<pulumi.Input<inputs.DlpSensorFilter>[]>;
-    /**
-     * Enable/disable flow-based DLP. Valid values: `enable`, `disable`.
-     */
     flowBased?: pulumi.Input<string>;
-    /**
-     * Protocols to always content archive.
-     */
     fullArchiveProto?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
-     */
+    matchType?: pulumi.Input<string>;
     nacQuarLog?: pulumi.Input<string>;
-    /**
-     * Select a DLP sensitivity.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Configure DLP options.
-     */
     options?: pulumi.Input<string>;
-    /**
-     * Replacement message group used by this DLP sensor.
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * Protocols to always log summary.
-     */
     summaryProto?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -239,60 +134,21 @@ export interface DlpSensorState {
  * The set of arguments for constructing a DlpSensor resource.
  */
 export interface DlpSensorArgs {
-    /**
-     * Comment.
-     */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable/disable DLP logging. Valid values: `enable`, `disable`.
-     */
     dlpLog?: pulumi.Input<string>;
-    /**
-     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-     */
     dynamicSortSubtable?: pulumi.Input<string>;
-    /**
-     * Enable/disable extended logging for data leak prevention. Valid values: `enable`, `disable`.
-     */
+    entries?: pulumi.Input<pulumi.Input<inputs.DlpSensorEntry>[]>;
+    eval?: pulumi.Input<string>;
     extendedLog?: pulumi.Input<string>;
-    /**
-     * Flow/proxy feature set. Valid values: `flow`, `proxy`.
-     */
     featureSet?: pulumi.Input<string>;
-    /**
-     * Set up DLP filters for this sensor. The structure of `filter` block is documented below.
-     */
     filters?: pulumi.Input<pulumi.Input<inputs.DlpSensorFilter>[]>;
-    /**
-     * Enable/disable flow-based DLP. Valid values: `enable`, `disable`.
-     */
     flowBased?: pulumi.Input<string>;
-    /**
-     * Protocols to always content archive.
-     */
     fullArchiveProto?: pulumi.Input<string>;
-    /**
-     * Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
-     */
+    matchType?: pulumi.Input<string>;
     nacQuarLog?: pulumi.Input<string>;
-    /**
-     * Select a DLP sensitivity.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Configure DLP options.
-     */
     options?: pulumi.Input<string>;
-    /**
-     * Replacement message group used by this DLP sensor.
-     */
     replacemsgGroup?: pulumi.Input<string>;
-    /**
-     * Protocols to always log summary.
-     */
     summaryProto?: pulumi.Input<string>;
-    /**
-     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-     */
     vdomparam?: pulumi.Input<string>;
 }

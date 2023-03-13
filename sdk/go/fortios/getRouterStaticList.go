@@ -10,32 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a list of `RouterStatic`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		sample1, err := fortios.GetRouterStaticList(ctx, &GetRouterStaticListArgs{
-// 			Filter: pulumi.StringRef("seq_num>1"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("output1", sample1.SeqNumlists)
-// 		return nil
-// 	})
-// }
-// ```
 func GetRouterStaticList(ctx *pulumi.Context, args *GetRouterStaticListArgs, opts ...pulumi.InvokeOption) (*GetRouterStaticListResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetRouterStaticListResult
@@ -48,8 +22,7 @@ func GetRouterStaticList(ctx *pulumi.Context, args *GetRouterStaticListArgs, opt
 
 // A collection of arguments for invoking GetRouterStaticList.
 type GetRouterStaticListArgs struct {
-	Filter *string `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    *string `pulumi:"filter"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -57,8 +30,7 @@ type GetRouterStaticListArgs struct {
 type GetRouterStaticListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of the `RouterStatic`.
+	Id          string  `pulumi:"id"`
 	SeqNumlists []int   `pulumi:"seqNumlists"`
 	Vdomparam   *string `pulumi:"vdomparam"`
 }
@@ -78,8 +50,7 @@ func GetRouterStaticListOutput(ctx *pulumi.Context, args GetRouterStaticListOutp
 
 // A collection of arguments for invoking GetRouterStaticList.
 type GetRouterStaticListOutputArgs struct {
-	Filter pulumi.StringPtrInput `pulumi:"filter"`
-	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Filter    pulumi.StringPtrInput `pulumi:"filter"`
 	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
 }
 
@@ -111,7 +82,6 @@ func (o GetRouterStaticListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRouterStaticListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of the `RouterStatic`.
 func (o GetRouterStaticListResultOutput) SeqNumlists() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v GetRouterStaticListResult) []int { return v.SeqNumlists }).(pulumi.IntArrayOutput)
 }

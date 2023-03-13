@@ -10,74 +10,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure devices. Applies to FortiOS Version `<= 6.2.0`.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fortios.NewUserDevice(ctx, "trname", &fortios.UserDeviceArgs{
-// 			Alias:    pulumi.String("1"),
-// 			Category: pulumi.String("amazon-device"),
-// 			Mac:      pulumi.String("08:00:20:0a:8c:6d"),
-// 			Type:     pulumi.String("unknown"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// User Device can be imported using any of these accepted formats
-//
-// ```sh
-//  $ pulumi import fortios:index/userDevice:UserDevice labelname {{alias}}
-// ```
-//
-//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
-//
-// ```sh
-//  $ pulumi import fortios:index/userDevice:UserDevice labelname {{alias}}
-// ```
-//
-//  $ unset "FORTIOS_IMPORT_TABLE"
 type UserDevice struct {
 	pulumi.CustomResourceState
 
-	// Device alias.
-	Alias pulumi.StringOutput `pulumi:"alias"`
-	// Image file for avatar (maximum 4K base64 encoded).
-	Avatar pulumi.StringPtrOutput `pulumi:"avatar"`
-	// Tag category.
-	Category pulumi.StringOutput `pulumi:"category"`
-	// Comment.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Device MAC address.
-	Mac pulumi.StringOutput `pulumi:"mac"`
-	// Master device (optional).
-	MasterDevice pulumi.StringOutput `pulumi:"masterDevice"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings UserDeviceTaggingArrayOutput `pulumi:"taggings"`
-	// Device type. Valid values: `unknown`, `android-phone`, `android-tablet`, `blackberry-phone`, `blackberry-playbook`, `forticam`, `fortifone`, `fortinet-device`, `gaming-console`, `ip-phone`, `ipad`, `iphone`, `linux-pc`, `mac`, `media-streaming`, `printer`, `router-nat-device`, `windows-pc`, `windows-phone`, `windows-tablet`, `other-network-device`.
-	Type pulumi.StringOutput `pulumi:"type"`
-	// User name.
-	User pulumi.StringOutput `pulumi:"user"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Alias               pulumi.StringOutput          `pulumi:"alias"`
+	Avatar              pulumi.StringPtrOutput       `pulumi:"avatar"`
+	Category            pulumi.StringOutput          `pulumi:"category"`
+	Comment             pulumi.StringPtrOutput       `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput       `pulumi:"dynamicSortSubtable"`
+	Mac                 pulumi.StringOutput          `pulumi:"mac"`
+	MasterDevice        pulumi.StringOutput          `pulumi:"masterDevice"`
+	Taggings            UserDeviceTaggingArrayOutput `pulumi:"taggings"`
+	Type                pulumi.StringOutput          `pulumi:"type"`
+	User                pulumi.StringOutput          `pulumi:"user"`
+	Vdomparam           pulumi.StringPtrOutput       `pulumi:"vdomparam"`
 }
 
 // NewUserDevice registers a new resource with the given unique name, arguments, and options.
@@ -110,53 +56,31 @@ func GetUserDevice(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserDevice resources.
 type userDeviceState struct {
-	// Device alias.
-	Alias *string `pulumi:"alias"`
-	// Image file for avatar (maximum 4K base64 encoded).
-	Avatar *string `pulumi:"avatar"`
-	// Tag category.
-	Category *string `pulumi:"category"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Device MAC address.
-	Mac *string `pulumi:"mac"`
-	// Master device (optional).
-	MasterDevice *string `pulumi:"masterDevice"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []UserDeviceTagging `pulumi:"taggings"`
-	// Device type. Valid values: `unknown`, `android-phone`, `android-tablet`, `blackberry-phone`, `blackberry-playbook`, `forticam`, `fortifone`, `fortinet-device`, `gaming-console`, `ip-phone`, `ipad`, `iphone`, `linux-pc`, `mac`, `media-streaming`, `printer`, `router-nat-device`, `windows-pc`, `windows-phone`, `windows-tablet`, `other-network-device`.
-	Type *string `pulumi:"type"`
-	// User name.
-	User *string `pulumi:"user"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Alias               *string             `pulumi:"alias"`
+	Avatar              *string             `pulumi:"avatar"`
+	Category            *string             `pulumi:"category"`
+	Comment             *string             `pulumi:"comment"`
+	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	Mac                 *string             `pulumi:"mac"`
+	MasterDevice        *string             `pulumi:"masterDevice"`
+	Taggings            []UserDeviceTagging `pulumi:"taggings"`
+	Type                *string             `pulumi:"type"`
+	User                *string             `pulumi:"user"`
+	Vdomparam           *string             `pulumi:"vdomparam"`
 }
 
 type UserDeviceState struct {
-	// Device alias.
-	Alias pulumi.StringPtrInput
-	// Image file for avatar (maximum 4K base64 encoded).
-	Avatar pulumi.StringPtrInput
-	// Tag category.
-	Category pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Alias               pulumi.StringPtrInput
+	Avatar              pulumi.StringPtrInput
+	Category            pulumi.StringPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Device MAC address.
-	Mac pulumi.StringPtrInput
-	// Master device (optional).
-	MasterDevice pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings UserDeviceTaggingArrayInput
-	// Device type. Valid values: `unknown`, `android-phone`, `android-tablet`, `blackberry-phone`, `blackberry-playbook`, `forticam`, `fortifone`, `fortinet-device`, `gaming-console`, `ip-phone`, `ipad`, `iphone`, `linux-pc`, `mac`, `media-streaming`, `printer`, `router-nat-device`, `windows-pc`, `windows-phone`, `windows-tablet`, `other-network-device`.
-	Type pulumi.StringPtrInput
-	// User name.
-	User pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Mac                 pulumi.StringPtrInput
+	MasterDevice        pulumi.StringPtrInput
+	Taggings            UserDeviceTaggingArrayInput
+	Type                pulumi.StringPtrInput
+	User                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserDeviceState) ElementType() reflect.Type {
@@ -164,54 +88,32 @@ func (UserDeviceState) ElementType() reflect.Type {
 }
 
 type userDeviceArgs struct {
-	// Device alias.
-	Alias *string `pulumi:"alias"`
-	// Image file for avatar (maximum 4K base64 encoded).
-	Avatar *string `pulumi:"avatar"`
-	// Tag category.
-	Category *string `pulumi:"category"`
-	// Comment.
-	Comment *string `pulumi:"comment"`
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
-	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Device MAC address.
-	Mac *string `pulumi:"mac"`
-	// Master device (optional).
-	MasterDevice *string `pulumi:"masterDevice"`
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings []UserDeviceTagging `pulumi:"taggings"`
-	// Device type. Valid values: `unknown`, `android-phone`, `android-tablet`, `blackberry-phone`, `blackberry-playbook`, `forticam`, `fortifone`, `fortinet-device`, `gaming-console`, `ip-phone`, `ipad`, `iphone`, `linux-pc`, `mac`, `media-streaming`, `printer`, `router-nat-device`, `windows-pc`, `windows-phone`, `windows-tablet`, `other-network-device`.
-	Type *string `pulumi:"type"`
-	// User name.
-	User *string `pulumi:"user"`
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam *string `pulumi:"vdomparam"`
+	Alias               *string             `pulumi:"alias"`
+	Avatar              *string             `pulumi:"avatar"`
+	Category            *string             `pulumi:"category"`
+	Comment             *string             `pulumi:"comment"`
+	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	Mac                 *string             `pulumi:"mac"`
+	MasterDevice        *string             `pulumi:"masterDevice"`
+	Taggings            []UserDeviceTagging `pulumi:"taggings"`
+	Type                *string             `pulumi:"type"`
+	User                *string             `pulumi:"user"`
+	Vdomparam           *string             `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserDevice resource.
 type UserDeviceArgs struct {
-	// Device alias.
-	Alias pulumi.StringPtrInput
-	// Image file for avatar (maximum 4K base64 encoded).
-	Avatar pulumi.StringPtrInput
-	// Tag category.
-	Category pulumi.StringPtrInput
-	// Comment.
-	Comment pulumi.StringPtrInput
-	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	Alias               pulumi.StringPtrInput
+	Avatar              pulumi.StringPtrInput
+	Category            pulumi.StringPtrInput
+	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Device MAC address.
-	Mac pulumi.StringPtrInput
-	// Master device (optional).
-	MasterDevice pulumi.StringPtrInput
-	// Config object tagging. The structure of `tagging` block is documented below.
-	Taggings UserDeviceTaggingArrayInput
-	// Device type. Valid values: `unknown`, `android-phone`, `android-tablet`, `blackberry-phone`, `blackberry-playbook`, `forticam`, `fortifone`, `fortinet-device`, `gaming-console`, `ip-phone`, `ipad`, `iphone`, `linux-pc`, `mac`, `media-streaming`, `printer`, `router-nat-device`, `windows-pc`, `windows-phone`, `windows-tablet`, `other-network-device`.
-	Type pulumi.StringPtrInput
-	// User name.
-	User pulumi.StringPtrInput
-	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrInput
+	Mac                 pulumi.StringPtrInput
+	MasterDevice        pulumi.StringPtrInput
+	Taggings            UserDeviceTaggingArrayInput
+	Type                pulumi.StringPtrInput
+	User                pulumi.StringPtrInput
+	Vdomparam           pulumi.StringPtrInput
 }
 
 func (UserDeviceArgs) ElementType() reflect.Type {
@@ -240,7 +142,7 @@ func (i *UserDevice) ToUserDeviceOutputWithContext(ctx context.Context) UserDevi
 // UserDeviceArrayInput is an input type that accepts UserDeviceArray and UserDeviceArrayOutput values.
 // You can construct a concrete instance of `UserDeviceArrayInput` via:
 //
-//          UserDeviceArray{ UserDeviceArgs{...} }
+//	UserDeviceArray{ UserDeviceArgs{...} }
 type UserDeviceArrayInput interface {
 	pulumi.Input
 
@@ -265,7 +167,7 @@ func (i UserDeviceArray) ToUserDeviceArrayOutputWithContext(ctx context.Context)
 // UserDeviceMapInput is an input type that accepts UserDeviceMap and UserDeviceMapOutput values.
 // You can construct a concrete instance of `UserDeviceMapInput` via:
 //
-//          UserDeviceMap{ "key": UserDeviceArgs{...} }
+//	UserDeviceMap{ "key": UserDeviceArgs{...} }
 type UserDeviceMapInput interface {
 	pulumi.Input
 
@@ -299,6 +201,50 @@ func (o UserDeviceOutput) ToUserDeviceOutput() UserDeviceOutput {
 
 func (o UserDeviceOutput) ToUserDeviceOutputWithContext(ctx context.Context) UserDeviceOutput {
 	return o
+}
+
+func (o UserDeviceOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserDevice) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
+}
+
+func (o UserDeviceOutput) Avatar() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserDevice) pulumi.StringPtrOutput { return v.Avatar }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceOutput) Category() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserDevice) pulumi.StringOutput { return v.Category }).(pulumi.StringOutput)
+}
+
+func (o UserDeviceOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserDevice) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserDevice) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceOutput) Mac() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserDevice) pulumi.StringOutput { return v.Mac }).(pulumi.StringOutput)
+}
+
+func (o UserDeviceOutput) MasterDevice() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserDevice) pulumi.StringOutput { return v.MasterDevice }).(pulumi.StringOutput)
+}
+
+func (o UserDeviceOutput) Taggings() UserDeviceTaggingArrayOutput {
+	return o.ApplyT(func(v *UserDevice) UserDeviceTaggingArrayOutput { return v.Taggings }).(UserDeviceTaggingArrayOutput)
+}
+
+func (o UserDeviceOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserDevice) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o UserDeviceOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserDevice) pulumi.StringOutput { return v.User }).(pulumi.StringOutput)
+}
+
+func (o UserDeviceOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserDevice) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
 type UserDeviceArrayOutput struct{ *pulumi.OutputState }
